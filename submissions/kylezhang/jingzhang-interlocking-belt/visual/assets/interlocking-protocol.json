@@ -1,0 +1,174 @@
+{
+  "schema_version": "0.1.0",
+  "protocol_name_zh": "联锁协议 Interlocking Protocol",
+  "protocol_name_en": "Interlocking Protocol",
+  "package_id": "jingzhang-interlocking-belt",
+  "license": "CC-BY-4.0 (specification text only; the submission package as a whole remains COMMUNITY-DISPLAY-ONLY)",
+  "layering_statement_zh": "本协议与社区既有治理合约模板（折返协议 Switchback Protocol，chucky1102，CC-BY-4.0）分层互补、不重复：折返协议规范单一场景卡的生命周期状态机（纵向：绿→黄→红→折返→复审）；本协议规范多场景之间的冲突互锁关系（横向：任一组合冲突即阻断、闭塞间隔、人工复核）。两个协议可组合使用。",
+  "layering_statement_en": "This protocol is layer-complementary to, not a duplicate of, the community's existing governance contract template (Switchback Protocol, chucky1102, CC-BY-4.0): Switchback governs the lifecycle state machine of a single scenario card (vertical: green→yellow→red→switchback→review); this protocol governs conflict interlocking across scenarios (horizontal: any conflicting combination blocks action, block-section spacing, human review). The two may be combined.",
+  "origin_statement": "以铁路延续百年的联锁安全哲学为原型：道岔与信号互锁、冲突组合即阻断、闭塞区间保持安全间隔、调度中心统一指挥。1909 年京张铁路通车运营即以人工扳道、信号显示与调度协同贯彻'未确认、不放行'的安全纪律；本协议延续这一安全哲学，不声称 1909 年已装备电气联锁设备。",
+  "status": "design_proposal",
+  "deployment_state": "not_deployed_not_authorized_not_run",
+  "components": {
+    "switch": {
+      "name": "道岔 / Access Switch",
+      "function": "数据与场景接入控制：谁可接入、接向何处、授权状态可见",
+      "rules": ["ILP-ACCESS-01", "ILP-ACCESS-02", "ILP-ACCESS-03"]
+    },
+    "signal": {
+      "name": "信号 / Signal",
+      "function": "场景与要素状态公开可见：绿=常态运行 / 黄=受控复核 / 红=阻断停用",
+      "rules": ["ILP-SIGNAL-01"]
+    },
+    "block": {
+      "name": "闭塞 / Block Section",
+      "function": "安全间隔：公共数据、个人数据、企业内部数据分区隔离；测试场景与运营场景间隔控制",
+      "rules": ["ILP-BLOCK-01", "ILP-BLOCK-02", "ILP-BLOCK-03", "ILP-BLOCK-04"]
+    },
+    "interlocking_table": {
+      "name": "联锁表 / Interlocking Table",
+      "function": "冲突规则库：场景与数据、空间与权属、活动与安全之间的冲突组合预先登记，冲突即阻断",
+      "rules": ["ILP-CONFLICT-01", "ILP-CONFLICT-02", "ILP-CONFLICT-03"]
+    },
+    "dispatch": {
+      "name": "调度 / Dispatch",
+      "function": "人类最终判断：阻断、告警、授权变更进入人工复核，复核留痕",
+      "rules": ["ILP-DISPATCH-01"]
+    }
+  },
+  "signal_states": ["green", "yellow", "red"],
+  "rules": [
+    {
+      "rule_id": "ILP-ACCESS-01",
+      "component": "switch",
+      "description": "代码/数据接入须经贡献者授权且许可协议可见（SC-01 开源发布厅）",
+      "target_scenarios": ["SC-01"]
+    },
+    {
+      "rule_id": "ILP-ACCESS-02",
+      "component": "switch",
+      "description": "算力接入须授权，能耗状态公开（SC-03 端侧算力驿站）",
+      "target_scenarios": ["SC-03"]
+    },
+    {
+      "rule_id": "ILP-ACCESS-03",
+      "component": "switch",
+      "description": "企业信息须清权，活动审批入联锁表（SC-05 大钟寺国际路演客厅）",
+      "target_scenarios": ["SC-05"]
+    },
+    {
+      "rule_id": "ILP-SIGNAL-01",
+      "component": "signal",
+      "description": "三态信号：绿=常态运行，黄=受控复核（试点、观察、限时），红=阻断停用并公示原因；任何状态变更须经调度台确认",
+      "target_scenarios": ["SC-01", "SC-02", "SC-03", "SC-04", "SC-05", "SC-06", "SC-07", "SC-08", "SC-09", "SC-10"]
+    },
+    {
+      "rule_id": "ILP-BLOCK-01",
+      "component": "block",
+      "description": "慢行导航只聚合匿名流量，可回溯个体数据一律阻断（SC-04 AI 慢行导航）",
+      "target_scenarios": ["SC-04"]
+    },
+    {
+      "rule_id": "ILP-BLOCK-02",
+      "component": "block",
+      "description": "生态/蓝线约束为闭塞区间，禁止越界建设（SC-06 清河低碳创新廊）",
+      "target_scenarios": ["SC-06"]
+    },
+    {
+      "rule_id": "ILP-BLOCK-03",
+      "component": "block",
+      "description": "科研成果授权边界，校园数据隔离（SC-07 近校成果转化街）",
+      "target_scenarios": ["SC-07"]
+    },
+    {
+      "rule_id": "ILP-BLOCK-04",
+      "component": "block",
+      "description": "个人数据闭塞间隔，人工复核留痕（SC-09 AI 生活服务样板街）",
+      "target_scenarios": ["SC-09"]
+    },
+    {
+      "rule_id": "ILP-CONFLICT-01",
+      "component": "interlocking_table",
+      "description": "模型测试接入须经安全评测信号灯，冲突即阻断（SC-02 安全治理沙盒）",
+      "target_scenarios": ["SC-02"],
+      "conflict_pair": ["SC-02", "SC-04"]
+    },
+    {
+      "rule_id": "ILP-CONFLICT-02",
+      "component": "interlocking_table",
+      "description": "数据分级入联锁表：公开/授权/隔离三档信号（SC-08 数据要素会客厅）",
+      "target_scenarios": ["SC-08"],
+      "conflict_pair": ["SC-08", "SC-09"]
+    },
+    {
+      "rule_id": "ILP-CONFLICT-03",
+      "component": "interlocking_table",
+      "description": "测试区与运营区闭塞隔离，安全员调度复核（SC-10 智能终端测试街区）",
+      "target_scenarios": ["SC-10"],
+      "conflict_pair": ["SC-10", "SC-04"]
+    },
+    {
+      "rule_id": "ILP-DISPATCH-01",
+      "component": "dispatch",
+      "description": "一切阻断、告警与授权变更进入人工复核：复核人、时间、依据与结果留痕；连续异常触发联锁协议工作坊复审",
+      "target_scenarios": ["SC-01", "SC-02", "SC-03", "SC-04", "SC-05", "SC-06", "SC-07", "SC-08", "SC-09", "SC-10"]
+    }
+  ],
+  "conflict_combinations": [
+    {
+      "conflict_id": "CFL-01",
+      "combination": "SC-02 ∩ SC-04",
+      "rule": "红队测试时段与慢行导航聚集高峰时段分时闭塞，信号灯联动公示",
+      "blocking_state": "red"
+    },
+    {
+      "conflict_id": "CFL-02",
+      "combination": "SC-10 ∩ SC-04",
+      "rule": "测试街区与慢行导航重叠时段需人工复核放行，默认转黄",
+      "blocking_state": "yellow"
+    },
+    {
+      "conflict_id": "CFL-03",
+      "combination": "SC-10 ∩ school-hours",
+      "rule": "学校上下学时段测试街区强制转红，测试暂停并公示",
+      "blocking_state": "red"
+    },
+    {
+      "conflict_id": "CFL-04",
+      "combination": "SC-08 ∩ SC-09",
+      "rule": "数据要素流通与个人生活服务数据按三档隔离，跨档流动须入联锁表",
+      "blocking_state": "yellow"
+    },
+    {
+      "conflict_id": "CFL-05",
+      "combination": "SC-02 ∩ SC-01",
+      "rule": "模型测试与开源发布共享基础设施时按基础设施隔离，测试产物默认不进发布通道",
+      "blocking_state": "yellow"
+    },
+    {
+      "conflict_id": "CFL-06",
+      "combination": "SC-06 ∩ major-event",
+      "rule": "重大活动期间蓝线闭塞区间加密巡检，越界建设风险转黄",
+      "blocking_state": "yellow"
+    }
+  ],
+  "manual_review_points": [
+    "三处联锁站调度台：全栈自主创新站（众智园）、开源转化站（AI原点社区）、智能原生站（大钟寺）",
+    "小月河场景赋能翼安全员调度台（SC-10 测试街区）",
+    "联锁协议工作坊（常设复审机构，按月例会）"
+  ],
+  "operational_limits": {
+    "note": "以下时限为设计目标值，非政府承诺；一期实测后确定，不预填虚构基线",
+    "human_takeover_target_minutes": 5,
+    "complaint_response_target_days": 1,
+    "complaint_resolution_target_days": 7,
+    "non_ai_equivalent_path_minutes_walk": 15
+  },
+  "acknowledgments": [
+    "机制分层与开放授权模式致谢 chucky1102 折返协议（Switchback Protocol, CC-BY-4.0）",
+    "公开时限与等价人工路径致谢 to-real/jingzhang-on-time-city",
+    "三色信号语言致谢 sLingli/jingzhang-beacon 与 anjiuxiansheng/京张道岔",
+    "证据分级与诚实标注精神致谢 147228 系列方案（智行京张/Autonomy Commons/Human City）"
+  ],
+  "version": "0.1.0"
+}

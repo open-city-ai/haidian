@@ -1,0 +1,400 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(site_boundary projected to EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 167184.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(concept building footprints) in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BUILDING-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.144094,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(green_space)) / area(site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-HERITAGE-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.046766,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(public_space)) / area(site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-PUBLIC-001"
+      ]
+    },
+    "concept_route_length_m": {
+      "status": "known",
+      "value": 15622.35,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(concept road centerlines projected to EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-ROAD-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-KEYAREA-001"
+      ]
+    },
+    "land_use_0802_area_sqm": {
+      "status": "known",
+      "value": 2674562.492,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LAND_USE where land_use_code=0802)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_1401_area_sqm": {
+      "status": "known",
+      "value": 2589339.239,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LAND_USE where land_use_code=1401)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_05_area_sqm": {
+      "status": "known",
+      "value": 3366138.181,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LAND_USE where land_use_code=05)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_0702_area_sqm": {
+      "status": "known",
+      "value": 2782792.823,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LAND_USE where land_use_code=0702)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "handover_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(PUBLIC_SPACE where id starts HANDOVER-NODE)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PUBLIC-001"
+      ]
+    },
+    "cross_link_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(ROAD_CENTERLINE where id starts RELAY-LINK)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-ROAD-001"
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(numbered scenario cards in primary proposal)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_validation_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(scenario cards marked industry testing and validation)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(distinct public-need personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public pilgrimage and honor nodes)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "innovation_case_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "formula": "count(first-party global mechanism comparisons)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(H01-H09 conceptual renewal projects)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(PHASE features)",
+      "confidence": "high",
+      "assumptions": [
+        "A-IMPLEMENTATION-001"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Official FAR controls and an official site polygon are not in the cleared package."
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(official or surveyed building floor area)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-BUILDING-001"
+      ],
+      "reason": "Existing building surveys, approved program, and statutory controls are missing."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official height control or surveyed height",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-BUILDING-001"
+      ],
+      "reason": "Official height controls and existing-building survey are missing."
+    },
+    "building_coverage_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official building footprint / official parcel area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Official parcel and development-control data are missing."
+    },
+    "handover_contract_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/handover-contracts.json"
+      ],
+      "formula": "count(contract cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "governance_role_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance-raci.json"
+      ],
+      "formula": "count(suggested role types)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "project_gate_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/implementation-gates.json"
+      ],
+      "formula": "count(G0-G7 project gates)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_gate_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/implementation-gates.json"
+      ],
+      "formula": "count(C0-C7 scenario gates)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "evidence_branch_count": {
+      "status": "known",
+      "value": 84,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/unplugged-tabletop-evidence.json"
+      ],
+      "formula": "12 scenarios x 7 fixed synthetic branches",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_component_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/spatial-components.json",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(SC-01 to SC-09 components)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "regional_interface_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/regional-interfaces.json"
+      ],
+      "formula": "count(proposal_to_verify interfaces)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "public_bequest_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/handover-contracts.json"
+      ],
+      "formula": "count(contract public_bequest records)",
+      "confidence": "high",
+      "assumptions": []
+    }
+  }
+}

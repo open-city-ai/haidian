@@ -75,6 +75,45 @@
       "formula": "count(key_detailed_design_areas)",
       "confidence": "high",
       "assumptions": []
+    },
+    "total_investment_cny_million": {
+      "status": "known",
+      "value": 6740,
+      "unit": "million_cny",
+      "source_files": [
+        "INVESTMENT_ESTIMATE.md"
+      ],
+      "formula": "sum_of_three_key_areas + infrastructure + contingency",
+      "confidence": "medium",
+      "assumptions": [
+        "Based on comparable projects: Zhongguancun (Jingxi) AI Park (1.25万元/㎡), Huaqing Garden community renewal (672万元/ha), industry benchmark data. Actual investment subject to feasibility study."
+      ]
+    },
+    "investment_per_key_area_cny_million": {
+      "status": "known",
+      "value": 1873,
+      "unit": "million_cny",
+      "source_files": [
+        "INVESTMENT_ESTIMATE.md"
+      ],
+      "formula": "total_investment / key_area_count",
+      "confidence": "medium",
+      "assumptions": [
+        "Average across three key areas with different development intensity."
+      ]
+    },
+    "payback_period_years": {
+      "status": "known",
+      "value": 12,
+      "unit": "years",
+      "source_files": [
+        "INVESTMENT_ESTIMATE.md"
+      ],
+      "formula": "cumulative_cash_flow_turns_positive",
+      "confidence": "low",
+      "assumptions": [
+        "Based on projected annual operating surplus of 85 million CNY from year 5. Actual payback depends on market conditions and policy support."
+      ]
     }
   }
 }

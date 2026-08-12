@@ -1,0 +1,580 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Working area only; not an official scoring area."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "building_footprint_ratio": {
+      "status": "known",
+      "value": 0.027233,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "population_scale_reference": {
+      "status": "known",
+      "value": 3122000,
+      "unit": "persons",
+      "source_files": [
+        "visual/assets/population-scale-screen.json"
+      ],
+      "formula": "official_2024_year_end_haidian_permanent_resident_reference",
+      "confidence": "high",
+      "assumptions": [
+        "Scale reference only; not workforce, OD, observed mode share, or site demand."
+      ],
+      "reason": "The official population number sizes a transparent screening population but does not describe individual travel."
+    },
+    "synthetic_agent_count": {
+      "status": "known",
+      "value": 3122000,
+      "unit": "agents",
+      "source_files": [
+        "visual/assets/population-scale-screen.json"
+      ],
+      "formula": "sum(eight_declared_cohort_counts)",
+      "confidence": "screening",
+      "assumptions": [
+        "Aggregate cohorts only; no personal identity or trajectory is stored."
+      ],
+      "reason": "Deterministic screening output, not a local forecast."
+    },
+    "synthetic_trip_legs_screened": {
+      "status": "known",
+      "value": 6244000,
+      "unit": "one_way_legs",
+      "source_files": [
+        "visual/assets/population-scale-screen.json"
+      ],
+      "formula": "synthetic_agent_count * 2",
+      "confidence": "screening",
+      "assumptions": [],
+      "reason": "Two hypothetical legs per synthetic agent for a transparent stress screen; not observed demand."
+    },
+    "design_north_south_spine_length_m": {
+      "status": "known",
+      "value": 9604.8,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "projected_length(ROAD-001, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual relationship line, not an engineering centreline."
+      ]
+    },
+    "design_east_west_connector_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(features where network_role is an east_west or area connector)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "design_slow_mobility_network_length_m": {
+      "status": "known",
+      "value": 13013.9,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(projected_length(all ROAD_CENTERLINE features, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual network; requires right-of-way and field verification."
+      ]
+    },
+    "enterprise_commute_demand_baseline": {
+      "status": "unknown",
+      "value": null,
+      "unit": "trips_per_day",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/demand-ledger.json"
+      ],
+      "formula": "stratified_count(enterprise commute records) over a dated weekday/weekend sample",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No project-specific enterprise demand register or consented aggregation has been completed."
+    },
+    "resident_daily_trip_access_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index_0_100",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/demand-ledger.json"
+      ],
+      "formula": "weighted_access score for daily services by resident group and time window",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No stratified resident baseline, route audit or service survey is available.",
+      "pilot_target_min": 80,
+      "pilot_target_scale": "0-100"
+    },
+    "employer_multimodal_trip_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/demand-ledger.json"
+      ],
+      "formula": "non-single-occupancy-auto trips / all observed employee commute trips",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No employer travel survey or count has been completed.",
+      "pilot_target_min": 0.6,
+      "pilot_target_scale": "0-1"
+    },
+    "parking_occupancy_by_window_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json",
+        "geometry/roads.geojson"
+      ],
+      "formula": "occupied regulated curb/parking spaces / observed spaces by time window",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Current parking inventory, occupancy, turnover and enforcement records are not included."
+    },
+    "curb_time_window_compliance_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/demand-ledger.json"
+      ],
+      "formula": "served curb events within booked start/end and cleared by the end time / all observed booked events",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No curb booking, clearing or exception log exists for this submission area.",
+      "pilot_target_min": 0.9,
+      "pilot_target_scale": "0-1"
+    },
+    "first_last_mile_transfer_reliability": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/demand-ledger.json"
+      ],
+      "formula": "transfers completed within the approved connection buffer / observed transfers",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No station-level arrival, departure, walking and waiting observations are available.",
+      "pilot_target_min": 0.85,
+      "pilot_target_scale": "0-1"
+    },
+    "accessible_route_completion_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/demand-ledger.json"
+      ],
+      "formula": "verified accessible trips completed without obstruction or forced detour / sampled accessible trips",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No field audit of slopes, crossings, tactile paving, signals or obstruction continuity is available.",
+      "pilot_target_min": 0.95,
+      "pilot_target_scale": "0-1"
+    },
+    "peak_curb_conflict_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "events_per_100_events",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/demand-ledger.json"
+      ],
+      "formula": "count of observed curb conflicts / observed curb-service events * 100",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No human-counted curb conflict sample or incident taxonomy is available.",
+      "pilot_target_min": 5,
+      "pilot_target_scale": "events per 100 events"
+    },
+    "mobility_service_complaint_closure_hours": {
+      "status": "unknown",
+      "value": null,
+      "unit": "hours",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/demand-ledger.json"
+      ],
+      "formula": "median time from complaint receipt to documented closure or accountable status update",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No mobility-specific complaint log, owner or service-level agreement is available.",
+      "pilot_target_min": 24,
+      "pilot_target_scale": "hours"
+    },
+    "workplace_ev_charge_supply_gap_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/demand-ledger.json"
+      ],
+      "formula": "peak workplace charging demand minus available employer supply / peak demand",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No local charging inventory or employer demand sample is available; comparative research is not a local baseline."
+    },
+    "mobility_curb_state_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/curb-states.json",
+        "proposal.md"
+      ],
+      "formula": "count(allowed curb state taxonomy)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "mobility_scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenario-cards.json",
+        "proposal.md"
+      ],
+      "formula": "count(reversible enterprise-resident scenario cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "external_commute_od_baseline": {
+      "status": "unknown",
+      "value": null,
+      "unit": "trip_od_matrix",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/external-commute-ledger.json"
+      ],
+      "formula": "dated_grouped_OD_count_by_origin_destination_direction_and_mode",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No cross-boundary enterprise, resident or visitor OD sample has been consented or counted."
+    },
+    "external_commute_generalized_cost_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index_0_100",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/external-commute-ledger.json"
+      ],
+      "formula": "weighted_walk_wait_vehicle_transfer_parking_cost_by_external_commute_group",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No dated cross-boundary travel-time, wait, transfer or parking observations are available."
+    },
+    "multimodal_system_efficiency_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "normalized_index_0_100",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/movement-simulation.json"
+      ],
+      "formula": "pareto_candidate_score_after_hard_gates_for_cost_conflict_energy_and_equity",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No locally calibrated multimodal simulation or field baseline exists.",
+      "pilot_target_min": 75,
+      "pilot_target_scale": "0-100 after hard gates"
+    },
+    "person_flow_conflict_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "events_per_1000_persons",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/movement-simulation.json"
+      ],
+      "formula": "count_of_observed_or_simulated_person_person_and_person_vehicle_conflicts / persons * 1000",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No pedestrian, wheelchair, bicycle and vehicle conflict taxonomy or count is available."
+    },
+    "mode_transfer_reliability": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/movement-simulation.json"
+      ],
+      "formula": "cross-mode_transfers_completed_within_approved_buffer / observed_cross-mode_transfers",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No synchronized metro, bus, bicycle, walking or car transfer observation is available.",
+      "pilot_target_min": 0.85,
+      "pilot_target_scale": "0-1"
+    },
+    "car_inflow_peak_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/external-commute-ledger.json"
+      ],
+      "formula": "external_car_arrivals_in_peak_window / all_external_commute_arrivals_in_peak_window",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No boundary cordon, parking, loading or park-and-ride inflow count is available."
+    },
+    "air_ground_transfer_reliability": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/air-mobility-gate.json"
+      ],
+      "formula": "air_ground_transfers_completed_within_accessible_ground_buffer / tested_air_ground_transfers",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No air operation, vertiport, route, operator or approved experiment exists for this package.",
+      "pilot_target_min": 0.85,
+      "pilot_target_scale": "0-1 only if approved"
+    },
+    "multimodal_simulation_calibration_status": {
+      "status": "unknown",
+      "value": null,
+      "unit": "status",
+      "source_files": [
+        "assumptions.json",
+        "visual/assets/movement-simulation.json"
+      ],
+      "formula": "status_of_local_signal_station_capacity_bicycle_and_people_flow_calibration",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "SUMO can provide a method base, but no local count, signal or capacity calibration has been completed."
+    },
+    "regional_population_agents_processed": {
+      "status": "known",
+      "value": 3122000,
+      "unit": "agents",
+      "source_files": [
+        "visual/assets/regional-scale-commute-readout.json"
+      ],
+      "formula": "regional_scale_runner_agents_processed",
+      "confidence": "screening",
+      "assumptions": [
+        "Synthetic aggregate replay; not observed population movement."
+      ],
+      "reason": "Full-population synthetic replay preserves aggregate mass without personal traces."
+    },
+    "regional_return_agents_processed": {
+      "status": "known",
+      "value": 3122000,
+      "unit": "agents",
+      "source_files": [
+        "visual/assets/regional-scale-commute-readout.json"
+      ],
+      "formula": "regional_scale_runner_return_leg_agents_processed",
+      "confidence": "screening",
+      "assumptions": [
+        "Synthetic return-leg screen; not observed evening demand."
+      ],
+      "reason": "Return leg is a second declared stress screen."
+    },
+    "regional_nominal_satisfaction_proxy": {
+      "status": "known",
+      "value": 66.44,
+      "unit": "proxy_points_0_100",
+      "source_files": [
+        "visual/assets/regional-scale-commute-readout.json",
+        "visual/assets/utility-welfare-readout.json"
+      ],
+      "formula": "additive_proxy_decomposition_reconstructed_score",
+      "confidence": "screening",
+      "assumptions": [
+        "Not a survey, preference estimate or resident outcome."
+      ],
+      "reason": "Synthetic utility proxy used only for candidate comparison."
+    },
+    "regional_accessibility_completion_proxy": {
+      "status": "known",
+      "value": 0.9343,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/regional-scale-commute-readout.json"
+      ],
+      "formula": "synthetic_accessibility_completed_agents / synthetic_agents",
+      "confidence": "screening",
+      "assumptions": [
+        "Requires dated accessibility audit and grouped assisted-trip observations."
+      ],
+      "reason": "Tail screen, not a professional accessibility audit."
+    },
+    "regional_maximum_mode_load_ratio": {
+      "status": "known",
+      "value": 1.2088,
+      "unit": "load_ratio",
+      "source_files": [
+        "visual/assets/regional-scale-commute-readout.json",
+        "visual/assets/network-flow-readout.json"
+      ],
+      "formula": "max_declared_mode_person_flow / declared_mode_capacity",
+      "confidence": "screening",
+      "assumptions": [
+        "Declared capacities are synthetic."
+      ],
+      "reason": "Capacity gate for candidate screening only."
+    },
+    "regional_service_screen_residual_queue": {
+      "status": "known",
+      "value": 452668,
+      "unit": "person_trips",
+      "source_files": [
+        "visual/assets/regional-scale-commute-readout.json"
+      ],
+      "formula": "sum(unresolved_queue_after_final_time_slice)",
+      "confidence": "screening",
+      "assumptions": [
+        "FIFO service-time screen under declared supply."
+      ],
+      "reason": "Exposes a calibration stop and does not represent observed denied boarding."
+    },
+    "regional_capacity_closure_added_units": {
+      "status": "known",
+      "value": 301925,
+      "unit": "synthetic_service_units",
+      "source_files": [
+        "visual/assets/capacity-closure-screen.json"
+      ],
+      "formula": "capacity_closure_units_after - units_before",
+      "confidence": "screening",
+      "assumptions": [
+        "Unit types and capacities require operator and field evidence."
+      ],
+      "reason": "Repair-screen quantity, not a procurement recommendation."
+    },
+    "regional_worst_group_satisfaction_proxy": {
+      "status": "known",
+      "value": 57.21,
+      "unit": "proxy_points_0_100",
+      "source_files": [
+        "visual/assets/regional-scale-commute-readout.json",
+        "visual/assets/utility-welfare-readout.json"
+      ],
+      "formula": "min(group_satisfaction_proxy)",
+      "confidence": "screening",
+      "assumptions": [
+        "Group membership and utility weights are synthetic."
+      ],
+      "reason": "Keeps the slowest group visible beside the mean."
+    },
+    "regional_nominal_activity_chain_completion_proxy": {
+      "status": "known",
+      "value": 0.9106,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/activity-completion-readout.json"
+      ],
+      "formula": "completed_synthetic_activity_chains / synthetic_agents",
+      "confidence": "screening",
+      "assumptions": [
+        "Activity chain status is synthetic."
+      ],
+      "reason": "Stress-screen output for fallback planning."
+    }
+  }
+}

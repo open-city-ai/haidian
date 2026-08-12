@@ -1,0 +1,221 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary from brief/site-package/geometry/provisional_boundaries.geojson; recalculate when official boundary is released."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2483395.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space features)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept blue-green network: park spine, Qinghe interface, Xiaoyuehe interface."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.217597,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Ratio recalculated from provisional boundary geometry."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 398359.8,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space features)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Observation Plaza, Superposition Platform, tunneling corridor nodes, station plaza, wing plazas."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.034905,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Ratio recalculated from provisional boundary geometry."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 521642.383,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints)) in EPSG:4548 (union-deduplicated)",
+      "confidence": "low",
+      "assumptions": [
+        "Concept-level building footprints only; not statutory floor area, FAR, or construction scale."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 23,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE features)",
+      "confidence": "high",
+      "assumptions": [
+        "23 scenario nodes: 17 previous cards + quantum security lab + 4 QKD relay nodes + industry service center."
+      ]
+    },
+    "test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(industry test/validation scenarios)",
+      "confidence": "high",
+      "assumptions": [
+        "Quantum hardware testbed (T1), quantum secure public channel (T2), QRNG public benchmark station (T3)."
+      ]
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(AI pilgrimage landmarks / honor display nodes)",
+      "confidence": "high",
+      "assumptions": [
+        "Quantum bit monument, Observation Plaza, coherence timeline nodes, agent contribution honor wall."
+      ]
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(renewal project list items)",
+      "confidence": "high",
+      "assumptions": [
+        "JZ-01 to JZ-08 as listed in proposal.md."
+      ]
+    },
+    "quantum_secure_pilot_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(quantum secure channel industry pilot directions)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual pilot directions: finance, government/public data, energy, transport; subject to authority confirmation and technology maturity."
+      ]
+    },
+    "qkd_node_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(QKD hub + relay nodes)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual QKD network skeleton: 3 hub nodes (north Qinghuayuan direction, central Wudaokou direction, south Dazhongsi station) + 4 relay nodes (Qinghe bridge, Zhichun road, Jimen bridge, Xizhimen direction); spacing, relay, and engineering require professional confirmation."
+      ]
+    },
+    "quantum_security_lab_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(quantum security laboratory cluster)",
+      "confidence": "medium",
+      "assumptions": [
+        "One laboratory cluster in the Superposition Yard: testing/certification, security exercises, and standardization workshop (conceptual)."
+      ]
+    },
+    "quantum_job_family_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(quantum security job family types proposed)",
+      "confidence": "medium",
+      "assumptions": [
+        "Six conceptual job families: quantum network engineer, key management engineer, quantum security SOC analyst, testing/certification engineer, science education specialist, industry service staff."
+      ]
+    }
+  }
+}

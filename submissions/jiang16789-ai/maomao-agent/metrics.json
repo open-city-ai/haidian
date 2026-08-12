@@ -1,0 +1,291 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43609232.558,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/geometry/provisional_boundaries.geojson#PROV-RESEARCH-001"
+      ],
+      "formula": "area(transform(PROV-RESEARCH-001, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "所有几何来自PROV-SITE-001或在其内裁剪；数值为概念讨论值，官方边界发布后须复算。",
+        "不将指标解释为法定控规、审定值、开发承诺或工程依据。"
+      ]
+    },
+    "overall_design_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson#PROV-SITE-001"
+      ],
+      "formula": "area(transform(PROV-SITE-001, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "所有几何来自PROV-SITE-001或在其内裁剪；数值为概念讨论值，官方边界发布后须复算。",
+        "不将指标解释为法定控规、审定值、开发承诺或工程依据。"
+      ]
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson#PROV-SITE-001"
+      ],
+      "formula": "area(transform(submitted_site_boundary, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "所有几何来自PROV-SITE-001或在其内裁剪；数值为概念讨论值，官方边界发布后须复算。",
+        "不将指标解释为法定控规、审定值、开发承诺或工程依据。"
+      ]
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(union(transform(PROV-KEY-001/002/003, EPSG:4548)))",
+      "confidence": "low",
+      "assumptions": [
+        "所有几何来自PROV-SITE-001或在其内裁剪；数值为概念讨论值，官方边界发布后须复算。",
+        "不将指标解释为法定控规、审定值、开发承诺或工程依据。"
+      ]
+    },
+    "key_area_zhongzhiyuan_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-001"
+      ],
+      "formula": "area(transform(PROV-KEY-001, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "所有几何来自PROV-SITE-001或在其内裁剪；数值为概念讨论值，官方边界发布后须复算。",
+        "不将指标解释为法定控规、审定值、开发承诺或工程依据。"
+      ]
+    },
+    "key_area_ai_origin_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-002"
+      ],
+      "formula": "area(transform(PROV-KEY-002, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "所有几何来自PROV-SITE-001或在其内裁剪；数值为概念讨论值，官方边界发布后须复算。",
+        "不将指标解释为法定控规、审定值、开发承诺或工程依据。"
+      ]
+    },
+    "key_area_dazhongsi_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-003"
+      ],
+      "formula": "area(transform(PROV-KEY-003, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "所有几何来自PROV-SITE-001或在其内裁剪；数值为概念讨论值，官方边界发布后须复算。",
+        "不将指标解释为法定控规、审定值、开发承诺或工程依据。"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(features where layer = KEY_AREA)",
+      "confidence": "medium",
+      "assumptions": [
+        "所有几何来自PROV-SITE-001或在其内裁剪；数值为概念讨论值，官方边界发布后须复算。"
+      ]
+    },
+    "land_use_coverage_ratio": {
+      "status": "known",
+      "value": 0.999927,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(land_use in EPSG:4548)) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "所有几何来自PROV-SITE-001或在其内裁剪；数值为概念讨论值，官方边界发布后须复算。",
+        "不将指标解释为法定控规、审定值、开发承诺或工程依据。"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2432657.881,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(green_space transformed to EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "所有几何来自PROV-SITE-001或在其内裁剪；数值为概念讨论值，官方边界发布后须复算。",
+        "不将指标解释为法定控规、审定值、开发承诺或工程依据。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.213151,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "所有几何来自PROV-SITE-001或在其内裁剪；数值为概念讨论值，官方边界发布后须复算。",
+        "不将指标解释为法定控规、审定值、开发承诺或工程依据。"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 42113.976,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(public_space transformed to EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "所有几何来自PROV-SITE-001或在其内裁剪；数值为概念讨论值，官方边界发布后须复算。",
+        "不将指标解释为法定控规、审定值、开发承诺或工程依据。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.00369,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "所有几何来自PROV-SITE-001或在其内裁剪；数值为概念讨论值，官方边界发布后须复算。",
+        "不将指标解释为法定控规、审定值、开发承诺或工程依据。"
+      ]
+    },
+    "slow_mobility_network_length_m": {
+      "status": "known",
+      "value": 13493.495,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(transform(concept_slow_mobility_links, EPSG:4548)))",
+      "confidence": "low",
+      "assumptions": [
+        "所有几何来自PROV-SITE-001或在其内裁剪；数值为概念讨论值，官方边界发布后须复算。",
+        "不将指标解释为法定控规、审定值、开发承诺或工程依据。"
+      ]
+    },
+    "slow_mobility_connectivity_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(network links in largest connected component) / total concept network length",
+      "confidence": "low",
+      "assumptions": [
+        "所有几何来自PROV-SITE-001或在其内裁剪；数值为概念讨论值，官方边界发布后须复算。",
+        "不将指标解释为法定控规、审定值、开发承诺或工程依据。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 165794.824,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(schematic_building_footprints transformed to EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "所有几何来自PROV-SITE-001或在其内裁剪；数值为概念讨论值，官方边界发布后须复算。",
+        "不将指标解释为法定控规、审定值、开发承诺或工程依据。"
+      ]
+    },
+    "phase_near_area_sqm": {
+      "status": "known",
+      "value": 2655732.695,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson#PHASE-NEAR-001"
+      ],
+      "formula": "area(transform(PHASE-NEAR-001, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "所有几何来自PROV-SITE-001或在其内裁剪；数值为概念讨论值，官方边界发布后须复算。",
+        "不将指标解释为法定控规、审定值、开发承诺或工程依据。"
+      ]
+    },
+    "phase_mid_area_sqm": {
+      "status": "known",
+      "value": 5306573.452,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson#PHASE-MID-001"
+      ],
+      "formula": "area(transform(PHASE-MID-001, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "所有几何来自PROV-SITE-001或在其内裁剪；数值为概念讨论值，官方边界发布后须复算。",
+        "不将指标解释为法定控规、审定值、开发承诺或工程依据。"
+      ]
+    },
+    "phase_long_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson#PHASE-LONG-001"
+      ],
+      "formula": "area(transform(PHASE-LONG-001, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "所有几何来自PROV-SITE-001或在其内裁剪；数值为概念讨论值，官方边界发布后须复算。",
+        "不将指标解释为法定控规、审定值、开发承诺或工程依据。"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "官方控规、总建筑规模和官方范围未提供。"
+      ],
+      "reason": "缺少法定控规、官方红线和现状/规划总建筑面积，不能把示意建筑基底推导为容积率。"
+    }
+  }
+}

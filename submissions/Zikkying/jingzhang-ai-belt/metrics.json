@@ -1,0 +1,268 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "提交边界为 provisional_constraint（粗略替代），正式边界发布后需复算。"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 1383040.095,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints)) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "建筑基底为概念设计布局，不代表现状或审定建设规模。"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.253074,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "基于 provisional 边界与设计绿地图层复算。"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.028007,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_polygon_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "仅统计 PUBLIC_SPACE 面要素；SCENARIO_NODE 点要素不计入面积。"
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "公开场地包未提供审定容积率控制与正式边界，列为待正式控规条件确认。"
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_detailed_design_areas)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "scenario_node_count": {
+   "status": "known",
+   "value": 13,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(SCENARIO_NODE features)",
+   "confidence": "medium",
+   "assumptions": [
+    "含10个AI场景节点与3个AI朝圣地标概念节点。"
+   ]
+  },
+  "slow_mobility_network_length_m": {
+   "status": "known",
+   "value": 28076.0,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(line_length(road_centerlines)) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "为概念慢行与微循环网络长度，非道路红线。"
+   ]
+  },
+  "land_use_area_05_sqm": {
+   "status": "known",
+   "value": 1232772.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use where land_use_code=05)) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "商业服务业用地概念分区面积，粗略替代边界下复算。"
+   ]
+  },
+  "land_use_area_0701_sqm": {
+   "status": "known",
+   "value": 482179.6,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use where land_use_code=0701)) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "城镇住宅用地概念分区面积，粗略替代边界下复算。"
+   ]
+  },
+  "land_use_area_0702_sqm": {
+   "status": "known",
+   "value": 1653616.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use where land_use_code=0702)) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "社区服务设施用地概念分区面积，粗略替代边界下复算。"
+   ]
+  },
+  "land_use_area_0802_sqm": {
+   "status": "known",
+   "value": 3949751.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use where land_use_code=0802)) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "科研用地概念分区面积，粗略替代边界下复算。"
+   ]
+  },
+  "land_use_area_0804_sqm": {
+   "status": "known",
+   "value": 438159.8,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use where land_use_code=0804)) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "教育用地概念分区面积，粗略替代边界下复算。"
+   ]
+  },
+  "land_use_area_1401_sqm": {
+   "status": "known",
+   "value": 2904706.6,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use where land_use_code=1401)) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "公园绿地概念分区面积，粗略替代边界下复算。"
+   ]
+  },
+  "land_use_area_1402_sqm": {
+   "status": "known",
+   "value": 255675.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use where land_use_code=1402)) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "防护绿地概念分区面积，粗略替代边界下复算。"
+   ]
+  },
+  "land_use_area_1403_sqm": {
+   "status": "known",
+   "value": 213295.5,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use where land_use_code=1403)) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "广场用地概念分区面积，粗略替代边界下复算。"
+   ]
+  },
+  "land_use_area_16_sqm": {
+   "status": "known",
+   "value": 282690.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use where land_use_code=16)) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "留白用地概念分区面积，粗略替代边界下复算。"
+   ]
+  },
+  "phase_1_area_sqm": {
+   "status": "known",
+   "value": 1894462.1,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(phase_1) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "分期面积为实施路径建议，不构成建设计划承诺。"
+   ]
+  },
+  "phase_2_area_sqm": {
+   "status": "known",
+   "value": 7140835.6,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(phase_2) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "分期面积为实施路径建议，不构成建设计划承诺。"
+   ]
+  },
+  "phase_3_area_sqm": {
+   "status": "known",
+   "value": 2377591.7,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(phase_3) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "分期面积为实施路径建议，不构成建设计划承诺。"
+   ]
+  }
+ }
+}

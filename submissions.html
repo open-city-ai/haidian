@@ -392,14 +392,14 @@ nav{
   </div>
   <div class="status-guide-card">
     <span class="status-dot formal"></span>
-    <div><div class="status-guide-title" data-i18n="guide.formal.t">正式评分就绪</div><div class="status-guide-desc" data-i18n="guide.formal.d">提交包完整，且自检中没有阻断项。</div></div>
+    <div><div class="status-guide-title" data-i18n="guide.formal.t">正式评分就绪</div><div class="status-guide-desc" data-i18n="guide.formal.d">提交包完整，且自检中没有阻断项；历史展示状态不等于新的可信正式证据。</div></div>
   </div>
   <div class="status-guide-card">
     <span class="status-dot repair"></span>
     <div><div class="status-guide-title" data-i18n="guide.repair.t">需修复</div><div class="status-guide-desc" data-i18n="guide.repair.d">已经公开，但提交包不完整，或自检存在阻断项；0 表示已核对后没有此类方案。</div></div>
   </div>
 </div>
-<p class="review-note" data-i18n="guide.reviewNote">卡片与分类只统计 GitHub main 中已经公开的方案；右上角“开放 PR”是 GitHub 实时返回的全部未关闭 PR，既包含待合并提案，也包含网站与仓库维护工作，因此不能直接理解为待评审方案数。本站不展示维护者审核正文；具体反馈仍以对应 PR comment 为准。</p>
+<p class="review-note" data-i18n="guide.reviewNote">卡片与分类只统计 GitHub main 中已经公开的方案；右上角“开放 PR”是 GitHub 实时返回的全部未关闭 PR，既包含待合并提案，也包含网站与仓库维护工作，因此不能直接理解为待评审方案数。本站不展示维护者审核正文；具体反馈仍以对应 PR comment 为准；历史包沿用的展示状态只为公开连续性，不等于新的可信正式证据。</p>
 
 <div class="cards-wrapper">
   <div class="gallery-toolbar" id="galleryToolbar" aria-live="polite">
@@ -474,9 +474,9 @@ const T = {
     'stat1':'主分支已公开','stat1.note':'已合并并生成公开展页','stat2':'开放 PR','stat2.note':'含提案与仓库维护 PR',
     'tab.all':'全部','tab.formal':'正式评分就绪','tab.revision':'需修复','tab.fixture':'样例','sort.label':'主分支自动同步 · 点击卡片查看完整方案',
     'guide.public.t':'主分支已公开','guide.public.d':'已合并到 main，并已由本站生成公开展页。',
-    'guide.formal.t':'正式评分就绪','guide.formal.d':'提交包完整，且自检中没有阻断项。',
+    'guide.formal.t':'正式评分就绪','guide.formal.d':'提交包完整，且自检中没有阻断项；历史展示状态不等于新的可信正式证据。',
     'guide.repair.t':'需修复','guide.repair.d':'已经公开，但提交包不完整，或自检存在阻断项；0 表示已核对后没有此类方案。',
-    'guide.reviewNote':'卡片与分类只统计 GitHub main 中已经公开的方案；右上角“开放 PR”是 GitHub 实时返回的全部未关闭 PR，既包含待合并提案，也包含网站与仓库维护工作，因此不能直接理解为待评审方案数。本站不展示维护者审核正文；具体反馈仍以对应 PR comment 为准。',
+    'guide.reviewNote':'卡片与分类只统计 GitHub main 中已经公开的方案；右上角“开放 PR”是 GitHub 实时返回的全部未关闭 PR，既包含待合并提案，也包含网站与仓库维护工作，因此不能直接理解为待评审方案数。本站不展示维护者审核正文；具体反馈仍以对应 PR comment 为准；历史展示状态只表示公开分类，不等于新的可信正式证据。',
     'empty.title':'征集进行中','empty.desc':'暂无已合并的方案。成为第一个提交方案的参与者，方案将在此展示。',
     'empty.none':'当前主分支没有这一状态的已公开方案；计数已经核对，不是加载失败。',
     'empty.cta1':'Fork 仓库 →','empty.cta2':'阅读任务书',
@@ -500,9 +500,9 @@ const T = {
     'stat1':'Published on main','stat1.note':'Merged and published in the gallery','stat2':'Open PRs','stat2.note':'Proposals and repository maintenance',
     'tab.all':'All','tab.formal':'Formal ready','tab.revision':'Needs repair','tab.fixture':'Fixtures','sort.label':'Synced from main · Open a card for the full proposal',
     'guide.public.t':'Published on main','guide.public.d':'Merged into main and published as a gallery page.',
-    'guide.formal.t':'Formal scoring ready','guide.formal.d':'The package is complete with no blocking self-check item.',
+    'guide.formal.t':'Formal scoring ready','guide.formal.d':'The package is complete with no blocking self-check item; historical display status is not new trusted evidence for formal scoring.',
     'guide.repair.t':'Needs repair','guide.repair.d':'Published, but incomplete or carrying a blocking self-check; zero means the data was checked and none matched.',
-    'guide.reviewNote':'Cards and filters count only proposals already published on GitHub main. “Open PRs” is GitHub’s live total for every open Pull Request, including both proposal submissions and repository maintenance, so it is not a count of proposals under review. Maintainer review text is not reproduced here; specific feedback remains in the corresponding PR comment.',
+    'guide.reviewNote':'Cards and filters count only proposals already published on GitHub main. “Open PRs” is GitHub’s live total for every open Pull Request, including both proposal submissions and repository maintenance, so it is not a count of proposals under review. Maintainer review text is not reproduced here; specific feedback remains in the corresponding PR comment. Historical display status reflects public classification only; it is not new trusted evidence for formal scoring.',
     'empty.title':'Open Call in Progress','empty.desc':'No merged proposals yet. Be the first to submit — your proposal will be displayed here.',
     'empty.none':'No published proposal on main currently has this status. The zero was verified; this is not a loading failure.',
     'empty.cta1':'Fork Repo →','empty.cta2':'Read Brief',
@@ -525,8 +525,8 @@ const STATUS_META = {
     group: 'formal',
     zh: '正式评分就绪',
     en: 'Formal scoring ready',
-    zhDesc: '可进入正式专业评分',
-    enDesc: 'Eligible for formal professional scoring'
+    zhDesc: '包结构与自检显示可进入正式专业评分；历史展示状态不等于新的可信正式证据',
+    enDesc: 'Package structure and self-check indicate formal-scoring readiness; historical display status is not new trusted evidence for formal scoring'
   },
   intake_provisional: {
     group: 'revision',

@@ -1,0 +1,160 @@
+{
+  "schema_version": "0.1.0",
+  "review_date": "2026-08-10",
+  "assumption_policy": "Every item below is an uncertainty, design rule, or provisional analytical regime, not an established site fact. Official or professionally verified replacement data overrides the assumption and triggers the stated recalculation or redesign.",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "provisional_constraint_pending_official_replacement",
+      "statement": "The submitted overall-design boundary is derived from the repository's PROV-SITE-001 provisional polygon, not an official redline. It is used only to keep the required package computationally closed and reviewable.",
+      "impact": "All clipped geometry, areas, ratios, layouts, A3/A0 drawings, and HTML maps are provisional and unsuitable for statutory, parcel, acquisition, approval, or construction decisions.",
+      "trigger": "Receipt of a cleared official CAD/GIS/PDF polygon with publisher, version, coordinate system, date, and file hash.",
+      "required_action": "Replace the full three-scope geometry set; reclip or redesign every dependent layer; recompute all metrics in EPSG:4548; regenerate matrices, prose, figures, HTML, and PDFs; rerun validators."
+    },
+    {
+      "id": "A-KEY-AREAS-001",
+      "status": "provisional_constraint_pending_official_replacement",
+      "statement": "The three key-area polygons for Zhongzhiyuan, Beijing AI Origin Community, and Dazhongsi are area-fitted placeholders based on names, north-south order, task clues, and approximate official areas; their exact shape, location, parcel composition, and relationship to streets are unknown.",
+      "impact": "Key-area programs are expressed as transferable spatial rules and typologies. Exact entrances, blocks, building interventions, floor area, and engineering connections cannot be claimed.",
+      "trigger": "Cleared official key-area polygons or equivalent plan attachments.",
+      "required_action": "Re-anchor each public court and scenario to verified parcels and networks; rerun topology, area, access, program-capacity, and affected-party checks."
+    },
+    {
+      "id": "A-OSM-MISMATCH-001",
+      "status": "unresolved_background_conflict",
+      "statement": "Issue #846 reports that an OSM-mapped Jing-Zhang Railway Heritage Park feature had 0 overlap with PROV-SITE-001 and an approximately 412.5 m nearest distance in an EPSG:4548 background check. Neither dataset is assumed correct enough to resolve the boundary.",
+      "impact": "No proposal element uses OSM to move the official site, and no heritage or park feature is drawn as an exact real-world intervention inside the provisional polygon. The spatial concept remains relation- and rule-based until official reconciliation.",
+      "trigger": "A reproducible OSM snapshot/query plus authoritative official boundary/park geometry and coordinate metadata.",
+      "required_action": "Independently recompute overlap/distance; record ODbL provenance; decide whether to relocate, reshape, or remove each contextual element; never upgrade OSM to a statutory source."
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_and_authority_confirmation",
+      "statement": "An official notice confirms that the HD00-1601 and related street-block regulatory-plan draft was publicly consulted from 2024-12-19 to 2025-01-19 and that feedback handling was announced on 2025-02-08. The current package does not contain a validated final approved plan, drawings, control tables, or implementation instruments.",
+      "impact": "FAR, height, density, setbacks, building lines, road geometry, land-use control, facilities, and implementation conclusions remain unknown/pending even where the public notice discusses individual intersections.",
+      "trigger": "Current approved regulatory plan and cleared project-applicable control data confirmed by the competent authority and licensed professionals.",
+      "required_action": "Replace concept controls with verified control categories; test compatibility and document any proposed adjustment through lawful planning procedures rather than implying approval."
+    },
+    {
+      "id": "A-HERITAGE-CONTROLS-001",
+      "status": "pending_heritage_specialist_confirmation",
+      "statement": "Official public pages establish Jing-Zhang railway heritage significance and identify the former Qinghuayuan Station, but validated GIS/CAD protection scopes, construction-control zones, structural condition, archaeological constraints, and railway-operation safety requirements are absent.",
+      "impact": "Heritage is treated as a conservative no-harm and interpretation priority; precise intervention footprints, new structures, excavation, lighting, loading, or adaptive-reuse claims are not authorized.",
+      "trigger": "Cleared heritage plan/control geometry, condition survey, ownership/management confirmation, and specialist review.",
+      "required_action": "Overlay verified controls before locating works; conduct heritage-impact assessment; modify or remove conflicting interventions."
+    },
+    {
+      "id": "A-PARCEL-OWNERSHIP-001",
+      "status": "missing_baseline",
+      "statement": "Current cadastral parcels, land-use rights, leases, easements, institutional boundaries, public/private ownership, acquisition status, and operator responsibilities are not available in the site package.",
+      "impact": "No parcel is assigned for demolition, transfer, expropriation, compulsory relocation, lease restructuring, or a named operator. Project lists are opportunity types, not executable land actions.",
+      "trigger": "Cleared cadastral/rights data and owner, tenant, operator, and affected-party verification.",
+      "required_action": "Build a parcel-rights ledger, identify consent and compensation pathways, and stop any project that cannot meet the right-to-remain and due-process gates."
+    },
+    {
+      "id": "A-BUILDINGS-001",
+      "status": "missing_baseline",
+      "statement": "Verified existing building footprints, heights, floor areas, uses, age, condition, occupancy, code status, heritage value, energy performance, and structural capacity are missing.",
+      "impact": "Any submitted buildings layer is a design/scaffold layer rather than an existing-condition survey; retain/renovate/remove/new-build classifications and capacity calculations cannot be final.",
+      "trigger": "Cleared current survey, building registry, condition assessment, and fire/structural review.",
+      "required_action": "Rebuild the building ledger, prioritize retention and low-disturbance adaptation, recalculate floor area and embodied carbon, and obtain professional safety review."
+    },
+    {
+      "id": "A-TRANSPORT-001",
+      "status": "missing_baseline",
+      "statement": "Official road redlines/sections, intersection control, station entrances, rail capacity, bus operations, walking/cycling counts, curb/loading rules, parking supply, freight, barrier-free audits, traffic safety, and travel-by-group baselines are missing.",
+      "impact": "TOD catchments, density gradients, mode-shift targets, road changes, crossing treatments, parking ratios, and night-shift routes are conditional design hypotheses, not engineering or operational conclusions.",
+      "trigger": "Authoritative network, service, capacity, safety, accessibility, and observed-demand data plus transport-agency review.",
+      "required_action": "Run network accessibility and capacity tests by user group and time period; verify emergency/freight operations; redesign or abandon interventions that induce traffic or worsen access burdens."
+    },
+    {
+      "id": "A-MUNICIPAL-SAFETY-001",
+      "status": "missing_baseline",
+      "statement": "Water, sewer, drainage, power, district energy, telecom, existing/available compute, underground utilities, flood levels, fire access, emergency response, soil, contamination, groundwater, and engineering load capacities are missing.",
+      "impact": "Sponge-city, distributed-energy, edge-compute, utility relocation, excavation, and emergency-access proposals remain system concepts without line locations, capacities, costs, or construction feasibility claims.",
+      "trigger": "Cleared utility surveys, municipal/flood/fire/soil studies, operator capacity statements, and engineering review.",
+      "required_action": "Complete clash detection and capacity/safety modelling; assign operators and lifecycle budgets; remove any system that shifts flood, heat, pollution, safety, energy, or maintenance burdens."
+    },
+    {
+      "id": "A-POPULATION-HOUSING-001",
+      "status": "missing_distributional_baseline",
+      "statement": "Current resident, renter, dormitory, migrant, age, disability, household, income, rent, housing-cost burden, tenure security, overcrowding, waiting-list, displacement, worker-shift, and small-business occupancy baselines are not available at a fit-for-purpose spatial scale.",
+      "impact": "No current population, affordability, housing demand, relocation count, service ratio, or equity outcome is claimed. Personas are design-test groups, not demographic estimates.",
+      "trigger": "Privacy-preserving official statistics, housing/lease inventory, fieldwork, and affected-community participation with suitable spatial and temporal coverage.",
+      "required_action": "Establish group-specific baselines and distributional indicators; co-design thresholds; publish benefit/burden results; revise or halt programs that worsen housing, business, care, or mobility security."
+    },
+    {
+      "id": "A-PUBLIC-SERVICES-001",
+      "status": "missing_baseline",
+      "statement": "Verified capacity, catchments, opening hours, accessibility, demand, and quality for education, health, childcare, eldercare, culture, sports, shelters, public toilets, and other daily services are missing.",
+      "impact": "Proposed service nodes identify required functions and access principles only; they do not claim a quantified deficit, approved facility, staffed service, or service-capacity increase.",
+      "trigger": "Official facilities data, operator confirmation, accessibility audit, and community demand evidence.",
+      "required_action": "Calculate time-of-day access by group, confirm staffing/operating budgets, and prioritize ordinary daily services before visitor-facing AI showcases."
+    },
+    {
+      "id": "A-CLIMATE-ECOLOGY-001",
+      "status": "missing_baseline",
+      "statement": "Site-scale heat, shade, wind, runoff, flood, water quality, groundwater, habitat, soil, tree-health, pollution, and seasonal-use baselines are absent.",
+      "impact": "Ecological corridors, shade continuity, rainwater measures, and climate-safe routes are performance hypotheses; no exact ecological redline or quantified benefit is claimed from the provisional design geometry.",
+      "trigger": "Multi-season environmental monitoring, authoritative hydrology/flood/ecology data, and maintenance-capacity assessment.",
+      "required_action": "Apply layered suitability and no-risk-transfer tests; calibrate measures; provide safe failure and maintenance plans; remove features that increase downstream or vulnerable-group risk."
+    },
+    {
+      "id": "A-BOUNDARY-SENSITIVITY-001",
+      "status": "required_design_test",
+      "statement": "Every spatial commitment is tested under three analytical regimes rather than one assumed-correct polygon.",
+      "regimes": [
+        {
+          "id": "BS-1-CORE-SAFE",
+          "definition": "Only boundary-independent rules, reversible pilots, program requirements, affected-group safeguards, and relationships that remain valid without knowing the exact site polygon.",
+          "permitted_output": "Typologies, protocols, sequencing, dependency diagrams, and stop conditions; no site-area or parcel claim."
+        },
+        {
+          "id": "BS-2-PROVISIONAL-PACKAGE",
+          "definition": "Use the repository's PROV-SITE-001 and provisional key areas solely to create a closed GeoJSON/metric/figure package for content review and validator testing.",
+          "permitted_output": "Clearly labelled provisional layouts and recomputable package metrics; no official-redline, precise-location, statutory, or implementation claim."
+        },
+        {
+          "id": "BS-3-OFFICIAL-REANCHOR",
+          "definition": "Future replacement with cleared official three-scope and key-area geometry, validated context networks, and applicable controls.",
+          "permitted_output": "Only after full reclip, recomputation, conflict analysis, professional review, and republication may precise project conclusions be considered."
+        }
+      ],
+      "impact": "A concept survives only if its value, governance, and distributional safeguards remain coherent in BS-1 and its geometry can be transparently rebuilt from BS-2 to BS-3.",
+      "trigger": "Any boundary or context-source change, including official geometry arrival or a verified mismatch.",
+      "required_action": "Record which claims survive, move, change, or fail; do not preserve a favored diagram when the evidence changes."
+    },
+    {
+      "id": "A-METRIC-RECOMPUTE-001",
+      "status": "mandatory_recalculation_rule",
+      "statement": "Every numeric spatial value is provisional unless directly tied to a current submitted geometry/source and recomputation method. Any change to boundary, key areas, land use, buildings, roads, green/public space, constraints, or phasing invalidates all dependent values.",
+      "impact": "Rounded areas from official prose are scope references; geometry-derived metrics are package checks; neither may silently substitute for the other.",
+      "trigger": "Any geometry edit; source-version change; CRS correction; topology repair; official data arrival; or validator-discovered discrepancy.",
+      "required_action": "Recompute metric geometry in EPSG:4548 from EPSG:4326 source GeoJSON; rebuild sums/ratios; update metrics, matrices, figures, HTML data attributes, reports, and hashes; rerun validation."
+    },
+    {
+      "id": "A-AI-GOVERNANCE-001",
+      "status": "normative_design_gate_pending_legal_and_operator_confirmation",
+      "statement": "AI-enabled urban services are assumed acceptable for design exploration only when purpose-limited, minimally invasive, time-bounded, independently auditable, and reversible, with a named human duty holder, manual takeover, meaningful notice/consent where applicable, a non-digital equivalent, low-cost appeal, incident disclosure, and shutdown/retirement criteria.",
+      "impact": "No biometric or individual trajectory tracking, black-box eligibility decision, autonomous enforcement, safety-critical unsupervised action, or vendor self-certification is proposed. AI outputs do not become planning or service decisions by default.",
+      "trigger": "Named public/service operator, lawful basis, privacy and security assessment, baseline, affected-user review, procurement terms, red-team test, and approved incident/appeal/exit process.",
+      "required_action": "Run a baseline–pilot–public evaluation–scale/modify/rollback cycle; suspend deployment when responsibility, human access, data rights, safety, or reversibility cannot be demonstrated."
+    },
+    {
+      "id": "A-DISTRIBUTIONAL-EQUITY-001",
+      "status": "normative_design_gate_pending_baseline_and_co-design",
+      "statement": "The right-to-remain, no net loss of essential daily services, accessible non-digital access, ordinary-worker inclusion, and transparent community benefit are design gates, not claims about current conditions or guaranteed outcomes. Innovation uplift is not assumed to outweigh displacement, rent, care, commute, surveillance, climate, or maintenance burdens.",
+      "impact": "Every project must disclose benefits, burdens, timing, uncertainty, and recourse for residents, renters, ordinary and night-shift workers, caregivers, disabled and older people, students, small businesses, institutions, operators, and visitors. Aggregate jobs, investment, land value, or visits cannot substitute for group-specific outcomes.",
+      "trigger": "Verified distributional baseline, affected-group participation, delivery/finance/tenure mechanism, and accountable operator.",
+      "required_action": "Set co-designed thresholds and a public benefit ledger; sequence protections before value uplift; modify or stop any unit that cannot maintain housing, work, small-business, care, access, and due-process continuity."
+    },
+    {
+      "id": "A-FINANCE-DELIVERY-001",
+      "status": "missing_baseline_and_authority",
+      "statement": "Land value, acquisition, relocation, capital cost, operating cost, lifecycle maintenance, energy cost, revenue, funding source, procurement, delivery vehicle, and public-budget commitments are unknown.",
+      "impact": "Phasing and community-benefit mechanisms are conditional governance proposals, not budgets, investment commitments, government promises, or bankable feasibility findings.",
+      "trigger": "Auditable cost/revenue ranges, rights/tenure ledger, accountable sponsor/operator, lawful funding route, risk allocation, and independent value-for-money/equity review.",
+      "required_action": "Publish capital and operating responsibilities, maintenance and failure reserves, distributional cash flows, and exit liabilities before scaling beyond reversible pilots."
+    }
+  ]
+}

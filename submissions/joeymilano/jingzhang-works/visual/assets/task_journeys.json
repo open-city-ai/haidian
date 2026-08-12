@@ -1,0 +1,296 @@
+{
+  "schema_version": "1.0.0",
+  "compiler_contract_version": "1.0.0",
+  "personas": [
+    {
+      "id": "older_adult_no_smartphone",
+      "zh": "无智能手机老人",
+      "en": "older adult without a smartphone"
+    },
+    {
+      "id": "wheelchair_user",
+      "zh": "轮椅使用者",
+      "en": "wheelchair user"
+    },
+    {
+      "id": "low_vision_visitor",
+      "zh": "低视力访客",
+      "en": "low-vision visitor"
+    },
+    {
+      "id": "child_and_caregiver",
+      "zh": "儿童与照护者",
+      "en": "child and caregiver"
+    },
+    {
+      "id": "nearby_resident",
+      "zh": "附近居民",
+      "en": "nearby resident"
+    },
+    {
+      "id": "student_maker",
+      "zh": "学生创客",
+      "en": "student maker"
+    },
+    {
+      "id": "startup_test_team",
+      "zh": "创业测试团队",
+      "en": "startup test team"
+    },
+    {
+      "id": "international_visitor",
+      "zh": "国际访客",
+      "en": "international visitor"
+    }
+  ],
+  "journeys": [
+    {
+      "id": "U01",
+      "kind": "public",
+      "title_zh": "无障碍到达",
+      "title_en": "Accessible arrival",
+      "persona_ids": [
+        "wheelchair_user",
+        "low_vision_visitor"
+      ],
+      "task": "Accessible arrival",
+      "barrier": "To be verified through field or controlled test evidence.",
+      "ai_role": "Bounded assistance described in proposal; never the final accountable decision-maker.",
+      "no_ai_equivalent": "纸质路线卡和人工带路 / paper route card and staffed escort",
+      "responsible_owner": "公共空间运营方 / public-space operator",
+      "minimum_data_rule": "No personal route history; publish verified barrier attributes only.",
+      "human_takeover": "Visible Ask First Desk or named route steward.",
+      "stop_condition": "Any discontinuity, locked entrance, or unsafe crossing.",
+      "validation_metric": "End-to-end route pass by access user, operator, and safety reviewer.",
+      "field_performance": null,
+      "field_release_status": "blocked_pending_authentic_evidence"
+    },
+    {
+      "id": "U02",
+      "kind": "public",
+      "title_zh": "多语导向",
+      "title_en": "Multilingual guidance",
+      "persona_ids": [
+        "international_visitor"
+      ],
+      "task": "Multilingual guidance",
+      "barrier": "To be verified through field or controlled test evidence.",
+      "ai_role": "Bounded assistance described in proposal; never the final accountable decision-maker.",
+      "no_ai_equivalent": "双语标牌、纸图和人工翻译 / signs, paper map, interpreter",
+      "responsible_owner": "公共服务台 / public-service desk",
+      "minimum_data_rule": "Dated public sources only; no identity retention.",
+      "human_takeover": "Bilingual staff member approves or takes over.",
+      "stop_condition": "Stale source or critical mistranslation.",
+      "validation_metric": "Critical-fact accuracy and successful human handoff.",
+      "field_performance": null,
+      "field_release_status": "blocked_pending_authentic_evidence"
+    },
+    {
+      "id": "U03",
+      "kind": "public",
+      "title_zh": "遮阴休息路线",
+      "title_en": "Shade and rest route",
+      "persona_ids": [
+        "older_adult_no_smartphone",
+        "child_and_caregiver"
+      ],
+      "task": "Shade and rest route",
+      "barrier": "To be verified through field or controlled test evidence.",
+      "ai_role": "Bounded assistance described in proposal; never the final accountable decision-maker.",
+      "no_ai_equivalent": "现场导视和人工推荐 / static signs and staff advice",
+      "responsible_owner": "公园运营方 / park operator",
+      "minimum_data_rule": "Store location and condition of public amenities, not user tracks.",
+      "human_takeover": "Staff at Ask First Desk can reroute.",
+      "stop_condition": "Heat alert, failed drinking point, or inaccessible rest node.",
+      "validation_metric": "Field-verified shade, seat, water, and continuous access.",
+      "field_performance": null,
+      "field_release_status": "blocked_pending_authentic_evidence"
+    },
+    {
+      "id": "U04",
+      "kind": "public",
+      "title_zh": "青少年夜间学习",
+      "title_en": "Youth night learning",
+      "persona_ids": [
+        "student_maker",
+        "child_and_caregiver"
+      ],
+      "task": "Youth night learning",
+      "barrier": "To be verified through field or controlled test evidence.",
+      "ai_role": "Bounded assistance described in proposal; never the final accountable decision-maker.",
+      "no_ai_equivalent": "现场或电话登记 / walk-in or telephone registration",
+      "responsible_owner": "场地运营方 / venue operator",
+      "minimum_data_rule": "Minimal booking token; delete after programme review.",
+      "human_takeover": "Named on-site attendant throughout opening.",
+      "stop_condition": "Unsafe pick-up, missing attendant, or over-capacity.",
+      "validation_metric": "Safe arrival and exit plus no-app completion.",
+      "field_performance": null,
+      "field_release_status": "blocked_pending_authentic_evidence"
+    },
+    {
+      "id": "U05",
+      "kind": "public",
+      "title_zh": "老年公共服务",
+      "title_en": "Older-adult public service",
+      "persona_ids": [
+        "older_adult_no_smartphone"
+      ],
+      "task": "Older-adult public service",
+      "barrier": "To be verified through field or controlled test evidence.",
+      "ai_role": "Bounded assistance described in proposal; never the final accountable decision-maker.",
+      "no_ai_equivalent": "电话、纸表和人工柜台 / telephone, paper form, staffed counter",
+      "responsible_owner": "公共服务单位 / public-service unit",
+      "minimum_data_rule": "Do not retain questioner identity or infer eligibility.",
+      "human_takeover": "Staff handles individual judgment and exceptions.",
+      "stop_condition": "Policy uncertainty, outdated content, or identity requirement.",
+      "validation_metric": "Task completion through AI and no-AI routes compared.",
+      "field_performance": null,
+      "field_release_status": "blocked_pending_authentic_evidence"
+    },
+    {
+      "id": "U06",
+      "kind": "public",
+      "title_zh": "视听障碍辅助",
+      "title_en": "Visual and hearing assistance",
+      "persona_ids": [
+        "low_vision_visitor"
+      ],
+      "task": "Visual and hearing assistance",
+      "barrier": "To be verified through field or controlled test evidence.",
+      "ai_role": "Bounded assistance described in proposal; never the final accountable decision-maker.",
+      "no_ai_equivalent": "触觉导视、人工讲解和手语服务 / tactile signs, human explanation, sign language",
+      "responsible_owner": "无障碍服务专员 / accessibility lead",
+      "minimum_data_rule": "No disability profile; preferences expire after session.",
+      "human_takeover": "Accessibility lead validates each published format.",
+      "stop_condition": "Any required channel unavailable or inconsistent.",
+      "validation_metric": "Low-vision and hearing-access review of complete journey.",
+      "field_performance": null,
+      "field_release_status": "blocked_pending_authentic_evidence"
+    },
+    {
+      "id": "U07",
+      "kind": "public",
+      "title_zh": "就业与活动信息",
+      "title_en": "Jobs and events information",
+      "persona_ids": [
+        "student_maker",
+        "international_visitor"
+      ],
+      "task": "Jobs and events information",
+      "barrier": "To be verified through field or controlled test evidence.",
+      "ai_role": "Bounded assistance described in proposal; never the final accountable decision-maker.",
+      "no_ai_equivalent": "公告栏、电话和现场咨询 / noticeboard, telephone, counter",
+      "responsible_owner": "信息发布方 / listing publisher",
+      "minimum_data_rule": "Authorized public listing fields only; no behavioural ranking.",
+      "human_takeover": "Publisher contact shown on every listing.",
+      "stop_condition": "Expiry, discrimination, or unknown source.",
+      "validation_metric": "Source coverage, expiry removal, and no-app findability.",
+      "field_performance": null,
+      "field_release_status": "blocked_pending_authentic_evidence"
+    },
+    {
+      "id": "U08",
+      "kind": "public",
+      "title_zh": "拥挤时段通行",
+      "title_en": "Peak-period passage",
+      "persona_ids": [
+        "nearby_resident",
+        "wheelchair_user"
+      ],
+      "task": "Peak-period passage",
+      "barrier": "To be verified through field or controlled test evidence.",
+      "ai_role": "Bounded assistance described in proposal; never the final accountable decision-maker.",
+      "no_ai_equivalent": "人工疏导和静态绕行牌 / staffed control and static detours",
+      "responsible_owner": "现场安全负责人 / site safety lead",
+      "minimum_data_rule": "Anonymous aggregate counts; no face or device tracking.",
+      "human_takeover": "Safety lead owns route and physical stop.",
+      "stop_condition": "Blockage, false alert, sensor obstruction, or egress conflict.",
+      "validation_metric": "Manual count comparison and safe egress review.",
+      "field_performance": null,
+      "field_release_status": "blocked_pending_authentic_evidence"
+    },
+    {
+      "id": "T01",
+      "kind": "industry_test",
+      "title_zh": "服务机器人无障碍测试",
+      "title_en": "Accessible service-robot test",
+      "persona_ids": [
+        "startup_test_team",
+        "wheelchair_user"
+      ],
+      "task": "Accessible service-robot test",
+      "barrier": "To be verified through field or controlled test evidence.",
+      "ai_role": "Bounded assistance described in proposal; never the final accountable decision-maker.",
+      "no_ai_equivalent": "人工测试员执行同一路线 / human tester runs same route",
+      "responsible_owner": "测试主管 / test supervisor",
+      "minimum_data_rule": "Synthetic logs and authorized equipment telemetry only.",
+      "human_takeover": "Physical emergency stop and named handler.",
+      "stop_condition": "Person approach, boundary breach, or failed emergency stop.",
+      "validation_metric": "Wheelchair, cane, low-interface, offline, and recovery tests.",
+      "field_performance": null,
+      "field_release_status": "blocked_pending_authentic_evidence"
+    },
+    {
+      "id": "T02",
+      "kind": "industry_test",
+      "title_zh": "封闭区末端配送",
+      "title_en": "Closed-zone last-mile delivery",
+      "persona_ids": [
+        "startup_test_team"
+      ],
+      "task": "Closed-zone last-mile delivery",
+      "barrier": "To be verified through field or controlled test evidence.",
+      "ai_role": "Bounded assistance described in proposal; never the final accountable decision-maker.",
+      "no_ai_equivalent": "人工手推配送 / manual trolley delivery",
+      "responsible_owner": "场地方与测试方 / venue and test lead",
+      "minimum_data_rule": "Synthetic orders; no real addresses or customer profiles.",
+      "human_takeover": "On-site handler can take control and remove device.",
+      "stop_condition": "Disconnection, boundary breach, or takeover failure.",
+      "validation_metric": "Low-speed stop, boundary, manual takeover, and restoration.",
+      "field_performance": null,
+      "field_release_status": "blocked_pending_authentic_evidence"
+    },
+    {
+      "id": "T03",
+      "kind": "industry_test",
+      "title_zh": "隐私保护传感器校准",
+      "title_en": "Privacy-preserving sensor calibration",
+      "persona_ids": [
+        "startup_test_team",
+        "nearby_resident"
+      ],
+      "task": "Privacy-preserving sensor calibration",
+      "barrier": "To be verified through field or controlled test evidence.",
+      "ai_role": "Bounded assistance described in proposal; never the final accountable decision-maker.",
+      "no_ai_equivalent": "人工计数表 / manual count sheet",
+      "responsible_owner": "数据保护负责人 / data protection lead",
+      "minimum_data_rule": "Aggregate counts only; raw identifiable stream is prohibited.",
+      "human_takeover": "Data lead reviews output before release.",
+      "stop_condition": "Any identifiable output, unexplained drift, or storage breach.",
+      "validation_metric": "Error band against manual sample and deletion verification.",
+      "field_performance": null,
+      "field_release_status": "blocked_pending_authentic_evidence"
+    },
+    {
+      "id": "T04",
+      "kind": "industry_test",
+      "title_zh": "数字孪生应急演练",
+      "title_en": "Digital-twin emergency exercise",
+      "persona_ids": [
+        "startup_test_team",
+        "nearby_resident"
+      ],
+      "task": "Digital-twin emergency exercise",
+      "barrier": "To be verified through field or controlled test evidence.",
+      "ai_role": "Bounded assistance described in proposal; never the final accountable decision-maker.",
+      "no_ai_equivalent": "桌面推演和纸质预案 / tabletop exercise and paper plan",
+      "responsible_owner": "应急专业人员 / emergency professional",
+      "minimum_data_rule": "Synthetic population and resource data only.",
+      "human_takeover": "Emergency lead commands; model is advisory.",
+      "stop_condition": "Conflict with approved plan or non-explainable recommendation.",
+      "validation_metric": "Scenario replay, divergence log, and human override record.",
+      "field_performance": null,
+      "field_release_status": "blocked_pending_authentic_evidence"
+    }
+  ]
+}

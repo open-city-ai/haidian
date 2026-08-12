@@ -18,6 +18,7 @@ HAS_REVIEW_DEPS = all(
 if HAS_REVIEW_DEPS:
     from test_agent_scaffold_and_self_check import (  # noqa: E402
         complete_scaffold,
+        mark_self_checked,
         run_scaffold,
         write_official_site_package,
         write_provisional_site_package,
@@ -33,6 +34,9 @@ def make_provisional_fixture(root: Path) -> Path:
     finalized = complete_scaffold(submission_dir)
     if finalized.returncode != 0:
         raise AssertionError(finalized.stdout + finalized.stderr)
+    marked = mark_self_checked(submission_dir)
+    if marked.returncode != 0:
+        raise AssertionError(marked.stdout + marked.stderr)
     return submission_dir
 
 
@@ -93,6 +97,7 @@ class MaintainerReviewTests(unittest.TestCase):
             scaffold = run_scaffold(submission_dir, cwd=root)
             self.assertEqual(scaffold.returncode, 0, scaffold.stdout + scaffold.stderr)
             self.assertEqual(complete_scaffold(submission_dir).returncode, 0)
+            self.assertEqual(mark_self_checked(submission_dir).returncode, 0)
 
             completed = run_maintainer_review(submission_dir, "alice", repo_root=root)
             self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
@@ -130,6 +135,7 @@ class MaintainerReviewTests(unittest.TestCase):
             scaffold = run_scaffold(submission_dir, cwd=root)
             self.assertEqual(scaffold.returncode, 0, scaffold.stdout + scaffold.stderr)
             self.assertEqual(complete_scaffold(submission_dir).returncode, 0)
+            self.assertEqual(mark_self_checked(submission_dir).returncode, 0)
             out_dir = root / "review"
 
             completed = run_maintainer_review(submission_dir, "alice", repo_root=root, out_dir=out_dir)

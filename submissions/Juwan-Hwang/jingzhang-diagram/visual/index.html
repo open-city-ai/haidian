@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张运行图 · The Jingzhang Diagram — 可视化总览</title>
+<style>
+:root{--ink:#162033;--muted:#667085;--paper:#ffffff;--soft:#f2efe8;--line:#d7dee8;--navy:#172235;--rust:#A63A2B;--gold:#C9A227;--verdigris:#2F6F8E;--signal:#2E8B57;--shadow:0 14px 34px rgba(22,32,51,.09)}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;background:#eef2f6;color:var(--ink);line-height:1.6}.wrap{max-width:1180px;margin:auto}header{background:#101827;color:#fff;border-bottom:5px solid var(--gold)}.hero{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:28px;padding:34px 26px 28px}.eyebrow{color:#9fd7c0;letter-spacing:.18em;text-transform:uppercase;font-size:12px;margin-bottom:12px}h1{font-size:33px;line-height:1.18;margin:0 0 12px}h2{font-size:22px;margin:0 0 14px}h3{font-size:16px;margin:0 0 8px}p{margin:0 0 10px}.hero-copy{max-width:900px;color:#d8e3ef;font-size:15px}.status-box{border:1px solid rgba(255,255,255,.22);border-radius:8px;padding:16px;background:rgba(255,255,255,.06)}.status-box strong{display:block;font-size:19px;margin-bottom:8px;color:#fff}.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.pill,.tag{display:inline-flex;align-items:center;gap:6px;border-radius:999px;border:1px solid rgba(255,255,255,.26);padding:6px 10px;font-size:12px;color:#fff}main{padding:22px 22px 34px}.sheet{background:var(--paper);border:1px solid var(--line);border-radius:8px;margin:0 auto 18px;box-shadow:var(--shadow);overflow:hidden}.sheet-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:20px 22px;border-bottom:1px solid #e6ebf2;background:#fbfcfe}.sheet-head p{color:var(--muted);max-width:780px;margin:0}.grid{display:grid;gap:16px;padding:20px 22px}.card{border:1px solid #dde5ef;border-radius:8px;padding:15px;background:#fff}.card.accent{border-top:4px solid var(--rust)}.card.accent2{border-top:4px solid var(--verdigris)}.card.accent3{border-top:4px solid var(--gold)}.card ul,.card ol{margin:8px 0 0 18px;padding:0;color:#475467}.card li{margin-bottom:4px}.cols2{grid-template-columns:1fr 1fr}.cols3{grid-template-columns:repeat(3,1fr)}.cols5{grid-template-columns:repeat(5,1fr)}.constitutions{display:grid;gap:10px;padding:20px 22px}.con{display:flex;gap:12px;align-items:flex-start;border:1px solid #dde5ef;border-left:5px solid var(--rust);border-radius:8px;padding:12px 14px;background:#fff}.con b{color:var(--rust);white-space:nowrap}.metric{display:flex;justify-content:space-between;border-bottom:1px dashed #e0e6ef;padding:8px 0}.metric:last-child{border:none}.metric span{color:var(--muted);font-size:13px}.metric strong{font-size:15px}.warn{border-left:5px solid var(--gold);background:#fff9eb}.ok{border-left:5px solid var(--signal);background:#f0fdf4}.translation-link a{color:var(--verdigris);font-weight:700}.tag{border:1px solid #cbd5e1;color:#344054;background:#f8fafc;border-radius:4px;margin:3px 4px 0 0}@media(max-width:980px){.hero,.cols2,.cols3,.cols5{grid-template-columns:1fr}h1{font-size:26px}}@media(max-width:560px){main{padding:14px}.hero{padding:24px 18px}.sheet-head{display:block}}
+</style>
+</head>
+<body>
+<header><div class="wrap hero"><div><div class="eyebrow">百年京张 AI 创新带 · 城市设计可视化总览</div><h1>京张运行图 · The Jingzhang Diagram</h1><p class="hero-copy">一座按图行车的城市。以铁路的总谱——运行图——为元概念：空间上以人字折返单元为空间操作系统；治理上把铁路安全四制（信号·闭塞·联锁·路票）完整转译为 AI 进城治理协议；度量上以创新回路延迟（ILL）与运行图准点率为核心 KPI；精神上以詹天佑"各出所学、各尽所知"为开源城市宪法。本页为离线电子展示成果，权威数据以 GeoJSON、metrics.json、矩阵与自检结果为准。</p><div class="pill-row"><span class="pill">运行图元概念</span><span class="pill">三层范围</span><span class="pill">重点区域</span><span class="pill">十二场景卡</span><span class="pill">指标纪律</span></div></div><aside class="status-box"><strong>provisional 边界 intake</strong><p>本次提交采用仓库临时边界并显著标注 provisional，仅支持 intake 展示、讨论与返修；官方 polygon 发布后按 EPSG:4548 复算后方可进入正式专业评分。</p><p class="translation-link"><a href="index.en.html">Read in English</a></p></aside></div></header>
+<main class="wrap">
+
+<section class="sheet"><div class="sheet-head"><div><h2>同一走廊的四次「第一」叠印</h2><p>这块地真正不可复制的是同一走廊上的三次世界第一叠印，加上 2026 的人与智能共同爬升。</p></div><span class="tag">元概念</span></div><div class="grid cols2">
+<div class="card accent"><h3>1909 · 自主</h3><p>首条由中国人自行设计建造的干线铁路。詹天佑面对 33‰ 坡度，用人字形折返线回应用拓扑换坡度、用折返换可逆。</p></div>
+<div class="card accent2"><h3>1980s · 创业</h3><p>中关村电子一条街——中国市场化科技创新的原点。</p></div>
+<div class="card accent3"><h3>2019 · 智能</h3><p>京张高铁——世界首条智能高铁，实现 350 km/h 级自动驾驶与北斗应用（公开口径，正式阶段以权威来源核定）。</p></div>
+<div class="card accent"><h3>2026 · 共生</h3><p>人类第一次要回答人与智能以何种坡度共同爬升。京张基因里本就有"自动驾驶的铁路"。</p></div>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>运行图 —— 铁路的总谱</h2><p>以空间为横轴、时间为纵轴，规定每一列车何时、在哪段区间、以什么速度、在什么信号下运行。把治理对象从"列车"换成"AI 创新活动"，四要素全部转译。</p></div><span class="tag">元概念</span></div><div class="grid cols2">
+<div><div class="card"><h3>四要素转译</h3><ul><li>区间 → 城市试验区间（折返单元）</li><li>时刻 → 场景试验的申报/进站/出清时间</li><li>权限 → 场景进入公共空间的授权凭证（路票）</li><li>准点率 → 创新回路延迟 ILL</li></ul></div></div>
+<div><div class="card"><h3>此前方案的好零件被同一张图收编</h3><ul><li>人字（空间语法）· 信号（准入）</li><li>闭塞（分区）· 联锁（底线）</li><li>ILL（准点率）· 活动节律（时刻表）</li></ul></div></div>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>总览地图 · 一张运行图上的三层与三区</h2><p>以人字形折返线为骨架串联三重点区：北段众智园（试车线）、中段北京 AI 原点社区（始发站）、南段大钟寺集聚区（编组场），蓝绿开放空间沿折返步道贯通全线。本图为概念示意，权威图层以 GeoJSON 为准。</p></div><span class="tag">site-overview</span></div>
+<div style="padding:20px 22px">
+<svg viewBox="0 0 640 420" role="img" aria-label="京张运行图总览地图示意" style="width:100%;height:auto;background:#fbfcfe;border:1px solid #dde5ef;border-radius:8px">
+<defs><marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#A63A2B"></path></marker></defs>
+<rect x="120" y="28" width="400" height="364" fill="#F2EFE8" stroke="#C9A227" stroke-width="2" stroke-dasharray="6 5"></rect>
+<text x="140" y="52" font-size="13" fill="#667085">总体设计范围·provisional</text>
+<path d="M200 80 L200 300 L440 300 L440 80 Z" fill="#ffffff" stroke="#2F6F8E" stroke-width="1.5"></path>
+<path d="M200 60 L440 60 L440 340 L200 340 Z" fill="none" stroke="#2F6F8E" stroke-width="1.5"></path>
+<line x1="150" y1="120" x2="330" y2="120" stroke="#A63A2B" stroke-width="3"></line>
+<line x1="330" y1="120" x2="330" y2="200" stroke="#A63A2B" stroke-width="3"></line>
+<line x1="330" y1="200" x2="470" y2="200" stroke="#A63A2B" stroke-width="3"></line>
+<line x1="470" y1="200" x2="470" y2="300" stroke="#A63A2B" stroke-width="3"></line>
+<line x1="470" y1="300" x2="330" y2="300" stroke="#A63A2B" stroke-width="3"></line>
+<line x1="330" y1="300" x2="330" y2="360" stroke="#A63A2B" stroke-width="3" marker-end="url(#arr)"></line>
+<rect x="150" y="96" width="200" height="48" rx="6" fill="#FBE9E5" stroke="#A63A2B"></rect>
+<text x="250" y="116" font-size="14" text-anchor="middle" fill="#A63A2B" font-weight="bold">众智园 · 试车线</text>
+<text x="250" y="134" font-size="11" text-anchor="middle" fill="#475467">AI 全栈研发创新 · 192.1 ha</text>
+<rect x="330" y="176" width="200" height="48" rx="6" fill="#FAF3DC" stroke="#C9A227"></rect>
+<text x="430" y="196" font-size="14" text-anchor="middle" fill="#8a7016" font-weight="bold">AI 原点社区 · 始发站</text>
+<text x="430" y="214" font-size="11" text-anchor="middle" fill="#475467">科创孵化混合 · 104.3 ha</text>
+<rect x="330" y="276" width="240" height="48" rx="6" fill="#E3EEF4" stroke="#2F6F8E"></rect>
+<text x="450" y="296" font-size="14" text-anchor="middle" fill="#1f4f6b" font-weight="bold">大钟寺集聚区 · 编组场</text>
+<text x="450" y="314" font-size="11" text-anchor="middle" fill="#475467">智能原生产业 · 72.0 ha</text>
+<text x="620" y="40" font-size="11" text-anchor="end" fill="#2E8B57">蓝绿步道骨架 →</text>
+</svg>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>用地分区 · 一个不透漏的平铺</h2><p>用地分区按 EPSG:4548 精确平铺 site boundary，无缺口、无重叠、面积可复算。</p></div><span class="tag">geometry/land_use.geojson</span></div><div class="grid">
+<div class="metric"><span>LU-001 众智园 AI 研发创新用地（试车线）</span><strong>待复算</strong></div>
+<div class="metric"><span>LU-002 原点社区科创孵化混合用地（始发站）</span><strong>待复算</strong></div>
+<div class="metric"><span>LU-003 大钟寺智能原生产业用地（编组场）</span><strong>待复算</strong></div>
+<div class="metric"><span>LU-004 京张遗址公园蓝绿开放空间（人字折返步道骨架）</span><strong>待复算</strong></div>
+<div class="metric"><span>LU-005 院校协同与科技服务混合用地（两翼服务界面）</span><strong>待复算</strong></div>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>交通慢行 · 蓝绿公共空间 · 建筑 · 更新项目</h2><p>地表零碳慢行与跑道、人字步道骨架、微型机器人专用道概念；蓝绿开放空间沿折返步道贯通；建筑与更新项目遵循 RETROFIT, NOT REPLACE 宪法，留改拆增并举。</p></div><span class="tag">mobility / green / public / buildings / phasing</span></div><div class="grid cols2">
+<div class="card accent3"><h3>交通慢行</h3><p>折返单元慢行骨架 + 越行节点慢行者路权优先 + 低速接驳试验环（可回退人工驾驶）。</p></div>
+<div class="card"><h3>蓝绿公共空间</h3><p>蓝绿开放空间串联三区，为主折返点与居民日常公共生活提供绿色底盘。</p></div>
+<div class="card"><h3>建筑</h3><p>标准实验室、转辙塔、原点礼堂、调度大厅、高熵创客盒等关键建筑概念。</p></div>
+<div class="card accent2"><h3>更新项目</h3><p>铺轨→通车→提速→成网四期；老旧楼宇更新为开源智造工坊、学者里弄与夜校。</p></div>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>五条城市设计宪法</h2></div><span class="tag">DIAGRAM</span></div><div class="constitutions">
+<div class="con"><b>1. DIAGRAM, NOT BLUEPRINT</b><span>不要静态蓝图，要一张持续被改写的运行图</span></div>
+<div class="con"><b>2. ROUTE, NOT ZONE</b><span>不是分区，而是路由</span></div>
+<div class="con"><b>3. TEST, NOT DEPLOY</b><span>不是直接部署，而是先测试</span></div>
+<div class="con"><b>4. RETROFIT, NOT REPLACE</b><span>不是先拆除，而是优先更新</span></div>
+<div class="con"><b>5. PEOPLE FIRST</b><span>不是 AI 管理人，而是 AI 增强人；人永远握有道岔</span></div>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>三层范围工作框架</h2><p>按公告确定的三个层次组织工作，三层范围在 compliance_matrix.json 中逐条映射。</p></div><span class="tag">project_scope_summary.csv</span></div><div class="grid cols3">
+<div class="card accent2"><h3>统筹研究范围 43.6 km²</h3><p>AI 产业生态、战略定位、创新链与未来城市形态；"高校策源-开源协作-企业转化-公共体验-国际传播"创新链。</p></div>
+<div class="card accent3"><h3>总体设计范围 11.4 km²</h3><p>折返单元空间操作系统 + 三枢纽 + 两翼 + 留改拆增逻辑 + 蓝绿网络；空间单元 = 治理单元。</p></div>
+<div class="card accent"><h3>重点区域 368.4 ha</h3><p>众智园 192.1 / 原点社区 104.3 / 大钟寺 72.0，按铁路设施类型学差异化设计。</p></div>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>重点区域 —— 一列创新列车的三个作业段</h2><p>三区不是三个园区，而是用铁路设施类型学定义空间角色。</p></div><span class="tag">key_areas.geojson</span></div><div class="grid cols3">
+<div class="card accent"><h3>众智园 · 试车线 (192.1 ha)</h3><p>安全地跑出问题。全栈试验街、AI 安全测试庭院、标准实验室、转辙塔、清河创新界面、治理沙盒组团。</p></div>
+<div class="card accent3"><h3>北京 AI 原点社区 · 始发站 (104.3 ha)</h3><p>一切从人出发。原点礼堂、人字广场、调度大厅、学者里弄、无界校企交叉口、高熵创客盒。</p></div>
+<div class="card accent2"><h3>大钟寺 AI 集聚区 · 编组场 (72.0 ha)</h3><p>把产品编组成列车。永乐信号广场、智能原生市集、钟鼓楼夜校、站四象限步行、数据要素会客厅。</p></div>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>AI 场景 · 十二场景卡</h2><p>每个 AI 场景含位置/用户故事/空间载体/运营方式/隐私与人工复核边界，全部纳入四制（信号·闭塞·联锁·路票）管理，试验性质明确。</p></div><span class="tag">source:AGENT-TASKBOOK</span></div><div class="grid cols5">
+<div class="card"><b>01 调度大厅</b><p>运行图大屏公示全城在测场景与退出记录，一键预约听证。</p></div>
+<div class="card"><b>02 AR 折返导览</b><p>行走中对齐 1909 与 2026 时空图层，折返点解锁手稿故事。</p></div>
+<div class="card"><b>03 无人配送驿站</b><p>无人车把人字步道当站间线路，驿站立柱即取货点。</p></div>
+<div class="card"><b>04 低速接驳试验环</b><p>可回退低速自动驾驶接驳，随时切人工驾驶。</p></div>
+<div class="card"><b>05 原点夜校</b><p>百年站房里教授与 AI 讲师同台上市民 AI 通识课。</p></div>
+<div class="card"><b>06 治理之钟</b><p>场景过审鸣钟，治理事件成为城市仪式。</p></div>
+<div class="card"><b>07 算法亲水廊</b><p>环境数据生成公共光影艺术，只采环境不采个人。</p></div>
+<div class="card"><b>08 银发运动处方</b><p>退休铁路职工获 AI 运动建议，子女远程可见。</p></div>
+<div class="card"><b>09 机器人友好街道</b><p>服务机器人与行人共享街道，机器人实名上牌。</p></div>
+<div class="card"><b>10 开源智造工坊</b><p>72 小时从想法到原型，作品 IP 归创作者。</p></div>
+<div class="card"><b>11 AI Urban API</b><p>全球开发者申请在京张测试一个 AI 应用。</p></div>
+<div class="card"><b>12 城市问题公开路由</b><p>发现→分类→AI 辅助→人工确认→公开反馈闭环。</p></div>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>核心指标 · 指标体系与复算纪律</h2><p>ILL 与运行图准点率为核心 KPI；面积类指标基于 provisional 边界，官方数据到位后按 EPSG:4548 复算。下列机器可读指标与 metrics.json 一致。</p></div><span class="tag">metrics.json</span></div><div class="grid cols2">
+<div class="card accent"><h3>必填关键指标（data-metric）</h3><div class="metric"><span>site_area_sqm（站点面积）</span><strong data-metric="site_area_sqm" data-value="11412825.386">11,412,825.386 m²</strong></div><div class="metric"><span>green_ratio（绿地率）</span><strong data-metric="green_ratio" data-value="0.161443">0.123423</strong></div><div class="metric"><span>public_space_ratio（公共空间比例）</span><strong data-metric="public_space_ratio" data-value="0.094244">0.073281</strong></div></div>
+<div class="card accent2"><h3>创新回路延迟 ILL（分段）</h3><div class="metric"><span>研究→测试</span><strong>月计 · 逐年下降</strong></div><div class="metric"><span>测试→决策</span><strong>自然日 · 上限公开</strong></div><div class="metric"><span>决策→部署</span><strong>自然日 · 上限公开</strong></div><div class="metric"><span>退出时间</span><strong>小时计 · 上限公开</strong></div><div class="metric"><span>循环利用率</span><strong>失败→下次输入 · 上升</strong></div></div>
+<div class="card accent3"><h3>北极星指标</h3><p>每年通过这张运行图的开放协作，解决了多少真实城市问题，且被其他地区持续复用。</p><h3>底线纪律</h3><ul><li>不把 provisional boundary 写成官方红线</li><li>不虚构 FAR/高度/密度/绿地率</li><li>不虚构企业、投资额、产值、政策承诺</li><li>不把 AI 测试写成已批准运营</li></ul></div>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>任务覆盖 · 三层范围与公告任务逐条映射</h2><p>公告必选任务经 compliance_matrix.json 逐条映射到章节、图层、指标、图纸与 HTML 证据，覆盖三层范围与 AI 治理任务。</p></div><span class="tag">compliance_matrix.json</span></div><div class="grid cols3">
+<div class="card accent2"><h3>统筹研究范围 43.6 km²</h3><p>AI 产业生态、创新链、未来城市形态；区域协同定位。</p></div>
+<div class="card accent3"><h3>总体设计范围 11.4 km²</h3><p>折返单元空间操作系统 + 三枢纽 + 两翼 + 留改拆增 + 蓝绿网络。</p></div>
+<div class="card accent"><h3>重点区域 368.4 ha</h3><p>试车线 / 始发站 / 编组场三区差异化详细概念设计。</p></div>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>自检状态 · 提交包校验一览</h2><p>确定性校验、空间校验、可视化校验、专业证据校验均已完成；边界为 provisional，官方数据到位后按 EPSG:4548 复算。</p></div><span class="tag">self_check.json</span></div><div class="grid cols2">
+<div class="card ok"><h3>已通过</h3><ul><li>确定性校验（文件哈希 / 双语合同 / 非空图纸）</li><li>空间校验（用地平铺、面积复算、图层要素）</li><li>专业证据校验（来源·标准·深度映射）</li></ul></div>
+<div class="card accent3"><h3>待官方数据</h3><p>官方 SITE_BOUNDARY / KEY_AREA polygon、控规指标与现状数据发布后，全部空间与数值结论按 EPSG:4548 复算。</p></div>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>分期与年度节律</h2><p>铺轨 → 通车 → 提速 → 成网；一张时刻表组织全年活动。</p></div><span class="tag">phasing.geojson</span></div><div class="grid cols2">
+<div class="card accent3"><h3>分期计划</h3><ul><li>Phase 0 铺轨 (0–6月)：断点审计、首段贯通、四制试运行</li><li>Phase 1 通车 (6–24月)：折返点置换、路票系统、首份 ILL 年报</li><li>Phase 2 提速 (2–5年)：编组场成势、两翼服务、ILL 公开下降</li><li>Phase 3 成网 (5–10年)：四制与运行图协议开源输出</li></ul></div>
+<div class="card accent"><h3>年度节律 · 一张时刻表</h3><ul><li>春 · 人字开发者大会 Switchback DevCon</li><li>夏 · AI 城市公开试验季 Open Proving Season</li><li>秋 · 京张智能治理论坛 · 运行图年报发布</li><li>冬 · 原点跨年夜 · 钟声时刻与年度授勋</li><li>常态 · 周六车站集市、夜校、社区议事会</li></ul></div>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>来源与假设</h2><p>本页不得加载 CDN、远程瓦片、外部脚本、外部字体、API 或 iframe；权威数据以结构化文件为准。</p></div><span class="tag">matrix evidence</span></div><div class="grid cols2">
+<div class="card"><h3>来源</h3><p>sources.json / standard_matrix.json / design_depth_matrix.json / brief/site-package/</p></div>
+<div class="card"><h3>假设</h3><p>待补控规、道路红线、权属、市政、文保与工程条件见 assumptions.json；边界为 provisional，按 EPSG:4548 复算。</p></div>
+</div></section>
+
+</main>
+
+</body></html>

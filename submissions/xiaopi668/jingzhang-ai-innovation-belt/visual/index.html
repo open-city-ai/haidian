@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张智轨 EVO-RAIL — 百年京张AI创新带城市设计方案（离线展示）</title>
+<style>
+:root{--navy:#1f4e79;--green:#2e7d32;--amber:#d9480f;--bg:#f4f6f8;--card:#ffffff;--line:#dfe4ea;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Noto Sans CJK SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:var(--bg);color:#263238;line-height:1.6;}
+.wrap{max-width:1240px;margin:0 auto;padding:24px 20px;}
+header{background:linear-gradient(135deg,#1f4e79,#2e7d32 70%,#d9480f);color:#fff;padding:34px 20px;border-radius:14px;margin-bottom:26px;}
+header h1{font-size:28px;letter-spacing:1px;}
+header .sub{font-size:15px;margin-top:8px;opacity:.95;}
+.badges{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;}
+.badge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);padding:4px 12px;border-radius:20px;font-size:12px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:18px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.card h2{font-size:16px;color:var(--navy);border-left:4px solid var(--green);padding-left:10px;margin-bottom:12px;}
+.card h3{font-size:13px;color:#455a64;margin:10px 0 6px;}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;}
+.kpi{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center;}
+.kpi .v{font-size:24px;font-weight:700;color:var(--navy);}
+.kpi .l{font-size:12px;color:#607d8b;margin-top:4px;}
+.mapbox{background:#eef2f5;border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center;}
+.mapbox svg{width:100%;height:auto;max-height:420px;}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:11px;margin-top:8px;color:#455a64;}
+.legend span{display:inline-flex;align-items:center;gap:5px;}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block;border:1px solid #999;}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;}
+th{background:#f0f4f8;color:var(--navy);}
+.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;}
+.pass{background:#e8f5e9;color:#1b5e20;}
+.warn{background:#fff8e1;color:#b26a00;}
+.info{background:#e3f2fd;color:#0d47a1;}
+.note{font-size:11px;color:#78909c;margin-top:8px;}
+.foot{text-align:center;font-size:11px;color:#90a4ae;margin-top:26px;padding:14px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>京张智轨 EVO-RAIL · 百年京张AI创新带城市设计方案</h1>
+  <div class="sub">概念建议 / 参考方案，基于公开与已清权资料，使用临时约束范围（provisional），不替代正式规划。</div>
+  <div class="badges">
+    <span class="badge">作者: xiaopi668</span>
+    <span class="badge">语言: 中 / EN</span>
+    <span class="badge">package: professional_design_package</span>
+    <span class="badge">状态: 待评审 (ready_for_review)</span>
+  </div>
+</header>
+
+<!-- ============ 总览与地图 ============ -->
+<div class="card">
+  <h2>总览地图 · 三层范围与三处站点</h2>
+  <div class="mapbox">
+    <!-- 内联SVG示意图：基于真实几何拓扑（示意），非精确测绘 -->
+    <svg viewBox="0 0 800 720" role="img" aria-label="场地结构示意图">
+      <!-- 统筹研究范围参考框 -->
+      <rect x="30" y="20" width="740" height="680" fill="none" stroke="#90a4ae" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <text x="640" y="40" font-size="13" fill="#78909c">统筹研究范围 43.6 km²（reference）</text>
+      <!-- 总体设计临时边界 polygon -->
+      <polygon points="210,690 590,690 590,470 570,260 590,60 320,60 300,240 210,470" fill="#eef3f8" stroke="#7f8c8d" stroke-width="2" stroke-dasharray="5 4"/>
+      <text x="380" y="712" font-size="12" fill="#78909c" text-anchor="middle">总体设计范围≈11.4 km²（provisional 虚线）</text>
+      <!-- 三个关键区 -->
+      <rect x="250" y="70" width="300" height="150" fill="#f6b26b" stroke="#d9480f" stroke-width="2" opacity="0.75"/>
+      <text x="400" y="120" font-size="12" fill="#4a2500" text-anchor="middle" font-weight="bold">P1 众智园 验证机务段</text>
+      <rect x="235" y="250" width="310" height="90" fill="#f9cb9c" stroke="#d9480f" stroke-width="2" opacity="0.8"/>
+      <text x="390" y="285" font-size="12" fill="#4a2500" text-anchor="middle" font-weight="bold">P2 AI原点社区 开源编组站</text>
+      <rect x="245" y="490" width="290" height="50" fill="#e6a5b2" stroke="#d9480f" stroke-width="2" opacity="0.8"/>
+      <text x="390" y="522" font-size="12" fill="#4a2500" text-anchor="middle" font-weight="bold">P3 大钟寺 体验到发站</text>
+      <!-- 慢行主轴 -->
+      <path d="M390,90 L380,250 L385,490 L390,680" stroke="#1b5e20" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <text x="412" y="300" font-size="12" fill="#1b5e20" font-weight="bold">京张遗址公园慢行主轴</text>
+      <!-- 东西连接廊 -->
+      <path d="M0,160 L800,160 M0,295 L800,295 M0,515 L800,515" stroke="#607d8b" stroke-width="2.5" stroke-dasharray="8 5"/>
+      <!-- 站点广场星标 -->
+      <text x="400" y="175" font-size="20" fill="#d9480f" text-anchor="middle">★</text>
+      <text x="390" y="330" font-size="20" fill="#d9480f" text-anchor="middle">★</text>
+      <text x="390" y="545" font-size="20" fill="#d9480f" text-anchor="middle">★</text>
+      <!-- 两翼 -->
+      <text x="120" y="250" font-size="12" fill="#1f4e79" font-style="italic">中关村科技服务翼</text>
+      <text x="640" y="250" font-size="12" fill="#1f4e79" font-style="italic">小月河场景赋能翼</text>
+    </svg>
+    <div class="legend">
+      <span><i class="sw" style="background:#f6b26b"></i>智测工场</span>
+      <span><i class="sw" style="background:#f9cb9c"></i>开源原点</span>
+      <span><i class="sw" style="background:#e6a5b2"></i>智能体验</span>
+      <span><i class="sw" style="background:#a5d6a7"></i>绿地廊道</span>
+      <span style="color:#d9480f">★ 站点广场</span>
+    </div>
+  </div>
+  <div class="note">示意为基于本方案 geometry 拓扑的静态表达（SVG 内联，完全离线）。精确面积与红线以官方 polygon 为准，本方案面积由 EPSS:4548 复算。</div>
+</div>
+
+<!-- ============ 核心指标（含 data-metric/data-value，供 visual_review 校验）============ -->
+<div class="card">
+  <h2>核心指标（Metrics）</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v" data-metric="site_area_sqm" data-value="11412825.4">11,412,825</div><div class="l">总体面积 m²</div></div>
+    <div class="kpi"><div class="v" data-metric="green_ratio" data-value="0.1252">12.52%/div><div class="l">绿地占比</div></div>
+    <div class="kpi"><div class="v" data-metric="public_space_ratio" data-value="0.0394">3.94%</div><div class="l">公共空间占比</div></div>
+    <div class="kpi"><div class="v" data-metric="road_network_length_m" data-value="12716.9">12.72</div><div class="l">慢行路网 km</div></div>
+    <div class="kpi"><div class="v" data-metric="key_area_count" data-value="3">3</div><div class="l">重点区数量</div></div>
+    <div class="kpi"><div class="v" data-metric="phase_area_sqm" data-value="3692893.0">3,692,893</div><div class="l">分期实施 m²</div></div>
+  </div>
+  <div class="note">指标与 metrics.json 一致，均由 geometry 在 EPSG:4548 复算。FAR / 建筑高度 / 建筑密度等法定控制缺官方条件，标记为待正式数据补齐（未展示）。</div>
+</div>
+
+<!-- ============ 三层范围 + 任务覆盖 ============ -->
+<div class="grid">
+  <div class="card">
+    <h2>三层范围工作框架</h2>
+    <table>
+      <tr><th>层级</th><th>面积</th><th>核心任务</th></tr>
+      <tr><td>统筹研究范围</td><td>43.6 km²</td><td>产业生态与未来城市形态</td></tr>
+      <tr><td>总体设计范围</td><td>11.4 km²</td><td>城市更新 · 空间产业融合</td></tr>
+      <tr><td>重点区域范围</td><td>368.4 ha</td><td>三处重点区详细设计</td></tr>
+    </table>
+    <h3>三大定位 · 五大功能</h3>
+    <p style="font-size:12px">百年京张文化带｜都市AI生活体验带｜AI融合创新带<br>全栈自主创新 · 世界级生态 · AI+场景赋能 · 智能化活力城市 · AI治理话语权</p>
+  </div>
+  <div class="card">
+    <h2>任务覆盖 Compliance</h2>
+    <table>
+      <tr><th>任务</th><th>状态</th></tr>
+      <tr><td>6项 agent 任务 (agent.1–6)</td><td><span class="tag pass">全覆盖</span></td></tr>
+      <tr><td>公告 1.3 / 1.4 / 1.5</td><td><span class="tag pass">全覆盖</span></td></tr>
+      <tr><td>15 张 AI 场景卡 (≥10)</td><td><span class="tag pass">达标</span></td></tr>
+      <tr><td>3 个产业测试验证场景</td><td><span class="tag pass">达标</span></td></tr>
+      <tr><td>5 类用户画像</td><td><span class="tag pass">达标</span></td></tr>
+      <tr><td>3 个 AI 朝圣地标</td><td><span class="tag pass">达标</span></td></tr>
+      <tr><td>中英双语呈现</td><td><span class="tag pass">达标</span></td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>用地分区 Land Use</h2>
+    <table>
+      <tr><th>功能区</th><th>代码</th></tr>
+      <tr><td>绿廊·京张遗址公园带</td><td>GREEN_HERITAGE_PARK</td></tr>
+      <tr><td>智测工场·众智园</td><td>AI_ACCELERATION</td></tr>
+      <tr><td>开源原点·AI原点社区</td><td>AI_ORIGIN_COMMUNITY</td></tr>
+      <tr><td>产业转化廊道</td><td>AI_INDUSTRY_CORRIDOR</td></tr>
+      <tr><td>大钟寺智能体验街区</td><td>AI_EXPERIENCE_COMMERCE</td></tr>
+      <tr><td>蓝绿活力廊道 / 混合带</td><td>GREEN_BLUE_CORRIDOR / MIXED</td></tr>
+    </table>
+    <div class="note">更新项目：沿遗址公园主轴保留活化，智测工场/混创新/体验街区等可更新对象，详见 phasing 分期。交通慢行与蓝绿公共空间见本页上方结构图与下方指标。</div>
+  </div>
+  <div class="card">
+    <h2>分期实施 Phasing</h2>
+    <table>
+      <tr><th>期</th><th>范围</th></tr>
+      <tr><td>P1</td><td>众智园加速区 + 北段绿廊（先验证）</td></tr>
+      <tr><td>P2</td><td>AI原点社区 + 中部绿廊（再开源）</td></tr>
+      <tr><td>P3</td><td>大钟寺体验街区 + 南段绿廊（后体验）</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============ 重点区 / 场景 / 来源 / 自检 ============ -->
+<div class="grid">
+  <div class="card">
+    <h2>三处重点区详细设计</h2>
+    <table>
+      <tr><th>片区</th><th>定位</th></tr>
+      <tr><td>众智园</td><td>验证机务段：测试·标准·治理</td></tr>
+      <tr><td>AI原点社区</td><td>开源编组站：近校创新·人才特区</td></tr>
+      <tr><td>大钟寺</td><td>体验到发站：智能原生·数据要素</td></tr>
+    </table>
+    <div class="note">三处为重点临时约束范围（provisional constraint），仅作方向性设计。</div>
+  </div>
+  <div class="card">
+    <h2>AI 场景与朝圣地标</h2>
+    <p style="font-size:12px"><b>场景卡(15)：</b>可信AI测试场、开源协作广场、智能原生消费、数字资产体验、自动驾驶接驳环、无人配送等。</p>
+    <p style="font-size:12px"><b>3朝圣地标：</b>原点钟(开源) · 验证信号塔(可信) · 到发屏(数据)。</p>
+    <p style="font-size:12px"><b>5用户画像：</b>研发者 / 师生创业者 / 园区企业 / 市民游客 / 老人特殊群体。</p>
+  </div>
+  <div class="card">
+    <h2>数据与来源 Sources</h2>
+    <table>
+      <tr><th>来源</th><th>类型</th></tr>
+      <tr><td>资格预审公告(2026-05-09)</td><td><span class="tag info">formal</span></td></tr>
+      <tr><td>智能体开源征集任务书</td><td><span class="tag info">formal</span></td></tr>
+      <tr><td>城市设计管理办法等标准</td><td><span class="tag info">formal</span></td></tr>
+      <tr><td>三层范围临时 polygon</td><td><span class="tag warn">provisional_only</span></td></tr>
+      <tr><td>老年人智能技术方案</td><td><span class="tag warn">background</span></td></tr>
+    </table>
+    <div class="note">完整来源元数据见 sources.json；来源边界遵循 data/source_registry.json。</div>
+  </div>
+  <div class="card">
+    <h2>关键假设与限制 Assumptions</h2>
+    <ul style="font-size:12px;padding-left:16px">
+      <li>官方边界/重点区 polygon 未发布 → 全部面积待官方数据后整包重算。</li>
+      <li>FAR / 建筑高度 / 密度 / 绿地率 = 待正式控规条件确认。</li>
+      <li>拆改留、道路红线、工程可行性仅作概念建议。</li>
+      <li>版权：COMMUNITY-DISPLAY-ONLY；详见 copyright_statement.md。</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <h2>自检状态 Self-Check</h2>
+  <table>
+    <tr><th>检查</th><th>状态</th></tr>
+    <tr><td>确定性校验 (validate_submission)</td><td id="sc-det"><span class="tag warn">待运行 finalize/self-check</span></td></tr>
+    <tr><td>空间复核 (spatial_review)</td><td id="sc-spa"><span class="tag warn">待运行</span></td></tr>
+    <tr><td>视觉包装校验 (visual_review)</td><td id="sc-vis"><span class="tag warn">待运行</span></td></tr>
+    <tr><td>专业证据复核 (professional_review)</td><td id="sc-pro"><span class="tag warn">待运行</span></td></tr>
+  </table>
+  <div class="note">本 HTML 由本方案指标/几何/矩阵生成，离线静态、无外部资源。最终状态以 self_check.json 为准。</div>
+</div>
+
+<div class="foot">京张智轨 EVO-RAIL · 百年京张AI创新带城市设计开源征集 · xiaopi668 · 概念建议（provisional）· 离线展示文件</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张代码 OPEN-JZ：百年京张AI创新带开源城市操作系统概念方案 - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>京张代码 OPEN-JZ：百年京张AI创新带开源城市操作系统概念方案</h1>
+<p class="summary">以「开源城市操作系统」为第一性概念：MAIN 主线（京张遗址公园绿脉）+ 三大核心仓库（众智园训练仓 / 北京AI原点社区仓 / 大钟寺应用仓）+ 三层协议（数据流通 / 场景测试 / 伦理治理），把城市更新组织为可提交、可评审、可合并、可回滚的开源流程。基于 provisional boundary 生成，保留精度警示与复算要求。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+</section>
+<h1>京张代码 OPEN-JZ：百年京张AI创新带开源城市操作系统概念方案</h1>
+<h2>设计依据与资料清单</h2>
+<p>本 formal 方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据，并以 <code>brief/site-package/</code> 中经维护者登记的临时粗略边界、重点区域、枚举、指标和来源清单为机器可读依据 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。</p>
+<p>方案生成前已读取 <code>design_brief.json</code>、<code>allowed_design_space.json</code>、<code>sources.json</code>、<code>enums/</code>、<code>ranges/planning_limits.json</code>、<code>schemas/</code>、<code>standards/</code> 与 <code>data/source_registry.json</code>，并以 <code>agent_taskbook.json</code> 的 agent.1-agent.6 必选任务建立任务、范围、资料用途和缺口清单 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup>。</p>
+<p>方案边界声明：本方案全部空间建议基于组织方登记的 provisional boundary（临时边界）生成，属<strong>概念建议、参考方案，可供专业团队深化研究</strong>，不替代正式规划，不构成政府审定结论 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="KEY-AREA-SOURCE" title="来源：KEY-AREA-SOURCE">来源</sup>。官方规划控制指标（容积率、建筑高度、建筑密度、绿地率、退线）尚未在资料包中提供，均按数据缺口处理，不推测伪精确值 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="existing_conditions_diagnosis" title="深度：existing_conditions_diagnosis">深度</sup>。</p>
+<div class="proposal-table"><table><thead><tr><th>层级</th><th>设计问题</th><th>方案回答</th><th>数据落点</th></tr></thead><tbody><tr><td>统筹研究范围 43.6km²</td><td>AI 产业生态和未来城市形态如何组织</td><td>「开源城市操作系统」：内核-仓库-协议三层架构</td><td>compliance_matrix.json、standard_matrix.json</td></tr><tr><td>总体设计范围 11.4km²</td><td>产业空间、城市更新、交通市政和风貌如何落图</td><td>MAIN 主线 + 三大 REPO + 三层 PROTOCOL 横线</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup>、<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup></td></tr><tr><td>重点区域范围 368.4ha</td><td>三处片区如何达到详细设计深度</td><td>训练仓 / 社区仓 / 应用仓分别给出空间动作与 AI 场景</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup> 等</td></tr></tbody></table></div>
+<h2>三层范围工作框架</h2>
+<p>方案按公告确定的三层范围组织：统筹研究范围（43.6km²）回答 AI 创新生态与未来城市形态；总体设计范围（11.4km²）把判断落实为更新总体框架、产业空间布局、交通市政支撑与城市风貌控制；重点区域范围（368.4ha）完成众智园、北京AI原点社区、大钟寺三处详细设计 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup>。</p>
+<p>三层工作不是割裂的图纸集合：统筹研究决定产业链与城市形态判断，总体设计把判断落实到更新项目、空间结构和设施承载，重点区域验证具体地块、建筑、交通、公共空间与 AI 应用场景的可实施性。任何无法从结构化数据复算的面积、比例、规模或项目数量，均不写入正式结论；受 provisional boundary 影响的结论在正文与 <code>assumptions.json</code> 中明确标注。</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="场地总览图：统筹研究范围、总体设计范围、京张遗址公园绿脉主轴与三大重点区域示意（provisional boundary）"><figcaption>场地总览图：统筹研究范围、总体设计范围、京张遗址公园绿脉主轴与三大重点区域示意（provisional boundary）</figcaption></figure>
+<h2>统筹研究范围产业与未来城市研究</h2>
+<p><strong>总体概念：开源城市操作系统。</strong> 百年京张铁路是中国自主创新的起点，中关村是中国开源与软件产业的起点。方案把两者合流为「京张代码 OPEN-JZ」：城市不再是一次性绘制的图纸，而是持续演进的代码库——公共空间、产业空间与治理机制都是可版本化的模块，城市更新即提交（commit）、评审（review）、合并（merge）、可回滚（revert）。公众是评审者，开发者是贡献者，政府是维护者 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。</p>
+<p>面向任务书&quot;五大功能&quot;，方案建立对应转译 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>：</p>
+<div class="proposal-table"><table><thead><tr><th>任务书功能</th><th>京张代码转译</th><th>空间落点</th></tr></thead><tbody><tr><td>AI 全栈自主创新体系</td><td>内核 KERNEL：自主算力、模型、框架与标准</td><td>众智园·训练仓</td></tr><tr><td>世界级 AI 创新生态</td><td>仓库网络 REPO-NET：开源协作与成果转化</td><td>原点社区·社区仓</td></tr><tr><td>AI+场景赋能新范式</td><td>应用层 APPS：场景开放与测试验证</td><td>大钟寺·应用仓</td></tr><tr><td>智能化 AI 活力城市</td><td>运行时 RUNTIME：公共空间与生活场景</td><td>MAIN 主线绿脉</td></tr><tr><td>AI 治理全球话语权</td><td>治理协议 GOVERNANCE-PROTOCOL</td><td>三协议横线</td></tr></tbody></table></div>
+<p><strong>创新链组织</strong>：建立&quot;高校策源 → 开源协作 → 企业转化 → 公共体验 → 国际传播&quot;的链式空间协同框架，与海淀高校院所、头部企业、算力算法数据要素、孵化平台与科技服务资源耦合。产业战略指标、AI 创新指数、人才密度与空间供给类型写入 <code>metrics.json</code>，并标明官方值与设计建议值的区分。</p>
+<h2>总体设计范围城市更新与控规深度城市设计</h2>
+<p>总体设计范围提出「<strong>MAIN + REPO + PROTOCOL</strong>」空间结构 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>：</p>
+<ul>
+<li><strong>MAIN 主线</strong>：京张遗址公园绿脉，南北贯通的概念公共主轴，慢行优先、历史叙事、AI 体验。在 <code>geometry/green_space.geojson</code> 中以绿脉带表达 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GRN-001" title="空间数据：geometry/green_space.geojson#GRN-001">空间数据</sup>。</li>
+<li><strong>三大 REPO</strong>：众智园（训练仓）、北京AI原点社区（社区仓）、大钟寺（应用仓），以 <code>geometry/key_areas.geojson</code> 三个重点区承载，内部以 <code>geometry/buildings.geojson</code> 表达概念更新建筑基底 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup>。</li>
+<li><strong>三层 PROTOCOL 横线</strong>：三条东西缝合带分别承载数据流通、场景测试与伦理治理接口，以 <code>geometry/roads.geojson</code> 概念道路表达东西缝合关系 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup>。</li>
+</ul>
+<p><strong>用地结构</strong>：沿绿脉两侧组织 AI 研发、教育科研、文化商业、居住与公共服务用地条带，三个重点区核心布置算力训练集群、开源创新街区、智能终端与内容消费区，见 <code>geometry/land_use.geojson</code> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup>。开发强度与建筑高度因官方控制条件缺失，均标注为&quot;待正式控规条件确认&quot;，不以推测值冒充审定指标 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-CONTROL-DETAILED-PLANNING" title="标准：MOHURD-CONTROL-DETAILED-PLANNING">标准</sup>。</p>
+<p><strong>拆改留方案</strong>：以&quot;保留铁路遗址记忆、更新低效产业空间、增补 AI 创新载体&quot;为原则。保留段：遗址公园带、文物与历史建筑（<code>geometry/constraints.geojson</code> 的 HERITAGE_PROTECTION 图层）；更新段：三个重点区内低效用地（<code>geometry/buildings.geojson</code> 概念更新基底）；新建段：协议横线缝合节点与公共空间 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CON-001" title="空间数据：geometry/constraints.geojson#CON-001">空间数据</sup>。</p>
+<h2>重点区域详细设计</h2>
+<h3>训练仓 TRAIN-REPO · 众智园 AI 自主创新加速区（192.1ha）</h3>
+<p>围绕国家人工智能平台与全栈自主创新：布局算力训练集群、模型评测中心、AI 标准与安全治理实验室；提出「众智算塔」AI 朝圣地标——白天反射天空、夜间以光柱显示训练任务状态；结合清河文化打造低碳绿色创新交往环境与绿色空间 AI 场景 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup>。对外交通依托协议横线北线与轨道站点一体化接驳。</p>
+<h3>社区仓 COMMUNITY-REPO · 北京 AI 原点社区（104.3ha）</h3>
+<p>围绕近校创新与成果转化：设置开源代码广场、孵化器街区、成果展示发布厅与人才公寓；改造清华园车站遗址为「京张原点站·开源纪念碑广场」朝圣地标，作为开源文化的精神原点；强化校区-园区慢行联系、轨道站点一体化与青年友好生活配套 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-ARCH-DESIGN-DEPTH-2016" title="标准：MOHURD-ARCH-DESIGN-DEPTH-2016">标准</sup>。建筑拆改留以&quot;保留历史站房、更新低效楼宇、增补创新空间&quot;为序。</p>
+<h3>应用仓 APP-REPO · 大钟寺 AI 产业聚集区（72.0ha）</h3>
+<p>围绕领军企业、智能体与智能终端生态：布局智能终端体验街、内容消费与数据要素流通节点；以「大钟寺 AI 钟楼广场」为朝圣地标，用数据流声景复刻钟鼓意象；规划绿地复合利用、大钟寺站一体化与路口四象限步行连通，打通商业服务与 AI 体验的界面 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#dazhongsi_ai_industry_cluster" title="空间数据：geometry/key_areas.geojson#dazhongsi_ai_industry_cluster">空间数据</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="重点区域索引图：众智园训练仓、北京AI原点社区仓、大钟寺应用仓三处重点区域与概念更新建筑基底"><figcaption>重点区域索引图：众智园训练仓、北京AI原点社区仓、大钟寺应用仓三处重点区域与概念更新建筑基底</figcaption></figure>
+<h2>AI 创新生态、人才画像与 AI+ 场景</h2>
+<p><strong>10 张 AI 场景卡</strong>（<code>geometry/public_space.geojson</code> 以场景节点落位）：</p>
+<div class="proposal-table"><table><thead><tr><th>编号</th><th>场景</th><th>落位</th></tr></thead><tbody><tr><td>S01</td><td>轨道巡检机器人步道</td><td>MAIN 绿脉</td></tr><tr><td>S02</td><td>无人配送环线</td><td>三重点区</td></tr><tr><td>S03</td><td>AI 慢行信号优化</td><td>绿脉过街</td></tr><tr><td>S04</td><td>开源代码露天剧场</td><td>社区仓</td></tr><tr><td>S05</td><td>场景测试街区</td><td>协议横线</td></tr><tr><td>S06</td><td>数据要素公共展厅</td><td>应用仓</td></tr><tr><td>S07</td><td>AI 教育实验室带</td><td>教育科研带</td></tr><tr><td>S08</td><td>数字孪生观测台</td><td>众智算塔</td></tr><tr><td>S09</td><td>AI 健康服务舱</td><td>社区节点</td></tr><tr><td>S10</td><td>智能公交接驳线</td><td>轨道站点</td></tr></tbody></table></div>
+<p><strong>3 个产业测试验证场景</strong>：① 自动驾驶接驳测试环（众智园-大钟寺）；② 机器人递送走廊（遗址公园段）；③ 城市级 AI 政务沙盒（治理协议层）。</p>
+<p><strong>5 类用户画像</strong>：开源开发者/研究员；AI 创业者与企业员工；大学生与青年人才；原住居民与银发人群；全球访客与参会者。</p>
+<p><strong>3 个 AI 朝圣地标</strong>：京张原点站（社区仓）、众智算塔（训练仓）、大钟寺 AI 钟楼（应用仓）<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUB-001" title="空间数据：geometry/public_space.geojson#PUB-001">空间数据</sup>。</p>
+<h2>用地、建筑规模与拆改留方案</h2>
+<p>用地结构以绿脉为主轴、协议横线为缝合带、三大仓库为核心地块（见 <code>geometry/land_use.geojson</code>），共划分五类概念用地：AI 研发用地、教育科研用地、文化商业用地、居住用地与公园绿地，实现设计范围内全覆盖、无重叠 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup>。三类重点区核心分别布置算力与训练集群（AI-DATA）、开源创新街区（AI-OS）、智能终端与内容消费区（AI-APP），作为用地结构的功能锚点 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#zhongzhiyuan_ai_acceleration_area" title="空间数据：geometry/key_areas.geojson#zhongzhiyuan_ai_acceleration_area">空间数据</sup>。</p>
+<p>建筑规模为概念建议值：<code>metrics.json</code> 中 <code>building_footprint_area_sqm</code> 由 15 栋概念更新建筑基底在 EPSG:4548 投影下复算得到，仅用于表达拆改留的空间量级与可实施性讨论，不换算为建筑面积承诺 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup>。因官方开发强度（容积率、高度、密度）控制条件在资料包中缺失，方案不给出建筑规模总量与开发强度指标，相关结论标注为待正式控规条件确认 [assumption:A-CONTROLS-001]。</p>
+<p>拆改留分类原则（对应 <code>geometry/buildings.geojson</code> 与 <code>geometry/constraints.geojson</code>）：<strong>保留</strong>——京张铁路遗址保护带、文物与历史站房（locked 图层 HERITAGE_PROTECTION，不做改动）<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CON-001" title="空间数据：geometry/constraints.geojson#CON-001">空间数据</sup>；<strong>更新</strong>——三大仓库内低效产业楼宇，以概念更新基底表达；<strong>新建</strong>——协议横线缝合节点、AI 公共空间与朝圣地标周边载体。</p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="用地结构图：沿绿脉组织的 AI 研发、教育科研、文化商业、居住与公园绿地五类概念用地分布"><figcaption>用地结构图：沿绿脉组织的 AI 研发、教育科研、文化商业、居住与公园绿地五类概念用地分布</figcaption></figure>
+<h2>交通、轨道、市政与公共服务设施</h2>
+<p><strong>轨道与站城一体化</strong>：依托既有轨道站点（含大钟寺站及清华园周边站点）开展站城一体化概念设计，轨道站点 500m 范围内布置创新服务、人才公寓与慢行接驳设施，重点区站点一体化预留地下连通道接口 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup>。轨道线位与站点均为现状锁定要素，方案不改变现状轨道（locked 图层 EXISTING_RAIL）。</p>
+<p><strong>道路微循环</strong>：以三条协议横线（数据流通/场景测试/伦理治理）缝合东西城区，以绿脉两侧慢行主路组织南北微循环，形成&quot;横缝纵贯&quot;的概念路网骨架（<code>geometry/roads.geojson</code>，5 条概念道路）<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup>。道路红线与线位属概念建议，不涉及现状道路改造承诺；具体红线待官方道路红线图发布后校准。</p>
+<p><strong>新型基础设施</strong>：沿 MAIN 主线布设端侧算力节点、分布式能源站、城市级传感器与数字孪生底座，服务 10 张 AI 场景卡（S01-S10）；无人配送环线与智能公交接驳线衔接轨道站点与三大仓库 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUB-001" title="空间数据：geometry/public_space.geojson#PUB-001">空间数据</sup>。</p>
+<p><strong>公共服务设施</strong>：创新服务平台（评测、中试、标准）、人才生活服务（公寓、文体、托育）、AI 健康服务舱与 AI 教育实验室带嵌入三个重点区与社区节点；设施规模与配置标准因官方配套标准缺失，按概念建议标注，待正式控规条件确认 [assumption:A-CONTROLS-001]。</p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="交通与蓝绿网络图：三条协议横线、绿脉两侧慢行主路、蓝绿空间与 AI 公共空间节点分布"><figcaption>交通与蓝绿网络图：三条协议横线、绿脉两侧慢行主路、蓝绿空间与 AI 公共空间节点分布</figcaption></figure>
+<h2>蓝绿空间、公共空间与城市风貌</h2>
+<p><strong>蓝绿空间</strong>：以京张遗址公园绿脉为主干（MAIN 主线，<code>geometry/green_space.geojson#GRN-001</code>），三处节点绿地为支点，形成&quot;一带三珠&quot;蓝绿网络；绿脉承担慢行贯通、历史叙事、AI 体验与生态调节复合功能 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GRN-001" title="空间数据：geometry/green_space.geojson#GRN-001">空间数据</sup>。绿地率由绿脉与节点绿地面积复算（<code>metrics.json</code> 的 <code>green_ratio</code>），属设计建议口径，非官方绿地率控制指标（官方 green_ratio 缺失）<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup>。</p>
+<p><strong>公共空间</strong>：形成&quot;3 朝圣地标 + 8 场景节点&quot;体系（<code>geometry/public_space.geojson</code>，11 个节点）：朝圣地标包括京张原点站·开源纪念碑广场（社区仓）、众智算塔·训练状态观测台（训练仓）、大钟寺 AI 钟楼广场（应用仓）；场景节点沿绿脉布置，支撑场景卡 S01-S10 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUB-001" title="空间数据：geometry/public_space.geojson#PUB-001">空间数据</sup>。公共空间以点要素表达，面状缓冲与精细化设计留待深化。</p>
+<p><strong>城市风貌</strong>：提出终端美学控制——深夜蓝底色、荧光绿主色、代码白文字；公共标识采用&quot;信号灯·状态灯&quot;语言（绿=正常运行、黄=试验中、红=需人工评审），与百年铁路信号文化同构，形成可识别的 AI 城市气质。风貌控制属于概念引导，不替代法定城市设计要求。</p>
+<h2>更新项目清单、实施政策与分期计划</h2>
+<p><strong>项目清单</strong>（概念建议）：原点社区开源广场与纪念碑、众智算塔与训练集群、大钟寺 AI 钟楼广场、三条协议横线缝合工程、绿脉贯通与慢行系统、轨道站点一体化、数据要素公共展厅、AI 教育实验室带、智能公交接驳线。</p>
+<p><strong>实施政策建议</strong>：以&quot;开源协议式治理&quot;组织城市更新——重大项目走公开评审（Open-PR 机制）、试验性项目走分支试点（可回滚）、数据与标准公共化；建立开发者社区运营与长期品牌资产机制。</p>
+<p><strong>分期计划</strong>（<code>geometry/phasing.geojson</code>）<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/phasing.geojson#PH1" title="空间数据：geometry/phasing.geojson#PH1">空间数据</sup>：</p>
+<div class="proposal-table"><table><thead><tr><th>期</th><th>时间</th><th>动作</th><th>内容</th></tr></thead><tbody><tr><td>一期</td><td>2026-2028</td><td>首次提交</td><td>原点社区先行：开源广场、朝圣地标原型验证</td></tr><tr><td>二期</td><td>2028-2030</td><td>合并主分支</td><td>绿脉贯通 + 众智园训练仓成型</td></tr><tr><td>三期</td><td>2030-2035</td><td>持续交付</td><td>大钟寺应用仓 + 全域运营，常态迭代</td></tr></tbody></table></div>
+<h2>指标体系、面积复算与合规矩阵</h2>
+<p>三层范围与三处重点区面积采用公告官方数值（43.6km² / 11.4km² / 368.4ha；192.1 / 104.3 / 72.0ha），图层面积由 <code>geometry/*.geojson</code> 按 CGCS2000 / EPSG:4548 投影复算（<code>metrics.json</code>），绿地率、公共空间比例、场景节点数等为设计建议值并注明口径 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup>。任务覆盖见 <code>compliance_matrix.json</code>，标准覆盖见 <code>standard_matrix.json</code>，设计深度见 <code>design_depth_matrix.json</code>，全部引用 geometry、metrics、drawings 与报告章节。</p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="指标证据图：三层范围与重点区域面积的官方公告值与设计建议指标"><figcaption>指标证据图：三层范围与重点区域面积的官方公告值与设计建议指标</figcaption></figure>
+<h2>风险、版权与合规说明</h2>
+<ul>
+<li><strong>边界精度风险</strong>：全部空间结论基于 provisional boundary，官方红线发布后须整包重算；本方案不用于精确面积、法定控制或权属依据。</li>
+<li><strong>数据缺口</strong>：官方规划控制指标缺失，相关结论均为概念建议 [assumption:A-CONTROLS-001]。</li>
+<li><strong>版权</strong>：license=COMMUNITY-DISPLAY-ONLY，方案由 AI 智能体生成，遵循社区展示约定，未使用未清权资料 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup>。</li>
+<li><strong>合规</strong>：本方案不声称官方批准、审定规划、最终权属或已确认建设规模（<code>allowed_design_space.json</code> forbidden claims 逐项规避）。</li>
+</ul>
+<h2>参考资料</h2>
+<p>1. 资格预审公告 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup>：北京市规划和自然资源委员会海淀分局《百年京张AI创新带城市设计国际方案征集资格预审公告》，确定项目目的、三层范围、设计任务、重点区域与成果深度要求；公告面积为方案面积指标的官方依据。 2. 面向智能体开源征集任务书（0518 版）<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>：<code>brief/site-package/agent_taskbook.json</code> 与本地参考快照 <code>standards/references/agent-open-call-taskbook-0518.md</code>，定义 agent.1-agent.6 必选任务、五大功能、工作模式与边界条款；非法定规划控制依据。 3. 资料包 site-package <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup>：<code>design_brief.json</code>、<code>allowed_design_space.json</code>、<code>sources.json</code>、<code>enums/</code>、<code>ranges/planning_limits.json</code>、<code>schemas/</code>、<code>standards/</code> 与 <code>geometry/provisional_boundaries.geojson</code>，构成机器可读设计依据与数据缺口清单。 4. 公开资料用途登记表 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup>：<code>data/source_registry.json</code>，区分 usable_for_formal / background_only / provisional_only / no 四类用途边界；本方案仅将 provisional 边界用于生成与展示，未升级为官方结论。 5. 临时边界与重点区几何 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="KEY-AREA-SOURCE" title="来源：KEY-AREA-SOURCE">来源</sup>：<code>brief/site-package/geometry/provisional_boundaries.geojson</code> 的 PROV-SITE-001 与 PROV-KEY-001/002/003，提交包 geometry 全部标注 provisional_constraint、official_boundary=false，官方红线发布后整包重算。 6. 专业标准参考 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-CONTROL-DETAILED-PLANNING" title="标准：MOHURD-CONTROL-DETAILED-PLANNING">标准</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-ARCH-DESIGN-DEPTH-2016" title="标准：MOHURD-ARCH-DESIGN-DEPTH-2016">标准</sup>：以 <code>standards/references/</code> 本地快照为准，source_url 不单独构成证据。</p>
+</main>
+</body>
+</html>

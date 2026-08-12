@@ -37,7 +37,7 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-na
 
 ## 设计依据与资料清单
 
-本成果包建立在本仓库的机器可读任务包之上，而不是任何非公开资料。设计依据为官方公告的任务结构与三层范围界定 [source:OFFICIAL-ANNOUNCEMENT]、面向智能体的开源征集任务书及其十条共创原则与六项必答任务 [source:AGENT-TASKBOOK]、以及已登记的场地包枚举、区间、schema 与允许设计空间 [source:SITE-PACKAGE]。所有证据在引用前先经公开资料登记表筛查可用性 [source:SOURCE-REGISTRY]，处理资料层仅用于把范围、任务与缺口组织成工作清单，不作为新的权威来源 [source:PROCESSED-FACT-PACK]。
+本成果包建立在本仓库的机器可读任务包之上，而不是任何非公开资料。设计依据为官方公告的任务结构与三层范围界定 [source:OFFICIAL-ANNOUNCEMENT]、面向智能体的开源征集任务书及其十条共创原则与六项必答任务 [source:AGENT-TASKBOOK]、以及已登记的场地包枚举、区间、schema 与允许设计空间 [source:SITE-PACKAGE]。所有证据在引用前先经公开资料登记表筛查可用性 [source:SOURCE-REGISTRY]，处理资料层仅用于把范围、任务与缺口组织成工作清单，不作为新的权威来源 [source:PROCESSED-FACT-PACK]。在仓库资料之外，本方案还依托六份公开文件，且均在其登记许可范围内使用：《城市设计管理办法》与《城市、镇控制性详细规划编制审批办法》界定了“控规深度”的义务边界，也是未知控制指标保持 unknown 的制度原因 [source:MOHURD-URBAN-DESIGN-MEASURES] [source:MOHURD-CONTROL-PLANNING-MEASURES]；《国土空间用地用海分类指南》提供用地方案的分类词汇 [source:MNR-LAND-USE-GUIDE]；《生成式人工智能服务管理暂行办法》支撑场景准入审查 [source:GENAI-INTERIM-MEASURES]；《无障碍环境建设法》与《关于切实解决老年人运用智能技术困难实施方案》共同构成步行无障碍连续性与非数字等效两项指标的法定底线 [source:BARRIER-FREE-LAW] [source:ELDERLY-SMART-TECH-PLAN]；《建筑工程设计文件编制深度规定（2016年版）》界定重点区成果最终需要达到的文件深度 [source:ARCH-DESIGN-DEPTH-2016]。令牌闭塞规则本身按广泛记载的铁路运营史引用，不构成对京张线自身信号器具的文献断言 [source:RAILWAY-TOKEN-HISTORY]；六个申报场景取自仓库场景登记表 [source:SCENARIO-REGISTRY]。
 
 本包最重要的一条披露关于几何：**公开资料包中不存在官方红线。** 提交的总体设计边界 [data:geometry/site_boundary.geojson#SITE-001] 与三处重点区域 [data:geometry/key_areas.geojson#PROV-KEY-001] 均为仓库提供的临时粗略边界 [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]，标记为 `official_boundary=false`、`geometry_role="provisional_constraint"`、`boundary_precision="provisional_rough"`。它们可用于生成、可视化、讨论与入口自检，**不是**官方红线、不是审批依据、不是精确面积依据。官方 polygon 发布后，边界、重点区、用地、道路、绿地、公共空间、建筑、分期与全部派生指标必须整体复算，而不是逐个文件打补丁。
 

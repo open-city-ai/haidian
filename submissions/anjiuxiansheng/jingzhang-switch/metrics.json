@@ -1,0 +1,129 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm",
+  "ratio": "ratio",
+  "count": "count"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412827.306,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area_EPSG4548(site_boundary)",
+   "confidence": "medium",
+   "assumptions": [
+    "provisional boundary; recompute on official release"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 3009133.296,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area_EPSG4548(buildings))",
+   "confidence": "medium",
+   "assumptions": [
+    "concept building footprints, not statutory controls"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.204353,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(green_area)/site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "green spine + key-area wedges; provisional"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.000656,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(public_space_area)/site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "three switch plazas; provisional"
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "reason": "official FAR controls not released by organizer; pending regulatory conditions",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "pending_official_control",
+   "confidence": "low",
+   "assumptions": [
+    "official FAR controls not released; treat as pending"
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_area_features)",
+   "confidence": "medium",
+   "assumptions": [
+    "three required key areas"
+   ]
+  },
+  "slow_spine_km": {
+   "status": "known",
+   "value": 13.845,
+   "unit": "km",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "length(road_centerlines)/1000",
+   "confidence": "medium",
+   "assumptions": [
+    "main spine + east-west stitching links; provisional"
+   ]
+  },
+  "land_use_parcel_count": {
+   "status": "known",
+   "value": 8,
+   "unit": "count",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "count(land_use_features)",
+   "confidence": "high",
+   "assumptions": [
+    "gapless partition verified"
+   ]
+  },
+  "phasing_area_sqm": {
+   "status": "known",
+   "value": 11412827.306,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "sum(phase_areas) == site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "phases partition the site"
+   ]
+  }
+ }
+}

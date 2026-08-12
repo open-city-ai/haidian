@@ -9,24 +9,41 @@ permissions:
   pull-requests: write
   issues: write
 
-# Every validation run calls the GitHub API to enumerate and hydrate the PR.
-# Serializing those calls avoids secondary-rate-limit 403s when several
-# submissions arrive together.
+# Keep only the newest event for each PR. The global API lock below still
+# serializes hydration, but a synchronize event no longer leaves older heads
+# occupying that queue or publishing obsolete state.
 concurrency:
-  group: submission-validation
-  cancel-in-progress: false
-  queue: max
+  group: submission-validation-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   submission-validation:
     name: submission-validation
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
+    timeout-minutes: 15
+    # Every validation calls the GitHub API to enumerate and hydrate the PR.
+    # Keep those calls serialized across PRs to avoid secondary-rate-limit
+    # 403s, while retaining one pending slot per PR at the workflow level.
+    # The API lock must keep all distinct PRs eligible; per-PR cancellation
+    # above already removes superseded heads before they reach this queue.
+    concurrency:
+      group: submission-validation-api
+      cancel-in-progress: false
+      queue: max
     steps:
       - name: Checkout current trusted default branch
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.repository.default_branch }}
+
+      - name: Install trusted review dependencies
+        run: python3 -m pip install --disable-pip-version-check -r requirements-review.txt
+
+      - name: Install pinned manifest schema validator
+        # pull_request_target checks out trusted main before this PR merges;
+        # keep the pin inline so the new requirements file is not required yet.
+        run: python3 -m pip install --disable-pip-version-check --quiet 'jsonschema==4.25.1'
 
       - name: Run deterministic submission validation
         env:

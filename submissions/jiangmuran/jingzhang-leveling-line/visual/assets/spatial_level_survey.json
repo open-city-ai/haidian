@@ -1,0 +1,204 @@
+{
+ "schema_version": "spatial-level-survey-v1",
+ "question_zh": "spatial.json 的 public_level 字段在全场是怎么用的，以及它决定了多少条确定性警告。",
+ "why_zh": "本包 14 个概念对象全部声明 provisional，因此确定性校验在 PR 上逐条发警告，本包由此成为全场警告条数第三多的方案。在为这个数字写下任何一句话之前，先量一遍全场怎么用这个字段。",
+ "method_zh": "从 open-city-ai/haidian 的 main 树枚举全部 submissions/<login>/<slug>/spatial.json，逐条读取 items[].public_level 计数。fetch 联网并落盘缓存，report 完全离线且确定性，任何人可以改判别规则后重跑。",
+ "corpus": {
+  "submissions_with_proposal": 371,
+  "submissions_with_spatial_json": 20,
+  "spatial_items_total": 231
+ },
+ "items_by_public_level": {
+  "public": 56,
+  "cleared": 2,
+  "provisional": 173
+ },
+ "packages": {
+  "every_item_provisional": 13,
+  "at_least_one_item_public": 6,
+  "total": 20
+ },
+ "this_package": {
+  "item_count": 14,
+  "levels": {
+   "provisional": 14
+  },
+  "warnings_produced": 14,
+  "rank_by_warnings_desc": 3,
+  "of": 20
+ },
+ "what_the_validator_checks_zh": "只检查取值属于 {public, cleared, provisional}，并对 provisional 逐条发一条警告。该值不与 sources.json、geometry、也不与该对象所依托的边界发生任何联接——docs/spatial.md 用一行给出定义。",
+ "conclusion_zh": "分布是 56/2/173（public / cleared / provisional）。字段定义只有一行、且无任何校验，因此同一个概念节点在两份描述方式相同的方案里可以诚实地落在不同档上。**能得出的结论只有一条：警告条数不可跨包比较。**得不出的结论是任何一份包选错了——这份测量支持不了那句话，所以本文件不说那句话。",
+ "declared_interest_zh": "本方案在这个问题上不是中立的：它自己的 14 条全部是 provisional，任何把条目移出 public 的校验都会相对抬高本方案的位置。因此本文件报告分布、不点名任何方案，也不建议对本包的档位做任何调整。",
+ "limits_zh": [
+  "只覆盖已合入 main 的方案；开着的 PR 不在内。",
+  "public_level 的语义在 docs/spatial.md 中只有一行，本测量不对任何一条取值判对错。",
+  "警告条数还受方案 items 条数影响：一份声明 24 条 provisional 的包必然多于一份声明 3 条的包。"
+ ],
+ "package_profiles": [
+  {
+   "is_this_package": false,
+   "item_count": 10,
+   "levels": {
+    "provisional": 10
+   },
+   "warnings_this_file_produces": 10
+  },
+  {
+   "is_this_package": false,
+   "item_count": 12,
+   "levels": {
+    "provisional": 5,
+    "public": 7
+   },
+   "warnings_this_file_produces": 5
+  },
+  {
+   "is_this_package": false,
+   "item_count": 13,
+   "levels": {
+    "provisional": 13
+   },
+   "warnings_this_file_produces": 13
+  },
+  {
+   "is_this_package": false,
+   "item_count": 7,
+   "levels": {
+    "provisional": 7
+   },
+   "warnings_this_file_produces": 7
+  },
+  {
+   "is_this_package": false,
+   "item_count": 2,
+   "levels": {
+    "cleared": 2
+   },
+   "warnings_this_file_produces": 0
+  },
+  {
+   "is_this_package": false,
+   "item_count": 12,
+   "levels": {
+    "provisional": 12
+   },
+   "warnings_this_file_produces": 12
+  },
+  {
+   "is_this_package": false,
+   "item_count": 22,
+   "levels": {
+    "provisional": 22
+   },
+   "warnings_this_file_produces": 22
+  },
+  {
+   "is_this_package": false,
+   "item_count": 8,
+   "levels": {
+    "public": 8
+   },
+   "warnings_this_file_produces": 0
+  },
+  {
+   "is_this_package": false,
+   "item_count": 6,
+   "levels": {
+    "provisional": 6
+   },
+   "warnings_this_file_produces": 6
+  },
+  {
+   "is_this_package": false,
+   "item_count": 6,
+   "levels": {
+    "provisional": 5,
+    "public": 1
+   },
+   "warnings_this_file_produces": 5
+  },
+  {
+   "is_this_package": true,
+   "item_count": 14,
+   "levels": {
+    "provisional": 14
+   },
+   "warnings_this_file_produces": 14
+  },
+  {
+   "is_this_package": false,
+   "item_count": 13,
+   "levels": {
+    "provisional": 13
+   },
+   "warnings_this_file_produces": 13
+  },
+  {
+   "is_this_package": false,
+   "item_count": 3,
+   "levels": {
+    "provisional": 3
+   },
+   "warnings_this_file_produces": 3
+  },
+  {
+   "is_this_package": false,
+   "item_count": 13,
+   "levels": {
+    "provisional": 13
+   },
+   "warnings_this_file_produces": 13
+  },
+  {
+   "is_this_package": false,
+   "item_count": 8,
+   "levels": {
+    "provisional": 8
+   },
+   "warnings_this_file_produces": 8
+  },
+  {
+   "is_this_package": false,
+   "item_count": 20,
+   "levels": {
+    "provisional": 3,
+    "public": 17
+   },
+   "warnings_this_file_produces": 3
+  },
+  {
+   "is_this_package": false,
+   "item_count": 20,
+   "levels": {
+    "provisional": 3,
+    "public": 17
+   },
+   "warnings_this_file_produces": 3
+  },
+  {
+   "is_this_package": false,
+   "item_count": 6,
+   "levels": {
+    "public": 6
+   },
+   "warnings_this_file_produces": 0
+  },
+  {
+   "is_this_package": false,
+   "item_count": 12,
+   "levels": {
+    "provisional": 12
+   },
+   "warnings_this_file_produces": 12
+  },
+  {
+   "is_this_package": false,
+   "item_count": 24,
+   "levels": {
+    "provisional": 24
+   },
+   "warnings_this_file_produces": 24
+  }
+ ]
+}

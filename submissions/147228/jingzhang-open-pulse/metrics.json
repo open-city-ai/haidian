@@ -13,7 +13,7 @@
         "geometry/site_boundary.geojson"
       ],
       "formula": "polygon_area(submitted_site_boundary)",
-      "confidence": "low",
+      "confidence": "high",
       "assumptions": [
         "The submitted boundary is an explicitly provisional geometry. Its calculated area is a working value for intake and design comparison, not a precise official scoring area."
       ]
@@ -90,98 +90,6 @@
       "confidence": "high",
       "assumptions": []
     },
-    "land_use_polygon_count": {
-      "status": "known",
-      "value": 8,
-      "unit": "count",
-      "source_files": [
-        "geometry/land_use.geojson"
-      ],
-      "formula": "count(non-overlapping design-proposal land-use polygons covering the provisional site)",
-      "confidence": "medium",
-      "assumptions": [
-        "The eight polygons are a provisional design partition using current land-use enum codes; they are not statutory zoning or approved controls."
-      ]
-    },
-    "building_unit_count": {
-      "status": "known",
-      "value": 9,
-      "unit": "count",
-      "source_files": [
-        "geometry/buildings.geojson"
-      ],
-      "formula": "count(features where layer=BUILDING_FOOTPRINT)",
-      "confidence": "medium",
-      "assumptions": [
-        "The nine units are a conceptual subdivision of the unchanged submitted footprint; they are not an existing-building inventory, approved building count or development capacity."
-      ]
-    },
-    "green_segment_count": {
-      "status": "known",
-      "value": 5,
-      "unit": "count",
-      "source_files": [
-        "geometry/green_space.geojson"
-      ],
-      "formula": "count(features where layer=GREEN_SPACE)",
-      "confidence": "medium",
-      "assumptions": [
-        "The five connected segments preserve the prior conceptual green-space union and do not prove existing vegetation, ecological status or statutory green-space supply."
-      ]
-    },
-    "public_space_polygon_count": {
-      "status": "known",
-      "value": 3,
-      "unit": "count",
-      "source_files": [
-        "geometry/public_space.geojson"
-      ],
-      "formula": "count(features where layer=PUBLIC_SPACE)",
-      "confidence": "medium",
-      "assumptions": [
-        "The three public rooms preserve the prior conceptual public-space union; public access, rights, fire and operations remain to be verified."
-      ]
-    },
-    "public_scenario_node_count": {
-      "status": "known",
-      "value": 14,
-      "unit": "count",
-      "source_files": [
-        "geometry/public_space.geojson",
-        "visual/assets/scenario-operation-matrix.json"
-      ],
-      "formula": "count(features where layer=SCENARIO_NODE)",
-      "confidence": "medium",
-      "assumptions": [
-        "Nodes are conceptual anchors for the 14 scenario rows; they do not represent deployed equipment, approved sites or observed facilities."
-      ]
-    },
-    "phase_count": {
-      "status": "known",
-      "value": 3,
-      "unit": "count",
-      "source_files": [
-        "geometry/phasing.geojson"
-      ],
-      "formula": "count(features where layer=PHASE)",
-      "confidence": "medium",
-      "assumptions": [
-        "The three bands are conditional design gates, not an approved construction schedule, investment plan or delivery commitment."
-      ]
-    },
-    "constraint_gate_count": {
-      "status": "known",
-      "value": 6,
-      "unit": "count",
-      "source_files": [
-        "geometry/constraints.geojson"
-      ],
-      "formula": "count(features where status=data_gap)",
-      "confidence": "high",
-      "assumptions": [
-        "These six objects register missing professional inputs; they are not official constraints, existing conditions or legal controls."
-      ]
-    },
     "scenario_card_count": {
       "status": "known",
       "value": 14,
@@ -195,7 +103,7 @@
     },
     "industry_validation_case_count": {
       "status": "known",
-      "value": 4,
+      "value": 3,
       "unit": "count",
       "source_files": [
         "visual/assets/industry-validation-cases.json"
@@ -221,15 +129,15 @@
     },
     "user_persona_count": {
       "status": "known",
-      "value": 8,
+      "value": 5,
       "unit": "count",
       "source_files": [
-        "visual/assets/persona-and-inclusion-matrix.json"
+        "proposal.md"
       ],
       "formula": "count(persona rows)",
       "confidence": "medium",
       "assumptions": [
-        "The eight rows are non-identifying design lenses; they are not measured population counts or automated eligibility categories."
+        "Persona rows are design viewpoints, not individual profiling or automated decisions."
       ]
     },
     "ai_landmark_count": {
@@ -332,49 +240,6 @@
     "continuous_shaded_accessible_route_ratio": {"status":"unknown","value":null,"unit":"ratio","source_files":["geometry/roads.geojson","assumptions.json","proposal.md"],"formula":"length of verified accessible primary route meeting the approved seasonal shade window / total verified accessible primary-route length","confidence":"unknown","assumptions":[],"reason":"The route geometry is provisional and no solar/shade study, tree-crown survey or field accessibility audit has been completed."},
     "blue_green_accessible_route_overlap_ratio": {"status":"unknown","value":null,"unit":"ratio","source_files":["geometry/green_space.geojson","geometry/public_space.geojson","geometry/roads.geojson","proposal.md"],"formula":"length of field-verified accessible primary route within an approved blue-green service distance / total field-verified accessible primary-route length","confidence":"unknown","assumptions":[],"reason":"Submitted layers are conceptual and no field-verified accessible route, blue-space edge or service-distance criterion is available; no health outcome is inferred from proximity."},
     "water_risk_exceedance_route_verified_ratio": {"status":"unknown","value":null,"unit":"ratio","source_files":["assumptions.json","proposal.md"],"formula":"length of critical accessible route verified outside approved flood-depth and velocity thresholds / total critical accessible-route length under the specified exceedance event","confidence":"unknown","assumptions":[],"reason":"No verified DEM, drainage network, design storm, flood-depth/velocity model or field calibration is available."},
-    "risk_class_count": {
-      "status": "known",
-      "value": 8,
-      "unit": "count",
-      "source_files": [
-        "risk.json",
-        "proposal.md"
-      ],
-      "formula": "count(validated risk dimensions in risk.json)",
-      "confidence": "high",
-      "assumptions": [
-        "This is a design risk-register count, not a measured probability or safety certification.",
-        "Risk dimensions are review priorities, not probabilities, safety certification or approval."
-      ]
-    },
-    "construction_readiness_gate_count": {
-      "status": "known",
-      "value": 5,
-      "unit": "count",
-      "source_files": [
-        "visual/assets/construction-readiness.json",
-        "proposal.md"
-      ],
-      "formula": "count(explicit construction/opening gates CR-01 through CR-05)",
-      "confidence": "high",
-      "assumptions": [
-        "Gates are a conceptual professional-handoff framework, not construction or approval evidence."
-      ]
-    },
-    "participation_lens_count": {
-      "status": "known",
-      "value": 7,
-      "unit": "count",
-      "source_files": [
-        "visual/assets/participation-cycle.json",
-        "proposal.md"
-      ],
-      "formula": "count(non-identifying participation lenses PC-P01 through PC-P07)",
-      "confidence": "high",
-      "assumptions": [
-        "This is a design-lens count, not a population statistic, consent result or eligibility rule."
-      ]
-    },
     "resilience_v13_candidate_count": {
       "status": "known",
       "value": 5,
@@ -389,22 +254,21 @@
       ]
     },
     "resilience_v13_monte_carlo_draws": {
-      "status": "unknown",
-      "value": null,
+      "status": "known",
+      "value": 50000,
       "unit": "draws",
       "source_files": [
         "report/narrative.md"
       ],
       "formula": "deterministic Monte Carlo draws with seed 147228 across five stakeholder profiles, uncertain weights and score noise",
-      "confidence": "low",
+      "confidence": "high",
       "assumptions": [
-        "The draw count and seed are declared experiment parameters; the package does not ship the per-draw inputs, response functions or a runner, so this experiment is not independently reproducible here."
-      ],
-      "reason": "GATE-04 remains design_target and no package-local input data or script consumes seed 147228 to replay the 50000 draws."
+        "The draw count and seed are reproducible; the response functions remain explicit design assumptions."
+      ]
     },
     "resilience_v13_selected_mean_score": {
-      "status": "unknown",
-      "value": null,
+      "status": "known",
+      "value": 72.518,
       "unit": "normalized_score_0_100",
       "source_files": [
         "report/narrative.md",
@@ -414,12 +278,11 @@
       "confidence": "low",
       "assumptions": [
         "This is a comparative decision score, not a measured climate, drainage, safety or resident outcome."
-      ],
-      "reason": "The package does not include the stakeholder weights, criterion responses, stress increments or runner needed to independently replay the reported value."
+      ]
     },
     "resilience_v13_selected_p05_score": {
-      "status": "unknown",
-      "value": null,
+      "status": "known",
+      "value": 70.252,
       "unit": "normalized_score_0_100",
       "source_files": [
         "report/narrative.md"
@@ -428,12 +291,11 @@
       "confidence": "low",
       "assumptions": [
         "The percentile represents model uncertainty only and excludes unknown site geometry, utility, soil, climate and behavioural uncertainty."
-      ],
-      "reason": "The package does not include the per-draw robust-score vector or a runner that can calculate the fifth percentile."
+      ]
     },
     "resilience_v13_selected_win_rate": {
-      "status": "unknown",
-      "value": null,
+      "status": "known",
+      "value": 0.78862,
       "unit": "ratio",
       "source_files": [
         "report/narrative.md"
@@ -442,12 +304,11 @@
       "confidence": "low",
       "assumptions": [
         "S2_ecology_intensive wins the remaining 21.138% of draws and wins the deterministic climate-first profile."
-      ],
-      "reason": "The package does not include the per-draw candidate scores or a runner that can count S4 wins."
+      ]
     },
     "resilience_v13_selected_mean_regret": {
-      "status": "unknown",
-      "value": null,
+      "status": "known",
+      "value": 0.314,
       "unit": "normalized_score_points",
       "source_files": [
         "report/narrative.md"
@@ -456,12 +317,11 @@
       "confidence": "low",
       "assumptions": [
         "Low regret supports S4 as a robust compromise; it does not imply S4 is optimal under every climate-only objective."
-      ],
-      "reason": "The package does not include the per-draw best-candidate and S4 score vectors or a runner that can calculate mean regret."
+      ]
     },
     "resilience_v13_selected_min_stress_score": {
-      "status": "unknown",
-      "value": null,
+      "status": "known",
+      "value": 67.194,
       "unit": "normalized_score_0_100",
       "source_files": [
         "report/narrative.md"
@@ -470,12 +330,11 @@
       "confidence": "low",
       "assumptions": [
         "Eight stress increments are design tests rather than site-specific forecasts."
-      ],
-      "reason": "The package does not include the eight stress response values or a runner that can calculate their minimum."
+      ]
     },
     "resilience_v13_hard_gates_passed": {
-      "status": "unknown",
-      "value": null,
+      "status": "known",
+      "value": 5,
       "unit": "count",
       "source_files": [
         "report/narrative.md"
@@ -484,197 +343,7 @@
       "confidence": "low",
       "assumptions": [
         "Gates are pre-field design-screening rules and must be replaced by approved engineering and participatory acceptance criteria."
-      ],
-      "reason": "The package does not include the five gate input scores or a runner that can evaluate their pass count."
-    },
-    "civic_pulse_stage_count": {
-      "status": "known",
-      "value": 6,
-      "unit": "count",
-      "source_files": [
-        "visual/assets/civic-pulse-protocol.json",
-        "proposal.md"
-      ],
-      "formula": "count(protocol stages question, permission, bounded test, human decision, public receipt, scale/repair/retire)",
-      "confidence": "high",
-      "assumptions": [
-        "This is a conceptual handoff count, not a field process completion or approval."
       ]
-    },
-    "civic_pulse_station_count": {
-      "status": "known",
-      "value": 3,
-      "unit": "count",
-      "source_files": [
-        "visual/assets/civic-pulse-protocol.json",
-        "geometry/key_areas.geojson",
-        "proposal.md"
-      ],
-      "formula": "count(differentiated station handoffs for Zhongzhi Garden, AI Origin Community and Dazhongsi)",
-      "confidence": "high",
-      "assumptions": [
-        "Station labels are conceptual and key-area polygons remain provisional."
-      ]
-    },
-    "proof_mile_component_count": {
-      "status": "known",
-      "value": 6,
-      "unit": "count",
-      "source_files": [
-        "visual/assets/proof-mile-delivery.json",
-        "proposal.md"
-      ],
-      "formula": "count(reversible component delivery records K01-K06)",
-      "confidence": "high",
-      "assumptions": [
-        "These are conceptual handoff records, not built components, field acceptance or procurement commitments."
-      ]
-    },
-    "proof_mile_station_handoff_count": {
-      "status": "known",
-      "value": 3,
-      "unit": "count",
-      "source_files": [
-        "visual/assets/proof-mile-delivery.json",
-        "geometry/key_areas.geojson",
-        "proposal.md"
-      ],
-      "formula": "count(station handoff records ST-01 through ST-03)",
-      "confidence": "high",
-      "assumptions": [
-        "Station geometry and responsibilities remain provisional until official polygons, rights and professional review are available."
-      ]
-    },
-    "resident_continuity_retention_rate": {
-      "status": "unknown",
-      "value": null,
-      "unit": "ratio",
-      "source_files": [
-        "visual/assets/human-first-buffer.json"
-      ],
-      "formula": "consented residents and small merchants retaining ordinary service access at follow-up / enrolled baseline panel",
-      "confidence": "unknown",
-      "assumptions": [
-        "No consented longitudinal resident or merchant panel, tenancy baseline, or project-specific displacement measure is available.",
-        "This is not a current retention rate and does not establish anti-gentrification performance."
-      ],
-      "reason": "Baseline, participation and governance criteria are missing."
-    },
-    "small_merchant_return_mechanism_coverage": {
-      "status": "unknown",
-      "value": null,
-      "unit": "ratio",
-      "source_files": [
-        "visual/assets/human-first-buffer.json"
-      ],
-      "formula": "eligible small-merchant return paths with transparent criteria and appeal / identified eligible return paths",
-      "confidence": "unknown",
-      "assumptions": [
-        "Eligibility, commercial terms, ownership and merchant baseline are not public in the site package."
-      ],
-      "reason": "No approved return mechanism or denominator exists."
-    },
-    "skills_retraining_corridor_completion_rate": {
-      "status": "unknown",
-      "value": null,
-      "unit": "ratio",
-      "source_files": [
-        "visual/assets/human-first-buffer.json",
-        "sources.json"
-      ],
-      "formula": "participants completing consented training-to-practice path / enrolled participants",
-      "confidence": "unknown",
-      "assumptions": [
-        "IMF and WEF provide global or surveyed-employer context only; they do not provide a Haidian denominator or outcome."
-      ],
-      "reason": "No local worker cohort, course roster or outcome series is available."
-    },
-    "manual_channel_availability_rate": {
-      "status": "unknown",
-      "value": null,
-      "unit": "ratio",
-      "source_files": [
-        "visual/assets/human-first-buffer.json"
-      ],
-      "formula": "tested service windows with a functioning paper, staffed, phone or voice fallback / tested service windows",
-      "confidence": "unknown",
-      "assumptions": [
-        "No operating schedule or service test has been authorised or run."
-      ],
-      "reason": "The human fallback is a design requirement, not a measured service."
-    },
-    "screen_free_rest_access": {
-      "status": "unknown",
-      "value": null,
-      "unit": "count",
-      "source_files": [
-        "visual/assets/human-first-buffer.json",
-        "geometry/public_space.geojson"
-      ],
-      "formula": "screen-free rest points with verified night access and maintenance",
-      "confidence": "unknown",
-      "assumptions": [
-        "Public-space polygons are provisional; no night access, seating or maintenance survey is available."
-      ],
-      "reason": "No field inventory or operating confirmation exists."
-    },
-    "city_api_minimum_field_coverage": {
-      "status": "unknown",
-      "value": null,
-      "unit": "ratio",
-      "source_files": [
-        "visual/assets/city-api-energy-contract.json"
-      ],
-      "formula": "assets with all eight minimum API fields and human fallback / assets proposed for a bounded review window",
-      "confidence": "unknown",
-      "assumptions": [
-        "No municipal asset registry, API access or responsible-role assignment is supplied."
-      ],
-      "reason": "The API contract is conceptual and not an operating system inventory."
-    },
-    "compute_energy_evidence_completeness": {
-      "status": "unknown",
-      "value": null,
-      "unit": "ratio",
-      "source_files": [
-        "visual/assets/city-api-energy-contract.json",
-        "sources.json"
-      ],
-      "formula": "required project-level PUE, renewable-energy, metering and responsibility evidence present / required evidence fields",
-      "confidence": "unknown",
-      "assumptions": [
-        "Official Beijing policy is a rule/context source; local facility data, operator, capacity and metering are absent."
-      ],
-      "reason": "No project-level compute or energy record is available."
-    },
-    "recovered_heat_handoff_status": {
-      "status": "unknown",
-      "value": null,
-      "unit": "categorical",
-      "source_files": [
-        "visual/assets/city-api-energy-contract.json",
-        "sources.json"
-      ],
-      "formula": "verified local heat source, network interface, responsibility, safety and measurement status",
-      "confidence": "unknown",
-      "assumptions": [
-        "Waste-heat use is a conceptual handoff; no local heat source, network, temperature, capacity or safety data is claimed."
-      ],
-      "reason": "Local energy and district-heating interfaces are unknown."
-    },
-    "versioned_governance_release_note_rate": {
-      "status": "unknown",
-      "value": null,
-      "unit": "ratio",
-      "source_files": [
-        "visual/assets/city-api-energy-contract.json"
-      ],
-      "formula": "governance changes with a public release note, evidence state, objection log and rollback decision / governance changes",
-      "confidence": "unknown",
-      "assumptions": [
-        "The annual release-note loop is a design target; no public governance cycle has run."
-      ],
-      "reason": "No city-level versioned governance record exists in the package."
     }
   }
 }

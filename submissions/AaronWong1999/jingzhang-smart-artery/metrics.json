@@ -1,0 +1,288 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/standards/references/project-official-announcement.md"
+      ],
+      "formula": "公告公布总体设计范围面积",
+      "confidence": "high",
+      "assumptions": [
+        "A-001"
+      ]
+    },
+    "research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/standards/references/project-official-announcement.md"
+      ],
+      "formula": "公告公布统筹研究范围面积",
+      "confidence": "high",
+      "assumptions": [
+        "A-001"
+      ]
+    },
+    "key_area_total_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/standards/references/project-official-announcement.md"
+      ],
+      "formula": "三处重点区面积之和",
+      "confidence": "high",
+      "assumptions": [
+        "A-001"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1116124,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "对 green_space.geojson 在 EPSG:4548 投影后求面积",
+      "confidence": "medium",
+      "assumptions": [
+        "A-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.097796,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "metrics.json"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-001"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 1187828,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "对 public_space.geojson 在 EPSG:4548 投影后求面积",
+      "confidence": "medium",
+      "assumptions": [
+        "A-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.104078,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "metrics.json"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-001"
+      ]
+    },
+    "land_use_coverage": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "用地分区并集面积 / 总体设计范围面积",
+      "confidence": "medium",
+      "assumptions": [
+        "A-001"
+      ]
+    },
+    "land_use_areas_sqm": {
+      "status": "known",
+      "value": 11412843,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "各用地类型面积之和（EPSG:4548 投影后）",
+      "confidence": "medium",
+      "assumptions": [
+        "A-001"
+      ]
+    },
+    "building_total_floor_area_sqm": {
+      "status": "known",
+      "value": 24841605,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "formula": "Σ(用地类型面积 × 概念容积率)",
+      "confidence": "low",
+      "assumptions": [
+        "A-002"
+      ]
+    },
+    "building_sample_count": {
+      "status": "known",
+      "value": 110,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "概念建筑基底样例数量",
+      "confidence": "low",
+      "assumptions": [
+        "A-002"
+      ]
+    },
+    "ai_ecosystem_case_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "全球 AI 创新生态案例数量",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "AI 场景卡数量",
+      "confidence": "high",
+      "assumptions": [
+        "A-006"
+      ]
+    },
+    "scenario_test_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "产业测试验证场景数量",
+      "confidence": "high",
+      "assumptions": [
+        "A-006"
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "用户画像数量",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "AI 朝圣地标/荣誉节点数量",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "visual/index.html"
+      ],
+      "formula": "AI 场景节点数量",
+      "confidence": "medium",
+      "assumptions": [
+        "A-006"
+      ]
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson",
+        "proposal.md"
+      ],
+      "formula": "更新项目清单数量",
+      "confidence": "medium",
+      "assumptions": [
+        "A-007"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "重点区域数量",
+      "confidence": "high",
+      "assumptions": [
+        "A-001"
+      ]
+    },
+    "talent_density_actual": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "data/source_registry.json"
+      ],
+      "formula": "—",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-005"
+      ],
+      "reason": "缺少公开微观人才密度数据，待官方/清权数据补齐后计算。"
+    },
+    "ai_innovation_index_actual": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "brief/site-package/standards/references/project-official-announcement.md"
+      ],
+      "formula": "—",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-005"
+      ],
+      "reason": "公告提出 AI 创新指数但无公开基准值，本方案仅提目标口径，待补齐。"
+    }
+  }
+}

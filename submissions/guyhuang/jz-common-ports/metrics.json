@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.1.1",
   "units": {
     "length": "m",
     "area": "sqm"
@@ -12,58 +12,262 @@
       "source_files": [
         "geometry/site_boundary.geojson"
       ],
-      "formula": "polygon_area(submitted_site_boundary)",
+      "formula": "area(union(SITE_BOUNDARY)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-BND-001"
+      ],
+      "display_value": "about 11.41 km²; provisional geometry only"
+    },
+    "announced_coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "43.6 km² × 1,000,000",
+      "confidence": "high",
+      "assumptions": [],
+      "display_value": "about 43.6 km²; announcement scale only"
+    },
+    "announced_overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "11.4 km² × 1,000,000",
       "confidence": "high",
       "assumptions": [
-        "Trusted official boundary is present in the site package."
+        "A-BND-001"
+      ],
+      "display_value": "about 11.4 km²; announcement scale"
+    },
+    "announced_key_area_total_area_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "368.4 ha × 10,000",
+      "confidence": "high",
+      "assumptions": [
+        "A-BND-001"
+      ],
+      "display_value": "about 368.4 ha; announcement scale only"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1963910.615,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(GREEN_SPACE)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-BND-001",
+        "A-ECO-006"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 19667.291,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(PUBLIC_SPACE)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-BND-001",
+        "A-OWNER-004"
       ]
     },
     "building_footprint_area_sqm": {
       "status": "known",
-      "value": 310807.184,
+      "value": 22535.708,
       "unit": "sqm",
       "source_files": [
         "geometry/buildings.geojson"
       ],
-      "formula": "sum(polygon_area(building_footprints))",
-      "confidence": "medium",
-      "assumptions": []
+      "formula": "area(union(BUILDING_FOOTPRINT)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-BLDG-002"
+      ],
+      "display_note": "conceptual program envelope area; not surveyed building footprint"
     },
     "green_ratio": {
       "status": "known",
-      "value": 0.123423,
+      "value": 0.172079,
       "unit": "ratio",
       "source_files": [
         "geometry/green_space.geojson",
         "geometry/site_boundary.geojson"
       ],
       "formula": "green_space_area_sqm / site_area_sqm",
-      "confidence": "medium",
-      "assumptions": []
+      "confidence": "low",
+      "assumptions": [
+        "A-BND-001",
+        "A-ECO-006"
+      ]
     },
     "public_space_ratio": {
       "status": "known",
-      "value": 0.073281,
+      "value": 0.001723,
       "unit": "ratio",
       "source_files": [
         "geometry/public_space.geojson",
         "geometry/site_boundary.geojson"
       ],
       "formula": "public_space_area_sqm / site_area_sqm",
-      "confidence": "medium",
-      "assumptions": []
+      "confidence": "low",
+      "assumptions": [
+        "A-BND-001",
+        "A-OWNER-004"
+      ]
     },
-    "floor_area_ratio": {
-      "status": "unknown",
-      "value": null,
+    "land_use_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
       "unit": "ratio",
       "source_files": [
-        "brief/site-package/ranges/planning_limits.json"
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
       ],
-      "formula": "total_floor_area_sqm / official_site_area_sqm",
-      "confidence": "unknown",
-      "assumptions": [],
-      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+      "formula": "area(union(LAND_USE)) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A-BND-001"
+      ]
+    },
+    "land_use_overlap_area_sqm": {
+      "status": "known",
+      "value": 0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(pairwise polygon overlap area) after shared-cut partition",
+      "confidence": "high",
+      "assumptions": [
+        "A-BND-001"
+      ]
+    },
+    "conceptual_road_length_m": {
+      "status": "known",
+      "value": 37874.318,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(ROAD_CENTERLINE)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-MOB-003"
+      ]
+    },
+    "conceptual_road_component_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "connected_components(ROAD_CENTERLINE endpoint/intersection graph)",
+      "confidence": "high",
+      "assumptions": [
+        "A-MOB-003"
+      ],
+      "display_note": "topology of the current conceptual graph only; not engineering accessibility"
+    },
+    "land_use_cell_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(LAND_USE features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "program_envelope_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(BUILDING_FOOTPRINT features)",
+      "confidence": "high",
+      "assumptions": [
+        "A-BLDG-002"
+      ]
+    },
+    "road_link_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(ROAD_CENTERLINE features)",
+      "confidence": "high",
+      "assumptions": [
+        "A-MOB-003"
+      ]
+    },
+    "green_reach_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "count(GREEN_SPACE features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "public_interface_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(PUBLIC_SPACE interface features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "visual/assets/port-protocols.json"
+      ],
+      "formula": "count(SCENARIO_NODE)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_service_zone_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(AI_SERVICE_ZONE)",
+      "confidence": "high",
+      "assumptions": [
+        "A-BND-001"
+      ]
     },
     "key_area_count": {
       "status": "known",
@@ -72,9 +276,355 @@
       "source_files": [
         "geometry/key_areas.geojson"
       ],
-      "formula": "count(key_detailed_design_areas)",
+      "formula": "count(KEY_AREA)",
+      "confidence": "high",
+      "assumptions": [
+        "A-BND-001"
+      ]
+    },
+    "port_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/port-protocols.json"
+      ],
+      "formula": "count(ports)",
       "confidence": "high",
       "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/port-protocols.json"
+      ],
+      "formula": "count(personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "flagship_pilot_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/port-protocols.json"
+      ],
+      "formula": "count(flagship=true)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "spatial.json"
+      ],
+      "formula": "count(items where source contains landmark catalog)",
+      "confidence": "high",
+      "assumptions": [
+        "A-HER-007"
+      ]
+    },
+    "renewal_action_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/port-protocols.json"
+      ],
+      "formula": "count(projects)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OWNER-004"
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(PHASE features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_1_interface_area_sqm": {
+      "status": "known",
+      "value": 4917.102,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(PHASE-P1) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-BND-001",
+        "A-OWNER-004"
+      ]
+    },
+    "non_ai_fallback_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/port-protocols.json"
+      ],
+      "formula": "scenario cards with explicit non_ai_fallback / 12",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "affected_group_red_card_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/port-protocols.json"
+      ],
+      "formula": "scenario cards with steward red-card path / 12",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_space_link_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/constraints.geojson",
+        "visual/assets/port-protocols.json"
+      ],
+      "formula": "scenario cards with matching PUBLIC_SPACE and SCENARIO_NODE IDs / 12",
+      "confidence": "high",
+      "assumptions": [
+        "A-BND-001"
+      ]
+    },
+    "project_required_field_completeness_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/port-protocols.json"
+      ],
+      "formula": "projects with lead, partners, permissions, resource, phase, deliverable, acceptance, stop and operations funding / 10",
+      "confidence": "high",
+      "assumptions": [
+        "A-OWNER-004"
+      ],
+      "display_note": "schema completeness only; not authorization or budget confirmation"
+    },
+    "protocol_state_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/port-protocols.json"
+      ],
+      "formula": "count(passport_states)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "simulation_task_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "len(tasks)",
+      "confidence": "high",
+      "assumptions": [
+        "A-SIM-005"
+      ]
+    },
+    "simulation_policy_assertion_count": {
+      "status": "known",
+      "value": 30,
+      "unit": "count",
+      "source_files": [
+        "simulation.json",
+        "visual/assets/replay-protocols.js",
+        "visual/assets/replay-evidence.json"
+      ],
+      "formula": "15 primary derived controls + 15 paired counterfactual derived controls",
+      "confidence": "high",
+      "assumptions": [
+        "A-SIM-005"
+      ],
+      "display_note": "offline synthetic policy assertions only; not field or model performance"
+    },
+    "executable_replay_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json",
+        "visual/assets/replay-protocols.js",
+        "visual/assets/simulation.schema.json",
+        "visual/assets/replay-evidence.json"
+      ],
+      "formula": "tasks replayed with explicit input, canonical hash, derived primary/counterfactual control, energy and audit checks / 15",
+      "confidence": "high",
+      "assumptions": [
+        "A-SIM-005"
+      ],
+      "display_note": "reproducibility coverage for declared synthetic fixtures only"
+    },
+    "simulation_success_rate": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "success outcomes / tasks; synthetic unit fixtures only",
+      "confidence": "high",
+      "assumptions": [
+        "A-SIM-005"
+      ]
+    },
+    "tool_schema_pass_rate": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "dispatch_schema_valid / tasks; synthetic unit fixtures only",
+      "confidence": "high",
+      "assumptions": [
+        "A-SIM-005"
+      ]
+    },
+    "energy_budget_violations": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(energy_used_kwh > energy_budget_kwh)",
+      "confidence": "high",
+      "assumptions": [
+        "A-SIM-005"
+      ]
+    },
+    "audit_completeness": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "audit_complete / tasks; synthetic unit fixtures only",
+      "confidence": "high",
+      "assumptions": [
+        "A-SIM-005"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "gross_floor_area / statutory_site_area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BND-001",
+        "A-BLDG-002"
+      ],
+      "reason": "Official controls and surveyed gross floor area are unavailable."
+    },
+    "gross_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "sum(professionally surveyed floor area)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BLDG-002"
+      ],
+      "reason": "No surveyed building inventory or approved development program is available."
+    },
+    "maximum_building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "max(approved height control)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BLDG-002",
+        "A-HER-007"
+      ],
+      "reason": "Heritage, aviation, fire and regulatory controls are unavailable."
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "area(official road redlines)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-MOB-003"
+      ],
+      "reason": "Road redlines are unavailable; centerlines are conceptual connections only."
+    },
+    "parking_capacity_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "professionally verified supply-demand balance",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-MOB-003"
+      ],
+      "reason": "Traffic survey and approved parking standards are unavailable."
+    },
+    "municipal_capacity_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "engineering capacity assessment",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-INFRA-008"
+      ],
+      "reason": "Utility, drainage, energy, fire and flood-control baselines are unavailable."
+    },
+    "construction_cost_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "quantity survey and approved price basis",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-OWNER-004"
+      ],
+      "reason": "No owner-approved scope, quantity survey, procurement path or budget authority exists."
     }
   }
 }

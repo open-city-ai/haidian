@@ -1,0 +1,461 @@
+{
+  "schema_version": "0.1.0",
+  "note_zh": "本文件集中登记本方案的全部关键假设及其解除条件。指标层的 assumptions 字段是本表的局部展开，本表是唯一汇总入口。所有假设均为开放共创建议的前提，不构成政府审定结论。",
+  "risk_level_definition_zh": {
+    "high": "若假设不成立，方案的空间结论或合规表述需要实质修改。",
+    "medium": "若假设不成立，需要重新复算指标或调整表述，但方案结构成立。",
+    "low": "若假设不成立，仅影响局部表达或数量参数。"
+  },
+  "assumptions": [
+    {
+      "id": "ASM-BOUNDARY-001",
+      "category": "spatial",
+      "topic": "provisional_site_boundary",
+      "statement": "本方案的项目范围线与三处重点区域均使用依据公告文字四至推定的临时粗略边界，不是官方红线。",
+      "impact": [
+        "site_area",
+        "all_derived_layers",
+        "all_area_metrics"
+      ],
+      "risk_level": "high",
+      "resolution_condition": "official_boundary_and_key_area_polygons_published",
+      "related_metrics": [
+        "site_area_sqm",
+        "key_area_count",
+        "land_use_total_area_sqm"
+      ],
+      "related_layers": [
+        "site_boundary",
+        "key_areas",
+        "land_use"
+      ],
+      "status": "pending_official_data",
+      "resolution_action_zh": "官方多边形发布后须重新运行全部图层生成与指标复算，不能只替换单个文件。"
+    },
+    {
+      "id": "ASM-ZGC-001",
+      "category": "spatial",
+      "topic": "zhongguancun_wing_extent",
+      "statement": "中关村科技服务翼的主体位于统筹研究范围内、总体设计范围以西；受生成要素必须落在提交边界内的约束，本方案表达的是该翼在总体设计范围西缘的接入界面，而非其完整范围。",
+      "impact": [
+        "service_zone_extent",
+        "event_network"
+      ],
+      "risk_level": "medium",
+      "resolution_condition": "official_wing_boundary_published_or_research_area_submission_allowed",
+      "related_metrics": [
+        "ai_service_zone_area_sqm",
+        "event_venue_node_count"
+      ],
+      "related_layers": [
+        "ai_service_zone",
+        "scenario_node"
+      ],
+      "status": "pending_official_data",
+      "resolution_action_zh": "正文与图纸须明确标注该分区为接入界面，不得表述为该翼的完整空间范围。"
+    },
+    {
+      "id": "ASM-XYH-001",
+      "category": "spatial",
+      "topic": "xiaoyuehe_wing_position",
+      "statement": "小月河场景赋能翼没有官方或临时多边形，其空间位置为本方案在总体设计范围东侧河廊地带的概念建议。",
+      "impact": [
+        "sandbox_extent",
+        "public_feedback_network"
+      ],
+      "risk_level": "medium",
+      "resolution_condition": "official_wing_boundary_published",
+      "related_metrics": [
+        "sandbox_segment_length_m"
+      ],
+      "related_layers": [
+        "ai_service_zone",
+        "scenario_node"
+      ],
+      "status": "pending_official_data",
+      "resolution_action_zh": "沙盒分级区段须在官方边界与现状调查后重新划定。"
+    },
+    {
+      "id": "ASM-LANDUSE-001",
+      "category": "spatial",
+      "topic": "land_use_partition_method",
+      "statement": "用地图层采用以边界顶点纬度为行断点的梯形分层、层内比例列切分，并对共享顶点与边中点施加确定性偏移形成有机地块形态；它是概念性结构表达，不是按现状地块和权属划定的法定控规用地方案。",
+      "impact": [
+        "land_use",
+        "all_land_use_ratios"
+      ],
+      "risk_level": "medium",
+      "resolution_condition": "official_boundary_and_parcel_survey_available",
+      "related_metrics": [
+        "land_use_polygon_count",
+        "land_use_coverage_ratio",
+        "innovation_space_type_count"
+      ],
+      "related_layers": [
+        "land_use"
+      ],
+      "status": "design_derived",
+      "resolution_action_zh": "生成规则与随机种子写入图层顶层字段，可完整复算；获得地籍与现状调查后应改用真实地块划分。有机形态仅为避免矩形网格造成的伪精确观感，不代表已掌握真实地块边界。"
+    },
+    {
+      "id": "ASM-ROAD-001",
+      "category": "spatial",
+      "topic": "road_land_use_ratio",
+      "statement": "道路用地占比来自概念网格划分而非真实路网切分，其值显著低于常规城市水平；在临时粗略边界上绘制完整路网会造成伪精确。",
+      "impact": [
+        "transportation",
+        "land_use"
+      ],
+      "risk_level": "medium",
+      "resolution_condition": "official_boundary_and_control_plan_available",
+      "related_metrics": [
+        "road_land_use_ratio",
+        "road_centerline_length_m"
+      ],
+      "related_layers": [
+        "land_use",
+        "roads"
+      ],
+      "status": "design_derived",
+      "resolution_action_zh": "交通组织由道路中心线图层表达；道路用地占比须在正式控规条件下重新划分，不得以本值作为交通承载判断依据。"
+    },
+    {
+      "id": "ASM-BUILDING-001",
+      "category": "spatial",
+      "topic": "building_scale_not_defined",
+      "statement": "建筑基底为城市更新概念阶段的体量示意，按建设用地单元固定比例生成，建筑高度、容积率、建筑面积与地块拆改留均未定义。",
+      "impact": [
+        "building_scale",
+        "development_intensity"
+      ],
+      "risk_level": "high",
+      "resolution_condition": "official_control_conditions_and_existing_survey_available",
+      "related_metrics": [
+        "building_footprint_area_sqm",
+        "building_count",
+        "floor_area_ratio"
+      ],
+      "related_layers": [
+        "buildings"
+      ],
+      "status": "design_derived",
+      "resolution_action_zh": "height_control 与 volume_control 一律保持 not_defined；保留、更新、场景预留三类分类仅为概念建议，不构成拆改留结论。"
+    },
+    {
+      "id": "ASM-GREEN-001",
+      "category": "spatial",
+      "topic": "green_ratio_above_typical",
+      "statement": "绿地与开敞空间占比高于常规城区，反映京张遗址公园绿廊作为方案核心公共空间载体的概念意图，不是对现状绿地规模的观测。",
+      "impact": [
+        "green_system",
+        "public_space"
+      ],
+      "risk_level": "low",
+      "resolution_condition": "official_boundary_and_existing_green_survey_available",
+      "related_metrics": [
+        "green_ratio",
+        "green_open_space_land_ratio"
+      ],
+      "related_layers": [
+        "green_space",
+        "land_use"
+      ],
+      "status": "design_derived",
+      "resolution_action_zh": "官方边界与现状绿地调查后重新校核。"
+    },
+    {
+      "id": "ASM-CONSTRAINT-001",
+      "category": "spatial",
+      "topic": "constraints_layer_empty",
+      "statement": "约束图层为空，因为资料包中没有文物保护范围、建设控制地带、蓝线与规划控制条件的官方矢量数据。",
+      "impact": [
+        "heritage_protection",
+        "water_system",
+        "regulatory_control"
+      ],
+      "risk_level": "high",
+      "resolution_condition": "official_heritage_water_and_control_data_available",
+      "related_metrics": [],
+      "related_layers": [
+        "constraints"
+      ],
+      "status": "pending_official_data",
+      "resolution_action_zh": "空图层是对数据缺口的诚实表达，不得用推测的保护范围填充；获得官方数据后须先锁定约束再复核全部设计图层是否冲突。"
+    },
+    {
+      "id": "ASM-PHASING-001",
+      "category": "spatial",
+      "topic": "phasing_conceptual",
+      "statement": "分期为概念建议，与协议能力上线顺序对应，不构成开发时序、投资安排或审批时间表。",
+      "impact": [
+        "implementation_sequence"
+      ],
+      "risk_level": "low",
+      "resolution_condition": "implementation_program_established_by_authorities",
+      "related_metrics": [],
+      "related_layers": [
+        "phasing"
+      ],
+      "status": "design_derived",
+      "resolution_action_zh": "正文须表述为建议性实施顺序。"
+    },
+    {
+      "id": "ASM-PROTOCOL-001",
+      "category": "ai_system",
+      "topic": "switchback_protocol_conceptual",
+      "statement": "Switchback Protocol 的十类开放能力接口是概念性开放约定，不是已建成的技术系统，也不代表任何机构已承诺开放调用。",
+      "impact": [
+        "all_scenarios",
+        "operation_mechanism"
+      ],
+      "risk_level": "high",
+      "resolution_condition": "institutional_agreement_and_technical_implementation_by_professional_teams",
+      "related_metrics": [
+        "interface_coverage_count",
+        "scenario_node_count"
+      ],
+      "related_layers": [
+        "ai_service_zone",
+        "scenario_node"
+      ],
+      "status": "design_derived",
+      "resolution_action_zh": "全部接口须表述为可供专业团队深化研究的开放共创建议。"
+    },
+    {
+      "id": "ASM-COMPUTE-001",
+      "category": "ai_system",
+      "topic": "compute_supply_not_committed",
+      "statement": "算力接口描述的资源类型与空间布局为概念建议，不代表实际算力供给、不指定供应商、不承诺资源配额，也不构成市政容量或能源负荷测算结论。",
+      "impact": [
+        "compute_interface",
+        "municipal_capacity"
+      ],
+      "risk_level": "high",
+      "resolution_condition": "professional_infrastructure_study_and_operator_agreement",
+      "related_metrics": [
+        "compute_node_density_per_km2",
+        "validation_ground_footprint_sqm"
+      ],
+      "related_layers": [
+        "ai_service_zone",
+        "scenario_node"
+      ],
+      "status": "design_derived",
+      "resolution_action_zh": "不得在正文中出现具体算力规模、供应商名称或补贴安排。"
+    },
+    {
+      "id": "ASM-DATA-001",
+      "category": "ai_system",
+      "topic": "data_opening_not_committed",
+      "statement": "数据接口描述的开放数据目录为机制建议，不代表政府已承诺开放任何数据集；全部数据限定为已公开或已清权的聚合脱敏数据。",
+      "impact": [
+        "data_interface",
+        "governance"
+      ],
+      "risk_level": "high",
+      "resolution_condition": "data_opening_list_approved_by_human_review",
+      "related_metrics": [
+        "open_data_item_count"
+      ],
+      "related_layers": [
+        "scenario_node"
+      ],
+      "status": "pending_human_review",
+      "resolution_action_zh": "开放清单须经人工审定与伦理合规复核后发布；不得含个人身份、人脸、轨迹、企业内部与非公开政府数据。"
+    },
+    {
+      "id": "ASM-PRIVACY-001",
+      "category": "ai_system",
+      "topic": "privacy_boundary_as_design_constraint",
+      "statement": "各场景卡登记的隐私与治理边界是本方案提出的设计约束，不是既有制度；其中不使用任何AI服务也能正常使用全部公共空间是不可让渡的底线条款。",
+      "impact": [
+        "all_scenarios",
+        "public_rights"
+      ],
+      "risk_level": "high",
+      "resolution_condition": "adopted_into_formal_governance_rules",
+      "related_metrics": [
+        "governance_required_ratio",
+        "public_entry_coverage_ratio"
+      ],
+      "related_layers": [
+        "scenario_node",
+        "public_space"
+      ],
+      "status": "design_derived",
+      "resolution_action_zh": "任何后续深化不得削弱该底线；不得建立针对个人的监控、评分或信用机制。"
+    },
+    {
+      "id": "ASM-LAB-001",
+      "category": "operation",
+      "topic": "test_scenarios_not_approved",
+      "statement": "三个产业测试验证场景为建议性测试机制，申请通过不等于获批运营，测试场景不得被表述为已批准的城市服务。",
+      "impact": [
+        "industry_validation",
+        "public_safety"
+      ],
+      "risk_level": "high",
+      "resolution_condition": "case_by_case_human_approval_by_competent_authority",
+      "related_metrics": [
+        "industry_validation_scenario_count",
+        "experiment_unit_count"
+      ],
+      "related_layers": [
+        "scenario_node"
+      ],
+      "status": "design_derived",
+      "resolution_action_zh": "每次测试须人工审批、现场可中止、结束后人工评估，并前置公示。"
+    },
+    {
+      "id": "ASM-EVENT-001",
+      "category": "operation",
+      "topic": "event_system_not_scheduled",
+      "statement": "年度活动体系及其三级机制为运营设想，不代表已确定的政府活动安排、财政支持或招商承诺。",
+      "impact": [
+        "event_system",
+        "international_communication"
+      ],
+      "risk_level": "medium",
+      "resolution_condition": "event_program_confirmed_by_organizers",
+      "related_metrics": [
+        "event_venue_node_count",
+        "event_space_type_count"
+      ],
+      "related_layers": [
+        "public_space",
+        "scenario_node"
+      ],
+      "status": "design_derived",
+      "resolution_action_zh": "正文不得夸大政府承诺与活动效果。"
+    },
+    {
+      "id": "ASM-HONOR-001",
+      "category": "operation",
+      "topic": "honor_system_not_official",
+      "statement": "荣誉展示体系及其分级为共创机制建议，不是官方授予的荣誉或资质认定。",
+      "impact": [
+        "honor_display",
+        "contributor_record"
+      ],
+      "risk_level": "low",
+      "resolution_condition": "operator_and_authority_agreement",
+      "related_metrics": [],
+      "related_layers": [
+        "public_space",
+        "scenario_node"
+      ],
+      "status": "design_derived",
+      "resolution_action_zh": "荣誉编号与场景编号共用同一编码体系，用于贡献可追溯，不用于个人评价或排序。"
+    },
+    {
+      "id": "ASM-METRIC-OPS-001",
+      "category": "operation",
+      "topic": "operational_performance_no_target",
+      "statement": "意见闭环率、复核闭环率、成果公开率、治理登记事项数等属于运行期绩效指标，设计阶段不设定目标值。",
+      "impact": [
+        "metrics_completeness"
+      ],
+      "risk_level": "low",
+      "resolution_condition": "operation_phase_monitoring_established",
+      "related_metrics": [
+        "feedback_closure_ratio",
+        "review_closure_ratio",
+        "research_publication_ratio",
+        "public_notice_coverage_ratio",
+        "governance_registry_item_count"
+      ],
+      "related_layers": [],
+      "status": "intentionally_open",
+      "resolution_action_zh": "刻意保留为未知，避免把运营设想表述为已达成结论或承诺；这是合规选择而非资料缺口。"
+    },
+    {
+      "id": "ASM-CULTURE-001",
+      "category": "evidence_gap",
+      "topic": "heritage_material_pending",
+      "statement": "京张铁路历史文化叙事所需的史料、档案与图像尚未取得可引用的清权来源，当前仅使用公众常识层面的历史事实框架。",
+      "impact": [
+        "cultural_narrative",
+        "signage_system",
+        "international_communication"
+      ],
+      "risk_level": "high",
+      "resolution_condition": "cleared_public_archive_material_registered_in_sources",
+      "related_metrics": [
+        "interpretation_node_count"
+      ],
+      "related_layers": [
+        "green_space",
+        "scenario_node"
+      ],
+      "status": "pending_source",
+      "resolution_action_zh": "史料入库前须经人工与专业机构史实复核；不得使用未授权的肖像、商标、论文图像与版权材料；导览内容在来源补齐前不得作为正式解说发布。"
+    },
+    {
+      "id": "ASM-CONTEXT-001",
+      "category": "evidence_gap",
+      "topic": "surrounding_resources_pending",
+      "statement": "高校数量、轨道站点位置与周边资源距离等周边关系判断，尚未登记可验证的公开来源。",
+      "impact": [
+        "accessibility",
+        "talent_network"
+      ],
+      "risk_level": "medium",
+      "resolution_condition": "verified_public_source_registered",
+      "related_metrics": [
+        "university_walk15_count",
+        "station_walk_coverage_ratio"
+      ],
+      "related_layers": [
+        "roads",
+        "scenario_node"
+      ],
+      "status": "pending_source",
+      "resolution_action_zh": "在来源登记完成前，相关指标保持未知，不以推测值填充；正文不得出现未经来源支撑的距离或数量表述。"
+    },
+    {
+      "id": "ASM-CONTROL-001",
+      "category": "spatial",
+      "topic": "statutory_controls_pending",
+      "statement": "详细规划控制条件、道路红线、土地权属、市政管线与工程约束须在正式使用前由官方附件确认。",
+      "impact": [
+        "statutory_planning",
+        "engineering"
+      ],
+      "risk_level": "high",
+      "resolution_condition": "official_control_attachments_available",
+      "related_metrics": [
+        "floor_area_ratio"
+      ],
+      "related_layers": [
+        "constraints",
+        "roads",
+        "buildings"
+      ],
+      "status": "pending_official_data",
+      "resolution_action_zh": "本包只能作为智能体开放共创建议被评审，法定控制结论仍需专业团队与官方确认。"
+    },
+    {
+      "id": "ASM-DELIVERY-001",
+      "category": "implementation",
+      "topic": "delivery_reality_review",
+      "statement": "方案对实施主体、资金路径、产权现实、政策依赖与时序合理性的判断，均为依据公开常识提出的概念建议：只给出主体类型而不指名机构，只区分资金渠道类型而不测算投资规模，对产权复杂地块只提改造与界面开放建议而不提拆除结论，并把依赖政策突破的内容排入中远期。",
+      "impact": [
+        "implementation_sequence",
+        "statutory_planning"
+      ],
+      "risk_level": "medium",
+      "resolution_condition": "ownership_survey_and_official_implementation_program_available",
+      "related_metrics": [
+        "phase_count",
+        "renewal_project_count"
+      ],
+      "related_layers": [
+        "phasing",
+        "land_use",
+        "buildings"
+      ],
+      "status": "design_derived",
+      "resolution_action_zh": "取得权属调查与官方实施计划后，应重新核定各项目的推进主体、资金来源与启动时序；在此之前，全部内容仅供专业团队深化研究，不构成实施安排或投资承诺。"
+    }
+  ]
+}

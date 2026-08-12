@@ -1,0 +1,78 @@
+{
+  "schema_version": "0.1.0",
+  "package_iteration": "v2.6",
+  "status": "declared_public_interest_extension_not_outcome_measurement",
+  "not_a_score": true,
+  "purpose_zh": "在既有六类 persona 之外，补充青年初入行者、开发者与研究者、首次到访者与国际访客三类公共利益覆盖；每类都回接既有场景、空间、人工替代、影响风险和停止条件。",
+  "purpose_en": "Extend the existing six-persona protocol with youth and early entrants, developers and researchers, and first-time or international visitors. Each extension returns to existing scenarios, spatial anchors, human alternatives, impact risks, and stop conditions.",
+  "source_persona_file": "visual/assets/personas-and-fairness.json",
+  "existing_persona_ids": ["P-01", "P-02", "P-03", "P-04", "P-05", "P-06"],
+  "extensions": [
+    {
+      "persona_id": "P-07",
+      "group_zh": "青年学生与初入行者",
+      "group_en": "Youth, students, and people entering the workforce",
+      "benefit_zh": "获得不以自动评分筛选的技能再造、人工解释和可撤回学习入口。",
+      "benefit_en": "Access a reskilling, staffed-explanation, and withdrawable learning entry without automated eligibility scoring.",
+      "impact_risk_zh": "岗位转型压力、污名化、等待时间和学习数据被过度留存。",
+      "impact_risk_en": "Transition pressure, stigma, waiting time, and excessive retention of learning data.",
+      "scenario_refs": ["SC-A02"],
+      "spatial_refs": [
+        "geometry/constraints.geojson#SC-A02",
+        "geometry/roads.geojson#ROAD-A-SKILL",
+        "geometry/buildings.geojson#BLDG-A-02"
+      ],
+      "human_alternative_zh": "纸本、电话和人工咨询可以跳过自动分流；不使用数字工具不影响获取公共说明。",
+      "human_alternative_en": "Paper, phone, and staffed advice may bypass automated routing; refusing a digital tool must not remove public information.",
+      "stop_if_zh": "没有人工咨询、退出记录或岗位质量资料时，停在 G0，不开放自动分流。",
+      "stop_if_en": "Without staffed advice, an exit record, or job-quality evidence, remain at G0 and do not open automated routing.",
+      "evidence_needed_zh": "青年和初入行者基线、带薪/高质量岗位资料、可理解性走读和独立申诉记录。",
+      "evidence_needed_en": "Youth and early-entry baselines, paid or quality-job evidence, comprehension walk-throughs, and independent redress records."
+    },
+    {
+      "persona_id": "P-08",
+      "group_zh": "开发者与研究者",
+      "group_en": "Developers and researchers",
+      "benefit_zh": "在最小权限、可解释目录和公共观察席下参与受限实验，不把平台评分当作入场资格。",
+      "benefit_en": "Participate in bounded experiments through least-privilege, explainable catalogues and a public observer seat without platform scoring as an entry rule.",
+      "impact_risk_zh": "供应商锁定、知识产权不清、测试外溢和个人/市政数据被误接入。",
+      "impact_risk_en": "Vendor lock-in, unclear intellectual property, test spillover, and accidental connection to personal or civic data.",
+      "scenario_refs": ["SC-B01", "SC-D01"],
+      "spatial_refs": [
+        "geometry/constraints.geojson#SC-B01",
+        "geometry/constraints.geojson#ZONE-B-API",
+        "geometry/buildings.geojson#BLDG-B-01",
+        "geometry/buildings.geojson#BLDG-D-01"
+      ],
+      "human_alternative_zh": "人工目录台、纸面协议和公共观察席先于 API 调用；无授权时只讨论问题，不调用数据。",
+      "human_alternative_en": "A staffed catalogue desk, paper protocol, and public observer seat precede any API call; without authorization, discuss the problem only and call no data.",
+      "stop_if_zh": "授权、权利、日志或人工接管不清时冻结实验，回到纸面协议和普通公共服务。",
+      "stop_if_en": "Freeze the experiment and return to the paper protocol and ordinary public service when authorization, rights, logs, or human takeover are unclear.",
+      "evidence_needed_zh": "数据目录、最小权限、权利清单、事故回放、供应商冲突披露和独立复核记录。",
+      "evidence_needed_en": "Data catalogue, least-privilege record, rights register, incident replay, vendor conflict disclosure, and independent review."
+    },
+    {
+      "persona_id": "P-09",
+      "group_zh": "首次到访者与国际访客",
+      "group_en": "First-time and international visitors",
+      "benefit_zh": "在不熟悉本地系统的情况下获得多语公共信息、人工解释、普通通行和可退出服务。",
+      "benefit_en": "Receive multilingual public information, staffed explanation, ordinary movement, and a withdrawable service without knowing the local system.",
+      "impact_risk_zh": "语言障碍、错误的医疗/生活信息、个案数据误收集和文化误读。",
+      "impact_risk_en": "Language barriers, incorrect health or daily-life guidance, accidental collection of case data, and cultural misreading.",
+      "scenario_refs": ["SC-D03"],
+      "spatial_refs": [
+        "geometry/constraints.geojson#SC-D03",
+        "geometry/buildings.geojson#BLDG-D-02",
+        "geometry/public_space.geojson#PUBLIC-D-GLOBAL"
+      ],
+      "human_alternative_zh": "多语人工前台和纸本说明与数字界面并列；不接入真实签证、医疗或商业个案库。",
+      "human_alternative_en": "A multilingual staffed desk and paper explanation remain beside the digital interface; no real visa, health, or commercial case database is connected.",
+      "stop_if_zh": "语言解释、权利清单或个案数据授权不完整时关闭展示，保留普通通行和人工服务。",
+      "stop_if_en": "Close the display and retain ordinary movement and staffed service when language explanation, rights notice, or case-data authorization is incomplete.",
+      "evidence_needed_zh": "多语可理解性走读、服务准确性核验、文化审校、撤回记录和投诉处置记录。",
+      "evidence_needed_en": "Multilingual comprehension walk-throughs, service-accuracy checks, cultural review, withdrawal records, and complaint disposition."
+    }
+  ],
+  "boundary_zh": "本文件是公共利益覆盖和证据缺口登记，不是人口调查、无障碍认证、服务绩效、就业结果或官方评分。正式基线和授权资料到位后，须与 persona、scenario、geometry、metrics、图件、HTML、PDF 和 self-check 一起重算。",
+  "boundary_en": "This file is a public-interest coverage and evidence-gap register, not a demographic survey, accessibility certification, service outcome, employment result, or official score. Recompute it with personas, scenarios, geometry, metrics, figures, HTML, PDFs, and self-check after formal baselines and authorization arrive."
+}

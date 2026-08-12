@@ -1,0 +1,919 @@
+{
+  "schema_version": "1.0.0",
+  "status": "design_contract_not_operational_result",
+  "required_fields": [
+    "spatial_carrier",
+    "beneficiaries",
+    "burden_bearers",
+    "problem_owner",
+    "actual_operator",
+    "resource_type",
+    "ai_role",
+    "human_decision",
+    "acceptance_gate",
+    "human_takeover",
+    "ordinary_alternative",
+    "maintenance",
+    "appeal",
+    "stop_condition",
+    "asset_exit"
+  ],
+  "scenarios": [
+    {
+      "id": "SCN-01",
+      "title_zh": "模型服务验收",
+      "title_en": "Model service acceptance",
+      "key_area_id": "zhongzhiyuan_ai_acceleration_area",
+      "spatial_carrier": {
+        "zh": "模型比较台、交付台",
+        "en": "comparison table and handover desk"
+      },
+      "beneficiaries": [
+        "P-03",
+        "P-04",
+        "P-05"
+      ],
+      "burden_bearers": [
+        "P-01",
+        "P-06"
+      ],
+      "problem_owner": {
+        "status": "role_pattern_pending_authorised_assignment",
+        "zh": "技术负责人",
+        "en": "technical lead"
+      },
+      "actual_operator": {
+        "status": "unknown_until_pilot_authorisation",
+        "required_role": "technical lead"
+      },
+      "resource_type": [
+        "staff_time",
+        "training",
+        "reversible_space",
+        "maintenance",
+        "exit_reserve"
+      ],
+      "ai_role": "Evidence organisation, comparable options or low-risk assistance only; never the final public-interest decision.",
+      "human_decision": {
+        "zh": "技术负责人",
+        "en": "technical lead"
+      },
+      "acceptance_gate": {
+        "status": "target_not_result",
+        "zh": "版本、偏差、人工复核与撤回演练通过",
+        "en": "version, bias, human review and withdrawal drill pass"
+      },
+      "human_takeover": {
+        "zh": "关闭模型入口，由人工按纸本验收",
+        "en": "close model interface; staffed paper acceptance"
+      },
+      "ordinary_alternative": {
+        "zh": "纸本清单与离线样例",
+        "en": "paper checklist and offline samples"
+      },
+      "maintenance": {
+        "owner_status": "must_be_named_before_pilot",
+        "cycle": "risk-tiered inspection plus incident review"
+      },
+      "appeal": {
+        "channels": [
+          "staffed_counter",
+          "telephone",
+          "paper"
+        ],
+        "decision_by": "authorised human role"
+      },
+      "stop_condition": {
+        "zh": "模型版本变化或关键误差越界",
+        "en": "model version changes or critical error exceeds gate"
+      },
+      "asset_exit": {
+        "zh": "导出审计记录；终端恢复公共桌",
+        "en": "export audit record; terminal returns to civic table"
+      },
+      "evidence_status": "concept_contract_pending_authorised_pilot",
+      "service_blueprint": true
+    },
+    {
+      "id": "SCN-02",
+      "title_zh": "低速机器人运营接管",
+      "title_en": "Low-speed robot operations handover",
+      "key_area_id": "zhongzhiyuan_ai_acceleration_area",
+      "spatial_carrier": {
+        "zh": "受控测试院、维修带、绕行路",
+        "en": "controlled yard, repair band and bypass"
+      },
+      "beneficiaries": [
+        "P-01",
+        "P-03"
+      ],
+      "burden_bearers": [
+        "P-01",
+        "P-06"
+      ],
+      "problem_owner": {
+        "status": "role_pattern_pending_authorised_assignment",
+        "zh": "现场安全负责人",
+        "en": "site safety lead"
+      },
+      "actual_operator": {
+        "status": "unknown_until_pilot_authorisation",
+        "required_role": "site safety lead"
+      },
+      "resource_type": [
+        "staff_time",
+        "training",
+        "reversible_space",
+        "maintenance",
+        "exit_reserve"
+      ],
+      "ai_role": "Evidence organisation, comparable options or low-risk assistance only; never the final public-interest decision.",
+      "human_decision": {
+        "zh": "现场安全负责人",
+        "en": "site safety lead"
+      },
+      "acceptance_gate": {
+        "status": "target_not_result",
+        "zh": "急停、绕行、交接、维护与保险资料齐全",
+        "en": "e-stop, bypass, handover, maintenance and insurance evidence complete"
+      },
+      "human_takeover": {
+        "zh": "急停隔离，人工疏导并拖移设备",
+        "en": "e-stop and isolate; staff guide users and remove unit"
+      },
+      "ordinary_alternative": {
+        "zh": "无设备普通步行路线",
+        "en": "ordinary device-free walking route"
+      },
+      "maintenance": {
+        "owner_status": "must_be_named_before_pilot",
+        "cycle": "risk-tiered inspection plus incident review"
+      },
+      "appeal": {
+        "channels": [
+          "staffed_counter",
+          "telephone",
+          "paper"
+        ],
+        "decision_by": "authorised human role"
+      },
+      "stop_condition": {
+        "zh": "失联、越界、近失事件或无人值守",
+        "en": "loss of contact, geofence breach, near miss or no attendant"
+      },
+      "asset_exit": {
+        "zh": "设备撤场；模块化充电件回收复用",
+        "en": "remove unit; recover modular charging components"
+      },
+      "evidence_status": "concept_contract_pending_authorised_pilot",
+      "service_blueprint": true
+    },
+    {
+      "id": "SCN-03",
+      "title_zh": "端侧断网连续性",
+      "title_en": "Edge-device offline continuity",
+      "key_area_id": "zhongzhiyuan_ai_acceleration_area",
+      "spatial_carrier": {
+        "zh": "离线台、状态板、人工服务点",
+        "en": "offline bench, status board and staffed point"
+      },
+      "beneficiaries": [
+        "P-01",
+        "P-03"
+      ],
+      "burden_bearers": [
+        "P-01",
+        "P-06"
+      ],
+      "problem_owner": {
+        "status": "role_pattern_pending_authorised_assignment",
+        "zh": "服务连续性负责人",
+        "en": "service-continuity lead"
+      },
+      "actual_operator": {
+        "status": "unknown_until_pilot_authorisation",
+        "required_role": "service-continuity lead"
+      },
+      "resource_type": [
+        "staff_time",
+        "training",
+        "reversible_space",
+        "maintenance",
+        "exit_reserve"
+      ],
+      "ai_role": "Evidence organisation, comparable options or low-risk assistance only; never the final public-interest decision.",
+      "human_decision": {
+        "zh": "服务连续性负责人",
+        "en": "service-continuity lead"
+      },
+      "acceptance_gate": {
+        "status": "target_not_result",
+        "zh": "断网演练期间核心信息、队列和申诉可继续",
+        "en": "core information, queue and appeal continue during outage drill"
+      },
+      "human_takeover": {
+        "zh": "切换本地只读与人工登记",
+        "en": "switch to local read-only mode and staffed registration"
+      },
+      "ordinary_alternative": {
+        "zh": "固定信息、纸本、电话",
+        "en": "fixed information, paper and telephone"
+      },
+      "maintenance": {
+        "owner_status": "must_be_named_before_pilot",
+        "cycle": "risk-tiered inspection plus incident review"
+      },
+      "appeal": {
+        "channels": [
+          "staffed_counter",
+          "telephone",
+          "paper"
+        ],
+        "decision_by": "authorised human role"
+      },
+      "stop_condition": {
+        "zh": "数据不同步、无法解释或恢复超时",
+        "en": "data desynchronises, cannot be explained or recovery exceeds gate"
+      },
+      "asset_exit": {
+        "zh": "擦除临时数据；设备转作普通信息屏或撤除",
+        "en": "erase temporary data; reuse as ordinary display or remove"
+      },
+      "evidence_status": "concept_contract_pending_authorised_pilot",
+      "service_blueprint": true
+    },
+    {
+      "id": "SCN-04",
+      "title_zh": "无障碍慢行护航",
+      "title_en": "Accessible route operations",
+      "key_area_id": "beijing_ai_origin_community",
+      "spatial_carrier": {
+        "zh": "模型庭、连续慢行与休息点",
+        "en": "model garden, continuous route and rests"
+      },
+      "beneficiaries": [
+        "P-03",
+        "P-04",
+        "P-05"
+      ],
+      "burden_bearers": [
+        "P-01",
+        "P-06"
+      ],
+      "problem_owner": {
+        "status": "role_pattern_pending_authorised_assignment",
+        "zh": "公共空间运营负责人",
+        "en": "public-realm operations lead"
+      },
+      "actual_operator": {
+        "status": "unknown_until_pilot_authorisation",
+        "required_role": "public-realm operations lead"
+      },
+      "resource_type": [
+        "staff_time",
+        "training",
+        "reversible_space",
+        "maintenance",
+        "exit_reserve"
+      ],
+      "ai_role": "Evidence organisation, comparable options or low-risk assistance only; never the final public-interest decision.",
+      "human_decision": {
+        "zh": "公共空间运营负责人",
+        "en": "public-realm operations lead"
+      },
+      "acceptance_gate": {
+        "status": "target_not_result",
+        "zh": "现场无障碍使用者核验普通路线与信息连续",
+        "en": "disabled users verify route and information continuity"
+      },
+      "human_takeover": {
+        "zh": "人工引导并封闭错误数字路线",
+        "en": "staff guide users and close incorrect digital route"
+      },
+      "ordinary_alternative": {
+        "zh": "触觉固定图、人工问询",
+        "en": "tactile fixed map and staffed help"
+      },
+      "maintenance": {
+        "owner_status": "must_be_named_before_pilot",
+        "cycle": "risk-tiered inspection plus incident review"
+      },
+      "appeal": {
+        "channels": [
+          "staffed_counter",
+          "telephone",
+          "paper"
+        ],
+        "decision_by": "authorised human role"
+      },
+      "stop_condition": {
+        "zh": "误导至障碍、投诉未闭环或维护缺席",
+        "en": "route leads to barrier, appeal unresolved or maintenance absent"
+      },
+      "asset_exit": {
+        "zh": "撤下数字层；保留无障碍实体设施",
+        "en": "remove digital layer; retain accessible physical assets"
+      },
+      "evidence_status": "concept_contract_pending_authorised_pilot",
+      "service_blueprint": false
+    },
+    {
+      "id": "SCN-05",
+      "title_zh": "多语公共服务导航",
+      "title_en": "Multilingual public-service navigation",
+      "key_area_id": "beijing_ai_origin_community",
+      "spatial_carrier": {
+        "zh": "公共柜台、固定导视、反馈廊",
+        "en": "public counter, fixed signs and feedback arcade"
+      },
+      "beneficiaries": [
+        "P-03",
+        "P-04",
+        "P-05"
+      ],
+      "burden_bearers": [
+        "P-01",
+        "P-06"
+      ],
+      "problem_owner": {
+        "status": "role_pattern_pending_authorised_assignment",
+        "zh": "公共服务值班负责人",
+        "en": "public-service duty lead"
+      },
+      "actual_operator": {
+        "status": "unknown_until_pilot_authorisation",
+        "required_role": "public-service duty lead"
+      },
+      "resource_type": [
+        "staff_time",
+        "training",
+        "reversible_space",
+        "maintenance",
+        "exit_reserve"
+      ],
+      "ai_role": "Evidence organisation, comparable options or low-risk assistance only; never the final public-interest decision.",
+      "human_decision": {
+        "zh": "公共服务值班负责人",
+        "en": "public-service duty lead"
+      },
+      "acceptance_gate": {
+        "status": "target_not_result",
+        "zh": "关键事项经人工译审且线下入口等效",
+        "en": "critical items human-reviewed and offline entry equivalent"
+      },
+      "human_takeover": {
+        "zh": "转人工双语服务或电话翻译",
+        "en": "transfer to staffed bilingual service or telephone interpretation"
+      },
+      "ordinary_alternative": {
+        "zh": "纸本双语卡与人工柜台",
+        "en": "paper bilingual cards and staffed counter"
+      },
+      "maintenance": {
+        "owner_status": "must_be_named_before_pilot",
+        "cycle": "risk-tiered inspection plus incident review"
+      },
+      "appeal": {
+        "channels": [
+          "staffed_counter",
+          "telephone",
+          "paper"
+        ],
+        "decision_by": "authorised human role"
+      },
+      "stop_condition": {
+        "zh": "误译高风险事项、更新滞后或申诉失败",
+        "en": "high-risk mistranslation, stale content or failed appeal"
+      },
+      "asset_exit": {
+        "zh": "撤回模型内容；保留清权术语库",
+        "en": "withdraw model content; retain cleared terminology"
+      },
+      "evidence_status": "concept_contract_pending_authorised_pilot",
+      "service_blueprint": false
+    },
+    {
+      "id": "SCN-06",
+      "title_zh": "小微企业连续性助手",
+      "title_en": "SME continuity copilot",
+      "key_area_id": "beijing_ai_origin_community",
+      "spatial_carrier": {
+        "zh": "预约桌、可逆服务单元",
+        "en": "booking table and reversible unit"
+      },
+      "beneficiaries": [
+        "P-03",
+        "P-04",
+        "P-05"
+      ],
+      "burden_bearers": [
+        "P-01",
+        "P-06"
+      ],
+      "problem_owner": {
+        "status": "role_pattern_pending_authorised_assignment",
+        "zh": "企业服务负责人",
+        "en": "enterprise-service lead"
+      },
+      "actual_operator": {
+        "status": "unknown_until_pilot_authorisation",
+        "required_role": "enterprise-service lead"
+      },
+      "resource_type": [
+        "staff_time",
+        "training",
+        "reversible_space",
+        "maintenance",
+        "exit_reserve"
+      ],
+      "ai_role": "Evidence organisation, comparable options or low-risk assistance only; never the final public-interest decision.",
+      "human_decision": {
+        "zh": "企业服务负责人",
+        "en": "enterprise-service lead"
+      },
+      "acceptance_gate": {
+        "status": "target_not_result",
+        "zh": "自愿加入、费用透明、输出由商户确认",
+        "en": "opt-in, transparent cost and merchant approval"
+      },
+      "human_takeover": {
+        "zh": "转企业服务专员并停止自动建议",
+        "en": "transfer to service adviser and stop automated advice"
+      },
+      "ordinary_alternative": {
+        "zh": "线下预约与纸本清单",
+        "en": "offline booking and paper checklist"
+      },
+      "maintenance": {
+        "owner_status": "must_be_named_before_pilot",
+        "cycle": "risk-tiered inspection plus incident review"
+      },
+      "appeal": {
+        "channels": [
+          "staffed_counter",
+          "telephone",
+          "paper"
+        ],
+        "decision_by": "authorised human role"
+      },
+      "stop_condition": {
+        "zh": "敏感数据越界、费用不清或持续使用不足",
+        "en": "sensitive-data breach, unclear charge or insufficient sustained use"
+      },
+      "asset_exit": {
+        "zh": "删除账户数据；单元转作共享咨询桌",
+        "en": "delete account data; unit becomes shared advice table"
+      },
+      "evidence_status": "concept_contract_pending_authorised_pilot",
+      "service_blueprint": false
+    },
+    {
+      "id": "SCN-07",
+      "title_zh": "健康资源导航",
+      "title_en": "Health-resource navigation",
+      "key_area_id": "beijing_ai_origin_community",
+      "spatial_carrier": {
+        "zh": "人工柜台、安静照护室",
+        "en": "staffed counter and quiet/care room"
+      },
+      "beneficiaries": [
+        "P-03",
+        "P-04",
+        "P-05"
+      ],
+      "burden_bearers": [
+        "P-01",
+        "P-06"
+      ],
+      "problem_owner": {
+        "status": "role_pattern_pending_authorised_assignment",
+        "zh": "公共服务值班负责人",
+        "en": "public-service duty lead"
+      },
+      "actual_operator": {
+        "status": "unknown_until_pilot_authorisation",
+        "required_role": "public-service duty lead"
+      },
+      "resource_type": [
+        "staff_time",
+        "training",
+        "reversible_space",
+        "maintenance",
+        "exit_reserve"
+      ],
+      "ai_role": "Evidence organisation, comparable options or low-risk assistance only; never the final public-interest decision.",
+      "human_decision": {
+        "zh": "公共服务值班负责人",
+        "en": "public-service duty lead"
+      },
+      "acceptance_gate": {
+        "status": "target_not_result",
+        "zh": "只导航公开资源，不进行诊断或分诊决定",
+        "en": "navigate public resources only; no diagnosis or triage decision"
+      },
+      "human_takeover": {
+        "zh": "立即转人工与正式医疗渠道",
+        "en": "immediate transfer to staff and formal medical channel"
+      },
+      "ordinary_alternative": {
+        "zh": "电话、纸本机构名录",
+        "en": "telephone and paper directory"
+      },
+      "maintenance": {
+        "owner_status": "must_be_named_before_pilot",
+        "cycle": "risk-tiered inspection plus incident review"
+      },
+      "appeal": {
+        "channels": [
+          "staffed_counter",
+          "telephone",
+          "paper"
+        ],
+        "decision_by": "authorised human role"
+      },
+      "stop_condition": {
+        "zh": "出现诊断性输出、紧急风险或资料过期",
+        "en": "diagnostic output, emergency risk or stale information"
+      },
+      "asset_exit": {
+        "zh": "停用模型；保留经核验资源目录",
+        "en": "disable model; retain verified resource directory"
+      },
+      "evidence_status": "concept_contract_pending_authorised_pilot",
+      "service_blueprint": false
+    },
+    {
+      "id": "SCN-08",
+      "title_zh": "京张文化导览",
+      "title_en": "Jing-Zhang cultural guide",
+      "key_area_id": "beijing_ai_origin_community",
+      "spatial_carrier": {
+        "zh": "模型墙、公共廊与纸本地图",
+        "en": "model wall, public arcade and paper map"
+      },
+      "beneficiaries": [
+        "P-03",
+        "P-04",
+        "P-05"
+      ],
+      "burden_bearers": [
+        "P-01",
+        "P-06"
+      ],
+      "problem_owner": {
+        "status": "role_pattern_pending_authorised_assignment",
+        "zh": "文化内容编辑",
+        "en": "cultural-content editor"
+      },
+      "actual_operator": {
+        "status": "unknown_until_pilot_authorisation",
+        "required_role": "cultural-content editor"
+      },
+      "resource_type": [
+        "staff_time",
+        "training",
+        "reversible_space",
+        "maintenance",
+        "exit_reserve"
+      ],
+      "ai_role": "Evidence organisation, comparable options or low-risk assistance only; never the final public-interest decision.",
+      "human_decision": {
+        "zh": "文化内容编辑",
+        "en": "cultural-content editor"
+      },
+      "acceptance_gate": {
+        "status": "target_not_result",
+        "zh": "史实、版权、无障碍表达经人工审查",
+        "en": "facts, rights and accessible expression human-reviewed"
+      },
+      "human_takeover": {
+        "zh": "编辑下线内容并现场人工讲解",
+        "en": "editor removes content and offers staffed interpretation"
+      },
+      "ordinary_alternative": {
+        "zh": "纸本地图与固定铭牌",
+        "en": "paper map and fixed plaques"
+      },
+      "maintenance": {
+        "owner_status": "must_be_named_before_pilot",
+        "cycle": "risk-tiered inspection plus incident review"
+      },
+      "appeal": {
+        "channels": [
+          "staffed_counter",
+          "telephone",
+          "paper"
+        ],
+        "decision_by": "authorised human role"
+      },
+      "stop_condition": {
+        "zh": "史实争议、版权不清或把概念当现状",
+        "en": "factual dispute, unclear rights or concept presented as existing"
+      },
+      "asset_exit": {
+        "zh": "撤下数字内容；保留清权文本与构件",
+        "en": "withdraw digital content; retain cleared text and components"
+      },
+      "evidence_status": "concept_contract_pending_authorised_pilot",
+      "service_blueprint": false
+    },
+    {
+      "id": "SCN-09",
+      "title_zh": "公共空间维护分诊",
+      "title_en": "Public-space maintenance triage",
+      "key_area_id": "dazhongsi_ai_industry_cluster",
+      "spatial_carrier": {
+        "zh": "持续运行站、维修带",
+        "en": "service commons and maintenance band"
+      },
+      "beneficiaries": [
+        "P-01",
+        "P-03"
+      ],
+      "burden_bearers": [
+        "P-01",
+        "P-06"
+      ],
+      "problem_owner": {
+        "status": "role_pattern_pending_authorised_assignment",
+        "zh": "设施维护负责人",
+        "en": "facility maintenance lead"
+      },
+      "actual_operator": {
+        "status": "unknown_until_pilot_authorisation",
+        "required_role": "facility maintenance lead"
+      },
+      "resource_type": [
+        "staff_time",
+        "training",
+        "reversible_space",
+        "maintenance",
+        "exit_reserve"
+      ],
+      "ai_role": "Evidence organisation, comparable options or low-risk assistance only; never the final public-interest decision.",
+      "human_decision": {
+        "zh": "设施维护负责人",
+        "en": "facility maintenance lead"
+      },
+      "acceptance_gate": {
+        "status": "target_not_result",
+        "zh": "工单优先级由人确认且事件闭环",
+        "en": "work-order priority human-confirmed and incident closed"
+      },
+      "human_takeover": {
+        "zh": "人工巡查、电话派单",
+        "en": "staff inspection and telephone dispatch"
+      },
+      "ordinary_alternative": {
+        "zh": "纸本巡查表与固定报修点",
+        "en": "paper inspection sheet and fixed reporting point"
+      },
+      "maintenance": {
+        "owner_status": "must_be_named_before_pilot",
+        "cycle": "risk-tiered inspection plus incident review"
+      },
+      "appeal": {
+        "channels": [
+          "staffed_counter",
+          "telephone",
+          "paper"
+        ],
+        "decision_by": "authorised human role"
+      },
+      "stop_condition": {
+        "zh": "错派高风险任务、积压或责任不明",
+        "en": "unsafe misrouting, backlog or unclear responsibility"
+      },
+      "asset_exit": {
+        "zh": "停用自动分诊；保留工单与维护设施",
+        "en": "stop automated triage; retain work orders and repair assets"
+      },
+      "evidence_status": "concept_contract_pending_authorised_pilot",
+      "service_blueprint": false
+    },
+    {
+      "id": "SCN-10",
+      "title_zh": "活动日运营",
+      "title_en": "Event-day operations",
+      "key_area_id": "dazhongsi_ai_industry_cluster",
+      "spatial_carrier": {
+        "zh": "公共站厅、可逆单元、排班板",
+        "en": "public hall, reversible units and roster board"
+      },
+      "beneficiaries": [
+        "P-01",
+        "P-03"
+      ],
+      "burden_bearers": [
+        "P-01",
+        "P-06"
+      ],
+      "problem_owner": {
+        "status": "role_pattern_pending_authorised_assignment",
+        "zh": "活动现场负责人",
+        "en": "event site lead"
+      },
+      "actual_operator": {
+        "status": "unknown_until_pilot_authorisation",
+        "required_role": "event site lead"
+      },
+      "resource_type": [
+        "staff_time",
+        "training",
+        "reversible_space",
+        "maintenance",
+        "exit_reserve"
+      ],
+      "ai_role": "Evidence organisation, comparable options or low-risk assistance only; never the final public-interest decision.",
+      "human_decision": {
+        "zh": "活动现场负责人",
+        "en": "event site lead"
+      },
+      "acceptance_gate": {
+        "status": "target_not_result",
+        "zh": "容量、疏散、无障碍和普通使用不被活动挤占",
+        "en": "capacity, evacuation, access and ordinary use protected"
+      },
+      "human_takeover": {
+        "zh": "人工排班与现场广播",
+        "en": "staff roster and on-site announcement"
+      },
+      "ordinary_alternative": {
+        "zh": "固定导视与纸本日程",
+        "en": "fixed signs and paper schedule"
+      },
+      "maintenance": {
+        "owner_status": "must_be_named_before_pilot",
+        "cycle": "risk-tiered inspection plus incident review"
+      },
+      "appeal": {
+        "channels": [
+          "staffed_counter",
+          "telephone",
+          "paper"
+        ],
+        "decision_by": "authorised human role"
+      },
+      "stop_condition": {
+        "zh": "拥挤超限、投诉或非消费空间被占用",
+        "en": "crowding breach, complaint or free space displaced"
+      },
+      "asset_exit": {
+        "zh": "撤除临时单元；恢复普通公共厅",
+        "en": "remove temporary units; restore ordinary hall"
+      },
+      "evidence_status": "concept_contract_pending_authorised_pilot",
+      "service_blueprint": false
+    },
+    {
+      "id": "SCN-11",
+      "title_zh": "岗位技能接力课",
+      "title_en": "Role-training relay",
+      "key_area_id": "dazhongsi_ai_industry_cluster",
+      "spatial_carrier": {
+        "zh": "学习院、维修工坊、1:1 样段",
+        "en": "learning court, workshop and 1:1 segment"
+      },
+      "beneficiaries": [
+        "P-03",
+        "P-04",
+        "P-05"
+      ],
+      "burden_bearers": [
+        "P-01",
+        "P-06"
+      ],
+      "problem_owner": {
+        "status": "role_pattern_pending_authorised_assignment",
+        "zh": "培训负责人",
+        "en": "training lead"
+      },
+      "actual_operator": {
+        "status": "unknown_until_pilot_authorisation",
+        "required_role": "training lead"
+      },
+      "resource_type": [
+        "staff_time",
+        "training",
+        "reversible_space",
+        "maintenance",
+        "exit_reserve"
+      ],
+      "ai_role": "Evidence organisation, comparable options or low-risk assistance only; never the final public-interest decision.",
+      "human_decision": {
+        "zh": "培训负责人",
+        "en": "training lead"
+      },
+      "acceptance_gate": {
+        "status": "target_not_result",
+        "zh": "实际运营人员完成演练并可独立接管",
+        "en": "frontline operators complete drills and can take over"
+      },
+      "human_takeover": {
+        "zh": "教员现场示范并停用自动步骤",
+        "en": "trainer demonstrates and suspends automated steps"
+      },
+      "ordinary_alternative": {
+        "zh": "纸本 SOP 与实物训练",
+        "en": "paper SOP and physical practice"
+      },
+      "maintenance": {
+        "owner_status": "must_be_named_before_pilot",
+        "cycle": "risk-tiered inspection plus incident review"
+      },
+      "appeal": {
+        "channels": [
+          "staffed_counter",
+          "telephone",
+          "paper"
+        ],
+        "decision_by": "authorised human role"
+      },
+      "stop_condition": {
+        "zh": "未通过考核、岗位未排班或工具不可维护",
+        "en": "assessment failed, role unstaffed or tool unmaintainable"
+      },
+      "asset_exit": {
+        "zh": "课程材料开源；设备回归共享工坊",
+        "en": "open course materials; equipment returns to workshop"
+      },
+      "evidence_status": "concept_contract_pending_authorised_pilot",
+      "service_blueprint": false
+    },
+    {
+      "id": "SCN-12",
+      "title_zh": "社区议题受理",
+      "title_en": "Community issue intake",
+      "key_area_id": "dazhongsi_ai_industry_cluster",
+      "spatial_carrier": {
+        "zh": "人工柜台、反馈廊、安静室",
+        "en": "staffed counter, feedback arcade and quiet room"
+      },
+      "beneficiaries": [
+        "P-03",
+        "P-04",
+        "P-05"
+      ],
+      "burden_bearers": [
+        "P-01",
+        "P-06"
+      ],
+      "problem_owner": {
+        "status": "role_pattern_pending_authorised_assignment",
+        "zh": "社区议题负责人",
+        "en": "community-issue lead"
+      },
+      "actual_operator": {
+        "status": "unknown_until_pilot_authorisation",
+        "required_role": "community-issue lead"
+      },
+      "resource_type": [
+        "staff_time",
+        "training",
+        "reversible_space",
+        "maintenance",
+        "exit_reserve"
+      ],
+      "ai_role": "Evidence organisation, comparable options or low-risk assistance only; never the final public-interest decision.",
+      "human_decision": {
+        "zh": "社区议题负责人",
+        "en": "community-issue lead"
+      },
+      "acceptance_gate": {
+        "status": "target_not_result",
+        "zh": "可匿名、可申诉、优先级由人决定",
+        "en": "anonymous option, appeal and human priority decision"
+      },
+      "human_takeover": {
+        "zh": "转人工登记并冻结自动分类",
+        "en": "staffed registration and freeze automated classification"
+      },
+      "ordinary_alternative": {
+        "zh": "纸本、电话、面对面主持",
+        "en": "paper, telephone and in-person facilitation"
+      },
+      "maintenance": {
+        "owner_status": "must_be_named_before_pilot",
+        "cycle": "risk-tiered inspection plus incident review"
+      },
+      "appeal": {
+        "channels": [
+          "staffed_counter",
+          "telephone",
+          "paper"
+        ],
+        "decision_by": "authorised human role"
+      },
+      "stop_condition": {
+        "zh": "敏感信息风险、分类偏差或申诉无回应",
+        "en": "sensitive-data risk, classification bias or unanswered appeal"
+      },
+      "asset_exit": {
+        "zh": "删除非必要数据；保留议题记录与实体入口",
+        "en": "delete unnecessary data; retain issue record and physical entry"
+      },
+      "evidence_status": "concept_contract_pending_authorised_pilot",
+      "service_blueprint": false
+    }
+  ]
+}

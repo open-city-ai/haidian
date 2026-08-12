@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.1.0",
+  "asset_id": "AI-ERA-SPATIAL-DELTA-001",
+  "status": "design_target",
+  "not_official_geometry": true,
+  "title_zh": "众智园一条空间决策差分",
+  "title_en": "One spatial decision delta at Zhongzhiyuan",
+  "area_id": "PROV-KEY-001",
+  "anchor_refs": [
+    "geometry/roads.geojson#MOBILITY-05",
+    "geometry/public_space.geojson#PUBLIC-01",
+    "geometry/constraints.geojson#SCN-06",
+    "geometry/green_space.geojson#GREEN-02"
+  ],
+  "counterfactual_baseline": {
+    "label_zh": "未采用本包 AI 规划约束的单一展示入口",
+    "label_en": "A single showcase entrance without this package's AI-planning constraints",
+    "state_zh": "机器/展示先行，普通路径、人工接管和退出被压到入口之后",
+    "state_en": "Machine/showcase first; ordinary movement, staffed takeover, and exit are pushed behind the entrance",
+    "status": "counterfactual_design_option",
+    "boundary_zh": "这是用于比较的设计选项，不是现状调查、同类项目事实或机器决策结果。",
+    "boundary_en": "This is a comparison option, not a site survey, peer-project fact, or machine decision result."
+  },
+  "adopted_decision": {
+    "label_zh": "先普通到达与人工接管，再进入受限模拟",
+    "label_en": "Ordinary arrival and staffed takeover come before bounded simulation",
+    "spatial_delta_zh": "把人工解释台、公众观察席、可见退避和可撤回测试边界作为同一组公共界面；机器测试不能占据普通步行的唯一入口。",
+    "spatial_delta_en": "Place a staffed explanation desk, public observer seat, visible retreat, and withdrawable test edge as one public interface; machine testing cannot own the only ordinary-walking entrance.",
+    "gate": "G0",
+    "status": "design_target",
+    "evidence_refs": [
+      "visual/assets/ai-era-spatial-interface-plans.json#AI-NODE-ZHONGZHIYUAN",
+      "visual/assets/scenario-space-operation-matrix.json#SCN-06"
+    ]
+  },
+  "stage_readout": [
+    {
+      "stage": "arrival",
+      "space_role_zh": "普通步行、观察和无障碍询问先成立",
+      "space_role_en": "Ordinary walking, observation, and accessible questions come first",
+      "ai_consequence_zh": "AI 不改变临时 geometry；它把机器测试排到公共入口之后。",
+      "ai_consequence_en": "AI does not change the provisional geometry; it moves machine testing behind the public entrance.",
+      "status": "design_target"
+    },
+    {
+      "stage": "staffed",
+      "space_role_zh": "人工解释与接管台朝向普通路径",
+      "space_role_en": "The staffed explanation and takeover desk faces the ordinary path",
+      "ai_consequence_zh": "接口的第一空间动作是可问、可拒绝、可转人工，而不是自动调用。",
+      "ai_consequence_en": "The first spatial move is to ask, refuse, or switch to a person, not to invoke an automated call.",
+      "status": "design_target"
+    },
+    {
+      "stage": "bounded",
+      "space_role_zh": "受限 API 模拟放在可见、可停用的测试边界内",
+      "space_role_en": "Bounded API simulation stays inside a visible, stoppable test edge",
+      "ai_consequence_zh": "授权、责任、日志和回放缺一不可时，空间状态不得越过 G0。",
+      "ai_consequence_en": "Without authorization, responsibility, logs, and replay, the spatial state cannot pass G0.",
+      "status": "design_target"
+    },
+    {
+      "stage": "exit_replay",
+      "space_role_zh": "冻结复盘、维护退避和普通路径继续可见",
+      "space_role_en": "Freeze/replay, maintenance retreat, and the ordinary path remain visible",
+      "ai_consequence_zh": "异常时撤回的是机器接口，不是公众的普通通行和人工服务。",
+      "ai_consequence_en": "When an anomaly occurs, the machine interface is withdrawn, not ordinary public movement or staffed service.",
+      "status": "design_target"
+    }
+  ],
+  "claim_boundary_zh": "这是把已有 provisional anchors 转成一个可审阅的空间角色差分；不提供面积、断面、容量、路线长度、现场绩效、许可或部署结论。正式 geometry、权属、无障碍和现场基线到位后，必须与全包指标、图件、HTML、PDF 和自检一起重算。",
+  "claim_boundary_en": "This readout turns existing provisional anchors into a reviewable spatial-role delta; it provides no area, section, capacity, route length, field-performance, permit, or deployment conclusion. Once official geometry, rights, accessibility, and field baselines exist, the full metrics, plates, HTML, PDF, and self-check must be recomputed together."
+}

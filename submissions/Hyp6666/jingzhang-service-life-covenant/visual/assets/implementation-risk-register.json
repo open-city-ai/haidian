@@ -1,0 +1,159 @@
+{
+  "schema_version": "0.3.0",
+  "register_id": "JZ-SLC-IMPLEMENTATION-RISK-003",
+  "status_boundary": "Schema-free package-local implementation register; not a legal, financial, engineering, safety, accessibility, labor, rights, or field risk certification.",
+  "assessment_scale": {
+    "likelihood": [
+      "rare",
+      "unlikely",
+      "possible",
+      "likely",
+      "almost_certain"
+    ],
+    "consequence": [
+      "minor",
+      "moderate",
+      "major",
+      "critical"
+    ],
+    "risk_rating": [
+      "low",
+      "medium",
+      "high",
+      "critical"
+    ]
+  },
+  "review_date": "2026-08-11",
+  "records": [
+    {
+      "risk_id": "IR-001",
+      "risk_type": "record_deletion_or_tamper",
+      "owner_role": "evidence_custodian",
+      "trigger": "committed journal, receipt, ledger, fixture, oracle, or derived record is deleted, rewritten, or replaced",
+      "likelihood": "possible",
+      "consequence": "critical",
+      "inherent_risk": "critical",
+      "residual_risk": "medium",
+      "mitigation": "Append-only retention, immutable committed inputs, current manifest hashes, independent output hashes, access logging, and human incident review.",
+      "status": "open_for_P0_professional_review",
+      "review_date": "2026-08-11"
+    },
+    {
+      "risk_id": "IR-002",
+      "risk_type": "hash_chain_break",
+      "owner_role": "evidence_integrity_reviewer",
+      "trigger": "journal sequence, previous_hash, record_hash, or execution input/output hash no longer recomputes",
+      "likelihood": "possible",
+      "consequence": "critical",
+      "inherent_risk": "critical",
+      "residual_risk": "low",
+      "mitigation": "Deterministic canonical hashing, genesis/sequence checks, runner --check, immutable fixture/oracle inputs, and independent re-computation before acceptance.",
+      "status": "open_for_P0_professional_review",
+      "review_date": "2026-08-11"
+    },
+    {
+      "risk_id": "IR-003",
+      "risk_type": "circular_validation",
+      "owner_role": "independent_validation_reviewer",
+      "trigger": "validator, fixtures, oracle, and expected answers are produced or changed in one unreviewed runtime step",
+      "likelihood": "possible",
+      "consequence": "major",
+      "inherent_risk": "high",
+      "residual_risk": "low",
+      "mitigation": "Keep validator, committed fixtures, and committed oracle separate; runner reads rather than authors expected answers; require independent change review.",
+      "status": "open_for_P0_professional_review",
+      "review_date": "2026-08-11"
+    },
+    {
+      "risk_id": "IR-004",
+      "risk_type": "escrow_custody",
+      "owner_role": "escrow_governance_owner",
+      "trigger": "custodian, authorization, accounting treatment, legal vehicle, or any release condition is absent or disputed",
+      "likelihood": "likely",
+      "consequence": "critical",
+      "inherent_risk": "critical",
+      "residual_risk": "medium",
+      "mitigation": "Treat the current unit as synthetic only; prohibit real release unless receipt, fallback, data clearing, material destination, four ledger closings, custody, accounting, and legal authority pass professional review.",
+      "status": "open_for_P0_professional_review",
+      "review_date": "2026-08-11"
+    },
+    {
+      "risk_id": "IR-005",
+      "risk_type": "ledger_fabrication",
+      "owner_role": "ledger_audit_role",
+      "trigger": "duplicate transaction ID, fabricated evidence hash, absent party/sign-off, unit mixing, or non-zero closing is submitted",
+      "likelihood": "possible",
+      "consequence": "critical",
+      "inherent_risk": "critical",
+      "residual_risk": "medium",
+      "mitigation": "Transaction-level entries, separate units, evidence hashes, two-role sign-off, source receipt linkage, validator recomputation, and sample independent audit.",
+      "status": "open_for_P0_professional_review",
+      "review_date": "2026-08-11"
+    },
+    {
+      "risk_id": "IR-006",
+      "risk_type": "vendor_lock_in",
+      "owner_role": "procurement_owner",
+      "trigger": "closed interface, unavailable repair manual or spares, blocked data/config export, proprietary custody dependency, or punitive exit cost appears",
+      "likelihood": "likely",
+      "consequence": "major",
+      "inherent_risk": "high",
+      "residual_risk": "medium",
+      "mitigation": "Minimum repair-right package, replaceable interfaces, export and restoration tests, escrowed documentation where lawful, migration plan, and retirement trigger.",
+      "status": "open_for_P0_professional_review",
+      "review_date": "2026-08-11"
+    },
+    {
+      "risk_id": "IR-007",
+      "risk_type": "provisional_or_field_overclaim",
+      "owner_role": "planning_evidence_owner",
+      "trigger": "provisional, synthetic, derived, unknown, or package-local result is presented as official, surveyed, approved, field-validated, engineered, or implemented",
+      "likelihood": "likely",
+      "consequence": "critical",
+      "inherent_risk": "critical",
+      "residual_risk": "medium",
+      "mitigation": "Visible evidence-status stamps, source/assumption closure, package-local provenance, exact forbidden-term checks, and P0 official/field/engineering input gates.",
+      "status": "open_for_P0_professional_review",
+      "review_date": "2026-08-11"
+    },
+    {
+      "risk_id": "IR-008",
+      "risk_type": "labor_transfer",
+      "owner_role": "labor_and_operations_owner",
+      "trigger": "maintenance burden, unpaid data work, surveillance pressure, or safety exposure shifts to night, cleaning, security, delivery, or repair workers",
+      "likelihood": "likely",
+      "consequence": "major",
+      "inherent_risk": "high",
+      "residual_risk": "medium",
+      "mitigation": "Labor ledger, workload and pay review, worker representation and stop authority, safety training, staffing fallback, and withdrawal if burden rises.",
+      "status": "open_for_P0_professional_review",
+      "review_date": "2026-08-11"
+    },
+    {
+      "risk_id": "IR-009",
+      "risk_type": "accessibility_or_fallback_failure",
+      "owner_role": "accessibility_and_public_service_owner",
+      "trigger": "AI or a mobile account becomes an eligibility gate, or staffed, paper, static-wayfinding, proxy, accessible, or offline service fails",
+      "likelihood": "possible",
+      "consequence": "critical",
+      "inherent_risk": "critical",
+      "residual_risk": "medium",
+      "mitigation": "Equivalent staffed and paper routes, static multimodal wayfinding, accessible interaction testing, proxy assistance, service continuity drills, and immediate AI-layer pause.",
+      "status": "open_for_P0_professional_review",
+      "review_date": "2026-08-11"
+    },
+    {
+      "risk_id": "IR-010",
+      "risk_type": "source_rights",
+      "owner_role": "rights_and_provenance_owner",
+      "trigger": "uncleared text, figure, media, logo, portrait, map, geometry, font, code, or peer asset enters a public artifact, or citation is mistaken for reuse permission",
+      "likelihood": "possible",
+      "consequence": "critical",
+      "inherent_risk": "critical",
+      "residual_risk": "low",
+      "mitigation": "Use official facts as citations only, retain package-local originality limits and rights QA, use self-generated programmatic media, exclude peer assets, document local font use without redistribution, and require rights review for every new external asset.",
+      "status": "open_for_P0_professional_review",
+      "review_date": "2026-08-11"
+    }
+  ]
+}

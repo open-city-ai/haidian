@@ -1,0 +1,525 @@
+{
+  "schema_version": "0.1.0",
+  "disclaimer": "concept-only：本登记为方案运行机制的推演（tabletop simulation），不代表任何服务已在实施、已获批或已进入实际测试。",
+  "summary_zh": "智脉脉冲协议推演登记：15 项公共 AI 服务（12 张场景卡 + 3 个产业测试场景）逐项核对 P1-P4 四拍与五类回滚触发器，全部通过 P1 申报五要素核验。",
+  "beats": {
+    "P1": {
+      "label_zh": "申报",
+      "label_en": "Declare",
+      "requirements_zh": [
+        "服务目的",
+        "数据上限",
+        "责任主体",
+        "人工等价路径",
+        "结束条件"
+      ],
+      "failure_zh": "任一要素缺失不进入测试",
+      "failure_en": "any missing element blocks testing"
+    },
+    "P2": {
+      "label_zh": "测试",
+      "label_en": "Test",
+      "requirements_zh": [
+        "受控试点（预约、分区、现场安全员、实体急停、独立复测）"
+      ],
+      "failure_zh": "未完成复测不进入发布",
+      "failure_en": "no release without independent re-test"
+    },
+    "P3": {
+      "label_zh": "发布",
+      "label_en": "Release",
+      "requirements_zh": [
+        "公开运行；导视状态灯可视化（稳定波形/脉冲闪烁/平线）"
+      ],
+      "failure_zh": "运行边界失效即降级回P2",
+      "failure_en": "boundary breach degrades back to P2"
+    },
+    "P4": {
+      "label_zh": "复盘",
+      "label_en": "Review",
+      "requirements_zh": [
+        "数据回检、公众反馈与失败记录公开"
+      ],
+      "failure_zh": "未复盘不续期",
+      "failure_en": "no extension without review"
+    }
+  },
+  "rollback_triggers": {
+    "safety": "安全类：实体或线上安全事件，事故即停",
+    "privacy": "隐私类：数据越界或投诉成立",
+    "heritage": "文保类：与文物风貌冲突即撤除",
+    "ecology": "生态类：扰民、噪声或公共空间占用争议",
+    "economics": "经济类：运营不可持续且无替代资金来源"
+  },
+  "task_count": 15,
+  "tasks": [
+    {
+      "id": "card-01",
+      "title_zh": "铁轨巡检AR孪生",
+      "title_en": "Railway-inspection AR Twin",
+      "protocol_status": "declared",
+      "outcome": "declared",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "status_light": {
+        "stable_waveform": false,
+        "pulse_flashing": false,
+        "flat_line": false
+      },
+      "p1_declare": {
+        "purpose": "百年影像与AI孪生巡检演示",
+        "data_limit": "仅聚合点位热度，不采集个人影像",
+        "responsible_party": "轨道遗产管理方+区测试办",
+        "human_fallback_path": "识别失败即提示并转人工核验",
+        "exit_condition": "AR史实准确率≥98%；史实投诉未修复即下线",
+        "declared": true
+      },
+      "p2_test": {
+        "pending": false
+      },
+      "p3_release": {
+        "released": false
+      },
+      "p4_review": {
+        "review_required": true
+      }
+    },
+    {
+      "id": "card-02",
+      "title_zh": "无人接驳巴士走廊",
+      "title_en": "Driverless Shuttle Corridor",
+      "protocol_status": "testing",
+      "outcome": "testing",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "status_light": {
+        "stable_waveform": false,
+        "pulse_flashing": true,
+        "flat_line": false
+      },
+      "p1_declare": {
+        "purpose": "园区—轨道站无人接驳示范",
+        "data_limit": "行程数据仅用于调度，留存期后匿名化",
+        "responsible_party": "公交集团+区测试办",
+        "human_fallback_path": "事故即停线转人工",
+        "exit_condition": "准点率≥85%；事故即停线转人工",
+        "declared": true
+      },
+      "p2_test": {
+        "pending": true
+      },
+      "p3_release": {
+        "released": false
+      },
+      "p4_review": {
+        "review_required": true
+      }
+    },
+    {
+      "id": "card-03",
+      "title_zh": "AI骑行教练站",
+      "title_en": "AI Cycling Coach Station",
+      "protocol_status": "declared",
+      "outcome": "declared",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "status_light": {
+        "stable_waveform": false,
+        "pulse_flashing": false,
+        "flat_line": false
+      },
+      "p1_declare": {
+        "purpose": "骑行数据可视化与AI运动指导",
+        "data_limit": "骑行数据仅本人可见、可一键删除",
+        "responsible_party": "属地街道+绿廊运营",
+        "human_fallback_path": "设备故障24h内修复；隐私投诉即暂停",
+        "exit_condition": "设备故障24h内修复；隐私投诉即暂停",
+        "declared": true
+      },
+      "p2_test": {
+        "pending": false
+      },
+      "p3_release": {
+        "released": false
+      },
+      "p4_review": {
+        "review_required": true
+      }
+    },
+    {
+      "id": "card-04",
+      "title_zh": "钟韵元宇宙",
+      "title_en": "Zhongyun Metaverse",
+      "protocol_status": "declared",
+      "outcome": "declared",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "status_light": {
+        "stable_waveform": false,
+        "pulse_flashing": false,
+        "flat_line": false
+      },
+      "p1_declare": {
+        "purpose": "钟声文化数字孪生与互动展演",
+        "data_limit": "不采集个人行为轨迹",
+        "responsible_party": "大钟寺文化机构+属地",
+        "human_fallback_path": "内容投诉响应≤48h；文保冲突即撤除",
+        "exit_condition": "内容投诉响应≤48h；文保冲突即撤除",
+        "declared": true
+      },
+      "p2_test": {
+        "pending": false
+      },
+      "p3_release": {
+        "released": false
+      },
+      "p4_review": {
+        "review_required": true
+      }
+    },
+    {
+      "id": "card-05",
+      "title_zh": "智盒会议亭",
+      "title_en": "Smart-Box Meeting Pavilion",
+      "protocol_status": "released",
+      "outcome": "released",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "status_light": {
+        "stable_waveform": true,
+        "pulse_flashing": false,
+        "flat_line": false
+      },
+      "p1_declare": {
+        "purpose": "自助会议、直播与远程协作微型空间",
+        "data_limit": "音视频内容由使用者自持，平台不留存",
+        "responsible_party": "园区运营平台",
+        "human_fallback_path": "投诉即停用",
+        "exit_condition": "爽约率过高即调整容量；投诉即停用",
+        "declared": true
+      },
+      "p2_test": {
+        "pending": false,
+        "note": "P2 独立复测已完成；持续运行中的 P4 复盘复测按节拍继续"
+      },
+      "p3_release": {
+        "released": true
+      },
+      "p4_review": {
+        "review_required": true
+      }
+    },
+    {
+      "id": "card-06",
+      "title_zh": "无人机配送驿站",
+      "title_en": "Drone Delivery Station",
+      "protocol_status": "testing",
+      "outcome": "testing",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "status_light": {
+        "stable_waveform": false,
+        "pulse_flashing": true,
+        "flat_line": false
+      },
+      "p1_declare": {
+        "purpose": "低空物流接驳试验",
+        "data_limit": "不采集人脸；配送记录30天删除",
+        "responsible_party": "配送企业+空域监管",
+        "human_fallback_path": "空域审批未过不开通",
+        "exit_condition": "安全隐患零容忍；空域审批未过不开通",
+        "declared": true
+      },
+      "p2_test": {
+        "pending": true
+      },
+      "p3_release": {
+        "released": false
+      },
+      "p4_review": {
+        "review_required": true
+      }
+    },
+    {
+      "id": "card-07",
+      "title_zh": "AI园艺师口袋公园",
+      "title_en": "AI Gardener Pocket Park",
+      "protocol_status": "declared",
+      "outcome": "declared",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "status_light": {
+        "stable_waveform": false,
+        "pulse_flashing": false,
+        "flat_line": false
+      },
+      "p1_declare": {
+        "purpose": "植物养护AI协作与社区认养",
+        "data_limit": "仅记录植物养护与认养数据",
+        "responsible_party": "社区居委会+街道",
+        "human_fallback_path": "扰民投诉即调整",
+        "exit_condition": "认养参与率≥30%；扰民投诉即调整",
+        "declared": true
+      },
+      "p2_test": {
+        "pending": false
+      },
+      "p3_release": {
+        "released": false
+      },
+      "p4_review": {
+        "review_required": true
+      }
+    },
+    {
+      "id": "card-08",
+      "title_zh": "无障碍AI导行站",
+      "title_en": "Accessible AI Wayfinding Station",
+      "protocol_status": "testing",
+      "outcome": "testing",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "status_light": {
+        "stable_waveform": false,
+        "pulse_flashing": true,
+        "flat_line": false
+      },
+      "p1_declare": {
+        "purpose": "语音/触觉多模态无障碍导航",
+        "data_limit": "不保存个人轨迹，现场可核验",
+        "responsible_party": "残联+运营方",
+        "human_fallback_path": "现场不符即停用；人工替代率100%",
+        "exit_condition": "人工替代率100%；现场不符即停用",
+        "declared": true
+      },
+      "p2_test": {
+        "pending": true
+      },
+      "p3_release": {
+        "released": false
+      },
+      "p4_review": {
+        "review_required": true
+      }
+    },
+    {
+      "id": "card-09",
+      "title_zh": "赛事数据可视化墙",
+      "title_en": "Event Data Visualization Wall",
+      "protocol_status": "declared",
+      "outcome": "declared",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "status_light": {
+        "stable_waveform": false,
+        "pulse_flashing": false,
+        "flat_line": false
+      },
+      "p1_declare": {
+        "purpose": "智能体育赛事实时数据大屏",
+        "data_limit": "仅聚合展示，不识别个人",
+        "responsible_party": "体育机构+赛事运营",
+        "human_fallback_path": "预警人工研判",
+        "exit_condition": "数据口径标注时间；预警人工研判",
+        "declared": true
+      },
+      "p2_test": {
+        "pending": false
+      },
+      "p3_release": {
+        "released": false
+      },
+      "p4_review": {
+        "review_required": true
+      }
+    },
+    {
+      "id": "card-10",
+      "title_zh": "建筑能耗AI调控楼",
+      "title_en": "AI Building-Energy Control Tower",
+      "protocol_status": "testing",
+      "outcome": "testing",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "status_light": {
+        "stable_waveform": false,
+        "pulse_flashing": true,
+        "flat_line": false
+      },
+      "p1_declare": {
+        "purpose": "分布式能源与AI能耗调控示范",
+        "data_limit": "能耗数据按楼栋聚合，不涉及户内",
+        "responsible_party": "能源企业+园区物业",
+        "human_fallback_path": "连续失误停用",
+        "exit_condition": "调控失误即时人工接管；连续失误停用",
+        "declared": true
+      },
+      "p2_test": {
+        "pending": true
+      },
+      "p3_release": {
+        "released": false
+      },
+      "p4_review": {
+        "review_required": true
+      }
+    },
+    {
+      "id": "card-11",
+      "title_zh": "AI咖啡机器人驿站",
+      "title_en": "AI Barista Robot Station",
+      "protocol_status": "released",
+      "outcome": "released",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "status_light": {
+        "stable_waveform": true,
+        "pulse_flashing": false,
+        "flat_line": false
+      },
+      "p1_declare": {
+        "purpose": "机器臂咖啡体验与开发者社交",
+        "data_limit": "订单数据最小化，支付走标准渠道",
+        "responsible_party": "商业运营方",
+        "human_fallback_path": "机械故障即停",
+        "exit_condition": "机械故障即停；投诉响应≤24h",
+        "declared": true
+      },
+      "p2_test": {
+        "pending": false,
+        "note": "P2 独立复测已完成；持续运行中的 P4 复盘复测按节拍继续"
+      },
+      "p3_release": {
+        "released": true
+      },
+      "p4_review": {
+        "review_required": true
+      }
+    },
+    {
+      "id": "card-12",
+      "title_zh": "开发者露天工位代码墙",
+      "title_en": "Developer Open-Air Workstations & Code Wall",
+      "protocol_status": "released",
+      "outcome": "released",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "status_light": {
+        "stable_waveform": true,
+        "pulse_flashing": false,
+        "flat_line": false
+      },
+      "p1_declare": {
+        "purpose": "开源贡献墙、露天工位与演示区",
+        "data_limit": "公开贡献数据匿名聚合",
+        "responsible_party": "开源社区+属地运营",
+        "human_fallback_path": "争议即下架",
+        "exit_condition": "内容审核人工终审；争议即下架",
+        "declared": true
+      },
+      "p2_test": {
+        "pending": false,
+        "note": "P2 独立复测已完成；持续运行中的 P4 复盘复测按节拍继续"
+      },
+      "p3_release": {
+        "released": true
+      },
+      "p4_review": {
+        "review_required": true
+      }
+    },
+    {
+      "id": "test-v2x",
+      "title_zh": "车路协同开放测试段",
+      "title_en": "V2X Open Test Segment",
+      "protocol_status": "testing",
+      "outcome": "testing",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "status_light": {
+        "stable_waveform": false,
+        "pulse_flashing": true,
+        "flat_line": false
+      },
+      "p1_declare": {
+        "purpose": "车路协同与无人接驳实测",
+        "data_limit": "车辆状态与路况数据仅用于测试",
+        "responsible_party": "区测试办+公交集团",
+        "human_fallback_path": "事故即停转人工",
+        "exit_condition": "累计测试无重大事故；重大事故即停测",
+        "declared": true
+      },
+      "p2_test": {
+        "pending": true
+      },
+      "p3_release": {
+        "released": false
+      },
+      "p4_review": {
+        "review_required": true
+      }
+    },
+    {
+      "id": "test-drone",
+      "title_zh": "低空配送航线验证",
+      "title_en": "Low-Altitude Delivery Route Verification",
+      "protocol_status": "testing",
+      "outcome": "testing",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "status_light": {
+        "stable_waveform": false,
+        "pulse_flashing": true,
+        "flat_line": false
+      },
+      "p1_declare": {
+        "purpose": "无人机配送航线验证",
+        "data_limit": "遵守空域与安全法规；不采集人脸",
+        "responsible_party": "属地+监管机构",
+        "human_fallback_path": "空域审批未过不开通",
+        "exit_condition": "空域审批未过不开通；安全隐患零容忍",
+        "declared": true
+      },
+      "p2_test": {
+        "pending": true
+      },
+      "p3_release": {
+        "released": false
+      },
+      "p4_review": {
+        "review_required": true
+      }
+    },
+    {
+      "id": "test-wayfinding",
+      "title_zh": "多模态导视测评场",
+      "title_en": "Multimodal Wayfinding Evaluation Field",
+      "protocol_status": "testing",
+      "outcome": "testing",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "status_light": {
+        "stable_waveform": false,
+        "pulse_flashing": true,
+        "flat_line": false
+      },
+      "p1_declare": {
+        "purpose": "无障碍导行多模态测评",
+        "data_limit": "不保存个人轨迹，现场可核验",
+        "responsible_party": "残联+运营方",
+        "human_fallback_path": "现场核验不符即停用",
+        "exit_condition": "现场核验不符即停用",
+        "declared": true
+      },
+      "p2_test": {
+        "pending": true
+      },
+      "p3_release": {
+        "released": false
+      },
+      "p4_review": {
+        "review_required": true
+      }
+    }
+  ]
+}

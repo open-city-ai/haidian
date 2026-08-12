@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "summary": "鸣钟京张方案风险矩阵：以数据隐私、边界不确定性、政策不确定性、实施复杂性与运营成本为主，全部风险均有缓解路径与人工复核安排；强度类与实施类结论均标注概念性质。",
+  "dimensions": [
+    {
+      "id": "spatial_dispute",
+      "label": "边界不确定性",
+      "score": 4,
+      "note": "官方红线与重点区 polygon 未公开，provisional 边界偏差 0.02%–0.43%，空间结论可能随官方数据变化。",
+      "mitigation": "全链标注 provisional；官方 polygon 发布后整包复算（missing_data_checklist.json GAP-BOUNDARY-001/002）。",
+      "human_review": "面积类指标与图层已附复算公式，供维护者独立复算。"
+    },
+    {
+      "id": "policy_uncertainty",
+      "label": "政策不确定性",
+      "score": 4,
+      "note": "控规强度、道路红线、拆改留、活动与招商表述均依赖官方数据或政策安排，存在调整可能。",
+      "mitigation": "强度类指标 status=unknown 并附 reason；活动、资金、政策一律标注概念建议，不构成政府承诺。",
+      "human_review": "按控规编制审批办法边界条款复核本方案合规表述。"
+    },
+    {
+      "id": "implementation_complexity",
+      "label": "实施复杂性",
+      "score": 3,
+      "note": "站城一体化、四象限连通、站点接驳与跨环路上跨均涉及多主体协调与专业交通深化。",
+      "mitigation": "更新项目清单逐项给出实施主体建议与依赖条件；分期试点优先验证。",
+      "human_review": "实施主体为概念责任分工，须由专业部门确认。"
+    },
+    {
+      "id": "operations_cost",
+      "label": "运营成本",
+      "score": 3,
+      "note": "鸣钟发布活动体系、静音时段、登记协议与场景运营需长期投入，运营资金测算未含。",
+      "mitigation": "运营机制按试点-扩展-常态化三档滚动推进，先小成本验证再放量。",
+      "human_review": "运营资金与机制须与区级财政安排衔接。"
+    },
+    {
+      "id": "data_privacy",
+      "label": "数据隐私",
+      "score": 2,
+      "note": "AI 场景涉及公共空间数据与未成年人活动，存在过度采集与隐私风险。",
+      "mitigation": "12 张场景卡统一执行最小必要数据边界、人工交接与停止条件；研学影像需家长书面同意。",
+      "human_review": "逐卡数据边界与停止条件登记于 scenario_cards.json，供评审复核。"
+    },
+    {
+      "id": "technology_maturity",
+      "label": "技术成熟度",
+      "score": 2,
+      "note": "机器人配送、无人接驳与 AR 荣誉墙依赖技术成熟度与监管许可。",
+      "mitigation": "全部列为试点场景，需备案与审批，安全员与远程接管配置，静音时段停运。",
+      "human_review": "试点许可与验收标准须由交管与行业部门确认。"
+    },
+    {
+      "id": "public_acceptance",
+      "label": "公众接受度",
+      "score": 2,
+      "note": "AI 服务进入公共空间可能引发隐私与替代人工的担忧。",
+      "mitigation": "静音时段、人工通道、鸣钟登记透明机制与人工复核基线共同回应公众关切。",
+      "human_review": "公共服务双通道与无障碍要求已对接法规基线。"
+    },
+    {
+      "id": "equity_inclusion",
+      "label": "公平与包容",
+      "score": 1,
+      "note": "方案已覆盖老年与低数字素养人群，但智能设施使用仍存在门槛风险。",
+      "mitigation": "人工办理通道、非 AR 等价体验、免费公共空间与青年友好设计降低门槛。",
+      "human_review": "按无障碍法与国办发〔2020〕45 号复核包容设计。"
+    }
+  ]
+}

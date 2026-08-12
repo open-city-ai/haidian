@@ -1,0 +1,191 @@
+{
+  "schema_version": "1.0-failure-governance",
+  "screen_id": "MOB-FAILURE-GOVERNANCE-001",
+  "status": "protocol_only_not_authorized_not_run",
+  "purpose_zh": "把交通故障、群体影响、证据置信度、人工决定和版本退役放进同一条可回写链；不把合成压力屏查写成真实事故，也不把一次修正覆盖旧记录。",
+  "purpose_en": "Place transport failure, group impact, evidence confidence, human decision and release retirement in one writable chain; do not turn a synthetic stress screen into a real incident or overwrite an earlier correction.",
+  "scope": {
+    "interfaces": [
+      "T-01 metro interface",
+      "T-02 bus stop",
+      "T-03 protected cycle link",
+      "T-04 continuous accessible route",
+      "T-05 managed curb",
+      "T-06 enterprise shuttle",
+      "T-07 logistics maintenance gate",
+      "T-08 air-experiment ground gate"
+    ],
+    "groups": [
+      "enterprise_arrivals",
+      "residents_and_caregivers",
+      "accessible_travelers",
+      "night_shift_workers",
+      "external_commuters",
+      "logistics_and_maintenance_staff",
+      "public_transport_users"
+    ],
+    "boundary": "aggregate synthetic protocol; no personal traces, no field incident register, no operating authorization"
+  },
+  "axes": [
+    {
+      "id": "service_state",
+      "states": ["UNKNOWN", "OPEN", "DEGRADED", "STOP", "RECOVERY", "RETIRED"],
+      "owner_role": "service_owner",
+      "publish_rule": "a state without an effective time and expiry remains UNKNOWN"
+    },
+    {
+      "id": "group_impact",
+      "states": ["NOT_ASSESSED", "OBSERVED", "MITIGATED", "UNRESOLVED"],
+      "owner_role": "group_observer",
+      "publish_rule": "aggregate group impact cannot be replaced by an overall average"
+    },
+    {
+      "id": "evidence_confidence",
+      "states": ["UNKNOWN", "DECLARED", "DATED", "CORROBORATED", "EXPIRED"],
+      "owner_role": "evidence_reviewer",
+      "publish_rule": "expired or uncorroborated evidence cannot release a service"
+    },
+    {
+      "id": "human_decision",
+      "states": ["UNASSIGNED", "ACKNOWLEDGED", "PAUSED", "RECOVERING", "CLOSED"],
+      "owner_role": "human_duty_manager",
+      "publish_rule": "AI may surface a condition but cannot assign approval or waive a stop"
+    },
+    {
+      "id": "release_state",
+      "states": ["DRAFT", "REVIEW", "PILOT_BLOCKED", "PILOT", "WITHDRAWN", "RETIRED"],
+      "owner_role": "release_authority",
+      "publish_rule": "a correction creates a new version and preserves the prior record"
+    }
+  ],
+  "failure_classes": [
+    {
+      "id": "F-01",
+      "name_zh": "轨道或公交中断",
+      "name_en": "Metro or bus interruption",
+      "interface_ids": ["T-01", "T-02"],
+      "affected_groups": ["enterprise_arrivals", "residents_and_caregivers", "external_commuters", "public_transport_users"],
+      "group_observer_role": "public_transport_duty_observer",
+      "minimum_writeback": ["service_state", "group_impact", "human_decision", "fallback_route"]
+    },
+    {
+      "id": "F-02",
+      "name_zh": "无障碍连续性断裂",
+      "name_en": "Accessible-route discontinuity",
+      "interface_ids": ["T-04"],
+      "affected_groups": ["accessible_travelers", "residents_and_caregivers", "night_shift_workers"],
+      "group_observer_role": "accessibility_duty_observer",
+      "minimum_writeback": ["service_state", "group_impact", "human_decision", "accessible_alternative"]
+    },
+    {
+      "id": "F-03",
+      "name_zh": "路缘与骑行冲突",
+      "name_en": "Curb and cycle conflict",
+      "interface_ids": ["T-03", "T-05"],
+      "affected_groups": ["accessible_travelers", "residents_and_caregivers", "logistics_and_maintenance_staff", "public_transport_users"],
+      "group_observer_role": "curb_duty_observer",
+      "minimum_writeback": ["service_state", "group_impact", "human_decision", "curb_control"]
+    },
+    {
+      "id": "F-04",
+      "name_zh": "企业接驳失约",
+      "name_en": "Enterprise shuttle no-show",
+      "interface_ids": ["T-06"],
+      "affected_groups": ["enterprise_arrivals", "night_shift_workers", "external_commuters"],
+      "group_observer_role": "employer_service_observer",
+      "minimum_writeback": ["service_state", "group_impact", "human_decision", "public_transport_fallback"]
+    },
+    {
+      "id": "F-05",
+      "name_zh": "物流维护通道失效",
+      "name_en": "Logistics and maintenance gate failure",
+      "interface_ids": ["T-05", "T-07"],
+      "affected_groups": ["residents_and_caregivers", "logistics_and_maintenance_staff", "accessible_travelers"],
+      "group_observer_role": "asset_maintenance_observer",
+      "minimum_writeback": ["service_state", "group_impact", "human_decision", "recovery_receipt"]
+    },
+    {
+      "id": "F-06",
+      "name_zh": "空中实验地面闸门拒绝",
+      "name_en": "Air-experiment ground-gate refusal",
+      "interface_ids": ["T-08"],
+      "affected_groups": ["public_transport_users", "accessible_travelers", "residents_and_caregivers"],
+      "group_observer_role": "public_authority_observer",
+      "minimum_writeback": ["release_state", "group_impact", "human_decision", "ground_fallback"]
+    }
+  ],
+  "record_schema": {
+    "required_fields": [
+      "record_id",
+      "version",
+      "prior_record_id",
+      "failure_class_id",
+      "interface_id",
+      "observed_at",
+      "observed_by_role",
+      "affected_groups",
+      "state_before",
+      "state_after",
+      "evidence_refs",
+      "human_decision",
+      "public_notice",
+      "appeal_window",
+      "correction_of",
+      "retirement_reason",
+      "privacy_mode"
+    ],
+    "version_rule": "v1 may have prior_record_id null; every later version points to an immutable prior record",
+    "correction_rule": "a correction appends a new version, preserves the old text and records the reason",
+    "appeal_rule": "affected groups may submit an aggregate appeal window; an appeal pauses release rather than erasing the record",
+    "retirement_rule": "retirement requires a reason, human decision, public notice and a successor or ground fallback"
+  },
+  "writeback_carriers": [
+    {
+      "id": "C-01",
+      "name_zh": "服务状态载体",
+      "name_en": "service-state carrier",
+      "receiver_role": "service_owner",
+      "required_fields": ["state_after", "observed_at", "expires_at"]
+    },
+    {
+      "id": "C-02",
+      "name_zh": "群体影响载体",
+      "name_en": "group-impact carrier",
+      "receiver_role": "group_observer",
+      "required_fields": ["affected_groups", "impact_state", "fallback_route"]
+    },
+    {
+      "id": "C-03",
+      "name_zh": "人工决定载体",
+      "name_en": "human-decision carrier",
+      "receiver_role": "human_duty_manager",
+      "required_fields": ["human_decision", "stop_reason", "recovery_owner"]
+    },
+    {
+      "id": "C-04",
+      "name_zh": "申诉与退役载体",
+      "name_en": "appeal-and-retirement carrier",
+      "receiver_role": "release_authority",
+      "required_fields": ["appeal_window", "correction_of", "retirement_reason"]
+    }
+  ],
+  "governance_rules": {
+    "append_only_versions": true,
+    "appeals_can_pause_release": true,
+    "corrections_preserve_prior_record": true,
+    "retirement_needs_successor_or_ground_fallback": true,
+    "personal_traces_required": false,
+    "field_incident_count": 0,
+    "field_receipt_count": 0,
+    "operating_authorization_count": 0,
+    "synthetic_records_count": 0,
+    "air_candidate": "blocked_outside_operational_and_incident_denominators"
+  },
+  "negative_fixtures": [
+    {"id": "F-NEG-01", "missing_field": "prior_record_id", "expected_error": "version_chain_missing"},
+    {"id": "F-NEG-02", "missing_field": "affected_groups", "expected_error": "group_impact_missing"},
+    {"id": "F-NEG-03", "missing_field": "appeal_window", "expected_error": "appeal_channel_missing"},
+    {"id": "F-NEG-04", "missing_field": "retirement_reason", "expected_error": "retirement_reason_missing"},
+    {"id": "F-NEG-05", "missing_field": "human_decision", "expected_error": "human_decision_missing"}
+  ]
+}

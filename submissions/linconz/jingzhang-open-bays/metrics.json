@@ -1,0 +1,166 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "The submitted polygon is provisional and must be replaced and recalculated when official geometry is released."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 334368.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(reversible_design_footprints, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "Design prototypes are not a survey of existing buildings."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.076851,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / provisional_site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual ratio; recalculate after official boundary and statutory green-space data are supplied."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.022188,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(open_bay_area_sqm) / provisional_site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Open-bay footprints are design proposals, not surveyed public ownership."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls, surveyed buildings and the official site boundary are absent from the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(submitted_provisional_key_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "Count follows the announcement; the three submitted polygons are provisional rough envelopes."
+      ]
+    },
+    "open_bay_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(open_bay_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "cross_bay_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(ROAD-002..ROAD-007)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario cards OB-01..OB-12)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(controlled industry-test scenes OB-01..OB-03)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(persona groups)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(public AI landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "sources.json",
+        "proposal.md"
+      ],
+      "formula": "count(primary-source global cases)",
+      "confidence": "high",
+      "assumptions": []
+    }
+  }
+}

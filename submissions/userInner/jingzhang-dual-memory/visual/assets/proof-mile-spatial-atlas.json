@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "DM-SPATIAL-ATLAS-V3",
+  "status": "design_target",
+  "scope_warning_zh": "所有边界与线位均为临时概念表达，不作为地块、道路红线或审批依据。",
+  "scope_warning_en": "All boundaries and alignments are provisional concepts, not parcel, road-redline, or approval evidence.",
+  "proof_mile": [
+    {"level": "01", "object": "belt", "evidence": "geometry/site_boundary.geojson", "decision": "organize"},
+    {"level": "02", "object": "daily_routes", "evidence": "visual/assets/key-area-daily-routes.json", "decision": "reach"},
+    {"level": "03", "object": "consent_section", "evidence": "visual/assets/memory-boundary-passports.json#DM-P01", "decision": "choose"},
+    {"level": "04", "object": "implementation_contract", "evidence": "visual/assets/implementation-contract.json", "decision": "release"}
+  ],
+  "spatial_controls": [
+    {"control": "official_site_boundary", "status": "unknown", "required_before": "WP0/G0"},
+    {"control": "parcel_and_road_redlines", "status": "unknown", "required_before": "WP0/G0"},
+    {"control": "approved_far_and_height", "status": "unknown", "required_before": "WP0/G0"},
+    {"control": "ordinary_accessible_route", "status": "design_target", "target": "continuous and account-free", "required_before": "WP1/G1"},
+    {"control": "consent_section_envelope", "status": "design_target", "target": "60 m × 14 m", "required_before": "WP2/G2"},
+    {"control": "public_ai_release", "status": "hold", "required_before": "WP3/G3"}
+  ]
+}

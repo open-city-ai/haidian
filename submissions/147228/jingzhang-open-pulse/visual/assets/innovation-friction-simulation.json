@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "model_id": "innovation-friction-v1",
+  "title_zh": "创新时延、跨域偶遇与社会验证筛查模拟",
+  "status": "screening_simulation",
+  "not_observed": true,
+  "seed": 147228,
+  "draws_per_scenario": 50000,
+  "stages": ["cross_domain_match", "space_access", "data_permission", "first_field_test", "first_real_user", "first_iteration"],
+  "unit": "calendar_days",
+  "purpose_zh": "比较三种空间—运营原型对 idea 到首次真实城市验证的摩擦，不预测真实项目工期。",
+  "evidence_boundary_zh": "输入是概念设计假设；结果只有在官方边界、场地网络、数据许可、真实用户和运营日志到位后才能被现场数据替换。",
+  "scenario_definitions": {
+    "S0_fragmented_corridor": {
+      "title_zh": "S0 碎片化走廊",
+      "description_zh": "能力、空间、数据和真实用户分散，依赖临时预约与个别联系人。",
+      "cross_domain_match_probability": 0.2,
+      "social_validation_probability": 0.08,
+      "stages_days": {
+        "cross_domain_match": [2, 4, 7], "space_access": [2, 3, 6], "data_permission": [5, 9, 15],
+        "first_field_test": [7, 12, 21], "first_real_user": [14, 24, 42], "first_iteration": [5, 8, 14]
+      }
+    },
+    "S1_generic_tech_park": {
+      "title_zh": "S1 一般科技园",
+      "description_zh": "企业、共享空间和活动被放在一起，但公共数据与真实问题接口仍弱。",
+      "cross_domain_match_probability": 0.35,
+      "social_validation_probability": 0.18,
+      "stages_days": {
+        "cross_domain_match": [1, 2, 4], "space_access": [1, 2, 4], "data_permission": [3, 5, 10],
+        "first_field_test": [4, 6, 12], "first_real_user": [7, 12, 21], "first_iteration": [4, 6, 10]
+      }
+    },
+    "S2_open_pulse": {
+      "title_zh": "S2 京张开源脉冲",
+      "description_zh": "三处节点提供跨域匹配、预约小测、最小化数据许可、公共问题入口和回执复盘。",
+      "cross_domain_match_probability": 0.55,
+      "social_validation_probability": 0.35,
+      "stages_days": {
+        "cross_domain_match": [0.5, 1.5, 3], "space_access": [0.5, 1.5, 3], "data_permission": [2, 4, 8],
+        "first_field_test": [4, 7, 14], "first_real_user": [7, 12, 21], "first_iteration": [4, 7, 12]
+      }
+    }
+  },
+  "results": {
+    "S0_fragmented_corridor": {
+      "median_days": 63.313, "p90_days": 68.955, "p05_days": 54.223,
+      "share_reaching_first_test_within_30_days": 0, "cross_domain_match_rate": 0.20108,
+      "social_validation_rate": 0.07832, "median_reduction_vs_s0": 0
+    },
+    "S1_generic_tech_park": {
+      "median_days": 35.558, "p90_days": 38.571, "p05_days": 30.885,
+      "share_reaching_first_test_within_30_days": 0.02432, "cross_domain_match_rate": 0.35154,
+      "social_validation_rate": 0.1809, "median_reduction_vs_s0": 0.43838
+    },
+    "S2_open_pulse": {
+      "median_days": 35.096, "p90_days": 38.467, "p05_days": 30.038,
+      "share_reaching_first_test_within_30_days": 0.04864, "cross_domain_match_rate": 0.54826,
+      "social_validation_rate": 0.3537, "median_reduction_vs_s0": 0.44567
+    }
+  },
+  "decision_rule_zh": "S2 只有在不牺牲人的连续通行、照护、可负担性、隐私和人工退出的前提下，才可作为后续专业深化的候选。"
+}

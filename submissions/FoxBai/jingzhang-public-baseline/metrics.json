@@ -1,0 +1,424 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.385554,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Repository provisional boundary; not an official redline."
+      ]
+    },
+    "official_declared_overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "official_announcement_area_value",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "site_area_deviation_ratio": {
+      "status": "known",
+      "value": 0.001125,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "abs(submitted_site_area - official_declared_area) / official_declared_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_area_sqm": {
+      "status": "known",
+      "value": 11412825.385554,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(union(land_use_features))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_feature_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 43776.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(concept_building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "Concept carriers only; not an existing-building survey."
+      ]
+    },
+    "design_building_footprint_ratio": {
+      "status": "known",
+      "value": 0.003836,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "concept_building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2487866.1135,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(green_space_features))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.217989,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Design-layer ratio, not an approved planning control."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 68843.148955,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(public_space_features))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.006032,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Design-layer ratio, not an approved planning control."
+      ]
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 36339.176131,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(road_centerlines))",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept alignments only; not engineering quantities."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_area_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_proxy_total_area_sqm": {
+      "status": "known",
+      "value": 3692893.00509,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(area(provisional_key_areas))",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygons only; use announced values for official area statements."
+      ]
+    },
+    "core_everyday_service_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(core_everyday_service_categories)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "service_station_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space_features where station_role is present)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(scenario_cards where scenario_type=industry_test)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(design_personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(civic_landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "sources.json",
+        "proposal.md"
+      ],
+      "formula": "count(global_case_records)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "human_review_coverage_ratio": {
+      "status": "known",
+      "value": 1,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "scenario_cards_with_human_review / scenario_card_count",
+      "confidence": "high",
+      "assumptions": [
+        "Coverage of proposal rules, not deployed performance."
+      ]
+    },
+    "non_ai_fallback_coverage_ratio": {
+      "status": "known",
+      "value": 1,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "scenario_cards_with_non_ai_fallback / scenario_card_count",
+      "confidence": "high",
+      "assumptions": [
+        "Coverage of proposal rules, not deployed performance."
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phase_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 4145970.725303,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(PHASE-001)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 3801720.758626,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(PHASE-002)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 3465133.901625,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(PHASE-003)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official parcel data are not in the cleared site package.",
+      "required_for_formal_submission": true
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(approved_building_floor_area)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved building programmes, floors, and surveyed existing buildings are unavailable.",
+      "required_for_formal_submission": true
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_height_control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height, heritage, aviation, skyline, and view-corridor controls are unavailable.",
+      "required_for_formal_submission": true
+    },
+    "statutory_building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_building_footprint_area / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved regulatory controls and surveyed footprints are unavailable.",
+      "required_for_formal_submission": true
+    },
+    "road_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_road_area / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official road redlines and road-area polygons are unavailable.",
+      "required_for_formal_submission": true
+    },
+    "setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_setback",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Road, fire, heritage, ownership, and building control lines are unavailable.",
+      "required_for_formal_submission": true
+    },
+    "service_facility_capacity": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "verified_daily_capacity_of_existing_and_proposed_facilities",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No verified inventory, operator schedule, or field demand survey is available.",
+      "required_for_formal_submission": true
+    }
+  }
+}

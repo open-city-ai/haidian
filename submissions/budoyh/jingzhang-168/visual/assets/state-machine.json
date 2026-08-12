@@ -1,151 +1,82 @@
 {
-  "protocol_version": "2.0.0",
-  "name": "京张168场景状态机",
-  "canonical_contract": {"zh": "proposal.md", "en": "proposal.en.md"},
-  "role_registry_file": "governance-raci.json",
-  "authority_separation": {
-    "schedule_role_id": "TO",
-    "fairness_role_id": "PTC",
-    "admission_role_id": "SASP"
-  },
+  "schema_version": "1.0.0",
+  "state_count": 8,
   "states": [
-    {
-      "id": "proposed",
-      "entry_guard": [
-        "complete scenario card",
-        "C0-C7 evidence submitted"
-      ],
-      "receipt": "proposal_receipt"
-    },
-    {
-      "id": "admitted",
-      "entry_guard": [
-        "SASP human decision recorded",
-        "C0-C7 passed"
-      ],
-      "receipt": "admission_decision"
-    },
-    {
-      "id": "scheduled",
-      "entry_guard": [
-        "TO confirms space/time capacity",
-        "paper/phone/human route published"
-      ],
-      "receipt": "schedule_notice"
-    },
-    {
-      "id": "active",
-      "entry_guard": [
-        "DHL signed in",
-        "stop control reachable",
-        "non-AI baseline live"
-      ],
-      "receipt": "activation_log"
-    },
-    {
-      "id": "paused",
-      "entry_guard": [
-        "any person may complain or stop channel triggers",
-        "site/evidence preserved"
-      ],
-      "receipt": "pause_notice"
-    },
-    {
-      "id": "returned",
-      "entry_guard": [
-        "temporary use cleared",
-        "space restored",
-        "data returned/deleted"
-      ],
-      "receipt": "return_receipt"
-    },
-    {
-      "id": "audited",
-      "entry_guard": [
-        "KPI/SLO, complaints and nonparticipant effects reviewed"
-      ],
-      "receipt": "audit_record"
-    },
-    {
-      "id": "archived",
-      "entry_guard": [
-        "public continue/modify/stop conclusion published"
-      ],
-      "receipt": "archive_record"
-    }
+    "proposed",
+    "baseline_verified",
+    "sandboxed",
+    "boosted",
+    "blackout_drill",
+    "bequest_audit",
+    "retained_or_modified",
+    "removed_archived"
   ],
   "transitions": [
     {
       "from": "proposed",
-      "to": "admitted",
-      "guard": "C0-C7 all pass",
-      "human_authority": "SASP",
-      "role_ids": ["SASP"]
+      "to": "baseline_verified",
+      "role_ids": [
+        "ROLE-PUBLIC-STEWARD"
+      ],
+      "condition": "ordinary service works without AI"
     },
     {
-      "from": "admitted",
-      "to": "scheduled",
-      "guard": "applicable G gates, operator and capacity confirmed",
-      "human_authority": "TO",
-      "role_ids": ["TO"]
+      "from": "baseline_verified",
+      "to": "sandboxed",
+      "role_ids": [
+        "ROLE-SAFETY"
+      ],
+      "condition": "C0-C5 pass"
     },
     {
-      "from": "scheduled",
-      "to": "active",
-      "guard": "DHL opening checklist signed",
-      "human_authority": "DHL",
-      "role_ids": ["DHL"]
+      "from": "sandboxed",
+      "to": "boosted",
+      "role_ids": [
+        "ROLE-OPERATIONS"
+      ],
+      "condition": "bounded trial authorized"
     },
     {
-      "from": "active",
-      "to": "paused",
-      "guard": "any stop trigger; AI has no veto",
-      "human_authority": "DHL/SASP",
-      "role_ids": ["DHL", "SASP"],
-      "authority_channel": "accessible public stop channel; invocation is open to any person and is not a registered governance role"
+      "from": "boosted",
+      "to": "blackout_drill",
+      "role_ids": [
+        "ROLE-PUBLIC-STEWARD",
+        "ROLE-SAFETY"
+      ],
+      "condition": "scheduled or emergency unplug"
     },
     {
-      "from": "active",
-      "to": "returned",
-      "guard": "window closes and restoration starts",
-      "human_authority": "DHL",
-      "role_ids": ["DHL"]
+      "from": "blackout_drill",
+      "to": "bequest_audit",
+      "role_ids": [
+        "ROLE-INDEPENDENT-EVALUATOR"
+      ],
+      "condition": "ordinary route and residual asset checked"
     },
     {
-      "from": "paused",
-      "to": "returned",
-      "guard": "safe withdrawal",
-      "human_authority": "DHL+TO",
-      "role_ids": ["DHL", "TO"]
+      "from": "bequest_audit",
+      "to": "retained_or_modified",
+      "role_ids": [
+        "ROLE-ACCOUNTABLE-LEAD"
+      ],
+      "condition": "public value and maintenance case accepted"
     },
     {
-      "from": "returned",
-      "to": "audited",
-      "guard": "receipts complete",
-      "human_authority": "PTC",
-      "role_ids": ["PTC"]
+      "from": "bequest_audit",
+      "to": "removed_archived",
+      "role_ids": [
+        "ROLE-ACCOUNTABLE-LEAD"
+      ],
+      "condition": "remove, restore, delete and archive"
     },
     {
-      "from": "audited",
-      "to": "archived",
-      "guard": "public conclusion",
-      "human_authority": "PTC",
-      "role_ids": ["PTC"]
-    },
-    {
-      "from": "paused",
-      "to": "scheduled",
-      "guard": "root cause closed and SASP readmits; never automatic",
-      "human_authority": "SASP plus named duty safety lead",
-      "role_ids": ["SASP", "DHL"]
+      "from": "boosted",
+      "to": "removed_archived",
+      "role_ids": [
+        "ROLE-SAFETY"
+      ],
+      "condition": "hard stop; bypass success narrative"
     }
   ],
-  "prohibited_transitions": [
-    "proposed->active",
-    "admitted->active",
-    "paused->active",
-    "returned->active"
-  ],
-  "default_fail_state": "paused",
-  "high_risk_restart_rule": "Only the named duty safety lead and SASP may restore a high-risk scenario after evidence review; AI cannot cross paused state."
+  "authority_channel": "visible onsite stop, staffed desk, telephone, and paper complaint route"
 }

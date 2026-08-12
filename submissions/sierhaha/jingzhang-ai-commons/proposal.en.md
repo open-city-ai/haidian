@@ -45,6 +45,16 @@ Future city form answers how AI changes work, life, social interaction, and publ
 
 Benchmarking global AI ecosystems, this proposal studies six case archetypes (concept-level references only, no investment or outcome commitments): the capital–talent–university loop of Silicon Valley; Tel Aviv's defense spillover and dense startup districts; King's Cross railway heritage renewal as a knowledge quarter in London; one-north's high-density R&D community in Singapore; the production–R&D–life mix of Nanshan, Shenzhen; and the corridor-style innovation organization of Hangzhou's West Sci-Tech Innovation Corridor [source:AGENT-TASKBOOK] [depth:three_level_scope_framework].
 
+Each case is distilled into translatable spatial actions (conceptual):
+| Case | Takeaway | Translatable spatial action |
+| --- | --- | --- |
+| Silicon Valley | Capital-talent-university loop | Near-campus translation street (BLDG-006), Dazhongsi AI Roadshow Lounge (Scenario 06) |
+| Tel Aviv | Defense spillover and dense startups | Zhongzhiyuan autonomous model testing ground and safety-governance sandbox (Scenarios 02/03, civilian framing) |
+| London King's Cross | Railway heritage renewal as a knowledge quarter | Heritage Park belt retained-section activation, Qinghuayuan Station Cultural Hall (BLDG-005) |
+| Singapore one-north | High-density R&D community | Zhongzhiyuan research land mixed development, Qinghe innovation riverfront (Scenario 07) |
+| Shenzhen Nanshan | Production-R&D-life mix | Central community service band mixed-use (Scenario 09) |
+| Hangzhou West Corridor | Corridor-style innovation organization | Double-helix corridor spatial organization and node interlocking (spatial-structure figure) |
+
 **Regional collaboration mechanism (conceptual suggestion).** The coordinated research area is not an isolated district; the belt must connect to a wider innovation network to fulfil the "world-class" positioning. This proposal suggests a "three areas, two wings, five-direction collaboration" framework: the three key areas and the two wings (Zhongguancun Technology Service Wing and Xiaoyuehe Scenario Empowerment Wing) form an internal innovation loop; externally, the belt connects with Zhongguancun Science City (origin collaboration), Future Science City (energy and infrastructure experimentation), Huairou Science City (large-scale facilities and basic research), Beijing Economic-Technological Development Area (manufacturing and industrialization), and the Beijing-Tianjin-Hebei coordinated development (cross-regional compute-energy-scenario links). Specific mechanisms (enclave incubation, compute sharing, energy interchange, event linkage) are conceptual suggestions for professional teams and authorities to deepen [source:AGENT-TASKBOOK] [depth:three_level_scope_framework]. Regional collaboration also requires cross-jurisdiction energy infrastructure planning: the belt's distribution grid, storage, and charging networks should sit within Beijing's new power system and Beijing-Tianjin-Hebei electricity interchange layout, avoiding "island-style" block-level energy construction [source:POLICY-CARBON-PEAK] [depth:municipal_new_infrastructure].
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
@@ -116,7 +126,7 @@ The proposal proposes three industry test/validation scenarios (each requiring s
 
 The land plan follows the project subset of the Land Use Classification Guide for Territorial Spatial Survey, Planning, and Use Control; 57 land units fully cover the submitted boundary without gaps or overlaps [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [data:geometry/land_use.geojson#LU-001]. In metrics, the dual-strand land structure shows: research land of about 255.1 ha, education land of about 97.3 ha, and cultural land of about 49.5 ha along the two strands; park and buffer green of about 175.1 ha as the blue-green skeleton; and commercial land of about 132.2 ha concentrated at the south gateway and Dazhongsi [metric:land_use_area_by_code] [metric:green_ratio].
 
-The building plan distinguishes retain, renovate, renew, new-build, and reserved categories, and provides 12 indicative building footprints, including the Qinghuayuan Station Cultural Hall (retained) and talent apartments (new) [data:geometry/buildings.geojson#BLDG-001] [depth:retain_renovate_demolish]. Demolition/renovation conclusions depend on ownership, engineering conditions, and approval; this proposal offers methods and a calibration checklist only, without fabricating specific retain/renovate/demolish conclusions [depth:development_intensity_controls]. Floor area, FAR, and height controls are listed as pending until official regulatory conditions are confirmed [metric:total_floor_area_sqm] [metric:floor_area_ratio].
+The building plan distinguishes retain, renovate, renew, new-build, and reserved categories, and provides 14 indicative building footprints, including the Qinghuayuan Station Cultural Hall (retained), talent apartments (new), and two energy stations (Zhongzhiyuan PV-Storage-Charging Energy Station BLDG-015, Dazhongsi District Energy Station BLDG-016, southwest of Dazhongsi Station) [data:geometry/buildings.geojson#BLDG-001] [depth:retain_renovate_demolish]. Demolition/renovation conclusions depend on ownership, engineering conditions, and approval; this proposal offers methods and a calibration checklist only, without fabricating specific retain/renovate/demolish conclusions [depth:development_intensity_controls]. Floor area, FAR, and height controls are listed as pending until official regulatory conditions are confirmed [metric:total_floor_area_sqm] [metric:floor_area_ratio].
 
 ## Transport, Rail, Municipal Infrastructure, and Public Services
 
@@ -131,16 +141,42 @@ Municipal and new infrastructure covers AI industry services, innovation platfor
 | Component | Spatial anchor | Technical feasibility | Verifiable indicators (candidate) |
 | --- | --- | --- | --- |
 | Distributed PV | Roofs of new/reserved parcels, canopies and carports (no installations on the heritage park itself, respecting heritage and character constraints) [data:geometry/land_use.geojson#LU-001] | Mature: distributed PV and BIPV are widely deployed | Self-generation share, generation per unit area (kWh/m²·yr) |
-| Storage and microgrids | Zhongzhiyuan reserved parcel, Dazhongsi energy station, South Gateway compute center [data:geometry/buildings.geojson#BLDG-001] | Mature: electrochemical storage and microgrid projects are widely delivered | Storage capacity (MWh), island-operation duration, self-healing recovery time |
+| Storage and microgrids | Zhongzhiyuan PV-Storage-Charging Energy Station, Dazhongsi District Energy Station, South Gateway compute center [data:geometry/buildings.geojson#BLDG-015] [data:geometry/buildings.geojson#BLDG-016] | Mature: electrochemical storage and microgrid projects are widely delivered | Storage capacity (MWh), island-operation duration, self-healing recovery time |
 | V2G smart charging | Parking at the three key areas and rail-station interchanges [data:geometry/public_space.geojson#PUBLIC-001] | Pilot-stage: vehicle-grid interaction is being piloted in demonstration cities | V2G participation rate, charge/discharge response time |
-| Energy digital twin | Zhongzhiyuan energy dispatch center (suggested point) [data:geometry/buildings.geojson#BLDG-001] | Medium maturity: digital twins are used in campus energy management | Data update frequency, forecast accuracy, real-time carbon visualization |
+| Energy digital twin | Zhongzhiyuan energy dispatch center (suggested point at BLDG-015) [data:geometry/buildings.geojson#BLDG-015] | Medium maturity: digital twins are used in campus energy management | Data update frequency, forecast accuracy, real-time carbon visualization |
 
 This energy system directly supports edge compute and low-carbon compute scenarios: edge-compute stations use "PV-storage-charging integrated + low-PUE design" to reduce impact on the main grid, with PUE, green-power share, and energy per unit of compute as entry thresholds for open operation; the energy digital twin organizes the belt's generation, storage, charging, and carbon emissions into a real-time auditable "energy data railway", echoing the Jing-Zhang Railway's promise of "leaving standards in space for later verification" [source:POLICY-CARBON-PEAK] [depth:municipal_new_infrastructure]. All energy facility layouts must respect heritage protection, blue-line, flood, and character constraints; grid connection, power-market, and green-power-trading matters are listed as prerequisites for formal deepening, without constituting engineering feasibility or implementation commitments [depth:risk_missing_data].
+
+**Quantified candidate target list (candidate baselines pending pilot calibration; not approval commitments).** To avoid vague wording such as "high", "excellent", or "green", the proposal gives verifiable candidate targets, all requiring pilot data and authority calibration:
+
+| Dimension | Candidate target | Evidence and calibration path |
+| --- | --- | --- |
+| Edge-compute efficiency | PUE ≤ 1.25; energy per unit of compute audited from compute ledger | Pilot ledger + third-party sampling (narrative attachment 2) |
+| Green-power priority | Green-power share ≥ 80%; self-generation share ≥ 15% | Power-trading records + grid settlement statements |
+| Resilience and self-healing | Self-healing recovery time ≤ 5 min; supply availability ≥ 99.9% | Distribution-grid operation ledger |
+| Opt-out | Human-channel availability 100%; offline-alternative availability ≥ 99% | Operation closure records + unannounced checks |
+| Slow mobility | Slow-mobility connectivity ≥ 90%; ≥ 12 gaps eliminated | On-site survey (JZ-01 pilot) |
+| Accessibility | Accessibility compliance 100% | Dedicated accessibility acceptance |
+| Merchant protection | Merchant retention ≥ 85% during renewal | Renewal ledger (JZ-07 pilot) |
+| V2G | Pilot participation ≥ 30% | Charging-network operation data |
+
+This list is cross-referenced with narrative attachment 7; any candidate not met during a pilot is downgraded or exited under Power Base-Pair calibration [depth:risk_missing_data] [source:AGENT-TASKBOOK].
 
 ## Blue-Green Network, Public Space, and Urban Character
 ![Brand identity and logo direction](assets/figures/brand-identity.en.png)
 
 ![Three AI pilgrimage landmarks](assets/figures/landmarks.en.png)
+
+**Naming system and brand identity (conceptual).** The proposal provides a complete naming hierarchy and logo concept direction for professional teams to deepen:
+
+| Level | Name | Note |
+| --- | --- | --- |
+| Master name | Double-Helix Innovation Belt (Jingzhang Helix AI Belt, JZ-HX) | Overall concept name, used bilingually |
+| Concept structure | One belt, two strands, three nodes, two wings | Heritage Park vitality corridor; Heritage helix H x Innovation helix I x Energy strand E; three gene nodes; two wings |
+| Node names | Zhongzhiyuan / AI Origin Community / Dazhongsi | Keep official key-area names; node image suffix "gene node" |
+| Abbreviation | JZ-HX | For international communication, digital interfaces, and the energy digital twin station |
+
+Logo concept direction: double helix x Jing-Zhang steel rail and sleepers x Power Base-Pair - the two helix strands interlock at the gene nodes, with the yellow dashed line as the Energy strand E; palette: Haidian tech blue (#1565C0), Jing-Zhang brick red (#8D3B3B), park green (#2E7D32), AI light (#FFB300); prohibitions: no confusion with heritage-protection symbols, government emblems, or corporate trademarks. Usage specification (conceptual): wayfinding systems (belt and node entrances), event visuals (Global AI Pilgrimage Week), digital interfaces (energy digital twin station); fonts, images, trademarks, and portraits require clearance before use; the formal brand identity awaits professional deepening and does not constitute authorized use [source:AGENT-TASKBOOK] [depth:three_key_area_detailed_design].
 
 
 The blue-green system uses the Jing-Zhang Heritage Park vitality corridor as its skeleton and coordinates the Qinghe and Xiaoyuehe rivers, park green, and plaza land into a north–south continuous, east–west connected slow-mobility and green space system [data:geometry/green_space.geojson#GREEN-001] [depth:blue_green_public_space]. Public space is carried by two plaza land units (South Gateway Plaza, Dazhongsi Station East Plaza) and park nodes for daily gathering and AI scenario experience [data:geometry/public_space.geojson#PUBLIC-001] [metric:public_space_ratio].
@@ -173,6 +209,30 @@ Phasing is distinct from the call's submission cycle: the call sets the deadline
 | Edge compute and PV-storage-charging station (JZ-05) | District SOE + grid utility + compute operator consortium | Grid-connection scheme and power-market rules clarified | PUE, green-power share, self-generation share, self-healing recovery time |
 | Heritage Park slow-mobility gap stitching (JZ-01) | District urban management/landscaping + community participation | Road redline, under-bridge space, traffic organization review | Slow-mobility connectivity, gaps eliminated, accessibility compliance rate |
 | Central AI life-services model street (JZ-07) | Subdistrict office + community commerce operator + tech service provider | Ground-floor use, data-governance boundaries, merchant participation agreement | Merchant retention rate, human-channel availability rate, resident satisfaction |
+
+**Pilot financing and operation models (conceptual).** The three pilots adopt a "public investment + market operation" hybrid model with explicit financing, actor division, and cost responsibility; none constitutes a financing commitment:
+
+| Pilot | Financing suggestion | Operation actors and division | Cost responsibility |
+| --- | --- | --- | --- |
+| Edge compute and PV-storage-charging station (JZ-05) | Government special bonds/green finance + private capital (compute operator, grid utility) | Consortium: grid utility for interconnection and storage dispatch, compute operator for compute services, district SOE for asset holding | Construction cost split by contribution; operation cost covered by service revenue, shortfall backed by public-service budget |
+| Heritage Park slow-mobility gap stitching (JZ-01) | District finance + urban renewal special funds | District urban management/landscaping leads implementation; community co-governance committee oversees | Engineering cost borne by district finance; maintenance included in park upkeep budget |
+| Central AI life-services model street (JZ-07) | Market-based recruitment + merchant co-funding | Subdistrict office coordinates, commerce operator runs daily operations, tech service provider supplies AI capabilities | Ground-floor retrofit cost shared by merchants and operator; AI service cost settled by usage |
+
+## Concept Renders (Conceptual)
+
+The six concept renders below express the spatial imagery and mechanism scenarios of the proposal in a drawing-board style. They are conceptual suggestions and do not constitute engineering feasibility or implementation commitments; all imagery is derived from `geometry/*.geojson` and the sections of `proposal.md`:
+
+![Fig.R1 Double-Helix Innovation Belt - aerial concept](assets/figures/render-aerial.en.png)
+
+![Fig.R2 Jing-Zhang Heritage Park vitality corridor](assets/figures/render-park-corridor.en.png)
+
+![Fig.R3 Qinghuayuan Station - AI Origin Community](assets/figures/render-origin-community.en.png)
+
+![Fig.R4 Zhongzhiyuan - Qinghe innovation riverfront](assets/figures/render-zhongzhiyuan.en.png)
+
+![Fig.R5 Dazhongsi - intelligent native mixed-use complex](assets/figures/render-dazhongsi.en.png)
+
+![Fig.R6 PV-Storage-Charging Energy Station (Power Base-Pair node)](assets/figures/render-energy-station.en.png)
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 

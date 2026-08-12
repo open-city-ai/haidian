@@ -7,13 +7,20 @@ bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A railway evidence line, four care ribs, three distinct stack yards and Civic Stack Passports connect AI innovation to human handover, environmental cycles and measurable public benefit; every spatial conclusion remains limited by provisional geometry."
-iteration: "v1.0"
+iteration: "v1.3"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 ---
 
 # Jing-Zhang Civic Stack
 
 > Make every layer of intelligence visible, handover-ready, retireable, and beneficial to everyday life.
+
+![Jing-Zhang Civic Stack mark: a diamond split by a continuous Jing-Zhang Belt void](assets/identity/jingzhang-civic-stack-mark.svg)
+
+## Name and Mark
+
+“Jing-Zhang” carries the public memory of the Centennial Jing-Zhang Railway into the present Haidian innovation-belt task; “Civic Stack” binds innovation return, care and public review into one spatial responsibility. A deep-navy diamond is split from top to bottom by a void abstracted from the submission’s provisional narrow, turning Jing-Zhang Belt geometry. The open void signals a continuous evidence line, while the two halves pair innovation with everyday city life. The void is an identity abstraction, not an official boundary replica. The mark is an original proposal—not an official mark, approval or endorsement of any organizer, government, railway operator, park or partner. The full lock-up and reduced diamond support drawings, web pages, wayfinding and material labels. [depth:identity_system]
+
 ## Design Basis and Source List
 
 ![Civic Stack evidence chain and five interoperable city layers](assets/figures/site-overview.en.png)
@@ -22,13 +29,13 @@ This package enters the related GitHub open call for AI agents; it does not clai
 
 No cleared exact polygon is available. The package therefore inherits the repository’s provisional overall and key-area geometry without moving Dazhongsi, clips every design layer in EPSG:4548, and marks every boundary `official_boundary=false`. When official polygons arrive, land use, buildings, mobility, green/public space, phases, metrics, drawings and manifest hashes must all be regenerated together. [data:geometry/site_boundary.geojson#PROV-SITE-001]
 
-Only repository-cleared material, government pages and first-party case pages are used. No government image, map tile, corporate logo or peer submission is copied. The missing official geometry must not block content review, but the package is never a statutory plan, approval basis, engineering location or ownership finding. [source:SOURCE-REGISTRY]
+Only repository-cleared material, government pages, first-party case pages and a registered fixed OpenStreetMap vector extract are used. OSM supplies background context only and does not enter boundaries, areas or controls. No government image, map tile, corporate logo or peer submission is copied. The missing official geometry must not block content review, but the package is never a statutory plan, approval basis, engineering location or ownership finding. [source:SOURCE-REGISTRY] [source:OSM-CONTEXT-20260812]
 
 ## Three-Level Scope Framework
 
 ![Three-level scope and Civic Stack land-use structure](assets/figures/land-use-structure.en.png)
 
-Jing-Zhang Civic Stack turns the three scopes into one handover-ready system. The coordinated scale first studies knowledge, talent, compute services and public-benefit coordination among universities, research, companies and neighborhoods within the 43.6 km² Haidian scope. Links across Beijing–Tianjin–Hebei are outside-scope concepts, not an official boundary or an established partnership. The overall scale uses an abstract railway “evidence line” and four transverse “care ribs”; the detailed scale tests three distinct stack yards. Zhongzhiyuan is a Full-Stack Validation Garden, AI Origin an Open-Source Transfer Commons, and Dazhongsi an AI-Native Living Marketplace. [depth:three_level_scope_framework]
+Jing-Zhang Civic Stack turns the three scopes into one handover-ready system. The coordinated scale first studies knowledge, talent, compute services and public-benefit coordination among universities, research, companies and neighborhoods within the 43.6 km² Haidian scope. Links across Beijing–Tianjin–Hebei are outside-scope concepts, not an official boundary or an established partnership. The overall scale uses an abstract railway “evidence line” and four transverse “care ribs”; the detailed scale tests three distinct stack yards. Zhongzhiyuan is a Full-Stack Validation Garden, AI Origin an Open-Source Transfer Commons, and Dazhongsi a 15-Minute Living Room. [depth:three_level_scope_framework]
 
 Five interoperable city layers carry the idea: heritage/ground preserves evidence and a walkable interface; mobility/care guarantees phone-free, accessible and night-work routes; energy/compute puts edge devices, rainwater, shade and possible heat exchange behind engineering gates; data/scenario limits purpose, time and deletion; governance/memory records responsibility, appeal, handover and retirement. The spatial formula is one evidence line, four care ribs, three stack yards and two return loops to Zhongguancun services and the Xiaoyue River blue-green system. [depth:overall_spatial_structure]
 
@@ -36,7 +43,7 @@ Every node answers who benefits, who maintains it, what happens offline and when
 
 ## Coordinated Research Area: Industry and Future City Research
 
-The innovation chain makes both innovation cost and public return visible. Research institutions define testable questions; Origin offers a low-cost open-source transfer clinic; Zhongzhiyuan tests safety, energy and maintenance in bounded yards; Dazhongsi exposes mature services to residents and small merchants; the Zhongguancun service wing supplies legal, IP and finance support. Any outside-scope Beijing–Tianjin–Hebei exchange of training, testing, talent or ecological scenarios remains a concept and must carry a public-benefit clause; it is not an announced partnership. [source:AGENT-TASKBOOK]
+The innovation chain makes both innovation cost and public return visible. Research institutions define testable questions; Origin offers a low-cost open-source transfer clinic; Zhongzhiyuan tests safety, energy and maintenance in bounded yards; Dazhongsi places mature services in a 15-minute living room for residents and small merchants to evaluate; the Zhongguancun service wing supplies legal, IP and finance support. Any outside-scope Beijing–Tianjin–Hebei exchange of training, testing, talent or ecological scenarios remains a concept and must carry a public-benefit clause; it is not an announced partnership. [source:AGENT-TASKBOOK]
 
 The three non-negotiable qualities are handover-ready, circular and beneficial. Handover-ready means staffed windows, paper routes, physical stop controls and offline drills. Circular includes rainwater, components, device retirement, maintenance labor and only metered, engineering-approved heat exchange. Beneficial means a public service still works without a smartphone and does not treat children, older people, disabled people or night workers as edge cases. Four landmarks—the Railway Memory Gate, Full-Stack Greenhouse, Open-Source Transfer Hall and Civic Stack Beacon—make those obligations legible without equating AI with a giant screen. [metric:landmark_count]
 
@@ -57,7 +64,7 @@ A complete, gap-free conceptual land-use layer is the machine base. It combines 
 
 Renewal follows an evidence gate: build a verified record of age, structure, use, ownership, carbon and heritage; let qualified teams recommend retain, repair, add or replace; then require public-benefit, fire, utility, mobility and cost review before any approval. The submitted footprints are civic-unit envelopes for testing courtyards, staffed ground floors, detachable service spines, shade and roof-water interfaces. No real building is selected for demolition and no invented floor count, height or FAR is stated. [depth:retain_renovate_demolish]
 
-Three physical sections remain deliberately different: a greenhouse–test yard–Qinghe interface in the north; a shallow transfer hall–shared workshop–care street in the middle; and a station porch–living marketplace–data-rights window in the south. Missing road, utility, fire and heritage controls stay explicit in `constraints.geojson`. [data:geometry/constraints.geojson#CONSTRAINT-001]
+Three physical sections remain deliberately different: a greenhouse–test yard–Qinghe interface in the north; a shallow transfer hall–shared workshop–care street in the middle; and a neighborhood porch–everyday services–data-rights window in the south. Missing road, utility, fire and heritage controls stay explicit in `constraints.geojson`. [data:geometry/constraints.geojson#CONSTRAINT-001]
 
 ## Detailed Design of Key Areas
 
@@ -65,11 +72,23 @@ Three physical sections remain deliberately different: a greenhouse–test yard�
 
 Zhongzhiyuan is a Full-Stack Validation Garden rather than a closed showroom. The formal notice establishes the Zhongzhiyuan key area and task; a recent government-platform article describes Xuebeiyuan only as a core carrier for the northern AI acceleration area, not as the whole Zhongzhiyuan key area. A detachable greenhouse and public test yard expose rainwater, noise, energy, safety and human bypass. A pilot enters only with an operator, insurance, baseline, stop threshold and recovery plan; failure returns it to the lab. Maintenance staff and everyday walkers are named beneficiaries. [source:OFFICIAL-ANNOUNCEMENT] [source:ZHONGZHIYUAN-CARRIER]
 
+![Concept view of the Zhongzhiyuan Full-Stack Validation Garden with mature shade, a continuous accessible walk, rain gardens and a demountable greenhouse](assets/media/zhongzhiyuan-living-lab.webp)
+
+*Zhongzhiyuan · Full-Stack Validation Garden | AI-generated concept view. Based on public site context and this proposal's prototype, it depicts a demountable greenhouse, rain gardens, continuous accessible walking and a staffed maintenance interface. It is not a current-condition photograph, record of construction, or engineering location.*
+
 AI Origin is an Open-Source Transfer Commons: shallow halls, shared workshops, talent services, affordable short-term work and a multi-generation care street. A walk-in human clinic assembles code, copyright, model cards, data permission, pilot contracts and retirement clauses. The publicly discussed roughly 3 km² AI Origin district and the announced 104.3-ha key area are different scales and are never conflated. [source:AI-ORIGIN-UPDATE]
 
-Dazhongsi is an AI-Native Living Marketplace. A provisional station interface prioritizes walking, weather protection and staffed inquiry; small merchants, device repair, culture, international exchange, data rights and night-worker services mix inside. The Civic Stack Beacon displays service hours, energy, maintenance duty and appeal—not advertising rank. Its provisional polygon is not moved or used for parcel conclusions. [source:OFFICIAL-ANNOUNCEMENT] [data:geometry/key_areas.geojson#PROV-KEY-003]
+![Concept view of the Beijing AI Origin Ground-Floor Co-Creation Commons with a shaded lane, low-rise shared workshop and staffed service frontage](assets/media/ai-origin-commons.webp)
 
-All three use one Civic Stack Passport, but their section, primary users, operations and stop rules differ. The mechanism can survive a future boundary replacement while every location is recalculated. [depth:three_key_area_detailed_design]
+*Beijing AI Origin · Ground-Floor Co-Creation Commons | AI-generated concept view. Retaining the scale of existing lanes and mature tree shade, it shows a lightweight single-storey intervention for shared workshops, staffed advice and intergenerational care. It is not a current-condition photograph, record of construction, or approved building design.*
+
+Dazhongsi is a 15-Minute Living Room. At this stage it is a walkable, weather-protected, staffed everyday-service frontage embedded in the existing mixed neighborhood; small merchants, device repair, culture, international exchange, data rights and night-worker services mix inside. The Civic Stack Beacon displays service hours, energy, maintenance duty and appeal—not advertising rank. Its provisional polygon is not moved or used for parcel conclusions. [source:OFFICIAL-ANNOUNCEMENT] [data:geometry/key_areas.geojson#PROV-KEY-003]
+
+![Concept view of the Dazhongsi 15-minute living room with an all-weather porch, neighborhood market, repair and care services](assets/media/dazhongsi-living-circle.webp)
+
+*Dazhongsi · 15-Minute Living Room | AI-generated concept view. The scene focuses on an all-weather porch, neighborhood market, device repair, care and staffed inquiry. It is not a current-condition photograph, record of construction, or implementation plan.*
+
+All three use one Civic Stack Passport, but their section, primary users, operations and stop rules differ. The key-area figure therefore pairs each spatial prototype with operating responsibility, human handover and stop conditions; the mechanism can survive a future boundary replacement while every location is recalculated. [depth:three_key_area_detailed_design]
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
@@ -99,7 +118,7 @@ Talent includes those who operate, repair, care and use the district—not just 
 | 09 Older-person health navigation | Phone/counter baseline; community nodes by day | Pass when a person reaches a lawful service, never an automated diagnosis; stop on medical overreach | Phone and social worker; service station accountable; sensitive data excluded from public system |
 | 10 Data-rights window | Separate operator helpdesks; three stack yards at fixed hours | Pass when a person can inspect purpose, withdraw consent and appeal; stop if controller cannot be identified | Paper request and human officer; controller accountable; keep only the legally necessary audit chain |
 | 11 Railway evidence walk | Public records and existing interpretation; green spine all day | Pass when every story is traceable and fact is separated from inference; stop on source dispute or heritage objection | Printed guide and curator review; culture operator accountable; version archive, no visitor tracking |
-| 12 International contribution ledger | Event roster baseline; Dazhongsi living marketplace during events | Pass when model, material, labor and public-decision contributions are legible; stop on unclear permission or discriminatory ranking | Physical notice and appeal desk; organizer accountable; publish only licensed attribution |
+| 12 International contribution ledger | Event roster baseline; Dazhongsi 15-minute living room during events | Pass when model, material, labor and public-decision contributions are legible; stop on unclear permission or discriminatory ranking | Physical notice and appeal desk; organizer accountable; publish only licensed attribution |
 
 The portfolio connects place and industry: Zhongzhiyuan tests devices and environmental interfaces, Origin handles open-source and enterprise transfer, and Dazhongsi tests daily legibility. Shared data-rights windows, independent review and a retirement ledger make AI a procurable, stoppable and maintainable city service. [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
 
@@ -133,7 +152,7 @@ Character combines railway evidence, everyday care and visible maintenance inste
 
 Delivery is gate-based, not a calendar promise. Phase 1 secures official spatial data, surveys ownership/heritage/utilities/access, names operators and runs four bounded tests. Phase 2 admits stack-yard construction only after independent review, funding, design and permits. Phase 3 expands after public-benefit evaluation and permits underperforming services to retire. The phasing polygons are work groups, not a government schedule or investment commitment. [data:geometry/phasing.geojson#PHASE-001]
 
-Nine packages are proposed: official base map/evidence room; field audit of the evidence line and care ribs; Zhongzhiyuan greenhouse; Origin transfer hall; Dazhongsi living marketplace; eight handover nodes; six rain courts; passport/rights-window/independent-review system; and an annual Jing-Zhang Civic Benefit Week. Each requires owner/operator, property, design, permission, funding, procurement, insurance, maintenance, appeal and exit before crossing its gate. [depth:renewal_project_list]
+Nine packages are proposed: official base map/evidence room; field audit of the evidence line and care ribs; Zhongzhiyuan greenhouse; Origin transfer hall; Dazhongsi 15-minute living room; eight handover nodes; six rain courts; passport/rights-window/independent-review system; and an annual Jing-Zhang Civic Benefit Week. Each requires owner/operator, property, design, permission, funding, procurement, insurance, maintenance, appeal and exit before crossing its gate. [depth:renewal_project_list]
 
 CAPEX and OPEX remain unknown. The next stage builds a whole-life schedule for surveys, public realm/buildings, equipment, data governance, staff, energy, insurance, renewal and retirement. Procurement acceptance includes phone-free service, accessibility, maintenance workplaces, public hours, energy caps, deletion and handover. Quarterly open days, semiannual handover drills and annual independent review remain subject to an operating agreement. [metric:capital_cost_cny]
 
@@ -153,11 +172,11 @@ Privacy is controlled through minimization, edge processing, deletion, human app
 
 Spatial dispute is the immediate priority: the overall and three key polygons are rough. Dazhongsi’s diagram cannot support a parcel conclusion. Footprints are not a building survey, mobility lines are not redlines, design ratios are not approved controls, phases are not promises, and heat exchange is not an achieved saving. Every figure and HTML page repeats this limitation. [depth:risk_missing_data]
 
-OpenAI Codex produced the text and original graphics from public material and deterministic code. No commercial tile or remote service is loaded; GeoJSON, Pillow and ReportLab generate the graphics; system fonts are embedded only in deliverables. Government and case pages are paraphrased and deep-linked; peer submissions are not copied. The license is COMMUNITY-DISPLAY-ONLY and `report/copyright_statement.md` records the asset chain. No participation, partnership, funding, approval or operating agreement is invented. [source:SITE-PACKAGE]
+OpenAI Codex produced the text, graphics and three concept views from public material and the original design. No commercial tile or remote service is loaded; the submitted GeoJSON and metrics plus a legibility-only fixed OSM extract feed the Pillow/ReportLab graphics. OpenAI image generation produced the three site-prototype views, each captioned as neither current condition nor completion evidence. Government and case pages are paraphrased and deep-linked; peer submissions are neither copied nor used as generation inputs. The license is COMMUNITY-DISPLAY-ONLY and `report/copyright_statement.md` records the asset chain. No participation, partnership, funding, approval or operating agreement is invented. [source:SITE-PACKAGE] [source:OSM-CONTEXT-20260812]
 
 ## References
 
-The readable project entry points are the official announcement and repository taskbook [source:OFFICIAL-ANNOUNCEMENT], the provisional-boundary basis [source:BOUNDARY-SOURCE], and the repository source registry [source:SOURCE-REGISTRY]. Current context comes from first-party government pages for the open call, Zhongzhiyuan, AI Origin, talent services, Jing-Zhang Park, sponge-city practice, Qinghua East Road public space, Qinghuayuan heritage and Beijing’s AI-agent measures.
+The readable project entry points are the official announcement and repository taskbook [source:OFFICIAL-ANNOUNCEMENT], the provisional-boundary basis [source:BOUNDARY-SOURCE], and the repository source registry [source:SOURCE-REGISTRY]. A fixed OSM extract provides legibility-only context in figures [source:OSM-CONTEXT-20260812]. Current context comes from first-party government pages for the open call, Zhongzhiyuan, AI Origin, talent services, Jing-Zhang Park, sponge-city practice, Qinghua East Road public space, Qinghuayuan heritage and Beijing’s AI-agent measures.
 
 Comparative sources are first-party pages only: Waterfront Toronto Quayside [source:CASE-QUAYSIDE-AGREEMENT], Cambridge The Foundry [source:CASE-CAMBRIDGE-FOUNDRY], King’s Cross and Knowledge Quarter [source:CASE-KINGS-CROSS], Helsinki Kalasatama and Forum Virium agile pilots [source:CASE-AGILE-PILOTS], Singapore Punggol Digital District and its government-developed district digital platform [source:CASE-SINGAPORE-ODP], and Montreal Mila [source:CASE-MILA]. Citation does not imply endorsement.
 

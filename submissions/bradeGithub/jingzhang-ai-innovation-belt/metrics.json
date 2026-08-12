@@ -1,0 +1,397 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "Boundary geometry is provisional_rough per DATA-SRC-PROVISIONAL-BOUNDARIES-20260605; replaces official polygon before precise statutory use."
+      ]
+    },
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "announced_value_43.6_km2_from_official_announcement",
+      "confidence": "high",
+      "assumptions": [
+        "Official text value; provisional research polygon area 43.61 km2 matches within 0.1%."
+      ]
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "announced_value_368.4_ha_from_official_announcement",
+      "confidence": "high",
+      "assumptions": [
+        "Official text value; provisional three-area union 3.693 km2 matches within 0.24%."
+      ]
+    },
+    "zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-001"
+      ],
+      "formula": "polygon_area(key_area_zhongzhiyuan) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional rough polygon, announced value 1,921,000 sqm; official polygon pending."
+      ]
+    },
+    "beijing_ai_origin_community_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-002"
+      ],
+      "formula": "polygon_area(key_area_ai_origin) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional rough polygon, announced value 1,043,000 sqm; official polygon pending."
+      ]
+    },
+    "dazhongsi_ai_industry_cluster_sqm": {
+      "status": "known",
+      "value": 720454.221,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-003"
+      ],
+      "formula": "polygon_area(key_area_dazhongsi) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional rough polygon, announced value 720,000 sqm; official polygon pending."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1667800.678,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual block-scale footprints inside designable land uses; not a statutory buildable-area claim."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2722014.465,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Heritage park spine plus west buffer wedges; provisional boundary influence acknowledged."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.2385,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Green ratio of the design partition; official green line pending."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 131117.561,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space_nodes)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Four activity nodes along the heritage spine; squares and plazas can be expanded with official boundary."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0115,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Node-level plaza ratio; street-space and park linear spaces not counted to avoid double counting."
+      ]
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 26700,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(linestring_length(roads)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual network: 3 north-south corridors, 4 east-west connectors; red lines pending."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "No approved FAR control in the public site package; statutory FAR requires official regulatory-plan conditions."
+      ],
+      "reason": "Approved FAR controls are not present in the cleared site package; professional confirmation required."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "pending_official_height_controls",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official height controls, aviation/landscape/heritage constraints pending."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards_in_narrative)",
+      "confidence": "high",
+      "assumptions": [
+        "Includes 3 AI industry test/validation scenarios."
+      ]
+    },
+    "persona_class_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user_persona_classes)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(ai_landmarks_in_narrative)",
+      "confidence": "high",
+      "assumptions": [
+        "Exceeds the required minimum of 3."
+      ]
+    },
+    "land_use_total_area_sqm": {
+      "status": "known",
+      "value": 11412847.048,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(feature)) over all land-use features in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Topology-safe partition derived from provisional site boundary; no gaps or overlaps."
+      ]
+    },
+    "phasing_total_area_sqm": {
+      "status": "known",
+      "value": 11412832.919,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(polygon_area(feature)) over all phasing features in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Three-stage conceptual phasing partition of the provisional site boundary."
+      ]
+    },
+    "land_use_area_05_sqm": {
+      "status": "known",
+      "value": 1305722.15,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(feature)) where land_use_code=05 in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept zoning partition; not statutory regulatory plan."
+      ]
+    },
+    "land_use_area_0701_sqm": {
+      "status": "known",
+      "value": 2776870.034,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(feature)) where land_use_code=0701 in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept zoning partition; not statutory regulatory plan."
+      ]
+    },
+    "land_use_area_0702_sqm": {
+      "status": "known",
+      "value": 323069.363,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(feature)) where land_use_code=0702 in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept zoning partition; not statutory regulatory plan."
+      ]
+    },
+    "land_use_area_0802_sqm": {
+      "status": "known",
+      "value": 2487748.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(feature)) where land_use_code=0802 in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept zoning partition; not statutory regulatory plan."
+      ]
+    },
+    "land_use_area_0804_sqm": {
+      "status": "known",
+      "value": 1797422.886,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(feature)) where land_use_code=0804 in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept zoning partition; not statutory regulatory plan."
+      ]
+    },
+    "land_use_area_1401_sqm": {
+      "status": "known",
+      "value": 2642389.22,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(feature)) where land_use_code=1401 in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept zoning partition; not statutory regulatory plan."
+      ]
+    },
+    "land_use_area_1402_sqm": {
+      "status": "known",
+      "value": 79625.245,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(feature)) where land_use_code=1402 in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept zoning partition; not statutory regulatory plan."
+      ]
+    },
+    "phasing_area_phase_1_sqm": {
+      "status": "known",
+      "value": 7038543.67,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(polygon_area(feature)) where phase=phase_1 in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual phasing; areas provisional."
+      ]
+    },
+    "phasing_area_phase_2_sqm": {
+      "status": "known",
+      "value": 1758534.782,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(polygon_area(feature)) where phase=phase_2 in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual phasing; areas provisional."
+      ]
+    },
+    "phasing_area_phase_3_sqm": {
+      "status": "known",
+      "value": 2615754.467,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(polygon_area(feature)) where phase=phase_3 in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual phasing; areas provisional."
+      ]
+    }
+  }
+}

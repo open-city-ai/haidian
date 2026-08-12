@@ -1,0 +1,257 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary; recalculate after official polygon release."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept geometry derived within a provisional site boundary; not an approved planning control."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept geometry derived within a provisional site boundary; not an approved planning control."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept geometry derived within a provisional site boundary; not an approved planning control."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "Names and count follow the official announcement; polygons are provisional rough extents."
+      ]
+    },
+    "case_study_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(case_studies)",
+      "confidence": "high",
+      "assumptions": [
+        "Global mechanism references, not local control evidence."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(personas)",
+      "confidence": "medium",
+      "assumptions": [
+        "Design research personas; validate with field engagement."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenarios)",
+      "confidence": "high",
+      "assumptions": [
+        "Concept scenarios; deployment requires governance and approvals."
+      ]
+    },
+    "test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(test_scenarios)",
+      "confidence": "high",
+      "assumptions": [
+        "Testing briefs only, not approved deployments."
+      ]
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(landmarks)",
+      "confidence": "high",
+      "assumptions": [
+        "Concept landmarks; locations and design require professional development."
+      ]
+    },
+    "shift_station_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenarios where type=shift_station_network)",
+      "confidence": "medium",
+      "assumptions": [
+        "Network target; exact sites require survey and co-design."
+      ]
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(renewal_projects)",
+      "confidence": "high",
+      "assumptions": [
+        "Concept implementation list; owners, funding and approvals pending."
+      ]
+    },
+    "pilot_day_count": {
+      "status": "known",
+      "value": 90,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "specified_duration_days(zhongzhiyuan_reversible_pilot)",
+      "confidence": "high",
+      "assumptions": [
+        "A conceptual pilot duration, not a confirmed implementation schedule."
+      ]
+    },
+    "pilot_gate_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(G0,G1,G2,G3,G4)",
+      "confidence": "high",
+      "assumptions": [
+        "Gates are a proposal governance framework, not an authority approval protocol."
+      ]
+    },
+    "pilot_component_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(movable_pilot_components)",
+      "confidence": "high",
+      "assumptions": [
+        "Components are conceptual, movable and conditional on G1 verification."
+      ]
+    },
+    "g1_verification_domain_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(G1_verification_domains)",
+      "confidence": "high",
+      "assumptions": [
+        "A proposal checklist structure; it is not a statutory approval checklist."
+      ]
+    },
+    "codesign_participant_role_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(paid_codesign_baseline_role_types)",
+      "confidence": "high",
+      "assumptions": [
+        "Role types are a proposed baseline; recruitment and compensation require separate written agreement."
+      ]
+    },
+    "shift_log_record_category_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(shift_log_record_categories)",
+      "confidence": "high",
+      "assumptions": [
+        "Categories are a de-identified service-governance template, not a workforce monitoring scheme."
+      ]
+    }
+  }
+}

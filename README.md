@@ -166,7 +166,7 @@ Use $urban-design-ai-submission to create a lightweight sparse workspace and par
 4. 优先使用 `brief/site-package/geometry/` 中可信的官方边界；没有官方 polygon 时，可使用 `provisional_boundaries.geojson`。临时几何不得冒充官方红线、审批或精确面积依据，但组织方的数据缺口不再阻断内容评分，也不得因此扣分。
 5. 按 `docs/formal-submission-guide.md` 准备边界、三处重点区域、合规矩阵、专业标准矩阵、设计深度矩阵、A3/A0 图纸和 `visual/index.html`。使用 provisional 边界时，必须在正文、HTML、sources、assumptions 和自检结果中醒目标注。
    - 必须同时读取 `brief/site-package/agent_taskbook.json`，并在方案中回应 `agent.1` 至 `agent.6`：命名/Logo、生态案例、场景卡、朝圣地标、文化叙事和长期运营。
-   - 需要视觉生成辅助时，可参考 `docs/visual-style-recommendations.md`。推荐优先使用 `baoyu-markdown-to-html`、`baoyu-infographic`、`baoyu-diagram`、`baoyu-slide-deck` 中偏技术图解、仪表盘、蓝图、企业/专业简报的风格；不要把漫画、社交媒体卡片或氛围插画作为 formal 核心成果。核心图应表达设计意图、空间层级和重点区域，不应只是 raw GeoJSON/GIS 截图、矩形色块拼图或无主次的图层堆叠。
+   - 方案最终是给人看的。只要 Agent 具备相关能力，就应主动使用高质量图像与示意图、短视频、声音或音乐、动画、三维场景和交互网页增强表达；本地打包的 Three.js、WebGL、Canvas 体验都受到欢迎。不要把密集文字、机械 SVG、raw GeoJSON/GIS 截图或无主次图层堆叠当作默认终点。没有多模态能力的 Agent 不失格，可继续使用数据驱动图件、清晰文字和仓库默认封面生成器。详细契约见 `skills/urban-design-ai-submission/references/multimodal-presentation.md`。
 6. 使用 formal 脚手架生成结构化 package：
 
 ```text
@@ -180,7 +180,7 @@ python3 scripts/scaffold_ai_submission.py \
 ```
 
 7. 按 formal 模板完善 `proposal.md`、图纸、HTML 可视化、合规矩阵、标准矩阵、深度矩阵和自检结果。脚手架默认是 `package_state=scaffold`，不能投稿；必须替换正文、至少一个设计图层、五张图、HTML 和有效 A3/A0 PDF，并移除 `SCAFFOLD-DRAFT`。每次手动修改 `proposal.md` 后，重新生成 `report/proposal.html`。
-8. 运行 `python3 scripts/finalize_submission.py submissions/<your-github-login>/<proposal-slug>`；它会拒绝未修改模板和零页 PDF，成功后写入 `package_state=ready_for_review` 并刷新 manifest 哈希。随后运行一键自检，修复到 PASS 后发起 Pull Request。PR 作者只能修改自己 GitHub 用户名对应的目录。
+8. 运行 `python3 scripts/finalize_submission.py submissions/<your-github-login>/<proposal-slug>`；它会拒绝未修改模板和零页 PDF，成功后写入 `package_state=ready_for_review`、声明 `readiness_contract=persisted-self-check-v1` 并刷新 manifest 哈希。随后运行 `python3 scripts/self_check_submission.py submissions/<your-github-login>/<proposal-slug> --pr-author <your-github-login> --mark-self-checked --json`，只有全部检查 PASS 才会把本次四门报告写入 `self_check.json`、刷新对应 manifest 哈希、把 `validation_claim.self_checked` 写为 `true` 并再次验证；带有该 readiness contract 的新包必须满足这个声明。ready 包后续修改已登记工件时，先运行 `python3 scripts/refresh_submission_manifest.py submissions/<your-github-login>/<proposal-slug>`；该窄命令只刷新已有 manifest 条目、拒绝 scaffold 或越界路径，并先把 `self_checked` 置回 `false`，之后必须重新运行上述完整自检。没有该标记的历史 ready 包只保留 intake 兼容警告，不被伪装成已完成自检；gallery 为公开连续性而沿用的历史状态也不等于新的可信正式证据，可按同一命令迁移。修复到 PASS 后发起 Pull Request。PR 作者只能修改自己 GitHub 用户名对应的目录。
    - 发起 PR 前运行 `python3 scripts/participant_preflight.py submissions/<your-github-login>/<proposal-slug> --pr-author <your-github-login> --check-push`，提前检查目录归属、变更范围、大文件、完整自检、fork 远程与推送权限。
 9. 发起 PR 后必须持续监控 CI、评审评论、合并队列和状态变化。审核通常实时启动，但繁忙时可能排队；上传完成不等于任务结束。检查失败或收到修改意见时，阅读完整日志与上下文，修复后重新运行渲染、finalize、自检和 preflight，推送并继续监控，直到 PR 合并或明确记录外部 blocker。可用 `gh pr checks <PR> --watch --interval 15` 与 `gh pr view <PR> --json state,mergeStateStatus,reviewDecision,statusCheckRollup,comments,reviews`；排队时使用通知或低频定时复查，不要高频轮询或发布空评论。
 10. 方案合并到 `main` 后会自动进入公开展示页。`gallery-publication.json` 仅用于首页精选，或由维护者明确暂停某个已合并方案的展示；`published=false` 表示暂停，`published=true` 可记录经人工内容、视觉和版权审核的版本，`featured=true` 决定首页精选。然后运行 `scripts/generate_submissions_data.py`；参赛者不得修改该清单或 `submissions-data.js`。
@@ -197,6 +197,8 @@ submissions/octocat/ai-urban-loop/visual/index.html
 ## 方案应包含
 
 本仓库只接受 `formal` AI agent 方案。Markdown-only 投稿会失败；正式方案必须同时提交专业报告、结构化数据、图纸、HTML 可视化和自检结果。
+
+**强烈鼓励多模态呈现。** 可选视频、音频/音乐、海报、字幕和文字稿放入 `assets/media/` 并登记 manifest；网站会把自定义封面、视频、音频和 `visual/index.html` 交互入口直接呈现在方案工作台，而不是只列出下载链接。`manifest.cover_image` 可以指向 Agent 自己生成或清权的 PNG/JPEG/WebP；为空、`null` 或省略时，保持现有确定性默认封面。视频和音频不得自动播放，必须提供可访问的字幕/文字稿；生成媒体必须记录工具/模型、来源和权利边界，且不得替代五张必交图、A3/A0、离线 HTML 或结构化证据。
 
 **要求双语言。** 新方案设置 `bilingual_contract_version: "1"`，并让 `translation_file` 指向独立的完整译稿：中文主稿配 `proposal.en.md`，英文主稿配 `proposal.zh.md`；译稿设置 `translation_of: "proposal.md"`。`report/proposal.html`、`visual/index.html`、A3/A0 和含文字图件也必须按同一命名规则提供另一语言版本。两版须保持章节、主张、指标、证据引用和图件位置一致，并优先使用[赛事中英术语表](docs/terminology-glossary.md)。缺少或损坏任一必需译稿、语言映射或 manifest 哈希会阻断新契约投稿合并；历史 v1 及早期 v2 单语方案继续兼容展示。
 
@@ -308,6 +310,10 @@ python3 scripts/validate_local_submission.py \
   --pr-author <your-github-login>
 ```
 
+新建投稿或主动升级 manifest 时，增加 `--strict-manifest`，让本地校验也按
+`schema_version: 0.2.x` 的前向契约执行。已有 0.1.x 包维持默认的 legacy
+advisory 模式。
+
 如果手动修改了 `proposal.md`，先重新渲染离线阅读版：
 
 ```bash
@@ -346,7 +352,8 @@ AI agent 提交前应运行完整自检。它会同时执行 required CI 同款�
 python3 -m pip install -r requirements-review.txt
 python3 scripts/self_check_submission.py \
   submissions/<your-github-login>/<proposal-slug> \
-  --pr-author <your-github-login>
+  --pr-author <your-github-login> \
+  --mark-self-checked --json
 ```
 
 维护者进行可信空间复核和 AI 评审输入生成时，可运行：

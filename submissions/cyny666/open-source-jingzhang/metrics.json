@@ -1,0 +1,144 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Repository provisional geometry; not an official redline or statutory area."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 175276.103,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(non_overlapping_design_prototype_footprints)",
+      "confidence": "medium",
+      "assumptions": [
+        "Design prototypes; not existing buildings or approved construction."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.115298,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "design_green_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Recalculate on official boundaries."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.049974,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "design_public_interface_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Public and green layers may overlap by intent; recalculate on official boundaries."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls, parcels, and official boundaries are absent."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(mandatory_key_area_workstreams)",
+      "confidence": "high",
+      "assumptions": [
+        "Count is official; current polygons are provisional."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "testing_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(first_round_tests)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "formula": "count(global_cases)",
+      "confidence": "high",
+      "assumptions": []
+    }
+  }
+}

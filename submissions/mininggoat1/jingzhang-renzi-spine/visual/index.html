@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张智脊 · 人字新轨 —— 百年京张 AI 创新带城市设计概念方案（离线可视化图板）</title>
+<style>
+:root{
+  --iron:#3E4348; --brick:#A63D2F; --teal:#1F6F8B; --warm:#F7F5F0;
+  --ink:#2B2F33; --mute:#6E7378; --line:#D8D4C8; --card:#FFFFFF; --green:#7FA37C; --amber:#D9A05B;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{background:var(--warm); color:var(--ink);
+  font-family:"Noto Sans CJK SC","Source Han Sans SC","PingFang SC","Microsoft YaHei","WenQuanYi Zen Hei",sans-serif;
+  line-height:1.65; font-size:15px;}
+.wrap{max-width:1240px; margin:0 auto; padding:0 20px 64px;}
+header.board{background:var(--iron); color:var(--warm); padding:34px 0 26px; border-bottom:6px solid var(--brick);}
+header.board .wrap{padding-bottom:0;}
+.eyebrow{font-size:12.5px; letter-spacing:.18em; color:#C9CDD2; text-transform:uppercase;}
+h1{font-size:34px; line-height:1.25; margin:6px 0 4px;}
+h1 .accent{color:#E8B4A6;}
+.subtitle{font-size:15.5px; color:#DDE1E5; max-width:60em;}
+.byline{margin-top:14px; font-size:14px; color:#C9CDD2;}
+.byline strong{color:var(--warm); font-size:15px;}
+.badges{margin-top:14px; display:flex; flex-wrap:wrap; gap:8px;}
+.badge{display:inline-block; padding:3px 12px; border:1px solid #6E757C; border-radius:999px; font-size:12.5px; color:#DDE1E5;}
+.badge.hot{border-color:#E8B4A6; color:#E8B4A6;}
+.prov-banner{background:var(--brick); color:#fff; margin:22px 0 0; padding:14px 0; font-size:14px;}
+.prov-banner strong{letter-spacing:.06em;}
+section{margin-top:40px;}
+h2{font-size:22px; color:var(--iron); border-left:8px solid var(--brick); padding-left:12px; margin-bottom:6px;}
+h2 small{font-size:13px; color:var(--mute); font-weight:normal; margin-left:10px;}
+.lede{color:#4A4F54; max-width:72em; margin-bottom:14px; font-size:14.5px;}
+.grid{display:grid; gap:14px;}
+.metrics{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));}
+.mcard{background:var(--card); border:1px solid var(--line); border-top:5px solid var(--teal); border-radius:6px; padding:12px 14px;}
+.mcard.brick{border-top-color:var(--brick);} .mcard.green{border-top-color:var(--green);}
+.mcard.amber{border-top-color:var(--amber);} .mcard.iron{border-top-color:var(--iron);}
+.mcard .lab{font-size:12.5px; color:var(--mute);}
+.mcard .val{font-size:23px; font-weight:700; color:var(--iron); margin:2px 0;}
+.mcard .unit{font-size:12px; color:var(--mute);}
+.mcard .src{font-size:11px; color:#9AA0A6; margin-top:4px; word-break:break-all;}
+.agents{grid-template-columns:repeat(auto-fit,minmax(330px,1fr));}
+.acard{background:var(--card); border:1px solid var(--line); border-radius:6px; padding:12px 14px;}
+.acard h3{font-size:15px; color:var(--teal); margin-bottom:4px;}
+.acard .rid{font-size:11.5px; color:var(--mute); font-family:ui-monospace,Menlo,Consolas,monospace;}
+.acard p{font-size:13px; color:#4A4F54;}
+figure{background:var(--card); border:1px solid var(--line); border-radius:6px; overflow:hidden; margin-bottom:18px;}
+figure img{display:block; width:100%; height:auto;}
+figcaption{padding:10px 14px; font-size:13px; color:#4A4F54; border-top:1px solid var(--line);}
+figcaption strong{color:var(--iron);}
+.figtag{display:inline-block; background:var(--iron); color:var(--warm); font-size:11.5px; border-radius:3px; padding:1px 8px; margin-right:8px;}
+.scenes{grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
+.scard{background:var(--card); border:1px solid var(--line); border-left:6px solid var(--brick); border-radius:6px; padding:12px 14px;}
+.scard h3{font-size:15px; color:var(--brick);}
+.scard .where{font-size:12px; color:var(--teal); margin-bottom:4px;}
+.scard p{font-size:13px; color:#4A4F54;}
+.phases{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+.pcard{background:var(--card); border:1px solid var(--line); border-radius:6px; padding:12px 14px;}
+.pcard h3{font-size:15px; color:var(--iron);}
+.pcard .pbar{height:6px; border-radius:3px; background:linear-gradient(90deg,var(--teal),var(--brick)); margin:6px 0 8px;}
+.pcard p{font-size:13px; color:#4A4F54;}
+table.plain{width:100%; border-collapse:collapse; background:var(--card); font-size:13px;}
+table.plain th, table.plain td{border:1px solid var(--line); padding:7px 10px; text-align:left; vertical-align:top;}
+table.plain th{background:#EFECE3; color:var(--iron);}
+.checks{display:flex; flex-wrap:wrap; gap:10px;}
+.chk{background:var(--card); border:1px solid var(--green); border-left:6px solid var(--green); border-radius:6px; padding:8px 12px; font-size:12.5px;}
+.chk .cid{font-weight:700; color:var(--iron); font-family:ui-monospace,Menlo,Consolas,monospace;}
+.chk .res{color:var(--green); font-weight:700;}
+.chk.warn{border-color:var(--amber); border-left-color:var(--amber);}
+.note{font-size:12.5px; color:var(--mute); margin-top:10px;}
+footer{margin-top:48px; padding-top:18px; border-top:2px solid var(--iron); font-size:12.5px; color:var(--mute);}
+ul.tight{margin-left:1.2em;} ul.tight li{margin-bottom:6px; font-size:13.5px; color:#4A4F54;}
+@media (max-width:720px){ h1{font-size:26px;} .mcard .val{font-size:19px;} }
+@media print{ .prov-banner{break-inside:avoid;} figure{break-inside:avoid;} }
+</style>
+</head>
+<body>
+
+<header class="board">
+  <div class="wrap">
+    <div class="eyebrow">北京·海淀 百年京张 AI 创新带 · 城市设计国际方案征集 · 资格预审概念提案</div>
+    <h1>京张智脊 · <span class="accent">人字新轨</span></h1>
+    <div class="subtitle">以京张铁路"人字形"折返线为母题，把 11.4 km²  provisional 设计范围转译为"一脊三段两翼"：约 9.3 km 轨廊公共空间脊，串联加速段（众智园）、原点段（北京AI原点社区）、枢纽段（大钟寺）三处重点区，协同西翼高校科研翼与东翼城市生活翼。</div>
+    <div class="byline">参赛署名：<strong>明光数科</strong> ｜ 方案性质：概念建议 / 参考方案（非官方规划成果）</div>
+    <div class="badges">
+      <span class="badge hot">赛道徽章：AI + 城市设计</span>
+      <span class="badge hot">provisional 临时边界概念方案</span>
+      <span class="badge">离线静态单文件 · 无外部依赖</span>
+      <span class="badge">数据同源：geometry/*.geojson + metrics.json</span>
+    </div>
+  </div>
+</header>
+
+<div class="prov-banner"><div class="wrap">
+  <strong>PROVISIONAL 醒目提示：</strong>本页全部空间内容基于 provisional 临时边界（official_boundary=false，boundary_precision=provisional_rough）与概念设计图层，面积为 EPSG:4548 程序化复算值，仅供资格预审阶段带标注讨论；不构成官方红线、审定规划、精确面积或实施结论。官方边界与控规条件发布后，全部图层与指标须统一复算。
+</div></div>
+
+<div class="wrap">
+
+<section id="metrics">
+  <h2>核心指标<small>与 metrics.json 精确一致（data-metric 声明，容差 1e-6）</small></h2>
+  <p class="lede">下列数值均由 geometry/*.geojson 在 EPSG:4548 下程序化复算，与正文 [metric:] 引用、metrics-evidence 图版同出一源；容积率、建筑高度属待确认控规条件（status=unknown），本页不给数值。</p>
+  <div class="grid metrics">
+    <div class="mcard"><div class="lab">总体设计范围（provisional 复算）</div>
+      <div class="val"><span data-metric="site_area_sqm" data-value="11412825.386">11,412,825.386</span></div>
+      <div class="unit">sqm ≈ 11.41 km² ｜ 公告约值 11.4 km²，偏差 +0.1125%</div>
+      <div class="src">metric: site_area_sqm</div></div>
+    <div class="mcard green"><div class="lab">概念绿地率（非控规指标）</div>
+      <div class="val"><span data-metric="green_ratio" data-value="0.109159">0.109159</span></div>
+      <div class="unit">10.92% ｜ 绿地 1,245,814 sqm</div>
+      <div class="src">metric: green_ratio</div></div>
+    <div class="mcard amber"><div class="lab">公共空间占比（只计 1403 广场）</div>
+      <div class="val"><span data-metric="public_space_ratio" data-value="0.013251">0.013251</span></div>
+      <div class="unit">1.33% ｜ 节点广场 151,230 sqm</div>
+      <div class="src">metric: public_space_ratio</div></div>
+    <div class="mcard iron"><div class="lab">概念建筑基底面积</div>
+      <div class="val">1,937,714</div>
+      <div class="unit">sqm ｜ 保留 53.8% / 改造 27.2% / 新建 19.0%</div>
+      <div class="src">metric: building_footprint_area_sqm</div></div>
+    <div class="mcard"><div class="lab">轨廊慢行主轴（一脊，概念）</div>
+      <div class="val">9,266.5</div>
+      <div class="unit">m ｜ greenway，全脊贯通 = ④开发者散步道</div>
+      <div class="src">metric: rail_spine_greenway_length_m</div></div>
+    <div class="mcard brick"><div class="lab">重点区域数量（公告必选）</div>
+      <div class="val">3</div>
+      <div class="unit">处 ｜ 加速段 192.9 ha / 原点段 104.3 ha / 枢纽段 72.0 ha</div>
+      <div class="src">metric: key_area_count</div></div>
+  </div>
+</section>
+
+<section id="coverage">
+  <h2>任务覆盖<small>六项 agent 任务（agent.1–agent.6）与合规矩阵 23/23 对应</small></h2>
+  <div class="grid agents">
+    <div class="acard"><h3>agent.1 边界与范围复算</h3><div class="rid">compliance: agent.1</div><p>三层范围（统筹研究 43.6 km² / 总体设计 11.4 km² / 重点区 3 处）全部 provisional 边界 EPSG:4548 复算，偏差均 &lt;0.5%，登记 GAP-BOUNDARY-001/002。</p></div>
+    <div class="acard"><h3>agent.2 空间结构与用地</h3><div class="rid">compliance: agent.2</div><p>68 地块用地图层无缝覆盖、两两重叠 0 sqm；一脊三段两翼结构 + 用地平衡表；用地代码遵循自然资源部分类指南项目子集。</p></div>
+    <div class="acard"><h3>agent.3 交通与蓝绿</h3><div class="rid">compliance: agent.3</div><p>轨廊慢行主轴 9,266.5 m + 人字折返支线 ×2；6 处慢行断点待缝合；三处轨道站点站城一体化（概念）；一廊多园蓝绿网络。</p></div>
+    <div class="acard"><h3>agent.4 重点区与更新项目</h3><div class="rid">compliance: agent.4</div><p>加速段/原点段/枢纽段三处重点区概念空间结构、5 处 AI 朝圣地标、7 项更新项目概念清单（JZ-01…JZ-07）与拆改留策略。</p></div>
+    <div class="acard"><h3>agent.5 指标与证据链</h3><div class="rid">compliance: agent.5</div><p>metrics.json 24 known + 2 unknown；正文引用、图版、本页 data-metric 三方精确一致；unknown 指标不编造，"负指标"纪律。</p></div>
+    <div class="acard"><h3>agent.6 图版与可视化</h3><div class="rid">compliance: agent.6</div><p>5 张演示级图版（本页下方）、A3 小册子与 A0 展板 PDF、离线静态可视化页，均由同一数据源程序化生成，可复现。</p></div>
+  </div>
+</section>
+
+<section id="structure">
+  <h2>总览地图与空间结构图版<small>五图版 · 本地相对路径 · 表达设计意图而非 raw GIS 截图</small></h2>
+  <p class="lede"><strong>三层范围</strong>框架：战略统筹层（43.6 km² 清河—小月河蓝绿骨架与区域廊道，仅作衔接判断）→ 概念设计层（11.4 km² 总体设计范围，本方案主体）→ 重点设计层（3 处公告必选重点区）。五张图版覆盖：总体空间结构、<strong>用地分区</strong>、<strong>重点区域</strong>、<strong>交通慢行</strong>与<strong>蓝绿公共空间</strong>、指标与证据；<strong>建筑</strong>概念体量（保留/改造/新建）在重点区图版中以拆改留策略表达，<strong>更新项目</strong>概念清单（JZ-01…JZ-07）挂接三段空间。</p>
+
+  <figure>
+    <img src="../assets/figures/site-overview.png" alt="总体空间结构图：一脊三段两翼，轨廊脊线、三段节点、两翼协同与 provisional 边界虚线注记">
+    <figcaption><span class="figtag">图 01</span><strong>总览地图 · 总体空间结构图。</strong>视觉重心为设计意图：青蓝轨廊脊线（一脊）、砖红虚线人字折返支线、三段节点与两翼协同；provisional 边界仅低对比虚线注记，不作构图主体；含朝向、比例尺、图例与 provisional 说明条。</figcaption>
+  </figure>
+  <figure>
+    <img src="../assets/figures/land-use-structure.png" alt="用地结构图：68 地块按用地类型配色，用地平衡表与轨廊脊线叠加">
+    <figcaption><span class="figtag">图 02</span><strong>用地结构图 · 用地分区。</strong>68 地块真实几何绘制，科研/教育/商业/居住/道路/绿地分类配色；用地平衡表（面积与占比）与结构比例条均来自 metrics.json 复算值；叠加轨廊脊线与三段重点区虚线框。</figcaption>
+  </figure>
+  <figure>
+    <img src="../assets/figures/key-areas.png" alt="重点区域图：加速段、原点段、枢纽段三处放大框与概念空间结构、地标节点">
+    <figcaption><span class="figtag">图 03</span><strong>重点区域图 · 加速段 / 原点段 / 枢纽段。</strong>三处重点区放大框：概念空间结构、5 处 AI 朝圣地标（①智能体贡献荣誉墙 ②人字丘里程碑广场 ③开源展示廊 ④开发者散步道 ⑤全球开发者荣誉墙）、站点一体化概念与风险条件；含位置索引与建筑拆改留概念体量。</figcaption>
+  </figure>
+  <figure>
+    <img src="../assets/figures/mobility-bluegreen.png" alt="交通与蓝绿图：路网、轨廊慢行道、轨道站点概念与蓝绿公共空间网络">
+    <figcaption><span class="figtag">图 04</span><strong>交通与蓝绿图 · 交通慢行 × 蓝绿公共空间。</strong>现状路网（示意中心线，非红线）+ 轨廊慢行主轴与折返支线 + 6 处慢行断点缝合 + 三处轨道站点概念；一廊多园蓝绿网络：轨廊绿脉、口袋公园、防护绿廊与节点广场，清河/小月河骨架概念衔接。</figcaption>
+  </figure>
+  <figure>
+    <img src="../assets/figures/metrics-evidence.png" alt="指标与证据图：面积复算对比、核心指标卡、三矩阵覆盖状态与自检徽章">
+    <figcaption><span class="figtag">图 05</span><strong>指标与证据图 · 仪表盘。</strong>面积复算对比（公告约值 vs provisional 复算偏差）、核心指标卡、合规/标准/深度三矩阵覆盖状态、自检状态徽章与 unknown 控规指标卡；全部数值可逐条复核。</figcaption>
+  </figure>
+</section>
+
+<section id="scenes">
+  <h2>AI 场景卡精选<small>概念场景，测试类须沙盒申请，不作实施承诺</small></h2>
+  <div class="grid scenes">
+    <div class="scard"><h3>开发者散步道（④号地标）</h3><div class="where">全脊 · 轨廊慢行主轴</div><p>约 9.3 km 叙事步道串起三段：晨跑通勤、开源里程碑地刻、AR 铁路叙事点位沿脊布置，是全带公共生活与 AI 场景的主轴。</p></div>
+    <div class="scard"><h3>开源成果展示廊（③号地标）</h3><div class="where">原点段 · 清华园站旧址概念活化</div><p>依托 0803 文化地块与站房旧址，做开源模型/数据集里程碑的常设展示与发布外场，历史记忆 × 当代开源文化。</p></div>
+    <div class="scard"><h3>机器人服务与配送驿站</h3><div class="where">加速段 · 中试院落与脊线节点</div><p>机器人配送、巡检等中试场景挂接轨廊与院落组团；测试类场景一律走沙盒申请与逐案评估，不预设合规结论。</p></div>
+    <div class="scard"><h3>全球开发者荣誉墙与夜间第三空间（⑤号地标）</h3><div class="where">枢纽段 · 大钟寺</div><p>双语荣誉展示 + 路演外场 + 夜间活力第三空间，复合利用规划绿地（发布会外场/创客市集），服务国际交往定位。</p></div>
+  </div>
+</section>
+
+<section id="phasing">
+  <h2>实施分期<small>三期滚动，先脊后段、先通后活</small></h2>
+  <div class="grid phases">
+    <div class="pcard"><h3>一期 · 通脊（近期）</h3><div class="pbar"></div><p>轨廊慢行主轴贯通与 6 处断点缝合、南北门户节点、原点段低扰动更新启动；以"走得通"建立公共信任。</p></div>
+    <div class="pcard"><h3>二期 · 活段（中期）</h3><div class="pbar"></div><p>三处重点区项目抓手落地：成果转化街、清华园站旧址活化、中试院落、大钟寺四象限步行连通；地标与 AI 场景成网。</p></div>
+    <div class="pcard"><h3>三期 · 成带（远期）</h3><div class="pbar"></div><p>两翼协同与统筹层廊道衔接（清河/小月河骨架）、业态与运营滚动校准；待官方边界与控规条件发布后统一复算并校核。</p></div>
+  </div>
+</section>
+
+<section id="sources">
+  <h2>来源与假设<small>sources.json / assumptions.json 摘要</small></h2>
+  <table class="plain">
+    <tr><th style="width:16%;">类型</th><th>内容</th></tr>
+    <tr><td><strong>来源</strong>（公开/登记层）</td><td>SITE-PACKAGE（公告与站点包，official_public）；SOURCE-REGISTRY（来源可用性登记：formal-ready / background-only / provisional-only）；PROCESSED-FACT-PACK（agent 可读导航层，非权威来源）。</td></tr>
+    <tr><td><strong>来源</strong>（推断层）</td><td>BOUNDARY-SOURCE / KEY-AREA-SOURCE：provisional_boundaries.geojson，依据公告文字四至与面积约值推断（provisional-only），禁止作为官方红线、法定控规、精确面积或审批依据。</td></tr>
+    <tr><td><strong>假设</strong> A-CONTROLS-001</td><td>控规条件、道路红线、土地权属、市政与工程约束须以官方附件为准；容积率、建筑高度、拆改留、道路线位一律写为待确认。</td></tr>
+    <tr><td><strong>假设</strong> GAP-BOUNDARY-001/002</td><td>总体设计范围、三处重点区与统筹研究范围边界均为 provisional_rough；官方 polygon 发布后全部图层与指标统一重算。</td></tr>
+    <tr><td><strong>假设</strong> GAP-ROAD-001</td><td>现状道路为低置信示意中心线（confidence=low），非道路红线；桥隧与上跨/下穿北五环工程可行性不在结论范围内。</td></tr>
+  </table>
+</section>
+
+<section id="selfcheck">
+  <h2>自检状态<small>self_check.json · 6 项检查全部 pass，无 blocking+fail</small></h2>
+  <div class="checks">
+    <div class="chk warn"><span class="cid">BOUNDARY_TRUST</span> · <span class="res">PASS</span>（major：provisional 边界须在正式评分前替换官方红线）</div>
+    <div class="chk warn"><span class="cid">KEY_AREAS_TRUST</span> · <span class="res">PASS</span>（major：三处重点区同为 provisional）</div>
+    <div class="chk"><span class="cid">LAND_USE_TOPOLOGY</span> · <span class="res">PASS</span>（68 地块无缝覆盖、重叠 0 sqm）</div>
+    <div class="chk"><span class="cid">VISUAL_STATIC</span> · <span class="res">PASS</span>（本页为无外部依赖静态页）</div>
+    <div class="chk"><span class="cid">PROFESSIONAL_EVIDENCE</span> · <span class="res">PASS</span>（正文挂接标准/深度/图层/指标/来源/假设）</div>
+    <div class="chk"><span class="cid">AREA_RECALC</span> · <span class="res">PASS</span>（三层范围 EPSG:4548 独立复算，偏差 &lt;0.5%）</div>
+  </div>
+  <p class="note">徽章位说明：本区与图 05 指标证据图同源；如后续阶段重跑 self_check，徽章状态以 self_check.json 为准。</p>
+</section>
+
+<footer>
+  <p><strong>京张智脊 · 人字新轨</strong> ｜ 明光数科 ｜ 百年京张 AI 创新带城市设计 · 资格预审概念提案（provisional）。</p>
+  <p>本页为完全离线静态单文件：无 CDN、无外部脚本/字体/地图瓦片/iframe/API；图版引自本地相对路径 ../assets/figures/；全部空间数据与指标来自本投稿包 geometry/*.geojson 与 metrics.json（同一数据源）。</p>
+</footer>
+
+</div>
+</body>
+</html>

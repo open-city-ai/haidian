@@ -1,402 +1,212 @@
 {
-  "protocol_version": "2.0.0",
-  "canonical_contract": {
-    "zh": "proposal.md",
-    "en": "proposal.en.md"
-  },
-  "disclosure": "All component locations are provisional design locators; dimensions, materials, quantities, budget and approval remain pending.",
-  "zones": [
+  "schema_version": "1.0.0",
+  "dividend_yards": [
     {
-      "id": "TZ-01-CITY-LOUNGE",
-      "booking_segments": [
-        "BK-01-SOUTH-GATE",
-        "BK-02-CIVIC-SEAM"
-      ],
-      "operating_window": "07:00–22:00 segmented; proposed only",
-      "source_lu_ids": [
-        "LU-001",
-        "LU-002",
-        "LU-003",
-        "LU-004",
-        "LU-005",
-        "LU-006",
-        "LU-007",
-        "LU-008",
-        "LU-009"
-      ],
-      "geometry_role": "design_proposal",
-      "partition_status": "full_temporal_zone_LU_group_normalized_to_SITE"
-    },
-    {
-      "id": "TZ-02-KNOWLEDGE-TRANSFER",
-      "booking_segments": [
-        "BK-03-TRANSFER-SOUTH",
-        "BK-04-ORIGIN-HUB"
-      ],
-      "operating_window": "08:00–21:00 segmented; proposed only",
-      "source_lu_ids": [
-        "LU-010",
-        "LU-011",
-        "LU-012",
-        "LU-013",
-        "LU-014",
-        "LU-015",
-        "LU-016",
-        "LU-017",
-        "LU-018"
-      ],
-      "geometry_role": "design_proposal",
-      "partition_status": "full_temporal_zone_LU_group_normalized_to_SITE"
-    },
-    {
-      "id": "TZ-03-MODEL-VALIDATION",
-      "booking_segments": [
-        "BK-05-TRANSFER-NORTH",
-        "BK-06-TEST-YARD"
-      ],
-      "operating_window": "weekdays 09:00–18:00; proposed only",
-      "source_lu_ids": [
-        "LU-019",
-        "LU-020",
-        "LU-021",
-        "LU-022",
-        "LU-023",
-        "LU-024"
-      ],
-      "geometry_role": "design_proposal",
-      "partition_status": "full_temporal_zone_LU_group_normalized_to_SITE"
-    }
-  ],
-  "components": [
-    {
-      "id": "TC-01-WEEK-BOARD",
-      "name_zh": "周运行牌",
-      "name_en": "Weekly Board",
-      "function": "公示时段、容量、责任与替代路线",
-      "fallback": "每周打印，停电仍可读",
-      "human_gate": "TO signs each version",
-      "stop": "stale/inaccessible board",
-      "restore": "withdraw and replace; paper notice remains",
-      "geometry_id": "TC-01-WEEK-BOARD",
-      "source_type": "agent_generated_design",
-      "geometry_role": "design_proposal",
-      "authority_status": "conceptual_role_not_authorized",
-      "data_minimum": "aggregate/version/status only; no personal tracking",
-      "evidence_receipt": "TC-01-WEEK-BOARD inspection record",
-      "review_date": "pending",
-      "review_trigger": "each use/state change"
-    },
-    {
-      "id": "TC-02-HUMAN-GATE",
-      "name_zh": "人工闸门",
-      "name_en": "Human Gate",
-      "function": "预约、解释、申诉与接管",
-      "fallback": "不以手机或实名画像为前提",
-      "human_gate": "DHL or specialist human decides",
-      "stop": "counter absent",
-      "restore": "pause digital route",
-      "geometry_id": "TC-02-HUMAN-GATE",
-      "source_type": "agent_generated_design",
-      "geometry_role": "design_proposal",
-      "authority_status": "conceptual_role_not_authorized",
-      "data_minimum": "aggregate/version/status only; no personal tracking",
-      "evidence_receipt": "TC-02-HUMAN-GATE inspection record",
-      "review_date": "pending",
-      "review_trigger": "each use/state change"
-    },
-    {
-      "id": "TC-03-TIME-BAY",
-      "name_zh": "时间泊位",
-      "name_en": "Time Bay",
-      "function": "标明活动容量、边界和清场时刻",
-      "fallback": "未预约时恢复普通公共使用",
-      "human_gate": "TO confirms slot",
-      "stop": "capacity/boundary unclear",
-      "restore": "clear and reopen ordinary use",
-      "geometry_id": "TC-03-TIME-BAY",
-      "source_type": "agent_generated_design",
-      "geometry_role": "design_proposal",
-      "authority_status": "conceptual_role_not_authorized",
-      "data_minimum": "aggregate/version/status only; no personal tracking",
-      "evidence_receipt": "TC-03-TIME-BAY inspection record",
-      "review_date": "pending",
-      "review_trigger": "each use/state change"
-    },
-    {
-      "id": "TC-04-QUIET-EDGE",
-      "name_zh": "静音边界",
-      "name_en": "Quiet Edge",
-      "function": "控制灯光、声响、排队与测试外溢",
-      "fallback": "现场巡查优先于自动处罚",
-      "human_gate": "NL/human inspector verifies",
-      "stop": "complaint or boundary breach",
-      "restore": "end disturbance and remove kit",
-      "geometry_id": "TC-04-QUIET-EDGE",
-      "source_type": "agent_generated_design",
-      "geometry_role": "design_proposal",
-      "authority_status": "conceptual_role_not_authorized",
-      "data_minimum": "aggregate/version/status only; no personal tracking",
-      "evidence_receipt": "TC-04-QUIET-EDGE inspection record",
-      "review_date": "pending",
-      "review_trigger": "each use/state change"
-    },
-    {
-      "id": "TC-05-RESET-MARK",
-      "name_zh": "恢复标记",
-      "name_en": "Reset Mark",
-      "function": "记录临时设施撤除前后状态",
-      "fallback": "恢复照片与签字公开归档",
-      "human_gate": "site steward signs before/after",
-      "stop": "baseline cannot be restored",
-      "restore": "close area and remediate",
-      "geometry_id": "TC-05-RESET-MARK",
-      "source_type": "agent_generated_design",
-      "geometry_role": "design_proposal",
-      "authority_status": "conceptual_role_not_authorized",
-      "data_minimum": "aggregate/version/status only; no personal tracking",
-      "evidence_receipt": "TC-05-RESET-MARK inspection record",
-      "review_date": "pending",
-      "review_trigger": "each use/state change"
-    },
-    {
-      "id": "TC-06-ACCESS-STOP",
-      "name_zh": "无障碍停止点",
-      "name_en": "Accessibility Stop",
-      "function": "提供轮椅回转、座椅、求助与停机",
-      "fallback": "物理按钮和人工联络共存",
-      "human_gate": "AO/DHL acknowledges; AI cannot refuse",
-      "stop": "control/help unreachable",
-      "restore": "default paused until retested",
-      "geometry_id": "TC-06-ACCESS-STOP",
-      "source_type": "agent_generated_design",
-      "geometry_role": "design_proposal",
-      "authority_status": "conceptual_role_not_authorized",
-      "data_minimum": "aggregate/version/status only; no personal tracking",
-      "evidence_receipt": "TC-06-ACCESS-STOP inspection record",
-      "review_date": "pending",
-      "review_trigger": "each use/state change"
-    },
-    {
-      "id": "TC-07-EVIDENCE-CLOCK",
-      "name_zh": "证据时钟",
-      "name_en": "Evidence Clock",
-      "function": "展示版本、限制、事故、投诉与复盘",
-      "fallback": "不用生成式摘要替代原始记录",
-      "human_gate": "PTC approves redaction/publication",
-      "stop": "source/conflict/privacy failure",
-      "restore": "withdraw and issue correction",
-      "geometry_id": "TC-07-EVIDENCE-CLOCK",
-      "source_type": "agent_generated_design",
-      "geometry_role": "design_proposal",
-      "authority_status": "conceptual_role_not_authorized",
-      "data_minimum": "aggregate/version/status only; no personal tracking",
-      "evidence_receipt": "TC-07-EVIDENCE-CLOCK inspection record",
-      "review_date": "pending",
-      "review_trigger": "each use/state change"
-    }
-  ],
-  "booking_segment_spatial_register": [
-    {
-      "id": "BK-01-SOUTH-GATE",
-      "parent_zone_id": "TZ-01-CITY-LOUNGE",
-      "key_area_id": "PROV-KEY-003",
-      "source_lu_id": "LU-002",
-      "geometry_status": "provisional_design_locator_exact_site_contained_LU_copy"
-    },
-    {
-      "id": "BK-02-CIVIC-SEAM",
-      "parent_zone_id": "TZ-01-CITY-LOUNGE",
-      "key_area_id": "PROV-KEY-003",
-      "source_lu_id": "LU-001",
-      "geometry_status": "provisional_design_locator_exact_site_contained_LU_copy"
-    },
-    {
-      "id": "BK-03-TRANSFER-SOUTH",
-      "parent_zone_id": "TZ-02-KNOWLEDGE-TRANSFER",
-      "key_area_id": "PROV-KEY-002",
-      "source_lu_id": "LU-013",
-      "geometry_status": "provisional_design_locator_site_clipped_from_LU-013"
-    },
-    {
-      "id": "BK-04-ORIGIN-HUB",
-      "parent_zone_id": "TZ-02-KNOWLEDGE-TRANSFER",
-      "key_area_id": "PROV-KEY-002",
-      "source_lu_id": "LU-014",
-      "geometry_status": "provisional_design_locator_exact_site_contained_LU_copy"
-    },
-    {
-      "id": "BK-05-TRANSFER-NORTH",
-      "parent_zone_id": "TZ-03-MODEL-VALIDATION",
+      "id": "DY-01-SAFETY-DIVIDEND",
+      "name_zh": "众智安全红利场",
+      "name_en": "Safety Dividend Yard",
       "key_area_id": "PROV-KEY-001",
-      "source_lu_id": "LU-020",
-      "geometry_status": "provisional_design_locator_exact_site_contained_LU_copy"
+      "geometry_id": "DY-01-SAFETY-DIVIDEND"
     },
     {
-      "id": "BK-06-TEST-YARD",
-      "parent_zone_id": "TZ-03-MODEL-VALIDATION",
-      "key_area_id": "PROV-KEY-001",
-      "source_lu_id": "LU-021",
-      "geometry_status": "provisional_design_locator_exact_site_contained_LU_copy"
+      "id": "DY-02-OPEN-DIVIDEND",
+      "name_zh": "AI原点开源红利工场",
+      "name_en": "Open Dividend Works",
+      "key_area_id": "PROV-KEY-002",
+      "geometry_id": "DY-02-OPEN-DIVIDEND"
+    },
+    {
+      "id": "DY-03-EVERYDAY-DIVIDEND",
+      "name_zh": "大钟寺日常红利客厅",
+      "name_en": "Everyday Dividend Commons",
+      "key_area_id": "PROV-KEY-003",
+      "geometry_id": "DY-03-EVERYDAY-DIVIDEND"
     }
   ],
-  "landmarks": [
+  "unplugged_seams": [
     {
-      "id": "LM-01-168-CLOCK",
-      "name_zh": "168时钟",
-      "name_en": "168 Clock",
-      "canonical_locator_id": "TC-01-WEEK-BOARD",
-      "geometry_id": "TC-01-WEEK-BOARD",
-      "role_zh": "显示公共时段、状态和归还时刻，而不是商业广告。",
-      "role_en": "Shows civic time, state and return time rather than advertising.",
-      "status": "pending/provisional",
-      "official_or_existing": false,
-      "claim_boundary": "Conceptual honor node; no approved construction or existing landmark asserted."
+      "id": "US-01-SOUTH-GATE",
+      "name_zh": "南门公共服务缝",
+      "name_en": "South public-service seam",
+      "geometry_id": "US-01-SOUTH-GATE",
+      "parent_yard_id": "DY-03-EVERYDAY-DIVIDEND",
+      "key_area_id": "PROV-KEY-003"
     },
     {
-      "id": "LM-02-MODEL-VERSION-COURT",
-      "name_zh": "模型版本院",
-      "name_en": "Model Version Court",
-      "canonical_locator_id": "TC-07-EVIDENCE-CLOCK",
-      "geometry_id": "TC-07-EVIDENCE-CLOCK",
-      "role_zh": "公开模型版本、数据日期、适用限制和复核状态。",
-      "role_en": "Displays model version, data date, limits and review status.",
-      "status": "pending/provisional",
-      "official_or_existing": false,
-      "claim_boundary": "Conceptual honor node; no approved construction or existing landmark asserted."
+      "id": "US-02-CIVIC-CROSSING",
+      "name_zh": "南部日常交叉缝",
+      "name_en": "Everyday civic crossing",
+      "geometry_id": "US-02-CIVIC-CROSSING",
+      "parent_yard_id": "DY-03-EVERYDAY-DIVIDEND",
+      "key_area_id": "PROV-KEY-003"
     },
     {
-      "id": "LM-03-FAILURE-ARCHIVE",
-      "name_zh": "失败档案馆",
-      "name_en": "Failure Archive",
-      "canonical_locator_id": "TC-05-RESET-MARK",
-      "geometry_id": "TC-05-RESET-MARK",
-      "role_zh": "记录及时停止、场地恢复、修正与未解决问题。",
-      "role_en": "Records timely stopping, restoration, correction and unresolved problems.",
-      "status": "pending/provisional",
-      "official_or_existing": false,
-      "claim_boundary": "Conceptual honor node; no approved construction or existing landmark asserted."
+      "id": "US-03-OPEN-SOUTH",
+      "name_zh": "原点南侧开源缝",
+      "name_en": "Open Works south seam",
+      "geometry_id": "US-03-OPEN-SOUTH",
+      "parent_yard_id": "DY-02-OPEN-DIVIDEND",
+      "key_area_id": "PROV-KEY-002"
     },
     {
-      "id": "LM-04-OPEN-SOURCE-DEPARTURE-BOARD",
-      "name_zh": "开源发车板",
-      "name_en": "Open-source Departure Board",
-      "canonical_locator_id": "SCN-12-CITY-MODEL-ROOM",
-      "geometry_id": "SCN-12-CITY-MODEL-ROOM",
-      "role_zh": "记录维护者、贡献者、版本、限制和未解决问题。",
-      "role_en": "Records maintainers, contributors, versions, limits and unresolved problems.",
-      "status": "pending/provisional",
-      "official_or_existing": false,
-      "claim_boundary": "Conceptual honor node; no approved construction or existing landmark asserted."
+      "id": "US-04-ORIGIN-WORKS",
+      "name_zh": "原点工场缝",
+      "name_en": "Origin works seam",
+      "geometry_id": "US-04-ORIGIN-WORKS",
+      "parent_yard_id": "DY-02-OPEN-DIVIDEND",
+      "key_area_id": "PROV-KEY-002"
+    },
+    {
+      "id": "US-05-SAFETY-SOUTH",
+      "name_zh": "安全场南侧缝",
+      "name_en": "Safety Yard south seam",
+      "geometry_id": "US-05-SAFETY-SOUTH",
+      "parent_yard_id": "DY-01-SAFETY-DIVIDEND",
+      "key_area_id": "PROV-KEY-001"
+    },
+    {
+      "id": "US-06-TEST-YARD",
+      "name_zh": "众智测试缝",
+      "name_en": "Controlled test-yard seam",
+      "geometry_id": "US-06-TEST-YARD",
+      "parent_yard_id": "DY-01-SAFETY-DIVIDEND",
+      "key_area_id": "PROV-KEY-001"
+    }
+  ],
+  "offline_ready_components": [
+    {
+      "id": "OC-01-TACTILE-BASELINE",
+      "name_zh": "触觉公共基线牌",
+      "name_en": "Tactile public-baseline board",
+      "geometry_id": "OC-01-TACTILE-BASELINE",
+      "status": "concept_provisional"
+    },
+    {
+      "id": "OC-02-HUMAN-DESK",
+      "name_zh": "有人服务与纸面包",
+      "name_en": "Staffed desk and paper kit",
+      "geometry_id": "OC-02-HUMAN-DESK",
+      "status": "concept_provisional"
+    },
+    {
+      "id": "OC-03-REVERSIBLE-PLUG-RAIL",
+      "name_zh": "可逆插接轨",
+      "name_en": "Reversible plug rail",
+      "geometry_id": "OC-03-REVERSIBLE-PLUG-RAIL",
+      "status": "concept_provisional"
+    },
+    {
+      "id": "OC-04-RAIN-SHADE-BENCH",
+      "name_zh": "雨荫长凳",
+      "name_en": "Rain-and-shade bench",
+      "geometry_id": "OC-04-RAIN-SHADE-BENCH",
+      "status": "concept_provisional"
+    },
+    {
+      "id": "OC-05-OFFGRID-LIGHT",
+      "name_zh": "离线应急灯",
+      "name_en": "Off-grid emergency light",
+      "geometry_id": "OC-05-OFFGRID-LIGHT",
+      "status": "concept_provisional"
+    },
+    {
+      "id": "OC-06-RED-UNPLUG-SWITCH",
+      "name_zh": "红色退场闸",
+      "name_en": "Red unplug switch",
+      "geometry_id": "OC-06-RED-UNPLUG-SWITCH",
+      "status": "concept_provisional"
+    },
+    {
+      "id": "OC-07-DIVIDEND-FRAME",
+      "name_zh": "公共红利档案框",
+      "name_en": "Civic-dividend archive frame",
+      "geometry_id": "OC-07-DIVIDEND-FRAME",
+      "status": "concept_provisional"
     }
   ],
   "personas": [
     {
-      "id": "PER-01-RESEARCHER",
-      "name_zh": "科研人员",
-      "name_en": "Researchers",
-      "scenario_ids": [
-        "SCN-01-SYNTHETIC-DATA-CLINIC",
-        "SCN-02-MODEL-RED-TEAM",
-        "SCN-04-EDGE-ENERGY-SANDBOX",
-        "SCN-09-LAB-TIME-BANK"
-      ],
-      "rights_check_zh": "可预约验证、失败保密期、数据许可和人工责任。",
-      "rights_check_en": "Reservable validation, bounded failure confidentiality, data permission and human accountability.",
-      "status": "design persona",
-      "not_a_user_label": true
+      "id": "PER-01",
+      "name_zh": "研发者与开源维护者",
+      "name_en": "Researchers and open-source maintainers",
+      "status": "design_persona_not_user_label"
     },
     {
-      "id": "PER-02-STARTUP",
-      "name_zh": "初创团队",
-      "name_en": "Start-up Teams",
-      "scenario_ids": [
-        "SCN-05-ENTERPRISE-COPILOT",
-        "SCN-09-LAB-TIME-BANK"
-      ],
-      "rights_check_zh": "合规、采购和算力导航必须可追溯并可转人工。",
-      "rights_check_en": "Compliance, procurement and compute navigation must be traceable and transferable to a human.",
-      "status": "design persona",
-      "not_a_user_label": true
+      "id": "PER-02",
+      "name_zh": "初创与产品团队",
+      "name_en": "Startups and product teams",
+      "status": "design_persona_not_user_label"
     },
     {
-      "id": "PER-03-STUDENT",
-      "name_zh": "学生",
-      "name_en": "Students",
-      "scenario_ids": [
-        "SCN-07-ACCESSIBLE-WAYFINDING",
-        "SCN-08-NIGHT-SCHOOL"
-      ],
-      "rights_check_zh": "低门槛夜校、无手机报名和不建立学习画像。",
-      "rights_check_en": "Low-threshold night school, no-phone enrollment and no learning profile.",
-      "status": "design persona",
-      "not_a_user_label": true
+      "id": "PER-03",
+      "name_zh": "公园使用者与沿线居民",
+      "name_en": "Park users and corridor residents",
+      "status": "design_persona_not_user_label"
     },
     {
-      "id": "PER-04-FAMILY",
-      "name_zh": "带儿童居民",
-      "name_en": "Families with Children",
-      "scenario_ids": [
-        "SCN-06-HEALTH-NAVIGATION",
-        "SCN-08-NIGHT-SCHOOL",
-        "SCN-11-QUIET-STREET"
-      ],
-      "rights_check_zh": "安全、安静、清场和人工帮助不得被活动挤压。",
-      "rights_check_en": "Safety, quiet, clear-out and human help cannot be displaced by events.",
-      "status": "design persona",
-      "not_a_user_label": true
+      "id": "PER-04",
+      "name_zh": "老年与残障使用者",
+      "name_en": "Older and disabled users",
+      "status": "design_persona_not_user_label"
     },
     {
-      "id": "PER-05-FRONTLINE-WORKER",
-      "name_zh": "配送、保洁与维护劳动者",
-      "name_en": "Delivery, Cleaning and Maintenance Workers",
-      "scenario_ids": [
-        "SCN-03-ROBOT-WINDOW",
-        "SCN-04-EDGE-ENERGY-SANDBOX",
-        "SCN-08-NIGHT-SCHOOL",
-        "SCN-09-LAB-TIME-BANK",
-        "SCN-11-QUIET-STREET"
-      ],
-      "rights_check_zh": "休息、排班知情、清晰路权和人工接管不得被自动化削弱。",
-      "rights_check_en": "Rest, schedule notice, clear right of way and human takeover cannot be weakened by automation.",
-      "status": "design persona",
-      "not_a_user_label": true
+      "id": "PER-05",
+      "name_zh": "儿童、青年与照护者",
+      "name_en": "Children, youth, and caregivers",
+      "status": "design_persona_not_user_label"
     },
     {
-      "id": "PER-06-OLDER-DISABLED-VISITOR",
-      "name_zh": "老年与残障访客",
-      "name_en": "Older and Disabled Visitors",
-      "scenario_ids": [
-        "SCN-06-HEALTH-NAVIGATION",
-        "SCN-07-ACCESSIBLE-WAYFINDING",
-        "SCN-12-CITY-MODEL-ROOM"
-      ],
-      "rights_check_zh": "连续无障碍路线、纸面信息、物理停止和人工帮助。",
-      "rights_check_en": "Continuous accessible route, printed information, physical stop and human assistance.",
-      "status": "design persona",
-      "not_a_user_label": true
+      "id": "PER-06",
+      "name_zh": "一线运营与维护劳动者",
+      "name_en": "Frontline operators and maintenance workers",
+      "status": "design_persona_not_user_label"
+    },
+    {
+      "id": "PER-07",
+      "name_zh": "夜间劳动者与骑手",
+      "name_en": "Night workers and delivery riders",
+      "status": "design_persona_not_user_label"
+    },
+    {
+      "id": "PER-08",
+      "name_zh": "国际访客与区域伙伴",
+      "name_en": "International visitors and regional partners",
+      "status": "design_persona_not_user_label"
     }
   ],
-  "registry_disclosure": "Landmarks and personas are design-test registries only. They are not official/existing landmarks, approved construction, demographic labels or eligibility scores.",
-  "zone_partition_contract": {
-    "membership_counts": {
-      "TZ-01-CITY-LOUNGE": 9,
-      "TZ-02-KNOWLEDGE-TRANSFER": 9,
-      "TZ-03-MODEL-VALIDATION": 6
+  "landmarks": [
+    {
+      "id": "LM-01-RED-SWITCH",
+      "name_zh": "红色退场闸",
+      "name_en": "Red Unplug Switch",
+      "geometry_id": "OC-06-RED-UNPLUG-SWITCH",
+      "status": "pending_provisional",
+      "official_or_existing": false
     },
-    "coverage_target": "union(TZ-01,TZ-02,TZ-03) covers provisional SITE-001 within declared native and densified-projection tolerances",
-    "overlap_target": "pairwise polygon intersection area is no greater than the declared topology tolerance",
-    "validation_receipt": {
-      "wgs84_native_symmetric_difference_degrees_squared": 1.3039055783443249e-16,
-      "wgs84_native_tolerance_degrees_squared": 1e-14,
-      "projected_crs": "EPSG:4548",
-      "densification_step_degrees": 1e-5,
-      "densified_projected_symmetric_difference_sqm": 0.0,
-      "densified_projected_tolerance_sqm": 1.0,
-      "pairwise_overlap_sqm": 0.0,
-      "vertex_only_projected_chord_diagnostic_symmetric_difference_sqm": 72.29491023613446,
-      "vertex_only_projected_chord_diagnostic_ratio": 6.334532229647465e-6,
-      "vertex_only_diagnostic_note": "The non-densified number is retained as a transparent CRS chord diagnostic: split points on SITE edges add vertices, so a nonlinear projection draws a different straight chord than the unsplit SITE ring. Topology acceptance uses the densified transform above; this diagnostic is not reported as zero."
+    {
+      "id": "LM-02-OPEN-PARTS-LIBRARY",
+      "name_zh": "开源零件墙",
+      "name_en": "Open Parts Library",
+      "geometry_id": "US-04-ORIGIN-WORKS",
+      "status": "pending_provisional",
+      "official_or_existing": false
     },
-    "claim_boundary": "provisional design locator partition; not official zoning or redline"
-  }
+    {
+      "id": "LM-03-CITY-ON-PORCH",
+      "name_zh": "常在廊",
+      "name_en": "City On Porch",
+      "geometry_id": "US-01-SOUTH-GATE",
+      "status": "pending_provisional",
+      "official_or_existing": false
+    },
+    {
+      "id": "LM-04-FIRST-RAIL",
+      "name_zh": "第一轨记忆带",
+      "name_en": "First Rail Memory Strip",
+      "geometry_id": "OC-07-DIVIDEND-FRAME",
+      "status": "pending_heritage_review",
+      "official_or_existing": false
+    }
+  ],
+  "topology_note": "All locators are provisional design geometry. Official polygons, controls, ownership, heritage and field surveys override them."
 }

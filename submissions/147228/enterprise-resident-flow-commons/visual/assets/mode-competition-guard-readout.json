@@ -1,0 +1,151 @@
+{
+  "screen_id": "MOB-MODE-COMPETITION-001",
+  "status": "MODE_COMPETITION_GUARD_PASS",
+  "check_count": 14,
+  "checks": {
+    "required_groups_present": true,
+    "mode_set_keeps_public_backbone": true,
+    "hard_guard_schema_complete": true,
+    "four_scenarios_present": true,
+    "scenario_ids_unique_and_exact": true,
+    "managed_feeder_passes": true,
+    "unmanaged_feeder_fails_closed": true,
+    "unmanaged_feeder_declares_cause": true,
+    "air_candidate_blocked_with_zero_agents": true,
+    "no_field_or_authorization_claim": true,
+    "no_satisfaction_claim": true,
+    "supplemental_scope_declared": true,
+    "negative_fixtures_present": true,
+    "identity_negative_fixtures_detected": true
+  },
+  "scenario_checks": [
+    {
+      "id": "O0",
+      "name_zh": "轨道公交优先基线",
+      "name_en": "Rail-bus-first reference",
+      "checks": {
+        "feeder_cap": true,
+        "transit_displacement": true,
+        "vehicle_km": true,
+        "worst_group_access": true,
+        "air_gate": true,
+        "public_transport_priority": true
+      },
+      "computed_status": "PASS",
+      "declared_status": "PASS",
+      "release": "REFERENCE"
+    },
+    {
+      "id": "O1",
+      "name_zh": "封顶式接驳",
+      "name_en": "Managed capped feeder",
+      "checks": {
+        "feeder_cap": true,
+        "transit_displacement": true,
+        "vehicle_km": true,
+        "worst_group_access": true,
+        "air_gate": true,
+        "public_transport_priority": true
+      },
+      "computed_status": "PASS",
+      "declared_status": "PASS",
+      "release": "CONDITIONAL_REVIEW"
+    },
+    {
+      "id": "O2",
+      "name_zh": "无封顶接驳扩张",
+      "name_en": "Unmanaged feeder expansion",
+      "checks": {
+        "feeder_cap": false,
+        "transit_displacement": false,
+        "vehicle_km": false,
+        "worst_group_access": false,
+        "air_gate": true,
+        "public_transport_priority": true
+      },
+      "computed_status": "BLOCKED",
+      "declared_status": "BLOCKED",
+      "release": "BLOCKED"
+    },
+    {
+      "id": "O3",
+      "name_zh": "地面优先的空中候选",
+      "name_en": "Ground-first air candidate",
+      "checks": {
+        "feeder_cap": true,
+        "transit_displacement": true,
+        "vehicle_km": true,
+        "worst_group_access": true,
+        "air_gate": false,
+        "public_transport_priority": true
+      },
+      "computed_status": "BLOCKED",
+      "declared_status": "BLOCKED",
+      "release": "BLOCKED"
+    }
+  ],
+  "scenario_identity_errors": [],
+  "negative_fixture_results": [
+    {
+      "id": "NEG-01",
+      "mutation": "missing_guard",
+      "expected_error": "vehicle_km_guard_missing",
+      "detected": true
+    },
+    {
+      "id": "NEG-02",
+      "mutation": "missing_guard",
+      "expected_error": "transit_displacement_guard_missing",
+      "detected": true
+    },
+    {
+      "id": "NEG-03",
+      "mutation": "missing_guard",
+      "expected_error": "feeder_cap_missing",
+      "detected": true
+    },
+    {
+      "id": "NEG-04",
+      "mutation": "missing_guard",
+      "expected_error": "air_gate_missing",
+      "detected": true
+    },
+    {
+      "id": "NEG-05",
+      "mutation": "duplicate_id",
+      "expected_error": "scenario_id_duplicate",
+      "detected": true
+    },
+    {
+      "id": "NEG-06",
+      "mutation": "missing_o0",
+      "expected_error": "scenario_id_set_mismatch",
+      "detected": true
+    },
+    {
+      "id": "NEG-07",
+      "mutation": "unknown_id",
+      "expected_error": "scenario_id_unknown",
+      "detected": true
+    }
+  ],
+  "summary": {
+    "synthetic_population_reference": 3122000,
+    "group_count": 5,
+    "scenario_count": 4,
+    "managed_feeder": "PASS",
+    "unmanaged_feeder": "BLOCKED",
+    "air_candidate": "BLOCKED_GROUND_FALLBACK",
+    "field_measurements": 0,
+    "operating_authorizations": 0,
+    "satisfaction_measurements": 0
+  },
+  "review_scope": {
+    "classification": "supplemental_package_screen",
+    "formal_self_check_integration": "not_a_blocking_validator_gate",
+    "required_review": "read alongside formal self_check and trusted content review",
+    "promotion_rule": "the screen cannot promote a package, assign a score or update the public gallery"
+  },
+  "interpretation_zh": "这是共享接驳模式竞争的合成反事实护栏回放，不是海淀客流、车公里、满意度或运营结果。",
+  "interpretation_en": "This is a synthetic counterfactual guard replay for feeder-mode competition, not a Haidian ridership, vehicle-kilometre, satisfaction or operating result."
+}

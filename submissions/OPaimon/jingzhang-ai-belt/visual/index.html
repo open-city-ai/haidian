@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张智带 · 城市设计方案证据仪表板</title>
+<style>
+:root {
+  --ink: #1a2233; --sub: #5a6478; --line: #dfe4ec; --bg: #f6f8fb;
+  --blue: #2e6fb7; --green: #1a8a5a; --red: #c0392b; --gold: #b7950b;
+  --card: #ffffff; --accent-bg: #eef3fa;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Frex Sans GB", "Droid Sans Fallback", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; padding: 24px; }
+.wrap { max-width: 1200px; margin: 0 auto; }
+header { background: linear-gradient(135deg, #16283f 0%, #24466b 100%); color: #fff; border-radius: 12px; padding: 28px 32px; margin-bottom: 20px; }
+header h1 { font-size: 26px; letter-spacing: 1px; }
+header .en { font-size: 14px; opacity: .85; margin-top: 4px; }
+header .status { display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); padding: 3px 12px; border-radius: 20px; font-size: 12px; margin-top: 10px; }
+.badge { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; margin: 2px 4px 2px 0; }
+.badge.prov { background: #fdecea; color: var(--red); border: 1px solid #f5c6c2; }
+.badge.ok { background: #e7f6ee; color: var(--green); border: 1px solid #bfe6d2; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; margin-bottom: 20px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; }
+.card h2 { font-size: 15px; color: var(--blue); border-bottom: 2px solid var(--accent-bg); padding-bottom: 8px; margin-bottom: 12px; }
+.card h3 { font-size: 13px; margin: 10px 0 6px; color: var(--ink); }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.kpi { background: var(--accent-bg); border-radius: 8px; padding: 12px; text-align: center; }
+.kpi .label { font-size: 12px; color: var(--sub); }
+.kpi .value { font-size: 18px; font-weight: 700; color: var(--ink); }
+.kpi .unit { font-size: 11px; color: var(--sub); }
+ul.tight { margin-left: 18px; font-size: 13px; }
+ul.tight li { margin: 4px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 8px; }
+th, td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; }
+th { background: var(--accent-bg); font-weight: 600; }
+.note { font-size: 12px; color: var(--sub); margin-top: 8px; border-top: 1px dashed var(--line); padding-top: 8px; }
+.mapbox { background: #eef1f5; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.mapbox img { width: 100%; display: block; }
+footer { text-align: center; color: var(--sub); font-size: 12px; padding: 16px 0 8px; }
+.tag { font-size: 11px; color: var(--sub); background: #eef1f5; padding: 1px 8px; border-radius: 10px; }
+</style>
+<!-- v3 20260811 -->
+</head>
+<body data-version="v4np-202608110810">
+<div class="wrap">
+
+<header>
+  <h1>京张智带 · 城市设计概念方案证据仪表板</h1>
+  <div class="en">Jing-Zhang AI Belt · Urban Design Proposal Evidence Dashboard</div>
+  <div>
+    <span class="status">提交包状态：SCAFFOLD → READY_FOR_REVIEW（自检通过后更新）</span>
+    <span class="badge prov">临时边界 provisional</span>
+    <span class="badge ok">双语交付 bilingual v1</span>
+  </div>
+</header>
+
+<!-- 总览地图 -->
+<div class="grid">
+  <div class="card" style="grid-column: 1 / -1;">
+    <h2>总览地图 · 总体概念与证据链</h2>
+    <div class="mapbox">
+      <img src="../assets/figures/site-overview.png" alt="总体范围与证据链总览图">
+    </div>
+    <div class="note">来源：提交 GeoJSON（临时边界 provisional，正式数据发布后复算）· 设计概念示意，非官方红线。</div>
+  </div>
+</div>
+
+<div class="grid">
+  <!-- 三层范围 -->
+  <div class="card">
+    <h2>三层范围工作框架</h2>
+    <table>
+      <tr><th>层级</th><th>面积</th><th>边界状态</th></tr>
+      <tr><td>统筹研究范围</td><td>约 43.6 km²</td><td><span class="tag">provisional</span></td></tr>
+      <tr><td>总体设计范围</td><td><span data-metric="site_area_sqm" data-value="11412825.4">约 11.41 km²</span></td><td><span class="tag">provisional</span></td></tr>
+      <tr><td>重点区域范围</td><td><span data-metric="key_area_area_sqm" data-value="3692893">约 3.69 km²</span></td><td><span class="tag">provisional</span></td></tr>
+    </table>
+    <div class="note">公告文字四至与约面积 · 精确 polygon 待官方发布。</div>
+  </div>
+
+  <!-- 核心指标 -->
+  <div class="card">
+    <h2>核心指标复算</h2>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="label">绿地比例</div><div class="value"><span data-metric="green_ratio" data-value="0.2095">20.95%</span></div><div class="unit">green_ratio</div></div>
+      <div class="kpi"><div class="label">公共空间比例</div><div class="value"><span data-metric="public_space_ratio" data-value="0.1732">17.3%</span></div><div class="unit">public_space_ratio</div></div>
+      <div class="kpi"><div class="label">建筑基底面积</div><div class="value"><span data-metric="building_footprint_area_sqm" data-value="1342854.6">1.34 km²</span></div><div class="unit">building_footprint</div></div>
+      <div class="kpi"><div class="label">科研用地</div><div class="value"><span data-metric="land_use_research_sqm" data-value="3585286.8">3.59 km²</span></div><div class="unit">land_use_research</div></div>
+      <div class="kpi"><div class="label">商业服务用地</div><div class="value"><span data-metric="land_use_commercial_sqm" data-value="3415050.6">3.42 km²</span></div><div class="unit">land_use_commercial</div></div>
+      <div class="kpi"><div class="label">概念路网长度</div><div class="value"><span data-metric="road_length_m" data-value="12757.4">12.76 km</span></div><div class="unit">road_length</div></div>
+    </div>
+    <div class="note">全部 known 指标由 geometry/*.geojson 在 EPSG:4548 投影下复算，详见 metrics.json。容积率/建筑密度为 unknown，待官方控规补齐。</div>
+  </div>
+</div>
+
+<div class="grid">
+  <!-- 重点区域 -->
+  <div class="card">
+    <h2>重点区域 · 三核</h2>
+    <table>
+      <tr><th>重点区</th><th>定位</th><th>面积(约)</th></tr>
+      <tr><td>众智园AI自主创新加速区</td><td>花园型全栈自主创新街区</td><td>1.93 km²</td></tr>
+      <tr><td>北京AI原点社区</td><td>近校型成果转化与人才社区</td><td>1.04 km²</td></tr>
+      <tr><td>大钟寺AI产业聚集区</td><td>城市型智能经济与国际交往街区</td><td>0.72 km²</td></tr>
+    </table>
+    <div class="mapbox" style="margin-top:10px;">
+      <img src="../assets/figures/key-areas.png" alt="三处重点区域索引图">
+    </div>
+  </div>
+
+  <!-- 用地分区 -->
+  <div class="card">
+    <h2>用地分区 · 22 个概念地块</h2>
+    <ul class="tight">
+      <li><strong>科研/教育用地（0802/0804）</strong>：众智园研发加速、原点社区转化、科研创新带等</li>
+      <li><strong>商业服务用地（05）</strong>：大钟寺产业集聚与智能消费、门户服务等</li>
+      <li><strong>居住/社区服务（0701/0702）</strong>：原点人才居住、更新提升居住等</li>
+      <li><strong>绿地与开敞空间（1401/1402/1403）</strong>：遗址公园三带 + 站前广场</li>
+      <li><strong>道路用地（1207）</strong>：南部门户道路与交通用地</li>
+    </ul>
+    <div class="mapbox" style="margin-top:10px;">
+      <img src="../assets/figures/land-use-structure.png" alt="用地结构概念图">
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+  <!-- 交通慢行 + 蓝绿 -->
+  <div class="card" style="grid-column: 1 / -1;">
+    <h2>交通慢行与蓝绿公共空间复合系统</h2>
+    <div class="mapbox">
+      <img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间系统图">
+    </div>
+    <div class="note">概念路网 12.76 km · 绿地系统 2.39 km² · 公共空间 1.98 km² · 清河为概念定位（待正式蓝线）。</div>
+  </div>
+</div>
+
+<div class="grid">
+  <!-- AI 场景 -->
+  <div class="card">
+    <h2>AI 场景卡（10+）与用户画像（5 类）</h2>
+    <ul class="tight">
+      <li>开源发布厅（原点社区）· 安全治理沙盒（众智园）· 端侧算力驿站</li>
+      <li>AI 慢行导航（遗址公园带）· 大钟寺国际路演客厅 · 清河低碳创新廊</li>
+      <li>近校成果转化街 · 数据要素会客厅 · AI 生活服务样板街 · 全球AI活动周路线</li>
+      <li>用户画像：开源开发者 / 初创团队 / 头部企业访客 / 周边居民 / 高校师生</li>
+    </ul>
+    <h3>AI 朝圣地标（3 个概念方向）</h3>
+    <ul class="tight">
+      <li>众智园：自主创新与安全治理展示节点</li>
+      <li>原点社区：开源协作与成果发布客厅</li>
+      <li>大钟寺：国际路演与智能消费客厅</li>
+    </ul>
+  </div>
+
+  <!-- 更新项目 + 分期 -->
+  <div class="card">
+    <h2>更新项目清单与分期计划</h2>
+    <table>
+      <tr><th>编号</th><th>项目</th><th>分期</th></tr>
+      <tr><td>JZ-01</td><td>遗址公园慢行断点缝合</td><td>近期</td></tr>
+      <tr><td>JZ-02</td><td>众智园清河创新界面</td><td>近期</td></tr>
+      <tr><td>JZ-03</td><td>原点社区近校成果转化街</td><td>中期</td></tr>
+      <tr><td>JZ-04</td><td>大钟寺站四象限步行连通</td><td>中期</td></tr>
+      <tr><td>JZ-05</td><td>AI 公共服务与端侧算力节点</td><td>中期</td></tr>
+      <tr><td>JZ-06</td><td>全球AI活动周公共路线</td><td>长期</td></tr>
+    </table>
+    <div class="note">分期面积：近期 <span data-metric="phasing_phase1_area_sqm" data-value="2972438.8">2.97 km²</span> · 中期 <span data-metric="phasing_phase2_area_sqm" data-value="495595.7">0.50 km²</span> · 长期 <span data-metric="phasing_phase3_area_sqm" data-value="2073839.7">2.06 km²</span></div>
+  </div>
+</div>
+
+<div class="grid">
+  <!-- 任务覆盖 + 自检 -->
+  <div class="card">
+    <h2>任务覆盖</h2>
+    <ul class="tight">
+      <li>公告 1.3/1.4/1.5 全部任务 → compliance_matrix.json 23 项</li>
+      <li>agent.1—agent.6 全部任务 → compliance_matrix.json + 正文各章节</li>
+      <li>专业标准 6 项 → standard_matrix.json</li>
+      <li>设计深度 15 项 → design_depth_matrix.json</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>自检状态与证据</h2>
+    <ul class="tight">
+      <li>确定性校验：等待 finalize + self-check 全绿</li>
+      <li>空间复核：land_use 零重叠、全覆盖（EPSG:4548 验证）</li>
+      <li>视觉包装：本页离线、无远程资源</li>
+      <li>专业证据：双语 proposal + 证据锚点 + 指标可复算</li>
+    </ul>
+    <div class="note">来源登记：data/source_registry.json · 假设登记：assumptions.json · 版权：COMMUNITY-DISPLAY-ONLY</div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card" style="grid-column: 1 / -1;">
+    <h2>核心指标证据链</h2>
+    <div class="mapbox">
+      <img src="../assets/figures/metrics-evidence.png" alt="核心指标复算证据链图">
+    </div>
+  </div>
+</div>
+
+<footer>
+  京张智带 · Jing-Zhang AI Belt · 提交包 <code>submissions/OPaimon/jingzhang-ai-belt</code> · 概念建议，非官方红线 · 临时边界，正式数据补齐后复算
+</footer>
+
+</div>
+</body>
+</html>

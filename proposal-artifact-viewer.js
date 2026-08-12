@@ -13,6 +13,8 @@
   function fileKind(path) {
     const lower = path.toLowerCase();
     if (/\.(?:png|jpe?g|webp|gif|svg)$/.test(lower)) return 'image';
+    if (/\.(?:mp4|webm)$/.test(lower)) return 'video';
+    if (/\.(?:mp3|m4a|ogg)$/.test(lower)) return 'audio';
     if (lower.endsWith('.geojson')) return 'geojson';
     if (lower.endsWith('.json')) return 'json';
     if (/\.(?:csv|tsv)$/.test(lower)) return 'table';
@@ -21,6 +23,22 @@
     if (/\.(?:html?|xhtml)$/.test(lower)) return 'html';
     if (/\.(?:txt|log|yml|yaml)$/.test(lower)) return 'text';
     return 'unknown';
+  }
+
+  function mediaMime(path) {
+    const extension = String(path).toLowerCase().split('.').pop();
+    return ({mp4:'video/mp4', webm:'video/webm', mp3:'audio/mpeg', m4a:'audio/mp4', ogg:'audio/ogg'})[extension] || '';
+  }
+
+  function safeMediaReference(value) {
+    if (typeof value !== 'string' || !value || value.includes('\\')) return '';
+    const parts = value.split('/');
+    return parts.every(part => part && part !== '.' && part !== '..') ? value : '';
+  }
+
+  function mediaLink(path) {
+    const safe = safeMediaReference(path);
+    return safe ? config.url(safe) : '';
   }
 
   function hash(value) {
@@ -48,6 +66,13 @@
     const kind = fileKind(path);
     const url = config.url(path);
     if (kind === 'image') return `<img src="${escapeHTML(url)}" alt="" loading="lazy" decoding="async">`;
+    if (kind === 'video') {
+      const poster = mediaLink(item.poster);
+      return poster
+        ? `<img src="${escapeHTML(poster)}" alt="" loading="lazy" decoding="async"><span class="preview-media-badge">VIDEO</span>`
+        : '<div class="preview-video"><span>VIDEO</span></div>';
+    }
+    if (kind === 'audio') return '<div class="preview-audio"><span>AUDIO</span><i></i><i></i><i></i><i></i></div>';
     if (kind === 'geojson') return '<div class="preview-grid"><span class="preview-caption">点击后绘制空间图层</span></div>';
     if (kind === 'json' || kind === 'table') return `<div class="preview-data">${dataPattern(path)}<span class="preview-caption">点击后读取结构化内容</span></div>`;
     if (kind === 'markdown' || kind === 'text') return '<div class="preview-document"><span></span><span></span><span></span><span></span><span></span><span class="preview-caption">点击后渲染文档</span></div>';
@@ -339,6 +364,19 @@
     const kind = fileKind(path);
     const url = config.url(path);
     if (kind === 'image') { body.innerHTML = `<div class="artifact-render image"><img src="${escapeHTML(url)}" alt="${escapeHTML(config.label(path))}"></div>`; return; }
+    if (kind === 'video') {
+      const poster = mediaLink(item.poster);
+      const caption = mediaLink(item.caption);
+      const transcript = mediaLink(item.transcript);
+      const language = item.language === 'en' ? 'en' : 'zh';
+      body.innerHTML = `<div class="artifact-render artifact-media"><video controls playsinline preload="metadata"${poster ? ` poster="${escapeHTML(poster)}"` : ''}><source src="${escapeHTML(url)}" type="${mediaMime(path)}">${caption ? `<track kind="captions" srclang="${language}" label="${language === 'zh' ? '中文字幕' : 'English captions'}" src="${escapeHTML(caption)}" default>` : ''}</video><div class="artifact-media-copy"><h2>${escapeHTML(item.title_zh || item.title_en || config.label(path))}</h2><p>${escapeHTML(item.description_zh || item.description_en || '')}</p>${transcript ? `<a href="${escapeHTML(transcript)}" target="_blank" rel="noopener">阅读文字稿 ↗</a>` : ''}</div></div>`;
+      return;
+    }
+    if (kind === 'audio') {
+      const transcript = mediaLink(item.transcript);
+      body.innerHTML = `<div class="artifact-render artifact-media audio"><div class="artifact-media-copy"><span class="artifact-media-kicker">AUDIO · MUSIC · SOUND</span><h2>${escapeHTML(item.title_zh || item.title_en || config.label(path))}</h2><p>${escapeHTML(item.description_zh || item.description_en || '')}</p><audio controls preload="metadata"><source src="${escapeHTML(url)}" type="${mediaMime(path)}"></audio>${transcript ? `<a href="${escapeHTML(transcript)}" target="_blank" rel="noopener">阅读文字稿与授权说明 ↗</a>` : ''}</div></div>`;
+      return;
+    }
     if (kind === 'pdf') { body.innerHTML = `<iframe class="artifact-frame" src="${escapeHTML(url)}#view=FitH&pagemode=none" title="${escapeHTML(config.label(path))}"></iframe>`; return; }
     if (kind === 'html') { body.innerHTML = `<div class="artifact-render"><div class="artifact-sandbox-note">站内预览运行在隔离沙箱中；需要完整交互或下载时，可使用右上角“打开原文件”</div><iframe class="artifact-frame" src="${escapeHTML(url)}" sandbox="allow-scripts allow-forms allow-modals allow-popups" referrerpolicy="no-referrer" title="${escapeHTML(config.label(path))}"></iframe></div>`; return; }
     if (kind === 'geojson') { body.innerHTML = renderGeoJSON(await readJSON(path)); return; }

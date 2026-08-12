@@ -1,0 +1,259 @@
+{
+  "schema_version": "0.1.0",
+  "model_version": "1.1",
+  "analysis_id": "COMMUTE-TIME-BUDGET-SUFFICIENCY-1000",
+  "status": "synthetic_aggregate_only",
+  "population_reference": 3122000,
+  "population_coverage_ratio": 1,
+  "time_budgets_minutes": [
+    30,
+    40,
+    50,
+    60,
+    75
+  ],
+  "definition": "A group is counted within a budget only when its deterministic synthetic travel time is below the budget upper bound; the 75-minute-plus tail is outside the displayed comparison.",
+  "candidate_policy_id": "C3_commute_co_benefit",
+  "reference_policy_id": "B0_inertial_baseline",
+  "protected_groups": [
+    "resident_worker",
+    "carer_or_child",
+    "night_worker"
+  ],
+  "scenarios": [
+    {
+      "policy_id": "C3_commute_co_benefit",
+      "label_zh": "C3 通勤共益组合",
+      "label_en": "C3 commute co-benefit bundle",
+      "agents_processed_first_pass": 3122000,
+      "agents_processed_second_pass": 3122000,
+      "total_agents": 3122000,
+      "hard_gate_pass": true,
+      "group_rows": [
+        {
+          "id": "enterprise_employee",
+          "label_zh": "企业员工",
+          "label_en": "enterprise employees",
+          "agents": 1092700,
+          "time_budget_sufficiency_proxy": {
+            "30": 0.0024,
+            "40": 0.2276,
+            "50": 0.8253,
+            "60": 1,
+            "75": 1
+          }
+        },
+        {
+          "id": "resident_worker",
+          "label_zh": "居民工作者",
+          "label_en": "resident workers",
+          "agents": 936600,
+          "time_budget_sufficiency_proxy": {
+            "30": 0,
+            "40": 0.2209,
+            "50": 0.8003,
+            "60": 1,
+            "75": 1
+          }
+        },
+        {
+          "id": "carer_or_child",
+          "label_zh": "照护者/儿童",
+          "label_en": "carers / children",
+          "agents": 468300,
+          "time_budget_sufficiency_proxy": {
+            "30": 0,
+            "40": 0.0647,
+            "50": 0.873,
+            "60": 1,
+            "75": 1
+          }
+        },
+        {
+          "id": "visitor_service",
+          "label_zh": "访客/服务人员",
+          "label_en": "visitors / service users",
+          "agents": 312200,
+          "time_budget_sufficiency_proxy": {
+            "30": 0,
+            "40": 0.2023,
+            "50": 0.7654,
+            "60": 1,
+            "75": 1
+          }
+        },
+        {
+          "id": "logistics_and_maintenance",
+          "label_zh": "物流/维护",
+          "label_en": "logistics / maintenance",
+          "agents": 156100,
+          "time_budget_sufficiency_proxy": {
+            "30": 0,
+            "40": 0.5526,
+            "50": 0.946,
+            "60": 1,
+            "75": 1
+          }
+        },
+        {
+          "id": "night_worker",
+          "label_zh": "夜班工作者",
+          "label_en": "night workers",
+          "agents": 156100,
+          "time_budget_sufficiency_proxy": {
+            "30": 0,
+            "40": 0.1808,
+            "50": 0.7838,
+            "60": 1,
+            "75": 1
+          }
+        }
+      ],
+      "overall_sufficiency_proxy": {
+        "30": 0.0008,
+        "40": 0.2125,
+        "50": 0.8229,
+        "60": 1,
+        "75": 1
+      },
+      "protected_minimum_sufficiency_proxy": {
+        "30": 0,
+        "40": 0.0647,
+        "50": 0.7838,
+        "60": 1,
+        "75": 1
+      },
+      "group_gap_proxy": {
+        "30": 0.0024,
+        "40": 0.4879,
+        "50": 0.1806,
+        "60": 0,
+        "75": 0
+      },
+      "interpretation": "Exact deterministic synthetic time-budget sufficiency proxy; not observed accessibility or field performance."
+    },
+    {
+      "policy_id": "B0_inertial_baseline",
+      "label_zh": "B0 惯性基线",
+      "label_en": "B0 inertial baseline",
+      "agents_processed_first_pass": 3122000,
+      "agents_processed_second_pass": 3122000,
+      "total_agents": 3122000,
+      "hard_gate_pass": false,
+      "group_rows": [
+        {
+          "id": "enterprise_employee",
+          "label_zh": "企业员工",
+          "label_en": "enterprise employees",
+          "agents": 1092700,
+          "time_budget_sufficiency_proxy": {
+            "30": 0,
+            "40": 0.1625,
+            "50": 0.8524,
+            "60": 1,
+            "75": 1
+          }
+        },
+        {
+          "id": "resident_worker",
+          "label_zh": "居民工作者",
+          "label_en": "resident workers",
+          "agents": 936600,
+          "time_budget_sufficiency_proxy": {
+            "30": 0,
+            "40": 0.1839,
+            "50": 0.8352,
+            "60": 1,
+            "75": 1
+          }
+        },
+        {
+          "id": "carer_or_child",
+          "label_zh": "照护者/儿童",
+          "label_en": "carers / children",
+          "agents": 468300,
+          "time_budget_sufficiency_proxy": {
+            "30": 0,
+            "40": 0.1015,
+            "50": 0.8196,
+            "60": 1,
+            "75": 1
+          }
+        },
+        {
+          "id": "visitor_service",
+          "label_zh": "访客/服务人员",
+          "label_en": "visitors / service users",
+          "agents": 312200,
+          "time_budget_sufficiency_proxy": {
+            "30": 0,
+            "40": 0.1988,
+            "50": 0.7966,
+            "60": 1,
+            "75": 1
+          }
+        },
+        {
+          "id": "logistics_and_maintenance",
+          "label_zh": "物流/维护",
+          "label_en": "logistics / maintenance",
+          "agents": 156100,
+          "time_budget_sufficiency_proxy": {
+            "30": 0,
+            "40": 0.0488,
+            "50": 0.9451,
+            "60": 1,
+            "75": 1
+          }
+        },
+        {
+          "id": "night_worker",
+          "label_zh": "夜班工作者",
+          "label_en": "night workers",
+          "agents": 156100,
+          "time_budget_sufficiency_proxy": {
+            "30": 0,
+            "40": 0.119,
+            "50": 0.7102,
+            "60": 1,
+            "75": 1
+          }
+        }
+      ],
+      "overall_sufficiency_proxy": {
+        "30": 0,
+        "40": 0.1555,
+        "50": 0.8343,
+        "60": 1,
+        "75": 1
+      },
+      "protected_minimum_sufficiency_proxy": {
+        "30": 0,
+        "40": 0.1015,
+        "50": 0.7102,
+        "60": 1,
+        "75": 1
+      },
+      "group_gap_proxy": {
+        "30": 0,
+        "40": 0.15,
+        "50": 0.2349,
+        "60": 0,
+        "75": 0
+      },
+      "interpretation": "Exact deterministic synthetic time-budget sufficiency proxy; not observed accessibility or field performance."
+    }
+  ],
+  "checks": {
+    "scenarios_complete": true,
+    "all_agents_processed": true,
+    "group_rows_complete": true,
+    "all_values_bounded_0_to_1": true,
+    "protected_groups_explicit": true,
+    "aggregate_only": true,
+    "synthetic_not_observed": true,
+    "no_local_accessibility_claim": true,
+    "no_optimal_time_budget_claim": true
+  },
+  "source_boundary": "The time-budget curve is derived from the committed synthetic runner. Dated local OD, schedule, route, accessibility and resident evidence remain required before any local decision."
+}

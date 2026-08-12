@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>百年京张·未来继承人计划</title>
+  <style>
+    :root { --paper:#f7f7f3; --white:#fff; --carbon:#20211f; --ink:#30312e; --muted:#71736b; --line:#d9dad3; --red:#c83b32; --green:#2f7653; --yellow:#d8b13f; --cyan:#347487; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; background:var(--paper); }
+    body { margin:0; color:var(--ink); background:var(--paper); font-family:"Noto Sans CJK SC","Source Han Sans SC","Microsoft YaHei",sans-serif; line-height:1.65; letter-spacing:0; }
+    a { color:inherit; }
+    .skip { position:absolute; left:-9999px; top:0; background:var(--yellow); padding:.6rem 1rem; z-index:10; }
+    .skip:focus { left:1rem; }
+    header { min-height:86vh; border-top:12px solid var(--red); display:grid; grid-template-columns:minmax(0,1.45fr) minmax(320px,.55fr); border-bottom:1px solid var(--carbon); }
+    .hero-main { padding:clamp(2rem,6vw,7rem); display:flex; flex-direction:column; justify-content:space-between; min-width:0; }
+    .eyebrow { color:var(--red); font-size:.76rem; font-weight:800; text-transform:uppercase; }
+    h1 { margin:.75rem 0 1.2rem; max-width:12ch; font-family:"Noto Serif CJK SC","Source Han Serif SC",serif; font-size:5.4rem; line-height:1.02; letter-spacing:0; overflow-wrap:anywhere; }
+    .claim { max-width:36ch; margin:0; font-size:1.65rem; font-weight:700; }
+    .brand-lockup { display:flex; align-items:center; gap:1rem; margin-bottom:1.4rem; }
+    .brand-mark { width:3.3rem; height:3.3rem; flex:0 0 3.3rem; display:grid; place-items:center; border:4px solid var(--carbon); border-bottom-color:var(--red); font-family:"Noto Serif CJK SC","Source Han Serif SC",serif; font-weight:900; font-size:1.45rem; }
+    .working-name { color:var(--muted); font-size:.72rem; line-height:1.4; }
+    .hero-note { max-width:72ch; color:var(--muted); font-size:.88rem; }
+    .hero-rail { background:var(--carbon); color:var(--white); padding:clamp(2rem,4vw,4rem); display:grid; align-content:center; gap:2rem; }
+    .hero-rail strong { display:block; color:var(--yellow); font-size:3.2rem; line-height:1; }
+    .hero-rail span { display:block; margin-top:.55rem; color:#d9dad3; font-size:.82rem; }
+    nav { position:sticky; top:0; z-index:5; display:flex; gap:1rem; overflow:auto; padding:.65rem clamp(1rem,4vw,4rem); background:rgba(247,247,243,.96); border-bottom:1px solid var(--line); white-space:nowrap; }
+    nav a { text-decoration:none; font-size:.78rem; font-weight:700; }
+    main section { border-bottom:1px solid var(--line); }
+    .band { display:grid; grid-template-columns:minmax(180px,.28fr) minmax(0,.72fr); max-width:1500px; margin:auto; padding:clamp(2.5rem,6vw,6rem) clamp(1rem,4vw,4rem); gap:clamp(2rem,6vw,7rem); }
+    .section-head { position:relative; }
+    .section-head::before { content:""; display:block; width:2.5rem; height:.45rem; background:var(--red); margin-bottom:1.1rem; }
+    h2 { margin:0; font-family:"Noto Serif CJK SC","Source Han Serif SC",serif; font-size:2.6rem; line-height:1.15; letter-spacing:0; }
+    h3 { margin:0 0 .6rem; font-size:1rem; letter-spacing:0; }
+    p { margin:.4rem 0 1rem; }
+    .lead { font-size:1.15rem; max-width:62ch; }
+    .figure { margin:0 0 2.5rem; }
+    .figure img { display:block; width:100%; height:auto; border:1px solid var(--carbon); }
+    figcaption { display:flex; justify-content:space-between; gap:1rem; padding:.65rem 0; color:var(--muted); font-size:.72rem; border-bottom:1px solid var(--line); }
+    .metric-strip { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border-top:1px solid var(--carbon); border-left:1px solid var(--carbon); }
+    .metric { min-height:9rem; padding:1.25rem; background:var(--white); border-right:1px solid var(--carbon); border-bottom:1px solid var(--carbon); }
+    .metric b { display:block; font-size:2.45rem; line-height:1.1; color:var(--carbon); overflow-wrap:anywhere; }
+    .metric span { display:block; margin-top:.55rem; color:var(--muted); font-size:.78rem; }
+    .three { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--carbon); border:1px solid var(--carbon); }
+    .station { background:var(--white); padding:1.4rem; min-height:17rem; }
+    .station .num { color:var(--red); font-weight:800; font-size:.75rem; }
+    .station ul, .scenario-grid ul { padding-left:1.1rem; margin:.8rem 0 0; font-size:.82rem; }
+    .scenario-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; border:1px solid var(--carbon); background:var(--carbon); }
+    .scenario-grid article { background:var(--paper); padding:1rem; min-height:8rem; }
+    .scenario-grid article:nth-child(-n+3) { background:#f8e9e6; }
+    .scenario-grid small { color:var(--red); font-weight:800; }
+    .evidence-table { width:100%; border-collapse:collapse; background:var(--white); font-size:.82rem; }
+    .evidence-table th, .evidence-table td { padding:.85rem; text-align:left; vertical-align:top; border:1px solid var(--line); }
+    .evidence-table th { background:var(--carbon); color:var(--white); }
+    .decision-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--carbon); border:1px solid var(--carbon); }
+    .decision { min-height:18rem; padding:1.2rem; background:var(--white); }
+    .decision.rejected { border-top:8px solid var(--red); }
+    .decision.selected { border-top:8px solid var(--green); }
+    .decision.baseline { border-top:8px solid var(--yellow); }
+    .decision small { color:var(--muted); font-weight:800; }
+    .sequence { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); margin-top:1.5rem; border-top:5px solid var(--carbon); }
+    .sequence div { min-height:9rem; padding:1rem; border-right:1px solid var(--line); background:var(--white); }
+    .sequence b { display:block; color:var(--red); margin-bottom:.55rem; }
+    .source-note { margin-top:1rem; padding:.8rem 1rem; border-left:5px solid var(--cyan); color:var(--muted); font-size:.78rem; }
+    .timeline { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); margin-top:1.5rem; border-top:5px solid var(--carbon); }
+    .gate { padding:1.1rem 1rem; border-right:1px solid var(--line); }
+    .gate:first-child { border-left:5px solid var(--red); }
+    .gate b { display:block; margin-bottom:.5rem; }
+    .gate span { color:var(--muted); font-size:.78rem; }
+    details { border-top:1px solid var(--line); padding:1rem 0; }
+    summary { cursor:pointer; font-weight:800; }
+    .warning { border-left:7px solid var(--yellow); background:var(--carbon); color:var(--white); padding:1.2rem 1.5rem; }
+    footer { background:var(--carbon); color:var(--white); padding:3rem clamp(1rem,4vw,4rem); }
+    footer p { max-width:85ch; color:#d9dad3; }
+    @media (max-width:900px) { header { grid-template-columns:1fr; min-height:auto; } .hero-main { min-height:72vh; } .hero-rail { grid-template-columns:repeat(2,1fr); } .band { grid-template-columns:1fr; } .metric-strip, .three, .scenario-grid, .timeline, .decision-grid { grid-template-columns:1fr 1fr; } .sequence { grid-template-columns:repeat(3,1fr); } h1 { font-size:4.1rem; } h2 { font-size:2.15rem; } }
+    @media (max-width:560px) { h1 { font-size:2.75rem; } h2 { font-size:1.8rem; } .claim { font-size:1.25rem; } .hero-main { min-height:68vh; padding:2rem 1rem; } .hero-rail { grid-template-columns:1fr 1fr; } .hero-rail strong { font-size:2.4rem; } .metric-strip, .three, .scenario-grid, .timeline, .decision-grid, .sequence { grid-template-columns:1fr; } .band { padding:2.5rem 1rem; } figcaption { display:block; } .evidence-table { display:block; overflow-x:auto; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要内容</a>
+  <header>
+    <div class="hero-main">
+      <div><div class="brand-lockup"><div class="brand-mark" aria-hidden="true">继</div><div><div class="eyebrow">Agent: cactus-agent · 投稿评审版</div><div class="working-name">百年京张·未来继承人计划</div></div></div><h1>百年京张·未来继承人计划</h1><p class="claim">让今天的创新，不透支明天的选择权。</p></div>
+      <p class="hero-note">这不是一套把 AI 塞进城市的功能清单，而是一套为未来保留更换、退出、申诉和重新决定权的空间与治理协议。第一屏之后即是可复算的图层、指标、场景和条件门。</p>
+    </div>
+    <aside class="hero-rail" aria-label="方案数字索引"><div><strong>1</strong><span>张无 AI 底图</span></div><div><strong>3</strong><span>处继承压力场</span></div><div><strong>12</strong><span>张 AI 场景卡</span></div><div><strong>4</strong><span>道证据条件门</span></div></aside>
+  </header>
+  <nav aria-label="页内导航"><a href="#overview">总览</a><a href="#scope">三层范围</a><a href="#structure">空间结构</a><a href="#areas">压力场</a><a href="#evidence">场地证据</a><a href="#sections">空间剖面</a><a href="#decision">三案取舍</a><a href="#scenarios">AI 场景</a><a href="#metrics">指标证据</a><a href="#governance">实施条件</a></nav>
+  <main id="main">
+    <section id="overview"><div class="band"><div class="section-head"><h2>总览地图</h2></div><div><p class="lead">先画关掉 AI 后仍能工作的城市：一张无 AI 底图、三处继承压力场、两翼长期支撑。树荫、慢行、无障碍、普通导视和非数字服务先成立，智能层才有资格叠加。</p><figure class="figure"><img src="../assets/figures/site-overview.png" alt="临时总体设计范围中的无 AI 底图、三处继承压力场和十二个场景节点"><figcaption><span>图 1 · 无 AI 底图与双委托审查框架</span><span>临时推定，仅用于设计讨论</span></figcaption></figure></div></div></section>
+    <section id="scope"><div class="band"><div class="section-head"><h2>三层范围</h2></div><div><div class="three"><article class="station"><div class="num">01 统筹研究</div><h3>约 43.6 平方公里</h3><p>研究产业、人才、未来城市和区域协同，不输出法定地块结论。</p></article><article class="station"><div class="num">02 总体设计</div><h3>11.413 平方公里</h3><p>数值仅是仓库临时几何在 EPSG:4548 下的复算值，不是官方红线面积。</p></article><article class="station"><div class="num">03 重点区域设计</div><h3>3 处临时推定区</h3><p>众智园、AI 原点社区、大钟寺的定位分别对应技术、知识与日常生活。</p></article></div></div></div></section>
+    <section id="structure"><div class="band"><div class="section-head"><h2>用地分区与建筑</h2></div><div><p class="lead">概念用地围绕无 AI 公共底图组织，概念建筑只表达可拆测试单元和三个地标原型，不表示现状建筑或拆改留结论。</p><figure class="figure"><img src="../assets/figures/land-use-structure.png" alt="概念用地、无 AI 公共底图、地标原型和功能关系"><figcaption><span>图 2 · 用地分区与未来选择权</span><span>概念建议，待法定控规深化</span></figcaption></figure></div></div></section>
+    <section id="areas"><div class="band"><div class="section-head"><h2>三处继承压力场</h2></div><div><figure class="figure"><img src="../assets/figures/key-areas.png" alt="众智园、AI原点社区和大钟寺的 OSM 背景关系窗、临时范围与真实锚点偏差"><figcaption><span>图 3 · 真实关系窗与临时合同框</span><span>三处边界均为 provisional constraint</span></figcaption></figure><div class="three"><article class="station"><div class="num">01</div><h3>众智园：技术换代压力场</h3><ul><li>技术换代台公开迁移失败与恢复</li><li>端边云断网与人工接管</li><li>开放接口无障碍适配</li></ul></article><article class="station"><div class="num">02</div><h3>AI 原点社区：知识复读压力场</h3><ul><li>知识复读庭保留来源与异议</li><li>科研成果公共问题转译</li><li>下一代可重做而非只看结论</li></ul></article><article class="station"><div class="num">03</div><h3>大钟寺：日常选择压力场</h3><ul><li>日常选择厅并置普通、人工与智能路径</li><li>无障碍同任务对照</li><li>申诉、删除与拆除恢复核验</li></ul></article></div></div></div></section>
+    <section id="evidence"><div class="band"><div class="section-head"><h2>真实锚点偏差</h2></div><div><p class="lead">固定 OSM 快照证明了一个必须正面处理的矛盾：任务书点名锚点均不落在当前临时重点区内。临时几何继续承担投稿契约，真实关系窗只承担背景研究；官方多边形到达后整包重算。</p><table class="evidence-table"><thead><tr><th>背景锚点</th><th>对应临时重点区</th><th>到临时重点区距离</th><th>当前判断</th></tr></thead><tbody><tr><td>五道口站</td><td>AI 原点社区临时重点区</td><td>879.6 米</td><td>不在临时范围内，须等待官方多边形裁决</td></tr><tr><td>清华东路西口站</td><td>AI 原点社区临时重点区</td><td>962.7 米</td><td>不在临时范围内，须等待官方多边形裁决</td></tr><tr><td>大钟寺站</td><td>大钟寺临时重点区</td><td>1,732.6 米</td><td>不在临时范围内，须等待官方多边形裁决</td></tr><tr><td>大钟寺历史要素</td><td>大钟寺临时重点区</td><td>2,172.6 米</td><td>不在临时范围内，须等待官方多边形裁决</td></tr></tbody></table><p class="source-note">Data (c) OpenStreetMap contributors · ODbL 1.0 · 固定快照 2026-08-11 · background_only · 非官方边界、非现状测绘、非工程依据。</p></div></div></section>
+    <section id="mobility"><div class="band"><div class="section-head"><h2>交通慢行、蓝绿公共空间</h2></div><div><p class="lead">交通慢行、树荫和公共服务不依赖账号、持续定位或模型可用性。更新项目从断点修补和低风险试验开始。</p><figure class="figure"><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行、无 AI 底图和三处压力场概念剖面"><figcaption><span>图 4 · 不使用 AI 也能到达的公共底图与三条剖面</span><span>中心线和剖面均为概念关系，非道路红线或施工图</span></figcaption></figure></div></div></section>
+    <section id="sections"><div class="band"><div class="section-head"><h2>三条概念剖面</h2></div><div><div class="three"><article class="station"><div class="num">A 技术换代</div><h3>普通路径 + 独立检修带</h3><p>可换设备盒不侵占连续通行面，单点停机不影响基本服务。</p></article><article class="station"><div class="num">B 知识复读</div><h3>遮荫阅读面 + 纸本索引</h3><p>下一代无需原供应商或特定终端，也能读到来源、异议与版本。</p></article><article class="station"><div class="num">C 日常选择</div><h3>实体导视 + 可见人工服务</h3><p>可选终端位于附加带，关闭后普通路径与人工服务保持完整。</p></article></div><h3 style="margin-top:2rem">首层界面与拆除恢复序列</h3><div class="sequence"><div><b>01 停采集</b>冻结新数据并公告状态。</div><div><b>02 导出</b>保留最小责任记录。</div><div><b>03 删除核验</b>数据责任人与独立角色复核。</div><div><b>04 断电拆件</b>两名受训人员按组件护照操作。</div><div><b>05 修复表面</b>恢复净宽、导视与材料界面。</div><div><b>06 普通任务复测</b>无障碍代表与一线人员共同验收。</div></div><p class="source-note">目标为一个工作班次内完成；这是 90 日试点的预登记放行条件，不是已经实测的绩效。</p></div></div></section>
+    <section id="decision"><div class="band"><div class="section-head"><h2>三案取舍</h2></div><div><p class="lead">同一问题、同一约束、同一五维资产—负担审查。AI 生成并比较备选，人类明确拒绝高技术叠加案，保留纯无 AI 底图为强制基线，对平衡案只作条件选择。</p><div class="decision-grid"><article class="decision rejected"><small>明确拒绝 · PLAN-HIGH-TECH</small><h3>高技术叠加案</h3><p>概念成本：68至110万元；不是报价。</p><ul><li>连续摄像感知</li><li>蓝牙信标</li><li>个性化手机导航</li><li>云端客流模型</li><li>远程智能客服</li></ul><p><strong>人工判断：</strong>在缺少客流、许可和现场证据时，以持续感知换取尚未证明的边际收益；违反最小数据与无 AI 底图优先原则。</p></article><article class="decision selected"><small>条件选择 · PLAN-BALANCED</small><h3>底图优先的平衡叠加案</h3><p>概念成本：38至68万元；不是报价。</p><ul><li>高对比实体导视</li><li>连续无障碍任务链</li><li>可见人工服务台</li><li>可选本地推理终端</li><li>可拆环境计数器</li></ul><p><strong>人工判断：</strong>只有在现场走查、权属与运营授权完成，且无 AI 路径先达到同任务基线后，才进入 90 日低风险试验。</p></article><article class="decision baseline"><small>强制基线 · PLAN-NO-AI</small><h3>纯无 AI 底图案</h3><p>概念成本：24至42万元；不是报价。</p><ul><li>普通地图与编号</li><li>高对比实体导视</li><li>连续无障碍路径</li><li>人工问询</li><li>纸本反馈</li></ul><p><strong>人工判断：</strong>它不是被淘汰方案，而是所有智能叠加必须保持可用且不得降低的比较基线。</p></article></div><p class="source-note">证据类型：synthetic_design_exercise。本页记录的是本地合成设计演练，不是真实审批、采购决定或现场绩效。</p></div></div></section>
+    <section id="scenarios"><div class="band"><div class="section-head"><h2>AI 场景</h2></div><div><p class="lead">前三个为产业测试验证场景。每张卡同时记录受益人、可能承担代价的人、数据寿命、人工替代、申诉、停止、恢复和责任角色。</p><div class="scenario-grid"><article><small>01 · 产业验证</small><h3>模型与供应商迁移压力测试</h3><p>最小数据 · 人工备用 · 可申诉 · 可停止 · 可恢复</p></article><article><small>02 · 产业验证</small><h3>端边云断网与人工接管测试</h3><p>最小数据 · 人工备用 · 可申诉 · 可停止 · 可恢复</p></article><article><small>03 · 产业验证</small><h3>开放接口无障碍终端适配测试</h3><p>最小数据 · 人工备用 · 可申诉 · 可停止 · 可恢复</p></article><article><small>04</small><h3>知识复读工坊</h3><p>最小数据 · 人工备用 · 可申诉 · 可停止 · 可恢复</p></article><article><small>05</small><h3>社区照护双通道服务</h3><p>最小数据 · 人工备用 · 可申诉 · 可停止 · 可恢复</p></article><article><small>06</small><h3>科研成果与城市公共需求匹配台</h3><p>最小数据 · 人工备用 · 可申诉 · 可停止 · 可恢复</p></article><article><small>07</small><h3>无账号智能消费与人工后备</h3><p>最小数据 · 人工备用 · 可申诉 · 可停止 · 可恢复</p></article><article><small>08</small><h3>多模态无障碍商业路径</h3><p>最小数据 · 人工备用 · 可申诉 · 可停止 · 可恢复</p></article><article><small>09</small><h3>夜间客流与噪声低扰动协同</h3><p>最小数据 · 人工备用 · 可申诉 · 可停止 · 可恢复</p></article><article><small>10</small><h3>无追踪遗产慢行导览</h3><p>最小数据 · 人工备用 · 可申诉 · 可停止 · 可恢复</p></article><article><small>11</small><h3>树荫热舒适与雨洪维护助手</h3><p>最小数据 · 人工备用 · 可申诉 · 可停止 · 可恢复</p></article><article><small>12</small><h3>无障碍断点与拥挤共诊</h3><p>最小数据 · 人工备用 · 可申诉 · 可停止 · 可恢复</p></article></div></div></div></section>
+    <section id="metrics"><div class="band"><div class="section-head"><h2>核心指标与任务覆盖</h2></div><div><div class="metric-strip"><div class="metric"><b data-metric="site_area_sqm" data-value="11412825.386">11.413 平方公里</b><span>临时几何复算面积</span></div><div class="metric"><b data-metric="green_ratio" data-value="0.111322">11.132%</b><span>概念绿地比例</span></div><div class="metric"><b data-metric="public_space_ratio" data-value="0.005381">0.538%</b><span>概念公共空间比例</span></div><div class="metric"><b data-metric="building_footprint_area_sqm" data-value="19440.0">19,440 平方米</b><span>概念建筑基底面积</span></div></div><figure class="figure"><img src="../assets/figures/metrics-evidence.png" alt="可复算核心指标、概念用地面积与四道条件门"><figcaption><span>图 5 · 指标复算、未知项与条件门</span><span>法定控制指标保持待补</span></figcaption></figure><p>任务覆盖包括公告 1.3、1.4、1.5 与 agent.1–agent.6；完整定位、图层、指标、图件、来源和自检链条保存在结构化矩阵中。</p></div></div></section>
+    <section id="governance"><div class="band"><div class="section-head"><h2>实施条件与自检状态</h2></div><div><div class="timeline"><div class="gate"><b>启动准备</b><span>资料清权、基线采集和共治责任就绪。</span></div><div class="gate"><b>低风险试验</b><span>隐私、无障碍、人工备用与停止条件通过。</span></div><div class="gate"><b>证据扩围</b><span>公开评估达标，且未发现不可接受群体损害。</span></div><div class="gate"><b>制度化复核</b><span>迁移演练、开放归档、独立审查和责任交接完成。</span></div></div><div class="warning"><strong>评审边界</strong><br>双语成果已进入投稿 PR；临时边界、权利确认与外部专业复核仍待补齐。本成果不表示已批准、已采购或已实施。</div><details><summary>来源</summary><p>任务与范围来自官方公告、征集官网、仓库 site package 与标准本地快照；临时边界来自仓库 provisional_boundaries.geojson，仅可临时生成与讨论。</p></details><details><summary>假设</summary><p>官方精确红线、法定用地与强度、现状建筑、权属、交通、市政和用户基线待补。任一高影响数据更新都必须重算几何、指标、图件和相关文字。</p></details></div></div></section>
+  </main>
+  <footer><strong>本地准备状态</strong><p>本页是离线解释层，权威顺序为 GeoJSON → metrics → 矩阵 → 来源/假设 → 主稿 → 图件。任何视觉数值都不能取代法定规划和专业审查。</p></footer>
+</body>
+</html>

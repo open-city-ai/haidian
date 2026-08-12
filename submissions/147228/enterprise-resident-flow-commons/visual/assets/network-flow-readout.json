@@ -1,0 +1,69 @@
+{
+  "screen_id": "MOB-NETWORK-FLOW-888",
+  "model_version": "2.19-network-flow-screen",
+  "generated_by": "node visual/assets/run-network-flow-screen.js",
+  "status": "synthetic_counterfactual_not_operational",
+  "scope": {
+    "population_reference": 3122000,
+    "agents_processed_per_scenario": 3122000,
+    "network": "declared analytical graph; not current road, rail or station geometry"
+  },
+  "selected_policy": "O4_capacity_balanced",
+  "selected_policy_readout": {
+    "mode_counts": {"metro": 952295, "bus": 602547, "bicycle": 422597, "walking_wheelchair": 652746, "car": 299361, "enterprise_shuttle": 192454},
+    "mode_shares": {"metro": 0.305, "bus": 0.1931, "bicycle": 0.1353, "walking_wheelchair": 0.2091, "car": 0.0959, "enterprise_shuttle": 0.0616},
+    "time_slice_counts": {"early": 218266, "preferred": 2747634, "late": 156100},
+    "external_internal_counts": {"internal": 2110179, "external": 1011821},
+    "vehicle_or_service_units_by_mode": {"metro": 5290.53, "bus": 10042.45, "bicycle": 0, "walking_wheelchair": 0, "car": 176094.71, "enterprise_shuttle": 8018.92},
+    "accessible_source_agents": 652746,
+    "accessible_corridor_agents": 652746,
+    "maximum_edge_load_ratio": 1.264,
+    "maximum_node_load_ratio": 1.0755,
+    "maximum_network_load_ratio": 1.264,
+    "network_gate": {"threshold": 1.35, "pass": true},
+    "hot_edges": [
+      {"edge_id": "external-to-metro", "label_zh": "跨区→地铁骨干", "flow_person_trips": 253647, "vehicle_or_service_flow": 1409.15, "preferred_load_ratio": 0.5973, "peak_load_ratio": 1.264},
+      {"edge_id": "destination-logistics-gate", "label_zh": "目的台账→物流维护关口", "flow_person_trips": 292740, "vehicle_or_service_flow": 19131.14, "preferred_load_ratio": 1.0755, "peak_load_ratio": 1.0755},
+      {"edge_id": "external-to-bus", "label_zh": "跨区→公交骨干", "flow_person_trips": 113968, "vehicle_or_service_flow": 1899.47, "preferred_load_ratio": 0.3507, "peak_load_ratio": 0.7598},
+      {"edge_id": "destination-service-gate", "label_zh": "目的台账→照护/学校关口", "flow_person_trips": 293086, "vehicle_or_service_flow": 19236.79, "preferred_load_ratio": 0.7386, "peak_load_ratio": 0.7386},
+      {"edge_id": "origin-to-cycle", "label_zh": "来源→受保护骑行链", "flow_person_trips": 422597, "vehicle_or_service_flow": 0, "preferred_load_ratio": 0.7299, "peak_load_ratio": 0.7299}
+    ],
+    "hot_nodes": [
+      {"node_id": "logistics_gate", "label_zh": "物流维护关口", "inflow_person_trips": 292740, "preferred_load_ratio": 1.0755, "peak_load_ratio": 1.0755},
+      {"node_id": "dazhongsi_transfer", "label_zh": "大钟寺换乘节点", "inflow_person_trips": 1554842, "preferred_load_ratio": 0.8659, "peak_load_ratio": 0.8659},
+      {"node_id": "accessible_service_gate", "label_zh": "照护/学校服务关口", "inflow_person_trips": 293086, "preferred_load_ratio": 0.7386, "peak_load_ratio": 0.7386},
+      {"node_id": "protected_cycle_link", "label_zh": "受保护骑行链", "inflow_person_trips": 422597, "preferred_load_ratio": 0.7299, "peak_load_ratio": 0.7299},
+      {"node_id": "metro_backbone", "label_zh": "地铁骨干", "inflow_person_trips": 952295, "preferred_load_ratio": 0.6633, "peak_load_ratio": 0.6984}
+    ]
+  },
+  "baseline_readout": {
+    "policy_id": "B0_reference",
+    "mode_counts": {"metro": 783466, "bus": 565925, "bicycle": 272388, "walking_wheelchair": 508865, "car": 821088, "enterprise_shuttle": 170268},
+    "time_slice_counts": {"early": 0, "preferred": 2965900, "late": 156100},
+    "maximum_network_load_ratio": 1.6539,
+    "network_gate_pass": false,
+    "hot_edge": {"edge_id": "curb-to-destination", "label_zh": "管理路缘→目的台账", "flow_person_trips": 821088, "vehicle_or_service_flow": 482992.94, "preferred_load_ratio": 1.6539, "peak_load_ratio": 1.6539},
+    "hot_node": {"node_id": "managed_curb", "label_zh": "管理路缘/停车", "inflow_person_trips": 821088, "preferred_load_ratio": 1.6539, "peak_load_ratio": 1.6539}
+  },
+  "comparison_selected_minus_baseline": {
+    "maximum_network_load_ratio": -0.3899,
+    "car_person_trips": -521727,
+    "metro_person_trips": 168829,
+    "bus_person_trips": 36622,
+    "preferred_transfer_inflow_person_trips": 70966
+  },
+  "checks": {
+    "model_population_matches_regional": true,
+    "graph_nodes_and_edges_declared": true,
+    "all_scenarios_processed": true,
+    "all_scenarios_mass_conserved": true,
+    "accessible_corridor_preserved": true,
+    "air_candidate_fail_closed": true,
+    "selected_policy_network_gate_pass": true,
+    "selected_policy_has_vehicle_ledger": true,
+    "selected_policy_has_external_flow": true,
+    "privacy_aggregate_only": true
+  },
+  "interpretation": "O4 passes this declared synthetic network-pressure gate at 1.264x versus the 1.35x threshold, while the B0 reference reaches 1.6539x at the managed curb. This is a replayable design comparison and a calibration target list, not a local performance claim.",
+  "calibration_required": ["dated 15-minute OD and mode counts", "metro/bus headway and station/stop capacity", "road/curb/intersection counts", "accessible route audit", "enterprise shuttle fleet and accountable operator evidence"]
+}

@@ -1,0 +1,217 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional boundary; recalculate when official redline is supplied."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2323489.677,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional boundary."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 166258.685,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional boundary."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 422722.888,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "unary_union_polygon_area(building_footprints) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "conceptual building footprints; indicative only."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.203586,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional boundary."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.014568,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional boundary."
+      ]
+    },
+    "land_use_area_sqm": {
+      "status": "known",
+      "value": 11412842.425,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use))",
+      "confidence": "medium",
+      "assumptions": [
+        "topology-safe partition of provisional site."
+      ]
+    },
+    "land_use_by_code_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "grouped sum by land_use_code",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional boundary."
+      ],
+      "reason": "Structured breakdown stored in geometry/land_use.geojson properties; per-code areas are derivable from land_use_area_sqm and the layer, kept as structured data rather than a scalar metric."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_areas_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area per key area",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional key-area polygons."
+      ],
+      "reason": "Per-area breakdown stored in geometry/key_areas.geojson properties; scalar total kept in site area metrics."
+    },
+    "building_count": {
+      "status": "known",
+      "value": 58,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building_footprints)",
+      "confidence": "medium",
+      "assumptions": [
+        "conceptual building footprints."
+      ]
+    },
+    "road_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(road_centerlines)",
+      "confidence": "medium",
+      "assumptions": [
+        "representative corridor lines."
+      ]
+    },
+    "phasing_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "grouped sum by phase",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional boundary."
+      ],
+      "reason": "Per-phase breakdown stored in geometry/phasing.geojson properties."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package.",
+      "assumptions": []
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official height controls",
+      "confidence": "unknown",
+      "reason": "Official height controls missing; await regulatory conditions.",
+      "assumptions": []
+    },
+    "green_ratio_public_supply": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "green_ratio + public_space_ratio",
+      "confidence": "unknown",
+      "reason": "Combined open-space ratio indicator pending official controls.",
+      "assumptions": []
+    }
+  }
+}

@@ -1,0 +1,108 @@
+{
+ "schema_version": "0.1.0",
+ "assumptions": [
+  {
+   "id": "A-BOUNDARY-001",
+   "status": "pending_professional_confirmation",
+   "statement": "总体设计范围与三处重点区当前使用仓库提供的临时粗略边界（provisional rough），非官方红线。",
+   "impact": "全部面积、比例与空间结论为概念性质；official polygon到位后需整体重算图层与指标。",
+   "recomputation_path": "替换site_boundary.geojson与key_areas.geojson为official几何后，重跑scaffold/figures/metrics/self-check。"
+  },
+  {
+   "id": "A-CONTROLS-001",
+   "status": "pending_professional_confirmation",
+   "statement": "容积率、建筑高度、建筑密度、绿地率、退线、道路红线与市政条件缺少官方控规与权属资料。",
+   "impact": "相关管控指标统一记为status=unknown；本方案仅提供概念方向，不构成法定控制结论。",
+   "recomputation_path": "官方控规、权属、工程与文保条件到位后复算并更新compliance_matrix与standard_matrix。"
+  },
+  {
+   "id": "A-HERITAGE-001",
+   "status": "pending_professional_confirmation",
+   "statement": "清华园车站等文保要素位置为示意，未采用官方文保范围与建设控制地带。",
+   "impact": "重点区与天窗脊设计中的文保相关结论需以官方文保资料复核。",
+   "recomputation_path": "获取官方文保范围后更新constraints.geojson与相关章节。"
+  },
+  {
+   "id": "A-OSM-001",
+   "status": "acknowledged",
+   "statement": "未使用OSM作为正式提交数据来源；全部空间数据由本方案按公告文字与临时边界生成。",
+   "impact": "无OSM许可负担；若未来引入OSM背景需按ODbL署名。"
+  },
+  {
+   "id": "A-SCENARIO-001",
+   "status": "concept_proposal",
+   "statement": "12张AI场景卡、天窗协议、活动体系与运营安排均为概念建议，供专业团队深化。",
+   "impact": "不构成已确定的政府安排、投资承诺或工程可行性结论。"
+  },
+  {
+   "id": "A-WINDOW-001",
+   "status": "concept_proposal",
+   "statement": "天窗协议的绿/黄/红三色窗口状态以运行时段与检修窗口自动生成，建议默认按日/周/季度三级周期发布。",
+   "impact": "窗口发布频率、粒度与暂停规则为建议值，需在试点中校准。",
+   "recomputation_path": "试点运行数据到位后校准窗口周期参数并更新metrics.skylight_window_count。"
+  },
+  {
+   "id": "A-WINDOW-002",
+   "status": "concept_proposal",
+   "statement": "AI服务建议默认停机窗口为每周一次（周检修，约2-4小时）与每季度一次（大修，约1-3天），按场景风险等级浮动。",
+   "impact": "停机频率影响可用率与运营成本，为概念建议值非行业标准。",
+   "recomputation_path": "参考同类公共服务SLA与试点实测后复算。"
+  },
+  {
+   "id": "A-WINDOW-003",
+   "status": "concept_proposal",
+   "statement": "人工接管员按每个联试天窗站点配置2人（1名主值+1名备值），试点期共约6-12人。",
+   "impact": "人力测算为概念值，实际编制取决于服务规模与主管部门定岗。",
+   "recomputation_path": "试点运营方案确定后更新人力编制测算。"
+  },
+  {
+   "id": "A-COST-001",
+   "status": "concept_proposal",
+   "statement": "近期试点（三处天窗原型）年运营成本概念测算约为1.2亿元量级，含人工接管、数据回滚设施、设备维护与巡检。",
+   "impact": "成本测算为概念量级，不含工程投资，需专业造价复核。",
+   "recomputation_path": "试点工程与运营深化设计后复算。"
+  },
+  {
+   "id": "A-GATE-001",
+   "status": "concept_proposal",
+   "statement": "C0-C7准入闸门为建议性机制：C0概念审查、C1数据声明、C2风险分级、C3试点申请、C4公众公示、C5试运行、C6正式上线、C7定期复检。",
+   "impact": "闸门名称、顺序与通过标准需主管部门确认，本方案不代为审批。",
+   "recomputation_path": "与主管部门对齐后固化闸门规则。"
+  },
+  {
+   "id": "A-EMERGENCY-001",
+   "status": "concept_proposal",
+   "statement": "应急响应按红橙黄三级：红色=立即停机+人工接管（30分钟内），橙色=限期修复（24小时内），黄色=观察升级（72小时内）。",
+   "impact": "响应时限为建议值，需结合场景风险等级与专业评估校准。",
+   "recomputation_path": "应急演练与试点运行后校准响应时限。"
+  },
+  {
+   "id": "A-PHASING-001",
+   "status": "concept_proposal",
+   "statement": "三步走实施节奏（近期试点/中期贯通/远期沉淀）按年度划分：试点期建议2027-2028，贯通期2029-2031，沉淀期2032后。",
+   "impact": "时间表为概念建议，取决于审批、资金与主体安排。",
+   "recomputation_path": "官方实施计划到位后更新phasing.geojson与章节。"
+  },
+  {
+   "id": "A-TRACKS-001",
+   "status": "acknowledged",
+   "statement": "本方案覆盖任务书三主线中的AI交通与步行友好、企业服务生态、公民代理治理；未覆盖或仅简要提及其他非主线任务。",
+   "impact": "agent.1-6回应以空间与治理主线为重心，非主线任务以矩阵标注部分覆盖。",
+   "recomputation_path": "按任务书更新版本复核agent.1-6覆盖完整性。"
+  },
+  {
+   "id": "A-FIGURE-001",
+   "status": "acknowledged",
+   "statement": "全部figure由GeoJSON与metrics.json程序化生成，未使用外部底图或第三方影像，保证数据同源。",
+   "impact": "图面要素与几何、指标严格一致，可复核。",
+   "recomputation_path": "几何或指标变更后重新生成全部figure。"
+  },
+  {
+   "id": "A-LANG-001",
+   "status": "acknowledged",
+   "statement": "中英文案按双语契约1.0成对等义提交；术语以仓库术语表为准，未在术语表中的新词（天窗/Skylight等）在首现处给出对照。",
+   "impact": "双语一致性可校验；术语分歧以中文为准并在changelog记录。",
+   "recomputation_path": "术语表更新后同步修订proposal.md与proposal.en.md。"
+  }
+ ]
+}

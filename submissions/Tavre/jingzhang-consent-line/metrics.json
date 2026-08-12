@@ -1,0 +1,170 @@
+{
+  "schema_version": "0.1.0",
+  "units": {"length": "m", "area": "sqm"},
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known", "value": 11412825.386, "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "polygon_area(SITE-001 projected from EPSG:4326 to EPSG:4548)",
+      "confidence": "low",
+      "assumptions": ["Recomputed from the repository provisional boundary; not an official redline area or statutory control."]
+    },
+    "green_space_area_sqm": {
+      "status": "known", "value": 1408600.768, "unit": "sqm",
+      "source_files": ["geometry/green_space.geojson"],
+      "formula": "union_area(features where layer=GREEN_SPACE, projected to EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": ["Concept design area inside the provisional boundary; not an approved green-line area."]
+    },
+    "public_space_area_sqm": {
+      "status": "known", "value": 836345.643, "unit": "sqm",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "union_area(polygon features where layer=PUBLIC_SPACE, projected to EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": ["Point scenario nodes have zero area; concept band is not an official public-space boundary."]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known", "value": 170722.562, "unit": "sqm",
+      "source_files": ["geometry/buildings.geojson"],
+      "formula": "union_area(BLDG-ZZY-001, BLDG-ORIGIN-001, BLDG-DZS-001 projected to EPSG:4548)",
+      "confidence": "low",
+      "assumptions": ["Three concept prototype footprints only; not existing-building survey, demolition classification, confirmed floor area or approved envelope."]
+    },
+    "green_ratio": {
+      "status": "known", "value": 0.123423, "unit": "ratio",
+      "source_files": ["geometry/green_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": ["Both numerator and denominator depend on concept/provisional geometry and must be regenerated with official data."]
+    },
+    "public_space_ratio": {
+      "status": "known", "value": 0.073281, "unit": "ratio",
+      "source_files": ["geometry/public_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": ["Both numerator and denominator depend on concept/provisional geometry and must be regenerated with official data."]
+    },
+    "consent_network_length_m": {
+      "status": "known", "value": 12201.65, "unit": "m",
+      "source_files": ["geometry/roads.geojson"],
+      "formula": "sum(length(ROAD-SPINE-001, ROAD-STITCH-001..003 projected to EPSG:4548))",
+      "confidence": "low",
+      "assumptions": ["Concept walking network length only; not a surveyed road, road redline, construction alignment or engineering quantity."]
+    },
+    "consent_spine_length_m": {
+      "status": "known", "value": 9382.756, "unit": "m",
+      "source_files": ["geometry/roads.geojson"],
+      "formula": "length(ROAD-SPINE-001 projected to EPSG:4548)",
+      "confidence": "low",
+      "assumptions": ["Concept north-south alignment inside a provisional site."]
+    },
+    "east_west_stitch_count": {
+      "status": "known", "value": 3, "unit": "count",
+      "source_files": ["geometry/roads.geojson"],
+      "formula": "count(features where id matches ROAD-STITCH-*)",
+      "confidence": "high", "assumptions": ["Counts concept connections, not constructed crossings or verified accessible routes."]
+    },
+    "scenario_node_count": {
+      "status": "known", "value": 12, "unit": "count",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "count(features where layer=SCENARIO_NODE)",
+      "confidence": "high", "assumptions": ["Counts proposed scenario records; no node is represented as approved or operating."]
+    },
+    "industry_validation_scenario_count": {
+      "status": "known", "value": 3, "unit": "count",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "count(SCENARIO_NODE features where industry_validation=true)",
+      "confidence": "high", "assumptions": ["Counts model-assurance, edge-compute and consumer-agent listing/exit test concepts only."]
+    },
+    "human_fallback_scenario_count": {
+      "status": "known", "value": 12, "unit": "count",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "count(SCENARIO_NODE features with a non-empty human_fallback property)",
+      "confidence": "high", "assumptions": ["Records a design requirement; it does not verify staffing, service quality or legal compliance."]
+    },
+    "prototype_landmark_count": {
+      "status": "known", "value": 3, "unit": "count",
+      "source_files": ["geometry/buildings.geojson"],
+      "formula": "count(BUILDING_FOOTPRINT features with linked_key_area_id and landmark_role)",
+      "confidence": "high", "assumptions": ["Counts conceptual prototypes, not confirmed buildings or projects."]
+    },
+    "key_area_count": {
+      "status": "known", "value": 3, "unit": "count",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "count(features where layer=KEY_AREA)",
+      "confidence": "high", "assumptions": ["Three names and approximate areas follow the announcement, while polygons remain provisional."]
+    },
+    "phase_count": {
+      "status": "known", "value": 3, "unit": "count",
+      "source_files": ["geometry/phasing.geojson"],
+      "formula": "count(features where layer=PHASE)",
+      "confidence": "high", "assumptions": ["Counts review gateways, not a committed land-development or construction schedule."]
+    },
+    "phase_gateway_area_sqm": {
+      "status": "known", "value": 3692893.005, "unit": "sqm",
+      "source_files": ["geometry/phasing.geojson"],
+      "formula": "union_area(PHASE-001..003 projected to EPSG:4548)",
+      "confidence": "low", "assumptions": ["Uses provisional key-area geometry solely to index three gateway reviews; not an implementation or investment area."]
+    },
+    "floor_area_ratio": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "confirmed_total_floor_area_sqm / official_site_area_sqm", "confidence": "unknown", "assumptions": [],
+      "reason": "Approved FAR controls, official site polygon and verified building floor area are absent."
+    },
+    "building_height_max_m": {
+      "status": "unknown", "value": null, "unit": "m",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "max(approved_or_surveyed_building_height_m)", "confidence": "unknown", "assumptions": [],
+      "reason": "Official height controls, heritage/view-corridor constraints and a current building survey are absent."
+    },
+    "building_density_ratio": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "source_files": ["brief/site-package/ranges/planning_limits.json", "geometry/buildings.geojson"],
+      "formula": "verified_building_footprint_area_sqm / official_site_area_sqm", "confidence": "unknown", "assumptions": [],
+      "reason": "Submitted footprints are three design prototypes, not a complete existing/proposed building dataset."
+    },
+    "road_redline_width_m": {
+      "status": "unknown", "value": null, "unit": "m",
+      "source_files": ["brief/site-package/ranges/planning_limits.json", "geometry/roads.geojson"],
+      "formula": "official_road_redline_width_by_segment", "confidence": "unknown", "assumptions": [],
+      "reason": "No official road redlines or engineering alignments are supplied; concept centerlines cannot determine width."
+    },
+    "municipal_capacity_index": {
+      "status": "unknown", "value": null, "unit": "index",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "professionally_defined_capacity_supply_demand_index", "confidence": "unknown", "assumptions": [],
+      "reason": "Utility networks, loads, reserve capacity, asset condition and emergency redundancy data are absent."
+    },
+    "human_takeover_completion_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "completed_human_takeovers / valid_human_takeover_requests", "confidence": "unknown", "assumptions": [],
+      "reason": "No pilot has operated; baseline, denominator rules and review threshold must be agreed before deployment."
+    },
+    "accessible_journey_completion_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "source_files": ["geometry/roads.geojson", "geometry/public_space.geojson"],
+      "formula": "completed_co_test_journeys / valid_co_test_journeys", "confidence": "unknown", "assumptions": [],
+      "reason": "Venue surveys and co-tests with disabled and older participants have not occurred."
+    },
+    "complaint_closure_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "complaints_closed_with_recorded_outcome / valid_complaints_received", "confidence": "unknown", "assumptions": [],
+      "reason": "No operator, complaint channel, reporting period or observed service record is confirmed."
+    },
+    "energy_per_service_task": {
+      "status": "unknown", "value": null, "unit": "none",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "metered_service_energy / completed_service_tasks", "confidence": "unknown", "assumptions": [],
+      "reason": "Hardware, model, workload, metering boundary and operational baseline are unknown; unit must be fixed by the future operator."
+    },
+    "heat_comfort_coverage_ratio": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "source_files": ["geometry/green_space.geojson", "geometry/roads.geojson"],
+      "formula": "route_length_meeting_agreed_heat_comfort_test / assessed_route_length", "confidence": "unknown", "assumptions": [],
+      "reason": "Microclimate baseline, seasonal observation, canopy survey and professional thermal-comfort method are absent."
+    }
+  }
+}

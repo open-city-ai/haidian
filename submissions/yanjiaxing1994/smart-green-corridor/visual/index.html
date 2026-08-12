@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张AI绿廊 · 百年京张AI创新带城市设计可视化总览</title>
+<style>
+:root{
+  --bg:#0a1420; --bg2:#0e1c2c; --panel:#12233a; --panel2:#152a44; --edge:#23405f;
+  --ink:#eaf2fb; --muted:#8fa3bf; --faint:#5c6f8a;
+  --blue:#4fa3e3; --green:#5fbf8f; --orange:#f08a4a; --grey:#93a1b5; --cloud:#f5f5f0;
+  --warn:#f0b35a; --skate:#f5a961;
+  --shadow:0 16px 40px rgba(2,8,16,.55);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:radial-gradient(1200px 600px at 20% -10%, #132c46 0%, var(--bg2) 45%, var(--bg) 100%);
+  color:var(--ink); line-height:1.62;
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","STHeiti","Microsoft YaHei",Arial,sans-serif;
+}
+.wrap{max-width:1280px;margin:auto;padding:0 22px}
+a{color:var(--blue);text-decoration:none}
+h2{font-size:23px;margin:0 0 6px;letter-spacing:.02em}
+h3{font-size:16px;margin:0 0 8px}
+p{margin:0 0 10px}
+.eyebrow{color:var(--green);letter-spacing:.22em;text-transform:uppercase;font-size:12px;margin-bottom:12px;font-weight:600}
+
+/* ---------- header / hero ---------- */
+header{background:linear-gradient(135deg,#162e42 0%,#1b3a54 55%,#123049 100%);border-bottom:5px solid var(--orange)}
+.hero{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(320px,.65fr);gap:28px;padding:40px 22px 34px}
+h1{font-size:32px;line-height:1.2;margin:0 0 14px;font-weight:700}
+h1 .grad{background:linear-gradient(90deg,var(--blue),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-copy{max-width:920px;color:#cddaea;font-size:15.5px;margin-bottom:18px}
+.kw{color:#fff;background:rgba(79,163,227,.14);border:1px solid rgba(79,163,227,.35);border-radius:4px;padding:0 4px;margin:0 1px;white-space:nowrap}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;border:1px solid rgba(255,255,255,.24);padding:6px 12px;font-size:12px;color:#fff;background:rgba(255,255,255,.05)}
+.pill b{color:var(--orange)}
+.status-box{border:1px solid rgba(240,178,90,.4);border-radius:12px;padding:18px;background:linear-gradient(160deg,rgba(240,178,90,.12),rgba(240,178,90,.02));align-self:center}
+.status-box strong{display:block;font-size:17px;margin-bottom:8px;color:var(--warn)}
+.status-box p{font-size:13px;color:#c9d6e6;margin-bottom:8px}
+
+/* ---------- sheets ---------- */
+main{padding:30px 0 40px}
+.sheet{background:var(--panel);border:1px solid var(--edge);border-radius:14px;margin:0 auto 20px;box-shadow:var(--shadow);overflow:hidden}
+.sheet-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:22px 24px 14px;border-bottom:1px solid #1d3a5a}
+.sheet-head p{color:var(--muted);max-width:760px;font-size:13.5px}
+.tag{display:inline-block;border:1px solid var(--edge);color:var(--muted);background:var(--panel2);border-radius:6px;padding:3px 10px;font-size:11.5px;white-space:nowrap}
+.sheet-body{padding:18px 24px 22px}
+.num{font-variant-numeric:tabular-nums}
+.accent-top{border-top:4px solid var(--blue)}
+.accent-top.g{border-top-color:var(--green)}
+.accent-top.o{border-top-color:var(--orange)}
+.accent-top.w{border-top-color:var(--warn)}
+
+/* ---------- overview map ---------- */
+.map-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(310px,.65fr);gap:20px;padding:18px 24px 22px}
+.map-frame{border:1px solid var(--edge);border-radius:12px;background:#0d1a2a;overflow:hidden}
+.map-frame svg{display:block;width:100%;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;padding:12px 4px 2px;font-size:12px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:13px;height:13px;border-radius:3px;display:inline-block;flex:none}
+.sw.line{width:20px;height:4px;border-radius:2px}
+.metric-list{display:grid;gap:10px}
+.metric{border:1px solid var(--edge);border-radius:10px;padding:13px 14px;background:linear-gradient(180deg,var(--panel2),var(--panel))}
+.metric span{display:block;color:var(--muted);font-size:11.5px;margin-bottom:2px}
+.metric strong{display:block;font-size:22px;color:var(--cloud);font-variant-numeric:tabular-nums;margin:2px 0 4px}
+.metric small{color:var(--faint);font-size:11px}
+
+/* ---------- card grids ---------- */
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:18px 24px 22px}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding:18px 24px 22px}
+.grid5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;padding:18px 24px 22px}
+.card{border:1px solid var(--edge);border-radius:10px;padding:16px;background:linear-gradient(180deg,var(--panel2),var(--panel));transition:transform .18s ease,border-color .18s ease}
+.card:hover{transform:translateY(-3px);border-color:var(--blue)}
+.card h3{color:var(--cloud)}
+.card p{font-size:12.5px;color:var(--muted);margin:0}
+.card .big{font-size:20px;font-weight:700;color:var(--blue);font-variant-numeric:tabular-nums;margin:2px 0 6px}
+.card .big.g{color:var(--green)} .card .big.o{color:var(--orange)}
+.card ul{margin:8px 0 0;padding-left:16px;color:#b9c8da;font-size:12.5px}
+.card li{margin-bottom:3px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--faint);background:#0d1a2a;border-radius:6px;padding:6px 8px;margin-top:8px;overflow-wrap:anywhere}
+.hl{border-left:4px solid var(--warn);background:linear-gradient(90deg,rgba(240,178,90,.10),transparent)}
+.hl.ok{border-left-color:var(--green);background:linear-gradient(90deg,rgba(95,191,143,.10),transparent)}
+
+/* ---------- figure gallery ---------- */
+.gallery{display:grid;gap:22px;padding:18px 24px 24px}
+.fig{border:1px solid var(--edge);border-radius:12px;overflow:hidden;background:#0d1a2a}
+.fig img{display:block;width:100%;height:auto}
+.fig-caption{padding:10px 14px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--edge);background:var(--panel2)}
+.fig-caption b{color:var(--cloud)}
+
+/* ---------- scenarios ---------- */
+.sc-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;padding:18px 24px 24px}
+.sc{min-height:190px;border:1px solid var(--edge);border-radius:10px;padding:14px;background:linear-gradient(180deg,var(--panel2),var(--panel));display:flex;flex-direction:column;gap:6px}
+.sc .no{font-size:11px;color:var(--orange);font-weight:700;letter-spacing:.05em}
+.sc h3{font-size:13.5px;color:var(--cloud);margin:0;line-height:1.35}
+.sc .where{font-size:11px;color:var(--blue)}
+.sc p{font-size:11.5px;color:var(--muted);margin:0;line-height:1.5}
+
+/* ---------- evidence ---------- */
+.evidence{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:18px 24px 22px}
+.status-list{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px}
+.status-list li{display:flex;align-items:center;gap:9px;font-size:13px;color:#c9d6e6}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.dot.ok{background:var(--green);box-shadow:0 0 8px var(--green)}
+.dot.warn{background:var(--warn);box-shadow:0 0 8px var(--warn)}
+.bar-track{height:8px;border-radius:5px;background:#0d1a2a;overflow:hidden;margin-top:4px}
+.bar{height:100%;border-radius:5px}
+
+/* ---------- responsive ---------- */
+@media(max-width:980px){
+  .hero,.map-grid,.evidence{grid-template-columns:1fr}
+  .grid3,.grid4,.grid5,.sc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  h1{font-size:26px}
+}
+@media(max-width:560px){
+  .wrap{padding:0 14px}
+  .hero{padding:26px 14px 22px}
+  .sheet-body{padding:14px 16px 18px}
+  .grid3,.grid4,.grid5,.sc-grid{grid-template-columns:1fr}
+  .sc-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="wrap hero">
+  <div>
+    <div class="eyebrow">方案可视化总览 / Centennial Jing-Zhang AI Innovation Belt</div>
+    <h1>百年京张AI创新带城市设计 <span class="grad">· 京张AI绿廊</span></h1>
+    <p class="hero-copy">离线电子展示成果，权威数据仍以 GeoJSON、metrics.json、矩阵与自检结果为准。本页把
+      <span class="kw">总览地图</span>、<span class="kw">三层范围</span>、<span class="kw">重点区域</span>、<span class="kw">用地分区</span>、<span class="kw">交通慢行</span>、<span class="kw">蓝绿公共空间</span>、<span class="kw">建筑</span>与<span class="kw">更新项目</span>、<span class="kw">AI 场景</span>、<span class="kw">核心指标</span>、<span class="kw">任务覆盖</span>、<span class="kw">自检状态</span>、<span class="kw">来源</span>与<span class="kw">假设</span>，转成人类可读的视觉说明。</p>
+    <div class="pill-row">
+      <span class="pill"><b>一带</b> 9km 绿廊三道</span>
+      <span class="pill"><b>三核</b> 众智园 / AI原点 / 大钟寺</span>
+      <span class="pill"><b>多点</b> 10绿地·8公共空间·15建筑</span>
+      <span class="pill"><b>微更新·强链接·青年友好</b></span>
+    </div>
+  </div>
+  <aside class="status-box">
+    <strong>⚠ 临时边界 · intake 展示</strong>
+    <p>全部几何层使用 provisional 多边形（official_boundary=false）。本页仅支持 intake 展示、讨论与返修；正式专业评分前必须以官方红线多边形替换，所有面积与比值指标须在官方边界发布后重算。</p>
+    <div class="pill-row"><span class="pill">provisional geometry · intake only</span></div>
+  </aside>
+</div>
+</header>
+
+<main class="wrap">
+
+<!-- ============ 总览地图 ============ -->
+<section class="sheet accent-top">
+  <div class="sheet-head">
+    <div><h2>总览地图</h2><p>总览地图把用地分区、交通慢行、蓝绿公共空间、建筑与更新项目、AI 场景节点放在同一张证据图中，便于快速理解"一带三核多点"的空间主线。</p></div>
+    <span class="tag">geometry + metrics</span>
+  </div>
+  <div class="map-grid">
+    <div>
+      <div class="map-frame">
+      <svg viewBox="0 0 1120 680" role="img" aria-label="总览地图：京张AI绿廊一带三核多点，含三层范围、重点区域、用地分区、交通慢行、蓝绿公共空间、建筑与更新项目、AI 场景">
+        <rect x="40" y="30" width="1040" height="620" rx="16" fill="#0d1a2a" stroke="#23405f" stroke-width="2"/>
+        <!-- 标题 -->
+        <text x="64" y="66" font-size="20" font-weight="700" fill="#eaf2fb">京张AI绿廊 · 一带三核多点（示意）</text>
+        <text x="64" y="90" font-size="12" fill="#8fa3bf">三道一绿 9km · 南北向绿廊（北指向右）</text>
+        <!-- 场地与四类用地带（西→东 = 南→北） -->
+        <g>
+          <rect x="140" y="170" width="180" height="360" rx="8" fill="#4fa3e3" opacity=".16" stroke="#4fa3e3" stroke-width="1.2" stroke-opacity=".45"/>
+          <text x="230" y="356" text-anchor="middle" font-size="14" fill="#4fa3e3">AI研发创新用地</text>
+          <rect x="320" y="170" width="180" height="360" rx="8" fill="#5fbf8f" opacity=".16" stroke="#5fbf8f" stroke-width="1.2" stroke-opacity=".45"/>
+          <text x="410" y="356" text-anchor="middle" font-size="14" fill="#5fbf8f">公园绿地与开敞空间</text>
+          <rect x="500" y="170" width="180" height="360" rx="8" fill="#f08a4a" opacity=".16" stroke="#f08a4a" stroke-width="1.2" stroke-opacity=".45"/>
+          <text x="590" y="356" text-anchor="middle" font-size="14" fill="#f08a4a">产业服务与商业用地</text>
+          <rect x="680" y="170" width="180" height="360" rx="8" fill="#93a1b5" opacity=".16" stroke="#93a1b5" stroke-width="1.2" stroke-opacity=".45"/>
+          <text x="770" y="356" text-anchor="middle" font-size="14" fill="#93a1b5">社区服务与配套用地</text>
+        </g>
+        <!-- 临时边界（虚线） -->
+        <rect x="120" y="150" width="760" height="400" rx="14" fill="none" stroke="#5c6f8a" stroke-width="1.5" stroke-dasharray="8 7" opacity=".7"/>
+        <!-- 三道：骑行/跑步/漫步（地铁风） -->
+        <g fill="none" stroke-linecap="round">
+          <path d="M 96 540 C 340 462 640 330 928 140" stroke="#0a1420" stroke-width="17"/>
+          <path d="M 96 540 C 340 462 640 330 928 140" stroke="#4fa3e3" stroke-width="7"/>
+          <path d="M 100 566 C 344 488 644 356 932 166" stroke="#0a1420" stroke-width="17"/>
+          <path d="M 100 566 C 344 488 644 356 932 166" stroke="#5fbf8f" stroke-width="7"/>
+          <path d="M 104 592 C 348 514 648 382 936 192" stroke="#0a1420" stroke-width="17"/>
+          <path d="M 104 592 C 348 514 648 382 936 192" stroke="#f08a4a" stroke-width="7"/>
+        </g>
+        <text x="520" y="330" text-anchor="middle" font-size="11" fill="#0d1a2a" font-weight="700">骑行道 9km</text>
+        <text x="524" y="382" text-anchor="middle" font-size="11" fill="#0d1a2a" font-weight="700">跑步道 9km</text>
+        <text x="528" y="434" text-anchor="middle" font-size="11" fill="#0d1a2a" font-weight="700">漫步道 9km</text>
+        <!-- 多点：绿地 / 公共空间 / 新建建筑 -->
+        <g fill="#5fbf8f" opacity=".8"><rect x="176" y="200" width="8" height="8" rx="2"/><rect x="344" y="210" width="8" height="8" rx="2"/><rect x="700" y="196" width="8" height="8" rx="2"/><rect x="812" y="248" width="8" height="8" rx="2"/></g>
+        <g fill="#f08a4a"><circle cx="232" cy="470" r="5"/><circle cx="420" cy="486" r="5"/><circle cx="736" cy="440" r="5"/></g>
+        <g fill="#f5a961" stroke="#f5f5f0" stroke-width="1"><rect x="388" y="270" width="10" height="10" rx="2"/><rect x="640" y="250" width="10" height="10" rx="2"/><rect x="820" y="360" width="10" height="10" rx="2"/></g>
+        <!-- 三核节点 -->
+        <g>
+          <circle cx="230" cy="330" r="30" fill="#f08a4a" opacity=".18"/>
+          <circle cx="230" cy="330" r="16" fill="#f08a4a" stroke="#f5f5f0" stroke-width="2"/>
+          <text x="230" y="292" text-anchor="middle" font-size="15" font-weight="700" fill="#f5f5f0">大钟寺</text>
+          <text x="230" y="376" text-anchor="middle" font-size="11" fill="#8fa3bf">AI产业聚集区 · 72.0万㎡</text>
+          <circle cx="590" cy="330" r="30" fill="#5fbf8f" opacity=".18"/>
+          <circle cx="590" cy="330" r="16" fill="#5fbf8f" stroke="#f5f5f0" stroke-width="2"/>
+          <text x="590" y="292" text-anchor="middle" font-size="15" font-weight="700" fill="#f5f5f0">AI原点·五道口</text>
+          <text x="590" y="376" text-anchor="middle" font-size="11" fill="#8fa3bf">北京AI原点社区 · 104.3万㎡</text>
+          <circle cx="800" cy="300" r="30" fill="#4fa3e3" opacity=".18"/>
+          <circle cx="800" cy="300" r="16" fill="#4fa3e3" stroke="#f5f5f0" stroke-width="2"/>
+          <text x="800" y="256" text-anchor="middle" font-size="15" font-weight="700" fill="#f5f5f0">众智园</text>
+          <text x="800" y="350" text-anchor="middle" font-size="11" fill="#8fa3bf">AI自主创新加速区 · 192.9万㎡</text>
+        </g>
+        <!-- 指北针（北指向右） -->
+        <g transform="translate(1004,84)">
+          <circle r="17" fill="none" stroke="#f5f5f0" stroke-width="1.4"/>
+          <path d="M -8 0 L 8 0" stroke="#f5f5f0" stroke-width="2.4" stroke-linecap="round"/>
+          <polygon points="6,-2 10,0 6,2" fill="#f5f5f0"/>
+          <text x="12" y="5" font-size="14" fill="#f5f5f0" font-weight="700">N</text>
+        </g>
+        <!-- 比例尺 -->
+        <g stroke="#8fa3bf" stroke-width="1.6">
+          <line x1="900" y1="600" x2="1040" y2="600"/>
+          <line x1="900" y1="594" x2="900" y2="606"/>
+          <line x1="1040" y1="594" x2="1040" y2="606"/>
+        </g>
+        <text x="970" y="586" text-anchor="middle" font-size="12" fill="#8fa3bf">2 km</text>
+        <!-- 底部说明 -->
+        <text x="64" y="634" font-size="11.5" fill="#5c6f8a">所有图面由同一组 GeoJSON、metrics、矩阵与自检结果派生；临时边界以 intake 讨论为限，非官方红线。</text>
+      </svg>
+      </div>
+      <div class="legend">
+        <span><i class="sw" style="background:#4fa3e3"></i>AI研发</span>
+        <span><i class="sw" style="background:#5fbf8f"></i>绿地开敞</span>
+        <span><i class="sw" style="background:#f08a4a"></i>产业服务</span>
+        <span><i class="sw" style="background:#93a1b5"></i>社区配套</span>
+        <span><i class="sw line" style="background:#4fa3e3"></i>骑行 9km</span>
+        <span><i class="sw line" style="background:#5fbf8f"></i>跑步 9km</span>
+        <span><i class="sw line" style="background:#f08a4a"></i>漫步 9km</span>
+        <span><i class="sw" style="background:#f5a961"></i>新建设施</span>
+      </div>
+    </div>
+    <aside>
+      <h3>核心指标（provisional 临时边界）</h3>
+      <div class="metric-list">
+        <div class="metric"><span>site_area_sqm</span><strong data-metric="site_area_sqm" data-value="11412825.386">11,412,825 ㎡</strong><small>来源 geometry/site_boundary.geojson · 置信度 中</small></div>
+        <div class="metric"><span>green_ratio</span><strong data-metric="green_ratio" data-value="0.114827">0.114827（11.5%）</strong><small>来源 green_space + site_boundary · 置信度 低</small></div>
+        <div class="metric"><span>public_space_ratio</span><strong data-metric="public_space_ratio" data-value="0.005825">0.005825（0.58%）</strong><small>来源 public_space + site_boundary · 置信度 低</small></div>
+      </div>
+      <div class="card hl" style="margin-top:14px">
+        <h3>⚠ 自检状态</h3>
+        <p>确定性校验、空间评审、可视化封装与专业证据评审须全部通过；当前边界状态：<strong>provisional geometry — intake only</strong>。官方边界发布后所有指标重算。</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ 三层范围 ============ -->
+<section class="sheet accent-top">
+  <div class="sheet-head">
+    <div><h2>三层范围</h2><p>方案按统筹研究范围、总体设计范围、重点区域范围递进，把产业判断、城市更新与重点片区设计绑定到图层与指标。</p></div>
+    <span class="tag">project_scope_summary.csv</span>
+  </div>
+  <div class="grid3">
+    <article class="card"><h3>统筹研究范围</h3><div class="big">43.6 ㎞²</div><p>面向全范围提出 AI 产业生态、三区两翼协同、未来城市形态与文化叙事。</p></article>
+    <article class="card"><h3>总体设计范围</h3><div class="big g">11.4 ㎞²</div><p>组织城市更新、用地结构、交通市政与京张遗址公园活力带；含 19 项更新项目与 9km 蓝绿慢行系统。</p></article>
+    <article class="card"><h3>重点区域范围</h3><div class="big o">368.4 公顷</div><p>三处重点片区详细设计：功能业态、建筑更新、公共空间与交通组织。</p></article>
+  </div>
+</section>
+
+<!-- ============ 重点区域 ============ -->
+<section class="sheet accent-top">
+  <div class="sheet-head">
+    <div><h2>重点区域</h2><p>三处重点片区各有产业定位、空间策略、建筑与公共空间动作、交通接口与实施风险说明。</p></div>
+    <span class="tag">key_areas.geojson</span>
+  </div>
+  <div class="grid3">
+    <article class="card"><h3>众智园 · AI自主创新加速区</h3><div class="big">192.9 万㎡</div><p>花园型自主创新街区。保留 5 栋学北园科研楼，首层灰空间优化；新增下沉广场青年中心、清河滨水绿带、初级泵道 800㎡。</p></article>
+    <article class="card"><h3>AI原点 · 五道口社区</h3><div class="big g">104.3 万㎡</div><p>近校型成果转化街区。保留清华科技园/智源大厦/东升大厦；新增铁路记忆科创互动馆、开源社区发布厅、1.3ha 青年草坪、街头滑板 1200㎡。</p></article>
+    <article class="card"><h3>大钟寺 · AI产业聚集区</h3><div class="big o">72.0 万㎡</div><p>城市型智能经济街区。保留体育公园+顺馨园；新增古钟文化驿站、碗池滑板 1500㎡；500m 环形跑道夜光升级。</p></article>
+  </div>
+</section>
+
+<!-- ============ 用地分区 ============ -->
+<section class="sheet accent-top g">
+  <div class="sheet-head">
+    <div><h2>用地分区</h2><p>四类用地沿绿廊东西向拼合，研发、绿脉、产业与社区逐带递进，构成"混合编程"。</p></div>
+    <span class="tag">land_use.geojson</span>
+  </div>
+  <div class="grid4">
+    <article class="card"><h3>AI研发创新用地</h3><div class="big">23%</div><div class="bar-track"><div class="bar" style="width:23%;background:#4fa3e3"></div></div><p>267 万㎡ · 科研办公楼群与下沉广场</p></article>
+    <article class="card"><h3>公园绿地与开敞空间</h3><div class="big g">23%</div><div class="bar-track"><div class="bar" style="width:23%;background:#5fbf8f"></div></div><p>259 万㎡ · 京张绿廊与滨水绿带</p></article>
+    <article class="card"><h3>产业服务与商业用地</h3><div class="big o">29%</div><div class="bar-track"><div class="bar" style="width:29%;background:#f08a4a"></div></div><p>337 万㎡ · 孵化器与商业配套</p></article>
+    <article class="card"><h3>社区服务与配套用地</h3><div class="big" style="color:#93a1b5">25%</div><div class="bar-track"><div class="bar" style="width:25%;background:#93a1b5"></div></div><p>278 万㎡ · 社区服务与生活配套</p></article>
+  </div>
+</section>
+
+<!-- ============ 交通慢行 ============ -->
+<section class="sheet accent-top">
+  <div class="sheet-head">
+    <div><h2>交通慢行</h2><p>"三道一绿" 9km 慢行系统：骑行、跑步、漫步三线并行，串联三处重点片区，骑行 15 分钟可达。</p></div>
+    <span class="tag">roads.geojson</span>
+  </div>
+  <div class="grid3">
+    <article class="card"><h3>骑行道</h3><div class="big">9 km</div><p>京张绿廊连续骑行道（ROAD-CYCLE-01），东西向贯通三片区；连接道含清河滨水骑行道、荷清园连接道、体育公园-顺馨园串联道。</p></article>
+    <article class="card"><h3>跑步道</h3><div class="big g">9 km</div><p>京张绿廊连续跑步道（ROAD-RUN-01）；大钟寺体育公园 500m 环形跑道（保留）升级夜光计时。</p></article>
+    <article class="card"><h3>漫步道</h3><div class="big o">9 km</div><p>京张绿廊漫步道（ROAD-WALK-01），沿线设置起跑集结区、宠物友好区与市集草坪。</p></article>
+  </div>
+</section>
+
+<!-- ============ 蓝绿公共空间 ============ -->
+<section class="sheet accent-top g">
+  <div class="sheet-head">
+    <div><h2>蓝绿公共空间</h2><p>10 处绿地与 8 处公共空间构成蓝绿骨架；三处滑板场（800 / 1200 / 1500㎡）沿绿廊形成青年极限运动网络。</p></div>
+    <span class="tag">green_space + public_space</span>
+  </div>
+  <div class="grid4">
+    <article class="card"><h3>京张绿廊（9km）</h3><div class="big g">10 处绿地</div><p>遗址公园绿廊、清河滨水带、青年活动草坪、荷清园、体育公园、顺馨园等。</p></article>
+    <article class="card"><h3>公共空间</h3><div class="big">8 处</div><p>下沉生态广场、空中花园、滨水步道、露营市集草坪、宠物友好区等。</p></article>
+    <article class="card"><h3>初级泵道 · 众智园</h3><div class="big o">800 ㎡</div><p>平缓起伏沥青泵道，新手友好；配套滑板场服务亭。</p></article>
+    <article class="card"><h3>碗池 · 大钟寺</h3><div class="big o">1,500 ㎡</div><p>深度 1.2–2.0m 碗池，承载极限运动联赛总决赛。</p></article>
+  </div>
+</section>
+
+<!-- ============ 建筑与更新项目 ============ -->
+<section class="sheet accent-top">
+  <div class="sheet-head">
+    <div><h2>建筑与更新项目</h2><p>微更新导向：保留 15、改造 8、新增 11，覆盖建筑首层、屋顶花园、文化节点与口袋设施，分三期实施。</p></div>
+    <span class="tag">buildings.geojson · proposal.md §1.2</span>
+  </div>
+  <div class="grid3">
+    <article class="card"><h3>保留 15</h3><div class="big">15 栋</div><p>学北园 A-E 科研楼、清华科技园主楼群、智源大厦、东升大厦、体育公园服务中心等。</p></article>
+    <article class="card"><h3>改造 8</h3><div class="big g">8 处</div><p>众智园 5 栋首层灰空间优化、清华科技园首层开放界面、东升大厦首层商业激活、大钟寺夜光跑道升级。</p></article>
+    <article class="card"><h3>新增 11</h3><div class="big o">11 项</div><p>铁路记忆科创互动馆、开源社区发布厅、古钟文化驿站、下沉广场青年中心、青年草坪服务站、滑板场服务亭等 6 栋轻量建筑 + 5 处附属设施。</p></article>
+  </div>
+</section>
+
+<!-- ============ 原创方案图集 ============ -->
+<section class="sheet accent-top">
+  <div class="sheet-head">
+    <div><h2>原创方案图集</h2><p>本方案原创证据图（深色科技感，双语），均可从 geometry/ 与 metrics.json 溯源。</p></div>
+    <span class="tag">assets/figures</span>
+  </div>
+  <div class="gallery">
+    <figure class="fig"><img src="../assets/figures/site-overview.png" alt="一带三核多点总体结构图" loading="lazy" width="2400" height="1400"><figcaption class="fig-caption"><b>图1 一带三核多点 · 总体结构</b> — 三道一绿串联三处重点片区，多点服务节点沿绿廊分布。</figcaption></figure>
+    <figure class="fig"><img src="../assets/figures/land-use-structure.png" alt="用地结构混合编程图" loading="lazy" width="2400" height="1400"><figcaption class="fig-caption"><b>图2 用地结构 · 混合编程</b> — 四类用地构成比例与三片区差异矩阵。</figcaption></figure>
+    <figure class="fig"><img src="../assets/figures/key-areas.png" alt="三片区差异化详细设计图" loading="lazy" width="2400" height="1200"><figcaption class="fig-caption"><b>图3 三片区差异化详细设计</b> — 每片区一套产业定位、空间动作与关键数字。</figcaption></figure>
+    <figure class="fig"><img src="../assets/figures/mobility-bluegreen.png" alt="慢行与蓝绿公共空间网络图" loading="lazy" width="2400" height="1400"><figcaption class="fig-caption"><b>图4 慢行与蓝绿公共空间网络</b> — 三线一道骨架 + 绿地/公共空间节点 + 三期实施。</figcaption></figure>
+    <figure class="fig"><img src="../assets/figures/metrics-evidence.png" alt="核心指标与证据链仪表盘图" loading="lazy" width="2400" height="1600"><figcaption class="fig-caption"><b>图5 核心指标与证据链</b> — 三必交指标 + 设计动作指标 + 计算口径；容积率显示"待复核"。</figcaption></figure>
+  </div>
+</section>
+
+<!-- ============ AI 场景 ============ -->
+<section class="sheet accent-top o">
+  <div class="sheet-head">
+    <div><h2>AI 场景</h2><p>10 张真实 AI 场景卡（proposal.md §5.5），每张标明片区、空间载体、AI 支撑、数据来源、隐私边界、人工复核与运营主体，并配套 DPIA Checklist。</p></div>
+    <span class="tag">10 张场景卡 + DPIA</span>
+  </div>
+  <div class="sc-grid">
+    <article class="sc"><span class="no">SC 01</span><h3>AI午间跑步社交俱乐部</h3><span class="where">全片区 · 9km绿廊跑步道</span><p>3 处智能体测站（端侧姿态分析）+ 每 500m 起跑集结区 + 企业跑团匹配。</p></article>
+    <article class="sc"><span class="no">SC 02</span><h3>开源社区周末黑客松</h3><span class="where">五道口 · 开源发布厅 150㎡</span><p>代码实时投屏墙 + AI 辅助代码审查（本地部署）+ 1.3ha 青年草坪扩展区。</p></article>
+    <article class="sc"><span class="no">SC 03</span><h3>屋顶运动联盟联赛</h3><span class="where">众智园 · 裙房屋顶空中花园</span><p>半场篮球 + 羽毛球划线 + 瑜伽拉伸区 + 下沉广场阶梯坐席观赛。</p></article>
+    <article class="sc"><span class="no">SC 04</span><h3>下沉广场露天电影夜</h3><span class="where">众智园 · 下沉广场青年中心</span><p>200㎡ 半室外构筑物 + 阶梯坐席 100–150 座 + 匿名投票推荐片单。</p></article>
+    <article class="sc"><span class="no">SC 05</span><h3>铁路记忆AR历史探索</h3><span class="where">五道口 · 遗址公园 1.3km</span><p>Web AR（免下载）+ 科创互动馆 300㎡ + 沿线 10 处 AR 触发点。</p></article>
+    <article class="sc"><span class="no">SC 06</span><h3>宠物社交周末市集</h3><span class="where">全片区轮值 · 宠物友好区</span><p>三片区宠物区（600/500/500㎡）+ 10–20 个摊位 + 健康快检站。</p></article>
+    <article class="sc"><span class="no">SC 07</span><h3>极限运动三片区联赛</h3><span class="where">全片区 · 泵道-街头-碗池</span><p>800/1200/1500㎡ 三场地 15 分钟骑行可达，AI 辅助评分（人工裁决为准）。</p></article>
+    <article class="sc"><span class="no">SC 08</span><h3>大钟寺夜光跑道计时赛</h3><span class="where">大钟寺 · 500m 夜光跑道</span><p>蓄光涂层 + RFID 计时芯片 + 智能体测站×2 + 可移动看台。</p></article>
+    <article class="sc"><span class="no">SC 09</span><h3>古钟文化声音艺术节</h3><span class="where">大钟寺 · 顺馨园林荫带</span><p>AI 互动钟声即兴伴奏（骨传导输出）+ 编钟数字孪生 + 声景采集。</p></article>
+    <article class="sc"><span class="no">SC 10</span><h3>全球AI开放日公共路线</h3><span class="where">全片区 · 三道一绿全线 9km</span><p>7 个核心展示节点 + 多语种 AI 导览 + 端侧算力节点与临时网络。</p></article>
+  </div>
+</section>
+
+<!-- ============ 任务覆盖 ============ -->
+<section class="sheet accent-top">
+  <div class="sheet-head">
+    <div><h2>任务覆盖</h2><p>compliance_matrix.json 覆盖公告 1.3/1.4/1.5 与 agent.1–agent.6；standard_matrix.json 与 design_depth_matrix.json 证明专业标准与成果深度。</p></div>
+    <span class="tag">matrix evidence</span>
+  </div>
+  <div class="evidence">
+    <div>
+      <h3>任务覆盖维度</h3>
+      <p>六类 agent 任务全部覆盖：产业判断、城市更新、交通慢行、蓝绿生态、重点片区详细设计与实施运营；三区两翼协同与京张文化叙事贯穿始终。</p>
+      <div class="mono">agent.1–agent.6 / compliance_matrix.json / standard_matrix.json / design_depth_matrix.json</div>
+    </div>
+    <div>
+      <h3>覆盖证据</h3>
+      <p>专业评审按目标契合度、品牌识别度、区域协同性、规划创新性、场景可感知度、空间明确性、可转化性、表达完整性、公开合规性、国际传播力与长期运营价值逐项对标。</p>
+      <div class="mono">taskbook / matrices / self_check.json</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 自检状态 ============ -->
+<section class="sheet accent-top w">
+  <div class="sheet-head">
+    <div><h2>自检状态</h2><p>确定性校验、空间评审、可视化封装与专业证据评审四层自检；本页与报告、manifest、self_check 保持同步。</p></div>
+    <span class="tag">self-check</span>
+  </div>
+  <div class="evidence">
+    <div>
+      <h3>四层自检</h3>
+      <ul class="status-list">
+        <li><i class="dot ok"></i>确定性校验（确定性输出、契约检查、指标一致性）</li>
+        <li><i class="dot ok"></i>空间评审（范围、图层、临时边界标注）</li>
+        <li><i class="dot ok"></i>可视化封装（离线静态、禁远程资源、UTF-8）</li>
+        <li><i class="dot ok"></i>专业证据评审（来源台账、DPIA、版权清权）</li>
+      </ul>
+    </div>
+    <div>
+      <h3>边界状态</h3>
+      <ul class="status-list">
+        <li><i class="dot warn"></i>当前边界：provisional geometry — intake only</li>
+        <li><i class="dot warn"></i>容积率：待复核（公告未含批准控规）</li>
+        <li><i class="dot ok"></i>面积/比值指标：基于临时边界计算，官方边界发布后重算</li>
+      </ul>
+      <p style="margin-top:10px;font-size:12.5px;color:var(--faint)">本页不加载 CDN、远程地图瓦片、外部脚本、外部字体、API 请求或 iframe。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 来源与假设 ============ -->
+<section class="sheet accent-top">
+  <div class="sheet-head">
+    <div><h2>来源与假设</h2><p>来源证据分类台账与数据缺口假设清单，解释对设计结论的影响。</p></div>
+    <span class="tag">sources + assumptions</span>
+  </div>
+  <div class="evidence">
+    <div>
+      <h3>来源</h3>
+      <p>来源见 sources.json、agent_taskbook.json、data/processed/agent_fact_pack.md 与 standards/references，共 13 条登记来源（含 7 项正式来源）。⚠ 大部分国际案例数据与场地统计为 AI 基于公开数据推断，正式证据 URL、发布方、日期与交叉核验待补。</p>
+      <div class="mono">sources.json / standard_matrix.json / design_depth_matrix.json</div>
+    </div>
+    <div>
+      <h3>假设</h3>
+      <p>待补控规、道路红线、权属、市政、文保与工程条件在 assumptions.json 中列明并解释对设计结论的影响。⚠ 官方 SITE_BOUNDARY 与 KEY_AREA 多边形未发布，所有面积与比值指标须在官方几何发布后重算。</p>
+      <div class="mono">missing_data_checklist.csv / assumptions.json / self_check.json</div>
+    </div>
+  </div>
+</section>
+
+</main>
+</body>
+</html>

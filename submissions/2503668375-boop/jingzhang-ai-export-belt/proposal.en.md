@@ -98,11 +98,38 @@ Four public landmarks carry operating duties: the Century Vault stores export, a
 
 The identity combines a Departure Line, a four-field City Archive seal and three port markers. Deep-sea blue represents global links; archive gold represents public memory; maintenance orange marks human responsibility; local green represents community and ecology.
 
+## Design Code and Typical Spatial Controls
+
+V5 separates rules into three levels. **Must** items are continuous accessibility, human takeover, maintenance responsibility and an exit plan; they form the safety and equity baseline. **Should** items are active ground floors, shade and rest, mixed use and night-time safety. **Could** items are reversible pavilions, interactive wayfinding, temporary events and material trials that remain only after use evaluation. Until statutory controls arrive, the code fixes performance, process and responsibility; height, density, setbacks and capacity are quantified only after official data is supplied. [standard:MOHURD-URBAN-DESIGN-MEASURES] [depth:height_massing_character]
+
+Four controls apply to building and public-space edges: legible entrances face the public side; consultation, display, community service and maintenance occupy visible ground floors; canopies, forecourts, seating, trees and lighting make habitable thresholds; and loading, plant, waste, security and fire access are separated from the main civic frontage. The three ports may have different identities, while entrance, staffed help, equivalent service and back-of-house safety share one acceptance protocol. [standard:MOHURD-ARCH-DESIGN-DEPTH-2016] [depth:three_key_area_detailed_design]
+
+Three typical section families guide later design. Urban streets combine continuous walking, shade planting, cycling, vehicle movement and active ground floors. Park edges connect building forecourts, shared services, park paths and rain gardens. Under-viaduct sections confirm structural clearance, traffic, parking, fire and emergency needs before reversible workstations, lighting and staffed management are introduced. Dimensions remain pending road redlines, utilities and engineering review. [data:geometry/roads.geojson#ROAD-001] [depth:transport_rail_municipal]
+
 ## Renewal Projects, Implementation Policy, and Phasing
 
-Six implementation packages make the proposal transferable: Export Service Catalogue 0.1; City Archive pilot; three reversible Departure Nodes; three port scenario packages; under-viaduct repair lab; annual Global Roadshow Season and Governance Biennale. Each identifies an actor type, time window, required resource, approval interface, exit condition and measurable milestone. [data:geometry/phasing.geojson#PHASE-001] [depth:phasing_implementation]
+Fourteen project packages cover institutions, space, industry, public life and long-term operation. The number describes work packages, not fourteen permanent construction sites. Every package needs a responsible actor, approval, budget, maintenance and exit mechanism. [data:geometry/phasing.geojson#PHASE-001] [depth:phasing_implementation]
 
-Near-term work uses existing services, reversible components and consent protocols. Medium-term pilots require property, transport, heritage, fire and utility approval. Long-term operation proceeds only when accountable operators and maintenance funding exist. Public funding, park self-financing, service income and sponsorship may be combined without assuming an investment amount; public return prioritises free hours, accessibility, maintenance jobs and open archives.
+| No. | Package | Primary output | Start and exit condition |
+| --- | --- | --- | --- |
+| P01 | Export Service Catalogue 0.1 | Service, evidence, responsibility and booking catalogue | Do not publish without named owners |
+| P02 | City Adoption Archive pilot | Adoption, maintenance, failure and exit templates | Stop if deletion or appeal fails |
+| P03 | Global Cooperation Demand Library | Authorised market and test requests | Source, term and permission required |
+| P04 | First Departure Nodes | Three reversible public-service prototypes | Remove if transport, green or access functions are harmed |
+| P05 | Rail Micro-centre Audit | Arrive-cross-enter-stay checklist | No construction before transport and fire review |
+| P06 | Under-viaduct Repair Lab | Repair, remanufacture and evening-learning pilot | Bridge safety and baseline functions first |
+| P07 | Railway Time Wayfinding | Five-layer chronology and shared signage interface | Do not display unverifiable history |
+| P08 | Technology Export Package | Version, rights, test, maintenance and exit record | No roadshow without compliance and IP closure |
+| P09 | Open-source Residency | Maintainable outcome, licence, documentation and handover | No chronicle entry without maintenance ownership |
+| P10 | Global Roadshow Room | Roadshow, trial, adoption and training chain | No exaggerated contracts or public endorsement |
+| P11 | Older-user and Intergenerational Trial | Age-friendly issue list and staffed-service log | Stop without consent or equivalent route |
+| P12 | Accessibility Audit | Gap, repair and reinspection loop | On-site human review is authoritative |
+| P13 | Global Roadshow Season | Market-specific events, adoption follow-up and annual report | Adjust if no meaningful adoption or public output |
+| P14 | Maintenance Fund and Public Return | Repair budget, free hours, jobs and archives | Reduce or exit when budget or responsibility fails |
+
+The first six months deliver the service catalogue, archive templates and three reversible nodes. Months 6-18 add older-user trials, the repair lab, open-source residency and accessibility audits. Years 1-3 test the three port packages, roadshow season and maintenance fund. Permanent construction is considered only after official polygons, controls, ownership, transport, utilities and operating conditions close as one evidence chain. [source:PROVISIONAL-BOUNDARIES] [depth:phasing_implementation]
+
+Five responsibility groups govern delivery: a lead body for outcomes, funding and coordination; property holders for sites, construction and assets; professional institutions for planning, transport, utilities, heritage and safety review; operators for daily service, staff, events and maintenance; and public oversight for feedback, objection, appeal and open evaluation. Public funding, park self-financing, service income, sponsorship and public return may be combined without assuming an investment amount. Public return prioritises free hours, accessibility, maintenance jobs and open archives.
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 

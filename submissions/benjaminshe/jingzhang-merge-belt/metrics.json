@@ -20,14 +20,16 @@
   },
   "building_footprint_area_sqm": {
    "status": "known",
-   "value": 310807.184,
+   "value": 17725.887,
    "unit": "sqm",
    "source_files": [
     "geometry/buildings.geojson"
    ],
-   "formula": "sum(polygon_area(building_footprints))",
+   "formula": "unary_union area of building footprints (EPSG:4548), same recomputation as spatial_review",
    "confidence": "medium",
-   "assumptions": []
+   "assumptions": [
+    "Recomputed from geometry/buildings.geojson (7 catalyst demonstration buildings) as the union footprint in EPSG:4548, matching the spatial review recomputation; union < sum because demonstration masses overlap in concept; this is not the full existing building stock of the design area."
+   ]
   },
   "green_ratio": {
    "status": "known",
@@ -409,6 +411,19 @@
    "confidence": "high",
    "assumptions": [
     "New scenario card SCENE-16 covering unmanned delivery named by the taskbook."
+   ]
+  },
+  "evidence_gate_level_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "evidence_gate_level_count = 3 evidence levels (official rights-cleared data may drive build/operate actions; provisional/aggregate/medium-confidence data only triggers on-site verification and recalculation; missing data stays unknown and registered)",
+   "confidence": "high",
+   "assumptions": [
+    "Level mapping follows the site-package source_registry usable_for_formal split; recalculate when official geometry is supplied."
    ]
   }
  }

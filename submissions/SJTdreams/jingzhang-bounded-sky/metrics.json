@@ -1,0 +1,345 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Submitted site boundary is provisional rough geometry and must be recalculated when official polygons arrive."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual design footprint, not an existing-building survey or approved development quantum."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "city_room_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "spatial.json"
+      ],
+      "formula": "count(concept city-room interfaces in the three required key areas)",
+      "confidence": "high",
+      "assumptions": [
+        "Rooms are conceptual program interfaces and do not imply construction, flight, or aircraft storage."
+      ]
+    },
+    "public_mission_class_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenario-cards.json"
+      ],
+      "formula": "count(scenarios categorized as emergency, fire_safety, medical, ecology, or maintenance and not industry/negative tests)",
+      "confidence": "high",
+      "assumptions": [
+        "A mission class is a research candidate, not validated demand or authorization."
+      ]
+    },
+    "industry_validation_family_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/scenario-cards.json"
+      ],
+      "formula": "operating identification + link/takeover + acoustics/human factors + privacy/data minimization",
+      "confidence": "high",
+      "assumptions": [
+        "Families are a proposed research program, not certified tests."
+      ]
+    },
+    "human_and_authority_gate_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/agent-governance.json"
+      ],
+      "formula": "count(hard_gates)",
+      "confidence": "high",
+      "assumptions": [
+        "Each listed gate may contain multiple statutory and professional checks."
+      ]
+    },
+    "default_no_go_class_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/operations-program.json"
+      ],
+      "formula": "count(no_go_businesses)",
+      "confidence": "high",
+      "assumptions": [
+        "No-go classes express this concept's scope discipline and do not replace law or authority decisions."
+      ]
+    },
+    "airspace_budget_dimension_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/airspace-budget.json"
+      ],
+      "formula": "count(dimensions)",
+      "confidence": "high",
+      "assumptions": [
+        "Budgets are normalized design-test categories, not physical or statutory limits."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenario-cards.json"
+      ],
+      "formula": "count(scenarios)",
+      "confidence": "high",
+      "assumptions": [
+        "Scenario cards are conceptual and not authorized operations."
+      ]
+    },
+    "simulation_task_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(tasks)",
+      "confidence": "high",
+      "assumptions": [
+        "Tasks are synthetic offline records."
+      ]
+    },
+    "simulation_success_rate": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(outcome ends with _success) / task_count",
+      "confidence": "high",
+      "assumptions": [
+        "Success means the expected accept, hold, reject, or fallback branch executed; it is not flight success."
+      ]
+    },
+    "tool_schema_pass_rate": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(dispatch_schema_valid=true) / task_count",
+      "confidence": "high",
+      "assumptions": [
+        "Schema validity does not establish operational safety."
+      ]
+    },
+    "energy_budget_violations": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(energy_used_kwh > energy_budget_kwh)",
+      "confidence": "high",
+      "assumptions": [
+        "Energy values are synthetic task-test inputs."
+      ]
+    },
+    "audit_completeness": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(audit_complete=true) / task_count",
+      "confidence": "high",
+      "assumptions": [
+        "Audit completeness applies to fields in the offline task ledger only."
+      ]
+    },
+    "synthetic_budget_rejection_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(decision=reject)",
+      "confidence": "high",
+      "assumptions": [
+        "Synthetic expected control decisions only."
+      ]
+    },
+    "synthetic_counterfactual_violation_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "simulation.json",
+        "visual/assets/evaluation-baseline.json"
+      ],
+      "formula": "baselines.first_come_unbounded_counterfactual.budget_violation_count",
+      "confidence": "high",
+      "assumptions": [
+        "Counterfactual is a designed stress test, not observed performance."
+      ]
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "visual/assets/identity-system.json"
+      ],
+      "formula": "count(features where layer=SCENARIO_NODE)",
+      "confidence": "high",
+      "assumptions": [
+        "Landmarks are conceptual design proposals and not built facilities."
+      ]
+    },
+    "authorized_route_length_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md"
+      ],
+      "formula": "pending approved field protocol",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved airspace, route, altitude, operator, or local aviation assessment is available."
+    },
+    "operating_altitude_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md"
+      ],
+      "formula": "pending approved field protocol",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Altitude must be set by aviation and safety authorities for a specific authorized operation."
+    },
+    "flight_noise_db": {
+      "status": "unknown",
+      "value": null,
+      "unit": "dB",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md"
+      ],
+      "formula": "pending approved field protocol",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No device class, acoustic model, receptor inventory, or field measurement is available."
+    },
+    "daily_flight_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count_per_day",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md"
+      ],
+      "formula": "pending approved field protocol",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No operation is authorized or running."
+    },
+    "resident_acceptance_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md"
+      ],
+      "formula": "pending approved field protocol",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No project-specific deliberative or representative public baseline has been collected."
+    }
+  }
+}

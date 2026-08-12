@@ -1,0 +1,483 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+   "confidence": "high",
+   "assumptions": [
+    "采用 brief/site-package/geometry/provisional_boundaries.geojson#PROV-SITE-001 临时边界，官方 polygon 发布后需复算"
+   ]
+  },
+  "land_use_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use_features))",
+   "confidence": "high",
+   "assumptions": [
+    "land_use 无缝覆盖提交边界"
+   ]
+  },
+  "ai_rd_land_ratio": {
+   "status": "known",
+   "value": 0.2973,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "land_use(0802).area / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "概念用地比例，非法定控规指标"
+   ]
+  },
+  "green_land_ratio": {
+   "status": "known",
+   "value": 0.2335,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "land_use(1401).area / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "概念用地比例，非法定控规指标"
+   ]
+  },
+  "residential_land_ratio": {
+   "status": "known",
+   "value": 0.1513,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "land_use(0701).area / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "概念用地比例"
+   ]
+  },
+  "commercial_land_ratio": {
+   "status": "known",
+   "value": 0.0871,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "land_use(05).area / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "概念用地比例"
+   ]
+  },
+  "education_land_ratio": {
+   "status": "known",
+   "value": 0.0883,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "land_use(0801).area / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "概念用地比例"
+   ]
+  },
+  "community_land_ratio": {
+   "status": "known",
+   "value": 0.1352,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "land_use(0702).area / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "概念用地比例"
+   ]
+  },
+  "transport_land_ratio": {
+   "status": "known",
+   "value": 0.0072,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "land_use(1208).area / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "概念用地比例"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 365123.357,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints))",
+   "confidence": "medium",
+   "assumptions": [
+    "概念建筑基底，代表可讨论体量，非法定建筑面积"
+   ]
+  },
+  "building_density": {
+   "status": "known",
+   "value": 0.032,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_footprint_area / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "概念密度"
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "缺少官方控规容积率，待正式控制条件补齐；不得作为法定控制值"
+   ],
+   "reason": "缺少官方控规容积率与建筑面积数据，待正式控制条件补齐后复算；不得作为法定控制值"
+  },
+  "total_floor_area_sqm": {
+   "status": "unknown",
+   "value": null,
+   "unit": "sqm",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "sum(floor_area_by_building)",
+   "confidence": "low",
+   "assumptions": [
+    "无官方建筑面积或层数数据，待正式数据补齐"
+   ],
+   "reason": "缺少官方建筑面积、层数与建筑高度数据，待正式数据补齐后复算"
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 2498869.62,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space))",
+   "confidence": "medium",
+   "assumptions": [
+    "概念绿廊与蓝绿带"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.219,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "含遗址公园绿廊、小月河蓝绿带与节点绿地"
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 521678.409,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(polygon_area(public_space))",
+   "confidence": "medium",
+   "assumptions": [
+    "三处重点区公共广场"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.0457,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "概念公共空间比例"
+   ]
+  },
+  "road_centerline_length_m": {
+   "status": "known",
+   "value": 22438.557,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(line_length(road_centerlines, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "概念道路中心线，不表达道路红线"
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_area_features)",
+   "confidence": "high",
+   "assumptions": [
+    "三处重点区均为临时粗略 polygon"
+   ]
+  },
+  "key_area_total_sqm": {
+   "status": "known",
+   "value": 3692893.005,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "sum(polygon_area(key_areas))",
+   "confidence": "medium",
+   "assumptions": [
+    "临时边界复算，官方 polygon 发布后需复算"
+   ]
+  },
+  "ai_scenario_card_count": {
+   "status": "known",
+   "value": 10,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(scenario_cards)",
+   "confidence": "high",
+   "assumptions": [
+    "任务书要求不少于10张场景卡"
+   ]
+  },
+  "ai_test_scenario_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(industry_test_scenarios)",
+   "confidence": "high",
+   "assumptions": [
+    "任务书要求不少于3个产业测试验证场景"
+   ]
+  },
+  "user_persona_count": {
+   "status": "known",
+   "value": 5,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(user_personas)",
+   "confidence": "high",
+   "assumptions": [
+    "任务书要求不少于5类用户画像"
+   ]
+  },
+  "ai_landmark_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(ai_landmarks)",
+   "confidence": "high",
+   "assumptions": [
+    "任务书要求不少于3个AI朝圣地标"
+   ]
+  },
+  "renewal_project_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(renewal_projects)",
+   "confidence": "medium",
+   "assumptions": [
+    "概念更新项目清单"
+   ]
+  },
+  "phase_1_area_sqm": {
+   "status": "known",
+   "value": 2259237.554,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(phasing phase_1, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "分期为概念建议，非开发时序结论"
+   ]
+  },
+  "phase_2_area_sqm": {
+   "status": "known",
+   "value": 4033769.506,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(phasing phase_2, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "分期为概念建议，非开发时序结论"
+   ]
+  },
+  "phase_3_area_sqm": {
+   "status": "known",
+   "value": 5119834.637,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(phasing phase_3, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "分期为概念建议，非开发时序结论"
+   ]
+  },
+  "turnout_node_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(turnout_nodes: zhongzhiyuan/ai_origin/dazhongsi)",
+   "confidence": "high",
+   "assumptions": [
+    "道岔节点对应三处重点区"
+   ]
+  },
+  "block_section_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(block_sections along innovation spine)",
+   "confidence": "medium",
+   "assumptions": [
+    "沿创新正线划分三个转向区间"
+   ]
+  },
+  "handover_point_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(handover_points at section boundaries)",
+   "confidence": "medium",
+   "assumptions": [
+    "换岔点对应区间交界与东西缝合节点"
+   ]
+  },
+  "field_typology_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(closed/semi-open/open field types)",
+   "confidence": "high",
+   "assumptions": [
+    "封闭测试场/半开放体验场/全开放生活场"
+   ]
+  },
+  "pilot_block_section_count": {
+   "status": "known",
+   "value": 1,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(pilot block section Origin-Zhongzhiyuan)",
+   "confidence": "medium",
+   "assumptions": [
+    "近期示范转向区间"
+   ]
+  },
+  "project_package_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(independent project packages)",
+   "confidence": "medium",
+   "assumptions": [
+    "北部全栈包/中部原点包/南部场景包"
+   ]
+  },
+  "access_gate_count": {
+   "status": "known",
+   "value": 8,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(T0-T7 admission gates)",
+   "confidence": "high",
+   "assumptions": [
+    "道岔授权协议分级准入闸门"
+   ]
+  },
+  "operation_staff_concept_count": {
+   "status": "known",
+   "value": 15,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "conceptual full-time-equivalent estimate across three sections",
+   "confidence": "low",
+   "assumptions": [
+    "概念测算，实际编制由运营主体决定"
+   ]
+  }
+ }
+}

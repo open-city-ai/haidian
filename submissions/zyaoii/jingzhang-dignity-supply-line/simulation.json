@@ -1,0 +1,812 @@
+{
+  "schema_version": "0.1.0",
+  "simulation_scope": "synthetic_tabletop_only",
+  "real_world_performance_claimed": false,
+  "task_count": 4,
+  "tasks": [
+    {
+      "task_id": "SYN-COUNT",
+      "outcome": "count_success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0,
+      "energy_budget_kwh": 0,
+      "audit_complete": true
+    },
+    {
+      "task_id": "SYN-RECALL",
+      "outcome": "quarantine_success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0,
+      "energy_budget_kwh": 0,
+      "audit_complete": true
+    },
+    {
+      "task_id": "SYN-RESTOCK",
+      "outcome": "recovery_pending_success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0,
+      "energy_budget_kwh": 0,
+      "audit_complete": true
+    },
+    {
+      "task_id": "SYN-VERIFY",
+      "outcome": "verification_success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0,
+      "energy_budget_kwh": 0,
+      "audit_complete": true
+    }
+  ],
+  "design_evidence": {
+    "baseline_protocol": {
+      "schema_version": "0.1.0",
+      "question": "Does aggregate AI forecasting add public value beyond a two-bin system and deterministic reorder rule?",
+      "non_ai_baseline": {
+        "duration_days": 15,
+        "mechanism": "two sealed bins, paper READY/LOW/OUT card, named daily count and fixed reorder point",
+        "minimum_metrics": [
+          "stockout_minutes_in_open_period",
+          "expired_or_damaged_units",
+          "wasted_units",
+          "staff_minutes",
+          "unsafe_release_count",
+          "unresolved_status_age"
+        ]
+      },
+      "blind_test": {
+        "duration_days": 30,
+        "inputs": [
+          "point_id",
+          "aggregate_time_band",
+          "count",
+          "batch_expiry_band",
+          "restock_lead_time_band",
+          "open_or_closed"
+        ],
+        "comparators": [
+          "two_bin_manual",
+          "deterministic_reorder",
+          "aggregate_ai_forecast"
+        ],
+        "human_rule": "Counter/restocker does not see method label when assessing suggested reorder batches."
+      },
+      "adoption_gate": "AI proceeds only if it reduces stockout without increasing waste, unsafe release, privacy fields or staff minutes beyond an agreed tolerance.",
+      "exit": "If no net improvement is demonstrated, remove AI and retain the non-AI service."
+    },
+    "case_library": {
+      "schema_version": "0.1.0",
+      "method_only": true,
+      "cases": [
+        {
+          "case": "WHO menstrual health framing",
+          "borrow": "products plus WASH/disposal and participation",
+          "do_not_import": "a claim that any Beijing venue is already compliant"
+        },
+        {
+          "case": "UNICEF MHH guidance",
+          "borrow": "dignity, inclusion and programme evaluation",
+          "do_not_import": "non-Chinese product or procurement rules"
+        },
+        {
+          "case": "Open Food Facts",
+          "borrow": "transparent provenance and explicit uncertainty",
+          "do_not_import": "product database, brand endorsement or community certification"
+        },
+        {
+          "case": "Snipe-IT",
+          "borrow": "custody and status history",
+          "do_not_import": "user assignment or personal consumption tracking"
+        },
+        {
+          "case": "Open311",
+          "borrow": "issue category, accountable role and status updates",
+          "do_not_import": "foreign agency structure or SLA"
+        },
+        {
+          "case": "ODK Collect",
+          "borrow": "offline constrained object audit",
+          "do_not_import": "photos or respondent identity"
+        }
+      ]
+    },
+    "cost_envelope": {
+      "schema_version": "0.1.0",
+      "currency": "CNY",
+      "precision_policy": "No fabricated quotation or total. Obtain at least two comparable quotes for material items before a real pilot.",
+      "cost_buckets": [
+        {
+          "bucket": "product_stock",
+          "basis": "sealed compliant units × verified pilot buffer",
+          "quote_required": true
+        },
+        {
+          "bucket": "dry_storage_and_two_bin_dispenser",
+          "basis": "reversible, cleanable, non-powered baseline",
+          "quote_required": true
+        },
+        {
+          "bucket": "paper_signage_and_accessibility",
+          "basis": "bilingual/plain-language status and tactile/placement review",
+          "quote_required": true
+        },
+        {
+          "bucket": "staff_time",
+          "basis": "count, restock, cleaning/disposal, quality escalation and recovery verification minutes",
+          "quote_required": false
+        },
+        {
+          "bucket": "training_and_drills",
+          "basis": "batch/recall/privacy/offline tabletop sessions",
+          "quote_required": false
+        },
+        {
+          "bucket": "optional_local_software",
+          "basis": "aggregate forecast only after G2; no cloud dependency",
+          "quote_required": true
+        },
+        {
+          "bucket": "insurance_legal_and_contingency",
+          "basis": "operator review and locally agreed contingency",
+          "quote_required": true
+        },
+        {
+          "bucket": "exit_and_disposal",
+          "basis": "remove module, handle remaining stock and delete prohibited data",
+          "quote_required": true
+        }
+      ],
+      "continue_rule": "Approve a monetary ceiling only after site/operator scope and baseline workload are known."
+    },
+    "event_receipt.schema": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Dignity Supply Object Event",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_id",
+        "synthetic",
+        "point_id",
+        "event_type",
+        "time_band",
+        "actor_role",
+        "evidence_ref"
+      ],
+      "properties": {
+        "event_id": {
+          "type": "string"
+        },
+        "synthetic": {
+          "type": "boolean"
+        },
+        "point_id": {
+          "type": "string"
+        },
+        "event_type": {
+          "enum": [
+            "COUNT",
+            "LOW",
+            "OUT",
+            "DAMAGE",
+            "EXPIRY",
+            "RECALL",
+            "RESTOCK",
+            "CLOSE",
+            "RECOVERY_VERIFY"
+          ]
+        },
+        "time_band": {
+          "enum": [
+            "OPEN_AM",
+            "OPEN_PM",
+            "OPEN_EVENING",
+            "CLOSED"
+          ]
+        },
+        "actor_role": {
+          "enum": [
+            "counter",
+            "restocker",
+            "site_manager",
+            "quality_role",
+            "independent_checker"
+          ]
+        },
+        "batch_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "aggregate_count": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "evidence_ref": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 240
+        }
+      },
+      "privacy_note": "The schema intentionally has no user identity, contact, health, cycle, image, cubicle, employer or trajectory field."
+    },
+    "example_receipts": {
+      "schema_version": "0.1.0",
+      "all_records_are_synthetic": true,
+      "receipts": [
+        {
+          "event_id": "SYN-001",
+          "synthetic": true,
+          "point_id": "LAB-ZZY",
+          "event_type": "COUNT",
+          "time_band": "OPEN_AM",
+          "actor_role": "counter",
+          "batch_ref": "SYN-BATCH-A",
+          "aggregate_count": 12,
+          "evidence_ref": "paper-count-001",
+          "note": "Synthetic baseline count."
+        },
+        {
+          "event_id": "SYN-002",
+          "synthetic": true,
+          "point_id": "LAB-ZZY",
+          "event_type": "RECALL",
+          "time_band": "OPEN_PM",
+          "actor_role": "quality_role",
+          "batch_ref": "SYN-BATCH-A",
+          "aggregate_count": 12,
+          "evidence_ref": "synthetic-recall-notice",
+          "note": "Triggers QUARANTINED; AI cannot override."
+        },
+        {
+          "event_id": "SYN-003",
+          "synthetic": true,
+          "point_id": "LAB-ZZY",
+          "event_type": "RESTOCK",
+          "time_band": "OPEN_PM",
+          "actor_role": "restocker",
+          "batch_ref": "SYN-BATCH-B",
+          "aggregate_count": 16,
+          "evidence_ref": "restock-receipt-001",
+          "note": "State remains RECOVERY_PENDING."
+        },
+        {
+          "event_id": "SYN-004",
+          "synthetic": true,
+          "point_id": "LAB-ZZY",
+          "event_type": "RECOVERY_VERIFY",
+          "time_band": "OPEN_PM",
+          "actor_role": "independent_checker",
+          "batch_ref": "SYN-BATCH-B",
+          "aggregate_count": 16,
+          "evidence_ref": "verification-001",
+          "note": "Eligible to return to VERIFIED, then human release to READY."
+        }
+      ]
+    },
+    "first_12_weeks": {
+      "schema_version": "0.1.0",
+      "weeks": [
+        {
+          "weeks": "1-2",
+          "owner": "pilot_convenor",
+          "deliverable": "authority, standard, site and privacy evidence pack",
+          "gate": "G0"
+        },
+        {
+          "weeks": "3-4",
+          "owner": "site_manager",
+          "deliverable": "two-bin station, paper state, storage and manual log baseline",
+          "gate": "G1"
+        },
+        {
+          "weeks": "5-6",
+          "owner": "stockkeeper_and_quality_role",
+          "deliverable": "batch, expiry, damage and recall tabletop evidence",
+          "gate": "G1"
+        },
+        {
+          "weeks": "7-8",
+          "owner": "evaluation_lead",
+          "deliverable": "blind comparator on synthetic/aggregate events",
+          "gate": "G2"
+        },
+        {
+          "weeks": "9-10",
+          "owner": "site_manager",
+          "deliverable": "authorized limited operation and offline/closure drill",
+          "gate": "G3"
+        },
+        {
+          "weeks": "11-12",
+          "owner": "independent_review_role",
+          "deliverable": "rights, workload, cost, failure distribution and stop/continue decision",
+          "gate": "G3"
+        }
+      ]
+    },
+    "governance_raci": {
+      "schema_version": "0.1.0",
+      "tasks": [
+        {
+          "task": "site_permission_and_service_scope",
+          "accountable": "venue_or_property_operator",
+          "responsible": "named_site_manager",
+          "consulted": [
+            "cleaning_and_disposal_role",
+            "accessibility_reviewer"
+          ],
+          "informed": [
+            "users"
+          ]
+        },
+        {
+          "task": "procurement_and_supplier_due_diligence",
+          "accountable": "purchasing_operator",
+          "responsible": "named_purchaser",
+          "consulted": [
+            "supplier_quality_role"
+          ],
+          "informed": [
+            "site_manager"
+          ]
+        },
+        {
+          "task": "batch_expiry_and_seal_registration",
+          "accountable": "purchasing_operator",
+          "responsible": "designated_stockkeeper",
+          "consulted": [
+            "supplier_quality_role"
+          ],
+          "informed": [
+            "daily_counter"
+          ]
+        },
+        {
+          "task": "daily_count_and_paper_status",
+          "accountable": "site_manager",
+          "responsible": "designated_counter",
+          "consulted": [],
+          "informed": [
+            "users"
+          ]
+        },
+        {
+          "task": "restock",
+          "accountable": "site_manager",
+          "responsible": "designated_restocker",
+          "consulted": [
+            "stockkeeper"
+          ],
+          "informed": [
+            "users"
+          ]
+        },
+        {
+          "task": "recall_or_quality_quarantine",
+          "accountable": "purchasing_operator",
+          "responsible": "supplier_or_operator_quality_role",
+          "consulted": [
+            "site_manager"
+          ],
+          "informed": [
+            "counter",
+            "users"
+          ]
+        },
+        {
+          "task": "recovery_verification",
+          "accountable": "site_manager",
+          "responsible": "independent_designated_checker",
+          "consulted": [
+            "quality_role_if_applicable"
+          ],
+          "informed": [
+            "users"
+          ]
+        },
+        {
+          "task": "aggregate_forecast",
+          "accountable": "site_manager",
+          "responsible": "AI_as_advisory_only",
+          "consulted": [
+            "counter",
+            "restocker"
+          ],
+          "informed": [
+            "audit_role"
+          ]
+        }
+      ],
+      "unconfirmed_parties": "All real organisations and named people remain UNKNOWN until written confirmation."
+    },
+    "implementation_gates": {
+      "schema_version": "0.1.0",
+      "gates": [
+        {
+          "id": "G0",
+          "days": "0-15",
+          "name": "evidence_and_authority",
+          "pass": [
+            "written site permission",
+            "named accountable operator",
+            "current product standard checked",
+            "procurement and storage chain",
+            "water/privacy/cleaning/disposal prerequisites",
+            "no prohibited personal fields"
+          ],
+          "fail": "real operation remains UNKNOWN; synthetic work only"
+        },
+        {
+          "id": "G1",
+          "days": "16-30",
+          "name": "non_ai_baseline",
+          "pass": [
+            "two-bin and paper status usable",
+            "count receipts complete",
+            "damage/expiry quarantine works",
+            "staff workload recorded"
+          ],
+          "fail": "repair service design before any AI test"
+        },
+        {
+          "id": "G2",
+          "days": "31-60",
+          "name": "blind_comparison",
+          "pass": [
+            "reproducible comparator",
+            "no privacy expansion",
+            "no unsafe release",
+            "net value threshold met"
+          ],
+          "fail": "AI exits; service continues manually"
+        },
+        {
+          "id": "G3",
+          "days": "61-90",
+          "name": "limited_authorized_operation",
+          "pass": [
+            "truthful status",
+            "recall drill",
+            "offline drill",
+            "recovery evidence",
+            "cost and workload within envelope"
+          ],
+          "fail": "shrink, pause or close affected point"
+        }
+      ],
+      "immediate_stops": [
+        "untraceable or recalled product released",
+        "identity/health/trajectory collection",
+        "operator authority absent",
+        "water/privacy/cleaning/disposal prerequisite fails",
+        "status falsely shown READY",
+        "retaliation or eligibility screening"
+      ]
+    },
+    "industry_tests": {
+      "schema_version": "0.1.0",
+      "tests": [
+        {
+          "id": "IT-01",
+          "field": "product_quality_and_procurement",
+          "question": "Can a named buyer prove applicable standard, supplier, batch, seal, expiry and recall handling?",
+          "pass": "complete synthetic chain and qualified human review",
+          "stop": "untraceable stock"
+        },
+        {
+          "id": "IT-02",
+          "field": "facility_operations_and_cleaning",
+          "question": "Can water, privacy, storage, cleaning/disposal, count, restock and truthful closure work across shifts?",
+          "pass": "offline drill and recovery receipt",
+          "stop": "prerequisite or duty gap"
+        },
+        {
+          "id": "IT-03",
+          "field": "responsible_ai_and_service_design",
+          "question": "Does aggregate forecasting beat two-bin and deterministic reorder without privacy or workload harm?",
+          "pass": "pre-agreed blind-test threshold",
+          "stop": "no net value or unsafe release"
+        }
+      ]
+    },
+    "personas": {
+      "schema_version": "0.1.0",
+      "personas": [
+        {
+          "id": "P-01",
+          "name_zh": "无手机或不愿扫码的访客",
+          "failure_burden": "无法证明身份即被排除",
+          "design_right": "anonymous_access"
+        },
+        {
+          "id": "P-02",
+          "name_zh": "夜班保洁与物业人员",
+          "failure_burden": "夜间缺货且无法离岗购买",
+          "design_right": "truthful_status"
+        },
+        {
+          "id": "P-03",
+          "name_zh": "园区实习生与初入职员工",
+          "failure_burden": "陌生环境和经济/尴尬门槛",
+          "design_right": "privacy"
+        },
+        {
+          "id": "P-04",
+          "name_zh": "短时到访的学生或会议参与者",
+          "failure_burden": "不知道向谁求助",
+          "design_right": "complaint_without_retaliation"
+        },
+        {
+          "id": "P-05",
+          "name_zh": "视力、认知或语言阅读受限者",
+          "failure_burden": "只用 QR、小字或颜色表达状态",
+          "design_right": "digital_refusal"
+        },
+        {
+          "id": "P-06",
+          "name_zh": "指定清点与补货岗位",
+          "failure_burden": "隐形劳动和多系统重复录入",
+          "design_right": "bounded_workload"
+        },
+        {
+          "id": "P-07",
+          "name_zh": "采购与质量责任岗位",
+          "failure_burden": "批次不清导致无法召回",
+          "design_right": "safe_product_boundary"
+        }
+      ]
+    },
+    "rights_ledger": {
+      "schema_version": "0.1.0",
+      "rights": [
+        {
+          "right": "anonymous_access",
+          "promise": "No account, phone, ID, reason or eligibility proof for one emergency unit",
+          "failure_response": "paper notice plus accountable contact; no individual investigation"
+        },
+        {
+          "right": "digital_refusal",
+          "promise": "Phone, QR and AI are optional",
+          "failure_response": "mechanical/two-bin access and paper status remain"
+        },
+        {
+          "right": "privacy",
+          "promise": "No cubicle sensor, face/image, cycle/health inference, individual take log or precise trajectory",
+          "failure_response": "stop collection, delete prohibited data, disclose incident to accountable operator"
+        },
+        {
+          "right": "truthful_status",
+          "promise": "UNKNOWN/LOW/OUT/QUARANTINED/CLOSED are visible; no permanent green state",
+          "failure_response": "status expires without fresh human evidence"
+        },
+        {
+          "right": "safe_product_boundary",
+          "promise": "Damaged, expired, untraceable or recalled stock is not released",
+          "failure_response": "human quarantine and supplier/operator quality escalation"
+        },
+        {
+          "right": "complaint_without_retaliation",
+          "promise": "Object-level issue may be reported without identity or workplace consequences",
+          "failure_response": "aggregate ticket and named operator review"
+        },
+        {
+          "right": "withdrawal",
+          "promise": "Venue may pause the service when quality or site prerequisites fail, but must display truthful closure",
+          "failure_response": "CLOSED with alternative information if verified"
+        }
+      ],
+      "forbidden_fields": [
+        "name",
+        "phone",
+        "account_id",
+        "face",
+        "image",
+        "cycle_date",
+        "health_condition",
+        "precise_user_location",
+        "employer",
+        "individual_take_log"
+      ]
+    },
+    "scenario_cards": {
+      "schema_version": "0.1.0",
+      "scenarios": [
+        {
+          "id": "SC-01",
+          "name_zh": "临时需求、无手机",
+          "disturbance": "公众临时需求",
+          "minimum_response": "匿名机械取用 + 纸面状态"
+        },
+        {
+          "id": "SC-02",
+          "name_zh": "早高峰低库存",
+          "disturbance": "聚合需求突增",
+          "minimum_response": "LOW + 人工补货"
+        },
+        {
+          "id": "SC-03",
+          "name_zh": "夜间无人补货",
+          "disturbance": "责任岗位离线",
+          "minimum_response": "OUT/关闭真实显示 + 已核替代信息"
+        },
+        {
+          "id": "SC-04",
+          "name_zh": "包装破损",
+          "disturbance": "密封失效",
+          "minimum_response": "QUARANTINED + 人工移除"
+        },
+        {
+          "id": "SC-05",
+          "name_zh": "临近或超过有效期",
+          "disturbance": "有效期门失败",
+          "minimum_response": "禁止释放 + 采购处置"
+        },
+        {
+          "id": "SC-06",
+          "name_zh": "批次召回",
+          "disturbance": "权威召回线索",
+          "minimum_response": "整批隔离 + 人工恢复核验"
+        },
+        {
+          "id": "SC-07",
+          "name_zh": "断网",
+          "disturbance": "数字服务不可用",
+          "minimum_response": "两箱法、纸卡和电话/岗位"
+        },
+        {
+          "id": "SC-08",
+          "name_zh": "断电",
+          "disturbance": "电动设备失效",
+          "minimum_response": "非电机械取用或 truthful CLOSED"
+        },
+        {
+          "id": "SC-09",
+          "name_zh": "拒绝数字工具",
+          "disturbance": "公众选择离线",
+          "minimum_response": "无需 QR/账号/理由"
+        },
+        {
+          "id": "SC-10",
+          "name_zh": "洗手水或清洁处置失效",
+          "disturbance": "空间前置条件失败",
+          "minimum_response": "CLOSED，用品库存不等于 READY"
+        },
+        {
+          "id": "SC-11",
+          "name_zh": "状态过期",
+          "disturbance": "没有新人工清点",
+          "minimum_response": "READY 自动降为 UNKNOWN"
+        },
+        {
+          "id": "SC-12",
+          "name_zh": "AI 预测错误",
+          "disturbance": "误告或漏告",
+          "minimum_response": "人工规则优先；计入盲测并可退出 AI"
+        }
+      ]
+    },
+    "state_machine": {
+      "schema_version": "0.1.0",
+      "service": "dignity_supply_point",
+      "authority_rule": "AI may propose; only named accountable human roles may verify, quarantine, replenish, reopen or close.",
+      "states": [
+        {
+          "id": "UNKNOWN",
+          "public_promise": "none",
+          "entry": "new, expired or insufficient evidence"
+        },
+        {
+          "id": "VERIFIED",
+          "public_promise": "evidence prerequisites checked, not yet open",
+          "entry": "human checklist and product record valid"
+        },
+        {
+          "id": "READY",
+          "public_promise": "anonymous emergency unit presently available",
+          "entry": "human count, sealed in-date batch, storage and site prerequisites valid"
+        },
+        {
+          "id": "LOW",
+          "public_promise": "limited stock; manual reorder active",
+          "entry": "count at or below agreed reorder point"
+        },
+        {
+          "id": "OUT",
+          "public_promise": "no unit promised",
+          "entry": "count zero or count evidence missing during opening period"
+        },
+        {
+          "id": "QUARANTINED",
+          "public_promise": "do not use",
+          "entry": "damage, expiry, traceability conflict or recall lead"
+        },
+        {
+          "id": "CLOSED",
+          "public_promise": "service unavailable",
+          "entry": "site, water, privacy, cleaning/disposal or operator gate fails"
+        },
+        {
+          "id": "RECOVERY_PENDING",
+          "public_promise": "not ready until independent human verification",
+          "entry": "replenishment or corrective work recorded"
+        }
+      ],
+      "transitions": [
+        {
+          "from": "UNKNOWN",
+          "to": "VERIFIED",
+          "authority": "site_operator",
+          "evidence": "signed prerequisite checklist"
+        },
+        {
+          "from": "VERIFIED",
+          "to": "READY",
+          "authority": "designated_counter",
+          "evidence": "batch, seal, expiry, count and time-band receipt"
+        },
+        {
+          "from": "READY",
+          "to": "LOW",
+          "authority": "deterministic_rule_or_counter",
+          "evidence": "aggregate count receipt"
+        },
+        {
+          "from": [
+            "READY",
+            "LOW"
+          ],
+          "to": "OUT",
+          "authority": "designated_counter",
+          "evidence": "zero-count or expired-count receipt"
+        },
+        {
+          "from": [
+            "VERIFIED",
+            "READY",
+            "LOW",
+            "OUT"
+          ],
+          "to": "QUARANTINED",
+          "authority": "operator_or_supplier_quality_role",
+          "evidence": "damage, expiry, traceability conflict or recall notice"
+        },
+        {
+          "from": [
+            "VERIFIED",
+            "READY",
+            "LOW",
+            "OUT",
+            "QUARANTINED"
+          ],
+          "to": "CLOSED",
+          "authority": "site_operator",
+          "evidence": "site prerequisite failure or stop decision"
+        },
+        {
+          "from": [
+            "LOW",
+            "OUT",
+            "QUARANTINED",
+            "CLOSED"
+          ],
+          "to": "RECOVERY_PENDING",
+          "authority": "restocker_or_corrective_role",
+          "evidence": "restock, removal or corrective receipt"
+        },
+        {
+          "from": "RECOVERY_PENDING",
+          "to": "VERIFIED",
+          "authority": "independent_designated_checker",
+          "evidence": "recovery verification"
+        }
+      ],
+      "expiry_rule": "READY evidence expires at the locally agreed count interval; absent fresh human evidence, public status falls to UNKNOWN."
+    }
+  },
+  "interpretation_limit": "These tasks prove schema/state replay only. They do not prove demand, site readiness, stockout reduction, health benefit or AI net value."
+}

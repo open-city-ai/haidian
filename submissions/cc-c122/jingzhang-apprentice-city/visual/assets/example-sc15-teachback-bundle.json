@@ -1,0 +1,92 @@
+{
+  "bundle_id": "TB-SC-15-SYNTHETIC-001",
+  "scenario_id": "SC-15",
+  "status": "contained_practice",
+  "gates": [
+    "NEED",
+    "BUILD",
+    "PRACTISE",
+    "HANDOVER",
+    "TEACH-BACK",
+    "GRADUATE"
+  ],
+  "public_need": {
+    "problem": "Can a backup city-operations shift stop, notify, serve, recover and retire an AI service without the origin vendor?",
+    "baseline": "paper playbook and phone tree",
+    "no_ai_route": "staffed desk, hotline, printed directory and physical stop"
+  },
+  "rights": {
+    "source_ids": [
+      "AGENT-TASKBOOK"
+    ],
+    "data_class": "synthetic_only",
+    "retention": "delete raw drill logs after review; retain de-identified decision diff",
+    "appeal": "independent reviewer not involved in the drill decision"
+  },
+  "resources": {
+    "people": [
+      "incident lead",
+      "backup operator",
+      "data steward",
+      "accessibility observer"
+    ],
+    "space": "contained incident room",
+    "equipment": "offline console + physical stop",
+    "energy_water": "metered equipment only",
+    "cost_status": "unknown_pending_operator"
+  },
+  "practice": {
+    "environment": "contained_synthetic",
+    "test_ids": [
+      "STOP",
+      "NOTICE",
+      "MANUAL_SERVICE",
+      "RECOVER",
+      "RETIRE"
+    ],
+    "hard_stops": [
+      "takeover late",
+      "missing event log",
+      "role conflict",
+      "manual route unavailable"
+    ],
+    "results_status": "not_run"
+  },
+  "handover": {
+    "accountable_role": "future authorised operations owner",
+    "backup_role": "independent backup shift",
+    "takeover_target": "15-minute design target for severe service interruption; not a current legal SLA",
+    "incident_drill": "required before any graduation recommendation"
+  },
+  "teachback": {
+    "public_artifact": "de-identified drill guide and failure summary",
+    "non_origin_maintainers": 2,
+    "capability_replay": [
+      "explain",
+      "stop",
+      "notify",
+      "manual-service",
+      "recover",
+      "retire"
+    ]
+  },
+  "jury": {
+    "seats": [
+      "operations",
+      "safety/data",
+      "domain professional",
+      "affected-group representative",
+      "independent evaluator"
+    ],
+    "conflict_check": "mandatory",
+    "decision": null,
+    "reason": "not yet submitted to a human jury"
+  },
+  "retirement": {
+    "model": "revoke access and archive allowed metadata",
+    "data": "delete or isolate by declared rule",
+    "equipment": "remove or repurpose after safety check",
+    "space": "restore previous public use",
+    "knowledge_archive": "retain public guide, negative result and version history"
+  }
+}

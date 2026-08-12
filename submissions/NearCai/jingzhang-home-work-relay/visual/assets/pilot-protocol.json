@@ -1,0 +1,173 @@
+{
+  "version": "1.2",
+  "title_zh": "居业接力 90 天可逆试点协议",
+  "title_en": "90-Day Reversible Home-Work Relay Pilot Protocol",
+  "status": "protocol_only_not_authorized_not_run",
+  "authority_note_zh": "本文件定义拟议试点的证据、责任和停止条件，不代表已有运营主体、预算、采购、场地许可、参与者或测试结果。",
+  "authority_note_en": "This file defines proposed evidence, responsibilities and stop conditions. It does not claim an operator, budget, procurement, site permission, participants or test results.",
+  "phases": [
+    {
+      "id": "P1",
+      "day_range": "Day 1-30",
+      "name_zh": "影子演练",
+      "name_en": "Shadow rehearsal",
+      "purpose_zh": "不改变任何资格、合同或空间状态，只复演请求、人工接收、普通路径、撤回和无人接收等情况。",
+      "purpose_en": "Replay requests, human receipt, ordinary routes, withdrawal and missing receivers without changing eligibility, contracts or space.",
+      "permitted_actions": ["公开目录校对", "合成桌面案例", "RACI 接收演练", "成本与容量字段采集设计", "无 AI 路径走查"],
+      "prohibited_actions": ["真实住房分配", "真实租金决定", "真实工位准入", "私宅数据采集", "建筑或道路改造"],
+      "deliverables": ["请求与失败台账", "角色接受记录", "普通路径差异表", "未知成本容量字段清单", "P2 go/no-go 记录"],
+      "exit_gate": "G1 and G2 must both pass; any absent accountable role, ordinary route or withdrawal method is a no-go."
+    },
+    {
+      "id": "P2",
+      "day_range": "Day 31-60",
+      "name_zh": "可逆小试",
+      "name_en": "Reversible micro-pilot",
+      "purpose_zh": "仅在获授权、可恢复的样板间或服务台内测试三项产业验证协议和人工接管。",
+      "purpose_en": "Test three industry-validation protocols and human takeover only in authorized, reversible mock-up or service-desk settings.",
+      "permitted_actions": ["非结构性样板转换", "受控噪声与安全边界测量", "默认拒绝设备负向测试", "人工与无 AI 成对办理", "故障和撤回演练"],
+      "prohibited_actions": ["未经同意进入私宅", "未获许可的公众开放", "自动资格决定", "把样板结果外推为片区成效", "不可逆施工"],
+      "deliverables": ["三份原始测试记录", "仪器校准和版本记录", "人工签字与异议", "停止和恢复记录", "P3 go/no-go 记录"],
+      "exit_gate": "G3 requires an accountable receiver, complete raw records, zero unresolved high-severity safety or consent breach, and a tested rollback."
+    },
+    {
+      "id": "P3",
+      "day_range": "Day 61-90",
+      "name_zh": "联合复核与退场决定",
+      "name_en": "Joint review and retirement decision",
+      "purpose_zh": "由专业人员、使用者代表和运营角色共同判断修订、限定继续、退役或等待更多证据。",
+      "purpose_en": "Professionals, user representatives and operational roles decide whether to revise, continue within limits, retire or wait for evidence.",
+      "permitted_actions": ["公开失败与异议", "公平性分层复核", "成本容量公式回填", "恢复普通使用", "形成下一轮问题清单"],
+      "prohibited_actions": ["以参与人数代替成效", "删除退出或失败样本", "在无预算维护责任时扩容", "将概念试点写成政府承诺"],
+      "deliverables": ["联合审计记录", "公平性验收表", "成本容量证据包", "资产数据退场清单", "继续/限定/退役/等待决定"],
+      "exit_gate": "No scaling decision is valid without signed evidence ownership, ordinary-route parity, lifecycle resources and an explicit retirement path."
+    }
+  ],
+  "raci": [
+    {
+      "workstream": "protocol-and-scope",
+      "responsible": "概念协议与记录维护角色",
+      "accountable": "未来获授权的试点发起角色",
+      "consulted": ["规划与法律复核角色", "住房劳动与公共服务角色", "使用者代表"],
+      "informed": ["场地权利主体", "投诉与独立审计角色"]
+    },
+    {
+      "workstream": "reversible-space-and-safety",
+      "responsible": "建筑内装与设施协调角色",
+      "accountable": "产权及具备职责的安全决定角色",
+      "consulted": ["消防结构与无障碍专业角色", "住户或样板使用者", "维护角色"],
+      "informed": ["相邻使用者", "运营值守角色"]
+    },
+    {
+      "workstream": "data-consent-and-ai-off",
+      "responsible": "数据与设备登记角色",
+      "accountable": "数据责任和网络安全决定角色",
+      "consulted": ["住户或参与者", "独立审计角色", "人工服务角色"],
+      "informed": ["投诉角色", "设施维护角色"]
+    },
+    {
+      "workstream": "service-and-equity",
+      "responsible": "人工服务与合理便利协调角色",
+      "accountable": "公共服务质量决定角色",
+      "consulted": ["六类画像代表", "无障碍与劳动专业角色", "翻译与线下服务角色"],
+      "informed": ["社区共议角色", "独立复核角色"]
+    },
+    {
+      "workstream": "cost-capacity-procurement-and-exit",
+      "responsible": "财务采购与资产台账角色",
+      "accountable": "未来获授权的资源决定角色",
+      "consulted": ["运营维护角色", "保险许可与法律复核角色", "场地权利主体"],
+      "informed": ["公众监督角色", "所有接收角色"]
+    }
+  ],
+  "cost_method": {
+    "status": "unknown_pending_quotes_and_authority",
+    "currency": "CNY",
+    "formula": "total_lifecycle_cost = approved_personnel_hours * approved_role_rates + authorized_space_cost + equipment_and_calibration_quotes + accessibility_accommodation_quotes + insurance_permit_and_safety_quotes + maintenance_spares + verified_retirement_and_restoration_cost + approved_contingency",
+    "required_operands": [
+      {"id": "approved_personnel_hours", "status": "unknown"},
+      {"id": "approved_role_rates", "status": "unknown"},
+      {"id": "authorized_space_cost", "status": "unknown"},
+      {"id": "equipment_and_calibration_quotes", "status": "unknown"},
+      {"id": "accessibility_accommodation_quotes", "status": "unknown"},
+      {"id": "insurance_permit_and_safety_quotes", "status": "unknown"},
+      {"id": "maintenance_spares", "status": "unknown"},
+      {"id": "verified_retirement_and_restoration_cost", "status": "unknown"},
+      {"id": "approved_contingency", "status": "unknown"}
+    ],
+    "go_no_go": "No pilot opening or scaling until every operand has a named evidence owner, quote or approved rate, lifecycle period and retirement provision."
+  },
+  "capacity_method": {
+    "status": "unknown_pending_shadow_phase",
+    "formula": "safe_daily_case_capacity = min(staff_minutes_available / observed_median_case_minutes, authorized_space_slots, verified_no_ai_fallback_capacity, maintenance_and_emergency_capacity)",
+    "required_operands": [
+      {"id": "staff_minutes_available", "status": "unknown"},
+      {"id": "observed_median_case_minutes", "status": "unknown"},
+      {"id": "authorized_space_slots", "status": "unknown"},
+      {"id": "verified_no_ai_fallback_capacity", "status": "unknown"},
+      {"id": "maintenance_and_emergency_capacity", "status": "unknown"}
+    ],
+    "reporting_rule": "Report completed, withdrawn, failed, deferred and no-receiver cases in the denominator and stratify by AI/no-AI, language and reasonable accommodation path."
+  },
+  "procurement_and_acceptance": [
+    {
+      "gate": "PR-1",
+      "requirement": "Use functional, vendor-neutral specifications and the applicable procurement route; no named supplier is a design requirement.",
+      "block_if": "Rights, maintenance, data export, accessibility, interoperability or retirement terms are absent."
+    },
+    {
+      "gate": "PR-2",
+      "requirement": "Test equipment calibration, offline mode, manual override, replacement parts and data deletion before any operational acceptance.",
+      "block_if": "A demonstration succeeds only under vendor support or a remote service that has no ordinary fallback."
+    },
+    {
+      "gate": "PR-3",
+      "requirement": "Acceptance separates protocol compliance, safety, public-interest parity, lifecycle cost and field outcomes.",
+      "block_if": "Marketing claims, participant counts or a single successful run substitute for raw records and independent review."
+    }
+  ],
+  "validation_protocols": [
+    {
+      "id": "V1",
+      "name_zh": "可逆内装验证",
+      "name_en": "Reversible Fit-Out Validation",
+      "research_question": "Can a non-structural prototype move between declared living/work configurations and return to a jointly accepted baseline without compromising safety or accessibility?",
+      "baseline_required": ["authorized room and component inventory", "photo/drawing record with rights and consent", "egress, fire, structure and accessibility review", "pre-test defect register"],
+      "cycle": "baseline review -> dry run -> witnessed changeover -> occupied-use observation only if separately authorized -> witnessed restoration",
+      "instruments": ["versioned drawing and component register", "measuring tools appropriate to the component", "time and defect log", "professional egress/fire/accessibility checklist"],
+      "sample_status": "unknown_pending_authorized_site_and_professional_protocol",
+      "proposed_acceptance": ["no unresolved safety or egress nonconformity", "all changed components accounted for", "restoration reaches the signed baseline or a new jointly accepted state", "resident/user and professional sign-off both present"],
+      "stop_rule": ["unexpected structural or fire issue", "damage or inaccessible egress", "consent withdrawal", "restoration path no longer feasible"],
+      "human_signoff": ["resident or prototype user", "property-right role", "fire/structure/accessibility professional roles", "maintenance receiving role"],
+      "result_status": "not_authorized_not_run"
+    },
+    {
+      "id": "V2",
+      "name_zh": "住研邻接噪声与安全验证",
+      "name_en": "Live-Work Adjacency Noise and Safety Validation",
+      "research_question": "Can residential quiet, privacy and ordinary access remain protected beside a controlled research or collaboration prototype?",
+      "baseline_required": ["authorized boundary between domestic and work areas", "calibrated ambient-noise baseline at agreed periods", "activity and equipment inventory", "ordinary access, complaint and emergency routes"],
+      "cycle": "baseline measurement -> closed low-intensity test -> declared operating window -> resident/user review -> joint stop/continue decision",
+      "instruments": ["calibrated sound level meter used by a qualified role", "access and incident log", "voluntary disturbance diary without diagnostic inference", "safety-boundary inspection"],
+      "sample_status": "unknown_pending_authorized_site_participants_and_applicable_thresholds",
+      "proposed_acceptance": ["applicable acoustic and safety thresholds set by qualified reviewers before the test", "zero unauthorized crossing into domestic space", "ordinary route and complaint channel remain open", "negative feedback and non-completion remain visible"],
+      "stop_rule": ["applicable threshold exceeded", "unauthorized access", "safety or privacy incident", "complaint cannot be received and acted on"],
+      "human_signoff": ["affected residents or user representatives", "acoustic and safety professional roles", "space operator", "independent public-interest reviewer"],
+      "result_status": "not_authorized_not_run"
+    },
+    {
+      "id": "V3",
+      "name_zh": "智能家居门内默认禁入验证",
+      "name_en": "Private-Home Default-Deny Validation",
+      "research_question": "Does every private-home device remain non-collecting and ordinary-service capable when consent is absent, withdrawn or the network is unavailable?",
+      "baseline_required": ["complete device and data-flow inventory", "default-off firmware/configuration record", "ordinary mechanical or offline function", "deletion and permission-revocation procedure"],
+      "cycle": "default-off inspection -> negative network observation -> explicit consent activation -> withdrawal -> deletion and offline fallback -> independent replay",
+      "instruments": ["local network observation appropriate to the device", "device and permission logs", "physical-state inspection", "deletion and fallback checklist"],
+      "sample_status": "unknown_pending_cleared_devices_authorized_mockup_and_security_review",
+      "proposed_acceptance": ["zero unauthorized transmission while consent is off", "withdrawal disables the declared data flow", "basic residential and maintenance functions remain available without AI", "resident-readable state and deletion receipt are present"],
+      "stop_rule": ["any unauthorized transmission", "hidden or ambiguous state", "withdrawal or deletion failure", "ordinary function depends on continued consent"],
+      "human_signoff": ["resident or mock-up participant", "data responsibility role", "independent cybersecurity reviewer", "ordinary-service receiving role"],
+      "result_status": "not_authorized_not_run"
+    }
+  ]
+}

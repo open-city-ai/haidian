@@ -1,5 +1,23 @@
 # 方案迭代记录
 
+## v1.9 - 2026-08-12
+
+### AI Agent 复评分提分返修（基于 v1.6 回退版评分 71/100）
+
+v1.7（71）、v1.8（68）与 v1.6 回退（71）的评分曲线说明"增加模型卡、利益相关方、风险行等数量型内容"不再推动 rubric 分数。v1.9 改为**证据特异化 + 实施可落地**的双向重构。
+
+- **K1/K2/K3 空间证据包**：在 `geometry/buildings.geojson` 与 `geometry/roads.geojson` 中新增 12 条 `INTERVENTION` features（K1-I01..K1-I03、K2-I01..K2-I03、K3-I01..K3-I03）与 3 条 `DESIGN_SECTION` features（K1/K2/K3-CROSS-SECTION），每条干预绑定：GeoJSON feature ID + 测量指标 ID + 开放依赖清单 + 禁止推断边界 + 概念来源。三处 `PROV-KEY` constraint features 保持不动。
+- **实施矩阵重写（JZ-01..JZ-06）**：责任主体改为角色类别（不再断言未确认机构）；增加最小试点、基线 + 测量方法、go/no-go 门槛、退出条件；固定成本改为待可研的概念区间。
+- **证据矩阵去模板化**：`design_depth_matrix.json`（15 项）与 `standard_matrix.json`（6 项）逐项绑定具体 proposal 小节、GeoJSON feature、指标与公开条款来源。
+- **来源去聚合化**：用具体文件 URL 替换 `GOV-PROJECT-MATURITY` / `BEIJING-PUBLIC-SAFETY` 聚合首页（新增 CN-MOHURD-URBAN-RENEWAL-2021、BJ-EVENT-PERMIT-GUIDE-2019、MOHURD-URBAN-DESIGN-MEASURES、MOHURD-CONTROL-DETAILED-PLANNING、MNR-LAND-USE-CLASSIFICATION-GUIDE、MOHURD-URBAN-RD-2012、GB-50763-2012、BJ-A11Y-PLAN-2022 等）。
+- **指标与置信度校准**：`building_footprint_area_sqm` 复算为 1 136 648.3（含 v1.9 干预多边形）；`building_density` 复算为 0.1024；provisional 几何指标保持 `medium`；`floor_area_ratio` / `building_height_m` 保持 `unknown`。
+- **图件**：`key-areas.png` / `key-areas.en.png` 增加干预 overlay；新增 `key-area-sections.png` / `key-area-sections.en.png`（3 条剖面）。
+
+### 复评差距观察
+
+- 71 → 80 = +9 分；`brief_alignment`、`implementation_feasibility` 依赖 K1/K2/K3 真实空间证据与基线驱动试点，`originality`/`compliance` 依赖项特异来源链。
+- 官方边界、控规、道路红线、权属、文保、市政等 11 类官方资料仍缺；所有 v1.9 干预要素为 `design_proposal`，解除依赖后才升级为正式。
+
 ## v1.6 - 2026-08-10
 
 ### AI Agent 复评分提分返修（基于 v1.5 评分 75/100）

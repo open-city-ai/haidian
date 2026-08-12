@@ -1,0 +1,147 @@
+{
+  "type": "FeatureCollection",
+  "name": "constraints_mend",
+  "metadata": {
+    "coordinate_reference_system": "EPSG:4326",
+    "area_check_crs": "EPSG:4548",
+    "boundary_status": "derived_from_maintainer_defined_provisional_site_boundary",
+    "derivation_note": "在EPSG:4548下以统一矩形网格切割PROV-SITE-001临时边界生成，相邻单元共享完全相同边界坐标；边界正式化后须整体重新生成。"
+  },
+  "data_gap": {
+    "status": "official_constraint_geometry_unavailable",
+    "declared_by": "submissions/yadnuses/jingzhang-mend (v0.5)",
+    "assumption_ids": ["A-CONTROLS-001", "A-CONTROLS-002", "A-HERITAGE-001"],
+    "missing_layers": [
+      "REGULATORY_CONTROL",
+      "HERITAGE_PROTECTION",
+      "PARCEL",
+      "EXISTING_PRIMARY_ROAD"
+    ],
+    "note_zh": "本图层仅含 3 条 provisional/示意性要素（CONS-001 京张铁路遗址廊道暂定保护控制范围、CONS-002 京张铁路旧线示意线位、CONS-003 小月河示意水系），均非 official_constraint。控规控制线、法定文保范围、道路红线与权属地块在公开场地包中无官方几何来源，缺口按 A-CONTROLS-001/A-CONTROLS-002/A-HERITAGE-001 登记；取得官方或已清权几何前，不得以推定线条冒充 official_constraint，宁缺毋假。",
+    "note_en": "This layer contains only 3 provisional/indicative features (CONS-001 tentative heritage corridor range, CONS-002 old Jingzhang rail alignment, CONS-003 XiaoYue River water alignment); none is an official_constraint. No official geometry for regulatory-control lines, statutory heritage ranges, road redlines, or cadastral parcels exists in the public site package; the gap is registered as A-CONTROLS-001/A-CONTROLS-002/A-HERITAGE-001. Until official or cleared geometry is available, inferred lines must not be presented as official_constraint - an empty/partial set is preferred over fabrication."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "CONS-001",
+      "properties": {
+        "id": "CONS-001",
+        "layer": "HERITAGE_PROTECTION",
+        "source_type": "agent_inferred_from_public_data",
+        "confidence": "low",
+        "geometry_role": "provisional_constraint",
+        "official_boundary": false,
+        "boundary_precision": "provisional_rough",
+        "name_zh": "京张铁路遗址廊道暂定保护控制范围（推定）",
+        "derived_from_source_ids": [
+          "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+        ],
+        "area_sqm_declared": 1554579.932,
+        "usage_note": "依据公告中京张遗址公园线索沿绿脊推定的示意性控制范围，非法定文保边界；取得官方资料后替换。"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.347148027018,
+              39.939000226697
+            ],
+            [
+              116.346314674491,
+              40.026500140149
+            ],
+            [
+              116.34818904879,
+              40.026500168427
+            ],
+            [
+              116.34902001184,
+              39.93900022534
+            ],
+            [
+              116.347148027018,
+              39.939000226697
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CONS-002",
+      "properties": {
+        "id": "CONS-002",
+        "layer": "EXISTING_RAIL",
+        "source_type": "agent_inferred_from_public_data",
+        "confidence": "low",
+        "geometry_role": "existing_condition",
+        "name_zh": "京张铁路旧线示意线位（推定）",
+        "usage_note": "公告提及京张铁路遗址公园但公开渠道无精确线位；此为沿绿脊的示意线，非测绘成果。"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            116.348083122542,
+            39.939094737456
+          ],
+          [
+            116.347252905379,
+            40.026390645519
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CONS-003",
+      "properties": {
+        "id": "CONS-003",
+        "layer": "EXISTING_WATER",
+        "source_type": "agent_inferred_from_public_data",
+        "confidence": "low",
+        "geometry_role": "existing_condition",
+        "name_zh": "小月河示意水系线（推定）",
+        "usage_note": "依据公开地图中小月河与场地东侧的空间关系示意绘制，未使用测绘数据；仅用于蓝绿结构讨论。"
+      },
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [
+            [
+              116.354598035228,
+              39.939896713639
+            ],
+            [
+              116.354597799081,
+              39.963194995429
+            ],
+            [
+              116.354453766138,
+              39.966796654356
+            ],
+            [
+              116.353117347578,
+              39.983500990723
+            ],
+            [
+              116.353326898609,
+              39.989663899397
+            ]
+          ],
+          [
+            [
+              116.353401095301,
+              39.991845814086
+            ],
+            [
+              116.354551650402,
+              40.025666015095
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

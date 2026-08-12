@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/jingzhang-city-on/unplugged-test.schema.json",
+  "title": "Civic Dividend Unplugged Test",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scenario_id",
+    "baseline",
+    "boost",
+    "blackout",
+    "bequest",
+    "field_results",
+    "status"
+  ],
+  "properties": {
+    "scenario_id": {
+      "type": "string",
+      "pattern": "^SCN-[0-9]{2}-[A-Z0-9-]+$"
+    },
+    "baseline": {
+      "type": "object",
+      "required": [
+        "non_ai_service",
+        "human_contact",
+        "ordinary_route_open"
+      ],
+      "properties": {
+        "non_ai_service": {
+          "type": "string",
+          "minLength": 3
+        },
+        "human_contact": {
+          "type": "boolean"
+        },
+        "ordinary_route_open": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "boost": {
+      "type": "object",
+      "required": [
+        "bounded",
+        "human_owner",
+        "prohibited_data_absent"
+      ],
+      "properties": {
+        "bounded": {
+          "type": "boolean"
+        },
+        "human_owner": {
+          "type": "string",
+          "minLength": 3
+        },
+        "prohibited_data_absent": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "blackout": {
+      "type": "object",
+      "required": [
+        "unplug_action",
+        "data_deletion_receipt",
+        "ordinary_service_continues"
+      ],
+      "properties": {
+        "unplug_action": {
+          "type": "string",
+          "minLength": 3
+        },
+        "data_deletion_receipt": {
+          "type": "boolean"
+        },
+        "ordinary_service_continues": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "bequest": {
+      "type": "object",
+      "required": [
+        "residual_asset",
+        "works_without_ai",
+        "maintenance_owner"
+      ],
+      "properties": {
+        "residual_asset": {
+          "type": "string",
+          "minLength": 3
+        },
+        "works_without_ai": {
+          "type": "boolean"
+        },
+        "maintenance_owner": {
+          "type": "string",
+          "minLength": 3
+        }
+      },
+      "additionalProperties": false
+    },
+    "field_results": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "status": {
+      "enum": [
+        "synthetic_contract_only",
+        "authorized_field_test",
+        "retained",
+        "removed_archived"
+      ]
+    }
+  }
+}

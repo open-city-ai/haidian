@@ -1,0 +1,277 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "Boundary is the provisional overall-design-area polygon PROV-SITE-001; official polygon not yet published.",
+        "Area recomputed in CGCS2000 / 3-degree Gauss-Kruger CM 117E (EPSG:4548)."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2212765.7,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(green_space features) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Green space includes the Jing-Zhang heritage park spine, Qing River interface and railway buffers proposed by the design; official green-line pending."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 69608.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(public_space features) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Public space covers plaza nodes at the three cores and station interfaces; additional public space may be realised through street sections and retained yards after official conditions are known."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 101324.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building footprints)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Footprints are concept design carriers at the three key areas and corridor nodes; not a survey of existing buildings.",
+        "Total floor area, FAR, height and density remain unknown until official control conditions and building survey are available."
+      ]
+    },
+    "land_use_area_sqm": {
+      "status": "known",
+      "value": 11412789.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "union_area(land_use features) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "Land-use parcels tile the provisional site without gaps or overlaps; residual coverage gap below 40 sqm is within tolerance."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.1939,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Design-proposed green ratio; the regulatory green ratio target is pending official control conditions."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0061,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Core plaza nodes only; linear public space embedded in street sections and park edges is not separately counted and will be re-measured with official geometry."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "Three official key areas: zhongzhiyuan_ai_acceleration_area, beijing_ai_origin_community, dazhongsi_ai_industry_cluster."
+      ]
+    },
+    "key_area_area_total_sqm": {
+      "status": "known",
+      "value": 3692893.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(area of the three key-area provisional polygons) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygons matched to the announced 368.4 ha total within 3% tolerance; official key-area polygons pending."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(AI scenario cards in proposal body)",
+      "confidence": "high",
+      "assumptions": [
+        "At least 10 scenario cards required; 4 are AI industry test-and-validation scenarios."
+      ]
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario cards flagged as industry test-and-validation)",
+      "confidence": "high",
+      "assumptions": [
+        "At least 3 industry test-and-validation scenarios required."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user persona profiles in proposal body)",
+      "confidence": "high",
+      "assumptions": [
+        "At least 5 persona profiles required."
+      ]
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(AI pilgrimage landmark concepts)",
+      "confidence": "high",
+      "assumptions": [
+        "At least 3 AI pilgrimage landmarks required; all are concept landmarks, none approved or built."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package; must be confirmed against regulatory conditions before use."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official height control zone",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height controls and aviation/heritage/landscape constraints are not in the public site package."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "building_footprint_area_sqm / parcel_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved regulatory planning density conditions are not in the public site package."
+    },
+    "setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official building setback from road redline / control line",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Road redline and building control lines are not in the public site package."
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(floor_area per building) = building_footprint_area_sqm x floors (official FAR not available)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Number of floors and FAR cannot be asserted without official control conditions and building survey."
+    },
+    "ai_innovation_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [],
+      "formula": "composite index of patents, enterprises, talent, compute and open-source activity",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires audited city-level statistics from official or cleared data sources; not yet registered."
+    },
+    "talent_density_per_km2": {
+      "status": "unknown",
+      "value": null,
+      "unit": "per_km2",
+      "source_files": [],
+      "formula": "AI talent count / area_km2",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires population and employment census data that is not in the public site package."
+    },
+    "public_space_renewal_projects": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(renewal project list entries in proposal)",
+      "confidence": "high",
+      "assumptions": [
+        "Renewal project list covers the heritage park, Qing River interface, origin community, Da Zhong Si station, AI service nodes and the event route."
+      ]
+    }
+  }
+}

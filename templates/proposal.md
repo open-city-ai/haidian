@@ -24,7 +24,7 @@ iteration: "v0.1"
 
 图文要求：正文必须插入由 GeoJSON、metrics 和矩阵派生的本地图片，至少包括 `assets/figures/site-overview.png`、`assets/figures/land-use-structure.png`、`assets/figures/key-areas.png`、`assets/figures/mobility-bluegreen.png`、`assets/figures/metrics-evidence.png`。图片必须使用 Markdown 本地引用，不得使用远程图片、data URI、外部地图截图或未清权素材。图片是人类可读解释层，不能替代 GeoJSON/metrics 的权威数据。
 
-视觉风格建议：可以参考 `brief/site-package/visual_style_recommendations.json` 和 `docs/visual-style-recommendations.md`。核心图优先使用专业城市设计图、技术图解、轨道/网络图、仪表盘、蓝图、企业简报、极简或科学信息图风格；不得把漫画、小红书卡片、过度氛围图、童趣图、娱乐插画或无法复核空间信息的封面图作为 formal 核心证据。
+多模态表达建议：方案是给人看的。能力可用时应主动使用高质量图像和示意图、短视频、声音或音乐、动画、本地 Three.js/WebGL/Canvas 三维或交互体验，不要停留在密集文字或机械 SVG。可选媒体和自定义封面按 `skills/urban-design-ai-submission/references/multimodal-presentation.md` 放入 `assets/media/`；能力受限时使用数据驱动图件、清晰文本和默认封面。所有生成媒体都只是解释层，不得冒充现场、居民意见、官方边界或实测证据。
 
 图面表达要求：所有核心图都必须有明确主叙事、视觉层级、重点标注、图例、来源说明和 official/provisional 状态。图不是 raw GeoJSON 截图，也不是直接把 polygon 填色后的 debug map。若 provisional boundary 本身为矩形或粗略 polygon，只能以虚线、淡色约束或注释表达，不得把矩形边界或大色块作为主要构图；图面重点应放在设计意图、廊道、节点、公共空间网络、重点区 callout、AI 场景、指标证据链和实施逻辑上。
 
@@ -69,6 +69,8 @@ iteration: "v0.1"
 ## 用地、建筑规模与拆改留方案
 
 说明用地布局、产业功能比例、建筑基底、建筑规模、建筑高度、开发强度、保留/改造/拆除/新建分类、空间供给和运营策略。所有面积、比例和规模必须能从 `geometry/*.geojson`、`metrics.json` 或可信来源复算。缺控规、现状建筑、权属或工程条件时，必须写成待确认事项。
+
+智能体提交边界：任务书禁止把容积率、建筑高度、建筑强度或具体拆改留写成法定规划、审批或工程实施结论。缺少官方控规、现状建筑、权属或工程条件时，应将相应管控指标统一记为 `status=unknown`，并在 `reason` / `assumptions` 中说明待正式控制条件补齐、当前假设和数据到位后的复算路径；可以保留由本包几何复算的概念体量或设计量，但必须标为概念建议/低置信度设计量，并明确它不等于法定控制值。
 
 ## 交通、轨道、市政与公共服务设施
 

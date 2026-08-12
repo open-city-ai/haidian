@@ -1,0 +1,304 @@
+{
+  "schema_version": "0.1.0",
+  "contract_id": "MOB-M09-PILOT-READINESS-888",
+  "status": "conceptual_readiness_contract",
+  "scope": "M-09 synthetic request cards only",
+  "boundary": "This contract freezes the evidence fields required before an authorised pilot. It is not a field baseline, operator agreement, permit, budget, service result, safety approval or deletion proof.",
+  "shared_rules": {
+    "current_status": "not_authorized_not_run",
+    "baseline_rule": "Keep local baseline and observed performance unknown until an authorised team records a dated, versioned collection plan and evidence.",
+    "threshold_rule": "Freeze the success threshold before field collection; do not import a paper, regional statistic or synthetic tabletop value as a local threshold.",
+    "minimum_fields": [
+      "baseline_and_source",
+      "observation_unit_sample_and_time_window",
+      "success_and_stop_condition",
+      "accountable_owner_and_independent_stop_reviewer",
+      "human_equivalent_service",
+      "retention_and_deletion_proof",
+      "review_cycle_and_appeal_entry"
+    ]
+  },
+  "cards": [
+    {
+      "request_id": "M09-R01",
+      "service_group": "resident_daily_care",
+      "spatial_anchors": ["geometry/key_areas.geojson#PROV-KEY-002", "geometry/public_space.geojson#PUBLIC-001"],
+      "baseline": {
+        "status": "unknown",
+        "source_refs": ["visual/assets/pilot-startup-checklist.json", "visual/assets/service-levels.json"],
+        "observation_unit": "grouped care and daily-service requests by service type, time window and accessibility category",
+        "time_window": "to_be_declared and versioned before collection"
+      },
+      "sample_and_window": {
+        "sample_definition": "authorised team must pre-register the eligible request groups and inclusion/exclusion rules",
+        "exclusion_rules": [
+          "exclude unconsented individual traces, requests outside the declared service group or time window, and people who cannot enter through the recruited intake route",
+          "record excluded categories without identifying individuals; absence from the recruited group is not evidence of no care or accessibility need"
+        ],
+        "observation_period": "to_be_frozen before the first window",
+        "sampling_method": "pre-registered grouped observation; no continuous personal trajectory"
+      },
+      "success_condition": {
+        "status": "design_target_not_observed",
+        "rule": "Every applicable request keeps a human, telephone, paper or public-transport equivalent and can exit without a digital account.",
+        "threshold": "freeze before field collection; no local numeric value is claimed",
+        "observed_value": null
+      },
+      "stop_conditions": [
+        "care or accessibility fallback is unavailable",
+        "a person cannot cancel or appeal through a human route",
+        "personal data is requested beyond the published purpose"
+      ],
+      "accountability": {
+        "operating_owner_role": "community service and mobility liaison role",
+        "independent_stop_reviewer_role": "accessibility, privacy and public-interest review role",
+        "authorised_organisation": "unknown_until_authorized"
+      },
+      "human_equivalent": {
+        "route": "community service desk, telephone, paper request and ordinary public transport",
+        "handover_record": "record request group, handover time, alternative route and unresolved item"
+      },
+      "data_contract": {
+        "minimum_data": ["grouped service type", "time window", "fallback offered", "outcome class", "complaint status"],
+        "retention_rule": "retain only the minimum grouped record for the declared review cycle; exact period requires authorisation",
+        "deletion_owner_role": "data stewardship role",
+        "deletion_proof": "not_available_before_authorization",
+        "deletion_receipt_contract": {
+          "required_fields": ["receipt_id", "scope", "scheduled_or_executed_at", "executor_role", "independent_verifier_role", "lookup_location"],
+          "current_status": "not_available_before_authorization",
+          "semantic_boundary": "declarative receipt schema only; it does not prove that deletion has occurred"
+        }
+      },
+      "review_and_redress": {
+        "review_cycle": "before each window, after the first replay and at the declared close-out review; dates unknown",
+        "appeal_entry": "staffed desk, telephone or paper complaint route",
+        "appeal_owner_role": "community liaison and independent review roles",
+        "response_owner_role": "community liaison role with independent review escalation",
+        "response_sla": "freeze a response window before authorisation; current service level is unknown",
+        "receipt_lookup_location": "not_available_before_authorization",
+        "response_rule": "publish receipt ID, received time, owner, status, next review time and lookup location; exact service level requires authorisation",
+        "appeal_receipt_contract": {
+          "required_fields": ["receipt_id", "received_at", "response_owner_role", "status", "next_review_at", "lookup_location"],
+          "current_status": "not_available_before_authorization",
+          "semantic_boundary": "a declared receipt format does not prove that an appeal was received or answered"
+        }
+      },
+      "status": "not_authorized_not_run",
+      "source_refs": ["visual/assets/mobility-tabletop-contract.json", "visual/assets/responsibility-acceptance-contract.json"]
+    },
+    {
+      "request_id": "M09-R02",
+      "service_group": "wheelchair_accessible_route",
+      "spatial_anchors": ["geometry/roads.geojson#ROAD-001", "geometry/public_space.geojson#PUBLIC-001"],
+      "baseline": {
+        "status": "unknown",
+        "source_refs": ["visual/assets/pilot-startup-checklist.json", "visual/assets/service-levels.json"],
+        "observation_unit": "dated route walk-throughs by route segment, handover point, weather state and accessibility group",
+        "time_window": "to_be_declared and versioned before collection"
+      },
+      "sample_and_window": {
+        "sample_definition": "authorised accessibility reviewer must pre-register route segments, handover points and observation strata",
+        "exclusion_rules": [
+          "exclude route segments inaccessible to the declared audit method, users not represented by the assisted-route sample, and unconsented individual traces",
+          "record excluded route conditions and do not infer safe access from a route or user group that was not observed"
+        ],
+        "observation_period": "to_be_frozen before the first walk-through",
+        "sampling_method": "professional route audit plus grouped assisted-route replay; no unconsented individual tracking"
+      },
+      "success_condition": {
+        "status": "design_target_not_observed",
+        "rule": "The declared route remains continuous, understandable and assisted by a human or ordinary public-transport route for every applicable group.",
+        "threshold": "freeze the route-level and worst-group threshold before field collection; no local accessibility result is claimed",
+        "observed_value": null
+      },
+      "stop_conditions": [
+        "a lift, ramp, crossing or clear route is unavailable without a verified fallback",
+        "the worst-group route is not recorded or cannot be completed safely",
+        "an undated audit is presented as an accessibility result"
+      ],
+      "accountability": {
+        "operating_owner_role": "transport and accessibility review role",
+        "independent_stop_reviewer_role": "independent accessibility and safety review role",
+        "authorised_organisation": "unknown_until_authorized"
+      },
+      "human_equivalent": {
+        "route": "staffed assistance, telephone coordination and a verified ordinary public route",
+        "handover_record": "record route segment, assistance offered, obstruction, weather state and return action"
+      },
+      "data_contract": {
+        "minimum_data": ["route segment", "audit date", "obstruction class", "fallback route", "review status"],
+        "retention_rule": "retain the minimum route-audit and aggregate assistance record through the declared review cycle; exact period requires authorisation",
+        "deletion_owner_role": "data stewardship and accessibility review roles",
+        "deletion_proof": "not_available_before_authorization",
+        "deletion_receipt_contract": {
+          "required_fields": ["receipt_id", "scope", "scheduled_or_executed_at", "executor_role", "independent_verifier_role", "lookup_location"],
+          "current_status": "not_available_before_authorization",
+          "semantic_boundary": "declarative receipt schema only; it does not prove that deletion has occurred"
+        }
+      },
+      "review_and_redress": {
+        "review_cycle": "before each window, after any route change or incident and at the declared close-out review; dates unknown",
+        "appeal_entry": "staffed route desk, telephone or paper complaint route",
+        "appeal_owner_role": "accessibility review and community liaison roles",
+        "response_owner_role": "accessibility review role with independent safety escalation",
+        "response_sla": "freeze a response window before authorisation; current service level is unknown",
+        "receipt_lookup_location": "not_available_before_authorization",
+        "response_rule": "record receipt ID, received time, owner, status, next review time and route remedy; exact service level requires authorisation",
+        "appeal_receipt_contract": {
+          "required_fields": ["receipt_id", "received_at", "response_owner_role", "status", "next_review_at", "lookup_location"],
+          "current_status": "not_available_before_authorization",
+          "semantic_boundary": "a declared receipt format does not prove that an appeal was received or answered"
+        }
+      },
+      "status": "not_authorized_not_run",
+      "source_refs": ["visual/assets/mobility-tabletop-contract.json", "visual/assets/responsibility-acceptance-contract.json"]
+    },
+    {
+      "request_id": "M09-R03",
+      "service_group": "enterprise_shuttle_window",
+      "spatial_anchors": ["geometry/key_areas.geojson#PROV-KEY-001", "geometry/constraints.geojson#CONSTRAINTS"],
+      "baseline": {
+        "status": "unknown",
+        "source_refs": ["visual/assets/demand-ledger.json", "visual/assets/curb-states.json"],
+        "observation_unit": "grouped enterprise demand, vehicle class, curb asset and declared arrival/loading window",
+        "time_window": "to_be_declared and versioned before collection"
+      },
+      "sample_and_window": {
+        "sample_definition": "authorised team must pre-register participating demand groups, vehicle classes, curb assets and exclusion rules",
+        "exclusion_rules": [
+          "exclude unconsented enterprise identities, vehicles or curb assets outside the declared window, and demand groups not represented in the grouped ledger",
+          "record out-of-scope demand categories rather than treating unobserved enterprise or resident demand as zero"
+        ],
+        "observation_period": "to_be_frozen before any reservation test",
+        "sampling_method": "grouped demand and curb observation; no enterprise identity or personal route trace"
+      },
+      "success_condition": {
+        "status": "design_target_not_observed",
+        "rule": "A reversible window is opened only when the curb owner, human dispatcher, fire route and accessible route are all recorded; the ordinary public route is not displaced.",
+        "threshold": "freeze the window-level compliance and route-protection threshold before field collection; no local capacity result is claimed",
+        "observed_value": null
+      },
+      "stop_conditions": [
+        "complaint or curb asset has no accountable owner",
+        "a shuttle, loading action or reservation blocks a fire or accessible route",
+        "vehicle, headway or clearance evidence is absent"
+      ],
+      "accountability": {
+        "operating_owner_role": "enterprise mobility coordinator and curb operations role",
+        "independent_stop_reviewer_role": "transport, fire and accessibility review role",
+        "authorised_organisation": "unknown_until_authorized"
+      },
+      "human_equivalent": {
+        "route": "manual booking, on-site human marshal, ordinary public curb rules and public transport",
+        "handover_record": "record curb asset, reservation state, clearance action, fallback and unresolved complaint"
+      },
+      "data_contract": {
+        "minimum_data": ["grouped demand", "vehicle class", "curb asset", "time window", "clearance status", "complaint status"],
+        "retention_rule": "retain minimum grouped demand and curb-state records through the declared review cycle; exact period requires authorisation",
+        "deletion_owner_role": "curb and data stewardship roles",
+        "deletion_proof": "not_available_before_authorization",
+        "deletion_receipt_contract": {
+          "required_fields": ["receipt_id", "scope", "scheduled_or_executed_at", "executor_role", "independent_verifier_role", "lookup_location"],
+          "current_status": "not_available_before_authorization",
+          "semantic_boundary": "declarative receipt schema only; it does not prove that deletion has occurred"
+        }
+      },
+      "review_and_redress": {
+        "review_cycle": "before each reservation window, after any blockage or complaint and at the declared close-out review; dates unknown",
+        "appeal_entry": "on-site human marshal, telephone or paper complaint route",
+        "appeal_owner_role": "curb operations and community liaison roles",
+        "response_owner_role": "curb operations role with independent fire/accessibility escalation",
+        "response_sla": "freeze a response window before authorisation; current service level is unknown",
+        "receipt_lookup_location": "not_available_before_authorization",
+        "response_rule": "freeze the reservation and publish receipt ID, received time, owner, status, next review time and lookup location when a complaint is unresolved; exact service level requires authorisation",
+        "appeal_receipt_contract": {
+          "required_fields": ["receipt_id", "received_at", "response_owner_role", "status", "next_review_at", "lookup_location"],
+          "current_status": "not_available_before_authorization",
+          "semantic_boundary": "a declared receipt format does not prove that an appeal was received or answered"
+        }
+      },
+      "status": "not_authorized_not_run",
+      "source_refs": ["visual/assets/mobility-tabletop-contract.json", "visual/assets/responsibility-acceptance-contract.json"]
+    },
+    {
+      "request_id": "M09-R04",
+      "service_group": "rail_last_mile_transfer",
+      "spatial_anchors": ["geometry/key_areas.geojson#PROV-KEY-003", "geometry/roads.geojson#ROAD-002"],
+      "baseline": {
+        "status": "unknown",
+        "source_refs": ["visual/assets/multimodal-network.json", "visual/assets/network-flow-screen.json"],
+        "observation_unit": "grouped arrival and transfer requests by station exit, time window, mode and accessibility need",
+        "time_window": "to_be_declared and versioned before collection"
+      },
+      "sample_and_window": {
+        "sample_definition": "authorised team must pre-register station exits, transfer modes, time strata and protected-route checks",
+        "exclusion_rules": [
+          "exclude unconsented individual traces, station exits or transfer modes outside the declared window, and protected groups not represented by the assisted-wayfinding sample",
+          "record excluded exits and groups; an unobserved transfer is not evidence of a safe or reliable transfer"
+        ],
+        "observation_period": "to_be_frozen before the first transfer replay",
+        "sampling_method": "grouped transfer observation and human wayfinding replay; no continuous personal trajectory"
+      },
+      "success_condition": {
+        "status": "design_target_not_observed",
+        "rule": "A person can complete the declared last-mile choice with staffed wayfinding or ordinary public transport even when a digital recommendation is unavailable.",
+        "threshold": "freeze the transfer-level completion and worst-group threshold before field collection; no local reliability result is claimed",
+        "observed_value": null
+      },
+      "stop_conditions": [
+        "the feeder shifts a protected group onto an unsafe crossing or blocked route",
+        "station, curb or transfer owner is not assigned",
+        "transfer reliability is presented without dated grouped observation"
+      ],
+      "accountability": {
+        "operating_owner_role": "rail and bus operations role",
+        "independent_stop_reviewer_role": "transport, accessibility and public-safety review role",
+        "authorised_organisation": "unknown_until_authorized"
+      },
+      "human_equivalent": {
+        "route": "staffed wayfinding, ordinary rail/bus transfer and telephone information",
+        "handover_record": "record station exit, transfer choice, assistance, fallback and unresolved gap"
+      },
+      "data_contract": {
+        "minimum_data": ["station exit", "grouped request", "time window", "mode", "fallback offered", "review status"],
+        "retention_rule": "retain minimum grouped transfer records through the declared review cycle; exact period requires authorisation",
+        "deletion_owner_role": "rail/bus operations and data stewardship roles",
+        "deletion_proof": "not_available_before_authorization",
+        "deletion_receipt_contract": {
+          "required_fields": ["receipt_id", "scope", "scheduled_or_executed_at", "executor_role", "independent_verifier_role", "lookup_location"],
+          "current_status": "not_available_before_authorization",
+          "semantic_boundary": "declarative receipt schema only; it does not prove that deletion has occurred"
+        }
+      },
+      "review_and_redress": {
+        "review_cycle": "before each transfer window, after any route change or incident and at the declared close-out review; dates unknown",
+        "appeal_entry": "staffed station desk, telephone or paper complaint route",
+        "appeal_owner_role": "rail/bus operations and community liaison roles",
+        "response_owner_role": "rail/bus operations role with independent accessibility escalation",
+        "response_sla": "freeze a response window before authorisation; current service level is unknown",
+        "receipt_lookup_location": "not_available_before_authorization",
+        "response_rule": "record receipt ID, received time, owner, status, next review time, lookup location and alternative route; exact service level requires authorisation",
+        "appeal_receipt_contract": {
+          "required_fields": ["receipt_id", "received_at", "response_owner_role", "status", "next_review_at", "lookup_location"],
+          "current_status": "not_available_before_authorization",
+          "semantic_boundary": "a declared receipt format does not prove that an appeal was received or answered"
+        }
+      },
+      "status": "not_authorized_not_run",
+      "source_refs": ["visual/assets/mobility-tabletop-contract.json", "visual/assets/responsibility-acceptance-contract.json"]
+    }
+  ],
+  "negative_samples": [
+    {"id": "NEG-MISSING-OWNER", "mutates": "accountability.operating_owner_role", "expected": "reject"},
+    {"id": "NEG-OBSERVED-WITHOUT-BASELINE", "mutates": "success_condition.observed_value", "expected": "reject"},
+    {"id": "NEG-MISSING-DELETION-PROOF", "mutates": "data_contract.deletion_proof", "expected": "reject"},
+    {"id": "NEG-MISSING-SAMPLE-EXCLUSION", "mutates": "sample_and_window.exclusion_rules", "expected": "reject"},
+    {"id": "NEG-MISSING-DELETION-SEMANTICS", "mutates": "data_contract.deletion_receipt_contract.semantic_boundary", "expected": "reject"},
+    {"id": "NEG-MISSING-APPEAL-LOOKUP", "mutates": "review_and_redress.appeal_receipt_contract.lookup_location", "expected": "reject"}
+  ],
+  "source_refs": [
+    "visual/assets/mobility-tabletop-contract.json",
+    "visual/assets/pilot-startup-checklist.json",
+    "visual/assets/responsibility-acceptance-contract.json"
+  ]
+}

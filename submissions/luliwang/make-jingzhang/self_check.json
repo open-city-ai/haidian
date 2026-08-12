@@ -1,0 +1,86 @@
+{
+  "schema_version": "0.1.0",
+  "ok": true,
+  "can_enter_formal_review": true,
+  "package_type": "professional_design_package",
+  "review_status": "formal-review-ready",
+  "checks": [
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "manifest.json",
+      "message": "The complete package passes deterministic schema, manifest, scope, size, bilingual and integrity validation."
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/",
+      "message": "Projected-area, topology and metric recalculation checks pass; provisional-boundary notices remain non-blocking and explicit."
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "message": "Offline visual packaging, local assets and displayed structured metrics pass the visual review."
+    },
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional overall boundary is present and explicitly not claimed as official."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three required key areas are present and explicitly labelled provisional; the Dazhongsi placeholder was map-cross-checked and relocated without claiming official precision."
+    },
+    {
+      "check_id": "MAP_CONTEXT_PROVENANCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/assets/osm-context.json",
+      "message": "The offline OSM context preserves query, bbox, retrieval date, raw hash, ODbL attribution and a prohibition on official-boundary or planning-control use."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "Land-use polygons are a shared-edge projected partition of the submitted site geometry."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Static offline HTML uses local assets and exact structured metric values."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "All required chapters contain claim-adjacent evidence anchors and depth references."
+    },
+    {
+      "check_id": "BILINGUAL_PACKAGE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.en.md",
+      "message": "Chinese and English narrative, report, visual, figures and PDF deliverables are paired."
+    },
+    {
+      "check_id": "DEVICE_LIFECYCLE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "All public AI scenarios are governed by an eight-field passport, human fallback, maintenance and retirement gates."
+    }
+  ]
+}

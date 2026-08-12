@@ -2,6 +2,8 @@
 title: "京张信标：把 AI 城市的运行状态变成公共信号语言"
 author_github: "sLingli"
 language: "zh"
+proposal_format_version: "2"
+bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以百年京张铁路信号体系为原型，提出 JINGZHANG BEACON 京张信标：用绿、黄、红三色信号语言把 AI 城市的运行状态变成人人可读的公共信号。一脊三核双翼的空间结构与信号格网，让三处重点区分别成为验证信标、开源信标与体验信标，形成可体验、可复核、可回滚的 AI 城市公共界面。"
@@ -94,7 +96,7 @@ Logo 方向取"一枚立在轨距规上的信号灯"：底座两条平行线象�
 
 ## 4. 总体设计范围城市更新与控规深度城市设计
 
-总体设计不从"新建多少"开始，而从"哪些判断必须先公开"开始。35 个共享边界用地单元完整覆盖临时 site，形成西侧科技服务、中部信号脊绿带、东侧科研生活、南北门户留白交替的结构 [data:geometry/land_use.geojson#LU-001] [depth:land_use_layout]。用地以国土空间分类表达：科研用地（0802）集中于众智园与原点两侧 [data:geometry/land_use.geojson#LU-013]、[data:geometry/land_use.geojson#LU-011]，商业服务业用地（05）沿门户与产业带分布 [data:geometry/land_use.geojson#LU-001]、[data:geometry/land_use.geojson#LU-035]，居住用地（0701）组织为小月河翼生活片 [data:geometry/land_use.geojson#LU-029]，文化用地（0803）锚定大钟寺文化体验 [data:geometry/land_use.geojson#LU-009]，教育用地（0804）服务中段教育科研 [data:geometry/land_use.geojson#LU-024]，留白用地（16）保留北门户弹性 [data:geometry/land_use.geojson#LU-014]。该分区用于验证功能组合、连续开放空间和拓扑，不代表现状或法定用地；official parcel 与控规到位后须重构。
+总体设计不从"新建多少"开始，而从"哪些判断必须先公开"开始。35 个共享边界用地单元完整覆盖临时 site，形成西侧科技服务、中部信号脊绿带、东侧科研生活、南北门户留白交替的结构 [data:geometry/land_use.geojson#LU-001] [depth:land_use_layout]。用地以国土空间分类表达：科研用地（0802）集中于众智园与原点两侧，商业服务业用地（05）沿门户与产业带分布，居住用地（0701）组织为小月河翼生活片，文化用地（0803）锚定大钟寺文化体验，教育用地（0804）服务中段教育科研，留白用地（16）保留北门户弹性 [data:geometry/land_use.geojson#LU-013] [data:geometry/land_use.geojson#LU-035]。该分区用于验证功能组合、连续开放空间和拓扑，不代表现状或法定用地；official parcel 与控规到位后须重构。
 
 更新采用"**限期试点—年度评估—扩大或退役**"方法，与三色信号语言一一对应：绿灯服务直接开放并接受申诉；黄灯试点明确期限、测评与人工复核；红灯试点到期后评估、整改或退役，设备可拆除、数据可回滚 [depth:retain_renovate_demolish]。概念建筑基底由非开放空间用地内缩生成，仅测试空间容量，不表示现实建筑，也不作逐栋保留、改造、拆除或新建结论 [data:geometry/buildings.geojson#BLDG-001]。逐栋深化必须先补年代、结构、用途、权属、文保、消防、日照与全生命周期碳评估 [depth:development_intensity_controls]。
 
@@ -126,7 +128,7 @@ Logo 方向取"一枚立在轨距规上的信号灯"：底座两条平行线象�
 
 ### 5.1 众智园验证信标｜AMBER｜全栈自主验证区（约 192.9 万㎡）
 
-众智园承担"AI 全栈自主创新体系与 AI 治理全球话语权" [source:AGENT-TASKBOOK]。空间结构为"清河界面—验证中轴—科研单元"：清河一侧组织低碳创新廊 [data:geometry/green_space.geojson#GREEN-004]（依生成 id 对应信号脊北段 [data:geometry/green_space.geojson#GREEN-007]），中轴设验证信标广场 [data:geometry/public_space.geojson#PUBLIC-001]，两侧为科研用地 [data:geometry/land_use.geojson#LU-013]、[data:geometry/land_use.geojson#LU-027] 与商业服务 [data:geometry/land_use.geojson#LU-034]。验证门按黄灯三级组织：虚拟评测 → 受控实验室 → 真实街区试点；每个试点有期限、有测评、有人工复核、有退出通道。建筑以 AI 研发与孵化器为主 [data:geometry/buildings.geojson#BLDG-001]，概念基底不表示现实建筑；对外交通、清河界面与跨环路节点需待道路红线和工程条件确认 [depth:traffic_rail_slow_parking]。实施风险主要是 official polygon、控规指标与清河蓝线未到位 [depth:risk_missing_data]。
+众智园承担"AI 全栈自主创新体系与 AI 治理全球话语权" [source:AGENT-TASKBOOK]。空间结构为"清河界面—验证中轴—科研单元"：清河一侧组织低碳创新廊 [data:geometry/green_space.geojson#GREEN-004]（依生成 id 对应信号脊北段），中轴设验证信标广场 [data:geometry/public_space.geojson#PUBLIC-001]，两侧为科研用地与商业服务 [data:geometry/land_use.geojson#LU-013] [data:geometry/land_use.geojson#LU-034]。验证门按黄灯三级组织：虚拟评测 → 受控实验室 → 真实街区试点；每个试点有期限、有测评、有人工复核、有退出通道。建筑以 AI 研发与孵化器为主 [data:geometry/buildings.geojson#BLDG-001]，概念基底不表示现实建筑；对外交通、清河界面与跨环路节点需待道路红线和工程条件确认 [depth:traffic_rail_slow_parking]。实施风险主要是 official polygon、控规指标与清河蓝线未到位 [depth:risk_missing_data]。
 
 ### 5.2 AI 原点开源信标｜GREEN｜近校开源社区（约 104.3 万㎡）
 
@@ -211,7 +213,7 @@ AI 创新生态按"策源、验证、开源、体验、治理"五段组织，与
 
 ## 10. 蓝绿空间、公共空间与城市风貌
 
-蓝绿空间以京张遗址公园信号脊为骨架 [data:geometry/green_space.geojson#GREEN-001] 至 [data:geometry/green_space.geojson#GREEN-007]，统筹清河、小月河与南北门户绿楔 [data:geometry/green_space.geojson#GREEN-001]、[data:geometry/green_space.geojson#GREEN-007] [depth:blue_green_public_space]。信号脊绿带同时承担**东西缝合、南北连通**：南北方向贯通慢行与活动走廊，东西方向以缝合轴连接校区、园区与站点，打通既有铁路遗存造成的东西割裂。绿地比例约 11.3% [metric:green_ratio]，三座信标广场约 4.1 万㎡ [metric:public_space_area_sqm] [metric:public_space_ratio] [data:geometry/public_space.geojson#PUBLIC-001] 至 [data:geometry/public_space.geojson#PUBLIC-003]，与慢行、活动与 AI 展示复合利用 [standard:MOHURD-URBAN-DESIGN-MEASURES]。
+蓝绿空间以京张遗址公园信号脊为骨架 [data:geometry/green_space.geojson#GREEN-001] 至 [data:geometry/green_space.geojson#GREEN-007]，统筹清河、小月河与南北门户绿楔 [depth:blue_green_public_space]。信号脊绿带同时承担**东西缝合、南北连通**：南北方向贯通慢行与活动走廊，东西方向以缝合轴连接校区、园区与站点，打通既有铁路遗存造成的东西割裂。绿地比例约 11.3% [metric:green_ratio]，三座信标广场约 4.1 万㎡ [metric:public_space_area_sqm] [metric:public_space_ratio] [data:geometry/public_space.geojson#PUBLIC-001]，与慢行、活动与 AI 展示复合利用 [standard:MOHURD-URBAN-DESIGN-MEASURES]。
 
 **公共空间组件库**（概念）：信号灯柱、信号信息亭、信号铺装带、状态展示屏与无障碍读信设施组成一套可组合的组件库。所有组件遵循可拆、可撤、可退役原则，共用可拆设备带与独立计量；停用即恢复素状，不留下不可逆的城市痕迹；组件规格、材质与文保相容性待专业团队深化 [depth:blue_green_public_space]。
 
@@ -285,7 +287,8 @@ AI 创新生态按"策源、验证、开源、体验、治理"五段组织，与
 
 指标体系包含空间指标（可由提交几何直接复算）、管控指标（需官方控规支撑）与绩效指标（需运营数据持续校准）三类 [depth:metrics_recalculation]。空间指标保留完整复算值（如场地面积 11,412,825.386 ㎡ [metric:site_area_sqm]）；小数位的含义是"第三方可用同一几何复现到同一位"，不代表外部事实具有同等精度，也不因此把约数改写成伪精确：
 
-- **空间指标（known）**：总体设计范围面积 [metric:site_area_sqm]、重点区面积 [metric:key_area_total_sqm]、用地覆盖 [metric:land_use_area_sqm]、建筑基底 [metric:building_footprint_area_sqm]、建筑密度 [metric:building_density]、绿地面积与比例 [metric:green_space_area_sqm] [metric:green_ratio]、公共空间面积与比例 [metric:public_space_area_sqm] [metric:public_space_ratio]、道路与绿道长度 [metric:road_length_m] [metric:greenway_length_m]、三期面积 [metric:phase_1_area_sqm] [metric:phase_2_area_sqm] [metric:phase_3_area_sqm]；
+- **空间指标（known）— 规模与分期**：总体设计范围面积 [metric:site_area_sqm]、重点区面积 [metric:key_area_total_sqm]、用地覆盖 [metric:land_use_area_sqm]、建筑基底 [metric:building_footprint_area_sqm]、三期面积 [metric:phase_1_area_sqm] [metric:phase_2_area_sqm] [metric:phase_3_area_sqm]；
+- **空间指标（known）— 密度、比例与网络**：建筑密度 [metric:building_density]、绿地面积与比例 [metric:green_space_area_sqm] [metric:green_ratio]、公共空间面积与比例 [metric:public_space_area_sqm] [metric:public_space_ratio]、道路与绿道长度 [metric:road_length_m] [metric:greenway_length_m]；
 - **管控指标（unknown）**：容积率 [metric:floor_area_ratio]、建筑高度 [metric:building_height_max_m]，缺官方控规条件，原因已登记；
 - **绩效指标（known 计数）**：AI 场景卡 [metric:ai_scenario_node_count]、测试验证场景 [metric:ai_test_scenario_count]、用户画像 [metric:user_persona_count]、朝圣地标 [metric:ai_pilgrimage_landmark_count]、全球案例 [metric:global_case_study_count]。
 
@@ -335,6 +338,8 @@ AI 创新生态按"策源、验证、开源、体验、治理"五段组织，与
 
 ## 14. 参考资料
 
+本方案全部正文判断与几何指标均基于下列仓库内官方材料与数据源生成 [source:SITE-PACKAGE]：
+
 - `brief/public-brief.md`
 - `brief/site-package/design_brief.json`
 - `brief/site-package/agent_taskbook.json`
@@ -352,4 +357,3 @@ AI 创新生态按"策源、验证、开源、体验、治理"五段组织，与
 - `data/processed/agent_task_requirements.csv`
 - `data/processed/source_use_matrix.csv`
 - `data/processed/missing_data_checklist.csv`
-- 机器可读引用索引：[source:OFFICIAL-ANNOUNCEMENT]、[source:AGENT-TASKBOOK]、[source:SITE-PACKAGE]、[source:SOURCE-REGISTRY]、[source:PROCESSED-FACT-PACK]、[source:STATUTORY-GENERATIVE-AI-MEASURES]、[source:STATUTORY-BARRIER-FREE-LAW]、[source:POLICY-GUOBAN-2020-45]、[source:SRC-HAIDIAN-STATS-2025]、[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]、[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]、[standard:MOHURD-URBAN-DESIGN-MEASURES]、[standard:MOHURD-CONTROL-DETAILED-PLANNING]、[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]、[depth:metrics_recalculation]、[data:geometry/site_boundary.geojson#SITE-001]、[metric:site_area_sqm]

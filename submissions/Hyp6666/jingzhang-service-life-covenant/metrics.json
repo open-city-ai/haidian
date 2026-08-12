@@ -1,0 +1,257 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(EPSG:4548(project(site_boundary)))",
+      "confidence": "low",
+      "assumptions": [
+        "Computed from the preserved provisional scaffold boundary; not an official redline, statutory control, or field survey."
+      ],
+      "evidence_class": "derived"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 3549777.683,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(EPSG:4548(project(green_space))))",
+      "confidence": "medium",
+      "assumptions": [
+        "Agent-generated concept geometry; not field validated."
+      ],
+      "evidence_class": "derived"
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 1028304.523,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(EPSG:4548(project(public_space))))",
+      "confidence": "medium",
+      "assumptions": [
+        "Agent-generated concept geometry; not field validated."
+      ],
+      "evidence_class": "derived"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 243456.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(EPSG:4548(project(building_footprints))))",
+      "confidence": "medium",
+      "assumptions": [
+        "Agent-generated concept geometry; not field validated."
+      ],
+      "evidence_class": "derived"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.311034,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Computed from the preserved provisional scaffold boundary; not an official redline, statutory control, or field survey."
+      ],
+      "evidence_class": "derived"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.090101,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Computed from the preserved provisional scaffold boundary; not an official redline, statutory control, or field survey."
+      ],
+      "evidence_class": "derived"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "Three preserved provisional key-area geometries; not official boundaries."
+      ],
+      "evidence_class": "derived"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "evidence_class": "unknown",
+      "reason": "Approved FAR controls and an official site boundary are unavailable."
+    },
+    "simulation_task_count": {
+      "status": "known",
+      "value": 16,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(tasks)",
+      "confidence": "high",
+      "assumptions": [
+        "Executed synthetic simulation only; not field validated."
+      ],
+      "evidence_class": "derived"
+    },
+    "simulation_success_rate": {
+      "status": "known",
+      "value": 0.875,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(outcome is success or *_success) / count(tasks)",
+      "confidence": "high",
+      "assumptions": [
+        "Executed synthetic simulation only; not field validated."
+      ],
+      "evidence_class": "derived"
+    },
+    "tool_schema_pass_rate": {
+      "status": "known",
+      "value": 0.9375,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(dispatch_schema_valid == true) / count(tasks)",
+      "confidence": "high",
+      "assumptions": [
+        "Executed synthetic simulation only; not field validated."
+      ],
+      "evidence_class": "derived"
+    },
+    "energy_budget_violations": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(energy_used_kwh > energy_budget_kwh)",
+      "confidence": "high",
+      "assumptions": [
+        "Synthetic energy values, not metered field consumption."
+      ],
+      "evidence_class": "derived"
+    },
+    "audit_completeness": {
+      "status": "known",
+      "value": 0.9375,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(audit_complete == true) / count(tasks)",
+      "confidence": "high",
+      "assumptions": [
+        "Executed synthetic simulation only; not field validated."
+      ],
+      "evidence_class": "derived"
+    },
+    "maintenance_backlog_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/maintenance-debt-input.json"
+      ],
+      "formula": "count(field_validated_open_maintenance_items)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "evidence_class": "unknown",
+      "reason": "No official or field-validated maintenance backlog is connected."
+    },
+    "registered_asset_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/asset-registry.json"
+      ],
+      "formula": "count(field_validated_registered_assets)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "evidence_class": "unknown",
+      "reason": "The asset registry is synthetic and is not connected to an official asset system."
+    },
+    "verified_resource_budget_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/resource-budget.json"
+      ],
+      "formula": "count(field_verified_resource_budgets)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "evidence_class": "unknown",
+      "reason": "No real labor, material, or operating resource budget has been field verified."
+    },
+    "renewal_escrow_balance": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "visual/assets/renewal-escrow.json"
+      ],
+      "formula": "sum(real_reconciled_escrow_balances)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "evidence_class": "unknown",
+      "reason": "The closure test uses synthetic_reserve_unit and no currency or real escrow account."
+    },
+    "material_recovery_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/material-resource-ledger.json"
+      ],
+      "formula": "verified_material_recovery / verified_material_input",
+      "confidence": "unknown",
+      "assumptions": [],
+      "evidence_class": "unknown",
+      "reason": "No field-validated material inventory or destination receipts are connected."
+    }
+  }
+}

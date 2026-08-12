@@ -1,0 +1,97 @@
+{
+  "schema_version": "0.1.0",
+  "note_zh": "本文件记录本方案已知的资料缺口、临时条件与重算触发条件。凡在此列出的事项，正文均以“待正式条件补齐”表述，不得当作已确定结论。",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "provisional_condition",
+      "statement": "本包提交的总体设计范围线为仓库提供的临时替代边界（PROV-SITE-001），依据公告文字四至、道路名称与约11.4平方公里面积约束反推，属 provisional_constraint，不是官方红线。",
+      "impact": "全部面积、比例、密度类指标均带此限制。复算值11,412,825平方米与公告约11,400,000平方米相差约0.11%。",
+      "recalculation_trigger": "组织方提供官方 SITE_BOUNDARY polygon 后，按 metrics.json 中各指标的 formula 字段整体重算，并重新生成全部图纸与可视化。"
+    },
+    {
+      "id": "A-BOUNDARY-002",
+      "status": "provisional_condition",
+      "statement": "三处重点区域为临时粗略矩形 polygon（PROV-KEY-001/002/003）。公告面积（192.1、104.3、72.0公顷）权威，几何形状不权威，矩形边不代表任何地块界线或道路红线。",
+      "impact": "重点区域详细设计的结论只作为方向性设计，不落到具体地块；三处面积复算合计与公告368.4公顷相差约0.24%。",
+      "recalculation_trigger": "获得官方 KEY_AREA polygon 后重算三处面积、共练场面积与相关图纸。"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "经批准的控规条件缺失：容积率、建筑高度、法定建筑密度、法定绿地率、退线均无公开可用的官方值。",
+      "impact": "上述指标在 metrics.json 中一律记为 unknown，正文不作估算。本包给出的建筑基底与覆盖率仅为低置信度概念设计量。",
+      "recalculation_trigger": "取得经批准的控规条件后按公式复算，并重新评估建筑规模相关表述。"
+    },
+    {
+      "id": "A-EXISTING-001",
+      "status": "pending_professional_confirmation",
+      "statement": "缺少现状建筑普查、层数、结构状况与土地权属资料。",
+      "impact": "不提出任何具体地块的保留、改造、拆除、新建结论；拆改留比例记为 unknown。",
+      "recalculation_trigger": "取得现状建筑与权属资料后，由具备资质的专业团队另行判断。"
+    },
+    {
+      "id": "A-WATER-001",
+      "status": "missing_data",
+      "statement": "公告提到清河、小月河等蓝绿资源，但缺少可用的公开精确水系几何数据。",
+      "impact": "本包未建立水系图层，蓝绿系统结论仅覆盖绿地与公共空间部分。",
+      "recalculation_trigger": "取得官方或权威公开水系数据后补充 WATER_SYSTEM 图层并重算蓝绿指标。"
+    },
+    {
+      "id": "A-MUNICIPAL-001",
+      "status": "missing_data",
+      "statement": "缺少市政承载力、管线、能源负荷与端侧算力部署条件资料。",
+      "impact": "市政与新型基础设施部分只给出原则性建议（可复用、可退役、可解释），不作容量测算。",
+      "recalculation_trigger": "取得市政条件资料后由专业团队测算。"
+    },
+    {
+      "id": "A-NAMING-001",
+      "status": "source_inconsistency",
+      "statement": "北部重点片区在2026年3—4月的官方与主流媒体报道中称“学北园AI自主创新加速区”，在2026年5月9日征集公告中称“众智园AI自主创新加速区”，未见解释更名原因的公开材料。",
+      "impact": "本方案以征集公告名称为准，并在正文与风险表中记录这一不一致，不掩盖。",
+      "recalculation_trigger": "组织方明确名称口径后统一修订。"
+    },
+    {
+      "id": "A-STATS-001",
+      "status": "source_inconsistency",
+      "statement": "海淀AI企业数量与备案大模型数量在不同官方来源与时点差异显著（企业超1300家/1900余家/超2000家；大模型76/95/130款）；AI原点社区企业数为300多家/400多家/439家。",
+      "impact": "本方案引用时一律带日期与来源，不平均、不择优，不以单一数字作为设计依据。",
+      "recalculation_trigger": "组织方或官方发布统一口径后更新。"
+    },
+    {
+      "id": "A-AV-001",
+      "status": "regulatory_condition",
+      "statement": "北京首批无人配送车路权在北京经开区高级别自动驾驶示范区取得，海淀不在其列；《北京市自动驾驶汽车条例》自2025年4月1日施行，要求安全员与人工接管。",
+      "impact": "本方案三个产业测试验证场景（SC-10、SC-11、SC-07）均为概念建议，须依法另行申请许可，不构成已批准运营。",
+      "recalculation_trigger": "取得相应路权与许可后，按实际许可条件调整场景表述与空间安排。"
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "status": "regulatory_condition",
+      "statement": "大钟寺（觉生寺）为1996年公布的全国重点文物保护单位。",
+      "impact": "回声钟廊等声音相关地标不进入文物保护范围与建设控制地带，声压、时段与形式须经文物、环保与属地主管部门评估后方可深化。",
+      "recalculation_trigger": "取得文物主管部门意见后调整。"
+    },
+    {
+      "id": "A-PARK-001",
+      "status": "recent_change",
+      "statement": "京张铁路遗址公园二期已于2026年8月6日建成开放，全线9公里贯通、约53公顷。不同报道对总面积口径（约53公顷 / 约70公顷）存在差异。",
+      "impact": "本方案据此把设计重心从新建土建转为既有绿廊的运营层与制度层；面积口径差异在引用时带来源说明。",
+      "recalculation_trigger": "组织方提供公园实测范围与面积后核对。"
+    },
+    {
+      "id": "A-QUIET-001",
+      "status": "design_assumption",
+      "statement": "主线4段静段的位置与长度为概念建议值，按纬度窗口换算，合计约2,215米、占主线长度约22.8%。",
+      "impact": "静段比例作为可玩性上限指标提出，其具体位置需在正式深化阶段重新划定。",
+      "recalculation_trigger": "结合沿线住宅、医院、学校分布，实测噪声与居民意愿调查后重新划定。"
+    },
+    {
+      "id": "A-BUILDING-001",
+      "status": "design_assumption",
+      "statement": "建筑基底为在可建设用地单元内按95米×95米网格、45米间距程序化生成的概念体量研究，不对应任何现状或规划建筑。",
+      "impact": "建筑基底面积与覆盖率标记为低置信度概念设计量，不得作为建筑密度、建设规模或拆改留依据。",
+      "recalculation_trigger": "取得现状建筑与控规条件后由专业团队重做。"
+    }
+  ]
+}

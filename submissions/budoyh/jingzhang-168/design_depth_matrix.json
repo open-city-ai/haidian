@@ -13,7 +13,8 @@
       ],
       "drawing_refs": [
         "drawings/a3-booklet.pdf",
-        "visual/assets/review-evidence-map.json"
+        "visual/assets/review-evidence-map.json",
+        "risk.json"
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson#SITE-001",
@@ -24,22 +25,26 @@
         "site_area_sqm",
         "floor_area_ratio",
         "average_building_height_m",
-        "demolition_area_sqm"
+        "demolition_area_sqm",
+        "offline_ready_component_count"
       ],
       "source_ids": [
         "OFFICIAL-ANNOUNCEMENT",
         "SITE-PACKAGE",
         "SOURCE-REGISTRY",
-        "PROCESSED-FACT-PACK"
+        "PROCESSED-FACT-PACK",
+        "OFFICIAL-PARK-PLAN-2021",
+        "OFFICIAL-PARK-PHASE1-2023"
       ],
       "assumption_ids": [
         "A-BOUNDARY-001",
         "A-CONTROLS-001",
-        "A-BUILDING-001"
+        "A-BUILDING-001",
+        "A-EXISTING-PARK-001",
+        "A-OSM-DISCREPANCY-001"
       ],
       "self_check_ids": [
-        "BOUNDARY_TRUST",
-        "KEY_AREAS_TRUST",
+        "SPATIAL_REVIEW",
         "PROFESSIONAL_EVIDENCE"
       ],
       "evidence_summary_zh": "完成的是“可用证据—临时几何—缺失法定/工程资料”三栏诊断，而非伪造现状底图；控规、红线、权属、建筑、市政、消防、文保缺口均绑定后续闸门。"
@@ -79,8 +84,7 @@
         "A-BOUNDARY-001"
       ],
       "self_check_ids": [
-        "BOUNDARY_TRUST",
-        "KEY_AREAS_TRUST"
+        "SPATIAL_REVIEW"
       ],
       "evidence_summary_zh": "统筹层回答产业网络，总体层回答更新骨架，重点层回答场景与空间细节；三层各自的证据尺度和禁止结论在正文、图纸和机器矩阵一致。"
     },
@@ -96,20 +100,22 @@
       ],
       "drawing_refs": [
         "drawings/a0-boards.pdf",
-        "visual/assets/first-168h.json"
+        "visual/assets/first-12-weeks.json",
+        "visual/assets/dividend-yards.json"
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson#SITE-001",
         "geometry/roads.geojson#ROAD-168",
         "geometry/roads.geojson#ROAD-X01",
         "geometry/key_areas.geojson",
-        "geometry/constraints.geojson#TZ-01-CITY-LOUNGE"
+        "geometry/constraints.geojson#DY-03-EVERYDAY-DIVIDEND"
       ],
       "metric_refs": [
-        "time_ribbon_length_m",
+        "civic_baseline_spine_length_m",
         "crosslink_count",
-        "temporal_zone_count",
-        "time_component_count"
+        "dividend_yard_count",
+        "offline_ready_component_count",
+        "dividend_yard_prototype_count"
       ],
       "source_ids": [
         "OFFICIAL-ANNOUNCEMENT",
@@ -117,11 +123,11 @@
       ],
       "assumption_ids": [
         "A-BOUNDARY-001",
-        "A-TIME-001"
+        "A-EXISTING-PARK-001"
       ],
       "self_check_ids": [
-        "BOUNDARY_TRUST",
-        "VISUAL_STATIC"
+        "SPATIAL_REVIEW",
+        "VISUAL_PACKAGING"
       ],
       "evidence_summary_zh": "“一带三时区两翼十二刻”由ROAD-168、一纵六横、三处片区、TZ时间区和七组件共同落图；结构是概念空间语法，不是道路或工程线位。"
     },
@@ -159,8 +165,7 @@
         "A-CONTROLS-001"
       ],
       "self_check_ids": [
-        "LAND_USE_TOPOLOGY",
-        "BOUNDARY_TRUST"
+        "SPATIAL_REVIEW"
       ],
       "evidence_summary_zh": "24个设计单元采用允许的land_use_code并与三区两翼功能对应；自定义AI业态仅为运营叙述，不替代国土空间分类或法定用途。"
     },
@@ -180,8 +185,8 @@
         "visual/assets/implementation-gates.json"
       ],
       "geometry_refs": [
-        "geometry/constraints.geojson#TC-01-WEEK-BOARD",
-        "geometry/constraints.geojson#BK-01-SOUTH-GATE",
+        "geometry/constraints.geojson#OC-01-TACTILE-BASELINE",
+        "geometry/constraints.geojson#US-01-SOUTH-GATE",
         "geometry/site_boundary.geojson#SITE-001"
       ],
       "metric_refs": [
@@ -218,13 +223,13 @@
       ],
       "geometry_refs": [
         "geometry/buildings.geojson",
-        "geometry/constraints.geojson#BK-01-SOUTH-GATE",
+        "geometry/constraints.geojson#US-01-SOUTH-GATE",
         "geometry/public_space.geojson"
       ],
       "metric_refs": [
         "building_footprint_area_sqm",
         "average_building_height_m",
-        "time_component_count"
+        "offline_ready_component_count"
       ],
       "source_ids": [
         "OFFICIAL-ANNOUNCEMENT",
@@ -257,7 +262,7 @@
       ],
       "geometry_refs": [
         "geometry/buildings.geojson",
-        "geometry/constraints.geojson#BK-01-SOUTH-GATE",
+        "geometry/constraints.geojson#US-01-SOUTH-GATE",
         "geometry/phasing.geojson"
       ],
       "metric_refs": [
@@ -297,10 +302,10 @@
       "geometry_refs": [
         "geometry/roads.geojson#ROAD-168",
         "geometry/roads.geojson#ROAD-X01",
-        "geometry/constraints.geojson#TC-01-WEEK-BOARD"
+        "geometry/constraints.geojson#OC-01-TACTILE-BASELINE"
       ],
       "metric_refs": [
-        "time_ribbon_length_m",
+        "civic_baseline_spine_length_m",
         "crosslink_count",
         "project_maturity_gate_count"
       ],
@@ -334,8 +339,8 @@
         "visual/assets/governance-raci.json"
       ],
       "geometry_refs": [
-        "geometry/constraints.geojson#TC-01-WEEK-BOARD",
-        "geometry/constraints.geojson#SCN-01-SYNTHETIC-DATA-CLINIC",
+        "geometry/constraints.geojson#OC-01-TACTILE-BASELINE",
+        "geometry/constraints.geojson#SCN-01-EMBODIED-UNPLUG",
         "geometry/phasing.geojson"
       ],
       "metric_refs": [
@@ -370,33 +375,32 @@
       "drawing_refs": [
         "drawings/a3-booklet.pdf",
         "drawings/a0-boards.pdf",
-        "visual/assets/first-168h.json"
+        "visual/assets/first-12-weeks.json"
       ],
       "geometry_refs": [
         "geometry/green_space.geojson#GREEN-168",
         "geometry/public_space.geojson#PUBLIC-168",
         "geometry/roads.geojson#ROAD-168",
-        "geometry/constraints.geojson#TZ-01-CITY-LOUNGE"
+        "geometry/constraints.geojson#DY-03-EVERYDAY-DIVIDEND"
       ],
       "metric_refs": [
         "green_space_area_sqm",
         "green_ratio",
         "public_space_area_sqm",
         "public_space_ratio",
-        "public_space_weekly_sqm_hours"
+        "contract_non_ai_equivalent_coverage_ratio"
       ],
       "source_ids": [
         "OFFICIAL-ANNOUNCEMENT",
-        "CASE-KENDALL"
+        "CASE-UNHABITAT-PEOPLE"
       ],
       "assumption_ids": [
         "A-BOUNDARY-001",
-        "A-TIME-001",
+        "A-EXISTING-PARK-001",
         "A-CONTROLS-001"
       ],
       "self_check_ids": [
-        "LAND_USE_TOPOLOGY",
-        "BOUNDARY_TRUST"
+        "SPATIAL_REVIEW"
       ],
       "evidence_summary_zh": "蓝绿空间、慢行和公共时间叠合表达，开放时段设静默与恢复规则；面积可由临时几何复算，但生态、文保、海绵和养护标准仍待专项审查。"
     },
@@ -414,32 +418,40 @@
       "drawing_refs": [
         "drawings/a3-booklet.pdf",
         "drawings/a0-boards.pdf",
-        "visual/assets/scenario-cards.json"
+        "visual/assets/scenario-cards.json",
+        "visual/assets/dividend-yards.json",
+        "visual/assets/civic-dividend-contracts.json"
       ],
       "geometry_refs": [
         "geometry/key_areas.geojson#PROV-KEY-001",
         "geometry/key_areas.geojson#PROV-KEY-002",
         "geometry/key_areas.geojson#PROV-KEY-003",
-        "geometry/constraints.geojson#SCN-01-SYNTHETIC-DATA-CLINIC"
+        "geometry/constraints.geojson#SCN-01-EMBODIED-UNPLUG"
       ],
       "metric_refs": [
         "key_area_count",
         "scenario_card_count",
         "landmark_count",
-        "renewal_project_count"
+        "renewal_project_count",
+        "dividend_yard_prototype_count",
+        "scenario_dividend_contract_count"
       ],
       "source_ids": [
         "OFFICIAL-ANNOUNCEMENT",
         "KEY-AREA-SOURCE",
-        "AGENT-TASKBOOK"
+        "AGENT-TASKBOOK",
+        "OFFICIAL-ZHONGZHI-RENEWAL-2026",
+        "OFFICIAL-AI-ORIGIN-2026",
+        "OFFICIAL-DAZHONGSI-RENEWAL-2026"
       ],
       "assumption_ids": [
         "A-BOUNDARY-001",
         "A-CONTROLS-001",
-        "A-AI-001"
+        "A-AI-001",
+        "A-LOCATOR-001"
       ],
       "self_check_ids": [
-        "KEY_AREAS_TRUST",
+        "SPATIAL_REVIEW",
         "PROFESSIONAL_EVIDENCE"
       ],
       "evidence_summary_zh": "众智园、AI原点和大钟寺分别形成验证园、知识换乘站和开放客厅的功能/空间/场景/运营清单；临时矩形边界不解释为地块四至。"
@@ -462,7 +474,7 @@
       "geometry_refs": [
         "geometry/phasing.geojson",
         "geometry/key_areas.geojson",
-        "geometry/constraints.geojson#BK-01-SOUTH-GATE"
+        "geometry/constraints.geojson#US-01-SOUTH-GATE"
       ],
       "metric_refs": [
         "renewal_project_count",
@@ -495,36 +507,42 @@
       ],
       "drawing_refs": [
         "drawings/a3-booklet.pdf",
-        "visual/assets/first-168h.json",
+        "visual/assets/first-12-weeks.json",
         "visual/assets/implementation-gates.json",
-        "visual/assets/state-machine.json"
+        "visual/assets/state-machine.json",
+        "visual/assets/civic-dividend-contracts.json",
+        "visual/assets/unplugged-tabletop-evidence.json"
       ],
       "geometry_refs": [
         "geometry/phasing.geojson#PHASE-01",
         "geometry/phasing.geojson#PHASE-02",
         "geometry/phasing.geojson#PHASE-03",
-        "geometry/constraints.geojson#TC-01-WEEK-BOARD"
+        "geometry/constraints.geojson#OC-01-TACTILE-BASELINE"
       ],
       "metric_refs": [
-        "first_168h_stage_count",
-        "schedule_state_count",
+        "first_twelve_week_stage_count",
+        "dividend_state_count",
         "project_maturity_gate_count",
-        "scenario_admission_gate_count"
+        "scenario_admission_gate_count",
+        "unplugged_tabletop_case_count",
+        "contract_unplug_recovery_coverage_ratio",
+        "field_service_success_ratio"
       ],
       "source_ids": [
         "AGENT-TASKBOOK",
         "OFFICIAL-ANNOUNCEMENT"
       ],
       "assumption_ids": [
-        "A-TIME-001",
+        "A-EXISTING-PARK-001",
         "A-CONTROLS-001",
-        "A-DELIVERY-001"
+        "A-DELIVERY-001",
+        "A-TABLETOP-001"
       ],
       "self_check_ids": [
-        "VISUAL_STATIC",
+        "VISUAL_PACKAGING",
         "PROFESSIONAL_EVIDENCE"
       ],
-      "evidence_summary_zh": "首个168小时、首12周和三阶段实施均绑定进入条件、负责人、证据制品、复核点、暂停与恢复状态；未满足法定/安全/资源闸门时不进入下一阶段。"
+      "evidence_summary_zh": "首12周调试、首12周和三阶段实施均绑定进入条件、负责人、证据制品、复核点、暂停与恢复状态；未满足法定/安全/资源闸门时不进入下一阶段。"
     },
     {
       "item_id": "metrics_recalculation",
@@ -538,7 +556,8 @@
       ],
       "drawing_refs": [
         "drawings/a3-booklet.pdf",
-        "visual/assets/review-evidence-map.json"
+        "visual/assets/review-evidence-map.json",
+        "visual/assets/unplugged-tabletop-evidence.json"
       ],
       "geometry_refs": [
         "geometry/site_boundary.geojson#SITE-001",
@@ -551,11 +570,15 @@
         "site_area_sqm",
         "green_ratio",
         "public_space_ratio",
-        "time_ribbon_length_m",
-        "public_space_weekly_sqm_hours",
+        "civic_baseline_spine_length_m",
+        "contract_non_ai_equivalent_coverage_ratio",
         "floor_area_ratio",
         "average_building_height_m",
-        "demolition_area_sqm"
+        "demolition_area_sqm",
+        "scenario_dividend_contract_count",
+        "unplugged_tabletop_case_count",
+        "real_personal_data_used_in_tabletop",
+        "field_service_success_ratio"
       ],
       "source_ids": [
         "BOUNDARY-SOURCE",
@@ -564,12 +587,12 @@
       ],
       "assumption_ids": [
         "A-BOUNDARY-001",
-        "A-TIME-001",
-        "A-BUILDING-001"
+        "A-EXISTING-PARK-001",
+        "A-BUILDING-001",
+        "A-TABLETOP-001"
       ],
       "self_check_ids": [
-        "BOUNDARY_TRUST",
-        "LAND_USE_TOPOLOGY",
+        "SPATIAL_REVIEW",
         "PROFESSIONAL_EVIDENCE"
       ],
       "evidence_summary_zh": "空间指标记录公式、图层、单位、置信度和假设；运营协议指标由JSON计数；缺依据的法定和工程结果保持unknown，官方几何到位后要求全量重算。"
@@ -589,35 +612,40 @@
         "drawings/a3-booklet.pdf",
         "visual/assets/review-evidence-map.json",
         "visual/assets/implementation-gates.json",
-        "visual/assets/governance-raci.json"
+        "visual/assets/governance-raci.json",
+        "risk.json",
+        "visual/assets/civic-dividend-contracts.json"
       ],
       "geometry_refs": [
-        "geometry/constraints.geojson#TC-01-WEEK-BOARD",
-        "geometry/constraints.geojson#BK-01-SOUTH-GATE",
-        "geometry/constraints.geojson#SCN-01-SYNTHETIC-DATA-CLINIC"
+        "geometry/constraints.geojson#OC-01-TACTILE-BASELINE",
+        "geometry/constraints.geojson#US-01-SOUTH-GATE",
+        "geometry/constraints.geojson#SCN-01-EMBODIED-UNPLUG"
       ],
       "metric_refs": [
         "project_maturity_gate_count",
         "scenario_admission_gate_count",
-        "governance_role_count"
+        "governance_role_count",
+        "field_service_success_ratio"
       ],
       "source_ids": [
         "SOURCE-REGISTRY",
         "SITE-PACKAGE",
-        "AGENT-TASKBOOK"
+        "AGENT-TASKBOOK",
+        "OFFICIAL-PIPL"
       ],
       "assumption_ids": [
         "A-BOUNDARY-001",
         "A-CONTROLS-001",
         "A-BUILDING-001",
-        "A-TIME-001",
+        "A-EXISTING-PARK-001",
         "A-AI-001",
-        "A-DELIVERY-001"
+        "A-DELIVERY-001",
+        "A-TABLETOP-001",
+        "A-OSM-DISCREPANCY-001"
       ],
       "self_check_ids": [
-        "BOUNDARY_TRUST",
-        "KEY_AREAS_TRUST",
-        "VISUAL_STATIC",
+        "SPATIAL_REVIEW",
+        "VISUAL_PACKAGING",
         "PROFESSIONAL_EVIDENCE"
       ],
       "evidence_summary_zh": "风险登记覆盖空间证据、法定控制、权属建筑、市政安全、AI权利、运营恢复、版权与生成披露；每类风险有责任角色、停止条件和所需证明，缺证不越闸。"

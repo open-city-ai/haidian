@@ -57,6 +57,18 @@ def gh_json(repo: str, args: list[str], *, cwd: Path) -> Any:
         raise WorkerError(f"invalid JSON from gh {' '.join(args)}") from exc
 
 
+def pr_file_paths(repo: str, number: int, cwd: Path) -> list[str]:
+    completed = run(
+        ["gh", "api", "--paginate", "--slurp", f"repos/{repo}/pulls/{number}/files"],
+        cwd=cwd,
+    )
+    try:
+        pages = json.loads(completed.stdout)
+        return [str(item["filename"]) for page in pages for item in page]
+    except (json.JSONDecodeError, KeyError, TypeError) as exc:
+        raise WorkerError(f"invalid file list from gh api for PR #{number}") from exc
+
+
 def latest_validation_check(meta: dict[str, Any]) -> dict[str, Any] | None:
     checks = [
         (index, item)
@@ -270,11 +282,7 @@ def process_pr(args: argparse.Namespace, meta: dict[str, Any], repo_root: Path) 
     if meta.get("mergeable") == "CONFLICTING":
         return {"number": number, "head_sha": head_sha, "result": "skipped-conflicting"}
 
-    paths_text = run(
-        ["gh", "pr", "diff", str(number), "--repo", args.repo, "--name-only"],
-        cwd=repo_root,
-    ).stdout
-    submission_dir = submission_dir_from_files([line for line in paths_text.splitlines() if line], author)
+    submission_dir = submission_dir_from_files(pr_file_paths(args.repo, number, repo_root), author)
     worktree = args.worktree_root / f"pr-{number}-{head_sha[:12]}"
     audit_dir = args.audit_root / f"pr-{number}" / head_sha
     ref = f"refs/codex-auto-review/pr-{number}-{head_sha[:12]}"

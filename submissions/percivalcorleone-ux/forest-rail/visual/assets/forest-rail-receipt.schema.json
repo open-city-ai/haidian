@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/forest-rail/receipt.schema.json",
+  "title": "Forest Rail Scenario Receipt",
+  "description": "Concept governance record for one bounded Forest Rail AI scenario from problem through rollback; not an official system or deployment approval.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_id",
+    "scenario_id",
+    "status",
+    "problem",
+    "place",
+    "data",
+    "permissions",
+    "human_gate",
+    "test",
+    "evidence",
+    "decision",
+    "feedback",
+    "rollback_retirement",
+    "disclaimer"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1.0" },
+    "receipt_id": {
+      "type": "string",
+      "pattern": "^FR-RR-[A-Z0-9-]{4,64}$"
+    },
+    "scenario_id": {
+      "type": "string",
+      "pattern": "^TEST-0[1-5]$"
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "screened",
+        "sandboxed",
+        "limited_trial",
+        "paused",
+        "rejected",
+        "adopted",
+        "retired",
+        "rolled_back"
+      ]
+    },
+    "problem": { "type": "object" },
+    "place": { "type": "object" },
+    "data": { "type": "object" },
+    "permissions": { "type": "object" },
+    "human_gate": { "type": "object" },
+    "test": { "type": "object" },
+    "evidence": { "type": "object" },
+    "decision": { "type": "object" },
+    "feedback": { "type": "object" },
+    "rollback_retirement": { "type": "object" },
+    "disclaimer": { "type": "string", "minLength": 24 }
+  }
+}

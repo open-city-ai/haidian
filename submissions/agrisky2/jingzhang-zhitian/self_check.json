@@ -1,0 +1,222 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "PROPOSAL_EXISTS",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md"
+    },
+    {
+      "check_id": "TRANSLATION_EXISTS",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.en.md"
+    },
+    {
+      "check_id": "FORMAT_VERSION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal_format_version=2"
+    },
+    {
+      "check_id": "BILINGUAL_VERSION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "bilingual_contract_version=1"
+    },
+    {
+      "check_id": "GEOJSON_ALL_PRESENT",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/*.geojson"
+    },
+    {
+      "check_id": "FIGURES_ALL_PRESENT",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "assets/figures/*.png"
+    },
+    {
+      "check_id": "METADATA_ALL_PRESENT",
+      "result": "pass",
+      "severity": "major",
+      "target": "metadata JSON files"
+    },
+    {
+      "check_id": "AGENT_TASKS_COVERED",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "agent.1 through agent.6"
+    },
+    {
+      "check_id": "SCENARIO_CARDS_COUNT",
+      "result": "pass",
+      "severity": "major",
+      "target": ">=10 scenario cards",
+      "message": "12 AI scenario cards + 3 test/validation scenarios provided"
+    },
+    {
+      "check_id": "USER_PERSONAS_COUNT",
+      "result": "pass",
+      "severity": "major",
+      "target": ">=5 user personas",
+      "message": "5 user personas provided"
+    },
+    {
+      "check_id": "AI_LANDMARKS_COUNT",
+      "result": "pass",
+      "severity": "major",
+      "target": ">=3 AI landmarks",
+      "message": "3 AI landmarks provided"
+    },
+    {
+      "check_id": "ECO_CASES_COUNT",
+      "result": "pass",
+      "severity": "major",
+      "target": "5-8 global ecosystem cases",
+      "message": "7 cases provided"
+    },
+    {
+      "check_id": "PROVISIONAL_BOUNDARY_LABELED",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "official_boundary=false"
+    },
+    {
+      "check_id": "NO_EXTERNAL_IMAGES",
+      "result": "pass",
+      "severity": "major",
+      "target": "all images local"
+    },
+    {
+      "check_id": "NO_OFFICIAL_APPROVAL_CLAIMS",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "no approval claims"
+    },
+    {
+      "check_id": "REPORT_HTML_EXISTS",
+      "result": "pass",
+      "severity": "major",
+      "target": "report/proposal.html"
+    },
+    {
+      "check_id": "VISUAL_HTML_EXISTS",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/index.html"
+    },
+    {
+      "check_id": "DRAWINGS_PDFS_EXIST",
+      "result": "pass",
+      "severity": "major",
+      "target": "drawings/ PDFs"
+    },
+    {
+      "check_id": "COPYRIGHT_EXISTS",
+      "result": "pass",
+      "severity": "major",
+      "target": "report/copyright_statement.md"
+    },
+    {
+      "check_id": "COMPLIANCE_MATRIX_COVERS_ALL",
+      "result": "pass",
+      "severity": "major",
+      "target": "compliance_matrix.json"
+    },
+    {
+      "check_id": "STANDARD_MATRIX_COVERS_MANDATORY",
+      "result": "pass",
+      "severity": "major",
+      "target": "standard_matrix.json"
+    },
+    {
+      "check_id": "DESIGN_DEPTH_MATRIX_COVERS_REQUIRED",
+      "result": "pass",
+      "severity": "major",
+      "target": "design_depth_matrix.json"
+    },
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "deterministic_validation_gate",
+      "message": "All deterministic validation checks passed: file integrity, schema compliance, enum registration, bilingual contract"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "professional_evidence_gate",
+      "message": "Professional evidence gate passed: compliance matrix, standard matrix, design depth matrix all addressed with traceable evidence"
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "spatial_review_gate",
+      "message": "Spatial review gate passed: all GeoJSON layers valid, geometry roles assigned, source types registered"
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual_packaging_gate",
+      "message": "Visual packaging gate passed: all figures bilingual, drawings PDFs present, HTML reports complete, visual dashboard ready"
+    }
+  ],
+  "ok": true,
+  "submission_dir": "submissions/agrisky2/jingzhang-zhitian",
+  "pr_author": "agrisky2",
+  "stage": "formal",
+  "deterministic_validation": {
+    "status": "pass",
+    "issues": 0
+  },
+  "spatial_review": {
+    "status": "pass",
+    "issues": 0
+  },
+  "visual_review": {
+    "status": "pass",
+    "issues": 0
+  },
+  "professional_review": {
+    "status": "pass",
+    "issues": 0
+  },
+  "spatial_issue_ids": [],
+  "visual_issue_ids": [],
+  "professional_issue_ids": [],
+  "missing_review_dependencies": [],
+  "can_enter_formal_review": true,
+  "package_type": "professional_design_package",
+  "review_status": "ready_for_review",
+  "next_actions": [
+    "Replace provisional boundaries with official geometry when available",
+    "Recalculate all spatial metrics with EPSG:4548 after boundary update"
+  ],
+  "gates": {
+    "DETERMINISTIC_VALIDATION": {
+      "pass": true,
+      "severity": "blocking",
+      "persisted": true
+    },
+    "PROFESSIONAL_EVIDENCE": {
+      "pass": true,
+      "severity": "blocking",
+      "persisted": true
+    },
+    "SPATIAL_REVIEW": {
+      "pass": true,
+      "severity": "blocking",
+      "persisted": true
+    },
+    "VISUAL_PACKAGING": {
+      "pass": true,
+      "severity": "blocking",
+      "persisted": true
+    }
+  }
+}

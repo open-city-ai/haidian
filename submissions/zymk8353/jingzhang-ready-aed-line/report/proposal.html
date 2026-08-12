@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张五分钟 / THE READY AED LINE：让救命设备在需要时真的可取用 - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>京张五分钟 / THE READY AED LINE：让救命设备在需要时真的可取用</h1>
+<p class="summary">不再造一张AED地图，也不先承诺新增设备；用开放时段、无锁无扫码、实体导向、巡检、训练机往返演练、责任岗位与用后复位共同证明一个点位是否真正就绪。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+</section>
+<h1>京张五分钟 / THE READY AED LINE</h1>
+<p><strong>不是“附近有 AED”，而是“现在拿得到一台真的可用的 AED”。</strong> “五分钟”是按开放时段和真实路径进行训练机往返演练的阈值，不是无条件承诺、存活率承诺或医疗结论。所有空间动作均为基于临时粗略边界的概念建议；本方案不声明任何具体点位、机构合作或现场达标事实。</p>
+<p>区位核验补充：仓库 Issue #1029 的公开复算记录指出，上游 <code>PROV-KEY-003</code> 临时 polygon 的面积与南北顺序自洽，但质心约位于北京北站一带，距大钟寺站约 2.26 km。该记录不是官方边界，也不是自行平移的授权。本案保留上游几何只作占位；“大钟寺”任务叙事来自公告名称，任何真实 AED、服务时段和取用路线必须另行现场与责任主体核验。官方或 canonical 几何更新后，整体重算图层、指标、图件、PDF 与 HTML。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="ISSUE-1029" title="来源：ISSUE-1029">来源</sup> [assumption:A-BOUNDARY-001]</p>
+<h2>设计依据与资料清单</h2>
+<p>第一性问题只有一个：当有人疑似心脏骤停、旁人已经呼叫 120 时，能否完成“找到—取出—带回—按设备与 120 指导使用—用后复位”这条任务链。地图上的点若遇到关门、门禁、上锁、扫码、导向中断、电池/电极片过期或无人负责，就不是就绪点。国家卫健委指南要求点位明显、易取、柜门不上锁不扫码，并由场所单位巡检设备、耗材、标识和管理信息；北京通告明确公众可使用，未受训者可在 120 指导下操作 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="NHC-AED-GUIDE-2021" title="来源：NHC-AED-GUIDE-2021">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-WJW-AED-ACCESS-2021" title="来源：BEIJING-WJW-AED-ACCESS-2021">来源</sup>。</p>
+<p>北京已经有与 120 调度系统联通的重点公共场所 AED 电子地图，因此本方案淘汰“再做一个地图”；未取得一个重点区的资产、开放和路线数据前，也淘汰“先买更多设备”。保留的产品是带有效期的 <code>ready_aed_point</code> 就绪证明 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-AED-120-MAP-2023" title="来源：BEIJING-AED-120-MAP-2023">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="existing_conditions_diagnosis" title="深度：existing_conditions_diagnosis">深度</sup>。</p>
+<p>北京市地方标准 <code>DB11/T 2564-2026</code> 已于 2026 年 6 月 30 日发布，但到 2026 年 10 月 1 日才实施。本方案仅把人员密集场所步行取用往返宜短于 5 分钟、公众免费使用、服务时间公示、责任人与维护记录等条款作为“已发布、尚未生效的实施参照”，不写成当前义务或现场事实 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-AED-STANDARD-NOTICE-2026" title="来源：BEIJING-AED-STANDARD-NOTICE-2026">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-AED-FIVE-MINUTE-2026" title="来源：BEIJING-AED-FIVE-MINUTE-2026">来源</sup>。</p>
+<div class="proposal-table"><table><thead><tr><th>就绪条件</th><th>必须证据</th><th>失效时的诚实状态</th></tr></thead><tbody><tr><td>1 资产与服务时间</td><td>责任单位核验、时间戳、下次复核日</td><td>未核验/关闭</td></tr><tr><td>2 实体导向连续</td><td>入口—转角—柜体的静态标识检查</td><td>导向失败</td></tr><tr><td>3 无锁无扫码</td><td>柜门实际开启检查</td><td>不可取用</td></tr><tr><td>4 设备与耗材有效</td><td>设备、电池、电极片、附件、标识巡检</td><td>故障/临期</td></tr><tr><td>5 责任岗位在班</td><td>资产、场地、巡检、升级、复位职责</td><td>无人负责</td></tr><tr><td>6 多时段往返演练</td><td>工作日、夜间、周末训练机时间记录</td><td>未达标/未知</td></tr><tr><td>7 用后复位闭环</td><td>补耗材、恢复、复核、重新放行</td><td>使用后关闭</td></tr><tr><td>8 医疗边界清楚</td><td>120、设备语音、专业急救体系优先</td><td>AI 停止输出</td></tr></tbody></table></div>
+<p>八项同时有效才显示“就绪”；任何一项缺失都降级并指向已核验替代点 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="readiness_condition_count" title="指标：readiness_condition_count">指标</sup>。AI 不诊断、不决定除颤，因此被委托的医疗决策数为零 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="ai_medical_decision_count" title="指标：ai_medical_decision_count">指标</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="总体概念与证据边界"><figcaption>总体概念与证据边界</figcaption></figure>
+<p>场地依据来自官方公告、智能体任务书、仓库场地包、来源注册和处理资料；几何使用维护者提供的 provisional boundary，只支持概念生成、拓扑自检和低置信度复算 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup>。总体边界与三处重点区均不是 official redline，正式 polygon 到位后需重算所有图层、指标、图件、HTML 与 PDF <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="KEY-AREA-SOURCE" title="来源：KEY-AREA-SOURCE">来源</sup>。</p>
+<h2>三层范围工作框架</h2>
+<p>统筹研究范围解决“谁共同维护公共就绪能力”；总体设计范围解决“物理导向、训练路线和责任节点怎样连续”；三处重点区解决“验证、公众训练、高客流试点分别需要什么”。这不是从一张大总图推导一切，而是把同一就绪契约放入不同空间类型中反证 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_level_scope_framework" title="深度：three_level_scope_framework">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="三层范围与就绪网络"><figcaption>三层范围与就绪网络</figcaption></figure>
+<p>品牌主名“京张五分钟”，英文 <strong>THE READY AED LINE</strong>。符号以铁路计时牌的 <code>5:00</code>、开放柜门和断开的红线组成：绿色只表示八项证据仍有效，琥珀表示临期/待复核，红色表示关闭。它不使用红十字、企业商标或官方 AED 标识图作为品牌资产；真实实施仍须使用国家统一导向标识。</p>
+<div class="proposal-table"><table><thead><tr><th>层级</th><th>核心判断</th><th>空间产物</th><th>不能宣称</th></tr></thead><tbody><tr><td>43.6 km² 统筹研究范围</td><td>卫健/急救、资产单位、场地运营、培训、高校与企业如何形成可复用协议</td><td>开放 schema、训练脚本、失败档案、责任模板</td><td>机构已同意、全域覆盖</td></tr><tr><td>约 11.4 km² 总体设计范围</td><td>无手机导向和训练机往返是否连续</td><td>一条学习线、四类研究节点、静态导向组件</td><td>道路红线、救护路线、精确服务半径</td></tr><tr><td>约 368.4 ha 重点区</td><td>三类节点如何证伪产品</td><td>众智验证、原点训练、大钟寺试点</td><td>具体 AED、门禁、客流或五分钟达标</td></tr></tbody></table></div>
+<p>临时总体边界的包内复算面积只证明文件一致性 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#SITE-001" title="空间数据：geometry/site_boundary.geojson#SITE-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup>；三处 provisional 重点区只证明任务覆盖数量 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup>。</p>
+<h2>统筹研究范围产业与未来城市研究</h2>
+<p>京张的 AI 产业价值不在于让模型“替人急救”，而在于让研究、标准、现场验证、产品运维和公共问责形成一条可迁移的可靠性产业链：众智园验证最小事件模型与冲突检测，AI 原点把专业规则翻译为公众可练习的无手机流程，大钟寺验证高客流空间的交接与复位，中关村科技服务翼提供标准、保险、法务与评测接口，小月河场景赋能翼承接公共体验和复盘。所有医疗和设备判断仍由法定/专业体系承担 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-AGENT-OPEN-CALL-TASKBOOK" title="标准：PROJECT-AGENT-OPEN-CALL-TASKBOOK">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>。</p>
+<p>五个全球创新生态案例只迁移机制，不复制规模、制度或投资：</p>
+<div class="proposal-table"><table><thead><tr><th>案例</th><th>可迁移机制</th><th>京张转译</th><th>不迁移</th></tr></thead><tbody><tr><td>新加坡 one-north</td><td>研发、创业、试验与日常空间并置</td><td>把可靠性测试与公共体验放在同一走廊</td><td>土地制度与投资指标</td></tr><tr><td>Seoul AI Hub</td><td>培训、企业成长、共享设施、社群交流连续</td><td>AED 训练、企业验证和开放复盘相邻</td><td>项目数量与组织架构</td></tr><tr><td>Montréal Mila</td><td>研究—产业—人才—公共利益协作</td><td>模型只做就绪冲突与失效复盘</td><td>伙伴名单与资金承诺</td></tr><tr><td>ELLIS</td><td>分布式节点共享研究协议</td><td>三处重点区共用 schema、各自验证类型</td><td>欧洲研究网络治理</td></tr><tr><td>Smart Kalasatama</td><td>可逆 living lab、先试后扩、方法迁移</td><td>90 天训练机试点与停止门</td><td>医疗/场地审批替代</td></tr></tbody></table></div>
+<p>案例分别由一手机构页面支撑 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-ONE-NORTH" title="来源：CASE-ONE-NORTH">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-SEOUL-AI-HUB" title="来源：CASE-SEOUL-AI-HUB">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-MILA" title="来源：CASE-MILA">来源</sup>。分布式与 living-lab 机制另见 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-ELLIS" title="来源：CASE-ELLIS">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-SMART-KALASATAMA" title="来源：CASE-SMART-KALASATAMA">来源</sup>；它们都不能证明北京现场条件。</p>
+<p>GitHub 方法库进入的是架构而非成品：OpenAEDMap 提醒我们区分点位、开放和公众纠错；openrouteservice 提醒用路网而不是半径，但仍看不见门禁和室内导向；ODK 提供弱网现场表单方法；FixMyStreet/Open311 提供故障路由和状态事件。方案不复制代码、图件、数据或国外责任结构 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OPENAEDMAP-GITHUB" title="来源：OPENAEDMAP-GITHUB">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OPENROUTESERVICE-GITHUB" title="来源：OPENROUTESERVICE-GITHUB">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="ODK-COLLECT-GITHUB" title="来源：ODK-COLLECT-GITHUB">来源</sup>。维修路由和事件最小字段参考 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="FIXMYSTREET-GITHUB" title="来源：FIXMYSTREET-GITHUB">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OPEN311-GITHUB" title="来源：OPEN311-GITHUB">来源</sup>。</p>
+<h2>总体设计范围城市更新与控规深度城市设计</h2>
+<p>空间结构为“一线、三站、四门、两本账”：一条 AED 就绪演练学习线串联三处重点区；三站分别承担协议验证、公众训练和高客流试点；四门是从模拟事件点到设备、取出、返回、复位的物理门；两本账分别记录设备/耗材状态与路线/责任状态。线和节点只表达概念关系，不是工程线位或已选址 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup>。</p>
+<p>用地层是五类主导研究带的拓扑分区，不是控规调整；可逆模块只验证空间尺度，不是新建建筑 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup>。容积率、建筑高度、建筑密度、道路红线和现状拆改留均待正式数据补齐 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-CONTROL-DETAILED-PLANNING" title="标准：MOHURD-CONTROL-DETAILED-PLANNING">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="深度：development_intensity_controls">深度</sup>。</p>
+<p>真正的城市更新优先级是：先校准现场事实，再修静态导向与开门规则，再做训练机演练，最后才判断是否需要新增设备或空间改造。没有资产登记、故障类型和多时段路线证据时，不画设备覆盖半径；没有权属、消防、无障碍和现状建筑调查时，不作建设结论。</p>
+<h2>重点区域详细设计</h2>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="三处重点区的不同验证任务"><figcaption>三处重点区的不同验证任务</figcaption></figure>
+<h3>众智园：就绪协议实验台</h3>
+<p>众智园承担“把失败变成可复现测试”。企业、高校和专业方可用合成点位、训练 AED 和虚构事件卡测试：开放时间冲突、巡检过期、替代点失效、断网、重复工单与用后未复位。AI 只标出不一致并生成复盘摘要，不能把缺证据状态推断为绿色 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup>。</p>
+<h3>AI 原点社区：无手机取用课堂</h3>
+<p>AI 原点承担“把专业要求翻译成公众能完成的动作”。训练空间以盲测式实体导向、设备语音熟悉、呼叫 120、两人协作与无障碍取用为核心；不收集身份、声音、面部或健康数据。手机导航是补充，不是入口 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-002" title="空间数据：geometry/public_space.geojson#PUBLIC-002">空间数据</sup>。</p>
+<h3>大钟寺：五分钟就绪站（90 天首选类型）</h3>
+<p>大钟寺类节点适合反证高客流、换乘、服务时段与复杂入口，但本包没有权威点位、门禁、客流和运营方数据，不能声称已有 AED 或五分钟达标。若取得授权，先选一个有人值守、服务时间清楚的公共场所类型做训练机试点；若资产责任人、巡检授权或 120 协调无法闭合，立即停止 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/phasing.geojson#PHASE-001" title="空间数据：geometry/phasing.geojson#PHASE-001">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup>。</p>
+<h2>AI 创新生态、人才画像与 AI+ 场景</h2>
+<p>七类画像不是患者画像：通勤者/换乘者、园区员工、学生、访客、夜班和保洁维护人员、老年/残障访客、场地一线员工。MVP 不记录他们的身份或健康信息 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="persona_count" title="指标：persona_count">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="patient_identity_field_count" title="指标：patient_identity_field_count">指标</sup>。</p>
+<div class="proposal-table"><table><thead><tr><th>场景卡</th><th>类型与位置</th><th>可测输出</th><th>人工/停止边界</th></tr></thead><tbody><tr><td>T01 开放时段冲突测试</td><td>产业验证·众智园</td><td>冲突检出率、人工确认时长</td><td>无人工确认不转绿</td></tr><tr><td>T02 巡检/耗材临期测试</td><td>产业验证·众智园</td><td>漏检、提前量、错误升级</td><td>AI 不判断设备合格</td></tr><tr><td>T03 断网与替代点测试</td><td>产业验证·众智园</td><td>离线完成率、错误替代数</td><td>纸质台账和人工值守兜底</td></tr><tr><td>S04 无手机找柜</td><td>公众训练·原点</td><td>找对率、转弯错误、耗时</td><td>不采集连续轨迹</td></tr><tr><td>S05 无锁无扫码开柜</td><td>取用测试·原点/大钟寺</td><td>首次开启成功率</td><td>需钥匙/扫码即停</td></tr><tr><td>S06 120+训练机双线流程</td><td>合成演练</td><td>呼叫、取回、设备语音配合</td><td>不用真实患者、不放电</td></tr><tr><td>S07 夜间服务窗核验</td><td>多时段演练</td><td>实际开门与公示一致率</td><td>无值守则关闭该时段</td></tr><tr><td>S08 无障碍端到端取用</td><td>公共空间</td><td>台阶、门宽、柜高、导向失败</td><td>专业复核后整改</td></tr><tr><td>S09 大型活动临时状态</td><td>活动前检查</td><td>临时封闭、客流绕行、替代点</td><td>活动许可与现场指挥优先</td></tr><tr><td>S10 使用后复位工单</td><td>运维闭环</td><td>补耗材与重新放行时长</td><td>未复核不恢复绿色</td></tr><tr><td>S11 公众纠错到责任人</td><td>公共问责</td><td>路由正确率、关闭时长</td><td>工单状态不等于现场就绪</td></tr><tr><td>S12 月度失败档案</td><td>开放学习</td><td>聚合失败类型、复发率</td><td>不公开个体或患者数据</td></tr></tbody></table></div>
+<p>十二张场景卡、三类产业验证和 90 天试点均为方案可核对的计数 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="scenario_card_count" title="指标：scenario_card_count">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="industry_test_count" title="指标：industry_test_count">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="pilot_days" title="指标：pilot_days">指标</sup>。AI 层只允许三类功能：检测过期/冲突、将故障路由给责任人、生成不含个人数据的聚合复盘；其输出必须可被人工否决。</p>
+<h2>用地、建筑规模与拆改留方案</h2>
+<p>五个用地分区完整覆盖 provisional site，仅作为“主导研究内容”分区并采用现行用地分类代码，不改变法定用途 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="标准：MNR-LAND-USE-CLASSIFICATION-GUIDE">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="land_use_layout" title="深度：land_use_layout">深度</sup>。三座约 48m×22m 的可逆模块原型用于验证课堂、复盘台和服务前厅尺度，包内基底面积可复算，但不代表现状或拟建规模 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup>。</p>
+<p>拆改留顺序固定为：利用既有有人值守服务台—增加静态标识/纸图/责任卡—用移动训练设备试运行—只有在权属、结构、消防、无障碍和专业急救评估完成后才讨论改造。高度、体量、材质与夜景仅提出低扰动、可逆、易维护的定性建议 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="深度：retain_renovate_demolish">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="height_massing_character" title="深度：height_massing_character">深度</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-ARCH-DESIGN-DEPTH-2016" title="标准：MOHURD-ARCH-DESIGN-DEPTH-2016">标准</sup>。</p>
+<h2>交通、轨道、市政与公共服务设施</h2>
+<p>AED 的“距离”必须是模拟事件点到柜体再返回的完整步行时间，不是直线半径。路线记录要按实际入口、服务时段、楼层、门禁、过街、施工和无障碍条件核验；训练者到达后还要能看见、开柜、带回。概念学习线的长度只用于包内空间关系检查，不代表真实路线 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="readiness_drill_line_length_m" title="指标：readiness_drill_line_length_m">指标</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="无手机取用旅程与蓝绿公共空间"><figcaption>无手机取用旅程与蓝绿公共空间</figcaption></figure>
+<p>最低服务不依赖网络：统一实体标识、入口纸质平面图、柜旁操作说明、值守电话/120、手工巡检卡和明确替代点。数字层不得替代 120，不向 AED 下发医疗控制；远程状态只能作为提示，现场人工核验决定开放状态 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="municipal_new_infrastructure" title="深度：municipal_new_infrastructure">深度</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CONSTRAINTS" title="空间数据：geometry/constraints.geojson#CONSTRAINTS">空间数据</sup>。</p>
+<h2>蓝绿空间、公共空间与城市风貌</h2>
+<p>沿京张遗址公园的概念学习廊道只承载实体导向、休息点、训练活动和失败档案，不声称新增绿地或安装真实设备 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup>。四个研究节点强调“入口一眼可见、道路不断行、轮椅可接近、夜间不过度发光”，公共空间比例只是概念几何复算 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="blue_green_public_space" title="深度：blue_green_public_space">深度</sup>。</p>
+<p>三处制度型地标是：众智园“失效复盘台”、AI 原点“无手机取用课堂”、大钟寺“5:00 就绪牌”。荣誉墙不表彰“AI 救人”，而记录经过专业确认的维护班组、训练贡献和已修复失败；同时保留关闭记录，避免只展示成功。视觉语言借铁路时刻表的清晰层级和交接纪律，不把医疗急救娱乐化 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup>。</p>
+<h2>更新项目清单、实施政策与分期计划</h2>
+<p>90 天试点先于任何扩张：</p>
+<div class="proposal-table"><table><thead><tr><th>阶段</th><th>动作</th><th>进入下一阶段的门</th><th>停止条件</th></tr></thead><tbody><tr><td>0–15 天 证据门</td><td>授权资产盘点、责任 RACI、开放时段、柜门、设备/耗材、120/培训接口、路线</td><td>至少一个合法可练点，所有责任有人签收</td><td>无资产责任人、无巡检授权或无法训练</td></tr><tr><td>16–30 天 低成本修复</td><td>静态导向、入口平面图、责任卡、纸质替代点、开门规则</td><td>无手机盲测可完成</td><td>仍需扫码/钥匙且无人值守</td></tr><tr><td>31–60 天 合成演练</td><td>工作日/夜间/周末训练机往返，记录失败</td><td>关键班次可复现、失败可路由</td><td>引入患者/身份/医疗判断</td></tr><tr><td>61–90 天 有限运行</td><td>每日巡检、每周抽测、用后复位、聚合月报</td><td>责任单位决定继续/修改/停止</td><td>设备/耗材未知、门禁或路线冲突未标红</td></tr></tbody></table></div>
+<p>更新项目只有六项：资产与责任台账、无手机导向包、训练机演练、就绪事件 schema、故障/复位工单、失败档案与季度复盘。它们是概念建议，不是获批项目或采购计划 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="renewal_project_list" title="深度：renewal_project_list">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="phasing_implementation" title="深度：phasing_implementation">深度</sup>。</p>
+<p>RACI 建议：安装/资产单位对设备与维护最终负责；场地运营对开放、门禁、导向和值守负责；指定巡检岗直接检查；120/急救与培训专业方提供流程协商；AI 供应方只对数据工具负责；任何现场责任人都可将点位标红，只有完整复核才能重新放行。责任表述不表示这些机构已经同意。</p>
+<p>长期运营活动包括季度“5:00 盲测日”、年度失败档案展、开发者就绪 schema 复现赛和场地维护共学。所有活动先经场地、急救和安全审查，不模拟真实患者，不占用真实急救资源，不以比赛速度替代正确流程。</p>
+<h2>指标体系、面积复算与合规矩阵</h2>
+<p>最关键指标不是“安装数量”，而是：多时段训练机往返时间分布、无手机完成率、开放状态一致率、巡检完整率、失效到标红时间、故障到修复时间、用后复位时长、重复故障率、错误替代点数。当前经授权现场点位数和五分钟就绪覆盖率均为 unknown，绝不伪造 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="指标、来源与停止门"><figcaption>指标、来源与停止门</figcaption></figure>
+<p>包内 known 指标只描述可复算几何或方案内容：三处重点区、四个概念节点、十二场景、三类产业验证、七类画像、90 天和八项就绪条件 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="concept_node_count" title="指标：concept_node_count">指标</sup>。现场绩效要在授权试点后写入新的、带日期和责任人的数据集，不能从概念线长度或地图点推导。</p>
+<p>合规矩阵覆盖公告 1.3、1.4、1.5 与 agent.1–agent.6；专业标准和设计深度矩阵把正文、图件、GeoJSON、指标、来源、假设和自检相互挂接 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-OFFICIAL-ANNOUNCEMENT" title="标准：PROJECT-OFFICIAL-ANNOUNCEMENT">标准</sup>。</p>
+<h2>风险、版权与合规说明</h2>
+<p>四个不可越过的边界：第一，AI 不做医疗判断；第二，不收集真实患者、旁观者或训练者身份与健康数据；第三，未核验点位不能显示就绪；第四，尚未生效的标准不能写成现行义务。断网时保留实体导向、纸质状态和值守；点位失效时标红并指向已核验替代点，不存在“临时上锁但仍算可用”的旁路 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup>。</p>
+<p>约束图层刻意为空，因为仓库没有清权的真实 AED、门禁、开放时段、现状建筑、道路红线、权属、消防和急救路线几何；空集合优于编造 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CONSTRAINTS" title="空间数据：geometry/constraints.geojson#CONSTRAINTS">空间数据</sup>。official polygons 到位后还须按 EPSG:4548 重算全部面积关系。</p>
+<p>所有图件由包内 GeoJSON/JSON 和本地 Python、Pillow、Shapely、pyproj、ReportLab 生成；封面为合成概念表达，不是现场照片。无外部字体、地图瓦片、远程脚本、API、iframe、表单、人物肖像或企业商标。详细生成、许可和限制见 <code>report/copyright_statement.md</code>。</p>
+<h2>参考资料</h2>
+<p>完整来源登记在 <code>sources.json</code>，包括发布者、URL、日期、用途、许可摘要和限制；完整假设见 <code>assumptions.json</code>，指标公式见 <code>metrics.json</code>，任务覆盖见三个矩阵。正文只保留与判断相邻的证据标记，来源注册表作为用途边界而非新的事实来源 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup>。</p>
+<p>证据的使用顺序也决定了设计：国家卫健委指南与北京市公开通知用来界定“公众可取、柜门不锁不扫码、场所巡检、120 指导”的最低边界 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="NHC-AED-GUIDE-2021" title="来源：NHC-AED-GUIDE-2021">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-WJW-AED-ACCESS-2021" title="来源：BEIJING-WJW-AED-ACCESS-2021">来源</sup>。</p>
+<p>北京市 120 地图说明“再造地图”不是首要缺口；2026 年已发布但尚未生效的地方标准仅用作未来对齐参考，不能冒充现行义务 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-WJW-AED-MAP-2023" title="来源：BEIJING-WJW-AED-MAP-2023">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-DB11-T-2564-2026" title="来源：BEIJING-DB11-T-2564-2026">来源</sup>。OpenAEDMap、openrouteservice、ODK、FixMyStreet 与 Open311 只提供资产/状态分层、步行路网、离线走查、责任路由和开放工单的方法，不提供京张真实设备、道路、客流或合作方事实。</p>
+<p>这些来源因此不会直接生成精确空间结论：概念 GeoJSON 只验证三层范围、拓扑、图件和指标引用能否闭合；面积、线长和比例只用于包内复算，不能推导真实 AED 覆盖或五分钟达标 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="readiness_drill_line_length_m" title="指标：readiness_drill_line_length_m">指标</sup>。仍缺失且必须通过授权现场审计补齐的数据包括：设备资产编号与当前状态、开放时段、入口和门禁、连续实体导向、柜门规则、设备/电池/电极片/附件有效性、资产/场地/巡检/复位责任、工作日/夜间/周末训练机往返，以及使用后补件与重新放行时间。任何一项缺失都保持 unknown 或红色，不由 AI 猜测。</p>
+<p>本方案为开放共创建议，不替代正式规划、医疗指南、设备说明书或政府审定结论。任何真实试点都必须先取得场地/资产授权，并由急救、医疗器械、消防、无障碍、数据与运营专业主体复核。</p>
+</main>
+</body>
+</html>

@@ -4,6 +4,172 @@
 >
 > This log records traceable changes to this submission package only. It is not evidence of approval, implementation, field testing, rights clearance, or trusted CI. After any content change, regenerate the manifest from the final Git blobs and rely on repository validation attached to the final PR head.
 
+## v10.0 - 2026-08-12
+
+**Long-term civic operations and ten-round audit / 长期公共共同体运营与十轮总审计**
+
+- 以 `JZ-FUTURE-09` 完成串行第 10 轮，不重造第 3—9 轮的维护、权利、资源、失败、气候、文化和任务经济机制；新增一份 G0 运营集成合同，把全年普通日、无活动日、四个条件季节、同一居民任务的昼／夜／故障／恢复四窗、八类角色、三载体回写、失败公开和年度保持／修正／扩展／退役纳入同一公共运营协议。
+- Completed serial Round 10 under plan ID `JZ-FUTURE-09` without reinventing the Round 3–9 maintenance, rights, resource, failure, climate, cultural, or mission-economy mechanisms. One G0 integration contract now joins year-round ordinary/no-event days, four conditional seasons, one resident task across day/night/failure/recovery, eight role types, three-carrier writeback, failure disclosure, and annual keep/correct/expand/retire decisions.
+- 把既有 `07:00–22:00` 与 `22:00–07:00` 明确降回“继承的 G0 设计窗口”：不是现实开放时间、排班、夜班、噪声或照度承诺。问题季、开源季、城市 Beta 季和 Proof Week 均为 `not_scheduled`；活动、班次、预算、伙伴和确认运营成绩为 0 或 unknown，普通非 AI／无屏／无账户路径不得被活动占用。
+- Explicitly bounded the inherited `07:00–22:00` and `22:00–07:00` entries as G0 design windows—not real opening hours, rosters, night shifts, noise or lighting promises. Question Season, Open-source Season, Urban Beta Season and Proof Week remain `not_scheduled`; events, shifts, budgets, partners and confirmed operating results remain 0 or unknown, and activities may not occupy the ordinary non-AI/screen-free/no-account path.
+- 新增双语 `year-round-civic-operations.{svg,png}`，同构表达全年底板、四窗旅程、角色责任、场景护照—公共时刻表—证据矩阵回写、年度失败披露与去留决定；国际远程复测只有改善本地公共决定、无障碍、维护、安全或普通服务时才计公共收益，传播热度不计。
+- Added the bilingual, isomorphic `year-round-civic-operations.{svg,png}` figure pair for the all-year base, four-window journey, role duties, scenario-passport/public-timetable/evidence-matrix writeback, annual failure disclosure and disposition. International remote retest counts only when it improves local public decisions, access, maintenance, safety, or ordinary service; publicity does not count.
+- 十项运营决定指标全部保持 typed `unknown` / `null`，现实事故、活动、排班、预算、伙伴、投诉数据、国际复测、年度决定与退役回执均保持 0；结构化合同、总体证据矩阵、假设、指标、来源权利和逐文件权利台账形成可复核回链，但不把字段覆盖率写成运营绩效。
+- All ten operating-decision metrics remain typed `unknown` / `null`; real incidents, events, rosters, budgets, partners, complaint data, international retests, annual decisions and retirement receipts remain 0. The structured contract, master evidence matrix, assumptions, metrics, source-rights records and file-level rights ledger form an auditable chain without turning field coverage into operating performance.
+- 十轮一致性审计确认：前台总纲仍是“双轨京张”，后台内核仍是 JZ-AIOS + G0—G3 + 证据门 + 权利边界；众智园／原点社区／大钟寺仍为验证庭／居民共学街院／通勤发布服务三种不可互换原型；12 场景、8 项目、3 重点区、geometry、临时边界、全部 G0 和 `not_fully_cleared` 均未改变。后续只值得在新现场证据与明确授权下做收敛验证；应停止继续增加品牌、季节、场景、无证据指标或成熟度叙事。
+- The ten-round consistency audit confirms that Twin-track Jing-Zhang remains the front-stage master plan and JZ-AIOS + G0–G3 + evidence gates + rights boundaries remain the backstage kernel. Zhongzhiyuan, Origin Community and Dazhongsi remain non-interchangeable proof-court, resident-learning street/courts, and commuter publication/service prototypes. Twelve scenes, eight projects, three key areas, geometry, provisional boundaries, all-G0 status and `not_fully_cleared` remain unchanged. Further work is worthwhile only as evidence-led convergence under explicit authorization; adding brands, seasons, scenes, unsupported metrics or maturity narratives should stop.
+- 双语 Markdown/离线 HTML 与四份 PDF 同步更新；A3 中英文为 63/67 页，A0 中英文各 15 张整板。全部 PDF 为单一正确页面尺寸、无空白页、无替换字形、无越界文本块；新增运营图的中英文封面、A0 整板和 A3 细节裁片均完成视觉抽查。
+- Synchronized bilingual Markdown/offline HTML and all four PDFs. Chinese/English A3 contain 63/67 pages; both A0 sets contain 15 whole boards. Every PDF has one correct page size, zero blank pages, replacement glyphs or out-of-page text blocks; the bilingual cover, A0 board and A3 detail crops for the new operations figure were visually inspected.
+
+## v9.1 - 2026-08-12
+
+**Rounds 7–9 cross-round closure / 第 7—9 轮跨轮闭环**
+
+- 审计确认第 7 轮 G0、失败门、非 AI 连续路径与临时边界未被后两轮破坏；修补集中于第 8—9 轮新增内容未完整进入出版、来源权利证据和逐文件覆盖的问题，不新增场景、项目、几何、边界、伙伴、采购、审批、现场结果或成熟度。
+- Audit confirmed that Round 7 G0 status, failure gates, continuous non-AI paths, and provisional boundaries remain intact. The repair is limited to Round 8–9 material missing from publication, source-rights evidence, and file-level coverage; it adds no scene, project, geometry, boundary, partner, procurement, approval, field result, or maturity.
+- 修正双语视觉首页嵌套导航；重排两张英文图的标题、状态条、卡片、恢复链和页脚，并删除可见的内部证据 token；中文图同步删除内部 token。双语正文与离线 HTML 现在直接嵌入百年时间与公共任务经济图件。
+- Corrected malformed nested bilingual navigation; repaired title, status-bar, card, recovery-flow, and footer layout in the two English figures and removed visible internal evidence tokens, with matching token cleanup in Chinese. Bilingual Markdown and offline HTML now embed both century-time and mission-economy figures directly.
+- manifest/逐文件权利台账从 89/88 扩为 99/98，新增 10 个第 8—9 轮合同与图件记录；来源权利证据从 29 扩为 35，与 `sources.json` 一一对应。删除未经证明的 CC 许可与“可展览”表述，总体仍为 `not_fully_cleared`，独立逐文件审计 0，公共或专业复用继续阻断。
+- Expanded manifest/file-level rights coverage from 89/88 to 99/98 with ten Round 8–9 contract/figure records. Source-rights evidence expands from 29 to 35 and is one-to-one with `sources.json`. Unsupported CC-license and exhibition-use statements are removed; overall rights remain `not_fully_cleared`, independent file-level audits remain 0, and public/professional reuse remains blocked.
+- 四份 PDF 从最终双语内容确定性重生：中文/英文 A3 为 58/62 页，每种语言 14 组图件各拆 3 个带 30px 重叠的 620×892 细节裁片；中英文 A0 各 14 张整板。两个新进程逐文件一致，148 页 QA 的空白页、替换字形和越界文本块均为 0；摘要见 `report/narrative.md`。
+- Deterministically regenerated all four PDFs from final bilingual content: Chinese/English A3 contain 58/62 pages with 14 figure sets per language, each split into three 620×892 detail crops with 30px overlap; both A0 sets contain 14 whole boards. Two fresh processes are file-identical, and all 148 pages return 0 blank pages, replacement glyphs, or out-of-page text blocks; hashes are recorded in `report/narrative.md`.
+
+## v9.0 - 2026-08-12
+
+**Mission Economy: 问题驱动的产业与人才转化 / Mission Economy: Problem-Led Industry and Talent Translation**
+
+- 选择四个相互依赖的产业与人才机制工作包，把公共任务发布、问题质量门、小团队公平准入、离线原型、独立复测门、结果回流与退出退役组织为同一 G0 机制合同；不以虚构企业名单、投资额或招商承诺证明产业价值，验证通过不等于采购或部署授权；不重做公共权利、证据类型、失败治理或文化合同底座。
+- Selected four mutually dependent industry-and-talent mechanism work packages, organizing public-task publication, problem-quality gate, fair small-team entry, offline prototyping, independent-retest gate, result reflow, and exit/retirement into one G0 mechanism contract; industry value is not proven by invented enterprise lists, investment amounts, or attraction promises, and passing a test is not a procurement or deployment authorization; does not rebuild public-rights, evidence-type, failure-governance, or cultural-contract foundations.
+- 新增 `mission-economy-contract.json`（JZ-MISSION-ECONOMY-G0-V1）：公共任务生命周期七步、准入与退出（无账号门槛、同任务人工/非 AI 路径、退出不进人才排名）、采购与知识产权边界（原型≠采购≠部署、逐级独立书面授权、IP not_cleared）、公共收益回流（不依赖投资额、反馈仅作下一轮输入）、四轴分离、十项决定指标全部 unknown 或 0、八组风险预演、reality counters 全 0。
+- Added `mission-economy-contract.json` (JZ-MISSION-ECONOMY-G0-V1): seven-step public-task lifecycle, entry and exit (no account barrier, manual/non-AI paths for the same task, exit records excluded from hiring ranking), procurement and IP boundary (prototype≠procurement≠deployment, separate written authorization per level, IP not_cleared), public-benefit reflow (independent of investment amounts, feedback only feeds the next round), four-axis separation, ten decision metrics all unknown or 0, eight risk rehearsals, all reality counters 0.
+- 新增双语产业—公共价值状态图 `industry-public-value-state.{svg,png}`，A 公共任务生命周期/B 四轴分离/C 授权阶梯/D 公共收益回流，图面通过 QA（修正英文版卡片标题与正文溢出）。
+- Added bilingual industry–public value state figure pair `industry-public-value-state.{svg,png}`, A public-task lifecycle / B four-axis separation / C authorization ladder / D public-benefit reflow; figure QA passed (fixed English card-title and body overflow).
+- 为十项决定指标定义状态/分母/证明上限；没有现实数据时保持 unknown 或 0，不得用字段覆盖率、概念数量或机器 PASS 冒充现实成效：公共任务可验证度、小团队参与比例、独立复测覆盖、任务退出率、专业服务可达性、公共收益交付状态、高校课程真实参与状态、知识产权争议数、失败项目公开率、机构书面确认状态。
+- Defined state/denominator/proof limits for ten decision metrics; without real data remain unknown or 0; field coverage, concept counts, or machine PASS cannot be presented as real-world outcomes: public-task verifiability rate, small-team participation ratio, independent-retest coverage, task exit rate, professional-service accessibility, public-benefit delivery status, university-course real participation, IP dispute count, failed-project publication rate, institution written-confirmation status.
+- 外部机构、企业、高校和服务商均为建议角色或待确认角色，0 个书面确认；责任主体（发布、准入、复测、停止、恢复）均为角色待确认。geometry、既有 SCENE/JZ/T 编号、八个项目、全部 G0、临时边界和 `not_fully_cleared` 均不变；现实任务、小团队、复测、退出事件、采购与部署全部为 0。
+- External institutions, enterprises, universities, and service providers remain suggested or pending-confirmation roles with 0 written confirmations; responsible roles (publication, entry, retest, stop, recovery) remain roles-to-be-confirmed. Geometry, existing SCENE/JZ/T IDs, eight projects, all G0 status, provisional boundaries, and `not_fully_cleared` remain unchanged; real tasks, small teams, retests, exit events, procurement, and deployment are all 0.
+
+## v8.0 - 2026-08-12
+
+**Century-Time Museum: 可核验·可纠错·无屏可达的城市时间教育线 / The Century-Time Museum: A Verifiable, Correctable, Screen-free Time Education Line**
+
+- 选择十个相互依赖的文化内容工作包，把京张铁路勘测、通车、高铁、遗址公园与 AI 训练、验证、失败、纠错、退役并置为一条不崇拜技术的城市时间教育线；不重做公共权利、证据类型或失败治理底座。
+- Selected ten mutually dependent cultural-content work packages, juxtaposing Jing-Zhang railway survey, opening, HSR, heritage park with AI training, validation, failure, correction, and retirement as a city time-education line that does not worship technology; does not rebuild public-rights, evidence-type, or failure-governance foundations.
+- 新增 `century-time-museum-contract.json`（JZ-TIME-MUSEUM-G0-V1）：五史实对象、七级来源等级表、口述史同意模板（采集前）、争议纠错五步流（停/下架/纠错/版本保留/恢复）、无屏节点链（起点站牌→对照图谱牌→证据更新墙）、全部指标 unknown 或 0、reality counters 全 0。
+- Added `century-time-museum-contract.json` (JZ-TIME-MUSEUM-G0-V1): five historical objects, seven-grade source-grade table, oral-history consent template (pre-collection), five-step dispute-correction flow (stop/takedown/correct/retain-recover), screen-free node chain (origin→atlas→evidence wall), all metrics unknown or 0, all reality counters 0.
+- 新增双语百年时间图谱 `century-timeline.{svg,png}`，A 双轨对照图谱（铁路年代×AI 门级）/B 来源等级表（七级锚点）/C 争议纠错流程（五步+无屏链），图面通过 QA（修正英文图 C 区卡片宽度不足导致的文字裁切）。
+- Added bilingual century-timeline figure pair `century-timeline.{svg,png}`, A twin-track atlas (railway chronology × AI gates) / B source-grade table (seven anchors) / C dispute-correction flow (five steps + screen-free chain); figure QA passed (fixed English version C-section text overflow from insufficient card width).
+- 为十项文化指标定义状态/分母/证明上限；没有现场数据时保持 unknown 或设计字段覆盖，不得用字段覆盖率冒充现实成效：史实来源可核验率、未清权内容数量、生成内容标识覆盖、争议处理时间、口述史有效同意率、多语言概念一致性、无屏完成导览率、儿童理解度待测、年度退役内容数、独立史实复核状态。
+- Defined state/denominator/proof limits for ten cultural metrics; without field data remain unknown or design-field coverage, cannot use field coverage as real-world outcome proxy: source verifiability rate, uncleared content count, generated-content label coverage, dispute-handling time, oral-history consent rate, multilingual concept consistency, screenless tour completion rate, child comprehension (pending), annual retired-content count, independent historical retest status.
+- geometry、既有 SCENE/JZ/T 编号、八个项目、全部 G0、临时边界和 `not_fully_cleared` 均不变。官方馆藏、明确责任主体、独立复测、批准或运行结果仍为 0；图件不声称馆藏、精确档案位置、已运营展览或工程结论。
+- Geometry, existing SCENE/JZ/T IDs, eight projects, all G0 status, provisional boundaries, and `not_fully_cleared` remain unchanged. Official archives, confirmed accountable operators, independent retests, approval, or operating results remain 0; figures do not claim existing archives, exact archive locations, operational exhibitions, or engineering conclusions.
+
+## v7.0 - 2026-08-12
+
+**Climate-resilience proof corridor / 气候韧性验证走廊**
+
+- 选择六个相互依赖的气候空间工作包，把小月河观察翼概念关系、连续普通蓝绿路径、遮阴/可达休息意图、静态非 AI 提示、人工巡检、雨洪与生态维护净空、同任务 AI 辅助、脆弱群体四态旅程和可拆服务边组织为同一 G0 剖面语法；不重做维护、代谢、失败或权利系统。
+- Selected six mutually dependent climate-spatial work packages, joining a conceptual Xiaoyue River observation edge, continuous ordinary blue-green route, shade/reachable-rest intent, static non-AI notice, manual inspection, stormwater/ecological-maintenance clear zone, same-task AI assistance, four-state vulnerable-group journey, and removable service edge in one G0 section grammar without rebuilding maintenance, metabolism, failure, or rights systems.
+- 新增 `climate-resilience-contract.json` 与双语 SVG/PNG 图对，固定静态非 AI 与可选 AI 的同任务、同人工确认、同申诉和退出合同；来源过期、支线冲突、无人确认、不可达、极端天气、雨洪/维护冲突或普通路径受损均 fail-closed。
+- Added `climate-resilience-contract.json` and a bilingual SVG/PNG figure pair. Static non-AI and optional AI now share one task, human confirmation, appeal, and exit contract; stale source, branch conflict, missing confirmation, inaccessible output, extreme weather, stormwater/maintenance conflict, or damage to ordinary movement fails closed.
+- 为连续遮阴、可达休息、人工巡检、误报漏报、雨洪维护、停止时间和设备退出定义类型化现场锚点、分母与证明上限；七项现实值保持 unknown 或 0，不用绿地率、图面覆盖、概念节点、传感器数量或合成 PASS 冒充热舒适、准确率、水文、无障碍或恢复绩效。
+- Defined typed field anchors, denominators, and proof limits for continuous shade, reachable rest, manual inspection, warning error, stormwater maintenance, stop time, and device exit. All real values remain unknown or 0; green ratio, drawing coverage, concept nodes, sensor count, and synthetic PASS cannot become comfort, accuracy, hydraulic, accessibility, or recovery performance.
+- geometry、既有 SCENE/JZ/T 编号、八个项目、全部 G0、临时边界和 `not_fully_cleared` 均不变。现实测量、提示事件、设备、责任确认、还场回执和成熟度变化均为 0；图件不声称现状建筑、精确河岸、法定退界、消防/铁路/市政或已建设施。
+- Geometry, existing SCENE/JZ/T IDs, eight projects, all G0 status, provisional boundaries, and `not_fully_cleared` remain unchanged. Real measurements, warning events, devices, confirmed duties, place-restoration receipts, and maturity changes remain 0; the figure claims no existing building, exact riverbank, statutory setback, fire/rail/municipal conclusion, or built facility.
+
+## v6.0 - 2026-08-12
+
+**Antifragile failure governance / 反脆弱失败治理**
+
+- 在既有 JZ-AIOS 内新增一份 G0 失败治理登记，不另造治理品牌或重复失败侧线；六类失败、八类人工责任、运行/成熟度/授权/服务四轴、公众申诉、追加式版本、独立复测和主动退役进入同一合同。
+- Added one G0 failure-governance register inside existing JZ-AIOS without a new brand or duplicate failure siding. Six failure classes, eight human role types, separate runtime/maturity/authorization/service axes, public appeal, append-only versions, independent retest, and active retirement now share one contract.
+- 把暂停、复核、恢复、撤回和退役定义为场景护照—公共时刻表—证据矩阵三载体原子回写；任一缺失或矛盾即向更保守状态 fail-closed，旧证据不得被版本更新覆盖，申诉必须进入 go/no-go。
+- Defined pause, review, recovery, withdrawal, and retirement as atomic writebacks across scene passport, civic timetable, and evidence matrix. Missing or conflicting carriers fail closed to the conservative state, version updates cannot overwrite prior evidence, and appeals must enter go/no-go.
+- 新增双语治理图，空间化六类失败、T-02 过期来源合成故事板、三载体回写、四轴分离和退役回执；T-02 继续保持 deterministic、无个人信息、无模型/API/现实服务调用和 fail-closed，不写成现实事故或现场恢复。
+- Added a bilingual governance figure spatialising six failure classes, the synthetic T-02 stale-source storyboard, three-carrier writeback, four separate axes, and retirement receipts. T-02 remains deterministic, PII-free, free of model/API/real-service calls, and fail-closed; it is not presented as a real incident or field recovery.
+- 现实失败事件、确认停止权限、确认责任主体、公开纠正、现实独立复测、主动退役和批准重启均为 0；停止到人工交接时间与普通使用恢复时间保持 unknown。文件检查、合成 PASS、复测或恢复验收均不授权试用、采购、建设、部署、成熟度升级、场地/专业批准、清权或现实成效。
+- Real failure events, confirmed stop authorities and accountable operators, public corrections, real independent retests, active retirements, and approved restarts remain 0. Stop-to-staffed-handoff and ordinary-use-recovery times remain unknown. A file check, synthetic PASS, retest, or restoration acceptance authorizes no trial, procurement, construction, deployment, maturity advance, site/professional approval, rights clearance, or real-world outcome.
+- 未改 geometry、既有 SCENE/JZ/T 编号、G0、后续气候方向或临时边界；权利继续为 `not_fully_cleared`，独立逐文件清权审计完成数仍为 0。
+- Geometry, existing SCENE/JZ/T IDs, G0, the later climate direction, and provisional boundaries are unchanged. Rights remain `not_fully_cleared`, with zero completed independent file-level clearance audits.
+
+## v5.0 - 2026-08-12
+
+**Whole-system AI urban metabolism / 完整系统 AI 城市代谢**
+
+- 为既有 `SCENE-001`—`012` 建立十二本 G0 资源护照，在同一账本内覆盖算力、能源、设备材料、数据、人工复核、供应商依赖、失败与退出成本；核算边界从云/服务器扩展到边缘、网络、终端、传感/显示/固定件、人工和非 AI 基线、无障碍/安静与场所恢复。
+- Added twelve G0 resource passports for the existing `SCENE-001`—`012`, covering compute, energy, equipment/material, data, human review, vendor dependency, and failure/exit cost in one ledger. The boundary extends from cloud/server to edge, network, end devices, sensing/display/fixings, staffed and non-AI baselines, accessibility/quiet, and place restoration.
+- 新增双语城市代谢系统图与 visual 入口，按众智园设备/电池/接管、原点社区同意/共享设备/保障/清场、大钟寺来源/终端/人工台/通勤，分别显示不可复制的资源负担和退出焦点；三处只复用七类字段，不套用同一退出动作。
+- Added a bilingual metabolism-system figure and visual entry. Zhongzhiyuan shows equipment/battery/takeover burdens; Origin shows consent/shared-kit/safeguarding/clearance burdens; Dazhongsi shows source/terminal/staffed-desk/commute burdens. The places share seven fields but not one copied exit action.
+- 固定五类显式未知状态、七类组件退出去向和公共 NO-GO 门；任务分母、完整边界、来源、责任、非 AI 同任务基线、供应商导出维修退出、组件去向与独立复核必须全部关闭，未来 `PASS` 也不等于部署、场地、采购、成熟度、清权或环境收益授权。
+- Fixed five typed unknown states, seven component-exit destinations, and a public NO-GO gate. Task denominator, whole boundary, sources, responsibility, same-task non-AI baseline, vendor export/repair/exit, component destinations, and independent retest must all close; even a future `PASS` is not deployment, site, procurement, maturity, rights, or environmental authorization.
+- 12/12 与 7/7 仅为设计字段覆盖。有效任务分母、实测能源场景、实测算力场景、确认设备生命周期场景、实测人工分钟场景、确认供应商、现实批准与运行均为 0；总能源、总算力和总人工分钟保持 unknown。未改 geometry、既有 SCENE/JZ/T 编号、G0、后续失败治理或气候任务线，权利仍为 `not_fully_cleared`。
+- 12/12 and 7/7 are design-field coverage only. Valid task denominators, measured-energy scenes, measured-compute scenes, confirmed equipment-lifecycle scenes, measured-human-minute scenes, confirmed vendors, real approvals, and real operations are all 0; total energy, compute, and human minutes remain unknown. Geometry, existing SCENE/JZ/T IDs, G0, later failure-governance and climate task lines are unchanged, and rights remain `not_fully_cleared`.
+
+## v4.0 - 2026-08-11
+
+**Non-AI-first public city / 非 AI 优先公共城市**
+
+- 选择六个内聚工作包，把无需账户/扫码、完整非 AI、连续无障碍意图、人工交接、同意撤回、申诉纠正、无屏安静固化为七项未来服务窗口不得删除的公共设计权利；“永久”不表示当前已有服务点、窗口、人员或批准。
+- Selected six cohesive work packages and fixed seven public design rights that cannot be removed from any future offered service window: no account/QR, complete non-AI path, continuous accessibility intent, staffed handoff, consent withdrawal, appeal/correction, and screen-free quiet. “Permanent” does not mean that a current service point, window, staff assignment, or approval exists.
+- 将 `non-ai-parity-contract.json` 升级为 V2，以“纸面/口头任务—无屏等候—双入口人工台—同一基本任务—投诉/撤回/纠正—无技术离开”为主路径；AI 仅在易懂披露和单独自愿同意后作为可选支线，并汇入同一结果、费用规则、责任队列与恢复链。
+- Upgraded `non-ai-parity-contract.json` to V2. The primary route is paper/oral task–screen-free waiting–dual-entry staffed desk–same basic task–complaint/withdrawal/correction–technology-free exit. AI is an optional branch only after plain-language disclosure and separate voluntary consent, and rejoins the same outcome, cost rule, accountable queue, and recovery chain.
+- 新增双语服务蓝图和 `non_ai_first_public_city_contract`，分别空间化众智园设备隔离/接管恢复、原点社区无屏共学/口头纸面撤回、以及大钟寺四向通勤/来源纠错/双入口人工台；三处不套用同一构图或恢复动作。
+- Added a bilingual service blueprint and `non_ai_first_public_city_contract`, spatialising Zhongzhiyuan equipment isolation/takeover recovery, Origin screen-free learning/oral-paper withdrawal, and Dazhongsi four-way commuting/source correction/dual-entry staffed service. The three places do not share one copied composition or recovery action.
+- 老年人、残障与行动不便者、低数字素养者、无账户或无智能设备者分别建立分母、记录字段和未知阈值；总体平均不得掩盖排斥。投诉、撤回、纠正、停止、人工接管、临时叠层退出、独立复测与还场进入同一可审计闭环。
+- Added separate denominators, record fields, and unknown thresholds for older people, disabled and reduced-mobility users, low-digital-literacy users, and people without an account or smart device; overall averages may not hide exclusion. Complaint, withdrawal, correction, stop, staffed takeover, overlay removal, independent retest, and place restoration form one auditable loop.
+- 已确认运营主体 0、人员 0、现实服务交互 0、已知群体结果 0、现实批准与运营 0；全部场景仍为 G0，临时 geometry、既有 SCENE/JZ/T 编号、后续维护合同和 `not_fully_cleared` 权利状态不变。本轮不声称固定值班、满意度、完成率、现场测试或法律上普遍适用的服务义务。
+- Confirmed operators, staff, real service interactions, known group results, and real approvals/operations all remain 0. Every scene remains G0; provisional geometry, existing SCENE/JZ/T IDs, the later maintenance contract, and `not_fully_cleared` rights status are unchanged. This round claims no fixed staffing, satisfaction, completion rate, field test, or generally applicable statutory service duty.
+
+## v3.0 - 2026-08-11
+
+**Maintenance-urbanism publication fixed point / 维护型城市发布固定点**
+
+- 新增五类按用户目标命名的维护任务族、12 个既有场景至既有 `JZ-01`—`08` 项目的双语交叉表，以及“问题壳—工单壳—责任接受—人工工时—既有设施优先—独立复核—继续/纠正/停止—退役—回到普通基线”闭环；任务族不是新场景或项目。
+- Added five user-goal maintenance task families, a bilingual crosswalk from the 12 existing scenes to existing `JZ-01`—`08` projects, and an issue-shell–work-order-shell–responsibility-acceptance–human-hours–existing-facility-first–independent-recheck–continue/correct/stop–retirement–ordinary-baseline loop. Task families are not new scenes or projects.
+- `maintenance_urbanism_contract` 记录双语标签、全量场景交叉映射、全寿命与可维修字段、季度维护地图模板、重复失败/退役规则、证据回链和零/未知现实计数；未改 geometry、SCENE/JZ/T 主编号或成熟度。
+- `maintenance_urbanism_contract` records bilingual labels, the full scene crosswalk, lifecycle and repairability fields, a quarterly maintenance-map template, repeated-failure/retirement rules, evidence backlinks, and zero/unknown reality counters. Geometry, primary SCENE/JZ/T IDs, and maturity are unchanged.
+- 维护图与离线双语入口明确呈现维修缝、重复失败侧线、退役/普通基线恢复、既有设施优先阶梯、空白季度地图和 0/pending/unknown 限制；HTML、四份 PDF、台账、manifest 与标记自检均从最终包字节重建。当前包仍为 70 条 manifest 路径与 69 个非 manifest 内容文件。
+- The maintenance figure and paired offline entry now make the repair seam, repeated-failure siding, retirement/ordinary-baseline restoration, existing-facility-first ladder, blank quarterly map, and 0/pending/unknown limits explicit. HTML, all four PDFs, the ledger, manifest, and marked self-check are rebuilt from final package bytes. The package remains 70 manifest paths with 69 non-manifest content files.
+- 现实投诉、工单、预算、确认人员、工时、修复、独立复核、效果、批准和运营均未被声明为已发生：计数保持 0 或 unknown/pending；全部场景仍为 G0，临时边界与权利 `not_fully_cleared` 不变，独立逐文件清权审计完成数仍为 0。
+- No real complaint, work order, budget, confirmed personnel, hours, repair, independent recheck, effect, approval, or operation is claimed: counts remain 0 or unknown/pending; all scenes remain G0, provisional boundaries and `not_fully_cleared` rights remain unchanged, and completed independent file-level clearance audits remain 0.
+
+## v2.14 - 2026-08-11
+
+**Three differentiated switchyard prototypes / 三座差异化换轨场原型**
+
+- 选择六个内聚工作包，把众智园深化为“平行验证庭—设备隔离—人工接管—恢复验收”，把原点社区深化为“一街两院四节点—无屏共学—同意撤回—居民日常”，把大钟寺深化为“四象限步行—一厅一台—通勤连续—人工服务”，并以三处连续非 AI / 无障碍意图线、可拆构件、静音和四态证据合同贯通。
+- Selected six cohesive work packages: Zhongzhiyuan as parallel proof court–equipment isolation–staffed takeover–restoration acceptance; Origin Community as one street/two courts/four nodes–screen-free learning–consent withdrawal–resident daily use; Dazhongsi as four-quadrant walking–one hall/one desk–commute continuity–staffed service; plus continuous non-AI/accessibility intent, removable components, quiet mode, and one four-state evidence contract across all three.
+- 重构双语 `key-areas` 为普通状态优先的概念平面、首层公共界面和四步旅程，重构双语 `key-area-sections` 为三种关系剖面、普通—验证—故障—恢复四态与场所恢复门；每列只回答一个规划问题，并显式列出不可复制组件与未知资料。
+- Rebuilt bilingual `key-areas` as ordinary-first concept plans, ground-floor public interfaces, and four-step journeys, and rebuilt bilingual `key-area-sections` as three relationship sections, ordinary–proof–fault–recovery states, and place-restoration gates. Each column answers one planning question and exposes non-copyable components and missing evidence.
+- `key-area-evidence-matrix.json#round2_spatial_deepening` 新增逐处平面语法、首层界面、连续路径、人工交接、可拆构件、使用旅程、恢复检查、未知决策字段和反证自检；双语 proposal、report、visual 与设计深度矩阵回链同一合同。
+- `key-area-evidence-matrix.json#round2_spatial_deepening` adds area-specific plan grammar, ground-floor interfaces, continuous paths, staffed handoff, removable components, user journeys, restoration checks, unknown decision fields, and counter-evidence self-audit. Bilingual proposals, reports, visual pages, and the design-depth matrix backlink to the same contract.
+- 新增 `A-KEY-AREA-SPATIAL-011`，明确体量只是关系原型、大钟寺四向不是车站锚点、无障碍绿线不是现场合格证明、恢复验收不是批准。未改 geometry、场景编号或 metrics；全部场景仍为 G0，现实审计/责任确认/批准/测试/已知结果仍为 0，权利仍为 `not_fully_cleared`。
+- Added `A-KEY-AREA-SPATIAL-011`: massing is relational only, Dazhongsi directions are not a station anchor, the green accessibility line is not field-compliance evidence, and restoration acceptance is not approval. Geometry, scene IDs, and metrics are unchanged; every scene remains G0, real audits/role confirmations/approvals/tests/known results remain 0, and rights remain `not_fully_cleared`.
+
+## v2.13.1 - 2026-08-10
+
+**Rights release-gate correction / 权利发布门口径修复**
+
+- 根据 PR 评审，将 `PUBLIC_OR_PROFESSIONAL_REUSE_RIGHTS=unknown/major` 与 `RIGHTS-OPEN-01/02/03` 写入 `manifest.release_claim.known_blockers`，并把三项权利补全动作写入 `manifest.release_claim.next_actions`；结构审查的 `validation_claim.known_blockers` 保持为空，`release_claim.public_or_professional_reuse` 继续为 `blocked_pending_terms_and_audit`。
+- Following review feedback, `PUBLIC_OR_PROFESSIONAL_REUSE_RIGHTS=unknown/major` and `RIGHTS-OPEN-01/02/03` are now explicit `manifest.release_claim.known_blockers`, with three rights-closure actions in `manifest.release_claim.next_actions`; structural review keeps `validation_claim.known_blockers` empty, while `release_claim.public_or_professional_reuse` remains `blocked_pending_terms_and_audit`.
+- 双语验收叙事明确区分“结构/证据可审查”与“权利已清除”：仓库可以进行披露复核，但公共展示、专业深化和其他复用在完整条款、独立逐文件审计与 ODbL 判定完成前仍不可用；未改 geometry、metrics、G0 或任何场景编号。
+- The bilingual acceptance narrative now separates auditable structure/evidence from rights clearance: repository disclosure review may proceed, while public display, professional deepening, and other reuse remain unavailable until complete terms, independent file-level audit, and ODbL determination are complete. Geometry, metrics, G0 status, and scene IDs are unchanged.
+
+## v2.13 - 2026-08-10
+
+**Twin-track front-stage spatial master plan / 双轨前台空间总纲**
+
+- 将“双轨京张”建立为前台空间语法：连续日常轨、间歇验证轨、三座换轨场、失败侧线和公共时刻表；保留 JZ-AIOS、G0—G3、证据门和权利边界为后台治理内核。
+- Made Twin-track Jing-Zhang the front-stage spatial syntax: the continuous civic track, intermittent proof track, three switchyards, failure siding, and civic timetable, while retaining JZ-AIOS, G0–G3, evidence gates, and rights boundaries as the back-stage governance kernel.
+- 重构双语 `site-overview` PNG，并加入对应的双语可编辑 SVG 源；图面明确人工站房、无屏节点、非 AI 完整路径、普通—验证—故障—恢复四态和六类城市信号。验证轨以间歇、限域、可拆除叠层表达，不表示连续占地或已建设施。
+- Reworked the bilingual `site-overview` PNGs and added their bilingual editable SVG sources. The drawings make staffed stations, screen-free nodes, the complete non-AI path, four public states, and six city signals explicit. The proof track is intermittent, bounded, and removable; it is not a continuous footprint or an existing facility.
+- 双语主稿、叙事报告和离线 visual 首页增加核心概念、总体空间解释、可读使用旅程和结构化证据回链；`key-area-evidence-matrix.json#twin_track_frontend_contract` 只新增概念空间合同，不新增场景编号、geometry、伙伴、批准、现场测试或现实成绩。
+- Added the core concept, overall spatial explanation, readable public journey, and structured evidence backlink to both proposals, the narrative report, and the offline visual homepages. `key-area-evidence-matrix.json#twin_track_frontend_contract` adds a conceptual spatial contract only; no scene ID, geometry, partner, approval, field test, or real-world result is added.
+- 临时 geometry、全部场景 G0、字段覆盖不等于现场表现、权利状态 `not_fully_cleared`、非 AI 可用性和公众退出/人工接管边界保持不变；最终 manifest、权利台账、PDF 和全部验证必须从本轮最终字节重新生成。
+- Provisional geometry, all-scene G0 status, the distinction between field coverage and performance, `not_fully_cleared` rights, non-AI availability, and public exit/staffed-takeover boundaries remain unchanged. The final manifest, rights ledger, PDFs, and all validations must be regenerated from this round's final bytes.
+- 从最终双语正文和八组双语 PNG 重生四份 PDF：中文/英文 A3 为 11/12 页，双语 A0 各 8 页；四份均通过全页文本、页面尺寸、图像计数和 0.20 倍逐页渲染检查，双轨总体图置于 A0 首板。该出版 QA 仍不证明现场执行、审批、G1 授权或权利清除。
+- Regenerated all four PDFs from the final bilingual narratives and eight bilingual PNG pairs: the Chinese/English A3 booklets are 11/12 pages and both A0 sets are eight pages. All four passed full-page text, page-size, image-count, and 0.20-scale rendering checks, with the twin-track overview first in the A0 sequence. Publication QA does not prove field execution, approval, G1 authorization, or rights clearance.
+
 ## v2.12 - 2026-08-10
 
 **Bilingual review parity and readable handoff / 双语评审等价与可读移交**
@@ -58,8 +224,8 @@
 
 - 重绘中英文重点区剖面，不再用同一骨架复刻三处重点区。众智园明确公众观察边、低风险测试花园环和维护/急停边；原点社区明确连续日常街、问题共创院、公共评议院和四个可撤节点；大钟寺明确四向步行、钟轨会客厅、人工服务台和静音休憩。
 - Redrew the bilingual key-area sections so the three areas no longer repeat one generic skeleton. Zhongzhiyuan separates public observation, the low-risk test-garden loop, and the service/physical-stop edge; Origin Community separates the daily street, problem court, public-review court, and four removable nodes; Dazhongsi separates four-way walking, the Bell-Rail Commons, staffed desk, and quiet rest.
-- 将每处的日常、预约、未来获批限域、停止恢复四态写入 `key-area-evidence-matrix.json`，共 3 组差异化剖面和 12 个 G0 概念状态；每态记录日常基线、谁先让位、如何还场和重启门，不新增批准、现场测试、责任主体或运行成绩。
-- Added area-specific daily, booked, future-approved bounded, and stop/recovery states to `key-area-evidence-matrix.json`: three differentiated sections and twelve G0 concept states. Each state records the protected baseline, what yields first, how ordinary use returns, and what blocks restart; no approval, field test, accountable owner, or operating result is added.
+- 将每处的普通、验证、故障、恢复一套权威运行四态写入 `key-area-evidence-matrix.json`，共 3 组差异化剖面和 12 个 G0 概念状态；未来获批限域共测只作为进入验证态前的成熟度门，不另算运行态。每态记录日常基线、谁先让位、故障如何隔离、如何还场和重启门，不新增批准、现场测试、责任主体或运行成绩。
+- Added one authoritative ordinary–verification–fault–recovery operating sequence per area to `key-area-evidence-matrix.json`: three differentiated sections and twelve G0 concept states. Any future approved bounded co-test is only a maturity gate before verification, not another operating state. Each state records the protected baseline, what yields first, fault isolation, restoration, and the restart gate; no approval, field test, accountable owner, or operating result is added.
 - 同步双语主稿、指标、SVG/PNG、离线 HTML、A3/A0、manifest 与权利台账；临时边界、`not_fully_cleared`、0 现场核验和 0 已知结果边界保持不变。
 - Synchronized the bilingual proposals, metrics, SVG/PNG, offline HTML, A3/A0, manifest, and rights ledger. Provisional geometry, `not_fully_cleared`, zero field checks, and zero known results remain unchanged.
 

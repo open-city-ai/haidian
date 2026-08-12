@@ -1,0 +1,348 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412832.736,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(SITE-001 in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_role": "provisional_geometry_diagnostic",
+      "statutory_use": "forbidden"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 16800,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area(BLDG-NS-* in EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROGRAM-001"
+      ],
+      "metric_role": "conceptual_placeholder_diagnostic",
+      "statutory_use": "forbidden"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1408600.768,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(GREEN-NS-01 in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_role": "provisional_geometry_diagnostic",
+      "statutory_use": "forbidden"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_role": "provisional_geometry_diagnostic",
+      "statutory_use": "forbidden"
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 836345.643,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(PUBLIC-NS-01 in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_role": "provisional_geometry_diagnostic",
+      "statutory_use": "forbidden"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_role": "provisional_geometry_diagnostic",
+      "statutory_use": "forbidden"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_parcel_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(LAND_USE)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "quiet_night_spine_length_m": {
+      "status": "known",
+      "value": 9453.252,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD-NS-SPINE projected to EPSG:4548; value refreshed after geometry repair)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_role": "provisional_concept_geometry_diagnostic",
+      "statutory_use": "forbidden"
+    },
+    "light_gate_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(ROAD-NS-GATE-*)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(NS-01..NS-12)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(nodes where test_validation=true)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(documented personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(documented pilgrimage landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "night_yard_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(NY-01..NY-03)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "night_protocol_state_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(proposed, admitted, live, quiet, paused, handed_over)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Official control plan, verified buildings and official polygons are unavailable."
+    },
+    "verified_night_noise_db": {
+      "status": "unknown",
+      "value": null,
+      "unit": "dBA",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "field-measured LAeq by period and receptor",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-NIGHT-BASELINE-001"
+      ],
+      "reason": "No cleared site-level night-noise baseline is available.",
+      "responsible_role": "Acoustics professional",
+      "measurement_plan": "Measure LAeq by time band at verified residential and ecological receptors after site classification is confirmed.",
+      "decision_rule": "Do not open the affected window without an accepted baseline and applicable limit; any verified exceedance pauses it."
+    },
+    "verified_horizontal_illuminance_lux": {
+      "status": "unknown",
+      "value": null,
+      "unit": "lux",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "field-measured maintained illuminance by route segment",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-NIGHT-BASELINE-001"
+      ],
+      "reason": "No approved lighting survey or design standard selection is available.",
+      "responsible_role": "Lighting professional with accessibility and community reviewers",
+      "measurement_plan": "Measure maintained horizontal and vertical illuminance, uniformity and glare on each pilot segment.",
+      "decision_rule": "Baseline safety lighting cannot be reduced; verified glare or failure of the selected standard pauses the pilot."
+    },
+    "sleep_disturbance_complaint_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "verified night-disturbance cases / operating nights",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "reason": "No operation is authorised and no consented complaint baseline exists.",
+      "responsible_role": "Independent record keeper and community reviewer",
+      "measurement_plan": "Record verified disturbance cases attributable to each audited operating session, separated from general service complaints.",
+      "decision_rule": "Any verified attributable disturbance triggers pause, investigation and restoration before reopening."
+    },
+    "human_takeover_success_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "successful staffed takeover drills / drills attempted",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "reason": "Requires authorised drills and signed handover records.",
+      "responsible_role": "Duty supervisor and independent observer",
+      "measurement_plan": "Run scenario-specific staffed takeover drills before opening and after any material revision.",
+      "decision_rule": "All pre-opening drills must pass; target coverage is 1.0.",
+      "gate_target": 1
+    },
+    "night_worker_paid_break_coverage_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "eligible staffed shifts with verified paid break / eligible staffed shifts",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-LABOR-001"
+      ],
+      "reason": "Operator, labour agreements and staffing plan are not confirmed.",
+      "responsible_role": "Operator and worker representative",
+      "measurement_plan": "Audit eligible staffed shifts for paid rest, safe return and named relief coverage.",
+      "decision_rule": "All eligible shifts must be covered; target coverage is 1.0 before extended operation.",
+      "gate_target": 1
+    },
+    "light_gate_spine_intersection_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(ROAD-NS-GATE-* intersecting ROAD-NS-SPINE)",
+      "confidence": "high",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "decision_rule": "All six conceptual cross-links must intersect the continuous spine before release.",
+      "statutory_use": "forbidden"
+    },
+    "scenario_readiness_field_coverage_ratio": {
+      "status": "known",
+      "value": 1,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "scenario nodes with yard, responsible role, stop condition, recovery evidence and non-AI fallback / 12",
+      "confidence": "high",
+      "assumptions": [],
+      "gate_target": 1,
+      "decision_rule": "A scenario cannot enter live state when any readiness field is missing."
+    }
+  }
+}

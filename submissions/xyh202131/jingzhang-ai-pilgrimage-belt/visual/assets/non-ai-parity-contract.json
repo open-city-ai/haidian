@@ -1,166 +1,287 @@
 {
-  "schema_version": "0.1.0",
-  "contract_id": "JZ-NON-AI-PARITY-V1",
-  "status": "conceptual",
-  "purpose": "把“提供非 AI 选项”升级为“证明基本服务等价”，防止人工或离线通道只存在于文字中却无法完成同一基本任务。",
-  "scope": "所有申请进入 G2 或 G3 的公共服务场景",
-  "pre_g1_synthetic_rehearsal_rule": "T-02 may exercise expected non-AI routing, stop, and recovery decisions with synthetic cases at G0, but this does not observe availability, equal rights, completion, cost, appeal, accessibility, or any other operating-parity result.",
-  "review_rule": {
-    "presence_only_pass_allowed": false,
-    "same_interface_required": false,
-    "same_essential_outcome_required": true,
-    "higher_non_ai_fee_allowed": false,
-    "account_or_smartphone_required_for_non_ai_path": false,
-    "parity_result_unknown_until_observed": true
+  "schema_version": "0.2.0",
+  "contract_id": "JZ-NON-AI-PARITY-V2",
+  "status": "concept_only_g0",
+  "title_zh": "非 AI 优先公共服务与同任务等价合同",
+  "title_en": "Non-AI-First Public Service and Same-Task Parity Contract",
+  "purpose_zh": "把非 AI 从备用说明升级为公共空间与服务的第一类基础设施：公众可先用纸面、口头、实体导视或人工路径完成基本任务，再自愿选择 AI。",
+  "purpose_en": "Make non-AI a first-class public-space and service infrastructure: people can complete the basic task first through paper, oral, physical-wayfinding, or staffed routes, and may then choose AI voluntarily.",
+  "scope": "all_public_entries_and_any_future_service_window_without_adding_a_scene_or_geometry",
+  "authority_boundary": {
+    "rights_are": "proposal_defined_non_negotiable_service_design_baseline",
+    "rights_are_not": "a_claim_of_current_site_operation_staffing_approval_or_local_statutory_entitlement",
+    "all_scenes_remain": "G0",
+    "approved_site_count": 0,
+    "confirmed_operator_count": 0,
+    "confirmed_staff_count": 0,
+    "observed_real_service_interaction_count": 0,
+    "known_field_result_count": 0,
+    "geometry_changed": false,
+    "new_scene_id_count": 0,
+    "rights_status": "not_fully_cleared"
   },
-  "parity_dimensions": [
+  "permanent_public_rights": [
     {
-      "dimension": "availability_window",
-      "test": "非 AI 路径在 AI 服务对公众开放的同一时段可用；若依赖人员，必须公开值守或替代安排。"
+      "right_id": "R-NONAI-01",
+      "label_zh": "无需账户或扫码",
+      "label_en": "No account or QR code",
+      "service_rule": "Entry, orientation, the basic task, complaint, and exit may not depend on registration, a QR code, a smartphone, or a personal device."
     },
     {
-      "dimension": "essential_outcome",
-      "test": "两条路径可完成同一基本任务、获得同一资格或进入同一后续流程，不要求界面相同。"
+      "right_id": "R-NONAI-02",
+      "label_zh": "完整非 AI 路径",
+      "label_en": "Complete non-AI path",
+      "service_rule": "Paper, oral, physical-wayfinding, or staffed channels must reach the same essential outcome, not merely advertise that an alternative exists."
     },
     {
-      "dimension": "cost",
-      "test": "非 AI 路径不得因不用设备、账户或算法而加收费用。"
+      "right_id": "R-NONAI-03",
+      "label_zh": "连续无障碍意图",
+      "label_en": "Continuous accessibility intent",
+      "service_rule": "The ordinary route and service sequence must remain continuous by design; survey, co-testing, and professional compliance evidence are still required."
     },
     {
-      "dimension": "rights_and_appeal",
-      "test": "两条路径拥有相同的知情、撤回、申诉、人工升级和暂停请求权。"
+      "right_id": "R-NONAI-04",
+      "label_zh": "人工服务与交接",
+      "label_en": "Staffed service and handoff",
+      "service_rule": "Whenever a service is offered, a visible staffed or callable human route must receive, explain, refuse safely, or hand off the same basic task; exact operator and window remain unknown."
     },
     {
-      "dimension": "safety_and_accessibility",
-      "test": "非 AI 路径的安全与无障碍保护不得低于 AI 路径。"
+      "right_id": "R-NONAI-05",
+      "label_zh": "同意可撤回",
+      "label_en": "Consent can be withdrawn",
+      "service_rule": "Participation and data use are voluntary and separable from passage or basic service; withdrawal may be made orally, on paper, or through staff without using AI."
     },
     {
-      "dimension": "completion_time",
-      "test": "分别记录完成时间；容许差值必须在取得现场基线后、进入 G2 前预注册，当前不得编造阈值。"
+      "right_id": "R-NONAI-06",
+      "label_zh": "申诉与纠正",
+      "label_en": "Appeal and correction",
+      "service_rule": "Complaint, evidence supplement, correction, suspension request, status query, and review enter the same accountable queue regardless of channel."
+    },
+    {
+      "right_id": "R-NONAI-07",
+      "label_zh": "无屏与安静",
+      "label_en": "Screen-free and quiet",
+      "service_rule": "A screen-free waiting and information option remains available; sound, light, queueing, and event kit yield to ordinary movement, rest, and the declared quiet baseline."
     }
   ],
-  "summary": {
-    "test_journey_count": 4,
-    "journeys_with_ai_and_non_ai_paths": 4,
-    "journeys_with_equal_rights_rule": 4,
-    "journeys_with_exit_action": 4,
-    "completed_synthetic_pre_g1_t02_rehearsals": 1,
-    "current_operating_results_known": 0
+  "service_blueprint": {
+    "common_entry": {
+      "zh": "从既有入口进入连续日常轨，先看实体权利图例；不注册、不扫码、不被默认采集。",
+      "en": "Enter the continuous civic track through an existing entry and read the physical rights legend first; no registration, QR scan, or default collection."
+    },
+    "non_ai_primary_lane": [
+      "paper_or_oral_issue_entry",
+      "screen_free_waiting_and_physical_status",
+      "dual_entry_staffed_desk",
+      "same_basic_task_and_same_accountable_queue",
+      "paper_or_oral_complaint_withdrawal_and_correction",
+      "ordinary_exit_without_technology"
+    ],
+    "ai_optional_lane": [
+      "plain_language_disclosure",
+      "voluntary_separate_consent",
+      "bounded_ai_assistance",
+      "visible_staffed_handoff",
+      "same_basic_task_and_same_accountable_queue"
+    ],
+    "parity_merge_rule": "Both lanes must reach the same essential outcome, eligibility, cost rule, rights, accountable queue, and recovery route. Interface identity is not required.",
+    "stop_and_recovery": [
+      "stop the automated layer when a hard failure signal appears",
+      "keep ordinary passage and the non-AI task available or safely refuse and hand off",
+      "record complaint, withdrawal, correction, and affected evidence through a human-owned queue",
+      "remove temporary sound, light, queue, screen, equipment, and collection state",
+      "independent retest and place-restoration check before any restart discussion"
+    ]
   },
+  "parity_dimensions": [
+    {"dimension": "availability_window", "test_zh": "未来服务窗口内，非 AI 路径与 AI 路径同时可进入；当前窗口与人员未知。", "test_en": "In any future service window, the non-AI and AI paths are simultaneously enterable; the current window and personnel are unknown."},
+    {"dimension": "essential_outcome", "test_zh": "完成同一基本任务、取得同一资格或进入同一后续流程。", "test_en": "Complete the same basic task, receive the same eligibility, or enter the same next process."},
+    {"dimension": "cost", "test_zh": "不得因不用账户、设备或算法而增加费用。", "test_en": "No higher charge for not using an account, device, or algorithm."},
+    {"dimension": "rights_and_queue", "test_zh": "知情、撤回、申诉、纠正、暂停、状态查询和复核进入同一责任队列。", "test_en": "Notice, withdrawal, appeal, correction, suspension, status query, and review enter the same accountable queue."},
+    {"dimension": "safety_accessibility_and_dignity", "test_zh": "安全、无障碍意图、隐私和有尊严的等待不得更弱。", "test_en": "Safety, accessibility intent, privacy, and dignified waiting may not be weaker."},
+    {"dimension": "completion_and_burden", "test_zh": "分别记录完成、放弃、交接、等待和补件；阈值须现场基线后预注册。", "test_en": "Record completion, abandonment, handoff, waiting, and extra steps separately; thresholds follow a field baseline and preregistration."}
+  ],
+  "place_service_contracts": [
+    {
+      "place_id": "PROV-KEY-001",
+      "place_zh": "众智园",
+      "place_en": "Zhongzhiyuan",
+      "ordinary_non_ai_sequence": ["连续绕行与观察", "实体状态牌", "人工接管点", "纸面停止或申诉", "普通出口"],
+      "optional_ai_role": "bounded_offline_proof_only_after_future_gates",
+      "hard_stop": "equipment boundary breach, collision, inaccessible detour, nuisance, or failed staffed takeover",
+      "recovery": "isolate equipment; keep the ordinary route; remove equipment, cable, enclosure, sound, light, and queue; independently recheck path and place",
+      "current_status": "concept_only_unknown_not_executed"
+    },
+    {
+      "place_id": "PROV-KEY-002",
+      "place_zh": "原点社区",
+      "place_en": "Origin Community",
+      "ordinary_non_ai_sequence": ["连续日常街", "无屏等候", "纸面或口头问题", "人工说明与撤回", "居民日常出口"],
+      "optional_ai_role": "voluntary_co_learning_overlay_separate_from_passage_and_basic_service",
+      "hard_stop": "withdrawal not honoured, safeguarding gap, material group disparity, amplified nuisance, or quiet-baseline failure",
+      "recovery": "stop collection and matching; retain paper and staffed service; remove screen, sound, event kit, and temporary marks; restore resident daily use",
+      "current_status": "concept_only_unknown_not_executed"
+    },
+    {
+      "place_id": "PROV-KEY-003",
+      "place_zh": "大钟寺",
+      "place_en": "Dazhongsi",
+      "ordinary_non_ai_sequence": ["四向连续步行", "实体来源状态", "双入口人工台", "纸面纠错或申诉", "通勤出口"],
+      "optional_ai_role": "source_bounded_navigation_beside_not_over_the_staffed_service",
+      "hard_stop": "stale or conflicting source, diagnosis-like output, failed handoff, blocked commute, or unequal complaint route",
+      "recovery": "take the automated layer offline; keep staffed and source-list service; correct the source and queue; clear event kit; retest all four movement arms",
+      "current_status": "concept_only_unknown_not_executed"
+    }
+  ],
+  "group_acceptance": [
+    {
+      "group_id": "GROUP-OLDER",
+      "group_zh": "老年人",
+      "group_en": "older people",
+      "acceptance_task": "find the right, ask orally, wait without a screen, complete the basic task, correct or withdraw, and leave without an account",
+      "denominator": "all consented same-task attempts by this group in a future preregistered window",
+      "required_records": ["completion_or_abandonment", "unplanned_handoff", "waiting_burden", "rights_understanding", "complaint_or_withdrawal_success"],
+      "threshold": "unknown_pending_field_baseline_and_preregistration",
+      "current_result": "unknown_not_measured"
+    },
+    {
+      "group_id": "GROUP-DISABLED",
+      "group_zh": "残障人士与行动不便者",
+      "group_en": "disabled people and people with reduced mobility",
+      "acceptance_task": "complete the same route and service sequence with the required communication or mobility support and no activity obstruction",
+      "denominator": "all consented same-task attempts by this group in a future preregistered window",
+      "required_records": ["route_break", "communication_barrier", "assistance_request", "safe_refusal_or_handoff", "place_restoration"],
+      "threshold": "unknown_pending_qualified_survey_co_test_and_preregistration",
+      "current_result": "unknown_not_measured"
+    },
+    {
+      "group_id": "GROUP-LOW-DIGITAL",
+      "group_zh": "低数字素养使用者",
+      "group_en": "people with low digital literacy",
+      "acceptance_task": "identify the non-AI choice without prompting, understand the next step, complete it, query status, and seek correction",
+      "denominator": "all consented same-task attempts by this group in a future preregistered window",
+      "required_records": ["choice_discoverability", "plain_language_understanding", "extra_steps", "handoff", "correction_route"],
+      "threshold": "unknown_pending_field_baseline_and_preregistration",
+      "current_result": "unknown_not_measured"
+    },
+    {
+      "group_id": "GROUP-NO-ACCOUNT",
+      "group_zh": "无账户或无智能设备使用者",
+      "group_en": "people without an account or smart device",
+      "acceptance_task": "enter, complete the basic task, receive a durable status reference, appeal or withdraw, and leave without borrowing or creating a device or account",
+      "denominator": "all consented same-task attempts without an account or smart device in a future preregistered window",
+      "required_records": ["account_or_qr_block", "paper_or_oral_reference", "same_queue", "same_cost", "same_review_right"],
+      "threshold": "zero_account_or_qr_dependency_is_a_design_hard_rule; all performance thresholds remain unknown pending field preregistration",
+      "current_result": "unknown_not_measured"
+    }
+  ],
   "test_journeys": [
     {
       "journey_id": "PARITY-001",
-      "service": "无障碍路径与现场导引",
+      "service_zh": "进入、导引与无障碍意图路径",
+      "service_en": "entry, wayfinding, and accessibility-intent route",
       "linked_scenario": "SC-02 / SCENE-009",
-      "ai_path": "无障碍路径助手给出带来源的建议路径。",
-      "non_ai_path": "触觉或纸质地图、实体导视和现场服务人员共同完成路线查询与必要协助。",
-      "essential_outcome": "使用者获得一条经现场条件复核的可行路线，并能请求人工帮助。",
-      "minimum_evidence": [
-        "同起终点任务脚本",
-        "多类行动能力共测记录",
-        "两条路径的完成与中断原因",
-        "临时障碍发生后的更新记录"
-      ],
-      "failure_signals": [
-        "非 AI 路径无法到达同一目的地",
-        "只有智能手机用户能获得临时障碍信息",
-        "人工帮助在 AI 开放时段不可用"
-      ],
-      "exit_action": "暂停 AI 路线推荐并恢复现场人工核查，直到非 AI 路径和障碍信息同时可用。",
-      "evidence_refs": [
-        "proposal.md#交通轨道市政与公共服务设施",
-        "geometry/constraints.geojson#SCENE-009",
-        "geometry/public_space.geojson#PUBLIC-004"
-      ],
-      "result_status": "unknown"
+      "non_ai_path": "physical rights legend, tactile/paper map, physical signs, and staffed assistance",
+      "ai_path": "optional sourced route suggestion after disclosure and voluntary choice",
+      "essential_outcome": "reach the same destination or receive the same safe refusal and staffed handoff",
+      "failure_signals": ["account_or_qr_required", "route_break", "temporary_obstacle_hidden_from_non_ai_path", "staffed_handoff_unavailable"],
+      "exit_action": "stop AI route advice, retain physical guidance and staffed checking, and restore only after route and information parity are independently retested",
+      "result_status": "unknown_not_measured"
     },
     {
       "journey_id": "PARITY-002",
-      "service": "企业与公共事项来源导航",
+      "service_zh": "来源化企业与公共事项导航",
+      "service_en": "sourced enterprise and public-service navigation",
       "linked_scenario": "SC-05 / SCENE-011",
-      "ai_path": "企业服务智能体基于公开来源提供导航。",
-      "non_ai_path": "人工服务台、电话和带更新时间的来源清单提供同一正式办理入口。",
-      "essential_outcome": "使用者获得可核验的正式来源和下一步办理入口，不把导航误写为审批结果。",
-      "minimum_evidence": [
-        "相同问题集",
-        "来源与更新时间核对",
-        "人工转接成功记录",
-        "错误信息申诉记录"
-      ],
-      "failure_signals": [
-        "人工路径缺少 AI 路径引用的正式来源",
-        "非 AI 使用者被要求创建账户才能继续",
-        "错误信息只能在 AI 界面申诉"
-      ],
-      "exit_action": "下线智能导航并保留人工与公开来源入口，完成来源同步和申诉复测后再申请恢复。",
-      "evidence_refs": [
-        "proposal.md#四门制与场景护照",
-        "geometry/constraints.geojson#SCENE-011",
-        "visual/assets/g0-offline-enterprise-service-baseline.json#T02-G0-G1-REPLAY-1.0.0",
-        "visual/assets/t02-g0-g1-replay-result.json#T02-G0-G1-SYNTHETIC-REPLAY-RESULT-V1"
-      ],
-      "synthetic_pre_g1_rehearsal": {
-        "status": "pass",
-        "fixture_count": 10,
-        "exact_expected_decision_match_count": 10,
-        "decision_mismatch_count": 0,
-        "non_ai_path_decisions_exercised": true,
-        "observed_non_ai_availability": false,
-        "observed_equal_rights_cost_or_outcome": false,
-        "real_parity_result_known": false
-      },
-      "result_status": "unknown"
+      "non_ai_path": "dual-entry staffed desk, telephone, and dated paper source list",
+      "ai_path": "optional source-bounded navigation",
+      "essential_outcome": "receive the same verifiable official source and next formal service entry without implying approval",
+      "failure_signals": ["source_missing_from_non_ai_path", "account_required", "unequal_queue", "correction_only_available_digitally"],
+      "exit_action": "take automated navigation offline and retain staffed and source-list service until source, queue, and correction parity pass independent retest",
+      "synthetic_pre_g1_rehearsal": {"status": "pass_contract_logic_only", "fixture_count": 10, "exact_expected_decision_match_count": 10, "real_parity_result_known": false},
+      "result_status": "unknown_not_measured"
     },
     {
       "journey_id": "PARITY-003",
-      "service": "社区健康信息导航",
-      "linked_scenario": "SC-08 / SCENE-012",
-      "ai_path": "健康导航场景提供科普信息和公开预约入口，但不诊断。",
-      "non_ai_path": "人工咨询、电话和实体公布的机构清单提供同一信息与专业转介入口。",
-      "essential_outcome": "使用者获得非诊断性信息、可核验机构入口和紧急情况转介。",
-      "minimum_evidence": [
-        "非诊断边界脚本",
-        "机构入口一致性核对",
-        "紧急转介演练",
-        "无需账户完成任务的记录"
-      ],
-      "failure_signals": [
-        "非 AI 路径缺少紧急转介",
-        "两条路径给出不同的机构资格信息",
-        "不用账户无法取得基本联系信息"
-      ],
-      "exit_action": "停止 AI 输出并切换至人工和权威机构信息；边界与入口复核通过前不得恢复。",
-      "evidence_refs": [
-        "proposal.md#四门制与场景护照",
-        "geometry/constraints.geojson#SCENE-012"
-      ],
-      "result_status": "unknown"
+      "service_zh": "无屏共学与同意撤回",
+      "service_en": "screen-free co-learning and consent withdrawal",
+      "linked_scenario": "SC-06 / SCENE-006 and SC-09 / SCENE-007",
+      "non_ai_path": "screen-free waiting, oral or paper participation, staffed explanation, and oral or paper withdrawal",
+      "ai_path": "optional bounded learning tool after separate consent",
+      "essential_outcome": "learn or contribute without weaker participation, withdrawal, or safeguarding rights",
+      "failure_signals": ["participation_requires_device", "withdrawal_not_honoured", "screen_free_waiting_removed", "safeguarding_gap"],
+      "exit_action": "stop collection and matching, keep staffed and paper learning, remove digital and event overlays, and restore resident daily use",
+      "result_status": "unknown_not_measured"
     },
     {
       "journey_id": "PARITY-004",
-      "service": "投诉、申诉与暂停请求",
-      "linked_scenario": "公共治理协议",
-      "ai_path": "数字界面提交投诉、申诉或暂停请求并取得追踪编号。",
-      "non_ai_path": "现场、电话或纸质渠道提交同类请求，由工作人员生成同一体系的追踪编号。",
-      "essential_outcome": "请求进入同一责任队列，拥有相同状态查询、证据补充和复核权。",
-      "minimum_evidence": [
-        "跨渠道同题测试",
-        "统一编号与责任队列记录",
-        "状态通知记录",
-        "复核和暂停决定留痕"
-      ],
-      "failure_signals": [
-        "非 AI 请求进入较低优先级队列",
-        "纸质或电话请求没有追踪编号",
-        "只有数字渠道能补充证据或申请复核"
-      ],
-      "exit_action": "暂停数字渠道自动分流，统一改由人工登记和分派，直至跨渠道队列审计通过。",
-      "evidence_refs": [
-        "proposal.md#更新项目清单实施政策与分期计划",
-        "self_check.json#SCENARIO_PROTOCOL",
-        "self_check.json#PUBLIC_INTEREST_FALLBACK"
-      ],
-      "result_status": "unknown"
+      "service_zh": "投诉、申诉、暂停与纠正",
+      "service_en": "complaint, appeal, suspension, and correction",
+      "linked_scenario": "public_governance_protocol",
+      "non_ai_path": "oral, telephone, paper, or staffed intake with a durable non-digital reference",
+      "ai_path": "optional digital intake",
+      "essential_outcome": "enter the same accountable queue with the same status, evidence, correction, suspension, and review rights",
+      "failure_signals": ["lower_priority_non_ai_queue", "no_durable_reference", "digital_only_evidence_supplement", "digital_only_review"],
+      "exit_action": "stop automated routing and use human registration and assignment until the cross-channel queue audit passes",
+      "result_status": "unknown_not_measured"
+    },
+    {
+      "journey_id": "PARITY-005",
+      "service_zh": "社区健康信息与人工转介",
+      "service_en": "community health information and staffed referral",
+      "linked_scenario": "SC-08 / SCENE-012",
+      "non_ai_path": "staffed consultation, telephone, and a physical verified-provider list",
+      "ai_path": "optional non-diagnostic information navigation",
+      "essential_outcome": "receive the same non-diagnostic information, verified provider entry, and urgent referral",
+      "failure_signals": ["diagnosis_like_output", "provider_mismatch", "urgent_referral_absent_from_non_ai_path", "account_required_for_contact_information"],
+      "exit_action": "stop AI output and retain staffed and authoritative-provider information until boundary and entry parity are retested",
+      "result_status": "unknown_not_measured"
+    },
+    {
+      "journey_id": "PARITY-006",
+      "service_zh": "停止、人工接管与场所恢复",
+      "service_en": "stop, staffed takeover, and place recovery",
+      "linked_scenario": "all_existing_scenes_no_new_id",
+      "non_ai_path": "physical stop state, staffed explanation, ordinary detour, paper complaint, and non-technical exit",
+      "ai_path": "automated layer stops and provides no continuation privilege",
+      "essential_outcome": "ordinary passage and rights remain, or a safe refusal and accountable handoff occur, until independent retest and place restoration close",
+      "failure_signals": ["automation_continues_after_stop", "ordinary_path_blocked", "staffed_takeover_failed", "temporary_component_not_removed", "restart_without_independent_retest"],
+      "exit_action": "remain stopped or retire the overlay; do not restart on documentation completeness alone",
+      "result_status": "unknown_not_measured"
     }
-  ]
+  ],
+  "acceptance_logic": {
+    "design_hard_fail_if": [
+      "entry_or_basic_task_requires_account_qr_smartphone_or_ai",
+      "non_ai_path_cannot_reach_the_same_essential_outcome_or_accountable_queue",
+      "ordinary_or_accessibility_intent_path_is_displaced_by_activity_queue_or_equipment",
+      "withdrawal_complaint_correction_or_review_is_digital_only",
+      "screen_free_waiting_or_safe_staffed_handoff_is_absent",
+      "a_group_specific_harm_signal_is_hidden_inside_an_overall_average"
+    ],
+    "field_pass_rule": "No field PASS can be issued until an accountable operator, approved site and window, qualified accessibility review, consented group sample, baseline, thresholds, staffed route, evidence owner, and independent retester are confirmed and the preregistered comparison is executed.",
+    "current_decision": "NO_GO_for_maturity_upgrade; concept_documentation_only"
+  },
+  "summary": {
+    "permanent_right_count": 7,
+    "place_service_contract_count": 3,
+    "group_acceptance_count": 4,
+    "test_journey_count": 6,
+    "completed_synthetic_pre_g1_t02_rehearsals": 1,
+    "confirmed_staff_count": 0,
+    "observed_real_service_interaction_count": 0,
+    "known_group_result_count": 0,
+    "current_operating_results_known": 0
+  },
+  "evidence_backlinks": {
+    "human_zh": "proposal.md#非-ai-优先公共城市七项权利与同任务双路径",
+    "human_en": "proposal.en.md#non-ai-first-public-city-seven-rights-and-two-paths-to-the-same-task",
+    "visual_zh": "visual/index.html#non-ai-first",
+    "visual_en": "visual/index.en.html#non-ai-first",
+    "figure_zh": "assets/figures/non-ai-service-blueprint.svg",
+    "figure_en": "assets/figures/non-ai-service-blueprint.en.svg",
+    "key_area_contract": "visual/assets/key-area-evidence-matrix.json#non_ai_first_public_city_contract",
+    "urban_metabolism_guard": "visual/assets/urban-metabolism-ledger.json#whole_system_boundary",
+    "assumption": "assumptions.json#A-NON-AI-FIRST-013"
+  }
 }

@@ -1,0 +1,480 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "provisional_working_extent_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional SITE_BOUNDARY, EPSG:4548); internal consistency only, not official site area",
+      "confidence": "medium",
+      "evidence_level": "L5",
+      "official": false,
+      "value_semantics": "submission_internal_derived_value_only",
+      "interpretation_limit": "Not an official, statutory, surveyed, built, open, or construction quantity.",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "compatibility alias of provisional_working_extent_area_sqm for the repository visual-review contract",
+      "confidence": "medium",
+      "evidence_level": "L5",
+      "official": false,
+      "deprecated_compatibility_alias": true,
+      "alias_of": "provisional_working_extent_area_sqm",
+      "value_semantics": "submission_internal_derived_value_only",
+      "interpretation_limit": "The legacy identifier does not mean official site area; it is not statutory, surveyed, built, open, or construction quantity.",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(verified existing and proposed building footprints, EPSG:4548)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BUILDING-001",
+        "A-OWNERSHIP-001"
+      ],
+      "reason": "没有同一时点测绘、用途、权属、结构和消防资料；v1概念footprint已删除。"
+    },
+    "conceptual_blue_green_network_envelope_ratio": {
+      "status": "known",
+      "value": 0.27789,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "conceptual audit-and-crosslink envelope area / provisional working extent; not statutory green-space ratio",
+      "confidence": "low",
+      "evidence_level": "L5",
+      "official": false,
+      "value_semantics": "submission_internal_derived_value_only",
+      "interpretation_limit": "Not a statutory green-space ratio or a surveyed, built, open, or construction quantity.",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-BLUEGREEN-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.27789,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "compatibility alias of conceptual_blue_green_network_envelope_ratio for the repository visual-review contract",
+      "confidence": "low",
+      "evidence_level": "L5",
+      "official": false,
+      "deprecated_compatibility_alias": true,
+      "alias_of": "conceptual_blue_green_network_envelope_ratio",
+      "value_semantics": "submission_internal_derived_value_only",
+      "interpretation_limit": "The legacy identifier is not a statutory green-space ratio or a surveyed, built, open, or construction quantity.",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-BLUEGREEN-001"
+      ]
+    },
+    "conceptual_action_envelope_ratio": {
+      "status": "known",
+      "value": 0.005396,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "three diagrammatic flagship action envelopes / provisional working extent; not built public-space ratio",
+      "confidence": "low",
+      "evidence_level": "L5",
+      "official": false,
+      "value_semantics": "submission_internal_derived_value_only",
+      "interpretation_limit": "Not a statutory public-space ratio or a surveyed, built, open, or construction quantity.",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-OWNERSHIP-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.005396,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "compatibility alias of conceptual_action_envelope_ratio for the repository visual-review contract",
+      "confidence": "low",
+      "evidence_level": "L5",
+      "official": false,
+      "deprecated_compatibility_alias": true,
+      "alias_of": "conceptual_action_envelope_ratio",
+      "value_semantics": "submission_internal_derived_value_only",
+      "interpretation_limit": "The legacy identifier is not a statutory public-space ratio or a surveyed, built, open, or construction quantity.",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-OWNERSHIP-001"
+      ]
+    },
+    "conceptual_audit_alignment_length_m": {
+      "status": "known",
+      "value": 12864.922,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum only original ROAD-V2-001..004 conceptual alignments in EPSG:4548; embedded audit/section helpers have metric_inclusion=false",
+      "confidence": "low",
+      "evidence_level": "L5",
+      "official": false,
+      "value_semantics": "submission_internal_derived_value_only",
+      "interpretation_limit": "Not an official alignment length or a surveyed, built, open, accessible, or construction quantity.",
+      "assumptions": [
+        "A-ROAD-001",
+        "A-PARK-OPEN-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required key-area working envelopes)",
+      "confidence": "high",
+      "assumptions": [
+        "A-KEY-AREA-001"
+      ]
+    },
+    "flagship_project_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(participant-proposed priority-project records)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "crosslink_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(Qinghe, Xiaoyuehe/knowledge, Zhuanhe crosslinks)",
+      "confidence": "high",
+      "assumptions": [
+        "A-ROAD-001"
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(numbered scenario cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_contract_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/weave_contracts.json"
+      ],
+      "formula": "count(unique S01-S12 weave-in contracts)",
+      "confidence": "high",
+      "assumptions": [],
+      "interpretation_limit": "Counts submitted contracts only; does not establish field approval or performance."
+    },
+    "dual_independent_gate_coverage_ratio": {
+      "display_name_zh": "双独立门契约覆盖率",
+      "display_name_en": "Dual independent-gate contract coverage",
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "numerator": 12,
+      "denominator": 12,
+      "source_files": ["visual/assets/weave_contracts.json"],
+      "formula": "contracts with both independent fabric-maturity and thread-admission gates / submitted contracts",
+      "confidence": "high",
+      "assumptions": [],
+      "interpretation_limit": "Submission protocol coverage only; does not establish site readiness, admission, approval or field performance."
+    },
+    "human_review_contract_coverage_ratio": {
+      "display_name_zh": "人工最终复核契约覆盖率",
+      "display_name_en": "Human final-review contract coverage",
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "numerator": 12,
+      "denominator": 12,
+      "source_files": ["visual/assets/weave_contracts.json"],
+      "formula": "contracts requiring human review / submitted contracts",
+      "confidence": "high",
+      "assumptions": [],
+      "interpretation_limit": "Contract-field coverage only; it does not prove that a qualified reviewer has been appointed or a field review completed."
+    },
+    "ordinary_service_equivalence_coverage_ratio": {
+      "display_name_zh": "普通服务等价契约覆盖率",
+      "display_name_en": "Ordinary-service equivalence contract coverage",
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "numerator": 12,
+      "denominator": 12,
+      "source_files": ["visual/assets/weave_contracts.json"],
+      "formula": "contracts requiring an ordinary non-AI service route / submitted contracts",
+      "confidence": "high",
+      "assumptions": [],
+      "interpretation_limit": "Contract-field coverage only; service equivalence remains subject to baseline and affected-user verification."
+    },
+    "exit_restoration_receipt_coverage_ratio": {
+      "display_name_zh": "退出恢复回执契约覆盖率",
+      "display_name_en": "Exit-restoration receipt contract coverage",
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "numerator": 12,
+      "denominator": 12,
+      "source_files": ["visual/assets/weave_contracts.json"],
+      "formula": "contracts with a defined restoration receipt / submitted contracts",
+      "confidence": "high",
+      "assumptions": [],
+      "interpretation_limit": "Contract-field coverage only; no real exit or restoration has been executed."
+    },
+    "implementation_register_count": {
+      "display_name_zh": "全生命周期项目台账数量",
+      "display_name_en": "Whole-life project register count",
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["visual/assets/implementation_register.json"],
+      "formula": "count(RW-A01, RW-B01, RW-C01 project registers)",
+      "confidence": "high",
+      "assumptions": [],
+      "interpretation_limit": "Counts proposed registers, not established projects, appointed entities or secured budgets."
+    },
+    "stage_gate_count": {
+      "display_name_zh": "项目全周期门控数量",
+      "display_name_en": "Whole-life stage-gate count",
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": ["visual/assets/implementation_register.json"],
+      "formula": "count(G0 through G6)",
+      "confidence": "high",
+      "assumptions": [],
+      "interpretation_limit": "Counts proposed gate definitions; no project is represented as having passed a real gate."
+    },
+    "verification_handoff_item_count": {
+      "display_name_zh": "证据核查与责任接续任务数量",
+      "display_name_en": "Evidence-verification and responsibility-handoff item count",
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": ["visual/assets/verification_handoff_register.json"],
+      "formula": "count(VH-001 through VH-008)",
+      "confidence": "high",
+      "assumptions": [],
+      "interpretation_limit": "Counts participant-defined verification tasks; all named pending field, rightsholder or authority work remains incomplete."
+    },
+    "cost_evidence_item_count": {
+      "display_name_zh": "全生命周期成本取证条目数量",
+      "display_name_en": "Whole-life cost-evidence item count",
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": ["visual/assets/cost_evidence_plan.json"],
+      "formula": "count(CE-001 through CE-010)",
+      "confidence": "high",
+      "assumptions": [],
+      "interpretation_limit": "Counts unpriced evidence categories; it is not a quotation, approved budget, funding source or procurement result."
+    },
+    "operational_prototype_count": {
+      "display_name_zh": "实施准备度概念原型规格数量",
+      "display_name_en": "Operationally specified conceptual prototype count",
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenario_prototypes.json"
+      ],
+      "formula": "count(S01, S06, S11 operationally specified conceptual prototype records)",
+      "confidence": "high",
+      "assumptions": [],
+      "value_semantics": "counts_conceptual_prototype_specifications_not_operational_or_deployed_services",
+      "interpretation_limit": "Counts conceptual prototype specifications, not operational, approved, procured, or deployed services."
+    },
+    "design_component_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(diagrammatic movable design-component anchors)",
+      "confidence": "high",
+      "assumptions": [],
+      "interpretation_limit": "Diagrammatic L5 anchors; not buildings, approved sites or construction quantities."
+    },
+    "audit_segment_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(conceptual field-audit segments)",
+      "confidence": "high",
+      "assumptions": [
+        "A-ROAD-001",
+        "A-PARK-OPEN-001"
+      ],
+      "interpretation_limit": "Survey work units only; does not establish built, open or accessible status."
+    },
+    "synthetic_contract_case_count": {
+      "status": "known",
+      "value": 72,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/synthetic_cases.json",
+        "visual/assets/receipt.json"
+      ],
+      "formula": "12 contracts × 6 synthetic branches",
+      "confidence": "high",
+      "assumptions": [],
+      "interpretation_limit": "Logic regression only; not field performance, technical safety or legal compliance."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved total floor area / official parcel area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "完整控规图纸、official parcels和建筑普查未公开；蓝景丽家局部指标不得外推。"
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official parcel height control",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-LOCAL-EXTRAPOLATION-001"
+      ],
+      "reason": "只找到局部实施单元高度讨论，不能形成全域控制。"
+    },
+    "continuous_open_greenway_length_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "sources.json",
+        "geometry/roads.geojson"
+      ],
+      "formula": "field-verified step-free open network length",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-PARK-OPEN-001"
+      ],
+      "reason": "二期配套完工不等于9公里全线连续开放，须逐段现场审计。"
+    },
+    "verified_step_free_length_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(field-verified continuously open step-free segments, EPSG:4548)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-PARK-OPEN-001",
+        "A-ROAD-001"
+      ],
+      "reason": "分段已建立但未完成现场坡度、净宽、围挡、过街和开放状态调查。"
+    },
+    "accessible_crossing_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "field-verified accessible crossings / audited crossing candidates",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-ROAD-001"
+      ],
+      "reason": "尚未取得正式过街点、信号、等待时间、缘石坡道和现场无障碍调查。"
+    },
+    "building_inventory_coverage_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "buildings with verified survey, rights, structure, fire and heritage records / buildings in official scope",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BUILDING-001",
+        "A-OWNERSHIP-001"
+      ],
+      "reason": "正式范围和逐栋调查均未取得，不能形成分母或拆改留准备度。"
+    },
+    "project_readiness_by_gate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "visual/assets/implementation_register.json",
+        "visual/assets/weave_contracts.json"
+      ],
+      "formula": "highest jointly passed weave-readiness, thread-admission and G0-G6 stage gate",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "责任主体、场地、资金、采购和专业核验尚未依法确定；当前仅完成投稿协议结构。"
+    }
+  }
+}

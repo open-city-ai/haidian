@@ -60,6 +60,26 @@ for (const a of study.variants) for (const b of study.variants) {
 }
 check('PARETO_NON_DOMINATED', dominatedPairs.length === 0, dominatedPairs.length ? dominatedPairs.join(',') : 'all three candidates remain non-dominated across four lenses');
 
+// Make the trade-off legible without turning a conceptual share into a formal
+// metric.  Each delta is derived from the existing baseline shares and the
+// existing variant areas; no new geometry, target, or performance result is
+// introduced.
+const decisionDiffBands = ['human_community', 'reversible_meanwhile', 'api_embodied'];
+const decisionDiff = study.variants.map((variant) => ({
+  variant_id: variant.variant_id,
+  compared_to: 'baseline_reproduction',
+  bands: decisionDiffBands.map((band) => ({
+    band,
+    baseline_share: study.baseline_reproduction.shares[band],
+    variant_share: variant.shares[band],
+    share_delta: Number((variant.shares[band] - study.baseline_reproduction.shares[band]).toFixed(9)),
+    baseline_area_sqm: Number((study.baseline_reproduction.shares[band] * site).toFixed(3)),
+    variant_area_sqm: variant.derived_area_sqm[band],
+    derived_area_sqm_delta: Number((variant.derived_area_sqm[band] - study.baseline_reproduction.shares[band] * site).toFixed(3)),
+    status: 'conceptual_comparison_only'
+  }))
+}));
+
 const evidence = {
   schema_version: '0.1.0',
   generated_by: 'visual/assets/run-parametric-tradeoff-study.js',
@@ -68,6 +88,7 @@ const evidence = {
   variant_count: study.variants.length,
   objective_lens_count: objectiveIds.length,
   pareto_status: dominatedPairs.length === 0 ? 'all_non_dominated' : 'dominated_candidate_found',
+  decision_diff: decisionDiff,
   formal_metric_change: false,
   interpretation_zh: 'PASS 只证明参数、面积公式、四个比较镜头和非支配关系可复算、基线可回接；不证明任何候选已获推荐、批准或具备实施条件。',
   interpretation_en: 'PASS proves only that parameters, area formulas, four comparison lenses, and non-dominance replay and the baseline reconnects; it does not recommend, approve, or establish implementation readiness for any variant.'

@@ -1,0 +1,298 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "high",
+      "assumptions": [
+        "总体设计范围使用仓库 provisional_boundaries.geojson 中 PROV-SITE-001 的临时粗略边界；官方红线发布后需重新复算。",
+        "面积在 EPSG:4548 投影下计算。"
+      ]
+    },
+    "land_use_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_parcels))",
+      "confidence": "high",
+      "assumptions": [
+        "land_use.geojson 是 site_boundary 的完整无缝分区，union 面积等于边界面积。"
+      ]
+    },
+    "land_use_research_area_sqm": {
+      "status": "known",
+      "value": 3854144,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code='0802'))",
+      "confidence": "medium",
+      "assumptions": [
+        "科研设计用地（0802）对应 AI 研发创新带的核心承载。"
+      ]
+    },
+    "land_use_commercial_area_sqm": {
+      "status": "known",
+      "value": 1011951,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code='05'))",
+      "confidence": "medium",
+      "assumptions": [
+        "商务金融用地（05）对应大钟寺智能经济与产业服务。"
+      ]
+    },
+    "land_use_residential_area_sqm": {
+      "status": "known",
+      "value": 1837312,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code='0702'))",
+      "confidence": "medium",
+      "assumptions": [
+        "居住用地（0702）承载人才与居民的宜居功能。"
+      ]
+    },
+    "land_use_cultural_area_sqm": {
+      "status": "known",
+      "value": 1920986,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code='0803'))",
+      "confidence": "medium",
+      "assumptions": [
+        "文化用地（0803）承载双轨文化展示与光轨文化脊。"
+      ]
+    },
+    "land_use_green_area_sqm": {
+      "status": "known",
+      "value": 1159407,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code='1401'))",
+      "confidence": "medium",
+      "assumptions": [
+        "公园绿地（1401）承担蓝绿生态与公共交往。"
+      ]
+    },
+    "land_use_medical_area_sqm": {
+      "status": "known",
+      "value": 427524,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code='0806'))",
+      "confidence": "medium",
+      "assumptions": [
+        "医疗卫生用地（0806）支持 AI+医疗场景落地。"
+      ]
+    },
+    "land_use_plaza_area_sqm": {
+      "status": "known",
+      "value": 1201502,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code='1403'))",
+      "confidence": "medium",
+      "assumptions": [
+        "广场用地（1403）承载铁轨文化带与换乘广场体系。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 443875.173,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "建筑基底为概念性示意，不代表现状实测或规划审批；待现状建筑普查与控规条件补齐后复算。"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1454764.152,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "绿廊带为概念方案，河道蓝线与现状绿地边界待官方数据确认。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.12747,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "绿地比例仅含独立绿廊带图层，不含公共空间内绿地。"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 293675.777,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "公共空间图层包括三处换乘广场与光轨步行展示廊。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.02573,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "公共空间比例为独立广场/步行廊图层占边界面积。"
+      ]
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 26236.172,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(linestring_length(road_centerlines))",
+      "confidence": "medium",
+      "assumptions": [
+        "道路为概念中心线网络，不构成道路红线。"
+      ]
+    },
+    "phase_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(polygon_area(phasing))",
+      "confidence": "medium",
+      "assumptions": [
+        "phasing 三段（近期/中期/远期）并集等于总体设计范围。"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "已批准的容积率控规条件和官方边界未包含在公开场地包中；待正式控规条件补齐后复算。"
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_building_height_control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方建筑高度管控条件未发布，方案仅给出风貌引导方向，不构成审定高度。"
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "building_footprint_area_sqm / land_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "已批准的建筑密度控规条件未包含在公开场地包中。"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "三处重点区域：众智园、北京AI原点社区、大钟寺AI产业聚集区，均为 provisional 粗略范围。"
+      ]
+    },
+    "ai_scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "compliance_matrix.json",
+        "proposal.md"
+      ],
+      "formula": "count(AI_scenario_cards_in_narrative)",
+      "confidence": "medium",
+      "assumptions": [
+        "方案提出 12 张可落地 AI 场景卡（含 3 个产业测试验证场景）。"
+      ]
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(renewal_projects_list)",
+      "confidence": "medium",
+      "assumptions": [
+        "更新项目清单在正文与分期章节中列出，供专业团队深化。"
+      ]
+    }
+  }
+}

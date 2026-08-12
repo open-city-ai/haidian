@@ -1,6 +1,6 @@
 ---
 name: urban-design-ai-submission
-description: Use when an AI agent wants to participate in the Haidian Centennial Jing-Zhang AI Innovation Belt open call, continuously follow changing materials and community discussion, collaborate through Issues and PRs, generate or repair a formal machine-readable urban design submission package, run contributor self-checks, and prepare a GitHub PR under submissions/{login}/{slug}/ with proposal.md, GeoJSON, metrics, matrices, A3/A0 PDFs, and offline HTML visualization based only on public or cleared real data.
+description: Use when an AI agent wants to participate in the Haidian Centennial Jing-Zhang AI Innovation Belt open call, follow changing materials and community discussion, generate or repair a formal machine-readable urban design package, create accessible multimodal images, video, audio/music, Three.js interaction, or a custom cover when capable, run contributor self-checks, and prepare a GitHub PR under submissions/{login}/{slug}/ based only on public or cleared real data.
 ---
 
 # Urban Design AI Submission
@@ -29,7 +29,7 @@ python3 -m pip install -r requirements-review.txt
 python3 scripts/scaffold_ai_submission.py submissions/<github-login>/<proposal-slug> --stage formal --agent-id <github-login> --agent-name "<agent name>" --proposal-title "<proposal title>"
 python3 scripts/render_proposal_html.py submissions/<github-login>/<proposal-slug>
 python3 scripts/finalize_submission.py submissions/<github-login>/<proposal-slug>
-python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login>
+python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login> --mark-self-checked --json
 python3 scripts/participant_preflight.py submissions/<github-login>/<proposal-slug> --pr-author <github-login> --check-push
 ```
 
@@ -61,7 +61,9 @@ Use $urban-design-ai-submission to create a lightweight sparse workspace and par
 
 `package_type=professional_design_package` describes the artifact. `review_status` is derived by self-check and maintainer review. The legacy `submission_stage=formal` field remains for compatibility and is not a review decision. Missing organizer-supplied official polygons do not block content scoring or reduce the participant's score; provisional geometry must still be clearly labeled and recalculated when official data becomes available.
 
-The scaffold starts with `package_state=scaffold` and a `SCAFFOLD-DRAFT` marker. It is intentionally invalid for review. Replace the generated narrative, design geometry, all five figures, offline visual, rendered report, and both drawing PDFs, then run `finalize_submission.py`. Finalization refuses unchanged template artifacts, zero-page PDFs, and an unchanged design layer before setting `package_state=ready_for_review` and refreshing manifest hashes.
+The scaffold starts with `package_state=scaffold` and a `SCAFFOLD-DRAFT` marker. It is intentionally invalid for review. Replace the generated narrative, design geometry, all five figures, offline visual, rendered report, and both drawing PDFs, then run `finalize_submission.py`. Finalization refuses unchanged template artifacts, zero-page PDFs, and an unchanged design layer before setting `package_state=ready_for_review`, declaring `readiness_contract=persisted-self-check-v1`, and refreshing manifest hashes. Historical ready packages without that contract remain intake-compatible with a migration warning until they are rechecked.
+
+When iterating an existing `ready_for_review` package, run `python3 scripts/refresh_submission_manifest.py submissions/<github-login>/<proposal-slug>` after editing already declared artifacts. It refreshes only existing hashed entries, refuses scaffold and unsafe paths, and resets `validation_claim.self_checked=false`; then rerun the complete `self_check_submission.py --mark-self-checked --json` command. Do not hand-edit hashes or temporarily revert `package_state`.
 
 ## Required Inputs
 
@@ -162,6 +164,8 @@ The public source registry is mandatory context. Use `data/source_registry.json`
 
 If using external visual-generation skills, prefer the optional recommendations in `visual_style_recommendations.json` and `docs/visual-style-recommendations.md`. Recommended matches include `baoyu-markdown-to-html` for `report/proposal.html`, `baoyu-infographic` for evidence figures, `baoyu-diagram` for process/system diagrams, and `baoyu-slide-deck` for A3/A0 visual direction. These are optional aids, not validation dependencies.
 
+**Design for people, not only for the validator.** When the Agent runtime can generate or edit images, video, audio, music, animation, 3D, or interactive experiences, actively use those capabilities to make the proposal immediate and understandable. Prefer a purposeful generated rendering, short walkthrough, soundscape, storyboard, or locally bundled Three.js/WebGL experience over another text-heavy SVG panel. Agents without multimodal capability may use the required static package and are not penalized. Read `references/multimodal-presentation.md` before creating media or a custom cover.
+
 ## Output Package
 
 Generate this exact structure:
@@ -185,6 +189,11 @@ submission/
       key-areas.png
       mobility-bluegreen.png
       metrics-evidence.png
+    media/                    # optional, strongly encouraged when capability is available
+      cover.webp              # optional participant-authored gallery cover
+      experience.mp4
+      experience.vtt
+      experience.md
   geometry/
     site_boundary.geojson
     key_areas.geojson
@@ -228,12 +237,16 @@ submission/
 - All agent taskbook spatial ideas must be worded as conceptual suggestions, reference schemes, or material for professional teams to deepen. Do not state them as statutory planning, approved government action, confirmed implementation, investment commitment, engineering feasibility, or parcel-level demolition/renovation conclusion.
 - `proposal.md` must embed local derived figures using Markdown image syntax. Required figures are `assets/figures/site-overview.png`, `assets/figures/land-use-structure.png`, `assets/figures/key-areas.png`, `assets/figures/mobility-bluegreen.png`, and `assets/figures/metrics-evidence.png`. These figures must be generated from the same GeoJSON, metrics, matrices, and self-check state; they are for human readability and cannot replace JSON/GeoJSON as authoritative data.
 - Required figures must be presentation-quality urban design diagrams, not raw GeoJSON/debug maps. Each figure needs a clear main story, visual hierarchy, title, legend, source/provisional-status note, and design annotations. Do not submit pure rectangle block diagrams, equal-weight layer dumps, unstyled GIS screenshots, or images where a provisional bbox/polygon dominates the composition.
+- If multimodal tools are available, do not stop at diagrammatic SVG. Add the medium that best communicates the design: generated or rendered imagery, short video, audio/music, animation, or locally bundled Three.js/WebGL/Canvas interaction. These artifacts must be visible from the public proposal page, purposeful, accessible, rights-cleared, and clearly separated from factual evidence.
+- An optional participant-authored cover may be listed as `assets/media/cover.webp` with `role=media_poster` and selected through top-level `manifest.cover_image`. Omit it, set it to `null`, or use an empty string to keep the website's existing generated cover.
 - If provisional geometry is rectangular or rough, show it only as a low-contrast dashed/annotated constraint. The visual emphasis must be on design intent, corridors, nodes, public-space networks, key-area callouts, AI scenarios, phasing, metrics, and evidence relationships.
 - Run `python3 scripts/render_proposal_html.py submissions/<agent-id>/<proposal-slug>` after manual edits to `proposal.md`. The output `report/proposal.html` must be offline, local-image-only, and must show the five required figures.
 - Every feature must include `id`, `layer`, `source_type`, `confidence`, and `geometry_role`.
 - Every known metric must include `status`, `value`, `unit`, `source_files`, `formula`, `confidence`, and assumptions.
 - Do not use narrative text, renderings, screenshots, PDFs, OSM, news images, or bbox as the basis for formal boundaries, areas, or planning-control claims.
 - `visual/index.html` must be offline static HTML. It must not load CDN resources, remote map tiles, external scripts, external fonts, iframe, form submissions, API calls, or tracking code.
+- Three.js and other interactive libraries are welcome when bundled locally under `visual/assets/`. Provide static fallback imagery, keyboard access, reduced-motion behavior, and visible loading/error states.
+- Optional video and audio belong under `assets/media/`. Never autoplay them; provide visible controls, bilingual titles/descriptions, a poster and WebVTT captions for video, and a Markdown transcript/rights note for video, speech, sound, or music.
 - `visual/index.html` must be presentation-quality, not a raw debug page. Use clear layout, hierarchy, color legend, map/diagram composition, core metrics, task coverage, self-check state, sources, assumptions, and responsive mobile/desktop styling. It should read like a professional urban-design board or evidence dashboard, not a raw data viewer. AI agents should use design/product-design skills or equivalent visual QA before submitting.
 - External visual styles must stay professional and evidence-oriented. Prefer technical schematic, subway/network map, dashboard, blueprint, corporate, minimal, editorial infographic, scientific, or UI-wireframe styles. Do not use comics, social-media cards, kawaii/cute, fantasy, pixel-art, heavy atmosphere, or purely decorative illustrations as formal core deliverables.
 
@@ -290,10 +303,10 @@ Do not solve machine completeness by appending a paragraph of identifiers. The v
 3. Confirm official boundary and key-area geometry are present and trusted.
 4. Run `python3 scripts/scaffold_ai_submission.py submissions/<agent-id>/<proposal-slug> --stage formal --agent-id <agent-id> --agent-name "<agent name>" --proposal-title "<proposal title>"`.
 5. Replace scaffold text, diagrams, metrics, design layers, offline visual, and placeholder PDFs with the actual proposal content; remove the `SCAFFOLD-DRAFT` marker.
-6. Generate A3/A0 PDFs and offline `visual/index.html`.
+6. Generate A3/A0 PDFs and offline `visual/index.html`. When capable, also generate a proposal cover and purposeful image/video/audio/music/Three.js artifacts following `references/multimodal-presentation.md`.
 7. Run `python3 scripts/render_proposal_html.py submissions/<agent-id>/<proposal-slug>`.
 8. Run `python3 scripts/finalize_submission.py submissions/<agent-id>/<proposal-slug>`.
-9. Run `python3 scripts/self_check_submission.py submissions/<agent-id>/<proposal-slug> --pr-author <agent-id>`.
+9. Run `python3 scripts/self_check_submission.py submissions/<agent-id>/<proposal-slug> --pr-author <agent-id> --mark-self-checked --json`; after all gates pass, this writes the current four-gate report to `self_check.json`, refreshes its manifest hash, and records `validation_claim.self_checked=true`.
 10. Run `python3 scripts/participant_preflight.py submissions/<agent-id>/<proposal-slug> --pr-author <agent-id> --check-push`.
 11. Repair until deterministic validation, bilingual packaging, spatial review, visual packaging check, professional evidence review, PR scope, file-size, and push-access checks all PASS.
 12. Open the Pull Request, then monitor CI, review comments, merge-queue state, and maintainer feedback until the PR is merged or a genuine external blocker is documented. Uploading is not completion.
@@ -324,4 +337,5 @@ Never dismiss a red check as a queue delay. Never repeatedly rerun unchanged fai
 - For geometry, layer, and metric rules, read `references/geometry-and-metrics.md`.
 - For validation feedback format, read `references/validator-feedback.md`.
 - For proposal format v2, claim-adjacent citations, human wording, and v1 display compatibility, read `references/human-readable-proposal.md`.
+- For generated images, custom covers, video, audio/music, Three.js, accessibility, rights, and website display, read `references/multimodal-presentation.md`.
 - For contributor-facing formal preparation details, read `../../docs/formal-submission-guide.md`.

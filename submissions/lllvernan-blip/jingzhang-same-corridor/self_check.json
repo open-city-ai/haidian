@@ -20,7 +20,7 @@
    "result": "pass",
    "severity": "major",
    "target": "sources.json / assumptions.json / proposal.md / report/proposal.html",
-   "message": "source/standard/depth/metric/data 引用全部可解析（professional_review PASS：source 8、standard 6、depth 15、metric 29、data 10）。"
+   "message": "source/standard/depth/metric/data 引用全部可解析（professional_review PASS：source 16、standard 6、depth 15、metric 29、data 10）。"
   },
   {
    "check_id": "METRIC_REFERENCE_CLOSURE",
@@ -41,14 +41,21 @@
    "result": "pass",
    "severity": "major",
    "target": "assets/figures/*.png / report/proposal.html / visual/index.html",
-   "message": "5 张规定图由仓库级 diagnosis/figure-sources/generate_same_corridor_figures.py 从同一数据源生成；提交包内图件路径闭合，生成脚本与过程底图作为仓库级审计记录保留。"
+   "message": "5 张主体规定图 + 2 张必填诊断/剖面补充图路径闭合；主体图由仓库级生成脚本（不随提交包分发）从包内 GeoJSON 与 metrics.json 同一数据源生成；生成脚本与过程底图作为仓库级审计记录保留。"
   },
   {
    "check_id": "LAND_USE_TOPOLOGY",
    "result": "pass",
    "severity": "major",
    "target": "geometry/land_use.geojson",
-   "message": "5 区概念策略分区于 2026-08-09 由单一数据源（provisional 边界 + 三重点区 + 绿轴）在 EPSG:4548 一次 overlay 重建，修复评审指出的 GEOS TopologyException（共享边精确一致、删除退化碎渣与近共线尖刺）；并集等于提交边界、无重叠，GEOS union 在 4326/4548 均稳健，spatial_review returncode=0 复验通过。"
+   "message": "5 区概念策略分区于 2026-08-10 由单一数据源（provisional 边界 + 三重点区 + 绿轴）重建；LU-R 作为提交边界扣除 LU-A/B/C/G 后的有效残余分区，删除退化碎片并通过几何有效性、分区重叠和并集覆盖检查；面积与 metrics.json 同步复算。该几何仅用于 provisional/conceptual 设计表达，不代表 official redline。"
+  },
+  {
+   "check_id": "DECLARED_GEOMETRY_METRIC_SYNC",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/land_use.geojson / geometry/green_space.geojson / metrics.json",
+   "message": "LU-G、LU-R 与 green_space 的要素声明面积已按 EPSG:4548 计算值同步至 metrics.json；site boundary 保留公告约 11.4 km² 的 declared 值，并单独记录 calculated 值。"
   },
   {
    "check_id": "MEASUREMENT_RECORD_PROTOCOL_CLOSURE",

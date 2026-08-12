@@ -1,0 +1,238 @@
+{
+  "version": "1.0-resource-passport",
+  "passport_id": "MOB-AI-RESOURCE-PASSPORT-01",
+  "generated_by": "node visual/assets/run-resource-passport.js",
+  "status": "synthetic_design_ledger_not_local_inventory",
+  "scope": "AI-assisted enterprise-resident mobility service",
+  "authorization": {
+    "operations_authorized": false,
+    "approved_scenarios": 0,
+    "local_measurements": 0,
+    "personal_traces_required": false,
+    "air_candidate": "blocked"
+  },
+  "summary": {
+    "scenario_card_count": 10,
+    "resource_class_count": 7,
+    "local_measurement_count": 0,
+    "approved_scenario_count": 0,
+    "no_go_gate_count": 5,
+    "all_resource_statuses": [
+      "unknown"
+    ]
+  },
+  "resource_classes": [
+    {
+      "id": "compute_and_network",
+      "label_zh": "算力与网络",
+      "label_en": "compute and network",
+      "status": "unknown",
+      "control_zh": "记录模型调用、网络与边缘设备；合成 PASS 不得自动扩容",
+      "control_en": "Record model calls, network and edge devices; a synthetic PASS cannot scale service.",
+      "evidence_required_zh": "按场景记录日期、调用量、延迟、设备和非 AI 等价路径",
+      "evidence_required_en": "Dated calls, latency, devices and a non-AI equivalent path by scenario."
+    },
+    {
+      "id": "energy_and_fuel",
+      "label_zh": "能源与燃料",
+      "label_en": "energy and fuel",
+      "status": "unknown",
+      "control_zh": "没有计量边界，不报 kWh、燃料、碳排或节能",
+      "control_en": "Without a metering boundary, report no kWh, fuel, carbon or savings.",
+      "evidence_required_zh": "地铁、公交、班车、汽车与设备的有日期计量边界",
+      "evidence_required_en": "Dated accounting boundaries for rail, bus, shuttle, car and equipment."
+    },
+    {
+      "id": "physical_devices",
+      "label_zh": "设备与材料",
+      "label_en": "physical devices",
+      "status": "unknown",
+      "control_zh": "设备必须可撤回、有资产 ID、维护人和回收去向",
+      "control_en": "Devices must be removable, identified, maintained and assigned a return path.",
+      "evidence_required_zh": "闸机、信息牌、传感器、充电与可移动设施清单",
+      "evidence_required_en": "Inventories for gates, signs, sensors, charging and removable kit."
+    },
+    {
+      "id": "data_and_privacy",
+      "label_zh": "数据与隐私",
+      "label_en": "data and privacy",
+      "status": "unknown",
+      "control_zh": "只保留分组聚合；目的、保留、删除和申诉责任先公开",
+      "control_en": "Retain grouped aggregates only; publish purpose, retention, deletion and appeal ownership.",
+      "evidence_required_zh": "同意、分组阈值、保留周期、删除日志和人工入口",
+      "evidence_required_en": "Consent, group thresholds, retention, deletion logs and human entry."
+    },
+    {
+      "id": "human_review",
+      "label_zh": "人工复核",
+      "label_en": "human review",
+      "status": "unknown",
+      "control_zh": "每个自动建议都有人工、电话和纸面等价服务",
+      "control_en": "Every automated suggestion keeps a human, telephone and paper equivalent.",
+      "evidence_required_zh": "复核分钟数、值守角色、拒绝权、申诉与无障碍服务记录",
+      "evidence_required_en": "Review minutes, staffed roles, veto, appeal and accessibility records."
+    },
+    {
+      "id": "supplier_and_maintenance",
+      "label_zh": "供应商与维护",
+      "label_en": "supplier and maintenance",
+      "status": "unknown",
+      "control_zh": "没有具名运营、维护 SLA 和供应商退出路径，不进入扩展",
+      "control_en": "No expansion without a named operator, maintenance SLA and supplier exit path.",
+      "evidence_required_zh": "责任矩阵、巡检、故障响应、供应商替代和保险接口",
+      "evidence_required_en": "RACI, inspections, incident response, vendor substitution and insurance interface."
+    },
+    {
+      "id": "failure_and_exit",
+      "label_zh": "失败与退出",
+      "label_en": "failure and exit",
+      "status": "unknown",
+      "control_zh": "先写停机、回退、拆除、恢复公共路线和投诉关闭动作",
+      "control_en": "Define stop, rollback, removal, public-route restoration and complaint closure first.",
+      "evidence_required_zh": "触发条件、撤回工时、存储/拆除、恢复和复盘记录",
+      "evidence_required_en": "Triggers, withdrawal labour, storage/removal, restoration and review records."
+    }
+  ],
+  "scenario_cards": [
+    {
+      "id": "M-01",
+      "name_zh": "企业合并班车",
+      "name_en": "enterprise shuttle merge",
+      "resource_focus_zh": "班次、车队、调度与公共交通替代",
+      "resource_focus_en": "headways, fleet, dispatch and public-transport alternative",
+      "fallback_zh": "人工调度 + 地铁/公交",
+      "fallback_en": "human dispatch + metro/bus",
+      "resource_class_count": 7
+    },
+    {
+      "id": "M-02",
+      "name_zh": "员工公共交通补贴",
+      "name_en": "transit benefit",
+      "resource_focus_zh": "数据最小化、人工办理与公平入口",
+      "resource_focus_en": "data minimisation, human processing and equal entry",
+      "fallback_zh": "窗口/电话/纸面办理",
+      "fallback_en": "counter/telephone/paper service",
+      "resource_class_count": 7
+    },
+    {
+      "id": "M-03",
+      "name_zh": "夜班保证回家",
+      "name_en": "guaranteed night return",
+      "resource_focus_zh": "夜间值守、照明、班车和人工兜底",
+      "resource_focus_en": "night staffing, lighting, shuttle and human fallback",
+      "fallback_zh": "人工确认 + 公共交通",
+      "fallback_en": "human confirmation + public transport",
+      "resource_class_count": 7
+    },
+    {
+      "id": "M-04",
+      "name_zh": "园区装卸预约",
+      "name_en": "loading reservation",
+      "resource_focus_zh": "路缘设备、维护、清场和投诉闭环",
+      "resource_focus_en": "curb equipment, maintenance, clearing and complaints",
+      "fallback_zh": "暂停预约 + 人工装卸",
+      "fallback_en": "freeze booking + human loading",
+      "resource_class_count": 7
+    },
+    {
+      "id": "M-05",
+      "name_zh": "居民就医人工接驳",
+      "name_en": "resident care trip",
+      "resource_focus_zh": "照护人员、无障碍车辆和非 App 入口",
+      "resource_focus_en": "carers, accessible vehicles and non-app entry",
+      "fallback_zh": "电话/人工服务",
+      "fallback_en": "telephone/human service",
+      "resource_class_count": 7
+    },
+    {
+      "id": "M-06",
+      "name_zh": "轮椅等价路线",
+      "name_en": "accessible daily route",
+      "resource_focus_zh": "连续坡道、人工引导和恢复公共路径",
+      "resource_focus_en": "continuous ramps, human guidance and route restoration",
+      "fallback_zh": "人工带行 + 公共路线",
+      "fallback_en": "assisted trip + public route",
+      "resource_class_count": 7
+    },
+    {
+      "id": "M-07",
+      "name_zh": "轨道站最后 500 米",
+      "name_en": "rail last 500 m",
+      "resource_focus_zh": "站口信息、照明、候车和步行/骑行替代",
+      "resource_focus_en": "station information, lighting, waiting and walk/cycle alternatives",
+      "fallback_zh": "人工指引 + 步行/公交",
+      "fallback_en": "human wayfinding + walk/bus",
+      "resource_class_count": 7
+    },
+    {
+      "id": "M-08",
+      "name_zh": "活动日人车分流",
+      "name_en": "event-day separation",
+      "resource_focus_zh": "临时设施、消防净空、人员复核和拆除",
+      "resource_focus_en": "temporary kit, fire clearance, human review and removal",
+      "fallback_zh": "停止自动分流 + 人工管控",
+      "fallback_en": "stop automation + human control",
+      "resource_class_count": 7
+    },
+    {
+      "id": "M-09",
+      "name_zh": "雨雪/断网服务降级",
+      "name_en": "storm/outage degradation",
+      "resource_focus_zh": "能源、通信、人工值守和回滚存储",
+      "resource_focus_en": "energy, communications, staffing and rollback storage",
+      "fallback_zh": "冻结预约 + 人工/公交",
+      "fallback_en": "freeze booking + human/transit",
+      "resource_class_count": 7
+    },
+    {
+      "id": "M-10",
+      "name_zh": "投诉—维修—复核闭环",
+      "name_en": "complaint-maintenance closure",
+      "resource_focus_zh": "责任人、维修耗材、数据删除与复盘",
+      "resource_focus_en": "owner, parts, deletion and review",
+      "fallback_zh": "公开人工工单入口",
+      "fallback_en": "public human ticket entry",
+      "resource_class_count": 7
+    }
+  ],
+  "no_go_gates": [
+    {
+      "id": "R-G01",
+      "label_zh": "无人工/公共交通等价路径",
+      "label_en": "no human/public-transport equivalent"
+    },
+    {
+      "id": "R-G02",
+      "label_zh": "需要个人连续轨迹",
+      "label_en": "personal continuous traces required"
+    },
+    {
+      "id": "R-G03",
+      "label_zh": "设备或供应商无维护退出路径",
+      "label_en": "no device or supplier exit path"
+    },
+    {
+      "id": "R-G04",
+      "label_zh": "消防、无障碍或安静界面受损",
+      "label_en": "fire, accessibility or quiet interface harmed"
+    },
+    {
+      "id": "R-G05",
+      "label_zh": "失败、拆除和公共路线恢复未登记",
+      "label_en": "failure, removal and public-route restoration unregistered"
+    }
+  ],
+  "checks": {
+    "seven_resource_classes": true,
+    "all_resources_have_unknown_local_status": true,
+    "every_card_carries_full_resource_set": true,
+    "ten_scenario_cards": true,
+    "all_cards_have_fallback": true,
+    "all_cards_have_resource_focus": true,
+    "no_live_operation_claim": true,
+    "no_personal_trace_requirement": true,
+    "air_candidate_fail_closed": true,
+    "five_no_go_gates": true
+  },
+  "interpretation": "The passport prevents a synthetic mobility score from hiding the resources and responsibilities required by an AI service. Every real measurement, approval and operating result remains unknown until dated evidence exists."
+}

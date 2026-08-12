@@ -3226,7 +3226,7 @@ footer{margin-top:58px;padding-top:20px;border-top:2px solid var(--ink);
 
 <section id="s-lu">
   <h2><span>04</span>用地分区</h2>
-  <p class="lede">用地采用 Voronoi 剖分生成，相邻图斑共享精确边界坐标，完整覆盖设计范围且无缝隙、无重叠。道路用地沿地块边界扣除，不产生夹缝地。</p>
+  <p class="lede">用地采用 Voronoi 剖分生成，相邻图斑共享精确边界坐标，覆盖设计范围但并非完全无缝：topology_check 记录残留缝隙 14.897 m²、重叠 0.099 m²，land_use_partition_complete=false，相对 11.41 km² 约为百万分之一点五量级。道路用地沿地块边界扣除，不产生夹缝地。</p>
   <table>
     <thead><tr><th>代码</th><th>用地类别</th><th class="num">面积 (ha)</th><th>占比</th><th class="num">%</th></tr></thead>
     <tbody><tr><td class="mono">1207</td><td>城镇村道路用地</td><td class="mono num">240.5</td><td class="bar"><i style="width:21.08%;background:#F0F1EE"></i></td><td class="mono num">21.08%</td></tr>
@@ -3322,8 +3322,8 @@ footer{margin-top:58px;padding-top:20px;border-top:2px solid var(--ink);
     <div><div class="k">绿地率</div><div class="v">26.16<span style="font-size:15px">%</span></div><div class="u">green_ratio</div></div>
     <div><div class="k">公共空间率</div><div class="v">4.59<span style="font-size:15px">%</span></div><div class="u">public_space_ratio</div></div>
     <div><div class="k">道路面积率</div><div class="v">21.08<span style="font-size:15px">%</span></div><div class="u">road_area_ratio</div></div>
-    <div><div class="k">用地剖分缝隙</div><div class="v" style="color:#2C6B62">1.51<span style="font-size:15px"> ㎡</span></div><div class="u">占总面积 0.000013%</div></div>
-    <div><div class="k">用地剖分重叠</div><div class="v" style="color:#2C6B62">0.15<span style="font-size:15px"> ㎡</span></div><div class="u">占总面积 0.000001%</div></div>
+    <div><div class="k">用地剖分缝隙</div><div class="v" style="color:#2C6B62">14.897<span style="font-size:15px"> ㎡</span></div><div class="u">占总面积 0.00013%</div></div>
+    <div><div class="k">用地剖分重叠</div><div class="v" style="color:#2C6B62">0.099<span style="font-size:15px"> ㎡</span></div><div class="u">占总面积 0.00000087%</div></div>
   </div>
 </section>
 
@@ -3346,8 +3346,8 @@ footer{margin-top:58px;padding-top:20px;border-top:2px solid var(--ink);
   <table>
     <thead><tr><th>检查项</th><th>结果</th><th>说明</th></tr></thead>
     <tbody>
-      <tr><td>空间审查 spatial_review</td><td><span class="pill ok">PASS</span></td><td>用地覆盖完整，无缝隙、无重叠、无越界</td></tr>
-      <tr><td>重点区域几何</td><td><span class="pill wip">provisional</span></td><td>组织方官方边界缺失，采用临时替代范围；规则明示不影响内容评分</td></tr>
+      <tr><td>空间审查 spatial_review</td><td><span class="pill ok">PASS</span></td><td>无越界；用地剖分残留缝隙 14.897 m²、重叠 0.099 m²，land_use_partition_complete=false</td></tr>
+      <tr><td>重点区域几何</td><td><span class="pill wip">provisional</span></td><td>组织方官方边界缺失，采用临时替代范围；官方数据发布后需复算，资格与评分由维护者/评审依正式规则判断</td></tr>
       <tr><td>法定控制指标</td><td><span class="pill wip">missing</span></td><td>容积率、建筑高度、密度、绿地率、退线均缺失，保持 unknown 未代填</td></tr>
       <tr><td>可视化打包检查</td><td><span class="pill ok">离线</span></td><td>无远程脚本、样式、字体、媒体与地图瓦片；地图由本地 GeoJSON 现场生成</td></tr>
     </tbody>
@@ -3374,6 +3374,45 @@ footer{margin-top:58px;padding-top:20px;border-top:2px solid var(--ink);
     <li>本方案不提供桥隧、地下空间或任何工程可行性结论，不涉及地块权属与拆迁判断。</li>
   </ul>
 </section>
+
+<section id="s-tour">
+  <h2><span>14</span>三维巡览</h2>
+  <p class="lede">下方三维场景由本包 <span class="mono">geometry/*.geojson</span> 在浏览器内直接绘制：EPSG:4548 投影、拓扑保持简化、约束 Delaunay 三角化，手写 WebGL 渲染器驱动，<b>不引入任何第三方运行库，无任何网络请求</b>。红色飘带即<b>版本线 Version Line</b>，三处红框为三工位，红色立柱为 D-01/D-02/D-03 基准点。</p>
+  <div id="gauge-tour" data-lang="zh">
+    <div class="tour-stage">
+      <canvas tabindex="0" aria-label="京张公制三维巡览：方向键旋转与缩放，Shift+上下键调俯仰，数字键 0-3 切换视角，空格环绕，E 切换高度放大，R 复位"></canvas>
+      <div class="tour-hud"></div>
+      <div class="tour-badge"></div>
+      <div class="tour-fallback" style="display:none"></div>
+    </div>
+    <div class="tour-controls">
+      <button type="button" data-tour-view="0">总览</button>
+      <button type="button" data-tour-view="1">① 制标区 Gauge Works</button>
+      <button type="button" data-tour-view="2">② 首装区 Proto Blocks</button>
+      <button type="button" data-tour-view="3">③ 量产区 Market Floor</button>
+    </div>
+    <p class="tour-keys">键盘（点击画面获得焦点后）：←→ 旋转 · ↑↓ 缩放 · Shift+↑↓ 俯仰 · 1/2/3 三工位 · 0 总览 · 空格 环绕 · E 高度 ×1/×3 · R 复位 · 鼠标拖拽/滚轮、触屏单指旋转/双指缩放同样可用</p>
+    <p class="tour-note">建筑为概念体量：高度 = <span class="mono">floors_assumed × 3.2 m</span>（假设层数，非审定容积率依据），默认真实比例；按 E 的 ×3 放大仅为示意并在画面右上角明示。全部几何基于组织方临时替代边界，非官方红线；遵循系统的减少动效偏好设置。</p>
+  </div>
+  <noscript><p>本浏览器未启用 JavaScript，三维巡览不可用；上方各节静态图件由同一套 GeoJSON 生成，信息等价。</p></noscript>
+</section>
+
+<style>
+#s-tour .tour-stage{position:relative;border:1px solid var(--line);background:#F2F3F0}
+#s-tour canvas{display:block;width:100%;height:560px;background:#F2F3F0;cursor:grab;touch-action:none}
+#s-tour canvas:focus{outline:2px solid var(--version);outline-offset:2px}
+#s-tour .tour-hud{position:absolute;left:10px;top:8px;font:12px/1.6 var(--mono);color:var(--ink);background:rgba(242,243,240,.88);padding:2px 8px;border:1px solid var(--line)}
+#s-tour .tour-badge{position:absolute;right:10px;top:8px;font:12px/1.6 var(--mono);color:var(--ink);background:rgba(242,243,240,.88);padding:2px 8px;border:1px solid var(--line)}
+#s-tour .tour-badge-ex{color:#fff;background:var(--version);border-color:var(--version)}
+#s-tour .tour-fallback{padding:28px 18px;font:14px/1.8 var(--sans);color:var(--ink)}
+#s-tour .tour-controls{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+#s-tour .tour-controls button{font:12px/1.2 var(--mono);color:var(--ink);background:var(--paper);border:1px solid var(--rail);padding:6px 12px;cursor:pointer}
+#s-tour .tour-controls button:hover{border-color:var(--version);color:var(--version)}
+#s-tour .tour-keys{font:12px/1.9 var(--mono);color:var(--rail);margin:2px 0 0}
+#s-tour .tour-note{font:12px/1.8 var(--sans);color:var(--rail);border-left:3px solid var(--version);padding-left:10px;margin-top:10px}
+</style>
+<script src="assets/gauge-tour-data.js" defer></script>
+<script src="assets/gauge-tour.js" defer></script>
 
 <footer>
   <span>京张公制 THE JING-ZHANG GAUGE</span>

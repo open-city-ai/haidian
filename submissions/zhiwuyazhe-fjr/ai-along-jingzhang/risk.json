@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "summary": "最高风险是临时空间边界、清华园车站文保、公共AI数据治理、责任状态不可读和证据失效。项目须同时通过公共验收五问与G0至G4证据门；任一条件失效即降级、暂停或退出。",
+  "dimensions": [
+    {
+      "id": "data_privacy", "label": "数据隐私", "score": 5,
+      "note": "公共服务、反馈和产业验证可能产生过度采集、用途漂移、偏差输出与责任不清。",
+      "mitigation": "逐场景执行数据最小化、目的限定、公开告知、人工复核、申诉、暂停和删除。",
+      "human_review": "由场景运营方、数据保护、法律合规和独立评测团队联合审查。"
+    },
+    {
+      "id": "implementation_complexity", "label": "实施复杂度", "score": 5,
+      "note": "边界、文保、交通、市政、生态和多主体运营相互依赖，任何单项设计都不能独立落地。",
+      "mitigation": "先调查和签署治理协议，再实施小规模、可撤回、可复盘且有恢复保证的试点。",
+      "human_review": "由规划、文保、交通、市政、生态、消防、运营和公众代表分阶段复核。"
+    },
+    {
+      "id": "public_acceptance", "label": "公众接受度", "score": 4,
+      "note": "机器人、传感器和AI服务可能影响日常通行、安静时段、隐私感受及历史环境体验。",
+      "mitigation": "日常通行优先，公开试点边界，提供绕行、退出、投诉、暂停和线下反馈渠道。",
+      "human_review": "由社区居民、学生、老年人、残障人士、游客和运营方共同参与试用评议。"
+    },
+    {
+      "id": "operations_cost", "label": "运维成本", "score": 4,
+      "note": "设备、网络、现场服务、人工复核、无障碍替代、保险和恢复资金都会形成持续成本。",
+      "mitigation": "每项试点设置唯一责任人、预算、维护台账、恢复保证、结束日期和续期审查。",
+      "human_review": "由联合秘书处、片区运营站、设施管理和财务法务团队复核运营闭环。"
+    },
+    {
+      "id": "policy_uncertainty", "label": "政策不确定性", "score": 5,
+      "note": "控规、权属、文保控制线、道路红线、市政容量及公共AI责任规则仍待权威资料确认。",
+      "mitigation": "全部空间动作写为概念建议，未知指标保持待确认，不声称审批、投资或工程可行。",
+      "human_review": "由主管部门、产权主体以及规划、文保、数据和法律专业团队复核。"
+    },
+    {
+      "id": "spatial_dispute", "label": "空间争议", "score": 5,
+      "note": "临时总体边界和重点区多边形不是官方红线，大钟寺及遗址公园现实位置可能偏离临时几何。",
+      "mitigation": "临时边界低对比显示，禁止地块归属与拆迁结论，官方多边形到位后整体重建复算。",
+      "human_review": "由规划、测绘、属地、产权主体和维护者共同完成位置核验。"
+    },
+    {
+      "id": "technology_maturity", "label": "技术成熟度", "score": 3,
+      "note": "可信模型、机器人和智能商业场景处于概念验证阶段，尚无本地连续运行证据。",
+      "mitigation": "三类验证使用独立协议、小规模受控测试、人工接管和明确退出标准。"
+    },
+    {
+      "id": "equity_inclusion", "label": "公平与包容性", "score": 4,
+      "note": "数字优先可能排除老年人、残障人士、低数字能力者、非中文使用者和不愿授权数据的人。",
+      "mitigation": "保留人工、电话、纸质、志愿者和无障碍连续路径，不以使用AI作为基本服务前提。",
+      "human_review": "由无障碍顾问、公共服务人员和多类用户进行参与式测试并公开修正。"
+    }
+  ],
+  "schema_version": "1.0",
+  "status": "concept_stage_risk_register",
+  "review_date": "2026-08-10",
+  "risks": [
+    {
+      "id": "R-SPATIAL-01",
+      "category": "空间边界",
+      "severity": "critical",
+      "risk_zh": "临时总体边界和三处重点区多边形并非官方红线，大钟寺及遗址公园现实位置可能与临时几何不一致。",
+      "current_control_zh": "图层、正文、图件和指标统一标注临时性；禁止据此判断地块归属、拆迁或工程规模。",
+      "trigger_zh": "取得官方SITE_BOUNDARY、KEY_AREA和实测底图。",
+      "required_action_zh": "替换约束，完成位置核验，并重建全部设计层、指标和展示成果。",
+      "pause_threshold_zh": "任何点位落在官方范围外或与法定控制线冲突时暂停该点位。",
+      "owner_role_zh": "规划与测绘专业团队",
+      "assumption_ids": ["A-BOUNDARY-001", "A-SPATIAL-MISMATCH-001"]
+    },
+    {
+      "id": "R-HERITAGE-01",
+      "category": "文物保护",
+      "severity": "critical",
+      "risk_zh": "清华园车站周边装置、管线或活动可能影响文物本体、历史环境和正常保护管理。",
+      "current_control_zh": "站内低干预，站外原型可撤回，不依附文物构件，不以数字界面遮挡历史界面。",
+      "trigger_zh": "取得正式文保控制线、测绘、产权和活动管理要求。",
+      "required_action_zh": "逐项开展文物影响评估和审批，核定安装、照明、承载、消防及人流方案。",
+      "pause_threshold_zh": "未获文保许可、存在不可逆固定或妨碍文物安全时不得实施。",
+      "owner_role_zh": "文物保护责任单位与属地管理方",
+      "assumption_ids": ["A-HERITAGE-001"]
+    },
+    {
+      "id": "R-CONTROL-01",
+      "category": "控规与权属",
+      "severity": "high",
+      "risk_zh": "缺少控规、地籍权属、建筑现状、消防和结构资料，可能导致容量和拆改留判断失真。",
+      "current_control_zh": "不提出法定容积率、建筑高度、拆除、道路拓宽或投资结论，概念载体全部标为待调查。",
+      "trigger_zh": "权威部门和产权主体提供现行资料。",
+      "required_action_zh": "开展地块级合规、结构、消防、产权和全生命周期评估。",
+      "pause_threshold_zh": "权属不清、结构或消防不满足、与控规冲突时暂停。",
+      "owner_role_zh": "规划、建筑、结构、消防与产权专业团队",
+      "assumption_ids": ["A-CONTROLS-001"]
+    },
+    {
+      "id": "R-MOBILITY-01",
+      "category": "交通与人流",
+      "severity": "high",
+      "risk_zh": "缺少工作日、周末和活动日分时客流，可能出现通勤冲突、拥堵、非机动车堆积及疏散风险。",
+      "current_control_zh": "日常通行优先于活动布场，新增场景预约分时，联系线仅表达步行协同方向。",
+      "trigger_zh": "完成四季人流、骑行、公交接驳、停车和拦截访问调查。",
+      "required_action_zh": "校准开放时段、容量阈值、活动布置、疏散和接驳方案。",
+      "pause_threshold_zh": "超出核定容量、阻断无障碍连续性或影响应急疏散时暂停活动。",
+      "owner_role_zh": "交通、公安、消防与运营团队",
+      "assumption_ids": ["A-MOBILITY-001"]
+    },
+    {
+      "id": "R-ECOLOGY-01",
+      "category": "蓝绿与气候韧性",
+      "severity": "high",
+      "risk_zh": "缺少水文、排水、树木、土壤、生物多样性和热环境资料，概念绿地比例不能替代工程结论。",
+      "current_control_zh": "仅提出便携传感和人工观察等低扰动试点，不改变水系、地形和成熟树木。",
+      "trigger_zh": "完成海绵城市、树木、生态和地下管线调查。",
+      "required_action_zh": "由专业团队复核雨洪、树木保护、生态容量、设备维护和季节适用性。",
+      "pause_threshold_zh": "可能造成树木损伤、水安全风险、栖息地干扰或设备污染时暂停。",
+      "owner_role_zh": "景观、生态、水务与园林专业团队",
+      "assumption_ids": ["A-BLUEGREEN-001"]
+    },
+    {
+      "id": "R-INFRA-01",
+      "category": "市政与设备安全",
+      "severity": "high",
+      "risk_zh": "算力、传感、机器人充电及活动用电可能超过容量或引发网络、电气、维护与消防风险。",
+      "current_control_zh": "采用小规模试点、独立计量、物理隔离、可断开和人工巡检。",
+      "trigger_zh": "取得市政容量、管线、网络安全和消防条件。",
+      "required_action_zh": "完成负荷、供配电、通信、网络安全、维护和应急断电设计。",
+      "pause_threshold_zh": "容量不足、无法隔离、缺少责任人或应急断开失败时不得上线。",
+      "owner_role_zh": "市政、机电、网安、消防与设施运营团队",
+      "assumption_ids": ["A-CONTROLS-001", "A-OPERATIONS-001"]
+    },
+    {
+      "id": "R-DATA-01",
+      "category": "数据与算法治理",
+      "severity": "critical",
+      "risk_zh": "公共服务与产业验证可能产生过度采集、用途漂移、偏差输出、模型不可解释和责任不清。",
+      "current_control_zh": "场景卡实行数据最小化、目的限定、人工复核、公开告知、申诉、暂停和退出。",
+      "trigger_zh": "每个场景形成独立数据清单、影响评估和责任协议。",
+      "required_action_zh": "核定合法基础、保留期限、访问权限、审计记录、人工接管和删除机制。",
+      "pause_threshold_zh": "无法说明数据用途、无法人工复核、重大偏差重复发生或申诉机制失效时停用。",
+      "owner_role_zh": "场景运营方、数据保护与独立评测团队",
+      "assumption_ids": ["A-OPERATIONS-001"]
+    },
+    {
+      "id": "R-INCLUSION-01",
+      "category": "公平与无障碍",
+      "severity": "high",
+      "risk_zh": "数字优先可能排除老年人、残障人士、低数字能力者、非中文使用者和不愿授权数据的人。",
+      "current_control_zh": "十二个场景登记同任务人工或低技术路径，并比较任务完成、时间、费用、无障碍、准确性和申诉，不以使用AI作为获得基本服务的前提。",
+      "trigger_zh": "完成多类用户参与式测试和无障碍审查。",
+      "required_action_zh": "记录不同群体的任务完成率、失败点和人工接管表现并迭代。",
+      "pause_threshold_zh": "基本服务只剩数字入口、人工替代不可用或无障碍连续性中断时暂停。",
+      "owner_role_zh": "公共服务、无障碍顾问与公众委员会",
+      "assumption_ids": ["A-MOBILITY-001", "A-OPERATIONS-001"]
+    },
+    {
+      "id": "R-OPERATIONS-01",
+      "category": "运营与财政",
+      "severity": "high",
+      "risk_zh": "概念运营主体、预算、采购、保险和长期维护尚未落实，试点可能成为无人负责的展示装置。",
+      "current_control_zh": "每项试点要求唯一责任人、预算、恢复保证、结束日期和年度复盘。",
+      "trigger_zh": "牵头单位接受试点章程并落实资源。",
+      "required_action_zh": "签署数据、安全、维护、无障碍、投诉、保险和退出协议。",
+      "pause_threshold_zh": "责任主体、维护预算、保险或恢复资金缺失时不得启动。",
+      "owner_role_zh": "联合秘书处与片区运营站",
+      "assumption_ids": ["A-OPERATIONS-001"]
+    },
+    {
+      "id": "R-EVIDENCE-01",
+      "category": "证据有效性",
+      "severity": "high",
+      "risk_zh": "官方边界、法规、动态运营信息或背景报道可能被撤回、替代或改变适用范围，导致依赖它们的主张继续流通。",
+      "current_control_zh": "每次进入新证据门前复核关键来源，长期运行阶段随年度公开说明复核，保留版本和依赖关系。",
+      "trigger_zh": "来源链接失效、出现新版、发布者修订、适用范围变化或无法确认当前有效性。",
+      "required_action_zh": "同步降级或撤回依赖该来源的正文、指标、图件、场景状态和扩大试点决定。",
+      "pause_threshold_zh": "关键来源未复核、权利状态不明或新版与原主张冲突时不得进入下一道证据门。",
+      "owner_role_zh": "联合秘书处、来源台账维护者与相关专业责任人",
+      "assumption_ids": ["A-EVIDENCE-FRESHNESS-001"]
+    },
+    {
+      "id": "R-ACCEPTANCE-01",
+      "category": "公共验收表演化",
+      "severity": "high",
+      "risk_zh": "五问可能退化为宣传标签，服务状态、责任、人工路径、暂停动作和修订记录在现场不可读。",
+      "current_control_zh": "五问逐项连接空间界面、十二场景、G0至G4证据门和离线负例演练，任一问题失效即降级。",
+      "trigger_zh": "每次开放、版本更新、责任主体变更、投诉复盘和年度公开说明。",
+      "required_action_zh": "由不同使用者现场完成同任务检查，公开失败项、修订责任、复测日期和退役状态。",
+      "pause_threshold_zh": "状态或责任不可见、人工路径失效、无法暂停或修订不公开时，停止AI路径并保留日常服务。",
+      "owner_role_zh": "场景责任人、公众委员会与独立复测方",
+      "assumption_ids": ["A-OPERATIONS-001"]
+    },
+    {
+      "id": "R-RIGHTS-01",
+      "category": "知识产权与传播",
+      "severity": "medium",
+      "risk_zh": "外部案例、地图、网页图像、字体、品牌和AI生成资产可能存在授权或误认官方的问题。",
+      "current_control_zh": "仅使用可追溯文字、自行派生图件和已署名的OpenStreetMap标准地图快照；不纳入网页图片、第三方商标和受限字体。",
+      "trigger_zh": "任何新增外部资产进入投稿包。",
+      "required_action_zh": "登记发布者、许可、转换、署名和限制，并在不确定时移除。",
+      "pause_threshold_zh": "权利状态不明、无法署名或可能造成官方批准误认时不得发布。",
+      "owner_role_zh": "投稿人、法务与品牌管理团队",
+      "assumption_ids": ["A-CASE-TRANSFER-001"]
+    }
+  ]
+}

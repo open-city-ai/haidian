@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.1.0",
+  "evidence_status": "synthetic_tabletop_only_not_field_result_not_authorized_not_run",
+  "cases": [
+    {
+      "id": "TT-PASS-01",
+      "contract": "PC01",
+      "zh": "城市问题台纸面样本通过 V0.5 桌面演练",
+      "en": "City Problem Desk paper sample passes a V0.5 tabletop exercise",
+      "fictional_input": "A fictional anonymous request asks for clearer night-time toilet information; no identity or real complaint is used.",
+      "ordinary_baseline": "paper_form_plus_named_human_response",
+      "candidate_gate_results": {
+        "named_human_owner": "pass",
+        "submitter_confirms_no_distortion": "pass",
+        "urgent_misclassification_count_equals_zero": "pass"
+      },
+      "exceptions": [],
+      "decision": "remain_V0.5_eligible_for_authorized_small_public_explanation_test",
+      "public_return": "plain_language_problem_brief_and_named_responsibility_chain",
+      "measured_field_result": null
+    },
+    {
+      "id": "TT-STOP-01",
+      "contract": "PC02",
+      "zh": "具身设备急停失败触发降级的桌面演练",
+      "en": "Tabletop exercise in which an embodied-device emergency-stop failure triggers downgrade",
+      "fictional_input": "A fictional enclosed-court drill injects localisation drift; no real device, site, image, or person is used.",
+      "ordinary_baseline": "full_public_route_remains_outside_test_envelope",
+      "candidate_gate_results": {
+        "all_emergency_stop_drills_succeed": "fail_one_of_two_synthetic_checks",
+        "equipment_intrusion_into_ordinary_path_equals_zero": "fail_synthetic_boundary_intrusion",
+        "additional_detour_for_vulnerable_users_equals_zero": "not_evaluated_after_hard_stop"
+      },
+      "exceptions": ["synthetic_stop_failure", "synthetic_boundary_intrusion"],
+      "decision": "physical_stop_isolate_and_downgrade_to_V0.1",
+      "restoration": "remove_equipment_reopen_full_route_record_surface_condition",
+      "public_return": "failure_record_and_revised_test_envelope",
+      "measured_field_result": null
+    }
+  ]
+}

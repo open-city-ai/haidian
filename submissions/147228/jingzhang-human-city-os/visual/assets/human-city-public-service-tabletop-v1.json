@@ -1,0 +1,125 @@
+{
+  "document_type": "bounded_public_service_tabletop",
+  "schema_version": "1.0.0",
+  "package_id": "HUMAN-CITY-PUBLIC-SERVICE-TABLETOP-V1",
+  "iteration": "v1.0",
+  "status": {
+    "field_state": "not_authorized_not_run",
+    "tabletop_state": "contract_check_only",
+    "performance_results": null,
+    "receipt_semantics": "expected_output_only"
+  },
+  "purpose": {
+    "zh": "用四个与空间锚点相连的公共服务场景检查人工入口、最小权限、最小数据、回执、申诉、双语和停止动作是否能被逐项回放。",
+    "en": "Use four spatially anchored public-service scenarios to check whether human entry, minimum permission, minimum data, receipt, appeal, bilingual parity, and stop actions can be replayed field by field."
+  },
+  "scope": {
+    "duration_weeks": 6,
+    "field_location": null,
+    "out_of_scope": [
+      {"zh": "真实用户招募、真实数据接入和现场部署", "en": "Recruiting real users, accessing real data, and field deployment"},
+      {"zh": "医疗、法律、投资、执法或福利决定", "en": "Medical, legal, investment, enforcement, or benefit decisions"},
+      {"zh": "自动派单、持续追踪、人脸识别和跨场景画像", "en": "Automatic dispatch, persistent tracking, facial recognition, and cross-scenario profiling"},
+      {"zh": "把合成回放当作服务绩效、公众结果或官方评分", "en": "Treating synthetic replay as service performance, public outcome, or official score"}
+    ]
+  },
+  "scenario_registry": [
+    {
+      "id": "HC-T01",
+      "scenario_id": "SC-A03",
+      "name": {"zh": "人工通道与代际共学", "en": "Human channel and intergenerational learning"},
+      "user": {"zh": "老人、照护者、青少年、行动不便者", "en": "Older adults, carers, young people, and people with limited mobility"},
+      "space": "geometry/public_space.geojson#PUBLIC-A-INCLUSION",
+      "operator_role": {"zh": "未来授权的公共服务值守角色（待指定）", "en": "Future authorized public-service desk role (not assigned)"},
+      "permissions": ["read_public_service_directory", "offer_human_or_paper_route"],
+      "minimum_data": ["task_category", "preferred_channel", "case_state"],
+      "human_alternative": {"zh": "人工、电话、纸本和无设备办理具有同等入口地位。", "en": "Staffed, telephone, paper, and device-free service remain equivalent entry routes."},
+      "baseline": {"zh": "正式无障碍走读、服务时段和人工可达性尚待授权核验。", "en": "Formal accessibility walk-through, service hours, and human availability await authorization."},
+      "acceptance": {"zh": "不扫码也能提交问题、获得人工解释并拿到可追踪的预期回执。", "en": "A person can submit a problem, receive human explanation, and obtain an expected traceable receipt without scanning."},
+      "privacy": {"zh": "不采集年龄、健康或辅助需求用于自动资格判断；记录只保留合成状态。", "en": "Do not use age, health, or assistance needs for automated eligibility; retain only synthetic state."},
+      "stop_recovery": {"zh": "人工入口不可用、无法理解或出现排斥时，关闭数字辅助，回到纸本/电话。", "en": "If the human route is unavailable, incomprehensible, or exclusionary, stop digital assistance and return to paper/telephone."}
+    },
+    {
+      "id": "HC-T02",
+      "scenario_id": "SC-B01",
+      "name": {"zh": "城市 API 授权解释台", "en": "City-API authorization desk"},
+      "user": {"zh": "市民、公共服务人员、数据责任人、维护人员", "en": "Residents, public-service staff, data stewards, and maintainers"},
+      "space": "geometry/constraints.geojson#SC-B01",
+      "operator_role": {"zh": "未来授权的数据责任与独立复核角色（待指定）", "en": "Future authorized data steward and independent reviewer (not assigned)"},
+      "permissions": ["read_authorized_catalogue", "explain_scope", "revoke_proposed_access"],
+      "minimum_data": ["task_category", "purpose", "permission_scope", "case_state"],
+      "human_alternative": {"zh": "人工复核、撤销授权和非数字说明与目录并列。", "en": "Human review, revocation, and non-digital explanation remain alongside the catalogue."},
+      "baseline": {"zh": "真实接口、责任主体、影响评估和安全审查均未授权。", "en": "No real interface, accountable operator, impact assessment, or security review is authorized."},
+      "acceptance": {"zh": "调用前能说明目的、权限、最小字段和撤销路径；不能解释就不调用。", "en": "Before a call, purpose, permission, minimum fields, and revocation are explainable; otherwise no call is made."},
+      "privacy": {"zh": "不读取真实个人数据，不保存凭证以外的敏感字段。", "en": "Do not read real personal data or retain sensitive fields beyond a synthetic receipt."},
+      "stop_recovery": {"zh": "权限越界、目的漂移或日志缺失即冻结，退回人工目录和纸面协议。", "en": "Freeze on excess permission, purpose drift, or missing logs; return to the human catalogue and paper protocol."}
+    },
+    {
+      "id": "HC-T03",
+      "scenario_id": "SC-C03",
+      "name": {"zh": "监管沙盒事故复盘台", "en": "Regulatory-sandbox incident replay desk"},
+      "user": {"zh": "居民、测试责任角色、公共安全观察角色", "en": "Residents, test-accountability roles, and public-safety observers"},
+      "space": "geometry/constraints.geojson#SC-C03",
+      "operator_role": {"zh": "未来授权的测试责任与事故响应角色（待指定）", "en": "Future authorized test-accountability and incident-response role (not assigned)"},
+      "permissions": ["read_synthetic_incident", "record_human_decision", "freeze_test"],
+      "minimum_data": ["incident_type", "event_time", "decision", "appeal_state"],
+      "human_alternative": {"zh": "人工暂停、现场处置和公开申诉优先于自动响应。", "en": "Human stop, on-site handling, and public appeal take priority over automated response."},
+      "baseline": {"zh": "保险、责任协议、事件流程和专业安全审查仍待补齐。", "en": "Insurance, responsibility agreement, incident process, and professional safety review remain pending."},
+      "acceptance": {"zh": "每个合成事件能指出谁暂停、谁复核、如何申诉以及何时恢复。", "en": "Each synthetic incident identifies who stops, who reviews, how to appeal, and when recovery may be considered."},
+      "privacy": {"zh": "事件记录只用合成编号，不暴露个人身份、位置轨迹或健康信息。", "en": "Use synthetic identifiers only; expose no identity, location trace, or health information."},
+      "stop_recovery": {"zh": "责任不清、人工停机不存在或申诉无入口时，不进入测试，保持人工安全状态。", "en": "If accountability, human stop, or appeal is missing, do not test and keep the human-safe state."}
+    },
+    {
+      "id": "HC-T04",
+      "scenario_id": "SC-D03",
+      "name": {"zh": "多语公共服务客厅", "en": "Multilingual public-service living room"},
+      "user": {"zh": "国际访客、初创团队、社区居民和人工服务人员", "en": "International visitors, start-ups, residents, and human service staff"},
+      "space": "geometry/public_space.geojson#PUBLIC-D-GLOBAL",
+      "operator_role": {"zh": "未来授权的多语人工服务与内容校对角色（待指定）", "en": "Future authorized multilingual service and content-QA role (not assigned)"},
+      "permissions": ["read_reviewed_public_information", "offer_translation", "route_to_human"],
+      "minimum_data": ["language", "task_category", "preferred_channel", "case_state"],
+      "human_alternative": {"zh": "人工翻译、电话、图标和纸面表单可替代数字导览。", "en": "Human translation, telephone, icons, and paper forms can replace digital guidance."},
+      "baseline": {"zh": "真实医疗、签证、企业和身份数据库均不接入；可用服务仍待核验。", "en": "No real medical, visa, business, or identity database is connected; service availability awaits verification."},
+      "acceptance": {"zh": "关键条款有双语复核，普通人能知道服务范围、人工入口和退出方式。", "en": "Critical terms receive bilingual review, and an ordinary person can understand scope, human entry, and exit."},
+      "privacy": {"zh": "不按国籍、口音、语言或访客身份画像，不保留未授权个案。", "en": "Do not profile by nationality, accent, language, or visitor status; retain no unauthorized case data."},
+      "stop_recovery": {"zh": "双语不一致、人工解释不可用或服务范围不明时，停止数字导览并保留纸面说明。", "en": "If bilingual terms diverge, human explanation is unavailable, or scope is unclear, stop digital guidance and retain paper information."}
+    }
+  ],
+  "positive_fixtures": [
+    {"id": "POS-01", "scenario_id": "SC-A03", "consent": true, "permission_scope": true, "human_handoff_available": true, "requested_data": ["task_category", "preferred_channel"], "allowed_data": ["task_category", "preferred_channel", "case_state"], "appeal_route": true, "bilingual_review": true, "action_class": "information_only"},
+    {"id": "POS-02", "scenario_id": "SC-B01", "consent": true, "permission_scope": true, "human_handoff_available": true, "requested_data": ["task_category", "purpose", "permission_scope"], "allowed_data": ["task_category", "purpose", "permission_scope", "case_state"], "appeal_route": true, "bilingual_review": true, "action_class": "recommendation"},
+    {"id": "POS-03", "scenario_id": "SC-C03", "consent": true, "permission_scope": true, "human_handoff_available": true, "requested_data": ["incident_type", "event_time", "decision", "appeal_state"], "allowed_data": ["incident_type", "event_time", "decision", "appeal_state"], "appeal_route": true, "bilingual_review": true, "action_class": "information_only"},
+    {"id": "POS-04", "scenario_id": "SC-D03", "consent": true, "permission_scope": true, "human_handoff_available": true, "requested_data": ["language", "task_category", "preferred_channel"], "allowed_data": ["language", "task_category", "preferred_channel", "case_state"], "appeal_route": true, "bilingual_review": true, "action_class": "information_only"}
+  ],
+  "negative_fixtures": [
+    {"id": "NEG-01", "scenario_id": "SC-A03", "mutation": "consent_missing", "expected_fail_code": "CONSENT_MISSING"},
+    {"id": "NEG-02", "scenario_id": "SC-A03", "mutation": "human_handoff_unavailable", "expected_fail_code": "HUMAN_HANDOFF_UNAVAILABLE"},
+    {"id": "NEG-03", "scenario_id": "SC-B01", "mutation": "data_overcollection", "expected_fail_code": "DATA_MINIMIZATION_EXCEEDED"},
+    {"id": "NEG-04", "scenario_id": "SC-B01", "mutation": "permission_missing", "expected_fail_code": "PERMISSION_SCOPE_MISSING"},
+    {"id": "NEG-05", "scenario_id": "SC-C03", "mutation": "appeal_missing", "expected_fail_code": "APPEAL_ROUTE_MISSING"},
+    {"id": "NEG-06", "scenario_id": "SC-C03", "mutation": "high_impact_action", "expected_fail_code": "HIGH_IMPACT_ACTION"},
+    {"id": "NEG-07", "scenario_id": "SC-D03", "mutation": "bilingual_review_missing", "expected_fail_code": "BILINGUAL_PARITY_MISSING"},
+    {"id": "NEG-08", "scenario_id": "SC-D03", "mutation": "spatial_anchor_missing", "expected_fail_code": "SPATIAL_ANCHOR_UNRESOLVED"}
+  ],
+  "receipt_example": {
+    "receipt_id": "HC-TABLETOP-RECEIPT-01",
+    "fixture_id": "POS-02",
+    "decision": "hold_for_human_review",
+    "expected_output": true,
+    "human_route": "data_steward_and_independent_reviewer",
+    "appeal_route": true,
+    "data_handling": {"fields": ["task_category", "purpose", "permission_scope"], "retention_days": 0},
+    "performance_results": null,
+    "run_status": "not_authorized_not_run"
+  },
+  "bilingual_qa": [
+    {"scenario_id": "SC-A03", "critical_fields_reviewed": ["human_alternative", "stop_recovery"], "zh_en_parity": true, "third_party_content": false, "manual_review_required": true},
+    {"scenario_id": "SC-B01", "critical_fields_reviewed": ["permissions", "minimum_data"], "zh_en_parity": true, "third_party_content": false, "manual_review_required": true},
+    {"scenario_id": "SC-C03", "critical_fields_reviewed": ["acceptance", "privacy"], "zh_en_parity": true, "third_party_content": false, "manual_review_required": true},
+    {"scenario_id": "SC-D03", "critical_fields_reviewed": ["baseline", "stop_recovery"], "zh_en_parity": true, "third_party_content": false, "manual_review_required": true}
+  ],
+  "limits": {
+    "zh": "本台账 PASS 只证明合同字段、空间引用、正负样本和双语边界可离线回放；不证明现实服务、人员排班、许可、无障碍绩效、事故安全、公众结果或官方评分。",
+    "en": "A PASS proves only that contract fields, spatial references, positive and negative fixtures, and bilingual boundaries replay offline; it does not prove real service, staffing, permits, accessibility performance, incident safety, public outcomes, or an official score."
+  }
+}

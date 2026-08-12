@@ -1,0 +1,67 @@
+{
+  "schema_version": "0.1.0",
+  "index_id": "RAILWEAVE-PROCESSED-FACT-INDEX",
+  "authority_status": "navigation_only_not_an_authoritative_source",
+  "canonical_source_records_path": "sources.json",
+  "purpose_zh": "将正文中的关键事实指向原始来源ID、用途边界和待补证条件；本索引不新增事实权威性。",
+  "purpose_en": "Maps key narrative facts to source IDs, permitted-use boundaries, and evidence gaps. This index adds no authority beyond the underlying sources.",
+  "facts": [
+    {
+      "fact_id": "F-SCOPE-001",
+      "statement_zh": "征集公告提供三层约规模、文字范围和三处重点区域任务，但未随包提供正式矢量边界。",
+      "statement_en": "The Open Call provides approximate scales, written scopes, and three key-area tasks, but no official vector boundary is supplied with the package.",
+      "source_ids": ["OFFICIAL-ANNOUNCEMENT", "SITE-PACKAGE"],
+      "evidence_levels": ["L3"],
+      "excluded_use": "statutory_or_survey_boundary"
+    },
+    {
+      "fact_id": "F-WITHDRAWN-001",
+      "statement_zh": "众智园和大钟寺历史更新公示链接截至2026-08-12已撤稿或删除。",
+      "statement_en": "The historical Zhongzhiyuan and Dazhongsi renewal-notice links were withdrawn or deleted as of 2026-08-12.",
+      "source_ids": ["ZHONGZHIYUAN-RENEWAL", "DAZHONGSI-RENEWAL"],
+      "evidence_levels": ["background_only"],
+      "excluded_use": "verified_boundary_entity_or_implementation_conclusion"
+    },
+    {
+      "fact_id": "F-LANJING-001",
+      "statement_zh": "蓝景丽家约5.03公顷、约9.65万平方米及交通预测仅适用于对应实施单元。",
+      "statement_en": "The approximately 5.03 ha area, 96,500 m² floor area, and traffic forecast for Lanjing Lijia apply only to the corresponding implementation unit.",
+      "source_ids": ["LANJING-IMPLEMENTATION", "LANJING-TRAFFIC"],
+      "evidence_levels": ["L1", "L2"],
+      "excluded_use": "area_wide_extrapolation"
+    },
+    {
+      "fact_id": "F-PARK-STATUS-001",
+      "statement_zh": "一期实施和二期配套工程完成不等同于约9公里全线连续开放或无障碍。",
+      "statement_en": "Phase I implementation and completion of Phase II supporting works do not establish continuous or accessible public use along the full approximately 9 km corridor.",
+      "source_ids": ["PARK-PHASE1", "PARK-PHASE2"],
+      "evidence_levels": ["L2"],
+      "excluded_use": "continuous_access_conclusion_without_field_audit"
+    },
+    {
+      "fact_id": "F-AI-ORIGIN-001",
+      "statement_zh": "AI原点约3平方公里分布式载体网络及人才服务可支撑机制研究，不构成具体空间授权。",
+      "statement_en": "AI Origin's approximately 3 km² distributed network and talent services support mechanism research but do not authorize a specific site.",
+      "source_ids": ["AI-ORIGIN-2026", "AI-ORIGIN-TALENT-STATION"],
+      "evidence_levels": ["L3"],
+      "excluded_use": "site_authorization"
+    },
+    {
+      "fact_id": "F-OSM-001",
+      "statement_zh": "OSM道路、步骑、轨道、站点和水系日期为2026-08-11，建筑为2026-07-08，POI为2026-05-06，仅作L4工作底图。",
+      "statement_en": "OSM roads, walking and cycling, rail, stations, and water are dated 2026-08-11; buildings 2026-07-08; POIs 2026-05-06; all are L4 working-basemap material only.",
+      "source_ids": ["OSM-WORKING-DATA"],
+      "evidence_levels": ["L4"],
+      "excluded_use": "survey_statutory_rights_or_engineering_basis"
+    },
+    {
+      "fact_id": "F-CONFLICT-001",
+      "statement_zh": "L5临时范围SITE-001与L4具名京张铁路遗址公园多边形不重叠，EPSG:4547平面最短边界距离为412.6839494317米，正文显示为约413米。",
+      "statement_en": "The L5 provisional SITE-001 extent and L4 named Jing-Zhang Railway Heritage Park polygons do not overlap; planar minimum boundary distance in EPSG:4547 is 412.6839494317 m, displayed as approximately 413 m.",
+      "source_ids": ["OSM-WORKING-DATA", "BOUNDARY-SOURCE"],
+      "data_ref": "visual/assets/spatial_source_conflicts.json#SC-OSM-SITE-001",
+      "evidence_levels": ["L4", "L5"],
+      "excluded_use": "survey_or_boundary_conclusion"
+    }
+  ]
+}

@@ -1,0 +1,244 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional submitted site boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Boundary is provisional and triggers full recalculation when official polygons arrive."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 6651.247,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area(reversible design footprints)",
+      "confidence": "medium",
+      "assumptions": [
+        "All footprints are conceptual new reversible modules, not surveyed existing buildings."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 21967.356,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(conceptual green interface polygons)",
+      "confidence": "medium",
+      "assumptions": [
+        "Does not represent the mapped extent of the existing heritage park."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 9550.84,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(handover public-space polygons)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual public-space interfaces pending ownership and accessibility checks."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.001925,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Ratio is design geometry over a provisional boundary."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.000837,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Ratio is design geometry over a provisional boundary."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required provisional key-area features)",
+      "confidence": "medium",
+      "assumptions": [
+        "The three geometries are provisional, while the official names and announced areas come from the call."
+      ]
+    },
+    "service_yard_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(program in north_proof_yard, central_relay_yard, south_return_yard)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "reversible_module_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(reversible design footprints)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "handover_space_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public handover interface polygons)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "service_route_length_m": {
+      "status": "known",
+      "value": 2424.077,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "union_length(discrete schematic edge-service, public-access and handover segments)",
+      "confidence": "low",
+      "assumptions": [
+        "Segments are isolated relationship tests, not a continuous route or construction quantity; all alignments require survey and traffic review."
+      ]
+    },
+    "curb_occupation_reduction_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "metrics.json"
+      ],
+      "formula": "(baseline curb-minutes - pilot curb-minutes) / baseline curb-minutes",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No baseline observation exists in the public package.",
+      "concept_target": 0.3,
+      "target_status": "pilot target pending baseline and authority review"
+    },
+    "failed_first_handover_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "metrics.json"
+      ],
+      "formula": "failed_first_handover_count / total_handover_count",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires an approved, privacy-minimised pilot measurement.",
+      "concept_target": 0.05,
+      "target_status": "pilot target pending baseline and authority review"
+    },
+    "worker_rest_coverage_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "metrics.json"
+      ],
+      "formula": "eligible shifts with a rest point within agreed service radius / eligible shifts",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Worker routes and negotiated service radius are not yet available.",
+      "concept_target": 0.9,
+      "target_status": "pilot target pending baseline and authority review"
+    },
+    "packaging_return_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "metrics.json"
+      ],
+      "formula": "returned reusable packages / issued reusable packages",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires participating merchants and a material-flow baseline.",
+      "concept_target": 0.6,
+      "target_status": "pilot target pending baseline and authority review"
+    },
+    "no_account_service_equivalence_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "metrics.json"
+      ],
+      "formula": "offline-completed service types / all public service types",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires accessibility and service testing with affected users.",
+      "concept_target": 1.0,
+      "target_status": "pilot target pending baseline and authority review"
+    },
+    "robot_human_safe_handover_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "metrics.json"
+      ],
+      "formula": "supervised handovers without safety intervention / supervised handovers",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires approved test protocol, safety assessor, and incident taxonomy.",
+      "concept_target": 0.98,
+      "target_status": "pilot target pending baseline and authority review"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    }
+  }
+}

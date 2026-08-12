@@ -1,0 +1,318 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary_provisional)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary from site package; official redline replaces before professional scoring."
+      ],
+      "provisional_note": "Derived from provisional geometry; official redline pending — recompute and re-verify after official polygons are published."
+    },
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_area_value_from_announcement",
+      "confidence": "high",
+      "assumptions": [
+        "Official announced value (43.6 km2)."
+      ]
+    },
+    "overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_area_value_from_announcement",
+      "confidence": "high",
+      "assumptions": [
+        "Official announced value (11.4 km2); submitted provisional polygon measures 11.41 km2."
+      ]
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(key_area_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "Official announced value (368.4 ha)."
+      ],
+      "provisional_note": "Derived from provisional geometry; official redline pending — recompute and re-verify after official polygons are published."
+    },
+    "zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1929201.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(KEY-KEY-001)",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional key-area polygon."
+      ],
+      "provisional_note": "Derived from provisional geometry; official redline pending — recompute and re-verify after official polygons are published."
+    },
+    "ai_origin_community_area_sqm": {
+      "status": "known",
+      "value": 1043236.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(KEY-KEY-002)",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional key-area polygon."
+      ],
+      "provisional_note": "Derived from provisional geometry; official redline pending — recompute and re-verify after official polygons are published."
+    },
+    "dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720454.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(KEY-KEY-003)",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional key-area polygon."
+      ],
+      "provisional_note": "Derived from provisional geometry; official redline pending — recompute and re-verify after official polygons are published."
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.2618,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Green network polygons are conceptual corridors; official green lines pending."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2987696.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space))",
+      "confidence": "low",
+      "assumptions": [],
+      "provisional_note": "Derived from provisional geometry; official redline pending — recompute and re-verify after official polygons are published."
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0823,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Public space polygons are conceptual nodes and seams."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 939020.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space))",
+      "confidence": "low",
+      "assumptions": [],
+      "provisional_note": "Derived from provisional geometry; official redline pending — recompute and re-verify after official polygons are published."
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 214843.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual footprints for form & scale discussion only; not approved construction scale."
+      ],
+      "provisional_note": "Derived from provisional geometry; official redline pending — recompute and re-verify after official polygons are published."
+    },
+    "building_count": {
+      "status": "known",
+      "value": 20,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building_footprints)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual count."
+      ],
+      "provisional_note": "Derived from provisional geometry; official redline pending — recompute and re-verify after official polygons are published."
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 25890.7,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(linestring_length(roads))",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual centerlines; official road network pending."
+      ],
+      "provisional_note": "Derived from provisional geometry; official redline pending — recompute and re-verify after official polygons are published."
+    },
+    "heritage_spine_length_m": {
+      "status": "known",
+      "value": 19800.3,
+      "unit": "m",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "perimeter_of_spine_green_corridor",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual heritage spine corridor."
+      ],
+      "provisional_note": "Derived from provisional geometry; official redline pending — recompute and re-verify after official polygons are published."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "seam_connector_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(seam_public_interfaces)",
+      "confidence": "high",
+      "assumptions": [
+        "Three east-west seam connectors at key area boundaries."
+      ]
+    },
+    "ai_scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards_in_proposal)",
+      "confidence": "high",
+      "assumptions": [
+        "12 scenario cards, including 4 industry test-verification scenarios."
+      ]
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(personas_in_proposal)",
+      "confidence": "high",
+      "assumptions": [
+        "6 personas covering talent, enterprise, resident, visitor, elderly, government."
+      ]
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(landmarks_in_proposal)",
+      "confidence": "high",
+      "assumptions": [
+        "4 AI pilgrimage landmarks proposed."
+      ]
+    },
+    "land_use_industrial_ratio": {
+      "status": "known",
+      "value": 0.4819,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "(commercial + research + sports-test) / site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual functional mix for AI innovation belt."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official boundary absent from public site package; must be confirmed by professional team."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_height_control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height controls missing; aviation/landscape/heritage constraints pending."
+    }
+  },
+  "precision_declaration": {
+    "statement": "All metrics derived from provisional geometry are concept-level only and MUST be recomputed after official polygons (site boundary, key areas, regulatory controls) are published. Provisional sources prohibit precise area calculation; displayed precision does not imply official accuracy.",
+    "effective_for": "metrics derived from submitted provisional geometry",
+    "official_values_from_announcement_remain": "valid"
+  }
+}

@@ -1,0 +1,300 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) @ EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-001"
+      ],
+      "reason": "基于 provisional 边界（PROV-SITE-001）计算；官方红线发布后复算。"
+    },
+    "announced_overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json",
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "official announcement value (overall design area ~11.4 km2)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "announced_key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official announcement value (three key areas total 368.4 ha)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_areas_provisional_total_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(key_area_polygons)) @ EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-001"
+      ],
+      "reason": "基于 provisional 三重点区 polygon；与公告 368.4 公顷存在临时边界拟合偏差。"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2489748.362,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space)) @ EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-002",
+        "A-004"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 174518.495,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space)) @ EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-002"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 328444.53,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints)) @ EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-005"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.218154,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-001",
+        "A-002"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.015291,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-001",
+        "A-002"
+      ]
+    },
+    "building_density_ratio": {
+      "status": "known",
+      "value": 0.028779,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm（概念示意，非法定密度）",
+      "confidence": "low",
+      "assumptions": [
+        "A-005"
+      ]
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 46733.562,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(road_centerlines)) @ EPSG:4548（概念示意）",
+      "confidence": "low",
+      "assumptions": [
+        "A-003"
+      ]
+    },
+    "public_rail_corridor_length_m": {
+      "status": "known",
+      "value": 9500.0,
+      "unit": "m",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "conceptual length of the Jing-Zhang park corridor (N-S spine)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-002"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(AI scenario cards in chapter 6)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(AI industry test/validation scenarios in chapter 6)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user personas in chapter 6)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_ecosystem_case_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(global AI ecosystem cases in chapter 6)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(AI pilgrimage landmarks in chapter 9)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(renewal project list in chapter 10)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phasing phases)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-009"
+      ],
+      "reason": "官方控规容积率条件缺失；本方案不设定容积率数值，待官方附件补齐后复算。"
+    },
+    "building_height_max_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "max approved building height (regulatory)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-009"
+      ],
+      "reason": "官方建筑高度控制缺失；概念方案仅作体量示意，不设高度数值。"
+    },
+    "green_ratio_official": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved green-space ratio (regulatory)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-009"
+      ],
+      "reason": "官方绿地率指标缺失；本方案绿地比例为概念复算值，非法定指标。"
+    }
+  }
+}

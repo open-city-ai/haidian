@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:jz-common-ports:simulation:0.2",
+  "title": "JZ Common Ports offline synthetic protocol replay",
+  "description": "Schema for explicit synthetic public-interest control fixtures. Conformance is not field-performance evidence.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "method",
+    "limitations",
+    "canonicalization_contract",
+    "runner",
+    "task_count",
+    "tasks",
+    "baselines"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.2.0"},
+    "status": {"const": "executable_offline_synthetic_evidence_not_field_performance"},
+    "canonicalization_contract": {
+      "type": "object",
+      "required": ["id", "rule"],
+      "properties": {
+        "id": {"const": "recursive_key_sort_utf8_compact_json_v1"},
+        "rule": {"type": "string", "minLength": 20}
+      }
+    },
+    "runner": {
+      "type": "object",
+      "required": ["path", "schema_path", "evidence_path", "check_command", "write_command", "failure_policy"],
+      "properties": {
+        "path": {"const": "visual/assets/replay-protocols.js"},
+        "schema_path": {"const": "visual/assets/simulation.schema.json"},
+        "evidence_path": {"const": "visual/assets/replay-evidence.json"},
+        "check_command": {"const": "node visual/assets/replay-protocols.js --check"},
+        "write_command": {"const": "node visual/assets/replay-protocols.js --write-evidence"}
+      }
+    },
+    "task_count": {"const": 15},
+    "tasks": {
+      "type": "array",
+      "minItems": 15,
+      "maxItems": 15,
+      "items": {"$ref": "#/$defs/task"}
+    }
+  },
+  "$defs": {
+    "task": {
+      "type": "object",
+      "required": [
+        "task_id",
+        "pilot_id",
+        "test_name",
+        "fixture",
+        "input_sha256",
+        "canonicalization",
+        "dispatch_schema_valid",
+        "outcome",
+        "expected_control",
+        "observed_control",
+        "counterfactual_input",
+        "counterfactual_expected_control",
+        "energy_used_kwh",
+        "energy_budget_kwh",
+        "audit_complete",
+        "contains_personal_data"
+      ],
+      "properties": {
+        "task_id": {"type": "string", "pattern": "^sc-(01|05|09)-0[1-5]$"},
+        "pilot_id": {"enum": ["SC-01", "SC-05", "SC-09"]},
+        "test_name": {"enum": ["minimum-data", "non-ai-parity", "red-card-hold", "human-final-decision", "expiry-and-audit"]},
+        "fixture": {
+          "type": "object",
+          "required": ["pilot_id", "test_name", "synthetic", "input"],
+          "properties": {
+            "pilot_id": {"enum": ["SC-01", "SC-05", "SC-09"]},
+            "test_name": {"enum": ["minimum-data", "non-ai-parity", "red-card-hold", "human-final-decision", "expiry-and-audit"]},
+            "synthetic": {"const": true},
+            "input": {"type": "object"}
+          },
+          "additionalProperties": false
+        },
+        "input_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "canonicalization": {"const": "recursive_key_sort_utf8_compact_json_v1"},
+        "dispatch_schema_valid": {"const": true},
+        "outcome": {"const": "policy_success"},
+        "expected_control": {"type": "string", "minLength": 3},
+        "observed_control": {"type": "string", "minLength": 3},
+        "counterfactual_input": {"type": "object"},
+        "counterfactual_expected_control": {"type": "string", "minLength": 3},
+        "energy_used_kwh": {"type": "number", "minimum": 0, "maximum": 0.05},
+        "energy_budget_kwh": {"const": 0.05},
+        "audit_complete": {"const": true},
+        "contains_personal_data": {"const": false}
+      }
+    }
+  }
+}

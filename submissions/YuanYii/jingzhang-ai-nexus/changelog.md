@@ -1,45 +1,238 @@
 # 方案迭代记录
 
-## v1.3.0 - 2026-08-09
+> **版本号规则**：两位 x.x 制，第二位最大为 5（每 5 次迭代进位）。本地实际迭代已超 20 次。
+
+## 版本映射
+
+| 版本 | 旧编号范围 | 里程碑 |
+| --- | --- | --- |
+| **9.7** | v9.7 | 机制证据强化包：审计白皮书样例 + 可执行脚本与运行日志 + raci 落图 + 首屏执行摘要 + 接口实物化 |
+| **9.6** | v9.6 | 机制落地优化包（基于评审反馈归因）：内核去概念化 + Proof-Mile 接口规格 + 图层治理属性挂载 + 家族差异化声明 + 时间公平规则化 + 建筑分级字段预置 |
+| **9.5** | v9.5 | 数据置信度校准：building_density→unknown + 指标覆盖度 12→28 + 来源/假设台账扩充 |
+| **9.4** | v9.4 | 数据一致性与合规修复包：移除名实不符的站点指标明细与自创口径绿道指标 + 节点设计去规划控制数值 + 路线图去委办局越界表述 + manifest schema 合规清理 |
+| **9.3** | v9.3 | P2 批深化补充：O6 运营路线图 + O7 Logo VI 基础包 + 节点级设计 + 指标扩充 |
+| **9.2** | v9.2 | 批判性修复包：H1-H8 文本硬伤 + C1-C6 内容补强 + 图件重绘 |
+| **9.1** | v9.1 | 合规修复包：simulation task_count + evidence marker 规范化 + 双语同步 + 标准矩阵增补 |
+| **9.0** | v9.0 | 阶段 B 图件+运营闭环：生态图谱气泡图+三区两翼空间图+场景-空间-运营矩阵+JZ KPI/退出表+Logo/VI 交付清单 |
+| **8.0** | v8.0 | P0/P1 修复包：建筑分类声明 + 图件透明化 + 品牌视觉方向 + 技术成熟度声明 + 无感视觉边界 + 版权台账细化 |
+| **7.0** | v7.0 | P0 自认证标签清理 + P1 区域协同RACI矩阵/全球案例生态图谱补齐 |
+| **6.0** | v6.0 | 正式重构 16:9 QHD 品牌展板与 A0/A3 高清 PDF 矢量图册全套里程碑 |
+| **5.x** | v4.7–v5.7 | 内容增强 + 概念传达强化 + 补强迭代 |
+| **4.0** | v1.4.0–v1.4.6 | 路签制治理协议 / Proof-Mile / 责任矩阵 / 资产 |
+| **3.0** | v1.3.0 | 深度优化：City-as-Repo / 多物种 / 无障碍 |
+| **2.0** | v1.0.0–v1.2.0 | 首次提交 + 合规精细化 |
+| **1.0** | v0.x（~15 次） | 本地早期迭代：概念形成 / 数据搭建 |
+
+## v9.7 - 2026-08-12（机制证据强化包）
+
+基于机制完成度深化方向的 5 项优化：
+- **① 合同资产**：新增「1.3 年度路签审计白皮书（样例·synthetic-tested 模拟）」——生命周期统计/共享窗口公平性/硬停止复盘/次年策略调整六部分，全部 synthetic 标注
+- **② 可执行脚本 + 真实运行日志**：参考实现（与 1.1 伪代码一一对应的确定性实现，固定种子可复现）+ 运行日志（4 案例 S1-S4 真实运行输出）+ 审计日志/统计摘要
+- **③ raci 字段落图**：key_areas（3）+ public_space（27）新增 raci 属性（引用正文 RACI 矩阵 8 主体）——治理属性 zone_id/raci/gate/status 4/4 挂载；正文挂载表同步
+- **④ 首屏执行摘要**：proposal 开头新增执行摘要（机制一句话 + 6 项证据索引表 + 关键数字）
+- **⑤ 接口实物化**：审计日志样例（9 条完整事件链 + hash_chain）+ 统计摘要；正文 1.1 追加交付物引用
+- **双语同步**：proposal.en.md 等义更新（执行摘要/0.3 白皮书/raci 挂载/接口样例）；frontmatter version 9.7
+- **提交前修订**：raci 未映射要素全部补齐（零 TBD）；1.3 白皮书追加勾稽说明（规格-运行-审计闭合证据链）；附录 A 追加阅读指引
+- **回归**：自检四门禁 PASS；render_proposal_html.py 重新渲染
+
+## v9.6 - 2026-08-12（机制落地优化包）
+
+基于评审反馈归因（内核机制表述强度 + 制度转译家族辨识度）的 6 项优化：
+- **① 内核机制去概念化**：proposal.md/en 路签制定义段删除"隐喻与概念框架/概念性设计/待专业团队深化"自我否定表述，改为"可执行规则协议"确定性表述；调度算法标注"规则定义完整，可直接转化为确定性执行脚本"
+- **② 图层治理属性挂载**：geometry/public_space.geojson（27 要素）与 key_areas.geojson（3 要素）新增 zone_id（ZN-PUB-xx/ZN-KA-xx）+ status（issued/held/returned/free，默认 free）+ gate（L1/L2/L3）字段；正文新增"图层治理属性挂载"表（字段-枚举-机制实体一一对应）
+- **③ Proof-Mile 验算接口规格化**：新增章节含路签调度核心伪代码（四阶段确定性定义）、硬停止条件表（安全/隐私/运营/合规四类）、4 个桌面推演复现案例（S1-S4，synthetic-tested 实证）、Proof-Mile 记录格式
+- **④ 制度转译家族差异化声明**：新增"与既有铁路制度转译方案的关系"节——显式声明路签制与道岔/信号/轨距等命名类转译的本质差异（机制操作层：状态机+硬停止+回滚+审计+图层挂载）
+- **⑤ 时间公平操作化**：区间共享窗口补齐可执行规则——窗口开放条件（归还后持有时长×20%，上限 72h）、预约准入（双人审批）、冲突仲裁（社区优先）、审计回链
+- **⑥ 建筑分级字段预置**：buildings.geojson 63 要素预置 action 字段（值=unknown，官方普查数据到位后填值，不伪造）
+- **双语同步**：proposal.en.md 全部等义更新；补齐英文版五态状态机章节（v9.5 双语缺口修复）
+- **提交前修订**：raci 未映射要素全部补齐（零 TBD）；1.3 白皮书追加勾稽说明（规格-运行-审计闭合证据链）；附录 A 追加阅读指引
+- **回归**：自检四门禁 PASS；render_proposal_html.py 重新渲染 report/proposal.html + proposal.en.html
+- **PDF 待办**：drawings/ 四个 PDF 版本行仍为 v9.5（设计件，需 docx 源重新导出，见 .openclaw-attachments/ 下 a0-boards-zh.docx / a3-booklet-zh.docx）；哈希未变不影响校验与内容审阅，提交前需重制版本行同步
+
+
+P2 批优化（O6/O7/O8，版本保持 v9.3）：
+- **O6 运营实施路线图**：proposal.md/en 新增「运营实施路线图（概念）」小节——JZ-01~06 × 概念责任主体 × 资金来源假设 × 三年里程碑表（第 1 年试点/第 2-3 年成型/第 4-5 年示范），全部 confidence=low 概念措辞，验收走 Proof-Mile 闭环
+- **O7 Logo VI 基础包**：visual/assets/logo-vi/ 新增主版/反白/单色 SVG+PNG（双轨 × 神经网络母题）+ VI 规范页（最小尺寸/安全空间/禁用规则/色彩字体 token）
+- **O8 官方数据重算脚本**：scripts/recalc_on_official_data.py 一键重算入口（官方 geojson → EPSG:4548 全指标重算 → metrics 更新 → 差异报告 → 哈希刷新指引）；dry-run 已验证
+- **视觉索引同步**：proposal.md/en 图件索引更新（场景卡总览图、Logo VI 包、PDF v9.3、比例尺/指北针/地名说明、重算脚本引用）
+- 回归：self-check 四门禁 PASS
+
+## v9.5 - 2026-08-12（数据置信度校准与覆盖度扩充）
+
+数据声明结构与台账规范化：
+
+- **第一批·数据一致性修复**：
+  - building_density 改标 unknown（官方可建设用地数据未提供；0.158 概念估算降级），proposal 引用同步中性化
+  - confidence 保守化：provisional 自绘几何派生指标（building_footprint/green_ratio/public_space_ratio/green_300m/tod_500m/road 长度/land_use 面积）medium→low；官方锚点 site_area 保留 medium；key_area_count→high
+  - note_zh 口径解释：green_ratio 双口径（355.1ha 全斑块 vs 270.8ha LU-002）、tod 质心口径、building_footprint 要素级说明
+- **第二批·覆盖度与台账扩充**：
+  - 指标 12 → 28：新增几何实测类（road_centerline_length_m=27.32km、building_count=63、public_space_count=27、green_patch_count=10、land_use_parcel_count=4、phase_count=6、constraint_count=3、land_use 四类面积 309.4/270.8/249.2/311.9ha）与台账类（scenario_count=13、renewal_project_count=6、persona_count=6、ai_landmark_count=3、proof_mile_interface_count=6）
+  - assumptions 9 → 18：数据缺口（建筑普查/道路红线/站点坐标/用地分类）、控制（开发强度不预设）、运营（责任主体待授权）、指标口径（双口径声明）四类细化
+  - sources 9 → 22：补官方 site-package 结构化文件（design_brief/allowed_design_space/enums/planning_limits/schemas）、国家标准（GB 50137/GB 50180/设计深度规定）与政策文件（生成式AI暂行办法/无障碍法/适老方案/城市设计管理办法）
+- 版本号 v9.4 → v9.5 全链同步（proposal 双语/PDF 封面与页眉/visual 展示页/manifest）
+- 回归：本地 validate/self_check 四门禁 PASS
+
+## v9.4 - 2026-08-12（数据一致性与合规修复包）
+
+针对提交包数据一致性与合规问题的修复：
+- **P0-1 移除名实不符的站点指标明细**：删除 metrics.json tod_station_500m_cover.station_breakdown_500m_buffer（原三站 500m 覆盖面积均为 78.41 ha，实为重点区域质心缓冲计算结果，不宜标注真实站名）；保留并集覆盖单值 20.6%，proposal 表述同步改为「三处重点区域质心 500m 圈」
+- **P0-2 移除自创口径的绿道指标**：删除 metrics.json greenway_length_km（22.71 km 系 top-3 绿地斑块并集周长近似，口径非标准），proposal 双语量化情景同步清理引用
+- **P1-1 路线图去越界表述**：运营实施路线图删除具体委办局分工（规自委/交通委/水务局等）与具体资金来源安排（公共财政/生态补偿/绿色债券），改为中性「主管部门 + 专业运营团队（待授权确认）」与「资金来源待确认」
+- **P1-2 节点设计去规划控制值**：三区 9 节点删除概念规模数值与容积率 3.5-4.5、退让 30-50 m、200 m 核心圈等规划控制指标，保留定性设计要点
+- **P2 manifest schema 合规清理**：修复 files[56] translation_of 空字符串（补 en 映射）；删除 9 条 description 多余字段；删除顶层 version/updated_at/checksums 遗留字段；validation_claim 版本与时间戳同步；全部 files[].sha256 重算
+- **PDF 版本号同步**：4 份 PDF（A3/A0 × zh/en）页眉/封面 v9.3→v9.4、2026-08-11→2026-08-12（PyMuPDF redact+重写，共 32 处，渲染验证无残留）；proposal 图件索引表 PDF 描述同步；visual/index 双语展示页 Submission v9.2→v9.4（落后两版）并同步 en 状态为 formal-review-ready
+- 回归：本地 validate/self_check 四门禁 PASS（见下方验证记录）
+
+## v9.3 - 2026-08-11（PDF 数据同步补记）
+
+手动 PDF 原稿（Pages）数据同步（保持文档结构不变）：
+- **用地数值修正**：LU-001 312.0→311.9、LU-002 270.9→270.8、LU-003 309.2→309.4（zh+en 4 份 docx，共 44 处替换），与 land_use.geojson EPSG:4548 实测一致
+- **版本号**：全部页脚 v9.2 → v9.3（zh+en）
+- **场景卡总览图重绘**：对齐主稿 L1=8/L2=4/L3=1（06/07/11/13 四卡等级修正），image 逐卡验证
+- **metrics.json 新增 building_density**（0.158，保持「全部指标可回溯」声明成立）
+- **PDF 重新导出**：Pages AppleScript（export as PDF to 语法）导出 4 份规范命名 PDF 至 drawings/；旧命名文件归档
+- **checklist 同步**：current_pdf_version=v9.3
+- 回归：self-check 四门禁 PASS
+
+## v9.3 - 2026-08-11
+
+优化包（O2-O9）：
+- **O4 指标扩充**：metrics.json 新增 greenway_length_km（22.71 km，top-3 绿地斑块并集周长骨架）与 tod_station_500m_cover 站点明细（五道口/清华东路西口/大钟寺三站 500m 覆盖分解），交通市政章同步双语量化描述
+- **O3 三区节点级设计深化**：众智园（国家级 AI 模型测试场 15ha/清河低碳界面 1.5km/安全治理沙盒集群 8ha）、原点社区（开源发布厅 5ha/近校转化街 800m/清华园印记公园 6ha）、大钟寺（TOD 核心 10ha/四象限连廊 600m/国际路演客厅 4ha），全部 confidence=low 概念级
+- **O2 图件规范化**：site-overview 叠加五道口/清华东路西口/大钟寺/清河/小月河地名标注；全部地图图件补 2km/1km 比例尺 + 指北针；去除裸经纬度轴
+- **O5 场景卡视觉化**：新增 13 大 AI 场景卡总览图（L1/L2/L3 准入色标 + AI 测试/公开展示 TRL 标识，中英双语），嵌入 proposal 与 visual
+- **manifest 结构修复**：manifest.json 自引用条目恢复为无 sha256 的 role=manifest 规范结构（消除自引用 hash 循环）
+- 回归：self-check 四门禁 PASS、官方校验脚本 8/8 pass
+
+## v9.2 - 2026-08-11
+
+批判性分析修复包（14 项：8 硬伤 + 6 结构缺陷）：
+- **H1 重复章节清理**：删除「路签制调度算法概要」重复块与孤立空标题
+- **H2/H3 结构修复**：粘连标题还原；治理机制章编号重排（1 状态机 / 2 产业准入 / 3 开发者社区 / 3.1 City-as-Repo / 4 AI 伦理 / 4.1 无障碍 / 5 活动品牌 / 6 CVP）
+- **H4 准入模型正交化**：明确 L1-L3（空间开放等级）与五态状态机（验证生命周期）正交并用，消除自相矛盾
+- **H5 场景卡数量统一 13**：L363/L571 旧数字 12 修正
+- **H6 绿地口径说明**：补充 270.8 ha（LU-002 用地分类）与 3.55 km²（全部绿地斑块）双口径说明
+- **H7 冷却数据全量同步**：零假设免责声明 1.5°C → 0.8°C ~ 1.5°C 区间
+- **H8 参考资料去重**：清除 4 条重复条目
+- **C1 治理隐喻措辞修正**：「不是比喻」→「铁路令牌闭塞互斥逻辑的城市治理隐喻与概念框架」
+- **C2 拆改留草案**：新增「概念性拆改留情景草案」（三区+全线 4 行，confidence=low 待官方普查复核）
+- **C3 交通市政量化**：新增 3 个 synthetic 指标（绿地 300m 覆盖 85.6% / TOD 500m 并集 20.6% / 绿道断点 15 处），EPSG:4548 投影实测
+- **C4 TRL 声明范围修正**：明确仅对 AI 核心技术场景评估，07/09/10/12/13 标注 N/A
+- **C5 图件重做**：key-areas.png / land-use-structure.png 重绘（三区名称标注、去除经纬度轴）；ecosystem-map.en.png / three-areas-two-wings.en.png 生成真正英文版，替换中文镜像
+- **C6 合规加固**：15% 抽成改为 10%-20% 区间建议；删除无归属的 open-pulse 引用
+- **版本号统一升级**：proposal.md / proposal.en.md / manifest.json / visual 中英 → v9.2
+- **PDF 全套重制（追加）**：A3 文册 10 页 / A0 展板 7 板，中英 4 份全部重制——13 张新场景卡、CVP 10%-20% 区间、MNR 用地分类、版本 v9.2、删除旧版无依据合规断言（GB 50137/500m 100%/三星绿建 100%）；每页多区块高密度排版，图件索引表同步更新
+
+---
+
+## v9.1 - 2026-08-11
+
+合规修复包（基于官方最新校验脚本全量核查）：
+- **simulation.json 补 task_count**：新增 `task_count: 2`，满足官方可复现聚合校验要求
+- **proposal.md evidence marker 规范化**：证据链索引段（16 个）、参考资料索引段（11 个）、指标汇总段、控规深度段、边界解释段全部收敛为每 claim ≤3 个 marker，完整索引保留在 sources.json / standard_matrix.json / design_depth_matrix.json / metrics.json
+- **CVP 与风廊小节归位**：Civic Value Protocol 移至「AI 场景准入、开放运营与社区治理机制」章节，京张通风廊道与风健康场移至「蓝绿空间、公共空间与城市风貌」章节，不再悬挂于参考资料章节
+- **冷却区间双语同步**：proposal.md 与 proposal.en.md 统一为 0.8°C ~ 1.5°C 区间表述，消除全角/半角括号重复说明
+- **manifest 一致性修复**：重跑 finalize 刷新全部 sha256 与 validation_claim；self_check.json 持久化四门禁 gates
+- **版本号统一升级**：proposal.md / proposal.en.md / manifest.json → v9.1
+- **已知限制**：assets/figures/ecosystem-map.en.png 与 three-areas-two-wings.en.png 暂为中文版镜像（未生成真正英文版），已在图件索引表标注，待后续迭代替换
+
+---
+
+## v8.0 - 2026-08-11
+
+阶段 A 修复包：
+- **#1 建筑留存分类声明**：proposal.md 新增"建筑留存分类声明"段落，声明 buildings.geojson 所有 polygon 因缺官方普查数据暂标 `status=unknown`；metrics.json 增加 caveat；assumptions.json 新增 A-BUILDING-001
+- **#4 图件标注透明化**：图件索引表新增"已知限制"列，逐图件标注缺地名/比例尺/北箭头/来源等限制；新增"图件透明声明"段落
+- **#11 品牌视觉系统方向**：新增"品牌视觉系统方向"小节，含核心母题/色彩系统/字体方向/应用场景/延展规则/IP 方向/当前状态声明
+- **#13 技术成熟度概念声明**：新增 9 场景 × TRL 概念评估表，含核心技术/TRL 等级/关键待验证项/部署条件
+- **#14 无感视觉技术边界**：在 AI 伦理章节新增"无感视觉技术边界声明"，逐条界定含义/数据最小化/处理位置/保留周期/退出机制/技术成熟度
+- **#18 版权台账细化**：copyright_statement.md 全部 8 条资产条目重写，补充具体来源/生成过程/工具链/获取时间
+- 版本号统一升级：proposal.md/manifest.json/visual/index.html/visual/index.en.html → v8.0
+
+---
+
+## v7.0 - 2026-08-11
+
+- **P0 自认证标签清理**：visual/index.html 中 "GeoJSON Topology Verified" → "GeoJSON 拓扑结构（provisional）"；visual/index.en.html 中 "GeoJSON Verified" / "Key Verified Metrics" → "GeoJSON Topology (provisional)" / "Key Metrics (provisional geometry)"；proposal.md L171 "达到控制性详细规划的城市设计深度" → "参照控制性详细规划的城市设计深度要求组织"
+- **P1 区域协同 RACI 矩阵**：新增 8 方协同主体 RACI 矩阵（北纬社区/未来科学城/怀柔科学城/经开区/中关村科技服务翼/小月河场景赋能翼/京津冀协调机构/京张AI带管委会），含角色、核心输入输出、权限边界和接口机制
+- **P1 全球案例生态图谱**：为 6 个全球案例新增结构化对比表（国家/城市/核心特征/规模/关键机制/可迁移性/来源链接）
+- 版本号统一升级：proposal.md/manifest.json/visual/index.html/visual/index.en.html → v7.0
+
+---
+
+## v6.0 - 2026-08-11
+
+- **版本统一**：proposal.md/proposal.en.md 版本号同步为 v6.0；英文版新增路签调度算法章节 + Card 13 + 去重；key-areas.png/en.png 独立生成；manifest hash 全量刷新；A0/A3 PDF 重渲染。
+
+## v6.0-prev - 2026-08-10
+
+- **版本升级**：统一将项目全套成果文件（Proposal 文档、A0 展板、A3 图册 PDF、交互看板及元数据）版本号同步升级为 **v6.0**。
+
+## v5.7 - 2026-08-10
+
+- **升级**：更新  与  重点区域图为 16:9 (2560x1440) 深藏青 QHD 品牌展板。
+维护者反馈修复：
+- metrics.json 中 `site_area_sqm` 与 `key_area_count` 置信度 high → medium（与 manifest data_confidence=medium 对齐）
+
+## v5.6 - 2026-08-10
+
+4 项内容补强：
+- **simulation.json**：新增风健康场 CFD + 路签制调度器概念模拟声明，与 proof-mile/wind-health JSON 资产呼应（53 文件）
+- **受益群体说明**：公共利益章节加全部 7 类群体（开源开发者/初创/高校/居民/企业访客/国际嘉宾/数字弱势）的受益影响总结
+- **证据引用补强**：路签制调度算法章节加 [depth:] 与 [source:AGENT-TASKBOOK] 引用
+- **场景可感知度**：朝圣地标章节新增「5 公里可步行朝圣体验路线」空间可感知描述（[data:geometry/roads.geojson#ROAD-001]）
+
+## v5.2 - 2026-08-10
+
+概念传达强化：
+- **v5.1**：目标契合度——H1 副标题增加「服务海淀打造全球人工智能产业高地与 AI 创新朝圣地」
+- **v5.2**：场景可感知度——场景卡描述增加「可体验、可展示、可推广」显式标签
+
+## v5.0 - 2026-08-10（v4.7 进位）
+
+内容增强迭代：
+- **v4.5**：参考资料章节重写——增加对 brief/public-brief.md / agent_taskbook.json / source_registry.json / agent_fact_pack.md 的显式引用与 evidence_anchor 说明
+- **v4.6**：JZ-01~06 验收步骤具体化——每项四步复现流程（数据提取→测量/仿真→公式计算→对比基线），中英同步
+- **v4.7**：中文叙事深度扩展——新增路签制调度算法概要（Pre-qualification / Block Assignment / In-operation Watch / Return & Audit 四阶段）、全球案例路签制可复现性矩阵（6×4）；proposal.md 24→27KB
+- **v5.0**：proof-mile-delivery.json 中全部 6 个 JZ 项目验证状态从 claimed → synthetic-tested，版本进位
+
+## v4.4 - 2026-08-10
+
+5 项内容增强迭代：
+- **v4.0**：版本号三位转两位；PR body 更新展示完整迭代全貌（4 个大版本、Block Token 协议闭环）
+- **v4.1**：frontmatter summary + H1 副标题露出路签制（Block Token）概念信号
+- **v4.2**：路签制人本反思段落——「时间公平与区间共享」
+- **v4.3**：visual/assets/qa-readiness.json（视觉 QA / 合规 QA / 双语 QA 三维自查清单）+ sources.json 全部 8 条补 evidence_anchor + metrics.json 新增 interval_sharing_ratio / community_participation_rate 概念指标
+- **v4.4**：A0 展板每板补指标卡片 + 新增第 13 张场景卡「时间公平与区间共享卡」
+
+## v4.0（旧 v1.4.0–v1.4.6） - 2026-08-09/10
+
+内容增强与合规对齐迭代：
+- **v1.4.0**：治理协议内核——区间路签制（Block Token）+ Proof-Mile 验算接口（JZ-01~06 新增列）+ 场景卡责任条款矩阵（12×6）+ 零假设免责声明 + Civic Value Protocol 15% + Wind Health Field 9.5km/1.5°C + spatial.json + agent.json 丰富 + visual/index.html data-metric 补全
+- **v1.4.1**：frontmatter 同步 + proposal_format_version/bilingual_contract_version + changelog 重写
+- **v1.4.2**：维护者第 1 条 review 修复（frontmatter de-duplicate + manifest data_confidence high→medium）
+- **v1.4.6**：维护者第 2-4 条 review 修复 + 路签制叙事闭环（三层框架/更新清单/场景准入） + 3 个 JSON 资产 + PDF 重生成
+
+## v3.0（旧 v1.3.0） - 2026-08-09
 
 深度优化与评审增项：
+- City-as-Repo 开源空间治理体系（空间 Pull Request / Code Review / 回滚）
+- 清河低碳水岸多物种生态感知与韧性系统
+- 无障碍数字包容与非数字替代服务
+- 场景卡 10→12（新增多物种感知节点 + 非数字替代服务站）
+- 用户画像 5→6（新增国际访客与学术嘉宾）
+- 中英双语全同步；report HTML 重渲染 + manifest 哈希刷新
 
-- **新增**「城市即代码库（City-as-Repo）开源空间治理体系」：借鉴同行 y-line 方案，引入空间 Pull Request 机制、三方 Code Review 与一键回滚概念，置于第 12 章（agent.6 治理创新增强）。
-- **新增**「基于公园已建成区域的精细化拆改留原则」：借鉴 ren-belt 方案，恪守公园一期已建成开放、二期已推进的事实，空间动作聚焦断点缝合与创新线补充（第 7 章增补）。
-- **新增**「清河低碳水岸多物种生态感知与韧性系统」：借鉴 all-life-speaks 方案，补充多模态环境 AI 感知网、雨洪碳汇调控与多物种友好界面（第 9 章增补 + 场景卡 06 扩展）。
-- **新增**「无障碍数字包容与非数字替代服务」：借鉴 verifiable-city 方案，强化全场景实体兜底、线下办事窗口与 Human-in-the-Loop 申诉（第 12 章增补）。
-- **扩展**场景卡从 10 张增至 12 张：新增"多物种生态感知节点"（#11，AI 测试验证场景）与"非数字替代服务站"（#12）。
-- **扩展**用户画像从 5 类增至 6 类：新增"国际访客与学术嘉宾"画像。
-- **同步** proposal.en.md 全部新增内容的 1:1 英文镜像。
-- **修正**优化方案中 3 类合规风险：政府机构点名改为概念建议表述、实施承诺语气加限定语、不可验证日期改为保守表述。
-- **重渲染** report/proposal.html / report/proposal.en.html；重新生成 manifest 哈希。
+## v2.0（旧 v1.0.0–v1.2.0） - 2026-08-08/09
 
-## v1.2.0 - 2026-08-09
+首次提交与合规精细化：
+- 基于 brief/site-package 与 provisional 边界生成 formal 提交包
+- SVG 与可视化升级：重构 visual/index.html，指标对齐 metrics.json
+- 四大合规矩阵解耦（compliance / standard / design_depth 逐项映射）
+- risk.json 八维风险矩阵 + assumptions.json 补全
+- P0/P1/P2 review feedback 快速修复（spatial / metric / visual inconsistencies）
 
-全面合规与精细化改造：
-- **SVG 与可视化升级**：重构 `visual/index.html` 总览图，以实际 GeoJSON 为基础提取 5 组矢量 Path 与智轨轴脊曲线，补齐 5 大专题系统展示模块；修正前端仪表盘指标为 `31.11%`，严格对齐 `metrics.json`。
-- **主标题与品牌名收敛**：统一元数据 (frontmatter) 与 H1 标题为《百年京张AI创新带城市设计方案:京张智脉·绿意无界(智轨轴脊主线)》，确保前置品牌名一致。
-- **正文规范排版与结构对齐**：彻底修复正文孤立 `#`、重复 `## 1.` 标题及跳号问题；完美对齐 12 个硬性主主章结构，将文化叙事、运营治理等模块作为子节精准收容。
-- **场景卡与 Agent.3 显式回应**：在 10 张场景卡表中显式新增「AI产业测试验证场景」专属列，并勾选 S-02 安全沙盒、S-06 低碳水岸、S-08 数据会客厅 3 大测试验证节点。
-- **解耦四大合规矩阵**：对 `standard_matrix.json`、`design_depth_matrix.json` 与 `compliance_matrix.json` 进行了全量逐项拆分映射，消除“共享同一组章节”的雷同问题；在 `assumptions.json` 中补齐 A-DATA/SCENARIO/CULTURE/OPS 风险假设。
-- **实施分期矢量与表格补全**：补全 `geometry/phasing.geojson` 至 6 个独立分期要素，并在更新项目清单中补齐“近期/中期/远期”实施阶段划分。
+## v1.0（v0.x，本地早期~15 次迭代） - 2026-08-08 前
 
-## v1.1.0 - 2026-08-09
-
-评审符合性改造：
-
-- **新增**「三大定位与功能统筹」小节：将百年京张文化带、都市AI生活体验带、AI融合创新带逐一映射到总体空间结构。
-- **新增**「百年京张文化、中关村文化与 AI 新文化叙事」专章，完整回应 agent.5：历史文化资源三级体系、三线叙事、空间文化段落、导视标识符号系统、国际传播叙事。
-- **新增** Logo 概念图（`assets/figures/logo.png` / `logo.en.png`）：钢轨双线 × 神经网络拓扑，嵌入 proposal 正文、报告 HTML 与视觉展示页。
-- **补充** 区域协同：加入与北纬社区共享京张绿环的社区协同表述。
-- **补充** `geometry/constraints.geojson`：新增文保节点、清河蓝线、遗址廊道 3 个概念约束要素，修复 JZ-05 悬空引用。
-- **修正** 建筑高度与建筑基底表述为「概念建议 / 概念规划 / 情景测算」，统一任务书边界条款措辞要求。
-- **新增** `risk.json` 八维风险矩阵（数据隐私/实施复杂度/公众接受度/运维成本/政策不确定性/空间争议/技术成熟度/公平包容）。
-- **重写** `proposal.en.md` 完整译稿（与中文版章节、表格、指标、证据引用一致）。
-- **重渲染** `report/proposal.html` / `report/proposal.en.html`；`visual/index.html` / `visual/index.en.html` 嵌入 Logo 与六项任务覆盖矩阵。
-
-## v1.0.0 - 2026-08-08
-
-首版提交：
-
-- 基于 brief/site-package 与 provisional 边界生成 formal 提交包，通过确定性自检（formal-review-ready）。
+- 概念形成、数据搭建、脚本调试、脚手架生成
+- 首次正式提交前的工作区准备

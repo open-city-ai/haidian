@@ -1,0 +1,89 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_official_geometry",
+      "statement": "SITE-001 and PROV-KEY-001/002/003 retain repository provisional coordinates at rough precision; none is an official boundary or precise-area basis.",
+      "impact": "All inside-site checks, partitions, areas, ratios, and concept locations are provisional.",
+      "resolution_trigger": "Receive cleared official polygons with version, coordinate system, publication record, and geometry validation."
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Official planning controls, road redlines, ownership, municipal utilities, fire, heritage, and engineering constraints are unavailable.",
+      "impact": "The package supports conceptual review only and cannot establish statutory or engineering compliance.",
+      "resolution_trigger": "Receive approved regulatory conditions and discipline-specific official attachments."
+    },
+    {
+      "id": "A-FAR-001",
+      "status": "unknown_pending_official_control",
+      "statement": "No approved floor area ratio is available; total floor area is not inferred from conceptual footprints.",
+      "impact": "floor_area_ratio remains null and no confirmed construction scale is claimed.",
+      "resolution_trigger": "Approved regulatory FAR and official calculation boundary."
+    },
+    {
+      "id": "A-HEIGHT-001",
+      "status": "unknown_pending_official_control",
+      "statement": "No approved building-height limit or applicable aviation, heritage, or skyline overlay is available.",
+      "impact": "building_height_m remains null and footprints do not imply massing approval.",
+      "resolution_trigger": "Approved height controls and applicable overlays."
+    },
+    {
+      "id": "A-DENSITY-001",
+      "status": "unknown_pending_official_control",
+      "statement": "No approved statutory building-density control is available.",
+      "impact": "building_density remains null; conceptual footprint coverage is reported separately and is not a control value.",
+      "resolution_trigger": "Approved regulatory building-density condition and official calculation boundary."
+    },
+    {
+      "id": "A-GREEN-CONTROL-001",
+      "status": "unknown_pending_official_control",
+      "statement": "No approved statutory green-ratio requirement is available.",
+      "impact": "statutory_green_ratio remains null; conceptual green-space geometry is reported separately.",
+      "resolution_trigger": "Approved green-space control and counting rules."
+    },
+    {
+      "id": "A-SETBACK-001",
+      "status": "unknown_pending_official_control",
+      "statement": "No official road redline, building control line, fire separation, municipal corridor, or setback value is available.",
+      "impact": "setback_m remains null and conceptual footprints cannot be checked for statutory setbacks.",
+      "resolution_trigger": "Official redlines, control lines, and discipline-specific setback requirements."
+    },
+    {
+      "id": "A-LANDUSE-001",
+      "status": "conceptual_design_assumption",
+      "statement": "The four shared-edge land-use zones are an editable conceptual partition using permitted classification codes.",
+      "impact": "The partition covers SITE-001 for topology review but does not replace an approved regulatory plan.",
+      "resolution_trigger": "Official base parcels, approved land-use controls, ownership, and current-condition survey."
+    },
+    {
+      "id": "A-BUILDING-001",
+      "status": "conceptual_design_assumption",
+      "statement": "Six building polygons encode only conceptual functional and footprint logic; height, floors, floor area, ownership, condition, and retain-renovate-demolish status are unverified.",
+      "impact": "Calculated footprint area is a design-model metric, not an approved construction scale or density.",
+      "resolution_trigger": "Cleared building survey, ownership/condition data, official controls, and professional design development."
+    },
+    {
+      "id": "A-MOBILITY-001",
+      "status": "conceptual_design_assumption",
+      "statement": "The one line and three connector centerlines are conceptual slow-mobility alignments inside SITE-001.",
+      "impact": "They do not assert existing rights-of-way, road redlines, station interfaces, engineering feasibility, or approved projects.",
+      "resolution_trigger": "Official roads, rail/station, traffic, ownership, accessibility, and engineering base data."
+    },
+    {
+      "id": "A-PRIVACY-001",
+      "status": "mandatory_safeguard",
+      "statement": "Scenario nodes assume no face recognition, individual tracking, or personally identifiable movement history; operations require authorization, minimization, aggregation, retention limits, and human governance.",
+      "impact": "No spatial scenario is evidence of permission to collect or process personal data.",
+      "resolution_trigger": "Scenario-specific privacy, security, legal, accessibility, and operator review before deployment."
+    },
+    {
+      "id": "A-RECALC-001",
+      "status": "mandatory_future_recalculation",
+      "statement": "When official polygons arrive, replace all provisional scope geometry and recalculate all dependent layers, topology, areas, lengths, ratios, figures, and matrices in EPSG:4548.",
+      "impact": "Current numerical outputs are reproducible from provisional geometry but cannot be frozen as official values.",
+      "resolution_trigger": "Acceptance of cleared official polygons and coordinate-transformation metadata."
+    }
+  ]
+}

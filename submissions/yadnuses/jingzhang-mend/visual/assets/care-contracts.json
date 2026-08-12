@@ -1,0 +1,430 @@
+{
+  "schema_version": "0.1.0",
+  "artifact_kind": "care_contract_registry",
+  "language": "zh",
+  "count": 12,
+  "source_anchor": "proposal.md 第六章「AI+ 照护契约卡（12 张，其中 3 张产业测试验证场景）」",
+  "risk_anchor": "proposal.md 第十二章「风险编号体系：从声明到活索引（R-01..R-12）」",
+  "note": "本文件是照护契约卡的机器可读登记：字段文本与 proposal.md 第六章逐字一致，R 编号与第十二章风险表一致，量化触发器文本逐字取自第十二章风险表。运营主体在正式任命前一律为「建议角色，待任命」，预算一律「待测算」，不构成承诺主体。",
+  "cards": [
+    {
+      "id": "CC-01",
+      "scenario_no": "01",
+      "title_zh": "AI 陪诊与挂号助手",
+      "type": "test_verification",
+      "test_tier": "T2",
+      "subtype_zh": "测试验证",
+      "space_carrier": [
+        "geometry/land_use.geojson#LU-062",
+        "geometry/phasing.geojson#PHASE-001"
+      ],
+      "operator_role": "街道 + 社会运营机构（社区运营专员）；预算：轻量（待测算）",
+      "service_note": "转介周边医院号源与陪诊志愿者；医疗建议一律人工复核，不越界诊断、不替代挂号系统",
+      "hard_stop_conditions": [
+        {
+          "condition": "AI 输出诊断或用药类建议、号源信息过期、人工复核缺岗——触发即停",
+          "failure_mode": "AI 越界诊断 / 号源过期 / 复核缺岗",
+          "related_risks": ["R-09", "R-10"]
+        }
+      ],
+      "recovery_evidence": "人工复核签字记录、号源时效核对台账、数据处置证明",
+      "review_window": "90 天，与第十章首站合同同步",
+      "ai_off_path": "电话 / 窗口人工挂号与陪诊预约、纸质登记",
+      "exit_mechanism": "服务撤回后 24 小时内删除转介记录，转为纯人工窗口",
+      "exit_related_risks": ["R-09"],
+      "quantified_triggers": [
+        {
+          "r_id": "R-09",
+          "trigger": "居民撤回同意后 24 小时内删除对应服务记录；健康信息只转介不落库；数据越界即停采"
+        },
+        {
+          "r_id": "R-10",
+          "trigger": "T1-T3 安全员缺岗 / 急停失效 / 限速被突破即一票叫停；叫停请求 48 小时内回执闭合"
+        }
+      ]
+    },
+    {
+      "id": "CC-02",
+      "scenario_no": "02",
+      "title_zh": "认知症防走失守护圈",
+      "type": "service_experience",
+      "subtype_zh": "服务",
+      "space_carrier": [
+        "geometry/land_use.geojson#LU-061",
+        "geometry/key_areas.geojson#PROV-KEY-002"
+      ],
+      "operator_role": "社区运营专员 + 街道；预算：轻量（待测算）",
+      "service_note": "家属授权的电子围栏提醒；社区专员人工确认后响应；仅提醒不跟踪",
+      "hard_stop_conditions": [
+        {
+          "condition": "未经家属书面授权启用、围栏误报连续超限、专员缺岗——停用",
+          "failure_mode": "无授权启用 / 误报超限 / 专员缺岗",
+          "related_risks": ["R-09", "R-10"]
+        }
+      ],
+      "recovery_evidence": "授权文件、围栏校准记录、响应台账",
+      "review_window": "90 天，家属续签授权",
+      "ai_off_path": "纸质联系卡 + 邻里互助网络、社区值班电话",
+      "exit_mechanism": "家属撤回授权后 24 小时内删除全部围栏与位置数据",
+      "exit_related_risks": ["R-09"],
+      "quantified_triggers": [
+        {
+          "r_id": "R-09",
+          "trigger": "居民撤回同意后 24 小时内删除对应服务记录；健康信息只转介不落库；数据越界即停采"
+        },
+        {
+          "r_id": "R-10",
+          "trigger": "T1-T3 安全员缺岗 / 急停失效 / 限速被突破即一票叫停；叫停请求 48 小时内回执闭合"
+        }
+      ]
+    },
+    {
+      "id": "CC-03",
+      "scenario_no": "03",
+      "title_zh": "无障碍慢行导航",
+      "type": "test_verification",
+      "test_tier": "T3",
+      "subtype_zh": "测试验证",
+      "space_carrier": [
+        "geometry/roads.geojson#ROAD-001",
+        "geometry/roads.geojson#ROAD-011",
+        "geometry/roads.geojson#ROAD-012",
+        "geometry/roads.geojson#ROAD-013",
+        "geometry/roads.geojson#ROAD-014"
+      ],
+      "operator_role": "无障碍 / 交通专业 + 公园运营方；预算：中等（待测算）",
+      "service_note": "路况众包 + 低侵入传感；路线建议标注「非审定交通方案」；无障碍顾问复核",
+      "hard_stop_conditions": [
+        {
+          "condition": "无障碍主链断裂、路线被误读为审定方案、路况数据代表性不足——停数字引导",
+          "failure_mode": "无障碍链断裂 / 误读审定 / 数据代表性不足",
+          "related_risks": ["R-03", "R-10"]
+        }
+      ],
+      "recovery_evidence": "现场审计、参与者复核、可逆修正记录",
+      "review_window": "学期，与 T3 测试备案周期同步",
+      "ai_off_path": "实体导视、盲道与过街音响、人工问询点",
+      "exit_mechanism": "测试备案到期未续即撤除测试组件，恢复普通步道",
+      "exit_related_risks": ["R-11"],
+      "quantified_triggers": [
+        {
+          "r_id": "R-03",
+          "trigger": "未取得红线与断面前不得给工程线位；绿脊样段实施前须完成概念放线复核"
+        },
+        {
+          "r_id": "R-10",
+          "trigger": "T1-T3 安全员缺岗 / 急停失效 / 限速被突破即一票叫停；叫停请求 48 小时内回执闭合"
+        }
+      ]
+    },
+    {
+      "id": "CC-04",
+      "scenario_no": "04",
+      "title_zh": "康复机器人社区实测",
+      "type": "test_verification",
+      "test_tier": "T1",
+      "subtype_zh": "测试验证",
+      "space_carrier": [
+        "geometry/land_use.geojson#LU-091",
+        "geometry/key_areas.geojson#PROV-KEY-001"
+      ],
+      "operator_role": "场景运营方 + 监管部门（测试区备案与保险）；预算：轻量（待测算）",
+      "service_note": "康复辅具机器人在真实社区限速实测；安全员全程陪同；合规路径与边界见本卡下方「T1 合规路径与边界」说明",
+      "compliance_note": "北京已建立面向具身智能的开放测试平台与养老机构示范应用机制（京科信发〔2025〕36号第 10 条部署“建设海淀公园机器人开放训练场，搭建多场景、多任务开放物理测试环境”、第 13 条部署“推动具身智能机器人在养老机构示范应用”），并将智慧健康养老试点示范、产品推广目录作为国家推广通道（工信部联电子〔2021〕154号、国办发〔2024〕1号）；本场景建议按“实验室研发—数据训练—实景验证”链条组织测试（海民发〔2026〕5号），遵循分阶段、小规模、包容审慎的测试原则。边界声明：本场景为园区/社区内低速康复服务机器人，不属于《北京市自动驾驶汽车条例》所称“自动驾驶汽车”（机动车上路通行），该条例不适用于本场景；此处引用条例仅取北京对智能运载器分级测试的监管取向作方法参考。以上均为背景级衔接与概念建议，不表述为已取得测试许可或已纳入示范名单。",
+      "hard_stop_conditions": [
+        {
+          "condition": "安全员缺岗、急停失效、限速被突破、人机混行事故——一票叫停",
+          "failure_mode": "安全员缺岗 / 急停失效 / 限速突破 / 混行事故",
+          "related_risks": ["R-10"]
+        }
+      ],
+      "recovery_evidence": "安全演练记录、故障绕行方案、保险与备案齐备",
+      "review_window": "单次许可，每场测试前复核",
+      "ai_off_path": "普通步道保持开放，人工陪护走普通路线",
+      "exit_mechanism": "测试期结束设备撤场，恢复原状",
+      "exit_related_risks": ["R-10", "R-11"],
+      "quantified_triggers": [
+        {
+          "r_id": "R-10",
+          "trigger": "T1-T3 安全员缺岗 / 急停失效 / 限速被突破即一票叫停；叫停请求 48 小时内回执闭合"
+        },
+        {
+          "r_id": "R-11",
+          "trigger": "90 天到期未作继续 / 整改 / 撤场决定即自动撤场；评估不达标不得默认续期"
+        }
+      ]
+    },
+    {
+      "id": "CC-05",
+      "scenario_no": "05",
+      "title_zh": "社区助餐与低速配送",
+      "type": "service_experience",
+      "subtype_zh": "服务",
+      "space_carrier": [
+        "geometry/land_use.geojson#LU-062",
+        "geometry/land_use.geojson#LU-061"
+      ],
+      "operator_role": "街道 + 配送运营机构；预算：轻量（待测算）",
+      "service_note": "低速配送机器人助餐；人机混行限速与人工接管",
+      "hard_stop_conditions": [
+        {
+          "condition": "限速被突破、人工接管失效、占道影响通行——停运",
+          "failure_mode": "限速突破 / 接管失效 / 占道",
+          "related_risks": ["R-10"]
+        }
+      ],
+      "recovery_evidence": "限速校准记录、接管演练、占道整改回执",
+      "review_window": "每月",
+      "ai_off_path": "人工配送、食堂自取、普通货架",
+      "exit_mechanism": "停运后机器人撤场，订单转人工配送",
+      "exit_related_risks": ["R-11"],
+      "quantified_triggers": [
+        {
+          "r_id": "R-10",
+          "trigger": "T1-T3 安全员缺岗 / 急停失效 / 限速被突破即一票叫停；叫停请求 48 小时内回执闭合"
+        },
+        {
+          "r_id": "R-11",
+          "trigger": "90 天到期未作继续 / 整改 / 撤场决定即自动撤场；评估不达标不得默认续期"
+        }
+      ]
+    },
+    {
+      "id": "CC-06",
+      "scenario_no": "06",
+      "title_zh": "儿童课后托管协同",
+      "type": "service_experience",
+      "subtype_zh": "服务",
+      "space_carrier": [
+        "geometry/land_use.geojson#LU-062",
+        "geometry/roads.geojson#ROAD-011",
+        "geometry/roads.geojson#ROAD-012",
+        "geometry/roads.geojson#ROAD-013",
+        "geometry/roads.geojson#ROAD-014"
+      ],
+      "operator_role": "社工 + 社区运营专员；预算：轻量（待测算）",
+      "service_note": "接送对接与临时托管；家长授权、社工复核；不采集未成年人轨迹",
+      "hard_stop_conditions": [
+        {
+          "condition": "未经家长授权、托管超时未对接、社工缺岗——停止接收新托管",
+          "failure_mode": "无家长授权 / 托管超时 / 社工缺岗",
+          "related_risks": ["R-09"]
+        }
+      ],
+      "recovery_evidence": "授权文件、对接记录、社工排班表",
+      "review_window": "学期",
+      "ai_off_path": "纸质接送卡、电话确认、人工托管登记",
+      "exit_mechanism": "授权撤回后 24 小时内删除托管记录",
+      "exit_related_risks": ["R-09"],
+      "quantified_triggers": [
+        {
+          "r_id": "R-09",
+          "trigger": "居民撤回同意后 24 小时内删除对应服务记录；健康信息只转介不落库；数据越界即停采"
+        }
+      ]
+    },
+    {
+      "id": "CC-07",
+      "scenario_no": "07",
+      "title_zh": "京张文化 AI 导览",
+      "type": "service_experience",
+      "subtype_zh": "体验",
+      "space_carrier": [
+        "geometry/green_space.geojson#GREEN-001",
+        "geometry/roads.geojson#ROAD-001"
+      ],
+      "operator_role": "文旅部门 + 文化运营平台；预算：轻量（待测算）",
+      "service_note": "多语种史实导览；史实经文史顾问复核，AI 生成内容明确标注",
+      "hard_stop_conditions": [
+        {
+          "condition": "无来源史实、生成内容未标注、素材未清权——下架内容",
+          "failure_mode": "无来源史实 / 未标注 / 未清权",
+          "related_risks": ["R-12"]
+        }
+      ],
+      "recovery_evidence": "来源—主张核对记录、清权台账",
+      "review_window": "年度，史料修订时触发重审",
+      "ai_off_path": "固定展签、实体导览牌、志愿者讲解",
+      "exit_mechanism": "下架后 24 小时内删除已发布内容",
+      "exit_related_risks": ["R-12"],
+      "quantified_triggers": [
+        {
+          "r_id": "R-12",
+          "trigger": "无来源主张、生成内容未标注、素材未清权即下架；撤回后 24 小时内删除已发布内容"
+        }
+      ]
+    },
+    {
+      "id": "CC-08",
+      "scenario_no": "08",
+      "title_zh": "企业服务 Copilot",
+      "type": "service_experience",
+      "subtype_zh": "产业",
+      "space_carrier": [
+        "geometry/land_use.geojson#LU-036"
+      ],
+      "operator_role": "园区平台 + 专业服务机构；预算：中等（待测算）",
+      "service_note": "政策与服务目录导航；明确不替代专业法律意见",
+      "hard_stop_conditions": [
+        {
+          "condition": "政策信息过期、输出被误读为审批结论、目录更新滞后——下线",
+          "failure_mode": "政策过期 / 误读审批 / 目录滞后",
+          "related_risks": ["R-09"]
+        }
+      ],
+      "recovery_evidence": "来源新鲜度台账、人工移交记录",
+      "review_window": "季度",
+      "ai_off_path": "窗口咨询、电话热线、纸质服务目录",
+      "exit_mechanism": "来源过期即退回人工目录",
+      "exit_related_risks": ["R-11"],
+      "quantified_triggers": [
+        {
+          "r_id": "R-09",
+          "trigger": "居民撤回同意后 24 小时内删除对应服务记录；健康信息只转介不落库；数据越界即停采"
+        },
+        {
+          "r_id": "R-11",
+          "trigger": "90 天到期未作继续 / 整改 / 撤场决定即自动撤场；评估不达标不得默认续期"
+        }
+      ]
+    },
+    {
+      "id": "CC-09",
+      "scenario_no": "09",
+      "title_zh": "公共安全与活动运营复核",
+      "type": "service_experience",
+      "subtype_zh": "治理",
+      "space_carrier": [
+        "geometry/public_space.geojson#PUBLIC-004",
+        "geometry/public_space.geojson#PUBLIC-012",
+        "geometry/public_space.geojson#PUBLIC-020",
+        "geometry/public_space.geojson#PUBLIC-027",
+        "geometry/roads.geojson#ROAD-011",
+        "geometry/roads.geojson#ROAD-012",
+        "geometry/roads.geojson#ROAD-013",
+        "geometry/roads.geojson#ROAD-014"
+      ],
+      "operator_role": "活动主办方 + 监管部门；预算：中等（待测算）",
+      "service_note": "人流与风险辅助研判；任何处置决定由人作出",
+      "hard_stop_conditions": [
+        {
+          "condition": "自动处置倾向、人流数据过度采集、无人值守——停用",
+          "failure_mode": "自动处置倾向 / 数据过度采集 / 无人值守",
+          "related_risks": ["R-09", "R-10"]
+        }
+      ],
+      "recovery_evidence": "处置人工签字、数据范围核验、值守排班",
+      "review_window": "每次活动前后 + 季度",
+      "ai_off_path": "人工巡查、现场指挥、纸质预案",
+      "exit_mechanism": "活动结束 24 小时内删除活动数据，恢复常态管理",
+      "exit_related_risks": ["R-09"],
+      "quantified_triggers": [
+        {
+          "r_id": "R-09",
+          "trigger": "居民撤回同意后 24 小时内删除对应服务记录；健康信息只转介不落库；数据越界即停采"
+        },
+        {
+          "r_id": "R-10",
+          "trigger": "T1-T3 安全员缺岗 / 急停失效 / 限速被突破即一票叫停；叫停请求 48 小时内回执闭合"
+        }
+      ]
+    },
+    {
+      "id": "CC-10",
+      "scenario_no": "10",
+      "title_zh": "社区共修工坊",
+      "type": "service_experience",
+      "subtype_zh": "运营",
+      "space_carrier": [
+        "geometry/land_use.geojson#LU-007",
+        "geometry/land_use.geojson#LU-062",
+        "geometry/key_areas.geojson#PROV-KEY-003"
+      ],
+      "operator_role": "社区自组织 + 驿站运营专员；预算：轻量（待测算）",
+      "service_note": "修家电、修鞋、修代码的技能匹配；线下运营",
+      "hard_stop_conditions": [
+        {
+          "condition": "技能匹配误导、线下安全隐患——停办整改",
+          "failure_mode": "技能匹配误导 / 线下安全隐患",
+          "related_risks": ["R-11"]
+        }
+      ],
+      "recovery_evidence": "工坊安全检查记录、志愿者登记表",
+      "review_window": "季度",
+      "ai_off_path": "公告栏报名、现场登记、人工配对",
+      "exit_mechanism": "工坊评估不达标转通用社区用房",
+      "exit_related_risks": ["R-11"],
+      "quantified_triggers": [
+        {
+          "r_id": "R-11",
+          "trigger": "90 天到期未作继续 / 整改 / 撤场决定即自动撤场；评估不达标不得默认续期"
+        }
+      ]
+    },
+    {
+      "id": "CC-11",
+      "scenario_no": "11",
+      "title_zh": "数字扫盲陪伴课堂",
+      "type": "service_experience",
+      "subtype_zh": "服务",
+      "space_carrier": [
+        "geometry/land_use.geojson#LU-062"
+      ],
+      "operator_role": "社工 + 志愿者；预算：轻量（待测算）",
+      "service_note": "一对一慢教学，教材开源；零数据采集",
+      "hard_stop_conditions": [
+        {
+          "condition": "出现任何数据采集、教学越界——停课整改",
+          "failure_mode": "数据采集 / 教学越界",
+          "related_risks": ["R-09"]
+        }
+      ],
+      "recovery_evidence": "课程记录（不含个人信息）、志愿者培训台账",
+      "review_window": "学期",
+      "ai_off_path": "全程人工窗口，本就无 AI 依赖",
+      "exit_mechanism": "服务记录最小化，可随时删除",
+      "exit_related_risks": ["R-09"],
+      "quantified_triggers": [
+        {
+          "r_id": "R-09",
+          "trigger": "居民撤回同意后 24 小时内删除对应服务记录；健康信息只转介不落库；数据越界即停采"
+        }
+      ]
+    },
+    {
+      "id": "CC-12",
+      "scenario_no": "12",
+      "title_zh": "大钟寺智能原生消费体验",
+      "type": "service_experience",
+      "subtype_zh": "消费",
+      "space_carrier": [
+        "geometry/land_use.geojson#LU-007",
+        "geometry/key_areas.geojson#PROV-KEY-003"
+      ],
+      "operator_role": "商业运营方 + 平台；预算：中等（待测算）",
+      "service_note": "智能体导购与内容消费；明示 AI 生成内容",
+      "hard_stop_conditions": [
+        {
+          "condition": "未授权交易、误导性交互、AI 内容未标注——下架",
+          "failure_mode": "未授权交易 / 误导交互 / 未标注",
+          "related_risks": ["R-12"]
+        }
+      ],
+      "recovery_evidence": "权限台账、内容标注复核、投诉回执",
+      "review_window": "季度",
+      "ai_off_path": "人工柜台、现金支付、普通导购",
+      "exit_mechanism": "撤销权限恢复普通摊位",
+      "exit_related_risks": ["R-11", "R-12"],
+      "quantified_triggers": [
+        {
+          "r_id": "R-11",
+          "trigger": "90 天到期未作继续 / 整改 / 撤场决定即自动撤场；评估不达标不得默认续期"
+        },
+        {
+          "r_id": "R-12",
+          "trigger": "无来源主张、生成内容未标注、素材未清权即下架；撤回后 24 小时内删除已发布内容"
+        }
+      ]
+    }
+  ]
+}

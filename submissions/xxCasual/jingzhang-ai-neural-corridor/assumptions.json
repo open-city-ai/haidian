@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "官方精确边界、重点区 polygon、控规条件（容积率、建筑高度、强度、退线）、现状建筑测绘、权属与工程条件在公开渠道尚未取得，须由官方资料与持证专业团队确认。",
+      "impact": "本包全部面积与比例指标基于 provisional polygon 在 EPSG:4548 复算，仅用于生成、展示与自检；官方数据发布后需整体重算全部图层与指标，且法定控制指标在补齐前不得作为审批依据。"
+    },
+    {
+      "id": "A-BOUNDARY-REPLACEMENT",
+      "status": "pending_official_data",
+      "statement": "取得官方 SITE_BOUNDARY 与 KEY_AREA 后，必须同时替换 site_boundary、key_areas、land_use、buildings、roads、green_space、public_space、phasing 与全部 metrics，并重新渲染图件、PDF、HTML 与运行自检。",
+      "impact": "只替换单个边界文件会导致方案图层与指标口径不一致。"
+    },
+    {
+      "id": "A-CONCEPT-SCALE",
+      "status": "design_concept",
+      "statement": "建筑基底、路网与拆改留均为概念设计量（44个概念建筑、25条概念路段、概念拆改留分级），表达空间组织逻辑，不代表现状测绘、法定建筑方案或工程可行性。",
+      "impact": "概念量可随官方数据与深化设计更新。"
+    },
+    {
+      "id": "A-SCENARIO-OPERATIONS",
+      "status": "concept_suggestion",
+      "statement": "10张场景卡、3个测试验证场景、3处朝圣地标与年度活动体系均为概念建议，不构成已批准运营、已确定的政府安排或投资承诺。",
+      "impact": "运营机制需由运营主体与专业团队深化并经过公众参与。"
+    },
+    {
+      "id": "A-BILINGUAL-PARITY",
+      "status": "satisfied",
+      "statement": "proposal.md（中文主文件）与 proposal.en.md 保持等义；图件、HTML、A3/A0 PDF 均提供中英配对版本。",
+      "impact": "双语契约 bilingual_contract_version=1 已声明并通过本地校验。"
+    },
+    {
+      "id": "A-OSM-USE",
+      "status": "not_used_in_package",
+      "statement": "本包未直接引用 OSM 数据；若后续使用 OSM 补充背景，须遵循 ODbL 署名并在 sources.json 登记抓取元数据与快照哈希。",
+      "impact": "避免众包数据被误作正式边界依据。"
+    }
+  ]
+}

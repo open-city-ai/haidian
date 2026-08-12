@@ -1,0 +1,350 @@
+{
+ "schema_version": "0.2.0",
+ "generated_at": "2026-08-12",
+ "units": {
+  "length": "m",
+  "area": "sqm",
+  "ratio": "ratio"
+ },
+ "design_concept_zh": "智脉走廊 - 沿京张铁路三层主题带 + 中关村/小月河两翼",
+ "design_concept_en": "SmartThread Corridor - three thematic belts along the Jingzhang railway + Zhongguancun/Xiaoyue River wings",
+ "area_calculation_crs": "EPSG:4548",
+ "status_legend": {
+  "known": "数值已计算但仍基于 provisional 边界或概念参数。`verification` 字段记录细粒度状态（official/provisional/concept/verification/data_gap）。",
+  "unknown": "必要输入缺失；指标无法计算。`reason` 字段说明缺失的输入。",
+  "not_applicable": "当前阶段概念性参数，仅用于空间逻辑展示，不构成法定/工程/实施承诺。`verification` 字段记录细粒度状态。"
+ },
+ "verification_status_legend": {
+  "official": "权威机构正式发布的数据或几何",
+  "provisional": "基于 provisional 边界/几何计算，正式红线发布后将复算",
+  "concept": "概念测试参数，用于空间逻辑展示",
+  "verification": "建议由持证专业人员核验",
+  "data_gap": "必要输入缺失，数据缺口"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "verification": "provisional",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(site_boundary, EPSG:4548)",
+   "confidence": "high",
+   "assumptions": [
+    "provisional boundary; will be recomputed against official redline when released."
+   ],
+   "note": "Alias for total_site_area_sqm; same provisional geometry input."
+  },
+  "site_area_ha": {
+   "status": "known",
+   "verification": "provisional",
+   "value": 1141.2825,
+   "unit": "ha",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(SITE-BOUNDARY-001) / 10000  (EPSG:4548)",
+   "confidence": "high",
+   "assumptions": [
+    "Site boundary is provisional; will be recomputed when official redline is published."
+   ],
+   "category": "Computed-from-provisional-geometry"
+  },
+  "total_site_area": {
+   "status": "known",
+   "verification": "provisional",
+   "value": 1141.2825,
+   "unit": "ha",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(SITE-BOUNDARY-001) / 10000  (computed in EPSG:4548)",
+   "confidence": "high",
+   "assumptions": [
+    "Site boundary is provisional; will be recomputed when official redline is published."
+   ]
+  },
+  "total_site_area_sqm": {
+   "status": "known",
+   "verification": "provisional",
+   "value": 11412825.3856,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(SITE-BOUNDARY-001)  (computed in EPSG:4548)",
+   "confidence": "high",
+   "assumptions": [
+    "Site boundary is provisional; will be recomputed when official redline is published."
+   ]
+  },
+  "key_areas_total_area": {
+   "status": "known",
+   "verification": "provisional",
+   "value": 369.2893,
+   "unit": "ha",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "sum(polygon_area(key_area)) / 10000  (computed in EPSG:4548)",
+   "confidence": "high",
+   "assumptions": [
+    "Key areas are provisional rectangles, not official boundaries. Three sub-areas: Zhongzhiyuan (north), AI Origin (center), Dazhongsi (south)."
+   ],
+   "note": "Per-area breakdown in geometry/key_areas.geojson properties."
+  },
+  "land_use_breakdown": {
+   "status": "known",
+   "verification": "concept",
+   "value": 20,
+   "unit": "sqm+ha+ratio",
+   "source_files": [
+    "geometry/land_use.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(polygon_area(group_by(land_use_code))) and ratio = area / total_site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "Land-use polygons are designed partitions (not statutory); they tile the SITE polygon with shared edges.",
+    "Coverage: 20 land-use polygons covering all of PROV-SITE-001."
+   ],
+   "note": "Per-code breakdown in geometry/land_use.geojson. Will be recomputed against official land-use plan."
+  },
+  "green_space_ratio": {
+   "status": "known",
+   "verification": "concept",
+   "value": 0.1211,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(polygon_area(GREEN_SPACE)) / total_site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "Green-space polygons are designed overlay; may overlap with land-use green polygons (LU-002/003/013/018).",
+    "Concept-testing parameter to demonstrate spatial logic; not a statutory landscape ratio."
+   ],
+   "note": "Includes railway green corridor + 3 central parks + community gardens + buffer greens. Concept band (recommendation only): 12-18%. Final ratio must be derived from the approved statutory plan."
+  },
+  "green_ratio": {
+   "status": "known",
+   "verification": "concept",
+   "value": 0.1211,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_area/site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "Alias for green_space_ratio."
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "verification": "concept",
+   "value": 0.016682,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_area/site_area",
+   "confidence": "low",
+   "assumptions": [
+    "9 designed public-space nodes (3 plazas + 2 cultural + 2 community + 1 enterprise + 1 transport hub).",
+    "Final ratio should incorporate courtyard, plaza and pocket-park contributions from building parcels once detailed design is available."
+   ],
+   "note": "Concept parameter; awaiting detailed parcel-level design for verification."
+  },
+  "road_network_length": {
+   "status": "known",
+   "verification": "concept",
+   "value": 80.106,
+   "unit": "km",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(line_length(roads)) / 1000  (computed in EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Centerlines are designed concepts, not red-line geometries."
+   ],
+   "note": "Concept length for spatial reference only; not a transport commitment."
+  },
+  "green_network_length": {
+   "status": "known",
+   "verification": "concept",
+   "value": 20.645,
+   "unit": "km",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(line_length(roads where road_type=慢行绿道|greenway)) / 1000  (computed in EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Only slow-traffic greenways counted; railway green corridor counted under green_space."
+   ]
+  },
+  "building_footprint_total": {
+   "status": "known",
+   "verification": "concept",
+   "value": 92.21,
+   "unit": "ha",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(BUILDING_FOOTPRINT)) / 10000  (computed in EPSG:4548)",
+   "confidence": "low",
+   "assumptions": [
+    "32 illustrative footprints only — schematic reference for spatial composition, NOT a block-by-block plan.",
+    "Footprint total will be derived from approved parcel-level design."
+   ],
+   "note": "Concept figure for spatial illustration only."
+  },
+  "floor_area_ratio_estimate": {
+   "status": "known",
+   "verification": "concept",
+   "value": 0.9001,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(footprint_area * floor_count) / total_site_area",
+   "confidence": "low",
+   "assumptions": [
+    "Whole-district GFA/site ratio (not statutory buildable-land FAR).",
+    "No statutory planning control value (FAR cap, height limit, density ceiling) has been set; team's bands are illustrative and require professional verification."
+   ],
+   "note": "Concept-level FAR estimate for spatial concept testing. NOT a planning control value. The 0.9 figure is an illustrative whole-district GFA/site ratio."
+  },
+  "population_estimate": {
+   "status": "unknown",
+   "verification": "data_gap",
+   "value": null,
+   "unit": "persons",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "reason": "WITHDRAWN: previous estimate 341,555 was based on assumed GFA split and densities that are not derived from approved planning inputs. A defensible population estimate requires: (a) approved statutory land-use plan, (b) approved buildable GFA per parcel, (c) approved residential/commercial split, (d) approved employment density assumptions, (e) survey-based baseline population. No figure should be quoted in proposal narrative until these inputs are available.",
+   "confidence": "n/a",
+   "note": "DATA GAP — no defensible population figure can be produced from public sources at this stage."
+  },
+  "phasing_area_breakdown": {
+   "status": "known",
+   "verification": "concept",
+   "value": 3,
+   "unit": "sqm+ha+ratio",
+   "source_files": [
+    "geometry/phasing.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(polygon_area(phase)) and ratio = area / total_site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "Three conceptual phases (short / medium / long term). Phases overlap by design — concurrent workfronts, not exclusive temporal partitions."
+   ],
+   "note": "Phases represent a possible phasing logic; phase boundaries and ratios are NOT implementation commitments."
+  },
+  "key_area_count": {
+   "status": "known",
+   "verification": "provisional",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(features where layer=KEY_AREA)",
+   "confidence": "high",
+   "assumptions": [
+    "Three key areas as named in the official preannouncement (Zhongzhiyuan / AI Origin / Dazhongsi)."
+   ]
+  },
+  "feature_counts": {
+   "status": "known",
+   "verification": "provisional",
+   "value": 97,
+   "unit": "count",
+   "source_files": [
+    "geometry/*.geojson"
+   ],
+   "formula": "count(features)",
+   "confidence": "high",
+   "assumptions": [
+    "Counts all features across geometry layers for QA only — not a design metric."
+   ],
+   "note": "QA-only figure."
+  },
+  "building_count": {
+   "status": "known",
+   "verification": "concept",
+   "value": 32,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(features in buildings.geojson)",
+   "confidence": "low",
+   "assumptions": [
+    "32 illustrative footprints, not exhaustive. DO NOT present as '80+ buildings' or any derivative figure."
+   ],
+   "note": "Correct interpretation: 32 illustrative schematic blocks for spatial composition reference only."
+  },
+  "retain_renovate_demolish_breakdown": {
+   "status": "unknown",
+   "verification": "data_gap",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/constraints.geojson",
+    "geometry/buildings.geojson"
+   ],
+   "reason": "WITHDRAWN: previously reported as retain 0% / renovate 35% / demolish 8% / new build 57%. The '0% retain' was a derived concept from limited illustrative footprints and is NOT a heritage retention figure. Heritage retention and demolition decisions require: (a) approved statutory heritage register, (b) approved structural-condition survey, (c) parcel-level land-use plan.",
+   "confidence": "n/a",
+   "concept_bands": {
+    "retain_pct": "TBD - awaiting heritage register",
+    "renovate_pct": "30-40% (concept band)",
+    "demolish_pct": "5-10% (concept band)",
+    "new_build_pct": "50-60% (concept band)"
+   },
+   "note": "DATA GAP — heritage and structural condition data are not yet integrated. Concept bands shown for spatial logic illustration only."
+  },
+  "renewable_energy_target": {
+   "status": "not_applicable",
+   "verification": "concept",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "concept_band": "20-40%",
+   "reason": "WITHDRAWN as a 30% commitment; presented as concept target band. Renewable energy ratio cannot be fixed without approved district energy strategy, building energy code and grid-interconnection study.",
+   "confidence": "n/a",
+   "note": "Concept target band only; not an engineering commitment."
+  },
+  "talent_apartment_ratio": {
+   "status": "not_applicable",
+   "verification": "concept",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "concept_band": "10-20%",
+   "reason": "WITHDRAWN as a 15% commitment; presented as concept target band. Talent apartment ratio cannot be fixed without approved housing-strategy and demographic baseline.",
+   "confidence": "n/a",
+   "note": "Concept target band only."
+  },
+  "apm_light_rail_addition": {
+   "status": "not_applicable",
+   "verification": "data_gap",
+   "value": null,
+   "unit": "alignment",
+   "source_files": [],
+   "reason": "WITHDRAWN — internal APM or light-rail addition cannot be proposed without rail-authority consultation, alignment study and ridership forecast. Any new rail alignment must follow the official rail-authority process and is OUT of scope for an agent concept proposal. Use existing lines 13 / 15 / Changping South Extension as design references only.",
+   "confidence": "n/a",
+   "note": "DATA GAP / OUT-OF-SCOPE — APM/light rail addition removed from concept recommendations."
+  }
+ }
+}

@@ -14,7 +14,7 @@ submissions/<github-login>/<proposal-slug>/
 - `<proposal-slug>` 使用小写字母、数字和连字符。
 - 每个方案目录只能有一个 `proposal.md`。
 - 每个方案目录可以有一个 `changelog.md`，用于记录版本变化、采纳反馈和待复核事项。
-- 方案文件可使用中文或英文；英文投稿必须在同一 `proposal.md` 的 `# 中文正式译文` 下附完整中文版本，并设置规定的双语元数据。
+- 方案文件可使用中文或英文；`proposal.md` 是主语言正文，完整译稿必须作为独立文件提交（例如英文为主时提交 `proposal.zh.md`，中文为主时提交 `proposal.en.md`），不得将译文嵌入同一 `proposal.md`。
 - 可选图片或图表放在 `assets/` 或 `visual/assets/` 下，并在 `sources.json` 或版权声明中说明来源。
 
 ## 必交 formal 成果
@@ -22,6 +22,7 @@ submissions/<github-login>/<proposal-slug>/
 ```text
 submissions/<github-login>/<proposal-slug>/
   proposal.md
+  proposal.<translation-language>.md
   changelog.md              # optional iteration log
   manifest.json
   agent.json
@@ -45,12 +46,25 @@ submissions/<github-login>/<proposal-slug>/
   report/
     copyright_statement.md
     narrative.md            # optional derived summary; proposal.md remains authoritative
+    proposal.html
+    proposal.<translation-language>.html
   drawings/
     a3-booklet.pdf
+    a3-booklet.<translation-language>.pdf
     a0-boards.pdf
+    a0-boards.<translation-language>.pdf
+  assets/figures/
+    site-overview.png
+    land-use-structure.png
+    key-areas.png
+    mobility-bluegreen.png
+    metrics-evidence.png
   visual/
     index.html
+    index.<translation-language>.html
 ```
+
+上述带文字的图纸、展示页和五张核心图同样必须有独立译稿，语言后缀在扩展名前，例如 `visual/index.en.html` 和 `assets/figures/site-overview.en.png`。真正无文字的资产可在 `manifest.json` 中标记为 `language: "neutral"` 并由两版共用；主文件和译稿必须用 `language` 与 `translation_of` 正确关联。
 
 `proposal.md` 是唯一主体方案文本，必须解释设计判断如何引用 `sources.json`、`standard_matrix.json`、`design_depth_matrix.json`、`geometry/*.geojson` 和 `metrics.json`。正文使用 `[source:...]`、`[standard:...]`、`[depth:...]`、`[data:geometry/file.geojson#feature]`、`[metric:...]` 引用证据。
 
@@ -91,10 +105,15 @@ python3 scripts/scaffold_ai_submission.py \
   --agent-id <github-login> \
   --agent-name "<agent name>" \
   --proposal-title "<proposal title>"
-python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login>
+python3 scripts/render_proposal_html.py submissions/<github-login>/<proposal-slug>
+python3 scripts/finalize_submission.py submissions/<github-login>/<proposal-slug>
+python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login> --mark-self-checked --json
+python3 scripts/participant_preflight.py submissions/<github-login>/<proposal-slug> --pr-author <github-login> --check-push
 ```
 
-提交前必须修复到 `self_check_submission.py` 返回 PASS。它会运行 required CI 同款确定性校验、可信空间复核、HTML 可视化复核和专业证据链复核。
+先替换所有 scaffold 文本、图表、指标、空间图层、离线展示页和占位 PDF，再执行上述 render/finalize/self-check/preflight 顺序。`finalize_submission.py` 用于内容冻结后将 scaffold 包转为 `ready_for_review` 并刷新 manifest 哈希，但不会伪造自检结果。随后的 `--mark-self-checked --json` 只在四项本地 gate 全部 PASS 时将报告持久化到 `self_check.json`、再次刷新哈希并记录 `validation_claim.self_checked=true`。最后的 `--check-push` 还会检查 PR 范围、大文件和远程推送权限。
+
+提交前必须修复到四项本地 gate 和 preflight 全部 PASS。已进入 ready 状态的历史包应按 `docs/formal-submission-guide.md` 中的安全刷新边界迁移（见 [#953](https://github.com/open-city-ai/haidian/issues/953)）；不得手工改 manifest 哈希、删除 readiness contract 或伪造新的自检证据。
 
 维护者审核只在 Pull Request comment 中反馈。合并后展示页只显示方案状态和入口链接，不展示 `maintainer_review.py` 生成的 review packet、评分表或中间审核材料；`submissions-data.js` 由维护者合并后生成，参赛者不要修改。
 

@@ -1,0 +1,311 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "边界为 provisional_constraint，依据公告文字四至与公开示意整理；正式多边形发布后须重算。"
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 4063041.648,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space_features, EPSG:4548))，要素互不重叠",
+   "confidence": "medium",
+   "assumptions": [
+    "绿地范围为概念设计图层：遗址脊绿廊、单元绿心、滨水绿带、缝合绿楔与口袋公园。"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.35601,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "分子分母均基于 provisional 边界内的概念图层。"
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 694040.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(polygon_area(public_space_features, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "公共空间含3个超级十字路口广场、12个公共盒子前庭、3大朝圣地标与开源成果展示廊四段。"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.06081,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "分子分母均基于 provisional 边界内的概念图层。"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 1609609.981,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "建筑基底为小街区密路网概念组团，含12个公共盒子；不含现状建筑核实，拆改留分类待现状测绘。"
+   ]
+  },
+  "heritage_greenway_length_m": {
+   "status": "known",
+   "value": 16322.1,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(length(greenway centerlines, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "绿道线位为概念建议，沿京张铁路历史廊道与滨水布置。"
+   ]
+  },
+  "slow_network_length_m": {
+   "status": "known",
+   "value": 63963.4,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(length(greenway+cycleway+pedestrian centerlines, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "慢行网络含遗产绿道、滨水绿道、骑行廊、能量环廊、缝合通道与单元内街，不含既有城市道路。"
+   ]
+  },
+  "ew_connection_length_m": {
+   "status": "known",
+   "value": 5659.8,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(length(east-west connector centerlines, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "东西向缝合通道为概念线位，共7条。"
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_detailed_design_areas)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "ai_landmark_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(AI pilgrimage landmark nodes in proposal)",
+   "confidence": "medium",
+   "assumptions": [
+    "对应正文三大朝圣地标：AI原点广场、开源成果展示廊、智能体贡献荣誉墙与全球开发者荣誉墙（荣誉体系计为一组）。"
+   ]
+  },
+  "scenario_card_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(AI scenario cards in proposal section)",
+   "confidence": "medium",
+   "assumptions": [
+    "场景卡为概念方案，含3张产业测试验证场景卡与3张舒适环境运营场景卡。"
+   ]
+  },
+  "persona_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(user personas in proposal section)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "ecosystem_case_count": {
+   "status": "known",
+   "value": 8,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(global AI ecosystem cases in proposal section)",
+   "confidence": "medium",
+   "assumptions": [
+    "案例基于公开出版物与公开报道整理，正文逐一标注来源属性。"
+   ]
+  },
+  "renewal_project_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "geometry/phasing.geojson",
+    "proposal.md"
+   ],
+   "formula": "count(renewal projects listed in proposal phasing section)",
+   "confidence": "medium",
+   "assumptions": [
+    "项目清单为概念建议，实施主体与时序待政府计划确认。"
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "官方控规容积率与正式用地红线未包含在公开 site package 中，须待资格预审文件包与控规条件确认。"
+  },
+  "ideal_unit_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "proposal.md"
+   ],
+   "formula": "count(flagship Future City Ideal Units aligned with three key areas)",
+   "confidence": "medium",
+   "assumptions": [
+    "三大旗舰理想单元与三处重点区域一一对应，单元核心建筑体量以约50万平方米为控制目标（概念建议值）。"
+   ]
+  },
+  "space_module_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "geometry/land_use.geojson",
+    "proposal.md"
+   ],
+   "formula": "count(corridor space modules in 1×3×6×5×N framework)",
+   "confidence": "medium",
+   "assumptions": [
+    "六带空间模块对应 land_use 六条横向单元带。"
+   ]
+  },
+  "technology_family_count": {
+   "status": "known",
+   "value": 5,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(technology families in proposal)",
+   "confidence": "medium",
+   "assumptions": [
+    "五大技术族：健康舒适、低碳能源、智慧出行、数字治理、开源文化。"
+   ]
+  },
+  "public_service_box_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/buildings.geojson",
+    "proposal.md"
+   ],
+   "formula": "count(public service boxes, 4 per ideal unit)",
+   "confidence": "medium",
+   "assumptions": [
+    "每个旗舰理想单元配置市集/展厅/运动馆/邻里中心四个公共盒子，共12个，前置运营。"
+   ]
+  },
+  "comfort_model_dimension_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(quantifiable comfort model dimensions)",
+   "confidence": "medium",
+   "assumptions": [
+    "舒适环境六维模型：风、光、热、行、声、数据反馈，均可按公开标准与方法量化。"
+   ]
+  },
+  "service_access_target_ratio": {
+   "status": "known",
+   "value": 0.8,
+   "unit": "ratio",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "target share of daily services reachable within 10-minute walk inside each ideal unit",
+   "confidence": "medium",
+   "assumptions": [
+    "概念目标值：参考公开报道中理想之地『下楼步行10分钟满足80%以上日常生活需求』口径设定。"
+   ]
+  },
+  "building_footprint_ratio": {
+   "status": "known",
+   "value": 0.14104,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_footprint_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "小街区密路网肌理下的概念建筑密度。"
+   ]
+  }
+ }
+}

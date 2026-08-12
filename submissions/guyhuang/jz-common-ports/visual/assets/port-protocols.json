@@ -1,0 +1,1278 @@
+{
+  "schema_version": "0.2.0",
+  "status": "concept_design_with_synthetic_protocol_tests",
+  "disclaimer": "No card is approved for field operation. Provisional geometry, role-based accountability and synthetic fixtures are explicit.",
+  "core_contract": [
+    "request",
+    "dock",
+    "sandbox",
+    "human_review",
+    "publish_or_recall"
+  ],
+  "passport_states": [
+    {
+      "id": "concept",
+      "gate": "public purpose, owner role and non-AI path declared"
+    },
+    {
+      "id": "simulation",
+      "gate": "synthetic fixtures and risk thresholds pass"
+    },
+    {
+      "id": "sandbox",
+      "gate": "permissions, baseline and human capacity confirmed"
+    },
+    {
+      "id": "limited",
+      "gate": "time/space/user cap plus public steward sign-off"
+    },
+    {
+      "id": "hold",
+      "gate": "automatic or red-card pause; no service degradation"
+    },
+    {
+      "id": "retired",
+      "gate": "data deletion, outcome review and public change record"
+    }
+  ],
+  "ports": [
+    {
+      "id": "verification",
+      "zh": "众智园验证港",
+      "en": "Zhongzhiyuan Verification Port",
+      "purpose": "full-stack testing, safety, standards and public responsibility",
+      "color": "#10A6A6",
+      "scenario_ids": [
+        "SC-01",
+        "SC-02",
+        "SC-03",
+        "SC-04"
+      ]
+    },
+    {
+      "id": "origin",
+      "zh": "北京AI原点开源港",
+      "en": "Beijing AI Origin Open-source Port",
+      "purpose": "near-campus translation, open-source contribution, learning and rights",
+      "color": "#2474A6",
+      "scenario_ids": [
+        "SC-05",
+        "SC-06",
+        "SC-07",
+        "SC-08"
+      ]
+    },
+    {
+      "id": "living",
+      "zh": "大钟寺生活港",
+      "en": "Dazhongsi Living Port",
+      "purpose": "inclusive daily services, agent-native business and public feedback",
+      "color": "#D65B52",
+      "scenario_ids": [
+        "SC-09",
+        "SC-10",
+        "SC-11",
+        "SC-12"
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "P01",
+      "zh": "开源开发者",
+      "en": "Open-source developer",
+      "need": "reproducible release, collaboration, attribution",
+      "exclusion_risk": "reputation scoring or vendor lock-in"
+    },
+    {
+      "id": "P02",
+      "zh": "初创与中小团队",
+      "en": "Startup or SME team",
+      "need": "low-cost testing, IP and service navigation",
+      "exclusion_risk": "pay-to-play access"
+    },
+    {
+      "id": "P03",
+      "zh": "周边居民",
+      "en": "Neighbouring resident",
+      "need": "quiet daily routes, useful services, genuine influence",
+      "exclusion_risk": "surveillance, event nuisance, rent pressure"
+    },
+    {
+      "id": "P04",
+      "zh": "高校师生",
+      "en": "University community",
+      "need": "translation, learning and campus-city access",
+      "exclusion_risk": "unauthorized research or campus data"
+    },
+    {
+      "id": "P05",
+      "zh": "老年人与残障使用者",
+      "en": "Older or disabled user",
+      "need": "step-free route and human help",
+      "exclusion_risk": "digital-only service and inaccessible interface"
+    },
+    {
+      "id": "P06",
+      "zh": "小商户与一线服务者",
+      "en": "Small operator or frontline worker",
+      "need": "affordable participation and predictable operations",
+      "exclusion_risk": "automation displacement or rising occupancy cost"
+    },
+    {
+      "id": "P07",
+      "zh": "儿童与照护者",
+      "en": "Child and caregiver",
+      "need": "safe, legible and non-tracked use",
+      "exclusion_risk": "profiling minors or attention capture"
+    },
+    {
+      "id": "P08",
+      "zh": "国际访客与开发者",
+      "en": "International visitor or developer",
+      "need": "bilingual orientation and transparent rules",
+      "exclusion_risk": "language or identity barriers"
+    },
+    {
+      "id": "P09",
+      "zh": "公共服务一线人员",
+      "en": "Public-service frontline staff",
+      "need": "decision support without responsibility transfer",
+      "exclusion_risk": "automation bias and hidden workload"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "SC-01",
+      "title_zh": "模型责任码头",
+      "title_en": "Model Responsibility Dock",
+      "port_id": "verification",
+      "persona_ids": [
+        "P01",
+        "P09"
+      ],
+      "space_feature_id": "PUBLIC-SC-01",
+      "public_purpose": "make AI testing and responsibility inspectable",
+      "inputs": "structured model card, synthetic test log, declared version",
+      "data_class": "public, synthetic, or user-provided minimum data only",
+      "retention": "session-only unless an appeal record is explicitly requested; operational log 90 days without personal content",
+      "forbidden_data": [
+        "facial recognition",
+        "continuous location trail",
+        "inferred disability/health status",
+        "minors profiling",
+        "secret or uncleared material"
+      ],
+      "ai_role": "validate completeness and route threshold breaches",
+      "output": "explainable option, flag, or routing draft with source/version label",
+      "non_ai_fallback": "printed checklist and staffed review desk",
+      "accountable_role": "AI assurance role",
+      "human_gate": "assurance reviewer + affected-group steward",
+      "affected_group_governance": "port steward seat may red-card pause; independent appeal receives a written human outcome",
+      "pause_trigger": "model version change; missing test; severe safety flag",
+      "appeal": "in-person, phone and paper paths; no penalty for refusing AI; human final decision",
+      "exit_and_retirement": "expire after 90 days unless evidence gate passes; export public audit summary, delete scoped data, keep non-personal change record",
+      "passport_state": "simulation",
+      "phase": "P1",
+      "baseline": "Gate 0 observation and manual-service baseline required before field pilot",
+      "kpi": "fixture completeness=100%; severe flags intercepted=100%",
+      "flagship": true,
+      "replay_task_ids": [
+        "sc-01-01",
+        "sc-01-02",
+        "sc-01-03",
+        "sc-01-04",
+        "sc-01-05"
+      ],
+      "replay_command": "node visual/assets/replay-protocols.js --check --pilot SC-01"
+    },
+    {
+      "id": "SC-02",
+      "title_zh": "端侧能效基准台",
+      "title_en": "Edge Energy Benchmark",
+      "port_id": "verification",
+      "persona_ids": [
+        "P02",
+        "P06"
+      ],
+      "space_feature_id": "PUBLIC-SC-02",
+      "public_purpose": "make AI testing and responsibility inspectable",
+      "inputs": "device-declared energy record and synthetic workload",
+      "data_class": "public, synthetic, or user-provided minimum data only",
+      "retention": "session-only unless an appeal record is explicitly requested; operational log 90 days without personal content",
+      "forbidden_data": [
+        "facial recognition",
+        "continuous location trail",
+        "inferred disability/health status",
+        "minors profiling",
+        "secret or uncleared material"
+      ],
+      "ai_role": "compare declared workload against transparent energy envelope",
+      "output": "explainable option, flag, or routing draft with source/version label",
+      "non_ai_fallback": "manual meter log and published calculation sheet",
+      "accountable_role": "low-carbon operations role",
+      "human_gate": "energy reviewer + public steward",
+      "affected_group_governance": "port steward seat may red-card pause; independent appeal receives a written human outcome",
+      "pause_trigger": "budget exceedance; unverifiable meter; unsafe heat",
+      "appeal": "in-person, phone and paper paths; no penalty for refusing AI; human final decision",
+      "exit_and_retirement": "expire after 90 days unless evidence gate passes; export public audit summary, delete scoped data, keep non-personal change record",
+      "passport_state": "concept",
+      "phase": "P2",
+      "baseline": "Gate 0 observation and manual-service baseline required before field pilot",
+      "kpi": "all runs within declared envelope; method published",
+      "flagship": false,
+      "replay_task_ids": [],
+      "replay_command": null
+    },
+    {
+      "id": "SC-03",
+      "title_zh": "标准协作实验台",
+      "title_en": "Standards Co-lab",
+      "port_id": "verification",
+      "persona_ids": [
+        "P01",
+        "P09"
+      ],
+      "space_feature_id": "PUBLIC-SC-03",
+      "public_purpose": "make AI testing and responsibility inspectable",
+      "inputs": "public standard text and contributor proposals",
+      "data_class": "public, synthetic, or user-provided minimum data only",
+      "retention": "session-only unless an appeal record is explicitly requested; operational log 90 days without personal content",
+      "forbidden_data": [
+        "facial recognition",
+        "continuous location trail",
+        "inferred disability/health status",
+        "minors profiling",
+        "secret or uncleared material"
+      ],
+      "ai_role": "cluster clauses and reveal unresolved conflicts",
+      "output": "explainable option, flag, or routing draft with source/version label",
+      "non_ai_fallback": "facilitated standards workshop with paper issue board",
+      "accountable_role": "standards facilitation role",
+      "human_gate": "domain professional + rights reviewer",
+      "affected_group_governance": "port steward seat may red-card pause; independent appeal receives a written human outcome",
+      "pause_trigger": "non-public standard; unattributed text; unresolved conflict",
+      "appeal": "in-person, phone and paper paths; no penalty for refusing AI; human final decision",
+      "exit_and_retirement": "expire after 90 days unless evidence gate passes; export public audit summary, delete scoped data, keep non-personal change record",
+      "passport_state": "concept",
+      "phase": "P2",
+      "baseline": "Gate 0 observation and manual-service baseline required before field pilot",
+      "kpi": "100% source attribution; conflict register closed or held",
+      "flagship": false,
+      "replay_task_ids": [],
+      "replay_command": null
+    },
+    {
+      "id": "SC-04",
+      "title_zh": "清河绿色实验窗",
+      "title_en": "Qinghe Green Lab",
+      "port_id": "verification",
+      "persona_ids": [
+        "P03",
+        "P07"
+      ],
+      "space_feature_id": "PUBLIC-SC-04",
+      "public_purpose": "make AI testing and responsibility inspectable",
+      "inputs": "non-personal environmental observations and maintenance log",
+      "data_class": "public, synthetic, or user-provided minimum data only",
+      "retention": "session-only unless an appeal record is explicitly requested; operational log 90 days without personal content",
+      "forbidden_data": [
+        "facial recognition",
+        "continuous location trail",
+        "inferred disability/health status",
+        "minors profiling",
+        "secret or uncleared material"
+      ],
+      "ai_role": "explain anomalies and propose inspection priority",
+      "output": "explainable option, flag, or routing draft with source/version label",
+      "non_ai_fallback": "manual observation board and hotline",
+      "accountable_role": "landscape maintenance role",
+      "human_gate": "ecology professional + resident steward",
+      "affected_group_governance": "port steward seat may red-card pause; independent appeal receives a written human outcome",
+      "pause_trigger": "personal tracking; flood alert uncertainty; ecology harm",
+      "appeal": "in-person, phone and paper paths; no penalty for refusing AI; human final decision",
+      "exit_and_retirement": "expire after 90 days unless evidence gate passes; export public audit summary, delete scoped data, keep non-personal change record",
+      "passport_state": "concept",
+      "phase": "P3",
+      "baseline": "Gate 0 observation and manual-service baseline required before field pilot",
+      "kpi": "inspection response recorded; zero personal identifiers",
+      "flagship": false,
+      "replay_task_ids": [],
+      "replay_command": null
+    },
+    {
+      "id": "SC-05",
+      "title_zh": "开源发布厅",
+      "title_en": "Open-source Release Hall",
+      "port_id": "origin",
+      "persona_ids": [
+        "P01",
+        "P04"
+      ],
+      "space_feature_id": "PUBLIC-SC-05",
+      "public_purpose": "turn near-campus knowledge into open and accountable capability",
+      "inputs": "cleared repository metadata, license, test and accessibility statements",
+      "data_class": "public, synthetic, or user-provided minimum data only",
+      "retention": "session-only unless an appeal record is explicitly requested; operational log 90 days without personal content",
+      "forbidden_data": [
+        "facial recognition",
+        "continuous location trail",
+        "inferred disability/health status",
+        "minors profiling",
+        "secret or uncleared material"
+      ],
+      "ai_role": "check release passport and create human-readable summary",
+      "output": "explainable option, flag, or routing draft with source/version label",
+      "non_ai_fallback": "staffed release clinic with paper checklist",
+      "accountable_role": "open-source community role",
+      "human_gate": "license reviewer + public steward",
+      "affected_group_governance": "port steward seat may red-card pause; independent appeal receives a written human outcome",
+      "pause_trigger": "license conflict; secret; missing accessibility note; model change",
+      "appeal": "in-person, phone and paper paths; no penalty for refusing AI; human final decision",
+      "exit_and_retirement": "expire after 90 days unless evidence gate passes; export public audit summary, delete scoped data, keep non-personal change record",
+      "passport_state": "simulation",
+      "phase": "P1",
+      "baseline": "Gate 0 observation and manual-service baseline required before field pilot",
+      "kpi": "all mandatory release fields pass; appeal path visible",
+      "flagship": true,
+      "replay_task_ids": [
+        "sc-05-01",
+        "sc-05-02",
+        "sc-05-03",
+        "sc-05-04",
+        "sc-05-05"
+      ],
+      "replay_command": "node visual/assets/replay-protocols.js --check --pilot SC-05"
+    },
+    {
+      "id": "SC-06",
+      "title_zh": "IP与转化柜台",
+      "title_en": "IP and Translation Desk",
+      "port_id": "origin",
+      "persona_ids": [
+        "P02",
+        "P04"
+      ],
+      "space_feature_id": "PUBLIC-SC-06",
+      "public_purpose": "turn near-campus knowledge into open and accountable capability",
+      "inputs": "user-supplied non-confidential question and public guidance",
+      "data_class": "public, synthetic, or user-provided minimum data only",
+      "retention": "session-only unless an appeal record is explicitly requested; operational log 90 days without personal content",
+      "forbidden_data": [
+        "facial recognition",
+        "continuous location trail",
+        "inferred disability/health status",
+        "minors profiling",
+        "secret or uncleared material"
+      ],
+      "ai_role": "route request to relevant service role without legal decision",
+      "output": "explainable option, flag, or routing draft with source/version label",
+      "non_ai_fallback": "human appointment and printed service directory",
+      "accountable_role": "technology service coordinator role",
+      "human_gate": "qualified human service reviewer",
+      "affected_group_governance": "port steward seat may red-card pause; independent appeal receives a written human outcome",
+      "pause_trigger": "legal advice request; confidential material; conflict of interest",
+      "appeal": "in-person, phone and paper paths; no penalty for refusing AI; human final decision",
+      "exit_and_retirement": "expire after 90 days unless evidence gate passes; export public audit summary, delete scoped data, keep non-personal change record",
+      "passport_state": "concept",
+      "phase": "P2",
+      "baseline": "Gate 0 observation and manual-service baseline required before field pilot",
+      "kpi": "routing accuracy reviewed; no retained confidential text",
+      "flagship": false,
+      "replay_task_ids": [],
+      "replay_command": null
+    },
+    {
+      "id": "SC-07",
+      "title_zh": "校城无障碍路由",
+      "title_en": "Campus-city Accessible Route",
+      "port_id": "origin",
+      "persona_ids": [
+        "P04",
+        "P05"
+      ],
+      "space_feature_id": "PUBLIC-SC-07",
+      "public_purpose": "turn near-campus knowledge into open and accountable capability",
+      "inputs": "user-declared access preference and inspected route status",
+      "data_class": "public, synthetic, or user-provided minimum data only",
+      "retention": "session-only unless an appeal record is explicitly requested; operational log 90 days without personal content",
+      "forbidden_data": [
+        "facial recognition",
+        "continuous location trail",
+        "inferred disability/health status",
+        "minors profiling",
+        "secret or uncleared material"
+      ],
+      "ai_role": "offer explainable alternatives and flag inspection need",
+      "output": "explainable option, flag, or routing draft with source/version label",
+      "non_ai_fallback": "tactile map, signage and staffed mobility help",
+      "accountable_role": "mobility operations role",
+      "human_gate": "accessibility reviewer + user steward",
+      "affected_group_governance": "port steward seat may red-card pause; independent appeal receives a written human outcome",
+      "pause_trigger": "route not inspected; barrier report unresolved; emergency condition",
+      "appeal": "in-person, phone and paper paths; no penalty for refusing AI; human final decision",
+      "exit_and_retirement": "expire after 90 days unless evidence gate passes; export public audit summary, delete scoped data, keep non-personal change record",
+      "passport_state": "concept",
+      "phase": "P2",
+      "baseline": "Gate 0 observation and manual-service baseline required before field pilot",
+      "kpi": "non-AI equivalent route available; barriers assigned",
+      "flagship": false,
+      "replay_task_ids": [],
+      "replay_command": null
+    },
+    {
+      "id": "SC-08",
+      "title_zh": "公民模型课堂",
+      "title_en": "Civic Model Classroom",
+      "port_id": "origin",
+      "persona_ids": [
+        "P07",
+        "P04"
+      ],
+      "space_feature_id": "PUBLIC-SC-08",
+      "public_purpose": "turn near-campus knowledge into open and accountable capability",
+      "inputs": "synthetic civic cases and public model documentation",
+      "data_class": "public, synthetic, or user-provided minimum data only",
+      "retention": "session-only unless an appeal record is explicitly requested; operational log 90 days without personal content",
+      "forbidden_data": [
+        "facial recognition",
+        "continuous location trail",
+        "inferred disability/health status",
+        "minors profiling",
+        "secret or uncleared material"
+      ],
+      "ai_role": "show alternative outputs and uncertainty",
+      "output": "explainable option, flag, or routing draft with source/version label",
+      "non_ai_fallback": "facilitated card exercise without device",
+      "accountable_role": "public learning role",
+      "human_gate": "educator + child-safeguarding reviewer",
+      "affected_group_governance": "port steward seat may red-card pause; independent appeal receives a written human outcome",
+      "pause_trigger": "personal data; persuasive profiling; unmoderated minor use",
+      "appeal": "in-person, phone and paper paths; no penalty for refusing AI; human final decision",
+      "exit_and_retirement": "expire after 90 days unless evidence gate passes; export public audit summary, delete scoped data, keep non-personal change record",
+      "passport_state": "concept",
+      "phase": "P3",
+      "baseline": "Gate 0 observation and manual-service baseline required before field pilot",
+      "kpi": "participants can identify limits and appeal path",
+      "flagship": false,
+      "replay_task_ids": [],
+      "replay_command": null
+    },
+    {
+      "id": "SC-09",
+      "title_zh": "包容生活实验室",
+      "title_en": "Inclusive Living Lab",
+      "port_id": "living",
+      "persona_ids": [
+        "P03",
+        "P05",
+        "P09"
+      ],
+      "space_feature_id": "PUBLIC-SC-09",
+      "public_purpose": "test useful services under everyday public oversight",
+      "inputs": "anonymous service task, declared accessibility need, public directory",
+      "data_class": "public, synthetic, or user-provided minimum data only",
+      "retention": "session-only unless an appeal record is explicitly requested; operational log 90 days without personal content",
+      "forbidden_data": [
+        "facial recognition",
+        "continuous location trail",
+        "inferred disability/health status",
+        "minors profiling",
+        "secret or uncleared material"
+      ],
+      "ai_role": "draft options while leaving decision to service professional/user",
+      "output": "explainable option, flag, or routing draft with source/version label",
+      "non_ai_fallback": "staffed counter, phone and paper directory",
+      "accountable_role": "community service role",
+      "human_gate": "service professional + affected-group steward",
+      "affected_group_governance": "port steward seat may red-card pause; independent appeal receives a written human outcome",
+      "pause_trigger": "high-stakes decision; identity inference; no human capacity",
+      "appeal": "in-person, phone and paper paths; no penalty for refusing AI; human final decision",
+      "exit_and_retirement": "expire after 90 days unless evidence gate passes; export public audit summary, delete scoped data, keep non-personal change record",
+      "passport_state": "simulation",
+      "phase": "P1",
+      "baseline": "Gate 0 observation and manual-service baseline required before field pilot",
+      "kpi": "non-AI parity=100%; unresolved cases escalated",
+      "flagship": true,
+      "replay_task_ids": [
+        "sc-09-01",
+        "sc-09-02",
+        "sc-09-03",
+        "sc-09-04",
+        "sc-09-05"
+      ],
+      "replay_command": "node visual/assets/replay-protocols.js --check --pilot SC-09"
+    },
+    {
+      "id": "SC-10",
+      "title_zh": "智能零售沙盒",
+      "title_en": "Agent Retail Sandbox",
+      "port_id": "living",
+      "persona_ids": [
+        "P06",
+        "P03"
+      ],
+      "space_feature_id": "PUBLIC-SC-10",
+      "public_purpose": "test useful services under everyday public oversight",
+      "inputs": "synthetic catalog, explicit user query, published merchant rules",
+      "data_class": "public, synthetic, or user-provided minimum data only",
+      "retention": "session-only unless an appeal record is explicitly requested; operational log 90 days without personal content",
+      "forbidden_data": [
+        "facial recognition",
+        "continuous location trail",
+        "inferred disability/health status",
+        "minors profiling",
+        "secret or uncleared material"
+      ],
+      "ai_role": "compare options without behavioural profiling or dynamic exclusion",
+      "output": "explainable option, flag, or routing draft with source/version label",
+      "non_ai_fallback": "ordinary shelf labels and human merchant assistance",
+      "accountable_role": "market operations role",
+      "human_gate": "consumer-rights reviewer + merchant steward",
+      "affected_group_governance": "port steward seat may red-card pause; independent appeal receives a written human outcome",
+      "pause_trigger": "biometric data; minors profile; discriminatory price; merchant lock-in",
+      "appeal": "in-person, phone and paper paths; no penalty for refusing AI; human final decision",
+      "exit_and_retirement": "expire after 90 days unless evidence gate passes; export public audit summary, delete scoped data, keep non-personal change record",
+      "passport_state": "concept",
+      "phase": "P2",
+      "baseline": "Gate 0 observation and manual-service baseline required before field pilot",
+      "kpi": "zero prohibited targeting; small-operator participation tracked",
+      "flagship": false,
+      "replay_task_ids": [],
+      "replay_command": null
+    },
+    {
+      "id": "SC-11",
+      "title_zh": "国际演示客厅",
+      "title_en": "International Demo Lounge",
+      "port_id": "living",
+      "persona_ids": [
+        "P08",
+        "P02"
+      ],
+      "space_feature_id": "PUBLIC-SC-11",
+      "public_purpose": "test useful services under everyday public oversight",
+      "inputs": "cleared demo metadata, language preference and public schedule",
+      "data_class": "public, synthetic, or user-provided minimum data only",
+      "retention": "session-only unless an appeal record is explicitly requested; operational log 90 days without personal content",
+      "forbidden_data": [
+        "facial recognition",
+        "continuous location trail",
+        "inferred disability/health status",
+        "minors profiling",
+        "secret or uncleared material"
+      ],
+      "ai_role": "translate and route feedback with uncertainty labels",
+      "output": "explainable option, flag, or routing draft with source/version label",
+      "non_ai_fallback": "bilingual host, printed guide and QR-free route",
+      "accountable_role": "international exchange role",
+      "human_gate": "bilingual editor + accessibility reviewer",
+      "affected_group_governance": "port steward seat may red-card pause; independent appeal receives a written human outcome",
+      "pause_trigger": "uncleared IP; identity scoring; mistranslated safety claim",
+      "appeal": "in-person, phone and paper paths; no penalty for refusing AI; human final decision",
+      "exit_and_retirement": "expire after 90 days unless evidence gate passes; export public audit summary, delete scoped data, keep non-personal change record",
+      "passport_state": "concept",
+      "phase": "P2",
+      "baseline": "Gate 0 observation and manual-service baseline required before field pilot",
+      "kpi": "cleared demos=100%; material claim corrections logged",
+      "flagship": false,
+      "replay_task_ids": [],
+      "replay_command": null
+    },
+    {
+      "id": "SC-12",
+      "title_zh": "数据权利帮助台",
+      "title_en": "Data Rights Helpdesk",
+      "port_id": "living",
+      "persona_ids": [
+        "P03",
+        "P05",
+        "P06"
+      ],
+      "space_feature_id": "PUBLIC-SC-12",
+      "public_purpose": "test useful services under everyday public oversight",
+      "inputs": "user-chosen case summary without unnecessary identifiers",
+      "data_class": "public, synthetic, or user-provided minimum data only",
+      "retention": "session-only unless an appeal record is explicitly requested; operational log 90 days without personal content",
+      "forbidden_data": [
+        "facial recognition",
+        "continuous location trail",
+        "inferred disability/health status",
+        "minors profiling",
+        "secret or uncleared material"
+      ],
+      "ai_role": "explain process and draft a request; never decide rights",
+      "output": "explainable option, flag, or routing draft with source/version label",
+      "non_ai_fallback": "independent human help, phone, paper request and mailbox",
+      "accountable_role": "rights helpdesk role",
+      "human_gate": "qualified rights reviewer + independent appeal role",
+      "affected_group_governance": "port steward seat may red-card pause; independent appeal receives a written human outcome",
+      "pause_trigger": "legal conclusion; excessive identity; retaliation concern; unresolved appeal",
+      "appeal": "in-person, phone and paper paths; no penalty for refusing AI; human final decision",
+      "exit_and_retirement": "expire after 90 days unless evidence gate passes; export public audit summary, delete scoped data, keep non-personal change record",
+      "passport_state": "concept",
+      "phase": "P3",
+      "baseline": "Gate 0 observation and manual-service baseline required before field pilot",
+      "kpi": "acknowledgement within declared service window; deletion evidence logged",
+      "flagship": false,
+      "replay_task_ids": [],
+      "replay_command": null
+    }
+  ],
+  "projects": [
+    {
+      "id": "JZ-01",
+      "zh": "三港公共门槛与责任信标",
+      "en": "Three-port Public Thresholds and Responsibility Beacons",
+      "geometry": [
+        "PUBLIC-SC-01",
+        "PUBLIC-SC-05",
+        "PUBLIC-SC-09",
+        "ROAD-SPINE-WALK",
+        "SC-01",
+        "SC-05",
+        "SC-09"
+      ],
+      "lead_role": "public_space_sponsor_role",
+      "partners": [
+        "accessibility",
+        "heritage",
+        "operator",
+        "affected_group_steward"
+      ],
+      "permissions": [
+        "ownership",
+        "heritage",
+        "fire",
+        "accessibility",
+        "event/use"
+      ],
+      "resource_band": "S",
+      "phase": "P1",
+      "deliverable": "three reversible pads, non-AI desk and status beacon",
+      "acceptance": "step-free, service parity and red-card drill pass",
+      "stop": "permission lapse, inaccessible route or unresolved red card",
+      "operations_funding": "one-year staffing and maintenance reserve before opening",
+      "planning_cost_range_cny": [
+        300000,
+        900000
+      ],
+      "minimum_staffing": "3 staffed roles per open shift + independent steward and maintenance cover",
+      "cost_confidence": "low_participant_planning_envelope",
+      "cost_basis": "90-day reversible package including temporary fit-out, accessibility, staffing, audit, deinstallation and 15% exit reserve; excluding land, permanent works, utility upgrades and statutory fees; replace after at least three qualified quotes",
+      "not_budget_or_commitment": true,
+      "decision_rights": {
+        "start": "future authorized sponsor after all listed permissions and funding evidence",
+        "hold": "lead role, safety/professional reviewer, or affected-group steward independently",
+        "resume": "authorized sponsor + relevant professional + affected-group steward",
+        "retire": "automatic on expiry unless resume gate passes; authorized sponsor remains accountable for safe deinstallation"
+      },
+      "procurement_path": "Gate 0 scope and conflicts -> lawful route selection by authorized owner -> market sounding / qualified quotes -> written award -> staged acceptance; route remains pending until an owner is mandated",
+      "insurance_and_safeguards": "public liability, professional, worker, data/cyber and event cover as applicable; limits and insurer remain pending",
+      "exit_cost_reserve_ratio": 0.15
+    },
+    {
+      "id": "JZ-02",
+      "zh": "模型责任码头90日试点",
+      "en": "Model Responsibility Dock 90-day Pilot",
+      "geometry": [
+        "BLDG-ZZ-01",
+        "GREEN-N-01",
+        "PUBLIC-SC-01",
+        "ROAD-LOOP-ZZ",
+        "ROAD-X-ZZ",
+        "SC-01"
+      ],
+      "lead_role": "ai_assurance_role",
+      "partners": [
+        "standards",
+        "rights",
+        "public_steward"
+      ],
+      "permissions": [
+        "data governance",
+        "public display",
+        "operator mandate"
+      ],
+      "resource_band": "XS",
+      "phase": "P1",
+      "deliverable": "synthetic model-passport clinic",
+      "acceptance": "five fixture checks pass and severe flag drill holds publication",
+      "stop": "model version mismatch or missing human reviewer",
+      "operations_funding": "staff time plus audit reserve",
+      "planning_cost_range_cny": [
+        150000,
+        300000
+      ],
+      "minimum_staffing": "2 staffed roles per open shift + independent steward on call",
+      "cost_confidence": "low_participant_planning_envelope",
+      "cost_basis": "90-day reversible package including temporary fit-out, accessibility, staffing, audit, deinstallation and 15% exit reserve; excluding land, permanent works, utility upgrades and statutory fees; replace after at least three qualified quotes",
+      "not_budget_or_commitment": true,
+      "decision_rights": {
+        "start": "future authorized sponsor after all listed permissions and funding evidence",
+        "hold": "lead role, safety/professional reviewer, or affected-group steward independently",
+        "resume": "authorized sponsor + relevant professional + affected-group steward",
+        "retire": "automatic on expiry unless resume gate passes; authorized sponsor remains accountable for safe deinstallation"
+      },
+      "procurement_path": "Gate 0 scope and conflicts -> lawful route selection by authorized owner -> market sounding / qualified quotes -> written award -> staged acceptance; route remains pending until an owner is mandated",
+      "insurance_and_safeguards": "public liability, professional, worker, data/cyber and event cover as applicable; limits and insurer remain pending",
+      "exit_cost_reserve_ratio": 0.15
+    },
+    {
+      "id": "JZ-03",
+      "zh": "开源发布厅90日试点",
+      "en": "Open-source Release Hall 90-day Pilot",
+      "geometry": [
+        "BLDG-OR-01",
+        "GREEN-M-01",
+        "PUBLIC-SC-05",
+        "ROAD-LOOP-OR",
+        "ROAD-X-OR",
+        "SC-05"
+      ],
+      "lead_role": "open_source_community_role",
+      "partners": [
+        "license",
+        "accessibility",
+        "public_steward"
+      ],
+      "permissions": [
+        "content rights",
+        "venue",
+        "operator mandate"
+      ],
+      "resource_band": "XS",
+      "phase": "P1",
+      "deliverable": "release passport clinic using cleared metadata",
+      "acceptance": "license/accessibility/source gates complete; appeal visible",
+      "stop": "license conflict or uncleared repository content",
+      "operations_funding": "clinic staffing and moderation reserve",
+      "planning_cost_range_cny": [
+        150000,
+        300000
+      ],
+      "minimum_staffing": "2 staffed roles per open shift + independent steward on call",
+      "cost_confidence": "low_participant_planning_envelope",
+      "cost_basis": "90-day reversible package including temporary fit-out, accessibility, staffing, audit, deinstallation and 15% exit reserve; excluding land, permanent works, utility upgrades and statutory fees; replace after at least three qualified quotes",
+      "not_budget_or_commitment": true,
+      "decision_rights": {
+        "start": "future authorized sponsor after all listed permissions and funding evidence",
+        "hold": "lead role, safety/professional reviewer, or affected-group steward independently",
+        "resume": "authorized sponsor + relevant professional + affected-group steward",
+        "retire": "automatic on expiry unless resume gate passes; authorized sponsor remains accountable for safe deinstallation"
+      },
+      "procurement_path": "Gate 0 scope and conflicts -> lawful route selection by authorized owner -> market sounding / qualified quotes -> written award -> staged acceptance; route remains pending until an owner is mandated",
+      "insurance_and_safeguards": "public liability, professional, worker, data/cyber and event cover as applicable; limits and insurer remain pending",
+      "exit_cost_reserve_ratio": 0.15
+    },
+    {
+      "id": "JZ-04",
+      "zh": "包容生活实验室90日试点",
+      "en": "Inclusive Living Lab 90-day Pilot",
+      "geometry": [
+        "BLDG-DZ-01",
+        "GREEN-DZ-PKT",
+        "GREEN-S-01",
+        "PUBLIC-SC-09",
+        "ROAD-LOOP-DZ",
+        "ROAD-X-DZ",
+        "SC-09"
+      ],
+      "lead_role": "community_service_role",
+      "partners": [
+        "service professional",
+        "accessibility",
+        "resident steward"
+      ],
+      "permissions": [
+        "service mandate",
+        "privacy",
+        "venue"
+      ],
+      "resource_band": "XS",
+      "phase": "P1",
+      "deliverable": "synthetic service navigation with staffed parity",
+      "acceptance": "all high-stakes cases routed to human; refusal causes no service loss",
+      "stop": "human capacity unavailable or identity inference detected",
+      "operations_funding": "human counter funded before AI layer",
+      "planning_cost_range_cny": [
+        150000,
+        300000
+      ],
+      "minimum_staffing": "2 staffed roles per open shift + independent steward on call",
+      "cost_confidence": "low_participant_planning_envelope",
+      "cost_basis": "90-day reversible package including temporary fit-out, accessibility, staffing, audit, deinstallation and 15% exit reserve; excluding land, permanent works, utility upgrades and statutory fees; replace after at least three qualified quotes",
+      "not_budget_or_commitment": true,
+      "decision_rights": {
+        "start": "future authorized sponsor after all listed permissions and funding evidence",
+        "hold": "lead role, safety/professional reviewer, or affected-group steward independently",
+        "resume": "authorized sponsor + relevant professional + affected-group steward",
+        "retire": "automatic on expiry unless resume gate passes; authorized sponsor remains accountable for safe deinstallation"
+      },
+      "procurement_path": "Gate 0 scope and conflicts -> lawful route selection by authorized owner -> market sounding / qualified quotes -> written award -> staged acceptance; route remains pending until an owner is mandated",
+      "insurance_and_safeguards": "public liability, professional, worker, data/cyber and event cover as applicable; limits and insurer remain pending",
+      "exit_cost_reserve_ratio": 0.15
+    },
+    {
+      "id": "JZ-05",
+      "zh": "中关村科技服务翼共享柜台",
+      "en": "Zhongguancun Technology Service Wing Shared Desks",
+      "geometry": [
+        "BLDG-OR-02",
+        "BLDG-WG-01",
+        "GREEN-M-01",
+        "PUBLIC-SC-06",
+        "ROAD-WING-LINK",
+        "ROAD-X-OR",
+        "SC-06"
+      ],
+      "lead_role": "technology_service_coordinator_role",
+      "partners": [
+        "IP",
+        "capital-navigation",
+        "talent",
+        "enterprise-service"
+      ],
+      "permissions": [
+        "venue",
+        "service qualifications",
+        "conflict policy"
+      ],
+      "resource_band": "S",
+      "phase": "P2",
+      "deliverable": "role directory and warm referral protocol",
+      "acceptance": "no unauthorized legal/financial conclusion; referral closure measured",
+      "stop": "conflict or pay-to-play access",
+      "operations_funding": "shared membership plus public-service quota",
+      "planning_cost_range_cny": [
+        300000,
+        900000
+      ],
+      "minimum_staffing": "3 staffed roles per open shift + independent steward and maintenance cover",
+      "cost_confidence": "low_participant_planning_envelope",
+      "cost_basis": "90-day reversible package including temporary fit-out, accessibility, staffing, audit, deinstallation and 15% exit reserve; excluding land, permanent works, utility upgrades and statutory fees; replace after at least three qualified quotes",
+      "not_budget_or_commitment": true,
+      "decision_rights": {
+        "start": "future authorized sponsor after all listed permissions and funding evidence",
+        "hold": "lead role, safety/professional reviewer, or affected-group steward independently",
+        "resume": "authorized sponsor + relevant professional + affected-group steward",
+        "retire": "automatic on expiry unless resume gate passes; authorized sponsor remains accountable for safe deinstallation"
+      },
+      "procurement_path": "Gate 0 scope and conflicts -> lawful route selection by authorized owner -> market sounding / qualified quotes -> written award -> staged acceptance; route remains pending until an owner is mandated",
+      "insurance_and_safeguards": "public liability, professional, worker, data/cyber and event cover as applicable; limits and insurer remain pending",
+      "exit_cost_reserve_ratio": 0.15
+    },
+    {
+      "id": "JZ-06",
+      "zh": "小月河场景反馈翼共测路线",
+      "en": "Xiaoyue River Scenario Feedback Wing Co-testing Route",
+      "geometry": [
+        "BLDG-OR-04",
+        "BLDG-WG-02",
+        "BLDG-WG-03",
+        "BLDG-ZZ-04",
+        "GREEN-N-01",
+        "GREEN-ZZ-PKT",
+        "PUBLIC-SC-04",
+        "PUBLIC-SC-07",
+        "ROAD-SPINE-CYCLE",
+        "ROAD-WING-LINK",
+        "ROAD-X-OR",
+        "ROAD-X-ZZ",
+        "SC-04",
+        "SC-07"
+      ],
+      "lead_role": "public_realm_operator_role",
+      "partners": [
+        "resident",
+        "accessibility",
+        "landscape",
+        "mobility"
+      ],
+      "permissions": [
+        "ownership",
+        "ecology",
+        "traffic",
+        "maintenance"
+      ],
+      "resource_band": "S",
+      "phase": "P2",
+      "deliverable": "inspectable route, manual feedback and closure ledger",
+      "acceptance": "barriers assigned and human route always available",
+      "stop": "unsafe route or unresolved ecology/traffic issue",
+      "operations_funding": "maintenance service-level reserve",
+      "planning_cost_range_cny": [
+        300000,
+        900000
+      ],
+      "minimum_staffing": "3 staffed roles per open shift + independent steward and maintenance cover",
+      "cost_confidence": "low_participant_planning_envelope",
+      "cost_basis": "90-day reversible package including temporary fit-out, accessibility, staffing, audit, deinstallation and 15% exit reserve; excluding land, permanent works, utility upgrades and statutory fees; replace after at least three qualified quotes",
+      "not_budget_or_commitment": true,
+      "decision_rights": {
+        "start": "future authorized sponsor after all listed permissions and funding evidence",
+        "hold": "lead role, safety/professional reviewer, or affected-group steward independently",
+        "resume": "authorized sponsor + relevant professional + affected-group steward",
+        "retire": "automatic on expiry unless resume gate passes; authorized sponsor remains accountable for safe deinstallation"
+      },
+      "procurement_path": "Gate 0 scope and conflicts -> lawful route selection by authorized owner -> market sounding / qualified quotes -> written award -> staged acceptance; route remains pending until an owner is mandated",
+      "insurance_and_safeguards": "public liability, professional, worker, data/cyber and event cover as applicable; limits and insurer remain pending",
+      "exit_cost_reserve_ratio": 0.15
+    },
+    {
+      "id": "JZ-07",
+      "zh": "十二接口无障碍与非AI等价组件包",
+      "en": "Twelve-interface Accessibility and Non-AI Parity Kit",
+      "geometry": [
+        "BLDG-DZ-02",
+        "BLDG-DZ-03",
+        "BLDG-DZ-04",
+        "BLDG-OR-03",
+        "BLDG-OR-04",
+        "BLDG-WG-03",
+        "BLDG-ZZ-02",
+        "BLDG-ZZ-03",
+        "GREEN-DZ-PKT",
+        "GREEN-S-01",
+        "PUBLIC-SC-01",
+        "PUBLIC-SC-02",
+        "PUBLIC-SC-03",
+        "PUBLIC-SC-04",
+        "PUBLIC-SC-05",
+        "PUBLIC-SC-06",
+        "PUBLIC-SC-07",
+        "PUBLIC-SC-08",
+        "PUBLIC-SC-09",
+        "PUBLIC-SC-10",
+        "PUBLIC-SC-11",
+        "PUBLIC-SC-12",
+        "ROAD-LOOP-DZ",
+        "ROAD-LOOP-OR",
+        "ROAD-LOOP-ZZ",
+        "ROAD-SPINE-WALK",
+        "ROAD-X-DZ",
+        "SC-01",
+        "SC-02",
+        "SC-03",
+        "SC-04",
+        "SC-05",
+        "SC-06",
+        "SC-07",
+        "SC-08",
+        "SC-09",
+        "SC-10",
+        "SC-11",
+        "SC-12"
+      ],
+      "lead_role": "universal_design_role",
+      "partners": [
+        "affected_group_stewards",
+        "signage",
+        "service operators"
+      ],
+      "permissions": [
+        "accessibility review",
+        "content rights",
+        "maintenance"
+      ],
+      "resource_band": "S",
+      "phase": "P2",
+      "deliverable": "tactile, audio, paper, seated-rest and human-help components",
+      "acceptance": "co-test with affected users; all 12 cards retain parity",
+      "stop": "component creates barrier or service downgrade",
+      "operations_funding": "replacement and staffed-support reserve",
+      "planning_cost_range_cny": [
+        300000,
+        900000
+      ],
+      "minimum_staffing": "3 staffed roles per open shift + independent steward and maintenance cover",
+      "cost_confidence": "low_participant_planning_envelope",
+      "cost_basis": "90-day reversible package including temporary fit-out, accessibility, staffing, audit, deinstallation and 15% exit reserve; excluding land, permanent works, utility upgrades and statutory fees; replace after at least three qualified quotes",
+      "not_budget_or_commitment": true,
+      "decision_rights": {
+        "start": "future authorized sponsor after all listed permissions and funding evidence",
+        "hold": "lead role, safety/professional reviewer, or affected-group steward independently",
+        "resume": "authorized sponsor + relevant professional + affected-group steward",
+        "retire": "automatic on expiry unless resume gate passes; authorized sponsor remains accountable for safe deinstallation"
+      },
+      "procurement_path": "Gate 0 scope and conflicts -> lawful route selection by authorized owner -> market sounding / qualified quotes -> written award -> staged acceptance; route remains pending until an owner is mandated",
+      "insurance_and_safeguards": "public liability, professional, worker, data/cyber and event cover as applicable; limits and insurer remain pending",
+      "exit_cost_reserve_ratio": 0.15
+    },
+    {
+      "id": "JZ-08",
+      "zh": "公共接口护照与审计台账",
+      "en": "Common Port Passport and Audit Ledger",
+      "geometry": [
+        "BLDG-DZ-01",
+        "BLDG-OR-01",
+        "BLDG-WG-02",
+        "BLDG-ZZ-01",
+        "PUBLIC-SC-01",
+        "PUBLIC-SC-05",
+        "PUBLIC-SC-09",
+        "SC-01",
+        "SC-05",
+        "SC-09"
+      ],
+      "lead_role": "public_interest_governance_role",
+      "partners": [
+        "data protection",
+        "assurance",
+        "appeal",
+        "archivist"
+      ],
+      "permissions": [
+        "records policy",
+        "privacy",
+        "public reporting"
+      ],
+      "resource_band": "S",
+      "phase": "P2",
+      "deliverable": "state, version, reviewer, pause and retirement record",
+      "acceptance": "every live interface has current passport and deletion evidence",
+      "stop": "missing reviewer/version or stale permission",
+      "operations_funding": "independent audit and archive reserve",
+      "planning_cost_range_cny": [
+        300000,
+        900000
+      ],
+      "minimum_staffing": "3 staffed roles per open shift + independent steward and maintenance cover",
+      "cost_confidence": "low_participant_planning_envelope",
+      "cost_basis": "90-day reversible package including temporary fit-out, accessibility, staffing, audit, deinstallation and 15% exit reserve; excluding land, permanent works, utility upgrades and statutory fees; replace after at least three qualified quotes",
+      "not_budget_or_commitment": true,
+      "decision_rights": {
+        "start": "future authorized sponsor after all listed permissions and funding evidence",
+        "hold": "lead role, safety/professional reviewer, or affected-group steward independently",
+        "resume": "authorized sponsor + relevant professional + affected-group steward",
+        "retire": "automatic on expiry unless resume gate passes; authorized sponsor remains accountable for safe deinstallation"
+      },
+      "procurement_path": "Gate 0 scope and conflicts -> lawful route selection by authorized owner -> market sounding / qualified quotes -> written award -> staged acceptance; route remains pending until an owner is mandated",
+      "insurance_and_safeguards": "public liability, professional, worker, data/cyber and event cover as applicable; limits and insurer remain pending",
+      "exit_cost_reserve_ratio": 0.15
+    },
+    {
+      "id": "JZ-09",
+      "zh": "四座可撤除贡献地标",
+      "en": "Four Removable Contribution Landmarks",
+      "geometry": [
+        "GREEN-M-01",
+        "GREEN-N-01",
+        "GREEN-ZZ-PKT",
+        "PUBLIC-SC-01",
+        "PUBLIC-SC-05",
+        "PUBLIC-SC-09",
+        "SC-01",
+        "SC-05",
+        "SC-09"
+      ],
+      "lead_role": "culture_public_art_role",
+      "partners": [
+        "heritage",
+        "copyright",
+        "accessibility",
+        "maintenance"
+      ],
+      "permissions": [
+        "heritage",
+        "structure",
+        "fire",
+        "public art",
+        "copyright"
+      ],
+      "resource_band": "M",
+      "phase": "P3",
+      "deliverable": "responsibility beacon, open-source rings, echo ledger, century switchboard",
+      "acceptance": "rights clear, removable and contribution rules public",
+      "stop": "heritage conflict or personality/brand capture",
+      "operations_funding": "curation and maintenance endowment gate",
+      "planning_cost_range_cny": [
+        900000,
+        2500000
+      ],
+      "minimum_staffing": "4 staffed roles per open shift + safety/accessibility/maintenance cover",
+      "cost_confidence": "low_participant_planning_envelope",
+      "cost_basis": "90-day reversible package including temporary fit-out, accessibility, staffing, audit, deinstallation and 15% exit reserve; excluding land, permanent works, utility upgrades and statutory fees; replace after at least three qualified quotes",
+      "not_budget_or_commitment": true,
+      "decision_rights": {
+        "start": "future authorized sponsor after all listed permissions and funding evidence",
+        "hold": "lead role, safety/professional reviewer, or affected-group steward independently",
+        "resume": "authorized sponsor + relevant professional + affected-group steward",
+        "retire": "automatic on expiry unless resume gate passes; authorized sponsor remains accountable for safe deinstallation"
+      },
+      "procurement_path": "Gate 0 scope and conflicts -> lawful route selection by authorized owner -> market sounding / qualified quotes -> written award -> staged acceptance; route remains pending until an owner is mandated",
+      "insurance_and_safeguards": "public liability, professional, worker, data/cyber and event cover as applicable; limits and insurer remain pending",
+      "exit_cost_reserve_ratio": 0.15
+    },
+    {
+      "id": "JZ-10",
+      "zh": "京张公共接口周与四季运营",
+      "en": "Jingzhang Common Port Week and Four-season Operations",
+      "geometry": [
+        "BLDG-DZ-03",
+        "BLDG-DZ-04",
+        "BLDG-ZZ-04",
+        "GREEN-M-01",
+        "GREEN-N-01",
+        "GREEN-S-01",
+        "PUBLIC-SC-01",
+        "PUBLIC-SC-11",
+        "PUBLIC-SC-12",
+        "ROAD-SPINE-WALK",
+        "SC-01",
+        "SC-11",
+        "SC-12"
+      ],
+      "lead_role": "programming_consortium_role",
+      "partners": [
+        "developer community",
+        "resident steward",
+        "international exchange",
+        "safety"
+      ],
+      "permissions": [
+        "event",
+        "safety",
+        "noise",
+        "content rights",
+        "crowd management"
+      ],
+      "resource_band": "M",
+      "phase": "P3",
+      "deliverable": "spring RFC, summer sandbox, autumn public review, winter retirement archive",
+      "acceptance": "year-round daily use protected; conversion and closure records public",
+      "stop": "event displaces daily access or safety/noise limits fail",
+      "operations_funding": "event income cannot replace core public-service funding",
+      "planning_cost_range_cny": [
+        900000,
+        2500000
+      ],
+      "minimum_staffing": "4 staffed roles per open shift + safety/accessibility/maintenance cover",
+      "cost_confidence": "low_participant_planning_envelope",
+      "cost_basis": "90-day reversible package including temporary fit-out, accessibility, staffing, audit, deinstallation and 15% exit reserve; excluding land, permanent works, utility upgrades and statutory fees; replace after at least three qualified quotes",
+      "not_budget_or_commitment": true,
+      "decision_rights": {
+        "start": "future authorized sponsor after all listed permissions and funding evidence",
+        "hold": "lead role, safety/professional reviewer, or affected-group steward independently",
+        "resume": "authorized sponsor + relevant professional + affected-group steward",
+        "retire": "automatic on expiry unless resume gate passes; authorized sponsor remains accountable for safe deinstallation"
+      },
+      "procurement_path": "Gate 0 scope and conflicts -> lawful route selection by authorized owner -> market sounding / qualified quotes -> written award -> staged acceptance; route remains pending until an owner is mandated",
+      "insurance_and_safeguards": "public liability, professional, worker, data/cyber and event cover as applicable; limits and insurer remain pending",
+      "exit_cost_reserve_ratio": 0.15
+    }
+  ],
+  "regional_synergy": [
+    {
+      "node": "北纬社区",
+      "topic": "open-source community and near-university translation",
+      "exchange": "public RFC and mentor exchange",
+      "carrier": "Open-source Port",
+      "boundary": "no membership, data-sharing or partnership assumed"
+    },
+    {
+      "node": "未来科学城",
+      "topic": "energy, life science and frontier research validation",
+      "exchange": "synthetic benchmark and standards issue exchange",
+      "carrier": "Verification Port",
+      "boundary": "public information only; project agreement required"
+    },
+    {
+      "node": "怀柔科学城",
+      "topic": "large-science-facility method translation",
+      "exchange": "public method passport and visiting demo",
+      "carrier": "Verification/Open-source Ports",
+      "boundary": "no research data transfer without authorization"
+    },
+    {
+      "node": "北京经开区",
+      "topic": "engineering, embodied intelligence and manufacturing feedback",
+      "exchange": "test specification and failure archive",
+      "carrier": "Living/Verification Ports",
+      "boundary": "no procurement, supplier or investment promise"
+    },
+    {
+      "node": "京津冀",
+      "topic": "interoperable public-service and responsible-AI protocols",
+      "exchange": "versioned open protocol and comparative public review",
+      "carrier": "Century Switchboard",
+      "boundary": "conceptual network; no administrative commitment"
+    }
+  ],
+  "candidate_concepts": [
+    {
+      "name": "AI Innovation Boulevard",
+      "decision": "rejected",
+      "reason": "a display corridor has no rights, pause or retirement grammar"
+    },
+    {
+      "name": "Three AI Campuses",
+      "decision": "rejected",
+      "reason": "institutional islands weaken the continuous public commons and two-wing exchange"
+    },
+    {
+      "name": "JZ Common Ports",
+      "decision": "selected",
+      "reason": "one contract links spatial thresholds, AI states, public governance, brand and operations"
+    }
+  ],
+  "failure_conditions": [
+    "interfaces cannot preserve non-AI service parity",
+    "affected groups cannot pause or appeal",
+    "official spatial or ownership evidence invalidates placement",
+    "operations reserve and qualified human review are unavailable",
+    "events displace ordinary public access"
+  ],
+  "replay_contract": {
+    "status": "executable_offline_synthetic_evidence_not_field_performance",
+    "command": "node visual/assets/replay-protocols.js --check",
+    "runner": "visual/assets/replay-protocols.js",
+    "schema": "visual/assets/simulation.schema.json",
+    "evidence": "visual/assets/replay-evidence.json",
+    "method_note": "The runner independently derives policy controls from explicit synthetic payloads, checks counterfactuals, canonical hashes, energy envelopes and audit fields, and fails closed on any mismatch."
+  },
+  "field_validation_plan": {
+    "status": "preregistered_future_plan_not_observed_not_authorized",
+    "minimum_sessions": 24,
+    "cohorts": [
+      "older and disabled users with chosen supporters",
+      "residents and caregivers including a child-safeguarding observer",
+      "small merchants and frontline service workers",
+      "developers, students and visitors using both Chinese and English paths"
+    ],
+    "prerequisites": [
+      "authorized sponsor and venue",
+      "accessible route and staffed non-AI desk",
+      "informed consent and independent affected-group steward",
+      "privacy, insurance, safeguarding and emergency plan"
+    ],
+    "pre_registered_measures": [
+      {
+        "id": "FV-01",
+        "measure": "task completion parity",
+        "threshold": "non-AI completion no worse than 10 percentage points below the digital route"
+      },
+      {
+        "id": "FV-02",
+        "measure": "waiting-time parity",
+        "threshold": "median non-AI wait no more than 1.20 times the digital wait and never more than 5 additional minutes"
+      },
+      {
+        "id": "FV-03",
+        "measure": "cost and travel parity",
+        "threshold": "no extra fee and no extra off-site trip for refusing AI"
+      },
+      {
+        "id": "FV-04",
+        "measure": "accessibility",
+        "threshold": "keyboard, screen-reader, seated, tactile/paper and bilingual paths complete without critical barrier"
+      },
+      {
+        "id": "FV-05",
+        "measure": "appeal and red-card drill",
+        "threshold": "appeal receipt succeeds and any steward red card places the interface on hold before the next public session"
+      }
+    ],
+    "publication_rule": "Publish anonymized method, failures, non-adoption reasons and retirement decision; never label these measures passed until an authorized field session produces independently reviewed evidence."
+  }
+}

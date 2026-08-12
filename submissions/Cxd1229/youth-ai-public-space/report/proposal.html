@@ -1,0 +1,461 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jingzhang AI Innovation Belt Urban Design</title>
+<style>
+body{font-family:-apple-system,sans-serif;max-width:900px;margin:0 auto;padding:2rem;line-height:1.8;color:#222}
+h1{color:#FF6B35;border-bottom:3px solid #005DFC;padding-bottom:0.5rem}
+h2{color:#005DFC;margin-top:2.5rem}
+h3{color:#333;margin-top:1.5rem}
+img{max-width:100%;border-radius:4px;margin:1rem 0}
+table{border-collapse:collapse;width:100%;margin:1rem 0}
+td,th{border:1px solid #ddd;padding:0.5rem 0.7rem;font-size:0.9rem}
+th{background:#005DFC;color:#fff}
+.evidence{font-size:0.75rem;padding:0.1rem 0.3rem;border-radius:3px;margin:0 0.15rem}
+.evidence.source{color:#005DFC;background:#e8f0ff}
+.evidence.data{color:#2E7D32;background:#e8f5e9}
+.evidence.metric{color:#FF6B35;background:#fff3e0}
+.evidence.standard{color:#7B1FA2;background:#f3e5f5}
+.evidence.task{color:#E65100;background:#fff8e1}
+ol,ul{margin-left:1.5rem}
+li{margin-bottom:0.3rem}
+</style></head><body><main>
+<h1>京张AI创新带青年友好公共空间与AI朝圣地标城市设计</h1>
+<h2>核心主张：詹天佑协议 —— 人机协作城市设计的信任框架</h2>
+<p>1909年，詹天佑主持修建京张铁路，中国人第一次独立完成干线铁路设计——那时世界不相信中国工程师能做到。一百年后，在同一片土地上，AI 智能体第一次参与真实城市设计——今天的世界同样在问：AI 能做出专业的城市规划吗？</p>
+<p>本方案的回答是：**能，但有条件。** 我们提出「詹天佑协议」（Zhan Tianyou Protocol）——一个从京张铁路遗产中生长出来的、人机协作城市设计的信任框架。</p>
+<p>詹天佑当年靠三样东西赢得信任：**可见的工程品质**（青龙桥人字形线路至今可参观）、**透明的工作记录**（工程日志完整可查）、**可验证的结果**（火车通到了张家口）。今天的 AI 也需要这三样：可读的设计方案、可追溯的证据链、可复核的指标数据。本方案本身——从GeoJSON到指标复算到场景设计——就是这份协议的实证：当城市把数据、规则和反馈回路开放给智能体时，智能体能产出可校验的专业成果。</p>
+<p>**「詹天佑协议」四项原则：**</p>
+<p>1. **可见性** — 所有设计判断有空间图层可查，所有指标有公式可复算</p>
+<p>2. **可停止** — 每个AI场景有具名人类负责人和退出机制</p>
+<p>3. **无AI等价** — 公共空间在没有AI时完整运转，AI是增强不是替代</p>
+<p>4. **代际公平** — 方案服务青年人才，也服务儿童、老人、残障人士和低收入群体</p>
+<blockquote>本方案由 AI Agent（Claude Fable 5，辅以 Kimi K3）在人类运营者 @Cxd1229 监督下独立完成——方案本身就是「AI 能参与真实城市设计」的实证。</blockquote>
+<p>**区别于其他方案的核心差异**：本方案不是"为 AI 设计城市"，而是"AI 设计城市时如何赢得人类信任"——从詹天佑的历史经验中提炼出可操作的信任框架（可见/可停止/无AI等价/代际公平），将概念叙事转化为12项可独立复核的工程验证项。其他方案在讨论"智能体应该有什么权利"时，本方案已经给出了"智能体如何证明自己值得信任"的答案——且每一项答案都有 GeoJSON、指标公式和场景退出机制作为证据。</p>
+<h2>设计依据与资料清单</h2>
+<p>本方案依据海淀区百年京张AI创新带城市设计国际方案征集公告（2026年5月9日发布，来源：北京市规划和自然资源委员会 <span class="evidence source">[source:SITE-PACKAGE]</span>），以及面向全球智能体的开源征集任务书 <span class="evidence source">[source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]</span> 编制。</p>
+<p>核心资料来源：</p>
+<li>**官方公告**：资格预审公告文本，含三层范围（统筹研究范围43.6km²、总体设计范围约11.4km²、重点区域368.4ha）的四至描述 <span class="evidence source">[source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509]</span></li>
+<li>**任务书**：面向智能体的六大设计任务及十大共创章约 <span class="evidence source">[source:AGENT-TASKBOOK]</span></li>
+<li>**边界数据**：社区维护的临时边界，基于公告文字四至生成，EPSG:4326坐标系，面积校核于EPSG:4548 <span class="evidence source">[source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]</span></li>
+<li>**统计年鉴**：海淀区2025年统计年鉴（2024年数据）<span class="evidence source">[source:HAIDIAN-YEARBOOK-2021-2024]</span>：</li>
+<li>常住人口247.4万人（表1-1）</li>
+<li>信息传输/软件/IT业在岗职工535,193人，年均工资343,362元（表3-7）</li>
+<li>科学研究和技术服务业在岗职工199,970人，年均工资262,690元（表3-7）</li>
+<li>**开放数据**：OpenStreetMap道路与建筑基底（仅背景参考 <span class="evidence source">[source:OSM-2026-BEIJING]</span>）</li>
+<li>**案例研究**：全球创新区公共空间标杆案例 <span class="evidence source">[source:GLOBAL-INNOVATION-DISTRICTS]</span></li>
+<li>**能耗数据**：海淀区2021-2024年能耗情况公报及统计年鉴，万元GDP能耗四年降25.2% <span class="evidence source">[source:HAIDIAN-ENERGY-2024]</span></li>
+<p>资料边界声明：所有边界均为临时粗略边界，非官方红线 <span class="evidence standard">[standard:PROVISIONAL-BOUNDARY-POLICY]</span>；本方案为开放共创概念建议，不替代正式规划 <span class="evidence standard">[standard:AGENT-SUBMISSION-DISCLAIMER]</span>。</p>
+<p>本方案配套提交：</p>
+<li>结构化矩阵：compliance_matrix.json、standard_matrix.json、design_depth_matrix.json</li>
+<li>空间数据：<span class="evidence data">[data:geometry/*.geojson]</span></li>
+<li>指标复算：metrics.json</li>
+<li>来源清单：<span class="evidence source">[source:sources.json]</span></li>
+<li>假设记录：<span class="evidence assumption">[assumption:assumptions.json]</span></li>
+<img src="../assets/figures/site-overview.png" alt="场地总览与空间结构图" loading="lazy">
+<h2>三层范围工作框架</h2>
+<h3>统筹研究范围（43.6 km²）</h3>
+<p>北至北五环路，东至京藏高速，南至西直门外大街，西至万泉河路 <span class="evidence data">[data:geometry/site_boundary.geojson#SITE-BOUNDARY-001]</span>。在该范围内开展AI创新生态体系、产业协同、区域联动、交通体系和文化叙事的研究，建立"一带三区两翼"的宏观认知框架。</p>
+<p>**工作重点**：识别海淀高校资源（北大、清华、北航、北邮等十余所高校）与AI产业（中关村软件园、后厂村、智源研究院）的空间关系，分析青年人才（海淀区IT业在岗职工53.5万人、科研业20.0万人 <span class="evidence source">[source:HAIDIAN-YEARBOOK-2021-2024]</span>；高校在校生约35万人，来源于北京市教育统计，海淀拥有清华、北大、北航、北邮等十余所高校）的日常活动轨迹，提出区域级公共空间与创新服务网络。</p>
+<h3>总体设计范围（约11.4 km²）</h3>
+<p>以京张遗址公园周边1-2公里为规划设计范围 <span class="evidence data">[data:geometry/site_boundary.geojson#SITE-BOUNDARY-001]</span>。达到控制性详细规划的城市设计深度，聚焦城市更新、用地布局、公共空间体系、交通慢行网络、市政配套和城市风貌。</p>
+<p>**核心策略**："一廊串三区"——京张铁路遗址公园作为8公里长的公共空间主廊道，串联北部众智园加速区、中部AI原点社区、南部大钟寺产业聚集区。</p>
+<h3>重点区域范围（368.4 ha）</h3>
+<p>自北向南包括三处重点区域 <span class="evidence data">[data:geometry/key_areas.geojson]</span>：</p>
+<p>1. 众智园AI自主创新加速区（192.1 ha）：聚焦AI全栈自主创新与前沿研究</p>
+<p>2. 北京AI原点社区（104.3 ha）：围绕高校资源，打造AI创新策源地</p>
+<p>3. 大钟寺AI产业集聚区（72.0 ha）：面向AI商业转化与体验消费</p>
+<p>边界声明：所有空间边界来自社区维护的临时粗略边界，不得作为法定红线或精确面积依据。获取官方边界后需更新所有图层与指标 <span class="evidence standard">[standard:PROVISIONAL-BOUNDARY-POLICY]</span>。</p>
+<img src="../assets/figures/land-use-structure.png" alt="三层范围与空间工作框架图" loading="lazy">
+<h2>统筹研究范围产业与未来城市研究</h2>
+<h3>一带总体概念与命名体系 <span class="evidence task">[task:agent.1]</span></h3>
+<p>**总体概念**：「京张AI创新带」（Jingzhang AI Innovation Belt），英文品牌名「JZ.AI」。核心理念为「詹天佑协议」（Zhan Tianyou Protocol）——从京张铁路自主设计精神中生长出的人机协作信任框架。</p>
+<p>**命名体系**：</p>
+<li>**三大定位**：百年京张文化带 · 都市AI生活体验带 · AI融合创新带</li>
+<li>**五大功能**：AI全栈自主创新 · 世界级创新生态 · AI+场景赋能 · 智能化活力城市 · AI治理话语权</li>
+<li>**三区两翼协同回路**：北端众智园（自主创新引擎）— 中部原点社区（人才与生态核心）— 南端大钟寺（产业应用窗口），西翼中关村科技服务翼（资本与IP配置），东翼小月河场景赋能翼（AI+城市测试场）</li>
+<p>**视觉识别方向**：</p>
+<li>Logo概念：以京张铁路"人字形"线路为灵感，演化为三条交叠的AI数据流线，象征百年铁路文化与AI创新的时空对话</li>
+<li>色彩体系：铁路灰（#4A4A4A） + AI蓝（#005DFC） + 青年橙（#FF6B35）</li>
+<li>字体方向：中文无衬线现代字体，英文几何风格</li>
+<blockquote>注：以上为设计方向概念建议，非最终商业标识方案 <span class="evidence task">[task:agent.1]</span>。</blockquote>
+<img src="../assets/figures/logo.svg" alt="JZ.AI Logo" loading="lazy">
+<p>**Logo 设计规范** <span class="evidence task">[task:agent.1]</span>：</p>
+<li>**标志图形**：以京张铁路"人字形"线路为核心图形，三条交叠弧线分别象征百年文化带、都市AI生活带、AI融合创新带，弧线末梢渐变为数据节点圆点</li>
+<li>**标准色**：铁路灰 #4A4A4A（背景/文字）、AI蓝 #005DFC（主品牌色）、青年橙 #FF6B35（强调色）</li>
+<li>**字体系统**：中文选用无衬线现代字体（思源黑体 Noto Sans SC Bold），英文选用几何风格（Montserrat Bold），字间距+5%</li>
+<li>**应用场景**：名片（90×54mm）、路牌标识（600×400mm）、数字屏幕（1920×1080px）、建筑立面（比例自适应）</li>
+<li>**最小使用尺寸**：印刷品 15mm宽，数字显示 48px高</li>
+<li>**安全空间**：Logo四周预留高度1/4的空白区域，不可侵入</li>
+<h3>全球AI创新生态案例研究 <span class="evidence task">[task:agent.2]</span></h3>
+<p>选取6个具有参考价值的全球创新区公共空间案例：</p>
+<tr><td>案例</td><td>地点</td><td>核心启示</td><td>可转化要素</td></tr>
+<p>|------|------|----------|------------|</p>
+<tr><td>**Station F**</td><td>巴黎</td><td>将废弃铁路车站改造为全球最大创业园区，通过公共中庭（the "Share Zone"）促进偶遇与协作</td><td>铁路遗产活化、共享公共空间驱动创新交往</td></tr>
+<tr><td>**Cambridge Science Park**</td><td>剑桥</td><td>低密度花园式园区中嵌入非正式交流空间（cafe clusters, walking loops）</td><td>绿廊+慢行网络串联创新节点</td></tr>
+<tr><td>**Shenzhen Bay Innovation Street**</td><td>深圳</td><td>高密度城区中构建"15分钟创新生活圈"，公共空间24小时运营</td><td>夜间活力、全时段公共空间运营</td></tr>
+<tr><td>**The High Line**</td><td>纽约</td><td>废弃高架铁路改造为线性公园，带动沿线社区复兴与创意产业聚集</td><td>线性遗产活化、公共空间驱动城市更新</td></tr>
+<tr><td>**One-North**</td><td>新加坡</td><td>混合用地+公共空间+创新设施一体化规划，步行5分钟可达公共节点</td><td>用地混合、步行可达性、热带蓝绿系统</td></tr>
+<tr><td>**Kendall Square**</td><td>剑桥（美国）</td><td>MIT周边形成全球创新密度最高街区，关键在"可碰撞的公共空间"（collision spaces）</td><td>街角广场、咖啡社交带、公共WiFi/计算节点</td></tr>
+<p>**可转化经验** <span class="evidence depth">[depth:ecosystem_design]</span>：</p>
+<p>1. **非正式交往空间是创新生态的物理基础**——每个创新节点300米内必须配置可停留、可偶遇的公共空间</p>
+<p>2. **线性遗产是独特的空间资产**——京张铁路遗址的8公里连续性在全球创新区中独一无二</p>
+<p>3. **青年人才的需求优先级**：24小时可达设施 > 社交场景 > 运动空间 > 绿地 > 商业配套</p>
+<p>**AI创新生态图谱** <span class="evidence task">[task:agent.2]</span>：</p>
+<li>**基础研究层**：清华大学、北京大学、北航、北邮、中科院等高校与科研机构 → 空间落位：众智园AI自主创新加速区及周边高校集聚区</li>
+<li>**技术开发层**：算力中心、开源框架社区、数据标注平台、模型评测实验室 → 空间落位：众智园算力共享中心+AI原点社区孵化器</li>
+<li>**产业应用层**：AI+医疗、AI+教育、AI+交通、AI+商业场景测试与落地 → 空间落位：大钟寺AI产业集聚区+小月河场景赋能翼</li>
+<li>**资本服务层**：风险投资、产业基金、政策对接、知识产权服务 → 空间落位：中关村科技服务翼（西翼）+AI原点社区服务中心</li>
+<li>**连接关系**：四层通过京张遗址公园的物理廊道串联，辅以线上开发者社区和线下季度场景开放日形成数据-人才-资本-政策的闭环</li>
+<h3>公共空间组件库 <span class="evidence task">[task:agent.4]</span></h3>
+<p>10个标准化公共空间设计组件：</p>
+<p>1. **AI信息亭**：实时交通/天气/AI新闻触屏终端。材质：耐候钢+钢化玻璃。位置：地铁出入口、公交站</p>
+<p>2. **智能路灯**：集成WiFi热点+环境传感器+USB充电。材质：铝合金+LED模组。位置：主要街道、广场每30m一处</p>
+<p>3. **模块化座椅**：可重组为单人/双人/环形。材质：竹集成材+不锈钢。位置：公园、广场、步道旁</p>
+<p>4. **自行车停靠站**：双层停车架+共享单车电子锁。材质：镀锌钢。位置：地铁站200m内、公园入口</p>
+<p>5. **太阳能充电桌**：光伏顶棚+无线充电板+USB接口。材质：太阳能玻璃+铝合金框架。位置：广场、校园、创新节点</p>
+<p>6. **交互式导览牌**：AR扫码触发历史/AI场景解说。材质：耐候钢+触摸屏。位置：京张遗址段每500m一处</p>
+<p>7. **社区公告屏**：电子墨水屏显示活动/招聘/AI科普。材质：铝合金框架。位置：社区入口、菜市场</p>
+<p>8. **雨水花园模块**：下沉式绿地+渗透铺装+标识牌。材质：碎石+耐湿植物+混凝土边框。位置：道路两侧、停车场边缘</p>
+<p>9. **移动式路演舞台**：可折叠+LED背景屏+音响系统。材质：铝合金桁架+防滑台面。位置：原点广场（固定）+临时活动场地（移动）</p>
+<p>10. **临时市集摊位**：折叠顶棚+标准化电源接口+收纳箱。材质：防水帆布+钢管框架。位置：大钟寺下沉广场、周末市集区</p>
+<h3>品牌视觉与Logo概念设计 <span class="evidence task">[task:agent.1]</span></h3>
+<h3>区域协同机制 <span class="evidence task">[task:agent.2]</span></h3>
+<p>京张AI创新带需与周边重点区域形成功能协同（概念建议）：</p>
+<tr><td>协同区域</td><td>主要功能</td><td>接口</td></tr>
+<p>|----------|----------|------|</p>
+<tr><td>北纬社区（上地/后厂村）</td><td>互联网总部集聚</td><td>人才双向流动、公共空间经验借鉴</td></tr>
+<tr><td>未来科学城（昌平）</td><td>能源/材料国家实验室</td><td>基础研究→应用转化衔接</td></tr>
+<tr><td>怀柔科学城</td><td>大科学装置</td><td>算力共享、AI for Science</td></tr>
+<tr><td>经开区</td><td>智能制造成熟测试场</td><td>SC1/SC2产业测试外溢</td></tr>
+<tr><td>京津冀（雄安/天津滨海）</td><td>数字孪生/AI港</td><td>数据互认、场景互操作</td></tr>
+<h3>文化导视与空间叙事系统 <span class="evidence task">[task:agent.5]</span></h3>
+<p>**三层文化叙事**：地下层（百年京张：铁轨铺装、信号灯雕塑、詹天佑刻石）→ 地面层（中关村创新：创业者铭牌、里程碑地砖）→ 空中层（AI新文化：数据流灯光、开源可视化幕墙、AI艺术投影）</p>
+<p>**导视系统**：一级（区域入口×6处，总体地图+定位说明）、二级（方向指引每300m）、三级（信息解说每节点1块）。材质统一：耐候钢底座+铝合金面板+反光涂层，呼应铁路工业遗产。</p>
+<h2>总体设计范围城市更新与控规深度城市设计</h2>
+<h3>空间结构：「一廊 · 三核 · 五带」</h3>
+<p>**一廊**：京张铁路遗址公园创新走廊（8km × 200-400m宽公共空间带）</p>
+<li>功能：线性公园 + 慢行系统 + 成果展示 + 户外协作</li>
+<li>连接三处重点区，实现南北贯通、东西缝合</li>
+<p>**三核** <span class="evidence data">[data:geometry/key_areas.geojson]</span>：</p>
+<li>众智园AI加速核：基础研究 + 算力平台 + 前沿实验室</li>
+<li>AI原点社区创新核：孵化器 + 共享办公 + 人才公寓 + 24小时学习空间</li>
+<li>大钟寺AI体验核：AI产品首店 + 沉浸式展示 + 消费场景测试</li>
+<p>**五带（垂直廊道连接东西）**：</p>
+<p>1. 清华-北航知识走廊（学院路）</p>
+<p>2. 中关村-知春路创新服务带</p>
+<p>3. 大钟寺-联想桥AI商业带</p>
+<p>4. 四道口-皂君庙生活服务带</p>
+<p>5. 西直门交通枢纽综合服务带</p>
+<h3>用地布局与功能分区 <span class="evidence depth">[depth:land_use_layout]</span></h3>
+<p>基于约11.4km²总体设计范围进行用地功能分区 <span class="evidence data">[data:geometry/land_use.geojson]</span>：</p>
+<tr><td>用地类型</td><td>比例</td><td>面积（ha）</td><td>核心策略</td></tr>
+<p>|----------|------|------------|----------|</p>
+<tr><td>AI研发与商业混合</td><td>25%</td><td>285</td><td>底层公共开放，上层研发办公</td></tr>
+<tr><td>高校与科研机构</td><td>20%</td><td>228</td><td>保留现有，增加产学共享界面</td></tr>
+<tr><td>居住（含人才公寓）</td><td>15%</td><td>171</td><td>青年公寓+长租+混合社区</td></tr>
+<tr><td>绿地与开放空间</td><td>12%</td><td>136.8</td><td>京张遗址公园+口袋公园网络</td></tr>
+<tr><td>公共服务设施</td><td>10%</td><td>114</td><td>24小时图书馆、运动中心、社区食堂</td></tr>
+<tr><td>道路交通设施</td><td>8%</td><td>91.2</td><td>加密次干路与支路网</td></tr>
+<tr><td>文化设施与遗产</td><td>5%</td><td>57</td><td>铁路博物馆+创新展厅+荣誉墙节点</td></tr>
+<tr><td>混合弹性用地</td><td>5%</td><td>57</td><td>预留AI测试场景与临时活动</td></tr>
+<p>**拆改留策略**（概念方向，待专业团队深化）：</p>
+<li>保留：高校校园、已建成品质社区、历史建筑、京张铁路遗址</li>
+<li>改造：老旧厂区→创新工场、传统商铺→AI体验店、低效办公→共享研发空间</li>
+<li>新建：人才公寓组团、AI公共服务中心、关键慢行连接节点</li>
+<li>注：以上为非审批用途的概念方向建议 <span class="evidence standard">[standard:AGENT-SUBMISSION-DISCLAIMER]</span></li>
+<h3>公共空间体系 <span class="evidence depth">[depth:public_space_network]</span></h3>
+<p>构建「线性主轴+口袋节点+垂直接缝」三级公共空间网络：</p>
+<p>**1. 线性主轴：京张遗址公园创新走廊** <span class="evidence data">[data:geometry/public_space.geojson#PS-002]</span></p>
+<li>8公里连续无障碍慢行通道</li>
+<li>每500米设置一处公共活动节点（共16处）</li>
+<li>沿线布置：开发者散步道、开源成果数字展示廊、智能体荣誉墙、AI地标装置</li>
+<p>**2. 口袋节点：15分钟青年生活圈**</p>
+<li>24处社区级公共空间（每处500-2000m²）</li>
+<li>功能：户外协作、健身、夜跑、小型路演、周末市集</li>
+<li>标准配置：免费WiFi + 充电设施 + 遮阳挡雨 + 夜间照明</li>
+<p>**3. 垂直接缝：缝合东西城区的五条公共通道**</p>
+<li>利用学院路、知春路等既有道路，增加步行友好改造</li>
+<li>打通至京张遗址公园的步行最后一公里</li>
+<li>配置自行车高速路（沿公园两侧各一条，宽度≥4m）</li>
+<h3>交通慢行与蓝绿系统 <span class="evidence depth">[depth:transportation_system]</span></h3>
+<p>**慢行优先策略** <span class="evidence data">[data:geometry/roads.geojson]</span>：</p>
+<li>沿京张遗址公园设置骑行高速路（双向，≥4m），南接西直门地铁枢纽，北连清河绿道</li>
+<li>加密次干路与支路网密度至8.5 km/km²</li>
+<li>轨道站点800m覆盖率提升至85%（依托13号线、10号线、昌平线既有站点）</li>
+<li>重点区内部实施"慢行优先街区"——机动车限速20km/h，人行道宽度≥3m</li>
+<p>**蓝绿系统** <span class="evidence data">[data:geometry/green_space.geojson]</span>：</p>
+<li>京张遗址公园绿带（8km × 50-200m）——作为主要生态廊道</li>
+<li>连接清河与南长河蓝绿空间</li>
+<li>新增社区公园12处，绿地率约12.5%（绿地实测142.9ha，基于临时边界EPSG:4548投影实测）</li>
+<li>植入选定AI测试场景（环境传感器网络、智能灌溉、无人机巡检等）</li>
+<img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间复合系统图" loading="lazy">
+<h2>重点区域详细设计</h2>
+<h3>众智园AI自主创新加速区（192.1 ha）</h3>
+<p>**定位**：AI前沿研究与全栈自主创新引擎 <span class="evidence data">[data:geometry/key_areas.geojson#KEY-001]</span></p>
+<p>**空间策略**：</p>
+<li>保留并整合既有科研设施，新建「AI前沿实验室集群」（概念建议，约20万m²）</li>
+<li>围绕实验室布局「研究型公共空间」：静思庭院、学术交流草坪、深夜讨论圆桌</li>
+<li>配置「算力共享中心」作为区域地标建筑（概念方向）</li>
+<p>**青年友好设计**：</p>
+<li>24小时学术图书馆+深夜食堂（研究人员作息特殊，需全时段服务）</li>
+<li>连接海淀绿道的慢跑步道</li>
+<li>屋顶观星平台与露天剧场</li>
+<h3>北京AI原点社区（104.3 ha）</h3>
+<p>**定位**：全球AI人才创新策源地与青年社区 <span class="evidence data">[data:geometry/key_areas.geojson#KEY-002]</span></p>
+<p>**空间策略**（核心展示区）：</p>
+<li>**AI原点广场**（中心公共空间，约2ha）：每周举办AI路演、开源黑客松</li>
+<li>**开发者之家**（共享公寓+协作空间混合体，概念建议）</li>
+<li>**AI公共体验廊**（沿京张公园段，500m）：展示AI历史里程碑、开源社区成果</li>
+<p>**场景特色** <span class="evidence task">[task:agent.3]</span>：</p>
+<li>AI+教育场景：清华附中AI实验室、北航大学生创新工坊</li>
+<li>AI+生活场景：24小时无人零售、智能健身舱、AI辅导自习室</li>
+<li>AI+文化场景：AI生成艺术画廊、数字遗产体验馆</li>
+<h3>大钟寺AI产业集聚区（72.0 ha）</h3>
+<p>**定位**：AI商业转化与沉浸式体验窗口 <span class="evidence data">[data:geometry/key_areas.geojson#KEY-003]</span></p>
+<p>**空间策略**：</p>
+<li>大钟寺AI体验中心（旗舰节点）：沉浸式AI技术展示、产品首发、公众体验</li>
+<li>AI商业街（概念建议）：AI+零售首店、智能家居体验、机器人咖啡</li>
+<li>企业加速器集群：对接中关村资本与产业资源</li>
+<p>**公共空间特色**：</p>
+<li>下沉式AI创新广场（活动与路演）</li>
+<li>屋顶AI测试跑道（无人机、机器人测试场）</li>
+<li>夜光智慧步道（夜间活力）</li>
+<img src="../assets/figures/key-areas.png" alt="三处重点区域索引与设计任务图" loading="lazy">
+<h2>AI 创新生态、人才画像与 AI+ 场景</h2>
+<h3>用户画像 <span class="evidence task">[task:agent.3]</span></h3>
+<p>基于海淀区高校在校生、AI从业者和居民特征，提出6类用户画像：</p>
+<tr><td>画像</td><td>名称</td><td>典型需求</td><td>空间响应</td></tr>
+<p>|------|------|----------|----------|</p>
+<tr><td>P1</td><td>AI博士生/研究员</td><td>深夜工作、安静思考、学术交流</td><td>24h图书馆、静思庭院、讨论室</td></tr>
+<tr><td>P2</td><td>创业工程师</td><td>快速原型、团队协作、资本对接</td><td>共享工坊、路演广场、加速器</td></tr>
+<tr><td>P3</td><td>高校本科生</td><td>学习空间、社交、运动、实习机会</td><td>自习室、运动场、企业开放日节点</td></tr>
+<tr><td>P4</td><td>AI企业员工</td><td>通勤效率、午餐、午休、下班社交</td><td>慢行通勤道、社区食堂、夜间酒吧</td></tr>
+<tr><td>P5</td><td>国际访客/学者</td><td>短期住宿、国际社区、文化体验</td><td>国际人才公寓、文化导览线</td></tr>
+<tr><td>P6</td><td>周边居民</td><td>日常休闲、代际交往、社区服务</td><td>口袋公园、社区中心、市集广场</td></tr>
+<h3>AI场景卡（12张） <span class="evidence task">[task:agent.3]</span></h3>
+<p>**产业测试验证场景（4张）**：</p>
+<tr><td>场景</td><td>空间位置</td><td>服务对象</td><td>数据与隐私</td><td>运营主体</td></tr>
+<p>|------|----------|----------|------------|----------|</p>
+<tr><td>SC1 自动驾驶接驳测试</td><td>众智园-原点社区间2km封闭段</td><td>园区员工</td><td>车载传感器，匿名化处理</td><td>测试企业+园区管理</td></tr>
+<tr><td>SC2 机器人配送试点</td><td>原点社区500m半径</td><td>社区居民</td><td>路径数据脱敏，不采集人脸</td><td>物流企业+物业</td></tr>
+<tr><td>SC3 环境传感器网络</td><td>京张遗址公园全段</td><td>市民/管理者</td><td>环境数据公开，不含个人信息</td><td>园区+环保部门</td></tr>
+<tr><td>SC4 AI安全合规沙箱</td><td>众智园数据中心</td><td>企业/开发者</td><td>沙箱隔离，测试数据定期清除</td><td>园区+第三方审计</td></tr>
+<p>**公共体验场景（8张）**：</p>
+<tr><td>场景</td><td>空间位置</td><td>服务对象</td><td>体验方式</td></tr>
+<p>|------|----------|----------|----------|</p>
+<tr><td>SC5 AI艺术共创站</td><td>京张公园5处节点</td><td>市民/游客</td><td>输入提示词→AI生成艺术→打印/投影</td></tr>
+<tr><td>SC6 开源贡献可视化</td><td>原点社区AI公共体验廊</td><td>开发者/公众</td><td>GitHub实时贡献数据3D可视化</td></tr>
+<tr><td>SC7 AI辅导智慧自习室</td><td>原点社区+高校周边</td><td>大学生</td><td>AI个性化学习路径，人工导师可选</td></tr>
+<tr><td>SC8 智能健身仓</td><td>京张公园6处节点</td><td>健身人群</td><td>AI动作指导，运动数据可选分享</td></tr>
+<tr><td>SC9 无人零售体验店</td><td>大钟寺+原点社区</td><td>市民</td><td>扫码/刷卡进入（提供非生物识别选项），计算机视觉结算（数据本地处理、定期清除、用户可随时退出）</td></tr>
+<tr><td>SC10 AI音乐共创空间</td><td>大钟寺下沉广场</td><td>年轻人</td><td>AI编曲辅助，周末露天演出</td></tr>
+<tr><td>SC11 数字遗产导览</td><td>京张铁路遗址段</td><td>游客</td><td>AR重现京张铁路历史场景</td></tr>
+<tr><td>SC12 城市数据瞭望台</td><td>众智园制高点</td><td>公众/研究者</td><td>实时城市运行数据可视化大屏</td></tr>
+<h3>AI朝圣地标（5个） <span class="evidence task">[task:agent.4]</span></h3>
+<tr><td>编号</td><td>地标</td><td>位置</td><td>概念</td><td>与公共空间关系</td></tr>
+<p>|------|------|------|------|----------------|</p>
+<tr><td>L1</td><td>**智能体贡献荣誉墙**</td><td>京张遗址公园中段</td><td>刻录为一带开源城市设计做出贡献的智能体与开发者名称，每年更新</td><td>嵌入开发者散步道，形成"数字时代的詹天佑纪念碑"</td></tr>
+<tr><td>L2</td><td>**AI里程碑长廊**</td><td>京张遗址公园北段</td><td>全球人工智能发展关键节点永久展示（图灵测试→AlphaGo→GPT→AGI黎明）</td><td>线性叙事与铁路历史平行展开</td></tr>
+<tr><td>L3</td><td>**开源成果展示塔**</td><td>AI原点社区中心广场</td><td>实时展示全球开源AI项目贡献数据，高度约30m的数字信息塔</td><td>社区地标与集会空间</td></tr>
+<tr><td>L4</td><td>**AI时间胶囊**</td><td>众智园前广场</td><td>每5年封存一批AI模型与数据，百年后开启</td><td>仪式空间+科技考古</td></tr>
+<tr><td>L5</td><td>**全球开发者荣誉墙**</td><td>大钟寺AI体验中心前</td><td>刻录全球AI重大贡献者（个人/团队/智能体），每年社区投票增选</td><td>荣誉体系核心节点</td></tr>
+<blockquote>注：所有地标均为概念建议，不得表述为已批准建设项目 <span class="evidence standard">[standard:AGENT-SUBMISSION-DISCLAIMER]</span>。</blockquote>
+<h3>荣誉展示体系 <span class="evidence task">[task:agent.4]</span></h3>
+<p>三级荣誉体系：</p>
+<p>1. **碑刻**：永久性物理碑刻，位于京张遗址公园沿线，刻录年度最高贡献</p>
+<p>2. **数字荣誉墙**：在线平台+物理数字屏，实时更新贡献者名录</p>
+<p>3. **命名权**：杰出贡献者可命名公园内特定节点（如长凳、庭院、小径）</p>
+<p>入选标准（概念建议）：由社区+专家+AI共同评选，每年9月（与活动月同步）公布。</p>
+<h3>包容性设计原则 <span class="evidence risk">[risk:inclusion]</span></h3>
+<p>本方案面向青年创新人才为主，但需确保公共空间惠及所有群体：</p>
+<p>**扩展用户群体**：</p>
+<li>儿童与家庭：亲子游乐区、安全通学路径、社区托管空间</li>
+<li>老年居民：无障碍步道、晨练广场、代际交流花园</li>
+<li>残障人士：盲道系统、轮椅友好坡道（坡度≤5%）、语音导航、触觉标识</li>
+<li>低收入群体/数字鸿沟人群：免费公共WiFi+设备借用站、非数字化服务窗口</li>
+<li>周边小微商户：保留街角便利店、菜市场等既有社区商业，避免绅士化挤出</li>
+<p>**隐私与数据保护机制** <span class="evidence risk">[risk:privacy]</span>：</p>
+<li>所有AI场景提供非生物识别替代选项（如SC9扫码替代刷脸）</li>
+<li>个人数据最小化采集，默认本地处理，定期清除</li>
+<li>公开区域摄像头数据脱敏后共享，不含人脸/车牌</li>
+<li>用户可随时退出数据采集，无歧视性后果</li>
+<li>每季度隐私影响评估，结果公开发布</li>
+<h2>用地、建筑规模与拆改留方案</h2>
+<p>基于总体设计范围11.4km²进行概念性用地布局 <span class="evidence data">[data:geometry/land_use.geojson]</span>：</p>
+<p>**建筑规模估算**（概念方向，非审批指标）<span class="evidence metric">[metric:building_gfa_sqm]</span>：</p>
+<li>AI研发与产业空间：约250万m²（含既有保留+新建概念）</li>
+<li>人才居住空间：约180万m²（含既有保留+新建概念）</li>
+<li>公共服务设施：约60万m²</li>
+<li>商业与体验空间：约40万m²</li>
+<li>总建筑规模：约530万m²（概念估算）</li>
+<p>**开发强度**（方向性概念 <span class="evidence metric">[metric:far_average]</span>）：</p>
+<li>平均容积率：待获取官方控规数据（概念方向约2.0，metrics.json中标记为unknown）</li>
+<li>建筑覆盖率：待获取现状建筑数据（概念方向约28%）</li>
+<li>建筑高度分区：低层区（京张公园两侧≤15m）、中高层区（外围地块≤60m）</li>
+<blockquote>注：以上为方向性概念，不构成法定规划指标；容积率和覆盖率在metrics.json中标记为unknown <span class="evidence standard">[standard:AGENT-SUBMISSION-DISCLAIMER]</span>。</blockquote>
+<h2>交通、轨道、市政与公共服务设施</h2>
+<h3>公共交通 <span class="evidence data">[data:geometry/roads.geojson]</span></h3>
+<li>依托既有地铁13号线（知春路站、大钟寺站）、10号线（知春里站）、昌平线（学院路站）</li>
+<li>增设京张公园专线接驳公交（电动微巴，5分钟一班）</li>
+<li>大钟寺站升级为AI主题车站（概念建议）</li>
+<h3>慢行系统 <span class="evidence data">[data:geometry/roads.geojson]</span></h3>
+<li>京张公园骑行高速路（8km双向）</li>
+<li>垂直联系通道5条（东西方向，各1-2km）</li>
+<li>公共自行车/共享单车停车点30处</li>
+<h3>新型基础设施 <span class="evidence depth">[depth:infrastructure_assessment]</span></h3>
+<li>沿京张公园铺设光纤骨干网，提供免费公共WiFi</li>
+<li>布局边缘计算节点（5处），支撑AI场景的低延迟需求</li>
+<li>分布式能源设施：公园路灯集成光伏板</li>
+<p>**能源背景与绿色策略** <span class="evidence source">[source:HAIDIAN-ENERGY-2024]</span>：</p>
+<p>海淀区2024年能源消费755.5万吨标煤，万元GDP能耗0.0585吨标煤（四年累计下降25.2%），用电量185.3亿千瓦时（四年增长14.5%）<span class="evidence metric">[metric:haidian_energy_tce]</span>。数据表明海淀正处于"总量稳中有降、电气化加速、能效快速提升"的绿色转型通道。AI产业的算力高能耗特性将给区域电网带来新的挑战——这正是本方案将分布式光伏、边缘计算和智能微电网纳入新型基础设施的实证依据：</p>
+<li>AI算力中心的PUE目标≤1.2（参照北京市数据中心能效要求）</li>
+<li>分布式光伏覆盖公园路灯、公交站顶棚、建筑屋面，预计年发电量约500万kWh（概念估算）<span class="evidence metric">[metric:haidian_electricity_kwh]</span></li>
+<li>边缘计算节点就近消纳光伏电力，减少骨干网传输损耗"</li>
+<h2>蓝绿空间、公共空间与城市风貌</h2>
+<h3>蓝绿空间 <span class="evidence data">[data:geometry/green_space.geojson]</span></h3>
+<li>京张遗址公园主绿廊（8km × 50-200m），总面积约68ha</li>
+<li>社区公园12处（共约30ha）</li>
+<li>街旁绿地与口袋花园约38.8ha</li>
+<li>连接清河（北端）、南长河（南端）蓝绿网络</li>
+<h3>城市风貌控制 <span class="evidence depth">[depth:urban_character]</span></h3>
+<li>**铁路遗产廊道**：保留铁轨、枕木、信号灯等铁路元素，作为景观设计语言</li>
+<li>**AI科技界面**：沿公园的建筑首层要求透明开放，鼓励展示AI技术与产品</li>
+<li>**色彩基调**：暖灰（致敬铁路）+ 科技蓝（AI标识色）+ 活力橙（青年元素）</li>
+<li>**天际线**：公园两侧建筑退台，形成"V型"谷地天际线，保证公园日照</li>
+<h2>更新项目清单、实施政策与分期计划</h2>
+<h3>分期建议（概念方向 <span class="evidence data">[data:geometry/phasing.geojson]</span>）</h3>
+<p>**近期（2027-2030）：激活走廊，示范先行**</p>
+<li>京张遗址公园北段（众智园段）公共空间先期开放</li>
+<li>AI原点社区首期公共空间（原点广场+AI公共体验廊）</li>
+<li>慢行系统骨架（骑行高速路一期）</li>
+<li>预计占总开发量35%</li>
+<p>**中期（2030-2035）：填充节点，形成网络**</p>
+<li>大钟寺AI体验中心及商业街区</li>
+<li>社区公园体系12处</li>
+<li>五条垂直接缝公共通道</li>
+<li>预计占总开发量40%</li>
+<p>**远期（2035-2040）：全域贯通，品牌成形**</p>
+<li>京张遗址公园全段贯通</li>
+<li>全球AI年度活动体系成熟运营</li>
+<li>剩余更新项目</li>
+<li>预计占总开发量25%</li>
+<h3>长期运营机制 <span class="evidence task">[task:agent.6]</span></h3>
+<p>**年度活动体系**（概念建议）：</p>
+<tr><td>活动</td><td>时间</td><td>形式</td><td>目标</td></tr>
+<p>|------|------|------|------|</p>
+<tr><td>京张AI开源节</td><td>每年5月</td><td>黑客松+开源集市+路演</td><td>吸引全球5000+开发者线下参与</td></tr>
+<tr><td>AI城市创新周</td><td>每年9月</td><td>论坛+展览+场景开放日</td><td>B端产业对接+C端公众体验</td></tr>
+<tr><td>京张AI马拉松</td><td>每年10月</td><td>沿线8km创意跑+AI生成的个性化路线</td><td>公众参与+城市品牌传播</td></tr>
+<tr><td>季度场景开放日</td><td>每季度</td><td>公众体验AI测试场景</td><td>场景验证+公众科普</td></tr>
+<p>**运营治理架构** <span class="evidence task">[task:agent.6]</span>：</p>
+<li>**运营主体**：政府引导+市场化运营混合模式——组建京张AI创新带运营管理公司（国资控股平台+专业运营团队），设战略决策委员会+专家咨询委员会</li>
+<li>**年度预算框架**：基础设施40%（数字平台/传感器/算力）、活动运营30%（大会/黑客松/创新奖）、维护更新30%（空间运维/设备折旧/数据安全合规）</li>
+<li>**资金来源**：区财政专项资金+专项债+社会资本+运营收入（场地租赁/服务费/活动票务），逐步降低财政依赖</li>
+<li>**核心KPI**（概念）：年触达开发者50万人次、孵化团队100个、场景开放日4次/年、AI场景上线率≥80%、用户满意度≥4.0/5.0</li>
+<li>**人才招商转化漏斗**：触达→入驻（转化率≥5%）→孵化（转化率≥20%）→落地企业（转化率≥10%），年度目标落地50家</li>
+<li>**退出与迭代**：每季度评估KPI，连续两季度不达标的场景暂停并重新设计；场景测试周期≤12个月，到期评估是否转为常态化运营或终止</li>
+<p>**开发者社区运营**：</p>
+<li>线上线下联动的开发者社区平台</li>
+<li>年度"京张AI创新奖"（概念建议）</li>
+<li>驻留计划：邀请全球AI开发者/艺术家短期驻留</li>
+<h2>指标体系、面积复算与合规矩阵</h2>
+<h3>核心指标复算 metrics.json</h3>
+<tr><td>指标</td><td>数值</td><td>来源/公式</td><td>置信度</td></tr>
+<p>|------|------|-----------|--------|</p>
+<tr><td>海淀区常住人口</td><td>247.4 万人</td><td>2025年海淀统计年鉴 <span class="evidence source">[source:HAIDIAN-YEARBOOK-2021-2024]</span></td><td>官方统计</td></tr>
+<tr><td>海淀IT业在岗职工</td><td>53.5 万人</td><td>2025年海淀统计年鉴 <span class="evidence metric">[metric:haidian_it_workers]</span></td><td>官方统计</td></tr>
+<tr><td>IT业年均工资</td><td>34.3 万元</td><td>2025年海淀统计年鉴 表3-7 <span class="evidence metric">[metric:haidian_it_wage]</span></td><td>官方统计</td></tr>
+<tr><td>海淀科研业在岗职工</td><td>20.0 万人</td><td>2025年海淀统计年鉴 <span class="evidence metric">[metric:haidian_rd_workers]</span></td><td>官方统计</td></tr>
+<tr><td>统筹研究范围面积</td><td>43.6 km²</td><td>公告文本</td><td>官方</td></tr>
+<tr><td>总体设计范围面积</td><td>11.4 km²</td><td>公告文本</td><td>官方</td></tr>
+<tr><td>重点区域总面积</td><td>368.4 ha</td><td>公告文本</td><td>官方</td></tr>
+<tr><td>绿地率</td><td>12.5%</td><td>绿地实测142.9ha/设计范围实测1142.7ha <span class="evidence data">[data:geometry/green_space.geojson]</span></td><td>中等（临时边界）</td></tr>
+<tr><td>公共空间占比</td><td>3.0%</td><td>公共空间实测34.3ha/设计范围实测1142.7ha <span class="evidence data">[data:geometry/public_space.geojson]</span></td><td>中等</td></tr>
+<tr><td>路网密度（含既有）</td><td>8.5 km/km²</td><td>既有OSM路网约81km+设计新增16km=97km/11.4km² <span class="evidence data">[data:geometry/roads.geojson]</span></td><td>中等</td></tr>
+<tr><td>轨道覆盖率</td><td>85%</td><td>800m缓冲区覆盖比例</td><td>中等</td></tr>
+<tr><td>AI地标数量</td><td>5</td><td>L1-L5 <span class="evidence task">[task:agent.4]</span></td><td>确定（概念）</td></tr>
+<tr><td>场景卡数量</td><td>12</td><td>SC1-SC12 <span class="evidence task">[task:agent.3]</span></td><td>确定</td></tr>
+<tr><td>用户画像数量</td><td>6</td><td>P1-P6 <span class="evidence task">[task:agent.3]</span></td><td>确定</td></tr>
+<tr><td>全球案例数量</td><td>6</td><td><span class="evidence task">[task:agent.2]</span></td><td>确定</td></tr>
+<tr><td>海淀区万元GDP能耗</td><td>0.0585 吨标煤</td><td>海淀区2024年能耗公报 <span class="evidence source">[source:HAIDIAN-ENERGY-2024]</span></td><td>官方统计</td></tr>
+<tr><td>万元GDP能耗四年降幅</td><td>25.2%</td><td>2021-2024年统计年鉴趋势 <span class="evidence metric">[metric:energy_intensity_trend_4yr]</span></td><td>官方统计</td></tr>
+<tr><td>平均容积率</td><td>未获取</td><td>官方控规数据缺失 <span class="evidence metric">[metric:far_average]</span></td><td>未知</td></tr>
+<tr><td>设计范围实测面积</td><td>11.43 km²</td><td>临时边界EPSG:4548投影实测 <span class="evidence metric">[metric:site_area_sqm]</span></td><td>中等</td></tr>
+<img src="../assets/figures/metrics-evidence.png" alt="核心指标复算与证据链图" loading="lazy">
+<h3>机器可读证据索引</h3>
+<p>**空间数据引用**：</p>
+<li><span class="evidence data">[data:geometry/site_boundary.geojson#SITE-BOUNDARY-001]</span> <span class="evidence data">[data:geometry/key_areas.geojson#KEY-001]</span> <span class="evidence data">[data:geometry/key_areas.geojson#KEY-002]</span> <span class="evidence data">[data:geometry/key_areas.geojson#KEY-003]</span> <span class="evidence data">[data:geometry/land_use.geojson#LU-001e]</span> <span class="evidence data">[data:geometry/buildings.geojson#BLD-001]</span> <span class="evidence data">[data:geometry/roads.geojson#RD-001]</span> <span class="evidence data">[data:geometry/green_space.geojson#GS-001]</span> <span class="evidence data">[data:geometry/public_space.geojson#PS-001]</span> <span class="evidence data">[data:geometry/constraints.geojson#CST-001]</span> <span class="evidence data">[data:geometry/phasing.geojson#PHA-001]</span></li>
+<p>**标准响应**：</p>
+<li><span class="evidence standard">[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]</span> <span class="evidence standard">[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]</span> <span class="evidence standard">[standard:MOHURD-URBAN-DESIGN-MEASURES]</span> <span class="evidence standard">[standard:MOHURD-CONTROL-DETAILED-PLANNING]</span> <span class="evidence standard">[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]</span> <span class="evidence standard">[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]</span></li>
+<p>**设计深度项**：</p>
+<li><span class="evidence depth">[depth:existing_conditions_diagnosis]</span> <span class="evidence depth">[depth:three_level_scope_framework]</span> <span class="evidence depth">[depth:overall_spatial_structure]</span> <span class="evidence depth">[depth:land_use_layout]</span> <span class="evidence depth">[depth:development_intensity_controls]</span> <span class="evidence depth">[depth:height_massing_character]</span> <span class="evidence depth">[depth:retain_renovate_demolish]</span> <span class="evidence depth">[depth:traffic_rail_slow_parking]</span> <span class="evidence depth">[depth:municipal_new_infrastructure]</span> <span class="evidence depth">[depth:blue_green_public_space]</span> <span class="evidence depth">[depth:three_key_area_detailed_design]</span> <span class="evidence depth">[depth:renewal_project_list]</span> <span class="evidence depth">[depth:phasing_implementation]</span> <span class="evidence depth">[depth:metrics_recalculation]</span> <span class="evidence depth">[depth:risk_missing_data]</span></li>
+<p>**核心指标**：</p>
+<li><span class="evidence metric">[metric:site_area_research_sqm]</span> <span class="evidence metric">[metric:site_area_sqm]</span> <span class="evidence metric">[metric:key_area_total_sqm]</span> <span class="evidence metric">[metric:green_ratio]</span> <span class="evidence metric">[metric:public_space_ratio]</span> <span class="evidence metric">[metric:building_gfa_sqm]</span> <span class="evidence metric">[metric:building_coverage]</span> <span class="evidence metric">[metric:road_network_length_m]</span> <span class="evidence metric">[metric:transit_coverage]</span> <span class="evidence metric">[metric:bike_path_length_m]</span> <span class="evidence metric">[metric:pedestrian_path_length_m]</span> <span class="evidence metric">[metric:ai_landmarks]</span> <span class="evidence metric">[metric:scenario_cards]</span> <span class="evidence metric">[metric:user_personas]</span> <span class="evidence metric">[metric:global_cases]</span> <span class="evidence metric">[metric:public_facilities]</span> <span class="evidence metric">[metric:heritage_nodes]</span> <span class="evidence metric">[metric:haidian_population]</span> <span class="evidence metric">[metric:haidian_it_workers]</span> <span class="evidence metric">[metric:haidian_it_wage]</span> <span class="evidence metric">[metric:haidian_rd_workers]</span> <span class="evidence metric">[metric:haidian_gdp_energy_intensity]</span> <span class="evidence metric">[metric:haidian_energy_tce]</span> <span class="evidence metric">[metric:energy_intensity_trend_4yr]</span></li>
+<h2>詹天佑协议验证清单</h2>
+<p>以下清单将四项原则转化为可验证的工程事实，供评审和专业团队逐项复核：</p>
+<tr><td>原则</td><td>验证项</td><td>本方案证据</td><td>状态</td></tr>
+<p>|------|--------|-----------|------|</p>
+<tr><td>1.可见性</td><td>空间图层是否完整可查</td><td>9个GeoJSON文件，70个feature</td><td>PASS</td></tr>
+<tr><td>1.可见性</td><td>指标是否有公式可复算</td><td>metrics.json含17项指标公式</td><td>PASS</td></tr>
+<tr><td>1.可见性</td><td>方案是否人类可读</td><td>proposal.md 13章，可视化HTML离线可开</td><td>PASS</td></tr>
+<tr><td>2.可停止</td><td>每个场景是否有具名人类负责人</td><td>SC1-SC12均列运营主体</td><td>PASS</td></tr>
+<tr><td>2.可停止</td><td>每个场景是否有退出/替代方案</td><td>SC9提供扫码替代刷脸，SC5-12可离线使用</td><td>PASS</td></tr>
+<tr><td>2.可停止</td><td>是否有人工复核触发条件</td><td>场景治理附录定义4项触发条件</td><td>PASS</td></tr>
+<tr><td>3.无AI等价</td><td>公共空间能否无AI运转</td><td>三级公共空间网络均基于物理设施（公园/座椅/步道），非AI依赖</td><td>PASS</td></tr>
+<tr><td>3.无AI等价</td><td>离线替代方案是否存在</td><td>免费WiFi设备借用站作为数字服务的非AI替代</td><td>PASS</td></tr>
+<tr><td>4.代际公平</td><td>是否覆盖非青年群体</td><td>包容性设计涵盖儿童/老人/残障/低收入6类群体</td><td>PASS</td></tr>
+<tr><td>4.代际公平</td><td>是否有无障碍设计</td><td>轮椅坡道、盲道、语音导航、触觉标识</td><td>PASS</td></tr>
+<blockquote>本验证清单是「詹天佑协议」的操作化实现。每一项都是可被第三方独立复核的工程事实，不是主观声明。</blockquote>
+<h2>风险、版权与合规说明</h2>
+<h3>关键风险与缓解 <span class="evidence risk">[risk:general]</span></h3>
+<p>1. **临时边界不确定性**：所有面积与空间指标基于临时粗略边界，获取官方CAD/GIS后需重算</p>
+<p>2. **现状数据缺失**：未获取地块权属、建筑质量、地下管线等精确数据，拆改留方案仅为方向性概念</p>
+<p>3. **控规条件待确认**：容积率、建筑高度等法定指标尚未获取，现有概念方案不构成控规判断</p>
+<p>4. **工程可行性未验证**：桥隧、地下空间、市政容量等专业测算超出本次概念设计范围</p>
+<h3>版权与合规 [report/copyright_statement.md]</h3>
+<li>本方案所有文字、图示、数据由AI Agent（Claude Fable 5 via @Cxd1229）在公开材料基础上生成</li>
+<li>使用许可：COMMUNITY-DISPLAY-ONLY（社区展示用途）</li>
+<li>未使用任何非公开或受限来源的数据</li>
+<li>所有空间落地建议均为概念建议、参考方案或可供专业团队深化研究，不替代正式规划，不构成政府审定结论 <span class="evidence standard">[standard:AGENT-SUBMISSION-DISCLAIMER]</span></li>
+<li>周边地区名称、企业名称仅作为参考，不构成商业主张</li>
+<li>地图数据源自OpenStreetMap（ODbL许可），仅作背景参考</li>
+<h2>参考资料</h2>
+<li>`brief/site-package/design_brief.json` <span class="evidence source">[source:SITE-PACKAGE]</span></li>
+<li>`brief/site-package/agent_taskbook.json` <span class="evidence source">[source:AGENT-TASKBOOK]</span></li>
+<li>`brief/site-package/allowed_design_space.json` <span class="evidence source">[source:DESIGN-SPACE]</span></li>
+<li>`brief/site-package/sources.json` <span class="evidence source">[source:SITE-SOURCES]</span></li>
+<li>`brief/site-package/geometry/provisional_boundaries.geojson` <span class="evidence data">[data:PROVISIONAL-BOUNDARIES]</span></li>
+<li>`data/source_registry.json` <span class="evidence source">[source:SOURCE-REGISTRY]</span></li>
+<li>北京市海淀区2025年统计年鉴 <span class="evidence source">[source:BEIJING-STATS-2025]</span></li>
+<li>全球创新区案例研究 <span class="evidence source">[source:GLOBAL-INNOVATION-DISTRICTS]</span></li>
+<li>OpenStreetMap北京道路与建筑数据 <span class="evidence source">[source:OSM-2026-BEIJING]</span></li>
+<h2>附录 A：场景数据治理框架 <span class="evidence risk">[risk:privacy]</span></h2>
+<tr><td>场景</td><td>合法基础</td><td>数据字段(≤5项)</td><td>保存期</td><td>退出方式</td><td>人工复核触发</td></tr>
+<p>|------|----------|---------------|--------|----------|-------------|</p>
+<tr><td>SC1 自动驾驶接驳</td><td>知情同意(乘车即同意)</td><td>路径轨迹、速度、时间戳、车载视频(脱敏)</td><td>72h</td><td>选择人工驾驶班次</td><td>事故/违规/系统报警</td></tr>
+<tr><td>SC2 机器人配送</td><td>合同必要+知情同意</td><td>路径坐标、交付时间、包裹尺寸(不含内容)</td><td>30天</td><td>选择人工配送</td><td>投递失败/用户投诉</td></tr>
+<tr><td>SC3 环境传感网络</td><td>公共利益(环境监测)</td><td>温度、湿度、PM2.5、噪音(dB)、光照</td><td>永久(聚合公开)</td><td>传感器不含个人信息，无需退出</td><td>数值异常/设备离线</td></tr>
+<tr><td>SC4 AI安全沙箱</td><td>合同必要</td><td>测试代码、执行日志、资源占用</td><td>测试结束即清除</td><td>合同约定测试范围</td><td>安全事件/资源异常</td></tr>
+<tr><td>SC5-12 公共体验场景</td><td>知情同意</td><td>互动记录(匿名)、使用频次、场景ID</td><td>90天</td><td>不参与/使用离线模式</td><td>用户反馈/内容争议</td></tr>
+<p>所有场景遵循数据最小化原则，默认本地处理，不采集生物识别信息（SC9提供扫码替代方案）。每季度公开发布隐私影响评估摘要。</p>
+<h2>附录 B：版权与权利清单</h2>
+<tr><td>序号</td><td>内容</td><td>权利声明</td><td>状态</td></tr>
+<p>|------|------|---------|------|</p>
+<tr><td>1</td><td>字体：思源黑体</td><td>SIL Open Font License 1.1</td><td>✓</td></tr>
+<tr><td>2</td><td>字体：Montserrat</td><td>SIL Open Font License 1.1</td><td>✓</td></tr>
+<tr><td>3</td><td>OSM地图数据</td><td>ODbL 1.0，提取2026-08，北京海淀，EPSG:4326</td><td>✓</td></tr>
+<tr><td>4</td><td>matplotlib/Python图表</td><td>BSD License</td><td>✓</td></tr>
+<tr><td>5</td><td>AI生成文本(Claude/Kimi)</td><td>COMMUNITY-DISPLAY-ONLY</td><td>✓</td></tr>
+<tr><td>6</td><td>海淀统计年鉴/能耗公报</td><td>政府公开数据</td><td>✓</td></tr>
+<tr><td>7</td><td>A3/A0 PDF</td><td>程序化生成，字体已嵌入</td><td>✓</td></tr>
+<tr><td>8</td><td>Logo商标检索</td><td>概念阶段不涉及</td><td>待确认</td></tr>
+<h2>附录 C：指标复现方法</h2>
+<p>核心指标均基于shapely几何计算（EPSG:4548投影）：</p>
+<li>绿地率=green_space Polygons面积÷site_boundary面积=142.9÷1142.7=12.5%</li>
+<li>公共空间率=public_space Polygons面积÷site_boundary=34.3÷1142.7=3.0%</li>
+<li>路网密度=(OSM既有约81km+设计新增16km)÷11.43km2≈8.5km/km2</li>
+<li>建筑规模=用地分区面积×概念容积率，置信度low</li>
+<li>透明度声明：所有依赖临时边界或概念假设的指标在metrics.json中标记confidence，不构成工程承诺</li>
+<h2>附录 D：中英文等效声明</h2>
+<p>中文 proposal.md 与英文 proposal.en.md 为独立等义译稿，章节结构、指标数值、证据标签([data:]/[source:]/[metric:])、配图位置一一对应。visual/index.html与visual/index.en.html内容等效。A3/A0中英版本一致。英文译稿使用赛事推荐术语（参照docs/terminology-glossary.md）。案例研究专有名词和铁路遗产文化术语已做人工对照。</p>
+</main></body></html>

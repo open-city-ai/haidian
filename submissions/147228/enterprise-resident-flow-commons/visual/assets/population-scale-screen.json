@@ -1,0 +1,198 @@
+{
+  "schema_version": "1.0",
+  "status": "synthetic_screening_not_local_forecast",
+  "population_reference": {
+    "value": 3122000,
+    "unit": "persons",
+    "source_id": "HAIDIAN-POPULATION-2024",
+    "scope": "official 2024 Haidian permanent-resident scale reference only"
+  },
+  "agent_count": 3122000,
+  "trip_legs_screened": 6244000,
+  "groups": [
+    {
+      "id": "enterprise_core",
+      "label_zh": "企业核心员工",
+      "share": 0.18,
+      "agents": 561960
+    },
+    {
+      "id": "resident_worker",
+      "label_zh": "居民工作者",
+      "share": 0.22,
+      "agents": 686840
+    },
+    {
+      "id": "care_child",
+      "label_zh": "照护者与儿童",
+      "share": 0.14,
+      "agents": 437080
+    },
+    {
+      "id": "student",
+      "label_zh": "学生与研究人员",
+      "share": 0.14,
+      "agents": 437080
+    },
+    {
+      "id": "service_logistics",
+      "label_zh": "服务与物流",
+      "share": 0.1,
+      "agents": 312200
+    },
+    {
+      "id": "night_shift",
+      "label_zh": "夜班工作者",
+      "share": 0.05,
+      "agents": 156100
+    },
+    {
+      "id": "accessible_older",
+      "label_zh": "无障碍与老年群体",
+      "share": 0.07,
+      "agents": 218540
+    },
+    {
+      "id": "cross_boundary",
+      "label_zh": "跨边界通勤者",
+      "share": 0.1,
+      "agents": 312200
+    }
+  ],
+  "screened_modes": [
+    "metro",
+    "bus",
+    "bike",
+    "walk_accessible",
+    "car",
+    "enterprise_shuttle",
+    "logistics_van",
+    "night_bus"
+  ],
+  "scenarios": {
+    "baseline_screen": {
+      "avg_door_to_door_min": 41.14,
+      "reliability": 0.8355,
+      "accessible_route_score": 59.16,
+      "satisfaction_proxy": 75.27
+    },
+    "flow_commons_bundle": {
+      "avg_door_to_door_min": 35.79,
+      "reliability": 0.9008,
+      "accessible_route_score": 66.67,
+      "satisfaction_proxy": 83.86
+    }
+  },
+  "fairness_constraint": "Each protected cohort must not lose accessibility score relative to the declared baseline screen.",
+  "air_mobility": {
+    "status": "blocked",
+    "eligible_agents": 0,
+    "headline_mode_share": 0,
+    "reason": "No approved airspace, operator, route, safety case or ground fallback is available."
+  },
+  "limitations": [
+    "Cohort shares, utilities and policy effects are declared screening inputs, not local estimates.",
+    "No personal trajectories, names, device identifiers or household records are stored.",
+    "Outputs must be replaced by dated aggregate OD, service, accessibility and curb observations before operational decisions."
+  ],
+  "full_population_replay": {
+    "status": "synthetic_full_population_replay_not_local_forecast",
+    "model_version": "full_population_replay_capacity_gated_lexicographic_policy_search",
+    "model_file": "visual/assets/regional-scale-commute.json",
+    "runner": "visual/assets/run-regional-commute-simulation.js",
+    "readout": "visual/assets/regional-scale-commute-readout.json",
+    "coverage": {
+      "morning_agents": 3122000,
+      "return_agents": 3122000,
+      "aggregate_only": true,
+      "personal_traces_stored": false
+    },
+    "grouping_note": "The eight-group screen is the accountability taxonomy; the replay uses six operational cohorts so every agent can be assigned once without duplicating mass. Student, accessible/older and cross-boundary constraints remain explicit in the accountability layer and are calibration splits for local data.",
+    "operational_cohorts": [
+      "enterprise_employee",
+      "resident_worker",
+      "carer_or_child",
+      "visitor_service",
+      "logistics_and_maintenance",
+      "night_worker"
+    ],
+    "choice_candidates": [
+      "B0_reference",
+      "O1_transit_priority",
+      "O3_active_first",
+      "O4_capacity_balanced"
+    ],
+    "nominal_selected_policy": "O4_capacity_balanced",
+    "nominal_readout": {
+      "agents_processed": 3122000,
+      "all_agents_processed": true,
+      "mass_conservation": true,
+      "mode_shares": {
+        "metro": 0.305,
+        "bus": 0.193,
+        "bicycle": 0.1354,
+        "walking_wheelchair": 0.2091,
+        "car": 0.0959,
+        "enterprise_shuttle": 0.0616
+      },
+      "group_satisfaction_proxy": {
+        "enterprise_employee": 66.15,
+        "resident_worker": 67.38,
+        "carer_or_child": 67.24,
+        "visitor_service": 68.07,
+        "logistics_and_maintenance": 57.21,
+        "night_worker": 66.35
+      },
+      "satisfaction_proxy": 66.44,
+      "generalized_cost_proxy": 49.44,
+      "p90_travel_time_proxy_minutes": 60,
+      "accessibility_completion_proxy": 0.9343,
+      "maximum_mode_load_ratio": 1.2088,
+      "people_flow_conflict_rate_per_1000_proxy": 3.13,
+      "external_car_inflow_ratio": 0.0847,
+      "vehicle_km_proxy": 3513768,
+      "capacity_overflow_person_trips": 332639
+    },
+    "operations_screen": {
+      "readout": "visual/assets/regional-scale-commute-readout.json",
+      "residual_queue_person_trips": 452668,
+      "peak_slice_load_ratio": 3.2431,
+      "interpretation": "Separate service-time FIFO screen; failure is a supply-calibration stop signal."
+    },
+    "capacity_closure_screen": {
+      "readout": "visual/assets/capacity-closure-screen.json",
+      "added_service_units": 301925,
+      "maximum_required_multiplier": 1.34,
+      "maximum_peak_load_ratio": 1.2011,
+      "residual_queue_person_trips": 0,
+      "gate_pass": true
+    },
+    "robustness": {
+      "selected_policy": "O2_equity_balanced",
+      "scenarios": [
+        {
+          "id": "N0_nominal",
+          "label_zh": "名义地面协同",
+          "label_en": "nominal ground coordination"
+        },
+        {
+          "id": "R1_metro_disruption",
+          "label_zh": "地铁中断 30 分钟",
+          "label_en": "30-minute metro disruption"
+        },
+        {
+          "id": "W1_weather_bicycle",
+          "label_zh": "强天气/骑行受限",
+          "label_en": "severe weather / bicycle constrained"
+        },
+        {
+          "id": "D1_capacity_shock",
+          "label_zh": "多方式容量冲击",
+          "label_en": "multimodal capacity shock"
+        }
+      ],
+      "all_population_agents_processed": true,
+      "air_candidate": "blocked"
+    }
+  }
+}

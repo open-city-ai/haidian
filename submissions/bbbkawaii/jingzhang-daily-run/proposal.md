@@ -1,0 +1,117 @@
+---
+title: "京张日课 THE DAILY RUN：把AI创新带写成一天可完成的公共时刻表"
+author_github: "bbbkawaii"
+language: "zh"
+proposal_format_version: "2"
+bilingual_contract_version: "1"
+translation_file: "proposal.en.md"
+license: "COMMUNITY-DISPLAY-ONLY"
+version: "v1.0"
+summary: "从「一天如何在这里被度过」出发，把百年京张AI创新带组织为可执行的公共日课表：晨间通勤、日间研创、午间公共、傍晚服务、夜间生活五段日课，三核分别承担验证日课、转化日课与体验日课。全部基于 provisional 边界的概念建议。"
+tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
+scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
+---
+
+# 京张日课 THE DAILY RUN
+
+## 设计依据与资料清单
+
+本方案以《百年京张AI创新带城市设计国际方案征集》公告确定的三层范围、三处重点区域与设计任务为第一依据 [source:OFFICIAL-ANNOUNCEMENT]。智能体开源征集任务书规定的三项定位、五大功能、三区两翼与 agent.1–agent.6 为任务依据 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。机器可读依据来自 `brief/site-package/` 中的 brief、枚举、区间、schemas 与 `data/source_registry.json` [source:SITE-PACKAGE]。
+
+由于官方 `SITE_BOUNDARY` 与三处 `KEY_AREA` polygon 尚未发布，本包使用 provisional boundaries 生成临时边界 [source:BOUNDARY-SOURCE]。提交包边界标注 `provisional_constraint`、`official_boundary=false` [data:geometry/site_boundary.geojson#SITE-001]。只能用于方案生成、自检、可视化与讨论，不得作为 official redline 或精确面积依据；组织方数据缺口不阻断内容评分，正式 polygon 发布后整包重算 [metric:site_area_sqm]。
+
+![资料证据链与提交包总览](assets/figures/site-overview.png)
+
+## 三层范围工作框架
+
+方案按公告三层范围组织工作：统筹研究约 43.6 km² 负责产业生态与未来城市；总体设计约 11.4 km² 负责更新、交通与风貌；重点区域约 368.4 ha 负责三处详细设计 [source:OFFICIAL-ANNOUNCEMENT]。三层落到用地、道路、绿地、公共空间、建筑与分期图层，并在合规矩阵映射公告 1.3–1.5 与 agent.1–agent.6 [depth:three_level_scope_framework]。
+
+| 层级 | 面积 | 设计问题 | 日课回答 |
+| --- | --- | --- | --- |
+| 统筹研究 | 43.6 km² | 产业与未来城市 | 公共日课表：五段日课 + 人才/企业/居民共用节奏 [depth:overall_spatial_structure] |
+| 总体设计 | 11.4 km² | 更新与控规深度 | 一带三核按日课时段分区与慢行接驳 [data:geometry/roads.geojson#ROAD-001] |
+| 重点区域 | 368.4 ha | 三片详细设计 | 验证日课 / 转化日课 / 体验日课三座“日课站” [data:geometry/key_areas.geojson#PROV-KEY-002] |
+
+## 统筹研究范围产业与未来城市研究
+
+区域协同上，日课线作为中关村科学城与京津冀网络的日常接口：向北衔接北纬社区与未来科学城的科研—转化通勤，向东北预留怀柔科学城基础研究交流时段，向东南通过轨道服务翼连接经开区测试与制造场景，城际层面以人才日课、开源发布日与路演夜课组织要素交换。均为概念接口建议，不构成跨行政区法定规划承诺。
+
+对应 agent.1，总体概念为 **「京张日课 / THE DAILY RUN」**：不把创新带首先写成展示带或地标带，而写成一条普通人与 AI 人才能够在一天内完成的公共时刻表。中文主名「京张日课」，英文名 "THE DAILY RUN"；命名体系含「日课站 Daily Station」「日课环 Daily Loop」「时刻表协议 Timetable Protocol」。Logo 方向：铁路时刻表竖排刻度与日出—日落弧线的结合，配色为铁路灰、通勤橙与中关村蓝 [source:AGENT-TASKBOOK]。
+
+对应 agent.2，对标全球案例提炼可转化机制：校区—园区—街区一日动线（肯德尔广场）、开源社区工作节奏（开发者周会/发布日）、场景开放时段管理（新加坡纬壹）、人才生活一日闭环（杭州未来科技城）、国际路演与夜间经济结合（特拉维夫）。均为参考机制，不构成实施承诺。未来城市判断是：AI 生产力只有嵌进通勤、学习、用餐、照料与夜间活动，才能成为可长期留下的城区，而不是会展周末的临时人潮 [depth:metrics_recalculation]。
+
+![三层范围与用地结构图](assets/figures/land-use-structure.png)
+
+## 总体设计范围城市更新与控规深度城市设计
+
+总体设计回应《城市设计管理办法》对公共空间、界面与风貌的引导，以及建筑设计深度规定对方案深度递进的要求 [standard:MOHURD-URBAN-DESIGN-MEASURES]。重点片区详细设计按建筑设计深度相关要求组织功能、交通、公共空间与实施证据 [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]。开发强度与高度体量在官方控规未到前列为待确认并同步写入 assumptions/metrics [depth:development_intensity_controls]。
+
+总体设计要求达到控制性详细规划的城市设计深度 [standard:MOHURD-CONTROL-DETAILED-PLANNING]。更新策略是「按日课识别断点—补时段接口—缝合慢行—预留复核节点」：把沿线低效界面改造成可在不同时段承担不同日课的复合界面 [depth:land_use_layout]。用地上，研创与教育沿主轴组织，绿带居中，商业服务与文化交往围绕大钟寺，居住与社区服务在东侧，并保留弹性预留 [data:geometry/land_use.geojson#LU-001]。
+
+建筑以保留改造为主、新建为辅，强度与高度在官方控规发布前为 unknown [data:geometry/buildings.geojson#BLDG-001]。交通以京张绿道为日课慢行主轴、学院路—西土城路为时段换乘联络线、轨道站点为高峰接驳横轴 [metric:building_footprint_area_sqm]。道路红线与市政条件缺失列入 `assumptions.json`，不构成审定条件 [source:SITE-PACKAGE]。
+
+## 重点区域详细设计
+
+三处重点区按规划综合实施方案深度展开 [depth:three_key_area_detailed_design]。
+
+众智园定位 **「验证日课站」**：上午标准/评测工作坊、下午模型安全日课、傍晚公开讲解，清河界面承担可参观的验证节奏 [data:geometry/key_areas.geojson#PROV-KEY-001]。北京AI原点社区定位 **「转化日课站」**：近校早课转化会、午间开源发布、晚间人才服务与社区照料，强调高校日节律与园区日节律对齐 [data:geometry/key_areas.geojson#PROV-KEY-002]。大钟寺定位 **「体验日课站」**：午晚高峰的站城一体服务、国际路演夜课与四象限步行，让居民与访客在日常时段感受 AI 服务 [data:geometry/key_areas.geojson#PROV-KEY-003]。两翼分别支撑资本服务日课与场景生活日课。
+
+![三处重点区域详细设计图](assets/figures/key-areas.png)
+
+## AI 创新生态、人才画像与 AI+ 场景
+
+五类用户画像按“一天如何被度过”组织：开源开发者（发布日/评审日）、初创团队（测试—路演—融资窗口）、头部企业访客（接待与招聘时段）、周边居民（通勤/照料/夜生活）、高校师生（课程—实验—转化） [source:AGENT-TASKBOOK]。对应 agent.3，形成 10 张场景卡：01 晨间慢行导航日课、02 近校转化早课、03 开源发布午课、04 安全评测日课、05 人才生活管家、06 站城一体晚高峰服务、07 数据要素夜课剧场、08 低碳算力驿站、09 家庭照料与适老助行、10 周末全球AI开放日。产业测试验证场景≥3：众智园安全评测场、原点近校转化沙盒、大钟寺高峰服务沙盒。均为概念建议 [metric:scenario_node_count]。
+
+![交通慢行与蓝绿公共空间复合系统图](assets/figures/mobility-bluegreen.png)
+
+## 用地、建筑规模与拆改留方案
+
+用地方案依据国土空间用地分类标准表达 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。`geometry/land_use.geojson` 在提交边界内无缝分区：研创与教育服务日间高强度使用，绿带与公共界面服务全时段，商业交往服务午晚高峰，居住社区服务夜间与周末 [data:geometry/land_use.geojson#LU-001]。分区数量由图层统计 [metric:land_use_zone_count]。
+
+建筑更新以保留改造为主、新建为辅。缺少现状建筑、权属与控规时，拆改留只给方法与待校准清单，不编造地块拆除结论 [depth:retain_renovate_demolish]。建筑基底由 `buildings.geojson` 复算，表示概念示范规模而非测绘现状 [metric:building_footprint_area_sqm]。容积率、高度、退线等列为 unknown，并在 metrics 中写明前置条件 [metric:floor_area_ratio]。正式红线与控规发布后须整包重算。
+
+## 交通、轨道、市政与公共服务设施
+
+交通方案回应公告对轨道站点一体化、道路微循环、慢行断点与对外交通的要求 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]。总体以京张绿道为全天慢行日课主轴，以学院路—西土城路组织高峰换乘，以轨道站点接驳横轴服务上下班与课间流动，并在跨环路节点设置“日课接口”过街 [depth:traffic_rail_slow_parking]。
+
+道路中心线与长度由 `geometry/roads.geojson` 复算，只作概念廊道规模参考，不构成道路红线或工程线位 [data:geometry/roads.geojson#ROAD-001]。公共界面与站城步行由公共空间图层表达 [metric:road_total_length_m]。道路红线、管线、消防与市政条件缺失列入 `assumptions.json`，不构成审定条件。
+
+市政与公共服务覆盖 AI 产业服务、创新平台、人才生活、托育适老、端侧算力与分布式能源原型。设施标准与服务半径在正式工程资料发布前列为深化前置条件 [depth:municipal_new_infrastructure]。所有线位、容量与投资时序均为概念建议，正式专项发布后必须重算。
+
+## 蓝绿空间、公共空间与城市风貌
+
+建筑高度、体量与风貌控制在缺少法定控高时仅给分区引导：验证日课站低干扰体量、转化日课站近校尺度、体验日课站站城界面适度复合；具体高度待官方确认后复算 [depth:height_massing_character]。
+
+对应 agent.4 与 agent.5，蓝绿空间以京张遗址公园为全天公共日课骨架，统筹清河、小月河、高校与社区，形成南北贯通、东西连通的步道与骑行系统 [depth:blue_green_public_space]。绿带承担晨跑、午间停留、傍晚家庭活动与夜间低干扰慢行 [data:geometry/green_space.geojson#GREEN-001]。绿地与公共空间比例由图层复算 [metric:green_ratio]。
+
+公共空间强调可进入、可停留、可办小型日课活动的界面，而不是装饰性绿化 [metric:public_space_ratio]。风貌融合京张铁路文化、中关村创新文化与 AI 新文化，提出不少于 3 个 AI 朝圣地标——**日课钟楼、验证讲堂、夜课广场**——以及贡献墙与日课组件库方向 [source:AGENT-TASKBOOK]。品牌与标识需清权；风貌分清法定管控、设计建议与待确认条件。
+
+## 更新项目清单、实施政策与分期计划
+
+分期实施计划明确：一期日课试点与慢行接口，二期站城日课连通，三期全域时刻表运营；各期依赖权属、市政与控规，未获正式依据前不写成已排定政府时序 [depth:phasing_implementation]。
+
+对应 agent.6，六项更新包 [metric:renewal_project_count]：DR-01 慢行日课断点缝合、DR-02 众智园验证日课界面、DR-03 原点转化日课街、DR-04 大钟寺高峰体验连通、DR-05 端侧算力与生活服务节点、DR-06 全球AI开放日公共路线 [source:OFFICIAL-ANNOUNCEMENT]。三期：一期日课试点、二期站城日课更新、三期全域时刻表运营框架 [data:geometry/phasing.geojson#PHASE-001]。活动与运营说明责任边界与风险，不写成已确定政府安排。
+
+![核心指标复算与证据链图](assets/figures/metrics-evidence.png)
+
+## 指标体系、面积复算与合规矩阵
+
+可复算空间指标含 site_area_sqm、building_footprint_area_sqm、green_ratio、public_space_ratio、road_total_length_m、land_use_zone_count、phase_count、key_area_count [metric:site_area_sqm]。管控类指标为 unknown [metric:floor_area_ratio]。合规矩阵覆盖公告 1.3–1.5 与 agent.1–agent.6 [source:OFFICIAL-ANNOUNCEMENT]。标准矩阵六项与深度矩阵十五项 complete。
+
+## 风险、版权与合规说明
+
+主文件为中文，`proposal.en.md` 提供完整对照译文；A3/A0 图纸、报告 HTML 与离线可视化均提供英文副本，术语优先采用赛事推荐译法。所有图片、图纸、图标、数据与代码资产在 `sources.json` 与 `report/copyright_statement.md` 中说明来源、许可与授权状态。HTML 页面为离线静态文件，不加载远程脚本、远程地图瓦片、远程字体、iframe、表单或外部 API，不跟踪评审者行为 [source:SITE-PACKAGE]。
+
+风险与缺资料清单由风险深度项、约束图层与场地包共同校核 [depth:risk_missing_data]。official boundary、重点区 polygon、控规、道路红线、地块、建筑、市政、文保与公共服务缺口全部列入 `assumptions.json` 与正文风险说明。缺少官方依据的结论一律降级为待确认事项，日课时段安排与活动频率不得被读成已批准政府排期。
+
+本方案不声称官方批准、审定控规、最终土地权属、最终建设规模或保证实施。所有空间落地建议均为概念建议、参考方案或可供专业团队深化研究的内容 [source:AGENT-TASKBOOK]。AI agent 对事实、来源、版权、空间数据、指标与表达负责；维护者和专业评审可依据自检结果、空间复核与合规矩阵要求返修或拒绝。正式红线发布后，几何、指标、图件与 HTML 必须整包重算。
+
+
+## 参考资料
+
+本方案依据与导航材料包括：`brief/public-brief.md`、`brief/site-package/design_brief.json` 与 `agent_taskbook.json`，用于锁定三层范围、三区两翼与 agent.1–agent.6 任务 [source:SITE-PACKAGE]。`allowed_design_space.json`、`enums/`、`ranges/planning_limits.json` 与 `schemas/` 提供可机器校验的设计边界与字段约束。
+
+空间临时依据为 `brief/site-package/geometry/provisional_boundaries.geojson`，仅作 provisional 讨论与自检，不作 official redline [source:BOUNDARY-SOURCE]。资料可用性与用途边界以 `data/source_registry.json` 与 `data/processed/agent_fact_pack.md` 为准，并交叉参考 `project_scope_summary.csv`、`agent_task_requirements.csv`、`source_use_matrix.csv` 与 `missing_data_checklist.csv` [source:SOURCE-REGISTRY]。
+
+官方第一依据为北京市规划和自然资源委员会海淀分局发布的资格预审公告及其后续公开任务材料 [source:OFFICIAL-ANNOUNCEMENT]。完整机器索引保存在 `sources.json`、`metrics.json`、`compliance_matrix.json`、`standard_matrix.json` 与 `design_depth_matrix.json`；正文不重复堆叠全部编号。若官方附件、红线或控规更新，应优先替换本包 provisional 几何并重跑渲染、finalize 与 self-check。
+

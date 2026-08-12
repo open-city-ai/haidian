@@ -1,11 +1,128 @@
 {
   "schema_version": "0.1.0",
+  "assumption_note_zh": "每条假设都标注状态与影响。unknown、blocked 与 not_run 都不是放行，而是必须在专业团队接手前显式关闭的缺口。",
+  "assumption_note_en": "Every assumption carries a status and an impact. unknown, blocked and not_run are not clearances; they are gaps that must be closed explicitly before a professional team takes over.",
+  "assumption_count": 20,
   "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "blocked_until_official_release",
+      "statement": "No official overall boundary or key-area polygon has been released, so every geometry layer in this package is provisional.",
+      "impact": "All areas, shares, densities and intensity statements are comparison-only and must be recomputed in full when the official geometry arrives. The recalculation interface is declared in metrics.json.boundary_basis."
+    },
     {
       "id": "A-CONTROLS-001",
       "status": "pending_professional_confirmation",
-      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
-      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+      "statement": "Regulatory FAR, building height, road redlines, ownership and municipal utility conditions were not obtainable from public sources.",
+      "impact": "The package issues no development-intensity or height conclusion; it expresses only public-interface, reversible-service and evidence relationships."
+    },
+    {
+      "id": "A-OWNERSHIP-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Parcel ownership, existing leases and operating rights along the belt are unknown.",
+      "impact": "Demolish-retain-renovate is expressed as a function list with a four-step procedure, never as a named parcel list."
+    },
+    {
+      "id": "A-SURVEY-001",
+      "status": "blocked_until_official_release",
+      "statement": "No survey-grade topography, DEM, pipe network, outfall, soil or groundwater data is available.",
+      "impact": "Blue-green and drainage proposals stay at source-control and route-safety level; no capacity or engineering conclusion is issued."
+    },
+    {
+      "id": "A-RAIL-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Rail corridor clearances, crossing conditions and operating constraints are unknown.",
+      "impact": "Every crossing and parallel section is marked as requiring railway-authority review before further development."
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Heritage extents and construction-control zones around the Jing-Zhang relics are not published at usable precision.",
+      "impact": "Only reversible, demountable interventions are suggested inside the presumed heritage extent."
+    },
+    {
+      "id": "A-POPULATION-001",
+      "status": "unknown_baseline",
+      "statement": "No resident, worker, commuter or visitor count is available for the belt at the required granularity.",
+      "impact": "Service-radius and 15-minute statements are expressed as design targets with a stated recalculation trigger, not as achieved coverage."
+    },
+    {
+      "id": "A-ACCESSIBILITY-001",
+      "status": "unknown_baseline",
+      "statement": "Continuous-accessibility breaks have not been field-surveyed.",
+      "impact": "The package claims no continuous accessibility; it defines the paired day-night walk test that would establish it."
+    },
+    {
+      "id": "A-ENERGY-001",
+      "status": "unknown_baseline",
+      "statement": "No local PUE, green-power ratio, waste-heat network or compute-facility inventory exists for this belt.",
+      "impact": "Compute-energy coupling is a conceptual interface only; no local facility is claimed to exist or to comply."
+    },
+    {
+      "id": "A-AIR-CLIMATE-001",
+      "status": "unknown_baseline",
+      "statement": "No calibrated local wind, heat, air-stagnation or health-linkage measurement is available.",
+      "impact": "Comfort and air-quality statements remain design targets bound to a field protocol; no performance is claimed."
+    },
+    {
+      "id": "A-ROBOT-001",
+      "status": "not_authorized_not_run",
+      "statement": "No embodied-AI test has been authorised or run on any public route in the belt.",
+      "impact": "Scenario S02 and its siblings stay at not_run with null performance results; the tabletop record is synthetic and labelled as such."
+    },
+    {
+      "id": "A-SCENARIO-DATA-001",
+      "status": "synthetic_by_design",
+      "statement": "The twelve scenario cards, eight personas and all task records are synthetic composites authored for this submission.",
+      "impact": "They demonstrate governance structure and auditability, not observed behaviour; no card may be read as user research."
+    },
+    {
+      "id": "A-SIMULATION-001",
+      "status": "package_internal_only",
+      "statement": "The agent-operation aggregates are recomputed from simulation.json task records generated inside this package.",
+      "impact": "They evidence internal reproducibility of the stated numbers only; they are not a benchmark result, a model evaluation or a field outcome."
+    },
+    {
+      "id": "A-CASE-001",
+      "status": "public_reference_only",
+      "statement": "The eight comparative districts are cited by name, operator and public URL without reproducing their content.",
+      "impact": "Each case carries an explicit applicability limit; no outcome from a cited district is projected onto this belt."
+    },
+    {
+      "id": "A-NAMING-001",
+      "status": "confirmed_from_official_text",
+      "statement": "The acceleration area is named 众智园 exactly as written in the official announcement.",
+      "impact": "Any earlier working name is treated as an error and has been removed from the whole package."
+    },
+    {
+      "id": "A-RIGHTS-001",
+      "status": "self_declared_ledger",
+      "statement": "Rights for fonts, code, figures, geometry and evidence files are declared asset by asset in report/copyright_statement.md and visual/assets/copyright-ledger.json.",
+      "impact": "The ledger is a self-declaration for auditability; it is not a legal clearance opinion."
+    },
+    {
+      "id": "A-BILINGUAL-001",
+      "status": "machine_verified",
+      "statement": "The Chinese and English proposals are rendered from one paired data source, so section, block, table-row and heading counts are identical by construction.",
+      "impact": "Equivalence is structural and machine-checked; a human linguistic review is still recorded as an open next step in report/narrative.md."
+    },
+    {
+      "id": "A-VALIDATION-001",
+      "status": "local_run_only",
+      "statement": "The deterministic validator was run locally against this package before submission.",
+      "impact": "A local PASS evidences schema conformance only; it is not an official boundary, a professional seal, a government review or a competition score."
+    },
+    {
+      "id": "A-EXIT-001",
+      "status": "designed_but_unfunded",
+      "statement": "Removal reserves, spare-part stocks and retirement records are designed into the phasing but have no confirmed budget owner.",
+      "impact": "Any component without an accountable owner and a safe passive fallback must be frozen rather than scaled."
+    },
+    {
+      "id": "A-PARTICIPATION-001",
+      "status": "pending_authorization",
+      "statement": "No authorised public participation, consultation or resident listening round has taken place.",
+      "impact": "Participation mechanisms are specified with authority, compensation and opt-out requirements, and are marked as not yet executed."
     }
   ]
 }

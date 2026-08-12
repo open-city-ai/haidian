@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Run deterministic validation for a GitHub pull request.
+"""Run trusted validation for a GitHub pull request.
 
 This script is designed for pull_request_target. It checks out only trusted base
 branch scripts, downloads PR files as inert data, validates them, and comments
-on the PR. It does not call AI services or execute contributor code.
+on the PR. It does not call AI services or execute contributor code. The trusted
+scripts also rerun the spatial, visual, and professional gates against the
+hydrated package so a contributor-owned self_check.json is not treated as
+independent execution provenance.
 """
 
 from __future__ import annotations
@@ -12,6 +15,7 @@ import base64
 import json
 import os
 import shutil
+import subprocess
 import sys
 import tempfile
 import time
@@ -40,6 +44,7 @@ RETRYABLE_METHODS = frozenset({"GET", "HEAD", "OPTIONS"})
 # retries bounded and limited to GETs; a permanent missing file still fails
 # with the path and head-specific download error after the retry budget.
 RETRYABLE_STATUS_CODES = frozenset({404, 429, 500, 502, 503, 504})
+TRUSTED_REVIEW_GATE_TIMEOUT_SECONDS = 180
 
 
 def _http_error_message(error: urllib.error.HTTPError) -> str:
@@ -91,6 +96,11 @@ def _retry_delay_seconds(error: urllib.error.HTTPError, attempt: int) -> float:
     return min(MAX_RETRY_DELAY_SECONDS, float(2**attempt))
 
 
+def _network_error_message(error: urllib.error.URLError) -> str:
+    """Return a bounded network error description without request credentials."""
+    return str(error.reason or "network request failed")[:300].replace("\n", " ")
+
+
 def _is_download_not_found(error: Exception, path: str) -> bool:
     """Recognize an optional manifest asset that is still absent after retries."""
     if isinstance(error, urllib.error.HTTPError):
@@ -98,6 +108,12 @@ def _is_download_not_found(error: Exception, path: str) -> bool:
     return isinstance(error, RuntimeError) and str(error).startswith(
         f"GitHub API download {path} failed with HTTP 404:"
     )
+
+
+def _is_comment_patch_forbidden(error: RuntimeError) -> bool:
+    """Allow fork validation to publish a fresh comment when PATCH is forbidden."""
+    message = str(error)
+    return message.startswith("GitHub API PATCH ") and " failed with HTTP 403:" in message
 
 
 class GitHubClient:
@@ -186,6 +202,13 @@ class GitHubClient:
                         f"GitHub API download {path} failed with HTTP {error.code}: {message}"
                     ) from error
                 time.sleep(_retry_delay_seconds(error, attempt))
+            except urllib.error.URLError as error:
+                if attempt + 1 >= MAX_API_ATTEMPTS:
+                    raise RuntimeError(
+                        f"GitHub API download {path} failed after network error: "
+                        f"{_network_error_message(error)}"
+                    ) from error
+                time.sleep(min(MAX_RETRY_DELAY_SECONDS, float(2**attempt)))
         else:
             raise AssertionError("unreachable")
         if len(content) > max_bytes:
@@ -211,14 +234,29 @@ class GitHubClient:
 
     def upsert_comment(self, issue_number: int, body: str) -> None:
         comments = self.paginate(f"/repos/{self.repository}/issues/{issue_number}/comments?per_page=100")
-        for comment in comments:
-            if COMMENT_MARKER in comment.get("body", ""):
+        marker_comments = [
+            comment for comment in comments if COMMENT_MARKER in comment.get("body", "")
+        ]
+        # A forbidden PATCH can leave the old marker beside a newly-created
+        # fallback marker. Check the complete marker set before attempting
+        # another mutation, so repeated workflow runs remain idempotent.
+        if any(comment.get("body") == body for comment in marker_comments):
+            return
+        for comment in marker_comments:
+            try:
                 self.request(
                     "PATCH",
                     f"/repos/{self.repository}/issues/comments/{comment['id']}",
                     {"body": body},
                 )
                 return
+            except RuntimeError as exc:
+                if not _is_comment_patch_forbidden(exc):
+                    raise
+                # A pull_request_target token may create a new comment but
+                # cannot edit a bot-owned comment on a fork PR. Try another
+                # marker first; POST only after every marker is uneditable.
+                continue
         self.request("POST", f"/repos/{self.repository}/issues/{issue_number}/comments", {"body": body})
 
     def add_labels(self, issue_number: int, labels: list[str]) -> None:
@@ -259,6 +297,8 @@ def is_current_pull_request_head(
     )
     if not isinstance(payload, dict):
         raise RuntimeError("GitHub pull request response was not an object")
+    if payload.get("state") != "open" or payload.get("draft") is True:
+        return False
     head = payload.get("head")
     if not isinstance(head, dict) or not isinstance(head.get("sha"), str):
         raise RuntimeError("GitHub pull request response did not include head.sha")
@@ -274,6 +314,53 @@ def proposal_paths_for(changed_files: list[str]) -> set[str]:
     return proposals
 
 
+def base_requires_persisted_readiness(manifest: object) -> bool:
+    """Return whether a trusted base establishes the new ready-package contract.
+
+    A package absent from the base, or not yet finalized there, is a new
+    ready-package transition and must opt into the persisted self-check
+    contract.  A historical ready package is the only case where an omitted
+    contract remains intake-compatible during migration.  This decision is
+    deliberately made from the trusted base, not from contributor-controlled
+    head content, so deleting the field cannot downgrade a new package to the
+    historical warning path.
+    """
+    if not isinstance(manifest, dict):
+        return True
+    if manifest.get("package_state") != "ready_for_review":
+        return True
+    claim = manifest.get("validation_claim")
+    if not isinstance(claim, dict):
+        return True
+    return claim.get("readiness_contract") is not None
+
+
+def readiness_contract_dirs_from_base(
+    client: GitHubClient,
+    base_repo: str,
+    base_sha: str,
+    proposal_paths: set[str],
+    destination: Path,
+) -> set[str]:
+    """Read only trusted-base manifests to establish strict migration boundaries."""
+    required: set[str] = set()
+    for proposal_path in sorted(proposal_paths):
+        proposal_dir = PurePosixPath(proposal_path).parent.as_posix()
+        manifest_path = f"{proposal_dir}/manifest.json"
+        manifest_destination = destination / manifest_path
+        if not client.fetch_content(base_repo, manifest_path, base_sha, manifest_destination):
+            required.add(proposal_dir)
+            continue
+        try:
+            manifest = json.loads(manifest_destination.read_text(encoding="utf-8"))
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+            required.add(proposal_dir)
+            continue
+        if base_requires_persisted_readiness(manifest):
+            required.add(proposal_dir)
+    return required
+
+
 def validation_paths_for(files: list[dict], maintainer_bypass: bool) -> list[str]:
     """Return paths present in the PR checkout for content validation."""
     return [
@@ -281,6 +368,23 @@ def validation_paths_for(files: list[dict], maintainer_bypass: bool) -> list[str
         for item in files
         if item.get("status") != "removed"
     ]
+
+
+def strict_manifest_paths_for(files: list[dict]) -> list[str]:
+    """Return newly introduced manifest paths that must adopt schema 0.2.x.
+
+    GitHub reports copies and renames with statuses other than ``added``. Treat
+    their current path as new too, so a contributor cannot evade the migration
+    boundary by copying or renaming a legacy manifest.
+    """
+    paths: set[str] = set()
+    for item in files:
+        if item.get("status") not in {"added", "copied", "renamed"}:
+            continue
+        filename = item.get("filename")
+        if isinstance(filename, str) and filename.endswith("/manifest.json"):
+            paths.add(filename)
+    return sorted(paths)
 
 
 def is_review_queue_candidate(changed_files: list[str], pr_author: str) -> bool:
@@ -378,6 +482,81 @@ def write_step_summary(markdown: str) -> None:
         Path(summary_path).write_text(markdown, encoding="utf-8")
 
 
+def _trusted_gate_summary(payload: object) -> str:
+    """Return a bounded, non-content-bearing summary for the CI comment."""
+    if not isinstance(payload, dict):
+        return "no JSON report"
+    parts: list[str] = []
+    for key in ("issues", "errors", "warnings"):
+        value = payload.get(key)
+        if isinstance(value, list):
+            parts.append(f"{key}={len(value)}")
+    return ", ".join(parts) or "report parsed"
+
+
+def run_trusted_review_gates(
+    report: ValidationReport,
+    trusted_repo_root: Path,
+    submission_dir: Path,
+) -> None:
+    """Rerun all non-AI review gates using only trusted checkout scripts.
+
+    The package is hydrated as inert data into a temporary worktree. These
+    subprocesses execute scripts from the trusted default-branch checkout and
+    never import or run contributor-supplied Python/JavaScript. Their results
+    are intentionally recorded in the CI report rather than written back to
+    contributor-owned ``self_check.json``.
+    """
+    gates = (
+        (
+            "SPATIAL_REVIEW",
+            trusted_repo_root / "scripts" / "spatial_review.py",
+            ["--repo-root", str(trusted_repo_root), "--json"],
+        ),
+        (
+            "VISUAL_PACKAGING",
+            trusted_repo_root / "scripts" / "visual_review.py",
+            ["--json"],
+        ),
+        (
+            "PROFESSIONAL_EVIDENCE",
+            trusted_repo_root / "scripts" / "professional_review.py",
+            ["--repo-root", str(trusted_repo_root), "--json"],
+        ),
+    )
+    for gate_id, script, extra_args in gates:
+        command = [sys.executable, str(script), str(submission_dir), *extra_args]
+        try:
+            completed = subprocess.run(
+                command,
+                cwd=trusted_repo_root,
+                capture_output=True,
+                text=True,
+                timeout=TRUSTED_REVIEW_GATE_TIMEOUT_SECONDS,
+                check=False,
+            )
+        except (OSError, subprocess.SubprocessError) as exc:
+            report.add_error(f"trusted gate {gate_id} could not run: {type(exc).__name__}")
+            continue
+
+        payload: object = None
+        stdout = completed.stdout.strip()
+        if stdout:
+            try:
+                payload = json.loads(stdout)
+            except json.JSONDecodeError:
+                report.add_error(f"trusted gate {gate_id} returned non-JSON output")
+                continue
+        passed = completed.returncode == 0 and isinstance(payload, dict) and payload.get("ok") is True
+        summary = _trusted_gate_summary(payload)
+        if passed:
+            report.add_warning(f"trusted gate {gate_id}: PASS ({summary})")
+        else:
+            report.add_error(
+                f"trusted gate {gate_id}: FAIL (exit={completed.returncode}, {summary})"
+            )
+
+
 def main() -> int:
     token = os.getenv("GITHUB_TOKEN")
     repository = os.getenv("GITHUB_REPOSITORY")
@@ -396,6 +575,9 @@ def main() -> int:
     pr_author = pull_request["user"]["login"]
     head_repo = pull_request["head"]["repo"]["full_name"]
     head_sha = pull_request["head"]["sha"]
+    base = pull_request.get("base") or {}
+    base_repo = (base.get("repo") or {}).get("full_name") or repository
+    base_sha = base.get("sha")
     client = GitHubClient(token, repository)
 
     if not is_current_pull_request_head(client, pr_number, head_sha):
@@ -450,13 +632,30 @@ def main() -> int:
 
     worktree = Path(tempfile.mkdtemp(prefix="haidian-pr-"))
     try:
+        proposal_paths = proposal_paths_for(validation_files)
+        if base_sha:
+            required_readiness_contract_dirs = readiness_contract_dirs_from_base(
+                client,
+                base_repo,
+                base_sha,
+                proposal_paths,
+                worktree / ".trusted-base",
+            )
+        else:
+            # A pull_request_target event should always carry base.sha.  If it
+            # is absent, fail closed for touched packages instead of treating
+            # them as historical and allowing the contributor to choose the
+            # migration branch.
+            required_readiness_contract_dirs = {
+                PurePosixPath(path).parent.as_posix() for path in proposal_paths
+            }
         for item in files:
             filename = item["filename"]
             if item.get("status") == "removed":
                 continue
             client.download_content(head_repo, filename, head_sha, worktree / filename)
 
-        for proposal_path in proposal_paths_for(validation_files):
+        for proposal_path in proposal_paths:
             destination = worktree / proposal_path
             if not destination.exists():
                 client.fetch_content(head_repo, proposal_path, head_sha, destination)
@@ -482,7 +681,25 @@ def main() -> int:
                     "participant deletion-only PR; removed files were not content-validated"
                 )
         else:
-            validation = validate_submission(worktree, pr_author, validation_files, bypass)
+            validation = validate_submission(
+                worktree,
+                pr_author,
+                validation_files,
+                bypass,
+                strict_manifest_paths=strict_manifest_paths_for(files),
+                required_readiness_contract_dirs=required_readiness_contract_dirs,
+            )
+            if validation_files and not base_sha:
+                validation.add_error(
+                    "pull_request.base.sha is required to establish the trusted readiness migration boundary"
+                )
+            trusted_repo_root = Path(__file__).resolve().parent.parent
+            for proposal_path in sorted(proposal_paths):
+                run_trusted_review_gates(
+                    validation,
+                    trusted_repo_root,
+                    worktree / PurePosixPath(proposal_path).parent,
+                )
         validation_markdown = format_report(validation)
 
         if not is_current_pull_request_head(client, pr_number, head_sha):

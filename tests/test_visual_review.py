@@ -75,6 +75,17 @@ class VisualReviewTests(unittest.TestCase):
             self.assertFalse(report.ok)
             self.assertIn("VISUAL_REMOTE_OR_ACTIVE_CONTENT", {issue.check_id for issue in report.issues})
 
+    def test_autoplay_media_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            html = VALID_HTML.replace(
+                "</body>", '<video controls autoplay src="../assets/media/walkthrough.mp4"></video></body>'
+            )
+            (submission / "visual" / "index.html").write_text(html, encoding="utf-8")
+            report = review_visual(submission)
+            self.assertFalse(report.ok)
+            self.assertIn("VISUAL_REMOTE_OR_ACTIVE_CONTENT", {issue.check_id for issue in report.issues})
+
     def test_metric_mismatch_fails(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             submission = write_valid_visual_package(Path(tmp))

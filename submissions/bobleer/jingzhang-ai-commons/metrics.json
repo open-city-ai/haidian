@@ -1,0 +1,124 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Site boundary is a maintainer-defined provisional rough boundary (geometry_role=provisional_constraint, official_boundary=false), calibrated to the announced ~11.4 sq km; it is not an official redline."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1770570.526,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space_features))",
+      "confidence": "medium",
+      "assumptions": [
+        "Green space is an agent-generated design proposal inside the provisional boundary."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 335605.638,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space_features))",
+      "confidence": "medium",
+      "assumptions": [
+        "Public space is an agent-generated design proposal inside the provisional boundary."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 450937.21,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "Building footprints are capacity illustrations only, not architectural schemes."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.155139,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Computed against the provisional site boundary; recalculate when official boundary is published."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.029406,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Computed against the provisional site boundary; recalculate when official boundary is published."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved height controls",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height controls are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    }
+  }
+}

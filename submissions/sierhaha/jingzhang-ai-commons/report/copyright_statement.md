@@ -21,8 +21,8 @@
 
 ## 3. 字体使用
 
-- 图件与 PDF 使用操作系统字体 SimHei（黑体）仅用于文本渲染；生成 PDF 时由 matplotlib 嵌入显示所需字体子集，**未再分发任何字体文件本身**。
-- 若评审要求字体级清权，可将全部图件/PDF 改用开源字体（如 Noto Sans CJK）重新渲染后提交修订版；本包声明当前用法为"渲染用途、不构成字体再分发"。
+- 图件与图纸（PDF）使用 **Noto Sans CJK SC（OFL-1.1 开源字体，fonts-noto-cjk 包）** 渲染，由 matplotlib 嵌入显示所需字体子集；字体可自由使用、嵌入与分发（SIL Open Font License 1.1），无版权清权障碍。
+- 无任何专有字体（如 SimHei/微软雅黑）用于本包交付物。
 
 ## 4. 工具链与许可证
 
@@ -33,6 +33,7 @@
 | shapely | 空间几何运算 | BSD-3-Clause |
 | pyproj | EPSG:4548 坐标投影与面积计算 | MIT |
 | Pillow | 图像处理 | HPND |
+| Noto Sans CJK SC | 图件与 PDF 中文字体 | SIL Open Font License 1.1 |
 | jsonschema | 结构化校验 | MIT |
 
 以上组件均以未修改形式使用，不改变其许可证义务。

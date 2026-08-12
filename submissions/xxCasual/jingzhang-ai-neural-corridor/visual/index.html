@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张AI神经走廊 · 方案可视化 | Jing-Zhang AI Neural Corridor</title>
+<style>
+  :root{
+    --ink:#0f172a; --sub:#475569; --mut:#94a3b8; --line:#e2e8f0;
+    --bg:#f8fafc; --card:#ffffff; --accent:#6366f1; --green:#16a34a;
+    --amber:#f59e0b; --red:#dc2626; --cyan:#0284c7;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  .wrap{max-width:1180px;margin:0 auto;padding:24px 20px 60px}
+  header.hero{background:linear-gradient(135deg,#0f172a 0%,#1e293b 55%,#334155 100%);color:#fff;border-radius:18px;padding:34px 36px;margin-bottom:22px}
+  header.hero h1{font-size:28px;font-weight:800;letter-spacing:.5px}
+  header.hero .sub{color:#94a3b8;font-size:14px;margin-top:8px}
+  header.hero .badges{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+  .badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#cbd5e1;font-size:12px;padding:5px 12px;border-radius:999px}
+  .badge.ok{color:#86efac;border-color:#16a34a}
+  .grid{display:grid;gap:18px}
+  .cols2{grid-template-columns:1fr 1fr}
+  .cols3{grid-template-columns:repeat(3,1fr)}
+  .cols4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:900px){.cols2,.cols3,.cols4{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.cols2,.cols3,.cols4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h2{font-size:16px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .card h2::before{content:"";width:6px;height:18px;background:var(--accent);border-radius:3px;display:inline-block}
+  .mcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+  .mcard .v{font-size:24px;font-weight:800;color:var(--accent)}
+  .mcard .l{font-size:12px;color:var(--sub);margin-top:4px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#f1f5f9;font-weight:700;color:var(--sub);font-size:12px}
+  .pill{display:inline-block;font-size:11px;padding:2px 9px;border-radius:999px;background:#eef2ff;color:#4338ca}
+  .pill.g{background:#ecfdf5;color:#047857}
+  .pill.y{background:#fffbeb;color:#b45309}
+  .pill.r{background:#fef2f2;color:#b91c1c}
+  .sw{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+  .note{font-size:12px;color:var(--mut);margin-top:12px}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--sub);margin-top:8px}
+  .statusline{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--sub)}
+  footer{margin-top:28px;font-size:12px;color:var(--mut);text-align:center}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <h1>京张AI神经走廊 · 总体概念与方案可视化</h1>
+    <div class="sub">百年京张AI创新带城市设计开源征集 · 正式方案包 · AI Agent 生成 | 一条神经主脊 · 三处突触节点 · 两翼神经丛 · 多点AI场景</div>
+    <div class="badges">
+      <span class="badge ok">package_type: professional_design_package</span>
+      <span class="badge">package_state: ready_for_review</span>
+      <span class="badge">proposal_format_version: 2</span>
+      <span class="badge">bilingual_contract_version: 1</span>
+    </div>
+  </header>
+
+  <!-- 总览地图 -->
+  <div class="card" style="margin-bottom:18px">
+    <h2>总览地图 · 总体概念</h2>
+    <div class="statusline">
+      <span><b>总体设计范围（临时）:</b> 约11.41 km²</span>
+      <span><b>统筹研究范围:</b> 约43.6 km²</span>
+      <span><b>重点区域:</b> 3处 · 约368.4 ha</span>
+    </div>
+    <p style="font-size:13px;color:var(--sub);margin-top:10px">
+      总体概念「京张AI神经走廊」(JZ·NEURAL)：把百年京张铁路的运输神经转译为城市AI神经网络。
+      京张遗址公园绿脊与慢行主脊构成<b>神经主脊</b>；众智园（训练突触）、原点社区（感知突触）、大钟寺（应用突触）构成<b>三处突触节点</b>；
+      中关村科技服务翼与小月河场景赋能翼构成<b>两翼神经丛</b>；10张场景卡（SC-01~10）构成<b>多点AI场景</b>。
+      命名体系、Logo方向与视觉识别见 <b>任务覆盖</b> 与正文 proposal.md。
+    </p>
+    <div class="note">空间图件见 proposal.md 内嵌图 site-overview.png；临时边界仅用于生成、展示与自检，不构成官方红线。</div>
+  </div>
+
+  <!-- 核心指标 -->
+  <div class="card" style="margin-bottom:18px">
+    <h2>核心指标 · EPSG:4548 复算</h2>
+    <div class="cols4 grid">
+      <div class="mcard"><div class="v" data-metric="site_area_sqm" data-value="11412825.386">11.41 km²</div><div class="l">提交边界面积 Site area</div></div>
+      <div class="mcard"><div class="v" data-metric="green_ratio" data-value="0.237271">23.7%</div><div class="l">绿地率 Green ratio</div></div>
+      <div class="mcard"><div class="v" data-metric="public_space_ratio" data-value="0.234609">23.5%</div><div class="l">公共空间率 Public space ratio</div></div>
+      <div class="mcard"><div class="v" data-metric="road_length_m" data-value="23592.1">23.6 km</div><div class="l">概念路网 Concept roads</div></div>
+    </div>
+  </div>
+
+  <!-- 三层范围 -->
+  <div class="card" style="margin-bottom:18px">
+    <h2>三层范围工作框架</h2>
+    <table>
+      <tr><th>层级</th><th>面积</th><th>本方案工作内容</th><th>数据落点</th></tr>
+      <tr><td>统筹研究范围</td><td>43.6 km²</td><td>世界级AI创新生态、命名与Logo、三区两翼协同回路、未来城市形态</td><td>geometry/constraints.geojson</td></tr>
+      <tr><td>总体设计范围</td><td>11.4 km²</td><td>城市更新总体框架、用地布局、交通市政、遗址公园活力带、城市风貌</td><td>geometry/land_use.geojson</td></tr>
+      <tr><td>重点区域范围</td><td>368.4 ha</td><td>众智园、原点社区、大钟寺三处规划综合实施方案深度设计</td><td>geometry/key_areas.geojson</td></tr>
+    </table>
+    <div class="note">控规类指标（容积率、建筑高度、开发强度）在官方控规条件补齐前统一标记为待确认，不伪装为审定指标。</div>
+  </div>
+
+  <!-- 重点区域 -->
+  <div class="card" style="margin-bottom:18px">
+    <h2>重点区域 · 三处突触节点</h2>
+    <table>
+      <tr><th>重点区域</th><th>面积</th><th>定位</th><th>空间动作</th><th>AI场景</th></tr>
+      <tr>
+        <td>众智园 · 训练突触</td>
+        <td>约192.9 ha</td>
+        <td>花园型全栈自主创新街区</td>
+        <td>两带三簇：清河低碳绿带、五环展示界面；全栈研发簇、治理簇、生活簇</td>
+        <td><span class="pill">SC-05</span> 安全治理沙盒 <span class="pill">SC-06</span> 清河低碳廊</td>
+      </tr>
+      <tr>
+        <td>原点社区 · 感知突触</td>
+        <td>约104.3 ha</td>
+        <td>近校型成果转化与人才社区</td>
+        <td>校区-园区-街区慢行缝合；孵化转化簇、开源广场、荣誉墙、人才居住</td>
+        <td><span class="pill">SC-01</span> 开源发布 <span class="pill">SC-02</span> 成果转化</td>
+      </tr>
+      <tr>
+        <td>大钟寺 · 应用突触</td>
+        <td>约72.0 ha</td>
+        <td>城市型智能经济与国际交往街区</td>
+        <td>大钟寺站四象限连通；智能原生商业、科研研发、规划绿地复合利用</td>
+        <td><span class="pill">SC-07</span> 国际路演 <span class="pill">SC-08</span> 数据要素</td>
+      </tr>
+    </table>
+    <div class="note">三处重点区为临时粗略 polygon，结论为方向性概念设计；官方范围发布后需按新边界重做地块级方案。</div>
+  </div>
+
+  <!-- 用地分区 -->
+  <div class="cols2 grid" style="margin-bottom:18px">
+    <div class="card">
+      <h2>用地分区结构</h2>
+      <div class="legend">
+        <span><span class="sw" style="background:#f59e0b"></span>居住 25.4%</span>
+        <span><span class="sw" style="background:#6366f1"></span>科研 23.4%</span>
+        <span><span class="sw" style="background:#4ade80"></span>公园绿地 21.9%</span>
+        <span><span class="sw" style="background:#14b8a6"></span>教育 7.4%</span>
+        <span><span class="sw" style="background:#a855f7"></span>文化 6.4%</span>
+        <span><span class="sw" style="background:#f97316"></span>商业 5.9%</span>
+        <span><span class="sw" style="background:#e2e8f0"></span>留白 3.1%</span>
+        <span><span class="sw" style="background:#94a3b8"></span>道路 1.0%</span>
+        <span><span class="sw" style="background:#86efac"></span>防护绿 1.8%</span>
+        <span><span class="sw" style="background:#fbbf24"></span>广场 1.6%</span>
+        <span><span class="sw" style="background:#ef4444"></span>医疗 2.1%</span>
+      </div>
+      <p style="font-size:13px;color:var(--sub);margin-top:10px">
+        39个用地地块完全覆盖提交边界、无缝隙无重叠，均采用国土空间用地用海分类代码，面积在 EPSG:4548 下复算。
+        科研与文化用地沿神经主脊两侧集中形成创新带，居住形成东西人才生活带，蓝绿连网，北侧留白应变。
+      </p>
+    </div>
+    <div class="card">
+      <h2>交通慢行与蓝绿公共空间</h2>
+      <p style="font-size:13px;color:var(--sub)">
+        神经主脊慢行轴贯通南北，8条东西联络路构成8处缝合口；五道口、清华东路西口、大钟寺轨道站点按站城一体概念布局。
+        蓝绿系统「一脊两河成网」：遗址公园绿脊为轴，清河与小月河方向廊道为翼，绿地率约23.7%、公共空间率约23.5%。
+      </p>
+      <p style="font-size:13px;color:var(--sub);margin-top:8px">
+        <b>公共空间节点：</b>站前广场、开源广场、贡献者荣誉墙、国际路演客厅、社区公园等，与绿脊共同构成可步行、可集会、可展示的公共空间网络。
+      </p>
+    </div>
+  </div>
+
+  <!-- 建筑 -->
+  <div class="card" style="margin-bottom:18px">
+    <h2>建筑与更新 · 概念拆改留</h2>
+    <table>
+      <tr><th>对象</th><th>处理</th><th>位置</th><th>说明</th></tr>
+      <tr><td>遗址公园沿线建成绿地与完整街区</td><td><span class="pill g">保留</span></td><td>神经主脊</td><td>整体保留并活化，作为公共空间与文化展示骨架</td></tr>
+      <tr><td>五道口商圈、学院路沿线低效楼宇</td><td><span class="pill y">改造</span></td><td>东翼走廊</td><td>微更新与楼宇改造，产业功能升级</td></tr>
+      <tr><td>大钟寺站周边低效市场区</td><td><span class="pill r">拆除（概念）</span></td><td>大钟寺重点区</td><td>站城一体化更新范围，待现状测绘与权属确认</td></tr>
+      <tr><td>众智园科研园区等</td><td><span class="pill">新建</span></td><td>众智园重点区</td><td>44个概念建筑基底表达产业空间供给逻辑（总基底约18.9 ha，概念密度约1.66%）</td></tr>
+    </table>
+    <div class="note">拆改留为概念分级，不构成地块级法定结论；现状建筑测绘、权属与控规条件待正式资料补齐。</div>
+  </div>
+
+  <!-- AI 场景 -->
+  <div class="card" style="margin-bottom:18px">
+    <h2>AI 场景卡（10张，含3个产业测试验证场景）与用户画像（5类）</h2>
+    <table>
+      <tr><th>编号</th><th>场景卡</th><th>空间载体</th><th>隐私与人工复核</th><th>运营主体</th></tr>
+      <tr><td>SC-01</td><td>开源发布与贡献墙</td><td>原点社区文化用地</td><td>人工审核荣誉；不采集个人行为轨迹</td><td>社区运营方+开发者自治</td></tr>
+      <tr><td>SC-02</td><td>成果转化驿站</td><td>原点社区孵化簇</td><td>需求撮合需双方授权；人工复核</td><td>转化服务中心</td></tr>
+      <tr><td>SC-03</td><td>端侧算力驿站</td><td>街道级节点</td><td>计费即用即付；不沉淀业务数据</td><td>基础设施运营方</td></tr>
+      <tr><td>SC-04</td><td>AI慢行导航（测试验证①）</td><td>遗址公园慢行脊</td><td>低侵入传感+可解释结果；人工复核时段管理</td><td>公园运营方+交通部门</td></tr>
+      <tr><td>SC-05</td><td>安全治理沙盒（测试验证②）</td><td>众智园治理簇</td><td>红队测试按规则披露；人工安全复核</td><td>治理实验室+行业组织</td></tr>
+      <tr><td>SC-06</td><td>清河低碳创新廊</td><td>众智园清河界面</td><td>传感器仅采环境数据；人工运维</td><td>园区运营方</td></tr>
+      <tr><td>SC-07</td><td>大钟寺国际路演客厅</td><td>大钟寺站前广场</td><td>活动内容人工审核；按清权要求展示</td><td>会展运营机构</td></tr>
+      <tr><td>SC-08</td><td>数据要素会客厅</td><td>大钟寺片区</td><td>数据流通以合规授权为前提；人工审计</td><td>数据服务运营方</td></tr>
+      <tr><td>SC-09</td><td>AI生活服务样板街（测试验证③）</td><td>社区商业交汇处</td><td>人脸/画像禁止用于商业；人工兜底服务</td><td>街道+服务运营商</td></tr>
+      <tr><td>SC-10</td><td>全球AI活动周体验路线</td><td>一带公共空间</td><td>传播素材清权；人工内容审核</td><td>活动组委会</td></tr>
+    </table>
+    <div class="legend" style="margin-top:12px">
+      <b>用户画像：</b><span>开源开发者</span><span>初创团队</span><span>头部企业访客</span><span>周边居民</span><span>高校师生</span>
+    </div>
+    <div class="note">三张测试验证场景卡明确「先测试、再上线、可撤回」准入纪律；全部为概念建议，不写成已批准运营。</div>
+  </div>
+
+  <!-- 更新项目 -->
+  <div class="card" style="margin-bottom:18px">
+    <h2>更新项目清单（6项）与分期计划</h2>
+    <table>
+      <tr><th>编号</th><th>更新项目</th><th>类型</th><th>分期</th><th>分期面积</th></tr>
+      <tr><td>UP-01</td><td>京张遗址公园南北贯通与慢行断点缝合</td><td>公共空间</td><td><span class="pill g">P1 近期</span></td><td>P1 约369.1 ha（2026-2028）</td></tr>
+      <tr><td>UP-02</td><td>大钟寺站城一体化更新</td><td>站点更新+拆改留</td><td><span class="pill g">P1 近期</span></td><td></td></tr>
+      <tr><td>UP-03</td><td>原点社区低扰动有机更新</td><td>微更新+成果转化载体</td><td><span class="pill g">P1 近期</span></td><td></td></tr>
+      <tr><td>UP-04</td><td>众智园花园型科研园区建设</td><td>新建园区</td><td><span class="pill">P2 中期</span></td><td>P2 约510.7 ha（2028-2031）</td></tr>
+      <tr><td>UP-05</td><td>学院路沿线产业楼宇改造</td><td>楼宇改造</td><td><span class="pill">P2 中期</span></td><td></td></tr>
+      <tr><td>UP-06</td><td>小月河场景赋能带建设</td><td>蓝绿+场景</td><td><span class="pill y">P3 远期</span></td><td>P3 约261.4 ha（2031-2035）</td></tr>
+    </table>
+    <div class="note">实施政策建议（场景开放与测试准入、开发者社区运营、荣誉展示与品牌活动、数据要素流通合规）均为概念建议，不构成政府已确定安排。</div>
+  </div>
+
+  <!-- 任务覆盖 -->
+  <div class="card" style="margin-bottom:18px">
+    <h2>任务覆盖 · agent.1-6 与公告 1.3/1.4/1.5</h2>
+    <table>
+      <tr><th>任务</th><th>本方案响应</th></tr>
+      <tr><td>agent.1 总体概念与功能统筹</td><td>「京张AI神经走廊」命名体系、Logo与视觉识别方向、三大定位、五大功能、三区两翼协同回路、总体空间结构</td></tr>
+      <tr><td>agent.2 AI全栈创新生态</td><td>6个全球案例、生态图谱、「策源-训练-采用-赋能」协同回路、众智园全栈体系与原点社区转化机制</td></tr>
+      <tr><td>agent.3 场景赋能与活力城市</td><td>10张场景卡（含3个测试验证场景）、5类用户画像、场景-空间-运营映射、隐私与人工复核边界</td></tr>
+      <tr><td>agent.4 公共空间/新业态/地标</td><td>京张遗址公园AI公共空间、东西缝合与南北贯通策略、3处AI朝圣地标（零公里神经之源/清华园感知之源/众智园算力之塔）、荣誉展示体系</td></tr>
+      <tr><td>agent.5 文化叙事</td><td>京张铁路-中关村-「AI新文化」三层叠写叙事、导视符号系统方向、国际传播叙事（历史钢轨×数据流）</td></tr>
+      <tr><td>agent.6 活动与长期运营</td><td>年度活动体系（朝圣周/开源马拉松/产业大会/场景城市节）、开发者社区运营、场景开放五步准入、国际传播与招引转化</td></tr>
+    </table>
+    <div class="note">公告1.3（3项）、1.4（3项）、1.5（17项）共23项任务与agent.1-6在 compliance_matrix.json 逐条覆盖。</div>
+  </div>
+
+  <!-- 自检状态 -->
+  <div class="cols2 grid" style="margin-bottom:18px">
+    <div class="card">
+      <h2>自检状态</h2>
+      <div class="legend">
+        <span class="pill g">DETERMINISTIC_VALIDATION: PASS</span>
+        <span class="pill g">SPATIAL_REVIEW: PASS</span>
+        <span class="pill g">VISUAL_PACKAGING: PASS</span>
+        <span class="pill g">PROFESSIONAL_EVIDENCE: PASS</span>
+      </div>
+      <p style="font-size:13px;color:var(--sub);margin-top:10px">
+        package_state=ready_for_review；readiness_contract=persisted-self-check-v1；
+        完整四门报告见 self_check.json 与 manifest.json。
+      </p>
+    </div>
+    <div class="card">
+      <h2>来源与假设</h2>
+      <p style="font-size:13px;color:var(--sub)">
+        <b>来源：</b>官方资格预审公告、面向智能体任务书、仓库公开来源注册表（data/source_registry.json）、
+        临时边界推定（provisional_boundaries_basis.md）、三区两翼与1+X+1产业政策背景资料；完整登记见 sources.json。
+      </p>
+      <p style="font-size:13px;color:var(--sub);margin-top:8px">
+        <b>假设与缺口：</b>官方精确边界与重点区polygon待发布（A-CONTROLS-001）；容积率、建筑高度、退线等法定控制条件待正式控规资料；
+        现状建筑测绘、权属与工程条件待确认；场景与运营均为概念建议，需专业团队与公众参与深化。
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    京张AI神经走廊 · submissions/xxCasual/jingzhang-ai-neural-corridor · 离线静态页面，无外部资源
+    | 本方案为AI agent概念建议，不替代正式规划；临时边界不构成官方红线
+  </footer>
+</div>
+</body>
+</html>

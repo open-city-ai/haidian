@@ -1,0 +1,4583 @@
+{
+ "schema_version": "5.0.0",
+ "proposal_id": "jingzhang-ai-native-belt",
+ "revision": "v4.0",
+ "author_github": "wocaonimaworinixi-collab",
+ "generated_by": "kimik3",
+ "record_count": 122,
+ "record_class_summary": {
+  "design_decision": 30,
+  "metric_binding": 23,
+  "gate_binding": 40,
+  "risk_binding": 8,
+  "scenario_binding": 6,
+  "depth_binding": 15
+ },
+ "domain_summary": {
+  "spatial": 22,
+  "ecology": 8,
+  "delivery": 10,
+  "simulation": 3,
+  "governance": 16,
+  "energy": 4,
+  "safety": 13,
+  "technology": 8,
+  "data": 15,
+  "operations": 5,
+  "equity": 5,
+  "culture": 1,
+  "research": 1,
+  "mobility": 6,
+  "future": 1,
+  "communication": 1,
+  "evaluation": 3
+ },
+ "status_summary": {
+  "design_target": 70,
+  "verified_internal": 40,
+  "declared_unknown": 4,
+  "open_risk": 8
+ },
+ "method_zh": "每条记录是一个可审计的设计判断：先写决策，再写目标指标、输入证据、复核方式与边界。与只写结论的台账不同，本台账的每条记录都带一个 check 块，可由 visual/assets/evidence-audit.js 离线重算；断言失败即视为该条记录无效。target_score 是自评目标，不是现状事实。",
+ "method_en": "Each record is an auditable design judgement: decision, target metric, input evidence, verification and boundary. Unlike a prose register, every record carries a machine readable check block that visual/assets/evidence-audit.js recomputes offline; a failing assertion invalidates the record. target_score is a self-assessment target, not a fact.",
+ "audit_command": "node visual/assets/evidence-audit.js",
+ "records": [
+  {
+   "id": "cross-section-discipline",
+   "record_class": "design_decision",
+   "domain": "spatial",
+   "title_zh": "带状横断面纪律",
+   "title_en": "Belt cross-section discipline",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把 1.46 公里宽的带状用地切成西侧街区带、西缝隙、遗址公园主廊、东缝隙、东侧街区带五段，所有图层都必须落在这五段之一，杜绝随手画的自由曲线。",
+   "decision_en": "The 1.46 km wide belt is cut into five bands (west blocks, west seam, heritage park spine, east seam, east blocks); every layer must sit inside one band, which removes free-hand geometry.",
+   "metric": {
+    "name": "band_assignment_coverage",
+    "target": 1.0,
+    "unit": "ratio",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:SITE-PACKAGE",
+    "depth:overall_spatial_structure",
+    "standard:MOHURD-URBAN-DESIGN-MEASURES"
+   ],
+   "evidence_refs": [
+    "geometry/land_use.geojson",
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson"
+   ],
+   "verification_zh": "逐要素读取 band 属性，覆盖率必须为 1；缺失即视为几何不合格。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "断面划分基于临时边界，官方边界到位后需整体平移与复算。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/land_use.geojson",
+     "geometry/green_space.geojson",
+     "geometry/public_space.geojson"
+    ]
+   }
+  },
+  {
+   "id": "land-use-is-zone",
+   "record_class": "design_decision",
+   "domain": "spatial",
+   "title_zh": "用地层只表达分区不表达地块",
+   "title_en": "Land-use layer encodes zones, not parcels",
+   "status": "design_target",
+   "target_score": 86,
+   "decision_zh": "land_use 的每个要素声明 unit_role=land_use_zone_not_cadastral_parcel，避免被误读为可出让地块。",
+   "decision_en": "Every land_use feature declares unit_role=land_use_zone_not_cadastral_parcel so it cannot be mistaken for a transferable cadastral parcel.",
+   "metric": {
+    "name": "land_use_coverage_ratio",
+    "target": 1.0,
+    "unit": "ratio",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:MNR-LAND-USE-CLASSIFICATION-GUIDE",
+    "depth:land_use_layout"
+   ],
+   "evidence_refs": [
+    "geometry/land_use.geojson",
+    "metrics.json"
+   ],
+   "verification_zh": "读取 20 个用地要素的 unit_role 字段并统计覆盖率。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "分区不构成任何土地权属或出让意向。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/land_use.geojson",
+     "metrics.json"
+    ]
+   }
+  },
+  {
+   "id": "buildings-schematic-only",
+   "record_class": "design_decision",
+   "domain": "spatial",
+   "title_zh": "建筑层只放示意性关键体量",
+   "title_en": "Buildings layer holds schematic key volumes only",
+   "status": "design_target",
+   "target_score": 85,
+   "decision_zh": "只画 26 个关键体量说明界面与高度意向，不做全域建筑普查，基底率因此为 2.6% 而非虚高的三成。",
+   "decision_en": "Only 26 key volumes are drawn to convey frontage and height intent; there is no full building survey, so the footprint ratio is 2.6% rather than an inflated one third.",
+   "metric": {
+    "name": "building_footprint_ratio",
+    "target": 0.026,
+    "unit": "ratio",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:MOHURD-ARCH-DESIGN-DEPTH-2016",
+    "depth:height_massing_character"
+   ],
+   "evidence_refs": [
+    "geometry/buildings.geojson",
+    "metrics.json"
+   ],
+   "verification_zh": "由 buildings.geojson 重算基底面积并除以场地面积，与 metrics 声明值比对。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "示意体量不代表建筑方案，不可用于报建或日照分析。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/buildings.geojson",
+     "metrics.json"
+    ]
+   }
+  },
+  {
+   "id": "green-mutually-exclusive",
+   "record_class": "design_decision",
+   "domain": "ecology",
+   "title_zh": "绿地层内互斥",
+   "title_en": "Green layer is mutually exclusive",
+   "status": "design_target",
+   "target_score": 87,
+   "decision_zh": "14 个绿地要素两两不相交，且不落入非绿地分区，把绿地率从早期错误的 40.9% 修正到 24.2%。",
+   "decision_en": "The 14 green features do not overlap each other and never fall inside a non-green zone, correcting the green ratio from an earlier erroneous 40.9% to 24.2%.",
+   "metric": {
+    "name": "green_ratio",
+    "target": 0.242,
+    "unit": "ratio",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:BG-BEIJING-MASTER-PLAN",
+    "depth:blue_green_public_space"
+   ],
+   "evidence_refs": [
+    "geometry/green_space.geojson",
+    "metrics.json",
+    "changelog.md"
+   ],
+   "verification_zh": "重算绿地总面积并核对 overlap_rule 字段；changelog v4.0 记录了该次修正。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "绿地率基于临时边界，官方边界到位后需复算。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/green_space.geojson",
+     "metrics.json",
+     "changelog.md"
+    ]
+   }
+  },
+  {
+   "id": "public-room-nesting",
+   "record_class": "design_decision",
+   "domain": "spatial",
+   "title_zh": "公共空间是嵌套房间不是通铺",
+   "title_en": "Public space is nested rooms, not a blanket",
+   "status": "design_target",
+   "target_score": 85,
+   "decision_zh": "16 个公共空间要素嵌套在公园主廊或街区内部，取消了早期横跨全宽的巨型矩形。",
+   "decision_en": "The 16 public-space features are nested inside the park spine or the blocks; the earlier full-width rectangles were removed.",
+   "metric": {
+    "name": "public_space_ratio",
+    "target": 0.0615,
+    "unit": "ratio",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:MOHURD-URBAN-DESIGN-MEASURES",
+    "depth:blue_green_public_space"
+   ],
+   "evidence_refs": [
+    "geometry/public_space.geojson",
+    "metrics.json"
+   ],
+   "verification_zh": "读取 room_role 与 nesting 字段并重算面积占比。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "公共空间为设计意向，权属与管理主体待定。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/public_space.geojson",
+     "metrics.json"
+    ]
+   }
+  },
+  {
+   "id": "phasing-envelope",
+   "record_class": "design_decision",
+   "domain": "delivery",
+   "title_zh": "分期是包络不是用地",
+   "title_en": "Phasing polygons are envelopes, not land parcels",
+   "status": "design_target",
+   "target_score": 84,
+   "decision_zh": "三期用包络面表达时序，并在 META 中声明包络不等于用地边界，避免被读成征地范围。",
+   "decision_en": "Three phases are expressed as envelopes, and the layer META states that an envelope is not a land boundary, preventing it from being read as an acquisition scope.",
+   "metric": {
+    "name": "phase_count",
+    "target": 3,
+    "unit": "count",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:AGENT-TASKBOOK",
+    "depth:phasing_implementation"
+   ],
+   "evidence_refs": [
+    "geometry/phasing.geojson",
+    "proposal.md"
+   ],
+   "verification_zh": "读取 phasing.geojson 要素数与 META 中的 envelope_note。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "分期时序为建议，不构成实施计划或资金安排。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/phasing.geojson",
+     "proposal.md"
+    ]
+   }
+  },
+  {
+   "id": "honest-failure-accounting",
+   "record_class": "design_decision",
+   "domain": "simulation",
+   "title_zh": "诚实的失败计账",
+   "title_en": "Honest failure accounting",
+   "status": "design_target",
+   "target_score": 92,
+   "decision_zh": "48 个仿真任务中，因缺官方数据而阻断的任务与越权拒答的任务都不计入成功，成功率因此是 85.4% 而不是 100%。",
+   "decision_en": "Among 48 simulated tasks, those blocked by missing official data and those refused as out-of-scope are not counted as successes, so the success rate is 85.4%, not 100%.",
+   "metric": {
+    "name": "simulation_success_rate",
+    "target": 0.8542,
+    "unit": "ratio",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:PKG-SIMULATION",
+    "source:PROJECT-AGENT-OPEN-CALL-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "simulation.json",
+    "metrics.json",
+    "visual/assets/evaluation-baseline.json"
+   ],
+   "verification_zh": "脚本重新统计 outcome 字段并与 metrics 声明值逐位比对。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "仿真为离线确定性推演，不代表真实系统运行结果。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "simulation.json",
+     "metrics.json",
+     "visual/assets/evaluation-baseline.json"
+    ]
+   }
+  },
+  {
+   "id": "refusal-not-success",
+   "record_class": "design_decision",
+   "domain": "governance",
+   "title_zh": "拒答不算成功",
+   "title_en": "Refusal is not counted as success",
+   "status": "design_target",
+   "target_score": 91,
+   "decision_zh": "把越权拒答单列为 refused_out_of_responsibility_scope，防止用拒答刷高成功率。",
+   "decision_en": "Out-of-scope refusals are recorded as refused_out_of_responsibility_scope so refusals cannot be used to inflate the success rate.",
+   "metric": {
+    "name": "refusal_case_count",
+    "target": 1,
+    "unit": "count",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:PROJECT-AGENT-OPEN-CALL-TASKBOOK",
+    "source:BG-GENAI-MEASURES"
+   ],
+   "evidence_refs": [
+    "simulation.json",
+    "risk.json"
+   ],
+   "verification_zh": "统计 outcome 以 refused 开头的任务数并核对其未计入成功集合。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "拒答清单为设计设想，实际服务边界需运营主体确认。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "simulation.json",
+     "risk.json"
+    ]
+   }
+  },
+  {
+   "id": "energy-budget-violation",
+   "record_class": "design_decision",
+   "domain": "energy",
+   "title_zh": "能耗越界必须暴露",
+   "title_en": "Energy budget violations must be exposed",
+   "status": "design_target",
+   "target_score": 89,
+   "decision_zh": "为每类任务设能耗预算，2 次越界被如实记录并触发降级策略，而不是隐藏。",
+   "decision_en": "Each task type carries an energy budget; the 2 violations are recorded honestly and trigger a degradation strategy instead of being hidden.",
+   "metric": {
+    "name": "energy_budget_violations",
+    "target": 2,
+    "unit": "count",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:PKG-SIMULATION",
+    "source:BG-ZGC-SCIENCE-CITY"
+   ],
+   "evidence_refs": [
+    "simulation.json",
+    "metrics.json"
+   ],
+   "verification_zh": "比较 energy_used_kwh 与 energy_budget_kwh 并计数。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "能耗数值为设定的推演参数，不是实测功耗。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "simulation.json",
+     "metrics.json"
+    ]
+   }
+  },
+  {
+   "id": "high-risk-intercept",
+   "record_class": "design_decision",
+   "domain": "safety",
+   "title_zh": "高风险 100% 拦截",
+   "title_en": "100% high-risk interception",
+   "status": "design_target",
+   "target_score": 93,
+   "decision_zh": "12 个被标记高风险的任务全部进入人工复核路径，拦截率 1.0，并记录复核角色。",
+   "decision_en": "All 12 tasks flagged as high risk enter the human review path, giving an interception rate of 1.0 with the reviewing role recorded.",
+   "metric": {
+    "name": "high_risk_intercept_rate",
+    "target": 1.0,
+    "unit": "ratio",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:PKG-RISK",
+    "source:PROJECT-AGENT-OPEN-CALL-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "simulation.json",
+    "risk.json",
+    "metrics.json"
+   ],
+   "verification_zh": "统计 risk_flagged 与 human_review 两个字段的交集比例。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "人工复核角色为建议设置，未获任何机关指派。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "simulation.json",
+     "risk.json",
+     "metrics.json"
+    ]
+   }
+  },
+  {
+   "id": "schema-failure-visible",
+   "record_class": "design_decision",
+   "domain": "technology",
+   "title_zh": "结构错误不静默",
+   "title_en": "Schema failures are never silent",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "1 次工具调用结构不合规被记为失败并计入 97.9% 的合规率，不做静默重试。",
+   "decision_en": "One schema-invalid tool dispatch is recorded as a failure inside the 97.9% pass rate; there is no silent retry.",
+   "metric": {
+    "name": "tool_schema_pass_rate",
+    "target": 0.9792,
+    "unit": "ratio",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:PKG-SIMULATION"
+   ],
+   "evidence_refs": [
+    "simulation.json",
+    "metrics.json"
+   ],
+   "verification_zh": "统计 dispatch_schema_valid 为 false 的任务数。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "契约校验为离线推演，未接入真实接口。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "simulation.json",
+     "metrics.json"
+    ]
+   }
+  },
+  {
+   "id": "audit-completeness",
+   "record_class": "design_decision",
+   "domain": "governance",
+   "title_zh": "全量留痕",
+   "title_en": "Full audit trail",
+   "status": "design_target",
+   "target_score": 90,
+   "decision_zh": "48 个任务全部生成审计记录，留痕完整度为 1.0，任何一条缺失都会使该指标下降。",
+   "decision_en": "All 48 tasks produce an audit record, giving completeness 1.0; a single missing record would lower the metric.",
+   "metric": {
+    "name": "audit_completeness",
+    "target": 1.0,
+    "unit": "ratio",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:PKG-SIMULATION",
+    "source:BG-DATA-SECURITY-LAW"
+   ],
+   "evidence_refs": [
+    "simulation.json",
+    "metrics.json"
+   ],
+   "verification_zh": "统计 audit_complete 为真的任务比例。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "留痕字段为推演产物，真实系统需独立日志设施。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "simulation.json",
+     "metrics.json"
+    ]
+   }
+  },
+  {
+   "id": "unknown-stays-unknown",
+   "record_class": "design_decision",
+   "domain": "data",
+   "title_zh": "未知就写未知",
+   "title_en": "Unknown stays unknown",
+   "status": "design_target",
+   "target_score": 94,
+   "decision_zh": "容积率、限高与常住人口三项在没有官方数据时状态保持 unknown，停车位标为 not_applicable，宁可少三个数字也不编造。",
+   "decision_en": "Floor area ratio, height limit and resident population stay at status unknown without official data, and parking supply is not_applicable; three missing numbers are preferred over invented ones.",
+   "metric": {
+    "name": "unknown_metric_count",
+    "target": 3,
+    "unit": "count",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:PROCESSED-FACT-PACK",
+    "source:SITE-PACKAGE"
+   ],
+   "evidence_refs": [
+    "metrics.json",
+    "assumptions.json"
+   ],
+   "verification_zh": "统计 status 为 unknown 的指标条目数。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "该三项须在官方控规数据到位后补齐。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "metrics.json",
+     "assumptions.json"
+    ]
+   }
+  },
+  {
+   "id": "provisional-boundary-honesty",
+   "record_class": "design_decision",
+   "domain": "data",
+   "title_zh": "临时边界如实声明",
+   "title_en": "Provisional boundary declared honestly",
+   "status": "design_target",
+   "target_score": 95,
+   "decision_zh": "site_boundary 的 official_boundary 为 false，全部派生量值标注 recalculation_status=pending_official_boundary。",
+   "decision_en": "site_boundary carries official_boundary=false and every derived value declares recalculation_status=pending_official_boundary.",
+   "metric": {
+    "name": "provisional_flag_coverage",
+    "target": 1.0,
+    "unit": "ratio",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:BOUNDARY-SOURCE",
+    "source:SITE-PACKAGE"
+   ],
+   "evidence_refs": [
+    "geometry/site_boundary.geojson",
+    "metrics.json"
+   ],
+   "verification_zh": "逐条读取指标的 basis 与 recalculation_status 字段。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "边界一经替换，全部面积、图件与结论必须重出。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/site_boundary.geojson",
+     "metrics.json"
+    ]
+   }
+  },
+  {
+   "id": "no-basemap-figures",
+   "record_class": "design_decision",
+   "domain": "data",
+   "title_zh": "全部图件自绘",
+   "title_en": "All figures are self-drawn",
+   "status": "design_target",
+   "target_score": 90,
+   "decision_zh": "五张图全部由本包几何与脚本生成，不使用任何第三方瓦片或影像底图，版权链条闭合。",
+   "decision_en": "All five figures are produced from this package's geometry and scripts with no third-party tiles or imagery, closing the copyright chain.",
+   "metric": {
+    "name": "external_basemap_count",
+    "target": 0,
+    "unit": "count",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:ASSET-NO-BASEMAP",
+    "source:ASSET-FIGURES"
+   ],
+   "evidence_refs": [
+    "assets/figures/site-overview.png",
+    "report/copyright_statement.md"
+   ],
+   "verification_zh": "核对版权声明与图件清单，确认无外部素材引用。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "图件为示意表达，不具备测绘精度。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "assets/figures/site-overview.png",
+     "report/copyright_statement.md"
+    ]
+   }
+  },
+  {
+   "id": "zero-personal-data",
+   "record_class": "design_decision",
+   "domain": "data",
+   "title_zh": "零个人数据",
+   "title_en": "Zero personal data",
+   "status": "design_target",
+   "target_score": 96,
+   "decision_zh": "全包不含任何身份证号、手机号、人脸或住址，仿真只用合成聚合数据。",
+   "decision_en": "The package contains no ID numbers, phone numbers, faces or addresses; the simulation uses only synthetic aggregated data.",
+   "metric": {
+    "name": "personal_data_hits",
+    "target": 0,
+    "unit": "count",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:ASSET-NO-PERSONAL-DATA",
+    "source:BG-PIPL",
+    "source:BG-DATA-SECURITY-LAW"
+   ],
+   "evidence_refs": [
+    "sources.json",
+    "simulation.json"
+   ],
+   "verification_zh": "用硬风险正则扫描全包文本，命中数必须为 0。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "真实部署仍需独立的个人信息影响评估。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "sources.json",
+     "simulation.json"
+    ]
+   }
+  },
+  {
+   "id": "non-ai-equivalent",
+   "record_class": "design_decision",
+   "domain": "operations",
+   "title_zh": "每个智能场景都有非 AI 等效流程",
+   "title_en": "Every AI scenario has a non-AI equivalent",
+   "status": "design_target",
+   "target_score": 92,
+   "decision_zh": "六个官方场景逐一给出人工替代流程与有人值守点位，断网断电时服务不中断。",
+   "decision_en": "Each of the six official scenarios has a manual alternative and a staffed location so service survives loss of network or power.",
+   "metric": {
+    "name": "non_ai_equivalent_coverage",
+    "target": 1.0,
+    "unit": "ratio",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:PROJECT-AGENT-OPEN-CALL-TASKBOOK",
+    "source:BG-CHINA-ACCESSIBILITY"
+   ],
+   "evidence_refs": [
+    "spatial.json",
+    "simulation.json"
+   ],
+   "verification_zh": "核对每个场景 ID 是否被至少一个空间要素与一个兜底流程覆盖。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "值守点位为空间设想，人员编制需运营主体决定。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "spatial.json",
+     "simulation.json"
+    ]
+   }
+  },
+  {
+   "id": "appeal-offline-first",
+   "record_class": "design_decision",
+   "domain": "equity",
+   "title_zh": "申诉必须有线下入口",
+   "title_en": "Appeal must have an offline entry",
+   "status": "design_target",
+   "target_score": 91,
+   "decision_zh": "自动化判断的申诉入口先给线下点位再给线上通道，避免把最需要申诉的人挡在门外。",
+   "decision_en": "Appeals against automated decisions start from a physical point before any online channel, so the people who most need to appeal are not locked out.",
+   "metric": {
+    "name": "offline_appeal_point_count",
+    "target": 1,
+    "unit": "count",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:BG-CHINA-ACCESSIBILITY",
+    "source:BG-PIPL"
+   ],
+   "evidence_refs": [
+    "spatial.json"
+   ],
+   "verification_zh": "在 spatial.json 中定位 appeal-intake-point 要素。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "申诉机制为设计建议，需纳入正式政务服务体系方可生效。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "spatial.json"
+    ]
+   }
+  },
+  {
+   "id": "staffed-counter-network",
+   "record_class": "design_decision",
+   "domain": "equity",
+   "title_zh": "有人值守柜台网络",
+   "title_en": "Staffed counter network",
+   "status": "design_target",
+   "target_score": 89,
+   "decision_zh": "沿带布置有人值守柜台，覆盖不使用智能终端的人群，作为数字鸿沟的空间答案。",
+   "decision_en": "Staffed counters are distributed along the belt to cover people who do not use smart terminals, giving the digital divide a spatial answer.",
+   "metric": {
+    "name": "staffed_counter_coverage",
+    "target": 1.0,
+    "unit": "ratio",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:BG-CHINA-ACCESSIBILITY",
+    "source:BG-HAIDIAN-SUBDISTRICT"
+   ],
+   "evidence_refs": [
+    "spatial.json",
+    "geometry/public_space.geojson"
+   ],
+   "verification_zh": "核对 staffed-counter-network 要素及其关联场景。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "柜台密度未经服务人口测算，需专项复核。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "spatial.json",
+     "geometry/public_space.geojson"
+    ]
+   }
+  },
+  {
+   "id": "heritage-spine-primacy",
+   "record_class": "design_decision",
+   "domain": "culture",
+   "title_zh": "遗址主廊优先",
+   "title_en": "Heritage spine takes precedence",
+   "status": "design_target",
+   "target_score": 90,
+   "decision_zh": "京张遗址廊道是全区结构主轴，算力与机械设施一律退出遗产本体及其避让带。",
+   "decision_en": "The Jing-Zhang heritage corridor is the structural spine; compute and machinery are kept out of the heritage fabric and its buffer.",
+   "metric": {
+    "name": "heritage_conflict_count",
+    "target": 0,
+    "unit": "count",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:BG-JINGZHANG-HERITAGE",
+    "source:KEY-AREA-SOURCE"
+   ],
+   "evidence_refs": [
+    "geometry/constraints.geojson",
+    "spatial.json"
+   ],
+   "verification_zh": "核对约束层避让带与建筑体量、算力点位无压占。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "涉遗方案须经文物主管部门专项论证。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/constraints.geojson",
+     "spatial.json"
+    ]
+   }
+  },
+  {
+   "id": "test-garden-window",
+   "record_class": "design_decision",
+   "domain": "research",
+   "title_zh": "试验花园作为可撤销窗口",
+   "title_en": "Test garden as a revocable window",
+   "status": "design_target",
+   "target_score": 87,
+   "decision_zh": "把新技术试点集中在可撤销的试验花园，失败即拆除复原，不让全区为单点试错买单。",
+   "decision_en": "New technology pilots are concentrated in a revocable test garden; failure means removal and restoration rather than district-wide exposure.",
+   "metric": {
+    "name": "revocable_pilot_area_count",
+    "target": 1,
+    "unit": "count",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:CASE-KASHIWA-NO-HA",
+    "source:CASE-MARS-DISCOVERY"
+   ],
+   "evidence_refs": [
+    "spatial.json",
+    "geometry/key_areas.geojson"
+   ],
+   "verification_zh": "在 spatial.json 中定位 test-garden-window 并核对其可撤销声明。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "试点内容与退出机制需运营协议约定。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "spatial.json",
+     "geometry/key_areas.geojson"
+    ]
+   }
+  },
+  {
+   "id": "compute-visit-hall",
+   "record_class": "design_decision",
+   "domain": "technology",
+   "title_zh": "算力可被看见",
+   "title_en": "Compute made visible",
+   "status": "design_target",
+   "target_score": 86,
+   "decision_zh": "设置可参观的算力展厅，把黑箱基础设施变成公共教育界面，降低公众抵触。",
+   "decision_en": "A visitable compute hall turns black-box infrastructure into a public education interface and lowers resistance.",
+   "metric": {
+    "name": "public_compute_interface_count",
+    "target": 1,
+    "unit": "count",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:BG-ZGC-SCIENCE-CITY",
+    "source:CASE-STATION-F"
+   ],
+   "evidence_refs": [
+    "spatial.json"
+   ],
+   "verification_zh": "在 spatial.json 中定位 compute-visit-hall 要素。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "开放范围与安全等级需设施运营方确定。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "spatial.json"
+    ]
+   }
+  },
+  {
+   "id": "twin-green-thread",
+   "record_class": "design_decision",
+   "domain": "ecology",
+   "title_zh": "南北绿脉缝合东西",
+   "title_en": "North-south green thread stitches east and west",
+   "status": "design_target",
+   "target_score": 85,
+   "decision_zh": "两条南北向绿脉穿过东西缝隙，把被铁路割裂的两侧街区重新缝合。",
+   "decision_en": "Two north-south green threads run through the seams and stitch the blocks severed by the rail line.",
+   "metric": {
+    "name": "seam_crossing_count",
+    "target": 2,
+    "unit": "count",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:BG-BEIJING-MASTER-PLAN",
+    "depth:blue_green_public_space"
+   ],
+   "evidence_refs": [
+    "spatial.json",
+    "geometry/green_space.geojson"
+   ],
+   "verification_zh": "核对 twin-green-thread 要素与缝隙带的空间关系。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "跨越铁路的任何实体连接均需轨道主管部门论证。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "spatial.json",
+     "geometry/green_space.geojson"
+    ]
+   }
+  },
+  {
+   "id": "five-gates",
+   "record_class": "design_decision",
+   "domain": "mobility",
+   "title_zh": "五处门户锚定进入方式",
+   "title_en": "Five gates anchor the arrival sequence",
+   "status": "design_target",
+   "target_score": 84,
+   "decision_zh": "沿带设五处门户节点，把进入方式从随机穿越变成有序抵达。",
+   "decision_en": "Five gate nodes along the belt turn random crossing into an ordered arrival sequence.",
+   "metric": {
+    "name": "gate_node_count",
+    "target": 5,
+    "unit": "count",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:MOHURD-URBAN-DESIGN-MEASURES",
+    "depth:overall_spatial_structure"
+   ],
+   "evidence_refs": [
+    "spatial.json"
+   ],
+   "verification_zh": "统计 spatial.json 中 type=node 且命名含 gate 的要素数。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "门户位置为概念落位，需结合实际出入口条件调整。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "spatial.json"
+    ]
+   }
+  },
+  {
+   "id": "reserved-land",
+   "record_class": "design_decision",
+   "domain": "future",
+   "title_zh": "预留地是对未知的尊重",
+   "title_en": "Reserved land respects the unknown",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "明确预留一块不作功能指定的用地，承认十年后的技术形态无法在今天写死。",
+   "decision_en": "One parcel is explicitly reserved with no assigned programme, acknowledging that the technology of a decade later cannot be fixed today.",
+   "metric": {
+    "name": "reserved_area_count",
+    "target": 1,
+    "unit": "count",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:AGENT-TASKBOOK",
+    "source:CASE-ONE-NORTH"
+   ],
+   "evidence_refs": [
+    "spatial.json"
+   ],
+   "verification_zh": "在 spatial.json 中定位 reserved-land 要素及其无功能声明。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "预留不构成土地储备或权属安排。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "spatial.json"
+    ]
+   }
+  },
+  {
+   "id": "twelve-project-list",
+   "record_class": "design_decision",
+   "domain": "delivery",
+   "title_zh": "十二项更新项目可逐项核查",
+   "title_en": "Twelve renewal projects are individually checkable",
+   "status": "design_target",
+   "target_score": 87,
+   "decision_zh": "更新项目逐项编号并绑定分期与建议责任角色，清单数量与指标计数一致。",
+   "decision_en": "Each renewal project is numbered and bound to a phase and a suggested owner role; the list length matches the declared metric.",
+   "metric": {
+    "name": "numbered_renewal_project_count",
+    "target": 12,
+    "unit": "count",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:AGENT-TASKBOOK",
+    "depth:renewal_project_list"
+   ],
+   "evidence_refs": [
+    "proposal.md",
+    "metrics.json"
+   ],
+   "verification_zh": "核对 metrics 中的计数与报告清单编号连续性。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "项目清单为建议，不构成投资计划。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "proposal.md",
+     "metrics.json"
+    ]
+   }
+  },
+  {
+   "id": "three-key-areas",
+   "record_class": "design_decision",
+   "domain": "spatial",
+   "title_zh": "三个重点区域给到详细设计深度",
+   "title_en": "Three key areas reach detailed design depth",
+   "status": "design_target",
+   "target_score": 89,
+   "decision_zh": "三个重点区域各自给出结构、界面与公共空间关系，而不是只在总图上圈个圈。",
+   "decision_en": "Each of the three key areas is given structure, frontage and public-space relations rather than a circle on the master plan.",
+   "metric": {
+    "name": "key_area_count",
+    "target": 3,
+    "unit": "count",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:KEY-AREA-SOURCE",
+    "depth:three_key_area_detailed_design"
+   ],
+   "evidence_refs": [
+    "geometry/key_areas.geojson",
+    "drawings/a3-booklet.pdf"
+   ],
+   "verification_zh": "核对 key_areas.geojson 要素数与图册中的对应图幅。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "重点区域边界为临时落位，需与官方口径校准。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/key_areas.geojson",
+     "drawings/a3-booklet.pdf"
+    ]
+   }
+  },
+  {
+   "id": "bilingual-parity",
+   "record_class": "design_decision",
+   "domain": "communication",
+   "title_zh": "中英文对照完整",
+   "title_en": "Full bilingual parity",
+   "status": "design_target",
+   "target_score": 86,
+   "decision_zh": "报告、图纸、可视化与证据子系统均提供中英双语，英文不是摘要而是等效正文。",
+   "decision_en": "Report, drawings, visualisation and the evidence subsystem are all bilingual; the English text is an equivalent body, not a summary.",
+   "metric": {
+    "name": "bilingual_pair_count",
+    "target": 4,
+    "unit": "count",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:PROJECT-OFFICIAL-ANNOUNCEMENT",
+    "source:AGENT-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "proposal.en.md",
+    "report/proposal.en.html",
+    "visual/index.en.html",
+    "drawings/a3-booklet.en.pdf"
+   ],
+   "verification_zh": "核对四组双语文件均存在且被 manifest 声明 translation_of。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "翻译由智能体生成，未经人工母语校对。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "proposal.en.md",
+     "report/proposal.en.html",
+     "visual/index.en.html",
+     "drawings/a3-booklet.en.pdf"
+    ]
+   }
+  },
+  {
+   "id": "runnable-self-audit",
+   "record_class": "design_decision",
+   "domain": "evaluation",
+   "title_zh": "自审脚本可离线运行",
+   "title_en": "Self-audit script runs offline",
+   "status": "design_target",
+   "target_score": 95,
+   "decision_zh": "提供一条 node 命令即可重算全部可核验断言的脚本，任何断言失败都会以非零退出码阻断提交。",
+   "decision_en": "A single node command re-checks every verifiable assertion; any failure exits non-zero and blocks the submission.",
+   "metric": {
+    "name": "audit_assertion_pass_rate",
+    "target": 1.0,
+    "unit": "ratio",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:PKG-EVIDENCE-LEDGER",
+    "source:PKG-CLAIM-PROVENANCE",
+    "source:PKG-GATES"
+   ],
+   "evidence_refs": [
+    "visual/assets/evidence-audit.js",
+    "visual/assets/evidence-ledger.json"
+   ],
+   "verification_zh": "运行 node visual/assets/evidence-audit.js，读取输出的通过率。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "脚本只校验本包内部一致性，不校验外部事实真伪。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "visual/assets/evidence-audit.js",
+     "visual/assets/evidence-ledger.json"
+    ]
+   }
+  },
+  {
+   "id": "claim-token-binding",
+   "record_class": "design_decision",
+   "domain": "evaluation",
+   "title_zh": "正文数字与原始值绑定",
+   "title_en": "Prose numbers bound to raw values",
+   "status": "design_target",
+   "target_score": 93,
+   "decision_zh": "报告中每个关键数字都带 [metric:x] 记号，并在溯源表里指向 metrics.json 的确切 JSON 指针。",
+   "decision_en": "Every key number in the report carries a [metric:x] token and the provenance table points to an exact JSON pointer inside metrics.json.",
+   "metric": {
+    "name": "claim_provenance_count",
+    "target": 16,
+    "unit": "count",
+    "formula": "见 metrics.json 或本条 verification_zh 描述的复算方式。"
+   },
+   "inputs": [
+    "source:PKG-CLAIM-PROVENANCE",
+    "source:PKG-METRICS"
+   ],
+   "evidence_refs": [
+    "visual/assets/claim-provenance.json",
+    "metrics.json",
+    "proposal.md"
+   ],
+   "verification_zh": "脚本按 raw_value_path 回读并与 raw_value 逐位比对。",
+   "verification_en": "Recomputed by visual/assets/evidence-audit.js against the listed files.",
+   "boundary_zh": "溯源只保证内部一致，不保证外部事实成立。",
+   "boundary_en": "Design target declared by the submitting agent; not an approved or measured fact.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "visual/assets/claim-provenance.json",
+     "metrics.json",
+     "proposal.md"
+    ]
+   }
+  },
+  {
+   "id": "metric-site-area-sqm",
+   "record_class": "metric_binding",
+   "domain": "spatial",
+   "title_zh": "总体设计范围面积",
+   "title_en": "Overall design area",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该指标由 shoelace_area(site_boundary, planar_approximation) 计算得到，输入文件为 geometry/site_boundary.geojson。",
+   "decision_en": "Computed as shoelace_area(site_boundary, planar_approximation) from geometry/site_boundary.geojson.",
+   "metric": {
+    "name": "site_area_sqm",
+    "target": 11345200.508,
+    "unit": "sqm",
+    "formula": "shoelace_area(site_boundary, planar_approximation)"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "geometry/site_boundary.geojson"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，pending_official_boundary。",
+   "boundary_en": "Value rests on the provisional boundary; pending_official_boundary.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/site_area_sqm/value",
+    "expect": 11345200.508
+   }
+  },
+  {
+   "id": "metric-building-footprint-area-sqm",
+   "record_class": "metric_binding",
+   "domain": "spatial",
+   "title_zh": "示意建筑基底面积",
+   "title_en": "Schematic building footprint area",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该指标由 sum(shoelace_area(building_footprints)) 计算得到，输入文件为 geometry/buildings.geojson。",
+   "decision_en": "Computed as sum(shoelace_area(building_footprints)) from geometry/buildings.geojson.",
+   "metric": {
+    "name": "building_footprint_area_sqm",
+    "target": 294487.731,
+    "unit": "sqm",
+    "formula": "sum(shoelace_area(building_footprints))"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "geometry/buildings.geojson"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，pending_building_survey。",
+   "boundary_en": "Value rests on the provisional boundary; pending_building_survey.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/building_footprint_area_sqm/value",
+    "expect": 294487.731
+   }
+  },
+  {
+   "id": "metric-green-space-area-sqm",
+   "record_class": "metric_binding",
+   "domain": "ecology",
+   "title_zh": "绿地面积",
+   "title_en": "Green space area",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该指标由 sum(shoelace_area(green_space)) 计算得到，输入文件为 geometry/green_space.geojson。",
+   "decision_en": "Computed as sum(shoelace_area(green_space)) from geometry/green_space.geojson.",
+   "metric": {
+    "name": "green_space_area_sqm",
+    "target": 2745665.818,
+    "unit": "sqm",
+    "formula": "sum(shoelace_area(green_space))"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "geometry/green_space.geojson"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，pending_official_boundary。",
+   "boundary_en": "Value rests on the provisional boundary; pending_official_boundary.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/green_space_area_sqm/value",
+    "expect": 2745665.818
+   }
+  },
+  {
+   "id": "metric-public-space-area-sqm",
+   "record_class": "metric_binding",
+   "domain": "spatial",
+   "title_zh": "公共空间面积",
+   "title_en": "Public space area",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该指标由 sum(shoelace_area(public_space)) 计算得到，输入文件为 geometry/public_space.geojson。",
+   "decision_en": "Computed as sum(shoelace_area(public_space)) from geometry/public_space.geojson.",
+   "metric": {
+    "name": "public_space_area_sqm",
+    "target": 697815.875,
+    "unit": "sqm",
+    "formula": "sum(shoelace_area(public_space))"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "geometry/public_space.geojson"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，pending_official_boundary。",
+   "boundary_en": "Value rests on the provisional boundary; pending_official_boundary.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/public_space_area_sqm/value",
+    "expect": 697815.875
+   }
+  },
+  {
+   "id": "metric-green-ratio",
+   "record_class": "metric_binding",
+   "domain": "ecology",
+   "title_zh": "绿地率",
+   "title_en": "Green ratio",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该指标由 green_space_area_sqm / site_area_sqm 计算得到，输入文件为 geometry/green_space.geojson、geometry/site_boundary.geojson。",
+   "decision_en": "Computed as green_space_area_sqm / site_area_sqm from geometry/green_space.geojson, geometry/site_boundary.geojson.",
+   "metric": {
+    "name": "green_ratio",
+    "target": 0.242011,
+    "unit": "ratio",
+    "formula": "green_space_area_sqm / site_area_sqm"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，pending_official_boundary。",
+   "boundary_en": "Value rests on the provisional boundary; pending_official_boundary.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/green_ratio/value",
+    "expect": 0.242011
+   }
+  },
+  {
+   "id": "metric-public-space-ratio",
+   "record_class": "metric_binding",
+   "domain": "spatial",
+   "title_zh": "公共空间率",
+   "title_en": "Public space ratio",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该指标由 public_space_area_sqm / site_area_sqm 计算得到，输入文件为 geometry/public_space.geojson、geometry/site_boundary.geojson。",
+   "decision_en": "Computed as public_space_area_sqm / site_area_sqm from geometry/public_space.geojson, geometry/site_boundary.geojson.",
+   "metric": {
+    "name": "public_space_ratio",
+    "target": 0.061508,
+    "unit": "ratio",
+    "formula": "public_space_area_sqm / site_area_sqm"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，pending_official_boundary。",
+   "boundary_en": "Value rests on the provisional boundary; pending_official_boundary.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/public_space_ratio/value",
+    "expect": 0.061508
+   }
+  },
+  {
+   "id": "metric-land-use-coverage-ratio",
+   "record_class": "metric_binding",
+   "domain": "spatial",
+   "title_zh": "用地分区覆盖率",
+   "title_en": "Land-use zone coverage ratio",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该指标由 sum(land_use_zone_area) / site_area_sqm 计算得到，输入文件为 geometry/land_use.geojson、geometry/site_boundary.geojson。",
+   "decision_en": "Computed as sum(land_use_zone_area) / site_area_sqm from geometry/land_use.geojson, geometry/site_boundary.geojson.",
+   "metric": {
+    "name": "land_use_coverage_ratio",
+    "target": 1.0,
+    "unit": "ratio",
+    "formula": "sum(land_use_zone_area) / site_area_sqm"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "geometry/land_use.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，pending_official_boundary。",
+   "boundary_en": "Value rests on the provisional boundary; pending_official_boundary.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/land_use_coverage_ratio/value",
+    "expect": 1.0
+   }
+  },
+  {
+   "id": "metric-road-network-length-m",
+   "record_class": "metric_binding",
+   "domain": "mobility",
+   "title_zh": "路网总长度",
+   "title_en": "Road network length",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该指标由 sum(polyline_length(road_centerlines)) 计算得到，输入文件为 geometry/roads.geojson。",
+   "decision_en": "Computed as sum(polyline_length(road_centerlines)) from geometry/roads.geojson.",
+   "metric": {
+    "name": "road_network_length_m",
+    "target": 62156.4,
+    "unit": "m",
+    "formula": "sum(polyline_length(road_centerlines))"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "geometry/roads.geojson"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，pending_official_road_redlines。",
+   "boundary_en": "Value rests on the provisional boundary; pending_official_road_redlines.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/road_network_length_m/value",
+    "expect": 62156.4
+   }
+  },
+  {
+   "id": "metric-floor-area-ratio",
+   "record_class": "metric_binding",
+   "domain": "data",
+   "title_zh": "容积率",
+   "title_en": "Floor area ratio",
+   "status": "declared_unknown",
+   "target_score": 95,
+   "decision_zh": "缺少官方数据，该指标状态保持 unknown，不填任何推测值。",
+   "decision_en": "No official data available, so the metric stays unknown with no guessed value.",
+   "metric": {
+    "name": "floor_area_ratio",
+    "target": null,
+    "unit": "ratio",
+    "formula": "total_floor_area_sqm / official_site_area_sqm"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，blocked_missing_official_controls。",
+   "boundary_en": "Value rests on the provisional boundary; blocked_missing_official_controls.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/floor_area_ratio/value",
+    "expect": null
+   }
+  },
+  {
+   "id": "metric-building-height-limit-m",
+   "record_class": "metric_binding",
+   "domain": "data",
+   "title_zh": "建筑限高",
+   "title_en": "Building height limit",
+   "status": "declared_unknown",
+   "target_score": 95,
+   "decision_zh": "缺少官方数据，该指标状态保持 unknown，不填任何推测值。",
+   "decision_en": "No official data available, so the metric stays unknown with no guessed value.",
+   "metric": {
+    "name": "building_height_limit_m",
+    "target": null,
+    "unit": "m",
+    "formula": "max(approved_building_height)"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，blocked_missing_official_controls。",
+   "boundary_en": "Value rests on the provisional boundary; blocked_missing_official_controls.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/building_height_limit_m/value",
+    "expect": null
+   }
+  },
+  {
+   "id": "metric-resident-population",
+   "record_class": "metric_binding",
+   "domain": "data",
+   "title_zh": "常住人口",
+   "title_en": "Resident population",
+   "status": "declared_unknown",
+   "target_score": 95,
+   "decision_zh": "缺少官方数据，该指标状态保持 unknown，不填任何推测值。",
+   "decision_en": "No official data available, so the metric stays unknown with no guessed value.",
+   "metric": {
+    "name": "resident_population",
+    "target": null,
+    "unit": "count",
+    "formula": "official_population_register(site_extent)"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "sources.json#SITE-PACKAGE"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，blocked_missing_official_data。",
+   "boundary_en": "Value rests on the provisional boundary; blocked_missing_official_data.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/resident_population/value",
+    "expect": null
+   }
+  },
+  {
+   "id": "metric-parking-supply-spaces",
+   "record_class": "metric_binding",
+   "domain": "data",
+   "title_zh": "停车泊位供给",
+   "title_en": "Parking supply",
+   "status": "declared_unknown",
+   "target_score": 95,
+   "decision_zh": "缺少官方数据，该指标状态保持 not_applicable，不填任何推测值。",
+   "decision_en": "No official data available, so the metric stays not_applicable with no guessed value.",
+   "metric": {
+    "name": "parking_supply_spaces",
+    "target": null,
+    "unit": "count",
+    "formula": "not_applicable_at_concept_stage"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "metrics.json"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，not_applicable。",
+   "boundary_en": "Value rests on the provisional boundary; not_applicable.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/parking_supply_spaces/value",
+    "expect": null
+   }
+  },
+  {
+   "id": "metric-key-area-count",
+   "record_class": "metric_binding",
+   "domain": "spatial",
+   "title_zh": "重点区域数量",
+   "title_en": "Key area count",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该指标由 count(key_area_features) 计算得到，输入文件为 geometry/key_areas.geojson。",
+   "decision_en": "Computed as count(key_area_features) from geometry/key_areas.geojson.",
+   "metric": {
+    "name": "key_area_count",
+    "target": 3,
+    "unit": "count",
+    "formula": "count(key_area_features)"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "geometry/key_areas.geojson"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，pending_official_boundary。",
+   "boundary_en": "Value rests on the provisional boundary; pending_official_boundary.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/key_area_count/value",
+    "expect": 3
+   }
+  },
+  {
+   "id": "metric-auditable-scenario-count",
+   "record_class": "metric_binding",
+   "domain": "governance",
+   "title_zh": "可审计场景数",
+   "title_en": "Auditable scenario count",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该指标由 count(auditable_scenarios_described_in_proposal) 计算得到，输入文件为 proposal.md、spatial.json。",
+   "decision_en": "Computed as count(auditable_scenarios_described_in_proposal) from proposal.md, spatial.json.",
+   "metric": {
+    "name": "auditable_scenario_count",
+    "target": 12,
+    "unit": "count",
+    "formula": "count(auditable_scenarios_described_in_proposal)"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "proposal.md",
+    "spatial.json"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，not_required。",
+   "boundary_en": "Value rests on the provisional boundary; not_required.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/auditable_scenario_count/value",
+    "expect": 12
+   }
+  },
+  {
+   "id": "metric-industrial-validation-scenario-count",
+   "record_class": "metric_binding",
+   "domain": "delivery",
+   "title_zh": "产业验证场景数",
+   "title_en": "Industrial validation scenario count",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该指标由 count(industrial_validation_scenarios) 计算得到，输入文件为 proposal.md。",
+   "decision_en": "Computed as count(industrial_validation_scenarios) from proposal.md.",
+   "metric": {
+    "name": "industrial_validation_scenario_count",
+    "target": 3,
+    "unit": "count",
+    "formula": "count(industrial_validation_scenarios)"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "proposal.md"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，not_required。",
+   "boundary_en": "Value rests on the provisional boundary; not_required.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/industrial_validation_scenario_count/value",
+    "expect": 3
+   }
+  },
+  {
+   "id": "metric-numbered-renewal-project-count",
+   "record_class": "metric_binding",
+   "domain": "delivery",
+   "title_zh": "编号更新项目数",
+   "title_en": "Numbered renewal project count",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该指标由 count(numbered_renewal_projects) 计算得到，输入文件为 proposal.md。",
+   "decision_en": "Computed as count(numbered_renewal_projects) from proposal.md.",
+   "metric": {
+    "name": "numbered_renewal_project_count",
+    "target": 12,
+    "unit": "count",
+    "formula": "count(numbered_renewal_projects)"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "proposal.md"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，not_required。",
+   "boundary_en": "Value rests on the provisional boundary; not_required.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/numbered_renewal_project_count/value",
+    "expect": 12
+   }
+  },
+  {
+   "id": "metric-simulation-task-count",
+   "record_class": "metric_binding",
+   "domain": "simulation",
+   "title_zh": "仿真任务数",
+   "title_en": "Simulation task count",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该指标由 len(simulation.tasks) 计算得到，输入文件为 simulation.json。",
+   "decision_en": "Computed as len(simulation.tasks) from simulation.json.",
+   "metric": {
+    "name": "simulation_task_count",
+    "target": 48,
+    "unit": "count",
+    "formula": "len(simulation.tasks)"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "simulation.json"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，not_required_offline_harness。",
+   "boundary_en": "Value rests on the provisional boundary; not_required_offline_harness.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/simulation_task_count/value",
+    "expect": 48
+   }
+  },
+  {
+   "id": "metric-simulation-success-rate",
+   "record_class": "metric_binding",
+   "domain": "simulation",
+   "title_zh": "仿真成功率",
+   "title_en": "Simulation success rate",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该指标由 count(outcome == success or outcome endswith _success) / len(tasks) 计算得到，输入文件为 simulation.json。",
+   "decision_en": "Computed as count(outcome == success or outcome endswith _success) / len(tasks) from simulation.json.",
+   "metric": {
+    "name": "simulation_success_rate",
+    "target": 0.8541666666666666,
+    "unit": "ratio",
+    "formula": "count(outcome == success or outcome endswith _success) / len(tasks)"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "simulation.json"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，not_required_offline_harness。",
+   "boundary_en": "Value rests on the provisional boundary; not_required_offline_harness.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/simulation_success_rate/value",
+    "expect": 0.8541666666666666
+   }
+  },
+  {
+   "id": "metric-tool-schema-pass-rate",
+   "record_class": "metric_binding",
+   "domain": "technology",
+   "title_zh": "工具契约合规率",
+   "title_en": "Tool schema pass rate",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该指标由 count(dispatch_schema_valid) / len(tasks) 计算得到，输入文件为 simulation.json。",
+   "decision_en": "Computed as count(dispatch_schema_valid) / len(tasks) from simulation.json.",
+   "metric": {
+    "name": "tool_schema_pass_rate",
+    "target": 0.9791666666666666,
+    "unit": "ratio",
+    "formula": "count(dispatch_schema_valid) / len(tasks)"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "simulation.json"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，not_required_offline_harness。",
+   "boundary_en": "Value rests on the provisional boundary; not_required_offline_harness.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/tool_schema_pass_rate/value",
+    "expect": 0.9791666666666666
+   }
+  },
+  {
+   "id": "metric-energy-budget-violations",
+   "record_class": "metric_binding",
+   "domain": "energy",
+   "title_zh": "能耗预算越界次数",
+   "title_en": "Energy budget violations",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该指标由 count(energy_used_kwh > energy_budget_kwh) 计算得到，输入文件为 simulation.json。",
+   "decision_en": "Computed as count(energy_used_kwh > energy_budget_kwh) from simulation.json.",
+   "metric": {
+    "name": "energy_budget_violations",
+    "target": 2,
+    "unit": "count",
+    "formula": "count(energy_used_kwh > energy_budget_kwh)"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "simulation.json"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，not_required_offline_harness。",
+   "boundary_en": "Value rests on the provisional boundary; not_required_offline_harness.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/energy_budget_violations/value",
+    "expect": 2
+   }
+  },
+  {
+   "id": "metric-audit-completeness",
+   "record_class": "metric_binding",
+   "domain": "governance",
+   "title_zh": "审计留痕完整度",
+   "title_en": "Audit completeness",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该指标由 count(audit_complete) / len(tasks) 计算得到，输入文件为 simulation.json。",
+   "decision_en": "Computed as count(audit_complete) / len(tasks) from simulation.json.",
+   "metric": {
+    "name": "audit_completeness",
+    "target": 1.0,
+    "unit": "ratio",
+    "formula": "count(audit_complete) / len(tasks)"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "simulation.json"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，not_required_offline_harness。",
+   "boundary_en": "Value rests on the provisional boundary; not_required_offline_harness.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/audit_completeness/value",
+    "expect": 1.0
+   }
+  },
+  {
+   "id": "metric-high-risk-intercept-rate",
+   "record_class": "metric_binding",
+   "domain": "safety",
+   "title_zh": "高风险拦截率",
+   "title_en": "High-risk interception rate",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该指标由 count(high_risk_intercepted) / count(high_risk_flagged) 计算得到，输入文件为 simulation.json。",
+   "decision_en": "Computed as count(high_risk_intercepted) / count(high_risk_flagged) from simulation.json.",
+   "metric": {
+    "name": "high_risk_intercept_rate",
+    "target": 1.0,
+    "unit": "ratio",
+    "formula": "count(high_risk_intercepted) / count(high_risk_flagged)"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "simulation.json"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，not_required_offline_harness。",
+   "boundary_en": "Value rests on the provisional boundary; not_required_offline_harness.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/high_risk_intercept_rate/value",
+    "expect": 1.0
+   }
+  },
+  {
+   "id": "metric-replan-p95-seconds",
+   "record_class": "metric_binding",
+   "domain": "technology",
+   "title_zh": "重规划时延 p95",
+   "title_en": "Replanning latency p95",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该指标由 nearest_rank_p95(sorted(replan_seconds)) 计算得到，输入文件为 simulation.json。",
+   "decision_en": "Computed as nearest_rank_p95(sorted(replan_seconds)) from simulation.json.",
+   "metric": {
+    "name": "replan_p95_seconds",
+    "target": 7.7,
+    "unit": "s",
+    "formula": "nearest_rank_p95(sorted(replan_seconds))"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "simulation.json"
+   ],
+   "verification_zh": "脚本按 JSON 指针回读 metrics.json 并与本条 metric.target 逐位比对。",
+   "verification_en": "The audit script reads the JSON pointer in metrics.json and compares it bit for bit.",
+   "boundary_zh": "值基于临时边界，not_required_offline_harness。",
+   "boundary_en": "Value rests on the provisional boundary; not_required_offline_harness.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "metrics.json",
+    "pointer": "/metrics/replan_p95_seconds/value",
+    "expect": 7.7
+   }
+  },
+  {
+   "id": "gate-gate-01",
+   "record_class": "gate_binding",
+   "domain": "spatial",
+   "title_zh": "闸门 官方边界交接与全量复算",
+   "title_en": "Gate: Official boundary handoff and full recomputation",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-01，建议责任角色 spatial data steward，非 AI 等效流程为人工 GIS 版本核对与面积复算。",
+   "decision_en": "Fixed as gate GATE-01, suggested owner spatial data steward, non-AI equivalent: 人工 GIS 版本核对与面积复算.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:BOUNDARY-SOURCE",
+    "source:SITE-PACKAGE",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/01-boundary-handoff.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/01-boundary-handoff.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-01"
+   }
+  },
+  {
+   "id": "gate-gate-02",
+   "record_class": "gate_binding",
+   "domain": "spatial",
+   "title_zh": "闸门 坐标系与量算口径固化",
+   "title_en": "Gate: Coordinate frame and measurement convention lock",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-02，建议责任角色 geospatial engineer，非 AI 等效流程为测绘单位统一投影与量算规程。",
+   "decision_en": "Fixed as gate GATE-02, suggested owner geospatial engineer, non-AI equivalent: 测绘单位统一投影与量算规程.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:SITE-PACKAGE",
+    "source:ASSET-GEOMETRY"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/02-coordinate-frame.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/02-coordinate-frame.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-02"
+   }
+  },
+  {
+   "id": "gate-gate-03",
+   "record_class": "gate_binding",
+   "domain": "spatial",
+   "title_zh": "闸门 图层嵌套与互斥规则",
+   "title_en": "Gate: Layer nesting and mutual-exclusion rule",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-03，建议责任角色 urban designer，非 AI 等效流程为人工套图与图层压盖检查。",
+   "decision_en": "Fixed as gate GATE-03, suggested owner urban designer, non-AI equivalent: 人工套图与图层压盖检查.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:MNR-LAND-USE-CLASSIFICATION-GUIDE",
+    "source:SITE-PACKAGE"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/03-layer-nesting.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/03-layer-nesting.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-03"
+   }
+  },
+  {
+   "id": "gate-gate-04",
+   "record_class": "gate_binding",
+   "domain": "spatial",
+   "title_zh": "闸门 量级合理性复核",
+   "title_en": "Gate: Magnitude sanity review",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-04，建议责任角色 planning reviewer，非 AI 等效流程为规划院内部量级会审。",
+   "decision_en": "Fixed as gate GATE-04, suggested owner planning reviewer, non-AI equivalent: 规划院内部量级会审.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:MOHURD-CONTROL-DETAILED-PLANNING",
+    "source:BG-BEIJING-MASTER-PLAN"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/04-magnitude-sanity.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/04-magnitude-sanity.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-04"
+   }
+  },
+  {
+   "id": "gate-gate-05",
+   "record_class": "gate_binding",
+   "domain": "spatial",
+   "title_zh": "闸门 重点区域详细设计深度",
+   "title_en": "Gate: Key-area detailed design depth",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-05，建议责任角色 lead architect，非 AI 等效流程为方案设计阶段图纸评审。",
+   "decision_en": "Fixed as gate GATE-05, suggested owner lead architect, non-AI equivalent: 方案设计阶段图纸评审.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:KEY-AREA-SOURCE",
+    "source:MOHURD-ARCH-DESIGN-DEPTH-2016"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/05-key-area-depth.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/05-key-area-depth.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-05"
+   }
+  },
+  {
+   "id": "gate-gate-06",
+   "record_class": "gate_binding",
+   "domain": "data",
+   "title_zh": "闸门 临时数据全域标记",
+   "title_en": "Gate: Provisional data flagging across the package",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-06，建议责任角色 data steward，非 AI 等效流程为资料台账与临时数据标注。",
+   "decision_en": "Fixed as gate GATE-06, suggested owner data steward, non-AI equivalent: 资料台账与临时数据标注.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:SITE-PACKAGE",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/06-provisional-flagging.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/06-provisional-flagging.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-06"
+   }
+  },
+  {
+   "id": "gate-gate-07",
+   "record_class": "gate_binding",
+   "domain": "data",
+   "title_zh": "闸门 来源分级与可用边界",
+   "title_en": "Gate: Source tiering and usability boundary",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-07，建议责任角色 evidence officer，非 AI 等效流程为资料来源清册与引用规范审查。",
+   "decision_en": "Fixed as gate GATE-07, suggested owner evidence officer, non-AI equivalent: 资料来源清册与引用规范审查.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:SOURCE-REGISTRY",
+    "source:SITE-PACKAGE"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/07-source-classification.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/07-source-classification.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-07"
+   }
+  },
+  {
+   "id": "gate-gate-08",
+   "record_class": "gate_binding",
+   "domain": "data",
+   "title_zh": "闸门 无底图与版权洁净",
+   "title_en": "Gate: No-basemap and copyright cleanliness",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-08，建议责任角色 publication officer，非 AI 等效流程为出版前版权与素材来源核查。",
+   "decision_en": "Fixed as gate GATE-08, suggested owner publication officer, non-AI equivalent: 出版前版权与素材来源核查.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:ASSET-NO-BASEMAP",
+    "source:ASSET-FIGURES"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/08-no-basemap.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/08-no-basemap.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-08"
+   }
+  },
+  {
+   "id": "gate-gate-09",
+   "record_class": "gate_binding",
+   "domain": "data",
+   "title_zh": "闸门 零个人数据基线",
+   "title_en": "Gate: Zero personal data baseline",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-09，建议责任角色 privacy officer，非 AI 等效流程为个人信息合规预检。",
+   "decision_en": "Fixed as gate GATE-09, suggested owner privacy officer, non-AI equivalent: 个人信息合规预检.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:ASSET-NO-PERSONAL-DATA",
+    "source:BG-PIPL",
+    "source:BG-DATA-SECURITY-LAW"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/09-personal-data-zero.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/09-personal-data-zero.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-09"
+   }
+  },
+  {
+   "id": "gate-gate-10",
+   "record_class": "gate_binding",
+   "domain": "data",
+   "title_zh": "闸门 指标公式可复算",
+   "title_en": "Gate: Metric formula recomputability",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-10，建议责任角色 metrics engineer，非 AI 等效流程为指标台账与人工复算。",
+   "decision_en": "Fixed as gate GATE-10, suggested owner metrics engineer, non-AI equivalent: 指标台账与人工复算.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:PKG-METRICS",
+    "source:ASSET-GEOMETRY"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/10-metric-formula.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/10-metric-formula.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-10"
+   }
+  },
+  {
+   "id": "gate-gate-11",
+   "record_class": "gate_binding",
+   "domain": "governance",
+   "title_zh": "闸门 高风险人工复核触发",
+   "title_en": "Gate: High-risk human review trigger",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-11，建议责任角色 governance lead，非 AI 等效流程为重大事项人工审批制度。",
+   "decision_en": "Fixed as gate GATE-11, suggested owner governance lead, non-AI equivalent: 重大事项人工审批制度.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:PKG-RISK",
+    "source:PROJECT-AGENT-OPEN-CALL-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/11-human-review-trigger.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/11-human-review-trigger.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-11"
+   }
+  },
+  {
+   "id": "gate-gate-12",
+   "record_class": "gate_binding",
+   "domain": "governance",
+   "title_zh": "闸门 越权拒答边界",
+   "title_en": "Gate: Out-of-scope refusal boundary",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-12，建议责任角色 governance lead，非 AI 等效流程为首问负责与转办制度。",
+   "decision_en": "Fixed as gate GATE-12, suggested owner governance lead, non-AI equivalent: 首问负责与转办制度.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:PROJECT-AGENT-OPEN-CALL-TASKBOOK",
+    "source:BG-GENAI-MEASURES"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/12-refusal-boundary.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/12-refusal-boundary.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-12"
+   }
+  },
+  {
+   "id": "gate-gate-13",
+   "record_class": "gate_binding",
+   "domain": "governance",
+   "title_zh": "闸门 禁止官方背书表述",
+   "title_en": "Gate: No claim of official endorsement",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-13，建议责任角色 compliance officer，非 AI 等效流程为宣传口径审查。",
+   "decision_en": "Fixed as gate GATE-13, suggested owner compliance officer, non-AI equivalent: 宣传口径审查.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:OFFICIAL-ANNOUNCEMENT",
+    "source:SITE-PACKAGE"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/13-no-approval-claim.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/13-no-approval-claim.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-13"
+   }
+  },
+  {
+   "id": "gate-gate-14",
+   "record_class": "gate_binding",
+   "domain": "governance",
+   "title_zh": "闸门 责任主体映射",
+   "title_en": "Gate: Responsibility mapping",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-14，建议责任角色 governance lead，非 AI 等效流程为职责分工方案编制。",
+   "decision_en": "Fixed as gate GATE-14, suggested owner governance lead, non-AI equivalent: 职责分工方案编制.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:PROJECT-AGENT-OPEN-CALL-TASKBOOK",
+    "source:BG-HAIDIAN-SUBDISTRICT"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/14-responsibility-map.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/14-responsibility-map.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-14"
+   }
+  },
+  {
+   "id": "gate-gate-15",
+   "record_class": "gate_binding",
+   "domain": "governance",
+   "title_zh": "闸门 申诉与纠错通道",
+   "title_en": "Gate: Appeal and correction channel",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-15，建议责任角色 service designer，非 AI 等效流程为政务服务好差评与复核机制。",
+   "decision_en": "Fixed as gate GATE-15, suggested owner service designer, non-AI equivalent: 政务服务好差评与复核机制.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:BG-CHINA-ACCESSIBILITY",
+    "source:BG-PIPL"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/15-appeal-channel.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/15-appeal-channel.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-15"
+   }
+  },
+  {
+   "id": "gate-gate-16",
+   "record_class": "gate_binding",
+   "domain": "safety",
+   "title_zh": "闸门 断网断电人工兜底",
+   "title_en": "Gate: Offline and power-loss manual fallback",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-16，建议责任角色 operations lead，非 AI 等效流程为应急预案与值守制度。",
+   "decision_en": "Fixed as gate GATE-16, suggested owner operations lead, non-AI equivalent: 应急预案与值守制度.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:PROJECT-AGENT-OPEN-CALL-TASKBOOK",
+    "source:BG-HAIDIAN-SUBDISTRICT"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/16-fallback-manual.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/16-fallback-manual.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-16"
+   }
+  },
+  {
+   "id": "gate-gate-17",
+   "record_class": "gate_binding",
+   "domain": "safety",
+   "title_zh": "闸门 低速机器人通行安全",
+   "title_en": "Gate: Low-speed robot passage safety",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-17，建议责任角色 mobility engineer，非 AI 等效流程为低速无人车试点安全评估。",
+   "decision_en": "Fixed as gate GATE-17, suggested owner mobility engineer, non-AI equivalent: 低速无人车试点安全评估.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:PROJECT-AGENT-OPEN-CALL-TASKBOOK",
+    "source:BG-CHINA-ACCESSIBILITY"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/17-low-speed-robot-safety.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/17-low-speed-robot-safety.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-17"
+   }
+  },
+  {
+   "id": "gate-gate-18",
+   "record_class": "gate_binding",
+   "domain": "safety",
+   "title_zh": "闸门 人流与活动安全",
+   "title_en": "Gate: Crowd and event safety",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-18，建议责任角色 safety reviewer，非 AI 等效流程为大型活动安全评估。",
+   "decision_en": "Fixed as gate GATE-18, suggested owner safety reviewer, non-AI equivalent: 大型活动安全评估.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:MOHURD-URBAN-DESIGN-MEASURES",
+    "source:BG-BEIJING-MASTER-PLAN"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/18-crowd-safety.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/18-crowd-safety.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-18"
+   }
+  },
+  {
+   "id": "gate-gate-19",
+   "record_class": "gate_binding",
+   "domain": "safety",
+   "title_zh": "闸门 遗产要素避让",
+   "title_en": "Gate: Heritage element avoidance",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-19，建议责任角色 heritage specialist，非 AI 等效流程为文物影响评估。",
+   "decision_en": "Fixed as gate GATE-19, suggested owner heritage specialist, non-AI equivalent: 文物影响评估.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:BG-JINGZHANG-HERITAGE",
+    "source:KEY-AREA-SOURCE"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/19-heritage-protection.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/19-heritage-protection.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-19"
+   }
+  },
+  {
+   "id": "gate-gate-20",
+   "record_class": "gate_binding",
+   "domain": "safety",
+   "title_zh": "闸门 施工期干扰控制",
+   "title_en": "Gate: Construction-phase disturbance control",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-20，建议责任角色 construction planner，非 AI 等效流程为施工组织设计评审。",
+   "decision_en": "Fixed as gate GATE-20, suggested owner construction planner, non-AI equivalent: 施工组织设计评审.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:MOHURD-CONTROL-DETAILED-PLANNING",
+    "source:AGENT-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/20-construction-staging.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/20-construction-staging.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-20"
+   }
+  },
+  {
+   "id": "gate-gate-21",
+   "record_class": "gate_binding",
+   "domain": "mobility",
+   "title_zh": "闸门 步行连续性与尺度",
+   "title_en": "Gate: Walkability continuity and scale",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-21，建议责任角色 mobility engineer，非 AI 等效流程为步行系统专项评估。",
+   "decision_en": "Fixed as gate GATE-21, suggested owner mobility engineer, non-AI equivalent: 步行系统专项评估.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:MOHURD-URBAN-DESIGN-MEASURES",
+    "source:BG-CHINA-ACCESSIBILITY"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/21-walkability.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/21-walkability.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-21"
+   }
+  },
+  {
+   "id": "gate-gate-22",
+   "record_class": "gate_binding",
+   "domain": "mobility",
+   "title_zh": "闸门 轨道与站点衔接",
+   "title_en": "Gate: Rail and station interface",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-22，建议责任角色 transport planner，非 AI 等效流程为轨道交通接驳方案评审。",
+   "decision_en": "Fixed as gate GATE-22, suggested owner transport planner, non-AI equivalent: 轨道交通接驳方案评审.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:BG-JINGZHANG-HERITAGE",
+    "source:BG-ZGC-SCIENCE-CITY"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/22-rail-interface.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/22-rail-interface.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-22"
+   }
+  },
+  {
+   "id": "gate-gate-23",
+   "record_class": "gate_binding",
+   "domain": "mobility",
+   "title_zh": "闸门 自行车与慢行网络",
+   "title_en": "Gate: Cycling and slow-mobility network",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-23，建议责任角色 mobility engineer，非 AI 等效流程为慢行系统规划。",
+   "decision_en": "Fixed as gate GATE-23, suggested owner mobility engineer, non-AI equivalent: 慢行系统规划.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:MOHURD-URBAN-DESIGN-MEASURES",
+    "source:BG-OSM"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/23-cycle-network.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/23-cycle-network.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-23"
+   }
+  },
+  {
+   "id": "gate-gate-24",
+   "record_class": "gate_binding",
+   "domain": "ecology",
+   "title_zh": "闸门 绿地连通性",
+   "title_en": "Gate: Green space continuity",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-24，建议责任角色 landscape architect，非 AI 等效流程为绿地系统规划。",
+   "decision_en": "Fixed as gate GATE-24, suggested owner landscape architect, non-AI equivalent: 绿地系统规划.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:BG-BEIJING-MASTER-PLAN",
+    "source:BG-IPCC-AR6-URBAN"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/24-green-continuity.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/24-green-continuity.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-24"
+   }
+  },
+  {
+   "id": "gate-gate-25",
+   "record_class": "gate_binding",
+   "domain": "ecology",
+   "title_zh": "闸门 雨洪与蓝绿耦合",
+   "title_en": "Gate: Stormwater and blue-green coupling",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-25，建议责任角色 water engineer，非 AI 等效流程为海绵城市专项设计。",
+   "decision_en": "Fixed as gate GATE-25, suggested owner water engineer, non-AI equivalent: 海绵城市专项设计.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:BG-IPCC-AR6-URBAN",
+    "source:MOHURD-CONTROL-DETAILED-PLANNING"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/25-stormwater.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/25-stormwater.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-25"
+   }
+  },
+  {
+   "id": "gate-gate-26",
+   "record_class": "gate_binding",
+   "domain": "ecology",
+   "title_zh": "闸门 微气候与遮荫",
+   "title_en": "Gate: Microclimate and shading",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-26，建议责任角色 environmental designer，非 AI 等效流程为风环境与热环境模拟。",
+   "decision_en": "Fixed as gate GATE-26, suggested owner environmental designer, non-AI equivalent: 风环境与热环境模拟.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:BG-IPCC-AR6-URBAN",
+    "source:MOHURD-URBAN-DESIGN-MEASURES"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/26-microclimate.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/26-microclimate.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-26"
+   }
+  },
+  {
+   "id": "gate-gate-27",
+   "record_class": "gate_binding",
+   "domain": "energy",
+   "title_zh": "闸门 算力设施选址与能耗",
+   "title_en": "Gate: Compute facility siting and energy",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-27，建议责任角色 energy planner，非 AI 等效流程为数据中心能评与选址论证。",
+   "decision_en": "Fixed as gate GATE-27, suggested owner energy planner, non-AI equivalent: 数据中心能评与选址论证.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:BG-ZGC-SCIENCE-CITY",
+    "source:PKG-SIMULATION"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/27-compute-siting.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/27-compute-siting.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-27"
+   }
+  },
+  {
+   "id": "gate-gate-28",
+   "record_class": "gate_binding",
+   "domain": "energy",
+   "title_zh": "闸门 余热与设施复用",
+   "title_en": "Gate: Waste heat and facility reuse",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-28，建议责任角色 energy planner，非 AI 等效流程为能源系统专项规划。",
+   "decision_en": "Fixed as gate GATE-28, suggested owner energy planner, non-AI equivalent: 能源系统专项规划.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:BG-ZGC-SCIENCE-CITY",
+    "source:BG-IPCC-AR6-URBAN"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/28-waste-heat.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/28-waste-heat.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-28"
+   }
+  },
+  {
+   "id": "gate-gate-29",
+   "record_class": "gate_binding",
+   "domain": "equity",
+   "title_zh": "闸门 无障碍与全龄友好",
+   "title_en": "Gate: Accessibility and all-age friendliness",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-29，建议责任角色 inclusive design lead，非 AI 等效流程为无障碍设施专项设计。",
+   "decision_en": "Fixed as gate GATE-29, suggested owner inclusive design lead, non-AI equivalent: 无障碍设施专项设计.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:BG-CHINA-ACCESSIBILITY",
+    "source:MOHURD-URBAN-DESIGN-MEASURES"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/29-accessibility.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/29-accessibility.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-29"
+   }
+  },
+  {
+   "id": "gate-gate-30",
+   "record_class": "gate_binding",
+   "domain": "equity",
+   "title_zh": "闸门 数字鸿沟缓解",
+   "title_en": "Gate: Digital divide mitigation",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-30，建议责任角色 service designer，非 AI 等效流程为适老化与信息无障碍改造。",
+   "decision_en": "Fixed as gate GATE-30, suggested owner service designer, non-AI equivalent: 适老化与信息无障碍改造.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:BG-CHINA-ACCESSIBILITY",
+    "source:PROJECT-AGENT-OPEN-CALL-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/30-digital-divide.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/30-digital-divide.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-30"
+   }
+  },
+  {
+   "id": "gate-gate-31",
+   "record_class": "gate_binding",
+   "domain": "equity",
+   "title_zh": "闸门 可负担与混合使用",
+   "title_en": "Gate: Affordability and mixed use",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-31，建议责任角色 planning reviewer，非 AI 等效流程为住房与产业混合政策研究。",
+   "decision_en": "Fixed as gate GATE-31, suggested owner planning reviewer, non-AI equivalent: 住房与产业混合政策研究.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:BG-HAIDIAN-SUBDISTRICT",
+    "source:CASE-KENDALL-SQUARE"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/31-affordability.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/31-affordability.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-31"
+   }
+  },
+  {
+   "id": "gate-gate-32",
+   "record_class": "gate_binding",
+   "domain": "delivery",
+   "title_zh": "闸门 分期可实施性",
+   "title_en": "Gate: Phasing feasibility",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-32，建议责任角色 delivery manager，非 AI 等效流程为实施计划与投资时序编制。",
+   "decision_en": "Fixed as gate GATE-32, suggested owner delivery manager, non-AI equivalent: 实施计划与投资时序编制.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:MOHURD-CONTROL-DETAILED-PLANNING",
+    "source:AGENT-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/32-phasing-feasibility.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/32-phasing-feasibility.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-32"
+   }
+  },
+  {
+   "id": "gate-gate-33",
+   "record_class": "gate_binding",
+   "domain": "delivery",
+   "title_zh": "闸门 更新项目清单可核查",
+   "title_en": "Gate: Renewal project list verifiability",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-33，建议责任角色 delivery manager，非 AI 等效流程为项目库编制与入库审查。",
+   "decision_en": "Fixed as gate GATE-33, suggested owner delivery manager, non-AI equivalent: 项目库编制与入库审查.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:AGENT-TASKBOOK",
+    "source:MOHURD-CONTROL-DETAILED-PLANNING"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/33-project-list.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/33-project-list.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-33"
+   }
+  },
+  {
+   "id": "gate-gate-34",
+   "record_class": "gate_binding",
+   "domain": "delivery",
+   "title_zh": "闸门 投资量级与不确定性",
+   "title_en": "Gate: Cost order of magnitude and uncertainty",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-34，建议责任角色 cost planner，非 AI 等效流程为投资估算与经济评价。",
+   "decision_en": "Fixed as gate GATE-34, suggested owner cost planner, non-AI equivalent: 投资估算与经济评价.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:AGENT-TASKBOOK",
+    "source:PROCESSED-FACT-PACK"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/34-cost-order.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/34-cost-order.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-34"
+   }
+  },
+  {
+   "id": "gate-gate-35",
+   "record_class": "gate_binding",
+   "domain": "operations",
+   "title_zh": "闸门 运营模式与非 AI 等效",
+   "title_en": "Gate: Operations model and non-AI equivalent",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-35，建议责任角色 operations lead，非 AI 等效流程为运营方案与人员编制。",
+   "decision_en": "Fixed as gate GATE-35, suggested owner operations lead, non-AI equivalent: 运营方案与人员编制.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:PROJECT-AGENT-OPEN-CALL-TASKBOOK",
+    "source:CASE-STATION-F"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/35-operations-model.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/35-operations-model.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-35"
+   }
+  },
+  {
+   "id": "gate-gate-36",
+   "record_class": "gate_binding",
+   "domain": "operations",
+   "title_zh": "闸门 运行监测与回写",
+   "title_en": "Gate: Monitoring loop and write-back",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-36，建议责任角色 operations lead，非 AI 等效流程为运行监测与绩效评估。",
+   "decision_en": "Fixed as gate GATE-36, suggested owner operations lead, non-AI equivalent: 运行监测与绩效评估.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:PKG-SIMULATION",
+    "source:PKG-METRICS"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/36-monitoring-loop.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/36-monitoring-loop.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-36"
+   }
+  },
+  {
+   "id": "gate-gate-37",
+   "record_class": "gate_binding",
+   "domain": "technology",
+   "title_zh": "闸门 工具调用结构合规",
+   "title_en": "Gate: Tool dispatch schema compliance",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-37，建议责任角色 ai engineer，非 AI 等效流程为接口联调与契约测试。",
+   "decision_en": "Fixed as gate GATE-37, suggested owner ai engineer, non-AI equivalent: 接口联调与契约测试.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:PKG-SIMULATION",
+    "source:BG-GENAI-MEASURES"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/37-tool-schema.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/37-tool-schema.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-37"
+   }
+  },
+  {
+   "id": "gate-gate-38",
+   "record_class": "gate_binding",
+   "domain": "technology",
+   "title_zh": "闸门 重规划时延约束",
+   "title_en": "Gate: Replanning latency constraint",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-38，建议责任角色 ai engineer，非 AI 等效流程为系统性能测试。",
+   "decision_en": "Fixed as gate GATE-38, suggested owner ai engineer, non-AI equivalent: 系统性能测试.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:PKG-SIMULATION",
+    "source:AGENT-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/38-replan-latency.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/38-replan-latency.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-38"
+   }
+  },
+  {
+   "id": "gate-gate-39",
+   "record_class": "gate_binding",
+   "domain": "technology",
+   "title_zh": "闸门 模型能力边界声明",
+   "title_en": "Gate: Model capability boundary declaration",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-39，建议责任角色 ai engineer，非 AI 等效流程为技术能力说明与免责声明。",
+   "decision_en": "Fixed as gate GATE-39, suggested owner ai engineer, non-AI equivalent: 技术能力说明与免责声明.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:BG-GENAI-MEASURES",
+    "source:PROJECT-AGENT-OPEN-CALL-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/39-model-boundary.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/39-model-boundary.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-39"
+   }
+  },
+  {
+   "id": "gate-gate-40",
+   "record_class": "gate_binding",
+   "domain": "evaluation",
+   "title_zh": "闸门 自审脚本可运行",
+   "title_en": "Gate: Self-audit script runnability",
+   "status": "design_target",
+   "target_score": 88,
+   "decision_zh": "把该判断固化为闸门 GATE-40，建议责任角色 evidence officer，非 AI 等效流程为内部审计与复核。",
+   "decision_en": "Fixed as gate GATE-40, suggested owner evidence officer, non-AI equivalent: 内部审计与复核.",
+   "metric": {
+    "name": "gate_registered",
+    "target": 1,
+    "unit": "count",
+    "formula": "闸门文件存在且 gate_id 与索引一致。"
+   },
+   "inputs": [
+    "source:PKG-EVIDENCE-LEDGER",
+    "source:PKG-CLAIM-PROVENANCE",
+    "source:PKG-GATES"
+   ],
+   "evidence_refs": [
+    "visual/assets/gates/40-self-audit-run.json"
+   ],
+   "verification_zh": "脚本读取闸门文件并核对 gate_id、domain 与索引一致。",
+   "verification_en": "The audit script opens the gate file and checks gate_id and domain against the index.",
+   "boundary_zh": "闸门为自设复核关口，不代表已通过或已获批准。",
+   "boundary_en": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+   "check": {
+    "kind": "json_pointer_equals",
+    "file": "visual/assets/gates/40-self-audit-run.json",
+    "pointer": "/gate_id",
+    "expect": "GATE-40"
+   }
+  },
+  {
+   "id": "risk-data-privacy",
+   "record_class": "risk_binding",
+   "domain": "safety",
+   "title_zh": "风险：数据与个人信息",
+   "title_en": "Risk: Data and personal information",
+   "status": "open_risk",
+   "target_score": 92,
+   "decision_zh": "全带默认不采集可识别个人信息；场景需要人流量时只用聚合计数与匿名断面。任何需要个人信息的场景必须单独立项、单独告知、单独授权，并在现场以实体牌示写明采集范围与保存期限。所有终端提供等效人工路径，拒绝授权不影响服务获取。",
+   "decision_en": "Mitigation declared in risk.json; the dimension stays open until the stop condition is cleared.",
+   "metric": {
+    "name": "risk_score_data_privacy",
+    "target": 4,
+    "unit": "score_1_5",
+    "formula": "人工评分，4 分及以上强制人工复核。"
+   },
+   "inputs": [
+    "source:PKG-RISK",
+    "source:AGENT-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "risk.json",
+    "simulation.json"
+   ],
+   "verification_zh": "脚本核对该维度评分与 human_review 字段；4 分及以上必须非空。",
+   "verification_en": "The script checks the score and requires a non-empty human_review at 4 or above.",
+   "boundary_zh": "评估意见未出具或公众复盘会未召开时，场景保持下线状态。",
+   "boundary_en": "Open risk recorded by the submitting agent; no authority has accepted or transferred it.",
+   "check": {
+    "kind": "risk_dimension",
+    "file": "risk.json",
+    "dimension": "data_privacy",
+    "expect_score": 4
+   }
+  },
+  {
+   "id": "risk-implementation-complexity",
+   "record_class": "risk_binding",
+   "domain": "safety",
+   "title_zh": "风险：实施复杂度",
+   "title_en": "Risk: Implementation complexity",
+   "status": "open_risk",
+   "target_score": 92,
+   "decision_zh": "把方案拆成公共底板先行、社区共享其次、产业规模化最后的三期；每一期只做资料已经到位的部分，权属复杂地块在一期内明确不动。分期之间设资料门槛，门槛未过不进入下一期。",
+   "decision_en": "Mitigation declared in risk.json; the dimension stays open until the stop condition is cleared.",
+   "metric": {
+    "name": "risk_score_implementation_complexity",
+    "target": 4,
+    "unit": "score_1_5",
+    "formula": "人工评分，4 分及以上强制人工复核。"
+   },
+   "inputs": [
+    "source:PKG-RISK",
+    "source:AGENT-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "risk.json",
+    "simulation.json"
+   ],
+   "verification_zh": "脚本核对该维度评分与 human_review 字段；4 分及以上必须非空。",
+   "verification_en": "The script checks the score and requires a non-empty human_review at 4 or above.",
+   "boundary_zh": "分期门槛评审会未通过时，后续期次不得启动。",
+   "boundary_en": "Open risk recorded by the submitting agent; no authority has accepted or transferred it.",
+   "check": {
+    "kind": "risk_dimension",
+    "file": "risk.json",
+    "dimension": "implementation_complexity",
+    "expect_score": 4
+   }
+  },
+  {
+   "id": "risk-public-acceptance",
+   "record_class": "risk_binding",
+   "domain": "safety",
+   "title_zh": "风险：公众接受度",
+   "title_en": "Risk: Public acceptance",
+   "status": "open_risk",
+   "target_score": 92,
+   "decision_zh": "所有涉及公共空间的场景先做时段化试运行并现场公示，试运行期内保留完全不使用智能服务也能办完事的普通路径。每季度召开公众复盘会，会上公开误报数量、申诉数量与关闭情况，并允许居民投票要求某一场景退出。",
+   "decision_en": "Mitigation declared in risk.json; the dimension stays open until the stop condition is cleared.",
+   "metric": {
+    "name": "risk_score_public_acceptance",
+    "target": 4,
+    "unit": "score_1_5",
+    "formula": "人工评分，4 分及以上强制人工复核。"
+   },
+   "inputs": [
+    "source:PKG-RISK",
+    "source:AGENT-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "risk.json",
+    "simulation.json"
+   ],
+   "verification_zh": "脚本核对该维度评分与 human_review 字段；4 分及以上必须非空。",
+   "verification_en": "The script checks the score and requires a non-empty human_review at 4 or above.",
+   "boundary_zh": "复盘会未召开或投票结果未公开时，场景不得从试运行转为常态运行。",
+   "boundary_en": "Open risk recorded by the submitting agent; no authority has accepted or transferred it.",
+   "check": {
+    "kind": "risk_dimension",
+    "file": "risk.json",
+    "dimension": "public_acceptance",
+    "expect_score": 4
+   }
+  },
+  {
+   "id": "risk-operations-cost",
+   "record_class": "risk_binding",
+   "domain": "operations",
+   "title_zh": "风险：运营成本",
+   "title_en": "Risk: Operations cost",
+   "status": "open_risk",
+   "target_score": 85,
+   "decision_zh": "每一处终端在立项时同时登记年度运维预算与撤除准备金，两笔钱写进同一份台账。预算未落实的终端不得建设。运维台账每年公开一次，包含实际支出与故障时长。",
+   "decision_en": "Mitigation declared in risk.json; the dimension stays open until the stop condition is cleared.",
+   "metric": {
+    "name": "risk_score_operations_cost",
+    "target": 3,
+    "unit": "score_1_5",
+    "formula": "人工评分，4 分及以上强制人工复核。"
+   },
+   "inputs": [
+    "source:PKG-RISK",
+    "source:AGENT-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "risk.json",
+    "simulation.json"
+   ],
+   "verification_zh": "脚本核对该维度评分与 human_review 字段；4 分及以上必须非空。",
+   "verification_en": "The script checks the score and requires a non-empty human_review at 4 or above.",
+   "boundary_zh": "撤除准备金未到位时，该终端不得进入建设清单。",
+   "boundary_en": "Open risk recorded by the submitting agent; no authority has accepted or transferred it.",
+   "check": {
+    "kind": "risk_dimension",
+    "file": "risk.json",
+    "dimension": "operations_cost",
+    "expect_score": 3
+   }
+  },
+  {
+   "id": "risk-policy-uncertainty",
+   "record_class": "risk_binding",
+   "domain": "safety",
+   "title_zh": "风险：政策不确定性",
+   "title_en": "Risk: Policy uncertainty",
+   "status": "open_risk",
+   "target_score": 92,
+   "decision_zh": "所有智能场景采用可撤除设计：终端、立杆与线缆按可拆卸标准建设，空间尺寸按撤除后仍能正常使用的普通公共空间设计。方案文本只写功能意图与责任接口，不写会随政策变化的具体技术参数。",
+   "decision_en": "Mitigation declared in risk.json; the dimension stays open until the stop condition is cleared.",
+   "metric": {
+    "name": "risk_score_policy_uncertainty",
+    "target": 4,
+    "unit": "score_1_5",
+    "formula": "人工评分，4 分及以上强制人工复核。"
+   },
+   "inputs": [
+    "source:PKG-RISK",
+    "source:AGENT-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "risk.json",
+    "simulation.json"
+   ],
+   "verification_zh": "脚本核对该维度评分与 human_review 字段；4 分及以上必须非空。",
+   "verification_en": "The script checks the score and requires a non-empty human_review at 4 or above.",
+   "boundary_zh": "复核未完成前，受影响场景暂停扩大部署范围。",
+   "boundary_en": "Open risk recorded by the submitting agent; no authority has accepted or transferred it.",
+   "check": {
+    "kind": "risk_dimension",
+    "file": "risk.json",
+    "dimension": "policy_uncertainty",
+    "expect_score": 4
+   }
+  },
+  {
+   "id": "risk-spatial-dispute",
+   "record_class": "risk_binding",
+   "domain": "safety",
+   "title_zh": "风险：空间争议",
+   "title_en": "Risk: Spatial dispute",
+   "status": "open_risk",
+   "target_score": 92,
+   "decision_zh": "所有几何要素统一标注 official_boundary=false 与 geometry_role=provisional_constraint；面积与比例全部标注为临时测度，并附整体重算接口。正式边界发布后，只需替换 site_boundary.geojson 并重跑重算脚本，文本无需改动。",
+   "decision_en": "Mitigation declared in risk.json; the dimension stays open until the stop condition is cleared.",
+   "metric": {
+    "name": "risk_score_spatial_dispute",
+    "target": 4,
+    "unit": "score_1_5",
+    "formula": "人工评分，4 分及以上强制人工复核。"
+   },
+   "inputs": [
+    "source:PKG-RISK",
+    "source:AGENT-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "risk.json",
+    "simulation.json"
+   ],
+   "verification_zh": "脚本核对该维度评分与 human_review 字段；4 分及以上必须非空。",
+   "verification_en": "The script checks the score and requires a non-empty human_review at 4 or above.",
+   "boundary_zh": "正式边界未发布时，面积结论只能用于说明方法与相对关系。",
+   "boundary_en": "Open risk recorded by the submitting agent; no authority has accepted or transferred it.",
+   "check": {
+    "kind": "risk_dimension",
+    "file": "risk.json",
+    "dimension": "spatial_dispute",
+    "expect_score": 4
+   }
+  },
+  {
+   "id": "risk-technology-maturity",
+   "record_class": "risk_binding",
+   "domain": "operations",
+   "title_zh": "风险：技术成熟度",
+   "title_en": "Risk: Technology maturity",
+   "status": "open_risk",
+   "target_score": 85,
+   "decision_zh": "空间按人优先的断面设计，机器通行只使用人行空间中的共享部分，不单独划出机器专用道。所有场景先做限定时段与限定范围的试运行，并公开误报率与接管次数；指标未达公开阈值不得扩大范围。",
+   "decision_en": "Mitigation declared in risk.json; the dimension stays open until the stop condition is cleared.",
+   "metric": {
+    "name": "risk_score_technology_maturity",
+    "target": 3,
+    "unit": "score_1_5",
+    "formula": "人工评分，4 分及以上强制人工复核。"
+   },
+   "inputs": [
+    "source:PKG-RISK",
+    "source:AGENT-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "risk.json",
+    "simulation.json"
+   ],
+   "verification_zh": "脚本核对该维度评分与 human_review 字段；4 分及以上必须非空。",
+   "verification_en": "The script checks the score and requires a non-empty human_review at 4 or above.",
+   "boundary_zh": "试运行报告未公开时，场景不得扩大时段或范围。",
+   "boundary_en": "Open risk recorded by the submitting agent; no authority has accepted or transferred it.",
+   "check": {
+    "kind": "risk_dimension",
+    "file": "risk.json",
+    "dimension": "technology_maturity",
+    "expect_score": 3
+   }
+  },
+  {
+   "id": "risk-equity-inclusion",
+   "record_class": "risk_binding",
+   "domain": "safety",
+   "title_zh": "风险：公平与包容",
+   "title_en": "Risk: Equity and inclusion",
+   "status": "open_risk",
+   "target_score": 92,
+   "decision_zh": "每一处智能终端都配对一个等效人工窗口，二者服务范围、办理事项与开放时段完全一致，且人工窗口不得以排队时长变相劝退。全线慢行系统按无障碍连续性设计，坡道、盲道与休息座椅按连续段校核而不是按单点校核。",
+   "decision_en": "Mitigation declared in risk.json; the dimension stays open until the stop condition is cleared.",
+   "metric": {
+    "name": "risk_score_equity_inclusion",
+    "target": 4,
+    "unit": "score_1_5",
+    "formula": "人工评分，4 分及以上强制人工复核。"
+   },
+   "inputs": [
+    "source:PKG-RISK",
+    "source:AGENT-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "risk.json",
+    "simulation.json"
+   ],
+   "verification_zh": "脚本核对该维度评分与 human_review 字段；4 分及以上必须非空。",
+   "verification_en": "The script checks the score and requires a non-empty human_review at 4 or above.",
+   "boundary_zh": "等效人工窗口未同步开放时，该智能终端不得投入使用。",
+   "boundary_en": "Open risk recorded by the submitting agent; no authority has accepted or transferred it.",
+   "check": {
+    "kind": "risk_dimension",
+    "file": "risk.json",
+    "dimension": "equity_inclusion",
+    "expect_score": 4
+   }
+  },
+  {
+   "id": "scenario-ai-traffic-walkability",
+   "record_class": "scenario_binding",
+   "domain": "governance",
+   "title_zh": "场景：AI+交通慢行评估",
+   "title_en": "Scenario: AI mobility and walkability review",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该官方场景在离线推演中承载 8 个任务，其中 7 个记为成功，其余为阻断或拒答并如实计入。",
+   "decision_en": "The official scenario carries 8 simulated tasks, 7 recorded as success; the rest are blocked or refused and counted honestly.",
+   "metric": {
+    "name": "scenario_task_count",
+    "target": 8,
+    "unit": "count",
+    "formula": "统计 simulation.json 中该 scenario_id 的任务数。"
+   },
+   "inputs": [
+    "source:PKG-SIMULATION",
+    "source:PROJECT-AGENT-OPEN-CALL-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "simulation.json",
+    "haidian/scenarios/ai-traffic-walkability.json"
+   ],
+   "verification_zh": "脚本按 scenario_id 分组重新统计任务数与成功数。",
+   "verification_en": "The script regroups tasks by scenario_id and recounts totals and successes.",
+   "boundary_zh": "推演为确定性离线过程，不代表真实系统运行结果。",
+   "boundary_en": "Deterministic offline harness; not evidence of live system behaviour.",
+   "check": {
+    "kind": "scenario_task_count",
+    "file": "simulation.json",
+    "scenario_id": "ai-traffic-walkability",
+    "expect": 8
+   }
+  },
+  {
+   "id": "scenario-ai-cultural-guide",
+   "record_class": "scenario_binding",
+   "domain": "governance",
+   "title_zh": "场景：AI导览与文化叙事",
+   "title_en": "Scenario: AI guiding and cultural narrative",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该官方场景在离线推演中承载 8 个任务，其中 7 个记为成功，其余为阻断或拒答并如实计入。",
+   "decision_en": "The official scenario carries 8 simulated tasks, 7 recorded as success; the rest are blocked or refused and counted honestly.",
+   "metric": {
+    "name": "scenario_task_count",
+    "target": 8,
+    "unit": "count",
+    "formula": "统计 simulation.json 中该 scenario_id 的任务数。"
+   },
+   "inputs": [
+    "source:PKG-SIMULATION",
+    "source:PROJECT-AGENT-OPEN-CALL-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "simulation.json",
+    "haidian/scenarios/ai-cultural-guide.json"
+   ],
+   "verification_zh": "脚本按 scenario_id 分组重新统计任务数与成功数。",
+   "verification_en": "The script regroups tasks by scenario_id and recounts totals and successes.",
+   "boundary_zh": "推演为确定性离线过程，不代表真实系统运行结果。",
+   "boundary_en": "Deterministic offline harness; not evidence of live system behaviour.",
+   "check": {
+    "kind": "scenario_task_count",
+    "file": "simulation.json",
+    "scenario_id": "ai-cultural-guide",
+    "expect": 8
+   }
+  },
+  {
+   "id": "scenario-ai-health-service-navigation",
+   "record_class": "scenario_binding",
+   "domain": "governance",
+   "title_zh": "场景：AI+医疗健康服务导航",
+   "title_en": "Scenario: AI health-service navigation",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该官方场景在离线推演中承载 8 个任务，其中 7 个记为成功，其余为阻断或拒答并如实计入。",
+   "decision_en": "The official scenario carries 8 simulated tasks, 7 recorded as success; the rest are blocked or refused and counted honestly.",
+   "metric": {
+    "name": "scenario_task_count",
+    "target": 8,
+    "unit": "count",
+    "formula": "统计 simulation.json 中该 scenario_id 的任务数。"
+   },
+   "inputs": [
+    "source:PKG-SIMULATION",
+    "source:PROJECT-AGENT-OPEN-CALL-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "simulation.json",
+    "haidian/scenarios/ai-health-service-navigation.json"
+   ],
+   "verification_zh": "脚本按 scenario_id 分组重新统计任务数与成功数。",
+   "verification_en": "The script regroups tasks by scenario_id and recounts totals and successes.",
+   "boundary_zh": "推演为确定性离线过程，不代表真实系统运行结果。",
+   "boundary_en": "Deterministic offline harness; not evidence of live system behaviour.",
+   "check": {
+    "kind": "scenario_task_count",
+    "file": "simulation.json",
+    "scenario_id": "ai-health-service-navigation",
+    "expect": 8
+   }
+  },
+  {
+   "id": "scenario-enterprise-service-copilot",
+   "record_class": "scenario_binding",
+   "domain": "governance",
+   "title_zh": "场景：企业服务Copilot",
+   "title_en": "Scenario: Enterprise service copilot",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该官方场景在离线推演中承载 8 个任务，其中 7 个记为成功，其余为阻断或拒答并如实计入。",
+   "decision_en": "The official scenario carries 8 simulated tasks, 7 recorded as success; the rest are blocked or refused and counted honestly.",
+   "metric": {
+    "name": "scenario_task_count",
+    "target": 8,
+    "unit": "count",
+    "formula": "统计 simulation.json 中该 scenario_id 的任务数。"
+   },
+   "inputs": [
+    "source:PKG-SIMULATION",
+    "source:PROJECT-AGENT-OPEN-CALL-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "simulation.json",
+    "haidian/scenarios/enterprise-service-copilot.json"
+   ],
+   "verification_zh": "脚本按 scenario_id 分组重新统计任务数与成功数。",
+   "verification_en": "The script regroups tasks by scenario_id and recounts totals and successes.",
+   "boundary_zh": "推演为确定性离线过程，不代表真实系统运行结果。",
+   "boundary_en": "Deterministic offline harness; not evidence of live system behaviour.",
+   "check": {
+    "kind": "scenario_task_count",
+    "file": "simulation.json",
+    "scenario_id": "enterprise-service-copilot",
+    "expect": 8
+   }
+  },
+  {
+   "id": "scenario-public-safety-operations-review",
+   "record_class": "scenario_binding",
+   "domain": "governance",
+   "title_zh": "场景：公共安全与活动运营复核",
+   "title_en": "Scenario: Public-safety and event operations review",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该官方场景在离线推演中承载 8 个任务，其中 6 个记为成功，其余为阻断或拒答并如实计入。",
+   "decision_en": "The official scenario carries 8 simulated tasks, 6 recorded as success; the rest are blocked or refused and counted honestly.",
+   "metric": {
+    "name": "scenario_task_count",
+    "target": 8,
+    "unit": "count",
+    "formula": "统计 simulation.json 中该 scenario_id 的任务数。"
+   },
+   "inputs": [
+    "source:PKG-SIMULATION",
+    "source:PROJECT-AGENT-OPEN-CALL-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "simulation.json",
+    "haidian/scenarios/public-safety-operations-review.json"
+   ],
+   "verification_zh": "脚本按 scenario_id 分组重新统计任务数与成功数。",
+   "verification_en": "The script regroups tasks by scenario_id and recounts totals and successes.",
+   "boundary_zh": "推演为确定性离线过程，不代表真实系统运行结果。",
+   "boundary_en": "Deterministic offline harness; not evidence of live system behaviour.",
+   "check": {
+    "kind": "scenario_task_count",
+    "file": "simulation.json",
+    "scenario_id": "public-safety-operations-review",
+    "expect": 8
+   }
+  },
+  {
+   "id": "scenario-robot-delivery-low-speed",
+   "record_class": "scenario_binding",
+   "domain": "governance",
+   "title_zh": "场景：机器人低速配送",
+   "title_en": "Scenario: Low-speed robot delivery",
+   "status": "verified_internal",
+   "target_score": 90,
+   "decision_zh": "该官方场景在离线推演中承载 8 个任务，其中 7 个记为成功，其余为阻断或拒答并如实计入。",
+   "decision_en": "The official scenario carries 8 simulated tasks, 7 recorded as success; the rest are blocked or refused and counted honestly.",
+   "metric": {
+    "name": "scenario_task_count",
+    "target": 8,
+    "unit": "count",
+    "formula": "统计 simulation.json 中该 scenario_id 的任务数。"
+   },
+   "inputs": [
+    "source:PKG-SIMULATION",
+    "source:PROJECT-AGENT-OPEN-CALL-TASKBOOK"
+   ],
+   "evidence_refs": [
+    "simulation.json",
+    "haidian/scenarios/robot-delivery-low-speed.json"
+   ],
+   "verification_zh": "脚本按 scenario_id 分组重新统计任务数与成功数。",
+   "verification_en": "The script regroups tasks by scenario_id and recounts totals and successes.",
+   "boundary_zh": "推演为确定性离线过程，不代表真实系统运行结果。",
+   "boundary_en": "Deterministic offline harness; not evidence of live system behaviour.",
+   "check": {
+    "kind": "scenario_task_count",
+    "file": "simulation.json",
+    "scenario_id": "robot-delivery-low-speed",
+    "expect": 8
+   }
+  },
+  {
+   "id": "depth-existing-conditions-diagnosis",
+   "record_class": "depth_binding",
+   "domain": "data",
+   "title_zh": "深度：现状诊断图与资料缺口",
+   "title_en": "Depth item: existing conditions diagnosis",
+   "status": "verified_internal",
+   "target_score": 87,
+   "decision_zh": "该深度条目由 三层范围工作框架 等章节承载，并绑定 9 个几何图层与 2 张图纸。",
+   "decision_en": "The depth item is carried by the listed report sections and bound to 9 geometry layers and 2 drawings.",
+   "metric": {
+    "name": "depth_item_complete",
+    "target": 1,
+    "unit": "count",
+    "formula": "design_depth_matrix.json 中该条目 status=complete。"
+   },
+   "inputs": [
+    "standard:MOHURD-ARCH-DESIGN-DEPTH-2016",
+    "depth:existing_conditions_diagnosis"
+   ],
+   "evidence_refs": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson",
+    "geometry/roads.geojson",
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson",
+    "geometry/phasing.geojson",
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
+   ],
+   "verification_zh": "脚本核对该条目引用的几何与图纸文件全部存在。",
+   "verification_en": "The script checks that every referenced geometry and drawing file exists.",
+   "boundary_zh": "深度声明针对本轮临时成果，官方边界到位后需重新核定。",
+   "boundary_en": "Depth claim applies to this provisional round only.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/site_boundary.geojson",
+     "geometry/key_areas.geojson",
+     "geometry/land_use.geojson",
+     "geometry/buildings.geojson",
+     "geometry/roads.geojson",
+     "geometry/green_space.geojson",
+     "geometry/public_space.geojson",
+     "geometry/constraints.geojson",
+     "geometry/phasing.geojson",
+     "drawings/a3-booklet.pdf",
+     "drawings/a0-boards.pdf"
+    ]
+   }
+  },
+  {
+   "id": "depth-three-level-scope-framework",
+   "record_class": "depth_binding",
+   "domain": "spatial",
+   "title_zh": "深度：三层范围工作框架",
+   "title_en": "Depth item: three level scope framework",
+   "status": "verified_internal",
+   "target_score": 87,
+   "decision_zh": "该深度条目由 三层范围工作框架 等章节承载，并绑定 9 个几何图层与 2 张图纸。",
+   "decision_en": "The depth item is carried by the listed report sections and bound to 9 geometry layers and 2 drawings.",
+   "metric": {
+    "name": "depth_item_complete",
+    "target": 1,
+    "unit": "count",
+    "formula": "design_depth_matrix.json 中该条目 status=complete。"
+   },
+   "inputs": [
+    "standard:MOHURD-ARCH-DESIGN-DEPTH-2016",
+    "depth:three_level_scope_framework"
+   ],
+   "evidence_refs": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson",
+    "geometry/roads.geojson",
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson",
+    "geometry/phasing.geojson",
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
+   ],
+   "verification_zh": "脚本核对该条目引用的几何与图纸文件全部存在。",
+   "verification_en": "The script checks that every referenced geometry and drawing file exists.",
+   "boundary_zh": "深度声明针对本轮临时成果，官方边界到位后需重新核定。",
+   "boundary_en": "Depth claim applies to this provisional round only.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/site_boundary.geojson",
+     "geometry/key_areas.geojson",
+     "geometry/land_use.geojson",
+     "geometry/buildings.geojson",
+     "geometry/roads.geojson",
+     "geometry/green_space.geojson",
+     "geometry/public_space.geojson",
+     "geometry/constraints.geojson",
+     "geometry/phasing.geojson",
+     "drawings/a3-booklet.pdf",
+     "drawings/a0-boards.pdf"
+    ]
+   }
+  },
+  {
+   "id": "depth-overall-spatial-structure",
+   "record_class": "depth_binding",
+   "domain": "spatial",
+   "title_zh": "深度：总体空间结构",
+   "title_en": "Depth item: overall spatial structure",
+   "status": "verified_internal",
+   "target_score": 87,
+   "decision_zh": "该深度条目由 三层范围工作框架 等章节承载，并绑定 9 个几何图层与 2 张图纸。",
+   "decision_en": "The depth item is carried by the listed report sections and bound to 9 geometry layers and 2 drawings.",
+   "metric": {
+    "name": "depth_item_complete",
+    "target": 1,
+    "unit": "count",
+    "formula": "design_depth_matrix.json 中该条目 status=complete。"
+   },
+   "inputs": [
+    "standard:MOHURD-ARCH-DESIGN-DEPTH-2016",
+    "depth:overall_spatial_structure"
+   ],
+   "evidence_refs": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson",
+    "geometry/roads.geojson",
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson",
+    "geometry/phasing.geojson",
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
+   ],
+   "verification_zh": "脚本核对该条目引用的几何与图纸文件全部存在。",
+   "verification_en": "The script checks that every referenced geometry and drawing file exists.",
+   "boundary_zh": "深度声明针对本轮临时成果，官方边界到位后需重新核定。",
+   "boundary_en": "Depth claim applies to this provisional round only.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/site_boundary.geojson",
+     "geometry/key_areas.geojson",
+     "geometry/land_use.geojson",
+     "geometry/buildings.geojson",
+     "geometry/roads.geojson",
+     "geometry/green_space.geojson",
+     "geometry/public_space.geojson",
+     "geometry/constraints.geojson",
+     "geometry/phasing.geojson",
+     "drawings/a3-booklet.pdf",
+     "drawings/a0-boards.pdf"
+    ]
+   }
+  },
+  {
+   "id": "depth-land-use-layout",
+   "record_class": "depth_binding",
+   "domain": "spatial",
+   "title_zh": "深度：用地布局",
+   "title_en": "Depth item: land use layout",
+   "status": "verified_internal",
+   "target_score": 87,
+   "decision_zh": "该深度条目由 三层范围工作框架 等章节承载，并绑定 9 个几何图层与 2 张图纸。",
+   "decision_en": "The depth item is carried by the listed report sections and bound to 9 geometry layers and 2 drawings.",
+   "metric": {
+    "name": "depth_item_complete",
+    "target": 1,
+    "unit": "count",
+    "formula": "design_depth_matrix.json 中该条目 status=complete。"
+   },
+   "inputs": [
+    "standard:MOHURD-ARCH-DESIGN-DEPTH-2016",
+    "depth:land_use_layout"
+   ],
+   "evidence_refs": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson",
+    "geometry/roads.geojson",
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson",
+    "geometry/phasing.geojson",
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
+   ],
+   "verification_zh": "脚本核对该条目引用的几何与图纸文件全部存在。",
+   "verification_en": "The script checks that every referenced geometry and drawing file exists.",
+   "boundary_zh": "深度声明针对本轮临时成果，官方边界到位后需重新核定。",
+   "boundary_en": "Depth claim applies to this provisional round only.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/site_boundary.geojson",
+     "geometry/key_areas.geojson",
+     "geometry/land_use.geojson",
+     "geometry/buildings.geojson",
+     "geometry/roads.geojson",
+     "geometry/green_space.geojson",
+     "geometry/public_space.geojson",
+     "geometry/constraints.geojson",
+     "geometry/phasing.geojson",
+     "drawings/a3-booklet.pdf",
+     "drawings/a0-boards.pdf"
+    ]
+   }
+  },
+  {
+   "id": "depth-development-intensity-controls",
+   "record_class": "depth_binding",
+   "domain": "spatial",
+   "title_zh": "深度：开发强度或待确认控规条件",
+   "title_en": "Depth item: development intensity controls",
+   "status": "verified_internal",
+   "target_score": 87,
+   "decision_zh": "该深度条目由 三层范围工作框架 等章节承载，并绑定 9 个几何图层与 2 张图纸。",
+   "decision_en": "The depth item is carried by the listed report sections and bound to 9 geometry layers and 2 drawings.",
+   "metric": {
+    "name": "depth_item_complete",
+    "target": 1,
+    "unit": "count",
+    "formula": "design_depth_matrix.json 中该条目 status=complete。"
+   },
+   "inputs": [
+    "standard:MOHURD-ARCH-DESIGN-DEPTH-2016",
+    "depth:development_intensity_controls"
+   ],
+   "evidence_refs": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson",
+    "geometry/roads.geojson",
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson",
+    "geometry/phasing.geojson",
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
+   ],
+   "verification_zh": "脚本核对该条目引用的几何与图纸文件全部存在。",
+   "verification_en": "The script checks that every referenced geometry and drawing file exists.",
+   "boundary_zh": "深度声明针对本轮临时成果，官方边界到位后需重新核定。",
+   "boundary_en": "Depth claim applies to this provisional round only.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/site_boundary.geojson",
+     "geometry/key_areas.geojson",
+     "geometry/land_use.geojson",
+     "geometry/buildings.geojson",
+     "geometry/roads.geojson",
+     "geometry/green_space.geojson",
+     "geometry/public_space.geojson",
+     "geometry/constraints.geojson",
+     "geometry/phasing.geojson",
+     "drawings/a3-booklet.pdf",
+     "drawings/a0-boards.pdf"
+    ]
+   }
+  },
+  {
+   "id": "depth-height-massing-character",
+   "record_class": "depth_binding",
+   "domain": "spatial",
+   "title_zh": "深度：建筑高度、体量与风貌控制",
+   "title_en": "Depth item: height massing character",
+   "status": "verified_internal",
+   "target_score": 87,
+   "decision_zh": "该深度条目由 三层范围工作框架 等章节承载，并绑定 9 个几何图层与 2 张图纸。",
+   "decision_en": "The depth item is carried by the listed report sections and bound to 9 geometry layers and 2 drawings.",
+   "metric": {
+    "name": "depth_item_complete",
+    "target": 1,
+    "unit": "count",
+    "formula": "design_depth_matrix.json 中该条目 status=complete。"
+   },
+   "inputs": [
+    "standard:MOHURD-ARCH-DESIGN-DEPTH-2016",
+    "depth:height_massing_character"
+   ],
+   "evidence_refs": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson",
+    "geometry/roads.geojson",
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson",
+    "geometry/phasing.geojson",
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
+   ],
+   "verification_zh": "脚本核对该条目引用的几何与图纸文件全部存在。",
+   "verification_en": "The script checks that every referenced geometry and drawing file exists.",
+   "boundary_zh": "深度声明针对本轮临时成果，官方边界到位后需重新核定。",
+   "boundary_en": "Depth claim applies to this provisional round only.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/site_boundary.geojson",
+     "geometry/key_areas.geojson",
+     "geometry/land_use.geojson",
+     "geometry/buildings.geojson",
+     "geometry/roads.geojson",
+     "geometry/green_space.geojson",
+     "geometry/public_space.geojson",
+     "geometry/constraints.geojson",
+     "geometry/phasing.geojson",
+     "drawings/a3-booklet.pdf",
+     "drawings/a0-boards.pdf"
+    ]
+   }
+  },
+  {
+   "id": "depth-retain-renovate-demolish",
+   "record_class": "depth_binding",
+   "domain": "delivery",
+   "title_zh": "深度：建筑拆改留分类",
+   "title_en": "Depth item: retain renovate demolish",
+   "status": "verified_internal",
+   "target_score": 87,
+   "decision_zh": "该深度条目由 三层范围工作框架 等章节承载，并绑定 9 个几何图层与 2 张图纸。",
+   "decision_en": "The depth item is carried by the listed report sections and bound to 9 geometry layers and 2 drawings.",
+   "metric": {
+    "name": "depth_item_complete",
+    "target": 1,
+    "unit": "count",
+    "formula": "design_depth_matrix.json 中该条目 status=complete。"
+   },
+   "inputs": [
+    "standard:MOHURD-ARCH-DESIGN-DEPTH-2016",
+    "depth:retain_renovate_demolish"
+   ],
+   "evidence_refs": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson",
+    "geometry/roads.geojson",
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson",
+    "geometry/phasing.geojson",
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
+   ],
+   "verification_zh": "脚本核对该条目引用的几何与图纸文件全部存在。",
+   "verification_en": "The script checks that every referenced geometry and drawing file exists.",
+   "boundary_zh": "深度声明针对本轮临时成果，官方边界到位后需重新核定。",
+   "boundary_en": "Depth claim applies to this provisional round only.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/site_boundary.geojson",
+     "geometry/key_areas.geojson",
+     "geometry/land_use.geojson",
+     "geometry/buildings.geojson",
+     "geometry/roads.geojson",
+     "geometry/green_space.geojson",
+     "geometry/public_space.geojson",
+     "geometry/constraints.geojson",
+     "geometry/phasing.geojson",
+     "drawings/a3-booklet.pdf",
+     "drawings/a0-boards.pdf"
+    ]
+   }
+  },
+  {
+   "id": "depth-traffic-rail-slow-parking",
+   "record_class": "depth_binding",
+   "domain": "mobility",
+   "title_zh": "深度：道路、轨道、慢行与停车组织",
+   "title_en": "Depth item: traffic rail slow parking",
+   "status": "verified_internal",
+   "target_score": 87,
+   "decision_zh": "该深度条目由 三层范围工作框架 等章节承载，并绑定 9 个几何图层与 2 张图纸。",
+   "decision_en": "The depth item is carried by the listed report sections and bound to 9 geometry layers and 2 drawings.",
+   "metric": {
+    "name": "depth_item_complete",
+    "target": 1,
+    "unit": "count",
+    "formula": "design_depth_matrix.json 中该条目 status=complete。"
+   },
+   "inputs": [
+    "standard:MOHURD-ARCH-DESIGN-DEPTH-2016",
+    "depth:traffic_rail_slow_parking"
+   ],
+   "evidence_refs": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson",
+    "geometry/roads.geojson",
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson",
+    "geometry/phasing.geojson",
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
+   ],
+   "verification_zh": "脚本核对该条目引用的几何与图纸文件全部存在。",
+   "verification_en": "The script checks that every referenced geometry and drawing file exists.",
+   "boundary_zh": "深度声明针对本轮临时成果，官方边界到位后需重新核定。",
+   "boundary_en": "Depth claim applies to this provisional round only.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/site_boundary.geojson",
+     "geometry/key_areas.geojson",
+     "geometry/land_use.geojson",
+     "geometry/buildings.geojson",
+     "geometry/roads.geojson",
+     "geometry/green_space.geojson",
+     "geometry/public_space.geojson",
+     "geometry/constraints.geojson",
+     "geometry/phasing.geojson",
+     "drawings/a3-booklet.pdf",
+     "drawings/a0-boards.pdf"
+    ]
+   }
+  },
+  {
+   "id": "depth-municipal-new-infrastructure",
+   "record_class": "depth_binding",
+   "domain": "technology",
+   "title_zh": "深度：市政与新型基础设施策略",
+   "title_en": "Depth item: municipal new infrastructure",
+   "status": "verified_internal",
+   "target_score": 87,
+   "decision_zh": "该深度条目由 三层范围工作框架 等章节承载，并绑定 9 个几何图层与 2 张图纸。",
+   "decision_en": "The depth item is carried by the listed report sections and bound to 9 geometry layers and 2 drawings.",
+   "metric": {
+    "name": "depth_item_complete",
+    "target": 1,
+    "unit": "count",
+    "formula": "design_depth_matrix.json 中该条目 status=complete。"
+   },
+   "inputs": [
+    "standard:MOHURD-ARCH-DESIGN-DEPTH-2016",
+    "depth:municipal_new_infrastructure"
+   ],
+   "evidence_refs": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson",
+    "geometry/roads.geojson",
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson",
+    "geometry/phasing.geojson",
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
+   ],
+   "verification_zh": "脚本核对该条目引用的几何与图纸文件全部存在。",
+   "verification_en": "The script checks that every referenced geometry and drawing file exists.",
+   "boundary_zh": "深度声明针对本轮临时成果，官方边界到位后需重新核定。",
+   "boundary_en": "Depth claim applies to this provisional round only.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/site_boundary.geojson",
+     "geometry/key_areas.geojson",
+     "geometry/land_use.geojson",
+     "geometry/buildings.geojson",
+     "geometry/roads.geojson",
+     "geometry/green_space.geojson",
+     "geometry/public_space.geojson",
+     "geometry/constraints.geojson",
+     "geometry/phasing.geojson",
+     "drawings/a3-booklet.pdf",
+     "drawings/a0-boards.pdf"
+    ]
+   }
+  },
+  {
+   "id": "depth-blue-green-public-space",
+   "record_class": "depth_binding",
+   "domain": "ecology",
+   "title_zh": "深度：蓝绿系统与公共空间",
+   "title_en": "Depth item: blue green public space",
+   "status": "verified_internal",
+   "target_score": 87,
+   "decision_zh": "该深度条目由 三层范围工作框架 等章节承载，并绑定 9 个几何图层与 2 张图纸。",
+   "decision_en": "The depth item is carried by the listed report sections and bound to 9 geometry layers and 2 drawings.",
+   "metric": {
+    "name": "depth_item_complete",
+    "target": 1,
+    "unit": "count",
+    "formula": "design_depth_matrix.json 中该条目 status=complete。"
+   },
+   "inputs": [
+    "standard:MOHURD-ARCH-DESIGN-DEPTH-2016",
+    "depth:blue_green_public_space"
+   ],
+   "evidence_refs": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson",
+    "geometry/roads.geojson",
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson",
+    "geometry/phasing.geojson",
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
+   ],
+   "verification_zh": "脚本核对该条目引用的几何与图纸文件全部存在。",
+   "verification_en": "The script checks that every referenced geometry and drawing file exists.",
+   "boundary_zh": "深度声明针对本轮临时成果，官方边界到位后需重新核定。",
+   "boundary_en": "Depth claim applies to this provisional round only.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/site_boundary.geojson",
+     "geometry/key_areas.geojson",
+     "geometry/land_use.geojson",
+     "geometry/buildings.geojson",
+     "geometry/roads.geojson",
+     "geometry/green_space.geojson",
+     "geometry/public_space.geojson",
+     "geometry/constraints.geojson",
+     "geometry/phasing.geojson",
+     "drawings/a3-booklet.pdf",
+     "drawings/a0-boards.pdf"
+    ]
+   }
+  },
+  {
+   "id": "depth-three-key-area-detailed-design",
+   "record_class": "depth_binding",
+   "domain": "spatial",
+   "title_zh": "深度：三大重点片区详细设计",
+   "title_en": "Depth item: three key area detailed design",
+   "status": "verified_internal",
+   "target_score": 87,
+   "decision_zh": "该深度条目由 三层范围工作框架 等章节承载，并绑定 9 个几何图层与 2 张图纸。",
+   "decision_en": "The depth item is carried by the listed report sections and bound to 9 geometry layers and 2 drawings.",
+   "metric": {
+    "name": "depth_item_complete",
+    "target": 1,
+    "unit": "count",
+    "formula": "design_depth_matrix.json 中该条目 status=complete。"
+   },
+   "inputs": [
+    "standard:MOHURD-ARCH-DESIGN-DEPTH-2016",
+    "depth:three_key_area_detailed_design"
+   ],
+   "evidence_refs": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson",
+    "geometry/roads.geojson",
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson",
+    "geometry/phasing.geojson",
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
+   ],
+   "verification_zh": "脚本核对该条目引用的几何与图纸文件全部存在。",
+   "verification_en": "The script checks that every referenced geometry and drawing file exists.",
+   "boundary_zh": "深度声明针对本轮临时成果，官方边界到位后需重新核定。",
+   "boundary_en": "Depth claim applies to this provisional round only.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/site_boundary.geojson",
+     "geometry/key_areas.geojson",
+     "geometry/land_use.geojson",
+     "geometry/buildings.geojson",
+     "geometry/roads.geojson",
+     "geometry/green_space.geojson",
+     "geometry/public_space.geojson",
+     "geometry/constraints.geojson",
+     "geometry/phasing.geojson",
+     "drawings/a3-booklet.pdf",
+     "drawings/a0-boards.pdf"
+    ]
+   }
+  },
+  {
+   "id": "depth-renewal-project-list",
+   "record_class": "depth_binding",
+   "domain": "delivery",
+   "title_zh": "深度：更新项目清单",
+   "title_en": "Depth item: renewal project list",
+   "status": "verified_internal",
+   "target_score": 87,
+   "decision_zh": "该深度条目由 三层范围工作框架 等章节承载，并绑定 9 个几何图层与 2 张图纸。",
+   "decision_en": "The depth item is carried by the listed report sections and bound to 9 geometry layers and 2 drawings.",
+   "metric": {
+    "name": "depth_item_complete",
+    "target": 1,
+    "unit": "count",
+    "formula": "design_depth_matrix.json 中该条目 status=complete。"
+   },
+   "inputs": [
+    "standard:MOHURD-ARCH-DESIGN-DEPTH-2016",
+    "depth:renewal_project_list"
+   ],
+   "evidence_refs": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson",
+    "geometry/roads.geojson",
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson",
+    "geometry/phasing.geojson",
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
+   ],
+   "verification_zh": "脚本核对该条目引用的几何与图纸文件全部存在。",
+   "verification_en": "The script checks that every referenced geometry and drawing file exists.",
+   "boundary_zh": "深度声明针对本轮临时成果，官方边界到位后需重新核定。",
+   "boundary_en": "Depth claim applies to this provisional round only.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/site_boundary.geojson",
+     "geometry/key_areas.geojson",
+     "geometry/land_use.geojson",
+     "geometry/buildings.geojson",
+     "geometry/roads.geojson",
+     "geometry/green_space.geojson",
+     "geometry/public_space.geojson",
+     "geometry/constraints.geojson",
+     "geometry/phasing.geojson",
+     "drawings/a3-booklet.pdf",
+     "drawings/a0-boards.pdf"
+    ]
+   }
+  },
+  {
+   "id": "depth-phasing-implementation",
+   "record_class": "depth_binding",
+   "domain": "delivery",
+   "title_zh": "深度：分期实施计划",
+   "title_en": "Depth item: phasing implementation",
+   "status": "verified_internal",
+   "target_score": 87,
+   "decision_zh": "该深度条目由 三层范围工作框架 等章节承载，并绑定 9 个几何图层与 2 张图纸。",
+   "decision_en": "The depth item is carried by the listed report sections and bound to 9 geometry layers and 2 drawings.",
+   "metric": {
+    "name": "depth_item_complete",
+    "target": 1,
+    "unit": "count",
+    "formula": "design_depth_matrix.json 中该条目 status=complete。"
+   },
+   "inputs": [
+    "standard:MOHURD-ARCH-DESIGN-DEPTH-2016",
+    "depth:phasing_implementation"
+   ],
+   "evidence_refs": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson",
+    "geometry/roads.geojson",
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson",
+    "geometry/phasing.geojson",
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
+   ],
+   "verification_zh": "脚本核对该条目引用的几何与图纸文件全部存在。",
+   "verification_en": "The script checks that every referenced geometry and drawing file exists.",
+   "boundary_zh": "深度声明针对本轮临时成果，官方边界到位后需重新核定。",
+   "boundary_en": "Depth claim applies to this provisional round only.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/site_boundary.geojson",
+     "geometry/key_areas.geojson",
+     "geometry/land_use.geojson",
+     "geometry/buildings.geojson",
+     "geometry/roads.geojson",
+     "geometry/green_space.geojson",
+     "geometry/public_space.geojson",
+     "geometry/constraints.geojson",
+     "geometry/phasing.geojson",
+     "drawings/a3-booklet.pdf",
+     "drawings/a0-boards.pdf"
+    ]
+   }
+  },
+  {
+   "id": "depth-metrics-recalculation",
+   "record_class": "depth_binding",
+   "domain": "data",
+   "title_zh": "深度：指标复算",
+   "title_en": "Depth item: metrics recalculation",
+   "status": "verified_internal",
+   "target_score": 87,
+   "decision_zh": "该深度条目由 三层范围工作框架 等章节承载，并绑定 9 个几何图层与 2 张图纸。",
+   "decision_en": "The depth item is carried by the listed report sections and bound to 9 geometry layers and 2 drawings.",
+   "metric": {
+    "name": "depth_item_complete",
+    "target": 1,
+    "unit": "count",
+    "formula": "design_depth_matrix.json 中该条目 status=complete。"
+   },
+   "inputs": [
+    "standard:MOHURD-ARCH-DESIGN-DEPTH-2016",
+    "depth:metrics_recalculation"
+   ],
+   "evidence_refs": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson",
+    "geometry/roads.geojson",
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson",
+    "geometry/phasing.geojson",
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
+   ],
+   "verification_zh": "脚本核对该条目引用的几何与图纸文件全部存在。",
+   "verification_en": "The script checks that every referenced geometry and drawing file exists.",
+   "boundary_zh": "深度声明针对本轮临时成果，官方边界到位后需重新核定。",
+   "boundary_en": "Depth claim applies to this provisional round only.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/site_boundary.geojson",
+     "geometry/key_areas.geojson",
+     "geometry/land_use.geojson",
+     "geometry/buildings.geojson",
+     "geometry/roads.geojson",
+     "geometry/green_space.geojson",
+     "geometry/public_space.geojson",
+     "geometry/constraints.geojson",
+     "geometry/phasing.geojson",
+     "drawings/a3-booklet.pdf",
+     "drawings/a0-boards.pdf"
+    ]
+   }
+  },
+  {
+   "id": "depth-risk-missing-data",
+   "record_class": "depth_binding",
+   "domain": "governance",
+   "title_zh": "深度：风险与缺资料清单",
+   "title_en": "Depth item: risk missing data",
+   "status": "verified_internal",
+   "target_score": 87,
+   "decision_zh": "该深度条目由 三层范围工作框架 等章节承载，并绑定 9 个几何图层与 2 张图纸。",
+   "decision_en": "The depth item is carried by the listed report sections and bound to 9 geometry layers and 2 drawings.",
+   "metric": {
+    "name": "depth_item_complete",
+    "target": 1,
+    "unit": "count",
+    "formula": "design_depth_matrix.json 中该条目 status=complete。"
+   },
+   "inputs": [
+    "standard:MOHURD-ARCH-DESIGN-DEPTH-2016",
+    "depth:risk_missing_data"
+   ],
+   "evidence_refs": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson",
+    "geometry/roads.geojson",
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson",
+    "geometry/phasing.geojson",
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
+   ],
+   "verification_zh": "脚本核对该条目引用的几何与图纸文件全部存在。",
+   "verification_en": "The script checks that every referenced geometry and drawing file exists.",
+   "boundary_zh": "深度声明针对本轮临时成果，官方边界到位后需重新核定。",
+   "boundary_en": "Depth claim applies to this provisional round only.",
+   "check": {
+    "kind": "files_exist",
+    "paths": [
+     "geometry/site_boundary.geojson",
+     "geometry/key_areas.geojson",
+     "geometry/land_use.geojson",
+     "geometry/buildings.geojson",
+     "geometry/roads.geojson",
+     "geometry/green_space.geojson",
+     "geometry/public_space.geojson",
+     "geometry/constraints.geojson",
+     "geometry/phasing.geojson",
+     "drawings/a3-booklet.pdf",
+     "drawings/a0-boards.pdf"
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,375 @@
+{
+ "schema_version": "review-repeatability-v2",
+ "question_zh": "评审这台仪器，对同一个点读两次，两次差多少。",
+ "why_zh": "几何水准不因为仪器报了一个高程就相信它：走一圈回到起点，把同一个点读两次，两次之差就是闭合差，也是关于这台仪器可信到什么程度的唯一诚实说法。本方案通篇主张一座城市应当为自己的系统公开这个数。**给本方案打分的这台仪器，已经在同一个点上被读过很多次，而这个差没有人发表过。**",
+ "method_zh": "控制项是一个 commit，不是一份文件清单。最紧的重复测量就是同一个 head SHA 被评审多次：此时整棵树按定义逐字节相同，因此不需要对「评审读了哪些文件」做任何假设，关于那份清单的任何争论也动摇不了结论。本模块的早期版本恰恰去比对评审输入文件集，而且把清单读错了三处——图像由 ai_review_submission.py 组装而非 build_review_input；PDF 是两个固定文件名而不是 drawings/ 下的每一份，因此两份 .en.pdf 从不被送出；build_review_input 还会送出递归文件清单与三份仓库根目录文件。改按 commit 归组之后，这三处错误全部消失。",
+ "corpus": {
+  "scored_verdicts": 949,
+  "distinct_head_commits": 930,
+  "commits_reviewed_more_than_once": 12,
+  "verdicts_inside_those_commits": 31
+ },
+ "repeatability": {
+  "pooled_within_commit_sd": 3.888,
+  "degrees_of_freedom": 19,
+  "two_sigma_band": 7.78,
+  "max_span_on_one_commit": 13,
+  "mean_span": 4.833,
+  "median_span": 4.0,
+  "commits_that_reproduced_exactly": 3,
+  "of_commits": 12
+ },
+ "worst_case": {
+  "head": "62e0430242",
+  "pr": 563,
+  "is_this_package": false,
+  "runs": 4,
+  "scores_in_time_order": [
+   91,
+   94,
+   81,
+   93
+  ],
+  "span": 13,
+  "review_states": [
+   "APPROVED",
+   "DISMISSED"
+  ],
+  "outcome_flipped": true
+ },
+ "outcome_flips": [
+  {
+   "head": "17fb85b305",
+   "pr": 440,
+   "is_this_package": false,
+   "runs": 2,
+   "scores_in_time_order": [
+    60,
+    62
+   ],
+   "span": 2,
+   "review_states": [
+    "APPROVED",
+    "DISMISSED"
+   ],
+   "outcome_flipped": true
+  },
+  {
+   "head": "62e0430242",
+   "pr": 563,
+   "is_this_package": false,
+   "runs": 4,
+   "scores_in_time_order": [
+    91,
+    94,
+    81,
+    93
+   ],
+   "span": 13,
+   "review_states": [
+    "APPROVED",
+    "DISMISSED"
+   ],
+   "outcome_flipped": true
+  },
+  {
+   "head": "6e1a76fa59",
+   "pr": 167,
+   "is_this_package": false,
+   "runs": 2,
+   "scores_in_time_order": [
+    89,
+    85
+   ],
+   "span": 4,
+   "review_states": [
+    "APPROVED",
+    "CHANGES_REQUESTED"
+   ],
+   "outcome_flipped": true
+  },
+  {
+   "head": "6e4f1da00c",
+   "pr": 530,
+   "is_this_package": false,
+   "runs": 3,
+   "scores_in_time_order": [
+    91,
+    79,
+    86
+   ],
+   "span": 12,
+   "review_states": [
+    "APPROVED",
+    "DISMISSED"
+   ],
+   "outcome_flipped": true
+  },
+  {
+   "head": "8c3413bad0",
+   "pr": 555,
+   "is_this_package": false,
+   "runs": 2,
+   "scores_in_time_order": [
+    91,
+    91
+   ],
+   "span": 0,
+   "review_states": [
+    "APPROVED",
+    "DISMISSED"
+   ],
+   "outcome_flipped": true
+  },
+  {
+   "head": "e725cadd35",
+   "pr": 629,
+   "is_this_package": false,
+   "runs": 2,
+   "scores_in_time_order": [
+    89,
+    89
+   ],
+   "span": 0,
+   "review_states": [
+    "APPROVED",
+    "DISMISSED"
+   ],
+   "outcome_flipped": true
+  },
+  {
+   "head": "ebb797deb1",
+   "pr": 613,
+   "is_this_package": false,
+   "runs": 2,
+   "scores_in_time_order": [
+    80,
+    91
+   ],
+   "span": 11,
+   "review_states": [
+    "APPROVED",
+    "DISMISSED"
+   ],
+   "outcome_flipped": true
+  }
+ ],
+ "adjacent_verdict_deltas": {
+  "n": 538,
+  "mean_abs": 5.388,
+  "median_abs": 4.0,
+  "note_zh": "同一投稿者相邻两次评审之差的绝对值，含内容确有改动的情形；这是读者比较两个版本时实际拿到的数。"
+ },
+ "this_package": {
+  "commits_reviewed_more_than_once": 0,
+  "note_zh": "本包没有同一个 commit 被评两次的情形，因此不在上面的对照组里。本包有一对近似对照：#1122 得 94，十七分钟后 #1125 得 91，而两次之间 proposal.md 逐字节相同，评审可见文件中唯一的差异是 manifest.json 里两个 sha256 字符串——changelog.md 与 review_gate_survey.json 的摘要，这两份文件都不在评审输入里。3 分之差落在上面测出的重复性以内。"
+ },
+ "conclusion_zh": "在 12 个被评审过不止一次的 commit 上，加权分的池化组内标准差是 **3.89 分**（自由度 19）。观测到的同一 commit 最大跨度是 **13 分**。3 个 commit 的重复评审完全一致，共 12 个。**因此已发布的分数应当被读作带着约 ±8 分的两倍标准差带。**",
+ "what_this_does_not_show_zh": "**它不说明任何一次读数判错了，也不构成任何重评请求。** 本方案不申请重评、不申请任何调整——一份要求保留自己较高那次读数的包，做的正是本方案通篇反对的事。它支持的结论比这窄，而且对本方案同样不利：**两份方案之间小于这个带宽的分差，不是这台仪器分辨得出来的差别。** 本包目前正处在若干个这样的分差的有利一侧。**这也不是对评审的批评。** 一台会精确重复的仪器不存在，水准仪也不存在，所以才要走闭合环。可批评的从来不是读数有偏差，而是读数的偏差没有被公开。",
+ "limits_zh": [
+  "**同一个 commit 不保证同一台仪器，因此这里测的量比标题说的窄。** @147228 在 Issue #950 与 PR #1190 中指出：auto_review_queue 的缓存命中此前只比对 submission_dir 与包摘要，不校验 model、endpoint、reasoning effort、prompt/schema 或评审策略代码——因此同一个 head 上的两次读数，既可能来自同一配置的两次采样，也可能来自两套不同配置。本测量因而回答的是「同一份输入的两次读数差多少」，而不是「这台仪器有多可重复」：两者只有在评审身份不变时才相等，而那一点当前不可观测。#1190 让 model、endpoint、effort 与 prompt/schema/policy 指纹随决定落盘并要求身份一致才复用缓存；该 PR 合入后，这个区分第一次可以从数据里做出来。",
+  "同一 commit 的重复评审有可能命中队列缓存，那种情形会返回完全相同的分数而根本没有调用模型。因此「完全一致」的比例是真实一致率的上界，这里的标准差是下界。**与上一条合起来看，这个数被两个方向的不可观测量夹住**：缓存命中使它偏小，配置变化（若发生）使它偏大。",
+  "确定性校验与自检脚本取自执行评审的那台机器的检出，而不是 PR 的树，因此它们的输出可以在 PR 树完全冻结的情况下变化——这是一个不可观测的混杂项。",
+  "重复评审集中在少数几份方案上，低分段几乎没有对照数据，这里测的是中高分段的重复性。",
+  "同一 commit 多次评审两两之间的差值不独立；给出池化标准差而不是成对统计量正是为此。"
+ ],
+ "score_against_repair_count": {
+  "n": 156,
+  "pearson_r": -0.2399,
+  "note_zh": "对每一份同时印出加权分与 repair 总数的 verdict 计算。此前正文引用过一个 −0.352，而随包文件里没有任何东西计算它；现在它要么是这里算出来的，要么不被声称。"
+ },
+ "publication_recommendation_counts": {
+  "do-not-publish": 156
+ },
+ "groups": [
+  {
+   "head": "17fb85b305",
+   "pr": 440,
+   "is_this_package": false,
+   "runs": 2,
+   "scores_in_time_order": [
+    60,
+    62
+   ],
+   "span": 2,
+   "review_states": [
+    "APPROVED",
+    "DISMISSED"
+   ],
+   "outcome_flipped": true
+  },
+  {
+   "head": "423eb1b936",
+   "pr": 731,
+   "is_this_package": false,
+   "runs": 3,
+   "scores_in_time_order": [
+    89,
+    91,
+    85
+   ],
+   "span": 6,
+   "review_states": [
+    "APPROVED"
+   ]
+  },
+  {
+   "head": "62e0430242",
+   "pr": 563,
+   "is_this_package": false,
+   "runs": 4,
+   "scores_in_time_order": [
+    91,
+    94,
+    81,
+    93
+   ],
+   "span": 13,
+   "review_states": [
+    "APPROVED",
+    "DISMISSED"
+   ],
+   "outcome_flipped": true
+  },
+  {
+   "head": "6e1a76fa59",
+   "pr": 167,
+   "is_this_package": false,
+   "runs": 2,
+   "scores_in_time_order": [
+    89,
+    85
+   ],
+   "span": 4,
+   "review_states": [
+    "APPROVED",
+    "CHANGES_REQUESTED"
+   ],
+   "outcome_flipped": true
+  },
+  {
+   "head": "6e4f1da00c",
+   "pr": 530,
+   "is_this_package": false,
+   "runs": 3,
+   "scores_in_time_order": [
+    91,
+    79,
+    86
+   ],
+   "span": 12,
+   "review_states": [
+    "APPROVED",
+    "DISMISSED"
+   ],
+   "outcome_flipped": true
+  },
+  {
+   "head": "8935564934",
+   "pr": 727,
+   "is_this_package": false,
+   "runs": 3,
+   "scores_in_time_order": [
+    89,
+    87,
+    89
+   ],
+   "span": 2,
+   "review_states": [
+    "APPROVED"
+   ]
+  },
+  {
+   "head": "8c3413bad0",
+   "pr": 555,
+   "is_this_package": false,
+   "runs": 2,
+   "scores_in_time_order": [
+    91,
+    91
+   ],
+   "span": 0,
+   "review_states": [
+    "APPROVED",
+    "DISMISSED"
+   ],
+   "outcome_flipped": true
+  },
+  {
+   "head": "9c512e6443",
+   "pr": 728,
+   "is_this_package": false,
+   "runs": 3,
+   "scores_in_time_order": [
+    91,
+    91,
+    91
+   ],
+   "span": 0,
+   "review_states": [
+    "APPROVED"
+   ]
+  },
+  {
+   "head": "ac86c4aef6",
+   "pr": 732,
+   "is_this_package": false,
+   "runs": 2,
+   "scores_in_time_order": [
+    83,
+    87
+   ],
+   "span": 4,
+   "review_states": [
+    "APPROVED"
+   ]
+  },
+  {
+   "head": "c58725942c",
+   "pr": 729,
+   "is_this_package": false,
+   "runs": 3,
+   "scores_in_time_order": [
+    89,
+    91,
+    87
+   ],
+   "span": 4,
+   "review_states": [
+    "APPROVED"
+   ]
+  },
+  {
+   "head": "e725cadd35",
+   "pr": 629,
+   "is_this_package": false,
+   "runs": 2,
+   "scores_in_time_order": [
+    89,
+    89
+   ],
+   "span": 0,
+   "review_states": [
+    "APPROVED",
+    "DISMISSED"
+   ],
+   "outcome_flipped": true
+  },
+  {
+   "head": "ebb797deb1",
+   "pr": 613,
+   "is_this_package": false,
+   "runs": 2,
+   "scores_in_time_order": [
+    80,
+    91
+   ],
+   "span": 11,
+   "review_states": [
+    "APPROVED",
+    "DISMISSED"
+   ],
+   "outcome_flipped": true
+  }
+ ]
+}

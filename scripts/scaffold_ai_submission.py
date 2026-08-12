@@ -488,7 +488,7 @@ agent 生成的AI治理建议必须遵守数据最小化、公开来源、可解
 
 用地分类依据 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]，建筑高度、体量、界面和风貌控制由 [depth:height_massing_character] 管理，拆改留方法由 [depth:retain_renovate_demolish] 管理。用地和建筑的主要证据是 [data:geometry/land_use.geojson#LU-001]、[data:geometry/buildings.geojson#BLDG-001] 和 [metric:building_footprint_area_sqm]。
 
-建筑规模和强度指标必须与 `metrics.json` 和图层一致。若总建筑规模、容积率、建筑高度、建筑密度、绿地率、退线和建筑控制线缺少官方条件，应在指标体系中列为 unknown 或 pending_control，不得用固定数值制造精确感。A3 文册应给出更新项目清单和指标复核表，A0 展板应把关键空间结构和重点片区表达清楚，HTML 页面应提供指标和图层联动查看。
+建筑规模和强度指标必须与 `metrics.json` 和图层一致。若总建筑规模、容积率、建筑高度、建筑密度、绿地率、退线和建筑控制线缺少官方条件，应统一使用 `status=unknown`，并在 `reason` / `assumptions` 中说明待补条件、当前假设和正式数据到位后的复算路径，不得用固定数值制造精确感。A3 文册应给出更新项目清单和指标复核表，A0 展板应把关键空间结构和重点片区表达清楚，HTML 页面应提供指标和图层联动查看。
 
 ## 交通、轨道、市政与公共服务设施
 
@@ -906,6 +906,37 @@ def make_proposal_figures(metrics: dict[str, Any], boundary_mode: str, key_area_
 
 MINIMAL_PDF = b"%PDF-1.4\n1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj\n2 0 obj<</Type/Pages/Count 0>>endobj\ntrailer<</Root 1 0 R>>\n%%EOF\n"
 
+# Machine-readable declaration written into the generated (empty) constraints layer.
+# An empty constraint set stays a valid, accepted state; this member only records *why*
+# it is empty, so a deliberately empty layer is distinguishable from an unreviewed one.
+# It must never be used to justify inventing constraint geometry.
+CONSTRAINTS_SCAFFOLD_DATA_GAP = {
+    "status": "official_constraint_geometry_unavailable",
+    "declared_by": "scripts/scaffold_ai_submission.py",
+    "assumption_ids": ["A-CONTROLS-001"],
+    "missing_layers": [
+        "REGULATORY_CONTROL",
+        "HERITAGE_PROTECTION",
+        "PARCEL",
+        "EXISTING_PRIMARY_ROAD",
+        "EXISTING_RAIL",
+        "EXISTING_WATER",
+    ],
+    "note_zh": (
+        "本图层刻意保持空集合。控规控制线、文物保护范围与建设控制地带、道路红线、权属地块、"
+        "轨道与蓝线均属锁定图层，公开场地包中目前没有可引用的官方几何来源。"
+        "缺口按 assumption A-CONTROLS-001 登记；取得官方或已清权几何前，"
+        "不得以推定线条冒充 official_constraint，空集合优于编造。"
+    ),
+    "note_en": (
+        "This layer is intentionally an empty set. Regulatory control lines, heritage protection and "
+        "construction-control zones, road redlines, cadastral parcels, rail and blue lines are locked "
+        "layers with no citable official geometry in the public site package. The gap is registered as "
+        "assumption A-CONTROLS-001; until official or cleared geometry is available, inferred lines must "
+        "not be presented as an official_constraint - an empty set is preferred over fabrication."
+    ),
+}
+
 
 def make_package(submission_dir: Path, repo_root: Path, stage: str, agent_id: str, agent_name: str, title: str) -> None:
     if stage not in STAGES:
@@ -962,7 +993,10 @@ def make_package(submission_dir: Path, repo_root: Path, stage: str, agent_id: st
             "public_space_scaffold",
             [feature("PUBLIC-001", "PUBLIC_SPACE", public_geom, name_zh="公共活动界面")],
         ),
-        "constraints.geojson": collection("constraints_scaffold", []),
+        "constraints.geojson": {
+            **collection("constraints_scaffold", []),
+            "data_gap": dict(CONSTRAINTS_SCAFFOLD_DATA_GAP),
+        },
         "phasing.geojson": collection(
             "phasing_scaffold",
             [feature("PHASE-001", "PHASE", phase_geom, phase="phase_1", name_zh="一期可讨论范围")],
@@ -1165,7 +1199,7 @@ def make_package(submission_dir: Path, repo_root: Path, stage: str, agent_id: st
     write_json(
         submission_dir / "manifest.json",
         {
-            "schema_version": "0.1.0",
+            "schema_version": "0.2.0",
             "package_id": slugify(submission_dir.name),
             "project_id": PROJECT_ID,
             "site_package_version": SITE_PACKAGE_VERSION,

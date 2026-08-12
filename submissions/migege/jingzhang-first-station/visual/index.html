@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张·第一站 The First Station — 百年京张AI创新带城市设计（概念建议）</title>
+<style>
+  :root {
+    --ink: #2B2B28; --muted: #6B6B66; --line: #D8D8D0; --bg: #FAFAF6;
+    --rail: #2E5E8C; --rail-soft: #7AA6D9; --green: #5B8C4A; --green-soft: #8CC084;
+    --amber: #D07A3A; --amber-soft: #F2C14E; --red: #B0453A; --card: #FFFFFF;
+    --provisional: #A6A6A6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+         background: var(--bg); color: var(--ink); line-height: 1.65; }
+  header { background: linear-gradient(135deg, #1F2A3A 0%, #2E5E8C 70%, #3A6E6A 100%);
+           color: #fff; padding: 34px 24px 26px; }
+  header .tag { display: inline-block; border: 1px solid rgba(255,255,255,.5); border-radius: 4px;
+                font-size: 12px; padding: 2px 10px; margin-right: 8px; letter-spacing: .5px; }
+  header h1 { font-size: 28px; margin: 12px 0 6px; }
+  header .sub { color: rgba(255,255,255,.85); font-size: 14px; max-width: 960px; }
+  header .meta { margin-top: 10px; font-size: 12px; color: rgba(255,255,255,.7); }
+  nav { position: sticky; top: 0; background: #fff; border-bottom: 1px solid var(--line);
+        padding: 8px 16px; overflow-x: auto; white-space: nowrap; z-index: 10; }
+  nav a { color: var(--rail); text-decoration: none; font-size: 13px; margin-right: 16px; }
+  main { max-width: 1080px; margin: 0 auto; padding: 20px 16px 40px; }
+  section { background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+            padding: 20px 22px; margin-bottom: 18px; }
+  h2 { font-size: 20px; color: var(--ink); border-left: 4px solid var(--rail);
+       padding-left: 10px; margin-bottom: 12px; }
+  h3 { font-size: 15px; margin: 12px 0 6px; }
+  p { font-size: 14px; margin: 8px 0; color: #3D3D39; }
+  .notice { background: #FBF3E0; border: 1px solid #E5C97A; border-radius: 6px;
+            padding: 10px 14px; font-size: 13px; color: #7A5B1E; margin: 10px 0; }
+  .badge { display: inline-block; font-size: 11px; border-radius: 10px; padding: 2px 10px;
+           vertical-align: middle; margin-left: 6px; }
+  .badge.prov { background: #F1E6C8; color: #8A6A1E; border: 1px solid #DDBF6A; }
+  .badge.ok { background: #DFF0DC; color: #2E6E2E; border: 1px solid #9CC98F; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .card { background: #F7F7F2; border: 1px solid var(--line); border-radius: 6px; padding: 12px; }
+  .metric-value { font-size: 22px; font-weight: 700; color: var(--rail); }
+  .metric-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .metric-pending { font-size: 14px; color: var(--amber); font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0; }
+  th, td { border: 1px solid var(--line); padding: 6px 9px; text-align: left; vertical-align: top; }
+  th { background: #F0F0EA; color: #444; }
+  .figure { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 6px; margin: 8px 0; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--muted); margin: 6px 0; }
+  .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-right: 4px;
+            vertical-align: -1px; border: 1px solid rgba(0,0,0,.15); }
+  ul { font-size: 14px; padding-left: 20px; color: #3D3D39; }
+  li { margin: 4px 0; }
+  .status-ok { color: #2E6E2E; font-weight: 600; }
+  .status-warn { color: var(--amber); font-weight: 600; }
+  footer { border-top: 1px solid var(--line); margin-top: 26px; padding: 16px 0 30px;
+           font-size: 12px; color: var(--muted); text-align: center; }
+  @media (max-width: 760px) {
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    header h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <span class="tag">城市设计开源征集 · Formal 投稿</span>
+    <span class="tag">proposal_format v2 · 双语契约 v1</span>
+  </div>
+  <h1>京张·第一站 <span style="font-weight:400;font-size:18px;">The First Station</span></h1>
+  <p class="sub">一百年前，京张铁路从清华园车站出发——中国人自主修筑的第一条干线铁路的「出京第一站」；七十六年前，中共中央在这里进京「赶考」——新中国的「第一站」。今天，百年京张 AI 创新带要做世界级 AI 创新街区的「第一站」：一轨三站两翼，让每个进入创新带的人、企业与智能体，都从这里出发。</p>
+  <p class="meta">GitHub 作者：migege · 智能体：Kimi Code（deepseek-v4-flash）· 包类型：professional_design_package · 边界：provisional（非官方红线）</p>
+</header>
+<nav>
+  <a href="#overview">总览</a>
+  <a href="#scope">三层范围</a>
+  <a href="#structure">空间结构</a>
+  <a href="#keyareas">三重点区</a>
+  <a href="#landuse">用地</a>
+  <a href="#mobility">交通蓝绿</a>
+  <a href="#scenarios">场景任务</a>
+  <a href="#renewal">更新项目</a>
+  <a href="#phasing">分期</a>
+  <a href="#metrics">指标</a>
+  <a href="#compliance">合规</a>
+  <a href="#sources">来源</a>
+  <a href="#assumptions">假设</a>
+  <a href="#selfcheck">自检</a>
+</nav>
+<main>
+
+<section id="overview">
+  <h2>01 总览地图 · 概念与证据链 <span class="badge prov">PROVISIONAL BOUNDARY</span></h2>
+  <div class="notice">⚠ 本方案全部空间几何基于仓库维护者提供的<b>临时粗略边界</b>（provisional_rough）生成，EPSG:4548 复算；<b>非官方红线</b>，不得作为审批或精确面积依据。官方红线发布后整包重算。</div>
+  <img class="figure" src="assets/site-overview.png" alt="总体概念结构图：一轨三站两翼">
+  <div class="legend">
+    <span><span class="swatch" style="background:#F2C14E;"></span>站台广场（始发/加速/换乘）</span>
+    <span><span class="swatch" style="background:#8CC084;"></span>公共轨道·遗址公园活力带</span>
+    <span><span class="swatch" style="background:#A67C52;"></span>概念建筑</span>
+    <span><span class="swatch" style="background:none;border:1px dashed #A6A6A6;"></span>临时边界（非官方红线）</span>
+  </div>
+  <p><b>概念主张：</b>「首站承诺」——每个进入创新带的 AI 服务与城市智能体，都必须有一个「第一站」：公开试乘区（体验）、验证场（测试）、退出通道（停用）与复核信号（可审计状态）。AI 治理从口号变成可运营的空间接口。</p>
+</section>
+
+<section id="scope">
+  <h2>02 三层范围工作框架</h2>
+  <table>
+    <tr><th>层级</th><th>范围</th><th>设计问题</th><th>方案回答</th></tr>
+    <tr><td>统筹研究范围</td><td>43.6 km²</td><td>世界级 AI 创新生态如何组织</td><td>「高校策源—开源协作—企业转化—公共体验—国际传播」创新链</td></tr>
+    <tr><td>总体设计范围</td><td>11.4 km²</td><td>缝合的城市形态如何落图</td><td>一轨三站两翼 + 三条缝合街</td></tr>
+    <tr><td>重点区域范围</td><td>368.4 ha</td><td>三处片区如何达到详细设计深度</td><td>始发站台 / 加速区间 / 换乘枢纽分项设计</td></tr>
+  </table>
+  <p>公告官方面积：总体设计 <span data-metric="announced_overall_design_area_sqm" data-value="11400000">11,400,000 m²</span>；重点区域 <span data-metric="announced_key_detailed_design_area_sqm" data-value="3684000">3,684,000 m²</span>。本方案临时边界复算 <span data-metric="site_area_sqm" data-value="11412825.386">11,412,825 m²</span>（偏差 +0.11%）。</p>
+</section>
+
+<section id="structure">
+  <h2>03 空间结构 · 一轨三站两翼</h2>
+  <div class="grid3">
+    <div class="card"><h3>公共轨道 Public Rail</h3><p>京张遗址公园活力带，南北贯通约 <span data-metric="public_rail_corridor_length_m" data-value="9500">9.5 km</span>；绿道慢行主路沿线；三条缝合街横跨缝合东西两翼。</p></div>
+    <div class="card"><h3>三座站台 Three Stations</h3><p>原点·始发站台（AI 原点社区）、众智园·加速区间、大钟寺·换乘枢纽——「出发—加速—换乘」创新闭环。</p></div>
+    <div class="card"><h3>两翼 Two Wings</h3><p>中关村科技服务翼（要素配置）与 小月河场景赋能翼（场景体验）横向支撑。</p></div>
+  </div>
+  <img class="figure" src="assets/land-use-structure.png" alt="用地结构与空间结构图">
+</section>
+
+<section id="keyareas">
+  <h2>04 三处重点区域详细设计</h2>
+  <img class="figure" src="assets/key-areas.png" alt="三重点区详细设计图">
+  <table>
+    <tr><th>重点片区</th><th>第一站角色</th><th>空间动作</th></tr>
+    <tr><td>北京AI原点社区</td><td>始发站台</td><td>原点站台广场 + 清华园车站旧址活化 + 近校成果转化街 + 出发花园</td></tr>
+    <tr><td>众智园AI自主创新加速区</td><td>加速区间</td><td>研发街道 + 留白测试场 + 加速站台（产业展示/标准治理）</td></tr>
+    <tr><td>大钟寺AI产业聚集区</td><td>换乘枢纽</td><td>换乘站台广场 + 四象限连通 + 智能商业体 + 数据会客厅</td></tr>
+  </table>
+  <p>三处重点区为 <span data-metric="key_area_count" data-value="3">3</span> 处；临时边界复算合计 <span data-metric="key_areas_provisional_total_sqm" data-value="3692893.005">3,692,893 m²</span>。</p>
+</section>
+
+<section id="landuse">
+  <h2>05 用地结构（概念分区）</h2>
+  <img class="figure" src="assets/land-use-structure.png" alt="用地结构图">
+  <p>用地按《国土空间用地用海分类指南》代码组织，覆盖提交边界无缝隙无重叠：居住 0701、科研 0802、文化 0803、教育 0804、商业 05、绿地 1401、留白 16。绿地率（概念）<span data-metric="green_ratio" data-value="0.218154">21.8%</span>。</p>
+</section>
+
+<section id="mobility">
+  <h2>06 交通慢行与蓝绿公共空间</h2>
+  <img class="figure" src="assets/mobility-bluegreen.png" alt="交通慢行与蓝绿系统图">
+  <div class="grid2">
+    <div class="card"><h3>交通</h3><p>三条缝合街 + 绿道慢行主路（9.5 km）+ 三站台接驳（轨道一体化）+ 骑行道/步行连廊。概念路网约 <span data-metric="road_network_length_m" data-value="46733.562">46.7 km</span>（示意，非红线）。</p></div>
+    <div class="card"><h3>蓝绿公共空间</h3><p>公共轨道绿廊 + 三站台广场 + 站台绿园。公共空间约 <span data-metric="public_space_area_sqm" data-value="174518.495">174,518 m²</span>，公共空间率 <span data-metric="public_space_ratio" data-value="0.015291">1.5%</span>（概念值）。</p></div>
+  </div>
+</section>
+
+<section id="scenarios">
+  <h2>07 AI 场景与任务覆盖</h2>
+  <p>六项智能体任务全覆盖：命名/Logo（一轨三站两翼+信号语言）、<b>8 个全球生态案例</b>（伦敦国王十字、波士顿肯德尔广场、硅谷、纬壹科技城、柏之叶、杭州、深圳、特拉维夫）、<b>12 张 AI 场景卡</b>、<b>3 个测试验证场景</b>（信号塔治理测试/首站试乘/智能体工场）、<b>5 类用户画像</b>、<b>3 处 AI 朝圣地标</b>（原点站台碑/智能体贡献荣誉墙/全球AI里程碑信号塔）、文化叙事「三次出发」与全球运营机制（首站日/第一站俱乐部）。</p>
+  <table>
+    <tr><th>数量指标</th><th>值</th><th>合规要求</th></tr>
+    <tr><td>AI 场景卡</td><td><span data-metric="scenario_card_count" data-value="12">12</span></td><td>≥ 10</td></tr>
+    <tr><td>产业测试验证场景</td><td><span data-metric="industry_test_scenario_count" data-value="3">3</span></td><td>≥ 3</td></tr>
+    <tr><td>用户画像</td><td><span data-metric="user_persona_count" data-value="5">5</span></td><td>≥ 5</td></tr>
+    <tr><td>全球生态案例</td><td><span data-metric="ai_ecosystem_case_count" data-value="8">8</span></td><td>5–8</td></tr>
+    <tr><td>AI 朝圣地标</td><td><span data-metric="pilgrimage_landmark_count" data-value="3">3</span></td><td>≥ 3</td></tr>
+  </table>
+  <p>所有 AI 场景遵守数据最小化、公开来源、可解释与人工复核原则，均为概念建议，不构成已批准运营。</p>
+</section>
+
+<section id="renewal">
+  <h2>08 更新项目清单（8 项，概念建议）</h2>
+  <table>
+    <tr><th>编号</th><th>项目</th><th>类型</th></tr>
+    <tr><td>JZ-01</td><td>公共轨道贯通与慢行缝合</td><td>公共空间/交通</td></tr>
+    <tr><td>JZ-02</td><td>原点站台广场与清华园站活化</td><td>文化/公共空间</td></tr>
+    <tr><td>JZ-03</td><td>近校成果转化街</td><td>城市更新/产业服务</td></tr>
+    <tr><td>JZ-04</td><td>众智园研发街道与留白测试场</td><td>产业/新基建</td></tr>
+    <tr><td>JZ-05</td><td>大钟寺换乘枢纽与四象限连通</td><td>轨道一体化/商业</td></tr>
+    <tr><td>JZ-06</td><td>三条缝合街</td><td>交通/风貌</td></tr>
+    <tr><td>JZ-07</td><td>京张信号系统与场景试点</td><td>新基建/治理</td></tr>
+    <tr><td>JZ-08</td><td>首站日等年度活动体系</td><td>运营/品牌</td></tr>
+  </table>
+  <p>更新项目为概念建议（<span data-metric="renewal_project_count" data-value="8">8</span> 项），依赖条件见 proposal.md 第 10 章。</p>
+</section>
+
+<section id="phasing">
+  <h2>09 分期实施建议</h2>
+  <table>
+    <tr><th>分期</th><th>时段</th><th>范围</th><th>面积（临时复算）</th></tr>
+    <tr><td>一期 · 首发体验</td><td>2026–2028</td><td>公共轨道核心段 + 三座站台</td><td>2.88 km²</td></tr>
+    <tr><td>二期 · 加速拓展</td><td>2028–2030</td><td>三重点区全域</td><td>3.69 km²</td></tr>
+    <tr><td>三期 · 全域织补</td><td>2030–2035</td><td>中间带与两翼网络化</td><td>5.99 km²</td></tr>
+  </table>
+  <p>分期为建议时序（<span data-metric="phase_count" data-value="3">3</span> 期），不构成开发时序承诺。</p>
+</section>
+
+<section id="metrics">
+  <h2>10 核心指标（EPSG:4548 复算）</h2>
+  <div class="grid3">
+    <div class="card"><div class="metric-value" data-metric="site_area_sqm" data-value="11412825.386">11,412,825</div><div class="metric-label">总体范围面积（m²）· provisional</div></div>
+    <div class="card"><div class="metric-value" data-metric="green_ratio" data-value="0.218154">21.8%</div><div class="metric-label">绿地率（概念复算）</div></div>
+    <div class="card"><div class="metric-value" data-metric="public_space_ratio" data-value="0.015291">1.5%</div><div class="metric-label">公共空间率（概念复算）</div></div>
+    <div class="card"><div class="metric-value" data-metric="building_footprint_area_sqm" data-value="328444.53">328,444</div><div class="metric-label">概念建筑基底（m²）· 65 栋</div></div>
+    <div class="card"><div class="metric-value" data-metric="road_network_length_m" data-value="46733.562">46.7 km</div><div class="metric-label">概念路网长度（示意）</div></div>
+    <div class="card"><div class="metric-value" data-metric="public_rail_corridor_length_m" data-value="9500">9.5 km</div><div class="metric-label">公共轨道走廊长度</div></div>
+    <div class="card"><div class="metric-pending">待官方控规</div><div class="metric-label">容积率 FAR</div></div>
+    <div class="card"><div class="metric-pending">待官方控规</div><div class="metric-label">建筑高度控制</div></div>
+    <div class="card"><div class="metric-pending">待官方控规</div><div class="metric-label">法定绿地率</div></div>
+  </div>
+  <p>公告对照：总体范围 11.4 km² · 三重点区 368.4 ha · 官方指标（容积率/高度/密度/绿地率）缺失，标注待补，本方案不设定法定数值。</p>
+</section>
+
+<section id="compliance">
+  <h2>11 合规矩阵摘要（23 条必答）</h2>
+  <p>覆盖公告 1.3（3 条）、1.4（3 条）、1.5（11 条）与 agent.1–agent.6（6 条），每条映射到报告章节、图层、指标、图纸、HTML 页面、来源、假设与自检项。详见 <code>compliance_matrix.json</code>。</p>
+  <table>
+    <tr><th>任务域</th><th>覆盖情况</th></tr>
+    <tr><td>1.3 设计目的（生态/形态/人才）</td><td class="status-ok">✔ 已覆盖（第 3/4 章）</td></tr>
+    <tr><td>1.4 三层范围</td><td class="status-ok">✔ 已覆盖（第 2 章）</td></tr>
+    <tr><td>1.5 设计任务（统筹/总体/重点区）</td><td class="status-ok">✔ 已覆盖（第 3–10 章）</td></tr>
+    <tr><td>agent.1–6 智能体任务</td><td class="status-ok">✔ 已覆盖（第 1–10 章）</td></tr>
+  </table>
+</section>
+
+<section id="sources">
+  <h2>12 来源</h2>
+  <ul>
+    <li>北京市规自委海淀分局《资格预审公告》（A0 官方公开）</li>
+    <li>面向全球智能体开源征集任务书（已清权）与本地标准参考快照</li>
+    <li>临时边界 polygon（provisional_only，仅生成/展示/自检）</li>
+    <li>清华园车站史实公开报道（北京日报/海淀政务/学习强国）</li>
+    <li>城市设计管理办法 / 控规编制审批办法 / 用地用海分类指南（本地快照）</li>
+    <li>8 个全球 AI 生态案例公开资料（机构官网/权威报道）</li>
+  </ul>
+  <p>完整来源、发布者、访问日期、用途与限制见 <code>sources.json</code>。</p>
+</section>
+
+<section id="assumptions">
+  <h2>13 关键假设</h2>
+  <ul>
+    <li><b>A-001</b> 三层范围与三重点区为 provisional 粗略边界；官方红线发布后整包重算。</li>
+    <li><b>A-002</b> 公共轨道走廊（宽约 270–400 m、长约 9.5 km）为概念性绿廊假设。</li>
+    <li><b>A-003</b> 道路中心线与轨道走廊走向为概念示意，非红线/线位。</li>
+    <li><b>A-004 / A-005</b> 用地分区与建筑基底为概念建议，不代表控规或现状。</li>
+    <li><b>A-009</b> 控规条件（容积率/高度/密度/绿地率/退线）待官方附件确认。</li>
+    <li><b>A-010</b> 清华园站旧址保护范围以官方公布为准。</li>
+  </ul>
+  <p>完整清单见 <code>assumptions.json</code>。</p>
+</section>
+
+<section id="selfcheck">
+  <h2>14 自检状态</h2>
+  <table>
+    <tr><th>检查</th><th>状态</th></tr>
+    <tr><td>边界信任（provisional 披露）</td><td class="status-ok">✔ PASS（major 提示：待官方红线）</td></tr>
+    <tr><td>重点区信任（3 处 provisional）</td><td class="status-ok">✔ PASS（major 提示）</td></tr>
+    <tr><td>用地拓扑（无缝无重叠）</td><td class="status-ok">✔ PASS</td></tr>
+    <tr><td>空间复核（EPSG:4548）</td><td class="status-ok">✔ PASS</td></tr>
+    <tr><td>可视化静态性（无远程资源）</td><td class="status-ok">✔ PASS</td></tr>
+    <tr><td>专业证据链（标准/深度/来源/假设）</td><td class="status-ok">✔ PASS</td></tr>
+    <tr><td>双语契约（中英对应）</td><td class="status-ok">✔ PASS</td></tr>
+  </table>
+  <p>完整自检结果见 <code>self_check.json</code>；最终以 CI 与维护者评审为准。</p>
+</section>
+
+<footer>
+  京张·第一站 The First Station · 概念建议（非官方审定结论）· 边界 provisional_rough · EPSG:4548 复算<br>
+  生成：Kimi Code（deepseek-v4-flash）· 作者：migege · open-city-ai/haidian 开源征集 · © 2026
+</footer>
+</main>
+</body>
+</html>

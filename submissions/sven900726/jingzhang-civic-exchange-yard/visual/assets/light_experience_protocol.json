@@ -1,0 +1,287 @@
+{
+  "schema_version": "1.0.0",
+  "protocol_id": "CEY-LX-01",
+  "title_zh": "轻体验城市：应景 AI 与体验权协议",
+  "title_en": "Light-Experience City: Moment-Specific AI and Experience Rights Protocol",
+  "design_status": "conceptual_governance_proposal_pending_professional_review",
+  "scope_note_zh": "本文件定义设计建议和试点审查字段，不声称现有城市系统、交通运营方或商户已经实施这些能力。",
+  "scope_note_en": "This file defines design proposals and pilot-review fields. It does not claim that current city systems, transport operators, or merchants have implemented them.",
+  "system_rules": [
+    {
+      "id": "LX-RULE-01",
+      "title_zh": "默认安静",
+      "title_en": "Quiet by default",
+      "requirement": "No service starts without an explicit user or authorised staff trigger."
+    },
+    {
+      "id": "LX-RULE-02",
+      "title_zh": "一次一景",
+      "title_en": "One scene at a time",
+      "requirement": "Data from one task is not linked to another scene unless the user makes a separate, specific choice."
+    },
+    {
+      "id": "LX-RULE-03",
+      "title_zh": "最少数据",
+      "title_en": "Minimum data",
+      "requirement": "Use the smallest current-context input needed for the requested answer, preferring edge processing or anonymous aggregates."
+    },
+    {
+      "id": "LX-RULE-04",
+      "title_zh": "用完即忘",
+      "title_en": "Forget after use",
+      "requirement": "Declare retention before use and erase temporary location, preference, and interaction data when the session ends."
+    },
+    {
+      "id": "LX-RULE-05",
+      "title_zh": "排序可解释",
+      "title_en": "Explain the ranking",
+      "requirement": "State why an option appears and visibly distinguish sponsored or commercial placement from public-service information."
+    },
+    {
+      "id": "LX-RULE-06",
+      "title_zh": "拒绝不受罚",
+      "title_en": "No penalty for refusal",
+      "requirement": "Declining data access must not reduce access to basic mobility, dining, shopping, public space, or staffed service."
+    },
+    {
+      "id": "LX-RULE-07",
+      "title_zh": "非数字兜底",
+      "title_en": "Non-digital fallback",
+      "requirement": "Signs, timetables, price boards, staffed windows, and ordinary ticketing remain usable without sensors or recommendations."
+    }
+  ],
+  "experience_rights": [
+    {
+      "id": "LX-RIGHT-01",
+      "title_zh": "主动体验权",
+      "title_en": "Right to opt in"
+    },
+    {
+      "id": "LX-RIGHT-02",
+      "title_zh": "保持沉默权",
+      "title_en": "Right to remain silent"
+    },
+    {
+      "id": "LX-RIGHT-03",
+      "title_zh": "匿名使用权",
+      "title_en": "Right to anonymous use"
+    },
+    {
+      "id": "LX-RIGHT-04",
+      "title_zh": "拒绝授权权",
+      "title_en": "Right to refuse"
+    },
+    {
+      "id": "LX-RIGHT-05",
+      "title_zh": "理解推荐权",
+      "title_en": "Right to explanation"
+    },
+    {
+      "id": "LX-RIGHT-06",
+      "title_zh": "会话删除权",
+      "title_en": "Right to session erasure"
+    }
+  ],
+  "public_exchange_ticket_fields": [
+    "voluntary_trigger",
+    "present_need",
+    "public_return",
+    "accountable_owner",
+    "minimum_data",
+    "declared_purpose",
+    "retention_and_erasure",
+    "cross_scene_linking_prohibited",
+    "non_digital_fallback",
+    "stop_condition"
+  ],
+  "scenario_cards": [
+    {
+      "id": "CEY-01",
+      "group": "validation",
+      "title_zh": "模型安全沙盒",
+      "title_en": "Model-safety sandbox",
+      "host_space": "Zhongzhiyuan Stack Yard supervised test court",
+      "voluntary_trigger": "Booked and supervised test session",
+      "minimum_data": "Declared test task and reviewed prompts; no visitor identity",
+      "retention": "Raw test material follows the declared review plan; only redacted summaries become public",
+      "cross_scene_linking": false,
+      "human_owner": "Safety reviewer",
+      "non_digital_fallback": "Staffed explanation and printed test summary",
+      "public_return": "Concise public test summary",
+      "stop_condition": "Unexplained data processing, unsafe output, or missing reviewer"
+    },
+    {
+      "id": "CEY-02",
+      "group": "validation",
+      "title_zh": "端侧设备试验台",
+      "title_en": "Edge-device bench",
+      "host_space": "Zhongzhiyuan Stack Yard ground floor",
+      "voluntary_trigger": "User begins a supervised device demonstration",
+      "minimum_data": "Device test signal only; no persistent visitor identifier",
+      "retention": "Session diagnostics deleted or de-identified under the posted test plan",
+      "cross_scene_linking": false,
+      "human_owner": "Device test steward",
+      "non_digital_fallback": "Physical mock-up and staffed explanation",
+      "public_return": "Accessible demonstration hours and test notes",
+      "stop_condition": "Undisclosed capture, unsafe hardware, or unavailable steward"
+    },
+    {
+      "id": "CEY-03",
+      "group": "validation",
+      "title_zh": "开放标准工作坊",
+      "title_en": "Open-standards workshop",
+      "host_space": "Zhongzhiyuan workshop room",
+      "voluntary_trigger": "Registration or walk-in participation",
+      "minimum_data": "Attendance capacity and voluntarily supplied contribution",
+      "retention": "Named attribution only with separate consent; otherwise aggregate participation",
+      "cross_scene_linking": false,
+      "human_owner": "Standards facilitator",
+      "non_digital_fallback": "Printed materials and in-person facilitation",
+      "public_return": "Reusable standards notes",
+      "stop_condition": "Closed participation, unclear licence, or missing facilitator"
+    },
+    {
+      "id": "CEY-04",
+      "group": "validation",
+      "title_zh": "低碳算力解释站",
+      "title_en": "Low-carbon computing explainer",
+      "host_space": "Zhongzhiyuan public results wall",
+      "voluntary_trigger": "User taps or asks for an explanation",
+      "minimum_data": "Selected topic only",
+      "retention": "No personal session retention",
+      "cross_scene_linking": false,
+      "human_owner": "Facilities and data steward",
+      "non_digital_fallback": "Static energy explanation board",
+      "public_return": "Plain-language infrastructure explanation",
+      "stop_condition": "Unverified performance claim or unavailable source"
+    },
+    {
+      "id": "CEY-05",
+      "group": "translation",
+      "title_zh": "开源发布厅",
+      "title_en": "Open-source release room",
+      "host_space": "AI Origin Community Open-Source Street",
+      "voluntary_trigger": "Creator submits a release for hosted review",
+      "minimum_data": "Release files, licence, and accountable contact",
+      "retention": "Published material follows its declared open licence",
+      "cross_scene_linking": false,
+      "human_owner": "Release curator",
+      "non_digital_fallback": "In-person release briefing and printed access guide",
+      "public_return": "Reusable component and accessible documentation",
+      "stop_condition": "Missing licence, attribution, or accountable contact"
+    },
+    {
+      "id": "CEY-06",
+      "group": "translation",
+      "title_zh": "成果转化服务台",
+      "title_en": "Research-transfer desk",
+      "host_space": "AI Origin Community shared service desk",
+      "voluntary_trigger": "Team requests a specific transfer service",
+      "minimum_data": "Declared project need and contact for the current case",
+      "retention": "Case record follows a posted service-retention rule",
+      "cross_scene_linking": false,
+      "human_owner": "Transfer adviser",
+      "non_digital_fallback": "Booked human consultation",
+      "public_return": "Reusable transfer checklist",
+      "stop_condition": "Unclear responsibility, confidentiality, or rights"
+    },
+    {
+      "id": "CEY-07",
+      "group": "translation",
+      "title_zh": "公共课程车厢",
+      "title_en": "Public learning carriage",
+      "host_space": "AI Origin Community learning room",
+      "voluntary_trigger": "Walk-in or voluntary registration",
+      "minimum_data": "Capacity count; accessibility request only when supplied",
+      "retention": "Anonymous attendance aggregate; no learning profile",
+      "cross_scene_linking": false,
+      "human_owner": "Course host",
+      "non_digital_fallback": "Printed materials and staffed teaching",
+      "public_return": "Free public learning hours",
+      "stop_condition": "Inaccessible delivery, undisclosed recording, or absent host"
+    },
+    {
+      "id": "CEY-08",
+      "group": "translation",
+      "title_zh": "知识产权与数据合规门诊",
+      "title_en": "IP and data-compliance clinic",
+      "host_space": "AI Origin Community staffed clinic",
+      "voluntary_trigger": "User requests a defined consultation",
+      "minimum_data": "Facts needed for the stated question",
+      "retention": "No model training; case retention set by the responsible professional",
+      "cross_scene_linking": false,
+      "human_owner": "Qualified legal or data professional",
+      "non_digital_fallback": "Confidential human consultation",
+      "public_return": "Reusable public checklist without case details",
+      "stop_condition": "No qualified professional or risk of exposing confidential data"
+    },
+    {
+      "id": "CEY-09",
+      "group": "light_experience",
+      "title_zh": "出行应景助手",
+      "title_en": "Moment-specific journey assistant",
+      "host_space": "Stations, exchange spurs, and blue-green stops",
+      "voluntary_trigger": "Scan, tap, spoken question, or explicit device request",
+      "minimum_data": "Current origin, destination, service status, and chosen accessibility needs",
+      "retention": "Temporary location and preference data erased at session end",
+      "cross_scene_linking": false,
+      "human_owner": "Mobility service steward",
+      "non_digital_fallback": "Signs, timetables, accessible route map, and staff",
+      "public_return": "Explainable route and accessible alternative",
+      "stop_condition": "Continuous tracking, face recognition, unexplained route, or missing fallback"
+    },
+    {
+      "id": "CEY-10",
+      "group": "light_experience",
+      "title_zh": "饮食与邻里商户助手",
+      "title_en": "Dining and neighbourhood-merchant assistant",
+      "host_space": "Dazhongsi Market Yard and participating street interfaces",
+      "voluntary_trigger": "User asks for a meal or merchant option",
+      "minimum_data": "Current area, time, price range, dietary constraint, and accessibility choice",
+      "retention": "Temporary request and preference data erased at session end",
+      "cross_scene_linking": false,
+      "human_owner": "Merchant-service steward",
+      "non_digital_fallback": "Visible menus, price boards, maps, and staffed inquiry",
+      "public_return": "Distance, wait, price, dietary, and accessibility comparison",
+      "stop_condition": "Undisclosed sponsorship, false availability, cross-scene profiling, or no complaint path"
+    },
+    {
+      "id": "CEY-11",
+      "group": "light_experience",
+      "title_zh": "购物比价·维修·退换助手",
+      "title_en": "Shopping price-repair-return assistant",
+      "host_space": "Dazhongsi Market Yard and participating retail interfaces",
+      "voluntary_trigger": "User asks about a product or after-sales need",
+      "minimum_data": "Current area, product need, price range, repair or return request, and accessibility choice",
+      "retention": "Temporary request data erased at session end; no shopping profile",
+      "cross_scene_linking": false,
+      "human_owner": "Consumer-service steward",
+      "non_digital_fallback": "Price labels, receipt rules, repair desk, and staffed service",
+      "public_return": "Explainable comparison of price, repair, return, and access",
+      "stop_condition": "Hidden advertising, discriminatory ranking, persistent profile, or unavailable human service"
+    },
+    {
+      "id": "CEY-12",
+      "group": "light_experience",
+      "title_zh": "公共安全与内容复核台",
+      "title_en": "Public-safety and content review desk",
+      "host_space": "Dazhongsi staffed review desk and event interfaces",
+      "voluntary_trigger": "Authorised staff review or a user complaint",
+      "minimum_data": "Aggregate capacity, equipment status, and necessary incident report",
+      "retention": "Retention follows the declared legal and safety basis; no commercial profiling",
+      "cross_scene_linking": false,
+      "human_owner": "Authorised safety and content reviewer",
+      "non_digital_fallback": "Staff decision, posted capacity, and physical complaint channel",
+      "public_return": "Correctable decision record and accessible content",
+      "stop_condition": "Automated enforcement, missing legal basis, inaccessible content, or absent reviewer"
+    }
+  ],
+  "review_dependencies": [
+    "privacy_and_personal_information_review",
+    "cyber_security_review",
+    "accessibility_review",
+    "transport_operator_review",
+    "merchant_and_consumer_protection_review",
+    "public_participation_and_complaint_design"
+  ]
+}

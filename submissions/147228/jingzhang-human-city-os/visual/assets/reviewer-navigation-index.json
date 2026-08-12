@@ -1,10 +1,10 @@
 {
   "schema_version": "0.2.0",
-  "package_iteration": "v2.0",
+  "package_iteration": "v2.6",
   "status": "offline_navigation_evidence_only",
   "not_a_score": true,
-  "purpose_zh": "把仓库 formal scorecard 的七个工作流问题，以及任务书列出的十三项统一评审维度，分别连接到最短的包内证据路径、复核顺序和仍然不能被本包证明的边界；这是导航索引与路径完整性台账，不是评分器、分数承诺、官方评审结论或实施证明。",
-  "purpose_en": "Separately map the repository formal-scorecard workflow's seven questions and the taskbook's thirteen unified review dimensions to the shortest in-package evidence paths, review order, and boundaries the package still cannot prove. This is a navigation and path-completeness ledger, not a scorer, score promise, official review finding, or implementation proof.",
+  "purpose_zh": "把仓库 formal scorecard 的七个工作流问题，以及任务书列出的十三项统一评审维度，分别连接到最短的包内证据路径、复核顺序和仍然不能被本包证明的边界；v2.4 增加差异化 requirement evidence_items、审阅差异化标签、假设优先级和政策基线边界；这是导航索引与路径完整性台账，不是评分器、分数承诺、官方评审结论或实施证明。",
+  "purpose_en": "Separately map the repository formal-scorecard workflow's seven questions and the taskbook's thirteen unified review dimensions to the shortest in-package evidence paths, review order, and boundaries the package still cannot prove. v2.4 adds differentiated requirement evidence_items, reviewer differentiators, assumption priorities, and policy-baseline boundaries. This is a navigation and path-completeness ledger, not a scorer, score promise, official review finding, or implementation proof.",
   "formal_scorecard_basis": {
     "dimension_source_file": "scripts/review_submission.py",
     "weight_source_file": "scripts/generate_formal_scorecard.py",
@@ -62,6 +62,9 @@
         "visual/assets/check-human-city-v15-assets.js",
         "visual/assets/human-city-receipt.json",
         "visual/assets/run-human-city-receipt.js",
+        "visual/assets/city-api-sequence-v23.json",
+        "visual/assets/check-city-api-sequence-v23.js",
+        "visual/assets/parametric-tradeoff-study-evidence.json",
         "visual/assets/spatial-figure-method.json",
         "metrics.json"
       ],
@@ -80,6 +83,9 @@
         "visual/assets/run-human-city-receipt.js",
         "visual/assets/human-city-receipt-evidence.json",
         "visual/assets/data-readiness-register.json",
+        "visual/assets/pilot-readiness-register.json",
+        "visual/assets/city-api-sequence-v23.json",
+        "visual/assets/city-api-sequence-v23-evidence.json",
         "visual/assets/release-gate-ledger.json",
         "assumptions.json"
       ],
@@ -94,6 +100,8 @@
       "question_en": "Do ordinary people, older people, low-digital-capability users, disabled users, and affected workers have equivalent access, refusal, and review paths?",
       "read_in_order": [
         "visual/assets/personas-and-fairness.json",
+        "visual/assets/public-interest-coverage-v26.json",
+        "visual/assets/run-public-interest-coverage-v26.js",
         "visual/assets/accessibility-audit.json",
         "visual/assets/human-city-ordinary-journey.json",
         "proposal.md"
@@ -127,6 +135,8 @@
         "proposal.en.md",
         "report/proposal.html",
         "visual/index.html",
+        "visual/assets/city-api-sequence-v23.json",
+        "visual/assets/city-api-sequence-v23-evidence.json",
         "manifest.json"
       ],
       "strongest_evidence": "bilingual proposal, rendered HTML, visual index, and manifest hash ledger",
@@ -146,7 +156,11 @@
       "dimension_id": "objective_alignment",
       "title_zh": "目标契合度",
       "title_en": "Objective alignment",
-      "evidence_paths": ["proposal.md", "compliance_matrix.json", "assets/figures/site-overview.png"],
+      "evidence_paths": [
+        "proposal.md",
+        "compliance_matrix.json",
+        "assets/figures/site-overview.png"
+      ],
       "evidence_summary_zh": "从全球 AI 产业高地与朝圣地目标，到三层范围、四条价值链和可回滚城市版本。",
       "evidence_summary_en": "From the global AI highland and pilgrimage ambition to the three scopes, four value chains, and reversible city releases.",
       "boundary_zh": "目标契合是概念回应，不构成官方战略、政策或已确定结果。",
@@ -156,7 +170,12 @@
       "dimension_id": "function_match",
       "title_zh": "功能匹配度",
       "title_en": "Function match",
-      "evidence_paths": ["proposal.md", "geometry/key_areas.geojson", "visual/assets/scenario-cards.json", "visual/assets/scenario-space-operation-matrix.json"],
+      "evidence_paths": [
+        "proposal.md",
+        "geometry/key_areas.geojson",
+        "visual/assets/scenario-cards.json",
+        "visual/assets/scenario-space-operation-matrix.json"
+      ],
       "evidence_summary_zh": "三大定位、五大功能和三区两翼通过三处临时重点区、17 张场景卡与空间锚点相互对应；SC-D04 明确落下中关村科技服务翼。",
       "evidence_summary_en": "The three positions, five functions, and three areas/two wings correspond through provisional key areas, scenario cards, and spatial anchors.",
       "boundary_zh": "重点区和功能锚点仍为临时几何与概念建议。",
@@ -166,7 +185,11 @@
       "dimension_id": "brand_identity",
       "title_zh": "品牌识别度",
       "title_en": "Brand identity",
-      "evidence_paths": ["proposal.md", "assets/figures/site-overview.png", "visual/index.html"],
+      "evidence_paths": [
+        "proposal.md",
+        "assets/figures/site-overview.png",
+        "visual/index.html"
+      ],
       "evidence_summary_zh": "“Jingzhang Human City OS”把轨道、开放接口与人工确认点组织为原创、可延展的识别语法。",
       "evidence_summary_en": "Jingzhang Human City OS organizes rail, open interfaces, and human confirmation into an original, extensible identity grammar.",
       "boundary_zh": "名称和视觉方向不是已注册商标、获批品牌或官方宣传物。",
@@ -176,7 +199,12 @@
       "dimension_id": "regional_synergy",
       "title_zh": "区域协同性",
       "title_en": "Regional synergy",
-      "evidence_paths": ["proposal.md", "sources.json", "visual/assets/scenario-space-operation-matrix.json", "visual/assets/scenario-cards.json"],
+      "evidence_paths": [
+        "proposal.md",
+        "sources.json",
+        "visual/assets/scenario-space-operation-matrix.json",
+        "visual/assets/scenario-cards.json"
+      ],
       "evidence_summary_zh": "以中关村科技服务翼、技术、标准、知识、OPC 与国际服务的外溢机制，连接京津冀研究与应用协同。",
       "evidence_summary_en": "Technology, standards, knowledge, OPC, and international-service spillovers connect Beijing-Tianjin-Hebei research and application collaboration.",
       "boundary_zh": "协同机制不指定合作机构、资金、项目或已达成协议。",
@@ -186,7 +214,17 @@
       "dimension_id": "planning_innovation",
       "title_zh": "规划创新性",
       "title_en": "Planning innovation",
-      "evidence_paths": ["proposal.md", "visual/assets/human-machine-interface-prototypes.json", "visual/assets/parametric-tradeoff-study.json", "visual/assets/parametric-tradeoff-study-evidence.json", "visual/assets/parametric-search.json", "visual/assets/parametric-search-evidence.json", "visual/assets/human-city-receipt.json", "visual/assets/human-city-receipt-evidence.json", "geometry/land_use.geojson"],
+      "evidence_paths": [
+        "proposal.md",
+        "visual/assets/human-machine-interface-prototypes.json",
+        "visual/assets/parametric-tradeoff-study.json",
+        "visual/assets/parametric-tradeoff-study-evidence.json",
+        "visual/assets/parametric-search.json",
+        "visual/assets/parametric-search-evidence.json",
+        "visual/assets/human-city-receipt.json",
+        "visual/assets/human-city-receipt-evidence.json",
+        "geometry/land_use.geojson"
+      ],
       "evidence_summary_zh": "以人机接口、可逆留白、固定种子搜索的四个代理镜头、合成人本交接凭证与发布门把空间、产业和治理放在同一可回溯关系中。",
       "evidence_summary_en": "Human-machine interfaces, reversible reserve, city APIs, and release gates connect space, industry, and governance in one traceable relationship.",
       "boundary_zh": "概念分区与接口不是法定用地、工程断面或真实系统架构。",
@@ -196,7 +234,12 @@
       "dimension_id": "industry_support",
       "title_zh": "产业支撑度",
       "title_en": "Industry support",
-      "evidence_paths": ["visual/assets/scenario-cards.json", "visual/assets/scenario-space-operation-matrix.json", "visual/assets/implementation-operation-matrix.json", "visual/assets/data-readiness-register.json"],
+      "evidence_paths": [
+        "visual/assets/scenario-cards.json",
+        "visual/assets/scenario-space-operation-matrix.json",
+        "visual/assets/implementation-operation-matrix.json",
+        "visual/assets/data-readiness-register.json"
+      ],
       "evidence_summary_zh": "技能再造、受控测试、OPC 共享实验、中关村科技服务翼、数据授权和算电审计均写入前置资料、责任与停止条件。",
       "evidence_summary_en": "Skill transition, bounded tests, shared OPC labs, data authorization, and compute-energy audits all carry prerequisite data, responsibility, and stop conditions.",
       "boundary_zh": "建议角色不是已确认运营方，也不构成招商、投资或服务供给承诺。",
@@ -206,9 +249,15 @@
       "dimension_id": "scenario_perceptibility",
       "title_zh": "场景可感知度",
       "title_en": "Scenario perceptibility",
-      "evidence_paths": ["visual/assets/scenario-cards.json", "visual/assets/human-city-acceptance-atlas.json", "assets/figures/human-city-acceptance-atlas.png"],
-      "evidence_summary_zh": "17 张场景卡与 6 类使用者、10 条代表性路径和三段发布门在同一图谱中可读；其中 16 个空间节点保持可回接。",
-      "evidence_summary_en": "Seventeen scenario cards, six personas, ten representative paths, and three release gates are legible in one atlas; sixteen spatial nodes remain resolvable.",
+      "evidence_paths": [
+        "visual/assets/scenario-cards.json",
+        "visual/assets/human-city-acceptance-atlas.json",
+        "assets/figures/human-city-acceptance-atlas.png",
+        "visual/assets/public-interest-coverage-v26.json",
+        "visual/assets/run-public-interest-coverage-v26.js"
+      ],
+      "evidence_summary_zh": "17 张场景卡、6 类基础使用者、3 类公共利益扩展、10 条代表性路径和三段发布门在同一证据链中可读；其中 16 个空间节点保持可回接。",
+      "evidence_summary_en": "Seventeen scenario cards, six base personas, three public-interest extensions, ten representative paths, and three release gates are legible in one evidence chain; sixteen spatial nodes remain resolvable.",
       "boundary_zh": "离线图谱的路径解析不等于真实体验、服务覆盖或公众接受。",
       "boundary_en": "Offline atlas path resolution is not real experience, service coverage, or public acceptance."
     },
@@ -216,7 +265,12 @@
       "dimension_id": "spatial_clarity",
       "title_zh": "空间明确性",
       "title_en": "Spatial clarity",
-      "evidence_paths": ["geometry/key_areas.geojson", "geometry/roads.geojson", "assets/figures/mobility-bluegreen.png", "visual/assets/spatial-figure-method.json"],
+      "evidence_paths": [
+        "geometry/key_areas.geojson",
+        "geometry/roads.geojson",
+        "assets/figures/mobility-bluegreen.png",
+        "visual/assets/spatial-figure-method.json"
+      ],
       "evidence_summary_zh": "三处重点区、概念服务廊、蓝绿空间和显示变换均能回到同一 GeoJSON 与制图方法。",
       "evidence_summary_en": "Three key areas, conceptual service corridors, blue-green space, and display transform return to the same GeoJSON and cartographic method.",
       "boundary_zh": "所有点位、线位和范围均不替代官方红线、道路线位或工程方案。",
@@ -226,7 +280,11 @@
       "dimension_id": "transferability",
       "title_zh": "可转化性",
       "title_en": "Transferability",
-      "evidence_paths": ["visual/assets/release-gate-ledger.json", "visual/assets/data-readiness-register.json", "assumptions.json"],
+      "evidence_paths": [
+        "visual/assets/release-gate-ledger.json",
+        "visual/assets/data-readiness-register.json",
+        "assumptions.json"
+      ],
       "evidence_summary_zh": "发布门、资料缺口、人工接管和重算触发器把下一步交给有权专业、运营与评审主体。",
       "evidence_summary_en": "Release gates, data gaps, human takeover, and recomputation triggers hand the next step to authorized professional, operational, and review parties.",
       "boundary_zh": "可转化路径不是获批实施时序、预算或许可承诺。",
@@ -236,7 +294,13 @@
       "dimension_id": "expression_completeness",
       "title_zh": "表达完整性",
       "title_en": "Expression completeness",
-      "evidence_paths": ["proposal.md", "proposal.en.md", "report/proposal.html", "visual/index.html", "manifest.json"],
+      "evidence_paths": [
+        "proposal.md",
+        "proposal.en.md",
+        "report/proposal.html",
+        "visual/index.html",
+        "manifest.json"
+      ],
       "evidence_summary_zh": "双语正文、图件、图册、网页与结构化台账通过 manifest 和本地引用审计回到同一证据。",
       "evidence_summary_en": "Bilingual prose, figures, drawing sets, webpages, and structured ledgers return to the same evidence through the manifest and local reference audit.",
       "boundary_zh": "表达完整度不提高资料权威性，也不替代现场验证。",
@@ -246,7 +310,11 @@
       "dimension_id": "public_compliance",
       "title_zh": "公开合规性",
       "title_en": "Public compliance",
-      "evidence_paths": ["sources.json", "assumptions.json", "visual/assets/rights-clearance-ledger.json"],
+      "evidence_paths": [
+        "sources.json",
+        "assumptions.json",
+        "visual/assets/rights-clearance-ledger.json"
+      ],
       "evidence_summary_zh": "来源、许可边界、临时几何、unknown 与禁用结论在结构化台账中分开登记。",
       "evidence_summary_en": "Sources, rights boundaries, provisional geometry, unknowns, and prohibited conclusions are separately registered in structured ledgers.",
       "boundary_zh": "来源登记不等于实际许可、权属清理、数据授权或法律意见。",
@@ -256,7 +324,11 @@
       "dimension_id": "international_communication",
       "title_zh": "国际传播力",
       "title_en": "International communication",
-      "evidence_paths": ["proposal.md", "sources.json", "visual/assets/scenario-cards.json"],
+      "evidence_paths": [
+        "proposal.md",
+        "sources.json",
+        "visual/assets/scenario-cards.json"
+      ],
       "evidence_summary_zh": "双语交付、国际服务客厅与全球案例比较为外部阅读和对话提供概念入口。",
       "evidence_summary_en": "Bilingual deliverables, the international-service lounge, and global case comparison provide a conceptual entry for external reading and dialogue.",
       "boundary_zh": "不声称任何国际机构、学校、医疗或活动已经落地或签约。",
@@ -266,7 +338,11 @@
       "dimension_id": "long_term_operation_value",
       "title_zh": "长期运营价值",
       "title_en": "Long-term operational value",
-      "evidence_paths": ["visual/assets/release-gate-ledger.json", "geometry/phasing.geojson", "proposal.md"],
+      "evidence_paths": [
+        "visual/assets/release-gate-ledger.json",
+        "geometry/phasing.geojson",
+        "proposal.md"
+      ],
       "evidence_summary_zh": "年度体检、公众 issue、release note、事故复盘与标准外溢将城市版本化治理落入长期运营语法。",
       "evidence_summary_en": "Annual review, public issues, release notes, incident replay, and standards spillover put versioned city governance into a long-term operational grammar.",
       "boundary_zh": "活动与运营机制是概念建议，不构成已确定日程、经费、主体或服务承诺。",

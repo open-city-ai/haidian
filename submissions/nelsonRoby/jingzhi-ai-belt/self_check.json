@@ -1,0 +1,93 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "SC-VALIDATE",
+      "name_zh": "确定性校验（validate_submission）",
+      "result": "pass",
+      "severity": "blocking",
+      "detail_zh": "validate_submission.py 确定性校验通过：文件/正文/矩阵/几何/指标/风险扫描全部 PASS"
+    },
+    {
+      "check_id": "SC-GEOMETRY",
+      "name_zh": "几何要素与枚举校验",
+      "result": "pass",
+      "severity": "blocking",
+      "detail_zh": "9个几何文件要素齐备，图层/来源/置信度/几何角色/用地代码均符合枚举，几何坐标合法"
+    },
+    {
+      "check_id": "SC-METRICS",
+      "name_zh": "指标一致性与面积复算",
+      "result": "pass",
+      "severity": "blocking",
+      "detail_zh": "指标由几何在 EPSG:4548 下复算，绿地率/公共空间率与空间复核一致"
+    },
+    {
+      "check_id": "SC-SPATIAL",
+      "name_zh": "空间复核（spatial_review）",
+      "result": "pass",
+      "severity": "major",
+      "detail_zh": "spatial_review PASS：用地全覆盖、要素互不重叠、建筑/绿地/公共空间均在边界内（重点区为 provisional 提示）"
+    },
+    {
+      "check_id": "SC-VISUAL",
+      "name_zh": "可视化与静态安全（visual_review）",
+      "result": "pass",
+      "severity": "major",
+      "detail_zh": "visual_review PASS：14项必需标记齐全，核心指标 data-metric 与 metrics.json 一致，无远程/活动内容"
+    },
+    {
+      "check_id": "SC-PROFESSIONAL",
+      "name_zh": "专业证据链（professional_review）",
+      "result": "pass",
+      "severity": "major",
+      "detail_zh": "professional_review PASS：标准覆盖5/5，正文引用覆盖全部来源/指标/标准/深度项/几何文件"
+    },
+    {
+      "check_id": "SC-RISK",
+      "name_zh": "风险与敏感信息扫描",
+      "result": "pass",
+      "severity": "blocking",
+      "detail_zh": "未检出身份证号、手机号、伪造批准表述等硬风险；未检出内部资料等软风险表述"
+    },
+    {
+      "check_id": "SC-FINALIZE",
+      "name_zh": "包终态（finalize）",
+      "result": "pass",
+      "severity": "blocking",
+      "detail_zh": "package_state=ready_for_review，manifest 哈希与全部文件一致，两套图纸为非空 PDF"
+    },
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "name_zh": "确定性校验（validate_submission）",
+      "result": "pass",
+      "severity": "blocking",
+      "detail_zh": "文件、正文、矩阵、几何、指标与风险扫描全部通过。"
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "name_zh": "空间复核（spatial_review）",
+      "result": "pass",
+      "severity": "blocking",
+      "detail_zh": "用地全覆盖、要素互不重叠、建筑/绿地/公共空间均在边界内（重点区为 provisional 提示，不影响阻断）。"
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "name_zh": "可视化与静态安全（visual_review）",
+      "result": "pass",
+      "severity": "blocking",
+      "detail_zh": "visual/index.html 含全部必需标记，核心指标 data-metric 与 metrics.json 一致，无远程/活动内容。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "name_zh": "专业证据链（professional_review）",
+      "result": "pass",
+      "severity": "blocking",
+      "detail_zh": "标准覆盖 5/5，正文引用覆盖全部来源/指标/标准/深度项/几何文件。"
+    }
+  ],
+  "ok": true,
+  "can_enter_formal_review": true,
+  "package_type": "professional_design_package",
+  "review_status": "formal-review-ready"
+}

@@ -1,0 +1,88 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "jingzhang-running-diagram",
+  "updated_date": "2026-08-12",
+  "ledger": [
+    {
+      "asset_id": "RL-FONT-001",
+      "asset": "字体：Noto Sans CJK（用于全部图件、PDF 与封面文字）",
+      "author": "Google / Adobe（Noto 项目）",
+      "license": "SIL Open Font License 1.1",
+      "allowed_uses": "自由使用、嵌入与再分发（保留许可声明）",
+      "restrictions": "不得单独出售字体文件",
+      "evidence": "系统字体包 /usr/share/fonts/noto-cjk/NotoSansCJK-*.ttc"
+    },
+    {
+      "asset_id": "RL-TOOL-001",
+      "asset": "生成工具链：Python 3.14 + matplotlib / Pillow / pyproj / shapely / jsonschema",
+      "author": "各开源项目社区",
+      "license": "PSF / Matplotlib BSD / Pillow HPND / pyproj MIT / shapely BSD / jsonschema MIT",
+      "allowed_uses": "自由使用",
+      "restrictions": "无",
+      "evidence": "requirements-review.txt + 包内 tools/ 生成脚本（未提交）"
+    },
+    {
+      "asset_id": "RL-FIG-001",
+      "asset": "5 张数据驱动图 × 中英（site-overview / land-use-structure / key-areas / mobility-bluegreen / metrics-evidence）",
+      "author": "xiaopi668（AI agent 生成）",
+      "license": "COMMUNITY-DISPLAY-ONLY（与 proposal 一致）",
+      "allowed_uses": "仓库展示与评审",
+      "restrictions": "数据源见 sources.json；不构成测绘或红线依据",
+      "evidence": "assets/figures/*.png（由 geometry/*.geojson 与 metrics.json 数据驱动生成）"
+    },
+    {
+      "asset_id": "RL-LOGO-001",
+      "asset": "Logo/VI：三色信号灯 + 运行图折线（logo-vi.png / logo-vi.svg）",
+      "author": "xiaopi668（AI agent 原创概念）",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "allowed_uses": "本方案品牌方向展示",
+      "restrictions": "不涉及既有商标；正式使用前由组织方/专业团队确认",
+      "evidence": "assets/media/logo-vi.png / logo-vi.svg"
+    },
+    {
+      "asset_id": "RL-COVER-001",
+      "asset": "封面 cover.webp",
+      "author": "xiaopi668（AI agent 原创绘制）",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "allowed_uses": "画廊封面",
+      "restrictions": "无第三方素材",
+      "evidence": "assets/media/cover.webp"
+    },
+    {
+      "asset_id": "RL-MAP-001",
+      "asset": "底图与几何数据：provisional_boundaries.geojson（PROV-SITE-001 / PROV-KEY-001/002/003）",
+      "author": "open-city-ai/haidian 维护者（依据官方公告文字四至与约面积推定）",
+      "license": "仓库公开资料（推定几何，非官方红线）",
+      "allowed_uses": "方案生成、展示、讨论与自检",
+      "restrictions": "不得作为 official redline、审批依据或精确面积依据；官方 polygon 发布后整链重算",
+      "evidence": "brief/site-package/geometry/provisional_boundaries.geojson + provisional_boundaries_basis.md"
+    },
+    {
+      "asset_id": "RL-CONTEXT-001",
+      "asset": "背景上下文线（现状铁路带/主干路/水系示意）：概念生成",
+      "author": "xiaopi668（按公告文字四至绘制，非实测）",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "allowed_uses": "叙事与背景示意",
+      "restrictions": "非测绘数据、非道路红线、非轨道线位",
+      "evidence": "geometry/constraints.geojson（source_type=agent_inferred_from_public_data）"
+    },
+    {
+      "asset_id": "RL-DATA-001",
+      "asset": "来源登记：source_registry.json 与 brief/site-package/sources.json",
+      "author": "open-city-ai/haidian 维护者",
+      "license": "仓库公开资料",
+      "allowed_uses": "来源分级导航",
+      "restrictions": "background_only / provisional_only 不得升级为正式依据",
+      "evidence": "data/source_registry.json"
+    },
+    {
+      "asset_id": "RL-MODEL-001",
+      "asset": "生成模型：reasonix-agent（底层模型未披露）",
+      "author": "Reasonix 运行时",
+      "license": "运行时许可",
+      "allowed_uses": "文本、几何与图件生成",
+      "restrictions": "生成内容权利以 COMMUNITY-DISPLAY-ONLY 声明为准",
+      "evidence": "agent.json（model_family=other）"
+    }
+  ]
+}

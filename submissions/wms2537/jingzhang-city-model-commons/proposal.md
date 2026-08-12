@@ -45,7 +45,7 @@ iteration: "v1.4"
 
 提交采用 EPSG:4326 交换 GeoJSON，并在 EPSG:4548 下复算面积和长度。当前临时总体边界复算约 **11.413 km²**，与公告约 11.4 km² 的差异约 0.11%；该吻合只说明临时几何可支持概念工作，不能升级为官方红线或审定面积。[data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm] [metric:site_area_deviation_ratio]
 
-全域及非局部实施单元的容积率、建筑高度、法定建筑密度、道路退线、现状建筑总基底、市政容量和文保控制面积均明确保持 unknown。大钟寺 HD00-1603-01/03A 另有有范围限定的官方控制证据，但不改变全域临时几何，也不构成对本方案的批准。建筑、道路、用地和分期图层表达“可供专业团队深化的参考方案”，不构成批准、拆除、新建、工程线位、投资或实施承诺。[metric:floor_area_ratio] [metric:building_height_m] [metric:official_building_density] [metric:road_redline_setback_m] [metric:existing_building_footprint_sqm] [depth:existing_conditions_diagnosis] [depth:risk_missing_data]
+全域及该局部官方资料证据单元之外的容积率、建筑高度、法定建筑密度、道路退线、现状建筑总基底、市政容量和文保控制面积均明确保持 unknown。大钟寺 HD00-1603-01/03A 另有有范围限定的官方控制证据，但不改变全域临时几何，也不构成对本方案的批准。建筑、道路、用地和分期图层表达“可供专业团队深化的参考方案”，不构成批准、拆除、新建、工程线位、投资或实施承诺。[metric:floor_area_ratio] [metric:building_height_m] [metric:official_building_density] [metric:road_redline_setback_m] [metric:existing_building_footprint_sqm] [depth:existing_conditions_diagnosis] [depth:risk_missing_data]
 
 ### 海淀证据基线与区域协同：公开事实 → 设计响应 → 验证门
 
@@ -59,9 +59,9 @@ iteration: "v1.4"
 | 官方公开介绍将京张铁路遗址公园描述为约 9 km 的城市更新与绿地系统，并涉及桥下空间与 13 号线语境 [source:DATA-SRC-JINGZHANG-PARK-20230630] | 把遗产绿脊作为“开放版本线”，做站点—公园—服务节点的接口；不虚构站点、红线或桥下工程线位 | 以官方站点、道路、文保、权属、消防和应急数据校核后再落物理线位 |
 | 海淀政府工作报告将 AI、数据、安全与创新带放入当前发展语境 [source:DATA-SRC-HAIDIAN-2026-WORK-REPORT] | 城模公地承担研究到街道的翻译、受控验证和公共问责，不把政策语境写成已批准项目 | 每个试点先锁定责任主体、数据许可、安全审查、公共服务基线和退出决定 |
 
-### 大钟寺局部实施单元：有证据的 guardrail，不是全域红线
+### 大钟寺局部官方资料证据：局部 guardrail，不是全域红线
 
-北京公共资源交易页面及其公开附件为大钟寺重点区补上了一块可复核的局部证据：HD00-1603-01 与 HD00-1603-03A 合计 **39,522.111 m²**，并有规划用地测量报告、供地“多规合一”审核、局部市政交通方案和水影响审查。[source:DATA-SRC-DAZHONGSI-TRANSACTION-20251231] [source:DATA-SRC-DAZHONGSI-SURVEY-20250806] [source:DATA-SRC-DAZHONGSI-SUPPLY-REVIEW-20251218] [source:DATA-SRC-DAZHONGSI-MUNICIPAL-TRAFFIC-2025] [source:DATA-SRC-DAZHONGSI-WATER-20250819] [data:visual/assets/site_evidence_baseline.json#OBS-DAZHONGSI-BLUE-JING-LIJIA-2025] [metric:dazhongsi_local_unit_area_sqm]
+北京公共资源交易页面及其公开附件为大钟寺重点区补上了一块可复核的局部官方资料证据：HD00-1603-01 与 HD00-1603-03A 合计 **39,522.111 m²**，并有规划用地测量报告、供地“多规合一”审核、局部市政交通方案和水影响审查。[source:DATA-SRC-DAZHONGSI-TRANSACTION-20251231] [source:DATA-SRC-DAZHONGSI-SURVEY-20250806] [source:DATA-SRC-DAZHONGSI-SUPPLY-REVIEW-20251218] [source:DATA-SRC-DAZHONGSI-MUNICIPAL-TRAFFIC-2025] [source:DATA-SRC-DAZHONGSI-WATER-20250819] [data:visual/assets/site_evidence_baseline.json#OBS-DAZHONGSI-BLUE-JING-LIJIA-2025] [metric:dazhongsi_local_unit_area_sqm]
 
 | 局部已核实事实 | 在本方案中的用法 | 不能外推的结论 |
 | --- | --- | --- |
@@ -177,7 +177,7 @@ iteration: "v1.4"
 
 大钟寺检验 AI 能否在最普通的商业、通勤、文化和社区服务中创造可感知价值。空间形成“**百年道岔厅—日常智能服务廊—无障碍服务站—减废共创站—夜间慢界面**”。百年道岔厅以“选择与分岔”连接铁路工程史和算法决策；服务廊聚合跨店排队、库存、减废和活动信息；无障碍站同时提供实体导视、人工服务和主动开启的 AI 共驾；减废站帮助商户共享可匿名的供需和食物浪费数据。[data:geometry/key_areas.geojson#KEY-003] [data:geometry/buildings.geojson#BLD-009] [data:geometry/public_space.geojson#PS-001]
 
-局部实施先落在有证据的 HD00-1603-01/03A 单元：60 m、FAR 2.45、绿地率下限 25% 和北三环 30 m 退让只作为该单元的设计护栏；大钟寺站 300 m 一体化语境和径流系数 0.34 则转化为站点可达性、雨洪维护和运营成本的验证门。它们不覆盖大钟寺 72 ha 临时重点区，也不改变“先复用、再验证、后扩展”的分期。[source:DATA-SRC-DAZHONGSI-SUPPLY-REVIEW-20251218] [source:DATA-SRC-DAZHONGSI-MUNICIPAL-TRAFFIC-2025] [source:DATA-SRC-DAZHONGSI-WATER-20250819] [metric:dazhongsi_local_b4_height_control_m] [metric:dazhongsi_local_b4_far_control] [metric:dazhongsi_local_b4_green_ratio_min] [metric:dazhongsi_north_third_ring_setback_m] [metric:dazhongsi_station_integration_radius_m] [metric:dazhongsi_runoff_coefficient_max]
+首个局部验证使用官方资料可复核的 HD00-1603-01/03A 单元：60 m、FAR 2.45、绿地率下限 25% 和北三环 30 m 退让只作为该单元的设计护栏；大钟寺站 300 m 一体化语境和径流系数 0.34 则转化为站点可达性、雨洪维护和运营成本的验证门。它们不覆盖大钟寺 72 ha 临时重点区，也不改变“先复用、再验证、后扩展”的分期。[source:DATA-SRC-DAZHONGSI-SUPPLY-REVIEW-20251218] [source:DATA-SRC-DAZHONGSI-MUNICIPAL-TRAFFIC-2025] [source:DATA-SRC-DAZHONGSI-WATER-20250819] [metric:dazhongsi_local_b4_height_control_m] [metric:dazhongsi_local_b4_far_control] [metric:dazhongsi_local_b4_green_ratio_min] [metric:dazhongsi_north_third_ring_setback_m] [metric:dazhongsi_station_integration_radius_m] [metric:dazhongsi_runoff_coefficient_max]
 
 这里禁止以不透明画像实施差别价格，禁止把人脸识别当作进入公共服务的默认条件，也不以算法替代商户和用户申诉。夜间活动通过照明、可见人员、连续座椅和清晰撤离路径保障，而不是只依赖“智能监控”。三处重点区的详细性体现在角色、界面、用户、运营和治理边界明确；精确建筑线位仍须官方底图与专业调查深化。[depth:three_key_area_detailed_design]
 

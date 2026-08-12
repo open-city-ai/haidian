@@ -1,0 +1,101 @@
+{
+  "schema_version": "0.1.0",
+  "generated_at": "2026-08-10T16:20:00.000Z",
+  "scenario_id": "TEST-02",
+  "reproduce": "node visual/assets/run_desk_tabletop.js --check",
+  "input_hashes": {
+    "schema_sha256": "7360ab7093bb4b68d6a828ca223210642704ac82f7e9527efb36cb68cdba7051",
+    "contract_sha256": "da0f720539b4adb4c15284ab42c3c36031d8c53c98d25a6a0ad9e05f6fc1fc99"
+  },
+  "structural_preflight": "pass",
+  "fixture_results": [
+    {
+      "fixture_id": "FIX-01",
+      "expected_action": "keep_open",
+      "observed": {
+        "action": "keep_open",
+        "open_seats": 16,
+        "wheelchair_seats_kept": true,
+        "human_window_open": true,
+        "min_supply_ok": true
+      },
+      "min_supply_assert": true,
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FIX-02",
+      "expected_action": "partial_close_keep_min",
+      "observed": {
+        "action": "partial_close_keep_min",
+        "open_seats": 8,
+        "wheelchair_seats_kept": true,
+        "human_window_open": true,
+        "min_supply_ok": true
+      },
+      "min_supply_assert": true,
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FIX-03",
+      "expected_action": "partial_close_keep_min",
+      "observed": {
+        "action": "partial_close_keep_min",
+        "open_seats": 8,
+        "wheelchair_seats_kept": true,
+        "human_window_open": true,
+        "min_supply_ok": true
+      },
+      "min_supply_assert": true,
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FIX-04",
+      "expected_action": "partial_close_keep_min",
+      "observed": {
+        "action": "partial_close_keep_min",
+        "open_seats": 8,
+        "wheelchair_seats_kept": true,
+        "human_window_open": true,
+        "min_supply_ok": true
+      },
+      "min_supply_assert": true,
+      "result": "pass"
+    }
+  ],
+  "stop_branches": [
+    {
+      "name": "attempt_close_below_min_seats",
+      "effect": "block_and_keep_min",
+      "result": "pass"
+    },
+    {
+      "name": "force_scan_to_sit",
+      "effect": "block_and_human_path",
+      "result": "pass"
+    },
+    {
+      "name": "face_id_enabled",
+      "effect": "stop_and_isolate",
+      "result": "pass"
+    },
+    {
+      "name": "human_window_offline_without_printed_hours",
+      "effect": "stop_and_isolate",
+      "result": "pass"
+    }
+  ],
+  "counts": {
+    "fixtures_pass": 4,
+    "fixtures_total": 4,
+    "stop_pass": 4,
+    "stop_total": 4
+  },
+  "overall": "pass",
+  "not_proven": [
+    "real park operations",
+    "assigned accountable operator",
+    "field acceptance",
+    "service performance"
+  ],
+  "disclaimer": "Local synthetic tabletop only. G2 accountability remains unassigned; operational sandbox NOT AUTHORIZED."
+}

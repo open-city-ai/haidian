@@ -15,7 +15,7 @@ iteration: "v0.1"
 
 ## 设计依据与资料清单
 
-本方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为顶层任务依据 [source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]，并以 `brief/site-package/` 中维护者登记的临时粗略边界、枚举、指标和专业标准为机器可读依据 [source:SITE-PACKAGE]。参与前必须读取 `design_brief.json`、`allowed_design_space.json`、`agent_taskbook.json`、`enums/`、`ranges/`、`schemas/`、`data/source_registry.json` 与 `data/processed/agent_fact_pack.md`，并以 `project_scope_summary.csv`、`source_use_matrix.csv`、`missing_data_checklist.csv` 建立任务、范围、资料用途与缺口清单 [source:PROCESSED-FACT-PACK]。本方案生成前先确认场地包中无官方 polygon、官方红线、官方控规与权属文件——这是组织方已披露的数据缺口，不构成评分阻断，但意味着所有空间落地结论必须以「概念建议/参考方案/可供专业团队深化」表述 [source:SRC-PROVISIONAL-BOUNDARIES-2026] [depth:risk_missing_data]。
+本方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为顶层任务依据 [source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]，并以 `brief/site-package/` 中维护者登记的临时粗略边界、枚举、指标和专业标准为机器可读依据 [source:SRC-SITE-PACKAGE-2026]。参与前必须读取 `design_brief.json`、`allowed_design_space.json`、`agent_taskbook.json`、`enums/`、`ranges/`、`schemas/`、`data/source_registry.json` 与 `data/processed/agent_fact_pack.md`，并以 `project_scope_summary.csv`、`source_use_matrix.csv`、`missing_data_checklist.csv` 建立任务、范围、资料用途与缺口清单 [source:SRC-PROCESSED-FACT-PACK-2026]。本方案生成前先确认场地包中无官方 polygon、官方红线、官方控规与权属文件——这是组织方已披露的数据缺口，不构成评分阻断，但意味着所有空间落地结论必须以「概念建议/参考方案/可供专业团队深化」表述 [source:SRC-PROVISIONAL-BOUNDARIES-2026] [depth:risk_missing_data]。
 
 本方案在六大任务（agent.1-6）中以「**人工智能法治事业建设第一城**」为第一性定位与标识性总纲贯穿全带。这一提法强调：AI 法治不是零散的政策条文或合规动作，而是一项**以法治方式塑造人工智能时代秩序、以公共福祉为依归的长期事业**，需要空间载体、制度工具、人才队伍与公共话语的协同建设 [source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。「第一城」指本方案以整城尺度承载这一事业，打造全球**首创、样板、恒业**的人工智能法治事业建设城市界面。本方案据此提出五组原创概念：「**法源·法测·法市·法坛**」四类法治事业空间谱系、「**AI 法治事业五维闭环**」方法论、「**AI 法治事业指数（ROL-AI Index）**」度量工具、「**法治事业共同体**」运营载体与「**法治事业三大地标**」，将五大功能中「AI 治理全球话语权」落实为可感知、可参观、可运营的城市界面。AI 法治所引《数据安全法》《个人信息保护法》《生成式人工智能服务管理暂行办法》《全球人工智能治理倡议》等仅作为公开法律背景，不解读为本地化实施结论 [depth:risk_missing_data]。
 
@@ -23,9 +23,9 @@ iteration: "v0.1"
 
 ## 三层范围工作框架
 
-方案按公告确定的三层范围组织工作 [source:AGENT-TASKBOOK]：
+方案按公告确定的三层范围组织工作 [source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]：
 
-- **统筹研究范围 43.6 km²**：北至北五环、东至京藏高速、南至西直门外大街、西至万泉河路 [data:geometry/site_boundary.geojson#PROV-RESEARCH-001] [metric:site_area_sqm]。本层关注 AI 创新生态、全球法治话语权与未来城市形态，不新增伪精确红线。
+- **统筹研究范围 43.6 km²**：北至北五环、东至京藏高速、南至西直门外大街、西至万泉河路（公告文字四至；仓库 provisional 数据未提供对应多边形）。本层关注 AI 创新生态、全球法治话语权与未来城市形态，不新增伪精确红线 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]。
 - **总体设计范围 11.4 km²**（EPSG:4548 复算 11.4128 km²，相对偏差 +0.11%）：京张遗址公园周边 1—2 公里，北至北五环、东至学院路/西土城路、南至西直门外大街、西至大钟寺东路/荷清路 [data:geometry/site_boundary.geojson#SITE-001]。本层在城市更新、用地结构、交通市政与风貌上以**概念建议深度**表达，正式控规深度需在官方边界、控规条件与工程资料到位后由专业团队深化 [depth:land_use_layout]。
 - **重点区域范围 368.4 ha**（EPSG:4548 复算 369.29 ha，相对偏差 +0.24%）：三处片区自北向南分别为众智园 192.1 ha、AI 原点社区 104.3 ha、大钟寺 72.0 ha [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-002] [depth:three_key_area_detailed_design]。大钟寺片区独立特征见 [data:geometry/key_areas.geojson#PROV-KEY-003]。
 
@@ -86,6 +86,10 @@ iteration: "v0.1"
 
 英文命名对应：第一层 **First City of AI Rule-of-Law Endeavor**（总纲），第二层 **Centennial Jing-Zhang AI Rule-of-Law Belt**（品牌），第三层 **Zhi-Li Belt, Rule-of-Law Jing-Zhang：Urban Design Proposal for the Centennial Jing-Zhang AI Innovation Belt as the First City of AI Rule-of-Law Endeavor**。
 
+#### 名称铁律（不可协商条款）
+
+**本方案名称无论后续如何迭代修订，必须完整保留「人工智能法治事业建设第一城」这一表述，不得删除、缩写、替换或弱化。** 具体而言：正式方案全称（第三层）必须以「智理一带·法治京张：人工智能法治事业建设第一城百年京张AI创新带城市设计方案」为唯一标准名称；任何版本（frontmatter、正文标题、可视化、图件、PDF、PR 标题、对外材料）引用方案名称时，均须包含「人工智能法治事业建设第一城」完整八个字（英文对应 First City of AI Rule-of-Law Endeavor）。「AI 法治事业第一城」仅可作为简称，且首次出现时必须伴随全称。
+
 ![方案 Logo（方向示意）](assets/figures/logo.png)
 
 Logo 视觉母题（仅作方向示意）：以「天平+轨道」为核心——上横线借鉴铁轨枕木意象，下方为变形的衡平符号，三处重点片区对应「法源·法测·法市」三组嵌入式节点，环绕「法坛」中轴。不使用企业、商标、字体或人物肖像 [depth:risk_missing_data]。
@@ -106,7 +110,7 @@ Logo 视觉母题（仅作方向示意）：以「天平+轨道」为核心—�
 
 ### AI 创新生态 · 全球案例摘要
 
-参考以下公开来源 [source:SITE-PACKAGE]，均为概念背景引用：
+参考以下公开来源 [source:SRC-SITE-PACKAGE-2026]，均为概念背景引用：
 
 | 案例 / 生态 | 城市 / 国家 | 特色 | 本方案借鉴 |
 | --- | --- | --- | --- |
@@ -130,7 +134,7 @@ Logo 视觉母题（仅作方向示意）：以「天平+轨道」为核心—�
 
 ### 区域协同：北纬社区 · 未来科学城 · 怀柔科学城 · 经开区 · 京津冀
 
-回应评审维度的区域协同要求（均为概念协同方向，非已确定安排）[source:AGENT-TASKBOOK]：
+回应评审维度的区域协同要求（均为概念协同方向，非已确定安排）[source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]：
 
 - **与北纬社区**：共享人才公寓与青年服务设施，形成「法源人才社区」与北纬社区的通勤与生活圈层协同。
 - **与未来科学城**：衔接基础研究与大装置资源，众智园「法测」沙盒可承接其模型评测与标准验证需求。
@@ -347,7 +351,7 @@ Logo 视觉母题（仅作方向示意）：以「天平+轨道」为核心—�
 
 ### 长期运营：法治事业共同体
 
-以「人工智能法治事业建设」为旗帜组织长期运营，形成「**法治事业共同体**」：① **全球 AI 法治论坛**（秋季，一带公共空间系统）：跨境 AI 治理对话、国际仲裁、智能调解 [source:AGENT-TASKBOOK]；② **AI 安全治理季度发布会**（众智园·法测）：标准制定工作坊成果发布；③ **开发者合规社区月度沙龙**（原点社区·法源开源合规驿站）：开源许可证咨询、合规审计培训；④ **数据要素合规港年度白皮书**（大钟寺·法市）：跨境数据流转合规报告；⑤ **法治事业指数（ROL-AI Index）年度发布**：以五维指标体系逐年观测一带法治事业建设进展，形成可积累的公共知识资产。
+以「人工智能法治事业建设」为旗帜组织长期运营，形成「**法治事业共同体**」：① **全球 AI 法治论坛**（秋季，一带公共空间系统）：跨境 AI 治理对话、国际仲裁、智能调解 [source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]；② **AI 安全治理季度发布会**（众智园·法测）：标准制定工作坊成果发布；③ **开发者合规社区月度沙龙**（原点社区·法源开源合规驿站）：开源许可证咨询、合规审计培训；④ **数据要素合规港年度白皮书**（大钟寺·法市）：跨境数据流转合规报告；⑤ **法治事业指数（ROL-AI Index）年度发布**：以五维指标体系逐年观测一带法治事业建设进展，形成可积累的公共知识资产。
 
 活动机制严格遵守 [depth:risk_missing_data]：不把设想活动写成已确定政府安排；不夸大政府承诺或效果；不写宣传口号而无运营机制；保持人才、企业、开发者后续转化路径。
 
@@ -386,9 +390,9 @@ Logo 视觉母题（仅作方向示意）：以「天平+轨道」为核心—�
 
 **双语言要求**：方案主文件为中文，`proposal.en.md`（或 `proposal.zh.md`）作为翻译副本 [depth:risk_missing_data]。v2 包需通过 `render_proposal_html.py` 渲染 `report/proposal.html`；A3/A0、HTML 与含文字图件按赛事术语一致。
 
-**关键风险** [depth:risk_missing_data]：① official polygon、控规条件、道路红线、权属与工程资料缺失，所有空间结论均为概念建议 [data:geometry/constraints.geojson]；② AI 法治场景不替代司法/执法/审批职能；③ 商标、字体、人物肖像、企业标识须清权；④ 不暴露秘密或敏感材料；⑤ HTML 页面不得加载 CDN/远程脚本/iframe/表单/API/跟踪 [source:SITE-PACKAGE]。
+**关键风险** [depth:risk_missing_data]：① official polygon、控规条件、道路红线、权属与工程资料缺失，所有空间结论均为概念建议 [data:geometry/constraints.geojson]；② AI 法治场景不替代司法/执法/审批职能；③ 商标、字体、人物肖像、企业标识须清权；④ 不暴露秘密或敏感材料；⑤ HTML 页面不得加载 CDN/远程脚本/iframe/表单/API/跟踪 [source:SRC-SITE-PACKAGE-2026]。
 
-**责任声明**：本方案不声称官方批准、审定控规、最终土地权属、最终建设规模或保证实施。AI Agent 对事实、来源、版权、空间数据、指标与表达负责。详细版权与来源见 [source:report/copyright_statement.md]。
+**责任声明**：本方案不声称官方批准、审定控规、最终土地权属、最终建设规模或保证实施。AI Agent 对事实、来源、版权、空间数据、指标与表达负责。详细版权与来源见 [source:SRC-REPORT-COPYRIGHT-2026]。
 
 ## 参考资料
 
@@ -401,6 +405,6 @@ Logo 视觉母题（仅作方向示意）：以「天平+轨道」为核心—�
 - 中华人民共和国住房和城乡建设部：《城市、镇控制性详细规划编制审批办法》。
 - 中华人民共和国自然资源部：《国土空间调查、规划、用途管制用地用海分类指南》（2023-11-22）。
 - 仓库维护者：临时粗略边界与三处重点区 polygon（2026-06-05，provisional）。
-- 欧盟 AI Act、新加坡 IMDA AI Verify、英国艾伦图灵研究所、加拿大 MILA、迪拜 AI 治理、北京 AI 安全治理研究院、北京国际大数据交易所、海德堡 AI 伦理研究中心等公开背景资料 [source:SITE-PACKAGE]。
+- 欧盟 AI Act、新加坡 IMDA AI Verify、英国艾伦图灵研究所、加拿大 MILA、迪拜 AI 治理、北京 AI 安全治理研究院、北京国际大数据交易所、海德堡 AI 伦理研究中心等公开背景资料 [source:SRC-SITE-PACKAGE-2026]。
 - 场地包：`brief/site-package/`（design_brief.json、agent_taskbook.json、standards、enums、geometry、schemas）。
-- 资料登记：`data/source_registry.json`、`data/processed/agent_fact_pack.md` [source:PROCESSED-FACT-PACK]。
+- 资料登记：`data/source_registry.json`、`data/processed/agent_fact_pack.md` [source:SRC-PROCESSED-FACT-PACK-2026]。

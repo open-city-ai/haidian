@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0.0",
+  "audit_id": "CIVIC-SPINE-CLAIM-PROVENANCE-001",
+  "claim_level": "local_structural_audit",
+  "operational_status": "not_authorized_not_run",
+  "gate_effect": "none; proves only that visible package claims link back to bundled files and declared limits",
+  "reproduce": "node visual/assets/run-civic-spine-claim-provenance.js --check",
+  "visible_claims": [
+    {
+      "id": "VC-01-site-area",
+      "claim_zh": "总体设计范围展示为约 11.41 km²，且只来自 provisional site boundary",
+      "metric_id": "site_area_sqm",
+      "expected_value": 11412825.386,
+      "display_tokens": ["11.41 km²", "site_area_sqm"],
+      "required_files": ["metrics.json", "geometry/site_boundary.geojson", "visual/index.html"],
+      "required_proposal_tokens": ["provisional boundary", "official redline", "重算"],
+      "cannot_support": ["official redline", "statutory site area", "approval basis"]
+    },
+    {
+      "id": "VC-02-green-ratio",
+      "claim_zh": "绿地比例展示为 12.3%，机器值来自 metrics.json 和 green_space.geojson",
+      "metric_id": "green_ratio",
+      "expected_value": 0.123423,
+      "display_tokens": ["12.3%", "green_ratio"],
+      "required_files": ["metrics.json", "geometry/green_space.geojson", "visual/index.html"],
+      "required_proposal_tokens": ["green_ratio", "蓝绿"],
+      "cannot_support": ["approved green rate", "built landscape performance"]
+    },
+    {
+      "id": "VC-03-public-space-ratio",
+      "claim_zh": "公共空间比例展示为 7.3%，机器值来自 metrics.json 和 public_space.geojson",
+      "metric_id": "public_space_ratio",
+      "expected_value": 0.073281,
+      "display_tokens": ["7.3%", "public_space_ratio"],
+      "required_files": ["metrics.json", "geometry/public_space.geojson", "visual/index.html"],
+      "required_proposal_tokens": ["public_space_ratio", "公共空间"],
+      "cannot_support": ["approved public-space quota", "field usability"]
+    },
+    {
+      "id": "VC-04-three-key-areas",
+      "claim_zh": "三处重点区分别具有不同 operating section 与 switchback 条件",
+      "json_path": "visual/assets/key-area-operating-sections.json",
+      "array_path": "areas",
+      "expected_count": 3,
+      "required_keys": ["id", "program", "traffic", "building_strategy", "switchback"],
+      "required_proposal_tokens": ["众智园", "AI 原点", "大钟寺"],
+      "cannot_support": ["official key-area polygon", "ownership consent"]
+    },
+    {
+      "id": "VC-05-scenario-cards",
+      "claim_zh": "12 张 AI 场景卡具有隐私边界、人工接管、失败模式和 switchback 条件",
+      "json_path": "visual/assets/scenario-governance-matrix.json",
+      "array_path": "cards",
+      "expected_count": 12,
+      "required_keys": ["id", "title", "input_data", "algorithm_role", "failure_modes", "human_takeover", "switchback_trigger", "recovery_condition", "privacy_boundary"],
+      "required_proposal_tokens": ["十二", "switchback", "human takeover"],
+      "cannot_support": ["AI model safety", "public deployment authorization"]
+    },
+    {
+      "id": "VC-06-implementation-register",
+      "claim_zh": "12 个 work packages 具有阶段、成本、KPI、暂停条件和专业深化接口",
+      "json_path": "visual/assets/project-implementation-register.json",
+      "array_path": "projects",
+      "expected_count": 12,
+      "required_keys": ["id", "name", "phase", "cost_band", "owner_type", "approval_dependency", "kpi", "public_value", "pause_trigger", "professional_interface"],
+      "required_proposal_tokens": ["十二", "pause", "professional"],
+      "cannot_support": ["capital approval", "implementation promise"]
+    },
+    {
+      "id": "VC-07-inclusion-governance",
+      "claim_zh": "6 类公共利益群体具有非智能手机、人工和可申诉路径",
+      "json_path": "visual/assets/inclusion-governance-matrix.json",
+      "array_path": "groups",
+      "expected_count": 6,
+      "required_keys": ["group", "responses"],
+      "required_proposal_tokens": ["non-smart", "appeal", "manual"],
+      "cannot_support": ["field accessibility compliance", "actual service SLA"]
+    },
+    {
+      "id": "VC-08-global-case-transfer",
+      "claim_zh": "8 个国际案例只作为机制提示，不复制空间形态或官方证据",
+      "json_path": "visual/assets/global-case-transfer-table.json",
+      "array_path": "cases",
+      "expected_count": 8,
+      "required_keys": ["name", "mechanism", "transfer_to_jingzhang"],
+      "required_proposal_tokens": ["global reference", "not copied"],
+      "cannot_support": ["case equivalence", "verified policy transfer"]
+    },
+    {
+      "id": "VC-09-rights-and-bilingual",
+      "claim_zh": "权利台账和双语等价检查存在，并说明字体、图片、PDF、HTML 和 GeoJSON 的清权边界",
+      "required_files": ["visual/assets/rights-clearance-ledger.json", "visual/assets/bilingual-equivalence-check.json", "report/copyright_statement.md", "proposal.en.md"],
+      "required_proposal_tokens": ["rights", "bilingual", "translation"],
+      "cannot_support": ["legal certification", "third-party trademark clearance"]
+    },
+    {
+      "id": "VC-10-four-gate-readiness",
+      "claim_zh": "四个本地 gate 均 PASS，但仅代表 formal-review-ready，不代表评分、发布或官方采纳",
+      "json_path": "self_check.json",
+      "required_gate_statuses": ["DETERMINISTIC_VALIDATION", "SPATIAL_REVIEW", "VISUAL_PACKAGING", "PROFESSIONAL_EVIDENCE"],
+      "required_proposal_tokens": ["not government commitments", "formal professional review", "provisional"],
+      "cannot_support": ["Review Agent score", "gallery publication", "government endorsement"]
+    }
+  ]
+}

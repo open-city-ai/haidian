@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>人民的 AI：为 AI 原生第一代设计的城市 - visual index</title>
+<style>
+:root{--ink:#162033;--muted:#667085;--paper:#ffffff;--soft:#f6f8fb;--line:#d7dee8;--navy:#172235;--green:#4CAF6E;--orange:#E08A3C}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--paper);color:var(--ink);line-height:1.65}
+.wrap{max-width:1080px;margin:0 auto;padding:24px}
+header.hero{background:var(--navy);color:#fff;border-radius:16px;padding:36px 40px;margin-bottom:28px}
+.eyebrow{font-size:12px;letter-spacing:.12em;color:#9fb0c8;text-transform:uppercase;margin-bottom:10px}
+h1{font-size:27px;font-weight:800;margin-bottom:12px;line-height:1.3}
+.hero-copy{color:#c8d2e0;font-size:14px;max-width:760px}
+.pill-row{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
+.pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#e6ecf5;font-size:12px;padding:4px 12px;border-radius:999px}
+.status-box{background:#fff8f0;border:1px solid #f0d9b8;border-radius:12px;padding:14px 18px;margin-bottom:28px}
+.status-box strong{color:#a05e00;font-size:13px}
+.status-box p{color:#8a6a3a;font-size:12px;margin-top:4px}
+.sheet{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:20px}
+.sheet h2{font-size:18px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.sheet h2::before{content:"";width:6px;height:18px;background:var(--orange);border-radius:3px;display:inline-block}
+p{font-size:14px;color:#3d4a5c;margin-bottom:10px}
+.fig{width:100%;border-radius:10px;border:1px solid var(--line);margin-top:12px}
+.area-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.area-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px}
+.area-card h3{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.area-card p{font-size:13px;color:var(--muted);margin-bottom:0}
+.metric-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}
+.metric{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center}
+.m-val{font-size:22px;font-weight:800;color:var(--navy);display:block}
+.m-name{font-size:11px;color:var(--muted);display:block;margin-top:2px}
+.ratio{font-size:12px;color:var(--muted);margin-top:8px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.chip{background:#eef4ff;color:#2d5aa8;font-size:12px;padding:5px 12px;border-radius:999px;border:1px solid #cfe0ff}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;margin-top:8px}
+th,td{border:1px solid var(--line);padding:10px 14px;text-align:left;font-size:13px}
+th{background:var(--navy);color:#fff;font-weight:600}
+td{color:#3d4a5c}
+ul{padding-left:20px;font-size:13.5px;color:#3d4a5c}
+li{margin-bottom:5px}
+.compliance{font-size:12.5px;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:18px 0 30px}
+.scen-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.sc-card { border: 1.5px solid #e2571b; border-radius: 8px; padding: 8px 10px; font-size: 12px; line-height: 1.55; background: #fff; }
+.sc-card b { color: #e2571b; }
+.sc-card i { color: #666; font-style: normal; background: #eef2f7; border-radius: 4px; padding: 1px 6px; font-size: 11px; }
+.persona-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.persona { border: 1.5px solid #245b8f; border-radius: 8px; padding: 8px 10px; font-size: 12px; line-height: 1.55; background: #fff; }
+.persona b { color: #245b8f; }
+.chain-note { background: #172033; color: #fff; border-radius: 8px; padding: 10px 14px; font-size: 12.5px; line-height: 1.8; }
+.small-note { font-size: 11.5px; color: #667085; margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="eyebrow">方案可视化总览 / 百年京张 AI 创新带城市设计开源征集</div>
+<h1>人民的 AI：为 AI 原生第一代设计的城市</h1>
+<p class="hero-copy">离线电子展示成果。权威数据仍以 GeoJSON、metrics.json、矩阵和自检结果为准；本页把总览地图、三层范围、重点区域、用地分区、交通慢行、蓝绿公共空间、建筑、更新项目、AI 场景、核心指标、任务覆盖、自检状态、来源与假设转成人类可读的视觉说明。</p>
+<div class="pill-row"><span class="pill">总览地图</span><span class="pill">三层范围</span><span class="pill">重点区域</span><span class="pill">用地分区</span><span class="pill">交通慢行</span><span class="pill">AI 场景</span><span class="pill">任务覆盖</span><span class="pill">自检状态</span></div>
+</header>
+
+<div class="status-box"><strong>临时边界 intake · 自检状态</strong><p>Deterministic validation: PASS · Spatial review: PASS (provisional) · Visual packaging: PASS · Professional evidence: PASS · Formal review: ready<br>组织方数据缺口：官方 SITE_BOUNDARY 与三处 KEY_AREA 多边形尚未发布；provisional geometry 仅用于生成、展示与临时复算（official_boundary=false），不阻止内容评分；官方几何发布后全指标重算（Organizer data gap — not a participant blocker; recalculation trigger）</p></div>
+
+<section class="sheet">
+<h2>品牌符号：人字轨（Rénzì Rail）</h2>
+<p><img src="../assets/figures/brand-symbol.png" alt="人字轨品牌符号" style="max-width:280px;display:block;margin:8px auto;"></p>
+<p>符号取自京张铁路青龙桥人字形展线：<strong>技术向人低头</strong>（铁轨在原点为人折返）+ <strong>两条轨道</strong>（国家基础设施 × 个人伙伴，并行不绑架、只在原点汇合）。最小 VI：京张蓝 #0B3D91 打底 + 硅基橙 #FF6B1A 点睛；导视系统以人字折返语义做分叉/汇合箭头——详见 <code>report/narrative.md</code>。</p>
+</section>
+
+<section class="sheet">
+<h2>总览地图：人民的 AI</h2>
+<p>AI 的双重性质：国家基建（算力集群）与个人伙伴（Agent）在这条百年铁轨上完成转译——把国家基建的能量，变成个人伙伴的温度。京张的第二次回答：1909 年詹天佑的人字形铁路证明"技术可以自主"；2026 年这条带要证明"技术可以为民"。硅基伙伴：长期记忆 + 主动服务 + 深度参与；AI 原生第一代直接长在"伙伴代办、人话直连、可审计可追责"的新界面里。</p>
+<img class="fig" src="../assets/figures/site-overview.png" alt="总体概念总览地图">
+</section>
+
+<section class="sheet">
+<h2>三层范围</h2>
+<table>
+<tr><th>层级</th><th>面积</th><th>本方案回答</th></tr>
+<tr><td>统筹研究范围</td><td>43.6 km²</td><td>"国家基建 + 个人伙伴"双轨创新链</td></tr>
+<tr><td>总体设计范围</td><td>11.4 km²（约 1140 ha）</td><td>原点-成长三站公共主轴</td></tr>
+<tr><td>重点区域范围</td><td>368.4 ha</td><td>众智园 / AI 原点社区 / 大钟寺</td></tr>
+</table>
+<p>空间结构一句话：以京张遗址公园为"AI 原点"，以三处重点区为成长三站，让 AI 原生第一代沿百年铁轨完成从"遇见 AI"到"创造 AI"的成长。</p>
+</section>
+
+<section class="sheet">
+<h2>重点区域：成长三站</h2>
+<div class="area-grid">
+<article class="area-card"><h3>众智园 · 192.1 ha</h3><p>AI 的幼儿园到研究所：开源实验室、算力科普馆、AI 原生学校旗舰。</p></article>
+<article class="area-card"><h3>AI 原点社区 · 104.3 ha</h3><p>AI 的成长社区：AI 原点广场（第一个硅基伙伴领取地）、AI 议事亭网络、社区伙伴驿站。</p></article>
+<article class="area-card"><h3>大钟寺 · 72.0 ha</h3><p>AI 的生活市场：伙伴直连消费街区、AI 生活市集、智能原生新业态孵化。</p></article>
+</div>
+<img class="fig" src="../assets/figures/key-areas.png" alt="三处重点区域图">
+</section>
+
+<section class="sheet">
+<h2>用地分区</h2>
+<p>用地策略：以更新为主、以新建为辅。保留京张铁路遗存与历史建筑；改造机车库、老厂房为科普馆、实验室与市集；新建集中于重点区产业地块。非重点区暂以留白用地登记，待官方边界发布后深化。</p>
+<img class="fig" src="../assets/figures/land-use-structure.png" alt="用地分区与成长主轴图">
+</section>
+
+<section class="sheet">
+<h2>交通慢行 · 蓝绿公共空间 · 建筑</h2>
+<p>交通：AI 成长主轴道路连接三站，京张遗址公园绿道为慢行主轴，重点区内自动驾驶微循环试点"无 App 出行"伙伴直连叫车。蓝绿：主轴绿带宽约 160 米（概念示意），衔接小月河，形成"百年铁轨 + 蓝绿慢行复合环"。公共空间：一轴三核多点——AI 原点广场、AI 科普广场、AI 市集广场与社区 AI 议事亭。建筑：12 栋概念建筑基底，总面积约 45 ha，覆盖研发、教育、居住、商业、社区服务与文化展示类型。</p>
+<img class="fig" src="../assets/figures/mobility-bluegreen.png" alt="交通蓝绿公共空间结构图">
+</section>
+
+<section class="sheet">
+<h2>核心指标（临时边界复算）</h2>
+<div class="metric-row">
+<div class="metric"><span class="m-val" data-metric="site_area_sqm" data-value="11412825.385554">1140</span><span class="m-name">总体设计范围 ha</span></div>
+<div class="metric"><span class="m-val">369</span><span class="m-name">重点区合计 ha</span></div>
+<div class="metric"><span class="m-val">149</span><span class="m-name">绿地主轴 ha</span></div>
+<div class="metric"><span class="m-val">91</span><span class="m-name">公共空间 ha</span></div>
+<div class="metric"><span class="m-val">45</span><span class="m-name">建筑基底 ha</span></div>
+<div class="metric"><span class="m-val" data-metric="green_ratio" data-value="0.130892">13.1%</span><span class="m-name">绿地率</span></div>
+<div class="metric"><span class="m-val" data-metric="public_space_ratio" data-value="0.079601">8.0%</span><span class="m-name">公共空间占比</span></div>
+</div>
+<div class="ratio">全部指标由提交几何复算（metrics.json），官方边界发布后整体重算。</div>
+<img class="fig" src="../assets/figures/metrics-evidence.png" alt="指标体系与证据链图">
+</section>
+
+<section class="sheet">
+<h2>AI 场景</h2>
+<div class="chips">
+<span class="chip">S1 一人一伙伴</span><span class="chip">S2 开源测试场 ★</span><span class="chip">S3 创作工坊</span>
+<span class="chip">S4 伙伴第一课</span><span class="chip">S5 放学托管</span><span class="chip">S6 城市讲解</span>
+<span class="chip">S7 养老照护</span><span class="chip">S8 医疗预检 ★</span><span class="chip">S9 社区服务台</span>
+<span class="chip">S10 直连消费 ★</span><span class="chip">S11 政务代办</span><span class="chip">S12 人机公地 ★</span>
+</div>
+<p><strong>12 张场景卡</strong>（≥10 达标）：每卡含数据最小集、人工接管点、异常处理、退出机制、成功指标、运营主体与空间需求，详见 <code>report/narrative.md</code>。测试验证型 4 张（S2/S8/S10/S12，≥3 达标，含 hypothesis/试点范围/安全阈值/停止条件/回滚/评估窗口）；用户画像 6 类（P1-P6，≥5 达标，覆盖拒绝 AI 者、低数字技能者、残障人士）。</p>
+<table>
+<tr><th>场景</th><th>归属</th><th>载体</th><th>阶段</th></tr>
+<tr><td>S1 AI 原生学校·一人一伙伴</td><td>众智园/原点</td><td>AI 原生教室</td><td>pilot</td></tr>
+<tr><td>S2 开源成果测试场 ★</td><td>众智园</td><td>测试场+公共算力</td><td>sandbox</td></tr>
+<tr><td>S3 AI 创作工坊</td><td>众智园</td><td>科普馆</td><td>concept</td></tr>
+<tr><td>S4 硅基伙伴第一课·领取仪式</td><td>原点</td><td>AI 原点广场</td><td>sandbox</td></tr>
+<tr><td>S5 AI 放学托管</td><td>原点</td><td>社区伙伴驿站</td><td>pilot</td></tr>
+<tr><td>S6 AI 城市讲解</td><td>遗址公园</td><td>讲解终端</td><td>concept</td></tr>
+<tr><td>S7 AI 养老照护</td><td>原点</td><td>驿站养老角</td><td>pilot</td></tr>
+<tr><td>S8 AI 医疗预检 ★</td><td>大钟寺/社区</td><td>社区 AI 诊所</td><td>sandbox</td></tr>
+<tr><td>S9 伙伴驿站·社区服务台</td><td>全域</td><td>驿站柜台</td><td>pilot</td></tr>
+<tr><td>S10 伙伴直连消费 ★</td><td>大钟寺</td><td>消费街区</td><td>sandbox</td></tr>
+<tr><td>S11 AI 政务代办</td><td>全域</td><td>社区 AI 议事亭</td><td>sandbox</td></tr>
+<tr><td>S12 人机公地·公共空间共创 ★</td><td>大钟寺/公园</td><td>公地展亭</td><td>sandbox</td></tr>
+</table>
+<p><strong>旗舰制度</strong>：硅基伙伴成长契约（自愿/可退出/可审计/可迁移，19 项制度条款 + Stage-Gate 试点）、城市 Agent 协议（分层架构 + 九项要件）、<strong>Agent First, Never Agent Only</strong> 三平行路径（Agent 代理 / 人类数字界面 / 人工线下服务，永不剥夺传统访问权）——详见 <code>report/narrative.md</code>。</p>
+<p><strong>朝圣地标 ×3</strong>：AI 原点（Origin）、开源智能荣誉墙（Open Intelligence Wall）、人机公地（Human-Agent Commons）；含荣誉展示体系与公共空间组件库（Agent kiosk / audit terminal / 议事亭 / 伙伴驿站 / 无障碍人工服务点）——详见 <code>report/narrative.md</code>。</p>
+<p><strong>年度运营系统</strong>：九大常设机制（原点日、开发者社区、API Challenge、场景公开测试、儿童 AI 原生计划、国际驻留、企业测试场、开源发布、市民治理审计）+ Idea→Sandbox→Pilot→Evaluate→Deploy/Stop→Open-source 闭环——详见 <code>report/narrative.md</code>。</p>
+</section>
+
+<section class="sheet">
+<h2>任务覆盖（agent.1 - agent.6）</h2>
+<table>
+<tr><th>任务</th><th>对应章节</th></tr>
+<tr><td>agent.1 一带总体概念与功能统筹</td><td>总体概念：人民的 AI + <code>report/narrative.md</code>（Logo/VI/协同图）</td></tr>
+<tr><td>agent.2 AI 全栈自主创新体系与生态</td><td>双轨创新生态 + <code>report/narrative.md</code>（全球案例/生态图谱）</td></tr>
+<tr><td>agent.3 AI+场景赋能与活力城市</td><td>AI+ 场景体系 + <code>report/narrative.md</code>（12 卡/画像/矩阵）</td></tr>
+<tr><td>agent.4 AI 公共空间与朝圣地标</td><td>AI 原点广场与三核公共空间 + <code>report/narrative.md</code>（地标/荣誉/组件库）</td></tr>
+<tr><td>agent.5 百年京张文化融合叙事</td><td>"自主→为民"叙事线 + 人字轨符号/导视系统（logo-vi-concept.md 第 5 节）</td></tr>
+<tr><td>agent.6 全球活动体系与长期运营</td><td><code>report/narrative.md</code>（九机制 + Stage-Gate）</td></tr>
+</table>
+</section>
+
+<section class="sheet">
+<h2>更新项目与实施政策</h2>
+<ul>
+<li>AI 原点广场（京张遗址公园机车库改造，2027-2028）</li>
+<li>AI 原生学校旗舰（众智园，2027-2029）</li>
+<li>伙伴直连消费街区（大钟寺，2028-2030）</li>
+<li>AI 议事亭网络（原点社区，2027 起分批）</li>
+<li>算力科普馆（众智园，2027-2028）</li>
+<li>全民 AI 节（2027 年首办，年度活动）</li>
+</ul>
+<p>政策建议（proposed，subject to approval）：拟将伙伴驿站与 AI 议事亭纳入社区公共设施配建标准；拟设立"AI 原生一代成长基金"（金额待评估）；城市服务伙伴直连接口拟按"公开协议、分级权限、全程留痕"原则开放。分期（conceptual window）：一期众智园（2027-2028）、二期原点社区（2028-2030）、三期大钟寺与全线深化（2030-2032），以官方审批为准。</p>
+</section>
+
+<section class="sheet">
+<h2>来源与假设</h2>
+<p><strong>来源</strong>：官方资格预审公告（2026-04-30，人民网北京频道等公开发布）、面向智能体任务书、公开资料来源登记、临时边界几何数据（brief/site-package/geometry/provisional_boundaries.geojson）。全部资料来自公开或清权渠道。</p>
+<p><strong>假设</strong>：① 三处重点区边界与面积以官方最终发布为准，本方案基于临时粗略边界生成；② 用地分类、道路等级、建筑类型遵循任务书枚举；③ 所有空间结构、指标与项目均为 AI Agent 概念建议，不替代专业规划，不越过政府审定与法定审批；④ 涉及未成年人、健康与财产的场景保留人工最终判断权。</p>
+</section>
+
+<section class="sheet">
+<h2>合规说明</h2>
+<p class="compliance">概念建议属性：本方案为 AI Agent（Luna@Hermes / wangqj646-hub）生成的开放共创建议。未使用任何非公开规划图纸、空间数据或内部控制指标；几何精度受临时边界限制，官方边界发布后全部重算；成果遵循"公共利益优先、公开资料边界、概念建议属性"共创章程。</p>
+</section>
+
+<section class="sheet">
+<h2>证据画廊 · 场景卡 · 用户画像 · 地标 · 组件 · 运营（12 场景卡全部展开）</h2>
+<p class="hero-copy">以下为评审可见证据：12 张场景卡、6 类用户画像、3 个朝圣地标、公共空间组件库与年度运营闭环。全部为概念设计（Concept Visualization）；几何为组织方临时边界（official_boundary=false）。</p>
+<h3>12 张场景卡（★ = 测试验证型）</h3>
+<div class="scen-grid">
+<div class="sc-card"><b>S1 AI 原生学校·一人一伙伴</b>【众智园/原点社区】学生+教师 · 学习伙伴 · 教师可随时接管 · 成绩仅人工 · <i>pilot</i></div>
+<div class="sc-card"><b>S2 开源成果测试场 ★</b>【众智园】开发者 · 沙盒城市验证 · 逃逸事件&gt;0 即停止 · 季度评估 · <i>sandbox</i></div>
+<div class="sc-card"><b>S3 AI 创作工坊</b>【众智园】青少年/创作者 · 共创伙伴 · 导师指导 · 作品人工审核 · <i>concept</i></div>
+<div class="sc-card"><b>S4 硅基伙伴第一课·领取仪式 ★</b>【原点社区】儿童+家庭 · 成长契约签署 · 全程人工在场 · 零成本退出 · <i>sandbox</i></div>
+<div class="sc-card"><b>S5 AI 放学托管</b>【原点社区】双职工家庭 · 托管协管 · 老师全程在场 · 异常 5 分钟人工介入 · <i>pilot</i></div>
+<div class="sc-card"><b>S6 AI 城市讲解</b>【京张遗址公园】游客/无设备者 · 双语讲解 · 公共终端+人工讲解双路径 · <i>concept</i></div>
+<div class="sc-card"><b>S7 AI 养老照护</b>【原点社区】老年人 · 照护协管 · 高风险人工复核 · <i>pilot</i></div>
+<div class="sc-card"><b>S8 AI 医疗预检 ★</b>【大钟寺/社区】居民 · 预检辅助 · 诊断仅人工 · 数据最小集 · <i>sandbox</i></div>
+<div class="sc-card"><b>S9 伙伴驿站·社区服务台</b>【全域】全人群 · 服务台协办 · 低数字技能者人工引导 · <i>pilot</i></div>
+<div class="sc-card"><b>S10 伙伴直连消费 ★</b>【大钟寺】AI 原生一代 · 无 App 消费 · 拒绝 AI 者柜台并行 · <i>sandbox</i></div>
+<div class="sc-card"><b>S11 AI 政务代办</b>【全域】市民 · 流程代办 · 结果人工核验 · 申诉通道 · <i>pilot</i></div>
+<div class="sc-card"><b>S12 人机公地·公共空间共创 ★</b>【大钟寺/遗址公园】市民/开发者 · 共创孵化 · 半年轮换 · 停用公示 · <i>sandbox</i></div>
+</div>
+<p class="small-note">每张卡完整字段（用户/痛点/Agent 角色/可调用/不允许/数据最小集/人工接管点/退出机制/成功指标/运营主体/空间需求/阶段）见 report/narrative.md 场景卡集。</p>
+<h3>6 类用户画像</h3>
+<div class="persona-grid">
+<div class="persona"><b>P1 儿童</b> AI 原生第一代 · 契约保护 · 监护联署</div>
+<div class="persona"><b>P2 普通家庭</b> 托管/教育/消费 · 可退出可删除</div>
+<div class="persona"><b>P3 老年人</b> 照护协管 · 人工服务并行</div>
+<div class="persona"><b>P4 开发者/研究者</b> 测试场/开源社区 · 贡献荣誉</div>
+<div class="persona"><b>P5 游客/低数字技能</b> 公共终端 · 人工引导</div>
+<div class="persona"><b>P6 拒绝 AI 用户</b> 等效人工服务 · 永不强制</div>
+</div>
+<h3>3 个 AI 朝圣地标</h3>
+<div class="persona-grid">
+<div class="persona"><b>L1 AI 原点</b>「第一次建立伙伴关系」仪式空间 · 原点光点 · 原点社区 PUBLIC-001</div>
+<div class="persona"><b>L2 开源智能荣誉墙</b> 贡献可核验才入墙 · 年度开源智能奖 · 众智园测试场入口</div>
+<div class="persona"><b>L3 人机公地</b> 人/Agent/机器人/公共 API 共创孵化 · 服务运行舱可见 · 大钟寺</div>
+</div>
+<h3>公共空间组件库（7 组件）</h3>
+<p class="small-note">Agent kiosk（公共终端）· Audit/consent terminal（授权管理）· AI discussion pavilion（议事亭）· Open-source showcase（开源展示）· Companion station（伙伴驿站）· Accessible human-service point（人工服务点）· Origin Dot marker（地面标识）——每建一个 Agent 组件，必配一个人工/无障碍组件（Agent First, Never Agent Only）。</p>
+<h3>Agent 治理证据链（高风险场景）</h3>
+<p class="chain-note">Personal Data → Consent → Minimum Required Data → Agent Processing → City Service Call → Audit Log → Human Review → Delete / Migrate / Appeal / Stop</p>
+<h3>Stage-Gate 与年度运营闭环</h3>
+<p class="chain-note">Idea → Sandbox（假设+准入+安全基线）→ Pilot（限额+人工接管）→ Evaluation（独立评估）→ Deploy / Stop（公开停用公示）→ Open Source（M8 沉淀）→ Next Cycle。九大机制：M1 原点日+开源智能奖 · M2 开发者/Agent 社区 · M3 公共 API Challenge · M4 城市场景公开测试 · M5 儿童 AI 原生计划 · M6 国际开发者驻留 · M7 企业测试场开放 · M8 开源成果发布 · M9 市民治理参与+安全/权利审计。</p>
+</section>
+
+<footer>AI Agent 提案 · wangqj646-hub · 2026-08 · v5 · 离线展示（无远程资源）</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张智轨 AGENT LINE — 百年铁路上的智能体创新带</title>
+<style>
+:root {
+  --rail-dark: #1a1e23;
+  --rail-grey: #3d444d;
+  --copper: #b87333;
+  --copper-light: #d4956b;
+  --signal-green: #2d7a3a;
+  --signal-green-dim: #3a9e4d;
+  --cream: #f5f0e8;
+  --cream-dark: #e8e0d2;
+  --paper: #faf8f4;
+  --ink: #1a1e23;
+  --muted: #6b7280;
+  --border: #d1c9b8;
+  --blueprint: #1e3a5f;
+  --blueprint-light: #2a5080;
+  --track-line: #8b7355;
+  --white: #ffffff;
+  --shadow-sm: 0 1px 3px rgba(26,30,35,.08);
+  --shadow-md: 0 4px 12px rgba(26,30,35,.1);
+  --shadow-lg: 0 8px 24px rgba(26,30,35,.12);
+  --radius: 6px;
+  --radius-lg: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Top Bar ── */
+.topbar {
+  background: var(--rail-dark);
+  color: var(--cream);
+  padding: 10px 0;
+  font-size: 12px;
+  letter-spacing: .08em;
+  border-bottom: 3px solid var(--copper);
+}
+.topbar .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.topbar-brand { font-family: "Courier New", "Consolas", monospace; font-weight: 700; font-size: 13px; color: var(--copper-light); }
+.topbar-route { display: flex; gap: 4px; align-items: center; }
+.topbar-route .station {
+  background: var(--rail-grey);
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: var(--cream-dark);
+}
+.topbar-route .connector {
+  color: var(--copper);
+  font-family: "Courier New", monospace;
+}
+
+/* ── Hero ── */
+.hero {
+  background: linear-gradient(135deg, var(--rail-dark) 0%, #252a31 50%, var(--blueprint) 100%);
+  color: var(--white);
+  padding: 60px 0 48px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 60px,
+    rgba(184,115,51,.06) 60px,
+    rgba(184,115,51,.06) 61px
+  );
+  pointer-events: none;
+}
+.hero-inner { position: relative; z-index: 1; }
+.hero-eyebrow {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--signal-green-dim);
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: "Courier New", "Consolas", monospace;
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.1;
+  margin-bottom: 12px;
+  font-weight: 800;
+  letter-spacing: -.01em;
+}
+.hero h1 .accent { color: var(--copper-light); }
+.hero-sub {
+  font-size: clamp(15px, 2.2vw, 19px);
+  color: #b0bec5;
+  max-width: 680px;
+  margin-bottom: 20px;
+  line-height: 1.55;
+}
+.hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.hero-tag {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  padding: 5px 14px;
+  border: 1px solid rgba(184,115,51,.5);
+  border-radius: 999px;
+  color: var(--copper-light);
+  background: rgba(184,115,51,.08);
+}
+
+/* ── Provisional Banner ── */
+.provisional-banner {
+  background: #3a2e1a;
+  border: 1px solid var(--copper);
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  font-size: 14px;
+  color: var(--copper-light);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.provisional-banner::before {
+  content: "!";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--copper);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* ── Section Nav (Route Map) ── */
+.route-nav {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  margin: 28px 0;
+  box-shadow: var(--shadow-sm);
+}
+.route-nav-label {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  letter-spacing: .15em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.route-stops {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.route-stop {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  padding: 4px 10px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--rail-dark);
+  text-decoration: none;
+  transition: background .15s, color .15s;
+}
+.route-stop:hover { background: var(--rail-dark); color: var(--cream); }
+.route-arrow {
+  color: var(--copper);
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  user-select: none;
+}
+
+/* ── Section Card ── */
+.section {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px 28px 18px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--paper) 0%, var(--white) 100%);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.section-header h2 {
+  font-family: "Courier New", monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--rail-dark);
+  letter-spacing: .02em;
+}
+.section-header h2 .marker {
+  display: inline-block;
+  background: var(--copper);
+  color: var(--white);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-left: 8px;
+  vertical-align: middle;
+  letter-spacing: .05em;
+}
+.section-header p {
+  width: 100%;
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 720px;
+  margin-top: 4px;
+}
+.section-body { padding: 24px 28px; }
+
+/* ── Metric Cards ── */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+.metric-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 16px;
+  text-align: center;
+  position: relative;
+}
+.metric-card.primary {
+  border-color: var(--copper);
+  border-width: 2px;
+}
+.metric-card .metric-label {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.metric-card .metric-value {
+  font-family: "Courier New", monospace;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--rail-dark);
+  line-height: 1.2;
+}
+.metric-card.primary .metric-value { color: var(--copper); }
+.metric-card .metric-note {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.metric-card .metric-tag {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  background: var(--rail-dark);
+  color: var(--cream);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* ── Supplementary Metrics ── */
+.suppl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border);
+}
+.suppl-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  text-align: center;
+}
+.suppl-card .suppl-num {
+  font-family: "Courier New", monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--signal-green);
+}
+.suppl-card .suppl-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* ── Figure ── */
+.figure-frame {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 16px;
+  background: var(--cream);
+}
+.figure-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.figure-caption {
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  background: var(--paper);
+}
+
+/* ── Three Column Cards ── */
+.col3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.col2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.info-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 16px;
+}
+.info-card h3 {
+  font-family: "Courier New", monospace;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--rail-dark);
+}
+.info-card h3 .num {
+  display: inline-block;
+  background: var(--copper);
+  color: var(--white);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 22px;
+  font-size: 12px;
+  margin-right: 6px;
+}
+.info-card p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+.info-card ul { font-size: 13px; color: var(--ink); padding-left: 16px; margin-top: 6px; }
+.info-card ul li { margin-bottom: 4px; }
+
+/* ── Land Use Table ── */
+.land-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.land-table th {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 2px solid var(--copper);
+  background: var(--paper);
+}
+.land-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.land-table tr:last-child td { border-bottom: none; }
+.land-table .code {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  background: var(--cream);
+  padding: 1px 6px;
+  border-radius: 3px;
+  color: var(--rail-grey);
+}
+
+/* ── Scenario Grid ── */
+.scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+.scenario-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  position: relative;
+}
+.scenario-card .sc-num {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: var(--copper);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.scenario-card .sc-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--rail-dark);
+  margin-bottom: 4px;
+}
+.scenario-card .sc-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.scenario-card.tvs {
+  border-color: var(--signal-green);
+  border-width: 2px;
+}
+.scenario-card.tvs::after {
+  content: "TVS";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  background: var(--signal-green);
+  color: var(--white);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* ── Coverage Table ── */
+.cov-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.cov-table th {
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 2px solid var(--copper);
+  background: var(--paper);
+}
+.cov-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.cov-table .check { color: var(--signal-green); font-weight: 700; }
+
+/* ── Status Card ── */
+.status-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--signal-green);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 14px;
+}
+.status-card h3 {
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--rail-dark);
+}
+.status-card p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+.status-card code {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  background: var(--cream-dark);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  background: var(--rail-dark);
+  color: #9aa0a8;
+  padding: 32px 0;
+  margin-top: 48px;
+  font-size: 13px;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-inner a { color: var(--copper-light); text-decoration: none; }
+.footer-inner a:hover { text-decoration: underline; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .col3 { grid-template-columns: 1fr; }
+  .col2 { grid-template-columns: 1fr; }
+  .section-body { padding: 18px 16px; }
+  .section-header { padding: 18px 16px 14px; }
+}
+@media (max-width: 600px) {
+  .hero { padding: 40px 0 32px; }
+  .metrics-grid { grid-template-columns: 1fr; }
+  .scenario-grid { grid-template-columns: 1fr; }
+  .route-stops { gap: 4px; }
+  .topbar-route .station { font-size: 10px; padding: 2px 5px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ TOP BAR ═══ -->
+<div class="topbar">
+  <div class="wrap">
+    <span class="topbar-brand">AGENT LINE</span>
+    <div class="topbar-route">
+      <span class="station">售票厅</span>
+      <span class="connector">—</span>
+      <span class="station">造车厂 THE WORKS</span>
+      <span class="connector">—</span>
+      <span class="station">原点站 ORIGIN</span>
+      <span class="connector">—</span>
+      <span class="station">信号楼 SIGNAL</span>
+      <span class="connector">—</span>
+      <span class="station">试车线</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-eyebrow">百年京张 AI 创新带城市设计开源征集</div>
+    <h1>京张智轨 <span class="accent">AGENT LINE</span></h1>
+    <p class="hero-sub">1909 铺轨，2026 上架——百年铁路上的智能体创新带</p>
+    <div class="hero-tags">
+      <span class="hero-tag">智轨主线 THE MAINLINE 9km</span>
+      <span class="hero-tag">三站 · 两翼 · 三门</span>
+      <span class="hero-tag">BJTU OPEN RAIL LAB</span>
+      <span class="hero-tag">概念性参考方案</span>
+    </div>
+    <div class="provisional-banner">
+      概念建议 · 临时边界（非官方红线）· 正式数据发布后整体复算
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MAIN ═══ -->
+<main class="wrap">
+
+  <!-- Route Nav -->
+  <nav class="route-nav" aria-label="页面导航">
+    <div class="route-nav-label">线路图 — 页面导航</div>
+    <div class="route-stops">
+      <a class="route-stop" href="#core-metrics">核心指标</a>
+      <span class="route-arrow">▸</span>
+      <a class="route-stop" href="#overview-map">总览地图</a>
+      <span class="route-arrow">▸</span>
+      <a class="route-stop" href="#land-use">用地分区</a>
+      <span class="route-arrow">▸</span>
+      <a class="route-stop" href="#key-areas">重点区域</a>
+      <span class="route-arrow">▸</span>
+      <a class="route-stop" href="#mobility">交通慢行</a>
+      <span class="route-arrow">▸</span>
+      <a class="route-stop" href="#bluegreen">蓝绿公共空间</a>
+      <span class="route-arrow">▸</span>
+      <a class="route-stop" href="#buildings">建筑</a>
+      <span class="route-arrow">▸</span>
+      <a class="route-stop" href="#phasing">更新项目</a>
+      <span class="route-arrow">▸</span>
+      <a class="route-stop" href="#ai-scenes">AI 场景</a>
+      <span class="route-arrow">▸</span>
+      <a class="route-stop" href="#evidence">指标与证据链</a>
+      <span class="route-arrow">▸</span>
+      <a class="route-stop" href="#coverage">任务覆盖</a>
+      <span class="route-arrow">▸</span>
+      <a class="route-stop" href="#self-check">自检状态</a>
+      <span class="route-arrow">▸</span>
+      <a class="route-stop" href="#sources">来源</a>
+      <span class="route-arrow">▸</span>
+      <a class="route-stop" href="#assumptions">假设</a>
+    </div>
+  </nav>
+
+  <!-- ═══ 核心指标 ═══ -->
+  <section class="section" id="core-metrics">
+    <div class="section-header">
+      <h2>核心指标 <span class="marker">DATA</span></h2>
+      <p>三个核心空间指标来自 geometry GeoJSON 投影复算，与 metrics.json 保持一致。</p>
+    </div>
+    <div class="section-body">
+      <div class="metrics-grid">
+        <div class="metric-card primary">
+          <span class="metric-tag">KNOWN</span>
+          <div class="metric-label">总用地面积</div>
+          <div class="metric-value"><span data-metric="site_area_sqm" data-value="11412825.386">11,412,825 m²</span></div>
+          <div class="metric-note">≈ 11.41 km²</div>
+        </div>
+        <div class="metric-card primary">
+          <span class="metric-tag">KNOWN</span>
+          <div class="metric-label">蓝绿公共空间比</div>
+          <div class="metric-value"><span data-metric="green_ratio" data-value="0.125304">12.53%</span></div>
+          <div class="metric-note">green_ratio</div>
+        </div>
+        <div class="metric-card primary">
+          <span class="metric-tag">KNOWN</span>
+          <div class="metric-label">公共空间比</div>
+          <div class="metric-value"><span data-metric="public_space_ratio" data-value="0.073181">7.32%</span></div>
+          <div class="metric-note">public_space_ratio</div>
+        </div>
+      </div>
+      <div class="suppl-grid">
+        <div class="suppl-card">
+          <div class="suppl-num">11</div>
+          <div class="suppl-label">用地分段</div>
+        </div>
+        <div class="suppl-card">
+          <div class="suppl-num">12</div>
+          <div class="suppl-label">建筑概念基底</div>
+        </div>
+        <div class="suppl-card">
+          <div class="suppl-num">12</div>
+          <div class="suppl-label">AI 场景节点</div>
+        </div>
+        <div class="suppl-card">
+          <div class="suppl-num">3</div>
+          <div class="suppl-label">朝圣地标</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 总览地图 · 三层范围 ═══ -->
+  <section class="section" id="overview-map">
+    <div class="section-header">
+      <h2>总览地图 <span class="marker">三层范围</span></h2>
+      <p>三层范围递进：统筹研究范围（43.6 km²）→ 总体设计范围（11.41 km²）→ 重点区域（368.4 ha），将产业判断、城市更新与片区设计绑定到图层与指标。</p>
+    </div>
+    <div class="section-body">
+      <div class="figure-frame">
+        <img src="../assets/figures/site-overview.png" alt="京张智轨 AGENT LINE 总览地图——用地分区、交通慢行、蓝绿公共空间、建筑更新项目与 AI 场景节点">
+        <div class="figure-caption">总览地图：将用地分区、交通慢行、蓝绿公共空间、建筑更新项目与 AI 场景节点叠合为一张证据图，便于评审快速理解空间主线。</div>
+      </div>
+      <div class="col3">
+        <div class="info-card">
+          <h3>统筹研究范围 43.6 km²</h3>
+          <p>面向北五环至北京北站全域，提出 AI 产业生态、三区两翼协同、未来城市形态和文化叙事框架。</p>
+          <ul><li>AI 创新链与人才链</li><li>全球案例转化机制</li><li>品牌命名与传播</li></ul>
+        </div>
+        <div class="info-card">
+          <h3>总体设计范围 11.41 km²</h3>
+          <p>provisional 边界内组织城市更新、用地结构、交通市政与京张遗址公园活力带。</p>
+          <ul><li>控规深度城市设计</li><li>更新项目清单</li><li>蓝绿慢行系统</li></ul>
+        </div>
+        <div class="info-card">
+          <h3>重点区域 368.4 ha</h3>
+          <p>三处重点片区开展详细设计：造车厂·众智园（192.1 ha）、原点站（104.3 ha）、信号楼·大钟寺（72.0 ha）。</p>
+          <ul><li>功能业态与建筑更新</li><li>公共空间与交通组织</li><li>实施风险说明</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 用地分区 ═══ -->
+  <section class="section" id="land-use">
+    <div class="section-header">
+      <h2>用地分区 <span class="marker">11 段</span></h2>
+      <p>按 provisional 边界划分 11 段用地，总用地面积 11,412,825 m²。用地编码参照现行控规分类，正式数据发布后整体复算。</p>
+    </div>
+    <div class="section-body">
+      <div class="figure-frame">
+        <img src="../assets/figures/land-use-structure.png" alt="用地分区结构图">
+        <div class="figure-caption">11 段用地分区：覆盖临时范围内全部规划用地，编码参照现行控规分类。</div>
+      </div>
+      <table class="land-table">
+        <thead>
+          <tr><th>段名</th><th>面积 m²</th><th>编码</th><th>功能定位</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>造车厂西</td><td>622,630</td><td class="code">0802</td><td>众智园产业研发西翼</td></tr>
+          <tr><td>造车厂东</td><td>791,662</td><td class="code">0802</td><td>众智园产业研发东翼</td></tr>
+          <tr><td>北端留白</td><td>611,918</td><td class="code">16</td><td>预留弹性用地</td></tr>
+          <tr><td>原点站西翼</td><td>988,724</td><td class="code">0802</td><td>产业转化与开源社区</td></tr>
+          <tr><td>原点站东翼</td><td>919,128</td><td class="code">05</td><td>商业服务复合</td></tr>
+          <tr><td>清华园站遗产区</td><td>863,190</td><td class="code">0803</td><td>铁路遗产保护与文旅</td></tr>
+          <tr><td>智轨主线绿廊</td><td>1,748,902</td><td class="code">1401</td><td>遗址公园绿廊与慢行</td></tr>
+          <tr><td>居住</td><td>753,001</td><td class="code">0701</td><td>人才居住配套</td></tr>
+          <tr><td>社区服务</td><td>942,997</td><td class="code">0702</td><td>社区公共服务</td></tr>
+          <tr><td>北交大试验场</td><td>738,193</td><td class="code">0804</td><td>BJTU OPEN RAIL LAB</td></tr>
+          <tr><td>信号楼商业区</td><td>2,432,479</td><td class="code">05</td><td>大钟寺商业与 AI 聚集</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══ 重点区域 ═══ -->
+  <section class="section" id="key-areas">
+    <div class="section-header">
+      <h2>重点区域 <span class="marker">三站</span></h2>
+      <p>三处重点区域不复制同一种园区模式：造车厂造车、原点站立标、信号楼发车。</p>
+    </div>
+    <div class="section-body">
+      <div class="figure-frame">
+        <img src="../assets/figures/key-areas.png" alt="三个重点区域图——造车厂·众智园、原点站、信号楼·大钟寺">
+        <div class="figure-caption">三站空间策略：花园型自主创新（众智园）→ 近校型成果转化（原点站）→ 城市型智能经济（大钟寺）。</div>
+      </div>
+      <div class="col3">
+        <div class="info-card" style="border-top: 3px solid var(--copper);">
+          <h3>造车厂 THE WORKS · 众智园</h3>
+          <p><strong>192.1 ha</strong> — 花园型自主创新街区。国家平台、产业展示、清河文化、对外交通和低碳交往空间。</p>
+          <ul><li>AI 自主创新加速区</li><li>众智园 192.1 ha</li><li>清河门到发场</li></ul>
+        </div>
+        <div class="info-card" style="border-top: 3px solid var(--signal-green);">
+          <h3>原点站 ORIGIN STATION</h3>
+          <p><strong>104.3 ha</strong> — 近校型成果转化街区。高校源头创新、开源社区、人才服务、拆改留和站点一体化。</p>
+          <ul><li>北京 AI 原点社区</li><li>环桥门节点</li><li>人字道岔地标</li></ul>
+        </div>
+        <div class="info-card" style="border-top: 3px solid var(--blueprint);">
+          <h3>信号楼 SIGNAL HOUSE · 大钟寺</h3>
+          <p><strong>72.0 ha</strong> — 城市型智能经济街区。领军企业、智能体新业态、商业服务、绿地复合利用。</p>
+          <ul><li>AI 产业聚集区</li><li>西直门到发场</li><li>大钟寺地标</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 交通慢行 ═══ -->
+  <section class="section" id="mobility">
+    <div class="section-header">
+      <h2>交通慢行 <span class="marker">三道一绿</span></h2>
+      <p>三条慢行道（铁路遗产步道、科创骑行道、社区漫步道）串联遗址公园绿廊，九条缝合支路打通南北。</p>
+    </div>
+    <div class="section-body">
+      <div class="figure-frame">
+        <img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间图">
+        <div class="figure-caption">三道一绿 · 三门 · 九条缝合支路：线路是关系目标而非现状或工程线位。</div>
+      </div>
+      <div class="col3">
+        <div class="info-card">
+          <h3>三道一绿</h3>
+          <p>铁路遗产步道、科创骑行道、社区漫步道三条慢行线路，沿智轨主线绿廊（1,748,902 m²）连续贯通。</p>
+        </div>
+        <div class="info-card">
+          <h3>三门</h3>
+          <p>清河门（北入口）、环桥门（中段转换）、西直门到发场（南入口）三处到发场节点。</p>
+        </div>
+        <div class="info-card">
+          <h3>九条缝合支路</h3>
+          <p>九条东西向缝合支路打通遗址公园与两侧街区，消除铁路遗址对城市肌理的切割。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 蓝绿公共空间 ═══ -->
+  <section class="section" id="bluegreen">
+    <div class="section-header">
+      <h2>蓝绿公共空间 <span class="marker">12.53%</span></h2>
+      <p>蓝绿公共空间比率 12.53%（green_ratio），以智轨主线绿廊为骨架，串联遗址公园、社区花园与街角绿地。</p>
+    </div>
+    <div class="section-body">
+      <div class="col3">
+        <div class="info-card">
+          <h3>京张遗址公园绿廊</h3>
+          <p>智轨主线绿廊 1,748,902 m²，承载遗产步道、AI 地标与公共活动空间。</p>
+        </div>
+        <div class="info-card">
+          <h3>开源水鹤补给站</h3>
+          <p>铁路遗产活化利用节点，结合补给功能与开源成果展示。</p>
+        </div>
+        <div class="info-card">
+          <h3>里程碑纪念体系</h3>
+          <p>里程碑 1909、人字道岔、开源水鹤三处朝圣地标，串联百年铁路文化叙事。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 建筑 ═══ -->
+  <section class="section" id="buildings">
+    <div class="section-header">
+      <h2>建筑 <span class="marker">12 概念基底</span></h2>
+      <p>12 个建筑概念基底表达可逆更新界面，不代表现状建筑、拆改留判断或规模许可。拆改留方案待正式控规与产权资料确认。</p>
+    </div>
+    <div class="section-body">
+      <div class="col3">
+        <div class="info-card">
+          <h3>造车厂片区</h3>
+          <p>3 处概念基底：创新工坊、产业展示中心、低碳办公集群。保留工业遗存肌理。</p>
+        </div>
+        <div class="info-card">
+          <h3>原点站片区</h3>
+          <p>4 处概念基底：开源社区中心、人才公寓、转化客厅、铁路遗产展馆。</p>
+        </div>
+        <div class="info-card">
+          <h3>信号楼片区</h3>
+          <p>5 处概念基底：智能体总部、数据要素剧场、商业综合体、算力驿站、创新市集空间。</p>
+        </div>
+      </div>
+      <div class="status-card" style="margin-top: 16px; border-left-color: var(--copper);">
+        <h3>拆改留声明</h3>
+        <p>12 个建筑图形仅表达概念更新界面，不代表现状建筑、拆改留判断或规模许可。拆改留方案待正式控规指标与产权资料确认后整体复算。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 更新项目 ═══ -->
+  <section class="section" id="phasing">
+    <div class="section-header">
+      <h2>更新项目 <span class="marker">三期</span></h2>
+      <p>从示范段到成线再到成网，三期递进实施。</p>
+    </div>
+    <div class="section-body">
+      <div class="col3">
+        <div class="info-card" style="border-top: 3px solid var(--signal-green);">
+          <h3>一期 · 示范段</h3>
+          <p>造车厂核心区启动，完成智轨主线绿廊示范段、开源水鹤补给站和创新工坊基底改造。</p>
+        </div>
+        <div class="info-card" style="border-top: 3px solid var(--copper);">
+          <h3>二期 · 成线</h3>
+          <p>贯通智轨主线 9km，完成三站节点、三道慢行与九条缝合支路，串联遗址公园全线。</p>
+        </div>
+        <div class="info-card" style="border-top: 3px solid var(--blueprint);">
+          <h3>三期 · 成网</h3>
+          <p>向南北两翼延展，完成售票厅与试车线节点，形成覆盖 43.6 km² 的 AI 创新带网络。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ AI 场景 ═══ -->
+  <section class="section" id="ai-scenes">
+    <div class="section-header">
+      <h2>AI 场景 <span class="marker">12 节点 · 3 TVS</span></h2>
+      <p>12 个 AI 场景卡，其中 3 个为测试验证场景（TVS），说明服务对象、空间位置、数据来源与人工复核机制。</p>
+    </div>
+    <div class="section-body">
+      <div class="scenario-grid">
+        <div class="scenario-card"><div class="sc-num">01</div><div class="sc-name">智轨导览官</div><div class="sc-desc">智能体导览服务，串联三站地标的铁路文化叙事。</div></div>
+        <div class="scenario-card"><div class="sc-num">02</div><div class="sc-name">慢行共驾评估</div><div class="sc-desc">用公开数据和人工复核识别慢行断点与优化方案。</div></div>
+        <div class="scenario-card tvs"><div class="sc-num">03</div><div class="sc-name">轨交开源试验场 TVS</div><div class="sc-desc">BJTU OPEN RAIL LAB，铁路信号与智能体协同测试。</div></div>
+        <div class="scenario-card tvs"><div class="sc-num">04</div><div class="sc-name">智能体市政厅 TVS</div><div class="sc-desc">城市智能体治理沙盒，可控空间测试交通与服务。</div></div>
+        <div class="scenario-card tvs"><div class="sc-num">05</div><div class="sc-name">数据要素信号所 TVS</div><div class="sc-desc">数据资产登记、可信评测与安全治理能力展示。</div></div>
+        <div class="scenario-card"><div class="sc-num">06</div><div class="sc-name">机器人末段配送</div><div class="sc-desc">园区末端物流机器人，最后一公里配送服务。</div></div>
+        <div class="scenario-card"><div class="sc-num">07</div><div class="sc-name">企业服务售票窗</div><div class="sc-desc">面向 AI 企业的政策咨询、注册与资源对接窗口。</div></div>
+        <div class="scenario-card"><div class="sc-num">08</div><div class="sc-name">开源水鹤补给站</div><div class="sc-desc">铁路遗产活化节点，开源成果展示与社区补给。</div></div>
+        <div class="scenario-card"><div class="sc-num">09</div><div class="sc-name">荣誉墙刻名仪式</div><div class="sc-desc">智能体贡献荣誉墙，里程碑纪念与永久展示体系。</div></div>
+        <div class="scenario-card"><div class="sc-num">10</div><div class="sc-name">青年创客市集</div><div class="sc-desc">面向青年开发者的周末市集与场景路演空间。</div></div>
+        <div class="scenario-card"><div class="sc-num">11</div><div class="sc-name">全龄健康导航</div><div class="sc-desc">连接居住、学习、消费、运动和社交的全龄服务。</div></div>
+        <div class="scenario-card"><div class="sc-num">12</div><div class="sc-name">大型活动安全复核</div><div class="sc-desc">开发者节、场景开放日等活动的安全评估与复核。</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 指标与证据链 ═══ -->
+  <section class="section" id="evidence">
+    <div class="section-header">
+      <h2>指标与证据链 <span class="marker">EVIDENCE</span></h2>
+      <p>核心空间指标、场景规模与专业深化前置条件。</p>
+    </div>
+    <div class="section-body">
+      <div class="figure-frame">
+        <img src="../assets/figures/metrics-evidence.png" alt="空间指标与实施条件证据链">
+        <div class="figure-caption">核心空间指标、场景规模与专业深化前置条件一览。所有图面由同一组 GeoJSON、metrics、矩阵与自检结果派生。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 任务覆盖 ═══ -->
+  <section class="section" id="coverage">
+    <div class="section-header">
+      <h2>任务覆盖 <span class="marker">COMPLIANCE</span></h2>
+      <p>覆盖公告任务 1.3 / 1.4 / 1.5 与 agent.1 — agent.6，由 compliance_matrix.json 和 standard_matrix.json 支撑。</p>
+    </div>
+    <div class="section-body">
+      <table class="cov-table">
+        <thead>
+          <tr><th>任务编号</th><th>任务要求</th><th>覆盖说明</th><th>状态</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>公告 1.3</td><td>统筹研究范围产业与未来城市研究</td><td>AI 创新链、人才链、全球案例转化机制</td><td class="check">PASS</td></tr>
+          <tr><td>公告 1.4</td><td>总体设计范围城市更新与控规深度城市设计</td><td>11 段用地分区、交通市政、蓝绿慢行系统</td><td class="check">PASS</td></tr>
+          <tr><td>公告 1.5</td><td>三个重点区域详细设计</td><td>造车厂/原点站/信号楼三站功能业态与建筑更新</td><td class="check">PASS</td></tr>
+          <tr><td>agent.1</td><td>命名/Logo/视觉规范</td><td>京张智轨 AGENT LINE 品牌体系</td><td class="check">PASS</td></tr>
+          <tr><td>agent.2</td><td>5-8 个全球 AI 创新生态案例</td><td>案例库覆盖交通、遗产、治理等维度</td><td class="check">PASS</td></tr>
+          <tr><td>agent.3</td><td>10 张以上场景卡</td><td>12 场景卡，含 3 个 TVS</td><td class="check">PASS</td></tr>
+          <tr><td>agent.4</td><td>3 个以上朝圣地标</td><td>里程碑 1909 / 人字道岔 / 开源水鹤</td><td class="check">PASS</td></tr>
+          <tr><td>agent.5</td><td>文化叙事与品牌传播</td><td>百年铁路文化 → 中关村创新 → AI 新文化</td><td class="check">PASS</td></tr>
+          <tr><td>agent.6</td><td>长期运营机制</td><td>三期递进实施、荣誉纪念体系、持续参与循环</td><td class="check">PASS</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══ 自检状态 ═══ -->
+  <section class="section" id="self-check">
+    <div class="section-header">
+      <h2>自检状态 <span class="marker">STATUS</span></h2>
+      <p>自检通过状态以 self_check_submission.py 输出为准。</p>
+    </div>
+    <div class="section-body">
+      <div class="status-card">
+        <h3>自检机制</h3>
+        <p>deterministic validation、spatial review、visual packaging check 与 professional evidence review 必须全部通过。当前页面为离线静态展示页，自检通过状态以 <code>self_check_submission.py</code> 输出为准，本页面不伪造自检结论。</p>
+      </div>
+      <div class="status-card" style="border-left-color: var(--copper);">
+        <h3>边界状态</h3>
+        <p>provisional geometry: PASS intake only, replace with official polygons before formal professional scoring。使用 provisional 边界时，本页仅支持 intake 展示、讨论和返修，不作为正式专业评分图纸。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 来源 ═══ -->
+  <section class="section" id="sources">
+    <div class="section-header">
+      <h2>来源 <span class="marker">SOURCES</span></h2>
+      <p>方案数据来自官方公告、仓库 site-package、案例库与本地标准库。</p>
+    </div>
+    <div class="section-body">
+      <div class="col2">
+        <div class="status-card">
+          <h3>官方来源</h3>
+          <p>北京市规划和自然资源委员会海淀分局资格预审公告；brief/site-package/ 结构化任务书；data/source_registry.json 公开资料登记表；standards/references/ 本地标准快照。</p>
+        </div>
+        <div class="status-card">
+          <h3>案例库与辅助资料</h3>
+          <p>7 个国际 AI 创新生态案例（外部案例只作机制启发）；北京市/海淀区新闻发布；京张铁路遗址公园公开资料；OpenStreetMap 基础现状数据。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 假设 ═══ -->
+  <section class="section" id="assumptions">
+    <div class="section-header">
+      <h2>假设 <span class="marker">ASSUMPTIONS</span></h2>
+      <p>provisional 边界、控规指标待补、拆改留待产权资料确认等前置条件。</p>
+    </div>
+    <div class="section-body">
+      <div class="col2">
+        <div class="status-card" style="border-left-color: var(--copper);">
+          <h3>provisional 边界</h3>
+          <p>本页所有空间数据基于 provisional_boundaries.geojson，不作为官方红线、审批或精确面积依据。正式数据发布后整体复算。</p>
+        </div>
+        <div class="status-card" style="border-left-color: var(--copper);">
+          <h3>控规指标待补</h3>
+          <p>approved FAR controls、容积率、建筑高度等控规指标不在当前 site-package 中，待资格预审文件包确认后补充。</p>
+        </div>
+        <div class="status-card" style="border-left-color: var(--copper);">
+          <h3>拆改留待产权资料</h3>
+          <p>现状建筑拆改留判断、产权资料、市政管线与工程条件待正式控规和权属资料确认。</p>
+        </div>
+        <div class="status-card" style="border-left-color: var(--copper);">
+          <h3>精度限制</h3>
+          <p>临时边界精度有限，所有空间指标仅用于 intake 展示、设计讨论和返修，不作为正式专业评分依据。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <strong>京张智轨 AGENT LINE</strong> · SKJrpg × Sisyphus<br>
+      CC-BY-4.0 · 百年京张 AI 创新带城市设计开源征集
+    </div>
+    <div>
+      本页面完全离线，无外部请求<br>
+      权威数据以 geometry/*.geojson、metrics.json、sources.json 为准
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

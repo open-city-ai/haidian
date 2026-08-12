@@ -1,0 +1,54 @@
+{
+  "schema_version": "0.1.0",
+  "status": "conceptual_normalized_budget",
+  "dimensions": [
+    {
+      "id": "safety",
+      "label_zh": "安全风险",
+      "label_en": "Safety risk",
+      "color": "#E45A45",
+      "budget": 100,
+      "stop_if": "authorization, containment, weather, or human takeover is unresolved"
+    },
+    {
+      "id": "quiet",
+      "label_zh": "安静暴露",
+      "label_en": "Quiet exposure",
+      "color": "#F1C84A",
+      "budget": 100,
+      "stop_if": "a sensitive period or complaint threshold is exceeded"
+    },
+    {
+      "id": "energy",
+      "label_zh": "能源与碳",
+      "label_en": "Energy and carbon",
+      "color": "#249A68",
+      "budget": 100,
+      "stop_if": "the task energy ceiling is exceeded"
+    },
+    {
+      "id": "ground",
+      "label_zh": "地面占用",
+      "label_en": "Ground occupation",
+      "color": "#3478C7",
+      "budget": 100,
+      "stop_if": "accessible movement or ordinary logistics is displaced"
+    },
+    {
+      "id": "time",
+      "label_zh": "公共时间",
+      "label_en": "Public time",
+      "color": "#00A7B5",
+      "budget": 100,
+      "stop_if": "quiet, school, event, or recovery windows conflict"
+    }
+  ],
+  "rules": [
+    "Hard authorization and safety gates run before optimization.",
+    "Emergency priority does not waive identity, human takeover, audit, or recovery.",
+    "No single operator may consume more than one third of a cell-window in the synthetic test.",
+    "A rejected or ground-transferred request remains a successful control outcome when it matches the declared stop rule.",
+    "Every decision can be appealed and replayed by a named human reviewer."
+  ],
+  "units_note": "0-100 normalized design-test tokens; not physical or statutory units."
+}

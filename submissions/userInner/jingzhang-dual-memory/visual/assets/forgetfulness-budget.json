@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "artifact_id": "DM-FB-001",
+  "status": "design_target",
+  "principle": "Public memory may accumulate when rights are cleared; personal traces consume a strictly limited forgetfulness budget and expire by default.",
+  "data_classes": [
+    {"class": "D0", "name": "ordinary anonymous use", "examples": ["walking", "sitting", "drinking water", "paper service"], "maximum_retention": "0 days", "receipt": "not applicable because nothing is collected"},
+    {"class": "D1", "name": "aggregate environmental or service count", "examples": ["temperature", "aggregate queue length", "equipment health"], "maximum_retention": "90 days", "receipt": "monthly aggregate-deletion statement"},
+    {"class": "D2", "name": "voluntary service session", "examples": ["translation session", "accessibility request", "consultation note"], "maximum_retention": "0-7 days", "receipt": "session-level deletion receipt available without creating an account"},
+    {"class": "D3", "name": "controlled test event", "examples": ["synthetic run id", "emergency-stop event", "near miss"], "maximum_retention": "30 days", "receipt": "event closure record; incident hold requires named authority and scope"},
+    {"class": "D4", "name": "cleared public contribution", "examples": ["oral history", "open-source contribution", "project card"], "maximum_retention": "until withdrawal or stated archival term", "receipt": "version, rights basis, edit history and withdrawal state"}
+  ],
+  "forbidden_combinations": [
+    "link D0 movement to identity",
+    "reuse D1-D3 for advertising or resident scoring",
+    "retain raw face or voice merely for service analytics",
+    "make withdrawal contingent on account creation",
+    "treat D4 public contribution as consent to track the contributor"
+  ],
+  "audit": {
+    "frequency": "after every test window and monthly during operation",
+    "checks": ["declared fields equal observed fields", "expiry job completed", "receipt resolvable", "incident holds named and bounded", "withdrawal propagated"],
+    "failure_action": "freeze collection, preserve only minimum incident evidence, notify users, restore ordinary service and open an independent review"
+  }
+}

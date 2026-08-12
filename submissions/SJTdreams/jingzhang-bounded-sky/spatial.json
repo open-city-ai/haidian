@@ -1,0 +1,56 @@
+{
+  "$schema": "../../../schema/spatial.schema.json",
+  "version": 1,
+  "disclaimer": "concept-only",
+  "summary": "一条地面公共生活主线、三个不默认实飞的城市验证界面、一个独立合规实飞接口和三处责任地标；所有位置为临时概念定位。",
+  "items": [
+    {
+      "id": "ground-priority-spine", "type": "corridor", "title": "京张地面优先线",
+      "summary": "连续保障步行、骑行、无障碍、轨道接驳、普通物流、遗址公园和社区生活；任何低空任务必须证明不侵占它。",
+      "source": "geometry/roads.geojson", "public_level": "provisional", "linked_scenarios": ["ai-traffic-walkability"], "order": 1,
+      "geometry": {"mode": "concept", "label": "provisional ground-priority spine"}
+    },
+    {
+      "id": "zhongzhiyuan-safety-lab", "type": "area", "title": "众智园安全编译室",
+      "summary": "面向全栈研发、数字孪生、任务 schema、运行识别和失效剧本；默认不存储飞行器、不开放室外飞行。",
+      "source": "geometry/constraints.geojson#BS-CELL-01", "public_level": "provisional", "linked_scenarios": ["public-safety-operations-review"], "order": 2,
+      "geometry": {"mode": "concept", "label": "city-room interface on provisional key area"}
+    },
+    {
+      "id": "ai-origin-public-review-room", "type": "area", "title": "AI原点公众审议室",
+      "summary": "由高校、居民、服务人员共同检验噪声、隐私、公平、地面对照、申诉和退出；以合成数据和非飞行体验为主。",
+      "source": "geometry/constraints.geojson#BS-CELL-02", "public_level": "provisional", "linked_scenarios": ["public-safety-operations-review"], "order": 3,
+      "geometry": {"mode": "concept", "label": "public-review interface on provisional key area"}
+    },
+    {
+      "id": "dazhongsi-mission-clinic", "type": "area", "title": "大钟寺城市任务诊所",
+      "summary": "让消防、医院、园林、应急、设施维护和地面物流逐项提交需求、责任与反事实，不作为客运或常态配送枢纽。",
+      "source": "geometry/constraints.geojson#BS-CELL-03", "public_level": "provisional", "linked_scenarios": ["public-safety-operations-review"], "order": 4,
+      "geometry": {"mode": "concept", "label": "mission clinic on provisional key area"}
+    },
+    {
+      "id": "haidian-approved-verification-interface", "type": "node", "title": "海淀合规验证接口",
+      "summary": "与海淀机场或其他经主管部门确认的合规场地建立方法接口，用于飞行器保管、训练、封闭验证和运行识别测试；不推定合作或授权。",
+      "source": "sources.json#HAIDIAN-AIRPORT-PRACTICE-2025", "public_level": "provisional", "linked_scenarios": ["public-safety-operations-review"], "order": 5,
+      "geometry": {"mode": "concept", "label": "off-site institutional interface; no submitted coordinate"}
+    },
+    {
+      "id": "public-stop-bell", "type": "node", "title": "公共停止钟",
+      "summary": "公开显示任务状态、暂停权、人工指挥和恢复证据，不展示个人身份。",
+      "source": "geometry/constraints.geojson#BS-GATE-01", "public_level": "provisional", "linked_scenarios": ["public-safety-operations-review"], "order": 6,
+      "geometry": {"mode": "concept", "label": "concept landmark"}
+    },
+    {
+      "id": "sky-ledger-wall", "type": "node", "title": "天空账本墙",
+      "summary": "展示匿名化任务目的、公共预算、拒绝、投诉、修复和退出结论。",
+      "source": "geometry/constraints.geojson#BS-GATE-02", "public_level": "provisional", "linked_scenarios": ["public-safety-operations-review"], "order": 7,
+      "geometry": {"mode": "concept", "label": "concept landmark"}
+    },
+    {
+      "id": "ground-air-handover-gate", "type": "node", "title": "地空换手门",
+      "summary": "解释地面服务、场外验证和获批任务窗口之间的责任交接，不承担默认起降功能。",
+      "source": "geometry/constraints.geojson#BS-GATE-03", "public_level": "provisional", "linked_scenarios": ["ai-traffic-walkability"], "order": 8,
+      "geometry": {"mode": "concept", "label": "concept landmark"}
+    }
+  ]
+}

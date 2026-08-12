@@ -1,0 +1,491 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(geometry/site_boundary.geojson, EPSG:4548)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "announced_overall_area_sqm": {
+   "status": "known",
+   "value": 11400000,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "公告值（SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT）",
+   "confidence": "high",
+   "assumptions": [
+    "官方 polygon 发布后重算"
+   ]
+  },
+  "site_area_delta_vs_announced_ratio": {
+   "status": "known",
+   "value": 0.001,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "abs(计算值-公告值)/公告值",
+   "confidence": "medium",
+   "assumptions": [
+    "provisional 边界推定误差"
+   ]
+  },
+  "land_use_coverage_ratio": {
+   "status": "known",
+   "value": 1.0,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "union(land_use)/site_area",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "land_use_zone_count": {
+   "status": "known",
+   "value": 13,
+   "unit": "count",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "len(land_use.features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "green_land_use_area_sqm": {
+   "status": "known",
+   "value": 6905475.885,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(1401+1402 用地面积)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "commercial_land_use_area_sqm": {
+   "status": "known",
+   "value": 321433.128,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(05 用地面积)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "research_land_use_area_sqm": {
+   "status": "known",
+   "value": 950929.036,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(0802 用地面积)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "education_land_use_area_sqm": {
+   "status": "known",
+   "value": 379602.179,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(0804 用地面积)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "residential_land_use_area_sqm": {
+   "status": "known",
+   "value": 1997488.416,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(0701+0702 用地面积)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "culture_land_use_area_sqm": {
+   "status": "known",
+   "value": 857927.253,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(0803+1403 用地面积)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 7182667.187,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "union(green_space)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.629,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_area/site_area",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 417308.981,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "union(public_space)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.037,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_area/site_area",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 529726.006,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "union(buildings)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "building_footprint_overlap_sqm": {
+   "status": "known",
+   "value": 0.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "逐图斑相交面积和",
+   "confidence": "medium",
+   "assumptions": [
+    "概念原型建筑互不重叠"
+   ]
+  },
+  "building_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "len(buildings.features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "road_centerline_length_km": {
+   "status": "known",
+   "value": 12.752,
+   "unit": "km",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(LineString 长度, EPSG:4548)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "len(key_areas.features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "key_areas_total_area_sqm": {
+   "status": "known",
+   "value": 3692893.005,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "union(key_areas)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "zhongzhiyuan_area_sqm": {
+   "status": "known",
+   "value": 1929201.877,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "area(PROV-KEY-001)",
+   "confidence": "medium",
+   "assumptions": [
+    "provisional polygon，官方发布后重算"
+   ]
+  },
+  "beijing_ai_origin_area_sqm": {
+   "status": "known",
+   "value": 1043236.909,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "area(PROV-KEY-002)",
+   "confidence": "medium",
+   "assumptions": [
+    "provisional polygon，官方发布后重算"
+   ]
+  },
+  "dazhongsi_area_sqm": {
+   "status": "known",
+   "value": 720454.219,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "area(PROV-KEY-003)",
+   "confidence": "medium",
+   "assumptions": [
+    "provisional polygon，官方发布后重算"
+   ]
+  },
+  "phase_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "len(phasing.features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "phase_1_area_sqm": {
+   "status": "known",
+   "value": 1517412.169,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "area(PHASE-1)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "phase_2_area_sqm": {
+   "status": "known",
+   "value": 7636236.268,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "area(PHASE-2)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "phase_3_area_sqm": {
+   "status": "known",
+   "value": 2259237.554,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "area(PHASE-3)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "scenario_node_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "设计方案计数（场景卡 SC-01..SC-12）",
+   "confidence": "medium",
+   "assumptions": [
+    "概念节点，非工程设施"
+   ]
+  },
+  "test_validation_scenario_count": {
+   "status": "known",
+   "value": 4,
+   "unit": "count",
+   "source_files": [],
+   "formula": "设计方案计数（T-01..T-04）",
+   "confidence": "medium",
+   "assumptions": [
+    "概念测试场景"
+   ]
+  },
+  "user_persona_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [],
+   "formula": "设计方案计数（P-01..P-06）",
+   "confidence": "medium",
+   "assumptions": [
+    "概念画像"
+   ]
+  },
+  "pilgrimage_landmark_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [],
+   "formula": "设计方案计数（L-01..L-03）",
+   "confidence": "medium",
+   "assumptions": [
+    "概念地标"
+   ]
+  },
+  "renewal_project_count": {
+   "status": "known",
+   "value": 8,
+   "unit": "count",
+   "source_files": [],
+   "formula": "设计方案计数（R-01..R-08）",
+   "confidence": "medium",
+   "assumptions": [
+    "概念更新项目"
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": null,
+   "reason": "官方控规条件未发布；概念体量为设计建议，非法定值",
+   "required_for_formal_submission": true
+  },
+  "building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": null,
+   "reason": "官方高度控制未发布",
+   "required_for_formal_submission": true
+  },
+  "building_density": {
+   "status": "unknown",
+   "value": null,
+   "unit": null,
+   "reason": "官方建筑密度未发布",
+   "required_for_formal_submission": true
+  },
+  "green_ratio_official": {
+   "status": "unknown",
+   "value": null,
+   "unit": null,
+   "reason": "官方绿地率控制未发布",
+   "required_for_formal_submission": true
+  },
+  "setback_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": null,
+   "reason": "官方退线控制未发布",
+   "required_for_formal_submission": true
+  },
+  "announced_research_area_sqkm": {
+   "status": "known",
+   "value": 43600000,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "公告值 43.6 km²（SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT）",
+   "confidence": "high",
+   "assumptions": [
+    "官方 polygon 发布后重算"
+   ]
+  },
+  "announced_key_areas_total_ha": {
+   "status": "known",
+   "value": 3684000,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "公告三处重点区面积之和 368.4 ha（SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT）",
+   "confidence": "high",
+   "assumptions": [
+    "官方 polygon 发布后重算"
+   ]
+  },
+  "annual_event_system_count": {
+   "status": "known",
+   "value": 4,
+   "unit": "count",
+   "source_files": [],
+   "formula": "设计方案计数（场景开放周/开源共创节/审计日/交换营）",
+   "confidence": "medium",
+   "assumptions": [
+    "概念活动体系"
+   ]
+  },
+  "heritage_control_area_sqm": {
+   "status": "unknown",
+   "value": null,
+   "unit": null,
+   "reason": "官方文保范围与建设控制地带未发布",
+   "required_for_formal_submission": true
+  },
+  "human_review_coverage_ratio": {
+   "status": "known",
+   "value": 1.0,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "设计方案声明：全部 12 场景卡要求人工复核",
+   "confidence": "medium",
+   "assumptions": [
+    "概念承诺，实施前需运营细则"
+   ]
+  },
+  "municipal_capacity_index": {
+   "status": "unknown",
+   "value": null,
+   "unit": null,
+   "reason": "市政容量专项未发布",
+   "required_for_formal_submission": true
+  },
+  "non_digital_fallback_coverage_ratio": {
+   "status": "known",
+   "value": 1.0,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "设计方案声明：全部 12 场景卡要求非数字兜底",
+   "confidence": "medium",
+   "assumptions": [
+    "概念承诺，实施前需运营细则"
+   ]
+  }
+ }
+}

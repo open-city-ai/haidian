@@ -1,0 +1,254 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(EPSG:4548 submitted provisional SITE_BOUNDARY)",
+      "confidence": "medium",
+      "assumptions": [
+        "The provisional boundary is used only as a reproducible submission frame."
+      ]
+    },
+    "land_use_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(EPSG:4548 LAND_USE polygons))",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual design allocation, not statutory land-use control."
+      ]
+    },
+    "land_use_gap_sqm": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(site - union(land_use))",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_overlap_sqm": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use)) - area(union(land_use))",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 35880.82,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area(EPSG:4548 reversible prototype footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "Footprints describe reversible prototypes and do not map existing buildings."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.155207,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area / submitted_site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "Design ratio under provisional geometry; not a statutory green-space ratio."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.091112,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area / submitted_site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "Design ratio under provisional geometry; not an approved control."
+      ]
+    },
+    "design_road_length_m": {
+      "status": "known",
+      "value": 18146.775,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(EPSG:4548 design road centerlines))",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual connections, not legal road redlines."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "high",
+      "assumptions": [
+        "Locations remain provisional."
+      ]
+    },
+    "scene_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(unique submitted scenario cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_validation_scene_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scene cards explicitly tagged industry_validation)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(distinct submitted personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "memorial_node_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(non-entertainment memorial nodes)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "unknown_pending_official_or_operational_evidence",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official polygons are unavailable."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "unknown_pending_official_or_operational_evidence",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height controls and engineering evidence are unavailable."
+    },
+    "statutory_building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "unknown_pending_official_or_operational_evidence",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved density control is included in the public package."
+    },
+    "actual_shop_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "unknown_pending_official_or_operational_evidence",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No cleared merchant register or field survey is supplied."
+    },
+    "commercial_rent": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "unknown_pending_official_or_operational_evidence",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No cleared rent dataset is supplied and the proposal does not estimate it."
+    },
+    "first_order_conversion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "unknown_pending_official_or_operational_evidence",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Operational testing has not occurred."
+    },
+    "policy_funding": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "unknown_pending_official_or_operational_evidence",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No funding commitment is assumed or claimed."
+    }
+  }
+}

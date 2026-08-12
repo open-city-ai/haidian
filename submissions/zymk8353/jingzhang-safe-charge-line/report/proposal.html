@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张安心充：停充可靠性基础设施 / THE SAFE CHARGE LINE - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>京张安心充：停充可靠性基础设施 / THE SAFE CHARGE LINE</h1>
+<p class="summary">把电动自行车停车、充换电、异常停机、人工响应和电池退出组织成可验证的责任合同；个人使用和报障，专业企业负责安全，政府与社区协调监督。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+</section>
+<h1>京张安心充：停充可靠性基础设施 / THE SAFE CHARGE LINE</h1>
+<h2>设计依据与资料清单</h2>
+<p>本方案从一个不需要宏大叙事的问题出发：一个人把电动自行车停进停车场后，能否知道在哪里合法充或换、付多少钱、设备此刻是否可用、异常由谁接手、断网后是否仍能安全停机、退役电池最终去了哪里。城市缺的不是另一张柜体效果图，而是停车、场地、产品、电力、消防、人工应急和电池生命周期之间可验收的责任接口。这一判断只是一项开放共创建议，不替代规划、消防、电气或产品审查。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="existing_conditions_diagnosis" title="深度：existing_conditions_diagnosis">深度</sup></p>
+<p>资料分成四层。公告和任务书确定 43.6 平方公里统筹研究、11.4 平方公里总体设计、三处重点区域以及 agent.1—agent.6 的任务；仓库临时 polygon 只作生成和包内复算；北京现行法规与标准支持责任和服务边界；历史报道与采购只提供待核验线索。完整许可、时间、用途和不能证明什么均登记在 <code>sources.json</code>。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup></p>
+<p>大钟寺社区 2018 年公开报道记录过首批 10 个智能充电柜和第三方公司参与，但它不能证明 2026 年柜体仍在、仍运营或符合现行标准。2026 年大钟寺南村停车场管理采购证明停车秩序服务及人员预算真实存在，却不能把停车管理人员自动写成充换电安全运营者。两条证据共同定义本方案第一个任务：先复核现状与责任，不把历史设施画成当前基础设施。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="DAZHONGSI-CHARGE-CABINETS-2018" title="来源：DAZHONGSI-CHARGE-CABINETS-2018">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="DAZHONGSI-PARKING-PROCUREMENT-2026" title="来源：DAZHONGSI-PARKING-PROCUREMENT-2026">来源</sup></p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="方案总览：从历史设施核验到停充责任合同"><figcaption>方案总览：从历史设施核验到停充责任合同</figcaption></figure>
+<p>《北京市非机动车管理条例（2025 年修订）》把充/换电设施建设运营单位置于安全责任中心，并要求其监测、巡检维护、上传相关状态，与场地管理方以书面协议划分责任。北京运营服务规范、防火设计标准和国家共享换电指南分别补充运营、消防、24 小时应急与电池退出要求。本方案只翻译这些责任关系，不宣称任何候选点已经合规。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-NONMOTOR-REG-2025" title="来源：BEIJING-NONMOTOR-REG-2025">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="NATIONAL-SHARED-SWAP-GUIDE-2025" title="来源：NATIONAL-SHARED-SWAP-GUIDE-2025">来源</sup></p>
+<p>当前官方精确总体边界与三处重点区域 polygon 仍未进入公开场地包。本提交沿用仓库 <code>provisional_boundaries.geojson</code>，所有临时边界均为低置信度工作范围，不是红线、地块、道路、设备位置或精确面积依据；官方数据发布后，九类图层、指标、十张双语图、HTML 与 PDF 必须整包再生。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#SITE-001" title="空间数据：geometry/site_boundary.geojson#SITE-001">空间数据</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup></p>
+<p>区位核验补充：仓库 Issue #1029 的公开复算记录指出，上游 <code>PROV-KEY-003</code> 临时 polygon 的面积与南北顺序自洽，但质心约位于北京北站一带，距大钟寺站约 2.26 km。该记录不是官方边界，也不是自行平移的授权。本案保留上游几何只作占位；“大钟寺”任务叙事来自公告名称，所有真实站点、社区、停车场和充换电设施候选必须另行现场与责任主体核验。官方或 canonical 几何更新后，整体重算图层、指标、图件、PDF 与 HTML。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="ISSUE-1029" title="来源：ISSUE-1029">来源</sup> [assumption:A-BOUNDARY-001]</p>
+<h2>三层范围工作框架</h2>
+<p>统筹研究范围回答“怎样把可靠性变成 AI 创新生态的共同能力”；总体设计范围回答“怎样让责任接口进入停车、慢行、公共空间和产业服务”；三处重点区域回答“验证、公众解释和日常采用分别在哪里发生”。这三层不是不同精度的同一总图，而是从制度、空间到 90 天运营的证据传导。<sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-OFFICIAL-ANNOUNCEMENT" title="标准：PROJECT-OFFICIAL-ANNOUNCEMENT">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_level_scope_framework" title="深度：three_level_scope_framework">深度</sup></p>
+<p>品牌名为 <strong>京张安心充 / THE SAFE CHARGE LINE</strong>。标识由一条铁轨式基线、一个停车括号和一个断开的闪电组成：基线代表公共规则，括号代表停放边界，断口代表任何异常都必须能本地断电。颜色采用铁锈红、警戒琥珀、状态青与墨蓝；不使用企业商标、具体设备外观或未经授权的现场照片。</p>
+<p>空间结构为“一条可靠性线、三座责任站、两翼反馈、四道门”。可靠性线只表达知识、状态和责任的联系，不是骑手轨迹或电缆线位；众智园是断网断电验证站，AI 原点社区是费率与申诉公开站，大钟寺是停车—充换电责任交接站；中关村科技服务翼连接标准、保险、法务与产品服务，小月河场景赋能翼连接使用者、维护者和公众共测。四道门依次是现状真实、责任书面、专业合规、运行可停止。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup></p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="三层范围与停充可靠性空间结构"><figcaption>三层范围与停充可靠性空间结构</figcaption></figure>
+<h2>统筹研究范围产业与未来城市研究</h2>
+<p>京张可提供的世界级能力，不应是“装了多少充电柜”，而应是把城市设备从原型、合规、运营、维修到退出做成可复用的验证路径。高校与研究团队提出故障模型和可解释测试；设备与电池企业提交合规产品；运营企业承担运行和 24 小时响应；保险、消防、电力、物业与停车管理形成进入真实空间的共同门槛；公众只参与共测和报障，不被动成为劳动画像数据源。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-CHARGE-OPS-2079" title="来源：BEIJING-CHARGE-OPS-2079">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="municipal_new_infrastructure" title="深度：municipal_new_infrastructure">深度</sup></p>
+<p>七个开放方法案例构成方法库，而不是照搬规模或制度：</p>
+<div class="proposal-table"><table><thead><tr><th>案例</th><th>可转译机制</th><th>不转译内容</th></tr></thead><tbody><tr><td>OCPI</td><td>位置、运营者、状态、费率、事件分层</td><td>不把电动汽车电气接口套给电动自行车</td></tr><tr><td>Open Charge Map</td><td>点位与运营方分离、纠错留痕</td><td>众包记录不等于验收和实时安全</td></tr><tr><td>FixMyStreet</td><td>位置/故障类型路由到责任方、状态可追踪</td><td>不复制英国地方政府权责结构</td></tr><tr><td>ODK Collect</td><td>弱网现场走查、字段约束、时间戳</td><td>不采集骑手身份或连续轨迹</td></tr><tr><td>OpenEPCIS</td><td>对象—时间—地点—事件—责任的生命周期记录</td><td>事件账本不替代消防、产品和法定系统</td></tr><tr><td>北京停充一体试点</td><td>以真实停车量和缺口选择改造点</td><td>不把其他站点需求量移植到大钟寺</td></tr><tr><td>国家共享换电指南</td><td>企业主体、24h 应急、退役回收</td><td>不把指导文件写成单点批准</td></tr></tbody></table></div>
+<p>这套方法库支撑一个从“问题登记—合规审查—合成故障—有限运行—公开复盘—保留/退出”的创新链。只有完成公共安全、非排他接入、责任主体和停止权验证的能力，才进入小范围真实场景；测试失败同样沉淀为可复用知识。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OCPI-GITHUB" title="来源：OCPI-GITHUB">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="FIXMYSTREET-GITHUB" title="来源：FIXMYSTREET-GITHUB">来源</sup></p>
+<p>未来城市形态在这里表现为三种可辨识状态：正常服务显示运营者、费率、开放时间和最后更新时间；受限服务说明故障、剩余能力和人工渠道；停止服务断电、隔离并给出替代点。状态必须在线下可见，不能只存在于某个平台 App。AI 可发现状态冲突、聚合时段需求和辅助工单，不能绕过本地保护或自动判定重新送电。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OPENCHARGEMAP-GITHUB" title="来源：OPENCHARGEMAP-GITHUB">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="ODK-COLLECT-GITHUB" title="来源：ODK-COLLECT-GITHUB">来源</sup></p>
+<h2>总体设计范围城市更新与控规深度城市设计</h2>
+<p>总体设计采用“先查、再接、后建”的更新顺序。先查历史柜、停车场、场地产权/使用、电力容量、消防间距和既有通道；再把运营、停车、场地、应急和退役责任接成书面合同；只有供需、合规和责任都成立时，才由专业团队讨论改造或新增。没有建筑普查、权属、控规和工程条件，本包不指定拆除、不承诺新建、不提供设备数量。<sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-CONTROL-DETAILED-PLANNING" title="标准：MOHURD-CONTROL-DETAILED-PLANNING">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="深度：retain_renovate_demolish">深度</sup></p>
+<p>五个概念用地单元完整覆盖临时边界，只用于检查总体结构：大钟寺停充责任与轨道接驳、停车秩序接口、AI 原点费率透明、京张无占道学习廊道、众智园合规与异常演练。用地代码来自仓库枚举，但不构成现状或控规分类。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="标准：MNR-LAND-USE-CLASSIFICATION-GUIDE">标准</sup></p>
+<p>三个小型建筑基底只是可逆模块的尺度测试：断网断电验证台、公开费率与申诉厅、停充责任站。其位置、轮廓和约 3168 平方米合计基底面积均为概念生成结果，不是现状建筑、拟建工程或允许建设量。容积率、建筑高度、建筑密度、退线和总建筑面积全部待正式数据和专业审查。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup></p>
+<p>建筑风貌不复制充电柜工业外壳，而采用“可看见责任、隐藏高风险部件”的原则：公共界面显示责任卡、收费和状态；电气、电池、隔离与消防界面由专业规范决定并限制公众接触；构件优先可拆、可替换、可恢复场地。高度、材料、防火分隔和机电条件须由建筑、电气、消防专业深化，当前只提供信息层级与界面原型。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="height_massing_character" title="深度：height_massing_character">深度</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-ARCH-DESIGN-DEPTH-2016" title="标准：MOHURD-ARCH-DESIGN-DEPTH-2016">标准</sup></p>
+<h2>重点区域详细设计</h2>
+<p><strong>众智园 AI 自主创新加速区：断电实验台。</strong> 在受控、非公众运行的环境中验证断网、断电、过温、通信失联、满仓、异常电池和服务电话失联。测试开始前由产品安全、现场安全和独立记录三方签字；AI 只生成故障组合和比对日志，本地确定性保护与人工急停拥有最高权限。通过的只是某一版本在某一测试条件下的证据，不是通用安全认证。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OPENEPCIS-GITHUB" title="来源：OPENEPCIS-GITHUB">来源</sup></p>
+<p><strong>北京 AI 原点社区：公开费率厅。</strong> 把电费、服务费、停车费、押金和其他费用拆开显示，公开运营主体、适用车辆/电池、服务时间、最后更新时间、24 小时电话、申诉和非 App 查询方式。高校、开发者、消费者权益人员、物业与骑手可用合成订单共同测试“同一服务是否得到同一价格解释”，不采集真实订单或平台身份。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup></p>
+<p><strong>大钟寺 AI 产业聚集区：停充责任站。</strong> 先对 2018 年历史柜和 2026 年停车管理接口做现场/主体核验，再决定是否存在可进入试点的当前设施。停车区、排队、充换电区、隔离区、人行、盲道、疏散和消防通道必须可区分；责任站只在运营企业、场地方、停车管理、24 小时响应和停止权均具名时开放。因临时重点区几何不是官方红线，本图只表达站型和接口，不声称落在真实地块或站口。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="DAZHONGSI-PARKING-PROCUREMENT-2026" title="来源：DAZHONGSI-PARKING-PROCUREMENT-2026">来源</sup></p>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="三处重点区：验证、公开、交接"><figcaption>三处重点区：验证、公开、交接</figcaption></figure>
+<p>三站共享四条空间纪律：柜体和停车不得占盲道、疏散、消防车道或安全出口；基本价格和求助不要求扫码；故障状态不能被广告界面遮盖；没有具名责任主体的设备不进入“可用”地图。任何具体点位都须在官方边界、现场测量和专业审查后重新落位。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-FIRE-DESIGN-1624" title="来源：BEIJING-FIRE-DESIGN-1624">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup></p>
+<h2>AI 创新生态、人才画像与 AI+ 场景</h2>
+<p>七类画像用来检查服务合同是否排除某类人，不用于预测个人：外卖/快递骑手关心时间、价格和 24 小时响应；骑行通勤者关心接驳与非排他使用；无智能手机或低数字能力者需要固定标识与电话；轮椅、盲杖或推车使用者需要完整通行链；停车管理人员需要明确边界和升级渠道；运营维护人员需要版本、巡检和停机权；消防、电气、保险与监管专业人员需要可审核证据。画像不进入推荐、绩效或风控评分。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="persona_count" title="指标：persona_count">指标</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-AGENT-OPEN-CALL-TASKBOOK" title="标准：PROJECT-AGENT-OPEN-CALL-TASKBOOK">标准</sup></p>
+<div class="proposal-table"><table><thead><tr><th>场景卡</th><th>人与空间</th><th>AI 增强</th><th>人工/离线路径</th><th>立即停止条件</th></tr></thead><tbody><tr><td>SC-01 历史设施复核</td><td>维护员 / 大钟寺</td><td>整理型号与证据缺口</td><td>纸表、现场核验</td><td>无法确认运营者</td></tr><tr><td>SC-02 分时停车计数</td><td>使用者 / 停车区</td><td>聚合时段需求</td><td>无人脸人工计数</td><td>出现身份或车牌字段</td></tr><tr><td>SC-03 费率拆分</td><td>所有人 / 费率厅</td><td>检查价格冲突</td><td>固定价牌、电话</td><td>收费不可解释</td></tr><tr><td>SC-04 状态新鲜度</td><td>使用者 / 责任站</td><td>对比平台与现场状态</td><td>现场状态牌</td><td>状态误导仍开放</td></tr><tr><td>SC-05 断网安全</td><td>运维 / 验证台</td><td>生成测试组合</td><td>本地保护、人工急停</td><td>断网后无法安全停机</td></tr><tr><td>SC-06 异常电池隔离</td><td>运维 / 隔离界面</td><td>提示事件关联</td><td>专业人员处置</td><td>无隔离与移交链</td></tr><tr><td>SC-07 24h 响应</td><td>使用者 / 三站</td><td>工单分级建议</td><td>电话与现场升级</td><td>无人接单或无停止权</td></tr><tr><td>SC-08 无障碍通行</td><td>共测者 / 停车—站点</td><td>汇总断点</td><td>现场共测与固定导向</td><td>占用盲道/疏散通道</td></tr><tr><td>SC-09 满仓与排队</td><td>使用者 / 大钟寺</td><td>预测拥堵时段</td><td>人工限流、替代点</td><td>排队进入车行/消防空间</td></tr><tr><td>SC-10 电池退出</td><td>运营者 / 后场</td><td>核对生命周期事件</td><td>纸质交接与人工复核</td><td>退役去向不闭合</td></tr><tr><td>SC-11 申诉与退款</td><td>使用者 / 原点社区</td><td>归类问题</td><td>人工客服、票据</td><td>自动拒绝且无申诉</td></tr><tr><td>SC-12 年度可靠性复盘</td><td>公众 / 三站</td><td>聚合无身份指标</td><td>公开会议与纸质报告</td><td>用使用量掩盖安全失败</td></tr></tbody></table></div>
+<p>其中 SC-05、SC-06、SC-10 是三项产业验证场景：本地失效安全、异常电池隔离、生命周期退出。每项测试都有输入版本、环境、责任人、预期、实际、人工覆盖和退出结果；失败记录保留，不能为了展示效果改写。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="scenario_card_count" title="指标：scenario_card_count">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="industry_test_count" title="指标：industry_test_count">指标</sup></p>
+<p>最小事件只记录设施/电池对象的匿名编号、状态、时间、点位、责任角色和证据引用；骑手身份、雇主、平台账号、订单、车牌、人脸和连续轨迹字段为零。对公众发布的只是达到样本阈值的时段需求、可用率、故障和响应分布。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="rider_identity_field_count" title="指标：rider_identity_field_count">指标</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="ODK-COLLECT-GITHUB" title="来源：ODK-COLLECT-GITHUB">来源</sup></p>
+<p>三处“朝圣地标”不是巨型装置，而是可持续使用的公共证据界面：大钟寺责任表盘显示谁负责和何时更新；AI 原点公开费率长桌让价格、申诉和非 App 路径可比；众智园断电实验台公开通过与失败的版本。荣誉只授予修复、文档、标准、开源测试和公共服务贡献，不按融资额、订单量或个人劳动绩效排序。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="blue_green_public_space" title="深度：blue_green_public_space">深度</sup></p>
+<h2>用地、建筑规模与拆改留方案</h2>
+<p>临时用地层通过共享切线生成五个完整单元，以验证功能关系和包内拓扑；它不是现状调查，也不构成法定用途调整。概念绿地与公共空间只表达一条低干扰学习廊和四个责任节点，比例仅用于检查图层是否同源生成，不表示新增绿地或公共空间指标。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup></p>
+<p>拆改留采用六道门：资产和权属清楚；现状使用与停车需求核验；结构、消防、电力和产品审查完成；无障碍和通道安全完成；运营责任、保险与全生命周期成本成立；可逆方案优于永久建设。未过门时默认保留现状、采用临时标识或不实施。历史柜若失效，先隔离和合规退出，不因“智慧设施”身份而保留。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="land_use_layout" title="深度：land_use_layout">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="深度：development_intensity_controls">深度</sup></p>
+<p>当前法定容积率和建设强度保持待正式数据补齐，不能用三座概念模块推导总建筑规模。正式深化应把现状建筑、地块、日照、消防、交通、市政、文保和使用权放进同一底图，再决定借用首层、停车边角或新建设施。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="floor_area_ratio" title="指标：floor_area_ratio">指标</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup></p>
+<h2>交通、轨道、市政与公共服务设施</h2>
+<p>交通策略以“先不挡路”为底线：步行、盲道、轮椅、推车、疏散和消防路径优先于柜体与广告；停车排队不得回溢轨道站口、道路和公共空间；服务车辆和电池转运若存在，须由专业运营者另行确定路线、时窗和安全条件。本包约 7.76 公里的联系线只是三区责任传导图，不是实际骑行、运输或工程长度。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="service_reliability_line_length_m" title="指标：service_reliability_line_length_m">指标</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-002" title="空间数据：geometry/roads.geojson#ROAD-002">空间数据</sup></p>
+<p>市政策略不估算未知电力容量，也不承诺分布式能源。正式试点必须取得供电接入、负荷、保护、接地、消防、排水、防涝、热环境、通信和断网运行审查；任何“AI 优化”都不得覆盖电气保护。公共服务同时提供状态牌、电话、人工响应与替代点，App 只是可选入口。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-CHARGE-OPS-2079" title="来源：BEIJING-CHARGE-OPS-2079">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="municipal_new_infrastructure" title="深度：municipal_new_infrastructure">深度</sup></p>
+<p>责任 RACI 如下，<code>A</code> 是最终负责、<code>R</code> 是执行、<code>C</code> 是会签、<code>I</code> 是知情：</p>
+<div class="proposal-table"><table><thead><tr><th>任务</th><th>运营企业</th><th>场地/产权</th><th>停车管理</th><th>政府/街道/社区</th><th>个人用户</th></tr></thead><tbody><tr><td>产品与运行安全</td><td>A/R</td><td>C</td><td>I</td><td>I/监督</td><td>I</td></tr><tr><td>场地与通道</td><td>C</td><td>A</td><td>R</td><td>C/监督</td><td>I</td></tr><tr><td>停车秩序</td><td>I</td><td>C</td><td>A/R</td><td>C</td><td>R/遵守</td></tr><tr><td>24h 异常响应</td><td>A/R</td><td>C</td><td>C</td><td>I/转介</td><td>R/报告</td></tr><tr><td>电池隔离与退出</td><td>A/R</td><td>C</td><td>I</td><td>I/监督</td><td>不参与</td></tr><tr><td>费率与申诉</td><td>A/R</td><td>I</td><td>I</td><td>C/监督</td><td>R/反馈</td></tr></tbody></table></div>
+<p>政府、街道和社区负责规则、协调、公共空间与监督，不统一接收、运输或维修个人电池；志愿者也不进入产品安全链。个人能参与使用、共测和报障，但不拆修、搬运或处置不明电池。这正是方案与普通社区充电倡议的核心边界。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-NONMOTOR-REG-2025" title="来源：BEIJING-NONMOTOR-REG-2025">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="NATIONAL-SHARED-SWAP-GUIDE-2025" title="来源：NATIONAL-SHARED-SWAP-GUIDE-2025">来源</sup></p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="停车、慢行、蓝绿与责任接口"><figcaption>停车、慢行、蓝绿与责任接口</figcaption></figure>
+<h2>蓝绿空间、公共空间与城市风貌</h2>
+<p>低干扰责任学习廊将固定导视、费率说明、异常状态和安全教育嵌入既有慢行/开敞空间的概念界面；它不承载真实电池运输或公众拆解体验。临时边界在图上以淡色虚线表达，视觉重点放在通道、责任站、停止状态和三区关系，避免把粗略矩形伪装成总平面。<sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup></p>
+<p>公共界面遵循五种状态色，但不只依赖颜色：正常、受限、停止、待核验、已退役均配文字和符号；状态牌显示最后更新时间和电话；夜间不过度发光；无屏幕时仍可读。设备与铁路遗产、公园、树木和现有建筑的关系须经现场和文保/园林审查，本方案不主张改造任何真实遗产构件。</p>
+<h2>更新项目清单、实施政策与分期计划</h2>
+<p>八个概念更新项目按“证据优先、低风险先行”组织：</p>
+<div class="proposal-table"><table><thead><tr><th>项目</th><th>0—15 天证据</th><th>16—30 天低风险动作</th><th>真实运行前硬门</th></tr></thead><tbody><tr><td>P-01 历史柜现状审计</td><td>存续、型号、验收、运营者</td><td>只做记录和隔离建议</td><td>当前合规证据</td></tr><tr><td>P-02 停车需求审计</td><td>无身份分时计数</td><td>排队与通道冲突图</td><td>场地和停车责任</td></tr><tr><td>P-03 责任协议</td><td>五类主体与联系人</td><td>桌面 RACI 演练</td><td>书面协议、保险</td></tr><tr><td>P-04 费率公开</td><td>费用项和时段</td><td>固定牌与网页原型</td><td>运营者确认</td></tr><tr><td>P-05 24h 响应</td><td>电话和停止权</td><td>合成呼叫演练</td><td>到场与升级机制</td></tr><tr><td>P-06 断网断电测试</td><td>产品和保护说明</td><td>非带电/隔离测试</td><td>电气消防审查</td></tr><tr><td>P-07 电池退出</td><td>退役和移交流程</td><td>合成事件账本</td><td>合规接收与去向</td></tr><tr><td>P-08 公众复盘</td><td>指标、申诉和失败口径</td><td>公开模板</td><td>隐私阈值与人审</td></tr></tbody></table></div>
+<p>0—15 天是证据门；16—30 天只做导向、状态、桌面和合成演练；31—60 天只允许在“现有合规设施、协议签署、保险/应急明确”条件下有限验证；61—90 天公开聚合结果并作保留、修改或退出决定。90 天是建议验证周期，不是政府排期。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="pilot_days" title="指标：pilot_days">指标</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="phasing_implementation" title="深度：phasing_implementation">深度</sup></p>
+<p>任一情况立即停止：运营或安全负责人缺失；产品/场地适用标准不能证明；断网后无法本地安全停机；占用盲道、疏散、消防车道或出口；收费不透明或排他；采集骑手身份、订单、车牌、人脸或连续轨迹；异常/退役电池没有隔离和规范退出。高使用量不能抵消安全失败。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-FIRE-DESIGN-1624" title="来源：BEIJING-FIRE-DESIGN-1624">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="renewal_project_list" title="深度：renewal_project_list">深度</sup></p>
+<p>长期运营采用季度公开账本和年度“安心充检修日”，只公布聚合可用率、状态一致率、故障类型、响应时间、收费申诉、通道占用、停止原因和修复证据。开发者社区维护开放字段和测试夹具，专业机构负责安全判定，公众代表检查信息可读与非 App 路径。任何活动只是概念建议，须由未来责任主体确认。</p>
+<h2>指标体系、面积复算与合规矩阵</h2>
+<p>同源计算得到临时边界约 11.41 平方公里、4 个概念责任节点、约 7.76 公里责任联系线、12 张场景卡、3 项产业验证、7 类画像和 90 天建议试点。前三项空间数字只证明几何文件能闭合和再生，不代表真实设施供给、骑行距离或建设量。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="concept_node_count" title="指标：concept_node_count">指标</sup></p>
+<div class="proposal-table"><table><thead><tr><th>指标类型</th><th class="align-right">当前表达</th><th>解释</th></tr></thead><tbody><tr><td>概念模块基底</td><td class="align-right">约 3168 ㎡</td><td>三个可逆原型合计，非建设量</td></tr><tr><td>概念学习廊面积率</td><td class="align-right">约 5.165%</td><td>非现状/新增法定绿地率</td></tr><tr><td>概念节点面积率</td><td class="align-right">约 0.460%</td><td>非公共空间供给指标</td></tr><tr><td>场景/产业测试/画像</td><td class="align-right">12 / 3 / 7</td><td>方案规则完整性</td></tr><tr><td>骑手身份字段</td><td class="align-right">0</td><td>MVP 数据硬边界</td></tr><tr><td>法定 FAR、高度、密度、退线</td><td class="align-right">待正式数据补齐</td><td>不以代理值填充</td></tr></tbody></table></div>
+<p>复算顺序固定为：替换可信约束；在 EPSG:4548 计算；生成用地、道路、绿地、公共空间、建筑和分期；写入 <code>metrics.json</code>；由同一数据生成图件、HTML 和 PDF；最后刷新 manifest 并运行四门校验。官方 polygon 发布后不得只手改图面数字。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup></p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="指标、未知项、责任和验证门"><figcaption>指标、未知项、责任和验证门</figcaption></figure>
+<p>任务覆盖矩阵逐条连接公告 17 项和 agent.1—agent.6，专业标准矩阵连接 6 项本地参考，设计深度矩阵连接 15 项成果。矩阵“complete”只表示方案提供了相应概念证据，不表示取得审批、消防验收、电力接入或运营授权。<sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-CONTROL-DETAILED-PLANNING" title="标准：MOHURD-CONTROL-DETAILED-PLANNING">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup></p>
+<h2>风险、版权与合规说明</h2>
+<p>首要风险不是模型误差，而是责任错位：把停车承包者当充换电安全运营者、把 2018 历史柜当 2026 现状、把 App 状态当现场事实、把政府/社区写成电池接收与维修主体。方案用来源限制、具名 RACI、最后核验时间和停止门抵抗这四类错误。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="DAZHONGSI-CHARGE-CABINETS-2018" title="来源：DAZHONGSI-CHARGE-CABINETS-2018">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup></p>
+<p>第二类风险是“智能化”侵入安全回路或劳动数据。AI 不控制充电电流、消防保护、隔离和重新送电，不做个人风险评分或骑手绩效画像；事件模型以设施和电池对象为中心。聚合数据在小样本时不公开，任何身份字段出现即停止。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OPENEPCIS-GITHUB" title="来源：OPENEPCIS-GITHUB">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="ODK-COLLECT-GITHUB" title="来源：ODK-COLLECT-GITHUB">来源</sup></p>
+<p>第三类风险是同题重合。仓库已有骑手驿站、夜间基本服务、充换电功能和低速机器人方案。本方案不以“提供充电”作为原创点，而以现行标准下的历史设施复审、停车—充换电书面责任、费率/状态/24h 人工响应、异常停机和电池退出构成独立产品。若评审确认该差异不足，应合并为公共可靠性组件而非继续扩张叙事。</p>
+<p>正文、概念几何、图件、离线 HTML 与 PDF 由 zymk8353 × OpenAI Codex 生成。外部项目只引用方法和公开页面，不复制代码、图像、地图或商标；字体、生成工具、许可和 synthetic 状态详见 <code>report/copyright_statement.md</code>。所有空间、运营、活动和政策建议均为开放共创建议，可供专业团队深化，不构成政府决定、投资承诺、工程可行性或已实施事实。<sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-AGENT-OPEN-CALL-TASKBOOK" title="标准：PROJECT-AGENT-OPEN-CALL-TASKBOOK">标准</sup></p>
+<h2>参考资料</h2>
+<p>1. 北京市规划和自然资源委员会海淀分局，百年京张 AI 创新带城市设计国际方案征集资格预审公告。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> 2. 面向全球智能体开展百年京张 AI 创新带城市设计开源征集任务书摘录。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> 3. 仓库场地包、来源登记表及临时边界说明。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="KEY-AREA-SOURCE" title="来源：KEY-AREA-SOURCE">来源</sup> 4. 北京市非机动车管理条例（2025 年修订）。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-NONMOTOR-REG-2025" title="来源：BEIJING-NONMOTOR-REG-2025">来源</sup> 5. DB11/T 2079-2023 运营服务规范公告、DB11/T 1624-2025 防火设计标准公告。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-CHARGE-OPS-2079" title="来源：BEIJING-CHARGE-OPS-2079">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-FIRE-DESIGN-1624" title="来源：BEIJING-FIRE-DESIGN-1624">来源</sup> 6. 国家电动自行车共享换电工作指南（试行）。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="NATIONAL-SHARED-SWAP-GUIDE-2025" title="来源：NATIONAL-SHARED-SWAP-GUIDE-2025">来源</sup> 7. 北京重点地铁站停充一体试点、大钟寺历史充电柜和停车管理采购。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-PARK-CHARGE-PILOTS-2026" title="来源：BEIJING-PARK-CHARGE-PILOTS-2026">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="DAZHONGSI-PARKING-PROCUREMENT-2026" title="来源：DAZHONGSI-PARKING-PROCUREMENT-2026">来源</sup> 8. OCPI、Open Charge Map、FixMyStreet、ODK Collect、OpenEPCIS 开源项目。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OCPI-GITHUB" title="来源：OCPI-GITHUB">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OPENCHARGEMAP-GITHUB" title="来源：OPENCHARGEMAP-GITHUB">来源</sup></p>
+</main>
+</body>
+</html>

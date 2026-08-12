@@ -1,0 +1,144 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional submitted site boundary in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "The repository provisional boundary is not an official planning boundary and is used only for intake recomputation."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 213616.727,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area(conceptual curiosity-yard footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual design footprints; not existing-building survey or approved scale."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.285039,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "union_area(green_space) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Design ratio derived from provisional geometry; not an approved control."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.015314,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "union_area(public_space) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Design ratio derived from provisional geometry; not an approved control."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls, building survey and official site boundary are absent."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required provisional key-area features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "question_station_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(PUBLIC_SPACE features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario cards tagged as testing and validation)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(distinct user personas in the persona matrix)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(conceptual pilgrimage and honor-display landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(conceptual renewal-project list)",
+      "confidence": "high",
+      "assumptions": [
+        "Project count is a design worklist, not an approved investment or implementation commitment."
+      ]
+    }
+  }
+}

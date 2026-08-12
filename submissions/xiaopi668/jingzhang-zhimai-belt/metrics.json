@@ -1,0 +1,179 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.39,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary, EPSG:4548 projection)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary from PROV-SITE-001; official polygon pending, recalculate when released."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.011756,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Design-proposal green parcels on provisional boundary."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.013287,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Design-proposal public space parcels on provisional boundary."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 441794.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "Schematic building footprints for design communication only; not construction basis."
+      ]
+    },
+    "land_use_parcel_count": {
+      "status": "known",
+      "value": 20,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use_parcels)",
+      "confidence": "medium",
+      "assumptions": [
+        "Grid partition of provisional boundary; refine with official parcels."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "Three key areas per official announcement."
+      ]
+    },
+    "road_corridor_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(road_corridors)",
+      "confidence": "medium",
+      "assumptions": [
+        "Schematic corridors; official road network pending."
+      ]
+    },
+    "phasing_zone_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phasing_zones)",
+      "confidence": "low",
+      "assumptions": [
+        "Near/medium/long-term concept zones."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary not present in public site package."
+    },
+    "ai_scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards)",
+      "confidence": "high",
+      "assumptions": [
+        "10 scenario cards required by agent.3."
+      ]
+    },
+    "ai_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industry_test_scenarios)",
+      "confidence": "high",
+      "assumptions": [
+        "3 test scenarios required by agent.3."
+      ]
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user_personas)",
+      "confidence": "high",
+      "assumptions": [
+        "5 personas required by agent.3."
+      ]
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(ai_landmarks)",
+      "confidence": "high",
+      "assumptions": [
+        "3 pilgrimage landmarks required by agent.4."
+      ]
+    }
+  }
+}

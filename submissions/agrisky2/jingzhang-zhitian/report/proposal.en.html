@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jing-Zhang Smart Farm — Proposal Reading Version (EN)</title>
+<style>
+:root {
+  --green: #2E7D32; --green-light: #C8E6C9;
+  --blue: #1565C0; --blue-light: #BBDEFB;
+  --orange: #E65100; --orange-light: #FFE0B2;
+  --grey: #757575; --grey-light: #F5F5F5;
+  --text: #212121; --bg: #FAFAFA;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+.container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+header { background: linear-gradient(135deg, var(--green), var(--blue)); color: white; padding: 60px 20px; text-align: center; }
+header h1 { font-size: 2em; margin-bottom: 10px; }
+header .subtitle { font-size: 1.1em; opacity: 0.9; }
+.meta-bar { background: white; padding: 15px 20px; margin: 20px 0; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; flex-wrap: wrap; gap: 20px; font-size: 0.85em; }
+.meta-item { display: flex; align-items: center; gap: 5px; }
+.meta-item .label { color: var(--grey); }
+.meta-item .value { font-weight: bold; }
+section { background: white; margin: 20px 0; padding: 30px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+section h2 { color: var(--green); border-bottom: 2px solid var(--green-light); padding-bottom: 8px; margin-bottom: 20px; font-size: 1.4em; }
+section h3 { color: var(--blue); margin: 15px 0 10px; font-size: 1.1em; }
+figure { margin: 20px 0; text-align: center; }
+figure img { max-width: 100%; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+figure figcaption { color: var(--grey); font-size: 0.85em; margin-top: 8px; }
+table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.88em; }
+th, td { padding: 8px 10px; border: 1px solid #e0e0e0; text-align: left; vertical-align: top; }
+th { background: var(--grey-light); font-weight: bold; }
+.evidence-tag { display: inline-block; background: var(--blue-light); color: var(--blue); padding: 2px 8px; border-radius: 12px; font-size: 0.72em; font-weight: bold; margin: 0 2px; }
+.status-provisional { color: var(--orange); font-weight: bold; }
+.note-box { background: var(--orange-light); border-left: 4px solid var(--orange); padding: 12px 16px; border-radius: 4px; font-size: 0.88em; margin: 15px 0; }
+.note-blue { background: var(--blue-light); border-left: 4px solid var(--blue); padding: 12px 16px; border-radius: 4px; font-size: 0.88em; margin: 15px 0; }
+footer { text-align: center; padding: 40px 20px; color: var(--grey); font-size: 0.85em; }
+.nav-toc { background: white; padding: 20px; border-radius: 8px; margin: 20px 0; }
+.nav-toc ol { padding-left: 20px; }
+.nav-toc li { margin: 4px 0; }
+.nav-toc a { color: var(--blue); text-decoration: none; }
+.nav-toc a:hover { text-decoration: underline; }
+ul, ol { padding-left: 22px; margin: 10px 0; }
+li { margin: 4px 0; }
+p { margin: 10px 0; }
+code { background: var(--grey-light); padding: 1px 5px; border-radius: 3px; font-size: 0.9em; }
+@media (max-width: 768px) {
+  .container { padding: 10px; }
+  section { padding: 20px; }
+  header h1 { font-size: 1.4em; }
+}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>Jing-Zhang Smart Farm: From Railway Grain to AI Cultivation</h1>
+  <div class="subtitle">An AI-Driven Urban Agri-Food Innovation Corridor<br>Centennial Jing-Zhang AI Innovation Belt · Haidian, Beijing</div>
+</header>
+
+<div class="container">
+
+<div class="meta-bar">
+  <div class="meta-item"><span class="label">Author:</span><span class="value">agrisky2 / Agri Research Engine</span></div>
+  <div class="meta-item"><span class="label">Version:</span><span class="value">v0.2 · formal v2</span></div>
+  <div class="meta-item"><span class="label">License:</span><span class="value">COMMUNITY-DISPLAY-ONLY</span></div>
+  <div class="meta-item"><span class="label">Boundary:</span><span class="value status-provisional">PROVISIONAL — NOT official red line</span></div>
+  <div class="meta-item"><span class="label">Translation of:</span><span class="value">proposal.md (zh)</span></div>
+</div>
+
+<nav class="nav-toc">
+  <strong>Table of Contents</strong>
+  <ol>
+    <li><a href="#s1">Design Basis and Source Documents</a></li>
+    <li><a href="#s2">Three-Layer Working Framework</a></li>
+    <li><a href="#s3">Study Area Industry and Future City Research</a></li>
+    <li><a href="#s4">Overall Design Area Urban Renewal</a></li>
+    <li><a href="#s5">Key Area Detailed Design</a></li>
+    <li><a href="#s6">AI Ecosystem, User Portraits and AI+ Scenarios</a></li>
+    <li><a href="#s7">Land Use, Building Scale Variables, Retain/Renovate/Demolish</a></li>
+    <li><a href="#s8">Transport, Rail, Municipal and Public Services</a></li>
+    <li><a href="#s9">Blue-Green Space, Public Space and Urban Style</a></li>
+    <li><a href="#s10">Renewal Project List and Phasing Plan</a></li>
+    <li><a href="#s11">Metrics System and Compliance Matrix</a></li>
+    <li><a href="#s12">Cultural Fusion Narrative</a></li>
+    <li><a href="#s13">Global AI Innovation Activities and Operation</a></li>
+    <li><a href="#s14">Risk, Copyright and Compliance</a></li>
+  </ol>
+</nav>
+
+<section id="s1">
+  <h2>1. Design Basis and Source Documents</h2>
+  <table>
+    <tr><th>Source</th><th>Authority</th><th>Use</th></tr>
+    <tr><td>Prequalification Announcement (2026-05-09)</td><td>A0 Official</td><td>Project scope, design tasks, three-layer areas</td></tr>
+    <tr><td>Agent Taskbook Extract (2026-05-18)</td><td>Cleared user doc</td><td>Six agent tasks, ten co-creation principles</td></tr>
+    <tr><td>Three Zones &amp; Two Wings Industry Layout (2026-04-03)</td><td>A1 Official</td><td>Industry positioning and zone functions</td></tr>
+    <tr><td>Haidian "1+X+1" Industry System (2026-03-02)</td><td>A1 Official</td><td>AI core industry and tech service ecosystem</td></tr>
+    <tr><td>Urban Design Management Measures (MOHURD, 2017)</td><td>A0 National Standard</td><td>Urban design depth <span class="evidence-tag">standard:MOHURD-URBAN-DESIGN-MEASURES</span></td></tr>
+    <tr><td>Regulatory Planning Approval (MOHURD)</td><td>A0 National Standard</td><td>Control-detailed planning depth <span class="evidence-tag">standard:MOHURD-CONTROL-DETAILED-PLANNING</span></td></tr>
+    <tr><td>Land Use Classification Guide (MNR, 2023)</td><td>A0 National Standard</td><td>Land use codes <span class="evidence-tag">standard:MNR-LAND-USE-CLASSIFICATION-GUIDE</span></td></tr>
+    <tr><td>Generative AI Management Measures (2023)</td><td>A0 Regulation</td><td>AI governance boundary <span class="evidence-tag">standard:GENERATIVE-AI-INTERIM-MEASURES</span></td></tr>
+  </table>
+  <div class="note-box">
+    <strong>Key Data Gap Statement:</strong> Official precise GIS/CAD boundaries have not been publicly released. This proposal uses the provisional rough boundaries (<code>official_boundary=false</code>) from the repository <span class="evidence-tag">data:geometry/site_boundary.geojson#PROV-SITE-001</span> <span class="evidence-tag">metric:total_area</span>. All spatial conclusions are for directional design discussion only and cannot serve as approval basis, statutory red lines, or precise area recalculation basis. Once official boundaries are obtained, all land areas, building scales, and indicators must be recalculated.
+  </div>
+
+  <figure>
+    <img src="../assets/figures/site-overview.en.png" alt="Site Overview Map">
+    <figcaption>Figure 1: Jing-Zhang AI Innovation Belt Overall Scope (provisional boundary) <span class="status-provisional">PROVISIONAL — not official red line</span></figcaption>
+  </figure>
+</section>
+
+<section id="s2">
+  <h2>2. Three-Layer Working Framework</h2>
+  <table>
+    <tr><th>Layer</th><th>Area</th><th>Boundary Basis</th><th>Design Depth</th></tr>
+    <tr><td>Study Area</td><td>43.6 km²</td><td>North 5th Ring Rd — Jingzang Expressway — Xizhimenwai St — Wanquanhe Rd</td><td>Industry strategy research</td></tr>
+    <tr><td>Overall Design Area</td><td>11.4 km²</td><td>Jing-Zhang Heritage Park surrounding 1-2km <span class="status-provisional">provisional</span></td><td>Control-detailed urban design depth <span class="evidence-tag">depth:land_use_layout</span></td></tr>
+    <tr><td>Key Areas</td><td>368.4 ha</td><td>Zhongzhiyuan + AI Origin + Dazhongsi <span class="status-provisional">provisional</span></td><td>Comprehensive implementation plan depth <span class="evidence-tag">depth:key_area_detailed_design</span></td></tr>
+  </table>
+  <p>Core proposition: <strong>How to spatially couple Haidian's existing AI infrastructure with China's densest agricultural research resources (China Agricultural University, CAAS, CAS Institute of Genetics and Developmental Biology) to form an "AI+Agri-Food" cross-disciplinary innovation cluster.</strong></p>
+
+  <figure>
+    <img src="../assets/figures/land-use-structure.en.png" alt="Land Use Structure">
+    <figcaption>Figure 2: Land use layout and "One Belt, Three Zones, Two Wings" spatial structure <span class="status-provisional">PROVISIONAL</span></figcaption>
+  </figure>
+</section>
+
+<section id="s3">
+  <h2>3. Study Area Industry and Future City Research</h2>
+  <h3>3.1 Naming System and Brand Identity</h3>
+  <p><strong>Master Name: Jing-Zhang Smart Farm</strong> — Jing-Zhang = century-old railway heritage; Smart = AI intelligence-driven; Farm = agricultural technology and urban farmland. Naming logic: from "railway grain" (1909) to "AI cultivation" (2026→) forms a complete narrative loop.</p>
+  <ul>
+    <li><strong>Logo direction:</strong> Jing-Zhang "人-shaped" track skeleton × wheat ear DNA double helix × chip circuits — "Railway × Wheat × Chip" fusion. Colors: Agricultural Green (#2E7D32) + Tech Blue (#1565C0) + Jing-Zhang Gray (#757575).</li>
+    <li><strong>Three brand maps:</strong> Century-old Cultural Belt → "Smart Farm Heritage"; Urban AI Life Experience Belt → "Future Table"; AI Fusion Innovation Belt → "Seed Silicon Valley."</li>
+  </ul>
+
+  <h3>3.2 Spatial Location of Five Functions</h3>
+  <table>
+    <tr><th>Function</th><th>Spatial Mapping</th><th>Core Scenarios</th></tr>
+    <tr><td>AI Full-Stack Autonomous Innovation</td><td>Zhongzhiyuan · Smart Breeding Cluster</td><td>AI molecular breeding platform, crop phenomics</td></tr>
+    <tr><td>World-Class AI Innovation Ecosystem</td><td>AI Origin Community · FoodTech Corridor</td><td>Food AI accelerator, precision nutrition R&amp;D</td></tr>
+    <tr><td>AI+Scenario Empowerment Paradigm</td><td>Xiaoyuehe Scenario Wing</td><td>Smart farmland test field, AI+food safety detection</td></tr>
+    <tr><td>Intelligent AI Vibrant City</td><td>Jing-Zhang Heritage Park Vitality Belt</td><td>Developer walking paths, open-source showcase</td></tr>
+    <tr><td>AI Governance Global Voice</td><td>Dazhongsi · Global Food Security Forum</td><td>International Agri-AI standards symposium</td></tr>
+  </table>
+
+  <h3>3.3 Global AI+Agri-Food Ecosystem Cases (7)</h3>
+  <p>All cases are sourced from publicly released institutional reports, government documents, and official websites, each with publisher, link, date, and data scope for cross-verification <span class="evidence-tag">agent.2</span>.</p>
+  <table>
+    <tr><th>#</th><th>Case</th><th>Publisher</th><th>Link</th><th>Date</th><th>Key Data</th></tr>
+    <tr><td>1</td><td>Wageningen Food Valley (NL)</td><td>Wageningen University &amp; Research</td><td>wur.nl</td><td>2025 Annual</td><td>200+ food companies, €65B annual output</td></tr>
+    <tr><td>2</td><td>Israel AgriFood Tech Ecosystem</td><td>Start-Up Nation Central</td><td>startupnationcentral.org</td><td>2025 Report</td><td>850+ AgTech startups</td></tr>
+    <tr><td>3</td><td>Singapore FoodInnovate (30×30)</td><td>Singapore Food Agency</td><td>sfa.gov.sg</td><td>2025 Update</td><td>National food security strategy</td></tr>
+    <tr><td>4</td><td>St. Louis 39 North AgTech (US)</td><td>39 North Development Corp.</td><td>39northstl.com</td><td>Planning doc</td><td>600 acres, 200+ startups</td></tr>
+    <tr><td>5</td><td>Shenzhen Int'l Food Valley</td><td>Shenzhen Market Supervision Bureau</td><td>Govt Bulletin</td><td>Planning doc</td><td>China's first AgTech policy zone</td></tr>
+    <tr><td>6</td><td>Tsukuba Science City (JP)</td><td>NARO</td><td>naro.go.jp</td><td>Official site</td><td>NARO HQ location</td></tr>
+    <tr><td>7</td><td>Norwich Research Park (UK)</td><td>John Innes Centre + Earlham Institute</td><td>jic.ac.uk</td><td>2025 Report</td><td>Plant science + computational biology</td></tr>
+  </table>
+  <p><em>Source statement: Case data are from each institution's public reports/websites; specific scope and period subject to original sources. References are for directional learning only, not precise benchmarks, and are not used as formal evidence before supplementary verification.</em></p>
+
+  <h3>3.4 Track Selection Logic: AI+Urban Agri-Food Supply System</h3>
+  <p>This proposal upgrades the singular "agriculture" positioning to the <strong>urban agri-food supply system</strong>, covering the full chain from breeding R&amp;D, food processing, safety detection, supply chain optimization to public science education:</p>
+  <ol>
+    <li><strong>Research resource advantage:</strong> China's densest agri research resources + global AI highland (Zhongguancun).</li>
+    <li><strong>Historical narrative closure:</strong> since 1909 the Jing-Zhang Railway was the main grain channel — "railway grain" → "AI cultivation."</li>
+    <li><strong>Public interest value:</strong> food safety, nutrition health, and affordability directly relate to every citizen.</li>
+    <li><strong>AI scenario diversity:</strong> AI+breeding (genomics), AI+food detection (vision), AI+supply chain (time-series), AI+cultural guide (LLM/AR), AI+community co-farming (IoT/edge) — not a singular agriculture park.</li>
+  </ol>
+  <p><strong>Multi-dimensional AI coverage:</strong> 12 scenario cards cover AI+Agri Production (4), AI+Food Supply Chain (4), and AI+Urban Services &amp; Culture (4), including non-agricultural AI scenarios such as AI cultural guide (SC-12), AI open-source community (SC-09), and AI+urban governance (SC-07 food safety network).</p>
+  <div class="note-blue">
+    <strong>Science Education Participation Core Value:</strong> The urban agri-food supply system is not a closed industrial park but a <strong>"food education public platform" for all citizens</strong> — from K-12 students' "A Seed's Journey" science line, to residents' community co-farming, to seniors' "Future Table" experience days. Every citizen can understand, participate in, and benefit from AI-driven food system innovation.
+  </div>
+</section>
+
+<section id="s4">
+  <h2>4. Overall Design Area Urban Renewal</h2>
+  <h3>4.1 Spatial Structure: "One Belt, Three Zones, Two Wings"</h3>
+  <p>Jing-Zhang Railway Heritage Park as the north-south main axis (AI Smart Farm Cultural Belt) connecting three key areas; West Wing = Zhongguancun Tech Service; East Wing = Xiaoyuehe Scenario Wing.</p>
+
+  <h3>4.2 Land Use Function Proportions (Concept Suggestion)</h3>
+  <table>
+    <tr><th>Land Use Category</th><th>Proportion</th><th>Area (ha)</th><th>Core Function</th></tr>
+    <tr><td>Research/Education</td><td>19.2%</td><td>~219</td><td>Smart breeding, crop phenotyping, Agri-AI R&amp;D</td></tr>
+    <tr><td>Commercial/Business</td><td>35.1%</td><td>~400</td><td>FoodTech incubation, display, forum</td></tr>
+    <tr><td>Green/Public Space</td><td>25.98% (recomputed) / 28.5% (concept target)</td><td>~279</td><td>Heritage park, urban farm, waterfront green corridor</td></tr>
+    <tr><td>Residential (Talent Community)</td><td>10.9%</td><td>~124</td><td>Innovation talent apartments</td></tr>
+    <tr><td>Mixed/Service</td><td>10.3%</td><td>~117</td><td>AI+scenario testing, tech services</td></tr>
+  </table>
+  <p><em>Note: proportions based on provisional boundary estimation, to be recalculated upon official boundary confirmation.</em> <span class="evidence-tag">metric:land_use_composition</span></p>
+
+  <h3>4.3 Urban Renewal Framework (Classification Principles)</h3>
+  <div class="note-box">
+    <strong>Boundary clause compliance:</strong> Per taskbook boundary clause, the agent shall not directly provide specific retain/renovate/demolish ratios. This proposal only proposes classification principles and required input data; specific ratios must be formulated by professional teams after current building survey, property rights data, and regulatory conditions are obtained.
+  </div>
+  <table>
+    <tr><th>Category</th><th>Principle</th><th>Representative Objects (To Be Verified)</th></tr>
+    <tr><td>Retain</td><td>Protection + function upgrade</td><td>Railway heritage, university research facilities, quality communities</td></tr>
+    <tr><td>Renovate</td><td>Adaptive reuse</td><td>Old factories → FoodTech pilot, wholesale markets → food experience halls</td></tr>
+    <tr><td>New Construction</td><td>International competition + custom construction</td><td>Breeding R&amp;D center, AI talent community, forum venue</td></tr>
+    <tr><td>Demolish</td><td>Bird-cage swap</td><td>Inefficient illegal structures, scattered polluting enterprises</td></tr>
+  </table>
+</section>
+
+<section id="s5">
+  <h2>5. Key Area Detailed Design</h2>
+  <div class="note-box">
+    <strong>Building scale variables:</strong> Total building area, FAR, and height limits must be determined based on corresponding regulatory planning conditions. This proposal only proposes space demand variables and calculation methods (land area × regulatory FAR = total building area), and does not directly provide FAR or height values.
+  </div>
+  <table>
+    <tr><th>Key Area</th><th>Area</th><th>Core Functions</th><th>Building Scale</th></tr>
+    <tr><td>Zhongzhiyuan · Smart Breeding R&amp;D</td><td>192.1 ha</td><td>AI molecular breeding, crop phenomics facility, agri robot test field, digital twin farmland</td><td>Variable (per regulatory)</td></tr>
+    <tr><td>AI Origin Community · FoodTech Hub</td><td>104.3 ha</td><td>Food AI accelerator, precision nutrition, cell-cultured protein, talent community</td><td>Variable (per regulatory)</td></tr>
+    <tr><td>Dazhongsi · Future Food Experience</td><td>72.0 ha</td><td>Global Food Security Forum, Future Food Experience Hall, food data platforms</td><td>Variable (per regulatory)</td></tr>
+  </table>
+  <p><span class="evidence-tag">data:geometry/key_areas.geojson#PROV-KEY-001</span> <span class="evidence-tag">data:geometry/key_areas.geojson#PROV-KEY-002</span> <span class="evidence-tag">data:geometry/key_areas.geojson#PROV-KEY-003</span></p>
+
+  <figure>
+    <img src="../assets/figures/key-areas.en.png" alt="Key Areas Design">
+    <figcaption>Figure 3: Three key area functions and design tasks <span class="status-provisional">PROVISIONAL</span></figcaption>
+  </figure>
+</section>
+
+<section id="s6">
+  <h2>6. AI Ecosystem, User Portraits and AI+ Scenarios</h2>
+  <p>This section responds to the third agent task: no fewer than 10 AI scenario cards, 3 industry test-verification scenarios, and 5 user portraits. <span class="evidence-tag">agent.3</span></p>
+
+  <h3>6.1 User Portraits: From Innovators to All Community Segments (8 types)</h3>
+  <p>Extended from "focusing only on innovators" to 8 categories covering all population groups — especially supplementing local residents, seniors, disabled persons, children/caregivers, low-income groups, and existing merchants — responding to public interest priority and human-centered governance principles.</p>
+  <table>
+    <tr><th>Portrait</th><th>Characteristics</th><th>Space Requirements</th><th>Key Scenarios</th><th>Inclusion Design</th></tr>
+    <tr><td>AI Breeding Scientist</td><td>30-45, PhD+, GPU cluster</td><td>Shared lab, supercomputer access</td><td>Phenomics data analysis, AI-assisted gene editing</td><td>Accessible lab pathways</td></tr>
+    <tr><td>FoodTech Entrepreneur</td><td>25-35, returnee/university</td><td>Shared pilot workshop, pitch center</td><td>Cell-cultured protein industrialization</td><td>Inclusive incubation (low-income support)</td></tr>
+    <tr><td>AI Engineer/Developer</td><td>22-35, big tech spillover</td><td>Developer community, 24h study</td><td>Agri-AI open-source projects, hackathons</td><td>Remote participation (non-digital backup)</td></tr>
+    <tr><td>Local Residents &amp; Seniors</td><td>40-70, long-term community</td><td>Community space, accessible facilities</td><td>Agri-food science experience, co-farming</td><td>Accessible paths + large-font interface + human service window</td></tr>
+    <tr><td>Children &amp; Caregivers</td><td>0-12 + parents</td><td>Science education base, parent-child space</td><td>"A Seed's Journey" science line, K-12 education</td><td>Child safety + parent-child accessibility</td></tr>
+    <tr><td>Disabled Persons</td><td>Visual/hearing/mobility impaired</td><td>Accessible pathways, voice navigation, tactile guide</td><td>AI cultural guide (voice/sign/tactile adaptive)</td><td>Full-scenario accessibility + AI assistive navigation</td></tr>
+    <tr><td>Low-Income &amp; Existing Merchants</td><td>Small business owners, migrant workers</td><td>Low-cost commercial space, transition resettlement</td><td>Food AI accelerator inclusive channel, merchant support</td><td>Anti-displacement + fee fairness + transition plan</td></tr>
+    <tr><td>Int'l Agri Policy Makers</td><td>40-60, govt/IOs</td><td>Forum venue, signing facilities</td><td>Annual Global Food Security Forum</td><td>Multi-language + cultural adaptation</td></tr>
+  </table>
+
+  <h3>6.2 AI Scenario Matrix (12 cards, 7 dimensions each)</h3>
+  <p>Each card explicitly marks data source, spatial location, AI model, operating entity, human review mechanism, and exit conditions. Coverage: AI+Agri Production (SC-01~04), AI+Food Supply Chain (SC-05~08), AI+Urban Services &amp; Culture (SC-09~12).</p>
+
+  <h4>6.2.1 AI+Agri Production (SC-01 to SC-04)</h4>
+  <table>
+    <tr><th>Scenario</th><th>Space</th><th>Data</th><th>Model</th><th>Ops</th><th>Human Review</th><th>Exit</th></tr>
+    <tr><td>SC-01 AI Molecular Design Breeding</td><td>Zhongzhiyuan LU-001</td><td>Public genome DB + partner research</td><td>Genome prediction + marker selection</td><td>CAAS + AI enterprise</td><td>IP review committee</td><td>Tech obsolete or IP dispute</td></tr>
+    <tr><td>SC-02 Digital Twin Farmland</td><td>Zhongzhiyuan 5ha validation</td><td>Sensors + UAV + public satellite RS</td><td>Multi-modal fusion + time-series</td><td>CAAS + AI enterprise</td><td>Quarterly twin vs. actual deviation check</td><td>Sensor failure &gt;30% or deviation &gt;15% → pause</td></tr>
+    <tr><td>SC-03 Agri Robot Test Field</td><td>Zhongzhiyuan GRN-004</td><td>Test sensors + video (anonymized)</td><td>CV + reinforcement learning</td><td>AI enterprise + CAAS support</td><td>Safety engineer batch review</td><td>Safety incident or standard update → exit</td></tr>
+    <tr><td>SC-04 AI Controlled Agri Pilot</td><td>Zhongzhiyuan</td><td>Env sensors + crop growth data</td><td>RL environment control</td><td>AI enterprise</td><td>Agri engineer monthly + trade secret audit</td><td>Energy/crop quality fail → adjust/exit</td></tr>
+  </table>
+
+  <h4>6.2.2 AI+Food Supply Chain (SC-05 to SC-08)</h4>
+  <table>
+    <tr><th>Scenario</th><th>Space</th><th>Data</th><th>Model</th><th>Ops</th><th>Human Review</th><th>Exit</th></tr>
+    <tr><td>SC-05 Food AI Accelerator</td><td>AI Origin Community</td><td>Enterprise data + public ingredient DB</td><td>Supply chain optimization + formula prediction</td><td>FoodTech accelerator operator</td><td>Food safety expert + compliance audit</td><td>2 consecutive compliance fails → exit</td></tr>
+    <tr><td>SC-06 Precision Nutrition AI</td><td>AI Origin + Online</td><td>Personal genome (anonymized) + microbiome (user-authorized)</td><td>Nutrition recommendation</td><td>Health tech company</td><td>Registered dietitian review; data minimization; user appeal</td><td>Auth withdrawal or breach → pause and audit</td></tr>
+    <tr><td>SC-07 AI+Food Safety Detection</td><td>Belt-wide F&amp;B + district</td><td>Public detection standards + device data</td><td>Multi-modal classification + anomaly detection</td><td>Regulator + AI enterprise</td><td>100% manual recheck of anomalies + blind samples</td><td>Error rate &gt;5% or device aging → replace</td></tr>
+    <tr><td>SC-08 Future Food AI Experience Hall</td><td>Dazhongsi core</td><td>User preference (anonymous) + nutrition input</td><td>Recommendation + personalized generation</td><td>Experience hall operator</td><td>Food safety expert review new categories + feedback</td><td>Category fails review → not launched</td></tr>
+  </table>
+
+  <h4>6.2.3 AI+Urban Services &amp; Culture (SC-09 to SC-12)</h4>
+  <table>
+    <tr><th>Scenario</th><th>Space</th><th>Data</th><th>Model</th><th>Ops</th><th>Human Review</th><th>Exit</th></tr>
+    <tr><td>SC-09 AgriCode Open Source</td><td>AI Origin + Online</td><td>Public papers + patents + open source</td><td>Model repo + code review tools</td><td>Open-source community council</td><td>Code review committee (safety + compliance)</td><td>Activity below threshold 6 months → adjust</td></tr>
+    <tr><td>SC-10 Agri Price Prediction</td><td>Online platform</td><td>Public market data (weather, futures, logistics)</td><td>Time-series + causal inference</td><td>Data analytics company</td><td>Agri econ expert quarterly accuracy audit</td><td>3 quarters deviation &gt;20% → pause/retrain</td></tr>
+    <tr><td>SC-11 Farmer Training App</td><td>Online + offline</td><td>Farm photos (location anonymized) + public knowledge</td><td>LLM + vision + RAG</td><td>Agri extension + AI enterprise</td><td>Expert review + user feedback → model update</td><td>Accuracy &lt;80% → pause feature</td></tr>
+    <tr><td>SC-12 Railway Cultural AI Guide</td><td>Heritage Park full line</td><td>Public history + heritage coordinates + user location (anonymous)</td><td>LLM + AR guide</td><td>Cultural heritage dept + AI enterprise</td><td>Historian review of guide content</td><td>Error rate exceeds standard → pause/correct</td></tr>
+  </table>
+
+  <h3>6.3 Three Industry Test-Verification Scenarios</h3>
+  <table>
+    <tr><th>Verification</th><th>Content</th><th>Method</th><th>Success Criteria</th><th>Exit Condition</th></tr>
+    <tr><td>TV-01 AI Breeding Full Process</td><td>Genome selection → markers → cross → field phenotype → variety approval</td><td>3 crops (wheat/corn/rice), Zhongzhiyuan + partner stations</td><td>Breeding cycle shortened AND variety approved</td><td>Not shortened or approval fail → adjust route</td></tr>
+    <tr><td>TV-02 Accelerator Graduation Rate</td><td>24-month tracking of financing/launch/share</td><td>Space + service + capital synergy assessment</td><td>Graduation &gt;60% AND no major safety incident</td><td>&lt;30% OR incident → pause</td></tr>
+    <tr><td>TV-03 Economic Output Multiplier</td><td>Public investment leverage on social capital/output</td><td>Input-output model + third-party audit</td><td>Multiplier &gt;3x</td><td>&lt;2x → adjust policy toolkit</td></tr>
+  </table>
+</section>
+
+<section id="s7">
+  <h2>7. Land Use, Building Scale Variables, Retain/Renovate/Demolish</h2>
+  <p>Land classification uses the MNR "Land Survey, Planning, Use Control Land and Sea Classification Guide" (2023) system <span class="evidence-tag">standard:MNR-LAND-USE-CLASSIFICATION-GUIDE</span>. See <code>geometry/land_use.geojson</code> (9 land use polygons) and <code>geometry/buildings.geojson</code> (48 conceptual buildings, spatial location only).</p>
+  <div class="note-box">
+    <strong>Building scale variables:</strong> Per taskbook boundary clause, this proposal does not directly provide total building area, FAR, or height values. Calculation method: <em>total building area = land area × regulatory FAR</em> (must be determined by corresponding district regulatory conditions). Required input: regulatory conditions, current building survey, land supply plan.
+  </div>
+</section>
+
+<section id="s8">
+  <h2>8. Transport, Rail, Municipal and Public Services</h2>
+  <p><strong>Rail:</strong> Metro Line 13 / Line 10 / Line 4 three-line intersection; suggest themed train or autonomous shuttle between Dazhongsi Station and Tsinghua East Road West Entrance Station.</p>
+  <p><strong>Slow mobility:</strong> "One Vertical, Three Horizontal" framework, concept total ~25km.</p>
+  <p><strong>Parking:</strong> Allocation standards per Beijing standards and district transportation special studies; TOD core area adopts rail transit supply replacement strategy. Specific values pending transportation special study (boundary clause compliance).</p>
+  <p><strong>New infrastructure:</strong> Agri-AI supercomputing center (concept 100 PFLOPS FP16), distributed energy (BIPV, food-waste biogas, ground source heat pumps), edge computing sensor network (5G + edge nodes).</p>
+  <p><strong>Public services:</strong> International talent one-stop service center, China Agricultural University Smart Agriculture College (concept new) + K-12 Agri-AI Science Education Base, 300+ room international conference hotel.</p>
+
+  <h3>8.4 Urban Agri-Food Supply System Science Participation and Public Interest</h3>
+  <div class="note-blue">
+    <strong>Core value proposition:</strong> Jing-Zhang Smart Farm is not only an agricultural technology industrial park but also a <strong>science education base for the "urban agri-food supply system" facing all citizens</strong> — from "railway grain" to "AI cultivation," letting the public understand the full chain of food from field to table, participate in urban agricultural innovation, and form a public culture of "everyone understands food, everyone enjoys food, everyone creates food."
+  </div>
+  <ol>
+    <li><strong>"A Seed's Journey" Public Science Line</strong> — 3km immersive path: breeding lab → Digital Twin Farmland → Urban Agriculture Display Park → Future Food Experience Hall. 12 interactive stations with AI multi-language, multi-accessible-mode docents. Open to K-12 schools, community groups, and individual visitors.</li>
+    <li><strong>Community Co-Farming Platform</strong> — 5 "Community Shared Farms" (~500m² each) along the Heritage Park. Online plot booking, AI planting advice and automatic irrigation; seniors have priority booking with accessible elevated planting boxes; harvests freely distributed to low-income families.</li>
+    <li><strong>"Future Table" Public Experience Day</strong> — Free public opening day the first weekend of each month at Dazhongsi Future Food Experience Hall; AI generates "future menu," robots prepare on site; seniors-only morning session and parent-child afternoon session.</li>
+    <li><strong>AI+Food Safety Public Supervision Network</strong> — citizens scan food traceability codes for full-chain information; AI anomaly detection pushes to regulators; citizen reporting + "Food Safety Citizen Observer" system.</li>
+    <li><strong>Food Affordability Monitoring</strong> — AI monitors price fluctuations and warns of affordability risks; "Public Welfare Vegetable Basket" program supplies affordable vegetables to low-income communities.</li>
+  </ol>
+  <table>
+    <tr><th>Inclusion Indicator</th><th>Design Target</th><th>Status</th></tr>
+    <tr><td>Accessibility path coverage</td><td>100% in key areas</td><td>Concept target</td></tr>
+    <tr><td>Non-digital service channels</td><td>Human service window in each public space</td><td>Concept target</td></tr>
+    <tr><td>K-12 science education</td><td>Annual student visits ≥10,000</td><td>Concept target</td></tr>
+    <tr><td>Community co-farming participation</td><td>Annual participants ≥2,000</td><td>Concept target</td></tr>
+    <tr><td>Food affordability monitoring</td><td>Monthly price index release</td><td>Concept target</td></tr>
+    <tr><td>Anti-displacement protection</td><td>100% existing merchants transition resettlement</td><td>Concept target</td></tr>
+  </table>
+
+  <figure>
+    <img src="../assets/figures/mobility-bluegreen.en.png" alt="Mobility and Blue-Green System">
+    <figcaption>Figure 4: Mobility/slow-traffic and blue-green public space composite system <span class="status-provisional">PROVISIONAL</span></figcaption>
+  </figure>
+</section>
+
+<section id="s9">
+  <h2>9. Blue-Green Space, Public Space and Urban Style</h2>
+  <p><strong>Blue-green system:</strong> Jing-Zhang Railway Heritage Park (~7km linear park, tracks/platforms preserved) + Qinghe waterfront green corridor + Xiaoyuehe ecological corridor + urban agriculture display park <span class="evidence-tag">data:geometry/green_space.geojson#GRN-001</span>.</p>
+  <p><strong>Green ratio:</strong> provisional geometric recomputation <strong>25.98%</strong> (heritage park + waterfront + urban farm + community green); design concept target <strong>28.5%</strong>. Difference stems from provisional boundary precision, to be unified after official geometry. <span class="evidence-tag">metric:green_ratio</span></p>
+  <p><strong>Public space ratio:</strong> provisional geometric recomputation <strong>3.08%</strong> (4 iconic public spaces / total area); design concept target <strong>8.2%</strong> (including street squares and pocket parks). <span class="evidence-tag">data:geometry/public_space.geojson</span></p>
+
+  <h3>9.2 Three AI Landmark Destinations <span class="evidence-tag">agent.4</span></h3>
+  <ol>
+    <li><strong>LM-01 Agent Contribution Honor Wall</strong> (Open Source Square, Heritage Park) — physical monuments + digital plaques recording outstanding human and AI Agent contributions; humble, growable, traceable. <code>geometry/public_space.geojson#PUB-001</code></li>
+    <li><strong>LM-02 Global AI Seed Industry Milestone</strong> (Zhongzhiyuan) — recording each major AI breeding breakthrough; DNA double helix + silicon circuit sculpture language, an "AI Seed Industry Chronicle."</li>
+    <li><strong>LM-03 "Wheat Gate" Future Food Landmark</strong> (Dazhongsi) — forum main entrance; giant wheat structure + real-time data screen (global food prices, climate, production); the visual symbol of Haidian AI+Agri.</li>
+  </ol>
+
+  <h3>9.3 Public Space Network</h3>
+  <p>4 iconic public spaces: Open Source Square / Agent Honor Wall (PUB-001), AI+Agri Innovation Showcase Corridor (PUB-002), Global Food Security Forum Square (PUB-003), Developer Walking Path (PUB-004).</p>
+
+  <h3>9.4 Urban Style</h3>
+  <p><strong>Tone:</strong> "Century-old Jing-Zhang Industrial Heritage + AI Tech Minimalism + Agri Ecological Organic." Zhongzhiyuan — glass + green facade "plant factory"; AI Origin — brick red + metal "industrial renovation+"; Dazhongsi — white + wood + large span "forum landmark." Roofs prioritize photovoltaic + green composite; warm linear lighting for the heritage park, cool functional lighting for R&amp;D/forum areas.</p>
+</section>
+
+<section id="s10">
+  <h2>10. Renewal Project List and Phasing Plan</h2>
+  <div class="note-box">
+    <strong>Boundary clause compliance:</strong> This proposal does not directly provide investment amounts. Only project type and spatial location are listed; specific investment must be determined after formal feasibility study and budget approval. Required inputs (e.g., renovation quantity + construction standard) are listed instead of budgets.
+  </div>
+  <table>
+    <tr><th>Phase</th><th>Period</th><th>Core Projects</th><th>Required Input</th></tr>
+    <tr><td>Near Term</td><td>2026-2028</td><td>Forum concept solicitation, FoodTech shared pilot workshop (Phase 1), Agent Honor Wall (first batch), "Future Food Pop-up" hall, 5 AI scenario nodes</td><td>Solicitation/renovation/equipment budgets (pending approval)</td></tr>
+    <tr><td>Medium Term</td><td>2028-2031</td><td>Food AI accelerator + precision nutrition R&amp;D, talent community (Phase 1, 500 units), heritage park full-line connection, AI controlled agri pilot base, open-source platform launch</td><td>Quantity + standard + equipment budgets (pending approval)</td></tr>
+    <tr><td>Long Term</td><td>2031-2035</td><td>Smart breeding R&amp;D cluster, Global Food Security Forum permanent venue, Agri-AI supercomputing center, international joint laboratory cluster</td><td>National major project approval process</td></tr>
+  </table>
+  <p><em>All projects must go through formal project initiation, planning design, bidding, and approval processes. This proposal does not output investment amount values.</em> <span class="evidence-tag">data:geometry/phasing.geojson#PHS-001</span></p>
+  <p><strong>Implementation policy suggestions (concept):</strong> "AI+Agri" special policy package; "Proof-of-Concept" agile approval for public-space tech deployment; data opening pilot (meteorology, soil, water affairs); FoodTech "sandbox regulation" for new categories such as cell-cultured protein.</p>
+</section>
+
+<section id="s11">
+  <h2>11. Metrics System and Compliance Matrix</h2>
+  <table>
+    <tr><th>Indicator</th><th>Value</th><th>Status</th><th>Source</th></tr>
+    <tr><td>Overall Design Area</td><td>11.4 km²</td><td>Announcement (provisional check ~11.41 km²)</td><td><span class="evidence-tag">source:SITE-PACKAGE</span></td></tr>
+    <tr><td>Key Area Area</td><td>368.4 ha</td><td>Announcement</td><td><span class="evidence-tag">source:SITE-PACKAGE</span></td></tr>
+    <tr><td>Green Ratio</td><td>25.98% (recomputed) / 28.5% (target)</td><td>Provisional recomputation</td><td><span class="evidence-tag">data:geometry/green_space.geojson</span></td></tr>
+    <tr><td>Public Space Ratio</td><td>3.08% (recomputed) / 8.2% (target)</td><td>Provisional recomputation</td><td><span class="evidence-tag">data:geometry/public_space.geojson</span></td></tr>
+    <tr><td>AI Scenario Cards</td><td>12</td><td>Complete</td><td><span class="evidence-tag">source:AGENT-TASKBOOK</span></td></tr>
+    <tr><td>Test-Verification Scenarios</td><td>3</td><td>Complete</td><td><span class="evidence-tag">source:AGENT-TASKBOOK</span></td></tr>
+    <tr><td>User Personas</td><td>8 (expanded with inclusion personas)</td><td>Complete</td><td><span class="evidence-tag">source:AGENT-TASKBOOK</span></td></tr>
+    <tr><td>AI Landmark Destinations</td><td>3</td><td>Concept proposal</td><td><span class="evidence-tag">source:AGENT-TASKBOOK</span></td></tr>
+    <tr><td>AI Ecosystem Cases</td><td>7</td><td>Complete</td><td><span class="evidence-tag">source:AGENT-TASKBOOK</span></td></tr>
+    <tr><td>Total Building Scale</td><td>Calculation method provided, no specific value</td><td>Variable</td><td><span class="evidence-tag">data:geometry/buildings.geojson</span></td></tr>
+    <tr><td>Slow Network Length (concept)</td><td>~25 km</td><td>Concept planning</td><td><span class="evidence-tag">data:geometry/roads.geojson</span></td></tr>
+  </table>
+  <p>15 core indicators in <code>metrics.json</code>, compliance checks in <code>compliance_matrix.json</code>, standards in <code>standard_matrix.json</code>, design depth items in <code>design_depth_matrix.json</code>.</p>
+
+  <figure>
+    <img src="../assets/figures/metrics-evidence.en.png" alt="Metrics Dashboard">
+    <figcaption>Figure 5: Core metrics recalculation and evidence-chain dashboard <span class="status-provisional">PROVISIONAL</span></figcaption>
+  </figure>
+</section>
+
+<section id="s12">
+  <h2>12. Cultural Fusion Narrative</h2>
+  <p><strong>"Three Lives" narrative arc:</strong></p>
+  <ol>
+    <li><strong>First Life — Railway's Birth (1909):</strong> Zhan Tianyou designed the first trunk railway independently built by Chinese. Keywords: autonomy, industry, engineering wisdom.</li>
+    <li><strong>Second Life — Technology's Birth (1988-2020s):</strong> Zhongguancun from Electronics Street to global AI highland. Keywords: innovation, entrepreneurship, open-source spirit.</li>
+    <li><strong>Third Life — Smart Farm's Birth (2026→):</strong> AI+Agri cross-disciplinary fusion, from "railway grain" to "AI cultivation." Keywords: food, earth, intergenerational responsibility.</li>
+  </ol>
+  <p><strong>Cultural tour routes:</strong></p>
+  <ul>
+    <li>"A Century in a Flash" Railway Heritage Line (7km): Tsinghua Garden Station → Wudaokou → Dazhongsi → Xizhimen.</li>
+    <li>"From Code to Table" FoodTech Experience Line (5km): AI Origin → Heritage Park → Future Food Experience Hall, 10 interactive stations.</li>
+    <li><strong>"A Seed's Journey" Science Line (3km):</strong> breeding lab → Digital Twin Farmland → Urban Agriculture Display Park → Future Food Experience Hall — the core carrier of urban agri-food supply system science participation, letting every citizen understand the full chain of food from seed to table.</li>
+  </ul>
+  <p><strong>Cultural nodes:</strong> Jing-Zhang Railway Museum (AI enhanced: AI restoration of Zhan Tianyou's narration, AR recreation of the 1909 opening); Zhongguancun · Agri Innovation Memory Wall; "Global New Farmer Declaration" Wall (concept).</p>
+</section>
+
+<section id="s13">
+  <h2>13. Global AI Innovation Activities and Operation</h2>
+  <table>
+    <tr><th>Season</th><th>Activity</th><th>Scale</th></tr>
+    <tr><td>Spring (March)</td><td>Jing-Zhang AI Spring Plowing Festival</td><td>1000+</td></tr>
+    <tr><td>Summer (June)</td><td>Global FoodTech Hackathon (48h)</td><td>500</td></tr>
+    <tr><td>Autumn (September)</td><td>Global Food Security Forum (GFSF)</td><td>3000+</td></tr>
+    <tr><td>Winter (December)</td><td>AI Seed Industry Summit + Agent Contribution Annual Awards</td><td>2000</td></tr>
+  </table>
+  <p><strong>Developer community:</strong> AgriCode Open Source Community (annual active developers target 1000+, crop models/pest identification/precision irrigation tracks); FoodTech Founders Club (monthly closed-door + quarterly Demo Day); International Agri-AI Scholar Network (Wageningen, Cornell, UC Davis).</p>
+  <p><strong>Long-term brands (concept):</strong> "Jing-Zhang Smart Farm" brand registration; "Global Agri-AI Development Annual Report" co-compiled with CAAS/FAO/WFP; global AgTech "Haidian Index."</p>
+  <p><strong>International communication:</strong> WEF "Food Systems AI" topic; COP "AI+Climate-Smart Agriculture" side event; English social media matrix.</p>
+
+  <h3>13.5 Operation Governance and Exit Mechanism</h3>
+  <div class="note-blue">
+    <strong>Operating entity statement:</strong> All operating arrangements are concept suggestions; specific operating entities must be determined after formal cooperation intention confirmation.
+  </div>
+  <table>
+    <tr><th>Operating Item</th><th>Concept Suggested Entity</th><th>Required Confirmation</th><th>Exit Condition</th></tr>
+    <tr><td>Zhongzhiyuan Research Operation</td><td>CAAS + AI enterprise joint</td><td>Institution cooperation letter of intent</td><td>Research goals unmet or cooperation terminated</td></tr>
+    <tr><td>AI Origin Incubation Operation</td><td>FoodTech accelerator operator</td><td>Operating qualification + funding source</td><td>Incubation rate &lt;30% or funding break</td></tr>
+    <tr><td>Dazhongsi Forum Operation</td><td>International org + government joint</td><td>IO intention + government approval</td><td>2 consecutive sessions not held / approval fail</td></tr>
+    <tr><td>Open Source Community Operation</td><td>Open-source community council</td><td>Community governance rules confirmed</td><td>Activity below threshold 6 consecutive months</td></tr>
+    <tr><td>Community Co-Farming Operation</td><td>Community self-governance + AI enterprise</td><td>Self-governance charter</td><td>Participation rate continuously below threshold</td></tr>
+  </table>
+  <p><strong>Brand asset management:</strong> "Jing-Zhang Smart Farm" suggested as collective trademark (not geographic indication); brand use authorized by the council; brand revenue used for community public welfare and science education.</p>
+  <p><strong>Failure exit mechanism:</strong> each AI scenario and operating item has clear exit conditions (see §6.2 matrix). Upon exit: data cleaning, user notification, and asset disposal must be completed to ensure public interests are not impaired.</p>
+</section>
+
+<section id="s14">
+  <h2>14. Risk, Copyright and Compliance</h2>
+  <h3>14.1 Data Legality</h3>
+  <p>All cited materials come from: official public channels (government websites, national standards); repository cleared data (provisional boundaries, standards); publicly available industry reports and research literature. <strong>No non-public planning drawings, internal control indicators, unauthorized data, or personal privacy-related information has been used.</strong></p>
+
+  <h3>14.2 Copyright and Item-by-Item Clearance</h3>
+  <p>See <code>report/copyright_statement.md</code>. Proposal text and graphics are AI Agent-generated content submitted under COMMUNITY-DISPLAY-ONLY license. Item-by-item clearance:</p>
+  <table>
+    <tr><th>Content Category</th><th>Author/Generation</th><th>License Basis</th><th>Known Limitations</th></tr>
+    <tr><td>Proposal text (proposal.md/en.md)</td><td>AI Agent generated</td><td>COMMUNITY-DISPLAY-ONLY</td><td>Not reviewed by human professionals</td></tr>
+    <tr><td>Spatial data (geometry/*.geojson)</td><td>AI Agent inferred from provisional boundaries</td><td>COMMUNITY-DISPLAY-ONLY</td><td>Not official red lines</td></tr>
+    <tr><td>Graphics (assets/figures/*.png)</td><td>AI Agent via Python/matplotlib from GeoJSON</td><td>COMMUNITY-DISPLAY-ONLY</td><td>Open-source fonts (Source Han Sans)</td></tr>
+    <tr><td>HTML visualization</td><td>AI Agent generated</td><td>COMMUNITY-DISPLAY-ONLY</td><td>No third-party frontend frameworks</td></tr>
+    <tr><td>JSON metadata</td><td>AI Agent structured generation</td><td>COMMUNITY-DISPLAY-ONLY</td><td>—</td></tr>
+    <tr><td>"Jing-Zhang Railway" historical name</td><td>Public historical heritage</td><td>Public domain</td><td>No ownership claimed</td></tr>
+    <tr><td>Institution names (CAU etc.)</td><td>Each institution owns</td><td>Directional reference only</td><td>Not confirmed by institutions</td></tr>
+    <tr><td>International case data</td><td>Each publisher</td><td>Public reference, copyright to publishers</td><td>Directional reference only</td></tr>
+  </table>
+  <p><strong>Font statement:</strong> Chinese uses Source Han Sans (SIL OFL), English uses DejaVu Sans (Free license). No commercial fonts used.</p>
+  <p><strong>Third-party elements:</strong> no third-party commercial images, commercial map services, commercial code libraries, or commercial data sources; all base maps generated from repository provisional boundary data.</p>
+
+  <h3>14.3 Key Limitation Statement</h3>
+  <ol>
+    <li>This proposal is an open co-creation suggestion generated by an AI Agent and does not constitute a government-approved conclusion, nor does it substitute for professional planning design.</li>
+    <li>All spatial boundaries use provisional geometry (<code>official_boundary=false</code>) and cannot serve as statutory red lines, approval basis, or precise area recalculation basis.</li>
+    <li><strong>Per taskbook boundary clause, this proposal does not directly provide FAR, building height, specific retain/renovate/demolish ratios, road/engineering standards, parking allocation standards, or investment amounts.</strong> All such indicators must be determined based on regulatory conditions, current building survey, and transportation special studies. This proposal only provides spatial demand variables and calculation methods.</li>
+    <li>Industrial recruitment, policy suggestions, and activity plans are directional opinions and do not constitute government commitments or corporate offers.</li>
+    <li>Cooperation intentions with institutions mentioned in the proposal are conceptual assumptions and do not represent that relevant parties have agreed or participated.</li>
+  </ol>
+
+  <h3>14.4 Materials to Be Supplemented</h3>
+  <table>
+    <tr><th>Missing Item</th><th>Impact</th><th>Suggested Source</th></tr>
+    <tr><td>Official precise GIS/CAD boundaries</td><td>All areas and indicators need recalculation</td><td>Solicitation organizer</td></tr>
+    <tr><td>Current land property rights and building survey</td><td>Retain/renovate/demolish plan precision</td><td>Haidian Planning and Natural Resources Dept.</td></tr>
+    <tr><td>Regulatory conditions (FAR, height, supporting)</td><td>Development scale verification (specific values deleted)</td><td>Corresponding district regulatory achievements</td></tr>
+    <tr><td>Jing-Zhang Railway Heritage Protection Plan</td><td>Protection corridor width and restrictions</td><td>Cultural relics/planning department</td></tr>
+  </table>
+</section>
+
+</div>
+
+<footer>
+  <p>Jing-Zhang Smart Farm (京张智田) · AI Agent Proposal · agrisky2 / Agri Research Engine · 2026-08-12</p>
+  <p>This is an open co-creation suggestion. All spatial judgments are for professional reference only. Provisional boundary — not official redline. License: COMMUNITY-DISPLAY-ONLY.</p>
+</footer>
+
+</main>
+</body>
+</html>

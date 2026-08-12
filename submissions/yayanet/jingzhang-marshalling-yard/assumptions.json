@@ -1,0 +1,59 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_professional_confirmation",
+      "statement": "官方精确边界 polygon 未随征集文件公开；本包使用按公告文字四至与 OSM 街道中线自行推导、在 EPSG:4548 校准到约 11.4 平方公里的街道贴合临时边界。",
+      "impact": "官方 polygon 发布后须整链重算：site/key_areas/land_use/buildings/roads/green/public/phasing 与全部指标、图件、HTML、PDF。"
+    },
+    {
+      "id": "A-BOUNDARY-002",
+      "status": "disclosed_community_finding",
+      "statement": "社区 Issue #846 复算：仓库登记临时边界 PROV-SITE-001 与 OSM 测绘的京张铁路遗址公园不相交，最近距离约 412 米；本包据此采用街道贴合边界。",
+      "impact": "该差异需官方 polygon 裁决；本包结论不依赖登记边界是否更新。"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "控规容积率、建筑高度、建筑密度、绿地率、退线等法定控制条件未随官方附件公开。",
+      "impact": "本包以概念参考值表达体量（concept_total_floor_area_sqm / concept_far），不得作为控规指标或审批依据。"
+    },
+    {
+      "id": "A-DATA-001",
+      "status": "pending_official_source",
+      "statement": "京张铁路遗址公园长度/分期开放、清华园车站旧址文保、京张高铁与清华园隧道、北京AI原点社区等事实来自公开报道综合口径，原始页面 URL 待逐条补登。",
+      "impact": "以上事实仅用于叙事与机制设计，不作为边界、控规或评分证据。"
+    },
+    {
+      "id": "A-OSM-001",
+      "status": "declared_license",
+      "statement": "现状道路、铁路、车站、水系与文保点位取自 OpenStreetMap（ODbL 1.0，2026-08-10 抓取，bbox 39.925,116.315,40.035,116.375），已按 ODbL 署名要求登记。",
+      "impact": "OSM 为背景参照；不得用于官方红线、审批或精确面积主张。"
+    },
+    {
+      "id": "A-STATION-001",
+      "status": "approximate_location",
+      "statement": "清华园站旧址坐标为按公开描述（成府路西段南侧、原清华园道口附近）的近似定位（约 116.3313, 39.9969）；知春路/大钟寺站以 OSM 站台要素定位。",
+      "impact": "文保点位的精确坐标以官方公布为准；涉及文保展示与建设控制的所有结论须经专业复核。"
+    },
+    {
+      "id": "A-WATER-001",
+      "status": "approximate_location",
+      "statement": "清河、小月河线位为公开知识的近似表达（confidence=low），仅用于蓝绿体系叙事。",
+      "impact": "河流蓝线以水务部门官方资料为准。"
+    },
+    {
+      "id": "A-METRIC-001",
+      "status": "pending_official_data",
+      "statement": "AI 人才密度、全带企业数量、产值规模等指标需权威统计数据标定；公开报道仅提供原点社区片区口径。",
+      "impact": "编组指数基线值待权威数据标定；本包不虚构数值。"
+    },
+    {
+      "id": "A-RENEWAL-001",
+      "status": "concept_only",
+      "statement": "24 项更新项目清单为概念项目，未对应具体地块权属与拆改留结论。",
+      "impact": "具体拆改留须以现状调查、权属与法定规划为基础，由专业团队深化。"
+    }
+  ]
+}

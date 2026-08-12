@@ -1,0 +1,691 @@
+{
+ "schema_version": "3.0.0",
+ "proposal_id": "jingzhang-ai-native-belt",
+ "revision": "v4.0",
+ "author_github": "wocaonimaworinixi-collab",
+ "status": "verified_internal",
+ "title_zh": "断言溯源表",
+ "title_en": "Claim provenance table",
+ "boundary_zh": "本表只保证「正文里的数字」与「结构化文件里的原始值」一致，不保证这些数字对应现实世界的事实。所有基于临时边界的值在官方边界发布后必须整体重算。",
+ "boundary_en": "This table only guarantees that numbers in the prose match raw values in the structured files. It does not certify them as real-world facts. Every provisional-boundary value must be recomputed once the official boundary is released.",
+ "runner": "node visual/assets/evidence-audit.js",
+ "record_count": 29,
+ "records": [
+  {
+   "claim_id": "site_area_sqm",
+   "claim_zh": "总体设计范围面积",
+   "claim_en": "Overall design area",
+   "raw_value_path": "metrics.json#/metrics/site_area_sqm/value",
+   "raw_value": 11345200.508,
+   "unit": "sqm",
+   "status": "known",
+   "confidence": "low",
+   "formula": "shoelace_area(site_boundary, planar_approximation)",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "figure_files": [
+    "assets/figures/site-overview.png"
+   ],
+   "proposal_token": "[metric:site_area_sqm]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "pending_official_boundary"
+  },
+  {
+   "claim_id": "building_footprint_area_sqm",
+   "claim_zh": "示意建筑基底面积",
+   "claim_en": "Schematic building footprint area",
+   "raw_value_path": "metrics.json#/metrics/building_footprint_area_sqm/value",
+   "raw_value": 294487.731,
+   "unit": "sqm",
+   "status": "known",
+   "confidence": "low",
+   "formula": "sum(shoelace_area(building_footprints))",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "figure_files": [
+    "assets/figures/land-use-structure.png"
+   ],
+   "proposal_token": "[metric:building_footprint_area_sqm]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "pending_building_survey"
+  },
+  {
+   "claim_id": "green_space_area_sqm",
+   "claim_zh": "绿地面积",
+   "claim_en": "Green space area",
+   "raw_value_path": "metrics.json#/metrics/green_space_area_sqm/value",
+   "raw_value": 2745665.818,
+   "unit": "sqm",
+   "status": "known",
+   "confidence": "low",
+   "formula": "sum(shoelace_area(green_space))",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "figure_files": [
+    "assets/figures/mobility-bluegreen.png"
+   ],
+   "proposal_token": "[metric:green_space_area_sqm]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "pending_official_boundary"
+  },
+  {
+   "claim_id": "public_space_area_sqm",
+   "claim_zh": "公共空间面积",
+   "claim_en": "Public space area",
+   "raw_value_path": "metrics.json#/metrics/public_space_area_sqm/value",
+   "raw_value": 697815.875,
+   "unit": "sqm",
+   "status": "known",
+   "confidence": "low",
+   "formula": "sum(shoelace_area(public_space))",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "figure_files": [
+    "assets/figures/mobility-bluegreen.png"
+   ],
+   "proposal_token": "[metric:public_space_area_sqm]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "pending_official_boundary"
+  },
+  {
+   "claim_id": "green_ratio",
+   "claim_zh": "绿地率",
+   "claim_en": "Green ratio",
+   "raw_value_path": "metrics.json#/metrics/green_ratio/value",
+   "raw_value": 0.242011,
+   "unit": "ratio",
+   "status": "known",
+   "confidence": "low",
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "figure_files": [
+    "assets/figures/mobility-bluegreen.png",
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[metric:green_ratio]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "pending_official_boundary"
+  },
+  {
+   "claim_id": "public_space_ratio",
+   "claim_zh": "公共空间率",
+   "claim_en": "Public space ratio",
+   "raw_value_path": "metrics.json#/metrics/public_space_ratio/value",
+   "raw_value": 0.061508,
+   "unit": "ratio",
+   "status": "known",
+   "confidence": "low",
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "figure_files": [
+    "assets/figures/mobility-bluegreen.png"
+   ],
+   "proposal_token": "[metric:public_space_ratio]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "pending_official_boundary"
+  },
+  {
+   "claim_id": "land_use_coverage_ratio",
+   "claim_zh": "用地分区覆盖率",
+   "claim_en": "Land-use zone coverage ratio",
+   "raw_value_path": "metrics.json#/metrics/land_use_coverage_ratio/value",
+   "raw_value": 1.0,
+   "unit": "ratio",
+   "status": "known",
+   "confidence": "low",
+   "formula": "sum(land_use_zone_area) / site_area_sqm",
+   "source_files": [
+    "geometry/land_use.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "figure_files": [
+    "assets/figures/land-use-structure.png"
+   ],
+   "proposal_token": "[metric:land_use_coverage_ratio]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "pending_official_boundary"
+  },
+  {
+   "claim_id": "road_network_length_m",
+   "claim_zh": "路网总长度",
+   "claim_en": "Road network length",
+   "raw_value_path": "metrics.json#/metrics/road_network_length_m/value",
+   "raw_value": 62156.4,
+   "unit": "m",
+   "status": "known",
+   "confidence": "low",
+   "formula": "sum(polyline_length(road_centerlines))",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "figure_files": [
+    "assets/figures/mobility-bluegreen.png"
+   ],
+   "proposal_token": "[metric:road_network_length_m]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "pending_official_road_redlines"
+  },
+  {
+   "claim_id": "floor_area_ratio",
+   "claim_zh": "容积率",
+   "claim_en": "Floor area ratio",
+   "raw_value_path": "metrics.json#/metrics/floor_area_ratio/value",
+   "raw_value": null,
+   "unit": "ratio",
+   "status": "unknown",
+   "confidence": "unknown",
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "figure_files": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[metric:floor_area_ratio]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "blocked_missing_official_controls"
+  },
+  {
+   "claim_id": "building_height_limit_m",
+   "claim_zh": "建筑限高",
+   "claim_en": "Building height limit",
+   "raw_value_path": "metrics.json#/metrics/building_height_limit_m/value",
+   "raw_value": null,
+   "unit": "m",
+   "status": "unknown",
+   "confidence": "unknown",
+   "formula": "max(approved_building_height)",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "figure_files": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[metric:building_height_limit_m]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "blocked_missing_official_controls"
+  },
+  {
+   "claim_id": "resident_population",
+   "claim_zh": "常住人口",
+   "claim_en": "Resident population",
+   "raw_value_path": "metrics.json#/metrics/resident_population/value",
+   "raw_value": null,
+   "unit": "count",
+   "status": "unknown",
+   "confidence": "unknown",
+   "formula": "official_population_register(site_extent)",
+   "source_files": [
+    "sources.json#SITE-PACKAGE"
+   ],
+   "figure_files": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[metric:resident_population]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "blocked_missing_official_data"
+  },
+  {
+   "claim_id": "parking_supply_spaces",
+   "claim_zh": "停车泊位供给",
+   "claim_en": "Parking supply",
+   "raw_value_path": "metrics.json#/metrics/parking_supply_spaces/value",
+   "raw_value": null,
+   "unit": "count",
+   "status": "not_applicable",
+   "confidence": "unknown",
+   "formula": "not_applicable_at_concept_stage",
+   "source_files": [
+    "metrics.json"
+   ],
+   "figure_files": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[metric:parking_supply_spaces]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "not_applicable"
+  },
+  {
+   "claim_id": "key_area_count",
+   "claim_zh": "重点区域数量",
+   "claim_en": "Key area count",
+   "raw_value_path": "metrics.json#/metrics/key_area_count/value",
+   "raw_value": 3,
+   "unit": "count",
+   "status": "known",
+   "confidence": "medium",
+   "formula": "count(key_area_features)",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "figure_files": [
+    "assets/figures/key-areas.png"
+   ],
+   "proposal_token": "[metric:key_area_count]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "pending_official_boundary"
+  },
+  {
+   "claim_id": "auditable_scenario_count",
+   "claim_zh": "可审计场景数",
+   "claim_en": "Auditable scenario count",
+   "raw_value_path": "metrics.json#/metrics/auditable_scenario_count/value",
+   "raw_value": 12,
+   "unit": "count",
+   "status": "known",
+   "confidence": "high",
+   "formula": "count(auditable_scenarios_described_in_proposal)",
+   "source_files": [
+    "proposal.md",
+    "spatial.json"
+   ],
+   "figure_files": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[metric:auditable_scenario_count]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "not_required"
+  },
+  {
+   "claim_id": "industrial_validation_scenario_count",
+   "claim_zh": "产业验证场景数",
+   "claim_en": "Industrial validation scenario count",
+   "raw_value_path": "metrics.json#/metrics/industrial_validation_scenario_count/value",
+   "raw_value": 3,
+   "unit": "count",
+   "status": "known",
+   "confidence": "high",
+   "formula": "count(industrial_validation_scenarios)",
+   "source_files": [
+    "proposal.md"
+   ],
+   "figure_files": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[metric:industrial_validation_scenario_count]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "not_required"
+  },
+  {
+   "claim_id": "numbered_renewal_project_count",
+   "claim_zh": "编号更新项目数",
+   "claim_en": "Numbered renewal project count",
+   "raw_value_path": "metrics.json#/metrics/numbered_renewal_project_count/value",
+   "raw_value": 12,
+   "unit": "count",
+   "status": "known",
+   "confidence": "high",
+   "formula": "count(numbered_renewal_projects)",
+   "source_files": [
+    "proposal.md"
+   ],
+   "figure_files": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[metric:numbered_renewal_project_count]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "not_required"
+  },
+  {
+   "claim_id": "simulation_task_count",
+   "claim_zh": "仿真任务数",
+   "claim_en": "Simulation task count",
+   "raw_value_path": "metrics.json#/metrics/simulation_task_count/value",
+   "raw_value": 48,
+   "unit": "count",
+   "status": "known",
+   "confidence": "high",
+   "formula": "len(simulation.tasks)",
+   "source_files": [
+    "simulation.json"
+   ],
+   "figure_files": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[metric:simulation_task_count]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "not_required_offline_harness"
+  },
+  {
+   "claim_id": "simulation_success_rate",
+   "claim_zh": "仿真成功率",
+   "claim_en": "Simulation success rate",
+   "raw_value_path": "metrics.json#/metrics/simulation_success_rate/value",
+   "raw_value": 0.8541666666666666,
+   "unit": "ratio",
+   "status": "known",
+   "confidence": "high",
+   "formula": "count(outcome == success or outcome endswith _success) / len(tasks)",
+   "source_files": [
+    "simulation.json"
+   ],
+   "figure_files": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[metric:simulation_success_rate]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "not_required_offline_harness"
+  },
+  {
+   "claim_id": "tool_schema_pass_rate",
+   "claim_zh": "工具契约合规率",
+   "claim_en": "Tool schema pass rate",
+   "raw_value_path": "metrics.json#/metrics/tool_schema_pass_rate/value",
+   "raw_value": 0.9791666666666666,
+   "unit": "ratio",
+   "status": "known",
+   "confidence": "high",
+   "formula": "count(dispatch_schema_valid) / len(tasks)",
+   "source_files": [
+    "simulation.json"
+   ],
+   "figure_files": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[metric:tool_schema_pass_rate]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "not_required_offline_harness"
+  },
+  {
+   "claim_id": "energy_budget_violations",
+   "claim_zh": "能耗预算越界次数",
+   "claim_en": "Energy budget violations",
+   "raw_value_path": "metrics.json#/metrics/energy_budget_violations/value",
+   "raw_value": 2,
+   "unit": "count",
+   "status": "known",
+   "confidence": "high",
+   "formula": "count(energy_used_kwh > energy_budget_kwh)",
+   "source_files": [
+    "simulation.json"
+   ],
+   "figure_files": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[metric:energy_budget_violations]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "not_required_offline_harness"
+  },
+  {
+   "claim_id": "audit_completeness",
+   "claim_zh": "审计留痕完整度",
+   "claim_en": "Audit completeness",
+   "raw_value_path": "metrics.json#/metrics/audit_completeness/value",
+   "raw_value": 1.0,
+   "unit": "ratio",
+   "status": "known",
+   "confidence": "high",
+   "formula": "count(audit_complete) / len(tasks)",
+   "source_files": [
+    "simulation.json"
+   ],
+   "figure_files": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[metric:audit_completeness]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "not_required_offline_harness"
+  },
+  {
+   "claim_id": "high_risk_intercept_rate",
+   "claim_zh": "高风险拦截率",
+   "claim_en": "High-risk interception rate",
+   "raw_value_path": "metrics.json#/metrics/high_risk_intercept_rate/value",
+   "raw_value": 1.0,
+   "unit": "ratio",
+   "status": "known",
+   "confidence": "high",
+   "formula": "count(high_risk_intercepted) / count(high_risk_flagged)",
+   "source_files": [
+    "simulation.json"
+   ],
+   "figure_files": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[metric:high_risk_intercept_rate]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "not_required_offline_harness"
+  },
+  {
+   "claim_id": "replan_p95_seconds",
+   "claim_zh": "重规划时延 p95",
+   "claim_en": "Replanning latency p95",
+   "raw_value_path": "metrics.json#/metrics/replan_p95_seconds/value",
+   "raw_value": 7.7,
+   "unit": "s",
+   "status": "known",
+   "confidence": "high",
+   "formula": "nearest_rank_p95(sorted(replan_seconds))",
+   "source_files": [
+    "simulation.json"
+   ],
+   "figure_files": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[metric:replan_p95_seconds]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "not_required_offline_harness"
+  },
+  {
+   "claim_id": "evidence_gate_count",
+   "claim_zh": "证据闸门总数",
+   "claim_en": "Evidence gate count",
+   "raw_value_path": "visual/assets/v2-evidence-gate-index.json#/registered_gate_count",
+   "raw_value": 40,
+   "unit": "count",
+   "status": "known",
+   "confidence": "high",
+   "formula": "len(v2-evidence-gate-index.json#/gates)",
+   "source_files": [
+    "visual/assets/v2-evidence-gate-index.json"
+   ],
+   "figure_files": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[source:PKG-GATES]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "stable"
+  },
+  {
+   "claim_id": "evidence_record_count",
+   "claim_zh": "证据台账记录数",
+   "claim_en": "Evidence ledger record count",
+   "raw_value_path": "visual/assets/evidence-ledger.json#/record_count",
+   "raw_value": 122,
+   "unit": "count",
+   "status": "known",
+   "confidence": "high",
+   "formula": "len(evidence-ledger.json#/records)",
+   "source_files": [
+    "visual/assets/evidence-ledger.json"
+   ],
+   "figure_files": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[source:PKG-EVIDENCE-LEDGER]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "stable"
+  },
+  {
+   "claim_id": "risk_dimension_count",
+   "claim_zh": "风险维度数",
+   "claim_en": "Risk dimension count",
+   "raw_value_path": "risk.json#/dimensions",
+   "derivation": "length",
+   "raw_value": 8,
+   "unit": "count",
+   "status": "known",
+   "confidence": "high",
+   "formula": "len(risk.json#/dimensions)",
+   "source_files": [
+    "risk.json"
+   ],
+   "figure_files": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[source:PKG-RISK]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "stable"
+  },
+  {
+   "claim_id": "high_risk_dimension_count",
+   "claim_zh": "高风险维度数（评分≥4）",
+   "claim_en": "High-risk dimensions (score >= 4)",
+   "raw_value_path": "risk.json#/dimensions",
+   "derivation": "count_ge:score:4",
+   "raw_value": 6,
+   "unit": "count",
+   "status": "known",
+   "confidence": "high",
+   "formula": "count(risk.json#/dimensions where score >= 4)",
+   "source_files": [
+    "risk.json"
+   ],
+   "figure_files": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[source:PKG-RISK]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "stable"
+  },
+  {
+   "claim_id": "spatial_item_count",
+   "claim_zh": "概念空间要素数",
+   "claim_en": "Concept spatial item count",
+   "raw_value_path": "spatial.json#/items",
+   "derivation": "length",
+   "raw_value": 22,
+   "unit": "count",
+   "status": "known",
+   "confidence": "high",
+   "formula": "len(spatial.json#/items)",
+   "source_files": [
+    "spatial.json"
+   ],
+   "figure_files": [
+    "assets/figures/key-areas.png"
+   ],
+   "proposal_token": "[source:PKG-SPATIAL]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "stable"
+  },
+  {
+   "claim_id": "official_scenario_coverage",
+   "claim_zh": "官方场景覆盖数",
+   "claim_en": "Official scenario coverage",
+   "raw_value_path": "simulation.json#/tasks",
+   "derivation": "distinct:scenario_id",
+   "raw_value": 6,
+   "unit": "count",
+   "status": "known",
+   "confidence": "high",
+   "formula": "len(distinct simulation.json#/tasks/*/scenario_id)",
+   "source_files": [
+    "simulation.json"
+   ],
+   "figure_files": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "proposal_token": "[source:PKG-SIMULATION]",
+   "proposal_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "recalculation_status": "stable"
+  }
+ ]
+}

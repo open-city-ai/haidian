@@ -1,0 +1,47 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "provisional_constraint",
+      "statement": "总体设计边界与三处重点区采用维护者推定的临时粗略polygon（EPSG:4326交换、EPSG:4548复算）。",
+      "impact": "边界、面积与派生图层仅作生成、展示与临时自检；官方多边形发布后必须整包重算。",
+      "recalc_trigger": "官方SITE_BOUNDARY或KEY_AREA GeoJSON发布"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "容积率、建筑高度、建筑密度、退线、道路红线与市政容量缺少官方控规条件。",
+      "impact": "相关指标记为unknown/待正式数据补齐，概念体量不等于法定控制值。",
+      "recalc_trigger": "官方控规条件或资格预审文件附件提供后"
+    },
+    {
+      "id": "A-GEOM-001",
+      "status": "conceptual_design",
+      "statement": "用地分区、道路中心线、建筑基底、绿地与公共空间均为从临时边界派生的概念设计建议。",
+      "impact": "面积与比例仅作设计讨论，不构成现状调查、工程线位或批准建设。",
+      "recalc_trigger": "现状数据与工程条件确认后由专业团队复核"
+    },
+    {
+      "id": "A-RAIL-001",
+      "status": "approximate_public_knowledge",
+      "statement": "轨道线位、遗址廊道与河道蓝线为依据公开信息的近似示意。",
+      "impact": "写入constraints.geojson并标注provisional_constraint，不代表官方线网图或文保界线。",
+      "recalc_trigger": "官方线网图与文保红线发布后"
+    },
+    {
+      "id": "A-BUILD-001",
+      "status": "conceptual_design",
+      "statement": "127组建筑概念体量用于表达产业空间供给量级，非现状建筑调查或拆改留结论。",
+      "impact": "拆改留以分类判断+待确认清单表述，具体结论待权属与控规确认。",
+      "recalc_trigger": "现状建筑与权属数据提供后"
+    },
+    {
+      "id": "A-BILINGUAL-001",
+      "status": "declared",
+      "statement": "双语契约v1：proposal.md与proposal.en.md等义，图纸、HTML与图件均提供中英版本。",
+      "impact": "语言对应关系由finalize与CI验证，缺失将阻断提交。",
+      "recalc_trigger": "无"
+    }
+  ]
+}

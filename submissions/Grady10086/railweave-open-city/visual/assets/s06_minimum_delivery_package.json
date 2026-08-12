@@ -1,0 +1,123 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "S06-MDP-01",
+  "project_id": "railweave-open-city",
+  "parent_scenario_id": "S06",
+  "prototype_id": "S06-P",
+  "title_zh": "S06全龄无障碍信息服务90日最小交付包",
+  "title_en": "S06 All-Ages Accessible Information Service 90-Day Minimum Delivery Package",
+  "status": "conceptual_pre_registration_not_an_approved_schedule",
+  "purpose_zh": "把一条经核验的有限关键路径作为受控对象，先证明普通服务可用，再验证AI建议，最后在全部授权成立时开展限量共测；任何阶段均不得降低既有人工和非数字服务。",
+  "purpose_en": "Treat one verified bounded key route as the controlled object: first establish ordinary service, then validate AI advice, and only then conduct limited co-testing if all authorisations exist. No phase may reduce existing staffed or non-digital service.",
+  "authority_boundary_zh": "本包是供后续依法确定的专业团队使用的预登记模板，不批准场地、服务、数据处理、参与招募、预算、采购或上线。日数表示相对工作段，不是已确定日历。",
+  "authority_boundary_en": "This package is a preregistration template for future lawfully appointed professional teams. It approves no site, service, data processing, participant recruitment, budget, procurement, or launch. Day ranges are relative work periods, not a confirmed calendar.",
+  "role_reference": "implementation_register.json#/roles",
+  "gate_reference": "implementation_register.json#/stage_gates",
+  "source_references": {
+    "contract": "weave_contracts.json#/contracts/5",
+    "prototype": "scenario_prototypes.json#/prototypes/1",
+    "implementation_register": "implementation_register.json#/project_registers/0",
+    "verification_handoff": "verification_handoff_register.json#/records/2",
+    "cost_evidence": "cost_evidence_plan.json#/items/5",
+    "test_receipt": "receipt.json#/s06_90_day_slice",
+    "spatial_audit_segments": ["../../geometry/roads.geojson#AUD-V21-SPINE-01", "../../geometry/roads.geojson#AUD-V21-SPINE-06"],
+    "candidate_component": "../../geometry/public_space.geojson#DC-V21-AI-001"
+  },
+  "common_controls": {
+    "ordinary_service_first_zh": "固定导视、触觉与易读信息、纸质导览、电话和人工服务必须先于AI可用，并在全周期保持等价。",
+    "ordinary_service_first_en": "Fixed signs, tactile and easy-read information, paper wayfinding, telephone, and staffed service must precede AI and remain equivalent throughout.",
+    "data_prohibitions": ["facial_recognition", "voiceprint_as_access_condition", "continuous_identity_trajectory", "inferred_disability_profile", "advertising_or_enforcement_reuse"],
+    "decision_rule_zh": "AI只提供建议；路线确认、例外处理、法定决定、申诉和停止由依法确定的人员承担。",
+    "decision_rule_en": "AI provides advice only; route confirmation, exception handling, statutory decisions, appeals, and stopping remain with lawfully appointed people.",
+    "no_penalty_rule_zh": "拒绝或关闭AI不得增加费用、不合理等待或异地行程。",
+    "no_penalty_rule_en": "Declining or disabling AI shall add no fee, unreasonable wait, or off-site journey."
+  },
+  "phases": [
+    {
+      "phase_id": "S06-MDP-P1",
+      "relative_days": "0-30",
+      "title_zh": "普通服务与无障碍基线",
+      "title_en": "Ordinary-Service and Accessibility Baseline",
+      "entry_gates": ["G0", "G1"],
+      "role_archetypes": {"accountable": "DO", "responsible": ["IE"], "consulted": ["PO", "CM", "DC", "PF"], "informed": ["TO", "IV"]},
+      "minimum_inputs_zh": ["候选关键路径及开放时段", "场地权利与现场核验责任", "现有固定导视、纸质、电话和人工服务清单", "代表性使用者参与计划", "投诉、求助和紧急联系渠道"],
+      "minimum_inputs_en": ["Candidate key route and opening hours", "Site rights and field-verification accountability", "Inventory of existing fixed, paper, telephone, and staffed services", "Representative-user participation plan", "Complaint, assistance, and emergency channels"],
+      "field_outputs_zh": ["逐段开放与无障碍核查表", "关键阻断和临时障碍图", "普通服务路线与服务点图", "人工巡检卡和更新时间记录", "非AI完成率、等待、距离和费用基线"],
+      "field_outputs_en": ["Segment-by-segment opening and accessibility audit", "Critical-barrier and temporary-obstruction map", "Ordinary-service route and staffed-point plan", "Human inspection card and update-time record", "Non-AI completion, wait, distance, and cost baseline"],
+      "acceptance_records": [
+        {"record_id": "P1-AR-01", "zh": "IE与DO对场地、路线、服务时段和人工责任的书面接收", "en": "Written IE and DO receipt for site, route, service hours, and human accountability"},
+        {"record_id": "P1-AR-02", "zh": "PO组织的代表性用户路线复核与意见回应", "en": "PO-led representative-user route review and response"},
+        {"record_id": "P1-AR-03", "zh": "DC确认零AI阶段不建立持续身份轨迹", "en": "DC confirmation that the no-AI baseline creates no persistent identity trace"}
+      ],
+      "control_metrics": [
+        {"metric": "critical_accessibility_barrier_closure", "threshold_zh": "进入下一阶段前100%关闭或提供经用户复核的等效服务", "threshold_en": "100% closed or provided with user-reviewed equivalent service before the next phase"},
+        {"metric": "ordinary_service_channel_availability", "threshold_zh": "固定、纸质、电话和人工渠道按适用场景可用", "threshold_en": "Applicable fixed, paper, telephone, and staffed channels available"},
+        {"metric": "major_public_response", "threshold_zh": "重大异议100%记录状态和回应责任", "threshold_en": "100% of major objections record status and response accountability"}
+      ],
+      "stop_triggers_zh": ["场地权利或路线开放状态不清", "关键无障碍阻断未关闭且无等效服务", "人工服务责任或班次不成立", "代表性用户无法安全参与", "普通服务基线无法记录"],
+      "stop_triggers_en": ["Unclear site rights or route opening status", "Critical accessibility barrier unresolved without equivalent service", "Staffed-service accountability or shifts absent", "Representative users cannot participate safely", "Ordinary-service baseline cannot be recorded"],
+      "exit_outputs_zh": ["保持现有普通服务", "撤除临时核查标记", "依法处置参与记录", "未解决问题和责任接续单"],
+      "exit_outputs_en": ["Retain existing ordinary service", "Remove temporary audit markers", "Lawfully dispose of participation records", "Unresolved-issue and responsibility handoff record"]
+    },
+    {
+      "phase_id": "S06-MDP-P2",
+      "relative_days": "31-60",
+      "title_zh": "封闭合成与影子验证",
+      "title_en": "Closed Synthetic and Shadow Validation",
+      "entry_gates": ["G2", "G3"],
+      "role_archetypes": {"accountable": "IV", "responsible": ["TO", "DC"], "consulted": ["DO", "IE", "PO", "CM"], "informed": ["PF"]},
+      "minimum_inputs_zh": ["P1已签收基线", "固定模型、规则和内容版本", "合法或合成路线事件", "禁用字段清单", "断网、误导、过期、画像和解编测试任务"],
+      "minimum_inputs_en": ["Signed P1 baseline", "Fixed model, rule, and content versions", "Lawful or synthetic route events", "Prohibited-field list", "Network-loss, misdirection, staleness, profiling, and unweaving test tasks"],
+      "field_outputs_zh": ["影子建议与人工判断逐条对照", "版本、输入输出和故障日志", "数据流与访问控制记录", "停止、数据清理、固定导视和人工恢复演练", "独立复核意见"],
+      "field_outputs_en": ["Itemised comparison of shadow advice and human judgement", "Version, input-output, and failure log", "Data-flow and access-control record", "Stop, data-clearing, fixed-sign, and staffed-restoration drill", "Independent review finding"],
+      "acceptance_records": [
+        {"record_id": "P2-AR-01", "zh": "IV签发通过、限用、整改或停止意见", "en": "IV issues a pass, restricted-use, corrective-action, or stop finding"},
+        {"record_id": "P2-AR-02", "zh": "DC确认禁用字段未进入处理链并记录删除结果", "en": "DC confirms prohibited fields did not enter processing and records deletion outcomes"},
+        {"record_id": "P2-AR-03", "zh": "DO与PO确认人工和非数字服务未受影子测试影响", "en": "DO and PO confirm shadow testing did not affect staffed or non-digital service"}
+      ],
+      "control_metrics": [
+        {"metric": "prohibited_data_events", "threshold_zh": "0；发生即停止并专项复核", "threshold_en": "0; any event triggers stop and special review"},
+        {"metric": "human_takeover_drill", "threshold_zh": "全部预设故障分支均完成安全接管", "threshold_en": "Safe takeover completed for every preregistered failure branch"},
+        {"metric": "unweaving_restoration", "threshold_zh": "动态接口停用、数据清理、导视和人工服务恢复均形成回执", "threshold_en": "Receipts cover dynamic-interface shutdown, data clearing, and sign and staffed-service restoration"}
+      ],
+      "stop_triggers_zh": ["出现禁用数据或残障画像", "不可解释高风险误导", "断网时无法安全回退", "人工接管或解编失败", "重大问题未关闭或利益冲突未披露"],
+      "stop_triggers_en": ["Prohibited data or disability profiling occurs", "Unexplained high-risk misdirection", "No safe network-loss fallback", "Human takeover or unweaving fails", "Major issue unresolved or conflict undisclosed"],
+      "exit_outputs_zh": ["停止结论和问题清单", "测试数据及访问权限处置证明", "版本封存或删除记录", "普通服务未受影响确认", "返回整改或结束原型的责任单"],
+      "exit_outputs_en": ["Stop finding and issue list", "Test-data and access-rights disposition proof", "Version archive or deletion record", "Confirmation that ordinary service was unaffected", "Responsibility record for correction or prototype closure"]
+    },
+    {
+      "phase_id": "S06-MDP-P3",
+      "relative_days": "61-90",
+      "title_zh": "授权成立后的限量共测",
+      "title_en": "Limited Co-Testing after Authorisation",
+      "entry_gates": ["G3", "G4"],
+      "role_archetypes": {"accountable": "DO", "responsible": ["IE", "TO"], "consulted": ["IV", "DC", "PO", "PF", "CM"], "informed": []},
+      "minimum_inputs_zh": ["P2独立意见与关闭问题", "依法成立的场地、数据和参与授权", "限定空间、时段、服务对象和停止权限", "人工服务与普通服务排班", "退出事项、责任与合法资源计划"],
+      "minimum_inputs_en": ["P2 independent finding and closed issues", "Lawfully established site, data, and participation authorisations", "Bounded space, time, users, and stop authority", "Staffed and ordinary-service schedule", "Exit items, accountability, and lawful resource plan"],
+      "field_outputs_zh": ["每次建议、人工确认和实际选择的最小记录", "求助、误导、差别待遇和无障碍阻断台账", "普通与数字路径的距离、等待、费用和完成率对照", "公众意见与更正记录", "第90日续期、整改、暂停或退出建议"],
+      "field_outputs_en": ["Minimal record of each advice, human confirmation, and actual choice", "Assistance, misdirection, unequal-treatment, and accessibility-barrier register", "Comparison of ordinary and digital route distance, wait, cost, and completion", "Public input and correction record", "Day-90 renewal, correction, pause, or exit recommendation"],
+      "acceptance_records": [
+        {"record_id": "P3-AR-01", "zh": "DO对服务目的、人工最终决定和申诉责任的签收", "en": "DO receipt for service purpose, human final decision, and appeal accountability"},
+        {"record_id": "P3-AR-02", "zh": "PO对拒绝AI无惩罚和代表性用户体验的复核", "en": "PO review of no-penalty AI refusal and representative-user experience"},
+        {"record_id": "P3-AR-03", "zh": "IV、DC对事件、限制和退出恢复的独立复核", "en": "IV and DC independent review of incidents, restrictions, and exit restoration"},
+        {"record_id": "P3-AR-04", "zh": "PF确认费用、预算、采购和资金状态未被误述", "en": "PF confirmation that cost, budget, procurement, and funding status are not misrepresented"}
+      ],
+      "control_metrics": [
+        {"metric": "ordinary_service_equivalence", "threshold_zh": "拒绝AI不增加费用、不合理等待或异地行程", "threshold_en": "Declining AI adds no fee, unreasonable wait, or off-site journey"},
+        {"metric": "critical_accessibility_barrier", "threshold_zh": "0项未关闭关键阻断", "threshold_en": "0 unresolved critical barriers"},
+        {"metric": "severe_safety_or_privacy_event", "threshold_zh": "0；发生即停止", "threshold_en": "0; any event triggers stop"},
+        {"metric": "appeal_and_correction_reachability", "threshold_zh": "人工求助、申诉和内容更正渠道全程可达", "threshold_en": "Staffed help, appeal, and content-correction channels remain reachable"}
+      ],
+      "stop_triggers_zh": ["任一必要授权撤回或不存在", "严重安全、隐私或公平事件", "普通或人工服务中断", "误导持续或关键阻断未关闭", "参与者承担额外费用、不合理等待或异地行程", "退出责任或资源不可用"],
+      "stop_triggers_en": ["Any required authorisation is absent or withdrawn", "Severe safety, privacy, or fairness incident", "Ordinary or staffed service interruption", "Persistent misdirection or unresolved critical barrier", "Participants bear extra cost, unreasonable wait, or off-site journey", "Exit accountability or resources unavailable"],
+      "exit_outputs_zh": ["动态接口停用回执", "数据清理和访问撤销证明", "设备撤离与场地恢复记录", "固定导视校正和人工服务恢复确认", "参与者通知与申诉接续", "第90日有理由的续期、整改、暂停或退出决定"],
+      "exit_outputs_en": ["Dynamic-interface shutdown receipt", "Data-clearing and access-revocation proof", "Equipment removal and site-restoration record", "Fixed-sign correction and staffed-service restoration confirmation", "Participant notice and appeal handoff", "Reasoned day-90 renewal, correction, pause, or exit decision"]
+    }
+  ],
+  "package_acceptance": {
+    "minimum_complete_zh": ["三阶段每项记录均有依法确定角色书面接收", "普通服务基线与数字服务对照可复核", "所有重大问题均关闭或形成停止决定", "退出六项形成完整回执", "公开摘要不含个人、商业敏感或未经清权信息"],
+    "minimum_complete_en": ["Every three-phase record has written receipt by lawfully appointed roles", "Ordinary-service baseline and digital comparison are reviewable", "Every major issue is closed or has a stop decision", "All six exit items have complete receipts", "Public summary contains no personal, commercially sensitive, or uncleared information"],
+    "not_equivalent_to_zh": ["审批", "采购", "预算批复", "安全认证", "现场绩效", "持续运营承诺"],
+    "not_equivalent_to_en": ["Approval", "Procurement", "Budget approval", "Safety certification", "Field performance", "Continued-operation commitment"]
+  }
+}

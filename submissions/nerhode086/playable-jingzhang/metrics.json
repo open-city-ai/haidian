@@ -1,0 +1,771 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "coordinate_policy": {
+    "geojson_exchange_crs": "EPSG:4326",
+    "area_calculation_crs": "EPSG:4548"
+  },
+  "recomputation_note_zh": "所有 known 指标均由本包 geometry/*.geojson 在 EPSG:4548 下复算得到，可用 scripts/spatial_review.py 独立复核；unknown 指标为缺失的法定管控条件。",
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。",
+        "公告文字口径约11,400,000 m²，本包复算值与之相差约0.11%，差值来自临时边界的粗略化。"
+      ],
+      "label_zh": "总体设计范围面积",
+      "label_en": "Overall design area",
+      "design_meaning_zh": "全部比例类指标的分母；临时边界，非官方红线。"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 961419.455,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(GREEN_SPACE))",
+      "confidence": "medium",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。"
+      ],
+      "label_zh": "绿地与开敞空间面积",
+      "label_en": "Green and open space area",
+      "design_meaning_zh": "其中公园绿地即京张遗址公园可玩主线（二期2026-08-06建成贯通），是本方案的运营载体而非新建工程。"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.08424,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。"
+      ],
+      "label_zh": "绿地率（设计口径）",
+      "label_en": "Green ratio (design)",
+      "design_meaning_zh": "设计复算值，不等于法定绿地率控制指标。"
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 778463.201,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(PUBLIC_SPACE polygons))",
+      "confidence": "medium",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。"
+      ],
+      "label_zh": "公共空间面积",
+      "label_en": "Public space area",
+      "design_meaning_zh": "共练场前厅广场 + 可玩留白地，是“公共空间即测试场”的用地承载。"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.06821,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。"
+      ],
+      "label_zh": "公共空间比例",
+      "label_en": "Public space ratio",
+      "design_meaning_zh": "创新交往的空间供给；比例偏高是本方案的主动选择，不是统计误差。"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1207973.887,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(BUILDING_FOOTPRINT))",
+      "confidence": "low",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。",
+        "概念体量研究，不含现状建筑普查、权属与拆改留判断。"
+      ],
+      "label_zh": "建筑基底面积（概念）",
+      "label_en": "Building footprint area (conceptual)",
+      "design_meaning_zh": "概念设计量，不等于法定建筑密度或已确定建设规模。"
+    },
+    "building_coverage_design_ratio": {
+      "status": "known",
+      "value": 0.105844,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "概念设计量；法定建筑密度控制值缺失，见 building_density_official。"
+      ],
+      "label_zh": "建筑基底覆盖率（概念设计量）",
+      "label_en": "Design building coverage",
+      "design_meaning_zh": "仅用于说明产业空间供给的量级关系，不作为管控依据。"
+    },
+    "road_land_area_sqm": {
+      "status": "known",
+      "value": 1362151.658,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LAND_USE where land_use_code=1207)",
+      "confidence": "low",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。",
+        "道路用地为概念性带状划分，不代表道路红线或线位。"
+      ],
+      "label_zh": "城镇村道路用地面积",
+      "label_en": "Urban road land area"
+    },
+    "road_land_ratio": {
+      "status": "known",
+      "value": 0.119353,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_land_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "概念性划分，不代表道路红线。"
+      ],
+      "label_zh": "道路用地比例",
+      "label_en": "Road land ratio"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA)",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "重点区域数量",
+      "label_en": "Key area count"
+    },
+    "key_area_zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(KEY_AREA[zhongzhiyuan_ai_acceleration_area])",
+      "confidence": "medium",
+      "assumptions": [
+        "临时粗略 polygon，公告口径面积为准；不得作为精确面积复算依据。"
+      ],
+      "label_zh": "众智园AI自主创新加速区面积"
+    },
+    "key_area_beijing_ai_origin_community_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(KEY_AREA[beijing_ai_origin_community])",
+      "confidence": "medium",
+      "assumptions": [
+        "临时粗略 polygon，公告口径面积为准；不得作为精确面积复算依据。"
+      ],
+      "label_zh": "北京AI原点社区面积"
+    },
+    "key_area_dazhongsi_ai_industry_cluster_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(KEY_AREA[dazhongsi_ai_industry_cluster])",
+      "confidence": "medium",
+      "assumptions": [
+        "临时粗略 polygon，公告口径面积为准；不得作为精确面积复算依据。"
+      ],
+      "label_zh": "大钟寺AI产业集聚区面积"
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(KEY_AREA))",
+      "confidence": "medium",
+      "assumptions": [
+        "公告口径 3,684,000 m²；本包临时 polygon 复算值与之相差约0.24%。"
+      ],
+      "label_zh": "重点区域范围合计面积"
+    },
+    "phase_area_phase_1_sqm": {
+      "status": "known",
+      "value": 4247277.375,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE[phase_1])",
+      "confidence": "low",
+      "assumptions": [
+        "分期为概念建议时序，不构成审批或投资承诺。"
+      ],
+      "label_zh": "近期分期范围面积"
+    },
+    "phase_area_phase_2_sqm": {
+      "status": "known",
+      "value": 4965606.225,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE[phase_2])",
+      "confidence": "low",
+      "assumptions": [
+        "分期为概念建议时序，不构成审批或投资承诺。"
+      ],
+      "label_zh": "中期分期范围面积"
+    },
+    "phase_area_phase_3_sqm": {
+      "status": "known",
+      "value": 2199962.706,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE[phase_3])",
+      "confidence": "low",
+      "assumptions": [
+        "分期为概念建议时序，不构成审批或投资承诺。"
+      ],
+      "label_zh": "远期分期范围面积"
+    },
+    "playable_spine_length_m": {
+      "status": "known",
+      "value": 9720.7,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD_CENTERLINE[ROAD-001], EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。"
+      ],
+      "label_zh": "可玩主线长度",
+      "label_en": "Playable spine length",
+      "design_meaning_zh": "与官方公布的遗址公园9公里全线贯通口径一致；本方案在已建成绿廊上叠加运营层。"
+    },
+    "stitch_crossing_count": {
+      "status": "known",
+      "value": 14,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(ROAD_CENTERLINE where road_class=pedestrian)",
+      "confidence": "low",
+      "assumptions": [
+        "概念性缝合断面建议，不构成道路线位结论。"
+      ],
+      "label_zh": "东西缝合横穿数量",
+      "label_en": "East-west stitch crossings",
+      "design_meaning_zh": "回应公告“东西缝合”要求；横穿越密，绿廊越像门槛而非屏障。"
+    },
+    "stitch_crossing_mean_spacing_m": {
+      "status": "known",
+      "value": 694.3,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "playable_spine_length_m / stitch_crossing_count",
+      "confidence": "low",
+      "assumptions": [
+        "概念建议值。"
+      ],
+      "label_zh": "横穿平均间距",
+      "label_en": "Mean crossing spacing",
+      "design_meaning_zh": "约700米一处，目标是让任何一侧居民步行5分钟内可穿越绿廊。"
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE)",
+      "confidence": "medium",
+      "assumptions": [],
+      "label_zh": "AI场景节点数量",
+      "label_en": "AI scenario nodes",
+      "design_meaning_zh": "对应正文12张场景卡的空间落点，满足任务书不少于10张的要求。"
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE flagged as industry test/validation)",
+      "confidence": "medium",
+      "assumptions": [
+        "测试验证场景须依《北京市自动驾驶汽车条例》等另行申请，不构成已批准运营。"
+      ],
+      "label_zh": "产业测试验证场景数量",
+      "label_en": "Industry test scenarios"
+    },
+    "ai_service_zone_area_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "area(union(AI_SERVICE_ZONE))",
+      "confidence": "medium",
+      "assumptions": [
+        "与三处重点区域临时 polygon 同形，属概念性场景开放分区。"
+      ],
+      "label_zh": "人机共练场面积",
+      "label_en": "Mutual training ground area"
+    },
+    "quiet_zone_area_sqm": {
+      "status": "known",
+      "value": 177023.804,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "area(union(PUBLIC_SPACE where play_regime=quiet_no_play))",
+      "confidence": "medium",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。"
+      ],
+      "label_zh": "静区面积（不玩的权利）",
+      "label_en": "Quiet-zone area (right not to play)",
+      "design_meaning_zh": "方案对“不玩的权利”的用地兑现：静区内不布设互动、投影、传感与声音场景。"
+    },
+    "quiet_zone_ratio": {
+      "status": "known",
+      "value": 0.015511,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "quiet_zone_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。"
+      ],
+      "label_zh": "静区占总体设计范围比例",
+      "label_en": "Quiet-zone ratio of site"
+    },
+    "quiet_spine_length_m": {
+      "status": "known",
+      "value": 2215.3,
+      "unit": "m",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "sum(length of quiet stretches cut out of the playable spine)",
+      "confidence": "medium",
+      "assumptions": [
+        "长度按静段纬度窗口换算，属概念建议值。"
+      ],
+      "label_zh": "主线静段总长度",
+      "label_en": "Quiet spine length"
+    },
+    "quiet_spine_length_share": {
+      "status": "known",
+      "value": 0.227895,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "geometry/roads.geojson"
+      ],
+      "formula": "quiet_spine_length_m / playable_spine_length_m",
+      "confidence": "medium",
+      "assumptions": [
+        "概念建议值；正式深化时应结合沿线住宅、医院、学校实测噪声与居民意愿重新划定。"
+      ],
+      "label_zh": "静段占主线长度比例",
+      "label_en": "Quiet share of spine length",
+      "design_meaning_zh": "本方案把可玩性的上限写进指标：主线约四分之一的长度明确不可玩，且不可被活动临时占用。"
+    },
+    "reserved_land_area_sqm": {
+      "status": "known",
+      "value": 320244.948,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LAND_USE where land_use_code=16)",
+      "confidence": "medium",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。"
+      ],
+      "label_zh": "留白用地面积",
+      "label_en": "Reserved land area",
+      "design_meaning_zh": "松散部件理论的用地对应物：不被功能定义的地方越多，可玩性越高。"
+    },
+    "reserved_land_ratio": {
+      "status": "known",
+      "value": 0.02806,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "reserved_land_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。"
+      ],
+      "label_zh": "留白用地比例",
+      "label_en": "Reserved land ratio"
+    },
+    "civic_square_area_sqm": {
+      "status": "known",
+      "value": 458218.253,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LAND_USE where land_use_code=1403)",
+      "confidence": "medium",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。"
+      ],
+      "label_zh": "广场用地面积",
+      "label_en": "Civic square area",
+      "design_meaning_zh": "集中在三处共练场前厅，是“把测试场放进公共空间”的用地代价与收益。"
+    },
+    "land_use_area_0701_sqm": {
+      "status": "known",
+      "value": 3011056.99,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LAND_USE where land_use_code=0701)",
+      "confidence": "low",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。",
+        "概念性用地划分，不构成法定用地性质结论。"
+      ],
+      "label_zh": "用地面积（0701）"
+    },
+    "land_use_area_0802_sqm": {
+      "status": "known",
+      "value": 1945070.305,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LAND_USE where land_use_code=0802)",
+      "confidence": "low",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。",
+        "概念性用地划分，不构成法定用地性质结论。"
+      ],
+      "label_zh": "用地面积（0802）"
+    },
+    "land_use_area_0804_sqm": {
+      "status": "known",
+      "value": 1430969.776,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LAND_USE where land_use_code=0804)",
+      "confidence": "low",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。",
+        "概念性用地划分，不构成法定用地性质结论。"
+      ],
+      "label_zh": "用地面积（0804）"
+    },
+    "land_use_area_1207_sqm": {
+      "status": "known",
+      "value": 1362151.658,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LAND_USE where land_use_code=1207)",
+      "confidence": "low",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。",
+        "概念性用地划分，不构成法定用地性质结论。"
+      ],
+      "label_zh": "用地面积（1207）"
+    },
+    "land_use_area_0702_sqm": {
+      "status": "known",
+      "value": 922876.007,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LAND_USE where land_use_code=0702)",
+      "confidence": "low",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。",
+        "概念性用地划分，不构成法定用地性质结论。"
+      ],
+      "label_zh": "用地面积（0702）"
+    },
+    "land_use_area_1401_sqm": {
+      "status": "known",
+      "value": 778372.376,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LAND_USE where land_use_code=1401)",
+      "confidence": "low",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。",
+        "概念性用地划分，不构成法定用地性质结论。"
+      ],
+      "label_zh": "用地面积（1401）"
+    },
+    "land_use_area_05_sqm": {
+      "status": "known",
+      "value": 559399.744,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LAND_USE where land_use_code=05)",
+      "confidence": "low",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。",
+        "概念性用地划分，不构成法定用地性质结论。"
+      ],
+      "label_zh": "用地面积（05）"
+    },
+    "land_use_area_1403_sqm": {
+      "status": "known",
+      "value": 458218.253,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LAND_USE where land_use_code=1403)",
+      "confidence": "low",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。",
+        "概念性用地划分，不构成法定用地性质结论。"
+      ],
+      "label_zh": "用地面积（1403）"
+    },
+    "land_use_area_16_sqm": {
+      "status": "known",
+      "value": 320244.948,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LAND_USE where land_use_code=16)",
+      "confidence": "low",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。",
+        "概念性用地划分，不构成法定用地性质结论。"
+      ],
+      "label_zh": "用地面积（16）"
+    },
+    "land_use_area_0803_sqm": {
+      "status": "known",
+      "value": 261301.836,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LAND_USE where land_use_code=0803)",
+      "confidence": "low",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。",
+        "概念性用地划分，不构成法定用地性质结论。"
+      ],
+      "label_zh": "用地面积（0803）"
+    },
+    "land_use_area_1402_sqm": {
+      "status": "known",
+      "value": 183047.079,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LAND_USE where land_use_code=1402)",
+      "confidence": "low",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。",
+        "概念性用地划分，不构成法定用地性质结论。"
+      ],
+      "label_zh": "用地面积（1402）"
+    },
+    "land_use_area_0805_sqm": {
+      "status": "known",
+      "value": 180137.335,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LAND_USE where land_use_code=0805)",
+      "confidence": "low",
+      "assumptions": [
+        "面积基于仓库提供的 provisional 走廊边界复算；官方边界补齐后所有面积与比例需整体重算。",
+        "概念性用地划分，不构成法定用地性质结论。"
+      ],
+      "label_zh": "用地面积（0805）"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "正式控制条件补齐后按本包公式复算。"
+      ],
+      "reason": "缺少经批准的控规容积率条件与官方边界；任务书亦禁止把容积率写成法定结论。",
+      "required_for_formal_submission": true,
+      "label_zh": "法定容积率"
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(building_floor_area)",
+      "confidence": "unknown",
+      "assumptions": [
+        "正式控制条件补齐后按本包公式复算。"
+      ],
+      "reason": "缺少现状建筑普查、层数与权属资料，无法复算总建筑规模。",
+      "required_for_formal_submission": true,
+      "label_zh": "总建筑规模"
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "max(building_height)",
+      "confidence": "unknown",
+      "assumptions": [
+        "正式控制条件补齐后按本包公式复算。"
+      ],
+      "reason": "缺少经批准的高度管控、航空与景观视廊限制条件。",
+      "required_for_formal_submission": true,
+      "label_zh": "法定建筑高度"
+    },
+    "building_density_official": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official building density control",
+      "confidence": "unknown",
+      "assumptions": [
+        "正式控制条件补齐后按本包公式复算。"
+      ],
+      "reason": "缺少经批准的控规建筑密度控制值。",
+      "required_for_formal_submission": true,
+      "label_zh": "法定建筑密度"
+    },
+    "green_ratio_official_control": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official green ratio control",
+      "confidence": "unknown",
+      "assumptions": [
+        "正式控制条件补齐后按本包公式复算。"
+      ],
+      "reason": "缺少经批准的控规绿地率控制值或地方绿地标准适用结论。",
+      "required_for_formal_submission": true,
+      "label_zh": "法定绿地率"
+    },
+    "setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official setback control",
+      "confidence": "unknown",
+      "assumptions": [
+        "正式控制条件补齐后按本包公式复算。"
+      ],
+      "reason": "缺少道路红线、建筑控制线、消防与市政退线条件。",
+      "required_for_formal_submission": true,
+      "label_zh": "法定退线"
+    },
+    "existing_building_retain_demolish_split": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "retain / renovate / demolish split",
+      "confidence": "unknown",
+      "assumptions": [
+        "正式控制条件补齐后按本包公式复算。"
+      ],
+      "reason": "缺少现状建筑普查与权属资料；任务书禁止给出具体地块拆改留结论。",
+      "required_for_formal_submission": true,
+      "label_zh": "拆改留比例"
+    }
+  }
+}

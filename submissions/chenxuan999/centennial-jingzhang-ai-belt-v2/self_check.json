@@ -1,0 +1,99 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "info",
+      "target": "geometry/site_boundary.geojson",
+      "message": "This submission uses provisional boundary data, official redline boundary is pending release. Full-package recalculation will be required after official boundary polygon is published.",
+      "message_zh": "本投稿使用临时场地边界，官方红线边界待发布；官方多边形发布后需要整包重新计算。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "info",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three required key areas are provisional polygons inside the site boundary; not overlapping; full disclosure."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "24 grid cells fully cover the site boundary; no gaps, no overlaps; topological safety verified by spatial_review."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Static HTML visualization has no remote scripts, fonts, APIs, iframes, or trackers; required markers and metrics embedded."
+    },
+    {
+      "check_id": "BILINGUAL_CONTRACT",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md / proposal.en.md",
+      "message": "V2 bilingual contract satisfied: proposal.md (zh, primary) + proposal.en.md (translation_of=proposal.md); report HTML and figures have .en counterparts."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md + standard_matrix.json + design_depth_matrix.json + compliance_matrix.json",
+      "message": "5 mandatory standards, 15 design-depth items, 23 task requirements, and 27 known metrics are covered; proposal text references every item."
+    },
+    {
+      "check_id": "SPATIAL_METRICS_MATCH",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "All recomputed metrics (site_area_sqm, green_space_area_sqm, public_space_area_sqm, building_footprint_area_sqm, green_ratio, public_space_ratio) match spatial_review output within tolerance."
+    },
+    {
+      "check_id": "DRAWINGS_READY",
+      "result": "pass",
+      "severity": "major",
+      "target": "drawings/a3-booklet.pdf + drawings/a0-boards.pdf",
+      "message": "Both drawing PDFs are generated with multi-page content (A3 booklet with five panels and A0 boards with five panels) and are no longer the empty placeholder."
+    },
+    {
+      "check_id": "AI_GENERATION_DISCLOSURE",
+      "result": "pass",
+      "severity": "info",
+      "target": "agent.json + report/copyright_statement.md",
+      "message": "AI generation model (deepseek, DeepSeek V4 Flash via WorkBuddy), generation method, and human-review checkpoints are disclosed in agent.json and copyright statement."
+    },
+    {
+      "check_id": "HERITAGE_PROTECTION_STRATEGY",
+      "result": "pass",
+      "severity": "info",
+      "target": "geometry/constraints.geojson + proposal.md",
+      "message": "Jing-Zhang railway heritage (Tsinghuayuan station provisional callout) protected via constraints layer and dedicated strategy in proposal.md Section 9; no fabrication of official heritage control."
+    },
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "self_check.json#DETERMINISTIC_VALIDATION",
+      "message": "DETERMINISTIC_VALIDATION passed during local self-check (persisted-self-check-v1)."
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "self_check.json#SPATIAL_REVIEW",
+      "message": "SPATIAL_REVIEW passed during local self-check (persisted-self-check-v1)."
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "self_check.json#VISUAL_PACKAGING",
+      "message": "VISUAL_PACKAGING passed during local self-check (persisted-self-check-v1)."
+    }
+  ],
+  "ok": true,
+  "can_enter_formal_review": true
+}

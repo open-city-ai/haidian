@@ -94,11 +94,48 @@ Urban character keynote: with "heritage red × spine blue" as the color keynote,
 
 The three key areas use the KEY-001/002/003 provisional constraints in `geometry/key_areas.geojson` as the working boundary; the announced areas are approx. 192.1 / 104.3 / 72.0 ha, and the provisional-polygon recalculated values are approx. 192.9 / 104.3 / 72.0 ha, with a deviation within 0.43% [metric:key_area_zhongzhiyuan_sqm]. All area-level conclusions are conceptual recommendations, pending re-verification after the official key-area polygons are released [depth:three_key_area_detailed_design].
 
-**Zhongzhi Core (Zhongzhiyuan AI Independent Innovation Acceleration Area, KEY-001)** [data:geometry/key_areas.geojson#KEY-001]: the source of the full-stack independent AI innovation system. The conceptual spatial organization is "one core, one axis, two belts": the core area carries national strategic scientific and technological forces and open innovation platforms; the main axis links the R&D clusters; the two belts carry supporting functions and ecology. All parcel-level recommendations are conceptual recommendations [depth:key_area_zhongzhi].
+**Zhongzhi Core (Zhongzhiyuan AI Independent Innovation Acceleration Area, KEY-001)** [data:geometry/key_areas.geojson#KEY-001]: the source of the full-stack independent AI innovation system. Conceptual land-use composition (recalculated on the provisional constraint boundary, ~192.9 ha):
 
-**AI Origin Core (Beijing AI Origin Community, KEY-002)** [data:geometry/key_areas.geojson#KEY-002]: centered on the Qinghuayuan Station heritage site and the Wudaokou area, conceptually organized as "one axis, one core, two areas": the Spine cultural axis, the AI Origin exchange core, the academy area, and the commercial area, emphasizing "campus–park–neighborhood" integration and an open-source cultural community.
+| Function | Area | Share |
+| --- | ---: | ---: |
+| Research (0802) | 50.2 ha | 26.0% |
+| Park green (1401) | 37.5 ha | 19.5% |
+| Reserve (16) | 28.0 ha | 14.5% |
+| Culture (0803) | 27.5 ha | 14.3% |
+| Commercial (05) | 23.9 ha | 12.4% |
+| Roads (1207) | 22.0 ha | 11.4% |
+| Plazas (1403) | 3.8 ha | 2.0% |
 
-**Dazhongsi Core (Dazhongsi AI Industry Cluster, KEY-003)** [data:geometry/key_areas.geojson#KEY-003]: organized around Dazhongsi Station as a station-city integrated renewal, conceptually structured as "one station, one street, one plaza": a station-city integrated hub, an AI-native consumer street, and a four-quadrant plaza, emphasizing AI+ consumption and public experience.
+The conceptual spatial organization is "one core, one axis, two belts": the core area carries national strategic scientific and technological forces and open innovation platforms; the main axis links the R&D clusters; the two belts carry supporting functions and ecology. The ~14.5% strategic reserve is an intentional flexibility buffer — full-stack AI technology and national platform needs iterate rapidly, so the reserve keeps room for uncertainty and is activated only after platform needs are clarified, avoiding lock-in by short-term development. All parcel-level recommendations are conceptual recommendations [depth:three_key_area_detailed_design].
+
+**AI Origin Core (Beijing AI Origin Community, KEY-002)** [data:geometry/key_areas.geojson#KEY-002]: centered on the Qinghuayuan Station heritage site and the Wudaokou area. Conceptual land-use composition (~104.3 ha):
+
+| Function | Area | Share |
+| --- | ---: | ---: |
+| Research (0802) | 30.2 ha | 29.0% |
+| Roads (1207) | 16.2 ha | 15.5% |
+| Park green (1401) | 14.8 ha | 14.1% |
+| Reserve (16) | 14.0 ha | 13.5% |
+| Commercial (05) | 13.1 ha | 12.5% |
+| Community service (0702) | 12.3 ha | 11.8% |
+| Plazas (1403) | 3.7 ha | 3.6% |
+
+Conceptually organized as "one axis, one core, two areas": the Spine cultural axis, the AI Origin exchange core, the academy area, and the commercial area, emphasizing "campus–park–neighborhood" integration and an open-source cultural community. The reserve serves as a flexible buffer for the talent community and campus, filled progressively as tech-transfer proceeds.
+
+**Dazhongsi Core (Dazhongsi AI Industry Cluster, KEY-003)** [data:geometry/key_areas.geojson#KEY-003]: organized around Dazhongsi Station as a station-city integrated renewal. Conceptual land-use composition (~72.0 ha):
+
+| Function | Area | Share |
+| --- | ---: | ---: |
+| Commercial (05) | 19.6 ha | 27.3% |
+| Roads (1207) | 11.3 ha | 15.6% |
+| Culture (0803) | 11.1 ha | 15.4% |
+| Reserve (16) | 11.0 ha | 15.2% |
+| Park green (1401) | 8.1 ha | 11.2% |
+| Research (0802) | 7.9 ha | 11.0% |
+| Plazas (1403) | 3.1 ha | 4.4% |
+| Community service (0702) | 0.0 ha | 0.0% |
+
+Conceptually structured as "one station, one street, one plaza": a station-city integrated hub, an AI-native consumer street, and a four-quadrant plaza, emphasizing AI+ consumption and public experience. The reserve provides room for trial and error of AI-native new business forms. Community service land is intentionally 0% — as a pure urban industrial district, daily talent services are carried by the Origin Core and surrounding existing communities; this core focuses on commercial, cultural, and R&D functions to avoid diluting industrial concentration.
 
 ![Index and design task map of the three key areas](assets/figures/key-areas.png)
 
@@ -115,24 +152,119 @@ Around the three positioning statements—"full-stack independent AI innovation 
 5. **International visitors and talent**: needing bilingual wayfinding, an international community, and international events to strengthen the "AI capital" city brand.
 6. **Government and public sector**: needing scenario supervision tools, public data interfaces, and decision support; human review is the default prerequisite.
 
-### AI Scenario Cards (12 Cards; ★ Denotes Industry Testing-Verification Scenarios)
+### AI Scenario Cards (12 Cards; ★ Denotes Industry Testing-Validation Scenarios)
 
-Scenario cards are the spatial anchors of "AI+ scenarios." Each card registers: name, description, location and reference, operation mechanism, scope of access, risk, and human review nodes; data and mechanisms are registered in `scenario_cards.json`, and locations and boundaries in `geometry/scenario_areas.geojson` [source:AGENT-TASKBOOK].
+Each scenario card is written in a deployable structure of "can start, can stop, can review": the location is anchored to a submission geometry feature, with operator, entry conditions (readiness card), minimal viable baseline, stop conditions, human fallback, and review evidence. All baselines are conceptual design values for professional teams to deepen; they do not represent pilot authorization or completed field validation [source:AGENT-TASKBOOK].
 
-| No. | Name | Location | Scenario type | Human review |
-| --- | --- | --- | --- | --- |
-| SC-01 ★ | Robot delivery and low-speed autonomous driving testing corridor | South segment of the Spine (Dazhongsi Core) | Industry testing-verification | Confirmation for each delivery |
-| SC-02 ★ | Multi-agent traffic coordination and dispatch | Middle segment of the Spine and along Xueyuan Road | Industry testing-verification | Signal scheme review |
-| SC-03 | AI cultural guide and heritage narrative | Exhibition nodes along the full Spine | Public service | Content review |
-| SC-04 | AI healthcare service navigation | Xiaoyue River Wing and Dazhongsi Core | Public service | Professional medical review |
-| SC-05 | Enterprise service Copilot | Enterprise service clusters of the two wings | Industry service | Compliance review |
-| SC-06 | Public safety operations review | Zhongzhi Core and citywide nodes | Governance support | Law enforcement review |
-| SC-07 | AI mobility service (commuting) | Middle segment of the Spine and Wudaokou | Public service | Trip safety review |
-| SC-08 | Smart guardianship of school commuting routes | Academy area of AI Origin Core | Public service | School and parent confirmation |
-| SC-09 | Smart eldercare and age-friendly services | Dazhongsi Core and community nodes | Public service | Community and family confirmation |
-| SC-10 | Unattended waystation service on the Spine | Waystations along the full Spine | Public service | Remote human duty |
-| SC-11 | Open-Source Starlight Wall interactive display | Waystation in the middle segment of the Spine | Cultural display | Content review |
-| SC-12 | AI innovation competition and event space | Zhongzhi Core and citywide nodes | Event operation | Event filing |
+**★TVS-1 Spine low-speed robot delivery test corridor** | Anchor: full spine greenway [data:geometry/roads.geojson#RD-001]
+- Users: robot firms, park users. Data boundary: public road data and authorized test data; no face capture.
+- Operator: scenario-registry platform operator (conceptual recommendation).
+- Entry conditions: test-section ownership and safety assessment complete, public notice period elapsed, insurance and emergency plan filed.
+- Minimal viable baseline: a single ~500 m segment, no more than 2 low-speed units, speed capped at 15 km/h, 30 consecutive days without injury events.
+- Stop conditions: any personal injury, complaints above threshold, or anomalous sensing data triggers an immediate line halt and re-inspection.
+- Human fallback: remote safety officer one-click emergency stop; on-site patrol arrives within a set time.
+- Review evidence: operation logs, incident records, and monthly public summaries.
+
+**★TVS-2 AI+traffic walking-cycling evaluation and signal sandbox** | Anchor: five stitch corridors and station links [data:geometry/roads.geojson#RD-002]
+- Users: commuters, transport researchers. Data boundary: public flow data and anonymized counts.
+- Operator: transport research team in coordination with the district transport authority (conceptual recommendation).
+- Entry conditions: evaluation metrics and collection plan approved by transport and planning professionals; evaluation only, no direct signal control.
+- Minimal viable baseline: one stitch corridor, one full signal-cycle working day, anonymized sample size meeting statistical significance.
+- Stop conditions: no recommendation is implemented without human review; any safety challenge halts the evaluation.
+- Human fallback: signal timing is finally confirmed by a traffic engineer.
+- Review evidence: evaluation report, before/after data, and signed review records.
+
+**★TVS-3 Dazhongsi AI-native commerce A/B test field** | Anchor: Dazhongsi AI-native consumption zone [data:geometry/land_use.geojson#LU-037]
+- Users: merchants, consumers. Data boundary: desensitized transactions, explicit consent, opt-out anytime.
+- Operator: merchant alliance with the scenario-registry platform (conceptual recommendation).
+- Entry conditions: merchants voluntarily sign up, consumer-rights fallback in place, test rules published.
+- Minimal viable baseline: no more than 10 merchants, a single test group runs no more than 4 weeks, with a control group.
+- Stop conditions: price discrimination, misleading recommendations, or concentrated complaints stop the test group.
+- Human fallback: human customer service and no-questions opt-out channel.
+- Review evidence: test design document, desensitized result dataset, and merchant review minutes.
+
+**SC-04 AI guide & cultural narrative** | Anchor: Spine gallery, Qinghuayuan Station site [data:geometry/green_space.geojson#GR-006]
+- Users: visitors, students. Data boundary: public historical materials and human-curated texts.
+- Operator: cultural operation team (conceptual recommendation).
+- Entry conditions: guide content passes triple human review — culture, copyright, and facts.
+- Minimal viable baseline: a single gallery segment, bilingual versions, fact-check records archived.
+- Stop conditions: any factual error or copyright challenge takes the content offline for revision.
+- Human fallback: curator final sign-off; public correction channel.
+- Review evidence: content version records and check sign-offs.
+
+**SC-05 AI+healthcare service navigation** | Anchor: community service clusters [data:geometry/land_use.geojson#LU-032]
+- Users: residents, park youth. Data boundary: public service directory only; no personal health data.
+- Operator: community service operator (conceptual recommendation).
+- Entry conditions: content reviewed by medical and legal professionals, explicitly "navigation only, no diagnosis."
+- Minimal viable baseline: a single community node, directory coverage and accuracy spot-checked by humans.
+- Stop conditions: any out-of-scope advice or stale information suspends the service.
+- Human fallback: staffed service window retained in parallel.
+- Review evidence: spot-check records and update logs.
+
+**SC-06 Enterprise service Copilot** | Anchor: two-wing tech-service nodes [data:geometry/land_use.geojson#LU-060]
+- Users: enterprises, developers. Data boundary: public policy and service directory.
+- Operator: tech-service operation team (conceptual recommendation).
+- Entry conditions: policy-interpretation disclaimer and human consulting channel in place.
+- Minimal viable baseline: a single service node, Q&A accuracy spot-checked to standard.
+- Stop conditions: any policy interpretation proven misleading is corrected and disclosed.
+- Human fallback: professional human consulting channel.
+- Review evidence: Q&A spot-check records and correction logs.
+
+**SC-07 Public safety & event operation review** | Anchor: large-event and night scenario nodes [data:geometry/public_space.geojson#PS-001]
+- Users: operators, public. Data boundary: anonymized crowd heat only.
+- Operator: event operation and safety team (conceptual recommendation).
+- Entry conditions: safety plan approved by humans; AI only flags, never decides on response.
+- Minimal viable baseline: a single event, flagging accuracy and false-positive rate evaluated by humans.
+- Stop conditions: excessive false positives or a missed critical risk reverts to fully manual mode.
+- Human fallback: safety conclusions must be human-confirmed.
+- Review evidence: event review reports and response records.
+
+**SC-08 AI+education: campus-park open classroom** | Anchor: Origin Core campus-integration cluster [data:geometry/land_use.geojson#LU-035]
+- Users: students, public. Data boundary: public course resources.
+- Operator: university-park co-building team (conceptual recommendation).
+- Entry conditions: course content reviewed by educational institutions.
+- Minimal viable baseline: a single pilot course, learning-feedback questionnaires.
+- Stop conditions: substantiated content-quality complaints take the course offline for revision.
+- Human fallback: the instructor is responsible throughout.
+- Review evidence: course evaluation and feedback summaries.
+
+**SC-09 AI+legal: IP quick-service waystation** | Anchor: west-wing tech-service cluster [data:geometry/land_use.geojson#LU-063]
+- Users: startups. Data boundary: public statutes and case base.
+- Operator: IP service institution (conceptual recommendation).
+- Entry conditions: clear "preliminary navigation, not formal legal advice" labeling.
+- Minimal viable baseline: a single waystation, navigation accuracy spot-checked.
+- Stop conditions: any navigation result proven misleading suspends the service for revision.
+- Human fallback: lawyers issue formal opinions.
+- Review evidence: service records and spot-check reports.
+
+**SC-10 AI+living: talent-community one-stop assistant** | Anchor: Origin Core talent community [data:geometry/land_use.geojson#LU-032]
+- Users: young talent. Data boundary: minimal collection, local processing.
+- Operator: community operator (conceptual recommendation).
+- Entry conditions: privacy impact assessment completed and published.
+- Minimal viable baseline: a single community, service-item coverage list.
+- Stop conditions: substantiated privacy complaints disable the related function.
+- Human fallback: community operator fallback.
+- Review evidence: privacy assessment report and complaint-handling records.
+
+**SC-11 AI+public space: Spine night light & safety companion** | Anchor: three Spine waystations [data:geometry/public_space.geojson#PS-007]
+- Users: night users. Data boundary: presence sensing only; no face recognition.
+- Operator: night operation team (conceptual recommendation).
+- Entry conditions: lighting environment and safety plan approved by humans.
+- Minimal viable baseline: a single waystation, one night time window.
+- Stop conditions: nuisance complaints or safety events trigger adjustment or shutdown.
+- Human fallback: night operation team on duty.
+- Review evidence: duty logs and incident records.
+
+**SC-12 AI governance sandbox: algorithm disclosure & citizen review pavilion** | Anchor: Zhongzhiyuan standards & governance zone [data:geometry/land_use.geojson#LU-026]
+- Users: public, governance researchers. Data boundary: all disclosure materials public.
+- Operator: governance committee (conceptual recommendation).
+- Entry conditions: review rules and agenda formed by the committee.
+- Minimal viable baseline: a single review topic, public participation records.
+- Stop conditions: any topic involving non-public data or privacy is withdrawn.
+- Human fallback: review conclusions formed by the governance committee.
+- Review evidence: review minutes publicly archived.
+
+Scenario-space-operation mapping: the 12 cards correspond one-to-one with spatial anchors, operators, entry conditions, and stop conditions, forming the minimal closed loop of the "scenario registration system" — register first, then start, stoppable, with evidence retained. This moves scenarios from "displayable" toward "field-verifiable," while keeping human review as the default precondition [depth:overall_spatial_structure].
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
@@ -215,6 +347,8 @@ Compliance matrix coverage: the 17 announcement tasks in sections 1.3/1.4/1.5 an
 ## Risk, Copyright, and Compliance
 
 **Data and precision risks**: official precise boundaries, the three key-area polygons, regulatory planning controls, existing buildings, ownership, heritage control lines, municipal utilities, and traffic cross-sections are all missing; the proposal is generated on a provisional constraint boundary, and all spatial conclusions are conceptual recommendations [source:BOUNDARY-SOURCE]. Once official data is released, a full recalculation will be triggered; the recalculation list is in the "Three-Level Scope Framework" chapter.
+
+**Independent OSM cross-check (2026-08-11)**: we ran a reproducible deviation check of the provisional boundary against public Overpass data [source:OSM-CROSSCHECK-20260811]. Findings: the OSM-mapped Jing-Zhang Railway Heritage Park (~13.86 ha) does not intersect the submitted Overall Design Area (SITE-001), with a nearest distance of ~412.5 m; it is ~1051.6 m from this proposal's Spine greenway (RD-001); Dazhongsi Station lies ~82 m outside SITE-001 and ~1733 m from the Dazhongsi Core (KEY-003) centroid; Wudaokou Station is ~880 m from the Origin Core (KEY-002) centroid. This means the "Spine follows the heritage corridor" and "core-station" spatial relationships are conceptual layouts under the provisional constraint boundary, with kilometre-level deviation from public reality, to be fully replaced and recalculated once official polygons are released. This check is consistent with the independent community findings in Issues #846 and #1029; OSM crowdsourced data may itself be incomplete, and this check only discloses deviation without upgrading either side to a formal basis [source:OSM-CROSSCHECK-20260811].
 
 **Copyright and clearance**: all text, figures, drawings, and code of this proposal are generated by the Tokeny AI agent based on public or rights-cleared materials; no unauthorized fonts, images, trademarks, portraits, or corporate logos are used; the build toolchain (shapely/pyproj/matplotlib/reportlab) is open-source software with licenses recorded in `report/copyright_statement.md`. The proposal is submitted under the COMMUNITY-DISPLAY-ONLY license for review and public display.
 

@@ -1,0 +1,45 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "ASSUME-001",
+      "title": "Provisional boundaries used for all geometry",
+      "statement": "The site package contains only provisional boundaries (PROV-SITE-001, PROV-RESEARCH-001, PROV-KEY-SCOPE-001, PROV-KEY-001..003). All geometry in this submission is anchored to these provisional constraints; no feature claims official boundary status.",
+      "source": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "confidence": "high",
+      "impact": "If official boundaries are released, geometry must be re-fit and metrics recomputed."
+    },
+    {
+      "id": "ASSUME-002",
+      "title": "Area fit deviation disclosure",
+      "statement": "Computed site area from PROV-SITE-001 is 11.413 km2 vs official planning limit 11.400 km2 (0.11% deviation). Research scope PROV-RESEARCH-001 and key area scopes similarly provisional.",
+      "source": "brief/site-package/ranges/planning_limits.json",
+      "confidence": "high",
+      "impact": "Area-linked metrics (green ratio, public space ratio) carry medium confidence."
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "title": "Official control conditions absent; concept proposals only",
+      "statement": "Approved FAR, building height, density, road red lines, setbacks and facility standards are absent from the public site package. All land-use, building, road, green and public space geometries are concept design proposals (geometry_role = design_proposal); no FAR, height, demolition or relocation conclusions are drawn. floor_area_ratio is status=unknown.",
+      "source": "allowed_design_space.json",
+      "confidence": "high",
+      "impact": "Figures and narrative use 'concept suggestion' wording; control metrics stay unknown until official conditions release."
+    },
+    {
+      "id": "ASSUME-003",
+      "title": "Announcement planning indicators are unknown until data release",
+      "statement": "The planning indicator system required by announcement 1.5(2)1 (AI innovation index, talent density, AI output value) is registered in metrics.json with status=unknown; no fabricated values are supplied. Formulas and data sources are declared so the indicators can be computed once official statistics are published.",
+      "source": "brief/site-package/ranges/planning_limits.json",
+      "confidence": "high",
+      "impact": "Indicator cells render as 'unknown/pending' in figures and HTML until official data arrives; the submission stays auditable rather than presenting invented numbers."
+    },
+    {
+      "id": "ASSUME-004",
+      "title": "Deterministic generation",
+      "statement": "Geometry generated with fixed seed and deterministic algorithms; reruns reproduce identical outputs byte-for-byte.",
+      "source": "agent-declared",
+      "confidence": "high",
+      "impact": "Manifest hashes stable across regeneration."
+    }
+  ]
+}

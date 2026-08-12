@@ -1,0 +1,385 @@
+{
+  "schema_version": "0.1.0",
+  "concept_zh": "京张主线 · Merge must be reversible",
+  "concept_en": "JINGZHANG MAINLINE · Merge must be reversible",
+  "canonical_contract": {
+    "zh": "proposal.md",
+    "en": "proposal.en.md"
+  },
+  "scenario_count": 12,
+  "notice": "机器可读四段契约（概念建议）。字段完整不等于服务有效或公众同意；现场绩效保持 unknown/未授权。",
+  "scenarios": [
+    {
+      "id": "PR-01-AI-TRAFFIC-SIGNAL",
+      "short_id": "PR-01",
+      "stage_write": "Staging wing (Xiaoyue River intersections)",
+      "service_class": "industry_test_validation",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "既有手动/固定信号机可运行",
+        "non_ai_service_en": "Existing manual/fixed signals run",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "ai_gain_zh": "实时优化绿信比",
+        "allowed_data": ["public_non_personal_reference", "opt_in_minimized_feedback"],
+        "prohibited_data": ["face_identity", "continuous_personal_trajectory", "payment_credential"],
+        "human_role_ids": ["ROLE-OPERATIONS", "ROLE-TRAFFIC-COMPETENT"]
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": ["ROLE-MAINLINE-STEWARD", "ROLE-SAFETY"],
+        "immediate_exit_zh": "数据源失效、误操作、无法人工接管",
+        "unplug_action": "revert to human/ manual signal; archive logs to public audit"
+      },
+      "bequest": {
+        "retained_asset_zh": "人工可接管信号机 + 日志归档（交管）",
+        "maintained_by_role_ids": ["ROLE-TRAFFIC-COMPETENT"],
+        "offline_usable": true
+      }
+    },
+    {
+      "id": "PR-02-OSS-MODEL-BENCH",
+      "short_id": "PR-02",
+      "stage_write": "CI Yard test green field",
+      "service_class": "industry_test_validation",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "纸面评测与人工审核可运行",
+        "non_ai_service_en": "Paper evaluation and human review run",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "ai_gain_zh": "批量自动评测",
+        "allowed_data": ["synthetic_fixture", "public_non_personal_reference"],
+        "prohibited_data": ["commercial_secret", "personal_score"],
+        "human_role_ids": ["ROLE-OPERATIONS", "ROLE-DATA"]
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": ["ROLE-MAINLINE-STEWARD", "ROLE-DATA"],
+        "immediate_exit_zh": "评测不可复现、来源不明",
+        "unplug_action": "fall back to paper + human review; archive method card"
+      },
+      "bequest": {
+        "retained_asset_zh": "评测方法卡 + 人工复核记录（评测团队）",
+        "maintained_by_role_ids": ["ROLE-OPERATIONS", "ROLE-DATA"],
+        "offline_usable": true
+      }
+    },
+    {
+      "id": "PR-03-DATA-FACTOR-LOUNGE",
+      "short_id": "PR-03",
+      "stage_write": "Release north quadrant",
+      "service_class": "industry_service",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "人工展示与合规咨询可用",
+        "non_ai_service_en": "Human demonstration and compliance advice",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "ai_gain_zh": "授权演示与检索",
+        "allowed_data": ["synthetic_fixture", "public_non_personal_reference"],
+        "prohibited_data": ["raw_personal_data", "commercial_secret", "face_identity"],
+        "human_role_ids": ["ROLE-OPERATIONS", "ROLE-DATA"]
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": ["ROLE-MAINLINE-STEWARD", "ROLE-DATA"],
+        "immediate_exit_zh": "未授权数据进入、合规边界模糊",
+        "unplug_action": "close demo; retain paper guide and compliance ledger"
+      },
+      "bequest": {
+        "retained_asset_zh": "纸面指南 + 合规台账（运营方）",
+        "maintained_by_role_ids": ["ROLE-OPERATIONS", "ROLE-DATA"],
+        "offline_usable": true
+      }
+    },
+    {
+      "id": "PR-04-DEVICE-EXPERIENCE",
+      "short_id": "PR-04",
+      "stage_write": "Release south quadrant",
+      "service_class": "retail_experience",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "人工体验与说明可用",
+        "non_ai_service_en": "Human demonstration and instructions",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "ai_gain_zh": "沉浸式交互体验",
+        "allowed_data": ["opt_in_minimized_feedback"],
+        "prohibited_data": ["face_identity", "continuous_personal_trajectory", "payment_credential"],
+        "human_role_ids": ["ROLE-OPERATIONS"]
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": ["ROLE-MAINLINE-STEWARD"],
+        "immediate_exit_zh": "厂商清权缺失、功能误导",
+        "unplug_action": "power off interactive units; retain static instructions and personnel"
+      },
+      "bequest": {
+        "retained_asset_zh": "静态说明 + 人工客服（园区运营）",
+        "maintained_by_role_ids": ["ROLE-OPERATIONS"],
+        "offline_usable": true
+      }
+    },
+    {
+      "id": "PR-05-AI-CODING-STREET",
+      "short_id": "PR-05",
+      "stage_write": "Kernel western near-campus belt",
+      "service_class": "education",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "纸面课程与教师授课可用",
+        "non_ai_service_en": "Paper course and teacher instruction",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "ai_gain_zh": "个性化练习与反馈",
+        "allowed_data": ["opt_in_minimized_feedback"],
+        "prohibited_data": ["minor_personal_data", "continuous_personal_trajectory", "medical_record"],
+        "human_role_ids": ["ROLE-OPERATIONS", "ROLE-EDUCATION"]
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": ["ROLE-MAINLINE-STEWARD", "ROLE-EDUCATION"],
+        "immediate_exit_zh": "教学数据异常、无法人工复核",
+        "unplug_action": "revert to paper + teacher; keep teaching data on campus"
+      },
+      "bequest": {
+        "retained_asset_zh": "纸面教程 + 人工辅导（学校/社区）",
+        "maintained_by_role_ids": ["ROLE-EDUCATION"],
+        "offline_usable": true
+      }
+    },
+    {
+      "id": "PR-06-DEV-NIGHT-PLAZA",
+      "short_id": "PR-06",
+      "stage_write": "Kernel Merge Plaza",
+      "service_class": "community_operation",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "线下活动与人工报名可运行",
+        "non_ai_service_en": "Offline events and manual registration run",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "ai_gain_zh": "智能推荐与自动签到",
+        "allowed_data": ["opt_in_minimized_feedback"],
+        "prohibited_data": ["face_identity", "continuous_personal_trajectory"],
+        "human_role_ids": ["ROLE-OPERATIONS", "ROLE-COMMUNITY"]
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": ["ROLE-MAINLINE-STEWARD", "ROLE-COMMUNITY"],
+        "immediate_exit_zh": "报名数据越界、活动安全风险",
+        "unplug_action": "revert to paper registration + manual check-in"
+      },
+      "bequest": {
+        "retained_asset_zh": "纸面登记 + 人工签到（社区运营）",
+        "maintained_by_role_ids": ["ROLE-COMMUNITY"],
+        "offline_usable": true
+      }
+    },
+    {
+      "id": "PR-07-AI-FOLLOWUP-KIOSK",
+      "short_id": "PR-07",
+      "stage_write": "Residential services belt",
+      "service_class": "healthcare",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "人工随访与宣传资料可用",
+        "non_ai_service_en": "Human follow-up and printed materials",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "ai_gain_zh": "聚合提醒与分诊",
+        "allowed_data": ["aggregate_statistics_only"],
+        "prohibited_data": ["medical_record", "face_identity", "continuous_personal_trajectory", "personal_score"],
+        "human_role_ids": ["ROLE-OPERATIONS", "ROLE-HEALTH-CARER"]
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": ["ROLE-MAINLINE-STEWARD", "ROLE-HEALTH-CARER"],
+        "immediate_exit_zh": "个人医疗数据越界、无法医生复核",
+        "unplug_action": "keep human follow-up; destroy redundant personal data"
+      },
+      "bequest": {
+        "retained_asset_zh": "纸面健康手册 + 人工随访（社区）",
+        "maintained_by_role_ids": ["ROLE-HEALTH-CARER", "ROLE-COMMUNITY"],
+        "offline_usable": true
+      }
+    },
+    {
+      "id": "PR-08-AI-GOV-SERVICE",
+      "short_id": "PR-08",
+      "stage_write": "Registry wing service node",
+      "service_class": "public_service",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "人工窗口与纸面材料可用",
+        "non_ai_service_en": "Human counter and paper materials",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "ai_gain_zh": "材料预审与语音引导",
+        "allowed_data": ["opt_in_minimized_feedback"],
+        "prohibited_data": ["personal_score", "raw_personal_data", "face_identity"],
+        "human_role_ids": ["ROLE-OPERATIONS", "ROLE-GOV-PUBLIC-SERVANT"]
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": ["ROLE-MAINLINE-STEWARD", "ROLE-GOV-PUBLIC-SERVANT"],
+        "immediate_exit_zh": "办事结论错误、无法申诉",
+        "unplug_action": "revert to human counter; ensure appeal channel open"
+      },
+      "bequest": {
+        "retained_asset_zh": "有人柜台 + 申诉渠道（政务部门）",
+        "maintained_by_role_ids": ["ROLE-GOV-PUBLIC-SERVANT"],
+        "offline_usable": true
+      }
+    },
+    {
+      "id": "PR-09-DELIVERY-TEST-CORRIDOR",
+      "short_id": "PR-09",
+      "stage_write": "CI Yard—Staging corridor",
+      "service_class": "industry_test_validation",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "原有人行与物流通道不受影响",
+        "non_ai_service_en": "Existing pedestrian and logistics flows unaffected",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "ai_gain_zh": "低速末端配送",
+        "allowed_data": ["synthetic_fixture", "public_non_personal_reference"],
+        "prohibited_data": ["face_identity", "continuous_personal_trajectory"],
+        "human_role_ids": ["ROLE-OPERATIONS", "ROLE-SAFETY"]
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": ["ROLE-MAINLINE-STEWARD", "ROLE-SAFETY"],
+        "immediate_exit_zh": "风险失控、无安全员在线、保险缺失",
+        "unplug_action": "halt robots; keep ordinary logistics path and pedestrian safety"
+      },
+      "bequest": {
+        "retained_asset_zh": "普通物流路径保留 + 安全保障（运营方）",
+        "maintained_by_role_ids": ["ROLE-SAFETY", "ROLE-OPERATIONS"],
+        "offline_usable": true
+      }
+    },
+    {
+      "id": "PR-10-OSS-RELEASE-HALL",
+      "short_id": "PR-10",
+      "stage_write": "Kernel central",
+      "service_class": "release",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "线下发布与人工记录可用",
+        "non_ai_service_en": "Offline release and manual records",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "ai_gain_zh": "自动归档与分发",
+        "allowed_data": ["public_non_personal_reference"],
+        "prohibited_data": ["commercial_secret", "raw_personal_data"],
+        "human_role_ids": ["ROLE-OPERATIONS", "ROLE-OSS-COMMUNITY"]
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": ["ROLE-MAINLINE-STEWARD", "ROLE-OSS-COMMUNITY"],
+        "immediate_exit_zh": "发布内容不可追溯、权利冲突",
+        "unplug_action": "revert to paper + public archive; clear rights first"
+      },
+      "bequest": {
+        "retained_asset_zh": "纸面版 + 公开归档（开源社区）",
+        "maintained_by_role_ids": ["ROLE-OSS-COMMUNITY"],
+        "offline_usable": true
+      }
+    },
+    {
+      "id": "PR-11-AI-ACCESSIBLE-WAYFINDING",
+      "short_id": "PR-11",
+      "stage_write": "Mainline greenway and intersections",
+      "service_class": "public_space",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "触觉静态地图 + 有人服务台可运行",
+        "non_ai_service_en": "Tactile static map + manned service desk work",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "ai_gain_zh": "语音/触觉动态引导",
+        "allowed_data": ["public_non_personal_reference"],
+        "prohibited_data": ["face_identity", "continuous_personal_trajectory", "medical_record"],
+        "human_role_ids": ["ROLE-OPERATIONS", "ROLE-ACCESS"]
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": ["ROLE-MAINLINE-STEWARD", "ROLE-ACCESS"],
+        "immediate_exit_zh": "路径误导、安全风险、热线失效",
+        "unplug_action": "retain tactile static map + human guided tour; remove smart devices from clear path"
+      },
+      "bequest": {
+        "retained_asset_zh": "静态地图 + 人工导览（游园/社区）",
+        "maintained_by_role_ids": ["ROLE-ACCESS", "ROLE-COMMUNITY"],
+        "offline_usable": true
+      }
+    },
+    {
+      "id": "PR-12-GLOBAL-ROADSHOW",
+      "short_id": "PR-12",
+      "stage_write": "Release Plaza",
+      "service_class": "industry_test_validation_release",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "传统会展与同传可用",
+        "non_ai_service_en": "Traditional events and interpretation",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "ai_gain_zh": "同传与内容生成",
+        "allowed_data": ["synthetic_fixture"],
+        "prohibited_data": ["face_identity", "continuous_personal_trajectory", "commercial_secret"],
+        "human_role_ids": ["ROLE-OPERATIONS"]
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": ["ROLE-MAINLINE-STEWARD"],
+        "immediate_exit_zh": "传播素材未清权、安全与隐私风险",
+        "unplug_action": "revert to human interpretation; clear media rights"
+      },
+      "bequest": {
+        "retained_asset_zh": "展板 + 人工接待（会展运营方）",
+        "maintained_by_role_ids": ["ROLE-OPERATIONS"],
+        "offline_usable": true
+      }
+    }
+  ]
+}

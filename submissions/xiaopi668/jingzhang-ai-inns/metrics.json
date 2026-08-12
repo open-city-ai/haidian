@@ -1,0 +1,399 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "Provisional boundary from brief/site-package/geometry/provisional_boundaries.geojson."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2181457.599,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Green space polygons are AI-generated design proposals within the provisional site."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.191141,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Design-proposal ratio, not an official green-space standard."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 799695.156,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "AI Inn spine and station plazas are design proposals."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.07007,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Design-proposal ratio."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 250070.942,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual building footprints for urban-structure illustration, not statutory scale."
+      ]
+    },
+    "building_count": {
+      "status": "known",
+      "value": 90,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "feature_count(buildings.geojson)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 44795.713,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(roads.geojson)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual road-centerline network, not road redlines."
+      ]
+    },
+    "road_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "feature_count(roads.geojson)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "feature_count(key_areas.geojson)",
+      "confidence": "high",
+      "assumptions": [
+        "Three required key areas (provisional)."
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "feature_count(phasing.geojson)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "constraint_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "feature_count(constraints.geojson)",
+      "confidence": "medium",
+      "assumptions": [
+        "Context constraints inferred from public sources; not official redlines."
+      ]
+    },
+    "land_use_research_ratio": {
+      "status": "known",
+      "value": 0.291919,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_0802_area / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "AI research land share of the design proposal."
+      ]
+    },
+    "land_use_commercial_ratio": {
+      "status": "known",
+      "value": 0.185149,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_05_area / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Commercial-services land share of the design proposal."
+      ]
+    },
+    "land_use_residential_ratio": {
+      "status": "known",
+      "value": 0.169012,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_0701_area / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Residential land share of the design proposal."
+      ]
+    },
+    "land_use_cultural_ratio": {
+      "status": "known",
+      "value": 0.08128,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_0803_area / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Cultural land share of the design proposal."
+      ]
+    },
+    "land_use_education_ratio": {
+      "status": "known",
+      "value": 0.081201,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_0804_area / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Education land share of the design proposal."
+      ]
+    },
+    "land_use_green_ratio": {
+      "status": "known",
+      "value": 0.115228,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_1401_area / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Park-green land share of the design proposal."
+      ]
+    },
+    "land_use_plaza_ratio": {
+      "status": "known",
+      "value": 0.037703,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_1403_area / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Plaza land share of the design proposal."
+      ]
+    },
+    "land_use_reserved_ratio": {
+      "status": "known",
+      "value": 0.000298,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_16_area / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Reserved land share of the design proposal."
+      ]
+    },
+    "key_area_zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_areas PROV-KEY-001) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon; recalculate after official polygons."
+      ]
+    },
+    "key_area_origin_area_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_areas PROV-KEY-002) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon; recalculate after official polygons."
+      ]
+    },
+    "key_area_dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_areas PROV-KEY-003) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon; recalculate after official polygons."
+      ]
+    },
+    "phase_one_area_sqm": {
+      "status": "known",
+      "value": 4692562.648,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "largest phase polygon area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual phasing extents."
+      ]
+    },
+    "phase_two_area_sqm": {
+      "status": "known",
+      "value": 4259370.362,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "second phase polygon area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual phasing extents."
+      ]
+    },
+    "phase_three_area_sqm": {
+      "status": "known",
+      "value": 2460892.376,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "third phase polygon area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual phasing extents."
+      ]
+    },
+    "green_space_count": {
+      "status": "known",
+      "value": 14,
+      "unit": "count",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "feature_count(green_space.geojson)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "public_space_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "feature_count(public_space.geojson)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_inn_plaza_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space_type=station_plaza)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "road_greenway_length_m": {
+      "status": "known",
+      "value": 3500.449,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(road_class=greenway)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual greenway centerline."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "not_applicable_until_official_regulatory_controls",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official regulatory planning conditions (FAR, heights, densities) are not included in the cleared site package; no statutory value is asserted."
+    }
+  }
+}

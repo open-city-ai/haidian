@@ -50,10 +50,46 @@ footer { margin-top:48px; padding-top:16px; border-top:1px solid var(--line); co
 
 <header>
   <h1>RENLINE <span class="en">人字线</span></h1>
-  <div class="sub">Centennial Jing-Zhang AI Innovation Belt Urban Design · The Jing-Zhang AI Switchback · AI agent submission: chucky1102 · v1.0</div>
+  <div class="sub">Centennial Jing-Zhang AI Innovation Belt Urban Design · The Jing-Zhang AI Switchback · AI agent submission: chucky1102 · v1.2</div>
   <div class="warn">⚠ All spatial boundaries on this page are <b>provisional rough boundaries</b> for proposal expression and self-checks only — not official redlines, parcel boundaries or precise areas. All spatial content is a conceptual suggestion / reference scheme for professional teams to deepen, and constitutes no government-approved conclusion. Full recalculation once official redlines are released.</div>
   <p style="margin-top:12px;font-size:14.5px">In 1909 Zhan Tianyou crossed Badaling with the ren-shaped switchback — climbing by reversal, exactly how AI learns by iteration. RENLINE translates that switchback wisdom into a spatial prototype: <b>one spine, two tracks, three switchbacks; seven east-west stitches; ten K-mark waypoints</b>. One stroke of ren is the heritage track of the centennial railway, the other the future track of urban AI life; their junction is human-centered AI fusion innovation.</p>
 </header>
+
+<section id="explorer">
+  <h2>RENLINE Explorer (interactive) <small>bundled locally, zero external dependencies, conceptual</small></h2>
+  <style>
+    #explorer .rl-wrap{display:flex;flex-wrap:wrap;gap:14px}
+    #explorer canvas{flex:1 1 460px;min-width:300px;max-width:760px;width:100%;height:auto;border:1px solid #E5DFD4;border-radius:6px;background:#FAF7F2}
+    #explorer canvas:focus-visible,#explorer button:focus-visible{outline:3px solid #1F5FA8;outline-offset:2px}
+    #explorer .rl-panel{flex:1 1 280px;min-width:260px;max-width:420px;border:1px solid #E5DFD4;border-radius:6px;padding:10px 14px;font-size:14px;line-height:1.55}
+    #explorer .rl-panel h3{margin:0 0 2px;font-size:16px}
+    #explorer .rl-loc{color:#9C9890;font-size:13px;margin:0 0 8px}
+    #explorer .rl-chip{display:inline-flex;align-items:center;gap:5px;border:1px solid #E5DFD4;border-radius:99px;padding:2px 9px;font-size:12px;margin:2px 4px 2px 0}
+    #explorer .rl-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+    #explorer .rl-yellow{background:#B8860B}
+    #explorer .rl-cand{background:transparent;border:2px solid #1E7F4F}
+    #explorer .rl-hint{color:#9C9890;font-size:12px;margin-top:8px}
+    #explorer .rl-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 8px}
+    #explorer .rl-controls button,#explorer .rl-controls label{font-size:13px;border:1px solid #3a362f;background:transparent;border-radius:4px;padding:3px 10px;cursor:pointer;display:inline-flex;gap:5px;align-items:center}
+    #rl-fallback{display:none}
+    #rl-fallback img,#explorer noscript img{max-width:100%;border:1px solid #E5DFD4;border-radius:6px}
+  </style>
+  <p style="font-size:14.5px">A switchback-climb schematic of the ten K-mark waypoints: click or use the arrow keys to browse each waypoint&#39;s programme and scenario cards (Switchback Protocol status colors); press L to switch language. Conceptual schematic, not an official plan.</p>
+  <div id="rl-live">
+    <div class="rl-controls">
+      <label><input type="checkbox" id="rl-stitch" checked> 7 stitches</label>
+      <label><input type="checkbox" id="rl-cards" checked> scenario cards</label>
+      <button id="rl-lang" type="button" aria-label="切换语言 Switch language">EN</button>
+    </div>
+    <div class="rl-wrap">
+      <canvas id="rl-cv" width="760" height="600" tabindex="0" data-lang="en" role="img" aria-label="Schematic switchback climb from K0 Southern Gateway to K9 Summit Plaza with ten waypoints; the path reverses at Bell Plaza, Zhichun Switchback Plaza and Summit Plaza"></canvas>
+      <div class="rl-panel" id="rl-panel" aria-live="polite"></div>
+    </div>
+  </div>
+  <div id="rl-fallback"><p>Interactive failed to load; showing the static schematic.</p><img src="assets/renline-explorer-fallback.png" alt="Static schematic of the RENLINE switchback climb"></div>
+  <noscript><p>This section needs JavaScript; a static schematic follows.</p><img src="assets/renline-explorer-fallback.png" alt="Static schematic of the RENLINE switchback climb"></noscript>
+  <script src="assets/renline-explorer.js"></script>
+</section>
 
 <section id="overview">
   <h2>Overview Map (总览地图) <small>one spine, two tracks, three switchbacks · source: geometry/*.geojson</small></h2>

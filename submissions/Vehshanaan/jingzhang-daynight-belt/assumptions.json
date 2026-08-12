@@ -1,0 +1,47 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls (FAR, height, density, green ratio, setbacks, road redlines), ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "The package is reviewable as a formal AI submission for the provided provisional boundaries and submitted design layers; statutory controls still need professional confirmation.",
+      "trigger": "Recompute all area- and control-sensitive metrics when official polygons or regulatory conditions arrive."
+    },
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_official_data",
+      "statement": "All submitted boundary and key-area polygons are provisional rough polygons from the maintainer provisional set (provisional_constraint, official_boundary=false).",
+      "impact": "site_area_sqm, key-area areas, all land-use ratios, and building ratios are working values for intake comparison, not official scoring areas.",
+      "trigger": "Replace with official polygons and rerun geometry generation, metrics, figures, HTML, and self-check."
+    },
+    {
+      "id": "A-BUILDINGS-001",
+      "status": "conceptual_design_only",
+      "statement": "Building footprints are concept-level placeholders generated deterministically inside land-use parcels; no parcel-level retain/renovate/demolish conclusions are implied.",
+      "impact": "building_footprint_ratio is a concept ratio, not a statutory building coverage ratio.",
+      "trigger": "Existing-building survey and ownership data required for any parcel-level conclusion."
+    },
+    {
+      "id": "A-ROADS-001",
+      "status": "conceptual_design_only",
+      "statement": "Road centerlines are conceptual design lines inside road land-use cells; they are not road redlines, cross-sections, or engineering alignments.",
+      "impact": "road_ratio and spine_length_m are concept metrics.",
+      "trigger": "Official road redlines and cross-section data required before engineering use."
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "status": "pending_official_data",
+      "statement": "Heritage protection scopes and construction-control zones (e.g., Qinghuayuan Station site) follow cultural-relic authority publications; no heritage GIS layer is registered in the site package.",
+      "impact": "Landmark and cultural proposals are directional concepts; any physical intervention requires heritage approval.",
+      "trigger": "Register official heritage GIS layers and re-check all landmark positions."
+    },
+    {
+      "id": "A-YOUTH-SERVICES-001",
+      "status": "conceptual_design_only",
+      "statement": "夜间照明分级、夜间业态与晨昏节运营均为概念建议，需要市政照明底数、噪音与运营许可；官方常住与岗位人口基数缺失，导致人均公共空间与夜间照明覆盖率指标保持 unknown。",
+      "impact": "night_lighting_coverage_ratio、public_space_per_capita_sqm 等指标保持 unknown；夜间业态是否落地取决于运营许可与市场反馈，不构成已批准安排。",
+      "trigger": "官方照明底数与亮度标准、人口普查与服务人口数据发布后复算；夜间运营许可流程明确后评估可行性。"
+    }
+  ]
+}

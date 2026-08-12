@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1.0",
+  "concept_zh": "双闸门：项目成熟度 G 闸门 × 场景准入 C 闸门",
+  "concept_en": "Dual gates: project-maturity G-Gate × scenario-admission C-Gate",
+  "principle_zh": "项目成熟不等于场景可上线；一个场景通过也不替其它场景背书。无 AI 基线缺失即 no-merge。",
+  "principle_en": "Project maturity does not mean scenarios can launch; one scenario passing does not vouch for another. Missing no-AI baseline is no-merge.",
+  "project_maturity_gates": [
+    {"id": "G0", "name_zh": "仅空间概念", "name_en": "Concept-only", "required_before_advancing": true},
+    {"id": "G1", "name_zh": "官方边界与权属确认", "name_en": "Official boundary & ownership confirmed", "required_before_advancing": true},
+    {"id": "G2", "name_zh": "现状与专项调查", "name_en": "Current-condition & special surveys", "required_before_advancing": true},
+    {"id": "G3", "name_zh": "专业方案", "name_en": "Professional scheme", "required_before_advancing": true},
+    {"id": "G4", "name_zh": "试点授权与预算", "name_en": "Pilot authorization & budget", "required_before_advancing": true},
+    {"id": "G5", "name_zh": "阶段性上架", "name_en": "Phased go-live", "required_before_advancing": true},
+    {"id": "G6", "name_zh": "稳定运营", "name_en": "Stable operation", "required_before_advancing": false},
+    {"id": "G7", "name_zh": "复盘归档", "name_en": "Retrospective archived", "required_before_advancing": false}
+  ],
+  "scenario_admission_gates": [
+    {"id": "C0", "name_zh": "提出问题", "name_en": "Raise problem", "required_before_advancing": true},
+    {"id": "C1", "name_zh": "明确数据源与边界", "name_en": "Define data source & boundary", "required_before_advancing": true},
+    {"id": "C2", "name_zh": "通过无 AI 基线自检", "name_en": "Pass no-AI-baseline self-check", "required_before_advancing": true, "note": "no-merge 关键闸门"},
+    {"id": "C3", "name_zh": "通过合成/影子推演", "name_en": "Pass synthetic/shadow simulation", "required_before_advancing": true},
+    {"id": "C4", "name_zh": "可拔线方案评审", "name_en": "Unplug-scheme review", "required_before_advancing": true},
+    {"id": "C5", "name_zh": "强制退场演练", "name_en": "Mandatory exit drill", "required_before_advancing": true},
+    {"id": "C6", "name_zh": "灰度上线", "name_en": "Gray go-live", "required_before_advancing": false},
+    {"id": "C7", "name_zh": "红利留档", "name_en": "Dividend archived", "required_before_advancing": false}
+  ],
+  "failure_default_zh": "无法推进时默认保留现状、隔离风险、公开缺口，不以“继续建设”掩盖未决条件。",
+  "fields_status": "conceptual_not_authorized"
+}

@@ -44,11 +44,11 @@ iteration: "v1.4"
 
 提交采用 EPSG:4326 交换 GeoJSON，并在 EPSG:4548 下复算面积和长度。当前临时总体边界复算约 **11.413 km²**，与公告约 11.4 km² 的差异约 0.11%；该吻合只说明临时几何可支持概念工作，不能升级为官方红线或审定面积。[data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm] [metric:site_area_deviation_ratio]
 
-全域及非局部实施单元的容积率、建筑高度、法定建筑密度、道路退线、现状建筑总基底、市政容量和文保控制面积均明确保持 unknown；大钟寺 HD00-1603-01/03A 另有有范围限定的官方控制证据，但不改变全域临时几何或构成本方案批准。建筑、道路、用地和分期图层表达“可供专业团队深化的参考方案”，不构成批准、拆除、新建、工程线位、投资或实施承诺。[metric:floor_area_ratio] [metric:building_height_m] [metric:official_building_density] [metric:road_redline_setback_m] [metric:existing_building_footprint_sqm] [depth:existing_conditions_diagnosis] [depth:risk_missing_data]
+全域及该局部官方资料证据单元之外的容积率、建筑高度、法定建筑密度、道路退线、现状建筑总基底、市政容量和文保控制面积均明确保持 unknown；大钟寺 HD00-1603-01/03A 另有有范围限定的官方控制证据，但不改变全域临时几何或构成本方案批准。建筑、道路、用地和分期图层表达“可供专业团队深化的参考方案”，不构成批准、拆除、新建、工程线位、投资或实施承诺。[metric:floor_area_ratio] [metric:building_height_m] [metric:official_building_density] [metric:road_redline_setback_m] [metric:existing_building_footprint_sqm] [depth:existing_conditions_diagnosis] [depth:risk_missing_data]
 
-### 大钟寺局部实施证据
+### 大钟寺局部官方资料证据
 
-北京市公共资源交易服务平台公开的蓝景丽家收储项目及附件，将大钟寺重点区内 HD00-1603-01/03A 合计 **39,522.111 m²** 的实施单元从概念语境推进到可复核的局部证据。公开测量报告提供地块性质、面积和桩点坐标；供地审核函给出局部高度 60 m、FAR 2.45、绿地率下限 25% 和北三环 30 m 退让；市政交通方案和水影响审查分别提供约 300 m 站点一体化语境、局部交通/停车接口以及径流系数上限 0.34。[source:DATA-SRC-DAZHONGSI-TRANSACTION-20251231] [source:DATA-SRC-DAZHONGSI-SURVEY-20250806] [source:DATA-SRC-DAZHONGSI-SUPPLY-REVIEW-20251218] [source:DATA-SRC-DAZHONGSI-MUNICIPAL-TRAFFIC-2025] [source:DATA-SRC-DAZHONGSI-WATER-20250819] [data:visual/assets/site_evidence_baseline.json#OBS-DAZHONGSI-BLUE-JING-LIJIA-2025]
+北京市公共资源交易服务平台公开的蓝景丽家收储项目及附件，将大钟寺重点区内 HD00-1603-01/03A 合计 **39,522.111 m²** 的实施地块资料从概念语境推进到可复核的局部官方资料证据。公开测量报告提供地块性质、面积和桩点坐标；供地审核函给出局部高度 60 m、FAR 2.45、绿地率下限 25% 和北三环 30 m 退让；市政交通方案和水影响审查分别提供约 300 m 站点一体化语境、局部交通/停车接口以及径流系数上限 0.34。[source:DATA-SRC-DAZHONGSI-TRANSACTION-20251231] [source:DATA-SRC-DAZHONGSI-SURVEY-20250806] [source:DATA-SRC-DAZHONGSI-SUPPLY-REVIEW-20251218] [source:DATA-SRC-DAZHONGSI-MUNICIPAL-TRAFFIC-2025] [source:DATA-SRC-DAZHONGSI-WATER-20250819] [data:visual/assets/site_evidence_baseline.json#OBS-DAZHONGSI-BLUE-JING-LIJIA-2025]
 
 这些数值只作为大钟寺首发验证的局部 guardrail，不升级为 72 ha 重点区或 11.4 km² 总体设计控制。测量报告的可见文本未给出完整 CRS、轴顺序和单位元数据，因此本包不把坐标写入 GeoJSON；先完成测绘单位确认、授权、产权/运营核验和现场复测。[assumption:A-BOUNDARY-001] [assumption:A-CONTROLS-001]
 

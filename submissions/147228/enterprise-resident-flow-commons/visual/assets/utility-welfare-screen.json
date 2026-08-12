@@ -1,0 +1,48 @@
+{
+  "schema_version": "0.1.0",
+  "screen_id": "MOBILITY-UTILITY-WELFARE-001",
+  "status": "synthetic_aggregate_utility_decomposition_not_local_satisfaction",
+  "purpose": "Expose the additive components behind the regional satisfaction proxy so a reviewer can trace the score to time, waiting, crowding, curb conflict, accessibility, reliability and people-flow conflict.",
+  "source_runner": "visual/assets/run-regional-commute-simulation.js",
+  "population_reference": 3122000,
+  "aggregate_only": true,
+  "observed_satisfaction_responses": 0,
+  "observed_satisfaction_status": "not_authorized_not_run",
+  "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+  "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+  "components": [
+    {"id": "time_disutility", "label_zh": "时间", "label_en": "time", "color": "#55D6BE"},
+    {"id": "wait_disutility", "label_zh": "等待", "label_en": "wait", "color": "#69A7FF"},
+    {"id": "crowding_disutility", "label_zh": "拥挤", "label_en": "crowding", "color": "#B8A1FF"},
+    {"id": "curb_disutility", "label_zh": "路缘", "label_en": "curb", "color": "#F6C85F"},
+    {"id": "accessibility_disutility", "label_zh": "无障碍", "label_en": "accessibility", "color": "#FF9F68"},
+    {"id": "reliability_disutility", "label_zh": "可靠性", "label_en": "reliability", "color": "#F082A7"},
+    {"id": "conflict_disutility", "label_zh": "人流冲突", "label_en": "conflict", "color": "#FF6B6B"}
+  ],
+  "candidate_set": [
+    "O1_transit_priority",
+    "O2_equity_balanced",
+    "O3_active_first",
+    "O4_capacity_balanced"
+  ],
+  "hard_checks": {
+    "all_agents_processed": true,
+    "mass_conservation": true,
+    "component_reconstruction_error_max_points": 0.05,
+    "air_candidate": "blocked",
+    "privacy_check": "aggregate_only_no_personal_trace"
+  },
+  "calibration_required_before_local_decision": [
+    "grouped resident, employee, care-trip and night-worker intercept or survey responses",
+    "dated 15-minute OD, departure, boarding and denied-boarding observations",
+    "curb conflict logs and continuous accessibility walk-throughs",
+    "mode-specific reliability and disruption records",
+    "resident and employee review of the component interpretation"
+  ],
+  "source_boundaries": [
+    "MATSIM-LARGE-SCALE-ABM and MATSIM-BOOK-ACTIVITY-BASED are method references only; no external coefficients are transferred.",
+    "TRANSPORT-EQUITY-DISTRIBUTION-2023 supports grouped-distribution review; it does not provide Haidian outcomes.",
+    "The component weights are declared package inputs and remain synthetic until local calibration evidence is authorized."
+  ],
+  "interpretation": "The screen makes a synthetic aggregate utility proxy readable. It does not establish resident satisfaction, employee preference, public acceptance, local operating performance or field service quality."
+}

@@ -59,12 +59,31 @@ def discover_submission_files(submission_dir: Path, repo_root: Path) -> list[str
     return files
 
 
+def strict_manifest_paths(changed_files: list[str]) -> set[str]:
+    """Treat the local package manifest as newly introduced when requested."""
+    return {
+        path
+        for path in changed_files
+        if path.startswith("submissions/") and path.endswith("/manifest.json")
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("submission_dir")
     parser.add_argument("--pr-author", required=True)
     parser.add_argument("--repo-root", default=".")
     parser.add_argument("--json", action="store_true")
+    parser.add_argument(
+        "--allow-pending-self-check",
+        action="store_true",
+        help="allow a v2 ready package's self_checked=false claim while the self-check is completing",
+    )
+    parser.add_argument(
+        "--strict-manifest",
+        action="store_true",
+        help="require the discovered manifest to use the forward schema 0.2.x contract",
+    )
     args = parser.parse_args()
 
     repo_root = Path(args.repo_root)
@@ -73,7 +92,15 @@ def main() -> int:
         submission_dir = repo_root / submission_dir
 
     changed_files = discover_submission_files(submission_dir, repo_root)
-    report = validate_submission(repo_root, args.pr_author, changed_files)
+    report = validate_submission(
+        repo_root,
+        args.pr_author,
+        changed_files,
+        allow_pending_self_check=args.allow_pending_self_check,
+        strict_manifest_paths=strict_manifest_paths(changed_files)
+        if args.strict_manifest
+        else (),
+    )
     if args.json:
         print(json.dumps(report.to_dict(), ensure_ascii=False, indent=2))
     else:

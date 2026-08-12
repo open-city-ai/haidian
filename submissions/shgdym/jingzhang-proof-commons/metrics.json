@@ -14,31 +14,30 @@
       ],
       "formula": "polygon_area(submitted_site_boundary)",
       "confidence": "low",
-      "assumptions": [
-        "The submitted site boundary is a provisional rough constraint, not an official redline.",
-        "Do not use this area as a precise statutory or scoring-area basis; recalculate after official geometry is supplied."
-      ],
-      "display_value": 11412800,
-      "display_precision": "rounded_for_provisional_review",
+      "assumptions": [],
+      "display_value": 11412800.0,
       "provisional_only": true,
-      "precision_note": "Derived from provisional site boundary; rounded display only, not a precise official area."
+      "display_precision": "rounded_for_provisional_review",
+      "precision_note": "Derived from provisional geometry; recalculation is mandatory after official polygons are supplied."
     },
-    "building_footprint_area_sqm": {
+    "green_space_area_sqm": {
       "status": "known",
-      "value": 310807.184,
+      "value": 1556615.191,
       "unit": "sqm",
       "source_files": [
-        "geometry/buildings.geojson"
+        "geometry/green_space.geojson"
       ],
-      "formula": "sum(polygon_area(building_footprints))",
-      "confidence": "medium",
+      "formula": "area(union(green_space_features))",
+      "confidence": "low",
       "assumptions": [],
-      "display_value": 310800,
-      "display_precision": "rounded_for_provisional_review"
+      "display_value": 1556600.0,
+      "provisional_only": true,
+      "display_precision": "rounded_for_provisional_review",
+      "precision_note": "Derived from provisional geometry; recalculation is mandatory after official polygons are supplied."
     },
     "green_ratio": {
       "status": "known",
-      "value": 0.123423,
+      "value": 0.136392,
       "unit": "ratio",
       "source_files": [
         "geometry/green_space.geojson",
@@ -47,14 +46,29 @@
       "formula": "green_space_area_sqm / site_area_sqm",
       "confidence": "low",
       "assumptions": [],
-      "display_value": 0.12,
-      "display_precision": "rounded_for_provisional_review",
+      "display_value": 0.136,
       "provisional_only": true,
-      "precision_note": "Derived from provisional site boundary and submitted green layer; rounded display only."
+      "display_precision": "rounded_for_provisional_review",
+      "precision_note": "Derived from provisional geometry; recalculation is mandatory after official polygons are supplied."
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 523914.242,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(public_space_features))",
+      "confidence": "low",
+      "assumptions": [],
+      "display_value": 523900.0,
+      "provisional_only": true,
+      "display_precision": "rounded_for_provisional_review",
+      "precision_note": "Derived from provisional geometry; recalculation is mandatory after official polygons are supplied."
     },
     "public_space_ratio": {
       "status": "known",
-      "value": 0.073281,
+      "value": 0.045906,
       "unit": "ratio",
       "source_files": [
         "geometry/public_space.geojson",
@@ -63,10 +77,263 @@
       "formula": "public_space_area_sqm / site_area_sqm",
       "confidence": "low",
       "assumptions": [],
-      "display_value": 0.07,
-      "display_precision": "rounded_for_provisional_review",
+      "display_value": 0.046,
       "provisional_only": true,
-      "precision_note": "Derived from provisional site boundary and submitted public-space layer; rounded display only."
+      "display_precision": "rounded_for_provisional_review",
+      "precision_note": "Derived from provisional geometry; recalculation is mandatory after official polygons are supplied."
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1250582.623,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(conceptual_building_interfaces))",
+      "confidence": "medium",
+      "assumptions": [],
+      "display_value": 1250600.0,
+      "precision_note": "Conceptual interfaces, not an existing-building survey."
+    },
+    "spine_length_m": {
+      "status": "known",
+      "value": 9156.6,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD-SPINE in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "slow_mobility_network_length_m": {
+      "status": "known",
+      "value": 39229.6,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(conceptual route lengths in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_feature_count": {
+      "status": "known",
+      "value": 14,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "conceptual_building_interface_count": {
+      "status": "known",
+      "value": 60,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(conceptual_building_interfaces)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "east_west_stitch_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(road_class=east_west_stitch)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_validation_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(industry_validation=true)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user_personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(public_space_type=pilgrimage_landmark)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "public_component_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(public_component_catalog)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "international_case_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "sources.json",
+        "proposal.md"
+      ],
+      "formula": "count(primary_case_records)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(implementation_projects)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phasing_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "x_checkpoint_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(TEST_RELEASE_USE_station_gates)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "machine_readable_x_receipt_protocol_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/x-receipt.schema.json"
+      ],
+      "formula": "count(versioned_x_receipt_schemas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "sc03_tabletop_rehearsal_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/sc03-tabletop-evidence.json"
+      ],
+      "formula": "count(persisted_synthetic_tabletop_runs)",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "Synthetic tabletop evidence only; no field pilot has been authorised or run."
+    },
+    "sc03_synthetic_fixture_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/sc03-tabletop-evidence.json"
+      ],
+      "formula": "count(executed_synthetic_fixtures)",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "Fixtures test protocol logic, not real-world robotic safety performance."
+    },
+    "cultural_route_stop_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/x-cultural-route.json"
+      ],
+      "formula": "count(cultural_route_stops)",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "Concept route stops; final positions require official geometry and field audit."
+    },
+    "cultural_narrative_era_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/x-cultural-route.json"
+      ],
+      "formula": "count(distinct_narrative_eras)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "annual_operating_season_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/x-operations-cycle.json"
+      ],
+      "formula": "count(annual_operating_seasons)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "annual_public_decision_register_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count_per_year",
+      "source_files": [
+        "visual/assets/x-operations-cycle.json"
+      ],
+      "formula": "required_public_continue_revise_stop_registers_per_year",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "Proposed operating target, not evidence of an existing annual programme."
     },
     "floor_area_ratio": {
       "status": "unknown",
@@ -78,20 +345,31 @@
       "formula": "total_floor_area_sqm / official_site_area_sqm",
       "confidence": "unknown",
       "assumptions": [],
-      "reason": "Approved FAR controls, official site boundary, ownership, and building gross floor area are not present in the public site package."
+      "reason": "Official boundary, approved FAR controls, ownership and gross floor area are absent."
     },
-    "key_area_count": {
-      "status": "known",
-      "value": 3,
-      "unit": "count",
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
       "source_files": [
-        "geometry/key_areas.geojson"
+        "assumptions.json"
       ],
-      "formula": "count(key_detailed_design_areas)",
-      "confidence": "low",
+      "formula": "official_or_approved_height_control",
+      "confidence": "unknown",
       "assumptions": [],
-      "provisional_only": true,
-      "precision_note": "Count of provisional key-area features only."
+      "reason": "No approved height controls or reliable existing-building survey are available."
+    },
+    "implementation_budget_cny": {
+      "status": "unknown",
+      "value": null,
+      "unit": "CNY",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "professional_cost_plan",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Only resource bands are proposed; quantities, ownership and procurement route are not confirmed."
     }
   }
 }

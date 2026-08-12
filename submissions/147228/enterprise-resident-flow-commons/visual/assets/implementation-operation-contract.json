@@ -1,0 +1,106 @@
+{
+  "contract_id": "IMPLEMENTATION-OPERATION-01",
+  "contract_version": "1.0",
+  "status": "conceptual_interface_not_approved",
+  "scope": "mobility-commons-jingzhang",
+  "principles": [
+    "phase_and_owner_roles_are_proposals_not_confirmed_institutions",
+    "unknown_local_baselines_do_not_pass_an_acceptance_gate",
+    "human_and_public_transport_fallback_remains_available",
+    "expansion_is_reversible_and_requires_recorded_review"
+  ],
+  "phases": [
+    {
+      "phase_id": "P0",
+      "name": "baseline_and_authorization",
+      "participating_roles": [
+        "site_and_data_stewardship_role",
+        "transport_and_accessibility_review_role",
+        "community_liaison_role"
+      ],
+      "entry_evidence": [
+        "provisional geometry revision is recorded",
+        "consent and privacy rule is published",
+        "asset, route, curb and complaint baseline version is dated"
+      ],
+      "acceptance_checks": [
+        "dated_baseline_record",
+        "accessible_route_audit_record",
+        "human_and_non_app_entry_record"
+      ],
+      "fallback": "remain in survey and human/public-transport service; do not reserve curb capacity",
+      "stop_or_withdraw": [
+        "right_of_way_or_responsibility_is_unresolved",
+        "consent_or_data_minimization_is_unresolved",
+        "equivalent_human_service_is_not_available"
+      ]
+    },
+    {
+      "phase_id": "P1",
+      "name": "reversible_pilot",
+      "participating_roles": [
+        "enterprise_mobility_coordinator_role",
+        "resident_and_carer_observation_role",
+        "rail_and_bus_operations_role",
+        "field_maintenance_role",
+        "independent_safety_and_privacy_review_role"
+      ],
+      "acceptance_metrics": [
+        {
+          "metric_id": "accessible_route_completion_ratio",
+          "status": "unknown",
+          "design_target": 0.95
+        },
+        {
+          "metric_id": "first_last_mile_transfer_reliability",
+          "status": "unknown",
+          "design_target": 0.85
+        },
+        {
+          "metric_id": "curb_time_window_compliance_ratio",
+          "status": "unknown",
+          "design_target": 0.9
+        },
+        {
+          "metric_id": "mobility_service_complaint_closure_hours",
+          "status": "unknown",
+          "design_target": "first response <= 4h; status update <= 24h"
+        }
+      ],
+      "fallback": "human dispatch, public transport, telephone/paper access and removable equipment",
+      "stop_or_withdraw": [
+        "any_group_access_or_completion_drops",
+        "fire_or_accessibility_route_is_blocked",
+        "complaints_have_no_owner_or_closure_record",
+        "privacy_or_safety_review_fails"
+      ]
+    },
+    {
+      "phase_id": "P2",
+      "name": "conditional_expansion",
+      "participating_roles": [
+        "professional_transport_responsibility_role",
+        "operator_and_maintenance_responsibility_role",
+        "procurement_and_insurance_review_role",
+        "safety_accessibility_privacy_and_equity_review_roles"
+      ],
+      "entry_evidence": [
+        "traffic-impact and fire review are recorded",
+        "accessibility, privacy, ecology and safety review are recorded",
+        "operator, maintenance, procurement and insurance responsibilities are explicit"
+      ],
+      "acceptance_metrics": [
+        "all P1 metrics have dated local evidence",
+        "worst-group gap and fallback performance are reported",
+        "withdrawal and incident records are public in aggregate"
+      ],
+      "fallback": "freeze expansion and return to P1 or P0; keep public routes and human service open",
+      "stop_or_withdraw": [
+        "any required approval_or_responsibility_evidence_is_missing",
+        "local evidence contradicts safety_or_equity_gate",
+        "maintenance_or_complaint_sla_is_not_resourced"
+      ]
+    }
+  ],
+  "boundary": "No phase asserts a confirmed institution, contract, budget, permit, local baseline, operating result or construction approval."
+}

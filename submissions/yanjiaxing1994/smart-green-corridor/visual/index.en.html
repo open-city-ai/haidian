@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Centennial Jing-Zhang AI Innovation Belt · Smart-Green Corridor Visual Index</title>
+<style>
+:root{
+  --bg:#0a1420; --bg2:#0e1c2c; --panel:#12233a; --panel2:#152a44; --edge:#23405f;
+  --ink:#eaf2fb; --muted:#8fa3bf; --faint:#5c6f8a;
+  --blue:#4fa3e3; --green:#5fbf8f; --orange:#f08a4a; --grey:#93a1b5; --cloud:#f5f5f0;
+  --warn:#f0b35a; --skate:#f5a961;
+  --shadow:0 16px 40px rgba(2,8,16,.55);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:radial-gradient(1200px 600px at 20% -10%, #132c46 0%, var(--bg2) 45%, var(--bg) 100%);
+  color:var(--ink); line-height:1.62;
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","STHeiti","Microsoft YaHei",Arial,sans-serif;
+}
+.wrap{max-width:1280px;margin:auto;padding:0 22px}
+a{color:var(--blue);text-decoration:none}
+h2{font-size:23px;margin:0 0 6px;letter-spacing:.02em}
+h3{font-size:16px;margin:0 0 8px}
+p{margin:0 0 10px}
+.eyebrow{color:var(--green);letter-spacing:.22em;text-transform:uppercase;font-size:12px;margin-bottom:12px;font-weight:600}
+
+header{background:linear-gradient(135deg,#162e42 0%,#1b3a54 55%,#123049 100%);border-bottom:5px solid var(--orange)}
+.hero{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(320px,.65fr);gap:28px;padding:40px 22px 34px}
+h1{font-size:30px;line-height:1.2;margin:0 0 14px;font-weight:700}
+h1 .grad{background:linear-gradient(90deg,var(--blue),var(--green));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-copy{max-width:920px;color:#cddaea;font-size:15.5px;margin-bottom:18px}
+.kw{color:#fff;background:rgba(79,163,227,.14);border:1px solid rgba(79,163,227,.35);border-radius:4px;padding:0 4px;margin:0 1px;white-space:nowrap}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;border:1px solid rgba(255,255,255,.24);padding:6px 12px;font-size:12px;color:#fff;background:rgba(255,255,255,.05)}
+.pill b{color:var(--orange)}
+.status-box{border:1px solid rgba(240,178,90,.4);border-radius:12px;padding:18px;background:linear-gradient(160deg,rgba(240,178,90,.12),rgba(240,178,90,.02));align-self:center}
+.status-box strong{display:block;font-size:17px;margin-bottom:8px;color:var(--warn)}
+.status-box p{font-size:13px;color:#c9d6e6;margin-bottom:8px}
+
+main{padding:30px 0 40px}
+.sheet{background:var(--panel);border:1px solid var(--edge);border-radius:14px;margin:0 auto 20px;box-shadow:var(--shadow);overflow:hidden}
+.sheet-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:22px 24px 14px;border-bottom:1px solid #1d3a5a}
+.sheet-head p{color:var(--muted);max-width:760px;font-size:13.5px}
+.tag{display:inline-block;border:1px solid var(--edge);color:var(--muted);background:var(--panel2);border-radius:6px;padding:3px 10px;font-size:11.5px;white-space:nowrap}
+.sheet-body{padding:18px 24px 22px}
+.num{font-variant-numeric:tabular-nums}
+.accent-top{border-top:4px solid var(--blue)}
+.accent-top.g{border-top-color:var(--green)}
+.accent-top.o{border-top-color:var(--orange)}
+.accent-top.w{border-top-color:var(--warn)}
+
+.map-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(310px,.65fr);gap:20px;padding:18px 24px 22px}
+.map-frame{border:1px solid var(--edge);border-radius:12px;background:#0d1a2a;overflow:hidden}
+.map-frame svg{display:block;width:100%;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;padding:12px 4px 2px;font-size:12px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:13px;height:13px;border-radius:3px;display:inline-block;flex:none}
+.sw.line{width:20px;height:4px;border-radius:2px}
+.metric-list{display:grid;gap:10px}
+.metric{border:1px solid var(--edge);border-radius:10px;padding:13px 14px;background:linear-gradient(180deg,var(--panel2),var(--panel))}
+.metric span{display:block;color:var(--muted);font-size:11.5px;margin-bottom:2px}
+.metric strong{display:block;font-size:22px;color:var(--cloud);font-variant-numeric:tabular-nums;margin:2px 0 4px}
+.metric small{color:var(--faint);font-size:11px}
+
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:18px 24px 22px}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding:18px 24px 22px}
+.card{border:1px solid var(--edge);border-radius:10px;padding:16px;background:linear-gradient(180deg,var(--panel2),var(--panel));transition:transform .18s ease,border-color .18s ease}
+.card:hover{transform:translateY(-3px);border-color:var(--blue)}
+.card h3{color:var(--cloud)}
+.card p{font-size:12.5px;color:var(--muted);margin:0}
+.card .big{font-size:20px;font-weight:700;color:var(--blue);font-variant-numeric:tabular-nums;margin:2px 0 6px}
+.card .big.g{color:var(--green)} .card .big.o{color:var(--orange)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--faint);background:#0d1a2a;border-radius:6px;padding:6px 8px;margin-top:8px;overflow-wrap:anywhere}
+.hl{border-left:4px solid var(--warn);background:linear-gradient(90deg,rgba(240,178,90,.10),transparent)}
+.bar-track{height:8px;border-radius:5px;background:#0d1a2a;overflow:hidden;margin-top:4px}
+.bar{height:100%;border-radius:5px}
+
+.gallery{display:grid;gap:22px;padding:18px 24px 24px}
+.fig{border:1px solid var(--edge);border-radius:12px;overflow:hidden;background:#0d1a2a}
+.fig img{display:block;width:100%;height:auto}
+.fig-caption{padding:10px 14px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--edge);background:var(--panel2)}
+.fig-caption b{color:var(--cloud)}
+
+.sc-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;padding:18px 24px 24px}
+.sc{min-height:190px;border:1px solid var(--edge);border-radius:10px;padding:14px;background:linear-gradient(180deg,var(--panel2),var(--panel));display:flex;flex-direction:column;gap:6px}
+.sc .no{font-size:11px;color:var(--orange);font-weight:700;letter-spacing:.05em}
+.sc h3{font-size:13.5px;color:var(--cloud);margin:0;line-height:1.35}
+.sc .where{font-size:11px;color:var(--blue)}
+.sc p{font-size:11.5px;color:var(--muted);margin:0;line-height:1.5}
+
+.evidence{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:18px 24px 22px}
+.status-list{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px}
+.status-list li{display:flex;align-items:center;gap:9px;font-size:13px;color:#c9d6e6}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.dot.ok{background:var(--green);box-shadow:0 0 8px var(--green)}
+.dot.warn{background:var(--warn);box-shadow:0 0 8px var(--warn)}
+
+@media(max-width:980px){
+  .hero,.map-grid,.evidence{grid-template-columns:1fr}
+  .grid3,.grid4,.sc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  h1{font-size:25px}
+}
+@media(max-width:560px){
+  .wrap{padding:0 14px}
+  .hero{padding:26px 14px 22px}
+  .sheet-body{padding:14px 16px 18px}
+  .grid3,.grid4,.sc-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="wrap hero">
+  <div>
+    <div class="eyebrow">Visual Overview / Centennial Jing-Zhang AI Innovation Belt</div>
+    <h1>Centennial Jing-Zhang AI Innovation Belt <span class="grad">· Smart-Green Corridor</span></h1>
+    <p class="hero-copy">Offline electronic exhibit; authoritative data still lives in GeoJSON, metrics.json, matrices and self-check results. This page turns the <span class="kw">overview map</span>, <span class="kw">three-level scope</span>, <span class="kw">key areas</span>, <span class="kw">land-use zones</span>, <span class="kw">transport and slow traffic</span>, <span class="kw">blue-green public space</span>, <span class="kw">buildings and renewal projects</span>, <span class="kw">AI scenarios</span>, <span class="kw">core metrics</span>, <span class="kw">task coverage</span>, <span class="kw">self-check status</span>, <span class="kw">sources</span> and <span class="kw">assumptions</span> into a human-readable visual narrative.</p>
+    <div class="pill-row">
+      <span class="pill"><b>One Belt</b> 9 km green corridor, three trails</span>
+      <span class="pill"><b>Three Cores</b> Zhongzhi Park / AI Origin / Dazhong Temple</span>
+      <span class="pill"><b>Many Nodes</b> 10 greens · 8 public spaces · 15 buildings</span>
+      <span class="pill"><b>Micro-Renewal · Strong Links · Youth-Friendly</b></span>
+    </div>
+  </div>
+  <aside class="status-box">
+    <strong>⚠ Provisional Boundary · Intake Only</strong>
+    <p>All geometry layers use provisional polygons (official_boundary=false). This page supports intake display, discussion and revision only. Replace with official polygons before formal professional scoring; recalculate all area and ratio metrics upon official redline release.</p>
+    <div class="pill-row"><span class="pill">provisional geometry · intake only</span></div>
+  </aside>
+</div>
+</header>
+
+<main class="wrap">
+
+<!-- ============ Overview Map ============ -->
+<section class="sheet accent-top">
+  <div class="sheet-head">
+    <div><h2>Overview Map</h2><p>The overview map merges land-use zones, transport and slow traffic, blue-green public space, buildings and renewal projects, and AI scenario nodes into a single evidence sheet, so the "one belt, three cores, many nodes" spatial spine reads at a glance.</p></div>
+    <span class="tag">geometry + metrics</span>
+  </div>
+  <div class="map-grid">
+    <div>
+      <div class="map-frame">
+      <svg viewBox="0 0 1120 680" role="img" aria-label="Overview map: smart-green corridor one belt three cores many nodes, including three-level scope, key areas, land-use zones, slow traffic, blue-green public space, buildings and renewal projects, AI scenarios">
+        <rect x="40" y="30" width="1040" height="620" rx="16" fill="#0d1a2a" stroke="#23405f" stroke-width="2"/>
+        <text x="64" y="66" font-size="20" font-weight="700" fill="#eaf2fb">Smart-Green Corridor · One Belt · Three Cores · Many Nodes</text>
+        <text x="64" y="90" font-size="12" fill="#8fa3bf">Three trails + green corridor 9 km · north-south corridor (north points right)</text>
+        <g>
+          <rect x="140" y="170" width="180" height="360" rx="8" fill="#4fa3e3" opacity=".16" stroke="#4fa3e3" stroke-width="1.2" stroke-opacity=".45"/>
+          <text x="230" y="356" text-anchor="middle" font-size="14" fill="#4fa3e3">AI R&amp;D Innovation</text>
+          <rect x="320" y="170" width="180" height="360" rx="8" fill="#5fbf8f" opacity=".16" stroke="#5fbf8f" stroke-width="1.2" stroke-opacity=".45"/>
+          <text x="410" y="356" text-anchor="middle" font-size="14" fill="#5fbf8f">Park &amp; Open Space</text>
+          <rect x="500" y="170" width="180" height="360" rx="8" fill="#f08a4a" opacity=".16" stroke="#f08a4a" stroke-width="1.2" stroke-opacity=".45"/>
+          <text x="590" y="356" text-anchor="middle" font-size="14" fill="#f08a4a">Industry Service</text>
+          <rect x="680" y="170" width="180" height="360" rx="8" fill="#93a1b5" opacity=".16" stroke="#93a1b5" stroke-width="1.2" stroke-opacity=".45"/>
+          <text x="770" y="356" text-anchor="middle" font-size="14" fill="#93a1b5">Community &amp; Amenities</text>
+        </g>
+        <rect x="120" y="150" width="760" height="400" rx="14" fill="none" stroke="#5c6f8a" stroke-width="1.5" stroke-dasharray="8 7" opacity=".7"/>
+        <g fill="none" stroke-linecap="round">
+          <path d="M 96 540 C 340 462 640 330 928 140" stroke="#0a1420" stroke-width="17"/>
+          <path d="M 96 540 C 340 462 640 330 928 140" stroke="#4fa3e3" stroke-width="7"/>
+          <path d="M 100 566 C 344 488 644 356 932 166" stroke="#0a1420" stroke-width="17"/>
+          <path d="M 100 566 C 344 488 644 356 932 166" stroke="#5fbf8f" stroke-width="7"/>
+          <path d="M 104 592 C 348 514 648 382 936 192" stroke="#0a1420" stroke-width="17"/>
+          <path d="M 104 592 C 348 514 648 382 936 192" stroke="#f08a4a" stroke-width="7"/>
+        </g>
+        <text x="520" y="330" text-anchor="middle" font-size="11" fill="#0d1a2a" font-weight="700">Cycle 9 km</text>
+        <text x="524" y="382" text-anchor="middle" font-size="11" fill="#0d1a2a" font-weight="700">Run 9 km</text>
+        <text x="528" y="434" text-anchor="middle" font-size="11" fill="#0d1a2a" font-weight="700">Walk 9 km</text>
+        <g fill="#5fbf8f" opacity=".8"><rect x="176" y="200" width="8" height="8" rx="2"/><rect x="344" y="210" width="8" height="8" rx="2"/><rect x="700" y="196" width="8" height="8" rx="2"/><rect x="812" y="248" width="8" height="8" rx="2"/></g>
+        <g fill="#f08a4a"><circle cx="232" cy="470" r="5"/><circle cx="420" cy="486" r="5"/><circle cx="736" cy="440" r="5"/></g>
+        <g fill="#f5a961" stroke="#f5f5f0" stroke-width="1"><rect x="388" y="270" width="10" height="10" rx="2"/><rect x="640" y="250" width="10" height="10" rx="2"/><rect x="820" y="360" width="10" height="10" rx="2"/></g>
+        <g>
+          <circle cx="230" cy="330" r="30" fill="#f08a4a" opacity=".18"/>
+          <circle cx="230" cy="330" r="16" fill="#f08a4a" stroke="#f5f5f0" stroke-width="2"/>
+          <text x="230" y="292" text-anchor="middle" font-size="15" font-weight="700" fill="#f5f5f0">Dazhong Temple</text>
+          <text x="230" y="376" text-anchor="middle" font-size="11" fill="#8fa3bf">AI Industry Cluster · 720k m²</text>
+          <circle cx="590" cy="330" r="30" fill="#5fbf8f" opacity=".18"/>
+          <circle cx="590" cy="330" r="16" fill="#5fbf8f" stroke="#f5f5f0" stroke-width="2"/>
+          <text x="590" y="292" text-anchor="middle" font-size="15" font-weight="700" fill="#f5f5f0">AI Origin · Wudaokou</text>
+          <text x="590" y="376" text-anchor="middle" font-size="11" fill="#8fa3bf">Beijing AI Origin Community · 1.04M m²</text>
+          <circle cx="800" cy="300" r="30" fill="#4fa3e3" opacity=".18"/>
+          <circle cx="800" cy="300" r="16" fill="#4fa3e3" stroke="#f5f5f0" stroke-width="2"/>
+          <text x="800" y="256" text-anchor="middle" font-size="15" font-weight="700" fill="#f5f5f0">Zhongzhi Park</text>
+          <text x="800" y="350" text-anchor="middle" font-size="11" fill="#8fa3bf">AI Autonomous Innovation Accelerator · 1.93M m²</text>
+        </g>
+        <g transform="translate(1004,84)">
+          <circle r="17" fill="none" stroke="#f5f5f0" stroke-width="1.4"/>
+          <path d="M -8 0 L 8 0" stroke="#f5f5f0" stroke-width="2.4" stroke-linecap="round"/>
+          <polygon points="6,-2 10,0 6,2" fill="#f5f5f0"/>
+          <text x="12" y="5" font-size="14" fill="#f5f5f0" font-weight="700">N</text>
+        </g>
+        <g stroke="#8fa3bf" stroke-width="1.6">
+          <line x1="900" y1="600" x2="1040" y2="600"/>
+          <line x1="900" y1="594" x2="900" y2="606"/>
+          <line x1="1040" y1="594" x2="1040" y2="606"/>
+        </g>
+        <text x="970" y="586" text-anchor="middle" font-size="12" fill="#8fa3bf">2 km</text>
+        <text x="64" y="634" font-size="11.5" fill="#5c6f8a">All layers are derived from the same GeoJSON, metrics, matrices and self-check results. Provisional boundary — intake discussion only, not the official redline.</text>
+      </svg>
+      </div>
+      <div class="legend">
+        <span><i class="sw" style="background:#4fa3e3"></i>AI R&amp;D</span>
+        <span><i class="sw" style="background:#5fbf8f"></i>Park &amp; Open</span>
+        <span><i class="sw" style="background:#f08a4a"></i>Industry Service</span>
+        <span><i class="sw" style="background:#93a1b5"></i>Community</span>
+        <span><i class="sw line" style="background:#4fa3e3"></i>Cycle 9 km</span>
+        <span><i class="sw line" style="background:#5fbf8f"></i>Run 9 km</span>
+        <span><i class="sw line" style="background:#f08a4a"></i>Walk 9 km</span>
+        <span><i class="sw" style="background:#f5a961"></i>New facilities</span>
+      </div>
+    </div>
+    <aside>
+      <h3>Core Metrics (provisional boundary)</h3>
+      <div class="metric-list">
+        <div class="metric"><span>site_area_sqm</span><strong data-metric="site_area_sqm" data-value="11412825.386">11,412,825 m²</strong><small>source geometry/site_boundary.geojson · confidence medium</small></div>
+        <div class="metric"><span>green_ratio</span><strong data-metric="green_ratio" data-value="0.114827">0.114827 (11.5%)</strong><small>source green_space + site_boundary · confidence low</small></div>
+        <div class="metric"><span>public_space_ratio</span><strong data-metric="public_space_ratio" data-value="0.005825">0.005825 (0.58%)</strong><small>source public_space + site_boundary · confidence low</small></div>
+      </div>
+      <div class="card hl" style="margin-top:14px">
+        <h3>⚠ Self-Check Status</h3>
+        <p>Deterministic validation, spatial review, visual packaging and professional evidence review must all pass. Current boundary status: <strong>provisional geometry — intake only</strong>. All metrics recalculate upon official boundary release.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ Three-Level Scope ============ -->
+<section class="sheet accent-top">
+  <div class="sheet-head">
+    <div><h2>Three-Level Scope</h2><p>The proposal progresses from strategic research scope through overall design scope to key-area scope, binding industry assessment, urban renewal and detailed area design to layers and metrics.</p></div>
+    <span class="tag">project_scope_summary.csv</span>
+  </div>
+  <div class="grid3">
+    <article class="card"><h3>Strategic Research Scope</h3><div class="big">43.6 km²</div><p>AI industry ecosystem, three-zone two-wing coordination, future urban form and cultural narrative across the full territory.</p></article>
+    <article class="card"><h3>Overall Design Scope</h3><div class="big g">11.4 km²</div><p>Urban renewal framework, land-use structure, transport and infrastructure, Jing-Zhang Heritage Park vitality corridor; 19 renewal projects and a 9 km blue-green slow-traffic system.</p></article>
+    <article class="card"><h3>Key Area Scope</h3><div class="big o">368.4 ha</div><p>Detailed design for the three key areas: functional programming, building renewal, public space connectivity and transport organization.</p></article>
+  </div>
+</section>
+
+<!-- ============ Key Areas ============ -->
+<section class="sheet accent-top">
+  <div class="sheet-head">
+    <div><h2>Key Areas</h2><p>Each of the three key areas pairs an industrial positioning with spatial strategy, building and public-space interventions, transport interfaces and implementation notes.</p></div>
+    <span class="tag">key_areas.geojson</span>
+  </div>
+  <div class="grid3">
+    <article class="card"><h3>Zhongzhi Park · AI Autonomous Innovation Accelerator</h3><div class="big">1.93M m²</div><p>Garden-style autonomous innovation district. Retain 5 R&amp;D buildings (Xuebeiyuan) with ground-floor grey-space tuning; add sunken-plaza youth center, Qing River waterfront green belt and an 800 m² junior pump track.</p></article>
+    <article class="card"><h3>AI Origin · Wudaokou Community</h3><div class="big g">1.04M m²</div><p>University-adjacent technology transfer district. Retain Tsinghua Science Park, Zhiyuan Tower and Dongsheng Tower; add Railway Memory Interactive Hall, Open-Source Launch Hall, 1.3 ha youth lawn and a 1,200 m² street skatepark.</p></article>
+    <article class="card"><h3>Dazhong Temple · AI Industry Cluster</h3><div class="big o">720k m²</div><p>Urban intelligent economy district. Retain the Sports Park and Shunxinyuan; add the Ancient Bell Cultural Pavilion and a 1,500 m² bowl skatepark; luminous 500 m loop track.</p></article>
+  </div>
+</section>
+
+<!-- ============ Land-Use Zones ============ -->
+<section class="sheet accent-top g">
+  <div class="sheet-head">
+    <div><h2>Land-Use Zones</h2><p>Four land-use bands assemble west-to-east along the green corridor, alternating R&amp;D, green fabric, industry and community into a "mixed programming" sequence.</p></div>
+    <span class="tag">land_use.geojson</span>
+  </div>
+  <div class="grid4">
+    <article class="card"><h3>AI R&amp;D Innovation</h3><div class="big">23%</div><div class="bar-track"><div class="bar" style="width:23%;background:#4fa3e3"></div></div><p>2.67M m² · research campuses and sunken plazas</p></article>
+    <article class="card"><h3>Park &amp; Open Space</h3><div class="big g">23%</div><div class="bar-track"><div class="bar" style="width:23%;background:#5fbf8f"></div></div><p>2.59M m² · Jing-Zhang corridor and riverfront</p></article>
+    <article class="card"><h3>Industry Service &amp; Commercial</h3><div class="big o">29%</div><div class="bar-track"><div class="bar" style="width:29%;background:#f08a4a"></div></div><p>3.37M m² · incubators and commercial support</p></article>
+    <article class="card"><h3>Community &amp; Amenities</h3><div class="big" style="color:#93a1b5">25%</div><div class="bar-track"><div class="bar" style="width:25%;background:#93a1b5"></div></div><p>2.78M m² · community services and daily support</p></article>
+  </div>
+</section>
+
+<!-- ============ Transport & Slow Traffic ============ -->
+<section class="sheet accent-top">
+  <div class="sheet-head">
+    <div><h2>Transport &amp; Slow Traffic</h2><p>A "three trails + one green" 9 km slow-traffic system: cycle, run and walk lines run in parallel and link the three key areas — 15 minutes by bike between them.</p></div>
+    <span class="tag">roads.geojson</span>
+  </div>
+  <div class="grid3">
+    <article class="card"><h3>Cycle Trail</h3><div class="big">9 km</div><p>Continuous corridor cycle route (ROAD-CYCLE-01) linking all three areas; connectors include the Qing River waterfront cycleway, Heqing Garden link and the Sports Park–Shunxinyuan route.</p></article>
+    <article class="card"><h3>Run Trail</h3><div class="big g">9 km</div><p>Continuous corridor running route (ROAD-RUN-01); the retained 500 m loop track at Dazhong Temple Sports Park upgraded with luminous timing.</p></article>
+    <article class="card"><h3>Walk Trail</h3><div class="big o">9 km</div><p>Corridor walking route (ROAD-WALK-01) serving start-corral zones, pet-friendly zones and market lawns along the line.</p></article>
+  </div>
+</section>
+
+<!-- ============ Blue-Green Public Space ============ -->
+<section class="sheet accent-top g">
+  <div class="sheet-head">
+    <div><h2>Blue-Green Public Space</h2><p>Ten green spaces and eight public spaces form the blue-green skeleton; three skateparks (800 / 1,200 / 1,500 m²) build the youth extreme-sports network along the corridor.</p></div>
+    <span class="tag">green_space + public_space</span>
+  </div>
+  <div class="grid4">
+    <article class="card"><h3>Jing-Zhang Green Corridor</h3><div class="big g">10 greens</div><p>Heritage Park corridor, Qing River waterfront, youth activity lawn, Heqing Garden, Sports Park, Shunxinyuan and more.</p></article>
+    <article class="card"><h3>Public Spaces</h3><div class="big">8 places</div><p>Sunken ecological plaza, rooftop garden, waterfront promenade, camping-market lawn, pet-friendly zones and more.</p></article>
+    <article class="card"><h3>Junior Pump Track · Zhongzhi</h3><div class="big o">800 m²</div><p>Gently rolling asphalt pump track, beginner-friendly, with a skatepark service kiosk.</p></article>
+    <article class="card"><h3>Bowl Skatepark · Dazhong</h3><div class="big o">1,500 m²</div><p>1.2–2.0 m deep bowl hosting the extreme-sports league finals.</p></article>
+  </div>
+</section>
+
+<!-- ============ Buildings & Renewal Projects ============ -->
+<section class="sheet accent-top">
+  <div class="sheet-head">
+    <div><h2>Buildings &amp; Renewal Projects</h2><p>Micro-renewal driven: 15 retained, 8 renovated, 11 new — covering ground floors, rooftop gardens, cultural nodes and pocket facilities across three phases.</p></div>
+    <span class="tag">buildings.geojson · proposal.md §1.2</span>
+  </div>
+  <div class="grid3">
+    <article class="card"><h3>Retain 15</h3><div class="big">15 buildings</div><p>Xuebeiyuan A–E research buildings, Tsinghua Science Park complex, Zhiyuan Tower, Dongsheng Tower, Sports Park service center and more.</p></article>
+    <article class="card"><h3>Renovate 8</h3><div class="big g">8 places</div><p>Five ground-floor grey-space upgrades in Zhongzhi Park, Tsinghua Science Park open interface, Dongsheng Tower ground-floor activation, luminous loop track upgrade.</p></article>
+    <article class="card"><h3>New 11</h3><div class="big o">11 items</div><p>Railway Memory Interactive Hall, Open-Source Launch Hall, Ancient Bell Cultural Pavilion, Sunken Plaza Youth Center, lawn service station, skatepark kiosk (6 lightweight buildings) plus 5 ancillary facilities.</p></article>
+  </div>
+</section>
+
+<!-- ============ Original Figure Gallery ============ -->
+<section class="sheet accent-top">
+  <div class="sheet-head">
+    <div><h2>Original Figure Gallery</h2><p>Original evidence figures (dark tech style, bilingual), each traceable to geometry/ and metrics.json.</p></div>
+    <span class="tag">assets/figures</span>
+  </div>
+  <div class="gallery">
+    <figure class="fig"><img src="../assets/figures/site-overview.en.png" alt="One belt three cores many nodes master structure" loading="lazy" width="2400" height="1400"><figcaption class="fig-caption"><b>Fig. 1 One Belt · Three Cores · Many Nodes</b> — three trails + green corridor linking three key areas with service nodes along the line.</figcaption></figure>
+    <figure class="fig"><img src="../assets/figures/land-use-structure.en.png" alt="Land-use mixed programming structure" loading="lazy" width="2400" height="1400"><figcaption class="fig-caption"><b>Fig. 2 Land-Use Structure · Mixed Programming</b> — four land-use shares plus a differentiated matrix across the three areas.</figcaption></figure>
+    <figure class="fig"><img src="../assets/figures/key-areas.en.png" alt="Differentiated detailed design of three key areas" loading="lazy" width="2400" height="1200"><figcaption class="fig-caption"><b>Fig. 3 Differentiated Detailed Design</b> — one positioning, spatial actions and key numbers per area.</figcaption></figure>
+    <figure class="fig"><img src="../assets/figures/mobility-bluegreen.en.png" alt="Slow traffic and blue-green public space network" loading="lazy" width="2400" height="1400"><figcaption class="fig-caption"><b>Fig. 4 Slow-Traffic &amp; Blue-Green Network</b> — three-line spine plus green/public nodes plus three-phase implementation.</figcaption></figure>
+    <figure class="fig"><img src="../assets/figures/metrics-evidence.en.png" alt="Core metrics and evidence-chain dashboard" loading="lazy" width="2400" height="1600"><figcaption class="fig-caption"><b>Fig. 5 Core Metrics &amp; Evidence Chain</b> — three required metrics, design-action metrics, calculation notes; FAR shown as "pending review".</figcaption></figure>
+  </div>
+</section>
+
+<!-- ============ AI Scenarios ============ -->
+<section class="sheet accent-top o">
+  <div class="sheet-head">
+    <div><h2>AI Scenarios</h2><p>Ten concrete AI scenario cards (proposal.md §5.5), each naming area, spatial carrier, AI support, data sources, privacy boundaries, human review and operating entity, with a DPIA checklist.</p></div>
+    <span class="tag">10 scenario cards + DPIA</span>
+  </div>
+  <div class="sc-grid">
+    <article class="sc"><span class="no">SC 01</span><h3>AI Noon Running Social Club</h3><span class="where">All areas · 9 km green run trail</span><p>Three on-edge pose-analysis fitness kiosks, 500 m start corrals, and company-run-group matching.</p></article>
+    <article class="sc"><span class="no">SC 02</span><h3>Open-Source Weekend Hackathon</h3><span class="where">Wudaokou · Launch Hall 150 m²</span><p>Live code wall, locally deployed AI-assisted code review, and a 1.3 ha youth lawn extension.</p></article>
+    <article class="sc"><span class="no">SC 03</span><h3>Rooftop Sports League</h3><span class="where">Zhongzhi Park · rooftop garden</span><p>Half-court basketball, badminton striping, yoga stretch zone, sunken-plaza spectator seating.</p></article>
+    <article class="sc"><span class="no">SC 04</span><h3>Sunken Plaza Open-Air Movie Night</h3><span class="where">Zhongzhi Park · Sunken Plaza Youth Center</span><p>200 m² semi-outdoor pavilion, 100–150 tiered seats, anonymous vote-driven playlists.</p></article>
+    <article class="sc"><span class="no">SC 05</span><h3>Railway Memory AR History Trail</h3><span class="where">Wudaokou · Heritage Park 1.3 km</span><p>Download-free Web AR, 300 m² Interactive Hall, and ten AR trigger points along the line.</p></article>
+    <article class="sc"><span class="no">SC 06</span><h3>Pet Social Weekend Market</h3><span class="where">All areas rotating · pet-friendly zones</span><p>Three pet zones (600/500/500 m²), 10–20 stalls, and an on-site health check station.</p></article>
+    <article class="sc"><span class="no">SC 07</span><h3>Extreme Sports Three-Area League</h3><span class="where">All areas · pump-street-bowl</span><p>800/1,200/1,500 m² venues reachable by 15-min bike ride; AI-assisted scoring, human judging decisive.</p></article>
+    <article class="sc"><span class="no">SC 08</span><h3>Dazhong Temple Luminous Loop Time Trial</h3><span class="where">Dazhong Temple · 500 m loop</span><p>Glow-in-the-dark coating, RFID timing chips, two fitness kiosks, movable stands.</p></article>
+    <article class="sc"><span class="no">SC 09</span><h3>Ancient Bell Sound Art Festival</h3><span class="where">Dazhong Temple · Shunxinyuan avenue</span><p>AI live bell accompaniment (bone-conduction output), digital bell-tower twin, soundscape capture.</p></article>
+    <article class="sc"><span class="no">SC 10</span><h3>Global AI Open Day Public Route</h3><span class="where">All areas · full 9 km corridor</span><p>Seven core showcase nodes, multilingual AI guide, on-edge compute and temporary network.</p></article>
+  </div>
+</section>
+
+<!-- ============ Task Coverage ============ -->
+<section class="sheet accent-top">
+  <div class="sheet-head">
+    <div><h2>Task Coverage</h2><p>compliance_matrix.json covers Announcement sections 1.3/1.4/1.5 and agent.1–agent.6; standard_matrix.json and design_depth_matrix.json evidence professional standards and deliverable depth.</p></div>
+    <span class="tag">matrix evidence</span>
+  </div>
+  <div class="evidence">
+    <div>
+      <h3>Coverage Dimensions</h3>
+      <p>All six agent tasks are covered — industry assessment, urban renewal, transport and slow traffic, blue-green ecology, detailed key-area design, implementation and operations — with three-zone two-wing coordination and Jing-Zhang cultural narrative threaded throughout.</p>
+      <div class="mono">agent.1–agent.6 / compliance_matrix.json / standard_matrix.json / design_depth_matrix.json</div>
+    </div>
+    <div>
+      <h3>Coverage Evidence</h3>
+      <p>Professional review benchmarks goal fit, brand recognition, regional synergy, planning innovation, scenario tangibility, spatial clarity, translatability, presentation completeness, public compliance, international communication and long-term operation value.</p>
+      <div class="mono">taskbook / matrices / self_check.json</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Self-Check Status ============ -->
+<section class="sheet accent-top w">
+  <div class="sheet-head">
+    <div><h2>Self-Check Status</h2><p>Four layers of self-check — deterministic validation, spatial review, visual packaging and professional evidence review — kept in sync with this page, the report, the manifest and self_check.</p></div>
+    <span class="tag">self-check</span>
+  </div>
+  <div class="evidence">
+    <div>
+      <h3>Four Layers</h3>
+      <ul class="status-list">
+        <li><i class="dot ok"></i>Deterministic validation (deterministic output, contract checks, metric consistency)</li>
+        <li><i class="dot ok"></i>Spatial review (scope, layers, provisional-boundary labeling)</li>
+        <li><i class="dot ok"></i>Visual packaging (offline static, no remote assets, UTF-8)</li>
+        <li><i class="dot ok"></i>Professional evidence review (source ledger, DPIA, copyright clearance)</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Boundary Status</h3>
+      <ul class="status-list">
+        <li><i class="dot warn"></i>Current boundary: provisional geometry — intake only</li>
+        <li><i class="dot warn"></i>Floor-area ratio: pending review (no approved controls in the public package)</li>
+        <li><i class="dot ok"></i>Area/ratio metrics computed on provisional boundary; recalculate after official release</li>
+      </ul>
+      <p style="margin-top:10px;font-size:12.5px;color:var(--faint)">This page loads no CDN, remote map tiles, external scripts, external fonts, API requests or iframes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Sources & Assumptions ============ -->
+<section class="sheet accent-top">
+  <div class="sheet-head">
+    <div><h2>Sources &amp; Assumptions</h2><p>A classified source-evidence ledger plus a data-gap assumptions list, each with stated impact on design conclusions.</p></div>
+    <span class="tag">sources + assumptions</span>
+  </div>
+  <div class="evidence">
+    <div>
+      <h3>Sources</h3>
+      <p>Sources are documented in sources.json, agent_taskbook.json, data/processed/agent_fact_pack.md and standards/references — 13 registered sources including 7 formal ones. ⚠ Most international case data and site statistics are agent-inferred from public data; formal evidence URLs, publishers, dates and cross-verification are pending.</p>
+      <div class="mono">sources.json / standard_matrix.json / design_depth_matrix.json</div>
+    </div>
+    <div>
+      <h3>Assumptions</h3>
+      <p>Missing statutory controls, road redlines, land tenure, utilities, heritage lines and engineering conditions are documented in assumptions.json with explained impact on design conclusions. ⚠ Official SITE_BOUNDARY and KEY_AREA polygons are not yet available; all area and ratio metrics must be recalculated upon official geometry release.</p>
+      <div class="mono">missing_data_checklist.csv / assumptions.json / self_check.json</div>
+    </div>
+  </div>
+</section>
+
+</main>
+</body>
+</html>

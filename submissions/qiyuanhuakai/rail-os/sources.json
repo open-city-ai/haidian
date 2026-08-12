@@ -1,0 +1,416 @@
+{
+  "schema_version": "0.1.0",
+  "sources": [
+    {
+      "id": "SITE-PACKAGE",
+      "path": "brief/site-package/",
+      "source_type": "official_public",
+      "usage": "Project brief, enums, allowed design space, ranges, and schemas.",
+      "publisher": "Repository-maintained Haidian site-package bundle",
+      "published_date": "2026-08-07",
+      "accessed_date": "2026-08-11",
+      "collection_method": "Read the versioned local site-package files; individual source records retain their own authority and date.",
+      "geographic_coverage": "Haidian AI innovation belt task and site-package scope; not a single spatial dataset.",
+      "temporal_coverage": "site_package_version 0.1.0; local package state accessed 2026-08-11",
+      "license_summary": "Repository package terms and the rights stated by each included source; no additional reuse permission is inferred.",
+      "transformations": [
+        "Used as the local contract/index for task, schema, range, and source-use interpretation; no official spatial fact was generated from the bundle itself."
+      ],
+      "limitations": [
+        "This is a mixed contract and reference bundle, not a substitute for official boundary, cadastral, planning-control, engineering, or implementation attachments."
+      ],
+      "authority_level": "mixed_site_package_bundle",
+      "review_status": "approved_as_contract_bundle",
+      "usable_for_formal": "task_and_schema_context_only",
+      "registry_source_ids": [
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "DATA-SRC-AGENT-TASKBOOK-20260518",
+        "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES",
+        "DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING",
+        "DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311"
+      ]
+    },
+    {
+      "id": "SOURCE-REGISTRY",
+      "path": "data/source_registry.json",
+      "source_type": "repository_public_registry",
+      "usage": "Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials.",
+      "publisher": "Repository maintainers",
+      "published_date": "2026-08-09",
+      "accessed_date": "2026-08-11",
+      "collection_method": "Read the local source registry and copied its authority, review, formal-use, and prohibited-use distinctions into this evidence layer.",
+      "geographic_coverage": "Sources registered for the Haidian AI innovation belt project.",
+      "temporal_coverage": "Registry updated 2026-08-09; source records retain their own publication/access dates.",
+      "license_summary": "Repository metadata and source-use index; downstream source rights remain governed by each source record.",
+      "transformations": [
+        "Used as provenance metadata and a source-quality gate; it is not treated as a primary fact source."
+      ],
+      "limitations": [
+        "A registry entry does not validate a claim by itself; claims must remain within the registered source's permitted use."
+      ],
+      "authority_level": "repository_metadata",
+      "review_status": "approved",
+      "usable_for_formal": "metadata_only"
+    },
+    {
+      "id": "PROCESSED-FACT-PACK",
+      "path": "data/processed/agent_fact_pack.md",
+      "source_type": "repository_processed_reference",
+      "usage": "Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source.",
+      "publisher": "Repository maintainers",
+      "published_date": "2026-06-07",
+      "accessed_date": "2026-08-11",
+      "collection_method": "Read the processed Markdown navigation layer and followed its links back to registered primary or cleared sources.",
+      "geographic_coverage": "Haidian AI innovation belt task, source-use, and missing-data context.",
+      "temporal_coverage": "processing_date 2026-06-07; source facts retain their original dates.",
+      "license_summary": "Repository-generated navigation material; source rights are inherited only through the cited underlying records.",
+      "transformations": [
+        "Used to navigate project_scope_summary.csv, agent_task_requirements.csv, source_use_matrix.csv, and missing_data_checklist.csv; no new authority was inferred."
+      ],
+      "limitations": [
+        "It is not an official source, official boundary, planning control, engineering record, or independent validation of the underlying facts."
+      ],
+      "authority_level": "repository_processed_reference",
+      "review_status": "approved_as_navigation_only",
+      "usable_for_formal": "navigation_only"
+    },
+    {
+      "id": "BOUNDARY-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "Submitted site boundary geometry source (provisional).",
+      "publisher": "Repository maintainers",
+      "published_date": "2026-06-05",
+      "accessed_date": "2026-08-07",
+      "collection_method": "Repository provisional polygons inferred from the official announcement's text four-sides and approximate area; the source notes EPSG:4548 checking. The submission site boundary is a derived copy of this provisional source.",
+      "geographic_coverage": "Overall design-area rough polygon in Haidian; related provisional scope/key-area geometry is documented separately.",
+      "temporal_coverage": "Provisional snapshot published 2026-06-05; not a current official survey.",
+      "license_summary": "Repository-maintained provisional geometry for AI generation, visualization, discussion, and intake self-check only.",
+      "transformations": [
+        "Copied/derived into geometry/site_boundary.geojson and used for concept-layer clipping and provisional geometry calculations; no official precision was added."
+      ],
+      "limitations": [
+        "Not an official redline, cadastral boundary, approval basis, statutory control, formal precise-area basis, or implementation boundary.",
+        "All dependent area, land-use, building, public-space, and phasing metrics must be recalculated when official polygons arrive."
+      ],
+      "authority_level": "PROVISIONAL_REPOSITORY",
+      "review_status": "provisional",
+      "usable_for_formal": "provisional_only",
+      "registry_source_ids": [
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      ]
+    },
+    {
+      "id": "KEY-AREA-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "Three required detailed-design key area boundaries (provisional).",
+      "publisher": "Repository maintainers",
+      "published_date": "2026-06-05",
+      "accessed_date": "2026-08-07",
+      "collection_method": "Repository provisional key-area polygons inferred from the official announcement's names, north-to-south order, approximate areas, and location clues; the three submission features retain provisional IDs and flags.",
+      "geographic_coverage": "Zhongzhiyuan AI acceleration area, Beijing AI Origin Community, and Dazhongsi AI industry cluster in Haidian.",
+      "temporal_coverage": "Provisional snapshot published 2026-06-05; not a current official survey.",
+      "license_summary": "Repository-maintained provisional geometry for AI generation, visualization, discussion, and intake self-check only.",
+      "transformations": [
+        "Copied/derived into geometry/key_areas.geojson; the submitted features retain official_boundary=false and geometry_role=provisional_constraint."
+      ],
+      "limitations": [
+        "Not official KEY_AREA polygons, parcel boundaries, approval basis, formal precise-area basis, or implementation boundaries.",
+        "Per-area values are provisional polygon calculations and must not replace the announcement's approximate reference areas."
+      ],
+      "authority_level": "PROVISIONAL_REPOSITORY",
+      "review_status": "provisional",
+      "usable_for_formal": "provisional_only",
+      "registry_source_ids": [
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      ]
+    },
+    {
+      "id": "OFFICIAL-ANNOUNCEMENT",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "source_type": "official_public",
+      "usage": "Official announcement tasks, scope levels, key areas, language, and deliverable context.",
+      "publisher": "北京市规划和自然资源委员会海淀分局",
+      "published_date": "2026-05-09",
+      "accessed_date": "2026-06-03",
+      "collection_method": "Read the public official page and its retained local Markdown snapshot; used the announcement for text requirements and approximate area facts only.",
+      "geographic_coverage": "Beijing Haidian and the announced three scope levels/key areas; no official GIS polygon is supplied by this record.",
+      "temporal_coverage": "Announcement published 2026-05-09; local access recorded 2026-06-03.",
+      "license_summary": "Official public announcement snapshot retained for reference and citation; reuse of page assets is not inferred.",
+      "transformations": [
+        "Transcribed task IDs, scope labels, approximate areas, and depth requirements into structured matrices; no polygon or statutory control was derived."
+      ],
+      "limitations": [
+        "Textual four-sides and approximate areas do not substitute for official boundary GIS/CAD, road redlines, planning conditions, ownership, or engineering attachments.",
+        "The announcement cannot by itself establish implementation commitments or site-specific quantitative controls."
+      ],
+      "authority_level": "A0",
+      "review_status": "approved",
+      "usable_for_formal": "yes",
+      "registry_source_ids": [
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      ]
+    },
+    {
+      "id": "AGENT-TASKBOOK",
+      "path": "brief/site-package/agent_taskbook.json",
+      "source_type": "user_provided_cleared",
+      "usage": "Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause.",
+      "publisher": "User-provided cleared document",
+      "published_date": "2026-05-18",
+      "accessed_date": "2026-06-05",
+      "collection_method": "Read the cleared local JSON extract and its local reference note; used it for agent-task and public-compliance coverage.",
+      "geographic_coverage": "Haidian AI innovation belt task and three-areas/two-wings concept; no official spatial coordinates.",
+      "temporal_coverage": "Taskbook extract dated 2026-05-18; repository collaboration clauses may update independently.",
+      "license_summary": "User-provided cleared document for repository use and public agent-facing task alignment.",
+      "transformations": [
+        "Mapped six agent task IDs, required outputs, forbidden claims, and boundary language to compliance and design-depth evidence; no statutory fact was added."
+      ],
+      "limitations": [
+        "Not an official redline, statutory planning control, engineering feasibility record, or government approval/implementation commitment."
+      ],
+      "authority_level": "CLEARED_USER_DOCUMENT",
+      "review_status": "approved",
+      "usable_for_formal": "yes",
+      "registry_source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ]
+    },
+    {
+      "id": "MOHURD-URBAN-DESIGN-MEASURES",
+      "path": "brief/site-package/standards/references/mohurd-urban-design-measures.md",
+      "url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2023/art_17339_775476.html",
+      "source_type": "official_public",
+      "usage": "Professional reference for urban-design purpose, public space, city character, and non-site-specific architecture guidance.",
+      "publisher": "中华人民共和国住房和城乡建设部",
+      "published_date": "2017-03-14",
+      "accessed_date": "2026-06-03",
+      "collection_method": "Read the attributed local Markdown snapshot and retained the official URL for formal reference.",
+      "geographic_coverage": "National urban-design management principles; no Haidian site-specific controls.",
+      "temporal_coverage": "Published 2017-03-14; local snapshot accessed 2026-06-03.",
+      "license_summary": "Official public policy/standard page snapshot retained for reference and citation; no page-asset reuse is inferred.",
+      "transformations": [
+        "Used only for principle-level language about public space, city character, and architecture guidance; no project-specific number was derived."
+      ],
+      "limitations": [
+        "Cannot establish Haidian approval, site-specific height, density, setback, or engineering conditions."
+      ],
+      "authority_level": "A0",
+      "review_status": "approved",
+      "usable_for_formal": "yes",
+      "registry_source_ids": [
+        "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES"
+      ]
+    },
+    {
+      "id": "MOHURD-CONTROL-DETAILED-PLANNING",
+      "path": "brief/site-package/standards/references/mohurd-control-detailed-planning.md",
+      "url": "https://www.gov.cn/zhengce/2022-01/25/content_5711967.htm",
+      "source_type": "official_public",
+      "usage": "Professional reference for regulatory-plan depth and the boundary between planning advice and statutory approval.",
+      "publisher": "中华人民共和国住房和城乡建设部",
+      "published_date": null,
+      "accessed_date": "2026-06-03",
+      "collection_method": "Read the attributed local Markdown snapshot and retained the official URL for formal reference.",
+      "geographic_coverage": "National regulatory-detailed-planning principles; no Haidian site-specific controls.",
+      "temporal_coverage": "Official page publication date not recorded in the registry; local snapshot accessed 2026-06-03.",
+      "license_summary": "Official public government page snapshot retained for reference and citation; no page-asset reuse is inferred.",
+      "transformations": [
+        "Used to label FAR, height, density, setback, redline, ownership, and implementation conditions as pending rather than inventing values."
+      ],
+      "limitations": [
+        "Cannot prove this project has approved regulatory controls or a completed control-plan adjustment."
+      ],
+      "authority_level": "A0",
+      "review_status": "approved",
+      "usable_for_formal": "yes",
+      "registry_source_ids": [
+        "DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING"
+      ]
+    },
+    {
+      "id": "MNR-LAND-USE-CLASSIFICATION",
+      "path": "brief/site-package/standards/references/mnr-land-use-classification-guide.md",
+      "url": "https://www.gov.cn/zhengce/zhengceku/202311/content_6917279.htm",
+      "source_type": "official_public",
+      "usage": "Classification terminology reference for land_use_code in the submitted concept partition.",
+      "publisher": "自然资源部",
+      "published_date": "2023-11-22",
+      "accessed_date": "2026-06-03",
+      "collection_method": "Read the attributed local Markdown snapshot and retained the official URL for terminology reference.",
+      "geographic_coverage": "National land-use classification terminology; no Haidian parcel approval.",
+      "temporal_coverage": "Published 2023-11-22; local snapshot accessed 2026-06-03.",
+      "license_summary": "Official public government page snapshot retained for reference and citation; no page-asset reuse is inferred.",
+      "transformations": [
+        "Applied the classification vocabulary to the submitted conceptual land-use features; no site-specific use approval was inferred."
+      ],
+      "limitations": [
+        "Classification terminology does not prove that any submitted parcel or polygon has been approved for that use."
+      ],
+      "authority_level": "A0",
+      "review_status": "approved",
+      "usable_for_formal": "yes",
+      "registry_source_ids": [
+        "DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311"
+      ]
+    },
+    {
+      "id": "JINGZHANG-PARK-PHASE2",
+      "url": "https://yllhj.beijing.gov.cn/zwgk/zwxx/202607/t20260714_4761226.shtml",
+      "source_type": "official_public",
+      "usage": "Current-condition baseline for the completed Phase II supporting works and its north-south connected, east-west linked walking network.",
+      "publisher": "北京市园林绿化局（首都绿化委员会办公室）",
+      "published_date": "2026-07-13",
+      "accessed_date": "2026-08-11",
+      "collection_method": "Read the official municipal page and used only its stated completion status, project extent description, works scope, and fishbone walking-network description.",
+      "geographic_coverage": "Jing-Zhang Railway Heritage Public Space from Xizhimen toward the North Fifth Ring, including the Phase I interface.",
+      "temporal_coverage": "Phase II supporting works reported complete on 2026-07-13.",
+      "license_summary": "Official public-page citation only; no page image or asset is reproduced.",
+      "transformations": [
+        "Reclassified corridor-wide continuity from an unbuilt assumption to a current-condition review baseline; no precise alignment or engineering conclusion was derived."
+      ],
+      "limitations": [
+        "Completion of the supporting works does not prove every local crossing, access point, ownership interface, or accessibility detail is defect-free.",
+        "The page is not an as-built survey, cadastral record, road redline, or approval for supplemental works."
+      ],
+      "authority_level": "A0",
+      "review_status": "approved",
+      "usable_for_formal": "yes"
+    },
+    {
+      "id": "CASE-STATION-F",
+      "url": "https://stationf.co/about",
+      "source_type": "official_public",
+      "usage": "Official Station F facts on converting Halle Freyssinet into a startup campus; used for the railway-heritage reuse mechanism only. Accessed 2026-08-11.",
+      "publisher": "Station F",
+      "published_date": null,
+      "accessed_date": "2026-08-11",
+      "collection_method": "Read the official organization page and extracted a qualitative reuse mechanism.",
+      "geographic_coverage": "Halle Freyssinet/Station F, Paris, France.",
+      "temporal_coverage": "Official page content accessed 2026-08-11; no local baseline period imported.",
+      "license_summary": "Public page citation only; no image, logo, trademark, or page-asset reuse is inferred.",
+      "transformations": [
+        "Used as a mechanism-level case reference for adaptive reuse; no area, density, cost, performance, or site-control value was transferred."
+      ],
+      "limitations": [
+        "Background case evidence, not evidence of Haidian existing conditions, approval, feasibility, or implementation."
+      ],
+      "authority_level": "official_public_case_page",
+      "review_status": "approved_background",
+      "usable_for_formal": "background_only"
+    },
+    {
+      "id": "CASE-TAKANAWA",
+      "url": "https://www.smart-tokyo.metro.tokyo.lg.jp/en/area/takanawa_gateway_city/",
+      "source_type": "official_public",
+      "usage": "Tokyo Metropolitan Government summary of Takanawa Gateway City's railway-data Urban OS and living-lab model. Accessed 2026-08-11.",
+      "publisher": "Tokyo Metropolitan Government",
+      "published_date": null,
+      "accessed_date": "2026-08-11",
+      "collection_method": "Read the official metropolitan-government project page and extracted a qualitative data-governance/living-lab mechanism.",
+      "geographic_coverage": "Takanawa Gateway City, Tokyo, Japan.",
+      "temporal_coverage": "Official page content accessed 2026-08-11; no local baseline period imported.",
+      "license_summary": "Public page citation only; no image, logo, trademark, or page-asset reuse is inferred.",
+      "transformations": [
+        "Used as a mechanism-level reference for urban OS and living-lab governance; no performance, infrastructure, or statutory value was transferred."
+      ],
+      "limitations": [
+        "Background case evidence, not evidence of Haidian infrastructure, procurement, data access, approval, or implementation."
+      ],
+      "authority_level": "official_public_case_page",
+      "review_status": "approved_background",
+      "usable_for_formal": "background_only"
+    },
+    {
+      "id": "CASE-KENDALL",
+      "url": "https://kendallsquare.mit.edu/",
+      "source_type": "official_public",
+      "usage": "MIT official description of the Kendall Square Initiative, mixed-use renewal, innovation-space commitment, housing, and heritage retention. Accessed 2026-08-11.",
+      "publisher": "Massachusetts Institute of Technology",
+      "published_date": null,
+      "accessed_date": "2026-08-11",
+      "collection_method": "Read the official MIT initiative page and extracted qualitative mixed-use/innovation-space mechanisms.",
+      "geographic_coverage": "Kendall Square, Cambridge, Massachusetts, United States.",
+      "temporal_coverage": "Official page content accessed 2026-08-11; no local baseline period imported.",
+      "license_summary": "Public page citation only; no image, logo, trademark, or page-asset reuse is inferred.",
+      "transformations": [
+        "Used as a mechanism-level case reference for mixed-use innovation renewal and heritage retention; no local area, housing, or development value was transferred."
+      ],
+      "limitations": [
+        "Background case evidence, not evidence of Haidian land, ownership, housing, planning controls, or feasibility."
+      ],
+      "authority_level": "official_public_case_page",
+      "review_status": "approved_background",
+      "usable_for_formal": "background_only"
+    },
+    {
+      "id": "CASE-22BARCELONA",
+      "url": "https://www.barcelona.cat/internationalwelcome/en/do-business/strategic-sectors-and-areas/22barcelona-innovation-district",
+      "source_type": "official_public",
+      "usage": "Barcelona City Council official facts on the 22@ innovation district; used for planning, heritage, and urban-lab lessons. Accessed 2026-08-11.",
+      "publisher": "Barcelona City Council",
+      "published_date": null,
+      "accessed_date": "2026-08-11",
+      "collection_method": "Read the official city page and extracted qualitative innovation-district/urban-lab mechanisms.",
+      "geographic_coverage": "22@ innovation district, Barcelona, Spain.",
+      "temporal_coverage": "Official page content accessed 2026-08-11; no local baseline period imported.",
+      "license_summary": "Public page citation only; no image, logo, trademark, or page-asset reuse is inferred.",
+      "transformations": [
+        "Used as a mechanism-level case reference for innovation-district public-realm and heritage lessons; no local quantitative or statutory value was transferred."
+      ],
+      "limitations": [
+        "Background case evidence, not evidence of Haidian heritage controls, public-space capacity, approvals, or implementation."
+      ],
+      "authority_level": "official_public_case_page",
+      "review_status": "approved_background",
+      "usable_for_formal": "background_only"
+    },
+    {
+      "id": "CASE-ONE-NORTH",
+      "url": "https://www.jtc.gov.sg/find-land/jtc-key-estates/one-north/",
+      "source_type": "official_public",
+      "usage": "JTC official facts on one-north and LaunchPad's modular startup space, research co-location, and international network. Accessed 2026-08-11.",
+      "publisher": "JTC Corporation, Singapore",
+      "published_date": null,
+      "accessed_date": "2026-08-11",
+      "collection_method": "Read the official JTC project page and extracted qualitative startup-space and research-co-location mechanisms.",
+      "geographic_coverage": "one-north and LaunchPad, Singapore.",
+      "temporal_coverage": "Official page content accessed 2026-08-11; no local baseline period imported.",
+      "license_summary": "Public page citation only; no image, logo, trademark, or page-asset reuse is inferred.",
+      "transformations": [
+        "Used as a mechanism-level reference for modular startup space and research co-location; no local capacity, investment, or development-control value was transferred."
+      ],
+      "limitations": [
+        "Background case evidence, not evidence of Haidian enterprise commitments, capital, land, policy, or implementation."
+      ],
+      "authority_level": "official_public_case_page",
+      "review_status": "approved_background",
+      "usable_for_formal": "background_only"
+    },
+    {
+      "id": "CASE-KALASATAMA",
+      "url": "https://forumvirium.fi/en/about/agile-pilots/",
+      "source_type": "official_public",
+      "usage": "Forum Virium Helsinki official agile-piloting method developed in Smart Kalasatama; used for bounded trials, public co-design, learning, and exit. Accessed 2026-08-11.",
+      "publisher": "Forum Virium Helsinki",
+      "published_date": null,
+      "accessed_date": "2026-08-11",
+      "collection_method": "Read the official organization page and extracted the bounded-pilot, co-design, learning, and exit mechanism.",
+      "geographic_coverage": "Smart Kalasatama, Helsinki, Finland.",
+      "temporal_coverage": "Official page content accessed 2026-08-11; no local baseline period imported.",
+      "license_summary": "Public page citation only; no image, logo, trademark, or page-asset reuse is inferred.",
+      "transformations": [
+        "Used as a mechanism-level case reference for bounded trials and exit gates; no local target, traffic, participation, or implementation value was transferred."
+      ],
+      "limitations": [
+        "Background case evidence, not evidence of Haidian operator commitment, funding, data authorization, safety approval, or performance."
+      ],
+      "authority_level": "official_public_case_page",
+      "review_status": "approved_background",
+      "usable_for_formal": "background_only"
+    }
+  ]
+}

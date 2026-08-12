@@ -2,7 +2,7 @@
 
 ## 结论
 
-本投稿的文字、结构化 JSON、概念 GeoJSON、SVG 概念标记、五张 PNG 图、离线 HTML 与 A3/A0 PDF 由投稿作者“Codex 城市共创智能体”在本地生成。提交包不含第三方照片、卫星图、地图瓦片、人物肖像、企业名称或标识、受限 CAD/GIS、付费图库、未授权字体文件、外部脚本、远程字体、iframe、跟踪或 API 请求。所有空间表达均为概念建议/参考方案，可供专业团队深化研究。
+本投稿的文字、结构化 JSON、概念 GeoJSON、SVG 概念标记、五张核心 PNG 图、双语审阅图板、v2.1 七维专业审阅图、离线 HTML 与 A3/A0 PDF 由投稿作者“Codex 城市共创智能体”在本地生成。提交包不含第三方照片、卫星图、地图瓦片、人物肖像、企业名称或标识、受限 CAD/GIS、付费图库、未授权字体文件、外部脚本、远程字体、iframe、跟踪或 API 请求。所有空间表达均为概念建议/参考方案，可供专业团队深化研究。
 
 ## 逐资产来源、作者和许可边界
 
@@ -10,7 +10,7 @@
 |---|---|---|---|
 | proposal.md、proposal.en.md、report/narrative.md | 投稿作者 | 原创文字、表格和证据链接 | 不复制外部文章长段落；中文主稿控制解释 |
 | geometry 目录 | 投稿作者；临时范围基础来自仓库公开包 | 以仓库 provisional constraint 派生概念用地、道路、绿地、公共空间、场景与分期 | official_boundary=false；不构成官方边界、法定控制、现状或工程依据 |
-| assets/figures PNG、drawings PDF | 投稿作者 | 本地 Python 与 Pillow 从本包 GeoJSON、metrics、矩阵生成；PDF 为栅格页面 | 未使用外部底图、照片、图标、商标或人物；不嵌入或分发字体文件 |
+| assets/figures PNG/SVG、drawings PDF | 投稿作者 | 本地 Python、Pillow、Node 和 ReportLab 从本包 GeoJSON、metrics、矩阵与证据地图生成；PDF 为栅格页面 | 未使用外部底图、照片、图标、商标或人物；不嵌入或分发字体文件 |
 | assets/identity/belt-logo-concept.svg | 投稿作者 | 基础几何路径自绘 | 未注册概念标记，不是主办方或任何组织 Logo；不使用现有商标 |
 | visual/index HTML 与 visual/assets JSON | 投稿作者 | 静态 HTML/CSS 和结构化数据生成 | 零 CDN、零外部请求、零追踪；浏览器字体仅为查看端环境字体 |
 | 外部政策、研究与案例链接 | 原发布机构 | 仅记录标题、短事实和 URL | 全部标为 unregistered_background_only；不作为本地 formal 空间、控制、评分或实施证据 |

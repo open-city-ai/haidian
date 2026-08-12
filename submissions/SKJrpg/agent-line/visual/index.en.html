@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Offline English exhibition page for AGENT LINE, a conceptual urban-design proposal for the Centennial Jing-Zhang AI Innovation Belt.">
+<title>AGENT LINE — An Innovation Belt for the Agent Age</title>
+<style>
+:root{--rail-dark:#1a1e23;--rail-grey:#3d444d;--copper:#b87333;--copper-light:#d4956b;--signal:#2d7a3a;--cream:#f5f0e8;--paper:#faf8f4;--white:#fff;--ink:#1a1e23;--muted:#6b7280;--border:#d1c9b8;--blueprint:#1e3a5f;--shadow:0 4px 12px rgba(26,30,35,.1);--radius:10px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:Arial,"Helvetica Neue",sans-serif;background:var(--cream);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.topbar{background:var(--rail-dark);color:var(--cream);border-bottom:3px solid var(--copper);padding:10px 0;font:700 13px/1.4 "Courier New",monospace}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}.topbar a{color:var(--copper-light)}
+.hero{position:relative;overflow:hidden;padding:64px 0 48px;color:var(--white);background:linear-gradient(135deg,var(--rail-dark),#252a31 52%,var(--blueprint))}
+.hero:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 60px,rgba(184,115,51,.07) 60px 61px)}
+.hero .wrap{position:relative}.eyebrow{color:#55b868;font:12px/1.4 "Courier New",monospace;letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px}
+h1,h2,h3,.metric-value{font-family:"Courier New",monospace}.hero h1{font-size:clamp(34px,6vw,58px);line-height:1.05}.accent{color:var(--copper-light)}
+.lead{max-width:760px;color:#c5ced4;font-size:clamp(16px,2.2vw,20px);margin:16px 0 24px}.banner{padding:14px 18px;border:1px solid var(--copper);border-radius:6px;background:#3a2e1a;color:var(--copper-light)}
+nav{margin:28px 0;padding:16px 20px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 1px 3px rgba(26,30,35,.08)}
+nav p{font:11px/1.4 "Courier New",monospace;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}.stops{display:flex;gap:8px;flex-wrap:wrap}.stops a{padding:5px 10px;border:1px solid var(--border);border-radius:4px;background:var(--cream);font:12px/1.4 "Courier New",monospace;text-decoration:none;transition:background .15s,color .15s}.stops a:hover,.stops a:focus-visible{background:var(--rail-dark);color:var(--cream);outline:2px solid var(--copper);outline-offset:2px}
+.section{margin-bottom:24px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.section header{padding:22px 28px 16px;border-bottom:1px solid var(--border);background:linear-gradient(var(--paper),var(--white))}.section h2{font-size:22px}.section header p{color:var(--muted);font-size:14px;margin-top:5px}.body{padding:24px 28px}
+.metrics,.grid3,.grid2{display:grid;gap:16px}.metrics{grid-template-columns:repeat(3,1fr)}.grid3{grid-template-columns:repeat(3,1fr)}.grid2{grid-template-columns:repeat(2,1fr)}
+.card{padding:18px 16px;background:var(--paper);border:1px solid var(--border);border-radius:6px}.metric{text-align:center;border-top:3px solid var(--copper)}.metric-label{font:11px/1.4 "Courier New",monospace;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}.metric-value{font-size:26px;font-weight:700;margin:6px 0}.card h3{font-size:15px;margin-bottom:8px}.card p,.card li{font-size:13px;color:var(--muted)}.card ul{padding-left:18px;margin-top:6px}
+figure{border:1px solid var(--border);border-radius:6px;overflow:hidden;background:var(--cream);margin-bottom:16px}figure img{display:block;width:100%;height:auto}figcaption{padding:11px 15px;background:var(--paper);border-top:1px solid var(--border);font-size:13px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:top}th{font:11px/1.4 "Courier New",monospace;color:var(--muted);text-transform:uppercase;border-bottom:2px solid var(--copper)}.pass{color:var(--signal);font-weight:700}
+.note{border-left:4px solid var(--signal)}.warning{border-left-color:var(--copper)}footer{margin-top:48px;padding:32px 0;background:var(--rail-dark);color:#aab1b8;font-size:13px}footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+@media(max-width:900px){.grid3,.grid2{grid-template-columns:1fr}.body,.section header{padding-left:18px;padding-right:18px}}
+@media(max-width:600px){.wrap{padding:0 16px}.hero{padding:44px 0 34px}.metrics{grid-template-columns:1fr}.topbar{font-size:12px}table,tbody,tr,td{display:block;width:100%}thead{display:none}tr{padding:10px 0;border-bottom:1px solid var(--border)}td{display:grid;grid-template-columns:minmax(92px,34%) 1fr;gap:10px;border:0;padding:6px 0}td:before{font:10px/1.4 "Courier New",monospace;color:var(--muted);text-transform:uppercase}td:nth-child(1):before{content:"Workstream"}td:nth-child(2):before{content:"Human lead"}td:nth-child(3):before{content:"Required inputs"}td:nth-child(4):before{content:"Exit evidence"}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="wrap"><span>AGENT LINE · SKJrpg × Sisyphus</span><a href="index.html" hreflang="zh-CN">中文展示页</a></div></div>
+<section class="hero"><div class="wrap"><p class="eyebrow">Centennial Jing-Zhang AI Innovation Belt Open Call</p><h1>Jing-Zhang Smart Rail <span class="accent">AGENT LINE</span></h1><p class="lead">Tracks laid in 1909; agents dispatched in 2026 — a century-old railway reframed as public, spatial, and institutional infrastructure for the agent age.</p><div class="banner"><strong>Conceptual recommendation.</strong> All geometry is provisional, not an official planning boundary. Every spatial output must be recalculated when official data is released.</div></div></section>
+<main class="wrap">
+<nav aria-label="Page navigation"><p>Route map — page navigation</p><div class="stops"><a href="#metrics">Metrics</a><a href="#framework">Framework</a><a href="#areas">Key areas</a><a href="#mobility">Mobility</a><a href="#scenarios">AI scenarios</a><a href="#delivery">Delivery gates</a><a href="#evidence">Evidence</a><a href="#status">Status</a></div></nav>
+
+<section class="section" id="metrics"><header><h2>Core spatial metrics</h2><p>Values are recalculated from the submitted GeoJSON in EPSG:4548 and match metrics.json.</p></header><div class="body"><div class="metrics">
+<div class="card metric"><div class="metric-label">Overall design area</div><div class="metric-value" data-metric="site_area_sqm" data-value="11412825.386">11,412,825 m²</div><p>Provisional in-package area</p></div>
+<div class="card metric"><div class="metric-label">Conceptual green ratio</div><div class="metric-value" data-metric="green_ratio" data-value="0.125304">12.53%</div><p>Not a statutory green-space ratio</p></div>
+<div class="card metric"><div class="metric-label">Conceptual public-space ratio</div><div class="metric-value" data-metric="public_space_ratio" data-value="0.073181">7.32%</div><p>Not an approved control indicator</p></div>
+</div></div></section>
+
+<section class="section" id="framework"><header><h2>One line, three stations, two wings, three gates</h2><p>The three-level scope connects a 43.6 km² strategic study, an 11.4 km² overall design area, and 368.4 ha of key-area design.</p></header><div class="body"><figure><img src="../assets/figures/site-overview.en.png" width="2400" height="1350" alt="AGENT LINE overview showing the provisional overall design area, key areas, mobility links, green space, buildings, and scenario nodes"><figcaption>The technical exhibit preserves the validated geometry and bilingual station labels; this page supplies the full English interpretation.</figcaption></figure><div class="grid3">
+<article class="card"><h3>THE MAINLINE</h3><p>The nine-kilometre railway heritage green corridor is both a walking-and-cycling spine and a public protocol for traceable, reversible testing.</p></article>
+<article class="card"><h3>Three stations</h3><p>THE WORKS validates and makes; ORIGIN STATION marshals knowledge and talent; SIGNAL HOUSE circulates services and lessons.</p></article>
+<article class="card"><h3>Two wings and three gates</h3><p>TICKET HALL and TEST TRACK connect professional services with controlled real-world validation. Three conceptual gates organize arrival experiences.</p></article>
+</div></div></section>
+
+<section class="section" id="areas"><header><h2>Land use and key areas</h2><p>Eleven conceptual zones form a complete in-package partition. The three key areas are complementary station roles, not approved plots.</p></header><div class="body"><div class="grid2"><figure><img src="../assets/figures/land-use-structure.en.png" width="2400" height="1350" alt="Conceptual land-use structure and recalculated areas"><figcaption>Eleven conceptual land-use segments; classifications and areas require official-data recalculation.</figcaption></figure><figure><img src="../assets/figures/key-areas.en.png" width="2400" height="1350" alt="Three provisional key areas and conceptual building interfaces"><figcaption>THE WORKS, ORIGIN STATION, and SIGNAL HOUSE with reversible, data-dependent interventions.</figcaption></figure></div><div class="grid3">
+<article class="card"><h3>THE WORKS · 192.1 ha announced</h3><p>Garden-style full-stack AI innovation, old-factory adaptation, Qinghe interface, and a north gateway — all pending ownership, heritage, transport, and engineering evidence.</p></article>
+<article class="card"><h3>ORIGIN STATION · 104.3 ha announced</h3><p>Near-campus research translation, open-source marshalling, talent services, and the retained Qinghuayuan Station heritage anchor.</p></article>
+<article class="card"><h3>SIGNAL HOUSE · 72.0 ha announced</h3><p>Urban intelligent economy, enterprise services, data-governance sandboxing, and improved station-area walking connections.</p></article>
+</div></div></section>
+
+<section class="section" id="mobility"><header><h2>Mobility and the blue-green network</h2><p>Lines express connectivity goals rather than surveyed roads, approved red lines, or engineering alignments.</p></header><div class="body"><figure><img src="../assets/figures/mobility-bluegreen.en.png" width="2400" height="1350" alt="Conceptual walking, cycling, transit-connection, and blue-green network"><figcaption>Three paths, one green spine, three gates, and east-west stitching links. Professional transport and municipal studies remain prerequisites.</figcaption></figure></div></section>
+
+<section class="section" id="scenarios"><header><h2>Twelve AI scenarios, three controlled tests</h2><p>Every scenario requires voluntary participation, data minimization, human review, appeal, a stop threshold, and a restorable exit.</p></header><div class="body"><div class="grid3">
+<article class="card"><h3>Public life</h3><ul><li>Heritage guide</li><li>Walking-and-cycling evaluation</li><li>All-age health navigation</li><li>Large-event safety review</li></ul></article>
+<article class="card"><h3>Innovation services</h3><ul><li>Enterprise-service ticket window</li><li>Open-source crane stations</li><li>Youth maker market</li><li>Honor-wall ceremony</li></ul></article>
+<article class="card"><h3>Testing and Validation Scenarios</h3><ul><li>BJTU open rail test field</li><li>Agent civic hall</li><li>Data-element signal office</li><li>Robot last-leg delivery</li></ul></article>
+</div></div></section>
+
+<section class="section" id="delivery"><header><h2>Implementation conversion protocol</h2><p>Readiness gates define evidence needed for professional deepening; they are not approved construction timing, investment, procurement, or government commitments.</p></header><div class="body"><table><thead><tr><th>Workstream</th><th>Human lead type</th><th>Required authoritative inputs</th><th>Exit evidence</th></tr></thead><tbody>
+<tr><td>Boundary and controls</td><td>Planning and land-use professionals</td><td>Official polygons, regulatory controls, ownership, existing-condition survey</td><td>Signed data register and recalculated package</td></tr>
+<tr><td>Mobility and municipal systems</td><td>Transport and municipal engineers</td><td>Road red lines, sections, flows, utilities, flood, fire, and capacity data</td><td>Reviewed feasibility memo and conflict register</td></tr>
+<tr><td>Heritage and buildings</td><td>Heritage, architecture, and structural professionals</td><td>Protection controls, building ledger, safety, age, use, and rights</td><td>Human-approved retain–renovate–demolish assessment</td></tr>
+<tr><td>AI scenarios and operations</td><td>Site operator and public-governance owner</td><td>Legal basis, data inventory, baseline window, accessibility and safety review</td><td>Published test protocol, threshold, appeal route, and restoration record</td></tr>
+</tbody></table></div></section>
+
+<section class="section" id="evidence"><header><h2>Metrics and evidence chain</h2><p>Geometry, metrics, sources, standards, depth records, reports, drawings, and HTML form one auditable package.</p></header><div class="body"><figure><img src="../assets/figures/metrics-evidence.en.png" width="2400" height="1350" alt="Metrics and evidence-chain exhibit"><figcaption>Known values are reproducible. Floor area, FAR, height, density, statutory green ratio, and road indicators remain unknown pending official evidence.</figcaption></figure></div></section>
+
+<section class="section" id="status"><header><h2>Review status and evidence boundaries</h2><p>Automated gates establish readiness for content review; they do not grant real-world approval.</p></header><div class="body"><div class="grid2">
+<article class="card note"><h3>Formal-review-ready</h3><p>Deterministic validation, spatial review, visual packaging, and professional evidence review pass. The authoritative result is produced by <code>self_check_submission.py</code>.</p></article>
+<article class="card note warning"><h3>Provisional geometry</h3><p>The organizer's missing official geometry does not reduce content scoring. It does require complete recalculation before statutory or engineering use.</p></article>
+<article class="card note"><h3>Sources and copyright</h3><p>The package uses public sources as evidence and contains no remote map tiles, external photos, corporate logos, portraits, or third-party renderings.</p></article>
+<article class="card note warning"><h3>Unknown controls stay unknown</h3><p>FAR, height, density, road red lines, municipal capacity, investment, and delivery timing are not inferred or presented as approved conclusions.</p></article>
+</div></div></section>
+</main>
+<footer><div class="wrap"><div><strong>AGENT LINE</strong> · CC BY-SA 4.0<br>Centennial Jing-Zhang AI Innovation Belt Open Call</div><div>Fully offline; no runtime external requests.<br>Authority remains with geometry/*.geojson, metrics.json, sources.json, and the evidence matrices.</div></div></footer>
+</body>
+</html>

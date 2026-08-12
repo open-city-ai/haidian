@@ -1,0 +1,236 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(project(EPSG:4548, provisional_site_boundary))",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; recalculate after official polygon release."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 652859.728,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(projected_concept_envelopes))",
+      "confidence": "medium",
+      "assumptions": [
+        "Thirty differentiated conceptual envelopes, not surveyed buildings or approved development volume."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.069036,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(green_space))/site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept layer; not statutory green-space rate."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.038376,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(interface_courts))/site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "Denominator uses the provisional site boundary.",
+        "Numerator is the union of twelve conceptual interface courts, not statutory public-space land."
+      ]
+    },
+    "service_route_length_m": {
+      "status": "known",
+      "value": 23321.757,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(projected route lengths)",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept centrelines, including three differentiated internal loops; not road redlines."
+      ]
+    },
+    "interface_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(interface_courts)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_prototype_count": {
+      "status": "known",
+      "value": 30,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(conceptual_building_envelopes)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_zone_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(shared_edge_land_use_zones)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "service_network_segment_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "1 spine + 6 links + 3 loops",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(full_scenario_protocols)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_model_card_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(ai_model_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_group_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(persona_groups)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "stakeholder_type_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(stakeholder_types)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "governance_field_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(governance_fields_per_project)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_gate_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(G0..G4 gates)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_validation_scene_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industry_validation_types)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(provisional_key_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "Key-area polygons are provisional."
+      ]
+    },
+    "operational_success_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "successful_field_tasks / field_tasks",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No field baseline or pilot evidence exists."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR and official boundary are unavailable."
+    }
+  }
+}

@@ -1,0 +1,1143 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "当前使用临时粗略边界 PROV-SITE-001，非官方红线；官方边界发布后必须重算。"
+      ],
+      "related_assumption": "ASM-BOUNDARY-001",
+      "delivery_depth_zh": "控制性"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1997463.954,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints)) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "建筑基底由所在用地地块按固定比例向心缩放生成，形态继承有机地块，不是现状测绘成果。",
+        "不构成建筑规模、高度、强度、容积率或地块拆改留审批结论；height_control 与 volume_control 均为 not_defined。"
+      ],
+      "related_assumption": "ASM-BUILDING-001",
+      "delivery_depth_zh": "概念"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.146888,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "绿地图层由 LAND_USE 的 1401 与 1402 派生，与用地语义保持一致，不独立划定。",
+        "占比高于常规城区，反映京张遗址公园绿廊作为方案核心公共空间载体的概念意图；官方边界发布后需重新校核。"
+      ],
+      "related_assumption": "ASM-GREEN-001",
+      "delivery_depth_zh": "控制性"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1676402.844,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space)) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "与 land_use 中 1401 加 1402 的面积合计一致，无独立划定误差。"
+      ],
+      "related_assumption": "ASM-GREEN-001",
+      "delivery_depth_zh": "控制性"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.032652,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "公共空间由 1403 广场用地与AI场景节点派生的公共体验面组成。",
+        "场景节点体验面与既有广场重叠部分已做差集扣除，零重叠，面积不重复计入。"
+      ],
+      "related_assumption": "ASM-PRIVACY-001",
+      "delivery_depth_zh": "控制性"
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 372655.444,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space)) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "含2处广场用地与10处由场景节点派生的公共体验面，全部标注无需使用AI即可正常使用。"
+      ],
+      "related_assumption": "ASM-PRIVACY-001",
+      "delivery_depth_zh": "控制性"
+    },
+    "building_count": {
+      "status": "known",
+      "value": 533,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(features[layer=BUILDING_FOOTPRINT])",
+      "confidence": "medium",
+      "assumptions": [
+        "每个建设用地单元生成一处概念体量，非真实建筑数量。"
+      ],
+      "related_assumption": "ASM-BUILDING-001",
+      "delivery_depth_zh": "概念"
+    },
+    "building_retain_count": {
+      "status": "known",
+      "value": 338,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(features[building_status=retain])",
+      "confidence": "medium",
+      "assumptions": [
+        "保留类对应居住、教育与社区配套用地上的既有功能，仅为概念分类建议，不构成拆改留结论。"
+      ],
+      "related_assumption": "ASM-BUILDING-001",
+      "delivery_depth_zh": "概念"
+    },
+    "building_renew_count": {
+      "status": "known",
+      "value": 170,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(features[building_status=renew])",
+      "confidence": "medium",
+      "assumptions": [
+        "更新类对应商业服务业、科研与文化用地，仅为概念分类建议。"
+      ],
+      "related_assumption": "ASM-BUILDING-001",
+      "delivery_depth_zh": "概念"
+    },
+    "building_future_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(features[building_status=future])",
+      "confidence": "medium",
+      "assumptions": [
+        "场景预留类位于众智园北部科研用地，与留白用地共同承接未来不确定需求。"
+      ],
+      "related_assumption": "ASM-BUILDING-001",
+      "delivery_depth_zh": "概念"
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 106285.7,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(road_centerlines)) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "10条概念性交通组织线，含3条南北向、5条东西向缝合联系与2条服务联系。",
+        "不含道路红线、车道数、线形、桥隧、地下空间或轨道线位结论；engineering_status 一律 not_defined。"
+      ],
+      "related_assumption": "ASM-ROAD-001",
+      "delivery_depth_zh": "控制性"
+    },
+    "floor_area_ratio": {
+      "status": "known",
+      "value": 1.4002,
+      "unit": "index",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "building_footprint_area_sqm * assumed_mean_storeys(8) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "planning_limits.json 中 official_planning_controls.floor_area_ratio 状态为 missing，本值为按方案建议体量反算的毛容积率，不是审定指标。",
+        "分母为全部项目范围（含道路与绿地），因此低于开发地块的净容积率；取得官方控规条件后必须替换并重算建筑总规模。"
+      ],
+      "related_assumption": "ASM-CONTROL-001",
+      "delivery_depth_zh": "概念"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [],
+      "related_assumption": "ASM-BOUNDARY-001",
+      "delivery_depth_zh": "控制性"
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features[layer=SCENARIO_NODE])",
+      "confidence": "high",
+      "assumptions": [
+        "每个场景节点对应 proposal.md 第5章的一张 AI 场景卡，编号一致。"
+      ],
+      "related_assumption": "ASM-PROTOCOL-001",
+      "delivery_depth_zh": "概念"
+    },
+    "industry_validation_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features[industry_validation=true])",
+      "confidence": "high",
+      "assumptions": [
+        "产业测试验证场景以字段标记表达，不使用编号前缀；三张卡均挂载 LAB 接口。"
+      ],
+      "related_assumption": "ASM-LAB-001",
+      "delivery_depth_zh": "概念"
+    },
+    "interface_coverage_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(distinct(primary_interface))",
+      "confidence": "high",
+      "assumptions": [
+        "十类接口各有一张场景卡作为主接口；GOV 另作为横切准入层出现在全部节点。"
+      ],
+      "related_assumption": "ASM-PROTOCOL-001",
+      "delivery_depth_zh": "概念"
+    },
+    "persona_coverage_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(distinct(flatten(personas)))",
+      "confidence": "high",
+      "assumptions": [
+        "任务书要求不少于5类用户画像，本方案含居民与治理者共7类。"
+      ],
+      "related_assumption": "ASM-PROTOCOL-001",
+      "delivery_depth_zh": "概念"
+    },
+    "public_entry_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features[public_entry_node != null]) / scenario_node_count",
+      "confidence": "high",
+      "assumptions": [
+        "每个场景节点均绑定一个公众入口节点；产业验证节点缺失该字段应判为不合格。"
+      ],
+      "related_assumption": "ASM-PRIVACY-001",
+      "delivery_depth_zh": "概念"
+    },
+    "governance_required_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features[governance_required=true]) / scenario_node_count",
+      "confidence": "high",
+      "assumptions": [
+        "GOV 为横切准入层，任何节点不得豁免人工复核。"
+      ],
+      "related_assumption": "ASM-PRIVACY-001",
+      "delivery_depth_zh": "概念"
+    },
+    "ai_service_zone_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(features[layer=AI_SERVICE_ZONE])",
+      "confidence": "high",
+      "assumptions": [
+        "含5个片区服务面与1个跨片区线性叠加带。"
+      ],
+      "related_assumption": "ASM-ZGC-001",
+      "delivery_depth_zh": "概念"
+    },
+    "ai_service_zone_area_sqm": {
+      "status": "known",
+      "value": 4538118.089,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(features[zone_type=area_service])) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "不含 zone_type=linear_overlay 的文化路径带，避免与片区服务面重复计入。",
+        "基于临时粗略边界生成，官方边界发布后必须重新定位并复算。"
+      ],
+      "related_assumption": "ASM-ZGC-001",
+      "delivery_depth_zh": "概念"
+    },
+    "ai_service_zone_overlay_area_sqm": {
+      "status": "known",
+      "value": 2683059.007,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(features[zone_type=linear_overlay])) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "文化路径带允许与片区服务面叠置，单独统计。"
+      ],
+      "related_assumption": "ASM-ZGC-001",
+      "delivery_depth_zh": "概念"
+    },
+    "sandbox_segment_length_m": {
+      "status": "known",
+      "value": 1417.0,
+      "unit": "m",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "length(local_streets ∩ AIZ-XYH-01)",
+      "confidence": "medium",
+      "assumptions": [
+        "仅统计小月河服务区内的支路长度作为 Agent 实验路段，主干路与次干路不纳入测试范围。",
+        "路段为概念建议，开放测试需另行取得道路管理与安全主管部门的许可。"
+      ],
+      "related_assumption": "ASM-XYH-001",
+      "delivery_depth_zh": "概念"
+    },
+    "validation_ground_footprint_sqm": {
+      "status": "known",
+      "value": 313731.396,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(buildings within AIZ-ZZY-01)) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "概念体量基底，不构成建筑规模结论；验证综合体的实际规模待专业团队深化。"
+      ],
+      "related_assumption": "ASM-COMPUTE-001",
+      "delivery_depth_zh": "概念"
+    },
+    "compute_node_density_per_km2": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(compute_nodes) / zone_area_km2 (index expressed as nodes per square kilometre)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "算力节点空间布局为概念建议，不构成市政容量或能源负荷结论；具体节点数待专业团队深化后确定。",
+      "resolution_state": "pending_professional_deepening",
+      "resolution_state_note_zh": "等待专业团队深化设计后方可取值。",
+      "related_assumption": "ASM-COMPUTE-001",
+      "delivery_depth_zh": "概念"
+    },
+    "experiment_unit_count": {
+      "status": "known",
+      "value": 22,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(buildings[building_status=renew] within AIZ-DZS-01)",
+      "confidence": "medium",
+      "assumptions": [
+        "以大钟寺服务区内的更新类概念体量数作为智能原生消费实验单元的建议数量。",
+        "实验位为轮换机制，数量可随运营调整；不构成已批准的商业运营安排。"
+      ],
+      "related_assumption": "ASM-LAB-001",
+      "delivery_depth_zh": "概念"
+    },
+    "station_walk_coverage_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "walkshed_500m_area / zone_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "依赖尚未生成的道路图层；且路口步行连通仅为概念意图，不得据此给出工程可行性结论。",
+      "resolution_state": "pending_source",
+      "resolution_state_note_zh": "已知需要何种证据，等待可验证公开来源登记后方可取值。",
+      "related_assumption": "ASM-CONTEXT-001",
+      "delivery_depth_zh": "概念"
+    },
+    "cocreation_space_area_sqm": {
+      "status": "known",
+      "value": 166153.515,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space within AIZ-AOC-01)) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "由AI原点社区内场景节点派生的公共体验面合计，表达开放共创空间的概念可达范围，非建筑面积。"
+      ],
+      "related_assumption": "ASM-LANDUSE-001",
+      "delivery_depth_zh": "概念"
+    },
+    "university_walk15_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(universities within 15min walkshed of SB-TAL-AOC-01)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "依赖尚未生成的道路图层与公开高校点位来源登记。",
+      "resolution_state": "pending_source",
+      "resolution_state_note_zh": "已知需要何种证据，等待可验证公开来源登记后方可取值。",
+      "related_assumption": "ASM-CONTEXT-001",
+      "delivery_depth_zh": "概念"
+    },
+    "innovation_space_type_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(distinct(land_use_code where ai_capacity_role contains a non daily_service_support role))",
+      "confidence": "medium",
+      "assumptions": [
+        "计入 05 商业服务业用地、0802 科研用地、0803 文化用地、0804 教育用地、1401 公园绿地、1403 广场用地、16 留白用地。",
+        "仅承担日常配套的 0702/0805/0806 不计入创新空间供给类型。"
+      ],
+      "related_assumption": "ASM-LANDUSE-001",
+      "delivery_depth_zh": "概念"
+    },
+    "reserved_land_ratio": {
+      "status": "known",
+      "value": 0.040018,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(land_use_code=16) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "留白用地作为未来AI场景预留与Agent实验缓冲，用官方用地分类承接不确定性，不新增自创用地类别。",
+        "基于临时粗略边界生成，官方边界发布后必须重新划分并复算。"
+      ],
+      "related_assumption": "ASM-LANDUSE-001",
+      "delivery_depth_zh": "控制性"
+    },
+    "land_use_polygon_count": {
+      "status": "known",
+      "value": 218,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(features[layer=LAND_USE])",
+      "confidence": "high",
+      "assumptions": [
+        "以边界顶点纬度为行断点做梯形分层，层内按归一化比例列切分，共15行6列；再对共享顶点与共享边中点施加确定性偏移形成有机地块形态。",
+        "边界列与首末行冻结，项目范围线形状不变；偏移由 md5 种子生成，可完整复现。"
+      ],
+      "related_assumption": "ASM-LANDUSE-001",
+      "delivery_depth_zh": "控制性"
+    },
+    "land_use_total_area_sqm": {
+      "status": "known",
+      "value": 11412825.373,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use)) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "与 site_area_sqm 的差值约 19.4 平方米，相对误差 1.7e-06，来自各要素面积分别取三位小数后求和的舍入。",
+        "拓扑校验结果：零重叠对，并集为单一多边形，无内部空洞；地块为有机形态，非矩形网格。"
+      ],
+      "related_assumption": "ASM-LANDUSE-001",
+      "delivery_depth_zh": "控制性"
+    },
+    "land_use_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "union_area(land_use) / site_area_sqm",
+      "confidence": "high",
+      "assumptions": [
+        "用 shapely 校验：缝隙面积与溢出面积均在 1e-11 平方度量级，属浮点噪声。"
+      ],
+      "related_assumption": "ASM-LANDUSE-001",
+      "delivery_depth_zh": "控制性"
+    },
+    "land_use_code_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(distinct(land_use_code))",
+      "confidence": "high",
+      "assumptions": [
+        "全部代码取自 brief/site-package/enums/land_use_codes.json，未新增自创分类。"
+      ],
+      "related_assumption": "ASM-LANDUSE-001",
+      "delivery_depth_zh": "控制性"
+    },
+    "green_open_space_land_ratio": {
+      "status": "known",
+      "value": 0.168003,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(land_use_code in [1401,1402,1403]) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "对应用地大类14绿地与开敞空间，含公园绿地、防护绿地与广场用地。",
+        "占比偏高反映京张遗址公园绿廊作为方案核心公共空间载体的概念意图；官方边界发布后需重新校核。"
+      ],
+      "related_assumption": "ASM-GREEN-001",
+      "delivery_depth_zh": "控制性"
+    },
+    "research_land_ratio": {
+      "status": "known",
+      "value": 0.150075,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(land_use_code=0802) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "科研用地集中于三处重点片区，是接口空间承载的主要用地类型。"
+      ],
+      "related_assumption": "ASM-LANDUSE-001",
+      "delivery_depth_zh": "控制性"
+    },
+    "road_land_use_ratio": {
+      "status": "known",
+      "value": 0.150922,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code='1207')) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "城市道路用地由道路中线按等级缓冲后与项目范围求交生成，与 roads.geojson 严格对应。",
+        "取值 0.15 落在 GB 50137 城市道路用地 10%-25% 区间内，但红线宽度为设计建议值，不是审定道路红线。"
+      ],
+      "related_assumption": "ASM-ROAD-001",
+      "delivery_depth_zh": "控制性"
+    },
+    "interpretation_node_count": {
+      "status": "known",
+      "value": 17,
+      "unit": "count",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "count(green_space[green_type=corridor])",
+      "confidence": "medium",
+      "assumptions": [
+        "文化路径带穿越的13段绿廊单元，每段建议设置一处解说与导视节点。",
+        "解说内容须经人工与专业机构史实复核后方可发布。"
+      ],
+      "related_assumption": "ASM-CULTURE-001",
+      "delivery_depth_zh": "概念"
+    },
+    "continuous_walk_path_length_m": {
+      "status": "known",
+      "value": 29255.3,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD-NS-01) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "京张遗址公园慢行主廊的概念长度，表达南北贯通意图。",
+        "南北贯通仅为概念意图，不含桥隧、地下空间或跨线工程可行性结论；实际连续性须经现状调查与专业团队核验。"
+      ],
+      "related_assumption": "ASM-ROAD-001",
+      "delivery_depth_zh": "概念"
+    },
+    "open_data_item_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(open_data_items in published catalogue)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "开放数据清单需由人工审定后发布，概念阶段不预设条目数量。",
+      "resolution_state": "pending_human_review",
+      "resolution_state_note_zh": "等待人工审定与伦理合规复核后方可取值。",
+      "related_assumption": "ASM-DATA-001",
+      "delivery_depth_zh": "概念"
+    },
+    "research_publication_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "published_results / approved_data_requests",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "运营期监测指标；概念阶段不设定目标值，避免把运营设想表述为承诺。",
+      "resolution_state": "intentionally_open",
+      "resolution_state_note_zh": "运行期绩效指标，设计阶段刻意不设目标值，避免把运营设想表述为承诺。",
+      "related_assumption": "ASM-METRIC-OPS-001",
+      "delivery_depth_zh": "概念"
+    },
+    "public_notice_coverage_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "notified_experiment_segments / total_experiment_segments",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "运营期监测指标；建议的机制要求为100%前置公示，但不在概念阶段作为已达成结论。",
+      "resolution_state": "intentionally_open",
+      "resolution_state_note_zh": "运行期绩效指标，设计阶段刻意不设目标值，避免把运营设想表述为承诺。",
+      "related_assumption": "ASM-METRIC-OPS-001",
+      "delivery_depth_zh": "概念"
+    },
+    "feedback_closure_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "closed_feedback_items / received_feedback_items",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "运营期监测指标；概念阶段不设定目标值，避免把运营设想表述为承诺。",
+      "resolution_state": "intentionally_open",
+      "resolution_state_note_zh": "运行期绩效指标，设计阶段刻意不设目标值，避免把运营设想表述为承诺。",
+      "related_assumption": "ASM-METRIC-OPS-001",
+      "delivery_depth_zh": "概念"
+    },
+    "event_venue_node_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(public_space within AIZ-ZGC-01)",
+      "confidence": "medium",
+      "assumptions": [
+        "当前仅有中关村科技服务翼接入界面一处主场节点；全带分会场依托其余服务区的公共空间，待活动体系深化后补充。",
+        "活动体系为建议性运营机制，不构成已确定的政府安排或财政支持。"
+      ],
+      "related_assumption": "ASM-EVENT-001",
+      "delivery_depth_zh": "概念"
+    },
+    "event_space_type_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(distinct(event_space_types))",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "依赖尚未生成的公共空间图层。",
+      "resolution_state": "pending_professional_deepening",
+      "resolution_state_note_zh": "等待专业团队深化设计后方可取值。",
+      "related_assumption": "ASM-EVENT-001",
+      "delivery_depth_zh": "概念"
+    },
+    "governance_registry_item_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(registry_items)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "运营期监测指标；概念阶段不设定目标值。",
+      "resolution_state": "intentionally_open",
+      "resolution_state_note_zh": "运行期绩效指标，设计阶段刻意不设目标值，避免把运营设想表述为承诺。",
+      "related_assumption": "ASM-METRIC-OPS-001",
+      "delivery_depth_zh": "概念"
+    },
+    "review_closure_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "closed_reviews / triggered_reviews",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "运营期监测指标；概念阶段不设定目标值，避免把治理设想表述为已生效制度。",
+      "resolution_state": "intentionally_open",
+      "resolution_state_note_zh": "运行期绩效指标，设计阶段刻意不设目标值，避免把运营设想表述为承诺。",
+      "related_assumption": "ASM-METRIC-OPS-001",
+      "delivery_depth_zh": "概念"
+    },
+    "residential_land_ratio": {
+      "status": "known",
+      "value": 0.292449,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code in ['0701','0702'])) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "回补至海淀建成区居住为主导用地的现实量级，避免出现隐性清退大量住宅的方案取向。",
+        "具体地块权属与现状居住规模需以官方调查为准。"
+      ],
+      "delivery_depth_zh": "控制性"
+    },
+    "building_assess_removal_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(buildings where building_status='demolish')",
+      "confidence": "medium",
+      "assumptions": [
+        "表示建议纳入低效空间评估的建筑数量，不是已确定的拆除决定。",
+        "住宅、教育、医疗、体育类建筑一律不列入该类别。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "mean_building_footprint_sqm": {
+      "status": "known",
+      "value": 3747.587,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / building_count",
+      "confidence": "medium",
+      "assumptions": [
+        "建筑基底已切分到单体粒度，均值约 0.37 公顷，符合真实建筑量级。",
+        "此前版本单体均值达 4.3 公顷，实为街坊被错标为建筑，已修正。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "road_network_density_km_per_km2": {
+      "status": "known",
+      "value": 9.3128,
+      "unit": "index",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(length(roads)) / 1000 / (site_area_sqm / 1e6)",
+      "confidence": "medium",
+      "assumptions": [
+        "南北向 7 条、东西向 31 条中线由用地网格共享边生成，街坊进深约 320 米、面宽约 220 米。",
+        "取值满足街区制路网密度不低于 8 km/km2 的公开政策要求；线位为概念建议，非工程选线。"
+      ],
+      "delivery_depth_zh": "控制性"
+    },
+    "gross_floor_area_estimate_sqm": {
+      "status": "known",
+      "value": 15979711.632,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "building_footprint_area_sqm * assumed_mean_storeys(8)",
+      "confidence": "medium",
+      "assumptions": [
+        "按建筑基底乘以假设平均层数 8 层估算，与 floor_area_ratio 同源，二者不会相互矛盾。",
+        "平均层数为设计假设，未经高度控制、日照与消防校核，不构成建筑规模结论。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(distinct phasing.phase)",
+      "confidence": "medium",
+      "assumptions": [
+        "近期 2026-2028、中期 2029-2032、远期 2033-2035 三期覆盖全部设计范围。",
+        "分期排序依据为可实施性，不构成政府实施计划或投资承诺。"
+      ],
+      "delivery_depth_zh": "控制性"
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(phasing.project_count)",
+      "confidence": "medium",
+      "assumptions": [
+        "更新项目清单按分期组织，每项均标注启动条件与实施政策建议。",
+        "项目为概念建议，供专业团队深化。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "transit_corridor_walk_coverage_ratio": {
+      "status": "known",
+      "value": 0.852169,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(buffer(arterial_corridor, 500m) ∩ site) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "以方案建议的南北向轨道与主干路复合走廊为基准做 500 米步行可达范围估算。",
+        "官方站点位置未知，因此不能代替 station_walk_coverage_ratio；该值只表达设计走廊的服务覆盖意图，不是工程可达性结论。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "building_density_ratio": {
+      "status": "known",
+      "value": 0.175019,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "recomputed_from_submitted_geometry",
+      "confidence": "medium",
+      "assumptions": [
+        "由本次提交的图层在 EPSG:4548 下复算，随图层变更同步更新。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "road_land_area_sqm": {
+      "status": "known",
+      "value": 1722445.31,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/roads.geojson"
+      ],
+      "formula": "recomputed_from_submitted_geometry",
+      "confidence": "medium",
+      "assumptions": [
+        "由本次提交的图层在 EPSG:4548 下复算，随图层变更同步更新。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "phasing_total_area_sqm": {
+      "status": "known",
+      "value": 11412805.919,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "recomputed_from_submitted_geometry",
+      "confidence": "medium",
+      "assumptions": [
+        "由本次提交的图层在 EPSG:4548 下复算，随图层变更同步更新。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "key_area_total_area_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "recomputed_from_submitted_geometry",
+      "confidence": "medium",
+      "assumptions": [
+        "由本次提交的图层在 EPSG:4548 下复算，随图层变更同步更新。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "land_use_area_16_sqm": {
+      "status": "known",
+      "value": 456715.569,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code='16'))",
+      "confidence": "medium",
+      "assumptions": [
+        "留白用地的用地面积，由提交图层在 EPSG:4548 下复算。",
+        "用地性质为概念建议，非法定控规用地方案，官方数据发布后须重算。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "land_use_area_1401_sqm": {
+      "status": "known",
+      "value": 1238427.206,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code='1401'))",
+      "confidence": "medium",
+      "assumptions": [
+        "公园绿地的用地面积，由提交图层在 EPSG:4548 下复算。",
+        "用地性质为概念建议，非法定控规用地方案，官方数据发布后须重算。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "land_use_area_0804_sqm": {
+      "status": "known",
+      "value": 916587.945,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code='0804'))",
+      "confidence": "medium",
+      "assumptions": [
+        "教育用地的用地面积，由提交图层在 EPSG:4548 下复算。",
+        "用地性质为概念建议，非法定控规用地方案，官方数据发布后须重算。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "land_use_area_0806_sqm": {
+      "status": "known",
+      "value": 170085.542,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code='0806'))",
+      "confidence": "medium",
+      "assumptions": [
+        "医疗卫生用地的用地面积，由提交图层在 EPSG:4548 下复算。",
+        "用地性质为概念建议，非法定控规用地方案，官方数据发布后须重算。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "land_use_area_0802_sqm": {
+      "status": "known",
+      "value": 1712777.507,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code='0802'))",
+      "confidence": "medium",
+      "assumptions": [
+        "科研用地的用地面积，由提交图层在 EPSG:4548 下复算。",
+        "用地性质为概念建议，非法定控规用地方案，官方数据发布后须重算。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "land_use_area_1403_sqm": {
+      "status": "known",
+      "value": 240984.816,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code='1403'))",
+      "confidence": "medium",
+      "assumptions": [
+        "广场用地的用地面积，由提交图层在 EPSG:4548 下复算。",
+        "用地性质为概念建议，非法定控规用地方案，官方数据发布后须重算。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "land_use_area_0803_sqm": {
+      "status": "known",
+      "value": 218082.968,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code='0803'))",
+      "confidence": "medium",
+      "assumptions": [
+        "文化用地的用地面积，由提交图层在 EPSG:4548 下复算。",
+        "用地性质为概念建议，非法定控规用地方案，官方数据发布后须重算。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "land_use_area_0701_sqm": {
+      "status": "known",
+      "value": 2775248.334,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code='0701'))",
+      "confidence": "medium",
+      "assumptions": [
+        "城镇住宅用地的用地面积，由提交图层在 EPSG:4548 下复算。",
+        "用地性质为概念建议，非法定控规用地方案，官方数据发布后须重算。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "land_use_area_05_sqm": {
+      "status": "known",
+      "value": 801270.648,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code='05'))",
+      "confidence": "medium",
+      "assumptions": [
+        "商业服务业用地的用地面积，由提交图层在 EPSG:4548 下复算。",
+        "用地性质为概念建议，非法定控规用地方案，官方数据发布后须重算。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "land_use_area_0805_sqm": {
+      "status": "known",
+      "value": 159806.737,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code='0805'))",
+      "confidence": "medium",
+      "assumptions": [
+        "体育用地的用地面积，由提交图层在 EPSG:4548 下复算。",
+        "用地性质为概念建议，非法定控规用地方案，官方数据发布后须重算。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "land_use_area_0702_sqm": {
+      "status": "known",
+      "value": 562417.153,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code='0702'))",
+      "confidence": "medium",
+      "assumptions": [
+        "城镇社区服务设施用地的用地面积，由提交图层在 EPSG:4548 下复算。",
+        "用地性质为概念建议，非法定控规用地方案，官方数据发布后须重算。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "land_use_area_1402_sqm": {
+      "status": "known",
+      "value": 437975.638,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code='1402'))",
+      "confidence": "medium",
+      "assumptions": [
+        "防护绿地的用地面积，由提交图层在 EPSG:4548 下复算。",
+        "用地性质为概念建议，非法定控规用地方案，官方数据发布后须重算。"
+      ],
+      "delivery_depth_zh": "概念"
+    },
+    "land_use_area_1207_sqm": {
+      "status": "known",
+      "value": 1722445.31,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code='1207'))",
+      "confidence": "medium",
+      "assumptions": [
+        "城市道路用地的用地面积，由提交图层在 EPSG:4548 下复算。",
+        "用地性质为概念建议，非法定控规用地方案，官方数据发布后须重算。"
+      ],
+      "delivery_depth_zh": "概念"
+    }
+  }
+}

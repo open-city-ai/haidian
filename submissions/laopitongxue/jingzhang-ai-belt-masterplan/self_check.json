@@ -1,0 +1,255 @@
+{
+  "ok": true,
+  "submission_dir": "submissions/laopitongxue/jingzhang-ai-belt-masterplan",
+  "pr_author": "laopitongxue",
+  "stage": "formal",
+  "deterministic_validation": {
+    "returncode": 0,
+    "ok": true,
+    "stdout": {
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "submissions/laopitongxue/jingzhang-ai-belt-masterplan/geometry/site_boundary.geojson: uses provisional boundary; do not treat it as an official redline or precise-area basis. Organizer data gaps do not block content scoring; recalculate when official geometry is supplied"
+      ],
+      "proposal_files": [
+        "submissions/laopitongxue/jingzhang-ai-belt-masterplan/proposal.md"
+      ],
+      "changelog_files": [
+        "submissions/laopitongxue/jingzhang-ai-belt-masterplan/changelog.md"
+      ],
+      "ai_package_stages": {
+        "submissions/laopitongxue/jingzhang-ai-belt-masterplan": "formal"
+      },
+      "maintainer_bypass": false
+    },
+    "stderr": ""
+  },
+  "spatial_review": {
+    "returncode": 0,
+    "ok": true,
+    "stdout": {
+      "ok": true,
+      "stage": "formal",
+      "issues": [
+        {
+          "check_id": "KEY_AREA_PROVISIONAL",
+          "severity": "minor",
+          "target_file": "geometry/key_areas.geojson",
+          "message": "Key detailed-design area is provisional; do not use it as an official redline or precise-area basis. Content scoring remains eligible.",
+          "target_feature_id": "PROV-KEY-001",
+          "expected": null,
+          "actual": null
+        },
+        {
+          "check_id": "KEY_AREA_PROVISIONAL",
+          "severity": "minor",
+          "target_file": "geometry/key_areas.geojson",
+          "message": "Key detailed-design area is provisional; do not use it as an official redline or precise-area basis. Content scoring remains eligible.",
+          "target_feature_id": "PROV-KEY-002",
+          "expected": null,
+          "actual": null
+        },
+        {
+          "check_id": "KEY_AREA_PROVISIONAL",
+          "severity": "minor",
+          "target_file": "geometry/key_areas.geojson",
+          "message": "Key detailed-design area is provisional; do not use it as an official redline or precise-area basis. Content scoring remains eligible.",
+          "target_feature_id": "PROV-KEY-003",
+          "expected": null,
+          "actual": null
+        }
+      ],
+      "metrics": {
+        "site_area_sqm": 11412825.386,
+        "green_space_area_sqm": 1735502.778,
+        "public_space_area_sqm": 394030.789,
+        "building_footprint_area_sqm": 1352793.703,
+        "green_ratio": 0.152066,
+        "public_space_ratio": 0.034525
+      }
+    },
+    "stderr": ""
+  },
+  "visual_review": {
+    "returncode": 0,
+    "ok": true,
+    "stdout": {
+      "ok": true,
+      "issues": [],
+      "metrics_seen": {
+        "site_area_sqm": 11412825.386,
+        "green_ratio": 0.152066,
+        "public_space_ratio": 0.034525,
+        "key_area_count": 3
+      }
+    },
+    "stderr": ""
+  },
+  "professional_review": {
+    "returncode": 0,
+    "ok": true,
+    "stdout": {
+      "ok": true,
+      "issues": [],
+      "summary": {
+        "standard_matrix_items": 9,
+        "design_depth_items": 15,
+        "proposal_format_version": "2",
+        "evidence_contract": "section-anchors-plus-structured-audit",
+        "proposal_reference_counts": {
+          "source": 20,
+          "standard": 6,
+          "depth": 15,
+          "data": 21,
+          "metric": 17
+        }
+      }
+    },
+    "stderr": ""
+  },
+  "spatial_issue_ids": [
+    "KEY_AREA_PROVISIONAL",
+    "KEY_AREA_PROVISIONAL",
+    "KEY_AREA_PROVISIONAL"
+  ],
+  "visual_issue_ids": [],
+  "professional_issue_ids": [],
+  "missing_review_dependencies": [],
+  "can_enter_formal_review": true,
+  "package_type": "professional_design_package",
+  "review_status": "formal-review-ready",
+  "next_actions": [],
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "validate_local_submission.py",
+      "message": "deterministic_validation: PASS",
+      "record_type": "trusted_gate_run"
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "spatial_review.py",
+      "message": "spatial_review: PASS",
+      "record_type": "trusted_gate_run"
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual_review.py",
+      "message": "visual_review: PASS",
+      "record_type": "trusted_gate_run"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "professional_review.py",
+      "message": "professional_review: PASS",
+      "record_type": "trusted_gate_run"
+    },
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "总体设计边界已明确标记为暂定约束，仅用于方案内容审阅、结构测试和提交校验；取得官方红线后必须重锚并复算，不得用于测绘、审批或法定判断。 / The overall-design boundary is explicitly provisional and is used only for content review, structural testing, and package validation; an official redline must trigger re-anchoring and recalculation before survey, approval, or statutory use.",
+      "record_type": "participant_assertion"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三个必选重点区域均已提交并标记为暂定空间锚点；其位置与形状不被表述为官方地块，正式 polygon、地籍和权属到位后必须替换。 / All three required key areas are present and labelled as provisional spatial anchors; their locations and shapes are not presented as official parcels and must be replaced when official polygons, cadastre, and tenure data arrive.",
+      "record_type": "participant_assertion"
+    },
+    {
+      "check_id": "ALIGNMENT_CONFLICT_DISCLOSED",
+      "result": "pass",
+      "severity": "major",
+      "target": "sources.json",
+      "message": "Issue #846 报告的零重叠与约 412.5 米最近距离，以及 Issue #1029 提出的重点区定位不确定性，已在来源、假设、正文和风险触发器中披露；二者只作为重锚警示，不作为官方纠错。 / The zero overlap and approximately 412.5 m nearest distance reported in Issue #846, and the key-area positioning uncertainty raised in Issue #1029, are disclosed across sources, assumptions, narrative, and risk triggers; both are treated as re-anchoring warnings, not official corrections.",
+      "record_type": "participant_assertion"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/land_use.geojson",
+      "message": "九个概念用地单元在 EPSG:4548 中构成总体暂定边界的完整参数化分区，空隙、越界与重叠合计误差为 0.0 平方米；该拓扑通过不赋予其法定用地性质。 / Nine conceptual land-use zones form a complete parametric partition of the provisional overall boundary in EPSG:4548, with a combined gap, outside, and overlap error of 0.0 sqm; topology validity does not confer statutory land-use status.",
+      "record_type": "participant_assertion"
+    },
+    {
+      "check_id": "METRIC_RECOMPUTATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "metrics.json",
+      "message": "37 项指标按 known、calculated provisional、target pending 与 unknown 分层；几何交换采用 EPSG:4326，面积与长度在 EPSG:4548 中复算，缺少正式数据的 FAR、高度、人口、交通分担、雨洪容量和可负担比例保持 unknown。 / Thirty-seven metrics are separated into known, calculated provisional, target pending, and unknown states; geometry is exchanged in EPSG:4326 and recomputed in EPSG:4548, while FAR, height, population, mode share, stormwater capacity, and affordability remain unknown where official evidence is absent.",
+      "record_type": "participant_assertion"
+    },
+    {
+      "check_id": "PROJECT_PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "十三章正文的主张已就近链接数据、指标、来源、标准、假设与专业深度证据；23 项合规响应、9 项标准响应和 15 项设计深度响应均为项目特定内容，并已通过 professional_review.py。 / Claims in all thirteen chapters are locally linked to data, metrics, sources, standards, assumptions, and design-depth evidence; all 23 compliance, 9 standards, and 15 design-depth responses are project-specific and pass professional_review.py.",
+      "record_type": "participant_assertion",
+      "original_check_id": "PROFESSIONAL_EVIDENCE"
+    },
+    {
+      "check_id": "BILINGUAL_PACKAGE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.en.md",
+      "message": "中文与英文的完整正文、离线报告、可视化入口、五组图件及 A3/A0 PDF 均成对存在，英文正文保持与中文相同的十三章结构和证据序列。 / Complete Chinese and English proposals, offline reports, visualization entries, five figure sets, and A3/A0 PDFs are paired; the English proposal preserves the same thirteen-section structure and evidence sequence as the Chinese proposal.",
+      "record_type": "participant_assertion"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "message": "中英文可视化页面均可离线打开，不加载 CDN、远程瓦片、外部脚本、外部字体、API 或 iframe；页面显示指标与 metrics.json 一致，并已通过 visual_review.py。 / Both visualization pages work offline without CDNs, remote tiles, external scripts, external fonts, APIs, or iframes; displayed metrics agree with metrics.json and pass visual_review.py.",
+      "record_type": "participant_assertion"
+    },
+    {
+      "check_id": "PDF_PAGE_QA",
+      "result": "pass",
+      "severity": "major",
+      "target": "drawings/a3-booklet.pdf",
+      "message": "四份 PDF 已逐页渲染检查，共 30 页：中英文 A3 文册各 8 页、中英文 A0 展板各 7 页；页面为准确的横向 A3/A0 尺寸，未发现裁切、乱码、黑块或远程依赖。 / All four PDFs were rendered and checked page by page, 30 pages total: eight pages in each Chinese/English A3 booklet and seven in each Chinese/English A0 board set; pages use exact landscape A3/A0 sizes with no clipping, garbled text, black blocks, or remote dependencies.",
+      "record_type": "participant_assertion"
+    },
+    {
+      "check_id": "AI_GOVERNANCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "十二张 AI 场景卡（含三项产业测试）均说明空间锚点、数据边界、非 AI 替代、人工复核、申诉、回滚和停止条件；公共空间准入、基本服务和高风险专业判断不交由模型单独决定。 / All twelve AI scenario cards, including three industry tests, specify spatial anchors, data boundaries, non-AI alternatives, human review, appeal, rollback, and stop conditions; models do not independently decide public-space access, essential services, or high-risk professional judgments.",
+      "record_type": "participant_assertion"
+    },
+    {
+      "check_id": "COPYRIGHT_AND_MODEL_DISCLOSURE",
+      "result": "pass",
+      "severity": "major",
+      "target": "report/copyright_statement.md",
+      "message": "版权声明记录了原创文本、参数化几何、脚本和图形的生成边界；提交包未复制第三方图片、标志或远程底图，来源使用限制、字体和 AI 模型信息分别在声明、sources.json 与 agent.json 中披露。 / The copyright statement records the provenance of original text, parametric geometry, scripts, and graphics; no third-party imagery, logos, or remote basemaps are copied, and source-use limits, fonts, and AI model information are disclosed in the statement, sources.json, and agent.json.",
+      "record_type": "participant_assertion"
+    },
+    {
+      "check_id": "PROVISIONAL_PRECISION_LIMIT",
+      "result": "pass",
+      "severity": "major",
+      "target": "assumptions.json",
+      "message": "官方边界、重点区、地籍权属、现状建筑、控规、道路与轨道、市政、文保、人口住房及生态实测等缺口已登记为 17 条假设和重算触发器；现有方案不作法定、审批、征收、投资或施工精度承诺。 / Gaps in official boundaries, key areas, cadastre and tenure, existing buildings, controls, roads and rail, utilities, heritage, population and housing, and ecological surveys are registered as 17 assumptions and recalculation triggers; the current proposal makes no statutory, approval, expropriation, investment, or construction-precision claim.",
+      "record_type": "participant_assertion"
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+{
+ "schema_version": "0.1.0",
+ "assumptions": [
+  {
+   "assumption_id": "A-BOUNDARY-001",
+   "title_zh": "使用临时约束范围替代官方红线",
+   "statement_zh": "组织方尚未公开总体设计范围与三处重点区的官方矢量红线，本方案使用仓库登记的 provisional_constraint 临时粗略 polygon 进行概念生成、可视化与自检。",
+   "impact_zh": "所有面积、比例与空间量算均为临时值；不可作为官方红线、审批依据、精确面积或法定管控。",
+   "confidence": "medium",
+   "source_ids": [
+    "BOUNDARY-SOURCE",
+    "KEY-AREA-SOURCE"
+   ],
+   "affected_metrics": [
+    "site_area_sqm",
+    "key_detailed_design_area_sqm",
+    "zhongzhiyuan_area_sqm",
+    "origin_community_area_sqm",
+    "dazhongsi_area_sqm",
+    "green_ratio",
+    "public_space_ratio",
+    "building_coverage_ratio"
+   ],
+   "affected_files": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson",
+    "geometry/roads.geojson",
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson",
+    "geometry/phasing.geojson"
+   ],
+   "recalculation_trigger_zh": "官方矢量边界与重点区红线公布后，重新裁剪全部图层并重算上述指标。",
+   "status": "open"
+  },
+  {
+   "assumption_id": "A-CONTROLS-001",
+   "title_zh": "缺少官方控规条件",
+   "statement_zh": "缺少容积率、建筑高度、配建指标等控规条件，本方案不推定这些法定规划数值。",
+   "impact_zh": "容积率、总建筑规模、建筑高度三项指标标记为待正式数据补齐（unknown）。",
+   "confidence": "high",
+   "source_ids": [
+    "OFFICIAL-ANNOUNCEMENT",
+    "AGENT-TASKBOOK"
+   ],
+   "affected_metrics": [
+    "floor_area_ratio",
+    "total_floor_area_sqm",
+    "max_building_height_m"
+   ],
+   "affected_files": [
+    "proposal.md",
+    "metrics.json"
+   ],
+   "recalculation_trigger_zh": "获得官方控规条件后，由专业团队补充强度与高度指标。",
+   "status": "open"
+  },
+  {
+   "assumption_id": "A-CRS-001",
+   "title_zh": "坐标系与量算口径",
+   "statement_zh": "几何以 EPSG:4326 交换，面积与长度在 EPSG:4548 投影下计算。",
+   "impact_zh": "量算结果与其他坐标系下的计算可能存在细微差异。",
+   "confidence": "high",
+   "source_ids": [
+    "SITE-PACKAGE"
+   ],
+   "affected_metrics": [
+    "site_area_sqm",
+    "building_footprint_area_sqm",
+    "road_network_length_m"
+   ],
+   "affected_files": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson",
+    "geometry/roads.geojson",
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson",
+    "geometry/phasing.geojson"
+   ],
+   "recalculation_trigger_zh": "若组织方指定其他投影，需按其口径重算。",
+   "status": "accepted"
+  },
+  {
+   "assumption_id": "A-BUILDING-001",
+   "title_zh": "建筑体块为概念示意肌理",
+   "statement_zh": "缺少现状建筑矢量与权属数据，buildings.geojson 中的体块为表达形态意向与组群关系的概念示意，不代表现状建筑总量。",
+   "impact_zh": "建筑基底与建筑密度仅表达量级意向，不构成建设规模或拆改留结论。",
+   "confidence": "low",
+   "source_ids": [
+    "SITE-PACKAGE"
+   ],
+   "affected_metrics": [
+    "building_footprint_area_sqm",
+    "building_coverage_ratio",
+    "building_count"
+   ],
+   "affected_files": [
+    "geometry/buildings.geojson"
+   ],
+   "recalculation_trigger_zh": "获得现状建筑矢量与质量数据后，替换概念体块并重算。",
+   "status": "open"
+  },
+  {
+   "assumption_id": "A-ROAD-001",
+   "title_zh": "道路中心线为概念示意",
+   "statement_zh": "roads.geojson 中的中心线用于表达智行网的模式分层与连通逻辑，不构成道路线形、红线或工程定线。",
+   "impact_zh": "道路长度指标为概念示意值；不得据此判断工程可行性。",
+   "confidence": "low",
+   "source_ids": [
+    "SITE-PACKAGE",
+    "AGENT-TASKBOOK"
+   ],
+   "affected_metrics": [
+    "road_network_length_m"
+   ],
+   "affected_files": [
+    "geometry/roads.geojson"
+   ],
+   "recalculation_trigger_zh": "获得官方道路红线数据后重新绘制并重算。",
+   "status": "open"
+  },
+  {
+   "assumption_id": "A-OVERLAP-001",
+   "title_zh": "绿地与公共空间存在空间重叠",
+   "statement_zh": "京张遗址公园复合廊道同时具有公园绿地与公共空间两种属性，因此绿地率与公共空间比例存在空间重叠。",
+   "impact_zh": "两个比例不可相加；合计值不代表实际开敞空间占比。",
+   "confidence": "high",
+   "source_ids": [
+    "SITE-PACKAGE"
+   ],
+   "affected_metrics": [
+    "green_ratio",
+    "public_space_ratio"
+   ],
+   "affected_files": [
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson"
+   ],
+   "recalculation_trigger_zh": "若组织方要求互斥口径，需重新定义图层归属并重算。",
+   "status": "accepted"
+  },
+  {
+   "assumption_id": "A-HERITAGE-001",
+   "title_zh": "文保保护范围待官方明确",
+   "statement_zh": "清华园车站旧址与大钟寺古钟博物馆的保护级别、保护范围与建设控制要求缺少官方数据，本方案仅作为约束条件标注位置。",
+   "impact_zh": "文保周边的高度、体量与建设结论一律不给出。",
+   "confidence": "low",
+   "source_ids": [
+    "SITE-PACKAGE"
+   ],
+   "affected_metrics": [
+    "max_building_height_m"
+   ],
+   "affected_files": [
+    "geometry/constraints.geojson"
+   ],
+   "recalculation_trigger_zh": "获得官方文保保护范围与建控要求后，由专业团队专项论证。",
+   "status": "open"
+  },
+  {
+   "assumption_id": "A-MUNICIPAL-001",
+   "title_zh": "市政容量待正式数据补齐",
+   "statement_zh": "缺少给排水、电力、燃气、通信的现状容量数据，本方案不做市政承载测算。",
+   "impact_zh": "算力设施的电力与散热承载、新型基础设施配置规模均未给出数值。",
+   "confidence": "low",
+   "source_ids": [
+    "SITE-PACKAGE"
+   ],
+   "affected_metrics": [],
+   "affected_files": [
+    "proposal.md"
+   ],
+   "recalculation_trigger_zh": "获得市政容量数据后，由专业团队完成承载评估。",
+   "status": "open"
+  }
+ ]
+}

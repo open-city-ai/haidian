@@ -1,0 +1,3 @@
+# Copyright and provenance statement
+
+Original narrative, concept design, diagrams, PDFs, and offline HTML are generated for this submission and released under CC BY 4.0. OpenStreetMap-derived context is attributed to OpenStreetMap contributors and remains subject to ODbL 1.0. Noto Sans SC is used under SIL OFL 1.1. The user-provided UrbanOS proposal was reviewed only as a package-completeness benchmark; its COMMUNITY-DISPLAY-ONLY text, concept, geometry, palette, figures, and institutional names were not copied. No remote assets, proprietary photographs, trademarks, portraits, or third-party paper figures are embedded.

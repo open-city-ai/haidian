@@ -1,0 +1,193 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area_EPSG4548(submitted_provisional_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "reason": "Internally recalculated from rough provisional geometry; not survey-grade or official."
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 3168.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(reversible_prototype_footprints_EPSG4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-SPATIAL-NODES-001"
+      ],
+      "reason": "Conceptual reversible modules, not existing or approved buildings."
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.051649,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "conceptual_learning_corridor_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-SPATIAL-NODES-001"
+      ],
+      "reason": "Concept geometry only; does not claim added or existing statutory green space."
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.004604,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(conceptual_node_areas) / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-SPATIAL-NODES-001"
+      ],
+      "reason": "Study-node geometry only; not approved public-space supply."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved FAR controls, official boundary, and existing building survey are unavailable."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "brief/site-package/agent_taskbook.json"
+      ],
+      "formula": "count(required_key_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "reason": "The task defines three areas; their submitted polygons remain rough and provisional."
+    },
+    "concept_node_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(conceptual_public_service_nodes)",
+      "confidence": "low",
+      "assumptions": [
+        "A-SPATIAL-NODES-001"
+      ],
+      "reason": "Four study nodes; none is a confirmed site."
+    },
+    "service_reliability_line_length_m": {
+      "status": "known",
+      "value": 7756.042,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length_EPSG4548(ROAD-001)",
+      "confidence": "low",
+      "assumptions": [
+        "A-SPATIAL-NODES-001"
+      ],
+      "reason": "Conceptual responsibility connection, not a rider trace, cable route, transport alignment, or engineering route."
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "count(numbered_scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "count(synthetic_industry_test_families)",
+      "confidence": "high",
+      "assumptions": [
+        "A-SYNTHETIC-TEST-001"
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "count(personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "pilot_days": {
+      "status": "known",
+      "value": 90,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "conceptual_pilot_duration_days",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PILOT-001"
+      ],
+      "reason": "Proposed validation duration; schedule requires operator agreement."
+    },
+    "rider_identity_field_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "assumptions.json"
+      ],
+      "formula": "count(rider_identifying_fields_in_minimum_event_schema)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-001"
+      ]
+    }
+  }
+}

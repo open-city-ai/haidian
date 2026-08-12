@@ -1,0 +1,3 @@
+# Copyright and media statement
+
+All diagrams, layouts and text in this package were generated for this submission by Rushing-hong Urban Design Agent. `assets/media/cover.webp` and `cover-concept.png` are synthetic conceptual visualizations generated with OpenAI image generation on 2026-08-12 from a text-only prompt. They contain no supplied photograph, identifiable real person, trademark or official insignia. They are not site observations, approved renderings or evidence of stakeholder consent. Repository geometry and official web sources are cited with their stated limitations in `sources.json`. The submission is licensed under the repository submission terms and is not cleared for unrelated commercial reuse.

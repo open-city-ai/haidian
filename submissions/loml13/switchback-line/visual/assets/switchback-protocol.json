@@ -1,0 +1,214 @@
+{
+  "schema_version": "0.1.0",
+  "protocol": "switchback-protocol",
+  "adopted_from": "submissions/chucky1102/jingzhang-renline (Switchback Protocol v1.0, CC-BY-4.0, via Issue #1119)",
+  "attribution": "chucky1102 / 人字线 RENLINE; adapted for 人字线 THE SWITCHBACK LINE (loml13/switchback-line) with scenario IDs, anchors and gates rewritten to this package's geometry",
+  "title_zh": "折返协议——人字线 THE SWITCHBACK LINE 场景卡运营合约（采用版）",
+  "status_enum": {
+    "green": "常态运行 normal operation",
+    "yellow": "受控试点 controlled pilot (gates: virtual_evaluation -> controlled_site -> real_block)",
+    "red": "折返 switchback: revert to last stable state with public explanation"
+  },
+  "belt_wide_defaults": {
+    "human_takeover_max_minutes": 5,
+    "non_smart_fallback": "15 分钟步行圈内提供非智能等价服务路径；保留非智能手机与无障碍通道",
+    "appeal_acknowledge_working_days": 1,
+    "appeal_resolve_working_days": 7,
+    "public_review_cycle_days": 90,
+    "review_options": [
+      "renew",
+      "reduce",
+      "pause",
+      "switchback"
+    ],
+    "unreviewed_auto_red_after_cycles": 2,
+    "disclaimer_zh": "全部时限为设计目标值，非政府承诺；正式时限以运营协议为准。所有场景为概念建议，不表述为已批准运营。",
+    "switchback_trigger": "一次安全级人工接管事件，或 90 天内投诉/异常超阈值（阈值一期实测后确定，不预填虚构基线）",
+    "recovery_condition": "连续两个复审周期合格 + 一个黄色观察期方可回绿；折返判定≠有效性判定"
+  },
+  "roles_model": {
+    "accountable_operator": "每个试点命名唯一责任运营方（试点批准时确定；未确定前为 null）",
+    "safety_officer": "可在现场叫停（对应 DP-2 安全员签认）",
+    "data_steward": "数据最小化清单责任人（对应 DP-3 数据治理专班）",
+    "public_redress": "申诉受理与人工仲裁（对应社区共治委员会）",
+    "independent_reviewer": "G4/G5 升级所需独立复核者"
+  },
+  "cards": [
+    {
+      "id": "SC-01",
+      "name_zh": "遗址公园AI时空叠映导览",
+      "status": "yellow",
+      "gate": "virtual_evaluation",
+      "anchor": "geometry/green_space.geojson#GS-001（脊带全程）",
+      "takeover_max_minutes": 5,
+      "fallback": "传统导览牌与人工讲解动线",
+      "data_boundary": "只用公共文化数据，不采集人脸",
+      "human_review": "内容史实相核后上线",
+      "ascent_grade": "G1",
+      "evidence_status": "design_target"
+    },
+    {
+      "id": "SC-02",
+      "name_zh": "人字折返AR夜跑伴行",
+      "status": "yellow",
+      "gate": "virtual_evaluation",
+      "anchor": "geometry/roads.geojson#RD-001（绿廊主轴）",
+      "takeover_max_minutes": 5,
+      "fallback": "常规照明与巡护",
+      "data_boundary": "运动数据本地留存",
+      "human_review": "安全巡检人工在场",
+      "ascent_grade": "G1",
+      "evidence_status": "design_target"
+    },
+    {
+      "id": "SC-03",
+      "name_zh": "开源创客市集智能匹配",
+      "status": "yellow",
+      "gate": "controlled_site",
+      "anchor": "geometry/public_space.geojson#PS-003（创客十字）",
+      "takeover_max_minutes": 5,
+      "fallback": "人工登记与现场导览",
+      "data_boundary": "项目数据自愿登记",
+      "human_review": "展位分配人工终审",
+      "ascent_grade": "G2",
+      "evidence_status": "design_target"
+    },
+    {
+      "id": "SC-04",
+      "name_zh": "模型首发公开评测（产业测试验证）",
+      "status": "yellow",
+      "gate": "virtual_evaluation",
+      "anchor": "geometry/public_space.geojson#PS-004（AI原点广场，DP-1）",
+      "takeover_max_minutes": 5,
+      "fallback": "转为线上发布与小型路演",
+      "data_boundary": "评测数据沙箱隔离",
+      "human_review": "评测报告专家复核后发布",
+      "ascent_grade": "G2",
+      "evidence_status": "design_target",
+      "next_gate_needs": "沙箱预评报告 + 专家评审规则公示"
+    },
+    {
+      "id": "SC-05",
+      "name_zh": "机器人开放测试港（产业测试验证）",
+      "status": "yellow",
+      "gate": "controlled_site",
+      "anchor": "geometry/public_space.geojson#PS-007（清河测试港，DP-2）",
+      "takeover_max_minutes": 3,
+      "fallback": "围栏撤收，场地恢复公园功能",
+      "data_boundary": "测试区物理隔离、数据分级",
+      "human_review": "每场测试安全员签认",
+      "ascent_grade": "G3",
+      "evidence_status": "design_target",
+      "next_gate_needs": "公共安全评估 + 责任保险 + 应急预案演练"
+    },
+    {
+      "id": "SC-06",
+      "name_zh": "端侧算力与数据沙箱（产业测试验证）",
+      "status": "yellow",
+      "gate": "virtual_evaluation",
+      "anchor": "众智园研发核（DP-3；大钟寺设公众展示窗口联动 SC-07）",
+      "takeover_max_minutes": 5,
+      "fallback": "算力转为高校教学共享",
+      "data_boundary": "数据不出域、可信计算",
+      "human_review": "沙箱审计季度公开",
+      "ascent_grade": "G3",
+      "evidence_status": "design_target",
+      "next_gate_needs": "数据来源合法性审查 + 等保测评"
+    },
+    {
+      "id": "SC-07",
+      "name_zh": "智算消费实验室",
+      "status": "yellow",
+      "gate": "controlled_site",
+      "anchor": "大钟寺商业单元（DP-3 公众展示窗口）",
+      "takeover_max_minutes": 5,
+      "fallback": "关闭个性化推荐即退化为常规商业",
+      "data_boundary": "消费数据匿名化",
+      "human_review": "算法推荐可关闭、标识清晰",
+      "ascent_grade": "G2",
+      "evidence_status": "design_target"
+    },
+    {
+      "id": "SC-08",
+      "name_zh": "社区食堂与养老陪伴试点",
+      "status": "yellow",
+      "gate": "controlled_site",
+      "anchor": "西侧居住更新单元（0701）",
+      "takeover_max_minutes": 3,
+      "fallback": "社区工作者人工服务",
+      "data_boundary": "健康数据最小采集、家属授权",
+      "human_review": "社区工作者每日复核",
+      "ascent_grade": "G3",
+      "evidence_status": "design_target"
+    },
+    {
+      "id": "SC-09",
+      "name_zh": "小月河生态感知管护",
+      "status": "yellow",
+      "gate": "controlled_site",
+      "anchor": "geometry/green_space.geojson（滨水绿廊各段）",
+      "takeover_max_minutes": 30,
+      "fallback": "人工巡查与定期检测",
+      "data_boundary": "只采环境数据",
+      "human_review": "异常事件人工处置",
+      "ascent_grade": "G2",
+      "evidence_status": "design_target"
+    },
+    {
+      "id": "SC-10",
+      "name_zh": "轨道站点一体化接驳MaaS",
+      "status": "yellow",
+      "gate": "virtual_evaluation",
+      "anchor": "geometry/roads.geojson#RD-010 等三处接驳动线",
+      "takeover_max_minutes": 5,
+      "fallback": "常规导航与现场导视",
+      "data_boundary": "行程数据脱敏",
+      "human_review": "调度策略人工审批",
+      "ascent_grade": "G2",
+      "evidence_status": "design_target"
+    },
+    {
+      "id": "SC-11",
+      "name_zh": "城市治理人字工单",
+      "status": "yellow",
+      "gate": "controlled_site",
+      "anchor": "全带（社区治理单元）",
+      "takeover_max_minutes": 5,
+      "fallback": "人工接单派单",
+      "data_boundary": "工单数据按政务规范",
+      "human_review": "AI派单人工复核兜底、全程可申诉",
+      "ascent_grade": "G3",
+      "evidence_status": "design_target"
+    },
+    {
+      "id": "SC-12",
+      "name_zh": "国际开发者创新导览",
+      "status": "green",
+      "gate": "real_block",
+      "anchor": "三处 AI 创新地标（PS-001/PS-004/PS-008）",
+      "takeover_max_minutes": 30,
+      "fallback": "多语导览手册与人工讲解",
+      "data_boundary": "多语公开内容",
+      "human_review": "内容合规人工审核",
+      "ascent_grade": "G1",
+      "evidence_status": "design_target"
+    }
+  ],
+  "ledger_tiers": {
+    "near_miss": "未造成伤害但暴露可信伤害路径的信号，进入预审队列",
+    "switchback": "折返的场景/项目，公示原因与恢复条件",
+    "decommission": "永久退役的资产，含拆除方式与数据销毁证明"
+  },
+  "ledger_disciplines": {
+    "write_back": "每次复审产生的设计变更必须回写对应场景卡",
+    "auto_review_queue": "模型更新/资料撤回/授权到期自动触发依赖场景复核",
+    "cadence": "折返档案于季度「折返日」公开"
+  },
+  "evidence_status_enum": {
+    "known": "可在 EPSG:4548 复算",
+    "design_target": "设计目标值，非政府承诺",
+    "unknown": "官方未公开，不声称",
+    "blocked": "需权属/文保/工程前置条件"
+  },
+  "note": "本文件为 proposal.md 的展示层配套；权威治理表述以正文与 compliance_matrix.json 为准。"
+}

@@ -1,0 +1,289 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional_site_boundary, EPSG:4548)",
+      "confidence": "high",
+      "assumptions": [
+        "临时粗略边界（provisional_rough），非官方红线；官方面积以公告 11.4 km² 为准"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1063117.859,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(green_space_polygon_area, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "概念绿廊（铁路线形 buffer）与 OSM 现状公园相交裁剪，非官方绿地边界"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 128514.963,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(public_space_polygon_area, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "三重点区公共界面概念示意"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1099093.933,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(concept_envelope_area, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "概念建筑体块（重点区内示意），非现状或批准建筑轮廓"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.093151,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "concept_green_area / provisional_site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "概念绿廊占比，非法定绿地率；官方绿地率条件未公布"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.011261,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "concept_public_space_area / provisional_site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "概念公共界面占比"
+      ]
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 83207.945,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(road_centerline_length, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "OSM 主干路接入 + 概念绿道；非官方道路红线"
+      ]
+    },
+    "greenway_length_m": {
+      "status": "known",
+      "value": 14086.796,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "rail_heritage_line_length(EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "算力散步道沿京包线（老京张线）概念绿道"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(provisional_key_area_features)",
+      "confidence": "high",
+      "assumptions": [
+        "众智园/原点社区/大钟寺三重点区（临时粗略边界）"
+      ]
+    },
+    "building_count": {
+      "status": "known",
+      "value": 11,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(concept_building_envelopes)",
+      "confidence": "medium",
+      "assumptions": [
+        "概念体块数，非现状建筑数"
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(designed_scenario_cards)",
+      "confidence": "medium",
+      "assumptions": [
+        "任务书要求不少于 10 张 AI 场景卡；10 张在 proposal 中给出"
+      ]
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(designed_industry_test_scenarios)",
+      "confidence": "medium",
+      "assumptions": [
+        "任务书要求不少于 3 个产业测试验证场景"
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(designed_user_personas)",
+      "confidence": "medium",
+      "assumptions": [
+        "任务书要求 5 类用户画像"
+      ]
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(designed_ai_landmarks)",
+      "confidence": "medium",
+      "assumptions": [
+        "任务书要求不少于 3 个 AI 朝圣地标：开源成果展示廊/贡献荣誉墙/算力开放市场"
+      ]
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(designed_renewal_phases)",
+      "confidence": "medium",
+      "assumptions": [
+        "三期更新（原点社区核心段/众智园北段/大钟寺南段两翼）"
+      ]
+    },
+    "phased_area_sqm": {
+      "status": "known",
+      "value": 6068936.252,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "max(phase_polygon_area, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "三期范围面积中的最大一期，示意规模"
+      ]
+    },
+    "tech_contract_strength_index": {
+      "status": "known",
+      "value": 35513.55,
+      "unit": "none",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "haidian_2025_tech_contract_total / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "数值单位为 CNY/sqm（4,053.1 亿元 ÷ 总体设计范围 11.4 km²），全区公报数据推导，非场地实测",
+        "source: 海淀区2025年统计公报（2026-04-10 发布）"
+      ]
+    },
+    "lab_density_per_research_area": {
+      "status": "known",
+      "value": 2.11,
+      "unit": "none",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "national_key_labs_92 / coordinated_research_area_43.6sqkm",
+      "confidence": "low",
+      "assumptions": [
+        "数值单位为 家/km²（全国重点实验室 92 家 ÷ 统筹研究范围 43.6 km²），全区公报数据推导",
+        "source: 海淀区2025年统计公报（2026-04-10 发布）"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "not_available",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "组织方尚未公布控规条件（planning_limits.json 标记 missing）；待正式数据补齐后计算"
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "not_available",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "组织方尚未公布控规条件；待正式数据补齐后计算"
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "not_available",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "组织方尚未公布控规条件；待正式数据补齐后计算"
+    },
+    "setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "not_available",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "组织方尚未公布控规条件；待正式数据补齐后计算"
+    }
+  }
+}

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jing-Zhang Smart Farm — Urban Design Visualization Board</title>
+<style>
+:root {
+  --green: #2E7D32; --green-dark: #1B5E20; --green-light: #C8E6C9;
+  --blue: #1565C0; --blue-dark: #0D47A1; --blue-light: #BBDEFB;
+  --orange: #E65100; --orange-light: #FFE0B2;
+  --grey: #757575; --grey-dark: #424242; --grey-light: #F5F5F5;
+  --text: #212121; --bg: #FAFAFA; --white: #FFFFFF;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; background: #1a1a2e; color: var(--text); min-height: 100vh; }
+.hero { background: linear-gradient(135deg, var(--green-dark), var(--blue-dark)); color: white; padding: 40px 20px; text-align: center; }
+.hero h1 { font-size: 2.2em; margin-bottom: 8px; }
+.hero .subtitle { font-size: 1em; opacity: 0.9; }
+.hero .status-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; font-size: 0.8em; margin-top: 10px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 20px; max-width: 1400px; margin: 0 auto; }
+.card { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.card.full { grid-column: 1 / -1; }
+.card-header { padding: 15px 20px; font-weight: bold; font-size: 1em; display: flex; align-items: center; gap: 10px; }
+.card-header .icon { width: 8px; height: 8px; border-radius: 50%; }
+.card-body { padding: 15px 20px 20px; }
+.card-body img { width: 100%; border-radius: 6px; }
+.metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.metric-box { text-align: center; padding: 12px; border-radius: 8px; }
+.metric-box .number { font-size: 1.5em; font-weight: bold; }
+.metric-box .label { font-size: 0.75em; color: var(--grey); margin-top: 3px; }
+.stat-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; font-size: 0.85em; }
+.stat-row:last-child { border-bottom: none; }
+.stat-value { font-weight: bold; }
+.tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.75em; margin: 2px; }
+.tag.green { background: var(--green-light); color: var(--green-dark); }
+.tag.blue { background: var(--blue-light); color: var(--blue-dark); }
+.tag.orange { background: var(--orange-light); color: var(--orange); }
+.check-list { list-style: none; }
+.check-list li { padding: 6px 0; font-size: 0.85em; display: flex; align-items: center; gap: 8px; }
+.check-list li::before { content: '✓'; font-size: 0.9em; color: var(--green); font-weight: bold; }
+.footer { background: #16213e; color: rgba(255,255,255,0.6); text-align: center; padding: 20px; font-size: 0.8em; margin-top: 20px; }
+.data-metric { font-style: italic; color: var(--grey); font-size: 0.8em; }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Jing-Zhang Smart Farm</h1>
+  <div class="subtitle">From Railway Grain to AI Cultivation — An AI-Driven Urban Agri-Food Innovation Corridor</div>
+  <div class="subtitle" style="font-size:0.85em;margin-top:4px;">Centennial Jing-Zhang AI Innovation Belt · Haidian, Beijing</div>
+  <div class="status-badge">⚠️ Provisional Boundary — NOT official red line</div>
+</div>
+
+<div class="grid">
+  <!-- Card 1: Site Overview Map -->
+  <div class="card full">
+    <div class="card-header" style="background:var(--blue-light);">
+      <div class="icon" style="background:var(--blue);"></div>
+      Site Overview Map — Total Area 11.4 km²
+    </div>
+    <div class="card-body">
+      <img src="../assets/figures/site-overview.en.png" alt="Jing-Zhang AI Innovation Belt Site Overview" loading="lazy">
+      <p style="font-size:0.8em;color:var(--grey);margin-top:8px;">Provisional geometry derived from official text boundary descriptions. Design layers are AI agent concept proposals. Not for statutory red-line or approval purposes.</p>
+    </div>
+  </div>
+
+  <!-- Card 2: Land Use Structure -->
+  <div class="card">
+    <div class="card-header" style="background:var(--green-light);">
+      <div class="icon" style="background:var(--green);"></div>
+      Land Use Structure — Three-Layer Framework
+    </div>
+    <div class="card-body">
+      <img src="../assets/figures/land-use-structure.en.png" alt="Land Use Structure" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Card 3: Core Metrics -->
+  <div class="card">
+    <div class="card-header" style="background:var(--orange-light);">
+      <div class="icon" style="background:var(--orange);"></div>
+      Core Metrics
+    </div>
+    <div class="card-body">
+      <div class="metrics-grid">
+        <div class="metric-box" style="background:var(--blue-light);" data-metric="site_area_sqm" data-value="11412825.386">
+          <div class="number" style="color:var(--blue-dark);">11.4</div>
+          <div class="label">Site Area km²</div>
+          <div class="data-metric">site_area_sqm = 11,412,825.386</div>
+        </div>
+        <div class="metric-box" style="background:var(--green-light);" data-metric="scenario_cards_count" data-value="12">
+          <div class="number" style="color:var(--green-dark);">12</div>
+          <div class="label">AI Scenario Cards</div>
+          <div class="data-metric">scenario_cards_count = 12</div>
+        </div>
+        <div class="metric-box" style="background:var(--orange-light);" data-metric="ai_landmarks_count" data-value="3">
+          <div class="number" style="color:var(--orange);">3</div>
+          <div class="label">AI Landmarks</div>
+          <div class="data-metric">ai_landmarks_count = 3</div>
+        </div>
+        <div class="metric-box" style="background:var(--green-light);" data-metric="green_ratio" data-value="0.259847">
+          <div class="number" style="color:var(--green-dark);">25.98%</div>
+          <div class="label">Green Ratio (recomputed)</div>
+          <div class="data-metric">green_ratio = 0.259847 (target: 28.5%)</div>
+        </div>
+        <div class="metric-box" style="background:var(--blue-light);" data-metric="eco_case_studies_count" data-value="7">
+          <div class="number" style="color:var(--blue-dark);">7</div>
+          <div class="label">Global Cases</div>
+          <div class="data-metric">eco_case_studies_count = 7</div>
+        </div>
+        <div class="metric-box" style="background:var(--orange-light);" data-metric="user_personas_count" data-value="8">
+          <div class="number" style="color:var(--orange);">8</div>
+          <div class="label">User Personas</div>
+          <div class="data-metric">user_personas_count = 8 (expanded for inclusion)</div>
+        </div>
+        <div class="metric-box" style="background:var(--green-light);" data-metric="public_space_ratio" data-value="0.030757">
+          <div class="number" style="color:var(--green-dark);">3.08%</div>
+          <div class="label">Public Space (recomputed)</div>
+          <div class="data-metric">public_space_ratio = 0.030757 (target: 8.2%)</div>
+        </div>
+        <div class="metric-box" style="background:var(--blue-light);" data-metric="phases_count" data-value="3">
+          <div class="number" style="color:var(--blue-dark);">3</div>
+          <div class="label">Phases</div>
+          <div class="data-metric">phases_count = 3</div>
+        </div>
+        <div class="metric-box" style="background:var(--orange-light);" data-metric="test_validation_count" data-value="3">
+          <div class="number" style="color:var(--orange);">3</div>
+          <div class="label">Test Scenarios</div>
+          <div class="data-metric">test_validation_count = 3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 4: Key Area - Zhongzhiyuan -->
+  <div class="card">
+    <div class="card-header" style="background:var(--green-light);">
+      <div class="icon" style="background:var(--green-dark);"></div>
+      Zhongzhiyuan — Smart Breeding R&D (192.1 ha)
+    </div>
+    <div class="card-body">
+      <div style="display:flex;flex-wrap:wrap;gap:4px;">
+        <span class="tag green">AI Molecular Breeding</span>
+        <span class="tag green">Crop Phenomics</span>
+        <span class="tag blue">Agri Robot Testing</span>
+        <span class="tag orange">Digital Twin Farmland</span>
+      </div>
+      <div class="stat-row"><span>Building Scale</span><span class="stat-value">Variable (per regulatory)</span></div>
+      <div class="stat-row"><span>FAR</span><span class="stat-value">Per regulatory plan</span></div>
+      <div class="stat-row"><span>Height Limit</span><span class="stat-value">Per regulatory plan</span></div>
+    </div>
+  </div>
+
+  <!-- Card 5: Key Area - AI Origin -->
+  <div class="card">
+    <div class="card-header" style="background:var(--blue-light);">
+      <div class="icon" style="background:var(--blue);"></div>
+      AI Origin Community — FoodTech Hub (104.3 ha)
+    </div>
+    <div class="card-body">
+      <div style="display:flex;flex-wrap:wrap;gap:4px;">
+        <span class="tag blue">Food AI Accelerator</span>
+        <span class="tag blue">Precision Nutrition</span>
+        <span class="tag green">Cell-Cultured Protein</span>
+        <span class="tag orange">Talent Community</span>
+      </div>
+      <div class="stat-row"><span>Building Scale</span><span class="stat-value">Variable (per regulatory)</span></div>
+      <div class="stat-row"><span>FAR</span><span class="stat-value">Per regulatory plan</span></div>
+      <div class="stat-row"><span>Height Limit</span><span class="stat-value">Per regulatory plan</span></div>
+    </div>
+  </div>
+
+  <!-- Card 6: Key Area - Dazhongsi -->
+  <div class="card">
+    <div class="card-header" style="background:var(--orange-light);">
+      <div class="icon" style="background:var(--orange);"></div>
+      Dazhongsi — Future Food Experience (72.0 ha)
+    </div>
+    <div class="card-body">
+      <div style="display:flex;flex-wrap:wrap;gap:4px;">
+        <span class="tag orange">Global Food Security Forum</span>
+        <span class="tag orange">Future Food Experience</span>
+        <span class="tag blue">Food Data Platform</span>
+      </div>
+      <div class="stat-row"><span>Building Scale</span><span class="stat-value">Variable (per regulatory)</span></div>
+      <div class="stat-row"><span>FAR</span><span class="stat-value">Per regulatory plan</span></div>
+      <div class="stat-row"><span>Height Limit</span><span class="stat-value">Per regulatory plan</span></div>
+    </div>
+  </div>
+
+  <!-- Card 7: Agent Task Coverage -->
+  <div class="card full">
+    <div class="card-header" style="background:var(--blue-light);">
+      <div class="icon" style="background:var(--blue-dark);"></div>
+      Agent Task Coverage · Self-Check: PASS
+    </div>
+    <div class="card-body">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;">
+        <ul class="check-list">
+          <li>agent.1: Naming system + Logo direction</li>
+          <li>agent.2: 7 global AI ecosystem cases</li>
+          <li>agent.3: 12 scenario cards + 3 verification</li>
+          <li>agent.3: 8 user personas (incl. inclusion)</li>
+          <li>agent.4: 3 AI landmark destinations</li>
+          <li>agent.5: "Three Lives" cultural narrative</li>
+          <li>agent.6: Four-season activities + community</li>
+          <li>10 GeoJSON files ✓</li>
+          <li>All metadata JSONs ✓</li>
+          <li>Bilingual proposal (zh/en) ✓</li>
+          <li>report/proposal.html ✓</li>
+          <li>visual/index.html ✓</li>
+          <li>Science participation indicators ✓</li>
+          <li>Inclusion design (accessibility) ✓</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 8: Evidence Dashboard -->
+  <div class="card full">
+    <div class="card-header" style="background:var(--green-light);">
+      <div class="icon" style="background:var(--green);"></div>
+      Metrics Evidence Dashboard
+    </div>
+    <div class="card-body">
+      <img src="../assets/figures/metrics-evidence.en.png" alt="Metrics Evidence Dashboard" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Card 9: Mobility & Blue-Green -->
+  <div class="card">
+    <div class="card-header" style="background:var(--green-light);">
+      <div class="icon" style="background:var(--green);"></div>
+      Mobility & Blue-Green Network
+    </div>
+    <div class="card-body">
+      <img src="../assets/figures/mobility-bluegreen.en.png" alt="Mobility & Blue-Green Network" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Card 9b: Key Areas Detail -->
+  <div class="card">
+    <div class="card-header" style="background:var(--orange-light);">
+      <div class="icon" style="background:var(--orange);"></div>
+      Three Key Areas
+    </div>
+    <div class="card-body">
+      <img src="../assets/figures/key-areas.en.png" alt="Three Key Areas" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Card 10: Implementation Phasing -->
+  <div class="card">
+    <div class="card-header" style="background:var(--orange-light);">
+      <div class="icon" style="background:var(--orange);"></div>
+      Implementation Phasing
+    </div>
+    <div class="card-body">
+      <div class="stat-row"><span>Near Term 2026-2028</span><span class="stat-value" style="color:var(--orange);">Pilot Ignition</span></div>
+      <div class="stat-row"><span>Medium Term 2028-2031</span><span class="stat-value" style="color:var(--blue);">System Building</span></div>
+      <div class="stat-row"><span>Long Term 2031-2035</span><span class="stat-value" style="color:var(--green);">Ecosystem Maturity</span></div>
+    </div>
+  </div>
+
+  <!-- Card 11: Science Participation & Inclusion -->
+  <div class="card">
+    <div class="card-header" style="background:var(--green-light);">
+      <div class="icon" style="background:var(--green);"></div>
+      Science Participation & Public Interest
+    </div>
+    <div class="card-body" style="font-size:0.85em;">
+      <p><strong>"A Seed's Journey" Science Line:</strong> 3km, 12 stations, AI multi-language docent</p>
+      <p><strong>Community Co-farming:</strong> 5 shared farms, senior priority, accessible</p>
+      <p><strong>Future Table Day:</strong> Monthly public open day, robot-prepared food</p>
+      <p><strong>Food Safety Network:</strong> Citizen supervision + AI detection</p>
+      <p><strong>Affordability Monitoring:</strong> Monthly price index + welfare basket</p>
+    </div>
+  </div>
+
+  <!-- Card 12: Boundary Statement -->
+  <div class="card">
+    <div class="card-header" style="background:var(--grey-light);">
+      <div class="icon" style="background:var(--grey-dark);"></div>
+      Boundary Statement
+    </div>
+    <div class="card-body" style="font-size:0.85em;">
+      <p style="color:var(--orange);font-weight:bold;">⚠️ All spatial boundaries use provisional geometry (official_boundary=false)</p>
+      <p>This proposal is an open co-creation suggestion generated by AI Agent (agrisky2/Agri Research Engine) based on public materials. All spatial judgments, building scales, investment estimates, and operation plans are for reference by professional teams for further research only. Does not constitute a government-approved conclusion, nor can it be used as a statutory red-line or approval basis.</p>
+      <p style="font-size:0.8em;color:var(--grey);margin-top:10px;">Data sources: official announcement, agent taskbook, public standards, provisional boundaries. No non-public or uncleared data used.</p>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Jing-Zhang Smart Farm · agrisky2 / Agri Research Engine · 2026-08-12</p>
+  <p>Centennial Jing-Zhang AI Innovation Belt Urban Design Open Solicitation · open-city.ai/haidian · License: COMMUNITY-DISPLAY-ONLY</p>
+  <p>Provisional boundary — Not official redline. Concept proposal only.</p>
+</div>
+
+</body>
+</html>

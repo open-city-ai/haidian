@@ -1,0 +1,195 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.39,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary PROV-SITE-001; official redline pending."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 3393575.54,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union(polygon_area(green_space), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "自造脊绿廊、小月河与清河滨水绿地；面积为概念设计建议。"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 184429.05,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union(polygon_area(public_space), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "十二自造点公共节点；面积为概念设计建议。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1641282.75,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union(polygon_area(building_footprints), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "概念建筑基底，非现状建筑或最终开发规模。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.297348,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.01616,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_parcel_count": {
+      "status": "known",
+      "value": 45,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_count": {
+      "status": "known",
+      "value": 74,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building_footprint_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space features with public_space_type=ai_scenario_node)",
+      "confidence": "high",
+      "assumptions": [
+        "十二自造点：10张场景卡 + 3个产业测试验证场景落位。"
+      ]
+    },
+    "greenway_length_m": {
+      "status": "known",
+      "value": 9700.0,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "approx length of 自造脊慢行绿道 along the corridor",
+      "confidence": "medium",
+      "assumptions": [
+        "约9.7公里，基于临时边界南北跨度。"
+      ]
+    },
+    "stitch_crossing_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(east-west stitching road centerlines)",
+      "confidence": "medium",
+      "assumptions": [
+        "8处东西缝合慢行/车行通道概念。"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "正式控规容积率与官方边界未在公开资料中提供；不编造法定指标。"
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official height control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "正式高度控制条件待官方控规资料补齐。"
+    },
+    "green_ratio_control": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official green ratio control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "法定绿地率控制待正式控规条件确认。"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "三处重点区：众智园、AI原点社区、大钟寺。"
+      ]
+    }
+  }
+}

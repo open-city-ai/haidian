@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0-mode-competition-guard",
+  "screen_id": "MOB-MODE-COMPETITION-001",
+  "status": "synthetic_counterfactual_not_operational",
+  "review_scope": {
+    "classification": "supplemental_package_screen",
+    "formal_self_check_integration": "not_a_blocking_validator_gate",
+    "required_review": "read alongside formal self_check and trusted content review",
+    "promotion_rule": "the screen cannot promote a package, assign a score or update the public gallery"
+  },
+  "purpose_zh": "把共享接驳对公共交通、车公里和最差群体可达性的潜在副作用放进同一组可复核护栏；不把情景读数写成海淀现状。",
+  "purpose_en": "Keep potential feeder side effects on transit, vehicle kilometres and worst-group access in one reviewable guard; do not turn scenario outputs into a Haidian baseline.",
+  "population_reference": {
+    "value": 3122000,
+    "unit": "synthetic_agents_reference",
+    "interpretation": "population-scale replay denominator only; not workforce, OD or observed ridership"
+  },
+  "groups": [
+    "enterprise_arrivals",
+    "residents_and_caregivers",
+    "accessible_travelers",
+    "night_shift_workers",
+    "external_commuters"
+  ],
+  "mode_set": [
+    "metro",
+    "bus",
+    "walking_accessibility",
+    "bicycle",
+    "car",
+    "managed_feeder",
+    "air_candidate_ground_fallback"
+  ],
+  "boundary": {
+    "data_status": "synthetic_counterfactual",
+    "local_baseline": "not_available",
+    "field_measurements": 0,
+    "operating_authorizations": 0,
+    "satisfaction_measurements": 0,
+    "personal_traces": false,
+    "air_candidate": "ground_first_blocked_outside_operational_denominator"
+  },
+  "guard": {
+    "public_transport_priority": true,
+    "feeder_cap_required": true,
+    "max_feeder_share": 0.08,
+    "min_transit_ridership_index": 0.95,
+    "max_vehicle_km_ratio": 1.10,
+    "min_worst_group_access_delta": -0.03,
+    "air_agents_must_be_zero": true,
+    "release_rule": "managed feeder may proceed only when all hard guards pass; any failed guard blocks the scenario and keeps the public-transport fallback"
+  },
+  "scenarios": [
+    {
+      "id": "O0",
+      "name_zh": "轨道公交优先基线",
+      "name_en": "Rail-bus-first reference",
+      "policy": "public_transport_backbone",
+      "transit_ridership_index": 1.00,
+      "feeder_share": 0.00,
+      "vehicle_km_ratio": 1.00,
+      "worst_group_access_delta": 0.00,
+      "air_agents": 0,
+      "release": "REFERENCE",
+      "guard_status": "PASS"
+    },
+    {
+      "id": "O1",
+      "name_zh": "封顶式接驳",
+      "name_en": "Managed capped feeder",
+      "policy": "transit_priority_with_capped_feeder",
+      "transit_ridership_index": 0.98,
+      "feeder_share": 0.04,
+      "vehicle_km_ratio": 1.03,
+      "worst_group_access_delta": -0.01,
+      "air_agents": 0,
+      "release": "CONDITIONAL_REVIEW",
+      "guard_status": "PASS"
+    },
+    {
+      "id": "O2",
+      "name_zh": "无封顶接驳扩张",
+      "name_en": "Unmanaged feeder expansion",
+      "policy": "feeder_first_competition",
+      "transit_ridership_index": 0.78,
+      "feeder_share": 0.18,
+      "vehicle_km_ratio": 1.26,
+      "worst_group_access_delta": -0.11,
+      "air_agents": 0,
+      "release": "BLOCKED",
+      "guard_status": "BLOCKED",
+      "blocked_by": ["feeder_cap", "transit_displacement", "vehicle_km", "worst_group_access"]
+    },
+    {
+      "id": "O3",
+      "name_zh": "地面优先的空中候选",
+      "name_en": "Ground-first air candidate",
+      "policy": "air_candidate_ground_fallback",
+      "transit_ridership_index": 0.97,
+      "feeder_share": 0.03,
+      "vehicle_km_ratio": 1.02,
+      "worst_group_access_delta": -0.01,
+      "air_agents": 0,
+      "release": "BLOCKED",
+      "guard_status": "BLOCKED",
+      "blocked_by": ["air_gate_not_authorized"]
+    }
+  ],
+  "negative_fixtures": [
+    {"id": "NEG-01", "mutation": "missing_guard", "missing_field": "max_vehicle_km_ratio", "expected_error": "vehicle_km_guard_missing"},
+    {"id": "NEG-02", "mutation": "missing_guard", "missing_field": "min_transit_ridership_index", "expected_error": "transit_displacement_guard_missing"},
+    {"id": "NEG-03", "mutation": "missing_guard", "missing_field": "max_feeder_share", "expected_error": "feeder_cap_missing"},
+    {"id": "NEG-04", "mutation": "missing_guard", "missing_field": "air_agents_must_be_zero", "expected_error": "air_gate_missing"},
+    {"id": "NEG-05", "mutation": "duplicate_id", "expected_error": "scenario_id_duplicate"},
+    {"id": "NEG-06", "mutation": "missing_o0", "expected_error": "scenario_id_set_mismatch"},
+    {"id": "NEG-07", "mutation": "unknown_id", "expected_error": "scenario_id_unknown"}
+  ]
+}

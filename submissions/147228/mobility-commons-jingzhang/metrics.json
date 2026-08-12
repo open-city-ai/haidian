@@ -107,7 +107,7 @@
       "source_files": [
         "geometry/roads.geojson"
       ],
-      "formula": "sum(projected_length(all ROAD_CENTERLINE features, EPSG:4548))",
+      "formula": "sum(projected_length(all ROAD_CENTERLINE features, EPSG:4548)",
       "confidence": "medium",
       "assumptions": [
         "Conceptual network; requires right-of-way and field verification."
@@ -289,123 +289,123 @@
       "formula": "count(reversible enterprise-resident scenario cards)",
       "confidence": "high",
       "assumptions": []
-    },
-    "external_commute_od_baseline": {
-      "status": "unknown",
-      "value": null,
-      "unit": "trip_od_matrix",
-      "source_files": [
-        "assumptions.json",
-        "proposal.md",
-        "visual/assets/external-commute-ledger.json"
-      ],
-      "formula": "dated_grouped_OD_count_by_origin_destination_direction_and_mode",
-      "confidence": "unknown",
-      "assumptions": [],
-      "reason": "No cross-boundary enterprise, resident or visitor OD sample has been consented or counted."
-    },
-    "external_commute_generalized_cost_index": {
-      "status": "unknown",
-      "value": null,
-      "unit": "index_0_100",
-      "source_files": [
-        "assumptions.json",
-        "proposal.md",
-        "visual/assets/external-commute-ledger.json"
-      ],
-      "formula": "weighted_walk_wait_vehicle_transfer_parking_cost_by_external_commute_group",
-      "confidence": "unknown",
-      "assumptions": [],
-      "reason": "No dated cross-boundary travel-time, wait, transfer or parking observations are available."
-    },
-    "multimodal_system_efficiency_index": {
-      "status": "unknown",
-      "value": null,
-      "unit": "normalized_index_0_100",
-      "source_files": [
-        "assumptions.json",
-        "proposal.md",
-        "visual/assets/movement-simulation.json"
-      ],
-      "formula": "pareto_candidate_score_after_hard_gates_for_cost_conflict_energy_and_equity",
-      "confidence": "unknown",
-      "assumptions": [],
-      "reason": "No locally calibrated multimodal simulation or field baseline exists.",
-      "pilot_target_min": 75,
-      "pilot_target_scale": "0-100 after hard gates"
-    },
-    "person_flow_conflict_rate": {
-      "status": "unknown",
-      "value": null,
-      "unit": "events_per_1000_persons",
-      "source_files": [
-        "assumptions.json",
-        "proposal.md",
-        "visual/assets/movement-simulation.json"
-      ],
-      "formula": "count_of_observed_or_simulated_person_person_and_person_vehicle_conflicts / persons * 1000",
-      "confidence": "unknown",
-      "assumptions": [],
-      "reason": "No pedestrian, wheelchair, bicycle and vehicle conflict taxonomy or count is available."
-    },
-    "mode_transfer_reliability": {
-      "status": "unknown",
-      "value": null,
-      "unit": "ratio",
-      "source_files": [
-        "assumptions.json",
-        "proposal.md",
-        "visual/assets/movement-simulation.json"
-      ],
-      "formula": "cross-mode_transfers_completed_within_approved_buffer / observed_cross-mode_transfers",
-      "confidence": "unknown",
-      "assumptions": [],
-      "reason": "No synchronized metro, bus, bicycle, walking or car transfer observation is available.",
-      "pilot_target_min": 0.85,
-      "pilot_target_scale": "0-1"
-    },
-    "car_inflow_peak_ratio": {
-      "status": "unknown",
-      "value": null,
-      "unit": "ratio",
-      "source_files": [
-        "assumptions.json",
-        "proposal.md",
-        "visual/assets/external-commute-ledger.json"
-      ],
-      "formula": "external_car_arrivals_in_peak_window / all_external_commute_arrivals_in_peak_window",
-      "confidence": "unknown",
-      "assumptions": [],
-      "reason": "No boundary cordon, parking, loading or park-and-ride inflow count is available."
-    },
-    "air_ground_transfer_reliability": {
-      "status": "unknown",
-      "value": null,
-      "unit": "ratio",
-      "source_files": [
-        "assumptions.json",
-        "proposal.md",
-        "visual/assets/air-mobility-gate.json"
-      ],
-      "formula": "air_ground_transfers_completed_within_accessible_ground_buffer / tested_air_ground_transfers",
-      "confidence": "unknown",
-      "assumptions": [],
-      "reason": "No air operation, vertiport, route, operator or approved experiment exists for this package.",
-      "pilot_target_min": 0.85,
-      "pilot_target_scale": "0-1 only if approved"
-    },
-    "multimodal_simulation_calibration_status": {
-      "status": "unknown",
-      "value": null,
-      "unit": "status",
-      "source_files": [
-        "assumptions.json",
-        "visual/assets/movement-simulation.json"
-      ],
-      "formula": "status_of_local_signal_station_capacity_bicycle_and_people_flow_calibration",
-      "confidence": "unknown",
-      "assumptions": [],
-      "reason": "SUMO can provide a method base, but no local count, signal or capacity calibration has been completed."
     }
+  },
+  "external_commute_od_baseline": {
+    "status": "unknown",
+    "value": null,
+    "unit": "trip_od_matrix",
+    "source_files": [
+      "assumptions.json",
+      "proposal.md",
+      "visual/assets/external-commute-ledger.json"
+    ],
+    "formula": "dated_grouped_OD_count_by_origin_destination_direction_and_mode",
+    "confidence": "unknown",
+    "assumptions": [],
+    "reason": "No cross-boundary enterprise, resident or visitor OD sample has been consented or counted."
+  },
+  "external_commute_generalized_cost_index": {
+    "status": "unknown",
+    "value": null,
+    "unit": "index_0_100",
+    "source_files": [
+      "assumptions.json",
+      "proposal.md",
+      "visual/assets/external-commute-ledger.json"
+    ],
+    "formula": "weighted_walk_wait_vehicle_transfer_parking_cost_by_external_commute_group",
+    "confidence": "unknown",
+    "assumptions": [],
+    "reason": "No dated cross-boundary travel-time, wait, transfer or parking observations are available."
+  },
+  "multimodal_system_efficiency_index": {
+    "status": "unknown",
+    "value": null,
+    "unit": "normalized_index_0_100",
+    "source_files": [
+      "assumptions.json",
+      "proposal.md",
+      "visual/assets/movement-simulation.json"
+    ],
+    "formula": "pareto_candidate_score_after_hard_gates_for_cost_conflict_energy_and_equity",
+    "confidence": "unknown",
+    "assumptions": [],
+    "reason": "No locally calibrated multimodal simulation or field baseline exists.",
+    "pilot_target_min": 75,
+    "pilot_target_scale": "0-100 after hard gates"
+  },
+  "person_flow_conflict_rate": {
+    "status": "unknown",
+    "value": null,
+    "unit": "events_per_1000_persons",
+    "source_files": [
+      "assumptions.json",
+      "proposal.md",
+      "visual/assets/movement-simulation.json"
+    ],
+    "formula": "count_of_observed_or_simulated_person_person_and_person_vehicle_conflicts / persons * 1000",
+    "confidence": "unknown",
+    "assumptions": [],
+    "reason": "No pedestrian, wheelchair, bicycle and vehicle conflict taxonomy or count is available."
+  },
+  "mode_transfer_reliability": {
+    "status": "unknown",
+    "value": null,
+    "unit": "ratio",
+    "source_files": [
+      "assumptions.json",
+      "proposal.md",
+      "visual/assets/movement-simulation.json"
+    ],
+    "formula": "cross-mode_transfers_completed_within_approved_buffer / observed_cross-mode_transfers",
+    "confidence": "unknown",
+    "assumptions": [],
+    "reason": "No synchronized metro, bus, bicycle, walking or car transfer observation is available.",
+    "pilot_target_min": 0.85,
+    "pilot_target_scale": "0-1"
+  },
+  "car_inflow_peak_ratio": {
+    "status": "unknown",
+    "value": null,
+    "unit": "ratio",
+    "source_files": [
+      "assumptions.json",
+      "proposal.md",
+      "visual/assets/external-commute-ledger.json"
+    ],
+    "formula": "external_car_arrivals_in_peak_window / all_external_commute_arrivals_in_peak_window",
+    "confidence": "unknown",
+    "assumptions": [],
+    "reason": "No boundary cordon, parking, loading or park-and-ride inflow count is available."
+  },
+  "air_ground_transfer_reliability": {
+    "status": "unknown",
+    "value": null,
+    "unit": "ratio",
+    "source_files": [
+      "assumptions.json",
+      "proposal.md",
+      "visual/assets/air-mobility-gate.json"
+    ],
+    "formula": "air_ground_transfers_completed_within_accessible_ground_buffer / tested_air_ground_transfers",
+    "confidence": "unknown",
+    "assumptions": [],
+    "reason": "No air operation, vertiport, route, operator or approved experiment exists for this package.",
+    "pilot_target_min": 0.85,
+    "pilot_target_scale": "0-1 only if approved"
+  },
+  "multimodal_simulation_calibration_status": {
+    "status": "unknown",
+    "value": null,
+    "unit": "status",
+    "source_files": [
+      "assumptions.json",
+      "visual/assets/movement-simulation.json"
+    ],
+    "formula": "status_of_local_signal_station_capacity_bicycle_and_people_flow_calibration",
+    "confidence": "unknown",
+    "assumptions": [],
+    "reason": "SUMO can provide a method base, but no local count, signal or capacity calibration has been completed."
   }
 }

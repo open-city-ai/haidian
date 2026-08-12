@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张智脉共生带 · Centennial Corridor — visual index</title>
+<style>
+:root {
+  --ink: #162033;
+  --muted: #667085;
+  --paper: #ffffff;
+  --soft: #f6f8fb;
+  --line: #d7dee8;
+  --rail: #2B2B2B;
+  --agent: #5B3FA8;
+  --highlight: #D97757;
+  --green: #5B8C5A;
+  --blue: #3F7AB5;
+  --gold: #c79838;
+  --shadow: 0 14px 34px rgba(22,32,51,.09);
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", Arial, sans-serif; background: #eef2f6; color: var(--ink); line-height: 1.58; }
+.wrap { max-width: 1280px; margin: auto; }
+header { background: #101827; color: #fff; border-bottom: 5px solid var(--highlight); }
+.hero { display: grid; grid-template-columns: minmax(0,1fr) 330px; gap: 28px; padding: 34px 26px 28px; }
+.eyebrow { color: #9fd7c0; letter-spacing: .18em; text-transform: uppercase; font-size: 12px; margin-bottom: 12px; }
+h1 { font-size: 32px; line-height: 1.18; margin: 0 0 8px; }
+h1 .en { display: block; font-size: 17px; color: #9fd7c0; font-weight: normal; margin-top: 4px; }
+h2 { font-size: 22px; margin: 0 0 14px; }
+h3 { font-size: 17px; margin: 0 0 8px; }
+p { margin: 0 0 10px; }
+.hero-copy { max-width: 900px; color: #d8e3ef; font-size: 16px; }
+.status-box { border: 1px solid rgba(255,255,255,.22); border-radius: 8px; padding: 16px; background: rgba(255,255,255,.06); }
+.status-box strong { display: block; font-size: 20px; margin-bottom: 8px; color: #fff; }
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.pill, .tag { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; border: 1px solid rgba(255,255,255,.26); padding: 6px 10px; font-size: 12px; color: #fff; }
+.tag { color: var(--muted); border-color: var(--line); background: var(--soft); }
+main { padding: 22px 22px 34px; }
+.sheet { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; margin: 0 auto 18px; box-shadow: var(--shadow); overflow: hidden; }
+.sheet-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; padding: 20px 22px; border-bottom: 1px solid #e6ebf2; background: #fbfcfe; }
+.sheet-head p { color: var(--muted); max-width: 760px; }
+.map-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(310px, .65fr); gap: 20px; padding: 20px 22px; }
+.map-frame { border: 1px solid #b9c4d3; border-radius: 8px; background: #f8fafc; overflow: hidden; }
+.fig { display: block; width: 100%; height: auto; }
+.legend { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; padding: 12px 0 0; }
+.legend span { display: flex; align-items: center; gap: 7px; color: #334155; font-size: 13px; }
+.sw { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+.metric-list { display: grid; gap: 10px; }
+.metric { display: flex; justify-content: space-between; padding: 8px 12px; background: var(--soft); border-radius: 6px; font-size: 13px; }
+.metric span { color: var(--muted); }
+.metric strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+.matrix { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; padding: 18px 22px; }
+.area-card { border: 1px solid var(--line); border-radius: 8px; padding: 14px; background: #fbfcfe; }
+.area-card h3 { color: var(--agent); }
+.area-card ul { padding-left: 18px; margin: 0; color: var(--muted); font-size: 13px; }
+.scenario-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; padding: 18px 22px; }
+.scenario-card { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; background: var(--soft); }
+.scenario-card b { color: var(--agent); }
+.evidence { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 18px 22px; }
+.evidence > div { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; background: var(--soft); }
+.source-line { font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: var(--agent); }
+.mile { display: flex; gap: 10px; align-items: center; padding: 10px 14px; border-top: 1px dashed var(--line); }
+.mile .idx { display: inline-block; min-width: 26px; text-align: center; padding: 4px 6px; border-radius: 4px; background: var(--agent); color: #fff; font-weight: bold; font-size: 12px; }
+.risk-card { padding: 14px; border-radius: 8px; }
+.risk-card.warn { background: #fff7ed; border: 1px solid #fed7aa; color: #9a3412; }
+.naming { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 10px; padding: 18px 22px; }
+.naming-card { border: 1px solid var(--line); border-radius: 8px; padding: 10px; text-align: center; background: #fbfcfe; }
+.naming-card b { display: block; color: var(--highlight); margin-bottom: 4px; font-size: 13px; }
+.naming-card span { font-size: 11px; color: var(--muted); }
+.landmarks { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; padding: 18px 22px; }
+.landmark { border-left: 3px solid var(--highlight); padding: 8px 12px; background: var(--soft); border-radius: 0 6px 6px 0; }
+.landmark b { color: var(--highlight); display: block; font-size: 13px; }
+.landmark p { margin: 4px 0 0; font-size: 12px; color: var(--muted); }
+footer { text-align: center; padding: 18px; color: var(--muted); font-size: 12px; }
+@media (max-width: 880px) {
+  .hero { grid-template-columns: 1fr; }
+  .map-grid, .matrix, .evidence, .naming, .landmarks, .scenario-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow">方案可视化总览 · Centennial Corridor</div>
+      <h1>京张智脉共生带<span class="en">The First Mile Where Agents Walk With The Railroad</span></h1>
+      <p class="hero-copy">以京张铁路遗址公园为脊柱，把百年工程、AI 原点和青年生活织成一条 5.4 公里的共生带。本页是离线电子展示；权威依据是 GeoJSON、metrics.json、各类矩阵和自检结果。本页不加载 CDN、远程地图瓦片、外部脚本、外部字体、API 请求或 iframe。</p>
+      <div class="pill-row">
+        <span class="pill">智脉三核</span>
+        <span class="pill">智脉四节</span>
+        <span class="pill">智脉四桥</span>
+        <span class="pill">智脉一里 · 9 段 × 600 米</span>
+      </div>
+    </div>
+    <aside class="status-box">
+      <strong>临时边界 · formal-review-ready</strong>
+      <p>当前几何基于 provisional_boundaries.geojson；official polygon 发布后必须重新跑 scaffold / self_check。</p>
+      <p>本页为 formal-review-ready 方案包（package_state=ready_for_review）的一部分，仍保留临时边界警示。</p>
+    </aside>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>总览地图 · 总体范围与京张铁路主轴</h2>
+      <p>把总体边界、绿地、公共空间、用地、道路、三处重点区与"智脉一里"放在同一张证据图中。南北 8 km × 东西 2 km 的条带是京张铁路原走向。</p>
+    </div>
+    <span class="tag">site-overview.png</span>
+  </div>
+  <div class="map-grid">
+    <div>
+      <div class="map-frame"><img class="fig" src="../assets/figures/site-overview.png" alt="总体范围与京张铁路主轴"></div>
+      <div class="legend">
+        <span><i class="sw" style="background:#D0D0D0"></i>总体边界 (provisional)</span>
+        <span><i class="sw" style="background:#5B8C5A"></i>绿地</span>
+        <span><i class="sw" style="background:#5B3FA8"></i>公共空间</span>
+        <span><i class="sw" style="background:#C8C2B8"></i>用地</span>
+        <span><i class="sw" style="background:#D97757"></i>三处重点区</span>
+        <span><i class="sw" style="background:#2B2B2B"></i>道路</span>
+        <span><i class="sw" style="background:linear-gradient(90deg,#D97757,#5B3FA8)"></i>智脉一里</span>
+        <span></span>
+      </div>
+    </div>
+    <aside>
+      <h3>核心指标 (Tier 1)</h3>
+      <div class="metric-list">
+        <div class="metric"><span>site_area_sqm</span><strong data-metric="site_area_sqm" data-value="11412825.386">11,412,825</strong></div>
+        <div class="metric"><span>building_footprint_area_sqm</span><strong data-metric="building_footprint_area_sqm" data-value="310807.184">310,807</strong></div>
+        <div class="metric"><span>green_ratio</span><strong data-metric="green_ratio" data-value="0.123423">12.34%</strong></div>
+        <div class="metric"><span>public_space_ratio</span><strong data-metric="public_space_ratio" data-value="0.073281">7.33%</strong></div>
+        <div class="metric"><span>key_area_count</span><strong data-metric="key_area_count" data-value="3">3</strong></div>
+      </div>
+      <div class="risk-card warn" style="margin-top:14px">
+        <h3>自检状态</h3>
+        <p>BOUNDARY_TRUST / KEY_AREAS_TRUST / LAND_USE_TOPOLOGY / VISUAL_STATIC 当前均 PASS（formal-review-ready，provisional boundary 警示）；official polygon 发布后必须重新跑 self_check。</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>智脉三核 · 三处重点区域</h2>
+      <p>三核分别承载近校成果转化（原点核）、花园型全栈自主（众智核）、智能经济国际交往（大钟核），并对应 agent.2 / agent.3 / agent.4 任务。</p>
+    </div>
+    <span class="tag">key-areas.png</span>
+  </div>
+  <div class="map-grid">
+    <div>
+      <div class="map-frame"><img class="fig" src="../assets/figures/key-areas.png" alt="三处重点区域"></div>
+    </div>
+    <aside>
+      <h3>三核一览</h3>
+      <p><b style="color:#D97757">● 原点核</b> · 北京 AI 原点社区 · ~104.3 ha · 近校成果转化、人才社区、开源协作</p>
+      <p><b style="color:#5B3FA8">● 众智核</b> · 众智园 AI 自主创新加速区 · ~192.1 ha · 花园型全栈自主、清河界面、低碳创新</p>
+      <p><b style="color:#3F7AB5">● 大钟核</b> · 大钟寺 AI 产业集聚区 · ~72.0 ha · 智能经济、国际交往、四象限连通</p>
+    </aside>
+  </div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>三层范围工作框架</h2>
+      <p>方案按统筹研究范围、总体设计范围、重点区域范围递进，把产业判断、城市更新和重点片区设计绑定到图层与指标。</p>
+    </div>
+    <span class="tag">land-use-structure.png</span>
+  </div>
+  <div class="map-grid">
+    <div>
+      <div class="map-frame"><img class="fig" src="../assets/figures/land-use-structure.png" alt="三层范围与工作框架"></div>
+    </div>
+    <aside>
+      <h3>三层对应</h3>
+      <p><b>统筹研究</b> · ~43.6 km² AI 创新带 · 智脉品牌与三大定位</p>
+      <p><b>总体设计</b> · ~11.4 km² 京张遗址公园周边 · 一带三核、四节四桥、一里九柱</p>
+      <p><b>重点区域</b> · ~368.4 ha · 三核分别回应 agent.2 / agent.3 / agent.4</p>
+    </aside>
+  </div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>命名体系 · 五级</h2>
+      <p>京张智脉共生带的命名不是口号，而是可空间落位、可长期更新的层级结构。</p>
+    </div>
+    <span class="tag">agent.1 · Naming system</span>
+  </div>
+  <div class="naming">
+    <div class="naming-card"><b>京张智脉</b><span>Centennial Corridor<br>品牌 · Belt</span></div>
+    <div class="naming-card"><b>三核</b><span>原点核 / 众智核 / 大钟核<br>Three Cores</span></div>
+    <div class="naming-card"><b>四节</b><span>清华园·始 / 五道口·潮<br>知春路·活 / 大钟寺·归<br>Four Beats</span></div>
+    <div class="naming-card"><b>四桥</b><span>百年桥 / 开源桥<br>共生桥 / 回声桥<br>Four Bridges</span></div>
+    <div class="naming-card"><b>一里</b><span>5.4 km × 9 段 × 600 m<br>Agent Mile</span></div>
+  </div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>智脉一里 · 9 段 × 600 米</h2>
+      <p>沿原京张铁路走向把 5.4 公里切分为 9 段，每段对应一个 Agent 朝圣主题、命名权和里程碑柱。</p>
+    </div>
+    <span class="tag">Agent Mile</span>
+  </div>
+  <div>
+    <div class="mile"><span class="idx">1</span><b>清华园·始</b><span style="color:var(--muted); margin-left:auto">— 开源 · 京张零点 · 起点碑</span></div>
+    <div class="mile"><span class="idx">2</span><b>五道口·潮</b><span style="color:var(--muted); margin-left:auto">— 高校创新 · 学生街</span></div>
+    <div class="mile"><span class="idx">3</span><b>学清路·聚</b><span style="color:var(--muted); margin-left:auto">— 成果转化 · 校企客厅</span></div>
+    <div class="mile"><span class="idx">4</span><b>知春路·活</b><span style="color:var(--muted); margin-left:auto">— 青年生活 · 智脉夜行</span></div>
+    <div class="mile"><span class="idx">5</span><b>学院路·链</b><span style="color:var(--muted); margin-left:auto">— 开源协作 · 公共代码墙</span></div>
+    <div class="mile"><span class="idx">6</span><b>清河·绿</b><span style="color:var(--muted); margin-left:auto">— 低碳创新 · 清河界面</span></div>
+    <div class="mile"><span class="idx">7</span><b>众智园·标</b><span style="color:var(--muted); margin-left:auto">— 全栈自主 · 安全治理沙盒</span></div>
+    <div class="mile"><span class="idx">8</span><b>大钟寺·交</b><span style="color:var(--muted); margin-left:auto">— 国际路演 · 四象限连通</span></div>
+    <div class="mile"><span class="idx">9</span><b>大钟寺·归</b><span style="color:var(--muted); margin-left:auto">— 回声塔 · 终点碑</span></div>
+  </div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>朝圣地标 · 4 个</h2>
+      <p>智脉里程上的四组永久纪念节点；入选贡献者的 GitHub Name 与 Agent 名进入碑刻与开源回廊滚动名单。</p>
+    </div>
+    <span class="tag">agent.4 · Pilgrimage landmarks</span>
+  </div>
+  <div class="landmarks">
+    <div class="landmark"><b>京张零点</b><p>清华园站旧址 · 标识"中国自主设计第一条干线铁路 1909"</p></div>
+    <div class="landmark"><b>开源回廊</b><p>原点核内 · 滚动展示 Agent 命名与 GitHub ID</p></div>
+    <div class="landmark"><b>智脉里程碑柱阵</b><p>5.4 km × 9 段 · 100 根石柱 · 每年滚动入选贡献者</p></div>
+    <div class="landmark"><b>回声塔</b><p>大钟寺终点站一体化广场 · 钟声采样 + 开源语音模型</p></div>
+  </div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>交通慢行与蓝绿公共空间</h2>
+      <p>京张遗址公园活力带是骨架；南北贯通、东西连通；慢行断点用低侵入传感识别（不采集人脸）。</p>
+    </div>
+    <span class="tag">mobility-bluegreen.png</span>
+  </div>
+  <div class="map-grid">
+    <div>
+      <div class="map-frame"><img class="fig" src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿系统"></div>
+    </div>
+    <aside>
+      <h3>关键策略</h3>
+      <p>· 跨北五环慢行断点缝合（JZ-01）</p>
+      <p>· 大钟寺站四象限步行连通（JZ-04）</p>
+      <p>· 清河低碳创新廊（JZ-02）</p>
+      <p>· 智脉一里夜间段分级照明（agent.6）</p>
+    </aside>
+  </div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>AI 场景 · 10 张</h2>
+      <p>场景说明服务对象、空间位置、数据来源、隐私边界、人工复核和运营主体；不冒充已批准运营。</p>
+    </div>
+    <span class="tag">agent.3 · Scenario cards</span>
+  </div>
+  <div class="scenario-grid">
+    <article class="scenario-card"><b>01 开源发布厅</b><p>原点核 · 成果发布、代码贡献展示、小型路演</p></article>
+    <article class="scenario-card"><b>02 安全治理沙盒</b><p>众智核 · 标准制定、安全评测、红队测试节点</p></article>
+    <article class="scenario-card"><b>03 端侧算力驿站</b><p>总体设计范围节点 · 新型基础设施原型</p></article>
+    <article class="scenario-card"><b>04 AI 慢行导航</b><p>京张遗址公园活力带 · 慢行断点与无障碍识别</p></article>
+    <article class="scenario-card"><b>05 大钟寺国际路演客厅</b><p>大钟核 · 智能体、智能终端、内容消费展示</p></article>
+    <article class="scenario-card"><b>06 清河低碳创新廊</b><p>众智核临清河界面 · 绿色空间 + AI 展示</p></article>
+    <article class="scenario-card"><b>07 近校成果转化街</b><p>原点核 · 孵化、法务、知识产权、投融资服务</p></article>
+    <article class="scenario-card"><b>08 数据要素会客厅</b><p>大钟核 · 合规、授权、可审计的数据流通界面</p></article>
+    <article class="scenario-card"><b>09 AI 生活服务样板街</b><p>AGENT-MILE-003 成府路 → 蓝旗营 · 社区与商业交汇处 · 医疗 / 教育 / 法律 / 生活</p></article>
+    <article class="scenario-card"><b>10 全球 AI 活动周路线</b><p>一带公共空间系统 · 遗址 → 开源 → 产业 → 国际</p></article>
+  </div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>核心指标与证据链</h2>
+      <p>三类指标分层管理：可由提交几何复算的（Tier 1）、需官方控规支撑的（Tier 2）、需运营数据持续校准的（Tier 3）。</p>
+    </div>
+    <span class="tag">metrics-evidence.png</span>
+  </div>
+  <div class="map-grid">
+    <div>
+      <div class="map-frame"><img class="fig" src="../assets/figures/metrics-evidence.png" alt="核心指标与证据链"></div>
+    </div>
+    <aside>
+      <h3>证据链</h3>
+      <p><span class="source-line">geometry/*.geojson</span> → <span class="source-line">metrics.json</span> → <span class="source-line">proposal.md / visual</span></p>
+      <h3 style="margin-top:12px">任务覆盖</h3>
+      <p>agent.1 命名 / agent.2 生态 / agent.3 场景 / agent.4 朝圣 / agent.5 叙事 / agent.6 运营 — 全部覆盖</p>
+    </aside>
+  </div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>用地分区 · 建筑 · 更新项目</h2>
+      <p>把总体设计范围的用地结构、建筑基底和 8 个更新项目落到图层和指标，并标明 provisional 状态与 official polygon 发布后的复算要求。</p>
+    </div>
+    <span class="tag">land_use / buildings / phasing</span>
+  </div>
+  <div class="evidence">
+    <div>
+      <h3>用地分区 · land_use_code</h3>
+      <p>LU-001 智脉三核 · AI 研发创新用地 · 0802 · ~2,674,562 m²</p>
+      <p>LU-002 智脉四节 · 文化用地 · 0803 · ~2,510,418 m²</p>
+      <p>LU-003 智脉四桥 · 科研与产业用地 · 0802 · ~2,178,640 m²</p>
+      <p>LU-004 居住与配套 · 0702 · ~2,098,205 m²</p>
+    </div>
+    <div>
+      <h3>建筑 · 更新项目</h3>
+      <p>建筑基底总计 ~310,807 m²（scaffold 派生）</p>
+      <p>JZ-01 慢行断点缝合 · JZ-02 清河创新界面 · JZ-03 近校成果转化街 · JZ-04 大钟寺四象限连通</p>
+      <p>JZ-05 AI 公共服务与端侧算力 · JZ-06 全球 AI 活动周路线 · JZ-07 智脉里程碑柱 · JZ-08 开源回廊</p>
+    </div>
+  </div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>来源 · 假设 · 自检</h2>
+      <p>本页内容由 sources.json、assumptions.json 和 self_check.json 共同支持；HTML 完全离线。</p>
+    </div>
+    <span class="tag">provenance</span>
+  </div>
+  <div class="evidence">
+    <div>
+      <h3>来源</h3>
+      <p>北京市规划和自然资源委员会海淀分局《百年京张AI创新带城市设计国际方案征集资格预审公告》;brief/site-package/agent_taskbook.json;data/source_registry.json;data/processed/agent_fact_pack.md。</p>
+      <div class="source-line">sources.json / standards/references/</div>
+    </div>
+    <div>
+      <h3>假设与自检</h3>
+      <p>当前边界为 provisional;official polygon 发布后必须重新复算。已知数据缺口见 missing_data_checklist.csv。</p>
+      <div class="source-line">assumptions.json / self_check.json / missing_data_checklist.csv</div>
+    </div>
+  </div>
+</section>
+
+<p hidden>v0.1.3 sync 2026-08-12T02:49:00.291731</p><p hidden>v0.1.3 changelog 2026-08-12T02:49:19.021834</p></main>
+<footer>
+  Centennial Corridor · 京张智脉共生带 · ziyanTOP · package_state=ready_for_review
+  · HTML 完全离线，不含 CDN / 远程字体 / iframe
+</footer>
+</body>
+</html>
+
+<!-- regenerated 2026-08-12T02:12:15.784831 -->

@@ -1,0 +1,485 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm",
+  "ratio": "ratio",
+  "count": "count"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.39,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(geometry/site_boundary.geojson#SITE-001) in EPSG:4548",
+   "confidence": "high",
+   "assumptions": [
+    "边界为临时粗略 provisional 边界（PROV-SITE-001），非官方红线；公告面积约 11,400,000 ㎡，本复算 11,412,825 ㎡（偏差 0.11%，在容差内）。官方 polygon 发布后须整包复算。"
+   ],
+   "label_zh": "总体设计范围面积",
+   "label_en": "Overall design area"
+  },
+  "coordinated_research_area_sqm": {
+   "status": "known",
+   "value": 43600000,
+   "unit": "sqm",
+   "source_files": [
+    "brief/site-package/design_brief.json"
+   ],
+   "formula": "official announcement text value",
+   "confidence": "high",
+   "assumptions": [
+    "公告文字面积，未含精确 polygon；用于三层范围框架陈述。"
+   ],
+   "label_zh": "统筹研究范围面积（公告值）",
+   "label_en": "Coordinated research area (announced)"
+  },
+  "key_detailed_design_area_sqm": {
+   "status": "known",
+   "value": 3684000,
+   "unit": "sqm",
+   "source_files": [
+    "brief/site-package/design_brief.json"
+   ],
+   "formula": "official announcement text value (sum of three key areas)",
+   "confidence": "high",
+   "assumptions": [
+    "公告文字面积；三处重点区 polygon 为 provisional。"
+   ],
+   "label_zh": "重点区域范围面积（公告值）",
+   "label_en": "Key detailed design area (announced)"
+  },
+  "land_use_area_1401": {
+   "status": "known",
+   "value": 2321172.29,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "polygon_area(land_use polygons with land_use_code=1401) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "概念性用地结构，基于 provisional 边界与设计假设生成；非现状调查、非法定用地规划。"
+   ],
+   "label_zh": "公园绿地面积",
+   "label_en": "Park and green space area"
+  },
+  "land_use_area_0802": {
+   "status": "known",
+   "value": 2087597.15,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "polygon_area(land_use polygons with land_use_code=0802) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "概念性用地结构，基于 provisional 边界与设计假设生成；非现状调查、非法定用地规划。"
+   ],
+   "label_zh": "科研用地面积",
+   "label_en": "R&D land area"
+  },
+  "land_use_area_05": {
+   "status": "known",
+   "value": 1025441.95,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "polygon_area(land_use polygons with land_use_code=05) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "概念性用地结构，基于 provisional 边界与设计假设生成；非现状调查、非法定用地规划。"
+   ],
+   "label_zh": "商业服务业用地面积",
+   "label_en": "Commercial and service land area"
+  },
+  "land_use_area_0701": {
+   "status": "known",
+   "value": 5309514.21,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "polygon_area(land_use polygons with land_use_code=0701) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "概念性用地结构，基于 provisional 边界与设计假设生成；非现状调查、非法定用地规划。"
+   ],
+   "label_zh": "城镇住宅用地面积",
+   "label_en": "Urban residential land area"
+  },
+  "land_use_area_0803": {
+   "status": "known",
+   "value": 669099.79,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "polygon_area(land_use polygons with land_use_code=0803) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "概念性用地结构，基于 provisional 边界与设计假设生成；非现状调查、非法定用地规划。"
+   ],
+   "label_zh": "文化用地面积",
+   "label_en": "Cultural land area"
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.203383,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "绿地含遗址公园主轴绿带与防护绿地（概念划分）；待正式控规绿地率数据补齐。"
+   ],
+   "label_zh": "绿地率（概念复算）",
+   "label_en": "Green ratio (conceptual)"
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.007886,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "公共空间为三处重点区信号广场及沿线节点广场（概念划分）。"
+   ],
+   "label_zh": "公共空间率（概念复算）",
+   "label_en": "Public space ratio (conceptual)"
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 2321172.29,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "polygon_area(geometry/green_space.geojson) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [],
+   "label_zh": "绿地面积",
+   "label_en": "Green space area"
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 90000.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "polygon_area(geometry/public_space.geojson) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [],
+   "label_zh": "公共空间面积",
+   "label_en": "Public space area"
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 2601000.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building footprints)) in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "建筑基底为概念性体块示意（约 374 个），非现状建筑调查、非实施性布局。"
+   ],
+   "label_zh": "建筑基底面积（概念）",
+   "label_en": "Building footprint area (conceptual)"
+  },
+  "building_density": {
+   "status": "known",
+   "value": 0.227901,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_footprint_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "概念建筑密度，仅用于说明设计意图与体量分布；法定建筑密度待正式控规。"
+   ],
+   "label_zh": "建筑密度（概念）",
+   "label_en": "Building density (conceptual)"
+  },
+  "building_count": {
+   "status": "known",
+   "value": 360,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(features in geometry/buildings.geojson)",
+   "confidence": "low",
+   "assumptions": [],
+   "label_zh": "概念建筑数量",
+   "label_en": "Conceptual building count"
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [
+    "官方控规容积率缺失（planning_limits.json 登记为 missing）；总建筑面积需建筑层数与面积数据，本方案不推测。"
+   ],
+   "label_zh": "容积率（待正式数据补齐）",
+   "label_en": "Floor area ratio (pending official data)",
+   "reason": "官方控规容积率条件未随公开资料发布（brief/site-package/ranges/planning_limits.json 登记为 missing）；须以正式控规附件或经清权的设计条件补齐后才能计算。"
+  },
+  "building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "official height controls",
+   "confidence": "unknown",
+   "assumptions": [
+    "官方建筑高度控制缺失；不推测高度结论。"
+   ],
+   "label_zh": "建筑高度（待正式数据补齐）",
+   "label_en": "Building height (pending official data)",
+   "reason": "官方建筑高度控制（含航空、风貌、文保等约束）未随公开资料发布；须以正式控规条件或经清权的设计条件补齐后才能计算。"
+  },
+  "road_length_m": {
+   "status": "known",
+   "value": 14158.4,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(line length of ROAD_CENTERLINE features) in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "道路中心线为概念性结构线（主轴慢行线 + 横向缝合线），非道路红线、非工程线形。"
+   ],
+   "label_zh": "概念道路中心线长度",
+   "label_en": "Conceptual road centre-line length"
+  },
+  "road_ratio": {
+   "status": "known",
+   "value": 0.049623,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/roads.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "(road_length_m * 40m 概念路幅) / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "路幅按概念 40m 估算，仅用于展示量级；法定道路用地率待正式道路红线。"
+   ],
+   "label_zh": "道路用地率（概念估算）",
+   "label_en": "Road ratio (conceptual estimate)"
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(KEY_AREA features)",
+   "confidence": "high",
+   "assumptions": [],
+   "label_zh": "重点区域数量",
+   "label_en": "Key area count"
+  },
+  "key_area_zhongzhiyuan_sqm": {
+   "status": "known",
+   "value": 1929201.88,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(KEY_AREA zhongzhiyuan_ai_acceleration_area) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "临时粗略 polygon 复算面积；公告面积分别为 192.1 / 104.3 / 72.0 公顷。官方 polygon 发布后复算。"
+   ],
+   "label_zh": "众智园AI自主创新加速区面积",
+   "label_en": "Zhongzhiyuan AI Acceleration Area area"
+  },
+  "key_area_origin_sqm": {
+   "status": "known",
+   "value": 1043236.91,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(KEY_AREA beijing_ai_origin_community) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "临时粗略 polygon 复算面积；公告面积分别为 192.1 / 104.3 / 72.0 公顷。官方 polygon 发布后复算。"
+   ],
+   "label_zh": "北京AI原点社区面积",
+   "label_en": "Beijing AI Origin Community area"
+  },
+  "key_area_dazhongsi_sqm": {
+   "status": "known",
+   "value": 720454.22,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(KEY_AREA dazhongsi_ai_industry_cluster) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "临时粗略 polygon 复算面积；公告面积分别为 192.1 / 104.3 / 72.0 公顷。官方 polygon 发布后复算。"
+   ],
+   "label_zh": "大钟寺AI产业聚集区面积",
+   "label_en": "Dazhongsi AI Industry Cluster area"
+  },
+  "phase_1_area_sqm": {
+   "status": "known",
+   "value": 3075634.39,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(PHASE-1) in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "一期概念范围：遗址公园主轴缝合段与 AI 原点社区（含沿线公共空间）。"
+   ],
+   "label_zh": "一期范围面积",
+   "label_en": "Phase 1 area"
+  },
+  "phase_2_area_sqm": {
+   "status": "known",
+   "value": 1929201.88,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(PHASE-2) in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "二期概念范围：众智园AI自主创新加速区。"
+   ],
+   "label_zh": "二期范围面积",
+   "label_en": "Phase 2 area"
+  },
+  "phase_3_area_sqm": {
+   "status": "known",
+   "value": 720454.22,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(PHASE-3) in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "三期概念范围：大钟寺AI产业聚集区。"
+   ],
+   "label_zh": "三期范围面积",
+   "label_en": "Phase 3 area"
+  },
+  "scenario_card_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "compliance_matrix.json"
+   ],
+   "formula": "count(scenario cards in proposal.md §AI+场景 with signal-grade mapping)",
+   "confidence": "medium",
+   "assumptions": [
+    "12 张 AI 场景卡（≥10 要求），其中 3 张为产业测试验证场景；见正文 AI 创新生态、人才画像与 AI+ 场景章节。"
+   ],
+   "label_zh": "AI场景卡数量",
+   "label_en": "AI scenario card count"
+  },
+  "test_scenario_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "compliance_matrix.json"
+   ],
+   "formula": "count(industry test/validation scenarios in proposal.md)",
+   "confidence": "medium",
+   "assumptions": [],
+   "label_zh": "产业测试验证场景数量",
+   "label_en": "Industry test/validation scenario count"
+  },
+  "persona_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "compliance_matrix.json"
+   ],
+   "formula": "count(user persona types in proposal.md)",
+   "confidence": "medium",
+   "assumptions": [],
+   "label_zh": "用户画像类型数量",
+   "label_en": "User persona type count"
+  },
+  "case_study_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "compliance_matrix.json"
+   ],
+   "formula": "count(global AI ecosystem case studies in proposal.md)",
+   "confidence": "medium",
+   "assumptions": [],
+   "label_zh": "全球AI创新生态案例数量",
+   "label_en": "Global AI ecosystem case study count"
+  },
+  "landmark_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "compliance_matrix.json"
+   ],
+   "formula": "count(AI pilgrimage landmarks in proposal.md)",
+   "confidence": "medium",
+   "assumptions": [],
+   "label_zh": "AI朝圣地标数量",
+   "label_en": "AI pilgrimage landmark count"
+  },
+  "signal_node_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "compliance_matrix.json"
+   ],
+   "formula": "count(signal-graded AI scenario nodes along the main line in proposal.md)",
+   "confidence": "medium",
+   "assumptions": [],
+   "label_zh": "信号分级场景节点数量",
+   "label_en": "Signal-graded scenario node count"
+  }
+ }
+}

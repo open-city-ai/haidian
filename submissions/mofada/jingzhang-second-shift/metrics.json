@@ -1,0 +1,248 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "EPSG:4548 area(provisional SITE-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "Repository boundary is provisional and non-statutory; computational precision is not boundary precision."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 16956.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum EPSG:4548 area(concept footprints)",
+      "confidence": "medium",
+      "assumptions": [
+        "Capacity-test geometry only; not approved building scale."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 988784.939,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "EPSG:4548 area(concept low-disturbance belt)",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept design area, not statutory green space."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.086638,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / provisional_site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept ratio within provisional boundary; not a regulatory green ratio."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 124442.561,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum EPSG:4548 area(concept public spaces)",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept capacity-test spaces, not an existing-condition inventory."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.010904,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / provisional_site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept ratio within provisional boundary; not a regulatory public-space ratio."
+      ]
+    },
+    "concept_route_length_m": {
+      "status": "known",
+      "value": 10293.213,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum EPSG:4548 length(concept linework)",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept links only; not navigation or engineering quantities."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required key-area records)",
+      "confidence": "medium",
+      "assumptions": [
+        "Three extents are provisional and non-statutory."
+      ]
+    },
+    "concept_station_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(BLDG-STATION-*)",
+      "confidence": "high",
+      "assumptions": [
+        "Proposal deliverable count, not built facilities."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(persona rows)",
+      "confidence": "high",
+      "assumptions": [
+        "Coverage count, not an outcome."
+      ]
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario cards)",
+      "confidence": "high",
+      "assumptions": [
+        "Coverage count, not operating performance."
+      ]
+    },
+    "industry_validation_scenario_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(T1..T5)",
+      "confidence": "high",
+      "assumptions": [
+        "Proposed tests are not authorised and not run."
+      ]
+    },
+    "honor_node_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(concept honour nodes)",
+      "confidence": "high",
+      "assumptions": [
+        "Concept count, not built facilities."
+      ]
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(P01..P08)",
+      "confidence": "high",
+      "assumptions": [
+        "Concept project list, not funded commitments."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls, official boundary and verified floor area are unavailable."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official height control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official height controls and a verified existing-building survey are unavailable."
+    },
+    "night_noise_baseline_db": {
+      "status": "unknown",
+      "value": null,
+      "unit": "dB",
+      "source_files": [],
+      "formula": "field measurement under applicable method",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No verified day/night, seasonal or sensitive-receptor field baseline is provided."
+    },
+    "night_illuminance_baseline_lux": {
+      "status": "unknown",
+      "value": null,
+      "unit": "lux",
+      "source_files": [],
+      "formula": "field measurement under applicable method",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No verified after-dark illuminance and glare survey is provided."
+    },
+    "night_footfall_baseline": {
+      "status": "unknown",
+      "value": null,
+      "unit": "persons_per_hour",
+      "source_files": [],
+      "formula": "privacy-preserving field count",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No verified night footfall or shift-pattern dataset is provided."
+    }
+  }
+}

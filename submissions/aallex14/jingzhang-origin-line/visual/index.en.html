@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jing-Zhang Origin Line AI Belt · Offline Exhibition Dashboard | Open Call for the Centennial Jing-Zhang AI Innovation Belt</title>
+<style>
+:root{
+  --indigo:#1F3A93; --indigo-deep:#16295F; --red:#C0392B; --green:#2E8B57;
+  --cyan:#16A3B8; --sand:#F7F3EA; --ink:#22303C; --paper:#FDFCF8;
+  --line:#D9D2C2; --muted:#5B6B77;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+  background:var(--sand); color:var(--ink); line-height:1.65;
+  font-size:16px;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+header.topbar{
+  position:sticky;top:0;z-index:50;
+  background:var(--indigo-deep);color:#fff;
+  border-bottom:3px solid var(--cyan);
+  box-shadow:0 2px 10px rgba(20,30,50,.25);
+}
+.topbar-inner{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:10px 20px;max-width:1180px;margin:0 auto}
+.brand{font-weight:700;font-size:15px;letter-spacing:.5px;white-space:nowrap}
+.brand em{font-style:normal;color:#8FD6E0}
+nav.anchors{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+nav.anchors a{color:#DCE6F5;text-decoration:none;font-size:12.5px;padding:4px 8px;border-radius:4px;white-space:nowrap}
+nav.anchors a:hover{background:rgba(255,255,255,.14);color:#fff}
+.langswitch{font-size:12.5px;border:1px solid rgba(255,255,255,.45);border-radius:4px;padding:3px 9px;color:#fff;text-decoration:none;white-space:nowrap}
+.langswitch:hover{background:rgba(255,255,255,.15)}
+.hero{
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 1px, transparent 1px 34px),
+    linear-gradient(160deg, var(--indigo-deep) 0%, var(--indigo) 62%, #27479E 100%);
+  color:#fff;padding:64px 0 56px;
+}
+.hero .kicker{font-size:13px;letter-spacing:3px;color:#9FD9E2;text-transform:uppercase;margin-bottom:14px}
+.hero h1{font-size:42px;line-height:1.2;font-weight:800;letter-spacing:1px}
+.hero .slogan{font-size:19px;margin-top:12px;color:#F2E7C9;font-weight:600}
+.hero .structure{font-size:14px;margin-top:8px;color:#BCCBE8}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.badge{font-size:12.5px;padding:5px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.08)}
+.badge.red{background:rgba(192,57,43,.35);border-color:rgba(255,180,170,.6)}
+.badge.cyan{background:rgba(22,163,184,.3);border-color:rgba(140,220,230,.6)}
+section{padding:46px 0 10px}
+.sec-head{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--indigo);padding-bottom:10px;margin-bottom:22px}
+.sec-num{font-size:13px;font-weight:700;color:#fff;background:var(--indigo);padding:2px 9px;border-radius:4px;letter-spacing:1px}
+.sec-head h2{font-size:26px;font-weight:800;color:var(--indigo-deep);letter-spacing:.5px}
+.sec-head .sub{font-size:13px;color:var(--muted);margin-left:auto}
+.note{font-size:13px;color:var(--muted);background:#FBF8F0;border:1px dashed var(--line);border-left:3px solid var(--cyan);border-radius:6px;padding:10px 14px;margin:16px 0}
+.note.warn{border-left-color:var(--red)}
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:18px;box-shadow:0 2px 8px rgba(34,48,60,.07)}
+.card h3{font-size:17px;color:var(--indigo-deep);margin-bottom:6px}
+.card .tag{display:inline-block;font-size:11.5px;padding:2px 8px;border-radius:999px;margin:2px 4px 6px 0}
+.tag.indigo{background:#E4EAF8;color:var(--indigo)}
+.tag.red{background:#F9E4E1;color:var(--red)}
+.tag.green{background:#E1F0E8;color:var(--green)}
+.tag.cyan{background:#DFF3F5;color:#0E7484}
+.card p{font-size:14px;color:#3A4A57}
+.card ul{margin:8px 0 0 18px;font-size:14px;color:#3A4A57}
+.big{font-size:26px;font-weight:800;color:var(--indigo);line-height:1.2}
+.unit{font-size:13px;color:var(--muted);font-weight:400}
+.mapbox{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(34,48,60,.07)}
+.mapbox svg{width:100%;height:auto;display:block}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:13px;color:#3A4A57}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:16px;height:10px;border-radius:2px;display:inline-block}
+.scopebar{margin:12px 0}
+.scopebar .lbl{font-size:14px;font-weight:600;margin-bottom:4px}
+.scopebar .bar{height:34px;border-radius:6px;color:#fff;font-size:13px;display:flex;align-items:center;padding:0 12px;white-space:nowrap;min-width:fit-content}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13.5px;box-shadow:0 1px 4px rgba(34,48,60,.06);max-width:360px}
+.chip b{display:block;font-size:14px;margin-bottom:2px}
+.chip .code{display:inline-block;width:14px;height:14px;border-radius:3px;margin-right:6px;vertical-align:-2px}
+.check{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.check li{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:13px;display:flex;gap:8px;align-items:flex-start;box-shadow:0 1px 4px rgba(34,48,60,.05)}
+.check .ok{color:var(--green);font-weight:800}
+.check .pt{color:var(--muted);font-size:12px}
+.metric{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:16px;box-shadow:0 2px 8px rgba(34,48,60,.07)}
+.metric .mname{font-size:13px;color:var(--muted);margin-bottom:4px}
+.metric .mval{font-size:22px;font-weight:800;color:var(--indigo)}
+.metric .mval .unit{font-size:12px}
+.metric.unknown .mval{font-size:15px;color:var(--red);font-weight:600}
+footer{margin-top:56px;background:var(--indigo-deep);color:#C9D6EC;padding:30px 0 40px;font-size:13px;border-top:3px solid var(--red)}
+footer p{margin:6px 0}
+footer .lic{color:#F2E7C9;font-weight:600}
+@media(max-width:900px){
+  .g4{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(2,1fr)}
+  .check{grid-template-columns:repeat(2,1fr)}
+  .hero h1{font-size:30px}
+}
+@media(max-width:560px){
+  .g4,.g3,.g2{grid-template-columns:1fr}
+  .check{grid-template-columns:1fr}
+  .hero{padding:40px 0}
+  nav.anchors{width:100%;overflow-x:auto;flex-wrap:nowrap}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">Jing-Zhang Origin Line <em>AI</em> Belt · Exhibition</div>
+    <nav class="anchors" aria-label="Section navigation">
+      <a href="#map">Overview Map</a>
+      <a href="#scope">Three Scopes</a>
+      <a href="#key-areas">Key Areas</a>
+      <a href="#land-use">Land Use</a>
+      <a href="#mobility">Mobility</a>
+      <a href="#blue-green">Blue-Green Space</a>
+      <a href="#buildings">Buildings</a>
+      <a href="#renewal">Renewal Projects</a>
+      <a href="#scenarios">AI Scenarios</a>
+      <a href="#metrics">Core Metrics</a>
+      <a href="#coverage">Task Coverage</a>
+      <a href="#self-check">Self-Check</a>
+      <a href="#sources">Sources</a>
+      <a href="#assumptions">Assumptions</a>
+    </nav>
+    <a class="langswitch" href="index.html">中文</a>
+  </div>
+</header>
+
+<!-- ================= 1. HERO ================= -->
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">Open Call: Centennial Jing-Zhang AI Innovation Belt Urban Design · Haidian</div>
+    <h1>“Jing-Zhang Origin Line AI Belt”</h1>
+    <div class="slogan">The Origin Line Grows · 原线生长</div>
+    <div class="structure">Spatial structure: One Line · Three Districts · Two Wings · Five Origin Stations — the heritage-park green spine links the three key areas</div>
+    <div class="badges">
+      <span class="badge cyan">AI-agent submission (Kimi Code CLI · aallex14)</span>
+      <span class="badge red">Provisional substitute boundaries; all figures recomputed once official data is released</span>
+      <span class="badge">Submitted: 2026-08</span>
+      <span class="badge">All drawings are conceptual, not an official redline</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ================= 2. OVERVIEW MAP ================= -->
+<section id="map">
+  <div class="sec-head"><span class="sec-num">01</span><h2>Overview Map</h2><span class="sub">~9.7 km north–south corridor · conceptual schematic</span></div>
+  <div class="mapbox">
+    <svg viewBox="0 0 760 1120" role="img" aria-label="Schematic of the Jing-Zhang Origin Line AI Belt corridor">
+      <rect x="0" y="0" width="760" height="1120" fill="#FDFCF8"/>
+      <!-- four zone bands -->
+      <rect x="235" y="90"  width="300" height="215" fill="#E1F0E8" opacity=".55"/>
+      <rect x="235" y="305" width="300" height="255" fill="#DFF3F5" opacity=".55"/>
+      <rect x="235" y="560" width="300" height="240" fill="#E4EAF8" opacity=".55"/>
+      <rect x="235" y="800" width="300" height="245" fill="#F9E4E1" opacity=".5"/>
+      <!-- provisional boundary (dashed) -->
+      <path d="M300,62 L478,84 L520,300 L500,560 L530,820 L472,1058 L262,1040 L232,762 L252,462 L240,202 Z"
+            fill="none" stroke="#22303C" stroke-width="2" stroke-dasharray="9 7"/>
+      <!-- green spine -->
+      <path d="M368,100 C352,260 408,420 372,600 C348,720 400,900 366,1050"
+            fill="none" stroke="#2E8B57" stroke-width="34" stroke-opacity=".28" stroke-linecap="round"/>
+      <path d="M368,100 C352,260 408,420 372,600 C348,720 400,900 366,1050"
+            fill="none" stroke="#2E8B57" stroke-width="4"/>
+      <!-- heritage rail dashed line -->
+      <path d="M418,110 C404,280 448,430 416,610 C396,730 442,900 410,1040"
+            fill="none" stroke="#C0392B" stroke-width="2.4" stroke-dasharray="10 6"/>
+      <!-- three key areas -->
+      <rect x="296" y="118" width="180" height="150" rx="10" fill="#C0392B" fill-opacity=".10" stroke="#C0392B" stroke-width="2"/>
+      <rect x="288" y="386" width="196" height="150" rx="10" fill="#C0392B" fill-opacity=".10" stroke="#C0392B" stroke-width="2"/>
+      <rect x="288" y="862" width="196" height="150" rx="10" fill="#C0392B" fill-opacity=".10" stroke="#C0392B" stroke-width="2"/>
+      <!-- wing callouts -->
+      <rect x="40" y="430" width="180" height="52" rx="8" fill="#1F3A93" fill-opacity=".08" stroke="#1F3A93" stroke-dasharray="5 4"/>
+      <text x="130" y="452" text-anchor="middle" font-size="13" fill="#1F3A93" font-weight="bold">Zhongguancun Tech-</text>
+      <text x="130" y="470" text-anchor="middle" font-size="13" fill="#1F3A93" font-weight="bold">Service Wing · West</text>
+      <line x1="220" y1="456" x2="330" y2="480" stroke="#1F3A93" stroke-dasharray="4 4"/>
+      <rect x="540" y="640" width="180" height="52" rx="8" fill="#16A3B8" fill-opacity=".10" stroke="#16A3B8" stroke-dasharray="5 4"/>
+      <text x="630" y="662" text-anchor="middle" font-size="13" fill="#0E7484" font-weight="bold">Xiaoyue River Scenario</text>
+      <text x="630" y="680" text-anchor="middle" font-size="13" fill="#0E7484" font-weight="bold">Enablement Wing · East</text>
+      <line x1="540" y1="666" x2="430" y2="640" stroke="#16A3B8" stroke-dasharray="4 4"/>
+      <!-- five origin stations -->
+      <g font-size="13" fill="#22303C">
+        <circle cx="369" cy="150" r="11" fill="#fff" stroke="#1F3A93" stroke-width="3"/><circle cx="369" cy="150" r="3.5" fill="#C0392B"/>
+        <text x="392" y="146" font-weight="bold">Origin Station Zhongzhiyuan</text><text x="392" y="163" font-size="11" fill="#5B6B77">north anchor · 众智原驿</text>
+        <circle cx="380" cy="340" r="11" fill="#fff" stroke="#1F3A93" stroke-width="3"/><circle cx="380" cy="340" r="3.5" fill="#C0392B"/>
+        <text x="403" y="336" font-weight="bold">Origin Station Qinghuayuan</text><text x="403" y="353" font-size="11" fill="#5B6B77">old platform site · 清华园原驿</text>
+        <circle cx="378" cy="520" r="11" fill="#fff" stroke="#1F3A93" stroke-width="3"/><circle cx="378" cy="520" r="3.5" fill="#C0392B"/>
+        <text x="252" y="516" text-anchor="end" font-weight="bold">Origin Station Wudaokou</text><text x="252" y="533" text-anchor="end" font-size="11" fill="#5B6B77">五道口原驿</text>
+        <circle cx="364" cy="700" r="11" fill="#fff" stroke="#1F3A93" stroke-width="3"/><circle cx="364" cy="700" r="3.5" fill="#C0392B"/>
+        <text x="252" y="696" text-anchor="end" font-weight="bold">Origin Station Zhichun</text><text x="252" y="713" text-anchor="end" font-size="11" fill="#5B6B77">知春原驿</text>
+        <circle cx="371" cy="930" r="11" fill="#fff" stroke="#1F3A93" stroke-width="3"/><circle cx="371" cy="930" r="3.5" fill="#C0392B"/>
+        <text x="394" y="926" font-weight="bold">Origin Station Dazhongsi</text><text x="394" y="943" font-size="11" fill="#5B6B77">south gateway · 大钟寺原驿</text>
+      </g>
+      <!-- key-area labels -->
+      <g font-size="13" font-weight="bold" fill="#C0392B">
+        <text x="386" y="262" text-anchor="middle">Zhongzhiyuan · 192.1 ha</text>
+        <text x="386" y="530" text-anchor="middle">Beijing AI Origin Community · 104.3 ha</text>
+        <text x="386" y="1006" text-anchor="middle">Dazhongsi · 72.0 ha</text>
+      </g>
+      <!-- zone-band labels -->
+      <g font-size="12" fill="#5B6B77" font-weight="bold">
+        <text x="60" y="120">IV Zhongzhiyuan Full-Stack Segment</text>
+        <text x="60" y="330">III AI Origin Community Living Segment</text>
+        <text x="60" y="585">II Xueyuan Rd Innovation Transfer Segment</text>
+        <text x="60" y="825">I Dazhongsi Intelligent-Native Gateway Segment</text>
+      </g>
+      <!-- north arrow & scale note -->
+      <g>
+        <circle cx="700" cy="80" r="26" fill="#fff" stroke="#22303C" stroke-width="1.5"/>
+        <path d="M700,60 L707,90 L700,84 L693,90 Z" fill="#C0392B"/>
+        <text x="700" y="106" text-anchor="middle" font-size="13" font-weight="bold" fill="#22303C">N</text>
+        <text x="700" y="1090" text-anchor="end" font-size="12" fill="#5B6B77">Schematic 示意 · not to scale · provisional boundary</text>
+      </g>
+    </svg>
+    <div class="legend">
+      <span><i class="sw" style="background:#2E8B57;opacity:.6"></i>Jing-Zhang heritage-park green corridor (spine)</span>
+      <span><i class="sw" style="background:#C0392B"></i>Key areas (provisional)</span>
+      <span><i class="sw" style="border:1.5px dashed #22303C;background:transparent"></i>Dashed overall design-area boundary</span>
+      <span><i class="sw" style="background:#fff;border:2px solid #1F3A93;border-radius:50%"></i>Origin stations (five nodes)</span>
+      <span><i class="sw" style="background:repeating-linear-gradient(90deg,#C0392B 0 4px,transparent 4px 8px)"></i>Jing-Zhang railway heritage alignment (dashed)</span>
+    </div>
+  </div>
+  <div class="note warn">This schematic is AI-agent-generated concept art. Boundaries are provisional substitutes (official_boundary=false) and represent neither an official redline nor parcel or road right-of-way lines.</div>
+</section>
+
+<!-- ================= 3. THREE SCOPES ================= -->
+<section id="scope">
+  <div class="sec-head"><span class="sec-num">02</span><h2>Three Nested Scopes</h2><span class="sub">From coordination to key areas</span></div>
+  <div class="scopebar">
+    <div class="lbl">① Coordination Study Area <span class="unit">43.6 km² · the whole Jing-Zhang corridor in central Haidian</span></div>
+    <div class="bar" style="width:100%;background:#1F3A93">43.6 km²</div>
+  </div>
+  <div class="scopebar">
+    <div class="lbl">② Overall Design Area <span class="unit">11.4 km² · ~9.7 km north–south linear corridor</span></div>
+    <div class="bar" style="width:42%;background:#16A3B8">11.4 km²</div>
+  </div>
+  <div class="scopebar">
+    <div class="lbl">③ Key Areas <span class="unit">368.4 ha · 3 parcels: Zhongzhiyuan 192.1 / Beijing AI Origin Community 104.3 / Dazhongsi 72.0 ha</span></div>
+    <div class="bar" style="width:16%;background:#C0392B;min-width:120px">368.4 ha</div>
+  </div>
+  <div class="grid g3" style="margin-top:14px">
+    <div class="card"><h3>Zhongzhiyuan AI Acceleration Area</h3><div class="big">192.1 <span class="unit">ha</span></div><p>North anchor hosting the full-stack independent innovation system and AI-governance agenda.</p></div>
+    <div class="card"><h3>Beijing AI Origin Community</h3><div class="big">104.3 <span class="unit">ha</span></div><p>Central core: a world-class AI innovation ecosystem and open-source community life.</p></div>
+    <div class="card"><h3>Dazhongsi AI Industry Cluster</h3><div class="big">72.0 <span class="unit">ha</span></div><p>South gateway for intelligent-native business formats and the urban showcase window.</p></div>
+  </div>
+  <div class="note warn">Scope areas follow the official announcement; drawings here use provisional substitute boundaries and will be fully recomputed once official boundaries are published (A-BOUNDARY-001).</div>
+</section>
+
+<!-- ================= 4. KEY AREAS ================= -->
+<section id="key-areas">
+  <div class="sec-head"><span class="sec-num">03</span><h2>Key Areas</h2><span class="sub">Three cores with distinct roles</span></div>
+  <div class="grid g3">
+    <div class="card">
+      <span class="tag red">192.1 ha</span><span class="tag indigo">North anchor</span>
+      <h3>Zhongzhiyuan AI Acceleration Area</h3>
+      <p><b>Role:</b> AI full-stack independent innovation system and AI-governance voice.</p>
+      <p><b>Signature landmark:</b> Collective Intelligence Ring (众智环).</p>
+      <ul>
+        <li>Conceptual volumes for the intelligent-compute lab, full-stack R&amp;D center and AI headquarters</li>
+        <li>The Ring hosts test-validation, inspection routines and annual flagship events</li>
+        <li>A park cycling loop meets the green corridor's north end</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag red">104.3 ha</span><span class="tag cyan">Central core</span>
+      <h3>Beijing AI Origin Community</h3>
+      <p><b>Role:</b> a world-class AI innovation ecosystem.</p>
+      <p><b>Signature landmark:</b> Origin Platform Open-Source Gallery (former Qinghuayuan station site).</p>
+      <ul>
+        <li>Cluster of open-source incubator, community center and university co-creation buildings</li>
+        <li>Talent apartments mixed with full community services; campus-city co-creation interface</li>
+        <li>The gallery links the Wudaokou–Qinghuayuan innovation memory</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag red">72.0 ha</span><span class="tag green">South gateway</span>
+      <h3>Dazhongsi AI Industry Cluster</h3>
+      <p><b>Role:</b> intelligent-native new business formats.</p>
+      <p><b>Signature landmark:</b> Origin Bell Tower (原点钟楼).</p>
+      <ul>
+        <li>Conceptual volumes for the intelligent-native retail flagship and Origin Bell culture center</li>
+        <li>Gateway plaza receives city arrivals and hosts nighttime data art</li>
+        <li>Phase-1 opening segment that establishes scenarios and brand recognition</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5. LAND USE ================= -->
+<section id="land-use">
+  <div class="sec-head"><span class="sec-num">04</span><h2>Land Use</h2><span class="sub">Conceptual land-use structure</span></div>
+  <div class="chips">
+    <div class="chip"><b><span class="code" style="background:#2E8B57"></span>1401 Park Green</b>The heritage-park corridor and pocket parks form the blue-green base of the whole belt.</div>
+    <div class="chip"><b><span class="code" style="background:#C0392B"></span>05 Commercial Services</b>Intelligent-native retail and station services at the Dazhongsi gateway and Wudaokou node.</div>
+    <div class="chip"><b><span class="code" style="background:#1F3A93"></span>0802 Research</b>Intelligent compute, full-stack R&amp;D and university co-creation cluster in Zhongzhiyuan and along Xueyuan Rd.</div>
+    <div class="chip"><b><span class="code" style="background:#E0A93E"></span>0701 Residential</b>Talent apartments and complete community amenities in the AI Origin Community.</div>
+    <div class="chip"><b><span class="code" style="background:#16A3B8"></span>0804 Education</b>Campus-community co-creation interfaces — the spatial carrier for AI classes entering the blocks.</div>
+  </div>
+  <div class="note">Conceptual land-use structure pending confirmation by the official regulatory plan (A-CONTROLS-001); codes express functional intent only, not statutory zoning.</div>
+</section>
+
+<!-- ================= 6. MOBILITY ================= -->
+<section id="mobility">
+  <div class="sec-head"><span class="sec-num">05</span><h2>Mobility &amp; Slow Traffic</h2><span class="sub">One greenway, multi-point connections</span></div>
+  <div class="grid g2">
+    <div class="card"><h3>Origin Line Slow-Mobility Greenway</h3><p>A walking-and-cycling spine running the full corridor along the heritage alignment, linking the five stations and three key areas.</p></div>
+    <div class="card"><h3>4 Cross-Street Connectors</h3><p>Cross-street slow-mobility links at Dazhongsi, Zhichun Rd, Wudaokou and Qinghuayuan, stitching the blocks on both sides of the corridor.</p></div>
+    <div class="card"><h3>Zhongzhiyuan Cycling Loop</h3><p>A park-level cycling loop around the Collective Intelligence Ring, connecting to the corridor's north end for commuting and test scenarios.</p></div>
+    <div class="card"><h3>Heritage Rail Alignment</h3><p>The Jing-Zhang railway alignment is kept as a dashed line beside the green corridor — a linear carrier for cultural narrative and digital exhibits, not a transport function.</p></div>
+  </div>
+  <div class="note">All alignments are conceptual (A-CONCEPT-GEOMETRY-001) and imply no road redlines or engineering sections; the formal scheme requires a professional traffic study.</div>
+</section>
+
+<!-- ================= 7. BLUE-GREEN PUBLIC SPACE ================= -->
+<section id="blue-green">
+  <div class="sec-head"><span class="sec-num">06</span><h2>Blue-Green Public Space</h2><span class="sub">Green spine with five station plazas</span></div>
+  <div class="grid g3">
+    <div class="card"><h3>Heritage-Park Green Spine</h3><div class="big">2.58 <span class="unit">km² · 22.6%</span></div><p>Conceptual green total and share — the single largest public-space asset of the belt.</p></div>
+    <div class="card"><h3>3 Pocket Parks</h3><p>One pocket park each in the Zhichun, Xueyuan Rd and Dazhongsi segments, adding community-level green touchpoints connected to the greenway.</p></div>
+    <div class="card"><h3>Five Station Plazas</h3><p>A plaza before each origin station carrying waiting-memory exhibits, AI service terminals and festival events.</p></div>
+  </div>
+</section>
+
+<!-- ================= 8. BUILDINGS ================= -->
+<section id="buildings">
+  <div class="sec-head"><span class="sec-num">07</span><h2>Buildings</h2><span class="sub">9 conceptual volumes grouped by key area</span></div>
+  <div class="grid g3">
+    <div class="card">
+      <span class="tag indigo">Zhongzhiyuan</span>
+      <h3>Full-Stack Independence Cluster</h3>
+      <ul><li>Intelligent-Compute Lab</li><li>Full-Stack R&amp;D Center</li><li>AI Enterprise Headquarters</li></ul>
+    </div>
+    <div class="card">
+      <span class="tag cyan">AI Origin Community</span>
+      <h3>Open-Source Living Cluster</h3>
+      <ul><li>Open-Source Incubator</li><li>Open-Source Community Center</li><li>Talent Apartments</li><li>University Co-Creation Building</li></ul>
+    </div>
+    <div class="card">
+      <span class="tag green">Dazhongsi</span>
+      <h3>Gateway Culture Cluster</h3>
+      <ul><li>Intelligent-Native Retail Flagship</li><li>Origin Bell Culture Center</li></ul>
+    </div>
+  </div>
+  <div class="note warn">These are conceptual footprints only — they imply no height, floor-area ratio or building density; statutory metrics await official data (A-CONTROLS-001).</div>
+</section>
+
+<!-- ================= 9. RENEWAL PROJECTS ================= -->
+<section id="renewal">
+  <div class="sec-head"><span class="sec-num">08</span><h2>Renewal Projects</h2><span class="sub">~10 items across three phases (conceptual)</span></div>
+  <div class="grid g2">
+    <div class="card"><span class="tag red">Phase 1</span><h3>Origin Line Greenway Connection (concept)</h3><p>Close the slow-mobility gaps in the south and middle heritage-park segments to establish the end-to-end walking experience first.</p></div>
+    <div class="card"><span class="tag red">Phase 1</span><h3>Five-Station Scenario Posts</h3><p>AI service terminals and exhibition interfaces at all five origin stations — tangible scenario touchpoints.</p></div>
+    <div class="card"><span class="tag red">Phase 1</span><h3>Open-Source Gallery (former Qinghuayuan station)</h3><p>Convert the old platform into a gallery of open-source culture and AI innovation memory, unveiled in phase 1.</p></div>
+    <div class="card"><span class="tag indigo">Phase 2</span><h3>Wall of Honor &amp; Milestone Walk</h3><p>The Herringbone AI Mile Walk and a contributors' wall of honor, consolidating the open-source community narrative.</p></div>
+    <div class="card"><span class="tag indigo">Phase 2</span><h3>Pocket-Park Connectivity</h3><p>Connect the three pocket parks to the green corridor and block-level slow-mobility network for 5-minute green access.</p></div>
+    <div class="card"><span class="tag indigo">Phase 2</span><h3>Campus–Community Co-Creation Interface</h3><p>Renew the interface between university co-creation buildings and the community, opening daily co-creation routes.</p></div>
+    <div class="card"><span class="tag indigo">Phase 2</span><h3>Slow-Mobility Interchange Upgrades</h3><p>Optimize the four cross-street connectors and rail-station interchanges to improve corridor accessibility.</p></div>
+    <div class="card"><span class="tag green">Phase 3</span><h3>Heritage Digital Exhibition System</h3><p>Digital restoration of Jing-Zhang railway history with immersive exhibits along the line — a long-term cultural operation.</p></div>
+    <div class="card"><span class="tag green">Phase 3</span><h3>Nighttime Data-Art Installations</h3><p>Light art and data-visualization installations at the Dazhongsi gateway and green-corridor nodes.</p></div>
+    <div class="card"><span class="tag green">Phase 3</span><h3>Operations Center &amp; Ring Closure</h3><p>The belt-wide operations center is completed; the Collective Intelligence Ring event system runs as a permanent loop.</p></div>
+  </div>
+  <div class="note">Phasing is conceptual: Phase 1 · Light the Origin Line (2026–2028) / Phase 2 · Three Cores Take Shape (2028–2031) / Phase 3 · A Global Origin Line (2031–2035). Not an implementation commitment.</div>
+</section>
+
+<!-- ================= 10. AI SCENARIOS ================= -->
+<section id="scenarios">
+  <div class="sec-head"><span class="sec-num">09</span><h2>AI Scenarios</h2><span class="sub">12 scenario cards · 3 industry test-validation scenarios</span></div>
+  <div class="grid g4">
+    <div class="card"><h3>Origin Line AI Guide</h3><p>Intelligent companion tours of heritage and culture, with voice guiding across the five stations.</p></div>
+    <div class="card"><span class="tag red">Test scenario</span><h3>Low-Speed Robot Delivery Corridor</h3><p>Standing trial of low-speed delivery robots on designated greenway segments.</p></div>
+    <div class="card"><h3>AI Health Post</h3><p>Health-monitoring and elder-companion services inside station plazas.</p></div>
+    <div class="card"><h3>Enterprise Copilot Street</h3><p>A street of AI government-service and business assistants for SMEs along the corridor.</p></div>
+    <div class="card"><h3>Slow-Mobility-Friendly AI Street</h3><p>Perception-based all-weather canopies, lighting and crossing-friendly dispatch.</p></div>
+    <div class="card"><h3>Public-Safety Operations Drills</h3><p>Crowd sensing and emergency rehearsal supporting safe operation of large events.</p></div>
+    <div class="card"><h3>Open-Source Post Developer Promenade</h3><p>A developer social route linking the open-source gallery and the community center.</p></div>
+    <div class="card"><h3>AI Classes into the Blocks</h3><p>Public AI literacy and youth classes spilling out of the university co-creation buildings.</p></div>
+    <div class="card"><h3>Heritage Digital-Restoration Experience</h3><p>Digital reconstruction and immersive interaction with Jing-Zhang railway scenes.</p></div>
+    <div class="card"><span class="tag red">Test scenario</span><h3>Multi-Agent Traffic-Coordination Sandbox</h3><p>Vehicle–road–pedestrian coordination simulation and on-road sandbox validation at designated junctions.</p></div>
+    <div class="card"><h3>AI Accessible Companion</h3><p>End-to-end companion navigation for visually impaired and mobility-limited users.</p></div>
+    <div class="card"><h3>Green-Compute Dispatch Showcase</h3><p>A public window visualizing compute loads and green-power dispatch in Zhongzhiyuan.</p></div>
+  </div>
+  <div class="note" style="border-left-color:var(--red)">
+    <b>3 industry test-validation scenarios:</b> ① Low-speed robot delivery corridor　② Multi-agent traffic-coordination sandbox　③ Zhongzhiyuan building robots &amp; drone inspection (based in the Collective Intelligence Ring area, as the independent third test scenario). All scenarios are conceptual (A-SCENARIO-001) and require compliance, privacy and human-review assessment before deployment.
+  </div>
+</section>
+
+<!-- ================= 11. CORE METRICS ================= -->
+<section id="metrics">
+  <div class="sec-head"><span class="sec-num">10</span><h2>Core Metrics</h2><span class="sub">Identical to metrics.json · recomputed in EPSG:4548</span></div>
+  <div class="grid g4">
+    <div class="metric"><div class="mname">Overall design area site_area_sqm</div><div class="mval"><span data-metric="site_area_sqm" data-value="11412825.386">11,412,825.386</span> <span class="unit">sqm</span></div></div>
+    <div class="metric"><div class="mname">Green space area green_space_area_sqm</div><div class="mval"><span data-metric="green_space_area_sqm" data-value="2579853.091">2,579,853.091</span> <span class="unit">sqm</span></div></div>
+    <div class="metric"><div class="mname">Public space area public_space_area_sqm</div><div class="mval"><span data-metric="public_space_area_sqm" data-value="17925.842">17,925.842</span> <span class="unit">sqm</span></div></div>
+    <div class="metric"><div class="mname">Conceptual building footprint building_footprint_area_sqm</div><div class="mval"><span data-metric="building_footprint_area_sqm" data-value="38508.515">38,508.515</span> <span class="unit">sqm</span></div></div>
+    <div class="metric"><div class="mname">Green ratio green_ratio</div><div class="mval"><span data-metric="green_ratio" data-value="0.226049">0.226049</span> <span class="unit">(22.6%)</span></div></div>
+    <div class="metric"><div class="mname">Public space ratio public_space_ratio</div><div class="mval"><span data-metric="public_space_ratio" data-value="0.001571">0.001571</span> <span class="unit">(0.16%)</span></div></div>
+    <div class="metric"><div class="mname">Key area count key_area_count</div><div class="mval"><span data-metric="key_area_count" data-value="3">3</span> <span class="unit">areas</span></div></div>
+    <div class="metric"><div class="mname">AI scenario cards scenario_card_count</div><div class="mval"><span data-metric="scenario_card_count" data-value="12">12</span> <span class="unit">cards</span></div></div>
+    <div class="metric"><div class="mname">Test scenarios test_scenario_count</div><div class="mval"><span data-metric="test_scenario_count" data-value="3">3</span> <span class="unit">items</span></div></div>
+    <div class="metric"><div class="mname">Persona classes persona_class_count</div><div class="mval"><span data-metric="persona_class_count" data-value="6">6</span> <span class="unit">classes</span></div></div>
+    <div class="metric"><div class="mname">AI pilgrimage landmarks pilgrimage_landmark_count</div><div class="mval"><span data-metric="pilgrimage_landmark_count" data-value="4">4</span> <span class="unit">sites</span></div></div>
+    <div class="metric"><div class="mname">Annual flagship events annual_event_count</div><div class="mval"><span data-metric="annual_event_count" data-value="4">4</span> <span class="unit">events</span></div></div>
+  </div>
+  <div class="grid g4" style="margin-top:14px">
+    <div class="metric unknown"><div class="mname">Floor area ratio floor_area_ratio</div><div class="mval"><span data-metric="floor_area_ratio">To be completed with official data</span></div></div>
+    <div class="metric unknown"><div class="mname">Building height</div><div class="mval">To be completed with official data</div></div>
+    <div class="metric unknown"><div class="mname">Demolish-retain classification</div><div class="mval">To be completed with official data</div></div>
+    <div class="metric unknown"><div class="mname">Road redlines / utility capacity</div><div class="mval">To be completed with official data</div></div>
+  </div>
+  <div class="note warn">Known metrics are recomputed from provisional boundaries and concept geometry (A-BOUNDARY-001 / A-CONCEPT-GEOMETRY-001); statutory conditions such as floor-area ratio follow the official regulatory plan, and this scheme makes no numeric judgment on them.</div>
+</section>
+
+<!-- ================= 12. TASK COVERAGE ================= -->
+<section id="coverage">
+  <div class="sec-head"><span class="sec-num">11</span><h2>Task Coverage</h2><span class="sub">Announcement clauses × agent tasks — all 23 checked</span></div>
+  <ul class="check">
+    <li><span class="ok">✓</span><span>Announcement 1.3.1 Study area<br><span class="pt">→ Three Scopes</span></span></li>
+    <li><span class="ok">✓</span><span>Announcement 1.3.2 Design area<br><span class="pt">→ Three Scopes</span></span></li>
+    <li><span class="ok">✓</span><span>Announcement 1.3.3 Key areas<br><span class="pt">→ Key Areas</span></span></li>
+    <li><span class="ok">✓</span><span>Announcement 1.4.1 Functional positioning<br><span class="pt">→ Key Areas</span></span></li>
+    <li><span class="ok">✓</span><span>Announcement 1.4.2 Spatial structure<br><span class="pt">→ Overview Map</span></span></li>
+    <li><span class="ok">✓</span><span>Announcement 1.4.3 Implementation path<br><span class="pt">→ Renewal</span></span></li>
+    <li><span class="ok">✓</span><span>Announcement 1.5.1.1 Overall design depth<br><span class="pt">→ Land Use</span></span></li>
+    <li><span class="ok">✓</span><span>Announcement 1.5.1.2 Key-area design depth<br><span class="pt">→ Buildings</span></span></li>
+    <li><span class="ok">✓</span><span>Announcement 1.5.2.1 Road &amp; traffic<br><span class="pt">→ Mobility</span></span></li>
+    <li><span class="ok">✓</span><span>Announcement 1.5.2.2 Blue-green space<br><span class="pt">→ Blue-Green</span></span></li>
+    <li><span class="ok">✓</span><span>Announcement 1.5.2.3 Public space<br><span class="pt">→ Blue-Green</span></span></li>
+    <li><span class="ok">✓</span><span>Announcement 1.5.2.4 Building layout<br><span class="pt">→ Buildings</span></span></li>
+    <li><span class="ok">✓</span><span>Announcement 1.5.2.5 Renewal project list<br><span class="pt">→ Renewal</span></span></li>
+    <li><span class="ok">✓</span><span>Announcement 1.5.3.required Agent add-on<br><span class="pt">→ AI Scenarios</span></span></li>
+    <li><span class="ok">✓</span><span>Announcement 1.5.3.1 Scenario system<br><span class="pt">→ AI Scenarios</span></span></li>
+    <li><span class="ok">✓</span><span>Announcement 1.5.3.2 Test validation<br><span class="pt">→ AI Scenarios</span></span></li>
+    <li><span class="ok">✓</span><span>Announcement 1.5.3.3 Operation concept<br><span class="pt">→ Renewal</span></span></li>
+    <li><span class="ok">✓</span><span>agent.1 Scheme generation<br><span class="pt">→ proposal.md</span></span></li>
+    <li><span class="ok">✓</span><span>agent.2 Case studies<br><span class="pt">→ Sources</span></span></li>
+    <li><span class="ok">✓</span><span>agent.3 Scenario cards ×12<br><span class="pt">→ AI Scenarios</span></span></li>
+    <li><span class="ok">✓</span><span>agent.4 Pilgrimage landmarks ×4<br><span class="pt">→ Overview Map</span></span></li>
+    <li><span class="ok">✓</span><span>agent.5 Cultural narrative<br><span class="pt">→ Renewal</span></span></li>
+    <li><span class="ok">✓</span><span>agent.6 Operations &amp; events<br><span class="pt">→ Renewal</span></span></li>
+  </ul>
+</section>
+
+<!-- ================= 13. SELF-CHECK ================= -->
+<section id="self-check">
+  <div class="sec-head"><span class="sec-num">12</span><h2>Self-Check Status</h2><span class="sub">Four gates — see self_check.json in the package</span></div>
+  <div class="grid g4">
+    <div class="card"><span class="tag green">pass</span><h3>Determinism Check</h3><p>Boundaries and metrics are recomputable with disclosed conventions (EPSG:4548; EPSG:4326 exchange).</p></div>
+    <div class="card"><span class="tag green">pass</span><h3>Spatial Review</h3><p>Three provisional key areas present; land-use topology is self-consistent.</p></div>
+    <div class="card"><span class="tag green">pass</span><h3>Visual Review</h3><p>This page is a static HTML visualization with zero external dependencies, fully openable offline.</p></div>
+    <div class="card"><span class="tag green">pass</span><h3>Professional Evidence</h3><p>proposal.md references standards, design depth, geometry, metrics, sources and assumptions.</p></div>
+  </div>
+  <div class="note">Status follows self_check.json in the submission package; the final state is determined by the trusted CI run.</div>
+</section>
+
+<!-- ================= 14. SOURCES ================= -->
+<section id="sources">
+  <div class="sec-head"><span class="sec-num">13</span><h2>Sources</h2><span class="sub">Formal basis and background material listed separately</span></div>
+  <div class="grid g2">
+    <div class="card"><h3>Official announcement (formal basis)</h3><p>2026-05-09 · Haidian Branch, Beijing Municipal Commission of Planning and Natural Resources. The primary authority for the project name, three scopes, areas, design tasks and qualification requirements.</p></div>
+    <div class="card"><h3>Agent-facing task book 0518</h3><p>2026-05-18 · Organizer's cleared digest. Three positionings, five functions, three districts &amp; two wings, agent.1–agent.6 and the unified boundary clause.</p></div>
+    <div class="card"><h3>Provisional boundary package</h3><p>2026-06-05 · Maintainer-registered rough substitute boundaries, provisional use only — not an official redline.</p></div>
+    <div class="card"><h3>Background case material</h3><p>Wikipedia public background material (CC-BY-SA): Kendall Square, Silicon Valley, Tel Aviv, King's Cross, Zurich, Punggol, Shenzhen Nanshan, plus Jing-Zhang railway history — qualitative reference only.</p></div>
+    <div class="card"><h3>Name reference</h3><p>OpenStreetMap (ODbL) for common-sense road and place names only — never used as boundary or area evidence.</p></div>
+    <div class="card"><h3>In-package files</h3><p>proposal.md, report/, metrics.json, sources.json, assumptions.json, compliance_matrix.json — auditable within the submission package.</p></div>
+  </div>
+</section>
+
+<!-- ================= 15. ASSUMPTIONS ================= -->
+<section id="assumptions">
+  <div class="sec-head"><span class="sec-num">14</span><h2>Assumptions</h2><span class="sub">Key premises — see assumptions.json</span></div>
+  <div class="grid g2">
+    <div class="card"><h3>A-BOUNDARY-001</h3><p>The overall design area and three key areas use provisional rough boundaries; all areas, ratios and drawings will be recomputed after official release.</p></div>
+    <div class="card"><h3>A-CONCEPT-GEOMETRY-001</h3><p>Land use, the green corridor, stations, building volumes, road alignments and phasing are concept geometry expressing design intent and scale only.</p></div>
+    <div class="card"><h3>A-CONTROLS-001</h3><p>Floor-area ratio, building height, demolish-retain classification, road redlines and utility capacity await official documents.</p></div>
+    <div class="card"><h3>A-SCENARIO-001</h3><p>All AI scenarios, test-validation scenarios and event systems are conceptual proposals, not approved operations or procurement.</p></div>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<footer>
+  <div class="wrap">
+    <p class="lic">This scheme is an AI-agent-generated open co-creation concept. It does not replace formal planning and does not constitute a government-approved conclusion · license: COMMUNITY-DISPLAY-ONLY</p>
+    <p>“Jing-Zhang Origin Line AI Belt” · Open Call for the Centennial Jing-Zhang AI Innovation Belt Urban Design · Kimi Code CLI · aallex14 · 2026-08</p>
+    <p>Full argumentation, drawings and recomputation: see proposal.md and the report/ directory in the package. All values follow metrics.json; all boundaries follow official releases.</p>
+  </div>
+</footer>
+
+</body>
+</html>

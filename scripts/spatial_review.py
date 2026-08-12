@@ -44,6 +44,11 @@ RELATIVE_AREA_TOLERANCE = 0.01
 AREA_REPORTING_COMPARISON_EPSILON = 1e-9
 TOPOLOGY_RELATIVE_AREA_TOLERANCE = 0.0001
 KEY_AREA_RELATIVE_TOLERANCE = 0.03
+# These thresholds are diagnostic only. They must not weaken the strict
+# overlap check above; they identify a common projection-chord sliver shape
+# so contributors get a useful remediation hint alongside the failure.
+SLIVER_OVERLAP_MAX_AREA_SQM = 10.0
+SLIVER_OVERLAP_MAX_AREA_PERIMETER_RATIO_M = 0.05
 OFFICIAL_KEY_AREA_AREAS = {
     "zhongzhiyuan_ai_acceleration_area": 1921000.0,
     "beijing_ai_origin_community": 1043000.0,
@@ -193,6 +198,26 @@ def union_geometries(items: list[tuple[str, Any, dict]]) -> Any | None:
     return unary_union(geometries)
 
 
+def projection_chord_sliver_hint(overlap: Any) -> str | None:
+    """Return a remediation hint for a small, very thin projected overlap."""
+    area = float(overlap.area)
+    perimeter = float(overlap.length)
+    if (
+        area <= SLIVER_OVERLAP_MAX_AREA_SQM
+        and perimeter > 0
+        and area / perimeter <= SLIVER_OVERLAP_MAX_AREA_PERIMETER_RATIO_M
+    ):
+        ratio = area / perimeter
+        return (
+            " Possible projection-chord sliver: the overlap is "
+            f"{area:.3f} m² with an area/perimeter ratio of {ratio:.4f} m. "
+            "If adjacent edges follow a constant latitude, generate them "
+            "with the same densified vertices before projecting to EPSG:4548; "
+            "the 1 m² overlap threshold remains unchanged."
+        )
+    return None
+
+
 def check_inside_site(
     report: SpatialReport,
     site: Any,
@@ -245,12 +270,16 @@ def check_land_use_coverage(report: SpatialReport, site: Any, land_items: list[t
         for other_id, other_geom, _other_props in land_items[index + 1 :]:
             overlap = geom.intersection(other_geom)
             if not overlap.is_empty and overlap.area > AREA_TOLERANCE_SQM:
+                message = f"Land-use polygon overlaps `{other_id}`."
+                hint = projection_chord_sliver_hint(overlap)
+                if hint:
+                    message += hint
                 report.add(
                     SpatialIssue(
                         "LAND_USE_OVERLAP",
                         "major",
                         "geometry/land_use.geojson",
-                        f"Land-use polygon overlaps `{other_id}`.",
+                        message,
                         feature_id,
                         expected="no overlap",
                         actual=round(float(overlap.area), 3),

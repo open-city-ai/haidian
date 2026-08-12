@@ -17,9 +17,11 @@ Fusion strategy: take "Centennial Jing-Zhang — AI Symbiosis" as the main line,
 ### Wayfinding and symbol-system direction
 
 - **Motif**: linear light-band + rail-section, echoing the "smart-corridor"; geometric, no specific trademark or copyrighted imagery.
+- **Eight core cultural symbols** (see `visual/assets/cultural_symbols.svg` / `cultural_symbols.json`, [source:CULTURAL-SYMBOLS]): ① Smart-Vein Band ② Rail Section ③ Core Node ④ Symbiosis Ring ⑤ Centennial Gear ⑥ Data-Minimization Lock ⑦ Accessible Wayfinding ⑧ Human Node. Combination rule: Smart-Vein Band leads; wayfinding uniformly overlays ⑥ data-minimization and ⑦ accessibility notices.
 - **Information hierarchy**: level 1 (direction / zone) — level 2 (scenario / facility) — level 3 (privacy & accessibility notice).
 - **Multimodal**: icon + Chinese + English + tactile, meeting accessibility and internationalization.
 - **Privacy notice**: uniformly label AI scenario nodes with "data minimization / human review / no personal profiles".
+- **Brand-identity system** (see `visual/assets/brand_system.svg` / `brand_system.json`, [source:BRAND-SYSTEM]): four logo lockups, six-color palette (Smart-Corridor Blue #1F8A9C, Symbiosis Green #5FC26B, Key-Area Warm Red #D9534F, etc.), Chinese–English typographic direction, and three application mockups (signage, contribution-wall chip, international-communication key visual). All marks are geometric concept drafts; trademark and name clearance required before public use.
 
 ### Bilingual international communication copy (finalized names)
 

@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0.0",
+  "runner": "visual/assets/run-passage-tabletop.js",
+  "input_contract_sha256": "56b445f352a3686abad6cd1b2b6b30dbee8a2fac7d26d8e6a494f607bcd650c6",
+  "run_status": "local_synthetic_tabletop_pass",
+  "operational_status": "not_authorized_not_run",
+  "performance_results": null,
+  "fixture_count": 6,
+  "fixture_pass_count": 6,
+  "check_count": 7,
+  "check_pass_count": 7,
+  "all_passed": true,
+  "results": [
+    {
+      "id": "PF-T01-MISSING-AUTHORITY",
+      "from": "PREPARING",
+      "trigger": "request_human_verification",
+      "expected": "PREPARING",
+      "actual": "PREPARING",
+      "pass": true,
+      "false_ready": false
+    },
+    {
+      "id": "PF-T02-HUMAN-VERIFIED",
+      "from": "PREPARING",
+      "trigger": "request_human_verification",
+      "expected": "VERIFIED_PASSAGE",
+      "actual": "VERIFIED_PASSAGE",
+      "pass": true,
+      "false_ready": false
+    },
+    {
+      "id": "PF-T03-EVIDENCE-EXPIRED",
+      "from": "ACTIVE",
+      "trigger": "critical_evidence_expired",
+      "expected": "UNKNOWN",
+      "actual": "UNKNOWN",
+      "pass": true,
+      "false_ready": false
+    },
+    {
+      "id": "PF-T04-ROUTE-OBSTRUCTED",
+      "from": "ACTIVE",
+      "trigger": "route_condition_failed",
+      "expected": "DEGRADED",
+      "actual": "DEGRADED",
+      "pass": true,
+      "false_ready": false
+    },
+    {
+      "id": "PF-T05-AI-OPEN-ATTEMPT",
+      "from": "PREPARING",
+      "trigger": "ai_requests_open",
+      "expected": "PREPARING",
+      "actual": "PREPARING",
+      "pass": true,
+      "false_ready": false
+    },
+    {
+      "id": "PF-T06-HUMAN-RESTORED",
+      "from": "RESTORING",
+      "trigger": "request_restoration",
+      "expected": "RESTORED",
+      "actual": "RESTORED",
+      "pass": true,
+      "false_ready": false
+    }
+  ],
+  "checks": [
+    {
+      "id": "C01-EIGHT-STATES",
+      "pass": true,
+      "actual": 8
+    },
+    {
+      "id": "C02-ALL-FIXTURES",
+      "pass": true,
+      "actual": 6
+    },
+    {
+      "id": "C03-ZERO-FALSE-READY",
+      "pass": true,
+      "actual": 0
+    },
+    {
+      "id": "C04-EXPIRY-FAILS-CLOSED",
+      "pass": true,
+      "actual": "UNKNOWN"
+    },
+    {
+      "id": "C05-PHYSICAL-FAILURE-DEGRADES",
+      "pass": true,
+      "actual": "DEGRADED"
+    },
+    {
+      "id": "C06-AI-CANNOT-OPEN",
+      "pass": true,
+      "actual": "PREPARING"
+    },
+    {
+      "id": "C07-NO-PROHIBITED-PERSONAL-FIELDS",
+      "pass": true,
+      "actual": 0
+    }
+  ],
+  "limitations": [
+    "Synthetic deterministic tabletop only; it does not test a real route, work zone, person, organization, permit, inspection or restoration.",
+    "A local PASS proves only state and fail-closed logic; it is not engineering, accessibility, traffic, legal, safety or implementation approval.",
+    "Real operation remains blocked until written authority, named accountable roles, field survey, professional verification, maintenance, insurance and restoration evidence exist."
+  ]
+}

@@ -1,23 +1,69 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.1.1",
   "assumptions": [
     {
-      "id": "A-CONTROLS-001",
-      "status": "pending_professional_confirmation",
-      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
-      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
-    },
-    {
-      "id": "A-BOUNDARY-002",
+      "id": "A-BND-001",
       "status": "provisional_constraint",
-      "statement": "The repository provisional polygons are used only to organize and visualize design concepts.",
-      "impact": "All precision-sensitive geometry and metrics must be recalculated when official polygons arrive."
+      "statement": "Repository provisional SITE_BOUNDARY and KEY_AREA polygons are normalized containers for concept generation, not official redlines.",
+      "impact": "Machine values remain reproducible but public display is rounded; all geometry, ratios and drawings must be regenerated when official polygons arrive.",
+      "owner_for_resolution": "organizer_data_role",
+      "trigger": "official boundary release"
     },
     {
-      "id": "A-INTERFACE-003",
-      "status": "conceptual_recommendation",
-      "statement": "The three common ports and twelve interfaces are reversible public-space and operating prototypes.",
-      "impact": "Ownership, heritage, traffic, utilities, safety, accessibility, and operating responsibility require professional confirmation."
+      "id": "A-BLDG-002",
+      "status": "pending_professional_confirmation",
+      "statement": "No surveyed building inventory, ownership, structure, height, heritage or approved retain-renovate-demolish classification is available.",
+      "impact": "BUILDING_FOOTPRINT features are reversible program envelopes only; floor area, FAR, height and demolition decisions stay unknown.",
+      "owner_for_resolution": "planning_architecture_survey_roles",
+      "trigger": "survey and ownership confirmation"
+    },
+    {
+      "id": "A-MOB-003",
+      "status": "pending_professional_confirmation",
+      "statement": "Road redlines, traffic counts, rail interface conditions, parking demand and engineering alignments are unavailable.",
+      "impact": "ROAD_CENTERLINE features show access intent only and cannot support bridge, tunnel, junction or parking feasibility claims.",
+      "owner_for_resolution": "transport_rail_engineering_roles",
+      "trigger": "traffic and rail-interface study"
+    },
+    {
+      "id": "A-OWNER-004",
+      "status": "role_based_not_authorized",
+      "statement": "Named implementing organizations, land rights, approvals, procurement routes, insurance and committed budgets have not been confirmed.",
+      "impact": "Action packages use accountable role types and low-confidence participant planning envelopes; no government, enterprise or institution is represented as committed.",
+      "owner_for_resolution": "future_authorized_project_sponsor",
+      "trigger": "written mandate, qualified quotes, insurance and financing decision"
+    },
+    {
+      "id": "A-SIM-005",
+      "status": "synthetic_fixture_only",
+      "statement": "Protocol tests use explicit deterministic synthetic inputs and paired counterfactuals with no personal data and do not measure field service performance.",
+      "impact": "The offline runner proves reproducible policy logic only; a field pilot needs consent, baseline, accessibility, insurance, safeguarding and independent public evaluation.",
+      "owner_for_resolution": "pilot_assurance_and_public_steward_roles",
+      "trigger": "approved limited pilot and independently reviewed field evidence"
+    },
+    {
+      "id": "A-ECO-006",
+      "status": "pending_professional_confirmation",
+      "statement": "Ecology, soil, tree, hydrology, flood-control and maintenance baselines are unavailable.",
+      "impact": "Blue-green pockets and ratios are design allocations, not ecological performance or sponge-city compliance claims.",
+      "owner_for_resolution": "landscape_ecology_water_roles",
+      "trigger": "ecology and water assessment"
+    },
+    {
+      "id": "A-HER-007",
+      "status": "pending_professional_confirmation",
+      "statement": "Heritage inventories, protection zones, view corridors and structural conditions have not been supplied.",
+      "impact": "Landmarks are removable public components; installation requires heritage, structure, fire, accessibility and copyright review.",
+      "owner_for_resolution": "heritage_and_culture_roles",
+      "trigger": "heritage review"
+    },
+    {
+      "id": "A-INFRA-008",
+      "status": "pending_professional_confirmation",
+      "statement": "Municipal utilities, electrical capacity, compute-energy demand, drainage, fire and emergency-response baselines are unavailable.",
+      "impact": "Edge-compute and public-service prototypes begin with low-power mock interfaces; capacity and permanent installation remain unknown.",
+      "owner_for_resolution": "municipal_energy_fire_roles",
+      "trigger": "engineering capacity assessment"
     }
   ]
 }

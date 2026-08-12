@@ -1,0 +1,395 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "recalculation": {
+    "area_calculation_crs": "EPSG:4548",
+    "exchange_crs": "EPSG:4326",
+    "method_zh": "全部面积、比例与长度均由提交的 GeoJSON 投影到 EPSG:4548 后复算，与 scripts/spatial_review.py 的复算口径一致。",
+    "method_en": "Every area, ratio and length is recomputed from the submitted GeoJSON after projection to EPSG:4548, matching scripts/spatial_review.py.",
+    "trigger_zh": "官方 SITE_BOUNDARY 或 KEY_AREA 发布后，必须重跑几何生成、指标复算、图件渲染与自检。"
+  },
+  "land_use_area_sqm_by_code": {
+    "0802": 4462449.397,
+    "1403": 135857.26,
+    "05": 713085.441,
+    "0806": 30074.888,
+    "1402": 124120.041,
+    "1401": 1532852.923,
+    "16": 187956.61,
+    "0702": 826530.957,
+    "0701": 1488001.635,
+    "0803": 232445.412,
+    "0805": 43481.834,
+    "1207": 1635968.989
+  },
+  "phase_area_sqm": {
+    "phase_1": 7201600.756,
+    "phase_3": 2666861.465
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "提交范围采用维护者登记的 provisional_rough 边界，非官方红线。"
+      ],
+      "note_zh": "基于临时粗略范围线复算，正式边界发布后必须重算。",
+      "note_en": "Recomputed from the provisional rough boundary; must be recalculated when official geometry is published."
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2023812.868,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(GREEN_SPACE features)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "绿地为概念建议布局，未包含权属与现状绿线核验。"
+      ],
+      "note_zh": "包含遗址公园脊与街区级绿地，去重后取并集面积。",
+      "note_en": "Union area of the heritage-park spine and block-level green space, de-duplicated."
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 956059.672,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(PUBLIC_SPACE features)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "公共空间为概念建议界面，实施形式待专业团队论证。"
+      ],
+      "note_zh": "包含南北主步道、五处人字缝合台与广场用地。",
+      "note_en": "Includes the north-south promenade, the five switchback stitches and civic plazas."
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 2848022.385,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(BUILDING_FOOTPRINT features)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "建筑基底为概念示意，不含高度、容积率与拆改留结论。"
+      ],
+      "note_zh": "仅为街区界面示意基底，不得作为建筑规模审定依据。",
+      "note_en": "Illustrative block-interface footprints only; not a basis for approved building scale."
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.177328,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "分母为临时范围面积。"
+      ],
+      "note_zh": "基于临时粗略范围线复算，正式边界发布后必须重算。",
+      "note_en": "Recomputed from the provisional rough boundary; must be recalculated when official geometry is published."
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.083771,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "分母为临时范围面积。"
+      ],
+      "note_zh": "基于临时粗略范围线复算，正式边界发布后必须重算。",
+      "note_en": "Recomputed from the provisional rough boundary; must be recalculated when official geometry is published."
+    },
+    "building_coverage_ratio": {
+      "status": "known",
+      "value": 0.249546,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "分子为概念基底，分母为临时范围面积。"
+      ],
+      "note_zh": "毛基底覆盖率，仅用于方案内部比较，不作为建筑密度控制指标。",
+      "note_en": "Gross footprint coverage for internal comparison only; not a density control indicator."
+    },
+    "street_land_area_sqm": {
+      "status": "known",
+      "value": 1635968.989,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(land_use features where land_use_code=1207)",
+      "confidence": "low",
+      "assumptions": [
+        "街区内缩余量的补集，不代表道路红线。"
+      ],
+      "note_zh": "由街区内缩余量取补集生成，仅表达街区尺度。",
+      "note_en": "Complement of the inset blocks; expresses block grain, not road redlines."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "high",
+      "assumptions": [],
+      "note_zh": "公告要求的三处重点详细设计区域。",
+      "note_en": "The three key detailed-design areas required by the announcement."
+    },
+    "key_area_total_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(union(KEY_AREA features)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "三处重点片区均为临时粗略范围。"
+      ],
+      "note_zh": "公告合计约 368.4 公顷，临时几何复算值与之偏差在 0.3% 以内。",
+      "note_en": "The announcement states about 368.4 ha in total; the provisional recomputation is within 0.3%."
+    },
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43609232.558,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/geometry/provisional_boundaries.geojson"
+      ],
+      "formula": "polygon_area(PROV-RESEARCH-001) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "统筹研究范围为临时粗略范围。"
+      ],
+      "note_zh": "公告约 43.6 平方公里，临时几何复算值与之偏差在 0.1% 以内。",
+      "note_en": "The announcement states about 43.6 km²; the provisional recomputation is within 0.1%."
+    },
+    "land_use_feature_count": {
+      "status": "known",
+      "value": 123,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(LAND_USE features)",
+      "confidence": "high",
+      "assumptions": [],
+      "note_zh": "用地图层完整覆盖提交范围，无缝隙、无重叠。",
+      "note_en": "The land-use layer tiles the submitted boundary with no gaps and no overlaps."
+    },
+    "building_feature_count": {
+      "status": "known",
+      "value": 76,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(BUILDING_FOOTPRINT features)",
+      "confidence": "high",
+      "assumptions": [],
+      "note_zh": "概念建筑基底数量。",
+      "note_en": "Number of concept building footprints."
+    },
+    "slow_mobility_spine_length_m": {
+      "status": "known",
+      "value": 9754.1,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD_CENTERLINE where road_class=greenway) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "慢行主脊线位为概念建议。"
+      ],
+      "note_zh": "南北贯通慢行主脊长度。",
+      "note_en": "Length of the continuous north-south slow-mobility spine."
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 41704.0,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(ROAD_CENTERLINE features)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "线位为概念示意，不代表道路红线或线形结论。"
+      ],
+      "note_zh": "概念道路与慢行中心线总长。",
+      "note_en": "Total length of concept road and slow-mobility centrelines."
+    },
+    "switchback_stitch_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(PUBLIC_SPACE features where id like PUBLIC-STITCH-%)",
+      "confidence": "high",
+      "assumptions": [],
+      "note_zh": "五处东西缝合台，回应“东西缝合、南北贯通”要求。",
+      "note_en": "Five east-west stitches answering the east-west stitching and north-south continuity task."
+    },
+    "ai_scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario cards documented in proposal.md)",
+      "confidence": "high",
+      "assumptions": [],
+      "note_zh": "任务书要求不少于10张AI场景卡。",
+      "note_en": "The taskbook requires at least ten AI scenario cards."
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user personas documented in proposal.md)",
+      "confidence": "high",
+      "assumptions": [],
+      "note_zh": "任务书要求不少于5类用户画像。",
+      "note_en": "The taskbook requires at least five user personas."
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industry test/validation scenarios in proposal.md)",
+      "confidence": "high",
+      "assumptions": [],
+      "note_zh": "任务书要求不少于3个产业测试验证场景。",
+      "note_en": "The taskbook requires at least three industry test and validation scenarios."
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(AI pilgrimage landmarks in proposal.md)",
+      "confidence": "high",
+      "assumptions": [],
+      "note_zh": "任务书要求不少于3个AI朝圣地标。",
+      "note_en": "The taskbook requires at least three AI pilgrimage landmarks."
+    },
+    "ecosystem_case_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "formula": "count(global AI ecosystem cases in proposal.md)",
+      "confidence": "medium",
+      "assumptions": [
+        "案例信息来自公开报道与官方网站，用于策略借鉴，不用于正式评分数据。"
+      ],
+      "note_zh": "任务书要求5-8个全球AI创新生态案例，本方案提供5个可核验的公开案例。",
+      "note_en": "The taskbook requires five to eight global AI innovation ecosystem cases."
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 7201600.756,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(PHASE feature where phase=phase_1)",
+      "confidence": "low",
+      "assumptions": [
+        "分期为概念建议时序，不构成开发时序结论。"
+      ],
+      "note_zh": "一期概念范围面积。",
+      "note_en": "Concept area of phase 1."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and the official site boundary are not present in the public site package.",
+      "note_zh": "待正式控规条件与官方边界补齐后计算；本方案不推测容积率。",
+      "note_en": "Pending official regulatory controls and the official boundary; this proposal does not infer FAR."
+    },
+    "building_height_control_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_height_control(parcel)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height controls are not present in the public site package.",
+      "note_zh": "待正式控规条件补齐；本方案不给出建筑高度结论。",
+      "note_en": "Pending official controls; this proposal states no building-height conclusion."
+    },
+    "resident_population": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "data/source_registry.json"
+      ],
+      "formula": "official_population_statistics(submitted_boundary)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No boundary-consistent official population statistics are registered as formal-ready.",
+      "note_zh": "待正式统计口径与边界一致的人口数据补齐。",
+      "note_en": "Pending official population data consistent with the submitted boundary."
+    }
+  }
+}

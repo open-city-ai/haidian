@@ -20,6 +20,8 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import quote
 
+from front_matter import parse_front_matter as parse_front_matter_document
+
 
 PUBLICATION_FILE = "gallery-publication.json"
 
@@ -119,18 +121,7 @@ def package_sha256(submission_dir: Path) -> str:
 
 
 def parse_front_matter(text: str) -> dict[str, str]:
-    text = text.lstrip("\ufeff\n")
-    if not text.startswith("---\n"):
-        return {}
-    end = text.find("\n---", 4)
-    if end == -1:
-        return {}
-    metadata: dict[str, str] = {}
-    for line in text[4:end].strip().splitlines():
-        if ":" not in line:
-            continue
-        key, value = line.split(":", 1)
-        metadata[key.strip()] = value.strip().strip('"').strip("'")
+    metadata, _ = parse_front_matter_document(text)
     return metadata
 
 
@@ -217,6 +208,10 @@ def package_complete(submission_dir: Path) -> bool:
 
 
 def classify_submission(submission_dir: Path, manifest: Any) -> str:
+    # This is a display classification, not an independent attestation. A
+    # historical package may retain formal_review_ready for gallery continuity
+    # even when it predates the persisted-self-check contract; that label must
+    # not be presented as newly trusted formal evidence.
     rel = submission_dir.as_posix()
     stage = manifest.get("submission_stage") if isinstance(manifest, dict) else None
     if "formal-blocked" in rel or "blocked-draft" in rel:
@@ -336,6 +331,14 @@ def build_item(repo_root: Path, submission_dir: Path, publication: dict[str, Any
         "selectionReason": str(publication.get("selection_reason_zh", "")),
         "selectionReasonEn": str(publication.get("selection_reason_en", "")),
     }
+    cover_image = manifest.get("cover_image") if isinstance(manifest, dict) else None
+    if isinstance(cover_image, str) and cover_image.startswith("assets/media/"):
+        normalized_cover = cover_image.strip().replace("\\", "/")
+        pure_cover = Path(normalized_cover)
+        if not pure_cover.is_absolute() and ".." not in pure_cover.parts:
+            cover_path = submission_dir / normalized_cover
+            if cover_path.is_file() and cover_path.suffix.lower() in {".png", ".jpg", ".jpeg", ".webp"}:
+                item["coverUrl"] = f"{rel_dir}/{normalized_cover}"
     if proposal_html.exists():
         item["thumbnailUrl"] = f"{rel_dir}/report/proposal.html"
     elif visual_html.exists():

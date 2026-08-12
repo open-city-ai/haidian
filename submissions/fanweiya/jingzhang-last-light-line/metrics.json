@@ -1,0 +1,481 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(SITE_BOUNDARY)) after EPSG:4548 projection",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CRS-001"
+      ],
+      "interpretation": "Recomputed area of provisional geometry, not an official site-area determination."
+    },
+    "provisional_key_area_total_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(union(KEY_AREA)) after EPSG:4548 projection",
+      "confidence": "medium",
+      "assumptions": [
+        "A-KEY-AREA-001",
+        "A-CRS-001"
+      ],
+      "interpretation": "Recomputed area of three non-overlapping provisional study frames."
+    },
+    "land_use_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(union(LAND_USE)) after EPSG:4548 projection",
+      "confidence": "medium",
+      "assumptions": [
+        "A-LANDUSE-001",
+        "A-CRS-001"
+      ]
+    },
+    "land_use_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(union(LAND_USE)) / area(SITE_BOUNDARY)",
+      "confidence": "high",
+      "assumptions": [
+        "A-LANDUSE-001",
+        "A-CRS-001"
+      ]
+    },
+    "land_use_gap_sqm": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(SITE_BOUNDARY - union(LAND_USE))",
+      "confidence": "high",
+      "assumptions": [
+        "A-LANDUSE-001",
+        "A-CRS-001"
+      ]
+    },
+    "land_use_overlap_sqm": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(pairwise polygon intersection area)",
+      "confidence": "high",
+      "assumptions": [
+        "A-LANDUSE-001",
+        "A-CRS-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 4050.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(conceptual reversible program envelopes)) after EPSG:4548 projection",
+      "confidence": "low",
+      "assumptions": [
+        "A-BUILDING-001",
+        "A-CRS-001"
+      ],
+      "interpretation": "Concept envelope area only; not existing or approved floor-area evidence."
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2491299.91,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(GREEN_SPACE)) after EPSG:4548 projection",
+      "confidence": "low",
+      "assumptions": [
+        "A-BLUEGREEN-001",
+        "A-CRS-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.218289,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(GREEN_SPACE)) / area(SITE_BOUNDARY)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BLUEGREEN-001",
+        "A-BOUNDARY-001",
+        "A-CRS-001"
+      ],
+      "interpretation": "Concept ratio on provisional geometry, not a statutory green-space ratio."
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 850072.868,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(PUBLIC_SPACE polygons)) after EPSG:4548 projection",
+      "confidence": "low",
+      "assumptions": [
+        "A-KEY-AREA-001",
+        "A-CRS-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.074484,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(PUBLIC_SPACE polygons)) / area(SITE_BOUNDARY)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-KEY-AREA-001",
+        "A-CRS-001"
+      ],
+      "interpretation": "Concept ratio on provisional geometry, not an approved public-space control."
+    },
+    "night_service_line_length_m": {
+      "status": "known",
+      "value": 9716.125,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson#ROAD-001"
+      ],
+      "formula": "length(ROAD-001) after EPSG:4548 projection",
+      "confidence": "low",
+      "assumptions": [
+        "A-MOBILITY-001",
+        "A-CRS-001"
+      ],
+      "interpretation": "Schematic continuity route length on provisional geometry, not a verified walkable-service distance."
+    },
+    "feedback_wing_route_length_m": {
+      "status": "known",
+      "value": 19432.249,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson#ROAD-002",
+        "geometry/roads.geojson#ROAD-003"
+      ],
+      "formula": "length(ROAD-002) + length(ROAD-003) after EPSG:4548 projection",
+      "confidence": "low",
+      "assumptions": [
+        "A-MOBILITY-001",
+        "A-CRS-001"
+      ]
+    },
+    "court_cross_connection_length_m": {
+      "status": "known",
+      "value": 3638.244,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson#ROAD-004",
+        "geometry/roads.geojson#ROAD-005",
+        "geometry/roads.geojson#ROAD-006",
+        "geometry/roads.geojson#ROAD-007"
+      ],
+      "formula": "sum(length(ROAD-004..007)) after EPSG:4548 projection",
+      "confidence": "low",
+      "assumptions": [
+        "A-MOBILITY-001",
+        "A-CRS-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "high",
+      "assumptions": [
+        "A-KEY-AREA-001"
+      ]
+    },
+    "courtyard_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features where layer=PUBLIC_SPACE and court_role is present)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "light_station_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features where node_type=light_station)",
+      "confidence": "high",
+      "assumptions": [],
+      "interpretation": "Count of conceptual light-station types/nodes, not verified operating facilities."
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features where node_type=scenario)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "validation_scenario_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(scenario features where validation_scene=true)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(distinct landmark_id)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "design_phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(PHASE features)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PHASING-001"
+      ]
+    },
+    "governance_voting_seat_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(human voting constituencies declared in governance protocol)",
+      "confidence": "high",
+      "assumptions": [
+        "A-GOVERNANCE-001"
+      ]
+    },
+    "ai_non_voting_observer_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(AI observer roles without final vote)",
+      "confidence": "high",
+      "assumptions": [
+        "A-GOVERNANCE-001"
+      ]
+    },
+    "seat_pass_required_field_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(required Seat Pass disclosure fields)",
+      "confidence": "high",
+      "assumptions": [
+        "A-SEATPASS-001"
+      ]
+    },
+    "basic_service_contract_item_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(distinct public-service contract items including no-purchase/no-scan/no-profiling/offline requirements and seven service guarantees)",
+      "confidence": "high",
+      "assumptions": [
+        "A-BASIC-SERVICE-001"
+      ]
+    },
+    "seat_pass_completeness_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "audited active pilots with all Seat Pass fields / active pilots",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-KPI-001",
+        "A-SEATPASS-001",
+        "A-OPERATIONS-001"
+      ],
+      "reason": "No pilot, operator or audit sample exists; 1.0 is a conceptual activation target, not a measured baseline.",
+      "target_value": 1.0,
+      "target_status": "conceptual_design_target"
+    },
+    "non_ai_equivalent_coverage_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "audited active pilots with usable non-AI equivalent / active pilots",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-KPI-001",
+        "A-SEATPASS-001"
+      ],
+      "reason": "Non-AI equivalents require pilot-specific service design and user testing; 1.0 is a target only.",
+      "target_value": 1.0,
+      "target_status": "conceptual_design_target"
+    },
+    "human_handover_drill_coverage_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "active pilots passing human-handover drill / active pilots",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-KPI-001",
+        "A-SEATPASS-001",
+        "A-OPERATIONS-001"
+      ],
+      "reason": "No activated system exists to drill; 1.0 is a pre-activation target.",
+      "target_value": 1.0,
+      "target_status": "conceptual_design_target"
+    },
+    "pilot_exit_metadata_coverage_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "active pilots with expiry, operator and restoration/exit-cost record / active pilots",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-KPI-001",
+        "A-PHASING-001",
+        "A-OPERATIONS-001"
+      ],
+      "reason": "Operators, budgets and active pilots are not assigned; 1.0 is a target only.",
+      "target_value": 1.0,
+      "target_status": "conceptual_design_target"
+    },
+    "night_basic_service_continuity_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/roads.geojson"
+      ],
+      "formula": "audited night route segments meeting every basic-service and offline requirement / audited route segments",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BASIC-SERVICE-001",
+        "A-KPI-001",
+        "A-OPERATIONS-001"
+      ],
+      "reason": "No field inventory, opening-hours audit, accessibility test, operator roster or outage drill exists; no continuity or safety claim is made.",
+      "target_value": 1.0,
+      "target_status": "conceptual_activation_target_not_baseline"
+    },
+    "verified_operational_light_station_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "brief/site-package/missing-data.md"
+      ],
+      "formula": "count(field-audited operating light stations meeting the full public contract)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BASIC-SERVICE-001",
+        "A-OPERATIONS-001",
+        "A-KPI-001"
+      ],
+      "reason": "The repository contains no night field audit, operator confirmation, opening hours, accessibility test or outage drill; zero operation or safety is claimed."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "brief/site-package/missing-data.md"
+      ],
+      "formula": "approved total floor area / official site area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-BUILDING-001",
+        "A-CONTROLS-001"
+      ],
+      "reason": "Official boundary, existing/approved floor area and statutory FAR controls are unavailable."
+    }
+  }
+}

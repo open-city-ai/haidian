@@ -6,7 +6,7 @@
 <title>百年京张AI创新带 · 智轨走廊城市设计提案 - 离线可视化总览</title>
 <style>
 :root{--ink:#162033;--muted:#667085;--paper:#ffffff;--soft:#f6f8fb;--line:#d7dee8;--navy:#172235;--gold:#c79838;--ai:#4f46e5;--park:#15803d;--work:#b7791f;--civic:#b42318;--blue:#0f7490}
-*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;background:#eef2f6;color:var(--ink);line-height:1.6}
+*{box-sizing:border-box}body{margin:0;font-family:"Noto Sans CJK SC","Noto Sans SC",-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;background:#eef2f6;color:var(--ink);line-height:1.6}
 .wrap{max-width:1180px;margin:auto}header{background:#101827;color:#fff;padding:30px 24px;border-bottom:5px solid var(--gold)}
 .eyebrow{color:#9fd7c0;letter-spacing:.18em;text-transform:uppercase;font-size:12px;margin-bottom:10px}
 h1{font-size:30px;line-height:1.2;margin:0 0 8px}
@@ -108,7 +108,7 @@ footer{padding:18px 22px;color:#667085;font-size:13px}
 <!-- 蓝绿公共空间 -->
 <section class="sheet"><div class="sheet-head"><div><h2>蓝绿公共空间</h2><p>以京张遗址公园活力带为骨架，统筹清河、小月河与高校、企业、社区出行需求。</p></div><span class="tag">green_space / public_space</span></div>
 <div class="body">
-<p>蓝绿公共空间由 [depth:blue_green_public_space] 校核，核心证据为 geometry/green_space.geojson、geometry/public_space.geojson。绿地率 [metric:green_ratio]、公共空间占比 [metric:public_space_ratio] 均由提交几何复算。</p>
+<p>蓝绿公共空间由 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="blue_green_public_space" title="深度：blue_green_public_space">深度</sup> 校核，核心证据为 geometry/green_space.geojson、geometry/public_space.geojson。绿地率 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup>、公共空间占比 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup> 均由提交几何复算。</p>
 <div class="metric-list">
 <div class="metric"><span>绿地率 green_ratio</span><strong data-metric="green_ratio" data-value="0.185671">18.57%</strong></div>
 <div class="metric"><span>公共空间占比 public_space_ratio</span><strong data-metric="public_space_ratio" data-value="0.066781">6.68%</strong></div>
@@ -119,7 +119,7 @@ footer{padding:18px 22px;color:#667085;font-size:13px}
 <!-- 建筑 -->
 <section class="sheet"><div class="sheet-head"><div><h2>建筑</h2><p>建筑基底区分保留、改造、更新、新建对象，表达更新建筑基底与 AI 建筑类型。</p></div><span class="tag">buildings</span></div>
 <div class="body">
-<p>建筑基底面积 [metric:building_footprint_area_sqm] = 310.6 万㎡，建筑密度 [metric:building_density] = 27.2%。建筑高度、容积率、总建筑规模在 metrics.json 中列为 unknown，待官方控规条件确认，不得以 agent 推测值冒充审定指标。</p>
+<p>建筑基底面积 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup> = 310.6 万㎡，建筑密度 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_density" title="指标：building_density">指标</sup> = 27.2%。建筑高度、容积率、总建筑规模在 metrics.json 中列为待核定，待官方控规条件确认，不得以 agent 推测值冒充审定指标。</p>
 </div></section>
 
 <!-- 更新项目 -->
@@ -135,7 +135,8 @@ footer{padding:18px 22px;color:#667085;font-size:13px}
 <tr><td>JZ-05</td><td>AI公共服务与端侧算力节点</td><td>新基建/公共服务</td><td>能源、算力、运营主体</td></tr>
 <tr><td>JZ-06</td><td>全球AI活动周公共路线</td><td>运营/品牌</td><td>许可、安全、清权</td></tr>
 </tbody></table>
-<p>分期总面积 [metric:phasing_area_sqm] = 1141.3 万㎡，分近期试点、中期更新、长期治理三阶段推进。</p>
+<p>分期总面积 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="phasing_area_sqm" title="指标：phasing_area_sqm">指标</sup> = 1141.3 万㎡，分近期试点、中期更新、长期治理三阶段推进。完整 Feasibility 字段（主体类型、近/中/长期阶段里程碑与交付物、成本类别与概念估算、成效阈值与目标值）见结构化数据 <code>visual/assets/renewal_projects.json</code>（JZ-01–JZ-06）。</p>
+<p class="warn" style="border-left-color:#0f7490;background:#eef7fa">面积拓扑差异说明（≈16.9 ㎡）：site_area_sqm（11,412,825.386 ㎡）与 phasing_area_sqm（11,412,842.304 ㎡）相差 16.918 ㎡，源于 provisional 边界分区的浮点与拓扑容差，不代表真实面积误差；官方 redline 发布后须整体重算。</p>
 </div></section>
 
 <!-- AI 场景 -->
@@ -149,6 +150,15 @@ footer{padding:18px 22px;color:#667085;font-size:13px}
 <div class="card"><b>05 大钟寺国际路演客厅</b><p>大钟寺：智能体/智能终端展示与国际交流。</p></div>
 <div class="card"><b>06 全球AI活动周路线</b><p>一带公共空间：可步行、可传播的体验路线。</p></div>
 </div>
+</div></section>
+
+<!-- 品牌·文化·地标 -->
+<section class="sheet"><div class="sheet-head"><div><h2>品牌 · 文化符号 · 地标</h2><p>原创性维度交付（概念稿）：品牌识别系统、8 个核心文化符号、三处 AI 朝圣地标可识别视觉。</p></div><span class="tag">brand_system / cultural_symbols / landmarks_board</span></div>
+<div class="body">
+<img class="fig" alt="品牌识别系统" src="../visual/assets/brand_system.svg">
+<img class="fig" alt="文化符号体系" src="../visual/assets/cultural_symbols.svg">
+<img class="fig" alt="三处 AI 朝圣地标可识别视觉" src="../visual/assets/landmarks_board.svg">
+<p>定稿命名：<b>京张智脉共生带 / Jing-Zhang AI Symbiosis Belt</b>；副题：从百年京张到 AI 共生 · From a Century-Old Railway to an AI Symbiosis Belt。所有标志、字体与图形为几何概念稿，对外使用前须完成商标与名称查重、官方与权利方确认（详见 sources.json 的 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BRAND-SYSTEM" title="来源：BRAND-SYSTEM">来源</sup>、<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CULTURAL-SYMBOLS" title="来源：CULTURAL-SYMBOLS">来源</sup>、<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="LANDMARKS-BOARD" title="来源：LANDMARKS-BOARD">来源</sup>）。</p>
 </div></section>
 
 <!-- 核心指标 -->
@@ -165,7 +175,7 @@ footer{padding:18px 22px;color:#667085;font-size:13px}
 <div class="metric"><span>key_area_count 重点区域数量</span><strong>3 处</strong></div>
 <div class="metric"><span>key_area_total_area_sqm 重点区域总面积</span><strong>369.3 万㎡</strong></div>
 </div>
-<p>容积率、建筑高度、总建筑面积在 metrics.json 中标记为 <code>unknown</code>，需官方控规与任务书附件支撑后方可核定。</p>
+<p>容积率、建筑高度、总建筑面积在 metrics.json 中状态为待核定（对应 JSON 字段 <code>status</code> 值为 <code>unknown</code>），需官方控规与任务书附件支撑后方可核定。</p>
 </div></section>
 
 <!-- 任务覆盖 -->
@@ -185,13 +195,13 @@ footer{padding:18px 22px;color:#667085;font-size:13px}
 <section class="sheet"><div class="sheet-head"><div><h2>来源</h2><p>机器可读资料登记于 sources.json 与 data/source_registry.json。</p></div><span class="tag">sources</span></div>
 <div class="body">
 <p>本方案事实判断回到以下来源：</p>
-<span class="tag">[source:OFFICIAL-ANNOUNCEMENT]</span>
-<span class="tag">[source:AGENT-TASKBOOK]</span>
-<span class="tag">[source:SITE-PACKAGE]</span>
-<span class="tag">[source:SOURCE-REGISTRY]</span>
-<span class="tag">[source:PROCESSED-FACT-PACK]</span>
-<span class="tag">[source:BOUNDARY-SOURCE]</span>
-<span class="tag">[source:KEY-AREA-SOURCE]</span>
+<span class="tag"><sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup></span>
+<span class="tag"><sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup></span>
+<span class="tag"><sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup></span>
+<span class="tag"><sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup></span>
+<span class="tag"><sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup></span>
+<span class="tag"><sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup></span>
+<span class="tag"><sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="KEY-AREA-SOURCE" title="来源：KEY-AREA-SOURCE">来源</sup></span>
 <p>geometry/site_boundary.geojson 与 geometry/key_areas.geojson 为 provisional_constraint，official_boundary=false，仅用于方案生成、自检与可视化。</p>
 </div></section>
 
@@ -202,7 +212,7 @@ footer{padding:18px 22px;color:#667085;font-size:13px}
 <ul>
 <li>当前 site boundary 与三处 key area 为组织者登记的 provisional 粗略边界，非官方红线；精确面积与红线以官方发布为准。</li>
 <li>用地、建筑、道路、绿地、公共空间、分期与指标均基于 provisional boundary 生成，待官方几何替换后整体重算。</li>
-<li>容积率、建筑高度、总建筑规模、道路红线、退线、设施标准缺少官方控规条件，列为 unknown / 待确认。</li>
+<li>容积率、建筑高度、总建筑规模、道路红线、退线、设施标准缺少官方控规条件，列为待核定 / 待确认。</li>
 <li>清河蓝线、京张铁路遗存与文保控制带、北五环快速路作为 existing_condition 约束锁定，不参与设计改动。</li>
 </ul>
 </div>

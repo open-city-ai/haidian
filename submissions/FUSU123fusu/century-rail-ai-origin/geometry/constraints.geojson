@@ -1,0 +1,84 @@
+{
+  "type": "FeatureCollection",
+  "name": "constraints_origin_line",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "CONSTRAINTS",
+      "properties": {
+        "id": "CONSTRAINTS",
+        "layer": "REGULATORY_CONTROL",
+        "source_type": "agent_inferred_from_public_data",
+        "confidence": "low",
+        "geometry_role": "provisional_constraint",
+        "official_boundary": false,
+        "boundary_precision": "provisional_rough",
+        "name_zh": "临时粗略总体边界约束（非红线）",
+        "constraint_note_zh": "官方控规控制条件（容积率、限高、建筑密度、绿地率、退线）在公开场地包中缺失；本要素仅复述临时粗略 SITE-001 边界作为设计约束背景，不得作为 official redline 或审批依据。",
+        "area_sqm_declared": 11412825.386
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                116.3407,
+                39.939
+              ],
+              [
+                116.3553,
+                39.939
+              ],
+              [
+                116.3553,
+                39.965
+              ],
+              [
+                116.3533,
+                39.99
+              ],
+              [
+                116.3553,
+                40.0265
+              ],
+              [
+                116.3427,
+                40.0265
+              ],
+              [
+                116.3417,
+                40.006
+              ],
+              [
+                116.3397,
+                39.975
+              ],
+              [
+                116.3407,
+                39.939
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "data_gap": {
+    "status": "official_constraint_geometry_unavailable",
+    "declared_by": "scripts/scaffold_ai_submission.py",
+    "assumption_ids": [
+      "A-CONTROLS-001"
+    ],
+    "missing_layers": [
+      "REGULATORY_CONTROL",
+      "HERITAGE_PROTECTION",
+      "PARCEL",
+      "EXISTING_PRIMARY_ROAD",
+      "EXISTING_RAIL",
+      "EXISTING_WATER"
+    ],
+    "note_zh": "本图层刻意保持空集合。控规控制线、文物保护范围与建设控制地带、道路红线、权属地块、轨道与蓝线均属锁定图层，公开场地包中目前没有可引用的官方几何来源。缺口按 assumption A-CONTROLS-001 登记；取得官方或已清权几何前，不得以推定线条冒充 official_constraint，空集合优于编造。",
+    "note_en": "This layer is intentionally an empty set. Regulatory control lines, heritage protection and construction-control zones, road redlines, cadastral parcels, rail and blue lines are locked layers with no citable official geometry in the public site package. The gap is registered as assumption A-CONTROLS-001; until official or cleared geometry is available, inferred lines must not be presented as an official_constraint - an empty set is preferred over fabrication."
+  }
+}

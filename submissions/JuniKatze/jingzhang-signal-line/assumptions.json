@@ -1,0 +1,96 @@
+{
+ "schema_version": "0.1.0",
+ "assumptions": [
+  {
+   "id": "A-BOUNDARY-001",
+   "status": "pending_official_data",
+   "statement": "本方案使用维护者登记的临时粗略边界（PROV-SITE-001 与 PROV-KEY-001/002/003），非官方红线。",
+   "impact": "官方 polygon 发布后，site boundary、key areas、land use、roads、green space、public space、buildings、phasing 及全部面积指标须整包复算。",
+   "affected_files": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson"
+   ],
+   "source_ids": [
+    "OFFICIAL-ANNOUNCEMENT",
+    "PROVISIONAL-BOUNDARIES"
+   ]
+  },
+  {
+   "id": "A-CONTROLS-001",
+   "status": "pending_professional_confirmation",
+   "statement": "控规容积率、建筑高度、建筑密度、绿地率、退线、道路红线、权属与市政条件均未取得官方数据。",
+   "impact": "凡涉上述事项一律按待正式数据补齐处理；本方案不推测法定控制数值、地块拆改留结论或工程可行性。",
+   "affected_files": [
+    "metrics.json"
+   ],
+   "source_ids": [
+    "PLANNING-LIMITS"
+   ]
+  },
+  {
+   "id": "A-DATA-001",
+   "status": "pending_professional_confirmation",
+   "statement": "现状建筑轮廓、高度、用途、建成年代与保留/改造/拆除状态未取得官方数据；本方案建筑为概念体块示意。",
+   "impact": "概念建筑基底仅用于表达体量关系与图面示意，不构成建筑面积、容积率或开发规模结论。",
+   "affected_files": [
+    "geometry/buildings.geojson"
+   ],
+   "source_ids": [
+    "PLANNING-LIMITS"
+   ]
+  },
+  {
+   "id": "A-TRANSPORT-001",
+   "status": "pending_official_data",
+   "statement": "道路红线、断面、轨道站点边界、客流与慢行断点未取得官方交通数据。",
+   "impact": "轨道接驳与缝合口表述为概念策略；线位、断面与工程方案待交通专项深化。",
+   "affected_files": [
+    "geometry/roads.geojson"
+   ],
+   "source_ids": [
+    "OFFICIAL-ANNOUNCEMENT"
+   ]
+  },
+  {
+   "id": "A-HERITAGE-001",
+   "status": "pending_official_data",
+   "statement": "清华园车站旧址等文保范围、建设控制地带与管控要求未取得官方 GIS 图层。",
+   "impact": "文保点位仅作概念提示，不构成文保范围判断；正式范围待官方确认。",
+   "affected_files": [
+    "geometry/constraints.geojson"
+   ],
+   "source_ids": [
+    "OFFICIAL-ANNOUNCEMENT"
+   ]
+  },
+  {
+   "id": "A-CASES-001",
+   "status": "background_only",
+   "statement": "6 个国际案例来自公开资料（检索日期 2026-08-11），用于机制借鉴。",
+   "impact": "案例不构成对任何园区现状的官方判断；商标与名称仅作事实性引用。",
+   "affected_files": [
+    "sources.json"
+   ],
+   "source_ids": [
+    "CASE-KINGSCROSS",
+    "CASE-STANFORD",
+    "CASE-JID",
+    "CASE-QUAYSIDE",
+    "CASE-PANGYO",
+    "CASE-HETAO-ZHANGJIANG"
+   ]
+  },
+  {
+   "id": "A-COMPUTE-001",
+   "status": "conceptual",
+   "statement": "端侧算力驿站、公共信息屏等新基建为概念性接口建议。",
+   "impact": "算力规模、能耗与市政容量等不做任何测算结论，待专项研究。",
+   "affected_files": [
+    "metrics.json"
+   ],
+   "source_ids": [
+    "AGENT-TASKBOOK"
+   ]
+  }
+ ]
+}

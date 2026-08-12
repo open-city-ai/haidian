@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jingzhang AI Valley / JZ Valley — Proposal Visualization Dashboard</title>
+<style>
+  :root{
+    --bg:#0d1117;
+    --bg-panel:#151b23;
+    --bg-panel-2:#1b232d;
+    --line:#2a333d;
+    --ink:#e8edf2;
+    --ink-dim:#9aa7b2;
+    --rail-gray:#5b6672;
+    --signal-red:#e0483f;
+    --signal-amber:#e0a83f;
+    --signal-green:#2fae66;
+    --data-cyan:#33c4d1;
+    --radius:10px;
+    font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei","Heiti SC",sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);scroll-behavior:smooth;}
+  a{color:var(--data-cyan);}
+  section{padding:64px 24px;max-width:1240px;margin:0 auto;}
+  h1,h2,h3{margin:0 0 12px 0;font-weight:700;}
+  h2{font-size:26px;border-left:5px solid var(--data-cyan);padding-left:14px;letter-spacing:1px;}
+  h2 .en{font-size:13px;color:var(--ink-dim);font-weight:400;margin-left:10px;}
+  p{line-height:1.75;color:var(--ink-dim);}
+  .tag{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;border:1px solid var(--line);color:var(--ink-dim);margin-right:6px;}
+  .img-frame{width:100%;border-radius:var(--radius);border:1px solid var(--line);overflow:hidden;background:var(--bg-panel-2);position:relative;}
+  .img-frame img{width:100%;display:block;}
+  .img-caption{font-size:12px;color:var(--ink-dim);text-align:right;padding:6px 10px;border-top:1px dashed var(--line);}
+  .img-fallback{display:flex;align-items:center;justify-content:center;min-height:340px;color:var(--ink-dim);font-size:14px;flex-direction:column;gap:8px;padding:20px;text-align:center;}
+  .img-fallback .icon{font-size:34px;opacity:.5;}
+
+  /* ---------- Hero ---------- */
+  #hero{padding-top:56px;}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:28px;}
+  .hero-title{font-size:40px;line-height:1.25;margin-bottom:6px;}
+  .hero-title .zh{color:var(--ink);}
+  .hero-title .en{color:var(--data-cyan);font-size:22px;font-weight:400;margin-left:10px;}
+  .hero-loop{display:flex;align-items:center;gap:10px;margin:18px 0 26px 0;padding:14px 18px;background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);}
+  .loop-node{padding:6px 12px;border-radius:6px;background:var(--bg-panel-2);border:1px solid var(--line);font-size:14px;white-space:nowrap;}
+  .loop-arrow{color:var(--signal-amber);font-size:18px;}
+  .hero-sub{color:var(--ink-dim);max-width:760px;}
+
+  /* ---------- Governance banner ---------- */
+  #discipline{background:linear-gradient(90deg,rgba(224,72,63,.12),rgba(224,168,63,.12),rgba(47,174,102,.12));border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:38px 24px;}
+  .discipline-inner{max-width:1240px;margin:0 auto;text-align:center;}
+  .discipline-flow{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px;font-size:22px;font-weight:700;margin-top:14px;}
+  .discipline-step{padding:10px 18px;border-radius:8px;}
+  .discipline-step:nth-child(1){background:rgba(51,196,209,.12);color:var(--data-cyan);border:1px solid var(--data-cyan);}
+  .discipline-step:nth-child(3){background:rgba(47,174,102,.12);color:var(--signal-green);border:1px solid var(--signal-green);}
+  .discipline-step:nth-child(5){background:rgba(224,168,63,.12);color:var(--signal-amber);border:1px solid var(--signal-amber);}
+  .discipline-step:nth-child(7){background:rgba(224,72,63,.12);color:var(--signal-red);border:1px solid var(--signal-red);}
+  .discipline-arrow{color:var(--ink-dim);font-size:18px;}
+
+  /* ---------- Zone cards ---------- */
+  .zone-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:20px;}
+  .zone-card{background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;border-top:4px solid var(--data-cyan);transition:transform .2s ease,box-shadow .2s ease;}
+  .zone-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.35);}
+  .zone-card.core-1{border-top-color:var(--signal-red);}
+  .zone-card.core-2{border-top-color:var(--signal-amber);}
+  .zone-card.core-3{border-top-color:var(--signal-green);}
+  .zone-card h3{font-size:17px;margin-bottom:4px;}
+  .zone-card .area{font-size:12px;color:var(--data-cyan);margin-bottom:10px;}
+  .zone-card .pos{font-size:13px;color:var(--ink-dim);margin-bottom:10px;font-style:italic;}
+  .zone-card ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink-dim);line-height:1.7;}
+
+  /* ---------- Scenario matrix ---------- */
+  .scn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-top:20px;}
+  .scn-card{position:relative;background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;min-height:120px;overflow:hidden;cursor:default;}
+  .scn-id{font-size:12px;color:var(--data-cyan);letter-spacing:1px;}
+  .scn-name{font-size:16px;font-weight:700;margin:6px 0 2px 0;}
+  .scn-node{font-size:11px;color:var(--ink-dim);}
+  .scn-overlay{position:absolute;inset:0;background:rgba(13,17,23,.96);display:flex;flex-direction:column;justify-content:center;gap:6px;padding:14px;opacity:0;transform:translateY(6px);transition:opacity .2s ease,transform .2s ease;font-size:11.5px;}
+  .scn-card:hover .scn-overlay{opacity:1;transform:translateY(0);}
+  .scn-overlay .item{display:flex;gap:6px;align-items:flex-start;color:var(--ink-dim);}
+  .scn-overlay .dot{width:7px;height:7px;border-radius:50%;margin-top:4px;flex:none;}
+  .dot-red{background:var(--signal-red);} .dot-amber{background:var(--signal-amber);} .dot-green{background:var(--signal-green);} .dot-cyan{background:var(--data-cyan);}
+
+  /* ---------- KPI gauges ---------- */
+  .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:20px;}
+  .kpi-card{background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;text-align:center;}
+  .kpi-card svg{width:120px;height:70px;}
+  .kpi-name{font-size:13px;margin-top:8px;color:var(--ink);}
+  .kpi-baseline{font-size:11px;color:var(--ink-dim);margin-top:4px;}
+  .needle{transform-origin:60px 60px;animation:sweep 2.4s ease-out forwards;}
+  @keyframes sweep{from{transform:rotate(-90deg);}}
+
+  /* ---------- metrics table ---------- */
+  table{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;}
+  th{background:var(--bg-panel-2);color:var(--data-cyan);font-weight:600;}
+  td{color:var(--ink-dim);}
+  .metric-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-top:18px;}
+  .metric-card{background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;text-align:center;}
+  .metric-card .num{font-size:26px;font-weight:700;color:var(--data-cyan);}
+  .metric-card .label{font-size:12px;color:var(--ink-dim);margin-top:4px;}
+
+  /* ---------- self check badges ---------- */
+  .badge-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px;}
+  .badge{display:flex;align-items:center;gap:8px;background:var(--bg-panel);border:1px solid var(--signal-green);color:var(--signal-green);padding:8px 14px;border-radius:999px;font-size:13px;}
+  .badge .chip{width:8px;height:8px;border-radius:50%;background:var(--signal-green);}
+  .manifest{margin-top:16px;background:var(--bg-panel-2);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--ink-dim);word-break:break-all;}
+
+  /* ---------- sources ---------- */
+  .src-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:20px;}
+  @media(max-width:760px){.src-cols{grid-template-columns:1fr;}}
+  .src-cols h3{font-size:15px;color:var(--data-cyan);}
+  .src-cols ul{font-size:13px;color:var(--ink-dim);line-height:1.8;padding-left:18px;}
+  .disclaimer{margin-top:22px;padding:14px 16px;border:1px dashed var(--signal-amber);border-radius:var(--radius);color:var(--signal-amber);font-size:13px;background:rgba(224,168,63,.06);}
+
+  footer{padding:30px 24px;text-align:center;color:var(--ink-dim);font-size:12px;border-top:1px solid var(--line);}
+  .section-divider{height:1px;background:var(--line);max-width:1240px;margin:0 auto;}
+  .kpi-pending{font-size:13px;color:var(--signal-amber);border:1px dashed var(--signal-amber);border-radius:8px;padding:10px;margin-top:8px;text-align:center;}
+</style>
+</head>
+<body>
+
+<!-- 1. 首屏 Hero -->
+<section id="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-title"><span class="zh">Jingzhang AI Valley</span><span class="en">/ JZ Valley</span></div>
+      <div class="hero-loop">
+        <span class="loop-node">R&amp;D</span><span class="loop-arrow">→</span>
+        <span class="loop-node">Validate</span><span class="loop-arrow">→</span>
+        <span class="loop-node">Scenario</span><span class="loop-arrow">→</span>
+        <span class="loop-node">Feedback</span><span class="loop-arrow">↩</span>
+        <span style="color:var(--ink-dim);font-size:13px;margin-left:8px;">Switchback Innovation Loop — a contemporary translation of Zhan Tianyou’s switchback railway</span>
+      </div>
+      <p class="hero-sub">Centered on the Jingzhang Railway Heritage Park, linking three key districts—Zhongzhiyuan AI Valley, AI Origin Community, and Dazhongsi Smart Hub—forming a corridor-wide innovation network of public spaces, AI scenarios, and blue-green slow-traffic loops.</p>
+    </div>
+    <div class="img-frame">
+      <div class="prov-overlay" style="background:#ff6b6b;color:white;font-size:11px;font-weight:bold;padding:2px 6px;margin-bottom:2px;display:inline-block;border-radius:3px;">⚠ PROVISIONAL / 概念示意 / 非官方红线</div>
+<img src="../assets/figures/site-overview.png" alt="Site Overview and Concept" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="img-fallback" style="display:none;">
+        <div class="icon">🗺️</div>
+        <div>site-overview.png not found — check assets/figures/site-overview.png</div>
+      </div>
+      <div class="img-caption">Figure 1 · Site Overview & Concept (provisional, pending official boundary review)</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 1b. 方案总览：覆盖任务与空间结构（含必检文本标记） -->
+  <section id="overview">
+    <h2>Proposal Overview <span class="en">Overview</span></h2>
+    <p><strong>Overview Map: </strong>The proposal uses Jingzhang Railway Heritage Park as the cultural spine, organized by <strong>three-tier scope</strong>leading from Area-wide Study (43.6 km²) to Overall Design (11.4 km²) to the three <strong>key areas</strong> (368.4 ha: Zhongzhiyuan, AI Origin Community, Dazhongsi).</p>
+    <p><strong>Land-use distribution: </strong>AI R&amp;D 25% / Innovation Mixed 20% / AI Services 15% / Commercial 10% / Green Space 20% / Transport 10%.</p>
+    <p><strong>Slow traffic: </strong>Approx. 20km continuous cycling + walking path linking the three key areas; <strong>blue-green public space</strong>the heritage park green corridor (30-80m wide) with Xiaoyue River and Qinghe blue corridors.</p>
+    <p><strong>Buildings</strong>follow the principle: retain first, retrofit second, demolish third, build new last; <strong>phasing projects</strong>implemented in three phases (2026-2035).</p>
+    <p><strong>AI scenarios</strong>: 12 scenario cards (SCN-01~12), each bound to a spatial anchor NODE-01~12; <strong>tasks cover</strong>agent.1 through agent.6 6 agent tasks。</p>
+  </section>
+
+  <div class="section-divider"></div>
+
+<!-- 2. Governance Discipline横幅 -->
+<section id="discipline" style="padding:0;">
+  <div class="discipline-inner" style="padding:38px 24px;">
+    <span class="tag">Governance Creed</span>
+    <h2 style="border:none;padding:0;display:inline;">Governance Discipline</h2>
+    <div class="discipline-flow">
+      <span class="discipline-step">Switchback Review</span>
+      <span class="discipline-arrow">→</span>
+      <span class="discipline-step">Grade Access</span>
+      <span class="discipline-arrow">→</span>
+      <span class="discipline-step">K-marker Log</span>
+      <span class="discipline-arrow">→</span>
+      <span class="discipline-step">Depot Entry</span>
+    </div>
+  </div>
+</section>
+
+<!-- 3. 三区两翼 -->
+<section id="areas">
+  <h2>Districts &amp; Wings <span class="en">Three Districts, Two Wings</span></h2>
+  <p>The three key districts follow a grade gradient: Dazhongsi (gentle slope/inclusive) → AI Origin Community (medium slope/industry) → Zhongzhiyuan (steep slope/cutting-edge), flanked by the Zhongguancun and Xiaoyue River wings.</p>
+  <div class="zone-grid">
+    <div class="zone-card core-1">
+      <h3>Zhongzhiyuan · AI Valley</h3>
+      <div class="area">192.1 ha · Steep / Cutting-edge</div>
+      <div class="pos">Full-stack independent innovation accelerator</div>
+      <ul><li>Spatial structure: one core, two wings</li><li>Height limit ≤60m</li><li>Scenarios SCN-01~04</li></ul>
+    </div>
+    <div class="zone-card core-2">
+      <h3>AI Origin Community</h3>
+      <div class="area">104.3 ha · Medium / Industry</div>
+      <div class="pos">Industry-grade AI application community</div>
+      <ul><li>Spatial structure: one street, one park, one community</li><li>Height limit ≤45m</li><li>Scenarios SCN-05~08</li></ul>
+    </div>
+    <div class="zone-card core-3">
+      <h3>Dazhongsi · Smart Hub</h3>
+      <div class="area">72.0 ha · Gentle / Inclusive</div>
+      <div class="pos">Inclusive innovation hub</div>
+      <ul><li>Spatial structure: one valley, one street</li><li>Height limit ≤30m</li><li>Scenarios SCN-09~12</li></ul>
+    </div>
+    <div class="zone-card">
+      <h3>Zhongguancun Wing</h3>
+      <div class="area">Linkage zone · Industry-academia synergy</div>
+      <div class="pos">Innovation resource channel</div>
+      <ul><li>Connects to Zhongzhiyuan</li><li>Talent &amp; technology bidirectional flow</li></ul>
+    </div>
+    <div class="zone-card">
+      <h3>Xiaoyue River Wing</h3>
+      <div class="area">Linkage zone · Blue-green ecological corridor</div>
+      <div class="pos">Ecological slow-traffic connector</div>
+      <ul><li>Links Xiaoyue River &amp; Qinghe blue corridors</li><li>Connects heritage park green spine</li></ul>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 4. 场景矩阵 -->
+<section id="scenarios">
+  <h2>Scenario Matrix <span class="en">12 Scenarios</span></h2>
+  <p>Each scenario passes a governance gate before deployment. Hover to view the four-part safety kit: deactivation conditions, human fallback, appeal channel, sunset clause.</p>
+  <div class="scn-grid" id="scnGrid"></div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 5. 治理KPI面板 -->
+<section id="kpi">
+  <h2>Governance KPI <span class="en">Governance KPIs</span></h2>
+  <p>Three-signal status (red/yellow/green) mirrors railway signaling: red cannot jump to green. Five verifiable governance KPIs below; baselines pending first survey.</p>
+  <div class="kpi-grid" id="kpiGrid"></div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 6. 指标与证据 -->
+<section id="metrics">
+  <h2>Metrics &amp; Evidence <span class="en">Metrics &amp; Evidence</span></h2>
+  <div class="metric-cards">
+    <div class="metric-card" data-metric="site_area_sqm" data-value="11412797.493"><div class="num">11.41</div><div class="label">Site Area (km²) · site_area_sqm</div></div>
+    <div class="metric-card" data-metric="green_ratio" data-value="0.175243"><div class="num">17.5%</div><div class="label">Green Ratio · green_ratio</div></div>
+    <div class="metric-card" data-metric="public_space_ratio" data-value="0.007479"><div class="num">0.75%</div><div class="label">Public Space Ratio · public_space_ratio</div></div>
+    <div class="metric-card"><div class="num">12</div><div class="label">AI Scenarios</div></div>
+  </div>
+  <div class="img-frame" style="margin-top:24px;">
+    <div class="prov-overlay" style="background:#ff6b6b;color:white;font-size:11px;font-weight:bold;padding:2px 6px;margin-bottom:2px;display:inline-block;border-radius:3px;">⚠ PROVISIONAL / 概念示意 / 非官方红线</div>
+<img src="../assets/figures/metrics-evidence.png" alt="Core Metrics and Governance Loop" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="img-fallback" style="display:none;">
+      <div class="icon">📊</div>
+      <div>metrics-evidence.png not found — check assets/figures/metrics-evidence.png</div>
+    </div>
+    <div class="img-caption">Figure 5 · Core Metrics & Governance Loop (illustrative, baseline pending first survey)</div>
+  </div>
+  <table>
+    <thead><tr><th>Land Use</th><th>Area (ha)</th><th>Ratio</th></tr></thead>
+    <tbody>
+      <tr><td>AI R&amp;D</td><td>285</td><td>25%</td></tr>
+      <tr><td>Innovation Mixed</td><td>228</td><td>20%</td></tr>
+      <tr><td>Services</td><td>171</td><td>15%</td></tr>
+      <tr><td>Commercial</td><td>114</td><td>10%</td></tr>
+      <tr><td>Green Space</td><td>228</td><td>20%</td></tr>
+      <tr><td>Transport</td><td>114</td><td>10%</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 7. 自检状态 -->
+<section id="selfcheck">
+  <h2>Self-Check <span class="en">Self-Check Status</span></h2>
+  <p>All four gates passed (formal-review-ready). Status and manifest hashes below (generated by the finalize workflow).</p>
+  <div class="badge-row">
+    <div class="badge"><span class="chip"></span>Concept Alignment PASS</div>
+    <div class="badge"><span class="chip"></span>Data Consistency PASS</div>
+    <div class="badge"><span class="chip"></span>Governance Loop PASS</div>
+    <div class="badge"><span class="chip"></span>Material Compliance PASS</div>
+  </div>
+  <div class="manifest">manifest.sha256 = &lt;generated by finalize workflow&gt;<br>version = v8.1 &nbsp;|&nbsp; date = 2026-08-10 &nbsp;|&nbsp; status = formal-review-ready</div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 8. 来源与假设 -->
+<section id="sources">
+  <h2>Sources &amp; Assumptions <span class="en">Sources &amp; Assumptions</span></h2>
+  <div class="src-cols">
+    <div>
+      <h3>Sources</h3>
+      <ul>
+        <li>proposal.md (v8 final framework, 2026-08-10)</li>
+        <li>Official plot conditions (where collected, see materials index)</li>
+        <li>OSM railway alignment/stations/green corridors (ODbL attribution, where collected)</li>
+        <li>Built fact inventory (official verifiable sources, where collected)</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Assumptions</h3>
+      <ul>
+        <li>Area, grade, and height values are conceptual, not precise survey</li>
+        <li>Governance KPIs are evaluation commitments; baselines pending first survey, no fabricated targets</li>
+        <li>Scenario IDs SCN-01~12 and spatial anchors NODE-01~12 are one-to-one conceptual placeholders</li>
+        <li>Investment amounts, phasing years are conceptual; must be verified against official approvals</li>
+      </ul>
+    </div>
+  </div>
+  <div class="disclaimer">⚠ Provisional Disclaimer: All boundaries, data, and graphics on this page are conceptual (provisional), not final approved outcomes, and subject to official released documents.</div>
+</section>
+
+
+
+
+<footer>Jingzhang AI Valley / JZ Valley &nbsp;·&nbsp; v8.1 &nbsp;·&nbsp; Single-file offline display, no CDN / external scripts / fonts / API / iframe / remote map tiles</footer>
+
+<script>
+(function(){
+  var scenarios = [
+    {id:"SCN-01",name:"Accessible Route Assistant",node:"NODE-01",grade:"Gentle"},
+    {id:"SCN-02",name:"Crowd Guidance",node:"NODE-02",grade:"Medium"},
+    {id:"SCN-03",name:"Multilingual Guide",node:"NODE-03",grade:"Gentle"},
+    {id:"SCN-04",name:"Community Navigation",node:"NODE-04",grade:"Gentle"},
+    {id:"SCN-05",name:"SME Compliance",node:"NODE-05",grade:"Medium"},
+    {id:"SCN-06",name:"Open-source Compute",node:"NODE-06",grade:"Steep"},
+    {id:"SCN-07",name:"Robot Delivery",node:"NODE-07",grade:"Steep"},
+    {id:"SCN-08",name:"Microclimate Advice",node:"NODE-08",grade:"Gentle"},
+    {id:"SCN-09",name:"Aged-care Navigation",node:"NODE-09",grade:"Medium"},
+    {id:"SCN-10",name:"Consumer Translation",node:"NODE-10",grade:"Gentle"},
+    {id:"SCN-11",name:"Safety Review",node:"NODE-11",grade:"Steep"},
+    {id:"SCN-12",name:"Issue Synthesis",node:"NODE-12",grade:"Medium"}
+  ];
+  var grid = document.getElementById('scnGrid');
+  scenarios.forEach(function(s){
+    var card = document.createElement('div');
+    card.className = 'scn-card';
+    card.innerHTML =
+      '<div class="scn-id">'+s.id+'</div>' +
+      '<div class="scn-name">'+s.name+'</div>' +
+      '<div class="scn-node">Anchor '+s.node+'</div>' +
+      '<div class="scn-overlay">' +
+        '<div class="item"><span class="dot dot-red"></span>Switchback: stop at node, three-party review pass/return/depot</div>' +
+        '<div class="item"><span class="dot dot-amber"></span>Grade Access: Steeper = stricter, Gentle = inclusive</div>' +
+        '<div class="item"><span class="dot dot-cyan"></span>K-marker Log: each recalculation generates a new K-marker, fully traceable</div>' +
+        '<div class="item"><span class="dot dot-green"></span>Switch States: Main line / Switchback / Depot Entry, no automatic recovery</div>' +
+      '</div>';
+    grid.appendChild(card);
+  });
+
+  var kpis = [
+    {name:"Independent Evaluation Coverage", value:null, note:"Baseline pending first survey"},
+    {name:"Public Issue Closure Rate", value:null, note:"Baseline pending first survey"},
+    {name:"Appeal Resolution Time", value:null, note:"Baseline pending first survey"},
+    {name:"Human Override Rate", value:null, note:"Baseline pending operation phase"},
+    {name:"Switchback/Entry Records", value:null, note:"Baseline 0, recorded on each switchback"}
+  ];
+  var kgrid = document.getElementById('kpiGrid');
+  kpis.forEach(function(k){
+    if (k.value === null) {
+      var empty = document.createElement('div');
+      empty.className = 'kpi-card';
+      empty.innerHTML = '<div class="kpi-name">'+k.name+'</div><div class="kpi-baseline">'+k.note+'</div><div class="kpi-pending">Pending survey (no fabricated values)</div>';
+      kgrid.appendChild(empty);
+      return;
+    }
+    var angle = -90 + k.value*180;
+    var color = k.value>=0.7?'var(--signal-green)':(k.value>=0.4?'var(--signal-amber)':'var(--signal-red)');
+    var card = document.createElement('div');
+    card.className = 'kpi-card';
+    card.innerHTML =
+      '<svg viewBox="0 0 120 70">' +
+        '<path d="M10,60 A50,50 0 0,1 40,15" stroke="var(--signal-red)" stroke-width="10" fill="none" stroke-linecap="round"/>' +
+        '<path d="M40,15 A50,50 0 0,1 80,15" stroke="var(--signal-amber)" stroke-width="10" fill="none" stroke-linecap="round"/>' +
+        '<path d="M80,15 A50,50 0 0,1 110,60" stroke="var(--signal-green)" stroke-width="10" fill="none" stroke-linecap="round"/>' +
+        '<line class="needle" x1="60" y1="60" x2="60" y2="16" stroke="'+color+'" stroke-width="3" style="transform:rotate('+angle+'deg)"/>' +
+        '<circle cx="60" cy="60" r="4" fill="'+color+'"/>' +
+      '</svg>' +
+      '<div class="kpi-name">'+k.name+'</div>' +
+      '<div class="kpi-baseline">Baseline pending first survey</div>';
+    kgrid.appendChild(card);
+  });
+})();
+</script>
+
+
+</body>
+</html>

@@ -1132,6 +1132,1167 @@
       "assumptions": [
         "Official key-area geometry is unavailable."
       ]
+    },
+    "maintenance_urbanism_contract_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/key-area-evidence-matrix.json"
+      ],
+      "formula": "count(maintenance_urbanism_contract)",
+      "confidence": "high",
+      "assumptions": [
+        "Counts one documentation contract only; it is not an implemented maintenance system."
+      ]
+    },
+    "maintenance_task_family_documented_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "visual/assets/key-area-evidence-matrix.json"
+      ],
+      "formula": "count(maintenance_urbanism_contract.task_families)",
+      "confidence": "high",
+      "assumptions": [
+        "The five entries are user-goal task families, not new scenes or projects."
+      ]
+    },
+    "maintenance_scene_crosswalk_documented_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/key-area-evidence-matrix.json",
+        "visual/assets/implementation-handoff-matrix.json"
+      ],
+      "formula": "count(maintenance_urbanism_contract.scene_task_family_project_crosswalk)",
+      "confidence": "high",
+      "assumptions": [
+        "The project links must equal the existing implementation-handoff scenario_crosswalk; documentation coverage is not field coverage."
+      ]
+    },
+    "maintenance_lifecycle_field_documented_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/key-area-evidence-matrix.json"
+      ],
+      "formula": "count(maintenance_urbanism_contract.lifecycle_fields)",
+      "confidence": "high",
+      "assumptions": [
+        "Counts required contract fields, not measured lifecycle cost, repairability, or component performance."
+      ]
+    },
+    "maintenance_real_complaint_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/key-area-evidence-matrix.json"
+      ],
+      "formula": "count(verified_real_complaints_linked_to_maintenance_contract)",
+      "confidence": "unknown",
+      "assumptions": [
+        "No collected real complaint is represented by the contract."
+      ],
+      "reason": "No verified complaint intake, consent, owner, or field record has been supplied."
+    },
+    "maintenance_real_work_order_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/key-area-evidence-matrix.json"
+      ],
+      "formula": "count(accepted_real_work_orders)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Issue and work-order records are empty shells until responsibility acceptance."
+      ],
+      "reason": "No accountable owner has accepted a real work order."
+    },
+    "maintenance_confirmed_personnel_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/key-area-evidence-matrix.json"
+      ],
+      "formula": "count(confirmed_real_maintenance_or_service_personnel)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Role types are visible in the concept journey but no person is confirmed."
+      ],
+      "reason": "Maintenance workers, cleaners, staffed workers, curators, and co-testers are not confirmed personnel assignments."
+    },
+    "maintenance_real_budget_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/key-area-evidence-matrix.json"
+      ],
+      "formula": "count(verified_real_maintenance_budget_records)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Lifecycle cost is a required field, not a budget allocation."
+      ],
+      "reason": "No budget, procurement authorization, or cost record has been supplied."
+    },
+    "maintenance_planned_human_hours": {
+      "status": "unknown",
+      "value": null,
+      "unit": "hours",
+      "source_files": [
+        "visual/assets/key-area-evidence-matrix.json"
+      ],
+      "formula": "sum(verified_planned_human_hours_per_accepted_work_order)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Planned and actual human-hour fields are templates only."
+      ],
+      "reason": "No accepted work order or verified plan exists."
+    },
+    "maintenance_actual_human_hours": {
+      "status": "unknown",
+      "value": null,
+      "unit": "hours",
+      "source_files": [
+        "visual/assets/key-area-evidence-matrix.json"
+      ],
+      "formula": "sum(verified_actual_human_hours_per_accepted_work_order)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Planned and actual human-hour fields are templates only."
+      ],
+      "reason": "No accepted work order or verified time record exists."
+    },
+    "maintenance_real_repair_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/key-area-evidence-matrix.json"
+      ],
+      "formula": "count(verified_completed_repairs)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Existing-facility-first is a decision sequence, not evidence of a repair."
+      ],
+      "reason": "No inspection, cleaning, adjustment, repair, component replacement, or procurement decision has been verified."
+    },
+    "maintenance_independent_recheck_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/key-area-evidence-matrix.json"
+      ],
+      "formula": "count(verified_independent_rechecks)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Independent recheck is required before continue, not presumed complete."
+      ],
+      "reason": "No repair or independent recheck evidence exists."
+    },
+    "maintenance_measured_effect_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/key-area-evidence-matrix.json"
+      ],
+      "formula": "count(verified_measured_maintenance_effects)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A documented decision rule does not establish an outcome."
+      ],
+      "reason": "No baseline, completed repair, independent recheck, or measured effect has been supplied."
+    },
+    "maintenance_real_approval_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/key-area-evidence-matrix.json"
+      ],
+      "formula": "count(verified_real_maintenance_approvals)",
+      "confidence": "high",
+      "assumptions": [
+        "A zero approval count prevents documentation coverage from being presented as approval."
+      ],
+      "reason": "No verified real approval is represented by the maintenance contract."
+    },
+    "maintenance_real_operation_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/key-area-evidence-matrix.json"
+      ],
+      "formula": "count(verified_real_maintenance_operations)",
+      "confidence": "high",
+      "assumptions": [
+        "A zero operation count prevents documentation coverage from being presented as operation."
+      ],
+      "reason": "No verified real operation is represented by the maintenance contract."
+    },
+    "non_ai_permanent_public_right_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/non-ai-parity-contract.json"
+      ],
+      "formula": "count(permanent_public_rights)",
+      "confidence": "high",
+      "assumptions": [
+        "Counts proposal-defined service-design rights, not enacted rights or operating services."
+      ]
+    },
+    "non_ai_place_service_contract_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/non-ai-parity-contract.json",
+        "visual/assets/key-area-evidence-matrix.json"
+      ],
+      "formula": "count(place_service_contracts)",
+      "confidence": "high",
+      "assumptions": [
+        "Counts conceptual contracts for the three existing provisional key areas; no new geometry is created."
+      ]
+    },
+    "non_ai_group_acceptance_contract_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/non-ai-parity-contract.json"
+      ],
+      "formula": "count(group_acceptance)",
+      "confidence": "high",
+      "assumptions": [
+        "Counts typed acceptance structures, not recruited participants or measured group results."
+      ]
+    },
+    "non_ai_confirmed_staff_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/non-ai-parity-contract.json"
+      ],
+      "formula": "count(confirmed_real_staff_assignments)",
+      "confidence": "high",
+      "assumptions": [
+        "Required role types are not confirmed personnel."
+      ],
+      "reason": "No accountable operator or staff assignment has been supplied."
+    },
+    "non_ai_observed_real_service_interaction_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/non-ai-parity-contract.json"
+      ],
+      "formula": "count(consented_verified_real_service_interactions)",
+      "confidence": "high",
+      "assumptions": [
+        "The T-02 synthetic replay is not a real service interaction."
+      ],
+      "reason": "No verified staffed, paper, oral, telephone, non-AI, or AI service interaction is represented."
+    },
+    "non_ai_known_group_result_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/non-ai-parity-contract.json"
+      ],
+      "formula": "count(group_acceptance records with observed field result)",
+      "confidence": "high",
+      "assumptions": [
+        "All four group-specific results remain unknown/not measured."
+      ],
+      "reason": "No consented group sample, field baseline, preregistered threshold, or executed comparison exists."
+    },
+    "non_ai_real_approval_or_operation_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/non-ai-parity-contract.json"
+      ],
+      "formula": "count(verified_real_approvals) + count(verified_real_operations)",
+      "confidence": "high",
+      "assumptions": [
+        "A concept service baseline cannot establish approval or operation."
+      ],
+      "reason": "No verified approval or operating evidence has been supplied."
+    },
+    "urban_metabolism_scene_resource_passport_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/urban-metabolism-ledger.json"
+      ],
+      "formula": "count(scene_resource_passports)",
+      "confidence": "high",
+      "assumptions": [
+        "Counts design records for the twelve existing scenes only; it does not count measured or operating systems."
+      ]
+    },
+    "urban_metabolism_resource_dimension_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/urban-metabolism-ledger.json"
+      ],
+      "formula": "count(resource_dimensions)",
+      "confidence": "high",
+      "assumptions": [
+        "The seven dimensions are a whole-system accounting schema, not measured resource performance."
+      ]
+    },
+    "urban_metabolism_design_field_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/urban-metabolism-ledger.json"
+      ],
+      "formula": "count(existing scene passports carrying all seven typed resource fields) / 12",
+      "confidence": "high",
+      "assumptions": [
+        "Measures field presence only; it is not a green-performance, evidence-completeness, procurement-readiness, or maturity score."
+      ]
+    },
+    "urban_metabolism_valid_task_denominator_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/urban-metabolism-ledger.json"
+      ],
+      "formula": "count(scene passports with a preregistered and evidenced task denominator and whole-system boundary)",
+      "confidence": "high",
+      "assumptions": [
+        "A written denominator requirement is not a valid measured denominator."
+      ],
+      "reason": "No future public task, time window, attempt/completion rule, comparison baseline, and group split has been jointly preregistered and evidenced."
+    },
+    "urban_metabolism_measured_energy_scene_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/urban-metabolism-ledger.json"
+      ],
+      "formula": "count(scene passports with measured whole-system energy and a valid task denominator)",
+      "confidence": "high",
+      "assumptions": [
+        "Nameplate values, simulations, industry averages, and vendor claims are not project measurements."
+      ],
+      "reason": "No measured server, edge, network, end-device, staffed-baseline, and place energy record exists."
+    },
+    "urban_metabolism_measured_compute_scene_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/urban-metabolism-ledger.json"
+      ],
+      "formula": "count(scene passports with measured whole-system compute and a valid task denominator)",
+      "confidence": "high",
+      "assumptions": [
+        "A model name, architecture, or simulated workload is not measured compute use."
+      ],
+      "reason": "No measured server/cloud, edge, network, end-device, idle, and retry workload exists."
+    },
+    "urban_metabolism_confirmed_equipment_lifecycle_scene_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/urban-metabolism-ledger.json"
+      ],
+      "formula": "count(scene passports with confirmed quantity, repairability, parts, service life, reuse, and end-of-life evidence)",
+      "confidence": "high",
+      "assumptions": [
+        "A conceptual component list or product datasheet does not confirm project equipment or lifecycle."
+      ],
+      "reason": "No equipment has a confirmed project quantity, owner, repair chain, service life, or end-of-life destination."
+    },
+    "urban_metabolism_measured_human_review_minutes_scene_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/urban-metabolism-ledger.json"
+      ],
+      "formula": "count(scene passports with measured planned and actual review, handoff, and recovery minutes)",
+      "confidence": "high",
+      "assumptions": [
+        "Required human roles are not confirmed personnel or measured labour."
+      ],
+      "reason": "No accountable service window, staff assignment, or time record exists."
+    },
+    "urban_metabolism_confirmed_vendor_scene_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/urban-metabolism-ledger.json"
+      ],
+      "formula": "count(scene passports with confirmed vendor, version, interoperability, export, repair, exit, and rights terms)",
+      "confidence": "high",
+      "assumptions": [
+        "Vendor examples, published terms, and design requirements do not establish selection or contract acceptance."
+      ],
+      "reason": "No vendor, procurement decision, product version, or binding exit term is confirmed."
+    },
+    "urban_metabolism_total_energy_use": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "visual/assets/urban-metabolism-ledger.json"
+      ],
+      "formula": "future sum of measured whole-system energy over an evidenced time window and denominator",
+      "confidence": "unknown",
+      "assumptions": [
+        "Unit and aggregation remain undefined until the future task, system boundary, interval, and measurement method are preregistered."
+      ],
+      "reason": "No field or controlled measurement exists; a numeric kWh value would fabricate precision."
+    },
+    "urban_metabolism_total_compute_use": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "visual/assets/urban-metabolism-ledger.json"
+      ],
+      "formula": "future measured compute workload across server/cloud, edge, retries, and relevant end devices over a valid task denominator",
+      "confidence": "unknown",
+      "assumptions": [
+        "Compute unit, hardware, model version, workload, retry rule, and denominator remain unselected."
+      ],
+      "reason": "No measured workload exists; architecture or vendor estimates cannot supply a project value."
+    },
+    "urban_metabolism_total_human_review_minutes": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "visual/assets/urban-metabolism-ledger.json"
+      ],
+      "formula": "future sum of measured review, handoff, safeguarding, correction, stop, and recovery minutes",
+      "confidence": "unknown",
+      "assumptions": [
+        "No confirmed staff, service window, or time-measurement protocol exists."
+      ],
+      "reason": "Human labour is structurally included but has not been measured."
+    },
+    "urban_metabolism_real_approval_or_operation_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/urban-metabolism-ledger.json"
+      ],
+      "formula": "count(verified real approvals) + count(verified real operations)",
+      "confidence": "high",
+      "assumptions": [
+        "A complete resource-passport design cannot establish authorization or operation."
+      ],
+      "reason": "The ledger represents no real approval, procurement, installation, test, or operation."
+    },
+    "failure_governance_failure_class_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/failure-governance-register.json"
+      ],
+      "formula": "count(failure_classes)",
+      "confidence": "high",
+      "assumptions": [
+        "Counts proposal-defined classification fields only; it is not a count of incidents or validated operating risks."
+      ]
+    },
+    "failure_governance_writeback_transition_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/failure-governance-register.json"
+      ],
+      "formula": "count(three_carrier_writeback_contract.transitions)",
+      "confidence": "high",
+      "assumptions": [
+        "Counts design transitions for pause, review, recovery, withdrawal, and retirement, not executed state changes."
+      ]
+    },
+    "failure_governance_confirmed_stop_authority_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/failure-governance-register.json",
+        "visual/assets/pilot-readiness-register.json"
+      ],
+      "formula": "count(real role assignments with accepted immediate physical or procedural stop duty)",
+      "confidence": "high",
+      "assumptions": [
+        "A required role type is not a confirmed person, organisation, legal duty, or staffed window."
+      ],
+      "reason": "No accountable operator or stop-authority assignment has been supplied."
+    },
+    "failure_governance_real_failure_event_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/failure-governance-register.json",
+        "visual/assets/t02-g0-g1-replay-result.json"
+      ],
+      "formula": "count(verified real failure or incident records)",
+      "confidence": "high",
+      "assumptions": [
+        "The four T-02 declared stop events are PII-free synthetic governance cases and are excluded."
+      ],
+      "reason": "No real accident, service failure, rights event, complaint, or place-restoration failure is represented."
+    },
+    "failure_governance_real_public_correction_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/failure-governance-register.json"
+      ],
+      "formula": "count(verified public correction receipts linked to an affected claim and preserved prior version)",
+      "confidence": "high",
+      "assumptions": [
+        "A correction template or synthetic replay is not a published correction."
+      ],
+      "reason": "No operating service, confirmed custodian, appeal, or correction receipt exists."
+    },
+    "failure_governance_completed_real_independent_retest_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/failure-governance-register.json",
+        "visual/assets/pilot-readiness-register.json"
+      ],
+      "formula": "count(completed real retests by a confirmed reviewer independent of the delivery team)",
+      "confidence": "high",
+      "assumptions": [
+        "A deterministic synthetic replay and a written retest protocol are not real independent retests."
+      ],
+      "reason": "No field or controlled real test, confirmed independent reviewer, locked evidence version, or signed result exists."
+    },
+    "failure_governance_completed_real_retirement_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/failure-governance-register.json",
+        "visual/assets/urban-metabolism-ledger.json"
+      ],
+      "formula": "count(completed retirement receipts closing component, data, service, same-task, and place destinations)",
+      "confidence": "high",
+      "assumptions": [
+        "An exit route or retirement template is not an executed retirement."
+      ],
+      "reason": "No installed component, live data/service, accountable decision, restoration acceptance, or retirement receipt exists."
+    },
+    "failure_governance_stop_to_staffed_handoff_time": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "visual/assets/failure-governance-register.json"
+      ],
+      "formula": "future staffed_handoff_time - verified_stop_time for an approved bounded event",
+      "confidence": "unknown",
+      "assumptions": [
+        "The unit, service window, start event, staffed availability rule, and denominator require preregistration."
+      ],
+      "reason": "No confirmed staff, operating window, real stop event, timestamp, or handoff record exists."
+    },
+    "failure_governance_ordinary_use_recovery_time": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "visual/assets/failure-governance-register.json",
+        "visual/assets/key-area-evidence-matrix.json"
+      ],
+      "formula": "future independent ordinary-use restoration acceptance time - verified stop time",
+      "confidence": "unknown",
+      "assumptions": [
+        "The affected ordinary task, place baseline, stop timestamp, restoration criteria, and independent acceptance require preregistration."
+      ],
+      "reason": "No real event, place baseline, restoration work, or independent acceptance exists."
+    },
+    "failure_governance_appeal_decision_change_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/failure-governance-register.json"
+      ],
+      "formula": "count(verified appeals that produce hold, scope narrowing, correction, retest, withdrawal, or retirement)",
+      "confidence": "high",
+      "assumptions": [
+        "The contract requires appeals to affect go/no-go, but does not claim an operating queue or outcome."
+      ],
+      "reason": "No real appeal, accountable decision owner, or correction/decision receipt exists."
+    },
+    "climate_resilience_cohesive_work_package_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/climate-resilience-contract.json"
+      ],
+      "formula": "count(cohesive_work_packages)",
+      "confidence": "high",
+      "assumptions": [
+        "Counts proposal-defined G0 design packages only, not sites, facilities, approvals, activities, devices, operators, or measured climate results."
+      ],
+      "reason": "The count verifies one bounded documentation increment."
+    },
+    "climate_real_field_measurement_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/climate-resilience-contract.json"
+      ],
+      "formula": "count(qualified dated project field measurements linked to typed anchors and approved denominators)",
+      "confidence": "high",
+      "assumptions": [
+        "Concept geometry, ratios, diagrams, public background, simulations, and borrowed values are excluded."
+      ],
+      "reason": "No project microclimate, shade, rest, inspection, warning, stormwater, stop-time, or restoration measurement has been supplied."
+    },
+    "climate_continuous_shade_length": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "visual/assets/climate-resilience-contract.json"
+      ],
+      "formula": "future surveyed path length satisfying a preregistered same-date/time shade definition",
+      "confidence": "unknown",
+      "assumptions": [
+        "Requires official or qualified path geometry, a dated solar or observation record, weather context, and a declared continuity rule."
+      ],
+      "reason": "Green-space area and conceptual shade/rest intent cannot establish continuous shade or thermal comfort."
+    },
+    "climate_reachable_rest_node_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "visual/assets/climate-resilience-contract.json"
+      ],
+      "formula": "future count of surveyed nodes passing group-specific approach, use, rest, and departure criteria",
+      "confidence": "unknown",
+      "assumptions": [
+        "Requires qualified survey and consented accessibility co-testing for declared user groups."
+      ],
+      "reason": "A conceptual symbol does not prove a reachable or accessible rest node."
+    },
+    "climate_known_warning_performance_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/climate-resilience-contract.json"
+      ],
+      "formula": "count(preregistered same-task warning comparisons with approved reference source, event denominator, human confirmation, and independent retest)",
+      "confidence": "high",
+      "assumptions": [
+        "Prompt templates, design parity, static notices, and synthetic checks are excluded."
+      ],
+      "reason": "No real event set, threshold, false-positive or false-negative result, response time, or independent retest exists."
+    },
+    "climate_real_warning_event_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/climate-resilience-contract.json"
+      ],
+      "formula": "count(real public climate-warning events delivered by an accountable future service)",
+      "confidence": "high",
+      "assumptions": [
+        "The bilingual notice comparison is a design contract and not an operating alert."
+      ],
+      "reason": "No operating service, source owner, confirmer, approved threshold, public event, or outcome record exists."
+    },
+    "climate_installed_sensor_or_interface_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/climate-resilience-contract.json"
+      ],
+      "formula": "count(verified installed climate sensors, mounts, powered interfaces, or assisted notice terminals)",
+      "confidence": "high",
+      "assumptions": [
+        "A removable-edge concept drawing is not an installed component."
+      ],
+      "reason": "No device, vendor, site, procurement, installation, power, network, lifecycle, or accountable custodian is confirmed."
+    },
+    "climate_completed_place_restoration_receipt_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/climate-resilience-contract.json",
+        "visual/assets/failure-governance-register.json"
+      ],
+      "formula": "count(completed receipts closing component, fixing, power/network, data/service, sign/queue, surface, ordinary-path, maintenance-clear-zone, and independent acceptance destinations)",
+      "confidence": "high",
+      "assumptions": [
+        "An exit checklist or conceptual removable component is not executed restoration."
+      ],
+      "reason": "No installed component, stop event, removal, repair, ordinary-place baseline, or independent acceptance exists."
+    },
+    "time_museum_source_verifiability_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/century-time-museum-contract.json"
+      ],
+      "formula": "verified_historical_claims / total_historical_claims",
+      "confidence": "low",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "Denominator is current 5 historical objects; changes with archive additions",
+        "Design-field coverage does not equal real-world achievement"
+      ],
+      "reason": "No real historical sources verified yet; only contract-defined typology exists at G0"
+    },
+    "time_museum_uncleared_content_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/century-time-museum-contract.json"
+      ],
+      "formula": "count(uncleared_copyright_images_text_in_package)",
+      "confidence": "low",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "Current package content reviewed; any future additions require individual rights audit"
+      ],
+      "reason": "No copyright audit of generated content labels performed yet; audit required before any public display"
+    },
+    "time_museum_generated_content_label_coverage": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/century-time-museum-contract.json"
+      ],
+      "formula": "labeled_generated_items / total_generated_items",
+      "confidence": "low",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "Design field coverage ≠ real label enforcement; all generated content must carry visible label"
+      ],
+      "reason": "Generated content must carry visible label but no field enforcement test completed; design-field coverage ≠ real-world"
+    },
+    "time_museum_dispute_handling_time": {
+      "status": "unknown",
+      "value": null,
+      "unit": "hours",
+      "source_files": [
+        "visual/assets/century-time-museum-contract.json"
+      ],
+      "formula": "observed_time_stop_to_takedown_to_correct",
+      "confidence": "low",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "No real dispute events yet; process defined but not operational"
+      ],
+      "reason": "No real dispute events have occurred; process defined but operational speed untested"
+    },
+    "time_museum_oral_history_consent_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/century-time-museum-contract.json"
+      ],
+      "formula": "informed_consent_records / oral_history_items_collected",
+      "confidence": "low",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "Template only; no collection yet; consent can be withdrawn at any time"
+      ],
+      "reason": "Consent template only; no oral history collected; value set to null as no denominator exists yet"
+    },
+    "time_museum_multilingual_consistency": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/century-time-museum-contract.json"
+      ],
+      "formula": "consistent_concept_pairs / total_concept_pairs",
+      "confidence": "low",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "Bilingual texts reviewed; future translations require professional verification"
+      ],
+      "reason": "Bilingual texts reviewed internally but professional translation verification not yet commissioned"
+    },
+    "time_museum_screenless_tour_completion": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/century-time-museum-contract.json"
+      ],
+      "formula": "screenless_path_completed / total_visitors",
+      "confidence": "low",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "Requires field or controlled test; currently design-only"
+      ],
+      "reason": "Screen-free node chain defined but no field test or controlled user study completed"
+    },
+    "time_museum_child_comprehension": {
+      "status": "unknown",
+      "value": null,
+      "unit": "qualitative",
+      "source_files": [
+        "visual/assets/century-time-museum-contract.json"
+      ],
+      "formula": "age_appropriate_understanding_verified_by_educators",
+      "confidence": "low",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "Pending educator review; design targets non-technical language"
+      ],
+      "reason": "Design targets age-appropriate language but no educator review or child usability test completed"
+    },
+    "time_museum_annual_retired_content_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/century-time-museum-contract.json"
+      ],
+      "formula": "count(superseded_unavailable_sources_in_retirement_list)",
+      "confidence": "high",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "Mechanism defined; no retirements yet (0)"
+      ],
+      "reason": "Mechanism defined; no retirements triggered yet; value null as no retired items exist"
+    },
+    "time_museum_independent_historical_review_status": {
+      "status": "unknown",
+      "value": null,
+      "unit": "status",
+      "source_files": [
+        "visual/assets/century-time-museum-contract.json"
+      ],
+      "formula": "independent_reviewer_signed / required_reviewers",
+      "confidence": "low",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "External reviewers not yet engaged"
+      ],
+      "reason": "External independent reviewers not yet engaged; status unknown pending reviewer appointments"
+    },
+    "mission_task_verifiability_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/mission-economy-contract.json"
+      ],
+      "formula": "verifiable_task_claims / total_task_claims",
+      "confidence": "low",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "Same-task, same-people, same-period or same-space baseline",
+        "Field coverage or machine PASS does not equal real-world outcome"
+      ],
+      "reason": "No real public tasks published yet; only contract-defined lifecycle exists at G0"
+    },
+    "small_team_participation_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/mission-economy-contract.json"
+      ],
+      "formula": "small_team_participants / total_task_participants",
+      "confidence": "low",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "Requires field observation or responsibility records",
+        "Design-field coverage does not equal real participation"
+      ],
+      "reason": "No small teams have entered any task; 0 written confirmations"
+    },
+    "independent_retest_coverage": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/mission-economy-contract.json"
+      ],
+      "formula": "tasks_passing_independent_retest / tasks_passing_evidence_gate",
+      "confidence": "low",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "Independent-retest role to be confirmed",
+        "Passing an evidence gate is not an independent retest"
+      ],
+      "reason": "0 independent retests run; retest role remains to-be-confirmed"
+    },
+    "task_exit_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/mission-economy-contract.json"
+      ],
+      "formula": "exited_tasks / tasks_entering_entry_queue",
+      "confidence": "low",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "No real exit events yet; keep 0/unknown",
+        "Exit records are not used for hiring or talent ranking"
+      ],
+      "reason": "0 tasks published and 0 exit events; mechanism definition only"
+    },
+    "professional_service_accessibility": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/mission-economy-contract.json"
+      ],
+      "formula": "users_reaching_professional_service / users_needing_professional_service",
+      "confidence": "low",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "Requires field or controlled test",
+        "Manual and non-AI paths must be continuous to count"
+      ],
+      "reason": "No professional service exists yet; roles to-be-confirmed"
+    },
+    "public_benefit_delivery_status": {
+      "status": "unknown",
+      "value": null,
+      "unit": "status",
+      "source_files": [
+        "visual/assets/mission-economy-contract.json"
+      ],
+      "formula": "delivered_benefit_claims / result_reflow_claims",
+      "confidence": "low",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "No real delivery events; keep unknown, do not write promises",
+        "Reflow does not depend on investment amounts"
+      ],
+      "reason": "No task results or failure archives exist yet"
+    },
+    "university_course_real_participation": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/mission-economy-contract.json"
+      ],
+      "formula": "courses_with_written_confirmation / courses_claimed",
+      "confidence": "low",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "0 written confirmations; template contact is not a signed course",
+        "University participation is not written as contracted"
+      ],
+      "reason": "No university contact exists; 0 written confirmations"
+    },
+    "ip_dispute_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/mission-economy-contract.json"
+      ],
+      "formula": "recorded_ip_disputes / task_and_prototype_items",
+      "confidence": "low",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "IP boundaries remain not_cleared",
+        "No dispute events yet; keep 0"
+      ],
+      "reason": "Independent file-level clearance audits remain 0"
+    },
+    "failed_project_publication_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/mission-economy-contract.json"
+      ],
+      "formula": "published_failed_projects / exited_or_retired_tasks",
+      "confidence": "low",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "Publication scope needs role-confirmed definition",
+        "Failure disclosure is not used for hiring or ranking"
+      ],
+      "reason": "No exited or retired tasks exist; definition pending"
+    },
+    "institution_written_confirmation_status": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/mission-economy-contract.json"
+      ],
+      "formula": "written_confirmations / referenced_external_institutions",
+      "confidence": "low",
+      "required_for_formal_submission": false,
+      "assumptions": [
+        "External institutions are suggested or pending-confirmation roles only",
+        "0 written confirmations; do not write as partners"
+      ],
+      "reason": "No institution has been contacted or confirmed"
+    },
+    "civic_operations_no_event_day_use_status": {
+      "status": "unknown",
+      "value": null,
+      "unit": "status",
+      "source_files": ["visual/assets/civic-operations-contract.json"],
+      "formula": "verified ordinary public tasks completed on confirmed no-event days / consented same-task observations on confirmed no-event days",
+      "confidence": "unknown",
+      "required_for_formal_submission": false,
+      "assumptions": ["Requires confirmed no-event dates, ordinary-task baseline, affected groups and field records", "The conceptual calendar does not prove public use"],
+      "reason": "No confirmed calendar, no-event date, observation or operating record exists"
+    },
+    "civic_operations_quiet_window_delivery_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["visual/assets/civic-operations-contract.json"],
+      "formula": "confirmed quiet windows meeting preregistered ordinary-use conditions / confirmed quiet windows assessed",
+      "confidence": "unknown",
+      "required_for_formal_submission": false,
+      "assumptions": ["The inherited 22:00-07:00 window is a G0 design covenant, not a confirmed opening time or result", "Requires field observation and complaint/maintenance records"],
+      "reason": "No real opening window, noise/light baseline, operator or field record exists"
+    },
+    "civic_operations_community_agenda_adoption_status": {
+      "status": "unknown",
+      "value": null,
+      "unit": "status",
+      "source_files": ["visual/assets/civic-operations-contract.json"],
+      "formula": "agenda items with privacy-safe receipt and reasoned decision / qualifying agenda items received",
+      "confidence": "unknown",
+      "required_for_formal_submission": false,
+      "assumptions": ["Oral, paper and in-person entries must be included without requiring an account, QR code or AI"],
+      "reason": "No confirmed agenda service, responsible role or real agenda item exists"
+    },
+    "civic_operations_complaint_closure_duration": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": ["visual/assets/civic-operations-contract.json", "visual/assets/failure-governance-register.json"],
+      "formula": "future verified privacy-safe closure timestamp - future verified complaint receipt timestamp",
+      "confidence": "unknown",
+      "required_for_formal_submission": false,
+      "assumptions": ["Unit, clock start/stop, pause conditions, event class and denominator require preregistration", "No recovery duration may be invented"],
+      "reason": "No complaint intake, timestamps, accountable owner or closure receipt exists"
+    },
+    "civic_operations_role_vacancy_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["visual/assets/civic-operations-contract.json"],
+      "formula": "required role slots without written responsibility acceptance / required role slots for an admitted programme",
+      "confidence": "unknown",
+      "required_for_formal_submission": false,
+      "assumptions": ["A role type is not a person, organisation, shift or legal duty", "Backup roles and handoff conditions must be recorded"],
+      "reason": "Confirmed role assignments, headcount, shifts, incident roster and backups remain 0"
+    },
+    "civic_operations_maintenance_budget_confirmation_status": {
+      "status": "unknown",
+      "value": null,
+      "unit": "status",
+      "source_files": ["visual/assets/civic-operations-contract.json", "visual/assets/urban-metabolism-ledger.json"],
+      "formula": "maintenance and retirement budget items with accountable written confirmation / required budget items for an admitted programme",
+      "confidence": "unknown",
+      "required_for_formal_submission": false,
+      "assumptions": ["A template, project list or concept resource passport does not prove funding"],
+      "reason": "No confirmed programme, budget owner, maintenance budget or retirement reserve exists"
+    },
+    "civic_operations_failure_disclosure_completeness": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["visual/assets/civic-operations-contract.json", "visual/assets/failure-governance-register.json"],
+      "formula": "privacy-safe annual records containing every required failure-disclosure field / verified annual failure records",
+      "confidence": "unknown",
+      "required_for_formal_submission": false,
+      "assumptions": ["Success-only reporting is prohibited", "Personal identities, sensitive narratives and raw personal data are excluded"],
+      "reason": "No real failure, complaint, correction, annual review or disclosure record exists"
+    },
+    "civic_operations_international_retest_local_benefit_status": {
+      "status": "unknown",
+      "value": null,
+      "unit": "status",
+      "source_files": ["visual/assets/civic-operations-contract.json"],
+      "formula": "remote retests producing a verified locally defined decision or ordinary-service benefit / completed public remote retests",
+      "confidence": "unknown",
+      "required_for_formal_submission": false,
+      "assumptions": ["Audience size, publicity and partner prestige are not local public benefit", "Remote review cannot replace local residents, professional judgement, operator duty or authorization"],
+      "reason": "Confirmed international partners, completed remote retests and verified local-benefit results remain 0"
+    },
+    "civic_operations_volunteer_labour_disclosure_status": {
+      "status": "unknown",
+      "value": null,
+      "unit": "status",
+      "source_files": ["visual/assets/civic-operations-contract.json"],
+      "formula": "confirmed programmes with separated paid, contracted, community and voluntary labour records / confirmed programmes involving voluntary labour",
+      "confidence": "unknown",
+      "required_for_formal_submission": false,
+      "assumptions": ["Voluntary labour cannot fill continuous-service, safety, incident or statutory duties", "Consent, time, support and exit must be disclosed"],
+      "reason": "No confirmed programme, paid hours or voluntary hours exists"
+    },
+    "civic_operations_annual_retirement_completion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["visual/assets/civic-operations-contract.json", "visual/assets/failure-governance-register.json"],
+      "formula": "retirement decisions with component, data, service, place and public-information closure receipts / annual decisions requiring retirement",
+      "confidence": "unknown",
+      "required_for_formal_submission": false,
+      "assumptions": ["A written retirement template is not an executed retirement", "Reuse is prohibited until a new passport, rights review and authorization decision exist"],
+      "reason": "No annual decision, installed component, live service, retirement work or acceptance receipt exists"
     }
   }
 }

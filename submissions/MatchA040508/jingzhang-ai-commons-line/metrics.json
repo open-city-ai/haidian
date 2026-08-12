@@ -1,0 +1,221 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "reason": "Computable from a rough provisional polygon; not an official precise-area basis."
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(agent_generated_design_footprints, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "A-DESIGN-GEOMETRY-001"
+      ],
+      "reason": "Illustrative design geometry, not a surveyed building inventory."
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "design_green_union_area / provisional_site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-DESIGN-GEOMETRY-001"
+      ],
+      "reason": "Illustrative design ratio, not an existing or statutory target."
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "design_public_space_union_area / provisional_site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-DESIGN-GEOMETRY-001"
+      ],
+      "reason": "Illustrative design ratio, not an existing or statutory target."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved FAR controls, official boundary, and surveyed building floor area are missing."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required_key_areas)",
+      "confidence": "high",
+      "assumptions": [],
+      "reason": "Count is stated by the official announcement; polygons remain provisional."
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features where layer=SCENARIO_NODE)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DESIGN-GEOMETRY-001"
+      ],
+      "reason": "Counts proposed scenario nodes, not implemented services."
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(scenario_nodes with landmark_id)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DESIGN-GEOMETRY-001"
+      ],
+      "reason": "Counts conceptual reversible landmarks."
+    },
+    "industry_validation_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(scenario_nodes where industry_validation=true)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DESIGN-GEOMETRY-001"
+      ],
+      "reason": "Counts conceptual testbed scenarios, not certified institutions."
+    },
+    "human_waiting_seconds": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "field baseline required before target setting",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-FIELDWORK-001"
+      ],
+      "reason": "Median and upper-percentile human waiting time have no field baseline."
+    },
+    "clear_width_obstruction_minutes": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "field baseline required before target setting",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-FIELDWORK-001"
+      ],
+      "reason": "Continuous-clear-width obstruction has not been observed on site."
+    },
+    "manual_takeover_seconds": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "field baseline required before target setting",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-FIELDWORK-001"
+      ],
+      "reason": "No prototype has produced a manual takeover baseline."
+    },
+    "account_free_completion_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "field baseline required before target setting",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-FIELDWORK-001"
+      ],
+      "reason": "No dual-channel public-service prototype has been operated."
+    },
+    "near_miss_closure_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "field baseline required before target setting",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-FIELDWORK-001"
+      ],
+      "reason": "No near-miss reporting and closure system has been operated."
+    },
+    "rain_night_reliability_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "field baseline required before target setting",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-FIELDWORK-001"
+      ],
+      "reason": "No night or adverse-weather rehearsal has been conducted."
+    }
+  }
+}

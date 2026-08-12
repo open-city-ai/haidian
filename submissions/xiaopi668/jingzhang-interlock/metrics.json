@@ -1,0 +1,266 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+   "confidence": "high",
+   "assumptions": [
+    "Provisional overall-design boundary from site package; official polygon pending."
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 3578032.3,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space))",
+   "confidence": "medium",
+   "assumptions": [
+    "Design-layer green network includes the Jing-Zhang heritage park main route and community parks."
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.3135,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional boundary only; ratio recalculates when official polygon arrives."
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 220025.5,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(polygon_area(public_space))",
+   "confidence": "medium",
+   "assumptions": [
+    "Plaza nodes inside the main green route at the three switch areas."
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.0193,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 641331.1,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints))",
+   "confidence": "low",
+   "assumptions": [
+    "Footprints are indicative design blocks, not survey-grade building data."
+   ]
+  },
+  "building_footprint_ratio": {
+   "status": "known",
+   "value": 0.0562,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_footprint_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "Indicative only; official building survey pending."
+   ]
+  },
+  "road_network_length_m": {
+   "status": "known",
+   "value": 29546.4,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(linestring_length(roads)) * lon2m",
+   "confidence": "low",
+   "assumptions": [
+    "Conceptual network skeleton; redlines pending official road data."
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_detailed_design_areas)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "key_area_total_area_sqm": {
+   "status": "known",
+   "value": 3692893.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "sum(area of 3 key areas)",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional polygons; official key-area polygons pending."
+   ]
+  },
+  "land_use_research_sqm": {
+   "status": "known",
+   "value": 3638204.6,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(land_use codes 0802-0806)",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual land-use partition following MNR land-use classification subset."
+   ]
+  },
+  "land_use_commercial_sqm": {
+   "status": "known",
+   "value": 1816346.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(land_use code 05)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "land_use_residential_sqm": {
+   "status": "known",
+   "value": 2288842.9,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(land_use code 0701)",
+   "confidence": "medium",
+   "assumptions": [
+    "Existing-community retention zones, not new-build commitment."
+   ]
+  },
+  "land_use_reserve_sqm": {
+   "status": "known",
+   "value": 515776.3,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(land_use code 16)",
+   "confidence": "medium",
+   "assumptions": [
+    "Flexible reserve at south end; keeps future options open."
+   ]
+  },
+  "heritage_park_route_length_m": {
+   "status": "known",
+   "value": 9740.5,
+   "unit": "m",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/constraints.geojson"
+   ],
+   "formula": "north-south extent of main green route",
+   "confidence": "medium",
+   "assumptions": [
+    "Along the provisional corridor of the former Jing-Zhang Railway heritage park."
+   ]
+  },
+  "interlock_node_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(switch/plaza nodes)",
+   "confidence": "high",
+   "assumptions": [
+    "Three switch plazas: acceleration (Zhongzhiyuan), origin (Qinghuayuan), landing (Dazhongsi)."
+   ]
+  },
+  "scenario_node_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "visual/assets/scenario-nodes.json"
+   ],
+   "formula": "count(AI scenario cards with spatial anchors)",
+   "confidence": "medium",
+   "assumptions": [
+    "12 scenario cards, each mapped to a spatial zone; see proposal.md scenario section."
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Approved FAR controls and official boundary not present in public site package."
+  },
+  "ai_service_zone_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "visual/assets/interlock-zones.json"
+   ],
+   "formula": "count(AI_SERVICE_ZONE block sections)",
+   "confidence": "high",
+   "assumptions": [
+    "Three block sections derived from land_use: acceleration/origin/landing."
+   ]
+  },
+  "ai_service_zone_area_sqm": {
+   "status": "known",
+   "value": 2375664.6,
+   "unit": "sqm",
+   "source_files": [
+    "visual/assets/interlock-zones.json"
+   ],
+   "formula": "sum(zone areas)",
+   "confidence": "medium",
+   "assumptions": [
+    "Derived from concept land-use parcels."
+   ]
+  }
+ }
+}

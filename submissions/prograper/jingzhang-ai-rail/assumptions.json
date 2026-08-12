@@ -1,0 +1,71 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "generated_at": "2026-08-10T00:00:00Z",
+  "assumptions": [
+    {
+      "id": "ASM-PROVISIONAL-GEOMETRY-001",
+      "title_zh": "所有边界均为临时粗略 polygon",
+      "text_zh": "三层范围与三处重点区仅存在维护者依据公告文字四至和约面积推定的 provisional polygon；official redline 未取得（资格预审文件下载受密码保护）。所有空间主张仅作概念/暂定，不得作为 official 边界、审批依据或精确面积复算依据。",
+      "source_ids": [
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
+      ]
+    },
+    {
+      "id": "ASM-OFFICIAL-CONTROLS-MISSING-002",
+      "title_zh": "官方规划控制指标缺失（待确认）",
+      "text_zh": "容积率/建筑高度/建筑密度/绿地率/退线/道路红线/地块与权属边界/文保控制线等官方控规条件均未取得，全部标注‘待确认’，不得虚构或写成审定结论。covered by GAP-CONTROL-001 / GAP-ROAD-001 / GAP-PARCEL-001 / GAP-HERITAGE-001。",
+      "source_ids": [
+        "DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING"
+      ]
+    },
+    {
+      "id": "ASM-AREA-CALC-METHOD-003",
+      "title_zh": "面积计算方法与坐标系",
+      "text_zh": "GeoJSON 以 EPSG:4326 存储；面积在指定 EPSG:4548（CGCS2000 / 3-degree Gauss-Kruger CM 117E）下经 pyproj 真投影计算，与 provisional_boundaries 中公布的复算面积一致（偏差 <0.01%）。",
+      "source_ids": [
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
+      ]
+    },
+    {
+      "id": "ASM-CONCEPTUAL-LAYERS-004",
+      "title_zh": "方案图层均为 AI 概念建议",
+      "text_zh": "land_use / green_space / public_space / roads / buildings / phasing 图层均为 agent_conceptual_design（confidence=low，geometry_role=design_proposal），供专业团队深化；不构成控规结论、工程可行性、拆改留或投资承诺。",
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ]
+    },
+    {
+      "id": "ASM-ROADS-NO-REDLINE-005",
+      "title_zh": "道路仅为概念中心线，不代表红线",
+      "text_zh": "roads.geojson 中心线为概念慢行/缝合线位与现存道路名称定位；道路名称不表示道路红线或断面，现状主干路仅作上下文（agent_inferred_context）。",
+      "source_ids": [
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      ]
+    },
+    {
+      "id": "ASM-LANDUSE-TILING-006",
+      "title_zh": "用地分区精确铺满且共享边",
+      "text_zh": "land_use 分区由网格裁剪至总体设计范围 polygon，union 面积与范围 polygon 相等（无缝隙/无重叠），面积在 EPSG:4548 下计算。",
+      "source_ids": [
+        "DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311"
+      ]
+    },
+    {
+      "id": "ASM-PHASING-007",
+      "title_zh": "分期为概念时序建议",
+      "text_zh": "phasing 的 near/mid/long 分区依据 task6 运营与 task2 生态逻辑作概念分期（near=原点+智轨主轴激活，mid=众智园加速，long=大钟寺+南段缝合），实施时序与范围待确认。",
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ]
+    },
+    {
+      "id": "ASM-GREEN-BLUE-008",
+      "title_zh": "绿地与滨水为概念示意",
+      "text_zh": "绿地率与绿地空间为概念分区值（目标 12-15%，本方案约 13%）；小月河岸线、绿道宽度、京张遗址公园实施边界与文保控制线待官方蓝线绿线及文物主管部门资料确认。",
+      "source_ids": [
+        "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES"
+      ]
+    }
+  ]
+}

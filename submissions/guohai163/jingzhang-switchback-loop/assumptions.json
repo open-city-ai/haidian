@@ -1,0 +1,113 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-PROVISIONAL",
+      "assumption_id": "A-BOUNDARY-PROVISIONAL",
+      "title_zh": "使用 provisional 粗略边界",
+      "statement_zh": "组织方尚未发布官方三层范围与三处重点区 polygon，本方案的 SITE_BOUNDARY 与 KEY_AREA 几何逐点取自仓库 provisional_boundaries.geojson。",
+      "impact_zh": "全部面积、比例与重点区偏差值均为临时复算结果，不得作为官方红线、审批依据或精确面积依据。",
+      "resolution_zh": "官方 polygon 或已清权 CAD/GIS 图件发布后，替换几何并对全部图层与指标复算。",
+      "confidence": "medium"
+    },
+    {
+      "id": "A-CONTROLS-MISSING",
+      "assumption_id": "A-CONTROLS-MISSING",
+      "title_zh": "控规控制条件缺失",
+      "statement_zh": "planning_limits.json 中容积率、建筑高度、建筑密度、绿地率与退线均为 status=missing。",
+      "impact_zh": "本方案不给出开发强度、建筑高度与总建筑规模结论；相关指标以 status=unknown 表达并写明公式。",
+      "resolution_zh": "取得审定控规条件或任务书附件后补算 planned_gross_floor_area_sqm 等指标。",
+      "confidence": "unknown"
+    },
+    {
+      "id": "A-LANDUSE-PARTITION",
+      "assumption_id": "A-LANDUSE-PARTITION",
+      "title_zh": "用地以分带方式无缝划分",
+      "statement_zh": "用地图层按纬度分带并在带内纵切生成，相邻多边形共享坐标，因此对提交边界实现无缝无叠覆盖。",
+      "impact_zh": "land_use_coverage_ratio=1.0 成立的前提是提交边界本身为 provisional；官方边界替换后需重新划分。",
+      "resolution_zh": "官方边界发布后以同一算法重新生成分带。",
+      "confidence": "medium"
+    },
+    {
+      "id": "A-PROJECTION-CHORD",
+      "assumption_id": "A-PROJECTION-CHORD",
+      "title_zh": "分带加密带来的投影弦长残差",
+      "statement_zh": "在纬度方向加密顶点后，投影平面上的折线与原始弦线存在极小面积差，本包为 20.124 平方米。",
+      "impact_zh": "该残差约为百万分之二，远小于空间复核 0.01% 的拓扑容差，不影响覆盖判定。",
+      "resolution_zh": "如需完全消除，可在官方数据发布后直接使用官方顶点而不加密。",
+      "confidence": "high"
+    },
+    {
+      "id": "A-GREEN-CONCEPT",
+      "assumption_id": "A-GREEN-CONCEPT",
+      "title_zh": "绿地为概念性建议",
+      "statement_zh": "GREEN_SPACE 图层由用地代码 1401/1402 派生，是概念绿地建议而非现状绿地或法定绿地率。",
+      "impact_zh": "green_ratio 不得与法定绿地率混用。",
+      "resolution_zh": "以官方绿地现状与绿地率控制条件复核。",
+      "confidence": "medium"
+    },
+    {
+      "id": "A-PUBLIC-CONCEPT",
+      "assumption_id": "A-PUBLIC-CONCEPT",
+      "title_zh": "公共空间为概念性建议",
+      "statement_zh": "PUBLIC_SPACE 十处要素为概念公共空间，互不重叠，用于表达散步道与节点体系。",
+      "impact_zh": "面积可直接求和复算，但权属、界面与工程条件均未核实。",
+      "resolution_zh": "需权属核查与专业设计深化。",
+      "confidence": "medium"
+    },
+    {
+      "id": "A-BUILDING-INDICATIVE",
+      "assumption_id": "A-BUILDING-INDICATIVE",
+      "title_zh": "建筑基底为示意性",
+      "statement_zh": "25 处 BUILDING_FOOTPRINT 为功能标记，非现状测绘，也非拆改留审定结论。",
+      "impact_zh": "building_coverage_ratio 不等于法定建筑密度，且不可换算为建筑面积。",
+      "resolution_zh": "需现状建筑普查与权属资料。",
+      "confidence": "low"
+    },
+    {
+      "id": "A-MOBILITY-CONCEPT",
+      "assumption_id": "A-MOBILITY-CONCEPT",
+      "title_zh": "慢行与接驳线位为概念线位",
+      "statement_zh": "ROAD_CENTERLINE 表达概念慢行、微循环与接驳关系，不是工程线位或道路红线。",
+      "impact_zh": "长度指标仅用于比较网络密度，不构成轨道选线或工程可行性结论。",
+      "resolution_zh": "需交通专项与工程可行性研究。",
+      "confidence": "low"
+    },
+    {
+      "id": "A-PHASING-CONCEPT",
+      "assumption_id": "A-PHASING-CONCEPT",
+      "title_zh": "分期与项目清单为概念序列",
+      "statement_zh": "PHASE 图层与 24 项更新项目为建议序列，非审定开发时序、投资测算或建设承诺。",
+      "impact_zh": "phase_coverage_area_sqm 仅表示三期概念范围面积合计。",
+      "resolution_zh": "需实施主体、资金与政策条件确认。",
+      "confidence": "low"
+    },
+    {
+      "id": "A-SCENARIO-CONCEPT",
+      "assumption_id": "A-SCENARIO-CONCEPT",
+      "title_zh": "AI 场景卡为概念场景",
+      "statement_zh": "12 张场景卡与 4 个测试验证场景为概念建议，均设定数据边界与人工复核环节。",
+      "impact_zh": "不代表已批准运营，也不依赖任何指定供应商或非公开数据。",
+      "resolution_zh": "需主管部门、运营主体与居民代表共同评估。",
+      "confidence": "medium"
+    },
+    {
+      "id": "A-CASE-PUBLIC",
+      "assumption_id": "A-CASE-PUBLIC",
+      "title_zh": "全球案例来自公开常识性描述",
+      "statement_zh": "7 个全球 AI 创新生态案例基于公开可查的城市与园区常识性描述，未使用付费数据库或未授权图像。",
+      "impact_zh": "案例用于提炼可转化机制，不引用具体投资额、产值或企业名单。",
+      "resolution_zh": "如需量化对标，须补充可引用的公开统计来源。",
+      "confidence": "medium"
+    },
+    {
+      "id": "A-DATA-GAP-STATS",
+      "assumption_id": "A-DATA-GAP-STATS",
+      "title_zh": "统计口径数据缺失",
+      "statement_zh": "仓库未提供街道级人口、就业与产业产值数据，本方案不使用非公开或推测数据。",
+      "impact_zh": "population_and_employment 与 ai_industry_output_value 保持 unknown。",
+      "resolution_zh": "需国家统计局或北京市公开统计资料补充。",
+      "confidence": "unknown"
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825,
+   "unit": "sqm",
+   "formula": "shoelace_area(EPSG:4548 projected provisional polygon PROV-SITE-001)",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "confidence": "low",
+   "assumptions": [
+    "provisional boundary; recompute when official polygon released"
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "formula": "count(key_areas.geojson features)",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "confidence": "high",
+   "assumptions": [
+    "announcement defines three key areas"
+   ]
+  },
+  "zhongzhiyuan_area_sqm": {
+   "status": "known",
+   "value": 1929202,
+   "unit": "sqm",
+   "formula": "shoelace_area(EPSG:4548)",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "confidence": "low",
+   "assumptions": [
+    "provisional polygon"
+   ]
+  },
+  "ai_origin_area_sqm": {
+   "status": "known",
+   "value": 1043237,
+   "unit": "sqm",
+   "formula": "shoelace_area(EPSG:4548)",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "confidence": "low",
+   "assumptions": [
+    "provisional polygon"
+   ]
+  },
+  "dazhongsi_area_sqm": {
+   "status": "known",
+   "value": 720454,
+   "unit": "sqm",
+   "formula": "shoelace_area(EPSG:4548)",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "confidence": "low",
+   "assumptions": [
+    "provisional polygon"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.1341,
+   "unit": "ratio",
+   "formula": "green_space_area / site_area (provisional)",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "confidence": "low",
+   "assumptions": [
+    "conceptual partition, not statutory green ratio"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.1642,
+   "unit": "ratio",
+   "formula": "public_space_area / site_area (provisional)",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "confidence": "low",
+   "assumptions": [
+    "conceptual partition"
+   ]
+  },
+  "building_footprint_ratio": {
+   "status": "known",
+   "value": 0.2059,
+   "unit": "ratio",
+   "formula": "building_footprint_area / site_area (provisional)",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "confidence": "low",
+   "assumptions": [
+    "conceptual massing, not existing or approved scale"
+   ]
+  },
+  "building_count": {
+   "status": "known",
+   "value": 23,
+   "unit": "count",
+   "formula": "count(buildings.geojson features)",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "confidence": "medium",
+   "assumptions": [
+    "conceptual blocks"
+   ]
+  },
+  "scenario_card_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "formula": "declared in proposal.md",
+   "source_files": [
+    "proposal.md"
+   ],
+   "confidence": "high",
+   "assumptions": [
+    "agent.3 requires at least 10"
+   ]
+  },
+  "persona_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "formula": "declared in proposal.md",
+   "source_files": [
+    "proposal.md"
+   ],
+   "confidence": "high",
+   "assumptions": [
+    "agent.3 requires at least 5"
+   ]
+  },
+  "landmark_count": {
+   "status": "known",
+   "value": 4,
+   "unit": "count",
+   "formula": "declared in proposal.md",
+   "source_files": [
+    "proposal.md"
+   ],
+   "confidence": "high",
+   "assumptions": [
+    "agent.4 requires at least 3"
+   ]
+  },
+  "far_overall": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "formula": "pending official regulatory conditions",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "confidence": "unknown",
+   "assumptions": [
+    "official FAR missing"
+   ],
+   "reason": "Official floor-area-ratio controls are not publicly available; status=unknown until official attachments are provided."
+  },
+  "building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "formula": "pending official height controls",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "confidence": "unknown",
+   "assumptions": [
+    "official height controls missing"
+   ],
+   "reason": "Official height controls are not publicly available; status=unknown until official attachments are provided."
+  }
+ }
+}

@@ -127,7 +127,7 @@
           "balanced"
         ]
       },
-      "notes_zh": "只建议用于封面或 hero，不能作为核心专业图纸。避免大气氛图、夸张概念图或无法检查真实空间信息的视觉。"
+      "notes_zh": "欢迎 Agent 生成清楚、有辨识度的封面或 hero，并通过 manifest.cover_image 在网站直接展示；它不能替代核心专业图纸。字段为空时网站继续使用默认封面生成器。"
     }
   ],
   "not_recommended_for_formal_core": [
@@ -144,10 +144,31 @@
       "reason_zh": "文章插图适合辅助说明，不适合作为可复核的空间图、指标图或专业图纸。"
     }
   ],
+    "multimodal_guidance": {
+        "priority_zh": "方案是给人看的。能力可用时应主动采用图像、示意图、短视频、声音或音乐、动画、三维与交互方式，不要停留在机械 SVG 或原始图层堆叠。",
+        "welcome_technologies": [
+            "locally bundled Three.js",
+            "WebGL",
+            "Canvas",
+            "generated images",
+            "short video",
+            "audio or music",
+            "animation"
+        ],
+        "media_directory": "assets/media/",
+        "custom_cover_field": "manifest.cover_image",
+        "empty_cover_behavior": "Use the repository deterministic generated cover.",
+        "accessibility": [
+            "never autoplay audio or video",
+            "video needs a poster, captions, and transcript",
+            "audio or music needs a transcript or content description",
+            "provide accessible text fallback for interactive experiences"
+        ]
+    },
     "formal_visual_guardrails": [
         "visual/index.html and report/proposal.html must remain offline and must not load remote resources, scripts, iframes, forms, APIs, external fonts, or trackers.",
         "Generated images are explanatory presentation artifacts; authoritative boundary, area, metrics, and compliance claims must remain in GeoJSON/JSON/PDF evidence.",
-        "Avoid entertainment, social-media, fantasy, cute, heavily atmospheric, or purely illustrative styles for core formal deliverables.",
+        "Conceptual or atmospheric media is welcome as a clearly labeled experience layer, but it must not replace core evidence diagrams or be presented as observed site evidence.",
         "Every visual should include a clear title, legend, data source note, metric references, and visible provisional/official boundary status.",
         "Required figures must communicate design intent and spatial hierarchy, not simply display raw GeoJSON polygons.",
         "If provisional geometry is rectangular or rough, show it as a low-contrast dashed/annotated constraint rather than the main composition."

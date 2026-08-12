@@ -22,6 +22,10 @@ The first reversible acceptance unit is not “make the vehicle run.” It lets 
 
 **Status: target design · not deployed · not authorized · not run**
 
+![Autonomy Commons review board: one ordinary route, three public proof yards, six AV mechanisms and one annual loop](assets/figures/site-overview.en.png)
+
+Caption: this board asks one public-space service question—before automation enters, can the ordinary route, human takeover, return journey and redress remain complete? The three nodes, six case mechanisms and Q1–Q4 loop are a concept review framework, not an approved road, deployed vehicle or field result.
+
 | Ordinary-person path | Visible space/service | Evidence to leave | If it fails |
 | --- | --- | --- | --- |
 | Choose ordinary or assisted route | Planned dual entry, target accessible surface, planned paper/phone entry | Choice state and obstruction record, without identity | No trial if ordinary route is unavailable |
@@ -38,6 +42,16 @@ The “Jing-Zhang Autonomous Commons” mark is not a vehicle brand and does not
 
 This is a public narrative and operating entrance, not a registered trademark, building, enterprise partnership or field result. If the mark cannot show an owner, a stop action and the ordinary route, the service window is withdrawn while the human path remains.
 
+## Resource and decision board — confirm the public floor before scaling automation
+
+The autonomy proposal needed one delivery surface that answers who holds the public floor, which resources may enter, and who can pause. `resource-decision-board.json` separates human service and accessibility, curb and reversible space, safety and independent evaluation, data and bounded compute, and exit and restoration. Each class records a proposed confirmation route, the public floor it holds, minimum evidence, and veto conditions [data:visual/assets/resource-decision-board.json] [depth:phasing_implementation].
+
+This board describes a confirmation procedure only. It supplies no budget amount, institution name, vendor, insurance result, permit, or operating performance. A proposer may submit a candidate but cannot release it alone. Public-interest, accessibility, safety, and independent-review roles may pause or return it to human service. Support from resources cannot buy permanent curb access, exemption from review, or a higher score. Four gates move from problem registration and minimum-resource review through a reversible window and independent replay to conditional expansion or exit. Any missing item stays in paper or synthetic replay [data:visual/assets/check-resource-decision-board.js] [depth:risk_missing_data].
+
+![Resource and decision board — five resource classes, four decision gates and pause boundaries](assets/figures/resource-decision-board.en.png)
+
+The resource routes on the board are not funding commitments. Only after official geometry, tenure, fire review, accessibility, insurance, data authorization, public baselines, and an executable exit responsibility are available may a professional team decide whether to advance. Until then, ordinary routes, staffed service, and public passage remain the priority [depth:phasing_implementation] [depth:risk_missing_data].
+
 **Acceptance trace quick map (for item-by-item review)**
 
 | Check | Gate | Fixture | Scenario | Boundary fields |
@@ -51,6 +65,21 @@ This is a public narrative and operating entrance, not a registered trademark, b
 | AT-07 | — | — | — | performance_results / baselines |
 
 This is a reading index, not new field evidence. The network-free runner resolves each reference against the contract and scenario matrix and fails if a reference is missing or the declared counts do not reconcile.
+
+### Six automated-mobility cases: transfer the mechanism, not the outcome
+
+Cases are not decorative precedent. Each of these six official mechanisms acts directly on spatial release for automated mobility and states both the transferable action and the conclusion that must not travel with it.
+
+| Official mechanism | Transferable Jing-Zhang action | Prohibited inference |
+| --- | --- | --- |
+| Beijing road-test and demonstration rules [source:BEIJING-AV-TEST-2025] | Make the approved road/bounded site, accountable subject, time window and stop authority release-blocking fields | No Jing-Zhang road, operator, vehicle or permit is thereby designated |
+| Singapore CETRAN and test-before-public-path-exemption [source:SINGAPORE-LTA-CETRAN-AV] | Complete closed-site and shared-path checks before proposing a public-route window, with pedestrians and active-mobility users in review | A foreign test framework is not Beijing certification, exemption or a local safety finding |
+| UK automated-vehicle trialling code [source:UK-CCAV-AV-TRIAL-CODE] | Require a public safety note, named owner, insurance and engagement record before opening a window | UK legal conditions create neither Chinese permission nor immunity from liability |
+| TfL guidance for London CAV trials [source:TFL-CAV-LONDON-TRIALS] | Make walking, wheelchair, cycling and transit/rail continuity a precondition to the vehicle route | Policy alignment does not prove that a Jing-Zhang route is safe or available |
+| Japan's Eiheiji Level 4 authorisation [source:JAPAN-MLIT-EIHEIJI-L4] | Define a bounded operating design domain, fail-safe stop and staffed recovery route for every candidate window | A case authorisation does not transfer a vehicle, route or remote-operation permission |
+| US NHTSA AV TEST public map [source:US-NHTSA-AV-TEST] | Publish bounded location/route, status, coordinator, operator and update date | Voluntary disclosure is not complete safety evidence, incident reporting or independent review |
+
+All six mechanisms terminate in one P0 complete-route receipt: **entry → ordinary route → status/consent → bounded service → human takeover → return → redress**. A broken link fails the trial; an average score, vehicle completion rate or synthetic replay cannot cancel the break [data:visual/assets/case-mechanism-matrix.json].
 
 ## Design Basis and Source List
 
@@ -87,10 +116,6 @@ The proposal is organised as **one public axis + three test yards + two safety n
 - an **ecology-and-data safety net**: weather and network rollback, dark-sky and bird protection, data minimisation, public algorithm records and revocable consent.
 
 Autonomous driving is a constrained service layer over walking, cycling, rail, transit, emergency and maintenance systems. Every vehicle or robot yields to the continuous human route. Curbs register who may stop, when, for how long and who clears the space [standard:BEIJING-ACCESSIBILITY-REGULATION] [standard:ISO-TR-4448-PUBLIC-MOBILE-ROBOTS].
-
-![Overview of the autonomous public belt](assets/figures/site-overview.en.png)
-
-Caption: The overview places the three test yards on one public axis and reads the human, ecological/data safety nets and phase gates as one spatial relationship; it does not express statutory boundaries or an opened road.
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
@@ -130,7 +155,7 @@ Until that evidence exists, spatial actions remain removable wayfinding, weather
 
 To prevent a “node” from being read as a vehicle stopping point, this package separates five continuous interfaces: ordinary human route, public status and consent, bounded service window, human handover/stop, and restoration of the ordinary route. Zhongzhiyuan first tests a closable safety-evaluation yard; AI Origin preserves paper, telephone and equivalent human service; Dazhongsi separates rail arrival, quiet movement, and loading/maintenance windows. Dimensions, capacity, speed, right-of-way, permits and performance remain null; the plan expresses functional bands only, not a road section or redline [data:visual/assets/autonomy-node-interface-plans.json#AV-INTERFACE-001].
 
-![Public interface and functional bands for three autonomous-mobility nodes](assets/figures/autonomy-node-interface.en.svg)
+![Public interface and functional bands for three autonomous-mobility nodes](assets/figures/autonomy-node-interface.en.png)
 
 Caption: The three-row plan makes “ordinary route first, closable service, human fallback when evidence is missing” visible in one view. Colors express interface relationships, not existing-condition measurements, engineering dimensions, or vehicle performance.
 

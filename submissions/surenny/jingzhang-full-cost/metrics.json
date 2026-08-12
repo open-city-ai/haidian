@@ -1,0 +1,269 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "project(EPSG:4326 to EPSG:4548); polygon_area",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional organizer geometry; replace and recalculate when official polygon arrives."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 531702.71,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(projected polygon areas in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual design footprints, not existing survey or approved building envelopes."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.132494,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/green_space.geojson"
+      ],
+      "formula": "green_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Uses provisional geometry for design comparison only."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.053527,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Access and legal publicness require professional confirmation."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count features where layer=KEY_AREA",
+      "confidence": "high",
+      "assumptions": [
+        "Three named areas are required by the announcement; polygons remain provisional."
+      ]
+    },
+    "green_area_sqm": {
+      "status": "known",
+      "value": 1512134.0380000002,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(projected green-space polygon areas in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Design proposal areas; flood and ecology checks remain pending."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 610895.55,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(projected public-space polygon areas in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual public windows; ownership and access agreements pending."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "count bilingual scenario cards in proposal",
+      "confidence": "high",
+      "assumptions": [
+        "Cards are concepts, not deployment approvals."
+      ]
+    },
+    "industry_validation_scenario_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count scenario cards labeled industry validation",
+      "confidence": "high",
+      "assumptions": [
+        "Bounded tests require professional safety, rights and steward review."
+      ]
+    },
+    "closeout_receipt_case_count": {
+      "status": "known",
+      "value": 24,
+      "unit": "count",
+      "source_files": ["simulation.json"],
+      "formula": "count(simulation.tasks)",
+      "confidence": "high",
+      "assumptions": ["Synthetic tabletop cases only; not authorized field pilots."]
+    },
+    "closeout_receipt_stop_case_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": ["simulation.json"],
+      "formula": "count(tasks where actual_decision = stop_and_close)",
+      "confidence": "high",
+      "assumptions": ["Each negative fixture omits one required receipt record."]
+    },
+    "closeout_receipt_match_rate": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["simulation.json"],
+      "formula": "count(tasks where expected_decision = actual_decision) / task_count",
+      "confidence": "high",
+      "assumptions": ["Measures deterministic protocol behavior only, not field quality or impact."]
+    },
+    "audit_completeness": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["simulation.json"],
+      "formula": "count(tasks where audit_complete = true) / task_count",
+      "confidence": "high",
+      "assumptions": ["Audit completeness covers synthetic task records only."]
+    },
+    "responsibility_handoff_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": ["visual/assets/responsibility-transfer-data.js"],
+      "formula": "count(RESPONSIBILITY_TRANSFER_MODEL.handoffs)",
+      "confidence": "high",
+      "assumptions": ["Counts protocol interfaces only; roles, baselines, budgets and acceptance remain unknown until authorized field confirmation."]
+    },
+    "responsibility_handoff_negative_fixture_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": ["visual/assets/responsibility-transfer-data.js"],
+      "formula": "count(RESPONSIBILITY_TRANSFER_MODEL.negativeFixtures)",
+      "confidence": "high",
+      "assumptions": ["Each fixture removes one distinct critical interface field from one cost class."]
+    },
+    "responsibility_handoff_fixture_match_rate": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["visual/assets/responsibility-transfer-data.js", "visual/assets/verify-responsibility-transfer.js"],
+      "formula": "count(negative fixtures rejected with expected error) / responsibility_handoff_negative_fixture_count",
+      "confidence": "high",
+      "assumptions": ["Measures deterministic protocol behavior only, not field acceptance, public benefit, or recovery performance."]
+    },
+    "spatial_balance_state_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["visual/assets/spatial-balance-data.js"],
+      "formula": "count(SPATIAL_BALANCE_MODEL.states)",
+      "confidence": "high",
+      "assumptions": ["Counts relative tabletop states only; the twelve layout cells have no field dimension or capacity meaning."]
+    },
+    "spatial_balance_negative_fixture_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": ["visual/assets/spatial-balance-data.js"],
+      "formula": "count(SPATIAL_BALANCE_MODEL.negativeFixtures)",
+      "confidence": "high",
+      "assumptions": ["Each fixture breaks one decision boundary: passage, dividend, exit, human review, anchor, or unit claim."]
+    },
+    "spatial_balance_fixture_match_rate": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["visual/assets/spatial-balance-data.js", "visual/assets/verify-spatial-balance.js"],
+      "formula": "count(negative fixtures rejected with expected error) / spatial_balance_negative_fixture_count",
+      "confidence": "high",
+      "assumptions": ["Measures deterministic tabletop logic only, not accessibility compliance, public acceptance, spatial capacity, or field performance."]
+    },
+    "field_pilot_performance": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": ["simulation.json"],
+      "formula": "authorized field measurement against a staffed non-AI comparator",
+      "confidence": "unknown",
+      "assumptions": ["No field pilot is authorized or run; no real participants or personal data are used."],
+      "reason": "The artifact is an offline synthetic tabletop audit and cannot establish field performance."
+    },
+    "eight_ledger_baseline": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "data/source_registry.json"
+      ],
+      "formula": "measure seven cost ledgers and one civic-return ledger against a named non-AI comparator",
+      "confidence": "unknown",
+      "assumptions": [
+        "No local metering, workforce, procurement or public-return baseline was supplied."
+      ],
+      "reason": "Local baselines and measurement owners are not yet available."
+    },
+    "far_height_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "brief/site-package/missing-data.md"
+      ],
+      "formula": "official control schedule required before any intensity claim",
+      "confidence": "unknown",
+      "assumptions": [
+        "Do not infer statutory controls from provisional geometry."
+      ],
+      "reason": "Official regulatory controls, road redlines and survey data are missing."
+    }
+  }
+}

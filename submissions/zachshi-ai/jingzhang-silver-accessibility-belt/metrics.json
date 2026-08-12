@@ -1,0 +1,228 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Boundary is provisional rough polygon derived from official announcement text description and area constraint; recalculate when official precise boundary becomes available."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1564928.479,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space_features)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Green space polygons are agent-derived from provisional boundary."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.13712,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Both numerator and denominator derived from provisional boundary."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 227645.641,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space_polygon_features)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Point kiosks contribute zero area; only plaza/garden polygons counted."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.019946,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Both numerator and denominator derived from provisional boundary."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 82901.636,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Building footprints are concept design footprints, not surveyed existing buildings."
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.007264,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept design density, not regulatory building density."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package. Official regulatory planning conditions must be confirmed before statutory use."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_height_controls",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height controls, aviation/landscape/heritage constraints are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_zone_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building_footprints)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "road_segment_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(road_centerlines)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phasing_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "barrier_free_route_length_m": {
+      "status": "known",
+      "value": 17349.181,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(road_centerlines with barrier_free_role)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept-design barrier-free corridor length, not a surveyed or approved transport scheme."
+      ]
+    },
+    "elderly_service_node_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space_features with elderly_function_zh)",
+      "confidence": "high",
+      "assumptions": [
+        "Concept-design count of silver-age service plazas, gardens and kiosks."
+      ]
+    },
+    "elderly_population_baseline": {
+      "status": "unknown",
+      "value": null,
+      "unit": "person",
+      "source_files": [],
+      "formula": "official_elderly_population_in_design_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Age-stratified population baseline for the design area is not present in the public site package; marked as a known data gap per brief/site-package/missing-data.md. Background reference only."
+    },
+    "health_facility_baseline_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "count(official_hospitals_community_health_centers_in_design_area)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Public-service facility baseline (hospitals, community health centers) is not present in the public site package; marked as a known data gap per brief/site-package/missing-data.md."
+    }
+  }
+}

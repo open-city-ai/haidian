@@ -1,0 +1,125 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(PROV-SITE-001) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "No official boundary in site package; PROV-SITE-001 provisional boundary used.",
+        "Official planning limit 11400000 sqm; computed fit deviation 0.11%."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1103163.864,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "unary_union(polygon_area(building_footprints)); sum equals union (footprints do not overlap)",
+      "confidence": "medium",
+      "assumptions": [
+        "Building footprints are concept proposals (design_proposal), not statutory permits."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.249581,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Green space includes park corridor, protective strips."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.005187,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Plazas are concept nodes; ratio is indicative."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls absent from public site package; proposal states only conceptual intensity guidance."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "Key areas are provisional constraints, not official."
+      ]
+    },
+    "ai_innovation_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "composite(talent_density, ai_r_d_intensity, ai_output_value_per_capita); weights pending official indicator framework",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official indicator framework absent from public site package; proposal declares the indicator as a required planning metric (announcement 1.5(2)1) and will compute it once official statistics are released."
+    },
+    "talent_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "ai_related_employment_persons / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official employment statistics absent; indicator declared per announcement 1.5(2)1, computable after data release."
+    },
+    "ai_output_value": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(ai_enterprise_output_cny) over overall design area, per official statistical caliber",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official economic statistics absent; indicator declared per announcement 1.5(2)1, computable after data release."
+    }
+  }
+}

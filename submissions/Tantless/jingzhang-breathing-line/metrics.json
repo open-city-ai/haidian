@@ -1,0 +1,217 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "The repository boundary is provisional and must be replaced when official polygons are released."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 20736.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(reversible_pavilions))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from agent design geometry inside a provisional, non-statutory boundary."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1359316.591,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "polygon_area(70m_breathing_spine_buffer_clipped_to_site)",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from agent design geometry inside a provisional, non-statutory boundary."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.119104,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from agent design geometry inside a provisional, non-statutory boundary."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 197837.796,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(three_climate_courtyards))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from agent design geometry inside a provisional, non-statutory boundary."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.017335,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from agent design geometry inside a provisional, non-statutory boundary."
+      ]
+    },
+    "breathing_network_length_m": {
+      "status": "known",
+      "value": 16653.433,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(main_spine_and_six_stitches))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from agent design geometry inside a provisional, non-statutory boundary."
+      ]
+    },
+    "ventilation_link_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(cross_ventilation_stitches)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "climate_courtyard_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(climate_testing_courtyards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(AI_SCENARIO_NODE)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "testing_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(AI_SCENARIO_NODE where test_scenario=true)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(persona_groups_in_proposal)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(named_pilgrimage_landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(provisional_key_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "Key-area polygons are provisional rough envelopes."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official regulatory controls, parcels and verified floor areas are unavailable."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "existing_and_proposed_footprint / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Existing building survey and official site boundary are unavailable."
+    },
+    "air_quality_improvement": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "validated_before_after_sensor_protocol",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No official meteorological or air-quality baseline supports a performance claim; the proposal specifies a test protocol only."
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "Geodesic area recomputation of provisional feature PROV-SITE-001",
+      "confidence": "low",
+      "assumptions": [
+        "The geometry is provisional and non-official.",
+        "The value is for repeatable QA only, not statutory or engineering use."
+      ],
+      "official": false,
+      "provisional": true,
+      "source_id": "SAFE-PROVISIONAL-GEOMETRY-20260605"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "Provisional green-space polygon area divided by provisional site-boundary area",
+      "confidence": "low",
+      "assumptions": [
+        "Both numerator and denominator are agent-maintained provisional geometry.",
+        "The value is non-official, non-field-verified and not an engineering measurement."
+      ],
+      "official": false,
+      "provisional": true
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "Provisional public-space polygon area divided by provisional site-boundary area",
+      "confidence": "low",
+      "assumptions": [
+        "Both numerator and denominator are agent-maintained provisional geometry.",
+        "The value is non-official, non-field-verified and not an engineering measurement."
+      ],
+      "official": false,
+      "provisional": true
+    }
+  }
+}

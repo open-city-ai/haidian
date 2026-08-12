@@ -1,12 +1,36 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "protocol": "switchback-protocol",
   "title_zh": "折返协议——人字线场景卡统一运营合约(机器可读)",
   "title_en": "The Switchback Protocols — machine-readable operating contract for all RENLINE scenario cards",
+  "license": {
+    "spdx_id": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "scope": "protocol_spec_only",
+    "scope_note_zh": "许可仅覆盖折返协议规范本身(字段结构/枚举/语义,见 open-city-ai/haidian Issue #1119);不包含本提交包的叙事、图面、几何与数据,后者仍为 COMMUNITY-DISPLAY-ONLY。",
+    "scope_note_en": "Covers the Switchback Protocol specification itself (field structure, enums, semantics; see open-city-ai/haidian Issue #1119). Does NOT cover this submission package's narrative, figures, geometry or data, which remain COMMUNITY-DISPLAY-ONLY.",
+    "attribution_required": true,
+    "attribution_text": "Switchback Protocol by chucky1102 / RENLINE (open-city-ai/haidian Issue #1119)"
+  },
   "status_enum": {
     "green": "常态运行 normal operation",
     "yellow": "受控试点 controlled pilot (gates: virtual_evaluation -> controlled_site -> limited_real_street)",
-    "red": "折返 switchback: revert to last stable state with public explanation"
+    "red": "折返 switchback: revert to last stable state with public explanation",
+    "green_candidate": "预备态(非运行状态):协议字段齐备、待核准;低风险场景核准后可直接转绿,涉试点门槛的须先入黄 pre-operational candidate — fields complete, pending approval; low-risk cards may go green on approval, gated cards enter yellow first"
+  },
+  "field_semantics": {
+    "takeover_max_minutes": {
+      "number": "真人接管时限设计目标值(分钟) design-target ceiling in minutes for human takeover",
+      "null": "空值须由同卡 takeover_status 字段消歧 null must be disambiguated by the card's takeover_status field"
+    },
+    "takeover_status": {
+      "not_applicable": "无自主运行闭环或非实时服务,接管概念不适用 no autonomous/real-time operating loop; the takeover concept does not apply",
+      "unknown": "接管适用但尚无实测基线,一期实测后定值并公开 takeover applies but no measured baseline yet; set from Phase-1 measurements, then published"
+    },
+    "anchor": {
+      "anchor_type=geojson_ref": "anchor_ref 给出 file#feature_id,可对包内几何做空间校验 anchor_ref carries file#feature_id, spatially verifiable against package geometry",
+      "anchor_type=text_only": "仅文字描述,不得当作几何证据使用 textual description only; must not be treated as geometry evidence"
+    }
   },
   "belt_wide_defaults": {
     "human_takeover_max_minutes": 5,
@@ -43,6 +67,8 @@
       "status": "yellow",
       "gate": "virtual_evaluation",
       "anchor": "greenway lane K2-K8",
+      "anchor_type": "geojson_ref",
+      "anchor_ref": "geometry/land_use.geojson#LU-SPINE",
       "takeover_max_minutes": 5,
       "fallback": "ordinary bus/walk path parallel to lane; delivery reverts to human courier",
       "data_boundary": "no facial capture; anonymized trajectories",
@@ -59,6 +85,8 @@
       "status": "yellow",
       "gate": "virtual_evaluation",
       "anchor": "enclosed site, Zhongzhiyuan south",
+      "anchor_type": "geojson_ref",
+      "anchor_ref": "geometry/land_use.geojson#LU-GW",
       "takeover_max_minutes": 5,
       "fallback": "physical enclosure; manual e-stop",
       "data_boundary": "in-enclosure testing; livestreams blurred",
@@ -75,6 +103,8 @@
       "status": "yellow",
       "gate": "virtual_evaluation",
       "anchor": "Dazhongsi existing blocks",
+      "anchor_type": "geojson_ref",
+      "anchor_ref": "geometry/land_use.geojson#LU-AW",
       "takeover_max_minutes": 5,
       "fallback": "routine manual inspection continues in parallel",
       "data_boundary": "asset-state data only; no personal data",
@@ -90,7 +120,9 @@
       "type": "culture",
       "status": "green_candidate",
       "anchor": "K0-K9 milestones",
+      "anchor_type": "text_only",
       "takeover_max_minutes": null,
+      "takeover_status": "not_applicable",
       "fallback": "physical signage tells the same story without a phone",
       "data_boundary": "on-device rendering; no image upload",
       "human_review": "historian-vetted content",
@@ -105,7 +137,9 @@
       "type": "ecosystem",
       "status": "green_candidate",
       "anchor": "Origin Community frontages",
+      "anchor_type": "text_only",
       "takeover_max_minutes": null,
+      "takeover_status": "not_applicable",
       "fallback": "walk-in desk booking at human counter",
       "data_boundary": "real-name booking, anonymous display; aggregated business data public",
       "human_review": "operator curation",
@@ -121,6 +155,7 @@
       "status": "yellow",
       "gate": "virtual_evaluation",
       "anchor": "belt-wide greenway and stations",
+      "anchor_type": "text_only",
       "takeover_max_minutes": 5,
       "fallback": "human info desk; printed multilingual maps",
       "data_boundary": "on-device speech; explainable routing",
@@ -137,6 +172,8 @@
       "status": "yellow",
       "gate": "virtual_evaluation",
       "anchor": "Beixiaguan renewal area",
+      "anchor_type": "geojson_ref",
+      "anchor_ref": "geometry/land_use.geojson#LU-BE",
       "takeover_max_minutes": 5,
       "fallback": "community worker home visit; existing clinic path unchanged",
       "data_boundary": "informed consent; minimal health data; emergency-only reporting",
@@ -152,7 +189,10 @@
       "type": "academia_industry",
       "status": "green_candidate",
       "anchor": "Xueyuan Rd open belt",
+      "anchor_type": "geojson_ref",
+      "anchor_ref": "geometry/land_use.geojson#LU-FW",
       "takeover_max_minutes": null,
+      "takeover_status": "not_applicable",
       "fallback": "regular career-fair channel unchanged",
       "data_boundary": "students own resumes; explainable matches",
       "human_review": "humans decide hiring",
@@ -168,6 +208,8 @@
       "status": "yellow",
       "gate": "virtual_evaluation",
       "anchor": "Wudaokou consumption area",
+      "anchor_type": "geojson_ref",
+      "anchor_ref": "geometry/land_use.geojson#LU-EE",
       "takeover_max_minutes": 5,
       "fallback": "existing district joint-meeting mechanism",
       "data_boundary": "aggregated footfall and noise only",
@@ -183,7 +225,10 @@
       "type": "ecosystem",
       "status": "green_candidate",
       "anchor": "Origin Plaza (K5)",
+      "anchor_type": "geojson_ref",
+      "anchor_ref": "geometry/public_space.geojson#PS-PLZ-3",
       "takeover_max_minutes": null,
+      "takeover_status": "not_applicable",
       "fallback": "offline market stalls operate without the platform",
       "data_boundary": "listed agents registered and reviewed",
       "human_review": "disputes arbitrated by humans",
@@ -198,7 +243,10 @@
       "type": "ecology",
       "status": "green_candidate",
       "anchor": "full spine",
+      "anchor_type": "geojson_ref",
+      "anchor_ref": "geometry/land_use.geojson#LU-SPINE",
       "takeover_max_minutes": null,
+      "takeover_status": "not_applicable",
       "fallback": "standard park lighting profile",
       "data_boundary": "environmental sensing only",
       "human_review": "lighting strategy peer-reviewed by ecologists",
@@ -213,7 +261,10 @@
       "type": "culture",
       "status": "green_candidate",
       "anchor": "Dazhongsi cultural area",
+      "anchor_type": "geojson_ref",
+      "anchor_ref": "geometry/land_use.geojson#LU-AE",
       "takeover_max_minutes": null,
+      "takeover_status": "not_applicable",
       "fallback": "museum's ordinary exhibition unchanged",
       "data_boundary": "bell samples require museum authorization; AI participation labeled",
       "human_review": "museum curatorial review",
@@ -222,7 +273,7 @@
       "evidence_status": "design_target"
     }
   ],
-  "acknowledgment": "Machine-readable operating-contract practice acknowledges 147228/jingzhang-open-pulse's operational-assurance-contract.json; independently translated into RENLINE terms; no peer text reused. Trigger/recovery criteria acknowledge jiangmuran/jingzhang-leveling-line and phtphtpht/jingzhang-near-miss-line; ledger tiers acknowledge JIQINGFENG0818/jingzhang-gauge and deepcsv/jingzhang-with-credits; all independently translated.",
+  "acknowledgment": "Machine-readable operating-contract practice acknowledges 147228/jingzhang-open-pulse's operational-assurance-contract.json; independently translated into RENLINE terms; no peer text reused. Trigger/recovery criteria acknowledge jiangmuran/jingzhang-leveling-line and phtphtpht/jingzhang-near-miss-line; ledger tiers acknowledge JIQINGFENG0818/jingzhang-gauge and deepcsv/jingzhang-with-credits; all independently translated. v0.2 compatibility fixes respond to 147228's machine-readability review and the maintainer's guidance in Issue #1119, and to anchor-typing findings surfaced by loml13/switchback-line's adoption package.",
   "note": "This file is a presentation-layer companion to proposal.md; authoritative narrative and citations live in the proposal, matrices and metrics.json.",
   "ledger_tiers": {
     "near_miss": "no harm caused but credible harm path revealed; pre-harm signals enter the ledger",
@@ -243,5 +294,16 @@
     "design_target": "design target, not a government commitment",
     "unknown": "officially unpublished, unclaimed",
     "blocked": "requires tenure/heritage/engineering prerequisites"
+  },
+  "migration": {
+    "from_version": "0.1.0",
+    "to_version": "0.2.0",
+    "changes": [
+      "file-level machine-readable license/attribution block added (CC-BY-4.0, protocol spec only)",
+      "green_candidate formally declared in status_enum as a pre-operational readiness state",
+      "cards with takeover_max_minutes=null now carry takeover_status (not_applicable | unknown)",
+      "anchors typed via anchor_type (geojson_ref | text_only) with anchor_ref for the former; anchor text retained unchanged for backward compatibility"
+    ],
+    "crosswalk": "All v0.1 fields are unchanged; new fields are additive. Consumers reading v0.1-era files should default a missing anchor_type to text_only, and treat takeover_max_minutes=null without takeover_status as unknown (conservative default). Adopters keep their own sources, authorizations and field unknowns; template targets must never be presented as measured values or official commitments."
   }
 }

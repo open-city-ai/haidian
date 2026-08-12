@@ -135,6 +135,24 @@
         "A-KEY-AREAS-001"
       ]
     },
+    "provisional_spatial_readout_segment_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/ai-era-provisional-spatial-readout.json",
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson",
+        "geometry/constraints.geojson",
+        "geometry/green_space.geojson"
+      ],
+      "formula": "count(segment_readouts); each value is the rounded minimum geodesic separation between adjacent provisional-anchor feature vertices",
+      "confidence": "high",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-KEY-AREAS-001"
+      ]
+    },
     "scenario_node_count": {
       "status": "known",
       "value": 10,
@@ -165,7 +183,7 @@
     },
     "persona_count": {
       "status": "known",
-      "value": 6,
+      "value": 9,
       "unit": "count",
       "source_files": [
         "visual/assets/personas-and-fairness.json"
@@ -174,6 +192,36 @@
       "confidence": "high",
       "assumptions": [
         "A-WORKFORCE-001"
+      ]
+    },
+    "persona_scenario_coverage_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/personas-and-fairness.json",
+        "visual/assets/scenario-cards.json"
+      ],
+      "formula": "count(unique(persona.scenario_ids))",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-GOVERNANCE-001"
+      ]
+    },
+    "persona_spatial_feature_coverage_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/personas-and-fairness.json",
+        "geometry/key_areas.geojson",
+        "geometry/public_space.geojson",
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(unique(persona.spatial_refs))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-CONTROLS-001"
       ]
     },
     "landmark_count": {
@@ -206,12 +254,13 @@
     },
     "manual_fallback_coverage_ratio": {
       "status": "known",
-      "value": 0.2,
+      "value": 1.0,
       "unit": "ratio",
       "source_files": [
-        "visual/assets/scenario-cards.json"
+        "visual/assets/scenario-cards.json",
+        "visual/assets/scenario-space-operation-matrix.json"
       ],
-      "formula": "count(cards with explicit human responsibility or fallback) / scenario_card_count",
+      "formula": "count(cards with non-empty human_fallback_zh) / scenario_card_count",
       "confidence": "high",
       "assumptions": [
         "A-DATA-GOVERNANCE-001"

@@ -1,0 +1,392 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary from DATA-SRC-PROVISIONAL-BOUNDARIES-20260605; official polygon pending."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 777618.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual green space from design partition."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.068135,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 209894.3,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual public-space nodes."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.018391,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "road_area_sqm": {
+      "status": "known",
+      "value": 1628602.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 1207 area) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual road corridors only."
+      ]
+    },
+    "road_ratio": {
+      "status": "known",
+      "value": 0.142699,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 165484.1,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(buildings)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual massing footprints; not existing buildings."
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.0145,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual density only."
+      ]
+    },
+    "total_floor_area_sqm_concept": {
+      "status": "known",
+      "value": 1356670.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(building_area * storeys_concept)",
+      "confidence": "low",
+      "assumptions": [
+        "Concept-level design quantity only; not a statutory FAR."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official boundary are not in the public site package (待正式数据补齐)."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_area features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(scenario nodes)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count of listed renewal projects",
+      "confidence": "medium",
+      "assumptions": [
+        "12 projects in the renewal project list; quantities are conceptual."
+      ]
+    },
+    "artery_length_km": {
+      "status": "known",
+      "value": 7.14,
+      "unit": "km",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "length(heritage artery centerline) approx, 1 deg lon ~ 89.7 km at 40N",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual centerline."
+      ]
+    },
+    "key_area_zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "known",
+      "value": 1929201.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon."
+      ]
+    },
+    "key_area_beijing_ai_origin_community_sqm": {
+      "status": "known",
+      "value": 1043236.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon."
+      ]
+    },
+    "key_area_dazhongsi_ai_industry_cluster_sqm": {
+      "status": "known",
+      "value": 720454.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon."
+      ]
+    },
+    "phase_P1_area_sqm": {
+      "status": "known",
+      "value": 3087408.7,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual phasing partition."
+      ]
+    },
+    "phase_P2_area_sqm": {
+      "status": "known",
+      "value": 5723954.6,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual phasing partition."
+      ]
+    },
+    "phase_P3_area_sqm": {
+      "status": "known",
+      "value": 2601479.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual phasing partition."
+      ]
+    },
+    "land_use_05_area_sqm": {
+      "status": "known",
+      "value": 2508798.6,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 05 area) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual land-use partition."
+      ]
+    },
+    "land_use_0701_area_sqm": {
+      "status": "known",
+      "value": 1493509.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 0701 area) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual land-use partition."
+      ]
+    },
+    "land_use_0702_area_sqm": {
+      "status": "known",
+      "value": 1032004.3,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 0702 area) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual land-use partition."
+      ]
+    },
+    "land_use_0802_area_sqm": {
+      "status": "known",
+      "value": 1457006.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 0802 area) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual land-use partition."
+      ]
+    },
+    "land_use_0803_area_sqm": {
+      "status": "known",
+      "value": 331749.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 0803 area) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual land-use partition."
+      ]
+    },
+    "land_use_0804_area_sqm": {
+      "status": "known",
+      "value": 1239006.1,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 0804 area) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual land-use partition."
+      ]
+    },
+    "land_use_1207_area_sqm": {
+      "status": "known",
+      "value": 1628602.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 1207 area) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual land-use partition."
+      ]
+    },
+    "land_use_1401_area_sqm": {
+      "status": "known",
+      "value": 777618.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 1401 area) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual land-use partition."
+      ]
+    },
+    "land_use_16_area_sqm": {
+      "status": "known",
+      "value": 944546.7,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 16 area) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual land-use partition."
+      ]
+    }
+  }
+}

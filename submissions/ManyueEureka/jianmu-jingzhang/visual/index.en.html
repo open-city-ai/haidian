@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jianmu Jing-Zhang · Proposal Workbench</title>
+<style>
+  :root{--deep:#0f2432;--ink:#1c2b36;--accent:#3a6ea5;--green:#2f7d4f;--gold:#c9a24b;--paper:#f4f6f8;--card:#ffffff;--line:#e3e8ee;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;}
+  header{background:linear-gradient(135deg,var(--deep),#1c4a6e);color:#fff;padding:32px 40px;}
+  header h1{font-size:27px;letter-spacing:.5px;}
+  header .zh{font-size:15px;color:#9fc5e8;margin-top:4px;}
+  header .sub{opacity:.85;font-size:13px;margin-top:8px;}
+  .wrap{max-width:1200px;margin:0 auto;padding:24px 20px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:18px 0;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.06);}
+  .card h3{font-size:13px;color:#5a6b7a;font-weight:600;margin-bottom:8px;}
+  .card .val{font-size:22px;font-weight:700;color:var(--accent);}
+  .card .unit{font-size:12px;color:#7a8894;margin-left:4px;}
+  .card .note{font-size:11px;color:#a55a3a;margin-top:6px;}
+  section{margin:28px 0;}
+  section h2{font-size:19px;border-left:4px solid var(--accent);padding-left:10px;margin-bottom:12px;color:var(--deep);}
+  section h3{font-size:15px;color:var(--accent);margin:14px 0 6px;}
+  .map{width:100%;border:1px solid #dfe5ec;border-radius:8px;background:#fff;padding:10px;}
+  .map img{width:100%;height:auto;border-radius:4px;}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .three{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
+  @media(max-width:760px){.two{grid-template-columns:1fr;}}
+  table{width:100%;border-collapse:collapse;background:#fff;font-size:13px;}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  th{background:#eef3f7;color:var(--deep);}
+  .tag{display:inline-block;background:#eef3f7;color:var(--accent);border-radius:12px;padding:2px 10px;font-size:12px;margin:3px 3px 0 0;}
+  .tag2{display:inline-block;background:var(--green);color:#fff;border-radius:12px;padding:2px 10px;font-size:12px;margin:3px 3px 0 0;}
+  .warn{background:#fff7ec;border:1px solid #f0d9a8;border-radius:8px;padding:12px 14px;font-size:13px;color:#8a5a1a;margin:14px 0;}
+  .pill{display:inline-block;background:#eef3f7;border:1px solid #d5e0ea;border-radius:14px;padding:4px 12px;font-size:12px;margin:4px;}
+  footer{background:var(--deep);color:#9fb3c2;padding:20px 40px;font-size:12px;text-align:center;margin-top:40px;}
+  .status-ok{color:#2e7d32;font-weight:700;}
+  .lead{font-size:14px;color:#3a4a58;margin-bottom:10px;}
+</style>
+</head>
+<body>
+<header>
+  <h1>Jianmu Jing-Zhang</h1>
+  <div class="zh">建木京张 · 从自主铁路到自主AI</div>
+  <div class="sub">Centennial Jing-Zhang AI Innovation Belt Urban Design · Open-Call Submission · Conceptual (not formal planning)</div>
+</header>
+
+<div class="wrap">
+
+  <div class="warn">
+    <strong>Boundary status:</strong> This proposal uses the provisional boundary supplied by the organizers for indicative generation only; it is not an official redline, approval basis, or basis for precise area conclusions. Statutory FAR, building height, density, green ratio, and setback controls are pending official data (status=unknown).
+  </div>
+
+  <!-- Overview Map -->
+  <section id="overview">
+    <h2>Overview Map</h2>
+    <p class="lead">Overall concept: the Jing-Zhang Heritage Park as the innovation backbone (One Meridian), Zhongzhiyuan, AI Origin Community, and Dazhongsi along the spine (Three Areas), with the Zhongguancun and Xiaoyuehe wings converging into the spine (Two Wings) — "from the renzi railway to the Jianmu heavenly ladder," carrying self-reliant innovation throughout.</p>
+    <div class="map"><img src="../assets/figures/site-overview.en.png" alt="Jianmu Jing-Zhang overall concept and spatial structure"></div>
+  </section>
+
+  <!-- Core Metrics -->
+  <section id="metrics">
+    <h2>Core Metrics (recalculated from geometry in EPSG:4548)</h2>
+    <div class="grid">
+      <div class="card"><h3>Overall design area</h3><div><span class="val" data-metric="site_area_sqm" data-value="11412825">11,412,825</span><span class="unit">m² (≈11.4 km²)</span></div><div class="note">Matches announced ≈11.4 km²</div></div>
+      <div class="card"><h3>Green area / ratio</h3><div><span class="val" data-metric="green_space_area_sqm" data-value="1310355">1,310,355</span><span class="unit">m²</span></div><div><span class="val" data-metric="green_ratio" data-value="0.1148">11.48%</span></div><div class="note">Conceptual; official pending</div></div>
+      <div class="card"><h3>Public space area / ratio</h3><div><span class="val" data-metric="public_space_area_sqm" data-value="169140">169,140</span><span class="unit">m²</span></div><div><span class="val" data-metric="public_space_ratio" data-value="0.01482">1.48%</span></div><div class="note">Key-area plazas + spine nodes</div></div>
+      <div class="card"><h3>Concept building footprint / density</h3><div><span class="val" data-metric="building_footprint_area_sqm" data-value="932400">932,400</span><span class="unit">m²</span></div><div><span class="val" data-metric="building_density" data-value="0.0817">8.17%</span></div><div class="note">Conceptual, non-statutory</div></div>
+      <div class="card"><h3>Key areas</h3><div><span class="val" data-metric="key_area_count" data-value="3">3</span><span class="unit">/ 3,684,000 m²</span></div><div class="note">Zhongzhiyuan 192.1 + Origin 104.3 + Dazhongsi 72.0 ha</div></div>
+      <div class="card"><h3>Concept road length</h3><div><span class="val" data-metric="road_length_m" data-value="15493">15,493</span><span class="unit">m</span></div><div class="note">Conceptual skeleton</div></div>
+    </div>
+    <div class="grid">
+      <div class="card"><h3>Floor area ratio (statutory)</h3><div class="val" style="font-size:16px">Pending official data</div><div class="note">status=unknown</div></div>
+      <div class="card"><h3>Building height (statutory)</h3><div class="val" style="font-size:16px">Pending official data</div><div class="note">status=unknown</div></div>
+    </div>
+  </section>
+
+  <!-- Three-Level Scope -->
+  <section id="structure">
+    <h2>Three-Level Scope Framework</h2>
+    <table>
+      <tr><th>Scope</th><th>Area</th><th>Depth</th><th>Outputs</th></tr>
+      <tr><td>Coordinated research area</td><td>≈43.6 km²</td><td>Industry & future-city research</td><td>Three positionings, five functions, three-areas-two-wings loop, global cases</td></tr>
+      <tr><td>Overall design area</td><td>≈11.4 km²</td><td>Urban design under regulatory-plan framework</td><td>Land use / buildings / roads / green / public / phasing layers; geometry & metrics layer</td></tr>
+      <tr><td>Key detailed area</td><td>≈368.4 ha</td><td>Detailed design of three key areas</td><td>Positioning + structure + renewal + mobility + public space + scenarios + risks</td></tr>
+    </table>
+  </section>
+
+  <!-- Overall Concept -->
+  <section id="concept">
+    <h2>Overall Concept: Jianmu Jing-Zhang</h2>
+    <p class="lead"><strong>The name "Jianmu" comes from the Classic of Mountains and Seas (Shanhaijing, Hainei Nanjing)</strong> — the world-tree connecting heaven and earth, the heavenly ladder by which the many lords ascended and descended. The Jing-Zhang Railway (1905–1909), China's first trunk line surveyed, designed, and built by the Chinese themselves, crossed the Badaling heights with Zhan Tianyou's "renzi (人)" zigzag — itself a "ladder over the mountains." A century later, this same land becomes a new ladder toward an intelligent future.</p>
+    <p class="lead">Three reasons: <span class="tag2">Ladder</span> railway heritage → AI ladder; <span class="tag2">Passage</span> wisdom ascends and descends through Jing-Zhang; <span class="tag2">Self-reliance</span> from self-reliant railway to self-reliant compute/model/data/ecosystem.</p>
+    <p class="lead"><strong>Symbol system "from the renzi railway to the Jianmu heavenly ladder"</strong>: renzi = historical root (Zhan Tianyou's self-reliant innovation), Jianmu = ladder to the future; spatial structure = renzi + Jianmu (two wings as branches into the spine, spine as trunk linking three areas); renzi road topology, Renzi Plaza, buildings along renzi fabric.</p>
+    <h3>Naming system: Trunk — Branch — Canopy</h3>
+    <p><span class="tag">Trunk</span>innovation spine (Heritage Park)<span class="tag">Branch</span>areas and districts<span class="tag">Canopy</span>community AI scenario stations (Zhiyi)</p>
+    <h3>Logo direction</h3>
+    <p class="lead">The Jianmu world-tree: roots embedded with the renzi form (historical self-reliance), trunk reaching to heaven (ladder to the future), branches spreading to both wings; colors: Jing-Zhang railway green, intelligent blue, limestone.</p>
+  </section>
+
+  <!-- Three Areas & Two Wings -->
+  <section id="key-areas">
+    <h2>Key Areas: Three Areas, Two Wings — Synergy Loop and Functional Permeation</h2>
+    <div class="three">
+      <div class="card"><h3>Zhongzhiyuan Acceleration Area (192.1 ha)</h3><p><strong>Autonomy Engine</strong>: full-stack compute, model, data, application; Compute Plaza and industry test/validation scenarios.</p></div>
+      <div class="card"><h3>AI Origin Community (104.3 ha)</h3><p><strong>Innovation Source</strong>: talent, startups, open-source; Renzi Plaza, open-source lab, transit-oriented development.</p></div>
+      <div class="card"><h3>Dazhongsi Cluster (72.0 ha)</h3><p><strong>Scenario Market</strong>: AI+consumption, commerce, scenario experience; AI Market Plaza.</p></div>
+    </div>
+    <p class="lead"><strong>Three flows of functional permeation</strong>: talent flow (Origin startups → Dazhongsi scenarios → open-source back to Origin), factor flow (Zhongguancun wing capital/IP into three areas), open-source flow (code/model/data across areas). Loop: <strong>Source → Engine → Market → back to Source</strong>.</p>
+    <div class="two">
+      <div class="card"><h3>Zhongguancun Service Wing (west)</h3><p>Global factor allocation, IP and capital empowerment, "service artery".</p></div>
+      <div class="card"><h3>Xiaoyuehe Scenario Wing (east)</h3><p>AI+life experience, scenario opening, "living showcase".</p></div>
+    </div>
+    <div class="map" style="margin-top:12px"><img src="../assets/figures/key-areas.en.png" alt="Three key areas: positioning and spatial linkage"></div>
+  </section>
+
+  <!-- Land Use -->
+  <section id="landuse">
+    <h2>Land Use Structure</h2>
+    <p class="lead">Land use is recalculated from geometry in EPSG:4548, complete with no gaps or overlaps, covering industry, residential, public services, roads, and blue-green space across ten categories. <strong>Buildings</strong> follow a retain-renovate-new-build strategy: heritage and intact fabric retained, low-efficiency buildings renovated into innovation space, and new AI-industry increments in the key areas (conceptual; statutory FAR and height pending official data).</p>
+    <div class="two">
+      <div class="map"><img src="../assets/figures/land-use-structure.en.png" alt="Land use structure and functional relations"></div>
+      <div>
+        <table>
+          <tr><th>Code</th><th>Name</th><th>Area (ha)</th><th>Meaning</th></tr>
+          <tr><td>0802</td><td>R&D</td><td>693.6</td><td>Core AI industry function</td></tr>
+          <tr><td>0701</td><td>Residential</td><td>119.7</td><td>Talent liveability</td></tr>
+          <tr><td>1401+1402</td><td>Park/Green buffer</td><td>131.1</td><td>Blue-green, green ratio 11.5%</td></tr>
+          <tr><td>05</td><td>Commercial services</td><td>75.1</td><td>Native intelligent business</td></tr>
+          <tr><td>0804/05/06</td><td>Education/Sports/Health</td><td>43.4</td><td>Public service facilities</td></tr>
+          <tr><td>1207</td><td>Urban road land</td><td>37.0</td><td>Spine companion & district roads</td></tr>
+          <tr><td>16</td><td>Reserve</td><td>41.4</td><td>Flexible future function</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobility & Blue-Green -->
+  <section id="mobility">
+    <h2>Mobility & Blue-Green Public Space</h2>
+    <p class="lead">The north-south innovation spine carries continuous slow corridors; east-west branches connect the three areas and wings; transit-oriented hub (Zhiyi commuter hub); a "one spine, many pearls" blue-green network with three AI public plaza nodes (AI Market Plaza, Renzi Plaza, Compute Plaza).</p>
+    <div class="map"><img src="../assets/figures/mobility-bluegreen.en.png" alt="Mobility, slow mobility, and blue-green public space"></div>
+  </section>
+
+  <!-- AI Scenario Cards -->
+  <section id="scenarios">
+    <h2>AI Scenario Cards (10, incl. 3 industry test/validation)</h2>
+    <p class="lead">Ten cards in three groups: <strong>Jing-Zhang-specific</strong> (impossible without this belt's railway/heritage/open-source), <strong>industry test & validation</strong> (highest AI concentration), <strong>ethical-boundary demonstration</strong> (showing "human final judgment"; medical/legal/qualification conclusions to human review).</p>
+    <table>
+      <tr><th>ID</th><th>Scenario</th><th>Location</th><th>Users</th><th>Privacy / human-review boundary</th></tr>
+      <tr><td>SC-01</td><td>Zhiyi Commuter Hub (transit AI interchange)</td><td>AI Origin rail station</td><td>Commuters</td><td>Anonymous flow data only; human service fallback</td></tr>
+      <tr><td>SC-02</td><td>Zhiyi Community School (AI+education)</td><td>Origin living circle</td><td>Students, parents</td><td>Minors' data minimized; teacher review</td></tr>
+      <tr><td>SC-03</td><td>Zhiyi Health Cabin (AI screening)</td><td>Community station</td><td>Residents</td><td>Medical conclusions to human; not a diagnosis</td></tr>
+      <tr><td>SC-04</td><td>Zhiyi Legal Consult (AI+law)</td><td>Community station</td><td>Residents, founders</td><td>Qualification/IP/legal conclusions to human</td></tr>
+      <tr><td>SC-05</td><td>Heritage Park AI Guide (AI+culture)</td><td>Jing-Zhang Heritage Park</td><td>Visitors</td><td>Public history only; human-reviewed content</td></tr>
+      <tr><td>SC-06</td><td><strong>Test: Autonomous Shuttle</strong> (validation 1)</td><td>Zhongzhiyuan-Xiaoyuehe loop</td><td>Test firms, riders</td><td>Controlled roads; safety officers; compliant data</td></tr>
+      <tr><td>SC-07</td><td><strong>Test: Low-altitude Logistics</strong> (validation 2)</td><td>Zhongzhiyuan north wing</td><td>Test firms</td><td>Airspace compliance first; no-fly zones zero tolerance</td></tr>
+      <tr><td>SC-08</td><td><strong>Test: Embodied AI</strong> (validation 3)</td><td>Dazhongsi scenario hall</td><td>Firms, public</td><td>On-site sensor de-identification; human patrols</td></tr>
+      <tr><td>SC-09</td><td>AI Market (AI+consumption/commerce)</td><td>Dazhongsi axis</td><td>Consumers, merchants</td><td>Transaction data minimized; no forced face recognition</td></tr>
+      <tr><td>SC-10</td><td>Open-Source Lab (AI+entrepreneurship)</td><td>Origin startup street</td><td>Developers, startups</td><td>Voluntary, traceable code/data contributions</td></tr>
+    </table>
+  </section>
+
+  <!-- Personas & Landmarks -->
+  <section id="personas">
+    <h2>Personas & Pilgrimage Landmarks</h2>
+    <div class="three">
+      <div class="card"><h3>5 User Personas</h3><p><span class="pill">Young developers</span><span class="pill">Researchers</span><span class="pill">Entrepreneurs</span><span class="pill">Residents</span><span class="pill">Urban visitors</span></p></div>
+      <div class="card"><h3>3 AI Pilgrimage Landmarks</h3><p><span class="pill">Jing-Zhang Origin Monument</span><span class="pill">Renzi Plaza</span><span class="pill">AI Honor Colonnade</span></p></div>
+      <div class="card"><h3>Cultural Narrative</h3><p>From self-reliant railway to self-reliant AI — every rivet of the Jing-Zhang Railway was hand-driven by Chinese workers; every line of open-source code today is written by Chinese developers.</p></div>
+    </div>
+  </section>
+
+  <!-- Renewal & Phasing -->
+  <section id="renewal">
+    <h2>Renewal Projects, Phasing & Long-Term Operation (with triggers)</h2>
+    <table>
+      <tr><th>Phase</th><th>Content</th><th>Trigger for next phase</th></tr>
+      <tr><td>Short (2026—2028)</td><td>AI Origin pilot: shared labs, transit-oriented development, open-source lab</td><td>Shared lab co-build signed; rail project approved; first developer community live</td></tr>
+      <tr><td>Medium (2028—2031)</td><td>Zhongzhiyuan full-stack: compute core, common platforms, test scenarios</td><td>Key compute partner confirmed; at least one test scenario approved</td></tr>
+      <tr><td>Long (2031—2035)</td><td>Dazhongsi scenario market & full-belt operation: AI market, Jianmu AI Festival</td><td>Operator established; annual event brand stable; loop running</td></tr>
+    </table>
+    <p class="lead" style="margin-top:10px"><strong>Long-term operation</strong>: "Jianmu AI Festival" annual events (developer conference + open-source hackathon + scenario opening), open-source developer community, Xiaoyuehe quarterly scenario openings, Jianmu global brand — all conceptual, not government commitments.</p>
+  </section>
+
+  <!-- Evidence -->
+  <section id="evidence">
+    <h2>Metrics Recalculation & Compliance</h2>
+    <p class="lead">All metrics are recalculated from geometry in EPSG:4548 with sources, formulas, and confidence in metrics.json; coverage spans announcement 1.3/1.4/1.5 and agent tasks 1-6.</p>
+    <div class="two">
+      <div class="map"><img src="../assets/figures/metrics-evidence.en.png" alt="Core metrics recalculation and evidence chain"></div>
+      <div>
+        <table>
+          <tr><th>Metric</th><th>Value</th><th>Note</th></tr>
+          <tr><td>Overall design area</td><td>11,412,825 m²</td><td>≈11.4 km²</td></tr>
+          <tr><td>Green ratio</td><td>11.48%</td><td>Conceptual, official pending</td></tr>
+          <tr><td>Public space ratio</td><td>1.48%</td><td>Key-area plazas + spine nodes</td></tr>
+          <tr><td>Concept building density</td><td>8.17%</td><td>Conceptual, non-statutory</td></tr>
+          <tr><td>Key area area</td><td>3,684,000 m²</td><td>Announced 368.4 ha</td></tr>
+          <tr><td>Concept road length</td><td>15,493 m</td><td>Conceptual skeleton</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Task Coverage -->
+  <section id="coverage">
+    <h2>Task Coverage</h2>
+    <p class="lead">Covers announcement tasks 1.3/1.4/1.5 and agent tasks 1-6 (overall concept / ecosystem / scenarios / landmark space / culture narrative / long-term operation), detailed in the compliance, standards, and design-depth matrices.</p>
+  </section>
+
+  <!-- Self-Check -->
+  <section id="selfcheck">
+    <h2>Self-Check Status</h2>
+    <p class="status-ok">The package passed all four gates (deterministic / spatial / visual / professional evidence), status <strong>formal-review-ready</strong>. Full results in self_check.json.</p>
+  </section>
+
+  <!-- Sources & Assumptions -->
+  <section id="sources">
+    <h2>Sources & Assumptions</h2>
+    <div class="two">
+      <div class="card"><h3>Sources</h3><p>Pre-qualification announcement (Haidian branch), agent open-call taskbook, MOHURD Urban Design Measures and Control Detailed Planning Measures, MNR Land Use Classification Guide, "Three-Areas-Two-Wings" layout, Haidian "1+X+1" industry system, provisional boundary data. Full index in sources.json.</p></div>
+      <div class="card"><h3>Assumptions</h3><p>Provisional boundary for indication only; statutory controls pending official data; land-use partition is a conceptual functional scheme; AI scenarios and operations are conceptual, not government commitments. Numeric precision does not imply boundary precision. Full list in assumptions.json.</p></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Jianmu Jing-Zhang · Concept Proposal Workbench (v0.1)<br>
+  Offline static page, all resources local; the proposal is an open co-creation concept, not a substitute for formal planning or government approval.
+</footer>
+</body>
+</html>

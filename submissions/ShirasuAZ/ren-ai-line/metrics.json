@@ -1,0 +1,471 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "EPSG:4548 polygon_area(site_boundary)",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 2276669.553,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "EPSG:4548 area(union(green_space))",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.199483,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 438599.561,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "EPSG:4548 area(union(public_space))",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。",
+    "三处换向平台嵌于广场用地内属设计叠合，面积按图层并集计算避免重复计入。"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.03843,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 117775.447,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "EPSG:4548 sum(area(building_footprints))",
+   "confidence": "medium",
+   "assumptions": [
+    "建筑图层为示范项目概念基底，不是现状建筑普查或全量开发规模。"
+   ]
+  },
+  "demo_project_gfa_concept_sqm": {
+   "status": "known",
+   "value": 925606.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(footprint_area * floors_concept)",
+   "confidence": "low",
+   "assumptions": [
+    "概念层面估算，仅示意示范项目规模量级，不构成开发强度结论。"
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "官方控规容积率与精确红线均未公开，待正式数据补齐后测算。"
+  },
+  "building_density": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "building_footprint_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "现状建筑底数与官方控规密度控制未公开，待正式数据补齐。"
+  },
+  "road_network_length_m": {
+   "status": "known",
+   "value": 48783.7,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "EPSG:4548 sum(length(road_centerlines))",
+   "confidence": "medium",
+   "assumptions": [
+    "设计路网为概念补链线位，不含现状全量路网。"
+   ]
+  },
+  "slow_mobility_length_m": {
+   "status": "known",
+   "value": 29956.8,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(length(centerlines where class in [greenway,cycleway,pedestrian]))",
+   "confidence": "medium",
+   "assumptions": [
+    "慢行主脊与缝合街概念线位。"
+   ]
+  },
+  "road_area_estimate_sqm": {
+   "status": "known",
+   "value": 319351.345,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "EPSG:4548 sum(area(land_use[1207]))",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。",
+    "仅统计带内三/四环道路带用地单元，全量道路用地待官方红线。"
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(KEY_AREA features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "key_area_total_sqm": {
+   "status": "known",
+   "value": 3692893.005,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "EPSG:4548 sum(area(key_areas))",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "zhongzhiyuan_area_sqm": {
+   "status": "known",
+   "value": 1929201.877,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "EPSG:4548 area(key_areas[zhongzhiyuan_ai_acceleration_area])",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "ai_origin_area_sqm": {
+   "status": "known",
+   "value": 1043236.909,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "EPSG:4548 area(key_areas[beijing_ai_origin_community])",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "dazhongsi_area_sqm": {
+   "status": "known",
+   "value": 720454.219,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "EPSG:4548 area(key_areas[dazhongsi_ai_industry_cluster])",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "switchback_junction_count": {
+   "status": "known",
+   "value": 9,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(public_space where public_space_type=switchback_platform)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "scenario_card_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "compliance_matrix.json"
+   ],
+   "formula": "count(scenario cards in proposal chapter 6)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "renewal_project_count": {
+   "status": "known",
+   "value": 21,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(building demonstration projects)",
+   "confidence": "high",
+   "assumptions": [
+    "示范项目清单详见正文第10章，与建筑图层一一对应。"
+   ]
+  },
+  "phase_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "count(PHASE features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "phase1_area_sqm": {
+   "status": "known",
+   "value": 4340179.804,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "EPSG:4548 area(phasing[PH-1])",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "phase2_area_sqm": {
+   "status": "known",
+   "value": 4280610.779,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "EPSG:4548 area(phasing[PH-2])",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "phase3_area_sqm": {
+   "status": "known",
+   "value": 2792062.308,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "EPSG:4548 area(phasing[PH-3])",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "land_use_05_area_sqm": {
+   "status": "known",
+   "value": 1518618.67,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "EPSG:4548 sum(area(land_use[05]))",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "land_use_0701_area_sqm": {
+   "status": "known",
+   "value": 2508024.55,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "EPSG:4548 sum(area(land_use[0701]))",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "land_use_0702_area_sqm": {
+   "status": "known",
+   "value": 149374.76,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "EPSG:4548 sum(area(land_use[0702]))",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "land_use_0802_area_sqm": {
+   "status": "known",
+   "value": 2348096.691,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "EPSG:4548 sum(area(land_use[0802]))",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "land_use_0803_area_sqm": {
+   "status": "known",
+   "value": 293778.969,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "EPSG:4548 sum(area(land_use[0803]))",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "land_use_0804_area_sqm": {
+   "status": "known",
+   "value": 1438670.115,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "EPSG:4548 sum(area(land_use[0804]))",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "land_use_0805_area_sqm": {
+   "status": "known",
+   "value": 196819.335,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "EPSG:4548 sum(area(land_use[0805]))",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "land_use_1207_area_sqm": {
+   "status": "known",
+   "value": 319351.345,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "EPSG:4548 sum(area(land_use[1207]))",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "land_use_1401_area_sqm": {
+   "status": "known",
+   "value": 1978260.965,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "EPSG:4548 sum(area(land_use[1401]))",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "land_use_1402_area_sqm": {
+   "status": "known",
+   "value": 298408.592,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "EPSG:4548 sum(area(land_use[1402]))",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "land_use_1403_area_sqm": {
+   "status": "known",
+   "value": 277316.405,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "EPSG:4548 sum(area(land_use[1403]))",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  },
+  "land_use_16_area_sqm": {
+   "status": "known",
+   "value": 86123.131,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "EPSG:4548 sum(area(land_use[16]))",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时粗略边界（provisional constraint）计算，官方红线公布后需整体重算。"
+   ]
+  }
+ }
+}

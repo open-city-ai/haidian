@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="description" content="从铁路原点出发的 AI 创新带 —— 人文叙事 × 青年友好公共空间"/>
+<title>京张零公里 Kilometre Zero · 电子展示页（v1.6）</title>
+<style>
+:root {
+  --bg: #f5f5f7;
+  --bg-elev: #ffffff;
+  --ink: #1d1d1f;
+  --ink-2: #6e6e73;
+  --line: rgba(0, 0, 0, 0.08);
+  --accent: #0071e3;
+  --accent-soft: rgba(0, 113, 227, 0.12);
+  --good: #1b7a5b;
+  --warn: #b45309;
+  --nav-bg: rgba(250, 250, 252, 0.72);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 2px 6px rgba(0, 0, 0, 0.06), 0 10px 28px rgba(0, 0, 0, 0.10);
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #000000;
+    --bg-elev: #1c1c1e;
+    --ink: #f5f5f7;
+    --ink-2: #98989d;
+    --line: rgba(255, 255, 255, 0.12);
+    --accent: #0a84ff;
+    --accent-soft: rgba(10, 132, 255, 0.18);
+    --good: #30d158;
+    --warn: #ff9f0a;
+    --nav-bg: rgba(28, 28, 30, 0.72);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 2px 6px rgba(0, 0, 0, 0.4), 0 10px 28px rgba(0, 0, 0, 0.5);
+  }
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+header {
+  background: linear-gradient(160deg, #101820 0%, #1b3a4b 55%, #2e6b5e 100%);
+  color: #fff;
+  padding: clamp(36px, 7vw, 72px) clamp(20px, 5vw, 48px) clamp(28px, 5vw, 48px);
+}
+header h1 {
+  font-size: clamp(1.9rem, 4.5vw, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+}
+header p { margin-top: 12px; color: rgba(255, 255, 255, 0.82); font-size: clamp(0.95rem, 1.6vw, 1.15rem); max-width: 46em; }
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--nav-bg);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--line);
+  padding: 0 clamp(12px, 3vw, 28px);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+nav a {
+  color: var(--ink-2);
+  text-decoration: none;
+  padding: 15px 12px;
+  display: inline-block;
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  min-height: 44px;
+  transition: color 200ms var(--ease), background-color 200ms var(--ease);
+}
+nav a:hover { color: var(--ink); background: var(--accent-soft); border-radius: var(--radius-sm); }
+nav a:active { transform: scale(0.97); transition: transform 100ms ease-out; }
+main { max-width: 1180px; margin: 0 auto; padding: clamp(20px, 4vw, 40px); }
+section { margin: clamp(28px, 5vw, 48px) 0; }
+section h2 {
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+section h2::before {
+  content: "";
+  width: 6px;
+  height: 1.1em;
+  border-radius: 3px;
+  background: var(--accent);
+  flex: none;
+}
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
+.card {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 220ms var(--ease), box-shadow 220ms var(--ease);
+}
+.card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.card:active { transform: scale(0.97); transition: transform 100ms ease-out; }
+.card h4 { font-size: 0.95rem; font-weight: 650; margin-bottom: 6px; letter-spacing: -0.01em; }
+.card p { font-size: 0.83rem; color: var(--ink-2); margin-top: 6px; line-height: 1.6; }
+.muted { color: var(--ink-2); }
+.metric span { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--ink); letter-spacing: -0.02em; }
+.pending span { font-size: 0.95rem; color: var(--warn); font-weight: 650; }
+.tag {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 0.78rem;
+  font-weight: 650;
+  display: inline-block;
+}
+.ok { color: var(--good); font-weight: 700; margin-left: 8px; }
+.chip {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 0.82rem;
+  display: inline-block;
+  margin: 5px 5px 0 0;
+  min-height: 36px;
+  color: var(--ink);
+}
+table { width: 100%; border-collapse: collapse; background: var(--bg-elev); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+th, td { border-bottom: 1px solid var(--line); padding: 12px 14px; font-size: 0.86rem; text-align: left; }
+th { background: color-mix(in srgb, var(--bg-elev) 96%, var(--ink) 4%); font-weight: 650; }
+tbody tr:last-child td { border-bottom: none; }
+.mapbox {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  box-shadow: var(--shadow-sm);
+}
+.map-img { display: block; width: 100%; height: auto; border-radius: var(--radius-md); }
+.mapnote { color: var(--ink-2); font-size: 0.8rem; margin-top: 10px; }
+footer { background: #101820; color: #9fb6bd; padding: 26px clamp(20px, 5vw, 48px); font-size: 0.82rem; line-height: 1.6; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation: none !important; }
+  .card, nav a { transition: opacity 200ms ease !important; transform: none !important; }
+  .card:hover { transform: none; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  nav { background: var(--bg-elev); -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+@media (prefers-contrast: more) {
+  body { background: var(--bg-elev); }
+  .card, .mapbox, table { border: 2px solid var(--ink-2); }
+}
+@media (max-width: 720px) {
+  header h1 { letter-spacing: -0.02em; }
+  nav a { padding: 14px 10px; }
+  .grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>京张零公里 Kilometre Zero · 电子展示页（v1.6）</h1>
+  <p>从铁路原点出发的 AI 创新带 —— 人文叙事 × 青年友好公共空间</p>
+</header>
+<nav aria-label="总览"><a href="#sec-0">总览</a><a href="#sec-1">三层范围</a><a href="#sec-2">重点区域</a><a href="#sec-3">用地</a><a href="#sec-4">交通慢行</a><a href="#sec-5">蓝绿空间</a><a href="#sec-6">建筑</a><a href="#sec-7">更新项目</a><a href="#sec-8">AI 场景</a><a href="#sec-9">核心指标</a><a href="#sec-10">任务覆盖</a><a href="#sec-11">自检</a><a href="#sec-12">来源</a><a href="#sec-13">假设</a><a href="#sec-14">品牌运营</a><a href="#sec-15">京杭互动</a></nav>
+<main>
+  <section id="sec-0"><h2>总览地图</h2><div class="mapbox"><img class="map-img" src="../assets/figures/site-overview.png" alt="京张零公里总体概念图：provisional 边界、三处重点区域与零公里主轴" role="img"/><p class="mapnote">provisional 边界以虚线表示，非官方红线；官方数据发布后须整体复算。</p></div></section>
+  <section id="sec-1"><h2>三层范围工作框架</h2><div class="grid"><div class="card"><h4>统筹研究范围 43.6 km²</h4><p>时间线—创新链—公共空间带宏观模型</p></div><div class="card"><h4>总体设计范围 11.4 km²</h4><p>零公里主轴＋三处站点式核心区＋两翼支线</p></div><div class="card"><h4>重点区域 368.4 ha</h4><p>加速段 · 原点站 · 换乘站</p></div></div></section>
+  <section id="sec-2"><h2>重点区域</h2><div class="grid"><div class="card keyarea"><h4>众智园AI自主创新加速区粗略范围</h4><p>zhongzhiyuan_ai_acceleration_area</p></div><div class="card keyarea"><h4>北京AI原点社区粗略范围</h4><p>beijing_ai_origin_community</p></div><div class="card keyarea"><h4>大钟寺AI产业聚集区粗略范围</h4><p>dazhongsi_ai_industry_cluster</p></div></div></section>
+  <section id="sec-3"><h2>用地分区</h2><div><span class="chip">商业 × 1</span><span class="chip">住宅 × 1</span><span class="chip">社区服务 × 1</span><span class="chip">科研 × 1</span><span class="chip">文化 × 1</span><span class="chip">教育 × 1</span><span class="chip">体育 × 1</span><span class="chip">医疗 × 1</span><span class="chip">公园绿地 × 1</span><span class="chip">防护绿地 × 1</span><span class="chip">广场 × 1</span><span class="chip">留白 × 1</span></div><p class="muted">12 个概念用地分区，全覆盖、无缝隙、无重叠 [source:SCENARIO-REGISTRY]</p></section>
+  <section id="sec-4"><h2>交通与慢行</h2><div class="grid"><div class="card"><h4>零公里慢行主轴</h4><p>greenway</p></div><div class="card"><h4>次级联系路 × 支路</h4><p>secondary / branch</p></div><div class="card"><h4>轨道接驳联络线</h4><p>transit_connection</p></div></div></section>
+  <section id="sec-5"><h2>蓝绿公共空间</h2><div class="grid"><div class="card"><h4>绿地空间</h4><p>17 个要素</p></div><div class="card"><h4>公共空间</h4><p>9 个要素</p></div></div></section>
+  <section id="sec-6"><h2>建筑与更新</h2><div class="grid"><div class="card"><h4>概念建筑基底</h4><p>126 个要素 · 保留/改造/新建</p></div><div class="card"><h4>分期范围</h4><p>3 个阶段</p></div></div></section>
+  <section id="sec-7"><h2>更新项目</h2><table><thead><tr><th>编号</th><th>项目</th><th>分期</th></tr></thead><tbody><tr><td>JZ-01</td><td>遗址公园慢行断点缝合</td><td>近期</td></tr><tr><td>JZ-02</td><td>零公里纪念碑与导视系统</td><td>近期</td></tr><tr><td>JZ-03</td><td>原点站开源发布厅</td><td>中期</td></tr><tr><td>JZ-04</td><td>加速段开放测试场</td><td>中期</td></tr><tr><td>JZ-05</td><td>换乘站四象限步行连通</td><td>中期</td></tr><tr><td>JZ-06</td><td>全球 AI 活动周体系</td><td>近期启动/长期迭代</td></tr></tbody></table></section>
+  <section id="sec-8"><h2>AI 场景</h2><div><div class="chip">01 · 零公里·AI 导览</div><div class="chip">02 · 开源发布厅</div><div class="chip">03 · AI 测试沙盒</div><div class="chip">04 · 国际路演客厅</div><div class="chip">05 · 遗址公园慢行驿站</div><div class="chip">06 · 清河低碳创新界面</div><div class="chip">07 · 青年活力广场</div><div class="chip">08 · 企业服务 Copilot 驿站</div><div class="chip">09 · AI 生活服务样板街</div><div class="chip">10 · 低速无人配送试点</div><div class="chip">11 · 全球 AI 活动周路线</div><div class="chip">12 · 零公里纪念碑</div><div class="chip">13 · AI+教育体验点</div><div class="chip">14 · AI+医疗健康驿站</div><div class="chip">15 · 无障碍数字导览</div><div class="chip">16 · 数据要素治理展示</div></div></section>
+  <section id="sec-9"><h2>核心指标</h2><div class="grid"><div class="card metric"><h4>总体设计范围面积</h4><span data-metric="site_area_sqm" data-value="11412825.39">1,141.3 ha</span><p>polygon_area(submitted_site_boundary, EPSG:4548)</p></div><div class="card metric"><h4>概念绿地率</h4><span data-metric="green_ratio" data-value="0.336313">33.6%</span><p>green_space_area_sqm / site_area_sqm</p></div><div class="card metric"><h4>公共空间比例</h4><span data-metric="public_space_ratio" data-value="0.173963">17.4%</span><p>public_space_area_sqm / site_area_sqm</p></div><div class="card metric"><h4>概念建筑基底面积</h4><span data-metric="building_footprint_area_sqm" data-value="563604.78">56.4 ha</span><p>sum(polygon_area(building_footprints, EPSG:4548))</p></div><div class="card metric"><h4>概念道路中心线</h4><span data-metric="road_centerline_length_m" data-value="40349.55">40,349.6 m</span><p>sum(line_length(road_centerlines, EPSG:4548))</p></div><div class="card metric"><h4>AI 场景节点</h4><span data-metric="scenario_node_count" data-value="8">8</span><p>count(SCENARIO_NODE features)</p></div><div class="card metric pending"><h4>容积率（待官方控规）</h4><span>待确认</span></div><div class="card metric pending"><h4>建筑高度（待官方控规）</h4><span>待确认</span></div><div class="card metric pending"><h4>建筑密度（待官方控规）</h4><span>待确认</span></div></div></section>
+  <section id="sec-10"><h2>任务覆盖</h2><div class="grid"><div class="card task"><span class="tag">agent.1</span><h4>总体概念与功能统筹</h4><span class="ok">已覆盖</span></div><div class="card task"><span class="tag">agent.2</span><h4>AI 全栈自主创新生态</h4><span class="ok">已覆盖</span></div><div class="card task"><span class="tag">agent.3</span><h4>AI+ 场景与活力城市</h4><span class="ok">已覆盖</span></div><div class="card task"><span class="tag">agent.4</span><h4>公共空间与朝圣地标</h4><span class="ok">已覆盖</span></div><div class="card task"><span class="tag">agent.5</span><h4>京张·中关村·AI 文化叙事</h4><span class="ok">已覆盖</span></div><div class="card task"><span class="tag">agent.6</span><h4>全球活动与长期运营</h4><span class="ok">已覆盖</span></div></div></section>
+  <section id="sec-11"><h2>自检状态</h2><div class="grid"><div class="card check"><span class="tag">BOUNDARY_TRUST</span><span class="ok">PASS</span><p class="muted">provisional 边界已标注，待官方红线复算</p></div><div class="card check"><span class="tag">KEY_AREAS_TRUST</span><span class="ok">PASS</span><p class="muted">三处重点区为 provisional</p></div><div class="card check"><span class="tag">LAND_USE_TOPOLOGY</span><span class="ok">PASS</span><p class="muted">用地全覆盖、无缝隙重叠</p></div><div class="card check"><span class="tag">VISUAL_STATIC</span><span class="ok">PASS</span><p class="muted">离线静态页面</p></div></div></section>
+  <section id="sec-12"><h2>来源</h2><div class="grid"><div class="card source"><h4>SITE-PACKAGE</h4><p>brief/site-package/</p><p class="muted">Project brief, enums, allowed design space, ranges, and schemas.</p></div><div class="card source"><h4>SOURCE-REGISTRY</h4><p>data/source_registry.json</p><p class="muted">Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials.</p></div><div class="card source"><h4>PROCESSED-FACT-PACK</h4><p>data/processed/agent_fact_pack.md</p><p class="muted">Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source.</p></div><div class="card source"><h4>BOUNDARY-SOURCE</h4><p>brief/site-package/geometry/provisional_boundaries.geojson</p><p class="muted">Submitted site boundary geometry source (provisional).</p></div><div class="card source"><h4>KEY-AREA-SOURCE</h4><p>brief/site-package/geometry/provisional_boundaries.geojson</p><p class="muted">Three required detailed-design key area boundaries (provisional).</p></div><div class="card source"><h4>OFFICIAL-ANNOUNCEMENT</h4><p>https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html</p><p class="muted">Official announcement tasks, scope levels, key areas, language, and deliverable context.</p></div><div class="card source"><h4>AGENT-TASKBOOK</h4><p>brief/site-package/agent_taskbook.json</p><p class="muted">Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause.</p></div><div class="card source"><h4>SCENARIO-REGISTRY</h4><p>scenarios/</p><p class="muted">Standard scenario registry used for scenario-card references and scenario metadata.</p></div><div class="card source"><h4>CASE-KINGS-CROSS</h4><p>https://www.kingscross.co.uk/</p><p class="muted">Background case: King's Cross railway heritage regeneration into an innovation quarter with public space first. Mechanism reference only; not formal evidence.</p></div><div class="card source"><h4>CASE-KENDALL-SQUARE</h4><p>https://capitalprojects.mit.edu/projects/kendall-square</p><p class="muted">Background case: Kendall Square university-industry-street ecosystem. Mechanism reference only; not formal evidence.</p></div><div class="card source"><h4>CASE-ONE-NORTH</h4><p>https://en.wikipedia.org/wiki/One-north</p><p class="muted">Background case: Singapore one-north research-industry-liveable district. Background-only; verify with primary sources before formal reuse.</p></div><div class="card source"><h4>CASE-EINDHOVEN</h4><p>https://www.hightechcampus.com/</p><p class="muted">Background case: High Tech Campus Eindhoven open campus and public living room. Mechanism reference only; not formal evidence.</p></div><div class="card source"><h4>CASE-YUNQI</h4><p>https://www.yunqitown.com/</p><p class="muted">Background case: Yunqi Town annual-conference-driven AI ecosystem and scenario opening. Mechanism reference only; not formal evidence.</p></div><div class="card source"><h4>CASE-TOKYO</h4><p>https://en.wikipedia.org/wiki/Marunouchi</p><p class="muted">Background case: Tokyo rail-hub districts combining innovation industry and public-space operation. Background-only; verify with primary sources before formal reuse.</p></div><div class="card source"><h4>CASE-SEATTLE-SLU</h4><p>https://en.wikipedia.org/wiki/South_Lake_Union,_Seattle</p><p class="muted">Background case: South Lake Union's university-hospital-industry ecosystem and street-level public realm. Background-only; verify with primary sources before formal reuse.</p></div><div class="card source"><h4>CASE-SEOUL-DMC</h4><p>https://en.wikipedia.org/wiki/Digital_Media_City</p><p class="muted">Background case: Seoul Digital Media City's media/ICT cluster and event-driven district operation. Background-only; verify with primary sources before formal reuse.</p></div><div class="card source"><h4>CASE-2026-YUNQI-CONFERENCE</h4><p>https://yunqi.aliyun.com/</p><p class="muted">Background case: 2026 Yunqi Conference (22-24 September, Hangzhou; theme 'Intelligence in Practice') as an event-link mechanism reference for the Beijing-Hangzhou interaction narrative. Background-only; dates and theme subject to the final official announcement.</p></div><div class="card source"><h4>CASE-HANGZHOU-CITY-BRAIN</h4><p>https://www.hangzhou.gov.cn/</p><p class="muted">Background case: Hangzhou City Brain 3.0 and the AI+government-service paradigm (including open-data catalogue, licensed operation and sandbox regulation) as mechanism references. Background-only; numeric claims pending verification against the official platform.</p></div><div class="card source"><h4>CASE-ZHEJIANG-LAB</h4><p>https://www.zhejianglab.com/</p><p class="muted">Background case: Zhejiang Lab's mixed-ownership research-institution collaboration model. Mechanism reference only; not formal evidence.</p></div><div class="card source"><h4>CASE-DREAM-TOWN</h4><p>https://cxkc.hangzhou.gov.cn/</p><p class="muted">Background case: Dream Town's 'core with no walls' open innovation-town model. Mechanism reference only; not formal evidence.</p></div></div></section>
+  <section id="sec-13"><h2>假设</h2><div class="grid"><div class="card assumption"><h4>A-CONTROLS-001</h4><p>Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.</p><p class="muted">pending_professional_confirmation</p></div><div class="card assumption"><h4>A-PROVISIONAL-001</h4><p>The submitted site boundary and three key areas use the repository's provisional rough polygons (EPSG:4326 exchange, EPSG:4548 area check). They are not official redlines or precise area bases.</p><p class="muted">pending_official_data</p></div><div class="card assumption"><h4>A-CONCEPT-001</h4><p>Land use, buildings, roads, green/public space, phases, AI service zones and scenario nodes are conceptual design layers generated from public provisional data for discussion, not current-condition surveys or statutory conclusions.</p><p class="muted">conceptual_suggestion</p></div><div class="card assumption"><h4>A-CASES-001</h4><p>The six global case studies are background references for mechanism transfer only; they are not formal evidence and imply no commitment about any enterprise, investment or policy.</p><p class="muted">background_only</p></div><div class="card assumption"><h4>A-BILINGUAL-001</h4><p>proposal.md (Chinese) and proposal.en.md (English) are equivalent standalone language versions of the same proposal under bilingual_contract_version 1.</p><p class="muted">declared</p></div></div></section>
+  <section id="sec-14"><h2>品牌视觉与年度运营</h2><div class="grid"><div class="card"><h4>零公里节</h4><p>每年 9 月，京张通车纪念周</p></div><div class="card"><h4>全球 AI 开发者周</h4><p>每年 10 月，开源发布与黑客松</p></div><div class="card"><h4>季度场景开放日</h4><p>测试沙盒、企业服务、无人配送预约体验</p></div></div><div class="mapbox" style="margin-top:16px"><img class="map-img" src="../assets/figures/brand-system.png" alt="品牌视觉系统" role="img"/></div><div class="mapbox" style="margin-top:16px"><img class="map-img" src="../assets/figures/operation-timeline.png" alt="年度运营与转化体系" role="img"/></div></section>
+  <section id="sec-15"><h2>与杭州互动</h2><div class="grid"><div class="card"><h4>活动互链</h4><p>9 月零公里节与 2026 云栖大会（9 月 22–24，杭州）接续联动；10 月全球 AI 开发者周双城联合发布与社区互认</p></div><div class="card"><h4>数据要素治理</h4><p>借鉴杭州公共数据开放、授权运营与沙盒监管，原点站设数据要素治理展示厅，坚持数据最小化、人工复核、可退出</p></div><div class="card"><h4>科创空间</h4><p>借鉴梦想小镇“有核心、无边界”与之江实验室模式，众智园采用“核心园区＋开放测试场＋边界外场景”</p></div><div class="card"><h4>城市服务互鉴</h4><p>借鉴杭州城市大脑 3.0 与 AI+政务服务范式，大钟寺设城市智能服务展示与联合演练（需本地审批）</p></div></div><div class="mapbox" style="margin-top:16px"><img class="map-img" src="../assets/figures/hangzhou-interaction.png" alt="京杭互动机制图" role="img"/></div><p class="mapnote">全部为概念建议与背景机制参考，不构成任何政府合作或投资承诺；杭州信息以官方公告与页面复核为准。</p></section>
+</main>
+<footer>本页面为离线静态展示页（v1.6），数据来源为仓库 provisional 临时边界与方案生成几何；官方红线发布后须整体复算。署名：phdetector</footer>
+</body>
+</html>

@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0-accessible-service-state",
+  "screen_id": "MOB-ACCESSIBLE-STATE-001",
+  "status": "synthetic_contract_not_local_audit",
+  "purpose": "Keep an accessible route publishable only when its state, validity, owner, alternative and recheck evidence are explicit.",
+  "public_states": ["UNKNOWN", "READY", "DEGRADED", "CLOSED"],
+  "internal_states": ["UNKNOWN", "AUDITED", "READY", "DEGRADED", "CLOSED", "REPAIR", "RECHECK"],
+  "rules": {
+    "expired_confirmation_becomes": "UNKNOWN",
+    "public_ready_requires": ["current_route_audit", "authorised_owner_confirmation", "accessible_alternative", "handoff_contact"],
+    "ai_cannot": ["repair", "release", "override_safety_control", "publish_READY_without_owner"],
+    "personal_traces_required": false,
+    "local_audits_completed": 0,
+    "operating_authorizations": 0,
+    "claim_status": "blocked_until_dated_local_evidence"
+  },
+  "route_contracts": [
+    {
+      "id": "A-01",
+      "name_zh": "轨道站到企业入口的连续无障碍路线",
+      "name_en": "continuous accessible route from rail stop to enterprise entrance",
+      "service_unit_zh": "每条可完成的连续路线",
+      "service_unit_en": "one completable continuous route",
+      "owner_needed_zh": "站务或使用单位责任角色",
+      "owner_needed_en": "station or using-unit duty role",
+      "evidence_needed": ["dated_segment_audit", "current_state_confirmation", "accessible_alternative", "handoff_contact"],
+      "stop_if": ["vertical_access_closed", "route_blocked", "alternative_missing", "confirmation_expired"],
+      "state": "UNKNOWN",
+      "evidence_status": "unknown",
+      "operational_status": "not_authorized_not_run"
+    },
+    {
+      "id": "A-02",
+      "name_zh": "社区日常服务的人工等价路线",
+      "name_en": "human-equivalent route for a community daily service",
+      "service_unit_zh": "每个可求助并完成的居民服务请求",
+      "service_unit_en": "one resident-service request with help and completion",
+      "owner_needed_zh": "社区服务和道路维护责任角色",
+      "owner_needed_en": "community-service and road-maintenance roles",
+      "evidence_needed": ["dated_route_walkthrough", "paper_or_phone_entry", "human_handoff", "public_notice"],
+      "stop_if": ["no_offline_entry", "critical_obstacle", "no_human_handoff", "notice_stale"],
+      "state": "UNKNOWN",
+      "evidence_status": "unknown",
+      "operational_status": "not_authorized_not_run"
+    },
+    {
+      "id": "A-03",
+      "name_zh": "夜班返程的公共交通回退路线",
+      "name_en": "public-transport fallback route for a night return",
+      "service_unit_zh": "每个可安全交接的夜间返程请求",
+      "service_unit_en": "one night-return request with safe handoff",
+      "owner_needed_zh": "轨道公交和值守人工责任角色",
+      "owner_needed_en": "rail/bus and staffed-service roles",
+      "evidence_needed": ["dated_last_service_check", "accessible_waiting_point", "telephone_or_paper_help", "handoff_record"],
+      "stop_if": ["last_service_unverified", "waiting_point_unusable", "help_unavailable", "handoff_missing"],
+      "state": "UNKNOWN",
+      "evidence_status": "unknown",
+      "operational_status": "not_authorized_not_run"
+    }
+  ],
+  "transitions": [
+    {"from": "UNKNOWN", "to": "AUDITED", "authority": "authorised_route_owner", "evidence": "dated_route_audit"},
+    {"from": "AUDITED", "to": "READY", "authority": "authorised_route_owner", "evidence": "current_confirmation_plus_alternative"},
+    {"from": "READY", "to": "DEGRADED", "authority": "owner_or_verified_rule", "evidence": "verified_impact_and_alternative"},
+    {"from": "READY", "to": "CLOSED", "authority": "authorised_route_owner", "evidence": "stop_decision_or_expiry"},
+    {"from": "CLOSED", "to": "REPAIR", "authority": "qualified_maintainer", "evidence": "work_order"},
+    {"from": "REPAIR", "to": "RECHECK", "authority": "qualified_maintainer", "evidence": "repair_record"},
+    {"from": "RECHECK", "to": "READY", "authority": "route_owner_and_accessibility_review", "evidence": "inspection_plus_confirmation"},
+    {"from": "*", "to": "UNKNOWN", "authority": "expiry_rule", "evidence": "confirmation_ttl_expired"}
+  ],
+  "air_candidate": {"status": "excluded", "rule": "Air mobility cannot enter this accessible-route denominator."}
+}

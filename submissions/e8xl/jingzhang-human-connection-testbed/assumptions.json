@@ -1,0 +1,85 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_official_geometry",
+      "statement": "The submitted overall polygon is provisional rough geometry, not an official redline.",
+      "impact": "All areas, ratios, positions, figures, and boards are non-statutory and must be recomputed.",
+      "resolution": "Replace it with cleared official GeoJSON/CAD-derived geometry and rerun the deterministic builder.",
+      "affected_artifacts": ["geometry/site_boundary.geojson", "metrics.json", "assets/figures", "drawings", "visual"]
+    },
+    {
+      "id": "A-KEY-AREAS-001",
+      "status": "pending_official_geometry",
+      "statement": "The three key-area polygons are provisional task frames and are not parcels or station catchments.",
+      "impact": "They support differentiated concept roles only; they cannot support siting, ownership, or precise-area conclusions.",
+      "resolution": "Replace all three after official polygons and on-site interfaces are verified.",
+      "affected_artifacts": ["geometry/key_areas.geojson", "geometry/buildings.geojson", "geometry/public_space.geojson", "assets/figures/key-areas.png"]
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Approved FAR, height, density, green ratio, setback, road redlines, parking, heritage controls, and municipal capacity are not available.",
+      "impact": "Statutory and engineering values remain unknown; no permanent building or infrastructure conclusion is made.",
+      "resolution": "Qualified planning and engineering teams review official controls and surveys.",
+      "affected_artifacts": ["metrics.json", "geometry/land_use.geojson", "geometry/buildings.geojson", "design_depth_matrix.json"]
+    },
+    {
+      "id": "A-BUILDINGS-001",
+      "status": "pending_field_survey",
+      "statement": "Submitted building polygons are conceptual carrier envelopes, not measured existing buildings or demolition decisions.",
+      "impact": "No retain-renovate-demolish, structural, fire, ownership, or capacity conclusion may be inferred.",
+      "resolution": "Verify current use, ownership, structure, fire, accessibility, heritage, noise, and operating responsibility before any activation.",
+      "affected_artifacts": ["geometry/buildings.geojson", "assets/figures/land-use-structure.png", "drawings"]
+    },
+    {
+      "id": "A-OPERATIONS-001",
+      "status": "pending_agreements",
+      "statement": "All operator, host, assessor, service-provider, and event roles are proposed responsibility slots.",
+      "impact": "No government, enterprise, venue, school, community, health, or social-work commitment is implied.",
+      "resolution": "Each accountable and responsible role accepts a written scope, budget, complaint path, stop rule, and handback duty.",
+      "affected_artifacts": ["proposal.md", "spatial.json", "geometry/phasing.geojson", "risk.json"]
+    },
+    {
+      "id": "A-SOCIAL-BASELINE-001",
+      "status": "baseline_pending",
+      "statement": "No cleared project-area dataset establishes loneliness, social isolation, desired connection, face-to-face time, or companion-AI effect.",
+      "impact": "WHO and national time-use statistics remain background; no Haidian prevalence or outcome claim is made.",
+      "resolution": "An independent qualified team designs an ethics-reviewed, voluntary, stratified local baseline with declared sampling limits.",
+      "affected_artifacts": ["proposal.md", "metrics.json", "visual/index.html", "drawings"]
+    },
+    {
+      "id": "A-RESEARCH-ETHICS-001",
+      "status": "pending_independent_review",
+      "statement": "Any use of standardized loneliness or social-connection instruments, delayed follow-up, minors, or sensitive disclosures requires separate ethics and professional review.",
+      "impact": "This package defines spatial and governance gates but does not select a clinical instrument, diagnose people, or create health records.",
+      "resolution": "A qualified research sponsor documents legal basis, consent, safeguarding, protocol, retention, withdrawal, adverse-event handling, and publication rules.",
+      "affected_artifacts": ["proposal.md", "risk.json", "spatial.json"]
+    },
+    {
+      "id": "A-HUMAN-HANDOFF-001",
+      "status": "pending_service_verification",
+      "statement": "Human handoff directories, response times, accessibility, languages, and emergency routes are not yet verified for a real pilot.",
+      "impact": "No product may claim a working human handoff from a concept directory.",
+      "resolution": "Named service owners test every channel, schedule, escalation rule, offline equivalent, and failure response before opening.",
+      "affected_artifacts": ["proposal.md", "spatial.json", "visual/index.html", "geometry/public_space.geojson"]
+    },
+    {
+      "id": "A-ACCESS-001",
+      "status": "pending_field_and_transport_review",
+      "statement": "The human-first spine and connectors express continuity questions, not new road, rail, bridge, tunnel, or station alignments.",
+      "impact": "No safe route, station quadrant, operating railway interface, or step-free access may be inferred.",
+      "resolution": "Perform field, transport, rail, ownership, lighting, fire, and accessibility review before publishing a route.",
+      "affected_artifacts": ["geometry/roads.geojson", "geometry/green_space.geojson", "assets/figures/mobility-bluegreen.png"]
+    },
+    {
+      "id": "A-COST-001",
+      "status": "unknown",
+      "statement": "Capital cost, operating cost, procurement, insurance, staffing, funding, and development timing have not been estimated.",
+      "impact": "No fiscal, investment, procurement, or delivery commitment is claimed.",
+      "resolution": "Prepare independent scope, quantities, operating plan, funding plan, and approvals after sites and operators are confirmed.",
+      "affected_artifacts": ["proposal.md", "geometry/phasing.geojson", "metrics.json"]
+    }
+  ]
+}

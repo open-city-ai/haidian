@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://x-jingzhang.example/schema/x-receipt-0.1.json",
+  "title": "X Receipt 0.1",
+  "description": "Concept-only handoff contract for an AI system moving through TEST, RELEASE, USE and RETURN. It is not an approval, certification or operating permit.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_id",
+    "scenario_id",
+    "claim_level",
+    "route",
+    "technical_stack",
+    "rights_boundary",
+    "fixtures",
+    "human_gates",
+    "stop_conditions",
+    "return_actions",
+    "decision"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "receipt_id": {"type": "string", "minLength": 1},
+    "scenario_id": {"const": "SC-03"},
+    "claim_level": {"const": "synthetic_tabletop_only"},
+    "route": {
+      "type": "array",
+      "prefixItems": [
+        {"const": "TEST"},
+        {"const": "RELEASE"},
+        {"const": "USE"},
+        {"const": "RETURN"}
+      ],
+      "items": false
+    },
+    "technical_stack": {
+      "type": "object",
+      "required": ["mobility_envelope", "perception", "localisation", "decision", "safety", "logging"],
+      "additionalProperties": false,
+      "properties": {
+        "mobility_envelope": {"type": "string"},
+        "perception": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "localisation": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "decision": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "safety": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "logging": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      }
+    },
+    "rights_boundary": {
+      "type": "object",
+      "required": ["personal_data", "biometrics", "external_connections", "non_ai_path", "retention"],
+      "additionalProperties": false,
+      "properties": {
+        "personal_data": {"const": "none"},
+        "biometrics": {"const": "prohibited"},
+        "external_connections": {"const": "disabled"},
+        "non_ai_path": {"type": "string", "minLength": 1},
+        "retention": {"type": "string", "minLength": 1}
+      }
+    },
+    "fixtures": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "condition", "expected_state", "expected_action", "public_path_state"],
+        "properties": {
+          "id": {"type": "string"},
+          "condition": {"type": "string"},
+          "expected_state": {"enum": ["PASS", "HOLD", "RETURN"]},
+          "expected_action": {"type": "string"},
+          "public_path_state": {"const": "OPEN"}
+        }
+      }
+    },
+    "human_gates": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["station", "question", "candidate_owner", "output"],
+        "properties": {
+          "station": {"enum": ["Zhongzhi", "AI Origin", "Dazhongsi"]},
+          "question": {"type": "string"},
+          "candidate_owner": {"type": "string"},
+          "output": {"enum": ["Test Receipt", "Release Ticket", "Public Verdict"]}
+        }
+      }
+    },
+    "stop_conditions": {"type": "array", "minItems": 4, "items": {"type": "string"}},
+    "return_actions": {"type": "array", "minItems": 4, "items": {"type": "string"}},
+    "decision": {
+      "type": "object",
+      "required": ["tabletop", "field_pilot", "reason"],
+      "properties": {
+        "tabletop": {"enum": ["pending", "pass", "fail"]},
+        "field_pilot": {"const": "not_authorized_not_run"},
+        "reason": {"type": "string"}
+      }
+    }
+  }
+}

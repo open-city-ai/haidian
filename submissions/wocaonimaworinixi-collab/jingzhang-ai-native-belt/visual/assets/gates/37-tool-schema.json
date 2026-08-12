@@ -1,0 +1,27 @@
+{
+ "schema_version": "1.0.0",
+ "gate_id": "GATE-37",
+ "title_zh": "工具调用结构合规",
+ "title_en": "Tool dispatch schema compliance",
+ "domain": "technology",
+ "status": "design_target",
+ "source_ids": [
+  "PKG-SIMULATION",
+  "BG-GENAI-MEASURES"
+ ],
+ "inputs": [
+  "simulation.json"
+ ],
+ "procedure": [
+  "所有工具调用声明输入输出结构并逐次校验。",
+  "结构不合规的调用记为失败，不做静默重试。",
+  "统计 schema 合规率。"
+ ],
+ "pass_rule": "schema 合规率可统计且失败样本有记录。",
+ "stop_rule": "出现静默吞掉结构错误时停止评估。",
+ "owner": "ai engineer",
+ "non_ai_equivalent": "接口联调与契约测试",
+ "evidence_output": "schema_conformance_log",
+ "boundary_note": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+ "boundary_note_zh": "本闸门是投稿智能体自设的复核与实施关口，不代表现有临时方案已通过该关口，也不代表任何机关已批准或任何运营主体已获指定。"
+}

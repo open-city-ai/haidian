@@ -1,0 +1,462 @@
+{
+  "schema_version": "0.1.0",
+  "version": 2,
+  "proposal_id": "jingzhang-bell-code",
+  "cards": [
+    {
+      "id": "SC01",
+      "scenario_id": "ai-cultural-guide",
+      "title_zh": "AI 导览·汽笛1909",
+      "title_en": "AI Guide · Whistle 1909",
+      "type": "文化",
+      "tracks": [
+        "jingzhang-heritage-narrative"
+      ],
+      "spatial_anchor_zh": "钟绳南段（归钟广场-大钟寺站四象限）",
+      "users": [
+        "游客",
+        "学生",
+        "开发者",
+        "老年及低数字素养居民"
+      ],
+      "context_zh": "围绕京张铁路遗址与中关村文化提供可解释、有来源的公共导览；讲解词以文保部门公开资料为底，标注来源与核查日期。",
+      "data_inputs": [
+        "公共文化史实（文保公开资料）",
+        "清权图片素材",
+        "人工撰写讲解底稿",
+        "活动信息"
+      ],
+      "data_boundary_zh": "最小必要：默认不采集人脸、情绪、身份画像与连续轨迹；定位仅用于就近讲解服务且可关闭。",
+      "human_handoff": true,
+      "stop_condition_zh": "史实存疑、素材未清权、讲解误导或投诉时立即停止并向人工问询台转接。",
+      "public_return_zh": "保留人工讲解通道与讲解词来源目录，导览数据脱敏后作为公共文化服务记录。",
+      "operator_zh": "公园运营方（概念建议）+ 文保单位内容复核",
+      "operating_status": "concept_pilot_pending_site_operator",
+      "risks_zh": [
+        "史实错误",
+        "素材版权",
+        "AI 讲解与事实混同"
+      ],
+      "human_review": "讲解底稿经文化/文保专人审核，生成内容可复核可撤回；现场保留人工问询台。",
+      "ordinary_baseline_zh": "无 AI 时的普通完成方式：静态导览牌、纸质导览册与人工讲解可完成全部导览任务；AI 终端关闭时导览服务不中断。",
+      "exit_condition_zh": "退出条件与场地恢复：素材清权失效或运营方退出时撤下 AI 讲解终端，保留静态导览系统与人工问询台，场地无硬装残留。",
+      "evidence_output_zh": "公共证据输出：脱敏导览服务记录、讲解词来源目录、投诉与更正台账，按年度归档公开。"
+    },
+    {
+      "id": "SC02",
+      "scenario_id": "developer-walk",
+      "title_zh": "开发者散步道智能讲解",
+      "title_en": "Developer Walk Smart Narration",
+      "type": "文化+教育",
+      "tracks": [
+        "ai-origin-community",
+        "jingzhang-heritage-narrative"
+      ],
+      "spatial_anchor_zh": "钟绳中段（原点社区开源展示廊-荣誉墙段）",
+      "users": [
+        "开发者",
+        "开源贡献者",
+        "高校科研人员"
+      ],
+      "context_zh": "沿开发者步道提供开源项目、铁路工程史与中关村创新史的分段讲解与打卡，贡献者讲解内容经社区审核后发布。",
+      "data_inputs": [
+        "开源项目公开元数据",
+        "铁路工程公开史料",
+        "社区审核记录"
+      ],
+      "data_boundary_zh": "只使用公开项目元数据；不采集个人仓库内容、通信与社交图谱。",
+      "human_handoff": true,
+      "stop_condition_zh": "内容未经审核、涉及未授权披露或版权争议时下线。",
+      "public_return_zh": "讲解内容以开放许可回馈社区，形成可复用的开发文化语料。",
+      "operator_zh": "开发者社区 + 原点社区运营方（概念建议）",
+      "operating_status": "concept_design",
+      "risks_zh": [
+        "内容版权",
+        "开源贡献者名誉",
+        "技术术语误读"
+      ],
+      "human_review": "讲解条目由社区管理员与专业人员双重审核，署名与修改记录可追溯。",
+      "ordinary_baseline_zh": "无 AI 时的普通完成方式：静态铭牌、开放文档页与社区志愿者讲解可覆盖全部讲解内容。",
+      "exit_condition_zh": "退出条件与场地恢复：社区停止维护时转为静态铭牌与开放文档页，讲解音频与语料存档开源仓库，步道设施保持原状。",
+      "evidence_output_zh": "公共证据输出：社区审核记录、署名与修改日志、可复用讲解语料库。"
+    },
+    {
+      "id": "SC03",
+      "scenario_id": "ai-health-service-navigation",
+      "title_zh": "健康服务导航（人工可办理）",
+      "title_en": "Health Service Navigation (Human Channel)",
+      "type": "公共服务",
+      "tracks": [
+        "ai-origin-community"
+      ],
+      "spatial_anchor_zh": "A2 原点社区服务设施（0806 健康服务设施落点）",
+      "users": [
+        "老年居民",
+        "低数字素养居民",
+        "青年居民",
+        "患者及家属"
+      ],
+      "context_zh": "面向医疗健康公共服务提供 AI 导航，同时按无障碍法第 39 条保留现场指导与人工办理通道，不强制使用智能服务。",
+      "data_inputs": [
+        "公共服务目录",
+        "无障碍设施点位（自建图层）",
+        "人工办理窗口信息"
+      ],
+      "data_boundary_zh": "不采集健康档案与就诊记录；导航仅基于公共服务目录，敏感信息一律由人工处理。",
+      "human_handoff": true,
+      "stop_condition_zh": "涉及医疗建议、误导航或人工通道关闭时停止 AI 应答并转人工。",
+      "public_return_zh": "服务目录与人工通道清单公开更新，形成社区公共服务地图。",
+      "operator_zh": "社区服务中心 + 区卫健委服务窗口（概念建议）",
+      "operating_status": "concept_pilot_pending_site_operator",
+      "risks_zh": [
+        "健康信息误读",
+        "数字鸿沟",
+        "隐私泄露"
+      ],
+      "human_review": "AI 仅做目录导航不做诊疗建议；人工办理通道全天候保留，符合无障碍法第 39 条。",
+      "ordinary_baseline_zh": "无 AI 时的普通完成方式：人工服务窗口、纸质服务目录与电话预约构成全流程人工通道，符合无障碍法第 39 条，AI 导航下线不影响任何事项办理。",
+      "exit_condition_zh": "退出条件与场地恢复：AI 导航退出后设施点位图与服务目录移交社区服务中心继续人工维护，无服务缺口。",
+      "evidence_output_zh": "公共证据输出：服务目录更新记录、人工通道可用性巡检记录、转人工率统计。"
+    },
+    {
+      "id": "SC04",
+      "scenario_id": "ai-traffic-walkability",
+      "title_zh": "慢行断点识别与优化",
+      "title_en": "Slow-Traffic Gap Detection",
+      "type": "交通",
+      "tracks": [
+        "youth-friendly-public-space"
+      ],
+      "spatial_anchor_zh": "钟绳全线（绿道/骑行/步行复合断面）",
+      "users": [
+        "步行与骑行通勤者",
+        "青年居民",
+        "老年居民",
+        "儿童家庭"
+      ],
+      "context_zh": "基于公开路网数据识别慢行断点（路口、上跨环路、站点接驳缺口）并生成优化建议清单，供实施阶段专业深化。",
+      "data_inputs": [
+        "roads.geojson（自建概念网格）",
+        "轨道站点公开信息",
+        "市民慢行反馈（脱敏）"
+      ],
+      "data_boundary_zh": "只使用公开路网与站点信息；市民反馈去标识化，不保留个人位置轨迹。",
+      "human_handoff": true,
+      "stop_condition_zh": "涉及交通组织变更、红线调整时停止建议并移交专业部门。",
+      "public_return_zh": "断点清单与优先级公开，形成可复核的慢行改进路线图。",
+      "operator_zh": "区交通部门 + 街道办（概念建议）",
+      "operating_status": "concept_design",
+      "risks_zh": [
+        "路网数据不完整",
+        "改造影响交通",
+        "建议与官方线位冲突"
+      ],
+      "human_review": "优化建议标注概念性质并复核数据来源；线位调整须专业交通深化。",
+      "ordinary_baseline_zh": "无 AI 时的普通完成方式：人工踏勘、市民意见箱与街道办常规巡查可识别同类断点，周期较长但结论同等有效。",
+      "exit_condition_zh": "退出条件与场地恢复：识别工具停用后，断点清单与改进路线图作为公共文档保留并移交属地部门，不涉及场地设施。",
+      "evidence_output_zh": "公共证据输出：断点清单、优先级评估方法说明、采纳与不采纳决定记录。"
+    },
+    {
+      "id": "SC05",
+      "scenario_id": "enterprise-service-copilot",
+      "title_zh": "企业服务 Copilot",
+      "title_en": "Enterprise Service Copilot",
+      "type": "产业服务",
+      "tracks": [
+        "ai-origin-community"
+      ],
+      "spatial_anchor_zh": "A1 创新服务商业带 / A2 成果孵化转化区",
+      "users": [
+        "AI 创业者",
+        "商务访客",
+        "投资人",
+        "园区运营方"
+      ],
+      "context_zh": "面向入驻企业的合规、融资、场景对接与政策申报提供 Copilot 服务，所有生成内容可复核、可撤回，涉及承诺内容转人工专员。",
+      "data_inputs": [
+        "公开政策文件",
+        "园区服务目录",
+        "企业公开信息"
+      ],
+      "data_boundary_zh": "默认不采集企业商业秘密；对话记录脱敏留存，可申请删除。",
+      "human_handoff": true,
+      "stop_condition_zh": "政策解读不确定、涉及审批承诺或投诉时转人工专员。",
+      "public_return_zh": "政策问答知识库公开沉淀，形成园区公共创新服务资产。",
+      "operator_zh": "产业园区运营主体（概念建议）",
+      "operating_status": "concept_pilot_pending_site_operator",
+      "risks_zh": [
+        "政策误读",
+        "企业数据泄露",
+        "AI 建议误导决策"
+      ],
+      "human_review": "Copilot 输出标注置信度与来源，审批与承诺类内容一律人工复核。",
+      "ordinary_baseline_zh": "无 AI 时的普通完成方式：园区服务专员与政策汇编手册可提供同类咨询，承诺类事项本就走人工审批。",
+      "exit_condition_zh": "退出条件与场地恢复：Copilot 下线后政策问答知识库移交园区运营方继续人工维护，对话记录按申请删除。",
+      "evidence_output_zh": "公共证据输出：政策问答知识库、转人工率与响应时长统计、误读更正记录。"
+    },
+    {
+      "id": "SC06",
+      "scenario_id": "public-safety-operations-review",
+      "title_zh": "活动安全人工复核",
+      "title_en": "Event-Safety Human Review",
+      "type": "治理",
+      "tracks": [
+        "youth-friendly-public-space"
+      ],
+      "spatial_anchor_zh": "钟绳全线（鸣钟发布/创新大集等活动场地）",
+      "users": [
+        "活动主办方",
+        "市民",
+        "应急管理部门"
+      ],
+      "context_zh": "大型活动期间以 AI 辅助人流与风险提示，但全部安全结论由人工复核后发布，AI 不直接触发疏散等指令。",
+      "data_inputs": [
+        "活动报批公开信息",
+        "场地容量（自建概念数据）",
+        "天气公开数据"
+      ],
+      "data_boundary_zh": "不采集个体身份与移动轨迹；人流统计仅用匿名计数。",
+      "human_handoff": true,
+      "stop_condition_zh": "AI 无法核实安全状态或与现场指挥冲突时，一律以人工指挥为准。",
+      "public_return_zh": "活动安全复盘报告公开，形成公共活动治理经验库。",
+      "operator_zh": "活动主办方 + 属地应急部门（概念建议）",
+      "operating_status": "concept_design",
+      "risks_zh": [
+        "过度监控",
+        "误报造成恐慌",
+        "责任归属不清"
+      ],
+      "human_review": "人机边界以人工复核为基线：AI 只做信息整理与提示，决策与发布均由人工执行。",
+      "ordinary_baseline_zh": "无 AI 时的普通完成方式：传统人工安保指挥体系独立运转，AI 辅助仅为信息整理层，撤出后指挥流程不变。",
+      "exit_condition_zh": "退出条件与场地恢复：AI 辅助撤出不影响人工安保体系；活动结束设备即撤场，无固定安装。",
+      "evidence_output_zh": "公共证据输出：活动安全复盘报告、误报与漏报记录、人工复核决定留痕。"
+    },
+    {
+      "id": "SC07",
+      "scenario_id": "robot-delivery-low-speed",
+      "title_zh": "机器人低速配送试点",
+      "title_en": "Low-Speed Robot Delivery Pilot",
+      "type": "机器人（测试验证）",
+      "tracks": [
+        "ai-origin-community"
+      ],
+      "spatial_anchor_zh": "A3 大钟寺产业聚集区低速测试段（概念建议）",
+      "users": [
+        "园区企业",
+        "商户",
+        "市民",
+        "试点运营商"
+      ],
+      "context_zh": "大钟寺智能原生新业态的机器人低速配送试点：划定低速测试段，分时段运营，配置远程接管与人工跟随。",
+      "data_inputs": [
+        "测试段道路（roads.geojson 概念网格）",
+        "配送任务公开记录"
+      ],
+      "data_boundary_zh": "配送数据仅用于运营统计；不采集收货人身份画像；视频记录本地脱敏。",
+      "human_handoff": true,
+      "stop_condition_zh": "运行异常、碰撞风险、超范围或投诉时立即停止并远程接管。",
+      "public_return_zh": "试点运营报告与事故复盘公开，形成可复核的机器人街区治理依据。",
+      "operator_zh": "试点运营商 + 交管部门备案（概念建议）",
+      "operating_status": "concept_pilot_pending_approval",
+      "risks_zh": [
+        "路权冲突",
+        "行人安全",
+        "监管合规"
+      ],
+      "human_review": "试点需备案与审批，运营数据接受交管部门复核；静音时段不运营。",
+      "ordinary_baseline_zh": "无 AI 时的普通完成方式：人工配送与自提柜覆盖全部配送需求，机器人试点不替代既有服务。",
+      "exit_condition_zh": "退出条件与场地恢复：试点终止或许可失效时机器人撤场、测试段恢复原有路权与标识，无设施残留；退出成本由运营商预留。",
+      "evidence_output_zh": "公共证据输出：试点运营报告、急停与远程接管记录、事故复盘与路权冲突台账。"
+    },
+    {
+      "id": "SC08",
+      "scenario_id": "autonomous-shuttle-loop",
+      "title_zh": "无人接驳环线试点",
+      "title_en": "Autonomous Shuttle Loop Pilot",
+      "type": "自动驾驶（测试验证）",
+      "tracks": [
+        "ai-origin-community",
+        "youth-friendly-public-space"
+      ],
+      "spatial_anchor_zh": "A1→A2→A3 三区接驳环线（概念线位）",
+      "users": [
+        "通勤人才",
+        "访客",
+        "市民",
+        "试点运营商"
+      ],
+      "context_zh": "沿钟绳组织无人接驳环线试点，接驳三处重点区域与轨道站点，配置安全员与远程监控，按测试-扩展-常态化三档推进。",
+      "data_inputs": [
+        "概念线位（roads.geojson）",
+        "站点一体化信息",
+        "公开测试许可要求"
+      ],
+      "data_boundary_zh": "乘车数据最小化；不采集人脸与行程画像；视频监控本地加密。",
+      "human_handoff": true,
+      "stop_condition_zh": "安全员接管失败、许可失效或高密人流时段停止运行。",
+      "public_return_zh": "试点运行数据与安全指标公开，支撑自动驾驶城市治理讨论。",
+      "operator_zh": "试点运营商 + 交管/交通部门备案（概念建议）",
+      "operating_status": "concept_pilot_pending_approval",
+      "risks_zh": [
+        "自动驾驶安全",
+        "路权与保险",
+        "公众接受度"
+      ],
+      "human_review": "全流程人工备案与安全员在车；场景开放申请制，静音时段停运。",
+      "ordinary_baseline_zh": "无 AI 时的普通完成方式：现有公交、步行与骑行可完成三区接驳，环线试点为增量服务而非替代。",
+      "exit_condition_zh": "退出条件与场地恢复：许可失效或试点退出时车辆撤场，站点设施按可拆装设计回收，道路恢复原状。",
+      "evidence_output_zh": "公共证据输出：运行数据与安全指标、安全员接管与降级记录、公众意见汇总。"
+    },
+    {
+      "id": "SC09",
+      "scenario_id": "ai-education-study-tour",
+      "title_zh": "AI+教育（清华园研学）",
+      "title_en": "AI+Education (Qinghuayuan Study Tour)",
+      "type": "教育",
+      "tracks": [
+        "jingzhang-heritage-narrative"
+      ],
+      "spatial_anchor_zh": "A2 原点社区（清华园车站旧址研学点）",
+      "users": [
+        "中小学生",
+        "教师",
+        "家长",
+        "高校志愿者"
+      ],
+      "context_zh": "结合京张铁路工程史与 AI 创新文化组织研学：AI 辅助课程设计与讲解，未成年人数据特殊保护，教师全程在场。",
+      "data_inputs": [
+        "铁路工程公开史料",
+        "课程教案（人工编写）",
+        "研学活动报名信息（家长授权）"
+      ],
+      "data_boundary_zh": "未成年人信息严格最小化；不采集人脸、情绪与行为画像；活动影像需家长书面同意。",
+      "human_handoff": true,
+      "stop_condition_zh": "未成年人数据保护违规、内容不当或家长撤回同意时停止。",
+      "public_return_zh": "课程教案以开放许可共享，形成 AI 教育公共资源。",
+      "operator_zh": "区教育部门 + 学校 + 高校志愿者（概念建议）",
+      "operating_status": "concept_design",
+      "risks_zh": [
+        "未成年人隐私",
+        "教学内容质量",
+        "场地安全"
+      ],
+      "human_review": "研学全程教师在场；AI 内容经教育与文化部门审核；影像使用需授权。",
+      "ordinary_baseline_zh": "无 AI 时的普通完成方式：教师主导的常规研学课程与现场讲解可完整实施，AI 仅作备课与互动辅助。",
+      "exit_condition_zh": "退出条件与场地恢复：AI 课程包下线后教案以开放许可留校继续使用；家长撤回授权即删除相关记录。",
+      "evidence_output_zh": "公共证据输出：教案修订记录、家长授权与撤回记录、内容审核留痕。"
+    },
+    {
+      "id": "SC10",
+      "scenario_id": "smart-talent-community",
+      "title_zh": "人才公寓智慧社区",
+      "title_en": "Smart Talent-Apartment Community",
+      "type": "居住",
+      "tracks": [
+        "ai-origin-community"
+      ],
+      "spatial_anchor_zh": "A2 创新人才社区（0701 落点）",
+      "users": [
+        "AI 人才",
+        "青年居民",
+        "物业运营方"
+      ],
+      "context_zh": "人才公寓以智慧社区系统提升生活服务效率，同时保留人工物业服务通道，设施数据不用于行为画像与租金定价。",
+      "data_inputs": [
+        "设施运行数据（脱敏）",
+        "公共报修记录"
+      ],
+      "data_boundary_zh": "不采集生活习惯画像；智能设备数据仅用于设施维护与应急。",
+      "human_handoff": true,
+      "stop_condition_zh": "数据越权使用、设备失控或住户投诉时停止相关功能并人工介入。",
+      "public_return_zh": "智慧社区运行规范公开，形成可复制的青年人才社区治理样本。",
+      "operator_zh": "保障房平台 + 物业运营方（概念建议）",
+      "operating_status": "concept_design",
+      "risks_zh": [
+        "居住隐私",
+        "过度智能化",
+        "服务替代人工"
+      ],
+      "human_review": "人工物业服务不因智能化缩减；静音时段限制非必要通知。",
+      "ordinary_baseline_zh": "无 AI 时的普通完成方式：人工物业提供全流程服务，智能系统只作效率增强，退出后物业服务标准不降低。",
+      "exit_condition_zh": "退出条件与场地恢复：智能系统退出时住户数据按规范删除，设备拆除，公共报修记录移交物业存档。",
+      "evidence_output_zh": "公共证据输出：智慧社区运行规范、数据最小化审计记录、住户投诉处理台账。"
+    },
+    {
+      "id": "SC11",
+      "scenario_id": "open-source-gallery",
+      "title_zh": "开源成果展示廊（鸣钟登记）",
+      "title_en": "Open-Source Gallery (Bell Registry)",
+      "type": "文化+产业",
+      "tracks": [
+        "ai-origin-community",
+        "jingzhang-heritage-narrative"
+      ],
+      "spatial_anchor_zh": "钟绳中段（原点社区-五道口之间）",
+      "users": [
+        "开发者",
+        "开源贡献者",
+        "访客",
+        "投资人"
+      ],
+      "context_zh": "把开源成果、鸣钟登记里程碑与荣誉记录做成公共展示空间：重大发布与里程碑按鸣钟登记协议编号登记，可验证可追溯。",
+      "data_inputs": [
+        "开源项目公开元数据",
+        "鸣钟登记台账（本方案机制）",
+        "荣誉记录"
+      ],
+      "data_boundary_zh": "只展示公开信息与登记记录；不采集贡献者非公开数据。",
+      "human_handoff": true,
+      "stop_condition_zh": "登记信息不实、版权争议或贡献者要求撤回时下架。",
+      "public_return_zh": "登记台账与展示内容公开，形成可验证的公共荣誉体系。",
+      "operator_zh": "开放运营方 + 开发者社区（概念建议）",
+      "operating_status": "concept_design",
+      "risks_zh": [
+        "荣誉造假",
+        "版权纠纷",
+        "商业包装过度"
+      ],
+      "human_review": "登记内容经人工审核与社区复核，可撤回可更正。",
+      "ordinary_baseline_zh": "无 AI 时的普通完成方式：实体展板与册页可完成全部展示，登记台账以纸质与网页双轨公开。",
+      "exit_condition_zh": "退出条件与场地恢复：展示内容下架或运营方退出时，鸣钟登记台账作为公共档案继续保留可查，展陈设施可拆装。",
+      "evidence_output_zh": "公共证据输出：鸣钟登记台账、下架与更正记录、社区复核留痕。"
+    },
+    {
+      "id": "SC12",
+      "scenario_id": "honor-wall-ar",
+      "title_zh": "智能体贡献荣誉墙（AR）",
+      "title_en": "Agent-Contribution Honor Wall (AR)",
+      "type": "治理+文化",
+      "tracks": [
+        "ai-origin-community",
+        "youth-friendly-public-space"
+      ],
+      "spatial_anchor_zh": "钟绳节点（荣誉墙概念落点）",
+      "users": [
+        "开发者",
+        "青年游客",
+        "市民",
+        "参与 Agent"
+      ],
+      "context_zh": "以 AR 呈现智能体与贡献者的荣誉记录与叙事，呼应征集\"名称刻在碑上\"的纪念体系；AR 内容全部有可追溯登记。",
+      "data_inputs": [
+        "鸣钟登记台账（本方案机制）",
+        "公开贡献记录"
+      ],
+      "data_boundary_zh": "AR 仅展示已登记公开信息；不采集访客身份与位置画像。",
+      "human_handoff": true,
+      "stop_condition_zh": "记录争议、内容不适或设备安全隐患时关闭 AR 功能。",
+      "public_return_zh": "AR 内容与登记台账公开，形成长期纪念与荣誉公共资源。",
+      "operator_zh": "纪念体系运营方 + 开发者社区（概念建议）",
+      "operating_status": "concept_design",
+      "risks_zh": [
+        "荣誉记录真实性",
+        "AR 内容管理",
+        "设备排他性"
+      ],
+      "human_review": "所有 AR 条目经人工登记与审核；提供非 AR 的实体荣誉墙等价体验。",
+      "ordinary_baseline_zh": "无 AI 时的普通完成方式：实体荣誉墙提供非 AR 的等价参观体验，AR 为增强层而非准入条件。",
+      "exit_condition_zh": "退出条件与场地恢复：AR 功能关闭后实体荣誉墙持续运营；设备按可逆安装设计拆除，不留固定硬装。",
+      "evidence_output_zh": "公共证据输出：登记与审核记录、条目撤回记录、设备安全巡检记录。"
+    }
+  ]
+}

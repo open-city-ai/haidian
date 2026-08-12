@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>微循环智运 MICROLOOP — 京张AI创新带低速机器人·无人接驳末端网络（离线展示）</title>
+<style>
+:root{--navy:#1f4e79;--green:#2e7d32;--amber:#d9480f;--teal:#0277bd;--bg:#f4f6f8;--card:#ffffff;--line:#dfe4ea;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Noto Sans CJK SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:var(--bg);color:#263238;line-height:1.6;}
+.wrap{max-width:1240px;margin:0 auto;padding:24px 20px;}
+header{background:linear-gradient(135deg,#1f4e79,#0277bd 55%,#d9480f);color:#fff;padding:34px 20px;border-radius:14px;margin-bottom:26px;}
+header h1{font-size:28px;letter-spacing:1px;}
+header .sub{font-size:15px;margin-top:8px;opacity:.95;}
+.badges{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;}
+.badge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);padding:4px 12px;border-radius:20px;font-size:12px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:18px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.card h2{font-size:16px;color:var(--navy);border-left:4px solid var(--green);padding-left:10px;margin-bottom:12px;}
+.card h3{font-size:13px;color:#455a64;margin:10px 0 6px;}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;}
+.kpi{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center;}
+.kpi .v{font-size:24px;font-weight:700;color:var(--navy);}
+.kpi .l{font-size:12px;color:#607d8b;margin-top:4px;}
+.mapbox{background:#eef2f5;border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center;}
+.mapbox svg{width:100%;height:auto;max-height:420px;}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:11px;margin-top:8px;color:#455a64;}
+.legend span{display:inline-flex;align-items:center;gap:5px;}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block;border:1px solid #999;}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;}
+th{background:#f0f4f8;color:var(--navy);}
+.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;}
+.pass{background:#e8f5e9;color:#1b5e20;}
+.warn{background:#fff8e1;color:#b26a00;}
+.info{background:#e3f2fd;color:#0d47a1;}
+.note{font-size:11px;color:#78909c;margin-top:8px;}
+.foot{text-align:center;font-size:11px;color:#90a4ae;margin-top:26px;padding:14px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>微循环智运 MICROLOOP · 京张AI创新带低速机器人·无人接驳末端网络</h1>
+  <div class="sub">概念建议 / 参考方案，基于公开与已清权资料，使用临时约束范围（provisional），不替代正式规划。</div>
+  <div class="badges">
+    <span class="badge">作者: xiaopi668</span>
+    <span class="badge">语言: 中 / EN</span>
+    <span class="badge">赛道: 机器人与自动驾驶 · AI公共服务</span>
+    <span class="badge">package: professional_design_package</span>
+    <span class="badge">状态: 待评审 (ready_for_review)</span>
+  </div>
+</header>
+
+<!-- ============ 总览与地图 ============ -->
+<div class="card">
+  <h2>总览地图 · 三环互联与东西缝合</h2>
+  <div class="mapbox">
+    <svg viewBox="0 0 800 720" role="img" aria-label="三环互联示意图">
+      <rect x="30" y="20" width="740" height="680" fill="none" stroke="#90a4ae" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <text x="640" y="40" font-size="13" fill="#78909c">统筹研究范围 43.6 km²（reference）</text>
+      <polygon points="210,690 590,690 590,470 570,260 590,60 320,60 300,240 210,470" fill="#eef3f8" stroke="#7f8c8d" stroke-width="2" stroke-dasharray="5 4"/>
+      <text x="380" y="712" font-size="12" fill="#78909c" text-anchor="middle">总体设计范围≈11.4 km²（provisional 虚线）</text>
+      <!-- 三个关键区 + 机器人环道 -->
+      <rect x="250" y="70" width="300" height="150" fill="#f6b26b" stroke="#d9480f" stroke-width="2" opacity="0.75"/>
+      <rect x="280" y="100" width="240" height="40" fill="none" stroke="#0277bd" stroke-width="3" rx="20" stroke-dasharray="7 5"/>
+      <text x="400" y="120" font-size="12" fill="#4a2500" text-anchor="middle" font-weight="bold">P1 北环·众智园 机器人测试场</text>
+      <rect x="235" y="250" width="310" height="90" fill="#f9cb9c" stroke="#d9480f" stroke-width="2" opacity="0.8"/>
+      <rect x="265" y="270" width="250" height="40" fill="none" stroke="#0277bd" stroke-width="3" rx="20" stroke-dasharray="7 5"/>
+      <text x="390" y="285" font-size="12" fill="#4a2500" text-anchor="middle" font-weight="bold">P2 中环·AI原点 公共机器人服务区</text>
+      <rect x="245" y="490" width="290" height="50" fill="#e6a5b2" stroke="#d9480f" stroke-width="2" opacity="0.8"/>
+      <rect x="270" y="495" width="240" height="40" fill="none" stroke="#0277bd" stroke-width="3" rx="20" stroke-dasharray="7 5"/>
+      <text x="390" y="522" font-size="12" fill="#4a2500" text-anchor="middle" font-weight="bold">P3 南环·大钟寺 机器人到店体验网</text>
+      <!-- 慢行主轴 -->
+      <path d="M390,90 L380,250 L385,490 L390,680" stroke="#1b5e20" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <text x="412" y="300" font-size="12" fill="#1b5e20" font-weight="bold">京张遗址公园慢行主轴</text>
+      <!-- 东西缝合低速廊道 -->
+      <path d="M0,160 L800,160 M0,295 L800,295 M0,515 L800,515" stroke="#607d8b" stroke-width="2.5" stroke-dasharray="8 5"/>
+      <text x="120" y="150" font-size="11" fill="#0277bd" font-style="italic">低速接驳/机器人廊道</text>
+      <!-- 机器人驿站星标 -->
+      <text x="400" y="175" font-size="20" fill="#d9480f" text-anchor="middle">⚡</text>
+      <text x="390" y="330" font-size="20" fill="#d9480f" text-anchor="middle">⚡</text>
+      <text x="390" y="545" font-size="20" fill="#d9480f" text-anchor="middle">⚡</text>
+    </svg>
+    <div class="legend">
+      <span><i class="sw" style="background:#f6b26b"></i>机器人测试场</span>
+      <span><i class="sw" style="background:#f9cb9c"></i>公共机器人服务</span>
+      <span><i class="sw" style="background:#e6a5b2"></i>机器人到店体验</span>
+      <span><i class="sw" style="background:#a5d6a7"></i>绿地廊道</span>
+      <span style="color:#0277bd">— 低速机器人/无人接驳环道</span>
+      <span style="color:#d9480f">⚡ 机器人驿站</span>
+    </div>
+  </div>
+  <div class="note">示意为基于本方案 geometry 拓扑的静态表达（SVG 内联，完全离线）。精确面积与红线以官方 polygon 为准，本方案面积由 EPSG:4548 复算。</div>
+</div>
+
+<!-- ============ 核心指标（data-metric/data-value 供 visual_review 校验）============ -->
+<div class="card">
+  <h2>核心指标（Metrics）</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v" data-metric="site_area_sqm" data-value="11412825.4">11,412,825</div><div class="l">总体面积 m²</div></div>
+    <div class="kpi"><div class="v" data-metric="green_ratio" data-value="0.1252">12.52%</div><div class="l">绿地占比</div></div>
+    <div class="kpi"><div class="v" data-metric="public_space_ratio" data-value="0.0394">3.94%</div><div class="l">公共空间占比</div></div>
+    <div class="kpi"><div class="v" data-metric="road_network_length_m" data-value="24860.6">24.86</div><div class="l">慢行/机器人路网 km</div></div>
+    <div class="kpi"><div class="v" data-metric="key_area_count" data-value="3">3</div><div class="l">重点区数量</div></div>
+    <div class="kpi"><div class="v" data-metric="phase_area_sqm" data-value="3692893.0">3,692,893</div><div class="l">分期实施 m²</div></div>
+  </div>
+  <div class="note">指标与 metrics.json 一致，均由 geometry 在 EPSG:4548 复算。FAR / 建筑高度 / 建筑密度等法定控制缺官方条件，标记为待正式数据补齐（未展示）。</div>
+</div>
+
+<!-- ============ 三层范围 + 任务覆盖 ============ -->
+<div class="grid">
+  <div class="card">
+    <h2>三层范围工作框架</h2>
+    <table>
+      <tr><th>层级</th><th>面积</th><th>核心任务</th></tr>
+      <tr><td>统筹研究范围</td><td>43.6 km²</td><td>低速机器人/自动驾驶重构末端流程</td></tr>
+      <tr><td>总体设计范围</td><td>11.4 km²</td><td>末端物流 · 公共机器人服务试点</td></tr>
+      <tr><td>重点区域范围</td><td>368.4 ha</td><td>三处环道与机器人驿站详细设计</td></tr>
+    </table>
+    <h3>三大定位 · 五大功能</h3>
+    <p style="font-size:12px">百年京张文化带｜都市AI生活体验带｜AI融合创新带<br>末端物流自主化 · 公共机器人服务 · 低速自动驾驶试点 · 末端治理话语权 · 智能化活力城市</p>
+  </div>
+  <div class="card">
+    <h2>任务覆盖 Compliance</h2>
+    <table>
+      <tr><th>任务</th><th>状态</th></tr>
+      <tr><td>6项 agent 任务 (agent.1–6)</td><td><span class="tag pass">全覆盖</span></td></tr>
+      <tr><td>公告 1.3 / 1.4 / 1.5</td><td><span class="tag pass">全覆盖</span></td></tr>
+      <tr><td>24 类末端场景卡 (≥10)</td><td><span class="tag pass">达标</span></td></tr>
+      <tr><td>3 个机器人驿站地标</td><td><span class="tag pass">达标</span></td></tr>
+      <tr><td>5 类用户画像</td><td><span class="tag pass">达标</span></td></tr>
+      <tr><td>低速自动驾驶 / 无人配送试点</td><td><span class="tag pass">达标</span></td></tr>
+      <tr><td>中英双语呈现</td><td><span class="tag pass">达标</span></td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>用地分区 Land Use</h2>
+    <table>
+      <tr><th>功能区</th><th>代码</th></tr>
+      <tr><td>绿廊·京张遗址公园带</td><td>1401</td></tr>
+      <tr><td>机器人智测工场·众智园</td><td>0802</td></tr>
+      <tr><td>开源原点·AI原点社区</td><td>0802</td></tr>
+      <tr><td>微循环智运带 / 公共机器人服务区</td><td>05 / 0701</td></tr>
+      <tr><td>大钟寺智能体验街区</td><td>05</td></tr>
+      <tr><td>蓝绿活力廊道</td><td>1401</td></tr>
+    </table>
+    <div class="note">用地分类遵循 MNR 官方 land_use_codes（0802 科研用地 / 05 商业服务 / 0701 城镇住宅 / 1401 公园绿地），三环互联空间见结构图与下方分期。</div>
+  </div>
+  <div class="card">
+    <h2>分期实施 Phasing</h2>
+    <table>
+      <tr><th>阶段</th><th>范围</th><th>内容</th></tr>
+      <tr><td>P1 北环（众智园）</td><td>机器人测试场</td><td>低速试点 · 测试配送/巡检/导览</td></tr>
+      <tr><td>P2 中环（AI原点）</td><td>公共机器人服务区</td><td>无人配送 · 无障碍随行 · 政务代办</td></tr>
+      <tr><td>P3 南环（大钟寺）</td><td>机器人到店体验网</td><td>到店配送 · 内容体验 · 消费闭环</td></tr>
+    </table>
+    <div class="note">三环互联分期实施，每期配套机器人驿站、换电与调度政策，滚动监测低速试点合规性。</div>
+  </div>
+  <div class="card">
+    <h2>三处重点区详细设计</h2>
+    <table>
+      <tr><th>重点区</th><th>环道角色</th></tr>
+      <tr><td>北环·众智园</td><td>机器人测试、验证与低速自动驾驶试点</td></tr>
+      <tr><td>中环·AI原点社区</td><td>公共机器人服务、配送与社区自治</td></tr>
+      <tr><td>南环·大钟寺</td><td>机器人到店、内容体验与消费闭环</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>数据与来源 Sources</h2>
+    <table>
+      <tr><th>来源</th><th>类型</th></tr>
+      <tr><td>SITE-PACKAGE</td><td>official_public</td></tr>
+      <tr><td>SOURCE-REGISTRY</td><td>repository_public_registry</td></tr>
+      <tr><td>PROCESSED-FACT-PACK</td><td>repository_processed_reference</td></tr>
+      <tr><td>BOUNDARY-SOURCE / KEY-AREA-SOURCE</td><td>agent_inferred (provisional)</td></tr>
+      <tr><td>OFFICIAL-ANNOUNCEMENT</td><td>official_public</td></tr>
+      <tr><td>AGENT-TASKBOOK</td><td>user_provided_cleared</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>交通慢行与蓝绿公共空间</h2>
+    <div style="font-size:12px;line-height:1.8">
+      <strong>交通慢行：</strong>京张遗址公园慢行主轴 + 三处低速机器人环道 + 东西缝合廊道，分层共享路权。<br>
+      <strong>蓝绿公共空间：</strong>蓝绿活力廊道 + 机器人驿站广场，绿廊提供遮荫、休憩与机器人静默停机位。<br>
+      <strong>指标：</strong>慢行/机器人路网 ≈24.9km · 绿地占比 ≈12.5% · 公共空间占比 ≈3.9%
+    </div>
+  </div>
+  <div class="card">
+    <h2>更新项目与 AI 场景</h2>
+    <div style="font-size:12px;line-height:1.8">
+      <strong>更新项目：</strong>改造低效物业为机器人驿站/分拣/公共机器人服务设施，新建少量机器人测试与换电节点。<br>
+      <strong>AI 场景：</strong>无人配送 · 智能巡检 · 导览随行 · 清洁维护 · 公共机器人服务（政务代办/医疗/法律）· 低速自动驾驶接驳 · 机器人到店。<br>
+      <strong>品类：</strong>配送 / 巡检 / 导览 / 清洁 / 无障碍随行 / 低速接驳
+    </div>
+  </div>
+</div>
+
+<!-- ============ 机器人微循环系统 ============ -->
+<div class="grid">
+  <div class="card">
+    <h2>智能机器人品类与末端场景</h2>
+    <div style="font-size:12px;line-height:1.8">
+      <strong>机器人品类：</strong>配送 / 巡检 / 导览 / 清洁 / 无障碍随行 / 低速接驳<br>
+      <strong>末端场景（24 类）：</strong>快递配送 · 外卖 · 生鲜 · 医疗配送 · 安防巡检 · 设施巡检 · 文化导览 · 无障碍随行 · 路面清洁 · 园区清洁 · 政务代办 · 法律咨询 · 智能售货 · 内容直播 · 站点接驳 …<br>
+      <strong>合规协议：</strong>可监管 · 可复核 · 可回退
+    </div>
+  </div>
+  <div class="card">
+    <h2>关键假设与限制 Assumptions</h2>
+    <ul style="font-size:12px;padding-left:16px;line-height:1.8">
+      <li>三处重点区与场地为临时约束范围（provisional），非官方红线。</li>
+      <li>官方 polygon、红线与控制条件发布后，全部面积/比例指标须整包重算。</li>
+      <li>低速机器人试点遵循可监管、可复核、可回退原则，任一场景可回退到人工。</li>
+      <li>建筑密度、高度、容积率等法定指标待正式数据补齐。</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <h2>自检状态 Self-Check</h2>
+  <table>
+    <tr><th>检查门</th><th>状态</th></tr>
+    <tr><td>DETERMINISTIC_VALIDATION</td><td><span class="tag pass">PASS</span></td></tr>
+    <tr><td>SPATIAL_REVIEW</td><td><span class="tag pass">PASS</span></td></tr>
+    <tr><td>VISUAL_PACKAGING</td><td><span class="tag pass">PASS</span></td></tr>
+    <tr><td>PROFESSIONAL_EVIDENCE</td><td><span class="tag pass">PASS</span></td></tr>
+  </table>
+</div>
+
+<div class="foot">百年京张AI创新带城市设计开源征集 · xiaopi668 · 概念建议（provisional）· 微循环智运 MICROLOOP</div>
+</div>
+</body>
+</html>

@@ -45,6 +45,8 @@ code {
   border-radius: 4px;
 }
 .summary { color: var(--muted); font-size: 17px; }
+.meta { color: var(--accent); font-size: 14px; margin: 0; }
+.metric { color: #174f78; font-weight: 600; white-space: nowrap; }
 .proposal-figure {
   margin: 22px 0 28px;
   border: 1px solid var(--line);
@@ -84,6 +86,7 @@ code {
 <section class="hero">
 <h1>同廊三线：一套可回退的城市接口系统</h1>
 <p class="summary">以已开放的京张铁路遗址公园 9km 绿廊与 13 号线、京张高铁隧道三条基础设施的平面共廊关系为对象，按剖面带 S01–S10 与三个原型剖面 P-A/P-B/P-C 组织一套可回退的城市接口系统；空间建议均为概念建议，临时边界仅用于本次 intake 与后续复算。</p>
+<p class="meta">版本：v0.4</p>
 </section>
 <h1>同廊三线：百年京张的接口剖面</h1>
 <h2>Same Corridor, Three Times</h2>
@@ -102,7 +105,7 @@ code {
 <li>智能体任务书：《面向全球智能体开展&quot;百年京张AI创新带城市设计开源征集&quot;的任务书摘录》，规定本包的提交结构与机器可读闭环要求。<span class="evidence evidence-source">[source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]</span> <span class="evidence evidence-standard">[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]</span></li>
 </ul>
 <h3>资料清单</h3>
-<p>| 来源 ID | 资料 | 用途 | |---|---|---| | DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509 | 征集资格预审公告 | 任务、范围与重点区文字依据 | | DATA-SRC-PROVISIONAL-BOUNDARIES-20260605 | 三层范围与三处重点区临时粗略 polygon | 临时 intake 与概念表达 | | PARK-P2-OPEN-20260806 | 京张铁路遗址公园二期建成开放报道 | 地表公共层现状 | | LINE13-UPGRADE-20250215 | 13 号线扩能提升工程公开报道 | 轨道通勤层双状态表达 | | TECH-PARK-XUEBEI-20250522 | 学北园智慧园区公开报道 | 众智园重点区现状锚点 | | JUESHENG-TEMPLE-CONTROL-20180102 | 觉生寺（大钟寺）保护范围及建控地带 | 文保约束文字依据 | | COORD-CHECK-20260808 | 同廊三线公开坐标交叉核验记录 | 站点/地物锚点核验 | | SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK | 智能体开源征集任务书摘录 | 提交流程与合规要求 |</p>
+<table><thead><tr><th>来源 ID</th><th>资料</th><th>用途</th></tr></thead><tbody><tr><td>DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509</td><td>征集资格预审公告</td><td>任务、范围与重点区文字依据</td></tr><tr><td>DATA-SRC-PROVISIONAL-BOUNDARIES-20260605</td><td>三层范围与三处重点区临时粗略 polygon</td><td>临时 intake 与概念表达</td></tr><tr><td>PARK-P2-OPEN-20260806</td><td>京张铁路遗址公园二期建成开放报道</td><td>地表公共层现状</td></tr><tr><td>LINE13-UPGRADE-20250215</td><td>13 号线扩能提升工程公开报道</td><td>轨道通勤层双状态表达</td></tr><tr><td>TECH-PARK-XUEBEI-20250522</td><td>学北园智慧园区公开报道</td><td>众智园重点区现状锚点</td></tr><tr><td>JUESHENG-TEMPLE-CONTROL-20180102</td><td>觉生寺（大钟寺）保护范围及建控地带</td><td>文保约束文字依据</td></tr><tr><td>COORD-CHECK-20260808</td><td>同廊三线公开坐标交叉核验记录</td><td>站点/地物锚点核验</td></tr><tr><td>SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK</td><td>智能体开源征集任务书摘录</td><td>提交流程与合规要求</td></tr></tbody></table>
 <h3>provisional geometry 的使用边界</h3>
 <p>组织方当前公开包未提供 official boundary 或三处重点区精确 polygon。<span class="evidence evidence-source">[source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509]</span> 仓库中的 provisional geometry 仅用于 agent 生成、展示和临时自检，不作为法定红线、审批依据或精确面积复算依据。<span class="evidence evidence-source">[source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]</span> [assumption:A-BOUNDARY-OVERSPAN-002] [assumption:A-KEYAREA-ANCHOR-003]</p>
 <p>本方案统一使用四种证据状态：</p>
@@ -112,28 +115,30 @@ code {
 <li><code>conceptual</code>：本方案提出的设计几何、策略分区、慢行线、公共接口和分期范围；不代表现状调查或审批结论。</li>
 <li><code>unknown</code>：缺少权威或现状几何，暂不绘制确定性要素，也不写入现实现状指标；只登记公式、触发条件和回退规则。</li>
 </ul>
-<p>图面规则与指标规则一致：<code>verified</code> 用空心来源锚点，<code>provisional</code> 用低对比短划线，<code>conceptual</code> 用半透明色块/概念线，<code>unknown</code> 不绘制确定几何。</p>
+<p>图面符号约定（本方案自定）与指标规则一致：<code>verified</code> 用空心来源锚点，<code>provisional</code> 用低对比短划线，<code>conceptual</code> 用半透明色块/概念线，<code>unknown</code> 不绘制确定几何。</p>
 <h3>证据起点：坐标核验 <span class="evidence evidence-depth">[depth:existing_conditions_diagnosis]</span></h3>
-<p>本方案对大钟寺、知春路、五道口、清华东路西口、学知园等站点和清河、清华园车站旧址等地物做了坐标核验。核验工作支持的最小结论是：13 号线、京张高铁隧道和遗址公园在约 100–200m 级的城市廊带内接近并形成共廊关系；这证明了它们是一个需要共同设计的空间系统，但**不证明三者在所有位置严格垂向上下叠置**。<span class="evidence evidence-source">[source:COORD-CHECK-20260808]</span></p>
-<p>这产生了一个比&quot;主脉&quot;&quot;智脉&quot;更具体的空间对象：**把平面共廊关系转译成待核验的设计剖面，回答三种速度、三种时间和三种公共性如何在不同段落共处。**</p>
+<p>本方案对大钟寺、知春路、五道口、清华东路西口、学知园等站点和清河、清华园车站旧址等地物做了坐标核验。核验工作支持的最小结论是：13 号线、京张高铁隧道和遗址公园在约 100–200m 级的城市廊带内接近并形成共廊关系；这证明了它们是一个需要共同设计的空间系统，但<strong>不证明三者在所有位置严格垂向上下叠置</strong>。<span class="evidence evidence-source">[source:COORD-CHECK-20260808]</span></p>
+<p>这产生了一个比&quot;主脉&quot;&quot;智脉&quot;更具体的空间对象：<strong>把平面共廊关系转译成待核验的设计剖面，回答三种速度、三种时间和三种公共性如何在不同段落共处。</strong></p>
+<figure class="proposal-figure"><img src="../assets/figures/01-spatial-diagnosis-corridor.png" alt="空间诊断：同廊三线与三个接口原型"><figcaption>空间诊断：同廊三线与三个接口原型</figcaption></figure>
 <figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="场地总览：三层范围与 S01–S10 / P-A–P-C 剖面单元（provisional 边界，非正式红线）"><figcaption>场地总览：三层范围与 S01–S10 / P-A–P-C 剖面单元（provisional 边界，非正式红线）</figcaption></figure>
 <h2>三层范围工作框架</h2>
 <h3>三层范围定义 <span class="evidence evidence-depth">[depth:three_level_scope_framework]</span></h3>
-<p>| 层 | 范围 | 临时面积（provisional） | 本方案工作深度 | |---|---|---|---| | 统筹研究范围 | PROV-RESEARCH-001 | 约 43.6 km² | 产业与未来城市研究、接口案例框架 | | 总体设计范围 | PROV-SITE-001 | <code><span class="evidence evidence-metric">[metric:site_area_sqm]</span></code>（约 11.4 km²） | 城市更新与控规深度城市设计（概念） | | 重点区域 | PROV-KEY-001/002/003 | <code><span class="evidence evidence-metric">[metric:key_areas_total_area_sqm]</span></code>（<code><span class="evidence evidence-metric">[metric:key_area_count]</span></code> 公告口径约 368.4 ha；provisional 几何复算约 369.3 ha） | 详细设计原型与第一批空间动作 |</p>
+<table><thead><tr><th>层</th><th>范围</th><th>临时面积（provisional）</th><th>本方案工作深度</th></tr></thead><tbody><tr><td>统筹研究范围</td><td>PROV-RESEARCH-001</td><td>约 43.6 km²</td><td>产业与未来城市研究、接口案例框架</td></tr><tr><td>总体设计范围</td><td>PROV-SITE-001</td><td><code><span class="metric" data-metric="site_area_sqm">1,141.3 ha</span></code>（约 11.4 km²）</td><td>城市更新与控规深度城市设计（概念）</td></tr><tr><td>重点区域</td><td>PROV-KEY-001/002/003</td><td>公告口径约 368.4 ha；provisional 几何复算约 369.3 ha（<code><span class="metric" data-metric="key_area_count">3</span></code>、<code><span class="metric" data-metric="key_areas_total_area_sqm">369.3 ha</span></code>）</td><td>详细设计原型与第一批空间动作</td></tr></tbody></table>
 <p>三层范围面积均为 provisional 校核值，正式边界发布后必须替换并复算。<span class="evidence evidence-source">[source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]</span> [assumption:A-BOUNDARY-OVERSPAN-002]</p>
 <h3>剖面工作单元</h3>
-<p>9km 走廊由南向北拆为 S01–S10 十个典型剖面 <span class="evidence evidence-metric">[metric:typical_section_count]</span>，连同三个原型剖面 <span class="evidence evidence-metric">[metric:prototype_section_count]</span>，全廊共 13 个剖面单元 <span class="evidence evidence-metric">[metric:section_unit_count]</span>。每个剖面至少回答四个问题：</p>
+<p>9km 走廊由南向北拆为 S01–S10 十个典型剖面 <span class="metric" data-metric="typical_section_count">10</span>，连同三个原型剖面 <span class="metric" data-metric="prototype_section_count">3</span>，全廊共 13 个剖面单元 <span class="metric" data-metric="section_unit_count">13</span>。每个剖面至少回答四个问题：</p>
 <p>1. 东西两侧分别是什么城市界面； 2. 遗址公园、13 号线和地下高铁如何在同一剖面中共处； 3. 现有阻隔在哪里，第一条可逆的穿越动作是什么； 4. 哪个 AI 场景能够在此真实发生、被人工复核并可撤回。</p>
 <p>典型剖面序列：南端枢纽门户、大钟寺站域、13 号线高架邻接、知春路—五道口日常段、原点双锚点段、清华园旧址记忆支线、学院路产业接口、清河蓝绿复合段、众智园/学北园段、北五环门户。</p>
 <h3>P / V / D 分段逻辑</h3>
 <p>全线不按同一种&quot;共廊&quot;处理，而分成三种状态：</p>
 <ul>
-<li>**P / 平面接近**：三线在百米级城市廊带内接近，当前只做平面关系判断；</li>
-<li>**V / 垂向耦合候选**：站点、高架、隧道、蓝绿或公园入口产生垂向接口可能，值得做剖面，但工程断面仍待官方资料；</li>
-<li>**D / 历史分离**：旧址与现走廊物理错开，只做记忆寻径，不作为现状三线共廊事实。</li>
+<li><strong>P / 平面接近</strong>：三线在百米级城市廊带内接近，当前只做平面关系判断；</li>
+<li><strong>V / 垂向耦合候选</strong>：站点、高架、隧道、蓝绿或公园入口产生垂向接口可能，值得做剖面，但工程断面仍待官方资料；</li>
+<li><strong>D / 历史分离</strong>：旧址与现走廊物理错开，只做记忆寻径，不作为现状三线共廊事实。</li>
 </ul>
-<p>S01–S10 的分段单元、证据状态和回退条件以 <code>visual/assets/section_units.json</code> 与 <code>visual/assets/coordinate-verification-log.json</code> 为准。核心原则是：**全线以平面共廊为事实底盘，只在证据足够的站点和接口段提出垂向耦合候选。**</p>
-<p>&gt; **剖面纪律**：图上的三层是&quot;设计阅读层&quot;，不是工程竖向断面。当前已核验的是平面共廊关系；垂向叠置、埋深、结构和施工影响须待官方工程资料确认。[assumption:A-VERTICAL-RELATION-004] [assumption:A-LINE13-ENGINEERING-005]</p>
+<p>S01–S10 的分段单元、证据状态和回退条件以 <code>visual/assets/section_units.json</code> 与 <code>visual/assets/coordinate-verification-log.json</code> 为准。核心原则是：<strong>全线以平面共廊为事实底盘，只在证据足够的站点和接口段提出垂向耦合候选。</strong></p>
+<p>&gt; <strong>剖面纪律</strong>：图上的三层是&quot;设计阅读层&quot;，不是工程竖向断面。当前已核验的是平面共廊关系；垂向叠置、埋深、结构和施工影响须待官方工程资料确认。[assumption:A-VERTICAL-RELATION-004] [assumption:A-LINE13-ENGINEERING-005]</p>
+<figure class="proposal-figure"><img src="../assets/figures/02-three-lines-section.png" alt="三线共廊剖面：地表记忆、轨道通勤与地下速度的接口关系"><figcaption>三线共廊剖面：地表记忆、轨道通勤与地下速度的接口关系</figcaption></figure>
 <h2>统筹研究范围产业与未来城市研究</h2>
 <h3>设计命题：把&quot;带&quot;改写成剖面</h3>
 <p>公开资料显示，京张铁路遗址公园二期于 2026 年 8 月 6 日建成开放，西直门至北五环形成约 9km 的带状公共空间，配置&quot;三道一绿&quot;慢行系统并打通 9 条城市支路。<span class="evidence evidence-source">[source:PARK-P2-OPEN-20260806]</span></p>
@@ -141,7 +146,7 @@ code {
 <p>因此，本方案不再把设计理解为&quot;在一条绿带上叠加 AI 功能&quot;，而把问题改写为：</p>
 <p>&gt; 当速度、通勤、历史和日常生活共用一条 100–200m 的城市廊带时，城市如何提供连续、可进入、可回退的接口？</p>
 <h3>三种时间，三个空间层</h3>
-<p>| 层 | 物理对象 | 城市含义 | 设计态度 | |---|---|---|---| | 地下速度层 | 京张高铁清华园隧道 | 跨城速度、不可见基础设施 | 只在有来源的段落表达；不把相对位置画成已确认埋深 | | 轨道通勤层 | 13 号线现状及扩能提升 | 每日通勤、站点换乘、改造中的结构变量 | 用双状态表达现状与条件触发接口 | | 地表记忆层 | 京张遗址公园及老线位 | 铁路遗产、社区公共生活、AI 场景运营 | 不重画已开放绿廊，设计两侧城市接口 |</p>
+<table><thead><tr><th>层</th><th>物理对象</th><th>城市含义</th><th>设计态度</th></tr></thead><tbody><tr><td>地下速度层</td><td>京张高铁清华园隧道</td><td>跨城速度、不可见基础设施</td><td>只在有来源的段落表达；不把相对位置画成已确认埋深</td></tr><tr><td>轨道通勤层</td><td>13 号线现状及扩能提升</td><td>每日通勤、站点换乘、改造中的结构变量</td><td>用双状态表达现状与条件触发接口</td></tr><tr><td>地表记忆层</td><td>京张遗址公园及老线位</td><td>铁路遗产、社区公共生活、AI 场景运营</td><td>不重画已开放绿廊，设计两侧城市接口</td></tr></tbody></table>
 <h3>产业生态研究：接口问题驱动的案例选择框架</h3>
 <p>AI 产业生态案例不按&quot;知名企业名单&quot;堆砌，而按接口问题选择 5–8 个可迁移案例：</p>
 <ul>
@@ -155,22 +160,30 @@ code {
 <li>无障碍数字服务回退机制。</li>
 </ul>
 <p>每个案例标注&quot;可迁移什么 / 不能证明什么 / 对应哪个剖面 / 所需本地条件&quot;。</p>
-<h3>与旧方案的关系</h3>
-<p>已合入 main 的 #71「开源回路」保留为历史版本。本方案不是原方案的原地润色，而是完成空间诊断、坐标核验和对抗审查后的新包：</p>
+<h3>案例矩阵（8 个接口问题，来源已登记）</h3>
+<table><thead><tr><th>#</th><th>案例</th><th>接口问题</th><th>可迁移机制</th><th>不能证明什么</th><th>对应剖面</th><th>本地前置条件</th><th>来源</th></tr></thead><tbody><tr><td>01</td><td>纽约 High Line 高线公园</td><td>铁路/基础设施遗产转公共空间</td><td>高架货运线分段改造为线性公共公园；市政府持有产权、民间组织 Friends of the High Line 长期运营；首段 2009 年开放后逐段推进</td><td>高线是纽约财政/游客结构与市政持有、非营利运营伙伴关系下的产物；其&quot;以公园带动周边地产&quot;的收益模型不能被证明可复制到以存量社区为主的京张沿线；也不证明所有铁路遗存都应改造成公园</td><td>S01 南端枢纽门户、S03 高架邻接段、S06 记忆支线</td><td>已存在的公园管理主体与运营机制（京张遗址公园已开放，具备）；分阶段资金安排；公众参与与投票机制</td><td><span class="evidence evidence-source">[source:CASE-HIGHLINE-20260810]</span></td></tr><tr><td>02</td><td>清华科技园（海淀五道口）</td><td>校园—城市知识转化</td><td>紧邻校园边界的知识转化前场：园区紧贴清华东南角而非深入校园内部；以发展中心实体运营、入园企业/机构聚集、与校方形成成果转化接口</td><td>清华的品牌与科研体量不可复制；不证明&quot;紧邻校园&quot;单独足以驱动转化（政策、资本、人才同样关键）；不证明必须采用围墙内园区形态</td><td>P-B 原点社区、S05 双锚点段、S04 知春路—五道口日常段</td><td>校园边界外的可开发/可改造载体；校地协议与成果转化制度；孵化服务实体</td><td><span class="evidence evidence-source">[source:CASE-TSINGHUA-SCIENCE-PARK-20260810]</span></td></tr><tr><td>03</td><td>长三角绿洲智谷·赵巷（上海 17 号线嘉松中路站）</td><td>轨道微中心与产城融合</td><td>站点南北两侧整体规划、功能向站点集聚：总部研发+科创孵化+商业+人才公寓+公共配套一体化开发；轨道交通站点作为产城融合的组织核心</td><td>上海西软信息园/长三角的市场腹地与轨道制式（市域线）不可直接照搬；不证明商业体量或开发强度可复制到京张沿线；不证明站城一体必然带来职住平衡</td><td>P-A 众智园、S08 站点—公园—产业段、S10 北五环门户</td><td>北京轨道微中心名录政策通道（站点周边可用地/更新权属）；运营主体；指标投放管理办法</td><td><span class="evidence evidence-source">[source:CASE-YANGTZE-GREEN-VALLEY-20260810]</span></td></tr><tr><td>04</td><td>良渚遗址保护展示</td><td>低干预历史环境展示</td><td>保护与展示分离：本体覆罩保护、地表模拟展示两种方式并存；展示内容以考古成果为准；容量按卡口核定，不追求全景重建</td><td>良渚为国家级大遗址，其保护强度与资源投入不可直接照搬到大钟寺站域；不证明&quot;低干预&quot;等于零干预（覆罩与模拟本身即技术干预）；不证明文保前场模式适用于所有文物类型</td><td>P-C 大钟寺、S02 大钟寺站域、S06 记忆支线</td><td>觉生寺保护范围与建控地带正式图件（文字边界已有）；考古/文保专业团队；内容审校机制</td><td><span class="evidence evidence-source">[source:CASE-LIANGZHU-20260810]</span></td></tr><tr><td>05</td><td>北京亦庄高级别自动驾驶示范区</td><td>AI 场景开放测试与人工复核</td><td>分级准入+分阶段退出安全员+全流程监管：事前技术能力评估（虚拟仿真/封闭场地/开放道路）、事中监管、事后分析；&quot;2+5+N&quot;政策管理体系；数据产品开放（仿真平台、异常事件集）</td><td>示范区有政策先行区授权与专门治理资源，普通公园无此授权；不证明测试里程多等于安全性结论；不证明自动驾驶的测试治理可直接搬到公共空间 AI 场景</td><td>P-A 测试驿站组件、S07 学院路产业接口、SC-10 开发者公共空间测试日</td><td>政策先行区/试点授权；场景申请—审核—退出制度（提交包已有 SC-10 准入退出机制）；责任保险与事故处理；数据合规</td><td><span class="evidence evidence-source">[source:CASE-YIZHUANG-AD-20260810]</span></td></tr><tr><td>06</td><td>深圳光明海绵城市教育</td><td>蓝绿基础设施与公共技术教育</td><td>把蓝绿设施做成可参与的教学载体：共建花园、校园&quot;海绵实验站&quot;、水质实验与模型搭建；设施本身承担科普与公众参与功能</td><td>光明为专项试点城市，有专门资金与绩效评价；不证明科普活动等于系统性教育成效；不证明设施运维责任不清时教育功能仍可持续</td><td>S09 清河蓝绿复合段、P-A 清河接口、SC-03 清河蓝绿生态观察</td><td>蓝线/防洪/水务部门参与（A-02 已要求）；设施运维主体；与学校/社区的科普合作协议；极端天气回退（T-03 已有）</td><td><span class="evidence evidence-source">[source:CASE-GUANGMING-SPONGE-20260810]</span></td></tr><tr><td>07</td><td>Linux 内核 + 开放原子开源基金会</td><td>开发者社区和长期运营</td><td>版本节律（主线约每 9–10 周发布）+ 中立基金会托管 + 维护者分级治理 + 公开提交记录即公共荣誉；企业捐赠与社区运营分离</td><td>开源治理不能直接照搬到公共空间运营（公园不是软件仓库）；社区活跃度不等于城市公共价值；企业捐赠模式依赖创始企业与政策环境</td><td>长期运营机制（版本墙/提交日志墙/共建节/季度复盘）、SC-10、P-A 测试驿站</td><td>中立托管主体（开放原子式基金会或区属运营主体）；公开提交/贡献记录制度；定期发布与退出机制</td><td><span class="evidence evidence-source">[source:CASE-LINUX-OPENATOM-20260810]</span></td></tr><tr><td>08</td><td>上海数字伙伴计划</td><td>无障碍数字服务回退机制</td><td>三类行动覆盖不同数字能力人群：随行伙伴（适老化和无障碍改造，政务网站/移动端改造率 100%）、智能伙伴（&quot;一键通&quot;：一键预约挂号/叫车/救援/政策咨询）、互助伙伴（信息助力员、数字体验官、微站点）；离线码（60 岁以上凭身份证申领，有效期 180 天）</td><td>上海的城市数字化治理基础与财政体量不可照搬；不证明所有数字服务都必须保留离线通道（成本与场景分级）；不证明线下微站点可以替代线上服务</td><td>全线公共 AI 场景的人工边界/回退（SC-01/04/06 等）、P-A/P-B/P-C 公共节点</td><td>适老化与无障碍改造规范；线下服务站点布点；志愿者/信息助力员队伍；场景分级（哪些可离线、哪些必须在线）</td><td><span class="evidence evidence-source">[source:CASE-SHANGHAI-DIGITAL-COMPANION-20260810]</span></td></tr></tbody></table>
+<p>案例均来自公开可核验来源，已在 <code>sources.json</code> 登记，标注&quot;可迁移什么 / 不能证明什么 / 对应剖面 / 本地前置条件&quot;；案例只用于机制参考，不构成对合作、投资或运营成效的承诺。</p>
+<h2>区域创新协同：五个外部节点的接口协议（建议）</h2>
+<p>AI 创新的要素链——基础研究、技术策源、场景验证、中试制造、腹地市场——无法完整装入 43.6 km² 的统筹研究范围。创新带的竞争力不取决于边界内堆了多少功能，而取决于它与外部节点之间的接口质量。因此本节把任务书点名的五个外部区域处理为<strong>带置信度的接口对象</strong>：只定义建议角色、交换内容、接口形式、数据边界和停止条件，不作任何已确定合作的表述。本节为概念协同框架；区域事实描述限于公开通行认知，未逐项引用专项登记来源，正式深化前须补充来源登记与核验。[assumption:A-REGION-COORD-012]</p>
+<h3>接口总表</h3>
+<table><thead><tr><th>区域</th><th>建议角色（要素链位置）</th><th>建议交换资源</th><th>空间接口</th><th>数字接口</th><th>事实置信度</th></tr></thead><tbody><tr><td>怀柔科学城</td><td>基础研究与大科学装置</td><td>装置机时、科研人才流动、前沿成果来源</td><td>无直接空间邻接；以轨道与市郊通勤构成时间接口</td><td>联合研究目录、成果开放清单（建议）</td><td>公开通行认知，未专项核验</td></tr><tr><td>未来科学城（昌平）</td><td>央企研发与能源、生命等产业创新</td><td>央企研发场景、工程化能力、产业需求</td><td>北部近邻；经轨道换乘链与北部路网连接</td><td>场景需求清单互通（建议）</td><td>公开通行认知，未专项核验</td></tr><tr><td>北京经济技术开发区（亦庄）</td><td>中试制造、自动驾驶与信创场景</td><td>中试产线、测试环境、规模制造能力</td><td>城市对角尺度；以轨道网与快速路网连接</td><td>测试数据标准互认（建议，须另行核验合规性）</td><td>公开通行认知，未专项核验</td></tr><tr><td>京津冀腹地</td><td>产业转移腹地与应用市场</td><td>制造腹地、应用市场、区域通道价值</td><td>区域尺度；京张走廊本身是西北向区域通道的组成部分</td><td>跨域数据流动须按属地法规分级，本方案不预设打通</td><td>国家战略层面公开</td></tr><tr><td>北纬社区</td><td>同城 AI 创新节点（具体定位待核验）</td><td>待核验</td><td>待核验</td><td>待核验</td><td><strong>unknown</strong>：本次未能取得可登记的公开来源</td></tr></tbody></table>
+<h3>统一数据边界、责任主体与停止条件</h3>
 <ul>
-<li>旧方案把&quot;可验证&quot;放在命名中心；本方案把核验过程放进证据层；</li>
-<li>旧方案以回路为总体隐喻；本方案以剖面作为城市设计单元；</li>
-<li>旧方案从概念开始；本方案从已开放绿廊、站点、蓝绿和重点区锚点矛盾开始。</li>
+<li>以上协同全部为概念建议，不代表任何政府或机构立场，不构成合作协议或意向；</li>
+<li>跨区数据交换以属地数据法规和各方数据边界为前提，本方案不预设任何数据打通，不将外部区域的数据或资源计为本方案证据；</li>
+<li>建议责任主体：由海淀区属运营主体（建议）作为接口发起方；对方主体与议程均待官方渠道明确，本方案不代为指定；</li>
+<li>停止条件：对方未确认、来源未登记、或涉及未授权数据流动时，对应协同动作即停止；</li>
+<li>回退完整性：本方案全部空间结构、指标与分期均不依赖任何外部协同成立；区域协同是增量收益，不是前置条件。</li>
 </ul>
 <h2>总体设计范围城市更新与控规深度城市设计</h2>
 <h3>总体空间结构：一条剖面带、三种接口、两条支线 <span class="evidence evidence-depth">[depth:overall_spatial_structure]</span></h3>
 <p>总体设计范围以 S01–S10 剖面带为骨架，三种接口状态（P/V/D）组织全线，两条支线向西、向东延伸接口。</p>
 <p>每段均已建立剖面级指标；现阶段只有剖面单元数量为 known，路径、界面和可达性指标保持 unknown，待道路、公共空间、建筑和约束图层完成后复算：</p>
-<p>| 段 | 剖面级指标 | |---|---| | S01 | 公共枢纽连续路径数 <code><span class="evidence evidence-metric">[metric:s01_hub_public_access_path_count]</span></code> | | S02 | 四象限可达连接数 <code><span class="evidence evidence-metric">[metric:s02_four_quadrant_connection_count]</span></code> | | S03 | 可回退高架接口长度 <code><span class="evidence evidence-metric">[metric:s03_reversible_elevated_interface_length_m]</span></code> | | S04 | 站口—公园—社区日常入口数 <code><span class="evidence evidence-metric">[metric:s04_daily_access_point_count]</span></code> | | S05 | 双锚点连续过境路径数 <code><span class="evidence evidence-metric">[metric:s05_dual_anchor_continuous_route_count]</span></code> | | S06 | 旧址—现走廊记忆路径长度 <code><span class="evidence evidence-metric">[metric:s06_memory_route_length_m]</span></code> | | S07 | 经确认的公共开放界面长度 <code><span class="evidence evidence-metric">[metric:s07_public_frontage_length_m]</span></code> | | S08 | 站点—公园—产业连续连接数 <code><span class="evidence evidence-metric">[metric:s08_station_park_industry_connection_count]</span></code> | | S09 | 清河蓝绿公共可达点数 <code><span class="evidence evidence-metric">[metric:s09_bluegreen_public_access_point_count]</span></code> | | S10 | 北五环门户可回退连接数 <code><span class="evidence evidence-metric">[metric:s10_ringroad_gateway_fallback_connection_count]</span></code> |</p>
+<table><thead><tr><th>段</th><th>剖面级指标</th></tr></thead><tbody><tr><td>S01</td><td>公共枢纽连续路径数 <code><span class="metric" data-metric="s01_hub_public_access_path_count">待确认（unknown）</span></code></td></tr><tr><td>S02</td><td>四象限可达连接数 <code><span class="metric" data-metric="s02_four_quadrant_connection_count">待确认（unknown）</span></code></td></tr><tr><td>S03</td><td>可回退高架接口长度 <code><span class="metric" data-metric="s03_reversible_elevated_interface_length_m">待确认（unknown）</span></code></td></tr><tr><td>S04</td><td>站口—公园—社区日常入口数 <code><span class="metric" data-metric="s04_daily_access_point_count">待确认（unknown）</span></code></td></tr><tr><td>S05</td><td>双锚点连续过境路径数 <code><span class="metric" data-metric="s05_dual_anchor_continuous_route_count">待确认（unknown）</span></code></td></tr><tr><td>S06</td><td>旧址—现走廊记忆路径长度 <code><span class="metric" data-metric="s06_memory_route_length_m">待确认（unknown）</span></code></td></tr><tr><td>S07</td><td>经确认的公共开放界面长度 <code><span class="metric" data-metric="s07_public_frontage_length_m">待确认（unknown）</span></code></td></tr><tr><td>S08</td><td>站点—公园—产业连续连接数 <code><span class="metric" data-metric="s08_station_park_industry_connection_count">待确认（unknown）</span></code></td></tr><tr><td>S09</td><td>清河蓝绿公共可达点数 <code><span class="metric" data-metric="s09_bluegreen_public_access_point_count">待确认（unknown）</span></code></td></tr><tr><td>S10</td><td>北五环门户可回退连接数 <code><span class="metric" data-metric="s10_ringroad_gateway_fallback_connection_count">待确认（unknown）</span></code></td></tr></tbody></table>
 <h3>两翼接口支线</h3>
 <ul>
-<li>**中关村科技服务翼**：提供 IP、资本、研发服务和产业转化接口；不画成第四个重点区，而从原点和众智园剖面向西延伸。</li>
-<li>**小月河场景赋能翼**：承接具身智能、AI+医疗、AI+影视等场景接口；从走廊剖面向东延伸，并与小月河蓝绿系统叠合。</li>
+<li><strong>中关村科技服务翼</strong>：提供 IP、资本、研发服务和产业转化接口；不画成第四个重点区，而从原点和众智园剖面向西延伸。</li>
+<li><strong>小月河场景赋能翼</strong>：承接具身智能、AI+医疗、AI+影视等场景接口；从走廊剖面向东延伸，并与小月河蓝绿系统叠合。</li>
 </ul>
 <h3>城市更新与控规深度的表达边界</h3>
 <p>在没有正式控规、权属和建筑底数的条件下，本章空间结构为概念性城市设计：更新单元、界面连续性和接口位置可以表达；用地性质、容积率、建筑高度、拆改留量等控规指标不作确定性结论，全部登记为 unknown 并挂接复算触发条件。控规深度相关结论严格区分已知控制条件、设计建议和待确认事项。[assumption:A-CONTROLS-001] [assumption:A-METRICS-BASELINE-010] <span class="evidence evidence-standard">[standard:MOHURD-CONTROL-DETAILED-PLANNING]</span> <span class="evidence evidence-depth">[depth:development_intensity_controls]</span></p>
@@ -226,9 +239,9 @@ code {
 <h2>AI 创新生态、人才画像与 AI+ 场景</h2>
 <p>场景卡、画像与测试场景回应智能体任务书 agent.2–agent.5 的要求。<span class="evidence evidence-standard">[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]</span></p>
 <h3>AI+ 场景卡（10 张）</h3>
-<p>| 编号 | 场景 | 主要剖面 | 人工边界/回退 | |---|---|---|---| | SC-01 | 站口—公园智能导览 | 原点/大钟寺 | 不采集身份；人工可关闭路线推荐 | | SC-02 | 遗产路线多版本讲解 | 原点记忆支线 | 历史资料显示来源和争议 | | SC-03 | 清河蓝绿生态观察 | 众智园 | 只使用公开环境数据；异常由人工复核 | | SC-04 | 园区公共 AI 展示前场 | 众智园 | 设备可撤回，不占用基本通行空间 | | SC-05 | 校园成果转化开放日 | 原点社区 | 校园内部不默认开放，预约和人工组织 | | SC-06 | 公园夜间安全伴行 | 原点/大钟寺 | 不做人脸识别，使用人工巡检和照明反馈 | | SC-07 | 四象限步行无障碍导航 | 大钟寺 | 路径不可用时提供人工替代方案 | | SC-08 | 文保低干预内容展示 | 大钟寺 | 保护范围外布置；内容审校后发布 | | SC-09 | 13 号线改造期绕行服务 | 大钟寺/原点 | 施工信息人工确认后更新，保留静态导视 | | SC-10 | 开发者公共空间测试日 | 三原型样板段 | 申请、人工审核、限时、可撤场 |</p>
+<table><thead><tr><th>编号</th><th>场景</th><th>主要剖面</th><th>人工边界/回退</th></tr></thead><tbody><tr><td>SC-01</td><td>站口—公园智能导览</td><td>原点/大钟寺</td><td>不采集身份；人工可关闭路线推荐</td></tr><tr><td>SC-02</td><td>遗产路线多版本讲解</td><td>原点记忆支线</td><td>历史资料显示来源和争议</td></tr><tr><td>SC-03</td><td>清河蓝绿生态观察</td><td>众智园</td><td>只使用公开环境数据；异常由人工复核</td></tr><tr><td>SC-04</td><td>园区公共 AI 展示前场</td><td>众智园</td><td>设备可撤回，不占用基本通行空间</td></tr><tr><td>SC-05</td><td>校园成果转化开放日</td><td>原点社区</td><td>校园内部不默认开放，预约和人工组织</td></tr><tr><td>SC-06</td><td>公园夜间安全伴行</td><td>原点/大钟寺</td><td>不做人脸识别，使用人工巡检和照明反馈</td></tr><tr><td>SC-07</td><td>四象限步行无障碍导航</td><td>大钟寺</td><td>路径不可用时提供人工替代方案</td></tr><tr><td>SC-08</td><td>文保低干预内容展示</td><td>大钟寺</td><td>保护范围外布置；内容审校后发布</td></tr><tr><td>SC-09</td><td>13 号线改造期绕行服务</td><td>大钟寺/原点</td><td>施工信息人工确认后更新，保留静态导视</td></tr><tr><td>SC-10</td><td>开发者公共空间测试日</td><td>三原型样板段</td><td>申请、人工审核、限时、可撤场</td></tr></tbody></table>
 <h3>人才画像（5 类）</h3>
-<p>1. **沿线居民**：关心日常穿越、休息、安全和噪声；不应被技术展示挤占基本公共空间。 2. **高校学生与研究者**：需要从校园到城市、站点和公共展示空间的低摩擦路径。 3. **AI 企业与开发者**：需要可短期测试、可撤回、具备公共观察条件的场景接口。 4. **历史记忆者与文化游客**：需要区分老线旧址、现线走廊和当代遗址公园，不接受虚构史实。 5. **无障碍与老年使用者**：需要清晰、稳定、可人工求助的路径，不依赖纯数字化服务。</p>
+<p>1. <strong>沿线居民</strong>：关心日常穿越、休息、安全和噪声；不应被技术展示挤占基本公共空间。 2. <strong>高校学生与研究者</strong>：需要从校园到城市、站点和公共展示空间的低摩擦路径。 3. <strong>AI 企业与开发者</strong>：需要可短期测试、可撤回、具备公共观察条件的场景接口。 4. <strong>历史记忆者与文化游客</strong>：需要区分老线旧址、现线走廊和当代遗址公园，不接受虚构史实。 5. <strong>无障碍与老年使用者</strong>：需要清晰、稳定、可人工求助的路径，不依赖纯数字化服务。</p>
 <h3>测试验证场景（3 个）</h3>
 <h4>T-01 原点社区：校园到公共展示前场</h4>
 <p>测试路径：校园侧 → 校门前场 → 站点/公园 → 东侧街区。</p>
@@ -242,18 +255,33 @@ code {
 <p>测试路径：学知园站 → 学北园公共前场 → 遗址公园 → 清河界面。</p>
 <p>验证：园区首层开放、蓝绿观察、公共 AI 展示和高温/暴雨回退。</p>
 <p>失败条件：依赖园区权属开放、依赖未确认北五环工程或把生态监测写成治理结论。</p>
+<h3>AI 创新生态图谱（五层接口结构）</h3>
+<p>生态按接口而非名单组织，五层之间以空间剖面和制度接口连接：</p>
+<table><thead><tr><th>层</th><th>内容</th><th>空间载体 / 接口</th></tr></thead><tbody><tr><td>策源层</td><td>高校与科研机构</td><td>原点社区（LU-B）校地溢出剖面</td></tr><tr><td>转化层</td><td>师生创业、开源社区、孵化服务</td><td>校门—站点—公园过境链（B-02/B-03）</td></tr><tr><td>产业层</td><td>AI 企业与应用场景方</td><td>众智园（LU-A）、大钟寺（LU-C）</td></tr><tr><td>支撑层</td><td>资本、算力、数据、专业服务</td><td>两翼：中关村科技服务翼、小月河场景赋能翼</td></tr><tr><td>公共层</td><td>居民、游客、开发者公众</td><td>全线剖面带与公共接口节点</td></tr></tbody></table>
+<p>机构名录不在正文罗列：具体名单待官方渠道核验并登记 sources.json 后以附录补充；未登记前仅作类别化表述，不写投资额与合作关系。[assumption:A-CONTROLS-001]</p>
+<h3>七类要素保障机制</h3>
+<table><thead><tr><th>要素</th><th>机制建议</th><th>接口</th><th>状态</th></tr></thead><tbody><tr><td>土地</td><td>存量更新为主，不提出新增建设用地主张</td><td>12 项更新项目逐项绑定</td><td>概念建议</td></tr><tr><td>空间</td><td>公共空间组件库标准化供给，剖面接口开放度纳入指标</td><td>S01–S10 剖面</td><td>概念建议</td></tr><tr><td>产业</td><td>案例机制移植（8 个案例矩阵已登记，见产业生态研究章节）+ 两翼分工</td><td>两翼</td><td>概念建议</td></tr><tr><td>资金</td><td>不编造投融资数字；建议运营主体、场景开放收益与区级政策工具三类来源框架</td><td>长期运营机制</td><td>概念建议，无数字</td></tr><tr><td>人才</td><td>五类画像 + 校地溢出接口 + 开发者社区</td><td>原点社区</td><td>概念建议</td></tr><tr><td>算力</td><td>不作设施承诺；建议接入市级公共算力服务（具体平台待核验后点名）</td><td>数字接口</td><td>待核验</td></tr><tr><td>数据</td><td>数据边界优先：仅在登记来源与授权前提下开放场景数据；跨区不预设打通</td><td>区域协同章</td><td>概念建议</td></tr><tr><td>场景</td><td>10 张场景卡 + 3 个测试场景 + 准入与退出机制</td><td>全线</td><td>已有基础</td></tr></tbody></table>
+<h3>国际传播文案</h3>
+<p>中文核心叙事：三个时代共用一条走廊——1909 的铁路、2003 的城铁、2019 的高铁。本方案不在遗产上涂新图层，而做它们的接口：让速度、通勤、记忆与日常在同一条剖面上重新谈判。</p>
+<p>英文核心口号与短文：</p>
+<ul>
+<li>主口号：<strong>Same Corridor, Three Times.</strong></li>
+<li>副口号：*A corridor where three centuries of infrastructure negotiate one public ground.*</li>
+<li>短文案：Beijing&#x27;s Jing-Zhang corridor carries a 1909 heritage railway, a 2003 metro line and a 2019 high-speed tunnel in one strip of city. Instead of painting a new layer on top, this proposal designs the sections where the three meet — walkable, reversible, and reviewable interfaces between speed, memory and daily life.</li>
+</ul>
+<p>传播对照（仅作传播话术，不作为正式证据）：NEOM 的 The Line 是 170km 的封闭直线；本方案是 9km 的开放剖面——不是更远，而是更可进入。最小传播单元为英文短文案加三线剖面示意图；全部对外物料沿用 provisional 边界披露口径。</p>
 <h2>用地、建筑规模与拆改留方案</h2>
 <h3>概念策略分区（5 区，拓扑无缝无重叠）</h3>
 <p>在 provisional site boundary 内，本方案用拓扑切割生成 5 区概念策略分区（不是控规用地性质），共享边坐标一致、并集等于提交边界，已通过空间评审：<span class="evidence evidence-data">[data:geometry/land_use.geojson#LAND]</span></p>
-<p>| 分区 | 方向 | land_use_code | 面积（ha，EPSG:4548 复算） | |---|---|---|---| | LU-A 产业更新策略区（众智园） | 科研/产业服务 | 08 | <span class="evidence evidence-metric">[metric:land_use_area_lu_a_sqm]</span> | | LU-B 校地溢出策略区（原点社区） | 教育/科研接口 | 08 | <span class="evidence evidence-metric">[metric:land_use_area_lu_b_sqm]</span> | | LU-C 枢纽再生策略区（大钟寺） | 商业服务/内容街区 | 05 | <span class="evidence evidence-metric">[metric:land_use_area_lu_c_sqm]</span> | | LU-G 同廊绿轴策略带 | 绿地与开敞空间 | 14 | <span class="evidence evidence-metric">[metric:land_use_area_lu_g_sqm]</span> | | LU-R 更新背景留白区 | 留白 | 16 | <span class="evidence evidence-metric">[metric:land_use_area_lu_r_sqm]</span> |</p>
+<table><thead><tr><th>分区</th><th>方向</th><th>land_use_code</th><th>面积（ha，EPSG:4548 复算）</th></tr></thead><tbody><tr><td>LU-A 产业更新策略区（众智园）</td><td>科研/产业服务</td><td>08</td><td><span class="metric" data-metric="land_use_area_lu_a_sqm">192.9 ha</span></td></tr><tr><td>LU-B 校地溢出策略区（原点社区）</td><td>教育/科研接口</td><td>08</td><td><span class="metric" data-metric="land_use_area_lu_b_sqm">104.3 ha</span></td></tr><tr><td>LU-C 枢纽再生策略区（大钟寺）</td><td>商业服务/内容街区</td><td>05</td><td><span class="metric" data-metric="land_use_area_lu_c_sqm">72.0 ha</span></td></tr><tr><td>LU-G 同廊绿轴策略带</td><td>绿地与开敞空间</td><td>14</td><td><span class="metric" data-metric="land_use_area_lu_g_sqm">49.5 ha</span></td></tr><tr><td>LU-R 更新背景留白区</td><td>留白</td><td>16</td><td><span class="metric" data-metric="land_use_area_lu_r_sqm">722.5 ha</span></td></tr></tbody></table>
 <p>用地分类代码采用《国土空间调查、规划、用途管制用地用海分类指南》项目子集，不用自造分类替代。<span class="evidence evidence-standard">[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]</span></p>
 <h3>规模与拆改留原则</h3>
 <p>在没有正式控规、权属和建筑底数的条件下，本方案只提出设计原则，不给出确定性指标：</p>
 <ul>
-<li>**用地**：上表为概念策略方向与 provisional 面积，用地性质与边界待 official boundary 与控规资料发布后复算。[assumption:A-CONTROLS-001] <span class="evidence evidence-depth">[depth:land_use_layout]</span></li>
-<li>**建筑规模**：总建筑面积、容积率 <code><span class="evidence evidence-metric">[metric:floor_area_ratio]</span></code> 保持 unknown；学北园等已建实体以公开报道为现状依据，不作增减结论。<span class="evidence evidence-source">[source:TECH-PARK-XUEBEI-20250522]</span></li>
-<li>**拆改留**：只提出低扰动优先序——首层开放、前场整理、过街节点、可逆设施；不提出确定性拆改量、投资估算。<span class="evidence evidence-depth">[depth:retain_renovate_demolish]</span></li>
-<li>**建筑高度与体量**：仅提出体量退让与文保前场低干预原则；觉生寺高度控制值待正式图件。[assumption:A-HERITAGE-GEOMETRY-006]</li>
+<li><strong>用地</strong>：上表为概念策略方向与 provisional 面积，用地性质与边界待 official boundary 与控规资料发布后复算。[assumption:A-CONTROLS-001] <span class="evidence evidence-depth">[depth:land_use_layout]</span></li>
+<li><strong>建筑规模</strong>：总建筑面积、容积率 <code><span class="metric" data-metric="floor_area_ratio">待确认（unknown）</span></code> 保持 unknown；学北园等已建实体以公开报道为现状依据，不作增减结论。<span class="evidence evidence-source">[source:TECH-PARK-XUEBEI-20250522]</span></li>
+<li><strong>拆改留</strong>：只提出低扰动优先序——首层开放、前场整理、过街节点、可逆设施；不提出确定性拆改量、投资估算。<span class="evidence evidence-depth">[depth:retain_renovate_demolish]</span></li>
+<li><strong>建筑高度与体量</strong>：仅提出体量退让与文保前场低干预原则；觉生寺高度控制值待正式图件。[assumption:A-HERITAGE-GEOMETRY-006]</li>
 </ul>
 <p>上述 unknown 项均已登记于 <code>metrics.json</code> 与 <code>assumptions.json</code>，附关闭条件与回退规则，不靠编造闭合。</p>
 <h2>交通、轨道、市政与公共服务设施</h2>
@@ -272,8 +300,8 @@ code {
 <h3>蓝绿</h3>
 <ul>
 <li>遗址公园本体按已开放既有资产处理；<span class="evidence evidence-source">[source:PARK-P2-OPEN-20260806]</span></li>
-<li>绿轴策略带（LU-G，约 49.5 ha 概念值）由 S01–S10 剖面中点链 150m 缓冲派生，表达“沿剖面带布置蓝绿与公共接口”的设计意图，非现状绿地实测：<span class="evidence evidence-data">[data:geometry/green_space.geojson#GREEN]</span> <span class="evidence evidence-metric">[metric:green_space_area_sqm]</span> <span class="evidence evidence-metric">[metric:green_ratio]</span></li>
-<li>公共空间以“剖面公共接口节点区”落位（每剖面中点 200m 缓冲 ∩ 绿轴带；S09/S10 几何重合，仅保留 2 个不重复节点）：<span class="evidence evidence-data">[data:geometry/public_space.geojson#PUBLIC]</span> <span class="evidence evidence-metric">[metric:public_space_area_sqm]</span> <span class="evidence evidence-metric">[metric:public_space_ratio]</span></li>
+<li>绿轴策略带（LU-G，约 49.5 ha 概念值）由 S01–S10 剖面中点链 150m 缓冲派生，表达“沿剖面带布置蓝绿与公共接口”的设计意图，非现状绿地实测：<span class="evidence evidence-data">[data:geometry/green_space.geojson#GREEN]</span> <span class="metric" data-metric="green_space_area_sqm">49.5 ha</span> <span class="metric" data-metric="green_ratio">4.34%</span></li>
+<li>公共空间以“剖面公共接口节点区”落位（每剖面中点 200m 缓冲 ∩ 绿轴带；S09/S10 几何重合，仅保留 2 个不重复节点）：<span class="evidence evidence-data">[data:geometry/public_space.geojson#PUBLIC]</span> <span class="metric" data-metric="public_space_area_sqm">9.2 ha</span> <span class="metric" data-metric="public_space_ratio">0.81%</span></li>
 <li>清河、小月河、转河和万泉河作为蓝绿接口，不在缺少蓝线资料时画精确控制线；[assumption:A-BLUEGREEN-008]</li>
 <li>AI 场景优先嵌入已经具备公共进入条件的公园入口、桥下空间、站点前场和河道界面；</li>
 <li>场景必须包含人工复核、隐私边界和回退路径。<span class="evidence evidence-depth">[depth:blue_green_public_space]</span></li>
@@ -284,24 +312,38 @@ code {
 <p>正式中文名暂用&quot;同廊三线&quot;，英文工作名为 &quot;Same Corridor, Three Times&quot;。命名最终需在空间结构和视觉系统稳定后冻结，避免先造品牌再寻找城市内容。</p>
 <p>AI 朝圣地标（3 个，均为概念位置）：</p>
 <ul>
-<li>**三线剖面台**：展示地下高铁、13 号线和遗址公园的关系；位置待正式场地资料确认。</li>
-<li>**原点过境场**：位于校园—站点—公园接口，展示知识如何进入城市；概念位置。</li>
-<li>**大钟寺回声前场**：位于觉生寺保护范围外，连接文保导览、四象限步行和公共内容；不侵入文保控制范围。</li>
+<li><strong>三线剖面台</strong>：展示地下高铁、13 号线和遗址公园的关系；位置待正式场地资料确认。</li>
+<li><strong>原点过境场</strong>：位于校园—站点—公园接口，展示知识如何进入城市；概念位置。</li>
+<li><strong>大钟寺回声前场</strong>：位于觉生寺保护范围外，连接文保导览、四象限步行和公共内容；不侵入文保控制范围。</li>
 </ul>
-<p>视觉语法：不用人字形、轨道 Logo 或紫色科技渐变。视觉语言采用横向剖面线、三层色带、可核验坐标点、条件虚线和复算标记。正式 Logo 在后续命名/视觉任务中完成。</p>
+<p>视觉语法：不用人字形、轨道 Logo 或紫色科技渐变。视觉语言采用横向剖面线、三层色带、可核验坐标点、条件虚线和复算标记。</p>
+<p>Logo 方向：三条平行线加一个剖面切口——三线（三个时代）被一个公共剖面统一；字标为“同廊三线 / Same Corridor, Three Times”；色彩沿用展示系统色板（深墨、纸白、铁路锈橙、清河蓝、信号黄、苔绿）；正式图形以单文件 SVG 制作，不依赖外部字体与外部素材，落地于题图、visual 页眉、A0/A3 角标与版本墙视觉母题。</p>
+<h3>荣誉展示体系（三层）</h3>
+<p>1. <strong>年度层·版本墙</strong>：建议设于众智园（LU-A）旗舰公共空间。AI 贡献荣誉墙形制为提交日志墙——每年代表性贡献刻录为一行“提交记录”（年份、贡献类别、可公开署名），与年度活动（见实施章长期运营机制）联动。 2. <strong>日常层·接口站展陈</strong>：三个原型接口（P-A/P-B/P-C）的公共节点设可更新展陈，展示场景测试成果与贡献者；人工可维护，不依赖常设设备。 3. <strong>公众层·全线导视</strong>：剖面故事点标注（内容层，非荣誉性质）。</p>
+<p>以上均为概念建议，选址与形制供专业团队深化。</p>
+<h3>公共空间组件库</h3>
+<p>把剖面接口处的公共界面标准化为可复制组件；每组件给功能、部署位置与人工回退，不给造价与数量指标（相关指标保持 unknown 直至基线审计）：</p>
+<table><thead><tr><th>组件</th><th>功能</th><th>部署位置</th><th>人工回退</th></tr></thead><tbody><tr><td>界面亭</td><td>导览、问询、场景入口</td><td>接口站与站域</td><td>保留人工服务岗</td></tr><tr><td>展示窗</td><td>首层界面活化、机构展示</td><td>重点区首层</td><td>静态展板兜底</td></tr><tr><td>测试驿站</td><td>AI 场景可逆测试点（公示停止条件）</td><td>剖面带节点</td><td>撤回为普通休憩设施</td></tr><tr><td>记忆标记</td><td>线位历史标注</td><td>记忆支线</td><td>无数字依赖</td></tr><tr><td>过街接口组件</td><td>东西缝合过街导视与遮蔽</td><td>P-B 相关剖面</td><td>基础通行功能优先</td></tr></tbody></table>
 <figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="交通、轨道与蓝绿接口概念图（轨道断面、蓝线、道路红线均为 unknown）"><figcaption>交通、轨道与蓝绿接口概念图（轨道断面、蓝线、道路红线均为 unknown）</figcaption></figure>
 <h2>更新项目清单、实施政策与分期计划</h2>
 <p>本章项目清单与分期计划均为概念建议。<span class="evidence evidence-depth">[depth:renewal_project_list]</span> <span class="evidence evidence-depth">[depth:phasing_implementation]</span></p>
 <h3>更新项目清单（12 项）</h3>
-<p>| 编号 | 项目 | 重点区 | 类型 | |---|---|---|---| | A-01 | 轨道微中心公共前场 | 众智园 | 接口空间 | | A-02 | 清河复合接口 | 众智园 | 蓝绿+展示 | | A-03 | 园区首层开放带 | 众智园 | 低扰动更新 | | A-04 | 北五环门户接口 | 众智园 | 概念策略 | | B-01 | 双站点公共接口 | 原点社区 | 接口空间 | | B-02 | 校门—公园—街区过境链 | 原点社区 | 步行系统 | | B-03 | 成果转化前场 | 原点社区 | 运营界面 | | B-04 | 老线新线记忆支线 | 原点社区 | 记忆寻径 | | C-01 | 四象限步行环 | 大钟寺 | 步行系统 | | C-02 | 觉生寺文保前场 | 大钟寺 | 文保界面 | | C-03 | 公园—站口—街区首层连续带 | 大钟寺 | 低扰动更新 | | C-04 | 13 号线条件触发接口 | 大钟寺 | 双状态接口 |</p>
+<table><thead><tr><th>编号</th><th>项目</th><th>重点区</th><th>类型</th></tr></thead><tbody><tr><td>A-01</td><td>轨道微中心公共前场</td><td>众智园</td><td>接口空间</td></tr><tr><td>A-02</td><td>清河复合接口</td><td>众智园</td><td>蓝绿+展示</td></tr><tr><td>A-03</td><td>园区首层开放带</td><td>众智园</td><td>低扰动更新</td></tr><tr><td>A-04</td><td>北五环门户接口</td><td>众智园</td><td>概念策略</td></tr><tr><td>B-01</td><td>双站点公共接口</td><td>原点社区</td><td>接口空间</td></tr><tr><td>B-02</td><td>校门—公园—街区过境链</td><td>原点社区</td><td>步行系统</td></tr><tr><td>B-03</td><td>成果转化前场</td><td>原点社区</td><td>运营界面</td></tr><tr><td>B-04</td><td>老线新线记忆支线</td><td>原点社区</td><td>记忆寻径</td></tr><tr><td>C-01</td><td>四象限步行环</td><td>大钟寺</td><td>步行系统</td></tr><tr><td>C-02</td><td>觉生寺文保前场</td><td>大钟寺</td><td>文保界面</td></tr><tr><td>C-03</td><td>公园—站口—街区首层连续带</td><td>大钟寺</td><td>低扰动更新</td></tr><tr><td>C-04</td><td>13 号线条件触发接口</td><td>大钟寺</td><td>双状态接口</td></tr></tbody></table>
 <h3>项目实施控制矩阵</h3>
-<p>每个项目先以最小可逆动作进入测试；只有责任主体、前置条件和现场核验满足，且未触发停止条件，才进入下一阶段。责任主体为建议协同方，不代表已获得授权或形成实施承诺。完整的 12 个项目与 3 个测试场景记录见 <code>compliance_matrix.json#implementation_controls</code>。</p>
-<table><tr><th>控制字段</th><th>统一规则</th></tr><tr><td>责任主体</td><td>明确属地、运营、专业审查或社区协同方；不把方案作者写成实施主体。</td></tr><tr><td>最小动作</td><td>先做临时导视、人工陪行、限时展示或低干预节点，不先改变红线、权属和主体工程。</td></tr><tr><td>停止条件</td><td>触及未确认工程、文保、蓝线、防洪、消防、无障碍、权属或基本通行条件时停止。</td></tr><tr><td>回退动作</td><td>撤除临时设施、缩小测试范围、转为静态导视或人工服务，不以数字系统替代公共服务。</td></tr></table>
+<p>每个项目先以最小可逆动作进入测试；只有前置条件满足、现场核验通过且未触发停止条件，才进入下一阶段。责任主体为建议协同方，不代表已获得授权或形成实施承诺。机器可读完整记录见 <code>compliance_matrix.json#implementation_controls</code>。</p>
+<table><thead><tr><th>编号</th><th>建议责任主体</th><th>第一阶段最小动作</th><th>停止条件</th><th>回退动作</th></tr></thead><tbody><tr><td>A-01</td><td>园区运营方+轨道站域管理方+属地街道</td><td>既有开放空间设置可撤回导视、座椅和人工服务点</td><td>影响通行/消防，或依赖未确认站体工程</td><td>撤除设施，保留静态导视和人工咨询</td></tr><tr><td>A-02</td><td>水务/园林部门+园区运营方</td><td>不进入河道控制线的观察点和生态数据展示</td><td>进入未确认蓝线、影响防洪或无法人工复核</td><td>改为陆侧展示和人工巡查</td></tr><tr><td>A-03</td><td>学北园/众智园运营方+属地街道</td><td>一个可控首层界面的限时开放展示</td><td>无权属授权，或影响安保、消防和日常运营</td><td>转为园区外侧橱窗和预约展示</td></tr><tr><td>A-04</td><td>交通/园林部门+相关管理方</td><td>方向识别和步行/非机动车接驳研究</td><td>依赖未确认北五环工程或安全审查不通过</td><td>退回站点和公园内部识别系统</td></tr><tr><td>B-01</td><td>属地街道+轨道站域管理方+校园/社区代表</td><td>双站点步行导视和过境连续性测试</td><td>路径穿越未授权校园或无人工替代</td><td>采用校门外公共道路分段组织</td></tr><tr><td>B-02</td><td>属地街道+道路管理方+校园/社区协同方</td><td>临时导视、路口标识和人工陪行测试</td><td>不满足消防、无障碍或夜间安全</td><td>拆分为三个独立短链</td></tr><tr><td>B-03</td><td>高校/园区运营方+社区组织者</td><td>限时、预约、人工组织的成果展示</td><td>无投诉处理机制或占用基本通行空间</td><td>转为线上/橱窗展示</td></tr><tr><td>B-04</td><td>文化机构+社区组织者+历史资料审校方</td><td>来源可查的记忆点和寻径标识</td><td>暗示历史线位连续存在或进入未授权空间</td><td>保留旧址点位说明，取消连续路线</td></tr><tr><td>C-01</td><td>属地街道+轨道站域管理方+道路管理方</td><td>四向步行导视和临时障碍清理测试</td><td>任一象限无安全过街/无障碍替代</td><td>按已可用出入口分段组织</td></tr><tr><td>C-02</td><td>文物部门+文化机构+属地街道</td><td>保护范围外低干预导览和可撤回展示</td><td>进入保护范围、影响视廊或内容未审校</td><td>取消现场设施，保留远端导览</td></tr><tr><td>C-03</td><td>属地街道+公园管理方+沿街产权方</td><td>一个公共入口的连续界面导视和服务点</td><td>涉及产权不明界面或占用公共通行</td><td>退回公园入口和站口公共空间</td></tr><tr><td>C-04</td><td>轨道建设/运营方+交通部门+专业团队</td><td>不依赖改造后结构的现状公共界面测试</td><td>依赖未确认断面或影响运营、施工、疏散</td><td>维持现状高架条件下的地面接口</td></tr><tr><td>T-01</td><td>社区组织者+校园/园区协同方+无障碍审查方</td><td>白天/夜间人工陪行，使用静态导视</td><td>进入封闭校园或无人工替代</td><td>拆成两个短路径测试</td></tr><tr><td>T-02</td><td>属地街道+轨道站域管理方+文保专业人员</td><td>四象限到站口/公园入口步行测试</td><td>侵入文保区、依赖未公开断面或影响消防</td><td>只测试已确认公共象限</td></tr><tr><td>T-03</td><td>园区运营方+水务/园林部门+社区观察员</td><td>陆侧生态观察和限时公共 AI 展示</td><td>权属未授权、极端天气或数据无法复核</td><td>取消临水/设备展示，保留静态科普</td></tr></tbody></table>
 <h3>分期计划</h3>
 <ul>
-<li>**近期（可逆接口期）** <code><span class="evidence evidence-metric">[metric:phasing_near_term_area_sqm]</span></code>：不依赖未确认工程的先行项——过境链、四象限步行、首层开放带、记忆寻径、场景卡试点；全部设施可撤回。</li>
-<li>**中期（条件触发期）** <code><span class="evidence evidence-metric">[metric:phasing_mid_term_area_sqm]</span></code>：以 13 号线扩能提升、重点区正式边界发布为触发条件的接口项——条件触发接口、轨道微中心前场深化。</li>
-<li>**远期（复算闭合期）** <code><span class="evidence evidence-metric">[metric:phasing_long_term_area_sqm]</span></code>：official boundary、控规、文保、蓝线、市政资料发布后，替换 provisional 图层，复算全部 unknown 指标，再进入法定深度设计。</li>
+<li><strong>近期（可逆接口期）</strong> <code><span class="metric" data-metric="phasing_near_term_area_sqm">369.3 ha</span></code>：不依赖未确认工程的先行项——过境链、四象限步行、首层开放带、记忆寻径、场景卡试点；全部设施可撤回。</li>
+<li><strong>中期（条件触发期）</strong> <code><span class="metric" data-metric="phasing_mid_term_area_sqm">369.3 ha</span></code>：以 13 号线扩能提升、重点区正式边界发布为触发条件的接口项——条件触发接口、轨道微中心前场深化。</li>
+<li><strong>远期（复算闭合期）</strong> <code><span class="metric" data-metric="phasing_long_term_area_sqm">1,141.3 ha</span></code>：official boundary、控规、文保、蓝线、市政资料发布后，替换 provisional 图层，复算全部 unknown 指标，再进入法定深度设计。</li>
+</ul>
+<h3>长期运营机制</h3>
+<ul>
+<li><strong>年度活动（建议品牌“共廊节”）</strong>：每年一次，全线开放日、场景测试成果展与版本墙年度刻录仪式合并举办；首届建议以既有公园活动为基础增量叠加，规模与预算不编造，待运营主体设立后测算。</li>
+<li><strong>开发者社区</strong>：场景开放申请制，准入标准公开（安全、可逆、人工回退为硬门槛）；测试场景配停止条件与审计日志，季度复盘摘要公开；退出按组件级撤回执行（组件库已含物理回退）。</li>
+<li><strong>招引与转化闭环</strong>（类别化表述，具体机构待核验后点名）：高校成果 → 孵化服务 → 接口站场景测试 → 两翼与外部区域产业化接口 → 贡献回流荣誉体系。闭环的空间载体是组件库节点，制度载体是本节机制。</li>
+<li>运营责任主体为建议设立的海淀区属运营主体；以上均为概念建议，不构成机构承诺或实施决定。</li>
 </ul>
 <h3>实施政策与运营</h3>
 <p>运营不从虚构品牌活动开始，而从已经开放的 9km 绿廊、三个原型样板段、站点接口和公园既有 AI 场景开始。活动分为：</p>
@@ -316,12 +358,15 @@ code {
 <h2>指标体系、面积复算与合规矩阵</h2>
 <h3>指标状态</h3>
 <p>全包共 36 项指标：18 项 <code>known</code>、18 项 <code>unknown</code>。<code>known</code> 的含义是“在当前证据层几何中可按公式计算”，其中剖面数量属于 <code>verified_structure</code>，面积和策略空间指标属于 <code>provisional_or_conceptual_geometry</code>，不等于官方现状或法定规划指标。<code>unknown</code> 属于 <code>missing_official_or_existing_geometry</code>，不进入现实现状结论；每项均登记公式、触发条件、失败阈值和回退规则。<span class="evidence evidence-depth">[depth:metrics_recalculation]</span></p>
-<p>| 指标族 | 状态 | 说明 | |---|---|---| | section_unit_count / typical_section_count / prototype_section_count | known | 13 / 10 / 3，复算自 <code>visual/assets/section_units.json</code> | | site_area_sqm | known | 1,141.3 ha（provisional 校核值，非 official 精确面积） | | land_use_area_lu_*（5 项） | known | 5 区策略分区面积，复算自 land_use.geojson | | green_space_area_sqm / green_ratio | known | 49.5 ha / 4.34%（概念值） | | public_space_area_sqm / public_space_ratio | known | 9.2 ha / 0.81%（概念值） | | key_area_count / key_areas_total_area_sqm | known | 3 处 / 369.3 ha（provisional 几何复算；公告口径约 368.4 ha） | | phasing_near/mid/long_term_area_sqm | known | 369.3 / 369.3 / 1,141.3 ha（阶段覆盖范围；近期/中期同一 provisional envelope，不代表同一批实施动作） | | s01–s10 剖面级指标（10 项） | unknown | 需经确认的道路/公共空间/建筑实测数据，概念图层不用于闭合 | | pa/pb/pc 原型级指标（3 项） | unknown | 待重点区正式 polygon 与实测图层 | | floor_area_ratio / total_floor_area_sqm / building_density | unknown | 待控规与建筑底数 | | road_area_sqm / road_area_ratio | unknown | 待道路红线资料 |</p>
 <h3>18 项 unknown 的目标闭环</h3>
-<p><code>value=null</code> 表示当前没有可验证的 baseline，不表示没有设计目标。<code>design_gate</code> 是现在即可验收的最低性能门槛；<code>conditional_official_control</code> 的目标公式已闭合，但数值必须等正式边界、控规、工程或现场资料发布后计算。目标不写成现状结果，达不到目标即停止或执行回退动作。完整字段见 <code>metrics.json</code>。</p>
-<table><tr><th>指标类型</th><th>目标门槛</th><th>触发/验收</th></tr><tr><td>s01 / s05 / pb</td><td>至少 2 条独立连续公共路径</td><td>步行、无障碍、权属和人工回退审计</td></tr><tr><td>s02 / pc</td><td>4/4 象限可达，pc=1.0</td><td>任一象限失败即回退分段路径</td></tr><tr><td>s04</td><td>至少 3 类入口：站口、公园、社区</td><td>开放时段、夜间和无障碍核验</td></tr><tr><td>s08 / s09 / s10 / pa</td><td>至少 1/2 个不依赖受控空间的公共接口</td><td>公共入口、蓝线、防洪和撤回审查</td></tr><tr><td>s03 / s06 / s07</td><td>正式资料确认后计算，不预设伪精确数值</td><td>工程、历史资料、产权和公共开放核验</td></tr><tr><td>FAR / 建筑 / 道路指标</td><td>按 official boundary、控规、建筑底图和道路红线公式计算</td><td>正式资料触发后复算</td></tr></table>
+<p><code>value=null</code> 表示当前没有可验证的 baseline，不表示没有设计目标。目标字段分为两种：<code>design_gate</code> 是现在即可验收的最低性能门槛；<code>conditional_official_control</code> 是目标公式已闭合，但数值必须等正式边界、控规、工程或现场资料发布后计算。目标不写成现状结果，达不到目标即停止或执行回退动作。</p>
+<table><thead><tr><th>指标</th><th>target_status</th><th>目标值/规则</th><th>验收与触发</th></tr></thead><tbody><tr><td>s01_hub_public_access_path_count</td><td>design_gate</td><td>≥2 条独立连续公共路径</td><td>步行/无障碍/人工回退审计</td></tr><tr><td>s02_four_quadrant_connection_count</td><td>design_gate</td><td>=4 个象限全部可达</td><td>四象限逐项审计</td></tr><tr><td>s03_reversible_elevated_interface_length_m</td><td>conditional_official_control</td><td>工程确认后按可回退接口最小长度计算</td><td>工程断面与安全审查</td></tr><tr><td>s04_daily_access_point_count</td><td>design_gate</td><td>≥3 类入口：站口、公园、社区</td><td>开放时段/夜间/无障碍核验</td></tr><tr><td>s05_dual_anchor_continuous_route_count</td><td>design_gate</td><td>≥2 条连续跨廊路径</td><td>双锚点与校园权属核验</td></tr><tr><td>s06_memory_route_length_m</td><td>conditional_official_control</td><td>先确认可步行、来源可查的当代记忆路线，再计算长度</td><td>历史资料与步行路径审校</td></tr><tr><td>s07_public_frontage_length_m</td><td>conditional_official_control</td><td>确认产权和公共开放后计算连续界面长度</td><td>权属/消防/无障碍审计</td></tr><tr><td>s08_station_park_industry_connection_count</td><td>design_gate</td><td>≥1 条同时连接站点、园区前场、公园的公共连接</td><td>公共入口与人工替代测试</td></tr><tr><td>s09_bluegreen_public_access_point_count</td><td>design_gate</td><td>≥2 个陆侧公共进入点</td><td>蓝线/防洪/极端天气审查</td></tr><tr><td>s10_ringroad_gateway_fallback_connection_count</td><td>design_gate</td><td>≥1 条既有或可逆连接</td><td>不得依赖新建未批桥隧</td></tr><tr><td>pa_open_interface_count</td><td>design_gate</td><td>≥1 个开放接口</td><td>公共进入与蓝绿约束核验</td></tr><tr><td>pb_cross_corridor_route_count</td><td>design_gate</td><td>≥2 条跨廊路径，至少 1 条不穿校园内部</td><td>权属与无障碍审计</td></tr><tr><td>pc_quadrant_access_coverage_ratio</td><td>design_gate</td><td>=1.0，即 4/4 象限覆盖</td><td>任一象限失败即回退分段路径</td></tr><tr><td>floor_area_ratio</td><td>conditional_official_control</td><td>≤ official 控规上限</td><td>正式边界与控规发布后复算</td></tr><tr><td>total_floor_area_sqm</td><td>conditional_official_control</td><td>≤ official site area × approved FAR</td><td>建筑底图、权属和控规复核</td></tr><tr><td>building_density</td><td>conditional_official_control</td><td>≤正式控规或专业审查上限</td><td>建筑轮廓、消防、日照复核</td></tr><tr><td>road_area_sqm</td><td>conditional_official_control</td><td>仅按 official road redline 计算</td><td>道路红线与市政资料触发</td></tr><tr><td>road_area_ratio</td><td>conditional_official_control</td><td>road_area / official site area</td><td>正式边界与道路红线共同触发</td></tr></tbody></table>
+<p>完整字段见 <code>metrics.json</code>：<code>target_status</code>、<code>target_value</code>、<code>target_operator</code>、<code>target_rule</code>、<code>target_basis</code>、<code>target_verification</code>。</p>
 <h3>测量记录协议</h3>
-<p>18 项目标均登记 collector、timing、input_layers、evidence_record、pass_rule 和 failure_record。测量记录必须带日期/版本，并保留图层快照、路径轨迹、检查表、授权记录或专业签认；没有正式输入时，协议可以存在，但指标 value 必须继续为 null。完整协议见 <code>metrics.json</code> 各指标的 <code>measurement_protocol</code> 字段。</p>
+<p>每项目标必须形成可复核记录，不以“完成活动”或“画出路径”代替测量：</p>
+<p>1. <code>collector</code>：指定规划、交通、文保、水务、建筑、运营或无障碍复核主体；方案作者不替代专业签认。 2. <code>timing</code>：指定正式资料发布后、试行前后、昼夜或汛期等测量时点。 3. <code>input_layers</code>：列出计算所需的 official 图层、现场记录或设计图层；任何 provisional/conceptual 输入必须显式保留状态。 4. <code>evidence_record</code>：形成带日期/版本的 JSON 记录、图层快照、路径轨迹、检查表、授权记录或专业签认。 5. <code>pass_rule</code>：按同一公式与目标门槛判定；<code>failure_record</code> 记录失败原因并触发对应回退动作。</p>
+<p>完整 18 项协议位于 <code>metrics.json</code> 各指标的 <code>measurement_protocol</code> 字段。没有正式输入时，协议可以存在，但指标 <code>value</code> 必须继续为 null。</p>
+<table><thead><tr><th>指标族</th><th>status</th><th>evidence_class</th><th>说明</th></tr></thead><tbody><tr><td>section_unit_count / typical_section_count / prototype_section_count</td><td>known</td><td>verified_structure</td><td>13 / 10 / 3，复算自 <code>visual/assets/section_units.json</code></td></tr><tr><td>site_area_sqm</td><td>known</td><td>provisional_or_conceptual_geometry</td><td>1,141.3 ha，当前 provisional 边界可计算值，非 official 精确面积</td></tr><tr><td>land_use_area_lu_*（5 项）</td><td>known</td><td>provisional_or_conceptual_geometry</td><td>5 区 conceptual 策略分区面积，复算自 land_use.geojson</td></tr><tr><td>green_space_area_sqm / green_ratio</td><td>known</td><td>provisional_or_conceptual_geometry</td><td>49.5 ha / 4.34%，由 conceptual 绿轴策略带计算，非现状绿地实测</td></tr><tr><td>public_space_area_sqm / public_space_ratio</td><td>known</td><td>provisional_or_conceptual_geometry</td><td>9.2 ha / 0.81%，由 conceptual 公共接口节点计算，非现状公共空间实测</td></tr><tr><td>key_area_count / key_areas_total_area_sqm</td><td>known</td><td>3 处 / 369.3 ha（provisional 几何复算；公告口径约 368.4 ha）</td><td></td></tr><tr><td>phasing_near/mid/long_term_area_sqm</td><td>known</td><td>369.3 / 369.3 / 1,141.3 ha（阶段覆盖范围；近期/中期同一 provisional envelope，不代表同一批实施动作）</td><td></td></tr><tr><td>s01–s10 剖面级指标（10 项）</td><td>unknown</td><td>需经确认的道路/公共空间/建筑实测数据，概念图层不用于闭合</td><td></td></tr><tr><td>pa/pb/pc 原型级指标（3 项）</td><td>unknown</td><td>待重点区正式 polygon 与实测图层</td><td></td></tr><tr><td>floor_area_ratio / total_floor_area_sqm / building_density</td><td>unknown</td><td>待控规与建筑底数</td><td></td></tr><tr><td>road_area_sqm / road_area_ratio</td><td>unknown</td><td>待道路红线资料</td><td></td></tr></tbody></table>
 <h3>面积复算规则与触发条件</h3>
 <ul>
 <li>当前面积同时保留两种口径：重点区公告口径约 368.4 ha，按当前 provisional polygon 的 EPSG:4548 复算约 369.3 ha；总体设计范围约 11.4 km²、统筹研究范围约 43.6 km²。均不作为精确面积依据；<span class="evidence evidence-source">[source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]</span></li>
@@ -331,7 +376,7 @@ code {
 <h3>合规矩阵</h3>
 <ul>
 <li><code>compliance_matrix.json</code>：公告任务项逐条对应状态；</li>
-<li><code>standard_matrix.json</code>：引用标准（用地分类、城市设计办法、控规深度、建筑设計深度）逐条对应；</li>
+<li><code>standard_matrix.json</code>：引用标准（用地分类、城市设计办法、控规深度、建筑设计深度）逐条对应；</li>
 <li><code>design_depth_matrix.json</code>：三层范围各自的设计深度声明；</li>
 <li>数据图层引用（机器可读闭环）：已建 <span class="evidence evidence-data">[data:visual/assets/section_units.json#SECTIONS]</span> 与 9 个标准图层 <span class="evidence evidence-data">[data:geometry/site_boundary.geojson#SITE]</span> <span class="evidence evidence-data">[data:geometry/key_areas.geojson#KEY]</span> <span class="evidence evidence-data">[data:geometry/land_use.geojson#LAND]</span> <span class="evidence evidence-data">[data:geometry/buildings.geojson#BUILDINGS]</span> <span class="evidence evidence-data">[data:geometry/roads.geojson#ROADS]</span> <span class="evidence evidence-data">[data:geometry/green_space.geojson#GREEN]</span> <span class="evidence evidence-data">[data:geometry/public_space.geojson#PUBLIC]</span> <span class="evidence evidence-data">[data:geometry/constraints.geojson#CONSTRAINTS]</span> <span class="evidence evidence-data">[data:geometry/phasing.geojson#PHASING]</span>。其中 site_boundary/key_areas 沿用组织方 provisional polygon；land_use 为 5 区拓扑无缝概念策略分区；green_space/public_space 由该分区派生；roads/phasing 为概念性 design_proposal；buildings/constraints 因无公开底数保持空集合并登记复算触发条件（见各图层 collection_note）。18 项 unknown 指标不因概念图层提前闭合，待正式资料发布后复算。</li>
 </ul>
@@ -347,19 +392,13 @@ code {
 <li>风险登记：总体控制条件 <code>[assumption:A-CONTROLS-001]</code>；临时范围 <code>[assumption:A-BOUNDARY-OVERSPAN-002]</code>；重点区锚点 <code>[assumption:A-KEYAREA-ANCHOR-003]</code>；垂向关系 <code>[assumption:A-VERTICAL-RELATION-004]</code>；13号线工程 <code>[assumption:A-LINE13-ENGINEERING-005]</code>；觉生寺矢量约束 <code>[assumption:A-HERITAGE-GEOMETRY-006]</code>；公共可达性 <code>[assumption:A-PUBLIC-ACCESS-007]</code>；蓝绿控制 <code>[assumption:A-BLUEGREEN-008]</code>；学北园与众智园关系 <code>[assumption:A-XUEBEI-ZHONGZHI-009]</code>；指标基线 <code>[assumption:A-METRICS-BASELINE-010]</code>；记忆支线 <code>[assumption:A-MEMORY-ROUTE-011]</code>。</li>
 </ul>
 <h2>核验勘误附录</h2>
-<p>本附录集中登记重点区锚点失配、清华园车站旧址与现走廊分离、平面共廊与垂向关系的证据边界、分期覆盖范围、S09/S10 公共节点去重，以及正式资料替换后的复算顺序。完整记录见 <code>report/narrative.md</code>；附录不替代 official boundary、测绘、工程断面、控规或审批文件。[source:COORD-CHECK-20260808]</p>
+<p>本附录集中登记重点区锚点失配、清华园车站旧址与现走廊分离、平面共廊与垂向关系的证据边界、分期覆盖范围、S09/S10 公共节点去重，以及正式资料替换后的复算顺序。完整记录见 <code>report/narrative.md</code>；附录不替代 official boundary、测绘、工程断面、控规或审批文件。<span class="evidence evidence-source">[source:COORD-CHECK-20260808]</span></p>
 <h2>参考资料</h2>
 <h3>公开来源</h3>
 <p>1. 百年京张AI创新带城市设计国际方案征集资格预审公告（2026-05-09）。<span class="evidence evidence-source">[source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509]</span> 2. 百年京张AI创新带三层范围与三处重点区临时粗略 polygon（2026-06-05）。<span class="evidence evidence-source">[source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]</span> 3. 海淀区：京张铁路遗址公园二期建成开放（2026-08-06）。<span class="evidence evidence-source">[source:PARK-P2-OPEN-20260806]</span> 4. 本市在建地铁 108 个标段全面复工达产，13 号线扩能提升工程报道（2025-02-15）。<span class="evidence evidence-source">[source:LINE13-UPGRADE-20250215]</span> 5. 智慧园区拔节而起 产城融合焕新未来（学北园，2025-05-22）。<span class="evidence evidence-source">[source:TECH-PARK-XUEBEI-20250522]</span> 6. 觉生寺（大钟寺）保护范围及建设控制地带（北京市文物局，2018-01-02）。<span class="evidence evidence-source">[source:JUESHENG-TEMPLE-CONTROL-20180102]</span> 7. 面向全球智能体开展&quot;百年京张AI创新带城市设计开源征集&quot;的任务书摘录（2026-05-18）。<span class="evidence evidence-source">[source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]</span> 8. 同廊三线公开坐标交叉核验记录（2026-08-08，本包过程文件）。<span class="evidence evidence-source">[source:COORD-CHECK-20260808]</span></p>
-<h3>过程记录与关联文件</h3>
-<ul>
-<li><code>visual/assets/coordinate-verification-log.json</code>：坐标核验方法与复算触发条件；</li>
-<li><code>visual/assets/section_units.json</code> 与 <code>visual/assets/coordinate-verification-log.json</code>：S01–S10 分段单元、坐标核验、证据状态与复算触发条件；</li>
-<li><code>visual/assets/section_units.json</code>：13 个剖面单元（known 指标的唯一计算底图）；</li>
-<li><code>diagnosis/figure-sources/generate_same_corridor_figures.py</code>：本包 5 张规定图的生成脚本；</li>
-<li><code>assumptions.json</code> / <code>metrics.json</code> / <code>sources.json</code>：假设、指标与来源的机器可读登记；</li>
-<li><code>compliance_matrix.json</code> / <code>standard_matrix.json</code> / <code>design_depth_matrix.json</code>：合规、标准与深度矩阵。</li>
-</ul>
+<h3>过程记录与关联文件（非外部公开来源）</h3>
+<p>以下文件是仓库级过程资料或提交包内机器可读登记，仅用于复算、审计和结果追溯，不替代上表公开来源，也不构成 official boundary、测绘或工程依据。</p>
+<table><thead><tr><th>文件</th><th>用途</th></tr></thead><tbody><tr><td><code>visual/assets/coordinate-verification-log.json</code></td><td>坐标核验方法与复算触发条件</td></tr><tr><td><code>visual/assets/section_units.json</code></td><td>S01–S10 分段单元、13 个剖面单元与 known 指标的计算底图</td></tr><tr><td><code>assets/figures/*.png</code>（7 张）</td><td>5 张主体规定图 + 2 张必填诊断/剖面补充图；生成脚本为仓库级工具，不随提交包分发</td></tr><tr><td><code>assumptions.json</code> / <code>metrics.json</code> / <code>sources.json</code></td><td>假设、指标与来源的机器可读登记</td></tr><tr><td><code>compliance_matrix.json</code> / <code>standard_matrix.json</code> / <code>design_depth_matrix.json</code></td><td>合规、标准与深度矩阵</td></tr></tbody></table>
 </main>
 </body>
 </html>

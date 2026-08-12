@@ -1,0 +1,279 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Spatial values use locked provisional geometry and must be recalculated when official polygons arrive."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 46617.879,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area(conceptual_building_footprints)",
+      "confidence": "medium",
+      "assumptions": [
+        "Spatial values use locked provisional geometry and must be recalculated when official polygons arrive."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 874189.284,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(green_space)",
+      "confidence": "medium",
+      "assumptions": [
+        "Spatial values use locked provisional geometry and must be recalculated when official polygons arrive."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.076597,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Spatial values use locked provisional geometry and must be recalculated when official polygons arrive."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 277584.374,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(public_space)",
+      "confidence": "medium",
+      "assumptions": [
+        "Spatial values use locked provisional geometry and must be recalculated when official polygons arrive."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.024322,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Spatial values use locked provisional geometry and must be recalculated when official polygons arrive."
+      ]
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 15237.796,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(conceptual_public_spine_and_interface_network))",
+      "confidence": "medium",
+      "assumptions": [
+        "Spatial values use locked provisional geometry and must be recalculated when official polygons arrive."
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenario_nodes.json",
+        "visual/assets/scenario_cards.json"
+      ],
+      "formula": "count(SCENARIO_NODE)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenario_cards.json"
+      ],
+      "formula": "count(flagship_pilot_contracts)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/personas.json"
+      ],
+      "formula": "count(personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/global-ai-ecosystem-cases.json"
+      ],
+      "formula": "count(cases)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "pilot_contract_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/pilot_contracts.json"
+      ],
+      "formula": "count(pilot_contracts)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "public_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/brand_identity.json"
+      ],
+      "formula": "count(public_landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/operations.json"
+      ],
+      "formula": "count(projects)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "Spatial values use locked provisional geometry and must be recalculated when official polygons arrive."
+      ]
+    },
+    "interface_register_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/interface_register.json"
+      ],
+      "formula": "count(interfaces)",
+      "confidence": "high",
+      "assumptions": [
+        "Six interfaces have conceptual road-line references; two are register-only because no lawful crossing geometry has been established."
+      ]
+    },
+    "key_area_work_package_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/key_area_work_packages.json"
+      ],
+      "formula": "count(work_packages)",
+      "confidence": "high",
+      "assumptions": [
+        "Work-package counts describe conceptual design tasks, not approved projects or construction packages."
+      ]
+    },
+    "scenario_operation_link_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenario_space_operation_matrix.json"
+      ],
+      "formula": "count(scenario_to_space_operation_links)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "synthetic_tabletop_case_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/city_release_tabletop.json"
+      ],
+      "formula": "count(synthetic_tabletop_cases)",
+      "confidence": "high",
+      "assumptions": [
+        "Both cases are fictional tabletop fixtures and contain no measured field result."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "pending official control and survey data",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and floor-area evidence are unavailable."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "pending official control and survey data",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official height controls and surveyed existing buildings are unavailable."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "pending official control and survey data",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Conceptual prototypes cannot be promoted to a regulatory density conclusion."
+    }
+  }
+}

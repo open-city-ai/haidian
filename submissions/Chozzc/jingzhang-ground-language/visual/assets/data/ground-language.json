@@ -1,0 +1,247 @@
+{
+  "schema_version": "1.0.0",
+  "identity": {
+    "name_zh": "京张地语",
+    "name_en": "JING-ZHANG GROUND LANGUAGE",
+    "short_mark_zh": "地语",
+    "short_mark_en": "GL",
+    "thesis_zh": "让人、辅助器具与不同厂商机器人读取同一套公共地面状态；机器进入公共空间，必须遵守居民看得懂的规则。",
+    "thesis_en": "Let people, mobility aids and robots from different vendors read the same public-ground states; machines entering public space must obey rules residents can understand.",
+    "logo_direction_zh": "铁路枕木的平行节奏与开放括号组合为可延展字标；括号表示公共规则仍可被讨论和修订。",
+    "logo_direction_en": "Parallel railway-sleeper rhythm combines with an open bracket; the bracket signals that public rules remain discussable and revisable."
+  },
+  "translations": [
+    {
+      "id": "visual",
+      "name_zh": "视觉译码",
+      "name_en": "Visual translation",
+      "principle_zh": "高对比轮廓、方向和编号，远看先识别状态类别。",
+      "principle_en": "High-contrast outline, direction and identifier reveal the state category at a glance."
+    },
+    {
+      "id": "tactile",
+      "name_zh": "触觉译码",
+      "name_en": "Tactile translation",
+      "principle_zh": "与法定盲道可明确区分的低复杂度触感；形态必须由无障碍共创和材料试验确定。",
+      "principle_en": "A low-complexity texture clearly distinguishable from statutory tactile paving; final form requires accessibility co-design and material tests."
+    },
+    {
+      "id": "machine",
+      "name_zh": "机器译码",
+      "name_en": "Machine translation",
+      "principle_zh": "开放、被动、无身份载荷的视觉校验码；未知、冲突或遮挡即停止并请求人工复核。",
+      "principle_en": "An open, passive visual checksum with no identity payload; unknown, conflicting or occluded states trigger stop and human review."
+    }
+  ],
+  "glyphs": [
+    {
+      "id": "G1",
+      "token": "LINE",
+      "name_zh": "行",
+      "name_en": "Proceed",
+      "public_state_zh": "沿此连续方向通行；不表达优先权。",
+      "public_state_en": "Continue along this direction; it grants no priority.",
+      "visual_zh": "双轨之间的一条连续开放线。",
+      "visual_en": "One continuous open line between paired rails.",
+      "tactile_zh": "候选连续浅肋，仅在与盲道无混淆后使用。",
+      "tactile_en": "Candidate continuous shallow rib, usable only after non-confusion with tactile paving is proven.",
+      "machine_zh": "方向向量、版本和校验位，不含目的地或身份。",
+      "machine_en": "Direction vector, version and checksum; no destination or identity.",
+      "robot_behavior_zh": "低速循线并持续让行；识别置信度不足即停。",
+      "robot_behavior_en": "Follow slowly while continuously yielding; stop when confidence is insufficient.",
+      "failure_behavior_zh": "停止在净空外，亮起可见状态并请求人工处理。",
+      "failure_behavior_en": "Stop outside the clear path, show a visible state and request human handling.",
+      "maintenance_trigger_zh": "线段中断、褪色、积水、积雪或触感磨耗超过试验阈值。",
+      "maintenance_trigger_en": "Broken continuity, fading, ponding, snow cover or tactile wear beyond the tested threshold.",
+      "statutory_relationship_zh": "不替代人行道、盲道、交通标线或导向标识。",
+      "statutory_relationship_en": "Does not replace footways, tactile paving, traffic markings or wayfinding signs."
+    },
+    {
+      "id": "G2",
+      "token": "YIELD",
+      "name_zh": "让",
+      "name_en": "Yield",
+      "public_state_zh": "机器和服务流程在此把通行权交还给人。",
+      "public_state_en": "Machines and service flows return priority to people here.",
+      "visual_zh": "向内收束后打开的缺口。",
+      "visual_en": "An inward taper that opens into a gap.",
+      "tactile_zh": "候选断续横肋，必须避开法定警示铺装语义。",
+      "tactile_en": "Candidate interrupted transverse rib, kept distinct from statutory warning paving.",
+      "machine_zh": "强制减速—停车—确认净空的公共状态。",
+      "machine_en": "Public state requiring slow, stop and clear-path confirmation.",
+      "robot_behavior_zh": "在标记前完全停车；行人、轮椅和盲杖使用者始终优先。",
+      "robot_behavior_en": "Stop fully before the marker; pedestrians, wheelchair and cane users always have priority.",
+      "failure_behavior_zh": "无法确认净空时保持停止，不绕入无障碍通道。",
+      "failure_behavior_en": "Remain stopped when clearance cannot be confirmed; never divert into the accessible path.",
+      "maintenance_trigger_zh": "停车位置不可读、表面翘起或净空被占用。",
+      "maintenance_trigger_en": "Unreadable stop location, raised surface or occupied clear space.",
+      "statutory_relationship_zh": "只补充公共空间礼让，不替代法定让行标线或信号。",
+      "statutory_relationship_en": "Adds public-space yielding only; never replaces statutory yield markings or signals."
+    },
+    {
+      "id": "G3",
+      "token": "EDGE",
+      "name_zh": "界",
+      "name_en": "Edge",
+      "public_state_zh": "这里是不可越过或需人工确认的边界。",
+      "public_state_en": "This is a boundary that must not be crossed or requires human confirmation.",
+      "visual_zh": "双线加封闭端帽。",
+      "visual_en": "Double line with a closed end cap.",
+      "tactile_zh": "候选平滑—粗糙转换带，不形成绊倒高差。",
+      "tactile_en": "Candidate smooth-to-textured transition with no trip-producing level change.",
+      "machine_zh": "禁止越界或仅授权监督测试。",
+      "machine_en": "No crossing, or supervised-test authorization only.",
+      "robot_behavior_zh": "不得跨越；收到远程指令也须满足现场规则。",
+      "robot_behavior_en": "Do not cross; remote instructions remain subordinate to on-site rules.",
+      "failure_behavior_zh": "边界损坏或歧义时扩大安全停距。",
+      "failure_behavior_en": "Increase stopping distance when the edge is damaged or ambiguous.",
+      "maintenance_trigger_zh": "边界连续性破坏、临时围挡改变或周边法定设施调整。",
+      "maintenance_trigger_en": "Broken boundary continuity, changed temporary barriers or altered statutory infrastructure.",
+      "statutory_relationship_zh": "不代表地块、道路红线、文保线或法律边界。",
+      "statutory_relationship_en": "Does not represent parcels, road redlines, heritage controls or legal boundaries."
+    },
+    {
+      "id": "G4",
+      "token": "BERTH",
+      "name_zh": "泊",
+      "name_en": "Berth",
+      "public_state_zh": "短时停靠、装卸或交接应收纳在此，不占连续通行净空。",
+      "public_state_en": "Short stops, loading or handover belong here, outside the continuous clear path.",
+      "visual_zh": "朝通行线外侧打开的口袋。",
+      "visual_en": "A pocket opening away from the travel line.",
+      "tactile_zh": "候选边缘节律提示，轮椅可平顺跨越。",
+      "tactile_en": "Candidate edge rhythm that remains flush for wheelchairs.",
+      "machine_zh": "停靠编号、允许状态和最大占用时段，不含收件人信息。",
+      "machine_en": "Berth identifier, permitted state and maximum dwell category; no recipient data.",
+      "robot_behavior_zh": "仅在泊位空闲且交接人确认时进入；满位则离开通行线等待。",
+      "robot_behavior_en": "Enter only when the berth is clear and handover is confirmed; otherwise wait away from the travel line.",
+      "failure_behavior_zh": "交接失败或泊位占用时退出，不在盲道、坡道或出入口停留。",
+      "failure_behavior_en": "Withdraw when handover fails or the berth is occupied; never wait on tactile paving, ramps or entrances.",
+      "maintenance_trigger_zh": "净空被家具、车辆或积雪占用，编号不可读。",
+      "maintenance_trigger_en": "Clear space occupied by furniture, vehicles or snow, or identifier unreadable.",
+      "statutory_relationship_zh": "不构成停车、装卸或经营许可。",
+      "statutory_relationship_en": "Does not constitute parking, loading or business permission."
+    },
+    {
+      "id": "G5",
+      "token": "HELP",
+      "name_zh": "援",
+      "name_en": "Help",
+      "public_state_zh": "任何人可在此获得不依赖手机的人工帮助或报告问题。",
+      "public_state_en": "Anyone can obtain phone-free human help or report a problem here.",
+      "visual_zh": "开放括号包围一个空心点。",
+      "visual_en": "An open bracket around a hollow point.",
+      "tactile_zh": "候选短触感环与固定扶靠面相邻。",
+      "tactile_en": "Candidate short tactile ring adjacent to a fixed leaning/support surface.",
+      "machine_zh": "只广播帮助点类别和开放状态，不采集求助者身份。",
+      "machine_en": "Broadcasts help-point class and availability only; no helper identity is collected.",
+      "robot_behavior_zh": "停在净空外，显示求助状态并呼叫值守角色。",
+      "robot_behavior_en": "Stop outside the clear path, display the help state and call the duty role.",
+      "failure_behavior_zh": "数字链路失效时仍保留清晰的物理求助方向和人工渠道。",
+      "failure_behavior_en": "If digital links fail, retain clear physical directions and a human channel.",
+      "maintenance_trigger_zh": "人工渠道不可用、标记被遮挡或方向错误。",
+      "maintenance_trigger_en": "Human channel unavailable, marker obscured or direction wrong.",
+      "statutory_relationship_zh": "不替代报警、消防、医疗急救或法定无障碍服务。",
+      "statutory_relationship_en": "Does not replace police, fire, medical emergency or statutory accessibility services."
+    },
+    {
+      "id": "G6",
+      "token": "CHANGE",
+      "name_zh": "改",
+      "name_en": "Change",
+      "public_state_zh": "前方规则、路线或设施处于临时变化；先读现场替代信息。",
+      "public_state_en": "Rules, route or infrastructure ahead have temporarily changed; read the on-site alternative first.",
+      "visual_zh": "错位枕木与醒目的版本角标。",
+      "visual_en": "Offset sleepers with a prominent version corner.",
+      "tactile_zh": "候选可拆式短节律，仅在替代路线完整后铺设。",
+      "tactile_en": "Candidate removable short rhythm, installed only after the alternative route is complete.",
+      "machine_zh": "版本、有效期和替代状态；过期或冲突即无效。",
+      "machine_en": "Version, validity window and alternative state; expired or conflicting states are invalid.",
+      "robot_behavior_zh": "停止读取新版本；无法确认时转人工或退出测试区。",
+      "robot_behavior_en": "Stop to read the new version; defer to a human or leave the test area if it cannot be confirmed.",
+      "failure_behavior_zh": "默认按不可通行处理，并保持无障碍替代路线畅通。",
+      "failure_behavior_en": "Treat as closed by default and keep the accessible alternative clear.",
+      "maintenance_trigger_zh": "施工状态结束、版本过期、替代路线变化或临时件松动。",
+      "maintenance_trigger_en": "Construction ends, version expires, detour changes or a temporary element loosens.",
+      "statutory_relationship_zh": "不替代施工围挡、交通组织、公告或临时无障碍设施。",
+      "statutory_relationship_en": "Does not replace work-zone barriers, traffic management, notices or temporary accessible facilities."
+    }
+  ],
+  "fields": [
+    {
+      "id": "F1",
+      "area_id": "zhongzhiyuan_ai_acceleration_area",
+      "name_zh": "众智园译码场",
+      "name_en": "Zhongzhiyuan Translation Yard",
+      "role_zh": "多厂商设备共同读码、礼让和天气耐久的标准试验场。",
+      "role_en": "Standards test field for cross-vendor reading, yielding and weather durability.",
+      "provisional_note": true
+    },
+    {
+      "id": "F2",
+      "area_id": "beijing_ai_origin_community",
+      "name_zh": "AI 原点共读公社",
+      "name_en": "AI Origin Co-reading Commons",
+      "role_zh": "残障使用者、儿童、老年人、维护人员与开发者共同修订词典。",
+      "role_en": "People with disabilities, children, older people, maintainers and developers revise the dictionary together.",
+      "provisional_note": true
+    },
+    {
+      "id": "F3",
+      "area_id": "dazhongsi_ai_industry_cluster",
+      "name_zh": "大钟寺交接场",
+      "name_en": "Dazhongsi Handover Field",
+      "role_zh": "研究站点、商业、配送之间最后十米的停靠、交接与临时改道；不据临时几何画站点工程。",
+      "role_en": "Studies the last ten metres between transit, commerce and delivery—berthing, handover and detours—without using provisional geometry for station engineering.",
+      "provisional_note": true
+    }
+  ],
+  "wings": [
+    {
+      "id": "W1",
+      "name_zh": "中关村科技服务翼",
+      "name_en": "Zhongguancun Technology Services Wing",
+      "role_zh": "开放词典、测试工具、合规与国际协作支持。",
+      "role_en": "Open dictionary, test tools, compliance and international collaboration support."
+    },
+    {
+      "id": "W2",
+      "name_zh": "小月河场景赋能翼",
+      "name_en": "Xiaoyue River Scenario Enablement Wing",
+      "role_zh": "真实天气、社区使用、蓝绿空间和维护反馈。",
+      "role_en": "Real weather, community use, blue-green space and maintenance feedback."
+    }
+  ],
+  "landmarks": [
+    {
+      "id": "L1",
+      "name_zh": "让行标",
+      "name_en": "Yield Marker",
+      "function_zh": "把“机器先让人”变成沿线最易理解的公共承诺。",
+      "function_en": "Makes “machines yield to people first” the corridor's clearest public commitment."
+    },
+    {
+      "id": "L2",
+      "name_zh": "地语零号碑",
+      "name_en": "Ground Language Zero Stone",
+      "function_zh": "展示六个词、版本、来源、测试结果和公众修订入口。",
+      "function_en": "Displays the six words, version, provenance, test results and public revision channel."
+    },
+    {
+      "id": "L3",
+      "name_zh": "交接钟",
+      "name_en": "Handover Bell",
+      "function_zh": "以可见、可听但不自动播放的信号确认人机交接完成。",
+      "function_en": "Confirms human-machine handover with visible and user-triggered audible signals, never autoplay."
+    }
+  ],
+  "non_negotiables": [
+    "human_priority",
+    "default_stop_on_uncertainty",
+    "no_personal_identity_payload",
+    "vendor_neutral_dictionary",
+    "phone_and_network_not_required",
+    "statutory_accessibility_and_traffic_infrastructure_remain_authoritative",
+    "public_version_history_and_rollback"
+  ]
+}

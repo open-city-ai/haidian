@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jing-Zhang AI Belt · Urban Design Evidence Dashboard</title>
+<style>
+:root {
+  --ink: #1a2233; --sub: #5a6478; --line: #dfe4ec; --bg: #f6f8fb;
+  --blue: #2e6fb7; --green: #1a8a5a; --red: #c0392b; --gold: #b7950b;
+  --card: #ffffff; --accent-bg: #eef3fa;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Frex Sans GB", "Droid Sans Fallback", "Helvetica Neue", sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; padding: 24px; }
+.wrap { max-width: 1200px; margin: 0 auto; }
+header { background: linear-gradient(135deg, #16283f 0%, #24466b 100%); color: #fff; border-radius: 12px; padding: 28px 32px; margin-bottom: 20px; }
+header h1 { font-size: 26px; letter-spacing: 1px; }
+header .en { font-size: 14px; opacity: .85; margin-top: 4px; }
+header .status { display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); padding: 3px 12px; border-radius: 20px; font-size: 12px; margin-top: 10px; }
+.badge { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; margin: 2px 4px 2px 0; }
+.badge.prov { background: #fdecea; color: var(--red); border: 1px solid #f5c6c2; }
+.badge.ok { background: #e7f6ee; color: var(--green); border: 1px solid #bfe6d2; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; margin-bottom: 20px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; }
+.card h2 { font-size: 15px; color: var(--blue); border-bottom: 2px solid var(--accent-bg); padding-bottom: 8px; margin-bottom: 12px; }
+.card h3 { font-size: 13px; margin: 10px 0 6px; color: var(--ink); }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.kpi { background: var(--accent-bg); border-radius: 8px; padding: 12px; text-align: center; }
+.kpi .label { font-size: 12px; color: var(--sub); }
+.kpi .value { font-size: 18px; font-weight: 700; color: var(--ink); }
+.kpi .unit { font-size: 11px; color: var(--sub); }
+ul.tight { margin-left: 18px; font-size: 13px; }
+ul.tight li { margin: 4px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-top: 8px; }
+th, td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; }
+th { background: var(--accent-bg); font-weight: 600; }
+.note { font-size: 12px; color: var(--sub); margin-top: 8px; border-top: 1px dashed var(--line); padding-top: 8px; }
+.mapbox { background: #eef1f5; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.mapbox img { width: 100%; display: block; }
+footer { text-align: center; color: var(--sub); font-size: 12px; padding: 16px 0 8px; }
+.tag { font-size: 11px; color: var(--sub); background: #eef1f5; padding: 1px 8px; border-radius: 10px; }
+</style>
+<!-- v3 20260811 -->
+</head>
+<body data-version="v4np-202608110810">
+<div class="wrap">
+
+<header>
+  <h1>Jing-Zhang AI Belt · Urban Design Proposal Evidence Dashboard</h1>
+  <div class="en">京张智带 · 城市设计方案证据仪表板（English）</div>
+  <div>
+    <span class="status">Package: SCAFFOLD → READY_FOR_REVIEW (after self-check passes)</span>
+    <span class="badge prov">Provisional boundary</span>
+    <span class="badge ok">Bilingual v1</span>
+  </div>
+</header>
+
+<!-- Overview Map -->
+<div class="grid">
+  <div class="card" style="grid-column: 1 / -1;">
+    <h2>Overview Map · Concept & Evidence Chain</h2>
+    <div class="mapbox">
+      <img src="../assets/figures/site-overview.en.png" alt="Overview of scope and evidence chain">
+    </div>
+    <div class="note">Source: submission GeoJSON (provisional boundary, recalc pending official data) · conceptual design, not an official redline.</div>
+  </div>
+</div>
+
+<div class="grid">
+  <!-- Three Levels -->
+  <div class="card">
+    <h2>Three-Level Scope Framework</h2>
+    <table>
+      <tr><th>Level</th><th>Area</th><th>Boundary</th></tr>
+      <tr><td>Coordinated Research Area</td><td>~43.6 km²</td><td><span class="tag">provisional</span></td></tr>
+      <tr><td>Overall Design Area</td><td><span data-metric="site_area_sqm" data-value="11412825.4">~11.41 km²</span></td><td><span class="tag">provisional</span></td></tr>
+      <tr><td>Key Detailed Design Area</td><td><span data-metric="key_area_area_sqm" data-value="3692893">~3.69 km²</span></td><td><span class="tag">provisional</span></td></tr>
+    </table>
+    <div class="note">Based on official announcement text extents; exact polygons pending official release.</div>
+  </div>
+
+  <!-- Core Metrics -->
+  <div class="card">
+    <h2>Core Metrics (recalculated)</h2>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="label">Green ratio</div><div class="value"><span data-metric="green_ratio" data-value="0.2095">20.95%</span></div><div class="unit">green_ratio</div></div>
+      <div class="kpi"><div class="label">Public space ratio</div><div class="value"><span data-metric="public_space_ratio" data-value="0.1732">17.3%</span></div><div class="unit">public_space_ratio</div></div>
+      <div class="kpi"><div class="label">Building footprint</div><div class="value"><span data-metric="building_footprint_area_sqm" data-value="1342854.6">1.34 km²</span></div><div class="unit">building_footprint</div></div>
+      <div class="kpi"><div class="label">R&amp;D land</div><div class="value"><span data-metric="land_use_research_sqm" data-value="3585286.8">3.59 km²</span></div><div class="unit">land_use_research</div></div>
+      <div class="kpi"><div class="label">Commercial land</div><div class="value"><span data-metric="land_use_commercial_sqm" data-value="3415050.6">3.42 km²</span></div><div class="unit">land_use_commercial</div></div>
+      <div class="kpi"><div class="label">Road network length</div><div class="value"><span data-metric="road_length_m" data-value="12757.4">12.76 km</span></div><div class="unit">road_length</div></div>
+    </div>
+    <div class="note">All known metrics recomputed from geometry/*.geojson in EPSG:4548; see metrics.json. FAR / building density are unknown pending official regulatory controls.</div>
+  </div>
+</div>
+
+<div class="grid">
+  <!-- Key Areas -->
+  <div class="card">
+    <h2>Key Areas · Three Cores</h2>
+    <table>
+      <tr><th>Area</th><th>Positioning</th><th>Area (~)</th></tr>
+      <tr><td>Zhongzhiyuan AI Acceleration Area</td><td>Garden-type full-stack innovation district</td><td>1.93 km²</td></tr>
+      <tr><td>Beijing AI Origin Community</td><td>University-adjacent incubation &amp; talent community</td><td>1.04 km²</td></tr>
+      <tr><td>Dazhongsi AI Industry Cluster</td><td>Urban smart economy &amp; international exchange district</td><td>0.72 km²</td></tr>
+    </table>
+    <div class="mapbox" style="margin-top:10px;">
+      <img src="../assets/figures/key-areas.en.png" alt="Three key areas index map">
+    </div>
+  </div>
+
+  <!-- Land Use -->
+  <div class="card">
+    <h2>Land Use · 22 Conceptual Parcels</h2>
+    <ul class="tight">
+      <li><strong>R&amp;D / Education (0802/0804)</strong>: Zhongzhiyuan acceleration, Origin incubation, research belt</li>
+      <li><strong>Commercial services (05)</strong>: Dazhongsi industry cluster &amp; smart retail, gateway services</li>
+      <li><strong>Residential / Community (0701/0702)</strong>: Origin talent housing, renewal housing</li>
+      <li><strong>Green &amp; open space (1401/1402/1403)</strong>: Heritage park green belts + station plaza</li>
+      <li><strong>Road land (1207)</strong>: Southern gateway transport land</li>
+    </ul>
+    <div class="mapbox" style="margin-top:10px;">
+      <img src="../assets/figures/land-use-structure.en.png" alt="Land use structure concept map">
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+  <!-- Mobility + Blue-Green -->
+  <div class="card" style="grid-column: 1 / -1;">
+    <h2>Mobility &amp; Blue-Green Public Space System</h2>
+    <div class="mapbox">
+      <img src="../assets/figures/mobility-bluegreen.en.png" alt="Mobility and blue-green public space system map">
+    </div>
+    <div class="note">Conceptual road network 12.76 km · green system 2.39 km² · public space 1.98 km² · Qinghe water is conceptual (pending official blue line).</div>
+  </div>
+</div>
+
+<div class="grid">
+  <!-- AI Scenarios -->
+  <div class="card">
+    <h2>AI Scenario Cards (10+) &amp; Personas (5)</h2>
+    <ul class="tight">
+      <li>Open Source Publishing Hall (Origin) · Safety Governance Sandbox (Zhongzhiyuan) · Edge Compute Station</li>
+      <li>AI Slow-Mobility Navigation (Park belt) · Dazhongsi International Roadshow Lounge · Qinghe Low-Carbon Corridor</li>
+      <li>University-Area Transfer Street · Data Elements Lounge · AI Life Service Demo Street · Global AI Week Route</li>
+      <li>Personas: open-source developers / startups / enterprise visitors / residents / university faculty &amp; students</li>
+    </ul>
+    <h3>AI Pilgrimage Landmarks (3 conceptual directions)</h3>
+    <ul class="tight">
+      <li>Zhongzhiyuan: autonomous innovation &amp; safety governance showcase node</li>
+      <li>Origin Community: open-source collaboration &amp; result publishing lounge</li>
+      <li>Dazhongsi: international roadshow &amp; smart consumption lounge</li>
+    </ul>
+  </div>
+
+  <!-- Renewal + Phasing -->
+  <div class="card">
+    <h2>Renewal Projects &amp; Phasing</h2>
+    <table>
+      <tr><th>ID</th><th>Project</th><th>Phase</th></tr>
+      <tr><td>JZ-01</td><td>Heritage park slow-mobility gap stitching</td><td>Near-term</td></tr>
+      <tr><td>JZ-02</td><td>Zhongzhiyuan Qinghe innovation frontage</td><td>Near-term</td></tr>
+      <tr><td>JZ-03</td><td>Origin university-area transfer street</td><td>Mid-term</td></tr>
+      <tr><td>JZ-04</td><td>Dazhongsi station four-quadrant connectivity</td><td>Mid-term</td></tr>
+      <tr><td>JZ-05</td><td>AI public services &amp; edge compute nodes</td><td>Mid-term</td></tr>
+      <tr><td>JZ-06</td><td>Global AI Week public route</td><td>Long-term</td></tr>
+    </table>
+    <div class="note">Phasing areas: near-term <span data-metric="phasing_phase1_area_sqm" data-value="2972438.8">2.97 km²</span> · mid-term <span data-metric="phasing_phase2_area_sqm" data-value="495595.7">0.50 km²</span> · long-term <span data-metric="phasing_phase3_area_sqm" data-value="2073839.7">2.06 km²</span></div>
+  </div>
+</div>
+
+<div class="grid">
+  <!-- Coverage -->
+  <div class="card">
+    <h2>Task Coverage</h2>
+    <ul class="tight">
+      <li>Announcement tasks 1.3/1.4/1.5 → compliance_matrix.json (23 items)</li>
+      <li>Agent tasks agent.1—agent.6 → compliance_matrix.json + report sections</li>
+      <li>Professional standards (6) → standard_matrix.json</li>
+      <li>Design depth items (15) → design_depth_matrix.json</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>Self-Check Status &amp; Evidence</h2>
+    <ul class="tight">
+      <li>Deterministic validation: pending finalize + self-check all-green</li>
+      <li>Spatial review: land_use zero-overlap, full coverage (verified in EPSG:4548)</li>
+      <li>Visual packaging: this page is offline, no remote resources</li>
+      <li>Professional evidence: bilingual proposal + evidence anchors + reproducible metrics</li>
+    </ul>
+    <div class="note">Source registry: data/source_registry.json · Assumptions: assumptions.json · License: COMMUNITY-DISPLAY-ONLY</div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card" style="grid-column: 1 / -1;">
+    <h2>Core Metrics Evidence Chain</h2>
+    <div class="mapbox">
+      <img src="../assets/figures/metrics-evidence.en.png" alt="Core metrics recalculation evidence chain">
+    </div>
+  </div>
+</div>
+
+<footer>
+  Jing-Zhang AI Belt · 京张智带 · Package <code>submissions/OPaimon/jingzhang-ai-belt</code> · Conceptual, not an official redline · Provisional boundary, recalc after official data
+</footer>
+
+</div>
+</body>
+</html>

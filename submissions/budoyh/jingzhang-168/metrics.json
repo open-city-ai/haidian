@@ -122,7 +122,7 @@
       "confidence": "high",
       "assumptions": []
     },
-    "time_ribbon_length_m": {
+    "civic_baseline_spine_length_m": {
       "status": "known",
       "value": 9339.97,
       "unit": "m",
@@ -172,12 +172,12 @@
     },
     "persona_count": {
       "status": "known",
-      "value": 6,
+      "value": 8,
       "unit": "count",
       "source_files": [
         "visual/assets/spatial-components.json"
       ],
-      "formula": "count(visual/assets/spatial-components.json.personas registry)",
+      "formula": "count(personas PER-01..PER-08)",
       "confidence": "high",
       "assumptions": []
     },
@@ -192,34 +192,6 @@
       "confidence": "high",
       "assumptions": []
     },
-    "weekly_public_open_hours": {
-      "status": "known",
-      "value": 112,
-      "unit": "count",
-      "source_files": [
-        "geometry/public_space.geojson",
-        "proposal.md"
-      ],
-      "formula": "16 open hours/day * 7 days",
-      "confidence": "medium",
-      "assumptions": [
-        "A-TIME-001"
-      ]
-    },
-    "public_space_weekly_sqm_hours": {
-      "status": "known",
-      "value": 96952080.906,
-      "unit": "index",
-      "source_files": [
-        "geometry/public_space.geojson",
-        "proposal.md"
-      ],
-      "formula": "public_space_area_sqm * weekly_public_open_hours",
-      "confidence": "medium",
-      "assumptions": [
-        "A-TIME-001"
-      ]
-    },
     "renewal_project_count": {
       "status": "known",
       "value": 9,
@@ -232,50 +204,65 @@
       "confidence": "high",
       "assumptions": []
     },
-    "temporal_zone_count": {
+    "regional_interface_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/regional-interfaces.json"
+      ],
+      "formula": "count(REG-01..REG-05 proposed interfaces)",
+      "confidence": "high",
+      "assumptions": [
+        "A-GOVERNANCE-001"
+      ],
+      "metric_role": "proposal_interface_registry",
+      "statutory_use": "forbidden"
+    },
+    "dividend_yard_count": {
       "status": "known",
       "value": 3,
       "unit": "count",
       "source_files": [
-        "geometry/constraints.geojson",
-        "visual/assets/spatial-components.json"
+        "visual/assets/dividend-yards.json",
+        "geometry/constraints.geojson"
       ],
-      "formula": "count(TZ-*)",
+      "formula": "count(DY-01..DY-03)",
       "confidence": "high",
       "assumptions": []
     },
-    "booking_segment_count": {
+    "unplugged_seam_count": {
       "status": "known",
       "value": 6,
       "unit": "count",
       "source_files": [
-        "geometry/constraints.geojson",
-        "visual/assets/jz168-week.schema.json"
+        "visual/assets/spatial-components.json",
+        "geometry/constraints.geojson"
       ],
-      "formula": "count(BK-*)",
+      "formula": "count(US-01..US-06)",
       "confidence": "high",
       "assumptions": []
     },
-    "time_component_count": {
+    "offline_ready_component_count": {
       "status": "known",
       "value": 7,
       "unit": "count",
       "source_files": [
-        "geometry/constraints.geojson",
-        "visual/assets/spatial-components.json"
+        "visual/assets/spatial-components.json",
+        "geometry/constraints.geojson"
       ],
-      "formula": "count(TC-*)",
+      "formula": "count(OC-01..OC-07)",
       "confidence": "high",
       "assumptions": []
     },
-    "schedule_state_count": {
+    "dividend_state_count": {
       "status": "known",
       "value": 8,
       "unit": "count",
       "source_files": [
         "visual/assets/state-machine.json"
       ],
-      "formula": "count(unique protocol states)",
+      "formula": "count(states)",
       "confidence": "high",
       "assumptions": []
     },
@@ -314,17 +301,17 @@
       "confidence": "high",
       "assumptions": []
     },
-    "first_168h_stage_count": {
+    "first_twelve_week_stage_count": {
       "status": "known",
       "value": 9,
       "unit": "count",
       "source_files": [
-        "visual/assets/first-168h.json"
+        "visual/assets/first-12-weeks.json"
       ],
-      "formula": "count(relative-time stages H000..H168)",
+      "formula": "count(stages W00..W12)",
       "confidence": "high",
       "assumptions": [
-        "A-FIRST-168H-001"
+        "A-FIRST-12W-001"
       ]
     },
     "non_ai_equivalent_coverage_ratio": {
@@ -347,37 +334,39 @@
       "unit": "ratio",
       "source_files": [
         "visual/assets/scenario-cards.json",
-        "visual/assets/first-168h.json"
+        "visual/assets/first-12-weeks.json"
       ],
       "formula": "successful human takeover drills / takeover drills attempted",
       "confidence": "unknown",
       "assumptions": [
         "A-BASELINE-001"
       ],
-      "reason": "Requires executed drills, timestamps and signed receipts from an authorised operator."
+      "reason": "Requires executed drills, operationstamps and signed receipts from an authorised operator."
     },
-    "on_time_space_return_ratio": {
+    "field_bequest_delivery_ratio": {
       "status": "unknown",
       "value": null,
       "unit": "ratio",
       "source_files": [
-        "visual/assets/example-week.json"
+        "visual/assets/civic-dividend-contracts.json",
+        "visual/assets/first-12-weeks.json"
       ],
-      "formula": "slots with accepted return receipt by planned end / completed slots",
+      "formula": "authorized field contracts with accepted bequest receipt / authorized field contracts completed",
       "confidence": "unknown",
       "assumptions": [
         "A-BASELINE-001"
       ],
-      "reason": "The example week is synthetic and cannot prove operational restoration performance."
+      "reason": "No field contract is authorised or complete; contract fields and a synthetic example cannot prove delivery."
     },
-    "restoration_time_minutes": {
+    "unplug_recovery_time_minutes": {
       "status": "unknown",
       "value": null,
       "unit": "count",
       "source_files": [
-        "visual/assets/example-week.json"
+        "visual/assets/example-unplugged-test.json",
+        "visual/assets/first-12-weeks.json"
       ],
-      "formula": "minutes from slot end to accepted restoration receipt",
+      "formula": "minutes from physical disconnect to accepted ordinary-service restoration receipt in an authorised field drill",
       "confidence": "unknown",
       "assumptions": [
         "A-BASELINE-001"
@@ -389,7 +378,7 @@
       "value": null,
       "unit": "count",
       "source_files": [
-        "visual/assets/first-168h.json"
+        "visual/assets/first-12-weeks.json"
       ],
       "formula": "count(verified events that obstruct an accessible route or equivalent service)",
       "confidence": "unknown",
@@ -476,6 +465,135 @@
       "confidence": "unknown",
       "assumptions": [],
       "reason": "No ownership, structure safety, heritage, lease or existing-building survey supports a demolition decision."
+    },
+    "dividend_yard_prototype_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/dividend-yards.json"
+      ],
+      "formula": "count(yards)",
+      "confidence": "high",
+      "assumptions": [
+        "A-LOCATOR-001"
+      ]
+    },
+    "scenario_dividend_contract_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/civic-dividend-contracts.json"
+      ],
+      "formula": "count(contracts)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "unplugged_tabletop_case_count": {
+      "status": "known",
+      "value": 84,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/unplugged-tabletop-evidence.json"
+      ],
+      "formula": "12 scenario contracts x 7 synthetic branches",
+      "confidence": "high",
+      "assumptions": [
+        "A-TABLETOP-001"
+      ]
+    },
+    "contract_human_owner_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/civic-dividend-contracts.json"
+      ],
+      "formula": "contracts with named human role / 12",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "contract_non_ai_equivalent_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/civic-dividend-contracts.json"
+      ],
+      "formula": "contracts with baseline.non_ai_service / 12",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "contract_unplug_recovery_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/civic-dividend-contracts.json"
+      ],
+      "formula": "contracts with blackout unplug and recovery evidence / 12",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "real_personal_data_used_in_tabletop": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/unplugged-tabletop-evidence.json"
+      ],
+      "formula": "synthetic-only runner performs no external I/O",
+      "confidence": "high",
+      "assumptions": [
+        "A-TABLETOP-001"
+      ]
+    },
+    "field_service_success_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/civic-dividend-contracts.json"
+      ],
+      "formula": "successful authorized field runs / authorized field runs",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-TABLETOP-001",
+        "A-BASELINE-001"
+      ],
+      "reason": "No field service is authorized or has been run; the synthetic tabletop receipt cannot supply a field-success numerator or denominator."
+    },
+    "contract_bequest_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/civic-dividend-contracts.json"
+      ],
+      "formula": "contracts with a residual asset required to work without AI / 12",
+      "confidence": "high",
+      "assumptions": [
+        "A-DIVIDEND-001",
+        "A-TABLETOP-001"
+      ],
+      "metric_role": "machine_readable_contract_coverage",
+      "statutory_use": "forbidden"
+    },
+    "blackout_bequest_branch_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/unplugged-tabletop-evidence.json"
+      ],
+      "formula": "count(blackout_residual_service synthetic branches)",
+      "confidence": "high",
+      "assumptions": [
+        "A-TABLETOP-001"
+      ],
+      "metric_role": "synthetic_protocol_test",
+      "statutory_use": "forbidden"
     }
   }
 }

@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "artifact_id": "DM-PIRT-001",
+  "status": "not_run",
+  "purpose": "Define route-based inclusion tests before any public AI pilot is released.",
+  "sample_rule": "At least 5 participants per persona per pilot; findings remain disaggregated and no weak group may be hidden by an average.",
+  "pass_thresholds": {
+    "ordinary_route_completion_rate": 1.0,
+    "critical_information_comprehension_rate": 0.8,
+    "human_takeover_success_rate": 1.0,
+    "complaint_receipt_within_minutes": 10,
+    "wheelchair_clear_width_min_m": 1.8,
+    "maximum_unresolved_critical_issue": 0
+  },
+  "personas": [
+    {"id": "U01", "persona": "older resident without smartphone", "test": "reach, understand and complete the core service using signs, paper and a staffed counter", "failure": "account or smartphone becomes mandatory"},
+    {"id": "U02", "persona": "wheelchair user", "test": "complete the whole route including turning, waiting, service and emergency bypass", "failure": "any test equipment narrows the clear route below 1.8 m"},
+    {"id": "U03", "persona": "blind-cane or guide-dog user", "test": "follow tactile continuity, detect zone boundaries and request human assistance", "failure": "tactile path is interrupted or audible notice lacks a quiet alternative"},
+    {"id": "U04", "persona": "parent with child", "test": "cross the pilot edge without entering the test zone and understand the stop state", "failure": "child can enter a controlled zone without a physical boundary"},
+    {"id": "U05", "persona": "night-shift service worker", "test": "use the ordinary route and complaint channel outside event hours", "failure": "basic passage depends on event staffing or bright screens"},
+    {"id": "U06", "persona": "international visitor with limited Chinese", "test": "obtain directions, uncertainty warning and human handoff in a supported language", "failure": "machine translation is presented without confidence or escalation"}
+  ],
+  "decision_rule": "Any critical failure produces HOLD. Two repeated non-critical failures produce REVISE. Only disaggregated PASS results may support LIMITED_RELEASE."
+}

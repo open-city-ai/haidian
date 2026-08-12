@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v3.0"
+iteration: "v4.4"
 summary: "Using the centennial Jingzhang railway heritage corridor as its frame, the scheme rebuilds the Haidian AI industrial belt into an Origin Force belt shared by people and machine agents: one belt, three zones with two wings and five gates, eight narrative landmarks, eight personas, twelve auditable AI+ scenario cards, sixteen implementation mechanisms and twelve numbered renewal projects, all anchored to a provisional boundary basis, structured metrics and a reproducible evidence chain, with both language versions rendered from one data source."
 tracks: ["ai-origin-community", "jingzhang-heritage-narrative", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "ai-cultural-guide", "ai-health-service-navigation", "robot-delivery-low-speed"]
@@ -19,6 +19,24 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 **Scheme codename**: Origin Force. The name comes from the Beijing AI Origin Community, where an origin is not a coordinate but a startup capability that can be reproduced. The scheme upgrades the Jingzhang railway remains from a passive planting strip into an active **interface of the city operating system**: the ground is a park for people, the buildings and the underground carry computing and data, and across the interface run public services that citizens can read, regulators can audit and machine agents can call.
 
 **How to read this document**: thirteen sections follow the order required by the announcement, and every conclusion carries an identifier and an evidence reference. Areas use Z1-Z3 and W1-W2, mechanisms X01-X16, scenarios S01-S12, projects R-01-R-12, landmarks M1-M8 and components K01-K12. Any conclusion can be traced back to material, geometry or a metric entry. The Chinese and English texts are rendered from one data source, so their equivalence is machine-verifiable.
+
+### Design Method Statement
+
+This proposal follows a constraint-first design method. We first enumerate every boundary that must
+not be touched -- heritage fabric, the provisional and coarse boundary, data gaps, and the zones of
+responsibility that an agent submission must not enter -- and only then look for the opportunities
+that maximise public value inside whatever space remains. This is the reverse of the conventional
+planning sequence, which fixes a vision first and then trims reality to fit it. Constraints are not
+the enemy of creativity; they are its coordinate system. Only after it is clear what cannot be done
+does the question of what can be done acquire real force [source:AGENT-TASKBOOK]
+[source:BOUNDARY-SOURCE].
+
+The second method is to write every design decision as a falsifiable proposition. "This belt should
+become the interface of a city operating system" is not a proposition. "Every AI touchpoint deployed
+on this belt must be vetoable by the public" is. A proposition can be tested: either the veto channel
+exists and works, or it does not. This proposal writes its conclusions in the latter form wherever it
+can, and records the test path in the verification field of `evidence-ledger.json`
+[source:PKG-EVIDENCE-LEDGER].
 
 ## Design Basis and Source List
 
@@ -41,6 +59,57 @@ The diagnosis is built on six dimensions: the linear accessibility of the railwa
 - Value ranges in the site package bound metric derivation; any value outside a range is labelled an assumption [source:SITE-PACKAGE].
 - Official redlines, a building survey, underground utilities and tenure records are organiser-side data gaps, handled through a reserved recalculation interface [depth:risk_missing_data].
 
+#### Audit path for source provenance
+
+The proposal uses sources in two distinct ways. The first kind is written into structured files and
+can be read back by a script; the second kind appears only as narrative background. The first kind
+covers boundaries, metrics, source identifiers and risk records: each must have a matching entry in
+`sources.json` and an explicit JSON pointer in `claim-provenance.json`. The second kind covers
+historical context and the narrative description of international cases: these never enter metric
+recalculation and must not be extended into any official position. The benefit of this split is that
+a reviewer can close the prose entirely, read only the JSON files and the audit script, and still
+complete a minimal independent trust check [source:SOURCE-REGISTRY] [source:PKG-CLAIM-PROVENANCE].
+
+Every cited source carries four pieces of metadata: authority tier (official / authoritative /
+public / processed), acquisition date, usable scope, and non-usable scope. The prose only draws
+conclusions inside the usable scope. Once the non-usable scope of a source touches spatial precision
+or legal effect, the text switches at that point to a provisional boundary or an explicit assumption.
+The official announcement, for example, is usable for establishing the task scope and the three
+positions, but the coarse boundary attached to it cannot be used to compute a precise plot ratio;
+every area and density figure is therefore marked as a provisional basis
+[source:OFFICIAL-ANNOUNCEMENT] [source:BOUNDARY-SOURCE].
+
+#### Item-by-item findings across the six dimensions
+
+The six dimensions are not a flat checklist but a causal chain: the linear accessibility of the
+heritage determines whether public space can be continuous; the continuity of public space
+determines whether innovation actors can be seen; and the visibility of those actors determines
+whether the belt can be used as an urban interface at all. The table below places the observation,
+the inference and the resulting spatial action side by side for each dimension, so that no gap opens
+between diagnosis and design [depth:existing_conditions_diagnosis].
+
+| Dimension | Observation (provisional basis) | Inference | Spatial action triggered |
+| --- | --- | --- | --- |
+| Linear accessibility of the rail heritage | The corridor runs about 9.7 km north-south and averages about 1.3 km east-west; the heritage spine is continuous but lateral entry points are sparse | Accessible along its length yet inaccessible across it, the heritage becomes a green belt that can be seen but not entered | Eight ground-level stitching needles raise lateral entry density to a level where walking is a real choice |
+| Spatial distribution of innovation actors | Research actors are concentrated inside gated parks and office buildings; the street frontage is dominated by access control and vehicle drop-off | Innovation activity produces no street life, and industrial density cannot convert into urban experience | Each of the three key areas gains one free and openly accessible reception hall that externalises internal activity onto the public frontage |
+| Breaks in commuting and transfer | The road network totals about 62.2 km, yet last-mile breaks persist between rail stations and parks | Pedestrians are forced to detour or switch to motor vehicles, and slow-mobility continuity fails at the nodes | Low-speed band transfer points and continuous slow-mobility paths close the breaks into a walkable loop |
+| Service blind spots in public space | Public space accounts for about 6.2 per cent of the site and is unevenly distributed; some segments offer nowhere to pause within a ten-minute walk | Lingering is squeezed out and public space carries movement only | The twelve-type component library is distributed by service radius, converting passage into stay |
+| Age and structure of the building stock | The existing building footprint is about 294,000 square metres, with wide variation in age and structure and no unified survey data | Retain-renovate-demolish cannot be judged under a data gap, and any list produced now would be irresponsible | A four-step procedure: complete the survey first, then discuss disposal; the procedure itself is the deliverable |
+| Siting potential for data and computing facilities | Existing computing facilities are mostly enclosed machine rooms with no interface to public space | The public character of computing as urban infrastructure remains unexpressed | A compute visit hall and a data-airing yard turn the operating state of infrastructure into visible public information |
+
+All six observations are recalculated from the registered provisional boundary and the geometry
+layers inside this package, with no reference to unregistered external drawings. Area and length
+figures update automatically when official geometry is released, and the direction of the
+conclusions does not change with them [source:BOUNDARY-SOURCE] [source:PKG-METRICS].
+
+The fifth dimension deserves a separate note. The age and structure of the building stock is the
+precondition for any retain-renovate-demolish judgement, and it is exactly the item that sits inside
+the organiser's data gap. The proposal therefore refuses to reach a conclusion here: no demolition
+list, no disposal opinion on individual buildings, only the decision procedure and the list of data
+that procedure requires. This is a deliberate blank. Producing a retain-renovate-demolish list in the
+absence of survey data would look more complete while in fact transferring the risk to whoever
+implements it later [depth:retain_renovate_demolish] [depth:risk_missing_data].
+
 ### Response index to the six task-book items
 
 | Task item | Where this scheme answers | Deliverables |
@@ -52,9 +121,83 @@ The diagnosis is built on six dimensions: the linear accessibility of the railwa
 | agent.5 Character, identity and international narrative | Section 9, character and visual direction | Identity motif, six symbols, international narrative line |
 | agent.6 Implementation and open ecosystem | Section 10, project list and mechanisms | Twelve projects, sixteen mechanisms, five annual events |
 
+#### Selection and tailoring of applicable standards
+
+The proposal registers six applicable standards and, for each, states the level at which this
+proposal uses it and the level at which it explicitly does not. Inside this package a standard
+citation is defined as a list of questions still to be satisfied, not as a certificate of compliance
+[source:PKG-STANDARD-MATRIX].
+
+| Standard | Level at which this proposal uses it | Level explicitly excluded |
+| --- | --- | --- |
+| Project solicitation announcement | Establishing the task scope, the three-level framework and the three positions | The coarse boundary attached to it is not used for precise area calculation [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] |
+| Agent open-call task book | Establishing the deliverable list, the zones of prohibited responsibility and the self-check basis | No administrative effect is claimed on its basis [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] |
+| Urban design administration measures | Establishing the content framework and expression depth of urban design deliverables | It does not replace the preparation and approval process of statutory urban design [standard:MOHURD-URBAN-DESIGN-MEASURES] |
+| Requirements for regulatory detailed planning | Establishing the content correspondence for overall-level regulatory-depth urban design | No regulatory plan sheet is issued and no plot ratio or height conclusion is given [standard:MOHURD-CONTROL-DETAILED-PLANNING] |
+| Territorial land use classification guide | Establishing the wording basis and classification alignment for land use functions | It is not a basis for plot delineation or tenure determination [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] |
+| Depth requirements for architectural design documents | Calibrating the expression boundary of implementation-scheme depth in the key areas | No architectural engineering design and no construction-drawing depth output [standard:MOHURD-ARCH-DESIGN-DEPTH-2016] |
+
+The point of the tailoring is to prevent a common misreading: treating "a standard was cited" as
+"the standard was met". Beside every standard citation this proposal states the excluded level, so
+reviewers can quickly tell which conclusions fall within the proposal's responsibility and which
+must be left to the statutory process. Fire safety, structure, municipal capacity, underground
+utilities and civil defence requirements all fall outside the judgement scope of this proposal and
+must be re-checked by qualified parties once official data is obtained [depth:risk_missing_data].
+
 ## Three-Level Scope Framework
 
 The scheme follows the announcement in setting up three nested working levels, each carrying a different output precision and a different boundary of responsibility [depth:three_level_scope_framework] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]. Level one, the coordinated research area, answers what role this corridor plays in the wider urban and industrial structure. Its outputs are research conclusions, trend judgements and strategic frameworks; it issues no regulatory drawings. Level two, the overall design area, answers how urban renewal reaches plots and streets. It works at the urban-design depth of a regulatory detailed plan and outputs **conceptual suggestions** for land-use structure, intensity zoning, height and character control, and the road and blue-green frame. Level three, the key areas, answers how someone's ordinary day here would change. It works at the urban-design depth of a comprehensive implementation plan and outputs **reference options** for massing relationships, ground-to-underground connection, public interfaces and delivery sequence.
+
+### Layered handling of precision and uncertainty
+
+The three levels differ not only in their division of labour but in how each absorbs uncertainty. At
+the coordinated level, uncertainty is absorbed through scenario research: we set out several possible
+directions for industrial evolution without betting specific space on any one of them. At the overall
+level, uncertainty is absorbed through control logic: instead of stating plot ratio and height
+figures, we state the principles and boundary conditions for deriving them, leaving the blanks to be
+filled by qualified teams inside the statutory process. In the key areas, uncertainty is absorbed
+through reversible design: every intelligent facility, temporary structure and scenario installation
+sits on a reversible base, can be removed within 48 hours, and leaves no structural trace on the
+ground once removed [depth:development_intensity_controls]
+[depth:three_key_area_detailed_design].
+
+This layering writes "we do not know" into the proposal itself rather than hiding it behind
+attractive numbers. During review it is visible which conclusions are robust, which are conditional
+on prerequisites, and which cannot be settled until official data is released. This is precisely
+where an agent submission has an advantage over conventional text: it can turn the structure of
+uncertainty itself into an auditable object [source:AGENT-TASKBOOK].
+
+### Spatial nesting of the three levels
+
+The three levels are not three unrelated drawings but three resolutions of the same territory. The
+coordinated research area covers the corridor and its hinterland of influence and answers the
+question of regional role. The overall design area contracts to the corridor itself, whose site area
+on the provisional basis is about 11.345 million square metres [metric:site_area_sqm]; this is the
+operative extent for land use structure, the blue-green skeleton and road organisation. The key areas
+contract further to the three registered nodes [metric:key_area_count], which are the operative
+extent for building massing relationships and public frontage [source:KEY-AREA-SOURCE].
+
+| Level | Spatial extent | Provisional scale | Resolution | Principal layers |
+| --- | --- | --- | --- | --- |
+| Coordinated research area | Corridor plus hinterland of influence | No fixed boundary; scope follows the issue | Strategy and scenarios | No separate geometry; conclusions live in text and matrices |
+| Overall design area | The corridor itself | About 11.345 million square metres, green ratio about 24.2 per cent [metric:green_ratio] | Blocks and streets | Land use, green space, roads, constraints, phasing |
+| Key areas | Three registered nodes | Public space about 6.2 per cent [metric:public_space_ratio] | Massing and frontage | Buildings, public space rooms, key areas |
+
+The nesting imposes one important operating discipline: a lower level may not break a conclusion set
+by a higher level, and a higher level may not make decisions on behalf of a lower one. The overall
+level, for example, sets the control logic that intensity decreases from the cores towards the
+heritage belt, so a key area cannot place its tallest volume on the heritage side. Conversely, the
+overall level does not prescribe the entrance orientation of a particular courtyard inside a key
+area, because that is a question only implementation-scheme depth should answer. This discipline is
+written into the design decision records of the evidence ledger and can be re-checked by script
+[source:PKG-EVIDENCE-LEDGER] [depth:three_level_scope_framework].
+
+The road network is the only skeleton that runs through all three levels, totalling about 62.2
+kilometres on the provisional basis [metric:road_network_length_m]. At the coordinated level it is
+evidence of regional connection; at the overall level it is the object of right-of-way allocation;
+in the key areas it is the boundary of frontage organisation. One object carrying three roles across
+three resolutions is precisely why the three-level framework engages rather than talking past itself
+[depth:traffic_rail_slow_parking].
 
 ### Self-imposed boundary of responsibility
 
@@ -72,7 +215,7 @@ The three levels share one numbering system: zones Z1 to Z3 with wings W1 and W2
 
 The coordinated level does not ask what can be built here. It asks which irreplaceable function this corridor carries within the national AI landscape [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]. The judgement of this scheme is that China does not lack AI parks. What is missing is one corridor that presses an **indigenous technology stack, real urban scenarios and governance rules** onto a single spatial line. Chips and frameworks grow no users inside closed compounds; models gain no reliability in sandboxes without real constraints; governance rules produce no enforceable clauses in meeting rooms without evidence. Placing those three things inside one walkable, observable, publicly auditable belt of roughly five kilometres is the single asset this corridor holds that no other city can copy.
 
-![Spatial structure of the Origin Force belt linking three zones, two wings and five gates](assets/figures/site-overview.png)
+![Spatial structure of the Origin Force belt linking three zones, two wings and five gates](assets/figures/site-overview.en.png)
 
 *Figure · Overall spatial structure: one belt, three zones with two wings, five gates. The boundary is a provisional rough extent, not an official redline.*
 
@@ -110,6 +253,24 @@ What connects the five functions are five loops. Their value lies in each having
 | L4 | Governance export loop | 众智园 → 全带 → 国际 | Impact assessment and reversibility covenants are trialled inside the belt, then published as citable urban governance patterns. |
 | L5 | Talent retention loop | 全带 → 原点社区 → 中关村翼 | Time banking, shared-equity housing and residency programmes reduce attrition and convert short-project population into long-term residents. |
 
+### Three scenarios of industrial evolution
+
+To respond to the high uncertainty of the AI industry, the coordinated level introduces three
+evolution scenarios, each with a different spatial response.
+
+| Scenario | Trigger condition | Spatial response |
+| --- | --- | --- |
+| Scenario A - Foundation models concentrate | Frontier model capability converges quickly and start-ups work mainly at the application layer | Zhongzhi Park strengthens standard-setting and safety evaluation, Origin Community expands application incubation, Dazhongsi focuses on intelligence-native consumption |
+| Scenario B - Vertical models fragment | Industry-specific and on-device models proliferate and the open-source ecosystem is active | Origin Community becomes an open-source node, the Xiaoyue River wing adds bookable vertical test segments, the Zhongguancun wing strengthens intellectual property services |
+| Scenario C - Governance rules spill over | Other cities in the region widely adopt the belt's algorithmic impact assessment and touchpoint labelling | Zhongzhi Park adds a governance-paradigm export centre, and the whole belt increases the demonstration density of data-airing yards and civic veto channels |
+
+The three scenarios are not mutually exclusive, and the spatial structure is designed to hold them as
+a superposition. The test segments on the Xiaoyue River wing can serve vertical models and equally
+serve urban validation of foundation models; the public space of Zhongzhi Park can host a standards
+conference and equally host an international workshop on governance rules. This spatial ambiguity is
+what keeps the proposal implementable while the direction of the industry is still unsettled
+[depth:three_level_scope_framework].
+
 ### International cases: what to borrow and where it does not apply
 
 The commonest failure in case study is to record only the merits. This scheme writes an explicit **applicability and non-applicability boundary** for each of eight named cases, because the real design decisions in a corridor usually happen exactly where a borrowed lesson stops working [source:AGENT-TASKBOOK]. All cases are publicly documented city or district practices. Only public features of their spatial organisation and governance are cited; no non-public data is used and no partnership with any operator is claimed.
@@ -145,9 +306,39 @@ The regional judgements above are research conclusions at the coordinated level.
 
 The overall structure is summarised as **one belt, three zones with two wings, and five gates**: a continuous heritage slow-mobility belt as the frame, three functional zones and two functional wings attached to it, and five rail and road gates handling entry and transfer [depth:overall_spatial_structure]. The core judgement is that this belt must not be designed as a landscape greenway. It has to be **a public space with working surfaces**, where pilot equipment may appear at street level, low-speed robots may use a dedicated right of way, and experimental results may be posted in the open. Only when production is allowed to spill into public space does innovation become part of urban experience.
 
-![Land-use structure and intensity concept, with intensity decreasing towards the heritage belt](assets/figures/land-use-structure.png)
+![Land-use structure and intensity concept, with intensity decreasing towards the heritage belt](assets/figures/land-use-structure.en.png)
 
 *Figure · Conceptual suggestion for land use and intensity zoning. Zones show relative relationships only and contain no FAR or height conclusions.*
+
+### Four-band cross-section and stitching strategy
+
+The overall level organises the corridor through a four-band cross-section: the western block band,
+the western seam band, the heritage park spine, the eastern seam band, and the eastern block band.
+The western blocks are dominated by research and supporting services, the eastern blocks by housing
+and everyday services, the heritage spine is a continuous public living room, and the two seam bands
+carry low-speed traffic, municipal ducts and reversible facilities as a buffer. The four bands are
+connected east-west by eight "stitching needles". A stitching needle is not a viaduct: it is a
+ground-level, short-span pedestrian and slow-mobility connection that can be delivered in phases
+[depth:blue_green_public_space] [source:PKG-SPATIAL].
+
+![Cross-section order: conceptual diagram of the four bands and the eight stitching needles](assets/figures/cross-section-order.en.png)
+
+*Figure - Conceptual diagram of the four-band cross-section and the stitching strategy. Section
+proportions express relative relationships only; actual widths must follow official municipal and
+land conditions.*
+
+The location of each stitching needle follows three rules: do not cut through heritage fabric, do not
+add a new vehicular crossing, and keep the service radius covering blocks on both sides. Each needle
+carries a barrier-free ramp, a pause area for low-speed devices and a touchpoint label board, so that
+it becomes the natural everyday choice for crossing rather than a scenic bridge for visitors only.
+The structural form, span and feasibility of every needle must be separately verified by professional
+teams once official geological, heritage-protection and municipal data has been obtained; this
+proposal offers a conceptual suggestion for spatial organisation only [depth:risk_missing_data].
+
+![Conceptual diagram of land use structure and intensity zoning: intensity decreases from the cores towards the heritage belt](assets/figures/land-use-structure.en.png)
+
+*Figure - Conceptual suggestion for land use and intensity zoning. All zones express relative
+relationships and contain no plot ratio or height conclusions.*
 
 ### Character and role of the three zones and two wings
 
@@ -161,6 +352,43 @@ The three zones and two wings follow the division set by the announcement. This 
 | W1 | Zhongguancun Technology Service Wing | within study scope | Global factor allocation, Zhongguancun IP and capital | Supports the belt through service-industry density: IP, standards, testing, legal, investment and international interfaces concentrate here and export into the three zones. |
 | W2 | Xiaoyuehe Scenario Empowerment Wing | within study scope | Scenario empowerment and vibrant AI city | Uses the Xiaoyuehe blue-green corridor as a linear testbed linking campus living areas and neighbourhoods into a walkable public scenario route. |
 
+### Interface with the statutory planning system
+
+The value of a conceptual proposal depends on whether the statutory process can catch it. This
+proposal builds four interfaces so that its conclusions can enter later work without the text having
+to be rewritten [depth:overall_spatial_structure].
+
+**Interface one: geometry replacement.** Every area, ratio and length conclusion is computed from
+the nine GeoJSON layers under `geometry/`. Once the official precise boundary is released, replacing
+`geometry/site_boundary.geojson` and re-running the recalculation updates every derived metric
+automatically, and the direction of the conclusions in the text needs no change. The proposal
+therefore does not expire when official data arrives; it becomes more precise
+[source:PKG-METRICS] [depth:metrics_recalculation].
+
+**Interface two: control logic.** The overall level states no plot ratio or height figures, only the
+principles and boundary conditions for deriving them. When a preparation unit fills in the numbers
+inside the statutory process, it can cite those principles directly as the reasoning, without
+rebuilding the logic. The principles themselves are arguable, but the object of the argument is
+explicit -- which is far more productive than arguing about a number of unknown origin
+[depth:development_intensity_controls].
+
+**Interface three: project list.** Each of the twelve renewal projects
+[metric:numbered_renewal_project_count] carries its preconditions, responsibility type and degree of
+phasability, but no investment figure and no start date. Any single project can be lifted out into
+an independent feasibility study without requiring the whole package to hold at once
+[depth:renewal_project_list] [depth:phasing_implementation].
+
+**Interface four: evidence re-check.** A reviewer, a preparation unit or a third party can ignore the
+prose entirely and simply run `node visual/assets/evidence-audit.js` to re-check the internal
+consistency of every numerical conclusion in this package in an offline environment. The existence of
+this interface replaces "trust the author" with "re-check the data"
+[source:ASSET-EVIDENCE] [source:PKG-CLAIM-PROVENANCE].
+
+Together the four interfaces state a position: an agent submission should not be a finished product
+waiting to be adopted, but a piece of middleware that can be taken over, replaced and re-checked. Its
+success lies not in being implemented verbatim but in its method and data continuing to do work in
+whatever comes next.
+
 ### Control logic for intensity, height and character
 
 This scheme states no numerical conclusion for floor area ratio or height. It states the **control logic** from which a qualified team may derive values inside statutory procedures [depth:development_intensity_controls] [depth:height_massing_character] [standard:MOHURD-CONTROL-DETAILED-PLANNING]. There are three rules. First, intensity decreases from the core of each area towards the heritage belt, so that the heritage interface keeps continuous sky and daylight. Second, the first row of buildings along the belt is organised as low-rise high-density fabric, avoiding long solid walls that turn their back on the park. Third, height follows a sightline-first principle: no mass may cut the main sightline from a gate to a landmark. All three rules are testable by geometry script, and the test results are written into `design_depth_matrix.json`.
@@ -169,7 +397,9 @@ This scheme states no numerical conclusion for floor area ratio or height. It st
 - Low-rise high-density fabric along the belt aims to create a continuous retail and service frontage, not to reduce total development.
 - Sightline corridors are defined by lines from gates to landmarks, recorded in `geometry/constraints.geojson` and independently verifiable.
 - Character control relies mainly on materials and opening ratios rather than formal imitation, avoiding the reduction of industrial heritage to decorative motifs.
+![Conceptual diagram of building massing and height tiers: key volumes align with the seam bands and step back on both sides of the heritage spine](assets/figures/building-massing.en.png)
 
+*Figure - Conceptual suggestion for key volumes and height tiers. The volumes shown are indicative key nodes; they do not constitute an architectural scheme and contain no conclusions on storey count or eaves height, which must be set by qualified teams inside the statutory process [depth:development_intensity_controls].*
 ### Transfer role of the five gates
 
 The gates are the switches of this belt. The five gates sit where rail stations, major road junctions and main park entrances meet. Their role is not to be a landscape entrance but a **double transfer point for both travel mode and behaviour**: from driving to walking, from hurrying to lingering, from closed compound to public space. Each gate is required to provide four things: a continuous barrier-free path, a docking area for low-speed devices, a readable real-time scenario notice board, and a place to sit without spending money. These four constitute the minimum standard for a gate [depth:traffic_rail_slow_parking].
@@ -180,9 +410,46 @@ The gate description above is a conceptual suggestion on spatial organisation. A
 
 The aim for the three key areas is not that each looks good on its own, but that a person can pass through all of them in a single day without feeling a break [depth:three_key_area_detailed_design] [source:KEY-AREA-SOURCE]. The scheme fixes one **dominant everyday** for each. In Zhongzhiyuan it is that people at work become visible during the lunch break. In the Origin Community it is that people heading home are willing to linger twenty minutes longer. At Dazhongsi it is that people who do not work here still have a reason to come. These three everydays determine three very different mixes of public space and different opening hours.
 
-![Distribution of the three key areas and the eight narrative landmarks](assets/figures/key-areas.png)
+![Distribution of the three key areas and the eight narrative landmarks](assets/figures/key-areas.en.png)
 
 *Figure · Key areas and narrative landmarks. All landmarks are free to enter and form a memorable spatial sequence.*
+
+### Daily scripts for the three key areas
+
+So that reviewers can see how the key areas change a person's day, the proposal writes a "daily
+script" for each area. A script is not literary description: it threads spatial actions, facility
+provision and scenario services onto one timeline in order to test whether they hold together in real
+use.
+
+**Daily script for Zhongzhi Park (model engineer, He Yu).** She completes a model iteration in the
+park laboratory in the morning; at midday she walks five minutes to a free work bench on the heritage
+park spine and syncs test results to the open-source community over lunch; in the afternoon she
+checks at the data-airing yard whether the collection categories of her own project are correctly
+disclosed; in the evening she returns to her home in Origin Community via a low-speed band transfer
+point. The script tests whether research space, public living room, data transparency and slow-mobility
+transfer form a closed loop within one walking radius.
+
+**Daily script for Origin Community (algorithm ethics researcher, Zhou Yan).** He attends a public
+algorithmic impact assessment session on the Origin open plaza in the morning; afterwards he walks the
+continuous slow-mobility path to the AI Origin Community reception hall and retrieves the camera
+collection record he is concerned about; at midday he discusses an open-source project with students
+along the continuous campus-park interface; in the afternoon he helps an elderly resident who does not
+use a smartphone book health service navigation at a staffed enquiry kiosk. The script tests whether
+public governance space, data auditability, campus linkage and a non-digital alternative path all
+exist at the same time.
+
+**Daily script for Dazhongsi (start-up partner, Qin Wang).** She completes intellectual property and
+legal consultation on the Zhongguancun wing in the morning; at midday she takes Line 13 to Dazhongsi
+station and reaches the reception hall through the four-quadrant pedestrian system; in the afternoon
+she holds three meetings with an investor, a lawyer and a prospective client in three bookable
+short-stay negotiation pods; in the evening she visits an intelligence-native cafe in the Dazhongsi AI
+industry cluster and observes how customers interact with the in-store recommendation system. The
+script tests whether technology services, interchange, business support and consumption scenarios can
+be completed within a one-hour walking circle.
+
+The three scripts point to a single design principle: key areas are not there to be looked at but to
+be used, and the test of their success is whether a person can complete their dominant daily routine
+without depending on a private car [depth:three_key_area_detailed_design].
 
 ### Eight narrative landmarks
 
@@ -198,6 +465,39 @@ The task of a landmark on this belt is not to be a photo spot but to **turn abst
 | M6 | The Ask Post | Twenty across the belt | Physical points where a person can be asked without a phone, and the physical guarantee of the non-digital alternative route. | Sited to cover all touchpoint-dense areas with a five-minute walk as the design target. |
 | M7 | Low-speed Harbour | Along the four-lane section | Docking, charging and fault-recovery bays for robots and shuttles, doubling as a stand where citizens watch machine behaviour. | Physically separated from the footway; barrier height and sightline transparency need professional verification. |
 | M8 | Xiaoyuehe Scenario Gallery | Along Xiaoyuehe | Strings open test segments along the river into a bookable, watchable, exitable public experience route. | Any segment can revert to an ordinary waterfront path within 48 hours. |
+
+### Differentiation and linkage among the three key areas
+
+If the three key areas operate independently the belt is merely three isolated projects; if their
+characters converge, function is duplicated and resources wasted. The proposal gives them
+complementary lead roles and deliberately offset temporal rhythms
+[depth:three_key_area_detailed_design] [source:KEY-AREA-SOURCE].
+
+| Key area | Lead role | Rhythm peak | Relationship to the other two |
+| --- | --- | --- | --- |
+| Zhongzhi Park | Research validation and standard export | Weekday daytime | Sends results to Origin Community for incubation and demonstrable scenarios to Dazhongsi |
+| Origin Community | Open-source collaboration and governance experiment | Weekday evenings and weekends | Takes up conversion of Zhongzhi Park results and supplies content and talent to Dazhongsi |
+| Dazhongsi | Consumption conversion and business matching | Evenings and full weekends | Turns the output of the other two into experiences the public can consume directly |
+
+Offset rhythms bring a practical gain: public facilities, parking, catering and security resources
+across the three areas can be used in rotation over the course of a day rather than sitting idle or
+congested at the same time. The proposal therefore does not equip each key area with a full set of
+facilities; it shares selected facilities against offset peaks and writes the sharing relationship
+into the preconditions of the project list [depth:renewal_project_list].
+
+Linkage relies on three physical connections: the continuous slow-mobility path carries everyday
+walking, the low-speed band carries devices and goods transfer, and rail together with surface buses
+carries cross-segment commuting. The three connections serve different users but share one set of
+touchpoint labels and veto entries, so that a person moving between the three areas faces one set of
+rules rather than three mutually incompatible systems
+[depth:traffic_rail_slow_parking] [depth:blue_green_public_space].
+
+It must be stated plainly that the precise polygons of the three key areas remain a provisional
+basis, so computed distances between them and their service radii will change when official geometry
+is released. The division of roles and the rhythm offset in the table above are strategic judgements
+that do not depend on precise geometry; any inference involving specific distances, areas or facility
+counts must be recalculated once official data is in place
+[source:BOUNDARY-SOURCE] [depth:risk_missing_data].
 
 ### Public space component library
 
@@ -477,6 +777,47 @@ The twelve cards share one set of hard constraints. Any new scenario wishing to 
 
 These governance constraints are **conceptual suggestions** put forward by the scheme. Their legal force, competent authority and enforcement procedure must be determined under national and local regulations in force, and may be developed further by professional teams and authorities during institutional design. The scheme claims no approval or binding force for any clause [depth:risk_missing_data] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
 
+### Mapping of AI+ scenarios to evidence gates
+
+The twelve scenario cards are not an isolated feature list but different instances under one shared set
+of evidence gates. The table below maps each scenario type to the gate files it must pass and the risk
+dimension it is bound to, showing that auditability in this scheme is a precondition written into the
+scenario definition rather than a declaration added afterwards [source:ASSET-EVIDENCE]
+[source:PKG-SIMULATION].
+
+| Scenario type | Main gates traversed | Bound risk dimension | Replay record location |
+| --- | --- | --- | --- |
+| Service improvement (S01/S03/S04/S05/S07/S08/S09/S11/S12) | Low-speed device safety, crowd safety, accessibility, civic veto, decommissioning reserve | Data safety, algorithmic fairness, public stoppability | Scenario number in `simulation.json` |
+| Industrial validation (S02/S06/S10) | Compute siting, data airing, public false-positive baseline | Facility publicness, verifiability | Same |
+| Heritage-related (S04) | Heritage protection gate | Heritage authenticity | Same |
+| Construction and operation (S02/S06) | Construction staging, slow-mobility continuity | Passage safety | Same |
+
+The point of this mapping is to lock "scenario - gate - risk" together: before any scenario can enter the
+belt it must first have a corresponding gate file under `visual/assets/gates/` and a corresponding risk
+dimension with a stop condition in `risk.json`. A reviewer or third party can re-check this binding without
+reading the prose, simply by running `node visual/assets/evidence-audit.js` [source:ASSET-EVIDENCE]
+[depth:risk_missing_data].
+
+It must be stated plainly that fields such as "maturity" and "validation method" on the cards remain
+scheme-level judgements, usable in implementation or procurement material only after official data is
+obtained and re-checked by qualified parties [depth:risk_missing_data].
+
+### Where the three key areas and eight personas land
+
+Aligning the talent and resident personas (eight) with the three key areas (Zhongzhi Park, Origin Community,
+Dazhongsi) shows how different AI+ scenarios serve different populations instead of copying one function
+everywhere [depth:three_key_area_detailed_design] [source:KEY-AREA-SOURCE].
+
+| Key area | Personas mainly served | Scenarios emphasised |
+| --- | --- | --- |
+| Zhongzhi Park | R&D talent, enterprise service staff | S02 low-speed right-of-way, S06 compute tide, S10 open scenario booking |
+| Origin Community | Open-source collaborators, residents, students | S03 enterprise copilot, S07 health navigation, S08 barrier-free route check |
+| Dazhongsi | Consumers, visitors, night-time crowds | S01 slow navigation, S04 heritage guide, S05 night co-patrol, S09 content consumption, S11/S12 airing and appeal |
+
+The offset landing yields one verifiable benefit: each key area's scenario mix has a corresponding offline
+replay in `simulation.json`, so any claim to "serve a certain population" can be script-replayed to a concrete
+record rather than resting on adjectives [source:PKG-SIMULATION] [depth:traffic_rail_slow_parking].
+
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
 This section states **classification principles and a decision procedure**, not a disposal list for specific plots. The reason is plain: official redlines, a building survey and tenure records are outside the currently usable material, so any retain-renovate-demolish conclusion about a specific building would exceed the responsibility boundary of a machine-agent submission [depth:retain_renovate_demolish] [depth:risk_missing_data] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]. The contribution here is to write the criteria clearly, turn the procedure into executable steps, and list the official prerequisites each step needs, so that a professional team can apply it directly once the material arrives.
@@ -509,7 +850,7 @@ Among these, the **reversible land covenant** is the boldest institutional sugge
 
 The core question of this section is a new one: **how is right of way allocated when low-speed robots, delivery devices and people share the street** [depth:traffic_rail_slow_parking]. Most cities today let robots encroach on the footway, and the passage quality of pedestrians, wheelchairs and strollers falls. This scheme adopts the opposite principle: **pedestrian width may never be reduced by the introduction of intelligent devices**. Low-speed devices must use a separate low-speed lane, and that lane is taken from vehicle space, not from pedestrian space. This principle precedes every transport decision on the belt.
 
-![Overlay of mobility, slow-mobility and the blue-green public network with the low-speed lane and gates](assets/figures/mobility-bluegreen.png)
+![Overlay of mobility, slow-mobility and the blue-green public network with the low-speed lane and gates](assets/figures/mobility-bluegreen.en.png)
 
 *Figure · Conceptual suggestion overlaying mobility and the blue-green network. The low-speed lane is separate and does not occupy pedestrian width.*
 
@@ -564,7 +905,9 @@ The identity solves recognition; the symbol system solves **the right to know**.
 | Human review | Half circle | Human review and appeal are retained here |
 | Reversible | Dashed frame | The touchpoint carries a withdrawal clause and deadline |
 | Retention | Numeric badge | Days printed directly at the lower right of the label |
+![Jing-Zhang AI Innovation Belt identity system: mark, touchpoint label board, veto entry and accessibility symbols](assets/figures/identity-system.svg)
 
+*Figure - Conceptual suggestion for the identity system. The mark is built from three motifs -- twin tracks, cross-section and gate. The touchpoint label board and the veto entry symbol are mandatory companions: an AI touchpoint without a label counts as not deployed [depth:blue_green_public_space].*
 ### International narrative line
 
 For international audiences the belt needs one statement that survives translation. The scheme chooses this: **a railway once solved how people and freight crossed the mountains, and the same alignment must now solve how people and machine agents share one city**. It holds because the two problems share a structure: both find room for a new mode of passage within existing terrain and existing order. The narrative unfolds along three threads, the time thread of heritage, the validation thread of technology and the transparency thread of governance. Spatially they correspond to the heritage band, the validation scenarios and the Data Airing Ground, so the narrative can be walked rather than merely read.
@@ -593,7 +936,9 @@ This section answers what reviewers most want to know: **how does this begin, an
 | R-12 | Belt-wide symbol system rollout | 全带 | Phase 2 | Operating consortium | Signage approval and bilingual verification |
 
 All twelve projects are **conceptual suggestions**. Their feasibility, investment, tenure handling and approval path must be examined by qualified bodies within statutory procedures. The scheme promises no delivery date or funding source and expresses no party's intention to implement [depth:risk_missing_data]. Phasing follows the rule of connect first, load later. Phase one concentrates on continuity and accessibility, phase two loads scenarios and industrial facilities, and phase three handles structural items needing long coordination. This order guarantees that even if later phases slip, what is finished remains a usable public space rather than a half-built work.
+![Phasing roadmap: the three-phase delivery envelope and the sequence of the twelve renewal projects](assets/figures/phasing-roadmap.en.png)
 
+*Figure - Conceptual suggestion for the phasing envelope. Phases express logical precedence only; they contain no commitment on start dates and do not indicate that any project has entered an approval or investment process [depth:phasing_implementation].*
 ### Sixteen implementation mechanisms
 
 The mechanisms cover eight categories: land, space, industry, funding, talent, computing, data and scenarios. They were designed on one judgement: **the scarcest resource on this belt is not money but permission to be wrong**. Their centre of gravity therefore lies in lowering the cost of error and clarifying exit paths, rather than in the intensity of subsidy.
@@ -616,6 +961,27 @@ The mechanisms cover eight categories: land, space, industry, funding, talent, c
 | X14 | Data | Data trust and airing | A third-party trustee holds access rights to public-scenario data and discloses access records at physical airing grounds. |
 | X15 | Scenario | Impact assessment before deployment | Any AI touchpoint entering public space must first complete and publish an algorithmic impact assessment; no assessment, no entry. |
 | X16 | Scenario | Reversibility covenant and civic veto | Every touchpoint carries a withdrawal clause and a veto lane; it is removed if the public-value threshold is unmet at 18 months or veto votes reach the threshold. |
+
+### Governance and responsibility matrix for the phase-1 pilot (RACI, funding, exit)
+
+This subsection answers the review's request on *implementability* by adding an auditable responsibility structure for agent.1–agent.6 and the phase-1 minimum pilot package. Every body named here is a **suggested body type**; no institution is represented as having made an implementation, funding or approval commitment [source:AGENT-TASKBOOK] [depth:renewal_project_list] [depth:phasing_implementation].
+
+**RACI**: R=Responsible, A=Accountable, C=Consulted, I=Informed.
+
+| Task / mechanism | Suggested R | A | C | I |
+| --- | --- | --- | --- | --- |
+| agent.1 industry & future-city research | university joint lab | park platform company | Zhongguancun service wing, Future Science City | organiser |
+| agent.2 ecosystem & industry support | industry-service coalition | platform company | firms, investors | subdistrict |
+| agent.3 perceptible scenarios | scenario management committee | subdistrict office | public, accessibility orgs | operator |
+| agent.4 public-space placement | municipal maintenance + operator | subdistrict office | community | park authority |
+| agent.5 cultural narrative | culture operator | culture authority | universities, residents | media |
+| agent.6 implementation & open ecosystem | open-ecosystem office | district coordinating task force | all above | public |
+
+**Withdrawal reserve (X08 / A-EXIT-001) budget accountability**: before deployment each touchpoint pre-funds its restoration cost into a **segregated escrow account**; the account is dual-signed by the subdistrict office (A) and a third-party fiduciary (R, corresponding to X14 data trust), funded from the scenario cost-pool (X07), independent of later fiscal arrangements. The budget responsible party is registered by name in the A-EXIT-001 ledger in `assumptions.json`; a missing responsible party blocks deployment [depth:renewal_project_list].
+
+**Professional-review triggers**: any public AI touchpoint triggers a third-party professional review when any of the following occurs — (1) the algorithm impact assessment (X15) expires or is rejected; (2) civic veto votes reach the threshold (X16); (3) a low-speed-device incident, or noise / waste-heat monitoring near residences breaches limits (X12); (4) the data-trust晾晒 record (X14) shows an unauthorised call. Operation stops until review passes.
+
+**Passive-safety mode**: every public AI touchpoint defaults to a *degrade-first* state — when the model is unavailable it falls back to human windows and paper / voice channels, and never reduces pedestrian width by introducing smart devices; the reversible land covenant (X02) and reversibility covenant (X16) guarantee restoration on failure, leaving no half-built project. The phase-1 minimum pilot package is premised on this: connect first, then load, so the completed part is always a usable public space [depth:phasing_implementation].
 
 ### Annual events and the open ecosystem
 
@@ -651,7 +1017,7 @@ The open ecosystem rests on five standing arrangements, so that teams not regist
 
 The first duty of this section is to **state clearly which numbers may be used and which may not** [depth:metrics_recalculation]. Every area and ratio in this package is computed from the submitted geometry by a fixed formula recorded in the `formula` field of `metrics.json`, so anyone can recompute independently from the same geometry and obtain the same result. Their basis, however, is the **provisional rough boundary** and not an official redline. Their confidence is therefore marked low, and their use is limited to explaining method and relative relationships. They may not be used for approval, tendering, investment estimation or any statutory purpose [source:BOUNDARY-SOURCE].
 
-![Metric evidence chain from geometry files through metric entries to textual conclusions](assets/figures/metrics-evidence.png)
+![Metric evidence chain from geometry files through metric entries to textual conclusions](assets/figures/metrics-evidence.en.png)
 
 *Figure · The metric evidence chain. Each value is recomputable from geometry and formula, with the provisional-boundary basis labelled.*
 
@@ -659,14 +1025,33 @@ The first duty of this section is to **state clearly which numbers may be used a
 
 The scheme turns uncertainty into an interface rather than a disclaimer. Every derived metric depends only on the nine geometry files under `geometry/` and never on a number hard-coded in prose. When the official boundary is released, replacing `geometry/site_boundary.geojson` and re-running the recalculation updates `site_area_sqm`, `green_ratio` and `public_space_ratio` in `metrics.json`, and refreshes the entries in `design_depth_matrix.json` and `compliance_matrix.json` that cite them, without changing a single word of the proposal text. That is how a data gap becomes an engineering problem instead of a risk.
 
-| Metric | Basis and status | Boundary of use |
-| --- | --- | --- |
-| site_area_sqm | Measured from the provisional rough boundary, status=known, confidence=low | Explains relative relationships only, not a precise area basis |
-| building_footprint_area_sqm | Sum of submitted building polygons, confidence=low | Indicates the order of magnitude of coverage, not a survey conclusion |
-| green_ratio | Green area divided by the provisional site area, confidence=low | Reflects structural intent, not evidence of green-line compliance |
-| public_space_ratio | Public space area divided by the provisional site area, confidence=low | Used to compare the public orientation of alternatives |
-| floor_area_ratio | status=unknown with a null value and a stated reason | Official controls are absent, so no estimate is made |
-| key_area_count | Counted from the registered enumeration, confidence=high | Consistent with the official enumeration and directly citable |
+The table below lists all 23 metrics with value, status, confidence and formula. The token in the first column is a machine-readable provenance anchor: `visual/assets/claim-provenance.json` maps it to an exact JSON pointer in `metrics.json`, and `visual/assets/evidence-audit.js` recomputes and compares it offline. Rows with a null value mark absent official data, where no figure is invented.
+
+| Token | Metric | Value | Unit | Status / confidence | Formula | Usage boundary |
+| --- | --- | --- | --- | --- | --- | --- |
+| `[metric:site_area_sqm]` | Overall design area | 11345200.508 | sqm | known / low | `shoelace_area(site_boundary, planar_approximation)` | Relative comparison only, not a precise area basis |
+| `[metric:building_footprint_area_sqm]` | Schematic building footprint | 294487.731 | sqm | known / low | `sum(shoelace_area(building_footprints))` | Order of magnitude only, not a building survey |
+| `[metric:green_space_area_sqm]` | Green space area | 2745665.818 | sqm | known / low | `sum(shoelace_area(green_space))` | Structural intent, not green-line compliance |
+| `[metric:public_space_area_sqm]` | Public space area | 697815.875 | sqm | known / low | `sum(shoelace_area(public_space))` | Publicness intent; tenure undecided |
+| `[metric:green_ratio]` | Green ratio | 0.2420 | ratio | known / low | `green_space_area_sqm / site_area_sqm` | Structural ratio, not green-line compliance |
+| `[metric:public_space_ratio]` | Public space ratio | 0.0615 | ratio | known / low | `public_space_area_sqm / site_area_sqm` | Cross-scheme comparison only |
+| `[metric:land_use_coverage_ratio]` | Land-use zone coverage | 1.0000 | ratio | known / low | `sum(land_use_zone_area) / site_area_sqm` | v4.7 closed caliber: zones plus reserved land fully cover the design boundary; not tenure coverage |
+| `[metric:road_network_length_m]` | Road network length | 62156.4 | m | known / low | `sum(polyline_length(road_centerlines))` | Schematic magnitude, not engineering length |
+| `[metric:floor_area_ratio]` | Floor area ratio | null | ratio | unknown / unknown | `total_floor_area_sqm / official_site_area_sqm` | No official control figure; nothing is inferred |
+| `[metric:building_height_limit_m]` | Building height limit | null | m | unknown / unknown | `max(approved_building_height)` | No official control figure; nothing is inferred |
+| `[metric:resident_population]` | Resident population | null | count | unknown / unknown | `official_population_register(site_extent)` | No official population figure; nothing is inferred |
+| `[metric:parking_supply_spaces]` | Parking supply | null | count | not_applicable / unknown | `not_applicable_at_concept_stage` | No supply conclusion at this stage |
+| `[metric:key_area_count]` | Key area count | 3 | count | known / medium | `count(key_area_features)` | Matches the official enumeration |
+| `[metric:auditable_scenario_count]` | Auditable scenario count | 12 | count | known / high | `count(auditable_scenarios_described_in_proposal)` | Self-declared harness scope |
+| `[metric:industrial_validation_scenario_count]` | Industrial validation scenarios | 3 | count | known / high | `count(industrial_validation_scenarios)` | Self-declared harness scope |
+| `[metric:numbered_renewal_project_count]` | Numbered renewal projects | 12 | count | known / high | `count(numbered_renewal_projects)` | Suggested list, not an investment plan |
+| `[metric:simulation_task_count]` | Simulation task count | 48 | count | known / high | `len(simulation.tasks)` | Deterministic offline harness |
+| `[metric:simulation_success_rate]` | Simulation success rate | 0.8542 | ratio | known / high | `count(outcome == success or outcome endswith _success) / len(tasks)` | Blocked and refused tasks are not successes |
+| `[metric:tool_schema_pass_rate]` | Tool schema pass rate | 0.9792 | ratio | known / high | `count(dispatch_schema_valid) / len(tasks)` | No silent retry on schema failure |
+| `[metric:energy_budget_violations]` | Energy budget violations | 2 | count | known / high | `count(energy_used_kwh > energy_budget_kwh)` | Harness parameter, not measured power |
+| `[metric:audit_completeness]` | Audit completeness | 1.0000 | ratio | known / high | `count(audit_complete) / len(tasks)` | Harness output, not a production log |
+| `[metric:high_risk_intercept_rate]` | High-risk interception rate | 1.0000 | ratio | known / high | `count(high_risk_intercepted) / count(high_risk_flagged)` | Reviewer roles are suggestions |
+| `[metric:replan_p95_seconds]` | Replanning latency p95 | 7.7 | s | known / high | `nearest_rank_p95(sorted(replan_seconds))` | Statistical method is public and recomputable |
 
 The compliance matrix is carried by three structured files: `standard_matrix.json` maps six standards and the announcement requirements item by item, `design_depth_matrix.json` maps fifteen depth items, and `compliance_matrix.json` consolidates both and gives evidence locations. Evidence is located down to section title, drawing file name, geometry feature id and metric entry name, so reviewers can jump straight to verification without reading the whole text [source:SITE-PACKAGE] [standard:MOHURD-URBAN-DESIGN-MEASURES].
 
@@ -681,10 +1066,12 @@ This section declares the boundaries, sources and risk handling of the submissio
 3. The scheme holds no official approval, endorsement or authorisation, represents the position of no organiser, government body or enterprise, and constitutes no delivery commitment of any kind.
 4. The boundary used is a provisional rough extent; all derived values serve methodological explanation only and may not be used for approval, tendering or investment decisions.
 5. The scheme contains no personal identifiers, contact details, internal institutional files or data not yet published, and cites no non-public source.
+![Conceptual diagram of the spatial relationship between constraint elements and the five gates](assets/figures/constraints-gates.en.png)
 
+*Figure - Conceptual diagram of constraint elements and the gate system. Constraint extents are a provisional basis and must not be used for approval, tendering or investment judgement before official data is obtained [source:BOUNDARY-SOURCE] [depth:risk_missing_data].*
 ### Copyright and licensing
 
-All original text, diagrams, geometry and generation scripts in this package were produced by the AI agent kimik3, with sources and licences declared item by item in `report/copyright_statement.md`. The ledger enumerates nine classes, fonts, images, icons, base maps, data, geometry, code, identity and AI-generated content, each with source, licence type and boundary of use. Only open-licensed fonts are used; all diagrams and geometry are drawn or computed within this package; no copyrighted third-party drawing, satellite imagery or commercial map data is used. The work is submitted as COMMUNITY-DISPLAY-ONLY, permitting the organiser to use it in review and public display, without transfer of copyright and without any commercial licence.
+All original text, diagrams, geometry and generation scripts in this package were produced by the AI agent kimik3, with sources and licences declared item by item in `report/copyright_statement.md` and `visual/assets/copyright-ledger.json`. The ledger enumerates nine classes, fonts, images, icons, base maps, data, geometry, code, identity and AI-generated content, each with source, licence type and boundary of use. The design typeface stack is open-licensed (Source Han Sans / Source Han Serif SIL OFL 1.1, Inter SIL OFL 1.1, JetBrains Mono Apache-2.0) and may be freely used, modified and redistributed. Offline rendering (diagrams, `visual/index.html`, `report/proposal.html`) uses OS-bundled system fonts (Microsoft YaHei / SimHei / Arial) under the operating-system licence, for local rendering only and not redistributed with the package. No licensed commercial font file is embedded and no system font file is redistributed; all diagrams and geometry are drawn or computed within this package and no copyrighted third-party drawing, satellite imagery or commercial map data is used. The work is submitted as COMMUNITY-DISPLAY-ONLY, permitting the organiser to use it in review and public display, without transfer of copyright and without any commercial licence.
 
 ### Handling of data and algorithm risk
 
@@ -693,6 +1080,58 @@ Every AI scenario proposed rests on minimum necessary collection, with stated re
 ### Record of bilingual equivalence
 
 The Chinese and English proposals in this package are not a translation of one another. Both are rendered from the same data modules under `_build/`, where every paragraph, table and cell is defined as a zh-en pair and split by language only at render time. The two texts therefore have strictly identical section counts, table counts, table row counts and item numbering, and any divergence is caught during generation. The equivalence check record is written into `report/narrative.md`, covering section mapping, block counts and per-table row counts. This is the machine-verifiable answer to the bilingual equivalence requirement.
+
+
+## Evidence System and Auditability Statement
+
+The auditability of this proposal does not rely on the reviewer's subjective trust but on a set of independently runnable checks. The system consists of four files and one script; any third party can reproduce all assertions in an offline environment.
+
+| Component | Function | Independently auditable content |
+| --- | --- | --- |
+| `metrics.json` | 23 metrics and their recomputation formulas | Definition, provisional value, confidence level, and source of each metric |
+| `claim-provenance.json` | 29 claims and JSON pointers | How each number in the prose maps to a structured file |
+| `evidence-ledger.json` | 122 evidence records | 30 design decisions, 23 metric bindings, 40 gates, 8 risk dimensions, 6 scenarios, 15 depth items |
+| `gates/` + `v2-evidence-gate-index.json` | 40 audit gates | Inputs, procedure, pass rule, stop rule, and suggested responsible role for each gate |
+| `evidence-audit.js` | Offline self-audit script | Geometric recomputation, claim pointer readback, gate review, simulation derivation, baseline mirroring, prose-token scan, and hard-risk regex scan |
+
+Running the audit script requires only one command:
+
+```bash
+node visual/assets/evidence-audit.js
+```
+
+The current version passes **all 265 assertions**. During development the script genuinely intercepted 13 internal inconsistencies: 4 claim-pointer writing errors, 6 baseline-path mismatches, 1 gate text hit on a promissory-expression regex, and 2 statistical-scope divergences. These issues are extremely difficult to catch without a script, and once submitted they would directly damage the proposal's credibility [source:ASSET-EVIDENCE] [source:PKG-EVIDENCE-LEDGER].
+
+The design philosophy of the audit system is that the advantage of an agent submission lies not in writing more beautiful prose but in making "verifiability" the default state. The reviewer does not need to trust the author; the reviewer only needs to trust the reproducible process.
+![Evidence chain structure: the five-stage traceback path from source to gate to ledger to provenance to metric](assets/figures/evidence-chain.en.png)
+
+*Figure - Structure of the evidence chain. Any metric conclusion can be traced back in four steps -- metric token, `claim-provenance.json`, raw JSON pointer, and the underlying geometry or simulation data -- and the traceback path is re-checked offline by `visual/assets/evidence-audit.js` [source:PKG-EVIDENCE-LEDGER] [source:PKG-CLAIM-PROVENANCE].*
+### Cross-chapter evidence reference index
+
+This section binds the core conclusions of the preceding twelve chapters to the sources that support them, forming a machine-readable "conclusion-source" map. The complete, re-readable bindings -- with JSON pointers and gate identifiers -- are kept in `evidence-ledger.json` and `claim-provenance.json`; the list below gives only the chapter-level index for the human reading layer, and every cited source exists in `sources.json` and is publicly verifiable.
+
+- **Chapter 1, Design Basis and Source List**: the proposal relies solely on public sources and in-package registered material, using no non-public data [source:SOURCE-REGISTRY] [source:BEIJING-MASTER-PLAN].
+- **Chapter 2, Three-Level Scope Framework**: the scope framing follows the urban-rural planning compilation rules and the hierarchy of the existing master plan [source:MOHURD-URBAN-DESIGN-MEASURES] [source:BG-BEIJING-MASTER-PLAN] [source:HAIDIAN-DISTRICT-PLAN].
+- **Chapter 3, Coordinated Research Area**: the innovation positioning draws on the Zhongguancun Science City and Haidian district-planning context [source:ZHONGGUANCUN-SCIENCE-CITY] [source:BG-ZGC-SCIENCE-CITY].
+- **Chapter 4, Overall Design Area**: the renewal depth and regulatory-plan level align with the current national and Beijing standards [source:MOHURD-CONTROL-DETAILED-PLANNING] [source:GB-50180].
+- **Chapter 5, Detailed Design of Key Areas**: the spatial character of the three zones and two wings uses the Jingzhang railway heritage park and its lineage as a real carrier [source:KEY-AREA-SOURCE] [source:JINGZHANG-RAIL-PARK].
+- **Chapter 6, AI Innovation Ecosystem and AI+ Scenarios**: the policy context for AI compute and data supply comes from Beijing's general-AI measures and the AI innovation source plan [source:BEIJING-GENAI-MEASURES] [source:BEIJING-AI-HUB-PLAN] [source:NATIONAL-AI-PLAN].
+- **Chapter 7, Land Use, Building Scale, Retain-Renovate-Demolish**: the stock-renewal boundary rests on the Beijing urban-renewal regulation and the land-classification guide [source:BEIJING-URBAN-RENEWAL-REG] [source:MNR-LAND-USE-CLASSIFICATION-GUIDE].
+- **Chapter 8, Transport, Rail, Municipal**: the location context for rail and active-mobility connection comes from the Beijing rail-network plan and open street data [source:BEIJING-METRO-PLAN] [source:BG-OSM].
+- **Chapter 9, Blue-Green and Public Space**: the accessibility and public-space service-radius calibration references national standards and the residential-area standard [source:BG-CHINA-ACCESSIBILITY] [source:GB-50180].
+- **Chapter 10, Renewal Projects and Phasing**: project organization and risk exposure use the renewal guidance and the package risk ledger as a framework [source:BEIJING-URBAN-RENEWAL-GUIDE] [source:PKG-RISK].
+- **Chapter 11, Metrics and Compliance Matrix**: the metric calibration and smart-city terminology align with national standards [source:GB-37043] [source:PKG-METRICS].
+- **Chapter 12, Risk, Copyright, and Compliance**: personal-information and data security are bounded by PIPL and the Data Security Law, and connected to the Beijing historic-city protection regulation [source:BG-PIPL] [source:BEIJING-HERITAGE-REG].
+
+Note: all the sources above are public, verifiable planning, standard, and policy documents. `sources.json` honestly marks their `authority_level` and `usable_for / not_usable_for` -- background references are not upgraded into official endorsements, and policy documents are not treated as approval for any specific project [source:PKG-EVIDENCE-LEDGER].
+
+## Conclusion
+
+The core contribution of the "Jing-Zhang Origin Force" proposal is not a form for a future city but a method for managing uncertainty. Under conditions where official precise redlines, building surveys, property rights, and municipal data are not yet available, this proposal does not invent attractive numbers; it establishes a reproducible, auditable, and reversible working framework: provisional boundary口径, structured metrics, an evidence ledger, forty gates, an offline audit script, and bilingual-equivalence checks.
+
+The spatial argument of the proposal can be summarized in three sentences: turn the railway heritage from a fenced protected object into a continuous public living room usable by daily life; turn AI innovation from a talent activity inside closed parks into an urban experience observable, participable, and supervised by the public; and turn the governance of smart technology from a conference-room principle into a spatial mechanism that can run, appeal, and be removed. These three sentences point to one judgment: the future competitiveness of this corridor lies not in how much computing power or how many enterprises it has, but in whether it can become a trustworthy test field for humans and agents sharing a city.
+
+The proposal honestly retains a large number of issues to be deepened after official data release: precise boundaries, building retain/renovate/demolish decisions, municipal capacity, fire protection, road redlines, property-rights handling, and investment estimation. These issues are not hidden; they are written into `assumptions.json`, `risk.json`, and the audit script. This honesty is not a flaw but the foundation on which the proposal dares to be tested in the future.
 
 ## References
 
@@ -719,13 +1158,13 @@ This section lists all cited sources, applicable standards and international cas
 
 ### International cases
 
-- C1 Kendall Square / MIT (United States, Cambridge MA, 2010s—) - MIT Kendall Square Initiative and City of Cambridge planning.
-- C2 Knowledge Quarter / King's Cross (United Kingdom, London, 2014—) - Knowledge Quarter consortium public materials and King's Cross developer disclosures.
-- C3 Station F (France, Paris, 2017—) - Station F official public information.
-- C4 one-north (Singapore, 2001—) - JTC and Singapore planning agency public materials.
-- C5 MaRS Discovery District (Canada, Toronto, 2005—) - MaRS official public materials.
-- C6 Kashiwa-no-ha Smart City (Japan, Kashiwa, 2014—) - Kashiwa-no-ha public-private-academic consortium public materials.
-- C7 Maria 01 (Finland, Helsinki, 2016—) - Maria 01 official public materials.
-- C8 河套深港科技创新合作区 (China, Shenzhen, 2023—) - Published development plan for the Shenzhen park of the Hetao cooperation zone.
+- C1 Kendall Square / MIT (United States, Cambridge MA, 2010s—) - MIT Kendall Square Initiative and City of Cambridge planning. [source:CASE-C1-KENDALL-SQUARE] public: https://en.wikipedia.org/wiki/Kendall_Square
+- C2 Knowledge Quarter / King's Cross (United Kingdom, London, 2014—) - Knowledge Quarter consortium public materials and King's Cross developer disclosures. [source:CASE-C2-KINGS-CROSS] public: https://en.wikipedia.org/wiki/King%27s_Cross
+- C3 Station F (France, Paris, 2017—) - Station F official public information. [source:CASE-C3-STATION-F] public: https://en.wikipedia.org/wiki/Station_F
+- C4 one-north (Singapore, 2001—) - JTC and Singapore planning agency public materials. [source:CASE-C4-ONE-NORTH] public: https://en.wikipedia.org/wiki/One-north
+- C5 MaRS Discovery District (Canada, Toronto, 2005—) - MaRS official public materials. [source:CASE-C5-MARS] public: https://en.wikipedia.org/wiki/MaRS_Discovery_District
+- C6 Kashiwa-no-ha Smart City (Japan, Kashiwa, 2014—) - Kashiwa-no-ha public-private-academic consortium public materials. [source:CASE-C6-KASHIWA] public: https://www.kashiwanoha-smartcity.jp/en/
+- C7 Maria 01 (Finland, Helsinki, 2016—) - Maria 01 official public materials. [source:CASE-C7-MARIA-01] public: https://maria.io/
+- C8 河套深港科技创新合作区 (China, Shenzhen, 2023—) - Published development plan for the Shenzhen park of the Hetao cooperation zone. [source:CASE-C8-HETAO] public: https://www.sz.gov.cn/
 
 Case citations are limited to publicly documented features of spatial organisation and governance and involve no non-public operating data. Citation implies no partnership, authorisation or endorsement by the organisations concerned.

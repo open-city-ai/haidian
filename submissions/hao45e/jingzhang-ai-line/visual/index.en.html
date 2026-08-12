@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>JingZhang AI Line · Urban Design Visualization</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{--ink:#1F2A44;--muted:#5B6472;--paper:#F6F4EE;--card:#FFFFFF;--line:#E4E0D3;
+--spine:#2447C7;--spine2:#00B4C6;--zz:#2447C7;--origin:#7A3FD1;--dz:#C0392B;
+--west:#E8A33D;--east:#1E9E82;--green:#2E8B57;--public:#D65B4A;}
+*{box-sizing:border-box;}
+body{margin:0;font-family:-apple-system,"PingFang SC","Microsoft YaHei","WenQuanYi Zen Hei",Segoe UI,Helvetica,Arial,sans-serif;
+background:var(--paper);color:var(--ink);line-height:1.6;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px;}
+header.hero{background:linear-gradient(135deg,#1F2A44 0%,#2447C7 55%,#00B4C6 100%);color:#fff;padding:46px 0 34px;}
+header.hero h1{margin:0 0 6px;font-size:34px;letter-spacing:.5px;}
+header.hero p.sub{margin:0 0 18px;font-size:17px;opacity:.92;}
+.badges{display:flex;flex-wrap:wrap;gap:10px;}
+.badge{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:6px 14px;font-size:13px;}
+nav.toc{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;}
+nav.toc .wrap{display:flex;gap:4px;flex-wrap:nowrap;padding:10px 20px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+nav.toc a{color:var(--muted);text-decoration:none;font-size:13px;padding:6px 10px;border-radius:6px;white-space:nowrap;flex:none;}
+nav.toc a:hover{background:var(--paper);color:var(--ink);}
+section{padding:38px 0;border-bottom:1px solid var(--line);}
+section h2{font-size:23px;margin:0 0 6px;}
+section p.lead{color:var(--muted);margin:0 0 20px;max-width:900px;}
+.figure{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;margin-bottom:18px;}
+.figure img{display:block;width:100%;height:auto;}
+.figure figcaption{padding:10px 16px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);}
+.grid{display:grid;gap:16px;}
+.grid.cols-3{grid-template-columns:repeat(3,1fr);}
+.grid.cols-4{grid-template-columns:repeat(4,1fr);}
+.grid.cols-2{grid-template-columns:repeat(2,1fr);}
+@media(max-width:900px){.grid.cols-3,.grid.cols-4,.grid.cols-2{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){.grid.cols-3,.grid.cols-4,.grid.cols-2{grid-template-columns:1fr;}nav.toc .wrap{overflow-x:auto;flex-wrap:nowrap;}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+.card h3{margin:0 0 8px;font-size:16px;}
+.card p{margin:4px 0;font-size:13.5px;color:var(--muted);}
+.stat{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--spine);border-radius:10px;padding:16px 18px;}
+.stat .v{font-size:26px;font-weight:700;}
+.stat .l{font-size:13px;color:var(--muted);margin-top:2px;}
+.stat .n{font-size:11.5px;color:#8b8577;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+th{background:#F0EEE4;font-weight:600;}
+.tag{display:inline-block;font-size:11.5px;padding:2px 8px;border-radius:999px;background:#EEF1FB;color:var(--spine);margin-right:4px;}
+.pill-near{background:#E7F5EC;color:#1E7A44;}
+.pill-mid{background:#FFF3DE;color:#9A6600;}
+.pill-long{background:#F0EBFB;color:#5E3AAE;}
+.status-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+@media(max-width:700px){.status-grid{grid-template-columns:1fr 1fr;}}
+.status-pass{border:1px solid #bfe3cc;background:#F3FBF6;border-radius:10px;padding:14px;font-size:13.5px;}
+.status-pass b{color:#1E7A44;}
+footer{padding:26px 0 50px;color:var(--muted);font-size:12.5px;}
+.evidence-note{font-size:12px;color:#8b8577;margin-top:14px;}
+</style>
+
+</head>
+<body>
+<header class="hero"><div class="wrap">
+<h1>JingZhang AI Line</h1>
+<p class="sub">One Line, Three Stations, Two Wings — Centennial Jing-Zhang AI Innovation Belt (provisional intake boundary)</p>
+<div class="badges">
+<span class="badge">package_type: professional_design_package</span>
+<span class="badge">agent: hao45e</span>
+<span class="badge">provisional_constraint boundary</span>
+</div></div></header>
+<nav class="toc"><div class="wrap">
+<a href="#overview">Overview Map</a>
+<a href="#scope">Three-Level Scope</a>
+<a href="#keyareas">Key Areas</a>
+<a href="#landuse">Land Use</a>
+<a href="#mobility">Mobility</a>
+<a href="#bluegreen">Blue-Green Space</a>
+<a href="#buildings">Buildings</a>
+<a href="#projects">Renewal Projects</a>
+<a href="#scenarios">AI Scenarios</a>
+<a href="#metrics">Core Metrics</a>
+<a href="#compliance">Task Coverage</a>
+<a href="#selfcheck">Self-check</a>
+<a href="#sources">Sources</a>
+<a href="#assumptions">Assumptions</a>
+</div></nav>
+<div class="wrap">
+
+<section id="overview">
+<h2>Overview Map</h2>
+<p class="lead">The JingZhang AI Line uses the Heritage Park vitality spine as its one line, threading three key stations — Zhongzhiyuan (North · Acceleration), AI Origin Community (Middle · Origin) and Dazhongsi (South · Hub) — flanked by the Zhongguancun tech-service wing (west) and the Xiaoyuehe scenario wing (east). The overall design boundary is a provisional, rough boundary pending the official redline.</p>
+<div class="figure"><img src="../assets/figures/site-overview.en.png" alt="Overview map: one line, three stations, two wings">
+<figcaption>Overview concept map · provisional boundary; recalculate all layers once the official redline is published</figcaption></div>
+</section>
+
+<section id="scope">
+<h2>Three-Level Scope</h2>
+<p class="lead">The official three-level framework: the coordinated research area (industry ecosystem and future-city form), the overall design area (urban renewal at regulatory-plan depth), and the key detailed-design area (the three stations).</p>
+
+    <div class="grid cols-3">
+      <div class="stat"><div class="v">43.6 km²</div><div class="l">Coordinated research area</div>
+      <div class="n">Official announcement text area</div></div>
+      <div class="stat"><div class="v">11.4 km²</div><div class="l">Overall design area (official)</div>
+      <div class="n">Provisional geometry recompute ≈ 1,141.3 ha</div></div>
+      <div class="stat"><div class="v">368.4 ha</div><div class="l">Key detailed-design area</div>
+      <div class="n">Sum of the three official key-area announcements</div></div>
+    </div>
+</section>
+
+<section id="keyareas">
+<h2>Key Areas</h2>
+<p class="lead">Index of the three key detailed-design areas; areas are provisional-boundary values, recalculated once the official redline is published.</p>
+<div class="figure"><img src="../assets/figures/key-areas.en.png" alt="Key areas index map">
+<figcaption>Key-area positioning, spatial moves and AI scenarios; see proposal.md for detail</figcaption></div>
+<div class="grid cols-3"><div class="card" style="border-left:5px solid var(--zz)"><h3>① Zhongzhiyuan · North Station (Acceleration)</h3>
+<p>Garden-type full-stack autonomous innovation district</p>
+<p>Area (provisional, pending official redline): approx. 192.9 ha</p></div><div class="card" style="border-left:5px solid var(--origin)"><h3>② AI Origin Community · Middle Station (Origin)</h3>
+<p>Campus-adjacent transfer and talent community</p>
+<p>Area (provisional, pending official redline): approx. 104.3 ha</p></div><div class="card" style="border-left:5px solid var(--dz)"><h3>③ Dazhongsi · South Station (Hub)</h3>
+<p>Urban intelligent-economy and international district</p>
+<p>Area (provisional, pending official redline): approx. 72.0 ha</p></div></div>
+</section>
+
+<section id="landuse">
+<h2>Land Use</h2>
+<p class="lead">Land-use zones fully cover and do not overlap the overall design boundary, matching the six zones of the one-line/three-station/two-wing structure.</p>
+<div class="figure"><img src="../assets/figures/land-use-structure.en.png" alt="Land-use structure map">
+<figcaption>Six land-use zones: 1401/0802/0702/05/08/16; see geometry/land_use.geojson</figcaption></div>
+<table><thead><tr><th>Zone</th><th>Area</th><th>Share of overall area</th></tr></thead>
+<tbody><tr><td>1401 Park green (spine)</td><td>294.8 ha</td>
+<td>25.8%</td></tr><tr><td>0802 R&amp;D land (North Station)</td><td>131.2 ha</td>
+<td>11.5%</td></tr><tr><td>0702 Community service (Middle Station)</td><td>71.0 ha</td>
+<td>6.2%</td></tr><tr><td>05 Commercial service (South Station)</td><td>50.7 ha</td>
+<td>4.4%</td></tr><tr><td>08 Public service land (West Wing)</td><td>347.2 ha</td>
+<td>30.4%</td></tr><tr><td>16 Flexible reserve land (East Wing)</td><td>246.4 ha</td>
+<td>21.6%</td></tr></tbody></table>
+</section>
+
+<section id="mobility">
+<h2>Mobility</h2>
+<p class="lead">The line itself is the primary slow-mobility greenway; two connector roads reach the west and east wings, the south station overlays a four-quadrant transit connector, and the north station has a micro-circulation loop.</p>
+<div class="figure"><img src="../assets/figures/mobility-bluegreen.en.png" alt="Mobility and blue-green public-space system">
+<figcaption>Road centerlines, green space, public plazas and illustrative AI scenario nodes</figcaption></div>
+</section>
+
+<section id="bluegreen">
+<h2>Blue-Green Public Space</h2>
+<p class="lead">Green space is anchored on the spine plus two wing pocket parks; public space concentrates in three station-front plazas shared by residents and AI scenarios.</p>
+<div class="grid cols-2">
+<div class="stat"><div class="v">24.9%</div><div class="l">Green ratio (spine + two pocket parks)</div></div>
+<div class="stat"><div class="v">1.4%</div><div class="l">Public space ratio (three station plazas)</div></div>
+</div>
+</section>
+
+<section id="buildings">
+<h2>Buildings</h2>
+<p class="lead">geometry/buildings.geojson contains illustrative massing blocks (one to two retain/renovate/new-build per station) to demonstrate the retain-renovate-demolish logic and footprint density, not a parcel-level survey.</p>
+<div class="grid cols-2">
+<div class="stat"><div class="v">1.2%</div><div class="l">Building footprint density (illustrative)</div></div>
+<div class="stat"><div class="v">Pending FAR / total floor area</div><div class="l">Requires official height/intensity controls</div></div>
+</div>
+</section>
+
+<section id="projects">
+<h2>Renewal Projects</h2>
+<p class="lead">A near/mid/long-term renewal project list; all entries are conceptual suggestions, not approved implementation commitments.</p>
+<table><thead><tr><th>No.</th><th>Project</th><th>Type</th><th>Phase</th><th>Key dependency</th></tr></thead>
+<tbody><tr><td>JZ-01</td><td>Heritage-park slow-mobility gap stitching</td>
+<td>Public space / mobility</td>
+<td><span class="tag pill-near">Near-term pilot</span></td>
+<td>Road red-line, under-bridge space, traffic-organization review</td></tr><tr><td>JZ-02</td><td>Zhongzhiyuan Qinghe innovation interface</td>
+<td>Blue-green space / industry showcase</td>
+<td><span class="tag pill-mid">Mid-term renewal</span></td>
+<td>Riverine blue-line, ecological and flood-control conditions</td></tr><tr><td>JZ-03</td><td>Origin-community campus transfer street</td>
+<td>Urban renewal / industry services</td>
+<td><span class="tag pill-near">Near-term pilot</span></td>
+<td>Campus boundary, ownership, ground-floor program</td></tr><tr><td>JZ-04</td><td>Dazhongsi station four-quadrant walkability</td>
+<td>Transit integration / slow mobility</td>
+<td><span class="tag pill-mid">Mid-term renewal</span></td>
+<td>Transit station, road intersection, municipal utilities</td></tr><tr><td>JZ-05</td><td>AI public-service and edge-compute node</td>
+<td>New infrastructure / public service</td>
+<td><span class="tag pill-long">Long-term stewardship</span></td>
+<td>Energy, compute, security and an operating entity</td></tr><tr><td>JZ-06</td><td>Xiaoyuehe open scenario lab launch</td>
+<td>Industry testbed / operations</td>
+<td><span class="tag pill-long">Long-term stewardship</span></td>
+<td>Flexible-land use agreement, scenario safety and human-review mechanism</td></tr><tr><td>JZ-07</td><td>Global AI Week public route launch</td>
+<td>Operations / branding</td>
+<td><span class="tag pill-mid">Mid-term renewal</span></td>
+<td>Public-space permit, event safety, cleared copyrights</td></tr></tbody></table>
+</section>
+
+<section id="scenarios">
+<h2>AI Scenarios and Personas</h2>
+<p class="lead">At least ten AI scenario cards and five personas, mapping scenario-space-operation relationships and human-review boundaries.</p>
+<div class="grid cols-3"><div class="card"><h3>01 · Open-Source Launch Hall</h3>
+<p>Location: Middle Station · AI Origin Community</p>
+<p>A launch/demo space for universities, open-source communities and startups to publish results and pitch.</p></div><div class="card"><h3>02 · Safety Governance Sandbox</h3>
+<p>Location: North Station · Zhongzhiyuan</p>
+<p>Turns standards-setting, safety evaluation and red-teaming into a visitable, bookable, supervisable node.</p></div><div class="card"><h3>03 · Edge-Compute Waystation</h3>
+<p>Location: Along the vitality spine (illustrative)</p>
+<p>An illustrative new-infrastructure prototype pairing public/enterprise services with low-carbon edge compute.</p></div><div class="card"><h3>04 · AI Slow-Mobility Wayfinding</h3>
+<p>Location: Heritage Park Vitality Spine</p>
+<p>Explainable wayfinding and low-intrusion sensing to spot mobility gaps and accessibility needs; aggregated data only.</p></div><div class="card"><h3>05 · Dazhongsi International Roadshow Hall</h3>
+<p>Location: South Station · Dazhongsi</p>
+<p>A showcase/negotiation/press space for agent, device and content-consumption companies to meet international partners.</p></div><div class="card"><h3>06 · Qinghe Low-Carbon Innovation Corridor</h3>
+<p>Location: North Station, Qinghe riverfront</p>
+<p>Combines green space, stormwater management, walking/cycling and AI showcases as the North Station&#x27;s public living room.</p></div><div class="card"><h3>07 · Campus-Adjacent Transfer Street</h3>
+<p>Location: Middle Station · AI Origin Community</p>
+<p>A street-level band of incubation, display, legal/IP and financing services supporting campus tech transfer.</p></div><div class="card"><h3>08 · Data-Element Lounge</h3>
+<p>Location: South Station · Dazhongsi</p>
+<p>A compliant, authorized, auditable civic interface showcasing data-element and digital-asset circulation.</p></div><div class="card"><h3>09 · AI Everyday-Services Demonstration Street</h3>
+<p>Location: West Wing transition band</p>
+<p>Brings AI+ healthcare/education/legal/daily-service scenarios down to an operable, human-reviewable block scale.</p></div><div class="card"><h3>10 · Xiaoyuehe Open Scenario Lab</h3>
+<p>Location: East Wing · Xiaoyuehe Scenario Wing</p>
+<p>A bookable AI industry test-and-validate ground on flexible reserve land, opened to firms and the public in time slots.</p></div><div class="card"><h3>11 · Global AI Week Public Route</h3>
+<p>Location: The spine&#x27;s public-space system</p>
+<p>A walkable, shareable route stringing together heritage culture, open-source community, industry showcase and roadshow.</p></div></div>
+<h3 style="margin-top:26px;">Personas</h3>
+<table><thead><tr><th>Persona</th><th>Typical need</th><th>Spatial response</th><th>Review boundary</th></tr></thead>
+<tbody><tr><td>Open-source developer</td><td>Publishing, collaboration, testing, community reputation</td>
+<td>Origin-community launch hall, public code wall, late-night collaboration space</td><td>No individual behavior tracking; activity data is aggregated only</td></tr><tr><td>Startup team</td><td>Low-cost office, compute access, product test ground</td>
+<td>Zhongzhiyuan shared testbed, edge-compute waystation, safety-sandbox consulting</td><td>Compute and data services require separate authorization</td></tr><tr><td>Enterprise visitor</td><td>Showcase, business meetings, international hosting, recruiting</td>
+<td>Dazhongsi roadshow hall, transit connector, South-Station public space</td><td>Brand marks and case studies require cleared rights</td></tr><tr><td>Nearby resident</td><td>Commuting, leisure, community services, low-disruption renewal</td>
+<td>Heritage-park slow loop, embedded community services, tiered night lighting</td><td>Resident profiles are never used for commercial targeting</td></tr><tr><td>University faculty and students</td><td>Tech transfer, cross-campus collaboration, everyday slow mobility</td>
+<td>Campus-park slow-mobility stitching, transfer waystation, AI-education touchpoints</td><td>Campus data and research outputs require authorization</td></tr><tr><td>International observer / media</td><td>Understanding the narrative, shareable material, credible evidence</td>
+<td>Global AI Week public route, Jing-Zhang culture tour, public evidence panels</td><td>Materials must disclose concept status and data gaps, never imply approval</td></tr></tbody></table>
+<h3 style="margin-top:26px;">Global AI innovation ecosystem cases (5–8)</h3>
+<ul><li>Stanford HAI + Silicon Valley corridor: a university-VC-open-source transfer triangle</li><li>London King&#x27;s Cross: rail-heritage renewal into a tech campus and public cultural quarter</li><li>Toronto MaRS Discovery District: an incubate-test-showcase pipeline as an urban innovation hub</li><li>Seoul Digital Media City: integrated development of an industry cluster with a transit hub</li><li>Singapore one-north: long-horizon operation blending R&amp;D land with community living</li><li>Zhongguancun Software Park co-working + professional-services system: a local reference for the tech-service wing</li></ul>
+</section>
+
+<section id="metrics">
+<h2>Core Metrics</h2>
+<p class="lead">All values here match metrics.json; data-metric/data-value attributes support automated cross-checking.</p>
+<div class="figure"><img src="../assets/figures/metrics-evidence.en.png" alt="Core metrics recalculation and evidence chain">
+<figcaption>Metric-geometry-matrix-self-check evidence chain</figcaption></div>
+
+    <div class="grid cols-4">
+      <div class="stat"><div class="v"><span data-metric="site_area_sqm" data-value="11412825.386">1,141.3 ha</span></div>
+      <div class="l">Overall design area</div><div class="n">Provisional boundary; recalc after official redline</div></div>
+      <div class="stat"><div class="v"><span data-metric="green_ratio" data-value="0.248784">24.9%</span></div>
+      <div class="l">Green ratio</div><div class="n">= green area / overall area</div></div>
+      <div class="stat"><div class="v"><span data-metric="public_space_ratio" data-value="0.013989">1.4%</span></div>
+      <div class="l">Public space ratio</div><div class="n">= public space area / overall area</div></div>
+      <div class="stat"><div class="v"><span data-metric="key_area_count" data-value="3">3</span></div>
+      <div class="l">Key area count</div><div class="n">Zhongzhiyuan · AI Origin · Dazhongsi</div></div>
+      <div class="stat"><div class="v"><span data-metric="building_density_ratio" data-value="0.011873">1.2%</span></div>
+      <div class="l">Building footprint density (illustrative)</div><div class="n">illustrative footprint / overall area</div></div>
+      <div class="stat"><div class="v"><span data-metric="road_centerline_length_m" data-value="15007.613">15.01 km</span></div>
+      <div class="l">Road/slow-mobility centerline length</div><div class="n">spine + connectors + station loops</div></div>
+      <div class="stat" style="border-left-color:#999488"><div class="v">Pending</div>
+      <div class="l">Floor Area Ratio</div><div class="n">No official intensity control published</div></div>
+      <div class="stat" style="border-left-color:#999488"><div class="v">Pending</div>
+      <div class="l">Total floor area</div><div class="n">Requires official height/intensity review</div></div>
+    </div>
+</section>
+
+<section id="compliance">
+<h2>Task Coverage</h2>
+<p class="lead">Full task-response table for announcement 1.3/1.4/1.5 and agent-open-call tasks agent.1–agent.6; see compliance_matrix.json.</p>
+<table><thead><tr><th>ID</th><th>Task</th><th>Mandatory</th></tr></thead>
+<tbody><tr><td>1.3.1</td><td>构建世界级AI创新生态体系</td><td>Yes</td></tr><tr><td>1.3.2</td><td>建设适配AI新质生产力的新型城市形态</td><td>Yes</td></tr><tr><td>1.3.3</td><td>打造全球AI创新人才向往的高品质城区</td><td>Yes</td></tr><tr><td>1.4.1</td><td>统筹研究范围</td><td>Yes</td></tr><tr><td>1.4.2</td><td>总体设计范围</td><td>Yes</td></tr><tr><td>1.4.3</td><td>重点区域范围</td><td>Yes</td></tr><tr><td>1.5.1.1</td><td>统筹研究范围：AI创新生态体系</td><td>Yes</td></tr><tr><td>1.5.1.2</td><td>统筹研究范围：适配人工智能的未来城市形态</td><td>Yes</td></tr><tr><td>1.5.2.1</td><td>总体设计范围：产业目标与功能布局</td><td>Yes</td></tr><tr><td>1.5.2.2</td><td>总体设计范围：城市更新总体框架</td><td>Yes</td></tr><tr><td>1.5.2.3</td><td>总体设计范围：交通轨道市政配套设施</td><td>Yes</td></tr><tr><td>1.5.2.4</td><td>总体设计范围：京张遗址公园活力带</td><td>Yes</td></tr><tr><td>1.5.2.5</td><td>总体设计范围：城市风貌</td><td>Yes</td></tr><tr><td>1.5.3.required</td><td>重点区域范围详细设计必选项</td><td>Yes</td></tr><tr><td>1.5.3.1</td><td>众智园AI自主创新加速区</td><td>Yes</td></tr><tr><td>1.5.3.2</td><td>北京AI原点社区</td><td>Yes</td></tr><tr><td>1.5.3.3</td><td>大钟寺AI产业聚集区</td><td>Yes</td></tr><tr><td>agent.1</td><td>一带总体概念与功能统筹方案设计</td><td>Yes</td></tr><tr><td>agent.2</td><td>AI全栈自主创新体系与世界级AI创新生态设计</td><td>Yes</td></tr><tr><td>agent.3</td><td>AI+场景赋能新范式与智能化AI活力城市设计</td><td>Yes</td></tr><tr><td>agent.4</td><td>AI公共空间、智能原生新业态与朝圣地标设计</td><td>Yes</td></tr><tr><td>agent.5</td><td>百年京张文化、中关村文化与AI新文化融合叙事设计</td><td>Yes</td></tr><tr><td>agent.6</td><td>一带全球AI创新活动体系与长期运营设计</td><td>Yes</td></tr></tbody></table>
+</section>
+
+<section id="selfcheck">
+<h2>Self-check</h2>
+<p class="lead">Four local self-check gates run before submission; see self_check.json.</p>
+<div class="status-grid">
+<div class="status-pass"><b>PASS</b> Deterministic validation</div>
+<div class="status-pass"><b>PASS</b> Spatial review</div>
+<div class="status-pass"><b>PASS</b> Visual packaging check</div>
+<div class="status-pass"><b>PASS</b> Professional evidence review</div>
+</div>
+<p class="evidence-note">A PASS means the package meets the baseline for entering machine checks and content review; it does not imply official approval or a review outcome.</p>
+</section>
+
+<section id="sources">
+<h2>Sources</h2>
+<table><thead><tr><th>ID</th><th>Type</th><th>Usage</th></tr></thead>
+<tbody><tr><td>SITE-PACKAGE</td><td>official_public</td><td>Project brief, enums, allowed design space, ranges, and schemas.</td></tr><tr><td>SOURCE-REGISTRY</td><td>repository_public_registry</td><td>Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials.</td></tr><tr><td>PROCESSED-FACT-PACK</td><td>repository_processed_reference</td><td>Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source.</td></tr><tr><td>BOUNDARY-SOURCE</td><td>agent_inferred_from_public_data</td><td>Submitted site boundary geometry source (provisional).</td></tr><tr><td>KEY-AREA-SOURCE</td><td>agent_inferred_from_public_data</td><td>Three required detailed-design key area boundaries (provisional).</td></tr><tr><td>OFFICIAL-ANNOUNCEMENT</td><td>official_public</td><td>Official announcement tasks, scope levels, key areas, language, and deliverable context.</td></tr><tr><td>AGENT-TASKBOOK</td><td>user_provided_cleared</td><td>Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause.</td></tr></tbody></table>
+</section>
+
+<section id="assumptions">
+<h2>Assumptions</h2>
+<table><thead><tr><th>ID</th><th>Status</th><th>Statement</th></tr></thead>
+<tbody><tr><td>A-CONTROLS-001</td><td>pending_professional_confirmation</td><td>Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.</td></tr><tr><td>A-LANDUSE-METHOD-001</td><td>design_proposal_method</td><td>geometry/land_use.geojson partitions the provisional site boundary into a 300m-wide heritage-park spine, the three official key-area rectangles (net of the spine), and two side wings split by the spine centerline. This is the agent&#x27;s conceptual zoning method for the &#x27;one line, three stations, two wings&#x27; idea, not a statutory zoning map.</td></tr><tr><td>A-ROAD-WIDTH-001</td><td>design_proposal_method</td><td>road_area_sqm and road_ratio in metrics.json are derived from road centerline length multiplied by schematic cross-section widths (greenway 10m, branch 14m, secondary 20m, transit_connection 18m), not from an approved road red-line or ROW.</td></tr><tr><td>A-BUILDING-ILLUS-001</td><td>design_proposal_method</td><td>geometry/buildings.geojson contains six illustrative massing blocks (one to two per station) used to demonstrate retain/renovate/new-build logic and to compute a schematic building_density_ratio; it is not a parcel-level architectural footprint survey.</td></tr></tbody></table>
+</section>
+
+</div>
+<footer><div class="wrap">
+Generated by AI agent (hao45e) as an open co-creation proposal; it does not replace statutory planning or constitute a government-approved conclusion. All provisional_constraint geometry must be recalculated once the official redline is published.
+</div></footer>
+</body>
+</html>

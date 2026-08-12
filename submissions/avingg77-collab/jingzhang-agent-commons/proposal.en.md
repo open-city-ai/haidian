@@ -79,13 +79,13 @@ This repair expands agent.1 from a name into a reviewable identity system. The C
 
 ## Global Cases, AI Ecosystem Map, and Regional Coordination
 
-This repair completes agent.2 with six transferable case mechanisms: Kendall Square for campus-enterprise proximity, Station F for integrated start-up services, Barcelona 22@ for urban renewal, Toronto Waterfront for data-governance limits, Seoul DDP for cultural landmark operation, and Shenzhen Bay for cluster-public-space integration. For Haidian, the resource chain is university research, open-source community, safety governance, enterprise conversion, public experience, and global events. External nodes are coordination partners, not new boundaries. [source:AGENT-TASKBOOK] [data:geometry/site_boundary.geojson#SITE-001] [depth:three_level_scope_framework]
+This repair completes agent.2 with six transferable case mechanisms: Kendall Square for campus-enterprise proximity, Station F for integrated start-up services, Barcelona 22@ for urban renewal, Toronto Waterfront for data-governance limits, Seoul DDP for cultural landmark operation, and Shenzhen Bay for cluster-public-space integration. For Haidian, the resource chain is university research, open-source community, safety governance, enterprise conversion, public experience, and global events. External nodes are coordination partners, not new boundaries. `visual/assets/regional-coordination.json` records the three positionings, five functions, two wings, external reference nodes, resource flow, and case mechanisms as individual review fields. [source:AGENT-TASKBOOK] [data:geometry/site_boundary.geojson#SITE-001] [depth:three_level_scope_framework]
 
 ![Global Cases, AI Ecosystem Map, and Regional Coordination](assets/figures/ecosystem-collaboration.en.png)
 
 ## Ten AI Scenario Cards and Three Test-Validation Scenarios
 
-The ten AI scenario cards now name users, locations, data boundaries, human review, and operator types. The three test-validation tracks are model-safety governance sandbox, accessible walkability navigation, and enterprise-service Copilot. Each test uses minimal data, human review, and pause/exit conditions; no test is described as approved operation. [data:geometry/public_space.geojson#PUBLIC-001] [data:geometry/roads.geojson#ROAD-001] [metric:public_space_ratio]
+The ten AI scenario cards now name users, locations, data boundaries, model-or-rule boundaries, human review, operator types, and exit conditions. `visual/assets/scenario-cards.json` makes every field auditable. The three test-validation tracks are safety-governance sandbox, accessible walkability navigation, and near-campus conversion street. Each test uses minimal data, human review, and pause/exit conditions; no test is described as approved operation. [data:geometry/public_space.geojson#PUBLIC-001] [data:geometry/roads.geojson#ROAD-001] [metric:public_space_ratio]
 
 ![Ten AI Scenario Cards and Three Test-Validation Scenarios](assets/figures/scenario-cards.en.png)
 
@@ -95,7 +95,7 @@ The AI pilgrimage landmarks are the Qinghe low-carbon innovation loop, the AI Or
 
 ## Key-Area Implementation Matrix, KPIs, and Exit Conditions
 
-JZ-01 through JZ-06 are converted into an implementation matrix with scope, actor type, dependencies, phase, cost band, KPI, risk, and exit conditions. All items are concept recommendations, not approvals, investment promises, or government implementation commitments. [data:geometry/phasing.geojson#PHASE-001] [depth:renewal_project_list] [depth:phasing_implementation]
+JZ-01 through JZ-06 are converted into an implementation matrix with scope, actor type, approval or prerequisite, phase, cost band, KPI, risk, and exit conditions. `visual/assets/implementation-matrix.json` holds the full six-item record. All items are concept recommendations, not approvals, investment promises, or government implementation commitments. [data:geometry/phasing.geojson#PHASE-001] [depth:renewal_project_list] [depth:phasing_implementation]
 
 ![Key-Area Implementation Matrix, KPIs, and Exit Conditions](assets/figures/implementation-operations.en.png)
 
@@ -105,11 +105,26 @@ The annual operating system includes a January open-scenario list, March univers
 
 ## Inclusion, Accessibility, and Public Participation
 
-The repair adds children, older adults, people with disabilities, low-digital-literacy users, night workers, and visitors as explicit groups. Universal-design measures include offline alternatives, accessible-route checks, low-stimulation wayfinding, night safety lighting, non-smartphone access, complaint/withdrawal channels, risk disclosure, and third-party human review. [metric:green_ratio] [metric:public_space_ratio] [depth:metrics_recalculation]
+The repair adds children, older adults, people with disabilities, low-digital-literacy users, night workers, and visitors as explicit groups. Universal-design measures include offline alternatives, accessible-route checks, low-stimulation wayfinding, night safety lighting, non-smartphone access, complaint/withdrawal channels, risk disclosure, and third-party human review. `visual/assets/public-interest-charter.json` fixes these groups, commitments, equity checks, and data limits as pilot prerequisites. [metric:green_ratio] [metric:public_space_ratio] [depth:metrics_recalculation]
 
 ## Asset-Level Rights and Bilingual Equivalence Check
 
 The package now includes asset-level rights records in visual/assets/asset-license-inventory.json and this section. Text, translation, figures, HTML, PDFs, and matrices are generated by this package; GeoJSON derives from repository provisional geometry and package concept layers; HTML loads no remote scripts, fonts, map tiles, or third-party icons. COMMUNITY-DISPLAY-ONLY applies only to this open-call review/display context and does not expand third-party licenses. Bilingual equivalence evidence is recorded in visual/assets/bilingual-equivalence-check.json. [source:SOURCE-REGISTRY] [depth:risk_missing_data]
+
+## Standards and Design-Depth Evidence Crosswalk
+
+This crosswalk connects the standards and depth items declared in the matrices to readable judgments, spatial data, metrics, and drawings. It is not a substitution of machine-readable indexing for professional reasoning. The official applicability file for `MOHURD-ARCH-DESIGN-DEPTH-2016` has not been supplied by the organizer; it is therefore recorded as a pending architectural-depth reference, not as a satisfied statutory control.
+
+| Standard | Reviewable judgment and evidence chain |
+| --- | --- |
+| [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] | The three-level scope, three key areas, and deliverable depth are expressed through [data:geometry/site_boundary.geojson#SITE-001], [data:geometry/key_areas.geojson#PROV-KEY-001], [depth:three_level_scope_framework], and [metric:key_area_count]; the announcement basis remains subject to the provisional-boundary limitation. |
+| [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] | Naming and logo, ecosystem cases, ten scenario cards, three tests, landmark components, and the operations funnel map to the proposal sections, five bilingual figure pairs, `visual/assets/scenario-cards.json`, and [depth:renewal_project_list]; the taskbook requirement is supported by [source:AGENT-TASKBOOK]. |
+| [standard:MOHURD-URBAN-DESIGN-MEASURES] | The blue-green network, public space, urban character, and building interfaces are checked through [data:geometry/green_space.geojson#GREEN-001], [data:geometry/public_space.geojson#PUBLIC-001], [depth:blue_green_public_space], and the plan relationships in the drawings; these remain conceptual urban-design recommendations. |
+| [standard:MOHURD-CONTROL-DETAILED-PLANNING] | Land-use evidence links to [data:geometry/land_use.geojson#LU-001], mobility organization links to [data:geometry/roads.geojson#ROAD-001], and building footprints link to [data:geometry/buildings.geojson#BLDG-001]; [depth:land_use_layout] records layout, [depth:development_intensity_controls] records intensity conditions, and [depth:three_key_area_detailed_design] records key-area depth. FAR, redlines, height, and setbacks remain unknown or pending. |
+| [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] | `land_use_code` and area calculations are checked against [data:geometry/land_use.geojson#LU-001], [metric:site_area_sqm], [metric:green_ratio], and [metric:public_space_ratio]; the classification is a provisional design model, not an approved regulatory plan. |
+| [standard:MOHURD-ARCH-DESIGN-DEPTH-2016] | Building footprints are used only as a conceptual massing entry. [depth:height_massing_character], [depth:three_key_area_detailed_design], [data:geometry/buildings.geojson#BLDG-001], and `drawings/a3-booklet.pdf` / `drawings/a0-boards.pdf` form a pending-deepening chain; official survey, structural, fire, heritage, and architectural-depth inputs must be supplied before confirmation. |
+
+The four key depth items have readable locations: `land_use_layout` is supported by the land-use structure drawing, nine geometry layers, and area metrics; `development_intensity_controls` is supported by the metrics-evidence board, which records unknown controls and the recalculation trigger after official inputs arrive; `height_massing_character` is expressed through building footprints, character methods, and A3/A0 boards without inventing height values; `three_key_area_detailed_design` is expressed through the provisional polygons, local drawings, scenarios, and implementation matrix for Zhongzhiyuan, AI Origin Community, and Dazhongsi. The land-use index is [depth:land_use_layout]; the intensity index is [depth:development_intensity_controls]; the architectural-character index is [depth:height_massing_character]; the key-area index is [depth:three_key_area_detailed_design]. Boundary limitations are documented by [source:BOUNDARY-SOURCE], while the key-area source is [source:KEY-AREA-SOURCE].
 
 ## References
 

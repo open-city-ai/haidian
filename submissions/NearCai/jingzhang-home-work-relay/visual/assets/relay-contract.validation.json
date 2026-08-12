@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "validation_scope": "offline structure, state-reference, fallback, stop-rule, negative-fixture and gate-metadata regression checks only",
+  "field_pilot_status": "not_authorized_not_run",
+  "result": "pass",
+  "counts": {
+    "relay_contracts": 6,
+    "states": 9,
+    "gates": 3,
+    "valid_fixture_errors": 0,
+    "expected_invalid_errors": 33,
+    "gate_metadata_regression_errors": 4
+  },
+  "checks": [
+    {
+      "id": "valid-fixture",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "negative-fixture",
+      "passed": true,
+      "errors": [
+        "root.contracts[0].household_score: forbidden decision or scoring field",
+        "root.states: expected exactly nine states",
+        "root.gates: expected exactly three gates",
+        "root.contracts: expected exactly six contracts",
+        "root.gates: expected G1, G2 and G3",
+        "contracts[0].actor: missing",
+        "contracts[0].input: missing",
+        "contracts[0].state: missing",
+        "contracts[0].consent: missing",
+        "contracts[0].fallback: missing",
+        "contracts[0].stop_rule: missing",
+        "contracts[0].success_evidence: missing",
+        "contracts[0].service_level: missing",
+        "contracts[0].status: missing",
+        "contracts[0].actor: expected object",
+        "contracts[0].input: expected object",
+        "contracts[0].state: expected object",
+        "contracts[0].consent: expected object",
+        "contracts[0].fallback: expected object",
+        "contracts[0].stop_rule: expected object",
+        "contracts[0].service_level: expected object",
+        "contracts[0].state: unknown state undefined",
+        "contracts[0].state: unknown state undefined",
+        "contracts[0].state: unknown state undefined",
+        "contracts[0].fallback: ordinary routes missing",
+        "contracts[0].stop_rule: trigger missing",
+        "contracts[0].success_evidence: expected at least two records",
+        "contracts[0].status: field operation may not be claimed",
+        "root.contracts: missing relay type layout",
+        "root.contracts: missing relay type workspace",
+        "root.contracts: missing relay type service",
+        "root.contracts: missing relay type consent",
+        "root.contracts: missing relay type departure_return"
+      ]
+    },
+    {
+      "id": "gate-metadata-regression",
+      "passed": true,
+      "errors": [
+        "root.gates: expected G1, G2 and G3",
+        "gates[0].id: missing",
+        "gates[0].label_zh: missing",
+        "gates[0].label_en: missing"
+      ]
+    }
+  ],
+  "limitation": "A passing result validates the submitted protocol structure. It does not establish service quality, legal authority, spatial feasibility, housing availability, affordability, capacity, or public acceptance."
+}

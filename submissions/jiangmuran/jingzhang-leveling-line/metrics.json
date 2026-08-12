@@ -17,7 +17,13 @@
       "assumptions": [
         "边界为 provisional_constraint，非官方 redline；官方 polygon 发布后须整体重算。",
         "面积由临时边界复算，不得作为精确面积依据。"
-      ]
+      ],
+      "assumption_ids": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_class": 1,
+      "evidence_class": "provisional",
+      "confidence_is_about": "computation"
     },
     "building_footprint_area_sqm": {
       "status": "known",
@@ -30,7 +36,13 @@
       "confidence": "low",
       "assumptions": [
         "示意性基底，用于说明规模量级，不构成建筑方案或实际建设规模。"
-      ]
+      ],
+      "assumption_ids": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_class": 1,
+      "evidence_class": "provisional",
+      "confidence_is_about": "computation"
     },
     "green_ratio": {
       "status": "known",
@@ -46,7 +58,13 @@
         "边界为 provisional_constraint，非官方 redline；官方 polygon 发布后须整体重算。",
         "分子分母均基于临时边界，比值随官方边界发布而变化。",
         "绿廊已扣除本方案六处建筑基底落在廊内的 66,925 m²；此前未扣除，该值为 0.202492，把本方案自己的建筑算作了绿地。绿地率是公开指标，其误差方向对提交方有利时尤其须自行修正。"
-      ]
+      ],
+      "assumption_ids": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_class": 1,
+      "evidence_class": "provisional",
+      "confidence_is_about": "computation"
     },
     "public_space_ratio": {
       "status": "known",
@@ -61,7 +79,13 @@
       "assumptions": [
         "边界为 provisional_constraint，非官方 redline；官方 polygon 发布后须整体重算。",
         "公共测点面积占比，反映测点覆盖密度而非全部公共空间供给。"
-      ]
+      ],
+      "assumption_ids": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_class": 1,
+      "evidence_class": "provisional",
+      "confidence_is_about": "computation"
     },
     "floor_area_ratio": {
       "status": "unknown",
@@ -73,7 +97,28 @@
       "formula": "total_floor_area_sqm / official_site_area_sqm",
       "confidence": "unknown",
       "assumptions": [],
-      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package.",
+      "assumption_ids": [
+        "A-CONTROLS-001",
+        "A-BOUNDARY-001"
+      ],
+      "evidence_class": "official_context",
+      "confidence_is_about": "reading",
+      "metric_class": 2
+    },
+    "existing_residential_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [],
+      "formula": "sum(existing_residential_floor_area) within the design scope",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "本方案写了一条约束——「人才公寓与既有居住的关系须以不减少现有居住供给为前提」——而现状居住建筑面积并未公开，本包也没有测它。按本方案自己的标准，一条无法核验的规则不算规则，因此这里把它约束的那个量单列为 unknown 并写明前置条件：现状居住建筑面积或户数须由权属与现状测绘数据给出，该数据到位前这条约束只能作为深化阶段的必检项，不能声称已满足。0701 城镇住宅与 0804 教育用地不出现在 land_use.geojson 里，是因为它们落在 11 个留白街区内且其边界依赖同一批未公开数据——这是判断，不是遗漏。",
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "metric_class": 2
     },
     "key_area_count": {
       "status": "known",
@@ -86,7 +131,13 @@
       "confidence": "high",
       "assumptions": [
         "三处重点区数量来自公告，几何为临时替代边界。"
-      ]
+      ],
+      "assumption_ids": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_class": 1,
+      "evidence_class": "provisional",
+      "confidence_is_about": "computation"
     },
     "leveling_spine_length_m": {
       "status": "known",
@@ -99,7 +150,13 @@
       "confidence": "medium",
       "assumptions": [
         "主脊长度按设计中心线复算；线位为概念建议，非工程定线。"
-      ]
+      ],
+      "assumption_ids": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_class": 1,
+      "evidence_class": "provisional",
+      "confidence_is_about": "computation"
     },
     "benchmark_count": {
       "status": "known",
@@ -112,7 +169,14 @@
       "confidence": "high",
       "assumptions": [
         "含1处水准原点、2处一等点、2处二等点、3处三等点。"
-      ]
+      ],
+      "assumption_ids": [
+        "A-BOUNDARY-001",
+        "A-CLOSURE-001"
+      ],
+      "metric_class": 1,
+      "evidence_class": "provisional",
+      "confidence_is_about": "computation"
     },
     "green_ratio_in_partition": {
       "status": "known",
@@ -127,7 +191,13 @@
       "assumptions": [
         "边界为 provisional_constraint，非官方 redline；官方 polygon 发布后须整体重算。",
         "与 green_ratio 的差别是口径而非矛盾，且两者的分子现已同源：green_ratio 取 120 m 绿廊扣除建筑基底后的全部（2,244,081.8 m²）；本项只取其中在用地剖分里仍归为 1401 的部分（1,392,297.1 m²）。差额 851,784.7 m² 全部是绿廊与三处重点区及 L1 文化地块的重叠（LU-002 内 459,609.3 m²、LU-003 内 209,080.4 m²、LU-004 内 134,913.8 m²、LU-001 内 48,181.2 m²），剖分把地块归给主导用途所致；建筑基底不在差额内，因为两个图层都已将其扣除。两值同时公布，避免评审从不同图层重算出两个数却无从判断。"
-      ]
+      ],
+      "assumption_ids": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_class": 1,
+      "evidence_class": "provisional",
+      "confidence_is_about": "computation"
     },
     "phasing_union_area_sqm": {
       "status": "known",
@@ -141,7 +211,494 @@
       "assumptions": [
         "边界为 provisional_constraint，非官方 redline；官方 polygon 发布后须整体重算。",
         "分期图层为增量口径：三期互不重叠，累计实施范围为其并集，并集面积等于三期面积之和；分期按触发条件推进，不设固定年份。"
-      ]
+      ],
+      "assumption_ids": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_class": 1,
+      "evidence_class": "provisional",
+      "confidence_is_about": "computation"
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "visual/assets/scenario_cards.json"
+      ],
+      "formula": "len(scenario_cards.cards)",
+      "confidence": "high",
+      "assumptions": [
+        "任务书要求不少于 10 张；本项为实际张数，由 check_cards.js 逐卡解析验证。"
+      ],
+      "metric_class": "package_self_count",
+      "evidence_class": "self_measured",
+      "confidence_is_about": "reading"
+    },
+    "scenario_cards_operational_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "visual/assets/scenario_cards.json"
+      ],
+      "formula": "count(cards where operational)",
+      "confidence": "high",
+      "assumptions": [
+        "其余卡片的限差由 BM-1 的限差议事厅设定，本方案不代拟，故标记为未可运行。"
+      ],
+      "metric_class": "package_self_count",
+      "evidence_class": "self_measured",
+      "confidence_is_about": "reading"
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "len(constraints.features)",
+      "confidence": "high",
+      "assumptions": [
+        "S06 / S10 / S11，各有独立受控边界；任务书要求不少于 3 个。"
+      ],
+      "metric_class": 1,
+      "evidence_class": "provisional",
+      "confidence_is_about": "computation"
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(persona table rows P1..P9)",
+      "confidence": "high",
+      "assumptions": [
+        "任务书要求不少于 5 类。"
+      ],
+      "metric_class": "package_self_count",
+      "evidence_class": "self_measured",
+      "confidence_is_about": "reading"
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "proposal.md",
+        "assets/figures/kit-of-parts.png"
+      ],
+      "formula": "count(L1, L2, L3)",
+      "confidence": "high",
+      "assumptions": [
+        "任务书要求不少于 3 个 AI 朝圣地标。"
+      ],
+      "metric_class": "package_self_count",
+      "evidence_class": "self_measured",
+      "confidence_is_about": "reading"
+    },
+    "case_study_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "formula": "count(C1..C6 rows)",
+      "confidence": "high",
+      "assumptions": [
+        "任务书要求 5–8 个全球案例；逐案来源登记于 sources.json。"
+      ],
+      "metric_class": "package_self_count",
+      "evidence_class": "self_measured",
+      "confidence_is_about": "reading"
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(R1..R8 rows)",
+      "confidence": "high",
+      "assumptions": [
+        "每项给出责任角色、合作机制、前置、成本级别、用地依赖、审批路径、KPI 与退出条件。"
+      ],
+      "metric_class": "package_self_count",
+      "evidence_class": "self_measured",
+      "confidence_is_about": "reading"
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "len(phasing.features)",
+      "confidence": "high",
+      "assumptions": [
+        "三期为互不重叠的增量，两两重叠面积由构建闸门约束为 0。"
+      ],
+      "metric_class": 1,
+      "evidence_class": "provisional",
+      "confidence_is_about": "computation"
+    },
+    "land_use_class_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "len(distinct land_use_code)",
+      "confidence": "high",
+      "assumptions": [
+        "完整剖分，无重叠无缺口，由 verify.js 以 40 m 格网逐点验证。"
+      ],
+      "metric_class": 1,
+      "evidence_class": "provisional",
+      "confidence_is_about": "computation"
+    },
+    "land_use_feature_count": {
+      "status": "known",
+      "value": 22,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "len(land_use.features)",
+      "confidence": "high",
+      "assumptions": [
+        "含六个建筑地块 LU-B01–LU-B06。"
+      ],
+      "metric_class": 1,
+      "evidence_class": "provisional",
+      "confidence_is_about": "computation"
+    },
+    "road_feature_count": {
+      "status": "known",
+      "value": 17,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "len(roads.features)",
+      "confidence": "high",
+      "assumptions": [
+        "含主脊、两条附合路线、十一段缝合与三条测点接入支线。"
+      ],
+      "metric_class": 1,
+      "evidence_class": "provisional",
+      "confidence_is_about": "computation"
+    },
+    "benchmark_first_order_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(benchmark_order == first)",
+      "confidence": "high",
+      "assumptions": [
+        "BM-1 与 BM-2；BM-0 为水准原点，不计入一等点。"
+      ],
+      "metric_class": 1,
+      "evidence_class": "provisional",
+      "confidence_is_about": "computation"
+    },
+    "benchmark_third_order_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(benchmark_order == third)",
+      "confidence": "high",
+      "assumptions": [
+        "月度复测，由居民与一线人员主导取读数。"
+      ],
+      "metric_class": 1,
+      "evidence_class": "provisional",
+      "confidence_is_about": "computation"
+    },
+    "taskbook_requirement_count": {
+      "status": "known",
+      "value": 63,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "visual/assets/taskbook_coverage.json"
+      ],
+      "formula": "len(taskbook_coverage.rows)",
+      "confidence": "high",
+      "assumptions": [
+        "六项 agent 任务的 must-address 与 required output 合计。"
+      ],
+      "metric_class": "package_self_count",
+      "evidence_class": "self_measured",
+      "confidence_is_about": "reading"
+    },
+    "taskbook_requirements_answered": {
+      "status": "known",
+      "value": 63,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "visual/assets/taskbook_coverage.json"
+      ],
+      "formula": "count(rows where satisfied)",
+      "confidence": "high",
+      "assumptions": [
+        "每条指向一处构建时校验存在的证据；缺一即构建失败。"
+      ],
+      "metric_class": "package_self_count",
+      "evidence_class": "self_measured",
+      "confidence_is_about": "reading"
+    },
+    "matrix_reference_count": {
+      "status": "known",
+      "value": 523,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "compliance_matrix.json",
+        "standard_matrix.json",
+        "design_depth_matrix.json"
+      ],
+      "formula": "count(references declared in the 11 reference fields of the three matrices); shares one definition with matrix_refs_qa.count_references",
+      "confidence": "high",
+      "assumptions": [
+        "这是**被声明**的引用数；其中能被解析规则核对的那部分由 matrix_refs_qa 分别报出，两个数取自同一个定义，不再各算各的（此前二者相差 5）。每条条目的证据摘要由其自身引用生成，44 条互不相同。"
+      ],
+      "metric_class": "package_self_count",
+      "evidence_class": "self_measured",
+      "confidence_is_about": "reading"
+    },
+    "shipped_verification_script_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "manifest.json"
+      ],
+      "formula": "count(visual/assets/*.js)",
+      "confidence": "high",
+      "assumptions": [
+        "verify.js / check_osm.js / check_cards.js / check_closure.js / run_s08_tabletop.js，均无依赖、不联网。"
+      ],
+      "metric_class": "package_self_count",
+      "evidence_class": "self_measured",
+      "confidence_is_about": "reading"
+    },
+    "tabletop_case_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "visual/assets/s08-tabletop-evidence.json"
+      ],
+      "formula": "len(tabletop cases)",
+      "confidence": "high",
+      "assumptions": [
+        "2 例接受、8 例拒绝，全部对随包读取器实跑。"
+      ],
+      "metric_class": "package_self_count",
+      "evidence_class": "self_measured",
+      "confidence_is_about": "reading"
+    },
+    "errata_entry_count": {
+      "status": "known",
+      "value": 46,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "visual/assets/errata.json"
+      ],
+      "formula": "len(errata.entries)",
+      "confidence": "high",
+      "assumptions": [
+        "本方案自身错误的登记册；每条对应一个可校验的提交。"
+      ],
+      "metric_class": "package_self_count",
+      "evidence_class": "self_measured",
+      "confidence_is_about": "reading"
+    },
+    "errata_external_finder_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "visual/assets/errata.json"
+      ],
+      "formula": "count(entries where found_by == external-reviewer)",
+      "confidence": "high",
+      "assumptions": [
+        "由本方案之外的评审在公开 PR 或 Issue 中发现的缺陷数。"
+      ],
+      "metric_class": "package_self_count",
+      "evidence_class": "self_measured",
+      "confidence_is_about": "reading"
+    },
+    "rights_ledger_entry_count": {
+      "status": "known",
+      "value": 86,
+      "unit": "count",
+      "assumption_ids": [
+        "A-SELF-COUNT-001"
+      ],
+      "source_files": [
+        "visual/assets/rights_ledger.json"
+      ],
+      "formula": "len(rights_ledger.entries)",
+      "confidence": "high",
+      "assumptions": [
+        "逐文件权利归类，由 manifest 生成；任一随包文件未归类即构建失败。"
+      ],
+      "metric_class": "package_self_count",
+      "evidence_class": "self_measured",
+      "confidence_is_about": "reading"
+    },
+    "osm_vertices_shipped": {
+      "status": "known",
+      "value": 275,
+      "unit": "count",
+      "assumption_ids": [
+        "A-OSM-001"
+      ],
+      "source_files": [
+        "visual/assets/osm_reference.json"
+      ],
+      "formula": "count(coordinates in osm_reference.geometry)",
+      "confidence": "high",
+      "assumptions": [
+        "© OpenStreetMap contributors，ODbL 1.0；由 check_osm.js 复算全部十个已发布标量。"
+      ],
+      "metric_class": "package_self_count",
+      "evidence_class": "background_only",
+      "confidence_is_about": "computation"
+    },
+    "field_census_corpus_size": {
+      "status": "known",
+      "value": 440,
+      "unit": "count",
+      "assumption_ids": [
+        "A-CORPUS-001"
+      ],
+      "source_files": [
+        "visual/assets/field_map.json"
+      ],
+      "formula": "len(merged proposal directories in git tree)",
+      "confidence": "high",
+      "assumptions": [
+        "权威源为 GitHub git tree，非会滞后的展示索引；语料每日增长，引用前须重跑。"
+      ],
+      "metric_class": "package_self_count",
+      "evidence_class": "background_only",
+      "confidence_is_about": "computation"
+    },
+    "track_scan_corpus_size": {
+      "status": "known",
+      "value": 40,
+      "unit": "count",
+      "assumption_ids": [
+        "A-CORPUS-001"
+      ],
+      "source_files": [
+        "visual/assets/track_scan.json"
+      ],
+      "formula": "count(proposals declaring either track)",
+      "confidence": "high",
+      "assumptions": [
+        "机器人与 AI 公共服务两条赛道；空白表由该文件生成。"
+      ],
+      "metric_class": "package_self_count",
+      "evidence_class": "background_only",
+      "confidence_is_about": "computation"
+    },
+    "phased_share_of_design_scope": {
+      "status": "known",
+      "value": 0.25588,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/phasing.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(phase_increments)) / area(site_boundary), EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional_constraint，非官方 redline；官方 polygon 发布后须整体重算。",
+        "分母为总体设计范围。本包只对实际提出要建的东西分期——水准网及其试点单元；其余为留白街区，在权属与控规公开前不代为编排时序。该比例低不等于分期不完整，等于本方案提出的干预范围就是这么大。"
+      ],
+      "assumption_ids": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_class": 1,
+      "evidence_class": "provisional",
+      "confidence_is_about": "computation"
     }
   }
 }

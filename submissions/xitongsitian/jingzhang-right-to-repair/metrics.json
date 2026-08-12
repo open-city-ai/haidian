@@ -1,0 +1,265 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "official_declared_coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "announced 43.6 km2",
+      "confidence": "high",
+      "assumptions": [
+        "Announcement quantity; no precise public polygon."
+      ]
+    },
+    "official_declared_overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "announced 11.4 km2",
+      "confidence": "high",
+      "assumptions": [
+        "Announcement quantity; no precise public polygon."
+      ]
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "EPSG:4548 polygon area of provisional submitted boundary",
+      "confidence": "medium",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-METRICS-004"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1408600.768,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "EPSG:4548 union area",
+      "confidence": "medium",
+      "assumptions": [
+        "A-METRICS-004"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 836345.643,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "EPSG:4548 union area",
+      "confidence": "medium",
+      "assumptions": [
+        "A-METRICS-004"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 222214.772,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "EPSG:4548 union area of conceptual interfaces",
+      "confidence": "low",
+      "assumptions": [
+        "A-SURVEY-002",
+        "A-METRICS-004"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-METRICS-004"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-METRICS-004"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required key areas)",
+      "confidence": "high",
+      "assumptions": [
+        "Boundaries remain provisional."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(documented scenario cards)",
+      "confidence": "high",
+      "assumptions": [
+        "Package completeness only; not deployment."
+      ]
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(cards 09-11)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual tests only."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(documented personas)",
+      "confidence": "high",
+      "assumptions": [
+        "Design lenses, not personal profiles."
+      ]
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(documented civic landmarks)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual proposals."
+      ]
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "count(mechanism cases named in proposal)",
+      "confidence": "high",
+      "assumptions": [
+        "Mechanisms only; no transferred performance."
+      ]
+    },
+    "repair_loop_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "detect + isolate/take over + repair/revalidate + reuse/retire",
+      "confidence": "high",
+      "assumptions": [
+        "Design framework."
+      ]
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(R01-R08)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual recommendations."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved FAR controls and official parcels are not present."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official or professionally validated height control",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved building-height controls and verified existing buildings are not present."
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(verified retained + renovated + new floor area)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-SURVEY-002"
+      ],
+      "reason": "Official parcels, building survey, and development intensity are not present."
+    }
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为维护者定义的 provisional 临时边界（official_boundary=false），所有面积均为临时边界下的方案复算值，正式边界发布后须重算。"
+      ]
+    },
+    "land_use_total_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_cells)) in EPSG:4548; cells partition the site with shared edges (coverage gap < 0.01 sqm)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为维护者定义的 provisional 临时边界（official_boundary=false），所有面积均为临时边界下的方案复算值，正式边界发布后须重算。"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2883442.715,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(green_space polygons) in EPSG:4548; derived from land_use codes 1401+1402",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为维护者定义的 provisional 临时边界（official_boundary=false），所有面积均为临时边界下的方案复算值，正式边界发布后须重算。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.252649,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为维护者定义的 provisional 临时边界（official_boundary=false），所有面积均为临时边界下的方案复算值，正式边界发布后须重算。"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 2960242.715,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(public_space polygons) in EPSG:4548; derived from land_use codes 1401+1402+1403",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为维护者定义的 provisional 临时边界（official_boundary=false），所有面积均为临时边界下的方案复算值，正式边界发布后须重算。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.259379,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为维护者定义的 provisional 临时边界（official_boundary=false），所有面积均为临时边界下的方案复算值，正式边界发布后须重算。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 846000.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area(building footprints) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为维护者定义的 provisional 临时边界（official_boundary=false），所有面积均为临时边界下的方案复算值，正式边界发布后须重算。",
+        "建筑基底为方案示意布局，非审批图纸。"
+      ]
+    },
+    "design_site_coverage_ratio": {
+      "status": "known",
+      "value": 0.074127,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm (design proposal value, not a regulatory control)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为维护者定义的 provisional 临时边界（official_boundary=false），所有面积均为临时边界下的方案复算值，正式边界发布后须重算。",
+        "仅为方案建筑基底覆盖率，非控规建筑密度指标。"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_areas_total_area_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(key_areas)) in EPSG:4548; provisional rectangles vs announced 3,684,000 sqm total",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为维护者定义的 provisional 临时边界（official_boundary=false），所有面积均为临时边界下的方案复算值，正式边界发布后须重算。"
+      ]
+    },
+    "heritage_spine_greenway_length_m": {
+      "status": "known",
+      "value": 9663.5,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD-001 greenway centerline) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为维护者定义的 provisional 临时边界（official_boundary=false），所有面积均为临时边界下的方案复算值，正式边界发布后须重算。"
+      ]
+    },
+    "suture_corridor_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(ROAD_CENTERLINE features with design_note referencing 缝合廊道)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package; planning_limits.json marks floor_area_ratio as missing."
+    },
+    "building_height_control_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "max_allowed_building_height_m per regulatory plan",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height controls are not present in the public site package; planning_limits.json marks building_height_m as missing."
+    },
+    "building_density_control": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "building_footprint_area_sqm / plot_area_sqm per regulatory plan",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved building-density controls are not present in the public site package; planning_limits.json marks building_density as missing. design_site_coverage_ratio is reported separately as a design value."
+    }
+  }
+}

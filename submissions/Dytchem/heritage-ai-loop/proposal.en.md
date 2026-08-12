@@ -7,8 +7,8 @@ bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A reversible civic innovation spine connecting the Jing-Zhang heritage corridor, three differentiated AI stations, two service wings, and everyday life. All spatial and operational moves are concept suggestions based on provisional geometry and must be recomputed when official data arrives."
-tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
-scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
+tracks: ["jingzhang-heritage-narrative", "civic-agent-governance", "ai-origin-community"]
+scenarios: ["ai-cultural-guide", "public-safety-operations-review", "ai-traffic-walkability"]
 iteration: "v0.2"
 ---
 
@@ -208,7 +208,9 @@ The visual package presents the current recomputation in human-readable form, wh
 
 The main risk is not a lack of attractive rendering; it is treating uncertain data as certain spatial fact. Official boundary, key-area position, regulatory control, road, ownership, building, heritage, municipal, public-service, and scenario-baseline gaps are recorded in `assumptions.json`. The Dazhongsi provisional geometry is retained rather than locally corrected, so a second competing fact is not manufactured before the source is resolved [depth:risk_missing_data] [data:geometry/constraints.geojson#NODE-004].
 
-Scenario governance follows data minimization, explainability, human-equivalent service, public appeal, and reversibility. A model update, withdrawn authorization, privacy risk, energy or safety anomaly may trigger a pause. A package passing structural checks is not evidence of field performance, pilot authorization, government adoption, professional approval, merge, selection, or construction. Public communication should call this a submitted concept and link to the repository and PR [source:COMMUNITY-SWITCHBACK-1119] [standard:MOHURD-CONTROL-DETAILED-PLANNING].
+Scenario governance follows data minimization, explainability, human-equivalent service, public appeal, and reversibility. The data-minimization, explainability, human-equivalent-service, and reversibility principles reference the scope boundary of the Interim Measures for the Management of Generative AI Services (services provided to the domestic public that generate text, images, audio, or video; illegal-content handling and complaint obligations); this proposal cites them as background and does not claim completed filing or security assessment [standard:GENERATIVE-AI-INTERIM-MEASURES]. The "retain in-person service and on-site guidance" boundary in the slow-mobility gap diagnosis and the intelligent-terminal experience street references Article 39 of the Barrier-Free Environment Law, limited to the enumerated public-service scenarios and not generalized to all public spaces or digital interfaces [standard:BARRIER-FREE-ENVIRONMENT-LAW]. The "parallel traditional and intelligent service" background for the public rooms and the Xiaoyuehe life-service desk references the State Council General Office Document No. 45 (2020); that document applies nationally and its 2020-2022 interim goals have expired, so it is cited as policy context only [standard:ELDERLY-SMART-TECH-PLAN-2020-45].
+
+A model update, withdrawn authorization, privacy risk, energy or safety anomaly may trigger a pause. A package passing structural checks is not evidence of field performance, pilot authorization, government adoption, professional approval, merge, selection, or construction. Public communication should call this a submitted concept and link to the repository and PR [source:COMMUNITY-SWITCHBACK-1119] [standard:MOHURD-CONTROL-DETAILED-PLANNING].
 
 The declared AI agent generated the prose, code, GeoJSON, figures, PDFs, and HTML. External cases are linked and summarized from official public pages. Issue #1119's turnback protocol is attributed within the CC-BY-4.0 scope stated by that issue; the rest of this package remains `COMMUNITY-DISPLAY-ONLY`. No secret map, personal data, internal company material, unlicensed image, commercial map tile, unlicensed font, or third-party trademark is used [standard:MOHURD-ARCH-DESIGN-DEPTH-2016].
 

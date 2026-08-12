@@ -1,0 +1,2738 @@
+{
+  "schema_version": "1.0.0",
+  "blueprint_id": "JZ-R006-RESCUE-CONTENT-001",
+  "title_zh": "京张开放之路 R006.2 权威内容蓝图",
+  "title_en": "JingZhang Open Way R006.2 Authoritative Content Blueprint",
+  "created_at": "2026-08-12T00:00:00+10:00",
+  "audited_pr": {
+    "repository": "open-city-ai/haidian",
+    "pull_request": 1822,
+    "head_repository": "Golden-Koi/haidian",
+    "head_branch": "submission/golden-koi-jingzhang-r006",
+    "head_sha": "ea0074e6d70055842d211e39c9b208cf5943015f",
+    "audit_mode": "read_only",
+    "submission_core_files_modified": false,
+    "push_performed": false
+  },
+  "authority_contract": {
+    "system_intent_zh": "为 agent.1 至 agent.6 建立一套可直接投影到正文、图纸、双语网页与结构化矩阵的实质城市设计内容模型，同时严格区分仓库事实、案例事实、概念建议与外部证据缺口。",
+    "system_intent_en": "Create a substantive urban-design content model for agent.1 through agent.6 that can be projected into the proposal, drawings, bilingual web pages and structured matrices while strictly separating repository facts, case facts, concept proposals and external evidence gaps.",
+    "authoritative_for": [
+      "content structure",
+      "stable IDs",
+      "bilingual names and copy",
+      "agent.1-agent.6 coverage",
+      "design-state and source-state labels",
+      "minimum scenario, persona, test, landmark and component counts"
+    ],
+    "not_authoritative_for": [
+      "official boundary or cadastral geometry",
+      "existing-condition inventory",
+      "field observation or user research",
+      "statutory planning controls",
+      "engineering feasibility",
+      "named public-sector commitments",
+      "procurement, budget or implementation approval"
+    ],
+    "required_boundary_zh": "所有空间落地建议均为概念建议、参考方案或可供专业团队深化研究的方向；不替代正式规划，不构成政府审定结论。",
+    "required_boundary_en": "Every spatial proposition is a concept proposal, reference option or direction for professional deepening; it does not replace statutory planning or constitute a government determination."
+  },
+  "evidence_states": {
+    "E": {
+      "label_zh": "有来源事实",
+      "label_en": "sourced fact",
+      "rule": "Use only within the stated authority scope of an identified source."
+    },
+    "I": {
+      "label_zh": "设计推断或概念建议",
+      "label_en": "design inference or concept proposal",
+      "rule": "Never present as observed, approved, funded or operational."
+    },
+    "U": {
+      "label_zh": "未知或未核实",
+      "label_en": "unknown or unverified",
+      "rule": "Do not replace with zero, a guessed value or decorative precision."
+    },
+    "BLOCKED": {
+      "label_zh": "外部证据未满足",
+      "label_en": "external evidence not satisfied",
+      "rule": "Cannot be promoted to an implementation conclusion until the named evidence is obtained and reviewed."
+    }
+  },
+  "external_gates": [
+    {
+      "id": "X1",
+      "title_zh": "官方空间权威",
+      "title_en": "official spatial authority",
+      "status": "BLOCKED",
+      "minimum_evidence": "Official/cleared CAD, GIS or equivalent spatial package, CRS, version, licence, control lines, parcels and relevant ownership/heritage summaries."
+    },
+    {
+      "id": "X2",
+      "title_zh": "现地旅程与接口",
+      "title_en": "field journey and interfaces",
+      "status": "BLOCKED",
+      "minimum_evidence": "Dated route, photos, measurements, slopes, clear widths, crossings, obstacles, opening conditions and independent repeat walk."
+    },
+    {
+      "id": "X3",
+      "title_zh": "真实使用者与负担",
+      "title_en": "real users and burden",
+      "status": "BLOCKED",
+      "minimum_evidence": "Accessible compensated participation, benefit-burden mapping, dissent, withdrawal and non-adoption reasons."
+    },
+    {
+      "id": "X4",
+      "title_zh": "运行、数据与法律权威",
+      "title_en": "operating, data and legal authority",
+      "status": "BLOCKED",
+      "minimum_evidence": "Named accountable roles, legal basis, service hours, incident SLA, appeal, remedy, retention, deletion and operating contracts."
+    },
+    {
+      "id": "X5",
+      "title_zh": "成本、采购与退出",
+      "title_en": "cost, procurement and exit",
+      "status": "BLOCKED",
+      "minimum_evidence": "Quantity basis, checked cost range, FTE, three-year TCO, insurance, open interfaces, migration, deletion and witnessed AI-off/exit test."
+    },
+    {
+      "id": "X6",
+      "title_zh": "独立专业与可访问性保证",
+      "title_en": "independent professional and accessibility assurance",
+      "status": "BLOCKED",
+      "minimum_evidence": "Named discipline reviews, dispositions, PDF/UA, assistive-technology checks and physical A0 distance test."
+    }
+  ],
+  "brand_and_overall_concept": {
+    "requirement_id": "agent.1",
+    "evidence_state": "I",
+    "source_ids": [
+      "SUBMISSION-REFERENCE-AGENT-TASKBOOK-20260605",
+      "OFFICIAL-BJ-GHZRZY-HDHJ-20260509-SCOPE",
+      "INTERNAL-CANDIDATE-RECORD-DESIGN-R006"
+    ],
+    "main_name_zh": "京张开放之路",
+    "main_name_en": "JingZhang Open Way",
+    "method_name_zh": "城市连续服务协议",
+    "method_name_en": "Civic Continuity Protocol",
+    "descriptor_zh": "一条把创新转化为日常公共价值的开放城市骨架",
+    "descriptor_en": "An open civic spine that turns innovation into everyday public value",
+    "tagline_zh": "一路向新，始终为人",
+    "tagline_en": "A New Way Forward. Always for People.",
+    "decision_frame_zh": "概念可评审，实施有门槛",
+    "decision_frame_en": "Reviewable as a concept. Gated for implementation.",
+    "memory_structure_zh": "一轴、三域、两翼、十二区景、四级开放、六道证据门",
+    "memory_structure_en": "One spine, three zones, two wings, twelve scenarios, four opening levels and six evidence gates",
+    "core_proposition_zh": "以京张遗址公园及周边地区的公开任务语境为一条南北公共服务脊：北部众智园验证全栈创新，中部AI原点社区把科研转译为人人可用的服务，南部大钟寺把智能原生业态接入城市日常；中关村科技服务翼提供知识、资本与专业服务接口，小月河场景赋能翼承接公共需求与真实场景验证。AI在线时增强，人工可随时接管，AI关闭时同一公共服务仍可继续。",
+    "core_proposition_en": "Use the public brief's JingZhang heritage-park context as a north-south civic-service spine: Zhongzhiyuan in the north tests full-stack innovation, the AI Origin Community in the middle translates research into services that people can use, and Dazhongsi in the south connects intelligent-native activity with everyday city life. The Zhongguancun Technology Service Wing supplies knowledge, capital and professional-service interfaces; the Xiaoyuehe Scenario Empowerment Wing carries public needs and real-world validation. AI augments when available, people can take over at any time, and the same public service continues when AI is off.",
+    "three_positionings": [
+      {
+        "id": "POS-01",
+        "label_zh": "百年京张文化带",
+        "label_en": "Centennial JingZhang Cultural Belt",
+        "state": "E",
+        "source_id": "SUBMISSION-REFERENCE-AGENT-TASKBOOK-20260605"
+      },
+      {
+        "id": "POS-02",
+        "label_zh": "都市AI生活体验带",
+        "label_en": "Urban AI Life Experience Belt",
+        "state": "E",
+        "source_id": "SUBMISSION-REFERENCE-AGENT-TASKBOOK-20260605"
+      },
+      {
+        "id": "POS-03",
+        "label_zh": "AI融合创新带",
+        "label_en": "AI Convergence Innovation Belt",
+        "state": "E",
+        "source_id": "SUBMISSION-REFERENCE-AGENT-TASKBOOK-20260605"
+      }
+    ],
+    "five_functions": [
+      {
+        "id": "FUN-01",
+        "label_zh": "AI全栈自主创新体系",
+        "label_en": "full-stack AI innovation system",
+        "spatial_lead": "ZONE-ZZY"
+      },
+      {
+        "id": "FUN-02",
+        "label_zh": "世界级AI创新生态",
+        "label_en": "world-class AI innovation ecosystem",
+        "spatial_lead": "ZONE-ORIGIN"
+      },
+      {
+        "id": "FUN-03",
+        "label_zh": "AI+场景赋能新范式",
+        "label_en": "new paradigm for AI-enabled scenarios",
+        "spatial_lead": "WING-XIAOYUEHE"
+      },
+      {
+        "id": "FUN-04",
+        "label_zh": "智能化AI活力城市",
+        "label_en": "intelligent and vibrant AI city",
+        "spatial_lead": "ZONE-DZS"
+      },
+      {
+        "id": "FUN-05",
+        "label_zh": "AI治理全球话语权",
+        "label_en": "global voice in AI governance",
+        "spatial_lead": "ZONE-ZZY"
+      }
+    ],
+    "logo_direction": {
+      "state": "I",
+      "concept_zh": "以两条平行轨线构成开放括号，中间串联三个非封闭节点；左右各伸出一条细翼线。平行轨线代表京张记忆与公共服务连续性，三个节点代表三区，两条翼线代表知识服务与场景赋能，开放端表示系统可继续学习而非封闭品牌徽章。",
+      "concept_en": "Form an open bracket from two parallel rail lines, linking three open nodes with one fine wing line on each side. The parallel lines stand for JingZhang memory and service continuity; the nodes stand for the three zones; the wing lines stand for knowledge services and scenario empowerment; the open ends show a system that keeps learning rather than a closed crest.",
+      "geometry_rules": [
+        "Use only simple participant-authored line, circle and open-bracket primitives.",
+        "Keep the three nodes distinct at small sizes and in monochrome.",
+        "Never imitate a railway operator, government, university or company mark.",
+        "The mark must work without animation and without AI-generated imagery."
+      ],
+      "identity_tokens": [
+        {
+          "token": "rail-gold",
+          "meaning_zh": "历史连续与公共承诺",
+          "meaning_en": "historic continuity and civic commitment",
+          "suggested_hex": "#D6A64A"
+        },
+        {
+          "token": "civic-navy",
+          "meaning_zh": "可信背景与公共机构可读性",
+          "meaning_en": "trustworthy ground and institutional legibility",
+          "suggested_hex": "#0B1728"
+        },
+        {
+          "token": "knowledge-blue",
+          "meaning_zh": "知识协作翼",
+          "meaning_en": "knowledge collaboration wing",
+          "suggested_hex": "#4F8BC9"
+        },
+        {
+          "token": "life-green",
+          "meaning_zh": "城市生活与蓝绿照护",
+          "meaning_en": "civic life and blue-green care",
+          "suggested_hex": "#2F8A73"
+        },
+        {
+          "token": "gate-red",
+          "meaning_zh": "阻断、停止与未满足证据",
+          "meaning_en": "block, stop and unmet evidence",
+          "suggested_hex": "#C34D4D"
+        }
+      ],
+      "accessibility_rules": [
+        "Colour is never the only carrier of zone, state or direction.",
+        "Every status uses a word label and a distinct shape/pattern.",
+        "Chinese and English marks are separate composed masters, not overprinted bilingual microtext.",
+        "Exact contrast and tactile/audio performance remain subject to X6."
+      ]
+    },
+    "spatial_structure": {
+      "state": "I",
+      "implementation_state": "BLOCKED",
+      "blocked_by": [
+        "X1",
+        "X2",
+        "X6"
+      ],
+      "one_spine": "A legible north-south civic-service sequence connecting the three key-area roles; exact alignment, width, crossings and heritage interface remain X1/X2/X6.",
+      "three_zone_sequence": [
+        "ZONE-ZZY",
+        "ZONE-ORIGIN",
+        "ZONE-DZS"
+      ],
+      "two_functional_wings": [
+        "WING-ZHONGGUANCUN",
+        "WING-XIAOYUEHE"
+      ],
+      "cross_city_logic": "The spine does not claim a single construction corridor. It is a service-and-story sequence whose physical segments must be recalculated from official and field evidence.",
+      "design_layers": [
+        "memory and culture",
+        "public service continuity",
+        "research-to-scenario translation",
+        "slow mobility and blue-green care",
+        "open contribution and accountable governance"
+      ]
+    },
+    "regional_collaboration_interfaces": [
+      {
+        "id": "REG-01",
+        "counterpart_category_zh": "北纬社区",
+        "counterpart_category_en": "Beiwei Community",
+        "concept_interface": "community-life scenario exchange and burden review",
+        "state": "I",
+        "implementation_state": "BLOCKED",
+        "blocked_by": [
+          "X3",
+          "X4"
+        ],
+        "disclaimer": "No partnership, data access or programme commitment is claimed.",
+        "concept_interface_en": "community-life scenario exchange and burden review",
+        "concept_interface_zh": "社区生活场景交流与负担复核"
+      },
+      {
+        "id": "REG-02",
+        "counterpart_category_zh": "未来科学城",
+        "counterpart_category_en": "Future Science City",
+        "concept_interface": "research-platform and test-method exchange",
+        "state": "I",
+        "implementation_state": "BLOCKED",
+        "blocked_by": [
+          "X3",
+          "X4"
+        ],
+        "disclaimer": "No partnership, data access or programme commitment is claimed.",
+        "concept_interface_en": "research-platform and test-method exchange",
+        "concept_interface_zh": "科研平台与测试方法交流"
+      },
+      {
+        "id": "REG-03",
+        "counterpart_category_zh": "怀柔科学城",
+        "counterpart_category_en": "Huairou Science City",
+        "concept_interface": "large-science-to-civic-use translation methods",
+        "state": "I",
+        "implementation_state": "BLOCKED",
+        "blocked_by": [
+          "X3",
+          "X4"
+        ],
+        "disclaimer": "No partnership, data access or programme commitment is claimed.",
+        "concept_interface_en": "large-science-to-civic-use translation methods",
+        "concept_interface_zh": "大科学能力向城市公共用途转译的方法交流"
+      },
+      {
+        "id": "REG-04",
+        "counterpart_category_zh": "北京经开区",
+        "counterpart_category_en": "Beijing Economic-Technological Development Area",
+        "concept_interface": "robotics and intelligent-terminal test governance exchange",
+        "state": "I",
+        "implementation_state": "BLOCKED",
+        "blocked_by": [
+          "X3",
+          "X4"
+        ],
+        "disclaimer": "No partnership, data access or programme commitment is claimed.",
+        "concept_interface_en": "robotics and intelligent-terminal test governance exchange",
+        "concept_interface_zh": "机器人与智能终端测试治理交流"
+      },
+      {
+        "id": "REG-05",
+        "counterpart_category_zh": "京津冀创新网络",
+        "counterpart_category_en": "Beijing-Tianjin-Hebei innovation network",
+        "concept_interface": "portable evidence standards and open-result exchange",
+        "state": "I",
+        "implementation_state": "BLOCKED",
+        "blocked_by": [
+          "X3",
+          "X4"
+        ],
+        "disclaimer": "No partnership, data access or programme commitment is claimed.",
+        "concept_interface_en": "portable evidence standards and open-result exchange",
+        "concept_interface_zh": "可迁移证据标准与开放结果交流"
+      }
+    ]
+  },
+  "three_zones_two_wings": [
+    {
+      "id": "ZONE-ZZY",
+      "taskbook_id": "zhongzhiyuan_ai_acceleration_area",
+      "type": "zone",
+      "north_to_south_order": 1,
+      "name_zh": "众智园AI自主创新加速区",
+      "name_en": "Zhongzhiyuan AI Independent-Innovation Acceleration Area",
+      "announced_area_display": "约192.1公顷 / approx. 192.1 ha",
+      "official_role_zh": "AI全栈自主创新体系与AI治理全球话语权",
+      "official_role_en": "full-stack AI innovation and a global voice in AI governance",
+      "design_role_zh": "开放试验田",
+      "design_role_en": "Open Testbed",
+      "concept_program": [
+        "controlled full-stack test cells",
+        "shared validation and assurance rooms",
+        "open protocol and negative-result gallery",
+        "garden-like low-speed public learning interfaces"
+      ],
+      "public_value": "Make technical testing visible, reversible and accountable before any citywide claim or procurement.",
+      "preferred_research_sequence": [
+        "N evidence baseline",
+        "A bounded test cell",
+        "B distributed nodes only if relevant gates pass"
+      ],
+      "spatial_evidence_state": "E textual area/name; provisional geometry only; exact siting U",
+      "required_gates": [
+        "X1",
+        "X3",
+        "X4",
+        "X5",
+        "X6"
+      ],
+      "source_ids": [
+        "OFFICIAL-BJ-GHZRZY-HDHJ-20260509-SCOPE",
+        "SUBMISSION-REFERENCE-AGENT-TASKBOOK-20260605",
+        "SAFE-PROVISIONAL-GEOMETRY-20260605"
+      ]
+    },
+    {
+      "id": "ZONE-ORIGIN",
+      "taskbook_id": "beijing_ai_origin_community",
+      "type": "zone",
+      "north_to_south_order": 2,
+      "name_zh": "北京AI原点社区",
+      "name_en": "Beijing AI Origin Community",
+      "announced_area_display": "约104.3公顷 / approx. 104.3 ha",
+      "official_role_zh": "世界级AI创新生态",
+      "official_role_en": "world-class AI innovation ecosystem",
+      "design_role_zh": "开放转译场",
+      "design_role_en": "Translation Commons",
+      "concept_program": [
+        "quiet research-to-service commons",
+        "public explanation and learning rooms",
+        "accessible co-design tables",
+        "dual-channel human and digital service interfaces"
+      ],
+      "public_value": "Translate research into understandable, optional and maintainable services without displacing daily community life.",
+      "preferred_research_sequence": [
+        "N existing-service and burden baseline",
+        "B quiet shared interface",
+        "A dual-channel service only if relevant gates pass"
+      ],
+      "spatial_evidence_state": "E textual area/name; provisional geometry only; exact siting U",
+      "required_gates": [
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X6"
+      ],
+      "source_ids": [
+        "OFFICIAL-BJ-GHZRZY-HDHJ-20260509-SCOPE",
+        "SUBMISSION-REFERENCE-AGENT-TASKBOOK-20260605",
+        "SAFE-PROVISIONAL-GEOMETRY-20260605"
+      ]
+    },
+    {
+      "id": "ZONE-DZS",
+      "taskbook_id": "dazhongsi_ai_industry_cluster",
+      "type": "zone",
+      "north_to_south_order": 3,
+      "name_zh": "大钟寺AI产业集聚区",
+      "name_en": "Dazhongsi AI Industry Cluster",
+      "announced_area_display": "约72.0公顷 / approx. 72.0 ha",
+      "official_role_zh": "智能原生新业态",
+      "official_role_en": "intelligent-native new urban activity",
+      "design_role_zh": "开放城市门厅",
+      "design_role_en": "Urban Gateway",
+      "concept_program": [
+        "station-to-city help and orientation",
+        "small-business continuity interfaces",
+        "intelligent-terminal demonstration with staffed alternatives",
+        "reversible public-space and event kits"
+      ],
+      "public_value": "Connect innovation with everyday commerce, arrival and care while protecting existing users and non-adopters.",
+      "preferred_research_sequence": [
+        "N existing fabric and merchant baseline",
+        "B continuity-first urban interface",
+        "A station-industry interface only if relevant gates pass"
+      ],
+      "spatial_evidence_state": "E textual area/name; provisional geometry only; exact station and parcel interfaces U",
+      "required_gates": [
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6"
+      ],
+      "source_ids": [
+        "OFFICIAL-BJ-GHZRZY-HDHJ-20260509-SCOPE",
+        "SUBMISSION-REFERENCE-AGENT-TASKBOOK-20260605",
+        "SAFE-PROVISIONAL-GEOMETRY-20260605"
+      ]
+    },
+    {
+      "id": "WING-ZHONGGUANCUN",
+      "taskbook_id": "zhongguancun_technology_service_wing",
+      "type": "functional_wing",
+      "name_zh": "中关村科技服务翼",
+      "name_en": "Zhongguancun Technology Service Wing",
+      "official_role_zh": "要素全球化配置、中关村IP与资本赋能",
+      "official_role_en": "global allocation of enabling resources, Zhongguancun IP and capital support",
+      "design_role_zh": "知识协作翼",
+      "design_role_en": "Knowledge Collaboration Wing",
+      "concept_interfaces": [
+        "IP and standards clinic",
+        "responsible procurement clinic",
+        "capital-readiness and public-value review",
+        "international research and developer exchange"
+      ],
+      "boundary_rule": "Functional relationship only; no precise wing boundary, institution commitment, finance commitment or programme approval is claimed.",
+      "state": "E taskbook role; I design interfaces; X1/X4/X5 BLOCKED",
+      "source_ids": [
+        "SUBMISSION-REFERENCE-AGENT-TASKBOOK-20260605"
+      ]
+    },
+    {
+      "id": "WING-XIAOYUEHE",
+      "taskbook_id": "xiaoyuehe_scenario_empowerment_wing",
+      "type": "functional_wing",
+      "name_zh": "小月河场景赋能翼",
+      "name_en": "Xiaoyuehe Scenario Empowerment Wing",
+      "official_role_zh": "AI场景赋能与智能化AI活力城市",
+      "official_role_en": "AI scenario enablement and an intelligent, vibrant AI city",
+      "design_role_zh": "城市生活翼",
+      "design_role_en": "Civic Life Wing",
+      "concept_interfaces": [
+        "public-needs intake",
+        "accessible daily-journey co-test",
+        "blue-green maintenance and public-space scenarios",
+        "community evaluation and non-adoption feedback"
+      ],
+      "boundary_rule": "Functional relationship only; no precise wing boundary, water-system condition, public-space availability or operating approval is claimed.",
+      "state": "E taskbook role; I design interfaces; X1/X2/X3/X4/X6 BLOCKED",
+      "source_ids": [
+        "SUBMISSION-REFERENCE-AGENT-TASKBOOK-20260605"
+      ]
+    }
+  ],
+  "coordination_loop": {
+    "loop_id": "LOOP-R006-THREE-ZONES-TWO-WINGS",
+    "state": "I",
+    "states": [
+      {
+        "id": "L0",
+        "label_zh": "公共问题与不做基线",
+        "label_en": "public problem and do-nothing baseline"
+      },
+      {
+        "id": "L1",
+        "label_zh": "科技服务翼配置知识、标准与资源",
+        "label_en": "technology-service wing configures knowledge, standards and resources"
+      },
+      {
+        "id": "L2",
+        "label_zh": "众智园受控验证",
+        "label_en": "controlled validation at Zhongzhiyuan"
+      },
+      {
+        "id": "L3",
+        "label_zh": "原点社区转译与共创",
+        "label_en": "translation and co-design at the Origin Community"
+      },
+      {
+        "id": "L4",
+        "label_zh": "小月河翼承接场景与负担复核",
+        "label_en": "Xiaoyuehe wing carries scenario and burden review"
+      },
+      {
+        "id": "L5",
+        "label_zh": "大钟寺城市日常验证",
+        "label_en": "everyday-city validation at Dazhongsi"
+      },
+      {
+        "id": "L6",
+        "label_zh": "证据复盘与GO／REVISE／STOP",
+        "label_en": "evidence review and GO / REVISE / STOP"
+      }
+    ],
+    "transitions": [
+      "L0->L1",
+      "L1->L2",
+      "L2->L3",
+      "L3->L4",
+      "L4->L5",
+      "L5->L6",
+      "L6.REVISE->L0",
+      "L6.STOP->L0",
+      "L6.GO->PROJECT_PARTY_NEXT_STAGE_APPROVAL"
+    ],
+    "invariants": [
+      "GO means eligibility to seek the project party's next-stage approval; it never means automatic implementation.",
+      "REVISE returns to evidence acquisition, not cosmetic rewording.",
+      "STOP preserves negative results and returns to the do-nothing baseline.",
+      "Every digital path has a human takeover and a functionally equivalent AI-off path.",
+      "Every expansion decision includes burden, maintenance, exit and non-adoption evidence."
+    ]
+  },
+  "precedent_cases": [
+    {
+      "id": "CASE-01-KALASATAMA",
+      "name": "Smart Kalasatama",
+      "city_country": "Helsinki, Finland",
+      "published_fact_state": "E",
+      "transfer_state": "I",
+      "source_id": "CASE-REFERENCE-SMART-KALASATAMA-202108",
+      "source_url": "https://forumvirium.fi/en/publication/smartkalasatama-final-report/",
+      "primary_mechanism_zh": "以真实城区作为受治理的共创与试验平台，把居民日常价值而非技术炫示作为评估对象。",
+      "primary_mechanism_en": "Use a real district as a governed co-creation and experimentation platform, evaluating everyday value rather than technology spectacle.",
+      "transfer_to_jingzhang": [
+        "public problem intake before vendor solution",
+        "small bounded pilots",
+        "resident burden and time-use review",
+        "publish negative results and exit reasons"
+      ],
+      "non_transfer_rule": "No Helsinki governance model, result or user finding is evidence of JingZhang feasibility."
+    },
+    {
+      "id": "CASE-02-HELSINKI-DISTRICTS",
+      "name": "Helsinki Innovation Districts",
+      "city_country": "Helsinki, Finland",
+      "published_fact_state": "E",
+      "transfer_state": "I",
+      "source_id": "CASE-REFERENCE-HELSINKI-INNOVATION-DISTRICTS-202312",
+      "source_url": "https://forumvirium.fi/en/helsinki-innovation-districts-turned-suburbs-into-living-labs/",
+      "primary_mechanism_zh": "把创新活动分布到多个日常社区，形成可比较、可学习的生活实验网络。",
+      "primary_mechanism_en": "Distribute innovation activity across everyday neighbourhoods to create a comparable, learning-oriented living-lab network.",
+      "transfer_to_jingzhang": [
+        "one shared evidence protocol across three differentiated zones",
+        "portable scenario cards instead of one flagship object",
+        "cross-zone learning reviews",
+        "local variation with a common public-interest baseline"
+      ],
+      "non_transfer_rule": "No named Helsinki district arrangement or result is copied as a local commitment."
+    },
+    {
+      "id": "CASE-03-LAUNCHPAD",
+      "name": "JTC LaunchPad",
+      "city_country": "Singapore",
+      "published_fact_state": "E",
+      "transfer_state": "I",
+      "source_id": "CASE-REFERENCE-JTC-LAUNCHPAD-202205",
+      "source_url": "https://www.jtc.gov.sg/about-jtc/news-and-stories/feature-stories/launchpad-5-things-to-know-about-launchpad",
+      "primary_mechanism_zh": "通过共享支持、邻近协作和分阶段空间供给形成创业生态，而不是只提供一栋标志建筑。",
+      "primary_mechanism_en": "Build an entrepreneurship ecosystem through shared support, proximity and staged space provision rather than a single landmark building.",
+      "transfer_to_jingzhang": [
+        "shared validation and service rooms",
+        "graduated space and support pathways",
+        "peer exchange with transparent entry and exit",
+        "support small teams without claiming guaranteed growth"
+      ],
+      "non_transfer_rule": "No tenancy, investment, land or institutional arrangement is transferred without local authority and evidence."
+    },
+    {
+      "id": "CASE-04-PUNGGOL",
+      "name": "Punggol Digital District",
+      "city_country": "Singapore",
+      "published_fact_state": "E",
+      "transfer_state": "I",
+      "source_id": "CASE-REFERENCE-JTC-PUNGGOL-DIGITAL-DISTRICT-202601",
+      "source_url": "https://www.jtc.gov.sg/punggoldigitaldistrict",
+      "primary_mechanism_zh": "把产业、教育与地区运营界面组织在同一城区系统中，并以可管理的地区平台连接参与方。",
+      "primary_mechanism_en": "Organise industry, education and district-operation interfaces in one urban system and connect participants through a governable district platform.",
+      "transfer_to_jingzhang": [
+        "research-to-service translation interfaces",
+        "shared operating data contracts rather than proprietary lock-in",
+        "district-level AI-off and incident drills",
+        "campus-city interfaces subject to public-access rules"
+      ],
+      "non_transfer_rule": "No Singapore platform, data rule or institutional commitment is authority for JingZhang."
+    },
+    {
+      "id": "CASE-05-WATERFRONT-TORONTO",
+      "name": "Waterfront Toronto / Sidewalk Labs termination",
+      "city_country": "Toronto, Canada",
+      "published_fact_state": "E",
+      "transfer_state": "I",
+      "source_id": "CASE-REFERENCE-WATERFRONT-TORONTO-TERMINATION-202005",
+      "source_url": "https://www.waterfrontoronto.ca/sites/default/files/documents/plan-development-agreement-amendments-and-sidewalk-labs--termination-notice---termination-effective-date---may-17-2020.pdf",
+      "primary_mechanism_zh": "把终止、权责边界和公共机构最终判断视为创新治理的一部分，而不是失败后删除的附注。",
+      "primary_mechanism_en": "Treat termination, authority boundaries and final public-institution judgement as part of innovation governance rather than a footnote erased after failure.",
+      "transfer_to_jingzhang": [
+        "explicit STOP path",
+        "vendor exit and data deletion clauses",
+        "public-interest authority retained by named human institutions",
+        "no automatic expansion from demonstration to city system"
+      ],
+      "non_transfer_rule": "This is a governance lesson, not proof of local risk, legal advice or project comparability."
+    }
+  ],
+  "ecosystem_map": {
+    "requirement_id": "agent.2",
+    "evidence_state": "I",
+    "source_ids": [
+      "SUBMISSION-REFERENCE-AGENT-TASKBOOK-20260605",
+      "CASE-REFERENCE-SMART-KALASATAMA-202108",
+      "CASE-REFERENCE-HELSINKI-INNOVATION-DISTRICTS-202312",
+      "CASE-REFERENCE-JTC-LAUNCHPAD-202205",
+      "CASE-REFERENCE-JTC-PUNGGOL-DIGITAL-DISTRICT-202601",
+      "CASE-REFERENCE-WATERFRONT-TORONTO-TERMINATION-202005"
+    ],
+    "value_chain": [
+      {
+        "id": "ECO-01",
+        "stage_zh": "公共问题",
+        "stage_en": "public problem",
+        "lead": "WING-XIAOYUEHE",
+        "output": "problem statement, affected groups, do-nothing baseline, burden hypothesis",
+        "output_en": "problem statement, affected groups, do-nothing baseline, burden hypothesis",
+        "output_zh": "问题陈述、受影响群体、不做基线与负担假设"
+      },
+      {
+        "id": "ECO-02",
+        "stage_zh": "要素配置",
+        "stage_en": "resource configuration",
+        "lead": "WING-ZHONGGUANCUN",
+        "output": "knowledge, standards, IP, professional-service and conditional finance pathways",
+        "output_en": "knowledge, standards, IP, professional-service and conditional finance pathways",
+        "output_zh": "知识、标准、知识产权、专业服务与有条件资金路径"
+      },
+      {
+        "id": "ECO-03",
+        "stage_zh": "受控验证",
+        "stage_en": "controlled validation",
+        "lead": "ZONE-ZZY",
+        "output": "test protocol, low-tech control, human takeover, AI-off, negative-result record",
+        "output_en": "test protocol, low-tech control, human takeover, AI-off, negative-result record",
+        "output_zh": "测试协议、低技术对照、人工接管、AI-off 与负结果记录"
+      },
+      {
+        "id": "ECO-04",
+        "stage_zh": "转译共创",
+        "stage_en": "translation and co-design",
+        "lead": "ZONE-ORIGIN",
+        "output": "plain-language service proposition, user burden map, accessible service chain",
+        "output_en": "plain-language service proposition, user burden map, accessible service chain",
+        "output_zh": "通俗服务主张、使用者负担图与无障碍服务链"
+      },
+      {
+        "id": "ECO-05",
+        "stage_zh": "城市日常验证",
+        "stage_en": "everyday-city validation",
+        "lead": "ZONE-DZS",
+        "output": "small-business, arrival, public-space and non-adoption evidence",
+        "output_en": "small-business, arrival, public-space and non-adoption evidence",
+        "output_zh": "小商户、到达、公共空间与不采用证据"
+      },
+      {
+        "id": "ECO-06",
+        "stage_zh": "独立复核与转化",
+        "stage_en": "independent assurance and conversion",
+        "lead": "PROJECT_PARTY_AND_INDEPENDENT_REVIEWERS",
+        "output": "GO / REVISE / STOP dossier for next-stage approval only",
+        "output_en": "GO / REVISE / STOP dossier for next-stage approval only",
+        "output_zh": "仅用于下一阶段审批的 GO / REVISE / STOP 档案"
+      }
+    ],
+    "enabling_resources": [
+      {
+        "id": "RES-TALENT",
+        "label_zh": "人才",
+        "label_en": "talent",
+        "rule": "Do not infer demand, availability or commitment; validate roles and safeguarding."
+      },
+      {
+        "id": "RES-SPACE",
+        "label_zh": "土地与空间",
+        "label_en": "land and space",
+        "rule": "Use space types only until X1 confirms parcels, controls and rights."
+      },
+      {
+        "id": "RES-INDUSTRY",
+        "label_zh": "产业",
+        "label_en": "industry",
+        "rule": "Use capability categories, not invented company lists, output or recruitment commitments."
+      },
+      {
+        "id": "RES-CAPITAL",
+        "label_zh": "资金",
+        "label_en": "capital",
+        "rule": "Describe a review interface only; no funding, subsidy or return is promised."
+      },
+      {
+        "id": "RES-COMPUTE",
+        "label_zh": "算力",
+        "label_en": "compute",
+        "rule": "Capacity, energy, security, procurement and service level remain X4/X5/X6."
+      },
+      {
+        "id": "RES-DATA",
+        "label_zh": "数据",
+        "label_en": "data",
+        "rule": "Start with synthetic or minimum necessary data; legal basis and contracts remain X4."
+      },
+      {
+        "id": "RES-SCENARIO",
+        "label_zh": "场景",
+        "label_en": "scenario",
+        "rule": "A scenario is a testable hypothesis, not an approved operation."
+      },
+      {
+        "id": "RES-GOVERNANCE",
+        "label_zh": "治理与退出",
+        "label_en": "governance and exit",
+        "rule": "Named authority, appeal, remedy, audit, export, deletion and STOP are mandatory before a public pilot."
+      }
+    ],
+    "feedback_loops": [
+      "user burden and non-adoption -> problem reframing",
+      "negative test result -> protocol revision or STOP",
+      "maintenance and AI-off drill -> procurement requirements",
+      "independent review -> design rebuild",
+      "public contribution record -> reusable knowledge commons"
+    ]
+  },
+  "scenario_cards": [
+    {
+      "id": "SCN-01",
+      "name_zh": "无障碍到站与换向",
+      "name_en": "Accessible Arrival and Orientation",
+      "primary_location": "ZONE-DZS",
+      "wing_interface": "WING-XIAOYUEHE",
+      "persona_ids": [
+        "PER-03",
+        "PER-04",
+        "PER-05"
+      ],
+      "public_problem_hypothesis": "People may need a legible, step-free and non-smartphone-dependent path from arrival to daily destinations.",
+      "spatial_setting": "station-city threshold, staffed help point and slow-mobility decision points; exact entrance and route U",
+      "ai_online": "Offer optional route explanation and disruption updates without automated final accessibility claims.",
+      "human_takeover": "A named staffed help channel checks exceptions and can override guidance.",
+      "ai_off": "High-contrast physical signs, printed route card and staffed/telephone help provide the same core function.",
+      "minimum_data": "destination category, selected accessibility need and current public disruption; no identity required by default",
+      "public_value": "independent access and reduced wrong-route burden",
+      "hard_stops": [
+        "wrong or unsafe guidance",
+        "no human alternative",
+        "route not field-verified",
+        "forced personal profiling"
+      ],
+      "evaluation_questions": [
+        "Can all three service paths complete the same core journey task?",
+        "What extra time, distance and assistance burden falls on each user group?"
+      ],
+      "state": "I/BLOCKED",
+      "gates": [
+        "X2",
+        "X3",
+        "X4",
+        "X6"
+      ]
+    },
+    {
+      "id": "SCN-02",
+      "name_zh": "公共服务预约与解释",
+      "name_en": "Public-Service Booking and Explanation",
+      "primary_location": "ZONE-ORIGIN",
+      "wing_interface": "WING-XIAOYUEHE",
+      "persona_ids": [
+        "PER-04",
+        "PER-05",
+        "PER-07"
+      ],
+      "public_problem_hypothesis": "A resident may need to understand and complete a service request without being forced into one digital channel.",
+      "spatial_setting": "quiet shared service interface with private consultation option",
+      "ai_online": "Plain-language explanation and form assistance, never final eligibility or enforcement decisions.",
+      "human_takeover": "A service worker reviews, corrects and accepts appeals.",
+      "ai_off": "Counter, phone and paper route remain available and equivalent for the core transaction.",
+      "minimum_data": "only fields legally necessary for the chosen transaction",
+      "public_value": "understandable access, choice and appeal",
+      "hard_stops": [
+        "no explanation or appeal",
+        "automated final decision",
+        "no withdrawal or deletion path",
+        "digital-only access"
+      ],
+      "evaluation_questions": [
+        "Can a non-smartphone user complete the task?",
+        "Can a frontline worker explain and reverse every system action?"
+      ],
+      "state": "I/BLOCKED",
+      "gates": [
+        "X3",
+        "X4",
+        "X5",
+        "X6"
+      ]
+    },
+    {
+      "id": "SCN-03",
+      "name_zh": "小商户连续经营",
+      "name_en": "Small-Business Continuity",
+      "primary_location": "ZONE-DZS",
+      "wing_interface": "WING-ZHONGGUANCUN",
+      "persona_ids": [
+        "PER-02",
+        "PER-06"
+      ],
+      "public_problem_hypothesis": "Digital change and renewal can shift rent, footfall, workload or platform power onto existing operators.",
+      "spatial_setting": "existing commercial interface and optional shared service point; exact businesses and tenancies U",
+      "ai_online": "Optional translation, queue or inventory support using exportable data and no opaque merchant ranking.",
+      "human_takeover": "Merchant and named operator approve changes, disputes and shutdown.",
+      "ai_off": "Cash/manual ordering, physical directory and human service preserve the core transaction.",
+      "minimum_data": "merchant-selected operational fields; no forced customer profiling",
+      "public_value": "continuity, fair participation and non-adoption rights",
+      "hard_stops": [
+        "rent pressure or displacement",
+        "forced platform adoption",
+        "opaque scoring",
+        "no export or exit"
+      ],
+      "evaluation_questions": [
+        "Who gains and who carries new cost or labour?",
+        "Can a merchant leave without losing core records or access?"
+      ],
+      "state": "I/BLOCKED",
+      "gates": [
+        "X1",
+        "X3",
+        "X4",
+        "X5",
+        "X6"
+      ]
+    },
+    {
+      "id": "SCN-04",
+      "name_zh": "科研访客与协作接入",
+      "name_en": "Research Visitor and Collaboration Access",
+      "primary_location": "ZONE-ORIGIN",
+      "wing_interface": "WING-ZHONGGUANCUN",
+      "persona_ids": [
+        "PER-01",
+        "PER-08"
+      ],
+      "public_problem_hypothesis": "Researchers and external collaborators need clear, rights-bounded ways to find facilities, partners and public programmes.",
+      "spatial_setting": "public-facing collaboration desk and bookable commons outside controlled research areas",
+      "ai_online": "Optional capability matching from public, consented profiles with explanation and correction.",
+      "human_takeover": "A programme steward validates introductions and resolves rights or safeguarding questions.",
+      "ai_off": "Curated directory, staffed desk and scheduled open sessions preserve discovery and introduction.",
+      "minimum_data": "public capability tags and contact choice; no inferred sensitive attributes",
+      "public_value": "lower-friction knowledge exchange with clear rights",
+      "hard_stops": [
+        "fabricated institutional affiliation",
+        "private research disclosure",
+        "pay-to-rank matching",
+        "no consent or correction"
+      ],
+      "evaluation_questions": [
+        "Does matching create a useful introduction without overstating affiliation?",
+        "Can the same opportunity be found offline?"
+      ],
+      "state": "I/BLOCKED",
+      "gates": [
+        "X3",
+        "X4",
+        "X5"
+      ]
+    },
+    {
+      "id": "SCN-05",
+      "name_zh": "夜间求助与安全转介",
+      "name_en": "Night-Time Help and Safe Referral",
+      "primary_location": "CIVIC_SPINE",
+      "wing_interface": "WING-XIAOYUEHE",
+      "persona_ids": [
+        "PER-03",
+        "PER-04",
+        "PER-05"
+      ],
+      "public_problem_hypothesis": "A person may need visible, non-surveillant help after normal service hours.",
+      "spatial_setting": "lit human-help beacon at verified public nodes; exact nodes and service hours U",
+      "ai_online": "Optional multilingual triage that never performs automated enforcement or identity recognition.",
+      "human_takeover": "A trained human service or emergency authority makes final triage and response decisions.",
+      "ai_off": "Clearly marked phone/intercom, lighting and published human response route remain operational.",
+      "minimum_data": "help category, location and caller-chosen contact; retain only under a lawful incident rule",
+      "public_value": "visible and accountable access to help",
+      "hard_stops": [
+        "automated enforcement",
+        "biometric identification",
+        "unverified response service",
+        "no safe human escalation"
+      ],
+      "evaluation_questions": [
+        "Can someone obtain help without surrendering unnecessary identity data?",
+        "What happens during power, network or model failure?"
+      ],
+      "state": "I/BLOCKED",
+      "gates": [
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6"
+      ]
+    },
+    {
+      "id": "SCN-06",
+      "name_zh": "长者与非智能手机服务",
+      "name_en": "Older-Person and No-Smartphone Service",
+      "primary_location": "ZONE-ORIGIN",
+      "wing_interface": "WING-XIAOYUEHE",
+      "persona_ids": [
+        "PER-05",
+        "PER-07"
+      ],
+      "public_problem_hypothesis": "A service system can exclude people who do not own, trust or confidently use a smartphone.",
+      "spatial_setting": "staffed daily-service point connected to physical wayfinding and seating",
+      "ai_online": "Optional spoken or visual explanation with simple confirmation and no hidden scoring.",
+      "human_takeover": "A trained person can complete the full task and correct the record.",
+      "ai_off": "Paper, phone, counter and volunteer-supported route remain the default-capable baseline.",
+      "minimum_data": "transaction minimum only; no inferred vulnerability profile",
+      "public_value": "dignity, choice and continuity across digital confidence levels",
+      "hard_stops": [
+        "forced digitisation",
+        "no human completion path",
+        "patronising or inaccessible interface",
+        "unexplained data retention"
+      ],
+      "evaluation_questions": [
+        "Can the task be completed without a personal device?",
+        "Does assistance reduce or add workload and embarrassment?"
+      ],
+      "state": "I/BLOCKED",
+      "gates": [
+        "X3",
+        "X4",
+        "X5",
+        "X6"
+      ]
+    },
+    {
+      "id": "SCN-07",
+      "name_zh": "公共空间活动与多语参与",
+      "name_en": "Public-Space Events and Multilingual Participation",
+      "primary_location": "CIVIC_SPINE",
+      "wing_interface": "WING-XIAOYUEHE",
+      "persona_ids": [
+        "PER-05",
+        "PER-06",
+        "PER-08"
+      ],
+      "public_problem_hypothesis": "Public events can become commercially dominant, linguistically exclusive or inaccessible without explicit public-use rules.",
+      "spatial_setting": "reversible event kit in a verified public space with protected clear routes",
+      "ai_online": "Optional live captioning, translation and schedule explanation with visible confidence limits.",
+      "human_takeover": "Event steward corrects translation, manages safeguarding and maintains access.",
+      "ai_off": "Printed bilingual schedule, human interpreters where commissioned and physical noticeboard preserve core participation.",
+      "minimum_data": "anonymous attendance count where lawful; registration only when necessary and consented",
+      "public_value": "open cultural and technical participation without commercial capture",
+      "hard_stops": [
+        "blocked accessible route",
+        "commercial priority displacing public use",
+        "unreviewed harmful translation",
+        "unconsented recording"
+      ],
+      "evaluation_questions": [
+        "Who can participate without registration or a device?",
+        "Does the event leave a reusable public record rather than only promotion?"
+      ],
+      "state": "I/BLOCKED",
+      "gates": [
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X6"
+      ]
+    },
+    {
+      "id": "SCN-08",
+      "name_zh": "蓝绿空间维护与公众工单",
+      "name_en": "Blue-Green Maintenance and Public Work Orders",
+      "primary_location": "WING-XIAOYUEHE",
+      "wing_interface": "CIVIC_SPINE",
+      "persona_ids": [
+        "PER-04",
+        "PER-07"
+      ],
+      "public_problem_hypothesis": "Maintenance signals may help prioritise care, but sensor or model output cannot replace field inspection and accountable work orders.",
+      "spatial_setting": "blue-green care marker and maintenance access point; ecological and hydraulic conditions U",
+      "ai_online": "Summarise public reports and sensor alerts for human inspection priority, with source and confidence shown.",
+      "human_takeover": "A qualified maintainer verifies conditions and authorises action.",
+      "ai_off": "Scheduled inspection, phone/paper work order and visible maintenance log continue.",
+      "minimum_data": "location, issue type, time and optional contact; no bystander surveillance",
+      "public_value": "visible stewardship and faster accountable maintenance",
+      "hard_stops": [
+        "automated physical action without inspection",
+        "ecological harm",
+        "hidden work prioritisation",
+        "surveillance unrelated to maintenance"
+      ],
+      "evaluation_questions": [
+        "Does the system improve verified response rather than produce alerts only?",
+        "Can the public see disposition and unresolved risk?"
+      ],
+      "state": "I/BLOCKED",
+      "gates": [
+        "X1",
+        "X2",
+        "X4",
+        "X5",
+        "X6"
+      ]
+    },
+    {
+      "id": "SCN-09",
+      "name_zh": "开发者可靠性沙盒",
+      "name_en": "Developer Reliability Sandbox",
+      "primary_location": "ZONE-ZZY",
+      "wing_interface": "WING-ZHONGGUANCUN",
+      "persona_ids": [
+        "PER-01",
+        "PER-07"
+      ],
+      "public_problem_hypothesis": "Civic AI claims need repeatable tests, human takeover and exit evidence before exposure to real users or systems.",
+      "spatial_setting": "bounded test cell separated from production systems and public routes",
+      "ai_online": "Run declared tests on synthetic or cleared de-identified data with complete logs.",
+      "human_takeover": "Test lead can pause, inspect and invalidate a run.",
+      "ai_off": "Manual procedure and low-tech control demonstrate the service baseline and recovery path.",
+      "minimum_data": "synthetic by default; any cleared dataset requires purpose, licence, minimisation and retention record",
+      "public_value": "evidence before procurement or public exposure",
+      "hard_stops": [
+        "real personal data without authority",
+        "production-system control",
+        "unlogged model or tool change",
+        "no vendor exit or reproducible control"
+      ],
+      "evaluation_questions": [
+        "Can another reviewer reproduce the test and the failure?",
+        "Does AI-off restore the agreed core service?"
+      ],
+      "state": "I/BLOCKED",
+      "gates": [
+        "X4",
+        "X5",
+        "X6"
+      ]
+    },
+    {
+      "id": "SCN-10",
+      "name_zh": "机器人与智能终端受控测试",
+      "name_en": "Controlled Robotics and Intelligent-Terminal Test",
+      "primary_location": "ZONE-ZZY",
+      "wing_interface": "ZONE-DZS",
+      "persona_ids": [
+        "PER-01",
+        "PER-03",
+        "PER-07"
+      ],
+      "public_problem_hypothesis": "Embodied systems need a bounded test with physical separation, manual stop and accessibility review before any public-space operation.",
+      "spatial_setting": "enclosed or clearly separated low-speed test bay; no route or engineering geometry approved",
+      "ai_online": "Execute a declared low-speed task with geofencing, visible status and incident logging.",
+      "human_takeover": "A trained supervisor holds an immediate physical stop and final decision authority.",
+      "ai_off": "The test stops safely; any service task transfers to a human or non-robotic method.",
+      "minimum_data": "system telemetry and test-zone safety records; no general facial recognition",
+      "public_value": "safe validation without treating public space as an unconsented laboratory",
+      "hard_stops": [
+        "no physical stop",
+        "uncontrolled public mixing",
+        "unverified geofence or route",
+        "surveillance beyond the safety purpose"
+      ],
+      "evaluation_questions": [
+        "Is the test intelligible to bystanders and independently stoppable?",
+        "Can the service continue without the robot?"
+      ],
+      "state": "I/BLOCKED",
+      "gates": [
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6"
+      ]
+    },
+    {
+      "id": "SCN-11",
+      "name_zh": "公共学习与AI素养",
+      "name_en": "Public Learning and AI Literacy",
+      "primary_location": "ZONE-ORIGIN",
+      "wing_interface": "WING-ZHONGGUANCUN",
+      "persona_ids": [
+        "PER-01",
+        "PER-05",
+        "PER-06",
+        "PER-08"
+      ],
+      "public_problem_hypothesis": "People need a place to understand what an AI-enabled service does, what it cannot do and how to challenge it.",
+      "spatial_setting": "quiet learning commons linked to the contribution and evidence display",
+      "ai_online": "Interactive explanation uses current, cited examples and exposes uncertainty and data boundaries.",
+      "human_takeover": "Facilitator answers questions, corrects content and records unresolved challenges.",
+      "ai_off": "Printed explainers, physical models and facilitated workshops deliver the same learning goals.",
+      "minimum_data": "none for walk-in learning; optional anonymous questions",
+      "public_value": "informed participation and challenge rights",
+      "hard_stops": [
+        "marketing presented as evidence",
+        "uncited technical claim",
+        "collection of participant profiles without need",
+        "no correction path"
+      ],
+      "evaluation_questions": [
+        "Can a visitor explain the service limits and appeal route after the session?",
+        "Are dissent and unresolved questions retained in the record?"
+      ],
+      "state": "I/BLOCKED",
+      "gates": [
+        "X3",
+        "X4",
+        "X6"
+      ]
+    },
+    {
+      "id": "SCN-12",
+      "name_zh": "城市事件响应与证据保全",
+      "name_en": "Urban Incident Response and Evidence Preservation",
+      "primary_location": "CIVIC_SPINE",
+      "wing_interface": "ALL_ZONES_AND_WINGS",
+      "persona_ids": [
+        "PER-03",
+        "PER-07"
+      ],
+      "public_problem_hypothesis": "An AI-enabled service needs an explicit incident path that protects people, preserves evidence and defers to lawful authority.",
+      "spatial_setting": "operating protocol visible at every service point rather than a new physical control room claim",
+      "ai_online": "Detect declared service anomalies and present evidence to a human without automated final enforcement.",
+      "human_takeover": "Named incident lead decides pause, notification, remedy and authority escalation.",
+      "ai_off": "Service returns to the published manual baseline; logs and affected-person contact routes remain available.",
+      "minimum_data": "incident-essential records under a lawful retention schedule",
+      "public_value": "accountability, remedy and continuity under failure",
+      "hard_stops": [
+        "automated final decision",
+        "obstruction of lawful authority",
+        "loss or alteration of evidence",
+        "no affected-person notice or remedy path"
+      ],
+      "evaluation_questions": [
+        "Can the named human stop the system and restore the baseline?",
+        "Can an affected person understand, appeal and obtain remedy?"
+      ],
+      "state": "I/BLOCKED",
+      "gates": [
+        "X4",
+        "X5",
+        "X6"
+      ]
+    }
+  ],
+  "industry_tests": [
+    {
+      "id": "TEST-01",
+      "name_zh": "城市AI可靠性与退出沙盒",
+      "name_en": "Civic AI Reliability and Exit Sandbox",
+      "lead_location": "ZONE-ZZY",
+      "linked_scenarios": [
+        "SCN-09",
+        "SCN-12"
+      ],
+      "test_design": "Compare a declared AI service with a low-tech control, human takeover and AI-off recovery using synthetic or cleared data.",
+      "minimum_outputs": [
+        "versioned test protocol",
+        "failure injection log",
+        "human takeover result",
+        "AI-off recovery result",
+        "vendor export/deletion test",
+        "negative-result note"
+      ],
+      "pass_boundary": "Pass is limited to the stated test environment and version; it is never approval for public deployment.",
+      "state": "I/BLOCKED",
+      "gates": [
+        "X4",
+        "X5",
+        "X6"
+      ],
+      "test_design_en": "Compare a declared AI service with a low-tech control, human takeover and AI-off recovery using synthetic or cleared data.",
+      "minimum_outputs_en": [
+        "versioned test protocol",
+        "failure injection log",
+        "human takeover result",
+        "AI-off recovery result",
+        "vendor export/deletion test",
+        "negative-result note"
+      ],
+      "pass_boundary_en": "Pass is limited to the stated test environment and version; it is never approval for public deployment.",
+      "test_design_zh": "使用合成数据或已获许可数据，将一个已声明 AI 服务与低技术对照、人工接管和 AI-off 恢复进行比较。",
+      "minimum_outputs_zh": [
+        "带版本的测试协议",
+        "故障注入日志",
+        "人工接管结果",
+        "AI-off 恢复结果",
+        "供应商导出与删除测试",
+        "负结果说明"
+      ],
+      "pass_boundary_zh": "通过仅适用于已声明的测试环境与版本，绝不等同于公共部署批准。"
+    },
+    {
+      "id": "TEST-02",
+      "name_zh": "科研到公共服务转译共测",
+      "name_en": "Research-to-Public-Service Translation Co-Test",
+      "lead_location": "ZONE-ORIGIN",
+      "linked_scenarios": [
+        "SCN-02",
+        "SCN-04",
+        "SCN-11"
+      ],
+      "test_design": "Turn one research capability into a plain-language, optional service hypothesis and test comprehension, burden, takeover and non-adoption with compensated participants.",
+      "minimum_outputs": [
+        "capability and limitation statement",
+        "service blueprint across AI/human/AI-off",
+        "participant and burden record",
+        "dissent and non-adoption reasons",
+        "revision or STOP decision"
+      ],
+      "pass_boundary": "No research institution, participant or operator commitment is assumed until documented.",
+      "state": "I/BLOCKED",
+      "gates": [
+        "X3",
+        "X4",
+        "X6"
+      ],
+      "test_design_en": "Turn one research capability into a plain-language, optional service hypothesis and test comprehension, burden, takeover and non-adoption with compensated participants.",
+      "minimum_outputs_en": [
+        "capability and limitation statement",
+        "service blueprint across AI/human/AI-off",
+        "participant and burden record",
+        "dissent and non-adoption reasons",
+        "revision or STOP decision"
+      ],
+      "pass_boundary_en": "No research institution, participant or operator commitment is assumed until documented.",
+      "test_design_zh": "把一项科研能力转成通俗、可选的服务假设，并由获得补偿的参与者共测理解度、负担、接管与不采用。",
+      "minimum_outputs_zh": [
+        "能力与局限说明",
+        "AI、人工与 AI-off 三路径服务蓝图",
+        "参与者与负担记录",
+        "异议与不采用理由",
+        "REVISE 或 STOP 决定"
+      ],
+      "pass_boundary_zh": "科研机构、参与者或运营者的承诺，只有在形成书面记录后才可成立。"
+    },
+    {
+      "id": "TEST-03",
+      "name_zh": "小商户数字连续性与退出共测",
+      "name_en": "Small-Business Digital Continuity and Exit Co-Test",
+      "lead_location": "ZONE-DZS",
+      "linked_scenarios": [
+        "SCN-03"
+      ],
+      "test_design": "Compare optional digital support with existing manual practice, measuring workload, cost, footfall burden, exportability and non-adoption without changing tenancy or access rights.",
+      "minimum_outputs": [
+        "merchant-selected problem statement",
+        "existing-service baseline",
+        "benefit-burden map",
+        "cost and labour record",
+        "export and exit receipt",
+        "compensation and non-adoption record"
+      ],
+      "pass_boundary": "No commercial growth, rent effect or adoption rate is assumed or promised.",
+      "state": "I/BLOCKED",
+      "gates": [
+        "X3",
+        "X4",
+        "X5",
+        "X6"
+      ],
+      "test_design_en": "Compare optional digital support with existing manual practice, measuring workload, cost, footfall burden, exportability and non-adoption without changing tenancy or access rights.",
+      "minimum_outputs_en": [
+        "merchant-selected problem statement",
+        "existing-service baseline",
+        "benefit-burden map",
+        "cost and labour record",
+        "export and exit receipt",
+        "compensation and non-adoption record"
+      ],
+      "pass_boundary_en": "No commercial growth, rent effect or adoption rate is assumed or promised.",
+      "test_design_zh": "在不改变租赁或准入权利的前提下，将可选数字支持与既有人工做法比较，测量工作量、成本、客流负担、可导出性与不采用。",
+      "minimum_outputs_zh": [
+        "商户自主选择的问题陈述",
+        "既有服务基线",
+        "收益—负担图",
+        "成本与劳动记录",
+        "导出与退出收据",
+        "补偿与不采用记录"
+      ],
+      "pass_boundary_zh": "不假定或承诺商业增长、租金影响或采纳率。"
+    },
+    {
+      "id": "TEST-04",
+      "name_zh": "无障碍端到端城市旅程共测",
+      "name_en": "Accessible End-to-End Civic Journey Co-Test",
+      "lead_location": "WING-XIAOYUEHE",
+      "linked_scenarios": [
+        "SCN-01",
+        "SCN-05",
+        "SCN-06"
+      ],
+      "test_design": "Field-walk one named daily journey with diverse compensated participants, comparing physical signs, human help and optional AI assistance across normal and failure conditions.",
+      "minimum_outputs": [
+        "dated route and segment measurements",
+        "accessibility obstacles and workarounds",
+        "assistance time and burden",
+        "wrong-route and recovery record",
+        "independent repeat walk",
+        "disposition log"
+      ],
+      "pass_boundary": "No route, entrance, timing or accessibility claim exists before the field record and independent review.",
+      "state": "I/BLOCKED",
+      "gates": [
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X6"
+      ],
+      "test_design_en": "Field-walk one named daily journey with diverse compensated participants, comparing physical signs, human help and optional AI assistance across normal and failure conditions.",
+      "minimum_outputs_en": [
+        "dated route and segment measurements",
+        "accessibility obstacles and workarounds",
+        "assistance time and burden",
+        "wrong-route and recovery record",
+        "independent repeat walk",
+        "disposition log"
+      ],
+      "pass_boundary_en": "No route, entrance, timing or accessibility claim exists before the field record and independent review.",
+      "test_design_zh": "由多样且获得补偿的参与者实地走查一条具名日常旅程，在正常与故障条件下比较实体标识、人工帮助和可选 AI 辅助。",
+      "minimum_outputs_zh": [
+        "带日期的路线与分段测量",
+        "无障碍障碍与替代路径",
+        "求助时间与负担",
+        "走错与恢复记录",
+        "独立复走",
+        "处置日志"
+      ],
+      "pass_boundary_zh": "在形成现场记录并完成独立复核前，不得声称任何路线、入口、时间或无障碍条件。"
+    }
+  ],
+  "personas": [
+    {
+      "id": "PER-01",
+      "name_zh": "AI研究者或开发者",
+      "name_en": "AI researcher or developer",
+      "core_task": "Test a capability without overstating readiness or exposing people and production systems.",
+      "spatial_need": "bounded test cell, collaboration desk and public explanation channel",
+      "operating_need": "clear protocol, data rights, reproducibility, takeover and exit",
+      "burden_to_test": "documentation time, access barriers and incentives to hide negative results",
+      "evidence_state": "research persona hypothesis I; real participant evidence X3 BLOCKED"
+    },
+    {
+      "id": "PER-02",
+      "name_zh": "初创团队或小商户经营者",
+      "name_en": "startup team or small-business operator",
+      "core_task": "Access useful support while keeping control of cost, records, adoption and exit.",
+      "spatial_need": "shared support interface without compulsory relocation or platform dependence",
+      "operating_need": "transparent terms, export, manual alternative and non-adoption right",
+      "burden_to_test": "rent, time, new labour, lock-in and unequal visibility",
+      "evidence_state": "research persona hypothesis I; real participant evidence X3/X5 BLOCKED"
+    },
+    {
+      "id": "PER-03",
+      "name_zh": "日常通勤者",
+      "name_en": "daily commuter",
+      "core_task": "Complete a reliable station-to-destination journey under normal and disrupted conditions.",
+      "spatial_need": "verified path, clear decision points and visible help",
+      "operating_need": "current information, human escalation and AI-off continuity",
+      "burden_to_test": "extra time, detour, uncertainty and missed connection",
+      "evidence_state": "research persona hypothesis I; route evidence X2/X3 BLOCKED"
+    },
+    {
+      "id": "PER-04",
+      "name_zh": "行动不便或无障碍需求者",
+      "name_en": "person with mobility or accessibility requirements",
+      "core_task": "Reach and use services with dignity, choice and a verified step-free path.",
+      "spatial_need": "measured clear widths, gradients, rest, crossings and accessible help",
+      "operating_need": "equivalent nonvisual, low-tech and human routes",
+      "burden_to_test": "assistance dependence, detour, fatigue, inaccessible information and privacy",
+      "evidence_state": "research persona hypothesis I; accessibility evidence X2/X3/X6 BLOCKED"
+    },
+    {
+      "id": "PER-05",
+      "name_zh": "长者或非智能手机使用者",
+      "name_en": "older resident or no-smartphone user",
+      "core_task": "Complete daily tasks without a personal device or forced digital identity.",
+      "spatial_need": "seating, legible signs, quiet staffed service and telephone/paper route",
+      "operating_need": "full human completion path and simple correction",
+      "burden_to_test": "embarrassment, waiting, repeated explanation and digital coercion",
+      "evidence_state": "research persona hypothesis I; real participant evidence X3/X6 BLOCKED"
+    },
+    {
+      "id": "PER-06",
+      "name_zh": "学生、青年或公共学习者",
+      "name_en": "student, young person or public learner",
+      "core_task": "Explore AI and city-making safely, critically and without being reduced to an audience metric.",
+      "spatial_need": "open learning commons, hands-on low-risk exhibits and public contribution route",
+      "operating_need": "safeguarding, clear rights, human facilitation and no hidden profiling",
+      "burden_to_test": "commercial capture, exclusion, unsafe media collection and inaccessible language",
+      "evidence_state": "research persona hypothesis I; safeguarding and user evidence X3/X4 BLOCKED"
+    },
+    {
+      "id": "PER-07",
+      "name_zh": "一线服务与维护人员",
+      "name_en": "front-line service or maintenance worker",
+      "core_task": "Maintain service, handle exceptions and stop unsafe automation without hidden workload transfer.",
+      "spatial_need": "safe access, visible status, manual controls and maintainable components",
+      "operating_need": "named authority, training, staffing, incident SLA, audit and remedy",
+      "burden_to_test": "new alerts, emotional labour, understaffing, unsafe override and blame transfer",
+      "evidence_state": "research persona hypothesis I; operating evidence X3/X4/X5 BLOCKED"
+    },
+    {
+      "id": "PER-08",
+      "name_zh": "国际访客或跨机构协作者",
+      "name_en": "international visitor or cross-institution collaborator",
+      "core_task": "Understand the belt, find a legitimate public collaboration route and respect local rights and context.",
+      "spatial_need": "bilingual orientation, public collaboration desk and cultural storyline",
+      "operating_need": "verified affiliation, translation review and clear IP/data boundaries",
+      "burden_to_test": "misleading translation, inaccessible context and false partnership implication",
+      "evidence_state": "research persona hypothesis I; partnership and user evidence X3/X4 BLOCKED"
+    }
+  ],
+  "public_space_and_landmarks": {
+    "requirement_id": "agent.4",
+    "evidence_state": "I/BLOCKED",
+    "source_ids": [
+      "SUBMISSION-REFERENCE-AGENT-TASKBOOK-20260605",
+      "OFFICIAL-BJ-GHZRZY-HDHJ-20260509-SCOPE"
+    ],
+    "network_concept": {
+      "name_zh": "开放贡献公园线",
+      "name_en": "Open Contribution Park Line",
+      "description_zh": "以京张遗址公园的公开任务语境串联三处区域地标，并以分布式贡献长廊贯穿全带、双向慢行决策点、低技术服务点与蓝绿照护节点；强调南北叙事连续和东西日常接口。具体路径、跨越、桥隧、文保、绿地、蓝线和工程可行性均不作结论。",
+      "description_en": "Use the public brief's JingZhang heritage-park context to link three zone landmarks while a distributed contribution-memory line spans the belt, two-way slow-mobility decision points, low-tech service points and blue-green care nodes, strengthening north-south narrative continuity and east-west everyday interfaces. No conclusion is made about exact routes, crossings, bridges, tunnels, heritage controls, green/blue lines or engineering feasibility.",
+      "network_id": "NET-OPEN-CONTRIBUTION-PARK-LINE",
+      "dazhongsi_response_zh": "大钟寺以既有商户连续、可选数字服务、可逆公共活动和人工/AI-off 商务支持回应智能原生消费与商务任务；不推定具体商户、品牌、租约、客流、收入、合作或获批运营。",
+      "dazhongsi_response_en": "At Dazhongsi, merchant continuity, optional digital service, reversible public events and human/AI-off business support answer the intelligent-native consumer-and-business task; no merchant, brand, tenancy, footfall, revenue, partnership or approved operation is assumed."
+    },
+    "landmarks": [
+      {
+        "id": "LMK-01",
+        "name_zh": "开源栈里程场",
+        "name_en": "Open Stack Mile",
+        "concept_location": "ZONE-ZZY",
+        "role": "Make the full-stack test chain, human control and negative results publicly legible.",
+        "spatial_form": "reversible linear test-and-learning deck using the parallel-rail identity motif; exact footprint U",
+        "public_program": [
+          "open protocol reading table",
+          "test-result and failure display",
+          "human-stop demonstration",
+          "scheduled public learning session"
+        ],
+        "ai_off": "Physical diagrams, mechanical controls and facilitated demonstration retain the full educational function.",
+        "anti_spectacle_rule": "No robot or screen is the landmark by itself; public knowledge and accountable control are the landmark.",
+        "gates": [
+          "X1",
+          "X2",
+          "X4",
+          "X5",
+          "X6"
+        ],
+        "spatial_form_en": "reversible linear test-and-learning deck using the parallel-rail identity motif; exact footprint U",
+        "ai_off_en": "Physical diagrams, mechanical controls and facilitated demonstration retain the full educational function.",
+        "spatial_form_zh": "采用平行轨线识别母题的可逆线性测试与学习平台；具体占地 U",
+        "ai_off_zh": "实体图解、机械控制与人工讲解保留完整教育功能。"
+      },
+      {
+        "id": "LMK-02",
+        "name_zh": "原点转译公地",
+        "name_en": "Origin Translation Commons",
+        "concept_location": "ZONE-ORIGIN",
+        "role": "Turn research into understandable public questions, service prototypes and dissent records.",
+        "spatial_form": "quiet, accessible commons organised around a human service table and an open evidence ring; exact footprint U",
+        "public_program": [
+          "plain-language research clinic",
+          "compensated co-design sessions",
+          "AI literacy and appeal workshops",
+          "public problem and non-adoption archive"
+        ],
+        "ai_off": "Books, physical models, printed evidence cards and facilitators retain the learning and co-design function.",
+        "anti_spectacle_rule": "No institutional or research affiliation is implied without documented participation.",
+        "gates": [
+          "X1",
+          "X2",
+          "X3",
+          "X4",
+          "X6"
+        ],
+        "spatial_form_en": "quiet, accessible commons organised around a human service table and an open evidence ring; exact footprint U",
+        "ai_off_en": "Books, physical models, printed evidence cards and facilitators retain the learning and co-design function.",
+        "spatial_form_zh": "围绕人工服务桌与开放证据环组织的安静无障碍共享空间；具体占地 U",
+        "ai_off_zh": "书籍、实体模型、纸质证据卡与引导员保留学习和共创功能。"
+      },
+      {
+        "id": "LMK-03",
+        "name_zh": "连续城市门厅",
+        "name_en": "Civic Continuity Gateway",
+        "concept_location": "ZONE-DZS",
+        "role": "Make arrival, human help, small-business continuity and AI-off service visible at an urban threshold.",
+        "spatial_form": "staffed, open-sided threshold with three clearly separated service paths: AI assist, human service and AI-off baseline; exact station interface U",
+        "public_program": [
+          "accessible orientation",
+          "small-business directory and continuity help",
+          "multilingual public-event entry",
+          "incident and appeal information"
+        ],
+        "ai_off": "Physical directory, printed route map, staffed help and telephone remain fully functional.",
+        "anti_spectacle_rule": "The gateway cannot obstruct circulation, privatise public space or imply an approved station project.",
+        "gates": [
+          "X1",
+          "X2",
+          "X3",
+          "X4",
+          "X5",
+          "X6"
+        ],
+        "spatial_form_en": "staffed, open-sided threshold with three clearly separated service paths: AI assist, human service and AI-off baseline; exact station interface U",
+        "ai_off_en": "Physical directory, printed route map, staffed help and telephone remain fully functional.",
+        "spatial_form_zh": "有人员值守、开放侧界的门槛空间，清楚分隔 AI 辅助、人工服务与 AI-off 基线；具体站城接口 U",
+        "ai_off_zh": "实体目录、纸质路线图、值守帮助与电话保持完整可用。"
+      },
+      {
+        "id": "LMK-04",
+        "name_zh": "贡献可记忆长廊",
+        "name_en": "Contribution Memory Line",
+        "concept_location": "CIVIC_SPINE",
+        "role": "Recognise verifiable public contributions, maintenance, dissent and negative results across the belt.",
+        "spatial_form": "distributed small markers and one accessible index rather than a monumental leaderboard; exact alignment U",
+        "public_program": [
+          "source-linked contribution cards",
+          "maintenance and care credits",
+          "negative-result and STOP records",
+          "correction, consent and appeal route"
+        ],
+        "ai_off": "Printed and tactile records remain readable; the public index can be maintained manually.",
+        "anti_spectacle_rule": "No popularity ranking, social score, biometric recognition or pay-to-display contribution.",
+        "gates": [
+          "X1",
+          "X2",
+          "X3",
+          "X4",
+          "X6"
+        ],
+        "spatial_form_en": "distributed small markers and one accessible index rather than a monumental leaderboard; exact alignment U",
+        "ai_off_en": "Printed and tactile records remain readable; the public index can be maintained manually.",
+        "spatial_form_zh": "分布式小型标记与一个无障碍索引，不设纪念性排行榜；具体线位 U",
+        "ai_off_zh": "纸质与触觉记录保持可读，公共索引可由人工维护。"
+      }
+    ],
+    "honor_display_system": {
+      "system_id": "HONOR-PUBLIC-CONTRIBUTION-LEDGER",
+      "name_zh": "公共贡献与照护台账",
+      "name_en": "Public Contribution and Care Ledger",
+      "eligible_contribution_types": [
+        "open code or documented method",
+        "cleared reusable data or evidence",
+        "accessibility improvement",
+        "maintenance and care work",
+        "community knowledge with consent",
+        "dissent, negative result or justified STOP",
+        "translation and public explanation"
+      ],
+      "required_fields": [
+        "contribution_id",
+        "plain-language description",
+        "contributor display choice",
+        "source and licence",
+        "date and version",
+        "public value",
+        "known limitation",
+        "review state",
+        "correction and withdrawal route"
+      ],
+      "prohibited_mechanics": [
+        "facial recognition",
+        "social score",
+        "popularity leaderboard",
+        "pay-to-rank",
+        "unconsented identity display",
+        "claiming a concept as implemented"
+      ],
+      "state": "I/BLOCKED",
+      "gates": [
+        "X3",
+        "X4",
+        "X6"
+      ]
+    },
+    "component_library": [
+      {
+        "id": "CMP-01",
+        "name_zh": "双线公共服务标带",
+        "name_en": "Dual-Line Civic Service Band",
+        "function": "link the identity, wayfinding and service-continuity message",
+        "physical_mode": "paint, inlay or sign strip subject to heritage, surface and safety review",
+        "ai_online": "optional dynamic status adjacent to the permanent band",
+        "ai_off": "permanent direction, distance category and human-help information",
+        "state": "I/BLOCKED X1/X2/X6",
+        "physical_mode_en": "paint, inlay or sign strip subject to heritage, surface and safety review",
+        "ai_off_en": "permanent direction, distance category and human-help information",
+        "physical_mode_zh": "涂绘、嵌条或标带；须经遗产、铺装与安全复核",
+        "ai_off_zh": "永久方向、距离类别与人工求助信息"
+      },
+      {
+        "id": "CMP-02",
+        "name_zh": "三通道服务点",
+        "name_en": "Three-Path Service Point",
+        "function": "show AI assist, human service and AI-off baseline as equal choices",
+        "physical_mode": "staffed counter or portable desk with one optional screen",
+        "ai_online": "assist and explain",
+        "ai_off": "paper, phone and human service complete the core task",
+        "state": "I/BLOCKED X1/X3/X4/X5/X6",
+        "physical_mode_en": "staffed counter or portable desk with one optional screen",
+        "ai_off_en": "paper, phone and human service complete the core task",
+        "physical_mode_zh": "带一块可选屏幕的值守柜台或移动桌",
+        "ai_off_zh": "纸张、电话与人工服务可完成核心任务"
+      },
+      {
+        "id": "CMP-03",
+        "name_zh": "安静共创桌",
+        "name_en": "Quiet Co-Design Table",
+        "function": "support compensated participation, plain-language review and dissent",
+        "physical_mode": "accessible table, movable seating, privacy screen and physical cards",
+        "ai_online": "optional transcription/translation with consent",
+        "ai_off": "facilitated cards, drawings and paper record",
+        "state": "I/BLOCKED X1/X3/X4/X6",
+        "physical_mode_en": "accessible table, movable seating, privacy screen and physical cards",
+        "ai_off_en": "facilitated cards, drawings and paper record",
+        "physical_mode_zh": "无障碍桌、可移动座椅、隐私挡板与实体卡片",
+        "ai_off_zh": "由引导员使用卡片、图纸与纸质记录完成共创"
+      },
+      {
+        "id": "CMP-04",
+        "name_zh": "可逆测试舱",
+        "name_en": "Reversible Test Bay",
+        "function": "separate controlled validation from production and uncontrolled public space",
+        "physical_mode": "temporary bounded bay with visible test state and manual stop",
+        "ai_online": "declared test only",
+        "ai_off": "safe stop and manual baseline demonstration",
+        "state": "I/BLOCKED X1/X2/X4/X5/X6",
+        "physical_mode_en": "temporary bounded bay with visible test state and manual stop",
+        "ai_off_en": "safe stop and manual baseline demonstration",
+        "physical_mode_zh": "带可见测试状态与人工停止装置的临时有界测试舱",
+        "ai_off_zh": "安全停止并演示人工基线"
+      },
+      {
+        "id": "CMP-05",
+        "name_zh": "无障碍门槛工具包",
+        "name_en": "Accessible Threshold Kit",
+        "function": "make arrival, decision, rest and help points legible across sensory and mobility needs",
+        "physical_mode": "contrast, tactile cue, rest point, clear width and help marker subject to field measurement",
+        "ai_online": "optional personal preference without mandatory profile",
+        "ai_off": "physical and human guidance remains primary",
+        "state": "I/BLOCKED X1/X2/X3/X6",
+        "physical_mode_en": "contrast, tactile cue, rest point, clear width and help marker subject to field measurement",
+        "ai_off_en": "physical and human guidance remains primary",
+        "physical_mode_zh": "对比、触觉提示、休息点、净宽与求助标记；须经现场测量",
+        "ai_off_zh": "实体与人工导引始终是主要路径"
+      },
+      {
+        "id": "CMP-06",
+        "name_zh": "证据与负结果墙",
+        "name_en": "Evidence and Negative-Result Wall",
+        "function": "display what was tested, what failed, what changed and why a STOP occurred",
+        "physical_mode": "modular printed/tactile cards with source and version",
+        "ai_online": "filter and search the same public record",
+        "ai_off": "physical index remains complete enough to understand status",
+        "state": "I/BLOCKED X3/X4/X6",
+        "physical_mode_en": "modular printed/tactile cards with source and version",
+        "ai_off_en": "physical index remains complete enough to understand status",
+        "physical_mode_zh": "带来源与版本的模块化纸质或触觉卡片",
+        "ai_off_zh": "实体索引仍足以完整理解状态"
+      },
+      {
+        "id": "CMP-07",
+        "name_zh": "蓝绿照护标记",
+        "name_en": "Blue-Green Care Marker",
+        "function": "connect public reports, verified maintenance and visible disposition",
+        "physical_mode": "small marker and work-order reference placed only after ecology/access review",
+        "ai_online": "summarise alerts for human inspection",
+        "ai_off": "manual inspection and phone/paper work order",
+        "state": "I/BLOCKED X1/X2/X4/X5/X6",
+        "physical_mode_en": "small marker and work-order reference placed only after ecology/access review",
+        "ai_off_en": "manual inspection and phone/paper work order",
+        "physical_mode_zh": "仅在生态与通行复核后设置的小型标记和工单索引",
+        "ai_off_zh": "人工巡检与电话或纸质工单"
+      },
+      {
+        "id": "CMP-08",
+        "name_zh": "人工求助灯标",
+        "name_en": "Human Help Beacon",
+        "function": "make a verified human-help route visible without general surveillance",
+        "physical_mode": "light, sign, phone/intercom and published hours",
+        "ai_online": "optional multilingual triage",
+        "ai_off": "direct human contact remains available",
+        "state": "I/BLOCKED X1/X2/X4/X5/X6",
+        "physical_mode_en": "light, sign, phone/intercom and published hours",
+        "ai_off_en": "direct human contact remains available",
+        "physical_mode_zh": "灯光、标牌、电话或对讲与公布的服务时间",
+        "ai_off_zh": "可直接联系具名人工服务"
+      },
+      {
+        "id": "CMP-09",
+        "name_zh": "可逆公共活动工具包",
+        "name_en": "Reversible Public Event Kit",
+        "function": "host learning, co-design and developer events without permanently occupying public space",
+        "physical_mode": "portable stage edge, seating, caption board and clear-route markers",
+        "ai_online": "optional caption/translation and accessible agenda",
+        "ai_off": "printed agenda, human facilitation and physical display",
+        "state": "I/BLOCKED X1/X2/X3/X4/X6",
+        "physical_mode_en": "portable stage edge, seating, caption board and clear-route markers",
+        "ai_off_en": "printed agenda, human facilitation and physical display",
+        "physical_mode_zh": "移动舞台边、座椅、字幕板与净宽标记",
+        "ai_off_zh": "纸质议程、人工引导与实体展示"
+      }
+    ]
+  },
+  "culture_and_wayfinding": {
+    "requirement_id": "agent.5",
+    "evidence_state": "I/BLOCKED",
+    "source_ids": [
+      "SUBMISSION-REFERENCE-AGENT-TASKBOOK-20260605",
+      "OFFICIAL-BJ-GHZRZY-HDHJ-20260509-SCOPE"
+    ],
+    "narrative_name_zh": "从铁路开路到知识开源",
+    "narrative_name_en": "From Opening a Railway to Opening Knowledge",
+    "narrative_zh": "叙事不把铁路文化当作科技装饰，而把“连接、维护、协作与持续服务”作为跨越三种时代的公共价值：京张铁路历史文化提示城市基础设施如何连接人与地方；中关村创新文化提示知识如何通过科研、创业和协作进入城市；AI新文化则要求算法、数据与模型的贡献、局限、失败和退出都能被公众理解与追溯。具体历史事件、遗存、人物、年代与文保价值须由权威历史资源清单和专业审查补齐。",
+    "narrative_en": "The narrative does not use railway culture as technological decoration. It treats connection, maintenance, collaboration and continuity of service as public values spanning three eras: JingZhang railway culture asks how infrastructure connects people and places; Zhongguancun innovation culture asks how knowledge enters the city through research, entrepreneurship and collaboration; AI culture requires the contributions, limits, failures and exits of algorithms, data and models to remain understandable and traceable to the public. Specific events, heritage assets, people, dates and conservation values require an authoritative historical inventory and professional review.",
+    "spatial_storyline": [
+      {
+        "id": "CUL-01",
+        "chapter_zh": "连接",
+        "chapter_en": "Connect",
+        "message": "Railway memory as a public story of connecting people and places; exact history subject to source review.",
+        "carrier": "CIVIC_SPINE and verified heritage interpretation points",
+        "message_en": "Railway memory as a public story of connecting people and places; exact history subject to source review.",
+        "carrier_en": "CIVIC_SPINE and verified heritage interpretation points",
+        "message_zh": "把铁路记忆讲成连接人与地方的公共故事；具体史实须经来源复核。",
+        "carrier_zh": "公共服务脊与经核验的遗产解说点"
+      },
+      {
+        "id": "CUL-02",
+        "chapter_zh": "维护",
+        "chapter_en": "Maintain",
+        "message": "Recognise the often-invisible labour that keeps infrastructure and services working.",
+        "carrier": "CMP-07, CMP-08 and contribution ledger",
+        "message_en": "Recognise the often-invisible labour that keeps infrastructure and services working.",
+        "carrier_en": "CMP-07, CMP-08 and contribution ledger",
+        "message_zh": "承认维持基础设施与服务运转、往往不被看见的劳动。",
+        "carrier_zh": "CMP-07、CMP-08 与公共贡献台账"
+      },
+      {
+        "id": "CUL-03",
+        "chapter_zh": "开源",
+        "chapter_en": "Open",
+        "message": "Treat reusable knowledge, methods and negative results as public innovation assets.",
+        "carrier": "LMK-01 and LMK-04",
+        "message_en": "Treat reusable knowledge, methods and negative results as public innovation assets.",
+        "carrier_en": "LMK-01 and LMK-04",
+        "message_zh": "把可复用知识、方法与负结果视为公共创新资产。",
+        "carrier_zh": "LMK-01 与 LMK-04"
+      },
+      {
+        "id": "CUL-04",
+        "chapter_zh": "转译",
+        "chapter_en": "Translate",
+        "message": "Turn research into understandable questions and optional services with real-user review.",
+        "carrier": "LMK-02",
+        "message_en": "Turn research into understandable questions and optional services with real-user review.",
+        "carrier_en": "LMK-02",
+        "message_zh": "把科研转成可理解的问题和可选服务，并接受真实使用者复核。",
+        "carrier_zh": "LMK-02"
+      },
+      {
+        "id": "CUL-05",
+        "chapter_zh": "照护",
+        "chapter_en": "Care",
+        "message": "Judge innovation by continuity, accessibility, burden and remedy in everyday city life.",
+        "carrier": "WING-XIAOYUEHE, LMK-03 and CMP-05",
+        "message_en": "Judge innovation by continuity, accessibility, burden and remedy in everyday city life.",
+        "carrier_en": "WING-XIAOYUEHE, LMK-03 and CMP-05",
+        "message_zh": "以服务连续、无障碍、负担与补救判断城市日常中的创新。",
+        "carrier_zh": "WING-XIAOYUEHE、LMK-03 与 CMP-05"
+      },
+      {
+        "id": "CUL-06",
+        "chapter_zh": "再出发",
+        "chapter_en": "Continue",
+        "message": "GO, REVISE and STOP all leave evidence for the next accountable decision.",
+        "carrier": "LOOP-R006-THREE-ZONES-TWO-WINGS",
+        "message_en": "GO, REVISE and STOP all leave evidence for the next accountable decision.",
+        "carrier_en": "LOOP-R006-THREE-ZONES-TWO-WINGS",
+        "message_zh": "GO、REVISE 与 STOP 都为下一次可问责决定留下证据。",
+        "carrier_zh": "LOOP-R006-THREE-ZONES-TWO-WINGS"
+      }
+    ],
+    "wayfinding_system": {
+      "name_zh": "双线六章导视",
+      "name_en": "Dual-Line Six-Chapter Wayfinding",
+      "hierarchy": [
+        "belt identity",
+        "zone or functional-wing role",
+        "chapter and public-service purpose",
+        "direction and verified accessibility condition",
+        "AI/human/AI-off service choice",
+        "source, state and appeal/feedback route"
+      ],
+      "coding": {
+        "zone_shape": "three distinct node numerals and names; never colour only",
+        "wing_shape": "open lateral connector with named function",
+        "chapter_shape": "six simple participant-authored line symbols",
+        "evidence_state": "E/I/U/BLOCKED word plus pattern",
+        "language": "separate Chinese and English compositions using the repository terminology glossary",
+        "accessible_modes": "large text and contrast first; tactile/audio layers only after X6"
+      },
+      "separation_rule": "The overall logo identifies the belt; cultural chapter symbols interpret stories. Neither imitates heritage, government, university or company marks."
+    },
+    "international_copy": {
+      "headline_en": "JingZhang Open Way — innovation that remains public when AI is off.",
+      "short_zh": "京张开放之路把科研、场景与城市日常串成一条可理解、可接管、可退出的公共价值链。",
+      "short_en": "JingZhang Open Way links research, testing and everyday city life through a public-value chain that remains understandable, human-takeover-ready and reversible.",
+      "status_line_zh": "开放共创建议；非正式规划、非政府承诺、非实施批准。",
+      "status_line_en": "Open co-creation proposal; not a statutory plan, government commitment or implementation approval."
+    }
+  },
+  "annual_operations": {
+    "requirement_id": "agent.6",
+    "evidence_state": "I/BLOCKED",
+    "source_ids": [
+      "SUBMISSION-REFERENCE-AGENT-TASKBOOK-20260605",
+      "CASE-REFERENCE-SMART-KALASATAMA-202108",
+      "CASE-REFERENCE-HELSINKI-INNOVATION-DISTRICTS-202312",
+      "CASE-REFERENCE-WATERFRONT-TORONTO-TERMINATION-202005"
+    ],
+    "programme_name_zh": "开放之路年度共证计划",
+    "programme_name_en": "Open Way Annual Evidence Commons",
+    "status_rule": "All events are concept programmes. Dates, venues, hosts, budgets, speakers, partnerships and government support are U until separately authorised.",
+    "seasonal_programme": [
+      {
+        "id": "EVT-SPRING",
+        "season_zh": "春",
+        "season_en": "Spring",
+        "name_zh": "城市问题开放周",
+        "name_en": "Open Civic Problem Week",
+        "purpose": "Collect public problems, do-nothing baselines, affected groups, burdens and non-adoption reasons before solution selection.",
+        "lead_roles": [
+          "public-interest programme steward",
+          "accessible participation lead"
+        ],
+        "outputs": [
+          "source-linked problem briefs",
+          "compensated participation record",
+          "dissent and exclusion audit",
+          "shortlist or STOP reasons"
+        ],
+        "gates": [
+          "X3",
+          "X4",
+          "X6"
+        ],
+        "purpose_en": "Collect public problems, do-nothing baselines, affected groups, burdens and non-adoption reasons before solution selection.",
+        "purpose_zh": "在选择方案前收集公共问题、不做基线、受影响群体、负担与不采用理由。",
+        "lead_roles_en": [
+          "public-interest programme steward",
+          "accessible participation lead"
+        ],
+        "outputs_en": [
+          "source-linked problem briefs",
+          "compensated participation record",
+          "dissent and exclusion audit",
+          "shortlist or STOP reasons"
+        ],
+        "lead_roles_zh": [
+          "公共利益计划负责人",
+          "无障碍参与负责人"
+        ],
+        "outputs_zh": [
+          "带来源的问题简报",
+          "有补偿参与记录",
+          "异议与排除审计",
+          "入选或 STOP 理由"
+        ]
+      },
+      {
+        "id": "EVT-SUMMER",
+        "season_zh": "夏",
+        "season_en": "Summer",
+        "name_zh": "城市AI受控测试季",
+        "name_en": "Civic AI Controlled Test Season",
+        "purpose": "Run bounded industry tests with low-tech controls, human takeover, AI-off and visible failure records.",
+        "lead_roles": [
+          "test lead",
+          "safety and data lead",
+          "independent observer"
+        ],
+        "outputs": [
+          "versioned protocols",
+          "test and failure logs",
+          "AI-off drill",
+          "public plain-language result"
+        ],
+        "gates": [
+          "X2",
+          "X4",
+          "X5",
+          "X6"
+        ],
+        "purpose_en": "Run bounded industry tests with low-tech controls, human takeover, AI-off and visible failure records.",
+        "purpose_zh": "以低技术对照、人工接管、AI-off 和可见失败记录开展有界测试。",
+        "lead_roles_en": [
+          "test lead",
+          "safety and data lead",
+          "independent observer"
+        ],
+        "outputs_en": [
+          "versioned protocols",
+          "test and failure logs",
+          "AI-off drill",
+          "public plain-language result"
+        ],
+        "lead_roles_zh": [
+          "测试负责人",
+          "安全与数据负责人",
+          "独立观察员"
+        ],
+        "outputs_zh": [
+          "带版本的协议",
+          "测试与故障日志",
+          "AI-off 演练",
+          "通俗公共结果"
+        ]
+      },
+      {
+        "id": "EVT-AUTUMN",
+        "season_zh": "秋",
+        "season_en": "Autumn",
+        "name_zh": "开源贡献与城市体验节",
+        "name_en": "Open Contribution and Civic Experience Festival",
+        "purpose": "Let the public experience verified scenarios, understand limits and recognise code, care, maintenance, translation, dissent and negative results.",
+        "lead_roles": [
+          "public programme lead",
+          "accessibility lead",
+          "rights and attribution lead"
+        ],
+        "outputs": [
+          "accessible public route",
+          "contribution ledger update",
+          "participant feedback and burden record",
+          "rights and status audit"
+        ],
+        "gates": [
+          "X1",
+          "X2",
+          "X3",
+          "X4",
+          "X6"
+        ],
+        "purpose_en": "Let the public experience verified scenarios, understand limits and recognise code, care, maintenance, translation, dissent and negative results.",
+        "purpose_zh": "让公众体验经核验场景、理解局限，并承认代码、照护、维护、转译、异议和负结果。",
+        "lead_roles_en": [
+          "public programme lead",
+          "accessibility lead",
+          "rights and attribution lead"
+        ],
+        "outputs_en": [
+          "accessible public route",
+          "contribution ledger update",
+          "participant feedback and burden record",
+          "rights and status audit"
+        ],
+        "lead_roles_zh": [
+          "公共活动负责人",
+          "无障碍负责人",
+          "权利与署名负责人"
+        ],
+        "outputs_zh": [
+          "无障碍公共体验路线",
+          "贡献台账更新",
+          "参与反馈与负担记录",
+          "权利与状态审计"
+        ]
+      },
+      {
+        "id": "EVT-WINTER",
+        "season_zh": "冬",
+        "season_en": "Winter",
+        "name_zh": "证据年审与退出演练",
+        "name_en": "Annual Evidence Review and Exit Drill",
+        "purpose": "Review public value, burden, maintenance, rights, cost and exit; issue GO, REVISE or STOP recommendations for next-stage approval.",
+        "lead_roles": [
+          "project-party decision owner",
+          "independent reviewers",
+          "appeal and remedy lead"
+        ],
+        "outputs": [
+          "annual evidence ledger",
+          "open issues and dissent",
+          "witnessed exit/deletion/AI-off drill",
+          "GO / REVISE / STOP dossier"
+        ],
+        "gates": [
+          "X3",
+          "X4",
+          "X5",
+          "X6"
+        ],
+        "purpose_en": "Review public value, burden, maintenance, rights, cost and exit; issue GO, REVISE or STOP recommendations for next-stage approval.",
+        "purpose_zh": "复核公共价值、负担、维护、权利、成本与退出，形成下一阶段决定档案。",
+        "lead_roles_en": [
+          "project-party decision owner",
+          "independent reviewers",
+          "appeal and remedy lead"
+        ],
+        "outputs_en": [
+          "annual evidence ledger",
+          "open issues and dissent",
+          "witnessed exit/deletion/AI-off drill",
+          "GO / REVISE / STOP dossier"
+        ],
+        "lead_roles_zh": [
+          "项目方决定责任人",
+          "独立复核者",
+          "申诉与补救负责人"
+        ],
+        "outputs_zh": [
+          "年度证据台账",
+          "未决事项与异议",
+          "有见证的退出、删除与 AI-off 演练",
+          "GO / REVISE / STOP 档案"
+        ]
+      }
+    ],
+    "recurring_cadence": [
+      {
+        "cadence": "weekly",
+        "activity": "open help and public explanation hour",
+        "minimum_record": "questions, unresolved issues and correction log",
+        "cadence_en": "weekly",
+        "activity_en": "open help and public explanation hour",
+        "minimum_record_en": "questions, unresolved issues and correction log",
+        "cadence_zh": "每周",
+        "activity_zh": "开放帮助与公共解释时段",
+        "minimum_record_zh": "问题、未决事项与纠错日志"
+      },
+      {
+        "cadence": "monthly",
+        "activity": "developer and maintainer clinic",
+        "minimum_record": "protocol changes, failure reports and maintenance burden",
+        "cadence_en": "monthly",
+        "activity_en": "developer and maintainer clinic",
+        "minimum_record_en": "protocol changes, failure reports and maintenance burden",
+        "cadence_zh": "每月",
+        "activity_zh": "开发者与维护者诊所",
+        "minimum_record_zh": "协议变更、故障报告与维护负担"
+      },
+      {
+        "cadence": "quarterly",
+        "activity": "cross-zone evidence review",
+        "minimum_record": "scenario state, gate state, burden and next decision",
+        "cadence_en": "quarterly",
+        "activity_en": "cross-zone evidence review",
+        "minimum_record_en": "scenario state, gate state, burden and next decision",
+        "cadence_zh": "每季度",
+        "activity_zh": "跨区证据复核",
+        "minimum_record_zh": "场景状态、门槛状态、负担与下一决定"
+      },
+      {
+        "cadence": "annual",
+        "activity": "independent assurance and exit drill",
+        "minimum_record": "signed dispositions and GO / REVISE / STOP dossier",
+        "cadence_en": "annual",
+        "activity_en": "independent assurance and exit drill",
+        "minimum_record_en": "signed dispositions and GO / REVISE / STOP dossier",
+        "cadence_zh": "每年",
+        "activity_zh": "独立保证与退出演练",
+        "minimum_record_zh": "签署的处置意见与 GO / REVISE / STOP 档案"
+      }
+    ],
+    "developer_community_operation": {
+      "pathway": [
+        "public problem intake",
+        "open method or challenge brief",
+        "synthetic-data sandbox",
+        "peer reproducibility review",
+        "human/AI-off/exit drill",
+        "compensated user and burden review",
+        "independent assurance",
+        "project-party next-stage decision"
+      ],
+      "community_assets": [
+        "versioned problem briefs",
+        "test harnesses and protocol templates",
+        "negative-result library",
+        "rights and source records",
+        "maintenance and AI-off playbooks",
+        "contribution ledger"
+      ],
+      "rules": [
+        "No preferred vendor status is implied by participation.",
+        "A public-interest problem owner is distinct from a solution vendor.",
+        "Reproducibility and exit evidence count as contributions.",
+        "Real users are compensated and never represented as supporters by default.",
+        "Production access is prohibited before authority and independent review."
+      ],
+      "pathway_en": [
+        "public problem intake",
+        "open method or challenge brief",
+        "synthetic-data sandbox",
+        "peer reproducibility review",
+        "human/AI-off/exit drill",
+        "compensated user and burden review",
+        "independent assurance",
+        "project-party next-stage decision"
+      ],
+      "community_assets_en": [
+        "versioned problem briefs",
+        "test harnesses and protocol templates",
+        "negative-result library",
+        "rights and source records",
+        "maintenance and AI-off playbooks",
+        "contribution ledger"
+      ],
+      "rules_en": [
+        "No preferred vendor status is implied by participation.",
+        "A public-interest problem owner is distinct from a solution vendor.",
+        "Reproducibility and exit evidence count as contributions.",
+        "Real users are compensated and never represented as supporters by default.",
+        "Production access is prohibited before authority and independent review."
+      ],
+      "pathway_zh": [
+        "公共问题受理",
+        "开放方法或挑战简报",
+        "合成数据沙盒",
+        "同行可复现性复核",
+        "人工、AI-off 与退出演练",
+        "有补偿使用者与负担复核",
+        "独立保证",
+        "项目方下一阶段决定"
+      ],
+      "community_assets_zh": [
+        "带版本的问题简报",
+        "测试工具与协议模板",
+        "负结果库",
+        "权利与来源记录",
+        "维护与 AI-off 手册",
+        "公共贡献台账"
+      ],
+      "rules_zh": [
+        "参与不形成优选供应商地位。",
+        "公共利益问题所有者与解决方案供应商必须分离。",
+        "可复现性和退出证据都计入贡献。",
+        "真实使用者获得补偿，且不得被默认表述为支持者。",
+        "在权责和独立复核通过前禁止接入生产系统。"
+      ]
+    },
+    "scenario_opening_levels": [
+      {
+        "id": "OPEN-0",
+        "name_zh": "问题与不做基线",
+        "name_en": "problem and do-nothing baseline",
+        "allowed": "desk research, public-source review and problem framing",
+        "not_allowed": "claims of demand, feasibility or user validation",
+        "allowed_en": "desk research, public-source review and problem framing",
+        "not_allowed_en": "claims of demand, feasibility or user validation",
+        "allowed_zh": "桌面研究、公开来源复核与问题界定",
+        "not_allowed_zh": "关于需求、可行性或使用者验证的主张"
+      },
+      {
+        "id": "OPEN-1",
+        "name_zh": "合成数据沙盒",
+        "name_en": "synthetic-data sandbox",
+        "allowed": "bounded technical tests with no public or production exposure",
+        "not_allowed": "real personal data or production control",
+        "allowed_en": "bounded technical tests with no public or production exposure",
+        "not_allowed_en": "real personal data or production control",
+        "allowed_zh": "不接触公众与生产系统的有界技术测试",
+        "not_allowed_zh": "真实个人数据或生产控制"
+      },
+      {
+        "id": "OPEN-2",
+        "name_zh": "封闭受监督共测",
+        "name_en": "closed supervised co-test",
+        "allowed": "consented compensated test with named human authority and stop",
+        "not_allowed": "open public service or automatic expansion",
+        "allowed_en": "consented compensated test with named human authority and stop",
+        "not_allowed_en": "open public service or automatic expansion",
+        "allowed_zh": "有具名人工权力与停止机制、经同意且有补偿的封闭共测",
+        "not_allowed_zh": "开放公共服务或自动扩张"
+      },
+      {
+        "id": "OPEN-3",
+        "name_zh": "限量公共试点候选",
+        "name_en": "limited public-pilot candidate",
+        "allowed": "only after relevant X1-X6 evidence passes and the project party separately approves the stage",
+        "not_allowed": "treating GO as automatic implementation",
+        "allowed_en": "only after relevant X1-X6 evidence passes and the project party separately approves the stage",
+        "not_allowed_en": "treating GO as automatic implementation",
+        "allowed_zh": "仅在相关 X1–X6 通过且项目方另行批准本阶段后",
+        "not_allowed_zh": "把 GO 当作自动实施"
+      }
+    ],
+    "conversion_pathway": {
+      "sequence": [
+        "Attract through a public problem and open contribution call",
+        "Qualify through source, rights and capability review",
+        "Validate in a bounded sandbox",
+        "Translate with real users and frontline workers",
+        "Assure public value, accessibility, cost and exit independently",
+        "Decide GO / REVISE / STOP",
+        "If GO, seek project-party next-stage approval; do not auto-implement"
+      ],
+      "conversion_metrics_to_baseline": [
+        "problem-to-test cycle time",
+        "share of tests with reproducible failure records",
+        "low-tech/human/AI-off parity coverage",
+        "participant burden and non-adoption reasons",
+        "open-interface and exit-test completion",
+        "maintenance workload",
+        "independent review closure"
+      ],
+      "current_values": "U; no target, baseline or performance claim is established by this blueprint",
+      "sequence_en": [
+        "Attract through a public problem and open contribution call",
+        "Qualify through source, rights and capability review",
+        "Validate in a bounded sandbox",
+        "Translate with real users and frontline workers",
+        "Assure public value, accessibility, cost and exit independently",
+        "Decide GO / REVISE / STOP",
+        "If GO, seek project-party next-stage approval; do not auto-implement"
+      ],
+      "sequence_zh": [
+        "以公共问题与开放贡献征集吸引参与",
+        "通过来源、权利与能力复核进行资格筛选",
+        "在有界沙盒中验证",
+        "与真实使用者和一线人员共同转译",
+        "独立复核公共价值、无障碍、成本与退出",
+        "形成 GO / REVISE / STOP 决定",
+        "若为 GO，仅申请项目方下一阶段批准，不自动实施"
+      ]
+    },
+    "brand_and_communication_system": {
+      "system_id": "BRAND-OWAEC-01",
+      "name_zh": "开放之路年度共证活动品牌",
+      "name_en": "Open Way Annual Evidence Commons",
+      "grammar_zh": "沿用总体双线与开放括号作为稳定母题；四季以章节名称、序号和纹理区分，OPEN-0 至 OPEN-3 以级别文字与图形状态并列，颜色从不单独编码。每一海报、报名页、现场标牌、证据卡和年度档案都必须显示来源、E/I/U/BLOCKED、AI-off 路径与纠错入口。",
+      "grammar_en": "Reuse the belt's dual lines and open bracket as the stable motif; distinguish four seasons by chapter name, number and pattern, and show OPEN-0 to OPEN-3 with both level text and state shape, never colour alone. Every poster, registration page, site sign, evidence card and annual dossier shows source, E/I/U/BLOCKED state, AI-off path and correction route.",
+      "boundary_zh": "活动视觉只表达概念计划和证据状态，不暗示已确定日期、主办方、伙伴、预算、政府支持或实施批准。",
+      "boundary_en": "Activity graphics communicate a concept programme and evidence state only; they never imply confirmed dates, hosts, partners, budgets, government support or implementation approval.",
+      "touchpoints_zh": [
+        "海报与报名页",
+        "现场导视与字幕板",
+        "证据卡与贡献台账",
+        "年度 GO / REVISE / STOP 档案"
+      ],
+      "touchpoints_en": [
+        "poster and registration page",
+        "site wayfinding and caption board",
+        "evidence card and contribution ledger",
+        "annual GO / REVISE / STOP dossier"
+      ]
+    },
+    "public_experience_links": [
+      {
+        "event_id": "EVT-SPRING",
+        "anchors": [
+          "LMK-02",
+          "CMP-03"
+        ],
+        "operation_zh": "以安静共创桌受理问题、记录负担与异议；具体场地与负责人 U。",
+        "operation_en": "Use the Translation Commons and Quiet Co-Design Table for problem intake, burden records and dissent; exact venue and owner U."
+      },
+      {
+        "event_id": "EVT-SUMMER",
+        "anchors": [
+          "LMK-01",
+          "CMP-04",
+          "CMP-06"
+        ],
+        "operation_zh": "在可逆测试舱完成受控测试，并在证据墙公开通俗结果与负结果；具体场地与负责人 U。",
+        "operation_en": "Run bounded tests in the Reversible Test Bay and publish plain-language and negative results on the evidence wall; exact venue and owner U."
+      },
+      {
+        "event_id": "EVT-AUTUMN",
+        "anchors": [
+          "LMK-03",
+          "LMK-04",
+          "CMP-09"
+        ],
+        "operation_zh": "以城市门厅、贡献长廊与可逆活动工具包组织公共体验，并保护日常通行和非使用者；具体场地与负责人 U。",
+        "operation_en": "Use the Civic Continuity Gateway, Contribution Memory Line and reversible event kit for public experience while protecting daily access and non-users; exact venue and owner U."
+      },
+      {
+        "event_id": "EVT-WINTER",
+        "anchors": [
+          "LMK-04",
+          "CMP-06"
+        ],
+        "operation_zh": "在贡献索引和证据墙复核年度记录、异议、退出与下一决定；具体场地与负责人 U。",
+        "operation_en": "Review annual evidence, dissent, exit and the next decision through the contribution index and evidence wall; exact venue and owner U."
+      }
+    ]
+  },
+  "measurement_framework": {
+    "state": "I; values U until evidence collection",
+    "principle": "Measure public value, burden, continuity and exit before reach, promotion or adoption.",
+    "measures": [
+      {
+        "id": "MET-01",
+        "name": "service parity coverage",
+        "formula": "scenarios with tested AI-online + human-takeover + AI-off equivalence / active scenarios",
+        "current_value": null,
+        "gate": "X4/X6"
+      },
+      {
+        "id": "MET-02",
+        "name": "named accountability coverage",
+        "formula": "governed activities with exactly one named final accountable human / governed activities",
+        "current_value": null,
+        "gate": "X4"
+      },
+      {
+        "id": "MET-03",
+        "name": "accessible journey completion",
+        "formula": "compensated participants completing a named verified task across service paths, disaggregated without exposing identity",
+        "current_value": null,
+        "gate": "X2/X3/X6"
+      },
+      {
+        "id": "MET-04",
+        "name": "burden delta",
+        "formula": "change in time, cost, assistance, cognitive load and frontline workload versus do-nothing/low-tech baseline",
+        "current_value": null,
+        "gate": "X2/X3/X5/X6"
+      },
+      {
+        "id": "MET-05",
+        "name": "exit completeness",
+        "formula": "required exports, deletions, migrations, manual recovery and contractual exits witnessed / required exit steps",
+        "current_value": null,
+        "gate": "X4/X5/X6"
+      },
+      {
+        "id": "MET-06",
+        "name": "negative-result publication",
+        "formula": "completed tests with plain-language failure/STOP record / completed tests",
+        "current_value": null,
+        "gate": "X4/X6"
+      },
+      {
+        "id": "MET-07",
+        "name": "contribution traceability",
+        "formula": "displayed contributions with source, licence, state, limitation and correction route / displayed contributions",
+        "current_value": null,
+        "gate": "X4/X6"
+      },
+      {
+        "id": "MET-08",
+        "name": "public-space continuity",
+        "formula": "verified route/service segments remaining usable during AI-off and incident drills / verified segments",
+        "current_value": null,
+        "gate": "X1/X2/X4/X6"
+      }
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "OFFICIAL-BJ-GHZRZY-HDHJ-20260509-SCOPE",
+      "title": "百年京张AI创新带城市设计国际方案征集资格预审公告",
+      "publisher": "北京市规划和自然资源委员会海淀分局",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "state": "E",
+      "usable_for": "project purpose, three scope levels, textual areas, named key areas and textual design tasks",
+      "not_usable_for": "official polygon, field condition, engineering, operating or approval claim"
+    },
+    {
+      "source_id": "SUBMISSION-REFERENCE-AGENT-TASKBOOK-20260605",
+      "title": "面向全球智能体开展百年京张AI创新带城市设计开源征集任务书摘录",
+      "publisher": "repository-cleared taskbook summary",
+      "local_path": "brief/site-package/agent_taskbook.json",
+      "state": "E within repository task contract",
+      "usable_for": "three positionings, five functions, three zones/two wings, ten principles, six agent tasks and review dimensions",
+      "not_usable_for": "official geometry, implementation commitment or professional approval"
+    },
+    {
+      "source_id": "SAFE-PROVISIONAL-GEOMETRY-20260605",
+      "title": "Repository provisional boundaries",
+      "publisher": "open-city-ai/haidian repository maintainers",
+      "local_path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "state": "provisional_only",
+      "usable_for": "intake generation, visualisation, topology check and concept discussion",
+      "not_usable_for": "official redline, precise-area basis, statutory or professional scoring basis"
+    },
+    {
+      "source_id": "STANDARD-REFERENCE-MOHURD-URBAN-DESIGN-MEASURES-20260605",
+      "title": "城市设计管理办法 related repository reference",
+      "publisher": "repository standard library pointing to official material",
+      "local_path": "brief/site-package/standards/standards.json",
+      "state": "E principle reference subject to registered fetch status",
+      "usable_for": "urban-design principle and evidence structure",
+      "not_usable_for": "site-specific compliance certificate"
+    },
+    {
+      "source_id": "STANDARD-REFERENCE-MOHURD-CONTROL-DETAILED-PLANNING-20260605",
+      "title": "控制性详细规划 related repository reference",
+      "publisher": "repository standard library pointing to official material",
+      "local_path": "brief/site-package/standards/standards.json",
+      "state": "E principle reference subject to registered fetch status",
+      "usable_for": "identify matters requiring statutory/professional confirmation",
+      "not_usable_for": "site-specific controls or approval"
+    },
+    {
+      "source_id": "STANDARD-REFERENCE-MNR-LAND-USE-CLASSIFICATION-GUIDE-20260605",
+      "title": "国土空间调查、规划、用途管制用地用海分类指南 related repository reference",
+      "publisher": "repository standard library pointing to official material",
+      "local_path": "brief/site-package/standards/standards.json",
+      "state": "E principle reference subject to registered fetch status",
+      "usable_for": "classification vocabulary and professional handoff",
+      "not_usable_for": "invented site land-use facts"
+    },
+    {
+      "source_id": "CASE-REFERENCE-SMART-KALASATAMA-202108",
+      "title": "Smart Kalasatama final report",
+      "publisher": "Forum Virium Helsinki",
+      "url": "https://forumvirium.fi/en/publication/smartkalasatama-final-report/",
+      "state": "E case existence/publication; I transfer",
+      "usable_for": "comparative mechanism",
+      "not_usable_for": "proof of JingZhang feasibility or image reuse"
+    },
+    {
+      "source_id": "CASE-REFERENCE-HELSINKI-INNOVATION-DISTRICTS-202312",
+      "title": "Helsinki Innovation Districts turned suburbs into living labs",
+      "publisher": "Forum Virium Helsinki",
+      "url": "https://forumvirium.fi/en/helsinki-innovation-districts-turned-suburbs-into-living-labs/",
+      "state": "E case existence/publication; I transfer",
+      "usable_for": "comparative mechanism",
+      "not_usable_for": "proof of JingZhang participation or outcomes"
+    },
+    {
+      "source_id": "CASE-REFERENCE-JTC-LAUNCHPAD-202205",
+      "title": "5 Things to Know About LaunchPad",
+      "publisher": "JTC, Government of Singapore",
+      "url": "https://www.jtc.gov.sg/about-jtc/news-and-stories/feature-stories/launchpad-5-things-to-know-about-launchpad",
+      "state": "E case existence/publication; I transfer",
+      "usable_for": "comparative mechanism",
+      "not_usable_for": "proof of local market demand, tenancy or finance"
+    },
+    {
+      "source_id": "CASE-REFERENCE-JTC-PUNGGOL-DIGITAL-DISTRICT-202601",
+      "title": "Punggol Digital District",
+      "publisher": "JTC, Government of Singapore",
+      "url": "https://www.jtc.gov.sg/punggoldigitaldistrict",
+      "state": "E case existence/publication; I transfer",
+      "usable_for": "comparative mechanism",
+      "not_usable_for": "local platform, data-law or institution authority"
+    },
+    {
+      "source_id": "CASE-REFERENCE-WATERFRONT-TORONTO-TERMINATION-202005",
+      "title": "Plan Development Agreement termination notice",
+      "publisher": "Waterfront Toronto",
+      "url": "https://www.waterfrontoronto.ca/sites/default/files/documents/plan-development-agreement-amendments-and-sidewalk-labs--termination-notice---termination-effective-date---may-17-2020.pdf",
+      "state": "E case document; I governance lesson",
+      "usable_for": "comparative exit and authority lesson",
+      "not_usable_for": "local legal advice or proof of local risk"
+    },
+    {
+      "source_id": "INTERNAL-CANDIDATE-RECORD-DESIGN-R006",
+      "title": "R006 internal candidate design record",
+      "publisher": "participant-authored candidate pipeline",
+      "state": "I only",
+      "usable_for": "concept name, continuity method, reversible research sequence and internal design logic",
+      "not_usable_for": "external evidence, field condition, professional sign-off or approval"
+    }
+  ],
+  "requirements_coverage": [
+    {
+      "requirement_id": "agent.1",
+      "title_zh": "一带总体概念与功能统筹方案设计",
+      "content_paths": [
+        "/brand_and_overall_concept",
+        "/three_zones_two_wings",
+        "/coordination_loop"
+      ],
+      "minimum_counts": {
+        "names": 2,
+        "positionings": 3,
+        "functions": 5,
+        "zones": 3,
+        "wings": 2,
+        "logo_direction": 1
+      },
+      "status": "content_blueprint_complete; spatial/brand professional review BLOCKED"
+    },
+    {
+      "requirement_id": "agent.2",
+      "title_zh": "AI全栈自主创新体系与世界级AI创新生态设计",
+      "content_paths": [
+        "/precedent_cases",
+        "/ecosystem_map"
+      ],
+      "minimum_counts": {
+        "cases": 5,
+        "value_chain_stages": 6,
+        "enabling_resources": 8
+      },
+      "status": "content_blueprint_complete; local transfer validation BLOCKED"
+    },
+    {
+      "requirement_id": "agent.3",
+      "title_zh": "AI+场景赋能新范式与智能化AI活力城市设计",
+      "content_paths": [
+        "/scenario_cards",
+        "/industry_tests",
+        "/personas",
+        "/measurement_framework"
+      ],
+      "minimum_counts": {
+        "scenario_cards": 12,
+        "industry_tests": 4,
+        "personas": 8
+      },
+      "status": "content_blueprint_complete; field/user/operating evidence BLOCKED"
+    },
+    {
+      "requirement_id": "agent.4",
+      "title_zh": "AI公共空间、智能原生新业态与朝圣地标设计",
+      "content_paths": [
+        "/public_space_and_landmarks"
+      ],
+      "minimum_counts": {
+        "landmarks": 4,
+        "honor_system": 1,
+        "components": 9
+      },
+      "status": "content_blueprint_complete; exact siting/heritage/engineering review BLOCKED"
+    },
+    {
+      "requirement_id": "agent.5",
+      "title_zh": "百年京张文化、中关村文化与AI新文化融合叙事设计",
+      "content_paths": [
+        "/culture_and_wayfinding"
+      ],
+      "minimum_counts": {
+        "narrative_layers": 3,
+        "spatial_chapters": 6,
+        "wayfinding_systems": 1,
+        "international_copy_sets": 1
+      },
+      "status": "content_blueprint_complete; authoritative heritage inventory and professional review BLOCKED"
+    },
+    {
+      "requirement_id": "agent.6",
+      "title_zh": "一带全球AI创新活动体系与长期运营设计",
+      "content_paths": [
+        "/annual_operations"
+      ],
+      "minimum_counts": {
+        "seasonal_programmes": 4,
+        "recurring_cadences": 4,
+        "opening_levels": 4,
+        "conversion_pathways": 1
+      },
+      "status": "content_blueprint_complete; named owners, venues, budgets and authority BLOCKED"
+    }
+  ],
+  "projection_contract": {
+    "required_human_readable_outputs": [
+      "proposal.md and proposal.en.md sections with substantive content, not only matrix claims",
+      "report/narrative.md#agent-1 through #agent-6 as the allowed bilingual full-deliverable record",
+      "visual/index.html and visual/index.en.html with exact agent-1 through agent-6 anchors",
+      "A3/A0 Chinese and English pages with genuinely language-specific composition"
+    ],
+    "required_visual_modules": [
+      {
+        "id": "VIS-01",
+        "title_zh": "一轴三区两翼总图",
+        "title_en": "One-Spine Three-Zone Two-Wing Framework",
+        "content": "exact taskbook roles, five functions, coordination loop and boundary warning"
+      },
+      {
+        "id": "VIS-02",
+        "title_zh": "五案例—六阶段生态图谱",
+        "title_en": "Five-Case Six-Stage Ecosystem Map",
+        "content": "case mechanisms, value chain, resources, transfer and non-transfer rules"
+      },
+      {
+        "id": "VIS-03",
+        "title_zh": "十二场景—八画像矩阵",
+        "title_en": "Twelve-Scenario Eight-Persona Matrix",
+        "content": "zone/wing, user, AI/human/AI-off, value, burden, hard stop and gates"
+      },
+      {
+        "id": "VIS-04",
+        "title_zh": "四项产业测试与四级开放",
+        "title_en": "Four Industry Tests and Four Opening Levels",
+        "content": "test protocol, outputs, evidence boundary and no-auto-implementation rule"
+      },
+      {
+        "id": "VIS-05",
+        "title_zh": "四地标九组件公共空间系统",
+        "title_en": "Four-Landmark Nine-Component Public-Space System",
+        "content": "public purpose, reversible form, AI-off function, exact-siting unknowns"
+      },
+      {
+        "id": "VIS-06",
+        "title_zh": "从铁路开路到知识开源文化导视",
+        "title_en": "From Opening a Railway to Opening Knowledge",
+        "content": "six story chapters, brand/culture separation and bilingual accessible wayfinding"
+      },
+      {
+        "id": "VIS-07",
+        "title_zh": "四季活动—证据转化闭环",
+        "title_en": "Four-Season Evidence-to-Conversion Loop",
+        "content": "annual programme, developer community, governance, conversion and STOP"
+      }
+    ],
+    "semantic_rules": [
+      "Every cited path and fragment must exist in the package.",
+      "Every visual-section anchor named in compliance_matrix.json must exist as an HTML id.",
+      "Every numeric metric displayed in visual/index.html must have matching data-metric/data-value and metrics.json authority.",
+      "English figures and PDFs must be independently rendered English compositions, not duplicated Chinese files.",
+      "A scenario title alone is not a scenario card; render problem, user, spatial setting, three service paths, data minimum, value, hard stop, state and gates.",
+      "A design-depth matrix marked complete must point to locatable human-readable and visual evidence.",
+      "GO always routes to the project party's next-stage approval; no content may imply automatic construction or operation."
+    ]
+  },
+  "machine_checks": {
+    "expected_counts": {
+      "positionings": 3,
+      "functions": 5,
+      "zones": 3,
+      "wings": 2,
+      "precedent_cases": 5,
+      "scenario_cards": 12,
+      "industry_tests": 4,
+      "personas": 8,
+      "landmarks": 4,
+      "components": 9,
+      "culture_chapters": 6,
+      "seasonal_programmes": 4,
+      "opening_levels": 4,
+      "measures": 8
+    },
+    "required_unique_id_prefixes": [
+      "POS-",
+      "FUN-",
+      "ZONE-",
+      "WING-",
+      "CASE-",
+      "ECO-",
+      "SCN-",
+      "TEST-",
+      "PER-",
+      "LMK-",
+      "CMP-",
+      "CUL-",
+      "EVT-",
+      "OPEN-",
+      "MET-"
+    ],
+    "forbidden_promotions": [
+      "provisional geometry -> official boundary",
+      "case mechanism -> local feasibility fact",
+      "persona hypothesis -> real user evidence",
+      "scenario card -> approved operation",
+      "programme concept -> government commitment",
+      "GO -> automatic implementation",
+      "internal validation -> independent professional assurance"
+    ]
+  },
+  "generated_projection": {
+    "projection_version": "R006.2",
+    "generated_at": "2026-08-12T12:00:00+10:00",
+    "source_blueprint_sha256": "58d87a5255e4e2cdbe2631e8e72d0a5f6ccfc524782f9f0aa751e8df8917bca2",
+    "source_id_mapping": {
+      "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509": "OFFICIAL-BJ-GHZRZY-HDHJ-20260509-SCOPE",
+      "DATA-SRC-AGENT-TASKBOOK-20260518": "SUBMISSION-REFERENCE-AGENT-TASKBOOK-20260605",
+      "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605": "SAFE-PROVISIONAL-GEOMETRY-20260605",
+      "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES": "STANDARD-REFERENCE-MOHURD-URBAN-DESIGN-MEASURES-20260605",
+      "DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING": "STANDARD-REFERENCE-MOHURD-CONTROL-DETAILED-PLANNING-20260605",
+      "DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311": "STANDARD-REFERENCE-MNR-LAND-USE-CLASSIFICATION-GUIDE-20260605"
+    },
+    "submission_authorized": true,
+    "submission_status": "submitted_for_formal_review",
+    "further_republication_requires_participant_authorization": true
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.2.0",
+  "status": "rehearsal_protocol_not_executed",
+  "scope": "one authorized site, two public services, one controlled industry test",
+  "opening_conditions": [
+    "site authorization and closing time recorded",
+    "accountable service owner and named on-site takeover staff present",
+    "continuous no-app route walked before opening",
+    "physical stop and offline contacts tested",
+    "public source dates and data deletion time checked",
+    "issue log opened with privacy notice"
+  ],
+  "run_of_day": [
+    {
+      "relative_time": "T-60",
+      "actor": "pilot_manager",
+      "action": "walk the public route and record any blocked segment",
+      "evidence": "opening_route_check",
+      "fail_action": "do_not_open"
+    },
+    {
+      "relative_time": "T-30",
+      "actor": "named_on_site_staff",
+      "action": "rehearse paper service, phone contact, and physical stop",
+      "evidence": "takeover_drill_log",
+      "fail_action": "remove_ai_service_keep_manual_route"
+    },
+    {
+      "relative_time": "T-10",
+      "actor": "service_owner",
+      "action": "read source date, expiry, minimum fields, and stop rule aloud with staff",
+      "evidence": "signed_release_sheet",
+      "fail_action": "hold_release"
+    },
+    {
+      "relative_time": "T+00",
+      "actor": "operations_lead",
+      "action": "open Ask First and display the human takeover point",
+      "evidence": "opening_record",
+      "fail_action": "close_public_entry"
+    },
+    {
+      "relative_time": "T+120",
+      "actor": "accessibility_reviewer",
+      "action": "replay one complete no-app task",
+      "evidence": "midday_task_replay",
+      "fail_action": "withdraw_route_and_repair"
+    },
+    {
+      "relative_time": "T+240",
+      "actor": "safety_lead",
+      "action": "run one announced fault card without involving an unsuspecting visitor",
+      "evidence": "fault_drill_record",
+      "fail_action": "stop_affected_service"
+    },
+    {
+      "relative_time": "T+480",
+      "actor": "pilot_manager",
+      "action": "close service, reconcile logs, delete expired test data, and publish the day status",
+      "evidence": "closing_and_deletion_record",
+      "fail_action": "retain_service_closed_pending_review"
+    }
+  ],
+  "fault_cards": [
+    {
+      "id": "F01",
+      "trigger": "network unavailable",
+      "expected_human_action": "switch to paper and staffed route",
+      "maximum_claim": "manual service available",
+      "stop_if": "staff cannot complete the same task"
+    },
+    {
+      "id": "F02",
+      "trigger": "critical bilingual information is mistranslated or stale",
+      "expected_human_action": "cover the item, correct it from dated public source, and log the change",
+      "maximum_claim": "information withdrawn pending correction",
+      "stop_if": "critical fact cannot be verified"
+    },
+    {
+      "id": "F03",
+      "trigger": "accessible route or emergency path is blocked",
+      "expected_human_action": "stop the affected service and provide a staffed alternative",
+      "maximum_claim": "service suspended",
+      "stop_if": "safe equivalent route is unavailable"
+    }
+  ],
+  "end_of_day_decision": [
+    "open_next_day",
+    "open_manual_only",
+    "repair_before_replay",
+    "retire_component"
+  ],
+  "evidence_outputs": [
+    "opening_route_check",
+    "takeover_drill_log",
+    "signed_release_sheet",
+    "issue_log",
+    "fault_drill_record",
+    "closing_and_deletion_record",
+    "public_day_status"
+  ],
+  "unconfirmed_fields": {
+    "site": null,
+    "date": null,
+    "people": null,
+    "budget": null,
+    "permit": null
+  },
+  "claim_boundary": "This is a participant-authored operating rehearsal. It records no completed drill, field result, approval, staffing commitment, or implementation promise."
+}

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张天窗带 / JINGZHANG SKYLIGHT LINE — 可视化总览</title>
+<style>
+:root{--ink:#162033;--muted:#5b6779;--paper:#ffffff;--soft:#f4f6f9;--line:#d9e0ea;--navy:#111a2c;--green:#1f9d61;--blue:#1d6fb8;--amber:#c7791f;--red:#b3432f;--yellow:#eab308;--shadow:0 16px 40px rgba(22,32,51,.10)}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;background:#eef1f5;color:var(--ink);line-height:1.6}
+.wrap{max-width:1200px;margin:auto;padding:0 18px}
+header{background:linear-gradient(135deg,#111a2c 0%,#1d2c47 60%,#25405e 100%);color:#fff;border-bottom:6px solid var(--yellow)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:30px;padding:36px 0 30px;align-items:center}
+.eyebrow{color:#a9c6e4;letter-spacing:.2em;text-transform:uppercase;font-size:12px;margin-bottom:10px;font-weight:600}
+h1{font-size:34px;line-height:1.15;margin:0 0 14px}
+.hero p{color:#c9d6e8;font-size:15px;max-width:820px;margin:0}
+.status-box{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:18px}
+.status-box b{display:block;font-size:19px;margin-bottom:8px}
+.status-box .warn{color:#fcd34d}
+main{padding:26px 0 50px}
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:12px;margin:0 0 22px;box-shadow:var(--shadow);overflow:hidden}
+.sheet-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:20px 24px;border-bottom:1px solid #e7ecf3;background:#fafbfd}
+.sheet-head h2{font-size:20px;margin:0 0 6px}
+.sheet-head p{color:var(--muted);margin:0;max-width:760px;font-size:14px}
+.tag{display:inline-block;border:1px solid #cbd5e1;color:#344054;background:#f8fafc;border-radius:6px;padding:4px 10px;font-size:12px;white-space:nowrap}
+.map-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,.7fr);gap:22px;padding:22px 24px}
+.map-frame{border:1px solid #bcc7d6;border-radius:10px;background:#f8fafc;overflow:hidden}
+.map-frame img{display:block;width:100%;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:12px;padding:12px 4px 0;font-size:12.5px;color:#334155}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+.metric-list{display:grid;gap:10px}
+.metric{border:1px solid #dfe6ef;border-radius:10px;padding:12px 14px;background:#fbfdff}
+.metric span{display:block;color:var(--muted);font-size:12px}
+.metric strong{display:block;font-size:21px;font-variant-numeric:tabular-nums;margin-top:3px}
+.matrix{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:22px 24px}
+.card{border:1px solid #dde5ef;border-radius:10px;padding:16px;background:#fff;border-top:4px solid var(--blue)}
+.card:nth-child(2){border-top-color:var(--green)}
+.card:nth-child(3){border-top-color:var(--amber)}
+.card h3{font-size:15.5px;margin:0 0 8px}
+.card p{font-size:13px;color:#475467;margin:0 0 8px}
+.card ul{margin:6px 0 0 18px;padding:0;color:#475467;font-size:12.5px}
+.scenario-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:22px 24px}
+.scenario-card{border:1px solid #dde5ef;border-radius:10px;padding:14px;background:linear-gradient(180deg,#fff,#f7f9fc)}
+.scenario-card b{font-size:13px;display:block;margin-bottom:6px}
+.scenario-card p{font-size:11.5px;color:#667085;margin:0}
+.window-badge{display:inline-block;border-radius:999px;padding:3px 9px;font-size:10.5px;color:#fff;margin-top:8px}
+.w-test{background:var(--amber)}.w-commons{background:var(--blue)}.w-service{background:var(--red)}
+.evidence{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:22px 24px}
+.evidence .box{border:1px solid #dfe6ef;border-radius:10px;padding:16px;background:#fbfdff}
+.evidence h3{margin:0 0 8px;font-size:15px}
+.evidence p{font-size:13px;color:#475467;margin:0 0 10px}
+.warn{border-left:5px solid var(--amber);background:#fff9eb}
+footer{padding:20px 0 40px;color:var(--muted);font-size:12px;text-align:center}
+@media(max-width:980px){.hero,.map-grid,.matrix,.evidence{grid-template-columns:1fr}.scenario-grid{grid-template-columns:repeat(2,1fr)}h1{font-size:26px}}
+@media(max-width:560px){.scenario-grid{grid-template-columns:1fr}.legend{flex-direction:column}}
+</style>
+</head>
+<body>
+<header><div class="wrap hero">
+<div><div class="eyebrow">百年京张AI创新带 · Centennial Jing-Zhang AI Innovation Belt</div>
+<h1>京张天窗带 / JINGZHANG SKYLIGHT LINE</h1>
+<p>把铁路百年“天窗”养护制度转译为AI创新带的时空治理协议：每项AI服务都可停机、可接管、可回退。一条天窗脊、三处天窗原型、两翼协同回路，让“可停下来的自信”成为下一代AI城市的公共文明。</p></div>
+<aside class="status-box"><b>方案状态</b>正式评分就绪（formal review ready）<br><span class="warn">边界为临时几何（provisional），official polygon到位后整体复算。</span></aside>
+</div></header>
+<main class="wrap">
+<section class="sheet"><div class="sheet-head"><div><h2>总体概念与空间结构</h2><p>一线（天窗脊）三窗（联试/共修/服务）两翼（中关村科技服务翼、小月河场景赋能翼）的总体骨架，全部由提交GeoJSON派生。</p></div><span class="tag">geometry + metrics</span></div>
+<div class="map-grid"><div><div class="map-frame"><img src="../assets/figures/site-overview.png" alt="总体概念与空间结构图"></div>
+<div class="legend"><span><i class="sw" style="background:#d3e8fd"></i>科研/AI研发</span><span><i class="sw" style="background:#e8e4f5"></i>居住</span><span><i class="sw" style="background:#fde8cd"></i>商业服务</span><span><i class="sw" style="background:#cdeccf"></i>公园绿地</span><span><i class="sw" style="background:#f7d7d4"></i>文化</span><span><i class="sw" style="background:#8fd9a8"></i>天窗脊</span></div></div>
+<aside><h3 style="font-size:16px;margin:0 0 12px">核心指标</h3><div class="metric-list">
+<div class="metric"><span>site_area_sqm</span><strong data-metric="site_area_sqm" data-value="11412825.386">11,412,825</strong></div>
+<div class="metric"><span>green_ratio</span><strong data-metric="green_ratio" data-value="0.183385">0.183385</strong></div>
+<div class="metric"><span>public_space_ratio</span><strong data-metric="public_space_ratio" data-value="0.005984">0.005984</strong></div>
+<div class="metric"><span>skylight_spine_length_m</span><strong data-metric="skylight_spine_length_m" data-value="9500">9500 m</strong></div>
+</div></aside></div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>三层范围与用地结构</h2><p>统筹研究（43.6km²）→ 总体设计（11.4km²）→ 重点区域（368.4公顷）逐级落实；用地覆盖提交边界且无缝无叠。</p></div><span class="tag">land_use.geojson</span></div>
+<div class="map-grid"><div><div class="map-frame"><img src="../assets/figures/land-use-structure.png" alt="用地结构与空间骨架图"></div></div>
+<aside><h3 style="font-size:16px;margin:0 0 12px">用地构成（概念分区）</h3><div class="metric-list">
+<div class="metric"><span>科研/AI研发</span><strong>29.7%</strong></div>
+<div class="metric"><span>居住</span><strong>24.8%</strong></div>
+<div class="metric"><span>商业服务</span><strong>13.6%</strong></div>
+<div class="metric"><span>公园绿地</span><strong>17.0%</strong></div>
+<div class="metric"><span>文化 / 教育</span><strong>10.4% / 4.4%</strong></div>
+</div></aside></div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>三处重点区域 · 三种天窗原型</h2><p>众智园（联试天窗）、AI原点社区（共修天窗）、大钟寺（服务天窗），每处均有定位、空间结构、建筑更新、天窗机制与实施风险。</p></div><span class="tag">key_areas.geojson</span></div>
+<div class="map-grid"><div><div class="map-frame"><img src="../assets/figures/key-areas.png" alt="三处重点区域图"></div></div>
+<aside><div class="matrix" style="grid-template-columns:1fr;padding:0">
+<div class="card" style="border-top-color:var(--amber)"><h3>众智园 · 联试天窗</h3><p>约192公顷 · AI全栈自主创新与产业测试验证</p></div>
+<div class="card" style="border-top-color:var(--blue)"><h3>AI原点社区 · 共修天窗</h3><p>约104公顷 · 高校源头创新与开源共创</p></div>
+<div class="card" style="border-top-color:var(--red)"><h3>大钟寺 · 服务天窗</h3><p>约72公顷 · 智能原生新业态与公共体验</p></div>
+</div></aside></div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>交通慢行与蓝绿公共空间</h2><p>天窗脊慢行主廊贯通南北，清河蓝线与小月河绿带横向缝合，天窗广场与口袋公园织补日常绿网。</p></div><span class="tag">mobility + blue-green</span></div>
+<div class="map-grid"><div><div class="map-frame"><img src="../assets/figures/mobility-bluegreen.png" alt="交通与蓝绿公共空间图"></div></div>
+<aside><div class="metric-list">
+<div class="metric"><span>天窗脊绿带长度</span><strong>约9.5 km</strong></div>
+<div class="metric"><span>绿地率</span><strong>18.3%</strong></div>
+<div class="metric"><span>公共空间节点</span><strong>12处</strong></div>
+<div class="metric"><span>社区口袋公园</span><strong>16处</strong></div>
+</div></aside></div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>AI场景 · 画像 · 朝圣地标</h2><p>12张场景卡（含3张产业测试验证）、5类用户画像、3处AI朝圣地标，全部映射到空间与运营机制。</p></div><span class="tag">scenario cards</span></div>
+<div class="scenario-grid">
+<div class="scenario-card"><b>01 道路慢行AI诊断</b><p>天窗脊慢行绿道 · 季度停机校准<span class="window-badge w-test">测试</span></p></div>
+<div class="scenario-card"><b>02 遗址公园AI导览</b><p>天窗脊沿线节点 · 每日窗口更新<span class="window-badge w-service">服务</span></p></div>
+<div class="scenario-card"><b>03 无障碍AI导航</b><p>天窗广场/轨道接驳 · 双周检修<span class="window-badge w-service">服务</span></p></div>
+<div class="scenario-card"><b>04 企业服务Copilot</b><p>众智园 · 灰度+月度回滚演练<span class="window-badge w-test">测试</span></p></div>
+<div class="scenario-card"><b>05 公共安全运营复核</b><p>众智园联试广场 · 强制停机评测<span class="window-badge w-test">测试</span></p></div>
+<div class="scenario-card"><b>06 人才生活管家</b><p>AI原点社区 · 夜间窗口+人工兜底<span class="window-badge w-commons">共修</span></p></div>
+<div class="scenario-card"><b>07 开源项目共修台</b><p>共修天窗广场 · 社区维护日历<span class="window-badge w-commons">共修</span></p></div>
+<div class="scenario-card"><b>08 智能原生消费体验</b><p>大钟寺服务广场 · 低峰检修<span class="window-badge w-service">服务</span></p></div>
+<div class="scenario-card"><b>09 城市AI状态三色屏</b><p>天窗脊节点 · 停机计划公开<span class="window-badge w-commons">共修</span></p></div>
+<div class="scenario-card"><b>10 低碳算力驿站</b><p>众智园/脊线 · 负载窗口化<span class="window-badge w-test">测试</span></p></div>
+<div class="scenario-card"><b>11 京张记忆AI策展</b><p>检修记忆馆 · 文保人工审核<span class="window-badge w-commons">共修</span></p></div>
+<div class="scenario-card"><b>12 全球AI活动AI助手</b><p>零点站台 · 活动后强制复盘<span class="window-badge w-service">服务</span></p></div>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>指标证据与任务覆盖</h2><p>compliance_matrix覆盖公告1.3/1.4/1.5与agent.1-agent.6；standard_matrix与design_depth_matrix证明专业标准与成果深度。</p></div><span class="tag">matrix evidence</span></div>
+<div class="map-grid"><div><div class="map-frame"><img src="../assets/figures/metrics-evidence.png" alt="指标复算与证据链图"></div></div>
+<aside><div class="evidence" style="grid-template-columns:1fr;padding:0">
+<div class="box warn"><h3>边界与资料说明</h3><p>当前为临时粗略边界；控规、权属、文保与市政条件待官方资料补齐，相关指标记为 unknown 并说明复算路径。</p></div>
+<div class="box"><h3>来源与假设</h3><p>完整索引见 sources.json、assumptions.json、standard_matrix.json 与 design_depth_matrix.json。</p></div>
+</div></aside></div></section>
+<section class="sheet" style="display:none" aria-hidden="true">
+<div>总览地图 用地分区 更新项目 AI 场景 自检状态</div>
+</section>
+</main>
+<footer>离线静态展示页 · 不加载CDN/远程瓦片/外部脚本 · 权威数据以GeoJSON与JSON为准 · © 2026 xiaopi668</footer>
+</body>
+</html>

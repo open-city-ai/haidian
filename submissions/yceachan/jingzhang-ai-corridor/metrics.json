@@ -1,0 +1,277 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.39,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+   "confidence": "high",
+   "assumptions": [
+    "面积基于组织方临时粗略边界复算，正式边界发布后重算"
+   ]
+  },
+  "research_land_area_sqm": {
+   "status": "known",
+   "value": 3403246.67,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(features where land_use_code=0802))",
+   "confidence": "medium",
+   "assumptions": [
+    "科研用地含AI研发、智算、孵化与测试验证等产业功能单元"
+   ]
+  },
+  "education_land_area_sqm": {
+   "status": "known",
+   "value": 826677.77,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(features where land_use_code=0804))",
+   "confidence": "medium",
+   "assumptions": [
+    "教育用地为北邮/北航协同带概念单元"
+   ]
+  },
+  "commercial_land_area_sqm": {
+   "status": "known",
+   "value": 2230229.97,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(features where land_use_code=05))",
+   "confidence": "medium",
+   "assumptions": [
+    "商业服务业用地含轨道商务、商圈、创新商业与生活服务"
+   ]
+  },
+  "residential_land_area_sqm": {
+   "status": "known",
+   "value": 3034147.33,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(features where land_use_code=0701))",
+   "confidence": "medium",
+   "assumptions": [
+    "居住用地含人才公寓与更新居住单元"
+   ]
+  },
+  "green_land_area_sqm": {
+   "status": "known",
+   "value": 1918552.25,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson",
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(features where land_use_code in (1401,1402)))",
+   "confidence": "medium",
+   "assumptions": [
+    "含遗址公园绿带与清河生态防护绿带"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.1681,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_land_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "绿地率为临时边界复算值；正式控规绿地率以审定条件为准"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.0105,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "公共空间为5个概念广场节点，正式公共空间体系以详细设计为准"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 2902996.49,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints))",
+   "confidence": "medium",
+   "assumptions": [
+    "建筑基底为概念示意footprint（单元内网格生成），非现状或审定建筑"
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "known",
+   "value": 1.585,
+   "unit": "index",
+   "source_files": [
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(parcel_area * assumed_floors * 0.35 coverage) / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "层数假设：商业4层/居住6层/科研6层/教育5层（概念取值）",
+    "建筑覆盖率按地块面积35%估算",
+    "正式容积率须待控规条件确认后重算"
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_detailed_design_areas)",
+   "confidence": "high",
+   "assumptions": [
+    "众智园AI自主创新加速区、北京AI原点社区、大钟寺AI产业集聚区"
+   ]
+  },
+  "park_spine_length_m": {
+   "status": "known",
+   "value": 8383.1,
+   "unit": "m",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum of north-south centerline distances between park cells (Geod)",
+   "confidence": "medium",
+   "assumptions": [
+    "公园主轴概念宽度约136m（0.0016°经度），长度按绿带单元质心纵向距离复算"
+   ]
+  },
+  "road_length_m": {
+   "status": "known",
+   "value": 63254.3,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(geodetic length of road centerlines)",
+   "confidence": "medium",
+   "assumptions": [
+    "道路为概念网络：次干路2纵8横+支路+绿道步行；现状快速路在constraints层不重复计入"
+   ]
+  },
+  "greenway_length_m": {
+   "status": "known",
+   "value": 17876.5,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(geodetic length of greenway+pedestrian centerlines)",
+   "confidence": "medium",
+   "assumptions": [
+    "含遗址公园步行主轴与小月河绿道"
+   ]
+  },
+  "slow_mobility_connectivity_index": {
+   "status": "known",
+   "value": 5.0,
+   "unit": "index",
+   "source_files": [
+    "geometry/roads.geojson",
+    "geometry/green_space.geojson"
+   ],
+   "formula": "greenway_length_m / sqrt(site_area_sqm)",
+   "confidence": "low",
+   "assumptions": [
+    "连通度指数为概念指标：慢行网络长度相对场地规模的密度；正式连通度评价需网络分析工具"
+   ]
+  },
+  "scenario_node_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(scenario cards SC-01..SC-12 in design spec)",
+   "confidence": "high",
+   "assumptions": [
+    "含3张产业测试验证场景卡"
+   ]
+  },
+  "industry_test_scenario_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(scenarios with type=产业测试验证场景)",
+   "confidence": "high",
+   "assumptions": [
+    "自动驾驶接驳环线、机器人配送走廊、低空巡检配送航线"
+   ]
+  },
+  "pilgrimage_landmark_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(landmarks LM-1..LM-6 in design spec)",
+   "confidence": "high",
+   "assumptions": [
+    "含原点人字装置、智脉之钟、开源展示廊与荣誉墙、百车库、开发者散步道、万网之枢"
+   ]
+  },
+  "persona_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(personas P1..P6 in design spec)",
+   "confidence": "high",
+   "assumptions": [
+    "青年工程师、高校师生、社区居民、全球访客、企业决策者、治理者与公众"
+   ]
+  },
+  "renewal_project_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "geometry/phasing.geojson"
+   ],
+   "formula": "count(projects UP-01..UP-12 in proposal renewal list)",
+   "confidence": "high",
+   "assumptions": [
+    "概念更新项目清单，具体项目与投资以正式规划为准"
+   ]
+  }
+ }
+}

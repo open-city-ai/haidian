@@ -1,0 +1,46 @@
+{
+  "schema_version": "0.1.0",
+  "version": 1,
+  "package_id": "ai-native-corridor",
+  "dimensions": [
+    {
+      "id": "spatial_dispute",
+      "label": "空间争议 — 临时边界与权属缺失",
+      "score": 4,
+      "note": "所有空间指标和几何图层基于provisional boundary计算，官方多边形未取得。地块权属边界、产权人清单、用地性质批文未提供。替换官方边界后全部指标需重新计算，用地分区拓扑可能需调整。",
+      "mitigation": "已在assumptions.json、self_check.json、visual页面和正文中多处声明临时边界状态；面积计算附带推导方法和usage_note；建议评审使用相对比例而非绝对值进行比较。",
+      "human_review": "建议由海淀分局/组织方提供官方边界多边形和权属数据后重新验算全部空间指标"
+    },
+    {
+      "id": "policy_uncertainty",
+      "label": "政策不确定性 — 管控数据缺失与产业变化",
+      "score": 4,
+      "note": "FAR、建筑高度、密度、道路红线、市政管线、文保范围、工程地质条件等官方管控数据缺失。全球AI产业生态和人才竞争格局可能在项目实施周期内发生重大变化，当前案例对标可能在3-5年后不再适用。",
+      "mitigation": "已在assumptions.json中声明A-CONTROLS-001；missing_data_checklist.csv逐项列出；设计深度矩阵标注data_gap；案例对标标注为provisional参考；建议建立年度案例更新和方案迭代机制。",
+      "human_review": "建议由北京市规自委/海淀分局补充正式控规条件后修订方案"
+    },
+    {
+      "id": "implementation_complexity",
+      "label": "实施复杂度 — 多主体协调与分期不确定性",
+      "score": 4,
+      "note": "三处重点区域涉及多个实施主体（中关村科学城管委会、海淀区政府、清华/北大/中科院、海淀商务局、京投公司），协调复杂度高。一期范围458.7ha涉及多个产权单位和现状建筑，实际可启动面积和时序取决于权属谈判和拆迁进度。",
+      "mitigation": "各重点区域已标注建议实施主体；建议设立区级协调专班；分期实施降低同步启动风险；phasing.geojson标注为design_proposal；建议先启动权属清晰、现状简单的公共空间和绿地段落。",
+      "human_review": "建议由海淀区政府组织各实施主体召开协调会，明确各方权责和时序"
+    },
+    {
+      "id": "technology_maturity",
+      "label": "技术成熟度 — AI场景可行性与方案评审",
+      "score": 3,
+      "note": "10个AI场景卡和3个测试场景为概念设计，技术可行性和数据可用性未经验证。方案由AI Agent生成并自检，未经人工专业评审确认，可能存在AI幻觉或逻辑不一致。",
+      "mitigation": "场景标注为conceptual_design；建议在Phase 1选取2-3个低风险场景试点；每个场景需完成隐私影响评估和安全审查；所有结构数据通过deterministic validation；self_check.json全部pass。",
+      "human_review": "建议人工复核关键设计结论，Phase 1试点前完成技术可行性评估"
+    }
+  ],
+  "risk_summary": {
+    "total_dimensions": 4,
+    "total_risk_items": 7,
+    "by_severity": {"high": 2, "medium": 3, "low": 2},
+    "by_status": {"open": 7, "mitigated": 0, "closed": 0},
+    "top_risk": "空间争议: 所有指标基于临时边界，替换官方多边形后需重算"
+  }
+}

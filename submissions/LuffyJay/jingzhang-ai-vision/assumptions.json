@@ -1,0 +1,38 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "assumptions": [
+    {
+      "assumption_id": "A-BOUNDARIES-001",
+      "name_zh": "临时边界假设",
+      "description_zh": "本方案所有空间数据基于仓库提供的临时粗略边界（provisional_rough精度）生成。官方精确边界发布后，所有面积、土地利用比例、建筑规模和分期范围均需重新校核。临时边界不得作为官方红线、审批依据或精确面积计算依据。",
+      "impact_zh": "影响所有面积相关指标（site_area_sqm, key_area_total_sqm, green_ratio, public_space_ratio, building_footprint_area_sqm, road_density_target）和空间分析结果。",
+      "remedy_zh": "获取官方精确边界文件后，重新运行空间生成管线，替换临时边界并重算所有面积相关指标。",
+      "type": "data_gap"
+    },
+    {
+      "assumption_id": "A-CONTROLS-001",
+      "name_zh": "控规数据缺失假设",
+      "description_zh": "海淀区现行控制性详细规划数据未纳入本方案分析。方案中关于用地比例、开发强度（容积率、建筑密度、建筑高度）、拆改留比例和道路红线的判断均为概念建议，不构成法定规划或审批依据。",
+      "impact_zh": "影响用地布局的精确性、建筑规模的准确性以及开发控制指标的可实施性。",
+      "remedy_zh": "获取现行控规数据后，对照调整用地比例、开发强度建议和拆改留分类，区分'已知控制条件'和'设计建议'。",
+      "type": "data_gap"
+    },
+    {
+      "assumption_id": "A-METRICS-001",
+      "name_zh": "指标估算假设",
+      "description_zh": "estimated状态的指标（green_ratio, public_space_ratio, building_footprint_area_sqm, road_density_target）基于临时边界生成的设计层计算，结果仅供方向和相对关系参考，非精确测量值。",
+      "impact_zh": "影响指标数值的精确性，但不影响方案的总体设计方向和概念完整性。",
+      "remedy_zh": "获取官方边界和现状数据后，使用精确面积重算。",
+      "type": "methodological"
+    },
+    {
+      "assumption_id": "A-HERITAGE-001",
+      "name_zh": "遗产保护假设",
+      "description_zh": "京张铁路遗产保护范围和保护要求参考公开资料和一般性文物保护法规，未获取正式文物保护紫线或保护规划文件。",
+      "impact_zh": "影响京张遗址公园的设计深度和文化遗产相关空间判断的精确性。",
+      "remedy_zh": "获取正式文物保护规划和紫线数据后，调整公园设计策略和文化设施布局。",
+      "type": "data_gap"
+    }
+  ]
+}

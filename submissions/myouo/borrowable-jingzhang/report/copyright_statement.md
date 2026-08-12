@@ -1,0 +1,3 @@
+# Copyright and reuse statement
+
+Proposal text, original diagrams, machine-readable design layers and layout are contributed by `myouo` under `COMMUNITY-DISPLAY-ONLY` for this open call. Official and third-party source facts retain their original rights and are cited in `sources.json`. No third-party photographs, trademarks, proprietary basemaps or personal data are embedded. Software-generated shapes use only repository-cleared or provisional geometry and original vector/raster composition. Reuse outside the open-call review and community display context requires permission from the contributor and continued source attribution.

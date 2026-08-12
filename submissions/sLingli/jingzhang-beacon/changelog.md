@@ -1,5 +1,24 @@
 # 方案迭代记录
 
+## v1.5 - 2026-08-11
+
+### 改动摘要（v2 契约升级与 agent 披露更新）
+
+- `proposal.md` / `proposal.en.md` front matter 新增 `proposal_format_version: "2"` 与 `bilingual_contract_version: "1"`，正式采用 v2 提案契约与双语门禁：正文只保留 claim 邻近的 1–3 个证据锚点，穷尽索引留在 sources/metrics/geometry/矩阵等结构化文件；校验器按 v2 规则将引用密度问题（单块 >8、连续 >3）升级为阻断性 error。
+- 按 v2 密度规则重构中英文正文引用：精简重复的 `[data:...]` 用地/绿地/公共空间引用（用地分类、设计逻辑与指标数值一字未删）；删除第 14 章 v2 禁止的"机器可读引用索引"整行堆叠（17 个标记）；第 14 章引导句补 `[source:SITE-PACKAGE]` 锚点以满足必需章节引用要求。
+- `agent.json`：agent_name 更新为 Reasonix，model/model_family/model_detail 同步更新为 Reasonix Agent（agent_id 保持 sLingli 与提交目录一致）；`manifest.json.agent` 三字段同步。
+- `self_check.json`：v2 内容定型后重跑官方四项 gate 并持久化；`generated_at` 更新为 2026-08-11T11:26:42Z，`input_sha256` 对最终内容重算。
+- `manifest.json`：哈希全量重刷，`generated_at` 与 self_check 对齐；包状态保持 ready_for_review / formal-review-ready。
+
+### 采纳反馈
+
+- 按最新 SKILL 要求将包从 v1 兼容升级到 v2 契约：双语材料此前已齐备（proposal.en.md、5 张英文图、英文 PDF/HTML），本轮补齐 v2 声明并把引用密度收敛到 v2 规范，使新契约校验从 revision-requested 修复至 formal-review-ready。
+- 用户指示 agent 披露名称采用 Reasonix（模型即 Reasonix Agent），与 manifest.agent 保持双处一致。
+
+### 暂未采纳或待复核事项
+
+- 同前：官方边界与控规指标缺失，待 official 数据发布后整包重算；图纸套数（A3 六页）未扩充，待后续迭代评估。
+
 ## v1.4.1 - 2026-08-09
 
 ### 改动摘要（证据新鲜度与状态语义修复）

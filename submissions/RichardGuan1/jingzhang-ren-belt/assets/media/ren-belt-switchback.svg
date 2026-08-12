@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620" role="img" aria-label="京张人字带折返示意动画：列车沿西文化廊道上行、经折返连接线换轨、沿东创新廊道下行，循环往复">
+  <title>京张人字带 · 折返示意（Switchback animation）</title>
+  <desc>概念示意图，非官方规划线位。双廊道间列车折返往复，三座站台：众智园（发车站）、原点社区（中枢站）、大钟寺（换乘站）。</desc>
+  <style>
+    text { font-family: "Microsoft YaHei","PingFang SC",sans-serif; }
+  </style>
+
+  <!-- background -->
+  <rect width="1000" height="620" fill="#F7F3EA"/>
+  <g stroke="#E9E2D3" stroke-width="1">
+    <line x1="125" y1="0" x2="125" y2="620"/><line x1="250" y1="0" x2="250" y2="620"/>
+    <line x1="375" y1="0" x2="375" y2="620"/><line x1="500" y1="0" x2="500" y2="620"/>
+    <line x1="625" y1="0" x2="625" y2="620"/><line x1="750" y1="0" x2="750" y2="620"/>
+    <line x1="875" y1="0" x2="875" y2="620"/>
+  </g>
+
+  <!-- titles -->
+  <text x="500" y="44" text-anchor="middle" font-size="30" font-weight="bold" fill="#1F1F1F">京张人字带 · REN Belt</text>
+  <text x="500" y="72" text-anchor="middle" font-size="15" fill="#4A4A4A">折返式 AI 创新走廊 · Switchback Corridor for AI Innovation</text>
+
+  <!-- west corridor (culture): bottom-left -> top-left -> top-center -->
+  <path id="west" d="M 120 540 L 240 470 L 360 400 L 470 330" fill="none" stroke="#8C3B2E" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- east corridor (innovation): top-center -> bottom-right -->
+  <path id="east" d="M 530 330 L 640 400 L 760 470 L 880 540" fill="none" stroke="#2E5E8C" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- switchback connectors (top and bottom) -->
+  <path id="topSwitch" d="M 470 330 L 530 330" fill="none" stroke="#B98A2F" stroke-width="6" stroke-dasharray="10 8" stroke-linecap="round"/>
+  <path id="bottomSwitch" d="M 880 540 L 120 540" fill="none" stroke="#B98A2F" stroke-width="6" stroke-dasharray="10 8" stroke-linecap="round"/>
+
+  <!-- stations -->
+  <g>
+    <circle cx="240" cy="470" r="14" fill="#B98A2F" stroke="#fff" stroke-width="3"/>
+    <text x="240" y="455" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">发车站 · 众智园</text>
+    <text x="240" y="500" text-anchor="middle" font-size="11" fill="#888">Zhongzhiyuan</text>
+    <circle cx="500" cy="330" r="14" fill="#B98A2F" stroke="#fff" stroke-width="3"/>
+    <text x="500" y="315" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">中枢站 · 原点社区</text>
+    <text x="500" y="360" text-anchor="middle" font-size="11" fill="#888">Origin Community</text>
+    <circle cx="760" cy="470" r="14" fill="#B98A2F" stroke="#fff" stroke-width="3"/>
+    <text x="760" y="455" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">换乘站 · 大钟寺</text>
+    <text x="760" y="500" text-anchor="middle" font-size="11" fill="#888">Dazhongsi</text>
+  </g>
+
+  <!-- switchback full loop path for the train (west up -> top switch -> east down -> bottom switch) -->
+  <path id="loop" d="M 120 540 L 240 470 L 360 400 L 470 330 L 530 330 L 640 400 L 760 470 L 880 540 L 120 540" fill="none" stroke="none"/>
+  <!-- train -->
+  <g>
+    <circle r="12" fill="#1F1F1F" stroke="#fff" stroke-width="3">
+      <animateMotion dur="14s" repeatCount="indefinite">
+        <mpath href="#loop"/>
+      </animateMotion>
+    </circle>
+  </g>
+
+  <!-- legend + note -->
+  <g font-size="13" fill="#555">
+    <rect x="40" y="560" width="360" height="44" rx="8" fill="#fff" opacity="0.85"/>
+    <circle cx="64" cy="574" r="6" fill="#8C3B2E"/><text x="78" y="578">西 · 遗址文化廊道</text>
+    <circle cx="190" cy="574" r="6" fill="#2E5E8C"/><text x="204" y="578">东 · 创新产业廊道</text>
+    <line x1="316" y1="574" x2="340" y2="574" stroke="#B98A2F" stroke-width="3" stroke-dasharray="5 4"/>
+    <text x="348" y="578">折返连接线</text>
+    <text x="500" y="596" text-anchor="middle" font-size="11" fill="#999">概念示意 · 非官方规划线位 · 列车在双廊道间折返上行（14s 循环）</text>
+  </g>
+</svg>

@@ -1,0 +1,69 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_official_data",
+      "statement": "提交范围采用仓库登记的临时粗略边界，非官方红线；面积与公告值偏差在 0.2% 以内，但折线位置不具备法定意义。",
+      "statement_en": "The submitted boundary is the registered provisional rough extent, not an official redline; its area sits within 0.2% of the announced value but the polyline carries no statutory meaning.",
+      "impact": "site_area_sqm 及其派生比例指标均受此限制。",
+      "recalculation_trigger": "官方 SITE_BOUNDARY 发布后重跑几何生成、指标复算、图件渲染与全部自检。"
+    },
+    {
+      "id": "A-KEYAREA-001",
+      "status": "pending_official_data",
+      "statement": "三处重点区域采用临时矩形范围，公告未给出四至；矩形边不得解释为地块界线或道路红线。",
+      "statement_en": "The three key areas use provisional rectangular extents; the announcement gives no textual extents, and the rectangle edges must not be read as parcel lines or road redlines.",
+      "impact": "重点区域详细设计的空间落位与面积均需在官方 polygon 发布后重算。",
+      "recalculation_trigger": "官方 KEY_AREA polygon 发布。"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "容积率、建筑高度、建筑密度、退线、道路红线、权属与市政容量均无经批准的公开控制条件，本方案不推测数值。",
+      "statement_en": "No approved public controls exist for FAR, height, density, setbacks, road redlines, ownership or municipal capacity; this proposal infers no values.",
+      "impact": "floor_area_ratio 与 building_height_control_m 显式保留为 unknown；建筑基底仅为概念示意。",
+      "recalculation_trigger": "正式控规条件与权属资料发布，并由具备资质的专业团队复核。"
+    },
+    {
+      "id": "A-SPINE-001",
+      "status": "concept_only",
+      "statement": "遗址公园绿脊与慢行主脊的线位为概念建议，未与文保范围、绿线、轨道线位或既有权属核验。",
+      "statement_en": "The heritage-park spine and slow-mobility alignment are concept suggestions, not verified against heritage zones, green lines, rail alignments or existing tenure.",
+      "impact": "green_ratio、public_space_ratio 与慢行长度均基于该概念线位。",
+      "recalculation_trigger": "遗址公园正式边界与文保要求发布。"
+    },
+    {
+      "id": "A-STITCH-001",
+      "status": "concept_only",
+      "statement": "五处人字缝合台采用地面、下穿还是上跨形式属于工程可行性问题，本方案不作结论。",
+      "statement_en": "Whether each of the five switchback stitches is at grade, under or over is an engineering-feasibility question on which this proposal states no conclusion.",
+      "impact": "缝合台的公共空间面积按概念界面计入，不含任何工程构筑物结论。",
+      "recalculation_trigger": "由专业团队完成交通安全、文保与工程可行性论证。"
+    },
+    {
+      "id": "A-BLOCK-001",
+      "status": "method_disclosure",
+      "statement": "道路用地由街区内缩余量取补集生成（半路幅 11 m），只表达街区尺度，不代表道路红线或断面。",
+      "statement_en": "Street land is generated as the complement of blocks inset by an 11 m half right-of-way; it expresses block grain only, not redlines or sections.",
+      "impact": "street_land_area_sqm 仅用于用地构成校核。",
+      "recalculation_trigger": "正式道路红线资料发布。"
+    },
+    {
+      "id": "A-POP-001",
+      "status": "pending_official_data",
+      "statement": "公开资料中缺少与提交边界一致的常住人口统计口径，因此不计算人均指标与设施配建规模。",
+      "statement_en": "No population series consistent with the submitted boundary is available, so no per-capita indicator or facility provision scale is calculated.",
+      "impact": "resident_population 保留为 unknown；公共服务设施规模不给数值。",
+      "recalculation_trigger": "取得与边界一致的官方人口统计数据。"
+    },
+    {
+      "id": "A-CASE-001",
+      "status": "background_only",
+      "statement": "全球案例信息来自公开网站，仅作策略借鉴的背景参考，未做实地或数据核验。",
+      "statement_en": "Global case information comes from public websites and is used as background strategic reference only, without field or data verification.",
+      "impact": "ecosystem_case_count 为叙述性计数，不进入正式评分数据。",
+      "recalculation_trigger": "如需正式引用，须补充可核验的一手资料与许可确认。"
+    }
+  ]
+}

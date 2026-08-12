@@ -1,0 +1,150 @@
+{
+  "schema_version": "0.1.0",
+  "report_type": "agent_self_applied_feasibility_audit",
+  "disclaimer_zh": "本报告是 agent 依据公开标准与自设规则对自身成果的复算结果，用于暴露明显不符合常识与国家标准的设计取值。每条规则均标注 rule_source 以区分国家标准、行业参考与自设门槛。通过本报告不等于通过官方评审，也不构成任何合规认定。",
+  "basis_zh": [
+    "GB 50137 城市用地分类与规划建设用地标准",
+    "街区制路网密度不低于 8 km/km2 的公开政策要求",
+    "海淀建成区居住用地为主导的公开事实判断"
+  ],
+  "site_area_sqm": 11412825.386,
+  "summary": {
+    "total": 11,
+    "pass": 11,
+    "warn": 0,
+    "fail": 0,
+    "result": "PASS"
+  },
+  "checks": [
+    {
+      "check_id": "ROAD_LAND_SHARE",
+      "label_zh": "城市道路用地占比",
+      "value": 0.150922,
+      "expected": "0.1 - 0.25",
+      "basis_zh": "GB 50137 城市道路用地占城市建设用地 10%-25%",
+      "result": "pass",
+      "rule_source": "official_standard",
+      "rule_source_note_zh": "GB 50137《城市用地分类与规划建设用地标准》城市道路用地占比区间"
+    },
+    {
+      "check_id": "ROAD_NETWORK_DENSITY",
+      "label_zh": "路网密度 km/km2",
+      "value": 9.312827,
+      "expected": ">= 8.0",
+      "basis_zh": "街区制路网密度不低于 8 km/km2",
+      "result": "pass",
+      "rule_source": "official_standard",
+      "rule_source_note_zh": "国家关于推广街区制、提高路网密度的公开政策要求"
+    },
+    {
+      "check_id": "PARK_GREEN_SHARE",
+      "label_zh": "公园绿地占比",
+      "value": 0.108512,
+      "expected": "<= 0.15",
+      "basis_zh": "GB 50137 绿地与广场用地中公园绿地占比上限参照 10%-15%",
+      "result": "pass",
+      "rule_source": "official_standard",
+      "rule_source_note_zh": "GB 50137 绿地与广场用地中公园绿地占比参考区间"
+    },
+    {
+      "check_id": "GREEN_TOTAL_SHARE",
+      "label_zh": "绿地与广场用地合计占比",
+      "value": 0.168003,
+      "expected": "<= 0.2",
+      "basis_zh": "建成区大规模新增绿地意味着隐性拆迁，合计控制在 20% 以内",
+      "result": "pass",
+      "rule_source": "self_applied",
+      "rule_source_note_zh": "agent 自设：建成区大规模新增绿地隐含拆迁，故设合计上限"
+    },
+    {
+      "check_id": "RESIDENTIAL_SHARE",
+      "label_zh": "居住用地占比",
+      "value": 0.292449,
+      "expected": ">= 0.25",
+      "basis_zh": "海淀建成区居住为主导用地，占比不应低于 25%",
+      "result": "pass",
+      "rule_source": "self_applied",
+      "rule_source_note_zh": "agent 自设：依据海淀建成区居住为主导用地的公开事实判断"
+    },
+    {
+      "check_id": "BUILDING_GRAIN",
+      "label_zh": "单栋建筑平均基底 m2",
+      "value": 3747.587173,
+      "expected": "<= 20000",
+      "basis_zh": "单体基底超过 2 公顷即不符合真实建筑粒度",
+      "result": "pass",
+      "rule_source": "industry_reference",
+      "rule_source_note_zh": "行业常识：单体基底超过 2 公顷不符合真实建筑量级"
+    },
+    {
+      "check_id": "PHASING_PERIODS",
+      "label_zh": "分期期数",
+      "value": 3.0,
+      "expected": ">= 3",
+      "basis_zh": "公告要求近期、中期、远期实施安排",
+      "result": "pass",
+      "rule_source": "official_standard",
+      "rule_source_note_zh": "征集公告要求近期、中期、远期实施安排"
+    },
+    {
+      "check_id": "LAND_USE_COVERAGE",
+      "label_zh": "用地覆盖率",
+      "value": 1.0,
+      "expected": "0.999 - 1.001",
+      "basis_zh": "用地划分需完整覆盖项目范围",
+      "result": "pass",
+      "rule_source": "official_standard",
+      "rule_source_note_zh": "征集公告要求用地划分完整覆盖设计范围"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "label_zh": "缝隙与溢出最大值 m2",
+      "value": 0.0,
+      "expected": "<= 1000.0",
+      "basis_zh": "相邻用地需共享边界，无缝无叠",
+      "result": "pass",
+      "rule_source": "official_standard",
+      "rule_source_note_zh": "站点资料包要求相邻用地共享边界、无缝无叠"
+    },
+    {
+      "check_id": "FAR_PROPOSED",
+      "label_zh": "容积率建议值",
+      "value": 1.4002,
+      "expected": "0.01 - 12.0",
+      "basis_zh": "控规深度需给出建筑总规模依据；官方容积率条件缺失时应给出建议值",
+      "result": "pass",
+      "rule_source": "self_applied",
+      "rule_source_note_zh": "agent 自设：官方容积率条件缺失时应给出可复算的建议值"
+    },
+    {
+      "check_id": "UNJUSTIFIED_METRIC_GAPS",
+      "label_zh": "缺少 reason 或 resolution_state 的未知指标数",
+      "value": 0.0,
+      "expected": "<= 0",
+      "basis_zh": "数据缺口本身不扣分，但每个缺口都必须写明在等待什么证据",
+      "result": "pass",
+      "rule_source": "self_applied",
+      "rule_source_note_zh": "agent 自设：数据缺口不扣分，但必须写明在等待什么证据"
+    }
+  ],
+  "land_use_share": {
+    "0701": 0.243169,
+    "1207": 0.150922,
+    "0802": 0.150075,
+    "1401": 0.108512,
+    "0804": 0.080312,
+    "05": 0.070208,
+    "0702": 0.049279,
+    "16": 0.040018,
+    "1402": 0.038376,
+    "1403": 0.021115,
+    "0803": 0.019109,
+    "0806": 0.014903,
+    "0805": 0.014002
+  },
+  "rule_source_legend_zh": {
+    "official_standard": "复述国家标准或征集公告的明确要求",
+    "industry_reference": "行业通行常识，非强制标准",
+    "self_applied": "agent 依据公开事实自行设定的判定门槛，不是合规认定"
+  }
+}

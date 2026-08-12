@@ -1,0 +1,230 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.39,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "provisional boundary; recalculate when official polygon arrives"
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 2122714.89,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.186,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 272588.3,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(polygon_area(public_space))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.0239,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 284223.73,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints))",
+   "confidence": "medium",
+   "assumptions": [
+    "概念建筑基底，不代表现状或审批规模"
+   ]
+  },
+  "building_footprint_ratio": {
+   "status": "known",
+   "value": 0.0249,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_footprint_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "research_land_share": {
+   "status": "known",
+   "value": 0.2842,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "area(0802) / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "residential_land_share": {
+   "status": "known",
+   "value": 0.2205,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "area(0701) / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "commercial_land_share": {
+   "status": "known",
+   "value": 0.2049,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "area(05) / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "heritage_spine_length_km": {
+   "status": "known",
+   "value": 9.44,
+   "unit": "km",
+   "source_files": [
+    "geometry/constraints.geojson"
+   ],
+   "formula": "length(heritage_spine_centerline)",
+   "confidence": "medium",
+   "assumptions": [
+    "概念廊道轴线长度"
+   ]
+  },
+  "slow_walkway_length_km": {
+   "status": "known",
+   "value": 32.34,
+   "unit": "km",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(length(road_centerlines))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_detailed_design_areas)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "ai_pilgrimage_landmark_count": {
+   "status": "known",
+   "value": 4,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(landmarks in proposal)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "ai_scenario_card_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(scenario cards in proposal)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "user_persona_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(personas in proposal)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "renewal_project_count": {
+   "status": "known",
+   "value": 8,
+   "unit": "count",
+   "source_files": [
+    "geometry/phasing.geojson",
+    "proposal.md"
+   ],
+   "formula": "count(renewal projects in phasing)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "reason": "待正式数据补齐：公开资料包未提供经批准的容积率与官方边界。",
+   "assumptions": []
+  },
+  "building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "max(height_control)",
+   "confidence": "unknown",
+   "reason": "待正式数据补齐：需经批准的高度控制或航空/景观/文保约束。",
+   "assumptions": []
+  }
+ }
+}

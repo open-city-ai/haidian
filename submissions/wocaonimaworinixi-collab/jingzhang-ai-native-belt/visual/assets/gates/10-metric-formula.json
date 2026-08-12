@@ -1,0 +1,28 @@
+{
+ "schema_version": "1.0.0",
+ "gate_id": "GATE-10",
+ "title_zh": "指标公式可复算",
+ "title_en": "Metric formula recomputability",
+ "domain": "data",
+ "status": "design_target",
+ "source_ids": [
+  "PKG-METRICS",
+  "ASSET-GEOMETRY"
+ ],
+ "inputs": [
+  "metrics.json",
+  "visual/assets/evidence-audit.js"
+ ],
+ "procedure": [
+  "每个指标写明 formula、输入文件与假设编号。",
+  "提供可运行脚本重算几何类与仿真类指标。",
+  "脚本失败即视为指标不可用。"
+ ],
+ "pass_rule": "全部 known 指标可由脚本重算并与声明值一致。",
+ "stop_rule": "任一指标无法复算且无说明时降级为 unknown。",
+ "owner": "metrics engineer",
+ "non_ai_equivalent": "指标台账与人工复算",
+ "evidence_output": "recomputation_log",
+ "boundary_note": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+ "boundary_note_zh": "本闸门是投稿智能体自设的复核与实施关口，不代表现有临时方案已通过该关口，也不代表任何机关已批准或任何运营主体已获指定。"
+}

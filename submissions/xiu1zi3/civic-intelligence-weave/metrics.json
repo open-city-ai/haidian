@@ -1,0 +1,919 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001: provisional polygon only; approximately 11.4 km² for discussion."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_geometry_consistency_check",
+      "prohibited_use": "statutory_or_existing-condition_claim"
+    },
+    "building_footprint_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_geometry_consistency_check",
+      "prohibited_use": "statutory_or_existing-condition_claim",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.022611,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "submitted conceptual green polygons / provisional site polygon",
+      "confidence": "low",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_geometry_consistency_check",
+      "prohibited_use": "statutory_or_existing-condition_claim"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "submitted polygonal public spaces / provisional site polygon; strategy gateways are points",
+      "confidence": "low",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_geometry_consistency_check",
+      "prohibited_use": "statutory_or_existing-condition_claim"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required.",
+      "evidence_class": "not_available",
+      "planning_authority": "none",
+      "allowed_use": "internal_geometry_consistency_check",
+      "prohibited_use": "statutory_or_existing-condition_claim"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "low",
+      "assumptions": [
+        "Count is known from the brief; polygons remain provisional under A-KEYAREAS-001."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_geometry_consistency_check",
+      "prohibited_use": "statutory_or_existing-condition_claim"
+    },
+    "conceptual_mobility_network_length_m": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "adaptive_block_prototype_count": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "confidence": "low",
+      "assumptions": [
+        "Agent-generated diagrammatic concept; provisional geometry only."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features where id starts with JCIW-NODE-)"
+    },
+    "zzy_mobility_length_m": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "key_area_role": "verification_governance",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "zzy_block_count": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "key_area_role": "verification_governance",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "zzy_green_space_count": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "key_area_role": "verification_governance",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "zzy_civic_court_count": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "key_area_role": "verification_governance",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "km0_mobility_length_m": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "key_area_role": "open_source_translation",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "km0_block_count": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "key_area_role": "open_source_translation",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "km0_green_space_count": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "key_area_role": "open_source_translation",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "km0_civic_court_count": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "key_area_role": "open_source_translation",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "dzs_mobility_length_m": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "key_area_role": "urban_interface",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "dzs_block_count": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "key_area_role": "urban_interface",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "dzs_green_space_count": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "key_area_role": "urban_interface",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "dzs_civic_court_count": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "key_area_role": "urban_interface",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "distinct_key_area_morphology_count": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/buildings.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "conceptual_land_use_cell_count": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "design_safeguard_zone_count": {
+      "status": "known",
+      "confidence": "low",
+      "assumptions": [
+        "Agent-generated diagrammatic concept; provisional geometry only."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(non-statutory public-interest safeguard zones)"
+    },
+    "conceptual_green_space_area_sqm": {
+      "status": "known",
+      "confidence": "low",
+      "assumptions": [
+        "Agent-generated diagrammatic concept; provisional geometry only."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": 258056.012,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(conceptual_green_spaces)"
+    },
+    "conceptual_public_space_area_sqm": {
+      "status": "known",
+      "confidence": "low",
+      "assumptions": [
+        "Agent-generated diagrammatic concept; provisional geometry only."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": 118238.883,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(conceptual_public_spaces)"
+    },
+    "conceptual_building_density": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "conceptual_road_density_km_per_sqkm": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "km_per_sqkm",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "confidence": "low",
+      "assumptions": [
+        "Agent-generated diagrammatic concept; provisional geometry only."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(rows JZ-01 through JZ-06 in renewal project ledger)"
+    },
+    "ai_scenario_card_count": {
+      "status": "known",
+      "confidence": "low",
+      "assumptions": [
+        "Agent-generated diagrammatic concept; provisional geometry only."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(numbered AI scenario cards 01 through 10)"
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "confidence": "low",
+      "assumptions": [
+        "Agent-generated diagrammatic concept; provisional geometry only."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industry test scenarios 01 through 03)"
+    },
+    "user_persona_count": {
+      "status": "known",
+      "confidence": "low",
+      "assumptions": [
+        "Agent-generated diagrammatic concept; provisional geometry only."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(rows in user persona table)"
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "confidence": "low",
+      "assumptions": [
+        "Agent-generated diagrammatic concept; provisional geometry only."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(named civic-intelligence landmarks)"
+    },
+    "global_case_count": {
+      "status": "known",
+      "confidence": "low",
+      "assumptions": [
+        "Agent-generated diagrammatic concept; provisional geometry only."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "formula": "count(global reference cases in transfer ledger)"
+    },
+    "zzy_conceptual_area_sqm": {
+      "status": "known",
+      "confidence": "low",
+      "assumptions": [
+        "Agent-generated diagrammatic concept; provisional geometry only."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(PROV-KEY-001 provisional key-area geometry)"
+    },
+    "km0_conceptual_area_sqm": {
+      "status": "known",
+      "confidence": "low",
+      "assumptions": [
+        "Agent-generated diagrammatic concept; provisional geometry only."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(PROV-KEY-002 provisional key-area geometry)"
+    },
+    "dzs_conceptual_area_sqm": {
+      "status": "known",
+      "confidence": "low",
+      "assumptions": [
+        "Agent-generated diagrammatic concept; provisional geometry only."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(PROV-KEY-003 provisional key-area geometry)"
+    },
+    "phase_001_conceptual_area_sqm": {
+      "status": "known",
+      "confidence": "low",
+      "assumptions": [
+        "Agent-generated diagrammatic concept; provisional geometry only."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(PHASE-001 conceptual phase geometry)"
+    },
+    "phase_002_conceptual_area_sqm": {
+      "status": "known",
+      "confidence": "low",
+      "assumptions": [
+        "Agent-generated diagrammatic concept; provisional geometry only."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(PHASE-002 conceptual phase geometry)"
+    },
+    "phase_003_conceptual_area_sqm": {
+      "status": "known",
+      "confidence": "low",
+      "assumptions": [
+        "Agent-generated diagrammatic concept; provisional geometry only."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(PHASE-003 conceptual phase geometry)"
+    },
+    "conceptual_land_use_05_area_sqm": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "conceptual_land_use_0701_area_sqm": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "conceptual_land_use_0702_area_sqm": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "conceptual_land_use_0802_area_sqm": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "conceptual_land_use_0803_area_sqm": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "conceptual_land_use_0804_area_sqm": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "conceptual_land_use_0806_area_sqm": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "conceptual_land_use_1401_area_sqm": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "conceptual_land_use_1403_area_sqm": {
+      "status": "unknown",
+      "confidence": "unknown",
+      "assumptions": [
+        "Early parameterized geometry withdrawn after spatial-planning review."
+      ],
+      "evidence_class": "runtime_derived_from_submitted_geometry",
+      "planning_authority": "none",
+      "allowed_use": "internal_design_comparison_and_consistency_check",
+      "prohibited_use": "existing_condition_statutory_control_or_engineering_claim",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "withheld pending official base data and professional survey",
+      "reason": "Early parameterized spatial geometry was withdrawn after planning review; official base data and professional survey are required."
+    },
+    "strategic_cross_link_count": {
+      "value": 5,
+      "unit": "count",
+      "status": "known",
+      "confidence": "medium",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(features where design_role=east_west_civic_link)",
+      "evidence_class": "design_relationship",
+      "planning_authority": "none",
+      "allowed_use": "concept strategy review",
+      "prohibited_use": "road alignment or engineering claim"
+    },
+    "key_area_gateway_count": {
+      "value": 3,
+      "unit": "count",
+      "status": "known",
+      "confidence": "medium",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features where design_role=key_area_gateway)",
+      "evidence_class": "design_relationship",
+      "planning_authority": "none",
+      "allowed_use": "concept strategy review",
+      "prohibited_use": "site selection claim"
+    }
+  }
+}

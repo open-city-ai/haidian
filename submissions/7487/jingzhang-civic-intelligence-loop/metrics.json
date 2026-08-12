@@ -1,0 +1,221 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "proposal_slug": "jingzhang-civic-intelligence-loop",
+  "area_calculation_crs": "EPSG:4548",
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.39,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(PROV-SITE-001 projected to EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional boundary, not official redline"
+      ]
+    },
+    "announced_overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official announcement value",
+      "confidence": "high",
+      "assumptions": [
+        "text area value, not GIS polygon"
+      ]
+    },
+    "land_use_area_by_code_sqm": {
+      "status": "known",
+      "value": 11412840.78,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use polygons) by land_use_code)",
+      "confidence": "medium",
+      "assumptions": [
+        "agent-generated partition inside provisional site boundary"
+      ],
+      "breakdown_sqm": {
+        "0901_mixed_service": 1823446.87,
+        "0803_public_cultural_service": 2012762.39,
+        "0901_research_office_mixed": 2101287.89,
+        "1401_green_public_open_space": 1850913.66,
+        "0902_university_industry_service": 1779867.47,
+        "0901_ai_r_and_d": 1844562.5
+      }
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 5554825.399838,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(green_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "conceptual design layer"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.4867178117615974,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "not an approved statutory green ratio"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 969785.68,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(public_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "conceptual design layer"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.085,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "not an approved statutory indicator"
+      ]
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 18539.95,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(agent road centerlines clipped by site boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "centerline concept, not road redline"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 153736.39,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(agent-generated representative building footprints)",
+      "confidence": "low",
+      "assumptions": [
+        "not based on cadastral or surveyed building footprints"
+      ]
+    },
+    "total_floor_area_sqm_design_model": {
+      "status": "known",
+      "value": 1349022.11,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(footprint_area * conceptual floor count)",
+      "confidence": "low",
+      "assumptions": [
+        "scenario capacity only; official FAR/height missing"
+      ]
+    },
+    "floor_area_ratio_design_model": {
+      "status": "known",
+      "value": 0.1182,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "total_floor_area_sqm_design_model / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "not a planning approval indicator"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "medium",
+      "assumptions": [
+        "three key areas are provisional rectangles"
+      ]
+    },
+    "ai_scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(readable scenario cards in proposal)",
+      "confidence": "medium",
+      "assumptions": [
+        "scenario cards are conceptual operation suggestions"
+      ]
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(scenario cards tagged industry_test_or_validation)",
+      "confidence": "medium",
+      "assumptions": [
+        "no official test permits implied"
+      ]
+    },
+    "official_far_height_density_controls": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "not available in cleared site package",
+      "confidence": "high",
+      "assumptions": [
+        "must be supplied by official planning attachments before professional scoring"
+      ],
+      "reason": "Official FAR, height, building-density, green-ratio, setback, road-redline and parcel-control values are not available in the public/cleared package."
+    }
+  },
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  }
+}

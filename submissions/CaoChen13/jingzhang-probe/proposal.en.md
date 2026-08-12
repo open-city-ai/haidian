@@ -228,6 +228,20 @@ The names, tasks, and announced nominal areas of the three key areas come from t
 
 ![Index and design tasks for the three key areas](assets/figures/key-areas.en.png)
 
+### Three spatial prototypes: approximately 100 m concept study windows
+
+The three prototype sheets below translate the existing tasks into a visible chain of spatial sequence, reversible kit, four operating states, and a 0–90 day validation package. The approximately 100 m label is an observation scale for design study, not a surveyed radius, cadastral boundary, or engineering site plan. Official boundaries, dimensions, tenure, flows, cost, approvals, and delivery bodies remain `unknown`. The AI-generated scenes communicate proposed experience only; they are not site photographs or evidence of existing conditions. See the structured [key-area-prototypes.json](visual/assets/key-area-prototypes.json).
+
+![Zhongzhiyuan prototype: greenway, low-impact test edge, and exit mechanism](assets/figures/prototype-zhongzhiyuan.en.png)
+
+![AI Origin Community prototype: shared street, human-hosted review, and quiet baseline](assets/figures/prototype-ai-origin.en.png)
+
+![Dazhongsi prototype: station-city commons, offline service, and restored clear width](assets/figures/prototype-dazhongsi.en.png)
+
+All three prototypes follow `BASE → TEST → FAIL → EXIT`: everyday public service does not depend on devices; a test opens only when booked, time-limited, and observable; on failure, devices stop while passage and human/paper baselines continue; on exit, temporary components are removed and public space is restored. Days 0–30 are for joint walk-throughs and professional checks, days 31–60 for 1:1 reversible mock-ups only, and days 61–90 for public review. A failed gate triggers reduction or removal instead of turning a pilot automatically into a construction promise.[depth:three_key_area_detailed_design]
+
+The first-screen task loop is: `agent.1` tests the public-value gate; `agent.2` organizes industry-community interfaces; `agent.3` protects public-space and accessibility baselines; `agent.4` specifies reversible components; `agent.5` makes the narrative and wayfinding understandable; and `agent.6` manages operation, shutdown, and conversion. The six tasks are not distributed evenly by default. Dazhongsi tests the complete six-task interface, while the other two areas take the combinations required by their actual problems.
+
 ### Zhongzhiyuan: Qinghe innovation lounge and low-disturbance testing interface
 
 The proposal anchor in Zhongzhiyuan is an open innovation lounge facing Qinghe River and the commons belt[data:geometry/key_areas.geojson#PROV-KEY-001]. Reservable results explanation, standards collaboration, low-carbon facility display, and everyday rest are placed near the public interface; high-noise, high-security, or dedicated-data testing retreats to controlled interiors. External transport first undergoes transfer, walking, and cycling conflict surveys before alignment decisions. The Qinghe interface first checks flood, ecological, blue-line, and maintenance conditions before facilities are decided. While the campus gains display and collaboration scenarios, it must provide shade, rest, walking and cycling maintenance, or public courses usable by neighbors and record access hours, stop conditions, and maintenance responsibility in the ledger.

@@ -1,0 +1,543 @@
+{
+  "schema_version": "0.2.0",
+  "status": "executable_offline_synthetic_evidence_not_field_performance",
+  "method": "deterministic synthetic policy fixtures with explicit payloads and counterfactual controls; not model quality or field performance",
+  "limitations": "The runner proves that the declared public-interest control logic is reproducible for synthetic inputs. It does not prove site feasibility, service quality, user acceptance, legal compliance, accessibility in use or model performance.",
+  "canonicalization_contract": {
+    "id": "recursive_key_sort_utf8_compact_json_v1",
+    "rule": "Recursively sort object keys; retain array order; encode UTF-8 JSON with no insignificant whitespace; SHA-256 the exact bytes."
+  },
+  "runner": {
+    "path": "visual/assets/replay-protocols.js",
+    "schema_path": "visual/assets/simulation.schema.json",
+    "evidence_path": "visual/assets/replay-evidence.json",
+    "check_command": "node visual/assets/replay-protocols.js --check",
+    "write_command": "node visual/assets/replay-protocols.js --write-evidence",
+    "failure_policy": "non-zero exit on schema, hash, derived-control, counterfactual, energy, audit or personal-data mismatch"
+  },
+  "task_count": 15,
+  "tasks": [
+    {
+      "task_id": "sc-01-01",
+      "pilot_id": "SC-01",
+      "test_name": "minimum-data",
+      "fixture": {
+        "pilot_id": "SC-01",
+        "test_name": "minimum-data",
+        "synthetic": true,
+        "input": {
+          "declared_fields": [
+            "model_id",
+            "model_version",
+            "test_summary"
+          ],
+          "requested_fields": [
+            "model_id",
+            "model_version",
+            "test_summary",
+            "face_embedding"
+          ],
+          "personal_data": false
+        }
+      },
+      "input_sha256": "03d4bf5636c66762a80c7e8403685da139ac536b70ee3b44f4e5a39419f9a075",
+      "canonicalization": "recursive_key_sort_utf8_compact_json_v1",
+      "dispatch_schema_valid": true,
+      "outcome": "policy_success",
+      "expected_control": "reject_undeclared_field",
+      "observed_control": "reject_undeclared_field",
+      "counterfactual_input": {
+        "declared_fields": [
+          "model_id",
+          "model_version",
+          "test_summary"
+        ],
+        "requested_fields": [
+          "model_id",
+          "test_summary"
+        ],
+        "personal_data": false
+      },
+      "counterfactual_expected_control": "accept_minimum_data",
+      "energy_used_kwh": 0.012,
+      "energy_budget_kwh": 0.05,
+      "audit_complete": true,
+      "contains_personal_data": false
+    },
+    {
+      "task_id": "sc-01-02",
+      "pilot_id": "SC-01",
+      "test_name": "non-ai-parity",
+      "fixture": {
+        "pilot_id": "SC-01",
+        "test_name": "non-ai-parity",
+        "synthetic": true,
+        "input": {
+          "digital_opt_out": true,
+          "human_channel_available": true,
+          "paper_channel_available": true
+        }
+      },
+      "input_sha256": "691da669d2adc16ff6cbfc4f8f09bf5f4ad9cea36bf382a83c5b3ba6b1195ebf",
+      "canonicalization": "recursive_key_sort_utf8_compact_json_v1",
+      "dispatch_schema_valid": true,
+      "outcome": "policy_success",
+      "expected_control": "offer_human_path",
+      "observed_control": "offer_human_path",
+      "counterfactual_input": {
+        "digital_opt_out": true,
+        "human_channel_available": false,
+        "paper_channel_available": true
+      },
+      "counterfactual_expected_control": "block_until_parity",
+      "energy_used_kwh": 0.013,
+      "energy_budget_kwh": 0.05,
+      "audit_complete": true,
+      "contains_personal_data": false
+    },
+    {
+      "task_id": "sc-01-03",
+      "pilot_id": "SC-01",
+      "test_name": "red-card-hold",
+      "fixture": {
+        "pilot_id": "SC-01",
+        "test_name": "red-card-hold",
+        "synthetic": true,
+        "input": {
+          "red_card": true,
+          "unresolved_appeal": true,
+          "current_state": "limited"
+        }
+      },
+      "input_sha256": "3fd20b7e87476c431eb44db3ac5c1b45d86651c4daeece5a08a2bed64c8d3f17",
+      "canonicalization": "recursive_key_sort_utf8_compact_json_v1",
+      "dispatch_schema_valid": true,
+      "outcome": "policy_success",
+      "expected_control": "hold",
+      "observed_control": "hold",
+      "counterfactual_input": {
+        "red_card": false,
+        "unresolved_appeal": false,
+        "current_state": "limited"
+      },
+      "counterfactual_expected_control": "continue_limited",
+      "energy_used_kwh": 0.014,
+      "energy_budget_kwh": 0.05,
+      "audit_complete": true,
+      "contains_personal_data": false
+    },
+    {
+      "task_id": "sc-01-04",
+      "pilot_id": "SC-01",
+      "test_name": "human-final-decision",
+      "fixture": {
+        "pilot_id": "SC-01",
+        "test_name": "human-final-decision",
+        "synthetic": true,
+        "input": {
+          "high_stakes": true,
+          "qualified_human_available": true,
+          "ai_decision_attempted": false
+        }
+      },
+      "input_sha256": "57b29056456098fe27a2b152161f2d2ea717e7389e2d02515ba7076df10c826d",
+      "canonicalization": "recursive_key_sort_utf8_compact_json_v1",
+      "dispatch_schema_valid": true,
+      "outcome": "policy_success",
+      "expected_control": "route_to_human",
+      "observed_control": "route_to_human",
+      "counterfactual_input": {
+        "high_stakes": true,
+        "qualified_human_available": false,
+        "ai_decision_attempted": false
+      },
+      "counterfactual_expected_control": "hold_for_human_capacity",
+      "energy_used_kwh": 0.015,
+      "energy_budget_kwh": 0.05,
+      "audit_complete": true,
+      "contains_personal_data": false
+    },
+    {
+      "task_id": "sc-01-05",
+      "pilot_id": "SC-01",
+      "test_name": "expiry-and-audit",
+      "fixture": {
+        "pilot_id": "SC-01",
+        "test_name": "expiry-and-audit",
+        "synthetic": true,
+        "input": {
+          "expired": true,
+          "deletion_evidence": true,
+          "non_personal_change_log": true
+        }
+      },
+      "input_sha256": "769d0d9dfead955b2ca04cba860b03b021d25afc3c90d9e6f05e98a3329c5a30",
+      "canonicalization": "recursive_key_sort_utf8_compact_json_v1",
+      "dispatch_schema_valid": true,
+      "outcome": "policy_success",
+      "expected_control": "retire_and_log",
+      "observed_control": "retire_and_log",
+      "counterfactual_input": {
+        "expired": false,
+        "deletion_evidence": true,
+        "non_personal_change_log": true
+      },
+      "counterfactual_expected_control": "remain_limited",
+      "energy_used_kwh": 0.016,
+      "energy_budget_kwh": 0.05,
+      "audit_complete": true,
+      "contains_personal_data": false
+    },
+    {
+      "task_id": "sc-05-01",
+      "pilot_id": "SC-05",
+      "test_name": "minimum-data",
+      "fixture": {
+        "pilot_id": "SC-05",
+        "test_name": "minimum-data",
+        "synthetic": true,
+        "input": {
+          "declared_fields": [
+            "model_id",
+            "model_version",
+            "test_summary"
+          ],
+          "requested_fields": [
+            "model_id",
+            "model_version",
+            "test_summary",
+            "face_embedding"
+          ],
+          "personal_data": false
+        }
+      },
+      "input_sha256": "54ccb96fb1cf64002bc4eeb85c1904a613fc029af647a87adb6ac9a03232c1ce",
+      "canonicalization": "recursive_key_sort_utf8_compact_json_v1",
+      "dispatch_schema_valid": true,
+      "outcome": "policy_success",
+      "expected_control": "reject_undeclared_field",
+      "observed_control": "reject_undeclared_field",
+      "counterfactual_input": {
+        "declared_fields": [
+          "model_id",
+          "model_version",
+          "test_summary"
+        ],
+        "requested_fields": [
+          "model_id",
+          "test_summary"
+        ],
+        "personal_data": false
+      },
+      "counterfactual_expected_control": "accept_minimum_data",
+      "energy_used_kwh": 0.017,
+      "energy_budget_kwh": 0.05,
+      "audit_complete": true,
+      "contains_personal_data": false
+    },
+    {
+      "task_id": "sc-05-02",
+      "pilot_id": "SC-05",
+      "test_name": "non-ai-parity",
+      "fixture": {
+        "pilot_id": "SC-05",
+        "test_name": "non-ai-parity",
+        "synthetic": true,
+        "input": {
+          "digital_opt_out": true,
+          "human_channel_available": true,
+          "paper_channel_available": true
+        }
+      },
+      "input_sha256": "2b30d2c27cd803e59f8d7e49ac3fee19b113f7168c315a6fb1a988b7151488a9",
+      "canonicalization": "recursive_key_sort_utf8_compact_json_v1",
+      "dispatch_schema_valid": true,
+      "outcome": "policy_success",
+      "expected_control": "offer_human_path",
+      "observed_control": "offer_human_path",
+      "counterfactual_input": {
+        "digital_opt_out": true,
+        "human_channel_available": false,
+        "paper_channel_available": true
+      },
+      "counterfactual_expected_control": "block_until_parity",
+      "energy_used_kwh": 0.018,
+      "energy_budget_kwh": 0.05,
+      "audit_complete": true,
+      "contains_personal_data": false
+    },
+    {
+      "task_id": "sc-05-03",
+      "pilot_id": "SC-05",
+      "test_name": "red-card-hold",
+      "fixture": {
+        "pilot_id": "SC-05",
+        "test_name": "red-card-hold",
+        "synthetic": true,
+        "input": {
+          "red_card": true,
+          "unresolved_appeal": true,
+          "current_state": "limited"
+        }
+      },
+      "input_sha256": "ef386cffdf4ef8e6b7493f282258139c404abb9c22d93dcb4a3e19c7adab4d14",
+      "canonicalization": "recursive_key_sort_utf8_compact_json_v1",
+      "dispatch_schema_valid": true,
+      "outcome": "policy_success",
+      "expected_control": "hold",
+      "observed_control": "hold",
+      "counterfactual_input": {
+        "red_card": false,
+        "unresolved_appeal": false,
+        "current_state": "limited"
+      },
+      "counterfactual_expected_control": "continue_limited",
+      "energy_used_kwh": 0.019,
+      "energy_budget_kwh": 0.05,
+      "audit_complete": true,
+      "contains_personal_data": false
+    },
+    {
+      "task_id": "sc-05-04",
+      "pilot_id": "SC-05",
+      "test_name": "human-final-decision",
+      "fixture": {
+        "pilot_id": "SC-05",
+        "test_name": "human-final-decision",
+        "synthetic": true,
+        "input": {
+          "high_stakes": true,
+          "qualified_human_available": true,
+          "ai_decision_attempted": false
+        }
+      },
+      "input_sha256": "ee78a956424096d53a59763d719f27cf59b2540edb887fc176d8dea54f24ca49",
+      "canonicalization": "recursive_key_sort_utf8_compact_json_v1",
+      "dispatch_schema_valid": true,
+      "outcome": "policy_success",
+      "expected_control": "route_to_human",
+      "observed_control": "route_to_human",
+      "counterfactual_input": {
+        "high_stakes": true,
+        "qualified_human_available": false,
+        "ai_decision_attempted": false
+      },
+      "counterfactual_expected_control": "hold_for_human_capacity",
+      "energy_used_kwh": 0.02,
+      "energy_budget_kwh": 0.05,
+      "audit_complete": true,
+      "contains_personal_data": false
+    },
+    {
+      "task_id": "sc-05-05",
+      "pilot_id": "SC-05",
+      "test_name": "expiry-and-audit",
+      "fixture": {
+        "pilot_id": "SC-05",
+        "test_name": "expiry-and-audit",
+        "synthetic": true,
+        "input": {
+          "expired": true,
+          "deletion_evidence": true,
+          "non_personal_change_log": true
+        }
+      },
+      "input_sha256": "24786941ce0ca94397a3d1c88b4f9bbe71250111b4abe6d4fafd1b30455a9a59",
+      "canonicalization": "recursive_key_sort_utf8_compact_json_v1",
+      "dispatch_schema_valid": true,
+      "outcome": "policy_success",
+      "expected_control": "retire_and_log",
+      "observed_control": "retire_and_log",
+      "counterfactual_input": {
+        "expired": false,
+        "deletion_evidence": true,
+        "non_personal_change_log": true
+      },
+      "counterfactual_expected_control": "remain_limited",
+      "energy_used_kwh": 0.021,
+      "energy_budget_kwh": 0.05,
+      "audit_complete": true,
+      "contains_personal_data": false
+    },
+    {
+      "task_id": "sc-09-01",
+      "pilot_id": "SC-09",
+      "test_name": "minimum-data",
+      "fixture": {
+        "pilot_id": "SC-09",
+        "test_name": "minimum-data",
+        "synthetic": true,
+        "input": {
+          "declared_fields": [
+            "model_id",
+            "model_version",
+            "test_summary"
+          ],
+          "requested_fields": [
+            "model_id",
+            "model_version",
+            "test_summary",
+            "face_embedding"
+          ],
+          "personal_data": false
+        }
+      },
+      "input_sha256": "44a1bac44fc8b3d61ef06302f2e7146b891af5c10b2e67f205898f3e9775b93a",
+      "canonicalization": "recursive_key_sort_utf8_compact_json_v1",
+      "dispatch_schema_valid": true,
+      "outcome": "policy_success",
+      "expected_control": "reject_undeclared_field",
+      "observed_control": "reject_undeclared_field",
+      "counterfactual_input": {
+        "declared_fields": [
+          "model_id",
+          "model_version",
+          "test_summary"
+        ],
+        "requested_fields": [
+          "model_id",
+          "test_summary"
+        ],
+        "personal_data": false
+      },
+      "counterfactual_expected_control": "accept_minimum_data",
+      "energy_used_kwh": 0.022,
+      "energy_budget_kwh": 0.05,
+      "audit_complete": true,
+      "contains_personal_data": false
+    },
+    {
+      "task_id": "sc-09-02",
+      "pilot_id": "SC-09",
+      "test_name": "non-ai-parity",
+      "fixture": {
+        "pilot_id": "SC-09",
+        "test_name": "non-ai-parity",
+        "synthetic": true,
+        "input": {
+          "digital_opt_out": true,
+          "human_channel_available": true,
+          "paper_channel_available": true
+        }
+      },
+      "input_sha256": "7109bbae682ec6ecff302b22e6516c13af5189421a32568488fb143cf0d7efda",
+      "canonicalization": "recursive_key_sort_utf8_compact_json_v1",
+      "dispatch_schema_valid": true,
+      "outcome": "policy_success",
+      "expected_control": "offer_human_path",
+      "observed_control": "offer_human_path",
+      "counterfactual_input": {
+        "digital_opt_out": true,
+        "human_channel_available": false,
+        "paper_channel_available": true
+      },
+      "counterfactual_expected_control": "block_until_parity",
+      "energy_used_kwh": 0.023,
+      "energy_budget_kwh": 0.05,
+      "audit_complete": true,
+      "contains_personal_data": false
+    },
+    {
+      "task_id": "sc-09-03",
+      "pilot_id": "SC-09",
+      "test_name": "red-card-hold",
+      "fixture": {
+        "pilot_id": "SC-09",
+        "test_name": "red-card-hold",
+        "synthetic": true,
+        "input": {
+          "red_card": true,
+          "unresolved_appeal": true,
+          "current_state": "limited"
+        }
+      },
+      "input_sha256": "ec67a9d4e4f01c0241d477a083e45939e9f44710906337a506cf5967c1ecb837",
+      "canonicalization": "recursive_key_sort_utf8_compact_json_v1",
+      "dispatch_schema_valid": true,
+      "outcome": "policy_success",
+      "expected_control": "hold",
+      "observed_control": "hold",
+      "counterfactual_input": {
+        "red_card": false,
+        "unresolved_appeal": false,
+        "current_state": "limited"
+      },
+      "counterfactual_expected_control": "continue_limited",
+      "energy_used_kwh": 0.024,
+      "energy_budget_kwh": 0.05,
+      "audit_complete": true,
+      "contains_personal_data": false
+    },
+    {
+      "task_id": "sc-09-04",
+      "pilot_id": "SC-09",
+      "test_name": "human-final-decision",
+      "fixture": {
+        "pilot_id": "SC-09",
+        "test_name": "human-final-decision",
+        "synthetic": true,
+        "input": {
+          "high_stakes": true,
+          "qualified_human_available": true,
+          "ai_decision_attempted": false
+        }
+      },
+      "input_sha256": "71c5a5556042fd90d873b609a2c9c5e32e81adecbcb4c7817c344f49b13bcd9f",
+      "canonicalization": "recursive_key_sort_utf8_compact_json_v1",
+      "dispatch_schema_valid": true,
+      "outcome": "policy_success",
+      "expected_control": "route_to_human",
+      "observed_control": "route_to_human",
+      "counterfactual_input": {
+        "high_stakes": true,
+        "qualified_human_available": false,
+        "ai_decision_attempted": false
+      },
+      "counterfactual_expected_control": "hold_for_human_capacity",
+      "energy_used_kwh": 0.025,
+      "energy_budget_kwh": 0.05,
+      "audit_complete": true,
+      "contains_personal_data": false
+    },
+    {
+      "task_id": "sc-09-05",
+      "pilot_id": "SC-09",
+      "test_name": "expiry-and-audit",
+      "fixture": {
+        "pilot_id": "SC-09",
+        "test_name": "expiry-and-audit",
+        "synthetic": true,
+        "input": {
+          "expired": true,
+          "deletion_evidence": true,
+          "non_personal_change_log": true
+        }
+      },
+      "input_sha256": "9c9d8843aed780e70bf74322e7f4a0e92404ca9d79ede9c416c38bf27b9fcf8a",
+      "canonicalization": "recursive_key_sort_utf8_compact_json_v1",
+      "dispatch_schema_valid": true,
+      "outcome": "policy_success",
+      "expected_control": "retire_and_log",
+      "observed_control": "retire_and_log",
+      "counterfactual_input": {
+        "expired": false,
+        "deletion_evidence": true,
+        "non_personal_change_log": true
+      },
+      "counterfactual_expected_control": "remain_limited",
+      "energy_used_kwh": 0.026,
+      "energy_budget_kwh": 0.05,
+      "audit_complete": true,
+      "contains_personal_data": false
+    }
+  ],
+  "baselines": {
+    "offline_policy_runner": {
+      "task_pass_rate": 1.0,
+      "policy_assertion_pass_rate": 1.0,
+      "schema_pass_rate": 1.0,
+      "energy_budget_violations": 0,
+      "audit_completeness": 1.0
+    }
+  }
+}

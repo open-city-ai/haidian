@@ -1,0 +1,54 @@
+{
+  "schema_version": "0.1.0",
+  "sources": [
+    {
+      "id": "SITE-PACKAGE",
+      "path": "brief/site-package/",
+      "source_type": "official_public",
+      "usage": "Project brief, enums, allowed design space, ranges, and schemas.",
+      "limitation": "站点包为任务与规则的组织阅读层；其中 provisional_boundaries.geojson 等 provisional 内容不得作为官方红线、精确面积或法定控规依据。"
+    },
+    {
+      "id": "SOURCE-REGISTRY",
+      "path": "data/source_registry.json",
+      "source_type": "repository_public_registry",
+      "usage": "Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials.",
+      "limitation": "登记层仅说明各来源可用性分级（formal-ready/background-only/provisional-only）；背景资料不得支撑空间控制结论，provisional-only 资料不得进入 formal 专业评分依据。"
+    },
+    {
+      "id": "PROCESSED-FACT-PACK",
+      "path": "data/processed/agent_fact_pack.md",
+      "source_type": "repository_processed_reference",
+      "usage": "Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source.",
+      "limitation": "agent 可读导航层，整理任务、范围、来源用途边界与缺口清单；不是新的权威来源，不替代公告与任务书原文。"
+    },
+    {
+      "id": "BOUNDARY-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "Submitted site boundary geometry source (provisional).",
+      "limitation": "provisional-only：依据公告文字四至与面积约值推断的粗略边界，仅用于方案生成、intake 自检、可视化与带标注讨论；禁止作为官方红线、法定控规、精确面积或审批依据。"
+    },
+    {
+      "id": "KEY-AREA-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "Three required detailed-design key area boundaries (provisional).",
+      "limitation": "provisional-only：三处重点区临时 polygon，用途与限制同 BOUNDARY-SOURCE；官方 polygon 发布后须整体替换并统一复算。"
+    },
+    {
+      "id": "OFFICIAL-ANNOUNCEMENT",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "source_type": "official_public",
+      "usage": "Official announcement tasks, scope levels, key areas, language, and deliverable context.",
+      "limitation": "formal-ready 官方公告，仅提供项目名、三层范围文字四至与面积约值、设计任务与成果深度；不得外推为精确官方 polygon、道路红线、法定控规或实施承诺。"
+    },
+    {
+      "id": "AGENT-TASKBOOK",
+      "path": "brief/site-package/agent_taskbook.json",
+      "source_type": "user_provided_cleared",
+      "usage": "Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause.",
+      "limitation": "user_provided_cleared 任务书摘录（仓库不存原件），约束 agent 任务应答与合规语言；不得用作官方红线、法定控规、工程可行性结论或政府批准与实施承诺。"
+    }
+  ]
+}

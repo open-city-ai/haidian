@@ -1,0 +1,76 @@
+{
+  "version": "2.18-resource-pressure-screen",
+  "screen_id": "MOB-RESOURCE-PRESSURE-888",
+  "status": "synthetic_relative_resource_screen_not_local_inventory",
+  "purpose": "Convert population-scale person-kilometres into a transparent, replaceable relative resource-pressure ledger so policy candidates can be compared without claiming local energy use or greenhouse-gas emissions.",
+  "unit_definition": {
+    "activity_unit": "synthetic passenger-kilometres (person-km)",
+    "intensity_unit": "relative energy-intensity index per passenger-kilometre, normalized to car = 1.0",
+    "screen_output": "known-mode person-km × declared relative intensity; enterprise shuttle remains an explicit unknown until fleet, fuel, occupancy and route evidence are available",
+    "not_an_absolute_measure": "The output is not kWh, MJ, gCO2e, fuel use, local inventory or a procurement target. Replace the method factors with dated local factors before any environmental or operational decision."
+  },
+  "method_sources": [
+    "EEA-GHG-PASSENGER-MODES",
+    "NCHRP-2024-59-ENERGY"
+  ],
+  "relative_mode_intensity": {
+    "metro": {
+      "label_zh": "地铁",
+      "label_en": "metro",
+      "source_mode": "light_and_heavy_rail_transit",
+      "source_intensity_btu_per_passenger_mile": 2750,
+      "relative_to_car": 0.7866,
+      "factor_status": "external_method_reference_not_local_factor"
+    },
+    "bus": {
+      "label_zh": "公交",
+      "label_en": "bus",
+      "source_mode": "transit_bus",
+      "source_intensity_btu_per_passenger_mile": 4318,
+      "relative_to_car": 1.2351,
+      "factor_status": "external_method_reference_not_local_factor"
+    },
+    "bicycle": {
+      "label_zh": "自行车",
+      "label_en": "bicycle",
+      "source_mode": "walking_or_biking",
+      "source_intensity_btu_per_passenger_mile": 0,
+      "relative_to_car": 0,
+      "factor_status": "screen_convention_not_lifecycle_inventory"
+    },
+    "walking_wheelchair": {
+      "label_zh": "步行/无障碍",
+      "label_en": "walking / accessible",
+      "source_mode": "walking_or_biking",
+      "source_intensity_btu_per_passenger_mile": 0,
+      "relative_to_car": 0,
+      "factor_status": "screen_convention_not_lifecycle_inventory"
+    },
+    "car": {
+      "label_zh": "汽车",
+      "label_en": "car",
+      "source_mode": "cars",
+      "source_intensity_btu_per_passenger_mile": 3496,
+      "relative_to_car": 1,
+      "factor_status": "external_method_reference_not_local_factor"
+    },
+    "enterprise_shuttle": {
+      "label_zh": "企业接驳",
+      "label_en": "enterprise shuttle",
+      "source_mode": null,
+      "source_intensity_btu_per_passenger_mile": null,
+      "relative_to_car": null,
+      "factor_status": "unknown_until_fleet_fuel_occupancy_and_route_evidence"
+    }
+  },
+  "selection_boundary": "This screen is a separate resource-pressure sensitivity readout. It is not used to rank O1/O2/O3/O4, and a lower relative index cannot override capacity, accessibility, safety, privacy or human-service gates.",
+  "calibration_required": [
+    "dated metro electricity and traction-energy accounting boundary",
+    "bus and shuttle fuel or electricity type, vehicle-kilometres and occupancy",
+    "car fleet composition, occupancy and external-commute share",
+    "local passenger-kilometres by 15-minute slice and group",
+    "life-cycle boundary decision if construction, batteries or embodied carbon are included",
+    "independent environmental review before any absolute CO2e or energy claim"
+  ],
+  "privacy": "Only group × mode × policy aggregates are retained; no individual route, address, employer identity or vehicle identifier is published."
+}

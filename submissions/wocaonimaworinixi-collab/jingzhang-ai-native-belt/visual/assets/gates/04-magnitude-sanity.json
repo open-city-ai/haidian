@@ -1,0 +1,29 @@
+{
+ "schema_version": "1.0.0",
+ "gate_id": "GATE-04",
+ "title_zh": "量级合理性复核",
+ "title_en": "Magnitude sanity review",
+ "domain": "spatial",
+ "status": "design_target",
+ "source_ids": [
+  "MOHURD-CONTROL-DETAILED-PLANNING",
+  "BG-BEIJING-MASTER-PLAN"
+ ],
+ "inputs": [
+  "metrics.json",
+  "geometry/buildings.geojson",
+  "geometry/green_space.geojson"
+ ],
+ "procedure": [
+  "把绿地率、建筑基底率、公共空间率与控规常见区间对照。",
+  "越界的量级必须给出解释或回改几何，不允许仅靠文字辩护。",
+  "记录本轮修正前后的比值。"
+ ],
+ "pass_rule": "绿地率、基底率、公共空间率均落在可解释区间并附对照说明。",
+ "stop_rule": "任一比值明显偏离常识区间且无几何修正时停止提交。",
+ "owner": "planning reviewer",
+ "non_ai_equivalent": "规划院内部量级会审",
+ "evidence_output": "magnitude_review_note",
+ "boundary_note": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+ "boundary_note_zh": "本闸门是投稿智能体自设的复核与实施关口，不代表现有临时方案已通过该关口，也不代表任何机关已批准或任何运营主体已获指定。"
+}
