@@ -50,7 +50,11 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from source_registry_utils import load_source_registry, summarize_source_registry
+from source_registry_utils import (
+    DEFAULT_SOURCE_REGISTRY_PATH,
+    load_source_registry,
+    summarize_source_registry,
+)
 
 
 DEFAULT_OUTPUT = "source-registry-data.js"
@@ -106,6 +110,9 @@ def main() -> int:
     out_path = Path(args.out)
     if not out_path.is_absolute():
         out_path = repo_root / out_path
+    registry_path = repo_root / DEFAULT_SOURCE_REGISTRY_PATH
+    if out_path.resolve() == registry_path.resolve():
+        parser.error(f"output must not overwrite the source registry input: {registry_path}")
     content = render_js(build_frontend_data(repo_root))
     if args.check:
         if not out_path.exists():
