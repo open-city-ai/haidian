@@ -1,5 +1,12 @@
 {
  "schema_version": "0.1.0",
+ "recompute": {
+  "script": "tools/recompute_metrics.py",
+  "script_version": "0.2.0",
+  "crs_source": "EPSG:4326",
+  "crs_projected": "EPSG:4548",
+  "generated_at": "2026-08-12T12:24:29Z"
+ },
  "units": {
   "length": "m",
   "area": "sqm"
@@ -7,13 +14,67 @@
  "metrics": {
   "site_area_sqm": {
    "status": "known",
-   "value": 11412842.3,
+   "value": 11412825.4,
    "unit": "sqm",
    "source_files": [
     "geometry/site_boundary.geojson"
    ],
-   "formula": "polygon_area(submitted_site_boundary)",
+   "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
    "confidence": "high",
+   "assumptions": [
+    "Provisional boundary from the site package; recalculate when the official polygon is published."
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 1528718.5,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "union_area(green_space_polygons) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "Green polygons are derived from the provisional boundary partition."
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 266790.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "union_area(public_space_polygons) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "Public-space polygons are derived from the provisional boundary partition."
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.133947,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional boundary from the site package; recalculate when the official polygon is published."
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.023376,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
    "assumptions": [
     "Provisional boundary from the site package; recalculate when the official polygon is published."
    ]
@@ -27,7 +88,22 @@
    ],
    "formula": "count(key_detailed_design_areas)",
    "confidence": "high",
-   "assumptions": []
+   "assumptions": [
+    "Provisional boundary from the site package; recalculate when the official polygon is published."
+   ]
+  },
+  "key_area_total_area_sqm": {
+   "status": "known",
+   "value": 3692893.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "sum(polygon_area(key_areas)) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional boundary from the site package; recalculate when the official polygon is published."
+   ]
   },
   "land_use_block_count": {
    "status": "known",
@@ -42,12 +118,12 @@
   },
   "building_footprint_area_sqm": {
    "status": "known",
-   "value": 1248218.7,
+   "value": 1248218.6,
    "unit": "sqm",
    "source_files": [
     "geometry/buildings.geojson"
    ],
-   "formula": "sum(polygon_area(building_footprints))",
+   "formula": "sum(polygon_area(building_footprints)) in EPSG:4548",
    "confidence": "medium",
    "assumptions": [
     "Conceptual massing footprints for design discussion only."
@@ -64,30 +140,6 @@
    "confidence": "medium",
    "assumptions": []
   },
-  "green_ratio": {
-   "status": "known",
-   "value": 0.1339,
-   "unit": "ratio",
-   "source_files": [
-    "geometry/green_space.geojson",
-    "geometry/site_boundary.geojson"
-   ],
-   "formula": "green_space_area_sqm / site_area_sqm",
-   "confidence": "medium",
-   "assumptions": []
-  },
-  "public_space_ratio": {
-   "status": "known",
-   "value": 0.0247,
-   "unit": "ratio",
-   "source_files": [
-    "geometry/public_space.geojson",
-    "geometry/site_boundary.geojson"
-   ],
-   "formula": "public_space_area_sqm / site_area_sqm",
-   "confidence": "medium",
-   "assumptions": []
-  },
   "road_network_length_m": {
    "status": "known",
    "value": 23849.4,
@@ -95,77 +147,22 @@
    "source_files": [
     "geometry/roads.geojson"
    ],
-   "formula": "sum(line_length(road_centerlines))",
+   "formula": "sum(line_length(road_centerlines)) in EPSG:4548",
    "confidence": "medium",
    "assumptions": []
   },
-  "scenario_card_count": {
+  "phasing_area_sqm": {
    "status": "known",
-   "value": 12,
-   "unit": "count",
+   "value": 11412842.2,
+   "unit": "sqm",
    "source_files": [
-    "proposal.md"
+    "geometry/phasing.geojson"
    ],
-   "formula": "count(scenario_cards_in_proposal)",
-   "confidence": "high",
-   "assumptions": []
-  },
-  "test_validation_scenario_count": {
-   "status": "known",
-   "value": 3,
-   "unit": "count",
-   "source_files": [
-    "proposal.md"
-   ],
-   "formula": "count(test_validation_scenarios)",
-   "confidence": "high",
-   "assumptions": []
-  },
-  "user_persona_count": {
-   "status": "known",
-   "value": 5,
-   "unit": "count",
-   "source_files": [
-    "proposal.md"
-   ],
-   "formula": "count(user_personas)",
-   "confidence": "high",
-   "assumptions": []
-  },
-  "pilgrimage_landmark_count": {
-   "status": "known",
-   "value": 3,
-   "unit": "count",
-   "source_files": [
-    "proposal.md"
-   ],
-   "formula": "count(pilgrimage_landmarks)",
-   "confidence": "high",
-   "assumptions": []
-  },
-  "floor_area_ratio": {
-   "status": "unknown",
-   "value": null,
-   "unit": "ratio",
-   "source_files": [
-    "brief/site-package/ranges/planning_limits.json"
-   ],
-   "formula": "total_floor_area_sqm / official_site_area_sqm",
-   "confidence": "unknown",
-   "assumptions": [],
-   "reason": "Approved FAR controls and official site boundary are not present in the public site package."
-  },
-  "building_height_m": {
-   "status": "unknown",
-   "value": null,
-   "unit": "m",
-   "source_files": [
-    "brief/site-package/ranges/planning_limits.json"
-   ],
-   "formula": "official_height_control",
-   "confidence": "unknown",
-   "assumptions": [],
-   "reason": "Approved height controls not present in the public site package."
+   "formula": "union_area(phasing_polygons) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "Phasing polygons partition the provisional boundary."
+   ]
   }
  }
 }
