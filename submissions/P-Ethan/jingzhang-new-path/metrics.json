@@ -1,0 +1,491 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "coordinated_research_area_announced_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "official taskbook value",
+      "confidence": "high",
+      "assumptions": [],
+      "category": "official_brief_fact"
+    },
+    "overall_design_area_announced_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "official taskbook value",
+      "confidence": "high",
+      "assumptions": [],
+      "category": "official_brief_fact"
+    },
+    "key_detailed_design_area_announced_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "official taskbook value",
+      "confidence": "high",
+      "assumptions": [],
+      "category": "official_brief_fact"
+    },
+    "north_key_area_announced_sqm": {
+      "status": "known",
+      "value": 1921000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "official taskbook value",
+      "confidence": "high",
+      "assumptions": [],
+      "category": "official_brief_fact"
+    },
+    "middle_key_area_announced_sqm": {
+      "status": "known",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "official taskbook value",
+      "confidence": "high",
+      "assumptions": [],
+      "category": "official_brief_fact"
+    },
+    "south_key_area_announced_sqm": {
+      "status": "known",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "official taskbook value",
+      "confidence": "high",
+      "assumptions": [],
+      "category": "official_brief_fact"
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(project_to_EPSG:4548(site_boundary))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "category": "provisional_geometry_recalculation"
+    },
+    "land_use_area_lu_001_sqm": {
+      "status": "known",
+      "value": 2674562.492,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(project_to_EPSG:4548(LU-001))",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-002"
+      ],
+      "category": "provisional_geometry_recalculation"
+    },
+    "land_use_area_lu_002_sqm": {
+      "status": "known",
+      "value": 2589339.239,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(project_to_EPSG:4548(LU-002))",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-002"
+      ],
+      "category": "provisional_geometry_recalculation"
+    },
+    "land_use_area_lu_003_sqm": {
+      "status": "known",
+      "value": 3366138.181,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(project_to_EPSG:4548(LU-003))",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-002"
+      ],
+      "category": "provisional_geometry_recalculation"
+    },
+    "land_use_area_lu_004_sqm": {
+      "status": "known",
+      "value": 2782792.823,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(project_to_EPSG:4548(LU-004))",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-002"
+      ],
+      "category": "provisional_geometry_recalculation"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 34432.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area(project_to_EPSG:4548(conceptual_building_prototypes)))",
+      "confidence": "low",
+      "assumptions": [
+        "A-EXISTING-003"
+      ],
+      "category": "conceptual_module_recalculation"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1384092.465,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(project_to_EPSG:4548(conceptual_green_ground))",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-HERITAGE-006"
+      ],
+      "category": "conceptual_module_recalculation"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.121275,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm/site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-HERITAGE-006"
+      ],
+      "category": "conceptual_module_recalculation"
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 71550.945,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(area(project_to_EPSG:4548(P_and_T_public_interfaces)))",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-USERS-008"
+      ],
+      "category": "conceptual_module_recalculation"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.006269,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm/site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-USERS-008"
+      ],
+      "category": "conceptual_module_recalculation"
+    },
+    "conceptual_mobility_length_m": {
+      "status": "known",
+      "value": 12207.055,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(project_to_EPSG:4548(conceptual_mobility_lines)))",
+      "confidence": "low",
+      "assumptions": [
+        "A-TRANSPORT-004"
+      ],
+      "category": "conceptual_module_recalculation"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "category": "task_and_package_count"
+    },
+    "positioning_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "brief/site-package/agent_taskbook.json"
+      ],
+      "formula": "count(positioning_zh)",
+      "confidence": "high",
+      "assumptions": [],
+      "category": "task_and_package_count"
+    },
+    "function_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "brief/site-package/agent_taskbook.json"
+      ],
+      "formula": "count(five_functions_zh)",
+      "confidence": "high",
+      "assumptions": [],
+      "category": "task_and_package_count"
+    },
+    "ecosystem_resource_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "03_design/agent_task_outputs_v1.md"
+      ],
+      "formula": "count(ecosystem resource classes)",
+      "confidence": "medium",
+      "assumptions": [],
+      "category": "task_and_package_count"
+    },
+    "interface_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "03_design/agent_task_outputs_v1.md"
+      ],
+      "formula": "count(key interfaces)",
+      "confidence": "medium",
+      "assumptions": [],
+      "category": "task_and_package_count"
+    },
+    "case_study_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "03_design/agent_task_outputs_v1.md"
+      ],
+      "formula": "count(case studies)",
+      "confidence": "medium",
+      "assumptions": [],
+      "category": "task_and_package_count"
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "03_design/agent_task_outputs_v1.md"
+      ],
+      "formula": "count(scenario cards)",
+      "confidence": "medium",
+      "assumptions": [],
+      "category": "task_and_package_count"
+    },
+    "validation_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "03_design/agent_task_outputs_v1.md"
+      ],
+      "formula": "count(validation scenarios)",
+      "confidence": "medium",
+      "assumptions": [],
+      "category": "task_and_package_count"
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "03_design/agent_task_outputs_v1.md"
+      ],
+      "formula": "count(personas)",
+      "confidence": "medium",
+      "assumptions": [],
+      "category": "task_and_package_count"
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "03_design/agent_task_outputs_v1.md"
+      ],
+      "formula": "count(common waymarks)",
+      "confidence": "medium",
+      "assumptions": [],
+      "category": "task_and_package_count"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "pending official control",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-002"
+      ],
+      "reason": "Exact official FAR was not included in the cleared site package.",
+      "category": "pending_official_control"
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "pending official control",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-002"
+      ],
+      "reason": "Exact official height controls were not included in the cleared site package.",
+      "category": "pending_official_control"
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "pending official control",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-002"
+      ],
+      "reason": "Exact official building-density controls were not included in the cleared site package.",
+      "category": "pending_official_control"
+    },
+    "official_green_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "pending official control",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-002",
+        "A-HERITAGE-006"
+      ],
+      "reason": "Exact official green-space controls were not included in the cleared site package.",
+      "category": "pending_official_control"
+    },
+    "official_setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "pending official control",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-002"
+      ],
+      "reason": "Exact road, fire, heritage and municipal setbacks were not included in the cleared site package.",
+      "category": "pending_official_control"
+    },
+    "flow_across_boundaries_baseline": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "baseline survey required",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-PERFORMANCE-009",
+        "A-USERS-008"
+      ],
+      "reason": "No local baseline exists yet for interface discovery, cross-institution matching, last-mile access or accessibility completion.",
+      "category": "design_evaluation_baseline_pending"
+    },
+    "grow_for_long_term_baseline": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "baseline survey required",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-PERFORMANCE-009",
+        "A-OPERATIONS-007"
+      ],
+      "reason": "No local baseline exists yet for project continuation, capability reuse, maintenance responsibility or exit closure.",
+      "category": "design_evaluation_baseline_pending"
+    },
+    "enter_daily_life_baseline": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "baseline survey required",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-PERFORMANCE-009",
+        "A-USERS-008"
+      ],
+      "reason": "No local baseline exists yet for public-service adoption, human alternatives, voluntary participation or resident rights.",
+      "category": "design_evaluation_baseline_pending"
+    }
+  }
+}
