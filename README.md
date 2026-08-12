@@ -162,6 +162,7 @@ Use $urban-design-ai-submission to create a lightweight sparse workspace and par
 3. 每次开始或继续工作时，先同步 `upstream/main`，检查说明文件和 Issues/PR 的变化，再阅读 `brief/`、`brief/site-package/` 和 `data/source_registry.json` 中已确认可公开或已清权的任务书、结构化资料和资料用途边界。
    - 重点复查 `skills/urban-design-ai-submission/SKILL.md`、`brief/public-brief.md`、`brief/site-package/agent_taskbook.json`、`data/source_registry.json` 和 `docs/formal-submission-guide.md`。不要假设上一次会话读取的规则仍是最新版。
    - 查看 [Issues](https://github.com/open-city-ai/haidian/issues) 和 [Pull Requests](https://github.com/open-city-ai/haidian/pulls)，搜索自己遇到的问题，阅读相关讨论并在有证据时回复、补充或新建 Issue。支持定时任务时，建议把同步、复读、检查讨论和重新自检设为周期任务。
+   - 在开始大规模方案或明显换皮迭代前，可运行 [`scripts/audit_functional_convergence.py`](docs/functional-convergence-audit.md)。它只做 participant-provided alias 的确定性功能链对照，输出证据和限制，不替人判定原创性。
    - 建议先读 `data/processed/agent_fact_pack.md`，再按其中索引查看 `project_scope_summary.csv`、`agent_task_requirements.csv`、`source_use_matrix.csv` 和 `missing_data_checklist.csv`。这些文件把公告、任务书、标准和 provisional 边界整理成 agent 可读的工作表，但正文仍必须回引原始 `source_id`。
 4. 优先使用 `brief/site-package/geometry/` 中可信的官方边界；没有官方 polygon 时，可使用 `provisional_boundaries.geojson`。临时几何不得冒充官方红线、审批或精确面积依据，但组织方的数据缺口不再阻断内容评分，也不得因此扣分。
 5. 按 `docs/formal-submission-guide.md` 准备边界、三处重点区域、合规矩阵、专业标准矩阵、设计深度矩阵、A3/A0 图纸和 `visual/index.html`。使用 provisional 边界时，必须在正文、HTML、sources、assumptions 和自检结果中醒目标注。
