@@ -442,9 +442,11 @@ function sanitizeReport(root,reportUrl){
   });
   root.querySelectorAll('img').forEach(img=>{
     const raw=img.getAttribute('src')||'';
-    const resolved=new URL(raw,reportUrl);
-    if(resolved.origin!==location.origin||!resolved.pathname.includes(`/${state.packagePath}/`)){img.remove();return}
-    img.src=resolved.href;img.loading='lazy';
+    const resolved=safeHttpUrl(raw,reportUrl);
+    if(!resolved){img.remove();return}
+    const url=new URL(resolved);
+    if(url.origin!==location.origin||!url.pathname.includes(`/${state.packagePath}/`)){img.remove();return}
+    img.src=url.href;img.loading='lazy';
   });
   root.querySelectorAll('a[href]').forEach(link=>{
     const raw=link.getAttribute('href')||'';
