@@ -18,9 +18,8 @@ DEFAULT_OUTPUT_ROOT = ".maintainer-review"
 
 
 def script_path(repo_root: Path, name: str) -> Path:
-    candidate = repo_root / "scripts" / name
-    if candidate.exists():
-        return candidate
+    # repo_root can be a participant-controlled PR checkout. Review commands
+    # must always execute the maintainer worker's trusted script version.
     return SCRIPT_DIR / name
 
 
