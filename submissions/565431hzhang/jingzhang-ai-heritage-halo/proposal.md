@@ -47,6 +47,27 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 边界解释可回到总体范围图层和面积复算 [data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm]。三处重点区则由独立图层和数量指标核对 [data:geometry/key_areas.geojson#PROV-KEY-001] [metric:key_area_count]。这意味着读者可以从正文进入证据，但不必先读一串机器编号。
 
+### 参数置信度表（Implementation Confidence）
+
+本方案大量参数（建筑数量、功能比例、高度、拆改留、TOD 半径、建设年份、资金渠道、人员规模等）在官方控规、现状建筑调查、权属与工程条件尚未发布时，属于概念假设。为让评审和后续深化可以逐项追溯证据质量，下表把每个关键参数按**证据来源**分级，任何数值都可在 `sources.json`、`metrics.json`、`assumptions.json` 与 `missing_data_checklist.csv` 中定位 [source:PROCESSED-MISSING-DATA-CHECKLIST]：
+
+| 参数 | 阶段 | 证据级别 | 依据/待补条件 |
+|------|------|----------|----------------|
+| 场地面积 11,412,825 ㎡ | 总体 | **A 结构化复算** | 由 site_boundary+land_use 复算 [metric:site_area_sqm]；provisional 边界，official 红线后重算 |
+| 绿地率 48.7%、公共空间率 2.5% | 总体 | **A 结构化复算** | 由 green_space / public_space 图层复算 |
+| 建筑覆盖率 5.7%、道路 42.3km | 总体 | **A 结构化复算** | 由 buildings / roads 图层复算 |
+| 三个重点区范围 368.4 ha | 总体 | **A 结构化复算** | 由 key_areas 图层复算 [metric:key_area_count] |
+| 建筑数量 80-100 / 40-50 / 30-40 栋 | 重点区 | **B 概念示意** | 概念立面示意，待现状建筑调查与控规确认 |
+| 功能比例（研发办公60%等） | 重点区 | **B 概念示意** | 产业定位推断，待需求模型与现状业态校准 |
+| 建筑高度 60-80m / 80-100m / 3-5层 | 重点区 | **B 概念示意** | 待控规高度分区与文保高度控制确认 |
+| 拆改留比例（35/40/25 等） | 重点区 | **B 概念示意** | 待现状质量鉴定与结构安全评估 |
+| TOD 200m 半径与开发强度 | 重点区 | **B 概念示意** | 待轨道站点分级与正式控规确认 |
+| 分期年份（一期2026-2028等） | 实施 | **C 实施假设** | 与征集落地周期对齐，待权属、资金、审批路径确认 |
+| 资金渠道与投融资模式 | 实施 | **C 实施假设** | 政策框架探讨，待运营主体与投资测算 |
+| 人员规模与就业测算 | 产业 | **C 实施假设** | 产业规模推算，待需求模型与招商数据 |
+
+**分级规则**：**A** = 可由本包结构化 GeoJSON/指标直接复算；**B** = 概念示意，标注清晰待正式资料确认；**C** = 实施与运营层面的政策假设，明确为可讨论方向而非承诺。分级的目的不是贬低概念参数，而是让评审能区分"已复算"与"待深化"，避免把需校准数字误读为现状事实。任何 B/C 级参数都不写入正式结论，只作为待校准清单呈现 [source:PROCESSED-MISSING-DATA-CHECKLIST] [depth:extant_conditions_evidence]。
+
 ## 三层范围工作框架
 
 方案按照公告确定的三个层次组织工作：统筹研究范围关注 43.6 平方公里的AI产业生态、战略定位、创新链和未来城市形态；总体设计范围关注 11.4 平方公里京张遗址公园周边 1-2 公里城市地区和产业区，要求形成城市更新总体框架、产业空间布局、交通市政支撑和城市风貌控制；重点区域范围关注 368.4 公顷三处详细设计地区，要求明确功能业态、建筑规模、拆改留分类、公共空间连通和交通组织。三层范围在 `compliance_matrix.json` 中逐条映射，保证公告 1.3、1.4、1.5 与 agent.1-agent.6 的必选任务都有章节、图层、指标、图纸和 HTML 证据。
@@ -456,9 +477,8 @@ Logo 以"∞"（无限符号）与铁路轨道的形态融合，双轨线分别�
 - brief/site-package/enums/
 - brief/site-package/ranges/planning_limits.json
 - data/processed/agent_fact_pack.md
-- data/processed/project_scope_summary.csv
-- data/processed/agent_task_requirements.csv
-- data/processed/source_use_matrix.csv
-- data/processed/missing_data_checklist.csv
-- 完整机器索引：见 `sources.json`、`metrics.json`、`compliance_matrix.json`、`standard_matrix.json` 与 `design_depth_matrix.json`
+- [source:PROCESSED-SCOPE-SUMMARY] — 三层范围、交付物与深度概览
+- [source:PROCESSED-TASK-REQUIREMENTS] — agent.1-agent.6 任务映射与章节归属
+- [source:PROCESSED-SOURCE-USE-MATRIX] — 资料用途边界（formal/background/provisional）
+- [source:PROCESSED-MISSING-DATA-CHECKLIST] — 缺资料事项清单，含 official boundary、控规、权属与工程条件缺口
 - 本节书目入口依据场地包登记，完整出处和许可见结构化来源清单 [source:SITE-PACKAGE]
