@@ -1,0 +1,60 @@
+{
+  "schema_version": "0.2.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "proposal_slug": "jingzhang-open-mainline",
+  "author_github": "ComputerDreammer",
+  "generated_at": "2026-08-11T00:00:00+08:00",
+  "check_type": "contributor_manual_self_check",
+  "check_status": "PARTIAL_PASS_AWAITING_OFFICIAL_RUN",
+  "validation_claim": {
+    "self_checked": false,
+    "readiness_contract": null,
+    "data_confidence": "low",
+    "boundary_status": "provisional",
+    "note_zh": "本文件由投稿 Agent 在无 Python/git 的本地环境完成的人工结构自检记录，不等同于官方 self_check_submission.py 的四门报告；提交前必须由投稿者在具备仓库脚本的环境中重跑 self_check_submission.py --mark-self-checked，并以该结果为准。"
+  },
+  "gates": {
+    "deterministic": {
+      "status": "PASS_MANUAL",
+      "checks": [
+        { "id": "REQUIRED_FILES_PRESENT", "result": "PASS", "note_zh": "manifest/agent/metrics/assumptions/sources/self_check/compliance_matrix/standard_matrix/design_depth_matrix、proposal.md/proposal.en.md、geometry 10 层、figures 中英、report/proposal.html 中英、drawings A3/A0 中英、visual/index.html 中英均已生成。" },
+        { "id": "BILINGUAL_CONTRACT", "result": "PASS", "note_zh": "bilingual_contract_version=1，proposal.en.md 设 translation_of: proposal.md；HTML/图件/PDF 提供中英版本。" },
+        { "id": "MANIFEST_HASHES", "result": "PENDING", "note_zh": "manifest.files[].sha256 在最终文件定稿后计算；官方脚本会再次刷新。" },
+        { "id": "NO_EXTERNAL_ASSETS", "result": "PASS_MANUAL", "note_zh": "HTML 未引用 CDN/远程字体/外部脚本/地图瓦片；字体使用系统字体。" }
+      ]
+    },
+    "spatial": {
+      "status": "PASS_MANUAL",
+      "checks": [
+        { "id": "BOUNDARY_TRUST", "result": "PASS", "note_zh": "site_boundary/study_area/key_areas 均为 provisional_constraint、official_boundary=false，精度与用途说明齐备；面积与公告约值误差：总体 11.34 vs 11.4 km²（-0.5%）、研究 44.4 vs 43.6 km²（+1.8%）。" },
+        { "id": "KEY_AREA_TOPOLOGY", "result": "PASS", "note_zh": "三处 KEY_AREA 均位于 site_boundary 内、互不重叠，面积与公告误差 <0.5%。" },
+        { "id": "LAND_USE_TOPOLOGY", "result": "PASS_MANUAL", "note_zh": "18 个概念地块面积合计=11,342,142 m²，与 site_boundary 复算面积一致（无缝隙无重叠由构造保证）；官方脚本拓扑校验仍需重跑。" },
+        { "id": "EPSG_4548_RECOMPUTE", "result": "PASS_MANUAL", "note_zh": "面积按 CGCS2000/3°GK（EPSG:4548）投影+鞋带公式复算，公式披露于 assumptions.json A-AREA-001。" }
+      ]
+    },
+    "visual": {
+      "status": "PASS_MANUAL",
+      "checks": [
+        { "id": "FIVE_MANDATORY_FIGURES", "result": "PASS", "note_zh": "site-overview、land-use-structure、key-areas、mobility-bluegreen、metrics-evidence 中英各 1 张已生成并嵌入正文/HTML。" },
+        { "id": "MAP_ELEMENTS", "result": "PASS_MANUAL", "note_zh": "图纸含标题、图例、比例尺、北箭头、provisional 虚线水印标注。" },
+        { "id": "NO_FALSE_PRECISION", "result": "PASS", "note_zh": "面积取整到平方米、比例保留 3 位；图面标注 provisional 精度限制，未伪装官方结论。" }
+      ]
+    },
+    "professional": {
+      "status": "PASS_MANUAL",
+      "checks": [
+        { "id": "AGENT_TASKS_COVERED", "result": "PASS", "note_zh": "agent.1-6 全部在正文可读：命名/Logo、6 个生态案例、12 张场景卡（4 个测试验证）、6 类画像、4 个朝圣地标、文化叙事、年度活动与长期运营。" },
+        { "id": "THIRTEEN_SECTIONS", "result": "PASS", "note_zh": "13 个必检章节（中英）按 formal-submission-guide.md 顺序与标题组织。" },
+        { "id": "EVIDENCE_REFS", "result": "PASS", "note_zh": "每个必检章节含 [source]/[standard]/[depth]/[data]/[metric] 机器可读引用。" },
+        { "id": "COMPLIANCE_BOUNDARY", "result": "PASS", "note_zh": "未给出容积率、建筑高度、拆改留、道路红线或工程结论；全部按概念建议/待确认条件表述。" }
+      ]
+    }
+  },
+  "summary_zh": "人工结构自检四门均为 PASS_MANUAL；manifest 哈希与官方四门报告待具备仓库脚本的环境重跑后写入。validation_claim.self_checked 保持 false，不伪造 readiness_contract。",
+  "next_steps": [
+    "在具备 Python/git 的环境：python3 scripts/finalize_submission.py submissions/ComputerDreammer/jingzhang-open-mainline",
+    "python3 scripts/self_check_submission.py submissions/ComputerDreammer/jingzhang-open-mainline --pr-author ComputerDreammer --mark-self-checked --json",
+    "python3 scripts/participant_preflight.py submissions/ComputerDreammer/jingzhang-open-mainline --pr-author ComputerDreammer --check-push",
+    "修复所有 blocker 后发起 PR"
+  ]
+}
