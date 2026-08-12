@@ -24,6 +24,9 @@ from front_matter import parse_front_matter as parse_front_matter_document
 
 
 PUBLICATION_FILE = "gallery-publication.json"
+PUBLICATION_PATH_RE = re.compile(
+    r"^submissions/[A-Za-z0-9-]{1,39}/[a-z0-9][a-z0-9-]{2,63}$"
+)
 
 
 REQUIRED_PACKAGE_FILES = {
@@ -410,11 +413,11 @@ def load_publication_registry(repo_root: Path) -> dict[str, dict[str, Any]]:
             raise SystemExit(f"{PUBLICATION_FILE}: entries[{index}].reviewed_by must be a GitHub login")
         if not isinstance(entry["reviewed_package_sha256"], str) or not re.fullmatch(r"[0-9a-f]{64}", entry["reviewed_package_sha256"]):
             raise SystemExit(f"{PUBLICATION_FILE}: entries[{index}].reviewed_package_sha256 must be a lowercase SHA-256")
-        rel = entry["path"].strip().rstrip("/")
+        rel = entry["path"]
+        if not PUBLICATION_PATH_RE.fullmatch(rel):
+            raise SystemExit(f"{PUBLICATION_FILE}: invalid submission path {rel}")
         if rel in registry:
             raise SystemExit(f"{PUBLICATION_FILE}: duplicate entry for {rel}")
-        if not rel.startswith("submissions/") or len(Path(rel).parts) != 3:
-            raise SystemExit(f"{PUBLICATION_FILE}: invalid submission path {rel}")
         if entry.get("published") is True and not (repo_root / rel / "proposal.md").is_file():
             raise SystemExit(f"{PUBLICATION_FILE}: published submission does not exist: {rel}")
         if entry.get("featured") is True and entry.get("published") is not True:
