@@ -6,6 +6,10 @@
 
 | 版本 | 旧编号范围 | 里程碑 |
 | --- | --- | --- |
+| **9.5** | v9.5 | 高分案例对齐优化包：数据置信度保守化 + 指标覆盖度 12→28 + 台账扩充 |
+| **9.4** | v9.4 | 评分回归修复包：移除名实不符的站点指标明细与自创口径绿道指标 + 节点设计去规划控制数值 + 路线图去委办局越界表述 + manifest schema 合规清理 |
+| **9.3** | v9.3 | P2 批深化补充：O6 运营路线图 + O7 Logo VI 基础包 + 节点级设计 + 指标扩充 |
+| **9.2** | v9.2 | 批判性修复包：H1-H8 文本硬伤 + C1-C6 内容补强 + 图件重绘 |
 | **9.1** | v9.1 | 合规修复包：simulation task_count + evidence marker 规范化 + 双语同步 + 标准矩阵增补 |
 | **9.0** | v9.0 | 阶段 B 图件+运营闭环：生态图谱气泡图+三区两翼空间图+场景-空间-运营矩阵+JZ KPI/退出表+Logo/VI 交付清单 |
 | **8.0** | v8.0 | P0/P1 修复包：建筑分类声明 + 图件透明化 + 品牌视觉方向 + 技术成熟度声明 + 无感视觉边界 + 版权台账细化 |
@@ -25,6 +29,32 @@ P2 批优化（O6/O7/O8，版本保持 v9.3）：
 - **O8 官方数据重算脚本**：scripts/recalc_on_official_data.py 一键重算入口（官方 geojson → EPSG:4548 全指标重算 → metrics 更新 → 差异报告 → 哈希刷新指引）；dry-run 已验证
 - **视觉索引同步**：proposal.md/en 图件索引更新（场景卡总览图、Logo VI 包、PDF v9.3、比例尺/指北针/地名说明、重算脚本引用）
 - 回归：self-check 四门禁 PASS
+
+## v9.5 - 2026-08-12（高分案例对齐优化包，基于 90+ 分方案交叉对比）
+
+对照 OPENLINE 100（93 分）与 Open Pulse（91 分）包内实测数据优化：
+
+- **第一批·数据一致性修复**：
+  - building_density 改标 unknown（官方可建设用地数据未提供；0.158 概念估算降级），proposal 引用同步中性化
+  - confidence 保守化：provisional 自绘几何派生指标（building_footprint/green_ratio/public_space_ratio/green_300m/tod_500m/road 长度/land_use 面积）medium→low；官方锚点 site_area 保留 medium；key_area_count→high
+  - note_zh 口径解释：green_ratio 双口径（355.1ha 全斑块 vs 270.8ha LU-002）、tod 质心口径、building_footprint 要素级说明
+- **第二批·覆盖度与台账扩充**：
+  - 指标 12 → 28：新增几何实测类（road_centerline_length_m=27.32km、building_count=63、public_space_count=27、green_patch_count=10、land_use_parcel_count=4、phase_count=6、constraint_count=3、land_use 四类面积 309.4/270.8/249.2/311.9ha）与台账类（scenario_count=13、renewal_project_count=6、persona_count=6、ai_landmark_count=3、proof_mile_interface_count=6）
+  - assumptions 9 → 18：数据缺口（建筑普查/道路红线/站点坐标/用地分类）、控制（开发强度不预设）、运营（责任主体待授权）、指标口径（双口径声明）四类细化
+  - sources 9 → 22：补官方 site-package 结构化文件（design_brief/allowed_design_space/enums/planning_limits/schemas）、国家标准（GB 50137/GB 50180/设计深度规定）与政策文件（生成式AI暂行办法/无障碍法/适老方案/城市设计管理办法）
+- 版本号 v9.4 → v9.5 全链同步（proposal 双语/PDF 封面与页眉/visual 展示页/manifest）
+- 回归：本地 validate/self_check 四门禁 PASS
+
+## v9.4 - 2026-08-12（评分回归修复包，基于 75 vs 77 失分点分析）
+
+针对官方 Review Agent 75/100（v9.2 为 77/100）的失分点分析结果修复：
+- **P0-1 移除名实不符的站点指标明细**：删除 metrics.json tod_station_500m_cover.station_breakdown_500m_buffer（原三站 500m 覆盖面积均为 78.41 ha，实为重点区域质心缓冲计算结果，不宜标注真实站名）；保留并集覆盖单值 20.6%，proposal 表述同步改为「三处重点区域质心 500m 圈」
+- **P0-2 移除自创口径的绿道指标**：删除 metrics.json greenway_length_km（22.71 km 系 top-3 绿地斑块并集周长近似，口径非标准），proposal 双语量化情景同步清理引用
+- **P1-1 路线图去越界表述**：运营实施路线图删除具体委办局分工（规自委/交通委/水务局等）与具体资金来源安排（公共财政/生态补偿/绿色债券），改为中性「主管部门 + 专业运营团队（待授权确认）」与「资金来源待确认」
+- **P1-2 节点设计去规划控制值**：三区 9 节点删除概念规模数值与容积率 3.5-4.5、退让 30-50 m、200 m 核心圈等规划控制指标，保留定性设计要点
+- **P2 manifest schema 合规清理**：修复 files[56] translation_of 空字符串（补 en 映射）；删除 9 条 description 多余字段；删除顶层 version/updated_at/checksums 遗留字段；validation_claim 版本与时间戳同步；全部 files[].sha256 重算
+- **PDF 版本号同步**：4 份 PDF（A3/A0 × zh/en）页眉/封面 v9.3→v9.4、2026-08-11→2026-08-12（PyMuPDF redact+重写，共 32 处，渲染验证无残留）；proposal 图件索引表 PDF 描述同步；visual/index 双语展示页 Submission v9.2→v9.4（落后两版）并同步 en 状态为 formal-review-ready
+- 回归：本地 validate/self_check 四门禁 PASS（见下方验证记录）
 
 ## v9.3 - 2026-08-11（PDF 数据同步补记）
 
