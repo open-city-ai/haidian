@@ -119,6 +119,10 @@ PACKAGE_FILES_INCLUDED_AS_PARTIAL_PREVIEW = {
 }
 
 
+class ReviewOutputError(ValueError):
+    pass
+
+
 def read_text(path: Path) -> str:
     if not path.exists():
         return ""
@@ -155,6 +159,15 @@ def script_path(repo_root: Path, name: str) -> Path:
     # participant-controlled scripts), so it must never supply executables to
     # the review process.
     return SCRIPT_DIR / name
+
+
+def validate_output_dir(repo_root: Path, out_dir: Path) -> None:
+    try:
+        relative = out_dir.resolve().relative_to(repo_root.resolve())
+    except ValueError:
+        return
+    if relative.parts and relative.parts[0] == "submissions":
+        raise ReviewOutputError("Review output must not be written inside `submissions/`")
 
 
 def run_json_command(command: list[str]) -> dict:
@@ -399,6 +412,10 @@ def main() -> int:
             out_dir = repo_root / out_dir
     else:
         out_dir = repo_root / DEFAULT_OUTPUT_ROOT / submission_dir.name / "review-packet"
+    try:
+        validate_output_dir(repo_root, out_dir)
+    except ReviewOutputError as exc:
+        parser.error(str(exc))
     out_dir.mkdir(parents=True, exist_ok=True)
 
     review_input = build_review_input(repo_root, submission_dir)
