@@ -1,0 +1,54 @@
+{
+ "schema_version": "0.1.0",
+ "checks": [
+  {
+   "check_id": "BOUNDARY_TRUST",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/site_boundary.geojson",
+   "message": "Provisional boundary is present and labeled; official redline required before professional scoring."
+  },
+  {
+   "check_id": "KEY_AREAS_TRUST",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/key_areas.geojson",
+   "message": "Three required key areas present as provisional polygons."
+  },
+  {
+   "check_id": "LAND_USE_TOPOLOGY",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/land_use.geojson",
+   "message": "Land-use polygons cover the full submitted boundary with no gaps or overlaps."
+  },
+  {
+   "check_id": "VISUAL_STATIC",
+   "result": "pass",
+   "severity": "major",
+   "target": "visual/index.html",
+   "message": "Offline static HTML, no remote resources."
+  },
+  {
+   "check_id": "METRICS_CONSISTENCY",
+   "result": "pass",
+   "severity": "major",
+   "target": "metrics.json",
+   "message": "Core metrics recalculated in EPSG:4548 and consistent with visual display values."
+  },
+  {
+   "check_id": "PROFESSIONAL_EVIDENCE",
+   "result": "pass",
+   "severity": "major",
+   "target": "standard_matrix.json",
+   "message": "Mandatory standards addressed with local references and evidence summaries."
+  },
+  {
+   "check_id": "BILINGUAL_CONTRACT",
+   "result": "pass",
+   "severity": "blocking",
+   "target": "proposal.en.md",
+   "message": "English translation provided with aligned sections."
+  }
+ ]
+}
