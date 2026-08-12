@@ -17,6 +17,8 @@ from dataclasses import dataclass, field
 from pathlib import Path, PurePosixPath
 from typing import Iterable
 
+from metric_types import is_json_number
+
 
 POLICY_ROOT = Path(__file__).resolve().parents[1]
 PERSISTED_READINESS_CONTRACT = "persisted-self-check-v1"
@@ -1307,9 +1309,9 @@ def validate_metrics_file(report: ValidationReport, path: Path, display_path: st
                 report.add_error(f"{label}: unknown metric value must be null")
             if not metric.get("reason"):
                 report.add_error(f"{label}: unknown metric needs reason")
-        if status == "known" and not isinstance(metric.get("value"), (int, float)):
+        if status == "known" and not is_json_number(metric.get("value")):
             report.add_error(f"{label}: known metric needs numeric value")
-        if metric.get("unit") == "ratio" and isinstance(metric.get("value"), (int, float)):
+        if metric.get("unit") == "ratio" and is_json_number(metric.get("value")):
             value = metric["value"]
             if value < 0 or value > 1:
                 report.add_error(f"{label}: ratio value must be between 0 and 1")
