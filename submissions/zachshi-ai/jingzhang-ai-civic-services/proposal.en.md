@@ -23,6 +23,18 @@ Sources fall into three categories: first, official task materials, including th
 
 The site boundary adopts a provisional rough boundary, not an official red line [source:provisional-boundary]. Once the official precise red line is published, all area indicators and geometric relationships in this proposal must be recalculated and further developed by a professional team [assumption:A-CONTROLS-001].
 
+## Existing Conditions Diagnosis and Problem Baseline
+
+The design is based on the following existing-condition problems identified from public materials [source:official-announcement]:
+
+**Government Service Fragmentation Baseline**: Citizens must make multiple trips for government, health, and legal services; cross-department service integration and "one-stop" processing are still advancing [source:agent-taskbook]. Government service points around the three Jing-Zhang areas are unevenly distributed, with service-radius coverage blind spots.
+
+**Public Service Accessibility Baseline**: Community health centers, legal aid points, and public service centers have varying capacities; 300-500m service-radius station coverage is incomplete. Service accessibility for new citizens, mobile populations, and disadvantaged groups is insufficient; multilingual and age-friendly services are lacking.
+
+**AI Service Application Baseline**: AI has navigation and Q&A applications in public services, but mostly remains at the information-retrieval level, lacking systematic integration with physical spaces (service stations, hubs) [source:agent-taskbook]. Cross-department service data interoperability is insufficient, making it difficult to support precise "citizen service profiles" and proactive services.
+
+**Data Gap Statement**: Precise government service transaction volumes, service-radius coverage rates, and citizen satisfaction data require official statistical support; this proposal makes conceptual diagnoses based on public materials [assumption:A-CONTROLS-001].
+
 ## Three-Level Scope Framework
 
 ### Coordinated Study Scope (approx. 43.6 km²)

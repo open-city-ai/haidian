@@ -32,6 +32,18 @@ The source registry's usage boundaries are as follows [source:source-registry]: 
 
 **Data-honesty statement.** Baseline data — elderly population, the list of hospitals and community health centres along the corridor, and barrier-free-facility inventories — are incomplete in the public site-package and, per `brief/site-package/missing-data.md`, are flagged as known data gaps (see `elderly_population_baseline` and `health_facility_baseline_count`, both `unknown` in the metrics section). Accordingly, all quantitative targets are written as "conceptual operational indicators" or "to be quantified once baseline data is confirmed"; no baselines are fabricated and no unverifiable data is used to mislead review [depth:existing_conditions_diagnosis].
 
+## Existing Conditions Diagnosis and Problem Baseline
+
+The design is based on the following existing-condition problems identified from public materials [source:official-announcement]:
+
+**Aging Population Baseline**: Beijing and Haidian face a deepening aging trend; the elderly population proportion rises annually, making age-friendly urban services and accessible environments urgent [source:agent-taskbook]. Communities along the Jing-Zhang Heritage Park have high elderly resident density, but existing public-service facility accessibility varies.
+
+**Accessibility Baseline**: The Barrier-Free Environment Construction Law is in effect, but existing slow-mobility systems have accessibility continuity gaps; ramps, handrails, tactile paving, and information accessibility in public spaces are incompletely covered [standard:BARRIER-FREE-ENVIRONMENT-LAW]. Age-friendly renovation of medical institutions, community service centers, and parks progresses unevenly.
+
+**AI Age-Friendly Service Baseline**: AI technology has applications in health, mobility, and living services, but AI services for the elderly often require high digital skills; low-digital-skill elderly groups face technology-exclusion risks. A systematic "AI assistance + human fallback" age-friendly service network is lacking.
+
+**Data Gap Statement**: Precise elderly population density, accessibility facility coverage, and slow-mobility accessibility break-point data require official statistics and special surveys; this proposal makes conceptual diagnoses based on public materials [assumption:A-CONTROLS-001].
+
 ## Three-Level Scope Framework
 
 ### Coordinated Research Area (~43.6 km²)

@@ -26,6 +26,18 @@ All spatial proposals are conceptual recommendations, reference schemes, or subj
 
 ![Site overview and civic-data commons framework](assets/figures/site-overview.png)
 
+## Existing Conditions Diagnosis and Problem Baseline
+
+The design is based on the following existing-condition problems identified from public materials [source:official-announcement]:
+
+**Data Openness Baseline**: The Beijing Public Data Open Platform has opened catalog-level data on rail lines, bus stops, and public services, but most data files/APIs require login or userKey; machine-readable open datasets remain limited [source:agent-taskbook]. Haidian has rich AI industry data, but public-data supply channels for citizens and developers are not smooth.
+
+**Public Service Digitalization Baseline**: Government, health, and legal services each have their own digital systems, but cross-department data interoperability and service integration are insufficient; citizens must make multiple trips. AI technology in public services is still at the navigation and Q&A stage, lacking a systematic "data as public good" concept.
+
+**Community and Participation Baseline**: Residents, university faculty/students, and enterprise employees around the three key areas have diverse AI service needs, but lack participatory AI service co-creation platforms and public data experimentation spaces.
+
+**Data Gap Statement**: Precise public-data openness rates, data quality, and citizen usage data require official statistical support; this proposal makes conceptual diagnoses based on public materials [assumption:A-CONTROLS-001].
+
 ## Three-Level Scope Framework
 
 ### Coordinated Research Area (approx. 43.6 km²)

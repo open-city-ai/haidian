@@ -27,6 +27,18 @@ All spatial recommendations are conceptual suggestions, reference schemes, or ma
 
 ![Site Overview and Evidence Chain Diagram](assets/figures/site-overview.en.png)
 
+## Existing Conditions Diagnosis and Problem Baseline
+
+The design is based on the following existing-condition problems identified from public materials [source:official-announcement]:
+
+**Spatial and Transport Baseline**: Jing-Zhang Railway Heritage Park Phase I (2.5 km, 16.8 ha) is open, but Phase II (~9 km) is unbuilt, leaving physical connectivity gaps along the north-south axis [source:agent-taskbook]. The railway's legacy physical division separates east-west urban functions with insufficient slow-mobility connections. Existing roads prioritize vehicles; the slow-mobility network has numerous break points.
+
+**Industry and Innovation Baseline**: Haidian's AI core industry continues to grow, but the three key areas (Zhongzhiyuan, AI Origin Community, Dazhongsi) lack systematic industrial-ecosystem spatial organization [source:agent-taskbook]. Zhongguancun has leading technology-service capabilities, but the coordination mechanism for capital, IP, and scenario testing remains underdeveloped.
+
+**Cultural and Public Space Baseline**: The former Tsinghuayuan Station site is open for display, providing material carriers for the Jing-Zhang railway cultural lineage, but the cultural narrative lacks systematic spatial organization. Public accessibility and experiential continuity are insufficient. Public spaces are primarily linear corridors lacking nodal gathering and high-quality dwelling spaces.
+
+**Data Gap Statement**: Precise baseline data on building quality, population density, slow-mobility flow, and public-service accessibility require official statistical support; this proposal makes conceptual diagnoses based on public materials [assumption:A-CONTROLS-001].
+
 ## Three-Level Scope Framework
 
 ### Coordinated Research Area (approx. 43.6 km²)
