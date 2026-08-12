@@ -1,6 +1,36 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
+  "ok": true,
+  "can_enter_formal_review": true,
   "checks": [
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "manifest.json",
+      "message": "All manifest SHA256 checks pass; all required files present."
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/",
+      "message": "Geometry files pass spatial integrity checks."
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "message": "Visual packaging is valid HTML without external dependencies."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "Proposal includes references to standards, design depth items, geometry, metrics, sources, and assumptions."
+    },
     {
       "check_id": "BOUNDARY_TRUST",
       "result": "pass",
@@ -28,16 +58,9 @@
       "severity": "info",
       "target": "visual/index.html",
       "message": "Static HTML visualization is generated without external dependencies."
-    },
-    {
-      "check_id": "PROFESSIONAL_EVIDENCE",
-      "result": "pass",
-      "severity": "major",
-      "target": "proposal.md",
-      "message": "Proposal includes references to standards, design depth items, geometry, metrics, sources, and assumptions."
     }
   ],
-  "persisted_at": "2026-08-11T03:10:00Z",
+  "persisted_at": "2026-08-12T04:29:00Z",
   "deterministic_validation": {
     "result": "PASS"
   },
