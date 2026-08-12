@@ -130,17 +130,18 @@
       "if": {
         "properties": {
           "metadata": {
-            "properties": {
-              "proposal_format_version": {"const": "2"},
-              "bilingual_contract_version": {"const": "1"}
-            },
-            "required": ["proposal_format_version", "bilingual_contract_version"]
+            "required": ["bilingual_contract_version"]
           }
         }
       },
       "then": {
         "properties": {
-          "metadata": {"required": ["translation_file"]}
+          "metadata": {
+            "properties": {
+              "proposal_format_version": {"const": "2"}
+            },
+            "required": ["proposal_format_version", "translation_file"]
+          }
         }
       }
     },
@@ -155,7 +156,23 @@
       },
       "then": {
         "properties": {
-          "sections": {"contains": {"const": "设计依据与资料清单"}}
+          "sections": {
+            "allOf": [
+              {"contains": {"const": "设计依据与资料清单"}},
+              {"contains": {"const": "三层范围工作框架"}},
+              {"contains": {"const": "统筹研究范围产业与未来城市研究"}},
+              {"contains": {"const": "总体设计范围城市更新与控规深度城市设计"}},
+              {"contains": {"const": "重点区域详细设计"}},
+              {"contains": {"const": "AI 创新生态、人才画像与 AI+ 场景"}},
+              {"contains": {"const": "用地、建筑规模与拆改留方案"}},
+              {"contains": {"const": "交通、轨道、市政与公共服务设施"}},
+              {"contains": {"const": "蓝绿空间、公共空间与城市风貌"}},
+              {"contains": {"const": "更新项目清单、实施政策与分期计划"}},
+              {"contains": {"const": "指标体系、面积复算与合规矩阵"}},
+              {"contains": {"const": "风险、版权与合规说明"}},
+              {"contains": {"const": "参考资料"}}
+            ]
+          }
         }
       }
     },
@@ -170,7 +187,23 @@
       },
       "then": {
         "properties": {
-          "sections": {"contains": {"const": "Design Basis and Source List"}}
+          "sections": {
+            "allOf": [
+              {"contains": {"const": "Design Basis and Source List"}},
+              {"contains": {"const": "Three-Level Scope Framework"}},
+              {"contains": {"const": "Coordinated Research Area: Industry and Future City Research"}},
+              {"contains": {"const": "Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design"}},
+              {"contains": {"const": "Detailed Design of Key Areas"}},
+              {"contains": {"const": "AI Innovation Ecosystem, Personas, and AI+ Scenarios"}},
+              {"contains": {"const": "Land Use, Building Scale, and Retain-Renovate-Demolish Strategy"}},
+              {"contains": {"const": "Transport, Rail, Municipal Infrastructure, and Public Services"}},
+              {"contains": {"const": "Blue-Green Network, Public Space, and Urban Character"}},
+              {"contains": {"const": "Renewal Projects, Implementation Policy, and Phasing"}},
+              {"contains": {"const": "Metrics, Area Recalculation, and Compliance Matrix"}},
+              {"contains": {"const": "Risk, Copyright, and Compliance"}},
+              {"contains": {"const": "References"}}
+            ]
+          }
         }
       }
     }
