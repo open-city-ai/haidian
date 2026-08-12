@@ -17,6 +17,12 @@ DEFAULT_OUTPUT = "source-registry-data.js"
 
 def build_frontend_data(repo_root: Path) -> dict[str, Any]:
     registry = load_source_registry(repo_root)
+    registry_error = registry.get("_error")
+    if registry_error:
+        raise ValueError(f"invalid source registry: {registry_error}")
+    sources = registry.get("sources")
+    if not isinstance(sources, list) or not sources:
+        raise ValueError("source registry must contain a non-empty sources array")
     summary = summarize_source_registry(registry, limit=20)
     return {
         "updatedDate": summary.get("updated_date"),
@@ -50,7 +56,11 @@ def main() -> int:
     out_path = Path(args.out)
     if not out_path.is_absolute():
         out_path = repo_root / out_path
-    content = render_js(build_frontend_data(repo_root))
+    try:
+        content = render_js(build_frontend_data(repo_root))
+    except ValueError as exc:
+        print(f"{repo_root / 'data' / 'source_registry.json'}: {exc}", file=sys.stderr)
+        return 1
     if args.check:
         if not out_path.exists():
             print(f"{out_path}: missing generated source registry data", file=sys.stderr)
