@@ -1190,8 +1190,28 @@ def extract_legacy_translation(body: str, target_language: str) -> str | None:
     return translated_body
 
 
+def is_symlink_free_contained_path(path: Path, root: Path) -> bool:
+    try:
+        relative = path.relative_to(root)
+    except ValueError:
+        return False
+    current = root
+    if current.is_symlink():
+        return False
+    for part in relative.parts:
+        current /= part
+        if current.is_symlink():
+            return False
+    return path.resolve().is_relative_to(root.resolve())
+
+
 def proposal_dirs(repo_root: Path, only: list[str]) -> list[Path]:
-    found = sorted(path.parent for path in (repo_root / "submissions").glob("*/*/proposal.md"))
+    submissions_root = repo_root / "submissions"
+    found = sorted(
+        path.parent
+        for path in submissions_root.glob("*/*/proposal.md")
+        if is_symlink_free_contained_path(path, submissions_root)
+    )
     if not only:
         return found
     wanted = set(only)
