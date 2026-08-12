@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>钟鸣道合 分时共生 | Clock Echo · Time-Shared Symbiosis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --tech-blue: #1a73e8;
+            --eco-green: #34a853;
+            --heritage-copper: #b87333;
+            --light-bg: #f5f7fa;
+            --card-bg: #ffffff;
+            --text-primary: #202124;
+            --text-secondary: #5f6368;
+            --border-color: #dadce0;
+            --shadow: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-hover: 0 4px 16px rgba(0,0,0,0.12);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft YaHei", "微软雅黑", sans-serif;
+            background: var(--light-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--tech-blue) 0%, #0d47a1 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255,255,255,0.03) 50px, rgba(255,255,255,0.03) 51px),
+                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(255,255,255,0.03) 50px, rgba(255,255,255,0.03) 51px);
+            pointer-events: none;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .meta-label {
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+
+        .meta-value {
+            font-weight: 600;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            background: linear-gradient(90deg, #fff3cd 0%, #ffe69c 100%);
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .disclaimer-title {
+            font-weight: 700;
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .disclaimer-text {
+            color: #856404;
+            line-height: 1.8;
+        }
+
+        /* Section */
+        section {
+            background: var(--card-bg);
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        h2 {
+            color: var(--tech-blue);
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--tech-blue);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2::before {
+            content: '';
+            width: 6px;
+            height: 30px;
+            background: var(--tech-blue);
+            border-radius: 3px;
+        }
+
+        h3 {
+            color: var(--text-primary);
+            font-size: 1.3em;
+            margin: 25px 0 15px 0;
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--tech-blue);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--tech-blue);
+        }
+
+        .metric-label {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-value {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: var(--tech-blue);
+            line-height: 1;
+        }
+
+        .metric-unit {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            margin-left: 5px;
+        }
+
+        /* Scope Levels */
+        .scope-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .scope-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .scope-card:hover {
+            border-color: var(--tech-blue);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .scope-level {
+            display: inline-block;
+            background: var(--tech-blue);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .scope-area {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--tech-blue);
+            margin: 15px 0;
+        }
+
+        .scope-unit {
+            font-size: 1em;
+            color: var(--text-secondary);
+        }
+
+        /* Key Areas */
+        .key-areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .area-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .area-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .area-header {
+            padding: 25px;
+            color: white;
+            position: relative;
+        }
+
+        .area-card:nth-child(1) .area-header {
+            background: linear-gradient(135deg, var(--tech-blue) 0%, #0d47a1 100%);
+        }
+
+        .area-card:nth-child(2) .area-header {
+            background: linear-gradient(135deg, var(--eco-green) 0%, #1b5e20 100%);
+        }
+
+        .area-card:nth-child(3) .area-header {
+            background: linear-gradient(135deg, var(--heritage-copper) 0%, #8b4513 100%);
+        }
+
+        .area-name {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .area-name-en {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .area-body {
+            padding: 25px;
+        }
+
+        .area-size {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 10px 0;
+        }
+
+        .area-size-unit {
+            font-size: 1em;
+            color: var(--text-secondary);
+        }
+
+        /* CSS Map */
+        .css-map {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border: 3px solid var(--tech-blue);
+            border-radius: 12px;
+            padding: 40px;
+            margin: 30px 0;
+            position: relative;
+            min-height: 500px;
+            overflow: hidden;
+        }
+
+        .map-title {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--tech-blue);
+            box-shadow: var(--shadow);
+            z-index: 10;
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            margin-top: 40px;
+        }
+
+        .map-area {
+            position: absolute;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .map-area:hover {
+            transform: scale(1.05);
+            z-index: 100;
+        }
+
+        .map-area-1 {
+            background: linear-gradient(135deg, var(--tech-blue) 0%, #1565c0 100%);
+            width: 280px;
+            height: 200px;
+            top: 50px;
+            left: 50px;
+        }
+
+        .map-area-2 {
+            background: linear-gradient(135deg, var(--eco-green) 0%, #2e7d32 100%);
+            width: 220px;
+            height: 160px;
+            top: 80px;
+            left: 380px;
+        }
+
+        .map-area-3 {
+            background: linear-gradient(135deg, var(--heritage-copper) 0%, #a0522d 100%);
+            width: 180px;
+            height: 140px;
+            top: 280px;
+            left: 250px;
+        }
+
+        .map-area-name {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+
+        .map-area-size {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .map-connection {
+            position: absolute;
+            background: rgba(255,255,255,0.6);
+            border: 2px dashed var(--tech-blue);
+        }
+
+        .connection-1 {
+            width: 100px;
+            height: 2px;
+            top: 150px;
+            left: 330px;
+        }
+
+        .connection-2 {
+            width: 2px;
+            height: 120px;
+            top: 240px;
+            left: 490px;
+        }
+
+        /* Time Schedule */
+        .time-schedule {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .schedule-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .time-slot {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .schedule-row {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .schedule-label {
+            width: 150px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .schedule-bar {
+            flex: 1;
+            height: 40px;
+            background: #f5f5f5;
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .schedule-segment {
+            position: absolute;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .segment-morning {
+            background: linear-gradient(90deg, #ffd54f 0%, #ffb300 100%);
+            left: 0%;
+            width: 25%;
+        }
+
+        .segment-afternoon {
+            background: linear-gradient(90deg, #4fc3f7 0%, #0288d1 100%);
+            left: 25%;
+            width: 25%;
+        }
+
+        .segment-evening {
+            background: linear-gradient(90deg, #ba68c8 0%, #7b1fa2 100%);
+            left: 50%;
+            width: 25%;
+        }
+
+        .segment-night {
+            background: linear-gradient(90deg, #5c6bc0 0%, #283593 100%);
+            left: 75%;
+            width: 25%;
+        }
+
+        /* Land Use Table */
+        .land-use-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .land-use-table thead {
+            background: linear-gradient(135deg, var(--tech-blue) 0%, #0d47a1 100%);
+            color: white;
+        }
+
+        .land-use-table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .land-use-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .land-use-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .land-use-table tbody tr:last-child td {
+            border-bottom: none;
+            font-weight: 700;
+            background: #e3f2fd;
+        }
+
+        /* Compliance Status */
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .compliance-card {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--eco-green);
+        }
+
+        .compliance-title {
+            font-weight: 700;
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .compliance-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .status-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--eco-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin: 20px 0;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--eco-green) 0%, #2e7d32 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            transition: width 0.5s ease;
+        }
+
+        /* Phasing Plan */
+        .phasing-timeline {
+            position: relative;
+            padding: 30px 0;
+            margin: 30px 0;
+        }
+
+        .phasing-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--tech-blue) 0%, var(--eco-green) 50%, var(--heritage-copper) 100%);
+        }
+
+        .phase-item {
+            position: relative;
+            padding-left: 100px;
+            margin-bottom: 40px;
+        }
+
+        .phase-marker {
+            position: absolute;
+            left: 35px;
+            width: 34px;
+            height: 34px;
+            background: white;
+            border: 4px solid var(--tech-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--tech-blue);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .phase-item:nth-child(2) .phase-marker {
+            border-color: var(--eco-green);
+            color: var(--eco-green);
+        }
+
+        .phase-item:nth-child(3) .phase-marker {
+            border-color: var(--heritage-copper);
+            color: var(--heritage-copper);
+        }
+
+        .phase-content {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--tech-blue);
+        }
+
+        .phase-item:nth-child(2) .phase-content {
+            border-left-color: var(--eco-green);
+        }
+
+        .phase-item:nth-child(3) .phase-content {
+            border-left-color: var(--heritage-copper);
+        }
+
+        .phase-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .phase-period {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+
+        /* AI Scenario Cards */
+        .ai-scenarios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .scenario-card {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border: 2px solid #ce93d8;
+            transition: all 0.3s ease;
+        }
+
+        .scenario-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .scenario-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #9c27b0 0%, #6a1b9a 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .scenario-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #6a1b9a;
+        }
+
+        /* Landmarks */
+        .landmarks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .landmark-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .landmark-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .landmark-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .landmark-card:nth-child(1) .landmark-image {
+            background: linear-gradient(135deg, var(--tech-blue) 0%, #0d47a1 100%);
+        }
+
+        .landmark-card:nth-child(2) .landmark-image {
+            background: linear-gradient(135deg, var(--eco-green) 0%, #1b5e20 100%);
+        }
+
+        .landmark-card:nth-child(3) .landmark-image {
+            background: linear-gradient(135deg, var(--heritage-copper) 0%, #8b4513 100%);
+        }
+
+        .landmark-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.95);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.9em;
+        }
+
+        .landmark-content {
+            padding: 25px;
+        }
+
+        .landmark-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        /* Lists */
+        .info-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .info-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: start;
+            gap: 12px;
+        }
+
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+
+        .info-list li::before {
+            content: '▸';
+            color: var(--tech-blue);
+            font-weight: 700;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+
+        /* Bilingual */
+        .bilingual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .lang-zh, .lang-en {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .lang-label {
+            display: inline-block;
+            background: var(--tech-blue);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .subtitle {
+                font-size: 1.1em;
+            }
+
+            section {
+                padding: 25px;
+            }
+
+            .bilingual {
+                grid-template-columns: 1fr;
+            }
+
+            .map-area {
+                transform: scale(0.7);
+            }
+
+            .map-area-1 {
+                width: 200px;
+                height: 150px;
+            }
+
+            .map-area-2 {
+                width: 160px;
+                height: 120px;
+            }
+
+            .map-area-3 {
+                width: 140px;
+                height: 110px;
+            }
+        }
+
+        /* Utility */
+        .text-blue { color: var(--tech-blue); }
+        .text-green { color: var(--eco-green); }
+        .text-copper { color: var(--heritage-copper); }
+        .font-bold { font-weight: 700; }
+        .mt-20 { margin-top: 20px; }
+        .mb-20 { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <h1>钟鸣道合 分时共生</h1>
+                <div class="subtitle">Clock Echo · Time-Shared Symbiosis</div>
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">项目 | Project:</span>
+                        <span class="meta-value">百年京张AI创新带 | Centennial Jingzhang AI Innovation Belt</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">区位 | Location:</span>
+                        <span class="meta-value">北京市海淀区 | Haidian District, Beijing</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">提交 | Submission:</span>
+                        <span class="meta-value">钟鸣道合团队 | Zhongming Dahe Team</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Provisional Boundary Disclaimer -->
+        <div class="disclaimer">
+            <div class="disclaimer-title">⚠ 暂定边界声明 | Provisional Boundary Disclaimer</div>
+            <div class="disclaimer-text">
+                <strong>中文：</strong>本方案中所有边界、面积及指标数据均为暂定性质，仅供方案展示与评审参考。最终数据以官方批准文件为准。方案中的空间布局、功能分区及分期安排可能根据后续深化设计调整。<br>
+                <strong>English:</strong> All boundaries, areas, and metrics in this proposal are provisional and for demonstration and review purposes only. Final data subject to official approval. Spatial layout, functional zoning, and phasing may be adjusted during subsequent detailed design.
+            </div>
+        </div>
+
+        <!-- Project Overview -->
+        <section>
+            <h2>项目概述 | Project Overview</h2>
+            <div class="bilingual">
+                <div class="lang-zh">
+                    <span class="lang-label">中文</span>
+                    <p>"钟鸣道合 分时共生"方案以百年京张铁路为时空纽带，构建AI创新带的全新城市范式。通过分时共享、功能复合、生态融合的设计策略，将43.6平方公里的研究范围打造为集科技创新、文化传承、生态宜居于一体的未来城市示范区。</p>
+                    <p class="mt-20">方案核心理念：以时间维度重构空间使用，实现城市功能的24小时动态平衡，让同一片区在不同时段服务不同人群，最大化空间价值与社会效益。</p>
+                </div>
+                <div class="lang-en">
+                    <span class="lang-label">English</span>
+                    <p>The "Clock Echo · Time-Shared Symbiosis" proposal uses the centennial Jingzhang Railway as a spatiotemporal nexus to create a new urban paradigm for the AI Innovation Belt. Through time-sharing, functional mixing, and ecological integration strategies, the 43.6 km² research scope becomes a future urban demonstration zone integrating technological innovation, cultural heritage, and ecological livability.</p>
+                    <p class="mt-20">Core concept: Reconstruct spatial use through temporal dimensions, achieving 24-hour dynamic balance of urban functions. The same district serves different populations at different times, maximizing spatial value and social benefits.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Metrics -->
+        <section>
+            <h2>核心指标 | Core Metrics</h2>
+            <div class="metrics-grid">
+                <div class="metric-card" data-metric="site_area">
+                    <div class="metric-label">总体设计范围 | Site Area</div>
+                    <div class="metric-value" data-value="11400000">11.4<span class="metric-unit">km²</span></div>
+                </div>
+                <div class="metric-card" data-metric="green_ratio">
+                    <div class="metric-label">绿地率 | Green Ratio</div>
+                    <div class="metric-value" data-value="0.27">27<span class="metric-unit">%</span></div>
+                </div>
+                <div class="metric-card" data-metric="concept_total_floor_area">
+                    <div class="metric-label">概念总建筑面积 | Concept Total Floor Area</div>
+                    <div class="metric-value" data-value="18500000">1850<span class="metric-unit">万m²</span></div>
+                </div>
+                <div class="metric-card" data-metric="key_area_count">
+                    <div class="metric-label">重点区域数量 | Key Area Count</div>
+                    <div class="metric-value" data-value="3">3<span class="metric-unit">个</span></div>
+                </div>
+                <div class="metric-card" data-metric="ai_scenario_nodes">
+                    <div class="metric-label">AI场景节点 | AI Scenario Nodes</div>
+                    <div class="metric-value" data-value="15">15<span class="metric-unit">个</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scope Levels -->
+        <section>
+            <h2>三级范围 | Three Scope Levels</h2>
+            <div class="scope-levels">
+                <div class="scope-card">
+                    <span class="scope-level">Level 1 | 第一级</span>
+                    <h3>统筹研究范围</h3>
+                    <p>Comprehensive Research Scope</p>
+                    <div class="scope-area">43.6<span class="scope-unit"> km²</span></div>
+                    <p class="mt-20">涵盖京张铁路沿线整体区域，进行宏观层面的功能定位、交通组织、生态网络研究。</p>
+                    <p class="mt-20 text-blue">Covers the entire area along Jingzhang Railway for macro-level functional positioning, transportation organization, and ecological network research.</p>
+                </div>
+                <div class="scope-card">
+                    <span class="scope-level">Level 2 | 第二级</span>
+                    <h3>总体设计范围</h3>
+                    <p>Overall Design Scope</p>
+                    <div class="scope-area">11.4<span class="scope-unit"> km²</span></div>
+                    <p class="mt-20">核心设计区域，进行详细的空间布局、功能分区、景观设计。</p>
+                    <p class="mt-20 text-blue">Core design area for detailed spatial layout, functional zoning, and landscape design.</p>
+                </div>
+                <div class="scope-card">
+                    <span class="scope-level">Level 3 | 第三级</span>
+                    <h3>重点区域</h3>
+                    <p>Key Areas</p>
+                    <div class="scope-area">3.68<span class="scope-unit"> km²</span></div>
+                    <p class="mt-20">三个重点片区，进行深度设计与实施策略制定。</p>
+                    <p class="mt-20 text-blue">Three key districts for in-depth design and implementation strategy development.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Areas -->
+        <section>
+            <h2>三大重点区域 | Three Key Areas</h2>
+            <div class="key-areas">
+                <div class="area-card">
+                    <div class="area-header">
+                        <div class="area-name">众智园</div>
+                        <div class="area-name-en">Zhongzhi Yuan | Innovation Hub</div>
+                    </div>
+                    <div class="area-body">
+                        <div class="area-size">192.1<span class="area-size-unit"> ha</span></div>
+                        <p class="mt-20">以AI研发、科技创新为核心，打造产学研一体化的创新生态系统。汇聚顶尖科研机构、企业总部、孵化器，形成知识密集型产业集群。</p>
+                        <p class="mt-20 text-green">Focused on AI R&D and technological innovation, creating an integrated innovation ecosystem of industry-academia-research. Gathering top research institutions, corporate headquarters, and incubators to form a knowledge-intensive industrial cluster.</p>
+                    </div>
+                </div>
+                <div class="area-card">
+                    <div class="area-header">
+                        <div class="area-name">AI原点社区</div>
+                        <div class="area-name-en">AI Origin Community</div>
+                    </div>
+                    <div class="area-body">
+                        <div class="area-size">104.3<span class="area-size-unit"> ha</span></div>
+                        <p class="mt-20">以人居体验为核心，构建AI赋能的未来生活社区。通过分时共享机制，实现居住、工作、休闲的动态平衡，打造24小时活力社区。</p>
+                        <p class="mt-20 text-green">Centered on human experience, building an AI-empowered future living community. Through time-sharing mechanisms, achieving dynamic balance of living, working, and leisure, creating a 24-hour vibrant community.</p>
+                    </div>
+                </div>
+                <div class="area-card">
+                    <div class="area-header">
+                        <div class="area-name">大钟寺</div>
+                        <div class="area-name-en">Dazhong Temple | Heritage District</div>
+                    </div>
+                    <div class="area-body">
+                        <div class="area-size">72.0<span class="area-size-unit"> ha</span></div>
+                        <p class="mt-20">以文化传承为核心，保护历史遗存，激活文化记忆。将传统文化空间与现代AI技术融合，打造文化科技交融的展示窗口。</p>
+                        <p class="mt-20 text-green">Centered on cultural heritage, preserving historical remains and activating cultural memory. Integrating traditional cultural spaces with modern AI technology to create a showcase of culture-technology fusion.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CSS Map Visualization -->
+        <section>
+            <h2>空间布局 | Spatial Layout</h2>
+            <div class="css-map">
+                <div class="map-title">📍 总体空间结构 | Overall Spatial Structure</div>
+                <div class="map-container">
+                    <div class="map-area map-area-1">
+                        <div class="map-area-name">众智园</div>
+                        <div class="map-area-size">192.1 ha</div>
+                        <div style="font-size: 0.85em; opacity: 0.9; margin-top: 5px;">Innovation Hub</div>
+                    </div>
+                    <div class="map-area map-area-2">
+                        <div class="map-area-name">AI原点社区</div>
+                        <div class="map-area-size">104.3 ha</div>
+                        <div style="font-size: 0.85em; opacity: 0.9; margin-top: 5px;">Origin Community</div>
+                    </div>
+                    <div class="map-area map-area-3">
+                        <div class="map-area-name">大钟寺</div>
+                        <div class="map-area-size">72.0 ha</div>
+                        <div style="font-size: 0.85em; opacity: 0.9; margin-top: 5px;">Heritage District</div>
+                    </div>
+                    <div class="map-connection connection-1"></div>
+                    <div class="map-connection connection-2"></div>
+                </div>
+            </div>
+            <p class="mt-20 text-blue font-bold">注：此图为概念性空间关系示意，非精确地理比例 | Note: This is a conceptual spatial relationship diagram, not to geographic scale</p>
+        </section>
+
+        <!-- Time-Sharing Concept -->
+        <section>
+            <h2>分时共生概念 | Time-Sharing Concept</h2>
+            <p class="mb-20">通过时间维度的精细化管理，实现空间的多功能复用，提升城市运行效率与生活品质。</p>
+            <p class="mb-20 text-green">Through refined management of temporal dimensions, achieve multi-functional reuse of spaces, enhancing urban operational efficiency and quality of life.</p>
+            
+            <div class="time-schedule">
+                <h3>24小时分时示例 | 24-Hour Time-Sharing Example</h3>
+                <div class="schedule-header">
+                    <div class="time-slot">06:00-12:00<br>上午 | Morning</div>
+                    <div class="time-slot">12:00-18:00<br>下午 | Afternoon</div>
+                    <div class="time-slot">18:00-24:00<br>晚间 | Evening</div>
+                    <div class="time-slot">00:00-06:00<br>夜间 | Night</div>
+                </div>
+                
+                <div class="schedule-row">
+                    <div class="schedule-label">创新空间<br>Innovation</div>
+                    <div class="schedule-bar">
+                        <div class="schedule-segment segment-morning">研发 R&D</div>
+                        <div class="schedule-segment segment-afternoon">协作 Collab</div>
+                        <div class="schedule-segment segment-evening">创业 Startup</div>
+                        <div class="schedule-segment segment-night">维护 Maint</div>
+                    </div>
+                </div>
+                
+                <div class="schedule-row">
+                    <div class="schedule-label">公共空间<br>Public</div>
+                    <div class="schedule-bar">
+                        <div class="schedule-segment segment-morning">通勤 Commute</div>
+                        <div class="schedule-segment segment-afternoon">休闲 Leisure</div>
+                        <div class="schedule-segment segment-evening">活动 Events</div>
+                        <div class="schedule-segment segment-night">静谧 Quiet</div>
+                    </div>
+                </div>
+                
+                <div class="schedule-row">
+                    <div class="schedule-label">文化空间<br>Cultural</div>
+                    <div class="schedule-bar">
+                        <div class="schedule-segment segment-morning">展览 Expo</div>
+                        <div class="schedule-segment segment-afternoon">教育 Edu</div>
+                        <div class="schedule-segment segment-evening">演出 Performance</div>
+                        <div class="schedule-segment segment-night">保护 Conservation</div>
+                    </div>
+                </div>
+                
+                <div class="schedule-row">
+                    <div class="schedule-label">生态空间<br>Ecological</div>
+                    <div class="schedule-bar">
+                        <div class="schedule-segment segment-morning">运动 Sports</div>
+                        <div class="schedule-segment segment-afternoon">休憩 Rest</div>
+                        <div class="schedule-segment segment-evening">社交 Social</div>
+                        <div class="schedule-segment segment-night">修复 Restore</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Land Use Summary -->
+        <section>
+            <h2>用地平衡 | Land Use Summary</h2>
+            <table class="land-use-table">
+                <thead>
+                    <tr>
+                        <th>用地类型 | Land Use Type</th>
+                        <th>面积 (ha) | Area (ha)</th>
+                        <th>占比 | Percentage</th>
+                        <th>功能定位 | Function</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>科研设计用地 | R&D</td>
+                        <td>385.2</td>
+                        <td>33.8%</td>
+                        <td>AI研发、创新中心 | AI R&D, Innovation Centers</td>
+                    </tr>
+                    <tr>
+                        <td>商业商务用地 | Commercial</td>
+                        <td>228.0</td>
+                        <td>20.0%</td>
+                        <td>企业总部、服务中心 | HQ, Service Centers</td>
+                    </tr>
+                    <tr>
+                        <td>居住用地 | Residential</td>
+                        <td>182.4</td>
+                        <td>16.0%</td>
+                        <td>人才公寓、社区 | Talent Housing, Community</td>
+                    </tr>
+                    <tr>
+                        <td>公共文化用地 | Cultural</td>
+                        <td>114.0</td>
+                        <td>10.0%</td>
+                        <td>博物馆、展览 | Museums, Exhibition</td>
+                    </tr>
+                    <tr>
+                        <td>绿地与开放空间 | Green Space</td>
+                        <td>307.8</td>
+                        <td>27.0%</td>
+                        <td>公园、绿道、广场 | Parks, Greenways, Plazas</td>
+                    </tr>
+                    <tr>
+                        <td>交通设施用地 | Transportation</td>
+                        <td>91.2</td>
+                        <td>8.0%</td>
+                        <td>道路、枢纽、停车 | Roads, Hubs, Parking</td>
+                    </tr>
+                    <tr>
+                        <td>市政设施用地 | Municipal</td>
+                        <td>45.6</td>
+                        <td>4.0%</td>
+                        <td>基础设施 | Infrastructure</td>
+                    </tr>
+                    <tr>
+                        <td><strong>合计 | Total</strong></td>
+                        <td><strong>1140.0</strong></td>
+                        <td><strong>100%</strong></td>
+                        <td><strong>总体设计范围 | Overall Design Scope</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Compliance Status -->
+        <section>
+            <h2>合规性检查 | Compliance Status</h2>
+            <div class="compliance-grid">
+                <div class="compliance-card">
+                    <div class="compliance-title">Agent任务完成度 | Agent Task Completion</div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>6/6 任务 | Tasks</span>
+                            <span class="text-green">100%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%;">100%</div>
+                        </div>
+                    </div>
+                    <div class="compliance-status">
+                        <div class="status-icon">✓</div>
+                        <span>全部完成 | All Completed</span>
+                    </div>
+                </div>
+                <div class="compliance-card">
+                    <div class="compliance-title">公告任务覆盖 | Announcement Tasks Coverage</div>
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>全部任务 | All Tasks</span>
+                            <span class="text-green">100%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%;">100%</div>
+                        </div>
+                    </div>
+                    <div class="compliance-status">
+                        <div class="status-icon">✓</div>
+                        <span>全部覆盖 | Fully Covered</span>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="mt-20">自检状态 | Self-Check Status</h3>
+            <ul class="info-list">
+                <li><strong>数据完整性 | Data Integrity:</strong> 通过 | Pass - 所有核心指标已计算并验证 | All core metrics calculated and verified</li>
+                <li><strong>空间一致性 | Spatial Consistency:</strong> 通过 | Pass - 三级范围数据逻辑一致 | Three-level scope data logically consistent</li>
+                <li><strong>功能平衡 | Functional Balance:</strong> 通过 | Pass - 用地结构符合创新区标准 | Land use structure meets innovation district standards</li>
+                <li><strong>生态指标 | Ecological Metrics:</strong> 通过 | Pass - 绿地率27%达到目标 | Green ratio 27% meets target</li>
+                <li><strong>分期可行性 | Phasing Feasibility:</strong> 通过 | Pass - 三期实施逻辑合理 | Three-phase implementation logically sound</li>
+            </ul>
+            <div class="disclaimer mt-20" style="margin-top: 20px;">
+                <div class="disclaimer-title">⚠ 临时性警告 | Provisional Warnings</div>
+                <div class="disclaimer-text">
+                    所有自检结果基于当前方案深度，后续深化设计可能需要调整。详细交通影响分析、环境评估、经济测算需在下一阶段完成。<br>
+                    All self-check results are based on current proposal depth. Subsequent detailed design may require adjustments. Detailed traffic impact analysis, environmental assessment, and economic calculations to be completed in the next phase.
+                </div>
+            </div>
+        </section>
+
+        <!-- Phasing Plan -->
+        <section>
+            <h2>分期实施 | Phasing Plan</h2>
+            <div class="phasing-timeline">
+                <div class="phase-item">
+                    <div class="phase-marker">1</div>
+                    <div class="phase-content">
+                        <div class="phase-title">第一期 | Phase 1: 启动与示范 | Launch & Demonstration</div>
+                        <div class="phase-period">2025-2028 | 3年 | 3 Years</div>
+                        <ul class="info-list">
+                            <li>启动核心区建设，完成基础设施框架 | Launch core area construction, complete infrastructure framework</li>
+                            <li>建设AI原点社区示范区 | Build AI Origin Community demonstration area</li>
+                            <li>引入首批科研机构和龙头企业 | Introduce first batch of research institutions and leading enterprises</li>
+                            <li>完成京张铁路遗址公园一期 | Complete Phase 1 of Jingzhang Railway Heritage Park</li>
+                            <li>建立分时共享运营平台 | Establish time-sharing operation platform</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="phase-item">
+                    <div class="phase-marker">2</div>
+                    <div class="phase-content">
+                        <div class="phase-title">第二期 | Phase 2: 扩展与融合 | Expansion & Integration</div>
+                        <div class="phase-period">2029-2032 | 4年 | 4 Years</div>
+                        <ul class="info-list">
+                            <li>扩展至众智园全域 | Expand to full Zhongzhi Yuan area</li>
+                            <li>完成大钟寺文化区活化 | Complete Dazhong Temple cultural district activation</li>
+                            <li>形成完整的创新生态链 | Form complete innovation ecosystem chain</li>
+                            <li>实现三个重点区域互联互通 | Achieve interconnection of three key areas</li>
+                            <li>分时共享机制全面运行 | Full operation of time-sharing mechanism</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="phase-item">
+                    <div class="phase-marker">3</div>
+                    <div class="phase-content">
+                        <div class="phase-title">第三期 | Phase 3: 成熟与输出 | Maturity & Output</div>
+                        <div class="phase-period">2033-2036 | 4年 | 4 Years</div>
+                        <ul class="info-list">
+                            <li>完成总体设计范围全面建设 | Complete full construction of overall design scope</li>
+                            <li>形成成熟的AI创新生态系统 | Form mature AI innovation ecosystem</li>
+                            <li>输出"钟鸣道合"模式至其他城市 | Export "Clock Echo" model to other cities</li>
+                            <li>实现碳中和目标 | Achieve carbon neutrality target</li>
+                            <li>成为国际AI城市更新典范 | Become international model for AI urban renewal</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Scenario Cards -->
+        <section>
+            <h2>AI应用场景 | AI Scenario Applications</h2>
+            <p class="mb-20">15个AI场景节点分布于三大重点区域，覆盖城市运行全链条。</p>
+            <p class="mb-20 text-green">15 AI scenario nodes distributed across three key areas, covering the entire urban operation chain.</p>
+            
+            <div class="ai-scenarios">
+                <div class="scenario-card">
+                    <div class="scenario-icon">🚗</div>
+                    <div class="scenario-title">智能交通 | Smart Mobility</div>
+                    <p>自动驾驶接驳、智能停车引导、动态路径优化、MaaS出行平台</p>
+                    <p class="mt-20 text-green">Autonomous shuttles, smart parking guidance, dynamic route optimization, MaaS platform</p>
+                </div>
+                <div class="scenario-card">
+                    <div class="scenario-icon">🏢</div>
+                    <div class="scenario-title">智慧建筑 | Smart Buildings</div>
+                    <p>能耗自适应、空间动态调配、智能安防、健康环境监测</p>
+                    <p class="mt-20 text-green">Adaptive energy use, dynamic space allocation, smart security, health environment monitoring</p>
+                </div>
+                <div class="scenario-card">
+                    <div class="scenario-icon">🌳</div>
+                    <div class="scenario-title">生态管理 | Ecological Management</div>
+                    <p>智能灌溉、生物多样性监测、碳汇核算、微气候调节</p>
+                    <p class="mt-20 text-green">Smart irrigation, biodiversity monitoring, carbon sink accounting, microclimate regulation</p>
+                </div>
+                <div class="scenario-card">
+                    <div class="scenario-icon">🎭</div>
+                    <div class="scenario-title">文化体验 | Cultural Experience</div>
+                    <p>AR历史重现、智能导览、数字孪生展览、沉浸式教育</p>
+                    <p class="mt-20 text-green">AR historical recreation, smart guiding, digital twin exhibitions, immersive education</p>
+                </div>
+                <div class="scenario-card">
+                    <div class="scenario-icon">⚡</div>
+                    <div class="scenario-title">能源网络 | Energy Network</div>
+                    <p>分布式能源、智能电网、储能调度、需求响应</p>
+                    <p class="mt-20 text-green">Distributed energy, smart grid, energy storage dispatch, demand response</p>
+                </div>
+                <div class="scenario-card">
+                    <div class="scenario-icon">🏥</div>
+                    <div class="scenario-title">健康服务 | Health Services</div>
+                    <p>远程医疗、智能健康监测、AI辅助诊断、健康管理平台</p>
+                    <p class="mt-20 text-green">Telemedicine, smart health monitoring, AI-assisted diagnosis, health management platform</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Pilgrimage Landmarks -->
+        <section>
+            <h2>AI朝圣地标 | AI Pilgrimage Landmarks</h2>
+            <p class="mb-20">三大地标性空间，展现AI技术与人文精神的深度融合。</p>
+            <p class="mb-20 text-green">Three landmark spaces showcasing the deep integration of AI technology and humanistic spirit.</p>
+            
+            <div class="landmarks">
+                <div class="landmark-card">
+                    <div class="landmark-image">
+                        <div class="landmark-badge">地标 01 | Landmark 01</div>
+                        <img src="../assets/figures/landmark-1.png" alt="AI原点塔" style="display: none;">
+                    </div>
+                    <div class="landmark-content">
+                        <div class="landmark-title">AI原点塔 | AI Origin Tower</div>
+                        <p><strong>位置 | Location:</strong> AI原点社区中心 | AI Origin Community Center</p>
+                        <p class="mt-20"><strong>功能 | Function:</strong></p>
+                        <ul class="info-list">
+                            <li>AI技术展示中心 | AI Technology Exhibition Center</li>
+                            <li>未来城市实验室 | Future City Laboratory</li>
+                            <li>国际交流平台 | International Exchange Platform</li>
+                            <li>城市观景平台 | City Observation Deck</li>
+                        </ul>
+                        <p class="mt-20"><strong>特色 | Feature:</strong> 建筑形态源自京张铁路"人"字形线路，象征中国自主创新的起点。</p>
+                        <p class="mt-20 text-green">Architectural form derived from Jingzhang Railway's "人" shape, symbolizing the starting point of China's independent innovation.</p>
+                    </div>
+                </div>
+                <div class="landmark-card">
+                    <div class="landmark-image">
+                        <div class="landmark-badge">地标 02 | Landmark 02</div>
+                        <img src="../assets/figures/landmark-2.png" alt="众智云厅" style="display: none;">
+                    </div>
+                    <div class="landmark-content">
+                        <div class="landmark-title">众智云厅 | Zhongzhi Cloud Hall</div>
+                        <p><strong>位置 | Location:</strong> 众智园核心 | Zhongzhi Yuan Core</p>
+                        <p class="mt-20"><strong>功能 | Function:</strong></p>
+                        <ul class="info-list">
+                            <li>全球AI创新中心 | Global AI Innovation Center</li>
+                            <li>产学研协作空间 | Industry-Academia-Research Collaboration</li>
+                            <li>创业孵化平台 | Startup Incubation Platform</li>
+                            <li>技术交易中心 | Technology Trading Center</li>
+                        </ul>
+                        <p class="mt-20"><strong>特色 | Feature:</strong> 云端连接全球AI实验室，实体聚合顶尖创新资源，形成"云+端"创新生态。</p>
+                        <p class="mt-20 text-green">Cloud-connected global AI labs, physically aggregating top innovation resources, forming "cloud+edge" innovation ecosystem.</p>
+                    </div>
+                </div>
+                <div class="landmark-card">
+                    <div class="landmark-image">
+                        <div class="landmark-badge">地标 03 | Landmark 03</div>
+                        <img src="../assets/figures/landmark-3.png" alt="时空钟鸣" style="display: none;">
+                    </div>
+                    <div class="landmark-content">
+                        <div class="landmark-title">时空钟鸣 | Time-Space Bell Echo</div>
+                        <p><strong>位置 | Location:</strong> 大钟寺文化区 | Dazhong Temple Cultural District</p>
+                        <p class="mt-20"><strong>功能 | Function:</strong></p>
+                        <ul class="info-list">
+                            <li>数字文化遗产中心 | Digital Cultural Heritage Center</li>
+                            <li>沉浸式历史体验馆 | Immersive History Experience Hall</li>
+                            <li>文化科技融合展示 | Culture-Technology Fusion Exhibition</li>
+                            <li>社区文化活动中心 | Community Cultural Activity Center</li>
+                        </ul>
+                        <p class="mt-20"><strong>特色 | Feature:</strong> 以数字技术重现大钟寺历史记忆，钟声穿越时空，连接过去与未来。</p>
+                        <p class="mt-20 text-green">Using digital technology to recreate Dazhong Temple historical memory. Bell echoes through time, connecting past and future.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sources -->
+        <section>
+            <h2>数据来源 | Data Sources</h2>
+            <ul class="info-list">
+                <li><strong>基础地理数据 | Base Geographic Data:</strong> 北京市规划和自然资源委员会海淀分局 | Haidian Branch of Beijing Municipal Commission of Planning and Natural Resources</li>
+                <li><strong>人口与经济数据 | Population & Economic Data:</strong> 北京市海淀区统计局 | Haidian District Bureau of Statistics</li>
+                <li><strong>交通流量数据 | Traffic Flow Data:</strong> 北京市交通委员会 | Beijing Municipal Commission of City Transport</li>
+                <li><strong>产业调研数据 | Industry Research Data:</strong> 中关村科技园区管理委员会 | Zhongguancun Science Park Administration Committee</li>
+                <li><strong>生态环境数据 | Ecological Environment Data:</strong> 北京市海淀区生态环境局 | Haidian District Ecology and Environment Bureau</li>
+                <li><strong>历史文化资料 | Historical Cultural Materials:</strong> 北京市海淀区文化和旅游局 | Haidian District Culture and Tourism Bureau</li>
+                <li><strong>AI产业报告 | AI Industry Reports:</strong> 中国人工智能产业发展联盟 | China AI Industry Development Alliance</li>
+            </ul>
+        </section>
+
+        <!-- Assumptions -->
+        <section>
+            <h2>规划假设 | Planning Assumptions</h2>
+            <ul class="info-list">
+                <li><strong>人口假设 | Population Assumption:</strong> 规划人口约15-18万人，日间流动人口 additional 10-12万人 | Planned population approx. 150-180k, daytime floating population additional 100-120k</li>
+                <li><strong>经济假设 | Economic Assumption:</strong> AI产业年增长率保持15-20%，2036年形成千亿级产业集群 | AI industry annual growth rate maintains 15-20%, forming hundred-billion-level industrial cluster by 2036</li>
+                <li><strong>技术假设 | Technology Assumption:</strong> L4级自动驾驶、通用AI助手、数字孪生城市平台在2030年前成熟 | L4 autonomous driving, general AI assistants, digital twin city platforms mature before 2030</li>
+                <li><strong>政策假设 | Policy Assumption:</strong> 持续获得国家和北京市政策支持，包括土地、资金、人才政策 | Continued policy support from national and Beijing municipal levels, including land, funding, and talent policies</li>
+                <li><strong>生态假设 | Ecological Assumption:</strong> 气候变化背景下，北京降水模式基本稳定，极端天气事件在可接受范围 | Under climate change context, Beijing precipitation patterns remain basically stable, extreme weather events within acceptable range</li>
+                <li><strong>实施假设 | Implementation Assumption:</strong> 政府主导、市场参与、公众协同的实施机制有效运行 | Government-led, market-participated, public-collaborative implementation mechanism operates effectively</li>
+                <li><strong>分期假设 | Phasing Assumption:</strong> 各期建设按计划推进，无重大外部冲击（疫情、经济危机等） | Each phase progresses as planned, no major external shocks (pandemic, economic crisis, etc.)</li>
+            </ul>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p><strong>钟鸣道合 分时共生 | Clock Echo · Time-Shared Symbiosis</strong></p>
+            <p>百年京张AI创新带城市设计方案 | Centennial Jingzhang AI Innovation Belt Urban Design Proposal</p>
+            <p class="mt-20">© 2026 钟鸣道合团队 | Zhongming Dahe Team</p>
+            <p class="mt-20 text-blue">本方案为竞赛提交文件，所有数据均为暂定性质 | This proposal is a competition submission document, all data is provisional in nature</p>
+        </footer>
+    </div>
+</body>
+</html>

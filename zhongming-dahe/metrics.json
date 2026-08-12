@@ -1,0 +1,154 @@
+{
+  "schema_version": "0.1.0",
+  "metrics": {
+    "site_area": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界，待官方精确边界替换"
+      ],
+      "design_meaning_zh": "总体设计范围约11.4平方公里，为AI创新带提供充足空间"
+    },
+    "key_detailed_design_area": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(key_areas))",
+      "confidence": "medium",
+      "assumptions": [
+        "三处重点区面积之和，基于临时边界"
+      ]
+    },
+    "green_space_area": {
+      "status": "known",
+      "value": 3085000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "含京张遗址公园绿廊、清河滨水绿带、屋顶花园等"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.27,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area / site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "概念设计值，待控规条件确认"
+      ]
+    },
+    "public_space_area": {
+      "status": "known",
+      "value": 60000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "含5处主要公共空间节点"
+      ]
+    },
+    "concept_total_floor_area": {
+      "status": "known",
+      "value": 18500000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(zone_area * concept_far)",
+      "confidence": "low",
+      "assumptions": [
+        "概念体量，非法定控制值，待控规确认"
+      ],
+      "design_meaning_zh": "基于各用地概念容积率估算的总建筑规模"
+    },
+    "concept_far_site_average": {
+      "status": "known",
+      "value": 1.62,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "concept_total_floor_area / site_area",
+      "confidence": "low",
+      "assumptions": [
+        "概念平均值，各分区差异较大"
+      ]
+    },
+    "road_area_ratio": {
+      "status": "known",
+      "value": 0.12,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "estimated_road_area / site_area",
+      "confidence": "low",
+      "assumptions": [
+        "基于概念路网估算"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_area_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_scenario_nodes": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "agent_designed_scenario_node_count",
+      "confidence": "low",
+      "assumptions": [
+        "概念设计节点数，含场景卡和测试场景"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "reason": "官方控规条件未公开，当前概念值仅供设计参考",
+      "required_for_formal_submission": true
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "reason": "官方高度控制未公开，概念高度待专业确认",
+      "required_for_formal_submission": true
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "reason": "官方建筑密度控制未公开",
+      "required_for_formal_submission": true
+    }
+  }
+}
