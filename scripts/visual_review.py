@@ -12,8 +12,9 @@ Checks performed
   ``WebSocket``, remote ``<script src>``, remote CSS ``@import``, etc.).
 - The page contains the 14 required Chinese-language content markers
   (总览地图, 三层范围, 重点区域, …).
-- Metric ``data-metric`` / ``data-value`` attributes declare finite numeric
-  values that match ``metrics.json`` within a 1 ppm tolerance.
+- Known metrics declare finite numeric ``data-value`` attributes that match
+  ``metrics.json`` within a 1 ppm tolerance. Registered non-known metrics may
+  instead be disclosed explicitly by omitting ``data-value`` entirely.
 - The three required metrics (``site_area_sqm``, ``green_ratio``,
   ``public_space_ratio``) are present and declared.
 
@@ -123,18 +124,27 @@ class VisualMetricParser(HTMLParser):
         super().__init__(convert_charrefs=True)
         self.metrics: dict[str, float] = {}
         self.declarations: list[tuple[str, float]] = []
+        self.metric_names_seen: set[str] = set()
+        self.invalid_value_metrics: set[str] = set()
         self.nonfinite_metrics: set[str] = set()
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         attributes = {name.lower(): value for name, value in attrs}
         name = attributes.get("data-metric")
-        raw_value = attributes.get("data-value")
-        if not isinstance(name, str) or not isinstance(raw_value, str):
+        if not isinstance(name, str):
             return
         name = html.unescape(name)
+        self.metric_names_seen.add(name)
+        if "data-value" not in attributes:
+            return
+        raw_value = attributes["data-value"]
+        if not isinstance(raw_value, str):
+            self.invalid_value_metrics.add(name)
+            return
         try:
             value = float(html.unescape(raw_value))
         except ValueError:
+            self.invalid_value_metrics.add(name)
             return
         if not math.isfinite(value):
             self.nonfinite_metrics.add(name)
@@ -188,6 +198,14 @@ def review_visual(submission_dir: Path) -> VisualReport:
     declared = parser.metrics
     report.metrics_seen = declared
     metrics = load_metrics(submission_dir / "metrics.json")
+    for name in sorted(parser.invalid_value_metrics):
+        report.add(
+            "VISUAL_METRIC_INVALID_VALUE",
+            "major",
+            display_path,
+            f"HTML metric `{name}` includes data-value but it is not a valid numeric value; "
+            "omit data-value entirely for explicitly non-numeric metrics.",
+        )
     for name in sorted(parser.nonfinite_metrics):
         report.add(
             "VISUAL_METRIC_NONFINITE_VALUE",
@@ -232,8 +250,33 @@ def review_visual(submission_dir: Path) -> VisualReport:
                 f"HTML metric `{name}` value {value} does not match metrics.json value {expected}.",
             )
     for name in REQUIRED_METRICS:
-        if name not in declared:
+        if name not in parser.metric_names_seen:
             report.add("VISUAL_METRIC_MISSING", "major", display_path, f"Missing data-metric `{name}`.")
+            continue
+        metric = metrics.get(name)
+        if not isinstance(metric, dict):
+            report.add(
+                "VISUAL_METRIC_SOURCE_MISSING",
+                "major",
+                display_path,
+                f"HTML declares unregistered required metric `{name}`; add it to metrics.json.",
+            )
+            continue
+        status = metric.get("status")
+        if status == "known" and name not in declared:
+            report.add(
+                "VISUAL_METRIC_MISSING",
+                "major",
+                display_path,
+                f"Known required metric `{name}` must declare a finite numeric data-value.",
+            )
+        elif status not in {"known", "unknown", "not_applicable"}:
+            report.add(
+                "VISUAL_METRIC_SOURCE_MISSING",
+                "major",
+                display_path,
+                f"Required metric `{name}` has invalid metrics.json status `{status!r}`.",
+            )
     return report
 
 

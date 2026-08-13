@@ -42,6 +42,18 @@ def write_valid_visual_package(root: Path) -> Path:
     return submission
 
 
+def set_required_ratios_unknown(submission: Path) -> None:
+    metrics_path = submission / "metrics.json"
+    metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+    for name in ["green_ratio", "public_space_ratio"]:
+        metrics["metrics"][name] = {
+            "status": "unknown",
+            "value": None,
+            "reason": "Official source data are not available.",
+        }
+    metrics_path.write_text(json.dumps(metrics), encoding="utf-8")
+
+
 class VisualReviewTests(unittest.TestCase):
     def test_valid_static_visual_passes(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -181,6 +193,89 @@ class VisualReviewTests(unittest.TestCase):
 
             self.assertFalse(report.ok)
             self.assertIn("VISUAL_METRIC_NONFINITE_VALUE", {issue.check_id for issue in report.issues})
+
+    def test_unknown_required_metrics_can_be_declared_non_numeric(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            set_required_ratios_unknown(submission)
+            html = VALID_HTML.replace(
+                '<span data-metric="green_ratio" data-value="0.2">0.2</span>',
+                '<span data-metric="green_ratio">unknown</span>',
+            ).replace(
+                '<span data-metric="public_space_ratio" data-value="0.1">0.1</span>',
+                '<span data-metric="public_space_ratio">unknown</span>',
+            )
+            (submission / "visual" / "index.html").write_text(html, encoding="utf-8")
+
+            report = review_visual(submission)
+
+            self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
+
+    def test_unknown_required_metric_numeric_claim_still_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            set_required_ratios_unknown(submission)
+            html = VALID_HTML.replace(
+                '<span data-metric="public_space_ratio" data-value="0.1">0.1</span>',
+                '<span data-metric="public_space_ratio">unknown</span>',
+            )
+            (submission / "visual" / "index.html").write_text(html, encoding="utf-8")
+
+            report = review_visual(submission)
+
+            self.assertFalse(report.ok)
+            self.assertIn("VISUAL_METRIC_SOURCE_MISSING", {issue.check_id for issue in report.issues})
+
+    def test_known_required_metric_without_numeric_value_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            html = VALID_HTML.replace(
+                '<span data-metric="green_ratio" data-value="0.2">0.2</span>',
+                '<span data-metric="green_ratio">unknown</span>',
+            )
+            (submission / "visual" / "index.html").write_text(html, encoding="utf-8")
+
+            report = review_visual(submission)
+
+            self.assertFalse(report.ok)
+            self.assertIn("VISUAL_METRIC_MISSING", {issue.check_id for issue in report.issues})
+
+    def test_missing_required_metric_element_still_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            set_required_ratios_unknown(submission)
+            html = VALID_HTML.replace(
+                '<span data-metric="green_ratio" data-value="0.2">0.2</span>',
+                "",
+            ).replace(
+                '<span data-metric="public_space_ratio" data-value="0.1">0.1</span>',
+                '<span data-metric="public_space_ratio">unknown</span>',
+            )
+            (submission / "visual" / "index.html").write_text(html, encoding="utf-8")
+
+            report = review_visual(submission)
+
+            self.assertFalse(report.ok)
+            self.assertIn("VISUAL_METRIC_MISSING", {issue.check_id for issue in report.issues})
+
+    def test_unknown_required_metric_invalid_string_value_fails(self) -> None:
+        for raw_value in ["unknown", "pending", "", "not-available"]:
+            with self.subTest(raw_value=raw_value), tempfile.TemporaryDirectory() as tmp:
+                submission = write_valid_visual_package(Path(tmp))
+                set_required_ratios_unknown(submission)
+                html = VALID_HTML.replace(
+                    'data-metric="green_ratio" data-value="0.2"',
+                    f'data-metric="green_ratio" data-value="{raw_value}"',
+                ).replace(
+                    '<span data-metric="public_space_ratio" data-value="0.1">0.1</span>',
+                    '<span data-metric="public_space_ratio">unknown</span>',
+                )
+                (submission / "visual" / "index.html").write_text(html, encoding="utf-8")
+
+                report = review_visual(submission)
+
+            self.assertFalse(report.ok)
+            self.assertIn("VISUAL_METRIC_INVALID_VALUE", {issue.check_id for issue in report.issues})
 
 
 if __name__ == "__main__":
