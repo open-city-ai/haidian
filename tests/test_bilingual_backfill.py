@@ -17,6 +17,7 @@ from backfill_bilingual_artifacts import (  # noqa: E402
 )
 from backfill_bilingual_submissions import (  # noqa: E402
     LocalTranslator,
+    backfill_proposal,
     extract_legacy_translation,
     parse_front_matter,
     proposal_dirs,
@@ -27,6 +28,15 @@ from backfill_bilingual_submissions import (  # noqa: E402
 
 
 class BilingualBackfillTests(unittest.TestCase):
+    class StubTranslator:
+        batch_size = 4
+
+        def translate(self, text: str) -> str:
+            return f"EN:{text}"
+
+        def translate_many(self, texts: list[str]) -> list[str]:
+            return [self.translate(text) for text in texts]
+
     def test_proposal_discovery_rejects_symlinked_packages_and_files(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp) / "repo"
@@ -57,6 +67,35 @@ class BilingualBackfillTests(unittest.TestCase):
             )
 
             self.assertEqual([regular], proposal_dirs(root, []))
+
+    def test_backfill_refuses_translation_symlinks(self) -> None:
+        for target_exists, force in ((False, False), (True, True)):
+            with self.subTest(target_exists=target_exists, force=force), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                package = root / "submissions" / "alice" / "sample"
+                package.mkdir(parents=True)
+                (package / "proposal.md").write_text(
+                    '---\ntitle: "示例"\nsummary: "摘要"\nlanguage: "zh"\n---\n# 示例\n\n正文\n',
+                    encoding="utf-8",
+                )
+                outside = root / "outside.md"
+                if target_exists:
+                    outside.write_text("outside original\n", encoding="utf-8")
+                (package / "proposal.en.md").symlink_to(outside)
+                original = outside.read_bytes() if target_exists else None
+
+                changed, message = backfill_proposal(
+                    package,
+                    {("zh", "en"): self.StubTranslator()},
+                    force=force,
+                )
+
+                self.assertFalse(changed)
+                self.assertIn("refusing to write through symlink", message)
+                if target_exists:
+                    self.assertEqual(outside.read_bytes(), original)
+                else:
+                    self.assertFalse(outside.exists())
 
     def test_front_matter_parser_accepts_utf8_bom(self) -> None:
         front, body = parse_front_matter("\ufeff---\nlanguage: zh\n---\n正文\n")

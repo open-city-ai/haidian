@@ -1224,6 +1224,8 @@ def backfill_proposal(
     force: bool,
 ) -> tuple[bool, str]:
     proposal_path = submission_dir / "proposal.md"
+    if proposal_path.is_symlink():
+        return False, "refusing to read or write through symlink `proposal.md`"
     text = proposal_path.read_text(encoding="utf-8")
     front, body = parse_front_matter(text)
     if not front:
@@ -1232,6 +1234,8 @@ def backfill_proposal(
     target_language = "en" if source_language == "zh" else "zh"
     translation_name = f"proposal.{target_language}.md"
     translation_path = submission_dir / translation_name
+    if translation_path.is_symlink():
+        return False, f"refusing to write through symlink `{translation_name}`"
     if translation_path.exists() and not force:
         return False, "translation already exists"
 
