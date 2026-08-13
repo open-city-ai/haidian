@@ -2,6 +2,7 @@
 
 **关联媒体：** `assets/media/audio-guide.m4a`（音频，AAC-LC，单声道 32 kHz / 64 kbps，时长 2 分 34 秒）
 **同源字幕：** `assets/media/audio-guide.vtt`（UTF-8 WebVTT，26 条字幕，时间轴由实测合成结果生成）
+**英文字幕轨：** `assets/media/audio-guide-en.vtt`（UTF-8 WebVTT，26 条字幕，时间轴与 `audio-guide.vtt` 同源，文本为同一旁白的英文翻译；无英文配音）/ **English caption track:** `assets/media/audio-guide-en.vtt` (UTF-8 WebVTT, 26 cues, cue timing identical to `audio-guide.vtt`, text translated from the same narration; no English voice-over).
 **内容语言：** 简体中文
 **性质：** 概念建议性质的方案陈述，非官方发布、非审批结论、非实景记录
 
@@ -30,7 +31,7 @@
 | 旁白段落 | `proposal.md` 对应内容 |
 | --- | --- |
 | 检验标准（段 1） | 《设计依据与资料清单》开篇的核心判断：城市智能程度由不同身体、感官与认知方式的人能否独立理解、选择、完成并退出同一项服务来检验 |
-| AI 开启与关闭等价（段 2） | 全案底线原则，以及《空间文化系统》中"AI ON = AI OFF"的表达要求 |
+| AI 开启与关闭等价（段 2） | 全案底线原则，以及《京张文化、中关村文化与 AI 新文化的多感官叙事》中"AI ON = AI OFF"的表达要求 |
 | 空间骨架（段 3） | 《三层范围工作框架》：一条通用可达底线、三座多感官实验院、两翼支持网络、十个独立完成点 |
 | 三区两翼分工（段 4） | 《三层范围工作框架》中三区两翼布局单元与本方案空间动作的对照表 |
 | 十个独立完成点与指标（段 5） | 十个独立完成点的界面定义，以及独立完成率、双通道信息冗余率、AI 开关服务等价差三项指标 |

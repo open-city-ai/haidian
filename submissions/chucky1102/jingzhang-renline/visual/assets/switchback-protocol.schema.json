@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "renline-switchback-protocol-0.2.0",
+  "title": "Switchback Protocol card contract 折返协议卡片合同",
+  "description": "Machine-checkable contract for RENLINE Switchback Protocol files (schema_version 0.2.0, opened as a community standard in open-city-ai/haidian Issue #1119, CC-BY-4.0 protocol spec only). Validation passing certifies protocol logic only — never field performance, approval or government commitment. 校验通过只证明协议逻辑自洽,不证明现场成效、批准或任何政府承诺。",
+  "type": "object",
+  "required": ["schema_version", "protocol", "license", "status_enum", "belt_wide_defaults", "roles_model", "cards", "field_semantics", "migration"],
+  "properties": {
+    "schema_version": { "const": "0.2.0" },
+    "protocol": { "const": "switchback-protocol" },
+    "license": {
+      "type": "object",
+      "required": ["spdx_id", "url", "scope", "attribution_required", "attribution_text"],
+      "properties": {
+        "spdx_id": { "const": "CC-BY-4.0" },
+        "scope": { "const": "protocol_spec_only" },
+        "attribution_required": { "const": true }
+      }
+    },
+    "status_enum": {
+      "type": "object",
+      "required": ["green", "yellow", "red", "green_candidate"]
+    },
+    "belt_wide_defaults": {
+      "type": "object",
+      "required": ["human_takeover_max_minutes", "appeal_acknowledge_working_days", "appeal_resolve_working_days", "public_review_cycle_days", "switchback_trigger", "recovery_condition", "disclaimer_zh", "disclaimer_en"]
+    },
+    "roles_model": {
+      "type": "object",
+      "required": ["accountable_operator", "safety_officer", "data_steward", "public_redress", "independent_reviewer"]
+    },
+    "cards": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/card" }
+    },
+    "field_semantics": { "type": "object" },
+    "migration": { "type": "object" }
+  },
+  "definitions": {
+    "card": {
+      "type": "object",
+      "required": ["id", "name_zh", "name_en", "type", "status", "anchor", "anchor_type", "takeover_max_minutes", "fallback", "data_boundary", "human_review", "ascent_grade", "evidence_status"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[A-Z]+[0-9]+$" },
+        "status": { "enum": ["green", "yellow", "red", "green_candidate"] },
+        "anchor_type": { "enum": ["geojson_ref", "text_only"] },
+        "anchor_ref": { "type": "string", "pattern": "^geometry/[a-z_]+\\.geojson#[A-Za-z0-9_-]+$" },
+        "takeover_max_minutes": { "type": ["number", "null"] },
+        "takeover_status": { "enum": ["not_applicable", "unknown"] },
+        "fallback": { "type": "string", "minLength": 8 },
+        "data_boundary": { "type": "string", "minLength": 8 },
+        "human_review": { "type": "string", "minLength": 8 },
+        "ascent_grade": { "type": "string", "pattern": "^G[0-5]$" },
+        "evidence_status": { "enum": ["known", "design_target", "unknown", "blocked"] }
+      },
+      "allOf": [
+        {
+          "description": "R1: yellow cards must declare a numeric human-takeover ceiling and a verification gate 黄灯卡必须声明数字接管上限与验证门",
+          "if": { "properties": { "status": { "const": "yellow" } } },
+          "then": { "required": ["gate"], "properties": { "takeover_max_minutes": { "type": "number" } } }
+        },
+        {
+          "description": "R2: a null takeover ceiling must be disambiguated by takeover_status 接管空值必须由 takeover_status 消歧",
+          "if": { "properties": { "takeover_max_minutes": { "type": "null" } } },
+          "then": { "required": ["takeover_status"] }
+        },
+        {
+          "description": "R3: geojson_ref anchors must carry a resolvable anchor_ref 几何锚点必须携带可解析引用",
+          "if": { "properties": { "anchor_type": { "const": "geojson_ref" } } },
+          "then": { "required": ["anchor_ref"] }
+        },
+        {
+          "description": "R4: no card may claim an ascent grade above G2 while evidence_status is design_target 证据仍为设计目标值的卡不得声称G3及以上",
+          "if": { "properties": { "evidence_status": { "const": "design_target" } } },
+          "then": { "properties": { "ascent_grade": { "pattern": "^G[0-2]$" } } }
+        }
+      ]
+    }
+  }
+}

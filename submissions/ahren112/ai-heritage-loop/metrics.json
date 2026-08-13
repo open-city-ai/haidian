@@ -1,0 +1,170 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(geometry/site_boundary.geojson#SITE-001)",
+      "confidence": "high",
+      "assumptions": [
+        "provisional boundary; official polygon pending"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "polygon_area(geometry/buildings.geojson)",
+      "confidence": "high",
+      "assumptions": [
+        "concept massing only; not statutory floor area"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123422637,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(green_space.geojson) / polygon_area(site_boundary.geojson)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.07328124,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(public_space.geojson) / polygon_area(site_boundary.geojson)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pending official regulatory plan",
+      "confidence": "low",
+      "assumptions": [
+        "No official FAR data; recorded unknown per submission policy"
+      ],
+      "reason": "官方控制数据缺失；需待补官方控制性详细规划与道路红线后才能复算；详见 assumptions.json A-CONTROLS-001"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(features in geometry/key_areas.geojson)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_total_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(geometry/key_areas.geojson))",
+      "confidence": "high",
+      "assumptions": [
+        "provisional polygons"
+      ]
+    },
+    "land_use_coverage": {
+      "status": "known",
+      "value": 0.999998,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use.geojson)) / polygon_area(site_boundary.geojson)",
+      "confidence": "high",
+      "assumptions": [
+        "geom bound to 0.999998 due to provisional float error"
+      ]
+    },
+    "land_use_industry_ratio": {
+      "status": "known",
+      "value": 0.294943442,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "polygon_area(land_use_code=05) / polygon_area(site_boundary.geojson)",
+      "confidence": "high",
+      "assumptions": [
+        "concept land-use partition; regulatory plan pending"
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario cards in proposal.md, incl. 3 testing/validation)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(projects in proposal.md renewal list)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "road_centerline_length_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "pending recompute after official boundary",
+      "confidence": "low",
+      "assumptions": [
+        "road centerlines regenerated from scaffold; length pending official alignment"
+      ],
+      "reason": "官方控制数据缺失；需待补官方控制性详细规划与道路红线后才能复算；详见 assumptions.json A-CONTROLS-001"
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pending official regulatory plan and existing building data",
+      "confidence": "low",
+      "assumptions": [
+        "No official density data; recorded unknown"
+      ],
+      "reason": "官方控制数据缺失；需待补官方控制性详细规划与道路红线后才能复算；详见 assumptions.json A-CONTROLS-001"
+    }
+  }
+}

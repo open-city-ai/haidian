@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>百年京张·人带 REN BELT 可视化总览</title>
+<style>
+:root{--ink:#162033;--muted:#667085;--paper:#fff;--soft:#f4f1ea;--line:#d7dee8;--navy:#19324a;--gold:#c79838;--park:#2f8f72;--amber:#d78b4a;--north:#0f7490}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;background:#e8edf2;color:var(--ink);line-height:1.55}
+.wrap{max-width:1280px;margin:auto}header{background:var(--navy);color:#fff}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;padding:28px 22px}
+h1{font-size:30px;margin:0 0 10px}h2{font-size:20px;margin:0 0 8px}h3{font-size:16px;margin:0 0 6px}p{margin:0 0 8px}
+.hero-copy{color:#d5e0ea;font-size:15px}
+.status-box{border:1px solid rgba(255,255,255,.22);border-radius:8px;padding:14px;background:rgba(255,255,255,.06)}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.pill{border:1px solid rgba(255,255,255,.26);border-radius:999px;padding:5px 10px;font-size:12px}
+main{padding:18px 16px 40px}
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:8px;margin:0 auto 16px;overflow:hidden}
+.sheet-head{padding:16px 18px;border-bottom:1px solid #e6ebf2;background:#fbfcfe}
+.sheet-head p{color:var(--muted)}
+.fig{display:block;width:100%;height:auto;border-bottom:1px solid var(--line)}
+.map-grid{display:grid;grid-template-columns:minmax(0,1.5fr) 300px;gap:16px;padding:16px}
+svg{display:block;width:100%;height:auto}
+.metric{display:flex;justify-content:space-between;border-bottom:1px dashed #e2e8f0;padding:6px 0}
+.metric span{color:var(--muted);font-size:13px}
+.matrix,.scenario-grid,.implementation-grid,.inclusion-grid,.landmark-grid,.layer-grid{display:grid;gap:12px;padding:16px}
+.matrix,.layer-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.scenario-grid,.implementation-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.inclusion-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+.landmark-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--soft)}
+.card p,.card li{font-size:13px;color:#334155}
+table{width:calc(100% - 32px);margin:0 16px 16px;border-collapse:collapse;font-size:13px}
+th,td{border:1px solid var(--line);padding:8px;vertical-align:top;text-align:left}
+th{background:#f1f5f9}
+.risk{border:1px solid #e6b8b3;background:#fdf2f0;border-radius:8px;padding:12px}
+.note{font-size:12px;color:#94a3b8;padding:0 16px 14px}
+.seg-n{border-top:4px solid var(--north)}.seg-m{border-top:4px solid var(--park)}.seg-s{border-top:4px solid var(--amber)}
+@media(max-width:900px){.hero,.map-grid,.matrix,.scenario-grid,.implementation-grid,.inclusion-grid,.landmark-grid,.layer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap hero"><div>
+<p class="pill-row"><span class="pill">三层范围</span><span class="pill">重点区域</span><span class="pill">用地分区</span><span class="pill">交通慢行</span><span class="pill">蓝绿公共空间</span><span class="pill">建筑</span><span class="pill">更新项目</span><span class="pill">AI 场景</span><span class="pill">任务覆盖</span></p>
+<h1>百年京张·人带 REN BELT</h1>
+<p class="hero-copy">主视觉是已开放的 9 公里遗产廊道（北段自然休闲 / 中段一期 / 南段社区活力）、三个挂真实锚点的公共节点，和可关闭的原点。临时矩形只作虚线约束。本页离线、无远程资源。权威数字仍以 GeoJSON 与 metrics.json 为准。</p>
+</div>
+<aside class="status-box"><strong>自检状态</strong>
+<p>四门校验在 finalize 后重跑。当前边界为 provisional，不是法定红线。</p>
+<p>#1029：大钟寺临时矩形距大钟寺站约 2.26 km。<br>#846：临时总体范围与 OSM 公园不相交。<br>公园二期 2026-08-06 已开放，约 9 km / 53 ha；示意绿地约 273.5 万 m²，二者不得混用。</p>
+</aside></div></header>
+<main class="wrap">
+
+<section class="sheet"><div class="sheet-head"><h2>总览地图</h2><p>已开放绿廊按北 / 中 / 南三段着色；真实站点写在廊道左侧；虚线只表示临时范围。</p></div>
+<img class="fig" src="../assets/figures/site-overview.png" alt="总览：一脉三站与人字双翼">
+<div class="map-grid">
+<div>
+<svg viewBox="0 0 1000 420" role="img" aria-label="廊道北中南分段示意图">
+<rect width="1000" height="420" fill="#f7f4ee"/>
+<rect x="40" y="24" width="280" height="372" fill="none" stroke="#d78b4a" stroke-dasharray="8 6"/>
+<text x="50" y="48" font-size="13" fill="#667085">虚线 = provisional</text>
+<path d="M500 40 L500 150" stroke="#0f7490" stroke-width="18" stroke-linecap="butt"/>
+<path d="M500 150 L500 250" stroke="#2f8f72" stroke-width="18"/>
+<path d="M500 250 L500 380" stroke="#d78b4a" stroke-width="18" stroke-linecap="round"/>
+<path d="M492 40 L492 380" stroke="#19324a" stroke-width="2"/>
+<path d="M508 40 L508 380" stroke="#19324a" stroke-width="2"/>
+<path d="M500 210 L220 340" stroke="#0f7490" stroke-width="7" fill="none"/>
+<path d="M500 210 L780 320" stroke="#c79838" stroke-width="7" fill="none"/>
+<circle cx="500" cy="90" r="18" fill="#0f7490"/><text x="360" y="96" font-size="15" text-anchor="end">众智园</text>
+<circle cx="500" cy="210" r="22" fill="#c79838"/><text x="360" y="216" font-size="15" text-anchor="end">原点</text>
+<circle cx="500" cy="330" r="18" fill="#d78b4a"/><text x="360" y="336" font-size="15" text-anchor="end">大钟寺</text>
+<text x="530" y="110" font-size="13" fill="#0f7490">北段 2.6 km / 30.01 ha</text>
+<text x="530" y="200" font-size="13" fill="#2f8f72">中段一期 2.4 km</text>
+<text x="530" y="300" font-size="13" fill="#d78b4a">南段 23.08 ha</text>
+<text x="50" y="390" font-size="12" fill="#667085">站名在左 · 人字双翼在下</text>
+</svg>
+</div>
+<aside>
+<h3>核心指标</h3>
+<div class="metric"><span>site_area_sqm</span><strong data-metric="site_area_sqm" data-value="11412825.386">11412825.386</strong></div>
+<div class="metric"><span>green_ratio</span><strong data-metric="green_ratio" data-value="0.239667">0.239667</strong></div>
+<div class="metric"><span>public_space_ratio</span><strong data-metric="public_space_ratio" data-value="0.104222">0.104222</strong></div>
+<div class="risk"><h3>假设</h3><p>官方 polygon、控规、权属、红线待补。场地面积 confidence=medium。公开 53 ha 公园 ≠ 本包示意绿地。</p></div>
+</aside>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><h2>三层范围</h2><p>统筹研究、总体设计、重点区域逐级传导，面积以公告文字为准，几何为临时矩形。</p></div>
+<div class="matrix">
+<article class="card"><h3>统筹研究 ≈43.6 km²</h3><p>产业生态、可检查跨区接口、命名与案例转译。</p></article>
+<article class="card"><h3>总体设计 ≈11.4 km²</h3><p>一脉三站、用地概念分区、12 项更新、L0–L3 分层。</p></article>
+<article class="card"><h3>重点区域 ≈368.4 ha</h3><p>众智园 / 原点 / 大钟寺三处详细概念。</p></article>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><h2>北中南三段</h2><p>用公园二期公开分段分配场景，不把报道长度写成红线。</p></div>
+<div class="matrix">
+<article class="card seg-n"><h3>北段自然休闲</h3><p>清华东路—箭亭桥，约 2.6 km / 30.01 ha。S02、S06、T2、T3。接清河与东升八家。</p></article>
+<article class="card seg-m"><h3>中段一期</h3><p>清华东路—知春路，约 2.4 km（2023 已开放）。S01、S07、S11、S12。</p></article>
+<article class="card seg-s"><h3>南段社区活力</h3><p>北京北站—知春路大运村，约 23.08 ha。S05、S08、S09、T1。真站点在临时矩形外。</p></article>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><h2>落地分层 L0–L3</h2><p>按依赖分层，而不是按口号分期。</p></div>
+<div class="layer-grid" style="grid-template-columns:repeat(4,minmax(0,1fr))">
+<article class="card"><h3>L0 已建成</h3><p>三道一绿、9 条支路、原点街区、1733。</p></article>
+<article class="card"><h3>L1 可逆试点</h3><p>JZ-01/03/05/06/11：导视、广场、导览、活动周、无障碍审计。</p></article>
+<article class="card"><h3>L2 许可缝合</h3><p>JZ-02/04/08/10：清河廊、转化街、界面、消费街。</p></article>
+<article class="card"><h3>L3 红线/拆除</h3><p>JZ-07/09/12 只与公示项目对话。无官方 polygon 不做工程。</p></article>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><h2>重点区域</h2><p>每个单元写清锚点、先行动作和停止条件。</p></div>
+<img class="fig" src="../assets/figures/key-areas.png" alt="三处重点区概念落位">
+<div class="matrix">
+<article class="card"><h3>众智园</h3><p>东升科技园既有园区 + 清河已互通。无安全官则停测。</p></article>
+<article class="card"><h3>原点社区</h3><p>已认定五道口 AI 街区 + 人字广场。文保未过下线单条。</p></article>
+<article class="card"><h3>大钟寺</h3><p>真站点 / 1733 / 蓝景丽家公示项目。四象限步行待官方 polygon（#1029）。</p></article>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><h2>用地分区</h2><p>科研 / 公园 / 居住概念分区，完整覆盖提交边界。</p></div>
+<img class="fig" src="../assets/figures/land-use-structure.png" alt="用地结构">
+</section>
+
+<section class="sheet"><div class="sheet-head"><h2>交通慢行</h2><p>先运营已贯通的三道一绿；三条东西缝合；道路中线为示意。</p></div>
+<img class="fig" src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿">
+</section>
+
+<section class="sheet"><div class="sheet-head"><h2>蓝绿公共空间</h2><p>遗产绿廊是骨架，清河与小月河是接口，不是装饰色块。</p></div>
+<img class="fig" src="../assets/context/bluegreen-section.jpg" alt="蓝绿剖面概念图">
+<p class="note">生成剖面仅作叙事，不是测绘。</p>
+</section>
+
+<section class="sheet"><div class="sheet-head"><h2>建筑</h2><p>基底示意约 72.3 万 m²，只表达保留 / 更新 / 新建分级，无地块级拆改留。容积率与高度保持 unknown。</p></div>
+<p class="note">拆改留只给分级逻辑。南段拆除重建只与已公示的蓝景丽家等项目对话，本包不另起拆除。</p>
+</section>
+
+<section class="sheet"><div class="sheet-head"><h2>更新项目</h2><p>12 张实施卡：主体、依赖、验收、停止。近期只做可逆试点。</p></div>
+<div class="implementation-grid">
+<article class="card"><h3>JZ-01 绿廊运营</h3><p>园林主体。北段、南段各做一次季度无障碍巡检。两次不达标停活动、不关公园。</p></article>
+<article class="card"><h3>JZ-02 清河廊</h3><p>水务/园林。水质超阈值停测。</p></article>
+<article class="card"><h3>JZ-03 众智园广场</h3><p>园区+街道。每季一场公益。</p></article>
+<article class="card"><h3>JZ-04 转化街</h3><p>校区共治。非数字预约。</p></article>
+<article class="card"><h3>JZ-05 人字广场</h3><p>可关灯。噪声超阈值即关。</p></article>
+<article class="card"><h3>JZ-06 清华园导览</h3><p>三入口。争议下线单条。</p></article>
+<article class="card"><h3>JZ-07 四象限步行</h3><p>待官方 polygon。否则只做标识。</p></article>
+<article class="card"><h3>JZ-08 消费街区</h3><p>公益位≥10%。不可负担则调配比。</p></article>
+<article class="card"><h3>JZ-09 算力节点</h3><p>公益时段≥20%。审计失败断网。</p></article>
+<article class="card"><h3>JZ-10 学院路界面</h3><p>连续无障碍。障碍未清则停段。</p></article>
+<article class="card"><h3>JZ-11 活动周</h3><p>日历公开。预案不过则取消。</p></article>
+<article class="card"><h3>JZ-12 治理沙盒</h3><p>年审计。不通过停自动化。</p></article>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><h2>跨区接口</h2><p>只保留可检查动作和停止条件，不编造合同。</p></div>
+<table>
+<thead><tr><th>对象</th><th>本带动作</th><th>停止</th></tr></thead>
+<tbody>
+<tr><td>回龙观自行车专用路</td><td>纸图与导视做到本带边界</td><td>权属不清则不延伸标识</td></tr>
+<tr><td>东升八家郊野公园</td><td>自然休闲段导视，不改郊野公园</td><td>生态超阈值停活动</td></tr>
+<tr><td>清河滨水绿廊</td><td>S06/T3 只发聚合指标</td><td>水质或防洪超阈值停测</td></tr>
+<tr><td>北纬 / 未来科学城 / 怀柔 / 经开区</td><td>AI Week 预留互邀席位</td><td>无书面邀请不挂对方品牌</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="sheet"><div class="sheet-head"><h2>第一年场地</h2><p>季度活动落到已经对公众开放的地点。</p></div>
+<table>
+<thead><tr><th>时段</th><th>公开地点</th><th>动作</th></tr></thead>
+<tbody>
+<tr><td>Q1</td><td>原点街区公共空间（五道口）</td><td>Open Call Lab</td></tr>
+<tr><td>Q2</td><td>北段箭亭桥—清河接口</td><td>蓝绿修补周</td></tr>
+<tr><td>Q3</td><td>南段绿廊；扰民或恶劣天气改 1733 室内备份</td><td>Global AI Belt Week</td></tr>
+<tr><td>Q4</td><td>清华园车站—一期绿廊</td><td>审计与记忆步行</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="sheet"><div class="sheet-head"><h2>AI 场景</h2><p>12 张完整卡 + 3 个测试。详见 proposal.md 表格。</p></div>
+<div class="scenario-grid">
+<article class="card"><h3>S01 开源发布厅</h3><p>原点。人工审核。不采轨迹。</p></article>
+<article class="card"><h3>S02 安全沙盒</h3><p>众智园。无安全官停测。</p></article>
+<article class="card"><h3>S03 端侧驿站</h3><p>公益配额≥20%。</p></article>
+<article class="card"><h3>S04 慢行导航</h3><p>纸图并行。默关闭定位。</p></article>
+<article class="card"><h3>S05 路演客厅</h3><p>大钟寺。赞助公开。</p></article>
+<article class="card"><h3>S06 清河廊</h3><p>只发聚合环境数据。</p></article>
+<article class="card"><h3>S07 转化街</h3><p>非数字预约。价格公示。</p></article>
+<article class="card"><h3>S08 数据会客厅</h3><p>可撤回。15 日答复。</p></article>
+<article class="card"><h3>S09 生活街</h3><p>不做商业画像。</p></article>
+<article class="card"><h3>S10 活动周</h3><p>纸质报名。至少一场公益。</p></article>
+<article class="card"><h3>S11 赶考导览</h3><p>三种入口。年审。</p></article>
+<article class="card"><h3>S12 人字艺术</h3><p>不采人脸。可关灯。</p></article>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><h2>任务覆盖</h2><p>公告 1.3–1.5 与 agent.1–6 均在正文有对应卡片，而不是点名清单。</p></div>
+<table>
+<thead><tr><th>任务</th><th>正文位置</th><th>停止/边界</th></tr></thead>
+<tbody>
+<tr><td>agent.1 VI</td><td>统筹研究 / assets/brand</td><td>不冒充政府标志</td></tr>
+<tr><td>agent.2 案例</td><td>6 行转译表</td><td>不承诺合作</td></tr>
+<tr><td>agent.3 场景</td><td>12 卡 + T1–T3</td><td>人工复核</td></tr>
+<tr><td>agent.4 地标</td><td>L-01–L-04</td><td>荣誉分栏</td></tr>
+<tr><td>agent.5 叙事</td><td>四刻度 + 导览</td><td>年审内容</td></tr>
+<tr><td>agent.6 运营</td><td>Q1–Q4 + 漏斗 + 第一年场地</td><td>可退出</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="sheet"><div class="sheet-head"><h2>来源</h2><p>每条公开事实在 sources.json 登记发布者、URL、日期、许可与限制。本页不加载 CDN、远程地图、外部字体、iframe 或 fetch。</p></div>
+<div class="note">OFFICIAL-ANNOUNCEMENT · PUBLIC-HAIDIAN-PROFILE-2025 · PUBLIC-JINGZHANG-PARK-PHASE2-2026 · OPENSTREETMAP-CONTEXT (ODbL, background only)</div>
+</section>
+
+</main>
+</body>
+</html>

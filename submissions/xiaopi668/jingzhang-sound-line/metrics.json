@@ -1,0 +1,219 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "Provisional site boundary derived from announcement four-to context and ~11.4 km² text area; official polygon pending."
+      ]
+    },
+    "land_use_rnd_area_sqm": {
+      "status": "known",
+      "value": 2674562.49,
+      "unit": "sqm",
+      "source_files": ["geometry/land_use.geojson#SL-LU-001"],
+      "formula": "polygon_area(SL-LU-001) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_spine_open_area_sqm": {
+      "status": "known",
+      "value": 2589339.24,
+      "unit": "sqm",
+      "source_files": ["geometry/land_use.geojson#SL-LU-002"],
+      "formula": "polygon_area(SL-LU-002) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_industry_service_area_sqm": {
+      "status": "known",
+      "value": 3366138.18,
+      "unit": "sqm",
+      "source_files": ["geometry/land_use.geojson#SL-LU-003"],
+      "formula": "polygon_area(SL-LU-003) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_community_area_sqm": {
+      "status": "known",
+      "value": 2782792.82,
+      "unit": "sqm",
+      "source_files": ["geometry/land_use.geojson#SL-LU-004"],
+      "formula": "polygon_area(SL-LU-004) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "sum(building_floor_area) per block",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved floor area and official building controls are not present in the public site package; declared only as a concept design quantity, not a statutory value."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR control and official boundary absent; must be reconfirmed with official plan before any statutory claim."
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 635954.02,
+      "unit": "sqm",
+      "source_files": ["geometry/buildings.geojson"],
+      "formula": "sum(polygon_area(building_footprints)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept AI sound-lab/audio-tech building footprints; indicative design quantity, not statutory building coverage."
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.055723,
+      "unit": "ratio",
+      "source_files": ["geometry/buildings.geojson", "geometry/site_boundary.geojson"],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Ratio of concept building footprint to the full provisional site; indicative only."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2632620.27,
+      "unit": "sqm",
+      "source_files": ["geometry/green_space.geojson"],
+      "formula": "sum(polygon_area(green_space)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.230672,
+      "unit": "ratio",
+      "source_files": ["geometry/green_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 510573.94,
+      "unit": "sqm",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "sum(polygon_area(public_space)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.044737,
+      "unit": "ratio",
+      "source_files": ["geometry/public_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 14294.45,
+      "unit": "m",
+      "source_files": ["geometry/roads.geojson"],
+      "formula": "sum(line_length(roads)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept slow-travel sound corridor and east-west pedestrian stitching connectors; no road redlines implied."
+      ]
+    },
+    "phasing_area_sqm": {
+      "status": "known",
+      "value": 8823493.53,
+      "unit": "sqm",
+      "source_files": ["geometry/phasing.geojson"],
+      "formula": "sum(polygon_area(phasing polygons)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Covers the three concept rollout phases derived from the land-use partition."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1929201.92,
+      "unit": "sqm",
+      "source_files": ["geometry/key_areas.geojson#PROV-KEY-001"],
+      "formula": "polygon_area(PROV-KEY-001) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": ["Provisional key-area polygon; official ~192.1 ha text value pending exact polygon."]
+    },
+    "key_area_origin_area_sqm": {
+      "status": "known",
+      "value": 1043236.94,
+      "unit": "sqm",
+      "source_files": ["geometry/key_areas.geojson#PROV-KEY-002"],
+      "formula": "polygon_area(PROV-KEY-002) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": ["Provisional key-area polygon; official ~104.3 ha text value pending exact polygon."]
+    },
+    "key_area_dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720454.16,
+      "unit": "sqm",
+      "source_files": ["geometry/key_areas.geojson#PROV-KEY-003"],
+      "formula": "polygon_area(PROV-KEY-003) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": ["Provisional key-area polygon; official ~72.0 ha text value pending exact polygon."]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "count(AI scenario cards described in proposal)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "count(AI pilgrimage / honor-display landmarks in proposal)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "count(user personas in proposal)",
+      "confidence": "high",
+      "assumptions": []
+    }
+  }
+}

@@ -13,6 +13,19 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 # 京张AI驿站带 Jing-Zhang AI Inn Belt：百年京张AI创新带城市设计方案
 
+## 核心机制：驿牌授权（Inn-Token Authorisation）
+
+京张铁路是百年前中国自主创新的起点，其**路签闭塞**制度——一签一区间、无签不进路、人工交接、可降级——保障了单线铁路的安全高效运营。本方案把这一历史制度转译为 AI 时代的城市治理与空间组织机制，形成「京张AI驿站带」的锐利内核：
+
+- **驿牌（Inn Token）**＝进入对应创新区间的最小授权单位，对应历史"路签"；一区一牌、无牌不进区。
+- **闭塞区间（Section）**＝空间＋数据＋服务的部署单元，对应历史"区间"；每座驿站的创新服务按区间授权与计量。
+- **换签点（Handoff Point）**＝东西缝合与权限交接的驿站节点，对应历史"换签站"；AI 场景在此完成数据与责任的交接。
+- **人工复核与降级（Human Review & Degrade）**＝一切 AI 场景保留人工服务台与故障降级路径，对应历史"人工交接"。
+
+一句话口令：**ONE BELT, THREE INNS — NO TOKEN, NO ENTRY（一带三站，无牌不进区）**。该机制直接落到提交几何：驿牌与区间映射 `AI_SERVICE_ZONE` 图层，换签点映射 `SCENARIO_NODE` 图层，区间边界由 `PHASE` 与 `LAND_USE` 组合表达；全部为概念建议，供专业团队深化 [source:AGENT-TASKBOOK] [depth:overall_spatial_structure]。
+
+**驿牌生命周期（概念操作定义）**：申领（提交服务方案与数据边界）→ 授权（区间登记、发放驿牌）→ 使用（区间内按权限调用数据与服务）→ 复核（定期人工复核与合规检查）→ 吊销/降级（违规或验收未达标即退出）。数据权责以驿牌为锚点：驿牌持有方对区间内数据负责，采集遵循最小化原则，全程可审计 [source:GENERATIVE-AI-INTERIM-MEASURES]；场景准入按驿牌区间授权，无牌不进区，与一般性"分区管理"形成可操作区别 [depth:risk_missing_data]。
+
 ## 设计依据与资料清单
 
 本方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据 [source:OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]，并以《面向全球智能体开展百年京张AI创新带城市设计开源征集任务书摘录》的三大定位、五大功能、三区两翼、六项任务与边界条款为智能体共创依据 [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。城市设计的统筹要求依据《城市设计管理办法》[standard:MOHURD-URBAN-DESIGN-MEASURES]；用地分类依据《国土空间调查、规划、用途管制用地用海分类指南》[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]；控规深度边界依据《城市、镇控制性详细规划编制审批办法》[standard:MOHURD-CONTROL-DETAILED-PLANNING]；图纸深度依据《建筑工程设计文件编制深度规定（2016年版）》[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]。
@@ -39,20 +52,20 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 全球 AI 创新生态案例研究选取 5—8 个可公开核验的案例作为方法参照（如以开放数据、开源社区、场景试验场与人才特区为特征的创新地区），归纳出“高校策源—开源协作—企业转化—公共体验—国际传播”的创新链模型，并映射到一带的产业空间与要素机制：土地与空间向驿站节点集聚，人才与算力通过小月河测试走廊与中关村服务翼配置，数据与场景通过 AI 场景开放运营机制释放 [depth:land_use_layout]。案例引用与产业表述均限于公开可查信息，不编造企业名单、投资额、产值或财政承诺 [depth:risk_missing_data]。
 
-**全球 AI 创新生态案例与方法借鉴表**（均为公开常识性描述，作为方法参照而非事实背书；迁移条件为概念建议）：
+**全球 AI 创新生态案例与方法借鉴表**（均为公开常识性描述，作为方法参照而非事实背书；迁移条件为概念建议；逐项来源见 [source:CASE-SILICON-VALLEY] 等登记，全部为 background 级公开信息）：
 
-| 案例地区 | 核心机制（公开信息） | 对一带的可迁移条件（概念建议） |
-| --- | --- | --- |
-| 美国硅谷 | 高校策源、风险资本、企业并购形成的创新闭环 | 建立“高校—驿站—企业”接力机制，驿站承接成果转化 |
-| 美国波士顿 Kendall Square | MIT 周边科研转化与生命科学+AI 集聚 | AI 原点社区强化近校转化与开源协作 |
-| 中国深圳 | 硬件供应链与快速原型能力 | 众智园以全栈自主创新与标准共创呼应 |
-| 新加坡 | 场景开放与监管沙盒式测试 | 小月河场景赋能翼承担测试走廊角色 |
-| 以色列特拉维夫 | 国防技术民用转化与高密度协作 | 探索军民融合技术转化的驿站接口（研究假设） |
-| 瑞士苏黎世 | ETH 人才密度与稳定研发环境 | 人才特区与驿站生活环的国际化配置 |
-| 中国杭州 | 平台经济与场景数据驱动 | 大钟寺智能原生消费与数据要素窗口 |
-| 中国北京中关村 | 本地高校院所与科技服务集聚 | 中关村科技服务翼承担 IP 与资本赋能 |
+| 案例地区 | 核心机制（公开信息） | 对一带的可迁移条件（概念建议） | 来源 |
+| --- | --- | --- | --- |
+| 美国硅谷 | 高校策源、风险资本、企业并购形成的创新闭环 | 建立“高校—驿站—企业”接力机制，驿站承接成果转化 | [source:CASE-SILICON-VALLEY] |
+| 美国波士顿 Kendall Square | MIT 周边科研转化与生命科学+AI 集聚 | AI 原点社区强化近校转化与开源协作 | [source:CASE-KENDALL-SQUARE] |
+| 中国深圳 | 硬件供应链与快速原型能力 | 众智园以全栈自主创新与标准共创呼应 | [source:CASE-SHENZHEN] |
+| 新加坡 | 场景开放与监管沙盒式测试 | 小月河场景赋能翼承担测试走廊角色 | [source:CASE-SINGAPORE] |
+| 以色列特拉维夫 | 国防技术民用转化与高密度协作 | 探索军民融合技术转化的驿站接口（研究假设） | [source:CASE-TEL-AVIV] |
+| 瑞士苏黎世 | ETH 人才密度与稳定研发环境 | 人才特区与驿站生活环的国际化配置 | [source:CASE-ZURICH-ETH] |
+| 中国杭州 | 平台经济与场景数据驱动 | 大钟寺智能原生消费与数据要素窗口 | [source:CASE-HANGZHOU] |
+| 中国北京中关村 | 本地高校院所与科技服务集聚 | 中关村科技服务翼承担 IP 与资本赋能 | [source:CASE-ZHONGGUANCUN] |
 
-以上案例仅用于方法提炼，不构成对具体企业或园区的背书；案例事实与迁移条件分开表述，迁移条件一律为“概念建议/可供专业团队深化研究” [source:AGENT-TASKBOOK] [depth:existing_conditions_diagnosis]。
+以上案例仅用于方法提炼，不构成对具体企业或园区的背书；案例事实与迁移条件分开表述，迁移条件一律为“概念建议/可供专业团队深化研究” [source:AGENT-TASKBOOK] [depth:existing_conditions_diagnosis]。各案例条目在 `sources.json` 中登记为 `background_only`（公开常识性信息、未列入本项目已批准正式来源清单），仅作背景与方法参照。
 
 **区域协同接口表**（与北纬社区、未来科学城、怀柔科学城、经开区及京津冀的协同方向；除公开表述外均标为研究假设）：
 
@@ -127,9 +140,9 @@ AI+ 场景卡（不少于 10 张）包括：1）驿站广场 AI 问询与导览�
 | 开发者线上协作空间 | 三站线上虚拟驿站 | 公开开发数据 | 协同工具 | 社区管理员 | 邮件列表 | 开发者社区理事会 | 活跃开发者数、留存率 |
 | 国际传播数字驿站 | 全域线上 | 公开传播物料 | 多语言生成 | 译审与发布审批 | 人工发布 | 品牌运营团队 | 国际触达、引用与转载 |
 
-矩阵中“人类复核”“故障降级”为每一场景的必备安全边界；隐私与数据最小化要求适用于全部场景，涉及个人数据的场景须提供申诉与纠错渠道 [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
+矩阵中“人类复核”“故障降级”为每一场景的必备安全边界；隐私与数据最小化要求适用于全部场景，涉及个人数据的场景须提供申诉与纠错渠道 [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]；生成式 AI 场景的合规与责任边界同时依据《生成式人工智能服务管理暂行办法》[standard:GENERATIVE-AI-INTERIM-MEASURES]。
 
-包容性与无障碍：在既有五类画像基础上扩展老年居民、儿童及照护者、残障人士、低数字技能居民与夜间劳动者画像；每个公共 AI 服务均提供无账号、无智能手机与人工服务后备路径，公共空间配置连续无障碍路径、信息可达标识与无障碍卫生间 [source:BARRIER-FREE-LAW] [depth:municipal_new_infrastructure]。参与式评审与申诉纠错机制（意见收集—限时答复—修正记录公开）作为驿站运营的固定流程写入运营机制 [depth:risk_missing_data]。
+包容性与无障碍：在既有五类画像基础上扩展老年居民、儿童及照护者、残障人士、低数字技能居民与夜间劳动者画像；每个公共 AI 服务均提供无账号、无智能手机与人工服务后备路径 [source:BARRIER-FREE-LAW] [standard:BARRIER-FREE-ENVIRONMENT-LAW]；适老化要求依据《关于切实解决老年人运用智能技术困难实施方案》[standard:ELDERLY-SMART-TECH-PLAN-2020-45]，公共空间配置连续无障碍路径、信息可达标识与无障碍卫生间 [depth:municipal_new_infrastructure]。参与式评审与申诉纠错机制（意见收集—限时答复—修正记录公开）作为驿站运营的固定流程写入运营机制 [depth:risk_missing_data]。
 
 ## 用地、建筑规模与拆改留方案
 
@@ -180,6 +193,16 @@ AI+ 场景卡（不少于 10 张）包括：1）驿站广场 AI 问询与导览�
 
 转化漏斗各环节均以“概念建议”表述，不承诺具体成果数量或政府资金安排 [source:AGENT-TASKBOOK] [depth:renewal_project_list]。
 
+**试点与实施深化（概念建议）**：
+
+- **先导试点区间**：选取「AI原点社区驿站 + 小月河场景测试走廊」为先导试点（约 2 处），优先验证驿牌授权、人工复核与场景降级闭环；试点可低成本启动、可撤回、可复盘 [depth:phasing_implementation]。
+- **项目包（可独立暂停）**：分为 ①驿牌服务包（驿牌发布、授权与复核流程）②绿道贯通包（遗址公园 AI 慢行绿道与驿站广场）③场景测试包（无人接驳、视觉巡检等测试场景）；任一包可独立暂停而不影响其他包 [depth:renewal_project_list]。
+- **驿牌准入闸门**：申请（提交服务方案与数据边界）→ 审查（数据最小化、人工复核、安全停止）→ 授权（发放驿牌并登记区间）→ 复核（定期复核与退出），四步闸门为概念流程，供专业团队与运营方细化 [source:AGENT-TASKBOOK]。
+- **人力编制概念测算**：每座驿站建议配置站长 1、运营运维 2、服务台 3 名及志愿者轮值（概念测算，非定编承诺）；三站两翼合计约 18—24 名常设岗位加志愿者，具体以专业人力测算为准 [depth:risk_missing_data]。
+- **应急响应预案**：AI 场景故障降级矩阵——无人接驳故障转人工接管、AI 问询故障转人工服务台、算力看板故障转静态展板、发布直播故障转录制回放；每项含触发条件、响应时限与责任角色（概念预案，需运营方演练确认）[depth:risk_missing_data] [depth:traffic_rail_slow_parking]。
+- **试点概略投资估算框架（概念测算，非承诺）**：先导试点区间（AI原点社区驿站＋小月河测试走廊）按类别给出量级假设——设施改造与驿站建筑（百万级）、AI 设备与系统开发（百万至千万级）、三年期人力与运营（百万级/年），合计约千万级量级；建设主体建议为组织方主导＋驿站运营方＋企业共建＋社会资本参与。以上仅为概念估算框架，具体金额、融资模式与建设主体须由专业概算与主管部门确认 [depth:phasing_implementation] [depth:risk_missing_data]。
+- **AI 数据安全与算法公平性专项（概念要点）**：模型偏见——训练数据脱敏与偏差检测纳入场景准入；数据投毒——数据来源核验与版本锁定；知识产权归属——AI 生成内容权属在驿牌授权时约定；跨境数据——测试走廊涉外场景明确数据边界；公平性——按人群监测服务可用性并公开结果 [source:GENERATIVE-AI-INTERIM-MEASURES] [depth:risk_missing_data]。
+
 ## 指标体系、面积复算与合规矩阵
 
 指标体系与证据链：面积类指标全部由提交几何在 EPSG:4548 投影下复算 [metric:site_area_sqm] [metric:green_ratio]；公共空间占比见 [metric:public_space_ratio]，复算方法见 [depth:metrics_recalculation]。
@@ -189,6 +212,26 @@ AI+ 场景卡（不少于 10 张）包括：1）驿站广场 AI 问询与导览�
 合规矩阵 `compliance_matrix.json` 逐条映射公告 1.3—1.5 与 agent.1—agent.6 共 23 项任务；标准矩阵覆盖 6 项必选标准；设计深度矩阵覆盖 15 项正式深度项 [depth:three_key_area_detailed_design]。正式范围发布后，site boundary、key areas、land use、roads、green space、public space、buildings、phasing 与全部精度敏感指标均须重算并重新自检 [depth:metrics_recalculation]。
 
 **临时边界就地标注**：本方案全部面积、比例与数量指标均基于组织方提供的临时粗略边界（`provisional_constraint`）复算，仅作概念讨论与展示使用；相关图件（site-overview、key-areas、metrics-evidence 等）均就地标注“临时范围/基于临时粗略边界复算”。官方边界与重点区 polygon 发布后，全部图层与指标须按同一流程重算并重新自检，本方案不将临时几何描述为精确或法定数据 [depth:metrics_recalculation] [depth:risk_missing_data]。
+
+**补充指标引用**（全部由提交几何在 EPSG:4548 下复算，provisional 边界发布后一并重算）：
+
+| 指标 | 含义（概念） |
+| --- | --- |
+| [metric:land_use_cultural_ratio] | 文化用地占比 |
+| [metric:land_use_education_ratio] | 教育用地占比 |
+| [metric:land_use_green_ratio] | 公园绿地占比 |
+| [metric:land_use_plaza_ratio] | 广场用地占比 |
+| [metric:land_use_reserved_ratio] | 留白用地占比 |
+| [metric:key_area_zhongzhiyuan_area_sqm] | 众智园重点区面积 |
+| [metric:key_area_origin_area_sqm] | AI原点社区面积 |
+| [metric:key_area_dazhongsi_area_sqm] | 大钟寺重点区面积 |
+| [metric:phase_one_area_sqm] | 近期分期面积 |
+| [metric:phase_two_area_sqm] | 中期分期面积 |
+| [metric:phase_three_area_sqm] | 远期分期面积 |
+| [metric:green_space_count] | 绿地要素数量 |
+| [metric:public_space_count] | 公共空间要素数量 |
+| [metric:ai_inn_plaza_count] | AI驿站广场数量 |
+| [metric:road_greenway_length_m] | 绿道中心线长度 |
 
 ![核心指标证据表](assets/figures/metrics-evidence.png)
 

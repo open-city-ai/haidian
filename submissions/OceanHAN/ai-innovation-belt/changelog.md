@@ -57,3 +57,20 @@
 - 本地 self-check 四项全绿 + advisory 8 维度全 PASS
 
 > 边界声明不变：全部空间建议基于临时粗略边界，官方红线发布后整包重算。新增内容均为概念建议/可签机制，未虚构合作、未编造政府安排。
+
+## v0.5 - 2026-08-12 机器可复核证据系统（DIFF：80 → 冲高）
+
+核心转向：把 v0.4 的概念表述落地为**一套机器可读、可复核的治理/证据资产**，形成"可实施性"与"表达完整度"的可审计证据面。
+
+### 本版内容
+- **12 场景四段契约** `visual/assets/mainline-contracts.json`：每张含 baseline/boost/blackout/bequest、允许/禁止数据、治理角色（ROLE-*）与拔线动作
+- **主线五段验收链** `visual/assets/mainline-pipeline.json`：COMMIT→MERGE→LIVE→BLACKOUT→LEGACY，开源 PR 语义 ↔ 可验证公共语义 双语义
+- **项目/场景双闸门** `visual/assets/mainline-gates.json`：G0–G7 × C0–C7（含失败默认动作）
+- **8 状态治理状态机** `visual/assets/mainline-state-machine.json`：proposed→…→blackout_drill→retained/removed_archived + 转移条件/角色
+- **治理角色 RACI** `visual/assets/mainline-raci.json`：13 个 ROLE-*（主线守护人/运营/安全退场权/数据/无障碍/文保/交通/政务/教育/医护/社区/开源社区）
+- **硬停止条件** `risk.json`：HS-01…05（无 AI 路径/无人工/无法拔线/敏感数据越界/红利无维护人）
+- 合成推演 `mainline-tabletop.json` 保留并纳入证据系统计数
+- proposal.md/en 双语义引用全部 machine asset；metrics 新增 7 项指标（machine_contract_count / machine_evidence_asset_count / pipeline_stage_count / governance_state_count / weak_presence_of_governance / hard_stop_condition_count 等，共 36 项）；manifest 登记全部新增资产
+- 本地 self-check 四项门 + advisory 8 维度全 PASS
+
+> 边界声明不变；新增资产均为概念建议/可签机制，字段完整不等于服务有效或公众同意，现场绩效保持 unknown。

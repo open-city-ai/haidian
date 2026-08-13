@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把原型到公共服务、机器到人工、白天到夜间、建设到运营的每一次交接，设计成可见、可追责、可回退的城市接口。"
 tracks: ["civic-agent-governance", "ai-public-services", "ai-traffic-walkability"]
 scenarios: ["ai-cultural-guide", "ai-health-service-navigation", "ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
-iteration: "v0.1"
+iteration: "v0.3"
 ---
 
 # 京张交班 / HANDOVER JING-ZHANG
@@ -81,6 +81,26 @@ iteration: "v0.1"
 ![三座交班院的分工与交付物](assets/figures/key-areas.png)
 
 三处 AI 朝圣/荣誉节点分别是“首件信号塔”“开源交班钟”“城市接力墙”。它们不纪念单一企业或技术神话，而展示可核查的公共贡献：谁提交、谁验证、谁维护、谁纠错、谁决定退役。展示明确区分“投稿、审查、试点、采用、退役”，获得授权后才显示个人或机构名称；无授权时仅展示匿名角色和方法。
+
+### 节点级空间证据
+
+三处重点区各落到三个可定位的概念节点，共九个节点（`SC-01`—`SC-09`），并与 `geometry/public_space.geojson` 的 `HANDOVER-NODE-01`—`09` 一一对应。众智园的 `SC-01` 接件廊、`SC-02` 隔离测试庭、`SC-03` 维修课台，均保留人工窗口、纸面状态卡、设备维修后勤和普通步行；AI 原点社区的 `SC-04` 非账号共学桌、`SC-05` 开源维护桌、`SC-06` 知识转译窗，将许可核验与无障碍解释放在入口界面；大钟寺的 `SC-07` 人工采用服务台、`SC-08` 文化导览环、`SC-09` 夜班维护点，把申诉、事实复核、清场和夜间维护写进空间。节点属性、入口—人工窗口—非智能路径—维护线路—退场后的普通服务见 `visual/assets/spatial-components.json`；图纸统一标出北向、比例尺、现状/推定/设计图层。
+
+## AI-OFF，城市仍可用：交班契约、闸门与首 12 周
+
+“交班”从叙事升级为可检查的机器工件。`visual/assets/handover-contracts.json` 提供 12 张契约卡；每张卡同时写明无 AI 普通服务基线、AI 的有限作用、允许/禁止数据、空间载体、建议责任角色、人工接管、硬停止、AI-OFF 路径、数据删除、恢复证据、评估窗口与退场后保留的公共资产。`governance-raci.json` 给出 10 类建议角色和停止权；不把任何建议角色冒充为已授权政府主体。`implementation-gates.json` 把 G0—G7 项目闸门与 C0—C7 场景准入闸门挂到契约和证据上。
+
+首 12 周按“无 AI 基线—小范围 BOOST—人工复核—BLACKOUT 演练—BEQUEST 复盘”推进：第 0 周锁定基线和删除规则，第 1—4 周完成数据、无障碍、安全和责任人核验，第 5—8 周只开放可逆、有人值守的服务，第 9—11 周演练停止与退场，第 12 周由独立复核角色决定扩大、修订或退出。九个 H01—H09 更新项目分别绑定维护动作、KPI 和退出条件；五个区域接口全部标注为待核实建议，不写成合作或资金承诺。[data:visual/assets/first-12-weeks.json] [data:visual/assets/implementation-gates.json] [data:visual/assets/renewal-projects.json]
+
+离线 `unplugged-runner.js` 固定跑 12 场景 × 7 分支 = 84 条合成桌面推演：12 条完整契约进入授权复核，60 条缺项或违规数据分支阻断，12 条 AI-OFF 分支进入公共遗产复核。输出明确声明零真实个人数据，`field_performance: null`，不把合成测试伪装成现场绩效。评分维度与正文、图件、GeoJSON、JSON 工件的对应关系见 `review-evidence-map.json`；隐私、安全、无障碍、文保、维护、版权、公众接受度和实施风险见 `risk.json`。[data:visual/assets/unplugged-tabletop-evidence.json] [metric:evidence_branch_count] [depth:handover_contract_system]
+
+展示媒体只承担状态叙事，不替代空间证据：`assets/media/handover-walkthrough.mp4` 为约 40 秒无声概念漫游，依次表达 BASE、BOOST、BLACKOUT、BEQUEST；封面、三处重点区体验图、VTT 字幕和双语文字稿均标注 `concept / presentation_only`，权利边界见 `report/copyright_statement.md`。
+
+### v0.3 现代化表达层
+
+本轮把表达层改为“公共设计底盘 + Neo-civic OS 控制台”：米白、轨蓝和遗产铜继续承担规划阅读；深海军蓝、青绿和橙色只用于状态、停止权和证据反馈。首屏按照 `BASE → BOOST → BLACKOUT → BEQUEST` 显示普通服务、受控 AI、人工停止和公共回报；状态芯片、节点脉冲和证据面板均回指契约、GeoJSON、metrics 或 84 条离线复演，不虚构实时数据。
+
+`visual/index.html` 与 `visual/index.en.html` 现在提供键盘可操作的状态切换、契约选择器、`SC-01`—`SC-09` 节点联动、84 条测试摘要、首 12 周时间线、人工窗口/AI-OFF 路径和 reduced-motion 支持。现代化视觉只改变解释层，不替代 A3/A0、专业图纸、结构化空间数据和正文判断。
 
 ## AI 创新生态、人才画像与 AI+ 场景
 

@@ -1,0 +1,94 @@
+{
+  "evidence_id": "jingzhang-night-shift-protocol-replay",
+  "protocol_version": "3.0",
+  "replay_command": "node visual/assets/run_night_protocol_tabletop.js --check",
+  "determinism_note_zh": "本文件不含时间戳；相同输入必产生逐字节相同的输出。",
+  "determinism_note_en": "This file carries no timestamp; identical inputs reproduce it byte for byte.",
+  "input_files": {
+    "visual/assets/night_protocol.json": "7991b6a70a093b56ab059780f20f005999d7ce7b8651c33ba1eb9ba2ee5f60f0",
+    "geometry/constraints.geojson": "0805b671bf305531eb565503a793e209f65975fb5a5d7543bb79e83ca916e6e0",
+    "geometry/phasing.geojson": "fc65442266bdb3b078b7708f5838f52e1679ccddf72c6a8edafb63dca5ebfc18"
+  },
+  "check_count": 13,
+  "all_passed": true,
+  "checks": [
+    {
+      "id": "state_count",
+      "description_zh": "协议恰好包含六个运行状态",
+      "description_en": "The protocol declares exactly six operating states",
+      "pass": true
+    },
+    {
+      "id": "transition_endpoints_valid",
+      "description_zh": "所有状态转移的起点和终点均为已声明状态",
+      "description_en": "Every transition starts and ends at a declared state",
+      "pass": true
+    },
+    {
+      "id": "non_terminal_states_have_exit",
+      "description_zh": "每个非终止状态都有至少一条外出转移",
+      "description_en": "Every non-terminal state has at least one outgoing transition",
+      "pass": true
+    },
+    {
+      "id": "operating_states_can_pause",
+      "description_zh": "已准入、运行中、安静态都可以进入已暂停",
+      "description_en": "admitted, live and quiet can each transition to paused",
+      "pass": true
+    },
+    {
+      "id": "paused_has_two_ways_out",
+      "description_zh": "已暂停既能回到申报重审，也能直接交接退出",
+      "description_en": "paused can return to proposed for re-review or exit via handed_over",
+      "pass": true
+    },
+    {
+      "id": "live_quiet_bidirectional",
+      "description_zh": "运行中与安静态可以双向切换",
+      "description_en": "live and quiet are bidirectional",
+      "pass": true
+    },
+    {
+      "id": "terminal_state_has_no_exit",
+      "description_zh": "终止状态（已交接）没有外出转移",
+      "description_en": "The terminal state handed_over has no outgoing transition",
+      "pass": true
+    },
+    {
+      "id": "live_entry_gates_complete",
+      "description_zh": "进入运行中必须满足四项运行门：人工责任、非AI后备、停机动作、恢复证据",
+      "description_en": "Entering live requires all four gates: human duty, non-AI fallback, shutdown action, recovery evidence",
+      "pass": true
+    },
+    {
+      "id": "time_bands_cover_24h",
+      "description_zh": "四个时间带无缝且不重叠地覆盖 24 小时",
+      "description_en": "The four daily bands cover 24 hours with no gaps and no overlaps",
+      "pass": true
+    },
+    {
+      "id": "scenario_nodes_count",
+      "description_zh": "约束图层中恰好有十二个场景节点",
+      "description_en": "The constraints layer holds exactly twelve scenario nodes",
+      "pass": true
+    },
+    {
+      "id": "scenario_readiness_fields_complete",
+      "description_zh": "十二个场景节点的责任角色、停止条件、非AI后备、恢复证据与所属场地字段全部非空",
+      "description_en": "All twelve scenario nodes carry non-empty responsibility, stop, fallback, recovery and yard fields",
+      "pass": true
+    },
+    {
+      "id": "yards_all_referenced",
+      "description_zh": "三座夜班场存在且每座至少承接一个场景节点",
+      "description_en": "All three night yards exist and each hosts at least one scenario node",
+      "pass": true
+    },
+    {
+      "id": "phase1_zero_new_permanent_construction",
+      "description_zh": "阶段一在分期图层中承诺零永久新建（new_permanent_construction=false）",
+      "description_en": "Phase 1 declares zero new permanent construction in the phasing layer",
+      "pass": true
+    }
+  ]
+}

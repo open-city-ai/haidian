@@ -1,0 +1,1635 @@
+{
+  "schema_version": "1.0.0",
+  "ledger_id": "jingzhang-noonline-sla-field-verification-ledger",
+  "generated_by": "noonline-sla-field-verification.js",
+  "generation_method": "Deterministically derived from existing Noonline SLA route conditions and field data gaps; no field result is inferred.",
+  "source_field_data_gaps": [
+    "shade_continuity_not_field_verified",
+    "continuous_exposure_not_field_verified",
+    "service_node_locations_not_surveyed",
+    "drinking_water_points_not_existing_inventory",
+    "seating_points_not_existing_inventory",
+    "public_entries_not_access_audited",
+    "crossing_waiting_conditions_not_measured",
+    "summer_detour_distance_not_field_verified"
+  ],
+  "state_machine": {
+    "states": [
+      "unknown",
+      "scheduled",
+      "observed",
+      "verified",
+      "rejected"
+    ],
+    "transitions": {
+      "unknown": [
+        "scheduled"
+      ],
+      "scheduled": [
+        "observed"
+      ],
+      "observed": [
+        "verified",
+        "rejected"
+      ],
+      "verified": [],
+      "rejected": []
+    },
+    "verified_or_rejected_requirements": [
+      "human_verifier",
+      "timestamp",
+      "evidence_reference",
+      "observed_predecessor"
+    ],
+    "ai_rule": "AI may not create, observe, verify, reject, or self-certify field evidence."
+  },
+  "tasks": [
+    {
+      "task_id": "FV-SLA-A-SHADE-CONTINUITY-SLA-A",
+      "route_id": "SLA-A",
+      "route": {
+        "id": "SLA-A",
+        "name": "Heritage-park noon spine",
+        "path_ref": "geometry/roads.geojson#ROAD-001"
+      },
+      "object": {
+        "type": "route",
+        "id": "SLA-A",
+        "source_condition": "shade_continuity"
+      },
+      "verification_type": "shade_continuity",
+      "label_zh": "遮阴连续性",
+      "label_en": "shade continuity",
+      "evidence_required": "Geolocated route-segment observation at the specified midday sampling window, including shade/solar-exposure record and attachment.",
+      "verification_method": "Walk the declared reference axis segment; record continuous shaded and exposed intervals with timestamped, geolocated evidence.",
+      "pass_condition": "Observed shaded coverage meets the pre-approved route threshold for the specified sampling window.",
+      "fail_condition": "A gap beyond the approved exposure threshold is observed, or the route cannot be observed safely.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": true,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when not verified; rejection triggers route-service review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-A-CONTINUOUS-EXPOSURE-SLA-A",
+      "route_id": "SLA-A",
+      "route": {
+        "id": "SLA-A",
+        "name": "Heritage-park noon spine",
+        "path_ref": "geometry/roads.geojson#ROAD-001"
+      },
+      "object": {
+        "type": "route",
+        "id": "SLA-A",
+        "source_condition": "continuous_exposure"
+      },
+      "verification_type": "continuous_exposure",
+      "label_zh": "连续暴晒距离",
+      "label_en": "continuous exposure distance",
+      "evidence_required": "Timestamped, geolocated walking survey showing the longest continuously exposed interval.",
+      "verification_method": "Traverse the reference segment during the approved time window and measure each uninterrupted exposure interval.",
+      "pass_condition": "The longest exposed interval is within the pre-approved maximum.",
+      "fail_condition": "The longest exposed interval exceeds the pre-approved maximum or no reliable measurement is available.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": true,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when not verified; rejection triggers route-service review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-A-SUMMER-DETOUR-SLA-A",
+      "route_id": "SLA-A",
+      "route": {
+        "id": "SLA-A",
+        "name": "Heritage-park noon spine",
+        "path_ref": "geometry/roads.geojson#ROAD-001"
+      },
+      "object": {
+        "type": "route",
+        "id": "SLA-A",
+        "source_condition": "summer_detour"
+      },
+      "verification_type": "summer_detour",
+      "label_zh": "夏季实际绕行",
+      "label_en": "summer detour",
+      "evidence_required": "Geolocated accessible route trace comparing the declared reference route and the actual shade/access detour.",
+      "verification_method": "Walk the practical accessible alternative in the approved summer sampling window; record distance and access constraints.",
+      "pass_condition": "The measured detour is within the pre-approved threshold and preserves accessibility.",
+      "fail_condition": "The detour exceeds the threshold, becomes inaccessible, or cannot be completed.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": true,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when not verified; rejection requires a remain-B or downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-A-STATIC-WAYFINDING-SLA-A",
+      "route_id": "SLA-A",
+      "route": {
+        "id": "SLA-A",
+        "name": "Heritage-park noon spine",
+        "path_ref": "geometry/roads.geojson#ROAD-001"
+      },
+      "object": {
+        "type": "route",
+        "id": "SLA-A",
+        "source_condition": "static_wayfinding"
+      },
+      "verification_type": "static_wayfinding",
+      "label_zh": "离线固定导向",
+      "label_en": "offline static wayfinding",
+      "evidence_required": "Photographic or documented proof of fixed, legible, low-technology wayfinding covering the declared reference route.",
+      "verification_method": "Walk the route with AI and mobile services unavailable; document each required direction/decision point.",
+      "pass_condition": "All required decision points have legible, durable offline guidance under the approved accessibility criteria.",
+      "fail_condition": "A required decision point lacks legible offline guidance or requires AI/mobile access to proceed.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": true,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when not verified and affects AI-OFF support.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-A-NODE-LOCATION-N01",
+      "route_id": "SLA-A",
+      "route": {
+        "id": "SLA-A",
+        "name": "Heritage-park noon spine",
+        "path_ref": "geometry/roads.geojson#ROAD-001"
+      },
+      "object": {
+        "type": "node",
+        "id": "N01",
+        "source_condition": "service_node_locations_not_surveyed"
+      },
+      "verification_type": "node_location",
+      "label_zh": "节点真实位置",
+      "label_en": "actual node location",
+      "evidence_required": "Geolocated field record confirming the proposed node can be associated with a real, publicly accessible place or documenting why it cannot.",
+      "verification_method": "Visit the declared node context; record location, public accessibility and an attachment.",
+      "pass_condition": "The node can be located and its context supports the declared design role without claiming an existing service facility.",
+      "fail_condition": "The location is inaccessible, materially inconsistent with the declared role, or cannot be located.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": true,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when the node is mandatory; rejection triggers siting revision or downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-A-NODE-LOCATION-N02",
+      "route_id": "SLA-A",
+      "route": {
+        "id": "SLA-A",
+        "name": "Heritage-park noon spine",
+        "path_ref": "geometry/roads.geojson#ROAD-001"
+      },
+      "object": {
+        "type": "node",
+        "id": "N02",
+        "source_condition": "service_node_locations_not_surveyed"
+      },
+      "verification_type": "node_location",
+      "label_zh": "节点真实位置",
+      "label_en": "actual node location",
+      "evidence_required": "Geolocated field record confirming the proposed node can be associated with a real, publicly accessible place or documenting why it cannot.",
+      "verification_method": "Visit the declared node context; record location, public accessibility and an attachment.",
+      "pass_condition": "The node can be located and its context supports the declared design role without claiming an existing service facility.",
+      "fail_condition": "The location is inaccessible, materially inconsistent with the declared role, or cannot be located.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": true,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when the node is mandatory; rejection triggers siting revision or downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-A-NODE-LOCATION-N03",
+      "route_id": "SLA-A",
+      "route": {
+        "id": "SLA-A",
+        "name": "Heritage-park noon spine",
+        "path_ref": "geometry/roads.geojson#ROAD-001"
+      },
+      "object": {
+        "type": "node",
+        "id": "N03",
+        "source_condition": "service_node_locations_not_surveyed"
+      },
+      "verification_type": "node_location",
+      "label_zh": "节点真实位置",
+      "label_en": "actual node location",
+      "evidence_required": "Geolocated field record confirming the proposed node can be associated with a real, publicly accessible place or documenting why it cannot.",
+      "verification_method": "Visit the declared node context; record location, public accessibility and an attachment.",
+      "pass_condition": "The node can be located and its context supports the declared design role without claiming an existing service facility.",
+      "fail_condition": "The location is inaccessible, materially inconsistent with the declared role, or cannot be located.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": true,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when the node is mandatory; rejection triggers siting revision or downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-A-NODE-LOCATION-N04",
+      "route_id": "SLA-A",
+      "route": {
+        "id": "SLA-A",
+        "name": "Heritage-park noon spine",
+        "path_ref": "geometry/roads.geojson#ROAD-001"
+      },
+      "object": {
+        "type": "node",
+        "id": "N04",
+        "source_condition": "service_node_locations_not_surveyed"
+      },
+      "verification_type": "node_location",
+      "label_zh": "节点真实位置",
+      "label_en": "actual node location",
+      "evidence_required": "Geolocated field record confirming the proposed node can be associated with a real, publicly accessible place or documenting why it cannot.",
+      "verification_method": "Visit the declared node context; record location, public accessibility and an attachment.",
+      "pass_condition": "The node can be located and its context supports the declared design role without claiming an existing service facility.",
+      "fail_condition": "The location is inaccessible, materially inconsistent with the declared role, or cannot be located.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": true,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when the node is mandatory; rejection triggers siting revision or downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-A-NODE-LOCATION-N05",
+      "route_id": "SLA-A",
+      "route": {
+        "id": "SLA-A",
+        "name": "Heritage-park noon spine",
+        "path_ref": "geometry/roads.geojson#ROAD-001"
+      },
+      "object": {
+        "type": "node",
+        "id": "N05",
+        "source_condition": "service_node_locations_not_surveyed"
+      },
+      "verification_type": "node_location",
+      "label_zh": "节点真实位置",
+      "label_en": "actual node location",
+      "evidence_required": "Geolocated field record confirming the proposed node can be associated with a real, publicly accessible place or documenting why it cannot.",
+      "verification_method": "Visit the declared node context; record location, public accessibility and an attachment.",
+      "pass_condition": "The node can be located and its context supports the declared design role without claiming an existing service facility.",
+      "fail_condition": "The location is inaccessible, materially inconsistent with the declared role, or cannot be located.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": true,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when the node is mandatory; rejection triggers siting revision or downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-A-NODE-LOCATION-N06",
+      "route_id": "SLA-A",
+      "route": {
+        "id": "SLA-A",
+        "name": "Heritage-park noon spine",
+        "path_ref": "geometry/roads.geojson#ROAD-001"
+      },
+      "object": {
+        "type": "node",
+        "id": "N06",
+        "source_condition": "service_node_locations_not_surveyed"
+      },
+      "verification_type": "node_location",
+      "label_zh": "节点真实位置",
+      "label_en": "actual node location",
+      "evidence_required": "Geolocated field record confirming the proposed node can be associated with a real, publicly accessible place or documenting why it cannot.",
+      "verification_method": "Visit the declared node context; record location, public accessibility and an attachment.",
+      "pass_condition": "The node can be located and its context supports the declared design role without claiming an existing service facility.",
+      "fail_condition": "The location is inaccessible, materially inconsistent with the declared role, or cannot be located.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": true,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when the node is mandatory; rejection triggers siting revision or downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-A-REST-NODES-N02",
+      "route_id": "SLA-A",
+      "route": {
+        "id": "SLA-A",
+        "name": "Heritage-park noon spine",
+        "path_ref": "geometry/roads.geojson#ROAD-001"
+      },
+      "object": {
+        "type": "node",
+        "id": "N02",
+        "source_condition": "rest_nodes"
+      },
+      "verification_type": "rest_nodes",
+      "label_zh": "座椅与休息节点",
+      "label_en": "seating and rest node",
+      "evidence_required": "Field record of publicly usable resting provision, condition, access and operating constraint at the declared node.",
+      "verification_method": "Observe the node, document seating/rest provision, accessibility, condition and availability.",
+      "pass_condition": "A usable, accessible rest opportunity is present and available under the approved service condition.",
+      "fail_condition": "No usable rest opportunity is present, access is blocked, or condition is unsafe/unavailable.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": true,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-A-REST-NODES-N05",
+      "route_id": "SLA-A",
+      "route": {
+        "id": "SLA-A",
+        "name": "Heritage-park noon spine",
+        "path_ref": "geometry/roads.geojson#ROAD-001"
+      },
+      "object": {
+        "type": "node",
+        "id": "N05",
+        "source_condition": "rest_nodes"
+      },
+      "verification_type": "rest_nodes",
+      "label_zh": "座椅与休息节点",
+      "label_en": "seating and rest node",
+      "evidence_required": "Field record of publicly usable resting provision, condition, access and operating constraint at the declared node.",
+      "verification_method": "Observe the node, document seating/rest provision, accessibility, condition and availability.",
+      "pass_condition": "A usable, accessible rest opportunity is present and available under the approved service condition.",
+      "fail_condition": "No usable rest opportunity is present, access is blocked, or condition is unsafe/unavailable.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": true,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-A-WATER-NODES-N02",
+      "route_id": "SLA-A",
+      "route": {
+        "id": "SLA-A",
+        "name": "Heritage-park noon spine",
+        "path_ref": "geometry/roads.geojson#ROAD-001"
+      },
+      "object": {
+        "type": "node",
+        "id": "N02",
+        "source_condition": "water_nodes"
+      },
+      "verification_type": "water_nodes",
+      "label_zh": "饮水补给节点",
+      "label_en": "drinking-water node",
+      "evidence_required": "Field record of the actual public water option, availability status, access condition and source attachment.",
+      "verification_method": "Visit and document the water option and its availability without inferring water quality beyond approved evidence.",
+      "pass_condition": "A public, usable water option is accessible and available under the approved service condition.",
+      "fail_condition": "No usable option is present, access is blocked, or the option is unavailable.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": true,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-A-WATER-NODES-N05",
+      "route_id": "SLA-A",
+      "route": {
+        "id": "SLA-A",
+        "name": "Heritage-park noon spine",
+        "path_ref": "geometry/roads.geojson#ROAD-001"
+      },
+      "object": {
+        "type": "node",
+        "id": "N05",
+        "source_condition": "water_nodes"
+      },
+      "verification_type": "water_nodes",
+      "label_zh": "饮水补给节点",
+      "label_en": "drinking-water node",
+      "evidence_required": "Field record of the actual public water option, availability status, access condition and source attachment.",
+      "verification_method": "Visit and document the water option and its availability without inferring water quality beyond approved evidence.",
+      "pass_condition": "A public, usable water option is accessible and available under the approved service condition.",
+      "fail_condition": "No usable option is present, access is blocked, or the option is unavailable.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": true,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-A-PUBLIC-ENTRIES-N03",
+      "route_id": "SLA-A",
+      "route": {
+        "id": "SLA-A",
+        "name": "Heritage-park noon spine",
+        "path_ref": "geometry/roads.geojson#ROAD-001"
+      },
+      "object": {
+        "type": "node",
+        "id": "N03",
+        "source_condition": "public_entries"
+      },
+      "verification_type": "public_entries",
+      "label_zh": "公共入口开放条件",
+      "label_en": "public-entry access condition",
+      "evidence_required": "Timestamped access observation, including entrance identity, public-access condition and any opening constraint.",
+      "verification_method": "Observe the declared entry in the relevant midday period and document access and barrier-free condition.",
+      "pass_condition": "The entry is publicly accessible during the approved service window and meets the documented access condition.",
+      "fail_condition": "The entry is closed, restricted, inaccessible, or cannot support the declared route connection.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": true,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-A-CROSSING-NODES-N04",
+      "route_id": "SLA-A",
+      "route": {
+        "id": "SLA-A",
+        "name": "Heritage-park noon spine",
+        "path_ref": "geometry/roads.geojson#ROAD-001"
+      },
+      "object": {
+        "type": "node",
+        "id": "N04",
+        "source_condition": "crossing_nodes"
+      },
+      "verification_type": "crossing_nodes",
+      "label_zh": "关键过街条件",
+      "label_en": "critical crossing condition",
+      "evidence_required": "Field observation of the legal crossing, waiting condition, accessibility and route continuity at the declared node.",
+      "verification_method": "Observe and traverse the legal crossing during the approved period; document waiting and continuity conditions.",
+      "pass_condition": "A legal, accessible crossing maintains the declared route continuity under the approved condition.",
+      "fail_condition": "The crossing is unsafe, inaccessible, unavailable, or breaks route continuity.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": true,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-A-HUMAN-FALLBACK-NODES-N02",
+      "route_id": "SLA-A",
+      "route": {
+        "id": "SLA-A",
+        "name": "Heritage-park noon spine",
+        "path_ref": "geometry/roads.geojson#ROAD-001"
+      },
+      "object": {
+        "type": "node",
+        "id": "N02",
+        "source_condition": "human_fallback_nodes"
+      },
+      "verification_type": "human_fallback_nodes",
+      "label_zh": "人工兜底服务",
+      "label_en": "staffed human fallback",
+      "evidence_required": "Documented responsible human role, service point, usable time window and low-technology fallback procedure.",
+      "verification_method": "Confirm the service role and availability through an authorized, recorded field/operational check.",
+      "pass_condition": "A responsible human service role and usable fallback procedure are confirmed for the approved window.",
+      "fail_condition": "No responsible role, time window, or usable fallback procedure is confirmed.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": true,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review; AI cannot substitute for this condition.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-A-HUMAN-FALLBACK-NODES-N05",
+      "route_id": "SLA-A",
+      "route": {
+        "id": "SLA-A",
+        "name": "Heritage-park noon spine",
+        "path_ref": "geometry/roads.geojson#ROAD-001"
+      },
+      "object": {
+        "type": "node",
+        "id": "N05",
+        "source_condition": "human_fallback_nodes"
+      },
+      "verification_type": "human_fallback_nodes",
+      "label_zh": "人工兜底服务",
+      "label_en": "staffed human fallback",
+      "evidence_required": "Documented responsible human role, service point, usable time window and low-technology fallback procedure.",
+      "verification_method": "Confirm the service role and availability through an authorized, recorded field/operational check.",
+      "pass_condition": "A responsible human service role and usable fallback procedure are confirmed for the approved window.",
+      "fail_condition": "No responsible role, time window, or usable fallback procedure is confirmed.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": true,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review; AI cannot substitute for this condition.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-B-SHADE-CONTINUITY-SLA-B",
+      "route_id": "SLA-B",
+      "route": {
+        "id": "SLA-B",
+        "name": "Campus-park transverse access",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "route",
+        "id": "SLA-B",
+        "source_condition": "shade_continuity"
+      },
+      "verification_type": "shade_continuity",
+      "label_zh": "遮阴连续性",
+      "label_en": "shade continuity",
+      "evidence_required": "Geolocated route-segment observation at the specified midday sampling window, including shade/solar-exposure record and attachment.",
+      "verification_method": "Walk the declared reference axis segment; record continuous shaded and exposed intervals with timestamped, geolocated evidence.",
+      "pass_condition": "Observed shaded coverage meets the pre-approved route threshold for the specified sampling window.",
+      "fail_condition": "A gap beyond the approved exposure threshold is observed, or the route cannot be observed safely.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when not verified; rejection triggers route-service review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-B-CONTINUOUS-EXPOSURE-SLA-B",
+      "route_id": "SLA-B",
+      "route": {
+        "id": "SLA-B",
+        "name": "Campus-park transverse access",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "route",
+        "id": "SLA-B",
+        "source_condition": "continuous_exposure"
+      },
+      "verification_type": "continuous_exposure",
+      "label_zh": "连续暴晒距离",
+      "label_en": "continuous exposure distance",
+      "evidence_required": "Timestamped, geolocated walking survey showing the longest continuously exposed interval.",
+      "verification_method": "Traverse the reference segment during the approved time window and measure each uninterrupted exposure interval.",
+      "pass_condition": "The longest exposed interval is within the pre-approved maximum.",
+      "fail_condition": "The longest exposed interval exceeds the pre-approved maximum or no reliable measurement is available.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when not verified; rejection triggers route-service review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-B-SUMMER-DETOUR-SLA-B",
+      "route_id": "SLA-B",
+      "route": {
+        "id": "SLA-B",
+        "name": "Campus-park transverse access",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "route",
+        "id": "SLA-B",
+        "source_condition": "summer_detour"
+      },
+      "verification_type": "summer_detour",
+      "label_zh": "夏季实际绕行",
+      "label_en": "summer detour",
+      "evidence_required": "Geolocated accessible route trace comparing the declared reference route and the actual shade/access detour.",
+      "verification_method": "Walk the practical accessible alternative in the approved summer sampling window; record distance and access constraints.",
+      "pass_condition": "The measured detour is within the pre-approved threshold and preserves accessibility.",
+      "fail_condition": "The detour exceeds the threshold, becomes inaccessible, or cannot be completed.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when not verified; rejection requires a remain-B or downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-B-STATIC-WAYFINDING-SLA-B",
+      "route_id": "SLA-B",
+      "route": {
+        "id": "SLA-B",
+        "name": "Campus-park transverse access",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "route",
+        "id": "SLA-B",
+        "source_condition": "static_wayfinding"
+      },
+      "verification_type": "static_wayfinding",
+      "label_zh": "离线固定导向",
+      "label_en": "offline static wayfinding",
+      "evidence_required": "Photographic or documented proof of fixed, legible, low-technology wayfinding covering the declared reference route.",
+      "verification_method": "Walk the route with AI and mobile services unavailable; document each required direction/decision point.",
+      "pass_condition": "All required decision points have legible, durable offline guidance under the approved accessibility criteria.",
+      "fail_condition": "A required decision point lacks legible offline guidance or requires AI/mobile access to proceed.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when not verified and affects AI-OFF support.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-B-NODE-LOCATION-N07",
+      "route_id": "SLA-B",
+      "route": {
+        "id": "SLA-B",
+        "name": "Campus-park transverse access",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "node",
+        "id": "N07",
+        "source_condition": "service_node_locations_not_surveyed"
+      },
+      "verification_type": "node_location",
+      "label_zh": "节点真实位置",
+      "label_en": "actual node location",
+      "evidence_required": "Geolocated field record confirming the proposed node can be associated with a real, publicly accessible place or documenting why it cannot.",
+      "verification_method": "Visit the declared node context; record location, public accessibility and an attachment.",
+      "pass_condition": "The node can be located and its context supports the declared design role without claiming an existing service facility.",
+      "fail_condition": "The location is inaccessible, materially inconsistent with the declared role, or cannot be located.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when the node is mandatory; rejection triggers siting revision or downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-B-NODE-LOCATION-N08",
+      "route_id": "SLA-B",
+      "route": {
+        "id": "SLA-B",
+        "name": "Campus-park transverse access",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "node",
+        "id": "N08",
+        "source_condition": "service_node_locations_not_surveyed"
+      },
+      "verification_type": "node_location",
+      "label_zh": "节点真实位置",
+      "label_en": "actual node location",
+      "evidence_required": "Geolocated field record confirming the proposed node can be associated with a real, publicly accessible place or documenting why it cannot.",
+      "verification_method": "Visit the declared node context; record location, public accessibility and an attachment.",
+      "pass_condition": "The node can be located and its context supports the declared design role without claiming an existing service facility.",
+      "fail_condition": "The location is inaccessible, materially inconsistent with the declared role, or cannot be located.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when the node is mandatory; rejection triggers siting revision or downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-B-NODE-LOCATION-N09",
+      "route_id": "SLA-B",
+      "route": {
+        "id": "SLA-B",
+        "name": "Campus-park transverse access",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "node",
+        "id": "N09",
+        "source_condition": "service_node_locations_not_surveyed"
+      },
+      "verification_type": "node_location",
+      "label_zh": "节点真实位置",
+      "label_en": "actual node location",
+      "evidence_required": "Geolocated field record confirming the proposed node can be associated with a real, publicly accessible place or documenting why it cannot.",
+      "verification_method": "Visit the declared node context; record location, public accessibility and an attachment.",
+      "pass_condition": "The node can be located and its context supports the declared design role without claiming an existing service facility.",
+      "fail_condition": "The location is inaccessible, materially inconsistent with the declared role, or cannot be located.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when the node is mandatory; rejection triggers siting revision or downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-B-NODE-LOCATION-N10",
+      "route_id": "SLA-B",
+      "route": {
+        "id": "SLA-B",
+        "name": "Campus-park transverse access",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "node",
+        "id": "N10",
+        "source_condition": "service_node_locations_not_surveyed"
+      },
+      "verification_type": "node_location",
+      "label_zh": "节点真实位置",
+      "label_en": "actual node location",
+      "evidence_required": "Geolocated field record confirming the proposed node can be associated with a real, publicly accessible place or documenting why it cannot.",
+      "verification_method": "Visit the declared node context; record location, public accessibility and an attachment.",
+      "pass_condition": "The node can be located and its context supports the declared design role without claiming an existing service facility.",
+      "fail_condition": "The location is inaccessible, materially inconsistent with the declared role, or cannot be located.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when the node is mandatory; rejection triggers siting revision or downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-B-REST-NODES-N07",
+      "route_id": "SLA-B",
+      "route": {
+        "id": "SLA-B",
+        "name": "Campus-park transverse access",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "node",
+        "id": "N07",
+        "source_condition": "rest_nodes"
+      },
+      "verification_type": "rest_nodes",
+      "label_zh": "座椅与休息节点",
+      "label_en": "seating and rest node",
+      "evidence_required": "Field record of publicly usable resting provision, condition, access and operating constraint at the declared node.",
+      "verification_method": "Observe the node, document seating/rest provision, accessibility, condition and availability.",
+      "pass_condition": "A usable, accessible rest opportunity is present and available under the approved service condition.",
+      "fail_condition": "No usable rest opportunity is present, access is blocked, or condition is unsafe/unavailable.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-B-REST-NODES-N09",
+      "route_id": "SLA-B",
+      "route": {
+        "id": "SLA-B",
+        "name": "Campus-park transverse access",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "node",
+        "id": "N09",
+        "source_condition": "rest_nodes"
+      },
+      "verification_type": "rest_nodes",
+      "label_zh": "座椅与休息节点",
+      "label_en": "seating and rest node",
+      "evidence_required": "Field record of publicly usable resting provision, condition, access and operating constraint at the declared node.",
+      "verification_method": "Observe the node, document seating/rest provision, accessibility, condition and availability.",
+      "pass_condition": "A usable, accessible rest opportunity is present and available under the approved service condition.",
+      "fail_condition": "No usable rest opportunity is present, access is blocked, or condition is unsafe/unavailable.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-B-WATER-NODES-N09",
+      "route_id": "SLA-B",
+      "route": {
+        "id": "SLA-B",
+        "name": "Campus-park transverse access",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "node",
+        "id": "N09",
+        "source_condition": "water_nodes"
+      },
+      "verification_type": "water_nodes",
+      "label_zh": "饮水补给节点",
+      "label_en": "drinking-water node",
+      "evidence_required": "Field record of the actual public water option, availability status, access condition and source attachment.",
+      "verification_method": "Visit and document the water option and its availability without inferring water quality beyond approved evidence.",
+      "pass_condition": "A public, usable water option is accessible and available under the approved service condition.",
+      "fail_condition": "No usable option is present, access is blocked, or the option is unavailable.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-B-PUBLIC-ENTRIES-N08",
+      "route_id": "SLA-B",
+      "route": {
+        "id": "SLA-B",
+        "name": "Campus-park transverse access",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "node",
+        "id": "N08",
+        "source_condition": "public_entries"
+      },
+      "verification_type": "public_entries",
+      "label_zh": "公共入口开放条件",
+      "label_en": "public-entry access condition",
+      "evidence_required": "Timestamped access observation, including entrance identity, public-access condition and any opening constraint.",
+      "verification_method": "Observe the declared entry in the relevant midday period and document access and barrier-free condition.",
+      "pass_condition": "The entry is publicly accessible during the approved service window and meets the documented access condition.",
+      "fail_condition": "The entry is closed, restricted, inaccessible, or cannot support the declared route connection.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-B-CROSSING-NODES-N07",
+      "route_id": "SLA-B",
+      "route": {
+        "id": "SLA-B",
+        "name": "Campus-park transverse access",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "node",
+        "id": "N07",
+        "source_condition": "crossing_nodes"
+      },
+      "verification_type": "crossing_nodes",
+      "label_zh": "关键过街条件",
+      "label_en": "critical crossing condition",
+      "evidence_required": "Field observation of the legal crossing, waiting condition, accessibility and route continuity at the declared node.",
+      "verification_method": "Observe and traverse the legal crossing during the approved period; document waiting and continuity conditions.",
+      "pass_condition": "A legal, accessible crossing maintains the declared route continuity under the approved condition.",
+      "fail_condition": "The crossing is unsafe, inaccessible, unavailable, or breaks route continuity.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-B-CROSSING-NODES-N10",
+      "route_id": "SLA-B",
+      "route": {
+        "id": "SLA-B",
+        "name": "Campus-park transverse access",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "node",
+        "id": "N10",
+        "source_condition": "crossing_nodes"
+      },
+      "verification_type": "crossing_nodes",
+      "label_zh": "关键过街条件",
+      "label_en": "critical crossing condition",
+      "evidence_required": "Field observation of the legal crossing, waiting condition, accessibility and route continuity at the declared node.",
+      "verification_method": "Observe and traverse the legal crossing during the approved period; document waiting and continuity conditions.",
+      "pass_condition": "A legal, accessible crossing maintains the declared route continuity under the approved condition.",
+      "fail_condition": "The crossing is unsafe, inaccessible, unavailable, or breaks route continuity.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-B-HUMAN-FALLBACK-NODES-N07",
+      "route_id": "SLA-B",
+      "route": {
+        "id": "SLA-B",
+        "name": "Campus-park transverse access",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "node",
+        "id": "N07",
+        "source_condition": "human_fallback_nodes"
+      },
+      "verification_type": "human_fallback_nodes",
+      "label_zh": "人工兜底服务",
+      "label_en": "staffed human fallback",
+      "evidence_required": "Documented responsible human role, service point, usable time window and low-technology fallback procedure.",
+      "verification_method": "Confirm the service role and availability through an authorized, recorded field/operational check.",
+      "pass_condition": "A responsible human service role and usable fallback procedure are confirmed for the approved window.",
+      "fail_condition": "No responsible role, time window, or usable fallback procedure is confirmed.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review; AI cannot substitute for this condition.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-B-HUMAN-FALLBACK-NODES-N09",
+      "route_id": "SLA-B",
+      "route": {
+        "id": "SLA-B",
+        "name": "Campus-park transverse access",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "node",
+        "id": "N09",
+        "source_condition": "human_fallback_nodes"
+      },
+      "verification_type": "human_fallback_nodes",
+      "label_zh": "人工兜底服务",
+      "label_en": "staffed human fallback",
+      "evidence_required": "Documented responsible human role, service point, usable time window and low-technology fallback procedure.",
+      "verification_method": "Confirm the service role and availability through an authorized, recorded field/operational check.",
+      "pass_condition": "A responsible human service role and usable fallback procedure are confirmed for the approved window.",
+      "fail_condition": "No responsible role, time window, or usable fallback procedure is confirmed.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review; AI cannot substitute for this condition.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-C-SHADE-CONTINUITY-SLA-C",
+      "route_id": "SLA-C",
+      "route": {
+        "id": "SLA-C",
+        "name": "Station-to-park touchpoints",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "route",
+        "id": "SLA-C",
+        "source_condition": "shade_continuity"
+      },
+      "verification_type": "shade_continuity",
+      "label_zh": "遮阴连续性",
+      "label_en": "shade continuity",
+      "evidence_required": "Geolocated route-segment observation at the specified midday sampling window, including shade/solar-exposure record and attachment.",
+      "verification_method": "Walk the declared reference axis segment; record continuous shaded and exposed intervals with timestamped, geolocated evidence.",
+      "pass_condition": "Observed shaded coverage meets the pre-approved route threshold for the specified sampling window.",
+      "fail_condition": "A gap beyond the approved exposure threshold is observed, or the route cannot be observed safely.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when not verified; rejection triggers route-service review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-C-CONTINUOUS-EXPOSURE-SLA-C",
+      "route_id": "SLA-C",
+      "route": {
+        "id": "SLA-C",
+        "name": "Station-to-park touchpoints",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "route",
+        "id": "SLA-C",
+        "source_condition": "continuous_exposure"
+      },
+      "verification_type": "continuous_exposure",
+      "label_zh": "连续暴晒距离",
+      "label_en": "continuous exposure distance",
+      "evidence_required": "Timestamped, geolocated walking survey showing the longest continuously exposed interval.",
+      "verification_method": "Traverse the reference segment during the approved time window and measure each uninterrupted exposure interval.",
+      "pass_condition": "The longest exposed interval is within the pre-approved maximum.",
+      "fail_condition": "The longest exposed interval exceeds the pre-approved maximum or no reliable measurement is available.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when not verified; rejection triggers route-service review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-C-SUMMER-DETOUR-SLA-C",
+      "route_id": "SLA-C",
+      "route": {
+        "id": "SLA-C",
+        "name": "Station-to-park touchpoints",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "route",
+        "id": "SLA-C",
+        "source_condition": "summer_detour"
+      },
+      "verification_type": "summer_detour",
+      "label_zh": "夏季实际绕行",
+      "label_en": "summer detour",
+      "evidence_required": "Geolocated accessible route trace comparing the declared reference route and the actual shade/access detour.",
+      "verification_method": "Walk the practical accessible alternative in the approved summer sampling window; record distance and access constraints.",
+      "pass_condition": "The measured detour is within the pre-approved threshold and preserves accessibility.",
+      "fail_condition": "The detour exceeds the threshold, becomes inaccessible, or cannot be completed.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when not verified; rejection requires a remain-B or downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-C-STATIC-WAYFINDING-SLA-C",
+      "route_id": "SLA-C",
+      "route": {
+        "id": "SLA-C",
+        "name": "Station-to-park touchpoints",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "route",
+        "id": "SLA-C",
+        "source_condition": "static_wayfinding"
+      },
+      "verification_type": "static_wayfinding",
+      "label_zh": "离线固定导向",
+      "label_en": "offline static wayfinding",
+      "evidence_required": "Photographic or documented proof of fixed, legible, low-technology wayfinding covering the declared reference route.",
+      "verification_method": "Walk the route with AI and mobile services unavailable; document each required direction/decision point.",
+      "pass_condition": "All required decision points have legible, durable offline guidance under the approved accessibility criteria.",
+      "fail_condition": "A required decision point lacks legible offline guidance or requires AI/mobile access to proceed.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when not verified and affects AI-OFF support.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-C-NODE-LOCATION-N11",
+      "route_id": "SLA-C",
+      "route": {
+        "id": "SLA-C",
+        "name": "Station-to-park touchpoints",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "node",
+        "id": "N11",
+        "source_condition": "service_node_locations_not_surveyed"
+      },
+      "verification_type": "node_location",
+      "label_zh": "节点真实位置",
+      "label_en": "actual node location",
+      "evidence_required": "Geolocated field record confirming the proposed node can be associated with a real, publicly accessible place or documenting why it cannot.",
+      "verification_method": "Visit the declared node context; record location, public accessibility and an attachment.",
+      "pass_condition": "The node can be located and its context supports the declared design role without claiming an existing service facility.",
+      "fail_condition": "The location is inaccessible, materially inconsistent with the declared role, or cannot be located.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when the node is mandatory; rejection triggers siting revision or downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-C-NODE-LOCATION-N12",
+      "route_id": "SLA-C",
+      "route": {
+        "id": "SLA-C",
+        "name": "Station-to-park touchpoints",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "node",
+        "id": "N12",
+        "source_condition": "service_node_locations_not_surveyed"
+      },
+      "verification_type": "node_location",
+      "label_zh": "节点真实位置",
+      "label_en": "actual node location",
+      "evidence_required": "Geolocated field record confirming the proposed node can be associated with a real, publicly accessible place or documenting why it cannot.",
+      "verification_method": "Visit the declared node context; record location, public accessibility and an attachment.",
+      "pass_condition": "The node can be located and its context supports the declared design role without claiming an existing service facility.",
+      "fail_condition": "The location is inaccessible, materially inconsistent with the declared role, or cannot be located.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Blocks SLA-A promotion when the node is mandatory; rejection triggers siting revision or downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-C-REST-NODES-N11",
+      "route_id": "SLA-C",
+      "route": {
+        "id": "SLA-C",
+        "name": "Station-to-park touchpoints",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "node",
+        "id": "N11",
+        "source_condition": "rest_nodes"
+      },
+      "verification_type": "rest_nodes",
+      "label_zh": "座椅与休息节点",
+      "label_en": "seating and rest node",
+      "evidence_required": "Field record of publicly usable resting provision, condition, access and operating constraint at the declared node.",
+      "verification_method": "Observe the node, document seating/rest provision, accessibility, condition and availability.",
+      "pass_condition": "A usable, accessible rest opportunity is present and available under the approved service condition.",
+      "fail_condition": "No usable rest opportunity is present, access is blocked, or condition is unsafe/unavailable.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-C-WATER-NODES-N11",
+      "route_id": "SLA-C",
+      "route": {
+        "id": "SLA-C",
+        "name": "Station-to-park touchpoints",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "node",
+        "id": "N11",
+        "source_condition": "water_nodes"
+      },
+      "verification_type": "water_nodes",
+      "label_zh": "饮水补给节点",
+      "label_en": "drinking-water node",
+      "evidence_required": "Field record of the actual public water option, availability status, access condition and source attachment.",
+      "verification_method": "Visit and document the water option and its availability without inferring water quality beyond approved evidence.",
+      "pass_condition": "A public, usable water option is accessible and available under the approved service condition.",
+      "fail_condition": "No usable option is present, access is blocked, or the option is unavailable.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-C-PUBLIC-ENTRIES-N12",
+      "route_id": "SLA-C",
+      "route": {
+        "id": "SLA-C",
+        "name": "Station-to-park touchpoints",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "node",
+        "id": "N12",
+        "source_condition": "public_entries"
+      },
+      "verification_type": "public_entries",
+      "label_zh": "公共入口开放条件",
+      "label_en": "public-entry access condition",
+      "evidence_required": "Timestamped access observation, including entrance identity, public-access condition and any opening constraint.",
+      "verification_method": "Observe the declared entry in the relevant midday period and document access and barrier-free condition.",
+      "pass_condition": "The entry is publicly accessible during the approved service window and meets the documented access condition.",
+      "fail_condition": "The entry is closed, restricted, inaccessible, or cannot support the declared route connection.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-C-CROSSING-NODES-N11",
+      "route_id": "SLA-C",
+      "route": {
+        "id": "SLA-C",
+        "name": "Station-to-park touchpoints",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "node",
+        "id": "N11",
+        "source_condition": "crossing_nodes"
+      },
+      "verification_type": "crossing_nodes",
+      "label_zh": "关键过街条件",
+      "label_en": "critical crossing condition",
+      "evidence_required": "Field observation of the legal crossing, waiting condition, accessibility and route continuity at the declared node.",
+      "verification_method": "Observe and traverse the legal crossing during the approved period; document waiting and continuity conditions.",
+      "pass_condition": "A legal, accessible crossing maintains the declared route continuity under the approved condition.",
+      "fail_condition": "The crossing is unsafe, inaccessible, unavailable, or breaks route continuity.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    },
+    {
+      "task_id": "FV-SLA-C-HUMAN-FALLBACK-NODES-N11",
+      "route_id": "SLA-C",
+      "route": {
+        "id": "SLA-C",
+        "name": "Station-to-park touchpoints",
+        "path_ref": "geometry/roads.geojson#ROAD-001+drawing-layer"
+      },
+      "object": {
+        "type": "node",
+        "id": "N11",
+        "source_condition": "human_fallback_nodes"
+      },
+      "verification_type": "human_fallback_nodes",
+      "label_zh": "人工兜底服务",
+      "label_en": "staffed human fallback",
+      "evidence_required": "Documented responsible human role, service point, usable time window and low-technology fallback procedure.",
+      "verification_method": "Confirm the service role and availability through an authorized, recorded field/operational check.",
+      "pass_condition": "A responsible human service role and usable fallback procedure are confirmed for the approved window.",
+      "fail_condition": "No responsible role, time window, or usable fallback procedure is confirmed.",
+      "status": "unknown",
+      "confidence": "unknown",
+      "verifier": null,
+      "timestamp": null,
+      "evidence_reference": null,
+      "observation_note": null,
+      "mandatory_for_sla_a": false,
+      "ai_mutation_permitted": false,
+      "sla_effect": "Mandatory failures can keep the route at B or trigger downgrade review; AI cannot substitute for this condition.",
+      "writeback": {
+        "target": "verification_ledger",
+        "on_verified": "eligible_for_promotion_gate_recheck",
+        "on_rejected": "promotion_blocked_and_route_review_required"
+      }
+    }
+  ],
+  "summary": {
+    "total_tasks": 45,
+    "by_status": {
+      "unknown": 45,
+      "scheduled": 0,
+      "observed": 0,
+      "verified": 0,
+      "rejected": 0
+    },
+    "mandatory_for_sla_a": 18,
+    "outstanding_for_sla_a": 18
+  }
+}

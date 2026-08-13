@@ -339,6 +339,74 @@
       "assumptions": [],
       "reason": "Content count only; the tabletop is not authorised and has not been run in the field."
     },
+    "simulation_task_count": {
+      "status": "known",
+      "value": 72,
+      "unit": "count",
+      "source_files": ["simulation.json", "visual/assets/public-acceptance-tabletop/receipts.json"],
+      "formula": "12 scenario contracts * (1 qualified case + 5 negative branches)",
+      "confidence": "high",
+      "assumptions": [],
+      "reason": "Synthetic offline rule checks only; no field task was run."
+    },
+    "simulation_success_rate": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["simulation.json", "visual/assets/public-acceptance-tabletop/receipts.json"],
+      "formula": "tasks whose outcome ends in _success / simulation tasks",
+      "confidence": "high",
+      "assumptions": [],
+      "reason": "All 72 synthetic cases matched their expected rule decision; this is not a field-performance rate."
+    },
+    "tool_schema_pass_rate": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["simulation.json"],
+      "formula": "tasks with dispatch_schema_valid=true / simulation tasks",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "audit_completeness": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["simulation.json"],
+      "formula": "tasks with audit_complete=true / simulation tasks",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "synthetic_negative_branch_count": {
+      "status": "known",
+      "value": 60,
+      "unit": "count",
+      "source_files": ["visual/assets/public-acceptance-tabletop/receipts.json"],
+      "formula": "12 scenario contracts * 5 failure branches",
+      "confidence": "high",
+      "assumptions": [],
+      "reason": "Every negative fixture was blocked in the offline runner."
+    },
+    "first_100_days_action_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": ["visual/assets/first-100-days.json"],
+      "formula": "count(programme stages from D1-D14 through D91-D100)",
+      "confidence": "high",
+      "assumptions": ["A-OPERATIONS-001"],
+      "reason": "A proposed work sequence, not an authorised calendar commitment."
+    },
+    "question_station_spatial_zone_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": ["visual/assets/question-station-prototype.json"],
+      "formula": "count(minimum_space_sequence zones)",
+      "confidence": "high",
+      "assumptions": ["A-HERITAGE-001", "A-CONTROLS-001"],
+      "reason": "Concept sequence only; dimensions remain unknown until measured survey and professional review."
+    },
     "regional_collaboration_interface_count": {
       "status": "known",
       "value": 5,

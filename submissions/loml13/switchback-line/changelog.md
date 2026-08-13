@@ -1,5 +1,15 @@
 # 方案迭代记录
 
+## v1.8 - 2026-08-12
+
+评审可见性与政策锚点（Issue #2170 启示 + #2070 来源 + #2149 新字段）：
+
+- 文保落地结果摘要（5 个 polygon 的面积与管控要点）从 geometry 提升进正文双语与报告 HTML——评审模型只读九个文件，结果级信息前置（#2170）。
+- `development_intensity_controls` 条目按 #2149 新字段登记 `completeness_limited_by: ["floor_area_ratio"]`——"跨越数据缺位的完成"首次在机器可读层面可分（#2147 结案边界：status 仍须 complete）。
+- SC-08 养老陪伴试点挂政策锚点：海淀区《"人工智能+养老"三年行动计划（2026—2028年）》（海民发〔2026〕5号，现行有效），按 background_only 边界引用，登记为 DATA-SRC-BJHD-AI-ELDERLY-2026（索引外来源自证，#2070 未入中央 registry）。
+- front matter `iteration` 更新为实际版本。
+
+
 ## v1.7.1 - 2026-08-11
 
 manifest 迁移 0.2.x（Issue #1058 / PR #1063 已合并）：

@@ -1,0 +1,121 @@
+{
+  "schema_version": "0.1.0",
+  "rehearsal_id": "SC03-X-TABLETOP-001",
+  "scenario_id": "SC-03",
+  "claim_level": "local_synthetic_tabletop",
+  "tabletop_status": "pass",
+  "operational_status": "not_authorized_not_run",
+  "gate_effect": "none; no field, release or public-use gate is authorized",
+  "reproduce": "node visual/assets/run-sc03-tabletop.js --check",
+  "inputs": {
+    "schema_ref": "x-receipt.schema.json",
+    "schema_sha256": "178c6aeeb223017741347a9c9e39748d7171c18ad84dae6bb8d075d72508ef34",
+    "receipt_ref": "example-sc03-x-receipt.json",
+    "receipt_sha256": "48c5e44d82b613f2acf7fad5119112a718d80bc5069657eee724a8232aedda03",
+    "lifecycle_validator_ref": "verify-x-lifecycle.js",
+    "lifecycle_test_results_ref": "x-lifecycle-test-results.json"
+  },
+  "environment": {
+    "data": "four bundled synthetic fixtures; no personal data",
+    "network_calls": 0,
+    "external_systems": "none",
+    "state_changes": "in-memory only"
+  },
+  "acceptance_results": [
+    {
+      "id": "XR-01",
+      "result": "pass",
+      "detail": "lifecycle schema 1.0 and retained SC-03 fixture bundle are both explicit"
+    },
+    {
+      "id": "XR-02",
+      "result": "pass",
+      "detail": "four-stage X route is ordered"
+    },
+    {
+      "id": "XR-03",
+      "result": "pass",
+      "detail": "four unique synthetic fixtures are present"
+    },
+    {
+      "id": "XR-04",
+      "result": "pass",
+      "detail": "ordinary accessible path remains open in every fixture"
+    },
+    {
+      "id": "XR-05",
+      "result": "pass",
+      "detail": "three human gates name candidate ownership and output"
+    },
+    {
+      "id": "XR-06",
+      "result": "pass",
+      "detail": "stop and return branches are complete"
+    },
+    {
+      "id": "XR-07",
+      "result": "pass",
+      "detail": "tabletop has no personal data, biometrics or external connection"
+    },
+    {
+      "id": "XR-08",
+      "result": "pass",
+      "detail": "field operation remains explicitly blocked"
+    }
+  ],
+  "fixture_results": [
+    {
+      "fixture_id": "SC03-T01",
+      "condition": "ordinary pedestrian remains outside the machine envelope",
+      "observed_state": "PASS",
+      "observed_action": "continue at the proposed bounded speed under staff observation",
+      "public_path_state": "OPEN",
+      "result": "pass"
+    },
+    {
+      "fixture_id": "SC03-T02",
+      "condition": "wheelchair user approaches the crossing priority zone",
+      "observed_state": "HOLD",
+      "observed_action": "robot yields and reaches a minimum-risk stop before the priority zone",
+      "public_path_state": "OPEN",
+      "result": "pass"
+    },
+    {
+      "fixture_id": "SC03-T03",
+      "condition": "child or older person crosses unexpectedly inside the bounded fixture",
+      "observed_state": "RETURN",
+      "observed_action": "independent emergency stop, human takeover and failed-test record",
+      "public_path_state": "OPEN",
+      "result": "pass"
+    },
+    {
+      "fixture_id": "SC03-T04",
+      "condition": "network and route-planner outputs become unavailable",
+      "observed_state": "RETURN",
+      "observed_action": "minimum-risk stop, isolate tools, switch to staffed ordinary route and restore the test pocket",
+      "public_path_state": "OPEN",
+      "result": "pass"
+    }
+  ],
+  "summary": {
+    "fixture_pass": 4,
+    "fixture_total": 4,
+    "check_pass": 8,
+    "check_total": 8,
+    "public_path_open": true,
+    "synthetic_records_before": 4,
+    "synthetic_records_after": 0
+  },
+  "blocked_before_field_pilot": [
+    "official candidate geometry and field accessibility survey",
+    "specified robot, independent safety architecture and professional hazard analysis",
+    "authorized operator, permits, insurance, duty roster and real takeover drill",
+    "public notice, complaint route, data review and time-limited site agreement"
+  ],
+  "not_proven": [
+    "real perception, braking or localisation performance",
+    "field accessibility, safety, noise or public acceptance",
+    "legal compliance, operating permission or insurance",
+    "real human takeover capacity, maintenance cost or deployment value"
+  ]
+}

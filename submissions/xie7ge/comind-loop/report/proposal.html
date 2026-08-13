@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张共智环：把实验室能力翻译成可选择的城市服务 - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>京张共智环：把实验室能力翻译成可选择的城市服务</h1>
+<p class="summary">以共智翻译协议把实验室能力转为可理解、可选择、可纠错、可暂停并产生公共回报的城市服务；三座译站分别承担责任拆译、开放编译与城市试译。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+</section>
+<h1>京张共智环：把实验室能力翻译成可选择的城市服务</h1>
+<h2>设计依据与资料清单</h2>
+<p>“共智环”不是一条新红线，而是一套双向翻译机制：科研能力向外被翻译成普通人能理解、能选择的服务；居民、开发者和企业遇到的真实问题向内被翻译成公开研发议题。方案以官方公告和面向智能体任务书为任务依据，以仓库 GeoJSON、指标、三类矩阵作为审计层 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="existing_conditions_diagnosis" title="深度：existing_conditions_diagnosis">深度</sup>。</p>
+<p>本次深化把这套机制正式命名为<strong>共智翻译协议（CoMind Translation Protocol, CTP）</strong>。它不是软件接口，而是城市空间的准入契约：任何 AI 能力要进入公共空间，必须回答“解决谁的问题、用什么数据、由谁负责、在哪里试译、失败怎样退出、给公众留下什么”。完成这六问后，项目才取得一张可公开查阅的<strong>城市翻译回执</strong>。回执不是荣誉证书，而是服务继续运行的条件；字段缺失、责任失联或公共回报消失，服务即退回试译或退场 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>。</p>
+<h3>一分钟读懂：一条协议如何变成一座城市</h3>
+<div class="proposal-table"><table><thead><tr><th>评审问题</th><th>共智环的回答</th><th>可核验成果</th></tr></thead><tbody><tr><td>原创概念是什么</td><td>用“翻译”而非“覆盖”组织 AI 城市：实验室能力必须经过 CTP 六阶段，才可成为公共服务</td><td>六阶段协议、城市翻译回执、三类译站</td></tr><tr><td>AI 如何改变规划</td><td>AI 不直接决定城市，而是把能力、问题、空间、权利和反馈编排成双向回路</td><td>12 个协议化场景节点、三译站分工、两翼反馈链</td></tr><tr><td>对公众有什么不同</td><td>每项服务保障理解权、等价选择权、纠错权、属地暂停权和公共回报权</td><td>12/12 人工兜底、12/12 回执、3/3 属地复核</td></tr><tr><td>怎样实施</td><td>先开放低成本接口，再适配建筑与慢行，最后运营季节与年度交接</td><td>8 项项目、阶段闸门、责任主体和退出条件</td></tr><tr><td>怎样避免“AI 展示园”</td><td>成功、失败和撤回都进入公共回译；没有公共回报的服务不能续期</td><td>回译档案、失败记录、年度交接礼</td></tr><tr><td>证据边界是什么</td><td>临时 polygon 只支撑概念生成和复算，不升级为红线或审批结论</td><td>GeoJSON、指标、假设、风险登记和四道自检</td></tr></tbody></table></div>
+<p>当前未取得官方精确总体边界和三处重点区 polygon。<code>site_boundary.geojson</code> 与 <code>key_areas.geojson</code> 均来自仓库临时粗略边界，仅用于生成、可视化和入口自检，不是官方红线、审批依据或精确面积依据；官方数据到位后，全部用地、建筑、道路、绿地、公共空间、分期、图件和指标必须统一复算 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#SITE-001" title="空间数据：geometry/site_boundary.geojson#SITE-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="总体概念与资料边界"><figcaption>总体概念与资料边界</figcaption></figure>
+<h2>三层范围工作框架</h2>
+<p>43.6 平方公里统筹研究范围用于建立“科研-开源-企业-公共问题”协同网络；约 11.4 平方公里总体设计范围用于组织更新、慢行、公共空间和城市服务；约 368.4 公顷重点区域用于验证三个互补原型。三层不是三份互不相干的图，而是“区域议题进入-沿线翻译-重点区验证-公共结果返回”的闭环 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-OFFICIAL-ANNOUNCEMENT" title="标准：PROJECT-OFFICIAL-ANNOUNCEMENT">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_level_scope_framework" title="深度：three_level_scope_framework">深度</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup>。</p>
+<p>总体结构为“一线、三译站、两翼、十二接口”：京张遗址公园是共智翻译主线；众智园是责任测试站，AI 原点社区是开源转化站，大钟寺是城市体验站；中关村科技服务翼提供知识、资本与专业服务，小月河场景赋能翼提供真实问题和公共反馈；十二个场景节点贯穿从试验到退出的完整链条。</p>
+<p>CTP 把这条链条写成六个可检查阶段：</p>
+<div class="proposal-table"><table><thead><tr><th>阶段</th><th>城市动作</th><th>空间载体</th><th>放行问题</th></tr></thead><tbody><tr><td>01 提问 INTAKE</td><td>将居民、企业与公共机构的问题写成可讨论的城市议题</td><td>沿线问题台、小月河场景翼</td><td>问题是否来自真实使用情境，受影响者是否在场</td></tr><tr><td>02 拆译 PARSE</td><td>把模型能力拆成数据、能耗、责任、风险与人工任务</td><td>众智园责任测试庭</td><td>能力边界和失败方式是否说得清</td></tr><tr><td>03 编译 COMPILE</td><td>把能力组装为开源、可维护、可替代的服务组件</td><td>AI 原点开源译站</td><td>许可、维护者、无障碍和非数字路径是否齐备</td></tr><tr><td>04 试译 PILOT</td><td>在限定地点、时段和人群中进行小规模测试</td><td>大钟寺体验厅与 12 个接口</td><td>测试是否可暂停，是否被误读为采购或正式运营</td></tr><tr><td>05 回译 RETURN</td><td>把效果、失败、投诉和公共收益送回研发与社区</td><td>三座公共庭、线上线下回译档案</td><td>公众得到什么，哪些结论需要修正</td></tr><tr><td>06 退场 / 续译 RETIRE</td><td>到期退出、转人工、修订后重试或进入下一阶段</td><td>年度交接礼、项目护照平台</td><td>责任是否交接，失败记录是否公开</td></tr></tbody></table></div>
+<p>每个场景的“城市翻译回执”固定记录八项：城市问题、输入能力、受影响人群、空间载体、数据边界、人工负责人、兜底与暂停条件、公共回报。六阶段与八字段共同构成 CTP 的最小可运行单元；它们是概念性治理与设计建议，不构成法定权利、行政许可或运营承诺 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#SCENE-01" title="空间数据：geometry/constraints.geojson#SCENE-01">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="translation_receipt_coverage_ratio" title="指标：translation_receipt_coverage_ratio">指标</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="三层范围与功能结构"><figcaption>三层范围与功能结构</figcaption></figure>
+<h2>统筹研究范围产业与未来城市研究</h2>
+<p>产业策略不以虚构企业名单、投资额或产值为起点，而以“能力怎样通过城市被共同使用”为问题。六个全球创新区只作为机制参照，不支撑海淀控规或规模判断 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-ONE-NORTH" title="来源：CASE-ONE-NORTH">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-KENDALL" title="来源：CASE-KENDALL">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-22BARCELONA" title="来源：CASE-22BARCELONA">来源</sup>。</p>
+<div class="proposal-table"><table><thead><tr><th>案例</th><th>可转化机制</th><th>京张应用</th></tr></thead><tbody><tr><td>新加坡 one-north</td><td>科研、企业、创业与生活混合</td><td>把试验许可、公共空间和社区运营放在同一园区系统</td></tr><tr><td>剑桥 Kendall Square</td><td>高密创新与周边社区连接</td><td>用公共文化、学习和可负担创新空间打开封闭实验室</td></tr><tr><td>Paris-Saclay</td><td>科研教育与产业协作</td><td>以多机构共享平台和开放交流空间降低跨组织摩擦</td></tr><tr><td>Barcelona 22@</td><td>工业遗产更新为混合创新城区</td><td>保留产业记忆，同时织入住宅、服务、绿地与先进基础设施</td></tr><tr><td>Seoul DMC</td><td>数字媒体集群与城市体验</td><td>把内容生产、展示、培训和公众体验连接成可见链条</td></tr><tr><td>London Knowledge Quarter</td><td>步行尺度知识网络</td><td>通过共同议题和活动把分散机构变成协作网络</td></tr></tbody></table></div>
+<p>由此形成五段生态链：基础研究与开源工具在原点社区被解释；模型、芯片、算力和安全能力在众智园被测试；企业服务与智能原生业态在大钟寺被体验；中关村科技服务翼提供法务、知识产权、资本和国际连接；小月河场景翼把城市问题与使用反馈送回研发端。它以北京“三区两翼”和海淀“1+X+1”产业体系为地方政策背景，但不把政策方向误写成已批准项目。每一次场景开放均配“问题、数据、责任人、人工复核、退出条件、公共回报”六栏护照 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SRC-2026-BJ-KW-THREE-AREAS-WINGS" title="来源：SRC-2026-BJ-KW-THREE-AREAS-WINGS">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SRC-2026-HAIDIAN-1X1" title="来源：SRC-2026-HAIDIAN-1X1">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>。</p>
+<p>命名使用“京张共智环 / Jing-Zhang CoMind Loop”。标志采用一枚未闭合双环：外环象征城市日常，内环象征研发系统，橙色缺口形成交换门；它已进入总体概念图、导视牌和项目护照的示意应用。主色“铁路炭灰+公园青绿”，橙色只标识需要公众注意和人工确认的接口；不使用企业商标和未经授权字体。这个识别系统把“可选择、可追溯、可退出”变成同一套视觉语法，而不只是一句口号 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>。</p>
+<h2>总体设计范围城市更新与控规深度城市设计</h2>
+<p>用地层采用五个共享边界的概念功能带，完整覆盖临时总体边界：文化公共绿廊、开放研发验证、成果转化服务、社区共益人才服务、文化传播公共学习。它们表达功能优先级，不是法定地块或用途调整 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="标准：MNR-LAND-USE-CLASSIFICATION-GUIDE">标准</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-101" title="空间数据：geometry/land_use.geojson#LU-101">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="land_use_layout" title="深度：land_use_layout">深度</sup>。</p>
+<p>更新遵循“先开放接口、再适配建筑、最后讨论增量”的顺序。没有现状测绘、权属、控规和结构鉴定时，不作具体地块拆除判断；仅把既有建筑分为可继续使用、可轻改共享、待专业评估三类方法。六个概念建筑基底用于说明服务组合，建筑总规模、容积率、密度和高度保持待正式数据补齐 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-111" title="空间数据：geometry/buildings.geojson#BLDG-111">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="深度：development_intensity_controls">深度</sup>。</p>
+<h2>重点区域详细设计</h2>
+<p>三处重点区均以临时范围表达，不能用于精确面积或工程判断 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="三处译站详细设计"><figcaption>三处译站详细设计</figcaption></figure>
+<p>1. <strong>众智园·责任拆译站</strong>：形成清河绿色测试界面、标准共创馆和模型责任测试庭，承担 CTP 的“拆译”环节——把模型、芯片和算力能力拆成可见的数据、能耗、风险、人工任务与失败方式。任何“通过”只代表限定版本与限定场景；对外交通、河道、防洪、能耗和算力容量待专业复核。 2. <strong>AI 原点社区·开放编译站</strong>：以校区—园区—社区步行接口串联开源发布、成果转化、人才服务和公共学习，承担“编译”环节——把测试过的能力组装为有许可、有维护者、有非数字替代的服务组件。贡献墙允许实名、化名或撤回；空间更新优先轻改首层和共享时段，不预设拆迁。 3. <strong>大钟寺·城市试译站</strong>：围绕轨道站点与四象限步行需求，提出城市问题路演、数据授权会客厅和智能原生体验厅，承担“试译—回译”环节——在限定时空中检验服务是否真的被理解、使用和纠错。桥隧、地下和路口改造仅作为待交通与工程团队深化的问题清单。</p>
+<p>三个重点区采用同一套“开放接口—适配建筑—运营审计”方法，但空间动作和验收问题不同：</p>
+<div class="proposal-table"><table><thead><tr><th>重点区</th><th>空间结构与公共空间</th><th>建筑更新与慢行</th><th>AI 场景与运营</th><th>主要实施风险</th></tr></thead><tbody><tr><td>众智园</td><td>清河绿界面串联责任测试庭、标准共创馆和可见失败记录</td><td>优先复用首层与庭院；跨河、交通及防洪条件待核</td><td>模型责任测试、端侧算力预约；限定版本、人工复核、公开暂停</td><td>河道、防洪、能耗、消防和测试责任边界</td></tr><tr><td>AI 原点社区</td><td>校园—园区—社区缝合界面形成开源发布、学习与人才服务环</td><td>共享首层和分时开放优先，不预设拆迁；连续无障碍接口待测</td><td>开源贡献译站、文化档案导览；实名/化名/撤回并行</td><td>校园开放、知识产权、夜间扰动与维护主体</td></tr><tr><td>大钟寺</td><td>轨道四象限步行网络组织授权会客厅、体验厅和城市问题路演</td><td>先改善地面过街、遮阴和停留；桥隧地下仅作深化议题</td><td>数据授权、AI 消费试验、数字内容共创；测试不等于采购</td><td>轨道接驳、商业误读、数据授权与人流安全</td></tr></tbody></table></div>
+<p>每区都以项目护照记录位置、责任主体、版本、开放时段、人工负责人、暂停条件和下一次复核日期；官方 polygon、现状建筑、权属和工程条件到位后，专业团队从几何和建筑调查开始深化，而不是只替换图面标题 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup>。</p>
+<h3>同一张回执，三种十五分钟空间体验</h3>
+<p>本轮深化把协议落实为“到达—门槛—核心—复核—退出”五段空间序列。<strong>众智园</strong>从清河绿道进入遮阴责任庭，先看能力边界和失败记录，再进入有人值守的拆译台；不愿进入数字流程的人可沿安静路径直接获得纸质回执。<strong>AI 原点</strong>从社区与校园两侧进入共享首层，在开放许可台选择署名、化名或撤回，随后于可移动工作台完成编译并把维护责任交给下一位运营者。<strong>大钟寺</strong>从轨道地面过街进入知情同意会客厅，经小尺度可逆试译亭到公众纠错露台，最后选择回译、人工替代或退场 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="station_spatial_sequence_coverage_ratio" title="指标：station_spatial_sequence_coverage_ratio">指标</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup>。</p>
+<div class="proposal-table"><table><thead><tr><th>空间节点</th><th>众智园责任拆译庭</th><th>AI 原点开放编译院</th><th>大钟寺城市试译场</th></tr></thead><tbody><tr><td>到达边</td><td>清河绿道与雨洪花园</td><td>校园—公园—社区共享门廊</td><td>轨道四象限地面过街</td></tr><tr><td>门槛</td><td>能力边界与失败公开架</td><td>许可、署名和撤回柜台</td><td>知情同意与安静等候间</td></tr><tr><td>核心空间</td><td>可逆责任庭与模型沙盘</td><td>开源工坊、维修图书馆</td><td>限时试译亭与城市问题钟</td></tr><tr><td>公共复核</td><td>人工负责人面对面拆译</td><td>贡献者—维护者交接桌</td><td>公众纠错与投诉露台</td></tr><tr><td>退出路径</td><td>纸质回执与非数字绕行</td><td>等价人工服务与撤回通道</td><td>回译、暂停或彻底退场</td></tr><tr><td>昼夜模式</td><td>日间共创，夜间仅展示已核内容</td><td>日间工坊，夜间安静学习</td><td>通勤试译，夜间低亮度反馈</td></tr></tbody></table></div>
+<p>三处空间均以六件可拆、可修、可换的“共智构件”起步：遮阴框架、有人值守回执台、带靠背无障碍休息凳、知情同意帘/安静间、低亮度状态灯、与雨洪花园并行的检修槽。构件不依赖永久大拆建；每件均须有维护主体、清洁/消防/电气检查周期和退场去向。方案要求三处重点区都有连续等价路径、昼夜运营脚本和可逆构件清单，这些是设计验收项，不是现状绩效 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="accessible_equivalent_path_key_area_ratio" title="指标：accessible_equivalent_path_key_area_ratio">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="day_night_operation_key_area_ratio" title="指标：day_night_operation_key_area_ratio">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="reversible_component_project_ratio" title="指标：reversible_component_project_ratio">指标</sup>。</p>
+<p>三类使用者可在同一空间获得不同但等价的旅程：周边居民不下载应用即可提出问题并拿到纸质回执；开发者带着版本、能耗和失败清单进入测试，离开前交接维护人；国际访客通过中英双语项目护照理解“测试不等于采购”，并能找到人工复核和退出位置。概念场景图由 AI 辅助生成，只表达空间意图，人物与建筑均非现状记录，最终设计须经测绘、公众共创、无障碍、交通、防洪、消防和结构专业复核。</p>
+<h3>五项公众翻译权</h3>
+<p>CTP 把公共利益落实为五项可检查的空间权利：<strong>理解权</strong>（不用读技术文档也能知道服务做什么）、<strong>等价选择权</strong>（人工/非数字路径同时可见）、<strong>纠错权</strong>（错误与异议能进入回译档案）、<strong>属地暂停权</strong>（受影响群体可触发复核和临时暂停）、<strong>公共回报权</strong>（试验必须留下开放知识、空间改善或可复用服务之一）。这些是本方案的概念性设计原则，正式权利义务和程序仍须由主管部门、运营主体与公众依法共同确定 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="BARRIER-FREE-ENVIRONMENT-LAW" title="标准：BARRIER-FREE-ENVIRONMENT-LAW">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup>。</p>
+<p>三座朝圣地标分别是“责任刻度塔”“开源贡献环”“城市问题钟”。它们首先是公共信息设施：显示版本、来源、失败记录、人工负责人和退出方式，不以巨型造型或商业打卡替代内容 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup>。</p>
+<h2>AI 创新生态、人才画像与 AI+ 场景</h2>
+<div class="proposal-table"><table><thead><tr><th>画像</th><th>核心诉求</th><th>空间与服务回应</th></tr></thead><tbody><tr><td>开源开发者</td><td>协作、测试、贡献被看见</td><td>原点社区开源译站；只公开自愿署名贡献</td></tr><tr><td>初创与产业团队</td><td>低成本验证、合规咨询、客户反馈</td><td>众智园责任测试庭；阶段闸门和人工复核</td></tr><tr><td>高校师生</td><td>成果转化、跨校协作、夜间学习</td><td>校区-园区慢行接口与成果转化馆</td></tr><tr><td>周边居民与亲子家庭</td><td>低扰动休闲、可理解服务、非数字选择</td><td>共智绿廊、人工服务台、亲子解释路线</td></tr><tr><td>老年人与残障使用者</td><td>连续无障碍、语音大字、现场协助</td><td>双通道服务组件；实体导视与人工兜底</td></tr><tr><td>国际访客与投资者</td><td>快速理解、可信证据、双语接待</td><td>大钟寺城市体验厅与可核验项目护照</td></tr></tbody></table></div>
+<div class="proposal-table"><table><thead><tr><th>卡片</th><th>CTP 阶段 / 空间</th><th>人工与退出边界</th><th>必须留下的公共回报</th></tr></thead><tbody><tr><td>01 模型责任测试</td><td>拆译 / 众智园</td><td>红队结果由人审；不通过即可撤回</td><td>失败模式与适用边界清单</td></tr><tr><td>02 端侧算力预约</td><td>拆译 / 众智园</td><td>公开能耗口径；人工调度可覆盖算法</td><td>可比较的能耗与排队记录</td></tr><tr><td>03 城市问题路演</td><td>提问 / 大钟寺</td><td>测试不等于采购或政府承诺</td><td>可公开复用的问题定义</td></tr><tr><td>04 开源贡献译站</td><td>编译 / 原点社区</td><td>自愿署名；允许匿名与撤回</td><td>清权组件、维护说明与贡献记录</td></tr><tr><td>05 无障碍双通道</td><td>编译 / 沿线驿站</td><td>所有智能入口保留现场人工方式</td><td>无障碍测试与修复清单</td></tr><tr><td>06 慢行断点诊疗</td><td>试译 / 公园节点</td><td>仅用匿名计数；不追踪个人轨迹</td><td>断点优先级和人工踏勘任务书</td></tr><tr><td>07 数据授权会客厅</td><td>试译 / 大钟寺</td><td>逐项同意、用途到期、可撤回</td><td>可理解的授权模板与异议记录</td></tr><tr><td>08 文化档案导览</td><td>编译 / 清华园站与沿线</td><td>史实与生成内容分层标识</td><td>已核史料目录与纠错入口</td></tr><tr><td>09 数字内容共创</td><td>试译 / 大钟寺</td><td>素材清权、作者署名、人工发布</td><td>清权内容与作者回报记录</td></tr><tr><td>10 AI 消费试验橱窗</td><td>试译 / 大钟寺</td><td>先小规模试用；现金与人工渠道并行</td><td>可访问性、投诉与退出报告</td></tr><tr><td>11 公共服务人工兜底</td><td>回译 / 社区接口</td><td>不要求下载应用或提交生物识别</td><td>人工路径可用性验证记录</td></tr><tr><td>12 年度共智交接礼</td><td>退场 / 全线</td><td>公开问题、失败和下一年责任人</td><td>年度回译包与退场清单</td></tr></tbody></table></div>
+<p>十二个节点已经写入 <code>constraints.geojson</code>，其中三项为产业测试场景；每项都要求人工复核、可暂停和概念状态，不得被表述为已批准运营 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#SCENE-01" title="空间数据：geometry/constraints.geojson#SCENE-01">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="scenario_node_count" title="指标：scenario_node_count">指标</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="GENERATIVE-AI-INTERIM-MEASURES" title="标准：GENERATIVE-AI-INTERIM-MEASURES">标准</sup>。</p>
+<p>每个节点还记录 CTP 阶段、回执要求、公共回报类型、属地暂停触发条件与非数字兜底方式。由此，AI 场景不再是一组体验菜单，而是可以逐项审计、退回和复用的城市翻译任务 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_return_scenario_ratio" title="指标：public_return_scenario_ratio">指标</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="professional_standard_response" title="深度：professional_standard_response">深度</sup>。</p>
+<h2>用地、建筑规模与拆改留方案</h2>
+<p>概念功能带面积由临时边界投影至 EPSG:4548 后复算；建筑基底仅用于检验“测试-转化-体验”服务是否能被空间承载。拆改留流程为：先核对官方地块与权属，再做建筑安全和历史价值调查，随后比较继续使用、分时共享、轻改、结构改造和新建，最后由专业团队与公众确认 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-103" title="空间数据：geometry/land_use.geojson#LU-103">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-211" title="空间数据：geometry/buildings.geojson#BLDG-211">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="深度：retain_renovate_demolish">深度</sup>。</p>
+<p>本方案不提供容积率、建筑高度、道路红线或最终建筑规模。已知值仅包括临时边界派生面积、概念建筑基底面积和节点数量；未知指标在 <code>metrics.json</code> 中保持空值并列出补数条件 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="floor_area_ratio" title="指标：floor_area_ratio">指标</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="height_massing_character" title="深度：height_massing_character">深度</sup>。</p>
+<h2>交通、轨道、市政与公共服务设施</h2>
+<p>“一线三横”慢行骨架连接三译站并提供东西接口；它表达步行、骑行和公共体验的连续意图，不替代现状道路或工程线位。每个接口优先处理过街等待、非机动车停放、遮阴休息、无障碍连续和夜间可辨识五件小事 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-101" title="空间数据：geometry/roads.geojson#ROAD-101">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup>。</p>
+<p>市政策略采用可插拔服务柜：边缘算力、传感、应急通信、充电与人工服务可按需求组合；任何部署须先核实供电、散热、噪声、消防、网络安全和维护责任。公共服务保留不用手机、不刷脸、不绑定账户的人工路径 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="BARRIER-FREE-ENVIRONMENT-LAW" title="标准：BARRIER-FREE-ENVIRONMENT-LAW">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="municipal_new_infrastructure" title="深度：municipal_new_infrastructure">深度</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共接口"><figcaption>交通慢行与蓝绿公共接口</figcaption></figure>
+<h2>蓝绿空间、公共空间与城市风貌</h2>
+<p>共智绿廊把临时边界淡化为背景，把连续步行、清河/小月河生态界面、三座公共庭和十二场景节点作为主叙事。绿地和公共空间比例由提交几何复算，只是概念方案内部一致性指标，不是法定绿地率 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-101" title="空间数据：geometry/green_space.geojson#GREEN-101">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup>。</p>
+<p>风貌使用“铁路构件语法”：铆钉节奏转为信息刻度，站牌转为版本与责任牌，里程牌转为城市问题编号。新设施采用可拆、可修、低亮度和不遮挡历史视线的轻量组件；清华园站等历史资源的保护范围待正式文保资料确认 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="blue_green_public_space" title="深度：blue_green_public_space">深度</sup>。</p>
+<h2>更新项目清单、实施政策与分期计划</h2>
+<div class="proposal-table"><table><thead><tr><th>编号</th><th>概念项目与位置</th><th>建议牵头/协作主体</th><th>阶段闸门</th><th>公共 KPI 与退出条件</th></tr></thead><tbody><tr><td>C01</td><td>共智翻译主线·遗址公园沿线</td><td>公园运营方 / 街道、交通、无障碍代表</td><td>近期：现状慢行、权属和照明核查</td><td>断点清单闭环；不连续或不可维护则暂停扩展</td></tr><tr><td>C02</td><td>众智园责任测试庭</td><td>园区产权运营方 / 测试、安全、河务团队</td><td>近期试点：河道、交通、能耗、消防复核</td><td>100% 测试显示版本、人工负责人和暂停状态</td></tr><tr><td>C03</td><td>原点开源译站</td><td>校园园区协作平台 / 社区、开源维护者</td><td>近期试点：共享时段与知识产权规则确认</td><td>贡献可署名、化名、撤回；无维护者则不开放</td></tr><tr><td>C04</td><td>大钟寺城市体验厅</td><td>属地与空间运营方 / 轨道、商业、数据责任方</td><td>中期：地面接驳和人流安全评估</td><td>测试、采购、正式运营三种状态明确分离</td></tr><tr><td>C05</td><td>三座公共信息地标·三译站</td><td>公共空间运营方 / 文保、景观、内容编辑</td><td>中期：视线、文保、结构与内容审查</td><td>信息更新率和无障碍可读性达标；内容失效即下线</td></tr><tr><td>C06</td><td>十二场景接口·沿线节点</td><td>各场景责任单位 / 数据、安全、用户代表</td><td>分批开放：每项通过数据与人工复核</td><td>12/12 保留人工和非数字路径；投诉可触发暂停</td></tr><tr><td>C07</td><td>共智项目护照平台·线上线下</td><td>联合运营秘书处 / 项目责任人、公众观察员</td><td>与首批试点同步：公开字段与维护预算确认</td><td>版本、来源、责任、退出、复核日期五项完整</td></tr><tr><td>C08</td><td>年度共智交接礼·全线</td><td>社区运营联盟 / 开发者、居民、国际伙伴</td><td>长期：活动许可与年度审计完成</td><td>公开失败、反馈、下一责任人；无交接记录则不续期</td></tr></tbody></table></div>
+<p>分期不是投资或政府承诺：第一阶段先开放低成本公共接口与问题清单；第二阶段在专业核查后织补建筑和慢行网络；第三阶段才讨论需要控规、工程和长期运营支撑的增量。三段范围保存在 <code>phasing.geojson</code> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/phasing.geojson#PHASE-101" title="空间数据：geometry/phasing.geojson#PHASE-101">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="renewal_project_count" title="指标：renewal_project_count">指标</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="phasing_implementation" title="深度：phasing_implementation">深度</sup>。</p>
+<p>年度运营建议包括春季“城市问题征集”、夏季“责任测试季”、秋季“开源转化周”、冬季“共智交接礼”；开发者社区以 issue、开放日和维护轮值运行；国际传播只发布可追溯材料，并明确“投稿、评审、入选、实施”四种状态。</p>
+<p>年度运行形成一份“城市回译包”：收录哪些问题被准确翻译、哪些场景失败、哪些公众意见改变了研发方向、哪些服务退场以及下一周期由谁接手。它把失败从负面新闻转成城市学习资产，也防止活动结束后只留下设备、没有责任与知识。若某项目没有完整回执、公开失败记录和下一责任人，则不进入下一阶段 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="stage_gate_project_ratio" title="指标：stage_gate_project_ratio">指标</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="phasing_implementation" title="深度：phasing_implementation">深度</sup>。</p>
+<h2>指标体系、面积复算与合规矩阵</h2>
+<p>内部复算得到：临时总体边界约 11.413 平方公里，概念绿地覆盖 6.4%，三个重点公共庭覆盖 0.4%，场景节点 12 个、概念更新项目 8 项。这些比例描述当前提交图层的覆盖，不是规划目标或法定绿地率。公共价值指标进一步要求：12/12 场景保留人工兜底、12/12 形成城市翻译回执、12/12 声明公共回报，3/3 重点区提供属地复核入口，8/8 概念项目设置阶段闸门；它们是可由后续运营团队继续核验的设计验收条件 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="translation_receipt_coverage_ratio" title="指标：translation_receipt_coverage_ratio">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_return_scenario_ratio" title="指标：public_return_scenario_ratio">指标</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="指标与证据链"><figcaption>指标与证据链</figcaption></figure>
+<p>任务覆盖矩阵逐项对应公告 1.3、1.4、1.5 与 agent.1-agent.6；专业标准矩阵区分已响应、资料缺口和非适用；设计深度矩阵记录每项证据链。矩阵完整性由机器检查，正文只解释设计判断 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-CONTROL-DETAILED-PLANNING" title="标准：MOHURD-CONTROL-DETAILED-PLANNING">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="professional_standard_response" title="深度：professional_standard_response">深度</sup>。</p>
+<h2>风险、版权与合规说明</h2>
+<p>主要风险是临时边界被误读为官方、概念强度被误读为控规、场景测试被误读为政府采购或正式运营，以及“翻译”变成替公众发言、自动服务排除不会使用智能设备的人。<code>risk.json</code> 按八个维度记录触发条件、责任主体类型、缓解动作、人工复核和停止条件；图面统一以淡色虚线标注临时边界，并在正文、来源、假设、HTML 和自检中重复披露 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup>。</p>
+<p>公开资料边界、隐私保护、版权授权和人工复核被视为同一条准入链：方案仅使用公开、已清权且用途明确的数据；个人数据遵循最小必要、逐项同意、到期退出和可撤回原则；生成内容与史实分层标识；场景放行和暂停均保留具名人工负责人。任何一项无法核验，就停止对应 CTP 阶段，而不是用技术可行性替代合规判断。</p>
+<p>所有空间落地内容均为概念建议、参考方案或可供专业团队深化研究，不替代正式规划，不构成政府审定、投资、招商、活动或实施承诺。图件由本包 GeoJSON 和指标程序化生成；字体仅嵌入系统微软雅黑/Arial；外部案例只引用文字机制和链接，不复制图片、地图或标识。</p>
+<h2>参考资料</h2>
+<p>完整来源、访问日期、许可用途和限制见 <code>sources.json</code>。正式任务依据为官方公告与清权任务书；全球案例均是背景机制参照，不支撑海淀空间控制 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup>。</p>
+<p>来源在本方案中承担三种不同角色。第一类是任务依据，用于确认三层范围、三处重点区和必答任务；第二类是临时空间约束，只允许生成、可视化和入口自检；第三类是国际案例背景，只帮助比较“创新能力怎样进入城市日常”的机制。任何来源都不能越过登记的用途边界。图面位置来自本包 GeoJSON，面积和比例来自 EPSG:4548 复算，案例文字不参与空间计算。当前最重要的数据缺口仍是官方精确 polygon、控规、现状建筑、权属、道路、市政、文保和工程条件；它们补齐后，应从几何层开始重算，而不是只修改正文数字。评审者可沿“正文判断—证据标记—结构化记录—原始链接”的路径复核每项主张，并在发现来源过期、许可不清或用途越界时要求撤回相关结论。</p>
+</main>
+</body>
+</html>

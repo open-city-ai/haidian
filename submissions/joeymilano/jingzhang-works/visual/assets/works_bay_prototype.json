@@ -1,0 +1,149 @@
+{
+  "schema_version": "1.7.0",
+  "prototype_id": "WB-1TO1-001",
+  "name_zh": "好用服务间 1:1 试装包",
+  "name_en": "Works Bay 1:1 Trial Assembly",
+  "status": "design_package_not_sited_not_authorized_not_run",
+  "purpose_zh": "在一间可撤回的公共服务空间里，让不用智能手机的人从到达、提问、核对到带着纸质结果离开，完整办成一件事。",
+  "purpose_en": "Use one reversible public-service space to let a person without a smartphone arrive, ask, verify, and leave with a paper result.",
+  "candidate_setting": "AI 原点共学工场或另一处获授权的既有首层公共服务前厅 / Learning Works or another authorised existing ground-floor public-service lobby",
+  "site_confirmed": false,
+  "design_envelope": {
+    "width_m": 6.0,
+    "depth_m": 4.8,
+    "area_sqm": 28.8,
+    "dimension_status": "design_trial_dimensions_not_field_measurements",
+    "dimension_rule": "All dimensions are a trial assembly proposal. Current accessibility, fire, egress, ownership, structure, utilities, and operating requirements must be checked before siting or fabrication."
+  },
+  "spatial_sequence": [
+    {
+      "order": 1,
+      "zone_id": "WB-Z01",
+      "name_zh": "普通通行带",
+      "name_en": "Ordinary passage",
+      "design_width_m": 1.8,
+      "action_zh": "任何人可以直接通过，不参加服务也不被设备拦住。",
+      "action_en": "Anyone may pass without joining the service or being blocked by equipment.",
+      "release_evidence": "measured clear route, fire and accessibility review"
+    },
+    {
+      "order": 2,
+      "zone_id": "WB-Z02",
+      "name_zh": "先问门槛",
+      "name_en": "Ask-first threshold",
+      "action_zh": "先看到服务状态、纸卡和人工位置，再决定是否使用 AI。",
+      "action_en": "See service status, paper cards, and human help before deciding whether to use AI.",
+      "ai_required": false
+    },
+    {
+      "order": 3,
+      "zone_id": "WB-Z03",
+      "name_zh": "双高度先问台",
+      "name_en": "Dual-height Ask First counter",
+      "proposed_counter_heights_m": [0.75, 1.05],
+      "action_zh": "不用注册或扫码即可说清任务，工作人员核对关键事实。",
+      "action_en": "State the task without registration or scanning; staff verify critical facts.",
+      "ai_limit": "AI may shorten dated public information but cannot approve the answer."
+    },
+    {
+      "order": 4,
+      "zone_id": "WB-Z04",
+      "name_zh": "纸质结果台",
+      "name_en": "Paper result table",
+      "action_zh": "拿到写有来源、到期日、线下去向和问题编号的纸质结果。",
+      "action_en": "Receive a paper result with source, expiry, offline destination, and issue number.",
+      "personal_information_default": false,
+      "output_contract": "visual/assets/complete_task_receipt.json#paper_result_contract",
+      "blank_template_zh": "assets/figures/paper-result-receipt.png",
+      "blank_template_en": "assets/figures/paper-result-receipt.en.png",
+      "issue_gate": "dated public source, offline next step, expiry and human sign-off are all present"
+    },
+    {
+      "order": 5,
+      "zone_id": "WB-Z05",
+      "name_zh": "安静复核位",
+      "name_en": "Quiet recheck seat",
+      "proposed_turning_circle_m": 1.5,
+      "action_zh": "坐下重看，发现缺项可以沿最短路线回到人工柜台。",
+      "action_en": "Sit and reread; return by the shortest route to the staffed counter if something is missing."
+    },
+    {
+      "order": 6,
+      "zone_id": "WB-Z06",
+      "name_zh": "接手与改进墙",
+      "name_en": "Takeover and change wall",
+      "action_zh": "看到谁接手、何时处理、何时停用，随后沿连续路径离开。",
+      "action_en": "See who takes over, when action is due, and when service is stopped, then leave by a continuous route.",
+      "public_fields": ["issue_id", "responsible_role", "due_date", "status", "retirement_record"]
+    }
+  ],
+  "operating_states": [
+    {
+      "state": "manual_open",
+      "condition": "staff, paper service, clear route, and dated information are available",
+      "ai_state": "off_or_optional"
+    },
+    {
+      "state": "assisted_open",
+      "condition": "all manual-open conditions plus the six-field AI service contract and pre-opening checks pass",
+      "ai_state": "limited_assistance"
+    },
+    {
+      "state": "manual_only_degraded",
+      "condition": "network, model, supplier, or bilingual automation fails while the manual route remains safe",
+      "ai_state": "off"
+    },
+    {
+      "state": "closed_for_recovery",
+      "condition": "route, staffing, safety, privacy, or critical information cannot be restored immediately",
+      "ai_state": "off"
+    }
+  ],
+  "proposed_raci": {
+    "status": "roles_pending_confirmation",
+    "accountable": "authorised_public_service_or_site_operator_pending_confirmation",
+    "responsible": "named_works_bay_duty_lead_pending_confirmation",
+    "consulted": [
+      "accessibility_reviewer",
+      "fire_and_egress_professional",
+      "service_information_owner",
+      "data_protection_reviewer",
+      "affected_user_representative"
+    ],
+    "informed": ["ordinary_route_users", "service_users", "nearby_operators"]
+  },
+  "human_signoff_points": [
+    "site_authorisation_and_measured_clear_route",
+    "accessibility_fire_and_egress_acceptance",
+    "dated_public_information_and_paper_route_check",
+    "named_staff_and_substitute_drill",
+    "closing_data_deletion_and_change_log_reconciliation"
+  ],
+  "stop_authority": [
+    "site_safety_lead_for_physical_or_egress_risk",
+    "service_information_owner_for_critical_information_risk",
+    "data_protection_lead_for_privacy_risk",
+    "named_duty_lead_for_staffing_or_service_failure"
+  ],
+  "physical_stop": "disconnect AI assistance and cover its interface; keep the staffed paper route only when the ordinary route and service remain safe",
+  "restoration_acceptance": [
+    "movable_counter_signage_power_and_devices_removed_or_reset",
+    "ordinary_and_accessible_route_reopened",
+    "expired_or unauthorised_test_data_deleted",
+    "paper_service_and_offline_contact_replayed",
+    "public_issue_disposition_recorded"
+  ],
+  "required_before_siting": [
+    "written_site_authorisation",
+    "measured_base_plan",
+    "current_accessibility_review",
+    "fire_egress_and_crowd_review",
+    "information_owner_and_update_cycle",
+    "named_operator_shift_and_substitute",
+    "data_protection_review",
+    "installation_removal_and_restoration_method"
+  ],
+  "field_result": null,
+  "claim_boundary_zh": "这是 1:1 试装设计包，不是已建成设施、现场测绘、法规合规证明、运营任命或真实服务结果。",
+  "claim_boundary_en": "This is a 1:1 trial-assembly design package, not a built facility, field survey, compliance certificate, operating appointment, or real service result."
+}

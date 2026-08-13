@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>京张站场网 v2.0 展示板</title>
+<style>
+:root{--bg:#0b1c2c;--panel:#123047;--ink:#e8f1f8;--muted:#8aa4b8;--accent:#ff8a3d;--cyan:#3ecfcf;--line:#2a4a66}
+*{box-sizing:border-box}body{margin:0;font-family:"Segoe UI","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+header,footer{padding:1rem 1.3rem;border-bottom:1px solid var(--line)}footer{border-bottom:0;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem}
+h1{margin:0;font-size:1.3rem}h2{margin:0 0 .5rem;font-size:1.02rem;color:var(--cyan)}p{margin:.3rem 0;color:var(--muted)}
+main{display:grid;gap:1rem;padding:1rem}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1rem}
+.grid2{display:grid;grid-template-columns:1.25fr 1fr;gap:1rem}@media(max-width:900px){.grid2,.metrics,.matrix{grid-template-columns:1fr!important}}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem}.metric{background:#0f2436;border-radius:8px;padding:.7rem}
+.metric span{display:block;color:var(--muted);font-size:.78rem}.metric strong{display:block;color:var(--accent);font-size:1.1rem;margin-top:.15rem}
+.pills span{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.12rem .5rem;margin:.12rem;font-size:.76rem;color:var(--muted)}
+.fig{width:100%;border-radius:8px;border:1px solid var(--line)}.warn{color:var(--accent);font-size:.86rem}
+.matrix{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem}.area-card{background:#0f2436;border-radius:8px;padding:.7rem}
+</style></head><body>
+<header><h1>京张站场网 / Agent Station Network</h1><p class="warn">临时边界概念复算，非官方红线/法定指标/审批结论</p>
+<div class="pills"><span>总览地图</span><span>三层范围</span><span>重点区域</span><span>用地分区</span><span>交通慢行</span><span>蓝绿公共空间</span><span>建筑</span><span>更新项目</span><span>AI 场景</span><span>核心指标</span><span>任务覆盖</span><span>自检状态</span><span>来源</span><span>假设</span></div></header>
+<main>
+<section class="card grid2"><div>
+<h2>总览地图</h2>
+<img class="fig" src="../assets/figures/site-overview.png" alt="overview"/>
+</div><div>
+<h2>核心指标</h2>
+<div class="metrics">
+<div class="metric"><span>site_area_sqm</span><strong data-metric="site_area_sqm" data-value="11412825.386">11.41 km²*</strong></div>
+<div class="metric"><span>green_ratio</span><strong data-metric="green_ratio" data-value="0.15324">15%*</strong></div>
+<div class="metric"><span>public_space_ratio</span><strong data-metric="public_space_ratio" data-value="0.153876">15%*</strong></div>
+</div>
+<p class="warn">* provisional recomputation</p>
+<h2>自检状态</h2>
+<p>确定性/空间/视觉/专业证据门需通过后进入 formal review。</p>
+<h2>任务覆盖</h2>
+<div class="pills"><span>agent.1</span><span>agent.2</span><span>agent.3</span><span>agent.4</span><span>agent.5</span><span>agent.6</span></div>
+</div></section>
+<section class="card"><h2>三层范围</h2>
+<div class="matrix">
+<article class="area-card"><h3>统筹研究</h3><p>43.6 km²</p></article>
+<article class="area-card"><h3>总体设计</h3><p>~11.4 km²</p></article>
+<article class="area-card"><h3>重点区域</h3><p>3 hubs</p></article>
+</div></section>
+<section class="card"><h2>重点区域</h2>
+<img class="fig" src="../assets/figures/key-areas.png" alt="keys"/>
+</section>
+<section class="card grid2"><div>
+<h2>用地分区</h2>
+<img class="fig" src="../assets/figures/land-use-structure.png" alt="lu"/>
+<h2>交通慢行 / 蓝绿公共空间</h2>
+<img class="fig" src="../assets/figures/mobility-bluegreen.png" alt="mob"/>
+</div><div>
+<h2>建筑</h2><p>三座概念站厅 + 十二轻量站台，可逆建造。</p>
+<h2>更新项目</h2>
+<ul><li>近期三站通车</li><li>中期十二站台</li><li>远期班次运营(概念)</li></ul>
+<h2>AI 场景</h2><p>S01–S12</p>
+<img class="fig" src="../assets/figures/metrics-evidence.png" alt="met"/>
+<img class="fig" src="../assets/figures/brand-vi.png" alt="vi"/>
+<img class="fig" src="../assets/figures/regional-synergy.png" alt="syn"/>
+<img class="fig" src="../assets/figures/ai-ecosystem.png" alt="eco"/>
+</div></section>
+<section class="card grid2"><div>
+<h2>来源</h2>
+<ul><li>OFFICIAL-ANNOUNCEMENT / AGENT-TASKBOOK</li><li>SOURCE-REGISTRY</li><li>BOUNDARY-SOURCE provisional_only</li><li>CASE-* textual only</li></ul>
+</div><div>
+<h2>假设</h2>
+<ul><li>ASM-PROVISIONAL-BOUNDARY</li><li>ASM-CONCEPT-ONLY</li><li>ASM-EPSG-4548</li><li>ASM-NO-OFFICIAL-FAR</li><li>ASM-CASE-TRANSFER-ONLY</li></ul>
+</div></section>
+</main>
+<footer>offline · local PNG only · 临时边界概念复算，非官方红线/法定指标/审批结论</footer>
+</body></html>

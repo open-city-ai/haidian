@@ -1,6 +1,35 @@
 #!/usr/bin/env python3
-"""Audit historical bilingual proposal pairs without modifying submissions."""
+"""Audit historical bilingual proposal pairs without modifying submissions.
 
+This read-only tool scans all merged submission directories and reports the
+health of each bilingual proposal pair (primary + translation).  It does not
+write or modify any files.
+
+Checks performed
+----------------
+- Both primary and translation files exist and declare the correct ``language``
+  and ``translation_of`` front-matter.
+- Section headings in both files are paired and aligned (by count and rough
+  content match).
+- Evidence markers (``[source:...]``, ``[depth:...]``, etc.) are present in
+  both files with no large asymmetry.
+- Inline images match between primary and translation.
+- No legacy combined-file format (single file with ``# 中文正式译文`` heading)
+  is mixed with the standalone bilingual contract.
+
+Usage
+-----
+Run from the repository root::
+
+    python3 scripts/audit_bilingual_backfill.py
+
+Limit to specific submissions::
+
+    python3 scripts/audit_bilingual_backfill.py submissions/alice/my-proposal
+
+Exit code is 0 when the audit completes (it is advisory; individual issues
+are warnings, not hard failures).
+"""
 from __future__ import annotations
 
 from collections import Counter

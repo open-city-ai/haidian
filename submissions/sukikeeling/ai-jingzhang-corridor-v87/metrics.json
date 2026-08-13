@@ -1,0 +1,210 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "area_calculation_crs": "EPSG:4548",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "recomputed_from": "submissions/sukikeeling/ai-jingzhang-corridor-v87/geometry/*.geojson",
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "formula": "area(union(site_boundary)) EPSG:4548",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "formula": "count(key_areas.geojson features)",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "confidence": "high",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.175243,
+      "unit": "ratio",
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.064287,
+      "unit": "ratio",
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 44263.943,
+      "unit": "sqm",
+      "formula": "area(union(buildings.geojson)) in EPSG:4548",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "confidence": "medium",
+      "assumptions": [
+        "示意性建筑布局，按 EPSG:4326→4548 union 重算为 44263.943 sqm"
+      ]
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 22643.5,
+      "unit": "m",
+      "formula": "length(union(roads.geojson)) in EPSG:4548 (4326→4548 via pyproj Transformer, CM 117E)",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "confidence": "medium",
+      "assumptions": [
+        "示意性路网；已按 EPSG:4326→EPSG:4548 米制重算"
+      ]
+    },
+    "ai_industry_land_ratio": {
+      "status": "known",
+      "value": 0.25,
+      "unit": "ratio",
+      "formula": "设计值",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "confidence": "low",
+      "assumptions": [
+        "方向性设计比例"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2000012.871,
+      "unit": "sqm",
+      "formula": "area(union(green_space)) EPSG:4548",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 733700.4,
+      "unit": "sqm",
+      "formula": "sum(polygon_area(public_space belts + plazas))",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "formula": "count(layer=SCENARIO_NODE in geometry/public_space.geojson)",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ]
+    },
+    "independent_ai_evaluation_coverage": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "formula": "已上线场景中通过独立评测的比例（评测口径，基线待一期普查）",
+      "source_files": [],
+      "confidence": "unknown",
+      "reason": "评测维度承诺；基线缺失待调查，不填虚假目标值"
+    },
+    "public_issue_closure_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "formula": "公众问题单在承诺时限内关闭比例（评测口径）",
+      "source_files": [],
+      "confidence": "unknown",
+      "reason": "评测维度承诺；基线缺失待调查"
+    },
+    "appeal_resolution_time_hours": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "formula": "申诉受理到结案中位时长（评测口径）",
+      "source_files": [],
+      "confidence": "unknown",
+      "reason": "评测维度承诺；基线缺失待调查"
+    },
+    "human_override_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "formula": "AI自动处置中人工接管比例（评测口径）",
+      "source_files": [],
+      "confidence": "unknown",
+      "reason": "评测维度承诺；人工接管是底线"
+    },
+    "sunset_clause_trigger_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "formula": "触发折返/入段条款的AI场景数量；基线为0",
+      "source_files": [],
+      "confidence": "unknown",
+      "reason": "评测维度承诺；折返/入段即记录"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "provisional 用地容积率复算；官方控规发布后替换",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "confidence": "low",
+      "assumptions": [
+        "provisional 边界下概念估算，不推导法定容量"
+      ],
+      "reason": "provisional 边界下未推填容积率数值；官方控规发布后转为 known"
+    },
+    "machine_readable_contract_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/switchback-gate.json",
+        "visual/assets/delivery-matrix.json"
+      ],
+      "formula": "count(machine-readable governance contracts in visual/assets)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "open_task_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "reason": "基线待一期问题征集建立",
+      "required_for_formal_submission": false
+    },
+    "red_team_repro_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "reason": "基线待模型上街前挑战季建立",
+      "required_for_formal_submission": false
+    },
+    "annual_week_events": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "reason": "基线待首届京张城市AI周建立",
+      "required_for_formal_submission": false
+    }
+  }
+}

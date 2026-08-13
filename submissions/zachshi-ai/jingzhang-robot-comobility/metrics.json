@@ -1,0 +1,440 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.385554,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "Provisional rough boundary derived from official announcement text; recalculate when official polygon is published."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(features in key_areas)",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "三处重点片区（众智园/AI原点社区/大钟寺）。"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2926122.625015,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(unary_union(green_space)) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 2385759.405279,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(unary_union(public_space)) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 558040.811028,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(unary_union(building_footprints)) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.256389,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.209042,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "robot_lane_length_m": {
+      "status": "known",
+      "value": 18780.729605,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(roads with robot_lane in dedicated/shared)) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "共行网机器人可行驶车道总长度（含专用与共享段）。"
+    },
+    "robot_dedicated_lane_length_m": {
+      "status": "known",
+      "value": 15351.068775,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(roads with robot_lane=dedicated)) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "专用低速机器人车道长度，是共行安全设计的核心指标。"
+    },
+    "robot_delivery_station_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(buildings with robot_role=delivery_station)",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "六座智递驿站沿共行主廊分布，服务半径约1.2公里。"
+    },
+    "robot_charging_depot_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(buildings with robot_role=charging_depot)",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "两座充电维保基地分别服务北段与南段车队。"
+    },
+    "land_use_parcel_count": {
+      "status": "known",
+      "value": 18,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use features)",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "18个用地分区完整覆盖临时设计边界、无重叠。"
+    },
+    "phasing_zone_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phasing features)",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "近期示范段/中期网络化/远期贯通三期概念建议。"
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(AI scenario cards in proposal)",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "12张场景卡，其中4张为测试验证场景（★）。"
+    },
+    "test_validation_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario cards marked test/validation)",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "低速共行冲突测试、夜间安全、无障碍配送、应急接管四个验证场景。"
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user personas in proposal)",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "8类画像，含老年、残障、儿童、低数字技能等弱势群体画像。"
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(AI pilgrimage landmarks in proposal)",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "机器人时空馆、智递方舟驿站旗舰、共行零点广场。"
+    },
+    "ecosystem_case_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(global ecosystem cases)",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "7条案例证据：6个全球低速机器人与创新生态案例（新石器/美团/京东/Starship/Serve/北京高级别自动驾驶示范区）+1条本地生态母体证据（海淀中关村科学城）。"
+    },
+    "vulnerable_group_persona_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(personas covering vulnerable groups)",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "老年、残障、儿童、低数字技能四类弱势画像，均配无AI替代路径。"
+    },
+    "license_contract_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/co-mobility-contracts.json"
+      ],
+      "formula": "count(contracts in co-mobility-contracts.json)",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "12个共行执照合同覆盖配送/导览/巡检/测试四类机器人服务。"
+    },
+    "tabletop_case_count": {
+      "status": "known",
+      "value": 84,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/license-tabletop-evidence.json"
+      ],
+      "formula": "12 scenarios x 7 branches",
+      "confidence": "high",
+      "assumptions": [
+        "Synthetic-only tabletop; field_performance=null"
+      ],
+      "rationale": "84个合成案例全部正确分类（60阻断/12通过/12审计）。"
+    },
+    "tabletop_pass_rate": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/license-tabletop-evidence.json"
+      ],
+      "formula": "correct_cases / total_cases",
+      "confidence": "high",
+      "assumptions": [
+        "Synthetic-only; proves classification correctness not field safety"
+      ],
+      "rationale": "84/84 = 100%合成分类正确率。"
+    },
+    "contract_bequest_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/co-mobility-contracts.json"
+      ],
+      "formula": "contracts_with_bequest / total_contracts",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "全部12个合同均有BEQUEST退场红利条款。"
+    },
+    "governance_role_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance-raci.json"
+      ],
+      "formula": "count(roles in governance-raci.json)",
+      "confidence": "high",
+      "assumptions": [
+        "All roles status=proposed_role_not_current_authority"
+      ],
+      "rationale": "10个治理角色覆盖问责/公众/运营/安全/数据/无障碍/遗产/维护/评估/公众代表。"
+    },
+    "affected_group_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/public-interest-audit.json"
+      ],
+      "formula": "count(affected_groups in public-interest-audit.json)",
+      "confidence": "high",
+      "assumptions": [
+        "All baselines=unknown until authorized surveys"
+      ],
+      "rationale": "10个受影响群体全部baseline=unknown。"
+    },
+    "claim_provenance_count": {
+      "status": "known",
+      "value": 20,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/claim-provenance.json"
+      ],
+      "formula": "count(claims in claim-provenance.json)",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "20条主张溯源登记链接正文metric标记到metrics.json原始路径。"
+    },
+    "real_personal_data_used_in_tabletop": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/license-tabletop-evidence.json"
+      ],
+      "formula": "count(real personal data records used)",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "tabletop模拟使用零真实个人数据。"
+    },
+    "field_delivery_success_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "successful_deliveries / total_deliveries",
+      "confidence": "unknown",
+      "assumptions": [
+        "No authorized baseline; cannot fill 0, 100% or estimate"
+      ],
+      "rationale": "未经现场授权测试，保持null。",
+      "reason": "未经现场授权测试，保持null。"
+    },
+    "human_takeover_success_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "successful_takeovers / total_takeover_events",
+      "confidence": "unknown",
+      "assumptions": [
+        "No authorized baseline"
+      ],
+      "rationale": "未经现场授权测试。",
+      "reason": "未经现场授权测试。"
+    },
+    "conflict_rate_per_thousand_km": {
+      "status": "unknown",
+      "value": null,
+      "unit": "per_1000_km",
+      "source_files": [],
+      "formula": "conflict_events / total_distance_km * 1000",
+      "confidence": "unknown",
+      "assumptions": [
+        "No authorized baseline"
+      ],
+      "rationale": "未经现场授权测试。",
+      "reason": "未经现场授权测试。"
+    },
+    "public_satisfaction_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "satisfied_responses / total_survey_responses",
+      "confidence": "unknown",
+      "assumptions": [
+        "No survey conducted"
+      ],
+      "rationale": "未经授权调查。",
+      "reason": "未经授权调查。"
+    },
+    "official_overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/standards/"
+      ],
+      "formula": "announcement text value",
+      "confidence": "high",
+      "assumptions": [
+        "Official text value, not surveyed polygon"
+      ],
+      "rationale": "公告约11.4平方公里口径。"
+    },
+    "official_coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/standards/"
+      ],
+      "formula": "announcement text value",
+      "confidence": "high",
+      "assumptions": [
+        "Official text value"
+      ],
+      "rationale": "公告约43.6平方公里口径。"
+    },
+    "official_key_area_total_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/standards/"
+      ],
+      "formula": "announcement text value (sum of three key areas)",
+      "confidence": "high",
+      "assumptions": [
+        "Official text value"
+      ],
+      "rationale": "公告三处重点区约368.4公顷口径。"
+    }
+  },
+  "recalculation_notes": {
+    "projection": "EPSG:4548 (CGCS2000 / 3-degree Gauss-Kruger CM 117E)",
+    "union_rule": "green/public/building areas use shapely unary_union (dissolve overlaps), matching scripts/spatial_review.py",
+    "provisional_boundary": "site_area_sqm derives from the provisional rough boundary (official_boundary=false); recalculate when official polygon is published.",
+    "custom_count_metrics": "count metrics (robot stations, scenarios, personas, landmarks, cases) are proposal-level counts, not geometry-cross-checked.",
+    "unknown_metrics": "FAR, building height, building density, road redlines remain unknown pending official control conditions; see assumptions.json."
+  }
+}

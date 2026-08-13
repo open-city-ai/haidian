@@ -1,0 +1,73 @@
+{
+  "schema_version": "0.1.0",
+  "units": {"length":"m","area":"sqm"},
+  "metrics": {
+    "site_area_sqm": {
+      "status":"known","value":11412825.386,"unit":"sqm",
+      "source_files":["geometry/site_boundary.geojson"],
+      "formula":"area(provisional_site_boundary, EPSG:4548)",
+      "confidence":"medium",
+      "assumptions":["Computed from maintainer-provided provisional geometry; this is a proposal/self-check value, not an official redline area."],
+      "reason":"Required for deterministic spatial/visual consistency while the exact official boundary remains unavailable."
+    },
+    "green_space_area_sqm": {
+      "status":"known","value":661629.752,"unit":"sqm",
+      "source_files":["geometry/green_space.geojson"],
+      "formula":"area(union(conceptual_green_space), EPSG:4548)",
+      "confidence":"low",
+      "assumptions":["Conceptual design geometry only; not a statutory green-line or existing green-space survey."]
+    },
+    "green_ratio": {
+      "status":"known","value":0.057972,"unit":"ratio",
+      "source_files":["geometry/green_space.geojson","geometry/site_boundary.geojson"],
+      "formula":"conceptual_green_area / provisional_site_area",
+      "confidence":"low",
+      "assumptions":["Both numerator and denominator are proposal/provisional geometry; value must be recomputed when verified base data arrives."]
+    },
+    "public_space_area_sqm": {
+      "status":"known","value":120618.287,"unit":"sqm",
+      "source_files":["geometry/public_space.geojson"],
+      "formula":"area(union(conceptual_public_space_polygons), EPSG:4548)",
+      "confidence":"low",
+      "assumptions":["Point landmarks/scenario nodes contribute zero area; polygons are conceptual public-space envelopes."]
+    },
+    "public_space_ratio": {
+      "status":"known","value":0.010569,"unit":"ratio",
+      "source_files":["geometry/public_space.geojson","geometry/site_boundary.geojson"],
+      "formula":"conceptual_public_space_area / provisional_site_area",
+      "confidence":"low",
+      "assumptions":["Proposal metric only; not an official public-space ratio or planning control indicator."]
+    },
+    "building_footprint_area_sqm": {
+      "status":"known","value":38075.314,"unit":"sqm",
+      "source_files":["geometry/buildings.geojson"],
+      "formula":"area(union(conceptual_building_envelopes), EPSG:4548)",
+      "confidence":"low",
+      "assumptions":["Concept envelopes only; no claim of confirmed new-build footprint, ownership, heritage relation or permitability."]
+    },
+    "road_network_length_m": {
+      "status":"unknown","value":null,"unit":"m",
+      "source_files":["geometry/roads.geojson"],
+      "formula":"sum(conceptual_design_road_and_slow_mobility_links, EPSG:4548)",
+      "confidence":"unknown","assumptions":[],
+      "reason":"Routes are conceptual links and have not yet been checked as an engineering network."
+    },
+    "key_area_count":{"status":"known","value":3,"unit":"count","source_files":["proposal.md","../../../../brief/site-package/design_brief.json"],"formula":"count(taskbook_key_areas)","confidence":"high","assumptions":[]},
+    "scenario_node_count":{"status":"known","value":12,"unit":"count","source_files":["proposal.md","geometry/public_space.geojson"],"formula":"count(S01..S12)","confidence":"high","assumptions":["Count refers to defined scenario programmes represented by conceptual nodes."]},
+    "industry_test_scenario_count":{"status":"known","value":3,"unit":"count","source_files":["proposal.md"],"formula":"count(flagship_validation_protocol_directions)","confidence":"high","assumptions":[]},
+    "persona_count":{"status":"known","value":9,"unit":"count","source_files":["proposal.md","visual/assets/people-fairness-audit.json"],"formula":"count(acceptance_user_groups)","confidence":"high","assumptions":[]},
+    "global_case_count":{"status":"known","value":6,"unit":"count","source_files":["proposal.md","risk.json","sources.json"],"formula":"count(global_case_translations)","confidence":"high","assumptions":["Cases are mechanism references only; foreign scale, performance, legal rules and budgets are not imported."]},
+    "civic_ai_right_count":{"status":"known","value":5,"unit":"count","source_files":["proposal.md"],"formula":"count(civic_AI_rights)","confidence":"high","assumptions":["Proposal governance requirements, not a claim of an enacted statutory five-right code."]},
+    "red_civic_anchor_count":{"status":"known","value":2,"unit":"count","source_files":["proposal.md","risk.json","geometry/buildings.geojson"],"formula":"count(red_civic_anchor_types)","confidence":"high","assumptions":["Exact siting remains conceptual pending heritage, ownership and engineering evidence."]},
+    "ai_landmark_count":{"status":"known","value":3,"unit":"count","source_files":["risk.json","proposal.md","geometry/public_space.geojson"],"formula":"count(AI_PILGRIMAGE_LANDMARK)","confidence":"high","assumptions":["Landmarks are programme/design identities; exact siting and dimensions remain conceptual."]},
+    "human_fallback_required_scenario_count":{"status":"known","value":12,"unit":"count","source_files":["proposal.md","geometry/public_space.geojson"],"formula":"count(all_scenarios_with_human_or_non_AI_fallback)","confidence":"high","assumptions":["Design-contract count; field quality is not yet measured."]},
+    "automated_final_public_decision_count":{"status":"known","value":0,"unit":"count","source_files":["proposal.md","risk.json","geometry/public_space.geojson"],"formula":"count(scenarios_permitting_AI_as_final_authority_for_consequential_public_decisions)","confidence":"high","assumptions":["AI may assist, but authorized human responsibility remains final in this concept."]},
+    "phase_gate_count":{"status":"known","value":5,"unit":"count","source_files":["proposal.md"],"formula":"count(G0_to_G4_delivery_gates)","confidence":"high","assumptions":[]},
+    "annual_program_count":{"status":"known","value":4,"unit":"count","source_files":["proposal.md"],"formula":"count(long_term_program_brands)","confidence":"high","assumptions":["Proposed operating brands, not approved government events or funding commitments."]},
+    "event_brand_count":{"status":"known","value":4,"unit":"count","source_files":["proposal.md"],"formula":"count(Civic_AI_Open_Class,Jing_Zhang_Open_Source_Week,Civic_AI_Test_Day,Centennial_Engineering_Future_City_Forum)","confidence":"high","assumptions":["Names and cadence remain design proposals until an operator adopts them."]},
+    "civic_ai_register_required_field_count":{"status":"known","value":10,"unit":"count","source_files":["proposal.md","visual/assets/civic-ai-register-schema.json"],"formula":"count(required_public_register_fields)","confidence":"high","assumptions":["Proposed transparency-card schema, not an enacted mandatory registry schema."]},
+    "non_AI_key_service_success_rate":{"status":"unknown","value":null,"unit":"ratio","source_files":["proposal.md"],"formula":"successful_key_tasks_without_smartphone_or_mandatory_account / attempted_key_tasks","confidence":"unknown","assumptions":[],"reason":"Requires a Phase-0 field baseline; no performance is fabricated."},
+    "AI_to_human_handoff_wait_m":{"status":"unknown","value":null,"unit":"m","source_files":["proposal.md"],"formula":"median_spatial_distance_to_reachable_human_handoff_point","confidence":"unknown","assumptions":[],"reason":"Requires physical layout and service-operation testing."},
+    "AI_error_appeal_closure_index":{"status":"unknown","value":null,"unit":"index","source_files":["proposal.md"],"formula":"to_be_defined_after_operator_and_case_workflow_are_verified","confidence":"unknown","assumptions":[],"reason":"No real operator, appeal volume or field workflow has yet been confirmed."}
+  }
+}

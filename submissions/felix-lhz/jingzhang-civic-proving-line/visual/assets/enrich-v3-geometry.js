@@ -1,0 +1,10 @@
+const fs=require('fs'),path=require('path');const G=path.resolve(__dirname,'..','..','geometry');
+const common={layer:'PUBLIC_SPACE',source_type:'agent_generated_design',confidence:'low',geometry_role:'design_proposal',status:'concept_proposal'};
+const box=(id,name,cx,cy,dx,dy,type,components)=>({type:'Feature',id,properties:{id,...common,name_zh:name,name_en:type,space_type:type,component_ids:components,design_intent:'V3 detailed conceptual component under provisional boundaries; not survey, statutory or construction geometry.'},geometry:{type:'Polygon',coordinates:[[[cx-dx,cy-dy],[cx+dx,cy-dy],[cx+dx,cy+dy],[cx-dx,cy+dy],[cx-dx,cy-dy]]]}});
+const ps=JSON.parse(fs.readFileSync(path.join(G,'public_space.geojson'),'utf8'));
+const add=[
+ box('PS-Z01','众智园完整公共旁路',116.3484,40.0180,.0020,.0010,'complete_public_bypass',['B01','B02','B03']),box('PS-Z02','众智园围合机器人环',116.3484,40.0180,.0011,.00055,'controlled_robot_loop',['A01','E02']),box('PS-Z04','众智园端侧机柜运维院',116.3497,40.0180,.00035,.00035,'edge_cabinet_yard',['A02','E01']),
+ box('PS-A11','AI原点三条无门槛穿行带',116.3475,39.9890,.0020,.00075,'porous_step_free_hall',['B01','B03']),box('PS-A15','AI原点可关闭插件墙',116.3490,39.9890,.00035,.00055,'closeable_plugin_wall',['A03','E01']),box('PS-A16','AI原点人工复核后台',116.3475,39.9881,.00065,.00025,'human_review_backoffice',['B03','E03']),
+ box('PS-D21','大钟寺四象限步行前场',116.3485,39.9470,.0020,.0010,'four_quadrant_forecourt',['B01','B02','B03']),box('PS-D23','大钟寺独立低速试验湾',116.3499,39.9468,.00065,.00028,'timed_low_speed_bay',['A01','E02']),box('PS-D25','大钟寺证据广场',116.3471,39.9464,.0007,.00038,'evidence_square',['E01','E03']),
+ box('PS-S4','京张文化停靠节点',116.3460,39.9790,.00025,.00018,'culture_stop',['B01','B02','B03']),box('PS-S5','静态无障碍导航节点',116.3462,39.9690,.00025,.00018,'accessible_navigation_stop',['B01','B03','A03']),box('PS-S6','气候休息节点',116.3460,39.9590,.00030,.00020,'climate_rest_stop',['B01','B02','A03'])];
+const ids=new Set(ps.features.map(x=>x.id));ps.features.push(...add.filter(x=>!ids.has(x.id)));fs.writeFileSync(path.join(G,'public_space.geojson'),JSON.stringify(ps,null,2)+'\n');console.log(`public-space features: ${ps.features.length}`);

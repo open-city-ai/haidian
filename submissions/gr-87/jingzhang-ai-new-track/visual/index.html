@@ -17,6 +17,10 @@
               border-radius: 20px; color:#bfe0ff; font-size: 12px; }
   .badge { display:inline-block; margin: 6px 3px 0; padding: 3px 10px; border-radius: 10px;
             font-size: 11px; background:#1b3a5c; color:#9fc9ee; }
+  .statusline { display:inline-block; margin-top: 10px; padding: 5px 14px; border:1px solid #c2572a;
+                 border-radius: 16px; color:#ffc9a8; font-size: 11.5px; background:#2a1a10; }
+  .logo { display:block; margin: 0 auto 10px; }
+  .mech-table th { white-space: nowrap; }
   section { background:#f6f9fd; color:#22344a; border-radius: 14px; padding: 22px 24px; margin-top: 22px;
              box-shadow: 0 6px 22px rgba(0,0,0,.25); }
   h2 { font-size: 19px; color: var(--blue); border-left: 5px solid var(--blue); padding-left: 10px; margin-bottom: 16px; }
@@ -52,6 +56,12 @@
 <body>
 <div class="wrap">
   <header>
+    <svg class="logo" width="120" height="52" viewBox="0 0 120 52" role="img" aria-label="三轨同脉 Logo：三条平行轨线，中轨为数据脉冲，呈 N 形">
+      <rect x="10" y="6" width="100" height="40" rx="8" fill="#14293f" stroke="#3f7fbf" stroke-width="1.2"/>
+      <line x1="26" y1="18" x2="94" y2="18" stroke="#8a9ab8" stroke-width="3"/>
+      <polyline points="26,34 38,34 46,26 54,42 62,22 70,34 94,34" fill="none" stroke="#4fd08a" stroke-width="3" stroke-linejoin="round"/>
+      <line x1="26" y1="18" x2="94" y2="18" stroke="#8a9ab8" stroke-width="0"/>
+    </svg>
     <h1>京张·新轨 <span style="font-size:16px;color:#9fc0e0">/</span> JingZhang NewTrack</h1>
     <div class="sub">百年京张AI创新带概念城市设计 · Concept Urban Design, Centennial Jing-Zhang AI Innovation Belt</div>
     <div class="tagline">Three Tracks, One Pulse —— 铁轨 · 轨道 · 智轨，三轨同脉</div>
@@ -59,8 +69,10 @@
       <span class="badge">一带三核 / 双翼七轴</span>
       <span class="badge">agent.1–agent.6 全覆盖</span>
       <span class="badge">12 场景卡 · 3 测试验证 · 5 画像 · 3 朝圣地标</span>
+      <span class="badge">JZ-CHAIN-001 机制契约</span>
       <span class="badge">双语 v2 · 离线展示</span>
     </div>
+    <div class="statusline">状态：概念建议 · 未部署 · 未授权 · 未运行 · 临时边界</div>
   </header>
 
   <section>
@@ -153,6 +165,31 @@
   </section>
 
   <section>
+    <h2>机制契约 JZ-CHAIN-001 <span class="en">Mechanism Contract · 可回退公共服务机制</span></h2>
+    <div class="note" style="margin-top:0">三轨证据约束 → 一条公共服务链 → 四态回退 → 三处验证窗。机制状态均为概念级设计状态，不是审批、部署、现场绩效或政府承诺。</div>
+    <div class="grid g3" style="margin-top:12px">
+      <div class="card"><div class="card-label">历史轨 · Heritage Track</div><div class="card-note">核验来源、铁路文化叙事与文保边界；未核实的文化表述不得升级为历史事实结论。</div></div>
+      <div class="card"><div class="card-label">轨道轨 · Transit Track</div><div class="card-note">核验空间关系、普通通行与工程/权属前置条件；红线、轨道线位与市政承载力未核实不得实施。</div></div>
+      <div class="card"><div class="card-label">数据轨 · Data Track</div><div class="card-note">核验数据最小化、人工复核、申诉与退出；无授权数据不得进入场景，越界即停止。</div></div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <div class="card-label">公共服务链 JZ-SERVICE-001</div>
+      <div class="card-note" style="font-size:13px; margin-top:6px">选择 → 使用 → 叫停 → 申诉 → 回到人工 → 退出/恢复</div>
+      <div class="card-note">任何 AI 场景都必须能回答链上每一步；恢复普通服务不自动提升成熟度，也不产生部署授权。</div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <div class="card-label">四态回退</div>
+      <div class="card-note" style="font-size:13px; margin-top:6px">普通服务 → 可选辅助 → 停止/人工接管 → 恢复普通服务</div>
+    </div>
+    <div class="grid g3" style="margin-top:12px">
+      <div class="card"><div class="card-label">JZ-V1 · 众智园</div><div class="card-note">受控产业验证（SC-02）</div><div class="card-note" style="color:#c2572a">状态：concept_only</div></div>
+      <div class="card"><div class="card-label">JZ-V2 · 原点社区</div><div class="card-note">AI与人工等价公共服务验证（SC-04/09/11）</div><div class="card-note" style="color:#c2572a">状态：concept_only</div></div>
+      <div class="card"><div class="card-label">JZ-V3 · 大钟寺</div><div class="card-note">受限、可撤的空间/设备服务验证（SC-12）</div><div class="card-note" style="color:#c2572a">状态：concept_only</div></div>
+    </div>
+    <div class="note">证据状态纪律：字段完整只证明设计覆盖；离线回放只证明规则可复演；真实运营、现场安全、许可、绩效与公众结果保持 unknown，直到取得独立证据。详细登记见 compliance_matrix.json 的 mechanism_register。</div>
+  </section>
+
+  <section>
     <h2>核心指标 <span class="en">Core Metrics · 与 metrics.json 一致</span></h2>
     <div class="grid g4">
       <div class="card" data-metric="site_area_sqm" data-value="11412825.4">
@@ -193,11 +230,23 @@
   </section>
 
   <section>
-    <h2>AI 场景卡 <span class="en">Scenario Cards · 12 张（≥10）</span></h2>
-    <div class="grid g3">
-      <div class="card"><div class="card-label">SC-01 · 开源发布厅</div><div>原点社区·零点站</div><div style="margin-top:6px"><span class="pill p-scenario">品牌活动</span></div></div><div class="card"><div class="card-label">SC-02 · 自主模型测试沙盒</div><div>众智园</div><div style="margin-top:6px"><span class="pill p-scenario">产业测试验证</span></div></div><div class="card"><div class="card-label">SC-03 · 端侧算力驿站</div><div>总体设计范围节点</div><div style="margin-top:6px"><span class="pill p-scenario">产业测试验证</span></div></div><div class="card"><div class="card-label">SC-04 · AI慢行导航</div><div>遗址带活力带</div><div style="margin-top:6px"><span class="pill p-scenario">AI+交通</span></div></div><div class="card"><div class="card-label">SC-05 · 国际路演客厅</div><div>大钟寺</div><div style="margin-top:6px"><span class="pill p-scenario">国际交往</span></div></div><div class="card"><div class="card-label">SC-06 · 清河低碳创新廊</div><div>众智园临河界面</div><div style="margin-top:6px"><span class="pill p-scenario">蓝绿空间</span></div></div><div class="card"><div class="card-label">SC-07 · 近校成果转化街</div><div>原点社区</div><div style="margin-top:6px"><span class="pill p-scenario">产业服务</span></div></div><div class="card"><div class="card-label">SC-08 · 数据要素会客厅</div><div>大钟寺</div><div style="margin-top:6px"><span class="pill p-scenario">产业测试验证</span></div></div><div class="card"><div class="card-label">SC-09 · AI生活服务样板街</div><div>社区商业交汇</div><div style="margin-top:6px"><span class="pill p-scenario">AI+公共服务</span></div></div><div class="card"><div class="card-label">SC-10 · 全球AI活动周路线</div><div>一带公共空间系统</div><div style="margin-top:6px"><span class="pill p-scenario">运营品牌</span></div></div><div class="card"><div class="card-label">SC-11 · 无障碍关怀服务点</div><div>社区公共服务设施</div><div style="margin-top:6px"><span class="pill p-scenario">AI+公共服务</span></div></div><div class="card"><div class="card-label">SC-12 · 机器人配送试点线</div><div>大钟寺-学院路段</div><div style="margin-top:6px"><span class="pill p-scenario">机器人</span></div></div>
+    <h2>AI 场景卡 <span class="en">Scenario Cards · 12 张（≥10），SC-04/09/12 完整机制样板</span></h2>
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-label">SC-04 · AI慢行导航（完整样板）</div>
+      <div class="card-note" style="margin-top:6px">公共问题：遗址带慢行断点、拥挤与无障碍需求不易识别。输入：聚合障碍/拥挤/路线事件概念数据。AI能力：可解释导视建议，不做个体画像。空间动作：慢行与无障碍断点提示。人工等价：人工陪行、纸面导视、电话入口始终保留。停止/退出：路线不连续、障碍未核实或提示冲突即停止并回到人工。</div>
     </div>
-    <div class="note">含 3 张产业测试验证场景（SC-02/03/08，高亮）。所有场景均为概念建议，不表述为已批准运营或已可全面部署。</div>
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-label">SC-09 · AI生活服务样板街（完整样板）</div>
+      <div class="card-note" style="margin-top:6px">公共问题：医疗/教育/法律生活服务检索与指引。输入：仅公开/已清权信息与用户主动提交的表单预填。AI能力：限信息解释、检索与表单预填；不做诊断、法律决定或权益裁量。人工等价：服务台、电话、纸面提供同任务服务。停止/退出：无来源回答、人工不可达、投诉未闭环或数据越界即停止。</div>
+    </div>
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-label">SC-12 · 机器人配送试点线（完整样板）</div>
+      <div class="card-note" style="margin-top:6px">公共问题：最后一公里配送与公共通行、无障碍冲突。输入：受限时段/区域试点参数（概念）。AI能力：受限、可监管、可撤的低速配送调度。人工等价：人工接管、手推车/人工配送与公共通行优先。停止/退出：越界、接管失效、无障碍/消防冲突、通信异常或退出责任缺失即停止并撤除设备/标识，恢复普通空间。</div>
+    </div>
+    <div class="grid g3">
+      <div class="card"><div class="card-label">SC-01 · 开源发布厅</div><div>原点社区·零点站</div><div style="margin-top:6px"><span class="pill p-scenario">品牌活动</span></div><div class="card-note" style="margin-top:6px">T1 · 人工审核发布；内容不合规即下架</div></div><div class="card"><div class="card-label">SC-02 · 自主模型测试沙盒</div><div>众智园</div><div style="margin-top:6px"><span class="pill p-scenario">产业测试验证</span></div><div class="card-note" style="margin-top:6px">T1 · 结果人工复核；数据脱敏失败即停</div></div><div class="card"><div class="card-label">SC-03 · 端侧算力驿站</div><div>总体设计范围节点</div><div style="margin-top:6px"><span class="pill p-scenario">产业测试验证</span></div><div class="card-note" style="margin-top:6px">T1 · 算力使用人工授权；未授权即停</div></div><div class="card"><div class="card-label">SC-05 · 国际路演客厅</div><div>大钟寺</div><div style="margin-top:6px"><span class="pill p-scenario">国际交往</span></div><div class="card-note" style="margin-top:6px">T1 · 涉外内容人工审核；合规未过即停</div></div><div class="card"><div class="card-label">SC-06 · 清河低碳创新廊</div><div>众智园临河界面</div><div style="margin-top:6px"><span class="pill p-scenario">蓝绿空间</span></div><div class="card-note" style="margin-top:6px">T1 · 生态防洪条件复核；未核即停</div></div><div class="card"><div class="card-label">SC-07 · 近校成果转化街</div><div>原点社区</div><div style="margin-top:6px"><span class="pill p-scenario">产业服务</span></div><div class="card-note" style="margin-top:6px">T1 · 知识产权人工审核；权属未清即停</div></div><div class="card"><div class="card-label">SC-08 · 数据要素会客厅</div><div>大钟寺</div><div style="margin-top:6px"><span class="pill p-scenario">产业测试验证</span></div><div class="card-note" style="margin-top:6px">T1 · 授权审计人工复核；授权缺失即停</div></div><div class="card"><div class="card-label">SC-10 · 全球AI活动周路线</div><div>一带公共空间系统</div><div style="margin-top:6px"><span class="pill p-scenario">运营品牌</span></div><div class="card-note" style="margin-top:6px">T1 · 活动安全人工审批；安全未过即停</div></div><div class="card"><div class="card-label">SC-11 · 无障碍关怀服务点</div><div>社区公共服务设施</div><div style="margin-top:6px"><span class="pill p-scenario">AI+公共服务</span></div><div class="card-note" style="margin-top:6px">T1 · 人工优先设备辅助；人工不可达即停</div></div>
+    </div>
+    <div class="note">含 3 张产业测试验证场景（SC-02/03/08）。tier 概念：T1 受控原型 → T2 真人群知情试点 → T3 日常服务；跨级即停。全部卡片当前为 T1 概念状态，不构成部署授权。所有场景均为概念建议，不表述为已批准运营或已可全面部署。</div>
   </section>
 
   <section>
@@ -214,7 +263,7 @@
     <h2>自检状态 <span class="en">Self-Check · self_check.json</span></h2>
     <table>
       <tr><th style="width:80px">结果</th><th style="width:190px">检查项</th><th>说明</th></tr>
-      <tr><td class="pass">PASS</td><td>BOUNDARY_TRUST</td><td>Provisional boundary is present and labeled provisional_constraint; replace with official redline before professional scoring. Recompute all layers and metrics after replacement.</td></tr><tr><td class="pass">PASS</td><td>KEY_AREAS_TRUST</td><td>Three required key areas (PROV-KEY-001/002/003) are present as provisional_constraint; replace with official polygons before professional scoring.</td></tr><tr><td class="pass">PASS</td><td>LAND_USE_TOPOLOGY</td><td>Land-use polygons fully partition the submitted site boundary without gaps or overlaps (verified with shapely unary_union in EPSG:4326 and area recomputation in EPSG:4548).</td></tr><tr><td class="pass">PASS</td><td>BUILDING_PLACEMENT</td><td>Representative building footprints lie inside the site boundary and do not overlap green-space polygons.</td></tr><tr><td class="pass">PASS</td><td>PHASING_PARTITION</td><td>Phasing polygons fully partition the site boundary without gaps or overlaps; phase areas sum to the site area.</td></tr><tr><td class="pass">PASS</td><td>VISUAL_STATIC</td><td>Static offline HTML visualization generated without CDN, remote tiles, external scripts, fonts, iframes, forms or API calls; metric values match metrics.json.</td></tr><tr><td class="pass">PASS</td><td>PROFESSIONAL_EVIDENCE</td><td>Proposal includes readable narrative covering the six agent tasks, 10+ scenario cards, 3+ test scenarios, 5+ personas, 3+ pilgrimage landmarks, with claim-adjacent evidence markers referencing sources, standards, depth items, geometry and metrics.</td></tr><tr><td class="pass">PASS</td><td>BILINGUAL_CONTRACT</td><td>Bilingual contract version 1 declared; proposal.en.md provided as equivalent standalone translation with aligned sections, claims, metrics, evidence references and figure positions.</td></tr><tr><td class="pass">PASS</td><td>DATA_GAP</td><td>Official boundary, regulatory controls, existing buildings, ownership, municipal and transport engineering data gaps are recorded as pending items; organizer data gaps do not block content scoring.</td></tr>
+      <tr><td class="pass">通过</td><td>BOUNDARY_TRUST</td><td>临时边界存在且标记为 provisional_constraint；正式专业评审前须以官方红线替换，替换后全部图层与指标整体重算。</td></tr><tr><td class="pass">通过</td><td>KEY_AREAS_TRUST</td><td>三处重点区（PROV-KEY-001/002/003）已作为临时约束存在；正式评审前以官方 polygon 替换。</td></tr><tr><td class="pass">通过</td><td>LAND_USE_TOPOLOGY</td><td>用地多边形无缝完全覆盖提交边界，无缝隙无重叠（shapely 于 EPSG:4326 校验、EPSG:4548 复算面积）。</td></tr><tr><td class="pass">通过</td><td>BUILDING_PLACEMENT</td><td>代表性建筑基底位于场地内且不重叠绿地图斑。</td></tr><tr><td class="pass">通过</td><td>PHASING_PARTITION</td><td>分期多边形无缝完全覆盖场地边界，分期面积合计等于场地面积。</td></tr><tr><td class="pass">通过</td><td>VISUAL_STATIC</td><td>离线静态 HTML 无 CDN、远程瓦片、外部脚本、字体、iframe、表单或 API；指标值与 metrics.json 一致。</td></tr><tr><td class="pass">通过</td><td>PROFESSIONAL_EVIDENCE</td><td>正文覆盖六项 agent 任务、10+ 场景卡、3+ 测试场景、5+ 画像、3+ 朝圣地标，带来源/标准/深度/图层/指标证据标记。</td></tr><tr><td class="pass">通过</td><td>BILINGUAL_CONTRACT</td><td>双语契约版本 1；proposal.en.md 作为等义独立翻译，章节、主张、指标、证据引用与图位对齐。</td></tr><tr><td class="pass">通过</td><td>DATA_GAP</td><td>官方边界、控规条件、现状建筑、权属、市政与交通工程数据缺口已登记为待补项；组织方数据缺口不阻断内容评分。</td></tr>
     </table>
   </section>
 
@@ -230,7 +279,7 @@
   </section>
 
   <footer>
-    京张·新轨 JingZhang NewTrack · submissions/gr-87/jingzhang-ai-new-track · proposal v2 / 双语 contract v1<br/>
+    京张·新轨 JingZhang NewTrack · submissions/gr-87/jingzhang-ai-new-track · proposal v2 / 双语 contract v1 · JZ-CHAIN-001 机制契约 v0.2<br/>
     本展示页所有空间结论均为概念建议/参考方案，不替代正式规划，不构成政府审定结论 · 边界为临时粗略范围
   </footer>
 </div>

@@ -72,5 +72,39 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot"]
             self.assertIn("企业服务 Copilot", html)
 
 
+
+    def test_scenario_card_has_human_review_field(self) -> None:
+        """Every scenario card must declare a non-empty human_review requirement."""
+        registry = load_scenario_registry(REPO_ROOT)
+        for scenario_id, scenario in registry.items():
+            with self.subTest(scenario_id=scenario_id):
+                self.assertIn(
+                    "human_review",
+                    scenario,
+                    f"{scenario_id} is missing 'human_review' field",
+                )
+                self.assertTrue(
+                    scenario["human_review"],
+                    f"{scenario_id}.human_review must be a non-empty string describing required oversight",
+                )
+
+    def test_scenario_track_references_are_valid(self) -> None:
+        """Each scenario track references must match a registered track ID."""
+        registry = load_scenario_registry(REPO_ROOT)
+        track_registry = load_track_registry(REPO_ROOT)
+        valid_track_ids = set(track_registry.keys())
+        for scenario_id, scenario in registry.items():
+            tracks = scenario.get("tracks") or []
+            if isinstance(tracks, str):
+                tracks = [t.strip() for t in tracks.split(",") if t.strip()]
+            for track_id in tracks:
+                with self.subTest(scenario_id=scenario_id, track_id=track_id):
+                    self.assertIn(
+                        track_id,
+                        valid_track_ids,
+                        f"{scenario_id} references unknown track '{track_id}'",
+                    )
+
+
 if __name__ == "__main__":
     unittest.main()

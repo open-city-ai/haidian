@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Design every handover—from prototype to public service, machine to human, day to night, and construction to operation—as a visible, accountable, and reversible urban interface."
 tracks: ["civic-agent-governance", "ai-public-services", "ai-traffic-walkability"]
 scenarios: ["ai-cultural-guide", "ai-health-service-navigation", "ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
-iteration: "v0.1"
+iteration: "v0.3"
 ---
 
 # HANDOVER JING-ZHANG
@@ -81,6 +81,26 @@ All three Key Areas share a “Handover Table.” One side shows the present tas
 ![The three Handover Yards and their deliverables](assets/figures/key-areas.en.png)
 
 Three AI pilgrimage and honor nodes are the First Artifact Signal Tower, Open-Source Handover Clock, and Civic Relay Wall. They do not celebrate a single firm or a myth of inevitable technology. They show a verifiable public contribution: who proposed, validated, maintained, corrected, and retired an artifact. Displays distinguish submission, review, pilot, adoption, and retirement. A person or organization is named only with permission; otherwise the role and method remain anonymous.
+
+### Node-level spatial evidence
+
+Each Key Area now resolves into three locatable concept nodes, nine in total (`SC-01`—`SC-09`), matched one-to-one with `HANDOVER-NODE-01`—`09` in `geometry/public_space.geojson`. Zhongzhiyuan's `SC-01` intake porch, `SC-02` isolated test court, and `SC-03` repair class table retain a human window, paper status card, maintenance logistics, and ordinary walking. The AI Origin Community's `SC-04` account-free learning table, `SC-05` open-source maintenance table, and `SC-06` knowledge-translation window put rights review and accessible explanation at the entrance. Dazhongsi's `SC-07` human adoption desk, `SC-08` cultural-guide loop, and `SC-09` night-maintenance point make complaints, fact review, clearance, and night maintenance spatial obligations. Node properties, entry–human window–non-digital route–maintenance line–ordinary post-exit service are recorded in `visual/assets/spatial-components.json`; drawings show north, scale, and existing/inferred/design layer keys.
+
+## AI-OFF: the city still works — contracts, gates, and the first 12 weeks
+
+Handover is now a checkable machine artifact rather than a narrative promise. `visual/assets/handover-contracts.json` contains twelve contract cards. Each card names the no-AI ordinary-service baseline, bounded AI role, allowed/prohibited data, spatial carrier, suggested accountable role, human takeover, hard stop, AI-OFF route, data deletion, recovery evidence, review window, and public assets retained after exit. `governance-raci.json` names ten suggested role types and stop authority; none is presented as an already authorized government body. `implementation-gates.json` connects project gates G0–G7 and scenario gates C0–C7 to the contracts and evidence.
+
+The first 12 weeks move from a no-AI baseline through small reversible BOOST trials, human review, BLACKOUT rehearsal, and BEQUEST review. Week 0 fixes the baseline and deletion rule; weeks 1–4 verify data, accessibility, safety, and named receivers; weeks 5–8 open only supervised reversible services; weeks 9–11 rehearse stop and exit; week 12 decides expansion, revision, or retirement through an independent review role. Nine H01–H09 renewal projects bind maintenance actions, KPIs, and exit conditions. Five regional interfaces are explicitly `proposal_to_verify`; they are not cooperation or funding claims. [data:visual/assets/first-12-weeks.json] [data:visual/assets/implementation-gates.json] [data:visual/assets/renewal-projects.json] [data:visual/assets/regional-interfaces.json]
+
+The offline `unplugged-runner.js` deterministically runs 12 scenarios × 7 branches = 84 synthetic tabletop branches: 12 complete contracts enter authorized review, 60 missing-field or prohibited-data branches are blocked, and 12 AI-OFF branches enter public-bequest review. Its output declares zero real personal data and `field_performance: null`; synthetic tests are not presented as field performance. The weighted review dimensions and their links to prose, drawings, GeoJSON, and JSON artifacts are indexed in `review-evidence-map.json`; the privacy, safety, accessibility, heritage, maintenance, copyright, public-acceptance, and implementation risk register is `risk.json`. [data:visual/assets/unplugged-tabletop-evidence.json] [metric:evidence_branch_count] [depth:handover_contract_system]
+
+Media only carries the state narrative and does not replace spatial evidence. `assets/media/handover-walkthrough.mp4` is a silent, approximately 40-second concept sequence through BASE, BOOST, BLACKOUT, and BEQUEST. The cover, three Key-Area experience images, VTT captions, and bilingual transcript are marked `concept / presentation_only`; rights limits are recorded in `report/copyright_statement.md`.
+
+### v0.3 modern presentation layer
+
+This iteration uses a “public-design base + Neo-civic OS console.” Paper, rail blue, and heritage copper retain planning legibility; deep navy, cyan, and orange are reserved for states, stop authority, and evidence feedback. The first screen moves through `BASE → BOOST → BLACKOUT → BEQUEST`: ordinary service, bounded AI, human stop, and public return. State chips, node pulses, and evidence panels point back to contracts, GeoJSON, metrics, or the 84 unplugged replays; no live data is invented.
+
+`visual/index.html` and `visual/index.en.html` now provide keyboard-operable state switching, a contract selector, `SC-01`—`SC-09` node linkage, the 84-branch test summary, the first-12-weeks timeline, human-window/AI-OFF paths, and reduced-motion support. The modernization changes only the explanatory layer; it does not replace A3/A0 boards, professional drawings, structured spatial data, or the proposal’s judgments.
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 

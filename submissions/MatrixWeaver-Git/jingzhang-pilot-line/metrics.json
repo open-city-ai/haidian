@@ -1,0 +1,390 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.385553982,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(transform(submitted_provisional_site_boundary, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 336695.321553969,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area(transform(building_footprints, EPSG:4548)))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-EXISTING-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 593964.326183592,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(transform(green_space, EPSG:4548)))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.052043583,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 124442.561362296,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(transform(public_space, EPSG:4548)))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.010903747,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 10745.491875405,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(transform(road_centerlines, EPSG:4548)))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-ROAD-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_area_features)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "building_count": {
+      "status": "known",
+      "value": 12.0,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(conceptual_building_footprints)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-EXISTING-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12.0,
+      "unit": "count",
+      "source_files": [
+        "brief/site-package/agent_taskbook.json",
+        "visual/assets/evidence-passports.json"
+      ],
+      "formula": "count(approved_scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_0802_area_sqm": {
+      "status": "known",
+      "value": 1836729.404239577,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use_code=0802, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "land_use_1401_area_sqm": {
+      "status": "known",
+      "value": 2014464.823696992,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use_code=1401, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "land_use_0805_area_sqm": {
+      "status": "known",
+      "value": 2084673.835269204,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use_code=0805, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "land_use_0701_area_sqm": {
+      "status": "known",
+      "value": 1942245.672033485,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use_code=0701, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "land_use_0806_area_sqm": {
+      "status": "known",
+      "value": 1766551.305232672,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use_code=0806, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "land_use_1207_area_sqm": {
+      "status": "known",
+      "value": 1768160.345079098,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use_code=1207, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "phase_0_12_area_sqm": {
+      "status": "known",
+      "value": 4229811.537039251,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(phase=phase_0_12, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DELIVERY-001"
+      ]
+    },
+    "phase_12_36_area_sqm": {
+      "status": "known",
+      "value": 3752656.775353365,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(phase=phase_12_36, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DELIVERY-001"
+      ]
+    },
+    "phase_36_plus_area_sqm": {
+      "status": "known",
+      "value": 3430357.073164805,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(phase=phase_36_plus, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DELIVERY-001"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001",
+        "A-EXISTING-001"
+      ],
+      "reason": "Official development-intensity controls, surveyed existing floorspace and an official site boundary are unavailable."
+    },
+    "regulated_building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "official_height_control_from_approved_planning_documents",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-HERITAGE-001"
+      ],
+      "reason": "No approved height-control plan is available; the submission makes only massing principles, not a regulated height claim."
+    },
+    "time_to_pilot": {
+      "status": "unknown",
+      "value": null,
+      "unit": "days",
+      "source_files": [
+        "visual/assets/evidence-passports.json"
+      ],
+      "formula": "Date of first live trial minus date of open challenge publication.",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-DELIVERY-001"
+      ],
+      "reason": "Baseline required: the first operating period will establish auditable timestamps and denominators before publishing trends.",
+      "collection_method_zh": "首期逐项目记录命题、准入和首次实测时间戳。",
+      "collection_method_en": "Record challenge, admission and first-trial timestamps for every launch project.",
+      "data_owner_zh": "京张中试线联合办公室",
+      "data_owner_en": "Jing-Zhang Pilot Line Joint Office"
+    },
+    "evidence_reuse_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/evidence-passports.json"
+      ],
+      "formula": "Evidence items validly reused by later projects divided by all reusable evidence items.",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-DELIVERY-001"
+      ],
+      "reason": "Baseline required: the first operating period will establish auditable timestamps and denominators before publishing trends.",
+      "collection_method_zh": "证据护照记录来源项目、复用项目和重新验证状态。",
+      "collection_method_en": "Evidence passports record origin project, reuse project and revalidation status.",
+      "data_owner_zh": "开放工具维护组",
+      "data_owner_en": "Open-tool maintenance group"
+    },
+    "failure_closure_time": {
+      "status": "unknown",
+      "value": null,
+      "unit": "days",
+      "source_files": [
+        "visual/assets/evidence-passports.json"
+      ],
+      "formula": "Remediation closure time minus first confirmed risk time.",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-DELIVERY-001"
+      ],
+      "reason": "Baseline required: the first operating period will establish auditable timestamps and denominators before publishing trends.",
+      "collection_method_zh": "失效库保存风险确认、整改、复测和关闭时间戳。",
+      "collection_method_en": "The failure library stores confirmation, remediation, retest and closure timestamps.",
+      "data_owner_zh": "独立评测与项目责任方",
+      "data_owner_en": "Independent evaluator and project owner"
+    },
+    "delivery_readiness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/evidence-passports.json"
+      ],
+      "formula": "Projects with procurement, operations, training, liability and exit materials divided by projects entering delivery review.",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-DELIVERY-001"
+      ],
+      "reason": "Baseline required: the first operating period will establish auditable timestamps and denominators before publishing trends.",
+      "collection_method_zh": "交付就绪清单逐项核验，不以展示通过替代材料完整。",
+      "collection_method_en": "Verify each readiness item; a successful demo does not substitute for complete materials.",
+      "data_owner_zh": "大钟寺交付评审组",
+      "data_owner_en": "Dazhongsi delivery review panel"
+    },
+    "shared_facility_utilization": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/evidence-passports.json"
+      ],
+      "formula": "Valid test-use time divided by bookable open time.",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-DELIVERY-001"
+      ],
+      "reason": "Baseline required: the first operating period will establish auditable timestamps and denominators before publishing trends.",
+      "collection_method_zh": "首期建立预约、取消、故障停机和有效使用的统一口径。",
+      "collection_method_en": "Establish common definitions for bookings, cancellations, downtime and valid use during launch.",
+      "data_owner_zh": "三站设施运营方",
+      "data_owner_en": "Three station facility operators"
+    }
+  }
+}

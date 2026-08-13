@@ -1,0 +1,251 @@
+{
+  "schema_version": "1.0.0",
+  "claim_level": "deterministic_protocol_tests_not_field_validation",
+  "passed": 24,
+  "total": 24,
+  "ok": true,
+  "cases": [
+    {
+      "name": "normal_path",
+      "expected_ok": true,
+      "actual_ok": true,
+      "pass": true,
+      "errors": []
+    },
+    {
+      "name": "release_skips_test",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[1]: illegal transition TEST_PENDING -> RELEASE_PASS",
+        "event[1]: RELEASE requires a valid PASS Test Receipt"
+      ]
+    },
+    {
+      "name": "test_receipt_used_as_release",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[2]: ticket type/decision does not match RELEASE_PASS",
+        "event[2]: duplicate ticket id",
+        "event[2]: duplicate ticket hash",
+        "event[2]: release upstream hash is broken",
+        "event[2]: incomplete rights must HOLD",
+        "event[4]: verdict upstream hash is broken"
+      ]
+    },
+    {
+      "name": "release_ticket_used_as_verdict",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[4]: ticket type/decision does not match USE_OPEN",
+        "event[4]: duplicate ticket id",
+        "event[4]: duplicate ticket hash",
+        "event[4]: verdict upstream hash is broken",
+        "event[4]: USE_OPEN requires staffed and non-AI equivalent service"
+      ]
+    },
+    {
+      "name": "missing_human_signoff",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[2]: human signoff missing",
+        "event[4]: verdict upstream hash is broken"
+      ]
+    },
+    {
+      "name": "expired_ticket",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[1]: ticket expired",
+        "event[2]: release upstream hash is broken"
+      ]
+    },
+    {
+      "name": "product_version_changed",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[2]: configuration changed after TEST",
+        "event[4]: verdict upstream hash is broken",
+        "event[4]: route or configuration changed after RELEASE"
+      ]
+    },
+    {
+      "name": "model_version_changed",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[2]: configuration changed after TEST",
+        "event[4]: verdict upstream hash is broken",
+        "event[4]: route or configuration changed after RELEASE"
+      ]
+    },
+    {
+      "name": "map_changed",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[2]: configuration changed after TEST",
+        "event[4]: verdict upstream hash is broken",
+        "event[4]: route or configuration changed after RELEASE"
+      ]
+    },
+    {
+      "name": "route_changed",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[2]: configuration changed after TEST",
+        "event[4]: verdict upstream hash is broken",
+        "event[4]: route or configuration changed after RELEASE"
+      ]
+    },
+    {
+      "name": "config_changed",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[2]: configuration changed after TEST",
+        "event[4]: verdict upstream hash is broken",
+        "event[4]: route or configuration changed after RELEASE"
+      ]
+    },
+    {
+      "name": "broken_upstream_hash",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[2]: release upstream hash is broken",
+        "event[4]: verdict upstream hash is broken"
+      ]
+    },
+    {
+      "name": "rights_incomplete",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[2]: incomplete rights must HOLD",
+        "event[4]: verdict upstream hash is broken"
+      ]
+    },
+    {
+      "name": "withdrawal_owner_missing",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[2]: incomplete rights must HOLD",
+        "event[4]: verdict upstream hash is broken"
+      ]
+    },
+    {
+      "name": "staff_absent",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[4]: USE_OPEN requires staffed and non-AI equivalent service"
+      ]
+    },
+    {
+      "name": "non_ai_equivalent_absent",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[4]: USE_OPEN requires staffed and non-AI equivalent service"
+      ]
+    },
+    {
+      "name": "verdict_hash_chain_broken",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[4]: verdict upstream hash is broken"
+      ]
+    },
+    {
+      "name": "valid_complaint_return_and_retest",
+      "expected_ok": true,
+      "actual_ok": true,
+      "pass": true,
+      "errors": []
+    },
+    {
+      "name": "complaint_return_without_task",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[5]: complaint RETURN requires a review task"
+      ]
+    },
+    {
+      "name": "rollback_failed",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[5]: RETURN requires completed rollback"
+      ]
+    },
+    {
+      "name": "illegal_use_after_return",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[6]: illegal transition RETURN -> USE_OPEN",
+        "event[6]: duplicate ticket id",
+        "event[6]: duplicate ticket hash"
+      ]
+    },
+    {
+      "name": "illegal_release_after_return",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[6]: illegal transition RETURN -> RELEASE_PASS",
+        "event[6]: duplicate ticket id",
+        "event[6]: duplicate ticket hash"
+      ]
+    },
+    {
+      "name": "technical_fail_cannot_release",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[2]: illegal transition TEST_FAIL -> RELEASE_PASS",
+        "event[2]: RELEASE requires a valid PASS Test Receipt"
+      ]
+    },
+    {
+      "name": "tampered_fail_history_not_overwritten",
+      "expected_ok": false,
+      "actual_ok": false,
+      "pass": true,
+      "errors": [
+        "event[2]: illegal transition TEST_FAIL -> TEST_PASS"
+      ]
+    }
+  ]
+}

@@ -1158,13 +1158,13 @@ This section lists all cited sources, applicable standards and international cas
 
 ### International cases
 
-- C1 Kendall Square / MIT (United States, Cambridge MA, 2010s—) - MIT Kendall Square Initiative and City of Cambridge planning.
-- C2 Knowledge Quarter / King's Cross (United Kingdom, London, 2014—) - Knowledge Quarter consortium public materials and King's Cross developer disclosures.
-- C3 Station F (France, Paris, 2017—) - Station F official public information.
-- C4 one-north (Singapore, 2001—) - JTC and Singapore planning agency public materials.
-- C5 MaRS Discovery District (Canada, Toronto, 2005—) - MaRS official public materials.
-- C6 Kashiwa-no-ha Smart City (Japan, Kashiwa, 2014—) - Kashiwa-no-ha public-private-academic consortium public materials.
-- C7 Maria 01 (Finland, Helsinki, 2016—) - Maria 01 official public materials.
-- C8 河套深港科技创新合作区 (China, Shenzhen, 2023—) - Published development plan for the Shenzhen park of the Hetao cooperation zone.
+- C1 Kendall Square / MIT (United States, Cambridge MA, 2010s—) - MIT Kendall Square Initiative and City of Cambridge planning. [source:CASE-C1-KENDALL-SQUARE] public: https://en.wikipedia.org/wiki/Kendall_Square
+- C2 Knowledge Quarter / King's Cross (United Kingdom, London, 2014—) - Knowledge Quarter consortium public materials and King's Cross developer disclosures. [source:CASE-C2-KINGS-CROSS] public: https://en.wikipedia.org/wiki/King%27s_Cross
+- C3 Station F (France, Paris, 2017—) - Station F official public information. [source:CASE-C3-STATION-F] public: https://en.wikipedia.org/wiki/Station_F
+- C4 one-north (Singapore, 2001—) - JTC and Singapore planning agency public materials. [source:CASE-C4-ONE-NORTH] public: https://en.wikipedia.org/wiki/One-north
+- C5 MaRS Discovery District (Canada, Toronto, 2005—) - MaRS official public materials. [source:CASE-C5-MARS] public: https://en.wikipedia.org/wiki/MaRS_Discovery_District
+- C6 Kashiwa-no-ha Smart City (Japan, Kashiwa, 2014—) - Kashiwa-no-ha public-private-academic consortium public materials. [source:CASE-C6-KASHIWA] public: https://www.kashiwanoha-smartcity.jp/en/
+- C7 Maria 01 (Finland, Helsinki, 2016—) - Maria 01 official public materials. [source:CASE-C7-MARIA-01] public: https://maria.io/
+- C8 河套深港科技创新合作区 (China, Shenzhen, 2023—) - Published development plan for the Shenzhen park of the Hetao cooperation zone. [source:CASE-C8-HETAO] public: https://www.sz.gov.cn/
 
 Case citations are limited to publicly documented features of spatial organisation and governance and involve no non-public operating data. Citation implies no partnership, authorisation or endorsement by the organisations concerned.

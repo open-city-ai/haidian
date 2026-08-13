@@ -8,7 +8,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Five-Way Symbiosis Protocol: Inherited (heritage+AI), Campus-Industry, Human-AI Intelligence, Blue-Green, and Day-Night symbiosis. 24 buildings x 20 road segments x 5 green spaces x 6 public spaces covering 12 scenario cards (seven-field matrix with credential IDs), 5+5 user personas, 3 AI landmarks, 8 action packages with cost/duration/approval matrix, building retain-renovate-demolish decision tree, 6-row data baseline from Haidian 2025 statistics (GDP 1.37T, 37 universities, 2000+ AI companies), spatial morphology derived from 4 railway geometric genes. All areas recomputed in EPSG:4548 with provisional boundaries disclosed. Self-check PASS."
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "civic-agent-governance"]
 scenarios: ["ai-cultural-guide", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v0.16"
+iteration: "v0.17"
 translation_of: "proposal.md"
 ---
 

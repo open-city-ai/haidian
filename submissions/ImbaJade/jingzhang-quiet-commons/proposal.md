@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
-version: "1.0"
+version: "1.2"
 summary: "以声音、光与眩光、热、人群、速度和信息六类负荷为对象，建立可选择、可退出、可人工接管且有无 AI 等价路径的京张创新带公共空间系统；全部空间几何明确为 provisional。"
 tracks: ["youth-friendly-public-space", "ai-public-services", "jingzhang-heritage-narrative"]
 scenarios: ["ai-cultural-guide", "ai-health-service-navigation", "ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
@@ -51,6 +51,12 @@ scenarios: ["ai-cultural-guide", "ai-health-service-navigation", "ai-traffic-wal
 
 视觉识别以两条平行“京张轨”被柔软静域和道岔打断为母题，午夜墨、雾灰、低饱和玉色与信号琥珀构成高对比系统。“静域道岔”“万径共译室”“共息钟”分别代表选择、等价沟通与共同节律，既是地标，也是可操作的公共界面。[depth:height_massing_character]
 
+下列网络、活动、目标值和角色均为概念建议及试点设计，可供相关主体选择、核验与深化；不表示已建立合作、已取得预算、已获审批或已形成政府安排。区域协同图是五个“可加入接口”：北纬社区回送去标识问题与导视修订；未来科学城协作把研究问题转为版本化测试协议；怀柔科学城协作多模科学共译；经开区检查设备到运维的转化负担；京津冀节点验证协议的可移植性与地方化。交换物限于公开问题单、测试协议、去标识化结果和可复用组件，不交换个人画像。[source:DATA-SRC-AGENT-TASKBOOK-20260518] [assumption:A-REGIONAL-INTERFACE-001] [metric:regional_synergy_interface_count]
+
+八要素不是资源许愿清单，而是进入公共试点前的八道交换门：土地只做权属、规划、文保和安全前置核验；空间使十二道岔各有状态、退出与人工帮助；产业以公共问题与成熟度门组织；资金需启动前核定成本档、付款角色和止损门；人才以八类待共创画像与运维视角共同参与；算力采环境级、端侧优先且断网仍有等价服务；数据限定目的、字段与保留；场景十二卡进入四项分阶段验证，不等同部署。[assumption:A-ECOSYSTEM-TARGET-001] [metric:ecosystem_factor_coverage_count]
+
+主标由两条平行京张轨和一枚向共享空白打开的道岔构成，规范中英横版、中英竖版、纯符号、单色/反白四类版本；最小屏幕符号 24 px、印刷 8 mm，安全留白为一个轨距单元。六类感官符号为声波、分光、热弧、三点人群、双向速度与信息栈；始终配文字，不以琥珀色作唯一状态编码。文化分为“开路与养护—共知与共译—共治与共息”三幕，所有历史日期、人物和图像必须通过来源与权利核验后才进入展陈。[assumption:A-BRAND-HERITAGE-001] [metric:identity_variant_count] [metric:culture_act_count]
+
 ## 总体设计范围城市更新与控规深度城市设计
 
 总体设计先承认资料边界：现状地块、产权、建筑质量、交通流量、市政容量和法定控制没有进入清权公开包，因此方案不生成伪现状和伪控规。设计层采用完整无缝的六类概念分区，作为功能程序与感官负荷组织，而不是用地审批建议；建筑层只画九个可讨论原型包络；道路层只画慢行和轨道接驳中心线，不声明道路红线。[assumption:A-EXISTING-DATA-001] [standard:MOHURD-CONTROL-DETAILED-PLANNING]
@@ -72,6 +78,12 @@ scenarios: ["ai-cultural-guide", "ai-health-service-navigation", "ai-traffic-wal
 **大钟寺｜节律生活站。** 商业、共享办公和社区服务按公开时刻表切换常规、低刺激与活动模式；照明调整需人工批准，夜间物流采用低速、低眩光和声光协同窗口。固定人工窗口与模拟导视始终开放，“共息钟”显示下一次模式变化及现场负责人，而不是追踪个体。[data:geometry/key_areas.geojson#PROV-KEY-003] [metric:dazhongsi_announced_area_sqm]
 
 ![三重点区原型：设备测试、共译学习与节律生活](assets/figures/key-areas.png)
+
+![众智园设备静标场合成概念场景：可见测试边界、实体急停、人工安全主管与人工搬运等价路径；非场地现状或建成效果](assets/media/zhongzhiyuan-test-yard-v1.2.webp)
+
+![AI 原点万径共译室合成概念场景：触觉路径、人工服务、安静学习与可选择庭院；非现状证据或审批方案](assets/media/ai-origin-translation-room-v1.2.webp)
+
+![大钟寺节律生活站合成概念场景：共息钟、低眩光夜间界面、人工服务与人工物流备用；非建成效果或运营承诺](assets/media/dazhongsi-rhythm-station-v1.2.webp)
 
 三个临时 polygon 的几何面积与公告文字面积约束接近，但四至仍然未知，矩形边不得解释为道路或地块边界。细化到建筑、消防、商业运营和轨道站一体化之前，需要正式 polygon、现状测绘、产权、市政、客流与专业安全评估。[depth:three_key_area_detailed_design] [assumption:A-BOUNDARY-001]
 
@@ -136,6 +148,8 @@ scenarios: ["ai-cultural-guide", "ai-health-service-navigation", "ai-traffic-wal
 
 实施阶段的参与主体包括规划团队、运营团队、高校、企业、社区居民、无障碍测试者和维护者；可衡量指标覆盖接管时长、等价完成率、停止原因、冲突恢复与维护积压。近期试点、中期标准化与远期网络扩展均以这些指标决定继续、修改或撤回，而不是以部署数量替代公共成效。
 
+试点数字均为 `design_target`，不是已完成结果；基线、专业阈值、招募、同意/撤回和统计充分性均需独立复核。进入下一阶段至少连续两轮通过全部硬门并经人工复核；任何伤害、重大近失、急停失败、权益错误或未经批准的数据处理立即 `STOP`，不等待累计次数。[assumption:A-PILOT-PROTOCOL-001] [metric:pilot_protocol_complete_count]
+
 | 试点 | 建议周期 | 停止/退出门 | 人工责任与无 AI 等价 | 复盘指标 |
 | --- | --- | --- | --- | --- |
 | 设备感官足迹与急停 | 6周、闭场到限时开放 | 急停失败、越界、眩光或表面热超出经审查门槛 | 安全主管；人工搬运/固定设备演示 | 急停成功、人工接管时间、投诉与近失事件 |
@@ -143,9 +157,18 @@ scenarios: ["ai-cultural-guide", "ai-health-service-navigation", "ai-traffic-wal
 | AI公共服务与人工接管 | 8周、限定服务事项 | 权益错误、字幕/翻译置信不足、人工窗口不可用 | 服务主管；完整人工办理与纸质信息 | 等价完成率、接管率、等待与纠错 |
 | 夜间物流声光速协同 | 6周、限定路线窗口 | 超速、强眩光、噪声异常或行人优先失效 | 夜班调度；人工配送与停止窗口 | 异常次数、暂停响应、声光速合规 |
 
+| 协议 | 基线 | 样本设计目标 | 硬门与责任 |
+| --- | --- | --- | --- |
+| P1 设备感官足迹 | 设备关闭环境读数＋人工搬运 | 3 种模式×每种 10 次急停，≥30 次 | 30/30 实体急停；0 越界/高严重度近失；安全主管负责 |
+| P2 空间模式切换 | 固定模式与退出路径 | ≥24 次自愿引导体验，覆盖八类画像或倡导者 | 文字/图形/人工三路状态；绕行与正当活动替代 100% 可用 |
+| P3 AI 服务与接管 | 纯人工完成、等待与纠错 | 3 类非权益任务、≥60 脚本案例、≥24 次体验 | 权益/付款/身份/低置信 100% 转人工；纸质路径 100% 可用 |
+| P4 夜间物流 | 人工配送声光速、冲突与等待 | 人工与设备合计≥40 次路线循环 | 行人优先/路线合规/异常暂停 100%；阈值未确认不公测 |
+
 一期以十二道岔中的低成本物理标识、人工服务和四试点为主；二期把验证通过的构件写入公共空间、采购、运维与无障碍标准；三期在官方边界和专业规划基础上扩展网络。三期 polygon 是工作分区而非建设时序批准，任何项目都要通过产权、预算、审批和公众审议。[data:geometry/phasing.geojson#PHASE-001] [depth:phasing_implementation]
 
 运营节律为“静域周—季度开放测试—年度标准复盘”。季度报告至少公布设备可用率、人工接管、无 AI 路径可用性、停止原因、维护积压和共同设计未解决事项；年度复盘由公众、维护、无障碍、运营、规划和法务共同决定继续、修改或撤回。[metric:human_handoff_pilot_count] [metric:non_ai_equivalent_pilot_count]
+
+年度制度分四模块：Q1 静域协议季产出问题账本、测试简报与退出条件；Q2 开放测试季公布基线、故障、接管与撤回；Q3 静域周形成可访问路线、反馈摘要和贡献名录；Q4 标准与维护大会版本化协议并公布维护积压与撤回清单。每个试点启动前必须登记公共问题提出者、开发者 steward、无障碍共创者、运维安全 steward、数据与权利复核者五席。转化漏斗是“公共问题单—证据/权利/成熟度筛查—闭场或合成数据沙盒—监督公共试点—开放协议/标准候选—有权主体独立的采购、复制或退出决定”。退出漏斗不是失败；任何阶段均不保证资金、合同、政策、采购或推广。[metric:annual_program_module_count] [metric:conversion_stage_count] [assumption:A-ECOSYSTEM-TARGET-001]
 
 ## 指标体系、面积复算与合规矩阵
 
@@ -164,7 +187,7 @@ scenarios: ["ai-cultural-guide", "ai-health-service-navigation", "ai-traffic-wal
 
 23条合规任务、9项标准响应和15项设计深度均在 JSON 中逐条连接；`complete` 表示本成果已回应该审查项，包括明确披露数据缺口，不表示缺失的法定控制已经取得。A3 14页和A0 7页中英成对，五张含文字图均有 `.en` 版，离线展示支持图层、重点区、场景筛选、键盘、减弱动态和高对比模式。[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [depth:risk_missing_data]
 
-对外状态统一为：“机器门禁与内容审稿就绪；空间几何为 provisional；official polygons / professional scoring eligibility pending。”在 official polygon 发布、专业评审或组织方明确前，不自称获得正式评分、边界确认或实施承诺。[metric:manual_stop_pilot_count] [source:PROCESSED-FACT-PACK]
+对外状态统一为：“内容评审契约就绪；空间几何为 provisional；待主办方内容审评。”缺失的 official polygons 不阻断内容评分，但仍必须保持临时标识并在发布后全量复算。在主办方审评前，不自称获得新评分、边界确认或实施承诺。[metric:manual_stop_pilot_count] [source:PROCESSED-FACT-PACK]
 
 ## 风险、版权与合规说明
 

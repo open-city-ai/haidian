@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="《Jing-Zhang School-Enterprise Co-Creation Belt: From Kilometer Zero to the Nine-Kilometer Commons》Offline proposal visualization, Full-line stations in metro-map language, Three-level scope, Co-creation mechanism and evidence metrics。">
+  <link rel="icon" href="data:,">
+  <title>Jing-Zhang School-Enterprise Co-Creation Belt: From Kilometer Zero to the Nine-Kilometer Commons</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink-strong: #11253a;
+      --ink: #23384c;
+      --ink-soft: #607083;
+      --paper: #f5f1e8;
+      --surface: #fffdf8;
+      --surface-blue: #eaf3f5;
+      --surface-red: #f8e8e3;
+      --surface-amber: #fff2d2;
+      --line: #d7d1c4;
+      --line-strong: #aaa394;
+      --mainline: #c53b32;
+      --mainline-dark: #8f2824;
+      --transfer: #196a96;
+      --transfer-soft: #83b7c8;
+      --bluegreen: #187d78;
+      --bluegreen-soft: #a9d2c4;
+      --key: #d58b21;
+      --key-dark: #88510c;
+      --white: #ffffff;
+      --shadow: 0 1rem 3rem rgba(29, 53, 68, .1);
+      --radius-sm: .5rem;
+      --radius-md: .875rem;
+      --radius-lg: 1.5rem;
+      --space-1: .25rem;
+      --space-2: .5rem;
+      --space-3: .75rem;
+      --space-4: 1rem;
+      --space-5: 1.5rem;
+      --space-6: 2rem;
+      --space-7: 3rem;
+      --space-8: 4rem;
+      --text-xs: .75rem;
+      --text-sm: .875rem;
+      --text-base: 1rem;
+      --text-lg: 1.25rem;
+      --text-xl: clamp(1.75rem, 3vw, 2.5rem);
+      --text-display: clamp(2.5rem, 6.5vw, 5.8rem);
+      --measure: 66ch;
+      --page: 82rem;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(213, 139, 33, .13), transparent 26rem),
+        linear-gradient(rgba(17, 37, 58, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(17, 37, 58, .025) 1px, transparent 1px),
+        var(--paper);
+      background-size: auto, 2rem 2rem, 2rem 2rem, auto;
+      color: var(--ink);
+      font-family: "FZLanTingHeiS-R-GB", "Source Han Sans SC", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.65;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; }
+    a:focus-visible, [tabindex]:focus-visible {
+      outline: .1875rem solid var(--key-dark);
+      outline-offset: .25rem;
+    }
+    .skip-link {
+      position: fixed;
+      inset: var(--space-3) auto auto var(--space-3);
+      z-index: 10;
+      padding: var(--space-2) var(--space-4);
+      background: var(--ink-strong);
+      color: var(--white);
+      border-radius: var(--radius-sm);
+      transform: translateY(-200%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .wrap { width: min(calc(100% - 2rem), var(--page)); margin-inline: auto; }
+    .eyebrow {
+      margin: 0 0 var(--space-3);
+      color: var(--mainline);
+      font-size: var(--text-xs);
+      font-weight: 800;
+      letter-spacing: .18em;
+    }
+    h1, h2, h3, p { margin-block-start: 0; }
+    h1, h2, h3 { color: var(--ink-strong); text-wrap: balance; }
+    h1 {
+      max-width: 30ch;
+      margin-bottom: var(--space-5);
+      font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+      font-size: clamp(1.9rem, 4.2vw, 3.4rem);
+      font-weight: 900;
+      letter-spacing: -.035em;
+      line-height: 1.08;
+    }
+    h2 { margin-bottom: var(--space-3); font-size: var(--text-xl); line-height: 1.16; letter-spacing: -.025em; }
+    h3 { margin-bottom: var(--space-2); font-size: var(--text-lg); line-height: 1.35; }
+    p { margin-bottom: var(--space-4); text-wrap: pretty; }
+    .section-copy { max-width: var(--measure); color: var(--ink-soft); }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 31rem;
+      padding-block: var(--space-7) var(--space-8);
+      background: var(--ink-strong);
+      color: #eaf0f3;
+      border-bottom: .5rem solid var(--mainline);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 46rem;
+      height: 46rem;
+      inset: -22rem -14rem auto auto;
+      border: 6rem solid rgba(25, 106, 150, .15);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: .375rem;
+      background: linear-gradient(90deg, var(--mainline) 0 49%, var(--transfer) 49% 69%, var(--bluegreen) 69% 86%, var(--key) 86%);
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(18rem, .6fr);
+      gap: var(--space-7);
+      align-items: end;
+    }
+    .hero h1 { color: var(--surface); }
+    .hero .eyebrow { color: #f3a49b; }
+    .origin {
+      max-width: 48rem;
+      margin-bottom: var(--space-6);
+      padding-left: var(--space-5);
+      border-left: .25rem solid var(--mainline);
+      color: #dbe5ea;
+      font-size: clamp(1.05rem, 2vw, 1.4rem);
+    }
+    .route-summary { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+    .route-summary span {
+      padding: var(--space-2) var(--space-3);
+      border: 1px solid rgba(255, 255, 255, .24);
+      border-radius: 999px;
+      color: #f5f7f8;
+      font-size: var(--text-sm);
+    }
+    .status-card {
+      padding: var(--space-5);
+      background: linear-gradient(145deg, rgba(255,255,255,.11), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.21);
+      border-radius: var(--radius-lg) var(--radius-lg) var(--radius-sm) var(--radius-lg);
+      box-shadow: inset 0 1px rgba(255,255,255,.15);
+    }
+    .status-label { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); font-weight: 800; }
+    .status-label::before { content: ""; width: .75rem; height: .75rem; background: var(--key); border-radius: 50%; box-shadow: 0 0 0 .375rem rgba(213,139,33,.18); }
+    .status-card p { margin: 0; color: #cbd8de; font-size: var(--text-sm); }
+    .board-nav { background: var(--surface); border-bottom: 1px solid var(--line); }
+    .board-nav .wrap { display: flex; gap: var(--space-2); overflow-x: auto; padding-block: var(--space-3); scrollbar-width: thin; }
+    .board-nav a { flex: 0 0 auto; padding: var(--space-2) var(--space-3); text-decoration: none; color: var(--ink-soft); font-size: var(--text-sm); font-weight: 700; border-radius: var(--radius-sm); }
+    .board-nav a:hover, .board-nav a:focus-visible { background: var(--surface-red); color: var(--mainline-dark); }
+    main { padding-block: var(--space-7) var(--space-8); }
+    .section { padding-block: var(--space-7); border-top: 1px solid var(--line-strong); }
+    .section:first-child { padding-top: 0; border-top: 0; }
+    .section-head { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: var(--space-5); margin-bottom: var(--space-6); }
+    .section-index { color: var(--mainline); font-size: var(--text-sm); font-weight: 900; letter-spacing: .12em; }
+    .map-panel {
+      overflow: hidden;
+      padding: var(--space-5);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg) var(--radius-sm) var(--radius-lg) var(--radius-sm);
+      box-shadow: var(--shadow);
+    }
+    .map-scroll { overflow-x: auto; padding-bottom: var(--space-2); }
+    .metro-map { display: block; width: 100%; min-width: 0; height: auto; }
+    .metro-map text { font-family: inherit; }
+    .legend { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-5); margin-top: var(--space-4); color: var(--ink-soft); font-size: var(--text-sm); }
+    .legend span { display: inline-flex; align-items: center; gap: var(--space-2); }
+    .legend i { width: 1.75rem; height: .3rem; background: var(--legend-color); border-radius: 999px; }
+    .next-stop {
+      display: grid;
+      grid-template-columns: .7fr 1.3fr;
+      gap: var(--space-5);
+      margin-top: var(--space-5);
+      padding: var(--space-5);
+      background: var(--ink-strong);
+      color: #dce6ea;
+      border-radius: var(--radius-sm) var(--radius-lg) var(--radius-sm) var(--radius-lg);
+    }
+    .next-stop h3 { color: var(--white); }
+    .next-stop p { margin: 0; }
+    .next-stop strong { display: block; margin-bottom: var(--space-2); color: #f3a49b; font-size: var(--text-xs); letter-spacing: .15em; }
+    .scope-layout { display: grid; grid-template-columns: .82fr 1.18fr; gap: var(--space-6); align-items: start; }
+    .scope-line { position: relative; display: grid; gap: var(--space-4); padding-left: var(--space-6); }
+    .scope-line::before { content: ""; position: absolute; inset: .75rem auto .75rem .6875rem; width: .25rem; background: linear-gradient(var(--mainline), var(--key)); border-radius: 999px; }
+    .scope-item { position: relative; padding: var(--space-4) var(--space-5); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm) var(--radius-md) var(--radius-md); }
+    .scope-item::before { content: ""; position: absolute; left: -1.875rem; top: 1.25rem; width: 1rem; height: 1rem; background: var(--surface); border: .25rem solid var(--mainline); border-radius: 50%; }
+    .scope-item:nth-child(2)::before { border-color: var(--transfer); }
+    .scope-item:nth-child(3)::before { border-color: var(--key); }
+    .scope-item p { margin: 0; color: var(--ink-soft); font-size: var(--text-sm); }
+    .key-areas { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+    .key-card { min-height: 14rem; padding: var(--space-5); background: var(--surface-amber); border-top: .375rem solid var(--key); }
+    .key-card .number { color: var(--key-dark); font-size: 2.5rem; font-weight: 300; line-height: 1; }
+    .key-card p { margin: 0; color: #665230; }
+    .principle {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: var(--space-4);
+      border: 1px solid var(--line-strong);
+      background: var(--surface);
+    }
+    .principle div { padding: var(--space-4); border-left: 1px solid var(--line); }
+    .principle div:first-child { border-left: 0; }
+    .principle b { display: block; color: var(--mainline); font-size: var(--text-xs); letter-spacing: .1em; }
+    .co-create-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(18rem, .95fr); gap: var(--space-5); }
+    .mechanism { padding: var(--space-6); background: var(--surface-blue); border-radius: var(--radius-lg) var(--radius-sm); }
+    .mechanism-flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2); margin-block: var(--space-5); overflow: hidden; }
+    .mechanism-step { position: relative; padding: var(--space-4); background: var(--surface); border-bottom: .25rem solid var(--transfer); }
+    .mechanism-step:not(:last-child)::after { content: "→"; position: absolute; right: -.8rem; top: 50%; z-index: 1; color: var(--transfer); font-weight: 900; transform: translateY(-50%); }
+    .mechanism-step b { display: block; color: var(--transfer); font-size: var(--text-sm); }
+    .mechanism p:last-child { margin-bottom: 0; }
+    .ai-desk { padding: var(--space-6); background: var(--ink-strong); color: #dbe5e9; border-radius: var(--radius-sm) var(--radius-lg); }
+    .ai-desk h3 { color: var(--white); }
+    .ai-desk .concept { display: inline-block; margin-bottom: var(--space-4); padding: var(--space-1) var(--space-2); color: #ffdca4; border: 1px solid var(--key); font-size: var(--text-xs); font-weight: 800; }
+    .ai-desk ul { margin: 0; padding-left: 1.2rem; }
+    .ai-desk li { margin-block: var(--space-2); }
+    .people { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-5); }
+    .people span { padding: var(--space-2) var(--space-3); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; color: var(--ink); font-size: var(--text-sm); }
+    .scenario-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); margin-top: var(--space-5); }
+    .scenario { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); min-height: 8rem; background: var(--surface); border: 1px solid var(--line); }
+    .scenario-node { display: grid; place-items: center; padding: var(--space-3); background: var(--mainline); color: var(--white); text-align: center; font-size: var(--text-xs); font-weight: 800; }
+    .scenario-body { padding: var(--space-4); }
+    .scenario-body p { margin: 0; color: var(--ink-soft); font-size: var(--text-sm); }
+    .metrics-board { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); background: var(--ink-strong); color: var(--white); border-radius: var(--radius-sm) var(--radius-lg); overflow: hidden; }
+    .metric { min-height: 11rem; padding: var(--space-5); border-left: 1px solid rgba(255,255,255,.16); }
+    .metric:first-child { border-left: 0; }
+    .metric-label { display: block; min-height: 3rem; color: #adbec7; font-size: var(--text-sm); }
+    .metric strong { display: block; margin-top: var(--space-3); color: var(--white); font-size: clamp(1.2rem, 2.2vw, 2.35rem); font-variant-numeric: tabular-nums; line-height: 1; letter-spacing: -.04em; overflow-wrap: anywhere; }
+    .metric small { display: block; margin-top: var(--space-2); color: #adbec7; }
+    .unknowns { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: var(--space-4); border: 1px solid var(--line-strong); }
+    .unknown { padding: var(--space-4); border-left: 1px solid var(--line); background: var(--surface); }
+    .unknown:first-child { border-left: 0; }
+    .unknown b, .unknown span { display: block; }
+    .unknown b { margin-bottom: var(--space-2); font-size: var(--text-sm); }
+    .unknown span { color: var(--mainline-dark); font-size: var(--text-xs); font-weight: 800; }
+    .evidence-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: var(--space-5); }
+    .evidence-card { padding: var(--space-5); background: var(--surface); border-top: .375rem solid var(--transfer); }
+    .evidence-card.assumption { border-color: var(--key); }
+    .evidence-card ul { margin: 0; padding-left: 1.2rem; }
+    .evidence-card li { margin-block: var(--space-2); }
+    .evidence-note { margin-top: var(--space-5); padding: var(--space-4) var(--space-5); background: var(--surface-red); border-left: .25rem solid var(--mainline); }
+    .evidence-note p { margin: 0; }
+    .audit-strip { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
+    .audit-strip span { padding: var(--space-1) var(--space-2); background: var(--surface-blue); color: var(--transfer); font-size: var(--text-xs); font-weight: 800; }
+    footer { padding-block: var(--space-5); background: var(--ink-strong); color: #b7c5cc; font-size: var(--text-sm); }
+    footer p { margin: 0; }
+
+    @media (max-width: 64rem) {
+      .hero-grid, .scope-layout, .co-create-grid, .evidence-grid { grid-template-columns: 1fr; }
+      .hero { min-height: auto; }
+      .status-card { max-width: 35rem; }
+      .metrics-board { grid-template-columns: repeat(2, 1fr); }
+      .metric { border-top: 1px solid rgba(255,255,255,.16); }
+      .metric:nth-child(odd) { border-left: 0; }
+      .metric:first-child, .metric:nth-child(2) { border-top: 0; }
+      .metric:last-child { grid-column: 1 / -1; }
+      .unknowns { grid-template-columns: repeat(2, 1fr); }
+      .unknown:nth-child(odd) { border-left: 0; }
+      .unknown:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .unknown:last-child { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 42rem) {
+      .wrap { width: min(calc(100% - 1.25rem), var(--page)); }
+      .hero { padding-block: var(--space-6) var(--space-7); }
+      .hero-grid { gap: var(--space-6); }
+      h1 { font-size: clamp(2.45rem, 14vw, 4rem); }
+      .section { padding-block: var(--space-6); }
+      .section-head { grid-template-columns: 1fr; gap: var(--space-2); margin-bottom: var(--space-5); }
+      .map-panel { padding: var(--space-3); }
+      .metro-map { min-width: 0; }
+      .next-stop, .key-areas, .principle, .mechanism-flow, .scenario-list { grid-template-columns: 1fr; }
+      .principle div { border-left: 0; border-top: 1px solid var(--line); }
+      .principle div:first-child { border-top: 0; }
+      .mechanism-step:not(:last-child)::after { content: "↓"; inset: auto 50% -.95rem auto; transform: translateX(50%); }
+      .metrics-board, .unknowns { grid-template-columns: 1fr; }
+      .metric, .metric:nth-child(2), .metric:first-child { min-height: auto; border-left: 0; border-top: 1px solid rgba(255,255,255,.16); }
+      .metric:first-child { border-top: 0; }
+      .metric:last-child, .unknown:last-child { grid-column: auto; }
+      .unknown, .unknown:nth-child(n+3) { border-left: 0; border-top: 1px solid var(--line); }
+      .unknown:first-child { border-top: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+
+    @media print {
+      body { background: var(--white); }
+      .board-nav, .skip-link { display: none; }
+      .hero { min-height: 0; print-color-adjust: exact; }
+      .section { break-inside: avoid; }
+      .map-scroll { overflow: visible; }
+      .metro-map { min-width: 0; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Jing-Zhang School-Enterprise Co-Creation Belt: From Kilometer Zero to the Nine-Kilometer Commons</p>
+        <h1>Jing-Zhang Co-Creation Belt</h1>
+        <p class="origin">A Beijing Jiaotong University student commutes daily past the park entrance by the Zhuanhe river but never enters: the entry direction differs from the commute direction, and the detour makes the entrance a boundary, not a destination.</p>
+        <div class="route-summary" aria-label="Proposal composition">
+          <span>Continuous 9 km mainline</span>
+          <span>Six mainline stations</span>
+          <span>Ten transfer nodes</span>
+          <span>Three key areas</span>
+        </div>
+      </div>
+      <aside class="status-card" aria-label="Boundary data status">
+        <div class="status-label">Provisional boundary</div>
+        <p>The current boundary is not an official redline; it is only for concept generation, spatial discussion and content review, and does not affect content scoring. Once official data is released, the boundary is replaced and all areas and ratios recomputed.</p>
+      </aside>
+    </div>
+  </header>
+
+  <nav class="board-nav" aria-label="Page sections">
+    <div class="wrap">
+      <a href="#line">Full-line station map</a>
+      <a href="#scope">Three-level scope and key areas</a>
+      <a href="#co-create">School-enterprise co-creation and the co-creation table</a>
+      <a href="#metrics">Core metrics</a>
+      <a href="#evidence">Sources and Assumptions</a>
+    </div>
+  </nav>
+
+  <main id="main" class="wrap">
+    <section id="line" class="section" aria-labelledby="line-title">
+      <div class="section-head">
+        <div class="section-index">Part 1</div>
+        <div>
+          <p class="eyebrow">Overview Map · Full-Line Station Map</p>
+          <h2 id="line-title">Reading the nine-kilometre park as a line you can use every day</h2>
+          <p class="section-copy">The mainline is not a sightseeing list but a continuous everyday public space. Six stations link railway identity and public life; ten transfer nodes connect universities, research institutes, science parks, public culture, transport hubs and the waterfront greenway; the Zhuanhe waterfront, as a sub-node of Kilometer Zero, first repairs the real breakpoint of “passed but never entered”.</p>
+        </div>
+      </div>
+
+      <div class="map-panel">
+          <div class="map-scroll" tabindex="0" role="region" aria-label="Vertically scrollable nine-kilometre south-north mainline station map">
+            <svg class="metro-map" viewBox="0 0 1280 900" role="img" aria-labelledby="map-title map-desc">
+            <title id="map-title">The nine-kilometre mainline from Jing-Zhang Kilometer Zero to the Jing-Zhang Ring</title>
+              <desc id="map-desc">The red vertical mainline connects six stations from south to north, parallel to Metro Line 13 (Beijing North–Qinghe); blue branches mark ten transfer resources cross-verified from official public material and open maps, placed on the true east/west sides; the teal branch marks the Zhuanhe waterfront sub-node; amber rings mark the three key areas.</desc>
+            <defs>
+              <filter id="station-shadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#11253a" flood-opacity=".18"/>
+              </filter>
+              <linearGradient id="rail-bed" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#8f2824"/>
+                <stop offset=".5" stop-color="#c53b32"/>
+                <stop offset="1" stop-color="#8f2824"/>
+              </linearGradient>
+            </defs>
+
+            <path d="M520 760 V538 V479 V419 V261 V60" fill="none" stroke="#e1d9cc" stroke-width="34" stroke-linecap="round"/>
+            <path d="M520 760 V538 V479 V419 V261 V60" fill="none" stroke="url(#rail-bed)" stroke-width="15" stroke-linecap="round"/>
+            <path d="M520 760 V538 V479 V419 V261 V60" fill="none" stroke="#fffdf8" stroke-width="2" stroke-dasharray="3 19" opacity=".72"/>
+            <rect x="440" y="34" width="160" height="752" rx="80" fill="none" stroke="#aaa394" stroke-width="3" stroke-dasharray="10 10" opacity=".6"/>
+            <text x="610" y="20" fill="#607083" font-size="14" font-weight="700">Provisional boundary (concept only)</text>
+
+            <g fill="none" stroke="#196a96" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M520 760 H930 V710"/>
+              <path d="M520 760 H350 V710"/>
+              <path d="M520 760 H380 V780 H350"/>
+              <path d="M520 479 H350 V480"/>
+              <path d="M520 419 H350 V378"/>
+              <path d="M520 419 H930 V410"/>
+              <path d="M520 261 H350 V228"/>
+              <path d="M520 261 H930 V252"/>
+              <path d="M520 60 H350 V30"/>
+              <path d="M520 60 H380 V90 H350"/>
+            </g>
+            <g fill="#fffdf8" stroke="#196a96" stroke-width="5">
+              <circle cx="930" cy="710" r="10"/><circle cx="350" cy="710" r="10"/><circle cx="350" cy="780" r="10"/>
+              <circle cx="350" cy="480" r="10"/><circle cx="350" cy="388" r="10"/><circle cx="930" cy="410" r="10"/>
+              <circle cx="350" cy="238" r="10"/><circle cx="930" cy="252" r="10"/><circle cx="350" cy="30" r="10"/><circle cx="350" cy="90" r="10"/>
+            </g>
+
+              <circle cx="435" cy="792" r="12" fill="#fffdf8" stroke="#187d78" stroke-width="6"/>
+              <path d="M435 792 L350 780" stroke="#187d78" stroke-width="2.5" fill="none" stroke-dasharray="4 4"/>
+
+            <g fill="none" stroke="#d58b21" stroke-width="8" opacity=".95">
+              <circle cx="520" cy="538" r="31"/><circle cx="520" cy="419" r="31"/><circle cx="520" cy="261" r="31"/>
+            </g>
+
+            <g filter="url(#station-shadow)">
+              <g fill="#fffdf8" stroke="#c53b32" stroke-width="9">
+                <circle data-node="NODE-01" cx="520" cy="760" r="19"/><circle data-node="NODE-02" cx="520" cy="538" r="19"/><circle data-node="NODE-03" cx="520" cy="479" r="19"/><circle data-node="NODE-04" cx="520" cy="419" r="19"/><circle data-node="NODE-05" cx="520" cy="261" r="19"/><circle data-node="NODE-06" cx="520" cy="60" r="19"/>
+              </g>
+              <g fill="#c53b32">
+                 <circle cx="520" cy="760" r="6"/><circle cx="520" cy="538" r="6"/><circle cx="520" cy="479" r="6"/><circle cx="520" cy="419" r="6"/><circle cx="520" cy="261" r="6"/><circle cx="520" cy="60" r="6"/>
+              </g>
+            </g>
+
+            <g fill="#11253a" font-size="16" font-weight="800">
+                <text x="555" y="748"><tspan x="555">Jing-Zhang Kilometer Zero / Beijing North</tspan><tspan x="555" dy="20" font-size="13">NODE-01 · South</tspan></text>
+                <text x="555" y="526"><tspan x="555">Dazhongsi Community Vitality Section</tspan><tspan x="555" dy="20" font-size="13">NODE-02 · Key Area</tspan></text>
+                <text x="555" y="467"><tspan x="555">Zhichun Road · Sidaokou</tspan><tspan x="555" dy="20" font-size="13">NODE-03</tspan></text>
+                <text x="555" y="407"><tspan x="555">Wudaokou / Qinghuayuan Station</tspan><tspan x="555" dy="20" font-size="13">NODE-04 · Key Area</tspan></text>
+                <text x="555" y="249"><tspan x="555">Qinghua East Road–Research Public Space</tspan><tspan x="555" dy="20" font-size="13">NODE-05 · Key Area</tspan></text>
+                <text x="555" y="48"><tspan x="555">Jing-Zhang Ring / North Fifth Ring</tspan><tspan x="555" dy="20" font-size="13">NODE-06 · North</tspan></text>
+                <text x="480" y="200" font-size="12" fill="#6b7686" font-style="italic" transform="rotate(-90 480 200)" text-anchor="middle">Parallel to Metro Line 13 (Beijing North–Qinghe)</text>
+            </g>
+
+            <g fill="#fffdf8" stroke="#196a96" stroke-width="2">
+               <rect x="950" y="686" width="310" height="48" rx="9"/><rect x="20" y="686" width="310" height="48" rx="9"/><rect x="20" y="756" width="310" height="48" rx="9"/>
+               <rect x="20" y="456" width="310" height="48" rx="9"/><rect x="20" y="364" width="310" height="48" rx="9"/><rect x="950" y="386" width="310" height="48" rx="9"/>
+               <rect x="20" y="214" width="310" height="48" rx="9"/><rect x="950" y="228" width="310" height="48" rx="9"/><rect x="20" y="6" width="310" height="48" rx="9"/><rect x="20" y="66" width="310" height="48" rx="9"/>
+            </g>
+            <g fill="#196a96" font-size="14" font-weight="800">
+               <text x="965" y="707">TRANSFER-01 Xizhimen Hub</text><text x="965" y="729" font-size="12">East · anchors NODE-01</text>
+               <text x="35" y="707">TRANSFER-02 Beijing Jiaotong U</text><text x="35" y="729" font-size="12">West · anchors NODE-01</text>
+               <text x="35" y="777">TRANSFER-06 National Library</text><text x="35" y="799" font-size="12">West · public culture · NODE-01</text>
+               <text x="35" y="477">TRANSFER-07 Satellite Factory Park</text><text x="35" y="499" font-size="12">West · factory renewal · NODE-03</text>
+                <text x="35" y="235">TRANSFER-03 Tsinghua U</text><text x="35" y="257" font-size="12">West · anchors NODE-05</text>
+                <text x="965" y="407">TRANSFER-08 Beihang U</text><text x="965" y="429" font-size="12">East · anchors NODE-04</text>
+                <text x="35" y="385">TRANSFER-04 CAS (Zhongguancun)</text><text x="35" y="407" font-size="12">West · anchors NODE-04</text>
+               <text x="965" y="249">TRANSFER-09 Beijing Forestry U</text><text x="965" y="271" font-size="12">East · anchors NODE-05</text>
+               <text x="35" y="27">TRANSFER-05 Qinghe Greenway</text><text x="35" y="49" font-size="12">West · anchors NODE-06</text>
+               <text x="35" y="87">TRANSFER-10 Beijing Sport U</text><text x="35" y="109" font-size="12">West · anchors NODE-06</text>
+            </g>
+              <text x="435" y="832" text-anchor="middle" fill="#187d78" font-size="14" font-weight="800">Zhuanhe Waterfront · NODE-01A</text>
+
+             <g fill="#fffaf0" stroke="#d58b21" stroke-width="2">
+                <rect x="835" y="548" width="270" height="38" rx="9"/><rect x="800" y="448" width="310" height="38" rx="9"/><rect x="835" y="300" width="270" height="38" rx="9"/>
+             </g>
+             <g fill="#88510c" font-size="16" font-weight="900">
+                <text x="850" y="573">Dazhongsi Key Area · PROV-KEY-003</text>
+                <text x="815" y="473">Beijing AI Origin Community · PROV-KEY-002</text>
+                <text x="850" y="325">Zhongzhiyuan Key Area · PROV-KEY-001</text>
+             </g>
+
+            <g fill="#607083" font-size="15">
+                <text x="1080" y="780">Kilometer Zero · South End</text>
+                <text x="1080" y="80">Nine Kilometers · North End</text>
+              </g>
+              <g fill="#196a96" font-size="15" font-weight="800">
+                <text x="470" y="766" text-anchor="end">0 km</text><text x="470" y="544" text-anchor="end">2.8 km</text><text x="470" y="485" text-anchor="end">3.6 km</text><text x="470" y="425" text-anchor="end">4.3 km</text><text x="470" y="267" text-anchor="end">6.3 km</text><text x="470" y="66" text-anchor="end">8.9 km</text>
+              </g>
+             <path d="M480 760 V60" stroke="#aaa394" stroke-width="2" stroke-dasharray="4 8"/>
+             <path d="M472 760 H488 M472 60 H488" stroke="#aaa394" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="legend" aria-label="Legend">
+          <span style="--legend-color: var(--mainline)"><i></i>nine-kilometre mainline</span>
+          <span style="--legend-color: var(--transfer)"><i></i>transfer nodes</span>
+          <span style="--legend-color: var(--bluegreen)"><i></i>Blue-green public spaceand sub-nodes</span>
+          <span style="--legend-color: var(--key)"><i></i>key areasarea</span>
+        </div>
+      </div>
+
+      <div class="next-stop">
+        <div>
+          <strong>Level 1 · Next Stop</strong>
+          <h3>First tell people which way to go</h3>
+          <p>Direction, distance, walking time and accessible paths serve today's commute and daily use.</p>
+        </div>
+        <div>
+          <strong>Level 2 · After Arriving</strong>
+          <h3>Then explain why it is worth entering</h3>
+          <p>Park events, railway memory, school-enterprise open days and co-creation feedback points form destination information. Kilometer Zero first addresses the Zhuanhe entrance detour and weak sense of destination.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="scope" class="section" aria-labelledby="scope-title">
+      <div class="section-head">
+        <div class="section-index">Part 2</div>
+        <div>
+          <p class="eyebrow">Three-Level Scope · Key Areas</p>
+          <h2 id="scope-title">From regional coordination to three walkable key areas</h2>
+          <p class="section-copy">The three levels are not three unrelated maps: the coordinated research area answers how innovation resources coordinate, the overall design area answers how the nine-kilometre public interface stays continuous, and the key areas answer how specific nodes carry open exchange.</p>
+        </div>
+      </div>
+
+      <div class="scope-layout">
+        <div class="scope-line" aria-label="Three-level scope">
+          <article class="scope-item">
+            <h3>Coordinated Research Area</h3>
+            <p>Organize universities, research institutes, enterprises and regional transport to build nine-kilometre innovation synergy.</p>
+          </article>
+          <article class="scope-item">
+            <h3>Overall Design Area</h3>
+            <p>Use the continuous park mainline to coordinate land use, slow mobility, blue-green public space, buildings and renewal projects.</p>
+          </article>
+          <article class="scope-item">
+            <h3>Key Detailed-Design Area</h3>
+            <p>Use three open exchange nodes to carry the concrete interfaces of industry, community, campus and public space.</p>
+          </article>
+        </div>
+
+        <div class="key-areas" aria-label="Three key areasarea">
+          <article class="key-card">
+            <div class="number">01</div>
+            <h3>Zhongzhiyuan</h3>
+            <p>For independent-innovation acceleration and enterprise validation, bringing research results, industry demand and open display onto the park mainline.</p>
+          </article>
+          <article class="key-card">
+            <div class="number">02</div>
+            <h3>Beijing AI Origin Community</h3>
+            <p>For university source innovation and community life, letting results transfer, talent services and railway memory meet in near-campus space.</p>
+          </article>
+          <article class="key-card">
+            <div class="number">03</div>
+            <h3>Dazhongsi</h3>
+            <p>For urban AI industry and community vitality, using public space to connect enterprise services, daily amenities and mainline activities.</p>
+          </article>
+          <div class="principle" aria-label="Spatial hierarchy principle">
+            <div><b>First priority</b>willing to use every dayPark</div>
+            <div><b>Level 2</b>Recognizable Jing-Zhang railway identity</div>
+            <div><b>Light enhancement</b>truly open exchangenodes</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="co-create" class="section" aria-labelledby="co-create-title">
+      <div class="section-head">
+        <div class="section-index">Part 3</div>
+        <div>
+          <p class="eyebrow">School-Enterprise Co-Creation · AI Scenarios</p>
+          <h2 id="co-create-title">Universities produce talent and knowledge; enterprises raise real problems; the park becomes the public interface</h2>
+          <p class="section-copy">“School-enterprise co-creation” builds no closed park; it sets a few open interfaces in the everyday park, putting university talent and research capacity, enterprise scenario needs, and resident and commuter feedback on one visible iteration chain.</p>
+        </div>
+      </div>
+
+      <div class="co-create-grid">
+        <article class="mechanism">
+          <h3>From open problems to verifiable improvement</h3>
+          <div class="mechanism-flow" aria-label="Co-creation process">
+            <div class="mechanism-step"><b>Universities</b>talent, research, prototype</div>
+            <div class="mechanism-step"><b>Park</b>public display, experience, feedback</div>
+            <div class="mechanism-step"><b>Enterprises</b>issues, verify, iteration</div>
+          </div>
+          <p>The park first serves those who pass daily, then carries Jing-Zhang memory, and only lastly arranges open exchange at a few nodes; exchange functions must not crowd out passage, rest, exercise and accessible use.</p>
+          <div class="people" aria-label="main users">
+            <span>BJTU student</span><span>researcher</span><span>enterprise engineer</span><span>community resident</span><span>families & seniors</span>
+          </div>
+        </article>
+
+        <aside class="ai-desk">
+          <span class="concept">Concept suggestion</span>
+          <h3>AI Co-Creation Table</h3>
+          <p>A physical model and a no-login public screen form the main experience; an optional QR code only serves those who wish to continue.</p>
+          <ul>
+            <li>Anonymous participation, no face recognition, collecting only the minimum data needed to complete feedback.</li>
+            <li>Publicly show problems, suggestions and improvement results in an experience-feedback-iterate loop.</li>
+            <li>The first round does not test grand urban visions but improves the Kilometer-Zero node itself: whether the entrance is on the way, whether information is clear, whether it is worth staying.</li>
+          </ul>
+        </aside>
+      </div>
+
+      <div class="scenario-list" aria-label="Station-bound scenario cards">
+        <article class="scenario"><div class="scenario-node">Kilometer Zero</div><div class="scenario-body"><h3>Commute-path co-survey</h3><p>Students and residents jointly mark detour, rest and accessibility breakpoints; the co-creation table publishes the first-round improvements.</p></div></article>
+        <article class="scenario"><div class="scenario-node">Dazhongsi</div><div class="scenario-body"><h3>Community-needs open day</h3><p>Communities raise daily-service problems; enterprise and university teams show small testable prototypes on site.</p></div></article>
+        <article class="scenario"><div class="scenario-node">Sidaokou</div><div class="scenario-body"><h3>Railway-memory collection</h3><p>Oral history, archives and on-site reading supplement the line's memory, entering public narrative after human review.</p></div></article>
+        <article class="scenario"><div class="scenario-node">Qinghuayuan</div><div class="scenario-body"><h3>School-enterprise prototype reception</h3><p>University teams and enterprises exchange briefly around real needs; results open to the public in an understandable way.</p></div></article>
+        <article class="scenario"><div class="scenario-node">Research institutes</div><div class="scenario-body"><h3>Research-capacity navigation</h3><p>Use next-stop information to connect research-institute open activities, collecting no personal trajectories.</p></div></article>
+        <article class="scenario"><div class="scenario-node">Jing-Zhang Ring</div><div class="scenario-body"><h3>Blue-green link</h3><p>Link mainline activities with the Qinghe waterfront greenway to verify the nine-kilometre continuous walking and cycling experience.</p></div></article>
+      </div>
+    </section>
+
+    <section id="metrics" class="section" aria-labelledby="metrics-title">
+      <div class="section-head">
+        <div class="section-index">Part 4</div>
+        <div>
+          <p class="eyebrow">Core Metrics · Self-Check Status</p>
+          <h2 id="metrics-title">Known values come from the same provisional geometry; unknown controls stay unknown</h2>
+          <p class="section-copy">The following values correspond item by item to the metrics file. Areas and ratios are for recomputation and consistency checks of the current concept, and are not upgraded to official area, statutory control or implementation commitment.</p>
+        </div>
+      </div>
+
+      <div class="metrics-board" aria-label="Seven known core metrics">
+        <div class="metric"><span class="metric-label">Overall design area</span><strong data-metric="site_area_sqm" data-value="13251651.236635">~13.25 km²</strong><small>sqm · provisional recalculation</small></div>
+        <div class="metric"><span class="metric-label">Green-space area</span><strong data-metric="green_space_area_sqm" data-value="1965448.269">~1.97 km²</strong><small>sqm · provisional recalculation</small></div>
+        <div class="metric"><span class="metric-label">Public-space area</span><strong data-metric="public_space_area_sqm" data-value="2053676.422">~2.05 km²</strong><small>sqm · provisional recalculation</small></div>
+        <div class="metric"><span class="metric-label">Green-space ratio</span><strong data-metric="green_ratio" data-value="0.148317">~14.8%</strong><small>provisional design geometry</small></div>
+        <div class="metric"><span class="metric-label">Public-space ratio</span><strong data-metric="public_space_ratio" data-value="0.154975">~15.5%</strong><small>provisional design geometry</small></div>
+        <div class="metric"><span class="metric-label">Building footprint</span><strong data-metric="building_footprint_area_sqm" data-value="10034.91">~10,035 m²</strong><small>sqm · low confidence</small></div>
+        <div class="metric"><span class="metric-label">Key-area count</span><strong data-metric="key_area_count" data-value="3">3</strong><small></small></div>
+      </div>
+
+      <div class="unknowns" aria-label="Statutory controls to be completed">
+        <div class="unknown" data-metric="floor_area_ratio"><b>Floor-area ratio</b><span>Pending official data</span></div>
+        <div class="unknown" data-metric="building_height_m"><b>Building height</b><span>Pending official data</span></div>
+        <div class="unknown" data-metric="building_density"><b>Building density</b><span>Pending official data</span></div>
+        <div class="unknown" data-metric="statutory_green_ratio"><b>Statutory green ratio</b><span>Pending official data</span></div>
+        <div class="unknown" data-metric="setback_m"><b>Setback</b><span>Pending official data</span></div>
+      </div>
+    </section>
+
+    <section id="evidence" class="section" aria-labelledby="evidence-title">
+      <div class="section-head">
+        <div class="section-index">Part 5</div>
+        <div>
+          <p class="eyebrow">Sources · Assumptions · Evidence Boundaries</p>
+          <h2 id="evidence-title">Make what is confirmable clear, and what still needs verification equally clear</h2>
+          <p class="section-copy">This page is a human-readable offline summary; the structured source, assumption, geometry and metrics files remain the basis for review.</p>
+        </div>
+      </div>
+
+      <div class="evidence-grid">
+        <article class="evidence-card">
+          <h3>Main sources</h3>
+          <ul>
+            <li>Public call announcement and agent taskbook: confirm the three levels, tasks and concept-design boundaries.</li>
+            <li>Public reports on the Jing-Zhang Railway Heritage Park, and material on Qinghuayuan Station and the former Xizhimen station: support the nine-kilometre, station and railway-culture clues.</li>
+            <li>Public standards on urban design, regulatory detailed planning, land-use classification and accessibility: they constrain the method of expression, not this project's statutory values.</li>
+            <li>provisional rough boundary:for generation only, display, self-check and design discussion。</li>
+          </ul>
+        </article>
+        <article class="evidence-card assumption">
+          <h3>Key assumptions</h3>
+          <ul>
+            <li>The official overall boundary and the three key-area extents are not yet released; they must be replaced and recomputed once official data arrives.</li>
+            <li>Floor-area ratio, building height, building density, statutory green ratio, setback, road redlines, ownership, municipal and heritage controls all await professional confirmation.</li>
+            <li>The AI co-creation table and station activities are conceptual suggestions and do not represent approval, investment, engineering feasibility or implementation commitment.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="evidence-note">
+        <p><strong>Field-evidence limitation:</strong>current node judgments come mainly from participant memory, public sources and two existing path photos, no new photos this round;Zhuanhethe waterfront entrance still lacks new site photos and continuous behavior observation, follow-up needs weekday/weekend site surveys。</p>
+      </div>
+      <div class="audit-strip" aria-label="structured evidence coverage">
+        <span>Land use</span><span>Slow mobility</span><span>Blue-green public space</span><span>Buildings</span><span>Renewal projects</span><span>AI scenarios</span><span>Task Coverage</span><span>Sources</span><span>Assumptions</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap"><p>Offline static proposal page · no network, no tracking, no data submission · structured evidence is governed by local metrics, sources, assumptions and geometry files</p></div>
+  </footer>
+</body>
+</html>

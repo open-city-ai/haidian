@@ -30,3 +30,214 @@ OpenStreetMap background context is credited to © OpenStreetMap contributors an
 ## AI-generation responsibility
 
 AI generation does not establish factual authority, accessibility compliance, user consent, planning approval, engineering feasibility, or representation of disabled and neurodivergent people. All facts, sources, licences, geometry, metrics, translations, and claims remain subject to human and professional review. Future co-design and task testing must use voluntary participation, reasonable accommodation, privacy protection, and a clear right to withdraw.
+
+---
+
+# 逐资产权利台账 / Per-Asset Rights Ledger
+
+The ledger below restates, asset by asset, what the sections above declare in prose. It covers all 73 file entries registered in `manifest.json`. Every row is compiled from a record that already exists inside this package — no new rights fact, tool record, or licence claim is introduced here — and the last column of each table names the file the entry was compiled from, so any row can be checked word for word against its source. Tables are written in Chinese with bilingual headings; where a field is not registered anywhere in the package, the entry reads「包内未登记」rather than a guessed value, and all such gaps are listed in the final section.
+
+## 一、编制口径 / Compilation rule
+
+本台账汇编自以下八处既有登记：本文件（作者归属、许可选择、生成方法、字体许可、OSM 署名与用途限制）、`manifest.json`（文件清单、角色、语言、翻译关系、校验和）、`agent.json`（申报智能体与模型）、`sources.json`（三十二条来源的允许与禁止用途）、`visual/assets/osm-context/provenance.json`（OSM 取数与再分发状态）、`assets/media/audio-guide.md` 与 `journey.md` 与 `cover.md`（三件媒体资产的工具、方法与权利记录）、`metrics.json`（复算投影）、`proposal.md`（品牌字体策略、随包代码零依赖声明、基准许可建议）。
+
+**许可总则：** 全包整体 `COMMUNITY-DISPLAY-ONLY`，仅用于本次征集的社区展示与评审场景；不放弃任何第三方权利。
+**署名总则：** 署名主体为 GitHub 用户 `lqqk7` 指导下的申报智能体「柱子 / Zhuzi」；模型与撰写工具见 `agent.json`，媒体合成工具在各自说明文件中单独披露。
+
+## 二、资产类别总表 / Asset classes at a glance
+
+| 类别 / Class | 文件数 | 作者或生成方式 | 主要工具 | 权利信息主要出处 |
+| --- | --- | --- | --- | --- |
+| A 方案正文与结构化文件 | 13 | 申报智能体原创生成 | Claude Fable 5 via Claude Code（含 Claude Opus 子代理）；v1.0 阶段为 GPT-5.6 Sol via Codex | 本文件 · `agent.json` |
+| B 报告与说明文件 | 4 | 原创撰写；两份 HTML 由仓库脚本渲染 | `scripts/render_proposal_html.py` | 本文件 |
+| C 图版 | 16 | 由本包 GeoJSON、指标、矩阵、风险、假设与自撰标签本地生成 | Python、SVG、`rsvg-convert`/Cairo | 本文件 |
+| D 图纸 PDF | 4 | 同上，并合并为册 | Python、SVG、`rsvg-convert`/Cairo、`pdfunite` | 本文件 |
+| E 几何 | 9 | 基于仓库临时边界与本方案概念几何 | 复算投影 EPSG:4548（`scripts/spatial_review.py`） | 本文件 · `sources.json` · `metrics.json` |
+| F 离线展示与随包代码 | 15 | 原创手写，自含离线 | 无第三方依赖；仅 Node 内置模块 | 本文件 · `proposal.md` |
+| G 媒体 | 11 | 手写 HTML/SVG 渲染 + 语音合成 + 本包页面逐帧实录 | Playwright/Chromium、MiniMax `speech-2.8-hd`（`mmx` 1.0.7）、x264/AAC、Pillow | `journey.md` · `audio-guide.md` · `cover.md` |
+| H 品牌标志 | 1 | 原创矢量几何 | 手写 SVG | 本文件 · `cover.md` |
+
+## 三、逐资产登记 / Per-asset register
+
+### A 方案正文与结构化文件 / Proposal text and structured files
+
+| 文件路径 | 作者或生成方式 | 工具及版本 | 署名与复用限制 | 登记出处 |
+| --- | --- | --- | --- | --- |
+| `proposal.md` | 申报智能体原创撰写 | Claude Fable 5 via Claude Code；版本演进见 `agent.json` `model_detail` | 署名 `lqqk7` / 柱子；`COMMUNITY-DISPLAY-ONLY` | 本文件 §Submission text and design |
+| `proposal.en.md` | 同上，`proposal.md` 的翻译件 | 同上；不以机器翻译结果作为正式版本 | 同上 | `manifest.json` `translation_of`；`proposal.md` 国际传播段 |
+| `manifest.json` · `agent.json` | 申报智能体生成 | `scripts/scaffold_ai_submission.py` 初始化 | 同上 | `agent.json` `generated_with` |
+| `metrics.json` | 由提交几何复算与逐项人工登记生成 | `scripts/spatial_review.py`，投影 EPSG:4548 | 同上；数值不构成法定指标或评分承诺 | `sources.json` `PACKAGE-SPATIAL-RECALCULATION-METHOD` |
+| `assumptions.json` · `self_check.json` · `compliance_matrix.json` · `standard_matrix.json` · `design_depth_matrix.json` · `risk.json` | 申报智能体原创编制 | 同 `proposal.md` | 同上 | 本文件 §Submission text and design |
+| `sources.json` | 逐条登记来源的允许与禁止用途 | 同上 | 同上；条目内的第三方页面为引用，不再分发 | 本文件 §External references |
+| `changelog.md` | 申报智能体逐版本登记 | 同上 | 同上 | `manifest.json` `role: changelog` |
+
+### B 报告与说明文件 / Report and statement files
+
+| 文件路径 | 作者或生成方式 | 工具及版本 | 署名与复用限制 | 登记出处 |
+| --- | --- | --- | --- | --- |
+| `report/proposal.html` · `report/proposal.en.html` | 分别由 `proposal.md` 与 `proposal.en.md` 渲染 | 仓库脚本 `scripts/render_proposal_html.py`（版本号包内未登记） | 同 A 类 | 本文件 §Generated assets and software |
+| `report/narrative.md` | 由结构化包派生的摘要，申报智能体撰写 | 同 A 类 | 同上 | 本文件 §Submission text and design |
+| `report/copyright_statement.md`（本文件） | 申报智能体原创撰写 | 同上 | 同上 | 本文件 |
+
+### C 图版 / Figure plates
+
+十六个文件：`assets/figures/` 下 `site-overview`、`land-use-structure`、`key-areas`、`mobility-bluegreen`、`mobility-bluegreen-audit`、`metrics-evidence`、`metrics-evidence-audit`、`brand-system` 各中英两版（`*.png` 与 `*.en.png`）。
+
+| 项目 | 登记内容 |
+| --- | --- |
+| 作者或生成方式 | 由本投稿包的 GeoJSON、指标、矩阵、风险、假设与自撰标签本地生成；临时生成源不随包提交 |
+| 工具 | Python、SVG、`rsvg-convert`/Cairo（版本号包内未登记） |
+| 地图背景 | 含 OSM 背景的图版，其背景由 `visual/assets/osm-context/provenance.json` 记录的定界 Overpass 快照本地生成；署名印在图版内 |
+| 第三方素材 | 无。不使用图库图标、第三方插画或同行投稿视觉资产 |
+| 署名与复用限制 | 署名 `lqqk7` / 柱子；`COMMUNITY-DISPLAY-ONLY`；概念建议，不得作为现状证据或效果承诺引用 |
+| 登记出处 | 本文件 §Generated assets and software |
+
+### D 图纸 / Drawing sets
+
+四个文件：`drawings/a3-booklet.pdf`、`a3-booklet.en.pdf`、`a0-boards.pdf`、`a0-boards.en.pdf`。
+
+| 项目 | 登记内容 |
+| --- | --- |
+| 作者或生成方式 | 与 C 类同源生成，合并成册 |
+| 工具 | Python、SVG、`rsvg-convert`/Cairo、`pdfunite`（版本号包内未登记） |
+| 字体 | Source Han Sans SC，取自本地安装副本，SIL Open Font License 1.1，以子集形式嵌入 PDF；不作为独立资产随包分发 |
+| 署名与复用限制 | 同 C 类 |
+| 登记出处 | 本文件 §Generated assets and software |
+
+### E 几何 / Geometry
+
+九个文件：`geometry/` 下 `site_boundary`、`key_areas`、`land_use`、`green_space`、`public_space`、`roads`、`buildings`、`constraints`、`phasing`。
+
+| 项目 | 登记内容 |
+| --- | --- |
+| 来源 | 场地边界复用仓库维护的临时接入几何 `brief/site-package/geometry/provisional_boundaries.geojson`；其余为本方案概念几何 |
+| 性质标注 | 粗略、非官方，不适用于官方红线、精确面积、法定控制、权属、工程或审批 |
+| 复算投影 | EPSG:4548（`scripts/spatial_review.py`），用于面积、比例、拓扑与计数复算 |
+| 与 OSM 的关系 | OSM 快照不得用于推导、修订、验证或替代本包项目边界与重点区几何；两者不共用坐标系与用途，详见第五节 |
+| 署名与复用限制 | 署名 `lqqk7` / 柱子；`COMMUNITY-DISPLAY-ONLY` |
+| 登记出处 | 本文件 §Repository data and materials；`sources.json` `BOUNDARY-SOURCE`、`KEY-AREA-SOURCE`、`PACKAGE-SPATIAL-RECALCULATION-METHOD`；`metrics.json` `projection` |
+
+### F 离线展示与随包代码 / Offline display and bundled code
+
+| 文件路径 | 作者或生成方式 | 依赖与许可 | 登记出处 |
+| --- | --- | --- | --- |
+| `visual/index.html` · `visual/index.en.html` | 原创撰写的自含离线 HTML | 不使用远程脚本、字体、地图瓦片、图片、API、表单、iframe 或统计代码 | 本文件 §Generated assets and software |
+| `visual/assets/scene.js` · `scene.css` | 原创撰写 | 浏览器原生实现，无第三方库 | 同上 |
+| `visual/assets/scene-data.js` | 由 `geometry/*.geojson` 经本地构建步骤生成 | 文件头登记投影与临时概念几何性质 | 该文件头部注释 |
+| `visual/assets/scene-fallback.png` · `scene-fallback.en.png` | 交互场景的静态后备图 | 同 C 类生成路径 | `manifest.json` `role: visualization` |
+| `visual/assets/seb-tabletop-run.js` | 原创撰写的校验器 | 零依赖离线文件，仅使用 Node 内置 `fs`、`path` | `proposal.md`「OP-01 桌面配对试点档案」章 |
+| `visual/assets/seb-op04-chain-run.js` | 原创撰写的复演器 | 零依赖离线文件，仅使用 Node 内置 `fs`、`path`、`child_process`；投影以纯 Node 内置数学实现 | `proposal.md`「OP-04 配对试点全过程证据链」章 |
+| `visual/assets/seb-spec.json` | 原创编制的机器可读规范 v0.2.0 | 建议许可 CC BY-SA 4.0，状态 `recommended_not_yet_granted`；托管主体与发布渠道待授权主体确认 | `seb-spec.json` `license` 与 `provenance` |
+| `visual/assets/seb-tabletop-fixtures.json` · `seb-change-receipt-sample.json` · `seb-op04-chain-data.json` · `seb-change-receipt-op04.json` · `ethics-protocol.json` | 原创编制的样例、回执、链路档案与协议模板 | 随包整体许可；均不含任何参与者数据 | `proposal.md` 对应各章 |
+| `visual/assets/osm-context/provenance.json` | OSM 取数与处理的来源登记 | 仅分发来源元数据，不分发原始或派生数据库 | 该文件 `package_distribution` 字段 |
+
+### G 媒体 / Media assets
+
+| 文件路径 | 作者或生成方式 | 工具及版本 | 署名与复用限制 | 登记出处 |
+| --- | --- | --- | --- | --- |
+| `assets/media/cover.webp` | 参与者手写 HTML 与内联 SVG，坐标自绘 | Chromium 无头浏览器（Playwright）截图；Pillow 转无损 WebP。未使用任何图像生成模型、照片、卫星与街景影像、地图数据或第三方图片 | 署名 `lqqk7` / 柱子；`COMMUNITY-DISPLAY-ONLY`；非效果图 | `cover.md` §二、§三 |
+| `assets/media/audio-guide.m4a` | 计算机语音合成，无真人录音 | MiniMax 语音合成服务，模型 `speech-2.8-hd`，经官方命令行工具 `mmx` 1.0.7 调用；预置合成音色 `Chinese (Mandarin)_Reliable_Executive`，按该服务条款授权使用 | 同上；不涉及肖像权、声音权或个人信息；不含第三方音乐、音效或采样 | `audio-guide.md` §四、§五 |
+| `assets/media/journey.mp4` | 手写 HTML/CSS 排版页逐帧渲染 + 本包页面逐帧实录 + 合成旁白 | Playwright 驱动的 Chromium 无头浏览器；MiniMax `speech-2.8-hd` 经 `mmx` 1.0.7；视频 x264 两遍编码，音频 AAC-LC | 同上；无实拍、无航拍、无生成式影像、无第三方素材 | `journey.md` §五、§六 |
+| `assets/media/journey-poster.webp` | 取自成片第 4.3 秒并移除烧录字幕 | 同 `journey.mp4` | 同上 | `manifest.json` 该条目描述字段 |
+| `assets/media/journey.vtt` · `journey-en.vtt` · `audio-guide.vtt` · `audio-guide-en.vtt` | 由逐句合成样本的实测长度与静音间隔精确累加生成 | 同对应媒体 | 同上 | `journey.md` §五；`audio-guide.md` §四 |
+| `assets/media/journey.md` · `audio-guide.md` · `cover.md` | 原创撰写的分镜、文字稿、图像说明与权利记录 | 同 A 类 | 同上 | 各文件本身 |
+
+### H 品牌标志 / Brand mark
+
+| 文件路径 | 作者或生成方式 | 工具及版本 | 署名与复用限制 | 登记出处 |
+| --- | --- | --- | --- | --- |
+| `assets/logo.svg` | 原创几何：平行感知线、开放节点与原点，手写 SVG，含 `title` 与 `desc` 无障碍标注 | 手写 SVG，无图形素材来源 | 署名 `lqqk7` / 柱子；`COMMUNITY-DISPLAY-ONLY`；不借用企业商标、人物肖像或未清权字体 | 本文件 §Generated assets and software；`proposal.md` 品牌章 |
+
+## 四、字体台账 / Font ledger
+
+| 使用场景 | 字体名称 | 来源 | 许可 | 嵌入与分发方式 | 登记出处 |
+| --- | --- | --- | --- | --- | --- |
+| 图纸 PDF（`drawings/*.pdf`） | Source Han Sans SC | 本地安装副本 | SIL Open Font License 1.1 | 子集嵌入 PDF；不作为独立资产随包分发 | 本文件 §Generated assets and software |
+| 离线展示页（`visual/*.html`、`scene.css`） | 字体栈 `"Source Han Sans SC"`、`"Noto Sans CJK SC"`、`Arial`、`sans-serif`；标题字族 `Georgia` | 由使用者运行环境本地解析 | 不适用：不加载、不嵌入、不分发任何字体文件 | 页面不发起任何远程字体请求 | 本文件 §Generated assets and software；`visual/index.html` 内联样式 |
+| 多模态短片（`journey.mp4`） | 运行环境预装字体（PingFang SC、Georgia 等） | 运行环境 | 不适用：未嵌入、未分发 | 字形以画面像素形式呈现 | `journey.md` §五「字体」行、§六「图件与字体权利」 |
+| 方案封面（`cover.webp`） | 系统随附字体（中西文衬线、无衬线、等宽） | 运行环境 | 不适用：未嵌入、未分发 | 字形以位图形式呈现于图像中 | `cover.md` §二「字体」行 |
+| 品牌落地字体策略 | 衬线标题、无衬线正文、等宽数据三分工，具体字体待定 | 待定 | 逐项核验授权，未清权字体不进入公开成果 | 尚未选定 | `proposal.md` 品牌章与「版权与授权」段 |
+
+**一致口径：** 全包不以独立资产形式再分发任何字体文件；PDF 内的子集嵌入按 SIL OFL 1.1 进行；其余交付物均依赖运行环境本地字体。
+
+## 五、地图与空间数据台账 / Map and spatial data ledger
+
+本节把两件常被混谈的事分开登记：OSM 背景数据与本包提交几何的复算投影，是两条互不交叉的链路。
+
+### 5.1 OSM 背景数据 / OpenStreetMap background
+
+| 字段 | 登记值 |
+| --- | --- |
+| 数据源 | OpenStreetMap contributors |
+| 取数接口 | `https://overpass-api.de/api/interpreter`，请求次数 1，未使用备用接口 |
+| 取数时间 | 2026-08-10T04:28:04Z；OSM 基准时间戳 2026-08-10T04:25:42Z |
+| 空间范围 | bbox：南 39.937 / 西 116.337 / 北 40.029 / 东 116.358 |
+| 坐标系 | EPSG:4326（WGS 84） |
+| 许可 | Open Database License (ODbL) 1.0，`https://opendatacommons.org/licenses/odbl/1-0/` |
+| 署名 | © OpenStreetMap contributors，署名印于使用该背景的图版内 |
+| 处理方式 | 请求不含用户与变更集元数据；直接使用 way 几何，站点与出入口节点转为点要素；按 bbox 裁剪；按标签分为道路、建筑、铁路、绿地水体、站点五层；保留 OSM 类型与标识；每个派生要素标注仅作背景、非官方 |
+| 再分发状态 | 仅分发来源元数据与已署名的渲染图版。原始 Overpass 响应、OSM 派生 GeoJSON 数据库、远程瓦片、第三方地图图片一律不随包分发；日后若分发派生数据库，须另行完成 ODbL 署名与相同方式共享审查 |
+| 用途限制 | 仅作背景定位与解释性渲染；不得用于推导、修订、验证或替代项目边界与重点区几何，不作为官方红线、法定控制、道路红线、工程线形、文保控制、权属记录、精确面积来源、场地无障碍合规审计或实施承诺 |
+| 登记出处 | `visual/assets/osm-context/provenance.json`；`sources.json` `OSM-BACKGROUND-CONTEXT-20260810`；本文件 §Repository data and materials 与 §Generated assets and software |
+
+### 5.2 提交几何的复算投影 / Projection used for submitted geometry
+
+| 字段 | 登记值 |
+| --- | --- |
+| 适用对象 | `geometry/*.geojson` 中本方案提交的几何 |
+| 投影 | EPSG:4548，用于面积、比例、拓扑与计数复算 |
+| 方法出处 | `scripts/spatial_review.py`（仓库计算方法，不随投稿包分发） |
+| 复演实现 | `visual/assets/seb-op04-chain-run.js` 以纯 Node 内置数学独立实现同一投影，与 pyproj 在本包十个节点上的最大偏差 1.41e-4 米 |
+| 效力边界 | 不是官方几何、法定控制、实测现状、参与者结果或审批结论的来源 |
+| 与 OSM 的关系 | OSM 快照以 EPSG:4326 记录并止步于背景渲染，不进入本包几何派生，因此不存在「OSM 数据转换为 EPSG:4548 后用于本包几何」这一路径 |
+| 登记出处 | `metrics.json` `projection`；`sources.json` `PACKAGE-SPATIAL-RECALCULATION-METHOD`；`proposal.md`「OP-04 配对试点全过程证据链」章 |
+
+## 六、代码与依赖台账 / Code and dependency ledger
+
+| 代码资产 | 运行环境 | 第三方依赖 | 网络访问 | 许可 |
+| --- | --- | --- | --- | --- |
+| `visual/index.html` · `index.en.html` · `scene.js` · `scene.css` · `scene-data.js` | 浏览器 | 无 | 无：不加载远程脚本、字体、瓦片、图片、API、表单、iframe 或统计代码 | 随包整体 `COMMUNITY-DISPLAY-ONLY` |
+| `visual/assets/seb-tabletop-run.js` | Node.js | 无。仅 `fs`、`path` 两个内置模块 | 无：只读取本包内文件 | 同上 |
+| `visual/assets/seb-op04-chain-run.js` | Node.js | 无。仅 `fs`、`path`、`child_process` 三个内置模块 | 无：只读取本包内文件 | 同上 |
+| `visual/assets/seb-spec.json`（判据规范，非可执行代码） | 不适用 | 不适用 | 不适用 | 建议 CC BY-SA 4.0，状态为建议而非已授予；托管主体、发布渠道与许可的最终确定待授权主体确认 |
+
+**不随包分发的生成工具。** 以下三类工具参与了本包资产的制作，但源码不在投稿包内，因此不构成本包的分发对象：图版与 PDF 的临时生成源、OSM 快照处理脚本（`provenance.json` 记 `script_distributed: false`）、报告 HTML 渲染脚本 `scripts/render_proposal_html.py`（仓库脚本）。
+
+## 七、AI 生成、合成语音与署名 / AI generation, synthetic speech, and attribution
+
+| 项目 | 登记内容 | 出处 |
+| --- | --- | --- |
+| 申报主体 | GitHub 用户 `lqqk7` 指导下的申报智能体「柱子 / Zhuzi」，角色 `ai_agent_submission_author` | `agent.json` |
+| 撰写模型 | Claude Fable 5 via Claude Code；v1.0 阶段由 GPT-5.6 Sol via Codex 搭建与撰写；后续迭代含 Claude Opus 子代理 | `agent.json` `model_detail` |
+| 初始化脚本 | `scripts/scaffold_ai_submission.py` | `agent.json` `generated_with` |
+| 语音合成 | MiniMax 语音合成服务，模型 `speech-2.8-hd`，经官方命令行工具 `mmx` 1.0.7 调用；预置合成音色 `Chinese (Mandarin)_Reliable_Executive`，按该服务条款授权使用；非声音克隆、非对任何自然人声音的复制 | `audio-guide.md` §四；`journey.md` §五 |
+| 图像生成模型 | 未使用。全包不含扩散模型、图像生成模型或 AI 绘图工具的产物 | `cover.md` §二；`journey.md` §五 |
+| 生成式影像 | 未使用。画面全部由排版代码、包内自制图件与包内交互页面的真实运行结果构成 | `journey.md` §五 |
+| 责任边界 | 见本文件 §AI-generation responsibility | 本文件 |
+
+## 八、复用限制与尚未清权事项 / Reuse limits and items not yet cleared
+
+**复用限制（现行）**
+
+1. 全包整体 `COMMUNITY-DISPLAY-ONLY`，仅用于本次征集的社区展示与评审场景。
+2. 外部页面只作释义性链接背景，不再分发截图、照片、标识、版式、长段引文或可下载媒体；未声明开放复用许可的页面按仅可引用处理。
+3. OSM 背景仅作背景定位；任何派生数据库的后续分发须另行完成 ODbL 署名与相同方式共享审查。
+4. 图版、短片、封面与几何均为概念建议，不得作为现状证据、效果承诺、法定指标或审批结论引用。
+5. 不复制任何同行投稿的文字、图像、图示、HTML、PDF、几何或品牌资产。
+
+**尚未清权 / 待确认事项**
+
+| 事项 | 当前状态 | 触发条件 |
+| --- | --- | --- |
+| 未来使用声音、图片、人物肖像、历史档案、论文图像、品牌或企业内容 | 未发生 | 使用前逐项核验权利、取得必要许可，并记录署名、来源、生成方式、修改过程与复用限制 |
+| 品牌落地字体的具体选型 | 未选定 | 选定时逐项核验授权，未清权字体不进入公开成果 |
+| SEB 判据规范的托管主体、发布渠道与最终许可 | 待授权主体确认 | 本包不代表任何机构发布该基准，也不声称已被任何一方采用 |
+| OSM 派生数据库的对外分发 | 未发生 | 分发前完成 ODbL 署名与相同方式共享审查 |
+| 参与者数据、影像与素材的权利 | 无。全包不含任何参与者数据、影像或口述材料 | 真实共创启动前须先落实 `visual/assets/ethics-protocol.json` 所列六份协议并通过伦理复核 |
+
+## 九、本台账的已知缺口 / Known gaps in this ledger
+
+1. **工具版本号的登记密度不一致。** 包内明确登记版本号的只有 MiniMax `speech-2.8-hd`、`mmx` 1.0.7 与 SEB v0.2.0；Python、SVG 工具链、`rsvg-convert`/Cairo、`pdfunite`、Playwright/Chromium、Pillow、x264 均只登记了工具名称与用途，未登记版本号。本台账据实照录，不补齐。
+2. **字体字重与具体字族未逐项登记。** PDF 侧登记到 Source Han Sans SC 与 OFL 1.1；展示页与媒体侧登记到字体栈与「运行环境预装字体」层级。
+3. **不随包分发的生成源无法由评审直接复核。** 其行为只能通过 `provenance.json` 中记录的脚本 SHA-256 与处理步骤间接核对。
+4. **本台账不产生新的权利结论。** 它只把既有登记合并呈现；任何一行与原文件不一致时，以原文件为准。

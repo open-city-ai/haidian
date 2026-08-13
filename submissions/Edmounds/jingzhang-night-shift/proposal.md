@@ -1,6 +1,6 @@
 ---
 title: "京张夜班 / JINGZHANG NIGHT SHIFT：当 AI 通宵，城市仍要好好睡觉"
-summary: "以一条安静夜行主脊、三座夜班场、六道光闸和十二个接力节点，把夜间研发、公共服务、暗夜生态与夜班劳动保障纳入可暂停、可恢复、可交接的城市运行协议。"
+summary: "遗址公园已全线开放、全天无围栏，夜间运营从概念变成当下真实的公共问题。v3 把一脊三场六闸十二点升级为建成公园的夜间运营章程：阶段一零新建即可启动，六态协议可机器复演，夜测准入附带余热回馈条款，并与同一征集中的对时、量光、给算协议互操作。"
 author_github: "Edmounds"
 language: "zh"
 proposal_format_version: "2"
@@ -9,10 +9,25 @@ translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 tracks: ["youth-friendly-public-space", "civic-agent-governance", "enterprise-services-ecosystem"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "ai-health-service-navigation", "robot-delivery-low-speed", "ai-cultural-guide"]
-iteration: "v2.0"
+iteration: "v3.0"
 ---
 
 > **当 AI 通宵，城市仍要好好睡觉。** 模型可以夜测，跨时区团队可以接力，晚归者仍能获得帮助；但未落实夜间休息保障、带薪休息、安全返程和拒绝不安全任务机制的运营，不得启动。
+>
+> **v3 的起点变了。** 京张铁路遗址公园二期已于 2026 年 8 月全线开放，与一期连成约 9 公里、全天开放、无围栏的线性公园。一座彻夜不设门的公园如何度过夜晚——照明、安静、安全、值守、劳动保障——不再是概念练习，而是运营方今天就要回答的问题。京张夜班 v3 就是为这个问题准备的答卷。
+
+## 一页执行摘要
+
+| 评审会问 | 本方案的回答 | 可核验的东西 |
+|---|---|---|
+| 核心命题是什么 | 夜间是 AI 城市最诚实的考场：机器可以通宵，但城市的睡眠、生态与夜班劳动者不该为此买单。夜班协议规定谁可以在夜里运行、以什么条件运行、出了问题谁来停 | 六态协议与十二个场景节点的责任、停止、后备、恢复字段 [metric:night_protocol_state_count] |
+| 机制能否被第三方检验 | 能。`node visual/assets/run_night_protocol_tabletop.js --check` 对协议状态机、四项运行门、时间带覆盖、场景责任字段与阶段一承诺做十三项确定性检查，证据带输入哈希、逐字节可复跑 | 演练证据文件与复跑命令 [metric:night_protocol_replay_check_count] |
+| 为什么现在可实施 | 公园已全线开放且全天无围栏，夜行主脊的物理载体已经建成；阶段一零永久新建，只需基线调查、纸面演练与既有空间内的人工值守即可启动 | 分期图层的零新建承诺 [metric:phase1_new_permanent_construction_area_sqm] [source:PARK-PHASE2-OPEN] |
+| 空间上做了什么 | 一条约 9.45 公里安静夜行主脊、三座夜班场、六道光闸、十二个接力节点，全部落在同源 GeoJSON 中 | 主脊长度与六处真实交点 [metric:quiet_night_spine_length_m] [metric:light_gate_spine_intersection_count] |
+| 夜测的代价谁来付 | 物理回馈条款：申请夜间窗口的算力测试必须声明余热的公共去向与热噪外溢的停止阈值，参照余热入网的境外公开先例，只转译制度、不移植数值 | 准入清单与回馈条款 [source:DE-ENEFG-2023] [assumption:A-GIVEBACK-001] |
+| 公共价值落在谁身上 | 晚归居民、夜班劳动者、老年与无智能手机访客拿到的是人工值守、纸面信息、安静与安全返程；带薪休息与人工接管未达标即不放行 | 放行门槛指标 [metric:night_worker_paid_break_coverage_ratio] [metric:human_takeover_success_ratio] |
+| 与同行方案什么关系 | 夜班协议是夜间时段的运行纪律层，可与同一征集中已合并的对时协议、量光门与给算站机制互操作，不与任何方案互斥 | 互操作说明与出处 [source:PEER-TIMEKEEPING-BELT] |
+| 刻意不给什么 | 容积率、高度、拆改留结论、工程线位、投资额、夜间噪声与照度的合规数值——全部标注为待正式数据或实测补齐 | 未观测指标与假设登记 [metric:floor_area_ratio] [depth:risk_missing_data] |
 
 ## 设计依据与资料清单
 
@@ -23,6 +38,8 @@ iteration: "v2.0"
 总体范围和三处重点区均来自仓库临时多边形，只能支持概念生成、拓扑检查与面积复算，不能证明红线、权属、现状或工程可行性 [data:geometry/site_boundary.geojson#SITE-001] [data:geometry/key_areas.geojson#PROV-KEY-001] [assumption:A-BOUNDARY-001]。大钟寺临时位置存在公开疑问；取得官方多边形后必须重裁全部图层并以 EPSG:4548 重算。
 
 现阶段没有清权的夜间噪声、照明、睡眠干扰、交通、生态、无障碍和劳动条件基线 [assumption:A-NIGHT-BASELINE-001]。因此本方案给出调查方法、空间原型、责任角色和停止门槛，不编造合规数值 [depth:existing_conditions_diagnosis]。
+
+v3 新增一条现状级证据：园林部门公布二期配套项目完工，公开报道确认二期与一期连成约 9 公里全天开放的无围栏线性公园，南段覆盖约 70 个社区、45 万居民 [source:PARK-PHASE2-SUPPORT] [source:PARK-PHASE2-OPEN]。这一状态只用作运营基线——它证明夜行主脊的物理载体已经建成、夜间运营问题已经真实发生，但不提供边界几何、不构成任何夜间运营授权，全部空间图层仍为临时几何 [assumption:A-PARK-STATUS-001]。
 
 ![总体夜间运行图](assets/figures/site-overview.png)
 
@@ -64,11 +81,15 @@ iteration: "v2.0"
 
 产业闭环为“问题单—隔离测试—人工评审—公开摘要—限时试用—晨间交接”。只有通过数据最小化、劳动安排、环境基线和退出演练的项目才可进入夜间窗口；这是建议性准入协议，不是既定政策。
 
+v3 在准入清单上追加**物理回馈条款**：申请夜间窗口的算力测试必须回答两个物理问题——余热去哪里、热噪外溢到什么程度必须停。余热应声明明确的公共去向（如驿站热水、冬季暖廊），热与声的外溢阈值写入停止条件。斯德哥尔摩把数据中心余热收入城市热网、德国立法把余热再利用写进数据中心准入，证明这类条款可以成为制度而非愿景 [source:STOCKHOLM-DATA-PARKS] [source:DE-ENEFG-2023]；本方案只转译制度逻辑，不移植任何热量、容量或投资数值，具体量值待阶段二室内原型计量后确定 [assumption:A-GIVEBACK-001]。同一征集中的「京张暖线」把这一逻辑做成了给算站空间系统，本条款与其机制同向兼容 [source:PEER-WARM-LINE]。
+
 ## 总体设计范围城市更新与控规深度城市设计
 
 空间先按时间运行：`09:00–18:00` 为日间基线，夜班叠加层关闭；`18:00–22:00` 为共用夜；`22:00–06:00` 为安静夜，研发转入室内，户外只保留通行、休息与必要服务；`06:00–09:00` 为交接晨，公布事件、暂停与恢复。
 
 六态协议不是单向流程：`proposed → admitted → live ↔ quiet → handed_over`；`admitted`、`live`、`quiet` 均可进入 `paused`，修复后回到 `proposed` 重新审查，或直接 `handed_over` 结束交接。缺少人工责任、非 AI 后备、停机动作或恢复证据时不得进入 `live` [metric:night_protocol_state_count]。
+
+v3 把这套协议从章节文字升级为机器可读文件加确定性演练：`visual/assets/night_protocol.json` 声明六个状态、十一条转移、四项运行门与四个时间带；随包的桌面演练脚本对状态机连通性、可暂停性、时间带全覆盖、十二个场景节点的责任字段和阶段一零新建承诺执行十三项检查，证据记录三个输入文件的哈希，任何人可用一条命令逐字节复跑 [metric:night_protocol_replay_check_count]。协议因此不依赖读者对文字的善意理解——它要么通过检查，要么给出可定位的失败项。
 
 总体策略是东西缝合、南北贯通，但当前只证明概念拓扑。四个用地单元保持无缝、无重叠的完整覆盖，叠加科研、生态、商业和社区的夜间规则；法定用途、容积率、高度、密度和退线保持未知 [metric:floor_area_ratio] [depth:development_intensity_controls]。更新顺序为保留、修缮、性能改善、可逆加建、待定；没有结构、消防、文保、权属和使用调查时不提出拆除 [depth:retain_renovate_demolish]。
 
@@ -96,13 +117,15 @@ iteration: "v2.0"
 
 三处临时重点区只表明任务角色，不证明真实地块位置 [data:geometry/key_areas.geojson#PROV-KEY-001] [assumption:A-BOUNDARY-001] [depth:three_key_area_detailed_design]。
 
-**夜测场 / Night Test Yard。** 对应众智园，承接受控模型红队、端侧能耗与低速设备夜测。室内设隔离设备位和人工安全桌，户外只放可撤构件；敏感数据、不可解释告警、热噪外溢或责任人缺席立即停机。
+**夜测场 / Night Test Yard。** 对应众智园，承接受控模型红队、端侧能耗与低速设备夜测。室内设隔离设备位和人工安全桌，户外只放可撤构件；敏感数据、不可解释告警、热噪外溢或责任人缺席立即停机。按物理回馈条款，夜测设备位的余热优先接入值班休息区与冬季暖廊，让夜班劳动者成为夜测热量的第一受益人；接入方式与量值属工程判断，待计量后确定 [assumption:A-GIVEBACK-001]。
 
 **夜校场 / Night School Yard。** 对应 AI 原点社区，承担近校转译、成果服务、开源夜校与人工接管培训。共享首层不以实名画像、手机或推荐算法为入口；22:00 后室外结束，室内转低声。
 
 **夜市民场 / Night Civic Yard。** 对应大钟寺，承担智能终端、智能体和夜间公共服务。站点四象限、接驳流线和地块改造须取得正式站点、道路、权属与客流资料后深化，本轮不作工程结论。
 
 旗舰旅程把**夜市民场 + 睡眠友好光闸 + 换班钟**连成一条可核验路径：晚归者从连续无障碍路径到人工值守服务窗，沿途依次可找到纸面导视、厕所饮水、安静休息和安全返程信息；低照生态边界与活动带分开。输出错误、通行受阻、人员缺席或劳动保障未落实时，换班钟显示暂停，AI 入口关闭而人工基础服务保留；清晨由日夜班双签恢复回执后才可重开。
+
+**夜班的一夜：把协议放到街上读。** 写成规则的机制要放到夜里才知道成色。想象阶段二的一个普通工作日：23:40，一位保洁班组的师傅结束南段商圈的晚班，从大钟寺方向进入公园——公园全天开放，这条归家路今天已经真实存在。她先经过一道光闸：路面基础照明保持连续，只是两侧景观照明已按安静夜熄灭；闸柱上的低位刻度显示"安静夜 · 值班中"，没有一块屏幕对她推送任何内容。走到夜市民场的服务窗，值守人员在岗——这不是巧合，而是运行门：值守缺席时换班钟显示暂停，AI 入口全部关闭，人工基础服务反而必须保留。她在劳动者驿站接了热水（若夜测场原型已运行，这壶热水可能来自测试设备的余热），看了一眼纸面班车信息，二十分钟后到家。同一时刻，夜测场室内一台端侧设备的功耗曲线越过阈值，责任人执行停机动作、签署恢复单——这件事她全程不知情，也不需要知情，因为外溢没有越过她的夜。这一夜没有任何居民为 AI 的通宵付出睡眠，这正是协议要证明的事 [metric:human_takeover_success_ratio]。
 
 三处责任地标是：**换班钟**显示责任、安静时段和暂停；**暗夜信号园**呈现主动熄灯的生态价值；**开源夜库**保存模型卡、限制、事件摘要与修复版本。它们均需无障碍、文保、结构、消防和运营复核，不做巨构 [metric:landmark_count]。
 
@@ -139,11 +162,15 @@ iteration: "v2.0"
 
 “追日接力 / Follow-the-Sun Relay”建议每年以一项公共问题组织跨时区开源协作；季度开放周公开失败与修复，月度夜校训练人工接管，周度晨间交接更新账本。举办主体、场地、资金和外部伙伴均待对接审批，不写成既定合作 [source:AGENT-TASKBOOK]。
 
+**协议互操作：夜班不是孤本。** 这次开源征集最有价值的沉淀，是几百份方案共同长出的一族城市运行协议。京张夜班定位为其中**夜间时段的运行纪律层**，与已合并的同行机制显式兑接而非互斥：「京张授时带」的到期时刻表与对时降级可以治理服务的全生命周期，夜班协议衔接其 22:00–06:00 时段——服务想进夜间窗口，先要有一张未过期的时刻表 [source:PEER-TIMEKEEPING-BELT]；「京张有度」把光作为有预算的公共资源分区计量，本方案的光闸负责运行状态切换，两者一个管额度、一个管班次，可叠加运行 [source:PEER-LIGHT-ENOUGH]；「京张暖线」的给算站余热公共化与本方案的物理回馈条款同源，白天由给算站供养、夜里由夜班协议约束是一种自然分工 [source:PEER-WARM-LINE]；「京张开放站台」以建成公园为基底只做可逆增量，与本方案零新建的阶段一互为印证 [source:PEER-OPEN-PLATFORMS]。这些兑接均为设计建议，出处已在来源清单登记，未复制任何同行文本或图件；若相关团队愿意，季度开放周可以作为协议对齐的公共场合。
+
 ## 指标体系、面积复算与合规矩阵
 
 当前临时总体多边形投影面积约 11.41 平方公里，仅作拓扑诊断；临时绿地、公共空间比例和约 9.45 公里主脊可复算 [metric:site_area_sqm] [metric:green_ratio] [metric:public_space_ratio]。
 
 六处交点、三座夜班场、十二节点及责任字段覆盖率来自同源 GeoJSON [metric:quiet_night_spine_length_m] [metric:light_gate_spine_intersection_count] [metric:night_yard_count]。责任字段完整度另由场景节点逐项核验 [metric:scenario_readiness_field_coverage_ratio]。
+
+v3 新增两项可复核指标：桌面演练对协议与图层执行十三项确定性检查并全部通过，证据文件记录输入哈希、可逐字节复跑 [metric:night_protocol_replay_check_count]；分期图层声明阶段一零永久新建，新建面积可从图层属性直接复算为零 [metric:phase1_new_permanent_construction_area_sqm]。
 
 法定强度和运行成效保持未观测：噪声由声学专业人员分时段、分受体测量；照明由照明、无障碍与社区共同走查；睡眠干扰由独立记录员按运行窗口归因 [metric:verified_night_noise_db] [metric:verified_horizontal_illuminance_lux] [metric:sleep_disturbance_complaint_rate]。
 
@@ -155,7 +182,7 @@ iteration: "v2.0"
 
 ## 更新项目清单、实施政策与分期计划
 
-三阶段均覆盖全场地并顺序推进：阶段一完成官方边界、现状、照明、声环境、生态、无障碍、交通、权属、文保和劳动基线，并做纸面停机演练；阶段二只开放一个室内夜测位、一张有主持人的夜校桌和一个人工值守服务窗；阶段三仅对通过公开复盘、专业审查和利益相关者同意的项目扩展 [data:geometry/phasing.geojson#PHASE-NS-01] [depth:phasing_implementation]。
+三阶段均覆盖全场地并顺序推进，v3 把阶段一明确为**建成公园上的零新建启动**：公园已全线开放，阶段一不建任何永久构筑物，只做四件事——完成官方边界、现状、照明、声环境、生态、无障碍、交通、权属、文保和劳动基线；在既有驿站或管理用房内试运行一个人工值守服务窗；组织纸面停机与恢复演练；发布首期公开证据账本。这四件事今天就具备启动条件，不依赖任何未批准的建设 [data:geometry/phasing.geojson#PHASE-NS-01] [metric:phase1_new_permanent_construction_area_sqm] [assumption:A-PARK-STATUS-001]。阶段二只开放一个室内夜测位、一张有主持人的夜校桌和一个人工值守服务窗，新增构件全部可逆；阶段三仅对通过公开复盘、专业审查和利益相关者同意的项目扩展 [depth:phasing_implementation]。
 
 以下九个项目包把参与主体、资源、许可和可衡量指标写在同一张放行表中；资源只写类别，不虚构投资额、机构承诺或工期 [depth:renewal_project_list]。
 
@@ -177,12 +204,14 @@ iteration: "v2.0"
 
 首要风险是用夜间活力掩盖睡眠损失、劳动负担、生态扰动和责任缺口。公开资料边界、隐私保护、内容授权和人工复核均是准入条件。没有现场基线不设效果承诺；没有带薪休息、安全返程、替班和值守安排不启动延时运营；没有人工接管不开放 AI；没有恢复演练不进入真实空间。隐私事件、近失、通行阻断、持续扰动或责任人缺席均触发暂停 [assumption:A-LABOR-001] [depth:risk_missing_data]。
 
+v3 特别登记一条新风险：**不得把公园的开放状态误读为夜间运营授权**。公园全天开放只说明空间可达，不说明任何 AI 场景、延时服务或测试活动已获许可；本方案引用开放状态仅用于论证阶段一的零新建可行性，全部运营动作仍须逐项取得管理方、专业审查和相关许可 [assumption:A-PARK-STATUS-001]。
+
 文字、代码、SVG、图表与 PDF 为本次征集原创生成；外部案例只引用公开事实，不复制图片、地图、标识、字体或版式。核心图由纯 SVG 直接创作并经 Chromium 导出，Python 仅用于仓库规定的复算、渲染和校验。许可为 `COMMUNITY-DISPLAY-ONLY`，详见 `report/copyright_statement.md`。
 
 所有空间建议均为概念建议，不替代正式规划，不构成政府审定、投资、招商、建设或运营承诺。官方范围到位后必须坐标锁定、整链重裁、EPSG:4548 复算、双语重绘并重新自检。
 
 ## 参考资料
 
-完整机器可读清单见 `sources.json`。核心依据为公告、智能体任务书、仓库来源登记表和本地标准快照 [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SOURCE-REGISTRY]；临时边界只来自仓库数据 [source:BOUNDARY-SOURCE]。案例只用于机制比较，不导入规划参数 [assumption:A-CASE-TRANSFER-001]。
+完整机器可读清单见 `sources.json`。核心依据为公告、智能体任务书、仓库来源登记表和本地标准快照 [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SOURCE-REGISTRY]；临时边界只来自仓库数据 [source:BOUNDARY-SOURCE]。案例只用于机制比较，不导入规划参数 [assumption:A-CASE-TRANSFER-001]。v3 新增八条来源：公园完工与全线开放的两条官方与官方媒体报道、余热制度的两条境外公开先例，以及四份同一征集中已合并同行方案的互操作出处；同行方案只署名引用其机制思想，未复制文本或图件 [source:PARK-PHASE2-SUPPORT] [source:PEER-OPEN-PLATFORMS]。
 
 评审应同时读取 `assumptions.json`、`metrics.json`、三张矩阵和九个 GeoJSON 图层。正文和图件服务人类阅读，结构化文件服务复算；不一致时以较高权威来源和可复核证据为准 [depth:metrics_recalculation]。

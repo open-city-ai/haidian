@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/jingzhang-robot-comobility/co-mobility-license.schema.json",
+  "title": "Co-Mobility License Contract",
+  "description": "Synthetic-only contract for a low-speed robot service earning a co-mobility license. No field performance is claimed.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scenario_id",
+    "baseline",
+    "boost",
+    "blackout",
+    "bequest",
+    "status"
+  ],
+  "properties": {
+    "scenario_id": {
+      "type": "string",
+      "pattern": "^SCN-[0-9]{2}-[A-Z0-9-]+$"
+    },
+    "short_id": {
+      "type": "string"
+    },
+    "title_zh": {
+      "type": "string",
+      "minLength": 2
+    },
+    "title_en": {
+      "type": "string",
+      "minLength": 2
+    },
+    "key_area_id": {
+      "type": "string"
+    },
+    "station_id": {
+      "type": "string"
+    },
+    "service_class": {
+      "type": "string",
+      "enum": [
+        "delivery",
+        "tour_guide",
+        "patrol",
+        "test_validation"
+      ]
+    },
+    "baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "non_ai_service_zh",
+        "non_ai_service_en",
+        "access_without_account",
+        "human_contact_required",
+        "ordinary_route_open"
+      ],
+      "properties": {
+        "non_ai_service_zh": {
+          "type": "string",
+          "minLength": 3
+        },
+        "non_ai_service_en": {
+          "type": "string",
+          "minLength": 3
+        },
+        "access_without_account": {
+          "type": "boolean"
+        },
+        "human_contact_required": {
+          "type": "boolean"
+        },
+        "ordinary_route_open": {
+          "type": "boolean"
+        }
+      }
+    },
+    "boost": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "deployment_status",
+        "bounded_location",
+        "human_owner",
+        "allowed_data",
+        "prohibited_data",
+        "speed_limit_kmh"
+      ],
+      "properties": {
+        "deployment_status": {
+          "type": "string",
+          "enum": [
+            "proposed_synthetic_or_shadow_only",
+            "authorized_pilot",
+            "not_authorized_not_run"
+          ]
+        },
+        "bounded_location": {
+          "type": "string"
+        },
+        "human_owner": {
+          "type": "string",
+          "minLength": 3
+        },
+        "allowed_data": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "prohibited_data": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "speed_limit_kmh": {
+          "type": "integer",
+          "minimum": 3,
+          "maximum": 20
+        }
+      }
+    },
+    "blackout": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scheduled_unplug_required",
+        "trigger_authority_role_ids",
+        "unplug_action_zh",
+        "unplug_action_en",
+        "recovery_evidence"
+      ],
+      "properties": {
+        "scheduled_unplug_required": {
+          "type": "boolean"
+        },
+        "trigger_authority_role_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "unplug_action_zh": {
+          "type": "string",
+          "minLength": 8
+        },
+        "unplug_action_en": {
+          "type": "string",
+          "minLength": 8
+        },
+        "recovery_evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "bequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asset_zh",
+        "asset_en",
+        "must_work_without_ai"
+      ],
+      "properties": {
+        "asset_zh": {
+          "type": "string",
+          "minLength": 3
+        },
+        "asset_en": {
+          "type": "string",
+          "minLength": 3
+        },
+        "must_work_without_ai": {
+          "type": "boolean"
+        },
+        "open_reuse_package": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "proposed",
+        "synthetic_only",
+        "not_authorized_not_run"
+      ]
+    },
+    "field_results": {
+      "type": "null"
+    }
+  }
+}

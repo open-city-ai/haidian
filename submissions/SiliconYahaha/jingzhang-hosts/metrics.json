@@ -1,0 +1,234 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(site_boundary) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; use only for package consistency and recalculate after official polygon release."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2067340.614,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(green_space)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual green design clipped to the provisional site boundary."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 332359.719,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(public_space)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Twelve conceptual hosted rooms; publicness remains subject to operator and access agreements."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 827699.635,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(building_footprints)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual footprints do not represent surveyed existing buildings or approved development."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.181142,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.029122,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required key areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "host_yard_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(conceptual host yards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "hosted_room_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(hosted public-space features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "host_access_level_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(O1 Common, O2 Hosted, O3 Booked, O4 Partnered)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(readable scenario cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industry test and validation scenarios)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(distinct user personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "honor_node_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(conceptual pilgrimage and honor nodes)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(conceptual renewal projects in implementation list)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls, official boundary and surveyed floor area are unavailable."
+    },
+    "maximum_building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved maximum building height",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height controls and heritage view-corridor constraints are unavailable."
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(approved floor area)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Conceptual footprints cannot be converted into statutory floor area without surveyed buildings and approved controls."
+    },
+    "official_investment_cny": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "approved project estimate",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved project scope, operator commitments or cost plan exists for this conceptual submission."
+    }
+  }
+}

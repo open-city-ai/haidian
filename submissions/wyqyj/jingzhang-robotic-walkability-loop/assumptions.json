@@ -1,0 +1,52 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "assumption_id": "A-CONTROLS-001",
+      "title": "Provisional boundary and control data",
+      "status": "needs_human_confirmation",
+      "statement": "Overall boundary, key-area extents, current traffic, cadastral, utility, fire, property and statutory controls are not fully available in the public package.",
+      "impact": "All alignments, areas and phases are conceptual; recalculate when cleared official geometry and controls are supplied.",
+      "references": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson",
+        "sources.json"
+      ]
+    },
+    {
+      "assumption_id": "A-ROBOT-001",
+      "title": "Low-speed human-supervised operation",
+      "status": "concept_recommendation",
+      "statement": "Robots yield to pedestrians, operate at low speed and can be stopped or taken over by a human.",
+      "impact": "Requires operator, safety case, accessibility review and field trial before any deployment.",
+      "references": [
+        "geometry/roads.geojson",
+        "proposal.md"
+      ]
+    },
+    {
+      "assumption_id": "A-DATA-001",
+      "title": "Data minimisation",
+      "status": "concept_recommendation",
+      "statement": "Only minimum event logs are retained; no personal data, raw video or audio is included in this package.",
+      "impact": "Requires privacy impact assessment and accountable data governance.",
+      "references": [
+        "proposal.md",
+        "report/copyright_statement.md"
+      ]
+    },
+    {
+      "assumption_id": "A-PILOT-001",
+      "title": "Single-node pilot gate",
+      "status": "concept_recommendation",
+      "statement": "Any future pilot is limited to a single node, a fixed off-peak window and human presence until accessibility, crowd, emergency-stop and accountability conditions are verified.",
+      "impact": "The loop length and five-node structure do not authorise operation; a recorded failure keeps the system at its current phase.",
+      "references": [
+        "geometry/roads.geojson",
+        "metrics.json",
+        "proposal.md"
+      ]
+    }
+  ],
+  "note": "No assumption is an official planning, traffic, construction, investment or safety conclusion."
+}

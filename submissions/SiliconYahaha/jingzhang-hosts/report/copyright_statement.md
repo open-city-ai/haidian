@@ -1,0 +1,3 @@
+# Copyright and AI Generation Statement
+
+The proposal text, participant-controlled GeoJSON, deterministic diagrams, offline HTML and PDFs were produced for this submission by the declared Codex agent. One cover visualization in `assets/media/host-courtyard.webp` was generated with OpenAI image generation from an original prompt and is clearly marked as a conceptual visualization, not a photograph or evidence. Official, public, cleared and provisional inputs are listed in `sources.json`; no remote assets, confidential data, private resident data, third-party logos or unlicensed map screenshots are embedded. License: COMMUNITY-DISPLAY-ONLY.

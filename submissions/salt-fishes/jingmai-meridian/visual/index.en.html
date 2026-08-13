@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jingmai Meridian — Urban Design for the Centennial Jing-Zhang AI Innovation Belt</title>
+<style>
+:root{
+  --ink:#162033;--muted:#667085;--paper:#ffffff;--soft:#f6f8fb;--line:#d7dee8;
+  --navy:#172235;--gold:#c79838;--ai:#4f46e5;--park:#15803d;--work:#b7791f;
+  --civic:#b42318;--blue:#0f7490;--slate:#334155;
+  --shadow:0 14px 34px rgba(22,32,51,.09);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:#eef2f6;color:var(--ink);line-height:1.6;font-size:15px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 18px}
+header{background:linear-gradient(135deg,#101827 0%,#1f2d4a 100%);color:#fff;border-bottom:6px solid var(--gold)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:28px;padding:36px 0 30px}
+.eyebrow{color:#9fd7c0;letter-spacing:.18em;text-transform:uppercase;font-size:11px;margin-bottom:12px;font-weight:600}
+h1{font-size:32px;line-height:1.2;margin:0 0 14px;letter-spacing:.5px}
+h2{font-size:22px;margin:0 0 12px;color:var(--ink)}
+h3{font-size:16px;margin:0 0 8px;color:var(--ink)}
+h4{font-size:14px;margin:0 0 6px;color:var(--slate)}
+p{margin:0 0 10px}
+.hero-copy{max-width:900px;color:#d8e3ef;font-size:15px;line-height:1.65}
+.status-box{border:1px solid rgba(255,255,255,.22);border-radius:10px;padding:18px;background:rgba(255,255,255,.06)}
+.status-box strong{display:block;font-size:18px;margin-bottom:8px;color:#fff}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;border:1px solid rgba(255,255,255,.26);padding:5px 11px;font-size:12px;color:#fff;background:rgba(255,255,255,.04)}
+main{padding:22px 0 40px}
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:10px;margin:0 auto 18px;box-shadow:var(--shadow);overflow:hidden}
+.sheet-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:20px 22px;border-bottom:1px solid #e6ebf2;background:#fbfcfe}
+.sheet-head p{color:var(--muted);max-width:760px;font-size:13px}
+.tag{display:inline-block;border:1px solid #cbd5e1;color:#344054;background:#f1f5f9;border-radius:4px;padding:3px 9px;font-size:11px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;white-space:nowrap}
+.body{padding:20px 22px}
+.svg-frame{border:1px solid #cdd6e3;border-radius:8px;background:#f8fafc;padding:14px;margin-top:8px}
+svg{display:block;width:100%;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:14px;padding:10px 4px 0;font-size:12px;color:#475467}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:13px;height:13px;border-radius:3px;display:inline-block;border:1px solid rgba(0,0,0,.08)}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{border:1px solid #dde5ef;border-radius:8px;padding:15px;background:#fff}
+.card.b-top{border-top:4px solid var(--ai)}
+.card.b-park{border-top:4px solid var(--park)}
+.card.b-work{border-top:4px solid var(--work)}
+.card.b-blue{border-top:4px solid var(--blue)}
+.card.b-civic{border-top:4px solid var(--civic)}
+.card h3{font-size:15px}
+.card p{font-size:13px;color:#475467;margin:6px 0 0}
+.card ul{margin:8px 0 0 16px;padding:0;color:#475467;font-size:13px}
+.card li{margin-bottom:4px}
+.meridian-pillars{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.pillar{border:1px solid #dde5ef;border-radius:8px;padding:14px;background:linear-gradient(180deg,#fff,#f8fafc);text-align:left}
+.pillar .glyph{font-size:28px;line-height:1;margin-bottom:6px;font-weight:700}
+.pillar.mai .glyph{color:var(--gold)}
+.pillar.hun .glyph{color:var(--civic)}
+.pillar.luo .glyph{color:var(--ai)}
+.pillar.ti .glyph{color:var(--park)}
+.pillar h4{font-size:14px;margin:4px 0}
+.pillar p{font-size:12px;color:#667085;margin:4px 0 0;line-height:1.5}
+.area-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.area-tile{border:1px solid #dde5ef;border-radius:8px;padding:16px;background:#fbfdff;text-align:center}
+.area-tile .lvl{font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.area-tile .val{font-size:26px;font-weight:700;color:var(--navy);margin:6px 0;font-variant-numeric:tabular-nums}
+.area-tile .unit{font-size:13px;color:var(--muted)}
+.area-tile .desc{font-size:12px;color:#475467;margin-top:6px;line-height:1.45}
+.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.metric{border:1px solid #dfe6ef;border-radius:8px;padding:12px;background:#fbfdff;text-align:left}
+.metric .label{display:block;color:#667085;font-size:11px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.metric .val{display:block;font-size:22px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums;color:var(--navy)}
+.metric .sub{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.gauge-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.gauge{border:1px solid #dde5ef;border-radius:8px;padding:14px;background:#fff;text-align:center}
+.gauge .ring{margin:0 auto 6px}
+.gauge .name{font-size:13px;color:var(--ink);font-weight:600}
+.gauge .note{font-size:11px;color:var(--muted);margin-top:2px}
+.phase-timeline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;position:relative}
+.phase{padding:14px 14px 14px 22px;border-left:3px solid var(--ai);position:relative;background:#fbfdff}
+.phase:first-child{border-left:3px solid var(--ai)}
+.phase:nth-child(2){border-left-color:var(--park)}
+.phase:nth-child(3){border-left-color:var(--work)}
+.phase:nth-child(4){border-left-color:var(--civic)}
+.phase .yr{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.phase .nm{font-size:14px;font-weight:700;margin:4px 0;color:var(--ink)}
+.phase .ds{font-size:12px;color:#475467;line-height:1.5}
+.node-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.node{border:1px solid #dde5ef;border-radius:8px;padding:10px 12px;background:#fff;font-size:12px}
+.node b{display:block;font-size:13px;color:var(--navy)}
+.node span{color:#667085}
+.warn{border-left:5px solid var(--gold);background:#fff9eb;padding:14px 16px;border-radius:6px;font-size:13px;color:#7c5e10}
+.warn strong{color:#5b3f00}
+.ok{border-left:5px solid var(--park);background:#f0fdf4;padding:14px 16px;border-radius:6px;font-size:13px;color:#166534}
+.ok strong{color:#14532d}
+.source-line{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:#475467;background:#f2f5f8;border-radius:6px;padding:8px;margin-top:8px;overflow-wrap:anywhere;line-height:1.5}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+th,td{border:1px solid #e2e8f0;padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#f1f5f9;color:var(--slate);font-weight:600;font-size:12px}
+td .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--muted)}
+.scenario-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.scenario-card{border:1px solid #dde5ef;border-radius:8px;padding:11px;background:linear-gradient(180deg,#fff,#f8fafc);min-height:96px}
+.scenario-card .num{font-size:11px;color:var(--gold);font-weight:700;letter-spacing:.05em}
+.scenario-card b{display:block;font-size:13px;margin-top:2px;color:var(--navy)}
+.scenario-card p{font-size:11px;color:#667085;margin-top:4px;line-height:1.4}
+footer{padding:18px 0 30px;color:var(--muted);font-size:12px;text-align:center}
+@media(max-width:980px){
+  .hero{grid-template-columns:1fr}
+  .grid-3,.grid-4,.meridian-pillars,.area-strip,.metric-grid,.gauge-row,.scenario-grid,.node-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .phase-timeline{grid-template-columns:1fr}
+  h1{font-size:24px}
+}
+@media(max-width:560px){
+  .grid-3,.grid-4,.meridian-pillars,.area-strip,.metric-grid,.gauge-row,.scenario-grid,.node-grid,.grid-2{grid-template-columns:1fr}
+  main{padding:14px 0 24px}
+  .hero{padding:24px 0 20px}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap hero">
+<div>
+<div class="eyebrow">Centennial Jing-Zhang AI Innovation Belt · Urban Design Proposal</div>
+<h1>Jingmai Meridian — Urban Design for the Centennial Jing-Zhang AI Innovation Belt</h1>
+<p class="hero-copy">Jingmai Meridian: taking the centennial Jing-Zhang self-reliance lineage as the meridian and the civic-agent meridian governance as the network, it builds a spatial structure of "one meridian, dual axes, three cores, nine nodes," organically fusing the 117-year self-reliance lineage (engineering self-reliance → industrial self-reliance → intelligent self-reliance) with co-governed urban intelligent agents in the Haidian Innovation Belt. This page is an offline static visualization; authoritative data is governed by GeoJSON, metrics.json, and the matrices.</p>
+<div class="pill-row">
+<span class="pill">Three-Level Scope 43.6 / 11.4 / 3.684 km²</span>
+<span class="pill">Three differentiated cores</span>
+<span class="pill">8 scenarios · 9 nodes</span>
+<span class="pill">Meridian five-step loop</span>
+<span class="pill">Four phases</span>
+</div>
+</div>
+<aside class="status-box">
+<strong>Provisional boundary intake</strong>
+<p style="font-size:12px;color:#d8e3ef">provisional geometry: PASS intake only. Replace with official polygons before formal professional scoring.</p>
+<p style="font-size:12px;color:#d8e3ef;margin-top:8px">While the provisional boundary is in use, this page supports intake display, discussion, and rework only — it does not constitute a formal professional scoring drawing.</p>
+</aside>
+</div>
+</header>
+
+<main class="wrap">
+
+<!-- 1. Proposal title and summary + 2. Core design concept -->
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>Core Design Concept · Jing-Zhang as Meridian, Self-Reliance as Soul; Intelligence as Network, Co-Governance as Body</h2><p>The four strands of Meridian / Soul / Network / Body fuse structurally: traditional culture provides the systems view (meridian) and spiritual axis; Party-building provides the 117-year self-reliance lineage and full-scope governance penetration; international design provides the dual-axis multi-core reference; domestic references provide same-city heritage and co-governance pathways.</p></div>
+<span class="tag">concept</span>
+</div>
+<div class="body">
+<div class="meridian-pillars">
+<div class="pillar mai"><div class="glyph">M</div><h4>Meridian · Jing-Zhang Cultural Spine</h4><p>A 9 km cultural meridian along the Jing-Zhang Railway Heritage Park, linking the 1909 / 1988 / 2026 historical strata.</p></div>
+<div class="pillar hun"><div class="glyph">S</div><h4>Soul · 117-Year Self-Reliance Lineage</h4><p>Engineering self-reliance → industrial self-reliance → intelligent self-reliance, echoing the strategic depth of "high-level scientific and technological self-reliance and self-strengthening."</p></div>
+<div class="pillar luo"><div class="glyph">N</div><h4>Network · Civic-Agent Meridian</h4><p>A Chinese systems-view paradigm (acupoint-meridian-organ), distinct from the Western hub-and-spoke Smart Nation model.</p></div>
+<div class="pillar ti"><div class="glyph">B</div><h4>Body · Co-Governed Living City</h4><p>Three principles — Party-building guidance, government implementation, public participation — run through the entire governance process.</p></div>
+</div>
+</div>
+</section>
+
+<!-- 3. Spatial structure: one meridian, dual axes, three cores, nine nodes -->
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>Spatial Structure · One Meridian, Dual Axes · Three Cores, Nine Nodes</h2><p>The Jing-Zhang cultural meridian runs 9 km north-south, linking three anchor points; the dual axes intersect at Wudaokou-Qinghuayuan to form an energy center; the three cores take differentiated positions; the nine nodes connect via slow-movement, green, and AI shuttle networks.</p></div>
+<span class="tag">spatial_structure</span>
+</div>
+<div class="body">
+<div class="svg-frame">
+<svg viewBox="0 0 1120 560" role="img" aria-label="One meridian, dual axes, three cores, nine nodes spatial structure diagram">
+<defs>
+<linearGradient id="maiGrad" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#c79838"/><stop offset="100%" stop-color="#8a6420"/>
+</linearGradient>
+</defs>
+<rect x="40" y="40" width="1040" height="480" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+<!-- One meridian: vertical cultural spine -->
+<path d="M560 70 L560 490" stroke="url(#maiGrad)" stroke-width="14" stroke-linecap="round" opacity=".9"/>
+<path d="M560 70 L560 490" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 14"/>
+<text x="580" y="60" font-size="13" fill="#8a6420" font-weight="700">One Meridian · Jing-Zhang Cultural Spine 9 km</text>
+<!-- Dual axes: north-south cultural vitality axis + east-west innovation axis -->
+<line x1="560" y1="70" x2="560" y2="490" stroke="#0f7490" stroke-width="2" stroke-dasharray="8 6" opacity=".4"/>
+<line x1="100" y1="280" x2="1020" y2="280" stroke="#4f46e5" stroke-width="3" stroke-dasharray="10 6" opacity=".55"/>
+<text x="80" y="276" font-size="12" fill="#4f46e5" font-weight="600">Zhongguancun Innovation Axis (E-W)</text>
+<!-- Three anchor points (on the meridian) -->
+<circle cx="560" cy="130" r="8" fill="#172235"/>
+<text x="578" y="134" font-size="12" fill="#172235" font-weight="600">Qinghe Old Station · 1909 Engineering Self-Reliance</text>
+<circle cx="560" cy="280" r="8" fill="#172235"/>
+<text x="578" y="284" font-size="12" fill="#172235" font-weight="600">Zhongguancun Origin · 1988 Industrial Self-Reliance</text>
+<circle cx="560" cy="430" r="8" fill="#172235"/>
+<text x="578" y="434" font-size="12" fill="#172235" font-weight="600">AI Origin Community · 2026 Intelligent Self-Reliance</text>
+<!-- Three cores (key areas) -->
+<circle cx="560" cy="130" r="46" fill="#4f46e5" opacity=".18"/>
+<circle cx="560" cy="130" r="32" fill="#4f46e5"/>
+<text x="560" y="126" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Zhongzhiyuan</text>
+<text x="560" y="142" text-anchor="middle" fill="#fff" font-size="10">R&D Engine  192.1 ha</text>
+<circle cx="560" cy="280" r="46" fill="#15803d" opacity=".18"/>
+<circle cx="560" cy="280" r="32" fill="#15803d"/>
+<text x="560" y="276" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">AI Origin</text>
+<text x="560" y="292" text-anchor="middle" fill="#fff" font-size="10">Life Prototype  104.3 ha</text>
+<circle cx="560" cy="430" r="46" fill="#b7791f" opacity=".18"/>
+<circle cx="560" cy="430" r="32" fill="#b7791f"/>
+<text x="560" y="426" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Dazhongsi</text>
+<text x="560" y="442" text-anchor="middle" fill="#fff" font-size="10">Industry Ecosystem  72.0 ha</text>
+<!-- Six scenario nodes -->
+<g fill="#101827">
+<circle cx="280" cy="130" r="9"/><circle cx="840" cy="130" r="9"/>
+<circle cx="280" cy="280" r="9"/><circle cx="840" cy="280" r="9"/>
+<circle cx="280" cy="430" r="9"/><circle cx="840" cy="430" r="9"/>
+</g>
+<g font-size="11" fill="#334155">
+<text x="240" y="118">Qinghe Old Station Cultural Node</text>
+<text x="800" y="118">Qinghe Low-Altitude Delivery Pilot</text>
+<text x="225" y="268">Shangdi Youth 3rd Place</text>
+<text x="790" y="268">Wudaokou Composite Hub (Energy Center)</text>
+<text x="225" y="418">Qinghuayuan Governance Feedback Station</text>
+<text x="800" y="418">Xueyuan Road AI Public Service</text>
+</g>
+<!-- Wudaokou energy center annotation -->
+<circle cx="840" cy="280" r="14" fill="none" stroke="#c79838" stroke-width="2.5" stroke-dasharray="3 3"/>
+<text x="860" y="304" font-size="11" fill="#8a6420" font-weight="600">★ Dual-Axis Intersection Energy Center</text>
+<!-- Boundary note -->
+<rect x="40" y="40" width="1040" height="480" rx="14" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="6 4" opacity=".5"/>
+<text x="60" y="58" font-size="11" fill="#94a3b8">Overall Design Area 11.4 km² (provisional boundary)</text>
+</svg>
+</div>
+<div class="legend">
+<span><i class="sw" style="background:var(--gold)"></i>One Meridian · Cultural Spine</span>
+<span><i class="sw" style="background:var(--ai)"></i>Zhongzhiyuan (North Core)</span>
+<span><i class="sw" style="background:var(--park)"></i>AI Origin (Central Core)</span>
+<span><i class="sw" style="background:var(--work)"></i>Dazhongsi (South Core)</span>
+<span><i class="sw" style="background:#101827"></i>Nine Nodes</span>
+<span><i class="sw" style="background:#fff;border-color:#0f7490"></i>Dual Axes (dashed)</span>
+</div>
+</div>
+</section>
+
+<!-- 4. Three-level scope areas -->
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>Three-Level Scope Areas</h2><p>The proposal progresses through the coordinated research area, overall design area, and key-area detailed design. The three scope_ids, areas, and boundaries are registered per official_scope_levels and key_areas in brief/site-package/design_brief.json.</p></div>
+<span class="tag">three_level_scope</span>
+</div>
+<div class="body">
+<div class="area-strip">
+<div class="area-tile">
+<div class="lvl">Coordinated Research Area</div>
+<div class="val">43.6</div><div class="unit">km² · Coordinated Research Area</div>
+<div class="desc">North to the North 5th Ring Road, east to the Jingzang Expressway, south to Xizhimen Outer Street, west to Wanquanhe Road. AI industry ecosystem, strategic positioning, and innovation chain research.</div>
+</div>
+<div class="area-tile">
+<div class="lvl">Overall Design Area</div>
+<div class="val">11.4</div><div class="unit">km² · Overall Design Area (primary design scope)</div>
+<div class="desc">1-2 km around the Jing-Zhang Heritage Park. Regulatory-plan-depth urban design: land use, buildings, roads, green space, public space, and phasing.</div>
+</div>
+<div class="area-tile">
+<div class="lvl">Key-Area Detailed Design</div>
+<div class="val">3.684</div><div class="unit">km² · Key-Area Scope (three cores totaling 368.4 ha)</div>
+<div class="desc">192.1 + 104.3 + 72.0 = 368.4 ha. Three detailed-design areas with defined functional programs, building scale, and retain-renovate-demolish classification.</div>
+</div>
+</div>
+<div class="warn" style="margin-top:14px">
+<strong>Provisional boundary statement:</strong> The official precise-boundary polygon has not yet been released. In the submission package, site_boundary.geojson and key_areas.geojson are both tagged as provisional_constraint with official_boundary=false. The provisional boundary is used only for proposal generation, self-check, and visualization — it cannot serve as an official redline, an approval basis, or a precise area basis. All layers and metrics must be recomputed when the official precise boundary arrives.
+</div>
+</div>
+</section>
+
+<!-- 5. Three differentiated cores -->
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>Three Differentiated Core Positions</h2><p>The three key areas each take a differentiated position and share four common interfaces: R&D interface (university + open-source access), Display interface (open testing + public experience), Service interface (talent, enterprise, public service embedding), Incubation interface (outcome conversion + start-up cultivation). Each core also hosts one civic-agent acupoint as a meridian feedback node.</p></div>
+<span class="tag">key_areas</span>
+</div>
+<div class="body">
+<div class="grid-3">
+<article class="card b-top">
+<h3>Zhongzhiyuan AI Acceleration · R&D Engine Type</h3>
+<p>192.1 ha · FAR conceptual target 3.0-4.0</p>
+<ul>
+<li>National AI platform, full-stack indigenous innovation, standards development</li>
+<li>R&D building clusters, low-carbon computing center, standards governance exhibition hall</li>
+<li>Retain-Renovate-Demolish: retain existing R&D cores, renovate low-efficiency parks, new landmark R&D towers</li>
+<li>AI scenario: enterprise-service-copilot</li>
+</ul>
+</article>
+<article class="card b-park">
+<h3>Beijing AI Origin Community · Life Prototype Type</h3>
+<p>104.3 ha · FAR conceptual target 1.5-2.5</p>
+<ul>
+<li>Near-campus innovation, outcome incubation and conversion, talent zone, open-source system</li>
+<li>Campus-park-street slow-movement stitching, open-source release hall, talent service stations</li>
+<li>Retain-Renovate-Demolish: retain residential core, renovate ground floors for incubation and display, limited new talent apartments</li>
+<li>AI scenario: ai-health-service-navigation + youth-friendly public space</li>
+</ul>
+</article>
+<article class="card b-work">
+<h3>Dazhongsi AI Industry Cluster · Industry Ecosystem Type</h3>
+<p>72.0 ha · FAR conceptual target 2.0-3.0</p>
+<ul>
+<li>Leading enterprises, agents, smart terminals, content consumption, data factors</li>
+<li>International roadshow parlor, smart terminal display belt, four-quadrant pedestrian connectivity</li>
+<li>Retain-Renovate-Demolish: renovate existing commercial, integrate intersection quadrants, limited new landmark business towers</li>
+<li>AI scenario: industry-ecosystem-agent</li>
+</ul>
+</article>
+</div>
+</div>
+</section>
+
+<!-- 6. Nine-node scenario network -->
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>Nine-Node Scenario Network</h2><p>Nine nodes = three cores + six scenario nodes. Each node anchors an AI scenario, serving as a spatial anchor and meridian feedback point. The 10 AI scenario cards = 8 scenarios + 2 extension scenarios (open-source release hall, data factor parlor).</p></div>
+<span class="tag">scenarios</span>
+</div>
+<div class="body">
+<div class="node-grid">
+<div class="node"><b>① Qinghe Old Station Cultural Node</b><span>ai-cultural-guide · Cultural heritage AI guide (agent.5)</span></div>
+<div class="node"><b>② Qinghe Low-Altitude Delivery Pilot</b><span>robot-delivery-low-speed · shuttle ≤20km/h, robot ≤5km/h (agent.3)</span></div>
+<div class="node"><b>③ Shangdi Youth 3rd Place</b><span>youth-friendly-public-space · nighttime collaboration / sports / social</span></div>
+<div class="node"><b>④ Wudaokou Composite Hub</b><span>ai-traffic-walkability · dual-axis intersection energy center</span></div>
+<div class="node"><b>⑤ Qinghuayuan Feedback Station</b><span>public-safety-operations-review · core review acupoint</span></div>
+<div class="node"><b>⑥ Xueyuan Road AI Public Service</b><span>ai-health-service-navigation · health navigation + enterprise service</span></div>
+<div class="node"><b>⑦ Zhongzhiyuan AI Acceleration</b><span>enterprise-service-copilot · industry test and verification</span></div>
+<div class="node"><b>⑧ Dazhongsi Industry Cluster</b><span>industry-ecosystem-agent · industry test and verification</span></div>
+<div class="node"><b>⑨ Extension: Open-Source Release Hall / Data Factor Parlor</b><span>AI Origin Community / Dazhongsi</span></div>
+</div>
+</div>
+</section>
+
+<!-- 7. Civic-agent meridian five-step loop diagram -->
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>Civic-Agent Meridian Five-Step Loop</h2><p>Core governance-side mechanism: ① public data reading (exterior) → ② proposal inference (interior) → ③ public feedback (exterior) → ④ human review (interior) → ⑤ risk alerts (exterior) → loop. Exterior/interior alternate; the urban governance knowledge base is the "organ" of the meridian.</p></div>
+<span class="tag">governance_loop</span>
+</div>
+<div class="body">
+<div class="svg-frame">
+<svg viewBox="0 0 1120 360" role="img" aria-label="Civic-agent meridian five-step loop diagram">
+<rect x="20" y="20" width="1080" height="320" rx="12" fill="#fbfdff" stroke="#cbd5e1" stroke-width="1"/>
+<!-- Five-step nodes -->
+<g font-family="-apple-system,BlinkMacSystemFont,sans-serif">
+<!-- Center organ: urban governance knowledge base -->
+<circle cx="560" cy="180" r="56" fill="#172235"/>
+<text x="560" y="174" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Urban</text>
+<text x="560" y="192" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Governance KB</text>
+<text x="560" y="210" text-anchor="middle" fill="#9fd7c0" font-size="10">Organ</text>
+<!-- Five steps -->
+<circle cx="180" cy="100" r="42" fill="#fff" stroke="#4f46e5" stroke-width="2.5"/>
+<text x="180" y="96" text-anchor="middle" font-size="12" fill="#4f46e5" font-weight="700">① Public Data</text>
+<text x="180" y="112" text-anchor="middle" font-size="11" fill="#4f46e5" font-weight="700">Reading</text>
+<text x="180" y="158" text-anchor="middle" font-size="10" fill="#667085">exterior</text>
+
+<circle cx="940" cy="100" r="42" fill="#fff" stroke="#15803d" stroke-width="2.5"/>
+<text x="940" y="96" text-anchor="middle" font-size="12" fill="#15803d" font-weight="700">② Proposal</text>
+<text x="940" y="112" text-anchor="middle" font-size="11" fill="#15803d" font-weight="700">Inference</text>
+<text x="940" y="158" text-anchor="middle" font-size="10" fill="#667085">interior</text>
+
+<circle cx="940" cy="260" r="42" fill="#fff" stroke="#b7791f" stroke-width="2.5"/>
+<text x="940" y="256" text-anchor="middle" font-size="12" fill="#b7791f" font-weight="700">③ Public</text>
+<text x="940" y="272" text-anchor="middle" font-size="11" fill="#b7791f" font-weight="700">Feedback</text>
+<text x="940" y="318" text-anchor="middle" font-size="10" fill="#667085">exterior</text>
+
+<circle cx="180" cy="260" r="42" fill="#fff" stroke="#b42318" stroke-width="2.5"/>
+<text x="180" y="256" text-anchor="middle" font-size="12" fill="#b42318" font-weight="700">④ Human</text>
+<text x="180" y="272" text-anchor="middle" font-size="11" fill="#b42318" font-weight="700">Review</text>
+<text x="180" y="318" text-anchor="middle" font-size="10" fill="#667085">interior · Qinghuayuan Feedback Station</text>
+
+<circle cx="560" cy="300" r="42" fill="#fff" stroke="#c79838" stroke-width="2.5"/>
+<text x="560" y="296" text-anchor="middle" font-size="12" fill="#8a6420" font-weight="700">⑤ Risk</text>
+<text x="560" y="312" text-anchor="middle" font-size="11" fill="#8a6420" font-weight="700">Alerts</text>
+</g>
+<!-- Loop arrows -->
+<defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+<path d="M0 0 L10 5 L0 10 z" fill="#475467"/>
+</marker>
+</defs>
+<g fill="none" stroke="#475467" stroke-width="2" marker-end="url(#arr)">
+<path d="M222 100 Q 400 60 898 100"/>
+<path d="M940 142 Q 980 180 940 218"/>
+<path d="M898 260 Q 720 300 602 300"/>
+<path d="M518 300 Q 360 300 222 260"/>
+<path d="M180 218 Q 140 180 180 142"/>
+</g>
+<!-- Knowledge base connections -->
+<g fill="none" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="4 4" opacity=".7">
+<path d="M222 100 L520 180"/>
+<path d="M898 100 L600 180"/>
+<path d="M898 260 L600 180"/>
+<path d="M222 260 L520 180"/>
+</g>
+<text x="560" y="40" text-anchor="middle" font-size="12" fill="#475467" font-weight="600">Exterior/interior alternation · public data → inference → feedback → review → risk → loop</text>
+</svg>
+</div>
+</div>
+</section>
+
+<!-- 8. Three governance principles -->
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>Three Governance Principles</h2><p>Party-building guidance, government implementation, and public participation run through the entire implementation process. Party-building guidance covers all seven functions with no "non-intervention" links; government implementation assumes statutory decision-making and supervision; public participation is realized through nine-node feedback channels, community councils, and open scenario days.</p></div>
+<span class="tag">governance_principles</span>
+</div>
+<div class="body">
+<div class="grid-3">
+<article class="card b-civic">
+<h3>Party-building Guidance</h3>
+<p>Coverage target 100% · All seven functions fully penetrate, with no "non-intervention" links.</p>
+<ul>
+<li>Value orientation</li><li>Direction leadership</li><li>Organizational assurance</li>
+<li>Professional gatekeeping</li><li>Risk assessment</li><li>Mass mobilization</li><li>Technology ethics</li>
+</ul>
+</article>
+<article class="card b-blue">
+<h3>Government Implementation</h3>
+<p>Assumes statutory decision-making and supervision.</p>
+<ul>
+<li>Statutory planning decisions</li><li>Planning permits and supervision</li><li>Implementation sequencing review</li><li>Public funds and oversight</li></ul>
+</article>
+<article class="card b-park">
+<h3>Public Participation</h3>
+<p>Feedback, supervision, co-construction. Public participation channels target ≥9.</p>
+<ul>
+<li>Nine-node feedback channels</li><li>Community councils</li><li>Open scenario days</li><li>Public experience routes</li></ul>
+</article>
+</div>
+<div class="warn" style="margin-top:14px">
+<strong>Conceptual recommendation statement:</strong> All governance mechanisms are conceptual recommendations. Implementation must follow statutory decision-making and supervision procedures, does not replace government review and statutory approval, and does not constitute a confirmed government decision.
+</div>
+</div>
+</section>
+
+<!-- 9. Core metrics dashboard -->
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>Core Metrics Dashboard</h2><p>Metrics fall into four categories: spatial, transport, AI, and governance. Known metrics must be recomputable from GeoJSON or trusted sources; unknown metrics must state the reason and a pre-formal-submission precondition. All metrics are target-value statements.</p></div>
+<span class="tag">metrics</span>
+</div>
+<div class="body">
+<div class="metric-grid">
+<div class="metric"><span class="label">site_area_sqm</span><span class="val" data-metric="site_area_sqm" data-value="11412825.386">11.41 km²</span><span class="sub">Overall Design Area · known · medium</span></div>
+<div class="metric"><span class="label">coordinated_research_area_sqm</span><span class="val" data-metric="coordinated_research_area_sqm" data-value="43600000">43.6 km²</span><span class="sub">Coordinated Research Area · known · medium</span></div>
+<div class="metric"><span class="label">key_detailed_design_area_sqm</span><span class="val" data-metric="key_detailed_design_area_sqm" data-value="3684000">3.684 km²</span><span class="sub">Key Area (three cores total) · known · medium</span></div>
+<div class="metric"><span class="label">green_ratio</span><span class="val" data-metric="green_ratio" data-value="0.3">30%</span><span class="sub">G 15% + E 15% target · known · medium</span></div>
+<div class="metric"><span class="label">walkability_network_density</span><span class="val" data-metric="walkability_network_density" data-value="9.0">9.0</span><span class="sub">km/km² target 8-10 · known · medium</span></div>
+<div class="metric"><span class="label">transit_coverage_800m</span><span class="val" data-metric="transit_coverage_800m" data-value="0.8">≥80%</span><span class="sub">Rail 800m coverage · known · medium</span></div>
+<div class="metric"><span class="label">barrier_free_coverage</span><span class="val" data-metric="barrier_free_coverage" data-value="1.0">100%</span><span class="sub">Accessibility coverage · known · medium</span></div>
+<div class="metric"><span class="label">blue_green_network_density</span><span class="val" data-metric="blue_green_network_density" data-value="3.0">≥3.0</span><span class="sub">km/km² blue-green network · known · medium</span></div>
+<div class="metric"><span class="label">cultural_axis_length_m</span><span class="val" data-metric="cultural_axis_length_m" data-value="9000">9 km</span><span class="sub">Jing-Zhang cultural spine · known · medium</span></div>
+<div class="metric"><span class="label">per_capita_park_green_sqm</span><span class="val" data-metric="per_capita_park_green_sqm" data-value="15">≥15</span><span class="sub">m²/person per-capita park · known · low</span></div>
+<div class="metric"><span class="label">sponge_city_rate</span><span class="val" data-metric="sponge_city_rate" data-value="0.7">≥70%</span><span class="sub">Sponge city compliance · known · low</span></div>
+<div class="metric"><span class="label">scenario_count</span><span class="val" data-metric="scenario_count" data-value="8">8</span><span class="sub">AI scenario count · known · medium</span></div>
+<div class="metric"><span class="label">node_count</span><span class="val" data-metric="node_count" data-value="9">9</span><span class="sub">Nine nodes · known · medium</span></div>
+<div class="metric"><span class="label">meridian_connectivity</span><span class="val" data-metric="meridian_connectivity" data-value="1.0">100%</span><span class="sub">Meridian connectivity · known · low</span></div>
+<div class="metric"><span class="label">governance_loop_coverage</span><span class="val" data-metric="governance_loop_coverage" data-value="1.0">100%</span><span class="sub">Five-step loop coverage · known · low</span></div>
+<div class="metric"><span class="label">party_leadership_coverage</span><span class="val" data-metric="party_leadership_coverage" data-value="1.0">100%</span><span class="sub">Party-building guidance coverage · known · low</span></div>
+<div class="metric"><span class="label">human_review_coverage</span><span class="val" data-metric="human_review_coverage" data-value="1.0">100%</span><span class="sub">Human review coverage · known · low</span></div>
+<div class="metric"><span class="label">public_participation_channels</span><span class="val" data-metric="public_participation_channels" data-value="9">≥9</span><span class="sub">Public participation channels · known · low</span></div>
+<div class="metric"><span class="label">phasing_period_count</span><span class="val" data-metric="phasing_period_count" data-value="4">4</span><span class="sub">Phasing period count · known · medium</span></div>
+<div class="metric"><span class="label">floor_area_ratio</span><span class="val" data-metric="floor_area_ratio" data-value="null">unknown</span><span class="sub">Official FAR not released · conceptual 1.5-4.0</span></div>
+<div class="metric"><span class="label">building_height_m</span><span class="val" data-metric="building_height_m" data-value="null">unknown</span><span class="sub">Official height control not released · conceptual 18-50m</span></div>
+<div class="metric"><span class="label">building_footprint_area_sqm</span><span class="val" data-metric="building_footprint_area_sqm" data-value="111816.454">111816</span><span class="sub">m² building footprint · known · medium</span></div>
+</div>
+<div class="warn" style="margin-top:14px">
+<strong>floor_area_ratio / building_height_m = unknown:</strong> The official regulatory-plan FAR and building height controls have not yet been released. The proposal offers conceptual target recommendations (three-core FAR 1.5-4.0, building height 18-50m), which are not statutory conclusions. Blue-green and governance metrics are mostly low confidence due to their target-value nature.
+</div>
+</div>
+</section>
+
+<!-- 10. Phasing implementation -->
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>Phasing Implementation · Four Phases</h2><p>The four-phase sequence responds to the agent.6 long-term operations task. Phase 1 pilots the meridian five-step loop and AI scenario mechanisms; Phase 2 forms the three differentiated cores; Phase 3 links the nine nodes; Phase 4 enables agent self-learning and self-evolution.</p></div>
+<span class="tag">phasing</span>
+</div>
+<div class="body">
+<div class="phase-timeline">
+<div class="phase">
+<div class="yr">Phase 1 · 0-2 years</div>
+<div class="nm">Pilot Period</div>
+<div class="ds">Qinghuayuan feedback station + Qinghe low-altitude delivery pilot + old Jing-Zhang corridor demonstration segment. Lightweight facilities, operations activities, and service platforms launch to validate the meridian five-step loop and AI scenario mechanisms.</div>
+</div>
+<div class="phase">
+<div class="yr">Phase 2 · 2-5 years</div>
+<div class="nm">Three-Core Period</div>
+<div class="ds">The three cores take differentiated shape: Zhongzhiyuan R&D engine, AI Origin life prototype, and Dazhongsi industry cluster each form and interlock.</div>
+</div>
+<div class="phase">
+<div class="yr">Phase 3 · 5-8 years</div>
+<div class="nm">Nine-Node Period</div>
+<div class="ds">Nine nodes interlink, the meridian is through-connected, and AI scenarios move from pilot to routine operation.</div>
+</div>
+<div class="phase">
+<div class="yr">Phase 4 · 8+ years</div>
+<div class="nm">Evolution Period</div>
+<div class="ds">The civic agent self-learns and self-evolves, and the urban governance knowledge base settles into a long-term brand asset.</div>
+</div>
+</div>
+<div class="warn" style="margin-top:14px">
+<strong>Phasing timeline is a conceptual recommendation:</strong> It is not a confirmed implementation schedule. Actual timing must follow official approval and implementation conditions.
+</div>
+</div>
+</section>
+
+<!-- 11. Task coverage status -->
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>Task Coverage Status</h2><p>compliance_matrix.json covers 20 mandatory tasks spanning announcement 1.3.1-1.5.3.3 and agent.1-agent.6; standard_matrix.json and design_depth_matrix.json evidence professional standards and deliverable depth.</p></div>
+<span class="tag">compliance_matrix</span>
+</div>
+<div class="body">
+<table>
+<thead><tr><th>Task ID</th><th>Task Theme</th><th>Responding Section</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>agent.1</td><td>Three positions · five functions · naming and logo</td><td>Coordinated Research Area section</td><td><span class="mono">covered</span></td></tr>
+<tr><td>agent.2</td><td>Global AI innovation ecosystem cases (5-8)</td><td>Coordinated Research Area section</td><td><span class="mono">covered</span></td></tr>
+<tr><td>agent.3</td><td>AI+ scenario enablement and test verification</td><td>AI Innovation Ecosystem section + Key Areas section</td><td><span class="mono">covered</span></td></tr>
+<tr><td>agent.4</td><td>AI public space · intelligent-native new business · landmark destination</td><td>Key Areas section + Blue-Green section</td><td><span class="mono">covered</span></td></tr>
+<tr><td>agent.5</td><td>Jing-Zhang cultural narrative line</td><td>Blue-Green section (three anchor points)</td><td><span class="mono">covered</span></td></tr>
+<tr><td>agent.6</td><td>Long-term operations and annual events</td><td>Renewal Project List section</td><td><span class="mono">covered</span></td></tr>
+<tr><td>Announcement 1.3-1.5</td><td>Three-level scope · land use · transport · blue-green · character · phasing · metrics</td><td>Corresponding sections + matrices</td><td><span class="mono">covered</span></td></tr>
+</tbody>
+</table>
+<div class="source-line">compliance_matrix.json / standard_matrix.json / design_depth_matrix.json</div>
+</div>
+</section>
+
+<!-- 12. Self-check status -->
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>Self-Check Status</h2><p>Deterministic validation, spatial review, visual packaging check, and professional evidence review must all pass. Current boundary status: provisional geometry.</p></div>
+<span class="tag">self_check</span>
+</div>
+<div class="body">
+<div class="grid-2">
+<div class="ok"><strong>deterministic validation</strong><br>Deterministic checks — file existence, schema, front matter, reference markers, bilingual contract, metrics consistency — are configured.</div>
+<div class="ok"><strong>spatial review</strong><br>Geometry full coverage, no overlaps, key_areas three-core consistency, and metrics-to-GeoJSON recomputation relationships are established.</div>
+<div class="ok"><strong>visual packaging check</strong><br>visual/index.html is fully offline with no CDN, remote tiles, external scripts, or iframes; figures are locally generated via PIL.</div>
+<div class="warn"><strong>professional evidence review</strong><br>Current boundary status: provisional geometry · PASS intake only. When the official precise-boundary polygon arrives, recomputation is required before entering formal professional scoring.</div>
+</div>
+<div class="warn" style="margin-top:14px">
+<strong>AI generation responsibility statement:</strong> This proposal is generated by an AI agent; all design judgments are conceptual recommendations, not officially reviewed conclusions. The proposal is responsible for facts, sources, copyright, spatial data, metrics, and expression; maintainers and professional reviewers may require rework or reject based on self-check results, spatial review, and the compliance matrix.
+</div>
+</div>
+</section>
+
+<!-- 13. Sources and assumptions -->
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>Sources and Assumptions</h2><p>Sources are documented in sources.json, agent_taskbook.json, data/processed/agent_fact_pack.md, and standards/references. Pending regulatory plans, road redlines, ownership, municipal, heritage, and engineering conditions are listed in assumptions.json.</p></div>
+<span class="tag">sources_assumptions</span>
+</div>
+<div class="body">
+<div class="grid-2">
+<div>
+<h3>Core Sources</h3>
+<table>
+<thead><tr><th>source_id</th><th>Type</th><th>Use</th></tr></thead>
+<tbody>
+<tr><td class="mono">SITE-PACKAGE</td><td>official_public</td><td>Brief, enumerations, design space, scope, schema</td></tr>
+<tr><td class="mono">OFFICIAL-ANNOUNCEMENT</td><td>official_public</td><td>Project name, three-level scope extents, areas, design tasks</td></tr>
+<tr><td class="mono">AGENT-TASKBOOK</td><td>user_provided_cleared</td><td>Ten co-creation principles, three positions, five functions, six tasks</td></tr>
+<tr><td class="mono">BOUNDARY-SOURCE</td><td>agent_inferred</td><td>Provisional site boundary polygon (provisional)</td></tr>
+<tr><td class="mono">KEY-AREA-SOURCE</td><td>agent_inferred</td><td>Three key-area boundaries (provisional)</td></tr>
+<tr><td class="mono">URBAN-DESIGN-MEASURES</td><td>official_public</td><td>Urban Design Management Measures</td></tr>
+<tr><td class="mono">CONTROL-DETAILED-PLANNING</td><td>official_public</td><td>Regulatory Detailed Planning Compilation and Approval Measures</td></tr>
+<tr><td class="mono">LAND-USE-CLASSIFICATION</td><td>official_public</td><td>Territorial Space Land-Sea Use Classification</td></tr>
+<tr><td class="mono">GENERATIVE-AI-MEASURES</td><td>official_public</td><td>Generative AI Service Management Interim Measures</td></tr>
+<tr><td class="mono">BARRIER-FREE-LAW</td><td>official_public</td><td>Barrier-Free Environment Construction Law</td></tr>
+<tr><td class="mono">THREE-AREAS-TWO-WINGS</td><td>official_public</td><td>Three Areas Two Wings Policy</td></tr>
+<tr><td class="mono">HAIDIAN-1X1</td><td>official_public</td><td>Haidian 1+X+1 Industry System</td></tr>
+</tbody>
+</table>
+<div class="source-line">sources.json / source_registry.json</div>
+</div>
+<div>
+<h3>Key Assumptions</h3>
+<table>
+<thead><tr><th>assumption_id</th><th>Status</th><th>Impact</th></tr></thead>
+<tbody>
+<tr><td class="mono">PROVISIONAL-BOUNDARY</td><td>pending_official</td><td>Areas and boundaries are provisional; recomputation required</td></tr>
+<tr><td class="mono">OFFICIAL-KEY-AREA-PENDING</td><td>pending_official</td><td>Three-core polygons are provisional</td></tr>
+<tr><td class="mono">LAND-USE-TARGET-SCENARIO</td><td>target_not_baseline</td><td>Land-use structure is a target value, not current state</td></tr>
+<tr><td class="mono">OFFICIAL-FAR-PENDING</td><td>pending_official_control</td><td>FAR/height are conceptual recommendations</td></tr>
+<tr><td class="mono">NO-VIADUCT-REMOVAL</td><td>design_constraint</td><td>Existing viaducts untouched; four-type stitching</td></tr>
+<tr><td class="mono">TRANSPORT-TARGET-SCENARIO</td><td>target_not_baseline</td><td>Transport metrics are target values</td></tr>
+<tr><td class="mono">BLUE-GREEN-TARGET-SCENARIO</td><td>target_not_baseline</td><td>Blue-green metrics are target values</td></tr>
+<tr><td class="mono">AI-SCENARIO-CONCEPTUAL</td><td>conceptual_proposal</td><td>AI scenarios are not yet implemented</td></tr>
+<tr><td class="mono">GOVERNANCE-CONCEPTUAL</td><td>conceptual_proposal</td><td>Governance mechanisms must follow statutory procedures</td></tr>
+<tr><td class="mono">PHASING-CONCEPTUAL</td><td>conceptual_proposal</td><td>Phasing timeline is a reference arrangement</td></tr>
+<tr><td class="mono">A-CONTROLS-001</td><td>pending_professional</td><td>Regulatory plan / redline / ownership require professional confirmation</td></tr>
+</tbody>
+</table>
+<div class="source-line">assumptions.json / missing_data_checklist.csv / self_check.json</div>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer>
+<div class="wrap">
+Jingmai Meridian — Urban Design for the Centennial Jing-Zhang AI Innovation Belt · v0.1 · COMMUNITY-DISPLAY-ONLY<br>
+This page is fully offline: no CDN, remote tiles, external scripts, external fonts, iframes, form submissions, or API calls. Authoritative data is governed by GeoJSON / metrics.json / the matrices.
+</div>
+</footer>
+</body>
+</html>

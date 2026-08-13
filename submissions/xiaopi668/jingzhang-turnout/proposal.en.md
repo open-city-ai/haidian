@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "Taking the 'switchback' alignment and turnout structure of the Jing-Zhang Railway as its prototype, this proposal presents an 'one-spine, three-turnouts, two-wings' urban design for the AI Innovation Belt: one heritage-park innovation mainline, three turnout nodes (Zhongzhiyuan, Beijing AI Origin Community, Dazhongsi), and two wings (Zhongguancun Technology-Service Wing, Xiaoyuehe Scenario-Empowerment Wing), translating a century of 'self-directed turn' into walkable, experiential, and verifiable AI urban scenarios and operating mechanisms."
+summary: "Taking the 'switchback' alignment and turnout structure of the Jing-Zhang Railway as its prototype, this proposal presents an 'one-spine, three-turnouts, two-wings' urban design sharpened into a communicable governance mechanism — the Turnout Authorization Protocol (TAP): ONE TURNOUT, ONE TURN — NO SWITCH, NO ENTRY. Three turnout nodes (Zhongzhiyuan, Beijing AI Origin Community, Dazhongsi), and two wings (Zhongguancun Technology-Service Wing, Xiaoyuehe Scenario-Empowerment Wing), translating a century of 'self-directed turn' into walkable, experiential, and verifiable AI urban scenarios and operating mechanisms."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 iteration: "v0.1"
@@ -64,6 +64,26 @@ The three areas and two wings form **two turnout loops** [depth:three_key_area_d
 - **Scenario loop (South–East–Middle)**: products from the North Turnout and West Wing enter the South Turnout Dazhongsi for test-and-validate and consumption scenarios → the East Wing Xiaoyuehe provides a lived, public scenario testbed → scenario data and demand feed back to the Middle Turnout for a new R&D cycle.
 
 Both loops share the "spine" (the heritage-park innovation mainline) as their physical and spiritual channel, making the three areas and two wings a dynamic circulation rather than a static partition [data:geometry/roads.geojson#ROAD-001] [data:geometry/green_space.geojson#GREEN-001].
+
+### The Turnout Authorization Protocol: ONE TURNOUT, ONE TURN — NO SWITCH, NO ENTRY
+
+The core mechanism of the proposal is the **Turnout Authorization Protocol (TAP)** — translating the Jing-Zhang Railway's staff-and-ticket block system (one staff per section, no staff no entry, manual handover, degraded fallback) into an AI city governance protocol [source:AGENT-TASKBOOK] [depth:overall_spatial_structure]:
+
+- **Turn Right**: any AI scenario must obtain a "turn right" (the equivalent of the train staff) at a turnout node — one turnout, one scenario; no authorization, no pilot [metric:turnout_node_count];
+- **Block Section**: the "turn section" between two turnouts is the smallest governance unit of space, data, and service, mirroring the railway block section [metric:block_section_count];
+- **Handover Point**: boundary nodes for authority handover and east–west stitching, mirroring the staff handover point [metric:handover_point_count];
+- **Three-field Typology**: closed test field (Zhongzhiyuan·full-stack testing), semi-open experience field (Dazhongsi·consumption experience), fully open living field (AI Origin Community and heritage park·public life), opened by risk tier [metric:field_typology_count].
+
+This makes the turnout a workable governance syntax: **every AI scenario holds a "staff", every block section is an independently pause-able governance unit, and every handover point has manual handover and review**. It also answers the "global voice in AI governance" function — TAP is itself an exportable AI urban governance model [source:AGENT-TASKBOOK] [metric:access_gate_count].
+
+### TAP Technical Implementation and Data Isolation
+
+The technical path of the Turnout Authorization Protocol follows five steps: apply—review—authorize—operate—withdraw [source:AGENT-TASKBOOK] [depth:land_use_layout]:
+
+1. **Turn-right determination**: the operator submits a Turn Application with data inventory, algorithm description, and safety plan; after the T1 data-compliance review (authorization, de-identification, minimization) and the T2 scenario-safety assessment (risk tier, human fallback, physical switch), a "Turn Right" is issued with validity, scenario scope, and withdrawal conditions; all authorization records are archived for audit [metric:access_gate_count];
+2. **Block-section data isolation**: every block section runs on "anonymous aggregation, minimal collection, access audit" — public-space scenarios collect only aggregate metrics by default; personal-data scenarios (S3/S5/S6/S10) keep data inside the section, no cross-scenario use, and full access trails [metric:block_section_count];
+3. **Degraded mode**: the section director can switch to manual operation with one click (scenario paused, data sealed, human takeover), mirroring railway degraded operation — no AI-autonomous operation is promised; human review is built in [source:GENERATIVE-AI-INTERIM-MEASURES];
+4. **Gate archiving**: review records, data ledgers, and human-review signatures at every T0–T7 gate are kept in the section data vault for regulator and public spot-checks [metric:turnout_node_count].
 
 ### Global AI Innovation Ecosystem Cases (5–8)
 
@@ -179,6 +199,15 @@ Municipal and new infrastructure: distributed energy, edge compute, and 5G/sensi
 
 The blue-green system is "one corridor, one belt, three nodes" [depth:blue_green_network]: the heritage-park innovation green corridor (≈2.50 km² green system, green ratio ≈21.9%) [data:geometry/green_space.geojson#GREEN-001] [metric:green_ratio]; the Xiaoyuehe blue-green belt [data:geometry/green_space.geojson#GREEN-002]; and three nodes—the Origin open-source plaza [data:geometry/public_space.geojson#PUBLIC-001], the Dazhongsi AI reception-hall plaza [data:geometry/public_space.geojson#PUBLIC-002], and the Zhongzhiyuan public validation square [data:geometry/public_space.geojson#PUBLIC-003]; the public-space ratio is in [metric:public_space_ratio].
 
+### Public-Interest and Inclusive Design
+
+The public-space ratio of about 4.6% (521,678 m²) corresponds to three experience-able places: the Origin open-source plaza (front of the Open-Source House), the Dazhongsi AI reception-hall plaza (station front), and the Zhongzhiyuan public validation square, with pocket-park nodes reserved in residential community land [data:geometry/public_space.geojson#PUBLIC-001] [metric:public_space_ratio] [depth:blue_green_public_space]. Inclusion is delivered in four ways:
+
+- **All-age friendly**: plazas and the green corridor are fully accessible, with senior-friendly seating, children's activity areas, and family facilities [standard:BARRIER-FREE-ENVIRONMENT-LAW];
+- **Non-digital alternative paths**: every AI scenario keeps manual counters, phone, and on-site services; AI is advisory only and never the sole channel [standard:ELDERLY-SMART-TECH-PLAN-2020-45];
+- **Free public scenarios**: S1 (park AI navigation), S8 (cycling companion), and S9 (urban dashboard) are free to the public with anonymous aggregation by default;
+- **Opt-out and feedback**: the public can leave AI experience zones and bypass test scenarios at any point; community liaisons collect feedback and publish monthly operation briefings [source:AGENT-TASKBOOK].
+
 ### AI Pilgrimage Landmarks (3) [metric:ai_landmark_count]
 
 - **L1 Qinglongqiao Switchback Memorial Field** (north heritage park): a digital-twin installation honoring the 1909 switchback alignment, with touchable track nodes and timetable light-art, connecting heritage display with AI cultural narrative [source:AGENT-TASKBOOK];
@@ -199,6 +228,22 @@ Phasing (`geometry/phasing.geojson`) [data:geometry/phasing.geojson#PHASE-001] [
 
 Phasing and projects are conceptual; implementing entities, funding, and policies require professional teams and government processes [source:AGENT-TASKBOOK] [depth:implementation_phasing].
 
+### Implementability Design: Project Packages, Admission Gates, Staffing and Emergency Response
+
+Four concrete mechanisms support implementability [depth:implementation_phasing] [source:AGENT-TASKBOOK]:
+
+**① Three independently pause-able project packages** [metric:project_package_count]:
+- North full-stack package (Zhongzhiyuan testbed, acceleration buildings, validation square) — subject to enterprise ownership confirmation;
+- Middle origin package (Open-Source House, pitching center, talent residence) — subject to campus–district coordination;
+- South scenario package (AI-native commercial block, station-city integration) — subject to rail and engineering conditions.
+Any package can be paused independently without blocking the others.
+
+**② T0–T7 tiered admission gates** [metric:access_gate_count]: concept review (T0) → data compliance (T1) → scenario safety (T2) → test run (T3) → pilot opening (T4) → impact evaluation (T5) → scale-up (T6) → full opening (T7). No scenario opens to the public before passing T4; all gate records are archived for audit.
+
+**③ Pilot block section** [metric:pilot_block_section_count]: the "Origin Community–Zhongzhiyuan" segment serves as the near-term pilot block section, with three first-batch scenarios (code clinic, campus AI companion, building-operations testbed) run under T0–T4 gates before the protocol is replicated.
+
+**④ Operations staffing and emergency response** [metric:operation_staff_concept_count]: each block section is staffed with a section director, data-compliance officer, scenario coordinator, and community liaison (conceptual estimate of about 5 people per section); emergency response follows a "pause—human takeover—review—resume" four-step plan, and every AI scenario retains human fallback and a physical switch [source:AGENT-TASKBOOK].
+
 ### Global AI Event System and Long-Term Operations
 
 - **Annual events**: anchored to the 1909 opening of the Jing-Zhang Railway, an annual "Jing-Zhang Innovation Day" and "Jing-Zhang AI Innovation Festival" each October; quarterly "Turnout Developer Conference"; monthly "Scenario Open Day" for the public to experience test scenarios [source:AGENT-TASKBOOK];
@@ -216,7 +261,7 @@ Core indicators are recomputed from `geometry/*.geojson` in EPSG:4548 [metric:si
 
 Indicator meaning: green ratio supports a park-city quality that retains talent; public-space ratio supports innovation-interaction density; building footprint and R&D-land ratio respond to industrial space supply; and the counts of scenario cards, test scenarios, personas, and landmarks respond to the taskbook's hard requirements [source:AGENT-TASKBOOK] [depth:metrics_evidence].
 
-Compliance coverage: all announcement tasks 1.3/1.4/1.5, all agent taskbook tasks agent.1–agent.6, and all mandatory professional standards are mapped item by item in `compliance_matrix.json`, `standard_matrix.json`, and `design_depth_matrix.json` [metric:ai_scenario_card_count]. This proposal uses provisional boundaries; the organizer data gap does not block content scoring, but all precision-sensitive metrics must be recalculated once official polygons are released [source:PROVISIONAL-BOUNDARIES-BASIS].
+Compliance coverage: all announcement tasks 1.3/1.4/1.5, all agent taskbook tasks agent.1–agent.6, and all mandatory professional standards are mapped item by item in `compliance_matrix.json`, `standard_matrix.json`, and `design_depth_matrix.json` [metric:ai_scenario_card_count]. Mechanism metrics (turnout nodes 3, block sections 3, handover points 3, field types 3, admission gates 8, project packages 3, pilot section 1, conceptual staffing 15) are registered item by item in metrics.json and reproducible from the narrative [metric:turnout_node_count] [metric:access_gate_count]. This proposal uses provisional boundaries; the organizer data gap does not block content scoring, but all precision-sensitive metrics must be recalculated once official polygons are released [source:PROVISIONAL-BOUNDARIES-BASIS].
 
 ![Metrics recalculation and evidence chain](assets/figures/metrics-evidence.png)
 
@@ -228,6 +273,10 @@ Compliance coverage: all announcement tasks 1.3/1.4/1.5, all agent taskbook task
 - **AI generation responsibility**: this package is generated by an AI agent; methods and model are in `agent.json`; all conclusions are verifiable;
 - **No official-approval or implementation claims**: no official approval, implementation commitment, investment promise, or policy arrangement is stated;
 - **Pending data and professional review**: official polygons, regulatory conditions, existing buildings, ownership, engineering, rail, and heritage data are pending and require professional verification;
+- **Data-security response**: three-tier protection (authorization—de-identification—audit) plus a breach response (scenario removal—notification—remediation—review); personal-data scenarios are reviewed by licensed professionals, see `risk.json`;
+- **Heritage response**: the digital-twin installation in the heritage park is virtual display only with no physical alteration; cultural-relic approval and rights clearance are required before construction [source:AGENT-TASKBOOK];
+- **Operations response**: emergencies follow "pause—human takeover—review—resume" with regular drills; test scenarios (T1 low-altitude logistics, T2 autonomous shuttle) must not proceed without airspace, road, and safety permits [metric:ai_test_scenario_count];
+
 - **Concept attribute**: all spatial proposals are open co-creation suggestions—not substitutes for statutory planning and not government-approved conclusions [source:AGENT-TASKBOOK].
 
 ## References

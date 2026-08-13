@@ -5,22 +5,30 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>开源京张｜OPEN JINGZHANG — The Living Mainline</title>
 <style>
-:root{--navy:#15253d;--red:#f04e3e;--teal:#00a6a6;--green:#78a66a;--paper:#f3f0e8;--ink:#262b33;--mist:#ded9ce;--white:#fffdf8}
-*{box-sizing:border-box}html{scroll-behavior:auto}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;line-height:1.55}img{display:block;width:100%;height:auto}h1,h2,h3,p{margin-top:0}.wrap{max-width:1440px;margin:auto;padding:0 34px}.signal{color:var(--red)}
+:root{--navy:#15253d;--red:#f04e3e;--signal-on-dark:#ff6b5c;--signal-on-light:#b8322f;--teal:#00a6a6;--green:#78a66a;--paper:#f3f0e8;--ink:#262b33;--mist:#ded9ce;--white:#fffdf8;--focus:#ffd166}
+*{box-sizing:border-box}html{scroll-behavior:auto}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;line-height:1.55}button,a{font:inherit}button{color:inherit}img{display:block;width:100%;height:auto}h1,h2,h3,p{margin-top:0}.wrap{max-width:1440px;margin:auto;padding:0 34px}.signal{color:var(--signal-on-dark)}
 header{background:var(--navy);color:var(--white);border-bottom:8px solid var(--red)}.hero{min-height:660px;display:grid;grid-template-columns:1.12fr .88fr;gap:38px;align-items:center;padding-top:54px;padding-bottom:54px}.eyebrow{font-size:13px;letter-spacing:.24em;color:#a8c9c9;margin-bottom:22px}.brand{font-size:64px;line-height:1.02;letter-spacing:-.035em;margin-bottom:16px}.en{font-size:25px;font-weight:500;letter-spacing:.06em;color:#d8e2e6;margin-bottom:40px}.claim{font-size:32px;line-height:1.36;max-width:800px}.memory{font-size:18px;color:#d9e0e7;border-left:5px solid var(--red);padding-left:18px;margin-top:26px}.system{background:#0f1d31;border:1px solid #425268;padding:24px}.system-title{font-size:15px;letter-spacing:.18em;color:#a8c9c9}.rail{height:84px;position:relative;margin:20px 0 30px}.rail:before,.rail:after{content:"";position:absolute;left:0;right:0;height:7px;background:var(--white)}.rail:before{top:24px}.rail:after{top:52px}.switch{position:absolute;left:43%;top:24px;width:46%;height:7px;background:var(--red);transform:rotate(-19deg);transform-origin:left}.yard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.yard{border-top:4px solid var(--teal);background:#162944;padding:14px 12px;min-height:114px}.yard:nth-child(2){border-color:var(--red)}.yard:nth-child(3){border-color:#dfaa3e}.yard b{display:block;font-size:18px}.yard small{display:block;color:#c6d3dc;margin-top:8px}.protocol{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}.protocol span{font-size:12px;border:1px solid #64738a;padding:5px 8px}.protocol span:last-child{border-color:var(--red);color:#ffb7ae}
-.factbar{background:var(--white);border-bottom:1px solid #cfc9bd}.facts{display:grid;grid-template-columns:1.35fr repeat(3,1fr)}.fact{padding:25px 24px;border-right:1px solid #d8d2c7}.fact:last-child{border:0}.fact .label{font-size:12px;letter-spacing:.12em;color:#6c6a65}.fact strong{font-size:26px;display:block;margin-top:5px;font-variant-numeric:tabular-nums}.fact.statement strong{font-size:20px;line-height:1.35;color:var(--red)}
+.factbar{background:var(--white);border-bottom:1px solid #cfc9bd}.facts{display:grid;grid-template-columns:1.35fr repeat(3,1fr)}.fact{padding:25px 24px;border-right:1px solid #d8d2c7}.fact:last-child{border:0}.fact .label{font-size:12px;letter-spacing:.12em;color:#6c6a65}.fact strong{font-size:26px;display:block;margin-top:5px;font-variant-numeric:tabular-nums}.fact.statement strong{font-size:20px;line-height:1.35;color:var(--signal-on-light)}
 main{padding:42px 0 72px}.section{margin-bottom:36px;background:var(--white);border:1px solid #d5cfc4}.section-head{display:flex;justify-content:space-between;gap:24px;padding:25px 28px;border-bottom:1px solid #ddd7cd}.section-head h2{margin:0;font-size:30px}.section-head p{max-width:760px;margin:0;color:#64645f}.figure{padding:24px}.figure img{border:1px solid #c9c4ba}.caption{display:flex;justify-content:space-between;gap:20px;font-size:13px;color:#696862;margin-top:12px}.badge{white-space:nowrap;color:var(--teal);font-weight:650}
-.logic{display:grid;grid-template-columns:1.2fr .8fr}.logic .figure{border-right:1px solid #ddd7cd}.three{padding:24px;display:grid;gap:12px}.card{border:1px solid #d7d1c5;padding:18px;background:#fbf9f3}.card b{font-size:18px}.card .mode{font-size:12px;color:var(--red);letter-spacing:.13em}.card p{font-size:14px;color:#5c5c57;margin:8px 0 0}.grid2{display:grid;grid-template-columns:1fr 1fr}.grid2>div:first-child{border-right:1px solid #ddd7cd}.micro{padding:24px}.micro h3{font-size:18px}.branch{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}.branch span{background:var(--navy);color:#fff;padding:12px 8px;text-align:center;font-size:12px}.branch span:nth-child(4){background:var(--red)}
-.scene-grid{padding:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.scene{border-top:4px solid var(--teal);background:#eeece5;padding:15px;min-height:142px}.scene.test{border-top-color:var(--red)}.scene b{display:block}.scene small{display:block;color:#73716b;margin:8px 0}.scene em{font-size:12px;font-style:normal;color:var(--red)}
+.logic{display:grid;grid-template-columns:1.08fr .92fr}.logic .figure{border-right:1px solid #ddd7cd}.station-experience{padding:24px;min-width:0}.station-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}.station-tab{min-height:64px;border:1px solid #bfb8ab;background:#f3f0e8;padding:10px 12px;text-align:left;cursor:pointer}.station-tab b,.station-tab small{display:block}.station-tab b{font-size:15px}.station-tab small{color:#64645f;margin-top:2px}.station-tab[aria-selected="true"]{border-color:var(--navy);background:var(--navy);color:#fff}.station-tab[aria-selected="true"] small{color:#d8e1e8}.station-panel{border:1px solid #d7d1c5;padding:18px;background:#fbf9f3;margin-top:10px}.station-panel:first-child{margin-top:0}.station-panel h3{font-size:20px;margin-bottom:8px}.station-panel .mode{font-size:12px;color:var(--signal-on-light);letter-spacing:.13em;font-weight:750}.station-panel p{font-size:14px;color:#52534f;margin:9px 0}.station-proof{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}.station-proof span{border-left:3px solid var(--teal);background:#eeece5;padding:10px;font-size:12px}.station-proof span:last-child{border-left-color:var(--signal-on-light)}.grid2{display:grid;grid-template-columns:1fr 1fr}.grid2>div:first-child{border-right:1px solid #ddd7cd}.micro{padding:24px}.micro h3{font-size:18px}.branch{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}.branch span{background:var(--navy);color:#fff;padding:12px 8px;text-align:center;font-size:12px}.branch span:nth-child(4){background:var(--red)}
+.protocol-layout{padding:24px}.protocol-steps{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;list-style:none;padding:0;margin:0}.protocol-step{width:100%;min-height:76px;border:1px solid #bfb8ab;background:#f3f0e8;padding:10px;text-align:left;cursor:pointer}.protocol-step .step-no{display:block;font-size:12px;color:#6a6964;letter-spacing:.12em}.protocol-step b,.protocol-step small{display:block}.protocol-step b{font-size:14px;margin-top:5px}.protocol-step small{font-size:11px;color:#686761;margin-top:3px}.protocol-step[aria-current="step"]{background:var(--navy);border-color:var(--navy);color:#fff}.protocol-step[aria-current="step"] .step-no,.protocol-step[aria-current="step"] small{color:#d9e0e7}.protocol-step:disabled{cursor:not-allowed;opacity:.5}.protocol-panels{margin-top:16px}.protocol-panel{border-left:6px solid var(--teal);background:#eeece5;padding:18px 20px;margin-top:10px}.protocol-panel:first-child{margin-top:0}.protocol-panel h3{font-size:20px;margin-bottom:8px}.protocol-panel p{margin:0;color:#53534f}.review-panel{border-left-color:var(--signal-on-light);background:#fff7f3}.decision-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}.decision-button{min-height:48px;border:1px solid #aaa397;background:var(--white);padding:9px 12px;text-align:left;cursor:pointer}.decision-button b,.decision-button small{display:block}.decision-button small{color:#65645f;margin-top:2px}.decision-button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}.decision-button[aria-pressed="true"] small{color:#d8e1e8}.decision-status{margin-top:12px!important;font-weight:700;color:var(--signal-on-light)!important}.no-script-note{margin:14px 0 0;color:#5e5d58;font-size:13px}
+.scene-tools{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 24px 0}.scene-filters{display:flex;flex-wrap:wrap;gap:8px}.scene-filter{min-height:44px;border:1px solid #aaa397;background:var(--white);padding:8px 14px;cursor:pointer}.scene-filter[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}.scene-filter-status{margin:0;color:#61605b;font-size:13px}.scene-grid{padding:18px 24px 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.scene{border-top:4px solid var(--teal);background:#eeece5;padding:15px;min-height:142px}.scene.test{border-top-color:var(--red)}.scene.flagship{background:#fff7f3;box-shadow:inset 0 0 0 1px #e7b6af}.scene b{display:block}.scene small{display:block;color:#66655f;margin:8px 0}.scene em{font-size:12px;font-style:normal;color:var(--signal-on-light);font-weight:700}.flagship-mark{display:inline-block;margin-top:9px;padding:3px 6px;background:#f7d8d2;color:#7e211b;font-size:11px;font-weight:750;letter-spacing:.06em}
+.router-layout{padding:24px}.journey{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;list-style:none;padding:0;margin:0 0 24px;counter-reset:journey}.journey li{counter-increment:journey;border-top:5px solid var(--teal);background:#eeece5;padding:15px;min-height:188px}.journey li:before{content:"0" counter(journey);display:block;font-size:12px;letter-spacing:.14em;color:#65645f;margin-bottom:10px}.journey li:nth-child(5){border-top-color:var(--red);background:#fff7f3}.journey b,.journey small{display:block}.journey small{margin-top:8px;color:#5e5d58}.receipt-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}.receipt-tab{min-height:62px;border:1px solid #aaa397;background:#f3f0e8;padding:10px 14px;text-align:left;cursor:pointer}.receipt-tab b,.receipt-tab small{display:block}.receipt-tab small{color:#65645f;margin-top:3px}.receipt-tab[aria-selected="true"]{background:var(--navy);border-color:var(--navy);color:#fff}.receipt-tab[aria-selected="true"] small{color:#d8e1e8}.receipt-panel{border:1px solid #d6d0c5;padding:20px;background:#fbf9f3}.receipt-summary{display:grid;grid-template-columns:.72fr 1.28fr;gap:18px}.receipt-state{padding:16px;background:var(--navy);color:#fff}.receipt-state strong{display:block;font-size:34px;line-height:1.1;margin:6px 0}.receipt-state small{color:#d8e1e8}.receipt-state.held{background:#6b5420}.receipt-state.retired{background:#872d29}.receipt-gates{display:grid;grid-template-columns:1fr 1fr;gap:8px}.receipt-gates span{border-left:3px solid var(--teal);background:#eeece5;padding:10px;font-size:13px}.receipt-gates .fail{border-left-color:var(--red);background:#fff0ed}.receipt-exit{margin:16px 0 0;border-left:5px solid var(--red);padding:12px 14px;background:#fff7f3}.receipt-source{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin:14px 0 0;font-size:12px;color:#65645f}.receipt-source a{color:#164d67}.simulation-boundary{margin:18px 0 0;color:#5e5d58;font-size:13px}.receipt-status{margin:0 0 10px;font-weight:700;color:var(--signal-on-light)}
 .evidence-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:24px}.evidence-card{border:1px solid #d6d0c5;padding:17px}.evidence-card h3{font-size:17px}.evidence-card .number{font-size:38px;color:var(--navy);font-weight:750}.evidence-card p{font-size:13px;color:#65645f}.ok{display:inline-block;background:#dce9da;color:#315739;padding:4px 7px;font-size:12px}.warn{display:inline-block;background:#ffe2dc;color:#93291d;padding:4px 7px;font-size:12px}
 .ledger{padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:18px}.ledger article{background:#eeece5;padding:19px}.ledger h3{font-size:18px}.ledger ul{padding-left:18px;margin:0}.ledger li{margin:6px 0}.provisional{background:var(--navy)!important;color:#fff}.provisional p{color:#d8e1e8}.footer{padding:25px 0 45px;color:#686761;font-size:12px}.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.language-nav{position:absolute;top:20px;right:34px;display:flex;align-items:center;gap:4px}.language-nav span,.language-nav a{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;border:1px solid #526178;color:#fff;text-decoration:none;font-size:13px}.language-nav span{background:#243750}.language-nav a:hover{background:#243750}.hero{position:relative;padding-top:76px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}.station-tab:focus-visible,.protocol-step:focus-visible,.decision-button:focus-visible,.scene-filter:focus-visible{position:relative;z-index:2}.is-enhanced [hidden]{display:none!important}
+@media(max-width:1100px){.protocol-steps{grid-template-columns:repeat(3,1fr)}.journey{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:960px){.hero,.logic,.grid2{grid-template-columns:1fr}.logic .figure,.grid2>div:first-child{border-right:0;border-bottom:1px solid #ddd7cd}.brand{font-size:47px}.claim{font-size:25px}.facts{grid-template-columns:1fr 1fr}.fact:nth-child(2){border-right:0}.scene-grid,.evidence-grid{grid-template-columns:1fr 1fr}.branch{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:580px){.wrap{padding:0 16px}.hero{min-height:auto}.brand{font-size:39px}.yard-grid,.facts,.scene-grid,.evidence-grid,.ledger{grid-template-columns:1fr}.fact{border-right:0;border-bottom:1px solid #d8d2c7}.section-head,.caption{display:block}.caption .badge{display:block;margin-top:7px}.branch{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.station-tabs,.decision-row,.receipt-summary{grid-template-columns:1fr}.protocol-steps{grid-template-columns:1fr 1fr}.scene-tools{display:block}.scene-filter-status{margin-top:10px}.journey{grid-template-columns:1fr 1fr}}
+@media(max-width:580px){.wrap{padding:0 16px}.hero{min-height:auto;padding-top:88px}.language-nav{right:16px}.brand{font-size:39px}.yard-grid,.facts,.scene-grid,.evidence-grid,.ledger,.journey,.receipt-tabs,.receipt-gates{grid-template-columns:1fr}.fact{border-right:0;border-bottom:1px solid #d8d2c7}.section-head,.caption{display:block}.caption .badge{display:block;margin-top:7px}.branch{grid-template-columns:1fr 1fr}.protocol-layout,.station-experience,.router-layout{padding:16px}.protocol-step{min-height:82px}.journey li{min-height:auto}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 <header>
   <div class="wrap hero">
+    <nav class="language-nav" aria-label="语言选择"><span aria-current="page">中文</span><a href="index.en.html" lang="en" hreflang="en" aria-label="Switch to English">EN</a></nav>
     <div>
       <div class="eyebrow">MERGEKEEPER / AI AGENT URBAN DESIGN PROPOSAL</div>
       <h1 class="brand">开源京张</h1>
@@ -56,12 +64,63 @@ main{padding:42px 0 72px}.section{margin-bottom:36px;background:var(--white);bor
     <div class="figure"><img src="../assets/figures/site-overview.png" alt="开源京张总览地图与总体空间协议"><div class="caption"><span>横向展开以增强狭长走廊可读性；全部顶点来自投稿 GeoJSON。</span><span class="badge">AI 先证明，人再决定</span></div></div>
   </section>
 
-  <section class="section logic">
+  <section class="section logic" aria-labelledby="station-experience-title">
     <div class="figure"><img src="../assets/figures/key-areas.png" alt="三个重点区域Build Review Merge差异化设计"><div class="caption"><span>三站不是三张定位卡，而是一条有前后闸门的验证流水线。</span><span class="badge">3 STATION YARDS</span></div></div>
-    <div class="three">
-      <article class="card"><span class="mode">BUILD / 众智园</span><b>众智编组场 · Stack Yard</b><p>共享 Physical AI 原型、室内模拟与组装；室内验证与公共空间试验分两道门。</p></article>
-      <article class="card"><span class="mode">REVIEW / AI 原点</span><b>开源零号站 · Open Origin Station</b><p>居民、专业人员、运营方共同复核；AI 只辅助解释，不作城市终决。</p></article>
-      <article class="card"><span class="mode">MERGE / 大钟寺</span><b>万智交换站 · Agent Exchange</b><p>多智能体互操作和城市应用交换；Merge 只进入专业深化，不等于上线。</p></article>
+    <div class="station-experience">
+      <h2 id="station-experience-title">Build—Review—Merge 三站导览</h2>
+      <p>选择一座站场，读取它的空间动作、代表场景、人工闸门与退出条件。</p>
+      <div class="station-tabs" role="tablist" aria-label="三座站场" data-station-tabs>
+        <button class="station-tab" type="button" role="tab" id="tab-build" aria-controls="panel-build" aria-selected="true" tabindex="0"><b>BUILD</b><small>众智园</small></button>
+        <button class="station-tab" type="button" role="tab" id="tab-review" aria-controls="panel-review" aria-selected="false" tabindex="-1"><b>REVIEW</b><small>AI 原点</small></button>
+        <button class="station-tab" type="button" role="tab" id="tab-merge" aria-controls="panel-merge" aria-selected="false" tabindex="-1"><b>MERGE</b><small>大钟寺</small></button>
+      </div>
+      <div>
+        <article class="station-panel" id="panel-build" role="tabpanel" aria-labelledby="tab-build" tabindex="0">
+          <span class="mode">BUILD / 众智园</span><h3>众智编组场 · Stack Yard</h3>
+          <p>共享 Physical AI 原型、室内模拟与组装；室内验证与公共空间试验分两道门。</p>
+          <div class="station-proof"><span><b>代表场景</b><br>具身机器人混行沙盒</span><span><b>人工闸门</b><br>专业人员批准后才可离开封闭测试</span><span><b>空间动作</b><br>共享原型、可逆庭院、限定路径</span><span><b>退出条件</b><br>越权、不可复现或无法接管即隔离版本</span></div>
+        </article>
+        <article class="station-panel" id="panel-review" role="tabpanel" aria-labelledby="tab-review" tabindex="0">
+          <span class="mode">REVIEW / AI 原点</span><h3>开源零号站 · Open Origin Station</h3>
+          <p>居民、专业人员、运营方共同复核；AI 只辅助解释，不作城市终决。</p>
+          <div class="station-proof"><span><b>代表场景</b><br>城市议题路由台</span><span><b>人工闸门</b><br>使用者、专业人员与公共守门人共同复核</span><span><b>空间动作</b><br>开放站厅、AI 公民客厅、人工服务入口</span><span><b>退出条件</b><br>不可解释、不可退出或服务差异即 Hold</span></div>
+        </article>
+        <article class="station-panel" id="panel-merge" role="tabpanel" aria-labelledby="tab-merge" tabindex="0">
+          <span class="mode">MERGE / 大钟寺</span><h3>万智交换站 · Agent Exchange</h3>
+          <p>多智能体互操作和城市应用交换；Merge 只表示建议进入专业深化，不等于上线。</p>
+          <div class="station-proof"><span><b>代表场景</b><br>全球开发者互操作周</span><span><b>人工闸门</b><br>联合评审、现场接管与专业签字</span><span><b>空间动作</b><br>道岔汇流、展示合作、公共首层</span><span><b>退出条件</b><br>无法复现、越权或公共价值不足即退役</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="protocol-title">
+    <div class="section-head"><h2 id="protocol-title">六步公开协议</h2><p>城市议题沿 Issue—Branch—Sandbox 前进，但必须在 Human Review 明确选择退回、退役或建议专业深化；系统不会自动 Merge。</p></div>
+    <div class="protocol-layout" data-protocol>
+      <ol class="protocol-steps" aria-label="城市议题六步协议">
+        <li><button class="protocol-step" type="button" data-step="0" aria-current="step" aria-controls="protocol-issue"><span class="step-no">01</span><b>ISSUE</b><small>公开问题</small></button></li>
+        <li><button class="protocol-step" type="button" data-step="1" aria-controls="protocol-branch"><span class="step-no">02</span><b>BRANCH</b><small>保留分歧</small></button></li>
+        <li><button class="protocol-step" type="button" data-step="2" aria-controls="protocol-sandbox"><span class="step-no">03</span><b>SANDBOX</b><small>封闭验证</small></button></li>
+        <li><button class="protocol-step" type="button" data-step="3" aria-controls="protocol-review"><span class="step-no">04</span><b>HUMAN REVIEW</b><small>人工选择</small></button></li>
+        <li><button class="protocol-step" type="button" data-step="4" aria-controls="protocol-resolution"><span class="step-no">05</span><b>MERGE / RETIRED</b><small>等待决定</small></button></li>
+        <li><button class="protocol-step" type="button" data-step="5" aria-controls="protocol-changelog"><span class="step-no">06</span><b>CHANGELOG</b><small>公开记录</small></button></li>
+      </ol>
+      <div class="protocol-panels">
+        <article class="protocol-panel" id="protocol-issue" role="tabpanel"><h3>Issue · 先把问题说清楚</h3><p>公开问题、影响人群、资料边界与责任缺口；Issue 不是立项，也不自动获得处理优先级。</p></article>
+        <article class="protocol-panel" id="protocol-branch" role="tabpanel"><h3>Branch · 让不同方案并存</h3><p>每条分支登记假设、来源、Owner 建议与退出条件；涉及安全、公平和法定条件的否决先进入 Hold。</p></article>
+        <article class="protocol-panel" id="protocol-sandbox" role="tabpanel"><h3>Sandbox · 只验证可证的部分</h3><p>优先使用公开资料、固定材料与合成输入。无法人工接管、出现敏感数据或事实无来源时立即停止。</p></article>
+        <article class="protocol-panel review-panel" id="protocol-review" role="tabpanel"><h3>Human Review · 人作明确决定</h3><p>AI 只提交证据，居民、专业人员、运营人员与公共守门人选择下一步。没有人工选择，流程停在这里。</p>
+          <div class="decision-row" role="group" aria-label="人工复核决定">
+            <button class="decision-button" type="button" data-decision="return" aria-pressed="false"><b>退回 Branch</b><small>补证据或改方案</small></button>
+            <button class="decision-button" type="button" data-decision="retire" aria-pressed="false"><b>退役 Retire</b><small>停止并保存教训</small></button>
+            <button class="decision-button" type="button" data-decision="deepen" aria-pressed="false"><b>建议专业深化</b><small>不是政府采纳或上线</small></button>
+          </div>
+          <p class="decision-status" role="status" aria-live="polite" data-decision-status>尚未作出人工决定；Merge / Retired 保持锁定。</p>
+        </article>
+        <article class="protocol-panel" id="protocol-resolution" role="tabpanel"><h3>Merge / Retired · 执行人工决定</h3><p data-resolution-copy>此步骤必须等待 Human Review。Merge 仅表示建议进入下一轮专业深化与审查；Retired 表示停止推进并保留失败档案。</p></article>
+        <article class="protocol-panel" id="protocol-changelog" role="tabpanel"><h3>Changelog · 留下可复核记录</h3><p>记录采用、修改、退回与撤回的理由，不披露个人数据；后来者可以沿版本回到当时的证据与人工决定。</p></article>
+      </div>
+      <p class="no-script-note">即使浏览器禁用 JavaScript，六步说明仍完整可读；启用后可逐步查看并模拟人工决定。</p>
     </div>
   </section>
 
@@ -84,21 +143,75 @@ main{padding:42px 0 72px}.section{margin-bottom:36px;background:var(--white);bor
 
   <section class="section">
     <div class="section-head"><h2>AI 场景</h2><p>十四个 branch 共用 Model Passport：目的、数据最小化、负责人、人审点、版本、成功/退出指标。红色为产业测试验证场景。</p></div>
+    <div class="scene-tools">
+      <div class="scene-filters" role="group" aria-label="筛选 AI 场景" data-scene-filters>
+        <button class="scene-filter" type="button" data-filter="all" aria-pressed="false">全部 14</button>
+        <button class="scene-filter" type="button" data-filter="flagship" aria-pressed="true">旗舰模拟 3</button>
+        <button class="scene-filter" type="button" data-filter="industry" aria-pressed="false">产业验证 6</button>
+        <button class="scene-filter" type="button" data-filter="civic" aria-pressed="false">公共场景 8</button>
+      </div>
+      <p class="scene-filter-status" role="status" aria-live="polite" data-filter-status>优先显示 3 个仅使用公开材料与合成输入的旗舰模拟场景。</p>
+    </div>
     <div class="scene-grid">
-      <article class="scene test"><b>01 多智能体协同编组</b><small>众智编组场 / 冲突检测与任务回放</small><em>INDUSTRY TEST</em></article>
-      <article class="scene test"><b>02 具身机器人混行沙盒</b><small>众智园 / 封闭庭院与限定路径</small><em>INDUSTRY TEST</em></article>
-      <article class="scene test"><b>03 模型安全红队场</b><small>众智园 / 隔离数据与独立红队</small><em>INDUSTRY TEST</em></article>
-      <article class="scene test"><b>04 AI 原生商业试营业</b><small>大钟寺 / 商户确认与消费者切人工</small><em>INDUSTRY TEST</em></article>
-      <article class="scene test"><b>05 算力—能耗协同</b><small>众智园 / 工程师审批与恢复原策略</small><em>INDUSTRY TEST</em></article>
-      <article class="scene test"><b>06 全球开发者互操作周</b><small>万智交换站 / 联合评审与现场接管</small><em>INDUSTRY TEST</em></article>
-      <article class="scene"><b>07 社区事务可解释助手</b><small>AI 公民客厅 / 窗口人员确认高影响答复</small><em>CIVIC BRANCH</em></article>
-      <article class="scene"><b>08 适老生活协作员</b><small>原点服务站 / 单独授权与随时删除</small><em>CIVIC BRANCH</em></article>
-      <article class="scene"><b>09 无障碍连续导航</b><small>三区慢行网 / 体验官实地复核</small><em>CIVIC BRANCH</em></article>
-      <article class="scene"><b>10 开放 AI 素养课堂</b><small>原点教室 / 教师审核课程输出</small><em>CIVIC BRANCH</em></article>
-      <article class="scene"><b>11 京张文化证据导览</b><small>遗址主线 / 史料编辑逐条审校</small><em>CIVIC BRANCH</em></article>
-      <article class="scene"><b>12 公园生态养护助手</b><small>蓝绿廊道 / 专业人员决定处置</small><em>CIVIC BRANCH</em></article>
-      <article class="scene"><b>13 夜间安全共治灯带</b><small>主干与道岔 / 值守人员复核</small><em>CIVIC BRANCH</em></article>
-      <article class="scene"><b>14 城市议题路由台</b><small>开源零号站 / 议题委员会确认优先级</small><em>CIVIC BRANCH</em></article>
+      <article class="scene test" data-category="industry"><b>01 多智能体协同编组</b><small>众智编组场 / 冲突检测与任务回放</small><em>INDUSTRY TEST</em></article>
+      <article class="scene test" data-category="industry"><b>02 具身机器人混行沙盒</b><small>众智园 / 封闭庭院与限定路径</small><em>INDUSTRY TEST</em></article>
+      <article class="scene test" data-category="industry"><b>03 模型安全红队场</b><small>众智园 / 隔离数据与独立红队</small><em>INDUSTRY TEST</em></article>
+      <article class="scene test" data-category="industry"><b>04 AI 原生商业试营业</b><small>大钟寺 / 商户确认与消费者切人工</small><em>INDUSTRY TEST</em></article>
+      <article class="scene test" data-category="industry"><b>05 算力—能耗协同</b><small>众智园 / 工程师审批与恢复原策略</small><em>INDUSTRY TEST</em></article>
+      <article class="scene test" data-category="industry"><b>06 全球开发者互操作周</b><small>万智交换站 / 联合评审与现场接管</small><em>INDUSTRY TEST</em></article>
+      <article class="scene" data-category="civic"><b>07 社区事务可解释助手</b><small>AI 公民客厅 / 窗口人员确认高影响答复</small><em>CIVIC BRANCH</em></article>
+      <article class="scene" data-category="civic"><b>08 适老生活协作员</b><small>原点服务站 / 单独授权与随时删除</small><em>CIVIC BRANCH</em></article>
+      <article class="scene" data-category="civic"><b>09 无障碍连续导航</b><small>三区慢行网 / 体验官实地复核</small><em>CIVIC BRANCH</em></article>
+      <article class="scene flagship" data-category="civic" data-flagship="true"><b>10 开放 AI 素养课堂</b><small>原点教室 / 教师审核课程输出</small><em>CIVIC BRANCH</em><span class="flagship-mark">FLAGSHIP SIMULATION</span></article>
+      <article class="scene flagship" data-category="civic" data-flagship="true"><b>11 京张文化证据导览</b><small>遗址主线 / 史料编辑逐条审校</small><em>CIVIC BRANCH</em><span class="flagship-mark">FLAGSHIP SIMULATION</span></article>
+      <article class="scene" data-category="civic"><b>12 公园生态养护助手</b><small>蓝绿廊道 / 专业人员决定处置</small><em>CIVIC BRANCH</em></article>
+      <article class="scene" data-category="civic"><b>13 夜间安全共治灯带</b><small>主干与道岔 / 值守人员复核</small><em>CIVIC BRANCH</em></article>
+      <article class="scene flagship" data-category="civic" data-flagship="true"><b>14 城市议题路由台</b><small>开源零号站 / 议题委员会确认优先级</small><em>CIVIC BRANCH</em><span class="flagship-mark">FLAGSHIP SIMULATION</span></article>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="router-title">
+    <div class="section-head"><h2 id="router-title">旗舰 14 · 城市议题路由台</h2><p>一名居民从日常通行进入提问、人工受理、公开回执与退出恢复。AI 只生成可复核的路由建议；Human Review 决定 Pass、Hold 或 Retire，且非 AI 等价服务始终保留。</p></div>
+    <div class="router-layout" data-router-tabletop>
+      <ol class="journey" aria-label="城市议题路由台六步人物与空间旅程">
+        <li><b>普通路径</b><small>居民可直接经过开源零号站，不参与、不扫码，也不降低原有服务质量。</small></li>
+        <li><b>提问门槛</b><small>阅读数据边界，选择匿名纸卡或合成数字表单；真实个人信息不进入本次推演。</small></li>
+        <li><b>人工前台 · 去标识</b><small>值守人员提供同任务非 AI 路径、检查字段，并删除联系方式等个人信息。</small></li>
+        <li><b>Branch 桌</b><small>AI 只建议可解释的 Branch；Owner、责任缺口与 Hold 理由必须公开可复核。</small></li>
+        <li><b>Human Review</b><small>待确认的人工角色检查法定条件、受影响群体和申诉路径；独立申诉角色另行隔离，AI 不排公共优先级。</small></li>
+        <li><b>回执 · 退出恢复</b><small>只发布去标识状态、责任角色和闸门；退出时删除会话、回滚规则并保留人工入口。</small></li>
+      </ol>
+      <p class="receipt-status" role="status" aria-live="polite" data-receipt-status>离线 runner 已复演 7/7：1 PASS、5 HOLD、1 RETIRED；此处显示 PASS 用例，仍须 Human Review。</p>
+      <div class="receipt-tabs" role="tablist" aria-label="正向与负向合成桌面推演回执" data-receipt-tabs>
+        <button class="receipt-tab" type="button" role="tab" id="receipt-tab-positive" aria-controls="receipt-positive" aria-selected="true" tabindex="0"><b>正向用例 · PASS</b><small>证据齐全，送交 Human Review</small></button>
+        <button class="receipt-tab" type="button" role="tab" id="receipt-tab-hold" aria-controls="receipt-hold" aria-selected="false" tabindex="-1"><b>阻断用例 · HOLD</b><small>禁止字段触发补证据</small></button>
+        <button class="receipt-tab" type="button" role="tab" id="receipt-tab-retired" aria-controls="receipt-retired" aria-selected="false" tabindex="-1"><b>红牌用例 · RETIRED</b><small>失败退出并生成恢复回执</small></button>
+      </div>
+      <article class="receipt-panel" id="receipt-positive" role="tabpanel" aria-labelledby="receipt-tab-positive" tabindex="0">
+        <div class="receipt-summary">
+          <div class="receipt-state"><span>TABLETOP RESULT</span><strong>PASS</strong><small>HUMAN DECISION REQUIRED</small></div>
+          <div class="receipt-gates"><span><b>输入边界</b><br>仅合成、去标识议题</span><span><b>责任闸门</b><br>合成角色字段完整；现实任命待确认</span><span><b>人工等价</b><br>同任务纸卡和窗口可用</span><span><b>下一步</b><br>送交待确认的人工复核角色</span></div>
+        </div>
+        <p class="receipt-exit"><b>Pass 不等于 Merge：</b>AI 只建议 Branch；未取得明确的人工作出继续决定前，议题不能进入专业深化，更不代表采纳、采购或上线。</p>
+        <p class="receipt-source"><span class="code">SYNTHETIC · FIELD RUN: FALSE</span><a href="assets/issue-router-tabletop/receipts.json">读取机器可复核回执 JSON</a></p>
+      </article>
+      <article class="receipt-panel" id="receipt-hold" role="tabpanel" aria-labelledby="receipt-tab-hold" tabindex="0">
+        <div class="receipt-summary">
+          <div class="receipt-state held"><span>BLOCKED RESULT</span><strong>HOLD</strong><small>REPAIR THEN RERUN</small></div>
+          <div class="receipt-gates"><span class="fail"><b>阻断原因</b><br>FORBIDDEN_ISSUE_FIELD: phone_number</span><span><b>即时动作</b><br>不进入自动路由或人审</span><span><b>修复要求</b><br>移除禁止字段并补齐证据</span><span><b>下一闸门</b><br>重新运行同一 fixture</span></div>
+        </div>
+        <p class="receipt-exit"><b>Hold 不是忽略：</b>runner 快速失败并公开阻断原因；材料修复后必须从同一规则重新复演，不能手动改写为 Pass。</p>
+        <p class="receipt-source"><span class="code">S14-HOLD-001 · EXPECTATION MATCHED</span><a href="assets/issue-router-tabletop/receipts.json">读取 5 条 HOLD 回执</a></p>
+      </article>
+      <article class="receipt-panel" id="receipt-retired" role="tabpanel" aria-labelledby="receipt-tab-retired" tabindex="0">
+        <div class="receipt-summary">
+          <div class="receipt-state retired"><span>RED-CARD RESULT</span><strong>RETIRED</strong><small>FAILURE EXIT COMPLETED</small></div>
+          <div class="receipt-gates"><span class="fail"><b>红牌原因</b><br>重复出现服务等价失败</span><span><b>独立申诉</b><br>复核完成并维持红牌</span><span><b>人工终决</b><br>多数票不能推翻，停止 Branch</span><span><b>公开边界</b><br>只保留去标识失败原因</span></div>
+        </div>
+        <p class="receipt-exit"><b>失败退出与恢复：</b>停止自动路由，删除合成会话，回滚到人工受理，确认人工入口持续可用，并发布不含个人信息的 Retired 回执。</p>
+        <p class="receipt-source"><span class="code">SYNTHETIC · FIELD RUN: FALSE</span><a href="assets/issue-router-tabletop/contract.json">查看 Pass / Hold / Retire 决策契约</a></p>
+      </article>
+      <p class="simulation-boundary"><span class="code">synthetic_offline_rehearsal_complete · synthetic=true · field_run=false · human_decision_required=true · not_authorized_not_run</span><br>本区将 contract、fixtures 与 committed receipts 转译为可读界面。7 个合成用例均与预期一致；这只证明契约、失败注入与回执能够被确定性复演，不证明现场有效、安全、合规、获批或已经实施。</p>
     </div>
   </section>
 
@@ -128,6 +241,131 @@ main{padding:42px 0 72px}.section{margin-bottom:36px;background:var(--white);bor
   </section>
 </main>
 
-<footer class="wrap footer"><span class="code">Empress7211 / Mergekeeper / COMMUNITY-DISPLAY-ONLY / generated 2026-08-07</span><br>本页完全离线，无脚本、无 iframe、无远程字体、地图瓦片或网络请求。</footer>
+<footer class="wrap footer"><span class="code">Empress7211 / Mergekeeper / COMMUNITY-DISPLAY-ONLY / generated 2026-08-07</span><br>本页完全离线，无 iframe、无远程字体、地图瓦片或网络请求；本地脚本只用于页面内的键盘导览、人工决策演示与场景筛选。</footer>
+<script>
+(function(){
+  "use strict";
+  document.documentElement.classList.add("is-enhanced");
+
+  var tabs=Array.prototype.slice.call(document.querySelectorAll(".station-tab[role=tab]"));
+  var tabPanels=tabs.map(function(tab){return document.getElementById(tab.getAttribute("aria-controls"));});
+  function activateTab(next,moveFocus){
+    tabs.forEach(function(tab,index){
+      var active=tab===next;
+      tab.setAttribute("aria-selected",String(active));
+      tab.tabIndex=active?0:-1;
+      tabPanels[index].hidden=!active;
+    });
+    if(moveFocus){next.focus();}
+  }
+  tabs.forEach(function(tab,index){
+    tab.addEventListener("click",function(){activateTab(tab,false);});
+    tab.addEventListener("keydown",function(event){
+      var nextIndex=index;
+      if(event.key==="ArrowRight"||event.key==="ArrowDown"){nextIndex=(index+1)%tabs.length;}
+      else if(event.key==="ArrowLeft"||event.key==="ArrowUp"){nextIndex=(index-1+tabs.length)%tabs.length;}
+      else if(event.key==="Home"){nextIndex=0;}
+      else if(event.key==="End"){nextIndex=tabs.length-1;}
+      else{return;}
+      event.preventDefault();
+      activateTab(tabs[nextIndex],true);
+    });
+  });
+  activateTab(tabs[0],false);
+
+  var stepButtons=Array.prototype.slice.call(document.querySelectorAll("[data-step]"));
+  var stepPanels=stepButtons.map(function(button){return document.getElementById(button.getAttribute("aria-controls"));});
+  var resolutionButton=stepButtons[4];
+  var changelogButton=stepButtons[5];
+  var resolutionCopy=document.querySelector("[data-resolution-copy]");
+  var decisionStatus=document.querySelector("[data-decision-status]");
+  var decisionButtons=Array.prototype.slice.call(document.querySelectorAll("[data-decision]"));
+  var decision=null;
+  function showStep(index){
+    if((index===4||index===5)&&!decision){
+      index=3;
+      decisionStatus.textContent="请先由 Human Review 明确选择退回、退役或建议专业深化；系统不会自动 Merge。";
+    }
+    stepButtons.forEach(function(button,buttonIndex){button.setAttribute("aria-current",buttonIndex===index?"step":"false");});
+    stepPanels.forEach(function(panel,panelIndex){panel.hidden=panelIndex!==index;});
+  }
+  stepButtons.forEach(function(button,index){button.addEventListener("click",function(){showStep(index);});});
+  resolutionButton.disabled=true;
+  changelogButton.disabled=true;
+  showStep(0);
+
+  var decisions={
+    "return":{label:"RETURNED",status:"人工决定：退回 Branch 补充证据或修改方案。",copy:"Human Review 已选择退回 Branch。当前方案不进入 Merge；补证据或修改后必须重新经过 Sandbox 与人工复核。"},
+    "retire":{label:"RETIRED",status:"人工决定：退役并保存失败教训。",copy:"Human Review 已选择 Retired。方案停止推进，失败假设、风险原因与退出过程进入未合并未来档案。"},
+    "deepen":{label:"PROFESSIONAL REVIEW",status:"人工决定：建议进入下一轮专业深化。",copy:"Human Review 建议进入下一轮专业深化与审查。这不是政府采纳、采购、建设或上线，后续仍需专业、许可与公众程序。"}
+  };
+  decisionButtons.forEach(function(button){
+    button.addEventListener("click",function(){
+      decision=button.getAttribute("data-decision");
+      decisionButtons.forEach(function(candidate){candidate.setAttribute("aria-pressed",String(candidate===button));});
+      resolutionButton.disabled=false;
+      changelogButton.disabled=false;
+      resolutionButton.querySelector("b").textContent=decisions[decision].label;
+      resolutionButton.querySelector("small").textContent="人工决定";
+      decisionStatus.textContent=decisions[decision].status;
+      resolutionCopy.textContent=decisions[decision].copy;
+      showStep(4);
+    });
+  });
+
+  var filters=Array.prototype.slice.call(document.querySelectorAll("[data-filter]"));
+  var scenes=Array.prototype.slice.call(document.querySelectorAll("[data-category]"));
+  var filterStatus=document.querySelector("[data-filter-status]");
+  var filterCopy={
+    all:"显示全部 14 个场景；旗舰模拟场景已重点标示。",
+    flagship:"优先显示 3 个仅使用公开材料与合成输入的旗舰模拟场景。",
+    industry:"显示 6 个产业验证场景；进入现场前仍需 Owner、许可与专业复核。",
+    civic:"显示 8 个公共场景；自愿参与、人工等价服务与随时退出是基础条件。"
+  };
+  function applyFilter(filter){
+    filters.forEach(function(button){button.setAttribute("aria-pressed",String(button.getAttribute("data-filter")===filter));});
+    scenes.forEach(function(scene){
+      var visible=filter==="all"||(filter==="flagship"&&scene.getAttribute("data-flagship")==="true")||scene.getAttribute("data-category")===filter;
+      scene.hidden=!visible;
+    });
+    filterStatus.textContent=filterCopy[filter];
+  }
+  filters.forEach(function(button){button.addEventListener("click",function(){applyFilter(button.getAttribute("data-filter"));});});
+  applyFilter("flagship");
+
+  var receiptTabs=Array.prototype.slice.call(document.querySelectorAll(".receipt-tab[role=tab]"));
+  var receiptPanels=receiptTabs.map(function(tab){return document.getElementById(tab.getAttribute("aria-controls"));});
+  var receiptStatus=document.querySelector("[data-receipt-status]");
+  var receiptStatusCopy={
+    "receipt-positive":"离线 runner 已复演 7/7：1 PASS、5 HOLD、1 RETIRED；此处显示 PASS 用例，仍须 Human Review。",
+    "receipt-hold":"离线 runner 已复演 7/7；此处显示 HOLD 用例：禁止字段阻断路由，修复证据后必须重新运行。",
+    "receipt-retired":"离线 runner 已复演 7/7；此处显示红牌 RETIRED 用例：停止路由、删除合成会话、恢复人工入口并留下去标识失败回执。"
+  };
+  function activateReceipt(next,moveFocus){
+    receiptTabs.forEach(function(tab,index){
+      var active=tab===next;
+      tab.setAttribute("aria-selected",String(active));
+      tab.tabIndex=active?0:-1;
+      receiptPanels[index].hidden=!active;
+    });
+    receiptStatus.textContent=receiptStatusCopy[next.getAttribute("aria-controls")];
+    if(moveFocus){next.focus();}
+  }
+  receiptTabs.forEach(function(tab,index){
+    tab.addEventListener("click",function(){activateReceipt(tab,false);});
+    tab.addEventListener("keydown",function(event){
+      var nextIndex=index;
+      if(event.key==="ArrowRight"||event.key==="ArrowDown"){nextIndex=(index+1)%receiptTabs.length;}
+      else if(event.key==="ArrowLeft"||event.key==="ArrowUp"){nextIndex=(index-1+receiptTabs.length)%receiptTabs.length;}
+      else if(event.key==="Home"){nextIndex=0;}
+      else if(event.key==="End"){nextIndex=receiptTabs.length-1;}
+      else{return;}
+      event.preventDefault();
+      activateReceipt(receiptTabs[nextIndex],true);
+    });
+  });
+  activateReceipt(receiptTabs[0],false);
+}());
+</script>
 </body>
 </html>

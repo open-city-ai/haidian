@@ -196,6 +196,195 @@
         "Residential land share of the design proposal."
       ]
     },
+    "land_use_cultural_ratio": {
+      "status": "known",
+      "value": 0.08128,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_0803_area / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Cultural land share of the design proposal."
+      ]
+    },
+    "land_use_education_ratio": {
+      "status": "known",
+      "value": 0.081201,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_0804_area / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Education land share of the design proposal."
+      ]
+    },
+    "land_use_green_ratio": {
+      "status": "known",
+      "value": 0.115228,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_1401_area / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Park-green land share of the design proposal."
+      ]
+    },
+    "land_use_plaza_ratio": {
+      "status": "known",
+      "value": 0.037703,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_1403_area / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Plaza land share of the design proposal."
+      ]
+    },
+    "land_use_reserved_ratio": {
+      "status": "known",
+      "value": 0.000298,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_16_area / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Reserved land share of the design proposal."
+      ]
+    },
+    "key_area_zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_areas PROV-KEY-001) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon; recalculate after official polygons."
+      ]
+    },
+    "key_area_origin_area_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_areas PROV-KEY-002) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon; recalculate after official polygons."
+      ]
+    },
+    "key_area_dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_areas PROV-KEY-003) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon; recalculate after official polygons."
+      ]
+    },
+    "phase_one_area_sqm": {
+      "status": "known",
+      "value": 4692562.648,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "largest phase polygon area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual phasing extents."
+      ]
+    },
+    "phase_two_area_sqm": {
+      "status": "known",
+      "value": 4259370.362,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "second phase polygon area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual phasing extents."
+      ]
+    },
+    "phase_three_area_sqm": {
+      "status": "known",
+      "value": 2460892.376,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "third phase polygon area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual phasing extents."
+      ]
+    },
+    "green_space_count": {
+      "status": "known",
+      "value": 14,
+      "unit": "count",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "feature_count(green_space.geojson)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "public_space_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "feature_count(public_space.geojson)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_inn_plaza_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space_type=station_plaza)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "road_greenway_length_m": {
+      "status": "known",
+      "value": 3500.449,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(road_class=greenway)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual greenway centerline."
+      ]
+    },
     "floor_area_ratio": {
       "status": "unknown",
       "value": null,

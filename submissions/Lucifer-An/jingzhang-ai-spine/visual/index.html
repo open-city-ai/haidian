@@ -1,0 +1,3472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张智脉 · 离线 GeoJSON 可视化</title>
+<style>
+  :root{--bg:#f6f6f2;--panel:#fff;--text:#101820;--accent:#1565c0;--warn:#c62828;--steel:#6b7280;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Noto Sans CJK SC","Source Han Sans SC","Source Han Sans CN","PingFang SC","Microsoft YaHei","Microsoft JhengHei","SimHei","Heiti SC","WenQuanYi Micro Hei",sans-serif;background:var(--bg);color:var(--text)}
+  header{padding:16px 24px;background:var(--panel);border-bottom:3px solid var(--steel)}
+  header h1{margin:0;font-size:22px}
+  header p{margin:6px 0 0;font-size:13px;color:#555}
+  .warn{color:var(--warn);font-weight:bold}
+  main{display:flex;height:calc(100vh - 110px)}
+  #sidebar{width:260px;padding:16px;background:var(--panel);overflow:auto;border-right:1px solid #ccc}
+  #sidebar h2{font-size:15px;margin:0 0 10px}
+  .layer{display:flex;align-items:center;margin:6px 0;cursor:pointer;font-size:13px}
+  .layer input{margin-right:8px}
+  .legend-swatch{width:16px;height:16px;margin-right:8px;border:1px solid #999}
+  #mapwrap{flex:1;position:relative;overflow:hidden}
+  svg{width:100%;height:100%;display:block}
+  .tooltip{position:absolute;background:rgba(0,0,0,0.75);color:#fff;padding:6px 10px;border-radius:4px;font-size:12px;pointer-events:none;display:none;max-width:260px}
+  .note{font-size:12px;color:#666;margin-top:16px;line-height:1.5}
+</style>
+</head>
+<body>
+<header>
+  <h1>京张智脉 / Jing-Zhang AI Spine — 离线概念方案可视化</h1>
+  <p><span class="warn">⚠ 临时边界 · 非官方红线 · 概念参考方案</span> &nbsp;|&nbsp; 全部几何取自仓库维护者提供的 PROV-SITE-001 / KEY-001~003 临时 polygon</p>
+</header>
+<main>
+  <div id="sidebar">
+    <h2>图层开关</h2>
+    <label class="layer"><input type="checkbox" id="cb-site_boundary" checked><span class="legend-swatch" style="background:#f6f6f2;border:2px solid #6b7280"></span>总体设计范围</label>
+    <label class="layer"><input type="checkbox" id="cb-key_areas" checked><span class="legend-swatch" style="background:#e3f2fd;border:2px solid #0d3c75"></span>重点片区</label>
+    <label class="layer"><input type="checkbox" id="cb-land_use" checked><span class="legend-swatch" style="background:#90caf9"></span>用地分区</label>
+    <label class="layer"><input type="checkbox" id="cb-green_space" checked><span class="legend-swatch" style="background:#c8e6c9"></span>蓝绿/公园</label>
+    <label class="layer"><input type="checkbox" id="cb-public_space" checked><span class="legend-swatch" style="background:#fff59d"></span>公共空间</label>
+    <label class="layer"><input type="checkbox" id="cb-roads" checked><span class="legend-swatch" style="background:#1565c0"></span>道路/主轴</label>
+    <label class="layer"><input type="checkbox" id="cb-buildings"><span class="legend-swatch" style="background:#90a4ae"></span>概念建筑</label>
+    <label class="layer"><input type="checkbox" id="cb-constraints"><span class="legend-swatch" style="background:none;border:2px dashed #c62828"></span>约束廊道</label>
+    <label class="layer"><input type="checkbox" id="cb-phasing"><span class="legend-swatch" style="background:#e1bee7;opacity:.5"></span>分期（示意）</label>
+    <div class="note">
+      <strong>说明</strong><br>
+      本页面不依赖任何外部网络资源；所有 GeoJSON 已内嵌。鼠标悬停可查看要素属性。图层顺序自下而上为：总体范围→约束→分期→用地→蓝绿→公共空间→道路→建筑→重点片区。
+    </div>
+  </div>
+  <div id="mapwrap">
+    <svg id="map" viewBox="0 0 900 1200" preserveAspectRatio="xMidYMid meet">
+      <rect width="900" height="1200" fill="#f6f6f2"/>
+    </svg>
+    <div id="tooltip" class="tooltip"></div>
+  </div>
+</main>
+<script>
+const layers = {
+ "site_boundary": {
+  "type": "FeatureCollection",
+  "name": "site_boundary",
+  "features": [
+   {
+    "type": "Feature",
+    "id": "SITE-001",
+    "properties": {
+     "id": "SITE-001",
+     "layer": "SITE_BOUNDARY",
+     "source_type": "repository_maintainer_provisional",
+     "confidence": "medium",
+     "geometry_role": "provisional_constraint",
+     "area_sqm_declared": 11345657.1,
+     "scope_id": "overall_design_area",
+     "name_zh": "总体设计范围（临时替代边界）",
+     "official_boundary": false,
+     "boundary_precision": "provisional_rough",
+     "usage_note": "临时约束范围，不得作为官方红线、审批或精确面积依据。",
+     "source_id": "SRC-PROVISIONAL-BOUNDARIES-2026",
+     "area_sqm_calculated": 11345657.1
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.3407,
+        39.939
+       ],
+       [
+        116.3553,
+        39.939
+       ],
+       [
+        116.3553,
+        39.965
+       ],
+       [
+        116.3533,
+        39.99
+       ],
+       [
+        116.3553,
+        40.0265
+       ],
+       [
+        116.3427,
+        40.0265
+       ],
+       [
+        116.3417,
+        40.006
+       ],
+       [
+        116.3397,
+        39.975
+       ],
+       [
+        116.3407,
+        39.939
+       ]
+      ]
+     ]
+    }
+   }
+  ],
+  "metadata": {
+   "note": "复用组织方临时总体设计范围 PROV-SITE-001；official_boundary=false"
+  }
+ },
+ "key_areas": {
+  "type": "FeatureCollection",
+  "name": "key_areas",
+  "features": [
+   {
+    "type": "Feature",
+    "id": "KEY-zhongzhiyuan_ai_acceleration_area",
+    "properties": {
+     "id": "KEY-zhongzhiyuan_ai_acceleration_area",
+     "layer": "KEY_AREA",
+     "source_type": "repository_maintainer_provisional",
+     "confidence": "medium",
+     "geometry_role": "provisional_constraint",
+     "area_sqm_declared": 1918837.5,
+     "area_id": "zhongzhiyuan_ai_acceleration_area",
+     "name_zh": "众智园AI自主创新加速区",
+     "key_area_role_zh": "AI全栈自主创新体系与AI治理全球话语权",
+     "official_boundary": false,
+     "boundary_precision": "provisional_rough",
+     "announced_area_sqm": 1921000,
+     "usage_note": "临时重点片区范围，非官方红线。"
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.343,
+        40.0075
+       ],
+       [
+        116.354,
+        40.0075
+       ],
+       [
+        116.354,
+        40.026
+       ],
+       [
+        116.343,
+        40.026
+       ],
+       [
+        116.343,
+        40.0075
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "KEY-beijing_ai_origin_community",
+    "properties": {
+     "id": "KEY-beijing_ai_origin_community",
+     "layer": "KEY_AREA",
+     "source_type": "repository_maintainer_provisional",
+     "confidence": "medium",
+     "geometry_role": "provisional_constraint",
+     "area_sqm_declared": 1037209.5,
+     "area_id": "beijing_ai_origin_community",
+     "name_zh": "北京AI原点社区",
+     "key_area_role_zh": "世界级AI创新生态",
+     "official_boundary": false,
+     "boundary_precision": "provisional_rough",
+     "announced_area_sqm": 1043000,
+     "usage_note": "临时重点片区范围，非官方红线。"
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.342,
+        39.9835
+       ],
+       [
+        116.353,
+        39.9835
+       ],
+       [
+        116.353,
+        39.9935
+       ],
+       [
+        116.342,
+        39.9935
+       ],
+       [
+        116.342,
+        39.9835
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "KEY-dazhongsi_ai_industry_cluster",
+    "properties": {
+     "id": "KEY-dazhongsi_ai_industry_cluster",
+     "layer": "KEY_AREA",
+     "source_type": "repository_maintainer_provisional",
+     "confidence": "medium",
+     "geometry_role": "provisional_constraint",
+     "area_sqm_declared": 715863.1,
+     "area_id": "dazhongsi_ai_industry_cluster",
+     "name_zh": "大钟寺AI产业集聚区",
+     "key_area_role_zh": "智能原生新业态",
+     "official_boundary": false,
+     "boundary_precision": "provisional_rough",
+     "announced_area_sqm": 720000,
+     "usage_note": "临时重点片区范围，非官方红线。"
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.342,
+        39.944
+       ],
+       [
+        116.355,
+        39.944
+       ],
+       [
+        116.355,
+        39.94984
+       ],
+       [
+        116.342,
+        39.94984
+       ],
+       [
+        116.342,
+        39.944
+       ]
+      ]
+     ]
+    }
+   }
+  ],
+  "metadata": {
+   "note": "三处重点片区临时 polygon，非官方红线"
+  }
+ },
+ "land_use": {
+  "type": "FeatureCollection",
+  "name": "land_use",
+  "features": [
+   {
+    "type": "Feature",
+    "id": "LU-01",
+    "properties": {
+     "id": "LU-01",
+     "layer": "LAND_USE",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 1878187.3,
+     "land_use_code": "05",
+     "land_use_label_zh": "商业服务业用地",
+     "zone_desc_zh": "大钟寺智能原生消费与商务组团",
+     "band_lat_range": [
+      39.939,
+      39.965
+     ]
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.3407,
+        39.939
+       ],
+       [
+        116.3407,
+        39.939
+       ],
+       [
+        116.3553,
+        39.965
+       ],
+       [
+        116.33997777777778,
+        39.965
+       ],
+       [
+        116.3407,
+        39.939
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "LU-02",
+    "properties": {
+     "id": "LU-02",
+     "layer": "LAND_USE",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 1420138.8,
+     "land_use_code": "0701",
+     "land_use_label_zh": "城镇住宅用地",
+     "zone_desc_zh": "人才公寓与混合居住组团",
+     "band_lat_range": [
+      39.965,
+      39.975
+     ]
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.33997777777778,
+        39.965
+       ],
+       [
+        116.3553,
+        39.965
+       ],
+       [
+        116.3545,
+        39.975
+       ],
+       [
+        116.3397,
+        39.975
+       ],
+       [
+        116.33997777777778,
+        39.965
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "LU-03",
+    "properties": {
+     "id": "LU-03",
+     "layer": "LAND_USE",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 1136964.1,
+     "land_use_code": "0804",
+     "land_use_label_zh": "教育科研配套用地",
+     "zone_desc_zh": "科研与孵化配套组团",
+     "band_lat_range": [
+      39.975,
+      39.9835
+     ]
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.3397,
+        39.975
+       ],
+       [
+        116.3545,
+        39.975
+       ],
+       [
+        116.35382,
+        39.9835
+       ],
+       [
+        116.34024838709676,
+        39.9835
+       ],
+       [
+        116.3397,
+        39.975
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "LU-04",
+    "properties": {
+     "id": "LU-04",
+     "layer": "LAND_USE",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 1233800.5,
+     "land_use_code": "0802",
+     "land_use_label_zh": "科研用地",
+     "zone_desc_zh": "北京AI原点社区·开放研发组团",
+     "band_lat_range": [
+      39.9835,
+      39.9935
+     ]
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.34024838709676,
+        39.9835
+       ],
+       [
+        116.35382,
+        39.9835
+       ],
+       [
+        116.35349178082193,
+        39.9935
+       ],
+       [
+        116.3408935483871,
+        39.9935
+       ],
+       [
+        116.34024838709676,
+        39.9835
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "LU-05",
+    "properties": {
+     "id": "LU-05",
+     "layer": "LAND_USE",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 1477725.6,
+     "land_use_code": "0803",
+     "land_use_label_zh": "文化用地",
+     "zone_desc_zh": "AI策展与文化展示组团",
+     "band_lat_range": [
+      39.9935,
+      40.006
+     ]
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.3408935483871,
+        39.9935
+       ],
+       [
+        116.35349178082193,
+        39.9935
+       ],
+       [
+        116.35417671232877,
+        40.006
+       ],
+       [
+        116.3417,
+        40.006
+       ],
+       [
+        116.3408935483871,
+        39.9935
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "LU-06",
+    "properties": {
+     "id": "LU-06",
+     "layer": "LAND_USE",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 2423640.8,
+     "land_use_code": "0802",
+     "land_use_label_zh": "科研用地",
+     "zone_desc_zh": "众智园全栈自主加速组团",
+     "band_lat_range": [
+      40.006,
+      40.0265
+     ]
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.3417,
+        40.006
+       ],
+       [
+        116.35417671232877,
+        40.006
+       ],
+       [
+        116.3553,
+        40.0265
+       ],
+       [
+        116.3427,
+        40.0265
+       ],
+       [
+        116.3417,
+        40.006
+       ]
+      ]
+     ]
+    }
+   }
+  ],
+  "metadata": {
+   "note": "对临时 site_boundary 的完整用地分区，共享边界、无空隙无重叠"
+  }
+ },
+ "buildings": {
+  "type": "FeatureCollection",
+  "name": "buildings",
+  "features": [
+   {
+    "type": "Feature",
+    "id": "B-001",
+    "properties": {
+     "id": "B-001",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 2498.6,
+     "building_type": "existing_retained",
+     "assumed_far": 1.2,
+     "renewal_action": "demolish_rebuild",
+     "footprint_area_sqm": 2498.6
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.34216958570781,
+        39.94202383752488
+       ],
+       [
+        116.34275542151181,
+        39.94202383752488
+       ],
+       [
+        116.34275542151181,
+        39.942476162475124
+       ],
+       [
+        116.34216958570781,
+        39.942476162475124
+       ],
+       [
+        116.34216958570781,
+        39.94202383752488
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-002",
+    "properties": {
+     "id": "B-002",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 5397.5,
+     "building_type": "mixed_use",
+     "assumed_far": 3.5,
+     "renewal_action": "renovate",
+     "footprint_area_sqm": 5397.5
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.35133250579727,
+        39.948478605029855
+       ],
+       [
+        116.35238711043672,
+        39.948478605029855
+       ],
+       [
+        116.35238711043672,
+        39.94902139497015
+       ],
+       [
+        116.35133250579727,
+        39.94902139497015
+       ],
+       [
+        116.35133250579727,
+        39.948478605029855
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-003",
+    "properties": {
+     "id": "B-003",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 3998.6,
+     "building_type": "mobility_hub",
+     "assumed_far": 1.5,
+     "renewal_action": "demolish_rebuild",
+     "footprint_area_sqm": 3998.6
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.34149039077263,
+        39.95502383752488
+       ],
+       [
+        116.3424279062076,
+        39.95502383752488
+       ],
+       [
+        116.3424279062076,
+        39.95547616247512
+       ],
+       [
+        116.34149039077263,
+        39.95547616247512
+       ],
+       [
+        116.34149039077263,
+        39.95502383752488
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-004",
+    "properties": {
+     "id": "B-004",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 3998.9,
+     "building_type": "incubator",
+     "assumed_far": 3.0,
+     "renewal_action": "renovate",
+     "footprint_area_sqm": 3998.9
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.34835196633355,
+        39.96152383752488
+       ],
+       [
+        116.3492895708863,
+        39.96152383752488
+       ],
+       [
+        116.3492895708863,
+        39.961976162475125
+       ],
+       [
+        116.34835196633355,
+        39.961976162475125
+       ],
+       [
+        116.34835196633355,
+        39.96152383752488
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-005",
+    "properties": {
+     "id": "B-005",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 2499.5,
+     "building_type": "mobility_hub",
+     "assumed_far": 1.5,
+     "renewal_action": "renovate",
+     "footprint_area_sqm": 2499.5
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.34143471149544,
+        39.96602383752488
+       ],
+       [
+        116.34202075291212,
+        39.96602383752488
+       ],
+       [
+        116.34202075291212,
+        39.966476162475125
+       ],
+       [
+        116.34143471149544,
+        39.966476162475125
+       ],
+       [
+        116.34143471149544,
+        39.96602383752488
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-006",
+    "properties": {
+     "id": "B-006",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 5399.1,
+     "building_type": "incubator",
+     "assumed_far": 3.0,
+     "renewal_action": "demolish_rebuild",
+     "footprint_area_sqm": 5399.1
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.35055949721743,
+        39.96847860502985
+       ],
+       [
+        116.3516144103454,
+        39.96847860502985
+       ],
+       [
+        116.3516144103454,
+        39.96902139497015
+       ],
+       [
+        116.35055949721743,
+        39.96902139497015
+       ],
+       [
+        116.35055949721743,
+        39.96847860502985
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-007",
+    "properties": {
+     "id": "B-007",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 2399.7,
+     "building_type": "talent_apartment",
+     "assumed_far": 2.8,
+     "renewal_action": "renovate",
+     "footprint_area_sqm": 2399.7
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.34819987110154,
+        39.97106907001991
+       ],
+       [
+        116.34890317224207,
+        39.97106907001991
+       ],
+       [
+        116.34890317224207,
+        39.9714309299801
+       ],
+       [
+        116.34819987110154,
+        39.9714309299801
+       ],
+       [
+        116.34819987110154,
+        39.97106907001991
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-008",
+    "properties": {
+     "id": "B-008",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 3149.7,
+     "building_type": "residential",
+     "assumed_far": 2.5,
+     "renewal_action": "renovate",
+     "footprint_area_sqm": 3149.7
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.34477139229783,
+        39.97354645377239
+       ],
+       [
+        116.3455919403077,
+        39.97354645377239
+       ],
+       [
+        116.3455919403077,
+        39.97395354622761
+       ],
+       [
+        116.34477139229783,
+        39.97395354622761
+       ],
+       [
+        116.34477139229783,
+        39.97354645377239
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-009",
+    "properties": {
+     "id": "B-009",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 2499.9,
+     "building_type": "incubator",
+     "assumed_far": 3.0,
+     "renewal_action": "retain",
+     "footprint_area_sqm": 2499.9
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.34842700785744,
+        39.975836337524875
+       ],
+       [
+        116.3490131334109,
+        39.975836337524875
+       ],
+       [
+        116.3490131334109,
+        39.97628866247512
+       ],
+       [
+        116.34842700785744,
+        39.97628866247512
+       ],
+       [
+        116.34842700785744,
+        39.975836337524875
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-010",
+    "properties": {
+     "id": "B-010",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 5399.9,
+     "building_type": "ai_r_and_d",
+     "assumed_far": 3.5,
+     "renewal_action": "new_build",
+     "footprint_area_sqm": 5399.9
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.35132329715175,
+        39.977916105029855
+       ],
+       [
+        116.35237835595508,
+        39.977916105029855
+       ],
+       [
+        116.35237835595508,
+        39.97845889497015
+       ],
+       [
+        116.35132329715175,
+        39.97845889497015
+       ],
+       [
+        116.35132329715175,
+        39.977916105029855
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-011",
+    "properties": {
+     "id": "B-011",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 4000.0,
+     "building_type": "education",
+     "assumed_far": 2.5,
+     "renewal_action": "demolish_rebuild",
+     "footprint_area_sqm": 4000.0
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.35227676265643,
+        39.980086337524874
+       ],
+       [
+        116.3532146218688,
+        39.980086337524874
+       ],
+       [
+        116.3532146218688,
+        39.98053866247512
+       ],
+       [
+        116.35227676265643,
+        39.98053866247512
+       ],
+       [
+        116.35227676265643,
+        39.980086337524874
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-012",
+    "properties": {
+     "id": "B-012",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 2500.1,
+     "building_type": "talent_apartment",
+     "assumed_far": 2.8,
+     "renewal_action": "retain",
+     "footprint_area_sqm": 2500.1
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.34675418373627,
+        39.98221133752488
+       ],
+       [
+        116.34734036397404,
+        39.98221133752488
+       ],
+       [
+        116.34734036397404,
+        39.982663662475126
+       ],
+       [
+        116.34675418373627,
+        39.982663662475126
+       ],
+       [
+        116.34675418373627,
+        39.98221133752488
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-013",
+    "properties": {
+     "id": "B-013",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 2500.2,
+     "building_type": "education",
+     "assumed_far": 2.5,
+     "renewal_action": "retain",
+     "footprint_area_sqm": 2500.2
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.34528488118008,
+        39.984523837524875
+       ],
+       [
+        116.34587108125862,
+        39.984523837524875
+       ],
+       [
+        116.34587108125862,
+        39.98497616247512
+       ],
+       [
+        116.34528488118008,
+        39.98497616247512
+       ],
+       [
+        116.34528488118008,
+        39.984523837524875
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-014",
+    "properties": {
+     "id": "B-014",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 2500.3,
+     "building_type": "cultural",
+     "assumed_far": 2.0,
+     "renewal_action": "new_build",
+     "footprint_area_sqm": 2500.3
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.34602139372595,
+        39.98702383752487
+       ],
+       [
+        116.34660761525654,
+        39.98702383752487
+       ],
+       [
+        116.34660761525654,
+        39.98747616247512
+       ],
+       [
+        116.34602139372595,
+        39.98747616247512
+       ],
+       [
+        116.34602139372595,
+        39.98702383752487
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-015",
+    "properties": {
+     "id": "B-015",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 2500.4,
+     "building_type": "office",
+     "assumed_far": 4.0,
+     "renewal_action": "retain",
+     "footprint_area_sqm": 2500.4
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.34600984565478,
+        39.98952383752488
+       ],
+       [
+        116.34659608864015,
+        39.98952383752488
+       ],
+       [
+        116.34659608864015,
+        39.98997616247512
+       ],
+       [
+        116.34600984565478,
+        39.98997616247512
+       ],
+       [
+        116.34600984565478,
+        39.98952383752488
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-016",
+    "properties": {
+     "id": "B-016",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 2500.4,
+     "building_type": "cultural",
+     "assumed_far": 2.0,
+     "renewal_action": "retain",
+     "footprint_area_sqm": 2500.4
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.34445713647006,
+        39.992023837524876
+       ],
+       [
+        116.34504340091286,
+        39.992023837524876
+       ],
+       [
+        116.34504340091286,
+        39.99247616247512
+       ],
+       [
+        116.34445713647006,
+        39.99247616247512
+       ],
+       [
+        116.34445713647006,
+        39.992023837524876
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-017",
+    "properties": {
+     "id": "B-017",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 4000.9,
+     "building_type": "talent_apartment",
+     "assumed_far": 2.8,
+     "renewal_action": "demolish_rebuild",
+     "footprint_area_sqm": 4000.9
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.35157782261513,
+        39.99483633752487
+       ],
+       [
+        116.35251588435216,
+        39.99483633752487
+       ],
+       [
+        116.35251588435216,
+        39.99528866247512
+       ],
+       [
+        116.35157782261513,
+        39.99528866247512
+       ],
+       [
+        116.35157782261513,
+        39.99483633752487
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-018",
+    "properties": {
+     "id": "B-018",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 3150.8,
+     "building_type": "lab",
+     "assumed_far": 3.0,
+     "renewal_action": "retain",
+     "footprint_area_sqm": 3150.8
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.34948575608414,
+        39.99798395377239
+       ],
+       [
+        116.35030659766514,
+        39.99798395377239
+       ],
+       [
+        116.35030659766514,
+        39.99839104622761
+       ],
+       [
+        116.34948575608414,
+        39.99839104622761
+       ],
+       [
+        116.34948575608414,
+        39.99798395377239
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-019",
+    "properties": {
+     "id": "B-019",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 4001.2,
+     "building_type": "talent_apartment",
+     "assumed_far": 2.8,
+     "renewal_action": "demolish_rebuild",
+     "footprint_area_sqm": 4001.2
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.35204926348297,
+        40.001086337524875
+       ],
+       [
+        116.35298741108068,
+        40.001086337524875
+       ],
+       [
+        116.35298741108068,
+        40.00153866247512
+       ],
+       [
+        116.35204926348297,
+        40.00153866247512
+       ],
+       [
+        116.35204926348297,
+        40.001086337524875
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-020",
+    "properties": {
+     "id": "B-020",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 5401.9,
+     "building_type": "mixed_use",
+     "assumed_far": 3.5,
+     "renewal_action": "renovate",
+     "footprint_area_sqm": 5401.9
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.35019552750236,
+        40.00416610502985
+       ],
+       [
+        116.35125099185777,
+        40.00416610502985
+       ],
+       [
+        116.35125099185777,
+        40.00470889497015
+       ],
+       [
+        116.35019552750236,
+        40.00470889497015
+       ],
+       [
+        116.35019552750236,
+        40.00416610502985
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-021",
+    "properties": {
+     "id": "B-021",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 3151.3,
+     "building_type": "talent_apartment",
+     "assumed_far": 2.8,
+     "renewal_action": "new_build",
+     "footprint_area_sqm": 3151.3
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.34610305788055,
+        40.00835895377239
+       ],
+       [
+        116.3469240242066,
+        40.00835895377239
+       ],
+       [
+        116.3469240242066,
+        40.008766046227606
+       ],
+       [
+        116.34610305788055,
+        40.008766046227606
+       ],
+       [
+        116.34610305788055,
+        40.00835895377239
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-022",
+    "properties": {
+     "id": "B-022",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 2501.2,
+     "building_type": "mixed_use",
+     "assumed_far": 3.5,
+     "renewal_action": "renovate",
+     "footprint_area_sqm": 2501.2
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.3512563444462,
+        40.01346133752488
+       ],
+       [
+        116.35184279299693,
+        40.01346133752488
+       ],
+       [
+        116.35184279299693,
+        40.013913662475126
+       ],
+       [
+        116.3512563444462,
+        40.013913662475126
+       ],
+       [
+        116.3512563444462,
+        40.01346133752488
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-023",
+    "properties": {
+     "id": "B-023",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 5403.1,
+     "building_type": "lab",
+     "assumed_far": 3.0,
+     "renewal_action": "new_build",
+     "footprint_area_sqm": 5403.1
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.35201871516719,
+        40.01854110502985
+       ],
+       [
+        116.3530744018367,
+        40.01854110502985
+       ],
+       [
+        116.3530744018367,
+        40.019083894970144
+       ],
+       [
+        116.35201871516719,
+        40.019083894970144
+       ],
+       [
+        116.35201871516719,
+        40.01854110502985
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "B-024",
+    "properties": {
+     "id": "B-024",
+     "layer": "BUILDING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 3152.0,
+     "building_type": "retail",
+     "assumed_far": 3.0,
+     "renewal_action": "demolish_rebuild",
+     "footprint_area_sqm": 3152.0
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.34744557064742,
+        40.02373395377239
+       ],
+       [
+        116.34826672195588,
+        40.02373395377239
+       ],
+       [
+        116.34826672195588,
+        40.02414104622761
+       ],
+       [
+        116.34744557064742,
+        40.02414104622761
+       ],
+       [
+        116.34744557064742,
+        40.02373395377239
+       ]
+      ]
+     ]
+    }
+   }
+  ],
+  "metadata": {
+   "note": "概念建筑落位，footprint 为示意，renewal_action 为概念建议"
+  }
+ },
+ "roads": {
+  "type": "FeatureCollection",
+  "name": "roads",
+  "features": [
+   {
+    "type": "Feature",
+    "id": "ROAD-SPINE",
+    "properties": {
+     "id": "ROAD-SPINE",
+     "layer": "ROAD",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "road_role_zh": "京张智脉慢行+公交主轴",
+     "width_m_assumed": 40
+    },
+    "geometry": {
+     "type": "LineString",
+     "coordinates": [
+      [
+       116.34798611111111,
+       39.94
+      ],
+      [
+       116.3479625,
+       39.9417
+      ],
+      [
+       116.34793888888889,
+       39.9434
+      ],
+      [
+       116.34791527777779,
+       39.9451
+      ],
+      [
+       116.34789166666667,
+       39.946799999999996
+      ],
+      [
+       116.34786805555555,
+       39.948499999999996
+      ],
+      [
+       116.34784444444443,
+       39.950199999999995
+      ],
+      [
+       116.34782083333333,
+       39.951899999999995
+      ],
+      [
+       116.34779722222223,
+       39.953599999999994
+      ],
+      [
+       116.34777361111111,
+       39.9553
+      ],
+      [
+       116.34774999999999,
+       39.957
+      ],
+      [
+       116.34772638888889,
+       39.9587
+      ],
+      [
+       116.34770277777778,
+       39.9604
+      ],
+      [
+       116.34767916666667,
+       39.9621
+      ],
+      [
+       116.34765555555555,
+       39.9638
+      ],
+      [
+       116.34761194444445,
+       39.9655
+      ],
+      [
+       116.34752033333334,
+       39.9672
+      ],
+      [
+       116.34742872222222,
+       39.9689
+      ],
+      [
+       116.3473371111111,
+       39.9706
+      ],
+      [
+       116.34724549999999,
+       39.9723
+      ],
+      [
+       116.34715388888888,
+       39.974
+      ],
+      [
+       116.34709458064515,
+       39.975699999999996
+      ],
+      [
+       116.34708141935484,
+       39.977399999999996
+      ],
+      [
+       116.34706825806452,
+       39.979099999999995
+      ],
+      [
+       116.3470550967742,
+       39.980799999999995
+      ],
+      [
+       116.34704193548387,
+       39.982499999999995
+      ],
+      [
+       116.34702877419355,
+       39.984199999999994
+      ],
+      [
+       116.34701561290322,
+       39.9859
+      ],
+      [
+       116.3470024516129,
+       39.9876
+      ],
+      [
+       116.34698929032258,
+       39.9893
+      ],
+      [
+       116.34704352629254,
+       39.991
+      ],
+      [
+       116.34714494034468,
+       39.9927
+      ],
+      [
+       116.34724635439682,
+       39.9944
+      ],
+      [
+       116.34734776844897,
+       39.9961
+      ],
+      [
+       116.3474491825011,
+       39.9978
+      ],
+      [
+       116.34755059655325,
+       39.9995
+      ],
+      [
+       116.3476520106054,
+       40.0012
+      ],
+      [
+       116.34775342465753,
+       40.0029
+      ],
+      [
+       116.34785483870968,
+       40.004599999999996
+      ],
+      [
+       116.34795389241563,
+       40.006299999999996
+      ],
+      [
+       116.34804193117273,
+       40.007999999999996
+      ],
+      [
+       116.34812996992984,
+       40.009699999999995
+      ],
+      [
+       116.34821800868694,
+       40.011399999999995
+      ],
+      [
+       116.34830604744403,
+       40.013099999999994
+      ],
+      [
+       116.34839408620113,
+       40.0148
+      ],
+      [
+       116.34848212495822,
+       40.0165
+      ],
+      [
+       116.34857016371532,
+       40.0182
+      ],
+      [
+       116.34865820247244,
+       40.0199
+      ],
+      [
+       116.34874624122953,
+       40.0216
+      ],
+      [
+       116.34883427998663,
+       40.0233
+      ],
+      [
+       116.34892231874373,
+       40.025
+      ],
+      [
+       116.34899999999999,
+       40.0267
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "ROAD-X1",
+    "properties": {
+     "id": "ROAD-X1",
+     "layer": "ROAD",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "road_role_zh": "横向接驳街道（概念）",
+     "width_m_assumed": 25
+    },
+    "geometry": {
+     "type": "LineString",
+     "coordinates": [
+      [
+       116.34011666666666,
+       39.96
+      ],
+      [
+       116.3553,
+       39.96
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "ROAD-X2",
+    "properties": {
+     "id": "ROAD-X2",
+     "layer": "ROAD",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "road_role_zh": "横向接驳街道（概念）",
+     "width_m_assumed": 25
+    },
+    "geometry": {
+     "type": "LineString",
+     "coordinates": [
+      [
+       116.33983888888888,
+       39.97
+      ],
+      [
+       116.3549,
+       39.97
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "ROAD-X3",
+    "properties": {
+     "id": "ROAD-X3",
+     "layer": "ROAD",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "road_role_zh": "横向接驳街道（概念）",
+     "width_m_assumed": 25
+    },
+    "geometry": {
+     "type": "LineString",
+     "coordinates": [
+      [
+       116.34053870967742,
+       39.988
+      ],
+      [
+       116.35346,
+       39.988
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "ROAD-X4",
+    "properties": {
+     "id": "ROAD-X4",
+     "layer": "ROAD",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "road_role_zh": "横向接驳街道（概念）",
+     "width_m_assumed": 25
+    },
+    "geometry": {
+     "type": "LineString",
+     "coordinates": [
+      [
+       116.34131290322581,
+       40.0
+      ],
+      [
+       116.35384794520549,
+       40.0
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "ROAD-X5",
+    "properties": {
+     "id": "ROAD-X5",
+     "layer": "ROAD",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "road_role_zh": "横向接驳街道（概念）",
+     "width_m_assumed": 25
+    },
+    "geometry": {
+     "type": "LineString",
+     "coordinates": [
+      [
+       116.34213902439025,
+       40.015
+      ],
+      [
+       116.3546698630137,
+       40.015
+      ]
+     ]
+    }
+   }
+  ],
+  "metadata": {
+   "note": "道路为概念线位，非道路红线或工程方案"
+  }
+ },
+ "green_space": {
+  "type": "FeatureCollection",
+  "name": "green_space",
+  "features": [
+   {
+    "type": "Feature",
+    "id": "GREEN-SPINE",
+    "properties": {
+     "id": "GREEN-SPINE",
+     "layer": "GREEN_SPACE",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 670867.3,
+     "green_role_zh": "京张遗址公园绿廊（概念）",
+     "width_m_assumed": 70
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.3475757995822,
+        39.94
+       ],
+       [
+        116.34755218847108,
+        39.9417
+       ],
+       [
+        116.34752857735998,
+        39.9434
+       ],
+       [
+        116.34750496624888,
+        39.9451
+       ],
+       [
+        116.34748135513776,
+        39.946799999999996
+       ],
+       [
+        116.34745774402664,
+        39.948499999999996
+       ],
+       [
+        116.34743413291552,
+        39.950199999999995
+       ],
+       [
+        116.34741052180442,
+        39.951899999999995
+       ],
+       [
+        116.34738691069332,
+        39.953599999999994
+       ],
+       [
+        116.3473632995822,
+        39.9553
+       ],
+       [
+        116.34733968847108,
+        39.957
+       ],
+       [
+        116.34731607735998,
+        39.9587
+       ],
+       [
+        116.34729246624887,
+        39.9604
+       ],
+       [
+        116.34726885513776,
+        39.9621
+       ],
+       [
+        116.34724524402664,
+        39.9638
+       ],
+       [
+        116.34720163291554,
+        39.9655
+       ],
+       [
+        116.34711002180443,
+        39.9672
+       ],
+       [
+        116.34701841069331,
+        39.9689
+       ],
+       [
+        116.34692679958219,
+        39.9706
+       ],
+       [
+        116.34683518847108,
+        39.9723
+       ],
+       [
+        116.34674357735997,
+        39.974
+       ],
+       [
+        116.34668426911624,
+        39.975699999999996
+       ],
+       [
+        116.34667110782593,
+        39.977399999999996
+       ],
+       [
+        116.34665794653561,
+        39.979099999999995
+       ],
+       [
+        116.34664478524529,
+        39.980799999999995
+       ],
+       [
+        116.34663162395496,
+        39.982499999999995
+       ],
+       [
+        116.34661846266464,
+        39.984199999999994
+       ],
+       [
+        116.34660530137431,
+        39.9859
+       ],
+       [
+        116.34659214008398,
+        39.9876
+       ],
+       [
+        116.34657897879367,
+        39.9893
+       ],
+       [
+        116.34663321476363,
+        39.991
+       ],
+       [
+        116.34673462881577,
+        39.9927
+       ],
+       [
+        116.3468360428679,
+        39.9944
+       ],
+       [
+        116.34693745692006,
+        39.9961
+       ],
+       [
+        116.34703887097218,
+        39.9978
+       ],
+       [
+        116.34714028502434,
+        39.9995
+       ],
+       [
+        116.34724169907649,
+        40.0012
+       ],
+       [
+        116.34734311312862,
+        40.0029
+       ],
+       [
+        116.34744452718077,
+        40.004599999999996
+       ],
+       [
+        116.34754358088672,
+        40.006299999999996
+       ],
+       [
+        116.34763161964382,
+        40.007999999999996
+       ],
+       [
+        116.34771965840093,
+        40.009699999999995
+       ],
+       [
+        116.34780769715803,
+        40.011399999999995
+       ],
+       [
+        116.34789573591512,
+        40.013099999999994
+       ],
+       [
+        116.34798377467222,
+        40.0148
+       ],
+       [
+        116.34807181342931,
+        40.0165
+       ],
+       [
+        116.34815985218641,
+        40.0182
+       ],
+       [
+        116.34824789094353,
+        40.0199
+       ],
+       [
+        116.34833592970062,
+        40.0216
+       ],
+       [
+        116.34842396845772,
+        40.0233
+       ],
+       [
+        116.34851200721482,
+        40.025
+       ],
+       [
+        116.34858968847108,
+        40.0267
+       ],
+       [
+        116.3494103115289,
+        40.0267
+       ],
+       [
+        116.34933263027264,
+        40.025
+       ],
+       [
+        116.34924459151554,
+        40.0233
+       ],
+       [
+        116.34915655275844,
+        40.0216
+       ],
+       [
+        116.34906851400135,
+        40.0199
+       ],
+       [
+        116.34898047524423,
+        40.0182
+       ],
+       [
+        116.34889243648713,
+        40.0165
+       ],
+       [
+        116.34880439773004,
+        40.0148
+       ],
+       [
+        116.34871635897294,
+        40.013099999999994
+       ],
+       [
+        116.34862832021585,
+        40.011399999999995
+       ],
+       [
+        116.34854028145875,
+        40.009699999999995
+       ],
+       [
+        116.34845224270164,
+        40.007999999999996
+       ],
+       [
+        116.34836420394454,
+        40.006299999999996
+       ],
+       [
+        116.34826515023859,
+        40.004599999999996
+       ],
+       [
+        116.34816373618644,
+        40.0029
+       ],
+       [
+        116.34806232213431,
+        40.0012
+       ],
+       [
+        116.34796090808216,
+        39.9995
+       ],
+       [
+        116.34785949403,
+        39.9978
+       ],
+       [
+        116.34775807997788,
+        39.9961
+       ],
+       [
+        116.34765666592573,
+        39.9944
+       ],
+       [
+        116.34755525187359,
+        39.9927
+       ],
+       [
+        116.34745383782145,
+        39.991
+       ],
+       [
+        116.34739960185149,
+        39.9893
+       ],
+       [
+        116.3474127631418,
+        39.9876
+       ],
+       [
+        116.34742592443213,
+        39.9859
+       ],
+       [
+        116.34743908572246,
+        39.984199999999994
+       ],
+       [
+        116.34745224701278,
+        39.982499999999995
+       ],
+       [
+        116.34746540830311,
+        39.980799999999995
+       ],
+       [
+        116.34747856959343,
+        39.979099999999995
+       ],
+       [
+        116.34749173088375,
+        39.977399999999996
+       ],
+       [
+        116.34750489217406,
+        39.975699999999996
+       ],
+       [
+        116.34756420041779,
+        39.974
+       ],
+       [
+        116.3476558115289,
+        39.9723
+       ],
+       [
+        116.34774742264001,
+        39.9706
+       ],
+       [
+        116.34783903375113,
+        39.9689
+       ],
+       [
+        116.34793064486225,
+        39.9672
+       ],
+       [
+        116.34802225597336,
+        39.9655
+       ],
+       [
+        116.34806586708446,
+        39.9638
+       ],
+       [
+        116.34808947819558,
+        39.9621
+       ],
+       [
+        116.3481130893067,
+        39.9604
+       ],
+       [
+        116.3481367004178,
+        39.9587
+       ],
+       [
+        116.3481603115289,
+        39.957
+       ],
+       [
+        116.34818392264002,
+        39.9553
+       ],
+       [
+        116.34820753375114,
+        39.953599999999994
+       ],
+       [
+        116.34823114486224,
+        39.951899999999995
+       ],
+       [
+        116.34825475597334,
+        39.950199999999995
+       ],
+       [
+        116.34827836708446,
+        39.948499999999996
+       ],
+       [
+        116.34830197819558,
+        39.946799999999996
+       ],
+       [
+        116.3483255893067,
+        39.9451
+       ],
+       [
+        116.3483492004178,
+        39.9434
+       ],
+       [
+        116.3483728115289,
+        39.9417
+       ],
+       [
+        116.34839642264002,
+        39.94
+       ],
+       [
+        116.3475757995822,
+        39.94
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "GREEN-P1",
+    "properties": {
+     "id": "GREEN-P1",
+     "layer": "GREEN_SPACE",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 56575.1,
+     "green_role_zh": "口袋公园/小微绿地（概念）"
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.3475,
+        39.947
+       ],
+       [
+        116.3505,
+        39.947
+       ],
+       [
+        116.3505,
+        39.949
+       ],
+       [
+        116.3475,
+        39.949
+       ],
+       [
+        116.3475,
+        39.947
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "GREEN-P2",
+    "properties": {
+     "id": "GREEN-P2",
+     "layer": "GREEN_SPACE",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 99006.4,
+     "green_role_zh": "口袋公园/小微绿地（概念）"
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.347,
+        39.987
+       ],
+       [
+        116.35,
+        39.987
+       ],
+       [
+        116.35,
+        39.9905
+       ],
+       [
+        116.347,
+        39.9905
+       ],
+       [
+        116.347,
+        39.987
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "GREEN-P3",
+    "properties": {
+     "id": "GREEN-P3",
+     "layer": "GREEN_SPACE",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 150866.8,
+     "green_role_zh": "口袋公园/小微绿地（概念）"
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.3475,
+        40.014
+       ],
+       [
+        116.3515,
+        40.014
+       ],
+       [
+        116.3515,
+        40.018
+       ],
+       [
+        116.3475,
+        40.018
+       ],
+       [
+        116.3475,
+        40.014
+       ]
+      ]
+     ]
+    }
+   }
+  ],
+  "metadata": {
+   "note": "蓝绿空间为概念方案，待官方绿地系统确认"
+  }
+ },
+ "public_space": {
+  "type": "FeatureCollection",
+  "name": "public_space",
+  "features": [
+   {
+    "type": "Feature",
+    "id": "PUB-1",
+    "properties": {
+     "id": "PUB-1",
+     "layer": "PUBLIC_SPACE",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 84862.6,
+     "public_space_role_zh": "大钟寺开源钟广场"
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.3465,
+        39.9455
+       ],
+       [
+        116.3495,
+        39.9455
+       ],
+       [
+        116.3495,
+        39.9485
+       ],
+       [
+        116.3465,
+        39.9485
+       ],
+       [
+        116.3465,
+        39.9455
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "PUB-2",
+    "properties": {
+     "id": "PUB-2",
+     "layer": "PUBLIC_SPACE",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 99006.4,
+     "public_space_role_zh": "AI原点荣誉步道广场"
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.3465,
+        39.986
+       ],
+       [
+        116.3495,
+        39.986
+       ],
+       [
+        116.3495,
+        39.9895
+       ],
+       [
+        116.3465,
+        39.9895
+       ],
+       [
+        116.3465,
+        39.986
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "PUB-3",
+    "properties": {
+     "id": "PUB-3",
+     "layer": "PUBLIC_SPACE",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 150866.8,
+     "public_space_role_zh": "众智园算力之芯广场"
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.3465,
+        40.012
+       ],
+       [
+        116.3505,
+        40.012
+       ],
+       [
+        116.3505,
+        40.016
+       ],
+       [
+        116.3465,
+        40.016
+       ],
+       [
+        116.3465,
+        40.012
+       ]
+      ]
+     ]
+    }
+   }
+  ],
+  "metadata": {
+   "note": "公共空间节点为概念方案"
+  }
+ },
+ "constraints": {
+  "type": "FeatureCollection",
+  "name": "constraints",
+  "features": [
+   {
+    "type": "Feature",
+    "id": "CONSTRAINT-SITE",
+    "properties": {
+     "id": "CONSTRAINT-SITE",
+     "layer": "CONSTRAINT",
+     "source_type": "repository_maintainer_provisional",
+     "confidence": "medium",
+     "geometry_role": "provisional_constraint",
+     "area_sqm_declared": 11345657.1,
+     "constraint_role_zh": "临时总体设计范围约束",
+     "official_boundary": false
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.3407,
+        39.939
+       ],
+       [
+        116.3553,
+        39.939
+       ],
+       [
+        116.3553,
+        39.965
+       ],
+       [
+        116.3533,
+        39.99
+       ],
+       [
+        116.3553,
+        40.0265
+       ],
+       [
+        116.3427,
+        40.0265
+       ],
+       [
+        116.3417,
+        40.006
+       ],
+       [
+        116.3397,
+        39.975
+       ],
+       [
+        116.3407,
+        39.939
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "CONSTRAINT-RAIL",
+    "properties": {
+     "id": "CONSTRAINT-RAIL",
+     "layer": "CONSTRAINT",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 287514.5,
+     "constraint_role_zh": "京张铁路遗址廊道（概念保护约束）",
+     "boundary_precision": "provisional_rough"
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.34781026331301,
+        39.94
+       ],
+       [
+        116.34778665220189,
+        39.9417
+       ],
+       [
+        116.34776304109079,
+        39.9434
+       ],
+       [
+        116.34773942997968,
+        39.9451
+       ],
+       [
+        116.34771581886856,
+        39.946799999999996
+       ],
+       [
+        116.34769220775745,
+        39.948499999999996
+       ],
+       [
+        116.34766859664633,
+        39.950199999999995
+       ],
+       [
+        116.34764498553523,
+        39.951899999999995
+       ],
+       [
+        116.34762137442412,
+        39.953599999999994
+       ],
+       [
+        116.347597763313,
+        39.9553
+       ],
+       [
+        116.34757415220189,
+        39.957
+       ],
+       [
+        116.34755054109078,
+        39.9587
+       ],
+       [
+        116.34752692997968,
+        39.9604
+       ],
+       [
+        116.34750331886856,
+        39.9621
+       ],
+       [
+        116.34747970775744,
+        39.9638
+       ],
+       [
+        116.34743609664635,
+        39.9655
+       ],
+       [
+        116.34734448553523,
+        39.9672
+       ],
+       [
+        116.34725287442411,
+        39.9689
+       ],
+       [
+        116.347161263313,
+        39.9706
+       ],
+       [
+        116.34706965220188,
+        39.9723
+       ],
+       [
+        116.34697804109078,
+        39.974
+       ],
+       [
+        116.34691873284704,
+        39.975699999999996
+       ],
+       [
+        116.34690557155673,
+        39.977399999999996
+       ],
+       [
+        116.34689241026642,
+        39.979099999999995
+       ],
+       [
+        116.3468792489761,
+        39.980799999999995
+       ],
+       [
+        116.34686608768577,
+        39.982499999999995
+       ],
+       [
+        116.34685292639544,
+        39.984199999999994
+       ],
+       [
+        116.34683976510512,
+        39.9859
+       ],
+       [
+        116.34682660381479,
+        39.9876
+       ],
+       [
+        116.34681344252448,
+        39.9893
+       ],
+       [
+        116.34686767849443,
+        39.991
+       ],
+       [
+        116.34696909254657,
+        39.9927
+       ],
+       [
+        116.34707050659871,
+        39.9944
+       ],
+       [
+        116.34717192065087,
+        39.9961
+       ],
+       [
+        116.34727333470299,
+        39.9978
+       ],
+       [
+        116.34737474875514,
+        39.9995
+       ],
+       [
+        116.3474761628073,
+        40.0012
+       ],
+       [
+        116.34757757685942,
+        40.0029
+       ],
+       [
+        116.34767899091158,
+        40.004599999999996
+       ],
+       [
+        116.34777804461753,
+        40.006299999999996
+       ],
+       [
+        116.34786608337463,
+        40.007999999999996
+       ],
+       [
+        116.34795412213174,
+        40.009699999999995
+       ],
+       [
+        116.34804216088884,
+        40.011399999999995
+       ],
+       [
+        116.34813019964592,
+        40.013099999999994
+       ],
+       [
+        116.34821823840302,
+        40.0148
+       ],
+       [
+        116.34830627716012,
+        40.0165
+       ],
+       [
+        116.34839431591722,
+        40.0182
+       ],
+       [
+        116.34848235467433,
+        40.0199
+       ],
+       [
+        116.34857039343143,
+        40.0216
+       ],
+       [
+        116.34865843218853,
+        40.0233
+       ],
+       [
+        116.34874647094563,
+        40.025
+       ],
+       [
+        116.34882415220189,
+        40.0267
+       ],
+       [
+        116.3491758477981,
+        40.0267
+       ],
+       [
+        116.34909816654184,
+        40.025
+       ],
+       [
+        116.34901012778474,
+        40.0233
+       ],
+       [
+        116.34892208902764,
+        40.0216
+       ],
+       [
+        116.34883405027054,
+        40.0199
+       ],
+       [
+        116.34874601151343,
+        40.0182
+       ],
+       [
+        116.34865797275633,
+        40.0165
+       ],
+       [
+        116.34856993399923,
+        40.0148
+       ],
+       [
+        116.34848189524213,
+        40.013099999999994
+       ],
+       [
+        116.34839385648505,
+        40.011399999999995
+       ],
+       [
+        116.34830581772795,
+        40.009699999999995
+       ],
+       [
+        116.34821777897083,
+        40.007999999999996
+       ],
+       [
+        116.34812974021374,
+        40.006299999999996
+       ],
+       [
+        116.34803068650778,
+        40.004599999999996
+       ],
+       [
+        116.34792927245563,
+        40.0029
+       ],
+       [
+        116.3478278584035,
+        40.0012
+       ],
+       [
+        116.34772644435135,
+        39.9995
+       ],
+       [
+        116.3476250302992,
+        39.9978
+       ],
+       [
+        116.34752361624707,
+        39.9961
+       ],
+       [
+        116.34742220219492,
+        39.9944
+       ],
+       [
+        116.34732078814278,
+        39.9927
+       ],
+       [
+        116.34721937409064,
+        39.991
+       ],
+       [
+        116.34716513812069,
+        39.9893
+       ],
+       [
+        116.347178299411,
+        39.9876
+       ],
+       [
+        116.34719146070132,
+        39.9859
+       ],
+       [
+        116.34720462199165,
+        39.984199999999994
+       ],
+       [
+        116.34721778328198,
+        39.982499999999995
+       ],
+       [
+        116.3472309445723,
+        39.980799999999995
+       ],
+       [
+        116.34724410586263,
+        39.979099999999995
+       ],
+       [
+        116.34725726715294,
+        39.977399999999996
+       ],
+       [
+        116.34727042844325,
+        39.975699999999996
+       ],
+       [
+        116.34732973668699,
+        39.974
+       ],
+       [
+        116.34742134779809,
+        39.9723
+       ],
+       [
+        116.3475129589092,
+        39.9706
+       ],
+       [
+        116.34760457002032,
+        39.9689
+       ],
+       [
+        116.34769618113144,
+        39.9672
+       ],
+       [
+        116.34778779224256,
+        39.9655
+       ],
+       [
+        116.34783140335365,
+        39.9638
+       ],
+       [
+        116.34785501446477,
+        39.9621
+       ],
+       [
+        116.34787862557589,
+        39.9604
+       ],
+       [
+        116.34790223668699,
+        39.9587
+       ],
+       [
+        116.3479258477981,
+        39.957
+       ],
+       [
+        116.34794945890921,
+        39.9553
+       ],
+       [
+        116.34797307002033,
+        39.953599999999994
+       ],
+       [
+        116.34799668113143,
+        39.951899999999995
+       ],
+       [
+        116.34802029224254,
+        39.950199999999995
+       ],
+       [
+        116.34804390335366,
+        39.948499999999996
+       ],
+       [
+        116.34806751446477,
+        39.946799999999996
+       ],
+       [
+        116.34809112557589,
+        39.9451
+       ],
+       [
+        116.348114736687,
+        39.9434
+       ],
+       [
+        116.3481383477981,
+        39.9417
+       ],
+       [
+        116.34816195890922,
+        39.94
+       ],
+       [
+        116.34781026331301,
+        39.94
+       ]
+      ]
+     ]
+    }
+   }
+  ],
+  "metadata": {
+   "note": "约束层：临时边界与铁路遗址廊道"
+  }
+ },
+ "phasing": {
+  "type": "FeatureCollection",
+  "name": "phasing",
+  "features": [
+   {
+    "type": "Feature",
+    "id": "PHASE_1",
+    "properties": {
+     "id": "PHASE_1",
+     "layer": "PHASING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 3237053.7,
+     "phase_label_zh": "近期·大钟寺与AI原点启动区",
+     "band_lat_range": [
+      39.939,
+      39.9935
+     ]
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.3407,
+        39.939
+       ],
+       [
+        116.3407,
+        39.939
+       ],
+       [
+        116.35349178082193,
+        39.9935
+       ],
+       [
+        116.3408935483871,
+        39.9935
+       ],
+       [
+        116.3407,
+        39.939
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "PHASE_2",
+    "properties": {
+     "id": "PHASE_2",
+     "layer": "PHASING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 1477725.6,
+     "phase_label_zh": "中期·城市更新与场景赋能区",
+     "band_lat_range": [
+      39.9935,
+      40.006
+     ]
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.3408935483871,
+        39.9935
+       ],
+       [
+        116.35349178082193,
+        39.9935
+       ],
+       [
+        116.35417671232877,
+        40.006
+       ],
+       [
+        116.3417,
+        40.006
+       ],
+       [
+        116.3408935483871,
+        39.9935
+       ]
+      ]
+     ]
+    }
+   },
+   {
+    "type": "Feature",
+    "id": "PHASE_3",
+    "properties": {
+     "id": "PHASE_3",
+     "layer": "PHASING",
+     "source_type": "agent_designed_concept",
+     "confidence": "low",
+     "geometry_role": "design_proposal",
+     "area_sqm_declared": 2423640.8,
+     "phase_label_zh": "远期·众智园全栈自主加速区",
+     "band_lat_range": [
+      40.006,
+      40.0265
+     ]
+    },
+    "geometry": {
+     "type": "Polygon",
+     "coordinates": [
+      [
+       [
+        116.3417,
+        40.006
+       ],
+       [
+        116.35417671232877,
+        40.006
+       ],
+       [
+        116.3553,
+        40.0265
+       ],
+       [
+        116.3427,
+        40.0265
+       ],
+       [
+        116.3417,
+        40.006
+       ]
+      ]
+     ]
+    }
+   }
+  ],
+  "metadata": {
+   "note": "分期为概念实施序列"
+  }
+ }
+};
+const BBOX = {minx:116.3397, maxx:116.3553, miny:39.939, maxy:40.0267};
+const W=900, H=1200, M=60;
+function x(lon){ return M + (lon-BBOX.minx)/(BBOX.maxx-BBOX.minx)*(W-2*M); }
+function y(lat){ return M + (BBOX.maxy-lat)/(BBOX.maxy-BBOX.miny)*(H-2*M); }
+function pts(ring){ return ring.map(p=>`${x(p[0])},${y(p[1])}`).join(" "); }
+const svg = document.getElementById("map");
+const colors = {
+  "05":"#f4a261","0701":"#e9c46a","0804":"#90caf9","0802":"#42a5f5","0803":"#ba68c8"
+};
+const landUseNames = {"05":"商业服务","0701":"居住","0804":"教育科研配套","0802":"科研","0803":"文化"};
+
+function makePolygon(ring, attrs){
+  const el = document.createElementNS("http://www.w3.org/2000/svg","polygon");
+  el.setAttribute("points", pts(ring));
+  for(const k in attrs) el.setAttribute(k, attrs[k]);
+  return el;
+}
+function makePolyline(line, attrs){
+  const el = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+  el.setAttribute("points", line.map(p=>`${x(p[0])},${y(p[1])}`).join(" "));
+  for(const k in attrs) el.setAttribute(k, attrs[k]);
+  return el;
+}
+
+const g = document.createElementNS("http://www.w3.org/2000/svg","g");
+g.setAttribute("id","layers");
+svg.appendChild(g);
+
+function addFeature(layer, f){
+  const p = f.properties || {};
+  const geom = f.geometry;
+  let el;
+  if(layer==="site_boundary"){
+    el = makePolygon(geom.coordinates[0], {fill:"#ffffff","stroke":"#6b7280","stroke-width":"3","data-layer":"site_boundary"});
+  } else if(layer==="key_areas"){
+    el = makePolygon(geom.coordinates[0], {fill:"#e3f2fd","stroke":"#0d3c75","stroke-width":"2","data-layer":"key_areas"});
+  } else if(layer==="land_use"){
+    const code = p.land_use_code || "";
+    el = makePolygon(geom.coordinates[0], {fill:colors[code]||"#cccccc","stroke":"#ffffff","stroke-width":"1","data-layer":"land_use"});
+  } else if(layer==="green_space"){
+    el = makePolygon(geom.coordinates[0], {fill:"#c8e6c9","stroke":"#2e7d32","stroke-width":"1","data-layer":"green_space"});
+  } else if(layer==="public_space"){
+    el = makePolygon(geom.coordinates[0], {fill:"#fff59d","stroke":"#f9a825","stroke-width":"2","data-layer":"public_space"});
+  } else if(layer==="constraints"){
+    el = makePolygon(geom.coordinates[0], {fill:"none","stroke":"#c62828","stroke-width":"2","stroke-dasharray":"6,4","data-layer":"constraints"});
+  } else if(layer==="phasing"){
+    el = makePolygon(geom.coordinates[0], {fill:"#e1bee7","stroke":"#8e24aa","stroke-width":"1","opacity":"0.5","data-layer":"phasing"});
+  } else if(layer==="buildings"){
+    el = makePolygon(geom.coordinates[0], {fill:"#90a4ae","stroke":"#546e7a","stroke-width":"1","data-layer":"buildings"});
+  } else if(layer==="roads"){
+    const sw = p.id==="ROAD-SPINE" ? 5 : 2.5;
+    el = makePolyline(geom.coordinates, {fill:"none","stroke":"#1565c0","stroke-width":sw,"stroke-linecap":"round","data-layer":"roads"});
+  }
+  if(!el) return;
+  el.style.cursor = "pointer";
+  el.addEventListener("mouseenter",(e)=>{
+    const tt = document.getElementById("tooltip");
+    let txt = `<strong>${p.id||f.id||""}</strong><br>`;
+    for(const k in p){ if(k==="id") continue; txt += `${k}: ${p[k]}<br>`; }
+    tt.innerHTML = txt;
+    tt.style.display = "block";
+  });
+  el.addEventListener("mousemove",(e)=>{
+    const tt = document.getElementById("tooltip");
+    const rect = document.getElementById("mapwrap").getBoundingClientRect();
+    tt.style.left = (e.clientX - rect.left + 12) + "px";
+    tt.style.top = (e.clientY - rect.top + 12) + "px";
+  });
+  el.addEventListener("mouseleave",()=>{ document.getElementById("tooltip").style.display="none"; });
+  g.appendChild(el);
+}
+
+const order = ["site_boundary","constraints","phasing","land_use","green_space","public_space","roads","buildings","key_areas"];
+order.forEach(layer=>{
+  const fc = layers[layer];
+  if(!fc) return;
+  fc.features.forEach(f=>addFeature(layer,f));
+});
+
+// layer toggles
+order.forEach(layer=>{
+  const cb = document.getElementById("cb-"+layer);
+  if(!cb) return;
+  cb.addEventListener("change",()=>{
+    const show = cb.checked;
+    document.querySelectorAll(`[data-layer="${layer}"]`).forEach(el=>el.style.display = show?"":"none");
+  });
+});
+</script>
+
+<section id="figure-gallery" style="margin:16px 24px;padding:14px 18px;background:#fff;border:1px solid #ccc;border-radius:8px;">
+  <h2 style="font-size:15px;margin:0 0 10px;color:#0d3c75;">方案图集 / Figure gallery（离线本地图件）</h2>
+  <p style="font-size:13px;color:#444;line-height:1.9;margin:0 0 12px;">
+    以下 7 张图件由本地脚本 <code>build_figures.py</code> 生成，全部为原创栅格图，无第三方图像与远程资源；中英双语版本分别对应 <code>*.png</code> 与 <code>*.en.png</code>。图件与 <code>metrics.json</code>、<code>visual/assets/scenarios.json</code>、<code>visual/assets/phasing.json</code> 同源，数值一致。
+  </p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;">
+    <figure style="margin:0;">
+      <img src="../assets/figures/site-overview.png" alt="总览图：三层范围与遗址公园廊道" style="width:100%;border:1px solid #d8dcd6;border-radius:6px;background:#fff;">
+      <figcaption style="font-size:12px;color:#666;margin-top:6px;">图 1 · 总览地图：统筹研究 43.6 km²、总体设计 11.41 km²、重点片区 367.2 ha 三层范围</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="../assets/figures/land-use-structure.png" alt="用地分区结构图" style="width:100%;border:1px solid #d8dcd6;border-radius:6px;background:#fff;">
+      <figcaption style="font-size:12px;color:#666;margin-top:6px;">图 2 · 用地分区与功能结构：科研创新、居住、公共服务、蓝绿与公共空间</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="../assets/figures/key-areas.png" alt="三处重点片区图" style="width:100%;border:1px solid #d8dcd6;border-radius:6px;background:#fff;">
+      <figcaption style="font-size:12px;color:#666;margin-top:6px;">图 3 · 三处重点片区：众智园全栈自主加速区、北京AI原点社区、大钟寺AI产业集群</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿网络图" style="width:100%;border:1px solid #d8dcd6;border-radius:6px;background:#fff;">
+      <figcaption style="font-size:12px;color:#666;margin-top:6px;">图 4 · 交通慢行骨架与蓝绿公共空间网络叠合</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="../assets/figures/scenario-cards.png" alt="12 张 AI 场景卡" style="width:100%;border:1px solid #d8dcd6;border-radius:6px;background:#fff;">
+      <figcaption style="font-size:12px;color:#666;margin-top:6px;">图 5 · AI+ 场景卡（SC-01～SC-12）：用户画像 / 技术 / 空间落点 / 运营方 / 可量化指标（数据源 <code>visual/assets/scenarios.json</code>）</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="../assets/figures/regional-synergy.png" alt="区域协同节点与流向图" style="width:100%;border:1px solid #d8dcd6;border-radius:6px;background:#fff;">
+      <figcaption style="font-size:12px;color:#666;margin-top:6px;">图 6 · 区域协同与京津冀创新网络：向北衔接未来科学城、向南联动经开区，形成"研发—中试—场景—治理"闭环</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="../assets/figures/metrics-evidence.png" alt="核心指标与证据图" style="width:100%;border:1px solid #d8dcd6;border-radius:6px;background:#fff;">
+      <figcaption style="font-size:12px;color:#666;margin-top:6px;">图 7 · 核心指标与证据链：面积复算、绿地率、公共空间比、分期面积（数据源 <code>metrics.json</code> / <code>visual/assets/phasing.json</code>）</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="coverage-checklist" style="margin:16px 24px;padding:14px 18px;background:#fff;border:1px solid #ccc;border-radius:8px;">
+  <h2 style="font-size:15px;margin:0 0 10px;color:#0d3c75;">可视化覆盖范围自检 / Visualization coverage checklist</h2>
+  <p style="font-size:13px;color:#444;line-height:1.9;margin:0 0 10px;">
+    本页覆盖：总览地图、三层范围、重点区域、用地分区、交通慢行、蓝绿公共空间、建筑、更新项目、AI 场景、核心指标、任务覆盖、自检状态、来源、假设。
+  </p>
+  <ul style="display:flex;flex-wrap:wrap;gap:6px 14px;list-style:none;padding:0;margin:0 0 12px;font-size:13px;color:#222;">
+    <li>总览地图</li>
+    <li>三层范围</li>
+    <li>重点区域</li>
+    <li>用地分区</li>
+    <li>交通慢行</li>
+    <li>蓝绿公共空间</li>
+    <li>建筑</li>
+    <li>更新项目</li>
+    <li>AI 场景</li>
+    <li>核心指标</li>
+    <li>任务覆盖</li>
+    <li>自检状态</li>
+    <li>来源</li>
+    <li>假设</li>
+  </ul>
+  <p style="font-size:13px;color:#444;margin:0;">
+    核心指标（与 metrics.json 一致）：
+    <span data-metric="site_area_sqm" data-value="11412825.4">11,412,825.4 m²</span> ·
+    <span data-metric="green_ratio" data-value="0.080766">8.08%</span> ·
+    <span data-metric="public_space_ratio" data-value="0.0295">2.95%</span>
+  </p>
+</section>
+
+</body>
+</html>

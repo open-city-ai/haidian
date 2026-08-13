@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0.0",
+  "fixture_type": "synthetic_positive",
+  "contract_id": "OJZ-S14-ISSUE-ROUTER-TABLETOP",
+  "cases": [
+    {
+      "case_id": "S14-PASS-001",
+      "title_zh": "合成无障碍周末导览议题进入人工复核",
+      "synthetic": true,
+      "field_run": false,
+      "issue": {
+        "issue_id": "SYN-ISSUE-001",
+        "summary": "为周末访客提供可由人工复核的无障碍文化导览建议",
+        "public_interest": "同一任务可由人工柜台和纸质路线完成",
+        "affected_groups": [
+          "accessibility_users",
+          "weekend_visitors",
+          "frontline_staff"
+        ],
+        "requested_branch": "cultural_accessibility_review",
+        "data_classification": "synthetic_no_personal_data",
+        "source_type": "synthetic_fixture"
+      },
+      "raci": {
+        "accountable": [
+          "scenario_owner"
+        ],
+        "responsible": [
+          "data_steward",
+          "technical_owner"
+        ],
+        "consulted": [
+          "domain_professional",
+          "affected_group_steward"
+        ],
+        "informed": [
+          "operations_owner"
+        ],
+        "appeal": [
+          "independent_appeal_officer"
+        ]
+      },
+      "role_assignments": {
+        "scenario_owner": "SYN-ROLE-SCENARIO-OWNER-A",
+        "data_steward": "SYN-ROLE-DATA-STEWARD-A",
+        "technical_owner": "SYN-ROLE-TECHNICAL-OWNER-A",
+        "domain_professional": "SYN-ROLE-ACCESSIBILITY-PROFESSIONAL-A",
+        "affected_group_steward": "SYN-ROLE-AFFECTED-GROUP-STEWARD-A",
+        "operations_owner": "SYN-ROLE-OPERATIONS-OWNER-A",
+        "independent_appeal_officer": "SYN-ROLE-INDEPENDENT-APPEAL-A"
+      },
+      "human_review": {
+        "initial_review_roles": [
+          "scenario_owner",
+          "data_steward",
+          "technical_owner",
+          "domain_professional",
+          "affected_group_steward"
+        ],
+        "rehearsal_decision": "pass_for_human_review",
+        "reason": "所有合成规则证据齐全；仍须真实人审决定。"
+      },
+      "red_card": {
+        "holder_role": "affected_group_steward",
+        "triggered": false,
+        "reason": null
+      },
+      "independent_appeal": {
+        "required": false,
+        "completed": false,
+        "officer_role": "independent_appeal_officer",
+        "outcome": "not_invoked",
+        "reason": "无红牌或争议，仅验证独立角色已预留。"
+      },
+      "controls": {
+        "same_task_non_ai_route": "staffed_counter_and_paper_route",
+        "human_reassignment_available": true,
+        "consent_withdrawal_available": true,
+        "public_priority_set_by_ai": false
+      },
+      "evidence": {
+        "deletion": {
+          "record_id": "SYN-EV-DEL-001",
+          "owner_role": "data_steward",
+          "action": "delete_synthetic_session_payload",
+          "verification": "fixture_store_contains_no_session_payload_after_rehearsal",
+          "status": "synthetic_rehearsed_not_field_verified"
+        },
+        "rollback": {
+          "record_id": "SYN-EV-ROLLBACK-001",
+          "owner_role": "technical_owner",
+          "action": "restore_manual_routing_ruleset",
+          "verification": "same_fixture_routes_to_staffed_counter_without_ai",
+          "status": "synthetic_rehearsed_not_field_verified"
+        },
+        "restoration": {
+          "record_id": "SYN-EV-RESTORE-001",
+          "owner_role": "operations_owner",
+          "action": "restore_staffed_counter_and_paper_route",
+          "verification": "same_task_non_ai_route_remains_available_in_fixture",
+          "status": "synthetic_rehearsed_not_field_verified"
+        },
+        "public_receipt": {
+          "record_id": "SYN-EV-RECEIPT-001",
+          "owner_role": "scenario_owner",
+          "action": "publish_deidentified_reason_and_next_gate",
+          "verification": "receipt_contains_no_personal_or_contact_fields",
+          "status": "synthetic_rehearsed_not_field_verified"
+        }
+      },
+      "expected_decision": "PASS"
+    }
+  ]
+}

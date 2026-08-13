@@ -1,0 +1,153 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "OJZ-S14-ISSUE-ROUTER-TABLETOP",
+  "scenario_id": "14",
+  "name_zh": "城市议题路由台合成桌面推演契约",
+  "name_en": "Civic Issue Router Synthetic Tabletop Contract",
+  "status": "synthetic_contract_not_field_authorized",
+  "scope": "offline_rule_rehearsal_only",
+  "limitations_zh": "本契约只检查合成样例能否按公开规则进入 PASS、HOLD 或 RETIRED。PASS 仅表示材料可提交人工复核，不表示真实议题优先级、政府决定、场地许可、采购、部署或现场绩效。",
+  "limitations_en": "This contract only checks whether synthetic fixtures are routed to PASS, HOLD, or RETIRED under public rules. PASS means eligible for human review only; it is not a real civic priority, government decision, site permission, procurement, deployment, or field-performance claim.",
+  "execution_boundary": {
+    "network": false,
+    "dependencies": "node_builtins_only",
+    "writes_by_default": false,
+    "personal_information": false,
+    "synthetic_required": true,
+    "field_run_required": false,
+    "human_decision_required": true
+  },
+  "allowed_issue_fields": [
+    "issue_id",
+    "summary",
+    "public_interest",
+    "affected_groups",
+    "requested_branch",
+    "data_classification",
+    "source_type"
+  ],
+  "required_issue_fields": [
+    "issue_id",
+    "summary",
+    "public_interest",
+    "affected_groups",
+    "requested_branch",
+    "data_classification",
+    "source_type"
+  ],
+  "allowed_data_classifications": [
+    "synthetic_no_personal_data",
+    "public_cleared_no_personal_data"
+  ],
+  "forbidden_issue_fields": [
+    "real_name",
+    "phone_number",
+    "email_address",
+    "identity_number",
+    "precise_home_address",
+    "health_record",
+    "biometric_identifier",
+    "complete_location_trace"
+  ],
+  "required_roles": [
+    "scenario_owner",
+    "data_steward",
+    "technical_owner",
+    "domain_professional",
+    "affected_group_steward",
+    "operations_owner",
+    "independent_appeal_officer"
+  ],
+  "raci_contract": {
+    "accountable": [
+      "scenario_owner"
+    ],
+    "responsible": [
+      "data_steward",
+      "technical_owner"
+    ],
+    "consulted": [
+      "domain_professional",
+      "affected_group_steward"
+    ],
+    "informed": [
+      "operations_owner"
+    ],
+    "appeal": [
+      "independent_appeal_officer"
+    ],
+    "independence_rule": "independent_appeal_officer must not share an assignee token with any initial_review_role"
+  },
+  "required_controls": [
+    "same_task_non_ai_route",
+    "human_reassignment_available",
+    "consent_withdrawal_available",
+    "public_priority_set_by_ai"
+  ],
+  "control_rules": {
+    "same_task_non_ai_route": "non-empty string",
+    "human_reassignment_available": true,
+    "consent_withdrawal_available": true,
+    "public_priority_set_by_ai": false
+  },
+  "required_evidence": [
+    "deletion",
+    "rollback",
+    "restoration",
+    "public_receipt"
+  ],
+  "evidence_contract": {
+    "required_fields": [
+      "record_id",
+      "owner_role",
+      "action",
+      "verification",
+      "status"
+    ],
+    "allowed_status": "synthetic_rehearsed_not_field_verified",
+    "field_evidence": false
+  },
+  "red_card_rule": {
+    "holder_role": "affected_group_steward",
+    "immediate_effect": "HOLD",
+    "majority_override_allowed": false,
+    "resolution_requires": [
+      "independent_appeal_completed",
+      "separation_of_duties",
+      "reasoned_outcome",
+      "required_evidence_complete"
+    ]
+  },
+  "decision_precedence": [
+    {
+      "order": 1,
+      "decision": "HOLD",
+      "when": "execution boundary, issue-data, RACI, control, independence, or evidence check fails"
+    },
+    {
+      "order": 2,
+      "decision": "HOLD",
+      "when": "red card is triggered and independent appeal is incomplete"
+    },
+    {
+      "order": 3,
+      "decision": "RETIRED",
+      "when": "red card is triggered, independent appeal is complete and independent, the reasoned outcome is retire, and all required evidence is complete"
+    },
+    {
+      "order": 4,
+      "decision": "PASS",
+      "when": "all checks pass, no red card is active, and the rehearsed human-review outcome is pass_for_human_review"
+    },
+    {
+      "order": 5,
+      "decision": "HOLD",
+      "when": "no earlier rule produces an explicit decision"
+    }
+  ],
+  "decision_meanings": {
+    "PASS": "synthetic package is eligible for real human review; no field release",
+    "HOLD": "repair evidence or complete independent review before rerunning",
+    "RETIRED": "synthetic branch is closed and archived; no field release"
+  }
+}

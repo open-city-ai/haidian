@@ -343,6 +343,30 @@
       "assumptions": [],
       "gate_target": 1,
       "decision_rule": "A scenario cannot enter live state when any readiness field is missing."
+    },
+    "night_protocol_replay_check_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/night_protocol_evidence.json"
+      ],
+      "formula": "count of deterministic checks in the bundled tabletop replay; reproduce with: node visual/assets/run_night_protocol_tabletop.js --check",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase1_new_permanent_construction_area_sqm": {
+      "status": "known",
+      "value": 0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum of declared new permanent construction in phase 1; PHASE-NS-01 sets new_permanent_construction=false, hence 0. A design commitment recomputable from the phasing layer, not an approval.",
+      "confidence": "high",
+      "assumptions": [
+        "A-PARK-STATUS-001"
+      ]
     }
   }
 }

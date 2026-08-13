@@ -1,0 +1,90 @@
+{
+  "version": "0.2",
+  "purpose": "Acceptance audit for people who may benefit from or be burdened by civic AI. These are design-test groups, not marketing personas and not claims about completed consultation.",
+  "cross_cutting_rule": "A scenario is not mature if any relevant acceptance group loses a necessary ordinary-service path, faces a materially higher burden without justification, cannot identify human help, or cannot refuse/leave the AI interaction where refusal should be available.",
+  "groups": [
+    {
+      "id": "P01",
+      "name_zh": "沿线长期居民与家庭",
+      "name_en": "Long-term residents and families",
+      "benefit_test": ["daily tasks become easier without losing familiar ordinary routes", "public space remains usable without participation in AI pilots"],
+      "burden_risks": ["continuous sensing near home", "pilot noise/congestion", "service churn from frequent interface changes"],
+      "required_fallback": ["ordinary physical wayfinding", "staffed/public contact", "clear test boundary and exit"],
+      "priority_scenarios": ["S01","S04","S05","S09","S11"]
+    },
+    {
+      "id": "P02",
+      "name_zh": "老年人",
+      "name_en": "Older people",
+      "benefit_test": ["complete key tasks without independent smartphone/AI operation", "reach a person without excessive steps or waiting"],
+      "burden_risks": ["mandatory app/account", "small text/complex interaction", "loss of staffed service"],
+      "required_fallback": ["staffed counter", "telephone", "paper/physical instructions and credentials"],
+      "priority_scenarios": ["S01","S02","S03","S11"]
+    },
+    {
+      "id": "P03",
+      "name_zh": "残障人士与行动/感知受限者",
+      "name_en": "Disabled and mobility/sensory-limited users",
+      "benefit_test": ["route and service completion with physical accessibility intact", "AI adds optional information rather than replacing accessible infrastructure"],
+      "burden_risks": ["unsafe dynamic route", "screen-only information", "robot obstruction", "inaccessible handoff point"],
+      "required_fallback": ["continuous accessible physical route", "human assistance", "multimodal non-AI information"],
+      "priority_scenarios": ["S01","S03","S06","S10","S11"]
+    },
+    {
+      "id": "P04",
+      "name_zh": "儿童及照护者",
+      "name_en": "Children and caregivers",
+      "benefit_test": ["safer understandable routes", "caregiver can complete journey without child profiling"],
+      "burden_risks": ["persistent child tracking", "commercial profiling", "over-trust in automated safety prompts"],
+      "required_fallback": ["ordinary route design", "school/caregiver guidance", "no mandatory biometric tracking"],
+      "priority_scenarios": ["S01","S04","S09"]
+    },
+    {
+      "id": "P05",
+      "name_zh": "学生、教师与科研人员",
+      "name_en": "Students, teachers and researchers",
+      "benefit_test": ["open tools and reproducible civic research", "legitimate research access without bypassing public rules"],
+      "burden_risks": ["false assumption that research purpose overrides resident rights", "closed proprietary interfaces"],
+      "required_fallback": ["documented data-access path", "open methods where lawful", "human ethics/governance review"],
+      "priority_scenarios": ["S05","S06","S09","S10"]
+    },
+    {
+      "id": "P06",
+      "name_zh": "创业者与企业从业者",
+      "name_en": "Entrepreneurs and company workers",
+      "benefit_test": ["test and translation pathways are understandable and not dependent on a single vendor gatekeeper", "public rules are stable enough for innovation"],
+      "burden_risks": ["opaque pilot admission", "vendor/platform lock-in", "unclear liability"],
+      "required_fallback": ["documented public interface", "human responsible contact", "portable/reusable methods where possible"],
+      "priority_scenarios": ["S06","S08","S10"]
+    },
+    {
+      "id": "P07",
+      "name_zh": "服务劳动者",
+      "name_en": "Service workers",
+      "benefit_test": ["AI reduces repetitive administrative burden", "rest, routing and work support improve without invasive surveillance"],
+      "burden_risks": ["hidden productivity scoring", "continuous location monitoring", "robot deployment shifting risk/work without support"],
+      "required_fallback": ["human dispatch and appeal", "ordinary work-order path", "clear limits on monitoring"],
+      "priority_scenarios": ["S07","S10","S12"]
+    },
+    {
+      "id": "P08",
+      "name_zh": "游客与国际使用者",
+      "name_en": "Visitors and international users",
+      "benefit_test": ["understand core services and heritage without local app/account", "multilingual help does not invent historical facts"],
+      "burden_risks": ["account/phone-number barriers", "translation error", "AI-generated heritage misinformation"],
+      "required_fallback": ["no-login route", "physical signs", "source-indexed heritage information and human help"],
+      "priority_scenarios": ["S01","S06","S09"]
+    },
+    {
+      "id": "P09",
+      "name_zh": "无智能手机、无账号或主动拒绝AI的人",
+      "name_en": "People without smartphones/accounts or who actively decline AI",
+      "benefit_test": ["complete every necessary public task without mandatory AI participation", "refusal does not create discriminatory service degradation"],
+      "burden_risks": ["AI/app becoming the only entrance", "forced account creation", "social pressure to consent"],
+      "required_fallback": ["human service", "physical/paper route", "ordinary digital option where appropriate", "visible refusal/exit path"],
+      "priority_scenarios": ["S01","S02","S03","S05","S06","S08","S09","S11"]
+    }
+  ],
+  "evidence_status": "design_contract_not_field_tested",
+  "next_validation": "Run scenario-by-scenario task tests with relevant groups after spatial and operational baselines are verified; record burden, failure and stop decisions in Public Receipts."
+}

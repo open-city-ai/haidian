@@ -1,0 +1,46 @@
+{
+  "schema_version": "0.1.0",
+  "spec_name": "Twin-Track Release Check v0.1",
+  "description": "双轨可验证放行规则：每项AI城市服务必须通过四项检查，缺一项则保持 blocked",
+  "fields": [
+    {
+      "id": "equivalent_path",
+      "label_zh": "等价路径",
+      "label_en": "Equivalent Path",
+      "description_zh": "不依赖AI也能完成同一任务（纸本、电话、人工柜台）",
+      "description_en": "The same task can be completed without AI (paper, phone, human counter)",
+      "required": true,
+      "check_method": "验证是否存在不依赖AI的替代完成路径"
+    },
+    {
+      "id": "human_handoff",
+      "label_zh": "人工接手",
+      "label_en": "Human Handoff",
+      "description_zh": "AI失效时有可见、可达、有人负责的接口",
+      "description_en": "When AI fails, there is a visible, reachable, accountable human interface",
+      "required": true,
+      "check_method": "验证是否有明确的人工接手点和责任人"
+    },
+    {
+      "id": "exit_right",
+      "label_zh": "退出权",
+      "label_en": "Exit Right",
+      "description_zh": "居民有权选择不使用AI服务，且服务质量不降级",
+      "description_en": "Residents can choose not to use AI service without service degradation",
+      "required": true,
+      "check_method": "验证退出路径是否存在且退出后服务质量等价"
+    },
+    {
+      "id": "retirement_record",
+      "label_zh": "退役记录",
+      "label_en": "Retirement Record",
+      "description_zh": "AI服务被撤除后有公开记录，说明原因和替代方案",
+      "description_en": "When AI service is retired, a public record explains why and what replaces it",
+      "required": true,
+      "check_method": "验证是否有退役记录机制和公开渠道"
+    }
+  ],
+  "states": ["blocked", "provisional", "verified", "retired"],
+  "rule": "四项全部通过 = provisional；通过踏勘验证 = verified；缺任一项 = blocked",
+  "one_line_test": "拆除所有AI设备和智能服务后，一个没有智能手机的人能否到达、获得帮助、完成任务并安全离开？"
+}

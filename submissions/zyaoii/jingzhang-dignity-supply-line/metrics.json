@@ -1,0 +1,244 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area_EPSG4548(submitted_provisional_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "reason": "Internally recalculated rough provisional geometry; not survey-grade or official."
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 3168.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(conceptual_reversible_module_footprints_EPSG4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-SPATIAL-NODES-001"
+      ],
+      "reason": "Concept modules, not existing or approved buildings."
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.051649,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "conceptual_learning_corridor_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-SPATIAL-NODES-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.004604,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(conceptual_node_areas) / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-SPATIAL-NODES-001"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved controls, official boundary and building survey are unavailable."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "brief/site-package/agent_taskbook.json"
+      ],
+      "formula": "count(required_key_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "concept_node_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(conceptual_service_nodes)",
+      "confidence": "low",
+      "assumptions": [
+        "A-SPATIAL-NODES-001"
+      ]
+    },
+    "service_reliability_line_length_m": {
+      "status": "known",
+      "value": 7756.042,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length_EPSG4548(ROAD-001)",
+      "confidence": "low",
+      "assumptions": [
+        "A-SPATIAL-NODES-001"
+      ],
+      "reason": "Conceptual custody/replenishment relationship, not a route, user trace or engineering alignment."
+    },
+    "service_atom_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "simulation.json"
+      ],
+      "formula": "count(irreplaceable_public_service_contract)",
+      "confidence": "high",
+      "assumptions": [],
+      "reason": "One narrow service atom: anonymous access to one compliant sealed emergency period product with an accountable recovery chain."
+    },
+    "operational_state_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(unique_operational_states)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "simulation.json",
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "count(numbered_scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "simulation.json",
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "count(personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "simulation.json",
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "count(industry_validation_tests)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "authorized_real_pilot_site_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "assumptions.json",
+        "simulation.json"
+      ],
+      "formula": "count(points_with_written_site_and_operator_authorization)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-OPERATORS-001",
+        "A-SPATIAL-NODES-001"
+      ],
+      "reason": "No site or operator has been represented as committed; all candidate points remain UNKNOWN."
+    },
+    "identity_field_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "simulation.json",
+        "simulation.json"
+      ],
+      "formula": "count(identity_or_individual_health_fields_in_minimum_event_schema)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-001"
+      ]
+    },
+    "pilot_duration_days": {
+      "status": "known",
+      "value": 90,
+      "unit": "day",
+      "source_files": [
+        "simulation.json",
+        "simulation.json"
+      ],
+      "formula": "15_evidence_gate + 15_non_ai_baseline + 30_blind_test + 30_limited_operation",
+      "confidence": "high",
+      "assumptions": [
+        "A-PILOT-001"
+      ]
+    },
+    "ai_net_value": {
+      "status": "unknown",
+      "value": null,
+      "unit": "decision",
+      "source_files": [
+        "simulation.json",
+        "simulation.json"
+      ],
+      "formula": "blind_compare(AI_forecast, two_bin_plus_deterministic_reorder) on stockout, wasted_units, staff_minutes and unsafe_release",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-AI-VALUE-001"
+      ],
+      "reason": "AI adoption is conditional; a non-AI baseline must be measured first."
+    }
+  }
+}

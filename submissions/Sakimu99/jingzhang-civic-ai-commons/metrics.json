@@ -1,0 +1,297 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional submitted site boundary in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "data_status": "provisional_geometry_derived"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1812536.737,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(green_space) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "data_status": "conceptual_design_quantity"
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 161571.657,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(public_space) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "data_status": "conceptual_design_quantity"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 55928.651,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area(conceptual building prototypes) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "data_status": "conceptual_design_quantity_not_existing_condition"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.158816,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "data_status": "conceptual_non_statutory_ratio"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.014157,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "data_status": "conceptual_non_statutory_ratio"
+    },
+    "land_use_area_research_sqm": {
+      "status": "known",
+      "value": 4800456.679,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum_area(land_use_code=0802)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_area_community_service_sqm": {
+      "status": "known",
+      "value": 3009927.033,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum_area(land_use_code=0702)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_area_commercial_service_sqm": {
+      "status": "known",
+      "value": 2214839.749,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum_area(land_use_code=05)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_area_park_sqm": {
+      "status": "known",
+      "value": 1387612.104,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum_area(land_use_code=1401)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required key areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "ai_scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(S01..S12)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_validation_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(TVS-01..TVS-03)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(P01..P07)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "proposed_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(L01..L03)",
+      "confidence": "high",
+      "assumptions": [
+        "A-HERITAGE-001"
+      ]
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "formula": "count(CASE-*)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved FAR controls and official boundary are unavailable."
+    },
+    "building_coverage_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "existing_or_approved_building_footprint / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Existing buildings and approved control conditions are unavailable; conceptual footprints are not used as a statutory BCR."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "official control or surveyed existing height",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Official height controls and surveyed building data are unavailable."
+    },
+    "non_digital_equivalence_coverage": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "services with tested phone/paper/staffed equivalent / tested services",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BASELINE-001"
+      ],
+      "reason": "Requires 8-12 weeks of staffed baseline and scenario testing."
+    },
+    "offline_service_completion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "completed tasks during offline replay / attempted offline tasks",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BASELINE-001"
+      ],
+      "reason": "Requires offline scenario replay and human observation."
+    },
+    "median_human_handoff_time_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "median elapsed minutes from handoff trigger to human acceptance",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BASELINE-001"
+      ],
+      "reason": "Requires operational baseline; unit m is used as minutes only in narrative and will be refined if schema adds time units."
+    }
+  }
+}

@@ -1,5 +1,45 @@
 #!/usr/bin/env python3
-"""Render a submission proposal.md into an offline readable HTML report."""
+"""Render a submission proposal.md into an offline readable HTML report.
+
+This script converts ``proposal.md`` (and its bilingual counterpart when
+present) into self-contained offline HTML at ``report/proposal.html``.  The
+output must not load any remote resources; all figures are embedded as
+``../assets/figures/`` relative paths.
+
+When the proposal declares a ``translation_file`` in its front matter, the
+corresponding HTML translation is written alongside the primary report and each
+file links to the other with a language-switch anchor.
+
+Evidence markers (``[source:...]``, ``[standard:...]``, ``[depth:...]``,
+``[data:...]``, ``[metric:...]``) are rendered as quiet ``<sup>`` labels so
+reviewers can trace claims without the markers obscuring prose.
+
+Usage
+-----
+Run from the repository root or any directory with the path to the proposal::
+
+    python3 scripts/render_proposal_html.py submissions/<login>/<slug>
+
+The output path defaults to ``report/proposal.html`` inside the submission
+directory.  Override with ``--out``::
+
+    python3 scripts/render_proposal_html.py submissions/<login>/<slug> \\
+        --out report/proposal-preview.html
+
+The script exits 0 on success and 1 when ``proposal.md`` is missing.
+
+Supported Markdown features
+----------------------------
+- ATX headings (``#`` through ``####``)
+- Paragraphs
+- Unordered lists (``- item``)
+- Fenced code blocks (triple backtick or tilde)
+- Inline code, bold, italic, bold-italic
+- GitHub-flavored tables (``| col | col |`` with column alignment)
+- Block quotes
+- Inline images with local paths (remote ``http://`` sources are rejected)
+- Evidence markers rendered as ``<sup class="evidence">`` labels
+"""
 
 from __future__ import annotations
 
@@ -7,6 +47,8 @@ import argparse
 import html
 import os
 import re
+import stat
+import tempfile
 from pathlib import Path, PurePosixPath
 
 
@@ -52,6 +94,12 @@ def parse_front_matter(text: str) -> tuple[dict[str, str], str]:
 
 
 def normalize_image_src(submission_dir: Path, raw_src: str) -> str:
+    """Resolve *raw_src* to a report-relative local path.
+
+    Raises:
+        ValueError: If *raw_src* is a remote URL, an unsafe path (absolute or
+            containing ``..``), or if the target file does not exist.
+    """
     if re.match(r"^(?:https?:)?//", raw_src, re.I) or re.match(r"^(?:data|file|javascript):", raw_src, re.I):
         raise ValueError(f"remote or unsafe image source is not allowed: {raw_src}")
     clean = raw_src.split("#", 1)[0].split("?", 1)[0]
@@ -62,6 +110,77 @@ def normalize_image_src(submission_dir: Path, raw_src: str) -> str:
     if not image_path.exists():
         raise ValueError(f"image source is missing: {raw_src}")
     return "../" + pure.as_posix()
+
+
+def contained_output_path(submission_dir: Path, raw_path: str) -> Path:
+    if "\\" in raw_path:
+        raise ValueError(f"output must be a relative path inside the submission: {raw_path}")
+    pure = PurePosixPath(raw_path)
+    if (
+        not raw_path
+        or pure.is_absolute()
+        or not pure.parts
+        or ".." in pure.parts
+        or pure.as_posix() != raw_path
+        or pure.suffix.lower() != ".html"
+    ):
+        raise ValueError(f"output must be a relative path inside the submission: {raw_path}")
+    path = submission_dir.joinpath(*pure.parts)
+    current = submission_dir
+    for part in pure.parts:
+        current /= part
+        if current.is_symlink():
+            raise ValueError(f"output path must not use symbolic links: {raw_path}")
+    if not path.resolve().is_relative_to(submission_dir):
+        raise ValueError(f"output must stay inside the submission: {raw_path}")
+    return path
+
+
+def render_inputs(submission_dir: Path, proposal_paths: list[Path]) -> list[Path]:
+    inputs = list(proposal_paths)
+    for proposal_path in proposal_paths:
+        text = proposal_path.read_text(encoding="utf-8")
+        for match in IMAGE_RE.finditer(text):
+            raw_src = match.group(2).strip()
+            clean = raw_src.split("#", 1)[0].split("?", 1)[0]
+            pure = PurePosixPath(clean)
+            if pure.is_absolute() or ".." in pure.parts:
+                continue
+            candidate = submission_dir.joinpath(*pure.parts)
+            if candidate.is_file():
+                inputs.append(candidate)
+    return inputs
+
+
+def aliases_path(path: Path, other: Path) -> bool:
+    return path.resolve() == other.resolve() or (
+        path.exists() and other.exists() and path.samefile(other)
+    )
+
+
+def write_text_atomically(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    mode = stat.S_IMODE(path.stat().st_mode) if path.exists() else 0o644
+    temporary: str | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            dir=path.parent,
+            prefix=f".{path.name}-",
+            suffix=".tmp",
+            delete=False,
+            mode="w",
+            encoding="utf-8",
+        ) as handle:
+            temporary = handle.name
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.chmod(temporary, mode)
+        os.replace(temporary, path)
+    except OSError:
+        if temporary:
+            Path(temporary).unlink(missing_ok=True)
+        raise
 
 
 def render_inline(text: str, language: str = "zh") -> str:
@@ -490,37 +609,81 @@ code {{
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("submission_dir")
-    parser.add_argument("--out", default="report/proposal.html")
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument(
+        "submission_dir",
+        help="Path to the proposal directory, e.g. submissions/<login>/<slug>",
+    )
+    parser.add_argument(
+        "--out",
+        default="report/proposal.html",
+        help="Output path relative to submission_dir (default: report/proposal.html)",
+    )
     args = parser.parse_args()
 
     submission_dir = Path(args.submission_dir).resolve()
-    out_path = submission_dir / args.out
+    try:
+        out_path = contained_output_path(submission_dir, args.out)
+    except ValueError as exc:
+        parser.error(str(exc))
     if not (submission_dir / "proposal.md").exists():
         raise SystemExit(f"{submission_dir}/proposal.md is missing")
     primary_path = submission_dir / "proposal.md"
+    if primary_path.is_symlink():
+        parser.error(f"proposal input must not be a symbolic link: {primary_path}")
     metadata, _ = parse_front_matter(primary_path.read_text(encoding="utf-8"))
     translation_name = metadata.get("translation_file", "")
     translation_path = submission_dir / translation_name if translation_name else None
     translation_output = None
-    if translation_path and translation_path.is_file() and translation_name in {"proposal.zh.md", "proposal.en.md"}:
+    if (
+        translation_path
+        and translation_name in {"proposal.zh.md", "proposal.en.md"}
+        and translation_path.is_file()
+    ):
+        if translation_path.is_symlink():
+            parser.error(f"proposal input must not be a symbolic link: {translation_path}")
         language = "zh" if translation_name == "proposal.zh.md" else "en"
-        translation_output = submission_dir / f"report/proposal.{language}.html"
+        try:
+            translation_output = contained_output_path(
+                submission_dir, f"report/proposal.{language}.html"
+            )
+        except ValueError as exc:
+            parser.error(str(exc))
+
+    inputs = render_inputs(
+        submission_dir,
+        [primary_path, *([translation_path] if translation_output and translation_path else [])],
+    )
+    for output in [out_path, *([translation_output] if translation_output else [])]:
+        for input_path in inputs:
+            if aliases_path(output, input_path):
+                parser.error(f"output must not overwrite a rendering input: {input_path}")
+    if translation_output and aliases_path(out_path, translation_output):
+        parser.error("primary and translated reports must use distinct output paths")
 
     primary_translation_href = None
     if translation_output:
-        primary_translation_href = os.path.relpath(translation_output, out_path.parent)
+        primary_translation_href = Path(
+            os.path.relpath(translation_output, out_path.parent)
+        ).as_posix()
     html_text = render_html(submission_dir, translation_href=primary_translation_href)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(html_text, encoding="utf-8")
-    print(out_path)
+    translated_html = None
     if translation_output and translation_path:
-        translation_output.parent.mkdir(parents=True, exist_ok=True)
-        primary_href = os.path.relpath(out_path, translation_output.parent)
-        translation_output.write_text(
-            render_html(submission_dir, translation_name, translation_href=primary_href),
-            encoding="utf-8",
+        primary_href = Path(os.path.relpath(out_path, translation_output.parent)).as_posix()
+        translated_html = render_html(
+            submission_dir,
+            translation_name,
+            translation_href=primary_href,
+        )
+    write_text_atomically(out_path, html_text)
+    print(out_path)
+    if translation_output and translated_html is not None:
+        write_text_atomically(
+            translation_output,
+            translated_html,
         )
         print(translation_output)
     return 0

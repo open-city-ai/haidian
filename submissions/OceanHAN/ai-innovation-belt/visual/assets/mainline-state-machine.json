@@ -1,0 +1,71 @@
+{
+  "schema_version": "0.1.0",
+  "concept_zh": "主线场景生命周期状态机（Merge must be reversible）",
+  "concept_en": "Mainline scenario lifecycle state machine (Merge must be reversible)",
+  "state_count": 8,
+  "states": [
+    "proposed",
+    "reviewed",
+    "staged",
+    "live",
+    "degraded",
+    "blackout_drill",
+    "retained",
+    "removed_archived"
+  ],
+  "non_skippable": ["blackout_drill", "retained"],
+  "audit_principle_zh": "审计独立：运营方不能为自己上线的红利自己签字；退场判断由具名维护者、独立评估者与受影响公众共同复核。",
+  "audit_principle_en": "Audit independence: an operator cannot sign off its own live dividend; exit decisions must be co-reviewed by a named maintainer, an independent assessor, and affected public parties.",
+  "transitions": [
+    {
+      "from": "proposed",
+      "to": "reviewed",
+      "role_ids": ["ROLE-MAINLINE-STEWARD"],
+      "condition": "open proposal submitted; issue→PR→review flow public"
+    },
+    {
+      "from": "reviewed",
+      "to": "staged",
+      "role_ids": ["ROLE-MAINLINE-STEWARD", "ROLE-SAFETY"],
+      "condition": "no-AI baseline proven (C2 pass); C0-C4 pass"
+    },
+    {
+      "from": "staged",
+      "to": "live",
+      "role_ids": ["ROLE-OPERATIONS"],
+      "condition": "C5 gray live authorized; rollback ready"
+    },
+    {
+      "from": "live",
+      "to": "degraded",
+      "role_ids": ["ROLE-OPERATIONS", "ROLE-SAFETY"],
+      "condition": "risk detected; minimum rollback triggered"
+    },
+    {
+      "from": "live",
+      "to": "blackout_drill",
+      "role_ids": ["ROLE-MAINLINE-STEWARD", "ROLE-SAFETY"],
+      "condition": "scheduled or forced unplug; cannot be skipped"
+    },
+    {
+      "from": "degraded",
+      "to": "blackout_drill",
+      "role_ids": ["ROLE-MAINLINE-STEWARD", "ROLE-SAFETY"],
+      "condition": "exit required; cannot be skipped"
+    },
+    {
+      "from": "blackout_drill",
+      "to": "retained",
+      "role_ids": ["ROLE-MAINLINE-STEWARD", "ROLE-ACCESS", "ROLE-OPERATIONS"],
+      "condition": "exit dividend usable + maintenance responsible party + public audit (retained cannot be skipped)"
+    },
+    {
+      "from": "blackout_drill",
+      "to": "removed_archived",
+      "role_ids": ["ROLE-MAINLINE-STEWARD"],
+      "condition": "no usable dividend; archive failure and decision"
+    }
+  ],
+  "stop_channels_zh": "纸面、电话、有人柜台与现场可逆闸共同构成停止通道，确保拔线不是单向的、由技术方单方面决定。",
+  "fields_status": "conceptual_not_authorized"
+}

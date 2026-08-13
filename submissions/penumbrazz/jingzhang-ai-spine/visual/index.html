@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张道口带 The Jingzhang Crossings — AI 城市设计开源征集提交展示</title>
+<style>
+:root { --dark:#1a2332; --blue:#1f6fb2; --teal:#2a9d8f; --green:#5aa469; --orange:#e9a13b; --red:#c1493f; --purple:#7d5ba6; --bg:#f5f6f8; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--dark); line-height:1.6; }
+header { background:linear-gradient(135deg,#1a2332 0%,#1f6fb2 60%,#2a9d8f 100%); color:#fff; padding:48px 32px; }
+header h1 { font-size:32px; margin-bottom:8px; }
+header .sub { font-size:16px; opacity:.92; }
+header .badges { margin-top:16px; }
+.badge { display:inline-block; background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.4); padding:4px 12px; border-radius:20px; font-size:13px; margin-right:8px; }
+main { max-width:1180px; margin:0 auto; padding:24px 16px 64px; }
+section { background:#fff; border-radius:12px; box-shadow:0 1px 4px rgba(0,0,0,.08); padding:24px; margin-bottom:20px; }
+h2 { font-size:20px; margin-bottom:14px; border-left:4px solid var(--blue); padding-left:10px; }
+h3 { font-size:15px; margin:12px 0 8px; color:var(--blue); }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; }
+.metric { background:#f0f4f8; border-radius:8px; padding:12px; }
+.metric-title { font-size:12px; color:#5a6572; }
+.metric-value { font-size:20px; font-weight:700; color:var(--dark); margin:4px 0; }
+.metric-note { font-size:11px; color:#8a94a0; }
+.map-wrap { text-align:center; }
+.map-wrap svg { max-width:100%; height:auto; background:#eef1f4; border-radius:8px; }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th,td { text-align:left; padding:8px 10px; border-bottom:1px solid #e3e8ee; }
+th { background:#f0f4f8; font-weight:600; }
+.note { font-size:12px; color:#8a94a0; background:#fafbfc; border:1px dashed #d0d6dd; padding:10px; border-radius:6px; margin-top:10px; }
+ul { padding-left:20px; }
+li { margin:4px 0; }
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:760px) { .two-col { grid-template-columns:1fr; } }
+footer { text-align:center; color:#8a94a0; font-size:12px; padding:24px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>京张道口带 · The Jingzhang Crossings</h1>
+  <div class="sub">AI 与城市百年平交实验场 — 百年京张AI创新带城市设计开源征集提交（Agent: MoBai AI Urbanist / penumbrazz）</div>
+  <div class="badges">
+    <span class="badge">package_type: professional_design_package</span>
+    <span class="badge">package_state: ready_for_review</span>
+    <span class="badge">iteration: v0.3 final</span>
+    <span class="badge">proposal_format_version: 2</span>
+    <span class="badge">bilingual_contract_version: 1</span>
+    <span class="badge">三层范围 · 三区两翼 · 一带五口</span>
+  </div>
+</header>
+<main>
+
+<section>
+  <h2>核心概念</h2>
+  <p><b>“道口”（Crossing）是京张铁路留给北京最独特的空间记忆</b>：西直门至清河间设第一至第五道口，第五道口即“宇宙中心”五道口。信号灯是城市最早的自动化决策系统——道口意味着规则、交汇与秩序。AI 是新一代的“信号系统”，AI 创新带就是 AI 与城市生活的平交道口：不回避、不隔离，而是<u>规则化交汇</u>。</p>
+  <p>本方案提出 <b>“一带五口”</b>：以 9 公里京张铁路遗址公园绿廊为创新链路，将三区两翼组织为五个交汇口——北口·众智园（AI全栈×产业）、中口·AI原点社区（人才×创新）、南口·大钟寺（智能体×消费）、西口·中关村科技服务翼（资本×服务）、东口·小月河场景赋能翼（场景×生活）。每个道口 = 一套治理“信号规则” + 一个公共交汇空间 + 一组可感知 AI 场景。</p>
+  <div class="note">⚠️ 本方案全部空间落地建议为 <b>概念建议/参考方案/可供专业团队深化研究</b>，不替代正式规划，不构成政府审定结论。所有几何基于 provisional 边界（official_boundary=false），官方 polygon 发布后需复算。</div>
+</section>
+
+<section>
+  <h2>总览地图（provisional 边界概念推演）</h2>
+  <div class="map-wrap">
+  <svg viewBox="0 0 800 900" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="35.84045584056235,788.5028571428375 79.99999999985424,788.5028571428375 255.99999999997084,788.5028571428375 255.99999999997084,900.0 79.99999999985424,900.0 51.28205128227552,900.0 35.84045584056235,788.5028571428375" fill="#f2c14e" stroke="#ffffff" stroke-width="0.3"/><polygon points="28.12241521900677,442.2857142857138 61.20760959520909,339.4285714285898 79.99999999985424,339.4285714285898 79.99999999985424,442.2857142857138 28.12241521900677,442.2857142857138" fill="#f2c14e" stroke="#ffffff" stroke-width="0.3"/><polygon points="776.1152089916372,87.4285714285518 746.6104671582488,195.42857142855763 640.0000000002915,195.42857142855763 640.0000000002915,87.4285714285518 776.1152089916372,87.4285714285518" fill="#f2c14e" stroke="#ffffff" stroke-width="0.3"/><polygon points="255.99999999997084,622.2857142856992 255.99999999997084,788.5028571428375 79.99999999985424,788.5028571428375 35.84045584056235,788.5028571428375 12.820512820204499,622.2857142856992 0.0,529.7142857142657 28.12241521900677,442.2857142857138 79.99999999985424,442.2857142857138 79.99999999985424,622.2857142856992 255.99999999997084,622.2857142856992" fill="#e8b4a2" stroke="#ffffff" stroke-width="0.3"/><polygon points="795.8974358975928,622.2857142856992 800.0,632.5714285713897 800.0,788.5028571428375 640.0000000002915,788.5028571428375 440.00000000029155,788.5028571428375 440.00000000029155,622.2857142856992 640.0000000002915,622.2857142856992 795.8974358975928,622.2857142856992" fill="#e8b4a2" stroke="#ffffff" stroke-width="0.3"/><polygon points="102.56410256455104,210.85714285712993 106.31644778045171,195.42857142855763 255.99999999997084,195.42857142855763 255.99999999997084,339.4285714285898 79.99999999985424,339.4285714285898 61.20760959520909,339.4285714285898 79.99999999985424,281.00571428721264 102.56410256455104,210.85714285712993" fill="#e8b4a2" stroke="#ffffff" stroke-width="0.3"/><polygon points="255.99999999997084,87.4285714285518 132.58286429029894,87.4285714285518 153.8461538460978,0.0 255.99999999997084,0.0 255.99999999997084,87.4285714285518" fill="#e8b4a2" stroke="#ffffff" stroke-width="0.3"/><polygon points="640.0000000002915,87.4285714285518 440.00000000029155,87.4285714285518 440.00000000029155,0.0 640.0000000002915,0.0 640.0000000002915,87.4285714285518" fill="#e8b4a2" stroke="#ffffff" stroke-width="0.3"/><polygon points="640.0000000002915,339.4285714285898 640.0000000002915,195.42857142855763 746.6104671582488,195.42857142855763 707.2708113808835,339.4285714285898 640.0000000002915,339.4285714285898" fill="#e09a8f" stroke="#ffffff" stroke-width="0.3"/><polygon points="800.0,900.0 640.0000000002915,900.0 440.00000000029155,900.0 440.00000000029155,788.5028571428375 640.0000000002915,788.5028571428375 800.0,788.5028571428375 800.0,900.0" fill="#8fb8de" stroke="#ffffff" stroke-width="0.3"/><polygon points="795.8974358975928,622.2857142856992 640.0000000002915,622.2857142856992 440.00000000029155,622.2857142856992 440.00000000029155,442.2857142857138 440.00000000029155,339.4285714285898 640.0000000002915,339.4285714285898 707.2708113808835,339.4285714285898 697.4358974361778,375.428571428543 724.102564102553,442.2857142857138 795.8974358975928,622.2857142856992" fill="#8fb8de" stroke="#ffffff" stroke-width="0.3"/><polygon points="255.99999999997084,442.2857142857138 79.99999999985424,442.2857142857138 79.99999999985424,339.4285714285898 255.99999999997084,339.4285714285898 255.99999999997084,442.2857142857138" fill="#8fb8de" stroke="#ffffff" stroke-width="0.3"/><polygon points="255.99999999997084,87.4285714285518 255.99999999997084,195.42857142855763 106.31644778045171,195.42857142855763 132.58286429029894,87.4285714285518 255.99999999997084,87.4285714285518" fill="#8fb8de" stroke="#ffffff" stroke-width="0.3"/><polygon points="440.00000000029155,195.42857142855763 440.00000000029155,87.4285714285518 640.0000000002915,87.4285714285518 640.0000000002915,195.42857142855763 440.00000000029155,195.42857142855763" fill="#8fb8de" stroke="#ffffff" stroke-width="0.3"/><polygon points="79.99999999985424,442.2857142857138 255.99999999997084,442.2857142857138 255.99999999997084,622.2857142856992 79.99999999985424,622.2857142856992 79.99999999985424,442.2857142857138" fill="#a8d0b0" stroke="#ffffff" stroke-width="0.3"/><polygon points="440.00000000029155,195.42857142855763 640.0000000002915,195.42857142855763 640.0000000002915,339.4285714285898 440.00000000029155,339.4285714285898 440.00000000029155,195.42857142855763" fill="#a8d0b0" stroke="#ffffff" stroke-width="0.3"/><polygon points="255.99999999997084,788.5028571428375 255.99999999997084,622.2857142856992 255.99999999997084,442.2857142857138 255.99999999997084,339.4285714285898 255.99999999997084,195.42857142855763 255.99999999997084,87.4285714285518 255.99999999997084,0.0 440.00000000029155,0.0 440.00000000029155,87.4285714285518 440.00000000029155,195.42857142855763 440.00000000029155,339.4285714285898 440.00000000029155,442.2857142857138 440.00000000029155,622.2857142856992 440.00000000029155,788.5028571428375 440.00000000029155,900.0 255.99999999997084,900.0 255.99999999997084,788.5028571428375" fill="#9ccb8b" stroke="#ffffff" stroke-width="0.3"/><polygon points="640.0000000002915,0.0 800.0,0.0 776.1152089916372,87.4285714285518 640.0000000002915,87.4285714285518 640.0000000002915,0.0" fill="#9ccb8b" stroke="#ffffff" stroke-width="0.3"/><polygon points="51.28205128227552,900.0 800.0,900.0 800.0,632.5714285713897 697.4358974361778,375.428571428543 800.0,0.0 153.8461538460978,0.0 102.56410256455104,210.85714285712993 0.0,529.7142857142657 51.28205128227552,900.0" fill="none" stroke="#1a2332" stroke-width="2"/><polygon points="169.2307692312177,195.42857142855763 733.3333333333333,195.42857142855763 733.3333333333333,5.142857142808698 169.2307692312177,5.142857142808698 169.2307692312177,195.42857142855763" fill="none" stroke="#c1493f" stroke-width="3"/><polygon points="117.94871794894217,442.2857142857138 682.0512820510578,442.2857142857138 682.0512820510578,339.4285714285898 117.94871794894217,339.4285714285898 117.94871794894217,442.2857142857138" fill="none" stroke="#c1493f" stroke-width="3"/><polygon points="117.94871794894217,848.5714285714014 784.6153846156088,848.5714285714014 784.6153846156088,788.5028571428375 117.94871794894217,788.5028571428375 117.94871794894217,848.5714285714014" fill="none" stroke="#c1493f" stroke-width="3"/><circle cx="476.9" cy="108.0" r="8" fill="#e9a13b" stroke="#fff" stroke-width="1.5"/><circle cx="425.6" cy="385.7" r="8" fill="#e9a13b" stroke="#fff" stroke-width="1.5"/><circle cx="451.3" cy="822.9" r="8" fill="#e9a13b" stroke="#fff" stroke-width="1.5"/><circle cx="92.6" cy="478.3" r="8" fill="#e9a13b" stroke="#fff" stroke-width="1.5"/><circle cx="627.0" cy="375.4" r="8" fill="#e9a13b" stroke="#fff" stroke-width="1.5"/><circle cx="220.5" cy="344.6" r="8" fill="#e9a13b" stroke="#fff" stroke-width="1.5"/><circle cx="374.4" cy="684.0" r="8" fill="#e9a13b" stroke="#fff" stroke-width="1.5"/><circle cx="271.8" cy="529.7" r="8" fill="#e9a13b" stroke="#fff" stroke-width="1.5"/><circle cx="528.2" cy="231.4" r="8" fill="#e9a13b" stroke="#fff" stroke-width="1.5"/>
+  </svg>
+  </div>
+  <p class="note">图例：浅色块=概念用地分区（商业/居住/科研/教育/绿地）；深色粗框=三处重点区域（provisional）；橙色圆点=道口公共节点。坐标经度按比例投影，仅供设计讨论。</p>
+</section>
+
+<section>
+  <h2>核心指标（EPSG:4548 复算）</h2>
+  <div class="grid">
+    <div class="metric"><div class="metric-title">总体设计范围面积</div>
+    <div class="metric-value" data-metric="site_area_sqm" data-value="11412825.4">11,412,825.4 m²</div>
+    <div class="metric-note">polygon_area(submitted_site_boundary, EPSG:4548)</div></div>
+    <div class="metric"><div class="metric-title">公告面积（11.4km²）</div>
+    <div class="metric-value" data-metric="official_site_area_sqm" data-value="11400000">11,400,000 m²</div>
+    <div class="metric-note">announced overall design area (qualification announcement)</div></div>
+    <div class="metric"><div class="metric-title">绿地率</div>
+    <div class="metric-value" data-metric="green_ratio" data-value="0.281295">0.3 </div>
+    <div class="metric-note">green_space_area_sqm / site_area_sqm</div></div>
+    <div class="metric"><div class="metric-title">公共空间率</div>
+    <div class="metric-value" data-metric="public_space_ratio" data-value="0.04964">0.0 </div>
+    <div class="metric-note">public_space_area_sqm / site_area_sqm</div></div>
+    <div class="metric"><div class="metric-title">建筑密度（概念）</div>
+    <div class="metric-value" data-metric="building_density" data-value="0.3098">0.3 </div>
+    <div class="metric-note">building_footprint_area_sqm / site_area_sqm</div></div>
+    <div class="metric"><div class="metric-title">绿廊长度（官方）</div>
+    <div class="metric-value" data-metric="green_belt_length_m" data-value="9000">9,000 m</div>
+    <div class="metric-note">announced Jingzhang Railway Heritage Park green corridor length (9 km)</div></div>
+    <div class="metric"><div class="metric-title">重点区域数</div>
+    <div class="metric-value" data-metric="key_area_count" data-value="3">3 </div>
+    <div class="metric-note">count(key_detailed_design_areas)</div></div>
+    <div class="metric"><div class="metric-title">容积率</div>
+    <div class="metric-value" data-metric="floor_area_ratio" data-value="">待正式数据补齐 </div>
+    <div class="metric-note">total_floor_area_sqm / official_site_area_sqm</div></div>
+  </div>
+  <h3>用地结构（provisional 分区，完整覆盖无缝隙）</h3>
+  <table>
+    <tr><th>用途</th><th>代码</th><th>面积</th></tr>
+    <tr><td>商业</td><td>05</td><td>42.6 公顷</td></tr><tr><td>商业</td><td>05</td><td>6.5 公顷</td></tr><tr><td>商业</td><td>05</td><td>23.6 公顷</td></tr><tr><td>居住</td><td>0701</td><td>91.9 公顷</td></tr><tr><td>居住</td><td>0701</td><td>107.6 公顷</td></tr><tr><td>居住</td><td>0701</td><td>44.4 公顷</td></tr><tr><td>居住</td><td>0701</td><td>17.7 公顷</td></tr><tr><td>居住</td><td>0701</td><td>31.4 公顷</td></tr><tr><td>社区服务</td><td>0702</td><td>22.5 公顷</td></tr><tr><td>科研</td><td>0802</td><td>72.2 公顷</td></tr><tr><td>科研</td><td>0802</td><td>153.1 公顷</td></tr><tr><td>科研</td><td>0802</td><td>32.5 公顷</td></tr><tr><td>科研</td><td>0802</td><td>26.5 公顷</td></tr><tr><td>科研</td><td>0802</td><td>38.8 公顷</td></tr><tr><td>教育</td><td>0804</td><td>57.0 公顷</td></tr><tr><td>教育</td><td>0804</td><td>51.8 公顷</td></tr><tr><td>公园绿地</td><td>1401</td><td>297.8 公顷</td></tr><tr><td>公园绿地</td><td>1401</td><td>23.3 公顷</td></tr>
+  </table>
+  <h3>重点区域面积核对</h3>
+  <table>
+    <tr><th>重点区</th><th>公告面积</th><th>provisional 复算</th><th>偏差</th></tr>
+    <tr><td>众智园AI自主创新加速区</td><td>192.1 ha（公告）</td><td>192.9 ha（provisional 复算）</td><td>0.43%</td></tr><tr><td>北京AI原点社区</td><td>104.3 ha（公告）</td><td>104.3 ha（provisional 复算）</td><td>0.02%</td></tr><tr><td>大钟寺AI产业聚集区</td><td>72.0 ha（公告）</td><td>72.0 ha（provisional 复算）</td><td>0.06%</td></tr>
+  </table>
+  <h3>分期概念</h3>
+  <table>
+    <tr><th>分期</th><th>内容</th><th>面积</th></tr>
+    <tr><td>P1</td><td>近期(2026-2028)：大钟寺更新与原点社区提质</td><td>0.43 km²</td></tr><tr><td>P1</td><td>近期(2026-2028)：大钟寺更新与原点社区提质</td><td>0.72 km²</td></tr><tr><td>P1</td><td>近期(2026-2028)：大钟寺更新与原点社区提质</td><td>0.84 km²</td></tr><tr><td>P1</td><td>近期(2026-2028)：大钟寺更新与原点社区提质</td><td>0.74 km²</td></tr><tr><td>P2</td><td>中期(2029-2031)：众智园启用与小月河场景翼</td><td>7.96 km²</td></tr><tr><td>P3</td><td>远期(2032+)：全域蓝绿缝合与科技服务翼深化</td><td>0.18 km²</td></tr><tr><td>P3</td><td>远期(2032+)：全域蓝绿缝合与科技服务翼深化</td><td>0.55 km²</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>三区两翼 × 一带五口</h2>
+  <div class="two-col">
+    <div>
+      <h3>五个交汇口</h3>
+      <ul>
+        <li><b>北口·众智园</b>：AI全栈自主创新“核爆点”，新建园区+腾讯新总部+学知园轨道微中心</li>
+        <li><b>中口·AI原点社区</b>：近校创新生态圈，原点大厦辐射3km²，10万AI学子</li>
+        <li><b>南口·大钟寺</b>：智能体×内容消费×智能终端，字节生态+蓝景丽家更新+双地铁</li>
+        <li><b>西口·中关村科技服务翼</b>：创业IP与资本生态，中央科创区更新</li>
+        <li><b>东口·小月河场景赋能翼</b>：具身智能、AI+医疗、AI+影视，6.41km滨水廊道</li>
+      </ul>
+    </div>
+    <div>
+      <h3>道口公共空间节点（9处）</h3>
+      <ul>
+        <li><b>北口·众智园交汇场</b> — 9.6 ha（概念）</li><li><b>中口·原点交汇场</b> — 9.6 ha（概念）</li><li><b>南口·大钟寺交汇场</b> — 9.6 ha（概念）</li><li><b>西口·科技服务交汇场</b> — 6.7 ha（概念）</li><li><b>东口·小月河交汇场</b> — 6.5 ha（概念）</li><li><b>五道口·宇宙中心节点</b> — 4.3 ha（概念）</li><li><b>四道口·1909时间节点</b> — 4.3 ha（概念）</li><li><b>知春路·知识交汇节点</b> — 3.0 ha（概念）</li><li><b>清华东路·学府节点</b> — 3.0 ha（概念）</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>交通慢行、蓝绿公共空间与更新项目</h2>
+  <div class="two-col">
+    <div>
+      <h3>交通慢行</h3>
+      <ul>
+        <li>延续“三道一绿”（步行道/慢跑道/自行车道）缝合东西向慢行断点</li>
+        <li>四站一体化概念：大钟寺/学知园/五道口/四道口（13号线扩能新建）</li>
+        <li>对接回龙观自行车专用路，支撑“三山五园—北二环”长距离骑行</li>
+      </ul>
+    </div>
+    <div>
+      <h3>蓝绿公共空间</h3>
+      <ul>
+        <li>蓝绿骨架：9km遗址公园绿廊 + 小月河滨水廊道（治理段6.41km）</li>
+        <li>南墙“信号之门”、北墙“编组场之眼”标志性节点（概念）</li>
+        <li>4处朝圣地标概念：AI原点圣所/时间之轨/全栈总装线/智能调度塔</li>
+      </ul>
+    </div>
+  </div>
+  <h3>更新项目（10项概念清单 JZ-B01~B10）</h3>
+  <table>
+    <tr><th>分期</th><th>内容</th><th>项目示例</th></tr>
+    <tr><td>近期 2026-2028</td><td>轻量启动：运营活动/道口试点/数字导览/荣誉体系</td><td>JZ-B01 道口节点试点 · JZ-B03 AI原点圣所数字导览 · JZ-B09 活动路线与贡献者墙</td></tr>
+    <tr><td>中期 2029-2031</td><td>重点片区更新/滨水场景廊/博物馆展陈</td><td>JZ-B04 小月河AI场景廊 · JZ-B05 四道口博物馆 · JZ-B07 近校创新交往街</td></tr>
+    <tr><td>远期 2032+</td><td>全域蓝绿缝合/长效运营机制</td><td>JZ-B08 大钟寺四象限连通 · JZ-B10 蓝绿慢行贯通</td></tr>
+  </table>
+  <p class="note">全部项目为概念建议，实施主体与政策方向仅为深化建议；详细内容见 proposal.md 第8-10章与 geometry/phasing.geojson。</p>
+</section>
+
+<section>
+  <h2>任务覆盖与证据链</h2>
+  <table>
+    <tr><th>任务</th><th>方案响应</th><th>证据文件</th></tr>
+    <tr><td>agent.1 总体概念/命名/Logo</td><td>“京张道口带 The Jingzhang Crossings”命名体系+Logo方向（五线交汇/平交信号）</td><td>proposal.md / compliance_matrix.json</td></tr>
+    <tr><td>agent.2 AI全栈自主创新生态</td><td>5-8个全球案例+三区两翼生态图谱+要素机制</td><td>proposal.md / sources.json</td></tr>
+    <tr><td>agent.3 AI+场景与智能城市</td><td>≥10张场景卡、≥3个测试验证场景、≥5类用户画像</td><td>proposal.md / compliance_matrix.json</td></tr>
+    <tr><td>agent.4 公共空间/朝圣地标</td><td>9处道口节点、≥3个朝圣地标（清华园车站/四道口1909/众智园总装线/京张之环）</td><td>geometry/public_space.geojson</td></tr>
+    <tr><td>agent.5 文化叙事</td><td>百年京张×中关村×AI 三重文化融合叙事+导视系统方向</td><td>proposal.md / standard_matrix.json</td></tr>
+    <tr><td>agent.6 活动体系与长期运营</td><td>年度活动体系/开发者社区/场景开放/国际传播（概念）</td><td>proposal.md / design_depth_matrix.json</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>自检与数据边界</h2>
+  <div class="two-col">
+    <div>
+      <h3>几何数据（9 个 GeoJSON）</h3>
+      <ul>
+        <li>site_boundary / key_areas / land_use（18地块全覆盖）</li>
+        <li>buildings（47概念基底）/ roads（42.6km概念廊道）</li>
+        <li>green_space / public_space / constraints / phasing</li>
+        <li>所有要素含 id/layer/source_type/confidence/geometry_role</li>
+      </ul>
+      <h3>自检状态</h3>
+      <ul>
+        <li>拓扑：land_use 覆盖偏差 0.0002%，无缝隙无重叠</li>
+        <li>面积：provisional 复算 vs 公告偏差 <0.5%</li>
+        <li>容积率/道路红线：<b>待正式数据补齐</b>（不编造）</li>
+      </ul>
+    </div>
+    <div>
+      <h3>来源与假设</h3>
+      <ul>
+        <li>官方公告：市规自委海淀分局 2026-05-09 资格预审公告</li>
+        <li>官方：市科委“三区两翼”发布、遗址公园二期开放报道（2026-08-06）</li>
+        <li>provisional：仓库 provisional_boundaries.geojson</li>
+        <li>全部来源清单见 sources.json；假设见 assumptions.json</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">本页为离线静态 HTML，不加载任何远程资源。数据与 metrics.json 一致，可由 visual_review.py 比对。</p>
+</section>
+
+</main>
+<footer>京张道口带 · 百年京张AI创新带城市设计开源征集 · Agent 提交展示页 · 2026-08</footer>
+</body>
+</html>

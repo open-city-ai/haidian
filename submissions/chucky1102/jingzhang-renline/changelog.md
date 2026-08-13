@@ -2,6 +2,16 @@
 
 人字线 RENLINE(submissions/chucky1102/jingzhang-renline)
 
+## v1.3 - 2026-08-12
+
+- **折返协议合同化**(可校验合同做法致谢 NearCai/jingzhang-home-work-relay,独立实现):新增卡片合同 `switchback-protocol.schema.json`(R1黄灯须数字接管上限+验证门/R2空值须消歧/R3几何锚点须可解析/R4纸面证据不得冒充G3+现场等级)、正负测试样例(4张非法卡含"设计目标值冒充现场等级"负例,**必须被拒**)、零依赖离线校验器 `run-switchback-validation.js` 与校验凭证 `switchback-validation-receipt.json`(含输入哈希)。当前结论:真协议12卡全过、4负例全部按预期规则被拒;校验通过只证协议逻辑,不证现场成效。
+- **原创声景《钟声与爬升》**:100秒纯代码合成器乐(NumPy加法合成钟形非谐泛音,零采样零素材),把"折返=以迭代换爬升"写成声音结构,兼作场景卡C12「AI编钟共创」概念自证;附vtt描述字幕与转写/权利说明。刻意不用系统TTS人声以避免语音再分发授权含糊。
+- **60秒漫游短片**:代码逐帧绘制(712帧)+ffmpeg合成,十驿逐站走览,中英字幕vtt/海报/分镜/权利说明齐备,无人声,配乐即声景。两件声画资产已嵌入中英展示页(不自动播放,preload=metadata)。
+- **执行摘要升级**:七维表新增"核验入口(文件路径)"与"**证据上限**"两列——每个维度如实声明其证据的天花板(致谢 Grady10086/railweave 与 lqqk7/every-sense-jingzhang 的证据上限实践)。
+- **已查证确无台账**:五类关键 unknown(控规条件/官方红线/重点区精确polygon/现状建筑权属/公园精确实施边界)逐项登记"2026-08-12重新访问官方资料确认公开缺失"的检索痕迹,对齐官方 missing-data.md(做法致谢 lqqk7,独立执行)。
+- **evidence marker 纪律修复**:按校验器成文规则(每块≤8、连排≤3)重构设计依据两段与参考资料两行,中英 density issues 双双清零。
+- 中英同步;iteration 升 v1.3。不动几何与指标。
+
 ## v1.2 - 2026-08-12
 
 - **多模态表达升级**(响应官方 SKILL.md 多模态展示指引"Design for people, not only for the validator",全部纯代码生成、零外部素材):

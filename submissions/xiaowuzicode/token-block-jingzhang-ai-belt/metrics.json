@@ -568,6 +568,94 @@
       "confidence": "unknown",
       "assumptions": [],
       "reason": "Requires operation; restoration compliance can only be measured after real windows run."
+    },
+    "simulation_task_count": {
+      "status": "known",
+      "value": 80,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "len(simulation.tasks) — offline synthetic protocol replays, not field runs",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "simulation_success_rate": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "tasks with outcome *_success / tasks; negative branches succeed when the rule refuses",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "tool_schema_pass_rate": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "tasks with dispatch_schema_valid / tasks",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "audit_completeness": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "tasks whose record carries rule, inputs, expected and observed / tasks",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "simulation_negative_branch_count": {
+      "status": "known",
+      "value": 55,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "tasks with variant=negative — each one a refusal the protocol must produce",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "token_protocol_rule_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "len(simulation.rules) — machine-readable index of the booking protocol",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_data_boundary_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "SCENARIO_NODE features with a non-empty declared data boundary",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_human_review_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "SCENARIO_NODE features with human_review_required=true",
+      "confidence": "high",
+      "assumptions": []
     }
   }
 }

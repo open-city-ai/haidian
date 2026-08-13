@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Translating the century-old Jing-Zhang Railway's 'branch line' DNA into the spatial grammar of an AI innovation belt: the Jing-Zhang Heritage Park green spine is the mainline, while the three key areas (Zhongzhiyuan, Beijing AI Origin Community, Dazhongsi) and two wings (Zhongguancun Service Wing, Xiaoyuehe Scenario Wing) are five innovation branches. A branch is both a railway branch line and an open-source branch — innovation grows along branches like pull requests, is validated on the mainline, and finally merges back."
 tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "enterprise-services-ecosystem"]
 scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "enterprise-service-copilot", "robot-delivery-low-speed", "ai-health-service-navigation", "public-safety-operations-review"]
-iteration: "v0.1"
+iteration: "v0.7"
 ---
 
 # JINGZHANG BRANCH LINES: An AI Innovation Belt Design with One Century-Old Mainline and Five Innovation Branches
@@ -329,6 +329,19 @@ This proposal is conceptual, but every conceptual output defines a deepening int
 
 Policy directions: an open scenario list system, authorized public-data operation pilots, co-governance of the developer community, a "stage first, launch later" trial procedure for AI services, and an honor-display/open-source-contribution record system. All policies are suggested directions, not confirmed government arrangements [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
 
+**Phased budget direction and exit gates** (conceptual; not investment estimates or government commitments [depth:risk_missing_data]):
+
+| Phase | Budget direction (conceptual) | Funding/sharing entities | Exit gate | Action when triggered |
+|-------|------------------------------|--------------------------|-----------|----------------------|
+| Near phase_1 | Mainline public spine slow-traffic + greening; Origin community scenario pilots | Government public investment + park operator | G0: official boundary/heritage not confirmed | No site works; keep as reserved scheme |
+| Near phase_1 | AI Origin community 3 scenario pilots | Universities + community + pilot enterprises | G1: no real users / failed tests | Stop pilot; keep public functions |
+| Mid phase_2 | Zhongzhiyuan acceleration area infrastructure | Park operator + industry entities | G2: energy/utility capacity assessment fails | Downsize or postpone; no over-build |
+| Mid phase_2 | Dazhongsi AI-native consumption nodes | Commercial operator + property owner | G3: business/property conditions immature | Convert to ordinary commercial space; AI plug-in later |
+| Long phase_3 | Two wings service belt + waterfront belt | Tech-service operator + subdistrict/water authority | G4: regulatory plan / blue line not settled | Keep long-term reserve; no early works |
+| All phases | Maintenance posts and operation cost | Operator + public budget | G5: no sustained O&M resources | Suspend branch; revert to ordinary public space |
+
+The corresponding risk matrix is in `risk.json` (mitigations aligned with the `implementation_complexity`/`operations_cost` dimensions) [depth:risk_missing_data].
+
 ### Global AI Event System and Long-Term Operation (agent.6)
 
 | Season | Event | Mechanism | Branch/node |
@@ -376,6 +389,17 @@ Compliance coverage: all announcement tasks in sections 1.3/1.4/1.5 are covered 
 | agent.4 public space/landmarks | Blue-Green Space, Public Space, Urban Character | [data:geometry/public_space.geojson#PUBLIC-001] |
 | agent.5 culture narrative | Coordinated Research (three-chapter timeline) | [source:SRC-JINGZHANG-RAILWAY-HISTORY] |
 | agent.6 events/operations | Renewal Project List, Policy and Phasing | [metric:phase_count] |
+
+**agent.1–agent.6 item-by-item response detail** (mapped to `must_address` and `required_outputs` in `agent_taskbook.json`) [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]:
+
+| Task | Must-address points | This proposal's sections | Required outputs |
+|------|---------------------|--------------------------|------------------|
+| agent.1 overall concept & functions | Overall concept/main name/English name/naming; logo direction; three positionings, five functions, three-areas-two-wings; overall structure diagram; planning innovation | Core Concept and Differentiation; Three-Level Scope; Coordinated Research (loop) | proposal_narrative, logo_or_visual_identity_direction, overall_structure_diagram, compliance_matrix_entry, visual_index_section |
+| agent.2 full-stack autonomous ecosystem | 5–8 global cases; ecosystem map; Zhongzhiyuan full-stack; Origin ecosystem; Zhongguancun wing support; land/space/industry/capital/talent/compute/data/scenario mechanisms | Coordinated Research (cases/ecosystem map); Key Areas (Zhongzhiyuan); Overall Design (functional layout) | case_study_table, ecosystem_map, industry_space_mapping, metrics_and_sources, visual_index_section |
+| agent.3 AI+ scenario empowerment | ≥10 scenario cards; ≥3 test-and-verify scenarios; ≥5 personas; scenario-space-operation mapping; Xiaoyuehe wing and public experience route | AI Ecosystem, Personas, AI+ Scenarios (12 cards + 5 personas + test scenarios) | scenario_cards, persona_table, scenario_space_operation_matrix, privacy_and_human_review_boundary, visual_index_section |
+| agent.4 public space & landmarks | Heritage Park AI public space; east-west stitching, north-south through-route; Dazhongsi AI-native consumption; ≥3 AI pilgrimage landmarks; honor-display system and component library | Blue-Green Space, Public Space, Urban Character (5 landmarks + honor system); Key Areas (Dazhongsi) | public_space_design, landmark_catalog, honor_display_system, component_library, visual_index_section |
+| agent.5 centennial culture narrative | Jing-Zhang railway cultural resources; Zhongguancun innovation culture + AI new culture; spatial culture system; signage/identity/symbols; urban character and international narrative | Coordinated Research (history baseline + three-chapter timeline + naming/logo) | culture_narrative, signage_system_direction, spatial_storyline, international_communication_copy, visual_index_section |
+| agent.6 event system & operations | Annual events; brand and communication visuals; developer community; open scenario operation; public experience and landmark operation; international communication and conversion | Renewal Project List (four-season events + operation mechanisms) | annual_event_system, brand_ip_system, developer_community_operation, scenario_open_operation, conversion_pathway, visual_index_section |
 
 ![Core metrics recalculation and evidence chain](assets/figures/metrics-evidence.en.png)
 

@@ -11,6 +11,19 @@ summary: "Using the line-and-station heritage of the 100-year-old Jing-Zhang Rai
 
 # Jing-Zhang AI Inn Belt: Urban Design for the Centennial Jing-Zhang AI Innovation Belt
 
+## Core Mechanism: Inn-Token Authorisation
+
+The Jing-Zhang railway was the starting point of China's self-reliant innovation a century ago. Its **staff-and-token block** system—one token per section, no token no entry, manual handoff, degradable operation—kept a single-track railway safe and efficient. This proposal translates that historical institution into an AI-era urban governance and spatial-organisation mechanism, giving the Belt a sharp core:
+
+- **Inn Token** = the minimum authorisation unit to enter a corresponding innovation section, echoing the historical staff token; one token per section, no token no entry.
+- **Section** = the deployment unit of space + data + service, echoing the historical block; each inn's innovation services are authorised and metered by section.
+- **Handoff Point** = the inn node where east-west stitching and authority handover happen, echoing the historical token-exchange station; AI scenarios transfer data and responsibility here.
+- **Human Review & Degrade** = every AI scenario keeps a human service desk and a degradation path, echoing the historical manual handoff.
+
+Tagline: **ONE BELT, THREE INNS — NO TOKEN, NO ENTRY**. The mechanism maps directly onto the submitted geometry: tokens and sections map to the `AI_SERVICE_ZONE` layer, handoff points to `SCENARIO_NODE`, and section boundaries are expressed by `PHASE` combined with `LAND_USE`; all are concept suggestions for professional deepening [source:AGENT-TASKBOOK] [depth:overall_spatial_structure].
+
+**Inn-token lifecycle (concept operational definition)**: application (service plan and data boundary) → authorisation (section registration, token issue) → usage (permission-based access to data and services within the section) → re-review (periodic human review and compliance check) → revocation/degradation (exit on violation or failed acceptance). Data accountability anchors to the token: the token holder is responsible for data within the section, collection follows minimisation, and everything is auditable [source:GENERATIVE-AI-INTERIM-MEASURES]; scenario access is authorised per token section, no token no entry, giving the mechanism an operational distinction from generic "zone management" [depth:risk_missing_data].
+
 ## Design Basis and Source List
 
 This proposal takes the official pre-qualification announcement for the Centennial Jing-Zhang AI Innovation Belt International Urban Design Solicitation, issued by the Haidian Branch of the Beijing Municipal Commission of Planning and Natural Resources, as its primary basis [source:OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT], and follows the agent-facing open-call taskbook for the three positionings, five functions, three-areas-two-wings layout, six tasks and boundary clauses [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]. Professional depth follows the Urban Design Administration Measures, the national land-use classification guide, the regulatory detailed planning measures and the 2016 architectural design depth regulation [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016].
@@ -37,20 +50,20 @@ The five functions form a synergy loop across the three areas and two wings: Zho
 
 Five to eight publicly verifiable global AI innovation ecosystem cases are used as methodological references, from which the proposal derives an innovation-chain model of "university ideation, open-source collaboration, enterprise conversion, public experience, international communication" and maps it onto land, space, talent, compute, data and scenario mechanisms [depth:land_use_layout]. Case citations and industrial statements are limited to public information; no company lists, investment amounts, output values or fiscal commitments are fabricated [depth:risk_missing_data].
 
-**Global AI innovation ecosystem cases (methodological references; transfer conditions are concept suggestions)**:
+**Global AI innovation ecosystem cases (methodological references; transfer conditions are concept suggestions; per-row sources registered in `sources.json` as `CASE-*`, background-level public information)**:
 
-| Case region | Core mechanism (public knowledge) | Transfer condition to the Belt (concept) |
-| --- | --- | --- |
-| Silicon Valley, USA | University ideation, venture capital, acquisition loop | University-to-inn handover mechanism |
-| Kendall Square, Boston, USA | MIT-adjacent conversion, life-science + AI cluster | AI Origin Community campus-linked conversion |
-| Shenzhen, China | Hardware supply chain and rapid prototyping | Zhongzhiyuan full-stack and standards co-creation |
-| Singapore | Scenario opening and regulatory-sandbox testing | Xiaoyuehe scenario test corridor |
-| Tel Aviv, Israel | Defence-to-civilian technology conversion | Dual-use conversion inn interface (research hypothesis) |
-| Zurich, Switzerland | ETH talent density and stable R&D environment | Talent-zone living ring internationalisation |
-| Hangzhou, China | Platform economy and scenario data | Dazhongsi AI-native consumption and data window |
-| Zhongguancun, Beijing | Local universities and tech services | Zhongguancun service wing for IP and capital |
+| Case region | Core mechanism (public knowledge) | Transfer condition to the Belt (concept) | Source |
+| --- | --- | --- | --- |
+| Silicon Valley, USA | University ideation, venture capital, acquisition loop | University-to-inn handover mechanism | [source:CASE-SILICON-VALLEY] |
+| Kendall Square, Boston, USA | MIT-adjacent conversion, life-science + AI cluster | AI Origin Community campus-linked conversion | [source:CASE-KENDALL-SQUARE] |
+| Shenzhen, China | Hardware supply chain and rapid prototyping | Zhongzhiyuan full-stack and standards co-creation | [source:CASE-SHENZHEN] |
+| Singapore | Scenario opening and regulatory-sandbox testing | Xiaoyuehe scenario test corridor | [source:CASE-SINGAPORE] |
+| Tel Aviv, Israel | Defence-to-civilian technology conversion | Dual-use conversion inn interface (research hypothesis) | [source:CASE-TEL-AVIV] |
+| Zurich, Switzerland | ETH talent density and stable R&D environment | Talent-zone living ring internationalisation | [source:CASE-ZURICH-ETH] |
+| Hangzhou, China | Platform economy and scenario data | Dazhongsi AI-native consumption and data window | [source:CASE-HANGZHOU] |
+| Zhongguancun, Beijing | Local universities and tech services | Zhongguancun service wing for IP and capital | [source:CASE-ZHONGGUANCUN] |
 
-Cases are for method extraction only; facts and transfer conditions are separated, and transfer conditions are concept suggestions for professional deepening [source:AGENT-TASKBOOK] [depth:existing_conditions_diagnosis].
+Cases are for method extraction only; facts and transfer conditions are separated, and transfer conditions are concept suggestions for professional deepening [source:AGENT-TASKBOOK] [depth:existing_conditions_diagnosis]. Each case entry is registered in `sources.json` as `background_only` (public common-knowledge information, not yet on the project's approved formal source list) and used as background and methodological reference only.
 
 **Regional synergy interface table** (with Beiwei Community, Future Science City, Huairou Science City, the Economic-Technological Development Area and the Beijing-Tianjin-Hebei region; unverified relationships are research hypotheses):
 
@@ -125,9 +138,9 @@ Ten or more AI scenario cards are proposed, including inn plaza AI guidance, a f
 | Online developer space | Virtual inns | Public dev data | Collaboration tools | Community admins | Mailing list | Developer council | Active devs, retention |
 | International digital inn | Belt-wide online | Public media assets | Multilingual generation | Translation and release approval | Manual posting | Brand team | International reach, citations |
 
-Human review and failure fallback are mandatory safety boundaries for every scenario; privacy and data-minimisation apply to all, and any personal-data scenario must provide appeal and correction channels [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
+Human review and failure fallback are mandatory safety boundaries for every scenario; privacy and data-minimisation apply to all, and any personal-data scenario must provide appeal and correction channels [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]; compliance and responsibility boundaries for generative-AI scenarios also follow the Interim Measures for Generative AI Services [standard:GENERATIVE-AI-INTERIM-MEASURES].
 
-Inclusiveness and accessibility: beyond the five personas, elderly residents, children and carers, persons with disabilities, low-digital-skill residents and night workers are added; every public AI service provides account-free, smartphone-free and human-staffed fallback paths, and public space provides continuous accessible routes, information-accessibility signage and accessible toilets [source:BARRIER-FREE-LAW] [depth:municipal_new_infrastructure]. Participatory review and appeal-correction mechanisms (collection, time-boxed reply, public correction log) are fixed procedures of inn operation [depth:risk_missing_data].
+Inclusiveness and accessibility: beyond the five personas, elderly residents, children and carers, persons with disabilities, low-digital-skill residents and night workers are added; every public AI service provides account-free, smartphone-free and human-staffed fallback paths [source:BARRIER-FREE-LAW] [standard:BARRIER-FREE-ENVIRONMENT-LAW]; age-friendly requirements follow the national plan for solving the difficulties of the elderly in using smart technology [standard:ELDERLY-SMART-TECH-PLAN-2020-45], and public space provides continuous accessible routes, information-accessibility signage and accessible toilets [depth:municipal_new_infrastructure]. Participatory review and appeal-correction mechanisms (collection, time-boxed reply, public correction log) are fixed procedures of inn operation [depth:risk_missing_data].
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
@@ -178,6 +191,16 @@ All elements are concept suggestions for professional deepening; no investment, 
 
 Every funnel stage is a concept suggestion; no output volumes or government funding commitments are promised [source:AGENT-TASKBOOK] [depth:renewal_project_list].
 
+**Pilot and implementation deepening (concept)**:
+
+- **Pilot section**: the "AI Origin inn + Xiaoyuehe test corridor" pair is selected as the lead pilot (about two sites) to validate the inn-token authorisation, human review and scenario-degradation loop; the pilot can start at low cost, is reversible and supports post-review [depth:phasing_implementation].
+- **Project packages (independently pausable)**: ① Inn-Token service package (token issue, authorisation and review flow) ② greenway connection package (park AI greenway and inn plazas) ③ scenario-testing package (unmanned shuttle, visual inspection); any package can pause independently [depth:renewal_project_list].
+- **Inn-token admission gate**: application (service plan and data boundary) → review (data minimisation, human review, safe stop) → authorisation (token issue and section registration) → re-review (periodic review and exit); a concept flow for professional and operator refinement [source:AGENT-TASKBOOK].
+- **Conceptual staffing estimate**: per inn, one station manager, two operations/maintenance, three service-desk staff plus volunteer rotation (concept estimate, not a staffing commitment); belt-wide roughly 18-24 full-time posts plus volunteers, pending professional HR planning [depth:risk_missing_data].
+- **Emergency-response plan**: scenario degradation matrix—unmanned shuttle to human takeover, AI guidance to human service desk, compute dashboard to static board, launch streaming to recorded replay; each entry lists trigger, response time and responsible role (concept plan requiring operator drills) [depth:risk_missing_data] [depth:traffic_rail_slow_parking].
+- **Pilot outline investment framework (concept estimate, not commitment)**: the pilot section (AI Origin inn + Xiaoyuehe test corridor) is estimated by category—facility retrofit and inn construction (million-scale), AI equipment and system development (million-to-ten-million scale), three-year staffing and operation (million per year), totalling around ten-million scale; building parties are suggested as organisers-led plus inn operator, enterprise co-build and social capital. All figures are concept-level and require professional budgeting and authority confirmation [depth:phasing_implementation] [depth:risk_missing_data].
+- **AI data-security and algorithmic-fairness specifics (concept)**: model bias—training-data de-identification and bias testing are part of scenario admission; data poisoning—source verification and version locking; intellectual property—generated-content ownership agreed at token issue; cross-border data—explicit data boundaries for international scenarios in the test corridor; fairness—service availability monitored by population segment with public results [source:GENERATIVE-AI-INTERIM-MEASURES] [depth:risk_missing_data].
+
 ## Metrics, Area Recalculation, and Compliance Matrix
 
 The metrics and evidence chain: all area metrics are recomputed from submitted geometry under EPSG:4548 [metric:site_area_sqm] [metric:green_ratio]; the public-space share is in [metric:public_space_ratio], and the recalculation method in [depth:metrics_recalculation]; count metrics derive from layer feature counts [metric:building_count] [metric:road_count] [metric:key_area_count]; length metrics derive from road centerlines [metric:road_length_m]. Statutory indicators such as FAR and building height remain `unknown` with a stated reason until official regulatory-plan conditions are published; no inferred values are presented as approved ones [depth:development_intensity_controls].
@@ -185,6 +208,26 @@ The metrics and evidence chain: all area metrics are recomputed from submitted g
 The compliance matrix maps all 23 required tasks from announcement clauses 1.3-1.5 and agent.1-agent.6; the standard matrix covers the six mandatory standards; the design-depth matrix covers the fifteen formal depth items [depth:three_key_area_detailed_design]. Once official polygons are published, the site boundary, key areas, land use, roads, green space, public space, buildings, phasing and all precision-sensitive metrics must be recomputed and re-checked [depth:metrics_recalculation].
 
 **In-place provisional-boundary labelling**: all area, ratio and count metrics in this package are recomputed from the organisers' provisional rough boundary (`provisional_constraint`) and are for conceptual discussion and display only; the relevant figures (site-overview, key-areas, metrics-evidence, etc.) carry in-place "provisional / recomputed from provisional boundary" notes. When official boundary and key-area polygons are published, all layers and metrics must be recalculated through the same pipeline and re-checked; provisional geometry is never described as precise or statutory data [depth:metrics_recalculation] [depth:risk_missing_data].
+
+**Supplementary metric references** (all recomputed from submitted geometry in EPSG:4548; recalculate with the provisional boundary):
+
+| Metric | Meaning (concept) |
+| --- | --- |
+| [metric:land_use_cultural_ratio] | Cultural land share |
+| [metric:land_use_education_ratio] | Education land share |
+| [metric:land_use_green_ratio] | Park-green land share |
+| [metric:land_use_plaza_ratio] | Plaza land share |
+| [metric:land_use_reserved_ratio] | Reserved land share |
+| [metric:key_area_zhongzhiyuan_area_sqm] | Zhongzhiyuan key-area area |
+| [metric:key_area_origin_area_sqm] | AI Origin community area |
+| [metric:key_area_dazhongsi_area_sqm] | Dazhongsi key-area area |
+| [metric:phase_one_area_sqm] | Near-term phase area |
+| [metric:phase_two_area_sqm] | Mid-term phase area |
+| [metric:phase_three_area_sqm] | Long-term phase area |
+| [metric:green_space_count] | Green-space feature count |
+| [metric:public_space_count] | Public-space feature count |
+| [metric:ai_inn_plaza_count] | AI inn plaza count |
+| [metric:road_greenway_length_m] | Greenway centerline length |
 
 ![Key metrics evidence](assets/figures/metrics-evidence.png)
 

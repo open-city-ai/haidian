@@ -1,0 +1,159 @@
+[
+  {
+    "event_id": "PM-2026-0001",
+    "ts": "2026-08-12T10:00:48Z",
+    "zone_id": "ZN-KA-01",
+    "service": "S1-unmanned-delivery",
+    "gate": "L2",
+    "event": "issued",
+    "state": {
+      "before": "free",
+      "after": "occupied"
+    },
+    "operator": "京张AI带管委会",
+    "proofmile_metrics": {
+      "fixtures_passed": 4,
+      "acceptance_checks": 6
+    },
+    "prev_hash": "GENESIS",
+    "hash": "8a54068184d92835"
+  },
+  {
+    "event_id": "PM-2026-0002",
+    "ts": "2026-08-12T10:00:48Z",
+    "zone_id": "ZN-KA-01",
+    "service": "S1-unmanned-delivery",
+    "gate": "L2",
+    "event": "returned",
+    "state": {
+      "before": "occupied",
+      "after": "free"
+    },
+    "operator": "京张AI带管委会",
+    "prev_hash": "8a54068184d92835",
+    "hash": "eb3d114e5613c0cc"
+  },
+  {
+    "event_id": "PM-2026-0003",
+    "ts": "2026-08-12T10:00:48Z",
+    "zone_id": "ZN-KA-02",
+    "service": "S2-oss-eval-sandbox",
+    "gate": "L2",
+    "event": "queued",
+    "state": {
+      "before": "occupied",
+      "after": "occupied(queued)"
+    },
+    "operator": "京张AI带管委会",
+    "queue_position": "FCFS",
+    "prev_hash": "eb3d114e5613c0cc",
+    "hash": "16910675738d86bb"
+  },
+  {
+    "event_id": "PM-2026-0004",
+    "ts": "2026-08-12T10:00:48Z",
+    "zone_id": "ZN-KA-02",
+    "service": "S2-oss-eval-sandbox",
+    "gate": "L2",
+    "event": "issued",
+    "state": {
+      "before": "free",
+      "after": "occupied"
+    },
+    "operator": "京张AI带管委会",
+    "proofmile_metrics": {
+      "fixtures_passed": 4,
+      "acceptance_checks": 6
+    },
+    "prev_hash": "16910675738d86bb",
+    "hash": "34a845a68d79618d"
+  },
+  {
+    "event_id": "PM-2026-0005",
+    "ts": "2026-08-12T10:00:48Z",
+    "zone_id": "ZN-KA-02",
+    "service": "S2-oss-eval-sandbox",
+    "gate": "L2",
+    "event": "returned",
+    "state": {
+      "before": "occupied",
+      "after": "free"
+    },
+    "operator": "京张AI带管委会",
+    "prev_hash": "34a845a68d79618d",
+    "hash": "322f0f4145e22db4"
+  },
+  {
+    "event_id": "PM-2026-0006",
+    "ts": "2026-08-12T10:00:48Z",
+    "zone_id": "ZN-PUB-05",
+    "service": "S3-wayfinding",
+    "gate": "L1",
+    "event": "issued",
+    "state": {
+      "before": "free",
+      "after": "occupied"
+    },
+    "operator": "京张AI带管委会",
+    "proofmile_metrics": {
+      "fixtures_passed": 4,
+      "acceptance_checks": 6
+    },
+    "prev_hash": "322f0f4145e22db4",
+    "hash": "2025e3774f8f3756"
+  },
+  {
+    "event_id": "PM-2026-0007",
+    "ts": "2026-08-12T10:00:48Z",
+    "zone_id": "ZN-PUB-05",
+    "service": "S3-wayfinding",
+    "gate": "L1",
+    "event": "returned",
+    "state": {
+      "before": "occupied",
+      "after": "free"
+    },
+    "operator": "京张AI带管委会",
+    "prev_hash": "2025e3774f8f3756",
+    "hash": "ca371a3cbfaec905"
+  },
+  {
+    "event_id": "PM-2026-0008",
+    "ts": "2026-08-12T10:00:48Z",
+    "zone_id": "ZN-PUB-05",
+    "service": "S4-wayfinding-privacy-violation",
+    "gate": "L1",
+    "event": "issued",
+    "state": {
+      "before": "free",
+      "after": "occupied"
+    },
+    "operator": "京张AI带管委会",
+    "proofmile_metrics": {},
+    "prev_hash": "ca371a3cbfaec905",
+    "hash": "5445c49ecf358022"
+  },
+  {
+    "event_id": "PM-2026-0009",
+    "ts": "2026-08-12T10:00:48Z",
+    "zone_id": "ZN-PUB-05",
+    "service": "S4-wayfinding-privacy-violation",
+    "gate": "L1",
+    "event": "hard-stop & token-return",
+    "state": {
+      "before": "occupied",
+      "after": "free"
+    },
+    "operator": "京张AI带管委会",
+    "reason": "privacy-violation: 违规留存轨迹数据",
+    "rollback_steps": [
+      "stop",
+      "disconnect",
+      "clear-cache",
+      "return-token",
+      "archive"
+    ],
+    "prev_hash": "5445c49ecf358022",
+    "hash": "dbfc5f32b468d5e9"
+  }
+]

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>JZ-AI Origin Belt | Centennial Jing-Zhang AI Innovation Belt Concept</title>
+  <style>
+    :root {
+      --navy: #0a223d;
+      --brand: #123a63;
+      --teal: #159a88;
+      --gold: #e8a23a;
+      --paper: #f5f3ed;
+      --ink: #162535;
+      --muted: #5d6874;
+      --line: #d8d8d1;
+      --white: #fff;
+      --soft: #edf3f2;
+      --pass: #176c50;
+      --warn: #8b5b12;
+      --shadow: 0 18px 50px rgba(10, 34, 61, .1);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, "Segoe UI", Helvetica, Arial, system-ui, sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    img { max-width: 100%; }
+    .skip {
+      position: absolute;
+      left: 16px;
+      top: -80px;
+      z-index: 20;
+      padding: 10px 14px;
+      background: var(--white);
+      color: var(--navy);
+      border-radius: 8px;
+    }
+    .skip:focus { top: 12px; }
+    .wrap { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 82% 15%, rgba(21, 154, 136, .34), transparent 27%),
+        linear-gradient(135deg, #07182c 0%, var(--brand) 64%, #0d5b61 100%);
+      padding: 24px 0 30px;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -8% -135px 32%;
+      height: 230px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 50%;
+      transform: rotate(-7deg);
+    }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .eyebrow { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; opacity: .72; }
+    .language {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      border: 1px solid rgba(255, 255, 255, .35);
+      border-radius: 999px;
+      padding: 5px 12px;
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
+      align-items: center;
+      gap: 38px;
+      padding-top: 24px;
+    }
+    h1 { margin: 0; font-size: clamp(38px, 6vw, 74px); line-height: 1.08; letter-spacing: -.035em; }
+    .en-title { margin-top: 14px; font-size: clamp(16px, 2vw, 23px); letter-spacing: .06em; color: #b9ece4; }
+    .lead { max-width: 760px; margin: 24px 0 0; font-size: 17px; color: rgba(255, 255, 255, .84); }
+    .badges { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 24px; }
+    .badge { border: 1px solid rgba(255,255,255,.27); background: rgba(255,255,255,.08); border-radius: 999px; padding: 5px 11px; font-size: 12px; }
+    .brand-panel { background: rgba(255, 255, 255, .97); border-radius: 22px; padding: 18px; box-shadow: 0 24px 70px rgba(0,0,0,.25); }
+    .brand-panel img { display: block; width: 100%; border-radius: 14px; }
+    .brand-note { margin: 12px 4px 0; color: #536476; font-size: 12px; }
+    .review-scene-ribbon { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
+    .review-scene { position: relative; height: 164px; margin: 0; overflow: hidden; border: 1px solid rgba(255,255,255,.2); border-radius: 16px; background: #07182c; box-shadow: 0 14px 30px rgba(0,0,0,.18); }
+    .review-scene img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .review-scene::after { content: ""; position: absolute; inset: 36% 0 0; background: linear-gradient(transparent, rgba(3,14,27,.88)); }
+    .review-scene figcaption { position: absolute; z-index: 1; left: 14px; right: 14px; bottom: 10px; color: #fff; }
+    .review-scene strong, .review-scene span { display: block; }
+    .review-scene strong { font-size: 15px; }
+    .review-scene span { margin-top: 1px; color: rgba(255,255,255,.76); font-size: 10px; }
+    nav { position: sticky; top: 0; z-index: 10; background: rgba(245,243,237,.96); border-bottom: 1px solid rgba(18,58,99,.12); backdrop-filter: blur(12px); }
+    nav .wrap { display: flex; gap: 6px; overflow-x: auto; padding-top: 10px; padding-bottom: 10px; }
+    nav a { flex: 0 0 auto; padding: 6px 10px; border-radius: 8px; text-decoration: none; color: var(--brand); font-size: 13px; font-weight: 700; }
+    nav a:hover, nav a:focus-visible { background: var(--white); outline: 2px solid var(--gold); outline-offset: 1px; }
+    main { overflow: hidden; }
+    section { padding: 72px 0; }
+    section:nth-child(even) { background: rgba(255, 255, 255, .58); }
+    .review-snapshot { padding: 32px 0 36px; background: linear-gradient(180deg, #eef3f2 0%, #f5f3ed 100%); }
+    .review-snapshot-shell { padding: 22px; border: 1px solid #cfdadd; border-radius: 22px; background: rgba(255,255,255,.92); box-shadow: 0 16px 44px rgba(10,34,61,.08); }
+    .review-snapshot-head { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 15px; }
+    .review-snapshot-head h2 { font-size: 30px; }
+    .review-snapshot-head p { max-width: 620px; color: var(--muted); font-size: 13px; }
+    .review-proof-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 12px; }
+    .review-proof-panel { padding: 13px; border: 1px solid #d3dde1; border-radius: 14px; background: #fff; }
+    .review-panel-label { display: block; color: var(--teal); font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .review-spatial-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 9px; margin-top: 8px; }
+    .review-spatial-grid figure { margin: 0; overflow: hidden; border: 1px solid #dbe2e5; border-radius: 10px; background: var(--navy); }
+    .review-spatial-grid img { display: block; width: 100%; height: 176px; object-fit: contain; }
+    .review-spatial-grid figcaption { padding: 5px 8px; color: #5b6974; background: #fff; font-size: 10px; }
+    .review-proof-stack { display: grid; gap: 12px; }
+    .review-rubric-strip { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+    .review-rubric-item { padding: 5px 7px; border-radius: 7px; color: #24465e; background: #e6efef; font-size: 10px; font-weight: 700; }
+    .review-gate-strip { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 6px; margin-top: 9px; }
+    .review-gate { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px; border-radius: 8px; background: #e8f4ee; color: #245b48; font-size: 10px; }
+    .review-gate b { color: #176c50; font-size: 9px; letter-spacing: .04em; }
+    .review-boundary { margin-top: 12px; padding: 8px 10px; border: 1px solid #e5c78f; border-radius: 9px; color: #74501c; background: #fff7e8; font-size: 10px; font-weight: 750; }
+    .section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(250px, 420px); gap: 30px; align-items: end; margin-bottom: 30px; }
+    .kicker { display: block; margin-bottom: 8px; color: var(--teal); font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    h2 { margin: 0; color: var(--navy); font-size: clamp(28px, 4vw, 44px); line-height: 1.16; letter-spacing: -.025em; }
+    h3 { margin: 0 0 9px; color: var(--brand); font-size: 18px; line-height: 1.35; }
+    p { margin: 0; }
+    .section-intro, .note { color: var(--muted); }
+    .section-intro { font-size: 14px; }
+    .grid { display: grid; gap: 18px; }
+    .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .card { background: var(--white); border: 1px solid var(--line); border-radius: 17px; padding: 20px; box-shadow: 0 8px 24px rgba(10,34,61,.045); }
+    .scope-card { border-top: 4px solid var(--teal); }
+    .scope-card strong { display: block; margin-bottom: 6px; color: var(--navy); font-size: 22px; }
+    .scope-card small { color: var(--muted); }
+    .metric { min-height: 146px; display: flex; flex-direction: column; justify-content: space-between; }
+    .metric-value { color: var(--brand); font-size: clamp(24px, 3vw, 35px); font-weight: 850; letter-spacing: -.04em; }
+    .metric-label { color: var(--muted); font-size: 13px; }
+    .metric-source { color: #87919b; font: 11px ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .hero-figure, .figure-card { margin: 0; background: var(--white); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); }
+    .hero-figure { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(320px, .88fr); align-items: stretch; }
+    .hero-figure img { width: 100%; height: 680px; object-fit: contain; background: #eef1ef; }
+    .figure-copy { padding: 30px; display: flex; flex-direction: column; justify-content: center; }
+    .figure-copy ul, .clean { margin: 12px 0 0; padding-left: 19px; }
+    .figure-copy li, .clean li { margin: 6px 0; }
+    .boundary {
+      margin-top: 22px;
+      padding: 17px 19px;
+      border-left: 4px solid var(--gold);
+      background: #fff7e7;
+      color: #5d491f;
+      border-radius: 0 12px 12px 0;
+      font-size: 13px;
+    }
+    .scene { overflow: hidden; padding: 0; }
+    .scene img { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; }
+    .scene-body { padding: 21px; }
+    .scene-role { display: inline-block; margin-bottom: 9px; color: var(--teal); font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .specs { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+    .spec { background: var(--soft); color: #245a55; border-radius: 6px; padding: 3px 7px; font-size: 11px; }
+    .figure-card img { display: block; width: 100%; height: 440px; object-fit: contain; background: #f0f2ef; }
+    .figure-card figcaption { padding: 18px 20px 20px; }
+    .core { position: relative; padding-top: 24px; }
+    .core::before { content: attr(data-no); position: absolute; top: 16px; right: 18px; color: rgba(18,58,99,.08); font-size: 54px; font-weight: 900; line-height: 1; }
+    .core strong { display: block; color: var(--teal); font-size: 12px; letter-spacing: .08em; }
+    .process { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 20px; counter-reset: step; }
+    .process div { position: relative; min-height: 94px; padding: 16px 12px; background: var(--navy); color: var(--white); border-radius: 12px; font-size: 12px; }
+    .process div::before { counter-increment: step; content: "0" counter(step); display: block; margin-bottom: 5px; color: #75d6c8; font-weight: 800; }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--white); }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { padding: 12px 13px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: #e9efee; color: var(--brand); font-size: 12px; letter-spacing: .025em; }
+    tr:last-child td { border-bottom: 0; }
+    .test { border-left: 4px solid var(--gold); }
+    .test b { display: block; margin-bottom: 8px; color: var(--navy); }
+    .gate { border-top: 4px solid var(--brand); }
+    .gate-id { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; background: var(--brand); color: var(--white); font-weight: 850; }
+    .gate h3 { margin-top: 13px; }
+    .gate-stop { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); color: #7a4e25; font-size: 12px; }
+    .inclusion { border-top: 3px solid var(--teal); }
+    .inclusion b { display: block; color: var(--brand); }
+    .pill { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 4px 9px; font-size: 11px; font-weight: 800; }
+    .pill.pass { color: var(--pass); background: #e6f4ed; }
+    .pill.pass::before { content: "✓"; }
+    .pill.pending { color: var(--warn); background: #fff1d4; }
+    .evidence-link { color: var(--brand); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; overflow-wrap: anywhere; }
+    .status-card { display: flex; align-items: center; gap: 13px; }
+    .status-icon { flex: 0 0 auto; width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; background: #e6f4ed; color: var(--pass); font-weight: 900; }
+    .source-grid a { text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    footer { padding: 34px 0 50px; color: #65727e; border-top: 1px solid var(--line); font-size: 12px; }
+    .footer-row { display: flex; justify-content: space-between; gap: 20px; }
+    @media (max-width: 960px) {
+      .hero-grid, .section-head, .hero-figure { grid-template-columns: 1fr; }
+      .brand-panel { max-width: 540px; }
+      .g3, .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero-figure img { height: 560px; }
+      .process { grid-template-columns: repeat(2, 1fr); }
+      .review-proof-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .wrap { width: min(100% - 26px, 1180px); }
+      section { padding: 52px 0; }
+      .g2, .g3, .g4, .process { grid-template-columns: 1fr; }
+      .hero { padding-top: 20px; }
+      .hero-grid { gap: 28px; padding-top: 32px; }
+      .review-scene-ribbon { grid-template-columns: 1fr; }
+      .review-scene { height: 210px; }
+      .review-snapshot-head { align-items: start; flex-direction: column; gap: 8px; }
+      .review-spatial-grid { grid-template-columns: 1fr; }
+      .hero-figure img, .figure-card img { height: auto; max-height: 640px; }
+      .figure-copy { padding: 22px; }
+      .footer-row { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="hero">
+    <div class="wrap">
+      <div class="topbar">
+        <span class="eyebrow">Centennial Jing-Zhang AI Innovation Belt · Urban Design Concept</span>
+        <a class="language" href="index.html" lang="zh-CN">中文</a>
+      </div>
+      <div class="hero-grid">
+        <div>
+          <h1>JZ-AI Origin Belt</h1>
+          <div class="en-title">CENTENNIAL JING-ZHANG AI ORIGIN BELT</div>
+          <p class="lead">One axis, three cores, two loops and multiple nodes. Centennial engineering spirit grounds a verifiable, reversible and incremental AI innovation belt linking R&amp;D collaboration, technology transfer, intelligent commerce and public experience.</p>
+          <div class="badges" aria-label="Proposal status">
+            <span class="badge">Concept advice · non-statutory</span>
+            <span class="badge">Provisional substitute boundary</span>
+            <span class="badge">Fully offline · no tracking</span>
+            <span class="badge">Bilingual deliverables</span>
+          </div>
+        </div>
+        <aside class="brand-panel" aria-label="Original JZ-AI Origin Belt brand mark">
+          <img src="../assets/brand/jz-ai-origin-mark.svg" alt="Original JZ-AI Origin Belt mark">
+          <p class="brand-note">Paired lines signify railway-gauge memory and open data flow; the ren-shaped fold converges on the “AI origin.” This is not an operating-rail sign. It abstracts historical engineering spirit into an open-intelligence identity.</p>
+        </aside>
+      </div>
+      <div class="review-scene-ribbon" aria-label="Three premium business-and-technology scenes">
+        <figure class="review-scene"><img src="../assets/media/scene-zhongzhiyuan.jpg" alt="Premium business-and-technology R and D headquarters scene in Zhongzhiyuan"><figcaption><strong>Zhongzhiyuan</strong><span>R&amp;D headquarters · full-stack valley</span></figcaption></figure>
+        <figure class="review-scene"><img src="../assets/media/scene-ai-origin-community.jpg" alt="Premium international-collaboration scene in the Beijing AI Origin Community"><figcaption><strong>Beijing AI Origin Community</strong><span>International collaboration · open-source neighborhood</span></figcaption></figure>
+        <figure class="review-scene"><img src="../assets/media/scene-dazhongsi.jpg" alt="Premium launch and investment scene in Dazhongsi"><figcaption><strong>Dazhongsi</strong><span>Launches and investment · intelligent commerce hub</span></figcaption></figure>
+      </div>
+    </div>
+  </header>
+
+  <nav aria-label="Page contents">
+    <div class="wrap">
+      <a href="#overview">Overview &amp; scope</a>
+      <a href="#metrics">Core metrics</a>
+      <a href="#scenes">Business-tech scenes</a>
+      <a href="#systems">Spatial systems</a>
+      <a href="#collaboration">Regional interfaces</a>
+      <a href="#scenarios">10+3 scenarios</a>
+      <a href="#delivery">Delivery &amp; co-testing</a>
+      <a href="#governance">Charter &amp; rights</a>
+      <a href="#evidence">Task evidence</a>
+      <a href="#status">Status boundaries</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section id="review-snapshot" class="review-snapshot">
+      <div class="wrap review-snapshot-shell">
+        <div class="review-snapshot-head">
+          <div><span class="kicker">FIRST-VIEWPORT EVIDENCE</span><h2>Executive summary and review evidence</h2></div>
+          <p>One spine, three cores and two loops; 10+3 bounded scenarios; a six-layer AI stack; and G0-G4 reversible delivery gates. The first viewport reports package evidence and local gates only; official review remains external.</p>
+        </div>
+        <div class="review-proof-grid">
+          <div class="review-proof-panel">
+            <span class="review-panel-label">SPATIAL EVIDENCE · MASTERPLAN / KEY AREAS</span>
+            <div class="review-spatial-grid">
+              <figure><img src="../assets/figures/site-overview.en.png" alt="Masterplan intelligence spine and three-core structure"><figcaption>Masterplan · one spine, three cores, two loops</figcaption></figure>
+              <figure><img src="../assets/figures/key-areas.en.png" alt="Spatial strategies for Zhongzhiyuan, the Beijing AI Origin Community and Dazhongsi"><figcaption>Three cores · differentiated roles, shared civic base</figcaption></figure>
+            </div>
+          </div>
+          <div class="review-proof-stack">
+            <div class="review-proof-panel">
+              <span class="review-panel-label">SEVEN-DIMENSION EVIDENCE</span>
+              <div class="review-rubric-strip">
+                <span class="review-rubric-item">Brief Alignment</span><span class="review-rubric-item">Originality</span><span class="review-rubric-item">AI + Planning</span><span class="review-rubric-item">Feasibility</span><span class="review-rubric-item">Public Interest</span><span class="review-rubric-item">Risk + Compliance</span><span class="review-rubric-item">Expression</span>
+              </div>
+            </div>
+            <div class="review-proof-panel">
+              <span class="review-panel-label">FOUR LOCAL GATES</span>
+              <div class="review-gate-strip">
+                <div class="review-gate"><span>Deterministic</span><b>LOCAL PASS</b></div><div class="review-gate"><span>Spatial</span><b>LOCAL PASS</b></div><div class="review-gate"><span>Visual</span><b>LOCAL PASS</b></div><div class="review-gate"><span>Professional evidence</span><b>LOCAL PASS</b></div>
+              </div>
+              <div class="review-boundary">LOCAL GATES PASS · OFFICIAL REVIEW IS EXTERNAL TO THIS PACKAGE · CONCEPT ONLY · PROVISIONAL GEOMETRY</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="overview">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="kicker">01 / MASTERPLAN</span><h2>Overview map and three planning scopes</h2></div>
+          <p class="section-intro">From the 43.6 sq km coordinated research area, through the roughly 11.4 sq km overall design area, to three key areas totalling about 368.4 ha: the scales address ecosystem coordination, renewal structure and district delivery respectively.</p>
+        </div>
+        <div class="grid g3" style="margin-bottom:22px">
+          <article class="card scope-card"><strong>43.6 km²</strong><h3>Coordinated research area</h3><small>Studies the AI ecosystem, future urban form and cross-regional interfaces. This announcement figure is not recalculated from a package boundary.</small></article>
+          <article class="card scope-card"><strong>about 11.4 km²</strong><h3>Overall design area</h3><small>Organises land use, buildings, mobility and utilities, blue-green systems and renewal projects within the provisional substitute boundary.</small></article>
+          <article class="card scope-card"><strong>about 368.4 ha</strong><h3>Key-area scope</h3><small>District-level detailed concepts for the provisional extents of Zhongzhiyuan, Beijing AI Origin Community and Dazhongsi.</small></article>
+        </div>
+        <figure class="hero-figure">
+          <img src="../assets/figures/site-overview.en.png" alt="Overview map showing the JZ-AI Origin Belt concept, three cores, corridors, scenario nodes and provisional boundary">
+          <figcaption class="figure-copy">
+            <span class="kicker">Master structure</span>
+            <h3>One axis · three cores · two loops · multiple nodes</h3>
+            <ul class="note">
+              <li><b>One axis:</b> the Jing-Zhang heritage-park cultural intelligence axis for walking, ecology, interpretation and public AI experiences.</li>
+              <li><b>Three cores:</b> Zhongzhiyuan Full-Stack Valley, Origin Community Open-Source Blocks and Dazhongsi Intelligent Commerce Hub.</li>
+              <li><b>Two loops:</b> a slow-mobility vitality loop and blue-green ecological loop stitching campuses, parks, neighbourhoods and public-transit gateways.</li>
+              <li><b>Multiple nodes:</b> 10 AI scenarios and 3 pilgrimage-landmark concept nodes form the Origin Trail.</li>
+            </ul>
+            <div class="boundary"><b>Boundary notice:</b> the map uses the site package's rough substitute boundary, marked <code>provisional_constraint</code> and <code>official_boundary=false</code>. It supports generation, self-checking, visualisation and design discussion only. All layers and area metrics must be recalculated after official boundaries are released.</div>
+          </figcaption>
+        </figure>
+        <div class="section-head" style="margin-top:34px;margin-bottom:16px">
+          <div><span class="kicker">Exact taskbook mapping</span><h2>Three positions × five functions × three areas and two wings</h2></div>
+          <p class="section-intro">Every formal term enters a spatial carrier, scenario and acceptance path rather than remaining a slogan.</p>
+        </div>
+        <div class="grid g3">
+          <article class="card"><strong>POSITION 01</strong><h3>Centennial Jing-Zhang Cultural Belt</h3><p class="note">Responds to “global voice in AI governance” through engineering ethics, interpretable governance and contributor memory; carried by the AI Origin Community and non-operating heritage cultural axis.</p></article>
+          <article class="card"><strong>POSITION 02</strong><h3>Urban AI Life Experience Belt</h3><p class="note">Responds to the “AI+ scenario-empowerment paradigm” and “intelligent AI vitality city”; carried by Dazhongsi AI Cluster and the Xiaoyuehe Scenario-Empowerment Wing.</p></article>
+          <article class="card"><strong>POSITION 03</strong><h3>AI Convergence Innovation Belt</h3><p class="note">Responds to the “full-stack indigenous AI innovation system” and “world-class AI innovation ecosystem”; carried by Zhongzhiyuan and the Zhongguancun Technology-Service Wing.</p></article>
+        </div>
+        <div class="boundary" style="margin-top:16px"><b>Five-function loop:</b> full-stack indigenous AI innovation system → world-class AI innovation ecosystem → AI+ scenario-empowerment paradigm → intelligent AI vitality city → global voice in AI governance. The three areas and two wings are AI Origin Community, Zhongzhiyuan AI Acceleration Area, Dazhongsi AI Industry Cluster, Zhongguancun Technology-Service Wing and Xiaoyuehe Scenario-Empowerment Wing. The wings are collaborative roles, not statutory boundaries.</div>
+      </div>
+    </section>
+
+    <section id="metrics">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="kicker">02 / MEASURABLE</span><h2>Core metrics</h2></div>
+          <p class="section-intro">The values below are recalculated from submission GeoJSON in EPSG:4548. FAR, building heights, road redlines and operational performance lack official prerequisites and therefore remain explicitly unknown / pending.</p>
+        </div>
+        <div class="grid g4">
+          <article class="card metric"><div class="metric-value"><span data-metric="site_area_sqm" data-value="11412825.386">11,412,825 m²</span></div><div class="metric-label">Overall area · provisional boundary</div><div class="metric-source">geometry/site_boundary.geojson</div></article>
+          <article class="card metric"><div class="metric-value">1,383,040 m²</div><div class="metric-label">Building footprints · concept layout</div><div class="metric-source">geometry/buildings.geojson</div></article>
+          <article class="card metric"><div class="metric-value"><span data-metric="green_ratio" data-value="0.253074">25.3%</span></div><div class="metric-label">Green ratio · recalculated</div><div class="metric-source">geometry/green_space.geojson</div></article>
+          <article class="card metric"><div class="metric-value"><span data-metric="public_space_ratio" data-value="0.028007">2.8%</span></div><div class="metric-label">Public-space ratio · polygons only</div><div class="metric-source">geometry/public_space.geojson</div></article>
+          <article class="card metric"><div class="metric-value">28.1 km</div><div class="metric-label">Concept slow-mobility and micro-circulation network</div><div class="metric-source">geometry/roads.geojson</div></article>
+          <article class="card metric"><div class="metric-value">10 + 3</div><div class="metric-label">AI scenarios + landmark concept nodes</div><div class="metric-source">geometry/public_space.geojson</div></article>
+          <article class="card metric"><div class="metric-value">3</div><div class="metric-label">Key detailed-design areas</div><div class="metric-source">geometry/key_areas.geojson</div></article>
+          <article class="card metric"><div class="metric-value">16 / 42 / 9</div><div class="metric-label">Land-use zones / building clusters / corridors</div><div class="metric-source">land_use · buildings · roads</div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="scenes">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="kicker">03 / EXPERIENCE</span><h2>Three premium business-and-technology scenes</h2></div>
+          <p class="section-intro">A shared “premium, adaptable, low-intrusion” language spans the three cores: dark anodised aluminium, warm timber, matte stone, integrated power and soft edge lighting. Technology is embedded in furniture and landscape edges instead of relying on glare or oversized screens.</p>
+        </div>
+        <div class="grid g3">
+          <article class="card scene">
+            <img src="../assets/media/scene-zhongzhiyuan.jpg" alt="Concept scene of a Zhongzhiyuan R&amp;D collaboration lounge with premium business furniture and transparent interactive equipment in a green valley">
+            <div class="scene-body"><span class="scene-role">R&amp;D HQ · prototype display</span><h3>Zhongzhiyuan · Full-Stack Valley</h3><p class="note">A park-operator role manages R&amp;D meetings, standards co-creation and prototype demonstrations. Reconfigurable meeting tables, ergonomic chairs, transparent displays and edge-compute ports support everyday professional use.</p><div class="specs"><span class="spec">R&amp;D collaboration</span><span class="spec">Transparent displays</span><span class="spec">Offline mode</span><span class="spec">Human takeover</span></div></div>
+          </article>
+          <article class="card scene">
+            <img src="../assets/media/scene-ai-origin-community.jpg" alt="Concept scene of international collaboration and community co-creation in the Beijing AI Origin Community with premium modular furniture and smart wayfinding">
+            <div class="scene-body"><span class="scene-role">Global exchange · community co-creation</span><h3>Beijing AI Origin Community · Open-Source Blocks</h3><p class="note">A campus–park–neighbourhood joint-operator role manages open-source releases, technology transfer and youth co-creation. E-ink wayfinding, paper alternatives and mobile business furniture serve both professional events and daily community life.</p><div class="specs"><span class="spec">Open-source release</span><span class="spec">E-ink wayfinding</span><span class="spec">No-phone alternative</span><span class="spec">Youth co-creation</span></div></div>
+          </article>
+          <article class="card scene">
+            <img src="../assets/media/scene-dazhongsi.jpg" alt="Concept scene of product launch and investor meetings in Dazhongsi with premium negotiation furniture, service robots and intelligent lighting">
+            <div class="scene-body"><span class="scene-role">Product launch · investor lounge</span><h3>Dazhongsi · Intelligent Commerce Hub</h3><p class="note">A commercial-operator role and public-culture team jointly manage launches, investor matching and evening programming. Matte-stone meeting tables, switchable roadshow interfaces, service robots and edge-intelligent lighting strengthen the global business gateway.</p><div class="specs"><span class="spec">Investor meetings</span><span class="spec">Service robots</span><span class="spec">Smart lighting</span><span class="spec">Fast changeover</span></div></div>
+          </article>
+        </div>
+        <div class="boundary"><b>Scene status:</b> the three generated images explain spatial atmosphere and intended use only. They are not existing-condition photography, statutory boundaries, metric evidence or engineering-feasibility proof. Railway heritage appears only as discontinuous brass gauge lines, flush sleepers and interpretation points in paving—never continuous rail, ballast, platforms or an operating-rail cue.</div>
+      </div>
+    </section>
+
+    <section id="systems">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="kicker">04 / SPATIAL SYSTEMS</span><h2>Land use, slow mobility, blue-green public space and building renewal</h2></div>
+          <p class="section-intro">These are interpretive drawings rather than raw-data screenshots: provisional boundaries and background remain low contrast, while corridors, nodes, public space and design judgements lead. GeoJSON, metrics and matrices remain authoritative.</p>
+        </div>
+        <div class="grid g3">
+          <figure class="figure-card"><img src="../assets/figures/land-use-structure.en.png" alt="Three-scope and land-use zoning structure"><figcaption><h3>Land-use zoning and three scopes</h3><p class="note">Sixteen seamless concept zones cover R&amp;D, commerce, housing, community services, education, green space, plazas and strategic reserve. Recheck against official planning conditions.</p></figcaption></figure>
+          <figure class="figure-card"><img src="../assets/figures/mobility-bluegreen.en.png" alt="Composite of public-transit connections, slow mobility, blue-green public space and AI scenario nodes"><figcaption><h3>Public transit, slow mobility and blue-green public space</h3><p class="note">The heritage greenway, five east–west links, three district loops and Qinghe–Xiaoyuehe corridors form a continuous network. The heritage trace is not restored as an operating railway; engineering alignments and road redlines remain pending.</p></figcaption></figure>
+          <figure class="figure-card"><img src="../assets/figures/key-areas.en.png" alt="Detailed-design index of the three key areas, building clusters and renewal projects"><figcaption><h3>Key areas, buildings and renewal projects</h3><p class="note">Forty-two footprint clusters are managed through retain, renovate, renew, new-build and pending-confirmation methods. They are not an existing-condition survey or parcel-level demolition decision.</p></figcaption></figure>
+        </div>
+        <div class="grid g3" style="margin-top:18px">
+          <article class="card core" data-no="01"><strong>NORTH CORE</strong><h3>Zhongzhiyuan · Full-Stack Valley</h3><p class="note">Garden R&amp;D blocks, a Qinghe low-carbon frontage, governance sandbox and Full-Stack Tower exhibition hall. Provisional extent about 192.1 ha.</p></article>
+          <article class="card core" data-no="02"><strong>CENTRAL CORE</strong><h3>Origin Community · Open-Source Blocks</h3><p class="note">Campus–park–neighbourhood stitching, a technology-transfer street, open-source plaza and talent services. Provisional extent about 104.3 ha.</p></article>
+          <article class="card core" data-no="03"><strong>SOUTH CORE</strong><h3>Dazhongsi · Intelligent Commerce Hub</h3><p class="note">Public-transit gateway, four-quadrant walkability, intelligent-device display and trade, data reception and global roadshows. Provisional extent about 72.0 ha.</p></article>
+        </div>
+        <div style="margin-top:28px">
+          <h3>Renewal project list · all items are concept advice</h3>
+          <div class="table-wrap"><table>
+            <thead><tr><th>ID</th><th>Renewal project</th><th>Type</th><th>Prerequisites before launch</th></tr></thead>
+            <tbody>
+              <tr><td>JZ-01</td><td>Heritage cultural-axis greenway connection</td><td>Public space / slow mobility</td><td>Corridor ownership and ring-road crossing conditions</td></tr>
+              <tr><td>JZ-02</td><td>Dazhongsi four-quadrant pedestrian link and roadshow lounge</td><td>Station integration / operations</td><td>Station, junction and utility conditions</td></tr>
+              <tr><td>JZ-03</td><td>Origin Community open-source blocks and transfer street</td><td>Urban renewal / industry services</td><td>Campus boundary, ownership and ground-floor uses</td></tr>
+              <tr><td>JZ-04</td><td>Zhongzhiyuan Qinghe innovation frontage and low-carbon corridor</td><td>Blue-green / industry display</td><td>River blue line, ecology and flood conditions</td></tr>
+              <tr><td>JZ-05</td><td>Edge-compute hubs and new-infrastructure prototypes</td><td>New infrastructure / public services</td><td>Energy, safety assessment and operator</td></tr>
+              <tr><td>JZ-06</td><td>Xiaoyuehe–Qinghe blue-green ecological corridor</td><td>Blue-green space</td><td>Blue line, sponge-city and ecology conditions</td></tr>
+              <tr><td>JZ-07</td><td>Jing-Zhang AI Contributor Avenue and honour display</td><td>Public culture / brand</td><td>Public-space permits and copyright clearance</td></tr>
+              <tr><td>JZ-08</td><td>Global AI Week public route</td><td>Operations / brand</td><td>Event approval and safety</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="collaboration">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="kicker">05 / REGIONAL INTERFACES</span><h2>Regional collaboration as auditable interfaces</h2></div>
+          <p class="section-intro">The concept defines protocol templates, responsibility roles and evidence formats only. It invents no projects, institutional participation or recruitment promises. Joint trials begin only after written operator confirmation.</p>
+        </div>
+        <div class="process" aria-label="Five-step regional collaboration loop">
+          <div>Need brief</div><div>Data and IP boundary</div><div>Joint trial</div><div>Independent / public review</div><div>Replication handbook</div>
+        </div>
+        <div class="table-wrap" style="margin-top:20px"><table>
+          <thead><tr><th>Interface</th><th>Origin Belt output</th><th>Potential partner input</th><th>Verifiable evidence</th><th>Exit condition</th></tr></thead>
+          <tbody>
+            <tr><td>Beiwei Community</td><td>Accessibility audit and AI daily-service prototype</td><td>Resident co-testing issue list</td><td>Anonymous records and remedy closure</td><td>Unresolved public objection or privacy risk</td></tr>
+            <tr><td>Future Science City</td><td>Open-source release, investment and enterprise-service interface</td><td>Engineering needs and talent events</td><td>Bilaterally confirmed trial charter and review</td><td>No accountable operator</td></tr>
+            <tr><td>Huairou Science City</td><td>Urban scenarios and science-communication space</td><td>Scientific questions and facility-derived leads</td><td>Public-source and IP-boundary register</td><td>Unclear source or IP</td></tr>
+            <tr><td>Beijing E-Town</td><td>Public urban scenarios and user feedback</td><td>Robot and terminal pilot capacity</td><td>Safety review, human takeover and fault log</td><td>Safety gate not passed</td></tr>
+            <tr><td>Beijing–Tianjin–Hebei</td><td>Open-source event brand and scenario handbook</td><td>Cross-city feedback and talent network</td><td>Versioned handbook, replication record and annual review</td><td>Result not reproducible</td></tr>
+          </tbody>
+        </table></div>
+        <div class="section-head" style="margin-top:30px;margin-bottom:16px">
+          <div><span class="kicker">FULL STACK / agent.2</span><h2>Full-stack indigenous AI innovation · six-layer evidence chain</h2></div>
+          <p class="section-intro">Every layer binds a spatial carrier, responsible role and exit evidence. A failed lower layer blocks the upper application from trial operation.</p>
+        </div>
+        <div class="grid g3">
+          <article class="card"><strong>01 Compute hardware</strong><h3>Zhongzhiyuan + edge hubs</h3><p class="note">Technical/energy roles; energy, cooling, offline/power-loss and maintenance logs.</p></article>
+          <article class="card"><strong>02 System framework</strong><h3>Isolated governance sandbox</h3><p class="note">Platform/safety roles; versions, interfaces, fault injection and human takeover.</p></article>
+          <article class="card"><strong>03 Data / models</strong><h3>Data-factor salon</h3><p class="note">Data/legal/assessment roles; provenance, licence, data/model cards and deletion.</p></article>
+          <article class="card"><strong>04 Agents / tools</strong><h3>Open-source hall + transfer street</h3><p class="note">Community/technology manager; task bounds, tool permissions, citations, errors and human final review.</p></article>
+          <article class="card"><strong>05 Applications</strong><h3>10 scenes + 3 testbeds</h3><p class="note">Scenario operators/user representatives; usability, access, complaints, incidents and conversion tickets.</p></article>
+          <article class="card"><strong>06 Safety governance</strong><h3>Red team + annual public review</h3><p class="note">Independent/public/local roles; privacy impact, dissent and remedy closure.</p></article>
+        </div>
+        <div class="boundary" style="margin-top:16px"><b>Permission boundary:</b> hardware does not directly obtain personal data; models do not directly decide public intervention; agents cannot exceed tool permission; relevant people make final judgments on public outputs.</div>
+      </div>
+    </section>
+
+    <section id="scenarios">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="kicker">06 / AI+ SCENARIOS</span><h2>10 AI scenario cards + 3 industry testing scenarios</h2></div>
+          <p class="section-intro">Each scenario states location, daily operation and governance boundary. Every testing scenario is a reversible concept prototype requiring approval, safety review and privacy-impact assessment before operation.</p>
+        </div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>#</th><th>Scenario card</th><th>Spatial location</th><th>Operator role / use</th><th>Governance boundary</th></tr></thead>
+          <tbody>
+            <tr><td>01</td><td>Open-Source Release Hall</td><td>Origin Community</td><td>Releases, contribution display and mini roadshows</td><td>Cases and marks require clearance</td></tr>
+            <tr><td>02</td><td>AI Governance Sandbox</td><td>Zhongzhiyuan</td><td>Standards, safety evaluation and red-team display</td><td>Isolated environment and human supervision</td></tr>
+            <tr><td>03</td><td>Edge-Compute Hub</td><td>Dazhongsi and corridor nodes</td><td>Lightweight new infrastructure and experience interface</td><td>Separate authorisation and energy audit</td></tr>
+            <tr><td>04</td><td>AI Slow-Mobility Wayfinding</td><td>Heritage axis</td><td>Gap detection and interpretable guidance</td><td>No personal trajectory collection</td></tr>
+            <tr><td>05</td><td>International Roadshow Lounge</td><td>Dazhongsi</td><td>Display, negotiation and media release</td><td>Event approval and content clearance</td></tr>
+            <tr><td>06</td><td>Qinghe Low-Carbon Innovation Corridor</td><td>Zhongzhiyuan riverfront</td><td>Blue-green space and technology display</td><td>Ecology and flood safety first</td></tr>
+            <tr><td>07</td><td>Near-Campus Technology-Transfer Street</td><td>Origin Community</td><td>Incubation, legal, IP and investment services</td><td>Research results require authorisation</td></tr>
+            <tr><td>08</td><td>Data-Element Reception Lounge</td><td>Dazhongsi</td><td>Compliant, auditable data-service interface</td><td>Minimisation, logging and human review</td></tr>
+            <tr><td>09</td><td>AI Daily-Life Service Street</td><td>Community–commerce edge</td><td>Medical, education, legal and daily-service access</td><td>No commercial profiling; staffed alternative</td></tr>
+            <tr><td>10</td><td>Global AI Week Route</td><td>Belt-wide public space</td><td>Walkable and shareable public experience</td><td>Event and safety approval</td></tr>
+          </tbody>
+        </table></div>
+        <h3 style="margin-top:28px">Three industry testing scenarios</h3>
+        <div class="grid g3">
+          <article class="card test"><b>T1 · Low-speed shuttle and delivery test section</b><p class="note">Limited hours and segments, human supervision and immediate withdrawal; tests safe takeover, vulnerable pedestrian priority and anomaly logs.</p></article>
+          <article class="card test"><b>T2 · Urban-agent-assisted public-space management</b><p class="note">Detects slow-mobility gaps, maintenance needs and event-safety alerts. The agent only assists; people review every intervention decision.</p></article>
+          <article class="card test"><b>T3 · Building–campus energy and compute coordination</b><p class="note">Tests interpretable coordination of distributed energy and compute loads, beginning with isolated simulation before professional assessment.</p></article>
+        </div>
+        <div class="grid g2" style="margin-top:22px">
+          <article class="card"><h3>Five core personas</h3><p class="note">Open-source developers, startup teams, enterprise and business visitors, nearby residents, and university staff and students. Scenarios map to release and collaboration, affordable trials, display and meetings, low-disturbance daily life, and technology transfer.</p></article>
+          <article class="card"><h3>Three pilgrimage-landmark concept nodes</h3><p class="note">Jing-Zhang Railway Memory Hall, AI Origin Monument Plaza and Full-Stack Tower Exhibition Hall. Together with the Jing-Zhang AI Contributor Avenue, they carry history, honour and open-source culture without entertainment-led landmarking.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="delivery">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="kicker">07 / DELIVERY</span><h2>G0–G4 stage gates and inclusion co-testing</h2></div>
+          <p class="section-intro">A project enters the next stage only after prior evidence is archived. Roles are explicit without invented commitments: urban-design/heritage, local public authority, park/commercial operations, technical operations, independent reviewers and public representatives share accountability.</p>
+        </div>
+        <div class="grid g3" style="margin-bottom:22px">
+          <article class="card"><strong>L1 · Statutory base</strong><h3>Professional procedure decides</h3><p class="note">Official boundaries, land use, redlines, ownership, utilities, heritage and intensity. AI, operators and concept imagery cannot alter them automatically.</p></article>
+          <article class="card"><strong>L2 · Urban-design guidance</strong><h3>Multidisciplinary review</h3><p class="note">Axes, frontages, public space, slow mobility, blue-green systems and character; only versioned pilot spaces and safety boundaries pass to L3.</p></article>
+          <article class="card"><strong>L3 · Reversible operating plug-ins</strong><h3>Managed through G0–G4</h3><p class="note">AI scenes, business furniture, wayfinding, events and light devices. Evidence informs the next professional review but never changes statutory control automatically.</p></article>
+        </div>
+        <div class="boundary" style="margin-bottom:22px"><b>Integrated-planning innovation:</b> de-identified and human-reviewed evidence on use, complaints, access, energy, safety and maintenance may inform the next L2 iteration. Any L1 implication must re-enter statutory procedure; an algorithmic closed loop never takes legal effect.</div>
+        <div class="grid g3">
+          <article class="card gate"><span class="gate-id">G0</span><h3>Baseline</h3><p class="note">Existing-condition survey, ownership and heritage checks, accessibility audit and initial privacy screen.</p><p class="gate-stop"><b>Stop:</b> boundary/ownership conflict or unclear sensitive-data provenance.</p></article>
+          <article class="card gate"><span class="gate-id">G1</span><h3>Co-design</h3><p class="note">Needs and dissent register for residents, universities, firms, visitors and vulnerable groups, with written responses to material objections.</p><p class="gate-stop"><b>Stop:</b> unresolved exclusion, night disturbance or accessibility impact.</p></article>
+          <article class="card gate"><span class="gate-id">G2</span><h3>Prototype</h3><p class="note">1:1 furniture/wayfinding mock-up, device offline mode, safety test and human-takeover test.</p><p class="gate-stop"><b>Stop:</b> no human takeover, operator or safety accountability chain.</p></article>
+          <article class="card gate"><span class="gate-id">G3</span><h3>Trial</h3><p class="note">Uptime, event-changeover time, satisfaction, complaint and incident logs; a confirmed operator locks definitions and minimum values.</p><p class="gate-stop"><b>Stop:</b> incident, privacy event or repeated threshold failure.</p></article>
+          <article class="card gate"><span class="gate-id">G4</span><h3>Scale</h3><p class="note">Independent review, whole-life cost review, open replication handbook and professional-approval route.</p><p class="gate-stop"><b>Stop:</b> irreproducibility, unsustainable cost or negative professional review.</p></article>
+          <article class="card" style="background:var(--navy);color:#fff"><h3 style="color:#8ce2d4">Long-term operations loop</h3><p style="color:rgba(255,255,255,.76)">Apply → assess → open → review; spring Developer Week, summer Scenario Open Days, autumn Culture–AI Biennale and winter Contributor Conference. These are mechanism proposals, not government programmes or funding promises.</p></article>
+        </div>
+        <h3 style="margin-top:32px">Inclusion co-testing seats · no “average user” substitutes for vulnerable groups</h3>
+        <div class="grid g3">
+          <article class="card inclusion"><b>Wheelchair and mobility-aid users</b><p class="note">Test continuous clear width, gradients, turning space and stopping places beside furniture.</p></article>
+          <article class="card inclusion"><b>People with visual or hearing impairments</b><p class="note">Test tactile, audio, high-contrast and non-colour-only multimodal wayfinding.</p></article>
+          <article class="card inclusion"><b>Older people, children and caregivers</b><p class="note">Test lighting, rest intervals, edge protection and caregiver sightlines.</p></article>
+          <article class="card inclusion"><b>Night workers, cleaners, security staff and small merchants</b><p class="note">Test evening safety, servicing, noise and business impacts.</p></article>
+          <article class="card inclusion"><b>People with low digital literacy or no smartphone</b><p class="note">Verify that every service has a staffed and paper alternative.</p></article>
+          <article class="card inclusion"><b>Public acceptance record</b><p class="note">Report participant structure, unresolved dissent, before/after remedies and exit decisions. Collect no biometrics or personal trajectories, and publish more than average satisfaction.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="governance">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="kicker">08 / OPEN CO-CREATION &amp; RIGHTS</span><h2>Co-creation charter, continuous collaboration and rights boundary</h2></div>
+          <p class="section-intro">The taskbook is a public acceptance contract for every iteration, not a one-off delivery label. See <code>compliance_matrix.json</code> and the copyright ledger for exact mappings.</p>
+        </div>
+        <div class="grid g3">
+          <article class="card"><h3>charter.1–5</h3><p class="note">Public interest · public or cleared sources only · concept advice never bypasses statutory approval · AI-native innovation · structured and human-/machine-readable outputs.</p></article>
+          <article class="card"><h3>charter.6–10</h3><p class="note">Generation-method and limit disclosure · final human/professional judgement · public knowledge · durable contributor/version records · human dignity, welfare and capability enhancement.</p></article>
+          <article class="card"><h3>Continuous loop</h3><p class="note">Sync main/inputs → reread sources, Issues/PRs and selected peer work on demand → update provenance/assumptions/evidence → rerender, finalize and four-gate self-check → preflight and full readback → resubmit.</p></article>
+        </div>
+        <div class="boundary" style="margin-top:20px"><b>Rights snapshot:</b> the underlying model for three OpenAI concept scenes was not exposed and is recorded as unknown; the original logo has not undergone a trademark search; six cases are adjacent factual citations only, with no copied third-party images or marks. PDF tools, font names, embedding, licences and viewer-compatibility boundaries are individually logged; no font program with unverified rights is embedded. External publication, account actions or third-party contact require the relevant human authorization.</div>
+      </div>
+    </section>
+
+    <section id="evidence">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="kicker">09 / EVIDENCE INDEX</span><h2>agent.1–agent.6 task coverage and evidence index</h2></div>
+          <p class="section-intro">The matrix indexes locatable evidence; it never substitutes a “covered” label for design content. <code>compliance_matrix.json</code> remains the complete mapping for announcement sections 1.3 / 1.4 / 1.5 and the six agent tasks.</p>
+        </div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Task</th><th>Visible design response</th><th>Structured / drawing evidence</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td><b>agent.1</b><br>Concept and coordination</td><td>Name, English name, original logo, master structure, three scopes and five regional interfaces</td><td class="evidence-link">assets/brand/jz-ai-origin-mark.svg<br>assets/figures/site-overview.en.png<br>compliance_matrix.json</td><td><span class="pill pass">Located</span></td></tr>
+            <tr><td><b>agent.2</b><br>Ecosystem and cases</td><td>Six global cases, factor–space–operation mechanism and R&amp;D–transfer–commerce chain</td><td class="evidence-link">proposal.en.md#coordinated-research-area-industry-and-future-city-study<br>assets/figures/land-use-structure.en.png</td><td><span class="pill pass">Located</span></td></tr>
+            <tr><td><b>agent.3</b><br>Personas and AI+ scenarios</td><td>Five personas, 10 scenario cards, 3 industry tests and governance boundaries</td><td class="evidence-link">geometry/public_space.geojson<br>geometry/roads.geojson<br>metrics.json#scenario_node_count</td><td><span class="pill pass">Located</span></td></tr>
+            <tr><td><b>agent.4</b><br>Public space and landmarks</td><td>Three landmark concept nodes, Contributor Avenue and smart seating/wayfinding/pavilion library</td><td class="evidence-link">geometry/public_space.geojson#NODE-11<br>assets/figures/key-areas.en.png</td><td><span class="pill pass">Located</span></td></tr>
+            <tr><td><b>agent.5</b><br>Cultural narrative</td><td>Centennial Jing-Zhang, Zhongguancun entrepreneurial openness and open intelligence; gauge lines remain heritage cues only</td><td class="evidence-link">proposal.en.md#blue-green-network-public-space-and-urban-character<br>assets/brand/jz-ai-origin-mark.svg</td><td><span class="pill pass">Located</span></td></tr>
+            <tr><td><b>agent.6</b><br>Events and long-term operations</td><td>Annual programming, developer community, scenario-opening loop, G0–G4 and inclusion co-testing</td><td class="evidence-link">proposal.en.md#renewal-projects-implementation-policy-and-phasing<br>geometry/phasing.geojson</td><td><span class="pill pass">Located</span></td></tr>
+            <tr><td><b>Announcement 1.3 / 1.4 / 1.5</b></td><td>Coordinated research, overall design and key-area detail all map chapters, layers, metrics, drawings and HTML</td><td class="evidence-link">compliance_matrix.json<br>standard_matrix.json<br>design_depth_matrix.json</td><td><span class="pill pass">Located</span></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <section id="status">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="kicker">10 / AUDITABILITY</span><h2>Self-check status, sources, assumptions and status boundaries</h2></div>
+          <p class="section-intro">Self-checks demonstrate internal package consistency; they are not official acceptance, professional approval or a delivery promise. Rerun and read back all checks after every file update.</p>
+        </div>
+        <div class="grid g4">
+          <article class="card status-card"><span class="status-icon">✓</span><div><h3>Deterministic validation</h3><span class="pill pass">PASS</span></div></article>
+          <article class="card status-card"><span class="status-icon">✓</span><div><h3>Spatial review</h3><span class="pill pass">PASS</span></div></article>
+          <article class="card status-card"><span class="status-icon">✓</span><div><h3>Visual packaging</h3><span class="pill pass">PASS</span></div></article>
+          <article class="card status-card"><span class="status-icon">✓</span><div><h3>Professional evidence</h3><span class="pill pass">PASS</span></div></article>
+        </div>
+        <div class="grid g2 source-grid" style="margin-top:20px">
+          <article class="card"><h3>Ten co-creation principles</h3><p class="note"><code>charter.1–10</code>: public interest · public/cleared sources · concept boundary · AI-native mechanisms · structured and readable outputs · generation disclosure · final human judgement · public knowledge · durable credit · human-centred governance.</p></article>
+          <article class="card"><h3>Continuous participation loop</h3><p class="note">Sync main and required inputs → reread the brief/sources/Issues/PRs and selected peer work on demand → update sources, assumptions and evidence → rerender, finalize and run four-gate self-check → participant preflight and full readback → resubmit. External publication, account actions and third-party contact require human authorization.</p></article>
+        </div>
+        <div class="grid g2 source-grid" style="margin-top:20px">
+          <article class="card"><h3>Sources</h3><ul class="clean note">
+            <li><a href="../../../../brief/site-package/design_brief.json">brief/site-package/design_brief.json</a> and <a href="../../../../brief/site-package/agent_taskbook.json">agent_taskbook.json</a></li>
+            <li><a href="../../../../brief/site-package/geometry/provisional_boundaries.geojson">geometry/provisional_boundaries.geojson</a> · provisional substitute boundary</li>
+            <li><a href="../../../../data/source_registry.json">data/source_registry.json</a> · source-use boundaries</li>
+            <li><a href="../sources.json">sources.json</a>, <a href="../metrics.json">metrics.json</a> and <a href="../compliance_matrix.json">compliance_matrix.json</a></li>
+            <li>Three concept scenes were made with the OpenAI image-generation tool; the underlying model was not exposed and is recorded as unknown. The original logo has not undergone a trademark search.</li>
+            <li>The copyright statement records PDF tools, font names, embedding, licences, redistribution and viewer-compatibility boundaries; no font program with unverified rights is embedded.</li>
+          </ul></article>
+          <article class="card"><h3>Key assumptions</h3><ul class="clean note">
+            <li><b>A-BOUNDARY-001:</b> boundary is provisional; recalculate the package after official release.</li>
+            <li><b>A-CONTROLS-001:</b> regulatory controls, redlines, ownership, utilities and heritage conditions remain pending.</li>
+            <li><b>A-SCENARIOS-001:</b> scenarios, projects, events and operations are concept advice.</li>
+            <li><b>A-DATA-001:</b> only public or cleared inputs are used; generated media is explanatory.</li>
+          </ul></article>
+        </div>
+        <figure class="figure-card" style="margin-top:20px"><img src="../assets/figures/metrics-evidence.en.png" alt="Evidence graphic showing metric sources, recalculation relations, pending controls and self-check status"><figcaption><h3>Metrics and evidence chain</h3><p class="note">The figure explains how structured files produce metrics. Final judgements must return to GeoJSON, JSON and the current self-check results.</p></figcaption></figure>
+        <div class="boundary"><b>Status boundary:</b> this proposal claims no official approval, approved regulatory plan, final ownership, final construction scale, institutional participation, committed investment or delivery guarantee. Every spatial, scenario, landmark, event, regional-collaboration and operations item is concept advice, a reference scheme or material for professional teams to deepen. FAR, building heights, road redlines and performance targets remain pending.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row"><span>JZ-AI Origin Belt · COMMUNITY-DISPLAY-ONLY</span><span><a href="../proposal.en.md">Proposal</a> · <a href="../report/proposal.en.html">Offline reading edition</a> · <a href="index.html" lang="zh-CN">中文</a></span></div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,549 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_announced_approximate_value",
+      "confidence": "high",
+      "assumptions": [
+        "Approximate announced task area, not a precise GIS polygon."
+      ]
+    },
+    "official_declared_overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_announced_approximate_value",
+      "confidence": "high",
+      "assumptions": [
+        "Approximate announced task area."
+      ]
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Repository provisional rough polygon; not an official redline or statutory area."
+      ]
+    },
+    "key_area_announced_total_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "1921000 + 1043000 + 720000",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required_key_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "city_completeness_dimension_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(HOME, LEARN, CARE, MOVE, GREEN, WORK, COMMON LIFE)",
+      "confidence": "high",
+      "assumptions": [
+        "Internal proposal method, not an official project KPI."
+      ]
+    },
+    "city_completeness_segment_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(structure_zone bands excluding public_green_spine)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual work segments, not administrative communities."
+      ]
+    },
+    "land_use_feature_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_residential_sqm": {
+      "status": "known",
+      "value": 1143576.29,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0701)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual design quantity, not approved residential zoning."
+      ]
+    },
+    "land_use_community_service_sqm": {
+      "status": "known",
+      "value": 1569322.758,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0702)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual design quantity."
+      ]
+    },
+    "land_use_research_sqm": {
+      "status": "known",
+      "value": 1399509.629,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0802)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual design quantity."
+      ]
+    },
+    "land_use_cultural_sqm": {
+      "status": "known",
+      "value": 965692.382,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0803)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual design quantity."
+      ]
+    },
+    "land_use_education_sqm": {
+      "status": "known",
+      "value": 1100133.855,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0804)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual design quantity."
+      ]
+    },
+    "land_use_commercial_service_sqm": {
+      "status": "known",
+      "value": 3076821.058,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=05)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual design quantity."
+      ]
+    },
+    "land_use_park_green_sqm": {
+      "status": "known",
+      "value": 2157782.029,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=1401)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual design quantity, not approved green-space control."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2225592.728,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(proposal green-space feature areas, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual design green-space quantity."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.195008,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / submitted_provisional_site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Proposal-derived ratio only; not statutory green-space ratio."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 386029.357,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(proposal public-space feature areas, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual design quantity."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.033824,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / submitted_provisional_site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Proposal-derived ratio only."
+      ]
+    },
+    "public_space_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(civic commons features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "conceptual_building_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(conceptual building prototypes)",
+      "confidence": "high",
+      "assumptions": [
+        "Capacity/adjacency prototypes; not surveyed existing buildings."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1024945.373,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(conceptual building footprint areas, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Design-model footprints only; not approved development scale."
+      ]
+    },
+    "conceptual_total_floor_area_sqm": {
+      "status": "known",
+      "value": 4636268.713,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(conceptual footprint area * conceptual_floors)",
+      "confidence": "low",
+      "assumptions": [
+        "Design-model capacity test only; not approved total floor area."
+      ]
+    },
+    "conceptual_floor_area_ratio": {
+      "status": "known",
+      "value": 0.406233,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "conceptual_total_floor_area_sqm / submitted_provisional_site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Internal capacity-test ratio; explicitly not statutory FAR."
+      ]
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 26459.47,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(conceptual editable slow-mobility/connection centerlines, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual connections only; not road redlines."
+      ]
+    },
+    "east_west_stitch_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(ROAD-003..ROAD-008)",
+      "confidence": "high",
+      "assumptions": [
+        "Connection intentions, not confirmed engineering links."
+      ]
+    },
+    "constraints_feature_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(constraint features)",
+      "confidence": "high",
+      "assumptions": [
+        "Intentional empty layer because cleared official spatial constraints are unavailable."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "assets/figures/inclusion-burden-matrix.svg"
+      ],
+      "formula": "count(v0.6 explicit design-test personas)",
+      "confidence": "high",
+      "assumptions": [
+        "Design-test personas, not demographic statistics or survey findings."
+      ]
+    },
+    "ai_scenario_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(SCN-01..SCN-10)",
+      "confidence": "high",
+      "assumptions": [
+        "Concept scenarios."
+      ]
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(SCN-01, SCN-05, SCN-09)",
+      "confidence": "high",
+      "assumptions": [
+        "Technology, living-environment and market validation types."
+      ]
+    },
+    "flagship_pilot_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "assets/figures/flagship-pilot-protocols.svg"
+      ],
+      "formula": "count(v0.6 flagship pilot protocols)",
+      "confidence": "high",
+      "assumptions": [
+        "Concept pilot protocols for review; not approved operations or field-tested performance."
+      ]
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(Open Test Yard, City Commons Hall, Jing-Zhang Civic Station)",
+      "confidence": "high",
+      "assumptions": [
+        "Functional public-space concepts, not approved construction."
+      ]
+    },
+    "non_ai_baseline_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "scenario_cards_with_non_ai_baseline / ai_scenario_count",
+      "confidence": "high",
+      "assumptions": [
+        "Internal proposal completeness metric."
+      ]
+    },
+    "approved_floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_total_floor_area / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official polygon are unavailable."
+    },
+    "approved_building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_height_control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height controls are unavailable."
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson",
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "area(official_road_redlines)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official road redlines and verified widths are unavailable."
+    },
+    "everyday_journey_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "assets/figures/everyday-journey-sections.svg"
+      ],
+      "formula": "count of the three explicitly defined v0.7 everyday journey chains: Zhongzhiyuan, AI Origin and Dazhongsi",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "reversible_urban_form_prototype_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "assets/figures/ai-urban-form-change.svg"
+      ],
+      "formula": "count of the six explicitly defined reversible spatial interface prototypes in v0.7",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "implementation_path_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "formula": "two explicit implementation paths in v0.7: reversible low-disturbance actions and formal implementation-plan/permitting path",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "flagship_physical_prototype_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/c7-civic-station-contract.json",
+        "assets/figures/c7-civic-station-prototype.svg"
+      ],
+      "formula": "count(C7-CIVIC-STATION-01)",
+      "confidence": "high",
+      "assumptions": [
+        "Internal concept prototype; not a built asset."
+      ]
+    },
+    "preregistered_observation_slot_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/field-observation-register.json"
+      ],
+      "formula": "3 key areas * 5 preregistered observation categories",
+      "confidence": "high",
+      "assumptions": [
+        "Counts future observation slots, not completed field observations."
+      ]
+    },
+    "civic_station_operating_state_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/c7-civic-station-contract.json"
+      ],
+      "formula": "count(DAILY, CONTROLLED_TEST, AI_OFF)",
+      "confidence": "high",
+      "assumptions": [
+        "Concept operating states."
+      ]
+    }
+  }
+}

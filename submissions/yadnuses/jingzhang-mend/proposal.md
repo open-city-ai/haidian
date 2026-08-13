@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "相护京张 MEND Corridor 以「修复三种裂痕」为总概念：一条 120 米宽、全长约 9.66 公里的京张绿脊照护步道缝合铁路割裂的东西空间；众智园、AI 原点社区、大钟寺三核与两翼分别承载全栈自主硬核叙事与照护科技场景；十张以上照护场景卡让老人、儿童、残障人士与低数字素养者成为 AI 创新带的第一批受益者。全部空间、政策与投资表述均为概念建议，核心指标可从 GeoJSON 复算，控规类指标保持 unknown 并待正式数据补齐。"
 tracks: ["jingzhang-heritage-narrative", "ai-public-services", "ai-origin-community"]
 scenarios: ["ai-cultural-guide", "ai-health-service-navigation", "ai-traffic-walkability", "robot-delivery-low-speed"]
-iteration: "v0.5"
+iteration: "v0.6"
 ---
 
 # 相护京张 MEND Corridor：照护与修复的百年京张AI创新带城市设计
@@ -102,6 +102,20 @@ iteration: "v0.5"
 | agent.6 一带全球AI创新活动体系与长期运营设计 | 年度活动体系（照护者大会/修复工作坊/开发者开放日/过冬压力测试周）、「绿脊之友」长期运营机制、开发者转化路径、国际传播与招引转化 | 第十章「年度活动体系与长期运营」段、首个 90 天合同与三道评估门；compliance_matrix.json | 活动、招商、资金与政策安排均为设想，不表述为已确定的政府安排；预算只作轻/中/重定性量级（R-11） |
 
 上表与公告 17 条必选任务合计 23 条，在 `compliance_matrix.json` 中逐条挂接章节、图层、指标、图纸与自检项；表中「边界声明」列只摘最相关条款，条款全文以任务书统一边界条款为准。
+
+### 政策链呼应（国家—市级—区级，全部背景级引用）
+
+本方案的空间、机制与场景设计按「国家方向 → 市级机制 → 区级接口」三层政策链组织呼应，不把任何政策表述为对本方案的授权或支持。下表每条政策要点均为原文摘录，可检索出处与引用边界（usable_for / not_usable_for）登记于 `sources.json`（POLICY- 前缀条目）：
+
+| 政策层级 | 政策文件（文号 / 日期） | 政策要点（原文摘录） | MEND 应答 | 措辞边界 |
+| --- | --- | --- | --- | --- |
+| 国家 | 《关于深入实施"人工智能+"行动的意见》（国发〔2025〕11号，2025-08-21 印发）[source:POLICY-GUOFA-2025-11] | "充分发挥人工智能对织密人际关系、精神慰藉陪伴、养老托育助残、推进全民健身等方面的重要作用"（民生福祉行动）；"布局建设一批国家人工智能应用中试基地……完善应用试错容错管理制度"（优化应用发展环境） | 12 张照护契约卡与照护驿站网络是"人工智能+民生福祉"的落地切片；T1-T3 按"先证安全、再谈开放"组织，呼应应用中试与试错容错的方向 | 呼应《意见》倡导方向；《意见》为方向性文件，不含授权建设某设施的条款，不表述为"依据该意见获得建设安排" |
+| 市级 | 《北京人工智能创新高地建设行动计划》（北京市发改委 2026-01-05 发布）[source:POLICY-BJ-AI-HIGHLAND-2026] | 首批创新街区海淀原点社区"辐射带动区域涵盖学北园、东升三期和京张遗址公园人工智能产业创新带"；海淀区在 2026-06-10 发布会提出"高标准建设京张遗址公园AI创新带，打造世界级人工智能创新街区" [source:POLICY-BJ-FUTURE-INDUSTRY-PRESS-2026] | 本方案命名与选址依托该创新带定位：自述为"京张遗址公园人工智能产业创新带的空间深化与照护主题承载" | "入选首批创新街区"仅指原点社区（五道口）；MEND 不是街区成员，只写"依托/衔接辐射带"，不冒充街区成员 |
+| 市级 | 《北京具身智能科技创新与产业培育行动计划（2025—2027年）》（京科信发〔2025〕36号，2025-02-28 印发）[source:POLICY-BJ-EMBODIED-2025-36] | 第 10 条"建设海淀公园机器人开放训练场，搭建多场景、多任务开放物理测试环境"；第 13 条"推动具身智能机器人在养老机构示范应用" | 第六章测试验证卡 04（康复机器人社区实测）的市级合规出口之一：同域开放测试与养老助老示范应用方向 | 海淀公园训练场与 MEND 无隶属关系，不得写成"训练场即 MEND 场地"；实测安排一律以概念建议表述 |
+| 区级 | 《海淀区"人工智能+养老"三年行动计划（2026—2028年）》（海民发〔2026〕5号，2026-04-22）[source:POLICY-HD-AI-ELDER-2026-5] | "每年完成 3 个智慧养老社区试点、居家示范户智能化改造"；打通"实验室研发+数据训练+实景验证"创新链路 | "智慧养老社区试点"呼应社区照护场景卡与居家服务；"实景验证"链路对应 T1 实测的组织方式 | 呼应区级任务方向，不表述为已列入试点名单或已获区级支持 |
+| 区级 | 《海淀区城市更新导则（2025年版）》（海政发〔2025〕4号，2025-07-01 印发）[source:HAIDIAN-RENEWAL-GUIDE-2025] | "重点围绕京张铁路遗址公园沿线更新，塑造创新交往带""重点聚焦五道口和大钟寺先导区" | 绿脊照护步道与四廊道缝合结构呼应"沿线更新、塑造创新交往带"；五道口与大钟寺先导区对应原点社区核与大钟寺核 | 概念建议层级的空间呼应，不表述为已纳入更新项目库或已获立项 |
+
+上表仅作政策呼应：国家文件提供方向背景、市级文件提供机制与合规参考、区级文件提供落地接口，全案不表述为"已获政策支持""已纳入计划"或"符合 XX 要求所以可建成 XX"。注：海淀区上位文件《打造具有全球影响力的人工智能产业高地行动方案（2026—2028年）》官方印发文本未获取，本方案不标注其文号，涉及该部署时一律以"北京市部署"口径表述 [source:POLICY-BJ-AI-HIGHLAND-PLAN-2026-2028]。
 
 ### 命名体系与 Logo 方向
 
@@ -212,7 +226,9 @@ iteration: "v0.5"
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 01 AI 陪诊与挂号助手（测试验证 T2） | Nurture Station 照护驿站首站 | 转介周边医院号源与陪诊志愿者；医疗建议一律人工复核，不越界诊断、不替代挂号系统 | 街道 + 社会运营机构（社区运营专员）；预算：轻量（待测算） | 失败模式：AI 输出诊断或用药类建议、号源信息过期、人工复核缺岗——触发即停（R-09、R-10） | 人工复核签字记录、号源时效核对台账、数据处置证明 | 90 天，与第十章首站合同同步 | 电话 / 窗口人工挂号与陪诊预约、纸质登记 | 服务撤回后 24 小时内删除转介记录，转为纯人工窗口（R-09） |
 | 03 无障碍慢行导航（测试验证 T3） | 绿脊步道与四廊道 [data:geometry/roads.geojson#ROAD-001] | 路况众包 + 低侵入传感；路线建议标注「非审定交通方案」；无障碍顾问复核 | 无障碍 / 交通专业 + 公园运营方；预算：中等（待测算） | 失败模式：无障碍主链断裂、路线被误读为审定方案、路况数据代表性不足——停数字引导（R-03、R-10） | 现场审计、参与者复核、可逆修正记录 | 学期，与 T3 测试备案周期同步 | 实体导视、盲道与过街音响、人工问询点 | 测试备案到期未续即撤除测试组件，恢复普通步道（R-11） |
-| 04 康复机器人社区实测（测试验证 T1） | 众智园共享测试场至驿站路线 | 康复辅具机器人在真实社区限速实测；安全员全程陪同 | 场景运营方 + 监管部门（测试区备案与保险）；预算：轻量（待测算） | 失败模式：安全员缺岗、急停失效、限速被突破、人机混行事故——一票叫停（R-10） | 安全演练记录、故障绕行方案、保险与备案齐备 | 单次许可，每场测试前复核 | 普通步道保持开放，人工陪护走普通路线 | 测试期结束设备撤场，恢复原状（R-10、R-11） |
+| 04 康复机器人社区实测（测试验证 T1） | 众智园共享测试场至驿站路线 | 康复辅具机器人在真实社区限速实测；安全员全程陪同；合规路径与边界见本卡下方「T1 合规路径与边界」说明 | 场景运营方 + 监管部门（测试区备案与保险）；预算：轻量（待测算） | 失败模式：安全员缺岗、急停失效、限速被突破、人机混行事故——一票叫停（R-10） | 安全演练记录、故障绕行方案、保险与备案齐备 | 单次许可，每场测试前复核 | 普通步道保持开放，人工陪护走普通路线 | 测试期结束设备撤场，恢复原状（R-10、R-11） |
+
+**T1 合规路径与边界（测试验证卡 04 专用）**。北京已建立面向具身智能的开放测试平台与养老机构示范应用机制（京科信发〔2025〕36号第 10 条部署"建设海淀公园机器人开放训练场，搭建多场景、多任务开放物理测试环境"、第 13 条部署"推动具身智能机器人在养老机构示范应用"）[source:POLICY-BJ-EMBODIED-2025-36]，并将智慧健康养老试点示范、产品推广目录作为国家推广通道（工信部联电子〔2021〕154号、国办发〔2024〕1号）[source:POLICY-GONGBU-2021-154] [source:POLICY-GUOBAN-2024-1]；本场景建议按"实验室研发—数据训练—实景验证"链条组织测试（海民发〔2026〕5号）[source:POLICY-HD-AI-ELDER-2026-5]，遵循分阶段、小规模、包容审慎的测试原则。边界声明：本场景为园区/社区内低速康复服务机器人，不属于《北京市自动驾驶汽车条例》所称"自动驾驶汽车"（机动车上路通行），该条例不适用于本场景 [source:POLICY-BJ-AD-CAR-REGULATION]；此处引用条例仅取北京对智能运载器分级测试的监管取向作方法参考。以上均为背景级衔接与概念建议，不表述为已取得测试许可或已纳入示范名单。
 
 **照护服务与公共体验卡（其余 9 张）**
 
@@ -243,6 +259,8 @@ iteration: "v0.5"
 用地布局见第四章结构表，本节聚焦建筑与拆改留。建筑图层表达 423 栋示意建筑基底，落在 0701/0702/05/0802/0803/0804 单元内，按用地映射功能类型，单元覆盖率封顶 10%-16% [data:geometry/buildings.geojson#BLDG-001] [metric:building_footprint_area_sqm]；基底合计 846000.0 平方米，方案基底覆盖率 0.074127 [metric:design_site_coverage_ratio]——该值是方案示意值，**不是控规建筑密度**，两者严格区分。
 
 拆改留分类只给方法、不给结论 [depth:retain_renovate_demolish]：建议按「保留利用 / 改造提升 / 更新重建 / 待确认」四级分类框架深化，但现状建筑轮廓、高度、用途、建成年代与宗地权属均缺失（对应 GAP-BUILDING-001、GAP-PARCEL-001），任何具体建筑的保留或拆除判断都不得在本方案中作出。建筑高度、体量、屋顶形态与界面只作风貌方向性引导 [depth:height_massing_character]。
+
+拆改留表述坚持「保护第一、应保尽保、以用促保」原则（中办发〔2025〕34号确立）[source:POLICY-ZFBAN-2025-34]：对京张沿线历史遗存相关判断，先行落实「老城不能再拆」「先调查后建设」「禁止拆真建假」等约束，只作保护性利用建议；一般存量用房按「功能转换、混合利用」方向叙述，本方案不出现拆除、重建或改造历史建筑的表述。
 
 控规类指标全部保持 unknown：容积率 [metric:floor_area_ratio]、建筑高度控制 [metric:building_height_control_m]、建筑密度控制 [metric:building_density_control] 在公开场地包中标记为 missing，本方案不给数值结论；待正式控规条件补齐后重算 [depth:development_intensity_controls]。
 
@@ -440,13 +458,24 @@ iteration: "v0.5"
 8. 国家网信办等：《生成式人工智能服务管理暂行办法》，2023。
 9. 场地资料包 `brief/site-package/`：设计任务书、枚举、限值、schema 与 provisional 几何。
 
+**政策文件（全部背景级，不升级为依据）**：
+10. 国务院：《关于深入实施"人工智能+"行动的意见》（国发〔2025〕11号），2025。
+11. 北京市发展和改革委员会：《北京人工智能创新高地建设行动计划》，2026-01-05 发布。
+12. 北京市科委中关村管委会、市发改委、市经济和信息化局：《北京具身智能科技创新与产业培育行动计划（2025—2027年）》（京科信发〔2025〕36号），2025。
+13. 中共中央办公厅、国务院办公厅：《关于持续推进城市更新行动的意见》（中办发〔2025〕34号），2025。
+14. 国务院办公厅：《关于发展银发经济增进老年人福祉的意见》（国办发〔2024〕1号），2024。
+15. 工业和信息化部、民政部、国家卫生健康委：《智慧健康养老产业发展行动计划（2021—2025年）》（工信部联电子〔2021〕154号），2021。
+16. 北京市海淀区人民政府：《海淀区"人工智能+养老"三年行动计划（2026—2028年）》（海民发〔2026〕5号），2026。
+17. 北京市海淀区人民政府：《海淀区城市更新导则（2025年版）》《海淀区城市更新实施指引（2025年版）》（海政发〔2025〕4号），2025。
+18. 北京市人民代表大会常务委员会：《北京市自动驾驶汽车条例》，2024（2025-04-01 施行）。
+
 **学术文献（全部背景级，不升级为依据）**：
-10. Tang J, et al. Human mobility dynamics for cost-effective flood emergency resource allocation. *Nature Sustainability*, 2026.（平急两用功能叠加的方法启示）
-11. Liu Y, Thang LL, Zhang Y. Can age-friendly and child-friendly urban public spaces be integrated? *Urban Studies*, 2026.（老幼共融画像与空间响应）
-12. Sun Y, et al. Accessibility evaluation of urban basic public service facilities for people with disabilities in Beijing. *Geospatial Health*, 2026.（T3 无障碍导航同城研究）
-13. Peng J, et al. Study on the optimal allocation of public service facilities from the perspective of life circle. *Journal of Urban Management*, 2023.（2SFCA 设施供需方法思路）
-14. Ehlenz MM. Neighborhood revitalization and the anchor institution. *Urban Affairs Review*, 2016.（原点社区近校型锚定案例）
-15. Borsi K, Schulte C. Universities and the City: From islands of knowledge to districts of innovation. *The Journal of Architecture*, 2018.（King's Cross 校区-社区缝合案例）
-16. World Health Organization. Global Age-friendly Cities: A Guide — Checklist of Essential Features. 2007.（老年友好城市特征清单）
+19. Tang J, et al. Human mobility dynamics for cost-effective flood emergency resource allocation. *Nature Sustainability*, 2026.（平急两用功能叠加的方法启示）
+20. Liu Y, Thang LL, Zhang Y. Can age-friendly and child-friendly urban public spaces be integrated? *Urban Studies*, 2026.（老幼共融画像与空间响应）
+21. Sun Y, et al. Accessibility evaluation of urban basic public service facilities for people with disabilities in Beijing. *Geospatial Health*, 2026.（T3 无障碍导航同城研究）
+22. Peng J, et al. Study on the optimal allocation of public service facilities from the perspective of life circle. *Journal of Urban Management*, 2023.（2SFCA 设施供需方法思路）
+23. Ehlenz MM. Neighborhood revitalization and the anchor institution. *Urban Affairs Review*, 2016.（原点社区近校型锚定案例）
+24. Borsi K, Schulte C. Universities and the City: From islands of knowledge to districts of innovation. *The Journal of Architecture*, 2018.（King's Cross 校区-社区缝合案例）
+25. World Health Organization. Global Age-friendly Cities: A Guide — Checklist of Essential Features. 2007.（老年友好城市特征清单）
 
 完整机器可读索引以 `sources.json` 与三个矩阵文件为准，本节不复制文件清单；书目入口的登记与许可边界以场地包与资料登记表为准 [source:SITE-PACKAGE] [source:SOURCE-REGISTRY]。

@@ -15,6 +15,26 @@ iteration: "v0.4"
 
 # JINGZHANG MAINLINE — Urban Renewal, Delivered as Pull Requests for the First Time
 
+## First Screen: One Memorable Proposition
+
+**"Merge must be reversible."** JINGZHANG MAINLINE treats urban renewal as a continuously evolving city mainline: every time AI merges in, it must first prove ordinary no-AI service works (baseline), pass an unplug test (exit), and leave a public dividend usable without models, accounts, or network after exit (bequest). The open-source collaboration semantics answer "how to make renewal public, reversible, and auditable"; the verifiable public semantics answer "what remains of the city after AI departs, and who is responsible".
+
+> **Honest enum for this project: not authorized · not field-run / 未获授权 · 未现场运行.** All spatial proposals and scenarios are conceptual suggestions or signable mechanisms, not confirmed government arrangements; live performance remains unknown.
+
+## Reviewer Question Table (first screen)
+
+| Review dimension | One-sentence answer (memorable judgment) | Evidence anchor |
+| --- | --- | --- |
+| Taskbook alignment | Directly addresses "Centennial Jing-Zhang + Haidian + AI innovation belt + urban governance"; three positionings / five functions / three areas two wings mapped item by item | three-level scope table + compliance_matrix |
+| Originality | Unique "urban renewal as Pull Requests" metaphor + "Merge must be reversible" double-track proposition | executive summary + mainline-pipeline.json |
+| AI≈planning innovation | Each AI scenario has a four-part contract (no-AI baseline / AI gain / immediate exit / exit dividend), backed by governance roles RACI | mainline-contracts.json + mainline-raci.json |
+| Implementability | Project G0–G7 × scenario C0–C7 dual gates + 12 scenarios × 5-branch synthetic tabletop + 8-state machine | mainline-gates.json + mainline-tabletop.json + mainline-state-machine.json |
+| Public interest | Offline public-dividend safety net—walk, rest, and ask without AI; accessibility and vulnerable groups prioritized | public-interest chapter [source:AGENT-TASKBOOK] |
+| Risk & compliance | Hard-stop conditions (no-AI path / no human / cannot unplug / sensitive-data overreach / dividend without owner) ; live performance stays unknown | risk.json + compliance chapter |
+| Expression completeness | Bilingual proposal + 5 figures + 2 HTML + 6 machine evidence assets, all recheckable | submission package + visual + machine assets |
+
+> Note: the table is for quick orientation; per-dimension evidence is detailed in each chapter and `compliance_matrix.json`. All conceptual suggestions are consistently marked "not authorized · not field-run"; nothing is fabricated as approved or committed to implementation.
+
 ## Executive Summary and the Double-Track Verification Proposition
 
 The Jing-Zhang Railway, built 1905–1909, was the first trunk railway independently designed and constructed by Chinese engineers. v0.4 re-reads this century-old mainline as **one city mainline with two operating semantics**: the **open-source collaboration semantics**—urban renewal flows like commit, review, and merge: public, traceable, and reversible; and the **verifiable public semantics**—before any AI scenario merges into the mainline, it must first prove that ordinary no-AI service still works, pass an unplug test, and leave the public a dividend that remains usable after the technology departs.
@@ -22,6 +42,8 @@ The Jing-Zhang Railway, built 1905–1909, was the first trunk railway independe
 One-line proposition: **"Merge must be reversible."** Every time we merge AI into the city, we must first answer: who can still do what without AI; what AI adds or removes; who can unplug; what remains after unplug; and who maintains it. Accordingly, v0.4 introduces the **five-stage mainline acceptance chain**: `COMMIT proposal → MERGE review → LIVE gray rollout → BLACKOUT unplug drill → LEGACY dividend archiving`. No scenario enters gray rollout without its no-AI baseline; nothing upgrades without passing an unplug drill; nothing claims success if no usable dividend remains after exit.
 
 <span style="color:#888">▶ Positioning note: this strengthens, not replaces, the open-source metaphor. The open-source metaphor answers "how to make urban renewal public, reversible, and auditable"; double-track verification answers what reviewers care most about—"what remains of the city after AI departs, and who is responsible". Together they make the mainline a long-term evolvable, genuinely implementable city mainline.</span>
+
+v0.5 moves the double-track verification from "conceptual statements" into a set of **machine-recheckable evidence assets**: the 12-scenario four-part contracts (`mainline-contracts.json`), the five-stage mainline acceptance chain (`mainline-pipeline.json`), the project/scenario dual gates (`mainline-gates.json`), the 8-state governance state machine (`mainline-state-machine.json`), the governance roles/RACI (`mainline-raci.json`), the synthetic tabletop (`mainline-tabletop.json`), and the hard-stop conditions (`risk.json`)—each directly readable, countable, and reviewable by professional and operations teams, forming an auditable evidence surface for both "implementability" and "expression completeness" [metric:machine_evidence_asset_count] [metric:machine_contract_count].
 
 ## Design Basis and Source Inventory
 
@@ -167,7 +189,7 @@ The three key areas are the three Merge nodes of the mainline, themed as trainin
 
 Each card's location, users, operating data, privacy boundary, human review, operator, and risk are recorded in the agent.3 entry of `compliance_matrix.json`. All scenarios are **conceptual suggestions or reference schemes for professional teams to deepen**—not confirmed government arrangements [source:AGENT-TASKBOOK]. AI scenarios follow data minimization, explainability, and human review, referencing generative-AI requirements [standard:GENERATIVE-AI-INTERIM-MEASURES].
 
-Each scenario card is completed with a **four-part verifiable contract** (conceptual) defining its implementability boundary: `no-AI baseline` (how the ordinary service works before AI) → `AI gain` (what AI adds) → `immediate-exit condition` (when it must be unplugged) → `exit dividend` (what remains after unplug, and who maintains it).
+Each scenario card is completed with a **four-part verifiable contract** (conceptual) defining its implementability boundary: `no-AI baseline` (how the ordinary service works before AI) → `AI gain` (what AI adds) → `immediate-exit condition` (when it must be unplugged) → `exit dividend` (what remains after unplug, and who maintains it). The full set is landed as a machine-readable asset `visual/assets/mainline-contracts.json` (12 scenarios, each with baseline/boost/blackout/bequest fields, allowed/prohibited data, governance roles, and unplug action) for direct professional and operations recheck [data:visual/assets/mainline-contracts.json] [metric:machine_contract_count].
 
 | Scenario | No-AI baseline | AI gain | Immediate-exit condition | Exit dividend (retained/maintained) |
 | --- | --- | --- | --- | --- |
@@ -260,15 +282,19 @@ Project types, lead parties, key indicators, and dependencies below are **concep
 
 To turn a "concept list" into an "implementable path", v0.4 introduces two independent gates. The **project-maturity gate (G0–G7)** decides whether a project can bear spatial, professional, and long-term operating responsibility: `G0 concept-only → G1 official boundary & ownership confirmed → G2 current-condition and special surveys → G3 professional scheme → G4 pilot authorization & budget → G5 phased go-live → G6 stable operation → G7 retrospective archived`. The **scenario-admission gate (C0–C7)** decides whether a given AI scenario may enter trial: `C0 raise problem → C1 define data source & boundary → C2 pass no-AI-baseline self-check → C3 pass synthetic/shadow simulation → C4 unplug-scheme review → C5 mandatory exit drill → C6 gray go-live → C7 dividend archived`.
 
-Project maturity does not mean its AI scenarios can launch; one scenario passing does not vouch for another. Any project or scenario that has not proven a usable no-AI ordinary path at `C2` is barred from gray rollout (concept no-merge gate). Each project-row gains a "default action on failure": when it cannot progress it defaults to preserving the status quo, isolating risk, and publicly disclosing the gap—never masking unresolved conditions with "keep building" [assumption:A-GATES-001].
+Project maturity does not mean its AI scenarios can launch; one scenario passing does not vouch for another. Any project or scenario that has not proven a usable no-AI ordinary path at `C2` is barred from gray rollout (concept no-merge gate). Each project-row gains a "default action on failure": when it cannot progress it defaults to preserving the status quo, isolating risk, and publicly disclosing the gap—never masking unresolved conditions with "keep building" [assumption:A-GATES-001] [data:visual/assets/mainline-gates.json].
+
+### The Five-Stage Mainline Acceptance Chain (open-source PR ↔ verifiable public, dual semantics)
+
+v0.5 quantifies double-track verification into a five-stage mainline acceptance chain, landed as `visual/assets/mainline-pipeline.json` [data:visual/assets/mainline-pipeline.json]: `COMMIT proposal → MERGE review → LIVE gray rollout → BLACKOUT unplug drill → LEGACY dividend archiving`. Each stage pairs its **open-source semantics** (issue/PR/review/merge/revert/archive) with its **verifiable public semantics** (no-AI baseline, four-part contract, unplug drill, dividend audit), making "reversible merge" both a governance commitment and an actionable, recheckable acceptance step [metric:pipeline_stage_count].
 
 ### Reproducible Synthetic Tabletop Simulation (conceptual evidence, not live performance)
 
-To make "implementable" visible and reviewable, v0.4 provides a purely switch-style synthetic table `visual/assets/mainline-tabletop.json` (sample synthetic data; no real individuals sampled). It runs 5 branches for each of the 12 scenario cards: **no no-AI baseline / no human review / no unplug capability / no exit dividend / forbidden data present**. Any missing branch is marked `blocked` and may not advance; only the 12 "dividend usable after exit" branches enter `bequest` archiving. The result is a reproducible check of contract logic—**not real device, personnel, or site performance**; live indicators stay `unknown` until licensed, methoded, sampled, and reviewed [assumption:A-TABLETOP-001].
+To make "implementable" visible and reviewable, v0.4 provides a purely switch-style synthetic table `visual/assets/mainline-tabletop.json` (sample synthetic data; no real individuals sampled). It runs 5 branches for each of the 12 scenario cards: **no no-AI baseline / no human review / no unplug capability / no exit dividend / forbidden data present**. Any missing branch is marked `blocked` and may not advance; only the 12 "dividend usable after exit" branches enter `bequest` archiving. The result is a reproducible check of contract logic—**not real device, personnel, or site performance**; live indicators stay `unknown` until licensed, methoded, sampled, and reviewed (honest enum: not authorized · not field-run / 未获授权 · 未现场运行) [assumption:A-TABLETOP-001].
 
 ### Governance State Machine and Audit Independence (conceptual)
 
-A scenario's life-cycle on the mainline uses an 8-state machine: `proposed → reviewed → staged → live → degraded → blackout_drill → retained / removed_archived`, where `blackout_drill` (exit drill) and `retained` (dividend audit) cannot be skipped. **Audit-independence principle**: an operator cannot sign off its own go-live dividend; exit decisions must be co-reviewed by a named maintainer, an independent assessor, and affected public parties. Paper, telephone, manned counter, and on-site reversible gates together form the "stop channel", ensuring no unplug is one-way or decided unilaterally by the technologist [assumption:A-GOVERNANCE-001].
+A scenario's life-cycle on the mainline uses an 8-state machine: `proposed → reviewed → staged → live → degraded → blackout_drill → retained / removed_archived`, where `blackout_drill` (exit drill) and `retained` (dividend audit) cannot be skipped. **Audit-independence principle**: an operator cannot sign off its own go-live dividend; exit decisions must be co-reviewed by a named maintainer, an independent assessor, and affected public parties. Paper, telephone, manned counter, and on-site reversible gates together form the "stop channel", ensuring no unplug is one-way or decided unilaterally by the technologist [assumption:A-GOVERNANCE-001]. The state machine, transitions, and role mapping are landed as `visual/assets/mainline-state-machine.json` [data:visual/assets/mainline-state-machine.json]; the governance roles/RACI (mainline steward, site operations, safety & unplug authority, data/privacy, accessibility, heritage, traffic, government service, education, health, community, open-source community) are in `visual/assets/mainline-raci.json` [data:visual/assets/mainline-raci.json] [metric:governance_state_count] [metric:weak_presence_of_governance].
 
 ### Phasing and Conceptual Milestones
 
@@ -284,7 +310,7 @@ Core indicators (full 25 in `metrics.json`): overall design area 1141.3 ha [metr
 
 ![Core metrics and evidence chain](assets/figures/metrics-evidence.png)
 
-`compliance_matrix.json` covers 23 mandatory tasks—announcement 1.3 (3), 1.4 (3), 1.5 (8), and agent tasks agent.1–agent.6—each mapped to report sections, layers, metrics, drawings, HTML, and sources; `standard_matrix.json` covers 6 locally snapshotted standards (5 mandatory); `design_depth_matrix.json` marks all 15 depth items complete [depth:metrics_recalculation]. Three indicator tiers: spatial indicators recalculated from geometry; regulatory indicators pending official controls; performance indicators (AI innovation index, talent density, event participation) calibrated during operation—operational visions are not presented as approved planning conditions.
+`compliance_matrix.json` covers 23 mandatory tasks—announcement 1.3 (3), 1.4 (3), 1.5 (8), and agent tasks agent.1–agent.6—each mapped to report sections, layers, metrics, drawings, HTML, and sources; `standard_matrix.json` covers 6 locally snapshotted standards (5 mandatory); `design_depth_matrix.json` marks all 15 depth items complete [depth:metrics_recalculation]. Three indicator tiers: spatial indicators recalculated from geometry; regulatory indicators pending official controls; performance indicators (AI innovation index, talent density, event participation) calibrated during operation—operational visions are not presented as approved planning conditions. **Honest enum: not authorized · not field-run / 未获授权 · 未现场运行**—performance and live outcomes stay unknown until licensed, methoded, sampled, and reviewed; no estimates are fabricated.
 
 ## Risk, Copyright, and Compliance
 

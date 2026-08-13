@@ -219,6 +219,187 @@
       "assumptions": [
         "A-OPERATIONS-001"
       ]
-    }
+    },
+    "complete_task_step_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/complete_task_receipt.json"
+      ],
+      "formula": "count(spatial_sequence)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "startup_cost_line_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/implementation_playbook.json"
+      ],
+      "formula": "count(startup_cost_ledger.lines)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DELIVERY-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "stop_drill_category_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/day_one_operations_drill.json"
+      ],
+      "formula": "count(five_stop_drills)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DELIVERY-001"
+      ]
+    },
+  "priced_startup_cost_line_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/implementation_playbook.json"
+      ],
+      "formula": "count(startup_cost_ledger.lines where monetary price is backed by an authorized scope and comparable quotes)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-DELIVERY-001",
+        "A-OPERATIONS-001"
+      ],
+    "reason": "No pilot site, opening schedule, accountable buyer, or comparable quote set is authorized in this submission."
+  },
+  "preopening_synthetic_case_count": {
+    "status": "known",
+    "value": 90,
+    "unit": "synthetic_case",
+    "source_files": [
+      "visual/assets/preopening-rehearsal.json"
+    ],
+    "formula": "12 task contracts * (1 complete fixture + 6 one-field-removed fixtures) + 6 declared fault-card fixtures",
+    "confidence": "high",
+    "assumptions": [],
+    "claim_boundary": "Offline synthetic rule checks only; no field or service performance."
+  },
+  "preopening_expected_match_count": {
+    "status": "known",
+    "value": 90,
+    "unit": "synthetic_case",
+    "source_files": [
+      "visual/assets/preopening-rehearsal.json"
+    ],
+    "formula": "count(synthetic cases where actual_door_decision equals expected_door_decision)",
+    "confidence": "high",
+    "assumptions": [],
+    "claim_boundary": "A matched synthetic decision is not a successful field outcome."
+  },
+  "preopening_missing_case_blocked_count": {
+    "status": "known",
+    "value": 72,
+    "unit": "synthetic_case",
+    "source_files": [
+      "visual/assets/preopening-rehearsal.json"
+    ],
+    "formula": "12 task contracts * 6 required fields removed one at a time",
+    "confidence": "high",
+    "assumptions": [],
+    "claim_boundary": "Synthetic contract omissions only."
+  },
+  "preopening_fault_case_blocked_count": {
+    "status": "known",
+    "value": 6,
+    "unit": "synthetic_case",
+    "source_files": [
+      "visual/assets/preopening-rehearsal.json",
+      "visual/assets/day_one_operations_drill.json"
+    ],
+    "formula": "count(declared fault cards whose injected fixture blocks AI opening)",
+    "confidence": "high",
+    "assumptions": [
+      "A-DELIVERY-001"
+    ],
+    "claim_boundary": "The fault cards were evaluated offline and were not performed on site."
+  },
+  "works_bay_design_area_sqm": {
+    "status": "known",
+    "value": 28.8,
+    "unit": "sqm",
+    "source_files": [
+      "visual/assets/works_bay_prototype.json"
+    ],
+    "formula": "6.0 m trial width * 4.8 m trial depth",
+    "confidence": "high_for_design_trial_only",
+    "assumptions": [
+      "A-ACCESS-001",
+      "A-DELIVERY-001"
+    ],
+    "claim_boundary": "A trial-assembly envelope, not a measured site area or compliance result."
+  },
+  "works_bay_spatial_zone_count": {
+    "status": "known",
+    "value": 6,
+    "unit": "count",
+    "source_files": [
+      "visual/assets/works_bay_prototype.json"
+    ],
+    "formula": "count(spatial_sequence)",
+    "confidence": "high",
+    "assumptions": [],
+    "claim_boundary": "Design zones in an unbuilt trial assembly."
+  },
+  "works_bay_operating_state_count": {
+    "status": "known",
+    "value": 4,
+    "unit": "count",
+    "source_files": [
+      "visual/assets/works_bay_prototype.json"
+    ],
+    "formula": "count(operating_states)",
+    "confidence": "high",
+    "assumptions": [],
+    "claim_boundary": "Proposed operating states; no venue or operator is confirmed."
+  },
+  "bilingual_audited_pair_count": {
+    "status": "known",
+    "value": 14,
+    "unit": "artifact_pair",
+    "source_files": [
+      "visual/assets/bilingual_equivalence_audit.json"
+    ],
+    "formula": "count(items where all authored semantic checks are aligned)",
+    "confidence": "high_for_author_audit_only",
+    "assumptions": [],
+    "claim_boundary": "Author-performed semantic audit; independent translation review and public comprehension testing are incomplete."
+  },
+  "juror_path_page_count": {
+    "status": "known",
+    "value": 16,
+    "unit": "page",
+    "source_files": [
+      "visual/assets/juror_reading_path.json",
+      "drawings/a3-booklet.pdf",
+      "drawings/a3-booklet.en.pdf"
+    ],
+    "formula": "count(juror_reading_path.pages)",
+    "confidence": "high",
+    "assumptions": [],
+    "claim_boundary": "Navigation coverage, not a score or proof that a juror understood the package."
+  },
+  "paper_result_required_field_count": {
+    "status": "known",
+    "value": 7,
+    "unit": "field",
+    "source_files": [
+      "visual/assets/complete_task_receipt.json"
+    ],
+    "formula": "count(paper_result_contract.required_fields)",
+    "confidence": "high_for_blank_template_only",
+    "assumptions": [],
+    "claim_boundary": "Fields in a blank paper-result template; no real receipt has been issued."
   }
+}
 }

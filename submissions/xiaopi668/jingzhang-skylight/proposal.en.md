@@ -14,13 +14,15 @@ iteration: "v1.0"
 
 # JINGZHANG SKYLIGHT LINE / 京张天窗带
 
-> **Trade the obsession with "always online" for the confidence of "able to stop".** A century of the Jing-Zhang Railway taught cities one thing: safety does not come from equipment that never stops, but from maintenance that never skips a beat. As AI enters urban public space, this proposal translates the railway's century-old "sky light" (maintenance window) institution - scheduled shutdown, inspection, and restoration - into expected, take-over-able, and rollback-able maintenance windows for every class of AI service. The belt becomes both a showcase of the global AI industry and a public laboratory for how AI responsibly enters the city.
+> **Trade the obsession with "always online" for the confidence of "able to stop".**
+>
+> **ONE LINE, ONE WINDOW — NO WINDOW, NO DEPLOYMENT.** One line, one window; no window, no deployment. A century of the Jing-Zhang Railway taught cities one thing: safety does not come from equipment that never stops, but from maintenance that never skips a beat. As AI enters urban public space, this proposal translates the railway's century-old "sky light" (maintenance window) institution - scheduled shutdown, inspection, and restoration - into expected, take-over-able, and rollback-able maintenance windows for every class of AI service. The belt becomes both a showcase of the global AI industry and a public laboratory for how AI responsibly enters the city.
 
 ## Executive Summary
 
-The Jing-Zhang Railway was the first trunk railway designed and built independently by China. When it opened in 1909, its famous zigzag (人字形) alignment conquered the Guanguo grade; more than a century later, its heritage corridor is being rewritten as a roughly 9 km urban green corridor and AI innovation belt [source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT]. Public attention often asks "where is AI installed?" This proposal asks a deeper question: **when an AI service needs repair, upgrade, correction, or retirement, has the city reserved the time, space, and institution for it?** The answer is to bring the railway's century-old "sky light" institution into AI city governance.
+The Jing-Zhang Railway was the first trunk railway designed and built independently by China. When it opened in 1909, its famous zigzag (人字形) alignment conquered the Guanguo grade [source:SRC-1909-JINGZHANG-RAILWAY-HISTORY]; more than a century later, its heritage corridor is being rewritten as a roughly 9 km urban green corridor and AI innovation belt [source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT]. Public attention often asks "where is AI installed?" This proposal asks a deeper question: **when an AI service needs repair, upgrade, correction, or retirement, has the city reserved the time, space, and institution for it?** The answer is to bring the railway's century-old "sky light" institution into AI city governance.
 
-In railway practice, the "sky light" (天窗) is the scheduled no-traffic window reserved for track and equipment maintenance - the cornerstone of railway safety: stop periodically so the line can run for the long term [source:SRC-2026-BJ-KW-THREE-AREAS-WINGS]. This proposal translates the institution in three ways - **railway maintenance window** (inspection discipline), **architectural skylight** (light entering public space), and **AI maintenance window** (model downtime, human takeover, data rollback) - to form the "Jingzhang Skylight Line": a north-south skylight spine greenway, three key areas each hosting one window prototype (Test / Commons / Service), and two wings forming a loop of factors and scenarios.
+In railway practice, the "sky light" (天窗) is the scheduled no-traffic window reserved for track and equipment maintenance - the cornerstone of railway safety: stop periodically so the line can run for the long term [source:SRC-2026-BJ-KW-THREE-AREAS-WINGS] [source:SRC-2021-NRA-CONSTRUCTION-SAFETY]. National railway regulations require that "infrastructure is maintained in skylight windows" and that "all maintenance affecting equipment use is performed within a skylight" [source:SRC-2007-RAILWAY-TECHNICAL-MANAGEMENT]. This proposal translates the institution in three ways - **railway maintenance window** (inspection discipline), **architectural skylight** (light entering public space), and **AI maintenance window** (model downtime, human takeover, data rollback) - to form the "Jingzhang Skylight Line": a north-south skylight spine greenway, three key areas each hosting one window prototype (Test / Commons / Service), and two wings forming a loop of factors and scenarios.
 
 The spatial skeleton is "**one spine, three windows, two wings**" [data:geometry/land_use.geojson#LU-001] [data:geometry/green_space.geojson#GREEN-001]: the skylight spine is a roughly 9.5 km, ~200 m wide north-south park greenway connecting three key areas and twelve skylight activity nodes [metric:skylight_spine_length_m]. The three key areas follow the announced polygons - Zhongzhiyuan (~192 ha), AI Origin Community (~104 ha), Dazhongsi (~72 ha) [metric:zhongzhiyuan_area_sqm] [metric:ai_origin_community_area_sqm] [metric:dazhongsi_area_sqm] - hosting full-stack validation, open-source co-creation, and native-AI business respectively. The two wings connect Zhongguancun factor allocation and the Xiaoyue River scenario empowerment into the spine. All spatial conclusions are concept suggestions on provisional boundaries, subject to professional deepening [data:geometry/site_boundary.geojson#SITE-001] [assumption:A-BOUNDARY-001].
 
@@ -32,7 +34,7 @@ Implementation proceeds in three steps: near-term pilots of "Test/Commons/Servic
 
 ## Design Basis and Source Inventory
 
-The proposal is organized on four layers of materials: first, the qualification pre-announcement defining the three scopes, tasks, and deliverable depth [source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT]; second, the agent open-call taskbook defining the three positions, five functions, three areas and two wings, and six agent tasks [source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]; third, the repository site package enumerations, metrics, source registry, and provisional geometry [source:SRC-PROVISIONAL-BOUNDARIES-2026]; fourth, public policies and international cases from which only transferable mechanisms are extracted, without transplanting specific values or institutions [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
+The proposal is organized on four layers of materials: first, the qualification pre-announcement defining the three scopes, tasks, and deliverable depth [source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT]; second, the agent open-call taskbook defining the three positions, five functions, three areas and two wings, and six agent tasks [source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]; third, the repository site package enumerations, metrics, source registry, and provisional geometry [source:SRC-PROVISIONAL-BOUNDARIES-2026]; fourth, public policies and international cases from which only transferable mechanisms are extracted, without transplanting specific values or institutions [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]. All spatial data are programmatically generated by this proposal; no OSM or third-party basemaps are used, so there is no ODbL licensing burden [source:SRC-OSM-COPYRIGHT].
 
 | Data status | This proposal may | This proposal never | Pending data |
 |---|---|---|---|
@@ -63,7 +65,7 @@ The three levels are not three unrelated drawings but a transmission chain of on
 
 ### Naming and Visual Identity Direction
 
-The primary name is proposed as "**京张天窗带 / JINGZHANG SKYLIGHT LINE**", with the English name emphasizing the double meaning of "skylight" - an architectural light aperture and a maintenance/management "window". The naming system has three layers [source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]:
+On the cultural narrative, the Skylight Line fuses "the centennial Jing-Zhang heritage, Zhongguancun culture, and the new AI culture" into one thread: railway maintenance history provides the institutional prototype (Zhan Tianyou created possibility out of scarcity with the zigzag alignment and shaft-mining method [source:SRC-2025-BJD-RAILWAY-REVIEW]), Zhongguancun innovation history provides the spiritual prototype, and the AI maintenance log constitutes the contemporary narrative - all sharing the common motif of "being able to stop" [agent.5]. At Qinglongqiao station, the zigzag "人" alignment and the "大"-shaped Jing-Zhang high-speed railway intersect - history and future salute each other in a special way [source:SRC-2023-CSSN-RAILWAY-REVIVAL]. The primary name is proposed as "**京张天窗带 / JINGZHANG SKYLIGHT LINE**", with the English name emphasizing the double meaning of "skylight" - an architectural light aperture and a maintenance/management "window". The naming system has three layers [source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]:
 
 - Belt level: JINGZHANG SKYLIGHT LINE, the unified carrier of the centennial heritage belt, the urban AI living-experience belt, and the AI-integrated innovation belt;
 - Window prototypes: Test Window (联试天窗), Commons Window (共修天窗), Service Window (服务天窗), mapped to the three key areas;
@@ -79,11 +81,11 @@ The logo direction uses "an opening skylight" as the motif: an upward-opening tr
 | Urban AI living-experience belt | Daily experience where AI can stop, be taken over, and roll back | Intelligent vibrant AI city |
 | AI-integrated innovation belt | The Skylight Protocol as industry test and scenario-open mechanism | Full-stack autonomous innovation, world-class ecosystem, AI+ scenario paradigm |
 
-Three-areas-two-wings loop: Zhongzhiyuan (full-stack autonomy + governance voice) → AI Origin Community (world-class innovation ecosystem) → Dazhongsi (native-AI businesses), while the Zhongguancun Tech-Service Wing (global factor allocation, IP and capital empowerment) and the Xiaoyue River Scenario Wing (scenario opening and vibrant city) connect into the spine, forming a closed loop of "source innovation - factor services - scenario validation - business landing" [source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK].
+Three-areas-two-wings loop: Zhongzhiyuan (full-stack autonomy + governance voice) → AI Origin Community (world-class innovation ecosystem) → Dazhongsi (native-AI businesses), while the Zhongguancun Tech-Service Wing (global factor allocation, IP and capital empowerment) and the Xiaoyue River Scenario Wing (scenario opening and vibrant city) connect into the spine, forming a closed loop of "source innovation - factor services - scenario validation - business landing" [source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]. This framework echoes Haidian's "first global AI innovation street" and "AI full-scene empowerment first city" goals [source:SRC-2025-HAIDIAN-GOV-REPORT] [source:SRC-2024-ZGC-AI-FULL-SCENE-PLAN], with the national ZGC world-leading science-park plan as background [source:SRC-2024-ZGC-WORLD-LEADING-PARK]; Haidian hosts over 1,000 AI enterprises, two-thirds of the city's total, supporting the two wings' factor allocation [source:SRC-2025-21ECON-ZGC-DEVELOPMENT] [source:SRC-2024-HAIDIAN-AI-MEASURES].
 
 ### Global AI Innovation Ecosystem Cases (6)
 
-The following cases extract only transferable mechanisms; foreign values or institutions are not transplanted as Beijing standards [agent.2]:
+The following cases extract only transferable mechanisms; foreign values or institutions are not transplanted as Beijing standards [agent.2], including the EU AI Act's risk-tiered approach (prohibited/high-risk/limited-risk) as an international reference for this proposal's green/yellow/red grading [source:SRC-2024-EU-AI-ACT]:
 
 1. **Punggol Digital District, Singapore**: from planning, introduced digital twin + open platform, validating "mechanism first, physical later" - corresponding to this proposal's "protocol before device launch" admission mechanism.
 2. **Quayside, Toronto (as revised)**: data-governance and privacy controversy teaches that public-space AI must be explainable and exitable - corresponding to the "data minimization + human takeover" clause.
@@ -103,7 +105,7 @@ The overall design area is about 11.4 km², currently dominated by universities,
 - **Two wings**: the Zhongguancun Tech-Service Wing and the Xiaoyue River Scenario Wing, stitched to the spine via cross links and nodes [data:geometry/roads.geojson#ROAD-001].
 - **Twelve nodes**: six public activity nodes along the spine + three key-area skylight plazas + a community pocket-park network [data:geometry/public_space.geojson#PUBLIC-004] [data:geometry/green_space.geojson#GREEN-013].
 
-Land use follows the national land-use classification, forming six dominant categories - research, residential, commercial, cultural, education, and green - fully covering the submitted boundary without gaps or overlaps [data:geometry/land_use.geojson#LU-001] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]. Green ratio is about 18.3%, public-space ratio about 0.6%, and building footprint about 28.4 ha [metric:green_ratio] [metric:public_space_ratio] [metric:building_footprint_area_sqm]. These are concept zoning metrics for display and discussion; they must be fully recomputed once official boundaries and regulatory conditions arrive [assumption:A-CONTROLS-001].
+Land use follows the national land-use classification, forming six dominant categories - research, residential, commercial, cultural, education, and green - fully covering the submitted boundary without gaps or overlaps [data:geometry/land_use.geojson#LU-001] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [source:SRC-2023-MNR-LAND-USE-CLASSIFICATION]. Renewal depth follows the professional boundaries of the Urban Design Administration Measures and the control-detailed-planning approval measures [source:SRC-2017-MOHURD-URBAN-DESIGN-MEASURES] [source:SRC-MOHURD-CONTROL-DETAILED-PLANNING]. Green ratio is about 18.3%, public-space ratio about 0.6%, and building footprint about 28.4 ha [metric:green_ratio] [metric:public_space_ratio] [metric:building_footprint_area_sqm]. These are concept zoning metrics for display and discussion; they must be fully recomputed once official boundaries and regulatory conditions arrive [assumption:A-CONTROLS-001].
 
 Renewal logic follows "retain first, stitch as the base, plug in reversibly": railway heritage, heritage elements, and mature communities are primarily retained; low-efficiency stock space is activated through public space and skylight installations; new AI facilities adopt reversible, demountable "plug-in" units to avoid one-time large-scale demolition [depth:retain_renovate_demolish]. Building height, FAR, setback, and other control metrics are registered as `unknown` where official regulatory plans are absent; this proposal offers only conceptual massing direction, not statutory conclusions [standard:MOHURD-CONTROL-DETAILED-PLANNING] [assumption:A-CONTROLS-001].
 
@@ -225,7 +227,49 @@ Urban character uses "rail gray + maintenance green + signal yellow" as the tone
 - **Mid-term (through-connection)**: complete the skylight spine slow-traffic system, east-west stitching, and the public-space network [data:geometry/phasing.geojson#PHASE-005].
 - **Long-term (institutionalization)**: sediment the window mechanism into lasting brand and governance assets, forming an annual event system and global communication [data:geometry/phasing.geojson#PHASE-001].
 
+### Skylight Access Gates (C0-C7)
+
+Any AI scenario entering the belt advances through eight gates in sequence; failing any gate means pause or rollback (concept mechanism, subject to authority confirmation) [assumption:A-GATE-001]:
+
+| Gate | Name | Passing condition | Lead responsibility |
+|---|---|---|---|
+| C0 | Concept review | Scenario aligns with the three protocol tracks and public interest | Skylight management office |
+| C1 | Data declaration | Complete declaration of data boundaries, anonymization, and aggregation rules [standard:GENERATIVE-AI-INTERIM-MEASURES] | Scenario provider + data-security officer |
+| C2 | Risk grading | Green/yellow/red grading with maintenance window and takeover plan | Management office + emergency team |
+| C3 | Pilot application | Accepted by a Test/Commons/Service window; clear pilot scope and term | Park operator + window site |
+| C4 | Public notice | Three-color status, operating hours, and maintenance windows publicized ≥14 days | Management office + community liaison |
+| C5 | Trial run | Limited trial with at least 1 completed maintenance inspection and public review | Scenario provider + window site |
+| C6 | Go-live | 2 consecutive passed inspection reviews and takeover drills | Management office (final review) |
+| C7 | Periodic re-review | Quarterly re-check of data declaration, risk grading, and maintenance logs | Patrol and emergency team |
+
+The gate process draws on the standardized "submission-approval-execution-traceability" control experience of railway skylight maintenance systems [source:SRC-2015-RAILWAY-MAINTENANCE-GAP-SYSTEM]. Each gate has an explicit exit mechanism: failing C0-C2 terminates the application; failing C3-C5 allows one resubmission after supplementing materials; failing C6-C7 suspends service and enters the orange repair process [assumption:A-GATE-001]. Gate decisions are archived in writing with public summaries, subject to public and developer-community oversight.
+
+**Source of binding force (concept suggestion, subject to authority confirmation)**: the Skylight Protocol obtains binding force through three channels - first, **park-entry agreements**: scenario providers sign before entering the belt, making the C0-C7 gates and three-color status operating conditions; second, **scenario operation permits**: skylight maintenance and data declarations become preconditions for pilot registration/licensing, interfacing with existing platforms such as "Jiesu Jiban" (immediate response) and "Yiwang Tongguan" (unified governance) in data and process reporting; third, **public contract disclosure**: three-color status, maintenance logs, and complaint-loop transparency create social supervision and reputational constraints. The protocol's data declarations, safety assessment, and complaint/reporting requirements align with the Interim Measures for the Management of Generative AI Services [source:SRC-2023-CAC-GENERATIVE-AI-INTERIM]. All three channels are suggested mechanisms, subject to final authority approval.
+
+### Emergency Response and Human Takeover
+
+The belt adopts a three-tier red/orange/yellow emergency mechanism; all AI scenarios must register a takeover contact at C3 and drill regularly [assumption:A-EMERGENCY-001]:
+
+- **Red (immediate shutdown)**: personal safety, public order, or data-leak risk - shutdown and human takeover within 30 minutes; three-color status turns red simultaneously;
+- **Orange (timely repair)**: service anomaly or degraded metrics - repair or rollback within 24 hours, with human fallback during the period;
+- **Yellow (watch and escalate)**: unclear anomaly trend - monitor for 72 hours and prepare escalation.
+
+Each Test-window site is staffed with 2 human takeover operators (1 primary + 1 backup), about 6-12 in the pilot phase; takeover plans, drill records, and review reports are published quarterly [assumption:A-WINDOW-003].
+
+### Operations Staffing and Budget Framework (concept estimate)
+
+- **Staffing**: Skylight management office (~5), three site operations (6-8 each), patrol and emergency team (~10), developer-community operations (~4) - about 40-50 in the pilot phase;
+- **Budget**: near-term three-site annual operations cost concept estimate ~RMB 120 million (human takeover, data rollback facilities, equipment maintenance, patrols), concept scale excluding construction investment [assumption:A-COST-001];
+- **Cost sharing**: pilot "Test-window" mode lets scenario providers share maintenance cost; public-interest scenarios are borne by public operators; funding channels (fiscal, special bonds, industry funds, scenario fees) are concept suggestions.
+
+### Public Participation, Accessibility, and Grievance Channels
+
+- **Participation**: quarterly maintenance open days, commons hackathons, and public feedback sessions; maintenance logs and review reports published;
+- **Accessibility and digital inclusion**: every AI scenario retains non-digital fallback (human counters, phone service, signage); shutdown notices are published in multiple languages, large-print, and broadcast; mobility and public-space design follows accessibility standards [standard:WUBA-2012-ACCESSIBILITY]; accessible facilities are planned, designed, constructed, accepted, and delivered in sync with the main project per the Barrier-Free Environment Development Law [source:SRC-2023-BARRIER-FREE-LAW], drawing on universal-design concepts covering persons with disabilities, the elderly, pregnant women, and children [source:SRC-2023-TSINGHUA-ACCESSIBILITY];
+- **Grievance and appeals**: a "Skylight Hotline" and offline desks; responses within 48h, outcome within 7 working days; major complaints enter human review. The hotline interfaces with Beijing's 12345 citizen-service hotline "Jiesu Jiban" mechanism, following the demand-receipt-dispatch-handling-follow-up loop of the Beijing Jiesu Jiban Regulation [source:SRC-2021-BEIJING-JIESU-JIBAN-REGULATION], with complaint data feeding the "Yiwang Tongguan" unified-governance digital base and indicator system [source:SRC-2023-BJNEWS-UNIFIED-GOVERNANCE]; response rate, resolution rate, and satisfaction rate serve as quarterly re-review KPIs [source:SRC-2026-RUC-JIESU-JIBAN-ANALYSIS].
+
 ### Global AI Event System and Long-Term Operations
+
 
 - **Annual event system**: the flagship "Jingzhang Skylight Week" (inspection open day, joint-test festival, commons hackathon, service experience week) with themed seasons [agent.6].
 - **Developer community operations**: the Commons Window as a standing interface, opening inspection tasks, evaluation benchmarks, and data-rollback drills, accumulating reusable public tools.
@@ -241,6 +285,9 @@ Core indicators are all recomputable from submitted geometry or clearly register
 - Overall design area: 11,412,825 m² [metric:site_area_sqm]
 - Three key-area sizes: Zhongzhiyuan ~1.929M m², AI Origin ~1.043M m², Dazhongsi ~0.720M m² [metric:zhongzhiyuan_area_sqm] [metric:ai_origin_community_area_sqm] [metric:dazhongsi_area_sqm]
 - Green ratio: 18.3%; public-space ratio: 0.6%; building footprint: ~284,000 m² [metric:green_ratio] [metric:public_space_ratio] [metric:building_footprint_area_sqm]
+
+On spatial and scenario indicators:
+
 - Spine length: ~9.5 km; skylight windows: 12; scenario cards: 12; personas: 5 [metric:skylight_spine_length_m] [metric:skylight_window_count] [metric:scenario_card_count]
 - Pilgrimage landmarks: 3; global cases: 6 [metric:persona_count] [metric:pilgrimage_landmark_count]
 
@@ -254,7 +301,20 @@ The compliance matrix covers all mandatory tasks in announcement 1.3/1.4/1.5 and
 - Regulatory and ownership risk: FAR, height, and retain/renovate/demolish conclusions lack official conditions and are conceptual directions only [assumption:A-CONTROLS-001].
 - Copyright compliance: naming, logo, scenarios, and figures are original concepts of this proposal; no unauthorized fonts, images, trademarks, portraits, or enterprise marks are used; sources and licenses are in `report/copyright_statement.md` and `sources.json`.
 - Generation disclosure: this proposal is generated by an AI agent from public/cleared materials; generation method, limitations, and authorization status are recorded [agent.json].
+
+On governance and operations risks:
+
 - Compliance boundary: the proposal claims no official approval, approved regulatory plan, final ownership, implementation commitment, or government endorsement; all event and policy arrangements are conceptual suggestions [standard:PROJECT-OFFICIAL-ANNOUNCEMENT].
+- AI safety and ethics: the Skylight Protocol requires every scenario to pass the C0-C7 gates and undergo quarterly re-review; high-risk scenarios mandate human-takeover and shutdown drills with public results [assumption:A-GATE-001] [assumption:A-EMERGENCY-001], responding to the Interim Measures for the Management of Generative AI Services [source:SRC-2023-GENERATIVE-AI-INTERIM-MEASURES].
+- Data privacy and cybersecurity: data collection follows the minimization principle; public space is not a default data source; personal data must be anonymized and aggregated before entering scenario operations and review; security incidents follow the red emergency tier and are reported per law [standard:GENERATIVE-AI-INTERIM-MEASURES] [risk:data_privacy].
+- Incident liability and insurance: each scenario operator bears primary responsibility for its AI service; public-liability insurance is suggested for the pilot; the Skylight management office leads incident reporting, review, and corrective tracking [risk:technology_maturity].
+- Risk registry: eight risk categories - data privacy, implementation complexity, public acceptance, operations cost, policy uncertainty, spatial dispute, technology maturity, and equity/inclusion - are registered in `risk.json` with mitigation and human-review arrangements [risk.json].
+
+For the high-impact risks flagged in review, additional mitigation strategies are bound to the core mechanism:
+
+- **Policy uncertainty**: the Skylight Protocol follows "mechanism first, statutory status pending" - implement the autonomously executable parts (park-entry agreements, public disclosure, complaint loop) first, then apply for formal licensing and local regulation based on pilot data; the C0-C7 gate names and order are designed as replaceable interfaces that can align with existing authority review processes without presupposing approval conclusions.
+- **Technology immaturity (AI takeover reliability)**: a tiered verification path applies - high-risk scenarios (e.g., traffic) must pass simulated-fault drills (monthly) plus hardware-in-the-loop bench tests (quarterly) at the Test Window before entering C5 trial; scenarios failing takeover drills remain at C3 pilot and do not advance to C6 go-live. Scenarios below technology-maturity level 2 (lab-validated) may not apply for red risk grade [assumption:A-WINDOW-002]. The maintenance-window duration setting (weekly 2-4h, quarterly overhaul 1-3 days) references academic research on high-speed-rail comprehensive maintenance-window lengths, borrowing only the "time-for-safety" mechanism logic without transplanting specific values [source:SRC-2008-BJTU-MAINTENANCE-WINDOW].
+- **Public acceptance (complaint loop)**: hotline and offline-desk complaint data are aggregated quarterly and disclosed at "Commons Window" review sessions by category (downtime dissatisfaction / service defects / unclear information); high-frequency issues feed back into protocol amendments - for example, if "inconvenient downtime" complaints exceed 30%, the scenario's window schedule is adjusted. Complaint-amendment-republication forms a closed loop, traceable in maintenance logs.
 
 ## References
 

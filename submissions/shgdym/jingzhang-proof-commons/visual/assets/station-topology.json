@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0.0",
+  "claim_level": "conceptual_relative_topology_not_survey_or_engineering_geometry",
+  "geometry_references": [
+    "geometry/key_areas.geojson#PROV-KEY-001",
+    "geometry/key_areas.geojson#PROV-KEY-002",
+    "geometry/key_areas.geojson#PROV-KEY-003",
+    "geometry/public_space.geojson#PUBLIC-SPINE",
+    "geometry/public_space.geojson#SC-03",
+    "geometry/roads.geojson#ROAD-SPINE"
+  ],
+  "stations": [
+    {
+      "id": "ZHONGZHI_TEST",
+      "key_area_ref": "PROV-KEY-001",
+      "operating_role": "TEST",
+      "nodes": [
+        {"id": "z_entry", "roles": ["public_entry", "accessible_chain", "ordinary_public"]},
+        {"id": "z_public_spine", "roles": ["public_chain", "accessible_chain", "ordinary_public"]},
+        {"id": "z_destination", "roles": ["public_destination", "accessible_chain", "ordinary_public"]},
+        {"id": "z_observation", "roles": ["observation_buffer", "closable_support"]},
+        {"id": "z_control_gate", "roles": ["controlled_crossing", "human_control"]},
+        {"id": "z_test_pocket", "roles": ["ai_technical", "machine_test_pocket", "closable_ai"]},
+        {"id": "z_restore_court", "roles": ["return_restore", "ordinary_public_after_return"]}
+      ],
+      "edges": [
+        {"from": "z_entry", "to": "z_public_spine", "mode": "public_accessible"},
+        {"from": "z_public_spine", "to": "z_destination", "mode": "public_accessible"},
+        {"from": "z_public_spine", "to": "z_observation", "mode": "optional_public"},
+        {"from": "z_observation", "to": "z_control_gate", "mode": "staff_controlled"},
+        {"from": "z_control_gate", "to": "z_test_pocket", "mode": "controlled_machine_crossing", "controlled": true},
+        {"from": "z_test_pocket", "to": "z_restore_court", "mode": "return_only"}
+      ],
+      "closure_sets": {"all_ai": ["z_test_pocket", "z_control_gate"], "observation": ["z_observation"], "return": ["z_test_pocket", "z_control_gate", "z_observation"]},
+      "required_ordinary_roles_after_closure": ["public_entry", "public_destination", "ordinary_public"]
+    },
+    {
+      "id": "AI_ORIGIN_RELEASE",
+      "key_area_ref": "PROV-KEY-002",
+      "operating_role": "RELEASE",
+      "nodes": [
+        {"id": "o_entry", "roles": ["public_entry", "accessible_chain", "ordinary_public"]},
+        {"id": "o_public_spine", "roles": ["public_chain", "accessible_chain", "ordinary_public"]},
+        {"id": "o_destination", "roles": ["public_destination", "accessible_chain", "ordinary_public"]},
+        {"id": "o_method_table", "roles": ["release_method", "closable_ai"]},
+        {"id": "o_rights_table", "roles": ["rights_review", "human_control", "closable_ai"]},
+        {"id": "o_withdraw_interface", "roles": ["withdrawal_interface", "return_restore", "closable_ai"]},
+        {"id": "o_restore_studio", "roles": ["return_restore", "ordinary_public_after_return", "ordinary_teaching"]},
+        {"id": "o_teaching", "roles": ["ordinary_teaching", "ordinary_public"]},
+        {"id": "o_collaboration", "roles": ["ordinary_collaboration", "ordinary_public"]}
+      ],
+      "edges": [
+        {"from": "o_entry", "to": "o_public_spine", "mode": "public_accessible"},
+        {"from": "o_public_spine", "to": "o_destination", "mode": "public_accessible"},
+        {"from": "o_public_spine", "to": "o_teaching", "mode": "ordinary_public"},
+        {"from": "o_teaching", "to": "o_collaboration", "mode": "ordinary_public"},
+        {"from": "o_public_spine", "to": "o_method_table", "mode": "optional_release"},
+        {"from": "o_method_table", "to": "o_rights_table", "mode": "human_review"},
+        {"from": "o_rights_table", "to": "o_withdraw_interface", "mode": "withdrawal"},
+        {"from": "o_withdraw_interface", "to": "o_restore_studio", "mode": "return_only"},
+        {"from": "o_restore_studio", "to": "o_teaching", "mode": "ordinary_public"}
+      ],
+      "closure_sets": {"all_ai": ["o_method_table", "o_rights_table", "o_withdraw_interface"], "observation": [], "return": ["o_method_table", "o_rights_table", "o_withdraw_interface"]},
+      "required_ordinary_roles_after_closure": ["ordinary_teaching", "ordinary_collaboration", "public_destination"]
+    },
+    {
+      "id": "DAZHONGSI_USE",
+      "key_area_ref": "PROV-KEY-003",
+      "operating_role": "USE",
+      "nodes": [
+        {"id": "d_entry", "roles": ["public_entry", "accessible_chain", "ordinary_public"]},
+        {"id": "d_public_spine", "roles": ["public_chain", "accessible_chain", "ordinary_public"]},
+        {"id": "d_destination", "roles": ["public_destination", "accessible_chain", "ordinary_public"]},
+        {"id": "d_non_ai_service", "roles": ["non_ai_service", "human_service", "accessible_chain", "ordinary_public"]},
+        {"id": "d_trial_pocket", "roles": ["ai_technical", "limited_use_pocket", "closable_ai"]},
+        {"id": "d_commercial", "roles": ["ordinary_commercial", "ordinary_public"]},
+        {"id": "d_rest", "roles": ["ordinary_rest", "ordinary_public"]},
+        {"id": "d_restore_square", "roles": ["return_restore", "ordinary_public_after_return"]}
+      ],
+      "edges": [
+        {"from": "d_entry", "to": "d_public_spine", "mode": "public_accessible"},
+        {"from": "d_public_spine", "to": "d_destination", "mode": "public_accessible"},
+        {"from": "d_public_spine", "to": "d_non_ai_service", "mode": "public_accessible"},
+        {"from": "d_public_spine", "to": "d_commercial", "mode": "ordinary_public"},
+        {"from": "d_public_spine", "to": "d_rest", "mode": "ordinary_public"},
+        {"from": "d_public_spine", "to": "d_trial_pocket", "mode": "controlled_public_trial", "controlled": true},
+        {"from": "d_trial_pocket", "to": "d_restore_square", "mode": "return_only"}
+      ],
+      "closure_sets": {"all_ai": ["d_trial_pocket"], "observation": [], "return": ["d_trial_pocket"]},
+      "required_ordinary_roles_after_closure": ["non_ai_service", "human_service", "ordinary_commercial", "ordinary_rest", "public_destination"]
+    }
+  ]
+}

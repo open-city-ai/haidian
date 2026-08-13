@@ -1,0 +1,241 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(PROV-SITE-001, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional rough repository boundary; not an official redline or precise approval area."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 234950.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(BUILDING_FOOTPRINT), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual capacity-test envelopes, not existing or approved buildings."
+      ]
+    },
+    "design_building_footprint_ratio": {
+      "status": "known",
+      "value": 0.020586,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A design diagnostic, not statutory building density."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1004492.234,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(GREEN_SPACE), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Design overlay; requires soil, utility, drainage and official-boundary checks."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.088014,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Green overlay may overlap public space; do not sum ratios."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 164900.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(PUBLIC_SPACE polygons), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Scenario points excluded; design overlay, not dedicated statutory land."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.014449,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Public-space overlay may overlap green space; do not sum ratios."
+      ]
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 34858.669,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(ROAD_CENTERLINE), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual connections, not existing road mileage or redlines."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA)",
+      "confidence": "low",
+      "assumptions": [
+        "Three required areas; polygons remain provisional."
+      ]
+    },
+    "staffed_hall_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(PUBLIC_SPACE where facility_type=staffed_hall)",
+      "confidence": "low",
+      "assumptions": [
+        "Proposed halls, not operating commitments."
+      ]
+    },
+    "last_service_gate_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(PUBLIC_SPACE where facility_type=last_service_gate)",
+      "confidence": "low",
+      "assumptions": [
+        "Proposed identity/help interfaces, not built assets."
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE)",
+      "confidence": "low",
+      "assumptions": [
+        "Design inventory, not deployed AI systems."
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(PHASE)",
+      "confidence": "low",
+      "assumptions": [
+        "Conditional sequencing, not a funded schedule."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official regulatory FAR and official boundary are absent."
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(footprint * verified_floors)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Verified building storeys and approved development capacity are absent."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "max(approved_building_height)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official height controls and surveyed heights are absent."
+    },
+    "regulatory_building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_building_footprint / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official building-density control and official boundary are absent."
+    },
+    "implementation_cost_cny": {
+      "status": "unknown",
+      "value": null,
+      "unit": "CNY",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "professional_cost_plan",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Scope, quantities, ownership, procurement and implementation authority are unconfirmed."
+    }
+  }
+}

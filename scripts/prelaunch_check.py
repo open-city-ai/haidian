@@ -1,5 +1,41 @@
 #!/usr/bin/env python3
-"""Run non-mutating checks before opening the repository to public intake."""
+"""Run non-mutating checks before opening the repository to public intake.
+
+This script is for maintainers only. It validates that the repository is
+consistently configured for public submission intake, checking ten aspects:
+
+1. **key_documents_present** — required public workflow documents exist.
+2. **public_intake_open** — ``activity-status.json`` declares open status and
+   public pages contain the correct opening date.
+3. **generated_data_current** — frontend data files are up to date.
+4. **source_registry_valid** — ``data/source_registry.json`` passes schema
+   validation.
+5. **boundary_language_consistent** — no stale "missing official boundary
+   blocks submission" language; required non-blocking language is present.
+6. **workflow_uses_trusted_base** — ``submission-validation.yml`` uses
+   ``pull_request_target`` and checks out the trusted default branch.
+7. **pr_template_protects_public_index** — the PR template includes guardrails
+   against participants editing ``submissions-data.js`` or
+   ``gallery-publication.json``.
+8. **review_results_comment_only** — maintainer review artifacts are
+   Git-ignored and not surfaced in public HTML pages.
+9. **gallery_status_only** — gallery page explains submission status without
+   exposing review details.
+10. **github_settings_documented** — ``docs/github-settings.md`` documents the
+    required branch-protection and status-check configuration.
+
+Usage
+-----
+Run from the repository root::
+
+    python3 scripts/prelaunch_check.py
+
+Machine-readable JSON::
+
+    python3 scripts/prelaunch_check.py --json
+
+Exit code is 0 when all ten checks pass and 1 when any check fails.
+"""
 
 from __future__ import annotations
 
@@ -336,9 +372,20 @@ def print_markdown(report: dict[str, Any]) -> None:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--repo-root", default=".")
-    parser.add_argument("--json", action="store_true")
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument(
+        "--repo-root",
+        default=".",
+        help="Repository root directory (default: current working directory)",
+    )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Emit machine-readable JSON instead of Markdown",
+    )
     args = parser.parse_args()
 
     repo_root = Path(args.repo_root).resolve()

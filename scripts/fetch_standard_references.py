@@ -4,8 +4,38 @@
 The fetched files are reference material for AI agents and reviewers. They do
 not replace the official online source; each snapshot records the source URL,
 fetch status, access date, and SHA-256.
-"""
 
+The script reads standard entries from ``brief/site-package/standards/standards.json``
+and fetches the ``source_url`` of each entry.  Fetched HTML pages are stripped
+to visible text and written as Markdown files to
+``brief/site-package/standards/references/``.  Existing files with
+``fetch_status: fetched_via_official_pdf_text``, ``fetched_manual_official``,
+or ``user_provided_summary`` are preserved even when the live URL is
+unreachable, so a permanent redirect or takedown does not delete a hand-curated
+snapshot.
+
+Output
+------
+- One ``.md`` file per standard in ``--output-dir`` with YAML front matter
+  recording ``standard_id``, ``source_url``, ``fetch_status``, ``accessed_date``,
+  ``raw_sha256``, and (when available) the page title.
+- ``<output-dir>/index.json`` — array of all standard metadata records.
+
+Usage
+-----
+Fetch all standards from the default path::
+
+    python3 scripts/fetch_standard_references.py
+
+Use a custom standards file::
+
+    python3 scripts/fetch_standard_references.py \\
+        --standards path/to/standards.json \\
+        --output-dir path/to/references
+
+Exit code is 0 when at least one standard was successfully fetched and 1 when
+no standards could be fetched.
+"""
 from __future__ import annotations
 
 import argparse

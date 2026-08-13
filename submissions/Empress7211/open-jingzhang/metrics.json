@@ -173,6 +173,66 @@
         "A-BOUNDARY-001",
         "A-CONTROLS-001"
       ]
+    },
+    "flagship_journey_step_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/first-100-days-evidence-plan.json"
+      ],
+      "formula": "count of journey_steps in flagship_scenario; this is a design-contract count, not executed evidence",
+      "confidence": "high",
+      "assumptions": [
+        "A-AI-001"
+      ],
+      "evidence_state": "design_only",
+      "execution_status": "not_run",
+      "field_run": false
+    },
+    "synthetic_tabletop_case_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/issue-router-tabletop/fixtures.positive.json",
+        "visual/assets/issue-router-tabletop/fixtures.negative.json",
+        "visual/assets/issue-router-tabletop/receipts.json"
+      ],
+      "formula": "count of committed deterministic receipts = 1 PASS + 5 HOLD + 1 RETIRED; two additional fail-closed guard checks are tests, not fixtures",
+      "confidence": "high",
+      "assumptions": [
+        "A-AI-001"
+      ],
+      "input_scope": "synthetic_only",
+      "execution_status": "synthetic_offline_rehearsal_complete",
+      "decision_counts": {
+        "PASS": 1,
+        "HOLD": 5,
+        "RETIRED": 1
+      },
+      "all_expectations_matched": true,
+      "human_decision_required": true,
+      "field_status": "not_authorized_not_run",
+      "field_run": false
+    },
+    "first_100_days_evidence_action_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/first-100-days-evidence-plan.json"
+      ],
+      "formula": "count of proposed evidence_actions D01 through D08; the count is not an implementation result",
+      "confidence": "high",
+      "assumptions": [
+        "A-AI-001",
+        "A-CONTROLS-001"
+      ],
+      "plan_status": "proposed_not_started",
+      "owner_status": "pending_confirmation",
+      "dependency_status": "pending_confirmation",
+      "field_run": false
     }
   }
 }

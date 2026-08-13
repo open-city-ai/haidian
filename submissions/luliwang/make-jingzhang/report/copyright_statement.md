@@ -1,0 +1,5 @@
+# 版权与来源声明
+
+本提交的提案正文、示意图、离线网页与 PDF 由提交者使用 OpenAI Codex 协作生成，并在本项目范围内以仓库约定的开源方式提交。图面不含商业底图截图、未获授权摄影、第三方图标包或外部分发字体；地图由本包 GeoJSON 与 2026-08-11 OpenStreetMap/Overpass 离线矢量抽取重新绘制，保留 © OpenStreetMap contributors 署名并遵守 ODbL，未再分发地图瓦片。OSM 只作为现状背景，不作为官方边界、道路红线、蓝线、地块或规划控制依据。字体调用操作系统本地字库但不随包再分发。外部案例只引用公开事实与链接，不复制其图像或大段受版权保护文本。官方公告、仓库任务书、标准摘要、临时边界和地图数据的来源与用途边界见 `sources.json`。
+
+This submission's narrative, diagrams, offline pages and PDFs were created by the participant with OpenAI Codex collaboration for this open call. No commercial basemap screenshots, uncleared photographs, third-party icon packs or redistributed font files are included. Maps are redrawn from package GeoJSON and an offline OpenStreetMap/Overpass vector extract dated 2026-08-11, retain © OpenStreetMap contributors attribution under ODbL, and redistribute no map tiles. OSM is existing context only, not an official boundary, road redline, blue line, parcel, or planning-control source. External cases are referenced as facts and links only. Full provenance and permitted-use notes are recorded in `sources.json`.

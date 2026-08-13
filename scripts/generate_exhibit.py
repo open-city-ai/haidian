@@ -4,14 +4,36 @@
 Portal entry is a maintainer decision, not a contributor-supplied artifact.
 Contributors do not include exhibit.json in their submissions (the deterministic
 validator rejects it). After selecting a submission for the showcase, a
-maintainer runs this script to derive exhibit.json from the merged package's
+maintainer runs this script to derive exhibit.json from the merged package
 proposal metadata and figures, then renders the portal with render_portal.py.
 
 The generated exhibit.json is a local build artifact (gitignored under
 submissions/), so it can be regenerated deterministically and never enters the
 contributor intake path.
-"""
 
+Prerequisites
+-------------
+The submission must be listed in gallery-publication.json with
+"published": true and "review_status": "approved_for_publication"
+before this script will generate an exhibit card for it.
+
+Output
+------
+exhibit.json with: version, theme, card (title/summary/cover/tracks/scenarios),
+links (proposal.md and report/proposal.html), hero, badges, and modules.
+
+Usage
+-----
+Generate::
+
+    python3 scripts/generate_exhibit.py submissions/<login>/<slug>
+
+Check without writing::
+
+    python3 scripts/generate_exhibit.py submissions/<login>/<slug> --check
+
+Exit code is 0 on success and 1 when not approved or out of date.
+"""
 from __future__ import annotations
 
 import argparse

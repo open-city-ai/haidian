@@ -1,6 +1,38 @@
 #!/usr/bin/env python3
-"""Render a static portal page from proposal exhibit cards."""
+"""Render a static portal page from proposal exhibit cards.
 
+This is a maintainer-only rendering tool. It combines exhibit cards from
+multiple submission directories into a single gallery portal page for the
+public website.
+
+The rendered page is a self-contained static HTML file with:
+- A hero header with project title and description.
+- A card grid of all included proposals.
+- Track and scenario filter buttons.
+- A side-by-side proposal comparison panel.
+- Collection highlight sections (optional).
+
+Security: The page does not execute contributor JavaScript; all interactive
+behavior is driven by vanilla DOM and CSS. Remote resources are not loaded.
+
+Usage
+-----
+Render a portal from multiple submission directories::
+
+    python3 scripts/render_portal.py \\
+        --proposal-dirs submissions/alice/proposal-a submissions/bob/proposal-b \\
+        --title "百年京张 AI 创新带 · 城市设计方案展" \\
+        --output public/submissions.html
+
+Pass a collections directory for highlight sections::
+
+    python3 scripts/render_portal.py \\
+        --proposal-dirs ... \\
+        --collections-dir collections/ \\
+        --output public/submissions.html
+
+Exit code is 0 on success and 1 on a parsing or rendering error.
+"""
 from __future__ import annotations
 
 import argparse

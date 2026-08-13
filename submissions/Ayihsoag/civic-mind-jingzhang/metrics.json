@@ -1,0 +1,253 @@
+{
+    "schema_version":  "0.1.0",
+    "units":  {
+                  "length":  "m",
+                  "area":  "sqm"
+              },
+    "metrics":  {
+                    "site_area_sqm":  {
+                                          "status":  "known",
+                                          "value":  11412825.386,
+                                          "unit":  "sqm",
+                                          "source_files":  [
+                                                               "geometry/site_boundary.geojson"
+                                                           ],
+                                          "formula":  "area(projected EPSG:4548 provisional submitted boundary)",
+                                          "confidence":  "medium",
+                                          "assumptions":  [
+
+                                                          ]
+                                      },
+                    "key_area_total_sqm":  {
+                                               "status":  "known",
+                                               "value":  3692893.005,
+                                               "unit":  "sqm",
+                                               "source_files":  [
+                                                                    "geometry/key_areas.geojson"
+                                                                ],
+                                               "formula":  "sum(area(key areas projected EPSG:4548))",
+                                               "confidence":  "medium",
+                                               "assumptions":  [
+
+                                                               ]
+                                           },
+                    "zhongzhiyuan_area_sqm":  {
+                                                  "status":  "known",
+                                                  "value":  1929201.877,
+                                                  "unit":  "sqm",
+                                                  "source_files":  [
+                                                                       "geometry/key_areas.geojson"
+                                                                   ],
+                                                  "formula":  "area(PROV-KEY-001 in EPSG:4548)",
+                                                  "confidence":  "medium",
+                                                  "assumptions":  [
+
+                                                                  ]
+                                              },
+                    "beijing_ai_origin_area_sqm":  {
+                                                       "status":  "known",
+                                                       "value":  1043236.909,
+                                                       "unit":  "sqm",
+                                                       "source_files":  [
+                                                                            "geometry/key_areas.geojson"
+                                                                        ],
+                                                       "formula":  "area(PROV-KEY-002 in EPSG:4548)",
+                                                       "confidence":  "medium",
+                                                       "assumptions":  [
+
+                                                                       ]
+                                                   },
+                    "dazhongsi_area_sqm":  {
+                                               "status":  "known",
+                                               "value":  720454.219,
+                                               "unit":  "sqm",
+                                               "source_files":  [
+                                                                    "geometry/key_areas.geojson"
+                                                                ],
+                                               "formula":  "area(PROV-KEY-003 in EPSG:4548)",
+                                               "confidence":  "medium",
+                                               "assumptions":  [
+
+                                                               ]
+                                           },
+                    "building_footprint_area_sqm":  {
+                                                        "status":  "known",
+                                                        "value":  310807.184,
+                                                        "unit":  "sqm",
+                                                        "source_files":  [
+                                                                             "geometry/buildings.geojson"
+                                                                         ],
+                                                        "formula":  "sum(area(building concepts projected EPSG:4548))",
+                                                        "confidence":  "low",
+                                                        "assumptions":  [
+                                                                            "概念建筑基底，不对应现状建筑"
+                                                                        ]
+                                                    },
+                    "concept_green_space_area_sqm":  {
+                                                         "status":  "known",
+                                                         "value":  1408600.768,
+                                                         "unit":  "sqm",
+                                                         "source_files":  [
+                                                                              "geometry/green_space.geojson"
+                                                                          ],
+                                                         "formula":  "sum(area(concept green-space geometry in EPSG:4548))",
+                                                         "confidence":  "low",
+                                                         "assumptions":  [
+
+                                                                         ]
+                                                     },
+                    "concept_public_space_area_sqm":  {
+                                                          "status":  "known",
+                                                          "value":  836345.643,
+                                                          "unit":  "sqm",
+                                                          "source_files":  [
+                                                                               "geometry/public_space.geojson"
+                                                                           ],
+                                                          "formula":  "sum(area(concept public-space geometry in EPSG:4548))",
+                                                          "confidence":  "low",
+                                                          "assumptions":  [
+
+                                                                          ]
+                                                      },
+                    "floor_area_ratio":  {
+                                             "status":  "unknown",
+                                             "value":  null,
+                                             "unit":  "ratio",
+                                             "source_files":  [
+                                                                  "brief/site-package/ranges/planning_limits.json"
+                                                              ],
+                                             "formula":  "total_floor_area / official_site_area",
+                                             "confidence":  "unknown",
+                                             "assumptions":  [
+                                                                 "待正式控规或官方数据补齐"
+                                                             ],
+                                             "reason":  "正式控规容积率未提供。"
+                                         },
+                    "building_height_m":  {
+                                              "status":  "unknown",
+                                              "value":  null,
+                                              "unit":  "m",
+                                              "source_files":  [
+                                                                   "brief/site-package/ranges/planning_limits.json"
+                                                               ],
+                                              "formula":  "official height control",
+                                              "confidence":  "unknown",
+                                              "assumptions":  [
+                                                                  "待正式控规或官方数据补齐"
+                                                              ],
+                                              "reason":  "正式建筑高度控制未提供。"
+                                          },
+                    "building_density":  {
+                                             "status":  "unknown",
+                                             "value":  null,
+                                             "unit":  "ratio",
+                                             "source_files":  [
+                                                                  "brief/site-package/ranges/planning_limits.json"
+                                                              ],
+                                             "formula":  "official building coverage control",
+                                             "confidence":  "unknown",
+                                             "assumptions":  [
+                                                                 "待正式控规或官方数据补齐"
+                                                             ],
+                                             "reason":  "正式建筑密度控制未提供。"
+                                         },
+                    "green_ratio":  {
+                                        "status":  "known",
+                                        "value":  0.123423,
+                                        "unit":  "ratio",
+                                        "source_files":  [
+                                                             "geometry/green_space.geojson",
+                                                             "geometry/site_boundary.geojson"
+                                                         ],
+                                        "formula":  "concept green_space_area_sqm / provisional site_area_sqm",
+                                        "confidence":  "medium",
+                                        "assumptions":  [
+                                                            "待正式控规或官方数据补齐"
+                                                        ],
+                                        "reason":  ""
+                                    },
+                    "public_space_ratio":  {
+                                               "status":  "known",
+                                               "value":  0.073281,
+                                               "unit":  "ratio",
+                                               "source_files":  [
+                                                                    "geometry/public_space.geojson",
+                                                                    "geometry/site_boundary.geojson"
+                                                                ],
+                                               "formula":  "concept public_space_area_sqm / provisional site_area_sqm",
+                                               "confidence":  "medium",
+                                               "assumptions":  [
+                                                                   "待正式控规或官方数据补齐"
+                                                               ],
+                                               "reason":  ""
+                                           },
+                    "setback_m":  {
+                                      "status":  "unknown",
+                                      "value":  null,
+                                      "unit":  "m",
+                                      "source_files":  [
+                                                           "brief/site-package/ranges/planning_limits.json"
+                                                       ],
+                                      "formula":  "official setback control",
+                                      "confidence":  "unknown",
+                                      "assumptions":  [
+                                                          "待正式控规或官方数据补齐"
+                                                      ],
+                                      "reason":  "道路红线、建筑控制线和正式退线未提供。"
+                                  },
+                    "key_area_count":  {
+                                           "status":  "known",
+                                           "value":  3,
+                                           "unit":  "count",
+                                           "source_files":  [
+                                                                "geometry/key_areas.geojson"
+                                                            ],
+                                           "formula":  "count(key area features)",
+                                           "confidence":  "high",
+                                           "assumptions":  [
+
+                                                           ]
+                                       },
+                    "scenario_count":  {
+                                           "status":  "known",
+                                           "value":  11,
+                                           "unit":  "count",
+                                           "source_files":  [
+                                                                "scenarios/*.json",
+                                                                "geometry/scenario_nodes.geojson"
+                                                            ],
+                                           "formula":  "count(scenario cards)",
+                                           "confidence":  "medium",
+                                           "assumptions":  [
+
+                                                           ]
+                                       },
+                    "user_persona_count":  {
+                                               "status":  "known",
+                                               "value":  6,
+                                               "unit":  "count",
+                                               "source_files":  [
+                                                                    "proposal.md"
+                                                                ],
+                                               "formula":  "count(readable personas)",
+                                               "confidence":  "medium",
+                                               "assumptions":  [
+
+                                                               ]
+                                           },
+                    "landmark_count":  {
+                                           "status":  "known",
+                                           "value":  3,
+                                           "unit":  "count",
+                                           "source_files":  [
+                                                                "proposal.md",
+                                                                "spatial.json"
+                                                            ],
+                                           "formula":  "count(concept pilgrimage landmarks)",
+                                           "confidence":  "medium",
+                                           "assumptions":  [
+
+                                                           ]
+                                       }
+                }
+}

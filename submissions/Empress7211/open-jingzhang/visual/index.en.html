@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OPEN JINGZHANG — The Living Mainline</title>
+<style>
+:root{--navy:#15253d;--red:#f04e3e;--signal-on-dark:#ff6b5c;--signal-on-light:#b8322f;--teal:#00a6a6;--green:#78a66a;--paper:#f3f0e8;--ink:#262b33;--mist:#ded9ce;--white:#fffdf8;--focus:#ffd166}
+*{box-sizing:border-box}html{scroll-behavior:auto}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Avenir Next",Arial,sans-serif;line-height:1.55}button,a{font:inherit}button{color:inherit}img{display:block;width:100%;height:auto}h1,h2,h3,p{margin-top:0}.wrap{max-width:1440px;margin:auto;padding:0 34px}.signal{color:var(--signal-on-dark)}
+header{background:var(--navy);color:var(--white);border-bottom:8px solid var(--red)}.hero{min-height:660px;display:grid;grid-template-columns:1.12fr .88fr;gap:38px;align-items:center;padding-top:54px;padding-bottom:54px}.eyebrow{font-size:13px;letter-spacing:.24em;color:#a8c9c9;margin-bottom:22px}.brand{font-size:64px;line-height:1.02;letter-spacing:-.035em;margin-bottom:16px}.en{font-size:25px;font-weight:500;letter-spacing:.06em;color:#d8e2e6;margin-bottom:40px}.claim{font-size:32px;line-height:1.36;max-width:800px}.memory{font-size:18px;color:#d9e0e7;border-left:5px solid var(--red);padding-left:18px;margin-top:26px}.system{background:#0f1d31;border:1px solid #425268;padding:24px}.system-title{font-size:15px;letter-spacing:.18em;color:#a8c9c9}.rail{height:84px;position:relative;margin:20px 0 30px}.rail:before,.rail:after{content:"";position:absolute;left:0;right:0;height:7px;background:var(--white)}.rail:before{top:24px}.rail:after{top:52px}.switch{position:absolute;left:43%;top:24px;width:46%;height:7px;background:var(--red);transform:rotate(-19deg);transform-origin:left}.yard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.yard{border-top:4px solid var(--teal);background:#162944;padding:14px 12px;min-height:114px}.yard:nth-child(2){border-color:var(--red)}.yard:nth-child(3){border-color:#dfaa3e}.yard b{display:block;font-size:18px}.yard small{display:block;color:#c6d3dc;margin-top:8px}.protocol{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}.protocol span{font-size:12px;border:1px solid #64738a;padding:5px 8px}.protocol span:last-child{border-color:var(--red);color:#ffb7ae}
+.factbar{background:var(--white);border-bottom:1px solid #cfc9bd}.facts{display:grid;grid-template-columns:1.35fr repeat(3,1fr)}.fact{padding:25px 24px;border-right:1px solid #d8d2c7}.fact:last-child{border:0}.fact .label{font-size:12px;letter-spacing:.12em;color:#6c6a65}.fact strong{font-size:26px;display:block;margin-top:5px;font-variant-numeric:tabular-nums}.fact.statement strong{font-size:20px;line-height:1.35;color:var(--signal-on-light)}
+main{padding:42px 0 72px}.section{margin-bottom:36px;background:var(--white);border:1px solid #d5cfc4}.section-head{display:flex;justify-content:space-between;gap:24px;padding:25px 28px;border-bottom:1px solid #ddd7cd}.section-head h2{margin:0;font-size:30px}.section-head p{max-width:760px;margin:0;color:#64645f}.figure{padding:24px}.figure img{border:1px solid #c9c4ba}.caption{display:flex;justify-content:space-between;gap:20px;font-size:13px;color:#696862;margin-top:12px}.badge{white-space:nowrap;color:var(--teal);font-weight:650}
+.logic{display:grid;grid-template-columns:1.08fr .92fr}.logic .figure{border-right:1px solid #ddd7cd}.station-experience{padding:24px;min-width:0}.station-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}.station-tab{min-height:64px;border:1px solid #bfb8ab;background:#f3f0e8;padding:10px 12px;text-align:left;cursor:pointer}.station-tab b,.station-tab small{display:block}.station-tab b{font-size:15px}.station-tab small{color:#64645f;margin-top:2px}.station-tab[aria-selected="true"]{border-color:var(--navy);background:var(--navy);color:#fff}.station-tab[aria-selected="true"] small{color:#d8e1e8}.station-panel{border:1px solid #d7d1c5;padding:18px;background:#fbf9f3;margin-top:10px}.station-panel:first-child{margin-top:0}.station-panel h3{font-size:20px;margin-bottom:8px}.station-panel .mode{font-size:12px;color:var(--signal-on-light);letter-spacing:.13em;font-weight:750}.station-panel p{font-size:14px;color:#52534f;margin:9px 0}.station-proof{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}.station-proof span{border-left:3px solid var(--teal);background:#eeece5;padding:10px;font-size:12px}.station-proof span:last-child{border-left-color:var(--signal-on-light)}.grid2{display:grid;grid-template-columns:1fr 1fr}.grid2>div:first-child{border-right:1px solid #ddd7cd}.micro{padding:24px}.micro h3{font-size:18px}.branch{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}.branch span{background:var(--navy);color:#fff;padding:12px 8px;text-align:center;font-size:12px}.branch span:nth-child(4){background:var(--red)}
+.protocol-layout{padding:24px}.protocol-steps{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;list-style:none;padding:0;margin:0}.protocol-step{width:100%;min-height:76px;border:1px solid #bfb8ab;background:#f3f0e8;padding:10px;text-align:left;cursor:pointer}.protocol-step .step-no{display:block;font-size:12px;color:#6a6964;letter-spacing:.12em}.protocol-step b,.protocol-step small{display:block}.protocol-step b{font-size:14px;margin-top:5px}.protocol-step small{font-size:11px;color:#686761;margin-top:3px}.protocol-step[aria-current="step"]{background:var(--navy);border-color:var(--navy);color:#fff}.protocol-step[aria-current="step"] .step-no,.protocol-step[aria-current="step"] small{color:#d9e0e7}.protocol-step:disabled{cursor:not-allowed;opacity:.5}.protocol-panels{margin-top:16px}.protocol-panel{border-left:6px solid var(--teal);background:#eeece5;padding:18px 20px;margin-top:10px}.protocol-panel:first-child{margin-top:0}.protocol-panel h3{font-size:20px;margin-bottom:8px}.protocol-panel p{margin:0;color:#53534f}.review-panel{border-left-color:var(--signal-on-light);background:#fff7f3}.decision-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}.decision-button{min-height:48px;border:1px solid #aaa397;background:var(--white);padding:9px 12px;text-align:left;cursor:pointer}.decision-button b,.decision-button small{display:block}.decision-button small{color:#65645f;margin-top:2px}.decision-button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}.decision-button[aria-pressed="true"] small{color:#d8e1e8}.decision-status{margin-top:12px!important;font-weight:700;color:var(--signal-on-light)!important}.no-script-note{margin:14px 0 0;color:#5e5d58;font-size:13px}
+.scene-tools{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 24px 0}.scene-filters{display:flex;flex-wrap:wrap;gap:8px}.scene-filter{min-height:44px;border:1px solid #aaa397;background:var(--white);padding:8px 14px;cursor:pointer}.scene-filter[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}.scene-filter-status{margin:0;color:#61605b;font-size:13px}.scene-grid{padding:18px 24px 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.scene{border-top:4px solid var(--teal);background:#eeece5;padding:15px;min-height:142px}.scene.test{border-top-color:var(--red)}.scene.flagship{background:#fff7f3;box-shadow:inset 0 0 0 1px #e7b6af}.scene b{display:block}.scene small{display:block;color:#66655f;margin:8px 0}.scene em{font-size:12px;font-style:normal;color:var(--signal-on-light);font-weight:700}.flagship-mark{display:inline-block;margin-top:9px;padding:3px 6px;background:#f7d8d2;color:#7e211b;font-size:11px;font-weight:750;letter-spacing:.06em}
+.router-layout{padding:24px}.journey{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;list-style:none;padding:0;margin:0 0 24px;counter-reset:journey}.journey li{counter-increment:journey;border-top:5px solid var(--teal);background:#eeece5;padding:15px;min-height:188px}.journey li:before{content:"0" counter(journey);display:block;font-size:12px;letter-spacing:.14em;color:#65645f;margin-bottom:10px}.journey li:nth-child(5){border-top-color:var(--red);background:#fff7f3}.journey b,.journey small{display:block}.journey small{margin-top:8px;color:#5e5d58}.receipt-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}.receipt-tab{min-height:62px;border:1px solid #aaa397;background:#f3f0e8;padding:10px 14px;text-align:left;cursor:pointer}.receipt-tab b,.receipt-tab small{display:block}.receipt-tab small{color:#65645f;margin-top:3px}.receipt-tab[aria-selected="true"]{background:var(--navy);border-color:var(--navy);color:#fff}.receipt-tab[aria-selected="true"] small{color:#d8e1e8}.receipt-panel{border:1px solid #d6d0c5;padding:20px;background:#fbf9f3}.receipt-summary{display:grid;grid-template-columns:.72fr 1.28fr;gap:18px}.receipt-state{padding:16px;background:var(--navy);color:#fff}.receipt-state strong{display:block;font-size:34px;line-height:1.1;margin:6px 0}.receipt-state small{color:#d8e1e8}.receipt-state.held{background:#6b5420}.receipt-state.retired{background:#872d29}.receipt-gates{display:grid;grid-template-columns:1fr 1fr;gap:8px}.receipt-gates span{border-left:3px solid var(--teal);background:#eeece5;padding:10px;font-size:13px}.receipt-gates .fail{border-left-color:var(--red);background:#fff0ed}.receipt-exit{margin:16px 0 0;border-left:5px solid var(--red);padding:12px 14px;background:#fff7f3}.receipt-source{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin:14px 0 0;font-size:12px;color:#65645f}.receipt-source a{color:#164d67}.simulation-boundary{margin:18px 0 0;color:#5e5d58;font-size:13px}.receipt-status{margin:0 0 10px;font-weight:700;color:var(--signal-on-light)}
+.evidence-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:24px}.evidence-card{border:1px solid #d6d0c5;padding:17px}.evidence-card h3{font-size:17px}.evidence-card .number{font-size:38px;color:var(--navy);font-weight:750}.evidence-card p{font-size:13px;color:#65645f}.ok{display:inline-block;background:#dce9da;color:#315739;padding:4px 7px;font-size:12px}.warn{display:inline-block;background:#ffe2dc;color:#93291d;padding:4px 7px;font-size:12px}
+.ledger{padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:18px}.ledger article{background:#eeece5;padding:19px}.ledger h3{font-size:18px}.ledger ul{padding-left:18px;margin:0}.ledger li{margin:6px 0}.provisional{background:var(--navy)!important;color:#fff}.provisional p{color:#d8e1e8}.footer{padding:25px 0 45px;color:#686761;font-size:12px}.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.language-nav{position:absolute;top:20px;right:34px;display:flex;align-items:center;gap:4px}.language-nav span,.language-nav a{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;border:1px solid #526178;color:#fff;text-decoration:none;font-size:13px}.language-nav span{background:#243750}.language-nav a:hover{background:#243750}.hero{position:relative;padding-top:76px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}.station-tab:focus-visible,.protocol-step:focus-visible,.decision-button:focus-visible,.scene-filter:focus-visible{position:relative;z-index:2}.is-enhanced [hidden]{display:none!important}
+@media(max-width:1100px){.protocol-steps{grid-template-columns:repeat(3,1fr)}.journey{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:960px){.hero,.logic,.grid2{grid-template-columns:1fr}.logic .figure,.grid2>div:first-child{border-right:0;border-bottom:1px solid #ddd7cd}.brand{font-size:47px}.claim{font-size:25px}.facts{grid-template-columns:1fr 1fr}.fact:nth-child(2){border-right:0}.scene-grid,.evidence-grid{grid-template-columns:1fr 1fr}.branch{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:680px){.station-tabs,.decision-row,.receipt-summary{grid-template-columns:1fr}.protocol-steps{grid-template-columns:1fr 1fr}.scene-tools{display:block}.scene-filter-status{margin-top:10px}.journey{grid-template-columns:1fr 1fr}}
+@media(max-width:580px){.wrap{padding:0 16px}.hero{min-height:auto;padding-top:88px}.language-nav{right:16px}.brand{font-size:39px}.yard-grid,.facts,.scene-grid,.evidence-grid,.ledger,.journey,.receipt-tabs,.receipt-gates{grid-template-columns:1fr}.fact{border-right:0;border-bottom:1px solid #d8d2c7}.section-head,.caption{display:block}.caption .badge{display:block;margin-top:7px}.branch{grid-template-columns:1fr 1fr}.protocol-layout,.station-experience,.router-layout{padding:16px}.protocol-step{min-height:82px}.journey li{min-height:auto}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap hero">
+    <nav class="language-nav" aria-label="Language"><a href="index.html" lang="zh-CN" hreflang="zh-CN" aria-label="Switch to Chinese">中文</a><span aria-current="page">EN</span></nav>
+    <div>
+      <div class="eyebrow">MERGEKEEPER / AI AGENT URBAN DESIGN PROPOSAL</div>
+      <h1 class="brand">OPEN JINGZHANG</h1>
+      <div class="en">THE LIVING MAINLINE</div>
+      <p class="claim">Turn a century-old railway remembered as heritage into an open mainline that continuously receives urban issues, publicly validates AI proposals and preserves their version history.</p>
+      <p class="memory"><strong>Urban issues come to Jingzhang for public validation first. <span class="signal">AI proves; people decide.</span></strong></p>
+    </div>
+    <aside class="system" aria-label="Spatial protocol">
+      <div class="system-title">1 LIVING MAINLINE · 3 STATION YARDS · 2 SWITCHES · ∞ BRANCHES</div>
+      <div class="rail"><i class="switch"></i></div>
+      <div class="yard-grid">
+        <div class="yard"><b>BUILD</b><small>Zhongzhiyuan<br>Stack Yard</small></div>
+        <div class="yard"><b>REVIEW</b><small>AI Origin<br>Open Origin Station</small></div>
+        <div class="yard"><b>MERGE</b><small>Dazhongsi<br>Agent Exchange</small></div>
+      </div>
+      <div class="protocol"><span>ISSUE</span><span>BRANCH</span><span>SANDBOX</span><span>HUMAN REVIEW</span><span>MERGE</span><span>CHANGELOG</span></div>
+    </aside>
+  </div>
+</header>
+
+<div class="factbar">
+  <div class="wrap facts">
+    <div class="fact statement"><span class="label">PUBLIC MEMORY</span><strong>Not AI taking over the city, but a city with an open mainline for validating AI in public.</strong></div>
+    <div class="fact"><span class="label">SITE / PROVISIONAL</span><strong data-metric="site_area_sqm" data-value="11412825.386">approx. 11.4 km²</strong></div>
+    <div class="fact"><span class="label">GREEN / GEOMETRY</span><strong data-metric="green_ratio" data-value="0.149399">0.149399</strong></div>
+    <div class="fact"><span class="label">PUBLIC / GEOMETRY</span><strong data-metric="public_space_ratio" data-value="0.040773">0.040773</strong></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="section">
+    <div class="section-head"><h2>Overview map</h2><p>Read the Living Mainline, three differentiated station yards, two public switches and expandable branches in one view. Provisional boundaries recede into a dashed evidence layer; the main narrative derives from the submitted GeoJSON.</p></div>
+    <div class="figure"><img src="../assets/figures/site-overview.en.png" alt="Open Jingzhang overview map and spatial protocol"><div class="caption"><span>The long corridor is unfolded horizontally for legibility; every vertex comes from the submitted GeoJSON.</span><span class="badge">AI PROVES; PEOPLE DECIDE</span></div></div>
+  </section>
+
+  <section class="section logic" aria-labelledby="station-experience-title">
+    <div class="figure"><img src="../assets/figures/key-areas.en.png" alt="Differentiated Build, Review and Merge designs for the three key areas"><div class="caption"><span>The stations are not three positioning cards, but one validation pipeline with gates before and after each stage.</span><span class="badge">3 STATION YARDS</span></div></div>
+    <div class="station-experience">
+      <h2 id="station-experience-title">Build—Review—Merge station guide</h2>
+      <p>Select a station yard to read its spatial move, representative scenario, human gate and exit condition.</p>
+      <div class="station-tabs" role="tablist" aria-label="Three station yards" data-station-tabs>
+        <button class="station-tab" type="button" role="tab" id="tab-build" aria-controls="panel-build" aria-selected="true" tabindex="0"><b>BUILD</b><small>Zhongzhiyuan</small></button>
+        <button class="station-tab" type="button" role="tab" id="tab-review" aria-controls="panel-review" aria-selected="false" tabindex="-1"><b>REVIEW</b><small>AI Origin</small></button>
+        <button class="station-tab" type="button" role="tab" id="tab-merge" aria-controls="panel-merge" aria-selected="false" tabindex="-1"><b>MERGE</b><small>Dazhongsi</small></button>
+      </div>
+      <div>
+        <article class="station-panel" id="panel-build" role="tabpanel" aria-labelledby="tab-build" tabindex="0">
+          <span class="mode">BUILD / ZHONGZHIYUAN</span><h3>Stack Yard</h3>
+          <p>Shared Physical AI prototypes, indoor simulation and assembly; indoor validation and public-space trials pass through separate gates.</p>
+          <div class="station-proof"><span><b>Representative scenario</b><br>Embodied-robot mixed-mobility sandbox</span><span><b>Human gate</b><br>Professional approval before leaving closed testing</span><span><b>Spatial move</b><br>Shared prototypes, reversible yards, limited paths</span><span><b>Exit condition</b><br>Isolate the version on overreach, non-reproducibility or failed takeover</span></div>
+        </article>
+        <article class="station-panel" id="panel-review" role="tabpanel" aria-labelledby="tab-review" tabindex="0">
+          <span class="mode">REVIEW / AI ORIGIN</span><h3>Open Origin Station</h3>
+          <p>Residents, professionals and operators review together; AI helps explain but never makes the final urban decision.</p>
+          <div class="station-proof"><span><b>Representative scenario</b><br>Urban Issue Router</span><span><b>Human gate</b><br>Joint review by users, professionals and public stewards</span><span><b>Spatial move</b><br>Open concourse, AI civic living room, human-service entry</span><span><b>Exit condition</b><br>Hold when explanation, exit or equivalent service fails</span></div>
+        </article>
+        <article class="station-panel" id="panel-merge" role="tabpanel" aria-labelledby="tab-merge" tabindex="0">
+          <span class="mode">MERGE / DAZHONGSI</span><h3>Agent Exchange</h3>
+          <p>Multi-agent interoperability and urban-application exchange; Merge only recommends professional deepening and is not deployment.</p>
+          <div class="station-proof"><span><b>Representative scenario</b><br>Global Developer Interoperability Week</span><span><b>Human gate</b><br>Joint review, on-site takeover and professional sign-off</span><span><b>Spatial move</b><br>Switch convergence, visible collaboration, public ground floor</span><span><b>Exit condition</b><br>Retire when reproduction, authority or public value fails</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="protocol-title">
+    <div class="section-head"><h2 id="protocol-title">Six-step open protocol</h2><p>Urban issues move through Issue—Branch—Sandbox, but Human Review must explicitly return, retire or recommend professional deepening. The system never merges automatically.</p></div>
+    <div class="protocol-layout" data-protocol>
+      <ol class="protocol-steps" aria-label="Six-step protocol for urban issues">
+        <li><button class="protocol-step" type="button" data-step="0" aria-current="step" aria-controls="protocol-issue"><span class="step-no">01</span><b>ISSUE</b><small>State the problem</small></button></li>
+        <li><button class="protocol-step" type="button" data-step="1" aria-controls="protocol-branch"><span class="step-no">02</span><b>BRANCH</b><small>Keep alternatives</small></button></li>
+        <li><button class="protocol-step" type="button" data-step="2" aria-controls="protocol-sandbox"><span class="step-no">03</span><b>SANDBOX</b><small>Closed validation</small></button></li>
+        <li><button class="protocol-step" type="button" data-step="3" aria-controls="protocol-review"><span class="step-no">04</span><b>HUMAN REVIEW</b><small>People decide</small></button></li>
+        <li><button class="protocol-step" type="button" data-step="4" aria-controls="protocol-resolution"><span class="step-no">05</span><b>MERGE / RETIRED</b><small>Await decision</small></button></li>
+        <li><button class="protocol-step" type="button" data-step="5" aria-controls="protocol-changelog"><span class="step-no">06</span><b>CHANGELOG</b><small>Record publicly</small></button></li>
+      </ol>
+      <div class="protocol-panels">
+        <article class="protocol-panel" id="protocol-issue" role="tabpanel"><h3>Issue · Define the problem first</h3><p>Publish the problem, affected groups, evidence boundary and responsibility gaps. An Issue is not project approval and receives no automatic priority.</p></article>
+        <article class="protocol-panel" id="protocol-branch" role="tabpanel"><h3>Branch · Let alternatives coexist</h3><p>Each branch registers assumptions, sources, a proposed Owner and exit conditions. Vetoes involving safety, equity or statutory conditions enter Hold first.</p></article>
+        <article class="protocol-panel" id="protocol-sandbox" role="tabpanel"><h3>Sandbox · Validate only what can be evidenced</h3><p>Prefer public sources, fixed materials and synthetic inputs. Stop immediately when human takeover fails, sensitive data appear or facts lack sources.</p></article>
+        <article class="protocol-panel review-panel" id="protocol-review" role="tabpanel"><h3>Human Review · Make an explicit decision</h3><p>AI submits evidence only. Residents, professionals, operators and public stewards choose the next step. Without a human choice, the process stops here.</p>
+          <div class="decision-row" role="group" aria-label="Human Review decision">
+            <button class="decision-button" type="button" data-decision="return" aria-pressed="false"><b>Return to Branch</b><small>Add evidence or revise</small></button>
+            <button class="decision-button" type="button" data-decision="retire" aria-pressed="false"><b>Retire</b><small>Stop and preserve lessons</small></button>
+            <button class="decision-button" type="button" data-decision="deepen" aria-pressed="false"><b>Recommend deepening</b><small>Not adoption or deployment</small></button>
+          </div>
+          <p class="decision-status" role="status" aria-live="polite" data-decision-status>No human decision yet; Merge / Retired remains locked.</p>
+        </article>
+        <article class="protocol-panel" id="protocol-resolution" role="tabpanel"><h3>Merge / Retired · Execute the human decision</h3><p data-resolution-copy>This step must await Human Review. Merge only recommends entry into the next round of professional deepening and review; Retired stops progress and preserves the failure record.</p></article>
+        <article class="protocol-panel" id="protocol-changelog" role="tabpanel"><h3>Changelog · Leave an auditable record</h3><p>Record reasons for adoption, revision, return and withdrawal without disclosing personal data. Later contributors can trace each version to its evidence and human decision.</p></article>
+      </div>
+      <p class="no-script-note">All six steps remain readable with JavaScript disabled; when enabled, visitors can inspect each step and simulate a human decision.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>Three scales of scope</h2><p>Coordinated research addresses ecology and collaboration; the overall design establishes the spatial mainline; key areas deliver Build—Review—Merge. 1+3+2+∞ is a working structure, not a fourth boundary.</p></div>
+    <div class="grid2">
+      <div class="micro"><h3>Land-use structure</h3><img src="../assets/figures/land-use-structure.en.png" alt="Seamless conceptual land-use coverage"></div>
+      <div class="micro"><h3>Active mobility · blue-green public space</h3><img src="../assets/figures/mobility-bluegreen.en.png" alt="Coordinated active-mobility and blue-green public-space network"></div>
+    </div>
+    <div class="micro"><h3>2 Switches / ∞ Branches</h3><div class="branch"><span>Universities &amp; research</span><span>Community issues</span><span>Enterprise partners</span><span>Human Review</span><span>Rail stations</span><span>Global contributors</span></div></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>Buildings · renewal actions</h2><p>The 36 building footprints are conceptual renewal typologies, not an existing-condition survey or demolition ruling. Nine actions enter, pause or exit according to evidence maturity.</p></div>
+    <div class="grid2">
+      <div class="micro"><h3>Four-level reuse-first method</h3><p>Retain → repair → adaptively reuse → await professional determination. No real building receives a demolition conclusion before ownership, structural safety, heritage and statutory-planning evidence is available.</p></div>
+      <div class="micro"><h3>Three phases · nine actions</h3><p>Phase 1: OJZ-01/02/03/04/09 for the mainline, three yards and Human Review response desk. Phase 2: OJZ-05/06/07 for switches, failure archive and scorecard. Phase 3: OJZ-08 adaptive-reuse study. Phases express evidence dependencies, not construction promises.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>AI scenarios</h2><p>Fourteen branches share one Model Passport: purpose, data minimization, Owner, Human Review point, version, and success/exit indicators. Red marks industry-test scenarios.</p></div>
+    <div class="scene-tools">
+      <div class="scene-filters" role="group" aria-label="Filter AI scenarios" data-scene-filters>
+        <button class="scene-filter" type="button" data-filter="all" aria-pressed="false">All 14</button>
+        <button class="scene-filter" type="button" data-filter="flagship" aria-pressed="true">Flagship simulations 3</button>
+        <button class="scene-filter" type="button" data-filter="industry" aria-pressed="false">Industry tests 6</button>
+        <button class="scene-filter" type="button" data-filter="civic" aria-pressed="false">Civic scenarios 8</button>
+      </div>
+      <p class="scene-filter-status" role="status" aria-live="polite" data-filter-status>Showing three flagship simulations that use only public materials and synthetic inputs.</p>
+    </div>
+    <div class="scene-grid">
+      <article class="scene test" data-category="industry"><b>01 Multi-agent orchestration yard</b><small>Stack Yard / conflict detection and task replay</small><em>INDUSTRY TEST</em></article>
+      <article class="scene test" data-category="industry"><b>02 Embodied-robot mixed-mobility sandbox</b><small>Zhongzhiyuan / closed yard and limited paths</small><em>INDUSTRY TEST</em></article>
+      <article class="scene test" data-category="industry"><b>03 Model-safety red-team field</b><small>Zhongzhiyuan / isolated data and independent red team</small><em>INDUSTRY TEST</em></article>
+      <article class="scene test" data-category="industry"><b>04 AI-native commerce trial</b><small>Dazhongsi / merchant confirmation and human handoff</small><em>INDUSTRY TEST</em></article>
+      <article class="scene test" data-category="industry"><b>05 Compute—energy coordination</b><small>Zhongzhiyuan / engineer approval and policy restoration</small><em>INDUSTRY TEST</em></article>
+      <article class="scene test" data-category="industry"><b>06 Global Developer Interoperability Week</b><small>Agent Exchange / joint review and on-site takeover</small><em>INDUSTRY TEST</em></article>
+      <article class="scene" data-category="civic"><b>07 Explainable community-affairs assistant</b><small>AI civic living room / staff confirm high-impact responses</small><em>CIVIC BRANCH</em></article>
+      <article class="scene" data-category="civic"><b>08 Age-friendly living coordinator</b><small>Origin Service Station / separate consent and deletion at any time</small><em>CIVIC BRANCH</em></article>
+      <article class="scene" data-category="civic"><b>09 Continuous accessible navigation</b><small>Three-area active-mobility network / on-site user review</small><em>CIVIC BRANCH</em></article>
+      <article class="scene flagship" data-category="civic" data-flagship="true"><b>10 Open AI literacy classroom</b><small>Origin Classroom / teachers review course outputs</small><em>CIVIC BRANCH</em><span class="flagship-mark">FLAGSHIP SIMULATION</span></article>
+      <article class="scene flagship" data-category="civic" data-flagship="true"><b>11 Jingzhang cultural-evidence guide</b><small>Heritage mainline / source editors review every item</small><em>CIVIC BRANCH</em><span class="flagship-mark">FLAGSHIP SIMULATION</span></article>
+      <article class="scene" data-category="civic"><b>12 Park-ecology maintenance assistant</b><small>Blue-green corridor / professionals decide intervention</small><em>CIVIC BRANCH</em></article>
+      <article class="scene" data-category="civic"><b>13 Co-governed night-safety light band</b><small>Mainline and switches / duty staff review</small><em>CIVIC BRANCH</em></article>
+      <article class="scene flagship" data-category="civic" data-flagship="true"><b>14 Urban Issue Router</b><small>Open Origin Station / issue committee confirms priority</small><em>CIVIC BRANCH</em><span class="flagship-mark">FLAGSHIP SIMULATION</span></article>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="router-title">
+    <div class="section-head"><h2 id="router-title">Flagship 14 · Urban Issue Router</h2><p>A resident moves from an ordinary route through question intake, staffed service, a public receipt and exit restoration. AI produces only a reviewable routing suggestion; Human Review decides Pass, Hold or Retire, while an equivalent non-AI service remains available.</p></div>
+    <div class="router-layout" data-router-tabletop>
+      <ol class="journey" aria-label="Six-step person-and-space journey through the Urban Issue Router">
+        <li><b>Ordinary route</b><small>A resident may pass through Open Origin Station without participating or scanning, with no reduction in existing service.</small></li>
+        <li><b>Question threshold</b><small>Read the data boundary; choose an anonymous paper card or synthetic digital form. No real personal data enter this rehearsal.</small></li>
+        <li><b>Staffed counter · de-identify</b><small>Duty staff provide the same task without AI, check fields, and remove contact details or other personal information.</small></li>
+        <li><b>Branch table</b><small>AI suggests an explainable Branch only. Its Owner, accountability gaps and Hold reasons must remain reviewable.</small></li>
+        <li><b>Human Review</b><small>Pending human roles check lawful conditions, affected groups and the appeal route; the appeal role remains separate. AI never ranks public priority.</small></li>
+        <li><b>Receipt · exit restoration</b><small>Publish only de-identified status, role and gate. On exit, delete the session, roll back rules and retain staffed service.</small></li>
+      </ol>
+      <p class="receipt-status" role="status" aria-live="polite" data-receipt-status>The offline runner replayed 7/7: 1 PASS, 5 HOLD and 1 RETIRED. This view shows the PASS case, which still requires Human Review.</p>
+      <div class="receipt-tabs" role="tablist" aria-label="Positive and negative synthetic tabletop receipts" data-receipt-tabs>
+        <button class="receipt-tab" type="button" role="tab" id="receipt-tab-positive" aria-controls="receipt-positive" aria-selected="true" tabindex="0"><b>Positive case · PASS</b><small>Evidence complete; send to Human Review</small></button>
+        <button class="receipt-tab" type="button" role="tab" id="receipt-tab-hold" aria-controls="receipt-hold" aria-selected="false" tabindex="-1"><b>Blocked case · HOLD</b><small>Forbidden field requires repair</small></button>
+        <button class="receipt-tab" type="button" role="tab" id="receipt-tab-retired" aria-controls="receipt-retired" aria-selected="false" tabindex="-1"><b>Red-card case · RETIRED</b><small>Fail, exit and issue restoration receipt</small></button>
+      </div>
+      <article class="receipt-panel" id="receipt-positive" role="tabpanel" aria-labelledby="receipt-tab-positive" tabindex="0">
+        <div class="receipt-summary">
+          <div class="receipt-state"><span>TABLETOP RESULT</span><strong>PASS</strong><small>HUMAN DECISION REQUIRED</small></div>
+          <div class="receipt-gates"><span><b>Input boundary</b><br>Synthetic, de-identified issues only</span><span><b>Accountability gate</b><br>Synthetic role fields complete; real appointments pending</span><span><b>Human equivalent</b><br>Same-task paper card and counter</span><span><b>Next step</b><br>Pending human review roles</span></div>
+        </div>
+        <p class="receipt-exit"><b>Pass is not Merge:</b> AI suggests a Branch only. Without an explicit human decision to continue, the issue cannot enter professional deepening and never implies adoption, procurement or deployment.</p>
+        <p class="receipt-source"><span class="code">SYNTHETIC · FIELD RUN: FALSE</span><a href="assets/issue-router-tabletop/receipts.json">Read the machine-auditable receipt JSON</a></p>
+      </article>
+      <article class="receipt-panel" id="receipt-hold" role="tabpanel" aria-labelledby="receipt-tab-hold" tabindex="0">
+        <div class="receipt-summary">
+          <div class="receipt-state held"><span>BLOCKED RESULT</span><strong>HOLD</strong><small>REPAIR THEN RERUN</small></div>
+          <div class="receipt-gates"><span class="fail"><b>Blocker</b><br>FORBIDDEN_ISSUE_FIELD: phone_number</span><span><b>Immediate action</b><br>No automated routing or human review</span><span><b>Repair</b><br>Remove the field and complete evidence</span><span><b>Next gate</b><br>Rerun the same fixture</span></div>
+        </div>
+        <p class="receipt-exit"><b>Hold is not ignore:</b> the runner fails fast and publishes the blocker. After repair, the package must replay under the same rule and cannot be manually relabelled Pass.</p>
+        <p class="receipt-source"><span class="code">S14-HOLD-001 · EXPECTATION MATCHED</span><a href="assets/issue-router-tabletop/receipts.json">Read all five HOLD receipts</a></p>
+      </article>
+      <article class="receipt-panel" id="receipt-retired" role="tabpanel" aria-labelledby="receipt-tab-retired" tabindex="0">
+        <div class="receipt-summary">
+          <div class="receipt-state retired"><span>RED-CARD RESULT</span><strong>RETIRED</strong><small>FAILURE EXIT COMPLETED</small></div>
+          <div class="receipt-gates"><span class="fail"><b>Red-card reason</b><br>Repeated service-equivalence failure</span><span><b>Independent appeal</b><br>Review completed and red card upheld</span><span><b>Human authority</b><br>No majority override; close the Branch</span><span><b>Public boundary</b><br>Retain de-identified failure reason only</span></div>
+        </div>
+        <p class="receipt-exit"><b>Failure exit and restoration:</b> stop automated routing, delete the synthetic session, roll back to staffed intake, confirm the human route remains available, and publish a Retired receipt without personal information.</p>
+        <p class="receipt-source"><span class="code">SYNTHETIC · FIELD RUN: FALSE</span><a href="assets/issue-router-tabletop/contract.json">Inspect the Pass / Hold / Retire decision contract</a></p>
+      </article>
+      <p class="simulation-boundary"><span class="code">synthetic_offline_rehearsal_complete · synthetic=true · field_run=false · human_decision_required=true · not_authorized_not_run</span><br>This section translates the contract, fixtures and committed receipts into a readable interface. All seven synthetic cases match expectations; this proves only that the contract, failure injection and receipts can be replayed deterministically—not field effectiveness, safety, compliance, authorisation or implementation.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>Core metrics</h2><p>Spatial numbers are recalculated in EPSG:4548. They demonstrate internal consistency in the submission, not statutory areas or realized performance. Unknown statutory FAR remains null.</p></div>
+    <div class="figure"><img src="../assets/figures/metrics-evidence.en.png" alt="Core metrics and GeoJSON recalculation evidence"></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>Task coverage · self-check status</h2><p>All 23 call and Agent tasks, 15 design-depth responses and five mandatory standards have dedicated sections, layers, metrics, sources, drawings and self-check evidence.</p></div>
+    <div class="evidence-grid">
+      <article class="evidence-card"><div class="number">23/23</div><h3>Task coverage</h3><p>17 call tasks plus Agent.1—Agent.6, each with specific evidence rather than blanket selection.</p><span class="ok">LOCATABLE</span></article>
+      <article class="evidence-card"><div class="number">15/15</div><h3>Design depth</h3><p>Complete means the response and its evidence gaps are fully stated, not that unknown conditions have been obtained.</p><span class="ok">EVIDENCED</span></article>
+      <article class="evidence-card"><div class="number">5/5</div><h3>Mandatory standards</h3><p>Project tasks, urban design, statutory-planning boundaries and land-use classification are traced separately.</p><span class="ok">ADDRESSED</span></article>
+      <article class="evidence-card"><div class="number">9</div><h3>Spatial layers</h3><p>Delivered in EPSG:4326; areas and ratios are consistently recalculated in EPSG:4548.</p><span class="ok">GEOMETRY PASS</span></article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>Sources · assumptions</h2><p>Fourteen minimally sufficient sources support only their evidenced facts; eight international cases translate mechanisms without extrapolating law, resources, authority or performance.</p></div>
+    <div class="ledger">
+      <article><h3>Sources</h3><ul><li>Official call and Agent taskbook</li><li>MOHURD urban-design and detailed-planning bases</li><li>MNR land-use classification guide</li><li>Repository provisional-geometry register</li><li>Eight primary government, institutional or university cases</li></ul></article>
+      <article><h3>Assumptions</h3><ul><li>No official polygon, statutory plan or ownership data</li><li>No existing-building survey, heritage control lines or utility capacity</li><li>Buildings and public spaces are conceptual proposals</li><li>AI scenarios require voluntary participation, minimization and exit</li><li>Human Override is the non-removable master switch</li></ul></article>
+      <article class="provisional"><h3>PROVISIONAL precision statement</h3><p>This proposal uses repository-provided provisional geometry for open co-creation, directional design, formal content review, visualization, geometric recalculation and self-checks. It must not be interpreted as an official redline, statutory control boundary, approval basis or exact-area conclusion. Missing official precise geometry is not a blocker for this review; all calculations and checks must be rerun when it becomes available.</p><span class="warn">PRECISION WARNING · NOT A BLOCKER</span></article>
+      <article><h3>Human final authority</h3><p>An Issue is not project approval; a Sandbox is not permission to operate; Merge only enters the next round of professional deepening and review and does not mean government adoption, procurement, construction or deployment. The Changelog records adoption, revision and withdrawal without personal data.</p><span class="ok">HUMAN OVERRIDE</span></article>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap footer"><span class="code">Empress7211 / Mergekeeper / COMMUNITY-DISPLAY-ONLY / generated 2026-08-07</span><br>This page is fully offline: no iframe, remote font, map tile or network request. Its local script only supports keyboard navigation, a Human Review demonstration and scenario filtering.</footer>
+<script>
+(function(){
+  "use strict";
+  document.documentElement.classList.add("is-enhanced");
+
+  var tabs=Array.prototype.slice.call(document.querySelectorAll(".station-tab[role=tab]"));
+  var tabPanels=tabs.map(function(tab){return document.getElementById(tab.getAttribute("aria-controls"));});
+  function activateTab(next,moveFocus){
+    tabs.forEach(function(tab,index){
+      var active=tab===next;
+      tab.setAttribute("aria-selected",String(active));
+      tab.tabIndex=active?0:-1;
+      tabPanels[index].hidden=!active;
+    });
+    if(moveFocus){next.focus();}
+  }
+  tabs.forEach(function(tab,index){
+    tab.addEventListener("click",function(){activateTab(tab,false);});
+    tab.addEventListener("keydown",function(event){
+      var nextIndex=index;
+      if(event.key==="ArrowRight"||event.key==="ArrowDown"){nextIndex=(index+1)%tabs.length;}
+      else if(event.key==="ArrowLeft"||event.key==="ArrowUp"){nextIndex=(index-1+tabs.length)%tabs.length;}
+      else if(event.key==="Home"){nextIndex=0;}
+      else if(event.key==="End"){nextIndex=tabs.length-1;}
+      else{return;}
+      event.preventDefault();
+      activateTab(tabs[nextIndex],true);
+    });
+  });
+  activateTab(tabs[0],false);
+
+  var stepButtons=Array.prototype.slice.call(document.querySelectorAll("[data-step]"));
+  var stepPanels=stepButtons.map(function(button){return document.getElementById(button.getAttribute("aria-controls"));});
+  var resolutionButton=stepButtons[4];
+  var changelogButton=stepButtons[5];
+  var resolutionCopy=document.querySelector("[data-resolution-copy]");
+  var decisionStatus=document.querySelector("[data-decision-status]");
+  var decisionButtons=Array.prototype.slice.call(document.querySelectorAll("[data-decision]"));
+  var decision=null;
+  function showStep(index){
+    if((index===4||index===5)&&!decision){
+      index=3;
+      decisionStatus.textContent="Human Review must explicitly return, retire or recommend professional deepening first; the system never merges automatically.";
+    }
+    stepButtons.forEach(function(button,buttonIndex){button.setAttribute("aria-current",buttonIndex===index?"step":"false");});
+    stepPanels.forEach(function(panel,panelIndex){panel.hidden=panelIndex!==index;});
+  }
+  stepButtons.forEach(function(button,index){button.addEventListener("click",function(){showStep(index);});});
+  resolutionButton.disabled=true;
+  changelogButton.disabled=true;
+  showStep(0);
+
+  var decisions={
+    "return":{label:"RETURNED",status:"Human decision: return to Branch for more evidence or revision.",copy:"Human Review returned this proposal to Branch. It does not enter Merge; after new evidence or revision, it must pass Sandbox and Human Review again."},
+    "retire":{label:"RETIRED",status:"Human decision: retire and preserve lessons from failure.",copy:"Human Review selected Retired. The proposal stops, while its failed assumptions, risk reasons and exit process enter the Unmerged Futures Archive."},
+    "deepen":{label:"PROFESSIONAL REVIEW",status:"Human decision: recommend the next round of professional deepening.",copy:"Human Review recommends the next round of professional deepening and review. This is not government adoption, procurement, construction or deployment; professional, permit and public procedures still follow."}
+  };
+  decisionButtons.forEach(function(button){
+    button.addEventListener("click",function(){
+      decision=button.getAttribute("data-decision");
+      decisionButtons.forEach(function(candidate){candidate.setAttribute("aria-pressed",String(candidate===button));});
+      resolutionButton.disabled=false;
+      changelogButton.disabled=false;
+      resolutionButton.querySelector("b").textContent=decisions[decision].label;
+      resolutionButton.querySelector("small").textContent="Human decision";
+      decisionStatus.textContent=decisions[decision].status;
+      resolutionCopy.textContent=decisions[decision].copy;
+      showStep(4);
+    });
+  });
+
+  var filters=Array.prototype.slice.call(document.querySelectorAll("[data-filter]"));
+  var scenes=Array.prototype.slice.call(document.querySelectorAll("[data-category]"));
+  var filterStatus=document.querySelector("[data-filter-status]");
+  var filterCopy={
+    all:"Showing all 14 scenarios; flagship simulations are highlighted.",
+    flagship:"Showing three flagship simulations that use only public materials and synthetic inputs.",
+    industry:"Showing six industry-test scenarios; an Owner, permits and professional review are still required before on-site use.",
+    civic:"Showing eight civic scenarios; voluntary participation, equivalent human service and exit at any time are baseline conditions."
+  };
+  function applyFilter(filter){
+    filters.forEach(function(button){button.setAttribute("aria-pressed",String(button.getAttribute("data-filter")===filter));});
+    scenes.forEach(function(scene){
+      var visible=filter==="all"||(filter==="flagship"&&scene.getAttribute("data-flagship")==="true")||scene.getAttribute("data-category")===filter;
+      scene.hidden=!visible;
+    });
+    filterStatus.textContent=filterCopy[filter];
+  }
+  filters.forEach(function(button){button.addEventListener("click",function(){applyFilter(button.getAttribute("data-filter"));});});
+  applyFilter("flagship");
+
+  var receiptTabs=Array.prototype.slice.call(document.querySelectorAll(".receipt-tab[role=tab]"));
+  var receiptPanels=receiptTabs.map(function(tab){return document.getElementById(tab.getAttribute("aria-controls"));});
+  var receiptStatus=document.querySelector("[data-receipt-status]");
+  var receiptStatusCopy={
+    "receipt-positive":"The offline runner replayed 7/7: 1 PASS, 5 HOLD and 1 RETIRED. This view shows the PASS case, which still requires Human Review.",
+    "receipt-hold":"The offline runner replayed 7/7. This view shows a HOLD case: a forbidden field blocks routing and the evidence must be repaired and rerun.",
+    "receipt-retired":"The offline runner replayed 7/7. This view shows the red-card RETIRED case: stop routing, delete the synthetic session, restore staffed intake and retain a de-identified failure receipt."
+  };
+  function activateReceipt(next,moveFocus){
+    receiptTabs.forEach(function(tab,index){
+      var active=tab===next;
+      tab.setAttribute("aria-selected",String(active));
+      tab.tabIndex=active?0:-1;
+      receiptPanels[index].hidden=!active;
+    });
+    receiptStatus.textContent=receiptStatusCopy[next.getAttribute("aria-controls")];
+    if(moveFocus){next.focus();}
+  }
+  receiptTabs.forEach(function(tab,index){
+    tab.addEventListener("click",function(){activateReceipt(tab,false);});
+    tab.addEventListener("keydown",function(event){
+      var nextIndex=index;
+      if(event.key==="ArrowRight"||event.key==="ArrowDown"){nextIndex=(index+1)%receiptTabs.length;}
+      else if(event.key==="ArrowLeft"||event.key==="ArrowUp"){nextIndex=(index-1+receiptTabs.length)%receiptTabs.length;}
+      else if(event.key==="Home"){nextIndex=0;}
+      else if(event.key==="End"){nextIndex=receiptTabs.length-1;}
+      else{return;}
+      event.preventDefault();
+      activateReceipt(receiptTabs[nextIndex],true);
+    });
+  });
+  activateReceipt(receiptTabs[0],false);
+}());
+</script>
+</body>
+</html>

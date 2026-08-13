@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0.0",
+  "state_count": 8,
+  "states": [
+    "proposed",
+    "baseline_verified",
+    "sandboxed",
+    "live",
+    "blackout_drill",
+    "bequest_audit",
+    "retained_or_modified",
+    "removed_archived"
+  ],
+  "transitions": [
+    {
+      "from": "proposed",
+      "to": "baseline_verified",
+      "role_ids": ["ROLE-ACCOUNTABLE-LEAD"],
+      "gate_ids": ["E0", "E1"],
+      "condition": "service passport 11 fields complete; non-AI baseline, data ceiling and responsible role declared"
+    },
+    {
+      "from": "baseline_verified",
+      "to": "sandboxed",
+      "role_ids": ["ROLE-SAFETY", "ROLE-INDEPENDENT-EVALUATOR"],
+      "gate_ids": ["E2"],
+      "condition": "controlled trial approved: safety review, same-task human route, capacity, notice, appeal and end date"
+    },
+    {
+      "from": "sandboxed",
+      "to": "live",
+      "role_ids": ["ROLE-OPERATIONS", "ROLE-PUBLIC-STEWARD"],
+      "gate_ids": ["E3", "P3"],
+      "condition": "independent re-test passed; three objection gates closed; five baseline indicators met"
+    },
+    {
+      "from": "live",
+      "to": "blackout_drill",
+      "role_ids": ["ROLE-SAFETY", "ROLE-PUBLIC-STEWARD"],
+      "gate_ids": ["P3"],
+      "condition": "scheduled pulse-off or any of the five rollback triggers (safety / privacy / heritage / economy / ecology)"
+    },
+    {
+      "from": "blackout_drill",
+      "to": "bequest_audit",
+      "role_ids": ["ROLE-INDEPENDENT-EVALUATOR"],
+      "gate_ids": ["P4"],
+      "condition": "same-task human route verified operable; residual asset and data inventory checked; NOT skippable"
+    },
+    {
+      "from": "bequest_audit",
+      "to": "retained_or_modified",
+      "role_ids": ["ROLE-ACCOUNTABLE-LEAD"],
+      "gate_ids": ["E4"],
+      "condition": "re-test conclusion, sustained budget, responsibility renewal and public annual statement accepted"
+    },
+    {
+      "from": "bequest_audit",
+      "to": "removed_archived",
+      "role_ids": ["ROLE-ACCOUNTABLE-LEAD", "ROLE-MAINTENANCE"],
+      "gate_ids": ["E4"],
+      "condition": "retire, restore site and public-space baseline, delete data, archive flat-line record; NOT skippable"
+    },
+    {
+      "from": "live",
+      "to": "removed_archived",
+      "role_ids": ["ROLE-SAFETY"],
+      "gate_ids": ["P3", "P4"],
+      "condition": "hard stop on safety incident or binding objection; bypasses success narrative"
+    }
+  ],
+  "skip_forbidden": [
+    "blackout_drill and bequest_audit cannot be skipped; any state may enter removed_archived only through bequest_audit or hard stop"
+  ],
+  "authority_channel": "visible pulse status lights, flat-line archive wall, staffed desk, telephone and paper complaint route; no service may remain in pilot indefinitely",
+  "status": "proposed_role_not_current_authority"
+}

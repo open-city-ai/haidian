@@ -1,5 +1,41 @@
 #!/usr/bin/env python3
-"""Browse merged proposal summaries and download selected text or media on demand."""
+"""Browse merged proposal summaries and download selected text or media on demand.
+
+This script reads the lightweight gallery index (``submissions-data.js``) and
+lets contributors explore merged proposals without downloading large blobs.
+It works with the local sparse checkout or falls back to a remote fetch when
+the index file is absent.
+
+Usage
+-----
+List the 20 most recent merged proposals::
+
+    python3 scripts/read_peer_proposals.py
+
+Search by keyword::
+
+    python3 scripts/read_peer_proposals.py --search "public space"
+
+Filter by author::
+
+    python3 scripts/read_peer_proposals.py --author <github-login>
+
+Download one proposal's core text files::
+
+    python3 scripts/read_peer_proposals.py --proposal <author>/<slug>
+
+Download figures, visual HTML, or drawings on demand::
+
+    python3 scripts/read_peer_proposals.py --proposal <author>/<slug> --include-figures
+    python3 scripts/read_peer_proposals.py --proposal <author>/<slug> --include-visual
+    python3 scripts/read_peer_proposals.py --proposal <author>/<slug> --include-drawings
+
+Downloaded files land in ``.peer-proposals/<author>/<slug>/`` which is
+Git-ignored.  Never copy peer artifacts into a submission without verifying
+license, attribution, relevance, and factual validity.
+
+Pass --json to get machine-readable output for automated processing.
+"""
 
 from __future__ import annotations
 
@@ -65,6 +101,11 @@ def configure_utf8_output() -> None:
 
 
 def safe_repo_path(value: str) -> str:
+    """Validate and normalise a repository-relative path.
+
+    Raises:
+        PeerReaderError: If the path is absolute, contains ``..``, or is empty.
+    """
     path = PurePosixPath(value)
     if path.is_absolute() or ".." in path.parts or not path.parts:
         raise PeerReaderError(f"unsafe repository path: {value}")
@@ -72,6 +113,20 @@ def safe_repo_path(value: str) -> str:
 
 
 def fetch_bytes(url: str, max_bytes: int) -> bytes:
+    """Fetch *url* and return its content, enforcing *max_bytes*.
+
+    Args:
+        url: Full HTTPS URL to fetch.
+        max_bytes: Hard cap on response size; raises :exc:`PeerReaderError`
+            when the ``Content-Length`` header or actual payload exceeds it.
+
+    Returns:
+        Raw response body.
+
+    Raises:
+        PeerReaderError: On size limit violations.
+        urllib.error.URLError: On network failures.
+    """
     request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     with urllib.request.urlopen(request, timeout=30) as response:
         length = response.headers.get("Content-Length")
@@ -237,20 +292,67 @@ def render_list(items: list[dict[str, Any]], source: str) -> str:
 
 def main(argv: list[str] | None = None) -> int:
     configure_utf8_output()
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--repo-root", default=".", help="Sparse workspace containing submissions-data.js")
-    parser.add_argument("--latest", type=int, default=20, help="Maximum catalog entries to show")
-    parser.add_argument("--author", help="Filter by exact GitHub author")
-    parser.add_argument("--status", help="Filter by status key")
-    parser.add_argument("--search", help="Search titles, summaries, authors, and ids")
-    parser.add_argument("--proposal", help="Download one proposal by id or author/slug")
-    parser.add_argument("--output-dir", default=".peer-proposals", help="Git-ignored download cache")
-    parser.add_argument("--full-text", action="store_true", help="Include translations and structured matrices")
-    parser.add_argument("--include-figures", action="store_true", help="Download the five proposal figures")
-    parser.add_argument("--include-visual", action="store_true", help="Download proposal and visual HTML")
-    parser.add_argument("--include-drawings", action="store_true", help="Download large A3/A0 PDFs")
-    parser.add_argument("--max-file-mb", type=int, default=25, help="Per-file safety limit")
-    parser.add_argument("--json", action="store_true", help="Print machine-readable output")
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument(
+        "--repo-root",
+        default=".",
+        help="Sparse workspace root containing submissions-data.js (default: current directory)",
+    )
+    parser.add_argument(
+        "--latest",
+        type=int,
+        default=20,
+        help="Maximum catalog entries to show (default: 20)",
+    )
+    parser.add_argument("--author", help="Filter by exact GitHub author login")
+    parser.add_argument("--status", help="Filter by status key (e.g. merged, under-review)")
+    parser.add_argument(
+        "--search",
+        help="Free-text search across titles, summaries, author names, and IDs",
+    )
+    parser.add_argument(
+        "--proposal",
+        help="Download one proposal by its id or author/slug identifier",
+    )
+    parser.add_argument(
+        "--output-dir",
+        default=".peer-proposals",
+        help="Git-ignored download cache directory (default: .peer-proposals)",
+    )
+    parser.add_argument(
+        "--full-text",
+        action="store_true",
+        help="Include bilingual translations and structured JSON matrices in the download",
+    )
+    parser.add_argument(
+        "--include-figures",
+        action="store_true",
+        help="Download the five required proposal figures",
+    )
+    parser.add_argument(
+        "--include-visual",
+        action="store_true",
+        help="Download proposal.html and visual/index.html",
+    )
+    parser.add_argument(
+        "--include-drawings",
+        action="store_true",
+        help="Download large A3/A0 PDF drawings (respect --max-file-mb)",
+    )
+    parser.add_argument(
+        "--max-file-mb",
+        type=int,
+        default=25,
+        help="Per-file download size limit in MiB (default: 25)",
+    )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Print machine-readable JSON output instead of human-readable text",
+    )
     args = parser.parse_args(argv)
 
     if args.latest < 1 or args.max_file_mb < 1:

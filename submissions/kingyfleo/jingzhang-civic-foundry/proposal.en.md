@@ -7,10 +7,10 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "CC-BY-SA-4.0"
-summary: "Jing-Zhang Civic Foundry uses real site anchors, three urban tissues, five street sections and five statutory delivery gates to bind cultural evidence, civic commissions, public prototypes and twelve-month adopt-or-exit decisions into a reviewable spatial and civic-product conversion chain."
+summary: "Jing-Zhang Civic Foundry uses real site anchors, three urban tissues, five street sections, an auditable AI stack and a 1+4+3 public-value acceptance contract to bind cultural evidence, civic commissions, public prototypes and twelve-month adopt-or-exit decisions into a reviewable spatial and civic-product conversion chain."
 tracks: ["ai-public-services", "jingzhang-heritage-narrative", "enterprise-services-ecosystem"]
 scenarios: ["ai-cultural-guide", "ai-health-service-navigation", "ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
-iteration: "v7.0"
+iteration: "v7.4"
 ---
 
 # JING-ZHANG CIVIC FOUNDRY
@@ -412,6 +412,21 @@ The design sequence is retain–repair–reuse. Survey ordinary Chengfu Road fro
 
 Every block drawing must show whether plots are consolidated, courtyards stay permeable, current users and small merchants can remain, quiet life is protected by time, and loading stays off the footway. Megastructures, whole-street closure and brand halls that displace daily frontage fail G2. Cultural evidence, co-authorship, material/model licences, data minimisation and non-digital service are completed here; unresolved rights prevent a Dazhongsi premiere. [depth:three_key_area_detailed_design]
 
+#### Prototype node: Commission Arcade–Co-Author Court–Visible Workshop
+
+The node binds drawings, statutory inputs and field acceptance to one real background anchor; it is not an image-led claim of a confirmed parcel. Formal siting waits for the official key-area polygon, parcel rights, measured survey and regulatory controls. [data:visual/assets/ai-origin-prototype-control.json]
+
+| Drawing scale | Spatial question | Acceptance evidence |
+| --- | --- | --- |
+| 1:1000 plan | Existing buildings/lanes, retain–repair–reuse, 24/7 passage, fire/loading, canopy and drainage | Parcel ID, boundary source, building classification, passage rights and recalculated areas |
+| 1:500 ground floor | Commission arcade, staffed window, free civic room, co-author table, visible workshop, quiet bypass and service entry | Legible frontage, no-scan route, access tasks, workshop containment, staff and withdrawal points |
+| 1:200 section | Street–arcade–court–workshop proportions, shade, canopy, thresholds, sightlines, noise, loading and fire access | Measured width/grade, summer/winter shade, night lighting, fire clearance and restoration method |
+| Axonometric + operations | Residents frame problems in the morning, co-production occurs in the afternoon, public re-testing occurs in the evening, with seasonal change | Six observation windows, consent, time permit, status board, complaint repair and A0/A1/A2 record |
+
+It is a transferable drawing–task–sign-off interface, not a standard building copied along the corridor. Each district retains its own scale, daily life and building type.
+
+![AI Origin prototype node: a drawing–task–sign-off interface from 1:1000 to 1:200](assets/figures/ai-origin-prototype.en.png)
+
 ### C. Dazhongsi Civic Premiere Ground
 
 This is a **station–city–heritage composite district** with high public exposure and low-risk premiere. Dazhongsi Station, the Bluejing project and Fangheng/Zhongkun frame real urban interfaces, but the 3.95 ha project is not the 72 ha key area. Juesheng Temple triggers a quiet relationship and an authoritative heritage-data gate; no protection line is invented. [source:ANCHOR-DAZHONGSI-BLUEJING-2026] [source:ANCHOR-JUESHENG-TEMPLE] [data:geometry/key_areas.geojson#PROV-KEY-003]
@@ -436,6 +451,60 @@ Seventeen control fields separate `official_value`, `proposal_commitment` and `a
 
 This defines what “built” means more rigorously than an unsupported investment number. Actual budgets, procurement and organisations still require competent formal decisions; they cannot replace the gates. [assumption:A-LEGAL-GATE-001]
 
+## 1+4+3 Public-Value Acceptance Contract: staged sign-off, not one composite score
+
+A parallel “double ledger” can mix statutory prerequisites, spatial experience, cultural output, AI operation and event footfall into scores that appear interchangeable. This proposal replaces it with **one non-tradable legal/safety baseline, four public values with separate minimum guarantees and improvement evidence, and three acceptance moments requiring renewed sign-off**. Legal conditions cannot be offset by popularity, publicity, culture or AI performance. [source:BEIJING-URBAN-RENEWAL-WHITE-PAPER-2024] [source:UK-MAGENTA-BOOK-2026]
+
+| Transferable method | Case lesson | Jing-Zhang rule |
+| --- | --- | --- |
+| Diagnose–renew–evaluate | Beijing urban renewal links diagnosis, delivery and post-use review | A0 baseline contract, A1 opening verification and A2 use review remain separate |
+| Design check vs lived experience | Healthy Streets does not let drawings self-certify the experienced street | Each node uses weekday/weekend × morning/afternoon/evening observation windows, repeated in summer and winter |
+| Comparable public-life data | The Public Life Data Protocol standardises place, time, movement, staying and activity | Every claim records numerator, denominator, observation window and location |
+| Continuing obligation and remedy | NYC POPS audits connect access obligations, inspection, violation and correction | Every guarantee has an independent signatory, failure action, repair deadline and published status |
+| AI impact vs technical benchmark | Public evaluation requires a baseline, business-as-usual comparator and attributable outcome | AI completes the same task as normal non-AI service; model metrics never substitute for civic outcomes |
+
+### “1”: non-tradable legal and safety baseline
+
+Every applicable statutory field has an authoritative source, approval and effective date; every applicable specialist review passes; construction-critical `unknown=0`. A fire, access, rail, heritage, road, municipal or rights blocker stops the project at its gate. [data:visual/assets/statutory-control-register.json]
+
+### “4”: public values accepted separately
+
+| Value | Minimum guarantee: failure blocks acceptance | Improvement evidence against A0 | Independent sign-off |
+| --- | --- | --- | --- |
+| V1 Space and public life | 100% continuous no-scan route; 100% critical access tasks; ≥70% legible daily frontage; ≥60% shade at key stays at 14:00 in summer | Six observation windows per node per season compare passage, staying, requests for help, conflicts and exclusion | Planner/architect + disabled co-tester |
+| V2 Cultural production and co-authorship | 100% source, fact/interpretation, author, licence, compensation/agreed benefit and withdrawal record; zero unresolved rights | ≥3 real civic commissions per quarter, ≥1 frontline public problem; a reusable pack/module/script for each; reuse in ≥2 independent settings over 12 months | Cultural editor + rights/co-author representative |
+| V3 Inclusive and refusable AI | 100% non-digital equivalence and staffed takeover during service hours; refusing account/scan/biometrics/AI cannot reduce essential service; zero unresolved severity-1/2 risks | Same-task comparison of normal physical/staffed service and optional AI: completion, time, correction, exclusion and frontline workload | Frontline service owner + independent public-interest reviewer |
+| V4 Resilient and reversible operation | 100% maintainer, resources, alternative process and rollback; restore basic civic function within 24 hours | Failure, complaint, repair, energy, cost and seasonal evidence; removal/restoration drill before permanence | Facilities owner + government asset/project representative |
+
+“100%” applies only to explicit checklist guarantees with a known numerator and denominator. Missing baseline, denominator, observation window or signatory sets `pending_A0_baseline`; it can never be reported as “passed”. [data:visual/assets/lived-culture-dual-ledger.json]
+
+### “3”: acceptance moments
+
+- **A0 Baseline Contract at G0–G1** freezes authoritative data, object, numerator/denominator, normal-service comparator, observation window, target, signatory and failure action.
+- **A1 Opening Verification at G3–G4** checks drawing=as-built=field task; all four minimum guarantees pass; AI completes red-team, takeover, offline, shutdown and restoration drills.
+- **A2 Use Review at D30/D180/D365** creates a twelve-month dossier; public outcome and AI increment are reported separately to adopt, correct, reduce, transfer or exit.
+
+Each acceptance card has nine fields: `outcome / baseline / normal_service_comparator / minimum_guarantee / improvement_target / numerator_denominator / sample_window / independent_signoff / failure_action`.
+
+![People, cultural production and 1+4+3 public-value acceptance](assets/figures/metrics-evidence.en.png)
+
+## Auditable AI Architecture: evidence–model–agents–human gates–spatial interface
+
+AI is not a screen in a park and does not replace government, professional or frontline decisions. Six reviewable layers bind technical output to spatial and public evidence. [source:AI-RAG-LEWIS] [source:AI-HUMAN-INTERACTION-AMERSHI] [source:NIST-AI-RMF-1]
+
+| Layer | Technical function | Human responsibility | Spatial output / stop condition |
+| --- | --- | --- | --- |
+| L0 Public baseline | Physical wayfinding, access, staffed help, quiet bypass, offline operation | Site and public-service operators | Essential civic function remains when all AI is off |
+| L1 Evidence and rights | Permissioned source registry, versions, authors and fact/interpretation labels; RAG retrieves registered evidence only | Cultural editor, rights holder and data owner | Unsourced or disputed content cannot enter public space |
+| L2 Models and spatial computation | Model registry, rules, scenarios, GIS, microclimate and accessibility analysis | Planning, architecture, engineering and domain experts | No automatic statutory value or demolition decision |
+| L3 Five accountable agents | Evidence, spatial, co-author, operations and evaluation agents retrieve, compare, flag and draft | Five named owners review each output; no general agent can approve across domains | Conflict and low confidence route to a human gate |
+| L4 Human-in-loop interface | Red teams, takeover, physical/digital equivalence, graded exposure and time permit | Frontline staff, independent reviewers and disabled co-testers | No takeover/refusal route or unresolved high risk stops service |
+| L5 Evidence loop | Time-stamped logs, model/data cards, complaints, repair, energy, rollback and A0/A1/A2 comparison | Operations, audit and government project owner | No explainable civic increment or no rollback means no renewal |
+
+AI earns renewal only through incremental public value. If space and staffed service work but AI adds no verified improvement—or adds exclusion, error or frontline burden—the project retains the space and people while reducing or removing AI. Scaling requires both public improvement and a verified AI increment, with a new A0 baseline in every new context. [source:UK-AI-IMPACT-EVALUATION-2026]
+
+![Auditable AI, spatial and public-value architecture](assets/figures/ai-spatial-stack.en.png)
+
 ## AI Innovation Ecosystem, Personas, and AI-Enabled Scenarios
 
 The twelve scenarios are not a feature list. They are prototypes of civic contracts, each with a commissioner, co-authors, spatial host, evidence, and exit. [metric:scenario_count] [data:geometry/public_space.geojson#PUBLIC-SC-01]
@@ -457,17 +526,11 @@ The twelve scenarios are not a feature list. They are prototypes of civic contra
 
 ## Cultural Production, Rights Boundaries, and Market Mechanism
 
-### 1. Five linked ledgers: every project must answer five questions
+### 1. Cultural production enters public value instead of adding another concept system
 
-The Foundry does not add an abstract digital platform. Every civic commission maintains five linked ledgers. [metric:five_ledger_count]
+Cultural production is not a separate account that can award itself points. It runs through 1+4+3 acceptance: V1 checks whether everyday space supports making, watching, correcting and quiet exit; V2 checks fact, author, licence, compensation and reuse; V3 protects explanation, staffed service and refusal; V4 assigns content maintenance and responsibility after exit. [source:AUTHOR-CULTURE-METHOD]
 
-1. **Public Value Ledger**: whose problem, what essential service, who benefits, who may be harmed, and whether a non-digital route exists.
-2. **Cultural Authenticity Ledger**: what is historical fact, local knowledge, contemporary interpretation, or AI generation; who verifies and how corrections occur.
-3. **Rights and Provenance Ledger**: materials, data, models, human edits, authors, licences, brand rights, and expiry dates.
-4. **Safety and Environment Ledger**: risk class, test boundary, human takeover, accessibility, energy, noise, waste, and removal.
-5. **Operations and Reinvestment Ledger**: costs, maintainers, revenue source, creator pay, public reinvestment, reuse, and exit.
-
-The ledgers are not official certification. They are design protocols for professional scrutiny, public understanding, and project review. Matters of law, engineering, and administrative approval remain with competent authorities. [source:AUTHOR-CULTURE-METHOD]
+Each commission still preserves five categories of raw audit record—public value, cultural authenticity, provenance, safety/environment and operations/reinvestment—for machine compatibility, but they are evidence fields rather than a fifth public slogan. [metric:five_ledger_count] The public contract is one sentence: **co-produce in real space, then let real use, independent sign-off and twelve-month review decide what remains.**
 
 ### 2. Cultural Authenticity Protocol
 
@@ -516,7 +579,7 @@ This places the author's cultural-industry method of sponsorship, rights exchang
 
 Technical validation does not equal civic adoption. The Foundry adds five dimensions: problem relevance; cultural and rights integrity; public access and trust; operational and market continuity; and transferability across settings. The first year establishes baselines rather than inventing scores; subsequent targets are jointly set by the public, professional teams, and operators. [metric:civic_adoption_dimension_count]
 
-![Five ledgers, rights boundaries, and civic-adoption evidence chain](assets/figures/metrics-evidence.en.png)
+These five dimensions are analytical lenses inside A2, not a parallel score. Public outcome and AI increment remain separate.
 
 ## Talent, Governance, and Annual Operation
 
@@ -627,7 +690,7 @@ Machine precision supports topology and recalculation; it does not imply officia
 
 ## Risk, Copyright, and Compliance
 
-Risk control is not delegated to a generic claim of compliance. Four auditable boundaries apply: use only public or authorised material and stop citing anything with unresolved public status; minimise personal information, limit its purpose, allow withdrawal, and keep private data out of public displays; record provenance, authorship, copyright, and permission for cultural content, never presenting AI-generated material as historical fact; and require human review, professional compliance review, and confirmation by an accountable actor before model outputs affect public service or spatial deployment. Implementation, data, rights, and fiscal risks enter the Conversion Accountability Chain and Five Ledgers separately; technical self-assessment never substitutes for external review. [source:SOURCE-REGISTRY] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [depth:risk_missing_data]
+Risk control is not delegated to a generic claim of compliance. Four auditable boundaries apply: use only public or authorised material and stop citing anything with unresolved public status; minimise personal information, limit its purpose, allow withdrawal, and keep private data out of public displays; record provenance, authorship, copyright, and permission for cultural content, never presenting AI-generated material as historical fact; and require human review, professional compliance review, and confirmation by an accountable actor before model outputs affect public service or spatial deployment. Implementation, data, rights, and fiscal risks enter the Conversion Accountability Chain and 1+4+3 acceptance; technical self-assessment never substitutes for independent review. [source:SOURCE-REGISTRY] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [depth:risk_missing_data]
 
 ### Eight principal risks
 
@@ -642,7 +705,7 @@ Risk control is not delegated to a generic claim of compliance. Four auditable b
 
 Copyright, sources, assumptions, self-check, standards, professional depth, and announcement tasks are cross-referenced in `report/copyright_statement.md`, `sources.json`, `assumptions.json`, `self_check.json`, `standard_matrix.json`, `design_depth_matrix.json`, and `compliance_matrix.json`. [data:geometry/public_space.geojson#PUBLIC-SC-12] [data:geometry/constraints.geojson#ANCHOR-JUESHENG]
 
-The Conversion Accountability Chain, five gates, three access levels, public safeguards, funding channels, first-100-day actions, and delivery packages are all represented as auditable counts. The narrative retains only representative claim-adjacent anchors. [metric:conversion_accountability_chain_schema_count] [metric:first_100_day_action_count] [metric:delivery_package_count] Complete definitions, formulas, source files, confidence, and assumptions remain in `metrics.json` so machine indexes do not obstruct professional reading.
+The Conversion Accountability Chain, five gates, three access levels, 1+4+3 public-value acceptance, auditable AI stack, public safeguards, funding channels, prototype node, and delivery packages all enter structured evidence. The narrative retains only representative claim-adjacent anchors. [metric:conversion_accountability_chain_schema_count] [metric:first_100_day_action_count] [metric:delivery_package_count] Complete definitions, formulas, source files, confidence, and assumptions remain in `metrics.json` so machine indexes do not obstruct professional reading.
 
 ## References and Machine-Readable Evidence
 

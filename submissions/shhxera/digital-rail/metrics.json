@@ -1,0 +1,351 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary)",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional boundary; official value 11,400,000 sqm; recalculate when official geometry is supplied."
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_detailed_design_areas)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "key_area_area_total_sqm": {
+   "status": "known",
+   "value": 3692893.005,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "sum(polygon_area(key_areas))",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional; official value 3,684,000 sqm."
+   ]
+  },
+  "coordinated_research_area_sqm": {
+   "status": "known",
+   "value": 43600000,
+   "unit": "sqm",
+   "source_files": [
+    "brief/site-package/design_brief.json"
+   ],
+   "formula": "official_value(coordinated_research_area)",
+   "confidence": "high",
+   "assumptions": [
+    "Official announcement value."
+   ]
+  },
+  "overall_design_area_sqm": {
+   "status": "known",
+   "value": 11400000,
+   "unit": "sqm",
+   "source_files": [
+    "brief/site-package/design_brief.json"
+   ],
+   "formula": "official_value(overall_design_area)",
+   "confidence": "high",
+   "assumptions": [
+    "Official announcement value."
+   ]
+  },
+  "key_detailed_design_area_sqm": {
+   "status": "known",
+   "value": 3684000,
+   "unit": "sqm",
+   "source_files": [
+    "brief/site-package/design_brief.json"
+   ],
+   "formula": "official_value(key_detailed_design_area)",
+   "confidence": "high",
+   "assumptions": [
+    "Official announcement value."
+   ]
+  },
+  "zhongzhiyuan_area_sqm": {
+   "status": "known",
+   "value": 1921000,
+   "unit": "sqm",
+   "source_files": [
+    "brief/site-package/design_brief.json"
+   ],
+   "formula": "official_value(zhongzhiyuan)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "ai_origin_area_sqm": {
+   "status": "known",
+   "value": 1043000,
+   "unit": "sqm",
+   "source_files": [
+    "brief/site-package/design_brief.json"
+   ],
+   "formula": "official_value(ai_origin)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "dazhongsi_area_sqm": {
+   "status": "known",
+   "value": 720000,
+   "unit": "sqm",
+   "source_files": [
+    "brief/site-package/design_brief.json"
+   ],
+   "formula": "official_value(dazhongsi)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "building_count": {
+   "status": "known",
+   "value": 66,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(building_footprints)",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual massing."
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 1661076.963,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints))",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual massing on provisional boundary."
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 3790197.672,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space))",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual; includes heritage corridor."
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.3321,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional boundary; conceptual green space."
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 38006.508,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(polygon_area(public_space))",
+   "confidence": "medium",
+   "assumptions": [
+    "Three station squares, conceptual."
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.0033,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional boundary."
+   ]
+  },
+  "land_use_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use))",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual parcels incl. heritage corridor; non-statutory."
+   ]
+  },
+  "land_use_research_sqm": {
+   "status": "known",
+   "value": 1756438.477,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area(code=0802))",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual."
+   ]
+  },
+  "land_use_green_sqm": {
+   "status": "known",
+   "value": 1871519.852,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area(code=1401))",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual."
+   ]
+  },
+  "land_use_commercial_sqm": {
+   "status": "known",
+   "value": 1033459.167,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area(code=05))",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual."
+   ]
+  },
+  "road_count": {
+   "status": "known",
+   "value": 11,
+   "unit": "count",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "count(road_centerlines)",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual additions; locked layers untouched."
+   ]
+  },
+  "phase_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "count(phases)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "official_floor_area_ratio",
+   "confidence": "unknown",
+   "reason": "Official FAR controls are not published in the site package (ranges/planning_limits.json status=missing); conceptual ranges are stated in proposal.md but are not recorded as a metric to avoid fabricating statutory values.",
+   "assumptions": [
+    "Official FAR missing; conceptual ranges only, not recorded as metric."
+   ]
+  },
+  "scenario_card_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(declared scenario cards)",
+   "confidence": "high",
+   "assumptions": [
+    "All conceptual, need scenario testing."
+   ]
+  },
+  "industry_test_scenario_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(declared test scenarios)",
+   "confidence": "high",
+   "assumptions": [
+    "All conceptual."
+   ]
+  },
+  "user_persona_count": {
+   "status": "known",
+   "value": 5,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(declared personas)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "landmark_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(declared AI pilgrimage landmarks)",
+   "confidence": "high",
+   "assumptions": [
+    "Herringbone Light Rail, Pendulum Bell, Platform Zero."
+   ]
+  },
+  "stitch_point_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "declared stitch-point target (conceptual)",
+   "confidence": "low",
+   "assumptions": [
+    "Conceptual target, needs verification."
+   ]
+  }
+ }
+}

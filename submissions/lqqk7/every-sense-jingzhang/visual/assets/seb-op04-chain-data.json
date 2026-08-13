@@ -1,0 +1,386 @@
+{
+  "archive_id": "seb-op04-evidence-chain",
+  "archive_name_zh": "OP-04 配对试点全过程证据链档案",
+  "archive_name_en": "OP-04 paired-pilot end-to-end evidence-chain archive",
+  "version": "0.1.0",
+  "issued_on": "2026-08-12",
+  "status": "draft_concept_recommendation",
+  "baseline_spec": { "spec_id": "service-equivalence-baseline", "required_version": "0.2.0" },
+  "nature": {
+    "zh": "本档案是一次开放数据桌面复演，不是现场试点。它没有真实参与者、没有现场测量、没有任何一次真实运行记录，全部数值由提交包内的几何文件重算得出。它能够证明的是一条链路可以被完整执行并被第三方复算：现场数据基线、AI 分析、多个空间备选、AI 关闭反事实、机器与人工双重复核、变更回执。它不能证明任何一项包容性绩效已经达标，后者只能由取得伦理授权后的真实成对测试取得。",
+    "en": "This archive records a desk replay over open data, not a field pilot. It has no real participant, no site measurement and no record of any real run; every figure is recomputed from the geometry files inside the submitted package. What it can demonstrate is that one chain can be executed end to end and recomputed by a third party: data baseline, AI analysis, several spatial alternatives, an AI-off counterfactual, machine and human review, and a change receipt. It demonstrates no inclusion performance whatsoever; that can only come from an ethically authorised paired test with real participants."
+  },
+  "node": {
+    "node_id": "OP-04",
+    "name_zh": "连续通行断点共测点",
+    "name_en": "Continuity-breakpoint joint test point",
+    "scenario_id": "S04",
+    "key_area_id": "dazhongsi_ai_industry_cluster",
+    "key_area_feature_id": "PROV-KEY-003",
+    "work_package_id": "JZ-01",
+    "gate_id_at_run": "G0",
+    "selection_rule_zh": "选点由三条可在提交数据上直接核对的条件确定，不由主观挑选，也不引用任何本包之外的排序结果。第一条即已唯一确定本节点：OP-04 是十个独立完成点中唯一 gate_id 仍为 G0 的节点，即唯一一个连资料与许可这道门都还没过的点位。第二条：它是十个点位中唯一承接场景卡 S04 轮椅与婴儿车连续通行辅助的节点，任务形态最接近一次可核算的通行。第三条：它位于大钟寺 AI 产业聚集区临时范围内，工作包归属 JZ-01，而 JZ-01 审计结论覆盖大钟寺段又是 JZ-04 的前置，结论影响面最广。",
+    "selection_rule_en": "The choice rests on three conditions checkable directly against the submitted data, not on preference, and cites no ranking from outside this package. The first alone identifies the node uniquely: OP-04 is the only one of the ten independent-completion points whose gate_id is still G0, the only point that has not yet passed even the evidence-and-permission gate. Second, it is the only node carrying scenario card S04, wheelchair and pram continuity assistance, the task closest in form to a trip that can be computed. Third, it sits inside the provisional Dazhongsi AI Industry Cluster under work package JZ-01, and since the JZ-01 audit covering that stretch is a precondition of JZ-04, a conclusion here travels furthest.",
+    "selection_checks": {
+      "unique_g0_node": { "field": "gate_id", "value": "G0", "expected_matching_node_ids": ["OP-04"] },
+      "unique_s04_node": { "field": "scenario_id", "value": "S04", "expected_matching_node_ids": ["OP-04"] },
+      "same_key_area_nodes": { "field": "key_area_id", "value": "dazhongsi_ai_industry_cluster", "expected_matching_node_ids": ["OP-04", "OP-08", "OP-09"] }
+    }
+  },
+
+  "stage_1_open_data_baseline": {
+    "stage_zh": "环节一：开放数据基线",
+    "stage_en": "Stage 1: open-data baseline",
+    "crs": {
+      "geographic": "EPSG:4326",
+      "projected": "EPSG:4548",
+      "projected_name": "CGCS2000 / 3-degree Gauss-Kruger CM 117E",
+      "implementation_note_zh": "投影由随包脚本以纯 Node 内置数学实现，不引入任何第三方库。实现与 pyproj 在本包十个节点上的最大偏差为 1.41e-4 米，属亚毫米级，不影响任何入档读数。",
+      "implementation_note_en": "The projection is implemented in the accompanying script with Node built-in maths only and no third-party library. Against pyproj the largest deviation over the package's ten nodes is 1.41e-4 m, sub-millimetre, and affects no archived reading."
+    },
+    "inputs": [
+      {
+        "file": "geometry/roads.geojson",
+        "features_used": ["ROAD-001", "ROAD-002", "ROAD-003", "ROAD-004", "ROAD-005"],
+        "evidence_class": "agent_generated_design",
+        "note_zh": "五条慢行中心线表达关系，不是道路红线、坡度或工程线位。"
+      },
+      {
+        "file": "geometry/constraints.geojson",
+        "features_used": ["OP-04", "OP-08", "OP-09"],
+        "evidence_class": "agent_generated_design",
+        "note_zh": "三个点位同属临时重点区 PROV-KEY-003，均为概念落位，非官方或工程落点。"
+      },
+      {
+        "file": "geometry/key_areas.geojson",
+        "features_used": ["PROV-KEY-003"],
+        "evidence_class": "agent_inferred_from_public_data",
+        "note_zh": "大钟寺 AI 产业聚集区临时粗略范围，公告未给出四至，矩形边不得解释为地块或道路红线。"
+      }
+    ],
+    "measured_baseline": {
+      "road_lengths_m": {
+        "ROAD-001": 9105.163,
+        "ROAD-002": 904.998,
+        "ROAD-003": 888.279,
+        "ROAD-004": 1051.196,
+        "ROAD-005": 8216.851
+      },
+      "ai_off_declared_network_length_m": 17322.014,
+      "ai_off_network_component_count": 2,
+      "component_note_zh": "在 AI 关闭状态下被声明为等价的两条线路 ROAD-001 与 ROAD-005 互不相交，构成两个独立连通分量；三条横向接口 ROAD-002、ROAD-003、ROAD-004 是它们之间仅有的连接，而三条都未声明 AI 关闭后的等价性。",
+      "component_note_en": "The two lines declared equivalent once AI is off, ROAD-001 and ROAD-005, do not meet, forming two separate components. The three cross links ROAD-002, ROAD-003 and ROAD-004 are the only connections between them, and none of the three declares equivalence once AI is off."
+    },
+    "disclaimer_zh": "本包几何为临时工作几何，官方边界缺失。所有长度与距离为概念口径，不代表实测步行时间、坡度、过街条件、道路红线或工程精度。"
+  },
+
+  "stage_2_ai_analysis": {
+    "stage_zh": "环节二：AI 分析",
+    "stage_en": "Stage 2: AI analysis",
+    "method_zh": "把五条提交中心线在互相交点处打断成图，节点以到网络最近点的直线接入段（stub）挂接，接入段长度计入行程；在 AI 开启与 AI 关闭两套边集合上分别求最短网络行程。",
+    "method_en": "The five submitted centrelines are noded at their mutual intersections to form a graph. Each point attaches by a straight access stub to the nearest point on the network, and the stub length counts against the trip. Shortest network trips are then computed on the AI-on and AI-off edge sets separately.",
+    "ai_off_edge_rule": {
+      "rule_type": "declared_independence_token",
+      "read_from": "geometry/roads.geojson · properties.design_role",
+      "match": "case_insensitive_substring",
+      "declared_tokens": ["ai-off equivalent", "no ai dependency"],
+      "contract_zh": "边在 AI 关闭状态下是否可用，只由该边自身 design_role 中是否出现上述声明词决定。校验实现不得自行判断某条线路在断网后好不好走——这是提交数据已经声明过的事，工具只负责读取。本规则沿用基准 v0.2 确立的原则：判据写在数据或条文里，实现不持有私有词表。",
+      "contract_en": "Whether an edge remains usable once AI is off is decided solely by whether its own design_role carries one of the tokens above. No checker may judge for itself how walkable a line is after a network outage: the submitted data has already declared it, and the tool only reads. The rule follows the principle established in baseline v0.2, that criteria live in the data or in the text and no implementation holds a private word list.",
+      "classification": {
+        "ROAD-001": { "ai_off_usable": true, "matched_token": "ai-off equivalent" },
+        "ROAD-002": { "ai_off_usable": false, "matched_token": null },
+        "ROAD-003": { "ai_off_usable": false, "matched_token": null },
+        "ROAD-004": { "ai_off_usable": false, "matched_token": null },
+        "ROAD-005": { "ai_off_usable": true, "matched_token": "no ai dependency" }
+      }
+    },
+    "tasks": [
+      {
+        "task_id": "T1",
+        "zh": "由 OP-04 连续通行断点共测点前往同一重点区内的 OP-08 无账户消费与维护退出点",
+        "en": "Travel from OP-04, the continuity-breakpoint joint test point, to OP-08, the account-free purchase and maintenance exit point, inside the same key area",
+        "origin": "OP-04",
+        "destination": "OP-08"
+      },
+      {
+        "task_id": "T2",
+        "zh": "由 OP-04 前往同一重点区内的 OP-09 活动感官负荷退出点",
+        "en": "Travel from OP-04 to OP-09, the event sensory-load exit point, inside the same key area",
+        "origin": "OP-04",
+        "destination": "OP-09"
+      }
+    ],
+    "task_note_zh": "两项任务对应场景卡 S04 轮椅与婴儿车连续通行辅助。任务不测量人，只测量提交几何本身是否为这两段通行提供了连续路径。"
+  },
+
+  "stage_3_alternatives": {
+    "stage_zh": "环节三：空间备选",
+    "stage_en": "Stage 3: spatial alternatives",
+    "derivation_zh": "两个备选不是先想好再去验证，而是由环节二的断点位置直接推出：断点在 ROAD-001 与 ROAD-005 之间缺少一条声明为 AI 关闭等价的东西向连接，因此备选只能是把既有的一条横向接口升级，或者把既有的一条纵向安静线延伸过去。两者穷尽了在不新增第三类要素前提下的处置方式。",
+    "derivation_en": "The two alternatives were not chosen in advance and then tested. They follow directly from where the break sits: between ROAD-001 and ROAD-005 there is no east-west link declared equivalent once AI is off, so the only moves are to upgrade one existing cross link or to extend one existing quiet line across. Between them they exhaust the options that add no third class of element.",
+    "alternatives": [
+      {
+        "alt_id": "ALT-A",
+        "name_zh": "直接路径改线：横向接口升级",
+        "name_en": "Direct-route option: upgrade the cross link",
+        "action_zh": "把 ROAD-004 大钟寺四象限包容采用接口自与 ROAD-001 的交点向东、至覆盖 OP-08 与 OP-09 接入点的一段，升级为声明 AI 关闭后等价的连续通行段：固定多通道导视、连续无障碍地面、有人求助位。",
+        "action_en": "Upgrade the stretch of ROAD-004, the Dazhongsi four-quadrant inclusive adoption link, from its crossing with ROAD-001 east far enough to cover the access points of OP-08 and OP-09, into a continuous passage declared equivalent once AI is off: fixed multichannel wayfinding, continuous step-free ground, a staffed help position.",
+        "works_length_m": 615.334,
+        "works_type": "upgrade_of_existing_centreline",
+        "new_geometry_added": false,
+        "dependency_classes_introduced": ["rail_station_operator", "municipal_utility", "road_authority"],
+        "dependency_basis_zh": "ROAD-004 的 design_role 原文为 conceptual station crossing pending official road, metro and utility data，其可用性明写为待官方道路、轨道与市政资料，本方案无权代这三类主体承诺。"
+      },
+      {
+        "alt_id": "ALT-B",
+        "name_zh": "安静替代路径增补：纵向线南端西延",
+        "name_en": "Quiet-route option: extend the south end of the parallel line",
+        "action_zh": "自 ROAD-005 低刺激安静替代路线的现状南端向西增补一段地面连接，接入 ROAD-001 通用可达底线；该段位于 ROAD-004 以南，不穿越站点范围。",
+        "action_en": "Add a ground link running west from the present south end of ROAD-005, the low-stimulation quiet alternative route, into ROAD-001, the universal-access baseline. The link sits south of ROAD-004 and crosses no station area.",
+        "works_length_m": 273.491,
+        "works_type": "new_conceptual_link",
+        "new_geometry_added": true,
+        "dependency_classes_introduced": ["land_tenure", "ground_continuity_audit"],
+        "dependency_basis_zh": "ROAD-005 的 design_role 原文为 parallel low-sensory route with no AI dependency，增补段与其同类，不引入新的依赖类别；但增补段本身仍需用地权属与地面连续性的现场核验。"
+      }
+    ],
+    "works_ratio_b_over_a": 0.444
+  },
+
+  "stage_4_ai_off_counterfactual": {
+    "stage_zh": "环节四：AI 关闭反事实",
+    "stage_en": "Stage 4: AI-off counterfactual",
+    "states": [
+      { "state_id": "BASE_ON", "zh": "基线，AI 开启，五条线路全部可用", "en": "Baseline, AI on, all five lines usable" },
+      { "state_id": "BASE_OFF", "zh": "基线，AI 关闭，仅两条声明线路可用", "en": "Baseline, AI off, only the two declared lines usable" },
+      { "state_id": "ALT_A_OFF", "zh": "备选 A 实施后，AI 关闭", "en": "AI off, after alternative A" },
+      { "state_id": "ALT_B_OFF", "zh": "备选 B 实施后，AI 关闭", "en": "AI off, after alternative B" }
+    ],
+    "expected_results": {
+      "tolerance_m": 0.0005,
+      "rounding": "0.001 m",
+      "origin_access_stub_m": 17.089,
+      "origin_attached_to": "ROAD-001",
+      "rows": [
+        { "state_id": "BASE_ON", "task_id": "T1", "destination_attached_to": "ROAD-004", "destination_access_stub_m": 88.816, "network_m": 499.906, "total_m": 605.811, "reachable": true },
+        { "state_id": "BASE_ON", "task_id": "T2", "destination_attached_to": "ROAD-004", "destination_access_stub_m": 55.527, "network_m": 670.838, "total_m": 743.454, "reachable": true },
+        { "state_id": "BASE_OFF", "task_id": "T1", "destination_attached_to": "ROAD-005", "destination_access_stub_m": 170.923, "network_m": null, "total_m": null, "reachable": false },
+        { "state_id": "BASE_OFF", "task_id": "T2", "destination_attached_to": "ROAD-005", "destination_access_stub_m": 341.854, "network_m": null, "total_m": null, "reachable": false },
+        { "state_id": "ALT_A_OFF", "task_id": "T1", "destination_attached_to": "ALT-A-UPGRADE", "destination_access_stub_m": 88.816, "network_m": 499.906, "total_m": 605.811, "reachable": true },
+        { "state_id": "ALT_A_OFF", "task_id": "T2", "destination_attached_to": "ALT-A-UPGRADE", "destination_access_stub_m": 55.527, "network_m": 670.838, "total_m": 743.454, "reachable": true },
+        { "state_id": "ALT_B_OFF", "task_id": "T1", "destination_attached_to": "ROAD-005", "destination_access_stub_m": 170.923, "network_m": 641.919, "total_m": 829.931, "reachable": true },
+        { "state_id": "ALT_B_OFF", "task_id": "T2", "destination_attached_to": "ROAD-005", "destination_access_stub_m": 341.854, "network_m": 497.576, "total_m": 856.520, "reachable": true }
+      ],
+      "derived": {
+        "alt_a_trip_ratio_over_ai_on": { "T1": 1.000, "T2": 1.000 },
+        "alt_b_trip_ratio_over_ai_on": { "T1": 1.370, "T2": 1.152 },
+        "alt_b_trip_delta_m": { "T1": 224.120, "T2": 113.066 },
+        "ai_off_approach_ratio_over_ai_on": { "OP-08": 1.924, "OP-09": 6.157 }
+      }
+    },
+    "finding_zh": "基线 AI 关闭状态下，T1 与 T2 均不可达。这不是绕行变远，而是提交几何中不存在一条不依赖 AI 的连续路径把 OP-04 与同区两个服务终点连起来。与之并列的第二项发现是接入距离：AI 关闭后 OP-08 的接入段由 88.816 米增至 170.923 米，OP-09 由 55.527 米增至 341.854 米，后者是 6.157 倍。",
+    "finding_en": "In the AI-off baseline neither T1 nor T2 is reachable. This is not a longer detour: the submitted geometry holds no continuous route independent of AI that joins OP-04 to either service endpoint in its own key area. A second finding sits alongside it. Once AI is off, the access stub of OP-08 grows from 88.816 m to 170.923 m and that of OP-09 from 55.527 m to 341.854 m, the latter a factor of 6.157."
+  },
+
+  "stage_5_dual_review": {
+    "stage_zh": "环节五：机器与人工双重复核",
+    "stage_en": "Stage 5: machine and human review",
+    "machine_review": {
+      "executed_by": "visual/assets/seb-op04-chain-run.js",
+      "prerequisite_run": {
+        "command": "node seb-tabletop-run.js",
+        "purpose_zh": "本链路的机器复核在开始之前先真实执行既有的 SEB 桌面校验器，退出码必须为 0，才说明本次复核所依据的基准与已发布的十二条样例判定仍然一致。退出码入档。",
+        "purpose_en": "Before the chain's own review runs, the existing SEB tabletop checker is actually executed. Its exit code must be 0 before this review may proceed, which is what shows that the baseline this review leans on still gives the same verdicts on the twelve published fixtures. The exit code is archived.",
+        "expected_exit_code": 0
+      },
+      "independent_implementation_note_zh": "本链路的节点判定不复用桌面校验器的代码，而是第二次独立实现同一份 seb-spec.json 的 constraint_machine_rule。两个互不共享代码的实现在同一份规范下得到同一判定，本身就是基准可被任何城市取走就用的一次检验；若两者判定不一致，说明规范仍留有需由实现私自解释的缺口，应按版本治理登记为失败样本。",
+      "independent_implementation_note_en": "The node ruling in this chain does not reuse the tabletop checker's code; it is a second, independent implementation of the same constraint_machine_rule in seb-spec.json. Two implementations that share no code reaching the same verdict under one specification is itself a test of whether the baseline can be picked up and used by any city. Were they to disagree, the specification would still hold a gap for an implementation to fill privately, and that would be registered as a failed sample under version governance.",
+      "checks": [
+        { "check_id": "C1", "zh": "备选方案的节点声明逐条通过 seb-spec.json 的 node_schema 判定（五个必填字段、ai_off_path 拒绝词表、human_handoff 角色词表）" },
+        { "check_id": "C2", "zh": "两个备选申报的等级与 OP-04 的 gate_id 按结构化 gate_binding 比对" },
+        { "check_id": "C3", "zh": "四个状态的全部行程读数由几何文件重算，与本档案 expected_results 逐项一致" },
+        { "check_id": "C4", "zh": "AI 关闭态边集合的分类与本档案 ai_off_edge_rule.classification 一致" }
+      ],
+      "claims_note_zh": "四条声明中两条为正例、两条为反例。没有反例的复核证明不了判定有效，只能证明判定没有拦住任何东西；两条反例分别取自本链路真实容易出现的写法，而不是为了凑一个失败而编造的字符串。",
+      "claims_note_en": "Of the four claims two are positive and two negative. A review without negatives proves not that the ruling works but only that it stopped nothing. Both negatives are drawn from ways this chain could realistically be written up, not from strings invented in order to fail.",
+      "claims": [
+        {
+          "claim_id": "CL-A",
+          "alt_id": "ALT-A",
+          "claimed_level": "L0",
+          "desc_zh": "备选 A 在当前闸门下的节点声明",
+          "desc_en": "The node declaration for alternative A at the node's current gate",
+          "node": {
+            "ai_off_path": "沿升级后的横向接口连续通行，配固定多通道导视与有人求助位",
+            "human_handoff": "无障碍专业人员与参与者代表共同复核断点",
+            "gate_id": "G0",
+            "operating_mode": "资料与许可闸门下的现场审计准备",
+            "responsible_role": "未来经授权的场地运营与无障碍专业团队"
+          },
+          "expected_verdict": "ACCEPT"
+        },
+        {
+          "claim_id": "CL-B",
+          "alt_id": "ALT-B",
+          "claimed_level": "L0",
+          "desc_zh": "备选 B 在当前闸门下的节点声明",
+          "desc_en": "The node declaration for alternative B at the node's current gate",
+          "node": {
+            "ai_off_path": "沿低刺激安静替代路线南端增补段连续通行，配固定导视与有人求助位",
+            "human_handoff": "无障碍专业人员与参与者代表共同复核断点",
+            "gate_id": "G0",
+            "operating_mode": "资料与许可闸门下的现场审计准备",
+            "responsible_role": "未来经授权的场地运营与无障碍专业团队"
+          },
+          "expected_verdict": "ACCEPT"
+        },
+        {
+          "claim_id": "CL-N1",
+          "alt_id": "ALT-A",
+          "claimed_level": "L2",
+          "desc_zh": "反例：备选 A 越过审计直接申报封闭成对测试",
+          "desc_en": "Negative: alternative A claims closed paired testing without the audit in between",
+          "node": {
+            "ai_off_path": "沿升级后的横向接口连续通行，配固定多通道导视与有人求助位",
+            "human_handoff": "无障碍专业人员与参与者代表共同复核断点",
+            "gate_id": "G0",
+            "operating_mode": "AI开关成对任务测试",
+            "responsible_role": "未来经授权的场地运营与无障碍专业团队"
+          },
+          "expected_verdict": "REJECT",
+          "expected_reason_code": "LEVEL_GATE_MISMATCH",
+          "why_zh": "连续通道的存在性尚未审计就申报成对测试，等于把待证事项当作已知条件；基准的 gate_binding 规定 L2 绑定 G2，而本节点仍在 G0。"
+        },
+        {
+          "claim_id": "CL-N2",
+          "alt_id": "ALT-B",
+          "claimed_level": "L0",
+          "desc_zh": "反例：断点处以扫码查看绕行方案替代等价路径",
+          "desc_en": "Negative: a QR code showing the detour is offered in place of an equivalent route",
+          "node": {
+            "ai_off_path": "在断点处设提示牌，引导使用者扫码查看当前可用的绕行方案",
+            "human_handoff": "无障碍专业人员与参与者代表共同复核断点",
+            "gate_id": "G0",
+            "operating_mode": "资料与许可闸门下的现场审计准备",
+            "responsible_role": "未来经授权的场地运营与无障碍专业团队"
+          },
+          "expected_verdict": "REJECT",
+          "expected_reason_code": "NODE_CONSTRAINT_VIOLATION:ai_off_path",
+          "why_zh": "这是断点处最常见的省事做法，字段填得满、语法合法、人工快速审阅极易放过；但 AI 关闭之后使用者仍被要求上线，绕行信息与断点本身都留在同一个系统里，等价性不成立。"
+        }
+      ]
+    },
+    "human_review": {
+      "nature_zh": "以下是方案方的桌面推演结论，不是任何真实参与者、专业机构或使用者代表的意见。本档案不含任何一次真实复核，也不代表任何主体已经审议过本链路。",
+      "nature_en": "What follows is the proposal author's desk reasoning. It is the opinion of no real participant, professional body or user representative. The archive holds no real review round and represents deliberation by no party.",
+      "criteria": [
+        {
+          "criterion_id": "H1",
+          "zh": "接入段是否可通行：本次核算把接入段处理为直线，直线是否落在可通行地面上未经任何审计。ALT-B 使 OP-09 的接入段达到 341.854 米，该段完全依赖这一未经验证的假定。",
+          "en": "Whether the access stub is walkable: the computation treats it as a straight line, and whether that line lands on walkable ground has been audited by nobody. Under ALT-B the OP-09 stub reaches 341.854 m and rests entirely on that unverified assumption.",
+          "verdict_zh": "不通过。接入段假定是本次核算最大的不确定性来源，须在现场审计中优先处理。"
+        },
+        {
+          "criterion_id": "H2",
+          "zh": "退出点的接入距离是否可接受：OP-09 是活动感官负荷退出点，其功能定义要求就近可达。ALT-B 把它的接入距离拉长至 AI 开启状态的 6.157 倍。",
+          "en": "Whether the approach distance to an exit point is acceptable: OP-09 is the event sensory-load exit point, and its function requires it to be close at hand. ALT-B stretches its approach to 6.157 times the AI-on figure.",
+          "verdict_zh": "不通过，且不由方案方裁决。可接受性属于使用者的判断，本方案不设阈值、不代答，把该问题原样交给现场共测。"
+        },
+        {
+          "criterion_id": "H3",
+          "zh": "依赖主体是否在本方案权限内：ALT-A 的可用性取决于轨道运营、市政与道路三类主体的资料与授权。",
+          "en": "Whether the parties depended on lie within this proposal's authority: the usability of ALT-A turns on evidence and authorisation from the rail operator, the utility bodies and the road authority.",
+          "verdict_zh": "不通过。方案不得把未取得的授权写成已成立的路径，这与回执机制中未采纳理由不得引用尚未存在的授权属同一条纪律。"
+        }
+      ]
+    },
+    "adjudication": {
+      "zh": "裁决全部依据包内既有条文，本次未新增任何判据、未设任何阈值。",
+      "en": "Every ruling rests on text already in the package. This run added no criterion and set no threshold.",
+      "rulings": [
+        {
+          "ruling_id": "D1",
+          "clause_source": "visual/assets/seb-spec.json · node_schema · ai_off_path",
+          "clause_zh": "ai_off_path 不得填写仍依赖同一系统的路径。",
+          "applied_zh": "OP-04 现填「现场人工指引与无障碍替代通行方案」，字段不违反拒绝词表，机器判定通过；但空间核算显示该路径所依托的连续通道在提交几何中并不存在。字段合规与空间成立是两件事，本次核算把后者第一次检了出来。",
+          "outcome": "field_passes_but_spatial_premise_unproven"
+        },
+        {
+          "ruling_id": "D2",
+          "clause_source": "proposal.md · 首批试点点位选取准则 · 物理可达",
+          "clause_zh": "硬条件为「现状具备连续可达路径，或可用可撤除坡道在不减少通行净宽的前提下达成」；数据到位前的状态为「由 JZ-01 审计补齐，未经审计的点位不得进入 L1」。",
+          "applied_zh": "OP-04 在 AI 关闭状态下不具备连续可达路径，硬条件不成立，按该表既有规定保持在审计状态，不得进入 L1。这条准则此前只是一张表；本次是它第一次被真正执行，并第一次给出了否定结论。",
+          "outcome": "op04_stays_pre_L1"
+        },
+        {
+          "ruling_id": "D3",
+          "clause_source": "visual/assets/seb-spec.json · level_definitions · gate_binding",
+          "clause_zh": "L0 绑定 G0，申报某一等级时节点 gate_id 必须等于该等级的 gate_binding.gate_id。",
+          "applied_zh": "OP-04 的 gate_id 为 G0，只能申报 L0；两个备选各自都需要 G0 尚未取得的官方资料，因此两者都不得在本轮被写为已成立的 AI 关闭等价路径。",
+          "outcome": "both_alternatives_pending_G0"
+        }
+      ],
+      "conclusion_zh": "本轮唯一确定的结论是：OP-04 的 AI 关闭等价路径缺少空间前提，须在 JZ-01 审计中优先核验东西向连续通道。两个备选均不被采纳为已成立的路径，也均不被否决，各自的成立条件与失效条件一并登记为待办。分析没有替设计做选择，它做的是把一条原本写在数据里、看上去合规的断言，退回到未证成立的状态。",
+      "conclusion_en": "One conclusion is settled this round: the AI-off equivalent route at OP-04 lacks its spatial premise, and the east-west continuity must be audited first within JZ-01. Neither alternative is adopted as an established route and neither is rejected; the conditions under which each would hold or fail are registered as open items. The analysis did not choose for the design. What it did was send a claim that already sat in the data, and that passed every field check, back to the state of being unproven."
+    }
+  },
+
+  "stage_6_change_receipt": {
+    "stage_zh": "环节六：变更回执",
+    "stage_en": "Stage 6: change receipt",
+    "receipt_id": "CR-2026-08-12-003",
+    "receipt_file": "visual/assets/seb-change-receipt-op04.json",
+    "design_revision": {
+      "artifact": "geometry/constraints.geojson",
+      "feature_id": "OP-04",
+      "revision_type": "append_only",
+      "fields_added": [
+        "ai_off_continuity_status",
+        "ai_off_continuity_note_zh",
+        "ai_off_continuity_receipt_id"
+      ],
+      "expected_values": {
+        "ai_off_continuity_status": "premise_unproven_pending_site_audit",
+        "ai_off_continuity_receipt_id": "CR-2026-08-12-003"
+      },
+      "why_append_not_rewrite_zh": "既有 ai_off_path 的原文一字未改。回执机制的不可改写规则要求已发布的记录不被重写，后续结论以追加方式呈现；同一条纪律适用于节点属性。追加字段使读者既能看到当时写下的等价路径声明，也能看到它后来被空间核算退回。",
+      "why_append_not_rewrite_en": "Not a word of the existing ai_off_path was changed. The immutability rule of the receipt mechanism requires a published record to stand and later outcomes to be appended; the same discipline applies to a node property. The appended fields let a reader see both the equivalence claim as it was written and the fact that a spatial computation later sent it back."
+    },
+    "companion_prose_revision": [
+      {
+        "artifact": "proposal.md / proposal.en.md",
+        "location_zh": "「重点区域详细设计」章大钟寺行的深化门槛栏",
+        "change_zh": "增列东西向 AI 关闭态连续通道存在性核验，作为 JZ-01 审计结论覆盖大钟寺段的前置内容之一。"
+      }
+    ]
+  },
+
+  "open_items": [
+    {
+      "item_id": "OI-01",
+      "zh": "同类问题已在本次核算中一并查出：OP-08 与 OP-09 在 AI 关闭状态下同样只能接入 ROAD-005，接入距离分别为 AI 开启状态的 1.924 倍与 6.157 倍。本轮按范围只处置 OP-04，两者登记为下一轮同类待办，不在本轮静默修改。",
+      "en": "The same fault was found alongside: once AI is off, OP-08 and OP-09 can also attach only to ROAD-005, at 1.924 and 6.157 times their AI-on approach. This round handles OP-04 only, by scope; the other two are registered for the next round rather than being quietly changed here."
+    },
+    {
+      "item_id": "OI-02",
+      "zh": "接入段的直线可通行假定未经任何审计，是本次核算最大的不确定性来源。现场审计到位前，任何一个接入距离读数都不得被解释为实际步行距离。",
+      "en": "The assumption that an access stub is walkable in a straight line has been audited by nobody and is the largest source of uncertainty here. Until a site audit exists, no approach figure may be read as an actual walking distance."
+    },
+    {
+      "item_id": "OI-03",
+      "zh": "两个备选的最终定线须待官方道路、轨道、市政与权属资料到位后重做，包括是否存在本次未穷尽的第三种处置方式。本档案的两个备选是在现有五条中心线约束下的穷举，不是在真实场地条件下的穷举。",
+      "en": "Both alternatives must be re-drawn once official road, rail, utility and tenure evidence arrives, including whether a third option exists that this run did not reach. The two alternatives here exhaust the moves available under the five submitted centrelines, not the moves available on the real site."
+    }
+  ],
+
+  "reproduction": {
+    "command": "node seb-op04-chain-run.js",
+    "working_directory": "submissions/lqqk7/every-sense-jingzhang/visual/assets",
+    "dependencies": "Node built-ins only; no network access; reads only files inside this package",
+    "exit_code_meaning": {
+      "0": "全部重算读数与本档案一致，且节点判定与闸门比对全部通过 / every recomputed figure matches this archive and every node and gate check passes",
+      "2": "基准版本不足或前置的桌面校验器未通过，此时不作任何判定 / the baseline version is insufficient or the prerequisite tabletop checker did not pass, and no verdict is issued",
+      "1": "存在读数不一致或判定不通过 / a figure disagrees or a check fails"
+    }
+  }
+}

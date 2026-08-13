@@ -401,6 +401,89 @@
    "assumptions": [
     "v0.4 新增：权利与素材登记 ledger（初版样例）。当前为概念 assets 登记占位，正式生成图/媒体逐项登记后更新。"
    ]
+  },
+  "machine_contract_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "visual/assets/mainline-contracts.json"
+   ],
+   "formula": "count(scenarios)",
+   "confidence": "medium",
+   "assumptions": [
+    "v0.5 新增：机器可读四段契约 covering 12 场景，每张含 baseline/boost/blackout/bequest 字段。"
+   ]
+  },
+  "machine_evidence_asset_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "visual/assets/mainline-contracts.json",
+    "visual/assets/mainline-state-machine.json",
+    "visual/assets/mainline-gates.json",
+    "visual/assets/mainline-pipeline.json",
+    "visual/assets/mainline-raci.json",
+    "visual/assets/mainline-tabletop.json"
+   ],
+   "formula": "count(mainline_evidence_assets)",
+   "confidence": "high",
+   "assumptions": [
+    "v0.5 新增：主线机器证据资产（契约、状态机、双闸门、五段链路、RACI、推演）共 6 个 JSON。"
+   ]
+  },
+  "pipeline_stage_count": {
+   "status": "known",
+   "value": 5,
+   "unit": "count",
+   "source_files": [
+    "visual/assets/mainline-pipeline.json"
+   ],
+   "formula": "count(stages)",
+   "confidence": "medium",
+   "assumptions": [
+    "v0.5 新增：主线五段验收链 COMMIT→MERGE→LIVE→BLACKOUT→LEGACY。"
+   ]
+  },
+  "governance_state_count": {
+   "status": "known",
+   "value": 8,
+   "unit": "count",
+   "source_files": [
+    "visual/assets/mainline-state-machine.json"
+   ],
+   "formula": "count(states)",
+   "confidence": "medium",
+   "assumptions": [
+    "v0.5 新增：主线场景生命周期状态机（proposed→…→blackout_drill→retained/removed_archived），非跳过阶段含退场演练与红利审计。"
+   ]
+  },
+  "weak_presence_of_governance": {
+   "status": "known",
+   "value": 1,
+   "unit": "boolean",
+   "source_files": [
+    "visual/assets/mainline-raci.json"
+   ],
+   "formula": "count(roles) > 0",
+   "confidence": "medium",
+   "assumptions": [
+    "v0.5 新增：治理角色 RACI 已定义，角色 id 供给 mainline-contracts.json 引用。"
+   ]
+  },
+  "hard_stop_condition_count": {
+   "status": "known",
+   "value": 5,
+   "unit": "count",
+   "source_files": [
+    "risk.json"
+   ],
+   "formula": "count(hard_stop_conditions)",
+   "confidence": "medium",
+   "assumptions": [
+    "v0.5 新增：硬停止条件 5 项（无 AI 路径/无人工/无法拔线/敏感数据越界/红利无维护人）。"
+   ]
   }
  }
 }

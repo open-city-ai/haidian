@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "DM-FIELD-SURVEY-V7",
+  "status": "protocol_ready_not_executed",
+  "completed_observations": 0,
+  "evidence_rule_zh": "只有同时具备时间、位置、朝向、观察项、去隐私照片哈希和复核人签名的记录，才计入现场证据。",
+  "evidence_rule_en": "An observation counts as field evidence only when timestamp, location, direction, observation fields, privacy-cleared photo hash and reviewer sign-off are all present.",
+  "privacy_rule": "Do not intentionally capture faces, licence plates, residential windows, access credentials or conversations. Blur incidental identifiers before hashing and publication.",
+  "routes": [
+    {
+      "id": "FS-01-QINGHE",
+      "name_zh": "清河合同段公共边界走查",
+      "name_en": "Qinghe Contract-Segment Public-Edge Walk",
+      "location_basis": "京张高铁沿线东侧，小营西路至西二旗北路之间（官方合同位置描述）",
+      "survey_scope": ["public entrances", "continuous step-free route", "shade and rest", "crossings", "construction or opening status", "visible operator and complaint contact"],
+      "minimum_observations": 12,
+      "minimum_time_windows": ["07:30-09:00", "12:00-13:30", "20:00-21:30"],
+      "status": "planned",
+      "release_effect": "No Stop-Garden siting until route continuity, responsible public-space authority and current works status are field-verified."
+    },
+    {
+      "id": "FS-02-AI-ORIGIN",
+      "name_zh": "五道口—清华东路西口普通服务走查",
+      "name_en": "Wudaokou–Qinghuadongluxikou Ordinary-Service Walk",
+      "location_basis": "官方征集公告指定的两个轨道站点界面；不推定重点区宗地边界",
+      "survey_scope": ["station exits", "campus-park-neighbourhood crossings", "account-free information", "paper or staffed equivalent", "quiet waiting", "wheelchair and cane route"],
+      "minimum_observations": 15,
+      "minimum_time_windows": ["08:00-09:30", "17:00-19:00"],
+      "status": "planned",
+      "release_effect": "No Provenance Clinic footprint until a lawful operator, public entry and ordinary service route are documented."
+    },
+    {
+      "id": "FS-03-DAZHONGSI",
+      "name_zh": "大钟寺站四象限与成交地块公共界面走查",
+      "name_en": "Dazhongsi Four-Quadrant and Transacted-Parcel Public-Edge Walk",
+      "location_basis": "大钟寺站四象限及HD00-1603-01、HD00-1603-03A公开可达边界；不得进入非公共空间",
+      "survey_scope": ["four-quadrant crossings", "step-free access", "cycle parking", "public-private edge", "multilingual staffed service", "night lighting and passive surveillance"],
+      "minimum_observations": 16,
+      "minimum_time_windows": ["08:00-09:30", "18:00-20:00", "21:00-22:00"],
+      "status": "planned",
+      "release_effect": "The Account-Free Commons remains HOLD until station, road and parcel-edge interfaces are walked and signed off."
+    }
+  ],
+  "observation_schema": {
+    "required": ["observation_id", "route_id", "captured_at", "longitude", "latitude", "horizontal_accuracy_m", "direction_deg", "public_space_only", "finding", "photo_sha256", "privacy_checked", "reviewer"],
+    "allowed_result": ["pass", "fail", "not_observable", "access_blocked"],
+    "release_rule": "Any missing required field, privacy failure, access obstruction or unresolved critical finding keeps the related proof block at HOLD."
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "0.1.0",
+  "purpose_zh": "把折返点三态与回授门程序化为机器可读状态机：任何城市AI场景进入公共空间前必须经过的治理回路",
+  "purpose_en": "Machine-readable state machine for switchback governance: the mandatory review loop every urban AI scenario must pass before entering public space",
+  "mechanisms_zh": ["R1 到站必停", "R2 三方表决", "R3 不自动恢复", "回授门三步", "坡度分级准入", "K标版本链"],
+  "switchback_states": {
+    "mainline_running": {
+      "zh": "正线运行",
+      "en": "Mainline running",
+      "description_zh": "场景在许可区间内正常运行，每次到达折返点必须停车",
+      "allowed_transitions": ["stop_at_node"]
+    },
+    "siding_turnback": {
+      "zh": "侧线折返",
+      "en": "Siding turn-back",
+      "description_zh": "表决否决/未听懂后降级：限速限域限数据，等待下次审议",
+      "trigger_zh": "任何一方否决、公众未听懂、触发否决动议后48小时",
+      "allowed_transitions": ["re_evaluate", "depot"]
+    },
+    "depot_maintenance": {
+      "zh": "入段检修",
+      "en": "Depot maintenance",
+      "description_zh": "严重问题或事故后停用，限速限域限数据；回正线须经折返点重新评估",
+      "trigger_zh": "重大安全/权益/数据问题、事故、独立评测未通过",
+      "allowed_transitions": ["re_evaluate"]
+    }
+  },
+  "teach_back_gate": {
+    "report_zh": "述职：责任人用非技术语言解释AI做了什么/可能错在哪/怎么停",
+    "inquiry_zh": "质询：公众代表提问，责任人回答到听懂为止",
+    "vote_zh": "表决：三方决定放行/折返/入段",
+    "rule_zh": "听不懂不是公众的问题，是责任人的问题——听不懂就折返",
+    "rule_en": "If the public cannot understand, the scenario turns back"
+  },
+  "grade_based_access": {
+    "gentle_zh": "缓坡：普惠体验类，社区级准入",
+    "medium_zh": "中坡：行业验证类，需专业预审",
+    "steep_zh": "陡坡：科研攻坚类，需联合攻关协议",
+    "rule_zh": "坡度越高，准入复审越严、回授要求越透"
+  },
+  "k_marker_versioning_zh": "每次官方数据更新、重大事件或复算记入新K标，折返/入段/复算永久留痕可查",
+  "scenario_binding": {
+    "binding_zh": "每张场景卡绑定：坡度分级 + 折返点 + 回授门 + 退出条件",
+    "scenario_count": 12,
+    "node_count": 12
+  },
+  "governance_proof": {
+    "public_space_ha": 73.37,
+    "public_space_ratio": 0.064287,
+    "gate_steps": 3,
+    "veto_rule_zh": "任何一方否决即强制折返，不自动续行"
+  }
+}

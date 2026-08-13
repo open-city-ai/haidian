@@ -1,0 +1,383 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.3856,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(SITE-001) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_kind": "provisional_derived"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1741.378,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area(BLDG-*)); conceptual reversible kits",
+      "confidence": "low",
+      "assumptions": [
+        "A-BUILDING-001"
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "total_floor_area_sqm": {
+      "status": "known",
+      "value": 1741.378,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(footprint x proposed_storeys=1)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BUILDING-001"
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pending official data and field baseline",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official development controls, existing building survey and parcel boundaries are unavailable."
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.0002,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "conceptual reversible-kit footprint / provisional site area",
+      "confidence": "low",
+      "assumptions": [
+        "A-BUILDING-001"
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2409333.6488,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union area(GREEN-*)",
+      "confidence": "low",
+      "assumptions": [
+        "A-GREEN-001"
+      ],
+      "metric_kind": "conceptual_overlay"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.2111,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green overlay area / provisional site area",
+      "confidence": "low",
+      "assumptions": [
+        "A-GREEN-001"
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 12018.9262,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum area(NODE-01..12)",
+      "confidence": "low",
+      "assumptions": [
+        "A-PUBLIC-001"
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0011,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public prototype area / provisional site area",
+      "confidence": "low",
+      "assumptions": [
+        "A-PUBLIC-001"
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [],
+      "formula": "pending official data and field baseline",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No cleared road redlines or sections are available; conceptual relationships are centerlines only."
+    },
+    "road_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pending official data and field baseline",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No cleared road redlines or sections are available."
+    },
+    "concept_road_length_m": {
+      "status": "known",
+      "value": 15368.6,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum length(ROAD-*) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-ROAD-001"
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "phase_area_sqm": {
+      "status": "known",
+      "value": 11412825.3856,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(PHASE-003); phases overlap cumulatively",
+      "confidence": "low",
+      "assumptions": [
+        "A-PHASING-001"
+      ],
+      "metric_kind": "conceptual_cumulative"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_kind": "provisional_derived"
+    },
+    "ready_block_work_package_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(NODE-*)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PUBLIC-001"
+      ],
+      "metric_kind": "design_inventory"
+    },
+    "decision_gate_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(PHASE-*)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PHASING-001"
+      ],
+      "metric_kind": "design_inventory"
+    },
+    "daily_route_completion_target": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pending official data and field baseline",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No field baseline, owner agreement or accessibility audit has been completed.",
+      "metric_kind": "design_target",
+      "design_target": 1.0,
+      "definition": "share of defined daily-route checks passing access, shade, wayfinding and human fallback"
+    },
+    "work_package_owner_target": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pending official data and field baseline",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No responsible operator has been nominated for the conceptual work packages.",
+      "metric_kind": "design_target",
+      "design_target": 1.0,
+      "definition": "share of work packages with a named human owner before pilot"
+    },
+    "decision_packet_publication_target": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pending official data and field baseline",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No pilot has been authorised and no evidence publication workflow exists yet.",
+      "metric_kind": "design_target",
+      "design_target": 1.0,
+      "definition": "share of pilots with a public decision packet before scale"
+    },
+    "field_observed_ready_block_performance": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pending official data and field baseline",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "The proposal has not been authorised, installed or tested on site."
+    },
+    "ready_block_basic_journey_target": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pending official data and field baseline",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No field baseline, owner agreement or accessibility audit has been completed.",
+      "metric_kind": "design_target",
+      "design_target": 1.0,
+      "definition": "share of defined route checks that pass access, shade, wayfinding and human fallback"
+    },
+    "ready_block_data_budget_target": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pending official data and field baseline",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No pilot has completed a field-level data-budget review.",
+      "metric_kind": "design_target",
+      "design_target": 1.0,
+      "definition": "share of enhanced-service fields justified before a pilot advances"
+    },
+    "land_use_area_05_sqm": {
+      "status": "known",
+      "value": 1813280.107,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum area(land_use_code=05)",
+      "confidence": "low",
+      "assumptions": [
+        "A-LANDUSE-001"
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "land_use_area_1401_sqm": {
+      "status": "known",
+      "value": 2002503.246,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum area(land_use_code=1401)",
+      "confidence": "low",
+      "assumptions": [
+        "A-LANDUSE-001"
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "land_use_area_0702_sqm": {
+      "status": "known",
+      "value": 4003335.037,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum area(land_use_code=0702)",
+      "confidence": "low",
+      "assumptions": [
+        "A-LANDUSE-001"
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "land_use_area_0804_sqm": {
+      "status": "known",
+      "value": 1225510.314,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum area(land_use_code=0804)",
+      "confidence": "low",
+      "assumptions": [
+        "A-LANDUSE-001"
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "land_use_area_0803_sqm": {
+      "status": "known",
+      "value": 1213062.149,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum area(land_use_code=0803)",
+      "confidence": "low",
+      "assumptions": [
+        "A-LANDUSE-001"
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "land_use_area_0802_sqm": {
+      "status": "known",
+      "value": 1155134.532,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum area(land_use_code=0802)",
+      "confidence": "low",
+      "assumptions": [
+        "A-LANDUSE-001"
+      ],
+      "metric_kind": "conceptual_derived"
+    }
+  }
+}

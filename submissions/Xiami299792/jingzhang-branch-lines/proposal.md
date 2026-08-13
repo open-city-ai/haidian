@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把百年京张铁路的'支线'基因转译为AI创新带的空间语法：京张遗址公园绿脊是正线，众智园、AI原点社区、大钟寺三区与中关村科技服务翼、小月河场景赋能翼两翼是五条创新支线。支线既是铁路支线，也是开源世界的分支（branch）——创新像PR一样沿支线生长、在正线上被检验、最终合并回主线。"
 tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "enterprise-services-ecosystem"]
 scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "enterprise-service-copilot", "robot-delivery-low-speed", "ai-health-service-navigation", "public-safety-operations-review"]
-iteration: "v0.1"
+iteration: "v0.7"
 ---
 
 # 京张支线带 THE BRANCH LINES：一条百年正线、五条创新支线的AI创新带城市设计
@@ -329,6 +329,19 @@ Logo 方向（概念建议，需专业设计深化与字体授权确认）：以
 
 政策方向：场景开放清单制、公共数据授权运营试点、开发者社区共建共治、AI服务“先候场再上线”试行办法、荣誉展示与开源贡献记录制度。所有政策均为建议方向，不表述为已确定政府安排 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
 
+**分期预算方向与退出闸门**（概念建议，不构成投资测算或政府承诺 [depth:risk_missing_data]）：
+
+| 分期 | 预算方向（概念） | 出资/分担主体方向 | 退出闸门（Gate） | 触发后动作 |
+|------|------------------|------------------|------------------|------------|
+| 近期 phase_1 | 正线公共脊慢行+绿化提升；原点社区场景试点 | 政府公共投资+公园运营方 | G0：官方边界/文保未确认 | 不进场施工，仅预留方案 |
+| 近期 phase_1 | AI原点社区 3 个场景试点 | 高校+社区+试点企业 | G1：场景无真实用户/测试失败 | 停止试点，保留公共功能 |
+| 中期 phase_2 | 众智园加速区基础设施 | 园区运营+产业主体 | G2：能耗/市政容量评估不过 | 降容或推迟，不超配建设 |
+| 中期 phase_2 | 大钟寺智能消费节点 | 商业运营+产权方 | G3：业态与产权条件不成熟 | 改普通商业空间，AI后插接 |
+| 远期 phase_3 | 两翼服务带与滨水带 | 科技服务运营商+街道/水务 | G4：控规/蓝线条件未落实 | 保持远期预留，不提前动土 |
+| 全期 | 维护岗位与运营成本 | 运营主体+公共预算 | G5：无持续运维资源 | 暂停支线，拆回普通公共空间 |
+
+对应风险矩阵见 `risk.json`（`implementation_complexity`/`operations_cost` 维度 mitigation 逐条对齐）[depth:risk_missing_data]。
+
 ### 全球AI创新活动体系与长期运营（agent.6 展开）
 
 | 季节 | 活动 | 机制要点 | 对应支线/节点 |
@@ -376,6 +389,17 @@ Logo 方向（概念建议，需专业设计深化与字体授权确认）：以
 | agent.4 公共空间/地标 | 蓝绿空间、公共空间与城市风貌 | [data:geometry/public_space.geojson#PUBLIC-001] |
 | agent.5 文化叙事 | 统筹研究（三章时间线） | [source:SRC-JINGZHANG-RAILWAY-HISTORY] |
 | agent.6 活动/运营 | 更新项目清单、实施政策与分期计划 | [metric:phase_count] |
+
+**agent.1—agent.6 逐条响应明细**（对照 `agent_taskbook.json` 的 must_address 与 required_outputs）[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]：
+
+| 任务 | 必须回应要点 | 本方案对应章节 | 对应必交成果 |
+|------|--------------|----------------|--------------|
+| agent.1 总体概念与功能统筹 | 总体概念/主名称/英文名/命名体系；Logo方向；三大定位五大功能三区两翼；总体空间结构图；规划创新思路 | 核心概念与差异化机制；三层范围工作框架；统筹研究（协同回路） | proposal_narrative、logo_or_visual_identity_direction、overall_structure_diagram、compliance_matrix_entry、visual_index_section |
+| agent.2 AI全栈自主创新生态 | 5—8个全球案例；生态图谱；众智园全栈体系；原点社区生态；中关村服务翼支撑；土地/空间/产业/资金/人才/算力/数据/场景机制 | 统筹研究（全球案例/生态图谱）；重点区域详细设计（众智园）；总体设计（功能布局） | case_study_table、ecosystem_map、industry_space_mapping、metrics_and_sources、visual_index_section |
+| agent.3 AI+场景赋能 | 不少于10张场景卡；不少于3个测试验证场景；不少于5类用户画像；场景-空间-运营映射；小月河翼与公共体验路径 | AI 创新生态、人才画像与 AI+ 场景（12场景卡+5画像+测试场景） | scenario_cards、persona_table、scenario_space_operation_matrix、privacy_and_human_review_boundary、visual_index_section |
+| agent.4 公共空间与朝圣地标 | 遗址公园AI公共空间；东西缝合南北贯通；大钟寺智能原生消费；不少于3个AI朝圣地标；荣誉展示体系与组件库 | 蓝绿空间、公共空间与城市风貌（5地标+荣誉体系）；重点区域（大钟寺） | public_space_design、landmark_catalog、honor_display_system、component_library、visual_index_section |
+| agent.5 百年文化叙事 | 京张铁路历史文化资源；中关村创新文化+AI新文化；空间文化系统；导视标识符号；城市气质与国际传播叙事 | 统筹研究（历史基线+三章时间线+命名Logo） | culture_narrative、signage_system_direction、spatial_storyline、international_communication_copy、visual_index_section |
+| agent.6 活动体系与运营 | 年度活动；品牌与传播视觉；开发者社区；场景开放运营；公共体验与地标运营；国际传播与招引转化 | 更新项目清单（四季活动体系+运营机制） | annual_event_system、brand_ip_system、developer_community_operation、scenario_open_operation、conversion_pathway、visual_index_section |
 
 ![核心指标复算与证据链图](assets/figures/metrics-evidence.png)
 

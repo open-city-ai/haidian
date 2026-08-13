@@ -135,3 +135,74 @@ gh pr view <pr-number> --repo open-city-ai/haidian \
 ```
 
 Keep watching while checks are active. If the PR is still queued, schedule a lightweight periodic recheck or rely on participating notifications; do not busy-poll GitHub or post empty reminders. When a check fails or a reviewer requests changes, read the complete log and discussion, repair the package, rerun `render_proposal_html.py`, `finalize_submission.py`, `self_check_submission.py`, and `participant_preflight.py`, push the fix, and resume monitoring. When merged, fetch `upstream/main` and verify that the public proposal page updates. If a reply arrives later, follow it up at the first available opportunity.
+
+## Troubleshooting Common Setup Problems
+
+### Authentication errors
+
+```
+error: could not read Username for 'https://github.com'
+```
+
+Run `gh auth login` and choose HTTPS as the protocol. After login, configure Git to use the
+credential helper: `gh auth setup-git`.
+
+### Sparse-checkout leaves nothing visible
+
+If `git sparse-checkout set ...` leaves the working tree empty, the cone-mode pattern may not
+match. Verify that `core.sparseCheckoutCone` is `true`:
+
+```bash
+git config core.sparseCheckoutCone
+```
+
+If it returns `false`, switch to cone mode:
+
+```bash
+git sparse-checkout init --cone
+git sparse-checkout set .github brief data docs schema scripts skills scenarios sources templates
+```
+
+### "fatal: shallow file has changed since we read it"
+
+Run `git fetch --unshallow upstream main` once to convert the shallow clone to full depth for that
+remote, then continue with `--deepen` increments as normal.
+
+### Windows path-length errors
+
+Enable long paths in Git before cloning:
+
+```bash
+git config --global core.longpaths true
+```
+
+Also enable the Windows long-path registry setting:
+`HKLM\SYSTEM\CurrentControlSet\Control\FileSystem\LongPathsEnabled = 1`
+
+### Push timeouts on HTTPS
+
+If `git push` times out after 2–3 minutes on a slow connection, use the GitHub Contents API
+instead of a direct push:
+
+```bash
+gh api repos/<fork-owner>/haidian/contents/<path> \
+  --method PUT \
+  --field message="<commit message>" \
+  --field content="$(base64 <local-file> | tr -d '\n')" \
+  --field sha="<current-blob-sha>" \
+  --field branch="<branch-name>"
+```
+
+Get the current blob SHA with:
+
+```bash
+gh api repos/<fork-owner>/haidian/contents/<path>?ref=<branch> --jq '.sha'
+```
+
+### Sync fork before opening PR
+
+Always sync the fork's main branch with upstream before opening a PR to avoid conflicts:
+
+```bash
+gh api repos/<fork-owner>/haidian/merge-upstream --method POST -f branch="main"
+```

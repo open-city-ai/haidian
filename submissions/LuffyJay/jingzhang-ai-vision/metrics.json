@@ -1,0 +1,212 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "metrics": {
+    "site_area_sqm": {
+      "name_zh": "总体设计范围面积",
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "source_ids": [
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      ],
+      "formula": "公告声明值，非临时边界计算值",
+      "confidence": "medium",
+      "assumption_ids": [
+        "A-BOUNDARIES-001"
+      ],
+      "confidence_note": "Announced area value quoted from official announcement; boundary geometry in this package is provisional_constraint (official_boundary=false, confidence=medium). Confidence aligned to medium pending official geometry."
+    },
+    "coordinated_research_area_sqm": {
+      "name_zh": "统筹研究范围面积",
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "source_ids": [
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      ],
+      "formula": "公告声明值",
+      "confidence": "medium",
+      "assumption_ids": [
+        "A-BOUNDARIES-001"
+      ],
+      "confidence_note": "Announced area value quoted from official announcement; boundary geometry in this package is provisional_constraint (official_boundary=false, confidence=medium). Confidence aligned to medium pending official geometry."
+    },
+    "key_area_total_sqm": {
+      "name_zh": "重点区域总面积",
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "source_ids": [
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      ],
+      "formula": "三区公告面积之和: 1921000 + 1043000 + 720000",
+      "confidence": "medium",
+      "assumption_ids": [
+        "A-BOUNDARIES-001"
+      ],
+      "confidence_note": "Announced area value quoted from official announcement; boundary geometry in this package is provisional_constraint (official_boundary=false, confidence=medium). Confidence aligned to medium pending official geometry."
+    },
+    "green_ratio": {
+      "name_zh": "绿地率",
+      "status": "known",
+      "value": 0.191423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "source_ids": [
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
+      ],
+      "formula": "union(green_space) / overall_design_area in EPSG:4548; computed 2,184,673.756 / 11,412,825.386 sqm",
+      "confidence": "medium",
+      "confidence_note": "Computed from design layers on provisional boundary; recalibrate with official boundary.",
+      "assumption_ids": [
+        "A-BOUNDARIES-001",
+        "A-METRICS-001"
+      ]
+    },
+    "public_space_ratio": {
+      "name_zh": "公共空间比例",
+      "status": "known",
+      "value": 0.069353,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "source_ids": [
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
+      ],
+      "formula": "union(public_space) / overall_design_area in EPSG:4548; computed 791,518.894 / 11,412,825.386 sqm",
+      "confidence": "medium",
+      "confidence_note": "Computed from design layers on provisional boundary; recalibrate with official boundary.",
+      "assumption_ids": [
+        "A-BOUNDARIES-001",
+        "A-METRICS-001"
+      ]
+    },
+    "ai_scenario_nodes": {
+      "name_zh": "AI场景节点数",
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [],
+      "source_ids": [
+        "AGENT-TASKBOOK"
+      ],
+      "formula": "场景卡计数",
+      "confidence": "high",
+      "assumption_ids": []
+    },
+    "ai_landmark_count": {
+      "name_zh": "AI朝圣地标数量",
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [],
+      "source_ids": [
+        "AGENT-TASKBOOK"
+      ],
+      "formula": "agent.4产出计数",
+      "confidence": "high",
+      "assumption_ids": []
+    },
+    "user_persona_count": {
+      "name_zh": "用户画像数量",
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [],
+      "source_ids": [
+        "AGENT-TASKBOOK"
+      ],
+      "formula": "agent.3产出计数",
+      "confidence": "high",
+      "assumption_ids": []
+    },
+    "global_case_study_count": {
+      "name_zh": "全球案例研究数量",
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [],
+      "source_ids": [
+        "GLOBAL-AI-ECOSYSTEM-RESEARCH"
+      ],
+      "formula": "agent.2产出计数",
+      "confidence": "high",
+      "assumption_ids": []
+    },
+    "building_footprint_area_sqm": {
+      "name_zh": "建筑基底面积（概念估算）",
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "source_ids": [
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
+      ],
+      "formula": "从 buildings.geojson 图层求和",
+      "confidence": "low",
+      "assumption_ids": [
+        "A-BOUNDARIES-001",
+        "A-CONTROLS-001"
+      ],
+      "reason": "Based on provisional boundaries; recalibration required with official data. Formerly estimated at conceptual level."
+    },
+    "greenway_length_km": {
+      "name_zh": "京张绿廊长度",
+      "status": "unknown",
+      "value": null,
+      "unit": "km",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "source_ids": [
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
+      ],
+      "formula": "从北五环至西直门外大街的绿地廊道估算长度",
+      "confidence": "low",
+      "assumption_ids": [
+        "A-BOUNDARIES-001"
+      ],
+      "reason": "Based on provisional boundaries; recalibration required with official data. Formerly estimated at conceptual level."
+    },
+    "road_density_target": {
+      "name_zh": "目标路网密度",
+      "status": "unknown",
+      "value": null,
+      "unit": "km/sqkm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "source_ids": [
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
+      ],
+      "formula": "概念目标值，待交通模型验证",
+      "confidence": "low",
+      "assumption_ids": [
+        "A-BOUNDARIES-001",
+        "A-CONTROLS-001"
+      ],
+      "reason": "Based on provisional boundaries; recalibration required with official data. Formerly estimated at conceptual level."
+    }
+  },
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  }
+}

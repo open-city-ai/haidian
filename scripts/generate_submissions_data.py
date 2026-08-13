@@ -6,6 +6,34 @@ directory merged into the main branch is included by default. Maintainers run
 this script after merging or updating submission packages so the static site can
 display them from a single generated data source. `gallery-publication.json`
 remains an optional curation layer for homepage features or an explicit hold.
+
+Output
+------
+The generated file is ``submissions-data.js`` at the repository root. It
+exports ``window.HAIDIAN_SUBMISSIONS``, an array of submission metadata objects
+used by the gallery and gallery filter controls.
+
+Each entry contains: ``id``, ``author``, ``title``, ``titleEn``, ``summary``,
+``summaryEn``, ``language``, ``date``, ``status``, ``statusKey``, ``tracks``,
+``scenarios``, ``sourceUrl``, ``proposalUrl``, ``visualUrl``, ``thumbnailUrl``,
+and optional ``coverUrl``.
+
+Usage
+-----
+Generate or update the data file (run from repository root)::
+
+    python3 scripts/generate_submissions_data.py
+
+Check whether the file is current without writing::
+
+    python3 scripts/generate_submissions_data.py --check
+
+Write to a custom output path::
+
+    python3 scripts/generate_submissions_data.py --out path/to/submissions-data.js
+
+Exit code is 0 on success and 1 when ``--check`` finds the file stale or when
+any submission fails to parse.
 """
 
 from __future__ import annotations
@@ -19,6 +47,8 @@ import sys
 from pathlib import Path
 from typing import Any
 from urllib.parse import quote
+
+from front_matter import parse_front_matter as parse_front_matter_document
 
 
 PUBLICATION_FILE = "gallery-publication.json"
@@ -119,18 +149,7 @@ def package_sha256(submission_dir: Path) -> str:
 
 
 def parse_front_matter(text: str) -> dict[str, str]:
-    text = text.lstrip("\ufeff\n")
-    if not text.startswith("---\n"):
-        return {}
-    end = text.find("\n---", 4)
-    if end == -1:
-        return {}
-    metadata: dict[str, str] = {}
-    for line in text[4:end].strip().splitlines():
-        if ":" not in line:
-            continue
-        key, value = line.split(":", 1)
-        metadata[key.strip()] = value.strip().strip('"').strip("'")
+    metadata, _ = parse_front_matter_document(text)
     return metadata
 
 

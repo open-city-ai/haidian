@@ -2,7 +2,32 @@
 """Review professional standard/depth evidence for a formal submission.
 
 This script is dependency-free. It summarizes the evidence chain that makes
-`proposal.md` human-readable while keeping JSON/GeoJSON as machine evidence.
+``proposal.md`` human-readable while keeping JSON/GeoJSON as machine evidence.
+
+Checks performed
+----------------
+- ``standard_matrix.json`` covers all required professional standard IDs
+  loaded from the repository's standard registry.
+- ``design_depth_matrix.json`` covers all 15 required design-depth item IDs.
+- For v1 proposals: ``proposal.md`` contains inline ``[standard:...]``,
+  ``[depth:...]``, ``[data:...]``, and ``[metric:...]`` references for every
+  item in the matrices.  (v2 proposals use section-anchored evidence instead;
+  exhaustive inline references are not required.)
+- ``metrics.json`` is present and parseable.
+
+Usage
+-----
+Human-readable output::
+
+    python3 scripts/professional_review.py submissions/<login>/<slug>
+
+Machine-readable JSON::
+
+    python3 scripts/professional_review.py submissions/<login>/<slug> --json
+
+This script is gate 4 of the four-gate self-check. It has no optional
+dependencies and can run offline in any environment where Python 3.9+ is
+available.
 """
 
 from __future__ import annotations
@@ -69,6 +94,7 @@ def load_json(path: Path, report: ProfessionalReport, label: str) -> Any:
 
 
 def extract_refs(text: str) -> dict[str, set[str]]:
+    """Extract all evidence marker IDs from *text* grouped by marker type."""
     refs: dict[str, set[str]] = {"source": set(), "standard": set(), "depth": set(), "data": set(), "metric": set()}
     for kind, value in REFERENCE_RE.findall(text):
         refs[kind].add(value)
@@ -185,10 +211,24 @@ def format_markdown(report: ProfessionalReport) -> str:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("submission_dir")
-    parser.add_argument("--repo-root", default=".")
-    parser.add_argument("--json", action="store_true")
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument(
+        "submission_dir",
+        help="Path to the proposal directory, e.g. submissions/<login>/<slug>",
+    )
+    parser.add_argument(
+        "--repo-root",
+        default=".",
+        help="Repository root directory (default: current working directory)",
+    )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Emit machine-readable JSON instead of human-readable Markdown",
+    )
     args = parser.parse_args()
 
     repo_root = Path(args.repo_root)

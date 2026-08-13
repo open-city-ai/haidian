@@ -231,6 +231,111 @@
    "assumptions": [
     "Project list is conceptual pending official data."
    ]
+  },
+  "land_use_unit_count": {
+   "status": "known",
+   "value": 27,
+   "unit": "count",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "count(features in land_use.geojson)",
+   "confidence": "high",
+   "assumptions": [
+    "Concept land-use units on provisional site."
+   ]
+  },
+  "building_count": {
+   "status": "known",
+   "value": 55,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(features in buildings.geojson)",
+   "confidence": "high",
+   "assumptions": [
+    "Concept building footprints on provisional site; not statutory."
+   ]
+  },
+  "road_network_length_m": {
+   "status": "known",
+   "value": 63359.7,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(line_length in roads.geojson)",
+   "confidence": "high",
+   "assumptions": [
+    "Concept road network on provisional site."
+   ]
+  },
+  "green_space_unit_count": {
+   "status": "known",
+   "value": 27,
+   "unit": "count",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "count(features in green_space.geojson)",
+   "confidence": "high",
+   "assumptions": [
+    "Concept green-space parcels on provisional site."
+   ]
+  },
+  "public_space_unit_count": {
+   "status": "known",
+   "value": 9,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(features in public_space.geojson)",
+   "confidence": "high",
+   "assumptions": [
+    "Concept public-space parcels on provisional site."
+   ]
+  },
+  "constraint_count": {
+   "status": "known",
+   "value": 5,
+   "unit": "count",
+   "source_files": [
+    "geometry/constraints.geojson"
+   ],
+   "formula": "count(features in constraints.geojson)",
+   "confidence": "high",
+   "assumptions": [
+    "Provisional constraints (heritage/water/utility) on site."
+   ]
+  },
+  "phase_count": {
+   "status": "known",
+   "value": 5,
+   "unit": "count",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "count(features in phasing.geojson)",
+   "confidence": "high",
+   "assumptions": [
+    "Three-phase implementation plan."
+   ]
+  },
+  "building_coverage_ratio": {
+   "status": "known",
+   "value": 0.024884,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(building_area) / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "Concept building footprints; building coverage is conceptual not statutory."
+   ]
   }
  }
 }

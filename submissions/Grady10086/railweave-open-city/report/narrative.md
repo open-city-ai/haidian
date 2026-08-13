@@ -1,8 +1,10 @@
-# 轨迹织城 v2.2 叙事简报
+# 轨迹织城 v2.4 叙事简报
 
 ## 一句话说明
 
 RailWeave（轨迹织城）把百年京张理解为一条持续服务城市日常的公共经线：众智园、北京 AI 原点社区和大钟寺不是三个孤立项目，而是由公共空间、慢行联系、验证流程、人才服务和首用场景共同编织的三个结点。AI 作为可拆卸、可停止、可复核的纬线接入，不替代普通通行、人工服务、专业判断或法定程序。
+
+v2.4 以“区域定链—走廊织网—重点区落项目”重组首读逻辑，形成“一脊三廊三结六界面”的空间骨架和“开放问题—自主验证—首用转化—知识回流”的城市创新链。众智园对应可旁观的验证院，AI原点对应开源修补街，大钟寺对应首用四象限站厅；普通服务不断线，AI应用按需接入，创新成果持续沉淀。当前处于G0前置核验阶段：未授权、未运行、现场绩效为空；空间入选仍不产生现场准入。
 
 本成果是面向开放征集的概念性城市设计研究。其工作范围、重点片区索引、功能组件、项目清单、时间切片、成本控制带和责任角色均需在正式边界、权属、现状调查、专业条件、公众参与及依法履行的程序基础上确认。它不构成政府审定、规划许可、项目立项、预算批复、采购决定、合作安排、投资承诺、建设时序或工程可行性结论。
 
@@ -16,7 +18,7 @@ RailWeave 的核心不是增加更多自动化设施，而是保持一条不依�
 
 ## 两套彼此独立的门
 
-v2.2 将实施判断分为两套不能互相替代的门。
+本方案将实施判断分为两套不能互相替代的门。
 
 “织体成熟门”审查城市与项目是否具备承载条件，重点包括空间与场地权利、无障碍和公共通行、消防与相关专业条件、人员和运维资源、数据与设备接口、退出资源及场地恢复能力。它回答的是“这个结点能否承担一项试点”，而不是“某个模型是否表现良好”。
 
@@ -24,15 +26,15 @@ v2.2 将实施判断分为两套不能互相替代的门。
 
 现场研究须同时通过两门。一项服务即使完成合成测试，也不能绕过场地、专业和运营条件；一个项目即使具备空间和资金，也不能绕过数据、人工、公共利益与退出审查。具体门槛、责任机构和签认方式仍须由有权主体及专业团队依法确定。
 
-## S06：90 日全龄无障碍信息服务切片
+## S06：100 日开源修补街限定样布
 
-S06 选择“全龄无障碍信息服务”作为一项可供专业团队进一步研究的时间盒。第 0—30 日只建立无 AI 基线：由专业人员与代表性使用者共同核查关键路径，记录固定导视、纸质导览、电话和人工服务的完成率、等待、距离、费用与求助情况，并确认数据字段、巡检责任和申诉渠道。普通路径或人工服务存在关键阻断时，不进入下一阶段。
+S06 选择“全龄无障碍信息服务”作为开源修补街的首个限定样布，集中在一处候选场地、一条约100至150米待实测决策路线、3至5个待核决策点和一个1:1无障碍服务湾。第0—30日完成定界接收、无AI基线和代表性使用者走查；普通路径或人工服务存在关键阻断时，不进入下一阶段。
 
-第 31—60 日为封闭的合成与影子验证。系统只使用合成路线事件测试过期信息、错误建议、断网、数据禁区和停止恢复；AI 建议不直接向公众生效，而由人工逐条比较。若出现身份或残障画像、不可解释误导或无法完成解编，原型返回整改，不进入限量共测。
+第31—45日完成六个BoQ包、工程量、三价比较、值班表和单一A的RACI；工程量未确认、关键报价覆盖不足80%或退出没有全价时，不形成总价。第46—60日开展封闭拆编，测试过期信息、错误建议、断网、撤权、人工接管、删数、拆机和饰面恢复；若出现身份或残障画像、不可解释误导或无法完成拆编，原型返回整改。
 
-第 61—90 日仅在场地、数据、专业、公众和运营授权均成立时，研究限定空间、时段和参与规模的共测。人工、电话、纸质、触觉与固定导视继续提供普通服务；拒绝 AI 不应增加费用、等待惩罚或异地行程。第 90 日形成续期、整改、暂停或退出建议，不自动延长、不自动扩区。
+第61—90日仅在场地、数据、专业、公众和运营授权均成立时，开展限定空间、时段和参与规模的同任务共测。人工、电话、纸质、触觉与固定导视继续提供普通服务；拒绝AI不增加费用、不合理等待或异地行程。第91—100日强制撤权、删数、拆机、恢复饰面、校正固定导视并续接人工服务，基于E0—E6签发保留、修改、撤除或不推进决定，不自动延长、不自动扩区。
 
-S06 同时要求在未来依法确认的 90 日试点成本中，单列足以覆盖动态接口停用、数据清理与访问撤销、导视校正、人工服务恢复、设备撤离、场地修复和独立退出复核的退出恢复资源。现阶段不设固定比例或金额；工程量、价格、责任和资金来源须经核验并依法确定后，方可进入预算或采购文件。
+S06 同时要求六个成本包完整覆盖普通服务、参与支持、设备网络、值班接管、独立验证、法务保险以及撤除恢复。现阶段不设固定比例或金额；工程量、三份同期可比价格、责任和资金来源须经核验并由PF签收后，方可形成预算研究总价或进入采购文件。
 
 ## 72 个合成分支能证明什么
 
@@ -42,7 +44,7 @@ S06 同时要求在未来依法确认的 90 日试点成本中，单列足以覆
 
 ## 交接给后续专业与公众过程
 
-v2.2 的价值在于把“建议做什么”进一步拆成“为什么、由谁复核、缺什么不能开始、失败时如何停止、退出后留下什么”。后续深化应优先补充正式 GIS/CAD、权属与建筑调查、交通和无障碍现场核验、文保、水务、市政、消防、生态、运营、采购与全寿命成本资料；同时通过可访问的线上、线下、电话、纸质和人工渠道邀请受影响公众参与。
+v2.4 的价值在于从“结构完整”进一步转向“单点可实施”：明确在哪一处候选界面、用什么相对时序、由谁签下一步、哪些成本可汇总、如何在第100日完整退出。后续深化应优先补充正式 GIS/CAD、权属与建筑调查、交通和无障碍现场核验、文保、水务、市政、消防、生态、运营、采购与全寿命成本资料；同时通过可访问的线上、线下、电话、纸质和人工渠道邀请受影响公众参与。
 
 在上述条件未满足前，RailWeave 仍是一套可讨论、可复算、可失败关闭的研究性接口，而不是已经确定的城市项目。任何引用者均应连同来源、假设、临时几何、权利声明和验证边界一起阅读，不应只截取效果图、成本比例或合成 PASS。
 
@@ -51,6 +53,8 @@ v2.2 的价值在于把“建议做什么”进一步拆成“为什么、由谁
 ### In one sentence
 
 RailWeave treats the Centennial Jing-Zhang corridor as a public warp that continues to support everyday urban life. Zhongzhiyuan, Beijing AI Origin Community, and Dazhongsi are not three isolated projects but three nodes woven together by public space, walking links, validation processes, talent services, and first-use scenarios. AI enters as a removable, stoppable, and reviewable weft; it does not replace ordinary access, staffed service, professional judgement, or statutory procedure.
+
+Version 2.4 restructures first reading around “set the regional chain, weave the corridor network, and land projects in key areas.” One spine, three corridors, three knots, and six reversible interfaces support a civic innovation chain from open problems through independent validation and first use to knowledge return. Zhongzhiyuan becomes a Visible Validation Court, AI Origin an Open Repair Street, and Dazhongsi a First-Use Concourse. Ordinary service remains, AI enters as needed, and knowledge continues to accumulate. The current stage is G0 pre-verification: not authorised, not run, and field performance null; spatial selection still confers no field admission.
 
 This is a conceptual urban-design study for the open call. Its working extent, key-area locators, functional components, project list, time slices, cost-control bands, and responsibility roles remain subject to confirmation through official boundaries, site rights, baseline surveys, professional conditions, public participation, and all legally required procedures. It is not a government determination, planning permission, project approval, approved budget, procurement decision, partnership arrangement, investment commitment, construction programme, or engineering-feasibility finding.
 
@@ -64,7 +68,7 @@ RailWeave is not primarily an exercise in adding automated facilities. It preser
 
 ### Two independent gates
 
-Version 2.2 separates implementation decisions into two gates that cannot substitute for each other.
+The proposal separates implementation decisions into two gates that cannot substitute for each other.
 
 The Fabric Maturity Gate asks whether the city and project can carry a pilot. It reviews space and site rights, accessibility and ordinary passage, fire safety and other professional conditions, staffing and operating resources, data and equipment interfaces, exit resources, and the ability to restore the site. It does not ask whether a particular model performs well.
 
@@ -72,15 +76,15 @@ The Thread Admission Gate asks whether one AI service may enter that node. It re
 
 Field study requires both gates. A service that passes synthetic tests cannot bypass site, professional, or operating conditions; a project with space and funding cannot bypass data, human, public-interest, or exit review. The actual thresholds, accountable organisations, and sign-off methods remain to be lawfully determined by authorised entities and professional teams.
 
-### S06: a 90-day all-age accessible-information slice
+### S06: a 100-day Open Repair Street bounded sample
 
-S06 uses the All-Age Accessible Information Service as a time-boxed subject for further professional study. Days 0–30 establish a non-AI baseline only. Professionals and representative users review critical routes together; record completion, waiting, distance, cost, and help requests for fixed signs, paper guides, telephone, and staffed service; and confirm data fields, inspection responsibility, and appeal channels. A critical barrier in the ordinary route or staffed service prevents progression.
+S06 uses the All-Age Accessible Information Service as the first bounded Open Repair Street sample: one candidate site, one approximately 100–150 m route pending survey, three to five pending decision points, and one 1:1 accessible service bay. Days 0–30 receive and bound the site, establish the non-AI baseline, and complete affected-user walkthroughs. A critical barrier in the ordinary route or staffed service prevents progression.
 
-Days 31–60 are closed synthetic and shadow validation. Synthetic route events test stale information, wrong advice, network loss, prohibited data, stopping, and restoration. AI advice does not become public-facing and is compared item by item by a human reviewer. Identity or disability profiling, unexplained misdirection, or failure to unweave returns the prototype for correction.
+Days 31–45 establish six BoQ packages, measured quantities, three-price comparison, shifts, and a one-A RACI. No total is formed while quantities are unconfirmed, key quotes cover less than 80% of estimated cost, or exit is not fully priced. Days 46–60 are closed unweaving tests for stale information, wrong advice, network loss, access revocation, human takeover, data deletion, device removal, and finish restoration. Identity or disability profiling, unexplained misdirection, or failure to unweave returns the prototype for correction.
 
-Days 61–90 may study limited co-testing only if site, data, professional, public, and operating authorisations are all in place. Staffed, telephone, paper, tactile, and fixed-sign channels continue to provide ordinary service. Refusing AI should not add cost, waiting penalties, or an off-site journey. Day 90 produces a recommendation to renew, correct, pause, or exit; there is no automatic extension or spatial expansion.
+Days 61–90 may run bounded same-task co-testing only if site, data, professional, public, and operating authorisations are all in place. Staffed, telephone, paper, tactile, and fixed-sign channels continue to provide ordinary service. Refusing AI adds no fee, unreasonable wait, or off-site journey. Days 91–100 require access revocation, data deletion, device removal, finish restoration, fixed-sign correction, and continued staffed service, followed by an E0–E6 decision to retain, modify, remove, or do not advance. There is no automatic extension or spatial expansion.
 
-S06 also requires a future lawfully confirmed 90-day pilot cost plan to identify exit-restoration resources sufficient for dynamic-interface shutdown, data clearance and access revocation, sign correction, restoration of staffed service, equipment removal, site repair, and independent exit review. No fixed percentage or amount is prescribed at this stage. Quantities, prices, responsibilities and funding sources must be verified and lawfully determined before entering any budget or procurement document.
+S06 requires six cost packages to cover ordinary service, participation support, equipment and network, staffing and takeover, independent validation, legal and insurance, and full removal and restoration. No fixed percentage or amount is prescribed. Quantities, three contemporaneous comparable prices, responsibilities, and funding sources must be verified and signed by PF before any study total enters a budget or procurement document.
 
 ### What the 72 synthetic branches prove
 
@@ -90,6 +94,6 @@ This result proves only that the current JSON contracts and runner return the ex
 
 ### Handover to professional and public processes
 
-The contribution of v2.2 is to decompose “what is proposed” into “why it is proposed, who reviews it, which missing conditions prevent a start, how failure stops the activity, and what remains after exit.” Further work should prioritise official GIS/CAD, site-rights and building surveys, field checks for transport and accessibility, and evidence for heritage, water, municipal systems, fire safety, ecology, operations, procurement, and whole-life cost. Affected publics should participate through accessible online, offline, telephone, paper, and staffed channels.
+The contribution of v2.4 is to move from structural completeness to single-site specificity: one candidate interface, one relative programme, one accountable signer per task, a controlled price-formation gate, and a complete day-100 exit. Further work should prioritise official GIS/CAD, site-rights and building surveys, field checks for transport and accessibility, and evidence for heritage, water, municipal systems, fire safety, ecology, operations, procurement, and whole-life cost. Affected publics should participate through accessible online, offline, telephone, paper, and staffed channels.
 
 Until those conditions are met, RailWeave remains a research interface that can be discussed, recalculated, and made to fail closed, not a determined urban project. Any reuse should preserve its sources, assumptions, provisional geometry, rights statement, and verification boundary rather than extracting only a rendering, cost percentage, or synthetic PASS.

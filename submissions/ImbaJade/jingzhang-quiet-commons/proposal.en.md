@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "CC-BY-4.0"
-version: "1.0"
+version: "1.2"
 summary: "A sensory-adjustable public-space system for the Jingzhang AI Innovation Belt, addressing sound, light and glare, thermal conditions, crowding, speed and information density through visible choice, exit, human handoff and non-AI equivalence; all spatial geometry is explicitly provisional."
 tracks: ["youth-friendly-public-space", "ai-public-services", "jingzhang-heritage-narrative"]
 scenarios: ["ai-cultural-guide", "ai-health-service-navigation", "ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
@@ -51,6 +51,12 @@ The local operating loop is pilot, public deliberation, technical standard, proc
 
 The identity system uses two railway tracks interrupted by a soft quiet field and a switch point, with midnight ink, mist grey, muted jade and signal amber. Quiet Switch, Many-Ways Room and Common Pause Clock stand for choice, equivalent communication and shared rhythm; each is also an operable public interface. [depth:height_massing_character]
 
+The following network, programmes, target values and roles are conceptual proposals for opt-in verification and professional development. They do not imply an existing partnership, secured budget, approval or government commitment. The regional map defines five opt-in interfaces: Beiwei Community returns de-identified everyday-life and accessibility issues; Future Science City helps turn research questions into versioned public test protocols; Huairou Science City supports multisensory science interpretation; Beijing E-Town examines device-to-operations transfer burden; and Beijing-Tianjin-Hebei tests protocol portability and localisation. Exchanges are limited to public problem briefs, protocols, de-identified findings and reusable components—never personal profiles. [source:DATA-SRC-AGENT-TASKBOOK-20260518] [assumption:A-REGIONAL-INTERFACE-001] [metric:regional_synergy_interface_count]
+
+The eight ecosystem factors are exchange gates before a public pilot, not a wish list. Land screens rights, planning, heritage and safety without naming fictional parcels. Space requires status, exit and staffed help at every switch. Industry is organised by public need and maturity. Capital requires a cost band, payer role and stop-loss gate before launch. Talent combines eight pending-co-design personas with the operations view. Compute is ambient and edge-first so basic service survives network loss. Data is purpose-limited, minimal and short-lived. Twelve scenarios enter four staged protocols and never equal deployment. [assumption:A-ECOSYSTEM-TARGET-001] [metric:ecosystem_factor_coverage_count]
+
+The primary mark combines two parallel Jingzhang rails and a switch opening into shared space. Four controlled variants are the bilingual horizontal lockup, bilingual vertical lockup, symbol-only and monochrome/reverse. The minimum symbol is 24 px on screen or 8 mm in print, with one track-gauge unit of clear space. Six always-labelled sensory symbols cover wave/sound, split light, heat arc, three-dot crowd, two-way speed and information stack; amber is never the sole state code. The cultural narrative has three acts—Making and Caring for the Line, Making Knowledge Shareable, and Sharing Control and Pause—and no date, person or archive image enters interpretation without source and rights verification. [assumption:A-BRAND-HERITAGE-001] [metric:identity_variant_count] [metric:culture_act_count]
+
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
 The overall design begins by stating what is absent: cleared parcel, ownership, building-condition, traffic, municipal-capacity and approved-control data. It therefore creates no fabricated existing-condition map or pseudo-regulatory plan. A seamless six-part conceptual partition organizes programs and sensory loads; nine building polygons are prototype envelopes; road geometries are slow-mobility and rail-connection centerlines, not redlines. [assumption:A-EXISTING-DATA-001] [standard:MOHURD-CONTROL-DETAILED-PLANNING]
@@ -72,6 +78,12 @@ The minimum Quiet Commons kit comprises a sensory vestibule, quiet/rest bay, tac
 **Dazhongsi — Rhythmic Civic Hub.** Commerce, shared work and public service follow a visible schedule of regular, low-stim and event modes. Lighting changes require human approval; night logistics use a low-speed, low-glare, acoustically coordinated window. A staffed desk and analogue signs remain available. The Common Pause Clock shows the next change and accountable role, never individual tracking. [data:geometry/key_areas.geojson#PROV-KEY-003] [metric:dazhongsi_announced_area_sqm]
 
 ![Three key-area prototypes: device testing, multisensory translation and rhythmic civic life](assets/figures/key-areas.en.png)
+
+![Synthetic Zhongzhiyuan test-yard concept: visible test limits, physical stop, a human safety supervisor and manual-handling equivalent; not existing-site evidence or a promised built outcome](assets/media/zhongzhiyuan-test-yard-v1.2.webp)
+
+![Synthetic AI Origin Many-Ways Room concept: tactile route, staffed service, quiet learning and optional courtyard; not existing-site evidence or an approved design](assets/media/ai-origin-translation-room-v1.2.webp)
+
+![Synthetic Dazhongsi rhythmic-hub concept: Common Pause Clock, low-glare night interface, staffed service and manual logistics fallback; not a promised built or operating outcome](assets/media/dazhongsi-rhythm-station-v1.2.webp)
 
 The rough polygon areas are close to announced text constraints, but their exact extents remain unknown and their rectangular edges are not streets or parcels. Building, fire, commercial and station-integration development requires official polygons, survey, rights, utility, passenger-flow and professional safety evidence. [depth:three_key_area_detailed_design] [assumption:A-BOUNDARY-001]
 
@@ -136,6 +148,8 @@ Four validation pilots test governance and exit before spectacle. Each has a bou
 
 Implementation actors include planning and operations teams, universities, enterprises, community residents, accessibility testers and maintainers. Measurable indicators cover handoff time, equivalent completion, stop reasons, conflict recovery and maintenance backlog. Near-term pilots, medium-term standardization and long-term network extension continue, change or withdraw on this evidence rather than deployment count.
 
+Every pilot number is a `design_target`, not a completed result. Baselines, professional thresholds, recruitment, consent/withdrawal and statistical sufficiency require independent review. Progress needs two consecutive rounds meeting every hard gate plus human review; any harm, serious near miss, failed emergency stop, rights error or unapproved data processing triggers immediate `STOP`. [assumption:A-PILOT-PROTOCOL-001] [metric:pilot_protocol_complete_count]
+
 | Pilot | Suggested period | Stop/exit gate | Human owner and non-AI equivalent | Review measures |
 | --- | --- | --- | --- | --- |
 | Device footprint and stop | Six weeks, closed to limited public sessions | Failed stop, boundary breach, glare or reviewed heat limit | Safety supervisor; human handling or fixed display | Stop success, handoff time, complaints and near misses |
@@ -143,9 +157,18 @@ Implementation actors include planning and operations teams, universities, enter
 | AI public service and handoff | Eight weeks, bounded services | Rights error, low-confidence translation or unavailable staff | Service supervisor; complete staffed and paper service | Equivalent completion, handoff, waiting and correction |
 | Night logistics sound/light/speed | Six weeks, fixed route window | Speed, glare, sound anomaly or failed pedestrian priority | Night dispatcher; human delivery or stop window | Anomalies, suspension response and compliance |
 
+| Protocol | Baseline | Sample design target | Hard gate and accountable owner |
+| --- | --- | --- | --- |
+| P1 device footprint | Device-off ambient reading plus manual handling | 3 modes × 10 physical stops, ≥30 trials | 30/30 stops, zero boundary/high-severity near miss; safety supervisor |
+| P2 space modes | Fixed mode and reachable exit | ≥24 voluntary guided sessions across eight personas or advocates | Text/graphic/staff state plus bypass and legitimate-activity alternative 100% available |
+| P3 AI service | Staff-only completion, waiting and correction | 3 non-entitlement tasks, ≥60 scripted cases and ≥24 sessions | Rights/payment/identity/low confidence 100% to staff; paper path 100% available |
+| P4 night logistics | Manual-delivery sound/light/speed, conflict and wait | ≥40 route loops across human and device modes | Pedestrian priority/route/anomaly pause 100%; no public test before threshold review |
+
 Phase 1 emphasizes physical signs, staffed service and four reversible pilots. Phase 2 turns validated components into public-realm, procurement, maintenance and accessibility standards. Phase 3 extends the network only on official planning evidence. Phase polygons are work partitions, not approved construction timing; each project still passes rights, budget, approval and deliberation gates. [data:geometry/phasing.geojson#PHASE-001] [depth:phasing_implementation]
 
 The operating rhythm is Quiet Commons Week, quarterly open tests and annual standards review. Quarterly reports publish availability, human handoffs, non-AI path availability, stop reasons, maintenance backlog and unresolved co-design questions. Public, maintenance, accessibility, operations, planning and legal reviewers jointly retain, change or withdraw each element. [metric:human_handoff_pilot_count] [metric:non_ai_equivalent_pilot_count]
+
+The annual institution has four modules: Q1 Protocol Lab produces a public-need ledger, test brief and exit conditions; Q2 Open Test Season publishes baselines, failure, handoff and withdrawal; Q3 Quiet Commons Week produces accessible routes, a feedback summary and contribution roll; Q4 Standards & Maintenance Assembly versions protocols and publishes the maintenance backlog and withdrawal list. Before any public pilot, five seats must be registered: public-problem owner, developer steward, accessibility co-designer, operations/safety steward, and data/rights reviewer. The six-stage funnel is public need → evidence/rights/maturity screen → closed or synthetic-data sandbox → supervised pilot → open protocol/standard candidate → independent procurement, replication or withdrawal decision. Leaving the funnel is not failure, and no stage guarantees funding, a contract, policy adoption, procurement or replication. [metric:annual_program_module_count] [metric:conversion_stage_count] [assumption:A-ECOSYSTEM-TARGET-001]
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
@@ -164,7 +187,7 @@ Structured data is the sole source of truth. GeoJSON uses EPSG:4326 and areas ar
 
 Twenty-three task rows, nine standard responses and fifteen design-depth items are connected in JSON. `complete` means this package responds—including an explicit data-gap response—not that absent statutory controls have been obtained. The 14-page A3 and 7-page A0 sets are independently bilingual; every text figure has an English counterpart; the offline exhibit supports layers, key areas, scenarios, keyboard use, reduced motion and high contrast. [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [depth:risk_missing_data]
 
-The public status is: “machine gate and content review ready; spatial geometry provisional; official polygons / professional scoring eligibility pending.” No formal score, boundary confirmation or implementation commitment is claimed before the organizer or professional review establishes it. [metric:manual_stop_pilot_count] [source:PROCESSED-FACT-PACK]
+The public status is: “content-review contract ready; spatial geometry provisional; awaiting organizer content review.” Missing official polygons do not block content scoring, but remain explicitly provisional and trigger full recalculation when supplied. No new score, boundary confirmation or implementation commitment is claimed before organizer review. [metric:manual_stop_pilot_count] [source:PROCESSED-FACT-PACK]
 
 ## Risk, Copyright, and Compliance
 

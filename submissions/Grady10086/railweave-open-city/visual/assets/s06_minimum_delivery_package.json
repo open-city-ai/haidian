@@ -4,8 +4,8 @@
   "project_id": "railweave-open-city",
   "parent_scenario_id": "S06",
   "prototype_id": "S06-P",
-  "title_zh": "S06全龄无障碍信息服务90日最小交付包",
-  "title_en": "S06 All-Ages Accessible Information Service 90-Day Minimum Delivery Package",
+  "title_zh": "S06开源修补街100日限定试点交付包",
+  "title_en": "S06 Open Repair Street 100-Day Bounded Pilot Delivery Package",
   "status": "conceptual_pre_registration_not_an_approved_schedule",
   "purpose_zh": "把一条经核验的有限关键路径作为受控对象，先证明普通服务可用，再验证AI建议，最后在全部授权成立时开展限量共测；任何阶段均不得降低既有人工和非数字服务。",
   "purpose_en": "Treat one verified bounded key route as the controlled object: first establish ordinary service, then validate AI advice, and only then conduct limited co-testing if all authorisations exist. No phase may reduce existing staffed or non-digital service.",
@@ -31,6 +31,65 @@
     "decision_rule_en": "AI provides advice only; route confirmation, exception handling, statutory decisions, appeals, and stopping remain with lawfully appointed people.",
     "no_penalty_rule_zh": "拒绝或关闭AI不得增加费用、不合理等待或异地行程。",
     "no_penalty_rule_en": "Declining or disabling AI shall add no fee, unreasonable wait, or off-site journey."
+  },
+  "pilot_definition": {
+    "candidate_anchor_id": "AN-V21-005",
+    "candidate_component_id": "DC-V21-AI-001",
+    "site_status": "G0_pending_field_verification",
+    "controlled_route_length_m": {"low": 100, "high": 150, "status": "design_control_pending_survey"},
+    "decision_point_count": {"low": 3, "high": 5, "status": "design_control_pending_survey"},
+    "accessible_service_bay_count": {"value": 1, "scale": "1:1", "status": "design_control_pending_field_walkthrough"},
+    "spatial_layers": [
+      {"layer": "L0_ordinary_non_ai", "items": ["easy_read_and_tactile_wayfinding", "paper_information", "telephone_channel", "staffed_service"]},
+      {"layer": "L1_reversible_ai", "items": ["removable_interface", "power_off_fallback", "no_biometric_access_condition"]},
+      {"layer": "L2_evidence_and_exit", "items": ["status_and_complaint_panel", "network_and_power_loss_test", "device_removal", "finish_restoration"]}
+    ],
+    "g0_unknowns": ["site_rights", "opening_hours", "fire_safety", "accessible_route", "role_appointments", "measured_quantities", "comparable_quotes"]
+  },
+  "decision_windows": [
+    {"days": "0-10", "output": "E0_authority_site_and_ordinary_service_baseline", "go_no_go": "all_critical_site_fields_known"},
+    {"days": "11-30", "output": "E1_baseline_1_to_1_mockup_and_affected_user_walkthrough", "go_no_go": "all_applicable_essential_groups_pass"},
+    {"days": "31-45", "output": "E4_boq_three_quote_normalisation_and_signed_raci", "go_no_go": "quantities_confirmed_and_quote_coverage_at_least_80_percent"},
+    {"days": "46-60", "output": "E2_version_data_takeover_and_unweaving_receipts", "go_no_go": "all_high_risk_takeover_branches_pass"},
+    {"days": "61-90", "output": "E3_authorised_bounded_same_task_comparison", "go_no_go": "ordinary_service_not_degraded_and_zero_severe_event"},
+    {"days": "91-100", "output": "E5_exit_receipts_and_E6_reasoned_decision", "go_no_go": "retain_modify_remove_or_do_not_advance_signed"}
+  ],
+  "appointment_receipts": {
+    "current_status": "all_named_role_holders_unassigned",
+    "rule": "Each task has exactly one accountable role; role codes are not evidence of appointment.",
+    "roles": [
+      {"code": "IE", "accountable_for": ["site", "installation", "removal", "finish_restoration"]},
+      {"code": "DO", "accountable_for": ["service_purpose", "ordinary_baseline", "co_test"]},
+      {"code": "DC", "accountable_for": ["data_processing", "access_revocation", "data_deletion"]},
+      {"code": "IV", "accountable_for": ["independent_test_finding", "day_100_decision_evidence"]},
+      {"code": "PF", "accountable_for": ["price_comparability", "procurement_evidence"]},
+      {"code": "TO", "responsible_only_for": ["technical_implementation"]},
+      {"code": "PO", "responsible_for": ["affected_user_oversight", "pause_request"]}
+    ],
+    "required_evidence": ["appointment_document", "named_contact", "qualification", "conflict_declaration", "shift_and_substitute", "stop_authority", "acceptance_signature_specimen"]
+  },
+  "boq_status": {
+    "package_count": 6,
+    "packages": ["baseline_and_participant_support", "ordinary_service_and_1_to_1_reversible_physical_interface", "interface_equipment_and_network", "staffing_training_and_human_takeover", "independent_validation_data_legal_and_insurance", "removal_restoration_and_contingency"],
+    "quantity_status": "unconfirmed_pending_field_measurement",
+    "valid_comparable_quote_count": 0,
+    "exit_fully_priced": false,
+    "total_price_publication_authorised": false,
+    "total_price_gate": "Quantities confirmed; three dated comparable prices cover at least 80 percent of estimated cost; staffing, legal, insurance, and all exit items fully priced; PF signed.",
+    "row_fields": ["quantity_formula", "unit", "low", "base", "high", "three_dated_comparable_prices", "tax_and_term_normalisation", "qualification_and_maintenance", "recurring_status", "source_hash", "PF_receipt"]
+  },
+  "evidence_chain": [
+    {"id": "E0", "name": "site_and_authority", "status": "pending"},
+    {"id": "E1", "name": "baseline_and_1_to_1_walkthrough", "status": "pending"},
+    {"id": "E2", "name": "version_data_network_loss_and_unweaving", "status": "pending"},
+    {"id": "E3", "name": "authorised_same_task_co_test", "status": "pending"},
+    {"id": "E4", "name": "comparable_price_evidence", "status": "pending"},
+    {"id": "E5", "name": "access_revocation_data_deletion_device_removal_site_restoration_and_ordinary_service", "status": "pending"},
+    {"id": "E6", "name": "day_100_reasoned_decision", "status": "pending"}
+  ],
+  "decision_rules": {
+    "pass": ["all_applicable_essential_groups_pass", "unknown_never_passes", "ordinary_service_not_degraded", "zero_severe_safety_privacy_or_fairness_event", "all_high_risk_takeover_branches_pass", "all_six_exit_items_signed"],
+    "stop": ["authorisation_absent_or_withdrawn", "ordinary_or_staffed_service_interrupted", "critical_accessibility_barrier", "participant_extra_fee_unreasonable_wait_or_forced_off_site_journey", "takeover_or_unweaving_failure", "exit_budget_missing", "maintainer_absent"]
   },
   "phases": [
     {
@@ -111,12 +170,39 @@
       "stop_triggers_zh": ["任一必要授权撤回或不存在", "严重安全、隐私或公平事件", "普通或人工服务中断", "误导持续或关键阻断未关闭", "参与者承担额外费用、不合理等待或异地行程", "退出责任或资源不可用"],
       "stop_triggers_en": ["Any required authorisation is absent or withdrawn", "Severe safety, privacy, or fairness incident", "Ordinary or staffed service interruption", "Persistent misdirection or unresolved critical barrier", "Participants bear extra cost, unreasonable wait, or off-site journey", "Exit accountability or resources unavailable"],
       "exit_outputs_zh": ["动态接口停用回执", "数据清理和访问撤销证明", "设备撤离与场地恢复记录", "固定导视校正和人工服务恢复确认", "参与者通知与申诉接续", "第90日有理由的续期、整改、暂停或退出决定"],
-      "exit_outputs_en": ["Dynamic-interface shutdown receipt", "Data-clearing and access-revocation proof", "Equipment removal and site-restoration record", "Fixed-sign correction and staffed-service restoration confirmation", "Participant notice and appeal handoff", "Reasoned day-90 renewal, correction, pause, or exit decision"]
+      "exit_outputs_en": ["Dynamic-interface shutdown receipt", "Data-clearing and access-revocation proof", "Equipment removal and site-restoration record", "Fixed-sign correction and staffed-service restoration confirmation", "Participant notice and appeal handoff", "Day-90 evidence handoff to the mandatory close-out phase"]
+    },
+    {
+      "phase_id": "S06-MDP-P4",
+      "relative_days": "91-100",
+      "title_zh": "撤权、复原与再决策",
+      "title_en": "Revocation, Restoration, and Reasoned Re-Decision",
+      "entry_gates": ["G5"],
+      "role_archetypes": {"accountable": "IE", "responsible": ["TO", "DC"], "consulted": ["DO", "IV", "PO", "PF"], "informed": ["CM"]},
+      "minimum_inputs_zh": ["第90日完整事件与普通服务对照", "设备、账号、数据、标识、饰面和人工服务退出清单", "退出全价证明", "角色任命和停止权限"],
+      "minimum_inputs_en": ["Complete day-90 event and ordinary-service comparison", "Exit inventory for devices, accounts, data, signs, finishes, and staffed service", "Evidence that exit is fully priced", "Role appointments and stop authority"],
+      "field_outputs_zh": ["撤销动态接口和访问权限", "依法删除或移交数据并形成回执", "拆除设备和恢复饰面", "校正固定导视并续接人工服务", "通知参与者并接续申诉", "签发保留、修改、撤除或不推进决定"],
+      "field_outputs_en": ["Revoke dynamic interfaces and access", "Lawfully delete or transfer data with receipt", "Remove devices and restore finishes", "Correct fixed signs and continue staffed service", "Notify participants and hand off appeals", "Issue retain, modify, remove, or do-not-advance decision"],
+      "acceptance_records": [
+        {"record_id": "P4-AR-01", "zh": "IE签收设备拆除、饰面恢复和场地移交", "en": "IE signs device removal, finish restoration, and site handover"},
+        {"record_id": "P4-AR-02", "zh": "DC签收撤权、删数或合法移交", "en": "DC signs access revocation and deletion or lawful transfer"},
+        {"record_id": "P4-AR-03", "zh": "DO确认普通与人工服务持续可用", "en": "DO confirms ordinary and staffed service remain available"},
+        {"record_id": "P4-AR-04", "zh": "IV基于E0至E5签发独立结论，PO复核必要群体体验", "en": "IV independently concludes from E0-E5 and PO reviews essential-group experience"}
+      ],
+      "control_metrics": [
+        {"metric": "signed_exit_items", "threshold_zh": "退出六项全部签收", "threshold_en": "All six exit items signed"},
+        {"metric": "ordinary_service_after_exit", "threshold_zh": "不低于第0日基线", "threshold_en": "No worse than the day-0 baseline"},
+        {"metric": "reasoned_day_100_decision", "threshold_zh": "保留、修改、撤除或不推进四选一并说明依据", "threshold_en": "One of retain, modify, remove, or do not advance, with reasons"}
+      ],
+      "stop_triggers_zh": ["任一退出项未签收", "退出预算或责任主体缺失", "普通或人工服务未恢复", "参与者通知或申诉接续缺失"],
+      "stop_triggers_en": ["Any unsigned exit item", "Missing exit budget or accountable entity", "Ordinary or staffed service not restored", "Missing participant notice or appeal handoff"],
+      "exit_outputs_zh": ["E5完整退出回执", "E6第100日有理由决定", "公开摘要和未解决事项责任单"],
+      "exit_outputs_en": ["Complete E5 exit receipt", "Reasoned E6 day-100 decision", "Public summary and unresolved-issue responsibility record"]
     }
   ],
   "package_acceptance": {
-    "minimum_complete_zh": ["三阶段每项记录均有依法确定角色书面接收", "普通服务基线与数字服务对照可复核", "所有重大问题均关闭或形成停止决定", "退出六项形成完整回执", "公开摘要不含个人、商业敏感或未经清权信息"],
-    "minimum_complete_en": ["Every three-phase record has written receipt by lawfully appointed roles", "Ordinary-service baseline and digital comparison are reviewable", "Every major issue is closed or has a stop decision", "All six exit items have complete receipts", "Public summary contains no personal, commercially sensitive, or uncleared information"],
+    "minimum_complete_zh": ["四阶段每项记录均有依法确定角色书面接收", "普通服务基线与数字服务对照可复核", "所有重大问题均关闭或形成停止决定", "退出六项形成完整回执", "公开摘要不含个人、商业敏感或未经清权信息"],
+    "minimum_complete_en": ["Every four-phase record has written receipt by lawfully appointed roles", "Ordinary-service baseline and digital comparison are reviewable", "Every major issue is closed or has a stop decision", "All six exit items have complete receipts", "Public summary contains no personal, commercially sensitive, or uncleared information"],
     "not_equivalent_to_zh": ["审批", "采购", "预算批复", "安全认证", "现场绩效", "持续运营承诺"],
     "not_equivalent_to_en": ["Approval", "Procurement", "Budget approval", "Safety certification", "Field performance", "Continued-operation commitment"]
   }

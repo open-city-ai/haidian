@@ -11,15 +11,27 @@ tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "enterprise-serv
 scenarios: ["ai-cultural-guide", "enterprise-service-copilot", "ai-traffic-walkability"]
 ---
 
-# Double-Helix Innovation Belt｜Centennial Jing-Zhang AI Innovation Belt Urban Design Proposal
+# Double-Helix Innovation Belt｜Centennial Jing-Zhang AI Innovation Belt Urban Design
 
-## Design Basis and Source List
+## One-Page Executive Brief
 
-This proposal takes the Qualification Prequalification Announcement of the Centennial Jing-Zhang AI Innovation Belt International Urban Design Open Call, issued by the Haidian Branch of the Beijing Municipal Commission of Planning and Natural Resources, as its primary basis, and the registered provisional boundaries, key areas, enums, ranges, and source lists in `brief/site-package/` as its machine-readable basis [source:OFFICIAL-ANNOUNCEMENT] [source:SITE-PACKAGE]. The agent-facing open-call taskbook (agent.1–agent.6) is the direct source of the six required tasks of this proposal [source:AGENT-TASKBOOK].
+**Concept in one sentence**: Building on the century-old autonomy of the Jing-Zhang Railway, the proposal weaves the Heritage helix H and the Innovation helix I into urban DNA, pairing every AI scenario with a verifiable Power Base-Pair - AI compute x energy supply - turning AI governance into auditable urban power infrastructure from an electrical-engineering perspective.
+
+**Spatial structure**: One belt (Jing-Zhang Heritage Park vitality corridor), two strands (Heritage helix x Innovation helix), three nodes (Zhongzhiyuan 192ha / AI Origin Community 104ha / Dazhongsi 72ha), two wings (Zhongguancun Technology Service Wing x Xiaoyuehe Scenario Empowerment Wing); overall design 11.4km² with provisional boundaries to be recalculated when official redlines are published [metric:site_area_sqm] [metric:key_area_area_sqm].
+
+**Distinctive mechanism**: Power Base-Pair with four calibrations (efficiency floor PUE <= 1.25 / green power >= 80% / resilience self-healing <= 5min / opt-out human channel 100%); 12 AI scenario cards all mapped to spatial nodes [metric:ai_scenario_card_count]; the JZ-05 PV-Storage-Charging minimal pilot is reproducible via the in-package script `visual/assets/run_jz05_pilot.js --check` (10-stage execution chain, seven gates, six acceptance criteria; evidence JSON in `visual/assets/jz05-pilot-evidence.json`) [metric:jz05_acceptance_criterion_count].
+
+**Key figures**: 57 gap-free land units, 14 indicative buildings, 15 roads, 6 concept renders, 13 renewal projects, 24+ reproducible metrics [metric:land_use_unit_count] [metric:road_length_m].
+
+**Boundary statement**: All spatial outputs are generated from public or cleared data; until official redlines, regulatory controls, and pilot data are published, area metrics are provisional recalculations, control metrics are unknown, and pilot candidate values are candidate baselines; this proposal is conceptual and does not constitute an approved conclusion [depth:risk_missing_data].
+
+## Design Basis and Source Inventory
+
+This proposal takes the Qualification Prequalification Announcement of the Centennial Jing-Zhang AI Innovation Belt International Urban Design Open Call, issued by the Haidian Branch of the Beijing Municipal Commission of Planning and Natural Resources, as its primary basis, and the registered provisional boundaries, key areas, enums, ranges, and source lists in `brief/site-package/` as its machine-readable basis [source:OFFICIAL-ANNOUNCEMENT] [source:SITE-PACKAGE]. The agent-facing open-call taskbook (agent.1–agent.6) is the direct source of the six required tasks of this proposal [source:AGENT-TASKBOOK]. The overview and spatial-structure figures use an OpenStreetMap basemap (roads/waterways/railways/parks, with on-figure attribution © OpenStreetMap contributors, ODbL); all other figures are agent-generated; the offline HTML embeds Noto Sans CJK SC font subsets [source:OSM-BASEMAP] [source:FONT-NOTO-CJK].
 
 The public source registry distinguishes formal-ready, background, provisional-only, and needs-review material; formal claims rely only on `usable_for_formal="yes"` or separately cleared sources, while background and provisional material is used as context only [source:SOURCE-REGISTRY]. Since official `SITE_BOUNDARY` and `KEY_AREA` redlines are not yet available, this proposal uses `brief/site-package/geometry/provisional_boundaries.geojson` as provisional constraint ranges, fully labeled in narrative, geometry, metrics, and self-check, and recalculates once official polygons are published [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE].
 
-![Site context and boundary evidence](assets/figures/site-overview.png)
+![Site context and boundary evidence](assets/figures/site-overview.en.png)
 
 Mandatory professional standards are read from the local snapshots in `standards/references/`; a `source_url` alone is not evidence [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:MOHURD-URBAN-DESIGN-MEASURES]. The narrative follows v2 format: readable judgments sit beside evidence anchors, while complete sources, metrics, matrices, and layer indexes live in the structured files [depth:existing_conditions_diagnosis].
 
@@ -29,7 +41,7 @@ The proposal is organized around the three scopes defined by the announcement: t
 
 The common spine of all three levels is the "double helix" spatial concept: a **Heritage helix (H-strand)** carries the century-long Jing-Zhang railway, Zhongguancun entrepreneurship culture, and the emerging AI culture; an **Innovation helix (I-strand)** carries university discovery, open-source collaboration, enterprise translation, applied scenarios, and global governance. The two strands wind along the Jing-Zhang Heritage Park corridor and interlock at three "gene nodes" in the key areas — every node is locatable and verifiable in plan and metrics [depth:overall_spatial_structure] [data:geometry/land_use.geojson#LU-001].
 
-![Three-level scope and double-helix spatial structure](assets/figures/land-use-structure.png)
+![Three-level scope and double-helix spatial structure](assets/figures/land-use-structure.en.png)
 
 | Level | Design question | Proposal answer | Data anchor |
 | --- | --- | --- | --- |
@@ -46,14 +58,16 @@ Future city form answers how AI changes work, life, social interaction, and publ
 Benchmarking global AI ecosystems, this proposal studies six case archetypes (concept-level references only, no investment or outcome commitments): the capital–talent–university loop of Silicon Valley; Tel Aviv's defense spillover and dense startup districts; King's Cross railway heritage renewal as a knowledge quarter in London; one-north's high-density R&D community in Singapore; the production–R&D–life mix of Nanshan, Shenzhen; and the corridor-style innovation organization of Hangzhou's West Sci-Tech Innovation Corridor [source:AGENT-TASKBOOK] [depth:three_level_scope_framework].
 
 Each case is distilled into translatable spatial actions (conceptual):
-| Case | Takeaway | Translatable spatial action |
-| --- | --- | --- |
-| Silicon Valley | Capital-talent-university loop | Near-campus translation street (BLDG-006), Dazhongsi AI Roadshow Lounge (Scenario 06) |
-| Tel Aviv | Defense spillover and dense startups | Zhongzhiyuan autonomous model testing ground and safety-governance sandbox (Scenarios 02/03, civilian framing) |
-| London King's Cross | Railway heritage renewal as a knowledge quarter | Heritage Park belt retained-section activation, Qinghuayuan Station Cultural Hall (BLDG-005) |
-| Singapore one-north | High-density R&D community | Zhongzhiyuan research land mixed development, Qinghe innovation riverfront (Scenario 07) |
-| Shenzhen Nanshan | Production-R&D-life mix | Central community service band mixed-use (Scenario 09) |
-| Hangzhou West Corridor | Corridor-style innovation organization | Double-helix corridor spatial organization and node interlocking (spatial-structure figure) |
+| Case | Takeaway | Translatable spatial action | When applicable | When not applicable |
+| --- | --- | --- | --- | --- |
+| Silicon Valley | Capital-talent-university loop | Near-campus translation street (BLDG-006), Dazhongsi AI Roadshow Lounge (Scenario 06) | University/R&D density, active capital | Districts without a university hinterland |
+| Tel Aviv | Defense spillover and dense startups | Zhongzhiyuan autonomous model testing ground and safety-governance sandbox (Scenarios 02/03, civilian framing) | Testing and safety-compliance needs | Classified or uncleared domains |
+| London King's Cross | Railway heritage renewal as a knowledge quarter | Heritage Park belt retained-section activation, Qinghuayuan Station Cultural Hall (BLDG-005) | Railway heritage and station resources | Zones where heritage fabric must not be disturbed |
+| Singapore one-north | High-density R&D community | Zhongzhiyuan research land mixed development, Qinghe innovation riverfront (Scenario 07) | High density, rail accessibility | Low-density remote districts |
+| Shenzhen Nanshan | Production-R&D-life mix | Central community service band mixed-use (Scenario 09) | Residential-industry interweaving | Strictly zoned regulatory areas |
+| Hangzhou West Corridor | Corridor-style innovation organization | Double-helix corridor spatial organization and node interlocking (spatial-structure figure) | A long linear innovation axis | Polycentric dispersed layouts |
+
+The "not applicable" column prevents case transplantation - the proposal borrows mechanisms only, never form [source:AGENT-TASKBOOK] [depth:three_level_scope_framework].
 
 **Regional collaboration mechanism (conceptual suggestion).** The coordinated research area is not an isolated district; the belt must connect to a wider innovation network to fulfil the "world-class" positioning. This proposal suggests a "three areas, two wings, five-direction collaboration" framework: the three key areas and the two wings (Zhongguancun Technology Service Wing and Xiaoyuehe Scenario Empowerment Wing) form an internal innovation loop; externally, the belt connects with Zhongguancun Science City (origin collaboration), Future Science City (energy and infrastructure experimentation), Huairou Science City (large-scale facilities and basic research), Beijing Economic-Technological Development Area (manufacturing and industrialization), and the Beijing-Tianjin-Hebei coordinated development (cross-regional compute-energy-scenario links). Specific mechanisms (enclave incubation, compute sharing, energy interchange, event linkage) are conceptual suggestions for professional teams and authorities to deepen [source:AGENT-TASKBOOK] [depth:three_level_scope_framework]. Regional collaboration also requires cross-jurisdiction energy infrastructure planning: the belt's distribution grid, storage, and charging networks should sit within Beijing's new power system and Beijing-Tianjin-Hebei electricity interchange layout, avoiding "island-style" block-level energy construction [source:POLICY-CARBON-PEAK] [depth:municipal_new_infrastructure].
 
@@ -65,6 +79,8 @@ The overall design area requires regulatory-plan-level urban design depth. The p
 
 **Power Base-Pair mechanism (the proposal's distinctive mechanism, from an electrical-engineering perspective).** When the Jing-Zhang Railway was built, Zhan Tianyou insisted on the unified standard gauge (1435 mm), enabling the line to interconnect with the national network and avoid a "narrow-gauge island"; this century-old promise of "accepting constraints and leaving standards in space for later verification" provides a direct mechanism prototype for the AI era. Combining this historical spirit with electrical engineering, the proposal introduces the **Power Base-Pair** rule: every AI scenario node on the double helix must be paired with a locatable, verifiable energy supply unit, forming an "AI compute x energy supply" base pair. Any scenario joining the belt must first pass four auditable power calibrations: (1) **Energy-efficiency floor**: compute and facilities set thresholds on PUE (Power Usage Effectiveness) and energy per unit of compute; under-performing scenarios do not enter open operation; (2) **Green-power priority**: distributed PV, storage, and green-power trading take priority, with green-power share as an operational hard metric; (3) **Resilience and self-healing**: the distribution grid adopts microgrid and island-operation capability design, with measurable self-healing recovery time and supply availability; (4) **Opt-out**: AI services retain human channels and offline/off-grid alternatives, preventing "intelligence" from crowding out basic public services [source:AGENT-TASKBOOK] [depth:municipal_new_infrastructure]. This mechanism translates "global discourse power in AI governance" from a slogan into auditable urban power infrastructure, supported by the deepening attachments in `report/narrative.md` (12 scenario cards with data fields / failure thresholds / exit conditions), the technology_maturity dimension in `risk.json`, and the energy metrics in `metrics.json` [source:AGENT-TASKBOOK] [metric:ai_scenario_card_count].
 
+**A century-old promise, translated (the narrative spine).** In 1909, Zhan Tianyou wrote the "zigzag" line at Badaling and, with the 1435 mm standard gauge, connected the Jing-Zhang Railway into the national network - the first time Chinese engineers used a "standard" to honour a promise of "interconnection". More than a century later, AI scenarios face the same "narrow-gauge" risk: each campus with its own siloed compute, energy, and data formats would repeat the island dilemma of a hundred years ago. The Power Base-Pair translates that engineering wisdom into contemporary language: **for an AI scenario to join the belt, it must first pass the four power calibrations; the calibration rules are written plainly into space and kept in the system, so any third party can verify, reject, or roll back**. This narrative is not decoration - it determines the rationale for every energy facility, every calibration metric, and every pilot gate in the proposal, and turns "Centennial Jing-Zhang" from a cultural symbol into an operable urban governance protocol [source:OFFICIAL-ANNOUNCEMENT] [depth:three_level_scope_framework].
+
 The land layout is expressed in 57 gap-free, overlap-free land units: research (0802), cultural (0803), and education (0804) land is organized along the two strands; park green (1401) and buffer green (1402) form the blue-green skeleton; commercial (05) concentrates at Dazhongsi and the south gateway; residential and community service (0701/0702) form living circles on both sides; and reserved land (16) in the northeast is held for future AI innovation space [data:geometry/land_use.geojson#LU-001] [metric:land_use_area_by_code] [depth:development_intensity_controls].
 
 Building scale and intensity are governed by official regulatory conditions: FAR, building height, density, and setbacks are listed as "pending official regulatory conditions" until confirmed, and this proposal provides only indicative building footprints and massing levels, without manufacturing false precision [depth:height_massing_character] [metric:floor_area_ratio].
@@ -73,7 +89,7 @@ Building scale and intensity are governed by official regulatory conditions: FAR
 
 The three key areas are the three gene nodes of the double helix, carrying the detailed design of autonomy, origin & open-source, and application & experience respectively [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/key_areas.geojson#PROV-KEY-003].
 
-![Detailed design index of the three key areas](assets/figures/key-areas.png)
+![Detailed design index of the three key areas](assets/figures/key-areas.en.png)
 
 | Key area | Design positioning | Spatial moves | AI industry & operation scenarios |
 | --- | --- | --- | --- |
@@ -103,6 +119,8 @@ The proposal defines five user personas: open-source developers, startup teams, 
 
 This anchor table is cross-referenced with the inclusion assessment (children, elderly, people with disabilities, low-income, non-digital users, existing merchants) in deepening attachment 4 of `report/narrative.md` and the equity_inclusion dimension of `risk.json` [depth:risk_missing_data].
 
+**Shared scenario protocol (six fields).** All 12 scenario cards share a six-field protocol: **service recipient** (who benefits), **minimum necessary data** (data minimization, no default area-wide collection), **spatial boundary** (where it lands and its relation to site constraints), **human reviewer** (who is accountable for results), **exit and appeal** (how to opt out / offline alternative), and **evaluation and stop conditions** (when to downgrade or close). No scenario presents immature technology as fully available, and no scenario makes a vendor lock-in a necessary condition; under-performing scenarios are downgraded or exited under Power Base-Pair calibration. The full 12x6 matrix is in `report/narrative.md` attachment 8 [source:AGENT-TASKBOOK] [depth:risk_missing_data]. Each card also carries a technology-readiness level (TRL) and failure threshold (attachment 10); low-TRL scenarios are expressed as testing/pilot only, never as in operation [depth:risk_missing_data].
+
 The proposal forms 12 AI scenario cards, all mapped to spatial nodes [metric:scenario_node_count] [metric:ai_scenario_card_count]:
 
 | Scenario card | Spatial carrier | Design note |
@@ -128,11 +146,22 @@ The land plan follows the project subset of the Land Use Classification Guide fo
 
 The building plan distinguishes retain, renovate, renew, new-build, and reserved categories, and provides 14 indicative building footprints, including the Qinghuayuan Station Cultural Hall (retained), talent apartments (new), and two energy stations (Zhongzhiyuan PV-Storage-Charging Energy Station BLDG-015, Dazhongsi District Energy Station BLDG-016, southwest of Dazhongsi Station) [data:geometry/buildings.geojson#BLDG-001] [depth:retain_renovate_demolish]. Demolition/renovation conclusions depend on ownership, engineering conditions, and approval; this proposal offers methods and a calibration checklist only, without fabricating specific retain/renovate/demolish conclusions [depth:development_intensity_controls]. Floor area, FAR, and height controls are listed as pending until official regulatory conditions are confirmed [metric:total_floor_area_sqm] [metric:floor_area_ratio].
 
+**Retain/renovate/demolish decision tree (conceptual; formal conclusions await ownership and engineering review).** Each existing building is classified through four decision levels:
+
+| Level | Question | Flow |
+| --- | --- | --- |
+| L1 Heritage and historical value | Is it a heritage/historic building or inside the heritage-belt protection scope? | Yes -> **Retain** (e.g., Qinghuayuan Station BLDG-005); No -> L2 |
+| L2 Structure and engineering quality | Structural safety and engineering grade? | Unsafe beyond repair -> **Demolish and rebuild**; repairable -> **Retain/renovate**; needs appraisal -> **Pending review** |
+| L3 Functional fit | Does the current function fit the AI innovation belt positioning? | Fits -> **Retain + activate**; partial -> **Renovate**; no fit -> **Renew/rebuild** |
+| L4 Ownership and approval | Are ownership, regulatory, and approval conditions clear? | Clear -> execute per L1-L3; unclear -> **listed as pending confirmation**, no presumption |
+
+The tree guarantees: no existing building lacking ownership/engineering/approval evidence enters a "demolish" presumption; "retain" precedes "renovate" and "renovate" precedes "rebuild", consistent with the low/medium/high development-intensity scenarios [depth:retain_renovate_demolish] [depth:development_intensity_controls].
+
 ## Transport, Rail, Municipal Infrastructure, and Public Services
 
 The transport plan uses the Jing-Zhang Heritage Park slow-mobility spine (about 9.7 km) as its backbone, coordinated with the Innovation Service spine, the Xueyuan Road eastern arterial, and east–west connectors, forming a "dual-spine, multi-connector" network; the three key areas organize integrated transfer and four-quadrant pedestrian links around rail stations [data:geometry/roads.geojson#ROAD-001] [depth:traffic_rail_slow_parking]. Existing expressways, rail heritage, and water systems are locked as constraint layers, without overstepping into engineering feasibility conclusions [data:geometry/constraints.geojson#CONSTRAINT-001] [data:geometry/constraints.geojson#CONSTRAINT-004].
 
-![Transport - slow mobility - blue-green public space system](assets/figures/mobility-bluegreen.png)
+![Transport - slow mobility - blue-green public space system](assets/figures/mobility-bluegreen.en.png)
 
 Municipal and new infrastructure covers AI industry services, innovation platforms, talent life services, distributed energy, edge compute, and integration with traditional municipal systems [depth:municipal_new_infrastructure]. The Qinghe and Xiaoyuehe rivers are included in the blue-green system as blue-line constraints; pipeline, energy, drainage, flood, and fire engineering conditions are listed as prerequisites for formal deepening [data:geometry/constraints.geojson#CONSTRAINT-002] [data:geometry/constraints.geojson#CONSTRAINT-003].
 
@@ -161,6 +190,17 @@ This energy system directly supports edge compute and low-carbon compute scenari
 | V2G | Pilot participation ≥ 30% | Charging-network operation data |
 
 This list is cross-referenced with narrative attachment 7; any candidate not met during a pilot is downgraded or exited under Power Base-Pair calibration [depth:risk_missing_data] [source:AGENT-TASKBOOK].
+
+**Conceptual estimation methods (electrical-engineering perspective; formal calibration awaits professional deepening).** To avoid presenting numbers without a basis, the proposal gives simplified estimation methods for energy facilities - all conceptual, order-of-magnitude for benchmarking, not engineering commitments:
+
+| Facility | Estimation method (conceptual) | Example magnitude (within provisional constraints) | Formal calibration depends on |
+| --- | --- | --- | --- |
+| Distributed PV | Usable roof/canopy/carport area x unit capacity (about 0.15 kW/m²) x annual equivalent hours (Beijing about 1200-1400h) | If usable area ~150,000 m² -> ~22.5 MW installed, ~30 GWh/yr | Roof structure, ownership, shading, heritage review |
+| Storage | Simplified sizing by peak-load share or island duration: capacity ~ critical load x island hours / depth of discharge | If critical load ~5 MW, island 2h, DOD 0.9 -> ~11 MWh | Grid topology, load model, safety standards |
+| V2G chargers | Sizing by parking ratio and service radius: units ~ key-area parking spaces x participation rate x site factor | If ~6,000 spaces, 30% participation -> ~1,800 V2G stalls | Vehicle-grid pilot policy, grid interconnection |
+| Energy digital twin | Data collection covers generation/storage/charging/carbon ledgers at station-level granularity | ~4 ledgers x 12 scenario nodes -> full-belt energy data coverage | Data standards, interface protocols, operator |
+
+All formulas and coefficients are simplified references to public engineering experience (not precise design values); formal calibration awaits pilots and professional deepening [source:POLICY-CARBON-PEAK] [depth:municipal_new_infrastructure].
 
 ## Blue-Green Network, Public Space, and Urban Character
 ![Brand identity and logo direction](assets/figures/brand-identity.en.png)
@@ -240,7 +280,7 @@ Metrics fall into three classes: spatial metrics directly reproducible from the 
 
 All known metrics are reproducible from the GeoJSON under EPSG:4548; complete values, formulas, source files, and confidence are stored in `metrics.json`; unknown metrics give reasons and formal-submission prerequisites [data:geometry/site_boundary.geojson#SITE-001] [metric:key_area_count].
 
-![Core metric recalculation and evidence chain](assets/figures/metrics-evidence.png)
+![Core metric recalculation and evidence chain](assets/figures/metrics-evidence.en.png)
 
 The compliance matrix is the master control of task responsiveness: every task in announcement sections 1.3, 1.4, and 1.5 and every agent task agent.1–agent.6 is mapped to report sections, layers, metrics, drawings, HTML pages, sources, assumptions, and self-checks in `compliance_matrix.json`; professional standard responses are in `standard_matrix.json`; design-depth responses are in `design_depth_matrix.json` [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK].
 

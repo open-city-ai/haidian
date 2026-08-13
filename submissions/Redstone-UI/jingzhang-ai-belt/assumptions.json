@@ -1,0 +1,47 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "provisional_constraint",
+      "statement": "The official overall-design boundary provided in provisional_boundaries.geojson is used verbatim; its exact coverage could not be re-verified because the qualification-review attachment download requires a password.",
+      "impact": "All metrics (site_area_sqm=11412825.386, green_ratio=0.265333, public_space_ratio=0.041596, building footprints) are computed from this provisional boundary and are reproducible from geometry/*.geojson."
+    },
+    {
+      "id": "A-KEY-AREA-001",
+      "status": "provisional_constraint",
+      "statement": "The three key areas (zuozhuyuan 左侧园/原五道口、智源加速区 智源园区、大钟寺聚核) use the provided provisional key-area polygons; they are for design discussion and self-check only, never as official redlines or precise-area bases.",
+      "impact": "Key-area area figures in the proposal are indicative; spatial_review flags KEY_AREA_PROVISIONAL as minor."
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls (control-detailed planning), road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+    },
+    {
+      "id": "A-BUILDINGS-001",
+      "status": "design_intent_only",
+      "statement": "No authoritative building footprint or floor-area data exists for the site; the 56 building blocks (BLDG-0001..0056, total footprint 897608.888 m2, capped at 7 storeys) are design intent, not survey data.",
+      "impact": "Floor area ratio is unknown (reason recorded in metrics.json); building totals must not be used as statutory evidence."
+    },
+    {
+      "id": "A-TRANSPORT-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Road redlines and the municipal network beyond the submitted roads.json alignments are not officially available; the 9 proposed road segments (ROAD-001..009) including the greenway and 5 pedestrian streets are design proposals.",
+      "impact": "Mobility capacity checks require confirmed redlines before implementation; traffic simulation is out of scope."
+    },
+    {
+      "id": "A-PHASING-001",
+      "status": "design_intent_only",
+      "statement": "Phasing (PHASE-001 原点社区, PHASE-002 智源加速区, PHASE-003 大钟寺聚核) follows the announcement's three-stage implementation logic and assumes developer/land-ownership availability at each stage.",
+      "impact": "Implementation sequence is a design proposition; land acquisition and financing are outside this package."
+    },
+    {
+      "id": "A-METRICS-001",
+      "status": "reproducible",
+      "statement": "Every reported metric is reproducible from geometry/*.geojson (and metrics.json) using the element five-tuple boundary-layer-formula-confidence-assumption recorded in the metrics documentation.",
+      "impact": "Independent re-computation is expected to match spatial_review.py output within floating-point tolerance."
+    }
+  ]
+}

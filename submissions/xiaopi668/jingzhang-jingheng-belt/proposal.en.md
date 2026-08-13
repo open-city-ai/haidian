@@ -13,6 +13,16 @@ scenarios: ["ai-cultural-guide", "enterprise-service-copilot", "ai-traffic-walka
 
 # Jing-Zhang Balancing Pulse: From Self-Reliance Railway to Open-Source Way
 
+## Executive Summary
+
+**Core mechanism: the "Pulse Milestone" system** — translating the Jing-Zhang Railway's milestone discipline into walkable AI-scenario milestones: along the heritage-park spine, an AI milestone post (number, narrative, data card, human review) every ~500 m, forming a one-axis multi-pylon experience and governance skeleton [source:AGENT-TASKBOOK] [depth:spatial_cultural_expression].
+
+**Tagline**: *FROM RUSTED RAILS TO OPEN CODE — EVERY MILE MEASURED, EVERY STEP WALKABLE.*
+
+**Three-Balance Rule**: measure (every conclusion recomputable) · weigh (spatial and functional trade-offs) · balance (public interest first) [source:AGENT-TASKBOOK].
+
+**Deliverables**: 40-file bilingual formal package (v2 + bilingual v1), all four local gates PASS; provisional boundaries disclosed, recompute after official polygons [source:BOUNDARY-SOURCE] [assumption:A-PROVISIONAL-BOUNDARY].
+
 ## Design Basis and Source List
 
 This formal package takes as its primary basis the official Qualification Pre-Announcement for the Centennial Jing-Zhang AI Innovation Belt Urban Design International Open Call, issued by the Haidian Branch of the Beijing Municipal Commission of Planning and Natural Resources [source:OFFICIAL-ANNOUNCEMENT]; the maintainer-registered provisional boundaries, key areas, enums, planning limits, and source lists in `brief/site-package/` as its machine-readable basis [source:SITE-PACKAGE]; and the six required agent tasks and the unified boundary clause of the agent-facing open-call taskbook [source:AGENT-TASKBOOK]. Source usability boundaries follow the registry in `data/source_registry.json` [source:SOURCE-REGISTRY]; `data/processed/agent_fact_pack.md` is a reading aid only and is not a new authority [source:PROCESSED-FACT-PACK].
@@ -25,11 +35,15 @@ As the official precise redline is not yet public, this package uses the provisi
 
 ## Three-Level Scope Framework
 
-The proposal is organized in the three scope levels defined by the announcement [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]: the Coordinated Research Area (CRA, 43.6 km²) addresses the AI industry ecosystem, innovation chain, and future city form; the Overall Design Area (ODA, 11.4 km²) addresses the urban area and industrial districts around the Jing-Zhang Heritage Park at regulatory-detailed-planning urban design depth [standard:MOHURD-CONTROL-DETAILED-PLANNING]; and the Key-Area Detailed Design Area (KDA, 368.4 ha) covers the three detailed-design districts. The three levels are mapped one-by-one to announcement tasks 1.3, 1.4, 1.5 and agent tasks 1–6 in `compliance_matrix.json` [source:PROCESSED-FACT-PACK] [depth:three_level_scope_framework].
+The proposal is organized in the three scope levels defined by the announcement [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]: the Coordinated Research Area (CRA, 43.6 km²) addresses the AI industry ecosystem, innovation chain, and future city form; the Overall Design Area (ODA, 11.4 km²) addresses the urban area and industrial districts around the Jing-Zhang Heritage Park at regulatory-detailed-planning urban design depth [standard:MOHURD-CONTROL-DETAILED-PLANNING]; and the Key-Area Detailed Design Area (KDA, 368.4 ha) covers the three detailed-design districts. The ODA boundary layer and area recalculation are at [data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm].
+
+The three levels are mapped one-by-one to announcement tasks 1.3, 1.4, 1.5 and agent tasks 1–6 in `compliance_matrix.json` [source:PROCESSED-FACT-PACK] [depth:three_level_scope_framework].
 
 The three levels are not separate drawings but one decision chain: CRA research sets industrial-chain and city-form direction; ODA work translates the direction into spatial structure, renewal projects, and facility capacity; KDA detailed design verifies function, building, transport, and AI-scenario feasibility at parcel scale [depth:overall_spatial_structure]. No area, ratio, scale, or project count that cannot be recomputed from structured data may be stated as a formal conclusion [depth:metrics_recalculation].
 
 ![Three-Belt Land-Use Structure](assets/figures/land-use-structure.en.png)
+
+Existing-conditions diagnosis and data-gap checklist are at [depth:existing_conditions_diagnosis] and `data/processed/missing_data_checklist.csv` [source:PROCESSED-FACT-PACK].
 
 The proposal's overall concept is **Jing-Zhang Balancing Pulse**. "Balancing" carries three meanings: **weighing** — precise trade-offs between time (centennial heritage and the AI future), space (east–west stitching and north–south linkage), and people versus technology; **measuring** — every conclusion is measurable, recomputable, and reviewable; **balance** — dynamic equilibrium among heritage protection, industrial growth, and public interest [source:AGENT-TASKBOOK]. The spatial organization is "one belt, three cores, multi-scenario nodes, and a blue-green slow-mobility loop": the belt is the Jing-Zhang Heritage Park narrative spine; the three cores are the three key areas; multi-scenario nodes are AI-enabled public-service and industrial nodes; the loop links slow mobility, blue-green space, public space, and activity routes [data:geometry/roads.geojson#ROAD-014] [data:geometry/green_space.geojson#GREEN-001].
 
@@ -81,7 +95,7 @@ Future-city-form research answers how AI changes work, life, sociality, learning
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
-The ODA must reach regulatory-detailed-planning urban design depth [standard:MOHURD-CONTROL-DETAILED-PLANNING]. The proposal sets an urban-renewal framework with the heritage park as the north–south spine and three renewal types — **stitching** (cross-ring-road and cross-transit gaps), **activating** (low-efficiency space and aging campuses along the axis), and **upgrading** (the three key areas and surrounding industrial space) [depth:retain_renovate_demolish] [depth:land_use_layout].
+The ODA must reach regulatory-detailed-planning urban design depth [standard:MOHURD-CONTROL-DETAILED-PLANNING]. Output depth and graphic expression follow [standard:MOHURD-ARCH-DESIGN-DEPTH-2016] against the design-depth matrix. The proposal sets an urban-renewal framework with the heritage park as the north–south spine and three renewal types — **stitching** (cross-ring-road and cross-transit gaps), **activating** (low-efficiency space and aging campuses along the axis), and **upgrading** (the three key areas and surrounding industrial space) [depth:retain_renovate_demolish] [depth:land_use_layout].
 
 Land use follows the national land-use classification [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]: `geometry/land_use.geojson` covers the entire submitted boundary seamlessly without overlaps [data:geometry/land_use.geojson#LU-001]; `geometry/buildings.geojson` expresses conceptual building footprints with retain/renovate/new-build levels [data:geometry/buildings.geojson#BLDG-001]; `geometry/roads.geojson` expresses micro-circulation, slow mobility, and transit integration [data:geometry/roads.geojson#ROAD-001]. Content involving floor area ratio, building height, density, setbacks, and road redlines is marked unknown / "pending official regulatory conditions" because official controls are not public; no inferred value is presented as an approved indicator [metric:floor_area_ratio] [depth:development_intensity_controls] [depth:height_massing_character].
 
@@ -94,10 +108,12 @@ The three key areas are the "three cores" that validate the overall concept [sta
 ![Key-Area Detailed Design](assets/figures/key-areas.en.png)
 
 - **Zhongzhiyuan AI Independent Innovation Acceleration Area (ZY-AIIA, ~192.1 ha)** [data:geometry/key_areas.geojson#KEY-001]: positioned as a "garden-style full-stack independent innovation district". Spatial moves: strengthen the Qinghe riverfront as a low-carbon innovation and exchange belt; host standards workshops, a governance-and-safety exhibition hall, open testing grounds for independent models, and an industry showcase gallery; green space carries open testing and governance display [source:AGENT-TASKBOOK] [depth:blue_green_public_space].
+
 - **Beijing AI Origin Community (BAIOC, ~104.3 ha)** [data:geometry/key_areas.geojson#KEY-002]: positioned as a "near-campus conversion and talent community". Spatial moves: stitch campus, park, and neighborhood slow mobility; add an open-source release hall, a near-campus conversion street, talent-zone services, and youth housing and life amenities; organize the "Pulse Post" cultural node around heritage assets such as the Qinghuayuan Railway Station [source:AGENT-TASKBOOK] [data:geometry/buildings.geojson#BLDG-001].
+
 - **Dazhongsi AI Industry Cluster (DSAIC, ~72.0 ha)** [data:geometry/key_areas.geojson#KEY-003]: positioned as an "urban intelligent economy and international exchange district". Spatial moves: four-quadrant pedestrian connectivity around Dazhongsi station, agent-and-terminal showcases, content consumption and a data-element lounge, and an international roadshow hall; planned green space is reused jointly and linked to block public space [source:AGENT-TASKBOOK] [data:geometry/public_space.geojson#PUBLIC-001].
 
-The three key areas are non-overlapping, lie inside the ODA boundary, and carry `KEY_AREA_PROVISIONAL` precision warnings into self-check [data:geometry/key_areas.geojson#KEY-001] [source:KEY-AREA-SOURCE]. The detailed design covers function and format, building scale and form, retain-renovate-demolish classification, the public-space system, transport organization, slow-mobility connectivity, and implementation projects, at integrated-planning-implementation depth [depth:three_key_area_detailed_design].
+The three key areas are non-overlapping, lie inside the ODA boundary, and carry `KEY_AREA_PROVISIONAL` precision warnings into self-check [data:geometry/key_areas.geojson#KEY-001] [source:KEY-AREA-SOURCE]. The total key-area area is recomputed at [metric:key_area_total_sqm]. The detailed design covers function and format, building scale and form, retain-renovate-demolish classification, the public-space system, transport organization, slow-mobility connectivity, and implementation projects, at integrated-planning-implementation depth [depth:three_key_area_detailed_design].
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
@@ -157,6 +173,8 @@ The blue-green skeleton uses the heritage-park vitality belt as its axis, coordi
 
 The blue-green network takes the heritage-park vitality belt as its backbone: connecting the Qinghe riverfront in the north, the Dazhongsi station plaza in the south, and the "Pulse Post" in the middle into one continuous, walkable, narrative public-space mainline [data:geometry/green_space.geojson#GREEN-001] [data:geometry/public_space.geojson#PUBLIC-001] [depth:blue_green_public_space]. Green and public-space ratios are explained in context: green ratio (design) approx. 32.9% and public-space share approx. 21.0% are recomputed from design geometry in EPSG:4548 [metric:green_ratio] [metric:public_space_ratio] — geometry-recomputable spatial indicators, not statutory green ratios [depth:metrics_recalculation].
 
+Green and public-space areas are at [metric:green_space_area_sqm] and [metric:public_space_area_sqm] [data:geometry/green_space.geojson#GREEN-001].
+
 Urban character blends Jing-Zhang railway heritage, Zhongguancun innovation culture, and AI culture, proposing a base palette (rust-red—brick-grey—code-gold), roof form, massing, and interface guidance [standard:MOHURD-URBAN-DESIGN-MEASURES] [depth:height_massing_character]. The wayfinding and symbol system extends the "rail × open-source" motif: rail gauge ticks become narrative milestones, and the open-source branch symbol becomes public-art and paving motifs. Three AI pilgrimage landmarks — the **Open-Source Origin Station** (north, honoring Zhan Tianyou and engineering self-reliance), the **Pulse Post** (middle, honoring Zhongguancun's innovation breakthrough), and the **Open-Source Ferry** (south, pointing to the open-source future) — form the honor-display system and a public-space component library.
 **AI pilgrimage landmark catalog & honor-display system** [source:AGENT-TASKBOOK] [depth:spatial_cultural_expression]:
 
@@ -184,6 +202,18 @@ The implementation plan forms a reviewable renewal-project list (see `compliance
 | Year-round | Public-experience routes & monthly open tests | subdistrict + park | public → experience → feedback → iteration |
 
 Long-term operation covers tiered developer-community operations, scenario-open access/exit rules, brand-asset accumulation (identity/narrative/data), landmark operation and maintenance, and an international-communication-to-conversion funnel; all mechanisms are expressed as conceptual recommendations for professional deepening [source:AGENT-TASKBOOK].
+
+**Pilot packages (independently pausable; conceptual)** [source:AGENT-TASKBOOK] [depth:phasing_implementation]:
+
+| Package | Content | Start condition | Pause condition | Suggested operator |
+| --- | --- | --- | --- | --- |
+| P1 Open-Source Release Hall | launches / code wall / roadshows | venue + operator ready | copyright or safety risk | park + community |
+| P2 Scenario Open Day | monthly scenario testing | access rules + data consent | compliance review fails | park + regulator |
+| P3 Pulse Event Week | annual global roadshow | international bodies + safety plan | public-health event | committee + public security |
+
+**Conceptual staffing estimate** (near-term pilots): community operations 3–4 (release hall & developer community), scenario operations 4–6 (access/data compliance/operations), landmark maintenance 2–3 (public realm & milestones), event committee 6–10 (peak event period) [source:AGENT-TASKBOOK] [depth:renewal_project_list].
+
+**Emergency response (conceptual)**: tiered event management (crowd/weather/safety), extreme-weather cancellation conditions, data-security incident response (minimal collection + human review), and public-health contingency — all documented in the operations manual for professional review [source:AGENT-TASKBOOK] [depth:risk_missing_data].
 
 
 Phasing is expressed in `geometry/phasing.geojson` (near/mid/long, 7 zones) [data:geometry/phasing.geojson#PHASE-near1] [metric:phase_count]: **near-term pilots** around the three key areas start light facilities, operating activities, and service platforms (open-source release hall, scenario open days, roadshow hall); **mid-term renewal** activates low-efficiency space along the axis and stitches slow-mobility gaps; **long-term governance** forms systematic renewal after official regulatory conditions and ownership are confirmed [source:AGENT-TASKBOOK]. The annual event system, developer-community operation, scenario-open operation, public-experience routes, international communication, and attraction-to-conversion mechanisms are written into the agent.6 sections and `compliance_matrix.json` with operating bodies, frequency, responsibility boundaries, conversion paths, and risks — not slogans [source:AGENT-TASKBOOK] [depth:renewal_project_list].

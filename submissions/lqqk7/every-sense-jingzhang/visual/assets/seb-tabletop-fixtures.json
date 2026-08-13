@@ -1,0 +1,453 @@
+{
+  "fixtures_id": "seb-tabletop-fixtures",
+  "version": "0.2.0",
+  "consumes": {
+    "spec": "visual/assets/seb-spec.json",
+    "spec_version": "0.2.0",
+    "node_source_of_record": "geometry/constraints.geojson",
+    "runner": "visual/assets/seb-tabletop-run.js"
+  },
+  "evidence_class": "methodology_demonstration",
+  "contains_no_measurement_values": true,
+  "v0_2_note_zh": "随基准 v0.2 增补两条样例，用于检验本次三项闭合是否真的可执行：TT-P5 检验分母完整性规则的排除侧，声明一项文件完整性型指标而不声明任何参与者类别，应当通过；TT-N7 检验适用侧的扩张，人工接管响应耗时删除技术故障样本，应当被拒——这一条在 v0.1 的文字推导下会被漏判。原十条样例的预期判定与理由一字未改，用以确认闭合没有改变既有判据的结论。",
+  "v0_2_note_en": "Two fixtures arrive with baseline v0.2 to test whether the three closures are genuinely executable. TT-P5 tests the exclusion side of denominator integrity: it declares a file-completeness metric and no participant category, and should pass. TT-N7 tests the widened scope: a human-handover response-time record that drops technical-fault samples, which should be refused, and which the v0.1 wording heuristic would have missed. The expected verdicts and reasons of the original ten fixtures are unchanged to the letter, confirming that the closures altered no existing ruling.",
+  "disclaimer_zh": "本文件是桌面推演样例，不是测试记录。样例中没有任何参与者、任何现场、任何计数或比例；分母只以类别是否被声明的方式表达，不带样本数量。运行本文件不产生绩效指标数值，metrics.json 中的七项包容性指标保持 unknown。",
+  "disclaimer_en": "This file holds tabletop fixtures, not test records. It contains no participant, no site, no count and no ratio; denominators are expressed only as whether a category was declared, never as a sample size. Running it produces no performance metric value, and the seven inclusion metrics in metrics.json stay unknown.",
+  "verdict_semantics": {
+    "accept": "四个基准组件逐项通过，该样例可以进入下一步；不表示服务已达标。",
+    "reject": "至少一个基准组件被违反，该样例在桌面阶段即被拒绝，理由逐条给出。"
+  },
+  "fixtures": [
+    {
+      "fixture_id": "TT-P1",
+      "polarity": "positive",
+      "title_zh": "OP-01 在 L0 的资料与许可声明",
+      "title_en": "OP-01 declaring evidence and permission at L0",
+      "note_zh": "推演第一步：节点尚未安装任何构件，只提交五个必填字段与 L0 的四项绑定条件。字段取值沿用 OP-01 的既有声明，仅闸门按推演步骤置于 G0。",
+      "note_en": "First step of the run: nothing is installed at the node yet; only the five required fields and the four L0 binding conditions are submitted. Field values follow the existing OP-01 declaration, with the gate set to G0 for this step.",
+      "node": {
+        "id": "OP-01",
+        "scenario_id": "S01",
+        "ai_off_path": "固定多通道导视与有人求助",
+        "human_handoff": "现场无障碍服务人员接管并记录绕行",
+        "gate_id": "G0",
+        "operating_mode": "资料核对与任务脚本改写，不进行现场测试",
+        "responsible_role": "未来经授权的场地运营与无障碍专业团队"
+      },
+      "measurement_declaration": null,
+      "level_claim": {
+        "level_id": "L0",
+        "entry_condition": "官方范围、路线与服务清单核对完成，伦理、同意与数据处置协议齐备，十二个场景已改写为可复测任务脚本",
+        "stop_condition": "责任主体或资料边界不清，或来源无法确认发布者、时间、许可与用途",
+        "recovery_evidence": "来源登记补齐、书面授权、协议签署与数据处置记录",
+        "accountable_operator": "资料所有者与数据治理人员"
+      },
+      "decision": {
+        "risk_ids": ["R-03", "R-06", "R-08"],
+        "stop_condition_triggered": false,
+        "action_taken": "proceed"
+      },
+      "expected_verdict": "accept",
+      "expected_reasons": []
+    },
+    {
+      "fixture_id": "TT-P2",
+      "polarity": "positive",
+      "title_zh": "OP-01 在 L1 的可逆原型申报",
+      "title_en": "OP-01 applying for the L1 reversible prototype",
+      "note_zh": "推演第二步：可撤除构件进场，等级升至 L1，节点闸门随之为 G1。此步仍不产生任何测量。",
+      "note_en": "Second step of the run: removable components arrive, the level rises to L1 and the node gate follows to G1. Still no measurement is produced.",
+      "node": {
+        "id": "OP-01",
+        "scenario_id": "S01",
+        "ai_off_path": "固定多通道导视与有人求助",
+        "human_handoff": "现场无障碍服务人员接管并记录绕行",
+        "gate_id": "G1",
+        "operating_mode": "可撤除构件安装与撤除演练，附维护卡与故障绕行方案",
+        "responsible_role": "未来经授权的场地运营与无障碍专业团队"
+      },
+      "measurement_declaration": null,
+      "level_claim": {
+        "level_id": "L1",
+        "entry_condition": "构件可安装可撤除、不阻断连续路径，并附维护卡与故障绕行方案",
+        "stop_condition": "构件不可撤回、不可维修，或阻断轮椅与婴儿车通行",
+        "recovery_evidence": "安装撤除测试记录、场地复核结论、维护责任确认",
+        "accountable_operator": "产品设计、安全与维护人员"
+      },
+      "decision": {
+        "risk_ids": ["R-06", "R-08"],
+        "stop_condition_triggered": false,
+        "action_taken": "proceed"
+      },
+      "expected_verdict": "accept",
+      "expected_reasons": []
+    },
+    {
+      "fixture_id": "TT-P3",
+      "polarity": "positive",
+      "title_zh": "OP-01 在 L2 的封闭成对测试申报，含撤回与故障的诚实分母",
+      "title_en": "OP-01 applying for L2 closed paired testing with an honest denominator",
+      "note_zh": "推演第三步：五个必填字段与 geometry/constraints.geojson 中的 OP-01 逐字比对，分母同时声明完成、撤回、技术故障与其他非完成原因四类，一类不删。这里只声明类别，不声明任何数量。",
+      "note_en": "Third step of the run: the five required fields are compared verbatim against OP-01 in geometry/constraints.geojson, and the denominator declares all four categories — completed, withdrawn, technical fault and other non-completion — dropping none. Only categories are declared here, never any quantity.",
+      "source_of_record": {
+        "file": "geometry/constraints.geojson",
+        "feature_id": "OP-01"
+      },
+      "node": {
+        "id": "OP-01",
+        "scenario_id": "S01",
+        "ai_off_path": "固定多通道导视与有人求助",
+        "human_handoff": "现场无障碍服务人员接管并记录绕行",
+        "gate_id": "G2",
+        "operating_mode": "AI开关成对任务测试",
+        "responsible_role": "未来经授权的场地运营与无障碍专业团队"
+      },
+      "measurement_declaration": {
+        "metric_id": "independent_task_completion_rate",
+        "denominator_categories_declared": ["completed", "withdrawn", "technical_fault", "non_completion_other"],
+        "denominator_categories_excluded": [],
+        "value_reported": false,
+        "value_note_zh": "桌面推演不产生读数；该指标在 metrics.json 中保持 unknown。",
+        "value_note_en": "A tabletop run produces no reading; the metric stays unknown in metrics.json."
+      },
+      "level_claim": {
+        "level_id": "L2",
+        "entry_condition": "受控环境内完成同一参与者、同一任务的 AI 开启与关闭成对协议，合理便利与退出方式事先约定",
+        "stop_condition": "替代路径、人工接管或参与条件任一未闭合，或以内部演示替代参与者证据",
+        "recovery_evidence": "问题日志、匿名化测试证据、故障绕行与维护卡",
+        "accountable_operator": "测试主持人、技术安全人员与参与者代表"
+      },
+      "decision": {
+        "risk_ids": ["R-03", "R-06", "R-08"],
+        "stop_condition_triggered": false,
+        "action_taken": "proceed"
+      },
+      "expected_verdict": "accept",
+      "expected_reasons": []
+    },
+    {
+      "fixture_id": "TT-P4",
+      "polarity": "positive",
+      "title_zh": "停止条件触发后如实停止，并以证据而非承诺恢复",
+      "title_en": "A triggered stop condition is honoured, and work resumes on evidence rather than a promise",
+      "note_zh": "以 OP-05 人工急停点为对象：人工接管在演练中失效，属 L2 停止条件；样例记录的是真的停了，并且恢复时提交了问题日志与维护卡，而不是一句下次改进。",
+      "note_en": "Set at the OP-05 manual emergency-stop node: human takeover failed during the drill, which is an L2 stop condition. The fixture records that work actually stopped and that resumption came with a problem log and a maintenance card, not with a pledge to do better.",
+      "node": {
+        "id": "OP-05",
+        "scenario_id": "S05",
+        "ai_off_path": "不启用设备时保持可通行的人工服务与固定导视",
+        "human_handoff": "现场安全人员执行急停、人工接管与事件记录",
+        "gate_id": "G2",
+        "operating_mode": "受控封闭测试；未通过独立复核不得进入开放空间",
+        "responsible_role": "未来经授权的测试运营、安全与无障碍专业团队"
+      },
+      "measurement_declaration": {
+        "metric_id": "human_handover_success_rate",
+        "denominator_categories_declared": ["completed", "withdrawn", "technical_fault", "non_completion_other"],
+        "denominator_categories_excluded": [],
+        "value_reported": false,
+        "value_note_zh": "桌面推演不产生读数；该指标在 metrics.json 中保持 unknown。",
+        "value_note_en": "A tabletop run produces no reading; the metric stays unknown in metrics.json."
+      },
+      "level_claim": {
+        "level_id": "L2",
+        "entry_condition": "受控环境内完成同一参与者、同一任务的 AI 开启与关闭成对协议，合理便利与退出方式事先约定",
+        "stop_condition": "替代路径、人工接管或参与条件任一未闭合，或以内部演示替代参与者证据",
+        "recovery_evidence": "问题日志、匿名化测试证据、故障绕行与维护卡",
+        "accountable_operator": "测试主持人、技术安全人员与参与者代表"
+      },
+      "decision": {
+        "risk_ids": ["R-02", "R-07"],
+        "stop_condition_triggered": true,
+        "action_taken": "stopped",
+        "resumed": true,
+        "resumption_basis": "evidence_submitted",
+        "resumption_artifacts": ["问题日志", "故障绕行方案", "维护卡"]
+      },
+      "expected_verdict": "accept",
+      "expected_reasons": []
+    },
+    {
+      "fixture_id": "TT-P5",
+      "polarity": "positive",
+      "title_zh": "文件完整性型指标的声明，分母完整性规则按基准明文不适用",
+      "title_en": "A file-completeness metric is declared, and baseline text puts it outside the denominator-integrity rule",
+      "note_zh": "检验 v0.2 新增的适用范围条款的排除侧。样例声明 scenario_exit_path_coverage，其分母是几何文件中的点位总数，读数由文件内容直接得出，既无参与者也无尝试，因此不存在可被删除的失败样本，样例也不声明任何参与者类别。在 v0.1 下该指标编号不在评分口径内，工具会报未知而拒绝；v0.2 由基准把它明文列入排除清单之后判定通过——排除是被写下的，不是被默认的。",
+      "note_en": "This tests the exclusion side of the scope clause added in v0.2. The fixture declares scenario_exit_path_coverage, whose denominator is the node total in the geometry file: the reading follows straight from the file contents, there is no participant and no attempt, so no failed sample exists to drop and the fixture declares no participant category. Under v0.1 the metric id lay outside the scoring definitions and the tool refused it as unknown; from v0.2 the baseline names it on the excluded list and the fixture passes, because the exclusion is written down rather than assumed.",
+      "node": {
+        "id": "TT-NODE-G",
+        "scenario_id": "S01",
+        "ai_off_path": "固定多通道导视与有人求助",
+        "human_handoff": "现场无障碍服务人员接管并记录绕行",
+        "gate_id": "G0",
+        "operating_mode": "资料核对与任务脚本改写，不进行现场测试",
+        "responsible_role": "未来经授权的场地运营与无障碍专业团队"
+      },
+      "measurement_declaration": {
+        "metric_id": "scenario_exit_path_coverage",
+        "denominator_basis_zh": "geometry/constraints.geojson 中的点位总数，按文件完整性口径读取",
+        "denominator_basis_en": "the node total in geometry/constraints.geojson, read as a document-completeness figure",
+        "denominator_categories_declared": [],
+        "denominator_categories_excluded": [],
+        "value_reported": false,
+        "value_note_zh": "桌面推演不产生读数；该指标的读数由文件内容直接得出，复核方式是重读文件而不是重算样本。",
+        "value_note_en": "A tabletop run produces no reading; this metric's reading follows from the file contents and is re-checked by re-reading the file, not by recomputing samples."
+      },
+      "level_claim": {
+        "level_id": "L0",
+        "entry_condition": "官方范围、路线与服务清单核对完成，伦理、同意与数据处置协议齐备，十二个场景已改写为可复测任务脚本",
+        "stop_condition": "责任主体或资料边界不清，或来源无法确认发布者、时间、许可与用途",
+        "recovery_evidence": "来源登记补齐、书面授权、协议签署与数据处置记录",
+        "accountable_operator": "资料所有者与数据治理人员"
+      },
+      "decision": {
+        "risk_ids": ["R-08"],
+        "stop_condition_triggered": false,
+        "action_taken": "proceed"
+      },
+      "expected_verdict": "accept",
+      "expected_reasons": []
+    },
+    {
+      "fixture_id": "TT-N1",
+      "polarity": "negative",
+      "title_zh": "缺 ai_off_path 字段",
+      "title_en": "The ai_off_path field is absent",
+      "note_zh": "最常见的失败形态：节点其余四个字段写得很完整，唯独没有回答 AI 关闭之后怎么办。基准规定缺任一必填字段的点位不得计入服务覆盖，因此桌面阶段即被拒绝。",
+      "note_en": "The most common failure shape: the other four fields are written out in full, and only the question of what happens once AI is off goes unanswered. The baseline bars any node missing a required field from counting towards service coverage, so it is rejected at the tabletop stage.",
+      "node": {
+        "id": "TT-NODE-A",
+        "scenario_id": "S01",
+        "human_handoff": "现场无障碍服务人员接管并记录绕行",
+        "gate_id": "G2",
+        "operating_mode": "AI开关成对任务测试",
+        "responsible_role": "未来经授权的场地运营与无障碍专业团队"
+      },
+      "measurement_declaration": null,
+      "level_claim": {
+        "level_id": "L2",
+        "entry_condition": "受控环境内完成同一参与者、同一任务的 AI 开启与关闭成对协议，合理便利与退出方式事先约定",
+        "stop_condition": "替代路径、人工接管或参与条件任一未闭合，或以内部演示替代参与者证据",
+        "recovery_evidence": "问题日志、匿名化测试证据、故障绕行与维护卡",
+        "accountable_operator": "测试主持人、技术安全人员与参与者代表"
+      },
+      "decision": {
+        "risk_ids": ["R-08"],
+        "stop_condition_triggered": false,
+        "action_taken": "proceed"
+      },
+      "expected_verdict": "reject",
+      "expected_reasons": ["NODE_FIELD_MISSING:ai_off_path"]
+    },
+    {
+      "fixture_id": "TT-N2",
+      "polarity": "negative",
+      "title_zh": "ai_off_path 填写为引导至线上办理",
+      "title_en": "ai_off_path is filled in as directing the user to the online service",
+      "note_zh": "字段填了，但填的是同一套系统的另一个入口。AI 关闭之后仍然要求使用者上线，等价性并不成立，这类写法比字段缺失更隐蔽，也更容易通过人工审阅。",
+      "note_en": "The field is filled in, but with another door into the same system. Requiring the user to go online once AI is off does not establish equivalence; this wording is harder to spot than a missing field and passes human review more easily.",
+      "node": {
+        "id": "TT-NODE-B",
+        "scenario_id": "S01",
+        "ai_off_path": "引导至线上办理，在小程序内完成同一事项",
+        "human_handoff": "现场无障碍服务人员接管并记录绕行",
+        "gate_id": "G2",
+        "operating_mode": "AI开关成对任务测试",
+        "responsible_role": "未来经授权的场地运营与无障碍专业团队"
+      },
+      "measurement_declaration": null,
+      "level_claim": {
+        "level_id": "L2",
+        "entry_condition": "受控环境内完成同一参与者、同一任务的 AI 开启与关闭成对协议，合理便利与退出方式事先约定",
+        "stop_condition": "替代路径、人工接管或参与条件任一未闭合，或以内部演示替代参与者证据",
+        "recovery_evidence": "问题日志、匿名化测试证据、故障绕行与维护卡",
+        "accountable_operator": "测试主持人、技术安全人员与参与者代表"
+      },
+      "decision": {
+        "risk_ids": ["R-08"],
+        "stop_condition_triggered": false,
+        "action_taken": "proceed"
+      },
+      "expected_verdict": "reject",
+      "expected_reasons": ["NODE_CONSTRAINT_VIOLATION:ai_off_path"]
+    },
+    {
+      "fixture_id": "TT-N3",
+      "polarity": "negative",
+      "title_zh": "分母删除撤回样本",
+      "title_en": "Withdrawn samples are dropped from the denominator",
+      "note_zh": "节点声明完全合规，问题出在测量上：撤回的参与者被从分母里拿掉。分母完整性规则规定删除任何一类失败样本即视为该次测量作废，因此不是扣分，是作废。",
+      "note_en": "The node declaration is fully compliant; the fault lies in the measurement, where participants who withdrew were removed from the denominator. The denominator-integrity rule voids a measurement that drops any class of failed sample, so this is not a deduction but a void.",
+      "node": {
+        "id": "TT-NODE-C",
+        "scenario_id": "S01",
+        "ai_off_path": "固定多通道导视与有人求助",
+        "human_handoff": "现场无障碍服务人员接管并记录绕行",
+        "gate_id": "G2",
+        "operating_mode": "AI开关成对任务测试",
+        "responsible_role": "未来经授权的场地运营与无障碍专业团队"
+      },
+      "measurement_declaration": {
+        "metric_id": "independent_task_completion_rate",
+        "denominator_categories_declared": ["completed", "technical_fault", "non_completion_other"],
+        "denominator_categories_excluded": ["withdrawn"],
+        "exclusion_rationale_given_zh": "撤回者未完成任务，不宜计入",
+        "exclusion_rationale_given_en": "those who withdrew did not finish the task and should not be counted",
+        "value_reported": false
+      },
+      "level_claim": {
+        "level_id": "L2",
+        "entry_condition": "受控环境内完成同一参与者、同一任务的 AI 开启与关闭成对协议，合理便利与退出方式事先约定",
+        "stop_condition": "替代路径、人工接管或参与条件任一未闭合，或以内部演示替代参与者证据",
+        "recovery_evidence": "问题日志、匿名化测试证据、故障绕行与维护卡",
+        "accountable_operator": "测试主持人、技术安全人员与参与者代表"
+      },
+      "decision": {
+        "risk_ids": ["R-08"],
+        "stop_condition_triggered": false,
+        "action_taken": "proceed"
+      },
+      "expected_verdict": "reject",
+      "expected_reasons": ["DENOMINATOR_SAMPLE_DROPPED:withdrawn"]
+    },
+    {
+      "fixture_id": "TT-N4",
+      "polarity": "negative",
+      "title_zh": "停止条件触发却以限期整改续跑",
+      "title_en": "A triggered stop condition is continued under a corrective-action deadline",
+      "note_zh": "人工接管失效已触发 L2 停止条件，但记录写的是限期两周整改、期间照常开放。基准把这条写死：停止条件触发即停止，不以限期整改替代停止。",
+      "note_en": "A failed human takeover has already triggered the L2 stop condition, yet the record shows a two-week corrective deadline with the node staying open throughout. The baseline settles this: a triggered stop condition stops the work, and a corrective deadline is no substitute.",
+      "node": {
+        "id": "TT-NODE-D",
+        "scenario_id": "S05",
+        "ai_off_path": "不启用设备时保持可通行的人工服务与固定导视",
+        "human_handoff": "现场安全人员执行急停、人工接管与事件记录",
+        "gate_id": "G2",
+        "operating_mode": "受控封闭测试；未通过独立复核不得进入开放空间",
+        "responsible_role": "未来经授权的测试运营、安全与无障碍专业团队"
+      },
+      "measurement_declaration": null,
+      "level_claim": {
+        "level_id": "L2",
+        "entry_condition": "受控环境内完成同一参与者、同一任务的 AI 开启与关闭成对协议，合理便利与退出方式事先约定",
+        "stop_condition": "替代路径、人工接管或参与条件任一未闭合，或以内部演示替代参与者证据",
+        "recovery_evidence": "问题日志、匿名化测试证据、故障绕行与维护卡",
+        "accountable_operator": "测试主持人、技术安全人员与参与者代表"
+      },
+      "decision": {
+        "risk_ids": ["R-02", "R-07"],
+        "stop_condition_triggered": true,
+        "action_taken": "continue_under_corrective_deadline",
+        "corrective_deadline_declared": "两周内整改 / rectify within two weeks"
+      },
+      "expected_verdict": "reject",
+      "expected_reasons": ["STOP_NOT_ENFORCED"]
+    },
+    {
+      "fixture_id": "TT-N5",
+      "polarity": "negative",
+      "title_zh": "人工接管只写机构名称，且 L2 缺恢复证据字段",
+      "title_en": "Human takeover names only an organisation, and the L2 recovery-evidence field is empty",
+      "note_zh": "两处同时不合格，用于检验工具是否逐条报出而不是报出第一条就停。写机构名称的问题在于：使用者站在现场时找不到人，机构不在场。",
+      "note_en": "Two failures at once, used to check that the tool reports every reason rather than stopping at the first. Naming an organisation fails because a user standing at the node cannot find anyone: an organisation is not present.",
+      "node": {
+        "id": "TT-NODE-E",
+        "scenario_id": "S01",
+        "ai_off_path": "固定多通道导视与有人求助",
+        "human_handoff": "由属地城市管理部门负责",
+        "gate_id": "G2",
+        "operating_mode": "AI开关成对任务测试",
+        "responsible_role": "未来经授权的场地运营与无障碍专业团队"
+      },
+      "measurement_declaration": null,
+      "level_claim": {
+        "level_id": "L2",
+        "entry_condition": "受控环境内完成同一参与者、同一任务的 AI 开启与关闭成对协议，合理便利与退出方式事先约定",
+        "stop_condition": "替代路径、人工接管或参与条件任一未闭合，或以内部演示替代参与者证据",
+        "recovery_evidence": "",
+        "accountable_operator": "测试主持人、技术安全人员与参与者代表"
+      },
+      "decision": {
+        "risk_ids": ["R-08"],
+        "stop_condition_triggered": false,
+        "action_taken": "proceed"
+      },
+      "expected_verdict": "reject",
+      "expected_reasons": ["NODE_CONSTRAINT_VIOLATION:human_handoff", "LEVEL_BINDING_MISSING:recovery_evidence"]
+    },
+    {
+      "fixture_id": "TT-N6",
+      "polarity": "negative",
+      "title_zh": "停止已执行，但以承诺而非证据恢复",
+      "title_en": "The stop was honoured, but work resumed on a promise rather than on evidence",
+      "note_zh": "这一条比 TT-N4 更接近实际：停是停了，恢复时提交的却是改进承诺书。基准要求恢复须提交证据，承诺不是证据，因此仍然拒绝。",
+      "note_en": "This case sits closer to practice than TT-N4: the stop did happen, but what accompanied the restart was a written pledge to improve. The baseline requires evidence for resumption, and a pledge is not evidence, so the fixture is still rejected.",
+      "node": {
+        "id": "TT-NODE-F",
+        "scenario_id": "S05",
+        "ai_off_path": "不启用设备时保持可通行的人工服务与固定导视",
+        "human_handoff": "现场安全人员执行急停、人工接管与事件记录",
+        "gate_id": "G2",
+        "operating_mode": "受控封闭测试；未通过独立复核不得进入开放空间",
+        "responsible_role": "未来经授权的测试运营、安全与无障碍专业团队"
+      },
+      "measurement_declaration": null,
+      "level_claim": {
+        "level_id": "L2",
+        "entry_condition": "受控环境内完成同一参与者、同一任务的 AI 开启与关闭成对协议，合理便利与退出方式事先约定",
+        "stop_condition": "替代路径、人工接管或参与条件任一未闭合，或以内部演示替代参与者证据",
+        "recovery_evidence": "问题日志、匿名化测试证据、故障绕行与维护卡",
+        "accountable_operator": "测试主持人、技术安全人员与参与者代表"
+      },
+      "decision": {
+        "risk_ids": ["R-04", "R-07"],
+        "stop_condition_triggered": true,
+        "action_taken": "stopped",
+        "resumed": true,
+        "resumption_basis": "written_commitment",
+        "resumption_artifacts": ["改进承诺书 / letter of commitment"]
+      },
+      "expected_verdict": "reject",
+      "expected_reasons": ["RESUME_WITHOUT_EVIDENCE"]
+    },
+    {
+      "fixture_id": "TT-N7",
+      "polarity": "negative",
+      "title_zh": "人工接管响应耗时的记录删除技术故障样本",
+      "title_en": "Technical-fault samples are dropped from the human-handover response-time record",
+      "note_zh": "检验 v0.2 新增的适用范围条款的适用侧。只报设备正常时的接管耗时、把故障导致的接管从记录里拿掉，是耗时类读数最常见的美化方式，而且理由听上去很合理。该指标的分母写作按次记录、不取平均掩盖长尾，文字里既没有有效样本也没有成对测试样本，因此 v0.1 按分母文字推导适用范围的做法会把这一条整个漏掉；v0.2 把它明文写入适用清单之后，同一份记录当场被拒。",
+      "note_en": "This tests the inclusion side of the scope clause added in v0.2. Reporting handover times only for the runs where the equipment behaved, and removing the fault-driven handovers from the record, is the commonest way a timing figure is flattered, and the stated reason sounds entirely sensible. The metric's denominator reads as a per-instance log that must not hide its tail in an average, wording that names neither valid samples nor paired-test samples, so the v0.1 practice of inferring scope from denominator wording missed this case altogether. Once v0.2 names the metric on the included list, the same record is refused on the spot.",
+      "node": {
+        "id": "TT-NODE-H",
+        "scenario_id": "S05",
+        "ai_off_path": "不启用设备时保持可通行的人工服务与固定导视",
+        "human_handoff": "现场安全人员执行急停、人工接管与事件记录",
+        "gate_id": "G2",
+        "operating_mode": "受控封闭测试；未通过独立复核不得进入开放空间",
+        "responsible_role": "未来经授权的测试运营、安全与无障碍专业团队"
+      },
+      "measurement_declaration": {
+        "metric_id": "human_handover_response_time_seconds",
+        "denominator_categories_declared": ["completed", "withdrawn", "non_completion_other"],
+        "denominator_categories_excluded": ["technical_fault"],
+        "exclusion_rationale_given_zh": "设备故障导致的接管不反映人工响应速度，不宜计入",
+        "exclusion_rationale_given_en": "handovers triggered by equipment faults do not reflect how fast the staff responded and should not be counted",
+        "value_reported": false
+      },
+      "level_claim": {
+        "level_id": "L2",
+        "entry_condition": "受控环境内完成同一参与者、同一任务的 AI 开启与关闭成对协议，合理便利与退出方式事先约定",
+        "stop_condition": "替代路径、人工接管或参与条件任一未闭合，或以内部演示替代参与者证据",
+        "recovery_evidence": "问题日志、匿名化测试证据、故障绕行与维护卡",
+        "accountable_operator": "测试主持人、技术安全人员与参与者代表"
+      },
+      "decision": {
+        "risk_ids": ["R-02", "R-07"],
+        "stop_condition_triggered": false,
+        "action_taken": "proceed"
+      },
+      "expected_verdict": "reject",
+      "expected_reasons": ["DENOMINATOR_SAMPLE_DROPPED:technical_fault"]
+    }
+  ]
+}

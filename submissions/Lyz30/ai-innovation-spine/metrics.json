@@ -1,0 +1,231 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "high",
+      "assumptions": [
+        "基于临时粗略边界推算，官方红线发布后需重算"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 91818.575,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界推算，官方红线发布后需重算"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1792941.975,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space_features))",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界推算，官方红线发布后需重算"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 243772.189,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(public_space_features))",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界推算，官方红线发布后需重算"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.157099,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界推算，官方红线发布后需重算"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.021359,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界推算，官方红线发布后需重算"
+      ]
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 32397.411,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(road_centerlines))",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界推算，官方红线发布后需重算"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界推算，官方红线发布后需重算"
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phasing features)",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界推算，官方红线发布后需重算"
+      ]
+    },
+    "land_use_mixed_area_sqm": {
+      "status": "known",
+      "value": 4975000.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area_sqm_declared where land_use_code=16)",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界推算，官方红线发布后需重算"
+      ]
+    },
+    "land_use_rnd_industry_area_sqm": {
+      "status": "known",
+      "value": 2875000.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area_sqm_declared where land_use_code=0701)",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界推算，官方红线发布后需重算"
+      ]
+    },
+    "land_use_green_area_sqm": {
+      "status": "known",
+      "value": 2047000.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area_sqm_declared where land_use_code=1401)",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界推算，官方红线发布后需重算"
+      ]
+    },
+    "land_use_commercial_area_sqm": {
+      "status": "known",
+      "value": 983000.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area_sqm_declared where land_use_code=05)",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界推算，官方红线发布后需重算"
+      ]
+    },
+    "land_use_community_area_sqm": {
+      "status": "known",
+      "value": 489000.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area_sqm_declared where land_use_code=0702)",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界推算，官方红线发布后需重算"
+      ]
+    },
+    "land_use_education_area_sqm": {
+      "status": "known",
+      "value": 45000.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area_sqm_declared where land_use_code=0802)",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界推算，官方红线发布后需重算"
+      ]
+    },
+    "land_use_area_distribution": {
+      "status": "known",
+      "value": 11413000.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area_sqm_declared all land_use features)",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界推算，官方红线发布后需重算"
+      ]
+    }
+  }
+}

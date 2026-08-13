@@ -1,0 +1,366 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "面积复算基于 provisional 边界（official_boundary=false, boundary_precision=provisional_rough），EPSG:4548 投影；官方红线到位后须统一重算全部图层与指标。",
+        "公告约值 11,400,000 sqm，provisional 复算偏差 0.1125%。"
+      ]
+    },
+    "announced_overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "known_official_area_values.overall_design_area（公告约值）",
+      "confidence": "high",
+      "assumptions": [
+        "公告面积约值为官方公布的约数，非精确红线面积。"
+      ]
+    },
+    "site_area_announced_deviation_ratio": {
+      "status": "known",
+      "value": 0.001125,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "(site_area_sqm - announced_overall_design_area_sqm) / announced_overall_design_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "面积复算基于 provisional 边界（official_boundary=false, boundary_precision=provisional_rough），EPSG:4548 投影；官方红线到位后须统一重算全部图层与指标。"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(distinct area_id in key_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "三个重点区均为 provisional 标记。"
+      ]
+    },
+    "zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(zhongzhiyuan_ai_acceleration_area) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "面积复算基于 provisional 边界（official_boundary=false, boundary_precision=provisional_rough），EPSG:4548 投影；官方红线到位后须统一重算全部图层与指标。",
+        "公告约值 1,921,000 sqm，偏差 0.4270%。"
+      ]
+    },
+    "beijing_ai_origin_area_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(beijing_ai_origin_community) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "面积复算基于 provisional 边界（official_boundary=false, boundary_precision=provisional_rough），EPSG:4548 投影；官方红线到位后须统一重算全部图层与指标。",
+        "公告约值 1,043,000 sqm，偏差 0.0227%。"
+      ]
+    },
+    "dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(dazhongsi_ai_industry_cluster) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "面积复算基于 provisional 边界（official_boundary=false, boundary_precision=provisional_rough），EPSG:4548 投影；官方红线到位后须统一重算全部图层与指标。",
+        "公告约值 720,000 sqm，偏差 0.0631%。"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1245813.992,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(green_space polygons) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "面积复算基于 provisional 边界（official_boundary=false, boundary_precision=provisional_rough），EPSG:4548 投影；官方红线到位后须统一重算全部图层与指标。",
+        "绿地由 land_use 1401/1402 地块派生，含轨廊绿脉、口袋公园与防护绿廊。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.109159,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "面积复算基于 provisional 边界（official_boundary=false, boundary_precision=provisional_rough），EPSG:4548 投影；官方红线到位后须统一重算全部图层与指标。",
+        "概念绿地率，非控规指标；official_planning_controls.green_ratio 当前 status=missing。"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 151230.133,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(public_space polygons) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "面积复算基于 provisional 边界（official_boundary=false, boundary_precision=provisional_rough），EPSG:4548 投影；官方红线到位后须统一重算全部图层与指标。",
+        "公共空间为轨廊脊上 5+1 个地标节点广场（1403）。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.013251,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "面积复算基于 provisional 边界（official_boundary=false, boundary_precision=provisional_rough），EPSG:4548 投影；官方红线到位后须统一重算全部图层与指标。",
+        "节点广场之外的街道级公共界面未计入，属保守估计。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1937714.038,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area(building_footprints) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "面积复算基于 provisional 边界（official_boundary=false, boundary_precision=provisional_rough），EPSG:4548 投影；官方红线到位后须统一重算全部图层与指标。",
+        "建筑基底为概念体量示意（保留/改造/新建），非现状测绘；现状基底数据缺口 GAP-BUILDING-001。",
+        "building_footprint_area_sqm 按 unary_union 去重叠复算，与 spatial_review 一致；拆改留分项仍按分类面积合计作策略示意，二者因图斑重叠可不加总对齐。"
+      ]
+    },
+    "building_footprint_retained_sqm": {
+      "status": "known",
+      "value": 1247515.647,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area where renewal_strategy=retain)",
+      "confidence": "low",
+      "assumptions": [
+        "概念拆改留比例示意，不构成具体地块拆改留结论。"
+      ]
+    },
+    "building_footprint_renovated_sqm": {
+      "status": "known",
+      "value": 629726.296,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area where renewal_strategy=renovate)",
+      "confidence": "low",
+      "assumptions": [
+        "概念拆改留比例示意。"
+      ]
+    },
+    "building_footprint_new_sqm": {
+      "status": "known",
+      "value": 439763.883,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area where renewal_strategy=new)",
+      "confidence": "low",
+      "assumptions": [
+        "概念拆改留比例示意。"
+      ]
+    },
+    "land_use_research_edu_share": {
+      "status": "known",
+      "value": 0.447491,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "(area(0802)+area(0804)) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "面积复算基于 provisional 边界（official_boundary=false, boundary_precision=provisional_rough），EPSG:4548 投影；官方红线到位后须统一重算全部图层与指标。",
+        "科研+教育用地占比，体现三区两翼的科研教育与全栈研发主导结构。"
+      ]
+    },
+    "land_use_commercial_share": {
+      "status": "known",
+      "value": 0.266992,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(05) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "面积复算基于 provisional 边界（official_boundary=false, boundary_precision=provisional_rough），EPSG:4548 投影；官方红线到位后须统一重算全部图层与指标。"
+      ]
+    },
+    "land_use_residential_share": {
+      "status": "known",
+      "value": 0.057919,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "(area(0701)+area(0702)) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "面积复算基于 provisional 边界（official_boundary=false, boundary_precision=provisional_rough），EPSG:4548 投影；官方红线到位后须统一重算全部图层与指标。",
+        "居住与社区服务占比；东翼城市生活翼主要位于 provisional 边界外，故占比偏低属边界效应。"
+      ]
+    },
+    "land_use_green_open_share": {
+      "status": "known",
+      "value": 0.12241,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "(area(1401)+area(1402)+area(1403)) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "面积复算基于 provisional 边界（official_boundary=false, boundary_precision=provisional_rough），EPSG:4548 投影；官方红线到位后须统一重算全部图层与指标。"
+      ]
+    },
+    "land_use_road_share": {
+      "status": "known",
+      "value": 0.101371,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(1207) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "面积复算基于 provisional 边界（official_boundary=false, boundary_precision=provisional_rough），EPSG:4548 投影；官方红线到位后须统一重算全部图层与指标。"
+      ]
+    },
+    "rail_spine_greenway_length_m": {
+      "status": "known",
+      "value": 9266.5,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD-D01 轨廊慢行主轴) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "面积复算基于 provisional 边界（official_boundary=false, boundary_precision=provisional_rough），EPSG:4548 投影；官方红线到位后须统一重算全部图层与指标。",
+        "概念慢行通道长度，对应约9km叙事步道概念。"
+      ]
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 3311868.866,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_1)",
+      "confidence": "medium",
+      "assumptions": [
+        "面积复算基于 provisional 边界（official_boundary=false, boundary_precision=provisional_rough），EPSG:4548 投影；官方红线到位后须统一重算全部图层与指标。",
+        "概念分期面积，不构成开发时序结论。"
+      ]
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 5195450.067,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_2)",
+      "confidence": "medium",
+      "assumptions": [
+        "面积复算基于 provisional 边界（official_boundary=false, boundary_precision=provisional_rough），EPSG:4548 投影；官方红线到位后须统一重算全部图层与指标。"
+      ]
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 2905504.276,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_3)",
+      "confidence": "medium",
+      "assumptions": [
+        "面积复算基于 provisional 边界（official_boundary=false, boundary_precision=provisional_rough），EPSG:4548 投影；官方红线到位后须统一重算全部图层与指标。"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area / site_area_sqm",
+      "confidence": "unknown",
+      "reason": "official_planning_controls.floor_area_ratio 当前 status=missing；总建筑面积与容积率属待确认控规条件，不得编造。",
+      "assumptions": [
+        "待官方控规附件与现状建筑测绘数据到位后复算。"
+      ]
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_planning_controls.building_height_m",
+      "confidence": "unknown",
+      "reason": "建筑高度控制属待确认控规条件（status=missing），本方案仅作风貌引导概念建议。",
+      "assumptions": [
+        "待确认控规条件。"
+      ]
+    }
+  }
+}

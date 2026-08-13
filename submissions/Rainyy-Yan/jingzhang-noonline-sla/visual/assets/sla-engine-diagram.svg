@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="520" viewBox="0 0 1400 520" role="img" aria-labelledby="title desc">
+  <title id="title">Noonline SLA Engine deterministic technical diagram</title>
+  <desc id="desc">Bilingual diagram showing one route moving from normal to single failure, multi failure and AI off states.</desc>
+  <rect width="1400" height="520" fill="#f6f7f3"/>
+  <rect x="0" y="0" width="1400" height="86" fill="#17202d"/>
+  <text x="46" y="54" font-family="Arial, Microsoft YaHei, sans-serif" font-size="32" fill="#ffffff">Noonline SLA Engine / 离线服务等级校验</text>
+  <text x="46" y="120" font-family="Arial, Microsoft YaHei, sans-serif" font-size="18" fill="#53606f">Synthetic deterministic test, not observed city operations / 合成确定性测试，不代表真实运行数据</text>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 z" fill="#53606f"/>
+    </marker>
+  </defs>
+  <g font-family="Arial, Microsoft YaHei, sans-serif">
+    <line x1="330" y1="280" x2="410" y2="280" stroke="#53606f" stroke-width="4" marker-end="url(#arrow)"/>
+    <line x1="665" y1="280" x2="745" y2="280" stroke="#53606f" stroke-width="4" marker-end="url(#arrow)"/>
+    <line x1="1000" y1="280" x2="1080" y2="280" stroke="#53606f" stroke-width="4" marker-end="url(#arrow)"/>
+    <g>
+      <rect x="52" y="170" width="278" height="220" rx="8" fill="#ffffff" stroke="#d6dce2" stroke-width="2"/>
+      <text x="82" y="215" font-size="26" fill="#17202d" font-weight="700">NORMAL / 常态</text>
+      <text x="82" y="258" font-size="34" fill="#1f72b8" font-weight="700">SLA-A: B</text>
+      <text x="82" y="298" font-size="18" fill="#425064">可运行，但遮阴/暴晒/绕行未现场核验</text>
+      <text x="82" y="330" font-size="18" fill="#425064">Operational, field verification pending</text>
+    </g>
+    <g>
+      <rect x="410" y="170" width="278" height="220" rx="8" fill="#ffffff" stroke="#d6dce2" stroke-width="2"/>
+      <text x="440" y="215" font-size="26" fill="#17202d" font-weight="700">SINGLE FAILURE / 单点失效</text>
+      <text x="440" y="258" font-size="34" fill="#c7922d" font-weight="700">B -> C</text>
+      <text x="440" y="298" font-size="18" fill="#425064">饮水或休息节点失效触发降级</text>
+      <text x="440" y="330" font-size="18" fill="#425064">Water/rest loss downgrades service</text>
+    </g>
+    <g>
+      <rect x="745" y="170" width="278" height="220" rx="8" fill="#fff8f5" stroke="#e85a44" stroke-width="2"/>
+      <text x="775" y="215" font-size="26" fill="#17202d" font-weight="700">MULTI FAILURE / 多点失效</text>
+      <text x="775" y="258" font-size="34" fill="#e85a44" font-weight="700">B -> C/DEGRADED</text>
+      <text x="775" y="298" font-size="18" fill="#425064">双关键点或路径中断需要人工兜底</text>
+      <text x="775" y="330" font-size="18" fill="#425064">Critical nodes or path loss need fallback</text>
+    </g>
+    <g>
+      <rect x="1080" y="170" width="278" height="220" rx="8" fill="#ffffff" stroke="#d6dce2" stroke-width="2"/>
+      <text x="1110" y="215" font-size="26" fill="#17202d" font-weight="700">AI OFF / 无 AI</text>
+      <text x="1110" y="258" font-size="34" fill="#4f9c74" font-weight="700">PASS, provisional</text>
+      <text x="1110" y="298" font-size="18" fill="#425064">固定标识、座椅、饮水、入口、人工点仍可用</text>
+      <text x="1110" y="330" font-size="18" fill="#425064">Signs, seats, water, entries and staff remain</text>
+    </g>
+  </g>
+  <text x="52" y="452" font-family="Arial, Microsoft YaHei, sans-serif" font-size="20" fill="#17202d">Evidence chain / 证据链: SLA result -> route -> condition/node -> metric -> assumption -> source -> confidence</text>
+  <text x="52" y="486" font-family="Arial, Microsoft YaHei, sans-serif" font-size="16" fill="#687384">Missing field data is reported as not_field_verified, provisional or unknown; it is never auto-counted as satisfied.</text>
+</svg>

@@ -1,0 +1,49 @@
+{
+  "schema_version": "0.1.0",
+  "agent_id": "ZeshanLu",
+  "agent_name": "Codex",
+  "role": "ai_agent_submission_author",
+  "model": "OpenAI GPT-5 (Codex)",
+  "workflow": [
+    "Read the open-call skill, taskbook, repository schemas, validators, and the user-provided planning reference before selecting a concept.",
+    "Translated the approved concept into a six-chapter planning argument, structured evidence registers, and a three-level spatial framework.",
+    "Derived provisional EPSG:4326 design layers, recomputed EPSG:4548 metrics, and cross-linked proposal claims to sources, assumptions, standards, geometry, and metrics.",
+    "Generated five figures, an offline report, an offline evidence dashboard, a 36-page A3 booklet, and six A0 boards from submission-local data.",
+    "Applied test-first checks, independent specification and quality reviews, PDF rendering inspection, browser inspection, and repository validators before final packaging."
+  ],
+  "tools": [
+    "Git and isolated Git worktree",
+    "PowerShell and repository Python validators",
+    "OpenStreetMap Overpass API snapshot with ODbL attribution",
+    "Shapely and pyproj for geometry and metric recomputation",
+    "Matplotlib and Pillow for evidence figures",
+    "ReportLab, pypdf, pdfplumber, and Poppler for PDF production and QA",
+    "HTML/CSS/JavaScript with Microsoft Edge DevTools Protocol for offline dashboard QA"
+  ],
+  "data_flow": [
+    "Public taskbook, repository standards, and user-provided public planning PDF -> sources.json and assumptions.json.",
+    "Provisional boundary plus frozen OSM background -> nine GeoJSON layers; OSM remains background-only and does not establish an official redline.",
+    "GeoJSON layers -> metrics.json through EPSG:4548 recomputation -> figures, proposal, HTML, booklet, and boards.",
+    "Proposal claims -> compliance_matrix.json, standard_matrix.json, and design_depth_matrix.json -> self-check and final manifest hashes."
+  ],
+  "human_inputs": [
+    "The contributor identified the corridor from Beijing North Railway Station toward Jianting Bridge and named relevant universities, heritage sites, parks, and Zhongguancun innovation assets.",
+    "The contributor supplied P020200213595742434523.pdf, the publicly approved Haidian District Plan (2017-2035), for directional planning reference.",
+    "The contributor approved the strategic emphasis on implementability, risk and compliance, and AI-enabled planning innovation, and approved the six-chapter narrative structure and final execution direction."
+  ],
+  "reproducibility": [
+    "python scripts/validate_local_submission.py submissions/ZeshanLu/jingzhang-ai-commons --repo-root . --pr-author ZeshanLu --json",
+    "python scripts/spatial_review.py submissions/ZeshanLu/jingzhang-ai-commons --repo-root . --json",
+    "python scripts/visual_review.py submissions/ZeshanLu/jingzhang-ai-commons --json",
+    "python scripts/professional_review.py submissions/ZeshanLu/jingzhang-ai-commons --repo-root . --json",
+    "python scripts/self_check_submission.py submissions/ZeshanLu/jingzhang-ai-commons --repo-root . --pr-author ZeshanLu --json",
+    "External build scripts and frozen OSM payload are intentionally not part of the inert submission package; every public claim is independently inspectable through the committed JSON, GeoJSON, HTML, PNG, and PDF artifacts."
+  ],
+  "limitations": [
+    "The competition redline and three key-area polygons were not supplied. All submitted boundaries are explicitly provisional, non-official, low-confidence geometry and must be replaced and recomputed when organizer polygons arrive.",
+    "The OSM snapshot covers only the stated bbox and is background-only; it cannot establish engineering positions, entrances, passenger flows, property rights, heritage controls, or statutory planning conditions.",
+    "Floor area, FAR, road area, and road ratio remain unknown because official parcel, building, road-width, and control-plan data are unavailable.",
+    "All projects, phases, thresholds, and AI services are concept-stage recommendations subject to professional survey, public participation, procurement, privacy impact assessment, safety review, and competent-authority approval.",
+    "No claim in this package represents government endorsement, statutory approval, a construction commitment, or an operational guarantee."
+  ]
+}

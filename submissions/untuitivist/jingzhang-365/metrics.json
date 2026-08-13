@@ -1,0 +1,421 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.385554,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(project(site_boundary, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEOMETRY-001"
+      ]
+    },
+    "land_use_area_sqm": {
+      "status": "known",
+      "value": 11412829.190769,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(project(land_use, EPSG:4548)))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEOMETRY-001"
+      ]
+    },
+    "land_use_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "clamp(land_use_area_sqm / site_area_sqm, 0, 1) for floating-point boundary tolerance",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEOMETRY-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 270212.115112,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area(project(concept_building_footprints, EPSG:4548)))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-EXISTING-004"
+      ]
+    },
+    "building_coverage_ratio": {
+      "status": "known",
+      "value": 0.023676,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEOMETRY-001",
+        "A-EXISTING-004"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 882510.863576,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(area(project(concept_green_space, EPSG:4548)))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEOMETRY-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.077326,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEOMETRY-001",
+        "A-CONTROLS-003"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 889219.135888,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(area(project(dual_use_public_space, EPSG:4548)))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEOMETRY-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.077914,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEOMETRY-001"
+      ]
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 43069.037562,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(project(concept_road_centerlines, EPSG:4548)))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-TRANSPORT-006"
+      ]
+    },
+    "walking_cycling_length_m": {
+      "status": "known",
+      "value": 43069.037562,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(concept walking, cycling and greenway centerlines))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-TRANSPORT-006"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required key areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEOMETRY-001",
+        "A-ANCHOR-002"
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public-space features with scenario_id)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(full scenario cards)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(scenarios declared as industry test/validation)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(persona records)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(public_space features where is_landmark=true)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "formula": "count(verified case mechanisms)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "operating_state_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(event, everyday, care property groups)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "checkpoint_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(accountability checkpoints)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "dual_use_prototype_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public spaces with event, everyday and care uses)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "replaceable_component_count": {
+      "status": "known",
+      "value": 36,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(concept replaceable component footprints; not existing or approved buildings)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-EXISTING-004"
+      ]
+    },
+    "component_family_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/spatial-components.json"
+      ],
+      "formula": "count(transferable component families)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "key_area_sequence_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/key-area-sequences.json"
+      ],
+      "formula": "count(five-room key-area operating sequences)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "delivery_gate_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/delivery-gates.json"
+      ],
+      "formula": "count(human delivery decisions from T-90 to T+365)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "operating_state_assignment_count": {
+      "status": "known",
+      "value": 36,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenario-state-ledger.json"
+      ],
+      "formula": "scenario_count * event/everyday/care states",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-GEOMETRY-001",
+        "A-CONTROLS-003"
+      ],
+      "reason": "Official FAR controls, total floor area and official boundary are unavailable."
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/missing_data.md"
+      ],
+      "formula": "sum(approved building floor area)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-EXISTING-004",
+        "A-CONTROLS-003"
+      ],
+      "reason": "Approved building program and existing-building survey are unavailable."
+    },
+    "maximum_building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "max(approved building height)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-003",
+        "A-EXISTING-004"
+      ],
+      "reason": "Official height controls and surveyed buildings are unavailable."
+    },
+    "approved_building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved building footprint / official parcel area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-003",
+        "A-EXISTING-004"
+      ],
+      "reason": "The concept footprint ratio is not an approved density control."
+    },
+    "approved_green_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved green area / official controlled area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-003"
+      ],
+      "reason": "The concept green ratio is not an approved control value."
+    },
+    "minimum_setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/missing_data.md"
+      ],
+      "formula": "minimum approved building setback",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-003",
+        "A-TRANSPORT-006"
+      ],
+      "reason": "Road redlines, parcels and approved setbacks are unavailable."
+    }
+  }
+}

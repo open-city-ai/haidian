@@ -1,0 +1,229 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(provisional_site_polygon, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "evidence_status": "provisional_geometry_known; official_polygon_unknown"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1143801.906,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(conceptual_green_space, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-DESIGN-GEOMETRY-001"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 46107.263,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(conceptual_public_space_polygons, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-DESIGN-GEOMETRY-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 259479.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area(diagrammatic_prototype_bases, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BUILDINGS-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.100221,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-DESIGN-GEOMETRY-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.00404,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-DESIGN-GEOMETRY-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required provisional key-area features)",
+      "confidence": "high",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 11,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(SCENARIO_NODE features with RC-01..RC-11)",
+      "confidence": "high",
+      "assumptions": [
+        "A-SCENARIOS-001"
+      ],
+      "evidence_status": "submission_design_contract; not field performance"
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(SCENARIO_NODE where industry_test=true)",
+      "confidence": "high",
+      "assumptions": [
+        "A-SCENARIOS-001"
+      ],
+      "evidence_status": "not_run"
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(distinct proposal personas P1..P7)",
+      "confidence": "high",
+      "assumptions": [
+        "A-SCENARIOS-001"
+      ],
+      "evidence_status": "design coverage; not participation evidence"
+    },
+    "catalytic_intervention_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(PUBLIC_SPACE prototype polygons where id in PUBLIC-RC-YARD, PUBLIC-RC-GARDEN, PUBLIC-RC-HALL)",
+      "confidence": "high",
+      "assumptions": [
+        "A-SCENARIOS-001"
+      ],
+      "evidence_status": "conceptual design coverage; not built assets"
+    },
+    "reversible_gate_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(required reversible gates per scenario)",
+      "confidence": "high",
+      "assumptions": [
+        "A-SCENARIOS-001"
+      ]
+    },
+    "reversible_gate_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "scenarios_with_all_six_gates / scenario_count",
+      "confidence": "high",
+      "assumptions": [
+        "A-SCENARIOS-001"
+      ],
+      "evidence_status": "document completeness; not operational compliance"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls, official polygon, and verified floor area are unavailable."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "max(approved_building_height)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height controls and verified existing/proposed buildings are unavailable."
+    },
+    "operational_public_benefit": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "future co-designed evaluation",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "All physical trials are not_run; no field baseline, sample, method, target, or responsible operator is authorized."
+    }
+  }
+}

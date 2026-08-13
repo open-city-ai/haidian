@@ -13,6 +13,16 @@ scenarios: ["ai-cultural-guide", "enterprise-service-copilot", "ai-traffic-walka
 
 # 京张衡脉：从争气路到开源路
 
+## 执行摘要
+
+**核心机制：「衡脉里程桩」**——把京张铁路的里程碑制度转译为 AI 城市场景的可步行里程桩：沿京张遗址公园主轴，每约 500 米设一个场景里程桩（编号、叙事、数据卡、人工复核），构成「一轴多桩」的体验与治理骨架 [source:AGENT-TASKBOOK] [depth:spatial_cultural_expression]。
+
+**英文口令**：*FROM RUSTED RAILS TO OPEN CODE — EVERY MILE MEASURED, EVERY STEP WALKABLE.*
+
+**三衡准则**：衡量（一切结论可复算）· 权衡（空间与功能取舍）· 平衡（公共利益优先）[source:AGENT-TASKBOOK]。
+
+**交付**：40 文件双语 formal 包（v2 + bilingual v1），本地四门禁 PASS；临时边界如实披露，官方 polygon 补齐后统一重算 [source:BOUNDARY-SOURCE] [assumption:A-PROVISIONAL-BOUNDARY]。
+
 ## 设计依据与资料清单
 
 本 formal 方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据 [source:OFFICIAL-ANNOUNCEMENT]，以 `brief/site-package/` 中维护者登记的临时边界、三处重点区、枚举、规划限制与来源清单为机器可读依据 [source:SITE-PACKAGE]，并以面向智能体开源征集任务书 [source:AGENT-TASKBOOK] 的六项任务与统一边界条款为任务响应依据。资料可用性边界以 `data/source_registry.json` 的登记为准 [source:SOURCE-REGISTRY]，`data/processed/agent_fact_pack.md` 仅作阅读导航，不构成新的权威来源 [source:PROCESSED-FACT-PACK]。
@@ -25,7 +35,9 @@ scenarios: ["ai-cultural-guide", "enterprise-service-copilot", "ai-traffic-walka
 
 ## 三层范围工作框架
 
-方案按公告确定的三层范围组织工作 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]：统筹研究范围关注 43.6 平方公里的 AI 产业生态、创新链与未来城市形态；总体设计范围关注 11.4 平方公里的京张遗址公园周边城市地区与产业区，达到控制性详细规划的城市设计深度 [standard:MOHURD-CONTROL-DETAILED-PLANNING]；重点区域范围关注 368.4 公顷三处详细设计地区。三层范围在 `compliance_matrix.json` 中逐条映射公告 1.3、1.4、1.5 与 agent.1–agent.6 全部必选任务 [source:PROCESSED-FACT-PACK] [depth:three_level_scope_framework]。
+方案按公告确定的三层范围组织工作 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]：统筹研究范围关注 43.6 平方公里的 AI 产业生态、创新链与未来城市形态；总体设计范围关注 11.4 平方公里的京张遗址公园周边城市地区与产业区，达到控制性详细规划的城市设计深度 [standard:MOHURD-CONTROL-DETAILED-PLANNING]；重点区域范围关注 368.4 公顷三处详细设计地区。总体设计边界图层与面积复算见 [data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm]。
+
+三层范围在 `compliance_matrix.json` 中逐条映射公告 1.3、1.4、1.5 与 agent.1–agent.6 全部必选任务 [source:PROCESSED-FACT-PACK] [depth:three_level_scope_framework]。
 
 三层不是三张割裂的图纸，而是一条判断链：统筹研究决定产业链与城市形态取向，总体设计把取向落实为空间结构、更新项目与设施承载，重点区域详细设计验证地块尺度下的功能、建筑、交通与 AI 场景可实施性 [depth:overall_spatial_structure]。任何无法从结构化数据复算的面积、比例、规模或项目数量，不得写入正式结论 [depth:metrics_recalculation]。
 
@@ -88,7 +100,7 @@ AI 创新生态图谱按「基础研究—开源协作—孵化转化—产业�
 
 ## 总体设计范围城市更新与控规深度城市设计
 
-总体设计范围要求达到控制性详细规划的城市设计深度 [standard:MOHURD-CONTROL-DETAILED-PLANNING]。方案提出城市更新总体框架：以京张遗址公园为南北主轴，识别三类更新对象——**缝合型**（跨环路与轨道断点）、**活化型**（沿轴低效空间与老旧园区）、**升级型**（三处重点区及周边产业空间）[depth:retain_renovate_demolish] [depth:land_use_layout]。
+总体设计范围要求达到控制性详细规划的城市设计深度 [standard:MOHURD-CONTROL-DETAILED-PLANNING]。成果深度与图面表达按 [standard:MOHURD-ARCH-DESIGN-DEPTH-2016] 对照设计深度矩阵执行。方案提出城市更新总体框架：以京张遗址公园为南北主轴，识别三类更新对象——**缝合型**（跨环路与轨道断点）、**活化型**（沿轴低效空间与老旧园区）、**升级型**（三处重点区及周边产业空间）[depth:retain_renovate_demolish] [depth:land_use_layout]。
 
 用地布局遵循国土空间用地用海分类 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]：`geometry/land_use.geojson` 无缝覆盖全部提交边界、无重叠 [data:geometry/land_use.geojson#LU-001]；`geometry/buildings.geojson` 表达概念性建筑基底与保留/改造/新建分级 [data:geometry/buildings.geojson#BLDG-001]；`geometry/roads.geojson` 表达道路微循环、慢行与轨道接驳关系 [data:geometry/roads.geojson#ROAD-001]。涉及容积率、建筑高度、建筑密度、退线与道路红线的内容，因官方控规条件未公开，一律列为 unknown 与「待正式控规条件确认」，不以推测值冒充审定指标 [metric:floor_area_ratio] [depth:development_intensity_controls] [depth:height_massing_character]。
 
@@ -101,10 +113,12 @@ AI 创新生态图谱按「基础研究—开源协作—孵化转化—产业�
 ![重点片区详细设计图](assets/figures/key-areas.png)
 
 - **众智园AI自主创新加速区（ZY-AIIA，约 192.1 公顷）** [data:geometry/key_areas.geojson#KEY-001]：定位「花园型全栈自主创新街区」。空间动作：强化清河界面形成低碳创新交往带，设置标准制定工作坊、安全治理展示馆、自主模型开放测试场与产业展示长廊；绿色空间承载开放测试与治理展示 [source:AGENT-TASKBOOK] [depth:blue_green_public_space]。
+
 - **北京AI原点社区（BAIOC，约 104.3 公顷）** [data:geometry/key_areas.geojson#KEY-002]：定位「近校型成果转化与人才社区」。空间动作：校区—园区—街区慢行缝合，补足开源发布厅、成果转化街、人才特区服务与青年居住生活配套；围绕清华园火车站等历史资源组织「衡脉驿站」文化节点 [source:AGENT-TASKBOOK] [data:geometry/buildings.geojson#BLDG-001]。
+
 - **大钟寺AI产业聚集区（DSAIC，约 72.0 公顷）** [data:geometry/key_areas.geojson#KEY-003]：定位「城市型智能经济与国际交往街区」。空间动作：大钟寺站四象限步行连通、智能体与智能终端展示、内容消费与数据要素会客厅、国际路演客厅；规划绿地复合利用并衔接街区公共空间 [source:AGENT-TASKBOOK] [data:geometry/public_space.geojson#PUBLIC-001]。
 
-三处重点区在 `geometry/key_areas.geojson` 中互不重叠、位于总体设计边界内，并以 `KEY_AREA_PROVISIONAL` 精度警示进入自检 [data:geometry/key_areas.geojson#KEY-001] [source:KEY-AREA-SOURCE]。详细设计包含功能业态、建筑规模与形态、拆改留分类、公共空间系统、交通组织、慢行连通与实施项目，达到规划综合实施方案深度 [depth:three_key_area_detailed_design]。
+三处重点区在 `geometry/key_areas.geojson` 中互不重叠、位于总体设计边界内，并以 `KEY_AREA_PROVISIONAL` 精度警示进入自检 [data:geometry/key_areas.geojson#KEY-001] [source:KEY-AREA-SOURCE]。三处重点区总面积复算见 [metric:key_area_total_sqm]。详细设计包含功能业态、建筑规模与形态、拆改留分类、公共空间系统、交通组织、慢行连通与实施项目，达到规划综合实施方案深度 [depth:three_key_area_detailed_design]。
 
 ## AI 创新生态、人才画像与 AI+ 场景
 
@@ -164,6 +178,8 @@ AI 治理遵循数据最小化、公开来源、可解释与人工复核原则 [
 
 蓝绿空间以京张遗址公园活力带为骨架：北接清河界面、南连大钟寺站前广场、中部串联「衡脉驿站」，形成一条连续、可步行、有叙事感的公共空间主线 [data:geometry/green_space.geojson#GREEN-001] [data:geometry/public_space.geojson#PUBLIC-001] [depth:blue_green_public_space]。绿地与公共空间比例在正文解释设计意义：绿率（设计）约 32.9%、公共空间占比约 21.0% 均按设计几何在 EPSG:4548 下复算 [metric:green_ratio] [metric:public_space_ratio]，属于「几何可复算空间指标」，非法定绿地率 [depth:metrics_recalculation]。
 
+绿地与公共空间面积分别见 [metric:green_space_area_sqm] 与 [metric:public_space_area_sqm] [data:geometry/green_space.geojson#GREEN-001]。
+
 城市风貌融合京张铁路历史文化、中关村创新文化与 AI 新文化，提出城市基调（锈红—砖灰—代码金）、屋顶形态、体量与界面引导 [standard:MOHURD-URBAN-DESIGN-MEASURES] [depth:height_massing_character]。导视与符号系统以「铁轨×开源」母题延展：轨道刻度尺转化叙事里程桩，开源分支符转化为公共艺术与铺装母题。三个 AI 朝圣地标——**开源起点站**（北端，纪念詹天佑与工程自立）、**衡脉驿站**（中部，纪念中关村创新突围）、**开源渡口**（南端，指向开源协作的未来）——构成荣誉展示体系与公共空间组件库。
 **AI 朝圣地标目录与荣誉展示体系** [source:AGENT-TASKBOOK] [depth:spatial_cultural_expression]：
 
@@ -193,6 +209,18 @@ AI 治理遵循数据最小化、公开来源、可解释与人工复核原则 [
 | 全年 | 公共体验路线与月度开放测试 | 街道+园区 | 公众→体验→反馈→改进 |
 
 长期运营机制包括：开发者社区分层运营（核心贡献者/活跃成员/公众）、场景开放准入与退出规则、品牌资产沉淀（视觉/叙事/数据）、公共体验与地标运营维护、国际传播与招引转化漏斗；所有机制以「概念建议」表述，需专业团队结合权属与资源深化 [source:AGENT-TASKBOOK]。
+
+**试点项目包（可独立暂停，概念建议）** [source:AGENT-TASKBOOK] [depth:phasing_implementation]：
+
+| 试点包 | 内容 | 启动条件 | 暂停条件 | 建议责任主体 |
+| --- | --- | --- | --- | --- |
+| P1 开源发布厅 | 发布活动/代码墙/路演 | 场地+运营主体到位 | 版权或安全风险 | 园区+社区 |
+| P2 场景开放日 | 月度测试场景开放 | 准入规则+数据授权 | 合规审查未通过 | 园区+监管部门 |
+| P3 衡脉活动周 | 年度全球路演 | 国际机构+安全预案 | 公共卫生事件 | 组委会+公安 |
+
+**人力编制概念测算**（近期试点，估算值，供专业深化）：社区运营 3–4 人（发布厅与开发者社群）、场景运营 4–6 人（准入/数据合规/调度）、地标运维 2–3 人（公共空间与里程桩维护）、活动组委会 6–10 人（活动期峰值）[source:AGENT-TASKBOOK] [depth:renewal_project_list]。
+
+**应急响应预案（概念）**：活动分级管理（人流/天气/安全）、极端天气停办条件、数据安全事件响应（最小化采集+人工复核）、突发公共卫生事件预案——均写入运营手册并经专业复核 [source:AGENT-TASKBOOK] [depth:risk_missing_data]。
 
 
 

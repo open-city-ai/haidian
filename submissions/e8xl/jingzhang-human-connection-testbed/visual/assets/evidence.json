@@ -1,0 +1,323 @@
+{
+  "status": "provisional_constraint",
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 17311.249,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(concept_carrier_envelopes, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "A-BUILDINGS-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.17016,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-ACCESS-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.005083,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "union(public_space_area_sqm) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 13173.324,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(conceptual_human_first_connections, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-ACCESS-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "spatial.json"
+      ],
+      "formula": "count(spatial.items where id matches hc-*)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industrial_test_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "spatial.json"
+      ],
+      "formula": "count(spatial.items where source begins 本方案产业测试)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user-persona matrix rows)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "spatial.json"
+      ],
+      "formula": "count(spatial.items where id in signal-box, human-zero-station, last-screen)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "admission_gate_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "spatial.json"
+      ],
+      "formula": "count(spatial.items where id ends with -gate)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(PHASING features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-BUILDINGS-001"
+      ],
+      "reason": "Approved FAR, floor area, ownership, and official boundary are unavailable."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_or_surveyed_height",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-BUILDINGS-001"
+      ],
+      "reason": "Approved height controls and surveyed buildings are unavailable."
+    },
+    "statutory_green_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_statutory_green_area / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "No approved statutory green-space control is available; the design-layer ratio is not statutory."
+    },
+    "municipal_capacity": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "professional_capacity_assessment",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Municipal and utility survey data are unavailable."
+    },
+    "investment_cny": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "approved_scope_quantities_times_market_rates",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-COST-001"
+      ],
+      "reason": "No approved scope, quantities, procurement route, operator, or funding plan exists."
+    },
+    "local_loneliness_prevalence": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "ethics_reviewed_local_probability_sample",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-SOCIAL-BASELINE-001",
+        "A-RESEARCH-ETHICS-001"
+      ],
+      "reason": "No cleared project-area loneliness dataset exists; global WHO estimates are not localized.",
+      "measurement_status": "baseline_pending"
+    },
+    "pilot_human_handoff_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "spatial.json",
+        "assumptions.json"
+      ],
+      "formula": "completed_requested_human_handoffs / eligible_voluntary_handoff_requests",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-OPERATIONS-001",
+        "A-HUMAN-HANDOFF-001",
+        "A-RESEARCH-ETHICS-001"
+      ],
+      "reason": "No authorized pilot, named service owner, or participant baseline exists.",
+      "measurement_status": "baseline_pending"
+    },
+    "pilot_exit_completion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "spatial.json",
+        "assumptions.json"
+      ],
+      "formula": "completed_pause_delete_export_withdraw_tasks / attempted_exit_tasks",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-OPERATIONS-001",
+        "A-RESEARCH-ETHICS-001"
+      ],
+      "reason": "No authorized product version or pilot result exists.",
+      "measurement_status": "baseline_pending"
+    },
+    "substitution_harm_event_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "risk.json",
+        "spatial.json"
+      ],
+      "formula": "count(human-reviewed manipulation_or_substitution_harm_events)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-OPERATIONS-001",
+        "A-RESEARCH-ETHICS-001"
+      ],
+      "reason": "No authorized pilot has produced events; the design defines a zero-tolerance stop rule, not a claimed outcome.",
+      "measurement_status": "baseline_pending"
+    }
+  },
+  "scenario_count": 12,
+  "admission_gates": [
+    {
+      "id": "GATE-BOUNDARY",
+      "name_zh": "边界门",
+      "geometry_ref": "GATE-ZONE-01"
+    },
+    {
+      "id": "GATE-HANDOFF",
+      "name_zh": "接力门",
+      "geometry_ref": "GATE-ZONE-02"
+    },
+    {
+      "id": "GATE-AUTONOMY",
+      "name_zh": "自主门",
+      "geometry_ref": "GATE-ZONE-03"
+    },
+    {
+      "id": "GATE-SUBSTITUTION",
+      "name_zh": "替代伤害门",
+      "geometry_ref": "GATE-ZONE-04"
+    }
+  ],
+  "source_files": [
+    "metrics.json",
+    "spatial.json",
+    "geometry/*.geojson",
+    "sources.json",
+    "assumptions.json"
+  ]
+}

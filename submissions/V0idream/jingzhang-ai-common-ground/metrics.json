@@ -1,0 +1,412 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional submitted site boundary in EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2459872.475,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green spaces in EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.215536,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 640237.197,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(public-space proposals in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-ROAD-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.056098,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-ROAD-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 326526.583,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(conceptual prototype footprints in EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "A-BUILDING-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "building_coverage_ratio_design_prototype": {
+      "status": "known",
+      "value": 0.02861,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "conceptual_building_footprint_area_sqm / provisional_site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A-BUILDING-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 16800.4,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(conceptual walking/cycling links in EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "A-ROAD-001"
+      ]
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 4148906.046,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-001 in EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-IMPLEMENTATION-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "high",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-KEY003-OFFSET-001"
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(distinct scenario_ids registered on PUBLIC_SPACE features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "test_validation_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(distinct testing_validation_scenario_ids registered on PUBLIC_SPACE features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "count(named pilgrimage landmarks in proposal catalog)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "proofing_gate_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/six-gate-proofing.schema.json"
+      ],
+      "formula": "count(required boolean gates in the original Six-Gate Civic Proofing schema)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PROOFING-001"
+      ]
+    },
+    "synthetic_proof_case_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/synthetic-proof-cases.json"
+      ],
+      "formula": "count(anonymous synthetic paths: one complete plus six single-gate failures)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PROOFING-001"
+      ]
+    },
+    "synthetic_proof_pass_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/six-gate-proof-evidence.json"
+      ],
+      "formula": "count(synthetic paths where actual rule decision equals expected decision)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PROOFING-001"
+      ]
+    },
+    "proofing_pilot_duration_weeks": {
+      "status": "known",
+      "value": 12,
+      "unit": "weeks",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "2 baseline + 3 offline translation + 3 parallel service + 3 public proofing + 1 decision week",
+      "confidence": "medium",
+      "assumptions": [
+        "A-IMPLEMENTATION-001",
+        "A-PROOFING-001"
+      ]
+    },
+    "proofing_stop_condition_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/six-gate-proofing.schema.json"
+      ],
+      "formula": "count(non-compensatory provenance, consent, access, review, rollback, and stewardship stop conditions)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROOFING-001"
+      ]
+    },
+    "regional_interface_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(conceptual taskbook interfaces: Beiwei, Future Science City, Huairou Science City, BDA, Jing-Jin-Ji)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-REGIONAL-INTERFACE-001"
+      ]
+    },
+    "pilot_module_area_sqm": {
+      "status": "known",
+      "value": 72,
+      "unit": "sqm",
+      "source_files": [
+        "visual/assets/pilot-operations-plan.json"
+      ],
+      "formula": "12 m removable module width * 6 m removable module depth; a design parameter, not surveyed or approved site area",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PILOT-MODULE-001"
+      ]
+    },
+    "pilot_operating_state_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/pilot-operations-plan.json"
+      ],
+      "formula": "count(S0 ordinary baseline, S1 isolated, S2 shadow, S3 public proof, S4 decision)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PILOT-MODULE-001"
+      ]
+    },
+    "pilot_minimum_open_shift_staff_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "people_per_open_shift",
+      "source_files": [
+        "visual/assets/pilot-operations-plan.json"
+      ],
+      "formula": "one staffed ordinary-service operator + one proofing translator operator; additional reviewer is on call",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PILOT-MODULE-001",
+        "A-PILOT-TARGET-001"
+      ]
+    },
+    "pilot_handoff_target_seconds": {
+      "status": "known",
+      "value": 120,
+      "unit": "seconds_max_target",
+      "source_files": [
+        "visual/assets/pilot-operations-plan.json"
+      ],
+      "formula": "concept service target for a human operator to acknowledge and take over; not a measured result",
+      "confidence": "low",
+      "assumptions": [
+        "A-PILOT-TARGET-001"
+      ]
+    },
+    "proof_receipt_required_field_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/pilot-operations-plan.json"
+      ],
+      "formula": "count(anonymous token, purpose, gates, human owner, expiry, ordinary route, appeal route, rollback status)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PILOT-MODULE-001"
+      ]
+    },
+    "synthetic_inclusion_journey_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/synthetic-inclusive-journeys.json"
+      ],
+      "formula": "count(anonymous synthetic positive and failure journeys across six accessibility and service personas)",
+      "confidence": "high",
+      "assumptions": [
+        "A-INCLUSION-SYNTHETIC-001"
+      ]
+    },
+    "synthetic_inclusion_journey_pass_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/pilot-readiness-evidence.json"
+      ],
+      "formula": "count(synthetic journeys where the actual proof/return decision equals the expected decision)",
+      "confidence": "high",
+      "assumptions": [
+        "A-INCLUSION-SYNTHETIC-001",
+        "A-PILOT-TARGET-001"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved FAR controls and official boundary are not available."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official height control",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved height controls and heritage/aviation constraints are not available."
+    },
+    "existing_building_retain_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "data/processed/missing_data_checklist.csv"
+      ],
+      "formula": "retained_existing_footprint / surveyed_existing_footprint",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BUILDING-001"
+      ],
+      "reason": "Cleared existing-building survey and ownership data are missing."
+    },
+    "road_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "data/processed/missing_data_checklist.csv"
+      ],
+      "formula": "official_road_area / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-ROAD-001"
+      ],
+      "reason": "Official road redlines and cross-sections are missing."
+    }
+  }
+}

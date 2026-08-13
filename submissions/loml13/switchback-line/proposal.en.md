@@ -5,7 +5,7 @@ language: "en"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A concept urban design proposal that translates Zhan Tianyou's 1909 herringbone switchback into an urban grammar: one heritage spine, three switchback stations (Dazhongsi, AI Origin Community, Zhongzhiyuan), six east-west stitching corridors, and two wings, serving the triple positioning of culture belt, urban AI life experience belt, and AI integration innovation belt."
-iteration: "v1.0"
+iteration: "v1.8"
 ---
 
 # THE SWITCHBACK LINE: Jingzhang's Second Ascent
@@ -108,6 +108,16 @@ At regulatory-plan urban-design depth the proposal sets a structure of "one spin
 
 The renewal framework follows retain–renovate–demolish logic: retain the historic alignment, the Qinghuayuan station site, and the Dazhongsi anchors [data:geometry/constraints.geojson#CX-004] (v1.7: the Qinghuayuan station site's protection scope and construction control belts are now mapped as provisional polygons derived from the officially published textual boundaries [data:geometry/constraints.geojson#CX-003][source:BJWW-QHY-STATION-T11][source:BJGOV-HERITAGE-BATCH11][source:BJGOV-CCZ-RULES]; Juesheng Temple (Dazhongsi) keeps a point geometry with its first-batch textual boundaries registered [source:BJWW-JUESHENG-T1], as its anchors are not publicly verifiable; both points were corrected against OSM footprints [source:OPENSTREETMAP] — method and error budget in A-HERITAGE-FOURTO-001 / A-HERITAGE-POINT-FIX-001 [source:ISSUE-1774]); renovate low-efficiency industrial land into AI R&D, mixed use, and talent housing; concentrate concept new-build massing in the three key areas (total concept footprint [metric:building_footprint_area_sqm], concept gross floor area [metric:total_floor_area_sqm] — both design intent, not approved figures) [depth:retain_renovate_demolish]. All development intensity, height, and demolition conclusions are pending regulatory conditions: the proposal offers design intent and a recomputation method only; statutory values follow the approved regulatory plan [standard:MOHURD-CONTROL-DETAILED-PLANNING]. Land use uses the national classification codes [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] with no invented categories. The concept corridor-average FAR (~0.7, concept GFA over provisional site area) is for design discussion only; the formal FAR metric [metric:floor_area_ratio] is reported as unknown pending regulatory conditions.
 
+Heritage constraints landed in v1.7 (provisional derivations; official delineation drawings are issued separately and not public; method and error budget in A-HERITAGE-FOURTO-001) [data:geometry/constraints.geojson#CX-003]:
+
+| Feature | Class | Area (approx. sqm) | Control note |
+| --- | --- | ---: | --- |
+| CX-003 | Protection scope | 2,342 | Qinghuayuan station fabric with four-to offsets |
+| CX-005 | Control belt I | 798 | no control text published on the page; class meaning per regulation [source:BJGOV-CCZ-RULES] |
+| CX-006 | Control belt V(1) | 635 | no new buildings/structures |
+| CX-007 | Control belt V(2) | 747 | no new buildings/structures |
+| CX-008 | Control belt V(3) | 2,655 | no new buildings/structures unrelated to heritage preservation and display |
+
 ## Detailed Design of Key Areas
 
 The three key areas are the line's three switchbacks. Each is organized as a readable sub-scheme of positioning + spatial structure + building renewal + transport and slow mobility + public space + AI scenarios + implementation risk; geometry: [data:geometry/key_areas.geojson#PROV-KEY-001] (Zhongzhiyuan), [data:geometry/key_areas.geojson#PROV-KEY-002] (AI Origin), [data:geometry/key_areas.geojson#PROV-KEY-003] (Dazhongsi) [depth:three_key_area_detailed_design].
@@ -185,7 +195,7 @@ Making the scenarios perceptible:
 - **SC-05 robotics test port**: a delivery robot avoids a child dummy in the separated test zone while parents watch a simplified replay of every decision on the fence screen.
 - **SC-06 data sandbox**: a researcher brings an algorithm into the sandbox, trains on de-identified city data, and leaves with only the audited model weights.
 - **SC-07 computational consumption**: a shopper at Dazhongsi tries one-sentence outfit generation; the screen labels what is algorithmic recommendation, with one tap to opt out.
-- **SC-08 elder care**: a smart speaker reminds a senior living alone to take medicine; anomalies first notify a community worker for a visit, not an alarm call.
+- **SC-08 elder care**: a smart speaker reminds a senior living alone to take medicine; anomalies first notify a community worker for a visit, not an alarm call. This pilot aligns with Haidian District's current "AI + Elderly Care" Three-Year Action Plan (2026–2028) as district policy background only — not an authorization, funding, data, or venue basis [source:DATA-SRC-BJHD-AI-ELDERLY-2026].
 - **SC-09 ecological sensing**: a morning runner on the waterfront reads today's water quality and bird report from bank sensors; anomalies go to maintenance staff.
 - **SC-10 MaaS**: a visitor leaving Dazhongsi station gets a route — "6 minutes via the stitching corridor to the launch event" — with live crowding hints.
 - **SC-11 switchback ticket**: a merchant photographs a blocked storefront, AI dispatches the ticket to the grid, and the resolution returns with on-site photos, appealable throughout.

@@ -9,6 +9,35 @@ longer point at the current head of an open, non-draft PR.
 
 The default mode is a dry run.  The scheduled maintainer workflow passes
 ``--apply`` after the age and no-job guards have been checked.
+
+A run is considered stuck when all of these conditions hold:
+
+- Its event is ``pull_request_target``.
+- Its status is ``pending`` or ``in_progress`` without a started job.
+- Its ``head_sha`` is not the current head of any open non-draft PR.
+- It has zero jobs associated.
+- It was created at least ``--min-age-minutes`` minutes ago (default: 20).
+
+Usage
+-----
+Dry run (print stuck runs without canceling)::
+
+    python3 scripts/cleanup_submission_validation_runs.py \\
+        --repo open-city-ai/haidian
+
+Actually cancel the stuck runs::
+
+    python3 scripts/cleanup_submission_validation_runs.py \\
+        --repo open-city-ai/haidian --apply
+
+Use a non-default workflow::
+
+    python3 scripts/cleanup_submission_validation_runs.py \\
+        --repo open-city-ai/haidian \\
+        --workflow .github/workflows/custom-validation.yml
+
+Requires the ``GITHUB_TOKEN`` environment variable with
+``actions:read`` and ``actions:write`` permissions.
 """
 
 from __future__ import annotations
@@ -224,11 +253,31 @@ def run_watchdog(
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--repo", default=os.environ.get("GITHUB_REPOSITORY", ""))
-    parser.add_argument("--workflow", default=DEFAULT_WORKFLOW)
-    parser.add_argument("--min-age-minutes", type=int, default=DEFAULT_MIN_AGE_MINUTES)
-    parser.add_argument("--apply", action="store_true", help="cancel only matched zombie runs")
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument(
+        "--repo",
+        default=os.environ.get("GITHUB_REPOSITORY", ""),
+        help="Repository in owner/name format (default: $GITHUB_REPOSITORY)",
+    )
+    parser.add_argument(
+        "--workflow",
+        default=DEFAULT_WORKFLOW,
+        help=f"Workflow file path (default: {DEFAULT_WORKFLOW})",
+    )
+    parser.add_argument(
+        "--min-age-minutes",
+        type=int,
+        default=DEFAULT_MIN_AGE_MINUTES,
+        help=f"Minimum run age in minutes before considering it stuck (default: {DEFAULT_MIN_AGE_MINUTES})",
+    )
+    parser.add_argument(
+        "--apply",
+        action="store_true",
+        help="Cancel the matched stuck runs; default is dry run (print only)",
+    )
     args = parser.parse_args(argv)
     token = os.environ.get("GITHUB_TOKEN")
     if not token:

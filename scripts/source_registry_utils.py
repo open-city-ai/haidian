@@ -1,4 +1,31 @@
-"""Helpers for reading and summarizing the public source registry."""
+"""Helpers for reading and summarizing the public source registry.
+
+This module is imported by ``review_submission.py``, ``ai_review_submission.py``,
+``scaffold_ai_submission.py``, and other scripts that need a quick read of
+``data/source_registry.json`` without re-implementing the parsing logic.
+
+Key functions
+-------------
+- :func:`load_source_registry` — load the full registry dict.
+- :func:`summarize_source_registry` — return a compact summary with counts
+  and the top sources per tier (formal, background, provisional, needs_review).
+- :func:`source_registry_bullets` / :func:`source_registry_bullets_zh` —
+  return 3-line English / Chinese summaries suitable for prompt context.
+
+Source tiers
+------------
+- ``approved`` + ``usable_for_formal=yes`` — formal-ready; authoritative
+  evidence for scoring claims.
+- ``usable_for_formal=background_only`` — context and illustration only; must
+  not support boundary, area, or statutory-control claims.
+- ``usable_for_formal=provisional_only`` — intake and visualization only;
+  must be labeled as provisional; not formal evidence.
+- ``review_status=needs_review`` — not approved; must not be used in any
+  formal or background capacity until a maintainer approves.
+
+Agents must not upgrade background or provisional sources into official
+boundaries, statutory controls, or formal scoring evidence.
+"""
 
 from __future__ import annotations
 
@@ -20,6 +47,10 @@ def read_json(path: Path) -> Any:
 
 
 def load_source_registry(repo_root: Path) -> dict[str, Any]:
+    """Load ``data/source_registry.json`` and return it as a dict.
+
+    Returns an empty dict when the file is absent or unparseable.
+    """
     data = read_json(repo_root / DEFAULT_SOURCE_REGISTRY_PATH)
     return data if isinstance(data, dict) else {}
 
@@ -44,6 +75,17 @@ def _compact_source(source: dict[str, Any]) -> dict[str, Any]:
 
 
 def summarize_source_registry(registry: dict[str, Any], limit: int = 8) -> dict[str, Any]:
+    """Return a compact summary of the registry with per-tier source lists.
+
+    Args:
+        registry: The full registry dict as returned by :func:`load_source_registry`.
+        limit: Maximum number of sources to include per tier (default: 8).
+
+    Returns:
+        A dict with ``counts``, ``approved_formal_sources``,
+        ``background_sources``, ``provisional_sources``,
+        ``needs_review_sources``, and a ``usage_rule`` string.
+    """
     sources = registry.get("sources") if isinstance(registry, dict) else []
     if not isinstance(sources, list):
         sources = []
@@ -84,11 +126,17 @@ def summarize_source_registry(registry: dict[str, Any], limit: int = 8) -> dict[
         "background_sources": background[:limit],
         "provisional_sources": provisional[:limit],
         "needs_review_sources": needs_review[:limit],
-        "usage_rule": "Use approved formal sources for formal evidence; background_only sources for context; provisional_only sources for intake/visualization only; needs_review sources must not be used until reviewed.",
+        "usage_rule": (
+            "Use approved formal sources for formal evidence; "
+            "background_only sources for context; "
+            "provisional_only sources for intake/visualization only; "
+            "needs_review sources must not be used until reviewed."
+        ),
     }
 
 
 def source_registry_bullets(summary: dict[str, Any]) -> list[str]:
+    """Return 3-line English summary suitable for AI prompt context."""
     counts = summary.get("counts", {})
     formal_count = counts.get("by_usable_for_formal", {}).get("yes", 0) if isinstance(counts, dict) else 0
     background_count = counts.get("by_usable_for_formal", {}).get("background_only", 0) if isinstance(counts, dict) else 0
@@ -101,6 +149,7 @@ def source_registry_bullets(summary: dict[str, Any]) -> list[str]:
 
 
 def source_registry_bullets_zh(summary: dict[str, Any]) -> list[str]:
+    """Return 3-line Chinese summary suitable for AI prompt context."""
     counts = summary.get("counts", {})
     formal_count = counts.get("by_usable_for_formal", {}).get("yes", 0) if isinstance(counts, dict) else 0
     background_count = counts.get("by_usable_for_formal", {}).get("background_only", 0) if isinstance(counts, dict) else 0

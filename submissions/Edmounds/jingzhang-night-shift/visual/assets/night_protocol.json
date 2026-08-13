@@ -1,0 +1,58 @@
+{
+  "protocol_id": "jingzhang-night-shift-protocol",
+  "protocol_version": "3.0",
+  "title_zh": "京张夜班六态运行协议",
+  "title_en": "Jingzhang Night Shift six-state operating protocol",
+  "status_note_zh": "概念运营协议，供专业团队深化；不是已批准的管理制度。",
+  "status_note_en": "Conceptual operating protocol for professional deepening; not an approved management regulation.",
+  "states": [
+    { "id": "proposed", "name_zh": "已申报", "terminal": false },
+    { "id": "admitted", "name_zh": "已准入", "terminal": false },
+    { "id": "live", "name_zh": "运行中", "terminal": false },
+    { "id": "quiet", "name_zh": "安静态", "terminal": false },
+    { "id": "paused", "name_zh": "已暂停", "terminal": false },
+    { "id": "handed_over", "name_zh": "已交接", "terminal": true }
+  ],
+  "transitions": [
+    { "from": "proposed", "to": "admitted", "trigger_zh": "通过数据最小化、劳动安排、环境基线与退出演练审查" },
+    { "from": "admitted", "to": "live", "trigger_zh": "四项运行门全部满足且在允许时段内" },
+    { "from": "live", "to": "quiet", "trigger_zh": "进入安静夜时段（22:00）或主动降载" },
+    { "from": "quiet", "to": "live", "trigger_zh": "离开安静夜时段且运行门仍然满足" },
+    { "from": "admitted", "to": "paused", "trigger_zh": "准入条件失效或责任人缺席" },
+    { "from": "live", "to": "paused", "trigger_zh": "触发任一停止条件" },
+    { "from": "quiet", "to": "paused", "trigger_zh": "安静态下出现外溢、投诉或责任缺口" },
+    { "from": "paused", "to": "proposed", "trigger_zh": "完成修复后回到申报重新审查" },
+    { "from": "paused", "to": "handed_over", "trigger_zh": "决定退出，完成封存与交接" },
+    { "from": "live", "to": "handed_over", "trigger_zh": "运行窗口结束，晨间双签交接" },
+    { "from": "quiet", "to": "handed_over", "trigger_zh": "安静态直接结束，晨间双签交接" }
+  ],
+  "live_entry_gates": [
+    { "id": "human_responsible_on_duty", "name_zh": "人工责任人在岗" },
+    { "id": "non_ai_fallback_declared", "name_zh": "非 AI 后备已声明可用" },
+    { "id": "shutdown_action_defined", "name_zh": "停机动作明确且可执行" },
+    { "id": "recovery_evidence_defined", "name_zh": "恢复证据要求已定义" }
+  ],
+  "time_bands": [
+    { "id": "day_baseline", "start": "09:00", "end": "18:00", "name_zh": "日间基线" },
+    { "id": "shared_night", "start": "18:00", "end": "22:00", "name_zh": "共用夜" },
+    { "id": "quiet_night", "start": "22:00", "end": "06:00", "name_zh": "安静夜" },
+    { "id": "handover_morning", "start": "06:00", "end": "09:00", "name_zh": "交接晨" }
+  ],
+  "scenario_required_fields": [
+    "responsible_role_zh",
+    "stop_condition_zh",
+    "non_ai_fallback_zh",
+    "recovery_evidence_zh",
+    "yard_id"
+  ],
+  "phase1_commitments": [
+    {
+      "id": "zero_new_permanent_construction",
+      "name_zh": "阶段一零永久新建",
+      "description_zh": "阶段一只使用已建成公园与既有室内空间开展基线调查、纸面演练与人工值守服务，不新建任何永久构筑物。",
+      "phasing_property": "new_permanent_construction",
+      "expected_value": false,
+      "phase_id": "PHASE-NS-01"
+    }
+  ]
+}

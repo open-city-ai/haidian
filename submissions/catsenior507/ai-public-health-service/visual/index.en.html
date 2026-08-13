@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张AI医疗创新谷 — 城市设计方案总览</title>
+<style>
+  :root {
+    --blue: #1B5E96;
+    --green: #2EAC68;
+    --gold: #F4A460;
+    --dark: #1a1a2e;
+    --card: #16213e;
+    --text: #e0e0e0;
+    --muted: #8892a4;
+    --border: #2a3a5c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--dark); color: var(--text); line-height: 1.6;
+  }
+  header {
+    background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 50%, #0d2137 100%);
+    border-bottom: 3px solid var(--blue); padding: 2rem;
+    text-align: center;
+  }
+  header h1 { font-size: 1.8rem; color: #fff; margin-bottom: 0.5rem; }
+  header .subtitle { color: var(--gold); font-size: 1.1rem; }
+  header .meta { color: var(--muted); font-size: 0.85rem; margin-top: 0.5rem; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1.5rem; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 1.5rem; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 1.5rem; transition: all 0.2s;
+  }
+  .card:hover { border-color: var(--blue); }
+  .card h2 { font-size: 1.1rem; color: var(--gold); margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+  .card h3 { font-size: 0.95rem; color: #fff; margin: 0.8rem 0 0.4rem; }
+  .metric-row { display: flex; justify-content: space-between; padding: 0.3rem 0; border-bottom: 1px solid rgba(42,58,92,0.5); }
+  .metric-label { color: var(--muted); font-size: 0.85rem; }
+  .metric-value { color: #fff; font-weight: 600; font-size: 0.9rem; }
+  .metric-value.large { font-size: 1.4rem; color: var(--gold); }
+  .badge {
+    display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px;
+    font-size: 0.75rem; font-weight: 600;
+  }
+  .badge-pass { background: rgba(46,172,104,0.2); color: var(--green); border: 1px solid var(--green); }
+  .badge-warn { background: rgba(244,164,96,0.2); color: var(--gold); border: 1px solid var(--gold); }
+  .badge-info { background: rgba(27,94,150,0.2); color: #5ba0d0; border: 1px solid #5ba0d0; }
+  .map-placeholder {
+    background: linear-gradient(135deg, #0d2137, #16213e);
+    border: 2px dashed var(--border); border-radius: 8px;
+    min-height: 300px; display: flex; align-items: center; justify-content: center;
+    flex-direction: column; color: var(--muted);
+  }
+  .map-placeholder .icon { font-size: 3rem; margin-bottom: 0.5rem; }
+  .progress-bar {
+    height: 8px; background: var(--border); border-radius: 4px;
+    overflow: hidden; margin: 0.5rem 0;
+  }
+  .progress-fill { height: 100%; border-radius: 4px; }
+  .progress-fill.green { background: var(--green); }
+  .progress-fill.blue { background: var(--blue); }
+  .progress-fill.gold { background: var(--gold); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { text-align: left; color: var(--gold); padding: 0.5rem; border-bottom: 2px solid var(--border); }
+  td { padding: 0.4rem 0.5rem; border-bottom: 1px solid rgba(42,58,92,0.5); color: var(--text); }
+  .tag { font-size: 0.7rem; padding: 0.15rem 0.4rem; border-radius: 3px; background: rgba(27,94,150,0.3); color: #8ab4d0; }
+  footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 2rem; }
+  .section-title { font-size: 1.4rem; color: #fff; margin: 2rem 0 1rem; padding-left: 1rem; border-left: 4px solid var(--blue); }
+  @media (max-width: 900px) {
+    .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
+    header h1 { font-size: 1.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>京张AI医疗创新谷 · Jing-Zhang AI Medical Innovation Valley</h1>
+  <div class="subtitle">AI+公共服务：从个人经验到集体智慧的城市设计范式</div>
+  <div class="meta">
+    Contributor: catsenior507 | Date: 2026-08-11 | Status: ready_for_review |
+    <span class="badge badge-pass">SELF-CHECK PASS</span>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- Overview Map -->
+<div class="card" style="margin-bottom:1.5rem;">
+  <h2>📍 场地总览 Overview Map · Site Overview</h2>
+  <div class="map-placeholder">
+    <div class="icon">🗺️</div>
+    <div style="margin-top:0.5rem;">京张AI创新带 · 一谷三核空间结构</div>
+    <div style="font-size:0.8rem;margin-top:0.3rem;">
+      统筹研究范围 43.6 km² | 总体设计范围 11.4 km² | 重点区域 368.4 ha
+    </div>
+    <div style="font-size:0.75rem;margin-top:0.3rem;color:#d4a574;">
+      ⚠ 边界状态：临时粗略范围 (provisional) — 待官方正式多边形发布
+    </div>
+  </div>
+</div>
+
+<!-- Key Metrics -->
+<div class="grid-4">
+  <div class="card" style="text-align:center;">
+    <div class="metric-value large" data-metric="site_area_sqm" data-value="11412825.386">11.41 km²</div>
+    <div class="metric-label">总体设计范围</div>
+    <div class="badge badge-warn" style="margin-top:0.3rem;">provisional</div>
+  </div>
+  <div class="card" style="text-align:center;">
+    <div class="metric-value large" data-metric="key_detailed_design_area_total" data-value="3692893">368.4 ha</div>
+    <div class="metric-label">重点区域总面积</div>
+    <div class="badge badge-warn" style="margin-top:0.3rem;">provisional</div>
+  </div>
+  <div class="card" style="text-align:center;">
+    <div class="metric-value large" data-metric="scenario_card_count" data-value="12">12</div>
+    <div class="metric-label">AI医疗场景卡</div>
+    <div class="badge badge-pass" style="margin-top:0.3rem;">≥10 ✓</div>
+  </div>
+  <div class="card" style="text-align:center;">
+    <div class="metric-value large" data-metric="ai_landmark_count" data-value="5">5</div>
+    <div class="metric-label">AI朝圣地标</div>
+    <div class="badge badge-pass" style="margin-top:0.3rem;">≥3 ✓</div>
+  </div>
+</div>
+
+<!-- Three Cores -->
+<div class="section-title">三核空间结构 Three-Core Spatial Structure</div>
+<div class="grid-3">
+  <div class="card">
+    <h2>🔬 北核 · 众智园</h2>
+    <div class="metric-row"><span class="metric-label">面积</span><span class="metric-value">192.1 ha</span></div>
+    <div class="metric-row"><span class="metric-label">定位</span><span class="metric-value">AI医疗基础模型区</span></div>
+    <h3>核心功能</h3>
+    <div style="font-size:0.85rem;color:var(--muted);margin-top:0.5rem;">
+      • 医疗数据安全港（联邦学习网络）<br>
+      • 医生经验蒸馏实验室<br>
+      • 全栈自主算力中心<br>
+      • 知识图谱构建中心<br>
+      • 验证与校准平台
+    </div>
+    <div style="margin-top:0.8rem;"><span class="badge badge-info">Phase 1-2 优先</span></div>
+  </div>
+  <div class="card">
+    <h2>🏥 中核 · AI原点社区</h2>
+    <div class="metric-row"><span class="metric-label">面积</span><span class="metric-value">104.3 ha</span></div>
+    <div class="metric-row"><span class="metric-label">定位</span><span class="metric-value">医疗体验创新与人才培养区</span></div>
+    <h3>核心功能</h3>
+    <div style="font-size:0.85rem;color:var(--muted);margin-top:0.5rem;">
+      • AI导诊体验中心<br>
+      • 跨科室AI协同示范医院<br>
+      • 医疗AI人才培训基地<br>
+      • 医智公共客厅<br>
+      • 百医堂（地标）
+    </div>
+    <div style="margin-top:0.8rem;"><span class="badge badge-info">Phase 1-2 优先</span></div>
+  </div>
+  <div class="card">
+    <h2>🏢 南核 · 大钟寺</h2>
+    <div class="metric-row"><span class="metric-label">面积</span><span class="metric-value">72.0 ha</span></div>
+    <div class="metric-row"><span class="metric-label">定位</span><span class="metric-value">医疗AI产业化与全球推广区</span></div>
+    <h3>核心功能</h3>
+    <div style="font-size:0.85rem;color:var(--muted);margin-top:0.5rem;">
+      • 医疗AI创业加速器<br>
+      • 全球医疗AI峰会永久会址<br>
+      • 智能原生医疗消费场景<br>
+      • AI心理健康私密空间<br>
+      • 医智脑塔（地标）
+    </div>
+    <div style="margin-top:0.8rem;"><span class="badge badge-info">Phase 1-3 滚动</span></div>
+  </div>
+</div>
+
+<!-- Task Coverage -->
+<div class="section-title">任务覆盖 Agent Task Coverage</div>
+<div class="card">
+  <table>
+    <tr><th>Task ID</th><th>任务</th><th>状态</th><th>关键产出</th></tr>
+    <tr><td>agent.1</td><td>一带总体概念与品牌</td><td><span class="badge badge-pass">COVERED</span></td><td>命名体系、Logo方向、色彩系统、一谷三核结构</td></tr>
+    <tr><td>agent.2</td><td>AI创新生态设计</td><td><span class="badge badge-pass">COVERED</span></td><td>8个全球案例、三层四维生态图谱</td></tr>
+    <tr><td>agent.3</td><td>AI+场景赋能</td><td><span class="badge badge-pass">COVERED</span></td><td>12张场景卡、3个测试场景、5类用户画像</td></tr>
+    <tr><td>agent.4</td><td>朝圣地标与公共空间</td><td><span class="badge badge-pass">COVERED</span></td><td>5个地标、京张遗址公园AI公共空间</td></tr>
+    <tr><td>agent.5</td><td>文化融合叙事</td><td><span class="badge badge-pass">COVERED</span></td><td>三轨并行叙事、导视系统、国际传播文案</td></tr>
+    <tr><td>agent.6</td><td>活动体系与运营</td><td><span class="badge badge-pass">COVERED</span></td><td>5项年度活动、开发者社区、驻留计划</td></tr>
+  </table>
+</div>
+
+<!-- Scenario Cards & Metrics -->
+<div class="grid-2">
+  <div class="card">
+    <h2>🎯 AI医疗场景卡 (12张)</h2>
+    <div style="font-size:0.85rem;">
+      <table>
+        <tr><td>1. AI全科导诊助手</td><td><span class="tag">原型阶段</span></td></tr>
+        <tr><td>2. 病历深度理解引擎</td><td><span class="tag">初步应用</span></td></tr>
+        <tr><td>3. 跨科室MDT协同面板</td><td><span class="tag">概念验证</span></td></tr>
+        <tr><td>4. 医生经验数字孪生</td><td><span class="tag">研究阶段</span></td></tr>
+        <tr><td>5. 基层医疗AI辅助</td><td><span class="tag">试点阶段</span></td></tr>
+        <tr><td>6. AI慢病管理助手</td><td><span class="tag">商用早期</span></td></tr>
+        <tr><td>7. AI影像筛查网络</td><td><span class="tag">部分认证</span></td></tr>
+        <tr><td>8. AI急诊分诊调度</td><td><span class="tag">研发阶段</span></td></tr>
+        <tr><td>9. AI药物不良反应监测</td><td><span class="tag">概念验证</span></td></tr>
+        <tr><td>10. AI心理健康干预</td><td><span class="tag">早期商用</span></td></tr>
+        <tr><td>11. 罕见病诊断知识引擎</td><td><span class="tag">研究阶段</span></td></tr>
+        <tr><td>12. AI手术规划辅助</td><td><span class="tag">部分商用</span></td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <h2>📊 关键指标 Core Metrics</h2>
+    <div class="metric-row"><span class="metric-label">场景卡片数</span><span class="metric-value">12 (要求≥10)</span></div>
+    <div class="metric-row"><span class="metric-label">测试验证场景</span><span class="metric-value">3 (要求≥3)</span></div>
+    <div class="metric-row"><span class="metric-label">用户画像数</span><span class="metric-value">5 (要求≥5)</span></div>
+    <div class="metric-row"><span class="metric-label">朝圣地标数</span><span class="metric-value">5 (要求≥3)</span></div>
+    <div class="metric-row"><span class="metric-label">全球案例研究</span><span class="metric-value">8 (要求5-8)</span></div>
+    <div class="metric-row"><span class="metric-label">年度活动数</span><span class="metric-value">5</span></div>
+    <div class="metric-row"><span class="metric-label">更新项目数</span><span class="metric-value">10</span></div>
+    <div class="metric-row"><span class="metric-label">蓝绿空间占比（概念）</span><span class="metric-value">≥25%</span></div>
+    <div class="metric-row"><span class="metric-label">公共空间占比（概念）</span><span class="metric-value">≥35%</span></div>
+    <div style="margin-top:0.8rem;font-size:0.8rem;color:var(--muted);">
+      ⚠ FAR、建筑密度、建筑高度：待正式数据补齐
+    </div>
+  </div>
+</div>
+
+<!-- Landmarks -->
+<div class="section-title">🏛️ AI朝圣地标 AI Pilgrimage Landmarks</div>
+<div class="grid-2">
+  <div class="card">
+    <h2>1. 医学知识之环 MedBrain Ring</h2>
+    <div style="font-size:0.85rem;color:var(--muted);">
+      📍 众智园中央广场 | 50m直径环形装置<br>
+      实时可视化全球医疗AI最新研究发现，象征从个人经验到集体智慧的范式转换
+    </div>
+  </div>
+  <div class="card">
+    <h2>2. 诊断之路 Diagnosis Pathway</h2>
+    <div style="font-size:0.85rem;color:var(--muted);">
+      📍 京张遗址公园AI原点社区段 | 200m交互装置<br>
+      光影路径呈现症状→诊断→治疗全旅程，终点为"治愈之墙"
+    </div>
+  </div>
+  <div class="card">
+    <h2>3. 医智脑塔 MedBrain Tower</h2>
+    <div style="font-size:0.85rem;color:var(--muted);">
+      📍 大钟寺入口广场 | 30m标志塔<br>
+      铁轨+DNA双螺旋造型，实时展示医疗AI训练状态
+    </div>
+  </div>
+  <div class="card">
+    <h2>4. 百医堂 Hall of Hundred Healers</h2>
+    <div style="font-size:0.85rem;color:var(--muted);">
+      📍 AI原点社区 | 纪念性圆厅<br>
+      100位首批贡献医生的AI蒸馏成果可视化展示
+    </div>
+  </div>
+  <div class="card" style="grid-column: 1 / -1;">
+    <h2>5. 生命数据之泉 Fountain of Life Data</h2>
+    <div style="font-size:0.85rem;color:var(--muted);">
+      📍 众智园清河滨水 | 水景+数据雕塑<br>
+      光纤连接联邦学习网络节点，可视化数据贡献的公共艺术
+    </div>
+  </div>
+</div>
+
+<!-- Phasing -->
+<div class="section-title">📅 实施分期 Implementation Phasing</div>
+<div class="grid-3">
+  <div class="card">
+    <h2>Phase 1 · 基础搭建</h2>
+    <div class="metric-row"><span class="metric-label">时间</span><span class="metric-value">2027-2028</span></div>
+    <div style="font-size:0.85rem;color:var(--muted);margin-top:0.5rem;">
+      • 医疗数据安全港一期（3-5家医院）<br>
+      • AI导诊体验中心<br>
+      • 创业加速器一期（10家团队）<br>
+      • 诊断之路地标
+    </div>
+    <div class="progress-bar"><div class="progress-fill blue" style="width:25%;"></div></div>
+  </div>
+  <div class="card">
+    <h2>Phase 2 · 功能完善</h2>
+    <div class="metric-row"><span class="metric-label">时间</span><span class="metric-value">2028-2030</span></div>
+    <div style="font-size:0.85rem;color:var(--muted);margin-top:0.5rem;">
+      • 医生经验蒸馏实验室（50位医生）<br>
+      • 跨科室协同示范医院<br>
+      • 首届全球医疗AI峰会<br>
+      • 5个社区AI健康站
+    </div>
+    <div class="progress-bar"><div class="progress-fill blue" style="width:50%;"></div></div>
+  </div>
+  <div class="card">
+    <h2>Phase 3 · 规模化</h2>
+    <div class="metric-row"><span class="metric-label">时间</span><span class="metric-value">2030-2035</span></div>
+    <div style="font-size:0.85rem;color:var(--muted);margin-top:0.5rem;">
+      • 联邦学习网络全市扩展<br>
+      • 人才培训基地年培训5000+<br>
+      • 全球标准制定工作坊常态化<br>
+      • 京张医疗AI国际品牌确立
+    </div>
+    <div class="progress-bar"><div class="progress-fill blue" style="width:75%;"></div></div>
+  </div>
+</div>
+
+<!-- Self-Check Summary -->
+<div class="section-title">✅ 自检状态 Self-Check Summary</div>
+<div class="card">
+  <div class="grid-2" style="margin-bottom:0;">
+    <div>
+      <div class="metric-row"><span class="metric-label">Package Completeness</span><span class="badge badge-pass">PASS</span></div>
+      <div class="metric-row"><span class="metric-label">Proposal Format v2</span><span class="badge badge-pass">PASS</span></div>
+      <div class="metric-row"><span class="metric-label">Geometry Validity</span><span class="badge badge-pass">PASS</span></div>
+      <div class="metric-row"><span class="metric-label">Metrics Consistency</span><span class="badge badge-pass">PASS</span></div>
+      <div class="metric-row"><span class="metric-label">Compliance Coverage</span><span class="badge badge-pass">PASS</span></div>
+      <div class="metric-row"><span class="metric-label">Standard Coverage</span><span class="badge badge-pass">PASS</span></div>
+    </div>
+    <div>
+      <div class="metric-row"><span class="metric-label">Design Depth</span><span class="badge badge-pass">PASS</span></div>
+      <div class="metric-row"><span class="metric-label">Figures Presence</span><span class="badge badge-pass">PASS</span></div>
+      <div class="metric-row"><span class="metric-label">Visual Offline</span><span class="badge badge-pass">PASS</span></div>
+      <div class="metric-row"><span class="metric-label">Bilingual</span><span class="badge badge-warn">PASS*</span></div>
+      <div class="metric-row"><span class="metric-label">Provisional Labeling</span><span class="badge badge-pass">PASS</span></div>
+      <div class="metric-row"><span class="metric-label">Source Tracing</span><span class="badge badge-pass">PASS</span></div>
+    </div>
+  </div>
+  <div style="margin-top:1rem;font-size:0.8rem;color:var(--muted);">
+    ⚠ Warnings: All geometry provisional — recalculation needed when official data arrives. FAR/building density/height unknown — pending official regulatory conditions.
+  </div>
+</div>
+
+<!-- Data Sources -->
+<div class="section-title">📚 数据来源 Sources</div>
+<div class="card" style="font-size:0.85rem;">
+  <table>
+    <tr><th>Source ID</th><th>Title</th><th>Authority</th><th>Usable For</th></tr>
+    <tr><td>SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT</td><td>资格预审公告</td><td>A0 (Official)</td><td>Scope, tasks, area values</td></tr>
+    <tr><td>SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK</td><td>智能体任务书</td><td>Cleared User Doc</td><td>Agent tasks, scenarios, branding</td></tr>
+    <tr><td>SRC-PROVISIONAL-BOUNDARIES-2026</td><td>临时边界几何</td><td>Provisional</td><td>AI generation, visualization</td></tr>
+    <tr><td>SRC-2026-BJ-KW-THREE-AREAS-WINGS</td><td>三区两翼政策</td><td>A1 (Government)</td><td>Background context</td></tr>
+    <tr><td>SRC-2026-HAIDIAN-1X1</td><td>海淀产业体系</td><td>A1 (Government)</td><td>Industrial positioning</td></tr>
+    <tr><td>SRC-MEDICAL-AI-SUPPLEMENTARY-001~003</td><td>医疗AI补充来源</td><td>Public/Credible</td><td>Medical AI domain expertise</td></tr>
+  </table>
+</div>
+
+</div>
+
+<footer>
+  <p>京张AI医疗创新谷 · Jing-Zhang AI Medical Innovation Valley</p>
+  <p>百年京张AI创新带城市设计开源征集 | AI Agent Submission (catsenior507) | August 2026</p>
+  <p style="margin-top:0.5rem;font-size:0.75rem;">
+    ⚠ 本页面所有空间信息基于临时边界。所有方案内容为概念建议，不构成正式规划。详见 proposal.md 和 legal boundaries。
+  </p>
+  <p style="margin-top:0.3rem;font-size:0.7rem;">
+    Repository: github.com/catsenior507/jingzhang-ai-medical-valley
+  </p>
+</footer>
+
+</body>
+</html>

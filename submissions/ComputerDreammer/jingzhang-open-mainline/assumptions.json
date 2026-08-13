@@ -1,0 +1,126 @@
+{
+  "schema_version": "0.2.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "proposal_slug": "jingzhang-open-mainline",
+  "author_github": "ComputerDreammer",
+  "generated_at": "2026-08-11T00:00:00+08:00",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "title_zh": "总体设计边界与统筹研究边界均为 provisional",
+      "statement_zh": "本方案所有空间边界基于公告文字四至、约面积与公开报道描述的走廊位置推定的概念多边形，不替代官方红线；官方 polygon 到达后须整体替换并复算。",
+      "status": "provisional",
+      "related_metrics": ["site_area_sqm", "study_area_sqm"],
+      "related_sources": ["BOUNDARY-SOURCE", "NEWS-JZ-PARK-2026", "NEWS-PARK-SEGMENTS-2026"],
+      "update_trigger": "官方资格预审文件/任务书附件边界发布"
+    },
+    {
+      "id": "A-KEYAREA-001",
+      "title_zh": "三处重点区域位置为概念推定",
+      "statement_zh": "众智园（学院路北段/东升八家一带）、北京AI原点社区（五道口/清华科技园一带）、大钟寺AI产业集聚区（北三环/大钟寺站一带）的概念范围由公开报道定位推定；形状沿方案主脊线生成，面积按公告面积复算，仅供设计讨论。",
+      "status": "provisional",
+      "related_metrics": ["key_area_zhongzhiyuan_area_sqm", "key_area_beijing_ai_origin_area_sqm", "key_area_dazhongsi_area_sqm"],
+      "related_sources": ["KEY-AREA-SOURCE", "NEWS-ZHONGZHIYUAN-2026", "NEWS-AI-ORIGIN-2026", "NEWS-PARK-SEGMENTS-2026"],
+      "update_trigger": "官方重点区域 polygon 发布"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "title_zh": "控规条件（容积率/高度/密度/绿地率/退线）未公开，全部列为待补条件",
+      "statement_zh": "本方案不给出任何地块容积率、建筑高度、道路红线或拆改留结论；开发强度与高度以概念区间和待确认控规条件表述。",
+      "status": "pending_official_data",
+      "related_metrics": ["floor_area_ratio", "building_density"],
+      "related_sources": ["MOHURD-CONTROL-DETAILED-PLANNING", "PROCESSED-FACT-PACK"],
+      "update_trigger": "官方控规条件或任务书附件发布"
+    },
+    {
+      "id": "A-LANDUSE-001",
+      "title_zh": "用地分区为概念功能映射，非现状或法定用地分类",
+      "statement_zh": "18 个概念地块按国土空间用地用海分类代码（05/0701/0702/0802/0803/0804/1401/1402/16）映射方案功能意图，不声称反映现状权属或法定规划。",
+      "status": "provisional",
+      "related_metrics": ["land_use_05_area_sqm", "land_use_0701_area_sqm", "land_use_0702_area_sqm", "land_use_0802_area_sqm", "land_use_0803_area_sqm", "land_use_0804_area_sqm", "land_use_1401_area_sqm", "land_use_1402_area_sqm", "land_use_16_area_sqm"],
+      "related_sources": ["MNR-LAND-USE-CLASSIFICATION-GUIDE", "BOUNDARY-SOURCE"],
+      "update_trigger": "现状底数与官方用地数据发布"
+    },
+    {
+      "id": "A-BUILD-001",
+      "title_zh": "建筑要素为概念示意，不代表现状或规划建筑",
+      "statement_zh": "20 栋概念示意建筑仅用于表达节点形态与体量方向，其基底面积、层数与高度为概念假设；现状建筑与权属底数未公开。",
+      "status": "concept",
+      "related_metrics": ["building_count_concept", "building_density", "floor_area_ratio"],
+      "related_sources": ["PROPOSAL-CONCEPT", "PROCESSED-FACT-PACK"],
+      "update_trigger": "现状建筑与权属底数公开"
+    },
+    {
+      "id": "A-ROAD-001",
+      "title_zh": "现状道路为背景示意，新增线位全部为概念建议",
+      "statement_zh": "geometry/roads.geojson 中 existing_context 要素来自 OpenStreetMap 背景，不构成正式线位；concept_suggestion 要素（慢行主脊、鱼骨通道、接驳环线）为概念建议，需交通专业与法定程序深化。",
+      "status": "provisional",
+      "related_metrics": ["road_network_length_m", "road_segment_count"],
+      "related_sources": ["OSM-BASELINE", "PROPOSAL-CONCEPT"],
+      "update_trigger": "官方道路/轨道/市政底图发布"
+    },
+    {
+      "id": "A-TRANSIT-001",
+      "title_zh": "轨道线位为公开背景信息，线位与站点接驳均待官方确认",
+      "statement_zh": "地铁 13 号线与京张高铁/京包线线位仅作背景约束线索，不表述为已确定工程线位；站点接驳为概念建议。",
+      "status": "provisional",
+      "related_metrics": [],
+      "related_sources": ["OSM-BASELINE", "PROCESSED-FACT-PACK"],
+      "update_trigger": "官方轨道线位与站点资料发布"
+    },
+    {
+      "id": "A-PHASE-001",
+      "title_zh": "分期实施为概念建议，不设定绝对年份",
+      "statement_zh": "启动期/成长期/成熟期的划分依据任务书时间线索与公共资产先行逻辑，具体时序由专业团队在官方程序与权属条件下确定；本方案不给出投资测算或开发时序结论。",
+      "status": "concept",
+      "related_metrics": ["phase_count"],
+      "related_sources": ["PROPOSAL-CONCEPT", "OFFICIAL-ANNOUNCEMENT"],
+      "update_trigger": "征集后续正式落地安排发布"
+    },
+    {
+      "id": "A-METRIC-001",
+      "title_zh": "指标口径为方案概念口径，官方数据到达后重算",
+      "statement_zh": "绿地率、公共空间占比、建筑密度等比例指标基于 provisional 几何与概念地块计算，仅用于方案间比较与设计讨论；正式评分指标以官方边界/控规数据复算为准。",
+      "status": "provisional",
+      "related_metrics": ["green_ratio", "public_space_ratio", "building_density", "floor_area_ratio"],
+      "related_sources": ["BOUNDARY-SOURCE", "PROCESSED-FACT-PACK"],
+      "update_trigger": "官方边界/控规数据发布"
+    },
+    {
+      "id": "A-CULTURE-001",
+      "title_zh": "文保与历史资源范围待官方确认",
+      "statement_zh": "清华园车站旧址、大钟寺古钟博物馆等文化资源的空间范围与建设控制地带以官方文保资料为准；本方案仅引用公开事实并作概念叙事，不划设保护范围。",
+      "status": "pending_official_data",
+      "related_metrics": [],
+      "related_sources": ["NEWS-PARK-SEGMENTS-2026", "PROCESSED-FACT-PACK"],
+      "update_trigger": "官方文保范围发布"
+    },
+    {
+      "id": "A-OPERATION-001",
+      "title_zh": "活动体系、运营机制与招引转化均为概念建议",
+      "statement_zh": "年度活动、开发者社区、场景开放、国际传播与招引转化机制是概念方案，不构成任何已确定的政府安排、投资承诺或政策承诺。",
+      "status": "concept",
+      "related_metrics": ["annual_event_count"],
+      "related_sources": ["PROPOSAL-CONCEPT", "AGENT-TASKBOOK"],
+      "update_trigger": "主办方正式活动/政策安排发布"
+    },
+    {
+      "id": "A-TRACK-001",
+      "title_zh": "赛道与场景 ID 为与仓库注册表的最佳匹配，需在提交前与 tracks.json/scenarios 校准",
+      "statement_zh": "front matter 中声明的 tracks 与 scenarios ID 依据 README 赛道描述推断；若仓库注册表 ID 不同，须在最终提交前按官方 ID 修正，避免 CI 无法匹配。",
+      "status": "to_verify",
+      "related_metrics": ["track_count", "scenario_ref_count"],
+      "related_sources": ["SITE-PACKAGE"],
+      "update_trigger": "tracks.json / scenarios 注册表核对"
+    },
+    {
+      "id": "A-AREA-001",
+      "title_zh": "面积复算方法披露",
+      "statement_zh": "所有面积由 WGS84 经纬度经 CGCS2000/3 度 Gauss-Kruger（EPSG:4548，中央经线 117°E，中央子午线缩放 1.0）投影后按鞋带公式计算；由于 provisional 几何本身为近似，结果取整到平方米后仍有不确定度，不用于精确复算。",
+      "status": "provisional",
+      "related_metrics": ["site_area_sqm", "study_area_sqm"],
+      "related_sources": ["BOUNDARY-SOURCE", "SITE-PACKAGE"],
+      "update_trigger": "官方 EPSG:4548 polygon 发布"
+    }
+  ]
+}

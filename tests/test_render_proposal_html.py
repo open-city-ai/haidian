@@ -1,4 +1,4 @@
-import sys
+import os
 import tempfile
 import unittest
 import subprocess
@@ -300,6 +300,148 @@ English content [source:SITE-PACKAGE] [standard:STD-001] [depth:DEPTH-001]
             translated = (submission_dir / "report" / "proposal.en.html").read_text(encoding="utf-8")
             self.assertIn('href="../report/proposal.en.html"', primary)
             self.assertIn('href="../public/custom.html"', translated)
+
+    def test_cli_rejects_outputs_outside_submission_and_render_inputs(self) -> None:
+        for output_kind in ("parent", "proposal", "image", "manifest"):
+            with self.subTest(output_kind=output_kind), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                submission_dir = root / "submission"
+                figures = submission_dir / "assets" / "figures"
+                figures.mkdir(parents=True)
+                proposal = submission_dir / "proposal.md"
+                figure = figures / "overview.png"
+                figure.write_bytes(b"original image")
+                proposal.write_text(
+                    '---\ntitle: "Sample"\n---\n\n![Overview](assets/figures/overview.png)\n',
+                    encoding="utf-8",
+                )
+                output = {
+                    "parent": "../outside.html",
+                    "proposal": "proposal.md",
+                    "image": "assets/figures/overview.png",
+                    "manifest": "manifest.json",
+                }[output_kind]
+                originals = {proposal: proposal.read_bytes(), figure: figure.read_bytes()}
+
+                completed = subprocess.run(
+                    [
+                        sys.executable,
+                        str(REPO_ROOT / "scripts" / "render_proposal_html.py"),
+                        str(submission_dir),
+                        "--out",
+                        output,
+                    ],
+                    capture_output=True,
+                    text=True,
+                    check=False,
+                )
+
+                self.assertNotEqual(0, completed.returncode)
+                self.assertFalse((root / "outside.html").exists())
+                for path, original in originals.items():
+                    self.assertEqual(original, path.read_bytes())
+
+    def test_cli_rejects_symlinked_output_parent(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            submission_dir = root / "submission"
+            submission_dir.mkdir()
+            (submission_dir / "proposal.md").write_text("# Sample\n", encoding="utf-8")
+            outside = root / "outside"
+            outside.mkdir()
+            (submission_dir / "report").symlink_to(outside, target_is_directory=True)
+
+            completed = subprocess.run(
+                [sys.executable, str(REPO_ROOT / "scripts" / "render_proposal_html.py"), str(submission_dir)],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertNotEqual(0, completed.returncode)
+            self.assertIn("output path must not use symbolic links", completed.stderr)
+            self.assertEqual([], list(outside.iterdir()))
+
+    def test_cli_replaces_hardlinked_output_without_changing_peer(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            submission_dir = root / "submission"
+            report = submission_dir / "report"
+            report.mkdir(parents=True)
+            (submission_dir / "proposal.md").write_text("# Sample\n", encoding="utf-8")
+            peer = root / "peer.html"
+            peer.write_text("peer content\n", encoding="utf-8")
+            output = report / "proposal.html"
+            os.link(peer, output)
+
+            completed = subprocess.run(
+                [sys.executable, str(REPO_ROOT / "scripts" / "render_proposal_html.py"), str(submission_dir)],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(0, completed.returncode, completed.stdout + completed.stderr)
+            self.assertEqual("peer content\n", peer.read_text(encoding="utf-8"))
+            self.assertIn("<!doctype html>", output.read_text(encoding="utf-8"))
+
+    def test_cli_rejects_symlinked_proposal_input(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            submission_dir = root / "submission"
+            submission_dir.mkdir()
+            outside = root / "outside.md"
+            outside.write_text("# External\n", encoding="utf-8")
+            (submission_dir / "proposal.md").symlink_to(outside)
+
+            completed = subprocess.run(
+                [sys.executable, str(REPO_ROOT / "scripts" / "render_proposal_html.py"), str(submission_dir)],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertNotEqual(0, completed.returncode)
+            self.assertIn("proposal input must not be a symbolic link", completed.stderr)
+            self.assertEqual("# External\n", outside.read_text(encoding="utf-8"))
+
+    def test_cli_can_regenerate_default_output(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text("# Sample\n", encoding="utf-8")
+            command = [
+                sys.executable,
+                str(REPO_ROOT / "scripts" / "render_proposal_html.py"),
+                str(submission_dir),
+            ]
+
+            first = subprocess.run(command, capture_output=True, text=True, check=False)
+            second = subprocess.run(command, capture_output=True, text=True, check=False)
+
+            self.assertEqual(0, first.returncode, first.stdout + first.stderr)
+            self.assertEqual(0, second.returncode, second.stdout + second.stderr)
+            self.assertIn(
+                "<!doctype html>",
+                (submission_dir / "report" / "proposal.html").read_text(encoding="utf-8"),
+            )
+
+    def test_cli_ignores_missing_translation_file(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text(
+                '---\ntitle: "Sample"\ntranslation_file: "missing.md"\n---\n# Sample\n',
+                encoding="utf-8",
+            )
+
+            completed = subprocess.run(
+                [sys.executable, str(REPO_ROOT / "scripts" / "render_proposal_html.py"), str(submission_dir)],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(0, completed.returncode, completed.stdout + completed.stderr)
+            self.assertTrue((submission_dir / "report" / "proposal.html").is_file())
 
 
 if __name__ == "__main__":

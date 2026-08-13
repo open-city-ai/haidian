@@ -132,19 +132,19 @@ The land-use partition derives from a topology-safe polygonization of the site b
 
 | Code | Use | Area (m²) | Share | Design logic |
 |---|---|---|---|---|
-| 1401 | Park green space (Jing-Zhang vitality belt) | 2,642,389 | 23.2% | Main axis and stitching medium |
-| 1402 | Buffer green space | 79,625 | 0.7% | North gateway green wedge |
-| 0802 | Research land (AI R&D) | 2,487,748 | 21.8% | Main industry body of the three cores |
-| 0804 | Education land | 1,797,423 | 15.8% | Xueyuan Road university corridor |
-| 05 | Commercial service land | 1,305,722 | 11.4% | Dazhongsi AI-native new business |
-| 0701 | Urban residential land | 2,776,870 | 24.3% | Livable and talent communities |
-| 0702 | Community service land | 323,069 | 2.8% | 15-minute living circle facilities |
+| 1401 | Park green space (Jing-Zhang vitality belt) | 1,991,800 | 17.5% | Main axis and stitching medium |
+| 1402 | Buffer green space | 136,108 | 1.2% | North gateway green wedge |
+| 0802 | Research land (AI R&D) | 3,355,987 | 29.4% | Main industry body of the three cores |
+| 0804 | Education land | 998,923 | 8.8% | Xueyuan Road university corridor |
+| 05 | Commercial service land | 2,078,777 | 18.2% | Dazhongsi AI-native new business |
+| 0701 | Urban residential land | 1,749,152 | 15.3% | Livable and talent communities |
+| 0702 | Community service land | 1,102,095 | 9.7% | 15-minute living circle facilities |
 
 Layout logic: **green main axis first** (continuity of the vitality belt), **industry clustered along the axis** (research east of the green axis, commerce toward the south core), **education corridor preserved and strengthened** (university belt), **residential communities embedded in the green network** (west and east edges within a 5-minute walk of the park belt) [depth:land_use_layout] [standard:MNR-LAND-USE-CLASSIFICATION].
 
 ### Building Scale and Retain/Renovate/Demolish Logic
 
-- 39 block-scale concept footprints totaling 1,667,801 m² illustrate industrial blocks, communities and station complexes [data:geometry/buildings.geojson] [metric:building_footprint_area_sqm].
+- 262 block-scale concept footprints totaling 1,070,482 m² illustrate industrial blocks, communities and station complexes [data:geometry/buildings.geojson] [metric:building_footprint_area_sqm].
 - **Retain/renovate/demolish principle (directional)**: prioritize retention of universities, research institutes, rail transit stations and historic buildings; use "micro-renewal + function replacement" along both sides of the park belt; only propose "upgrade" for inefficient industrial space and dead-end parcels; parcel-level conclusions require official survey data [assumption:A-EXISTING-001].
 - FAR and building height are statutory indicators absent from the package and are listed as pending confirmation without numeric conclusions [metric:floor_area_ratio] [metric:building_height_m] [assumption:A-CONTROLS-001].
 
@@ -232,23 +232,21 @@ Protocols also require: lock the non-AI baseline, time window, affected populati
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
-The land-use structure and retain/renovate/demolish logic are given in the "Overall Design" chapter; here the indicator chain and design intent are added: site area 11,412,825 m²; green (1401+1402) 2,722,014 m² / 23.9%; research (0802) 2,487,748 m² / 21.8%; commerce (05) 1,305,722 m² / 11.4%; education (0804) 1,797,423 m² / 15.8%; residential (0701) 2,776,870 m² / 24.3%; community service (0702) 323,069 m² / 2.8% [metric:site_area_sqm] [metric:green_ratio] [metric:land_use_area_1401_sqm].
-
-Education (0804) 1,797,423 m² / 15.8%, with per-code areas at [metric:land_use_area_0802_sqm] [metric:land_use_area_0804_sqm] [metric:land_use_area_0701_sqm] and the remainder at [metric:land_use_area_0702_sqm].
+The land-use structure and retain/renovate/demolish logic are given in the "Overall Design" chapter; here the indicator chain and design intent are added: site area 11,412,825 m²; green (1401+1402) 2,127,908 m² / 18.6%; research (0802) 3,355,987 m² / 29.4%; commerce (05) 2,078,777 m² / 18.2% [metric:site_area_sqm] [metric:green_ratio] [metric:land_use_area_1401_sqm]. Education (0804) 998,923 m² / 8.8%; residential (0701) 1,749,152 m² / 15.3%; community service (0702) 1,102,095 m² / 9.7%, with per-code areas at [metric:land_use_area_0802_sqm] [metric:land_use_area_0804_sqm] [metric:land_use_area_0701_sqm] and the remainder at [metric:land_use_area_0702_sqm].
 
 All shares are reproducible block-by-block from `land_use.geojson`, and the partition is topology-safe with no gaps or overlaps; buffer and commerce areas are recorded at [metric:land_use_area_1402_sqm] [metric:land_use_area_05_sqm], while residential and community-service areas are recorded at [metric:land_use_area_0701_sqm] [metric:land_use_area_0702_sqm]. Total coverage is recorded at [metric:land_use_total_area_sqm] [data:geometry/land_use.geojson] [depth:land_use_layout].
 
-Building scale is expressed as 39 block-scale concept footprints totaling 1,667,801 m², laid out on the principle "research east of the green axis, commerce toward the south core, residential embedded in the green network"; footprints are spatial-supply illustrations, not statutory floor-area or FAR conclusions [data:geometry/buildings.geojson] [metric:building_footprint_area_sqm]. Retain/renovate/demolish is directional: universities, research institutes, rail stations and historic buildings are prioritized for retention, both sides of the park belt use "micro-renewal + function replacement", and only inefficient industrial space is proposed for upgrade; parcel-level conclusions require official survey and ownership data, which this proposal does not provide [assumption:A-EXISTING-001]. Statutory controls — FAR, height, density, green ratio, setback — are absent from the package and listed as pending official data without numeric conclusions [metric:floor_area_ratio] [metric:building_height_m] [assumption:A-CONTROLS-001].
+Building scale is expressed as 262 block-scale concept footprints totaling 1,070,482 m², laid out on the principle "research east of the green axis, commerce toward the south core, residential embedded in the green network"; footprints are spatial-supply illustrations, not statutory floor-area or FAR conclusions [data:geometry/buildings.geojson] [metric:building_footprint_area_sqm]. Retain/renovate/demolish is directional: universities, research institutes, rail stations and historic buildings are prioritized for retention, both sides of the park belt use "micro-renewal + function replacement", and only inefficient industrial space is proposed for upgrade; parcel-level conclusions require official survey and ownership data, which this proposal does not provide [assumption:A-EXISTING-001]. Statutory controls — FAR, height, density, green ratio, setback — are absent from the package and listed as pending official data without numeric conclusions [metric:floor_area_ratio] [metric:building_height_m] [assumption:A-CONTROLS-001].
 
 ## Transport, Rail, Municipal Infrastructure, and Public Services
 
-- **Roads and slow mobility**: three north-south corridors (Xueyuan Road innovation corridor, vitality-axis service road, park slow main corridor) plus four east-west connectors (Qinghe greenway, Zhichun Road, 4th Ring, Zhongzhiyuan connector), concept network ~26.7 km [data:geometry/roads.geojson] [metric:road_network_length_m]. Slow mobility is prioritized in the park belt with an accessible continuous cross-section [standard:BARRIER-FREE-ENVIRONMENT-LAW].
+- **Roads and slow mobility**: three north-south corridors (Xueyuan Road innovation corridor, vitality-axis service road, park slow main corridor) plus four east-west connectors (Qinghe greenway, Zhichun Road, 4th Ring, Zhongzhiyuan connector), concept network ~34.5 km [data:geometry/roads.geojson] [metric:road_network_length_m]. Slow mobility is prioritized in the park belt with an accessible continuous cross-section [standard:BARRIER-FREE-ENVIRONMENT-LAW].
 - **Rail and station integration**: existing stations (including Dazhongsi) as TOD nodes with 300-500 m mixed-use circles; alignments and station works await engineering review [assumption:A-CONTROLS-001].
 - **Municipal and new infrastructure**: concept directions for distributed energy, edge computing co-trenched with utilities, and full 15-minute living-circle public services; no engineering-feasibility conclusions [depth:municipal_new_infrastructure].
 
 ## Blue-Green Network, Public Space, and Urban Character
 
-- **Blue-green system**: the Jing-Zhang Heritage Park vitality axis (1401 green, 2,642,389 m²) as the north-south spine, with the Qinghe greenway and Xiaoyuehe scenario wing as east-west wings — a "one axis, two wings" blue-green skeleton [data:geometry/green_space.geojson] [data:geometry/roads.geojson#ROAD-004] [metric:green_space_area_sqm].
+- **Blue-green system**: the Jing-Zhang Heritage Park vitality axis (1401 green, 1,991,800 m²; incl. the north gateway wedge 2,127,908 m² total) as the north-south spine, with the Qinghe greenway and Xiaoyuehe scenario wing as east-west wings — a "one axis, two wings" blue-green skeleton [data:geometry/green_space.geojson] [data:geometry/roads.geojson#ROAD-004] [metric:green_space_area_sqm].
 - **Public-space nodes**: four concept plazas — Jing-Zhang AI North Gateway Plaza, AI Origin Community Central Plaza, Dazhongsi AI Consumption Plaza, Wudaokou Innovation Exchange Node [data:geometry/public_space.geojson] [metric:public_space_area_sqm].
 
 - **AI pilgrimage landmarks (4)**: (1) **Origin Monument** (AI Origin Community) — commemorative public art and honor wall co-locating the railway origin and the AI origin [depth:landmark_catalog]; (2) **Open-Source Milestone Plaza** (Zhongzhiyuan) — a "contributor wall" and honor display system recording key Chinese open-source milestones [depth:honor_display_system]; (3) **AI Star Avenue** (park belt) — annual AI-achievement light bricks along the former rail alignment; (4) **Dazhongsi AI Consumption Dome** — an AI-native commerce and display destination. Landmarks are concepts; construction requires compliance with heritage, green-line, blue-line and traffic-safety constraints, and must avoid over-entertainment [source:AGENT-TASKBOOK] [assumption:A-EXISTING-001].
@@ -295,9 +293,9 @@ Core indicator chain (all reproducible from `metrics.json` and `geometry/*.geojs
 
 - **Site scale**: overall design area 11,412,825 m²; coordinated research area 43.6 km²; key areas 368.4 ha total [metric:site_area_sqm] [metric:coordinated_research_area_sqm] [metric:key_detailed_design_area_sqm].
 
-- **Land-use structure**: green ratio 23.9% (incl. buffer wedge), research 21.8%, education 15.8%, commerce 11.4%, residential 24.3% [metric:green_ratio] [metric:land_use_total_area_sqm].
+- **Land-use structure**: green ratio 18.6% (incl. buffer wedge), research 29.4%, education 8.8%, commerce 18.2%, residential 15.3%, community service 9.7% [metric:green_ratio] [metric:land_use_total_area_sqm].
 
-- **Space supply**: concept building footprints 1.668 million m²; public-space nodes 131,118 m² / 1.15% of site [metric:building_footprint_area_sqm] [metric:public_space_area_sqm] [metric:public_space_ratio]; road network 26.7 km [metric:road_network_length_m].
+- **Space supply**: concept building footprints 1.070 million m² (262 buildings); public-space nodes 110,175 m² / 1.0% of site [metric:building_footprint_area_sqm] [metric:public_space_area_sqm] [metric:public_space_ratio]; road network 34.5 km [metric:road_network_length_m].
 
 - **Task coverage**: 12 scenario cards (incl. 3 test-validation), 5 personas, 4 AI pilgrimage landmarks, full coverage of the 6 agent tasks, itemized in `compliance_matrix.json` [metric:scenario_card_count] [metric:persona_class_count] [metric:ai_pilgrimage_landmark_count].
 - **Standards and depth**: 9 professional standards answered in `standard_matrix.json`; 15 design-depth items all `complete` in `design_depth_matrix.json`.

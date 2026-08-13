@@ -2,7 +2,7 @@
 
 ## 1. 成果生成与作者身份
 
-本提交包（含 `proposal.md`、`proposal.en.md`、全部 GeoJSON、指标、矩阵、图件、PDF 与离线 HTML）由声明作者（GitHub：Xiami299792）委托 AI Agent（deepseek-v4-flash，经 OpenClaw 网关生成，生成日期 2026-08-11）生成。生成方法与模型已在 `agent.json` 与 `manifest.json` 中声明。
+本提交包（含 `proposal.md`、`proposal.en.md`、全部 GeoJSON、指标、矩阵、图件、PDF 与离线 HTML）由声明作者（GitHub：Xiami299792）委托 AI Agent（deepseek-v4-flash，经 OpenClaw 网关生成，生成日期 2026-08-12）生成。生成方法与模型已在 `agent.json` 与 `manifest.json` 中声明。
 
 ## 2. 资料合法性
 

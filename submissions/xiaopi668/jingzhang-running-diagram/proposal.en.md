@@ -187,6 +187,16 @@ The **admission-level and technology-readiness overview** of the ten cards is pr
 2. **T2 AI traffic-signal dispatching experiment segment** (around Wudaokou): simulation-first, phased live pilots of AI signal timing with human review and one-key rollback, verifying efficiency and safety boundaries.
 3. **T3 Edge-compute and data-sandbox test ground** (Zhongzhiyuan): a compliant test environment for edge models and public-data sandboxes; data stays inside the sandbox and results are human-reviewed [source:AGENT-TASKBOOK].
 
+**Pilot admission gates (v1.3 addition, conceptual mechanism)**: all three test scenarios are managed by four-stage gates — admission / human takeover / stop conditions / evaluation metrics — to keep them supervised, reviewable and exitable [depth:traffic_rail_slow_parking] [depth:municipal_new_infrastructure]:
+
+| Pilot | Admission conditions | Human-takeover trigger | Stop conditions | Evaluation metrics (quarterly review) |
+| --- | --- | --- | --- | --- |
+| T1 Robot delivery corridor | Semi-enclosed corridor operation; speed ≤6 km/h; fixed time windows; operator on site; safety liability insurance | Pedestrian conflict, avoidance failure or device anomaly → one-key on-site takeover | Accident rate above baseline, concentrated public complaints, or unmet evaluation → suspend and review | Delivery success rate, accident rate, public satisfaction, traffic-interference index |
+| T2 AI signal dispatching segment | Simulation pass rate not below the baseline of existing plans; isolated testing; 7×24 human review desk | Abnormal timing, queue overflow or safety event → roll back to normal timing plan | Throughput below baseline or safety event → stop the experiment | Average delay change, queue length, safety-event count, explainability audit |
+| T3 Edge-compute & data sandbox | Data-tier whitelist; sandbox isolation; human review of results; compliance review upfront | Data-escape attempt or unauthorized access → automatic block and alert | Data breach or compliance event → immediate stop and escalation | Tests completed, compliance events, results converted |
+
+All gate conditions are conceptual; actual values and responsible bodies are to be confirmed upon approval of the pilot implementation plans; no pilot may be presented as operating before approval [source:AGENT-TASKBOOK].
+
 ### Five user personas (agent.3)
 
 - **P1 AI founder** (start-up team lead): needs low-cost space, capital connections, test scenarios and recruiting; mainly active in the Origin Community and Zhongzhiyuan.
@@ -203,6 +213,13 @@ All scenarios and personas follow privacy and human-review boundaries: no "smart
 - **Vulnerable-group impact**: the low-rent industrial-space replacement includes first-refusal re-entry and rent-cap clauses for incumbent tenants (conceptual); the public-space co-governance fund prioritizes senior and children usage windows;
 - **Resident participation**: the B10 Civic Forum rotates quarterly among the three stations; major renewal projects require a prior consultative procedure via the street co-governance committee and resident forums (conceptual mechanism);
 - **Public-interest KPIs (suggested)**: barrier-free slow-path coverage rate, parallel-traditional-service rate, population within 500 m of community public space, and resident-forum participation count enter the annual Running Diagram review metrics (conceptual scope, not statutory).
+
+**Public right to know and participation safeguards (v1.3 addition, the public side of the Punctuality Protocol)**: the Punctuality Protocol is extended from an industry mechanism into public rights [depth:overall_spatial_structure] [source:AGENT-TASKBOOK]:
+
+- **Right to know — the open Running Diagram**: the Running Diagram body (scenario list, data dictionary, evaluation metrics, service times and lines) is released as open source; any citizen can query who dispatches each "innovation train", until when it runs, and how it exits; the annual Running Diagram draft is published for public comment no less than 30 days before the spring Departure Season (conceptual scope) [source:AGENT-TASKBOOK];
+- **Right to participate — three discussion channels**: ① B10 City Forum rotates among the three stations quarterly with publicly solicited agendas and published decisions; ② the annual Running Diagram has a "public comment window" (draft—feedback—revision—release); ③ renewal projects touching public space (platform walkways, station forecourts, community parks) require prior resident deliberation through the street co-governance committee (conceptual mechanism, linking to the v1.1 inclusive design) [depth:renewal_project_list];
+- **Co-governance fund transparency**: the co-governance fund's budget and final accounts are published annually under joint oversight by resident representatives and the developer community; the fund prioritizes senior, children and barrier-free use windows (conceptual) [depth:phasing_implementation];
+- **Exitable and appealable**: citizens may appeal or request withdrawal from any service call; the operator must reply within a published time limit and retain records (conceptual scope) [standard:GENERATIVE-AI-INTERIM-MEASURES].
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 

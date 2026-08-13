@@ -1,0 +1,52 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-PROV-BOUNDARY-001",
+      "title_zh": "临时边界精度限制",
+      "category": "geometry_precision",
+      "description_zh": "总体设计范围与三处重点区采用仓库维护者发布的 provisional_boundaries.geojson，为基于公告文字四至、位置线索与约面积推定的粗略多边形，精度 provisional_rough，不得作为 official redline 或精确面积依据。正式数据发布后须复算。",
+      "affects": [
+        "site_area_sqm",
+        "key_area_*_sqm",
+        "green_ratio",
+        "public_space_ratio",
+        "all geometry layers"
+      ],
+      "source_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
+    },
+    {
+      "id": "A-COORD-001",
+      "title_zh": "坐标系与投影转换",
+      "category": "coordinate_transform",
+      "description_zh": "GeoJSON 交换采用 EPSG:4326，面积复算投影至 EPSG:4548（CGCS2000 / 3°GK CM117E）。转换基于 shapely+pyproj，误差在米级，最终以官方测绘为准。",
+      "affects": [
+        "all area metrics"
+      ],
+      "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "title_zh": "法定规划控制项缺失",
+      "category": "missing_control",
+      "description_zh": "容积率、建筑高度、建筑密度、绿地率、退线等官方控规指标当前缺失（planning_limits.json 标记 missing）。本方案相关数值一律标注为 to_be_confirmed，不得伪装为已审定结论。",
+      "affects": [
+        "floor_area_ratio",
+        "building_height_m",
+        "green_ratio_official"
+      ],
+      "source_id": "DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING"
+    },
+    {
+      "id": "A-VERSION-001",
+      "title_zh": "资料版本差异",
+      "category": "version_diff",
+      "description_zh": "设计依据含 2026-05-09 公告与 2026-05-18 清权任务书，二者在表述粒度上不同；以公告为范围主控、以任务书为 agent 任务主控，冲突处以后者任务覆盖为准但空间范围以公告为限。",
+      "affects": [
+        "compliance_matrix",
+        "scope framework"
+      ],
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518"
+    }
+  ]
+}

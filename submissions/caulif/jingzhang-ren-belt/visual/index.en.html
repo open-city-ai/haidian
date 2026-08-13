@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>REN BELT visual overview</title>
+<style>
+:root{--ink:#162033;--muted:#667085;--paper:#fff;--soft:#f4f1ea;--line:#d7dee8;--navy:#19324a;--gold:#c79838;--park:#2f8f72;--amber:#d78b4a;--north:#0f7490}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif;background:#e8edf2;color:var(--ink);line-height:1.55}
+.wrap{max-width:1280px;margin:auto}header{background:var(--navy);color:#fff}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;padding:28px 22px}
+h1{font-size:30px;margin:0 0 10px}h2{font-size:20px;margin:0 0 8px}h3{font-size:16px;margin:0 0 6px}p{margin:0 0 8px}
+.hero-copy{color:#d5e0ea;font-size:15px}
+.status-box{border:1px solid rgba(255,255,255,.22);border-radius:8px;padding:14px;background:rgba(255,255,255,.06)}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.pill{border:1px solid rgba(255,255,255,.26);border-radius:999px;padding:5px 10px;font-size:12px}
+main{padding:18px 16px 40px}
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:8px;margin:0 auto 16px;overflow:hidden}
+.sheet-head{padding:16px 18px;border-bottom:1px solid #e6ebf2;background:#fbfcfe}
+.sheet-head p{color:var(--muted)}
+.fig{display:block;width:100%;height:auto;border-bottom:1px solid var(--line)}
+.map-grid{display:grid;grid-template-columns:minmax(0,1.5fr) 300px;gap:16px;padding:16px}
+svg{display:block;width:100%;height:auto}
+.metric{display:flex;justify-content:space-between;border-bottom:1px dashed #e2e8f0;padding:6px 0}
+.metric span{color:var(--muted);font-size:13px}
+.matrix,.scenario-grid,.implementation-grid,.layer-grid{display:grid;gap:12px;padding:16px}
+.matrix,.scenario-grid,.implementation-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.layer-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--soft);font-size:13px}
+table{width:calc(100% - 32px);margin:0 16px 16px;border-collapse:collapse;font-size:13px}
+th,td{border:1px solid var(--line);padding:8px;vertical-align:top;text-align:left}
+th{background:#f1f5f9}
+.risk{border:1px solid #e6b8b3;background:#fdf2f0;border-radius:8px;padding:12px}
+.note{font-size:12px;color:#94a3b8;padding:0 16px 14px}
+.seg-n{border-top:4px solid var(--north)}.seg-m{border-top:4px solid var(--park)}.seg-s{border-top:4px solid var(--amber)}
+@media(max-width:900px){.hero,.map-grid,.matrix,.scenario-grid,.implementation-grid,.layer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap hero"><div>
+<p class="pill-row"><span class="pill">three scopes</span><span class="pill">key areas</span><span class="pill">land use</span><span class="pill">slow travel</span><span class="pill">blue-green</span><span class="pill">buildings</span><span class="pill">renewal</span><span class="pill">AI scenes</span></p>
+<h1>Centennial Jing-Zhang REN BELT</h1>
+<p class="hero-copy">The main visual is the already-open 9 km heritage park (north nature-leisure / mid Phase 1 / south community), three civic nodes on real anchors, and a switch-off origin. The provisional box is only a dashed constraint. This page is offline. Numbers still come from GeoJSON and metrics.json.</p>
+</div>
+<aside class="status-box"><strong>Self-check</strong>
+<p>Four gates are re-run after finalize. Boundary is provisional, not a legal redline.</p>
+<p>#1029 Dazhongsi box is ~2.26 km from the metro. #846 provisional site does not meet the OSM park. Park Phase 2 opened 2026-08-06 (~9 km / 53 ha); schematic green is ~273.5 ha — do not mix them.</p>
+</aside></div></header>
+<main class="wrap">
+<section class="sheet"><div class="sheet-head"><h2>Overview map</h2><p>North / mid / south colour the open park. Station names sit left of the spine.</p></div>
+<img class="fig" src="../assets/figures/site-overview.en.png" alt="Overview">
+<div class="map-grid">
+<div>
+<svg viewBox="0 0 1000 420" role="img" aria-label="North-mid-south schematic">
+<rect width="1000" height="420" fill="#f7f4ee"/>
+<rect x="40" y="24" width="280" height="372" fill="none" stroke="#d78b4a" stroke-dasharray="8 6"/>
+<path d="M500 40 L500 150" stroke="#0f7490" stroke-width="18"/>
+<path d="M500 150 L500 250" stroke="#2f8f72" stroke-width="18"/>
+<path d="M500 250 L500 380" stroke="#d78b4a" stroke-width="18"/>
+<circle cx="500" cy="90" r="18" fill="#0f7490"/><text x="360" y="96" font-size="14" text-anchor="end">Zhongzhiyuan</text>
+<circle cx="500" cy="210" r="22" fill="#c79838"/><text x="360" y="216" font-size="14" text-anchor="end">Origin</text>
+<circle cx="500" cy="330" r="18" fill="#d78b4a"/><text x="360" y="336" font-size="14" text-anchor="end">Dazhongsi</text>
+<text x="530" y="110" font-size="13" fill="#0f7490">North 2.6 km / 30.01 ha</text>
+<text x="530" y="200" font-size="13" fill="#2f8f72">Mid Phase 1 2.4 km</text>
+<text x="530" y="300" font-size="13" fill="#d78b4a">South 23.08 ha</text>
+</svg>
+</div>
+<aside>
+<h3>Core metrics</h3>
+<div class="metric"><span>site_area_sqm</span><strong data-metric="site_area_sqm" data-value="11412825.386">11412825.386</strong></div>
+<div class="metric"><span>green_ratio</span><strong data-metric="green_ratio" data-value="0.239667">0.239667</strong></div>
+<div class="metric"><span>public_space_ratio</span><strong data-metric="public_space_ratio" data-value="0.104222">0.104222</strong></div>
+<div class="risk"><h3>Assumptions</h3><p>Official polygon, controls, tenure and redlines are pending. Site-area confidence=medium. 53 ha opened park ≠ schematic green.</p></div>
+</aside>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><h2>Three scopes</h2></div>
+<div class="matrix">
+<article class="card"><h3>Coordinated ~43.6 km²</h3><p>Industry chain and checkable cross-district interfaces.</p></article>
+<article class="card"><h3>Overall design ~11.4 km²</h3><p>One spine, three stations, twelve cards, L0–L3.</p></article>
+<article class="card"><h3>Key areas ~368.4 ha</h3><p>Zhongzhiyuan / Origin / Dazhongsi.</p></article>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><h2>North / mid / south</h2></div>
+<div class="matrix">
+<article class="card seg-n"><h3>North, nature-leisure</h3><p>Tsinghua East–Jianting, ~2.6 km / 30.01 ha. S02, S06, T2, T3.</p></article>
+<article class="card seg-m"><h3>Mid, Phase 1</h3><p>Tsinghua East–Zhichun, ~2.4 km (open since 2023). S01, S07, S11, S12.</p></article>
+<article class="card seg-s"><h3>South, community</h3><p>Beijing North–Zhichunlu Dayuncun, ~23.08 ha. S05, S08, S09, T1.</p></article>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><h2>Layers L0–L3</h2></div>
+<div class="layer-grid">
+<article class="card"><h3>L0 built</h3><p>Three ways, nine streets, Origin block, 1733.</p></article>
+<article class="card"><h3>L1 reversible</h3><p>Wayfinding, plaza, guide, AI Week, access audit.</p></article>
+<article class="card"><h3>L2 permitted</h3><p>Qinghe, transfer street, frontage, retail street.</p></article>
+<article class="card"><h3>L3 redline</h3><p>Talk only to gazetted projects. No official polygon → no works.</p></article>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><h2>Key areas / land use / mobility</h2></div>
+<img class="fig" src="../assets/figures/key-areas.en.png" alt="Key areas">
+<img class="fig" src="../assets/figures/land-use-structure.en.png" alt="Land use">
+<img class="fig" src="../assets/figures/mobility-bluegreen.en.png" alt="Mobility">
+<img class="fig" src="../assets/figures/metrics-evidence.en.png" alt="Metrics">
+</section>
+
+<section class="sheet"><div class="sheet-head"><h2>Cross-district interfaces</h2></div>
+<table>
+<thead><tr><th>Partner</th><th>Action</th><th>Stop</th></tr></thead>
+<tbody>
+<tr><td>Huilongguan cycleway</td><td>Signs to this belt's edge</td><td>No extra signs if tenure is unclear</td></tr>
+<tr><td>Dongsheng Bajia</td><td>Nature-leisure wayfinding only</td><td>Stop events if ecology thresholds trip</td></tr>
+<tr><td>Qinghe waterfront</td><td>S06/T3 publish aggregates only</td><td>Stop tests if water/flood thresholds trip</td></tr>
+<tr><td>Beiwai / Future / Huairou / EDA</td><td>Reserve AI Week guest slots</td><td>No partner branding without a written invite</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="sheet"><div class="sheet-head"><h2>Year-1 places</h2></div>
+<table>
+<thead><tr><th>Window</th><th>Public place</th><th>Action</th></tr></thead>
+<tbody>
+<tr><td>Q1</td><td>Origin block (Wudaokou)</td><td>Open Call Lab</td></tr>
+<tr><td>Q2</td><td>North Jianting–Qinghe</td><td>Blue-green repair week</td></tr>
+<tr><td>Q3</td><td>South greenway; 1733 indoor backup</td><td>Global AI Belt Week</td></tr>
+<tr><td>Q4</td><td>Tsinghuayuan–Phase 1</td><td>Audit and memory walk</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="sheet"><div class="sheet-head"><h2>Twelve scenes and twelve delivery cards</h2></div>
+<div class="scenario-grid">
+<article class="card"><h3>S01–S04</h3><p>Publish hall, safety sandbox, edge compute, slow guide.</p></article>
+<article class="card"><h3>S05–S08</h3><p>Pitch hall, Qinghe corridor, transfer street, data parlour.</p></article>
+<article class="card"><h3>S09–S12</h3><p>Living street, AI Week, memory guide, Origin art.</p></article>
+</div>
+<div class="implementation-grid">
+<article class="card"><h3>JZ-01</h3><p>Separate quarterly access audits on north and south segments.</p></article>
+<article class="card"><h3>Inclusion</h3><p>No smartphone gate. Paper, phone and staff stay open.</p></article>
+<article class="card"><h3>Q1–Q4</h3><p>Lab, repair week, AI Week, public audit walk — each on an open place.</p></article>
+</div>
+<p class="note">Sources in sources.json. No CDN, iframe, form or fetch.</p>
+</section>
+</main>
+</body>
+</html>

@@ -121,3 +121,28 @@ python3 scripts/prepare_source_registry_draft.py --json
 - `not_usable_for`
 
 正文必须说明资料的设计作用。例如：该公告用于确认三层范围和设计任务；临时边界只用于 intake 可视化；专业标准用于风貌、公共空间和控规深度语言，不用于推导本项目已批控规指标。
+
+## Quick Reference (English)
+
+### Source tiers
+
+| `usable_for_formal` value | Meaning |
+|---|---|
+| `yes` | May be used as authoritative formal evidence; requires `review_status=approved` |
+| `background_only` | Context, precedent, trend — not a basis for planning-control conclusions |
+| `provisional_only` | Intake, visualization, design discussion only; not official boundary or precise area |
+| `no` | Cannot be used as evidence; kept as exclusion record or pending rights-clearance |
+
+### Key scripts
+
+| Task | Command |
+|---|---|
+| Validate registry | `python3 scripts/validate_data_registry.py` |
+| Validate public sources | `python3 scripts/validate_sources.py` |
+| Discover candidate sources | `python3 scripts/discover_public_sources.py` |
+| Generate review draft | `python3 scripts/prepare_source_registry_draft.py --json` |
+| Build frontend data | `python3 scripts/generate_source_registry_data.py` |
+
+### Source registry vs. submission sources.json
+
+The central `data/source_registry.json` covers repository-shared and organizer-provided sources reviewed by maintainers. The submission-package `sources.json` covers every source the participant actually used — including sources not in the central registry. Participants must maintain their own `sources.json`; the absence of a source from the central registry does not automatically permit or prohibit its use.

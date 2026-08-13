@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ORIGIN LINE | Centennial Jing-Zhang AI Innovation Belt Concept Proposal</title>
+<style>
+:root{
+  --bg:#ffffff; --bg2:#fdfdfd; --panel:#ffffff; --panel2:#fcfcfc;
+  --line:#dfdfdf; --line2:#c9c9c9;
+  --ink:#171717; --muted:#707070; --dim:#9b9b9b;
+  --rail:#1f6fd6; --signal:#00bb68; --amber:#b97a12; --red:#c0452f;
+  --mono:Consolas,"Cascadia Mono","Courier New",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.5;
+}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+code{font-family:var(--mono);font-size:.85em;color:var(--signal);background:rgba(0,187,104,.08);padding:1px 6px;border-radius:4px;overflow-wrap:anywhere}
+
+header.hero{
+  border-bottom:1px solid var(--line);
+  background:var(--bg);
+  padding:64px 0 48px;position:relative;overflow:hidden;
+}
+header.hero::before{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--rail) 30%,var(--signal) 70%,transparent);
+}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em}
+.badge{border:1px solid var(--line);color:var(--muted);padding:4px 12px;border-radius:4px;text-transform:uppercase;background:#fff}
+.badge.on{border-color:var(--signal);color:var(--signal)}
+.lang{position:absolute;top:22px;right:26px}
+.lang a{color:var(--signal);text-decoration:none;border:1px solid var(--signal);border-radius:4px;padding:5px 14px;font-size:.8rem;font-family:var(--mono);letter-spacing:.08em;transition:background .15s;background:#fff}
+.lang a:hover{background:rgba(0,187,104,.08)}
+h1{font-size:2.8rem;letter-spacing:-0.5px;font-weight:500;color:var(--ink);line-height:1.1}
+h1 .of{color:var(--rail)}
+.en-sub{color:var(--signal);font-family:var(--mono);font-size:.9rem;letter-spacing:.2em;margin-top:12px;text-transform:uppercase}
+.meta{color:var(--muted);margin-top:16px;font-size:.92rem}
+.meta b{color:var(--ink);font-weight:600}
+
+.warn{
+  border:1px solid rgba(185,122,18,.4);border-left:4px solid var(--amber);
+  background:rgba(245,165,36,.07);color:#8a5a0e;
+  padding:14px 18px;margin:32px 0 8px;border-radius:8px;font-size:.9rem;
+}
+.warn strong{color:var(--amber)}
+
+.rail{position:relative;padding-left:34px}
+.rail::before{content:"";position:absolute;left:11px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--rail),var(--signal) 55%,var(--amber))}
+
+section.stop{
+  position:relative;background:var(--panel);border:1px solid var(--line);
+  border-radius:8px;padding:28px 32px;margin:24px 0;
+  box-shadow:0 1px 3px rgba(0,0,0,.06);
+  opacity:0;transform:translateY(14px);transition:opacity .4s cubic-bezier(0.4,0,0.2,1),transform .4s cubic-bezier(0.4,0,0.2,1),border-color .15s;
+}
+section.stop.arrive{opacity:1;transform:none}
+section.stop::before{
+  content:"";position:absolute;left:-29px;top:36px;width:12px;height:12px;border-radius:50%;
+  background:#fff;border:3px solid var(--rail);
+}
+section.stop:hover{border-color:var(--line2)}
+.stno{font-family:var(--mono);color:var(--rail);font-size:.75rem;letter-spacing:.2em;margin-bottom:6px}
+h2{font-size:1.5rem;font-weight:500;letter-spacing:-0.5px;line-height:1.2}
+h2 .zh-sub{color:var(--dim);font-size:.85rem;font-weight:400;margin-left:12px;font-family:var(--mono);letter-spacing:0}
+h3{color:var(--ink);font-size:1.02rem;margin:18px 0 8px;font-weight:600}
+p.lede{color:var(--muted);font-size:.92rem;margin-top:6px}
+
+.metrics-band{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:32px 0 8px}
+.metric{
+  background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px;
+  transition:border-color .15s,transform .15s;
+}
+.metric:hover{transform:translateY(-2px);border-color:var(--signal)}
+.metric .val{font-family:"Bahnschrift",Consolas,var(--mono);font-size:1.7rem;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-0.5px;color:var(--ink);line-height:1.1}
+.metric .val small{font-size:.9rem;color:var(--muted);font-weight:400;margin-left:4px}
+.metric .lab{color:var(--muted);font-size:.85rem;margin-top:6px}
+.metric .note{color:var(--dim);font-size:.75rem;margin-top:8px;font-family:var(--mono)}
+.concept-line{color:var(--dim);font-size:.82rem;margin:12px 0 4px;font-family:var(--mono)}
+.concept-line b{color:var(--amber);font-weight:600}
+
+figure{margin:16px 0 6px}
+figure img{
+  width:100%;border:1px solid var(--line);border-radius:8px;display:block;
+  background:#fff;transition:box-shadow .2s;
+}
+figure img:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+figcaption{color:var(--dim);font-size:.84rem;margin-top:10px;border-left:2px solid var(--line);padding-left:10px}
+
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.tabs button{
+  border:1px solid var(--line);background:#fff;color:var(--muted);
+  border-radius:4px;padding:9px 18px;font-size:.9rem;cursor:pointer;font-family:inherit;
+  transition:all .15s;
+}
+.tabs button:hover{color:var(--ink);border-color:var(--line2)}
+.tabs button.active{background:rgba(0,187,104,.07);color:var(--ink);border-color:var(--signal)}
+.tabs button:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+.tab-panel{display:none;border-left:3px solid var(--rail);background:var(--panel2);padding:18px 22px;border-radius:0 8px 8px 0}
+.tab-panel.active{display:block;animation:fadein .2s cubic-bezier(0.4,0,0.2,1)}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.tab-panel h3{margin-top:0}
+.tab-panel p{color:var(--muted);font-size:.92rem}
+.tab-panel .stat{font-family:var(--mono);font-size:.78rem;color:var(--dim);margin-top:10px}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:12px}
+.scen{border:1px solid var(--line);border-radius:8px;padding:16px 18px;background:var(--panel2);transition:border-color .15s}
+.scen:hover{border-color:var(--signal)}
+.scen .sid{color:var(--signal);font-family:var(--mono);font-size:.72rem;letter-spacing:.16em}
+.scen .sname{font-weight:600;margin:4px 0}
+.scen p{color:var(--muted);font-size:.88rem}
+.scen .stask{color:var(--amber);font-size:.75rem;margin-top:10px;font-family:var(--mono)}
+
+table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:10px}
+th,td{border:1px solid var(--line);padding:10px 14px;text-align:left;vertical-align:top}
+th{background:var(--panel2);color:var(--ink);font-weight:600;font-family:var(--mono);font-size:.78rem;letter-spacing:.08em}
+td{color:var(--muted)}
+td strong{color:var(--ink)}
+
+ul.tight{padding-left:20px;color:var(--muted);font-size:.9rem}
+ul.tight li{margin:6px 0}
+ul.tight li::marker{color:var(--rail)}
+
+.pill{display:inline-block;background:rgba(0,187,104,.07);color:var(--signal);border:1px solid rgba(0,187,104,.35);border-radius:4px;padding:3px 12px;font-size:.78rem;margin:3px 6px 3px 0;font-family:var(--mono)}
+.pill.warn-pill{background:rgba(245,165,36,.08);color:var(--amber);border-color:rgba(185,122,18,.35)}
+
+footer{color:var(--dim);font-size:.82rem;text-align:center;padding:40px 0 56px;font-family:var(--mono);letter-spacing:.06em}
+footer .fin{display:inline-block;margin-bottom:10px;color:var(--rail)}
+
+@media (max-width:640px){
+  h1{font-size:1.9rem}
+  .rail{padding-left:22px}
+  .rail::before{left:6px}
+  section.stop::before{left:-21px;width:9px;height:9px}
+  section.stop{padding:20px 18px}
+  .metric .val{font-size:1.35rem}
+  .metrics-band{grid-template-columns:1fr}
+  .metric{padding:14px 14px}
+  .metric .lab{overflow-wrap:anywhere}
+  .metric .lab code{display:block;width:max-content;max-width:100%;word-break:break-all;margin-top:3px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  section.stop{opacity:1;transform:none;transition:none}
+  .tab-panel.active{animation:none}
+  *{transition:none !important}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="lang"><a href="index.html" hreflang="zh">中文</a></div>
+  <div class="wrap">
+    <div class="badge-row">
+      <span class="badge on">offline · no external resources</span>
+      <span class="badge">AI agent concept</span>
+      <span class="badge">formal · v1.0</span>
+      <span class="badge">EPSG:4548 recomputed</span>
+    </div>
+    <h1>ORIGIN <span class="of">LINE</span> <span class="of">原点·智轨</span></h1>
+    <div class="en-sub">Centennial Jing-Zhang AI Innovation Belt</div>
+    <p class="meta"><b>One axis · three cores · two wings · one ring</b> | Haidian, Beijing · around the Jing-Zhang Railway Heritage Park | package <code>century-rail-ai-origin</code></p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="warn"><strong>⚠ Provisional boundary notice:</strong> the overall design area boundary and the three key areas are <strong>provisional rough boundaries</strong>, inferred from the announcement's textual extents and the approx. 11.4 km² area constraint, pending official data. They must not be used as redlines, approval basis, or precise-area evidence. All area metrics on this page are recomputed from that provisional geometry under EPSG:4548.</div>
+
+  <div class="metrics-band">
+    <div class="metric" data-metric="site_area_sqm" data-value="11412825.386"><div class="val">11,412,825<small>m²</small></div><div class="lab">Overall design area · <code>site_area_sqm</code></div><div class="note">1,141.3 ha · announced approx. 11.4 km²</div></div>
+    <div class="metric" data-metric="green_ratio" data-value="0.244379"><div class="val">24.44<small>%</small></div><div class="lab">Green ratio · <code>green_ratio</code></div><div class="note">green space 278.9 ha</div></div>
+    <div class="metric" data-metric="public_space_ratio" data-value="0.09315"><div class="val">9.31<small>%</small></div><div class="lab">Public space ratio · <code>public_space_ratio</code></div><div class="note">public space 106.3 ha</div></div>
+    <div class="metric" data-metric="building_footprint_area_sqm" data-value="1556319.758"><div class="val">1,556,320<small>m²</small></div><div class="lab">Building footprint (concept) · <code>building_footprint_area_sqm</code></div><div class="note">790 concept buildings</div></div>
+    <div class="metric" data-metric="key_area_count" data-value="3"><div class="val">3</div><div class="lab">Key detailed-design areas · <code>key_area_count</code></div><div class="note">announced total 368.4 ha</div></div>
+  </div>
+  <p class="concept-line">Concept intensity: FAR (concept) <b>1.77</b> · total floor area (concept) <b>20,224,645 m²</b> · statutory FAR control is missing and recorded as unknown. Concept metrics are low-confidence design quantities, not statutory controls.</p>
+
+  <div class="rail">
+
+  <section class="stop" id="overview">
+    <div class="stno">ST.01 / STRUCTURE</div>
+    <h2>Overview Map<span class="zh-sub">overall spatial structure</span></h2>
+    <figure><img src="../assets/figures/site-overview.en.png" alt="Overall spatial structure: one axis, three cores, two wings, one ring">
+    <figcaption>Axis: the Jing-Zhang Heritage Park smart-rail spine (260 m central green axis, approx. 9.7 km); cores: Zhongzhiyuan / Origin Community / Dazhongsi; wings: Zhongguancun technology-services wing (west) and Xiaoyue River scenario-empowerment wing (east); ring: the blue-green slow-mobility loop.</figcaption></figure>
+    <h3>Three-Level Scope</h3>
+    <p class="lede">Coordinated research area (announced approx. 43.6 km², textual extents) ⊃ overall design area (announced approx. 11.4 km², the design object of this proposal) ⊃ key detailed-design areas (announced approx. 368.4 ha, three sites). The geometry on this page covers only the provisional substitute boundaries of the latter two levels.</p>
+  </section>
+
+  <section class="stop" id="landuse">
+    <div class="stno">ST.02 / ZONING</div>
+    <h2>Land Use<span class="zh-sub">topologically complete partition</span></h2>
+    <figure><img src="../assets/figures/land-use-structure.en.png" alt="Land-use structure map">
+    <figcaption>Complete topological partition of SITE-001: 29 parcels with no gaps and no overlaps; the union equals the provisional boundary and shared edges carry identical coordinates; 11 land-use codes covered: 0701 / 0702 / 05 / 0802 / 0803 / 0804 / 1207 / 1401 / 1402 / 1403 / 16.</figcaption></figure>
+  </section>
+
+  <section class="stop" id="keyareas">
+    <div class="stno">ST.03 / KEY AREAS</div>
+    <h2>Key Areas<span class="zh-sub">three cores</span></h2>
+    <div class="tabs" role="tablist" aria-label="Three key areas">
+      <button class="active" role="tab" aria-selected="true" onclick="showTab('ka1', this)">① Zhongzhiyuan Acceleration Area</button>
+      <button role="tab" aria-selected="false" onclick="showTab('ka2', this)">② Beijing AI Origin Community</button>
+      <button role="tab" aria-selected="false" onclick="showTab('ka3', this)">③ Dazhongsi AI Industry Cluster</button>
+    </div>
+    <div class="tab-panel active" id="ka1" role="tabpanel" style="border-left-color:#3f8efc"><h3 style="color:#3f8efc">① Zhongzhiyuan AI Independent Innovation Acceleration Area</h3><p>The northern innovation pole. Research and pilot-test base plus corporate headquarters clusters, low-intensity development (concept 3–10 storeys); the spine's northern gateway meets the Qinghe country-park segment; the northwest reserved zone (16) keeps a future interface open.</p><div class="stat">announced 192.1 ha | recomputed 192.9 ha | phasing: long-term 2035–2040</div></div>
+    <div class="tab-panel" id="ka2" role="tabpanel" style="border-left-color:#f5a524"><h3 style="color:#f5a524">② Beijing AI Origin Community</h3><p>The origin of AI innovation and an international talent community. Wudaokou station-city integration plus the Origin Living Room plaza (1403); an education (0804) – research (0802) – commercial (05) mixed district at medium intensity (concept 6–18 storeys); the first-launch site and open test field for AI scenarios.</p><div class="stat">announced 104.3 ha | recomputed 104.3 ha | phasing: near-term 2026–2030</div></div>
+    <div class="tab-panel" id="ka3" role="tabpanel" style="border-left-color:#e0604e"><h3 style="color:#e0604e">③ Dazhongsi AI Industry Cluster</h3><p>AI industry agglomeration with culture-technology fusion. The Dazhongsi station-front plaza is the smart-rail origin (1403); the ancient-bell culture core (0803) plus the commercial renewal belt (05), high-intensity mixed development (concept 12–28 storeys).</p><div class="stat">announced 72.0 ha | recomputed 72.0 ha | phasing: near-term 2026–2030</div></div>
+    <figure style="margin-top:18px"><img src="../assets/figures/key-areas.en.png" alt="Index of the three key areas with positioning tasks">
+    <figcaption>North-to-south index of the three key areas with positioning tasks; announced areas and recomputed provisional values shown side by side.</figcaption></figure>
+  </section>
+
+  <section class="stop" id="mobility">
+    <div class="stno">ST.04 / MOBILITY + BLUE-GREEN</div>
+    <h2>Mobility · Blue-Green Public Space<span class="zh-sub">composite system</span></h2>
+    <figure><img src="../assets/figures/mobility-bluegreen.en.png" alt="Mobility and blue-green network map">
+    <figcaption>Smart-rail service avenues (both sides) + six east-west connectors + the heritage-park slow-mobility main axis + the blue-green slow-mobility loop; concept interchange links at Dazhongsi, Wudaokou, and Qinghua East Road West stations; three slow-mobility breakpoints marked for repair. The Xiaoyue River blue corridor is conceptual.</figcaption></figure>
+  </section>
+
+  <section class="stop" id="buildings">
+    <div class="stno">ST.05 / RENEWAL</div>
+    <h2>Buildings and Renewal Projects<span class="zh-sub">concept magnitudes</span></h2>
+    <p class="lede"><strong>790</strong> concept building footprints placed inside buildable parcels (05 / 0701 / 0702 / 0802 / 0803 / 0804), generated on a 16 m inset regular grid; concept storeys run high in the south to low in the north (12–28 south, 6–18 middle, 3–10 north). Conceptual retain-renovate-demolish split: <strong>129 retained · 259 renovated · 402 newly built</strong>.</p>
+    <p class="concept-line">Total footprint <b>1,556,320 m²</b> · building density (concept) <b>22.6%</b> · all are conceptual design quantities, not statutory controls.</p>
+  </section>
+
+  <section class="stop" id="scenarios">
+    <div class="stno">ST.06 / SCENARIOS</div>
+    <h2>AI Scenarios<span class="zh-sub">six scenario cards</span></h2>
+    <div class="grid2">
+      <div class="scen"><div class="sid">AGENT.1</div><div class="sname">Smart-Rail Autonomous Shuttle Loop</div><p>Low-speed autonomous shuttle loops on both sides of the green spine, linking three stations and three cores.</p><div class="stask">announcement task 1.4</div></div>
+      <div class="scen"><div class="sid">AGENT.2</div><div class="sname">Heritage Digital-Twin Corridor</div><p>A full-length digital twin of the Jing-Zhang heritage with AR wayfinding.</p><div class="stask">announcement task 1.3</div></div>
+      <div class="scen"><div class="sid">AGENT.3</div><div class="sname">AI Scenario Launch Hall</div><p>The Wudaokou Origin Living Room: first test, first show, first launch for new technology.</p><div class="stask">announcement task 1.5</div></div>
+      <div class="scen"><div class="sid">AGENT.4</div><div class="sname">Community Energy and Carbon Brain</div><p>Dual energy-carbon control demonstration in the Origin Community with minute-level dispatch.</p><div class="stask">announcement task 1.5</div></div>
+      <div class="scen"><div class="sid">AGENT.5</div><div class="sname">Blue-Green Carbon-Sink Sensor Net</div><p>An ecological sensor network across the green spine and the Xiaoyue River blue corridor.</p><div class="stask">announcement task 1.4</div></div>
+      <div class="scen"><div class="sid">AGENT.6</div><div class="sname">Zhongzhiyuan Open Pilot Platform</div><p>Research pilot testing, corporate headquarters, and an open data sandbox.</p><div class="stask">announcement task 1.5</div></div>
+    </div>
+  </section>
+
+  <section class="stop" id="evidence">
+    <div class="stno">ST.07 / EVIDENCE</div>
+    <h2>Core Metrics Evidence<span class="zh-sub">recomputable</span></h2>
+    <figure><img src="../assets/figures/metrics-evidence.en.png" alt="Metrics evidence dashboard">
+    <figcaption>Land-use composition, key ratios, announced-vs-recomputed comparisons, and concept intensity metrics; everything comes from metrics.json and stays consistent with the recomputable geometry.</figcaption></figure>
+  </section>
+
+  <section class="stop" id="tasks">
+    <div class="stno">ST.08 / COVERAGE</div>
+    <h2>Task Coverage<span class="zh-sub">announcement + agent taskbook</span></h2>
+    <table>
+      <tr><th style="width:30%">Task</th><th>Coverage</th></tr>
+      <tr><td><strong>Announcement 1.3 heritage activation</strong></td><td>The smart-rail spine takes the Jing-Zhang Heritage Park as its backbone, with heritage nodes retained and activated along the full length (digital-twin corridor).</td></tr>
+      <tr><td><strong>Announcement 1.4 mobility and blue-green</strong></td><td>Twin service avenues + six east-west connectors + the slow-mobility loop + three station links; the 260 m green axis runs the full corridor with a 24.4% green ratio.</td></tr>
+      <tr><td><strong>Announcement 1.5 AI scenarios</strong></td><td>Six scenario cards covering mobility, heritage, first-launch, energy-carbon, ecology, and pilot testing, all located at the three cores and spine nodes.</td></tr>
+      <tr><td><strong>agent.1 – agent.6</strong></td><td>Naming system, ecosystem cases, scenario cards, pilgrimage landmarks, cultural narrative, and long-term operations; see the full report.</td></tr>
+    </table>
+  </section>
+
+  <section class="stop" id="sources">
+    <div class="stno">ST.09 / PROVENANCE</div>
+    <h2>Sources and Assumptions<span class="zh-sub">traceable</span></h2>
+    <h3>Sources</h3>
+    <ul class="tight">
+      <li>Call announcement (2026-05, SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT): scope levels, key-area names, and announced areas.</li>
+      <li>Open site-package provisional geometry (DATA-SRC-PROVISIONAL-BOUNDARIES-20260605): provisional substitute boundaries for SITE-001 and the three key areas.</li>
+      <li>Land-use codes: project subset of the national territorial spatial survey classification (brief/site-package/enums/land_use_codes.json).</li>
+    </ul>
+    <h3>Assumptions</h3>
+    <ul class="tight">
+      <li>Official precise boundaries and regulatory controls (FAR / height caps / building density / green ratio / setbacks) are missing: related statutory metrics are recorded as unknown and concept values carry low-confidence labels.</li>
+      <li>Rail stations (Dazhongsi / Wudaokou / Qinghua East Road West) are concept points placed by approximate latitude, not surveyed positions.</li>
+      <li>Building footprints, storeys, and retain-renovate-demolish classes are generated concepts for communication only.</li>
+      <li>Area computation: projected from EPSG:4326 to EPSG:4548 and recomputed with shapely, with union-based de-duplication.</li>
+    </ul>
+  </section>
+
+  <section class="stop" id="selfcheck">
+    <div class="stno">ST.10 / SELF-CHECK</div>
+    <h2>Self-Check Status<span class="zh-sub">all four gates pass</span></h2>
+    <p>
+      <span class="pill">DETERMINISTIC_VALIDATION · PASS</span>
+      <span class="pill">SPATIAL_REVIEW · PASS</span>
+      <span class="pill">VISUAL_PACKAGING · PASS</span>
+      <span class="pill">PROFESSIONAL_EVIDENCE · PASS</span>
+      <span class="pill warn-pill">3 provisional-class minor notes</span>
+    </p>
+    <p class="lede">The land-use partition passes the no-gap / no-overlap / full-coverage checks; building, green, and public-space layers all sit inside SITE-001; the data-metric values on this page match metrics.json exactly. The proposal was merged into the repository main branch via PR #2049.</p>
+  </section>
+
+  </div>
+</div>
+<footer>
+  <span class="fin">────── END OF LINE ──────</span><br>
+  ORIGIN LINE · Centennial Jing-Zhang AI Innovation Belt open call · AI agent submission package (offline static page, no external resources)
+</footer>
+<script>
+function showTab(id, btn){
+  var panels = document.querySelectorAll('.tab-panel');
+  for (var i=0;i<panels.length;i++){ panels[i].classList.remove('active'); }
+  var tabs = document.querySelectorAll('.tabs button');
+  for (var j=0;j<tabs.length;j++){ tabs[j].classList.remove('active'); tabs[j].setAttribute('aria-selected','false'); }
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected','true');
+}
+if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('arrive'); io.unobserve(e.target); } });
+  }, {threshold: 0.08});
+  document.querySelectorAll('section.stop').forEach(function(s){ io.observe(s); });
+} else {
+  document.querySelectorAll('section.stop').forEach(function(s){ s.classList.add('arrive'); });
+}
+</script>
+</body>
+</html>

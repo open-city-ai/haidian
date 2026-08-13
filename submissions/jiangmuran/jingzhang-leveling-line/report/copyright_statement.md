@@ -5,11 +5,11 @@
 **本包的权利声明不是一段话，是一个逐文件枚举的机读文件。** `visual/assets/rights_ledger.json` 为随包的**每一个文件**给出来源、生成方式、是否含第三方内容、许可、清权类别，以及——这一项与常见台账不同——**评审如何自行核验这一条**。
 
 <!-- LEDGER:BEGIN -->
-它由 `analysis/build_rights_ledger.py` 从 `manifest.json` 生成，而不是手写的资产分组清单。差别是实质性的：手写的台账枚举「作者记得的资产」，生成的台账枚举「实际随包的文件」，任一文件没有权利归类即**构建失败**。当前 **86 个文件全部归类**：
+它由 `analysis/build_rights_ledger.py` 从 `manifest.json` 生成，而不是手写的资产分组清单。差别是实质性的：手写的台账枚举「作者记得的资产」，生成的台账枚举「实际随包的文件」，任一文件没有权利归类即**构建失败**。当前 **108 个文件全部归类**：
 
 | 清权类别 | 文件数 | 含义 |
 |---|---|---|
-| `author-originated` | 64 | 本方案原创，无第三方内容 |
+| `author-originated` | 86 | 本方案原创，无第三方内容 |
 | `provisional-only-with-stated-limit` | 9 | 九个 GeoJSON 图层，派生自仓库临时边界，限制已写明 |
 | `author-originated-measurement` | 8 | 对仓库公开元数据的自采统计，定级 background_only |
 | `author-originated-with-embedded-fonts` | 4 | A3/A0 PDF，含字体子集（见下） |

@@ -3,8 +3,44 @@
 
 This worker intentionally runs outside GitHub Actions. It never executes code from
 the PR and only sends a package to AI after the required deterministic CI passes.
-"""
 
+The worker polls open submission PRs, skips those that already have a review
+comment matching the current head SHA, runs the four-gate self-check and AI
+advisory review on each eligible package, and posts the result as a PR comment.
+A concurrency lock prevents two worker instances from reviewing the same PR
+simultaneously.
+
+Security model
+--------------
+- Only processes PRs where the deterministic CI check has passed.
+- Never executes contributor-supplied code; the review binary is the trusted
+  worker host copy.
+- Rate-limits AI API calls and retries on transient errors.
+- Writes review artifacts to the gitignored .maintainer-review/ directory only.
+
+Environment variables
+---------------------
+- ``GITHUB_TOKEN`` — required; needs ``pull-requests: write`` and
+  ``contents: read`` permissions.
+- ``GITHUB_REPOSITORY`` — required; ``owner/repo`` format.
+- ``OPENAI_API_KEY`` or ``AI_REVIEW_API_KEY`` — required for AI review.
+
+Usage
+-----
+Run the review worker (typically called by a scheduled GitHub Action)::
+
+    python3 scripts/auto_review_queue.py
+
+Process a specific PR only::
+
+    python3 scripts/auto_review_queue.py --pr-number 1234
+
+Dry run without posting comments::
+
+    python3 scripts/auto_review_queue.py --dry-run
+
+Exit code is 0 when the queue processes without fatal errors and 1 otherwise.
+"""
 from __future__ import annotations
 
 import argparse

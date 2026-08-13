@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "dual_gateway": "project maturity gates G0-G7 and scenario admission gates C0-C7; no gate may be replaced by calendar order",
+  "project_gates": [
+    { "gate_id": "G0", "title_zh": "不得推进", "title_en": "No-go until authorized", "question": "是否已获明确授权并完成申报登记？", "min_evidence": "服务护照 11 字段、代理任务书覆盖范围", "decision": "未获授权不推进；首期方案 0 项依赖官方数据", "fail_action": "保持未运行状态，登记在案" },
+    { "gate_id": "G1", "title_zh": "数据基线", "title_en": "Data baseline", "question": "官方几何与来源是否按口径登记？", "min_evidence": "sources.json 逐份访问登记、几何 role 标注", "decision": "官方缺失项全部标 provisional，不伪造 official", "fail_action": "补充材料或降级为概念建议" },
+    { "gate_id": "G2", "title_zh": "场景匹配", "title_en": "Scenario match", "question": "场景卡与用地、产权、人群是否匹配？", "min_evidence": "12 场景卡 + 3 测试场景登记于 simulation.json", "decision": "不匹配场景不进入测试", "fail_action": "退出场景库" },
+    { "gate_id": "G3", "title_zh": "沙盒测试", "title_en": "Sandboxed trial", "question": "受控试点条件是否齐备？", "min_evidence": "安全审查、人工等价路径、容量、告知、申诉与结束日期（E2）", "decision": "试点期内缺岗即停摆", "fail_action": "保持日常模式，亮脉冲灯" },
+    { "gate_id": "G4", "title_zh": "独立复测", "title_en": "Independent re-test", "question": "失败记录与人工接管是否可核？", "min_evidence": "原始与失败记录、人工接管、受影响人群意见与场地恢复（E3）", "decision": "复测缺失不得扩大范围", "fail_action": "修正后重测或退出" },
+    { "gate_id": "G5", "title_zh": "异议放行", "title_en": "Objection gates", "question": "三道异议门是否无异议？", "min_evidence": "听证与异议记录、五项底线指标达标", "decision": "任何异议成立即降级或停用", "fail_action": "降级回 P2 测试" },
+    { "gate_id": "G6", "title_zh": "发布", "title_en": "Release", "question": "是否可以公开运行？", "min_evidence": "E3 通过、导视状态灯方案就绪", "decision": "发布即进入可停摆状态", "fail_action": "不发布，不占用场地" },
+    { "gate_id": "G7", "title_zh": "复盘与退役", "title_en": "Review and retirement", "question": "继续、调整还是退役？", "min_evidence": "复测结论、持续预算、责任续期、来源有效性与年度公开说明（E4）", "decision": "退役须完成场地与数据恢复并归档", "fail_action": "撤除服务并恢复场地" }
+  ],
+  "scenario_gates": [
+    { "gate_id": "C0", "title_zh": "场景卡登记", "title_en": "Card registration", "question": "服务做什么、在哪类公共空间发生？", "passport_field": "服务与地点" },
+    { "gate_id": "C1", "title_zh": "无 AI 基线", "title_en": "Non-AI baseline", "question": "目前怎样完成同一任务？", "passport_field": "非 AI 基线" },
+    { "gate_id": "C2", "title_zh": "权限核验", "title_en": "Permission check", "question": "场地与产权许可是否可核？", "passport_field": "责任主体" },
+    { "gate_id": "C3", "title_zh": "数据上限", "title_en": "Data ceiling", "question": "最多需要哪些数据、留存多久？", "passport_field": "数据上限" },
+    { "gate_id": "C4", "title_zh": "人工路径", "title_en": "Human route", "question": "不用 AI 怎样完成同一基本任务？", "passport_field": "人工等价路径" },
+    { "gate_id": "C5", "title_zh": "急停演练", "title_en": "Stop drill", "question": "是否完成过停摆演练？", "passport_field": "失败信号" },
+    { "gate_id": "C6", "title_zh": "异议公开", "title_en": "Objection disclosure", "question": "谁能提出异议、结论是否公开？", "passport_field": "申诉与暂停" },
+    { "gate_id": "C7", "title_zh": "退场契约", "title_en": "Exit contract", "question": "何时结束、谁恢复场地和数据？", "passport_field": "退役与恢复" }
+  ],
+  "mapping_note": "G0-G2 map to E0-E1/P1; G3-G4 map to E2-E3/P2; G5-G6 map to E3/P3; G7 maps to E4/P4. C0-C7 mirror the 11 passport fields as admission checks.",
+  "status": "proposed_role_not_current_authority"
+}

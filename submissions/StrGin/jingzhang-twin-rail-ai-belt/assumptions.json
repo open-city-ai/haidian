@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "assumption_id": "A-BOUNDARY-PROVISIONAL-001",
+      "title_zh": "三层范围边界为临时粗略边界",
+      "description_zh": "PROV-RESEARCH-001、PROV-SITE-001 与三处重点区 polygon 来自公告文字四至、道路名称与公告面积，不等同于官方红线；geometry_role=\"provisional_constraint\"、official_boundary=false。",
+      "impact": "组织方数据缺口不阻断内容评分；但所有派生面积、指标、图面与文案须在官方资料发布后重新复算",
+      "section": "three_level_scope"
+    },
+    {
+      "assumption_id": "A-REGULATORY-PENDING-001",
+      "title_zh": "FAR 与建筑高度控制指标缺失",
+      "description_zh": "缺少官方控规附件中的容积率（FAR）、建筑高度上限、用地兼容性细则与地块权属边界；当前以概念分区与示意建筑基底表达。",
+      "impact": "用地布局、规模、风貌的具体结论须以\"待确认控规条件\"措辞描述；不得伪装为审定结论",
+      "section": "land_use"
+    },
+    {
+      "assumption_id": "A-METRIC-COVERAGE-001",
+      "title_zh": "land_use 几何覆盖完整",
+      "description_zh": "land_use.geojson 中 15 个地块按\"水平分层+东西两翼+中央绿廊\"方式完整覆盖 provisional site boundary，复算面积与 site_area_sqm 偏差约 0.0002%。",
+      "impact": "land_use_coverage_sqm ≈ site_area_sqm；自检 LAND_USE_TOPOLOGY 通过",
+      "section": "land_use"
+    },
+    {
+      "assumption_id": "A-AREA-CHECK-CRS-001",
+      "title_zh": "面积复算使用 EPSG:4548",
+      "description_zh": "所有几何面积由 pyproj 投影到 CGCS2000 / 3-degree Gauss-Kruger CM 117E（EPSG:4548）后用 shoelace 公式复算，符合 design_brief.coordinate_policy.area_calculation_crs",
+      "impact": "复算面积与公告约面积偏差：site +0.11%、research +0.02%、key_areas +0.24%、均在合理容差内",
+      "section": "metrics"
+    },
+    {
+      "assumption_id": "A-SCENARIO-CONCEPTUAL-001",
+      "title_zh": "AI 场景卡为概念建议",
+      "description_zh": "12 张场景卡与 4 个测试验证场景均为概念建议；运营主体、数据来源、隐私边界与人工复核机制在正文中明确描述。",
+      "impact": "不得描述为已批准运营或政府承诺",
+      "section": "scenarios"
+    },
+    {
+      "assumption_id": "A-LANDMARK-CONCEPTUAL-001",
+      "title_zh": "AI 朝圣地标为概念方向",
+      "description_zh": "4 个 AI 朝圣地标为概念方向建议；具体建设、文保影响与商业运营须另行评审与清权。",
+      "impact": "不得描述为已批准建设；所有 Logo/字体/商标须另行清权",
+      "section": "urban_character"
+    },
+    {
+      "assumption_id": "A-FIGURE-CONCEPTUAL-001",
+      "title_zh": "图件为解释层",
+      "description_zh": "5 张核心图均为基于 GeoJSON+metrics+矩阵的本地派生图，非权威数据来源；provisional boundary 以低对比度虚线表达。",
+      "impact": "图件不替代 GeoJSON/JSON 作为权威数据；评审可不打开图件直接基于结构化文件判断",
+      "section": "figures"
+    },
+    {
+      "assumption_id": "A-BRAND-CONCEPTUAL-001",
+      "title_zh": "Logo 与品牌为概念方向",
+      "description_zh": "\"双轨智带 JZ-AI Belt\"Logo、配色（Action Blue + 百年京张红铜）与字体为概念方向；不主张商标注册或字体商用。",
+      "impact": "须以\"概念方向建议\"措辞描述；正式使用前须另行清权",
+      "section": "branding"
+    }
+  ]
+}

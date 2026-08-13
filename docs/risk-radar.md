@@ -30,3 +30,43 @@ submissions/<github-login>/<proposal-slug>/risk.json
 | `equity_inclusion` | 公平与包容性 |
 
 Portal 会读取 `risk.json`，在方案卡片中展示最高风险项和分值。
+
+## Risk dimension reference (English)
+
+| ID | Dimension | Description |
+|---|---|---|
+| `data_privacy` | Data Privacy | Risk of exposing personal data, tracking, or using non-public spatial data |
+| `implementation_complexity` | Implementation Complexity | Technical, financial, or organizational difficulty of realizing the proposal |
+| `public_acceptance` | Public Acceptance | Risk that residents, businesses, or community groups reject the proposal |
+| `operations_cost` | Operations Cost | Ongoing maintenance, staffing, or technology costs after deployment |
+| `policy_uncertainty` | Policy Uncertainty | Dependence on future regulatory approvals, land-use changes, or official boundaries |
+| `spatial_dispute` | Spatial Dispute | Risk of conflict over boundary claims, property rights, or shared use |
+| `technology_maturity` | Technology Maturity | Readiness of the AI or technology components; prototype vs. production |
+| `equity_inclusion` | Equity and Inclusion | Risk of exclusion, widening inequality, or inadequate accessibility |
+
+## Example risk.json
+
+```json
+{
+  "version": 1,
+  "dimensions": [
+    {
+      "id": "data_privacy",
+      "label": "Data Privacy",
+      "score": 3,
+      "note": "The scenario uses anonymized pedestrian flow data and does not track individuals.",
+      "mitigation": "Use only public, authorized, and aggregated data with documented retention limits."
+    },
+    {
+      "id": "technology_maturity",
+      "label": "Technology Maturity",
+      "score": 4,
+      "note": "Low-speed robot delivery remains at pilot stage without confirmed commercial deployment.",
+      "mitigation": "Limit deployment to a reversible supervised pilot with an operational fallback.",
+      "human_review": "Transport and safety professionals must review the pilot area before implementation."
+    }
+  ]
+}
+```
+
+Scores of 4–5 always require a `human_review` field explaining what professional or community review is needed before implementation. The review rubric evaluates whether high-risk items are adequately disclosed, not whether they are absent.

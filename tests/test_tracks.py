@@ -80,5 +80,16 @@ tracks: ["civic-agent-governance", "youth-friendly-public-space"]
             self.assertIn("青年友好公共空间", html)
 
 
+
+    def test_track_count_does_not_exceed_eight(self) -> None:
+        """The track registry should not grow beyond 8 entries without a rubric update."""
+        data = json.loads((REPO_ROOT / "tracks.json").read_text(encoding="utf-8"))
+        self.assertLessEqual(
+            len(data["tracks"]),
+            8,
+            "More than 8 tracks are registered; update docs/tracks.md and the rubric if adding new ones",
+        )
+
+
 if __name__ == "__main__":
     unittest.main()

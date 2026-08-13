@@ -36,7 +36,7 @@ iteration: "v0.1"
 
 三层关系为"战略—结构—定点"的逐级落实：统筹研究层回答"AI 创新带与城市的关系"，总体设计层回答"带的结构如何落地为用地与公共空间"，重点区层回答"三个节点如何精细化" [depth:three_level_scope_framework]。
 
-**边界限制说明**：三层边界均为 provisional 粗略多边形（矩形边不代表地块或道路红线），面积复算结果（总体设计范围约 11.41 km² [metric:site_area_sqm]）与公告约值（11.4 km²）一致，但**不得用于官方红线、精确面积或法定规划判断**；官方 polygon 替换后，land_use、green_space、phasing 及全部面积指标须重算 [data:geometry/key_areas.geojson#PROV-KEY-001][data:geometry/key_areas.geojson#PROV-KEY-002][data:geometry/key_areas.geojson#PROV-KEY-003]。
+**边界限制说明**：三层边界均为 provisional 粗略多边形（矩形边不代表地块或道路红线），面积复算结果（总体设计范围约 11.41 km² [metric:site_area_sqm]）与公告约值（11.4 km²）一致，但**不得用于官方红线、精确面积或法定规划判断**；官方 polygon 替换后，land_use、green_space、phasing 及全部面积指标须重算 [data:geometry/key_areas.geojson#PROV-KEY-001][data:geometry/key_areas.geojson#PROV-KEY-002][data:geometry/key_areas.geojson#PROV-KEY-003]。社区交叉核对显示总体设计范围 PROV-SITE-001 与 OSM 测绘的遗址公园已建段不相交（最近约 412.5 m，[Issue #846](https://github.com/open-city-ai/haidian/issues/846)）——本方案不据此平移坐标，全部落位保持方向性概念，见假设 A-SITE-OSM-846。
 
 ![三层范围与空间工作框架图](assets/figures/land-use-structure.png)
 

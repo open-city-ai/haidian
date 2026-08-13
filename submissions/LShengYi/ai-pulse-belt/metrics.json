@@ -1,0 +1,995 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(PROV-SITE-001) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "No official boundary in site package; PROV-SITE-001 provisional boundary used.",
+        "Official planning limit 11400000 sqm; computed fit deviation 0.11%."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1103163.864,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "unary_union(polygon_area(building_footprints)); sum equals union (footprints do not overlap)",
+      "confidence": "medium",
+      "assumptions": [
+        "Building footprints are concept proposals (design_proposal), not statutory permits."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.249581,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Green space includes park corridor, protective strips."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.005187,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Plazas are concept nodes; ratio is indicative."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "Key areas are provisional constraints, not official."
+      ]
+    },
+    "key_area_total_area_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(area_sqm_calculated) over 3 key areas in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "Areas measured on provisional key-area scopes; per-area deviations disclosed in ASSUME-002."
+      ]
+    },
+    "land_parcel_count": {
+      "status": "known",
+      "value": 155,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use parcels, seamless cover of overall design area)",
+      "confidence": "high",
+      "assumptions": [
+        "Parcels are concept land-use subdivisions, not statutory land parcels."
+      ]
+    },
+    "land_use_class_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(distinct land_use_code)",
+      "confidence": "high",
+      "assumptions": [
+        "Class codes follow the brief land-use code enumeration."
+      ]
+    },
+    "building_count": {
+      "status": "known",
+      "value": 84,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building footprints)",
+      "confidence": "high",
+      "assumptions": [
+        "84 concept buildings (design_proposal), not statutory permits."
+      ]
+    },
+    "green_space_count": {
+      "status": "known",
+      "value": 21,
+      "unit": "count",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "count(green_space features)",
+      "confidence": "high",
+      "assumptions": [
+        "Green features: 12 park + 9 protective strips."
+      ]
+    },
+    "public_space_node_count": {
+      "status": "known",
+      "value": 16,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space nodes)",
+      "confidence": "high",
+      "assumptions": [
+        "16 nodes: 6 plazas + 6 status-light/wayfinding + 3 industry-test + 1 health-service navigation."
+      ]
+    },
+    "road_segment_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(road centerline segments)",
+      "confidence": "high",
+      "assumptions": [
+        "Road classes: arterial/secondary/branch/transit/expressway/greenway."
+      ]
+    },
+    "phasing_zone_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phasing zones)",
+      "confidence": "high",
+      "assumptions": [
+        "Three phases near/mid/long term with pulse_class."
+      ]
+    },
+    "constraint_zone_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(constraint zones)",
+      "confidence": "high",
+      "assumptions": [
+        "Constraint zones are concept notes, not statutory."
+      ]
+    },
+    "research_0802_ratio": {
+      "status": "known",
+      "value": 0.218939,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of 0802 research) / total land-use area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept layer recomputation; not official land-use figures"
+      ]
+    },
+    "commercial_05_ratio": {
+      "status": "known",
+      "value": 0.070292,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of 05 commerce) / total land-use area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept layer recomputation; not official land-use figures"
+      ]
+    },
+    "residential_0701_ratio": {
+      "status": "known",
+      "value": 0.136357,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of 0701 housing) / total land-use area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept layer recomputation; not official land-use figures"
+      ]
+    },
+    "roads_1207_ratio": {
+      "status": "known",
+      "value": 0.106547,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of 1207 roads) / total land-use area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept layer recomputation; not official land-use figures"
+      ]
+    },
+    "green_1401_1402_ratio": {
+      "status": "known",
+      "value": 0.249581,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of 1401 parks + 1402 protective green) / total land-use area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept layer recomputation; excludes 1403 plazas; consistent with green_ratio"
+      ]
+    },
+    "reserve_16_ratio": {
+      "status": "known",
+      "value": 0.027086,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of 16 reserve) / total land-use area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept layer recomputation; not official land-use figures"
+      ]
+    },
+    "culture_edu_sports_medical_ratio": {
+      "status": "known",
+      "value": 0.143615,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of 0803 culture + 0804 education + 0805 sports + 0806 medical) / total land-use area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept layer recomputation; not official land-use figures"
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md#S6"
+      ],
+      "formula": "declared count: 12 scenario cards",
+      "confidence": "high",
+      "assumptions": [
+        "Counts are declared proposal elements, auditable in the named files."
+      ]
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md#S6"
+      ],
+      "formula": "declared count: 3 industrial test-and-verification scenarios",
+      "confidence": "high",
+      "assumptions": [
+        "Counts are declared proposal elements, auditable in the named files."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md#S5"
+      ],
+      "formula": "declared count: 8 user personas",
+      "confidence": "high",
+      "assumptions": [
+        "Counts are declared proposal elements, auditable in the named files."
+      ]
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md#S4"
+      ],
+      "formula": "declared count: 3 AI pilgrimage landmarks",
+      "confidence": "high",
+      "assumptions": [
+        "Counts are declared proposal elements, auditable in the named files."
+      ]
+    },
+    "ecosystem_case_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md#S3"
+      ],
+      "formula": "declared count: 6 global AI-ecosystem case references",
+      "confidence": "high",
+      "assumptions": [
+        "Counts are declared proposal elements, auditable in the named files."
+      ]
+    },
+    "geometry_layer_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/ directory"
+      ],
+      "formula": "declared count: 9 generated GeoJSON layers",
+      "confidence": "high",
+      "assumptions": [
+        "Counts are declared proposal elements, auditable in the named files."
+      ]
+    },
+    "pulse_beat_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "declared count: 4 Pulse Protocol beats P1-P4",
+      "confidence": "high",
+      "assumptions": [
+        "Counts are declared proposal elements, auditable in the named files."
+      ]
+    },
+    "rollback_trigger_class_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "declared count: 5 rollback trigger classes R-01..R-05",
+      "confidence": "high",
+      "assumptions": [
+        "Counts are declared proposal elements, auditable in the named files."
+      ]
+    },
+    "simulation_task_count": {
+      "status": "known",
+      "value": 120,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "15 public-AI services x 8 variants (1 qualified + 7 failure branches) = 120 synthetic rehearsals, all with deterministic receipt_sha256",
+      "confidence": "high",
+      "assumptions": [
+        "Counts are declared proposal elements, auditable in the named files.",
+        "All tasks are offline synthetic rule rehearsals; field_run=false by design."
+      ]
+    },
+    "funding_channel_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md#S10"
+      ],
+      "formula": "declared count: 4 funding channels (fiscal/scenario/open-source/social)",
+      "confidence": "high",
+      "assumptions": [
+        "Counts are declared proposal elements, auditable in the named files."
+      ]
+    },
+    "investment_item_count": {
+      "status": "known",
+      "value": 11,
+      "unit": "count",
+      "source_files": [
+        "proposal.md#S10"
+      ],
+      "formula": "declared count: 11 one-off construction items JZ-01..JZ-11",
+      "confidence": "high",
+      "assumptions": [
+        "Counts are declared proposal elements, auditable in the named files."
+      ]
+    },
+    "objection_gate_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md#S9"
+      ],
+      "formula": "declared count: 3 objection/oversight gates",
+      "confidence": "high",
+      "assumptions": [
+        "Counts are declared proposal elements, auditable in the named files."
+      ]
+    },
+    "emergency_tier_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "declared count: 3 emergency tiers",
+      "confidence": "high",
+      "assumptions": [
+        "Counts are declared proposal elements, auditable in the named files."
+      ]
+    },
+    "bottom_line_indicator_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md#S8"
+      ],
+      "formula": "declared count: 5 public bottom-line indicators",
+      "confidence": "high",
+      "assumptions": [
+        "Counts are declared proposal elements, auditable in the named files."
+      ]
+    },
+    "scenario_fallback_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md#S6 (card table)"
+      ],
+      "formula": "verified coverage: 12/12 scenario cards declare failure-degradation or exit conditions (every row of the KPI-and-exit column is non-empty)",
+      "confidence": "high",
+      "assumptions": [
+        "Coverage ratios are computed by row-level verification of the named artifacts; reruns reproduce identical values."
+      ]
+    },
+    "scenario_data_boundary_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md#S6 (card table)"
+      ],
+      "formula": "verified coverage: 12/12 scenario cards declare data & human boundary (every row non-empty)",
+      "confidence": "high",
+      "assumptions": [
+        "Coverage ratios are computed by row-level verification of the named artifacts; reruns reproduce identical values."
+      ]
+    },
+    "scenario_operator_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md#S6 (card table)"
+      ],
+      "formula": "verified coverage: 12/12 scenario cards declare an operating entity (every row non-empty)",
+      "confidence": "high",
+      "assumptions": [
+        "Coverage ratios are computed by row-level verification of the named artifacts; reruns reproduce identical values."
+      ]
+    },
+    "scenario_exit_path_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md#S6 (AI-limits & exit-disposition table)"
+      ],
+      "formula": "verified coverage: 12/12 scenario cards declare post-exit spatial disposition (every row non-empty)",
+      "confidence": "high",
+      "assumptions": [
+        "Coverage ratios are computed by row-level verification of the named artifacts; reruns reproduce identical values."
+      ]
+    },
+    "geometry_layer_validation_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson",
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/constraints.geojson",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "verified coverage: 9/9 geometry layers pass spatial review",
+      "confidence": "high",
+      "assumptions": [
+        "Coverage ratios are computed by row-level verification of the named artifacts; reruns reproduce identical values."
+      ]
+    },
+    "protocol_gate_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md#S6 (protocol table)"
+      ],
+      "formula": "verified coverage: 4/4 protocol beats P1-P4 define passing evidence and failure disposition",
+      "confidence": "high",
+      "assumptions": [
+        "Coverage ratios are computed by row-level verification of the named artifacts; reruns reproduce identical values."
+      ]
+    },
+    "risk_rollback_mapping_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md#S6",
+        "risk.json"
+      ],
+      "formula": "verified coverage: 5/5 rollback trigger classes map to scenario-card exit conditions",
+      "confidence": "high",
+      "assumptions": [
+        "Coverage ratios are computed by row-level verification of the named artifacts; reruns reproduce identical values."
+      ]
+    },
+    "simulation_p1_pass_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "verified coverage: 15/15 tracked services pass P1 declaration five-element verification",
+      "confidence": "high",
+      "assumptions": [
+        "Coverage ratios are computed by row-level verification of the named artifacts; reruns reproduce identical values."
+      ]
+    },
+    "risk_item_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "risk.json"
+      ],
+      "formula": "declared count: 8 risk dimensions in the eight-dimension risk registry",
+      "confidence": "high",
+      "assumptions": [
+        "Counts are declared proposal elements, auditable in the named files."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls absent from public site package; proposal states only conceptual intensity guidance."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "max/typical building height per control plan",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height controls absent; concept massing expresses organization intent only."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "building_footprint_area / site_area per statutory caliber",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Statutory density caliber absent; concept footprint ratio is not a conclusion."
+    },
+    "statutory_green_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "per-control-plan green space ratio",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Statutory green ratio differs from the concept-layer recomputation (green_ratio is a measured concept value, not an approval)."
+    },
+    "setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "statutory setbacks from red lines",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official red lines and setback rules absent; roads carry reserved-width notes only."
+    },
+    "affected_household_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "households affected by renewal per official surveys",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No official survey or ownership data in the site package; no relocation conclusions are drawn."
+    },
+    "mitigation_budget_cny": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "public funds reserved for relocation/compensation",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Budget figures are concept assumptions only (see ASSUME-005), not commitments."
+    },
+    "compute_capacity": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "aggregate compute capacity of AI infrastructure",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No official capacity figures; concept scenarios reference infrastructure qualitatively only."
+    },
+    "annual_participant_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "annual participants in events/scenarios per operating data",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No operating data; conversion-funnel targets in proposal are concept assumptions (ASSUME-005)."
+    },
+    "approved_scenario_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "scenario cards approved through official gates",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No scenarios are approved; all 12 cards + 3 tests are concept declarations pending P1 gates (simulation.json)."
+    },
+    "developer_to_pilot_conversion_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "developer participants converting to pilot projects",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No operating data; funnel target is a concept assumption (ASSUME-005)."
+    },
+    "annual_operation_cost_cny": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "annual operation cost of scenario ecosystem",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Concept range 5-15 M CNY/year (JZ-12 caliber) registered as an assumption in ASSUME-005, not a commitment."
+    },
+    "ai_innovation_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "composite(talent_density, ai_r_d_intensity, ai_output_value_per_capita); weights pending official indicator framework",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official indicator framework absent from public site package; indicator declared as a required planning metric (announcement 1.5(2)) and will be computed once official statistics release."
+    },
+    "talent_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "ai_related_employment_persons / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official employment statistics absent; indicator declared per announcement 1.5(2), computable after data release."
+    },
+    "ai_output_value": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "sum(ai_enterprise_output_cny) over overall design area, per official statistical caliber",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official economic statistics absent; indicator declared per announcement 1.5(2), computable after data release."
+    },
+    "synthetic_negative_branch_count": {
+      "status": "known",
+      "value": 105,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "15 services x 7 failure branches (missing_responsible_role / data_exceeds_declared_ceiling / same_task_human_route_unavailable / cannot_pause / revision_not_public / bequest_dividend_missing / post_exit_service_lapses) = 105 negative branches, all blocked (negative_blocked)",
+      "confidence": "high",
+      "assumptions": [
+        "100% of failure branches intercepted: releasing any of the 105 would fail the whole rehearsal."
+      ]
+    },
+    "service_passport_required_field_count": {
+      "status": "known",
+      "value": 11,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "declared fields: service & location / target users / non-AI baseline / data ceiling / responsible role / operator / same-task human route / success evidence / failure signals / appeal & pause / retirement & recovery",
+      "confidence": "high",
+      "assumptions": [
+        "Passport gates every public AI service; a service without all 11 fields is not registered."
+      ]
+    },
+    "operational_evidence_gate_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "declared gates E0-E4: register / baseline & rights / supervised pilot / independent re-test / continue or retire",
+      "confidence": "high",
+      "assumptions": [
+        "Gates map to P1-P4 phases; no service is released without passing E4 human decision."
+      ]
+    },
+    "first_100_days_action_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "declared 8 steps D1-14 ... D91-100 in JZ-01 pilot table",
+      "confidence": "high",
+      "assumptions": [
+        "First 100 days: census baseline, public registration, pilot protocol, evidence collection, independent re-test, decision point."
+      ]
+    },
+    "same_task_equivalence_scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "12 scenario cards each with declared same-task human / low-tech route and pre-release proof content",
+      "confidence": "high",
+      "assumptions": [
+        "Equivalence register: every AI service must prove a same-task non-AI route exists before release."
+      ]
+    },
+    "contract_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/dividend-contracts.json"
+      ],
+      "formula": "15 public-AI services x 4 clauses (BASE non-AI baseline / BOOST AI gain and boundary / BLACKOUT stop arrangement / BEQUEST exit contract) = 15/15 contracts complete",
+      "confidence": "high",
+      "assumptions": [
+        "100% contract coverage: a service without a bequest clause may not be released."
+      ]
+    },
+    "blackout_clause_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/dividend-contracts.json"
+      ],
+      "formula": "each contract has a blackout clause paired one-to-one with the five rollback triggers",
+      "confidence": "high",
+      "assumptions": [
+        "100% of services have an arranged stop path and a same-task human route."
+      ]
+    },
+    "bequest_clause_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/dividend-contracts.json"
+      ],
+      "formula": "each contract has a bequest clause: retirement condition, data disposition, site restoration, archive",
+      "confidence": "high",
+      "assumptions": [
+        "100% of services have a pre-declared exit; no service may remain in pilot indefinitely."
+      ]
+    },
+    "state_machine_state_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/state-machine.json"
+      ],
+      "formula": "states: proposed / baseline_verified / sandboxed / live / blackout_drill / bequest_audit / retained_or_modified / removed_archived",
+      "confidence": "high",
+      "assumptions": [
+        "blackout_drill and bequest_audit are not skippable; removed_archived requires bequest_audit or hard stop."
+      ]
+    },
+    "state_machine_gate_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/state-machine.json"
+      ],
+      "formula": "8 documented transitions each carrying role_ids, gate_ids and conditions",
+      "confidence": "high",
+      "assumptions": [
+        "Every transition cites the service passport and evidence gates E0-E4 it depends on."
+      ]
+    },
+    "dual_gateway_gate_count": {
+      "status": "known",
+      "value": 16,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/implementation-gates.json"
+      ],
+      "formula": "project gates G0-G7 (no-go until authorized ... review and retirement) + scenario gates C0-C7 (card registration ... exit contract) = 16",
+      "confidence": "high",
+      "assumptions": [
+        "No gate may be replaced by calendar order; G0 blocks all un-authorized advancement."
+      ]
+    },
+    "governance_role_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance-raci.json"
+      ],
+      "formula": "roles: accountable lead / operations / safety / data / public-baseline steward / independent evaluator / maintenance / affected public",
+      "confidence": "high",
+      "assumptions": [
+        "Each role lists passport fields, responsible-for, must-not-impersonate and fallback-if-absent."
+      ]
+    },
+    "governance_constitutional_rule_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance-raci.json"
+      ],
+      "formula": "constitutional rules: single accountable lead / steward and safety may stop independently / no operator certifies its own bequest audit / affected public never burdened with professional liability / roles are concepts not authorities",
+      "confidence": "high",
+      "assumptions": [
+        "Constitutional rules bind the roles; they are proposal concepts, not current authorities."
+      ]
+    },
+    "simulation_rerun_receipt_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/simulate-check.js"
+      ],
+      "formula": "all 120 receipts re-derivable from (service_id, variant, seed) via node simulate-check.js with exit-code contract 0/1/2",
+      "confidence": "high",
+      "assumptions": [
+        "Reviewers can re-run the check offline; status is fixed as offline_complete_field_not_authorized_not_run."
+      ]
+    },
+    "review_evidence_dimension_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/review-evidence-index.json"
+      ],
+      "formula": "seven evaluation dimensions each indexed to openable sections and files (brief_alignment / originality / ai_planning_innovation / implementation_feasibility / public_interest_inclusion / risk_compliance / expression_completeness)",
+      "confidence": "high",
+      "assumptions": [
+        "Every review claim points to a machine-readable file or proposal section that can be opened."
+      ]
+    },
+    "issue_ledger_entry_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "public issue ledger entries: #846 site-polygon vs railway park 412.5m mismatch, #1029 PROV-KEY-003 centroid offset at Dazhongsi, #1368 provisional-boundary review-ready semantics (see evidence chapter)",
+      "confidence": "high",
+      "assumptions": [
+        "Real open issues are registered and answered; omissions are disclosed rather than hidden."
+      ]
+    },
+    "evidence_level_declared_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "evidence levels L1 (official documents) / L2 (public sources) / L3 (derived calculations) / L4 (concept suggestions) / L5 (provisional assumptions)",
+      "confidence": "high",
+      "assumptions": [
+        "Every claim carries an evidence level; L5 items never masquerade as official facts."
+      ]
+    }
+  }
+}

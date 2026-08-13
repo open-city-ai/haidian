@@ -1,0 +1,134 @@
+{
+  "schema_version": "0.1.0",
+  "evidence_level": "proposed_synthetic_operating_scenario",
+  "authority_boundary": "This is a design-development scenario and acceptance protocol, not evidence of a real person, field pilot, approval, operator or built condition.",
+  "composite_persona": {
+    "id": "P-OLDER-NONDIGITAL-01",
+    "name_zh": "周阿姨（合成人物）",
+    "name_en": "Ms Zhou (composite persona)",
+    "age": 72,
+    "conditions": [
+      "does not use a smartphone for public services",
+      "walks slowly and needs frequent seating",
+      "requires a continuous step-free route",
+      "prefers a person and paper over voice interaction"
+    ],
+    "rights": [
+      "see scene status before entering",
+      "choose a non-AI equivalent without penalty",
+      "reach a staffed desk without an account",
+      "complain anonymously and receive a paper receipt",
+      "trigger review without being profiled"
+    ]
+  },
+  "day_journey": [
+    {"time": "08:10", "place": "Dazhongsi arrival edge", "event": "select paper route at the staffed desk", "ai_state": "OPTIONAL", "public_space_state": "OPEN"},
+    {"time": "08:25", "place": "urban trial threshold", "event": "read three-level notice and choose the non-AI lane", "ai_state": "VISIBLE_NOT_REQUIRED", "public_space_state": "OPEN"},
+    {"time": "08:42", "place": "priority crossing", "event": "robot approaches while accessible priority is active", "ai_state": "HOLD", "public_space_state": "OPEN"},
+    {"time": "08:43", "place": "staffed appeal point", "event": "submit anonymous route-obstruction complaint and receive paper receipt", "ai_state": "PAUSED", "public_space_state": "OPEN"},
+    {"time": "08:45", "place": "machine test pocket", "event": "operator issues temporary Public Verdict: RETURN", "ai_state": "RETURN", "public_space_state": "OPEN"},
+    {"time": "09:05", "place": "ordinary civic route", "event": "continue with paper wayfinding and staffed support", "ai_state": "OFF", "public_space_state": "OPEN"},
+    {"time": "11:30", "place": "public decision register", "event": "publish de-identified incident state and owner", "ai_state": "UNDER_REVIEW", "public_space_state": "OPEN"},
+    {"time": "D+5", "place": "same staffed desk", "event": "collect paper response and correction decision", "ai_state": "RETEST_REQUIRED", "public_space_state": "OPEN"}
+  ],
+  "station_handover": [
+    {
+      "station": "Zhongzhi",
+      "gate": "TEST",
+      "question": "Can it work inside a bounded envelope?",
+      "ticket": "Test Receipt",
+      "must_include": ["version", "fixtures", "boundary", "stop result", "human lead", "unresolved defects"],
+      "signatories": ["candidate operator", "independent safety reviewer"],
+      "reject_if": ["uncontrolled crossing", "stop failure", "unreproducible result", "public path interruption"]
+    },
+    {
+      "station": "AI Origin",
+      "gate": "RELEASE",
+      "question": "May this exact version be released for limited public use?",
+      "ticket": "Release Ticket",
+      "must_include": ["Test Receipt hash", "licence", "data rights", "model and software bill", "use limits", "withdrawal route"],
+      "signatories": ["rights reviewer", "release steward"],
+      "reject_if": ["expired or unclear rights", "version mismatch", "missing limitations", "no withdrawal owner"]
+    },
+    {
+      "station": "Dazhongsi",
+      "gate": "USE",
+      "question": "Does the city want this limited use to continue?",
+      "ticket": "Public Verdict",
+      "must_include": ["Release Ticket hash", "notice test", "non-AI equivalent", "complaints", "cohort gaps", "continue-revise-return decision"],
+      "signatories": ["public service lead", "user and accessibility reviewer"],
+      "reject_if": ["inaccessible route", "absent staff", "unclosed rights-impacting complaint", "material cohort harm"]
+    }
+  ],
+  "minimum_pilot": {
+    "duration_days": 14,
+    "scale_limit": "one specified device, one bounded test pocket, one accessible public bypass; exact dimensions require field survey and approval",
+    "phases": [
+      {"day": "D-30", "action": "name candidate operator, site, insurance, safety and accessibility reviewers", "gate": "BLOCKED until complete"},
+      {"day": "D-7", "action": "field survey, public notice comprehension test and ordinary-use restoration drill", "gate": "BLOCKED on any unresolved item"},
+      {"day": "D0", "action": "repeat four-fixture tabletop and freeze receipt schema", "gate": "TEST PREP"},
+      {"day": "D1-D3", "action": "closed bounded testing without public users inside the machine pocket", "gate": "TEST"},
+      {"day": "D4", "action": "independent retest and Test Receipt decision", "gate": "TEST DECISION"},
+      {"day": "D5-D7", "action": "rights, version and withdrawal review", "gate": "RELEASE"},
+      {"day": "D8-D12", "action": "limited staffed public use with non-AI equivalent", "gate": "USE"},
+      {"day": "D13", "action": "publish complaints, cohort gaps and restoration evidence", "gate": "PUBLIC REVIEW"},
+      {"day": "D14", "action": "issue continue, revise or RETURN verdict", "gate": "VERDICT"}
+    ]
+  },
+  "product_lifecycle": {
+    "product": "SC-03 low-speed embodied service prototype",
+    "version_path": ["0.8-test", "0.9-retest", "0.9-rc1", "0.9-limited-use", "0.10-return"],
+    "events": [
+      {"id": "L01", "station": "Zhongzhi", "state": "TEST", "version": "0.8-test", "decision": "FAIL", "reason": "unexpected crossing fixture triggers return"},
+      {"id": "L02", "station": "Zhongzhi", "state": "RETURN", "version": "0.8-test", "decision": "RESTORE", "reason": "remove device and preserve ordinary court"},
+      {"id": "L03", "station": "Zhongzhi", "state": "RETEST", "version": "0.9-retest", "decision": "PASS", "reason": "all fixed fixtures and independent stop pass"},
+      {"id": "L04", "station": "AI Origin", "state": "RELEASE", "version": "0.9-rc1", "decision": "HOLD", "reason": "software component rights need clarification"},
+      {"id": "L05", "station": "AI Origin", "state": "RELEASE", "version": "0.9-rc1", "decision": "LIMITED", "reason": "rights cleared and limits published"},
+      {"id": "L06", "station": "Dazhongsi", "state": "USE", "version": "0.9-limited-use", "decision": "OPEN", "reason": "staff, notice and non-AI route present"},
+      {"id": "L07", "station": "Dazhongsi", "state": "USE", "version": "0.9-limited-use", "decision": "COMPLAINT", "reason": "priority route obstruction reported"},
+      {"id": "L08", "station": "Dazhongsi", "state": "RETURN", "version": "0.9-limited-use", "decision": "STOP", "reason": "public verdict requires spatial and control revision"},
+      {"id": "L09", "station": "Zhongzhi", "state": "TEST", "version": "0.10-return", "decision": "PENDING", "reason": "new fixture and layout must be retested"}
+    ]
+  },
+  "failure_cases": [
+    {
+      "id": "F-TECH-01",
+      "type": "technical",
+      "trigger": "localisation uncertainty exceeds the declared envelope tolerance",
+      "stop_owner": "on-duty safety lead",
+      "spatial_action": "close machine pocket and observation buffer; keep accessible public route open",
+      "data_action": "freeze event telemetry and prohibit image retention",
+      "return_requirement": "independent repeat of loss-of-localisation and stop fixtures",
+      "ordinary_state": "open court, seating and walking"
+    },
+    {
+      "id": "F-RIGHTS-01",
+      "type": "rights",
+      "trigger": "a software or data licence expires or cannot be linked to the tested version",
+      "stop_owner": "release steward",
+      "spatial_action": "remove release mark and convert display table to ordinary learning use",
+      "data_action": "freeze distribution and publish withdrawal state",
+      "return_requirement": "new rights review tied to exact hashes and withdrawal owner",
+      "ordinary_state": "open-source clinic and ordinary teaching without the disputed product"
+    },
+    {
+      "id": "F-PUBLIC-01",
+      "type": "public-use",
+      "trigger": "device or queue obstructs the accessible priority route or staffed alternative disappears",
+      "stop_owner": "public service lead",
+      "spatial_action": "stop device, clear crossing and switch to paper and staffed service",
+      "data_action": "record de-identified complaint and response clock",
+      "return_requirement": "user-led route test and two review cycles without material cohort gap",
+      "ordinary_state": "uninterrupted accessible movement and staffed service"
+    }
+  ],
+  "acceptance_targets": {
+    "public_path_open_during_failure_percent": 100,
+    "high_risk_human_takeover_coverage_percent": 100,
+    "non_ai_equivalent_availability_percent": 100,
+    "ticket_hash_chain_completeness_percent": 100,
+    "anonymous_complaint_receipt_target_minutes": 5,
+    "rights_impacting_complaint_response_target_workdays": 5,
+    "field_values_status": "proposed targets pending operator, official geometry and field audit"
+  }
+}

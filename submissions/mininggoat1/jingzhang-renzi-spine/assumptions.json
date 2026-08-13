@@ -1,0 +1,82 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "控规条件、道路红线、土地权属、市政与工程约束须以官方附件为准；本包全部空间内容为概念建议/参考方案。",
+      "impact": "容积率、建筑高度、拆改留、道路线位等一律写为待确认，不作为法定规划判断。",
+      "review_condition": "取得资格预审附件中的控规条件与道路红线后，由注册规划师复核全部强度、高度、拆改留与线位表述并更新 metrics.json 与图纸。"
+    },
+    {
+      "id": "GAP-BOUNDARY-001",
+      "status": "pending_official_data",
+      "statement": "总体设计范围边界使用 brief/site-package/geometry/provisional_boundaries.geojson 的 PROV-SITE-001（official_boundary=false, boundary_precision=provisional_rough），依据公告文字四至与约11.4km²面积约束推断。",
+      "impact": "provisional 复算面积 11,412,825.4 sqm，较公告约值 11,400,000 sqm 偏差 +0.1125%；官方红线到位后 site boundary、land use、green/public、buildings、roads、phasing 与全部派生指标须统一重算。",
+      "review_condition": "官方总体设计范围 polygon 发布并登记来源（含哈希）后，以程序化管线整体重算 site boundary 及全部派生图层与指标，重跑 finalize 与 self_check。"
+    },
+    {
+      "id": "GAP-BOUNDARY-002",
+      "status": "pending_official_data",
+      "statement": "三个重点区与统筹研究范围边界同为 provisional（PROV-KEY-001/002/003、PROV-RESEARCH-001）。",
+      "impact": "众智园/原点社区/大钟寺 provisional 复算较公告约值偏差分别为 +0.4270%/+0.0227%/+0.0631%，统筹研究范围 +0.0212%；均不得作为精确面积依据。",
+      "review_condition": "官方三处重点区与统筹研究范围 polygon 到位后统一替换 PROV-KEY-001/002/003 与 PROV-RESEARCH-001，复算 key area 面积与重点区章全部面积相关结论。"
+    },
+    {
+      "id": "GAP-ROAD-001",
+      "status": "pending_official_data",
+      "statement": "roads.geojson 中现状道路（学院路、西土城路、大钟寺东路、荷清路、北五环路、西直门外大街等）中心线为依据公告文字与公开常识走向绘制的示意线（confidence=low），非道路红线。",
+      "impact": "道路用地（1207）分区与道路相关指标为概念量级；官方道路红线到位后须重算。",
+      "review_condition": "官方道路红线与现状路网资料到位后替换示意中心线，重算道路用地（1207）分区与道路相关指标，复核慢行穿越与站点一体化概念线位。"
+    },
+    {
+      "id": "GAP-BUILDING-001",
+      "status": "pending_official_data",
+      "statement": "buildings.geojson 为概念体量（保留55%/改造25%/新建20%面积占比的策略示意），非现状建筑基底测绘。",
+      "impact": "building_footprint 系列指标置信度 low；拆改留结论须待现状测绘与权属资料。",
+      "review_condition": "现状建筑基底测绘与权属资料到位后校准概念体量与保留/改造/新建比例，单栋拆改留判断由测绘成果复核。"
+    },
+    {
+      "id": "GAP-HERITAGE-001",
+      "status": "pending_official_data",
+      "statement": "清华园站旧址位置取自公开文保名录常识的近似坐标（constraints.geojson CON-HERITAGE-001），精确保护范围与建设控制地带待官方资料。",
+      "impact": "遗产活化相关设计仅为叙事与空间意向，不作文保控制依据。",
+      "review_condition": "取得文保单位精确保护范围与建设控制地带资料后，复核清华园站旧址概念活化与 AR 叙事设施的空间意向。"
+    },
+    {
+      "id": "GAP-COORD-001",
+      "status": "noted",
+      "statement": "交换坐标 EPSG:4326（保留7位小数），面积复算统一 EPSG:4548；4326 往返量化造成 land_use 覆盖缝隙约 19.5 sqm，远小于校验容差 max(1 sqm, 场地面积×0.01%)≈1,141 sqm。",
+      "impact": "拓扑校验通过；官方边界替换后重新生成可消除该量化残差。",
+      "review_condition": "官方边界替换后于 EPSG:4548 下重新生成并统一量化输出，消除 4326 往返量化残差，复跑 LAND_USE_TOPOLOGY 自检。"
+    },
+    {
+      "id": "GAP-CONTROL-001",
+      "status": "pending_official_data",
+      "statement": "official_planning_controls（floor_area_ratio、building_height_m、building_density、green_ratio、setback_m）当前全部 status=missing，本包未取得官方控规附件。",
+      "impact": "metrics.json 中 floor_area_ratio 与 building_height_m 登记为 unknown 并附原因；正文仅作风貌方向性引导，任何开发强度数值均不出现。",
+      "review_condition": "官方控规条件到位后由注册规划师复核并将强度、高度等指标从 unknown 转为可复算口径，同步更新用地章与图纸。"
+    },
+    {
+      "id": "GAP-PARCEL-001",
+      "status": "pending_official_data",
+      "statement": "本包无官方宗地/权属边界资料，68 块用地分区为 provisional 边界内程序化切分的设计分区，不对应法定宗地。",
+      "impact": "用地布局与功能比例仅为概念尺度的空间组织表达，不得用于权属判断、地块出让或审批；land_use_code 采用指南项目子集。",
+      "review_condition": "官方宗地与权属资料及完整用地代码表到位后，用地分区须按法定地块重新校准并导入完整官方代码表。"
+    },
+    {
+      "id": "GAP-MUNICIPAL-001",
+      "status": "pending_professional_confirmation",
+      "statement": "给排水、电力、燃气、环卫等市政容量与管线资料未取得，分布式能源与端侧算力驿站仅为概念建议。",
+      "impact": "市政与新基建相关结论限于空间组织逻辑，不含负荷与容量测算；能源与安全运营主体未定。",
+      "review_condition": "市政专项资料到位后由各专业团队核定容量与负荷，复核创新服务平台与新基建节点的选址与规模。"
+    },
+    {
+      "id": "GAP-SERVICE-001",
+      "status": "pending_professional_confirmation",
+      "statement": "公共服务设施标准、服务半径与运营主体资料未取得，带/段/社区三级设施体系仅为空间组织概念。",
+      "impact": "设施落点与场景卡空间依托为概念建议，建设时序、运营主体与经费不作承诺。",
+      "review_condition": "公共服务专项规划与运营方案深化时，按法定设施标准复核三级设施网络的配置与规模。"
+    }
+  ]
+}

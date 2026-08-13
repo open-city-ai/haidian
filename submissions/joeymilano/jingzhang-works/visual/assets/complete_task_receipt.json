@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.7.0",
+  "status": "design_rehearsal_not_executed",
+  "receipt_id": "U05-A",
+  "title_zh": "不用手机，查清一项公共服务并带着纸质结果离开",
+  "title_en": "Without a smartphone, understand one public service and leave with a paper result",
+  "persona": {
+    "type": "design_persona_not_a_real_participant",
+    "zh": "无智能手机的老年访客",
+    "en": "older visitor without a smartphone"
+  },
+  "task": {
+    "purpose_zh": "查清办理一项公开公共服务需要哪些材料，以及线下去哪里继续办理",
+    "purpose_en": "Understand the required materials for a public service and where to continue offline",
+    "candidate_setting": "Learning Works or another authorized public-service node",
+    "exact_site_confirmed": false
+  },
+  "spatial_sequence": [
+    {
+      "step": 1,
+      "space": "public_arrival_seam",
+      "action_zh": "沿静态编号和连续无障碍路径到达",
+      "action_en": "Arrive by static numbering and a continuous accessible route",
+      "no_ai_path": "static marker and staffed escort",
+      "ai_role": null
+    },
+    {
+      "step": 2,
+      "space": "ask_first_desk",
+      "action_zh": "不注册、不扫码，说清要办的事",
+      "action_en": "State the task without registering or scanning",
+      "no_ai_path": "paper question slip and staff",
+      "ai_role": "may classify the question after consent"
+    },
+    {
+      "step": 3,
+      "space": "plain_language_table",
+      "action_zh": "读一张写明来源日期的材料清单",
+      "action_en": "Read a plain-language checklist carrying a source date",
+      "no_ai_path": "staff-prepared printed checklist",
+      "ai_role": "may draft a shorter explanation from dated public sources"
+    },
+    {
+      "step": 4,
+      "space": "human_takeover_counter",
+      "action_zh": "由工作人员核对关键事实并签字",
+      "action_en": "Have a staff member verify and sign critical facts",
+      "no_ai_path": "staff checks the public source directly",
+      "ai_role": "cannot approve the answer"
+    },
+    {
+      "step": 5,
+      "space": "quiet_recheck_bench",
+      "action_zh": "坐下来重看材料，缺一项就回到柜台补问",
+      "action_en": "Sit, reread, and return to the counter if one item is unclear",
+      "no_ai_path": "paper checklist and visible counter",
+      "ai_role": null
+    },
+    {
+      "step": 6,
+      "space": "public_exit_and_change_log",
+      "action_zh": "带走纸质结果和问题编号，沿同一连续路径离开",
+      "action_en": "Leave with the paper result and issue number along the same continuous route",
+      "no_ai_path": "paper receipt and staffed escort",
+      "ai_role": "may add an anonymized issue category only"
+    }
+  ],
+  "success_conditions": [
+    "the whole task can be completed without a smartphone, account, face scan, or personal route history",
+    "critical information carries a dated public source and human sign-off",
+    "the arrival and exit route is continuous and can be replayed by an access-first reviewer",
+    "the visitor leaves with a paper checklist, service location, expiry note, and issue number"
+  ],
+  "paper_result_contract": {
+    "artifact_status": "blank_bilingual_template_not_issued",
+    "format": "A5_landscape_printable_receipt",
+    "required_fields": [
+      {"field_id": "task_title", "label_zh": "这次要办什么", "label_en": "Task to complete", "must_be_human_confirmed": true},
+      {"field_id": "public_source", "label_zh": "公开来源与发布日期", "label_en": "Public source and publication date", "must_be_human_confirmed": true},
+      {"field_id": "materials_checklist", "label_zh": "需要准备的材料", "label_en": "Materials to prepare", "must_be_human_confirmed": true},
+      {"field_id": "offline_next_step", "label_zh": "线下下一步", "label_en": "Next offline step", "must_be_human_confirmed": true},
+      {"field_id": "information_expiry", "label_zh": "这张纸何时需要重查", "label_en": "When this paper must be rechecked", "must_be_human_confirmed": true},
+      {"field_id": "human_signoff", "label_zh": "人工核对人与时间", "label_en": "Human verifier and time", "must_be_human_confirmed": true},
+      {"field_id": "issue_id", "label_zh": "问题编号", "label_en": "Issue ID", "must_be_human_confirmed": false}
+    ],
+    "ai_may": [
+      "extract candidate fields from dated public sources",
+      "draft a shorter plain-language explanation",
+      "draft a bilingual version for human review",
+      "flag missing source, date, expiry or offline destination"
+    ],
+    "ai_must_not": [
+      "decide eligibility",
+      "invent a missing fact or source",
+      "issue the receipt without human sign-off",
+      "store a personal profile or route history"
+    ],
+    "release_rule": "Every required field except issue_id must be visible and human-confirmed before issue. A stale source, missing verifier, or unresolved critical translation blocks issue.",
+    "template_asset_zh": "assets/figures/paper-result-receipt.png",
+    "template_asset_en": "assets/figures/paper-result-receipt.en.png",
+    "issued_example": null,
+    "claim_boundary": "This is a blank service-design template. It contains no real public-service answer, person, source selection, staff signature, issue number or completed transaction."
+  },
+  "stop_conditions": [
+    "a route segment is blocked or unsafe",
+    "the public source is stale or a critical fact cannot be confirmed",
+    "the human takeover counter is unstaffed",
+    "the visitor cannot leave by a safe equivalent route"
+  ],
+  "field_result": null,
+  "claim_boundary": "This is a spatial design and service-acceptance script. It records no real visitor, completed journey, site authorization, or field performance."
+}

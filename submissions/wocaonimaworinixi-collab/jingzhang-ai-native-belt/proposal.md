@@ -1127,13 +1127,13 @@ node visual/assets/evidence-audit.js
 
 ### 国际案例
 
-- C1 Kendall Square / MIT（美国 波士顿剑桥，2010s—）——MIT Kendall Square Initiative 与剑桥市规划。
-- C2 Knowledge Quarter / King's Cross（英国 伦敦，2014—）——Knowledge Quarter 联盟公开资料与 King's Cross 开发方公开信息。
-- C3 Station F（法国 巴黎，2017—）——Station F 官方公开介绍。
-- C4 one-north（新加坡，2001—）——JTC 与新加坡规划机构公开资料。
-- C5 MaRS Discovery District（加拿大 多伦多，2005—）——MaRS 官方公开资料。
-- C6 Kashiwa-no-ha Smart City（日本 柏市，2014—）——柏叶智慧城市公私学联合体公开资料。
-- C7 Maria 01（芬兰 赫尔辛基，2016—）——Maria 01 官方公开资料。
-- C8 河套深港科技创新合作区（中国 深圳，2023—）——《河套深港科技创新合作区深圳园区发展规划》公开文本。
+- C1 Kendall Square / MIT（美国 波士顿剑桥，2010s—）——MIT Kendall Square Initiative 与剑桥市规划。 [source:CASE-C1-KENDALL-SQUARE] 公开资料：https://en.wikipedia.org/wiki/Kendall_Square
+- C2 Knowledge Quarter / King's Cross（英国 伦敦，2014—）——Knowledge Quarter 联盟公开资料与 King's Cross 开发方公开信息。 [source:CASE-C2-KINGS-CROSS] 公开资料：https://en.wikipedia.org/wiki/King%27s_Cross
+- C3 Station F（法国 巴黎，2017—）——Station F 官方公开介绍。 [source:CASE-C3-STATION-F] 公开资料：https://en.wikipedia.org/wiki/Station_F
+- C4 one-north（新加坡，2001—）——JTC 与新加坡规划机构公开资料。 [source:CASE-C4-ONE-NORTH] 公开资料：https://en.wikipedia.org/wiki/One-north
+- C5 MaRS Discovery District（加拿大 多伦多，2005—）——MaRS 官方公开资料。 [source:CASE-C5-MARS] 公开资料：https://en.wikipedia.org/wiki/MaRS_Discovery_District
+- C6 Kashiwa-no-ha Smart City（日本 柏市，2014—）——柏叶智慧城市公私学联合体公开资料。 [source:CASE-C6-KASHIWA] 公开资料：https://www.kashiwanoha-smartcity.jp/en/
+- C7 Maria 01（芬兰 赫尔辛基，2016—）——Maria 01 官方公开资料。 [source:CASE-C7-MARIA-01] 公开资料：https://maria.io/
+- C8 河套深港科技创新合作区（中国 深圳，2023—）——《河套深港科技创新合作区深圳园区发展规划》公开文本。 [source:CASE-C8-HETAO] 公开资料：https://www.sz.gov.cn/
 
 案例引用仅限其公开的空间组织与治理特征，不涉及任何非公开经营数据；引用不代表与相关机构存在合作、授权或背书关系。

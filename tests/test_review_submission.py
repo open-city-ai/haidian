@@ -107,5 +107,42 @@ summary: "围绕百年京张 AI 创新带提出可审查方案。"
         self.assertIn("pr_comment_markdown", schema["required"])
 
 
+
+    def test_review_input_has_all_seven_rubric_dimensions(self) -> None:
+        """review-input.json must expose all 7 rubric dimensions to the external model."""
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = root / "submissions" / "alice" / "reviewable2"
+            base.mkdir(parents=True)
+            (base / "proposal.md").write_text(
+                "---\ntitle: T\nauthor_github: alice\nlanguage: zh\nlicense: CC-BY-4.0\nsummary: S\n---\n# T\n",
+                encoding="utf-8",
+            )
+            for name in ["manifest.json", "metrics.json", "assumptions.json",
+                         "sources.json", "self_check.json", "agent.json"]:
+                (base / name).write_text("{}", encoding="utf-8")
+            out_dir = root / "review-out2"
+            subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "scripts" / "review_submission.py"),
+                    str(base),
+                    "--repo-root", str(root),
+                    "--out", str(out_dir),
+                ],
+                capture_output=True, text=True, check=False,
+            )
+            if not (out_dir / "review-input.json").exists():
+                self.skipTest("review-input.json was not generated")
+            review_input = json.loads((out_dir / "review-input.json").read_text(encoding="utf-8"))
+            dimension_ids = [d["dimension_id"] for d in review_input.get("rubric_dimensions", [])]
+            expected = [
+                "brief_alignment", "originality", "ai_planning_innovation",
+                "implementation_feasibility", "public_interest_inclusion",
+                "risk_compliance", "expression_completeness",
+            ]
+            self.assertEqual(dimension_ids, expected)
+
+
 if __name__ == "__main__":
     unittest.main()

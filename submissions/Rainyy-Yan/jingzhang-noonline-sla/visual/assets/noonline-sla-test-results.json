@@ -1,0 +1,139 @@
+{
+  "ok": true,
+  "engine_id": "noonline-sla-engine",
+  "assertions": "deterministic_expected_results_and_field_verification_workflow",
+  "field_verification_workflow": {
+    "ok": true,
+    "assertion_count": 6,
+    "assertions": [
+      {
+        "id": "unknown_evidence_cannot_promote_sla",
+        "passed": true,
+        "detail": {
+          "current_verified_sla": "B",
+          "candidate_verified_sla": "B",
+          "promotion": "blocked",
+          "reason": "mandatory_evidence_incomplete",
+          "rejected_task_ids": [],
+          "outstanding_task_ids": [
+            "FV-SLA-A-SHADE-CONTINUITY-SLA-A",
+            "FV-SLA-A-CONTINUOUS-EXPOSURE-SLA-A",
+            "FV-SLA-A-SUMMER-DETOUR-SLA-A",
+            "FV-SLA-A-STATIC-WAYFINDING-SLA-A",
+            "FV-SLA-A-NODE-LOCATION-N01",
+            "FV-SLA-A-NODE-LOCATION-N02",
+            "FV-SLA-A-NODE-LOCATION-N03",
+            "FV-SLA-A-NODE-LOCATION-N04",
+            "FV-SLA-A-NODE-LOCATION-N05",
+            "FV-SLA-A-NODE-LOCATION-N06",
+            "FV-SLA-A-REST-NODES-N02",
+            "FV-SLA-A-REST-NODES-N05",
+            "FV-SLA-A-WATER-NODES-N02",
+            "FV-SLA-A-WATER-NODES-N05",
+            "FV-SLA-A-PUBLIC-ENTRIES-N03",
+            "FV-SLA-A-CROSSING-NODES-N04",
+            "FV-SLA-A-HUMAN-FALLBACK-NODES-N02",
+            "FV-SLA-A-HUMAN-FALLBACK-NODES-N05"
+          ],
+          "degrade_review_required": false,
+          "automatic_sla_change": false
+        }
+      },
+      {
+        "id": "verified_non_mandatory_evidence_alone_cannot_promote_sla",
+        "passed": true,
+        "detail": {
+          "current_verified_sla": "B",
+          "candidate_verified_sla": "B",
+          "promotion": "blocked",
+          "reason": "mandatory_evidence_incomplete",
+          "rejected_task_ids": [],
+          "outstanding_task_ids": [
+            "FV-SLA-A-SHADE-CONTINUITY-SLA-A",
+            "FV-SLA-A-CONTINUOUS-EXPOSURE-SLA-A",
+            "FV-SLA-A-SUMMER-DETOUR-SLA-A",
+            "FV-SLA-A-STATIC-WAYFINDING-SLA-A",
+            "FV-SLA-A-NODE-LOCATION-N01",
+            "FV-SLA-A-NODE-LOCATION-N02",
+            "FV-SLA-A-NODE-LOCATION-N03",
+            "FV-SLA-A-NODE-LOCATION-N04",
+            "FV-SLA-A-NODE-LOCATION-N05",
+            "FV-SLA-A-NODE-LOCATION-N06",
+            "FV-SLA-A-REST-NODES-N02",
+            "FV-SLA-A-REST-NODES-N05",
+            "FV-SLA-A-WATER-NODES-N02",
+            "FV-SLA-A-WATER-NODES-N05",
+            "FV-SLA-A-PUBLIC-ENTRIES-N03",
+            "FV-SLA-A-CROSSING-NODES-N04",
+            "FV-SLA-A-HUMAN-FALLBACK-NODES-N02",
+            "FV-SLA-A-HUMAN-FALLBACK-NODES-N05"
+          ],
+          "degrade_review_required": false,
+          "automatic_sla_change": false
+        }
+      },
+      {
+        "id": "rejected_mandatory_evidence_blocks_promotion",
+        "passed": true,
+        "detail": {
+          "current_verified_sla": "B",
+          "candidate_verified_sla": "B",
+          "promotion": "blocked",
+          "reason": "mandatory_evidence_rejected",
+          "rejected_task_ids": [
+            "FV-SLA-A-SHADE-CONTINUITY-SLA-A"
+          ],
+          "outstanding_task_ids": [
+            "FV-SLA-A-SHADE-CONTINUITY-SLA-A",
+            "FV-SLA-A-CONTINUOUS-EXPOSURE-SLA-A",
+            "FV-SLA-A-SUMMER-DETOUR-SLA-A",
+            "FV-SLA-A-STATIC-WAYFINDING-SLA-A",
+            "FV-SLA-A-NODE-LOCATION-N01",
+            "FV-SLA-A-NODE-LOCATION-N02",
+            "FV-SLA-A-NODE-LOCATION-N03",
+            "FV-SLA-A-NODE-LOCATION-N04",
+            "FV-SLA-A-NODE-LOCATION-N05",
+            "FV-SLA-A-NODE-LOCATION-N06",
+            "FV-SLA-A-REST-NODES-N02",
+            "FV-SLA-A-REST-NODES-N05",
+            "FV-SLA-A-WATER-NODES-N02",
+            "FV-SLA-A-WATER-NODES-N05",
+            "FV-SLA-A-PUBLIC-ENTRIES-N03",
+            "FV-SLA-A-CROSSING-NODES-N04",
+            "FV-SLA-A-HUMAN-FALLBACK-NODES-N02",
+            "FV-SLA-A-HUMAN-FALLBACK-NODES-N05"
+          ],
+          "degrade_review_required": true,
+          "automatic_sla_change": false
+        }
+      },
+      {
+        "id": "all_mandatory_evidence_verified_permits_promotion_logic",
+        "passed": true,
+        "detail": {
+          "current_verified_sla": "B",
+          "candidate_verified_sla": "A",
+          "promotion": "permitted_by_evidence_gate",
+          "reason": "all_mandatory_evidence_verified_by_human_workflow",
+          "rejected_task_ids": [],
+          "outstanding_task_ids": [],
+          "degrade_review_required": false,
+          "automatic_sla_change": false,
+          "note": "This only permits a subsequent policy/engine recheck; it does not auto-write Verified SLA=A."
+        }
+      },
+      {
+        "id": "missing_verifier_timestamp_or_evidence_reference_cannot_be_verified",
+        "passed": true,
+        "detail": "Missing verifier rejected by transition guard."
+      },
+      {
+        "id": "ai_cannot_self_verify_field_evidence",
+        "passed": true,
+        "detail": "AI actor rejected before any field-state transition."
+      }
+    ]
+  },
+  "errors": [],
+  "output": "visual/assets/noonline-sla-report.json"
+}

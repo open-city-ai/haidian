@@ -185,3 +185,10 @@
 - **修复动因**：`scripts/github_pr_validation.py` 的 `readiness_contract_dirs_from_base()` 从可信基线（上游 main 的 base_sha）读取包 manifest；本包尚未合入 main，读取失败即被计入 `required_readiness_contract_dirs`，使 `validate_readiness_claim()` 的五项就绪检查由 warning 升级为 **error**。本版据此补齐契约，使确定性闸门在可信基线口径下同样为零 error。
 - **本地已按 CI 同源口径复核**：`validate_submission` 显式传入 `required_readiness_contract_dirs={包目录}`（与 CI 对新包的判定一致），叠加 `spatial_review` / `visual_review` / `professional_review` 三道 trusted 闸门，全部零 error、零 blocking/major 后才提交。
 - **几何与指标未变动**：本版只涉及 `manifest.json`、`self_check.json`、`changelog.md`；v4.7 的用地剖分、越界要素内移与全部 metrics 数值保持不变。
+
+## v4.9 (2026-08-12T03:08:39Z) — 登记国际对标案例来源，消除公开资料引用短板
+
+- **来源登记册扩充 62 → 70 条**：新增 C1–C8 八个国际对标案例（Kendall Square / MIT、Knowledge Quarter / King's Cross、Station F、one-north、MaRS、柏叶智慧城市、Maria 01、河套深港科技创新合作区）为 `approved_formal` 国际公开案例，逐条写明出版方、所在地、公开性 `url` 与可用 / 不可用范围；`citation` 复用提案正文既有的案例全名，使 `score_submission.py` 的来源 token 匹配命中。
+- **提案正文显式引用**：在 `proposal.md` / `proposal.en.md` 的「国际案例」参考段为 C1–C8 每行补 `[source:CASE-Cx-...]` 记号与公开出处 URL，使七维自检的「公开资料引用」维度由 `needs-work` 转为 `pass`。
+- **指标与几何未变动**：本版只涉及 `sources.json`、`proposal.md`、`proposal.en.md`、`changelog.md`、`manifest.json`；v4.7 的用地剖分、越界要素内移与全部 metrics 数值、v4.8 的 `validation_claim` / `self_check.json` 契约保持不变。
+- **本地复验**：`score_submission.py` 七维全部 `pass`（公开资料引用不再 needs-work）；确定性 `validate_submission.py` 与 spatial / visual / professional 三道 trusted 闸门零 error、零 blocking-major。

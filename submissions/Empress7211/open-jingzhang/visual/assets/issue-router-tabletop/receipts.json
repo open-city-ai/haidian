@@ -1,0 +1,612 @@
+{
+  "all_expectations_matched": true,
+  "case_count": 7,
+  "contract_id": "OJZ-S14-ISSUE-ROUTER-TABLETOP",
+  "decision_counts": {
+    "HOLD": 5,
+    "PASS": 1,
+    "RETIRED": 1
+  },
+  "execution_status": "synthetic_offline_rehearsal_complete",
+  "field_run": false,
+  "field_status": "not_authorized_not_run",
+  "human_decision_required": true,
+  "limitations_en": "Results prove only that the current rules classify synthetic fixtures as PASS, HOLD, or RETIRED; they do not prove real civic priority, field service, compliance, government adoption, or implementation authorisation.",
+  "limitations_zh": "结果仅证明当前规则能对合成样例执行 PASS、HOLD、RETIRED 分类；不证明真实议题优先级、现场服务、合规性、政府采纳或实施授权。",
+  "receipts": [
+    {
+      "case_id": "S14-PASS-001",
+      "contract_id": "OJZ-S14-ISSUE-ROUTER-TABLETOP",
+      "decision": "PASS",
+      "decision_meaning": "synthetic package is eligible for real human review; no field release",
+      "decision_reason": "SYNTHETIC_PACKAGE_READY_FOR_HUMAN_REVIEW",
+      "evidence": {
+        "deletion": {
+          "action": "delete_synthetic_session_payload",
+          "owner_role": "data_steward",
+          "record_id": "SYN-EV-DEL-001",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "fixture_store_contains_no_session_payload_after_rehearsal"
+        },
+        "public_receipt": {
+          "action": "publish_deidentified_reason_and_next_gate",
+          "owner_role": "scenario_owner",
+          "record_id": "SYN-EV-RECEIPT-001",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "receipt_contains_no_personal_or_contact_fields"
+        },
+        "restoration": {
+          "action": "restore_staffed_counter_and_paper_route",
+          "owner_role": "operations_owner",
+          "record_id": "SYN-EV-RESTORE-001",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "same_task_non_ai_route_remains_available_in_fixture"
+        },
+        "rollback": {
+          "action": "restore_manual_routing_ruleset",
+          "owner_role": "technical_owner",
+          "record_id": "SYN-EV-ROLLBACK-001",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "same_fixture_routes_to_staffed_counter_without_ai"
+        }
+      },
+      "evidence_complete": true,
+      "execution_status": "synthetic_offline_rehearsal_complete",
+      "expectation": {
+        "expected_decision": "PASS",
+        "expected_reason": null,
+        "matched": true
+      },
+      "field_run": false,
+      "field_status": "synthetic_only_not_authorized_not_run",
+      "human_decision_required": true,
+      "independent_appeal": {
+        "completed": false,
+        "officer_role": "independent_appeal_officer",
+        "outcome": "not_invoked",
+        "reason": "无红牌或争议，仅验证独立角色已预留。",
+        "required": false
+      },
+      "raci": {
+        "accountable": [
+          "scenario_owner"
+        ],
+        "appeal": [
+          "independent_appeal_officer"
+        ],
+        "consulted": [
+          "domain_professional",
+          "affected_group_steward"
+        ],
+        "informed": [
+          "operations_owner"
+        ],
+        "responsible": [
+          "data_steward",
+          "technical_owner"
+        ]
+      },
+      "reasons": [],
+      "receipt_id": "RECEIPT-S14-PASS-001",
+      "red_card": {
+        "holder_role": "affected_group_steward",
+        "reason": null,
+        "triggered": false
+      },
+      "scenario_id": "14",
+      "synthetic": true
+    },
+    {
+      "case_id": "S14-HOLD-001",
+      "contract_id": "OJZ-S14-ISSUE-ROUTER-TABLETOP",
+      "decision": "HOLD",
+      "decision_meaning": "repair evidence or complete independent review before rerunning",
+      "decision_reason": "FAIL_CLOSED_RULE_VIOLATION",
+      "evidence": {
+        "deletion": {
+          "action": "delete_synthetic_session_payload",
+          "owner_role": "data_steward",
+          "record_id": "SYN-EV-DEL-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "no_session_payload_after_rehearsal"
+        },
+        "public_receipt": {
+          "action": "publish_deidentified_reason_and_next_gate",
+          "owner_role": "scenario_owner",
+          "record_id": "SYN-EV-RECEIPT-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "no_personal_or_contact_fields"
+        },
+        "restoration": {
+          "action": "restore_staffed_counter_and_paper_form",
+          "owner_role": "operations_owner",
+          "record_id": "SYN-EV-RESTORE-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "same_task_non_ai_route_available"
+        },
+        "rollback": {
+          "action": "restore_manual_routing_ruleset",
+          "owner_role": "technical_owner",
+          "record_id": "SYN-EV-ROLLBACK-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "manual_ruleset_handles_same_fixture"
+        }
+      },
+      "evidence_complete": true,
+      "execution_status": "synthetic_offline_rehearsal_complete",
+      "expectation": {
+        "expected_decision": "HOLD",
+        "expected_reason": "FORBIDDEN_ISSUE_FIELD:phone_number",
+        "matched": true
+      },
+      "field_run": false,
+      "field_status": "synthetic_only_not_authorized_not_run",
+      "human_decision_required": true,
+      "independent_appeal": {
+        "completed": false,
+        "officer_role": "independent_appeal_officer",
+        "outcome": "not_invoked",
+        "reason": "基准未触发。",
+        "required": false
+      },
+      "raci": {
+        "accountable": [
+          "scenario_owner"
+        ],
+        "appeal": [
+          "independent_appeal_officer"
+        ],
+        "consulted": [
+          "domain_professional",
+          "affected_group_steward"
+        ],
+        "informed": [
+          "operations_owner"
+        ],
+        "responsible": [
+          "data_steward",
+          "technical_owner"
+        ]
+      },
+      "reasons": [
+        "FORBIDDEN_ISSUE_FIELD:phone_number"
+      ],
+      "receipt_id": "RECEIPT-S14-HOLD-001",
+      "red_card": {
+        "holder_role": "affected_group_steward",
+        "reason": null,
+        "triggered": false
+      },
+      "scenario_id": "14",
+      "synthetic": true
+    },
+    {
+      "case_id": "S14-HOLD-002",
+      "contract_id": "OJZ-S14-ISSUE-ROUTER-TABLETOP",
+      "decision": "HOLD",
+      "decision_meaning": "repair evidence or complete independent review before rerunning",
+      "decision_reason": "FAIL_CLOSED_RULE_VIOLATION",
+      "evidence": {
+        "deletion": {
+          "action": "delete_synthetic_session_payload",
+          "owner_role": "data_steward",
+          "record_id": "SYN-EV-DEL-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "no_session_payload_after_rehearsal"
+        },
+        "public_receipt": {
+          "action": "publish_deidentified_reason_and_next_gate",
+          "owner_role": "scenario_owner",
+          "record_id": "SYN-EV-RECEIPT-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "no_personal_or_contact_fields"
+        },
+        "restoration": {
+          "action": "restore_staffed_counter_and_paper_form",
+          "owner_role": "operations_owner",
+          "record_id": "SYN-EV-RESTORE-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "same_task_non_ai_route_available"
+        },
+        "rollback": {
+          "action": "restore_manual_routing_ruleset",
+          "owner_role": "technical_owner",
+          "record_id": "SYN-EV-ROLLBACK-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "manual_ruleset_handles_same_fixture"
+        }
+      },
+      "evidence_complete": false,
+      "execution_status": "synthetic_offline_rehearsal_complete",
+      "expectation": {
+        "expected_decision": "HOLD",
+        "expected_reason": "ROLE_ASSIGNMENT_MISSING:data_steward",
+        "matched": true
+      },
+      "field_run": false,
+      "field_status": "synthetic_only_not_authorized_not_run",
+      "human_decision_required": true,
+      "independent_appeal": {
+        "completed": false,
+        "officer_role": "independent_appeal_officer",
+        "outcome": "not_invoked",
+        "reason": "基准未触发。",
+        "required": false
+      },
+      "raci": {
+        "accountable": [
+          "scenario_owner"
+        ],
+        "appeal": [
+          "independent_appeal_officer"
+        ],
+        "consulted": [
+          "domain_professional",
+          "affected_group_steward"
+        ],
+        "informed": [
+          "operations_owner"
+        ],
+        "responsible": [
+          "data_steward",
+          "technical_owner"
+        ]
+      },
+      "reasons": [
+        "ROLE_ASSIGNMENT_MISSING:data_steward",
+        "EVIDENCE_OWNER_UNASSIGNED:deletion"
+      ],
+      "receipt_id": "RECEIPT-S14-HOLD-002",
+      "red_card": {
+        "holder_role": "affected_group_steward",
+        "reason": null,
+        "triggered": false
+      },
+      "scenario_id": "14",
+      "synthetic": true
+    },
+    {
+      "case_id": "S14-HOLD-003",
+      "contract_id": "OJZ-S14-ISSUE-ROUTER-TABLETOP",
+      "decision": "HOLD",
+      "decision_meaning": "repair evidence or complete independent review before rerunning",
+      "decision_reason": "FAIL_CLOSED_RULE_VIOLATION",
+      "evidence": {
+        "deletion": {
+          "action": "delete_synthetic_session_payload",
+          "owner_role": "data_steward",
+          "record_id": "SYN-EV-DEL-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "no_session_payload_after_rehearsal"
+        },
+        "public_receipt": {
+          "action": "publish_deidentified_reason_and_next_gate",
+          "owner_role": "scenario_owner",
+          "record_id": "SYN-EV-RECEIPT-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "no_personal_or_contact_fields"
+        },
+        "restoration": {
+          "action": "restore_staffed_counter_and_paper_form",
+          "owner_role": "operations_owner",
+          "record_id": "SYN-EV-RESTORE-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "same_task_non_ai_route_available"
+        },
+        "rollback": {
+          "action": "restore_manual_routing_ruleset",
+          "owner_role": "technical_owner",
+          "record_id": "SYN-EV-ROLLBACK-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "manual_ruleset_handles_same_fixture"
+        }
+      },
+      "evidence_complete": true,
+      "execution_status": "synthetic_offline_rehearsal_complete",
+      "expectation": {
+        "expected_decision": "HOLD",
+        "expected_reason": "NON_AI_ROUTE_MISSING",
+        "matched": true
+      },
+      "field_run": false,
+      "field_status": "synthetic_only_not_authorized_not_run",
+      "human_decision_required": true,
+      "independent_appeal": {
+        "completed": false,
+        "officer_role": "independent_appeal_officer",
+        "outcome": "not_invoked",
+        "reason": "基准未触发。",
+        "required": false
+      },
+      "raci": {
+        "accountable": [
+          "scenario_owner"
+        ],
+        "appeal": [
+          "independent_appeal_officer"
+        ],
+        "consulted": [
+          "domain_professional",
+          "affected_group_steward"
+        ],
+        "informed": [
+          "operations_owner"
+        ],
+        "responsible": [
+          "data_steward",
+          "technical_owner"
+        ]
+      },
+      "reasons": [
+        "NON_AI_ROUTE_MISSING"
+      ],
+      "receipt_id": "RECEIPT-S14-HOLD-003",
+      "red_card": {
+        "holder_role": "affected_group_steward",
+        "reason": null,
+        "triggered": false
+      },
+      "scenario_id": "14",
+      "synthetic": true
+    },
+    {
+      "case_id": "S14-HOLD-004",
+      "contract_id": "OJZ-S14-ISSUE-ROUTER-TABLETOP",
+      "decision": "HOLD",
+      "decision_meaning": "repair evidence or complete independent review before rerunning",
+      "decision_reason": "RED_CARD_APPEAL_PENDING",
+      "evidence": {
+        "deletion": {
+          "action": "delete_synthetic_session_payload",
+          "owner_role": "data_steward",
+          "record_id": "SYN-EV-DEL-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "no_session_payload_after_rehearsal"
+        },
+        "public_receipt": {
+          "action": "publish_deidentified_reason_and_next_gate",
+          "owner_role": "scenario_owner",
+          "record_id": "SYN-EV-RECEIPT-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "no_personal_or_contact_fields"
+        },
+        "restoration": {
+          "action": "restore_staffed_counter_and_paper_form",
+          "owner_role": "operations_owner",
+          "record_id": "SYN-EV-RESTORE-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "same_task_non_ai_route_available"
+        },
+        "rollback": {
+          "action": "restore_manual_routing_ruleset",
+          "owner_role": "technical_owner",
+          "record_id": "SYN-EV-ROLLBACK-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "manual_ruleset_handles_same_fixture"
+        }
+      },
+      "evidence_complete": true,
+      "execution_status": "synthetic_offline_rehearsal_complete",
+      "expectation": {
+        "expected_decision": "HOLD",
+        "expected_reason": "RED_CARD_APPEAL_PENDING",
+        "matched": true
+      },
+      "field_run": false,
+      "field_status": "synthetic_only_not_authorized_not_run",
+      "human_decision_required": true,
+      "independent_appeal": {
+        "completed": false,
+        "officer_role": "independent_appeal_officer",
+        "outcome": "pending",
+        "reason": "独立复核尚未完成。",
+        "required": true
+      },
+      "raci": {
+        "accountable": [
+          "scenario_owner"
+        ],
+        "appeal": [
+          "independent_appeal_officer"
+        ],
+        "consulted": [
+          "domain_professional",
+          "affected_group_steward"
+        ],
+        "informed": [
+          "operations_owner"
+        ],
+        "responsible": [
+          "data_steward",
+          "technical_owner"
+        ]
+      },
+      "reasons": [
+        "RED_CARD_APPEAL_PENDING"
+      ],
+      "receipt_id": "RECEIPT-S14-HOLD-004",
+      "red_card": {
+        "holder_role": "affected_group_steward",
+        "reason": "synthetic_accessibility_service_difference",
+        "triggered": true
+      },
+      "scenario_id": "14",
+      "synthetic": true
+    },
+    {
+      "case_id": "S14-HOLD-005",
+      "contract_id": "OJZ-S14-ISSUE-ROUTER-TABLETOP",
+      "decision": "HOLD",
+      "decision_meaning": "repair evidence or complete independent review before rerunning",
+      "decision_reason": "FAIL_CLOSED_RULE_VIOLATION",
+      "evidence": {
+        "deletion": {
+          "action": "delete_synthetic_session_payload",
+          "owner_role": "data_steward",
+          "record_id": "SYN-EV-DEL-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "no_session_payload_after_rehearsal"
+        },
+        "public_receipt": {
+          "action": "publish_deidentified_reason_and_next_gate",
+          "owner_role": "scenario_owner",
+          "record_id": "SYN-EV-RECEIPT-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "no_personal_or_contact_fields"
+        },
+        "restoration": {
+          "action": "restore_staffed_counter_and_paper_form",
+          "owner_role": "operations_owner",
+          "record_id": "SYN-EV-RESTORE-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "same_task_non_ai_route_available"
+        },
+        "rollback": {
+          "action": "restore_manual_routing_ruleset",
+          "owner_role": "technical_owner",
+          "record_id": "SYN-EV-ROLLBACK-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "manual_ruleset_handles_same_fixture"
+        }
+      },
+      "evidence_complete": true,
+      "execution_status": "synthetic_offline_rehearsal_complete",
+      "expectation": {
+        "expected_decision": "HOLD",
+        "expected_reason": "APPEAL_NOT_INDEPENDENT",
+        "matched": true
+      },
+      "field_run": false,
+      "field_status": "synthetic_only_not_authorized_not_run",
+      "human_decision_required": true,
+      "independent_appeal": {
+        "completed": false,
+        "officer_role": "independent_appeal_officer",
+        "outcome": "not_invoked",
+        "reason": "基准未触发。",
+        "required": false
+      },
+      "raci": {
+        "accountable": [
+          "scenario_owner"
+        ],
+        "appeal": [
+          "independent_appeal_officer"
+        ],
+        "consulted": [
+          "domain_professional",
+          "affected_group_steward"
+        ],
+        "informed": [
+          "operations_owner"
+        ],
+        "responsible": [
+          "data_steward",
+          "technical_owner"
+        ]
+      },
+      "reasons": [
+        "APPEAL_NOT_INDEPENDENT"
+      ],
+      "receipt_id": "RECEIPT-S14-HOLD-005",
+      "red_card": {
+        "holder_role": "affected_group_steward",
+        "reason": null,
+        "triggered": false
+      },
+      "scenario_id": "14",
+      "synthetic": true
+    },
+    {
+      "case_id": "S14-RETIRED-001",
+      "contract_id": "OJZ-S14-ISSUE-ROUTER-TABLETOP",
+      "decision": "RETIRED",
+      "decision_meaning": "synthetic branch is closed and archived; no field release",
+      "decision_reason": "RED_CARD_UPHELD_RETIRE",
+      "evidence": {
+        "deletion": {
+          "action": "delete_synthetic_session_payload",
+          "owner_role": "data_steward",
+          "record_id": "SYN-EV-DEL-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "no_session_payload_after_rehearsal"
+        },
+        "public_receipt": {
+          "action": "publish_deidentified_reason_and_next_gate",
+          "owner_role": "scenario_owner",
+          "record_id": "SYN-EV-RECEIPT-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "no_personal_or_contact_fields"
+        },
+        "restoration": {
+          "action": "restore_staffed_counter_and_paper_form",
+          "owner_role": "operations_owner",
+          "record_id": "SYN-EV-RESTORE-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "same_task_non_ai_route_available"
+        },
+        "rollback": {
+          "action": "restore_manual_routing_ruleset",
+          "owner_role": "technical_owner",
+          "record_id": "SYN-EV-ROLLBACK-N",
+          "status": "synthetic_rehearsed_not_field_verified",
+          "verification": "manual_ruleset_handles_same_fixture"
+        }
+      },
+      "evidence_complete": true,
+      "execution_status": "synthetic_offline_rehearsal_complete",
+      "expectation": {
+        "expected_decision": "RETIRED",
+        "expected_reason": "RED_CARD_UPHELD_RETIRE",
+        "matched": true
+      },
+      "field_run": false,
+      "field_status": "synthetic_only_not_authorized_not_run",
+      "human_decision_required": true,
+      "independent_appeal": {
+        "completed": true,
+        "officer_role": "independent_appeal_officer",
+        "outcome": "retire",
+        "reason": "合成复核确认服务等价失败，Branch 应退役。",
+        "required": true
+      },
+      "raci": {
+        "accountable": [
+          "scenario_owner"
+        ],
+        "appeal": [
+          "independent_appeal_officer"
+        ],
+        "consulted": [
+          "domain_professional",
+          "affected_group_steward"
+        ],
+        "informed": [
+          "operations_owner"
+        ],
+        "responsible": [
+          "data_steward",
+          "technical_owner"
+        ]
+      },
+      "reasons": [
+        "RED_CARD_UPHELD_RETIRE"
+      ],
+      "receipt_id": "RECEIPT-S14-RETIRED-001",
+      "red_card": {
+        "holder_role": "affected_group_steward",
+        "reason": "synthetic_repeated_service_equivalence_failure",
+        "triggered": true
+      },
+      "scenario_id": "14",
+      "synthetic": true
+    }
+  ],
+  "run_id": "OJZ-S14-SYNTHETIC-TABLETOP-001",
+  "scenario_id": "14",
+  "schema_version": "1.0.0",
+  "status": "synthetic_offline_rehearsal_complete",
+  "synthetic": true,
+  "uses_network": false,
+  "writes_files": false
+}

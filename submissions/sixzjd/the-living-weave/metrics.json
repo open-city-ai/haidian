@@ -1,0 +1,394 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "high",
+      "assumptions": [
+        "Trusted provisional boundary is present in the site package."
+      ]
+    },
+    "research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/agent_taskbook.json"
+      ],
+      "formula": "polygon_area(research_scope_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Research area boundary derived from taskbook description of统筹研究范围."
+      ]
+    },
+    "key_area_total_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(key_area_features))",
+      "confidence": "medium",
+      "assumptions": [
+        "Key area boundaries are provisional and may shift with official redline."
+      ]
+    },
+    "key_area_zhongzhiyuan_sqm": {
+      "status": "known",
+      "value": 1921000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area_zhongzhiyuan)",
+      "confidence": "medium",
+      "assumptions": [
+        "Zhongzhiyuan boundary is provisional."
+      ]
+    },
+    "key_area_origin_sqm": {
+      "status": "known",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area_origin)",
+      "confidence": "medium",
+      "assumptions": [
+        "Origin community boundary is provisional."
+      ]
+    },
+    "key_area_dazhongsi_sqm": {
+      "status": "known",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area_dazhongsi)",
+      "confidence": "medium",
+      "assumptions": [
+        "Dazhongsi boundary is provisional."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2281256.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(unary_union(green_space_features)) # dissolved; overlaps counted once",
+      "confidence": "medium",
+      "assumptions": [
+        "Green space polygons are conceptual design allocations."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.199885,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Target ratio based on comparable innovation district benchmarks."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 910515.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space_features))",
+      "confidence": "medium",
+      "assumptions": [
+        "Public space polygons includes plazas, pedestrian corridors, and civic spaces."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0798,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Public space ratio target aligned with innovation district norms."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 546333.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "Building footprints are conceptual design proposals, not engineering designs."
+      ]
+    },
+    "building_density_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official building density controls are not present in the public site package; conceptual ratio can be computed but regulatory baseline is missing."
+    },
+    "road_length_km": {
+      "status": "known",
+      "value": 45.2,
+      "unit": "km",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(road_features)) / 1000",
+      "confidence": "medium",
+      "assumptions": [
+        "Road network supplements existing infrastructure; includes new and upgraded roads."
+      ]
+    },
+    "land_use_zone_count": {
+      "status": "known",
+      "value": 16,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count_distinct(land_use_zone_type)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_count": {
+      "status": "known",
+      "value": 20,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building_footprint_features)",
+      "confidence": "medium",
+      "assumptions": [
+        "Building count represents conceptual major buildings, not exhaustive structure count."
+      ]
+    },
+    "road_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(road_features)",
+      "confidence": "medium",
+      "assumptions": [
+        "Road count includes major arterial and collector roads in the design scope."
+      ]
+    },
+    "green_space_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "count(green_space_features)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space_features)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count_distinct(phase_periods)",
+      "confidence": "high",
+      "assumptions": [
+        "Three phases: near-term (2025-2027), mid-term (2028-2030), long-term (2031-2035)."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards_in_proposal)",
+      "confidence": "high",
+      "assumptions": [
+        "Scenario cards represent plausible near-term AI capabilities applied to urban life."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user_personas_in_proposal)",
+      "confidence": "medium",
+      "assumptions": [
+        "Personas based on Haidian demographic patterns and AI industry worker profiles."
+      ]
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(pilgrimage_landmarks)",
+      "confidence": "high",
+      "assumptions": [
+        "Three landmarks correspond to the three key areas."
+      ]
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(global_reference_cases)",
+      "confidence": "high",
+      "assumptions": [
+        "Global case studies used as reference, not direct templates."
+      ]
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(renewal_projects_in_proposal)",
+      "confidence": "medium",
+      "assumptions": [
+        "Renewal projects are conceptual; actual implementation requires professional confirmation."
+      ]
+    },
+    "heritage_activation_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(heritage_activation_interventions)",
+      "confidence": "medium",
+      "assumptions": [
+        "Heritage activations reference Beijing-Zhangjiakou Railway and Jacquard loom history."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "catalyst_far_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "catalyst_zone_total_floor_area / catalyst_zone_site_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Catalyst project FAR requires official planning controls not yet released."
+    },
+    "building_height_max": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "max(building_height_from_official_controls)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official height controls are not present in the public site package."
+    },
+    "accessibility_completion": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "accessible_road_segments / total_road_segments",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Accessibility audit requires detailed sidewalk and ramp data not available in conceptual design."
+    }
+  },
+  "scenario_card_count": 12
+}

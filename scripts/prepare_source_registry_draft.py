@@ -4,8 +4,43 @@
 The generated draft is intentionally conservative: records default to
 review_status=needs_review and cannot be used as formal evidence until a
 maintainer manually approves and merges them into data/source_registry.json.
-"""
 
+Input formats
+-------------
+- **discovery_csv** — output of ``scripts/discover_public_sources.py``:
+  columns ``url``, ``title``, ``publisher``, ``source_type``,
+  ``date_approx``, ``topic_terms``.
+- **seed_csv** — the seed URL table at ``brief/data/auto-crawl-seed-urls.csv``.
+- **auto** (default) — try discovery CSV first, fall back to seed CSV.
+
+Output
+------
+The draft is written to ``data/source_registry.draft.json`` (override with
+``--out``).  It follows the same schema as ``data/source_registry.json`` but
+every entry has ``review_status: needs_review`` and prefixed IDs
+(``DRAFT-...``).
+
+Submit the draft to maintainers via a ``[source-registry]`` Issue; do not edit
+``data/source_registry.json`` directly.
+
+Usage
+-----
+Generate from the default discovery CSV::
+
+    python3 scripts/prepare_source_registry_draft.py
+
+Generate from the seed CSV::
+
+    python3 scripts/prepare_source_registry_draft.py \\
+        --input brief/data/auto-crawl-seed-urls.csv \\
+        --input-format seed_csv
+
+Machine-readable output::
+
+    python3 scripts/prepare_source_registry_draft.py --json
+
+Exit code is 0 when the draft passes schema validation and 1 otherwise.
+"""
 from __future__ import annotations
 
 import argparse

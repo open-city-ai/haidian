@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "京张译场六门校译记录 / Six-Gate Civic Proofing Record",
+  "description": "An original, non-statutory concept contract for checking an AI service as a correctable urban proof before any field pilot.",
+  "type": "object",
+  "required": ["case_id", "scenario_id", "synthetic", "gates", "decision"],
+  "properties": {
+    "case_id": {"type": "string"},
+    "scenario_id": {"const": "SCN-05"},
+    "synthetic": {"const": true},
+    "gates": {
+      "type": "object",
+      "required": ["provenance", "consent", "access", "review", "rollback", "stewardship"],
+      "properties": {
+        "provenance": {"type": "boolean"},
+        "consent": {"type": "boolean"},
+        "access": {"type": "boolean"},
+        "review": {"type": "boolean"},
+        "rollback": {"type": "boolean"},
+        "stewardship": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "decision": {"enum": ["proof_ready", "return_for_retranslation"]}
+  },
+  "additionalProperties": false
+}

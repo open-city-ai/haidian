@@ -1,0 +1,246 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional rough boundary only; not an official redline or precise-area basis. Recalculate when organizer geometry is supplied."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2735275.864,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union(polygon_area(green_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "Schematic union inside the provisional boundary. Do not mix with the publicly reported opened park area of about 53 ha (2026-08-06)."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 1189473.035,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union(polygon_area(public_space))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.239667,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.104222,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 722644.073,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "Schematic footprints for design communication; actual building scale needs official conditions."
+      ]
+    },
+    "land_use_coverage_area_sqm": {
+      "status": "known",
+      "value": 11412852.689,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_partition))",
+      "confidence": "medium",
+      "assumptions": [
+        "Coverage is relative to the provisional site polygon, not an official redline."
+      ]
+    },
+    "land_use_research_ratio": {
+      "status": "known",
+      "value": 0.215117,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_0802_area / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual land-use partition on provisional boundary."
+      ]
+    },
+    "land_use_green_ratio": {
+      "status": "known",
+      "value": 0.20361,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_1401_area / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual land-use partition on provisional boundary."
+      ]
+    },
+    "land_use_residential_ratio": {
+      "status": "known",
+      "value": 0.264699,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "(land_use_0701 + land_use_0702) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual land-use partition on provisional boundary."
+      ]
+    },
+    "road_greenway_length_km": {
+      "status": "known",
+      "value": 13.567,
+      "unit": "km",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(linestring_length(roads)) / 1000",
+      "confidence": "medium",
+      "assumptions": [
+        "Schematic centerlines; real redline requires official survey."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(zhongzhiyuan_ai_acceleration_area)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon."
+      ]
+    },
+    "key_area_origin_area_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(beijing_ai_origin_community)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon."
+      ]
+    },
+    "key_area_dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(dazhongsi_ai_industry_cluster)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon."
+      ]
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(renewal_projects_in_implementation_list)",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept project list; update after official conditions."
+      ]
+    },
+    "ai_scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(ai_scenario_cards)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "reason": "Approved FAR controls and official boundary are not present in the public site package.",
+      "assumptions": []
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_height_control",
+      "confidence": "unknown",
+      "reason": "Official height controls are not provided in the public site package.",
+      "assumptions": []
+    }
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "version": 1,
+  "dimensions": [
+    {
+      "id": "data_privacy",
+      "label": "数据隐私",
+      "score": 2,
+      "note": "方案对每张场景卡声明允许与禁止数据清单，禁入面像、轨迹、病历等敏感字段，数据最小化。",
+      "mitigation": "由具名数据/隐私角色复核，禁入数据一律阻断；敏感数据越界即触发硬停止。",
+      "human_review": "ROLE-DATA 与公众复核路径"
+    },
+    {
+      "id": "implementation_complexity",
+      "label": "实施复杂度",
+      "score": 3,
+      "note": "涉及区级统筹平台、节点运营共同体与多专业运营主体协同，且有双闸门，协调成本偏高。",
+      "mitigation": "以项目/场景双闸门与主线守护人单一问责拆解责任；失败默认保留现状隔离风险。",
+      "human_review": "ROLE-MAINLINE-STEWARD 与区级统筹平台复核"
+    },
+    {
+      "id": "public_acceptance",
+      "label": "公众接受度",
+      "score": 3,
+      "note": "退场演练可拔线设计可能带来公众对企业投入的观望，且 AI 场景覆盖生活服务需透明沟通。",
+      "mitigation": "离线公共红利兜底保障无 AI 也可用；Merge 评审月公开意见征集并留痕。",
+      "human_review": "社区与受影响公众共同评审"
+    },
+    {
+      "id": "operations_cost",
+      "label": "运维成本",
+      "score": 3,
+      "note": "双轨验证与离线构件要求持续的维护劳动、保险与退出资源，长期运营投入较高。",
+      "mitigation": "场景开放收益回补公共空间维护；G5 前不承诺无预算的运营。",
+      "human_review": "ROLE-OPERATIONS 与财务专业复核"
+    },
+    {
+      "id": "policy_uncertainty",
+      "label": "政策不确定性",
+      "score": 3,
+      "note": "AI 场景开放、数据要素流通与更新政策工具需在现行法规框架下确认，政策存在不确定。",
+      "mitigation": "所有政策工具标注待官方确认；政务 8 项以内场景不以政策假设为方案前提。",
+      "human_review": "政务与规划主管部门复核"
+    },
+    {
+      "id": "spatial_dispute",
+      "label": "空间争议",
+      "score": 3,
+      "note": "基于 provisional 临时边界与概念体块，拆改留与重点区落位尚未有官方权属与范围依据。",
+      "mitigation": "官方红线发布后整包重算；不据此提出地块级拆改留或审批依据。",
+      "human_review": "规划与文保专业复核确认边界"
+    },
+    {
+      "id": "technology_maturity",
+      "label": "技术成熟度",
+      "score": 4,
+      "note": "无人配送、端侧能耗、实时交通优化等场景技术仍处演进期，成熟度与鲁棒性需验证。",
+      "mitigation": "全部场景先无 AI 基线、影子运行与退场演练；C5 前不上线，风险失控即硬停止。",
+      "human_review": "ROLE-SAFETY、独立评估者与受影响公众共同复盘"
+    },
+    {
+      "id": "equity_inclusion",
+      "label": "公平与包容性",
+      "score": 2,
+      "note": "方案以离线公共红利兜底保护弱势群体，但智能设备与数字服务仍有覆盖不均风险。",
+      "mitigation": "无障碍法约束导视与数字服务；有人柜台、触觉地图、无账号路径作为最低服务。",
+      "human_review": "ROLE-ACCESS 与社区复核"
+    }
+  ],
+  "hard_stop_conditions": [
+    {
+      "id": "HS-01",
+      "condition_zh": "无 AI 普通路径不可用",
+      "condition_en": "no-AI ordinary path unavailable"
+    },
+    {
+      "id": "HS-02",
+      "condition_zh": "没有具名人工可接管",
+      "condition_en": "no named human to take over"
+    },
+    {
+      "id": "HS-03",
+      "condition_zh": "无法物理拔线或恢复",
+      "condition_en": "cannot physically unplug or restore"
+    },
+    {
+      "id": "HS-04",
+      "condition_zh": "个人敏感数据越界",
+      "condition_en": "personal sensitive data overreach"
+    },
+    {
+      "id": "HS-05",
+      "condition_zh": "红利资产没有维护责任人",
+      "condition_en": "dividend asset without a maintenance responsible party"
+    }
+  ],
+  "hard_stop_action_zh": "出现任一即停试并隔离；不得以继续建设掩盖未决条件。",
+  "automated_decision_guard_zh": "任何可能触发真实支付、医疗、法律、执法或个人评分进入自动决策的场景，在获得专项授权前一律不进入。",
+  "technology_exit_debt_zh": "AI 街区最严重的失败不是模型输出错误，而是技术退场后遗留的封闭接口、废弃设备、维护债务、被占用公共空间与无人负责的数据。",
+  "evidence_boundary": "隐私、版权、授权、实施风险与合规状态均由具名人工复核；任一证据不足即保持 pending，不得用模型推断补齐。",
+  "concept_en": "JINGZHANG MAINLINE risk register: technology-exit debt and hard-stop conditions",
+  "risks": [
+    {
+      "dimension_id": "data_privacy",
+      "score": 2,
+      "trigger": "敏感数据越界或未授权采集",
+      "pause_threshold": "dimension score >= 4 或出现硬停止条件",
+      "owner_role": "ROLE-DATA",
+      "current_control": "禁入数据白名单+数据最小化",
+      "resume_condition": "数据与隐私复核+受影响公众同意",
+      "linked_assumption_ids": [
+        "A-CONTRACT-001"
+      ]
+    },
+    {
+      "dimension_id": "implementation_complexity",
+      "score": 3,
+      "trigger": "双闸门任一未过或协调失序",
+      "pause_threshold": "dimension score >= 4 或出现硬停止条件",
+      "owner_role": "ROLE-MAINLINE-STEWARD",
+      "current_control": "G/C 双闸门+失败默认保留现状",
+      "resume_condition": "闸门重过+专业方案复核",
+      "linked_assumption_ids": [
+        "A-GATES-001"
+      ]
+    },
+    {
+      "dimension_id": "public_acceptance",
+      "score": 3,
+      "trigger": "Merge 评审月意见强烈异议",
+      "pause_threshold": "dimension score >= 4 或出现硬停止条件",
+      "owner_role": "ROLE-COMMUNITY",
+      "current_control": "公众评审留痕+离线兜底",
+      "resume_condition": "公开答疑+受公众共同复核",
+      "linked_assumption_ids": [
+        "A-GOVERNANCE-001"
+      ]
+    },
+    {
+      "dimension_id": "operations_cost",
+      "score": 3,
+      "trigger": "维护/保险/退出资源不足",
+      "pause_threshold": "dimension score >= 4 或出现硬停止条件",
+      "owner_role": "ROLE-OPERATIONS",
+      "current_control": "场景收益回补+G5 预算闸门",
+      "resume_condition": "补充运营/预算依据",
+      "linked_assumption_ids": [
+        "A-OPERATION-007"
+      ]
+    },
+    {
+      "dimension_id": "policy_uncertainty",
+      "score": 3,
+      "trigger": "政策工具未获确认",
+      "pause_threshold": "dimension score >= 4 或出现硬停止条件",
+      "owner_role": "ROLE-GOV-PUBLIC-SERVANT",
+      "current_control": "政策工具标待确认",
+      "resume_condition": "主管部门确认后推进",
+      "linked_assumption_ids": [
+        "A-CONTROLS-003"
+      ]
+    },
+    {
+      "dimension_id": "spatial_dispute",
+      "score": 3,
+      "trigger": "官方红线/权属未定或冲突",
+      "pause_threshold": "dimension score >= 4 或出现硬停止条件",
+      "owner_role": "ROLE-HERITAGE",
+      "current_control": "provisional 边界声明+整包重算",
+      "resume_condition": "官方 polygon 到位后复算",
+      "linked_assumption_ids": [
+        "A-BOUNDARY-001",
+        "A-KEYAREA-002"
+      ]
+    },
+    {
+      "dimension_id": "technology_maturity",
+      "score": 4,
+      "trigger": "场景技术成熟度/鲁棒性不足",
+      "pause_threshold": "dimension score >= 4 或出现硬停止条件",
+      "owner_role": "ROLE-SAFETY",
+      "current_control": "无 AI 基线+影子运行+退场演练+硬停止",
+      "resume_condition": "C2 无 AI 基线+退场演练通过",
+      "linked_assumption_ids": [
+        "A-BASELINE-001",
+        "A-TABLETOP-001"
+      ]
+    },
+    {
+      "dimension_id": "equity_inclusion",
+      "score": 2,
+      "trigger": "覆盖不均或弱势可用性不足",
+      "pause_threshold": "dimension score >= 4 或出现硬停止条件",
+      "owner_role": "ROLE-ACCESS",
+      "current_control": "离线兜底+无障碍强制+有人柜台",
+      "resume_condition": "无障碍复核+社区确认",
+      "linked_assumption_ids": [
+        "A-BASELINE-001"
+      ]
+    }
+  ]
+}

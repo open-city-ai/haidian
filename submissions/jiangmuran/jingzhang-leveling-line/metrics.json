@@ -62,6 +62,12 @@
       "assumption_ids": [
         "A-BOUNDARY-001"
       ],
+      "inputs": {
+        "green_area_sqm_after_deducting_building_footprints": 2244081.797495,
+        "site_area_sqm": 11412825.385554,
+        "building_footprint_deducted_sqm": 82276.0,
+        "check": "green_area_sqm_after_deducting_building_footprints / site_area_sqm"
+      },
       "metric_class": 1,
       "evidence_class": "provisional",
       "confidence_is_about": "computation"
@@ -83,6 +89,11 @@
       "assumption_ids": [
         "A-BOUNDARY-001"
       ],
+      "inputs": {
+        "public_space_area_sqm": 733011.382241,
+        "site_area_sqm": 11412825.385554,
+        "check": "public_space_area_sqm / site_area_sqm"
+      },
       "metric_class": 1,
       "evidence_class": "provisional",
       "confidence_is_about": "computation"
@@ -118,7 +129,10 @@
       "assumption_ids": [
         "A-CONTROLS-001"
       ],
-      "metric_class": 2
+      "metric_class": 2,
+      "evidence_class": null,
+      "evidence_class_note": "无取值，因此没有可被高估的等级；所需数据（权属与现状测绘）未公开。空缺是刻意的，不是遗漏。",
+      "confidence_is_about": null
     },
     "key_area_count": {
       "status": "known",
@@ -195,6 +209,11 @@
       "assumption_ids": [
         "A-BOUNDARY-001"
       ],
+      "inputs": {
+        "land_use_code_1401_area_sqm": 1392297.141477,
+        "site_area_sqm": 11412825.385554,
+        "check": "land_use_code_1401_area_sqm / site_area_sqm"
+      },
       "metric_class": 1,
       "evidence_class": "provisional",
       "confidence_is_about": "computation"
@@ -518,7 +537,7 @@
         "standard_matrix.json",
         "design_depth_matrix.json"
       ],
-      "formula": "count(references declared in the 11 reference fields of the three matrices); shares one definition with matrix_refs_qa.count_references",
+      "formula": "count(references declared in the 14 reference fields of the three matrices); shares one definition with matrix_refs_qa.count_references",
       "confidence": "high",
       "assumptions": [
         "这是**被声明**的引用数；其中能被解析规则核对的那部分由 matrix_refs_qa 分别报出，两个数取自同一个定义，不再各算各的（此前二者相差 5）。每条条目的证据摘要由其自身引用生成，44 条互不相同。"
@@ -567,7 +586,7 @@
     },
     "errata_entry_count": {
       "status": "known",
-      "value": 46,
+      "value": 61,
       "unit": "count",
       "assumption_ids": [
         "A-SELF-COUNT-001"
@@ -605,7 +624,7 @@
     },
     "rights_ledger_entry_count": {
       "status": "known",
-      "value": 86,
+      "value": 108,
       "unit": "count",
       "assumption_ids": [
         "A-SELF-COUNT-001"
@@ -643,7 +662,7 @@
     },
     "field_census_corpus_size": {
       "status": "known",
-      "value": 440,
+      "value": 770,
       "unit": "count",
       "assumption_ids": [
         "A-CORPUS-001"

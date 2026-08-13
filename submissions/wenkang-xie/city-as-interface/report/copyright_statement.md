@@ -1,12 +1,13 @@
 # 版权、授权与生成方法声明
 
 方案：京张人字智带 · 城市即接口（`submissions/wenkang-xie/city-as-interface`）
-贡献者 GitHub：wenkang-xie　·　Agent：Claude Opus 5 (Anthropic)　·　许可：CC-BY-4.0　·　迭代：v1.0
+贡献者 GitHub：wenkang-xie　·　Agent：Claude Opus 5 (Anthropic)　·　许可：CC-BY-4.0　·　迭代：v1.1
 
 ## 1. 授权与许可
 
-本提交包内由本方案创作的全部内容——`proposal.md` 正文、9 个 GeoJSON 图层、`metrics.json` 与三张矩阵、
-5 张图示、A3 文册与 A0 展板、`visual/index.html` 与 `report/proposal.html`——以 **CC-BY-4.0** 授权，
+本提交包内由本方案创作的全部内容——`proposal.md` 正文与其等价英文译稿 `proposal.en.md`、9 个 GeoJSON 图层、
+`metrics.json` 与三张矩阵、5 张图示（中英各一套）、A3 文册与 A0 展板（中英各一套）、`visual/index.html` 与
+`report/proposal.html` 及其英文副本——以 **CC-BY-4.0** 授权，
 允许征集组织方、维护者、评审专家与后续专业团队复制、改编、深化与再发布，署名保留贡献者 GitHub 名与 Agent 名即可。
 
 ## 2. 第三方素材：无
@@ -44,9 +45,17 @@
 | 5 张图示、A3 文册、A0 展板 | Agent 编写的 matplotlib 脚本从同一批 GeoJSON、metrics 与矩阵文件生成，无外部素材 | 人工审阅版面与可读性 |
 | `visual/index.html` | Agent 生成的离线静态页面，地图为由 GeoJSON 直接导出的内联 SVG | 人工核对指标一致性与合规声明 |
 | `report/proposal.html` | 先运行仓库 `scripts/render_proposal_html.py`，再由本方案的渲染器重排以支持 Markdown 表格显示（仓库渲染器不渲染表格）；输出仍为离线、仅本地图片、无脚本 | 人工核对五张必需图示与证据标签显示 |
+| `proposal.en.md` | Agent 依据中文正文逐章改写为等价英文稿，术语统一采用仓库 `docs/terminology-glossary.md` 的推荐译法；**不是逐字机器翻译** | 人工核对章节、主张、指标与证据引用与中文版逐条对齐 |
+| `*.en.png` / `*.en.pdf` / `visual/index.en.html` | 同一批生成脚本在 `FIG_LANG=en` 下重新出图，沿用 Agent 编写的中英对照词表替换标签文字 | 人工审阅英文版面换行与可读性 |
+| `report/proposal.en.html` | 由本方案渲染器**直接渲染 `proposal.en.md`**，而不是翻译中文 HTML，避免译稿与阅读版脱节 | 人工核对五张英文图示显示 |
 
 生成脚本为本方案的工作工具，按提交包路径规则不随包提交；上述描述与 `agent.json` 的 `generation_disclosure_zh` 一致，
 可据此复现。
+
+**双语一致性说明。** 英文副本与中文版共用同一批 GeoJSON、`metrics.json` 与矩阵文件，几何、数值与证据引用在两种语言中
+**完全相同**，差异仅限文字标签与叙述语言。中文为主体语言（`language: "zh"`），英文为等价译稿
+（`translation_of: "proposal.md"`），对应关系在 `manifest.json` 中逐条声明。若两版出现任何数值或结论冲突，
+以中文版与结构化文件为准。
 
 ## 5. 内容合规
 

@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Taking the self-reliance spirit of the zigzag railway as its origin, the proposal reshapes the Jing-Zhang Heritage Park into a north-south 'human-centered AI public spine', with Zhongzhiyuan, the Beijing AI Origin Community and Dazhongsi as the three cores, and the Zhongguancun technology-service wing and Xiaoyuehe scenario wing as the two wings, forming an 'one-spine three-cores, four-belt two-wings, multi-node network' AI innovation belt."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.0"
+iteration: "v1.1"
 ---
 
 # New Jing-Zhang AI Innovation Belt: From the Centennial Zigzag Railway to a Human-Centered AI City
@@ -80,6 +80,15 @@ The proposal organizes space around the taskbook's five functions [source:AGENT-
 5. **Global voice in AI governance** — the Zhongzhiyuan safety-governance corridor and Dazhongsi international roadshow hall export standards, evaluation, and governance experience.
 
 The three areas and two wings form the loop "university incubation → open-source collaboration → enterprise conversion → scenario validation → global dissemination → back to incubation": the Zhongguancun service wing (west) supplies capital, IP, professional services, and global factor allocation [data:geometry/land_use.geojson#LU-001]; the Xiaoyuehe scenario wing (east) supplies city-scale testbeds and living scenarios [data:geometry/land_use.geojson#LU-001]. The cores and wings interconnect through the human public spine and slow-mobility network [data:geometry/roads.geojson#ROAD-001].
+
+**AI innovation ecosystem map**. The ecosystem map consists of three rings [depth:ai_ecosystem_case_studies]:
+- **Core ring (full-stack technology)**: chips—frameworks—models—data—applications—evaluation—safety governance, anchored in the Zhongzhiyuan full-stack innovation district;
+- **Conversion ring (full chain of factors)**: university incubation, talent, capital, IP, compute, and data factors, anchored in the Origin Community and the Zhongguancun service wing;
+- **Diffusion ring (scenarios and markets)**: city-scale testbeds, industry applications, international dissemination, and global standards voice, anchored in the Xiaoyuehe scenario wing and the Dazhongsi international roadshow hall.
+
+The three rings interlock: the core ring produces technology assets, the conversion ring capitalizes and talentizes them, and the diffusion ring turns them into scenarios and global standing; losing any ring severs the synergy loop (e.g., showcasing without evaluation cannot build global standards voice).
+
+**Regional innovation synergy**. At the coordinated research level, the proposal forms synergy with adjacent nodes of Beijing's AI innovation corridor [depth:overall_spatial_structure]: to the north it receives basic-research and big-science-facility spillover from the North Weiyuan (Beiwei) community and Future Science City, to the northwest it connects to basic science at Huairou Science City, and to the southeast it responds to the advanced-manufacturing ecosystem of the Beijing E-Town (Yizhuang), forming a cross-region chain of "basic research—core R&D—scenario validation—manufacturing landing"; the Jing-Zhang corridor further links the Beijing-Tianjin-Hebei AI industry belt, radiating Haidian's R&D incubation to the Tianjin-Hebei application market. These synergies are expressed as conceptual mechanisms, not statutory zoning or government arrangements.
 
 ### 3.4 Global AI Innovation Ecosystem Cases (5-8 readable summaries)
 
@@ -194,22 +203,24 @@ The full project list appears in Chapter 10 and `compliance_matrix.json`.
 
 ### 6.2 AI Scenario Cards (12, including 3 industry test/validation scenarios)
 
-| No. | Scenario card | Spatial carrier | Users | Data/privacy boundary | Human review | Operator |
-| --- | --- | --- | --- | --- | --- | --- |
-| S01 | Open-source launch hall | Origin Plaza | developers, universities | aggregate statistics | human-hosted launches | community operator |
-| S02 | Foundation-model evaluation field (**test/validation**) | Zhongzhiyuan | model vendors, evaluators | licensed corpora | expert panel | evaluation platform |
-| S03 | Edge-compute stop | along the spine | startups, residents | authorized use | service desk | professional operator |
-| S04 | AI slow-mobility navigation | Heritage Park | residents, visitors | low-intrusion sensing, explainable | manual signage patrol | park operator |
-| S05 | Dazhongsi international roadshow hall | Dazhongsi | firms, investors | activity consent | human pitch review | convention operator |
-| S06 | Qinghe low-carbon innovation corridor | Zhongzhiyuan riverside | firms, public | environmental data | ecology patrol | park operator |
-| S07 | University conversion street | Origin Community | students, startups | results consent | transfer officers | university partner |
-| S08 | Data-factor meeting hall | Dazhongsi | data suppliers/buyers | compliant, auditable | compliance review | data exchange |
-| S09 | AI living-service model street | community-commerce junction | residents | data minimization | human-customer-service fallback | community operator |
-| S10 | Agent traffic scenario simulation (**test/validation**) | eastern Xiaoyuehe belt | agent firms, traffic authority | de-identified data | traffic authority review | government-enterprise joint |
-| S11 | AI safety-governance hall | Zhongzhiyuan | public, industry | public cases | expert explanation | governance body |
-| S12 | Global AI week route (**test/validation**) | whole belt | global developers | public events | organizing committee | international team |
+Each scenario card maps to spatial layers, target users, operating data, privacy boundaries, human review, operators, visualization layers, and risks [data:geometry/public_space.geojson#PUBLIC-001] [depth:scenario_cards] [depth:ai_scenario_space_operation_map]:
 
-Each scenario maps to spatial layers [data:geometry/public_space.geojson#PUBLIC-001], metrics, and the compliance matrix, ensuring scenarios are "perceptible, showcaseable, and promotable" [depth:scenario_cards] [depth:ai_scenario_space_operation_map].
+| No. | Scenario card | Spatial carrier | Users | Operating data | Privacy boundary | Human review | Operator | Visualization layer | Risk |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| S01 | Open-source launch hall | Origin Plaza | developers, universities | registration, check-in (aggregate) | aggregate statistics | human-hosted launches | community operator | public_space + operations panel | event capacity |
+| S02 | Foundation-model evaluation field (**test/validation**) | Zhongzhiyuan | model vendors, evaluators | benchmark corpus, model logs | licensed corpora | expert panel | evaluation platform | public_space + visualization screen | evaluation authority |
+| S03 | Edge-compute stop | along the spine | startups, residents | compute usage (anonymized) | authorized use | service desk | professional operator | public_space + energy panel | compute abuse |
+| S04 | AI slow-mobility navigation | Heritage Park | residents, visitors | origin-destination statistics | low-intrusion sensing, explainable | manual signage patrol | park operator | roads + aggregate heatmap | privacy leakage |
+| S05 | Dazhongsi international roadshow hall | Dazhongsi | firms, investors | event registration, pitch materials | activity consent | human pitch review | convention operator | public_space | trade secrets |
+| S06 | Qinghe low-carbon innovation corridor | Zhongzhiyuan riverside | firms, public | environmental sensing data | environmental data | ecology patrol | park operator | green_space + environment panel | sensor drift |
+| S07 | University conversion street | Origin Community | students, startups | achievement registration, matchmaking logs | results consent | transfer officers | university partner | land_use + conversion dashboard | IP ownership |
+| S08 | Data-factor meeting hall | Dazhongsi | data suppliers/buyers | compliance registration, matchmaking logs | compliant, auditable | compliance review | data exchange | public_space | data compliance |
+| S09 | AI living-service model street | community-commerce junction | residents | service usage (anonymized) | data minimization | human-customer-service fallback | community operator | land_use + service panel | service bias |
+| S10 | Agent traffic scenario simulation (**test/validation**) | eastern Xiaoyuehe belt | agent firms, traffic authority | simulation scenarios, de-identified tracks | de-identified data | traffic authority review | government-enterprise joint | roads + simulation layer | data de-identification |
+| S11 | AI safety-governance hall | Zhongzhiyuan | public, industry | public case index | public cases | expert explanation | governance body | public_space | case freshness |
+| S12 | Global AI week route (**test/validation**) | whole belt | global developers | event registration, participation stats | public events | organizing committee | international team | phasing + route map | international compliance |
+
+All scenario cards are placed on the GeoJSON spatial layers in this submission, ensuring scenarios are "perceptible, showcaseable, and promotable" [depth:ai_scenario_space_operation_map].
 
 ### 6.3 AI Public Space, Intelligent-Native Businesses, and Pilgrimage Landmarks (3)
 
@@ -218,6 +229,21 @@ Each scenario maps to spatial layers [data:geometry/public_space.geojson#PUBLIC-
 - **Landmark 3: Zhongzhi Tower · Full-Stack Innovation Lighthouse** — an interactive full-chain atlas installation in Zhongzhiyuan displaying "chips-frameworks-models-data-applications-governance", becoming the landmark of global AI governance voice [source:AGENT-TASKBOOK].
 
 All three landmarks are conceptual suggestions, not approved construction; signage, logo, typography, imagery, and corporate/personal marks are fully cleared [depth:landmark_catalog] [depth:honor_display_system].
+
+**Honor display system**. Built on the principle of "rememberable contribution" (Co-Creation Charter clause 9 [source:AGENT-TASKBOOK]), the honor system has three levels: **individual** (open-source contributor credits, code-wall attribution), **team** (annual co-creation contribution board, conversion honor wall), and **city** (Open-Source Monument, Zhongzhi Tower full-chain atlas, Global AI Week honor tour). All levels operate openly with opt-out and appeal mechanisms, without collecting personal behavioral tracks [depth:honor_display_system].
+
+**Public-space component library**. To support "east-west stitching and north-south connection" and consistent public-space quality across the belt, the proposal offers a reusable component library (conceptual components for professional teams to deepen) [depth:component_library]:
+
+| Component | Function | Spatial placement | Clearance/compliance notes |
+| --- | --- | --- | --- |
+| Ren-form signage column | three-tier signage (rust red/blue/green), AI navigation entry | nodes along the spine | self-drawn graphics, no third-party trademarks |
+| Gene-pattern bench / smart rain shelter | rest + edge compute + environmental sensing | parks, plazas | no personal-identifying data collection |
+| Code wall / contribution screen | open-source honor display, event announcements | Origin Plaza, Zhongzhiyuan | voluntary contributor attribution |
+| Smart slow-mobility light pole | lighting + de-identified human-vehicle interaction sensing | spine slow-mobility segments | low-intrusion sensing, explainable |
+| Accessible info station | voice/tactile navigation, multilingual information | three-core plazas | accessibility design and privacy guardrails |
+| Mobile showroom pod | temporary exhibitions, test-validation launches | three cores and event routes | event permits, structural safety review |
+
+The component library forms the basic modules of the public-space design language; together with the signage system and pilgrimage landmarks it constitutes a complete "identity—honor—experience" public-space system [depth:signage_system_direction] [depth:public_experience_operation].
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
@@ -315,7 +341,9 @@ Core indicators are recomputed from geometry in EPSG:4548 [depth:metrics_recalcu
 | Building height | pending official data | m | official planning conditions [metric:building_height_m] | unknown |
 | Statutory green ratio | pending official data | ratio | official planning conditions [metric:green_ratio_official] | unknown |
 
-`compliance_matrix.json` maps every mandatory task in announcement sections 1.3, 1.4, 1.5 and agent.1-agent.6; `standard_matrix.json` covers all mandatory professional standards; `design_depth_matrix.json` covers all required design-depth items [depth:compliance_matrix] [depth:standard_matrix] [depth:design_depth_matrix].
+`compliance_matrix.json` maps every mandatory task in announcement sections 1.3, 1.4, 1.5 and agent.1-agent.6; `standard_matrix.json` covers all mandatory professional standards [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]; `design_depth_matrix.json` covers all required design-depth items [depth:compliance_matrix] [depth:standard_matrix] [depth:design_depth_matrix].
+
+**Expression index**. The machine-auditable evidence (geometry/metrics/three matrices), drawings (`drawings/a3-booklet.pdf` reading version, `drawings/a0-boards.pdf` review boards), the interactive webpage (`visual/index.html`, with columns for overview map, task coverage, core metrics, AI scenarios, and implementation logic), and the offline reading version (`report/proposal.html`) together form the complete expression layer; all figures are derived from this package's GeoJSON and metrics with unified bilingual style and do not replace the authority of the structured data [depth:metrics_recalculation].
 
 ![Core metrics recalculation and evidence chain](assets/figures/metrics-evidence.png)
 

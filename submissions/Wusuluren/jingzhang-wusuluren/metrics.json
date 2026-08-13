@@ -1,0 +1,195 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "area": "sqm",
+    "length": "m",
+    "ratio": "ratio",
+    "count": "count"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "provisional site boundary; recalculate when official polygon supplied"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 3036786.87,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(green_space) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "provisional constraint; blue-green network is a design proposal"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 219098.633,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(public_space) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "design proposal nodes; subject to station and park controls"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 501557.553,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area(buildings) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "representative block footprints only; not statutory building coverage"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.266085,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area / site_area",
+      "confidence": "high",
+      "assumptions": [
+        "provisional boundary; official green ratio needs approved conditions"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.019198,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area / site_area",
+      "confidence": "high",
+      "assumptions": [
+        "design proposal nodes"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "total_floor_area / site_area",
+      "confidence": "low",
+      "assumptions": [
+        "official regulatory planning conditions missing; pending_professional_confirmation"
+      ],
+      "reason": "Approved regulatory planning FAR not included in cleared site package.",
+      "required_for_formal_submission": true
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "provisional key area polygons"
+      ]
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 26894.8,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(roads)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "conceptual network; road redlines pending official conditions"
+      ]
+    },
+    "land_use_05_area_sqm": {
+      "status": "known",
+      "value": 1851778.972,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_area(code=05) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "商业服务业用地（概念分区，基于 provisional boundary）"
+      ]
+    },
+    "land_use_0701_area_sqm": {
+      "status": "known",
+      "value": 1422968.046,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_area(code=0701) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "城镇住宅用地（概念分区，基于 provisional boundary）"
+      ]
+    },
+    "land_use_0802_area_sqm": {
+      "status": "known",
+      "value": 4600027.264,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_area(code=0802) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "科研用地（概念分区，基于 provisional boundary）"
+      ]
+    },
+    "land_use_0804_area_sqm": {
+      "status": "known",
+      "value": 2245203.313,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_area(code=0804) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "教育用地（概念分区，基于 provisional boundary）"
+      ]
+    },
+    "land_use_1401_area_sqm": {
+      "status": "known",
+      "value": 1292889.687,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_area(code=1401) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "公园绿地（概念分区，基于 provisional boundary）"
+      ]
+    }
+  }
+}

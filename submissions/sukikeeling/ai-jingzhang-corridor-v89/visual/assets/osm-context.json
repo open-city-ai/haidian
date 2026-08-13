@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1.0",
+  "purpose_zh": "OSM 现状要素上下文存档：核验地铁站、水系等既有空间锚点；仅用于现状底图和锚点核验，不作为官方规划边界或建设条件依据。",
+  "data_source": "OpenStreetMap / Overpass API",
+  "fetched_date": "2026-08-10",
+  "license": "ODbL 1.0",
+  "attribution": "© OpenStreetMap contributors",
+  "usable_for_formal": "background_only",
+  "queries": [
+    {
+      "query_id": "Q-01",
+      "name_zh": "命名站点与河流",
+      "overpass_query": "[out:json][180];\narea[\"name\"=\"北京市\"]->.bj;\n(\n  nwr\n    [\"name\"~\"^(五道口|知春路|清华东路西口|大钟寺)$\"]\n    (area.bj);\n\n  way\n    [\"waterway\"]\n    [\"name\"~\"^(清河|小月河)$\"]\n    (area.bj);\n);\nout center tags;",
+      "targets_zh": [
+        "五道口",
+        "知春路",
+        "清华东路西口",
+        "大钟寺",
+        "清河",
+        "小月河"
+      ],
+      "status": "query_defined_not_yet_executed"
+    }
+  ],
+  "export_fields_zh": [
+    "OSM 类型（node/way/relation）",
+    "OSM ID",
+    "名称 name",
+    "要素类别 railway/public_transport/waterway",
+    "坐标（node 用 lat/lon，way/relation 用 center）",
+    "tags 全量保留",
+    "获取日期"
+  ],
+  "notes_zh": "执行 Overpass 查询后，导出 GeoJSON 原始文件并保留查询文本、获取时间与许可说明；OSM 非测绘级精度，不得作为红线、控制线、精确量测或规划控制依据。"
+}

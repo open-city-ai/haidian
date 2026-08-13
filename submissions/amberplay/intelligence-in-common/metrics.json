@@ -171,7 +171,7 @@
     },
     "persona_count": {
       "status": "known",
-      "value": 6.0,
+      "value": 8.0,
       "unit": "count",
       "source_files": [
         "proposal.md"
@@ -260,20 +260,21 @@
     },
     "public_acceptance_prototype_count": {
       "status": "known",
-      "value": 1,
+      "value": 3,
       "unit": "count",
       "source_files": [
         "proposal.md",
-        "geometry/public_space.geojson"
+        "visual/assets/acceptance-passports.json",
+        "assets/figures/key-area-prototypes.png"
       ],
-      "formula": "count(representative_public_acceptance_street_prototypes)",
+      "formula": "count(safety_acceptance_garden, rights_contribution_arcade, public_acceptance_street)",
       "confidence": "medium",
       "assumptions": [
         "A-PROTOTYPE-001"
       ],
-      "semantic_name": "representative_public_acceptance_prototype_count",
+      "semantic_name": "differentiated_key_area_public_acceptance_prototype_count",
       "non_statutory_measure": true,
-      "interpretation_rule": "one transferable relative spatial sequence; not an existing street, approved alignment or construction commitment"
+      "interpretation_rule": "three distinct concept prototypes linked by one governance protocol; not existing sites, approved alignments or construction commitments"
     },
     "public_acceptance_threshold_count": {
       "status": "known",
@@ -291,6 +292,91 @@
       "semantic_name": "public_acceptance_spatial_threshold_count",
       "non_statutory_measure": true,
       "interpretation_rule": "self-defined design protocol for concept review; not a statutory spatial standard"
+    },
+    "public_acceptance_passport_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/acceptance-passports.json",
+        "proposal.md"
+      ],
+      "formula": "count(unique scenario passports S01 through S12)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PROTOTYPE-001"
+      ],
+      "semantic_name": "structured_scenario_public_acceptance_passport_count",
+      "non_statutory_measure": true,
+      "interpretation_rule": "machine-readable scenario contracts for concept testing; not permits, field acceptance or deployment authorizations"
+    },
+    "public_acceptance_interlock_gate_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/acceptance-passports.json",
+        "visual/assets/acceptance-runner.js"
+      ],
+      "formula": "count(purpose_visible, accountable_owner_named, human_takeover_rehearsed, exit_rehearsed)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PROTOTYPE-001"
+      ],
+      "semantic_name": "non_compensatory_public_acceptance_interlock_gate_count",
+      "non_statutory_measure": true,
+      "interpretation_rule": "all four self-imposed conditions plus all red lines must pass; this is not a statutory or railway engineering rule"
+    },
+    "reversible_public_realm_component_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "assets/figures/public-realm-kit.png"
+      ],
+      "formula": "count(C01 through C07 reversible concept components)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROTOTYPE-001"
+      ],
+      "semantic_name": "reversible_public_acceptance_public_realm_component_count",
+      "non_statutory_measure": true,
+      "interpretation_rule": "concept component kit subject to site, accessibility, fire, heritage and engineering review"
+    },
+    "acceptance_tabletop_case_count": {
+      "status": "known",
+      "value": 24,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/acceptance-tabletop.json",
+        "visual/assets/acceptance-runner.js"
+      ],
+      "formula": "count(12 synthetic positive paths + 12 synthetic negative paths)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PROTOTYPE-001"
+      ],
+      "semantic_name": "read_only_zero_network_synthetic_acceptance_tabletop_case_count",
+      "non_statutory_measure": true,
+      "interpretation_rule": "logic-test cases only; field performance, resident consent and deployment authorization remain null"
+    },
+    "acceptance_tabletop_blocked_negative_path_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/acceptance-tabletop.json",
+        "visual/assets/acceptance-runner.js"
+      ],
+      "formula": "count(negative paths expected to block activation and restore no-AI baseline)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PROTOTYPE-001"
+      ],
+      "semantic_name": "synthetic_negative_paths_blocked_by_public_acceptance_interlock",
+      "non_statutory_measure": true,
+      "interpretation_rule": "synthetic rule coverage only; not a claim of safety effectiveness in the field"
     },
     "pilot_duration_days": {
       "status": "known",
@@ -507,6 +593,42 @@
       ],
       "reason": "概念建筑基底不能替代审定建筑密度。"
     },
+    "official_jz_corridor_length_approx_km": {
+      "status": "known",
+      "value": 9.0,
+      "unit": "km",
+      "source_files": [
+        "sources.json#OFFICIAL-JZ-PARK-PLAN-2021"
+      ],
+      "formula": "official_public_fact_approximate_length",
+      "confidence": "high",
+      "assumptions": [],
+      "interpretation_rule": "official public corridor-scale background; not a surveyed submission alignment or exact project boundary"
+    },
+    "official_jz_phase1_open_length_km": {
+      "status": "known",
+      "value": 2.5,
+      "unit": "km",
+      "source_files": [
+        "sources.json#OFFICIAL-JZ-PARK-PHASE1-2023"
+      ],
+      "formula": "official_public_fact_first_phase_open_length",
+      "confidence": "high",
+      "assumptions": [],
+      "interpretation_rule": "supports the existing public-realm baseline only; does not imply the full corridor is complete"
+    },
+    "official_jz_phase1_open_area_ha": {
+      "status": "known",
+      "value": 16.8,
+      "unit": "ha",
+      "source_files": [
+        "sources.json#OFFICIAL-JZ-PARK-PHASE1-2023"
+      ],
+      "formula": "official_public_fact_first_phase_open_area",
+      "confidence": "high",
+      "assumptions": [],
+      "interpretation_rule": "supports the existing public-realm baseline only; not the area of this provisional submission boundary"
+    },
     "road_area_sqm": {
       "status": "unknown",
       "value": null,
@@ -520,6 +642,108 @@
         "A-CONTROLS-001"
       ],
       "reason": "缺少官方道路红线与断面资料。"
+    },
+    "project_delivery_contract_count": {
+      "status": "known",
+      "value": 8.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/renewal-projects.json"
+      ],
+      "formula": "count(projects)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "interpretation_rule": "concept delivery contracts, not approved projects or procurement commitments"
+    },
+    "project_unique_accountable_owner_count": {
+      "status": "known",
+      "value": 8.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/renewal-projects.json"
+      ],
+      "formula": "count(distinct accountable roles across projects)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "interpretation_rule": "role-level accountability proposal; organizations and people require later confirmation"
+    },
+    "project_stop_restore_contract_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/renewal-projects.json"
+      ],
+      "formula": "projects with stop_restore / all projects",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "interpretation_rule": "design completeness target, not field performance"
+    },
+    "project_90_day_deliverable_contract_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/renewal-projects.json"
+      ],
+      "formula": "projects with 0-30,31-60,61-90 deliverables / all projects",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "interpretation_rule": "planned deliverable coverage, not implementation completion"
+    },
+    "detailed_key_area_sheet_count": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "count",
+      "source_files": [
+        "assets/figures/key-area-zhongzhiyuan.png",
+        "assets/figures/key-area-origin.png",
+        "assets/figures/key-area-dazhongsi.png"
+      ],
+      "formula": "count(differentiated key-area detailed-design sheets)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-EXISTING-001"
+      ],
+      "interpretation_rule": "conditional concept prototypes, not surveyed or construction drawings"
+    },
+    "heritage_conditional_segment_count": {
+      "status": "known",
+      "value": 6.0,
+      "unit": "count",
+      "source_files": [
+        "assets/figures/heritage-spatial-narrative.png"
+      ],
+      "formula": "count(conditional narrative segments)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-HERITAGE-001"
+      ],
+      "interpretation_rule": "spatial narrative framework; specific heritage locations await official inventory"
+    },
+    "building_public_interface_typology_count": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "assets/figures/building-public-realm-interfaces.png"
+      ],
+      "formula": "count(distinct concept interface_typology)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-EXISTING-001"
+      ],
+      "interpretation_rule": "concept interface types, not retain-renovate-demolish decisions"
     }
   }
 }

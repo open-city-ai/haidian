@@ -1,0 +1,740 @@
+{
+  "version": 1,
+  "dimensions": [
+    {
+      "id": "data_privacy",
+      "label": "数据隐私",
+      "score": 2,
+      "note": "工作人员工具仍可能接触意见、工单或文档中的个人信息。",
+      "mitigation": "只用公开或已批准语料，默认去标识，不做人脸识别和个人画像，设删除期限。",
+      "human_review": "由数据安全负责人和法务在影子测试前逐项放行。"
+    },
+    {
+      "id": "implementation_complexity",
+      "label": "实施复杂度",
+      "score": 2,
+      "note": "走道、遮阴、座椅、导视、人工服务和修理需跨专业协同。",
+      "mitigation": "拆成七个互不依赖的小额实施包，现状空间与可逆部件优先。",
+      "human_review": "由项目管理、无障碍、市政和运维专业人员现场核验。"
+    },
+    {
+      "id": "public_acceptance",
+      "label": "公众接受度",
+      "score": 1,
+      "note": "居民可能不愿与AI交互或担心服务被自动化。",
+      "mitigation": "公众不需使用AI；空间、纸本、电话与人工服务构成完整基线。",
+      "human_review": "七类用户参与开放前共测，可要求移除任何工具。"
+    },
+    {
+      "id": "operations_cost",
+      "label": "运维成本",
+      "score": 3,
+      "note": "遮阴座椅、导视、维修与有人服务需持续工时和预算。",
+      "mitigation": "首批采购同时锁定资产台账、巡检频次、备件、服务时间和年度运维资金。",
+      "human_review": "由未来运营单位和财政采购责任人确认全生命周期成本。"
+    },
+    {
+      "id": "policy_uncertainty",
+      "label": "政策不确定性",
+      "score": 2,
+      "note": "公共服务中使用生成式或分类工具需根据当期规则复核。",
+      "mitigation": "工具只服务于工作人员，只产生草案或提示，不决定权利、安全、价格或资格。",
+      "human_review": "由主管部门、数据安全和法务顾问按届时有效规则复核。"
+    },
+    {
+      "id": "spatial_dispute",
+      "label": "空间争议",
+      "score": 4,
+      "note": "仓库提供的临时总体范围不是法定红线，且遗址位置存在公开讨论。",
+      "mitigation": "所有几何标记为概念性，不作地块、文保或工程依据，官方图形到位后整体复算。",
+      "human_review": "须由组织方、测绘规划和文保专业团队确认。"
+    },
+    {
+      "id": "technology_maturity",
+      "label": "技术成熟度",
+      "score": 1,
+      "note": "六类工具只包含检索、翻译、摘要、分类、比对和一致性检查。",
+      "mitigation": "不采用开放道路自动驾驶、机器人、自动调度或直接设备控制。",
+      "human_review": "由一线工作人员逐项复核影子样本和工具输出。"
+    },
+    {
+      "id": "equity_inclusion",
+      "label": "公平与包容",
+      "score": 2,
+      "note": "路线、标识和服务时段仍可能排斥老年人、残障人士和夜间劳动者。",
+      "mitigation": "连续无障碍路线、大字/触觉/语音信息、休息点和可公布的人工服务时段作为开放条件。",
+      "human_review": "由代表性用户与无障碍专业人员共同路测。"
+    }
+  ],
+  "implementation_readiness": {
+    "schema_version": "0.1.0",
+    "concept_version": "EVERYDAY_JINGZHANG_V2",
+    "governing_rule": "Repository requirements, Chinese law, Beijing conditions, cleared data and professional review override every precedent, diagram and tool output.",
+    "central_claim": "Repair one continuous everyday line and open one anchor room plus two pop-up rooms first; only then allow six removable staff tools under twelve named human duty-shift contracts, with zero automated public decisions.",
+    "tagline": "One post. One bell. One logbook. The person remains in charge.",
+    "urban_moves": [
+      {
+        "id": "U1_WALK",
+        "move": "continuous_step_free_walk",
+        "proof": "numbered route and representative-user field test"
+      },
+      {
+        "id": "U2_SHADE",
+        "move": "shade_and_rain_heat_shelter",
+        "proof": "seasonal inspection and repair ticket"
+      },
+      {
+        "id": "U3_SIT",
+        "move": "frequent_rest_and_water_information",
+        "proof": "seat/rest inventory and route completion"
+      },
+      {
+        "id": "U4_READ",
+        "move": "legible_bilingual_multimodal_wayfinding",
+        "proof": "editor and accessibility sign-off"
+      },
+      {
+        "id": "U5_ASK",
+        "move": "published_staffed_help",
+        "proof": "roster, telephone and paper receipt"
+      },
+      {
+        "id": "U6_REPAIR",
+        "move": "open_maintenance_and_repair",
+        "proof": "numbered ticket, owner, deadline and closure evidence"
+      },
+      {
+        "id": "U7_USE",
+        "move": "ordinary_day_night_programme",
+        "proof": "physical calendar, staffed desk and annual review"
+      }
+    ],
+    "staff_tool_capabilities": [
+      {
+        "id": "T1_SEARCH",
+        "capability": "bounded_search",
+        "output": "source_linked_candidates"
+      },
+      {
+        "id": "T2_TRANSLATE",
+        "capability": "draft_translation",
+        "output": "editor_review_copy"
+      },
+      {
+        "id": "T3_SUMMARISE",
+        "capability": "draft_summary",
+        "output": "staff_review_brief"
+      },
+      {
+        "id": "T4_CLASSIFY",
+        "capability": "candidate_classification",
+        "output": "staff_queue_suggestion"
+      },
+      {
+        "id": "T5_COMPARE",
+        "capability": "document_or_option_comparison",
+        "output": "difference_flags"
+      },
+      {
+        "id": "T6_CHECK",
+        "capability": "consistency_check",
+        "output": "version_source_unit_flags"
+      }
+    ],
+    "tool_modes": [
+      {
+        "id": "BASE_SERVICE",
+        "meaning": "ordinary space and staffed workflow, complete without AI"
+      },
+      {
+        "id": "SHADOW",
+        "meaning": "tool output logged and fully reviewed but never used in public service"
+      },
+      {
+        "id": "STAFF_ASSISTED",
+        "meaning": "trained staff may use a draft, flag or candidate and remains sole decision maker"
+      },
+      {
+        "id": "REMOVED",
+        "meaning": "tool and vendor dependency removed while ordinary service continues"
+      }
+    ],
+    "zero_public_control": {
+      "automated_public_decision_target": 0,
+      "prohibited_decisions": [
+        "planning_approval_redline_or_land_right",
+        "law_enforcement_penalty_or_surveillance_action",
+        "eligibility_benefit_admission_or_service_priority",
+        "physical_or_digital_access_control",
+        "medical_legal_or_emergency_judgment",
+        "traffic_signal_vehicle_dispatch_or_route_control",
+        "safety_certification_or_emergency_dispatch",
+        "pricing_investment_displacement_or_property_decision"
+      ],
+      "prohibited_dependencies": [
+        "mandatory_app",
+        "mandatory_login",
+        "facial_recognition",
+        "robot",
+        "open_road_autonomy",
+        "direct_device_control"
+      ]
+    },
+    "originality_boundary": {
+      "original_combination": [
+        "seven_everyday_moves_six_staff_tools_zero_automated_public_decisions",
+        "one_continuous_everyday_line_three_staffed_rooms_and_twelve_service_cells",
+        "ordinary_service_baseline_precedes_any_shadow_tool_test",
+        "costed_small_packages_with_retain_modify_remove_exit"
+      ],
+      "not_claimed": [
+        "invention_of_public_service",
+        "invention_of_human_review",
+        "ownership_of_railway_history",
+        "verified_local_performance_before_fieldwork"
+      ],
+      "precedent_rule": "Methods may inform the work; no case image, brand, budget, statutory arrangement or performance result is copied.",
+      "v2_original_combination": [
+        "railway_shift_discipline_translated_into_one_post_one_bell_one_logbook_public_service_contract",
+        "one_anchor_room_two_scheduled_pop_up_rooms_for_operationally_affordable_early_delivery",
+        "twelve_duty_shift_contracts_three_stress_shifts_and_eight_cross_room_fault_cards",
+        "staff_tool_innovation_measured_by_handover_stop_reopen_and_removal_evidence_not_automation_level"
+      ],
+      "v2_not_claimed": [
+        "field_safety_or_accessibility_pass",
+        "confirmed_staffing_or_operating_budget",
+        "official_site_or_key_area_boundary",
+        "public_acceptance_before_representative_user_rehearsal",
+        "AI_performance_before_authorized_shadow_baseline"
+      ]
+    },
+    "stakeholder_governance": {
+      "roles": [
+        {
+          "id": "district_coordinator",
+          "responsible": "scope, public-interest floor and cross-department decision",
+          "veto": "scope_or_public_interest_breach"
+        },
+        {
+          "id": "street_community",
+          "responsible": "daily needs, participation and no-login service",
+          "veto": "loss_of_equal_human_access"
+        },
+        {
+          "id": "site_operator",
+          "responsible": "roster, service hours, assets, tickets and OPEX",
+          "veto": "opening_without_staff_or_maintenance"
+        },
+        {
+          "id": "design_engineering_team",
+          "responsible": "survey, heritage, accessibility, fire, traffic and municipal design",
+          "veto": "unverified_engineering_claim"
+        },
+        {
+          "id": "maintenance_team",
+          "responsible": "inspection, repair, spare parts and closure evidence",
+          "veto": "unsafe_or_unmaintainable_component"
+        },
+        {
+          "id": "data_security_owner",
+          "responsible": "approved sources, minimisation, access, retention, incident and removal",
+          "veto": "privacy_security_or_source_failure"
+        },
+        {
+          "id": "representative_user_panel",
+          "responsible": "paid or otherwise properly supported co-test with seven user groups",
+          "veto": "unresolved_exclusion"
+        },
+        {
+          "id": "independent_evaluator",
+          "responsible": "baseline, gate audit and retain-modify-remove recommendation",
+          "veto": "unsupported_scale_up"
+        }
+      ],
+      "funding_firewall": "Base public access, route continuity, maintenance and staffed help cannot depend on tool sponsorship, data access, user profiling or paid priority."
+    },
+    "delivery_portfolio": [
+      {
+        "id": "E1",
+        "package": "baseline_walk_and_ordinary_service_inventory",
+        "lead": "street_community",
+        "budget_min_cny": 80000,
+        "budget_max_cny": 150000,
+        "procurement": "survey_facilitation_and_accessibility_service",
+        "acceptance": "authorized_inventory_and_seven_group_walk",
+        "stop": "site_or_service_owner_unconfirmed",
+        "handover": "baseline_rights_and_issue_register"
+      },
+      {
+        "id": "E2",
+        "package": "continuous_route_shade_seat_and_sign_pilot",
+        "lead": "design_engineering_team",
+        "budget_min_cny": 300000,
+        "budget_max_cny": 750000,
+        "procurement": "minor_reversible_public_realm_works",
+        "acceptance": "step_free_route_and_rain_heat_walk_pass",
+        "stop": "survey_heritage_fire_or_right_of_way_conflict",
+        "handover": "as_built_asset_and_maintenance_register"
+      },
+      {
+        "id": "E3",
+        "package": "three_staffed_rooms_and_common_tables",
+        "lead": "site_operator",
+        "budget_min_cny": 150000,
+        "budget_max_cny": 300000,
+        "procurement": "reuse_fitout_furniture_and_service_setup",
+        "acceptance": "published_hours_paper_phone_and_staffed_completion",
+        "stop": "staffing_or_annual_opex_missing",
+        "handover": "room_roster_service_and_accessibility_manual"
+      },
+      {
+        "id": "E4",
+        "package": "repair_and_open_ticket_system",
+        "lead": "maintenance_team",
+        "budget_min_cny": 70000,
+        "budget_max_cny": 150000,
+        "procurement": "repair_tools_spares_and_open_ticket_configuration",
+        "acceptance": "urgent_route_and_sample_ticket_closure_pass",
+        "stop": "no_response_sla_or_spare_part_owner",
+        "handover": "asset_spare_part_and_ticket_export"
+      },
+      {
+        "id": "E5",
+        "package": "cleared_heritage_and_everyday_programme",
+        "lead": "street_community",
+        "budget_min_cny": 60000,
+        "budget_max_cny": 150000,
+        "procurement": "curation_translation_print_and_small_events",
+        "acceptance": "rights_source_bilingual_and_accessibility_audit_pass",
+        "stop": "rights_or_heritage_review_pending",
+        "handover": "source_rights_content_and_event_register"
+      },
+      {
+        "id": "E6",
+        "package": "staff_tool_shadow_sandbox",
+        "lead": "data_security_owner",
+        "budget_min_cny": 120000,
+        "budget_max_cny": 300000,
+        "procurement": "time_limited_staff_only_tool_and_evaluation_service",
+        "acceptance": "all_release_gates_pass_with_zero_public_decision",
+        "stop": "privacy_source_traceability_accuracy_or_value_gate_fails",
+        "handover": "model_source_prompt_result_export_and_deletion_certificate"
+      },
+      {
+        "id": "E7",
+        "package": "independent_user_test_and_annual_review",
+        "lead": "independent_evaluator",
+        "budget_min_cny": 70000,
+        "budget_max_cny": 150000,
+        "procurement": "independent_evaluation_and_supported_participation",
+        "acceptance": "public_retain_modify_remove_record",
+        "stop": "baseline_missing_or_evaluator_conflict",
+        "handover": "public_scorecard_response_owner_and_due_date"
+      }
+    ],
+    "cost_basis": {
+      "first_100_day_min_cny": 850000,
+      "first_100_day_max_cny": 1950000,
+      "status": "pre_feasibility_concept_range",
+      "includes": "small surveys, reversible public-realm components, reuse fit-out, setup, training and first evaluation cycle",
+      "excludes": "land, heavy civil works, statutory fees, unknown utility diversion and long-term OPEX",
+      "next_step": "verify quantities, tax, market quotations, annual staffing and lifecycle maintenance before funding decision",
+      "not_a_commitment": true
+    },
+    "procurement_split": [
+      "E1_professional_service",
+      "E2_minor_reversible_works",
+      "E3_reuse_fitout_and_operation",
+      "E4_maintenance_tools_and_ticketing",
+      "E5_content_and_events",
+      "E6_time_limited_staff_tool",
+      "E7_independent_evaluation"
+    ],
+    "lock_in_controls": [
+      "open_export",
+      "documented_data_format",
+      "asset_and_spare_parts_register",
+      "staff_training",
+      "source_model_prompt_register",
+      "deletion_and_exit_certificate"
+    ],
+    "first_100_day_plan": [
+      {
+        "days": "0-10",
+        "work": "confirm site, owners, service rights, heritage and user panel"
+      },
+      {
+        "days": "11-30",
+        "work": "walk audit, asset/seat/shade/sign inventory, design freeze and small procurement"
+      },
+      {
+        "days": "31-60",
+        "work": "install reversible components, open staffed rooms and start ordinary-service baseline"
+      },
+      {
+        "days": "61-100",
+        "work": "complete 8-12 week baseline where timing allows, repair defects, publish evidence; staff tools remain shadow only"
+      }
+    ],
+    "operating_staffing": {
+      "published_service_hours_required": true,
+      "minimum_open_shift": "two trained people where a staffed room is open, subject to operator workforce rules",
+      "maintenance": "named on-call owner, urgent route and ticket deadline published before opening",
+      "training": [
+        "accessibility",
+        "heritage_and_rights",
+        "privacy_security",
+        "complaint_and_escalation",
+        "tool_output_review_and_removal"
+      ],
+      "caveat": "Exact posts, shifts and labour costs require the future operator's workforce and OPEX plan."
+    },
+    "tool_release_gates": [
+      {
+        "id": "TG1",
+        "threshold": "ordinary_task_complete_without_tool",
+        "target": "100_percent_of_12_scenarios"
+      },
+      {
+        "id": "TG2",
+        "threshold": "approved_source_and_no_sensitive_data",
+        "target": "100_percent_of_inputs"
+      },
+      {
+        "id": "TG3",
+        "threshold": "shadow_sample_and_human_review",
+        "target": "at_least_200_items_and_100_percent_review"
+      },
+      {
+        "id": "TG4",
+        "threshold": "source_or_difference_traceability",
+        "target": "100_percent_of_released_outputs"
+      },
+      {
+        "id": "TG5",
+        "threshold": "automated_public_decisions_and_direct_control",
+        "target": "zero"
+      },
+      {
+        "id": "TG6",
+        "threshold": "staff_time_and_error_value",
+        "target": "at_least_20_percent_staff_time_saving_with_no_worse_sample_error_than_human_baseline_or_remove_tool"
+      }
+    ],
+    "public_evidence_protocol": {
+      "baseline_weeks": {
+        "minimum": 8,
+        "maximum": 12,
+        "meaning": "design threshold after authorization, not a construction promise"
+      },
+      "journeys": [
+        "sunny_day_ordinary_service",
+        "rain_or_heat_stress_service",
+        "night_or_system_outage_service"
+      ],
+      "participant_groups": [
+        "older_or_non_digital",
+        "wheelchair_or_mobility",
+        "sensory_disability",
+        "caregiver_and_child",
+        "student_or_researcher",
+        "night_worker_or_maintenance",
+        "visitor_or_small_business_without_local_app"
+      ],
+      "participation_rule": "support participation fairly where permitted, obtain consent and never make service contingent on testing",
+      "decision_record": [
+        "finding",
+        "accept_modify_or_reject",
+        "reason",
+        "owner",
+        "due_date",
+        "closure_evidence"
+      ],
+      "baseline_before_target": [
+        "task_completion",
+        "time_and_steps",
+        "wrong_or_unusable_guidance",
+        "complaint_and_appeal",
+        "no_phone_service_parity",
+        "staff_minutes_and_maintenance_cost"
+      ]
+    },
+    "regional_exchange_matrix": [
+      {
+        "area": "北纬社区",
+        "exchange_object": "resident_questions_and_inclusive_service_methods",
+        "landing_space": "AI_origin_common_table",
+        "clearance": "consent_and_aggregation",
+        "exit": "plain_language_response_record"
+      },
+      {
+        "area": "未来科学城",
+        "exchange_object": "cleared_research_material_and_staff_tools",
+        "landing_space": "zhongzhiyuan_repair_and_proof_room",
+        "clearance": "source_security_and_ip_review",
+        "exit": "shadow_test_or_reject"
+      },
+      {
+        "area": "怀柔科学城",
+        "exchange_object": "scientific_instrument_maintenance_and_public_explanation_methods",
+        "landing_space": "repair_garden",
+        "clearance": "professional_and_rights_review",
+        "exit": "documented_method_or_no_transfer"
+      },
+      {
+        "area": "经开区",
+        "exchange_object": "repairable_components_and_maintenance_supply",
+        "landing_space": "dazhongsi_repair_interface",
+        "clearance": "product_safety_procurement_and_spares",
+        "exit": "maintainable_component_or_no_purchase"
+      },
+      {
+        "area": "京津冀",
+        "exchange_object": "portable_wayfinding_service_and_open_ticket_templates",
+        "landing_space": "dazhongsi_regional_interface",
+        "clearance": "jurisdiction_and_service_owner_check",
+        "exit": "open_template_with_local_reauthorization"
+      }
+    ],
+    "ecosystem_handover_map": [
+      {
+        "id": "land",
+        "entry": "official_boundary_ownership_and_use",
+        "output": "verified_site_or_relocatable_component"
+      },
+      {
+        "id": "space",
+        "entry": "survey_heritage_fire_and_accessibility",
+        "output": "reuse_fitout_and_asset_register"
+      },
+      {
+        "id": "industry",
+        "entry": "real_maintenance_or_service_problem",
+        "output": "repairable_component_or_rejected_offer"
+      },
+      {
+        "id": "funding",
+        "entry": "seven_package_and_opex_owner",
+        "output": "lifecycle_budget_or_no_opening"
+      },
+      {
+        "id": "talent",
+        "entry": "competency_and_service_training",
+        "output": "trained_staff_and_handover_record"
+      },
+      {
+        "id": "compute",
+        "entry": "documented_small_workload_security_and_energy",
+        "output": "shared_staff_tool_or_no_compute_purchase"
+      },
+      {
+        "id": "data",
+        "entry": "approved_source_minimisation_retention_and_deletion",
+        "output": "traceable_record_or_tool_removed"
+      },
+      {
+        "id": "scenario",
+        "entry": "ordinary_baseline_user_test_and_stop_rule",
+        "output": "retain_modify_or_remove_record"
+      }
+    ],
+    "public_component_library": [
+      {
+        "id": "C1",
+        "component": "continuous_numbered_step_free_route",
+        "owner": "design_engineering_team"
+      },
+      {
+        "id": "C2",
+        "component": "shade_rain_shelter_rest_and_water_information",
+        "owner": "site_operator"
+      },
+      {
+        "id": "C3",
+        "component": "large_text_tactile_audible_bilingual_sign",
+        "owner": "design_engineering_team"
+      },
+      {
+        "id": "C4",
+        "component": "paper_map_physical_calendar_and_public_notice",
+        "owner": "street_community"
+      },
+      {
+        "id": "C5",
+        "component": "staffed_common_table_telephone_and_paper_receipt",
+        "owner": "site_operator"
+      },
+      {
+        "id": "C6",
+        "component": "repair_cart_tool_cabinet_and_open_ticket_board",
+        "owner": "maintenance_team"
+      },
+      {
+        "id": "C7",
+        "component": "removable_ground_marking_planter_and_small_event_kit",
+        "owner": "site_operator"
+      }
+    ],
+    "culture_story_stops": [
+      "walk_the_railway_line",
+      "rest_under_shared_shade",
+      "read_a_verified_story",
+      "repair_a_public_object",
+      "meet_at_the_common_table"
+    ],
+    "innovation_conversion_pipeline": [
+      {
+        "gate": "G1_ASK",
+        "artifact": "ordinary_problem_and_human_baseline",
+        "decision": "community_and_frontline_accept_merge_or_reject"
+      },
+      {
+        "gate": "G2_CLEAR",
+        "artifact": "approved_source_rights_privacy_and_non_ai_route",
+        "decision": "professional_and_data_owner_allow_shadow_only"
+      },
+      {
+        "gate": "G3_SHADOW",
+        "artifact": "200_item_review_time_error_and_traceability_result",
+        "decision": "staff_and_user_panel_modify_or_remove"
+      },
+      {
+        "gate": "G4_ASSIST",
+        "artifact": "time_limited_staff_only_contract_training_export_and_opex",
+        "decision": "owner_allows_limited_staff_assistance"
+      },
+      {
+        "gate": "G5_RETAIN_MODIFY_REMOVE",
+        "artifact": "annual_service_cost_error_complaint_and_deletion_record",
+        "decision": "public_reason_and_next_owner"
+      }
+    ],
+    "event_brand_system": [
+      {
+        "id": "everyday_walk_day",
+        "function": "seven_group_route_and_seat_audit"
+      },
+      {
+        "id": "open_repair_table",
+        "function": "public_object_repair_and_maintenance_learning"
+      },
+      {
+        "id": "railway_story_evening",
+        "function": "rights_cleared_heritage_and_neighbourhood_story"
+      },
+      {
+        "id": "staff_tool_open_review",
+        "function": "shadow_sample_error_value_and_remove_decision"
+      }
+    ],
+    "planning_ai_workbench": [
+      {
+        "task": "approved_document_search",
+        "tool_output": "source_linked_candidates",
+        "human_authority": "planner_or_curator_selects"
+      },
+      {
+        "task": "bilingual_draft",
+        "tool_output": "translation_draft",
+        "human_authority": "bilingual_editor_signs_off"
+      },
+      {
+        "task": "meeting_note_summary",
+        "tool_output": "candidate_summary",
+        "human_authority": "facilitator_corrects_and_publishes"
+      },
+      {
+        "task": "deidentified_issue_classification",
+        "tool_output": "candidate_queue",
+        "human_authority": "frontline_staff_dispatches"
+      },
+      {
+        "task": "option_or_document_comparison",
+        "tool_output": "difference_flags",
+        "human_authority": "professional_team_decides"
+      },
+      {
+        "task": "bilingual_metric_source_consistency",
+        "tool_output": "candidate_conflicts",
+        "human_authority": "author_and_independent_reviewer_correct"
+      }
+    ],
+    "duty_shift_contract": {
+      "title_zh": "一岗一铃一册",
+      "title_en": "One Post, One Bell, One Logbook",
+      "required_field_count": 8,
+      "contract_count": 12,
+      "shift_state_count": 3,
+      "asset": "visual/assets/duty-shift-contracts.json",
+      "opening_rule": "No named post, ordinary help channel, stop trigger or handover evidence means no assisted-service opening.",
+      "public_rule": "A physical bell, telephone or staffed counter is always available without app, login, face recognition or tool use.",
+      "record_rule": "Every shift, stop, repair, handover and reopen leaves a paper-and-exportable record with named sign-off."
+    },
+    "preopening_shift_rehearsal": {
+      "status": "synthetic_package_check_only",
+      "readiness_label": "READY_FOR_STAFF_REHEARSAL_NOT_OPENING_APPROVAL",
+      "complete_contract_shift_cases": 36,
+      "missing_required_field_cases": 96,
+      "cross_room_fault_cases": 8,
+      "total_cases": 140,
+      "expected_matches": 140,
+      "field_passes_claimed": 0,
+      "asset": "visual/assets/preopening-shift-rehearsal.json",
+      "reproduction": "node visual/assets/run-shift-rehearsal.js"
+    },
+    "opening_resource_model": {
+      "pilot_configuration": "one_anchor_room_plus_two_scheduled_pop_up_rooms",
+      "anchor_room": "AI Origin Common Table, subject to operator, ownership, fire and accessibility confirmation",
+      "pop_up_rooms": [
+        "Zhongzhi Repair Garden",
+        "Dazhongsi Day-Night Living Room"
+      ],
+      "minimum_opening_condition": "published service window, one named duty role, reachable relief role, paper/phone fallback and maintenance contact",
+      "staff_hour_formula": "sum(room_open_hours x on_duty_roles) + 20_percent_handover_training_relief_allowance",
+      "example_not_commitment": {
+        "assumed_anchor_hours_per_week": 24,
+        "assumed_each_pop_up_hours_per_week": 8,
+        "frontline_base_hours_per_week": 40,
+        "handover_training_relief_allowance_ratio": 0.2,
+        "calculated_frontline_hours_per_week": 48,
+        "minimum_people_for_resilient_roster": 2,
+        "reason": "one person cannot provide simultaneous opening, relief, leave and two-person safety coverage"
+      },
+      "not_included_in_capex_range": [
+        "permanent payroll",
+        "utilities",
+        "rent or asset transfer",
+        "statutory professional fees",
+        "major civil works"
+      ],
+      "confirmation_owner": "site_operator_and_district_coordinator"
+    },
+    "day_one_operating_drill": {
+      "sequence": [
+        "08:30 named roster, route and asset opening check",
+        "09:00 ordinary paper-phone-staffed service opens; staff tools remain optional",
+        "12:00 shift handover compares tickets, unresolved hazards, sources and tool status",
+        "15:00 one representative-user task and one repair-ticket trace are witnessed",
+        "18:00 close or hand over; publish unresolved items, owners and deadlines"
+      ],
+      "fault_injection": "one of eight fault cards is rehearsed without affecting real public rights",
+      "pass_condition": "ordinary service completes, named owner accepts every unresolved item, and no tool closes or reopens a public matter"
+    },
+    "legal_and_data_floor": {
+      "controlling_law": [
+        "Personal Information Protection Law of the PRC",
+        "Data Security Law of the PRC"
+      ],
+      "minimum_rules": [
+        "no unnecessary personal information in tool inputs",
+        "purpose, source, access and retention are approved before shadow use",
+        "incident isolation and deletion evidence precede any restart",
+        "vendor or model change returns the tool to SHADOW or REMOVED"
+      ],
+      "sources": [
+        "PIPL-2021",
+        "DATA-SECURITY-LAW-2021"
+      ]
+    }
+  }
+}

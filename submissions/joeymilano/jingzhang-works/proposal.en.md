@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A city-usability framework that organizes the Jing-Zhang corridor as three Works and two service chains. Every AI service must provide human takeover, a no-app equivalent, minimum-data rules, a responsible owner, stop conditions, and a public change record."
 tracks: ["ai-traffic-walkability", "ai-public-services", "enterprise-services-ecosystem"]
 scenarios: ["ai-traffic-walkability", "ai-health-service-navigation", "ai-cultural-guide", "enterprise-service-copilot", "robot-delivery-low-speed", "public-safety-operations-review"]
-iteration: "v1.1"
+iteration: "v1.7"
 ---
 
 # JING-ZHANG WORKS / 京张好用
@@ -25,6 +25,22 @@ This proposal treats the approximate 11.4-square-kilometre overall design area a
 The core product is an Urban Usability Compiler. It neither predicts people nor replaces public decisions. It checks whether a service contract is complete. If any of six fields is missing, the result stays `unknown` or `blocked`: accountable owner, no-app equivalent, minimum-data rule, human takeover, stop condition, and validation metric. All twelve scenario cards compile structurally; structural completeness is not field performance. Where no fieldwork or real operation exists, measured results remain empty.[metric:scenario_ready_count] (assumption A-FIELD-001)
 
 Three public nodes make the rules visible. Ask First Desk provides routes and public-service help without registration. Human Takeover Pavilion is a visible and reachable interface when automation fails. Public Change Log shows the problem, owner, deadline, action, and retirement history. Each starts as a movable and reversible prototype. A reviewer can test the entire proposition with one question: can somebody without a smartphone, with low vision, or visiting for the first time arrive, get help, complete a task, and leave safely? If not, the AI service should not open.[metric:public_node_count]
+
+That question now has a route a person can follow. Design rehearsal U05-A chooses an ordinary task. An older visitor without a smartphone wants to understand which materials a public service requires and where to go next. Static numbering leads the visitor to Learning Works. At Ask First, the visitor explains the task. A staff member provides a printed checklist carrying the source date. AI may shorten the public explanation, while the staff member verifies and signs every critical fact. The visitor sits down to reread the list and returns to the counter if one item is missing. On departure, the visitor carries the checklist, the offline service location, the information expiry date, and an issue number.
+
+One broken step blocks the whole service. If the route is obstructed, the source is stale, or the counter is unstaffed, staff withdraw the AI service while paper and staffed routes continue. U05-A is currently a spatial and service design rehearsal. The package records no real visitor, field observation, or completion rate.[source:V13-COMPLETE-TASK-RECEIPT]
+
+The ninety-day pilot now has a startup ledger that can support an actual scope meeting. Its six cost lines cover field baseline work, paper service, a movable public interface, controlled testing, staffed operation, and permanent works. Each line identifies its unit, quantity basis, recurring burden, quotation gate, removal, and data-deletion obligation. The monetary total stays empty because the site, opening hours, accountable buyer, and comparable quotes do not yet exist. That empty total blocks false precision while leaving a usable cost structure for the authorized team.[source:V11-IMPLEMENTATION-PLAYBOOK] [metric:startup_cost_line_count]
+
+The day-one rehearsal now covers five stop situations: route and life safety, information and network failure, missing staff, a privacy incident, and supplier exit. Each has an immediate human action and evidence required for reopening. Structural checks show that the steps are specified; they do not authorize a site or prove that anyone has performed them.[source:V12-DAY-ONE-DRILL] [metric:stop_drill_category_count]
+
+Complete fields are not enough; the release rule must also refuse a bad contract. The Pre-opening Rehearsal keeps one complete copy of each of the twelve task contracts, then removes the accountable owner, no-app route, minimum-data rule, human takeover, stop condition, and validation metric one at a time. That produces eighty-four contract fixtures. Six declared day-one faults add six more checks. A complete fixture can advance only to field review. All seventy-two incomplete fixtures and all six fault fixtures must block AI opening or return the task to paper and staffed service. The ninety synthetic decisions currently match their expected outcomes, while field results remain zero. This shows how the rule treats these fixtures; it does not show that any route, staff member, or service works on site.[source:V16-PREOPENING-REHEARSAL] [metric:preopening_synthetic_case_count] [metric:preopening_expected_match_count]
+
+The rule also needs a room that can be assembled. Works Bay compresses the six U05-A steps into a 6.0 m by 4.8 m trial envelope. A 1.8 m ordinary passage stays open. The threshold shows paper cards and service status before any AI option. The counter tests 0.75 m and 1.05 m heights. The result table issues a dated paper sheet, the quiet recheck position reserves a 1.5 m turning envelope, and the takeover and change wall sits before the exit. These are trial-assembly dimensions. They have not been checked against a measured site, current accessibility requirements, fire, or egress. No site or operator is confirmed.[source:V17-WORKS-BAY] [metric:works_bay_design_area_sqm] [metric:works_bay_spatial_zone_count]
+
+The paper result is a defined handover, not a slogan. Its blank template fixes seven fields: the task, public source and publication date, materials checklist, next offline step, recheck date, human verifier and time, and issue ID. AI may extract candidate fields from dated public sources, draft plain language and a bilingual version, and flag omissions. It may not decide eligibility, invent a source, replace the staff signature, or retain a personal profile. The counter issues nothing when the source, expiry, offline destination, or human sign-off is missing. The current template contains no real public-service answer, signature, or issue number.[source:V13-COMPLETE-TASK-RECEIPT] [metric:paper_result_required_field_count]
+
+The A3 booklet has also been recut for standalone review. Each of its sixteen pages answers one question, carries one judgement, and provides both direct evidence and a boundary. Fourteen author-performed semantic checks compare the Chinese and English narrative, first screen, six core figures, A3 booklet, and A0 boards. The audit records that these pairs were checked; it does not replace independent translation review or public-comprehension testing.[source:V17-JUROR-PATH] [source:V17-BILINGUAL-AUDIT] [metric:bilingual_audited_pair_count]
 
 ## Design Basis and Source List
 
@@ -60,11 +76,11 @@ Each of the taskbook's three positions has a testable urban action. The Centenni
 
 Regional collaboration moves anonymized task patterns, test protocols, and versioned service standards rather than personal records or confidential company data. Beiwei Community contributes community-service problems and review practice. Future Science City connects research prototypes and test methods. Huairou Science City connects science-facility applications with public understanding. Beijing E-Town connects manufacturing validation and scaling experience. The Beijing-Tianjin-Hebei network can receive portable bilingual service standards. These are proposed relationships; no participation, funding, or adoption commitment is claimed.[source:V11-REGIONAL-COLLABORATION]
 
-![Three scopes, three Works, and two service chains](assets/figures/site-overview.en.png)
+![How one public task moves through three Works and two service chains](assets/figures/site-overview.en.png)
 
 ## Coordinated Research Area: Industry and Future City Research
 
-“JING-ZHANG WORKS” is both a name and a public test. The mark combines two railway lines with an orange acceptance stamp. Parallel lines mean that AI and no-app routes must coexist. An opening in the stamp means a service can be paused and withdrawn. Warm white, coal black, signal orange, and cobalt blue borrow the practical character of railway work orders and public-service manuals. The graphics are original and use no corporate marks, portraits, or third-party imagery.(assumption A-BRAND-001) [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
+“JING-ZHANG WORKS” is both a name and a public test. The mark combines two railway lines with an orange acceptance stamp. Parallel lines mean that AI and no-app routes must coexist. An opening in the stamp means a service can be paused and withdrawn. Warm white, coal black, signal orange, and cobalt blue borrow the practical character of railway work orders and public-service manuals. The brand graphics, maps, and information structure are original and use no corporate marks. Sixteen external photographs in the A3 booklet and A0 boards provide historical, urban-character, and service-practice references only; every image records its author, licence, and original page and is never project field evidence.(assumption A-BRAND-001) [source:V14-PHOTO-CREDITS] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
 
 The ecosystem follows four stages: problem, validation, adoption, and maintenance. Universities contribute methods; companies productize; Prototype Works provides isolated testing; the scenario wing provides real public tasks; the technology-service wing supports legal, IP, and finance needs; and public operators decide whether to adopt. Adoption never removes responsibility. Every service retains a named maintainer, a human route, and a public retirement record. Innovation density is measured through closed problems, takeover time, and recovery from failure rather than showroom count.[metric:service_chain_count] [depth:overall_spatial_structure]
 
@@ -77,6 +93,8 @@ An annual operating concept follows four seasons: issue public problem orders in
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
 The overall structure has one public-service spine, three Works, six cross-connections, and two resource loops. The spine uses the heritage park and adjacent public space as its preferred carrier for walking, rest, guidance, and visible improvement records. Cross-connections examine where an apparently nearby destination remains difficult to enter. Each checks crossings, ramps, thresholds, lighting, shade, seating, and access to human help. Provisional polygon edges remain secondary in every drawing.[data:geometry/roads.geojson#ROAD-001] [data:geometry/public_space.geojson#PUBLIC-001]
+
+The Complete Task Receipt is the proposal's distinctive unit of acceptance. The plan draws one task as continuous space from arrival and clarification through verification and rereading to departure with a result. Prototype Works checks tools and safety. Learning Works makes information understandable and provides human sign-off. Everyday Works tests whether the service can survive an ordinary day. The same receipt records the owner, paper route, source date, reason for stopping, and repair result. A missing segment blocks the whole service.[source:V13-COMPLETE-TASK-RECEIPT]
 
 Renewal proceeds from inventory to lightweight pilot to professional works. Existing buildings are first classified as shared-time opportunities, adaptive-reuse candidates, or unverified. Spaces with a public entrance and basic safety conditions may test movable counters, signs, shade, lighting, and temporary power. Structural, fire, heritage, utility, road, and permanent landscape work requires ownership and professional evidence.[standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:retain_renovate_demolish]
 
@@ -96,9 +114,13 @@ The three key areas use one usability protocol while performing different jobs. 
 
 All three begin with reversible components. Adaptive ground-floor work follows only after observed use; permanent construction enters study only with operating evidence, public feedback, and professional confirmation. A prototype with no named operator, continuous accessible route, or safe exit does not open.[metric:public_node_count] [depth:height_massing_character]
 
+Learning Works now develops one Works Bay in detail. It adapts an existing ground-floor public lobby and does not assume a new building. The 6.0 m by 4.8 m trial envelope contains ordinary passage, an ask-first threshold, a dual-height counter, a paper-result table, a quiet recheck position, and a takeover and change wall. The room can open in manual-only mode when staffed service is ready. AI enters as limited assistance only after the six-field contract and pre-opening checks pass. Network, model, or supplier failure returns the room to manual mode. Route, staffing, safety, privacy, or critical-information failure closes it for recovery. Reopening requires a replay of the paper task and reconciliation of the change record.[source:V17-WORKS-BAY]
+
+The room remains a design package. Written site authorisation, a measured base plan, accessibility and fire-egress review, an information owner, a staffed shift, data review, and a removal method are all missing. The responsibility interfaces remain proposed; this submission appoints no institution or operator.[source:V17-WORKS-BAY] (assumption A-ACCESS-001)
+
 The component library divides the prototypes into six tools that can be installed, checked, and removed separately. C01 Ask First Desk provides paper maps, staffed guidance, and issue intake. C02 Human Takeover Pavilion provides a visible marker, accessible counter, physical stop, and offline contact sheet. C03 Public Change Log shows task ID, owner, due date, result, and retirement. C04 Accessible Test Lane supports controlled equipment tests. C05 Task Journey Marker connects paper maps, numbered nodes, and takeover directions. C06 Quiet Rest Point records seating, shade, quiet, and access to human help. The display system is called the Works Record. It publishes only evidence-backed pass, revision due, and retired states; it does not award unsupported innovation honors.[source:V11-COMPONENT-LIBRARY]
 
-![Three key areas and three public nodes](assets/figures/key-areas.en.png)
+![Spatial sections and movable prototypes for the three Works](assets/figures/key-areas.en.png)
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
@@ -122,6 +144,8 @@ Twelve scenarios use the same six-field gate. “Ready” below means the contra
 | T04 | Digital-twin emergency exercise | Rehearse egress and resources with synthetic data | Tabletop exercise and paper plan | Emergency professional; human command overrides any model conflict |
 
 The compiler reads `visual/assets/task_journeys.json`. It emits `ready_for_field_review` only when all six fields are explicit, otherwise it lists what is missing. It never invents an owner or substitutes default data. `visual/assets/usability-readiness.json` stores compiler version, input hash, and replayable results. This is a responsibility-completeness check, not a compliance certificate.[source:USABILITY-COMPILER] [metric:compiler_required_field_count]
+
+`visual/assets/run_preopening_rehearsal.js` then tests the reverse direction. It runs the complete contract, removes each of the six release fields in turn, and injects the six declared fault cards before opening. The script requires every omission and fault to block AI release, and requires every `field_result` to remain null. `visual/assets/preopening-rehearsal.json` stores the decisions and both input hashes. This is a replayable synthetic rule test, not resident participation, professional review, or field acceptance.[source:V16-PREOPENING-REHEARSAL] [metric:preopening_missing_case_blocked_count] [metric:preopening_fault_case_blocked_count]
 
 Data rules are minimal, short-lived, and deletable. Route services do not keep personal trajectories; public-information services do not retain identity; crowd operations do not use face recognition; test scenes use synthetic or clearly authorized data. Each service has a complaint route and human review. Refusing AI never lowers access to an equivalent service.[standard:GENAI-INTERIM-MEASURES] (assumption A-DATA-001)
 
@@ -178,9 +202,40 @@ Years three to five may establish a corridor service standard. The six-field con
 
 Five gates divide the ninety days. Weeks 0 to 2 complete the field baseline, signed roles, and risk register. Weeks 3 to 4 install Ask First, takeover marking, a paper route, and the change log, followed by staff drills. Weeks 5 to 8 run two public services and one industry test. Weeks 9 to 11 repair repeated barriers and replay failed tasks. Weeks 12 to 13 decide whether each component is adopted, revised, or retired. S-class resources cover signs, paper service, existing furniture, and staff time. M-class resources cover a movable pavilion, controlled test lane, temporary power, and specialist review. L-class resources are permanent works requiring formal project approval. This package states no unauthorized monetary amount.[source:V11-IMPLEMENTATION-PLAYBOOK]
 
+The ledger establishes measurement before quotation. Field baseline work is measured by six complete routes and twelve fixed observations. Paper service is measured at each opened entry, counter, and exit. The movable interface is one set per authorized site, with rental or adaptation preferred before purchase. The controlled window admits one industry test at a time. Staff cost is measured per open shift, with one named takeover person and a separate independent replay slot. Permanent works have a quantity of zero during the ninety-day pilot and wait for a formally approved project.[source:V11-IMPLEMENTATION-PLAYBOOK] [metric:startup_cost_line_count]
+
+| Startup cost line | How quantity is established | One-off or recurring | Evidence needed before quotation |
+| --- | --- | --- | --- |
+| C01 field baseline | Six task routes and twelve fixed observations | One-off | Route list, privacy boundary, evidence acceptance sheet |
+| C02 paper service | One set at every opened entry, counter, and exit | Recurring | Information owner, expiry rule, print specification |
+| C03 movable public interface | One set for one pilot site | One-off | Site authorization, measured access route, fire review, removal method |
+| C04 controlled test window | One industry test at a time | One-off | Test boundary, named handler, physical stop, restoration deposit |
+| C05 staffed operation | One takeover person per open shift plus independent replay | Recurring | Shift plan, substitute, labour rules, stop authority |
+| C06 permanent works | Zero during the ninety-day pilot | Formal-project cost | Official geometry, ownership, approved brief, investment decision, professional design |
+
+The buying order is deliberately plain. Rent or adapt before commissioning a bespoke component. Fund human service and independent review before an AI display. Every installation quote includes removal, data deletion, and site restoration. Procurement stops when the operator or recurring budget is absent.[source:V11-IMPLEMENTATION-PLAYBOOK]
+
 The RACI assigns site authorization to the owner or public-space operator, service release to the service owner, on-site takeover to named staff, and stopping or retirement to the safety lead or service owner. Planning, fire, accessibility, data protection, and professional reviewers join as required. Four design targets continue after release. Human takeover must remain visible. A serious safety or privacy event causes immediate suspension. Public information carries a source and expiry. Every published route passes a full no-app replay. These are pilot thresholds and have no measured achievement rate yet.[source:V11-IMPLEMENTATION-PLAYBOOK]
 
 The developer community works from public problem orders. A team selects one public task, submits a six-field contract and synthetic test article, and enters real-task review only after the controlled test. The adoption path runs through problem order, contract completion, field baseline, controlled pilot, independent replay, authorized adoption, maintenance review, and retirement or renewal. International visitors can read bilingual task cards and version records. What travels is the test method and service standard, not an unverified success claim.[source:V11-IMPLEMENTATION-PLAYBOOK]
+
+### How the first pilot day runs
+
+One hour before opening, the pilot manager walks the complete route planned for that day. A vehicle blocking the entrance, a paper map pointing to a locked door, or an empty human takeover point keeps the affected service closed. Staff then complete one task with paper material, call the offline contact, and test the physical stop. If any step fails, the AI service stays closed while the manual service may continue.
+
+Ten minutes before opening, the service owner and on-site staff read through the source date, expiry time, minimum fields, and stop rule. Their signed sheet is the opening record. Two hours later, an accessibility reviewer repeats the no-app journey. A broken route causes staff to withdraw its public information. It can return only after repair and a complete replay.
+
+The afternoon includes one announced fault drill. No unsuspecting visitor becomes a test subject. A network outage sends the service back to paper and staff. A critical bilingual error is covered before anyone checks it against a dated public source. A blocked accessible or emergency route causes the safety lead to stop the affected service. At closing, the pilot manager reconciles the issue log, deletes expired test data, and records whether the next day will open, stay manual, wait for repair and replay, or retire the component.[source:V12-DAY-ONE-DRILL]
+
+| Stop drill | Immediate site action | Evidence required to reopen |
+| --- | --- | --- |
+| Route and life safety | Stop the affected service and retain staffed guidance | Full route replay signed by safety and access reviewers |
+| Information and network | Cover incorrect information and return to dated paper service | Source check and successful paper-task replay |
+| Missing staff | Keep the AI service closed until a qualified substitute accepts responsibility | Primary and substitute staff each complete the manual task |
+| Privacy incident | Stop processing, isolate records, delete through the approved path, and review | Scope, deletion result, corrective action, and independent data review |
+| Supplier exit | Disconnect the dependency, export authorized public records, restore ordinary service, and remove the installation | Portable records, verified deletion, restored site, and ordinary-service replay |
+
+This day-one drill remains an unexecuted operating procedure. Site, date, named people, budget, and permit are all blank. It shows the actions required to open and stop a service. It proves no rehearsal has taken place.[source:V12-DAY-ONE-DRILL]
 
 Policy recommendations are deliberately practical. Public-space access should include accountability and exit clauses. Procurement should require human bypass and data deletion. Performance reports should count failure and repair, not only footfall. Operators, funding, and events remain proposals for authorized bodies to decide.[depth:renewal_project_list] (assumption A-OPERATIONS-001)
 
@@ -196,7 +251,11 @@ Public-interest measures include coverage of no-app equivalents, visibility of h
 
 `compliance_matrix.json` maps every mandatory announcement item to sections, layers, drawings, metrics, sources, assumptions, and checks. `standard_matrix.json` records responses to professional standards. `design_depth_matrix.json` shows how regulatory-plan and implementation-plan depth is evidenced. The matrices support machine review; this narrative retains the human judgment.[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [depth:existing_conditions_diagnosis]
 
-![Metrics, sources, and release evidence](assets/figures/metrics-evidence.en.png)
+`reviewer_evidence_index.json` remains a structured attachment instead of carrying the public narrative. The proposal and figures first show how a person completes a task. The index provides a path only when a reviewer needs to verify a source. It does not score the entry or turn a summary into a new fact.[source:V12-REVIEWER-EVIDENCE-INDEX]
+
+An author-performed bilingual equivalence ledger records the semantic comparison. Fourteen pairs cover critical narrative sections, the offline first screen, six core figures, the sixteen-page A3 booklet, and the three A0 boards. The review compares claims, numbers, units, titles, legends, evidence boundaries, and figure positions. All fourteen authored pairs are aligned. Independent human translation review remains incomplete, so 14/14 cannot replace a translator or a target reader.[source:V17-BILINGUAL-AUDIT] [metric:bilingual_audited_pair_count]
+
+![Design rehearsal U05-A, completing one task without a smartphone](assets/figures/metrics-evidence.en.png)
 
 ## Risk, Copyright, and Compliance
 

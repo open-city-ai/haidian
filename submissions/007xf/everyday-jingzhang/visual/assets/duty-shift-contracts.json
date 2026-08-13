@@ -1,0 +1,351 @@
+{
+  "schema_version": "1.0.0",
+  "concept_version": "EVERYDAY_JINGZHANG_V2",
+  "generated_at": "2026-08-13T12:00:00+08:00",
+  "status": "DESIGN_CONTRACT_NOT_FIELD_APPROVAL",
+  "title_zh": "一岗一铃一册：十二份值守班合同",
+  "title_en": "One Post, One Bell, One Logbook: Twelve Duty-Shift Contracts",
+  "principle": {
+    "one_post": "Every service names the human duty role who decides and signs.",
+    "one_bell": "Every service has a physical, phone or staffed help route without app or login.",
+    "one_logbook": "Every stop, handover, repair and reopen leaves exportable evidence."
+  },
+  "required_fields": [
+    "task",
+    "service_place",
+    "named_duty_role",
+    "ordinary_non_ai_path",
+    "approved_input",
+    "tool_output_authority",
+    "stop_trigger",
+    "handover_and_reopen_evidence"
+  ],
+  "shift_states": [
+    {
+      "id": "ORDINARY_DAY",
+      "name_zh": "晴天日常班",
+      "name_en": "Ordinary Day Shift",
+      "stress": "normal opening, ordinary demand and planned handover"
+    },
+    {
+      "id": "RAIN_HEAT",
+      "name_zh": "雨热压力班",
+      "name_en": "Rain-Heat Stress Shift",
+      "stress": "shelter, rest, route continuity and maintenance backlog"
+    },
+    {
+      "id": "NIGHT_OUTAGE",
+      "name_zh": "夜间断网班",
+      "name_en": "Night-Outage Shift",
+      "stress": "no network or staff tool; paper, phone and staffed fallback"
+    }
+  ],
+  "contracts": [
+    {
+      "contract_id": "DUTY-S01",
+      "scenario_node_id": "S01",
+      "task": "连续步行与断点台账 / Continuous Walking and Gap Register",
+      "service_place": "京张日用线 / Everyday Line",
+      "named_duty_role": "交通与无障碍专业人员 / mobility and accessibility professional",
+      "ordinary_non_ai_path": "实体路线、现场走查和人工问题登记 / physical route, field walk and staffed issue register",
+      "approved_input": "去标识现场问题单与具名巡查记录 / de-identified field tickets and signed inspection records",
+      "tool_output_authority": "仅限草稿、提示或候选；由具名人员判断 / draft, flag or candidate only; named person decides",
+      "stop_trigger": "来源、位置或严重度不能由现场人员核实 / source, location or severity cannot be verified on site",
+      "handover_and_reopen_evidence": "路线编号、现场签字、断点工单与关闭照片 / route ID, field sign-off, gap ticket and closure photo",
+      "shift_coverage": [
+        "ORDINARY_DAY",
+        "RAIN_HEAT",
+        "NIGHT_OUTAGE"
+      ],
+      "public_decision_authority": "named_human_only",
+      "public_ai_dependency": false,
+      "direct_device_control": false
+    },
+    {
+      "contract_id": "DUTY-S02",
+      "scenario_node_id": "S02",
+      "task": "遮阴座椅与雨热巡查 / Shade, Seating and Rain-Heat Walk",
+      "service_place": "京张日用线 / Everyday Line",
+      "named_duty_role": "公共空间维护负责人 / public-space maintenance lead",
+      "ordinary_non_ai_path": "遮阴、座椅、饮水信息与人工季节巡查 / shade, seating, water information and seasonal field inspection",
+      "approved_input": "具名巡查、资产编号与天气预警 / signed inspections, asset IDs and weather alerts",
+      "tool_output_authority": "仅限草稿、提示或候选；由具名人员判断 / draft, flag or candidate only; named person decides",
+      "stop_trigger": "工具试图替代专业热环境或工程判断 / tool attempts to replace professional thermal or engineering judgment",
+      "handover_and_reopen_evidence": "巡查表、资产号、维修时限与复走记录 / inspection sheet, asset ID, repair deadline and repeat walk",
+      "shift_coverage": [
+        "ORDINARY_DAY",
+        "RAIN_HEAT",
+        "NIGHT_OUTAGE"
+      ],
+      "public_decision_authority": "named_human_only",
+      "public_ai_dependency": false,
+      "direct_device_control": false
+    },
+    {
+      "contract_id": "DUTY-S03",
+      "scenario_node_id": "S03",
+      "task": "清权史料检索与导览草稿验证 / Cleared-Archive Search and Guide-Draft Validation",
+      "service_place": "众智园修理花园 / Zhongzhi Repair Garden",
+      "named_duty_role": "策展人与版权责任人 / curator and rights owner",
+      "ordinary_non_ai_path": "策展人审校折页、实物标识与人工讲解 / curator-reviewed leaflet, physical signs and human guide",
+      "approved_input": "清权史料、批准展签与来源链接 / rights-cleared archives, approved labels and source links",
+      "tool_output_authority": "仅限草稿、提示或候选；由具名人员判断 / draft, flag or candidate only; named person decides",
+      "stop_trigger": "无出处、史实冲突、文保位置不明或权利状态不清 / missing citation, factual conflict, unknown heritage location or unclear rights",
+      "handover_and_reopen_evidence": "出处链接、权利状态、策展签字与撤下记录 / source link, rights status, curator sign-off and withdrawal record",
+      "shift_coverage": [
+        "ORDINARY_DAY",
+        "RAIN_HEAT",
+        "NIGHT_OUTAGE"
+      ],
+      "public_decision_authority": "named_human_only",
+      "public_ai_dependency": false,
+      "direct_device_control": false
+    },
+    {
+      "contract_id": "DUTY-S04",
+      "scenario_node_id": "S04",
+      "task": "中英导视更新 / Chinese-English Wayfinding Update",
+      "service_place": "AI 原点公共长桌 / AI Origin Common Table",
+      "named_duty_role": "双语编辑与无障碍审核员 / bilingual editor and accessibility reviewer",
+      "ordinary_non_ai_path": "固定双语导视和人工问路 / fixed bilingual signs and staffed directions",
+      "approved_input": "已批准中文公告、术语表与版式约束 / approved Chinese notices, glossary and layout constraints",
+      "tool_output_authority": "仅限草稿、提示或候选；由具名人员判断 / draft, flag or candidate only; named person decides",
+      "stop_trigger": "双语编辑未逐字放行或版面破坏可读性 / no line-by-line editor sign-off or layout harms legibility",
+      "handover_and_reopen_evidence": "逐字审校、可读性抽检、版本号与替换回执 / line edit, legibility sample, version and replacement receipt",
+      "shift_coverage": [
+        "ORDINARY_DAY",
+        "RAIN_HEAT",
+        "NIGHT_OUTAGE"
+      ],
+      "public_decision_authority": "named_human_only",
+      "public_ai_dependency": false,
+      "direct_device_control": false
+    },
+    {
+      "contract_id": "DUTY-S05",
+      "scenario_node_id": "S05",
+      "task": "免登录公共服务长桌 / No-Login Public-Service Common Table",
+      "service_place": "AI 原点公共长桌 / AI Origin Common Table",
+      "named_duty_role": "公共服务专员 / public-service officer",
+      "ordinary_non_ai_path": "工作人员、纸质清单、电话和纸本回执 / staff, paper checklist, telephone and paper receipt",
+      "approved_input": "公开办事材料与工作人员清单 / public service materials and staff checklist",
+      "tool_output_authority": "仅限草稿、提示或候选；由具名人员判断 / draft, flag or candidate only; named person decides",
+      "stop_trigger": "工具判断资格、要求注册或省略人工确认 / tool decides eligibility, requires login or skips human confirmation",
+      "handover_and_reopen_evidence": "纸本回执、工作人员签字与申诉路径 / paper receipt, staff sign-off and appeal path",
+      "shift_coverage": [
+        "ORDINARY_DAY",
+        "RAIN_HEAT",
+        "NIGHT_OUTAGE"
+      ],
+      "public_decision_authority": "named_human_only",
+      "public_ai_dependency": false,
+      "direct_device_control": false
+    },
+    {
+      "contract_id": "DUTY-S06",
+      "scenario_node_id": "S06",
+      "task": "学生与人才服务接力 / Student and Talent Service Relay",
+      "service_place": "AI 原点公共长桌 / AI Origin Common Table",
+      "named_duty_role": "人才服务与社区联络员 / talent-service and community liaison",
+      "ordinary_non_ai_path": "人工初访、公开目录和预约转接 / staffed first visit, public directory and appointment relay",
+      "approved_input": "用户主动提出的问题与公开目录 / user-initiated questions and public directories",
+      "tool_output_authority": "仅限草稿、提示或候选；由具名人员判断 / draft, flag or candidate only; named person decides",
+      "stop_trigger": "推断个人敏感属性、自动排序或差别服务 / inferred sensitive traits, automated ranking or unequal service",
+      "handover_and_reopen_evidence": "转接清单、用户确认与不排序证明 / referral list, user confirmation and no-ranking record",
+      "shift_coverage": [
+        "ORDINARY_DAY",
+        "RAIN_HEAT",
+        "NIGHT_OUTAGE"
+      ],
+      "public_decision_authority": "named_human_only",
+      "public_ai_dependency": false,
+      "direct_device_control": false
+    },
+    {
+      "contract_id": "DUTY-S07",
+      "scenario_node_id": "S07",
+      "task": "设施报修分诊与开放工单验证 / Maintenance Triage and Open-Ticket Validation",
+      "service_place": "众智园修理花园 / Zhongzhi Repair Garden",
+      "named_duty_role": "设施维修班组长 / facility maintenance supervisor",
+      "ordinary_non_ai_path": "电话、现场登记和人工派单 / telephone, on-site registration and human dispatch",
+      "approved_input": "去标识报修单、资产号与公开 SLA / de-identified repair tickets, asset IDs and public SLA",
+      "tool_output_authority": "仅限草稿、提示或候选；由具名人员判断 / draft, flag or candidate only; named person decides",
+      "stop_trigger": "紧急项被降级、班组不同意分类或出现个人数据 / emergency downgraded, crew rejects classification or personal data appears",
+      "handover_and_reopen_evidence": "工单号、班组接单、SLA 与关闭证据 / ticket ID, crew receipt, SLA and closure evidence",
+      "shift_coverage": [
+        "ORDINARY_DAY",
+        "RAIN_HEAT",
+        "NIGHT_OUTAGE"
+      ],
+      "public_decision_authority": "named_human_only",
+      "public_ai_dependency": false,
+      "direct_device_control": false
+    },
+    {
+      "contract_id": "DUTY-S08",
+      "scenario_node_id": "S08",
+      "task": "小微企业公开材料检索 / Small-Business Public-Material Search",
+      "service_place": "大钟寺日夜客厅 / Dazhongsi Day-Night Living Room",
+      "named_duty_role": "企业服务与法务轮值 / enterprise-service and legal duty",
+      "ordinary_non_ai_path": "企业服务人员与公开政策目录 / enterprise-service staff and public policy directory",
+      "approved_input": "公开政策、企业主动问题与来源链接 / public policy, business-initiated questions and source links",
+      "tool_output_authority": "仅限草稿、提示或候选；由具名人员判断 / draft, flag or candidate only; named person decides",
+      "stop_trigger": "给出法律、许可、融资或投资结论 / legal, permit, funding or investment conclusion",
+      "handover_and_reopen_evidence": "来源清单、法务复核与不构成结论提示 / source list, legal review and no-conclusion notice",
+      "shift_coverage": [
+        "ORDINARY_DAY",
+        "RAIN_HEAT",
+        "NIGHT_OUTAGE"
+      ],
+      "public_decision_authority": "named_human_only",
+      "public_ai_dependency": false,
+      "direct_device_control": false
+    },
+    {
+      "contract_id": "DUTY-S09",
+      "scenario_node_id": "S09",
+      "task": "京张日用活动板 / Everyday Jing-Zhang Event Board",
+      "service_place": "大钟寺日夜客厅 / Dazhongsi Day-Night Living Room",
+      "named_duty_role": "活动运营与双语编辑 / event operator and bilingual editor",
+      "ordinary_non_ai_path": "实体日历、纸质节目单与现场总台 / physical calendar, paper programme and staffed desk",
+      "approved_input": "已批准日程、场地、权利与无障碍字段 / approved schedule, venue, rights and accessibility fields",
+      "tool_output_authority": "仅限草稿、提示或候选；由具名人员判断 / draft, flag or candidate only; named person decides",
+      "stop_trigger": "未核实时间地点、内容权利或无障碍信息 / unverified time, place, content rights or accessibility information",
+      "handover_and_reopen_evidence": "纸本节目单、运营签字与变更通知 / paper programme, operator sign-off and change notice",
+      "shift_coverage": [
+        "ORDINARY_DAY",
+        "RAIN_HEAT",
+        "NIGHT_OUTAGE"
+      ],
+      "public_decision_authority": "named_human_only",
+      "public_ai_dependency": false,
+      "direct_device_control": false
+    },
+    {
+      "contract_id": "DUTY-S10",
+      "scenario_node_id": "S10",
+      "task": "照明与设备日志异常提示验证 / Lighting and Equipment Log Anomaly Validation",
+      "service_place": "大钟寺日夜客厅 / Dazhongsi Day-Night Living Room",
+      "named_duty_role": "机电运维人员 / electrical and mechanical operator",
+      "ordinary_non_ai_path": "人工巡检、既有仪表与维修台账 / human inspection, existing meters and maintenance log",
+      "approved_input": "既有设备日志、人工巡检与资产阈值 / existing equipment logs, manual checks and asset thresholds",
+      "tool_output_authority": "仅限草稿、提示或候选；由具名人员判断 / draft, flag or candidate only; named person decides",
+      "stop_trigger": "工具直接控制设备或缺少人工现场复核 / tool directly controls equipment or lacks human field verification",
+      "handover_and_reopen_evidence": "现场复核、维修决定、设备隔离与复开签字 / field check, repair decision, isolation and reopen sign-off",
+      "shift_coverage": [
+        "ORDINARY_DAY",
+        "RAIN_HEAT",
+        "NIGHT_OUTAGE"
+      ],
+      "public_decision_authority": "named_human_only",
+      "public_ai_dependency": false,
+      "direct_device_control": false
+    },
+    {
+      "contract_id": "DUTY-S11",
+      "scenario_node_id": "S11",
+      "task": "公众意见主题回读 / Public-Comment Theme Readback",
+      "service_place": "AI 原点公共长桌 / AI Origin Common Table",
+      "named_duty_role": "社区主持人与记录员 / community facilitator and recorder",
+      "ordinary_non_ai_path": "纸面、电话、现场意见与逐条人工回应 / paper, phone and in-person comments with human response",
+      "approved_input": "去标识意见文本与逐条回应台账 / de-identified comments and response register",
+      "tool_output_authority": "仅限草稿、提示或候选；由具名人员判断 / draft, flag or candidate only; named person decides",
+      "stop_trigger": "隐藏少数意见、生成个人画像或未经主持人确认 / minority views hidden, profiling or no facilitator confirmation",
+      "handover_and_reopen_evidence": "主题—原意见追溯、少数意见保留与回应责任 / theme-to-comment trace, minority retention and response owner",
+      "shift_coverage": [
+        "ORDINARY_DAY",
+        "RAIN_HEAT",
+        "NIGHT_OUTAGE"
+      ],
+      "public_decision_authority": "named_human_only",
+      "public_ai_dependency": false,
+      "direct_device_control": false
+    },
+    {
+      "contract_id": "DUTY-S12",
+      "scenario_node_id": "S12",
+      "task": "双语证据与版本校对 / Bilingual Evidence and Version Check",
+      "service_place": "三房共享后台 / Shared Back Office of Three Rooms",
+      "named_duty_role": "编辑与独立复核员 / editor and independent reviewer",
+      "ordinary_non_ai_path": "作者、专业人员和公众代表抽样复核 / author, professional and public-representative sampling",
+      "approved_input": "已批准中英稿、指标表、来源表与版本号 / approved bilingual copy, metrics, sources and versions",
+      "tool_output_authority": "仅限草稿、提示或候选；由具名人员判断 / draft, flag or candidate only; named person decides",
+      "stop_trigger": "工具自动改写已批准内容或无法说明差异位置 / automatic rewrite of approved content or unlocatable difference",
+      "handover_and_reopen_evidence": "差异清单、作者签字、哈希与发布版本 / difference list, author sign-off, digest and release version",
+      "shift_coverage": [
+        "ORDINARY_DAY",
+        "RAIN_HEAT",
+        "NIGHT_OUTAGE"
+      ],
+      "public_decision_authority": "named_human_only",
+      "public_ai_dependency": false,
+      "direct_device_control": false
+    }
+  ],
+  "cross_room_fault_cards": [
+    {
+      "id": "F01_ROUTE_BLOCKED",
+      "fault_zh": "无障碍路线被占或中断",
+      "fault_en": "step-free route blocked or broken",
+      "expected": "close affected segment, publish staffed detour, open repair ticket; no tool release",
+      "owner": "maintenance_team",
+      "reopen_evidence": "repeat walk with representative user, owner sign-off and ticket closure"
+    },
+    {
+      "id": "F02_DUTY_ROLE_ABSENT",
+      "fault_zh": "具名值守人员缺岗",
+      "fault_en": "named duty role absent",
+      "expected": "do not open assisted service; retain only safe ordinary space or close desk",
+      "owner": "site_operator",
+      "reopen_evidence": "published replacement roster and completed shift handover"
+    },
+    {
+      "id": "F03_SOURCE_EXPIRED",
+      "fault_zh": "来源过期或授权失效",
+      "fault_en": "source expired or permission withdrawn",
+      "expected": "remove affected draft and use cleared paper or staff source only",
+      "owner": "data_security_owner",
+      "reopen_evidence": "renewed source approval, version record and content-owner sign-off"
+    },
+    {
+      "id": "F04_TRANSLATION_CONFLICT",
+      "fault_zh": "中英含义或数字冲突",
+      "fault_en": "bilingual meaning or number conflicts",
+      "expected": "withdraw public copy and route to bilingual editor; ordinary verbal help continues",
+      "owner": "design_engineering_team",
+      "reopen_evidence": "line-by-line sign-off, difference log and replaced version"
+    },
+    {
+      "id": "F05_PERSONAL_DATA",
+      "fault_zh": "输入或输出出现非必要个人信息",
+      "fault_en": "unnecessary personal data appears in input or output",
+      "expected": "stop tool, isolate record, follow incident process; no public use",
+      "owner": "data_security_owner",
+      "reopen_evidence": "incident closure, deletion evidence, minimisation retest and owner approval"
+    },
+    {
+      "id": "F06_NETWORK_OR_TOOL_OUT",
+      "fault_zh": "断网或工具不可用",
+      "fault_en": "network or staff tool unavailable",
+      "expected": "switch to paper, phone and staffed service without reducing rights or priority",
+      "owner": "site_operator",
+      "reopen_evidence": "ordinary-service completion record; tool returns only after separate health check"
+    },
+    {
+      "id": "F07_REPAIR_SLA_MISSED",
+      "fault_zh": "维修时限未达到",
+      "fault_en": "repair SLA missed",
+      "expected": "keep hazard closed, publish delay and escalation; tool cannot close ticket",
+      "owner": "maintenance_team",
+      "reopen_evidence": "physical repair, repeat inspection, closure photo and accountable sign-off"
+    },
+    {
+      "id": "F08_VENDOR_OR_MODEL_CHANGE",
+      "fault_zh": "供应商、模型或关键配置变更",
+      "fault_en": "vendor, model or material configuration changes",
+      "expected": "return to SHADOW or REMOVED; ordinary service remains open",
+      "owner": "data_security_owner",
+      "reopen_evidence": "change record, renewed 200-sample review and all release gates re-signed"
+    }
+  ]
+}

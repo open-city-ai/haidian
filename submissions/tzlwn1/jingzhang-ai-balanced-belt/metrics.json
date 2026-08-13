@@ -1,0 +1,144 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "recomputation_basis": "Recomputed from the provisional corridor geometry. Not an official redline, statutory control figure or precise-area basis; recompute when the organiser publishes official polygons.",
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412843.314,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional_site_boundary)",
+      "confidence": "low",
+      "display_value": "约 11.4 平方公里",
+      "display_value_en": "approx. 11.4 km2",
+      "display_precision_note": "临时几何复算值，非正式红线或控制指标；对外表达只保留 0.1 平方公里量级。",
+      "assumptions": [
+        "The site boundary is a provisional rough corridor derived from public data, not an official redline.",
+        "Recomputed from the provisional corridor geometry. Not an official redline, statutory control figure or precise-area basis; recompute when the organiser publishes official polygons."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 133470.741,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(building_footprints))",
+      "confidence": "low",
+      "display_value": "约 13 公顷示意基底",
+      "display_value_en": "approx. 13 ha indicative footprint",
+      "display_precision_note": "示意性更新组团基底，不代表现状建筑或审定建设规模。",
+      "assumptions": [
+        "Footprints are illustrative renewal clusters; no survey of existing buildings or ownership was available.",
+        "Recomputed from the provisional corridor geometry. Not an official redline, statutory control figure or precise-area basis; recompute when the organiser publishes official polygons."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.213473,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "display_value": "约 21%",
+      "display_value_en": "approx. 21%",
+      "display_precision_note": "临时几何复算比例，对外表达只保留整数百分比。",
+      "assumptions": [
+        "Counts park green and buffer green proposed by this scheme, not surveyed existing green cover.",
+        "Recomputed from the provisional corridor geometry. Not an official redline, statutory control figure or precise-area basis; recompute when the organiser publishes official polygons."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.049503,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "display_value": "约 5%",
+      "display_value_en": "approx. 5%",
+      "display_precision_note": "临时几何复算比例，对外表达只保留整数百分比。",
+      "assumptions": [
+        "Counts proposed plazas, scenario nodes and landmark spaces, not statutory public open space.",
+        "Recomputed from the provisional corridor geometry. Not an official redline, statutory control figure or precise-area basis; recompute when the organiser publishes official polygons."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "The count of three key detailed-design areas is stated by the official announcement; only their outlines are provisional."
+      ]
+    },
+    "land_use_parcel_count": {
+      "status": "known",
+      "value": 81,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use_parcels)",
+      "confidence": "medium",
+      "assumptions": [
+        "Seamless partition of the provisional boundary; parcel outlines are design proposals, not cadastral parcels."
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features with scenario_id)",
+      "confidence": "medium",
+      "assumptions": [
+        "Each AI scenario card is anchored to a located node in the public space layer."
+      ]
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "compliance_matrix.json"
+      ],
+      "formula": "count(JZ renewal projects)",
+      "confidence": "medium",
+      "assumptions": [
+        "JZ-01 to JZ-06 are design proposals with stated preconditions, not approved projects."
+      ]
+    }
+  }
+}

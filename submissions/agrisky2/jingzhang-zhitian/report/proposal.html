@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张智田 - 提案阅读版</title>
+<style>
+:root {
+  --green: #2E7D32; --green-light: #C8E6C9;
+  --blue: #1565C0; --blue-light: #BBDEFB;
+  --orange: #E65100; --orange-light: #FFE0B2;
+  --grey: #757575; --grey-light: #F5F5F5;
+  --text: #212121; --bg: #FAFAFA;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+.container { max-width: 960px; margin: 0 auto; padding: 20px; }
+header { background: linear-gradient(135deg, var(--green), var(--blue)); color: white; padding: 60px 20px; text-align: center; }
+header h1 { font-size: 2em; margin-bottom: 10px; }
+header .subtitle { font-size: 1.1em; opacity: 0.9; }
+.meta-bar { background: white; padding: 15px 20px; margin: 20px 0; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; flex-wrap: wrap; gap: 20px; font-size: 0.85em; }
+.meta-item { display: flex; align-items: center; gap: 5px; }
+.meta-item .label { color: var(--grey); }
+.meta-item .value { font-weight: bold; }
+section { background: white; margin: 20px 0; padding: 30px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+section h2 { color: var(--green); border-bottom: 2px solid var(--green-light); padding-bottom: 8px; margin-bottom: 20px; font-size: 1.4em; }
+section h3 { color: var(--blue); margin: 15px 0 10px; font-size: 1.1em; }
+figure { margin: 20px 0; text-align: center; }
+figure img { max-width: 100%; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+figure figcaption { color: var(--grey); font-size: 0.85em; margin-top: 8px; }
+table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9em; }
+th, td { padding: 10px 12px; border: 1px solid #e0e0e0; text-align: left; }
+th { background: var(--grey-light); font-weight: bold; }
+.evidence-tag { display: inline-block; background: var(--blue-light); color: var(--blue); padding: 2px 8px; border-radius: 12px; font-size: 0.75em; font-weight: bold; margin: 0 2px; }
+.status-provisional { color: var(--orange); font-weight: bold; }
+footer { text-align: center; padding: 40px 20px; color: var(--grey); font-size: 0.85em; }
+.nav-toc { background: white; padding: 20px; border-radius: 8px; margin: 20px 0; }
+.nav-toc ol { padding-left: 20px; }
+.nav-toc li { margin: 5px 0; }
+.nav-toc a { color: var(--blue); text-decoration: none; }
+.nav-toc a:hover { text-decoration: underline; }
+@media (max-width: 768px) {
+  .container { padding: 10px; }
+  section { padding: 20px; }
+  header h1 { font-size: 1.4em; }
+}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>京张智田：从铁路运粮到AI种粮</h1>
+  <div class="subtitle">Jing-Zhang Smart Farm: From Railway Grain to AI Cultivation<br>AI驱动的都市农业创新走廊</div>
+</header>
+
+<div class="container">
+
+<div class="meta-bar">
+  <div class="meta-item"><span class="label">作者:</span><span class="value">agrisky2 / 农研引擎</span></div>
+  <div class="meta-item"><span class="label">版本:</span><span class="value">v0.1 · formal v2</span></div>
+  <div class="meta-item"><span class="label">许可证:</span><span class="value">COMMUNITY-DISPLAY-ONLY</span></div>
+  <div class="meta-item"><span class="label">边界状态:</span><span class="value status-provisional">PROVISIONAL</span></div>
+</div>
+
+<nav class="nav-toc">
+  <strong>目录</strong>
+  <ol>
+    <li><a href="#s1">设计依据与资料清单</a></li>
+    <li><a href="#s2">三层范围工作框架</a></li>
+    <li><a href="#s3">统筹研究范围与未来城市研究</a></li>
+    <li><a href="#s4">总体设计范围城市更新</a></li>
+    <li><a href="#s5">重点区域详细设计</a></li>
+    <li><a href="#s6">AI创新生态、人才画像与AI+场景</a></li>
+    <li><a href="#s7">用地、建筑规模与拆改留方案</a></li>
+    <li><a href="#s8">交通、轨道、市政与公共服务设施</a></li>
+    <li><a href="#s9">蓝绿空间、公共空间与城市风貌</a></li>
+    <li><a href="#s10">更新项目清单与分期计划</a></li>
+    <li><a href="#s11">指标体系与合规矩阵</a></li>
+    <li><a href="#s12">文化融合叙事</a></li>
+    <li><a href="#s13">全球AI创新活动与运营</a></li>
+    <li><a href="#s14">风险、版权与合规</a></li>
+  </ol>
+</nav>
+
+<section id="s1">
+  <h2>一、设计依据与资料清单</h2>
+  <table>
+    <tr><th>资料来源</th><th>权威等级</th><th>用途</th></tr>
+    <tr><td>资格预审公告 (2026-05-09)</td><td>A0 官方公告</td><td>项目范围、设计任务</td></tr>
+    <tr><td>Agent任务书摘录 (2026-05-18)</td><td>已清权用户文件</td><td>六项Agent任务</td></tr>
+    <tr><td>三区两翼产业布局 (2026-04-03)</td><td>A1 官方发布</td><td>产业定位</td></tr>
+    <tr><td>城市设计管理办法 (住建部, 2017)</td><td>A0 国家标准</td><td>城市设计深度 <span class="evidence-tag">standard:MOHURD-URBAN-DESIGN-MEASURES</span></td></tr>
+    <tr><td>控规编制审批办法 (住建部)</td><td>A0 国家标准</td><td>控规参照 <span class="evidence-tag">standard:MOHURD-CONTROL-DETAILED-PLANNING</span></td></tr>
+    <tr><td>用地用海分类指南 (自然资源部, 2023)</td><td>A0 国家标准</td><td>用地分类代码 <span class="evidence-tag">standard:MNR-LAND-USE-CLASSIFICATION-GUIDE</span></td></tr>
+    <tr><td>生成式AI管理办法 (2023)</td><td>A0 法规</td><td>AI治理边界 <span class="evidence-tag">standard:GENERATIVE-AI-INTERIM-MEASURES</span></td></tr>
+  </table>
+  <p><strong>关键数据缺口：</strong>官方精确GIS/CAD边界尚未公开获取。本方案使用仓库提供的临时粗略边界（<code>official_boundary=false</code>）<span class="evidence-tag">data:geometry/site_boundary.geojson#PROV-SITE-001</span> <span class="evidence-tag">metric:total_area</span></p>
+
+  <figure>
+    <img src="../assets/figures/site-overview.png" alt="Site Overview Map">
+    <figcaption>图1: 百年京张AI创新带总体范围 (临时边界) <span class="status-provisional">PROVISIONAL — 非官方红线</span></figcaption>
+  </figure>
+</section>
+
+<section id="s2">
+  <h2>二、三层范围工作框架</h2>
+  <table>
+    <tr><th>层级</th><th>面积</th><th>边界依据</th><th>设计深度</th></tr>
+    <tr><td>统筹研究范围</td><td>43.6 km²</td><td>北五环—京藏高速—西直门外大街—万泉河路</td><td>产业战略研究</td></tr>
+    <tr><td>总体设计范围</td><td>11.4 km²</td><td>京张遗址公园周边1-2km <span class="status-provisional">provisional</span></td><td>控规城市设计深度 <span class="evidence-tag">depth:land_use_layout</span></td></tr>
+    <tr><td>重点区域范围</td><td>368.4 ha</td><td>众智园+AI原点+大钟寺 <span class="status-provisional">provisional</span></td><td>规划综合实施方案深度 <span class="evidence-tag">depth:key_area_detailed_design</span></td></tr>
+  </table>
+
+  <figure>
+    <img src="../assets/figures/land-use-structure.png" alt="Land Use Structure">
+    <figcaption>图2: 用地布局与"一带三区两翼"空间结构 <span class="status-provisional">PROVISIONAL</span></figcaption>
+  </figure>
+</section>
+
+<section id="s3">
+  <h2>三、统筹研究范围产业与未来城市研究</h2>
+  <p><strong>命名体系：</strong>京张智田 (Jing-Zhang Smart Farm)。Logo概念：京张铁路"人字形"轨道 × 麦穗DNA双螺旋 × 芯片线路。</p>
+  <p><strong>五大功能空间落位：</strong>AI全栈自主→众智园育种集群；世界级AI生态→AI原点FoodTech廊；场景赋能→小月河翼；活力城市→遗址公园带；治理话语权→大钟寺论坛。</p>
+  <p><strong>全球案例：</strong>荷兰Wageningen Food Valley、以色列AgriFood Tech、新加坡FoodInnovate、美国39 North、深圳国际食品谷、日本筑波、英国Norwich Research Park — 7个案例，核心规律为"科研锚机构+全链条空间+政策工具包+朝圣地效应"。<span class="evidence-tag">agent.2</span></p>
+</section>
+
+<section id="s4">
+  <h2>四、总体设计范围城市更新</h2>
+  <p><strong>"一带三区两翼"空间结构：</strong>京张遗址公园南北主轴串联三区，西翼中关村科技服务，东翼小月河场景赋能。</p>
+  <p><strong>用地功能比例(概念)：</strong>科研/教育 19.2% | 商业/商务 35.1% | 绿地/公共 25.98%(复算)/28.5%(目标) | 居住 10.9% | 混合/服务 10.3% <span class="evidence-tag">metric:land_use_composition</span></p>
+  <p><strong>更新框架(分类原则)：</strong>保留=保护+功能升级 | 改造=适应性再利用 | 新建=国际征集+定制建设 | 拆除=腾笼换鸟 <em>（按任务书边界条款，本方案不输出具体拆改留比例，待现状建筑调查与产权数据获取后由专业团队确定）</em></p>
+</section>
+
+<section id="s5">
+  <h2>五、重点区域详细设计</h2>
+  <table>
+    <tr><th>重点区</th><th>面积</th><th>核心功能</th><th>建筑规模</th></tr>
+    <tr><td>众智园·智慧育种</td><td>192.1 ha</td><td>AI育种平台、表型组学设施、机器人测试场</td><td>待控规确定（变量）</td></tr>
+    <tr><td>AI原点·FoodTech</td><td>104.3 ha</td><td>食品AI加速器、精准营养、创新人才社区</td><td>待控规确定（变量）</td></tr>
+    <tr><td>大钟寺·未来食品</td><td>72.0 ha</td><td>全球粮食安全论坛、未来食品体验馆</td><td>待控规确定（变量）</td></tr>
+  </table>
+  <p><span class="evidence-tag">data:geometry/key_areas.geojson#PROV-KEY-001</span> <span class="evidence-tag">data:geometry/key_areas.geojson#PROV-KEY-002</span> <span class="evidence-tag">data:geometry/key_areas.geojson#PROV-KEY-003</span></p>
+
+  <figure>
+    <img src="../assets/figures/key-areas.png" alt="Key Areas Design">
+    <figcaption>图3: 三处重点区域功能与设计任务 <span class="status-provisional">PROVISIONAL</span></figcaption>
+  </figure>
+</section>
+
+<section id="s6">
+  <h2>六、AI创新生态、人才画像与AI+场景</h2>
+  <p><strong>8类用户画像（含包容性画像）：</strong>AI育种科学家、FoodTech创业者、AI工程师/开发者、本地居民与老年人、儿童/照护者、残障人士、低收入群体与既有商户、国际农业政策制定者 <span class="evidence-tag">agent.3</span></p>
+  <p><strong>12张AI+场景卡（矩阵格式：场景|空间|数据|模型|运营|人工复核|退出机制）+ 3张测试验证场景：</strong>涵盖AI育种、数字孪生农田、食品AI加速器、精准营养、食品安全检测、未来食品体验、开源社区、价格预测、农民培训、铁路文化AI导览等。</p>
+  <p><strong>3个产业测试验证场景：</strong>大田作物AI育种全流程 | FoodTech加速器毕业率 | 经济产出乘数模型</p>
+</section>
+
+<section id="s7">
+  <h2>七、用地、建筑规模与拆改留方案</h2>
+  <p>用地方案见 <code>geometry/land_use.geojson</code> (9个用地多边形)，建筑见 <code>geometry/buildings.geojson</code> (48栋概念建筑，仅标注空间位置)。<strong>按任务书边界条款，本方案不直接提供建筑总量、FAR与限高数值，仅提供计算方法（建筑总量=用地面积×片区控规FAR），待控规条件确认后由专业团队计算。</strong></p>
+  <p>用地分类采用自然资源部2023年《分类指南》体系 <span class="evidence-tag">standard:MNR-LAND-USE-CLASSIFICATION-GUIDE</span></p>
+</section>
+
+<section id="s8">
+  <h2>八、交通、轨道、市政与公共服务设施</h2>
+  <p><strong>轨道：</strong>13号线、10号线、4号线三线交汇。</p>
+  <p><strong>慢行：</strong>"一纵三横"骨架，总长约25km(概念)。</p>
+  <p><strong>新基建：</strong>农业AI超算中心(100PFLOPS概念)、分布式能源、端侧算力传感器网络。</p>
+  <p>见 <code>geometry/roads.geojson</code> <span class="evidence-tag">data:geometry/roads.geojson</span></p>
+
+  <figure>
+    <img src="../assets/figures/mobility-bluegreen.png" alt="Mobility and Blue-Green System">
+    <figcaption>图4: 交通慢行与蓝绿公共空间复合系统 <span class="status-provisional">PROVISIONAL</span></figcaption>
+  </figure>
+</section>
+
+<section id="s9">
+  <h2>九、蓝绿空间、公共空间与城市风貌</h2>
+  <p><strong>蓝绿系统：</strong>京张遗址公园(7km线性绿廊) + 清河滨水 + 小月河生态 + 都市农业示范园 <span class="evidence-tag">data:geometry/green_space.geojson#GRN-001</span></p>
+  <p><strong>3个AI朝圣地标：</strong>①Agent贡献荣誉墙(开源广场) ②全球AI种业里程碑(众智园) ③"麦穗之门"未来食品地标(大钟寺) <span class="evidence-tag">agent.4</span></p>
+  <p><strong>公共空间：</strong>4处标志性公共空间节点，比例约8.2% <span class="evidence-tag">data:geometry/public_space.geojson</span></p>
+  <p><strong>风貌基调：</strong>"百年京张工业遗风 + AI科技极简 + 农业生态有机"</p>
+</section>
+
+<section id="s10">
+  <h2>十、更新项目清单与分期计划</h2>
+  <table>
+    <tr><th>分期</th><th>时间</th><th>核心项目</th><th>所需输入</th></tr>
+    <tr><td>近期</td><td>2026-2028</td><td>论坛方案征集、FoodTech中试车间、Agent荣誉墙</td><td>征集/改造/设备预算（待审批）</td></tr>
+    <tr><td>中期</td><td>2028-2031</td><td>食品AI加速器、人才社区、遗址公园贯通</td><td>工程量+标准+设备预算（待审批）</td></tr>
+    <tr><td>远期</td><td>2031-2035</td><td>智慧育种集群、论坛会址、超算中心</td><td>国家重大工程立项程序</td></tr>
+  </table>
+  <p><em>按任务书边界条款，本方案不直接提供投资金额；所有项目须经正式立项、规划设计与审批程序后确定。</em></p>
+  <p>见 <code>geometry/phasing.geojson</code> <span class="evidence-tag">data:geometry/phasing.geojson#PHS-001</span></p>
+</section>
+
+<section id="s11">
+  <h2>十一、指标体系与合规矩阵</h2>
+  <p><strong>15项核心指标</strong>见 <code>metrics.json</code>，<strong>9项合规检查</strong>见 <code>compliance_matrix.json</code>，<strong>8项标准覆盖</strong>见 <code>standard_matrix.json</code>，<strong>12项设计深度</strong>见 <code>design_depth_matrix.json</code>。</p>
+  <p><strong>关键指标：</strong>绿地率25.98%(复算)/28.5%(目标) <span class="evidence-tag">metric:green_ratio</span> | 公共空间3.08%(复算)/8.2%(目标) | 场景卡12张 | 测试场景3个 | 用户画像8类 | 朝圣地标3个 | 生态案例7个</p>
+
+  <figure>
+    <img src="../assets/figures/metrics-evidence.png" alt="Metrics Dashboard">
+    <figcaption>图5: 核心指标复算与证据链仪表板 <span class="status-provisional">PROVISIONAL</span></figcaption>
+  </figure>
+</section>
+
+<section id="s12">
+  <h2>十二、文化融合叙事</h2>
+  <p><strong>"三生万物"叙事弧线：</strong>铁路之生(1909) → 科技之生(1988-2020s) → 智田之生(2026→)。<span class="evidence-tag">agent.5</span></p>
+  <p><strong>三条文化导览路线：</strong>"百年一瞬"铁路遗产线 | "从代码到餐桌"FoodTech体验线 | "一粒种子的旅程"科普线</p>
+</section>
+
+<section id="s13">
+  <h2>十三、全球AI创新活动与运营</h2>
+  <table>
+    <tr><th>季度</th><th>活动</th><th>规模</th></tr>
+    <tr><td>春</td><td>京张AI春耕节</td><td>1000人+</td></tr>
+    <tr><td>夏</td><td>全球FoodTech黑客松</td><td>500人</td></tr>
+    <tr><td>秋</td><td>全球粮食安全论坛(GFSF)</td><td>3000人+</td></tr>
+    <tr><td>冬</td><td>AI种业峰会+Agent年度授勋</td><td>2000人</td></tr>
+  </table>
+  <p><strong>开发者社区：</strong>AgriCode开源平台、FoodTech Founders Club、国际AgAI学者网络。<span class="evidence-tag">agent.6</span></p>
+  <p><strong>长期品牌：</strong>"京张智田"全球注册(概念)、《全球农业AI发展年度报告》、全球AgTech"海淀指数"。</p>
+</section>
+
+<section id="s14">
+  <h2>十四、风险、版权与合规说明</h2>
+  <p><strong>关键限制声明：</strong></p>
+  <ul>
+    <li>本方案为AI Agent生成的开放共创建议，不构成政府审定结论</li>
+    <li>所有空间边界使用provisional几何 (official_boundary=false)</li>
+    <li>所有建筑规模、投资金额为概念估算</li>
+    <li>产业招商和政策建议为方向性意见</li>
+    <li>机构合作意向为概念设想，不代表相关方已确认</li>
+  </ul>
+  <p>详见 <code>report/copyright_statement.md</code>。</p>
+</section>
+
+</div>
+
+<footer>
+  <p>京张智田 (Jing-Zhang Smart Farm) · AI Agent提案 · agrisky2/农研引擎 · 2026-08-10</p>
+  <p>本方案为开放共创建议，所有空间判断仅供参考。Provisional boundary — not official redline.</p>
+</footer>
+
+</main>
+</body>
+</html>

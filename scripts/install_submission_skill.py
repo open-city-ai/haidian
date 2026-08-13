@@ -1,6 +1,42 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Install or verify the Haidian urban design participant skill."""
+"""Install or verify the Haidian urban design participant skill.
+
+This script copies the ``urban-design-ai-submission`` skill from the
+repository into the AI agent's skill directory so the agent can reference it
+with ``$urban-design-ai-submission`` in prompts.
+
+The skill directory is ``skills/urban-design-ai-submission/`` inside the
+repository.  The target is ``$CODEX_HOME/skills/urban-design-ai-submission/``
+(defaults to ``~/.codex/skills/urban-design-ai-submission/``).
+
+Usage
+-----
+Install or update the skill::
+
+    python3 scripts/install_submission_skill.py
+
+Verify without modifying files::
+
+    python3 scripts/install_submission_skill.py --check
+
+Use a custom Codex home::
+
+    python3 scripts/install_submission_skill.py --codex-home /path/to/codex
+
+Machine-readable JSON output::
+
+    python3 scripts/install_submission_skill.py --json
+
+Exit code is 0 when the skill is installed and up to date, and 1 otherwise.
+
+After installation, the starter prompt is::
+
+    Use $urban-design-ai-submission to create a lightweight sparse workspace,
+    participate in the Centennial Jing-Zhang AI Innovation Belt open call, read
+    peer work progressively, prepare a verifiable proposal package, and pass
+    local PR preflight before uploading.
+"""
 
 from __future__ import annotations
 
@@ -94,14 +130,25 @@ def render_text(report: dict[str, Any]) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
     parser.add_argument(
         "--codex-home",
         default=str(default_codex_home()),
-        help="Codex home directory. Defaults to $CODEX_HOME or ~/.codex.",
+        help="Codex home directory (default: $CODEX_HOME or ~/.codex)",
     )
-    parser.add_argument("--check", action="store_true", help="Verify installation without copying files.")
-    parser.add_argument("--json", action="store_true", help="Print a machine-readable report.")
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="Verify that the skill is installed and up to date without copying files",
+    )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Print a machine-readable JSON report",
+    )
     args = parser.parse_args(argv)
 
     source = repo_root() / "skills" / SKILL_NAME

@@ -1,0 +1,273 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": ["基于组织方临时粗略边界PROV-SITE-001复算;官方红线发布后需重算。"]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "count(key_area features)",
+      "confidence": "high",
+      "assumptions": ["三处重点区:众智园、AI原点社区、大钟寺。"]
+    },
+    "zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1929202.0,
+      "unit": "sqm",
+      "source_files": ["geometry/key_areas.geojson#PROV-KEY-001"],
+      "formula": "polygon_area(PROV-KEY-001) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": ["临时边界复算;官方值192.1ha,偏差约0.4%。"]
+    },
+    "ai_origin_community_area_sqm": {
+      "status": "known",
+      "value": 1043237.0,
+      "unit": "sqm",
+      "source_files": ["geometry/key_areas.geojson#PROV-KEY-002"],
+      "formula": "polygon_area(PROV-KEY-002) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": ["临时边界复算;官方值104.3ha,基本一致。"]
+    },
+    "dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720454.0,
+      "unit": "sqm",
+      "source_files": ["geometry/key_areas.geojson#PROV-KEY-003"],
+      "formula": "polygon_area(PROV-KEY-003) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": ["临时边界复算;官方值72.0ha,偏差约0.06%。"]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2082320.0,
+      "unit": "sqm",
+      "source_files": ["geometry/green_space.geojson"],
+      "formula": "sum(polygon_area(green_space features)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": ["以京张遗址公园活力带三段绿楔与广场绿地为主要构成。"]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.1825,
+      "unit": "ratio",
+      "source_files": ["geometry/green_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": ["绿地与开敞空间占比,概念方案设计量,非法定绿地率控制值。"]
+    },
+    "park_land_ratio": {
+      "status": "known",
+      "value": 0.2304,
+      "unit": "ratio",
+      "source_files": ["geometry/land_use.geojson", "geometry/site_boundary.geojson"],
+      "formula": "sum(land_use 1401 area) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": ["用地分类中公园绿地(1401)占总体设计范围比例。"]
+    },
+    "research_land_ratio": {
+      "status": "known",
+      "value": 0.383,
+      "unit": "ratio",
+      "source_files": ["geometry/land_use.geojson", "geometry/site_boundary.geojson"],
+      "formula": "sum(land_use 0802 area) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": ["科研用地(0802)占比,支撑AI全栈自主创新与开源生态两大功能。"]
+    },
+    "commercial_land_ratio": {
+      "status": "known",
+      "value": 0.2084,
+      "unit": "ratio",
+      "source_files": ["geometry/land_use.geojson", "geometry/site_boundary.geojson"],
+      "formula": "sum(land_use 05 area) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": ["商业服务业用地(05)占比,支撑智能原生新业态与成果转化。"]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 524016.4,
+      "unit": "sqm",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "sum(polygon_area(public_space features)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": ["含三灯广场、开源广场、测试验证广场与缝合节点广场。"]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0459,
+      "unit": "ratio",
+      "source_files": ["geometry/public_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": ["广场型公共空间占比,不含绿地;为概念方案设计量。"]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 882134.2,
+      "unit": "sqm",
+      "source_files": ["geometry/buildings.geojson"],
+      "formula": "sum(polygon_area(building_footprints)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": ["概念体量示意,非现状建筑普查;不代表法定拆改留结论。"]
+    },
+    "building_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": ["geometry/buildings.geojson"],
+      "formula": "count(building features)",
+      "confidence": "low",
+      "assumptions": ["仅列出6组概念建筑体量作为空间锚点,非完整建筑清单。"]
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 30452.8,
+      "unit": "m",
+      "source_files": ["geometry/roads.geojson"],
+      "formula": "sum(linestring_length(roads)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": ["含信号脊绿道、三条东西缝合线、两翼轴线与轨道接驳线。"]
+    },
+    "greenway_length_m": {
+      "status": "known",
+      "value": 19446.0,
+      "unit": "m",
+      "source_files": ["geometry/roads.geojson#RD-001", "geometry/roads.geojson#RD-007"],
+      "formula": "sum(linestring_length(greenway features)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": ["京张遗址公园慢行信号脊与小月河场景赋能翼绿道合计。"]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "count(proposal AI scenario cards)",
+      "confidence": "high",
+      "assumptions": ["不少于10张AI场景卡的征集要求,本方案提供12张。"]
+    },
+    "test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "count(proposal industry test & validation scenarios)",
+      "confidence": "high",
+      "assumptions": ["不少于3个AI产业测试验证场景的征集要求。"]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "count(proposal user personas)",
+      "confidence": "high",
+      "assumptions": ["不少于5类用户画像的征集要求。"]
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "count(proposal AI pilgrimage landmarks)",
+      "confidence": "high",
+      "assumptions": ["不少于3个AI朝圣地标的征集要求:大钟寺三灯广场、开源交换站、全栈测试环线。"]
+    },
+    "ai_ecosystem_case_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "count(proposal global AI ecosystem cases)",
+      "confidence": "high",
+      "assumptions": ["5-8个全球AI创新生态案例的征集要求,本方案提供6个。"]
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": ["proposal.md", "geometry/phasing.geojson"],
+      "formula": "count(proposal renewal project list)",
+      "confidence": "medium",
+      "assumptions": ["近期3项、中期3项、远期3项,均为概念建议,非已批准工程。"]
+    },
+    "phasing_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["geometry/phasing.geojson"],
+      "formula": "count(phasing features)",
+      "confidence": "high",
+      "assumptions": ["近/中/远三期。"]
+    },
+    "heritage_constraint_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": ["geometry/constraints.geojson"],
+      "formula": "count(heritage protection constraint features)",
+      "confidence": "medium",
+      "assumptions": ["清华园车站旧址与觉生寺(大钟寺)两处provisional保护示意。"]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "待官方控规条件",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方控规容积率条件缺失;任务书禁止将容积率写成法定规划结论,待正式控制条件补齐后复算。"
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "待官方高度控制",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方建筑高度控制缺失;概念体量不构成法定高度结论。"
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "待官方密度控制",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方建筑密度控制缺失,待正式控规条件补齐。"
+    },
+    "signal_node_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": ["proposal.md", "geometry/public_space.geojson"],
+      "formula": "count(proposal signal node catalog)",
+      "confidence": "medium",
+      "assumptions": ["一脊三站五线结构中的9处信号节点:3座信号站、4处缝合节点、2处翼端点。"]
+    },
+    "three_light_protocol_scenarios": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "count(proposal scenarios mapped to green/amber/red signal states)",
+      "confidence": "high",
+      "assumptions": ["12张场景卡全部映射到三灯治理协议(G/A/R)。"]
+    }
+  }
+}

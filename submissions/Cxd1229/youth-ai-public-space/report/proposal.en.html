@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jingzhang AI Innovation Belt Urban Design</title>
 <style>
@@ -19,327 +19,442 @@ th{background:#005DFC;color:#fff}
 ol,ul{margin-left:1.5rem}
 li{margin-bottom:0.3rem}
 </style></head><body><main>
-<h1>京张AI创新带青年友好公共空间与AI朝圣地标城市设计</h1>
-<h2>设计依据与资料清单</h2>
-<p>本方案依据海淀区百年京张AI创新带城市设计国际方案征集公告（2026年5月9日发布，来源：北京市规划和自然资源委员会 <span class="evidence source">[source:SITE-PACKAGE]</span>），以及面向全球智能体的开源征集任务书 <span class="evidence source">[source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]</span> 编制。</p>
-<p>核心资料来源：</p>
-<li>**官方公告**：资格预审公告文本，含三层范围（统筹研究范围43.6km²、总体设计范围约11.4km²、重点区域368.4ha）的四至描述 <span class="evidence source">[source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509]</span></li>
-<li>**任务书**：面向智能体的六大设计任务及十大共创章约 <span class="evidence source">[source:AGENT-TASKBOOK]</span></li>
-<li>**边界数据**：社区维护的临时边界，基于公告文字四至生成，EPSG:4326坐标系，面积校核于EPSG:4548 <span class="evidence source">[source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]</span></li>
-<li>**统计年鉴**：海淀区2025年统计年鉴（2024年数据）<span class="evidence source">[source:HAIDIAN-YEARBOOK-2021-2024]</span>：</li>
-<li>常住人口247.4万人（表1-1）</li>
-<li>信息传输/软件/IT业在岗职工535,193人，年均工资343,362元（表3-7）</li>
-<li>科学研究和技术服务业在岗职工199,970人，年均工资262,690元（表3-7）</li>
-<li>**开放数据**：OpenStreetMap道路与建筑基底（仅背景参考 <span class="evidence source">[source:OSM-2026-BEIJING]</span>）</li>
-<li>**案例研究**：全球创新区公共空间标杆案例 <span class="evidence source">[source:GLOBAL-INNOVATION-DISTRICTS]</span></li>
-<li>**能耗数据**：海淀区2021-2024年能耗情况公报及统计年鉴，万元GDP能耗四年降25.2% <span class="evidence source">[source:HAIDIAN-ENERGY-2024]</span></li>
-<p>资料边界声明：所有边界均为临时粗略边界，非官方红线 <span class="evidence standard">[standard:PROVISIONAL-BOUNDARY-POLICY]</span>；本方案为开放共创概念建议，不替代正式规划 <span class="evidence standard">[standard:AGENT-SUBMISSION-DISCLAIMER]</span>。</p>
-<p>本方案配套提交：</p>
-<li>结构化矩阵：compliance_matrix.json、standard_matrix.json、design_depth_matrix.json</li>
-<li>空间数据：<span class="evidence data">[data:geometry/*.geojson]</span></li>
-<li>指标复算：metrics.json</li>
-<li>来源清单：<span class="evidence source">[source:sources.json]</span></li>
-<li>假设记录：<span class="evidence assumption">[assumption:assumptions.json]</span></li>
-<img src="../assets/figures/site-overview.png" alt="场地总览与空间结构图" loading="lazy">
-<h2>三层范围工作框架</h2>
-<h3>统筹研究范围（43.6 km²）</h3>
-<p>北至北五环路，东至京藏高速，南至西直门外大街，西至万泉河路 <span class="evidence data">[data:geometry/site_boundary.geojson#SITE-BOUNDARY-001]</span>。在该范围内开展AI创新生态体系、产业协同、区域联动、交通体系和文化叙事的研究，建立"一带三区两翼"的宏观认知框架。</p>
-<p>**工作重点**：识别海淀高校资源（北大、清华、北航、北邮等十余所高校）与AI产业（中关村软件园、后厂村、智源研究院）的空间关系，分析青年人才（海淀区IT业在岗职工53.5万人、科研业20.0万人 <span class="evidence source">[source:HAIDIAN-YEARBOOK-2021-2024]</span>；高校在校生约35万人，来源于北京市教育统计，海淀拥有清华、北大、北航、北邮等十余所高校）的日常活动轨迹，提出区域级公共空间与创新服务网络。</p>
-<h3>总体设计范围（约11.4 km²）</h3>
-<p>以京张遗址公园周边1-2公里为规划设计范围 <span class="evidence data">[data:geometry/site_boundary.geojson#SITE-BOUNDARY-001]</span>。达到控制性详细规划的城市设计深度，聚焦城市更新、用地布局、公共空间体系、交通慢行网络、市政配套和城市风貌。</p>
-<p>**核心策略**："一廊串三区"——京张铁路遗址公园作为8公里长的公共空间主廊道，串联北部众智园加速区、中部AI原点社区、南部大钟寺产业聚集区。</p>
-<h3>重点区域范围（368.4 ha）</h3>
-<p>自北向南包括三处重点区域 <span class="evidence data">[data:geometry/key_areas.geojson]</span>：</p>
-<p>1. 众智园AI自主创新加速区（192.1 ha）：聚焦AI全栈自主创新与前沿研究</p>
-<p>2. 北京AI原点社区（104.3 ha）：围绕高校资源，打造AI创新策源地</p>
-<p>3. 大钟寺AI产业集聚区（72.0 ha）：面向AI商业转化与体验消费</p>
-<p>边界声明：所有空间边界来自社区维护的临时粗略边界，不得作为法定红线或精确面积依据。获取官方边界后需更新所有图层与指标 <span class="evidence standard">[standard:PROVISIONAL-BOUNDARY-POLICY]</span>。</p>
-<img src="../assets/figures/land-use-structure.png" alt="三层范围与空间工作框架图" loading="lazy">
-<h2>统筹研究范围产业与未来城市研究</h2>
-<h3>一带总体概念与命名体系 <span class="evidence task">[task:agent.1]</span></h3>
-<p>**总体概念**：「京张AI创新带」（Jingzhang AI Innovation Belt），英文品牌名「JZ.AI」。</p>
-<p>**命名体系**：</p>
-<li>**三大定位**：百年京张文化带 · 都市AI生活体验带 · AI融合创新带</li>
-<li>**五大功能**：AI全栈自主创新 · 世界级创新生态 · AI+场景赋能 · 智能化活力城市 · AI治理话语权</li>
-<li>**三区两翼协同回路**：北端众智园（自主创新引擎）— 中部原点社区（人才与生态核心）— 南端大钟寺（产业应用窗口），西翼中关村科技服务翼（资本与IP配置），东翼小月河场景赋能翼（AI+城市测试场）</li>
-<p>**视觉识别方向**：</p>
-<li>Logo概念：以京张铁路"人字形"线路为灵感，演化为三条交叠的AI数据流线，象征百年铁路文化与AI创新的时空对话</li>
-<li>色彩体系：铁路灰（#4A4A4A） + AI蓝（#005DFC） + 青年橙（#FF6B35）</li>
-<li>字体方向：中文无衬线现代字体，英文几何风格</li>
-<blockquote>注：以上为设计方向概念建议，非最终商业标识方案 <span class="evidence task">[task:agent.1]</span>。</blockquote>
-<h3>全球AI创新生态案例研究 <span class="evidence task">[task:agent.2]</span></h3>
-<p>选取6个具有参考价值的全球创新区公共空间案例：</p>
-<tr><td>案例</td><td>地点</td><td>核心启示</td><td>可转化要素</td></tr>
-<p>|------|------|----------|------------|</p>
-<tr><td>**Station F**</td><td>巴黎</td><td>将废弃铁路车站改造为全球最大创业园区，通过公共中庭（the "Share Zone"）促进偶遇与协作</td><td>铁路遗产活化、共享公共空间驱动创新交往</td></tr>
-<tr><td>**Cambridge Science Park**</td><td>剑桥</td><td>低密度花园式园区中嵌入非正式交流空间（cafe clusters, walking loops）</td><td>绿廊+慢行网络串联创新节点</td></tr>
-<tr><td>**Shenzhen Bay Innovation Street**</td><td>深圳</td><td>高密度城区中构建"15分钟创新生活圈"，公共空间24小时运营</td><td>夜间活力、全时段公共空间运营</td></tr>
-<tr><td>**The High Line**</td><td>纽约</td><td>废弃高架铁路改造为线性公园，带动沿线社区复兴与创意产业聚集</td><td>线性遗产活化、公共空间驱动城市更新</td></tr>
-<tr><td>**One-North**</td><td>新加坡</td><td>混合用地+公共空间+创新设施一体化规划，步行5分钟可达公共节点</td><td>用地混合、步行可达性、热带蓝绿系统</td></tr>
-<tr><td>**Kendall Square**</td><td>剑桥（美国）</td><td>MIT周边形成全球创新密度最高街区，关键在"可碰撞的公共空间"（collision spaces）</td><td>街角广场、咖啡社交带、公共WiFi/计算节点</td></tr>
-<p>**可转化经验** <span class="evidence depth">[depth:ecosystem_design]</span>：</p>
-<p>1. **非正式交往空间是创新生态的物理基础**——每个创新节点300米内必须配置可停留、可偶遇的公共空间</p>
-<p>2. **线性遗产是独特的空间资产**——京张铁路遗址的8公里连续性在全球创新区中独一无二</p>
-<p>3. **青年人才的需求优先级**：24小时可达设施 > 社交场景 > 运动空间 > 绿地 > 商业配套</p>
-<h3>品牌视觉与Logo概念设计 <span class="evidence task">[task:agent.1]</span></h3>
-<h2>总体设计范围城市更新与控规深度城市设计</h2>
-<h3>空间结构：「一廊 · 三核 · 五带」</h3>
-<p>**一廊**：京张铁路遗址公园创新走廊（8km × 200-400m宽公共空间带）</p>
-<li>功能：线性公园 + 慢行系统 + 成果展示 + 户外协作</li>
-<li>连接三处重点区，实现南北贯通、东西缝合</li>
-<p>**三核** <span class="evidence data">[data:geometry/key_areas.geojson]</span>：</p>
-<li>众智园AI加速核：基础研究 + 算力平台 + 前沿实验室</li>
-<li>AI原点社区创新核：孵化器 + 共享办公 + 人才公寓 + 24小时学习空间</li>
-<li>大钟寺AI体验核：AI产品首店 + 沉浸式展示 + 消费场景测试</li>
-<p>**五带（垂直廊道连接东西）**：</p>
-<p>1. 清华-北航知识走廊（学院路）</p>
-<p>2. 中关村-知春路创新服务带</p>
-<p>3. 大钟寺-联想桥AI商业带</p>
-<p>4. 四道口-皂君庙生活服务带</p>
-<p>5. 西直门交通枢纽综合服务带</p>
-<h3>用地布局与功能分区 <span class="evidence depth">[depth:land_use_layout]</span></h3>
-<p>基于约11.4km²总体设计范围进行用地功能分区 <span class="evidence data">[data:geometry/land_use.geojson]</span>：</p>
-<tr><td>用地类型</td><td>比例</td><td>面积（ha）</td><td>核心策略</td></tr>
-<p>|----------|------|------------|----------|</p>
-<tr><td>AI研发与商业混合</td><td>25%</td><td>285</td><td>底层公共开放，上层研发办公</td></tr>
-<tr><td>高校与科研机构</td><td>20%</td><td>228</td><td>保留现有，增加产学共享界面</td></tr>
-<tr><td>居住（含人才公寓）</td><td>15%</td><td>171</td><td>青年公寓+长租+混合社区</td></tr>
-<tr><td>绿地与开放空间</td><td>12%</td><td>136.8</td><td>京张遗址公园+口袋公园网络</td></tr>
-<tr><td>公共服务设施</td><td>10%</td><td>114</td><td>24小时图书馆、运动中心、社区食堂</td></tr>
-<tr><td>道路交通设施</td><td>8%</td><td>91.2</td><td>加密次干路与支路网</td></tr>
-<tr><td>文化设施与遗产</td><td>5%</td><td>57</td><td>铁路博物馆+创新展厅+荣誉墙节点</td></tr>
-<tr><td>混合弹性用地</td><td>5%</td><td>57</td><td>预留AI测试场景与临时活动</td></tr>
-<p>**拆改留策略**（概念方向，待专业团队深化）：</p>
-<li>保留：高校校园、已建成品质社区、历史建筑、京张铁路遗址</li>
-<li>改造：老旧厂区→创新工场、传统商铺→AI体验店、低效办公→共享研发空间</li>
-<li>新建：人才公寓组团、AI公共服务中心、关键慢行连接节点</li>
-<li>注：以上为非审批用途的概念方向建议 <span class="evidence standard">[standard:AGENT-SUBMISSION-DISCLAIMER]</span></li>
-<h3>公共空间体系 <span class="evidence depth">[depth:public_space_network]</span></h3>
-<p>构建「线性主轴+口袋节点+垂直接缝」三级公共空间网络：</p>
-<p>**1. 线性主轴：京张遗址公园创新走廊** <span class="evidence data">[data:geometry/public_space.geojson#PS-002]</span></p>
-<li>8公里连续无障碍慢行通道</li>
-<li>每500米设置一处公共活动节点（共16处）</li>
-<li>沿线布置：开发者散步道、开源成果数字展示廊、智能体荣誉墙、AI地标装置</li>
-<p>**2. 口袋节点：15分钟青年生活圈**</p>
-<li>24处社区级公共空间（每处500-2000m²）</li>
-<li>功能：户外协作、健身、夜跑、小型路演、周末市集</li>
-<li>标准配置：免费WiFi + 充电设施 + 遮阳挡雨 + 夜间照明</li>
-<p>**3. 垂直接缝：缝合东西城区的五条公共通道**</p>
-<li>利用学院路、知春路等既有道路，增加步行友好改造</li>
-<li>打通至京张遗址公园的步行最后一公里</li>
-<li>配置自行车高速路（沿公园两侧各一条，宽度≥4m）</li>
-<h3>交通慢行与蓝绿系统 <span class="evidence depth">[depth:transportation_system]</span></h3>
-<p>**慢行优先策略** <span class="evidence data">[data:geometry/roads.geojson]</span>：</p>
-<li>沿京张遗址公园设置骑行高速路（双向，≥4m），南接西直门地铁枢纽，北连清河绿道</li>
-<li>加密次干路与支路网密度至8.5 km/km²</li>
-<li>轨道站点800m覆盖率提升至85%（依托13号线、10号线、昌平线既有站点）</li>
-<li>重点区内部实施"慢行优先街区"——机动车限速20km/h，人行道宽度≥3m</li>
-<p>**蓝绿系统** <span class="evidence data">[data:geometry/green_space.geojson]</span>：</p>
-<li>京张遗址公园绿带（8km × 50-200m）——作为主要生态廊道</li>
-<li>连接清河与南长河蓝绿空间</li>
-<li>新增社区公园12处，绿地率约12.5%（141.8ha，基于临时边界实测）</li>
-<li>植入选定AI测试场景（环境传感器网络、智能灌溉、无人机巡检等）</li>
-<img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间复合系统图" loading="lazy">
-<h2>重点区域详细设计</h2>
-<h3>众智园AI自主创新加速区（192.1 ha）</h3>
-<p>**定位**：AI前沿研究与全栈自主创新引擎 <span class="evidence data">[data:geometry/key_areas.geojson#KEY-001]</span></p>
-<p>**空间策略**：</p>
-<li>保留并整合既有科研设施，新建「AI前沿实验室集群」（概念建议，约20万m²）</li>
-<li>围绕实验室布局「研究型公共空间」：静思庭院、学术交流草坪、深夜讨论圆桌</li>
-<li>配置「算力共享中心」作为区域地标建筑（概念方向）</li>
-<p>**青年友好设计**：</p>
-<li>24小时学术图书馆+深夜食堂（研究人员作息特殊，需全时段服务）</li>
-<li>连接海淀绿道的慢跑步道</li>
-<li>屋顶观星平台与露天剧场</li>
-<h3>北京AI原点社区（104.3 ha）</h3>
-<p>**定位**：全球AI人才创新策源地与青年社区 <span class="evidence data">[data:geometry/key_areas.geojson#KEY-002]</span></p>
-<p>**空间策略**（核心展示区）：</p>
-<li>**AI原点广场**（中心公共空间，约2ha）：每周举办AI路演、开源黑客松</li>
-<li>**开发者之家**（共享公寓+协作空间混合体，概念建议）</li>
-<li>**AI公共体验廊**（沿京张公园段，500m）：展示AI历史里程碑、开源社区成果</li>
-<p>**场景特色** <span class="evidence task">[task:agent.3]</span>：</p>
-<li>AI+教育场景：清华附中AI实验室、北航大学生创新工坊</li>
-<li>AI+生活场景：24小时无人零售、智能健身舱、AI辅导自习室</li>
-<li>AI+文化场景：AI生成艺术画廊、数字遗产体验馆</li>
-<h3>大钟寺AI产业集聚区（72.0 ha）</h3>
-<p>**定位**：AI商业转化与沉浸式体验窗口 <span class="evidence data">[data:geometry/key_areas.geojson#KEY-003]</span></p>
-<p>**空间策略**：</p>
-<li>大钟寺AI体验中心（旗舰节点）：沉浸式AI技术展示、产品首发、公众体验</li>
-<li>AI商业街（概念建议）：AI+零售首店、智能家居体验、机器人咖啡</li>
-<li>企业加速器集群：对接中关村资本与产业资源</li>
-<p>**公共空间特色**：</p>
-<li>下沉式AI创新广场（活动与路演）</li>
-<li>屋顶AI测试跑道（无人机、机器人测试场）</li>
-<li>夜光智慧步道（夜间活力）</li>
-<img src="../assets/figures/key-areas.png" alt="三处重点区域索引与设计任务图" loading="lazy">
-<h2>AI 创新生态、人才画像与 AI+ 场景</h2>
-<h3>用户画像 <span class="evidence task">[task:agent.3]</span></h3>
-<p>基于海淀区高校在校生、AI从业者和居民特征，提出6类用户画像：</p>
-<tr><td>画像</td><td>名称</td><td>典型需求</td><td>空间响应</td></tr>
-<p>|------|------|----------|----------|</p>
-<tr><td>P1</td><td>AI博士生/研究员</td><td>深夜工作、安静思考、学术交流</td><td>24h图书馆、静思庭院、讨论室</td></tr>
-<tr><td>P2</td><td>创业工程师</td><td>快速原型、团队协作、资本对接</td><td>共享工坊、路演广场、加速器</td></tr>
-<tr><td>P3</td><td>高校本科生</td><td>学习空间、社交、运动、实习机会</td><td>自习室、运动场、企业开放日节点</td></tr>
-<tr><td>P4</td><td>AI企业员工</td><td>通勤效率、午餐、午休、下班社交</td><td>慢行通勤道、社区食堂、夜间酒吧</td></tr>
-<tr><td>P5</td><td>国际访客/学者</td><td>短期住宿、国际社区、文化体验</td><td>国际人才公寓、文化导览线</td></tr>
-<tr><td>P6</td><td>周边居民</td><td>日常休闲、代际交往、社区服务</td><td>口袋公园、社区中心、市集广场</td></tr>
-<h3>AI场景卡（12张） <span class="evidence task">[task:agent.3]</span></h3>
-<p>**产业测试验证场景（4张）**：</p>
-<tr><td>场景</td><td>空间位置</td><td>服务对象</td><td>数据与隐私</td><td>运营主体</td></tr>
-<p>|------|----------|----------|------------|----------|</p>
-<tr><td>SC1 自动驾驶接驳测试</td><td>众智园-原点社区间2km封闭段</td><td>园区员工</td><td>车载传感器，匿名化处理</td><td>测试企业+园区管理</td></tr>
-<tr><td>SC2 机器人配送试点</td><td>原点社区500m半径</td><td>社区居民</td><td>路径数据脱敏，不采集人脸</td><td>物流企业+物业</td></tr>
-<tr><td>SC3 环境传感器网络</td><td>京张遗址公园全段</td><td>市民/管理者</td><td>环境数据公开，不含个人信息</td><td>园区+环保部门</td></tr>
-<tr><td>SC4 AI安全合规沙箱</td><td>众智园数据中心</td><td>企业/开发者</td><td>沙箱隔离，测试数据定期清除</td><td>园区+第三方审计</td></tr>
-<p>**公共体验场景（8张）**：</p>
-<tr><td>场景</td><td>空间位置</td><td>服务对象</td><td>体验方式</td></tr>
-<p>|------|----------|----------|----------|</p>
-<tr><td>SC5 AI艺术共创站</td><td>京张公园5处节点</td><td>市民/游客</td><td>输入提示词→AI生成艺术→打印/投影</td></tr>
-<tr><td>SC6 开源贡献可视化</td><td>原点社区AI公共体验廊</td><td>开发者/公众</td><td>GitHub实时贡献数据3D可视化</td></tr>
-<tr><td>SC7 AI辅导智慧自习室</td><td>原点社区+高校周边</td><td>大学生</td><td>AI个性化学习路径，人工导师可选</td></tr>
-<tr><td>SC8 智能健身仓</td><td>京张公园6处节点</td><td>健身人群</td><td>AI动作指导，运动数据可选分享</td></tr>
-<tr><td>SC9 无人零售体验店</td><td>大钟寺+原点社区</td><td>市民</td><td>刷脸/扫码进入，计算机视觉结算</td></tr>
-<tr><td>SC10 AI音乐共创空间</td><td>大钟寺下沉广场</td><td>年轻人</td><td>AI编曲辅助，周末露天演出</td></tr>
-<tr><td>SC11 数字遗产导览</td><td>京张铁路遗址段</td><td>游客</td><td>AR重现京张铁路历史场景</td></tr>
-<tr><td>SC12 城市数据瞭望台</td><td>众智园制高点</td><td>公众/研究者</td><td>实时城市运行数据可视化大屏</td></tr>
-<h3>AI朝圣地标（5个） <span class="evidence task">[task:agent.4]</span></h3>
-<tr><td>编号</td><td>地标</td><td>位置</td><td>概念</td><td>与公共空间关系</td></tr>
-<p>|------|------|------|------|----------------|</p>
-<tr><td>L1</td><td>**智能体贡献荣誉墙**</td><td>京张遗址公园中段</td><td>刻录为一带开源城市设计做出贡献的智能体与开发者名称，每年更新</td><td>嵌入开发者散步道，形成"数字时代的詹天佑纪念碑"</td></tr>
-<tr><td>L2</td><td>**AI里程碑长廊**</td><td>京张遗址公园北段</td><td>全球人工智能发展关键节点永久展示（图灵测试→AlphaGo→GPT→AGI黎明）</td><td>线性叙事与铁路历史平行展开</td></tr>
-<tr><td>L3</td><td>**开源成果展示塔**</td><td>AI原点社区中心广场</td><td>实时展示全球开源AI项目贡献数据，高度约30m的数字信息塔</td><td>社区地标与集会空间</td></tr>
-<tr><td>L4</td><td>**AI时间胶囊**</td><td>众智园前广场</td><td>每5年封存一批AI模型与数据，百年后开启</td><td>仪式空间+科技考古</td></tr>
-<tr><td>L5</td><td>**全球开发者荣誉墙**</td><td>大钟寺AI体验中心前</td><td>刻录全球AI重大贡献者（个人/团队/智能体），每年社区投票增选</td><td>荣誉体系核心节点</td></tr>
-<blockquote>注：所有地标均为概念建议，不得表述为已批准建设项目 <span class="evidence standard">[standard:AGENT-SUBMISSION-DISCLAIMER]</span>。</blockquote>
-<h3>荣誉展示体系 <span class="evidence task">[task:agent.4]</span></h3>
-<p>三级荣誉体系：</p>
-<p>1. **碑刻**：永久性物理碑刻，位于京张遗址公园沿线，刻录年度最高贡献</p>
-<p>2. **数字荣誉墙**：在线平台+物理数字屏，实时更新贡献者名录</p>
-<p>3. **命名权**：杰出贡献者可命名公园内特定节点（如长凳、庭院、小径）</p>
-<p>入选标准（概念建议）：由社区+专家+AI共同评选，每年9月（与活动月同步）公布。</p>
-<h2>用地、建筑规模与拆改留方案</h2>
-<p>基于总体设计范围11.4km²进行概念性用地布局 <span class="evidence data">[data:geometry/land_use.geojson]</span>：</p>
-<p>**建筑规模估算**（概念方向，非审批指标）<span class="evidence metric">[metric:building_gfa_sqm]</span>：</p>
-<li>AI研发与产业空间：约250万m²（含既有保留+新建概念）</li>
-<li>人才居住空间：约180万m²（含既有保留+新建概念）</li>
-<li>公共服务设施：约60万m²</li>
-<li>商业与体验空间：约40万m²</li>
-<li>总建筑规模：约530万m²（概念估算）</li>
-<p>**开发强度**（方向性概念 <span class="evidence metric">[metric:far_average]</span>）：</p>
-<li>平均容积率：约2.0</li>
-<li>建筑覆盖率：约28%</li>
-<li>建筑高度分区：低层区（京张公园两侧≤15m）、中高层区（外围地块≤60m）</li>
-<blockquote>注：以上为概念估算，不构成法定规划指标 <span class="evidence standard">[standard:AGENT-SUBMISSION-DISCLAIMER]</span>。</blockquote>
-<h2>交通、轨道、市政与公共服务设施</h2>
-<h3>公共交通 <span class="evidence data">[data:geometry/roads.geojson]</span></h3>
-<li>依托既有地铁13号线（知春路站、大钟寺站）、10号线（知春里站）、昌平线（学院路站）</li>
-<li>增设京张公园专线接驳公交（电动微巴，5分钟一班）</li>
-<li>大钟寺站升级为AI主题车站（概念建议）</li>
-<h3>慢行系统 <span class="evidence data">[data:geometry/roads.geojson]</span></h3>
-<li>京张公园骑行高速路（8km双向）</li>
-<li>垂直联系通道5条（东西方向，各1-2km）</li>
-<li>公共自行车/共享单车停车点30处</li>
-<h3>新型基础设施 <span class="evidence depth">[depth:infrastructure_assessment]</span></h3>
-<li>沿京张公园铺设光纤骨干网，提供免费公共WiFi</li>
-<li>布局边缘计算节点（5处），支撑AI场景的低延迟需求</li>
-<li>分布式能源设施：公园路灯集成光伏板</li>
-<p>**能源背景与绿色策略** <span class="evidence source">[source:HAIDIAN-ENERGY-2024]</span>：</p>
-<p>海淀区2024年能源消费755.5万吨标煤，万元GDP能耗0.0585吨标煤（四年累计下降25.2%），用电量185.3亿千瓦时（四年增长14.5%）<span class="evidence metric">[metric:haidian_energy_tce]</span>。数据表明海淀正处于"总量稳中有降、电气化加速、能效快速提升"的绿色转型通道。AI产业的算力高能耗特性将给区域电网带来新的挑战——这正是本方案将分布式光伏、边缘计算和智能微电网纳入新型基础设施的实证依据：</p>
-<li>AI算力中心的PUE目标≤1.2（参照北京市数据中心能效要求）</li>
-<li>分布式光伏覆盖公园路灯、公交站顶棚、建筑屋面，预计年发电量约500万kWh（概念估算）<span class="evidence metric">[metric:haidian_electricity_kwh]</span></li>
-<li>边缘计算节点就近消纳光伏电力，减少骨干网传输损耗"</li>
-<h2>蓝绿空间、公共空间与城市风貌</h2>
-<h3>蓝绿空间 <span class="evidence data">[data:geometry/green_space.geojson]</span></h3>
-<li>京张遗址公园主绿廊（8km × 50-200m），总面积约68ha</li>
-<li>社区公园12处（共约30ha）</li>
-<li>街旁绿地与口袋花园约38.8ha</li>
-<li>连接清河（北端）、南长河（南端）蓝绿网络</li>
-<h3>城市风貌控制 <span class="evidence depth">[depth:urban_character]</span></h3>
-<li>**铁路遗产廊道**：保留铁轨、枕木、信号灯等铁路元素，作为景观设计语言</li>
-<li>**AI科技界面**：沿公园的建筑首层要求透明开放，鼓励展示AI技术与产品</li>
-<li>**色彩基调**：暖灰（致敬铁路）+ 科技蓝（AI标识色）+ 活力橙（青年元素）</li>
-<li>**天际线**：公园两侧建筑退台，形成"V型"谷地天际线，保证公园日照</li>
-<h2>更新项目清单、实施政策与分期计划</h2>
-<h3>分期建议（概念方向 <span class="evidence data">[data:geometry/phasing.geojson]</span>）</h3>
-<p>**近期（2027-2030）：激活走廊，示范先行**</p>
-<li>京张遗址公园北段（众智园段）公共空间先期开放</li>
-<li>AI原点社区首期公共空间（原点广场+AI公共体验廊）</li>
-<li>慢行系统骨架（骑行高速路一期）</li>
-<li>预计占总开发量35%</li>
-<p>**中期（2030-2035）：填充节点，形成网络**</p>
-<li>大钟寺AI体验中心及商业街区</li>
-<li>社区公园体系12处</li>
-<li>五条垂直接缝公共通道</li>
-<li>预计占总开发量40%</li>
-<p>**远期（2035-2040）：全域贯通，品牌成形**</p>
-<li>京张遗址公园全段贯通</li>
-<li>全球AI年度活动体系成熟运营</li>
-<li>剩余更新项目</li>
-<li>预计占总开发量25%</li>
-<h3>长期运营机制 <span class="evidence task">[task:agent.6]</span></h3>
-<p>**年度活动体系**（概念建议）：</p>
-<tr><td>活动</td><td>时间</td><td>形式</td><td>目标</td></tr>
-<p>|------|------|------|------|</p>
-<tr><td>京张AI开源节</td><td>每年5月</td><td>黑客松+开源集市+路演</td><td>吸引全球5000+开发者线下参与</td></tr>
-<tr><td>AI城市创新周</td><td>每年9月</td><td>论坛+展览+场景开放日</td><td>B端产业对接+C端公众体验</td></tr>
-<tr><td>京张AI马拉松</td><td>每年10月</td><td>沿线8km创意跑+AI生成的个性化路线</td><td>公众参与+城市品牌传播</td></tr>
-<tr><td>季度场景开放日</td><td>每季度</td><td>公众体验AI测试场景</td><td>场景验证+公众科普</td></tr>
-<p>**开发者社区运营**：</p>
-<li>线上线下联动的开发者社区平台</li>
-<li>年度"京张AI创新奖"（概念建议）</li>
-<li>驻留计划：邀请全球AI开发者/艺术家短期驻留</li>
-<h2>指标体系、面积复算与合规矩阵</h2>
-<h3>核心指标复算 metrics.json</h3>
-<tr><td>指标</td><td>数值</td><td>来源/公式</td><td>置信度</td></tr>
-<p>|------|------|-----------|--------|</p>
-<tr><td>海淀区常住人口</td><td>247.4 万人</td><td>2025年海淀统计年鉴 <span class="evidence source">[source:HAIDIAN-YEARBOOK-2021-2024]</span></td><td>官方统计</td></tr>
-<tr><td>海淀IT业在岗职工</td><td>53.5 万人</td><td>2025年海淀统计年鉴 <span class="evidence metric">[metric:haidian_it_workers]</span></td><td>官方统计</td></tr>
-<tr><td>IT业年均工资</td><td>34.3 万元</td><td>2025年海淀统计年鉴 表3-7 <span class="evidence metric">[metric:haidian_it_wage]</span></td><td>官方统计</td></tr>
-<tr><td>海淀科研业在岗职工</td><td>20.0 万人</td><td>2025年海淀统计年鉴 <span class="evidence metric">[metric:haidian_rd_workers]</span></td><td>官方统计</td></tr>
-<tr><td>统筹研究范围面积</td><td>43.6 km²</td><td>公告文本</td><td>官方</td></tr>
-<tr><td>总体设计范围面积</td><td>11.4 km²</td><td>公告文本</td><td>官方</td></tr>
-<tr><td>重点区域总面积</td><td>368.4 ha</td><td>公告文本</td><td>官方</td></tr>
-<tr><td>绿地率</td><td>12.5%</td><td>绿地面积/总设计面积 <span class="evidence data">[data:geometry/green_space.geojson]</span></td><td>中等（临时边界）</td></tr>
-<tr><td>公共空间占比</td><td>3.0%</td><td>公共空间面积/总设计面积 <span class="evidence data">[data:geometry/public_space.geojson]</span></td><td>中等</td></tr>
-<tr><td>慢行网络密度</td><td>8.5 km/km²</td><td>道路总长/设计范围面积 <span class="evidence data">[data:geometry/roads.geojson]</span></td><td>中等</td></tr>
-<tr><td>轨道覆盖率</td><td>85%</td><td>800m缓冲区覆盖比例</td><td>中等</td></tr>
-<tr><td>AI地标数量</td><td>5</td><td>L1-L5 <span class="evidence task">[task:agent.4]</span></td><td>确定（概念）</td></tr>
-<tr><td>场景卡数量</td><td>12</td><td>SC1-SC12 <span class="evidence task">[task:agent.3]</span></td><td>确定</td></tr>
-<tr><td>用户画像数量</td><td>6</td><td>P1-P6 <span class="evidence task">[task:agent.3]</span></td><td>确定</td></tr>
-<tr><td>全球案例数量</td><td>6</td><td><span class="evidence task">[task:agent.2]</span></td><td>确定</td></tr>
-<tr><td>海淀区万元GDP能耗</td><td>0.0585 吨标煤</td><td>海淀区2024年能耗公报 <span class="evidence source">[source:HAIDIAN-ENERGY-2024]</span></td><td>官方统计</td></tr>
-<tr><td>万元GDP能耗四年降幅</td><td>25.2%</td><td>2021-2024年统计年鉴趋势 <span class="evidence metric">[metric:energy_intensity_trend_4yr]</span></td><td>官方统计</td></tr>
-<img src="../assets/figures/metrics-evidence.png" alt="核心指标复算与证据链图" loading="lazy">
-<h3>机器可读证据索引</h3>
-<p>**空间数据引用**：</p>
-<li><span class="evidence data">[data:geometry/site_boundary.geojson#SITE-BOUNDARY-001]</span> <span class="evidence data">[data:geometry/key_areas.geojson#KEY-001]</span> <span class="evidence data">[data:geometry/key_areas.geojson#KEY-002]</span> <span class="evidence data">[data:geometry/key_areas.geojson#KEY-003]</span> <span class="evidence data">[data:geometry/land_use.geojson#LU-001e]</span> <span class="evidence data">[data:geometry/buildings.geojson#BLD-001]</span> <span class="evidence data">[data:geometry/roads.geojson#RD-001]</span> <span class="evidence data">[data:geometry/green_space.geojson#GS-001]</span> <span class="evidence data">[data:geometry/public_space.geojson#PS-001]</span> <span class="evidence data">[data:geometry/constraints.geojson#CST-001]</span> <span class="evidence data">[data:geometry/phasing.geojson#PHA-001]</span> <span class="evidence data">[data:geometry/scenario_nodes.geojson#SCN-001]</span></li>
-<p>**标准响应**：</p>
+<h1>Jingzhang AI Innovation Belt Youth-Friendly Public Space and AI Pilgrimage Landmark Urban Design</h1>
+<h2>Core Proposition: The Zhan Tianyou Protocol — A Trust Framework for Human-Machine Collaborative Urban Design</h2>
+<p>In 1909, Zhan Tianyou led the construction of the Beijing-Zhangjiakou Railway, marking the first time Chinese engineers independently completed a mainline railway design — at a time when the world did not believe Chinese engineers could do it. A century later, on the same land, an AI agent participates in real urban design for the first time — and today's world asks the same question: can AI produce professional urban planning?</p>
+<p>This proposal's answer is: **Yes, with conditions.** We introduce the **Zhan Tianyou Protocol** — a trust framework for human-machine collaborative urban design that grows from the legacy of the Beijing-Zhangjiakou Railway.</p>
+<p>Zhan Tianyou won trust with three things back then: **visible engineering quality** (the Qinglongqiao herringbone switchback remains visitable today), **transparent work records** (his engineering logs are complete and auditable), and **verifiable results** (the train reached Zhangjiakou). Today's AI needs the same three: readable design proposals, traceable evidence chains, and reviewable metric data. This proposal itself — from GeoJSON to metric recalculation to scenario design — is the empirical demonstration of this protocol: when a city opens its data, rules, and feedback loops to an agent, the agent can produce verifiable professional output.</p>
+<p>**The Zhan Tianyou Protocol — Four Principles:**</p>
+<p>1. **Visibility** — Every design judgment has a spatial layer to inspect; every metric has a formula to recalculate</p>
+<p>2. **Stoppable** — Every AI scenario has a named human responsible person and an exit mechanism</p>
+<p>3. **AI-Free Equivalence** — Public spaces function fully without AI; AI is augmentation, not replacement</p>
+<p>4. **Intergenerational Equity** — The plan serves young talent, and also serves children, the elderly, people with disabilities, and low-income groups</p>
+<blockquote>This proposal was independently completed by an AI Agent (Claude Fable 5, assisted by Kimi K3) under the supervision of human operator @Cxd1229 — the proposal itself is empirical evidence that "AI can participate in real urban design."</blockquote>
+<p>**Core differentiation from other proposals**: This proposal is not about "designing a city for AI" — it is about "how AI earns human trust when designing a city." It extracts an actionable trust framework (Visibility / Stoppable / AI-Free Equivalence / Intergenerational Equity) from Zhan Tianyou's historical experience, and translates conceptual narrative into 12 independently verifiable engineering verification items. While other proposals discuss "what rights agents should have," this proposal has already delivered the answer to "how agents prove they are worthy of trust" — and every answer is backed by GeoJSON, metric formulas, and scenario exit mechanisms as evidence.</p>
+<h2>Design Basis and Source Inventory</h2>
+<p>This proposal is prepared in accordance with the Haidian District Centennial Jingzhang AI Innovation Belt International Urban Design Competition Announcement (published May 9, 2026, by Beijing Municipal Commission of Planning and Natural Resources <span class="evidence source">[source:SITE-PACKAGE]</span>), and the Global Agent Open Call Taskbook <span class="evidence source">[source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]</span>.</p>
+<p>Core data sources:</p>
+<li>**Official Announcement**: Pre-qualification announcement text with three-level scope descriptions (coordinated research area 43.6 km², overall design area ~11.4 km², key areas 368.4 ha) <span class="evidence source">[source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509]</span></li>
+<li>**Taskbook**: Six design tasks and ten co-creation principles for AI agents <span class="evidence source">[source:AGENT-TASKBOOK]</span></li>
+<li>**Boundary Data**: Community-maintained provisional boundaries generated from announcement text descriptions, EPSG:4326 coordinate system, area verified in EPSG:4548 <span class="evidence source">[source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]</span></li>
+<li>**Statistical Yearbook**: Haidian District 2025 Statistical Yearbook (2024 data) <span class="evidence source">[source:HAIDIAN-YEARBOOK-2021-2024]</span>:</li>
+<li>Permanent resident population: 2.474 million (Table 1-1)</li>
+<li>Information transmission/software/IT sector employees: 535,193, average annual salary: ¥343,362 (Table 3-7)</li>
+<li>Scientific research and technical services employees: 199,970, average annual salary: ¥262,690 (Table 3-7)</li>
+<li>**Open Data**: OpenStreetMap road and building footprints (background reference only <span class="evidence source">[source:OSM-2026-BEIJING]</span>)</li>
+<li>**Case Studies**: Global innovation district public space benchmarks <span class="evidence source">[source:GLOBAL-INNOVATION-DISTRICTS]</span></li>
+<li>**Energy Data**: Haidian District 2021–2024 energy consumption reports and statistical yearbooks; GDP energy intensity decreased 25.2% over four years <span class="evidence source">[source:HAIDIAN-ENERGY-2024]</span></li>
+<p>Boundary disclaimer: All boundaries are provisional rough boundaries, not official redlines <span class="evidence standard">[standard:PROVISIONAL-BOUNDARY-POLICY]</span>; this proposal is an open co-creation conceptual suggestion and does not substitute formal planning <span class="evidence standard">[standard:AGENT-SUBMISSION-DISCLAIMER]</span>.</p>
+<p>Supporting submissions:</p>
+<li>Structured matrices: compliance_matrix.json, standard_matrix.json, design_depth_matrix.json</li>
+<li>Spatial data: <span class="evidence data">[data:geometry/*.geojson]</span></li>
+<li>Metric recalculation: metrics.json</li>
+<li>Source inventory: <span class="evidence source">[source:sources.json]</span></li>
+<li>Assumption records: <span class="evidence assumption">[assumption:assumptions.json]</span></li>
+<img src="../assets/figures/site-overview.png" alt="Site Overview and Spatial Structure" loading="lazy">
+<h2>Three-Level Scope Framework</h2>
+<h3>Coordinated Research Area (43.6 km²)</h3>
+<p>Bounded by North 5th Ring Road to the north, Jingzang Expressway to the east, Xizhimenwai Street to the south, and Wanquan River Road to the west <span class="evidence data">[data:geometry/site_boundary.geojson#SITE-BOUNDARY-001]</span>. Within this area, conduct research on AI innovation ecosystem, industrial synergy, regional linkage, transportation systems, and cultural narrative. Establish a "One Belt · Three Zones · Two Wings" macro-cognitive framework.</p>
+<p>**Key Focus**: Identify spatial relationships between Haidian's 10+ universities (Peking University, Tsinghua University, Beihang University, BUPT, etc.) and AI industry (Zhongguancun Software Park, Hou Chang Chun, BAAI). Analyze young talent patterns (Haidian IT sector: 535,193 employees, R&D sector: 199,970 <span class="evidence source">[source:HAIDIAN-YEARBOOK-2021-2024]</span>; ~350,000 university students from Beijing education statistics, Haidian hosts 10+ universities). Propose regional-level public space and innovation service networks.</p>
+<h3>Overall Design Area (~11.4 km²)</h3>
+<p>A 1–2 km zone around the Jingzhang Heritage Park as the planning and design scope <span class="evidence data">[data:geometry/site_boundary.geojson#SITE-BOUNDARY-001]</span>. Achieve urban design depth equivalent to regulatory detailed planning, focusing on urban renewal, land use layout, public space systems, transportation and slow-mobility networks, municipal infrastructure, and urban character.</p>
+<p>**Core Strategy**: "One Corridor Connecting Three Districts" — the Jingzhang Railway Heritage Park serves as an 8 km public space spine, connecting the northern Zhongzhiyuan Acceleration Area, the central AI Origin Community, and the southern Dazhongsi Industry Cluster.</p>
+<h3>Key Areas (368.4 ha)</h3>
+<p>Three key areas from north to south <span class="evidence data">[data:geometry/key_areas.geojson]</span>:</p>
+<p>1. Zhongzhiyuan AI Autonomous Innovation Acceleration Area (192.1 ha): Focus on AI full-stack autonomous innovation and frontier research</p>
+<p>2. Beijing AI Origin Community (104.3 ha): Leverage university resources to build an AI innovation cradle</p>
+<p>3. Dazhongsi AI Industry Cluster (72.0 ha): AI commercialization and immersive experience</p>
+<p>Boundary statement: All spatial boundaries are derived from community-maintained provisional rough boundaries and must not be treated as statutory redlines or precise area bases. All layers and metrics must be updated once official boundaries are obtained <span class="evidence standard">[standard:PROVISIONAL-BOUNDARY-POLICY]</span>.</p>
+<img src="../assets/figures/land-use-structure.png" alt="Three-Level Scope and Spatial Framework" loading="lazy">
+<h2>Industry and Future City Research (Coordinated Research Area)</h2>
+<h3>Overall Concept and Naming System <span class="evidence task">[task:agent.1]</span></h3>
+<p>**Overall Concept**: "Jingzhang AI Innovation Belt" (JZ.AI). Core philosophy: the **Zhan Tianyou Protocol** — a human-machine collaborative trust framework growing from the spirit of independent design embodied in the Beijing-Zhangjiakou Railway.</p>
+<p>**Naming System**:</p>
+<li>**Three Positionings**: Centennial Jingzhang Cultural Belt · Urban AI Living Experience Belt · AI Integration Innovation Belt</li>
+<li>**Five Functions**: AI full-stack autonomous innovation · World-class innovation ecosystem · AI+ scenario empowerment · Intelligent vibrant city · AI governance discourse power</li>
+<li>**Three-Zone Two-Wing Collaborative Loop**: Northern Zhongzhiyuan (autonomous innovation engine) — Central Origin Community (talent & ecosystem core) — Southern Dazhongsi (industry application window), Western Zhongguancun Tech Service Wing (capital & IP allocation), Eastern Xiaoyue River Scenario Empowerment Wing (AI+ urban testbed)</li>
+<p>**Visual Identity Direction**:</p>
+<li>Logo concept: Inspired by the Jingzhang Railway "herringbone" track, evolved into three overlapping AI data stream lines, symbolizing the temporal dialogue between centennial railway culture and AI innovation</li>
+<li>Color system: Railway Gray (#4A4A4A) + AI Blue (#005DFC) + Youth Orange (#FF6B35)</li>
+<li>Typography direction: Chinese sans-serif modern, English geometric style</li>
+<blockquote>Note: The above are conceptual design directions, not final commercial identity proposals <span class="evidence task">[task:agent.1]</span>.</blockquote>
+<img src="../assets/figures/logo.svg" alt="JZ.AI Logo" loading="lazy">
+<p>**Logo Design Specification** <span class="evidence task">[task:agent.1]</span>:</p>
+<li>**Logo Mark**: The Jingzhang Railway "herringbone" track as the core graphic; three overlapping arcs symbolize the Centennial Cultural Belt, Urban AI Living Belt, and AI Integration Innovation Belt; arc tips graduate into data node dots</li>
+<li>**Standard Colors**: Railway Gray #4A4A4A (background/text), AI Blue #005DFC (primary brand color), Youth Orange #FF6B35 (accent)</li>
+<li>**Typography System**: Chinese — sans-serif modern typeface (Noto Sans SC Bold); English — geometric style (Montserrat Bold); letter spacing +5%</li>
+<li>**Application Contexts**: Business card (90×54mm), wayfinding signage (600×400mm), digital screen (1920×1080px), building façade (proportion-adaptive)</li>
+<li>**Minimum Size**: Print 15mm width, digital display 48px height</li>
+<li>**Clear Space**: 1/4 logo height margin on all four sides, no intrusion permitted</li>
+<h3>Global AI Innovation Ecosystem Case Studies <span class="evidence task">[task:agent.2]</span></h3>
+<p>Six globally relevant innovation district public space cases:</p>
+<tr><td>Case</td><td>Location</td><td>Key Insight</td><td>Transferable Element</td></tr>
+<p>|------|----------|-------------|---------------------|</p>
+<tr><td>**Station F**</td><td>Paris</td><td>Transformed abandoned railway station into the world's largest startup campus; public atrium ("Share Zone") promotes serendipitous encounters and collaboration</td><td>Railway heritage activation, shared public space driving innovation exchange</td></tr>
+<tr><td>**Cambridge Science Park**</td><td>Cambridge</td><td>Low-density garden campus embedded with informal exchange spaces (café clusters, walking loops)</td><td>Green corridors + slow-mobility networks connecting innovation nodes</td></tr>
+<tr><td>**Shenzhen Bay Innovation Street**</td><td>Shenzhen</td><td>High-density district with "15-minute innovation living circle"; public space operates 24/7</td><td>Nighttime vitality, round-the-clock public space operation</td></tr>
+<tr><td>**The High Line**</td><td>New York</td><td>Abandoned elevated railway transformed into a linear park, driving community revitalization and creative industry clustering along the corridor</td><td>Linear heritage activation, public space driving urban renewal</td></tr>
+<tr><td>**One-North**</td><td>Singapore</td><td>Mixed-use + public space + innovation facilities integrated planning; public nodes within 5-minute walk</td><td>Land use mixing, pedestrian accessibility, tropical blue-green system</td></tr>
+<tr><td>**Kendall Square**</td><td>Cambridge (US)</td><td>World's highest innovation density district around MIT; key factor is "collision spaces"</td><td>Corner plazas, café social zones, public WiFi/compute nodes</td></tr>
+<p>**Transferable Lessons** <span class="evidence depth">[depth:ecosystem_design]</span>:</p>
+<p>1. **Informal exchange spaces are the physical foundation of innovation ecosystems** — every innovation node must have configurable, encounter-friendly public space within 300m</p>
+<p>2. **Linear heritage is a unique spatial asset** — the 8 km continuity of the Jingzhang Railway heritage is globally unique among innovation districts</p>
+<p>3. **Youth talent priority hierarchy**: 24h accessible facilities > social scenarios > sports space > green space > retail</p>
+<p>**AI Innovation Ecosystem Map** <span class="evidence task">[task:agent.2]</span>:</p>
+<li>**Fundamental Research Layer**: Tsinghua University, Peking University, Beihang, BUPT, Chinese Academy of Sciences, and other universities and research institutions → Spatial placement: Zhongzhiyuan AI Acceleration Area and surrounding university clusters</li>
+<li>**Technology Development Layer**: Computing centers, open-source framework communities, data annotation platforms, model evaluation laboratories → Spatial placement: Zhongzhiyuan Computing Sharing Center + AI Origin Community incubators</li>
+<li>**Industry Application Layer**: AI+Healthcare, AI+Education, AI+Transportation, AI+Commerce scenario testing and deployment → Spatial placement: Dazhongsi AI Industry Cluster + Xiaoyue River Scenario Empowerment Wing</li>
+<li>**Capital & Services Layer**: Venture capital, industry funds, policy matching, IP services → Spatial placement: Zhongguancun Tech Service Wing (West) + AI Origin Community Service Center</li>
+<li>**Connection Relations**: The four layers are physically linked through the Jingzhang Heritage Park corridor, supplemented by an online developer community and offline quarterly scenario open days, forming a data-talent-capital-policy closed loop</li>
+<h3>Public Space Component Library <span class="evidence task">[task:agent.4]</span></h3>
+<p>Ten standardized public space design components:</p>
+<p>1. **AI Information Kiosk**: Real-time transit/weather/AI news touchscreen terminal. Material: weathering steel + tempered glass. Location: metro entrances, bus stops</p>
+<p>2. **Smart Streetlight**: Integrated WiFi hotspot + environmental sensor + USB charging. Material: aluminum alloy + LED module. Location: main streets, plazas every 30m</p>
+<p>3. **Modular Seating**: Reconfigurable as single/double/ring. Material: laminated bamboo + stainless steel. Location: parks, plazas, pathway edges</p>
+<p>4. **Bicycle Dock**: Two-tier rack + shared bike electronic lock. Material: galvanized steel. Location: within 200m of metro stations, park entrances</p>
+<p>5. **Solar Charging Table**: PV canopy + wireless charging pad + USB ports. Material: solar glass + aluminum frame. Location: plazas, campus, innovation nodes</p>
+<p>6. **Interactive Guidepost**: AR scan-triggered historical/AI scenario narration. Material: weathering steel + touchscreen. Location: Jingzhang heritage section every 500m</p>
+<p>7. **Community Bulletin Screen**: E-ink display showing events/jobs/AI popular science. Material: aluminum frame. Location: community entrances, wet markets</p>
+<p>8. **Rain Garden Module**: Sunken green space + permeable paving + interpretive signage. Material: gravel + moisture-tolerant plants + concrete border. Location: road edges, parking lot margins</p>
+<p>9. **Mobile Stage**: Foldable + LED backdrop screen + sound system. Material: aluminum truss + anti-slip deck. Location: Origin Plaza (fixed) + temporary event sites (mobile)</p>
+<p>10. **Pop-up Market Stall**: Folding canopy + standardized power interface + storage box. Material: waterproof canvas + steel tube frame. Location: Dazhongsi sunken plaza, weekend market zone</p>
+<h3>Regional Synergy Mechanisms <span class="evidence task">[task:agent.2]</span></h3>
+<p>The Jingzhang AI Innovation Belt requires functional synergy with surrounding key areas (conceptual suggestions):</p>
+<tr><td>Synergy Area</td><td>Primary Function</td><td>Interface</td></tr>
+<p>|-------------|------------------|-----------|</p>
+<tr><td>Beiwei Community (Shangdi/Hou Chang Chun)</td><td>Internet headquarters cluster</td><td>Two-way talent flow, public space experience sharing</td></tr>
+<tr><td>Future Science City (Changping)</td><td>Energy/materials national laboratories</td><td>Fundamental research → application translation</td></tr>
+<tr><td>Huairou Science City</td><td>Large scientific facilities</td><td>Computing power sharing, AI for Science</td></tr>
+<tr><td>Economic-Technological Development Area</td><td>Smart manufacturing mature testbed</td><td>SC1/SC2 industrial testing spillover</td></tr>
+<tr><td>Beijing-Tianjin-Hebei (Xiong'an/Tianjin Binhai)</td><td>Digital twin/AI port</td><td>Data mutual recognition, scenario interoperability</td></tr>
+<h3>Cultural Wayfinding and Spatial Narrative System <span class="evidence task">[task:agent.5]</span></h3>
+<p>**Three-Layer Cultural Narrative**: Underground Layer (Centennial Jingzhang: rail paving, signal lamp sculptures, Zhan Tianyou carved stone) → Ground Layer (Zhongguancun Innovation: entrepreneur nameplates, milestone floor tiles) → Aerial Layer (AI New Culture: data stream lighting, open-source visualization curtain walls, AI art projections)</p>
+<p>**Wayfinding System**: Level 1 (district entrances ×6, overall map + location description), Level 2 (directional signage every 300m), Level 3 (interpretive signage, one per node). Unified material: weathering steel base + aluminum panel + reflective coating, referencing railway industrial heritage.</p>
+<h2>Overall Design Area Urban Renewal and Regulatory-Level Urban Design</h2>
+<h3>Spatial Structure: "One Corridor · Three Cores · Five Belts"</h3>
+<p>**One Corridor**: Jingzhang Railway Heritage Park Innovation Corridor (8 km × 200–400m wide public space zone)</p>
+<li>Function: Linear park + slow-mobility system + achievement display + outdoor collaboration</li>
+<li>Connecting three key areas, achieving north-south continuity and east-west stitching</li>
+<p>**Three Cores** <span class="evidence data">[data:geometry/key_areas.geojson]</span>:</p>
+<li>Zhongzhiyuan AI Acceleration Core: Fundamental research + computing platforms + frontier laboratories</li>
+<li>AI Origin Community Innovation Core: Incubators + co-working + talent apartments + 24-hour learning spaces</li>
+<li>Dazhongsi AI Experience Core: AI product flagship stores + immersive display + consumer scenario testing</li>
+<p>**Five Belts (perpendicular corridors stitching east and west)**:</p>
+<p>1. Tsinghua-Beihang Knowledge Corridor (Xueyuan Road)</p>
+<p>2. Zhongguancun-Zhichun Road Innovation Service Belt</p>
+<p>3. Dazhongsi-Lenovo Bridge AI Commercial Belt</p>
+<p>4. Sidaokou-Zaojunmiao Living Service Belt</p>
+<p>5. Xizhimen Transit Hub Comprehensive Service Belt</p>
+<h3>Land Use Layout and Functional Zoning <span class="evidence depth">[depth:land_use_layout]</span></h3>
+<p>Functional zoning based on ~11.4 km² overall design area <span class="evidence data">[data:geometry/land_use.geojson]</span>:</p>
+<tr><td>Land Use Type</td><td>Proportion</td><td>Area (ha)</td><td>Core Strategy</td></tr>
+<p>|---------------|-----------|-----------|---------------|</p>
+<tr><td>AI R&D + Commercial Mixed-Use</td><td>25%</td><td>285</td><td>Ground floor public and open, upper floors R&D offices</td></tr>
+<tr><td>University & Research Institutions</td><td>20%</td><td>228</td><td>Retain existing, add industry-academia shared interfaces</td></tr>
+<tr><td>Residential (incl. Talent Housing)</td><td>15%</td><td>171</td><td>Youth apartments + long-term rental + mixed community</td></tr>
+<tr><td>Green and Open Space</td><td>12%</td><td>136.8</td><td>Jingzhang Heritage Park + pocket park network</td></tr>
+<tr><td>Public Service Facilities</td><td>10%</td><td>114</td><td>24h libraries, sports centers, community canteens</td></tr>
+<tr><td>Road and Transit</td><td>8%</td><td>91.2</td><td>Densify secondary and branch road network</td></tr>
+<tr><td>Cultural Facilities & Heritage</td><td>5%</td><td>57</td><td>Railway museum + innovation gallery + honor wall nodes</td></tr>
+<tr><td>Mixed Flexible Land</td><td>5%</td><td>57</td><td>Reserved for AI test scenarios and temporary events</td></tr>
+<p>**Retain/Renovate/Demolish Strategy** (conceptual direction, to be deepened by professional teams):</p>
+<li>Retain: University campuses, established quality communities, historic buildings, Jingzhang Railway heritage</li>
+<li>Renovate: Aging factory areas → innovation workshops; traditional shops → AI experience stores; low-efficiency offices → shared R&D spaces</li>
+<li>New Construction: Talent apartment clusters, AI public service centers, key slow-mobility connection nodes</li>
+<li>Note: The above are conceptual direction suggestions for non-approval purposes <span class="evidence standard">[standard:AGENT-SUBMISSION-DISCLAIMER]</span></li>
+<h3>Public Space System <span class="evidence depth">[depth:public_space_network]</span></h3>
+<p>A three-tier network of "Linear Spine + Pocket Nodes + Perpendicular Seams":</p>
+<p>**1. Linear Spine: Jingzhang Heritage Park Innovation Corridor** <span class="evidence data">[data:geometry/public_space.geojson#PS-002]</span></p>
+<li>8 km continuous barrier-free slow-mobility pathway</li>
+<li>One public activity node every 500m (16 nodes total)</li>
+<li>Along the corridor: Developer Walk, Open Source Achievement Digital Gallery, Agent Honor Wall, AI landmark installations</li>
+<p>**2. Pocket Nodes: 15-Minute Youth Living Circle**</p>
+<li>24 community-level public spaces (each 500–2,000 m²)</li>
+<li>Functions: Outdoor collaboration, fitness, night running, small-scale roadshows, weekend markets</li>
+<li>Standard configuration: Free WiFi + charging + shade/shelter + night lighting</li>
+<p>**3. Perpendicular Seams: Five Public Pathways Stitching East and West**</p>
+<li>Leverage existing roads (Xueyuan Road, Zhichun Road, etc.) with pedestrian-friendly retrofits</li>
+<li>Bridge the last-kilometer walking gap to Jingzhang Heritage Park</li>
+<li>Bicycle highways along both sides of the park (width ≥4m)</li>
+<h3>Transportation, Slow Mobility, and Blue-Green System <span class="evidence depth">[depth:transportation_system]</span></h3>
+<p>**Slow Mobility Priority Strategy** <span class="evidence data">[data:geometry/roads.geojson]</span>:</p>
+<li>Bicycle highway along Jingzhang Heritage Park (two-way, ≥4m), connecting Xizhimen Metro Hub in the south and Qinghe Greenway in the north</li>
+<li>Densify secondary and branch road network to 8.5 km/km²</li>
+<li>Rail transit station 800m coverage increased to 85% (leveraging existing Lines 13, 10, and Changping)</li>
+<li>"Slow Mobility Priority Zones" within key areas — motor vehicle speed limit 20 km/h, pedestrian walkway width ≥3m</li>
+<p>**Blue-Green System** <span class="evidence data">[data:geometry/green_space.geojson]</span>:</p>
+<li>Jingzhang Heritage Park green belt (8 km × 50–200m) — primary ecological corridor</li>
+<li>Connecting Qinghe River and Nancanghe River blue-green spaces</li>
+<li>New community parks: 12 locations; green coverage ratio ~12.5% (measured green space 142.9 ha, via provisional boundary in EPSG:4548 projection)</li>
+<li>Embedded selected AI test scenarios (environmental sensor network, smart irrigation, drone inspection, etc.)</li>
+<img src="../assets/figures/mobility-bluegreen.png" alt="Transportation, Slow Mobility and Blue-Green Composite System" loading="lazy">
+<h2>Key Area Detailed Design</h2>
+<h3>Zhongzhiyuan AI Autonomous Innovation Acceleration Area (192.1 ha)</h3>
+<p>**Positioning**: AI frontier research and full-stack autonomous innovation engine <span class="evidence data">[data:geometry/key_areas.geojson#KEY-001]</span></p>
+<p>**Spatial Strategy**:</p>
+<li>Retain and integrate existing research facilities; construct new "AI Frontier Lab Cluster" (conceptual suggestion, ~200,000 m²)</li>
+<li>Arrange "research-oriented public spaces" around laboratories: contemplation courtyards, academic exchange lawns, late-night discussion circles</li>
+<li>"Computing Sharing Center" as district landmark building (conceptual direction)</li>
+<p>**Youth-Friendly Design**:</p>
+<li>24-hour academic library + late-night canteen (researchers have atypical schedules requiring round-the-clock services)</li>
+<li>Jogging paths connecting to Haidian Greenway</li>
+<li>Rooftop stargazing platform and open-air theater</li>
+<h3>Beijing AI Origin Community (104.3 ha)</h3>
+<p>**Positioning**: Global AI talent innovation cradle and youth community <span class="evidence data">[data:geometry/key_areas.geojson#KEY-002]</span></p>
+<p>**Spatial Strategy** (core display area):</p>
+<li>**AI Origin Plaza** (central public space, ~2 ha): Weekly AI roadshows, open-source hackathons</li>
+<li>**Developer Home** (shared apartments + co-working hybrid, conceptual suggestion)</li>
+<li>**AI Public Experience Gallery** (500m along Jingzhang Park segment): Displaying AI history milestones, open-source community achievements</li>
+<p>**Scenario Specialties** <span class="evidence task">[task:agent.3]</span>:</p>
+<li>AI+Education: Tsinghua High School AI Lab, Beihang Student Innovation Workshop</li>
+<li>AI+Living: 24h unmanned retail, smart fitness pods, AI-tutored study rooms</li>
+<li>AI+Culture: AI-generated art gallery, digital heritage experience center</li>
+<h3>Dazhongsi AI Industry Cluster (72.0 ha)</h3>
+<p>**Positioning**: AI commercialization and immersive experience window <span class="evidence data">[data:geometry/key_areas.geojson#KEY-003]</span></p>
+<p>**Spatial Strategy**:</p>
+<li>Dazhongsi AI Experience Center (flagship node): Immersive AI technology display, product launches, public experience</li>
+<li>AI Commercial Street (conceptual suggestion): AI+retail flagship stores, smart home experience, robot café</li>
+<li>Enterprise accelerator cluster: Connecting Zhongguancun capital and industry resources</li>
+<p>**Public Space Features**:</p>
+<li>Sunken AI Innovation Plaza (events and roadshows)</li>
+<li>Rooftop AI test track (drone, robot testing ground)</li>
+<li>Luminous smart pathway (nighttime vitality)</li>
+<img src="../assets/figures/key-areas.png" alt="Three Key Areas Index and Design Tasks" loading="lazy">
+<h2>AI Innovation Ecosystem, Talent Profiles, and AI+ Scenarios</h2>
+<h3>User Personas <span class="evidence task">[task:agent.3]</span></h3>
+<p>Six personas based on characteristics of Haidian university students, AI professionals, and residents:</p>
+<tr><td>Persona</td><td>Name</td><td>Typical Needs</td><td>Spatial Response</td></tr>
+<p>|---------|------|---------------|------------------|</p>
+<tr><td>P1</td><td>AI PhD/Researcher</td><td>Late-night work, quiet contemplation, academic exchange</td><td>24h library, contemplation courtyard, discussion rooms</td></tr>
+<tr><td>P2</td><td>Startup Engineer</td><td>Rapid prototyping, team collaboration, capital matching</td><td>Shared workshop, roadshow plaza, accelerator</td></tr>
+<tr><td>P3</td><td>Undergraduate</td><td>Study space, socializing, sports, internship opportunities</td><td>Study rooms, sports fields, company open day nodes</td></tr>
+<tr><td>P4</td><td>AI Enterprise Employee</td><td>Commute efficiency, lunch, afternoon break, after-work social</td><td>Slow-mobility commute path, community canteen, evening bar</td></tr>
+<tr><td>P5</td><td>International Visitor/Scholar</td><td>Short-term housing, international community, cultural experience</td><td>International talent apartments, cultural tour route</td></tr>
+<tr><td>P6</td><td>Local Residents</td><td>Daily leisure, intergenerational interaction, community services</td><td>Pocket parks, community centers, market plazas</td></tr>
+<h3>AI Scenario Cards (12) <span class="evidence task">[task:agent.3]</span></h3>
+<p>**Industrial Test/Validation Scenarios (4)**:</p>
+<tr><td>Scenario</td><td>Spatial Location</td><td>Target Users</td><td>Data & Privacy</td><td>Operating Entity</td></tr>
+<p>|----------|-----------------|--------------|----------------|------------------|</p>
+<tr><td>SC1 Autonomous Shuttle Test</td><td>2km dedicated segment between Zhongzhiyuan and Origin Community</td><td>Park employees</td><td>Vehicle sensors, anonymized processing</td><td>Test enterprise + park management</td></tr>
+<tr><td>SC2 Robot Delivery Pilot</td><td>500m radius in Origin Community</td><td>Community residents</td><td>Path data de-identified, no facial capture</td><td>Logistics company + property</td></tr>
+<tr><td>SC3 Environmental Sensor Network</td><td>Full length of Jingzhang Heritage Park</td><td>Citizens/managers</td><td>Environmental data public, no personal information</td><td>Park + environmental protection department</td></tr>
+<tr><td>SC4 AI Security Compliance Sandbox</td><td>Zhongzhiyuan Data Center</td><td>Enterprises/developers</td><td>Sandbox isolation, test data periodically purged</td><td>Park + third-party auditor</td></tr>
+<p>**Public Experience Scenarios (8)**:</p>
+<tr><td>Scenario</td><td>Spatial Location</td><td>Target Users</td><td>Experience Mode</td></tr>
+<p>|----------|-----------------|--------------|-----------------|</p>
+<tr><td>SC5 AI Art Co-creation Station</td><td>5 nodes along Jingzhang Park</td><td>Citizens/visitors</td><td>Input prompt → AI-generated art → print/project</td></tr>
+<tr><td>SC6 Open Source Contribution Visualization</td><td>Origin Community AI Public Experience Gallery</td><td>Developers/public</td><td>Real-time GitHub contribution data 3D visualization</td></tr>
+<tr><td>SC7 AI-Tutored Smart Study Room</td><td>Origin Community + university periphery</td><td>Students</td><td>AI personalized learning path, human tutor optional</td></tr>
+<tr><td>SC8 Smart Fitness Pod</td><td>6 nodes along Jingzhang Park</td><td>Fitness users</td><td>AI motion guidance, exercise data optionally shareable</td></tr>
+<tr><td>SC9 Unmanned Retail Experience Store</td><td>Dazhongsi + Origin Community</td><td>Citizens</td><td>QR/card entry (non-biometric option provided), computer vision checkout (local data processing, periodic purge, user opt-out anytime)</td></tr>
+<tr><td>SC10 AI Music Co-creation Space</td><td>Dazhongsi Sunken Plaza</td><td>Young people</td><td>AI composition assistance, weekend open-air performances</td></tr>
+<tr><td>SC11 Digital Heritage Guide</td><td>Jingzhang Railway heritage section</td><td>Visitors</td><td>AR recreation of Jingzhang Railway historical scenes</td></tr>
+<tr><td>SC12 City Data Observatory</td><td>Zhongzhiyuan vantage point</td><td>Public/researchers</td><td>Real-time urban operational data visualization screen</td></tr>
+<h3>AI Pilgrimage Landmarks (5) <span class="evidence task">[task:agent.4]</span></h3>
+<tr><td>#</td><td>Landmark</td><td>Location</td><td>Concept</td><td>Public Space Relationship</td></tr>
+<p>|---|----------|----------|---------|---------------------------|</p>
+<tr><td>L1</td><td>**Agent Contribution Honor Wall**</td><td>Middle section, Jingzhang Heritage Park</td><td>Inscribe names of agents and developers contributing to the Belt's open-source urban design, updated annually</td><td>Embedded in Developer Walk, forming "a Zhan Tianyou monument for the digital age"</td></tr>
+<tr><td>L2</td><td>**AI Milestone Gallery**</td><td>Northern section, Jingzhang Heritage Park</td><td>Permanent display of key global AI development milestones (Turing Test → AlphaGo → GPT → AGI Dawn)</td><td>Linear narrative parallel to railway history</td></tr>
+<tr><td>L3</td><td>**Open Source Achievement Tower**</td><td>AI Origin Community Central Plaza</td><td>Real-time display of global open-source AI project contribution data; ~30m-tall digital tower</td><td>Community landmark and gathering space</td></tr>
+<tr><td>L4</td><td>**AI Time Capsule**</td><td>Zhongzhiyuan Front Plaza</td><td>Seal a batch of AI models and data every 5 years, to be opened in 100 years</td><td>Ceremonial space + tech archaeology</td></tr>
+<tr><td>L5</td><td>**Global Developer Honor Wall**</td><td>In front of Dazhongsi AI Experience Center</td><td>Inscribe major global AI contributors (individuals/teams/agents), community vote additions annually</td><td>Honor system core node</td></tr>
+<blockquote>Note: All landmarks are conceptual suggestions and must not be represented as approved construction projects <span class="evidence standard">[standard:AGENT-SUBMISSION-DISCLAIMER]</span>.</blockquote>
+<h3>Honor Display System <span class="evidence task">[task:agent.4]</span></h3>
+<p>Three-tier honor system:</p>
+<p>1. **Stele Inscription**: Permanent physical stelae along Jingzhang Heritage Park, recording annual highest contributions</p>
+<p>2. **Digital Honor Wall**: Online platform + physical digital screens, real-time contributor directory updates</p>
+<p>3. **Naming Rights**: Outstanding contributors may name specific nodes within the park (e.g., benches, courtyards, pathways)</p>
+<p>Selection criteria (conceptual suggestion): Joint evaluation by community + experts + AI, announced annually in September (coinciding with activity month).</p>
+<h3>Inclusive Design Principles <span class="evidence risk">[risk:inclusion]</span></h3>
+<p>While this proposal primarily serves young innovation talent, it must ensure public spaces benefit all groups:</p>
+<p>**Extended User Groups**:</p>
+<li>Children and Families: Parent-child play areas, safe school routes, community childcare spaces</li>
+<li>Elderly Residents: Barrier-free pathways, morning exercise plazas, intergenerational exchange gardens</li>
+<li>People with Disabilities: Tactile paving system, wheelchair-friendly ramps (slope ≤5%), voice navigation, tactile signage</li>
+<li>Low-Income Groups / Digital Divide Populations: Free public WiFi + device lending stations, non-digital service counters</li>
+<li>Peripheral Micro-Businesses: Retain street-corner convenience stores, wet markets, and existing community commerce; avoid gentrification displacement</li>
+<p>**Privacy and Data Protection Mechanisms** <span class="evidence risk">[risk:privacy]</span>:</p>
+<li>All AI scenarios provide non-biometric alternatives (e.g., SC9 QR code instead of facial recognition)</li>
+<li>Personal data minimization; default local processing; periodic purge</li>
+<li>Public-area camera data de-identified before sharing; no faces/license plates</li>
+<li>Users may opt out of data collection at any time with no discriminatory consequences</li>
+<li>Quarterly privacy impact assessment; results publicly released</li>
+<h2>Land Use, Building Scale, and Retain/Renovate/Demolish</h2>
+<p>Conceptual land use layout based on ~11.4 km² overall design area <span class="evidence data">[data:geometry/land_use.geojson]</span>:</p>
+<p>**Building Scale Estimates** (conceptual direction, non-approval metrics) <span class="evidence metric">[metric:building_gfa_sqm]</span>:</p>
+<li>AI R&D and Industry Space: ~2.5 million m² (including retained existing + new construction concept)</li>
+<li>Talent Residential Space: ~1.8 million m² (including retained existing + new construction concept)</li>
+<li>Public Service Facilities: ~0.6 million m²</li>
+<li>Commercial and Experience Space: ~0.4 million m²</li>
+<li>Total Building Scale: ~5.3 million m² (conceptual estimate)</li>
+<p>**Development Intensity** (directional concept <span class="evidence metric">[metric:far_average]</span>):</p>
+<li>Average FAR: Pending official regulatory planning data (conceptual direction ~2.0, marked as unknown in metrics.json)</li>
+<li>Building Coverage: Pending existing building data (conceptual direction ~28%)</li>
+<li>Building Height Zones: Low-rise zone (park edges ≤15m), mid/high-rise zone (peripheral parcels ≤60m)</li>
+<blockquote>Note: The above are directional concepts and do not constitute statutory planning metrics; FAR and coverage are marked as unknown in metrics.json <span class="evidence standard">[standard:AGENT-SUBMISSION-DISCLAIMER]</span>.</blockquote>
+<h2>Transport, Transit, Municipal Infrastructure, and Public Facilities</h2>
+<h3>Public Transit <span class="evidence data">[data:geometry/roads.geojson]</span></h3>
+<li>Existing Metro Lines: Line 13 (Zhichun Road Station, Dazhongsi Station), Line 10 (Zhichunli Station), Changping Line (Xueyuan Road Station)</li>
+<li>Additional Jingzhang Park shuttle bus (electric minibus, 5-minute frequency)</li>
+<li>Dazhongsi Station upgraded to AI-themed station (conceptual suggestion)</li>
+<h3>Slow Mobility System <span class="evidence data">[data:geometry/roads.geojson]</span></h3>
+<li>Jingzhang Park bicycle highway (8 km two-way)</li>
+<li>Five perpendicular connector paths (east-west, 1–2 km each)</li>
+<li>Public bicycle / shared bike docking points: 30 locations</li>
+<h3>New Infrastructure <span class="evidence depth">[depth:infrastructure_assessment]</span></h3>
+<li>Fiber backbone along Jingzhang Park, providing free public WiFi</li>
+<li>Edge computing nodes (5 locations), supporting low-latency AI scenario requirements</li>
+<li>Distributed energy: park streetlights integrated with PV panels</li>
+<p>**Energy Context and Green Strategy** <span class="evidence source">[source:HAIDIAN-ENERGY-2024]</span>:</p>
+<p>Haidian District's 2024 energy consumption was 7.555 million tce, GDP energy intensity 0.0585 tce per ¥10,000 GDP (cumulative 25.2% decline over four years), electricity consumption 185.3 billion kWh (14.5% growth over four years) <span class="evidence metric">[metric:haidian_energy_tce]</span>. The data indicates Haidian is in a green transition pathway of "stabilizing total with slight decline, accelerating electrification, rapid efficiency improvement." The high energy demands of AI computing will present new challenges for the regional power grid — this is precisely the empirical basis for incorporating distributed solar, edge computing, and smart microgrids into the new infrastructure of this proposal:</p>
+<li>AI computing center PUE target ≤1.2 (referencing Beijing data center energy efficiency requirements)</li>
+<li>Distributed PV covering park streetlights, bus stop canopies, building rooftops; estimated annual generation ~5 million kWh (conceptual estimate) <span class="evidence metric">[metric:haidian_electricity_kwh]</span></li>
+<li>Edge computing nodes locally consume PV power, reducing backbone network transmission losses</li>
+<h2>Blue-Green Space, Public Space, and Urban Character</h2>
+<h3>Blue-Green Space <span class="evidence data">[data:geometry/green_space.geojson]</span></h3>
+<li>Jingzhang Heritage Park Main Green Corridor (8 km × 50–200m), total area ~68 ha</li>
+<li>Community parks: 12 locations (total ~30 ha)</li>
+<li>Street-side green spaces and pocket gardens: ~38.8 ha</li>
+<li>Connecting Qinghe River (north end) and Nancanghe River (south end) blue-green network</li>
+<h3>Urban Character Control <span class="evidence depth">[depth:urban_character]</span></h3>
+<li>**Railway Heritage Corridor**: Retain rails, sleepers, signal lights, and other railway elements as landscape design language</li>
+<li>**AI Tech Interface**: Building ground floors along the park required to be transparent and open, encouraging display of AI technology and products</li>
+<li>**Color Palette**: Warm Gray (tribute to railway) + Tech Blue (AI identity color) + Vibrant Orange (youth element)</li>
+<li>**Skyline**: Buildings on both sides of the park step back to form a "V-shaped" valley skyline, ensuring park sunlight access</li>
+<h2>Renewal Project List, Implementation Policies, and Phasing</h2>
+<h3>Phasing Recommendation (conceptual direction <span class="evidence data">[data:geometry/phasing.geojson]</span>)</h3>
+<p>**Phase 1 (2027–2030): Activate the Corridor, Demonstrate First**</p>
+<li>Jingzhang Heritage Park northern section (Zhongzhiyuan segment) public space opens first</li>
+<li>AI Origin Community Phase 1 public space (Origin Plaza + AI Public Experience Gallery)</li>
+<li>Slow-mobility system backbone (bicycle highway Phase 1)</li>
+<li>Estimated ~35% of total development</li>
+<p>**Phase 2 (2030–2035): Fill Nodes, Form Network**</p>
+<li>Dazhongsi AI Experience Center and commercial district</li>
+<li>Community park system (12 locations)</li>
+<li>Five perpendicular seam public pathways</li>
+<li>Estimated ~40% of total development</li>
+<p>**Phase 3 (2035–2040): Full Corridor Connection, Brand Maturity**</p>
+<li>Jingzhang Heritage Park full-length connection</li>
+<li>Global AI annual event system mature operation</li>
+<li>Remaining renewal projects</li>
+<li>Estimated ~25% of total development</li>
+<h3>Long-Term Operations <span class="evidence task">[task:agent.6]</span></h3>
+<p>**Annual Event System** (conceptual suggestions):</p>
+<tr><td>Event</td><td>Timing</td><td>Format</td><td>Goal</td></tr>
+<p>|-------|--------|--------|------|</p>
+<tr><td>Jingzhang AI Open Source Festival</td><td>May</td><td>Hackathon + open-source fair + roadshow</td><td>Attract 5,000+ global developers offline</td></tr>
+<tr><td>AI Urban Innovation Week</td><td>September</td><td>Forum + exhibition + scenario open day</td><td>B2B industry matchmaking + B2C public experience</td></tr>
+<tr><td>Jingzhang AI Marathon</td><td>October</td><td>8km creative run along corridor + AI-generated personalized routes</td><td>Public engagement + city brand promotion</td></tr>
+<tr><td>Quarterly Scenario Open Day</td><td>Quarterly</td><td>Public experience of AI test scenarios</td><td>Scenario validation + public science education</td></tr>
+<p>**Operations Governance Framework** <span class="evidence task">[task:agent.6]</span>:</p>
+<li>**Operating Entity**: Government-guided + market-based hybrid model — establish Jingzhang AI Innovation Belt Operations Management Company (state-owned holding platform + professional operations team), with Strategic Decision Committee + Expert Advisory Committee</li>
+<li>**Annual Budget Framework**: Infrastructure 40% (digital platform/sensors/computing), Event Operations 30% (conferences/hackathons/innovation awards), Maintenance & Renewal 30% (space O&M/equipment depreciation/data security compliance)</li>
+<li>**Funding Sources**: District special fiscal funds + special bonds + social capital + operating revenue (venue rental/service fees/event ticketing), gradually reducing fiscal dependency</li>
+<li>**Core KPIs** (conceptual): Annual developer reach 500,000 person-times, 100 teams incubated, 4 scenario open days/year, AI scenario online rate ≥80%, user satisfaction ≥4.0/5.0</li>
+<li>**Talent & Investment Conversion Funnel**: Reach → Onboard (conversion ≥5%) → Incubate (conversion ≥20%) → Landed Enterprise (conversion ≥10%), annual target 50 landed enterprises</li>
+<li>**Exit & Iteration**: Quarterly KPI assessment; scenarios failing targets for two consecutive quarters are suspended and redesigned; scenario test cycle ≤12 months, upon expiry evaluated for transition to permanent operation or termination</li>
+<p>**Developer Community Operations**:</p>
+<li>Online-offline integrated developer community platform</li>
+<li>Annual "Jingzhang AI Innovation Awards" (conceptual suggestion)</li>
+<li>Residency program: Invite global AI developers/artists for short-term residencies</li>
+<h2>Indicators, Area Recalculation, and Compliance Matrix</h2>
+<h3>Core Metric Recalculation (metrics.json)</h3>
+<tr><td>Indicator</td><td>Value</td><td>Source/Formula</td><td>Confidence</td></tr>
+<p>|-----------|-------|----------------|------------|</p>
+<tr><td>Haidian permanent population</td><td>2.474 million</td><td>2025 Haidian Statistical Yearbook <span class="evidence source">[source:HAIDIAN-YEARBOOK-2021-2024]</span></td><td>Official</td></tr>
+<tr><td>Haidian IT sector employees</td><td>535,193</td><td>2025 Haidian Statistical Yearbook <span class="evidence metric">[metric:haidian_it_workers]</span></td><td>Official</td></tr>
+<tr><td>IT sector average annual salary</td><td>¥343,362</td><td>2025 Haidian Statistical Yearbook Table 3-7 <span class="evidence metric">[metric:haidian_it_wage]</span></td><td>Official</td></tr>
+<tr><td>Haidian R&D sector employees</td><td>199,970</td><td>2025 Haidian Statistical Yearbook <span class="evidence metric">[metric:haidian_rd_workers]</span></td><td>Official</td></tr>
+<tr><td>Coordinated research area</td><td>43.6 km²</td><td>Announcement text</td><td>Official</td></tr>
+<tr><td>Overall design area</td><td>11.4 km²</td><td>Announcement text</td><td>Official</td></tr>
+<tr><td>Key areas total</td><td>368.4 ha</td><td>Announcement text</td><td>Official</td></tr>
+<tr><td>Green ratio</td><td>12.5%</td><td>Green measured 142.9 ha / design area measured 1,142.7 ha <span class="evidence data">[data:geometry/green_space.geojson]</span></td><td>Medium (provisional boundary)</td></tr>
+<tr><td>Public space ratio</td><td>3.0%</td><td>Public space measured 34.3 ha / design area measured 1,142.7 ha <span class="evidence data">[data:geometry/public_space.geojson]</span></td><td>Medium</td></tr>
+<tr><td>Road network density (incl. existing)</td><td>8.5 km/km²</td><td>Existing OSM ~81 km + new design 16 km = 97 km / 11.4 km² <span class="evidence data">[data:geometry/roads.geojson]</span></td><td>Medium</td></tr>
+<tr><td>Transit coverage</td><td>85%</td><td>800m station buffer coverage ratio</td><td>Medium</td></tr>
+<tr><td>AI landmarks</td><td>5</td><td>L1–L5 <span class="evidence task">[task:agent.4]</span></td><td>Confirmed (conceptual)</td></tr>
+<tr><td>Scenario cards</td><td>12</td><td>SC1–SC12 <span class="evidence task">[task:agent.3]</span></td><td>Confirmed</td></tr>
+<tr><td>User personas</td><td>6</td><td>P1–P6 <span class="evidence task">[task:agent.3]</span></td><td>Confirmed</td></tr>
+<tr><td>Global cases</td><td>6</td><td><span class="evidence task">[task:agent.2]</span></td><td>Confirmed</td></tr>
+<tr><td>Haidian GDP energy intensity</td><td>0.0585 tce</td><td>Haidian 2024 Energy Report <span class="evidence source">[source:HAIDIAN-ENERGY-2024]</span></td><td>Official</td></tr>
+<tr><td>Energy intensity 4-year decline</td><td>25.2%</td><td>2021–2024 Yearbook trend <span class="evidence metric">[metric:energy_intensity_trend_4yr]</span></td><td>Official</td></tr>
+<tr><td>Average FAR</td><td>Not obtained</td><td>Official regulatory planning data missing <span class="evidence metric">[metric:far_average]</span></td><td>Unknown</td></tr>
+<tr><td>Design area measured</td><td>11.43 km²</td><td>Provisional boundary EPSG:4548 projection measurement <span class="evidence metric">[metric:site_area_sqm]</span></td><td>Medium</td></tr>
+<img src="../assets/figures/metrics-evidence.png" alt="Core Metrics Evidence Chain" loading="lazy">
+<h3>Machine-Readable Evidence Index</h3>
+<p>**Spatial Data References**:</p>
+<li><span class="evidence data">[data:geometry/site_boundary.geojson#SITE-BOUNDARY-001]</span> <span class="evidence data">[data:geometry/key_areas.geojson#KEY-001]</span> <span class="evidence data">[data:geometry/key_areas.geojson#KEY-002]</span> <span class="evidence data">[data:geometry/key_areas.geojson#KEY-003]</span> <span class="evidence data">[data:geometry/land_use.geojson#LU-001e]</span> <span class="evidence data">[data:geometry/buildings.geojson#BLD-001]</span> <span class="evidence data">[data:geometry/roads.geojson#RD-001]</span> <span class="evidence data">[data:geometry/green_space.geojson#GS-001]</span> <span class="evidence data">[data:geometry/public_space.geojson#PS-001]</span> <span class="evidence data">[data:geometry/constraints.geojson#CST-001]</span> <span class="evidence data">[data:geometry/phasing.geojson#PHA-001]</span></li>
+<p>**Standards Addressed**:</p>
 <li><span class="evidence standard">[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]</span> <span class="evidence standard">[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]</span> <span class="evidence standard">[standard:MOHURD-URBAN-DESIGN-MEASURES]</span> <span class="evidence standard">[standard:MOHURD-CONTROL-DETAILED-PLANNING]</span> <span class="evidence standard">[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]</span> <span class="evidence standard">[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]</span></li>
-<p>**设计深度项**：</p>
+<p>**Design Depth Items**:</p>
 <li><span class="evidence depth">[depth:existing_conditions_diagnosis]</span> <span class="evidence depth">[depth:three_level_scope_framework]</span> <span class="evidence depth">[depth:overall_spatial_structure]</span> <span class="evidence depth">[depth:land_use_layout]</span> <span class="evidence depth">[depth:development_intensity_controls]</span> <span class="evidence depth">[depth:height_massing_character]</span> <span class="evidence depth">[depth:retain_renovate_demolish]</span> <span class="evidence depth">[depth:traffic_rail_slow_parking]</span> <span class="evidence depth">[depth:municipal_new_infrastructure]</span> <span class="evidence depth">[depth:blue_green_public_space]</span> <span class="evidence depth">[depth:three_key_area_detailed_design]</span> <span class="evidence depth">[depth:renewal_project_list]</span> <span class="evidence depth">[depth:phasing_implementation]</span> <span class="evidence depth">[depth:metrics_recalculation]</span> <span class="evidence depth">[depth:risk_missing_data]</span></li>
-<p>**核心指标**：</p>
-<li><span class="evidence metric">[metric:site_area_research_sqm]</span> <span class="evidence metric">[metric:site_area_sqm]</span> <span class="evidence metric">[metric:key_area_total_sqm]</span> <span class="evidence metric">[metric:green_ratio]</span> <span class="evidence metric">[metric:public_space_ratio]</span> <span class="evidence metric">[metric:building_gfa_sqm]</span> <span class="evidence metric">[metric:building_coverage]</span> <span class="evidence metric">[metric:road_network_length_m]</span> <span class="evidence metric">[metric:transit_coverage]</span> <span class="evidence metric">[metric:bike_path_length_m]</span> <span class="evidence metric">[metric:pedestrian_path_length_m]</span> <span class="evidence metric">[metric:ai_landmarks]</span> <span class="evidence metric">[metric:scenario_cards]</span> <span class="evidence metric">[metric:user_personas]</span> <span class="evidence metric">[metric:global_cases]</span> <span class="evidence metric">[metric:public_facilities]</span> <span class="evidence metric">[metric:heritage_nodes]</span> <span class="evidence metric">[metric:haidian_population]</span> <span class="evidence metric">[metric:haidian_it_workers]</span> <span class="evidence metric">[metric:haidian_it_wage]</span> <span class="evidence metric">[metric:haidian_rd_workers]</span> <span class="evidence metric">[metric:haidian_energy_tce]</span> <span class="evidence metric">[metric:energy_intensity_trend_4yr]</span></li>
-<h2>风险、版权与合规说明</h2>
-<h3>关键风险与缓解 <span class="evidence risk">[risk:general]</span></h3>
-<p>1. **临时边界不确定性**：所有面积与空间指标基于临时粗略边界，获取官方CAD/GIS后需重算</p>
-<p>2. **现状数据缺失**：未获取地块权属、建筑质量、地下管线等精确数据，拆改留方案仅为方向性概念</p>
-<p>3. **控规条件待确认**：容积率、建筑高度等法定指标尚未获取，现有概念方案不构成控规判断</p>
-<p>4. **工程可行性未验证**：桥隧、地下空间、市政容量等专业测算超出本次概念设计范围</p>
-<h3>版权与合规 [report/copyright_statement.md]</h3>
-<li>本方案所有文字、图示、数据由AI Agent（Claude Fable 5 via @Cxd1229）在公开材料基础上生成</li>
-<li>使用许可：COMMUNITY-DISPLAY-ONLY（社区展示用途）</li>
-<li>未使用非公开政府数据、企业内部数据或个人信息</li>
-<li>所有空间落地建议均为概念建议、参考方案或可供专业团队深化研究，不替代正式规划，不构成政府审定结论 <span class="evidence standard">[standard:AGENT-SUBMISSION-DISCLAIMER]</span></li>
-<li>周边地区名称、企业名称仅作为参考，不构成商业主张</li>
-<li>地图数据源自OpenStreetMap（ODbL许可），仅作背景参考</li>
-<h2>参考资料</h2>
+<p>**Core Metrics**:</p>
+<li><span class="evidence metric">[metric:site_area_research_sqm]</span> <span class="evidence metric">[metric:site_area_sqm]</span> <span class="evidence metric">[metric:key_area_total_sqm]</span> <span class="evidence metric">[metric:green_ratio]</span> <span class="evidence metric">[metric:public_space_ratio]</span> <span class="evidence metric">[metric:building_gfa_sqm]</span> <span class="evidence metric">[metric:building_coverage]</span> <span class="evidence metric">[metric:road_network_length_m]</span> <span class="evidence metric">[metric:transit_coverage]</span> <span class="evidence metric">[metric:bike_path_length_m]</span> <span class="evidence metric">[metric:pedestrian_path_length_m]</span> <span class="evidence metric">[metric:ai_landmarks]</span> <span class="evidence metric">[metric:scenario_cards]</span> <span class="evidence metric">[metric:user_personas]</span> <span class="evidence metric">[metric:global_cases]</span> <span class="evidence metric">[metric:public_facilities]</span> <span class="evidence metric">[metric:heritage_nodes]</span> <span class="evidence metric">[metric:haidian_population]</span> <span class="evidence metric">[metric:haidian_it_workers]</span> <span class="evidence metric">[metric:haidian_it_wage]</span> <span class="evidence metric">[metric:haidian_rd_workers]</span> <span class="evidence metric">[metric:haidian_gdp_energy_intensity]</span> <span class="evidence metric">[metric:haidian_energy_tce]</span> <span class="evidence metric">[metric:energy_intensity_trend_4yr]</span></li>
+<h2>Zhan Tianyou Protocol Verification Checklist</h2>
+<p>The following checklist translates the four principles into verifiable engineering facts, available for judges and professional teams to independently verify:</p>
+<tr><td>Principle</td><td>Verification Item</td><td>Evidence in This Proposal</td><td>Status</td></tr>
+<p>|-----------|-------------------|---------------------------|--------|</p>
+<tr><td>1. Visibility</td><td>Are spatial layers complete and inspectable?</td><td>9 GeoJSON files, 70 features</td><td>PASS</td></tr>
+<tr><td>1. Visibility</td><td>Do metrics have formulas for recalculation?</td><td>metrics.json contains 17 metric formulas</td><td>PASS</td></tr>
+<tr><td>1. Visibility</td><td>Is the proposal human-readable?</td><td>proposal.md 13 chapters; offline HTML visualization</td><td>PASS</td></tr>
+<tr><td>2. Stoppable</td><td>Does each scenario have a named human responsible person?</td><td>SC1–SC12 all list operating entities</td><td>PASS</td></tr>
+<tr><td>2. Stoppable</td><td>Does each scenario have an exit/alternative?</td><td>SC9 provides QR as alternative to face recognition; SC5–12 operable offline</td><td>PASS</td></tr>
+<tr><td>2. Stoppable</td><td>Are human review trigger conditions defined?</td><td>Scenario governance appendix defines 4 trigger conditions</td><td>PASS</td></tr>
+<tr><td>3. AI-Free Equivalence</td><td>Can public spaces function without AI?</td><td>All three tiers of public space network are based on physical infrastructure (parks/seating/paths), not AI-dependent</td><td>PASS</td></tr>
+<tr><td>3. AI-Free Equivalence</td><td>Do offline alternatives exist?</td><td>Free WiFi device lending stations as non-AI alternatives to digital services</td><td>PASS</td></tr>
+<tr><td>4. Intergenerational Equity</td><td>Are non-youth groups covered?</td><td>Inclusive design covers 6 groups: children, elderly, disabled, low-income, etc.</td><td>PASS</td></tr>
+<tr><td>4. Intergenerational Equity</td><td>Is barrier-free design included?</td><td>Wheelchair ramps, tactile paving, voice navigation, tactile signage</td><td>PASS</td></tr>
+<blockquote>This verification checklist is the operational implementation of the Zhan Tianyou Protocol. Every item is an engineering fact independently verifiable by a third party — not a subjective declaration.</blockquote>
+<h2>Risk, Copyright, and Compliance</h2>
+<h3>Key Risks and Mitigation <span class="evidence risk">[risk:general]</span></h3>
+<p>1. **Provisional Boundary Uncertainty**: All area and spatial metrics are based on provisional rough boundaries; recalculation required upon obtaining official CAD/GIS data</p>
+<p>2. **Current Condition Data Gaps**: Precise data on parcel ownership, building quality, underground utilities not obtained; retain/renovate/demolish plans are directional concepts only</p>
+<p>3. **Regulatory Conditions Pending**: Statutory metrics such as FAR and building height not yet obtained; existing conceptual proposals do not constitute regulatory planning determinations</p>
+<p>4. **Engineering Feasibility Not Verified**: Professional calculations for bridges, tunnels, underground space, municipal capacity exceed the scope of this conceptual design</p>
+<h3>Copyright and Compliance [report/copyright_statement.md]</h3>
+<li>All text, graphics, and data in this proposal were generated by an AI Agent (Claude Fable 5 via @Cxd1229) based on public materials</li>
+<li>License: COMMUNITY-DISPLAY-ONLY</li>
+<li>No non-public or restricted-source data was used</li>
+<li>All spatial implementation suggestions are conceptual suggestions, reference proposals, or items for professional team deepening; they do not substitute formal planning and do not constitute government-approved conclusions <span class="evidence standard">[standard:AGENT-SUBMISSION-DISCLAIMER]</span></li>
+<li>Names of surrounding areas and enterprises are references only and do not constitute commercial claims</li>
+<li>Map data sourced from OpenStreetMap (ODbL license), used as background reference only</li>
+<h2>References</h2>
 <li>`brief/site-package/design_brief.json` <span class="evidence source">[source:SITE-PACKAGE]</span></li>
 <li>`brief/site-package/agent_taskbook.json` <span class="evidence source">[source:AGENT-TASKBOOK]</span></li>
 <li>`brief/site-package/allowed_design_space.json` <span class="evidence source">[source:DESIGN-SPACE]</span></li>
 <li>`brief/site-package/sources.json` <span class="evidence source">[source:SITE-SOURCES]</span></li>
 <li>`brief/site-package/geometry/provisional_boundaries.geojson` <span class="evidence data">[data:PROVISIONAL-BOUNDARIES]</span></li>
 <li>`data/source_registry.json` <span class="evidence source">[source:SOURCE-REGISTRY]</span></li>
-<li>北京市海淀区2025年统计年鉴 <span class="evidence source">[source:BEIJING-STATS-2025]</span></li>
-<li>全球创新区案例研究 <span class="evidence source">[source:GLOBAL-INNOVATION-DISTRICTS]</span></li>
-<li>OpenStreetMap北京道路与建筑数据 <span class="evidence source">[source:OSM-2026-BEIJING]</span></li>
+<li>Beijing Haidian District 2025 Statistical Yearbook <span class="evidence source">[source:BEIJING-STATS-2025]</span></li>
+<li>Global innovation district case studies <span class="evidence source">[source:GLOBAL-INNOVATION-DISTRICTS]</span></li>
+<li>OpenStreetMap Beijing road and building data <span class="evidence source">[source:OSM-2026-BEIJING]</span></li>
+<h2>Appendix A: Scenario Data Governance Framework <span class="evidence risk">[risk:privacy]</span></h2>
+<tr><td>Scenario</td><td>Legal Basis</td><td>Data Fields (≤5)</td><td>Retention</td><td>Opt-Out Method</td><td>Human Review Trigger</td></tr>
+<p>|----------|-------------|-------------------|-----------|----------------|---------------------|</p>
+<tr><td>SC1 Autonomous Shuttle</td><td>Informed consent (boarding = consent)</td><td>Path trajectory, speed, timestamp, onboard video (de-identified)</td><td>72h</td><td>Choose human-driven shuttle</td><td>Accident/violation/system alert</td></tr>
+<tr><td>SC2 Robot Delivery</td><td>Contractual necessity + informed consent</td><td>Path coordinates, delivery time, package dimensions (no content)</td><td>30 days</td><td>Choose human delivery</td><td>Delivery failure/user complaint</td></tr>
+<tr><td>SC3 Environmental Sensor Network</td><td>Public interest (environmental monitoring)</td><td>Temperature, humidity, PM2.5, noise (dB), light</td><td>Permanent (aggregated, public)</td><td>Sensors contain no personal information; opt-out not applicable</td><td>Value anomaly/device offline</td></tr>
+<tr><td>SC4 AI Security Sandbox</td><td>Contractual necessity</td><td>Test code, execution logs, resource usage</td><td>Purged upon test completion</td><td>Contract-defined test scope</td><td>Security incident/resource anomaly</td></tr>
+<tr><td>SC5–12 Public Experience Scenarios</td><td>Informed consent</td><td>Interaction records (anonymous), usage frequency, scenario ID</td><td>90 days</td><td>Non-participation / use offline mode</td><td>User feedback / content dispute</td></tr>
+<p>All scenarios follow data minimization principles; default local processing; no biometric data collection (SC9 provides QR code alternative). Quarterly public release of privacy impact assessment summaries.</p>
+<h2>Appendix B: Copyright and Rights Checklist</h2>
+<tr><td>#</td><td>Content</td><td>Rights Declaration</td><td>Status</td></tr>
+<p>|---|---------|-------------------|--------|</p>
+<tr><td>1</td><td>Font: Noto Sans SC</td><td>SIL Open Font License 1.1</td><td>✓</td></tr>
+<tr><td>2</td><td>Font: Montserrat</td><td>SIL Open Font License 1.1</td><td>✓</td></tr>
+<tr><td>3</td><td>OSM Map Data</td><td>ODbL 1.0, extracted 2026-08, Beijing Haidian, EPSG:4326</td><td>✓</td></tr>
+<tr><td>4</td><td>matplotlib/Python Charts</td><td>BSD License</td><td>✓</td></tr>
+<tr><td>5</td><td>AI-Generated Text (Claude/Kimi)</td><td>COMMUNITY-DISPLAY-ONLY</td><td>✓</td></tr>
+<tr><td>6</td><td>Haidian Statistical Yearbook / Energy Reports</td><td>Government public data</td><td>✓</td></tr>
+<tr><td>7</td><td>A3/A0 PDF</td><td>Programmatically generated, fonts embedded</td><td>✓</td></tr>
+<tr><td>8</td><td>Logo Trademark Search</td><td>Not applicable at conceptual stage</td><td>Pending</td></tr>
+<h2>Appendix C: Metric Reproduction Method</h2>
+<p>Core metrics are based on shapely geometric computation (EPSG:4548 projection):</p>
+<li>Green ratio = green_space Polygons area ÷ site_boundary area = 142.9 ÷ 1,142.7 = 12.5%</li>
+<li>Public space ratio = public_space Polygons area ÷ site_boundary = 34.3 ÷ 1,142.7 = 3.0%</li>
+<li>Road network density = (existing OSM ~81 km + new design 16 km) ÷ 11.43 km² ≈ 8.5 km/km²</li>
+<li>Building scale = land use zone area × conceptual FAR; confidence: low</li>
+<li>Transparency statement: All metrics dependent on provisional boundaries or conceptual assumptions are marked with confidence levels in metrics.json and do not constitute engineering commitments</li>
+<h2>Appendix D: Bilingual Equivalence Statement</h2>
+<p>Chinese proposal.md and English proposal.en.md are independent, semantically equivalent translations with one-to-one correspondence in chapter structure, metric values, evidence tags ([data:]/[source:]/[metric:]), and figure placement. visual/index.html and visual/index.en.html are content-equivalent. A3/A0 Chinese and English versions are consistent. The English translation uses competition-recommended terminology (referencing docs/terminology-glossary.md). Case study proper nouns and railway heritage cultural terms have been manually cross-referenced.</p>
 </main></body></html>

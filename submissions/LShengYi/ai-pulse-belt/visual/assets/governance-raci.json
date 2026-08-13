@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0.0",
+  "role_count": 8,
+  "roles": [
+    {
+      "id": "ROLE-ACCOUNTABLE-LEAD",
+      "name_zh": "单一责任主体",
+      "name_en": "Single accountable lead",
+      "passport_fields": ["责任主体", "成功证据"],
+      "responsible_for": "护照登记、E0-E4 门判定申报、退役与恢复决定",
+      "must_not_impersonate": "法定规划审批、行业监管与许可机关",
+      "fallback_if_absent": "服务不得进入测试；P1 申报退回补充材料",
+      "status": "proposed_role_not_current_authority"
+    },
+    {
+      "id": "ROLE-OPERATIONS",
+      "name_zh": "运营主体",
+      "name_en": "Site operations",
+      "passport_fields": ["运营主体"],
+      "responsible_for": "长期运营、运营期限与续办条件、日常记录公开",
+      "must_not_impersonate": "独立复测与审计结论",
+      "fallback_if_absent": "不得发布；仅可停留在沙盒状态",
+      "status": "proposed_role_not_current_authority"
+    },
+    {
+      "id": "ROLE-SAFETY",
+      "name_zh": "现场安全与急停",
+      "name_en": "Safety and emergency-stop authority",
+      "passport_fields": ["人工等价路径", "失败信号"],
+      "responsible_for": "现场安全审查、实体急停、五类回滚触发器的停机判定",
+      "must_not_impersonate": "运营决策与预算决策",
+      "fallback_if_absent": "不进入受控试点；试点期间缺岗立即停摆并亮平线灯",
+      "status": "proposed_role_not_current_authority"
+    },
+    {
+      "id": "ROLE-DATA",
+      "name_zh": "数据守护",
+      "name_en": "Data ceiling and privacy guardian",
+      "passport_fields": ["数据上限"],
+      "responsible_for": "数据上限与留存期核验、未声明数据禁止采集、退役后数据删除确认",
+      "must_not_impersonate": "个人信息使用授权",
+      "fallback_if_absent": "未声明数据不得采集；数据越界即触发隐私类回滚",
+      "status": "proposed_role_not_current_authority"
+    },
+    {
+      "id": "ROLE-PUBLIC-STEWARD",
+      "name_zh": "公共基线守护与听证",
+      "name_en": "Public-baseline steward and hearing",
+      "passport_fields": ["非 AI 基线", "申诉与暂停"],
+      "responsible_for": "无 AI 等价基线核验、三道异议门主持、与安全角色可独立叫停试验",
+      "must_not_impersonate": "影响人群的专业责任与法律责任",
+      "fallback_if_absent": "不得宣称 AI 带来改善；异议门缺失不得发布",
+      "status": "proposed_role_not_current_authority"
+    },
+    {
+      "id": "ROLE-INDEPENDENT-EVALUATOR",
+      "name_zh": "独立复测与审计",
+      "name_en": "Independent evaluation and audit",
+      "passport_fields": ["成功证据", "退役与恢复"],
+      "responsible_for": "E3 独立复测、blackout_drill 与 bequest_audit 审计、失败记录匿名化公开",
+      "must_not_impersonate": "任何运营主体不得自证其退场审计（no operator certifies its own bequest audit）",
+      "fallback_if_absent": "复测缺失不得扩大范围；bequest_audit 不可跳过",
+      "status": "proposed_role_not_current_authority"
+    },
+    {
+      "id": "ROLE-MAINTENANCE",
+      "name_zh": "维护与场地恢复",
+      "name_en": "Maintenance and site restoration",
+      "passport_fields": ["退役与恢复"],
+      "responsible_for": "退役时恢复场地与公共空间基线、平线档案墙陈列材料",
+      "must_not_impersonate": "复测结论",
+      "fallback_if_absent": "场地恢复未确认，退役程序不关闭",
+      "status": "proposed_role_not_current_authority"
+    },
+    {
+      "id": "ROLE-AFFECTED-PUBLIC",
+      "name_zh": "受影响公众",
+      "name_en": "Affected public",
+      "passport_fields": ["服务对象", "申诉与暂停"],
+      "responsible_for": "异议、申诉与叫停请求通道；听证参与",
+      "must_not_impersonate": "不承担专业责任，不负担义务性审查",
+      "fallback_if_absent": "申诉通道缺失，服务不得向公众开放",
+      "status": "proposed_role_not_current_authority"
+    }
+  ],
+  "constitutional_rules": [
+    "Every public-AI service has exactly one accountable lead; interface roles never impersonate statutory authorities.",
+    "The public-baseline steward and the safety role may stop a trial independently.",
+    "No operator may certify its own bequest audit.",
+    "The affected public has review and appeal routes but is never burdened with professional liability.",
+    "Roles are proposal concepts, not current authorities; they do not replace planning approval, sector regulation or statutory evaluation."
+  ]
+}

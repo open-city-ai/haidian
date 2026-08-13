@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-GEO-001",
+      "title_zh": "临时几何，非官方红线",
+      "statement_zh": "site_boundary 与三处重点片区取自仓库临时 polygon（PROV-SITE-001/KEY-001~003），为 agent 生成与临时自检之用，不得作为官方红线、审批或精确面积依据。",
+      "recalculation_trigger": "取得官方或清权 CAD/GIS/PDF 边界后须整体替换并复算。"
+    },
+    {
+      "id": "A-CTRL-001",
+      "title_zh": "法定规划控制指标缺失",
+      "statement_zh": "容积率、建筑高度、建筑密度、绿地率、退线等官方控规条件未纳入清权资料包；本方案相关数值为概念测算，不构成法定结论。",
+      "recalculation_trigger": "取得批复控规条件后须替换概念测算。"
+    },
+    {
+      "id": "A-AREA-001",
+      "title_zh": "面积按等距投影近似 EPSG:4548",
+      "statement_zh": "面积计算采用以中央经线 CM117E 近似的等距投影（cos(lat0) 修正），非严格 CGCS2000 3度带高斯投影，存在约 0.1% 量级误差。",
+      "recalculation_trigger": "以官方投影工具（EPSG:4548）复算。"
+    },
+    {
+      "id": "A-FAR-001",
+      "title_zh": "建筑总量按假定容积率测算",
+      "statement_zh": "total_floor_area / floor_area_ratio 等按各建筑类型假定容积率测算，仅为概念方案量级参考。",
+      "recalculation_trigger": "以法定容积率替换假定值后复算。"
+    },
+    {
+      "id": "A-KEYAREA-001",
+      "title_zh": "重点片区范围临时",
+      "statement_zh": "三处重点片区为临时 polygon，面积与公告约值（192.1/104.3/72.0 ha）近似但非官方红线。",
+      "recalculation_trigger": "取得官方重点片区边界后替换。"
+    },
+    {
+      "id": "A-DATA-001",
+      "title_zh": "外部案例与画像为公开资料整理",
+      "statement_zh": "全球案例、用户画像、场景卡引用的外部资料为公开来源整理，非实时招商、产值或政策事实。",
+      "recalculation_trigger": "以官方/第一手来源交叉核验后更新。"
+    }
+  ]
+}

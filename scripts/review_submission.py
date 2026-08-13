@@ -3,8 +3,33 @@
 
 This script does not call a model. It produces deterministic inputs and a prompt
 that maintainers can pass to an external model or review agent.
-"""
 
+The review packet contains:
+- A structured JSON input (review-input.json) with proposal text, evidence
+  summary, self-check results, and seven rubric dimensions.
+- A Markdown prompt (review-prompt.md) ready to paste into an AI interface.
+
+Seven rubric dimensions
+-----------------------
+1. brief_alignment (任务书相关性) — coverage of open-call brief requirements.
+2. originality (原创性) — novel concepts, mechanisms, scenarios.
+3. ai_planning_innovation (AI 与城市规划创新性) — AI-urban integration.
+4. implementation_feasibility (可实施性) — phasing, actors, metrics.
+5. public_interest_inclusion (公共利益与包容性) — resident and equity coverage.
+6. risk_compliance (风险与合规意识) — data boundaries, copyright, risk matrix.
+7. expression_completeness (表达完整度) — full evidence closure.
+
+Usage
+-----
+Build a review packet for one submission::
+
+    python3 scripts/review_submission.py submissions/<login>/<slug> \\
+        --pr-author <login>
+
+The output files go to .maintainer-review/<slug>/ by default.
+Pass --out to override. This script is typically called by maintainer_review.py
+rather than directly.
+"""
 from __future__ import annotations
 
 import argparse

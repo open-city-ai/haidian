@@ -1,306 +1,412 @@
 {
- "schema_version": "0.1.0",
- "protocol_name_zh": "道岔联锁协议",
- "protocol_name_en": "SWITCH Interlocking Protocol",
- "purpose_zh": "把 AI 创新带全部场景的运行治理形式化为可执行状态机：绿灯通行、黄灯限速（人工抽查）、红灯暂停（人工接管、可退役）；状态迁移须人工签认；退役为终态。",
- "purpose_en": "Formalizes the operating governance of all belt scenarios as an executable state machine: green to run, yellow to slow (manual sampling), red to pause (manual takeover, decommissionable); transitions require human sign-off; decommission is terminal.",
- "governance_principles_zh": [
-  "服务等价：不使用 AI 者获得等价人工服务",
-  "弱势保护：老幼病障不作为首轮测试对象",
-  "红牌复核权：受影响群体代表可发起红牌暂停",
-  "数据最小化：场景不依赖非公开数据与个人隐私",
-  "人工终审：法定程序与公共决策由人完成"
- ],
- "governance_principles_en": [
-  "Service equivalence: non-AI users receive equivalent human service",
-  "Vulnerable protection: elderly, children, disabled are not first-round test subjects",
-  "Red-card review right: affected-group representatives may initiate red-light pause",
-  "Data minimization: scenarios do not rely on non-public data or personal privacy",
-  "Human final review: statutory procedures and public decisions remain human"
- ],
- "state_machine": {
-  "states": [
-   "GREEN",
-   "YELLOW",
-   "RED",
-   "RETIRED"
+  "schema_version": "0.1.0",
+  "protocol_name_zh": "道岔联锁协议",
+  "protocol_name_en": "SWITCH Interlocking Protocol",
+  "purpose_zh": "把 AI 创新带全部场景的运行治理形式化为可执行状态机：绿灯通行、黄灯限速（人工抽查）、红灯暂停（人工接管、可退役）；状态迁移须人工签认；退役为终态。",
+  "purpose_en": "Formalizes the operating governance of all belt scenarios as an executable state machine: green to run, yellow to slow (manual sampling), red to pause (manual takeover, decommissionable); transitions require human sign-off; decommission is terminal.",
+  "governance_principles_zh": [
+    "服务等价：不使用 AI 者获得等价人工服务",
+    "弱势保护：老幼病障不作为首轮测试对象",
+    "红牌复核权：受影响群体代表可发起红牌暂停",
+    "数据最小化：场景不依赖非公开数据与个人隐私",
+    "人工终审：法定程序与公共决策由人完成"
   ],
-  "initial_state": "YELLOW",
-  "transitions": [
-   {
-    "from": "YELLOW",
-    "to": "GREEN",
-    "condition_zh": "试点期通过：达到最小成功阈值且通过人工复核",
-    "condition_en": "Pilot passed: minimum success threshold met and human review passed",
-    "signoff": "human"
-   },
-   {
-    "from": "GREEN",
-    "to": "YELLOW",
-    "condition_zh": "出现黄灯事项：异常指标、投诉或抽检不合格",
-    "condition_en": "Yellow event: abnormal metrics, complaints, or sampling failure",
-    "signoff": "human"
-   },
-   {
-    "from": "YELLOW",
-    "to": "RED",
-    "condition_zh": "红灯事项：安全事故、隐私侵害或受影响群体代表发起红牌",
-    "condition_en": "Red event: safety incident, privacy violation, or red-card initiated by affected-group representatives",
-    "signoff": "human"
-   },
-   {
-    "from": "GREEN",
-    "to": "RED",
-    "condition_zh": "红灯事项：同上，可直接跳转",
-    "condition_en": "Red event: same as above, direct transition allowed",
-    "signoff": "human"
-   },
-   {
-    "from": "RED",
-    "to": "YELLOW",
-    "condition_zh": "整改复核通过：红不得直转绿，须复核签认后转黄观察一期",
-    "condition_en": "Remediation review passed: red cannot go directly to green; must transition to yellow for one observation period after sign-off",
-    "signoff": "human"
-   },
-   {
-    "from": "RED",
-    "to": "RETIRED",
-    "condition_zh": "退役：评估后永久下线，记录公开留存",
-    "condition_en": "Retired: permanently decommissioned after evaluation; records remain public",
-    "signoff": "human"
-   },
-   {
-    "from": "ANY",
-    "to": "RETIRED",
-    "condition_zh": "任何状态可经人工评估直接退役",
-    "condition_en": "Any state may be retired directly after human evaluation",
-    "signoff": "human"
-   }
+  "governance_principles_en": [
+    "Service equivalence: non-AI users receive equivalent human service",
+    "Vulnerable protection: elderly, children, disabled are not first-round test subjects",
+    "Red-card review right: affected-group representatives may initiate red-light pause",
+    "Data minimization: scenarios do not rely on non-public data or personal privacy",
+    "Human final review: statutory procedures and public decisions remain human"
   ],
-  "red_light_drill": {
-   "name_zh": "红牌撤回演练",
-   "name_en": "Red-Light Withdrawal Drill",
-   "frequency_zh": "首开行动含一次完整演练，此后每季度一次",
-   "frequency_en": "First-phase actions include one full drill; quarterly thereafter",
-   "runbook_zh": [
-    "发布演练预告与公众通知",
-    "任选一个运行中场景触发红牌",
-    "执行人工接管与数据冻结",
-    "公开失败记录与复盘报告",
-    "恢复或退役决策由人工签认"
-   ],
-   "runbook_en": [
-    "Publish drill notice and public notification",
-    "Trigger a red card on one running scenario",
-    "Execute manual takeover and data freeze",
-    "Publish failure records and review report",
-    "Recovery or retirement decision signed off by humans"
-   ]
+  "state_machine": {
+    "states": [
+      "GREEN",
+      "YELLOW",
+      "RED",
+      "RETIRED"
+    ],
+    "initial_state": "YELLOW",
+    "transitions": [
+      {
+        "from": "YELLOW",
+        "to": "GREEN",
+        "condition_zh": "试点期通过：达到最小成功阈值且通过人工复核",
+        "condition_en": "Pilot passed: minimum success threshold met and human review passed",
+        "signoff": "human"
+      },
+      {
+        "from": "GREEN",
+        "to": "YELLOW",
+        "condition_zh": "出现黄灯事项：异常指标、投诉或抽检不合格",
+        "condition_en": "Yellow event: abnormal metrics, complaints, or sampling failure",
+        "signoff": "human"
+      },
+      {
+        "from": "YELLOW",
+        "to": "RED",
+        "condition_zh": "红灯事项：安全事故、隐私侵害或受影响群体代表发起红牌",
+        "condition_en": "Red event: safety incident, privacy violation, or red-card initiated by affected-group representatives",
+        "signoff": "human"
+      },
+      {
+        "from": "GREEN",
+        "to": "RED",
+        "condition_zh": "红灯事项：同上，可直接跳转",
+        "condition_en": "Red event: same as above, direct transition allowed",
+        "signoff": "human"
+      },
+      {
+        "from": "RED",
+        "to": "YELLOW",
+        "condition_zh": "整改复核通过：红不得直转绿，须复核签认后转黄观察一期",
+        "condition_en": "Remediation review passed: red cannot go directly to green; must transition to yellow for one observation period after sign-off",
+        "signoff": "human"
+      },
+      {
+        "from": "RED",
+        "to": "RETIRED",
+        "condition_zh": "退役：评估后永久下线，记录公开留存",
+        "condition_en": "Retired: permanently decommissioned after evaluation; records remain public",
+        "signoff": "human"
+      },
+      {
+        "from": "ANY",
+        "to": "RETIRED",
+        "condition_zh": "任何状态可经人工评估直接退役",
+        "condition_en": "Any state may be retired directly after human evaluation",
+        "signoff": "human"
+      }
+    ],
+    "red_light_drill": {
+      "name_zh": "红牌撤回演练",
+      "name_en": "Red-Light Withdrawal Drill",
+      "frequency_zh": "首开行动含一次完整演练，此后每季度一次",
+      "frequency_en": "First-phase actions include one full drill; quarterly thereafter",
+      "runbook_zh": [
+        "发布演练预告与公众通知",
+        "任选一个运行中场景触发红牌",
+        "执行人工接管与数据冻结",
+        "公开失败记录与复盘报告",
+        "恢复或退役决策由人工签认"
+      ],
+      "runbook_en": [
+        "Publish drill notice and public notification",
+        "Trigger a red card on one running scenario",
+        "Execute manual takeover and data freeze",
+        "Publish failure records and review report",
+        "Recovery or retirement decision signed off by humans"
+      ]
+    }
+  },
+  "scenarios": [
+    {
+      "id": "SW-01",
+      "name_zh": "岔心·换轨艺术广场",
+      "state": "YELLOW",
+      "zone": "S1",
+      "location_zh": "岔心广场",
+      "manual_fallback_zh": "人工策展与静态艺术装置",
+      "operator_zh": "公园运营方+策展委员会",
+      "permit_zh": "活动许可/公共空间使用审批",
+      "data_zh": "无个人数据；仅灯光与客流聚合",
+      "kpi_zh": "互动人次/人工策展满意度",
+      "review_zh": "季度策展复核+红牌权",
+      "exit_zh": "艺术装置可撤除",
+      "legal_interfaces_zh": [
+        "生成式AI内容标识（暂行办法第十二条方向）",
+        "公共影像管理"
+      ],
+      "legal_interfaces_note_zh": "法定义务方向登记为运营透明层，不替代法定程序，本包不作合规认定。"
+    },
+    {
+      "id": "SW-02",
+      "name_zh": "信号灯·AI治理可视化",
+      "state": "YELLOW",
+      "zone": "S1",
+      "location_zh": "众智园信号广场",
+      "manual_fallback_zh": "公开数据板与人工解说",
+      "operator_zh": "治理机构+社区代表",
+      "permit_zh": "公共数据发布审查",
+      "data_zh": "公开运行数据",
+      "kpi_zh": "状态准确性/公开报告率",
+      "review_zh": "数据口径人工审核",
+      "exit_zh": "可视化可下线",
+      "legal_interfaces_zh": [
+        "公共数据公开边界",
+        "治理信息发布合规"
+      ],
+      "legal_interfaces_note_zh": "法定义务方向登记为运营透明层，不替代法定程序，本包不作合规认定。"
+    },
+    {
+      "id": "SW-03",
+      "name_zh": "时刻表·AI出行调度",
+      "state": "YELLOW",
+      "zone": "S1",
+      "location_zh": "全带绿廊",
+      "manual_fallback_zh": "人工预案与常规公交",
+      "operator_zh": "交通部门+运营公司",
+      "permit_zh": "交通组织备案",
+      "data_zh": "匿名人流聚合",
+      "kpi_zh": "接驳准点率/人工预案覆盖率",
+      "review_zh": "活动日人工值班",
+      "exit_zh": "回退常规公交",
+      "legal_interfaces_zh": [
+        "个人信息最小化",
+        "无障碍服务保留（无障碍环境建设法第三十九条方向）"
+      ],
+      "legal_interfaces_note_zh": "法定义务方向登记为运营透明层，不替代法定程序，本包不作合规认定。"
+    },
+    {
+      "id": "SW-04",
+      "name_zh": "扳道房·人工接管测试场",
+      "state": "YELLOW",
+      "zone": "S3",
+      "location_zh": "众智园实验室",
+      "manual_fallback_zh": "红牌演练为核心，常规人工测试",
+      "operator_zh": "测试机构+监管",
+      "industry_test": true,
+      "permit_zh": "测试场地许可",
+      "data_zh": "测试日志脱敏",
+      "kpi_zh": "红牌演练完成/人工接管零事故",
+      "review_zh": "独立安全审计",
+      "exit_zh": "测试场可关闭",
+      "legal_interfaces_zh": [
+        "AI安全护栏测试合规",
+        "红牌演练公开记录"
+      ],
+      "legal_interfaces_note_zh": "法定义务方向登记为运营透明层，不替代法定程序，本包不作合规认定。"
+    },
+    {
+      "id": "SW-05",
+      "name_zh": "编组场·企业数据沙箱",
+      "state": "YELLOW",
+      "zone": "S2",
+      "location_zh": "大钟寺商务楼",
+      "manual_fallback_zh": "线下合规咨询与人工审计",
+      "operator_zh": "产业运营方+独立审计",
+      "industry_test": true,
+      "permit_zh": "数据沙箱备案",
+      "data_zh": "脱敏数据/沙盒隔离",
+      "kpi_zh": "合规训练通过审计",
+      "review_zh": "季度独立审计",
+      "exit_zh": "沙箱可撤销",
+      "legal_interfaces_zh": [
+        "数据分类分级",
+        "脱敏与沙箱隔离"
+      ],
+      "legal_interfaces_note_zh": "法定义务方向登记为运营透明层，不替代法定程序，本包不作合规认定。"
+    },
+    {
+      "id": "SW-06",
+      "name_zh": "始发场·创业发车仪式",
+      "state": "YELLOW",
+      "zone": "S2",
+      "location_zh": "原点0公里广场",
+      "manual_fallback_zh": "专家评审与线下路演",
+      "operator_zh": "社区运营方+专家团",
+      "permit_zh": "活动报备",
+      "data_zh": "匿名评审数据",
+      "kpi_zh": "项目转化率/专家复核率",
+      "review_zh": "专家评审会",
+      "exit_zh": "仪式可停办",
+      "legal_interfaces_zh": [
+        "个人信息最小化",
+        "专家复核保留人工路径"
+      ],
+      "legal_interfaces_note_zh": "法定义务方向登记为运营透明层，不替代法定程序，本包不作合规认定。"
+    },
+    {
+      "id": "SW-07",
+      "name_zh": "里程桩·AI文化导览",
+      "state": "YELLOW",
+      "zone": "S1",
+      "location_zh": "历史侧线/绿廊",
+      "manual_fallback_zh": "实体展板与人工导览",
+      "operator_zh": "文博机构+内容审核",
+      "permit_zh": "文化遗产展示审查",
+      "data_zh": "历史公开资料",
+      "kpi_zh": "导览准确率/内容审核率",
+      "review_zh": "历史内容人工审核",
+      "exit_zh": "导览可退回实体展板",
+      "legal_interfaces_zh": [
+        "内容审核与标识",
+        "文化遗产数字化合规"
+      ],
+      "legal_interfaces_note_zh": "法定义务方向登记为运营透明层，不替代法定程序，本包不作合规认定。"
+    },
+    {
+      "id": "SW-08",
+      "name_zh": "机车库·AI教育实验室",
+      "state": "YELLOW",
+      "zone": "S2",
+      "location_zh": "原点社区",
+      "manual_fallback_zh": "教师面授与纸质课程",
+      "operator_zh": "教育机构+学校",
+      "permit_zh": "教育课程审批",
+      "data_zh": "课堂内数据",
+      "kpi_zh": "课程完成度/教师在场率",
+      "review_zh": "教师全程在场",
+      "exit_zh": "回退面授",
+      "legal_interfaces_zh": [
+        "未成年人保护",
+        "教育数据边界"
+      ],
+      "legal_interfaces_note_zh": "法定义务方向登记为运营透明层，不替代法定程序，本包不作合规认定。"
+    },
+    {
+      "id": "SW-09",
+      "name_zh": "侧线·场景快闪",
+      "state": "YELLOW",
+      "zone": "S2",
+      "location_zh": "西侧线",
+      "manual_fallback_zh": "普通市集与人工零售",
+      "operator_zh": "街道运营方+商户",
+      "limited_permit": true,
+      "permit_zh": "限时摆摊许可",
+      "data_zh": "无个人数据",
+      "kpi_zh": "快闪合规率/投诉率",
+      "review_zh": "限时巡检",
+      "exit_zh": "许可到期撤场",
+      "legal_interfaces_zh": [
+        "智能网联低速测试规定方向",
+        "限时许可与场地合规"
+      ],
+      "legal_interfaces_note_zh": "法定义务方向登记为运营透明层，不替代法定程序，本包不作合规认定。"
+    },
+    {
+      "id": "SW-10",
+      "name_zh": "检票口·AI政务服务",
+      "state": "YELLOW",
+      "zone": "S2",
+      "location_zh": "大钟寺/社区站",
+      "manual_fallback_zh": "人工窗口全程可用",
+      "operator_zh": "政务部门",
+      "human_final_review": true,
+      "permit_zh": "政务服务上线审批",
+      "data_zh": "最小化政务数据",
+      "kpi_zh": "预审准确率/人工终审率",
+      "review_zh": "人工终审必设",
+      "exit_zh": "回退人工窗口",
+      "legal_interfaces_zh": [
+        "政务数据边界",
+        "人工终审保留"
+      ],
+      "legal_interfaces_note_zh": "法定义务方向登记为运营透明层，不替代法定程序，本包不作合规认定。"
+    },
+    {
+      "id": "SW-11",
+      "name_zh": "隧道·隐私盾测试场",
+      "state": "YELLOW",
+      "zone": "S3",
+      "location_zh": "众智园",
+      "manual_fallback_zh": "人工数据流程与线下验证",
+      "operator_zh": "科研机构+独立审计",
+      "industry_test": true,
+      "permit_zh": "隐私计算测试备案",
+      "data_zh": "合成/脱敏数据",
+      "kpi_zh": "隐私验证通过/零泄露",
+      "review_zh": "独立隐私审计",
+      "exit_zh": "测试环境可销毁",
+      "legal_interfaces_zh": [
+        "隐私计算合规",
+        "联邦学习数据不出域"
+      ],
+      "legal_interfaces_note_zh": "法定义务方向登记为运营透明层，不替代法定程序，本包不作合规认定。"
+    },
+    {
+      "id": "SW-12",
+      "name_zh": "终点站·AI荣誉殿堂",
+      "state": "YELLOW",
+      "zone": "S1",
+      "location_zh": "岔心/绿廊北段",
+      "manual_fallback_zh": "实体荣誉墙与人工评选",
+      "operator_zh": "运营机构+评选委员会",
+      "permit_zh": "荣誉评选规程",
+      "data_zh": "公开贡献记录",
+      "kpi_zh": "评选公正性/公示率",
+      "review_zh": "评选委员会复核",
+      "exit_zh": "荣誉墙可更新",
+      "legal_interfaces_zh": [
+        "荣誉展示个人信息边界",
+        "评选机制透明"
+      ],
+      "legal_interfaces_note_zh": "法定义务方向登记为运营透明层，不替代法定程序，本包不作合规认定。"
+    }
+  ],
+  "pilot_card_fields_zh": [
+    "基线（试点前冻结）",
+    "试验时段与样本",
+    "最小成功阈值",
+    "停止阈值",
+    "现场责任人",
+    "人工等价服务",
+    "数据删除证明",
+    "复盘周期",
+    "受益或担风险群体",
+    "资源与许可",
+    "申诉与问责路径"
+  ],
+  "pilot_card_fields_en": [
+    "Baseline (frozen before pilot)",
+    "Pilot window and sample",
+    "Minimum success threshold",
+    "Stop threshold",
+    "On-site responsible person",
+    "Human equivalent service",
+    "Data deletion proof",
+    "Review period",
+    "Beneficiary or risk-bearing group",
+    "Resources and permits",
+    "Appeal and accountability path"
+  ],
+  "status_note_zh": "全部场景当前状态为概念建议中的黄灯待试点，未授权运行；本协议为概念治理机制，供专业团队与运营主体深化，不构成合规认定或法定程序。",
+  "status_note_en": "All scenarios are conceptual yellow-light pending pilots, not authorized to run; this protocol is a conceptual governance mechanism for professional teams and operators, not a compliance determination or statutory procedure.",
+  "responsibility_matrix_note_zh": "责任矩阵为概念治理安排：每场景登记运营主体、许可类型、数据治理、KPI、人工复核与退出路径；KPI 阈值一律试点前由实测基线冻结，本包不编造数值。",
+  "responsibility_matrix_note_en": "The responsibility matrix is a conceptual governance arrangement: each scenario registers operator, permit type, data governance, KPI, manual review and exit path; KPI thresholds are frozen from measured baselines before pilots, no values are fabricated.",
+  "service_gates": {
+    "note_zh": "服务全生命周期六道门，每道门由证据推进、不得越级；T4 的窗口即到期日——批准运行与设定退场是同一个动作，试点永久化在结构上不可能。",
+    "note_en": "Six gates across the full service lifecycle, each advanced by evidence; at T4 the window IS the expiry date — approving operation and scheduling exit are one action, making pilot permanence structurally impossible.",
+    "gates": [
+      {
+        "id": "T0",
+        "name_zh": "问题与场地",
+        "condition_zh": "公共问题真实、场地与权属边界核查",
+        "fail_zh": "不落位、不招募公众"
+      },
+      {
+        "id": "T1",
+        "name_zh": "数据与权限",
+        "condition_zh": "最小数据、保留期、删除与日志规则确认",
+        "fail_zh": "权限保持关闭"
+      },
+      {
+        "id": "T2",
+        "name_zh": "基准与人工路径",
+        "condition_zh": "人工基准建立、责任角色指派、非AI等价路径验收",
+        "fail_zh": "只提供纯人工服务"
+      },
+      {
+        "id": "T3",
+        "name_zh": "沙箱对时演练",
+        "condition_zh": "桌面与隔离环境复演降级全分支",
+        "fail_zh": "不进入公共空间"
+      },
+      {
+        "id": "T4",
+        "name_zh": "限时运行窗",
+        "condition_zh": "时刻表签发，窗口不超过180天（窗口即到期日）",
+        "fail_zh": "不开放"
+      },
+      {
+        "id": "T5",
+        "name_zh": "续期/降级/退役",
+        "condition_zh": "对时合格续期；超差或到期降级；退役走流程",
+        "fail_zh": "不得静默恢复或自动续期"
+      }
+    ]
+  },
+  "version_binding": {
+    "note_zh": "进化即失效：时刻表绑定服务版本哈希，任何自我进化（模型更新/提示词修改/依赖变更）使当前资格立即作废，退回沙箱重新对时；资格不继承，档案要继承。",
+    "note_en": "Evolution voids the licence: the timetable binds to the service version hash; any self-evolution voids the current qualification immediately and the service returns to the sandbox; qualification is not inherited, archives are."
   }
- },
- "scenarios": [
-  {
-   "id": "SW-01",
-   "name_zh": "岔心·换轨艺术广场",
-   "state": "YELLOW",
-   "zone": "S1",
-   "location_zh": "岔心广场",
-   "manual_fallback_zh": "人工策展与静态艺术装置",
-   "operator_zh": "公园运营方+策展委员会",
-   "permit_zh": "活动许可/公共空间使用审批",
-   "data_zh": "无个人数据；仅灯光与客流聚合",
-   "kpi_zh": "互动人次/人工策展满意度",
-   "review_zh": "季度策展复核+红牌权",
-   "exit_zh": "艺术装置可撤除"
-  },
-  {
-   "id": "SW-02",
-   "name_zh": "信号灯·AI治理可视化",
-   "state": "YELLOW",
-   "zone": "S1",
-   "location_zh": "众智园信号广场",
-   "manual_fallback_zh": "公开数据板与人工解说",
-   "operator_zh": "治理机构+社区代表",
-   "permit_zh": "公共数据发布审查",
-   "data_zh": "公开运行数据",
-   "kpi_zh": "状态准确性/公开报告率",
-   "review_zh": "数据口径人工审核",
-   "exit_zh": "可视化可下线"
-  },
-  {
-   "id": "SW-03",
-   "name_zh": "时刻表·AI出行调度",
-   "state": "YELLOW",
-   "zone": "S1",
-   "location_zh": "全带绿廊",
-   "manual_fallback_zh": "人工预案与常规公交",
-   "operator_zh": "交通部门+运营公司",
-   "permit_zh": "交通组织备案",
-   "data_zh": "匿名人流聚合",
-   "kpi_zh": "接驳准点率/人工预案覆盖率",
-   "review_zh": "活动日人工值班",
-   "exit_zh": "回退常规公交"
-  },
-  {
-   "id": "SW-04",
-   "name_zh": "扳道房·人工接管测试场",
-   "state": "YELLOW",
-   "zone": "S3",
-   "location_zh": "众智园实验室",
-   "manual_fallback_zh": "红牌演练为核心，常规人工测试",
-   "operator_zh": "测试机构+监管",
-   "industry_test": true,
-   "permit_zh": "测试场地许可",
-   "data_zh": "测试日志脱敏",
-   "kpi_zh": "红牌演练完成/人工接管零事故",
-   "review_zh": "独立安全审计",
-   "exit_zh": "测试场可关闭"
-  },
-  {
-   "id": "SW-05",
-   "name_zh": "编组场·企业数据沙箱",
-   "state": "YELLOW",
-   "zone": "S2",
-   "location_zh": "大钟寺商务楼",
-   "manual_fallback_zh": "线下合规咨询与人工审计",
-   "operator_zh": "产业运营方+独立审计",
-   "industry_test": true,
-   "permit_zh": "数据沙箱备案",
-   "data_zh": "脱敏数据/沙盒隔离",
-   "kpi_zh": "合规训练通过审计",
-   "review_zh": "季度独立审计",
-   "exit_zh": "沙箱可撤销"
-  },
-  {
-   "id": "SW-06",
-   "name_zh": "始发场·创业发车仪式",
-   "state": "YELLOW",
-   "zone": "S2",
-   "location_zh": "原点0公里广场",
-   "manual_fallback_zh": "专家评审与线下路演",
-   "operator_zh": "社区运营方+专家团",
-   "permit_zh": "活动报备",
-   "data_zh": "匿名评审数据",
-   "kpi_zh": "项目转化率/专家复核率",
-   "review_zh": "专家评审会",
-   "exit_zh": "仪式可停办"
-  },
-  {
-   "id": "SW-07",
-   "name_zh": "里程桩·AI文化导览",
-   "state": "YELLOW",
-   "zone": "S1",
-   "location_zh": "历史侧线/绿廊",
-   "manual_fallback_zh": "实体展板与人工导览",
-   "operator_zh": "文博机构+内容审核",
-   "permit_zh": "文化遗产展示审查",
-   "data_zh": "历史公开资料",
-   "kpi_zh": "导览准确率/内容审核率",
-   "review_zh": "历史内容人工审核",
-   "exit_zh": "导览可退回实体展板"
-  },
-  {
-   "id": "SW-08",
-   "name_zh": "机车库·AI教育实验室",
-   "state": "YELLOW",
-   "zone": "S2",
-   "location_zh": "原点社区",
-   "manual_fallback_zh": "教师面授与纸质课程",
-   "operator_zh": "教育机构+学校",
-   "permit_zh": "教育课程审批",
-   "data_zh": "课堂内数据",
-   "kpi_zh": "课程完成度/教师在场率",
-   "review_zh": "教师全程在场",
-   "exit_zh": "回退面授"
-  },
-  {
-   "id": "SW-09",
-   "name_zh": "侧线·场景快闪",
-   "state": "YELLOW",
-   "zone": "S2",
-   "location_zh": "西侧线",
-   "manual_fallback_zh": "普通市集与人工零售",
-   "operator_zh": "街道运营方+商户",
-   "limited_permit": true,
-   "permit_zh": "限时摆摊许可",
-   "data_zh": "无个人数据",
-   "kpi_zh": "快闪合规率/投诉率",
-   "review_zh": "限时巡检",
-   "exit_zh": "许可到期撤场"
-  },
-  {
-   "id": "SW-10",
-   "name_zh": "检票口·AI政务服务",
-   "state": "YELLOW",
-   "zone": "S2",
-   "location_zh": "大钟寺/社区站",
-   "manual_fallback_zh": "人工窗口全程可用",
-   "operator_zh": "政务部门",
-   "human_final_review": true,
-   "permit_zh": "政务服务上线审批",
-   "data_zh": "最小化政务数据",
-   "kpi_zh": "预审准确率/人工终审率",
-   "review_zh": "人工终审必设",
-   "exit_zh": "回退人工窗口"
-  },
-  {
-   "id": "SW-11",
-   "name_zh": "隧道·隐私盾测试场",
-   "state": "YELLOW",
-   "zone": "S3",
-   "location_zh": "众智园",
-   "manual_fallback_zh": "人工数据流程与线下验证",
-   "operator_zh": "科研机构+独立审计",
-   "industry_test": true,
-   "permit_zh": "隐私计算测试备案",
-   "data_zh": "合成/脱敏数据",
-   "kpi_zh": "隐私验证通过/零泄露",
-   "review_zh": "独立隐私审计",
-   "exit_zh": "测试环境可销毁"
-  },
-  {
-   "id": "SW-12",
-   "name_zh": "终点站·AI荣誉殿堂",
-   "state": "YELLOW",
-   "zone": "S1",
-   "location_zh": "岔心/绿廊北段",
-   "manual_fallback_zh": "实体荣誉墙与人工评选",
-   "operator_zh": "运营机构+评选委员会",
-   "permit_zh": "荣誉评选规程",
-   "data_zh": "公开贡献记录",
-   "kpi_zh": "评选公正性/公示率",
-   "review_zh": "评选委员会复核",
-   "exit_zh": "荣誉墙可更新"
-  }
- ],
- "pilot_card_fields_zh": [
-  "基线（试点前冻结）",
-  "试验时段与样本",
-  "最小成功阈值",
-  "停止阈值",
-  "现场责任人",
-  "人工等价服务",
-  "数据删除证明",
-  "复盘周期",
-  "受益或担风险群体",
-  "资源与许可",
-  "申诉与问责路径"
- ],
- "pilot_card_fields_en": [
-  "Baseline (frozen before pilot)",
-  "Pilot window and sample",
-  "Minimum success threshold",
-  "Stop threshold",
-  "On-site responsible person",
-  "Human equivalent service",
-  "Data deletion proof",
-  "Review period",
-  "Beneficiary or risk-bearing group",
-  "Resources and permits",
-  "Appeal and accountability path"
- ],
- "status_note_zh": "全部场景当前状态为概念建议中的黄灯待试点，未授权运行；本协议为概念治理机制，供专业团队与运营主体深化，不构成合规认定或法定程序。",
- "status_note_en": "All scenarios are conceptual yellow-light pending pilots, not authorized to run; this protocol is a conceptual governance mechanism for professional teams and operators, not a compliance determination or statutory procedure.",
- "responsibility_matrix_note_zh": "责任矩阵为概念治理安排：每场景登记运营主体、许可类型、数据治理、KPI、人工复核与退出路径；KPI 阈值一律试点前由实测基线冻结，本包不编造数值。",
- "responsibility_matrix_note_en": "The responsibility matrix is a conceptual governance arrangement: each scenario registers operator, permit type, data governance, KPI, manual review and exit path; KPI thresholds are frozen from measured baselines before pilots, no values are fabricated."
 }

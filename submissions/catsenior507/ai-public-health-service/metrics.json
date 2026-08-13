@@ -1,0 +1,223 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "proposal_slug": "ai-public-health-service",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metric_calculation_crs": "EPSG:4548",
+  "metric_calculation_note": "All area values are provisional calculations based on brief/site-package/geometry/provisional_boundaries.geojson. Recalculate when official precise polygons are available.",
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary from repository. Recalculate with official polygon."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.317867,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area / site_area_total",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional green space boundary. Target 25%."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.019113,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area / site_area_total",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional public space boundary. Target 35%."
+      ]
+    },
+    "site_area_total": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary from repository."
+      ]
+    },
+    "coordinated_research_area": {
+      "status": "known",
+      "value": 43609232.558,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(research_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary."
+      ]
+    },
+    "key_detailed_design_area_total": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(feature, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key area boundaries."
+      ]
+    },
+    "zhongzhiyuan_ai_acceleration_area": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-001"
+      ],
+      "formula": "polygon_area(PROV-KEY-001, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary."
+      ]
+    },
+    "beijing_ai_origin_community_area": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-002"
+      ],
+      "formula": "polygon_area(PROV-KEY-002, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary."
+      ]
+    },
+    "dazhongsi_ai_industry_cluster_area": {
+      "status": "known",
+      "value": 720454.221,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-003"
+      ],
+      "formula": "polygon_area(PROV-KEY-003, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pending_official_planning_conditions",
+      "confidence": "unknown",
+      "assumptions": [
+        "Official FAR not included in cleared site package."
+      ],
+      "reason": "Official regulatory planning conditions not available."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pending_official_planning_conditions",
+      "confidence": "unknown",
+      "assumptions": [
+        "Official building density not available."
+      ],
+      "reason": "Official regulatory planning conditions not available."
+    },
+    "building_height_max_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "pending_official_planning_conditions",
+      "confidence": "unknown",
+      "assumptions": [
+        "Official height controls not available."
+      ],
+      "reason": "Official height controls not available."
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "manual_count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "test_validation_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "manual_count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "manual_count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "manual_count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "global_ecosystem_case_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "manual_count",
+      "confidence": "high",
+      "assumptions": []
+    }
+  }
+}

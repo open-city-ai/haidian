@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为开放智能公共主脉，构建一脉三核、两翼协同、十二个可人工复核场景节点的概念性城市设计；全部空间数据、指标与图件同源生成，并显著披露临时边界限制。"
 tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.0-review-ready"
+iteration: "v1.1-review-ready"
 ---
 
 # 京张共智线：百年轨脉上的开放智能城市
@@ -18,7 +18,11 @@ iteration: "v1.0-review-ready"
 
 ## 设计依据与资料清单
 
-本方案先读取任务书、资料可用性登记、专业标准本地快照、枚举、规划限值、Schema 和缺资料清单，再生成空间数据。公告用于确认项目名称、三层范围、约面积和任务，不用于推导精确 polygon；任务书用于六项智能体任务与统一边界条款；临时边界只用于生成、展示和自检。[source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SITE-PACKAGE] [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [depth:existing_conditions_diagnosis]
+本方案先读取任务书、资料可用性登记、专业标准本地快照、枚举、规划限值、Schema 和缺资料清单，再生成空间数据。公告用于确认项目名称、三层范围、约面积和任务。[source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SITE-PACKAGE]
+
+资料可用性、处理事实包和临时边界的使用范围另有登记：公告不用于推导精确 polygon，临时边界只用于生成、展示和自检。[source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]
+
+任务书用于六项智能体任务与统一边界条款，缺资料清单控制精度敏感结论。[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [depth:existing_conditions_diagnosis]
 
 专业表达分别依据《城市设计管理办法》《城市、镇控制性详细规划编制审批办法》和国土空间用地分类指南的本地快照；建筑工程设计文件深度规定当前缺官方文件，只登记为数据缺口，不作为权威依据。[standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
 
@@ -89,7 +93,11 @@ Logo 使用规则：深海军蓝表示历史与责任，青色表示开放接口
 
 用地分区按优先叠加算法构造：先锁定连续公园主脉、公共节点和缝合通道，再分配研发、教育、居住、服务与文化功能，最后把剩余空间明确为弹性留白。所有相邻边共享坐标，分区并集等于提交边界，无缝无叠；这只证明方案拓扑完整，不表示法定用地已调整。[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [data:geometry/land_use.geojson#LU-001] [depth:land_use_layout] [metric:land_use_partition_area_sqm]
 
-更新方法采用“先诊断、再微改、后增量”的门槛：能保留则以节能、首层开放和功能适配为先；无法满足安全、使用和公共界面的建筑才进入改造比较；拆除与新建必须等待现状测绘、权属、文保、结构和控规证据。图中的 12 个建筑包络只是空间容量与界面原型，不是现状建筑判定。[data:geometry/buildings.geojson#BLDG-001] [depth:retain_renovate_demolish] [depth:development_intensity_controls] [metric:building_footprint_area_sqm] [metric:building_coverage_ratio] [metric:floor_area_ratio] [metric:building_height_m] [metric:total_floor_area_sqm]
+更新方法采用“先诊断、再微改、后增量”的门槛：能保留则以节能、首层开放和功能适配为先；无法满足安全、使用和公共界面的建筑才进入改造比较；拆除与新建必须等待现状测绘、权属、文保、结构和控规证据。[data:geometry/buildings.geojson#BLDG-001] [depth:retain_renovate_demolish] [depth:development_intensity_controls]
+
+图中的 12 个建筑包络只是空间容量与界面原型，不是现状建筑判定；基底、覆盖、容积率、高度和总建筑面积均按当前证据状态标记。[metric:building_footprint_area_sqm] [metric:building_coverage_ratio] [metric:floor_area_ratio]
+
+建筑高度与总建筑面积继续保持 unknown，待官方控规和现状调查到位后复算。[metric:building_height_m] [metric:total_floor_area_sqm]
 
 ## 重点区域详细设计
 
@@ -117,7 +125,7 @@ Logo 使用规则：深海军蓝表示历史与责任，青色表示开放接口
 
 ## AI 创新生态、人才画像与 AI+ 场景
 
-六类用户画像共同校验空间：开源开发者需要发布、协作与贡献记忆；初创团队需要低成本测试与合规入口；企业研发者需要共享设施与招募；高校师生需要成果转化和日常慢行；周边居民需要低扰动服务与休闲；国际访客需要双语导览、无障碍与可理解的城市体验。任何画像都不得转化为个体追踪或商业画像。[source:AGENT-TASKBOOK] [depth:existing_conditions_diagnosis] [source:SOURCE-REGISTRY]
+七类用户画像共同校验空间：开源开发者需要发布、协作与贡献记忆；初创团队需要低成本测试与合规入口；企业研发者需要共享设施与招募；高校师生需要成果转化和日常慢行；周边居民需要低扰动服务与休闲；国际访客需要双语导览、无障碍与可理解的城市体验；运维人员、老年人与行动不便者需要清晰的人工入口、连续休息点、低刺激替代路线和可撤回服务。任何画像都不得转化为个体追踪或商业画像。[source:AGENT-TASKBOOK] [depth:existing_conditions_diagnosis] [source:SOURCE-REGISTRY]
 
 12 张场景卡如下，其中 TV-01 至 TV-04 是产业测试验证场景：
 
@@ -155,6 +163,61 @@ Logo 使用规则：深海军蓝表示历史与责任，青色表示开放接口
 
 ![Commons Line 六道场景运行闸门，从问题登记到版本化评估、暂停和退出](assets/figures/commons-line-protocol.svg)
 
+### 角色、服务级别与逐场景运行卡
+
+为避免“有流程、无责任人”，每个场景在开放前必须填写一张运行卡。这里的 KPI/SLA 是需要留下的证据字段，不预先捏造客流、响应秒数或投资指标；数值阈值由获得授权的运营主体和专业复核人共同确认。A 表示最终负责，R 表示执行，C 表示必须咨询，I 表示知会；任何现场责任人都拥有安全暂停权。
+
+| 角色 | 责任边界 | 必须留下的记录 |
+| --- | --- | --- |
+| A 公共责任/审计联席 | 对公开、暂停、恢复和异议回应负责 | 决策编号、签署人、版本差异 |
+| R 场景站长/运营负责人 | 组织入口、值守、替代服务和事件登记 | 开闭场记录、值守表、事件单 |
+| R 测试负责人 | 管理沙盒版本、测试集和失败回放 | 版本戳、测试集范围、失败日志 |
+| C 专业复核人 | 对安全、交通、医疗、能源、版权等领域给出意见 | 复核清单、意见、未决项 |
+| C 社区/无障碍代表 | 检查可达性、非数字入口和公众异议 | 体验记录、申诉与修正建议 |
+| C 数据/IP 管家 | 核对授权、最少数据、保留期限和删除动作 | 权属条目、数据生命周期、删除回执 |
+| I 公众与受影响用户 | 获取解释、替代服务与退出路径 | 公开问题、反馈和申诉结果 |
+
+| 闸门 | A | R | C | I | 服务级别证据 |
+| --- | --- | --- | --- | --- | --- |
+| Issue 问题登记 | 公共责任联席 | 场景站长 | 社区/数据管家 | 公众 | 登记编号、来源和首次回应时间 |
+| Branch 合规预审 | 数据/IP 管家 | 合规复核人 | 专业/无障碍代表 | 参与者 | 授权期限、数据地图、暂不使用清单 |
+| Sandbox 沙盒测试 | 测试负责人 | 测试操作员 | 专业/无障碍代表 | 公众 | 版本戳、测试边界、失败日志 |
+| Human Review 人工评审 | 公共责任联席 | 专业复核组 | 社区/数据管家 | 公众 | 签署意见、异议记录、申诉入口 |
+| Small Public 小规模公开 | 公共责任联席 | 运营负责人 | 全部 C 角色 | 使用者/邻里 | 开闭场记录、替代服务可用证明 |
+| Changelog 评估退出 | 公共责任联席 | 运营与数据管家 | 测试/专业复核 | 公众 | 继续/修改/暂停/退出决定、恢复确认 |
+
+下表是 12 个场景的最小运行卡。默认数据生命周期为“测试/服务结束后清理原始数据，仅按授权保留聚合结果或审计记录”；具体期限、删除方式和指标数值必须在授权记录中补齐。任何一项入口、复核、替代服务或记录缺失，场景不得扩大公开范围。
+
+| ID | 开放前提与 R | 数据范围与生命周期 | KPI/SLA 证据字段 | 停止、恢复与替代服务 |
+| --- | --- | --- | --- | --- |
+| TV-01 | 授权测试集、冻结版本；红队负责人 | 合成/授权测试集；测试闭合后清理原始集，缺陷记录留审计 | 未关闭关键缺陷数、版本回放和复核时间 | 关键缺陷未处置即回滚；人工安全评审后再开 |
+| TV-02 | 低速、划定边界、现场观察员和无障碍检查；测试负责人 | 匿名冲突事件；按场次清理原始观察记录 | 冲突/险情/无障碍问题登记是否在下一场前完成 | 解释不了或有无障碍风险即停测；人工交通引导替代 |
+| TV-03 | 能源、散热、消防、噪声预审通过；设备负责人 | 设备能耗和环境聚合值；测试结束后清理设备级原始记录 | 安全清单签署、能耗与温度日志完整性 | 复核不通过即移除设备；保留普通公共服务 |
+| TV-04 | 公开规则、合成情景、台上人工值守；剧场负责人 | 不接收个人输入；回放结束清理会话数据 | 每个输出均有规则来源、版本和申诉路径 | 无来源/不可申诉即退回服务台；人工解释替代 |
+| SC-05 | 活动授权、人工策展和版权核查；发布厅负责人 | 授权活动信息；不建立观众画像，发布记录按授权保留 | 作者/版权核验、更新日期、线下服务记录 | 权利不清即撤下；纸面目录和人工咨询替代 |
+| SC-06 | 人工踏勘、可达性检查、公开路网；慢行负责人 | 公开路网与自愿反馈；原始反馈在复盘后清理 | 障碍点、替代路线和修正记录 | 发现不可达障碍即撤回推荐；纸质地图/人工指引替代 |
+| SC-07 | 公开服务目录、医疗人员复核；导航负责人 | 不采集健康隐私；目录版本和复核记录留档 | 目录更新时间、来源、转人工记录 | 目录过期即下线；电话/现场人工导航替代 |
+| SC-08 | 已发布政策/IP资料、人工维护；转化负责人 | 仅公开资料；不接收未授权商业秘密，咨询结束清理会话 | 引用来源、复核人、未决事项清单 | 规则不明即停止回答；人工法律/IP咨询替代 |
+| SC-09 | 环境聚合值和生态/防洪复核；观测负责人 | 公开或授权聚合值；不保存个人行为，版本化聚合结果留档 | 数据缺口标记、复核日期、异常处置 | 数据异常即暂停展示；人工公告/常规导览替代 |
+| SC-10 | 自愿参与、可选择不用 AI、运营值守；生活服务负责人 | 自愿反馈；原始反馈合并复盘后清理 | 选择退出、投诉和回应记录 | 体验有害或投诉未回应即暂停；普通人工服务替代 |
+| SC-11 | 史料来源、版权授权、人工导览；文化负责人 | 公开史料与授权图文；公开版本按授权保留 | 引用、生成标注、内容复核日期 | 史实/权利有疑问即撤回；纸面导览/人工讲解替代 |
+| SC-12 | 公开日程、公共安全和无障碍检查；活动负责人 | 公开日程与聚合客流；活动结束后清理原始流量记录 | 安全预案、可达性检查、开闭场记录 | 预案或可达性不合格即不发布；普通公共路线替代 |
+
+### 公共组件库与无障碍验收
+
+把“可追溯、可测试、可信任”落到可复用的城市组件，而不是只停留在图面口号。组件均应有版本号、责任人、维护/失效日期和纸面备份；缺少这些字段时不得进入小规模公开。
+
+| 组件 ID | 公共功能 | 最小验收证据 |
+| --- | --- | --- |
+| TR-01 来源/版本牌 | 说明事实来源、模型版本、数据边界和更新时间 | 中英文字段、来源链接/编号、现场可读性检查 |
+| TE-01 测试边界牌 | 显示沙盒范围、开放时段、预约入口和停测信号 | 现场边界、停测按钮/人工口令、异常演练记录 |
+| TU-01 人工责任/申诉牌 | 告知当班责任人、替代服务和异议渠道 | 姓名或岗位、电话/现场窗口、申诉回执 |
+| PA-01 纸面/人工服务台 | 在断网、停测或不使用 AI 时维持基本服务 | 纸质地图/目录、值守表、恢复演练 |
+| AC-01 连续可达组件 | 提供休息、低刺激路线、无障碍导视和可进入首层界面 | 无障碍代表现场走查、替代路线、障碍修正记录 |
+| LG-01 低碳与维护牌 | 公开设备能耗、维护责任和不适用时段 | 设备/维护台账、能源消防复核、撤除记录 |
+
+最低人工验收包括：不以颜色作为唯一信息；中英文和生成内容标注明确；实体导视有足够对比度、连续休息点和可触达替代；HTML/数字界面有键盘顺序、焦点状态、文字替代和无脚本可读内容；现场必须完成一次老年人、行动不便者和运维人员走查。验收记录进入 Changelog，未通过时回到 Sandbox 或保留普通人工服务。[depth:municipal_new_infrastructure] [depth:three_key_area_detailed_design]
+
 ## 用地、建筑规模与拆改留方案
 
 功能比例由机器可复算用地分区表达，但不写成法定比例。北段侧重研发验证与人才服务，中段侧重近校科研转化和生活学习，南段侧重智能原生服务、文化与国际交流；中央公园和节点优先占位，保证公共价值不会在后续招商中被挤出。[data:geometry/land_use.geojson#LU-002] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [depth:land_use_layout]
@@ -189,7 +252,9 @@ Logo 使用规则：深海军蓝表示历史与责任，青色表示开放接口
 | 中期：网络缝合 | 开源会合台、AI原点贡献站、校城协作花园 | 权属、校城协作、道路与无障碍复核 | 形成跨主体服务闭环而非一次活动 |
 | 长期：条件深化 | 众智治理庭、清河低碳观测、端侧算力驿站 | 官方边界、控规、蓝绿线、市政和安全资料 | 经专业评估后小规模验证再扩展 |
 
-[data:geometry/phasing.geojson#PHASE-001] [metric:renewal_project_count] [metric:phasing_project_area_sqm] [depth:renewal_project_list] [depth:phasing_implementation]
+[data:geometry/phasing.geojson#PHASE-001] [metric:renewal_project_count] [metric:phasing_project_area_sqm]
+
+项目依赖关系和实施深度由分期项目清单与实施深度项共同约束。[depth:renewal_project_list] [depth:phasing_implementation]
 
 政策建议包括四个可逆机制：场景许可证注明数据、责任和期限；公共价值保证书写明非数字入口和社区收益；建筑先用权先于新建量，鼓励短租共享验证空间；每个项目采用版本化证据包，变更时重算指标并公开差异。以上均为参考机制，不构成已确定政策或财政承诺。
 
@@ -201,9 +266,15 @@ Logo 使用规则：深海军蓝表示历史与责任，青色表示开放接口
 
 ![指标、来源、图层与决策的证据链](assets/figures/metrics-evidence.png)
 
-提交边界复算为约 1141.3 ha，与公告“约 11.4 平方公里”同量级，但因边界为临时推定，不把差值解释为精确偏差。用地并集面积与边界一致，说明拓扑闭合。建筑基底 53.8 ha、概念覆盖比 4.7%；绿地 12.1%、公共空间 0.7%；这些都是本设计包络的可复算值，不是法定控制。[metric:site_area_sqm] [metric:land_use_partition_area_sqm] [metric:building_footprint_area_sqm] [metric:building_coverage_ratio] [metric:green_space_area_sqm] [metric:green_ratio] [metric:public_space_area_sqm] [metric:public_space_ratio]
+提交边界复算为约 1141.3 ha，与公告“约 11.4 平方公里”同量级，但因边界为临时推定，不把差值解释为精确偏差。用地并集面积与边界一致，说明拓扑闭合。[metric:site_area_sqm] [metric:land_use_partition_area_sqm] [metric:building_footprint_area_sqm]
 
-网络长度、场景和项目数量分别来自道路、公共空间和分期图层；三处重点区数量来自任务书要求。[metric:walking_cycling_network_length_m] [metric:key_area_count] [metric:scenario_node_count] [metric:renewal_project_count] [metric:phasing_project_area_sqm] [depth:metrics_recalculation]
+建筑基底 53.8 ha、概念覆盖比 4.7%；这些是设计包络的可复算值，不是法定控制。[metric:building_coverage_ratio] [metric:green_space_area_sqm] [metric:green_ratio]
+
+公共空间约 0.7%；绿地和公共空间比值同样不替代批准控制。[metric:public_space_area_sqm] [metric:public_space_ratio]
+
+网络长度、场景和项目数量分别来自道路、公共空间和分期图层。[metric:walking_cycling_network_length_m] [metric:key_area_count] [metric:scenario_node_count]
+
+项目数量与面积来自分期图层，三处重点区数量来自任务书要求。[metric:renewal_project_count] [metric:phasing_project_area_sqm] [depth:metrics_recalculation]
 
 容积率、建筑高度和总建筑面积保持 unknown，直到官方控规、现状调查和专业条件到位。[metric:floor_area_ratio] [metric:building_height_m] [metric:total_floor_area_sqm] [standard:MOHURD-CONTROL-DETAILED-PLANNING]
 

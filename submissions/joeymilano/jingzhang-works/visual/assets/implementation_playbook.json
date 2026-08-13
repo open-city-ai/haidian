@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.5.0",
   "resource_classes": {
     "S": {
       "meaning": "portable signage, paper service, staff time, and existing furniture",
@@ -104,6 +104,93 @@
       "resource_class": "S"
     }
   ],
+  "startup_cost_ledger": {
+    "status": "cost_structure_ready_prices_unquoted",
+    "currency": "CNY",
+    "monetary_total": null,
+    "pricing_rule": "No monetary total is entered until one site, operating hours, accessibility scope, safety boundary, and responsible buyer are confirmed. Each purchasable line then requires three comparable quotes or a documented public framework price.",
+    "lines": [
+      {
+        "id": "C01",
+        "work_package": "field_baseline",
+        "buy_or_use": "use_existing_tools_and_contract_human_time",
+        "unit": "route_and_fixed_observation_pack",
+        "planned_quantity": null,
+        "quantity_basis": "six complete task routes plus twelve fixed observations after the route list is confirmed",
+        "cost_basket": ["observer_hours", "local_travel", "privacy_review", "evidence_packaging"],
+        "recurring": false,
+        "price_status": "awaiting_authorized_scope",
+        "release_gate": "named field lead, route list, consent boundary, and evidence acceptance sheet"
+      },
+      {
+        "id": "C02",
+        "work_package": "paper_service_set",
+        "buy_or_use": "print_and_reuse",
+        "unit": "authorized_public_service_point",
+        "planned_quantity": null,
+        "quantity_basis": "one dated paper set at each opened entry, staffed counter, and exit point",
+        "cost_basket": ["plain_language_editing", "translation", "large_print_and_tactile_output", "weekly_reprint"],
+        "recurring": true,
+        "price_status": "awaiting_site_and_information_owner",
+        "release_gate": "source owner, expiry rule, print specification, and weekly update owner"
+      },
+      {
+        "id": "C03",
+        "work_package": "movable_public_interface",
+        "buy_or_use": "rent_or_adapt_before_purchase",
+        "unit": "pilot_site_set",
+        "planned_quantity": null,
+        "quantity_basis": "one Ask First point, one visible takeover point, and one public change surface for the selected pilot site",
+        "cost_basket": ["movable_counter", "high_contrast_signage", "existing_furniture_adaptation", "installation_and_removal"],
+        "recurring": false,
+        "price_status": "awaiting_measured_site_plan",
+        "release_gate": "site authorization, measured accessible route, fire review, and removal method"
+      },
+      {
+        "id": "C04",
+        "work_package": "controlled_test_window",
+        "buy_or_use": "supplier_provides_test_article_city_buys_review",
+        "unit": "one_test_window",
+        "planned_quantity": null,
+        "quantity_basis": "only one industry test may occupy the controlled window at a time",
+        "cost_basket": ["temporary_barrier", "physical_stop", "temporary_power", "safety_and_accessibility_review", "restoration"],
+        "recurring": false,
+        "price_status": "awaiting_test_article_and_safety_case",
+        "release_gate": "test boundary, named handler, insurance route, emergency stop, and restoration deposit"
+      },
+      {
+        "id": "C05",
+        "work_package": "staffed_operation",
+        "buy_or_use": "service_contract",
+        "unit": "open_shift",
+        "planned_quantity": null,
+        "quantity_basis": "one trained takeover person for every public opening shift plus an independent replay slot",
+        "cost_basket": ["staff_hours", "training", "accessibility_replay", "incident_review", "closing_and_deletion"],
+        "recurring": true,
+        "price_status": "awaiting_opening_hours_and_labour_rules",
+        "release_gate": "shift plan, named substitute, labour compliance, and stop authority"
+      },
+      {
+        "id": "C06",
+        "work_package": "permanent_works",
+        "buy_or_use": "do_not_procure_in_ninety_day_pilot",
+        "unit": "formal_project",
+        "planned_quantity": 0,
+        "quantity_basis": "permanent civil, building, utility, and corridor works remain outside the reversible pilot",
+        "cost_basket": ["professional_design", "survey", "statutory_approval", "construction", "long_term_maintenance"],
+        "recurring": true,
+        "price_status": "blocked_pending_formal_project",
+        "release_gate": "official geometry, ownership, approved brief, investment decision, and professional design"
+      }
+    ],
+    "cost_control_decisions": [
+      "reuse or rent before buying a bespoke component",
+      "buy human service and independent review before buying an AI display",
+      "separate one-off setup from every recurring shift and maintenance cost",
+      "include removal, data deletion, and site restoration in the same quote as installation",
+      "stop procurement when the named operator or recurring budget is missing"
+    ]
+  },
   "service_targets": [
     {
       "id": "SLA-01",

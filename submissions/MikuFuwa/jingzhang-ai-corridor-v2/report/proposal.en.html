@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JingZhang Open Spine · Protocol Edition (v2.4) - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>JingZhang Open Spine · Protocol Edition (v2.4)</h1>
+<p class="summary">v2.4 morphology pass: mosaic land-use blocks (not vertical color bands), core-clustered buildings, named mobility breaks, figures/A0/A3 re-rendered with hash veto; Open Protocol Spine retained; provisional + FAR unknown + medium.</p>
+<p class="translation-link"><a href="proposal.html">阅读中文版本</a></p>
+</section>
+<h1>JingZhang Open Spine · Protocol Edition (v2.4)</h1>
+<h2>Design Basis and Source List</h2>
+<p>This formal package is based on the Haidian pre-qualification announcement and the machine-readable site package <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="Source: OFFICIAL-ANNOUNCEMENT">Source</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="Source: SITE-PACKAGE">Source</sup>. Agent tasks follow the open-call taskbook <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="Source: AGENT-TASKBOOK">Source</sup>. Source fitness follows the registry <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="Source: SOURCE-REGISTRY">Source</sup>.</p>
+<p>Coordinates are stored in EPSG:4326; areas are recomputed via EPSG:4548, recorded in <code>crs_note</code> / <code>equal_area_projection</code> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="Depth: metrics_recalculation">Depth</sup>. Boundaries are provisional, not official redlines <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="Source: BOUNDARY-SOURCE">Source</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#SITE-001" title="Spatial data: geometry/site_boundary.geojson#SITE-001">Spatial data</sup>.</p>
+<h3>Existing conditions diagnosis</h3>
+<p>Ten defendable problem clusters (all provisional) <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="existing_conditions_diagnosis" title="Depth: existing_conditions_diagnosis">Depth</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CON-001" title="Spatial data: geometry/constraints.geojson#CON-001">Spatial data</sup>: P01 severed greenway; P02 weak station-city quadrants at Dazhongsi; P03 campus edge “visible but inaccessible”; P04 test disturbance at Zhongzhiyuan; P05 weak industry-wing links; P06 under-lived east wing; P07 energy/nuisance unknowns; P08 heritage/intensity unknowns; P09 robot–pedestrian conflicts; P10 festival vs daily schedule conflicts.</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.en.png" alt="Concept overview"><figcaption>Concept overview</figcaption></figure>
+<p>Brand minimum set: <code>assets/brand/logo.svg</code> (sleeper + OPEN window). No unauthorised trademarks. Reading index only: <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="Source: PROCESSED-FACT-PACK">Source</sup>.</p>
+<h2>Three-Level Scope Framework</h2>
+<p>Coordinated research (~43.6 km²), overall design (~11.4 km², <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="Metric: site_area_sqm">Metric</sup>=11412825.386 m² provisional), and key detailed design (~368.4 ha, <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="Metric: key_area_count">Metric</sup>=3) <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_level_scope_framework" title="Depth: three_level_scope_framework">Depth</sup>. Structure remains one spine / three cores / dual wings / twelve nodes, now governed by the Open Protocol Spine City API <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="Depth: overall_spatial_structure">Depth</sup>. Twelve nodes bind to scenario cards and <code>visual/assets/scenario_nodes.json</code> (extra node/detail assets live under visual/assets because the repository geometry allow-list is fixed).</p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.en.png" alt="Scope and land-use units"><figcaption>Scope and land-use units</figcaption></figure>
+<h3>Regional interfaces (one action each)</h3>
+<p>1. <strong>Zhongguancun north / north-latitude R&amp;D</strong>: verification-core sandbox booking interface for northern clusters. 2. <strong>Future Science City</strong>: joint international pitch-week slots via the experience core (conceptual). 3. <strong>Huairou Science City</strong>: basic-research evaluation feedback loop through the service wing. 4. <strong>Beijing E-Town</strong>: intelligent terminal / agent product pilot feedback loop. 5. <strong>Jing-Jin-Ji corridor</strong>: Dazhongsi station-city as the southern gateway for visit-to-conversion.</p>
+<p>All are coordination suggestions, not cross-district administrative commitments.</p>
+<h2>Coordinated Research Area: Industry and Future City Research</h2>
+<h3>Tip mechanism: Open Protocol Spine</h3>
+<p>Mandatory fields that structure space, scenarios, governance and operations:</p>
+<ul>
+<li><strong>Interface</strong>: twelve scenario nodes as versioned endpoints</li>
+<li><strong>Permission</strong>: public / aggregate / authorized / forbidden data grades</li>
+<li><strong>Rollback</strong>: pause tests and remove kits without locking the street</li>
+<li><strong>Audit</strong>: correctable honor wall + governance forum court</li>
+</ul>
+<p>Naming: 京张智脊 / JingZhang Open Spine / Open Protocol Spine. Logo: <code>assets/brand/logo.svg</code>. Minimum pilot: Origin release hall (SCN-01) or Zhongzhiyuan sandbox court (SCN-02) with explicit fail-closed rollback.</p>
+<h3>Cases (3 deep + 3 light)</h3>
+<p><strong>Deep 1 · Kendall Square (Boston)</strong> — campus–lab–firm walking triangle → Origin transfer street; do not copy US ownership/fund models. <strong>Deep 2 · King’s Cross (London)</strong> — station-city asset ops → Dazhongsi four-quadrant pockets; do not assume single large landowner. <strong>Deep 3 · one-north (Singapore)</strong> — R&amp;D–life mix and test corridors → Zhongzhiyuan garden sandbox; do not copy tropical landscape templates.</p>
+<p>Light cases: Nanshan density, Toranomon vertical courts, Zhangjiang platform clusters. Future form reserves rollback interfaces rather than one-shot “smart furniture piles” <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="Source: AGENT-TASKBOOK">Source</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="Standard: MOHURD-URBAN-DESIGN-MEASURES">Standard</sup>.</p>
+<h2>Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design</h2>
+<p>Regulatory-plan <strong>method</strong> without fake FAR/height/redlines <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-CONTROL-DETAILED-PLANNING" title="Standard: MOHURD-CONTROL-DETAILED-PLANNING">Standard</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="Depth: development_intensity_controls">Depth</sup>. Land-use rebuilt as mosaic street-block parcels (not vertical bands); densified to <strong>30</strong> block/function units covering the site <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="Spatial data: geometry/land_use.geojson#LU-001">Spatial data</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="land_use_unit_count" title="Metric: land_use_unit_count">Metric</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="land_use_layout" title="Depth: land_use_layout">Depth</sup>. Buildings <strong>87</strong> with courtyard/L/U/bar interface clusters mixed logic (not a pure grid of tiny rectangles) <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_count" title="Metric: building_count">Metric</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="Spatial data: geometry/buildings.geojson#BLDG-001">Spatial data</sup>; road segments <strong>28</strong> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="road_segment_count" title="Metric: road_segment_count">Metric</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="Spatial data: geometry/roads.geojson#ROAD-001">Spatial data</sup>. Renewal priority: public interfaces first, deep rebuild later.</p>
+<h2>Detailed Design of Key Areas</h2>
+<p>Provisional KEY_AREA polygons; directional concepts only <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="Depth: three_key_area_detailed_design">Depth</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="Spatial data: geometry/key_areas.geojson#PROV-KEY-001">Spatial data</sup>. Detail assets: <code>visual/assets/detail_zhongzhiyuan.json</code>, <code>detail_beijing_ai_origin.json</code>, <code>detail_dazhongsi.json</code> (entry, spine segment, cross-seam, court, building pads, scenario anchors, risk overlay).</p>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.en.png" alt="Key areas"><figcaption>Key areas</figcaption></figure>
+<h3>Zhongzhiyuan · Verification Core</h3>
+<p>Role: autonomy, standards, safety-testing host. Problems: test disturbance (P04); northern severance (P01/P05). Structure: Qinghe verification waterfront + sandbox court + cross seam. Public realm links to northern green-spine segments. Character: garden-type low-disturbance edges; explainable night signals rather than advertising screens. RRD typology only <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="Depth: retain_renovate_demolish">Depth</sup>. Scenarios SCN-02/04/12 with red-team review. Near-term OS-02/06/12. Risks: noise/privacy; blue-line and energy permits pending.</p>
+<h3>AI Origin · Open-source Core</h3>
+<p>Role: campus transfer, release, talent services. Problems: visible-but-inaccessible edges (P03); event vs daily conflict (P10). Structure: release hall—transfer street—honor wall. Public realm: campus-edge buffers and station pockets. Character: low-disturbance, night-collaboration friendly; avoid over-commercial occupation of sidewalks. Scenarios SCN-01/06/11. Near-term OS-03/04/07. Risks: campus data authorisation and night noise.</p>
+<h3>Dazhongsi · Experience Core</h3>
+<p>Role: intelligent economy and station-city host. Problems: weak four-quadrant walking (P02); data ethics (P07). Structure: four-quadrant pockets + pitch hall + data parlor. Public realm: four-way junction connectivity and southern gateway plaza. Character: urban frontage, restrained identity systems. Scenarios SCN-05/07/10. Near-term OS-05/08/10. Risks: event permits, commercial identity clearance, traffic specialty studies.</p>
+<h2>AI Innovation Ecosystem, Personas, and AI+ Scenarios</h2>
+<p>Six personas including caregivers/accessibility users with explicit conflict mediation. Twelve objectified scenario cards with place ids, minimization, human review, rollback, pilot KPI and non-goals; ≥3 industry validation tests (SCN-02/04/07) <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="ai_scenario_card_count" title="Metric: ai_scenario_card_count">Metric</sup>. Node geometry: <code>visual/assets/scenario_nodes.json</code>. Non-goals: no personal profiling marketing, no approval substitution, no sensitive trajectory collection.</p>
+<h2>Land Use, Building Scale, and Retain-Renovate-Demolish Strategy</h2>
+<p>Topology QA summary in <code>visual/assets/topology_check.json</code> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="Standard: MNR-LAND-USE-CLASSIFICATION-GUIDE">Standard</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="land_use_layout" title="Depth: land_use_layout">Depth</sup>. Building footprint <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="Metric: building_footprint_area_sqm">Metric</sup>=125571.357 m²; conceptual density <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_density" title="Metric: building_density">Metric</sup>=0.011003; FAR unknown <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="floor_area_ratio" title="Metric: floor_area_ratio">Metric</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="Depth: development_intensity_controls">Depth</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="Spatial data: geometry/buildings.geojson#BLDG-001">Spatial data</sup>. Character principles without fake heights <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="height_massing_character" title="Depth: height_massing_character">Depth</sup>. RRD remains typology only <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="Depth: retain_renovate_demolish">Depth</sup>.</p>
+<h2>Transport, Rail, Municipal Infrastructure, and Public Services</h2>
+<p>Open slow spine + classed seam network + station pockets; <strong>28</strong> conceptual segments, not redlines <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="Spatial data: geometry/roads.geojson#ROAD-001">Spatial data</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="Depth: traffic_rail_slow_parking">Depth</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="road_segment_count" title="Metric: road_segment_count">Metric</sup>. Robot pilots only on reversible segments yielding to pedestrians and accessible routes. Edge compute remains non-engineering without utilities <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="municipal_new_infrastructure" title="Depth: municipal_new_infrastructure">Depth</sup>. No invented parking-supply quantities.</p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.en.png" alt="Mobility and blue-green"><figcaption>Mobility and blue-green</figcaption></figure>
+<h2>Blue-Green Network, Public Space, and Urban Character</h2>
+<p>Green ratio <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="Metric: green_ratio">Metric</sup>=0.223508 (area <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_space_area_sqm" title="Metric: green_space_area_sqm">Metric</sup>=2550859.082 m²) <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="Spatial data: geometry/green_space.geojson#GREEN-001">Spatial data</sup>; public ratio <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="Metric: public_space_ratio">Metric</sup>=0.116208 (area <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_area_sqm" title="Metric: public_space_area_sqm">Metric</sup>=1326256.8 m²) <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="Spatial data: geometry/public_space.geojson#PUBLIC-001">Spatial data</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="blue_green_public_space" title="Depth: blue_green_public_space">Depth</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="Standard: MOHURD-URBAN-DESIGN-MEASURES">Standard</sup>. Three pilgrimage devices: Protocol Sleeper Gallery, Agent Honor Wall, Verification Beacon Court. Cultural narrative: railway autonomy × Zhongguancun openness × explainable AI co-governance.</p>
+<h2>Renewal Projects, Implementation Policy, and Phasing</h2>
+<p>Fourteen projects OS-01…OS-14 with conceptual lead actors, dependencies, spatial ids, KPIs and rollback paths, coupled to phasing polygons <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/phasing.geojson#PHASE-001" title="Spatial data: geometry/phasing.geojson#PHASE-001">Spatial data</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="phasing_implementation" title="Depth: phasing_implementation">Depth</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="renewal_project_list" title="Depth: renewal_project_list">Depth</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="renewal_project_count" title="Metric: renewal_project_count">Metric</sup>. Near term: interface stitching and pilots; mid term: transfer street and station-city links; long term: deeper renewal units. Long-term ops: seasonal open festival, scenario days, international pitch week, governance forum — conceptual only.</p>
+<h2>Metrics, Area Recalculation, and Compliance Matrix</h2>
+<p>Known metrics recomputed via EPSG:4548 at medium confidence under provisional geometry; statutory controls remain unknown <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="Depth: metrics_recalculation">Depth</sup>. Site <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="Metric: site_area_sqm">Metric</sup>=11412825.386; buildings <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_count" title="Metric: building_count">Metric</sup>=87; roads <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="road_segment_count" title="Metric: road_segment_count">Metric</sup>=28; land-use units <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="land_use_unit_count" title="Metric: land_use_unit_count">Metric</sup>=30; key areas <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="zhongzhiyuan_area_sqm" title="Metric: zhongzhiyuan_area_sqm">Metric</sup> / <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="beijing_ai_origin_area_sqm" title="Metric: beijing_ai_origin_area_sqm">Metric</sup> / <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="dazhongsi_area_sqm" title="Metric: dazhongsi_area_sqm">Metric</sup> / <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_detailed_design_area_sqm" title="Metric: key_detailed_design_area_sqm">Metric</sup>. Matrices cover announcement tasks and agent.1–6 with unique depth evidence summaries.</p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.en.png" alt="Core metrics recomputation evidence"><figcaption>Core metrics recomputation evidence</figcaption></figure>
+<p>Boards: <code>drawings/a0-boards.en.pdf</code> (≥7 true figure boards) and <code>drawings/a3-booklet.en.pdf</code>; offline map <code>visual/index.en.html</code> embeds SVG projected from this package’s GeoJSON.</p>
+<h3>Diagnosis loop (equivalent to ZH)</h3>
+<p>Each issue is framed as <strong>spatial phenomenon → people → strategy ID → assumption ID</strong> (all provisional):</p>
+<p>1. P01 spine severance by expressway/closed fronts → commuters/students → OS-01 → A-BOUNDARY-001 2. P02 weak station-city four-quadrant walks → visitors/conversion → OS-05 → A-STATION-001 3. P03 campus edge visible-but-inaccessible → students/founders → OS-04 → A-CAMPUS-001 4. P04 test nuisance to daily life → residents/children → OS-02/SCN-02 rollback → A-NOISE-001 5. P05 weak industry wing links → R&amp;D workers/visitors → regional north interface → A-REGIONAL-001 6. P06 under-served life wing → balanced live-work users → SCN-08 → A-LIFE-001 7. P07 compute NIMBY/energy unknown → neighbors → OS-06 reversible station → A-ENERGY-001 8. P08 heritage/intensity unknown → public/heritage managers → buffer without consumption → A-HERITAGE-001 9. P09 robot vs pedestrian/accessibility → children/wheelchair users → OS-14 yield pilots → A-ROBOT-001 10. P10 festival vs daily time conflict → night rest residents → OS-10 time zoning → A-EVENT-001</p>
+<p>Problem map: A0-02 + mobility figure with constraint base and break/repair pairs. Metrics: site=11412825.386, green_ratio=0.224794, public_ratio=0.093346, buildings=156, roads=54.</p>
+<h3>Open Protocol Spine lifecycle (EN parity)</h3>
+<p><strong>Publish → Verify → Rollback → Audit.</strong> Four fields: Interface / Permission / Rollback / Audit. Minimum pilot at SCN-01 or SCN-02 with offline path.</p>
+<h3>Regional interface spatial types</h3>
+<p>1. North/Beike direction — <strong>booking interface</strong> at verify sandbox court 2. Future Science City — <strong>portal schedule interface</strong> at experience pitch hall 3. Huairou — <strong>channel return node</strong> on tech-service wing 4. BDA — <strong>pilot feedback interface</strong> at industry service plaza 5. Jing-Jin-Ji corridor — <strong>southern gateway</strong> at Dazhongsi station-city pockets</p>
+<h3>Key-area deepen template (EN)</h3>
+<p>Each key area carries: main entry · spine segment · cross seam · public court · ≥3 public prototypes · building pads · ≥2 scenario anchors · 1 risk overlay (<code>visual/assets/detail_*.json</code>). Section principles are schematic (no fake levels).</p>
+<ul>
+<li><strong>Zhongzhiyuan Verify</strong>: Qinghe waterfront + sandbox + forum; SCN-02/04/12; garden low-nuisance night signals.</li>
+<li><strong>Origin Open-source</strong>: release–transfer–honor; SCN-01/06/11; ground-floor visible/accessible.</li>
+<li><strong>Dazhongsi Experience</strong>: four-quadrant pockets + pitch + data parlor; SCN-05/07/10; level boarding priority.</li>
+</ul>
+<h3>Delivery gates &amp; pilots</h3>
+<p>OS-01…OS-14 include enablers and concept permit gates (ownership → safety eval → event permit → rollback offline). Near-term pilot footprints and dependency chain: <code>visual/assets/renewal_projects.json</code> (conceptual, not statutory parcels).</p>
+<h3>Scenario cards (EN field parity)</h3>
+<p>All 12 cards keep: id, place_geometry_id, personas, data minimization, human review, rollback, KPI, non_goal. Validation tests: SCN-02 safety sandbox, SCN-04 edge station, SCN-07 data parlor — sandbox boundaries disclosed; no approval substitution.</p>
+<h2>Risk, Copyright, and Compliance</h2>
+<p>Risks: provisional precision, ownership, utilities, heritage, event noise, privacy, robot conflicts <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="Depth: risk_missing_data">Depth</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CON-001" title="Spatial data: geometry/constraints.geojson#CON-001">Spatial data</sup>. Data grades enforced. Copyright in <code>report/copyright_statement.md</code>. All content is conceptual reference, not statutory planning or government commitment.</p>
+<h2>References</h2>
+<ul>
+<li>brief package, agent taskbook, source registry, provisional boundaries</li>
+<li>local standards references</li>
+<li>visual/assets scenario/detail/topology assets</li>
+<li>machine indexes in sources/metrics/matrices <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="Source: SITE-PACKAGE">Source</sup></li>
+</ul>
+<h3>Key-area typical sections (v2.4)</h3>
+<p>Each key area has a <strong>plan cut line + relative-level section</strong>, cross-referenced in <code>assets/figures/key-areas.png</code>, <code>assets/figures/key-area-sections.png</code>, and <code>visual/assets/section_cuts.json</code>:</p>
+<div class="proposal-table"><table><thead><tr><th>Area</th><th>Cut</th><th>Section theme (L→R)</th><th>Move</th></tr></thead><tbody><tr><td>Zhongzhiyuan verification core</td><td>A-A</td><td>R&amp;D frontage | living buffer | test sandbox | green spine | active edge</td><td>Isolation depth + rollback pilots</td></tr><tr><td>Origin open-source core</td><td>B-B</td><td>Campus edge | conversion street | launch court | talent services | slow mobility</td><td>Campus–city conversion seam</td></tr><tr><td>Dazhongsi experience core</td><td>C-C</td><td>Station link | pocket plaza | pitch frontage | retail mix | slow mobility</td><td>Station-city depth over new express links</td></tr></tbody></table></div>
+<p>Sections are <strong>relative schematics</strong>, not surveyed elevations; not regulatory vertical controls.</p>
+</main>
+</body>
+</html>

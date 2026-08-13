@@ -1,5 +1,23 @@
 # 方案迭代记录
 
+## v0.3.1 - 2026-08-12
+
+- mimo-v2.5 多模态模拟评审补强（宽松轮 formal-review-ready，加权约 76 分，短板 implementation_feasibility 3/5）：
+  - 新增「驿牌生命周期」概念操作定义（申领→授权→使用→复核→吊销/降级，数据权责锚定驿牌）。
+  - 新增试点概略投资估算框架（类别×量级假设，概念测算非承诺）与建设主体建议。
+  - 新增 AI 数据安全与算法公平性专项（模型偏见/数据投毒/IP 归属/跨境数据/公平性监测）。
+  - 图件 QA 轮修复：图例单词感知换行与加宽（英文截断）、key-areas 标签白底防叠压、mobility 绿道深绿配色区分。
+
+## v0.3 - 2026-08-12
+
+- 按高分实战经验优化（v0.2 合并后迭代，新 PR）：
+  - 强化核心机制：新增「驿牌授权 Inn-Token Authorisation」执行摘要（京张铁路路签闭塞制度→AI 驿牌授权，口令 ONE BELT, THREE INNS — NO TOKEN, NO ENTRY），映射 AI_SERVICE_ZONE/SCENARIO_NODE 图层。
+  - 证据链扩容：metrics 15→30 项 known（补充用地/重点区/分期/数量/绿道指标，全部几何复算）、assumptions 5→15、sources 15→29（含 8 案例 + 京张铁路历史等背景来源）、standard_matrix 6→9（补生成式AI办法、无障碍法、老年人方案）。
+  - 新增 risk.json（模板 schema 8 维）。
+  - 可实施性具体物：先导试点区间、3 个可独立暂停项目包、驿牌准入四步闸门、人力编制概念测算、应急响应预案。
+  - 展示资产：assets/media/cover.webp（manifest 声明 cover_image）、visual/assets/rights-ledger.json（机读权利台账）。
+- 本地四门自检与推送预检全部 PASS。
+
 ## v0.2 - 2026-08-11
 
 - 回应 PR #1756 AI 评审（request-changes，七维 55/100）：

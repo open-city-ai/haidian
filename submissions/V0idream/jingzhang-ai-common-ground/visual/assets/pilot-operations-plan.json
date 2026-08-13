@@ -1,0 +1,68 @@
+{
+  "plan_id": "TG-PILOT-01",
+  "scenario_id": "SCN-05",
+  "status": "conceptual_unassigned_unmeasured",
+  "authorization_status": "not_requested",
+  "field_pilot_status": "not_started",
+  "location_note_zh": "72 平方米可撤离校译单元可嵌入经权属、消防、无障碍和运营确认的室内公共服务空间或平整院落；当前不绑定具体建筑或地块。",
+  "location_note_en": "The 72 sqm removable proofing bay may fit an indoor civic-service space or level courtyard only after ownership, fire, accessibility, and operating review; it is not tied to a building or parcel.",
+  "module": {
+    "width_m": 12,
+    "depth_m": 6,
+    "area_sqm": 72,
+    "zones": [
+      {"zone_id": "Z1", "name_zh": "普通服务与等候", "name_en": "ordinary service and waiting", "area_sqm": 14.4, "ai_dependency": false},
+      {"zone_id": "Z2", "name_zh": "知情与撤回", "name_en": "notice and withdrawal", "area_sqm": 10.8, "ai_dependency": false},
+      {"zone_id": "Z3", "name_zh": "隔离/平行校译", "name_en": "isolated or shadow proofing", "area_sqm": 18.0, "ai_dependency": true},
+      {"zone_id": "Z4", "name_zh": "人工复核与回执", "name_en": "human review and receipt", "area_sqm": 14.4, "ai_dependency": false},
+      {"zone_id": "Z5", "name_zh": "安静申诉与回退", "name_en": "quiet appeal and rollback", "area_sqm": 14.4, "ai_dependency": false}
+    ]
+  },
+  "minimum_open_shift_resources": {
+    "staffed_ordinary_service_operator": 1,
+    "proofing_translator_operator": 1,
+    "professional_reviewer_on_call": 1,
+    "physical_stop_control": 1,
+    "isolated_ai_workstation": 1,
+    "tactile_or_large_print_guidance_sets": 2,
+    "locked_evidence_cabinet": 1
+  },
+  "separation_of_duties": [
+    "AI supplier may submit evidence but may not approve its own six gates.",
+    "Ordinary-service operator may restore service without AI supplier approval.",
+    "Community witness records accessibility and appeal observations but does not access case content.",
+    "Steward owns expiry, versioning, maintenance, and removal records."
+  ],
+  "states": [
+    {"state_id": "S0", "weeks": "1-2", "name_zh": "普通服务基线", "name_en": "ordinary-service baseline", "public_ai_output": false},
+    {"state_id": "S1", "weeks": "3-5", "name_zh": "隔离校译", "name_en": "isolated proofing", "public_ai_output": false},
+    {"state_id": "S2", "weeks": "6-8", "name_zh": "影子平行服务", "name_en": "shadow parallel service", "public_ai_output": false},
+    {"state_id": "S3", "weeks": "9-11", "name_zh": "公众校样", "name_en": "public proofing", "public_ai_output": true},
+    {"state_id": "S4", "weeks": "12", "name_zh": "采纳/重译/退场", "name_en": "adopt/retranslate/retire", "public_ai_output": null}
+  ],
+  "hard_gates": ["provenance", "consent", "access", "review", "rollback", "stewardship"],
+  "decision_options": ["limited_adoption", "return_for_retranslation", "retire_and_restore_baseline"],
+  "concept_targets_not_field_results": {
+    "ordinary_service_availability_ratio": 1.0,
+    "human_handoff_seconds_max": 120,
+    "withdrawal_acknowledgement_open_shifts_max": 1,
+    "synthetic_inclusion_journeys_required": 12,
+    "proof_receipt_required_field_count": 8
+  },
+  "proof_receipt_fields": [
+    "anonymous_case_token",
+    "service_purpose",
+    "six_gate_states",
+    "human_owner_role",
+    "expiry_time",
+    "ordinary_service_route",
+    "appeal_route",
+    "rollback_status"
+  ],
+  "data_minimization": {
+    "weeks_1_to_5": "public or synthetic prompts only",
+    "weeks_6_to_11": "authorized minimum case content after redaction; no biometric or continuous location data",
+    "retained_evidence": "aggregate counts, rule version, anonymous token, decision, expiry, and rollback record",
+    "personal_data_in_this_submission": false
+  }
+}

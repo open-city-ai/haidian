@@ -1,0 +1,232 @@
+{
+  "schema_version": "1.0.0",
+  "rule_version": "1.0.0",
+  "claim_level": "reproducible_keyword_census_not_semantic_review",
+  "generated_at_utc": "2026-08-13T07:10:12Z",
+  "git_sha": "232fe217af7bd645bce10b45d2fba6f59ae63c48",
+  "sample": {
+    "eligibility": "proposal.md + agent.json + ready_for_review + formal",
+    "mechanism_text_scope": [
+      "proposal.md"
+    ],
+    "agent_usage": "agent.json establishes package eligibility only",
+    "eligible_count": 753,
+    "failed_count": 0,
+    "excluded_count": 0
+  },
+  "method": {
+    "feature_rules": {
+      "controlled_test_or_validation": [
+        "受控(?:测试|试验|验证)",
+        "(?:测试|试验|验证)(?:场|区|院|平台)",
+        "测试验证",
+        "试点验证",
+        "试运行",
+        "试车",
+        "\\bcontrolled[- ]test(?:ing)?\\b",
+        "\\btestbed\\b",
+        "\\bproving ground\\b",
+        "\\bvalidation (?:site|zone|yard|platform|test)\\b"
+      ],
+      "human_review_or_takeover": [
+        "人工(?:复核|接管|审批|决定|决策|签注|确认|值守|干预)",
+        "人类(?:复核|接管|决定|决策|监督)",
+        "\\bhuman[- ](?:review|takeover|decision|sign[- ]?off|approval|oversight|intervention)\\b",
+        "\\bstaffed (?:review|takeover|service|operation)\\b"
+      ],
+      "non_ai_equivalent_or_opt_out": [
+        "(?:无|非)\\s*AI(?:等价|替代|服务|路径|通道|选择)",
+        "不使用\\s*AI",
+        "拒绝(?:使用)?\\s*AI",
+        "退出(?:AI|算法|智能)(?:服务|路径|选择)?",
+        "\\bnon[- ]AI (?:equivalent|alternative|service|path|route|channel|option)\\b",
+        "\\bAI[- ]free (?:service|path|route|option)\\b",
+        "\\bopt[- ]out\\b",
+        "\\bwithout (?:an? )?AI\\b"
+      ],
+      "explicit_stop_condition": [
+        "停止条件",
+        "停用条件",
+        "触发停用",
+        "立即停止",
+        "停止运行",
+        "暂停运行",
+        "封场",
+        "一票否决",
+        "不得继续(?:运行|开放|发布)",
+        "\\b(?:explicit )?stop condition\\b",
+        "\\bsuspension trigger\\b",
+        "\\bmust (?:stop|suspend|close)\\b",
+        "\\bshutdown condition\\b"
+      ],
+      "rollback_return_or_restore": [
+        "回滚",
+        "退回",
+        "折返",
+        "复原",
+        "撤场",
+        "恢复(?:为|至|普通|日常|原有)",
+        "\\brollback\\b",
+        "\\breturn (?:to|record|action|path|state|for)\\b",
+        "\\brestore (?:to|the|ordinary|public|daily|original)\\b",
+        "\\brevert\\b"
+      ],
+      "saturated_governance_language": [
+        "治理",
+        "审计",
+        "证据",
+        "账本",
+        "可验证",
+        "核证",
+        "可追溯",
+        "\\bgovernance\\b",
+        "\\baudit(?:able)?\\b",
+        "\\bevidence\\b",
+        "\\bledger\\b",
+        "\\bverifiable\\b",
+        "\\btraceable\\b"
+      ]
+    },
+    "track_rules": {
+      "governance_verification": [
+        "治理",
+        "审计",
+        "验证",
+        "核证",
+        "证据",
+        "governance",
+        "audit",
+        "verif"
+      ],
+      "accessibility_inclusion": [
+        "无障碍",
+        "包容",
+        "残障",
+        "老年",
+        "儿童",
+        "accessib",
+        "inclusi"
+      ],
+      "industry_testbed": [
+        "产业",
+        "测试场",
+        "试验场",
+        "验证场",
+        "机器人",
+        "testbed",
+        "proving ground",
+        "robot"
+      ],
+      "heritage_culture": [
+        "遗产",
+        "铁路文化",
+        "詹天佑",
+        "工业遗产",
+        "heritage",
+        "railway culture"
+      ],
+      "ecology_low_carbon": [
+        "生态",
+        "低碳",
+        "雨洪",
+        "蓝绿",
+        "碳",
+        "ecolog",
+        "low[- ]carbon",
+        "sponge"
+      ],
+      "community_public_service": [
+        "社区",
+        "公共服务",
+        "居民",
+        "民生",
+        "community",
+        "public service",
+        "resident"
+      ],
+      "mobility_logistics": [
+        "交通",
+        "慢行",
+        "物流",
+        "接驳",
+        "出行",
+        "mobility",
+        "logistics",
+        "shuttle"
+      ],
+      "talent_open_innovation": [
+        "人才",
+        "高校",
+        "开源",
+        "创新生态",
+        "孵化",
+        "talent",
+        "open source",
+        "innovation ecosystem"
+      ],
+      "spatial_renewal": [
+        "更新",
+        "缝合",
+        "公共空间",
+        "街区",
+        "renewal",
+        "public space",
+        "urban design"
+      ]
+    },
+    "track_note": "Unique highest capped regex-hit score; ties are mixed_or_unclassified. Not an official category.",
+    "limitations": [
+      "Keyword presence cannot prove implementation quality, equivalence or intent.",
+      "False positives and negatives remain possible; per-package matches are retained.",
+      "Counts describe only the recorded git SHA and rule version."
+    ]
+  },
+  "feature_counts": {
+    "controlled_test_or_validation": {
+      "count": 721,
+      "share": 0.957503
+    },
+    "human_review_or_takeover": {
+      "count": 736,
+      "share": 0.977424
+    },
+    "non_ai_equivalent_or_opt_out": {
+      "count": 107,
+      "share": 0.142098
+    },
+    "explicit_stop_condition": {
+      "count": 250,
+      "share": 0.332005
+    },
+    "rollback_return_or_restore": {
+      "count": 360,
+      "share": 0.478088
+    },
+    "saturated_governance_language": {
+      "count": 753,
+      "share": 1
+    },
+    "rare_combination": {
+      "count": 66,
+      "share": 0.087649
+    }
+  },
+  "track_distribution": {
+    "accessibility_inclusion": 5,
+    "community_public_service": 33,
+    "ecology_low_carbon": 27,
+    "governance_verification": 169,
+    "industry_testbed": 7,
+    "mixed_or_unclassified": 101,
+    "mobility_logistics": 33,
+    "spatial_renewal": 140,
+    "talent_open_innovation": 238
+  },
+  "findings": {
+    "rarest_measured_feature": "rare_combination",
+    "rare_combination_definition": "controlled test + human review + non-AI equivalent/opt-out + rollback/return/restore",
+    "governance_language_is_saturated": true
+  },
+  "failures": [],
+  "excluded": []
+}

@@ -242,6 +242,322 @@
       "confidence": "high",
       "assumptions": []
     },
+    "x_checkpoint_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(TEST_RELEASE_USE_station_gates)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "machine_readable_x_receipt_protocol_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/x-receipt.schema.json"
+      ],
+      "formula": "count(versioned_x_receipt_schemas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "sc03_tabletop_rehearsal_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/sc03-tabletop-evidence.json"
+      ],
+      "formula": "count(persisted_synthetic_tabletop_runs)",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "Synthetic tabletop evidence only; no field pilot has been authorised or run."
+    },
+    "sc03_synthetic_fixture_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/sc03-tabletop-evidence.json"
+      ],
+      "formula": "count(executed_synthetic_fixtures)",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "Fixtures test protocol logic, not real-world robotic safety performance."
+    },
+    "cultural_route_stop_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/x-cultural-route.json"
+      ],
+      "formula": "count(cultural_route_stops)",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "Concept route stops; final positions require official geometry and field audit."
+    },
+    "cultural_narrative_era_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/x-cultural-route.json"
+      ],
+      "formula": "count(distinct_narrative_eras)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "annual_operating_season_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/x-operations-cycle.json"
+      ],
+      "formula": "count(annual_operating_seasons)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "annual_public_decision_register_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count_per_year",
+      "source_files": [
+        "visual/assets/x-operations-cycle.json"
+      ],
+      "formula": "required_public_continue_revise_stop_registers_per_year",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "Proposed operating target, not evidence of an existing annual programme."
+    },
+    "lived_journey_step_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/lived-lifecycle.json"
+      ],
+      "formula": "count(composite_persona_day_journey_steps)",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "Synthetic design-review journey, not observation of a real resident."
+    },
+    "handover_ticket_type_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/lived-lifecycle.json"
+      ],
+      "formula": "count(TEST_RELEASE_USE_handover_ticket_types)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ticket_hash_chain_target_percent": {
+      "status": "known",
+      "value": 100,
+      "unit": "percent",
+      "source_files": [
+        "visual/assets/lived-lifecycle.json"
+      ],
+      "formula": "required_linked_upstream_ticket_hashes / required_handover_tickets * 100",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "Protocol acceptance target, not measured operational performance."
+    },
+    "minimum_pilot_duration_days": {
+      "status": "known",
+      "value": 14,
+      "unit": "days",
+      "source_files": [
+        "visual/assets/lived-lifecycle.json"
+      ],
+      "formula": "proposed_bounded_pilot_decision_window",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "Proposed minimum-pilot protocol; field operation remains unauthorised and unrun."
+    },
+    "product_lifecycle_event_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/lived-lifecycle.json"
+      ],
+      "formula": "count(synthetic_product_lifecycle_events)",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "Synthetic lifecycle events for design review."
+    },
+    "failure_case_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/lived-lifecycle.json"
+      ],
+      "formula": "count(technical_rights_public_use_failure_cases)",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "Designed failure cases, not claims of real incidents."
+    },
+    "anonymous_complaint_receipt_target_minutes": {
+      "status": "known",
+      "value": 5,
+      "unit": "minutes",
+      "source_files": [
+        "visual/assets/lived-lifecycle.json"
+      ],
+      "formula": "proposed_maximum_time_to_issue_anonymous_paper_receipt",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "Proposed service target pending an authorised operator and field test."
+    },
+    "x_census_formal_submission_count": {
+      "status": "known",
+      "value": 753,
+      "unit": "count",
+      "source_files": ["visual/assets/x-census.json"],
+      "formula": "count(submissions with proposal.md + agent.json + ready_for_review + formal at recorded git SHA)",
+      "confidence": "high",
+      "assumptions": ["A-CENSUS-001"],
+      "precision_note": "Reproducible repository count at the recorded git SHA; not a count of competition quality or implementation."
+    },
+    "x_census_controlled_test_count": {
+      "status": "known",
+      "value": 721,
+      "unit": "count",
+      "source_files": ["visual/assets/x-census.json", "visual/assets/x-census-details-index.json"],
+      "formula": "count(eligible proposal.md matching disclosed controlled-test rules)",
+      "confidence": "high",
+      "assumptions": ["A-CENSUS-001"],
+      "precision_note": "Keyword-classification result; false positives and negatives remain possible."
+    },
+    "x_census_human_review_count": {
+      "status": "known",
+      "value": 736,
+      "unit": "count",
+      "source_files": ["visual/assets/x-census.json", "visual/assets/x-census-details-index.json"],
+      "formula": "count(eligible proposal.md matching disclosed human-review or takeover rules)",
+      "confidence": "high",
+      "assumptions": ["A-CENSUS-001"],
+      "precision_note": "Keyword-classification result; generic agent.json disclosure does not set this flag."
+    },
+    "x_census_non_ai_opt_out_count": {
+      "status": "known",
+      "value": 107,
+      "unit": "count",
+      "source_files": ["visual/assets/x-census.json", "visual/assets/x-census-details-index.json"],
+      "formula": "count(eligible proposal.md matching disclosed non-AI equivalent or opt-out rules)",
+      "confidence": "high",
+      "assumptions": ["A-CENSUS-001"],
+      "precision_note": "Text presence does not prove service quality, parity or implementation."
+    },
+    "x_census_explicit_stop_count": {
+      "status": "known",
+      "value": 250,
+      "unit": "count",
+      "source_files": ["visual/assets/x-census.json", "visual/assets/x-census-details-index.json"],
+      "formula": "count(eligible proposal.md matching disclosed explicit-stop rules)",
+      "confidence": "high",
+      "assumptions": ["A-CENSUS-001"],
+      "precision_note": "Keyword-classification result, not an assessment of enforceability."
+    },
+    "x_census_rollback_return_count": {
+      "status": "known",
+      "value": 360,
+      "unit": "count",
+      "source_files": ["visual/assets/x-census.json", "visual/assets/x-census-details-index.json"],
+      "formula": "count(eligible proposal.md matching disclosed rollback, return or restoration rules)",
+      "confidence": "high",
+      "assumptions": ["A-CENSUS-001"],
+      "precision_note": "Keyword-classification result, not an assessment of operational completeness."
+    },
+    "x_census_governance_language_count": {
+      "status": "known",
+      "value": 753,
+      "unit": "count",
+      "source_files": ["visual/assets/x-census.json", "visual/assets/x-census-details-index.json"],
+      "formula": "count(eligible proposal.md matching disclosed saturated-governance-language rules)",
+      "confidence": "high",
+      "assumptions": ["A-CENSUS-001"],
+      "precision_note": "Used to reject a false rarity claim; it is not a quality judgment."
+    },
+    "x_census_rare_combination_count": {
+      "status": "known",
+      "value": 66,
+      "unit": "count",
+      "source_files": ["visual/assets/x-census.json", "visual/assets/x-census-details-index.json"],
+      "formula": "count(TEST and human decision and public non-AI/opt-out and rollback/return)",
+      "confidence": "high",
+      "assumptions": ["A-CENSUS-001"],
+      "precision_note": "Reproducible text combination at the recorded git SHA; does not prove conceptual equivalence or implementation."
+    },
+    "x_lifecycle_test_case_count": {
+      "status": "known",
+      "value": 24,
+      "unit": "count",
+      "source_files": ["visual/assets/x-lifecycle-test-results.json"],
+      "formula": "count(fixed deterministic lifecycle fixtures)",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "Protocol test cases only; not product, site or safety testing."
+    },
+    "x_lifecycle_negative_test_count": {
+      "status": "known",
+      "value": 22,
+      "unit": "count",
+      "source_files": ["visual/assets/x-lifecycle-test-results.json"],
+      "formula": "count(fixtures expected to be rejected)",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "Negative validator fixtures, not real incidents."
+    },
+    "x_lifecycle_pass_count": {
+      "status": "known",
+      "value": 24,
+      "unit": "count",
+      "source_files": ["visual/assets/x-lifecycle-test-results.json"],
+      "formula": "count(fixtures whose actual accept/reject result equals expected result)",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "PASS means deterministic rule conformance only."
+    },
+    "station_topology_check_count": {
+      "status": "known",
+      "value": 23,
+      "unit": "count",
+      "source_files": ["visual/assets/station-topology-results.json"],
+      "formula": "count(deterministic relative-topology checks)",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "Concept graph checks without site dimensions or code-compliance claims."
+    },
+    "station_topology_pass_count": {
+      "status": "known",
+      "value": 23,
+      "unit": "count",
+      "source_files": ["visual/assets/station-topology-results.json"],
+      "formula": "count(relative-topology checks with result=pass)",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "PASS applies to checked conceptual relations only."
+    },
+    "railway_translation_principle_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": ["visual/assets/railway-operating-translation.json"],
+      "formula": "count(sourced railway operating and Jing-Zhang translation principles)",
+      "confidence": "high",
+      "assumptions": ["A-RAIL-TRANSLATION-001"],
+      "precision_note": "Design translations only; not railway operating rules for this site."
+    },
     "floor_area_ratio": {
       "status": "unknown",
       "value": null,

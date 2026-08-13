@@ -1,0 +1,2150 @@
+{
+ "schema_version": "0.1.0",
+ "simulation_type": "offline_protocol_replay",
+ "status": "synthetic_only",
+ "task_count": 80,
+ "negative_branch_count": 55,
+ "rule_count": 10,
+ "rules": {
+  "R1_one_token_per_line": "同一时刻线上只允许一枚令牌；令牌未归还前不得再发。",
+  "R2_named_operator": "每次预订必须有具名运营方，匿名申请不受理。",
+  "R3_declared_data_boundary": "每张场景卡必须声明数据边界；无边界不准入。",
+  "R4_human_review_uncancellable": "人工复核点不可被自动化取消。",
+  "R5_window_return": "运行窗口结束必须归还公共使用；逾期触发升级处置。",
+  "R6_one_token_one_section": "一枚令牌只授权一个区间；跨区间需拆分预订。",
+  "R7_step_free_continuity": "任何布设不得中断无障碍连续通路，违者停摆。",
+  "R8_non_digital_equivalence": "数字服务运行期间必须保留非数字等效通道，缺失即暂停。",
+  "R9_boundary_violation_revokes": "越出声明数据边界采集，令牌收回、场景暂停。",
+  "R10_in_band_placement": "场景节点必须位于其声明区间范围内（场地边界内、该区间纬度带）。"
+ },
+ "scope_note_zh": "对本包自述令牌协议的离线合成复演：每张场景卡各作 1 次合规准入与 4 个失败分支检查，每个区间各作 1 次完整令牌周期，另有 8 条协议状态机分支与 6 项几何拓扑校验。负分支记 rule_check_success 表示规则正确拒绝了该尝试。全部检查由确定性脚本对包内数据实际执行，不构成现场证据、安全证明或任何运营批准。",
+ "scope_note_en": "Offline synthetic replay of this package's own token protocol: each scenario card is checked once for qualified admission and against four failure branches; each section runs one full token cycle; eight further state-machine branches and six geometry-topology checks complete the set. A negative branch records rule_check_success when the rule correctly refuses the attempt. All checks are executed by a deterministic script against the package's own data; they are not field evidence, not a safety proof, and not an approval of any operation.",
+ "tasks": [
+  {
+   "task_id": "SCEN-01::qualified",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "qualified",
+   "title_zh": "可预约轨道段：合规准入通过",
+   "title_en": "Bookable track segment: qualified admission passes",
+   "inputs": {
+    "scenario": "SCEN-01",
+    "band": "S3",
+    "data": "geometry/constraints.geojson"
+   },
+   "expected": "admission granted: declared boundary + human review + in-band placement",
+   "observed": {
+    "data_boundary": true,
+    "human_review_required": true,
+    "in_band": true
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "7da86d476e8026870027d8fa3be43ede5462f73d7e9d9a4602ed83bddfdd8e53"
+  },
+  {
+   "task_id": "SCEN-02::qualified",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "qualified",
+   "title_zh": "低速机器人配送验证：合规准入通过",
+   "title_en": "Low-speed robot delivery validation: qualified admission passes",
+   "inputs": {
+    "scenario": "SCEN-02",
+    "band": "S3",
+    "data": "geometry/constraints.geojson"
+   },
+   "expected": "admission granted: declared boundary + human review + in-band placement",
+   "observed": {
+    "data_boundary": true,
+    "human_review_required": true,
+    "in_band": true
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "6acbe1f5d7440694067774dd397ef4f28812cdef5cf95d32864926ad3782a505"
+  },
+  {
+   "task_id": "SCEN-03::qualified",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "qualified",
+   "title_zh": "自主慢行体验评估：合规准入通过",
+   "title_en": "Autonomous slow-mobility assessment: qualified admission passes",
+   "inputs": {
+    "scenario": "SCEN-03",
+    "band": "S3",
+    "data": "geometry/constraints.geojson"
+   },
+   "expected": "admission granted: declared boundary + human review + in-band placement",
+   "observed": {
+    "data_boundary": true,
+    "human_review_required": true,
+    "in_band": true
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "c956409cf446adf0c729986153ecf65a26b1b5946f259422400e96f060d7d759"
+  },
+  {
+   "task_id": "SCEN-04::qualified",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "qualified",
+   "title_zh": "模型安全红队沙盒：合规准入通过",
+   "title_en": "Model safety red-team sandbox: qualified admission passes",
+   "inputs": {
+    "scenario": "SCEN-04",
+    "band": "S6",
+    "data": "geometry/constraints.geojson"
+   },
+   "expected": "admission granted: declared boundary + human review + in-band placement",
+   "observed": {
+    "data_boundary": true,
+    "human_review_required": true,
+    "in_band": true
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "835af790590f1381e9e5c945e074bd5e0bf5a9f96bacaecfbd6acee7961fc9ba"
+  },
+  {
+   "task_id": "SCEN-05::qualified",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "qualified",
+   "title_zh": "开源发布厅：合规准入通过",
+   "title_en": "Open-source release hall: qualified admission passes",
+   "inputs": {
+    "scenario": "SCEN-05",
+    "band": "S4",
+    "data": "geometry/constraints.geojson"
+   },
+   "expected": "admission granted: declared boundary + human review + in-band placement",
+   "observed": {
+    "data_boundary": true,
+    "human_review_required": true,
+    "in_band": true
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "ff5e94f17d8dff703c9c27f36f83190f6f72e3d1469a5db86a19269e7b73816e"
+  },
+  {
+   "task_id": "SCEN-06::qualified",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "qualified",
+   "title_zh": "沿线AI文化导览：合规准入通过",
+   "title_en": "AI cultural guide along the line: qualified admission passes",
+   "inputs": {
+    "scenario": "SCEN-06",
+    "band": "S5",
+    "data": "geometry/constraints.geojson"
+   },
+   "expected": "admission granted: declared boundary + human review + in-band placement",
+   "observed": {
+    "data_boundary": true,
+    "human_review_required": true,
+    "in_band": true
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "e2ab6e4aa772a91efd8cd9f15d47b167c91b2145d55dace358dd2406650b31de"
+  },
+  {
+   "task_id": "SCEN-07::qualified",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "qualified",
+   "title_zh": "AI+医疗健康服务导航点：合规准入通过",
+   "title_en": "AI+ health service navigation point: qualified admission passes",
+   "inputs": {
+    "scenario": "SCEN-07",
+    "band": "S2",
+    "data": "geometry/constraints.geojson"
+   },
+   "expected": "admission granted: declared boundary + human review + in-band placement",
+   "observed": {
+    "data_boundary": true,
+    "human_review_required": true,
+    "in_band": true
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "6f60ef8853524cb6a5646c3924e9ffa1ebf4870a586fd2fd288671b63e2719e5"
+  },
+  {
+   "task_id": "SCEN-08::qualified",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "qualified",
+   "title_zh": "企业服务Copilot窗口：合规准入通过",
+   "title_en": "Enterprise service copilot counter: qualified admission passes",
+   "inputs": {
+    "scenario": "SCEN-08",
+    "band": "S5",
+    "data": "geometry/constraints.geojson"
+   },
+   "expected": "admission granted: declared boundary + human review + in-band placement",
+   "observed": {
+    "data_boundary": true,
+    "human_review_required": true,
+    "in_band": true
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "65ee9e4c83df9c32d7cebfad96bd49645d88565d9bc3d99c96180ceebeea8b83"
+  },
+  {
+   "task_id": "SCEN-09::qualified",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "qualified",
+   "title_zh": "数据要素会客厅：合规准入通过",
+   "title_en": "Data-element service house: qualified admission passes",
+   "inputs": {
+    "scenario": "SCEN-09",
+    "band": "S1",
+    "data": "geometry/constraints.geojson"
+   },
+   "expected": "admission granted: declared boundary + human review + in-band placement",
+   "observed": {
+    "data_boundary": true,
+    "human_review_required": true,
+    "in_band": true
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "b543b885e015c9b7c3643460d303bcdaeb83d7d4bcad176307ffb02d51119b8e"
+  },
+  {
+   "task_id": "SCEN-10::qualified",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "qualified",
+   "title_zh": "智能原生消费街区：合规准入通过",
+   "title_en": "Intelligent-native retail street: qualified admission passes",
+   "inputs": {
+    "scenario": "SCEN-10",
+    "band": "S1",
+    "data": "geometry/constraints.geojson"
+   },
+   "expected": "admission granted: declared boundary + human review + in-band placement",
+   "observed": {
+    "data_boundary": true,
+    "human_review_required": true,
+    "in_band": true
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "2b885b126ee955e13ea2a6d5f345abe5169060f1c9f0749852ed3241259ba341"
+  },
+  {
+   "task_id": "SCEN-11::qualified",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "qualified",
+   "title_zh": "公共安全与活动运营复核：合规准入通过",
+   "title_en": "Public safety and event operations review: qualified admission passes",
+   "inputs": {
+    "scenario": "SCEN-11",
+    "band": "S2",
+    "data": "geometry/constraints.geojson"
+   },
+   "expected": "admission granted: declared boundary + human review + in-band placement",
+   "observed": {
+    "data_boundary": true,
+    "human_review_required": true,
+    "in_band": true
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "42aa651f2a991cbb1462a0719602d1704d888bb504b8279e871744870518510b"
+  },
+  {
+   "task_id": "SCEN-12::qualified",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "qualified",
+   "title_zh": "全球AI活动周步行路线起点：合规准入通过",
+   "title_en": "Global AI Week route start: qualified admission passes",
+   "inputs": {
+    "scenario": "SCEN-12",
+    "band": "S4",
+    "data": "geometry/constraints.geojson"
+   },
+   "expected": "admission granted: declared boundary + human review + in-band placement",
+   "observed": {
+    "data_boundary": true,
+    "human_review_required": true,
+    "in_band": true
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "bddc48c2b6e45311b64dd5998b8bfd5ba8c81cc484cc930f6bb5fce475264ce1"
+  },
+  {
+   "task_id": "SCEN-01::no_operator",
+   "family": "scenario_admission",
+   "rule_id": "R2_named_operator",
+   "variant": "negative",
+   "title_zh": "可预约轨道段：匿名申请必须被拒",
+   "title_en": "Bookable track segment: anonymous booking must be refused",
+   "inputs": {
+    "scenario": "SCEN-01",
+    "branch": "no_operator"
+   },
+   "expected": "refused by R2_named_operator",
+   "observed": {
+    "granted": false,
+    "rule": "R2_named_operator"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "1b50f9f5948756e81c7170e026d1ddab5fd192dab856c6c8e3dadea62fb6631c"
+  },
+  {
+   "task_id": "SCEN-01::no_data_boundary",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "negative",
+   "title_zh": "可预约轨道段：无数据边界必须被拒",
+   "title_en": "Bookable track segment: missing data boundary must be refused",
+   "inputs": {
+    "scenario": "SCEN-01",
+    "branch": "no_data_boundary"
+   },
+   "expected": "refused by R3_declared_data_boundary",
+   "observed": {
+    "granted": false,
+    "rule": "R3_declared_data_boundary"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "31f4753eaec930a6a50329f2825a3bd8d4449d3bff0e84c4a159935dfefb23e2"
+  },
+  {
+   "task_id": "SCEN-01::out_of_band",
+   "family": "scenario_admission",
+   "rule_id": "R10_in_band_placement",
+   "variant": "negative",
+   "title_zh": "可预约轨道段：越出声明区间必须被拒",
+   "title_en": "Bookable track segment: placement outside the declared section must be refused",
+   "inputs": {
+    "scenario": "SCEN-01",
+    "branch": "out_of_band"
+   },
+   "expected": "refused by R10_in_band_placement",
+   "observed": {
+    "granted": false,
+    "rule": "R10_in_band_placement"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "bdc9cfa25bd05d854da349dae912c38c4811f20998e61ec6dc26a148d36206af"
+  },
+  {
+   "task_id": "SCEN-01::auto_cancel_review",
+   "family": "scenario_admission",
+   "rule_id": "R4_human_review_uncancellable",
+   "variant": "negative",
+   "title_zh": "可预约轨道段：自动取消人工复核必须被拒",
+   "title_en": "Bookable track segment: automated cancellation of human review must be rejected",
+   "inputs": {
+    "scenario": "SCEN-01",
+    "branch": "auto_cancel_review"
+   },
+   "expected": "refused by R4_human_review_uncancellable",
+   "observed": {
+    "granted": false,
+    "rule": "R4_human_review_uncancellable",
+    "action": "cancel_rejected"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "fc5cebb18830478d1ab0fc0ab7d005db2a1c24b2b725592d3e7b8deeb9b22575"
+  },
+  {
+   "task_id": "SCEN-02::no_operator",
+   "family": "scenario_admission",
+   "rule_id": "R2_named_operator",
+   "variant": "negative",
+   "title_zh": "低速机器人配送验证：匿名申请必须被拒",
+   "title_en": "Low-speed robot delivery validation: anonymous booking must be refused",
+   "inputs": {
+    "scenario": "SCEN-02",
+    "branch": "no_operator"
+   },
+   "expected": "refused by R2_named_operator",
+   "observed": {
+    "granted": false,
+    "rule": "R2_named_operator"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "91cf2ef31b7da7fec9f051426c022ae15769e3de22c8bbb3757cfdbb56a6b7f3"
+  },
+  {
+   "task_id": "SCEN-02::no_data_boundary",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "negative",
+   "title_zh": "低速机器人配送验证：无数据边界必须被拒",
+   "title_en": "Low-speed robot delivery validation: missing data boundary must be refused",
+   "inputs": {
+    "scenario": "SCEN-02",
+    "branch": "no_data_boundary"
+   },
+   "expected": "refused by R3_declared_data_boundary",
+   "observed": {
+    "granted": false,
+    "rule": "R3_declared_data_boundary"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "311493d14f0fd48e016cefb94b23b23b84f162d8626dba91884f965bc39f529f"
+  },
+  {
+   "task_id": "SCEN-02::out_of_band",
+   "family": "scenario_admission",
+   "rule_id": "R10_in_band_placement",
+   "variant": "negative",
+   "title_zh": "低速机器人配送验证：越出声明区间必须被拒",
+   "title_en": "Low-speed robot delivery validation: placement outside the declared section must be refused",
+   "inputs": {
+    "scenario": "SCEN-02",
+    "branch": "out_of_band"
+   },
+   "expected": "refused by R10_in_band_placement",
+   "observed": {
+    "granted": false,
+    "rule": "R10_in_band_placement"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "3f39992f8394c1fcc88ed96fe24eeacd4092c74e832313c898c67f6ce0886746"
+  },
+  {
+   "task_id": "SCEN-02::auto_cancel_review",
+   "family": "scenario_admission",
+   "rule_id": "R4_human_review_uncancellable",
+   "variant": "negative",
+   "title_zh": "低速机器人配送验证：自动取消人工复核必须被拒",
+   "title_en": "Low-speed robot delivery validation: automated cancellation of human review must be rejected",
+   "inputs": {
+    "scenario": "SCEN-02",
+    "branch": "auto_cancel_review"
+   },
+   "expected": "refused by R4_human_review_uncancellable",
+   "observed": {
+    "granted": false,
+    "rule": "R4_human_review_uncancellable",
+    "action": "cancel_rejected"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "571b30fecf62c22e53402dca98fdd4ec29422f9500f173ea638ece1ef3023e6c"
+  },
+  {
+   "task_id": "SCEN-03::no_operator",
+   "family": "scenario_admission",
+   "rule_id": "R2_named_operator",
+   "variant": "negative",
+   "title_zh": "自主慢行体验评估：匿名申请必须被拒",
+   "title_en": "Autonomous slow-mobility assessment: anonymous booking must be refused",
+   "inputs": {
+    "scenario": "SCEN-03",
+    "branch": "no_operator"
+   },
+   "expected": "refused by R2_named_operator",
+   "observed": {
+    "granted": false,
+    "rule": "R2_named_operator"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "3ee9e37e46f77020c47c8cc09fa0053acabedb53ac657d6bc45d294224e60447"
+  },
+  {
+   "task_id": "SCEN-03::no_data_boundary",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "negative",
+   "title_zh": "自主慢行体验评估：无数据边界必须被拒",
+   "title_en": "Autonomous slow-mobility assessment: missing data boundary must be refused",
+   "inputs": {
+    "scenario": "SCEN-03",
+    "branch": "no_data_boundary"
+   },
+   "expected": "refused by R3_declared_data_boundary",
+   "observed": {
+    "granted": false,
+    "rule": "R3_declared_data_boundary"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "0dfcd5b08f4fcbc5f23dd02f43d26f81a921fc2e57556b07009331c003721d90"
+  },
+  {
+   "task_id": "SCEN-03::out_of_band",
+   "family": "scenario_admission",
+   "rule_id": "R10_in_band_placement",
+   "variant": "negative",
+   "title_zh": "自主慢行体验评估：越出声明区间必须被拒",
+   "title_en": "Autonomous slow-mobility assessment: placement outside the declared section must be refused",
+   "inputs": {
+    "scenario": "SCEN-03",
+    "branch": "out_of_band"
+   },
+   "expected": "refused by R10_in_band_placement",
+   "observed": {
+    "granted": false,
+    "rule": "R10_in_band_placement"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "5ca29172b78cda06e2ca6a5bb7cded65fb97a123e7e570bcda5d2d19101cd412"
+  },
+  {
+   "task_id": "SCEN-03::auto_cancel_review",
+   "family": "scenario_admission",
+   "rule_id": "R4_human_review_uncancellable",
+   "variant": "negative",
+   "title_zh": "自主慢行体验评估：自动取消人工复核必须被拒",
+   "title_en": "Autonomous slow-mobility assessment: automated cancellation of human review must be rejected",
+   "inputs": {
+    "scenario": "SCEN-03",
+    "branch": "auto_cancel_review"
+   },
+   "expected": "refused by R4_human_review_uncancellable",
+   "observed": {
+    "granted": false,
+    "rule": "R4_human_review_uncancellable",
+    "action": "cancel_rejected"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "c422018ba45e82202292b6c32b4f0bff9a037ef076824ef154a6a996c1bbe664"
+  },
+  {
+   "task_id": "SCEN-04::no_operator",
+   "family": "scenario_admission",
+   "rule_id": "R2_named_operator",
+   "variant": "negative",
+   "title_zh": "模型安全红队沙盒：匿名申请必须被拒",
+   "title_en": "Model safety red-team sandbox: anonymous booking must be refused",
+   "inputs": {
+    "scenario": "SCEN-04",
+    "branch": "no_operator"
+   },
+   "expected": "refused by R2_named_operator",
+   "observed": {
+    "granted": false,
+    "rule": "R2_named_operator"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "17ef29e61ced01402b2b263add340bcae610ec2bb39cee8622d823a9a8761cf6"
+  },
+  {
+   "task_id": "SCEN-04::no_data_boundary",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "negative",
+   "title_zh": "模型安全红队沙盒：无数据边界必须被拒",
+   "title_en": "Model safety red-team sandbox: missing data boundary must be refused",
+   "inputs": {
+    "scenario": "SCEN-04",
+    "branch": "no_data_boundary"
+   },
+   "expected": "refused by R3_declared_data_boundary",
+   "observed": {
+    "granted": false,
+    "rule": "R3_declared_data_boundary"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "fd985b8930a3291c571161ff5d87de6ac759d2b5bb38dc72b0c2cd7a132c6bcb"
+  },
+  {
+   "task_id": "SCEN-04::out_of_band",
+   "family": "scenario_admission",
+   "rule_id": "R10_in_band_placement",
+   "variant": "negative",
+   "title_zh": "模型安全红队沙盒：越出声明区间必须被拒",
+   "title_en": "Model safety red-team sandbox: placement outside the declared section must be refused",
+   "inputs": {
+    "scenario": "SCEN-04",
+    "branch": "out_of_band"
+   },
+   "expected": "refused by R10_in_band_placement",
+   "observed": {
+    "granted": false,
+    "rule": "R10_in_band_placement"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "f757bfaf309e5d992a947bf5f9de45ee5c8bc4140fa69bc97dc64d7d3db5cb2c"
+  },
+  {
+   "task_id": "SCEN-04::auto_cancel_review",
+   "family": "scenario_admission",
+   "rule_id": "R4_human_review_uncancellable",
+   "variant": "negative",
+   "title_zh": "模型安全红队沙盒：自动取消人工复核必须被拒",
+   "title_en": "Model safety red-team sandbox: automated cancellation of human review must be rejected",
+   "inputs": {
+    "scenario": "SCEN-04",
+    "branch": "auto_cancel_review"
+   },
+   "expected": "refused by R4_human_review_uncancellable",
+   "observed": {
+    "granted": false,
+    "rule": "R4_human_review_uncancellable",
+    "action": "cancel_rejected"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "3fe5dff837de6a5c8f5df0b51fb3b782d2412b843714217c8ccb11ad954ec828"
+  },
+  {
+   "task_id": "SCEN-05::no_operator",
+   "family": "scenario_admission",
+   "rule_id": "R2_named_operator",
+   "variant": "negative",
+   "title_zh": "开源发布厅：匿名申请必须被拒",
+   "title_en": "Open-source release hall: anonymous booking must be refused",
+   "inputs": {
+    "scenario": "SCEN-05",
+    "branch": "no_operator"
+   },
+   "expected": "refused by R2_named_operator",
+   "observed": {
+    "granted": false,
+    "rule": "R2_named_operator"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "d3fde21593c60d7e5e874107d7ed418db453099c4de4832a54930d53fa271a4d"
+  },
+  {
+   "task_id": "SCEN-05::no_data_boundary",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "negative",
+   "title_zh": "开源发布厅：无数据边界必须被拒",
+   "title_en": "Open-source release hall: missing data boundary must be refused",
+   "inputs": {
+    "scenario": "SCEN-05",
+    "branch": "no_data_boundary"
+   },
+   "expected": "refused by R3_declared_data_boundary",
+   "observed": {
+    "granted": false,
+    "rule": "R3_declared_data_boundary"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "9ce8d9445e5b0714248b926b2de714347a8968164d190d67f2fab821c8b1a810"
+  },
+  {
+   "task_id": "SCEN-05::out_of_band",
+   "family": "scenario_admission",
+   "rule_id": "R10_in_band_placement",
+   "variant": "negative",
+   "title_zh": "开源发布厅：越出声明区间必须被拒",
+   "title_en": "Open-source release hall: placement outside the declared section must be refused",
+   "inputs": {
+    "scenario": "SCEN-05",
+    "branch": "out_of_band"
+   },
+   "expected": "refused by R10_in_band_placement",
+   "observed": {
+    "granted": false,
+    "rule": "R10_in_band_placement"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "97a774a973760d775a04f24e3bf7d66eef3978371269bdf8081d99013ae02fa6"
+  },
+  {
+   "task_id": "SCEN-05::auto_cancel_review",
+   "family": "scenario_admission",
+   "rule_id": "R4_human_review_uncancellable",
+   "variant": "negative",
+   "title_zh": "开源发布厅：自动取消人工复核必须被拒",
+   "title_en": "Open-source release hall: automated cancellation of human review must be rejected",
+   "inputs": {
+    "scenario": "SCEN-05",
+    "branch": "auto_cancel_review"
+   },
+   "expected": "refused by R4_human_review_uncancellable",
+   "observed": {
+    "granted": false,
+    "rule": "R4_human_review_uncancellable",
+    "action": "cancel_rejected"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "0ba47ab0ed65630b9d6cf3534d397ba0c03afed64b1d6ee3cf4e88d6226dda3c"
+  },
+  {
+   "task_id": "SCEN-06::no_operator",
+   "family": "scenario_admission",
+   "rule_id": "R2_named_operator",
+   "variant": "negative",
+   "title_zh": "沿线AI文化导览：匿名申请必须被拒",
+   "title_en": "AI cultural guide along the line: anonymous booking must be refused",
+   "inputs": {
+    "scenario": "SCEN-06",
+    "branch": "no_operator"
+   },
+   "expected": "refused by R2_named_operator",
+   "observed": {
+    "granted": false,
+    "rule": "R2_named_operator"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "56bd1904daf8b182ecdfc7323b06bb323cf212f942c8dabbaa528ab4441f556c"
+  },
+  {
+   "task_id": "SCEN-06::no_data_boundary",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "negative",
+   "title_zh": "沿线AI文化导览：无数据边界必须被拒",
+   "title_en": "AI cultural guide along the line: missing data boundary must be refused",
+   "inputs": {
+    "scenario": "SCEN-06",
+    "branch": "no_data_boundary"
+   },
+   "expected": "refused by R3_declared_data_boundary",
+   "observed": {
+    "granted": false,
+    "rule": "R3_declared_data_boundary"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "ce1a75c5063d2661d942825ef2ecfd2410315c3ec7691252eb048bd6a67c5e23"
+  },
+  {
+   "task_id": "SCEN-06::out_of_band",
+   "family": "scenario_admission",
+   "rule_id": "R10_in_band_placement",
+   "variant": "negative",
+   "title_zh": "沿线AI文化导览：越出声明区间必须被拒",
+   "title_en": "AI cultural guide along the line: placement outside the declared section must be refused",
+   "inputs": {
+    "scenario": "SCEN-06",
+    "branch": "out_of_band"
+   },
+   "expected": "refused by R10_in_band_placement",
+   "observed": {
+    "granted": false,
+    "rule": "R10_in_band_placement"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "2a6bad1450bdfe092d6cd1916bfa38601ad1072ae1d27bb751dddce5e1dfe32d"
+  },
+  {
+   "task_id": "SCEN-06::auto_cancel_review",
+   "family": "scenario_admission",
+   "rule_id": "R4_human_review_uncancellable",
+   "variant": "negative",
+   "title_zh": "沿线AI文化导览：自动取消人工复核必须被拒",
+   "title_en": "AI cultural guide along the line: automated cancellation of human review must be rejected",
+   "inputs": {
+    "scenario": "SCEN-06",
+    "branch": "auto_cancel_review"
+   },
+   "expected": "refused by R4_human_review_uncancellable",
+   "observed": {
+    "granted": false,
+    "rule": "R4_human_review_uncancellable",
+    "action": "cancel_rejected"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "ec2a1d936ad7a26c4714168f644f214a206528ae4af56248a389f493814799e3"
+  },
+  {
+   "task_id": "SCEN-07::no_operator",
+   "family": "scenario_admission",
+   "rule_id": "R2_named_operator",
+   "variant": "negative",
+   "title_zh": "AI+医疗健康服务导航点：匿名申请必须被拒",
+   "title_en": "AI+ health service navigation point: anonymous booking must be refused",
+   "inputs": {
+    "scenario": "SCEN-07",
+    "branch": "no_operator"
+   },
+   "expected": "refused by R2_named_operator",
+   "observed": {
+    "granted": false,
+    "rule": "R2_named_operator"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "b5fe5661115422bcd71e8243c9acf86046c79164933f895b07d37dd11ae1c4b8"
+  },
+  {
+   "task_id": "SCEN-07::no_data_boundary",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "negative",
+   "title_zh": "AI+医疗健康服务导航点：无数据边界必须被拒",
+   "title_en": "AI+ health service navigation point: missing data boundary must be refused",
+   "inputs": {
+    "scenario": "SCEN-07",
+    "branch": "no_data_boundary"
+   },
+   "expected": "refused by R3_declared_data_boundary",
+   "observed": {
+    "granted": false,
+    "rule": "R3_declared_data_boundary"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "0cba8261c3b4fcd3c7713acf45ced726518910156aa7a48822bb1e7e0ef10df1"
+  },
+  {
+   "task_id": "SCEN-07::out_of_band",
+   "family": "scenario_admission",
+   "rule_id": "R10_in_band_placement",
+   "variant": "negative",
+   "title_zh": "AI+医疗健康服务导航点：越出声明区间必须被拒",
+   "title_en": "AI+ health service navigation point: placement outside the declared section must be refused",
+   "inputs": {
+    "scenario": "SCEN-07",
+    "branch": "out_of_band"
+   },
+   "expected": "refused by R10_in_band_placement",
+   "observed": {
+    "granted": false,
+    "rule": "R10_in_band_placement"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "255bbc205eb6920726b75b7f2fb5ad93fc6fca52ce1dc1dcb75ad91f21884b9a"
+  },
+  {
+   "task_id": "SCEN-07::auto_cancel_review",
+   "family": "scenario_admission",
+   "rule_id": "R4_human_review_uncancellable",
+   "variant": "negative",
+   "title_zh": "AI+医疗健康服务导航点：自动取消人工复核必须被拒",
+   "title_en": "AI+ health service navigation point: automated cancellation of human review must be rejected",
+   "inputs": {
+    "scenario": "SCEN-07",
+    "branch": "auto_cancel_review"
+   },
+   "expected": "refused by R4_human_review_uncancellable",
+   "observed": {
+    "granted": false,
+    "rule": "R4_human_review_uncancellable",
+    "action": "cancel_rejected"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "cafbe1506d0077962a20b5d0a313ef088c22d968e8b0129da6044f08112e376f"
+  },
+  {
+   "task_id": "SCEN-08::no_operator",
+   "family": "scenario_admission",
+   "rule_id": "R2_named_operator",
+   "variant": "negative",
+   "title_zh": "企业服务Copilot窗口：匿名申请必须被拒",
+   "title_en": "Enterprise service copilot counter: anonymous booking must be refused",
+   "inputs": {
+    "scenario": "SCEN-08",
+    "branch": "no_operator"
+   },
+   "expected": "refused by R2_named_operator",
+   "observed": {
+    "granted": false,
+    "rule": "R2_named_operator"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "73b7b19af6c1363ee868e70d74295fcb82476f3f5ba2b617c8a6b87c7d013ded"
+  },
+  {
+   "task_id": "SCEN-08::no_data_boundary",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "negative",
+   "title_zh": "企业服务Copilot窗口：无数据边界必须被拒",
+   "title_en": "Enterprise service copilot counter: missing data boundary must be refused",
+   "inputs": {
+    "scenario": "SCEN-08",
+    "branch": "no_data_boundary"
+   },
+   "expected": "refused by R3_declared_data_boundary",
+   "observed": {
+    "granted": false,
+    "rule": "R3_declared_data_boundary"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "444b2b5a094f25ffb43d4eb3e4b70832fee12f2e64f81f4eda99c24efedf63e2"
+  },
+  {
+   "task_id": "SCEN-08::out_of_band",
+   "family": "scenario_admission",
+   "rule_id": "R10_in_band_placement",
+   "variant": "negative",
+   "title_zh": "企业服务Copilot窗口：越出声明区间必须被拒",
+   "title_en": "Enterprise service copilot counter: placement outside the declared section must be refused",
+   "inputs": {
+    "scenario": "SCEN-08",
+    "branch": "out_of_band"
+   },
+   "expected": "refused by R10_in_band_placement",
+   "observed": {
+    "granted": false,
+    "rule": "R10_in_band_placement"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "6ca65988a13fb4019fb2d6825b5c3ddf8fa8f902ecb6847e5719c99985a5e1b2"
+  },
+  {
+   "task_id": "SCEN-08::auto_cancel_review",
+   "family": "scenario_admission",
+   "rule_id": "R4_human_review_uncancellable",
+   "variant": "negative",
+   "title_zh": "企业服务Copilot窗口：自动取消人工复核必须被拒",
+   "title_en": "Enterprise service copilot counter: automated cancellation of human review must be rejected",
+   "inputs": {
+    "scenario": "SCEN-08",
+    "branch": "auto_cancel_review"
+   },
+   "expected": "refused by R4_human_review_uncancellable",
+   "observed": {
+    "granted": false,
+    "rule": "R4_human_review_uncancellable",
+    "action": "cancel_rejected"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "205a334263323a8090ef9634d1ed1bea34cd5503e51c0ac6c81e93256385506b"
+  },
+  {
+   "task_id": "SCEN-09::no_operator",
+   "family": "scenario_admission",
+   "rule_id": "R2_named_operator",
+   "variant": "negative",
+   "title_zh": "数据要素会客厅：匿名申请必须被拒",
+   "title_en": "Data-element service house: anonymous booking must be refused",
+   "inputs": {
+    "scenario": "SCEN-09",
+    "branch": "no_operator"
+   },
+   "expected": "refused by R2_named_operator",
+   "observed": {
+    "granted": false,
+    "rule": "R2_named_operator"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "564617c3ca6b62ce8824776d35cbb4ce85edacb2f32e413f3c1c3df37189fe62"
+  },
+  {
+   "task_id": "SCEN-09::no_data_boundary",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "negative",
+   "title_zh": "数据要素会客厅：无数据边界必须被拒",
+   "title_en": "Data-element service house: missing data boundary must be refused",
+   "inputs": {
+    "scenario": "SCEN-09",
+    "branch": "no_data_boundary"
+   },
+   "expected": "refused by R3_declared_data_boundary",
+   "observed": {
+    "granted": false,
+    "rule": "R3_declared_data_boundary"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "cd052134873dd48b36b28e992fc0140bd701876a99a244c5ffb6d81dc8486d24"
+  },
+  {
+   "task_id": "SCEN-09::out_of_band",
+   "family": "scenario_admission",
+   "rule_id": "R10_in_band_placement",
+   "variant": "negative",
+   "title_zh": "数据要素会客厅：越出声明区间必须被拒",
+   "title_en": "Data-element service house: placement outside the declared section must be refused",
+   "inputs": {
+    "scenario": "SCEN-09",
+    "branch": "out_of_band"
+   },
+   "expected": "refused by R10_in_band_placement",
+   "observed": {
+    "granted": false,
+    "rule": "R10_in_band_placement"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "be0c57d4e7863e600867dee133d1254d9a58ca88e0d74b133a740dae6a656846"
+  },
+  {
+   "task_id": "SCEN-09::auto_cancel_review",
+   "family": "scenario_admission",
+   "rule_id": "R4_human_review_uncancellable",
+   "variant": "negative",
+   "title_zh": "数据要素会客厅：自动取消人工复核必须被拒",
+   "title_en": "Data-element service house: automated cancellation of human review must be rejected",
+   "inputs": {
+    "scenario": "SCEN-09",
+    "branch": "auto_cancel_review"
+   },
+   "expected": "refused by R4_human_review_uncancellable",
+   "observed": {
+    "granted": false,
+    "rule": "R4_human_review_uncancellable",
+    "action": "cancel_rejected"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "cb054c4b8fe32d119c2c160f67c93d33efcc7cd8227fc81090fcccb24ae7c7e6"
+  },
+  {
+   "task_id": "SCEN-10::no_operator",
+   "family": "scenario_admission",
+   "rule_id": "R2_named_operator",
+   "variant": "negative",
+   "title_zh": "智能原生消费街区：匿名申请必须被拒",
+   "title_en": "Intelligent-native retail street: anonymous booking must be refused",
+   "inputs": {
+    "scenario": "SCEN-10",
+    "branch": "no_operator"
+   },
+   "expected": "refused by R2_named_operator",
+   "observed": {
+    "granted": false,
+    "rule": "R2_named_operator"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "b5208dfec3bdb6e7a601d5df1cbfd7a4137df58cd123383ffc91fca2e49aad8e"
+  },
+  {
+   "task_id": "SCEN-10::no_data_boundary",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "negative",
+   "title_zh": "智能原生消费街区：无数据边界必须被拒",
+   "title_en": "Intelligent-native retail street: missing data boundary must be refused",
+   "inputs": {
+    "scenario": "SCEN-10",
+    "branch": "no_data_boundary"
+   },
+   "expected": "refused by R3_declared_data_boundary",
+   "observed": {
+    "granted": false,
+    "rule": "R3_declared_data_boundary"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "183fffbe010701ee962cac4db7aed4bc2dc0fe9a9eb509e8cc6e3c58f64c25ca"
+  },
+  {
+   "task_id": "SCEN-10::out_of_band",
+   "family": "scenario_admission",
+   "rule_id": "R10_in_band_placement",
+   "variant": "negative",
+   "title_zh": "智能原生消费街区：越出声明区间必须被拒",
+   "title_en": "Intelligent-native retail street: placement outside the declared section must be refused",
+   "inputs": {
+    "scenario": "SCEN-10",
+    "branch": "out_of_band"
+   },
+   "expected": "refused by R10_in_band_placement",
+   "observed": {
+    "granted": false,
+    "rule": "R10_in_band_placement"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "8a39512221a94705728252ea42551836667b655eec42150c2b8e92d1e6cda521"
+  },
+  {
+   "task_id": "SCEN-10::auto_cancel_review",
+   "family": "scenario_admission",
+   "rule_id": "R4_human_review_uncancellable",
+   "variant": "negative",
+   "title_zh": "智能原生消费街区：自动取消人工复核必须被拒",
+   "title_en": "Intelligent-native retail street: automated cancellation of human review must be rejected",
+   "inputs": {
+    "scenario": "SCEN-10",
+    "branch": "auto_cancel_review"
+   },
+   "expected": "refused by R4_human_review_uncancellable",
+   "observed": {
+    "granted": false,
+    "rule": "R4_human_review_uncancellable",
+    "action": "cancel_rejected"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "c9f9d45348f7463ff46a1f92455b01ac0bda0ade469ffbb60238c928f1506746"
+  },
+  {
+   "task_id": "SCEN-11::no_operator",
+   "family": "scenario_admission",
+   "rule_id": "R2_named_operator",
+   "variant": "negative",
+   "title_zh": "公共安全与活动运营复核：匿名申请必须被拒",
+   "title_en": "Public safety and event operations review: anonymous booking must be refused",
+   "inputs": {
+    "scenario": "SCEN-11",
+    "branch": "no_operator"
+   },
+   "expected": "refused by R2_named_operator",
+   "observed": {
+    "granted": false,
+    "rule": "R2_named_operator"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "4366fde68d5b6fda63fb6bbb1e0f64ce880e287ecc7c2205769f6a23d3b4a605"
+  },
+  {
+   "task_id": "SCEN-11::no_data_boundary",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "negative",
+   "title_zh": "公共安全与活动运营复核：无数据边界必须被拒",
+   "title_en": "Public safety and event operations review: missing data boundary must be refused",
+   "inputs": {
+    "scenario": "SCEN-11",
+    "branch": "no_data_boundary"
+   },
+   "expected": "refused by R3_declared_data_boundary",
+   "observed": {
+    "granted": false,
+    "rule": "R3_declared_data_boundary"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "0f19be994871231f885b7df1cd342feac4512972d8741c5c44ca39b758c5a6ac"
+  },
+  {
+   "task_id": "SCEN-11::out_of_band",
+   "family": "scenario_admission",
+   "rule_id": "R10_in_band_placement",
+   "variant": "negative",
+   "title_zh": "公共安全与活动运营复核：越出声明区间必须被拒",
+   "title_en": "Public safety and event operations review: placement outside the declared section must be refused",
+   "inputs": {
+    "scenario": "SCEN-11",
+    "branch": "out_of_band"
+   },
+   "expected": "refused by R10_in_band_placement",
+   "observed": {
+    "granted": false,
+    "rule": "R10_in_band_placement"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "813ff99a91074bd395ab0970b886211f763c405c80e3d046d9272c1bde990b86"
+  },
+  {
+   "task_id": "SCEN-11::auto_cancel_review",
+   "family": "scenario_admission",
+   "rule_id": "R4_human_review_uncancellable",
+   "variant": "negative",
+   "title_zh": "公共安全与活动运营复核：自动取消人工复核必须被拒",
+   "title_en": "Public safety and event operations review: automated cancellation of human review must be rejected",
+   "inputs": {
+    "scenario": "SCEN-11",
+    "branch": "auto_cancel_review"
+   },
+   "expected": "refused by R4_human_review_uncancellable",
+   "observed": {
+    "granted": false,
+    "rule": "R4_human_review_uncancellable",
+    "action": "cancel_rejected"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "ca47f550b3bf3ca9b4628324772cdfffab66fb38c3c48e70de9f79dd731a0862"
+  },
+  {
+   "task_id": "SCEN-12::no_operator",
+   "family": "scenario_admission",
+   "rule_id": "R2_named_operator",
+   "variant": "negative",
+   "title_zh": "全球AI活动周步行路线起点：匿名申请必须被拒",
+   "title_en": "Global AI Week route start: anonymous booking must be refused",
+   "inputs": {
+    "scenario": "SCEN-12",
+    "branch": "no_operator"
+   },
+   "expected": "refused by R2_named_operator",
+   "observed": {
+    "granted": false,
+    "rule": "R2_named_operator"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "ef3eedf799591dc17b56b2168ae0a864abd3e770789232851641f2a83dbb1d7c"
+  },
+  {
+   "task_id": "SCEN-12::no_data_boundary",
+   "family": "scenario_admission",
+   "rule_id": "R3_declared_data_boundary",
+   "variant": "negative",
+   "title_zh": "全球AI活动周步行路线起点：无数据边界必须被拒",
+   "title_en": "Global AI Week route start: missing data boundary must be refused",
+   "inputs": {
+    "scenario": "SCEN-12",
+    "branch": "no_data_boundary"
+   },
+   "expected": "refused by R3_declared_data_boundary",
+   "observed": {
+    "granted": false,
+    "rule": "R3_declared_data_boundary"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "0bf03cf93cbda68609aed051d98a72fca6a91b9387bab5f1583727d47821eac1"
+  },
+  {
+   "task_id": "SCEN-12::out_of_band",
+   "family": "scenario_admission",
+   "rule_id": "R10_in_band_placement",
+   "variant": "negative",
+   "title_zh": "全球AI活动周步行路线起点：越出声明区间必须被拒",
+   "title_en": "Global AI Week route start: placement outside the declared section must be refused",
+   "inputs": {
+    "scenario": "SCEN-12",
+    "branch": "out_of_band"
+   },
+   "expected": "refused by R10_in_band_placement",
+   "observed": {
+    "granted": false,
+    "rule": "R10_in_band_placement"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "0d4acf17105f3eb35b67b2e40267ce4b436c4fbef04c2718a5be7683a533e183"
+  },
+  {
+   "task_id": "SCEN-12::auto_cancel_review",
+   "family": "scenario_admission",
+   "rule_id": "R4_human_review_uncancellable",
+   "variant": "negative",
+   "title_zh": "全球AI活动周步行路线起点：自动取消人工复核必须被拒",
+   "title_en": "Global AI Week route start: automated cancellation of human review must be rejected",
+   "inputs": {
+    "scenario": "SCEN-12",
+    "branch": "auto_cancel_review"
+   },
+   "expected": "refused by R4_human_review_uncancellable",
+   "observed": {
+    "granted": false,
+    "rule": "R4_human_review_uncancellable",
+    "action": "cancel_rejected"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "afd12f1c47159cd11924a5e709b848d5d1d816dea2a012a84802bc62dddbc774"
+  },
+  {
+   "task_id": "SEG-S1::token_cycle",
+   "family": "token_cycle",
+   "rule_id": "R5_window_return",
+   "variant": "qualified",
+   "title_zh": "S1 段完整令牌周期：预订—布设—运行—归还",
+   "title_en": "S1 full token cycle: book-install-run-return",
+   "inputs": {
+    "segment": "S1"
+   },
+   "expected": "all four steps granted; token returned",
+   "observed": {
+    "steps": [
+     {
+      "granted": true
+     },
+     {
+      "granted": true
+     },
+     {
+      "granted": true
+     },
+     {
+      "granted": true,
+      "segment": "S1"
+     }
+    ],
+    "token_out": null
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "f9d2ade01aa4f02d2c3dfb5b2b8f9712e27b7037dcca3e2d4668e0abe0cf2755"
+  },
+  {
+   "task_id": "SEG-S2::token_cycle",
+   "family": "token_cycle",
+   "rule_id": "R5_window_return",
+   "variant": "qualified",
+   "title_zh": "S2 段完整令牌周期：预订—布设—运行—归还",
+   "title_en": "S2 full token cycle: book-install-run-return",
+   "inputs": {
+    "segment": "S2"
+   },
+   "expected": "all four steps granted; token returned",
+   "observed": {
+    "steps": [
+     {
+      "granted": true
+     },
+     {
+      "granted": true
+     },
+     {
+      "granted": true
+     },
+     {
+      "granted": true,
+      "segment": "S2"
+     }
+    ],
+    "token_out": null
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "08d52ad39f9dca74a5325543f1890869fb267eebb9e1a718d7b223c789075fbf"
+  },
+  {
+   "task_id": "SEG-S3::token_cycle",
+   "family": "token_cycle",
+   "rule_id": "R5_window_return",
+   "variant": "qualified",
+   "title_zh": "S3 段完整令牌周期：预订—布设—运行—归还",
+   "title_en": "S3 full token cycle: book-install-run-return",
+   "inputs": {
+    "segment": "S3"
+   },
+   "expected": "all four steps granted; token returned",
+   "observed": {
+    "steps": [
+     {
+      "granted": true
+     },
+     {
+      "granted": true
+     },
+     {
+      "granted": true
+     },
+     {
+      "granted": true,
+      "segment": "S3"
+     }
+    ],
+    "token_out": null
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "53baf2f6f3850984a1e5c9112f44ae2cfe4f0bf5112dac09a13e5b6c46f56c26"
+  },
+  {
+   "task_id": "SEG-S4::token_cycle",
+   "family": "token_cycle",
+   "rule_id": "R5_window_return",
+   "variant": "qualified",
+   "title_zh": "S4 段完整令牌周期：预订—布设—运行—归还",
+   "title_en": "S4 full token cycle: book-install-run-return",
+   "inputs": {
+    "segment": "S4"
+   },
+   "expected": "all four steps granted; token returned",
+   "observed": {
+    "steps": [
+     {
+      "granted": true
+     },
+     {
+      "granted": true
+     },
+     {
+      "granted": true
+     },
+     {
+      "granted": true,
+      "segment": "S4"
+     }
+    ],
+    "token_out": null
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "fb750b77333662ae08159654a1cdafc1c509ffc64ddaec67915bb31beff3a982"
+  },
+  {
+   "task_id": "SEG-S5::token_cycle",
+   "family": "token_cycle",
+   "rule_id": "R5_window_return",
+   "variant": "qualified",
+   "title_zh": "S5 段完整令牌周期：预订—布设—运行—归还",
+   "title_en": "S5 full token cycle: book-install-run-return",
+   "inputs": {
+    "segment": "S5"
+   },
+   "expected": "all four steps granted; token returned",
+   "observed": {
+    "steps": [
+     {
+      "granted": true
+     },
+     {
+      "granted": true
+     },
+     {
+      "granted": true
+     },
+     {
+      "granted": true,
+      "segment": "S5"
+     }
+    ],
+    "token_out": null
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "0effd97db674c49ca29deb04e6da5d2410251e360878f4d0411419af2a094d90"
+  },
+  {
+   "task_id": "SEG-S6::token_cycle",
+   "family": "token_cycle",
+   "rule_id": "R5_window_return",
+   "variant": "qualified",
+   "title_zh": "S6 段完整令牌周期：预订—布设—运行—归还",
+   "title_en": "S6 full token cycle: book-install-run-return",
+   "inputs": {
+    "segment": "S6"
+   },
+   "expected": "all four steps granted; token returned",
+   "observed": {
+    "steps": [
+     {
+      "granted": true
+     },
+     {
+      "granted": true
+     },
+     {
+      "granted": true
+     },
+     {
+      "granted": true,
+      "segment": "S6"
+     }
+    ],
+    "token_out": null
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "c7bf350ee1bfef11a60f86fc8e3633e4bcd1a29aea444e762b58584dbfbc747b"
+  },
+  {
+   "task_id": "PROTO::double_token_refused",
+   "family": "token_protocol",
+   "rule_id": "R1_one_token_per_line",
+   "variant": "negative",
+   "title_zh": "第一枚令牌未归还时第二枚必须被拒",
+   "title_en": "a second token must be refused while one is out",
+   "inputs": {
+    "branch": "double_token_refused"
+   },
+   "expected": "state machine enforces the rule",
+   "observed": {
+    "granted": false,
+    "rule": "R1_one_token_per_line"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "8782f99868abcac39e1eb1ecc2e0112b75a8fd4e8759a6d259af7f0a6a6363c3"
+  },
+  {
+   "task_id": "PROTO::unreturned_token_escalates",
+   "family": "token_protocol",
+   "rule_id": "R5_window_return",
+   "variant": "negative",
+   "title_zh": "逾期归还必须触发升级处置",
+   "title_en": "an overdue return must escalate",
+   "inputs": {
+    "branch": "unreturned_token_escalates"
+   },
+   "expected": "state machine enforces the rule",
+   "observed": {
+    "granted": true,
+    "rule": "R5_window_return",
+    "action": "escalate_then_restore",
+    "segment": "S2"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "5e6f236633a95489db815030c130359b152e46373cfb5adf7165f6d9a6be1d33"
+  },
+  {
+   "task_id": "PROTO::cross_section_refused",
+   "family": "token_protocol",
+   "rule_id": "R6_one_token_one_section",
+   "variant": "negative",
+   "title_zh": "单枚令牌跨两个区间必须被拒",
+   "title_en": "one token spanning two sections must be refused",
+   "inputs": {
+    "branch": "cross_section_refused"
+   },
+   "expected": "state machine enforces the rule",
+   "observed": {
+    "granted": false,
+    "rule": "R6_one_token_one_section"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "7684e3cbf5dab28658124155f3177a3e5cc917b692d1d1bd53338c21211bd281"
+  },
+  {
+   "task_id": "PROTO::step_free_break_stops",
+   "family": "token_protocol",
+   "rule_id": "R7_step_free_continuity",
+   "variant": "negative",
+   "title_zh": "中断无障碍通路的布设必须停摆并复原",
+   "title_en": "an installation breaking the step-free route must stop",
+   "inputs": {
+    "branch": "step_free_break_stops"
+   },
+   "expected": "state machine enforces the rule",
+   "observed": {
+    "granted": false,
+    "rule": "R7_step_free_continuity",
+    "action": "stop_and_restore"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "757a971c5ee19f11b44858981a75db588344cbb3edb56d850116fd9fa5db415f"
+  },
+  {
+   "task_id": "PROTO::no_equivalence_pauses",
+   "family": "token_protocol",
+   "rule_id": "R8_non_digital_equivalence",
+   "variant": "negative",
+   "title_zh": "非数字等效通道缺失必须暂停",
+   "title_en": "a missing non-digital equivalent must pause the run",
+   "inputs": {
+    "branch": "no_equivalence_pauses"
+   },
+   "expected": "state machine enforces the rule",
+   "observed": {
+    "granted": false,
+    "rule": "R8_non_digital_equivalence",
+    "action": "pause_until_equivalent"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "6c4fc377e12368a0250ceda250eb1f1f8510d76b69f79493cbc834d75a291ff5"
+  },
+  {
+   "task_id": "PROTO::boundary_violation_revokes",
+   "family": "token_protocol",
+   "rule_id": "R9_boundary_violation_revokes",
+   "variant": "negative",
+   "title_zh": "越界采集必须收回令牌并暂停场景",
+   "title_en": "out-of-boundary collection must revoke the token",
+   "inputs": {
+    "branch": "boundary_violation_revokes"
+   },
+   "expected": "state machine enforces the rule",
+   "observed": {
+    "granted": false,
+    "rule": "R9_boundary_violation_revokes",
+    "action": "revoke_and_pause"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "94ae78d405f197cb82e94d25e28febaf039960e4ed667631bb2dffa79da41c72"
+  },
+  {
+   "task_id": "PROTO::no_return_plan_refused",
+   "family": "token_protocol",
+   "rule_id": "R5_window_return",
+   "variant": "negative",
+   "title_zh": "无归还安排的预订必须被拒",
+   "title_en": "a booking without a return plan must be refused",
+   "inputs": {
+    "branch": "no_return_plan_refused"
+   },
+   "expected": "state machine enforces the rule",
+   "observed": {
+    "granted": false,
+    "rule": "R5_window_return"
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "130e35afaf102877ef94335d1597bd27b82cf2b93e69d7ffde34588b5519a54e"
+  },
+  {
+   "task_id": "PROTO::reissue_after_return",
+   "family": "token_protocol",
+   "rule_id": "R1_one_token_per_line",
+   "variant": "qualified",
+   "title_zh": "归还之后才发下一枚：归还后新预订必须放行",
+   "title_en": "after return the next token must be issuable",
+   "inputs": {
+    "branch": "reissue_after_return"
+   },
+   "expected": "state machine enforces the rule",
+   "observed": {
+    "granted": true
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "0b2c63d1b67280adb92f8a0a0ed0a2e357e664d34653c84d2aaf5d802dba86e3"
+  },
+  {
+   "task_id": "TOPO::zones_bands_bijection",
+   "family": "topology",
+   "rule_id": "R10_in_band_placement",
+   "variant": "qualified",
+   "title_zh": "六个可预约段与六个区间一一对应",
+   "title_en": "six bookable zones map 1:1 to the six bands",
+   "inputs": {
+    "zones": [
+     "S1",
+     "S2",
+     "S3",
+     "S4",
+     "S5",
+     "S6"
+    ],
+    "data": "geometry/constraints.geojson"
+   },
+   "expected": "geometry satisfies the constraint",
+   "observed": {
+    "pass": true
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "9959cd92a1f67d1d29a915596661b5dbe78611966c99332cf23d91f51e7ac7d5"
+  },
+  {
+   "task_id": "TOPO::zones_south_to_north",
+   "family": "topology",
+   "rule_id": "R10_in_band_placement",
+   "variant": "qualified",
+   "title_zh": "可预约段自南向北有序排列",
+   "title_en": "bookable zones are ordered south to north",
+   "inputs": {
+    "centroid_lat": [
+     39.94481,
+     39.95945,
+     39.97834,
+     39.98852,
+     40.00069,
+     40.01601
+    ],
+    "data": "geometry/constraints.geojson"
+   },
+   "expected": "geometry satisfies the constraint",
+   "observed": {
+    "pass": true
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "d035886ff7744ea2114ff956bd34b42daaa6c552ca44a2dbe4856fecd74c6fae"
+  },
+  {
+   "task_id": "TOPO::all_nodes_in_band",
+   "family": "topology",
+   "rule_id": "R10_in_band_placement",
+   "variant": "qualified",
+   "title_zh": "12 个场景节点全部落在声明区间内",
+   "title_en": "all 12 scenario nodes sit inside their declared sections",
+   "inputs": {
+    "nodes": 12,
+    "data": "geometry/constraints.geojson"
+   },
+   "expected": "geometry satisfies the constraint",
+   "observed": {
+    "pass": true
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "ddb9976c61322081ad17cc1cc75cf3a52fcc093b67e6a1348345e7f76866fd14"
+  },
+  {
+   "task_id": "TOPO::every_band_has_scenario",
+   "family": "topology",
+   "rule_id": "R10_in_band_placement",
+   "variant": "qualified",
+   "title_zh": "每个区间至少一张场景卡",
+   "title_en": "every section carries at least one scenario card",
+   "inputs": {
+    "per_band": {
+     "S1": 2,
+     "S2": 2,
+     "S3": 3,
+     "S4": 2,
+     "S5": 2,
+     "S6": 1
+    },
+    "data": "geometry/constraints.geojson"
+   },
+   "expected": "geometry satisfies the constraint",
+   "observed": {
+    "pass": true
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "445d5596c59eadf2389e944800c6bd4c0cba225fbd29beafed1b1fca4287b1bb"
+  },
+  {
+   "task_id": "TOPO::node_count_matches_metric",
+   "family": "topology",
+   "rule_id": "R10_in_band_placement",
+   "variant": "qualified",
+   "title_zh": "场景节点数与 metrics.json 声明一致",
+   "title_en": "scenario node count matches the declared metric",
+   "inputs": {
+    "nodes": 12,
+    "metric": 12,
+    "data": "geometry/constraints.geojson"
+   },
+   "expected": "geometry satisfies the constraint",
+   "observed": {
+    "pass": true
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "82427b39c0795d4d25d473dc7d1349465e012eb7bbb85fe20db665f2544fdba3"
+  },
+  {
+   "task_id": "TOPO::industry_test_count",
+   "family": "topology",
+   "rule_id": "R10_in_band_placement",
+   "variant": "qualified",
+   "title_zh": "产业测试验证场景为 3 处",
+   "title_en": "exactly three industry test scenarios",
+   "inputs": {
+    "industry_test": 3,
+    "data": "geometry/constraints.geojson"
+   },
+   "expected": "geometry satisfies the constraint",
+   "observed": {
+    "pass": true
+   },
+   "outcome": "rule_check_success",
+   "dispatch_schema_valid": true,
+   "audit_complete": true,
+   "energy_used_kwh": 0,
+   "energy_budget_kwh": 0,
+   "synthetic": true,
+   "field_run": false,
+   "receipt_sha256": "c3b54b19ad48f3f6261bcc3f0912bed741e90ba550aaaf26939662a4f8057273"
+  }
+ ]
+}

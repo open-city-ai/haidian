@@ -1,0 +1,315 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "visual/assets/two-answers.json"
+      ],
+      "formula": "sum(surveyed_building_footprints)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "Three submitted envelopes are concept prototypes, not surveyed buildings."
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "concept_green_space_area_sqm / provisional_site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.026327,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "concept_public_space_area_sqm / provisional_site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/two-answers.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "Official controls, floor area and surveyed building data are absent."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(provisional_key_area_features)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "paired_scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/two-answers.json",
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(scenarios where answer_mode=paired)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "hero_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/two-answers.json"
+      ],
+      "formula": "count(scenarios where evidence_tier=hero)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "catalog_scenario_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/two-answers.json"
+      ],
+      "formula": "count(scenarios where evidence_tier=catalog)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "adoption_receipt_coverage_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/two-answers.json"
+      ],
+      "formula": "count(scenarios with complete receipt_fields and evidence_status=not_field_run)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/two-answers.json"
+      ],
+      "formula": "count(scenarios where type=industry_test)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "stress_profile_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/two-answers.json"
+      ],
+      "formula": "count(profiles)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ordinary_baseline_coverage_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/two-answers.json"
+      ],
+      "formula": "count(scenarios with non-empty ordinary_answer)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "human_review_coverage_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/two-answers.json"
+      ],
+      "formula": "count(scenarios with non-empty human_responsibility)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "stop_condition_coverage_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/two-answers.json"
+      ],
+      "formula": "count(scenarios with non-empty stop_conditions)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "east_west_stitch_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(features where function=conceptual_east_west_stitch)",
+      "confidence": "high",
+      "assumptions": [
+        "A-SPATIAL-ATLAS-001"
+      ]
+    },
+    "spatial_component_type_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/spatial-atlas.json"
+      ],
+      "formula": "count(component_catalog)",
+      "confidence": "high",
+      "assumptions": [
+        "A-SPATIAL-ATLAS-001"
+      ]
+    },
+    "station_spatial_prototype_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/spatial-atlas.json",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(stations with distinct spatial_archetype, plan_viewbox and component deployment)",
+      "confidence": "high",
+      "assumptions": [
+        "A-SPATIAL-ATLAS-001"
+      ]
+    },
+    "service_completion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/two-answers.json"
+      ],
+      "formula": "completed_same_task_trials / eligible_trials",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "No field baseline or observed trial exists."
+    },
+    "accessibility_failure_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/two-answers.json"
+      ],
+      "formula": "accessibility_failures / stress_tests",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "No field accessibility audit has been completed."
+    },
+    "ai_energy_per_task_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "visual/assets/two-answers.json"
+      ],
+      "formula": "ai_energy_kwh / completed_ai_tasks",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "No installed equipment or metered operating data exists."
+    },
+    "human_time_per_task_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "visual/assets/two-answers.json"
+      ],
+      "formula": "human_minutes / completed_tasks",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "No observed staffing baseline exists."
+    },
+    "lifecycle_cost_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "visual/assets/two-answers.json"
+      ],
+      "formula": "annualised_cost / completed_tasks",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "No procurement, maintenance or decommissioning evidence exists."
+    },
+    "user_satisfaction_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "visual/assets/two-answers.json"
+      ],
+      "formula": "validated_survey_score",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "No participant survey or sampling protocol exists."
+    }
+  }
+}

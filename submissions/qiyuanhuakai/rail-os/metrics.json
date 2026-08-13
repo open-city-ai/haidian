@@ -1,0 +1,554 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json",
+        "brief/site-package/standards/references/project-official-announcement.md"
+      ],
+      "formula": "known_official_area_values.coordinated_research_area_sqm",
+      "confidence": "medium",
+      "assumptions": [],
+      "data_class": "official_announcement_approximate_area",
+      "limitations": [
+        "The announcement gives an approximate area and text description, not an official polygon; this value is not a precise boundary calculation."
+      ]
+    },
+    "overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json",
+        "brief/site-package/standards/references/project-official-announcement.md"
+      ],
+      "formula": "known_official_area_values.overall_design_area_sqm",
+      "confidence": "medium",
+      "assumptions": [],
+      "data_class": "official_announcement_approximate_area",
+      "limitations": [
+        "The announcement gives an approximate area and text four-sides description; the submitted polygon is separately reported as provisional geometry."
+      ]
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(geometry/site_boundary.geojson#SITE-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-002"
+      ],
+      "data_class": "provisional_geometry_derived",
+      "limitations": [
+        "The submitted site boundary is a repository-registered provisional rough polygon and is not an official redline or precise official area basis."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(geometry/buildings.geojson features))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-002"
+      ],
+      "data_class": "conceptual_design_geometry",
+      "limitations": [
+        "This is a submitted conceptual building-footprint layer, not a verified existing-building inventory or approved building scale."
+      ]
+    },
+    "land_use_area_sqm_0802": {
+      "status": "known",
+      "value": 2674562.492,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(properties.area_sqm_declared where land_use_code == '0802')",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-002"
+      ],
+      "land_use_code": "0802",
+      "data_class": "conceptual_design_geometry",
+      "limitations": [
+        "The classification code is used for a closed concept partition; it does not establish an approved parcel use."
+      ]
+    },
+    "land_use_area_sqm_1401": {
+      "status": "known",
+      "value": 2589339.239,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(properties.area_sqm_declared where land_use_code == '1401')",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-002"
+      ],
+      "land_use_code": "1401",
+      "data_class": "conceptual_design_geometry",
+      "limitations": [
+        "The classification code is used for a closed concept partition; it does not establish an approved parcel use."
+      ]
+    },
+    "land_use_area_sqm_16": {
+      "status": "known",
+      "value": 3366138.181,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(properties.area_sqm_declared where land_use_code == '16')",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-002"
+      ],
+      "land_use_code": "16",
+      "data_class": "conceptual_design_geometry",
+      "limitations": [
+        "Code 16 records land whose formal use remains undetermined; industry and commercial services are programme directions only, not an approved parcel use."
+      ]
+    },
+    "land_use_area_sqm_0702": {
+      "status": "known",
+      "value": 2782792.823,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(properties.area_sqm_declared where land_use_code == '0702')",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-002"
+      ],
+      "land_use_code": "0702",
+      "data_class": "conceptual_design_geometry",
+      "limitations": [
+        "The classification code is used for a closed concept partition; it does not establish an approved parcel use."
+      ]
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(building_footprint_area_sqm * verified_floor_count)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "The submitted building layer contains a conceptual footprint only; no verified floor counts, floor-area schedule, or official total floor area is included.",
+      "dependencies": [
+        "official or cleared building inventory",
+        "verified floor counts or floor-area schedule",
+        "official site boundary"
+      ],
+      "required_for_formal_submission": true
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json",
+        "geometry/site_boundary.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-BOUNDARY-002"
+      ],
+      "reason": "Approved FAR controls, an official site boundary, and verified total floor area are not present in the cleared site package.",
+      "dependencies": [
+        "approved regulatory planning conditions",
+        "official site boundary",
+        "verified total floor area"
+      ],
+      "required_for_formal_submission": true
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json",
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-BOUNDARY-002"
+      ],
+      "reason": "The planning limits mark building density as missing; the submitted footprint is conceptual and cannot be promoted to a statutory density value.",
+      "dependencies": [
+        "approved regulatory planning conditions",
+        "official site boundary",
+        "verified existing/building footprint data"
+      ],
+      "required_for_formal_submission": true
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json",
+        "geometry/buildings.geojson"
+      ],
+      "formula": "verified_building_height_control",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "No approved height control, aviation/landscape/heritage constraint, or verified existing-building height is included.",
+      "dependencies": [
+        "approved height controls",
+        "aviation, landscape, and heritage constraints where applicable",
+        "verified building survey"
+      ],
+      "required_for_formal_submission": true
+    },
+    "setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json",
+        "geometry/roads.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "formula": "verified_building_control_line_minus_road_redline",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Road redlines, building control lines, fire constraints, and municipal conditions are not supplied.",
+      "dependencies": [
+        "official road redline",
+        "building control line",
+        "fire and municipal constraints"
+      ],
+      "required_for_formal_submission": true
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1408600.768,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "polygon_area(geometry/green_space.geojson#GREEN-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-002"
+      ],
+      "data_class": "conceptual_design_geometry",
+      "limitations": [
+        "This is the area of the submitted concept layer, not an official green-space control or existing-condition survey."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-002"
+      ],
+      "data_class": "provisional_geometry_derived",
+      "limitations": [
+        "The ratio describes submitted concept geometry only and is not an official green-space requirement."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 836345.643,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "polygon_area(geometry/public_space.geojson#PUBLIC-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-002"
+      ],
+      "data_class": "conceptual_design_geometry",
+      "limitations": [
+        "This is the area of the submitted concept layer, not an official public-space control or existing-condition survey."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-002"
+      ],
+      "data_class": "provisional_geometry_derived",
+      "limitations": [
+        "The ratio describes submitted concept geometry only and is not an official public-space requirement."
+      ]
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson",
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(polygon_area(road_right_of_way_polygons))",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-BOUNDARY-002"
+      ],
+      "reason": "The submitted roads layer contains conceptual LineString centerlines without widths, right-of-way polygons, or official road redlines, so road area cannot be reproduced.",
+      "dependencies": [
+        "official road redline or road-corridor polygons",
+        "verified road widths and cross-sections",
+        "official site boundary"
+      ],
+      "required_for_formal_submission": true
+    },
+    "road_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson",
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "road_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-BOUNDARY-002"
+      ],
+      "reason": "Road area is unavailable because the road layer has centerlines only and no official road redline or cross-section data.",
+      "dependencies": [
+        "road_area_sqm",
+        "official site boundary"
+      ],
+      "required_for_formal_submission": true
+    },
+    "ai_innovation_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "brief/site-package/standards/references/project-official-announcement.md"
+      ],
+      "formula": "weighted_index(validated_scenarios, open_source_contributions, independent_reviews, adoption_or_exit_outcomes)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BASELINE-004"
+      ],
+      "reason": "No organizer-approved baseline, weighting method, or annual operating dataset is available.",
+      "dependencies": [
+        "approved indicator definitions and weights",
+        "annual scenario and independent-review ledger",
+        "validated adoption, iteration, and exit outcomes"
+      ],
+      "required_for_formal_submission": true
+    },
+    "ai_talent_density_per_sqkm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "people_per_sqkm",
+      "source_files": [
+        "brief/site-package/standards/references/project-official-announcement.md"
+      ],
+      "formula": "verified_ai_workers_and_learners / official_employment_and_living_area_sqkm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BASELINE-004"
+      ],
+      "reason": "No privacy-cleared talent baseline, consistent AI occupation definition, or official denominator is available.",
+      "dependencies": [
+        "privacy-cleared workforce and learner baseline",
+        "approved AI occupation taxonomy",
+        "official employment and living-area denominator"
+      ],
+      "required_for_formal_submission": true
+    },
+    "ai_industry_output_cny": {
+      "status": "unknown",
+      "value": null,
+      "unit": "CNY_per_year",
+      "source_files": [
+        "brief/site-package/standards/references/project-official-announcement.md"
+      ],
+      "formula": "sum(verified_annual_ai_enterprise_output_attributable_to_the_study_scope)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BASELINE-004"
+      ],
+      "reason": "No audited enterprise-output baseline or attribution rule for the study scope is available.",
+      "dependencies": [
+        "audited annual enterprise-output data",
+        "approved enterprise and sector scope",
+        "double-counting and geographic-attribution rules"
+      ],
+      "required_for_formal_submission": true
+    },
+    "phasing_area_sqm": {
+      "status": "known",
+      "value": 4587013.573,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(geometry/phasing.geojson#PHASE-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-002",
+        "A-OPERATIONS-003"
+      ],
+      "data_class": "conceptual_design_geometry",
+      "limitations": [
+        "The phase polygon is a discussion-stage design proposal; it is not an approved implementation boundary or development schedule."
+      ]
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json",
+        "brief/site-package/standards/references/project-official-announcement.md"
+      ],
+      "formula": "known_official_area_values.key_detailed_design_area_sqm",
+      "confidence": "medium",
+      "assumptions": [],
+      "data_class": "official_announcement_approximate_area",
+      "limitations": [
+        "This is the announcement's approximate aggregate area; it does not establish official polygons or precise per-area geometry."
+      ]
+    },
+    "submitted_key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3692893.007,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(properties.area_sqm_calculated for provisional key areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-002"
+      ],
+      "data_class": "provisional_geometry_derived",
+      "limitations": [
+        "The submitted provisional polygon sum differs from the announcement's approximate area and must not be used as a precise official area claim."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(features where layer == 'KEY_AREA')",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-002"
+      ],
+      "data_class": "provisional_geometry_derived",
+      "limitations": [
+        "The count is supported by three provisional rough substitutes required by the brief; their polygons are not official boundaries."
+      ]
+    },
+    "key_area_zhongzhiyuan_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "properties.area_sqm_calculated(geometry/key_areas.geojson#PROV-KEY-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-002"
+      ],
+      "official_reference_area_sqm": 1921000,
+      "data_class": "provisional_geometry_derived",
+      "limitations": [
+        "The reported value is the provisional polygon calculation; the official reference area is approximate and the polygon is not an official redline."
+      ]
+    },
+    "key_area_beijing_ai_origin_community_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "properties.area_sqm_calculated(geometry/key_areas.geojson#PROV-KEY-002)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-002"
+      ],
+      "official_reference_area_sqm": 1043000,
+      "data_class": "provisional_geometry_derived",
+      "limitations": [
+        "The reported value is the provisional polygon calculation; the official reference area is approximate and the polygon is not an official redline."
+      ]
+    },
+    "key_area_dazhongsi_ai_industry_cluster_sqm": {
+      "status": "known",
+      "value": 720454.221,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "properties.area_sqm_calculated(geometry/key_areas.geojson#PROV-KEY-003)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-002"
+      ],
+      "official_reference_area_sqm": 720000,
+      "data_class": "provisional_geometry_derived",
+      "limitations": [
+        "The reported value is the provisional polygon calculation; the official reference area is approximate and the polygon is not an official redline."
+      ]
+    }
+  }
+}

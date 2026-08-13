@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "PASSAGE-BEFORE-BARRIERS",
+  "status_semantics": {
+    "UNKNOWN": "authorization, accountable roles or current evidence is missing; never show as passable",
+    "PREPARING": "documents and physical alternative are being prepared; not open",
+    "VERIFIED_PASSAGE": "authorized documents, physical installation, named competent human verification, expiry and fallback are complete",
+    "ACTIVE": "temporary occupation is active and the passage remains within a valid human inspection window",
+    "DEGRADED": "any critical evidence, route condition, barrier, notice, lighting, drainage, responsible role or inspection window has failed",
+    "AUTHORIZED_CLOSED": "a competent authorized human has closed the passage and published an approved alternative",
+    "RESTORING": "temporary occupation ended and the original function is being restored",
+    "RESTORED": "the accountable party supplied current competent-human restoration evidence"
+  },
+  "automatic_transitions": [
+    {
+      "trigger": "critical evidence expires or is withdrawn",
+      "from": ["VERIFIED_PASSAGE", "ACTIVE", "RESTORED"],
+      "to": "UNKNOWN"
+    },
+    {
+      "trigger": "route obstruction or critical physical/operating check fails",
+      "from": ["VERIFIED_PASSAGE", "ACTIVE"],
+      "to": "DEGRADED"
+    }
+  ],
+  "human_only_transitions": [
+    "PREPARING -> VERIFIED_PASSAGE",
+    "VERIFIED_PASSAGE -> ACTIVE",
+    "ACTIVE/DEGRADED -> AUTHORIZED_CLOSED",
+    "RESTORING -> RESTORED"
+  ],
+  "required_evidence_types": [
+    "applicable_authorization",
+    "named_occupier_or_work_promoter",
+    "named_maintenance_and_inspection_roles",
+    "competent_human_pre_opening_verification",
+    "physical_route_and_notice_record",
+    "evidence_expiry",
+    "offline_fallback_and_contact",
+    "incident_and_degradation_path",
+    "restoration_scope_and_signatory"
+  ],
+  "ai_allowed": [
+    "parse public or authorized documents",
+    "flag missing or expired evidence",
+    "draft bilingual and easy-read notices",
+    "queue inconsistencies for human review",
+    "compare AI-assisted workflow with the non-AI baseline"
+  ],
+  "ai_forbidden": [
+    "approve occupation or construction",
+    "declare a route safe, accessible or open",
+    "control traffic, signals, barriers or equipment",
+    "issue emergency or evacuation instructions",
+    "replace construction, supervision, inspection, maintenance or enforcement roles",
+    "restore status without competent current human evidence"
+  ],
+  "privacy_forbidden_fields": [
+    "name",
+    "phone",
+    "account",
+    "face",
+    "license_plate",
+    "precise_individual_location",
+    "image",
+    "continuous_location",
+    "personal_trajectory"
+  ]
+}

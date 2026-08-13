@@ -94,6 +94,43 @@ class FormalScorecardScriptTests(unittest.TestCase):
             self.assertEqual(len(scorecard["dimensions"]), 7)
             self.assertTrue((out_dir / "formal-scorecard-comment.md").exists())
 
+    def test_dimension_weights_sum_to_100(self) -> None:
+        """The seven dimension weights must sum to exactly 100."""
+        from generate_formal_scorecard import DIMENSION_WEIGHTS
+        total = sum(DIMENSION_WEIGHTS.values())
+        self.assertEqual(total, 100, f"Dimension weights sum to {total}, expected 100")
+
+    def test_scorecard_has_four_reviewer_panel_roles(self) -> None:
+        """The scorecard template must include four expert panel roles."""
+        from generate_formal_scorecard import build_scorecard
+        summary = {
+            "submission_dir": "submissions/alice/test",
+            "can_enter_formal_review": True,
+            "recommendation": "formal-review-ready",
+            "ok": True,
+        }
+        scorecard = build_scorecard(summary)
+        self.assertEqual(len(scorecard["reviewer_panel"]), 4)
+        roles = [r["role_zh"] for r in scorecard["reviewer_panel"]]
+        self.assertIn("城市规划/城市设计专家", roles)
+        self.assertIn("AI 产业与运营专家", roles)
+
+    def test_blocked_scorecard_does_not_accept_scores(self) -> None:
+        """A blocked scorecard must set scoring_status to 'blocked'."""
+        from generate_formal_scorecard import build_scorecard
+        summary = {
+            "submission_dir": "submissions/alice/test",
+            "can_enter_formal_review": False,
+            "recommendation": "request-changes",
+            "ok": False,
+        }
+        scorecard = build_scorecard(summary)
+        self.assertEqual(scorecard["scoring_status"], "blocked")
+        for row in scorecard["dimensions"]:
+            self.assertIsNone(row["score_0_to_5"])
+            self.assertIsNone(row["weighted_score_100"])
+
+
 
 if __name__ == "__main__":
     unittest.main()

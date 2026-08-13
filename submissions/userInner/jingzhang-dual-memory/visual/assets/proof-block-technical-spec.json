@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "DM-PB01-TECHNICAL-SPEC-V8",
+  "status": "pre_survey_design_target",
+  "evidence_boundary": "Dimensions and tolerances are design acceptance criteria for a reversible prototype. They are not surveyed existing conditions, statutory controls, construction drawings or field-test results.",
+  "prototype": {
+    "length_m": 60.0,
+    "total_width_m": 14.0,
+    "zones": [
+      {"id": "Z1", "name": "no_ai_public_walk", "width_m": 4.0, "minimum_clear_width_m": 1.8, "ai_required": false},
+      {"id": "Z2", "name": "anonymous_assist_strip", "width_m": 2.5, "ai_required": false},
+      {"id": "Z3", "name": "controlled_test_court", "width_m": 5.0, "ai_required": true},
+      {"id": "Z4", "name": "planting_safety_buffer", "width_m": 2.5, "ai_required": false}
+    ],
+    "vertical_and_detail_targets": {
+      "maximum_threshold_height_mm": 6,
+      "maximum_crossfall_percent": 2.0,
+      "minimum_head_clearance_m": 2.2,
+      "minimum_wheelchair_turning_diameter_m": 1.5,
+      "minimum_tactile_warning_depth_m": 0.6,
+      "minimum_edge_upstand_mm": 100
+    },
+    "safety_and_operations_targets": {
+      "maximum_distance_to_emergency_stop_m": 15,
+      "maximum_manual_takeover_seconds": 10,
+      "maximum_local_power_isolation_seconds": 120,
+      "controller_line_of_sight_required": true,
+      "ordinary_route_open_during_trial": true,
+      "account_required_for_ordinary_route": false,
+      "raw_sensor_frame_retention_days": 0,
+      "test_event_retention_days": 30,
+      "digital_kit_removal_hours": 48
+    }
+  },
+  "drawing_register": [
+    {"drawing_id": "DM-PB01-P01", "title": "60 m × 14 m dimensioned prototype plan", "scale_status": "dimensioned_not_to_scale"},
+    {"drawing_id": "DM-PB01-S01", "title": "four-zone consent section", "scale_status": "dimensioned_not_to_scale"},
+    {"drawing_id": "DM-PB01-D01", "title": "threshold, stop and edge-cabinet acceptance detail", "scale_status": "diagrammatic"},
+    {"drawing_id": "DM-PB01-O01", "title": "G0-G4 release and rollback sequence", "scale_status": "operational_diagram"},
+    {"drawing_id": "DM-PB01-T01", "title": "desktop and field verification schedule", "scale_status": "test_matrix"}
+  ],
+  "verification_register": [
+    {"id": "TV-01", "subject": "zone_width_sum", "method": "sum structured zone widths", "acceptance": "14.0 m", "status": "desktop_pass"},
+    {"id": "TV-02", "subject": "ordinary_walk_width", "method": "compare Z1 width", "acceptance": ">= 4.0 m", "status": "desktop_pass"},
+    {"id": "TV-03", "subject": "accessible_clear_width", "method": "compare minimum clear width", "acceptance": ">= 1.8 m", "status": "desktop_pass"},
+    {"id": "TV-04", "subject": "trial_court_separation", "method": "check dedicated court and buffer", "acceptance": "5.0 m court + 2.5 m buffer", "status": "desktop_pass"},
+    {"id": "TV-05", "subject": "ordinary_route_independence", "method": "check AI/account dependencies", "acceptance": "AI=false and account=false", "status": "desktop_pass"},
+    {"id": "TV-06", "subject": "emergency_stop_coverage", "method": "compare design spacing", "acceptance": "maximum reach <= 15 m", "status": "desktop_pass"},
+    {"id": "TV-07", "subject": "raw_frame_retention", "method": "check data contract", "acceptance": "0 days", "status": "desktop_pass"},
+    {"id": "TV-08", "subject": "reversibility", "method": "check removal commitment", "acceptance": "digital kit <= 48 h", "status": "desktop_pass"},
+    {"id": "TV-09", "subject": "three_block_fallbacks", "method": "check every proof block", "acceptance": "fallback present for 3/3", "status": "desktop_pass"},
+    {"id": "TV-10", "subject": "programme_cost_reconciliation", "method": "recompute block + shared bands", "acceptance": "CNY 7.5–13.5m", "status": "desktop_pass"},
+    {"id": "TV-11", "subject": "field_observation_admission", "method": "count qualifying observations", "acceptance": "metadata complete", "status": "not_run", "result": 0},
+    {"id": "TV-12", "subject": "physical_stop_and_takeover", "method": "timed field drill", "acceptance": "takeover <= 10 s", "status": "not_run"}
+  ],
+  "summary": {
+    "desktop_checks_passed": 10,
+    "desktop_checks_total": 10,
+    "field_checks_passed": 0,
+    "field_checks_total": 2,
+    "release_decision": "HOLD"
+  }
+}

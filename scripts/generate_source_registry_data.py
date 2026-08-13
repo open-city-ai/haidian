@@ -1,5 +1,46 @@
 #!/usr/bin/env python3
-"""Generate static frontend data for the public source registry."""
+"""Generate static frontend data for the public source registry.
+
+This script reads ``data/source_registry.json``, produces a compact summary,
+and writes it as a JavaScript module to ``source-registry-data.js`` for use
+by the public website.
+
+The generated file exports ``window.HAIDIAN_SOURCE_REGISTRY`` with the
+following shape:
+
+```js
+window.HAIDIAN_SOURCE_REGISTRY = {
+  "updatedDate": "YYYY-MM-DD",
+  "registryPath": "data/source_registry.json",
+  "counts": { "total": N, "by_review_status": {...}, ... },
+  "usageRule": "...",
+  "formal": [...],       // up to 20 approved formal-ready sources
+  "background": [...],   // up to 20 background-only sources
+  "provisional": [...],  // up to 20 provisional-only sources
+  "needsReview": [...]   // up to 20 sources awaiting review
+};
+```
+
+Do not edit the generated file manually. Re-run this script after updating
+``data/source_registry.json``.
+
+Usage
+-----
+Generate or update the data file::
+
+    python3 scripts/generate_source_registry_data.py
+
+Write to a custom output path::
+
+    python3 scripts/generate_source_registry_data.py --out path/to/output.js
+
+Check whether the generated file is current without writing::
+
+    python3 scripts/generate_source_registry_data.py --check
+
+Exit code is 0 on success and 1 when ``--check`` finds the file missing or
+stale.
+"""
 
 from __future__ import annotations
 
@@ -40,10 +81,25 @@ def render_js(data: dict[str, Any]) -> str:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--repo-root", default=".")
-    parser.add_argument("--out", default=DEFAULT_OUTPUT)
-    parser.add_argument("--check", action="store_true")
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument(
+        "--repo-root",
+        default=".",
+        help="Repository root directory (default: current working directory)",
+    )
+    parser.add_argument(
+        "--out",
+        default=DEFAULT_OUTPUT,
+        help=f"Output path relative to --repo-root (default: {DEFAULT_OUTPUT})",
+    )
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="Verify the generated file is current without writing it",
+    )
     args = parser.parse_args()
 
     repo_root = Path(args.repo_root).resolve()

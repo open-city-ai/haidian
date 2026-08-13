@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "dimensions": [
+    {
+      "id": "data_privacy",
+      "label": "数据隐私与用途边界",
+      "score": 4,
+      "note": "逐项同意仍可能发生用途漂移、撤回失效或衍生数据难以回收。触发条件是数据超出回执载明的目的、期限或受影响人群。",
+      "mitigation": "城市翻译回执固定记录数据边界、用途、期限、撤回方式和人工负责人；用途不清即停止处理并退回试译。",
+      "human_review": "由数据控制者、法务/伦理人员和受影响使用者共同复核，高风险场景不得只由自动流程放行。",
+      "responsible_actor_type": "data_controller_and_human_reviewer",
+      "stop_condition": "Purpose, expiry or withdrawal handling is unclear"
+    },
+    {
+      "id": "implementation_complexity",
+      "label": "工程实施与容量条件",
+      "score": 4,
+      "note": "算力、充电、感知和慢行改造可能超出电力、散热、消防、交通或防洪条件，当前概念几何不能证明工程可行。",
+      "mitigation": "实施前核验容量和权属，先开放低成本接口，再做可逆改造；没有专业容量结论不安装、不运行。",
+      "human_review": "能源、消防、结构、交通、河道与设施运维专业团队按项目护照逐项签署阶段闸门。",
+      "responsible_actor_type": "engineering_professionals_and_site_operator",
+      "stop_condition": "Professional capacity or safety approval is absent"
+    },
+    {
+      "id": "public_acceptance",
+      "label": "公众表达与接受度",
+      "score": 4,
+      "note": "翻译机制可能替公众发言或压缩真实分歧；受影响者若不能看见、纠正或反对问题定义，服务即失去正当性。",
+      "mitigation": "公开城市问题、受影响人群和异议入口；保留原始异议，纠错进入回译档案，属地意见可触发暂停。",
+      "human_review": "三处重点区设置包含受影响使用者、社区代表和独立主持人的属地复核入口。",
+      "responsible_actor_type": "local_review_panel",
+      "stop_condition": "Affected groups are absent or objections are not recorded"
+    },
+    {
+      "id": "operations_cost",
+      "label": "长期运维与责任交接",
+      "score": 4,
+      "note": "运营主体、维护预算或开放时段可能中断，活动结束后留下无人维护的设备、失效信息和责任真空。",
+      "mitigation": "回执记录维护者和下一负责人，构件可拆可修；年度回译包公开失败、退出、交接和维护状态。",
+      "human_review": "项目主体、场地运营者、社区观察员和维护人员在续译前确认预算、工单和下一责任人。",
+      "responsible_actor_type": "project_owner_and_site_operator",
+      "stop_condition": "No accountable maintainer accepts handover"
+    },
+    {
+      "id": "policy_uncertainty",
+      "label": "审批、采购与传播状态",
+      "score": 3,
+      "note": "概念测试可能被误读为政府采购、正式运营或政策背书，第三方转发还可能移除限制说明。",
+      "mitigation": "所有护照、图板和发布物区分投稿、评审、入选和实施；采购与测试分离，缺少状态说明即纠正或撤回传播。",
+      "human_review": "传播编辑、项目负责人和相关主管部门在对外发布前复核状态、责任和免责声明。",
+      "responsible_actor_type": "communications_editor_and_project_owner",
+      "stop_condition": "Communication omits status, responsibility or concept-only limitation"
+    },
+    {
+      "id": "spatial_dispute",
+      "label": "临时边界与遗产空间争议",
+      "score": 4,
+      "note": "临时几何可能被误读为官方红线；新增界面也可能影响铁路遗产、景观视线或夜间环境。",
+      "mitigation": "临时边界始终淡色虚线并重复来源限制；新增构件低亮度、可拆卸，官方数据到位后统一复算。",
+      "human_review": "规划、测绘、文保、景观和照明专业人员取得正式资料后重新审查几何、视线和材料。",
+      "responsible_actor_type": "design_data_heritage_stewards",
+      "stop_condition": "Official constraints or professional heritage review are unavailable"
+    },
+    {
+      "id": "technology_maturity",
+      "label": "模型版本与技术成熟度",
+      "score": 4,
+      "note": "模型、数据、依赖或运行情境变化会使既有结论失效，未记录的上游变化可能绕过复核。",
+      "mitigation": "每项通过绑定版本与场景，公布下次复核日；重大版本变化自动退回拆译阶段并重测失败模式。",
+      "human_review": "技术维护者、责任测试人员和人工负责人共同确认版本差异、红队证据和适用边界。",
+      "responsible_actor_type": "technical_maintainer_and_human_lead",
+      "stop_condition": "A material version change lacks renewed evidence"
+    },
+    {
+      "id": "equity_inclusion",
+      "label": "公平、无障碍与公共回报",
+      "score": 4,
+      "note": "智能渠道可能比人工渠道更快、更便宜或更显眼，试验知识也可能被封闭，导致数字排斥和公共价值私有化。",
+      "mitigation": "所有节点保留同等可见的人工/非数字路径；每项试验声明可依法公开的知识、空间改善或可复用服务。",
+      "human_review": "老年与残障使用者、无障碍代表、公共回报编辑和运营主体共同验收；人工兜底不可用或无公共回报即不续译。",
+      "responsible_actor_type": "accessibility_representative_and_public_return_editor",
+      "stop_condition": "Human fallback is unavailable or no meaningful public return can be delivered"
+    }
+  ]
+}

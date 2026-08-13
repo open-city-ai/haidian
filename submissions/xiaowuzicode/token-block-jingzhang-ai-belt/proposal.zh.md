@@ -37,7 +37,7 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-na
 
 ## 设计依据与资料清单
 
-本成果包建立在本仓库的机器可读任务包之上，而不是任何非公开资料。设计依据为官方公告的任务结构与三层范围界定 [source:OFFICIAL-ANNOUNCEMENT]、面向智能体的开源征集任务书及其十条共创原则与六项必答任务 [source:AGENT-TASKBOOK]、以及已登记的场地包枚举、区间、schema 与允许设计空间 [source:SITE-PACKAGE]。所有证据在引用前先经公开资料登记表筛查可用性 [source:SOURCE-REGISTRY]，处理资料层仅用于把范围、任务与缺口组织成工作清单，不作为新的权威来源 [source:PROCESSED-FACT-PACK]。
+本成果包建立在本仓库的机器可读任务包之上，而不是任何非公开资料。设计依据为官方公告的任务结构与三层范围界定 [source:OFFICIAL-ANNOUNCEMENT]、面向智能体的开源征集任务书及其十条共创原则与六项必答任务 [source:AGENT-TASKBOOK]、以及已登记的场地包枚举、区间、schema 与允许设计空间 [source:SITE-PACKAGE]。所有证据在引用前先经公开资料登记表筛查可用性 [source:SOURCE-REGISTRY]，处理资料层仅用于把范围、任务与缺口组织成工作清单，不作为新的权威来源 [source:PROCESSED-FACT-PACK]。在仓库资料之外，本方案还依托六份公开文件，且均在其登记许可范围内使用：《城市设计管理办法》与《城市、镇控制性详细规划编制审批办法》界定了“控规深度”的义务边界，也是未知控制指标保持 unknown 的制度原因 [source:MOHURD-URBAN-DESIGN-MEASURES] [source:MOHURD-CONTROL-PLANNING-MEASURES]；《国土空间用地用海分类指南》提供用地方案的分类词汇 [source:MNR-LAND-USE-GUIDE]；《生成式人工智能服务管理暂行办法》支撑场景准入审查 [source:GENAI-INTERIM-MEASURES]；《无障碍环境建设法》与《关于切实解决老年人运用智能技术困难实施方案》共同构成步行无障碍连续性与非数字等效两项指标的法定底线 [source:BARRIER-FREE-LAW] [source:ELDERLY-SMART-TECH-PLAN]；《建筑工程设计文件编制深度规定（2016年版）》界定重点区成果最终需要达到的文件深度 [source:ARCH-DESIGN-DEPTH-2016]。令牌闭塞规则本身按广泛记载的铁路运营史引用，不构成对京张线自身信号器具的文献断言 [source:RAILWAY-TOKEN-HISTORY]；六个申报场景取自仓库场景登记表 [source:SCENARIO-REGISTRY]。
 
 本包最重要的一条披露关于几何：**公开资料包中不存在官方红线。** 提交的总体设计边界 [data:geometry/site_boundary.geojson#SITE-001] 与三处重点区域 [data:geometry/key_areas.geojson#PROV-KEY-001] 均为仓库提供的临时粗略边界 [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]，标记为 `official_boundary=false`、`geometry_role="provisional_constraint"`、`boundary_precision="provisional_rough"`。它们可用于生成、可视化、讨论与入口自检，**不是**官方红线、不是审批依据、不是精确面积依据。官方 polygon 发布后，边界、重点区、用地、道路、绿地、公共空间、建筑、分期与全部派生指标必须整体复算，而不是逐个文件打补丁。
 
@@ -226,6 +226,20 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-na
 **停止条件——什么情况下应当暂停或回退。** **一个说不清自己怎么失败的方案不具备可实施性。** 出现下列情形时，应暂停相关场景或整个计划：异议超过公示期限仍未办结；发现某场景采集了其声明边界之外的数据；数字通道在运行而非数字等效通道不可用；某次预约超出公示窗口封闭了站台广场；无高差路径被布设物切断；或官方控规、文保、轨道资料发布后与本包的某项空间假设相抵触。**最后一种情形发生的概率最高，而它是复算的理由，不是争辩的理由** [depth:phasing_implementation] [depth:risk_missing_data] [source:PROCESSED-FACT-PACK]。
 
 **运营与年度体系。** 建议本带运行一个以线本身为场地的年度全球AI活动周；一张滚动的场景开放日历，公示哪些区段当前可预约；一个锚定在零公里发布厅的开发者社区；以及一条把团队从开源贡献者→轨道预约用户→入驻主体的转化通道。品牌资产沉淀在**带**里而不是任何单场活动里：线、站名、里程碑、到达板。以上全部是**供专业与运营团队深化的运营建议**，不是已确定的政府项目、资金承诺、投资安排或已批准活动排期。
+
+**离线协议复演——规则是可执行的，不是修辞。** 令牌协议不只写在正文里：`simulation.json`
+记录了由确定性脚本对本包自身数据实际执行的 [metric:simulation_task_count] 项合成复演任务，并给出
+[metric:token_protocol_rule_count] 条协议规则的机读索引。每张场景卡各作一次合规准入检查与四个失败
+分支（匿名预订、缺数据边界、越出声明区间、自动化取消人工复核点）；每个区间各跑一次完整的
+预订—布设—运行—归还令牌周期；另有八条状态机分支复演硬规则——第一枚令牌未归还时第二枚必须被拒、
+逾期归还触发升级、一枚令牌不得跨两个区间、切断无障碍通路的布设必须停摆、非数字等效缺失即暂停、
+越界采集即收回令牌——并以六项拓扑校验把场景卡绑定到提交几何上。其中
+[metric:simulation_negative_branch_count] 项为负分支：**其成功的含义是规则正确拒绝了该尝试**；
+总体结果为 [metric:simulation_success_rate]，任务记录 schema 合格率
+[metric:tool_schema_pass_rate]，审计完整率 [metric:audit_completeness]。治理覆盖面本身也可从几何层
+复算：[metric:scenario_data_boundary_count] 张场景卡带有声明的数据边界，
+[metric:scenario_human_review_count] 张带有不可自动取消的人工复核点。这些复演是对本包自述规则的
+合成检查——不构成现场证据、安全证明或任何运营批准。
 
 ## 指标体系、面积复算与合规矩阵
 

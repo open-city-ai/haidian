@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A concept design that turns the Jing-Zhang heritage park into an open intelligent public spine, connecting three differentiated cores, two service wings, twelve reviewable scenario stations, regional interfaces, and a human-led operating protocol."
 tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.0-review-ready"
+iteration: "v1.1-review-ready"
 ---
 
 # Jing-Zhang Commons Line: An Open Intelligent City on a Centennial Rail Trace
@@ -30,7 +30,9 @@ The overall structure is deliberately transferable: a public rail-memory spine l
 
 The name is **Jing-Zhang Commons Line** and the communication phrase is **Centennial Rail Trace × Open Intelligence × Everyday City**. The logo uses two rail lines and an open node to express traceability, contribution and human review. The three official positioning belts are interpreted as traceable heritage, perceptible AI everyday life and testable AI integration. Five functions are linked as a loop: tools, ecosystem, real scenarios, public experience and governance. [source:AGENT-TASKBOOK] [depth:overall_spatial_structure]
 
-Six international precedents are used only as mechanism references: Kendall Square, Barcelona 22@, MaRS, Punggol Digital District, Paris-Saclay and High Tech Campus Eindhoven. The local translation is a six-layer ecosystem: origin, tools, verification, products, scenarios and governance. No precedent supplies a site control, investment target or implementation promise for Jing-Zhang. [source:CASE-KENDALL] [source:CASE-22BARCELONA] [source:CASE-MARS] [source:CASE-PUNGGOL] [source:CASE-PARIS-SACLAY] [source:CASE-EINDHOVEN]
+Six international precedents are used only as mechanism references: Kendall Square, Barcelona 22@, MaRS, Punggol Digital District, Paris-Saclay and High Tech Campus Eindhoven. The local translation is a six-layer ecosystem: origin, tools, verification, products, scenarios and governance. [source:CASE-KENDALL] [source:CASE-22BARCELONA] [source:CASE-MARS]
+
+No precedent supplies a site control, investment target or implementation promise for Jing-Zhang. The remaining case references are retained for comparison only. [source:CASE-PUNGGOL] [source:CASE-PARIS-SACLAY] [source:CASE-EINDHOVEN]
 
 Regional cooperation is treated as an interface, not as a new boundary. Beiwèi Community can provide resident questions and non-digital feedback; Future Science City can provide authorized research and validation needs; Huairou Science City can provide observation methods; the Beijing Economic-Technological Development Area can provide manufacturing and robotics test questions; and the wider Beijing-Tianjin-Hebei region can exchange cultural routes, open standards and cases. Every exchange requires authorization, minimization, human review and a clear data/IP boundary. [source:AGENT-TASKBOOK] [depth:three_level_scope_framework]
 
@@ -52,11 +54,66 @@ The three prototypes use a shared spatial–scenario–responsibility checklist.
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
-Six personas test the public interface: an open-source developer, a start-up, an enterprise R&D team, a university user, a local resident and an international visitor. Twelve scenario cards are included, with four industrial validation scenarios: model security red-team sandbox, robot yielding test, edge-compute energy validation and urban-agent replay theatre. Eight public scenarios cover open-source release, slow mobility, health navigation, transfer support, low-carbon observation, intelligent-native everyday life, cultural guidance and an international AI route. [source:AGENT-TASKBOOK] [metric:scenario_node_count]
+Seven personas test the public interface: an open-source developer, a start-up, an enterprise R&D team, a university user, a local resident, an international visitor, and a combined maintenance/inclusion persona representing operators, older people and people with limited mobility. The last persona requires clear human entrances, continuous resting points, low-stimulation alternatives and withdrawable services. Twelve scenario cards are included, with four industrial validation scenarios and eight public scenarios. No persona becomes an individual-tracking or commercial profile. [source:AGENT-TASKBOOK] [metric:scenario_node_count]
 
 All scenarios use the same minimum protocol: issue registration, compliance pre-review, sandbox test, human review, small public release, and a versioned continue/change/pause/exit decision. No facial recognition, personal trajectories, non-public enterprise data or unappealable automated public-safety judgment is used. A human or paper alternative remains available. [data:geometry/public_space.geojson#PUBLIC-010] [depth:municipal_new_infrastructure]
 
 The protocol is called **Trace · Test · Trust**. Trace records the source, version and data boundary. Test uses synthetic or authorized data in a bounded sandbox. Trust names the human reviewer, public appeal route, pause button and recovery responsibility. A critical unresolved security defect, unexplained accessibility risk, failed energy/fire/noise review, or an unreferenced/unappealable service answer triggers a pause or rollback. [source:AGENT-TASKBOOK] [depth:municipal_new_infrastructure]
+
+### Roles, service-level evidence, and scenario operating cards
+
+Each station must complete an operating card before opening. KPI/SLA here means an evidence field, not an invented visitor, response-time or investment promise; numerical thresholds are to be set by the authorized operator and professional reviewers. A means accountable, R responsible, C consulted and I informed. Every on-site responsible person may pause a service for safety.
+
+| Role | Boundary | Required record |
+| --- | --- | --- |
+| A public accountability/audit group | Accountable for opening, pause, recovery and appeals | Decision ID, signatory, version difference |
+| R station steward/operator | Runs entry, staffing, fallback service and incident logging | Opening/closing log, roster, incident ticket |
+| R test lead | Controls sandbox version, test set and failure replay | Version stamp, test-set scope, failure log |
+| C professional reviewer | Reviews safety, transport, health, energy, copyright or other domains | Checklist, opinion, open items |
+| C community/accessibility representative | Tests access, offline entry and public objections | Walk-through record, appeal and correction |
+| C data/IP steward | Checks authorization, minimization, retention and deletion | Rights entry, lifecycle, deletion receipt |
+| I public and affected users | Receive explanation, fallback and withdrawal routes | Public issue, feedback and appeal result |
+
+| Gate | A | R | C | I | Service-level evidence |
+| --- | --- | --- | --- | --- | --- |
+| Issue | Public accountability | Station steward | Community/data steward | Public | Issue ID, source and first-response time |
+| Branch | Data/IP steward | Compliance reviewer | Professional/accessibility reviewers | Participants | Authorization expiry, data map, excluded-data list |
+| Sandbox | Test lead | Test operator | Professional/accessibility reviewers | Public | Version, boundary and failure log |
+| Human Review | Public accountability | Review group | Community/data stewards | Public | Signed opinion, dissent and appeal route |
+| Small Public | Public accountability | Operator | All C roles | Users/neighbors | Opening/closing log, fallback proof |
+| Changelog | Public accountability | Operator and data steward | Test/professional reviewers | Public | Continue/change/pause/exit decision and recovery confirmation |
+
+The twelve cards below use a conservative default lifecycle: clear raw data after the test or service ends, and retain only authorized aggregates or audit records. The actual period and deletion method must be completed in the authorization record. A missing entry, review, fallback or log prevents expansion beyond a small public release.
+
+| ID | Entry and R | Data and lifecycle | KPI/SLA evidence | Stop, recovery and fallback |
+| --- | --- | --- | --- | --- |
+| TV-01 | Authorized test set and frozen version; red-team lead | Synthetic/authorized set; clear raw set after closure, retain defect audit | Open critical defects, replay and review time | Roll back on unresolved critical defect; manual security review |
+| TV-02 | Low-speed marked area, observer and accessibility check; test lead | Anonymous conflict events; clear raw observation per session | Conflict, near-miss and accessibility issue logged before next session | Pause on unexplained risk; manual traffic guidance |
+| TV-03 | Energy, thermal, fire and noise pre-check; device lead | Aggregate device/environment values; clear device-level raw logs after test | Signed safety checklist and complete energy/temperature log | Remove device if review fails; ordinary public service remains |
+| TV-04 | Public rules, synthetic cases and human stage steward; theatre lead | No personal input; clear session data after replay | Rule source, version and appeal path for every output | Return to service desk if unreferenced/unappealable; human explanation |
+| SC-05 | Authorized event metadata, curator and rights check; release lead | Authorized event data; no audience profile, retain publication record by license | Rights check, author and update date, offline service | Withdraw if rights unclear; paper catalogue and human desk |
+| SC-06 | Walk-through, access check and public network; mobility lead | Public network and voluntary feedback; clear raw feedback after review | Barrier, alternative route and correction record | Withdraw route if inaccessible; paper map/human guide |
+| SC-07 | Public directory and clinician review; navigation lead | No health privacy; retain directory version and review record | Directory freshness, source and human handoff | Remove stale entry; phone/on-site navigator |
+| SC-08 | Published policy/IP material and human maintenance; transfer lead | Public material only; no confidential business input, clear session after use | Source, reviewer and unresolved-item list | Stop when rule is unclear; human legal/IP consultation |
+| SC-09 | Aggregate environment values and ecology/flood review; observation lead | Public/authorized aggregates; no personal behavior, retain versioned aggregate | Data-gap flag, review date and anomaly action | Pause display on anomaly; manual bulletin/ordinary guide |
+| SC-10 | Voluntary participation, opt-out and staffed operation; service lead | Voluntary feedback; clear raw feedback after synthesis | Opt-out, complaint and response records | Pause harmful experience or unanswered complaint; ordinary service |
+| SC-11 | Sourced history, rights clearance and human guide; culture lead | Public sources and licensed media; retain public edition by license | Citation, generated-content label and review date | Withdraw on fact/rights doubt; paper guide/human docent |
+| SC-12 | Public schedule, safety and accessibility check; event lead | Public schedule and aggregate flow; clear raw flow after event | Safety plan, access check and opening/closing log | Do not publish if incomplete; ordinary public route |
+
+### Public component library and accessibility QA
+
+Trace, Test and Trust are reusable urban components rather than only a visual slogan. Each component needs a version, owner, maintenance/expiry date and paper backup; without these fields it cannot enter a small public release.
+
+| Component | Public function | Minimum acceptance evidence |
+| --- | --- | --- |
+| TR-01 source/version plaque | Shows source, model version, data boundary and update date | Chinese/English fields, source ID/link and legibility check |
+| TE-01 test-boundary plaque | Shows sandbox, hours, booking entry and pause signal | Boundary, pause button/voice and exception drill |
+| TU-01 human-owner/appeal plaque | Names the duty role, fallback and objection route | Duty role, phone/on-site window and appeal receipt |
+| PA-01 paper/human desk | Keeps basic service during outage, pause or non-AI use | Paper map/directory, roster and recovery drill |
+| AC-01 continuous-access component | Provides rest, low-stimulation route, accessible wayfinding and enterable ground floor | Accessibility walk-through, alternative route and correction record |
+| LG-01 low-carbon/maintenance plaque | Shows device energy, maintenance duty and unavailable periods | Equipment/maintenance ledger, safety review and removal record |
+
+Minimum human QA includes: no color-only meaning; Chinese/English and generated-content labels; adequate contrast, continuous rest and reachable alternatives in physical wayfinding; keyboard order, focus state, text alternatives and no-script readable content in digital interfaces; and one walk-through with an older person, a person with limited mobility and an operator. The result enters the Changelog; failure returns the service to Sandbox or ordinary human service. [depth:municipal_new_infrastructure] [depth:three_key_area_detailed_design]
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
@@ -80,7 +137,13 @@ The annual operation loop is: open-source problem season, safety validation seas
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
-The submitted provisional boundary is approximately 11.413 km², the conceptual building footprint is 53.8 ha, the green envelope is 138.3 ha, the public-space envelope is 7.8 ha, the slow-mobility network is 23.9 km, there are 12 scenario nodes, 9 renewal project nodes and 3 key areas. Land-use union equals the submitted boundary. FAR, height and total floor area remain unknown. Every metric is derived from the package geometry and labeled with confidence and assumptions. [metric:site_area_sqm] [metric:building_footprint_area_sqm] [metric:green_space_area_sqm] [metric:public_space_area_sqm] [metric:walking_cycling_network_length_m] [metric:key_area_count] [metric:scenario_node_count] [metric:renewal_project_count] [metric:floor_area_ratio] [metric:building_height_m] [metric:total_floor_area_sqm]
+The submitted provisional boundary is approximately 11.413 km², the conceptual building footprint is 53.8 ha, and the land-use union equals the submitted boundary. FAR, height and total floor area remain unknown. [metric:site_area_sqm] [metric:building_footprint_area_sqm] [metric:green_space_area_sqm]
+
+The green envelope is 138.3 ha and the public-space envelope is 7.8 ha; these are conceptual design values, not approved controls. [metric:public_space_area_sqm] [metric:walking_cycling_network_length_m] [metric:key_area_count]
+
+There are 12 scenario nodes and 9 renewal project nodes. Every metric is derived from package geometry and labeled with confidence and assumptions. [metric:scenario_node_count] [metric:renewal_project_count] [metric:floor_area_ratio]
+
+Building height and total floor area remain unknown until official controls and surveys are available. [metric:building_height_m] [metric:total_floor_area_sqm]
 
 The compliance, standard and design-depth matrices link each required task to proposal sections, geometry, figures, metrics, sources, assumptions and self-checks. A PASS means that evidence is present and reviewable; it does not mean official approval or engineering feasibility. [depth:metrics_recalculation] [source:AGENT-TASKBOOK]
 

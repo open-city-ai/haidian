@@ -287,3 +287,45 @@ SHA 复核和 merge 使用进程内锁串行执行，避免 Git 引用锁和 bas
 5–10 分钟运行一次，并以进程锁保证同一时间只有一个 worker。执行账号应使用
 fine-grained token 或 GitHub App，只授予本仓库 Contents/PR 所需权限；若 ruleset
 限定管理员合并，则将该 App/账号加入 bypass list 后使用 `--admin-merge`。
+
+## Quick Reference (English)
+
+### Workflow overview
+
+1. Check the PR diff — participant PRs must only modify `submissions/<login>/<slug>/`.
+2. Install local review dependencies: `python3 -m pip install -r requirements-review.txt`.
+3. Run the maintainer review bundle: `python3 scripts/maintainer_review.py submissions/<login>/<slug> --pr-author <login> --comment`.
+4. Read `maintainer-comment.md` in `.maintainer-review/<slug>/`.
+5. Make a decision: `formal-review-ready`, `intake-provisional`, `request-changes`, or `reject`.
+6. Post the comment to the PR (copy `pr_comment_markdown`; do not commit review artifacts).
+7. If `formal-review-ready`: merge the PR, then run `scripts/generate_submissions_data.py` and publish.
+8. If `request-changes`: post the comment and keep the PR open.
+9. If `reject`: close the PR with the rejection reason.
+
+### Gate check reference
+
+| Gate | Script | Passes when |
+|---|---|---|
+| DETERMINISTIC_VALIDATION | `validate_local_submission.py` | No blocking errors in format, scope, manifest, or PII checks |
+| SPATIAL_REVIEW | `spatial_review.py` | Geometry is valid, inside boundary, no topology errors |
+| VISUAL_PACKAGING | `visual_review.py` | `visual/index.html` is offline, has required sections, metrics match |
+| PROFESSIONAL_EVIDENCE | `professional_review.py` | Standard matrix, design-depth matrix, and metric references are complete |
+
+### Decision values
+
+| Recommendation | Meaning | Action |
+|---|---|---|
+| `formal-review-ready` | All four gates pass | Eligible for merge and formal professional scoring |
+| `intake-provisional` | May be merged for display but not scoring | Merge for gallery; do not assign professional scores |
+| `request-changes` | One or more gates fail | Post review comment; keep PR open |
+| `reject` | Mandatory rejection condition | Close PR with explanation |
+
+### Prohibited artifacts
+
+Never commit to the repository:
+- `.maintainer-review/` contents (gitignored)
+- `docs/reviews/` contents (gitignored)
+- `formal-scorecard.json` (local only)
+- AI advisory review intermediates
+
+Post review conclusions only as PR comments. Do not embed them in `submissions-data.js` or public display pages.

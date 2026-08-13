@@ -1,0 +1,179 @@
+{
+  "schema_version": "0.2.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "brief/site-package/geometry/provisional_boundaries.geojson"
+      ],
+      "formula": "EPSG:4548 投影下面积 = shoelace(投影坐标)；取概念级精度",
+      "confidence": "low",
+      "assumptions": [
+        "仓库维护者提供的临时边界（provisional geometry），非官方红线",
+        "官方几何公布后必须复算，面积不显示超出可信度的精确小数位",
+        "面积约束与征集公告约11.4平方公里量级一致"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2655804,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "EPSG:4548 投影下绿地要素面积；取概念级精度",
+      "confidence": "low",
+      "assumptions": [
+        "绿地为设计提案，基于临时边界内缩生成",
+        "官方红线公布后复算"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 853529,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "EPSG:4548 投影下公共空间要素面积；取概念级精度",
+      "confidence": "low",
+      "assumptions": [
+        "公共空间为设计提案",
+        "官方红线公布后复算"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 853798,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "EPSG:4548 投影下建筑基底要素面积；取概念级精度",
+      "confidence": "low",
+      "assumptions": [
+        "建筑基底为设计提案，非现状实测",
+        "仅作后续控规校核起算值"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.23,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm（概念级精度）",
+      "confidence": "low",
+      "assumptions": [
+        "比值随临时边界复算而更新",
+        "约23.3%，仅保留两位有效精度"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.07,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm（概念级精度）",
+      "confidence": "low",
+      "assumptions": [
+        "比值随临时边界复算而更新",
+        "约7.5%，仅保留一位有效精度"
+      ]
+    },
+    "key_area_zhongzhiyuan_sqm": {
+      "status": "known",
+      "value": 1929202,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "官方公布约192.1公顷，临时多边形复算面积（取整）",
+      "confidence": "low",
+      "assumptions": [
+        "临时边界，非官方红线",
+        "官方几何公布后复算"
+      ]
+    },
+    "key_area_beijing_origin_sqm": {
+      "status": "known",
+      "value": 1043237,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "官方公布约104.3公顷，临时多边形复算面积（取整）",
+      "confidence": "low",
+      "assumptions": [
+        "临时边界，非官方红线",
+        "官方几何公布后复算"
+      ]
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 8432,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "道路中心线平面长度近似（概念级）",
+      "confidence": "low",
+      "assumptions": [
+        "概念推演",
+        "官方几何到位后复算"
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "图层要素计数",
+      "confidence": "low",
+      "assumptions": [
+        "概念分期"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "图层要素计数",
+      "confidence": "low",
+      "assumptions": [
+        "临时边界"
+      ]
+    },
+    "key_area_dazhongsi_sqm": {
+      "status": "known",
+      "value": 720454,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "官方公布约72.0公顷，临时多边形复算面积（取整）",
+      "confidence": "low",
+      "assumptions": [
+        "临时边界，非官方红线",
+        "官方几何公布后复算"
+      ]
+    }
+  }
+}

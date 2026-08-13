@@ -1,5 +1,14 @@
 # 方案迭代记录
 
+## v3.0 - 2026-08-13
+
+- Re-anchored the whole proposal on new status evidence: park phase 2 is complete and the full 9 km fence-free park is publicly open around the clock, so phase 1 becomes a zero-new-permanent-construction operating start with the commitment written into the phasing layer and a recomputable metric.
+- Promoted the six-state protocol to a machine-readable file plus a bundled deterministic tabletop replay (13 checks over the state machine, entry gates, daily bands, scenario responsibility fields and the phase-1 commitment) with hash-anchored, byte-reproducible evidence.
+- Added a physical give-back clause to night-test admission: declared public destinations for waste heat and stop thresholds for heat/noise spill, citing Stockholm district-heating and German EnEfG precedents as institutions only.
+- Added a one-page executive summary, a street-level "one night on the night shift" walkthrough, and a protocol-interoperability section crediting four merged peer proposals (Timekeeping Belt, Light Enough, The Warm Line, Open Platforms) after progressive peer reading.
+- Registered eight new sources (two park-status reports, two heat-reuse precedents, four peer credits), two new assumptions (park status usage boundary, give-back mechanism boundary) and one new risk (open park status is not operating authorization).
+- Kept all v2 geometry unchanged except phasing-layer construction attributes; refreshed both language versions, figures, offline visuals, drawings and the persisted self-check.
+
 ## v2.0 - 2026-08-11
 
 - Repaired the spatial topology: one north-south spine now intersects all six east-west light gates.

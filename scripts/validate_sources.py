@@ -4,6 +4,43 @@
 The source index is deterministic project metadata. This script intentionally
 uses only the Python standard library so it can run in CI without installing
 untrusted dependencies.
+
+The public source index is at ``sources/public-sources.json``. It lists
+publicly accessible sources used for the Haidian AI design brief, including
+official announcements, standards, open data, and media reports.
+
+Validation rules
+----------------
+- Every source must have the required fields: ``id``, ``title``, ``type``,
+  ``publisher``, ``published_at``, ``public_status``, ``citation``,
+  ``usage_note``, ``risk_note``.
+- ``id`` must match ``^[a-z0-9][a-z0-9-]{2,63}$`` and be unique.
+- ``type`` must be one of: ``brief``, ``boundary``, ``policy``, ``map``,
+  ``culture``, ``industry``, ``news``, ``other``.
+- ``public_status`` must be one of: ``confirmed-public``, ``public-draft``,
+  ``external-public``.
+- Either ``path`` (a repo-relative local file) or ``url`` (``https://``) is
+  required; both may be present.
+- ``path`` values must be relative, must not contain ``..``, and must point to
+  an existing file in the repository.
+- ``url`` values must start with ``https://``.
+- No unrecognized additional fields are allowed.
+
+Usage
+-----
+Validate the default index::
+
+    python3 scripts/validate_sources.py
+
+Validate a custom index::
+
+    python3 scripts/validate_sources.py --index path/to/public-sources.json
+
+Machine-readable JSON::
+
+    python3 scripts/validate_sources.py --json
+
+Exit code is 0 when the index passes all checks and 1 otherwise.
 """
 
 from __future__ import annotations
@@ -183,10 +220,25 @@ def format_report(report: SourceValidationReport) -> str:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--repo-root", default=".")
-    parser.add_argument("--index", default="sources/public-sources.json")
-    parser.add_argument("--json", action="store_true")
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument(
+        "--repo-root",
+        default=".",
+        help="Repository root directory (default: current working directory)",
+    )
+    parser.add_argument(
+        "--index",
+        default="sources/public-sources.json",
+        help="Path to the source index relative to --repo-root (default: sources/public-sources.json)",
+    )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Emit machine-readable JSON instead of human-readable Markdown",
+    )
     args = parser.parse_args()
 
     report = validate_source_index(Path(args.repo_root), Path(args.index))

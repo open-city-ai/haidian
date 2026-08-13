@@ -1,0 +1,79 @@
+{
+  "schema_version": "0.1.0",
+  "proposal_slug": "ai-public-health-service",
+  "generated_date": "2026-08-11",
+  "assumptions": [
+    {
+      "id": "ASM-001",
+      "category": "geometry",
+      "statement": "All geometric boundaries use provisional data from brief/site-package/geometry/provisional_boundaries.geojson.",
+      "reason": "Official precise GIS/CAD polygons are not yet publicly available in the repository.",
+      "impact": "All area calculations are approximate. Recalculation required when official data arrives.",
+      "mitigation": "All geometry features marked as provisional_constraint with official_boundary=false.",
+      "recalculation_trigger": "Official boundary GeoJSON/CAD published in repository."
+    },
+    {
+      "id": "ASM-002",
+      "category": "land_use",
+      "statement": "Land use partition is a concept design derived from provisional site boundary, not based on existing land use survey or approved regulatory plan.",
+      "reason": "No official existing land use GIS data or approved regulatory plan available in cleared site package.",
+      "impact": "Land use areas and ratios are conceptual. Not suitable for statutory planning decisions.",
+      "mitigation": "All land use values labeled as concept suggestions in proposal.md.",
+      "recalculation_trigger": "Existing land use survey data or approved regulatory plan made available."
+    },
+    {
+      "id": "ASM-003",
+      "category": "metrics",
+      "statement": "FAR, building density, building height, green ratio, and setback controls are marked unknown because official regulatory planning conditions are not in the cleared site package.",
+      "reason": "planning_limits.json lists these as missing/required for final submission.",
+      "impact": "Proposal cannot make statutory claims about development intensity.",
+      "mitigation": "All missing controls listed in planning_limits.json as 'missing'. Proposal narrative uses qualitative descriptions.",
+      "recalculation_trigger": "Approved regulatory planning conditions or official design brief attachments provided."
+    },
+    {
+      "id": "ASM-004",
+      "category": "medical_data",
+      "statement": "Medical facility data used for design context is based on publicly available information about Haidian District medical resources.",
+      "reason": "No official medical facility GIS dataset available in cleared site package.",
+      "impact": "Medical AI facility siting is conceptual. Specific hospital partnerships require separate agreements.",
+      "mitigation": "Proposal describes medical AI facilities in functional terms rather than tied to specific existing hospitals unless publicly verifiable.",
+      "recalculation_trigger": "Official medical facility data or partnership agreements."
+    },
+    {
+      "id": "ASM-005",
+      "category": "ai_technology",
+      "statement": "Medical AI capabilities described (federated learning, experience distillation, AI triage) represent technology directions that are feasible but require substantial R&D, clinical validation, and regulatory approval.",
+      "reason": "Most described capabilities are in research or early deployment stages globally.",
+      "impact": "Timeline estimates may be optimistic. Technology readiness varies by specific application.",
+      "mitigation": "Each scenario card includes a maturity assessment. Test scenarios proposed for phased validation.",
+      "recalculation_trigger": "Technology maturity assessments updated as field progresses."
+    },
+    {
+      "id": "ASM-006",
+      "category": "phasing",
+      "statement": "Three-phase timeline (2027-2035) is a concept suggestion based on typical urban development cycles and medical AI technology maturation projections.",
+      "reason": "No official implementation timeline or government commitment available.",
+      "impact": "Phasing is indicative only. Actual timeline depends on planning approvals, investment, and technology readiness.",
+      "mitigation": "Phasing described as '分期建议' (phasing suggestion) throughout.",
+      "recalculation_trigger": "Official development timeline or government implementation plan."
+    },
+    {
+      "id": "ASM-007",
+      "category": "building_footprints",
+      "statement": "Building footprints are concept massing derived from land use partition, not survey of existing buildings or approved building permits.",
+      "reason": "No existing building footprint dataset or approved building plan available.",
+      "impact": "Building count, coverage, and massing are conceptual. Does not reflect existing buildings to retain/renovate/demolish.",
+      "mitigation": "Proposal explicitly states buildings are concept only.",
+      "recalculation_trigger": "Existing building survey data made available."
+    },
+    {
+      "id": "ASM-008",
+      "category": "regulatory_compliance",
+      "statement": "This proposal is an AI agent conceptual submission under the agent open call framework. All spatial claims are concept suggestions for professional team deepening.",
+      "reason": "As required by agent_taskbook.json boundary clause.",
+      "impact": "Proposal should not be cited as statutory planning, government approval, or implementation commitment.",
+      "mitigation": "Required boundary language included in proposal.md summary and throughout.",
+      "recalculation_trigger": "N/A — permanent assumption."
+    }
+  ]
+}

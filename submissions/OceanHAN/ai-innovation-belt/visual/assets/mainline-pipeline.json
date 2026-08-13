@@ -1,0 +1,51 @@
+{
+  "schema_version": "0.1.0",
+  "concept_zh": "主线五段验收链（开源 PR 语义 ↔ 可验证公共语义）",
+  "concept_en": "Mainline five-stage acceptance chain (open-source PR semantics ↔ verifiable public semantics)",
+  "stage_count": 5,
+  "stages": [
+    {
+      "id": "STAGE-COMMIT",
+      "name_zh": "COMMIT 提案",
+      "name_en": "COMMIT proposal",
+      "git_semantics": "open an issue / push a proposal branch",
+      "requirement_zh": "目的、范围、数据源与退出条件公开提交；问题以 issue 形式公开登记",
+      "verifiable_public": "no-AI baseline declared and self-checked (C2)"
+    },
+    {
+      "id": "STAGE-MERGE",
+      "name_zh": "MERGE 评审",
+      "name_en": "MERGE review",
+      "git_semantics": "pull request review by maintainers and public",
+      "requirement_zh": "公示与意见征集（Merge 评审月），采纳情况留痕；四段契约与状态机不可跳过",
+      "verifiable_public": "gates C0-C4 pass; public review record traceable"
+    },
+    {
+      "id": "STAGE-LIVE",
+      "name_zh": "LIVE 灰度上线",
+      "name_en": "LIVE gray rollout",
+      "git_semantics": "merge to main and release",
+      "requirement_zh": "仅获授权的限时增益；可回退切换开日志公开审计",
+      "verifiable_public": "C5 gray go-live; rollback ready"
+    },
+    {
+      "id": "STAGE-BLACKOUT",
+      "name_zh": "BLACKOUT 退场演练",
+      "name_en": "BLACKOUT unplug drill",
+      "git_semantics": "revert to a previous commit / tag",
+      "requirement_zh": "真实拔线模型/网络/传感器/自动执行器；演练不可跳过",
+      "verifiable_public": "unplug action executed; recovery evidence collected"
+    },
+    {
+      "id": "STAGE-LEGACY",
+      "name_zh": "LEGACY 红利留档",
+      "name_en": "LEGACY dividend archiving",
+      "git_semantics": "archive the release and tag a stable line",
+      "requirement_zh": "验收离线公共红利是否仍独立可用；公开复盘与版本存档",
+      "verifiable_public": "bequest usable + maintained by responsible party; audit closed"
+    }
+  ],
+  "slogan_zh": "Merge must be reversible（合入必须可合回）。",
+  "slogan_en": "Merge must be reversible.",
+  "fields_status": "conceptual_not_authorized"
+}

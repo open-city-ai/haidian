@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "schema_version": "1.0.0",
+  "title_zh": "公共验收护照风险台账",
+  "title_en": "Public Acceptance Passport Risk Register",
+  "status": "concept_not_authorized_not_run",
+  "dimensions": [
+    {
+      "id": "data_privacy",
+      "label": "数据隐私",
+      "score": 4,
+      "note": "十二场景的数据类型、保存期和个人识别风险不同，真实系统尚未接入或运行。",
+      "mitigation": "默认不识别个人、最小化保存、逐场景审计；越权采集立即停止并删除受影响数据。",
+      "human_review": "数据保护、法务与公众代表在G2前逐场景复核。"
+    },
+    {
+      "id": "implementation_complexity",
+      "label": "实施复杂度",
+      "score": 5,
+      "note": "三区涉及河道、轨道、道路、消防、文保、权属和多运营主体，真实落位复杂。",
+      "mitigation": "先普通基线和可撤原型，G0-G4逐门审查；任一专业条件不清即不落位。",
+      "human_review": "规划、交通、市政、消防、文保、无障碍与权属专业团队共同签署G1结论。"
+    },
+    {
+      "id": "public_acceptance",
+      "label": "公众接受度",
+      "score": 4,
+      "note": "当前没有居民同意或现场共同验收结果，合成案例不能代表真实接受度。",
+      "mitigation": "保留no-AI普通服务，老人和残障者代表参与共验；每次开放限时且可申诉退出。",
+      "human_review": "居民、老人、残障者代表与独立评估者参与G2-G4。"
+    },
+    {
+      "id": "operations_cost",
+      "label": "运维成本",
+      "score": 3,
+      "note": "持续人工值守、无障碍维护、审计和回滚演练会产生长期运维负担。",
+      "mitigation": "首期限定L1/L2成本带，可逆组件跨场地复用，达到退出门槛即停止扩展。",
+      "human_review": "运营与采购团队在试点前确认人员班次、维护责任和退出成本。"
+    },
+    {
+      "id": "policy_uncertainty",
+      "label": "政策不确定性",
+      "score": 4,
+      "note": "生成式AI、数据、公共服务和场地审批适用边界需逐场景核对。",
+      "mitigation": "标准矩阵限定法规适用范围；项目自设数字目标不得冒充法定义务。",
+      "human_review": "法务、数据治理与法定专业部门在G1/G2复核适用性。"
+    },
+    {
+      "id": "spatial_dispute",
+      "label": "空间争议",
+      "score": 5,
+      "note": "当前边界和重点区是临时粗略polygon，可能与真实红线、权属或现状冲突。",
+      "mitigation": "所有图面降级标注；official polygons到位后重算全部几何、指标、图册和落位。",
+      "human_review": "官方数据持有者与注册规划专业人员共同确认后方可定位。"
+    },
+    {
+      "id": "technology_maturity",
+      "label": "技术成熟度",
+      "score": 4,
+      "note": "24条合成路径只验证准入规则逻辑，没有现场安全、性能或可用性证据。",
+      "mitigation": "保持field_performance为空；先离线人工演练，任何失控恢复普通no-AI基线。",
+      "human_review": "独立安全评测、领域专家和当值安全员共同决定是否进入G3。"
+    },
+    {
+      "id": "equity_inclusion",
+      "label": "公平与包容性",
+      "score": 4,
+      "note": "数字入口、设备占道或不清晰交互可能排斥老人、残障者和无智能手机人群。",
+      "mitigation": "3.0米概念净通道、人工双桌、纸质回执和无数字强制门槛作为红线。",
+      "human_review": "无障碍顾问和不同能力用户通过现场共走与G2共验确认。"
+    }
+  ],
+  "risk_register": [
+    {
+      "risk_id": "R01",
+      "risk_zh": "临时边界或概念空间被误读为官方红线、工程线位或获批方案",
+      "risk_en": "Provisional geometry or a conceptual spatial sequence is read as an official redline, engineering alignment, or approved scheme.",
+      "likelihood": "medium",
+      "impact": "high",
+      "owner_role": "lead_planning_and_evidence_steward",
+      "preventive_controls": ["provisional_label_on_every_spatial_deliverable", "official_polygon_recalculation_trigger", "presentation_evidence_separated_from_geometry_authority"],
+      "detection_evidence": ["geometry/site_boundary.geojson", "geometry/key_areas.geojson", "assumptions.json"],
+      "stop_or_rollback": "stop siting and all numerical spatial claims until official geometry and professional review are available"
+    },
+    {
+      "risk_id": "R02",
+      "risk_zh": "场景激活前用途、数据、责任人或开放时段未向公众说明",
+      "risk_en": "Purpose, data, accountable owner, or operating hours are not disclosed before activation.",
+      "likelihood": "medium",
+      "impact": "high",
+      "owner_role": "named_site_operator",
+      "preventive_controls": ["notice_porches", "bilingual_plain_language_passport", "pre_opening_checklist"],
+      "detection_evidence": ["visual/assets/acceptance-passports.json", "geometry/public_space.geojson"],
+      "stop_or_rollback": "do not open; restore the ordinary no-AI route and publish the failed passport field"
+    },
+    {
+      "risk_id": "R03",
+      "risk_zh": "高影响输出越过具名专业人员作出最终决定",
+      "risk_en": "A high-impact output bypasses the named qualified human who must make the final decision.",
+      "likelihood": "low",
+      "impact": "critical",
+      "owner_role": "qualified_human_final_decision_owner",
+      "preventive_controls": ["human_final_contract", "dual_service_desk", "no_production_backend_for_tabletop_tests"],
+      "detection_evidence": ["visual/assets/acceptance-passports.json", "visual/assets/acceptance-tabletop.json"],
+      "stop_or_rollback": "immediate stop, invalidate affected output, hand over to a qualified human, and open an incident review"
+    },
+    {
+      "risk_id": "R04",
+      "risk_zh": "基本服务以手机、账户、人脸或全数字通道作为强制门槛",
+      "risk_en": "A phone, account, face, or digital-only channel becomes mandatory for basic access.",
+      "likelihood": "medium",
+      "impact": "high",
+      "owner_role": "public_service_and_accessibility_lead",
+      "preventive_controls": ["ordinary_path_kept_open", "staffed_fallback", "paper_or_physical_equivalent"],
+      "detection_evidence": ["visual/assets/acceptance-passports.json", "metrics.json"],
+      "stop_or_rollback": "disable the digital gate and restore staffed or physical equivalent access before reopening"
+    },
+    {
+      "risk_id": "R05",
+      "risk_zh": "无障碍路径、盲道、休息点或人工服务被设备和活动挤占",
+      "risk_en": "Equipment or events obstruct the step-free route, tactile guidance, rest points, or staffed service.",
+      "likelihood": "medium",
+      "impact": "high",
+      "owner_role": "accessibility_and_public_realm_lead",
+      "preventive_controls": ["daily_clear_route_walk", "reversible_equipment_bays", "disabled_user_co_acceptance"],
+      "detection_evidence": ["assets/figures/acceptance-passports.png", "geometry/public_space.geojson"],
+      "stop_or_rollback": "pause the affected zone, remove obstructions, restore the route, and repeat co-acceptance before reopening"
+    },
+    {
+      "risk_id": "R06",
+      "risk_zh": "测试与公众流线、后勤或水系和铁路等待核验约束发生冲突",
+      "risk_en": "Testing conflicts with public circulation, logistics, or pending water, rail, fire, heritage, or ownership constraints.",
+      "likelihood": "medium",
+      "impact": "critical",
+      "owner_role": "site_safety_and_professional_review_lead",
+      "preventive_controls": ["controlled_test_yard", "safety_steward_sightline", "G1_professional_review_before_any_live_test"],
+      "detection_evidence": ["geometry/constraints.geojson", "assumptions.json", "assets/figures/key-areas.png"],
+      "stop_or_rollback": "do not run live equipment; return to no-AI public use and relocate only after professional clearance"
+    },
+    {
+      "risk_id": "R07",
+      "risk_zh": "开源成果的版权、来源、事实或撤回通道不完整",
+      "risk_en": "Open outputs lack complete rights, provenance, factual review, or a withdrawal route.",
+      "likelihood": "medium",
+      "impact": "high",
+      "owner_role": "open_source_rights_curator",
+      "preventive_controls": ["rights_clearance_desk", "versioned_contribution_archive", "human_editor_release_gate"],
+      "detection_evidence": ["visual/assets/acceptance-passports.json", "report/copyright_statement.md"],
+      "stop_or_rollback": "withhold or withdraw the output, preserve the correction trail, and notify affected contributors"
+    },
+    {
+      "risk_id": "R08",
+      "risk_zh": "上诉、纠错、删除、急停或退出只停留在文字中而无法演练",
+      "risk_en": "Appeal, correction, deletion, emergency stop, or exit exists only on paper and cannot be rehearsed.",
+      "likelihood": "medium",
+      "impact": "critical",
+      "owner_role": "named_site_operator",
+      "preventive_controls": ["physical_pause_control", "monthly_rollback_drill", "public_acceptance_receipt"],
+      "detection_evidence": ["visual/assets/acceptance-runner.js", "visual/assets/acceptance-tabletop.json"],
+      "stop_or_rollback": "freeze deployment, execute the no-AI fallback, publish the failure, and require an independent retest"
+    },
+    {
+      "risk_id": "R09",
+      "risk_zh": "合成概念图被误认为现场照片、居民意见或工程可行性证据",
+      "risk_en": "Synthetic concept imagery is mistaken for a site photograph, resident consent, or engineering feasibility evidence.",
+      "likelihood": "medium",
+      "impact": "high",
+      "owner_role": "visual_evidence_steward",
+      "preventive_controls": ["conceptual_image_label", "asset_ledger", "no_real_site_or_person_reference"],
+      "detection_evidence": ["report/copyright_statement.md", "manifest.json"],
+      "stop_or_rollback": "remove the misleading display until the conceptual status and rights record are restored"
+    }
+  ]
+}

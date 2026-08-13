@@ -65,3 +65,31 @@ python3 scripts/export_review_packet.py \
 6. 完整方案正文。
 
 维护者可以把 HTML 或 PDF 发给专家离线阅读；如需反馈投稿者，仍应整理成 PR comment，而不是提交评审包。
+
+## English Quick Reference
+
+`scripts/export_review_packet.py` exports one or more submissions as offline expert review packets. It reads only static files from the repository and never executes contributor code, calls AI services, or modifies the submission directory.
+
+### Output files
+
+| File | Description |
+|---|---|
+| `review-packet.md` | Markdown review packet for annotation and archiving |
+| `review-packet.html` | Print-friendly offline HTML with status, risks, sources, metrics, and full proposal text |
+| `packet-manifest.json` | Export script, output files, and included proposals |
+| `review-packet.pdf` | Generated only with `--pdf` and a local `wkhtmltopdf` or Chromium installation |
+
+### Reading order in the packet
+
+The packet is structured to prevent reviewers from being overwhelmed by the full proposal text immediately:
+
+1. Packet index (list of included proposals)
+2. Quick decision: path, author, status, version, formal-review-ready flag
+3. Risk and pending conditions: `risk.json`, `assumptions.json`, known blockers
+4. Self-check and evidence chain: `self_check.json`, `sources.json`, `metrics.json`
+5. Offline material index: report HTML, visual HTML, A3/A0 drawings, matrix files
+6. Full proposal text
+
+### Sharing review results
+
+Send the HTML or PDF to reviewers for offline reading. If feedback is needed for the participant, post it as a PR comment — do not commit the review packet to the repository or the public portal.

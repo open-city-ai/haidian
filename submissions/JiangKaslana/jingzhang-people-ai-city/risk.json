@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "dimensions": [
+    {
+      "id":"data_privacy","label":"数据隐私与过度感知","score":4,
+      "note":"公共导览、机器人、健康导航和治理助手若默认扩大采集，会形成用途漂移、持续画像、生物识别依赖或厂商锁定。",
+      "mitigation":"数据最小化、用途限定、短期试验优先；能不用生物识别就不用，公共AI登记卡公开数据类别、责任主体、版本、禁止能力与退出方式。",
+      "human_review":"数据、法务、网络安全、业务责任人和公众代表按场景复核数据合法性、必要性、保留期限与退出方式。"
+    },
+    {
+      "id":"implementation_complexity","label":"实施复杂度与人工接管链条","score":4,
+      "note":"人民AI五权、人工窗口、停机降级、公共登记、无障碍和非AI等价路径需要空间、系统、人员与运营同时到位，不能只靠一个模型接口。",
+      "mitigation":"采用 BASELINE→AI PILOT→HUMAN REVIEW→PUBLIC RECEIPT→SCALE/REVISE/STOP 分阶段实施；先做小尺度可逆试验，再扩展。",
+      "human_review":"每个阶段由规划、建筑、交通、无障碍、运营、网络安全与真实使用者共同签署进入下一阶段的条件。"
+    },
+    {
+      "id":"public_acceptance","label":"公众接受、数字排斥与试验负担","score":4,
+      "note":"不会用手机、无账号、老年人、残障人士、服务劳动者或主动拒绝AI的人可能因智能化被降级，也可能被迫承担测试错误、绕行和等待成本。",
+      "mitigation":"12/12场景保留人工或非AI等价路径；九类验收人按真实任务共测，普通服务基线不得因AI试点下降。",
+      "human_review":"任何一类验收人无法完成关键任务或试点明显增加普通人的负担时，场景必须修订、降级或停止。"
+    },
+    {
+      "id":"operations_cost","label":"长期运营与人工兜底成本","score":3,
+      "note":"人民AI服务站、人工复核、公开台账、投诉纠错、设备维护和社区议事都需要长期人员与预算，不能把人工兜底当作免费附件。",
+      "mitigation":"把人员、服务时段、维护、投诉、停机、系统迁移和生命周期退出成本作为AI项目本体纳入运营方案。",
+      "human_review":"扩大长期试点前，由未来运营主体确认岗位、值守、维护、责任、采购与生命周期成本。"
+    },
+    {
+      "id":"policy_uncertainty","label":"政策、权限与人类最终责任不确定性","score":4,
+      "note":"AI可辅助公共服务，但不同领域对数据、采购、行业准入、资格认定、公共安全和行政责任的权限边界不同，不能用技术方案代替法定责任。",
+      "mitigation":"所有影响权益、安全、支付、通行、资格、执法或公共资源的最终决定保留依法有权的人类责任主体；技术供应商不取得事实规划或治理权。",
+      "human_review":"实施前逐场景由主管部门、法务及专业责任人核定权限、责任链和适用规则；无法确认时仅保留低风险辅助功能。"
+    },
+    {
+      "id":"spatial_dispute","label":"临时边界、文保、权属与空间争议","score":4,
+      "note":"当前总体范围和三处重点区仍为 provisional，精确控规、道路红线、权属、文保、市政和工程条件并不完整，概念体量可能与真实条件冲突。",
+      "mitigation":"所有新增空间对象明确标记 design_proposal / low confidence，不把临时几何解释为法定红线、产权、文保范围或工程定位。",
+      "human_review":"官方或已清权CAD/GIS/PDF及专业资料到位后整体复算、重画并重新执行空间和专业审查。"
+    },
+    {
+      "id":"technology_maturity","label":"技术成熟度、可靠性与厂商依赖","score":4,
+      "note":"机器人导航、公共安全辅助、健康服务和城市智能体可能出现误判、不可解释故障、网络中断或平台锁定，不能因演示成功就视为城市级成熟。",
+      "mitigation":"采用受控区域、明确停机条件、人工降级、开放接口、可迁移数据和故障公开回执；普通服务在系统离线时仍成立。",
+      "human_review":"技术能力必须通过真实场景压力测试、异常演练、人工接管测试和独立专业复核后才允许扩大。"
+    },
+    {
+      "id":"equity_inclusion","label":"公平包容与红色公共性被符号化","score":4,
+      "note":"若AI收益主要服务研发人员和高消费人群，或红色传承只剩红墙、灯光、标语与纪念体量，都会偏离人民城市与公共利益目标。",
+      "mitigation":"以九类验收人、两类红色公共锚点和普通服务合同约束空间：人民工程馆必须承载公共议事/开源工坊，服务站必须提供真实人工兜底。",
+      "human_review":"历史、文保、无障碍、社区、服务劳动者和普通居民共同评审；不以AI部署量、政治符号数量或商业客流替代公共价值。"
+    }
+  ],
+  "subrisks": [
+    "human_control_and_accountability",
+    "vendor_capture",
+    "heritage_symbolism",
+    "resident_pilot_burden",
+    "no_device_and_no_account_exclusion"
+  ],
+  "implementation_readiness": {
+    "schema_version":"0.1.0",
+    "governing_rule":"People remain the civic subject; AI remains a controllable, replaceable tool.",
+    "tagline":"AI向前，人民在先 / AI Advances, People First",
+    "ordinary_service_contract":{"sequence":["BASELINE","AI_PILOT","HUMAN_REVIEW","PUBLIC_RECEIPT","SCALE_OR_REVISE_OR_STOP"],"mandatory_non_ai_fallback_for_all_scenarios":true,"automated_final_public_decision_target":0},
+    "civic_ai_rights":["notice","choice","refusal","human_review","appeal_and_correction"],
+    "red_civic_anchors":["Civic Engineering Hall / 人民工程馆","People's AI Service Station / 人民AI服务站"],
+    "pilgrimage_landmarks":["Civic Engineering Hall / 人民工程馆","Open-Source Origin Square / 开源原点广场","Civic Intelligence Arcade / 公共智能廊"]
+  }
+}

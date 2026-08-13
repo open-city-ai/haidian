@@ -1,0 +1,241 @@
+{
+  "schema_version": "0.1.0",
+  "passports": [
+    {
+      "passport_id": "PASS-001",
+      "scenario_id": "embodied_multi_robot",
+      "station_id": "integration_station",
+      "version": "concept-v1",
+      "input_record": "授权地图、任务脚本、设备遥测与人工巡查记录。",
+      "human_override": "现场操作员持有物理/软件急停权，异常时立即转人工并保留申诉入口。",
+      "success_condition": "完成规定任务且避让、急停、恢复和协同均达到预设测试口径。",
+      "failure_condition": "失去定位、越界、无法急停、碰撞险情或遥测缺失。",
+      "evidence_output": "版本日志、失效库、急停记录、复测结果与适用边界。",
+      "exit_rule": "出现安全、隐私或重大公共利益风险即暂停；未按时闭环则撤出场景。",
+      "operator": "众智园中试运营单元与设备责任方",
+      "gate_ids": [
+        "engineering_gate",
+        "public_value_gate"
+      ],
+      "status": "conceptual_protocol",
+      "decision": "not_tested",
+      "privacy_note": "No personal or operational trial data is included in this open submission."
+    },
+    {
+      "passport_id": "PASS-002",
+      "scenario_id": "edge_cloud_coordination",
+      "station_id": "integration_station",
+      "version": "concept-v1",
+      "input_record": "脱敏负载、网络状态、算力与能耗记录。",
+      "human_override": "现场操作员持有物理/软件急停权，异常时立即转人工并保留申诉入口。",
+      "success_condition": "在断网、延迟和算力切换条件下保持可降级服务。",
+      "failure_condition": "数据越权、不可解释中断、能耗异常或无降级路径。",
+      "evidence_output": "互操作报告、延迟/能耗曲线、降级剧本和恢复日志。",
+      "exit_rule": "出现安全、隐私或重大公共利益风险即暂停；未按时闭环则撤出场景。",
+      "operator": "共享算力与网络设施运营方",
+      "gate_ids": [
+        "engineering_gate",
+        "delivery_gate"
+      ],
+      "status": "conceptual_protocol",
+      "decision": "not_tested",
+      "privacy_note": "No personal or operational trial data is included in this open submission."
+    },
+    {
+      "passport_id": "PASS-003",
+      "scenario_id": "trusted_red_team",
+      "station_id": "integration_station",
+      "version": "concept-v1",
+      "input_record": "授权测试集、攻击脚本、版本依赖与响应日志。",
+      "human_override": "现场操作员持有物理/软件急停权，异常时立即转人工并保留申诉入口。",
+      "success_condition": "高风险路径被发现、复现、修复并在回归测试中关闭。",
+      "failure_condition": "风险不可复现、修复无记录、越权泄露或回归失败。",
+      "evidence_output": "漏洞分级、复现脚本、整改证据、残余风险和披露边界。",
+      "exit_rule": "出现安全、隐私或重大公共利益风险即暂停；未按时闭环则撤出场景。",
+      "operator": "独立评测团队与项目安全负责人",
+      "gate_ids": [
+        "engineering_gate",
+        "public_value_gate"
+      ],
+      "status": "conceptual_protocol",
+      "decision": "not_tested",
+      "privacy_note": "No personal or operational trial data is included in this open submission."
+    },
+    {
+      "passport_id": "PASS-004",
+      "scenario_id": "open_standard_toolchain",
+      "station_id": "integration_station",
+      "version": "concept-v1",
+      "input_record": "接口规范、测试脚本、版本清单与许可信息。",
+      "human_override": "现场操作员持有物理/软件急停权，异常时立即转人工并保留申诉入口。",
+      "success_condition": "不同团队可按相同脚本复现实验并识别许可责任。",
+      "failure_condition": "接口锁定、脚本不可运行、依赖不明或许可冲突。",
+      "evidence_output": "可复用脚本、接口一致性报告、SBOM 与许可清单。",
+      "exit_rule": "出现安全、隐私或重大公共利益风险即暂停；未按时闭环则撤出场景。",
+      "operator": "中试线开放工具维护组",
+      "gate_ids": [
+        "engineering_gate",
+        "delivery_gate"
+      ],
+      "status": "conceptual_protocol",
+      "decision": "not_tested",
+      "privacy_note": "No personal or operational trial data is included in this open submission."
+    },
+    {
+      "passport_id": "PASS-005",
+      "scenario_id": "community_assistive_robot",
+      "station_id": "trust_station",
+      "version": "concept-v1",
+      "input_record": "授权任务、无障碍需求、匿名反馈与人工观察。",
+      "human_override": "现场操作员持有物理/软件急停权，异常时立即转人工并保留申诉入口。",
+      "success_condition": "使用者知情选择，辅助任务完成且人工服务始终可达。",
+      "failure_condition": "阻挡通行、误识别、拒绝人工服务或引发显著不适。",
+      "evidence_output": "共测日志、无障碍复核、人工接管演练与用户反馈。",
+      "exit_rule": "出现安全、隐私或重大公共利益风险即暂停；未按时闭环则撤出场景。",
+      "operator": "社区运营方、无障碍顾问与居民共测小组",
+      "gate_ids": [
+        "public_value_gate"
+      ],
+      "status": "conceptual_protocol",
+      "decision": "not_tested",
+      "privacy_note": "No personal or operational trial data is included in this open submission."
+    },
+    {
+      "passport_id": "PASS-006",
+      "scenario_id": "public_service_cotest",
+      "station_id": "trust_station",
+      "version": "concept-v1",
+      "input_record": "公开服务目录、人工维护问答与匿名办事路径。",
+      "human_override": "现场操作员持有物理/软件急停权，异常时立即转人工并保留申诉入口。",
+      "success_condition": "导航准确、来源可见、过期内容可发现且人工入口不降级。",
+      "failure_condition": "越权建议、错误政策解释、个人数据误采或人工入口隐藏。",
+      "evidence_output": "问答版本、错误样本、转人工比例、申诉与更正记录。",
+      "exit_rule": "出现安全、隐私或重大公共利益风险即暂停；未按时闭环则撤出场景。",
+      "operator": "公共服务部门与社区人工窗口",
+      "gate_ids": [
+        "public_value_gate",
+        "delivery_gate"
+      ],
+      "status": "conceptual_protocol",
+      "decision": "not_tested",
+      "privacy_note": "No personal or operational trial data is included in this open submission."
+    },
+    {
+      "passport_id": "PASS-007",
+      "scenario_id": "privacy_fairness_sandbox",
+      "station_id": "trust_station",
+      "version": "concept-v1",
+      "input_record": "授权样本、合成数据、分组结果与数据处理台账。",
+      "human_override": "现场操作员持有物理/软件急停权，异常时立即转人工并保留申诉入口。",
+      "success_condition": "偏差、泄露和不可解释差异可被检测并形成整改路径。",
+      "failure_condition": "敏感属性滥用、无法删除、差异无解释或申诉无回应。",
+      "evidence_output": "数据谱系、分组评测、删除演练、模型卡和整改记录。",
+      "exit_rule": "出现安全、隐私或重大公共利益风险即暂停；未按时闭环则撤出场景。",
+      "operator": "数据治理委员会与独立公众代表",
+      "gate_ids": [
+        "public_value_gate"
+      ],
+      "status": "conceptual_protocol",
+      "decision": "not_tested",
+      "privacy_note": "No personal or operational trial data is included in this open submission."
+    },
+    {
+      "passport_id": "PASS-008",
+      "scenario_id": "user_research_micro_courtyard",
+      "station_id": "trust_station",
+      "version": "concept-v1",
+      "input_record": "知情同意、访谈提纲、匿名反馈与使用观察。",
+      "human_override": "现场操作员持有物理/软件急停权，异常时立即转人工并保留申诉入口。",
+      "success_condition": "不同能力与年龄使用者可理解任务、撤回数据并获得结果反馈。",
+      "failure_condition": "诱导参与、撤回失效、反馈无回应或样本代表性被夸大。",
+      "evidence_output": "同意记录、参与结构、问题清单、产品修改与回访结果。",
+      "exit_rule": "出现安全、隐私或重大公共利益风险即暂停；未按时闭环则撤出场景。",
+      "operator": "社区研究团队与项目产品负责人",
+      "gate_ids": [
+        "public_value_gate",
+        "delivery_gate"
+      ],
+      "status": "conceptual_protocol",
+      "decision": "not_tested",
+      "privacy_note": "No personal or operational trial data is included in this open submission."
+    },
+    {
+      "passport_id": "PASS-009",
+      "scenario_id": "terminal_training_field",
+      "station_id": "delivery_station",
+      "version": "concept-v1",
+      "input_record": "设备手册、操作任务、异常剧本与培训记录。",
+      "human_override": "现场操作员持有物理/软件急停权，异常时立即转人工并保留申诉入口。",
+      "success_condition": "不同角色完成上手、异常处置和退出操作。",
+      "failure_condition": "培训依赖口头经验、异常无法处置或责任边界不明。",
+      "evidence_output": "培训考核、可用性问题、处置时长和责任矩阵。",
+      "exit_rule": "出现安全、隐私或重大公共利益风险即暂停；未按时闭环则撤出场景。",
+      "operator": "产品责任方与交付培训中心",
+      "gate_ids": [
+        "engineering_gate",
+        "delivery_gate"
+      ],
+      "status": "conceptual_protocol",
+      "decision": "not_tested",
+      "privacy_note": "No personal or operational trial data is included in this open submission."
+    },
+    {
+      "passport_id": "PASS-010",
+      "scenario_id": "urban_product_delivery",
+      "station_id": "delivery_station",
+      "version": "concept-v1",
+      "input_record": "证据护照、成本边界、服务级别、运维和退出材料。",
+      "human_override": "现场操作员持有物理/软件急停权，异常时立即转人工并保留申诉入口。",
+      "success_condition": "采购方可据同一证据判断适用边界、总成本和退出责任。",
+      "failure_condition": "只展示成功案例、成本缺项、无法维护或退出责任悬空。",
+      "evidence_output": "交付就绪清单、TCO 假设、SLA、运维手册与退出方案。",
+      "exit_rule": "出现安全、隐私或重大公共利益风险即暂停；未按时闭环则撤出场景。",
+      "operator": "大钟寺交付运营方与采购评审组",
+      "gate_ids": [
+        "delivery_gate"
+      ],
+      "status": "conceptual_protocol",
+      "decision": "not_tested",
+      "privacy_note": "No personal or operational trial data is included in this open submission."
+    },
+    {
+      "passport_id": "PASS-011",
+      "scenario_id": "compliance_translation_workbench",
+      "station_id": "delivery_station",
+      "version": "concept-v1",
+      "input_record": "现行公开规范、测试证据、数据流程与责任清单。",
+      "human_override": "现场操作员持有物理/软件急停权，异常时立即转人工并保留申诉入口。",
+      "success_condition": "技术证据被翻译为可核验义务、控制、例外和人工责任。",
+      "failure_condition": "把建议写成审批结论、遗漏适用范围或用自动化替代专业意见。",
+      "evidence_output": "适用性矩阵、控制证据、例外清单与专业复核签注。",
+      "exit_rule": "出现安全、隐私或重大公共利益风险即暂停；未按时闭环则撤出场景。",
+      "operator": "专业服务联盟与项目合规负责人",
+      "gate_ids": [
+        "public_value_gate",
+        "delivery_gate"
+      ],
+      "status": "conceptual_protocol",
+      "decision": "not_tested",
+      "privacy_note": "No personal or operational trial data is included in this open submission."
+    },
+    {
+      "passport_id": "PASS-012",
+      "scenario_id": "international_delivery_salon",
+      "station_id": "delivery_station",
+      "version": "concept-v1",
+      "input_record": "双语证据护照、标准差异、复制条件与案例复盘。",
+      "human_override": "现场操作员持有物理/软件急停权，异常时立即转人工并保留申诉入口。",
+      "success_condition": "外部伙伴能区分可复制模块、待本地验证事项与不可迁移条件。",
+      "failure_condition": "宣传替代证据、翻译改变结论或把交流意向写成官方安排。",
+      "evidence_output": "双语差异表、复制前置条件、伙伴反馈与后续测试计划。",
+      "exit_rule": "出现安全、隐私或重大公共利益风险即暂停；未按时闭环则撤出场景。",
+      "operator": "中试线联合办公室与国际伙伴联络组",
+      "gate_ids": [
+        "delivery_gate"
+      ],
+      "status": "conceptual_protocol",
+      "decision": "not_tested",
+      "privacy_note": "No personal or operational trial data is included in this open submission."
+    }
+  ]
+}

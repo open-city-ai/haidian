@@ -82,3 +82,32 @@
 - 每张图都应有标题、图例、来源说明、指标引用和 official/provisional boundary 状态。
 - 不得用生成图、插画、社交媒体卡片或渲染图替代 `geometry/*.geojson`、`metrics.json`、`compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json`。
 - 如果使用外部 skill 生成视觉资产，应在 `sources.json` 或 `report/copyright_statement.md` 中记录工具、版本、输入来源和版权说明。
+
+## English Quick Reference
+
+### Diagram quality principles
+
+- **One main narrative per figure**: overview map = overall concept; structure diagram = spatial relationships; key-area diagram = differentiated design; traffic/blue-green diagram = continuity; metrics diagram = evidence chain.
+- **Clear hierarchy**: background and provisional boundaries in low contrast; corridors, nodes, key areas, AI scenarios, and core conclusions in high contrast.
+- **Professional annotation**: every figure needs a title, legend, key callouts, data source / provisional boundary disclaimer, and required metrics.
+- **Design-expression priority**: use curved corridors, node networks, transparent overlays, callouts, metric cards, layered relationships, timelines, and section-style diagrams to communicate spatial logic.
+- **Provisional boundary downgrade**: show provisional boundaries as dashed lines, light border, annotation, or watermark — not as the primary visual composition.
+
+### Avoid
+
+- Raw GeoJSON/GIS/debug map screenshots.
+- Equal-weight layer stacking without hierarchy.
+- Figures without legend, title, callouts, or data-boundary notes.
+- Large decorative gradients or promotional poster visuals as primary evidence diagrams.
+- Drawing bbox, provisional polygon, news images, or map tiles to look like official planning boundaries.
+
+### Recommended skill + use combinations (English)
+
+| Context | Recommended skill | Use |
+|---|---|---|
+| `report/proposal.html` reading version | `baoyu-markdown-to-html` | Convert `proposal.md` to stable offline HTML; must be offline, no remote resources, no scripts |
+| `assets/figures/*.png` evidence diagrams | `baoyu-infographic` | For source evidence chains, three-level scopes, key areas, traffic/blue-green, metric recalculation |
+| `visual/index.html` core diagrams | `baoyu-infographic`, `baoyu-diagram` | Infographic for layers/metrics/task coverage; diagram for workflows, evidence chains, AI service architecture |
+| A3 booklet / A0 board layout reference | `baoyu-slide-deck` | Layout and split-screen direction; formal drawings still need professional legend, scale, source, metrics |
+| Cover or hero visual | `baoyu-cover-image` | Optional cover only; not a substitute for spatial evidence |
+| Spatial experience, phasing, interactive | Image/video/audio generation; local Three.js, WebGL, Canvas | Show human movement, day-night change, service flow, spatial experience; must be offline, local, no autoplay |

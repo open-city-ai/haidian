@@ -57,6 +57,45 @@ The cover must represent the proposal without implying an official rendering, ap
 
 Bundle Three.js or another runtime locally under `visual/assets/`; do not use a CDN, remote tiles, remote fonts, trackers, network APIs, forms, or external embeds. Keep `visual/index.html` offline and deterministic. Provide a static image fallback, keyboard-operable controls, reduced-motion behavior, readable labels, and a clear loading/error state. The public proposal page links the interactive work as a first-class multimodal artifact and opens it in isolation.
 
+### Minimal offline Three.js bootstrap
+
+```html
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>交互式展示</title>
+  <!-- Bundle three.min.js locally under visual/assets/ -->
+  <script src="assets/three.min.js"></script>
+  <style>
+    body { margin: 0; background: #0a0a0a; }
+    canvas { display: block; }
+    #fallback { display: none; color: #fff; padding: 2rem; }
+    @media (prefers-reduced-motion: reduce) { #canvas-container { display: none; } #fallback { display: block; } }
+  </style>
+</head>
+<body>
+  <div id="canvas-container"></div>
+  <div id="fallback" role="img" aria-label="Static site overview diagram">
+    <img src="../assets/figures/site-overview.png" alt="Site overview" style="max-width:100%">
+  </div>
+  <script>
+    // Feature-detect WebGL; fall back to static image if unavailable
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    if (!gl) {
+      document.getElementById('canvas-container').style.display = 'none';
+      document.getElementById('fallback').style.display = 'block';
+    } else {
+      // ... Three.js scene setup
+    }
+  </script>
+</body>
+</html>
+```
+
+All JavaScript must be inline or sourced from `visual/assets/`; no `<script src="https://...">`.
+
 ## Human, rights, and evidence boundaries
 
 - Never autoplay video, audio, or music. Use visible controls and `preload="metadata"`.
@@ -65,3 +104,34 @@ Bundle Three.js or another runtime locally under `visual/assets/`; do not use a 
 - Obtain authorization for faces, voices, music, trademarks, private interiors, and identifiable people. Do not upload personal information or scrape platform media without permitted reuse.
 - Label generated renderings, reenactments, and simulations as conceptual. They are presentation artifacts, not observations of current conditions or evidence of public consent.
 - Respect `prefers-reduced-motion`, avoid flashing content, and test mobile as well as desktop playback.
+
+## Accessibility Checklist
+
+Before finalizing the package, verify:
+
+- [ ] Every `<img>` in `visual/index.html` and `report/proposal.html` has a non-empty `alt` attribute.
+- [ ] All video has a `.vtt` caption track in both Chinese and English, and a Markdown transcript.
+- [ ] All audio has a Markdown transcript.
+- [ ] No media autoplays (`autoplay` attribute absent or removed).
+- [ ] Interactive controls (Three.js, Canvas) are operable by keyboard alone.
+- [ ] Color contrast meets WCAG 2.1 AA (4.5:1 for body text, 3:1 for large text).
+- [ ] A static fallback image is provided for every WebGL/Canvas scene.
+- [ ] `prefers-reduced-motion` disables or stills all animations.
+- [ ] Page title and `<html lang>` attribute are set correctly for each language version.
+- [ ] Essential information is not conveyed by color alone.
+
+## File Size Optimization
+
+Keep within the 40 MiB package limit by applying these techniques before including media:
+
+| Media type | Recommended tool | Target size |
+|---|---|---|
+| PNG figure | `pngquant --quality 65-80` or `oxipng -o 3` | < 500 KiB each |
+| JPEG figure | `cjpeg -quality 75` or `mozjpeg` | < 300 KiB each |
+| WebP image | `cwebp -q 75` | < 200 KiB each |
+| MP4 video | `ffmpeg -crf 28 -preset slow -c:v libx264` | < 20 MiB each |
+| WebM video | `ffmpeg -crf 33 -b:v 0 -c:v libvpx-vp9` | < 15 MiB each |
+| MP3 audio | `lame -V 4` (≈ 165 kbps VBR) | < 8 MiB each |
+
+Omit media entirely if compression cannot meet the per-file limit. Declare the omission in
+`report/copyright_statement.md` and use a static figure as a fallback.

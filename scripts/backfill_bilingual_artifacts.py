@@ -5,8 +5,54 @@ The script is intentionally maintainer-only.  It preserves every original
 artifact, creates a localized sibling, and records the relationship in the
 submission manifest.  Raster figures retain the full source graphic and gain
 an appended OCR-derived translation panel so no spatial evidence is removed.
-"""
 
+This script is the second pass of the bilingual backfill workflow:
+
+1. ``backfill_bilingual_submissions.py`` — translates ``proposal.md`` to
+   create the sibling Markdown file.
+2. **This script** — creates bilingual counterparts for rendered artifacts:
+   ``report/proposal.*.html``, ``drawings/*.pdf``, and
+   ``assets/figures/*.*.png``.
+
+Artifacts created
+-----------------
+- ``report/proposal.en.html`` / ``report/proposal.zh.html`` — rendered HTML
+  reading versions using ``render_proposal_html.render_html()``.
+- ``drawings/a3-booklet.en.pdf`` / ``drawings/a3-booklet.zh.pdf`` — copies of
+  the original PDF with a localized cover sheet prepended.
+- ``assets/figures/*.en.png`` / ``assets/figures/*.zh.png`` — figure copies
+  with an OCR-translated caption panel appended at the bottom.
+- Updates ``manifest.json`` to add ``language`` and ``translation_of`` fields
+  for each new artifact.
+
+Requirements
+------------
+Install both dependency groups::
+
+    python3 -m pip install -r requirements-review.txt
+    python3 -m pip install -r requirements-translation.txt
+
+On Apple Silicon, ``mlx-community/Qwen2.5-7B-Instruct-4bit`` is used for
+translation; on other platforms, ``Qwen/Qwen2.5-3B-Instruct`` is used.
+``Pillow`` is required for figure caption rendering.
+
+Usage
+-----
+Process all merged submissions::
+
+    python3 scripts/backfill_bilingual_artifacts.py
+
+Process one submission::
+
+    python3 scripts/backfill_bilingual_artifacts.py \\
+        --only submissions/alice/my-proposal
+
+Dry run::
+
+    python3 scripts/backfill_bilingual_artifacts.py --dry-run
+
+Exit code is 0 on success and 1 when any artifact fails to render.
+"""
 from __future__ import annotations
 
 import argparse

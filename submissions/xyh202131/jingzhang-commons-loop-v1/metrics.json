@@ -1,0 +1,338 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "临时粗略边界仅用于关系表达、自检和可替换设计；正式 polygon 到位后须整体重算。"
+      ]
+    },
+    "announced_overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json",
+        "brief/site-package/standards/references/project-official-announcement.md"
+      ],
+      "formula": "official_announcement_area_value",
+      "confidence": "high",
+      "assumptions": [
+        "公告面积是任务事实，不替代 polygon area。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1495380.779,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(conceptual_building_footprints)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "临时粗略边界仅用于关系表达、自检和可替换设计；正式 polygon 到位后须整体重算。"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2510681.608,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(conceptual_green_space)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "临时粗略边界仅用于关系表达、自检和可替换设计；正式 polygon 到位后须整体重算。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.219988,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "临时粗略边界仅用于关系表达、自检和可替换设计；正式 polygon 到位后须整体重算。"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 366057.532,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(public_space_nodes)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "临时粗略边界仅用于关系表达、自检和可替换设计；正式 polygon 到位后须整体重算。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.032074,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "临时粗略边界仅用于关系表达、自检和可替换设计；正式 polygon 到位后须整体重算。"
+      ]
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_building_coverage / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "现状建筑普查、正式控规和官方边界缺失；概念基底面积不等于法定建筑密度。"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_total_floor_area / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "正式控规强度条件未进入公开 site package；不得用概念体量推定法定 FAR。"
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_height_control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "现状测绘、风貌和控规高度条件待正式资料补齐。"
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 12832.099,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(roads)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "临时粗略边界仅用于关系表达、自检和可替换设计；正式 polygon 到位后须整体重算。"
+      ]
+    },
+    "road_feature_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(conceptual_road_centerlines)",
+      "confidence": "medium",
+      "assumptions": [
+        "数量表示设计对象，不代表道路红线或工程实施。"
+      ]
+    },
+    "green_space_feature_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "count(green_space_features)",
+      "confidence": "medium",
+      "assumptions": [
+        "概念图层数量。"
+      ]
+    },
+    "public_space_node_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space_nodes)",
+      "confidence": "medium",
+      "assumptions": [
+        "节点是空间组件建议，不代表已建数量。"
+      ]
+    },
+    "building_footprint_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(conceptual_building_objects)",
+      "confidence": "medium",
+      "assumptions": [
+        "体量对象是概念建议，现状和权属待核。"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "公告要求三处重点区；polygon 仍为 provisional。"
+      ]
+    },
+    "key_area_total_area_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(area(key_area_features)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "临时粗略边界仅用于关系表达、自检和可替换设计；正式 polygon 到位后须整体重算。"
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phase_features)",
+      "confidence": "medium",
+      "assumptions": [
+        "分期是概念推进门槛，不是建设承诺。"
+      ]
+    },
+    "phase_area_total_sqm": {
+      "status": "known",
+      "value": 11412836.616,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(area(phase_features)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "临时粗略边界仅用于关系表达、自检和可替换设计；正式 polygon 到位后须整体重算。"
+      ]
+    },
+    "loop_spine_length_m": {
+      "status": "known",
+      "value": 9344.774,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD-001) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "临时粗略边界仅用于关系表达、自检和可替换设计；正式 polygon 到位后须整体重算。"
+      ]
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "sources.json",
+        "proposal.md"
+      ],
+      "formula": "count(method_reference_cases)",
+      "confidence": "medium",
+      "assumptions": [
+        "案例只用于方法参照，不支撑北京空间控制。"
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user_personas)",
+      "confidence": "medium",
+      "assumptions": [
+        "画像是设计工具，不是个人数据或现实统计。"
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(scenario_cards)",
+      "confidence": "medium",
+      "assumptions": [
+        "场景是概念服务协议，未执行。"
+      ]
+    },
+    "industry_validation_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards where class=industry_validation)",
+      "confidence": "medium",
+      "assumptions": [
+        "预注册或测试不等于现实执行结果。"
+      ]
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_landmark_nodes)",
+      "confidence": "medium",
+      "assumptions": [
+        "地标是概念公共空间组件，不是批准建设。"
+      ]
+    }
+  }
+}

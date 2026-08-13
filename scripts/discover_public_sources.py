@@ -10,8 +10,35 @@ The agent is intentionally dependency-free. It uses:
 
 It does not automatically add sources to the public brief. It writes a review
 queue for humans to approve.
-"""
 
+Discovery pipeline
+------------------
+1. Load seed URLs from ``brief/data/auto-crawl-seed-urls.csv``.
+2. Load search queries from ``brief/data/discovery-queries.txt``.
+3. For each seed URL, fetch the page and extract outbound links.
+4. Score each candidate URL against topic terms, recency signals, and
+   domain authority rules.
+5. Write ranked candidates to ``brief/discovery/candidate-sources.csv``.
+
+The output CSV can be fed into ``scripts/prepare_source_registry_draft.py``
+to generate a draft registry for maintainer review.
+
+Usage
+-----
+Run discovery from defaults::
+
+    python3 scripts/discover_public_sources.py
+
+Limit to a subset of seed URLs::
+
+    python3 scripts/discover_public_sources.py --max-seeds 10
+
+Write to a custom output directory::
+
+    python3 scripts/discover_public_sources.py --output-dir path/to/discovery
+
+Exit code is 0 when discovery completes and 1 on network or IO error.
+"""
 from __future__ import annotations
 
 import argparse

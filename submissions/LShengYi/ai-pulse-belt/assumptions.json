@@ -1,0 +1,71 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "ASSUME-001",
+      "title": "Provisional boundaries used for all geometry",
+      "statement": "The site package contains only provisional boundaries (PROV-SITE-001, PROV-RESEARCH-001, PROV-KEY-SCOPE-001, PROV-KEY-001..003). All geometry in this submission is anchored to these provisional constraints; no feature claims official boundary status.",
+      "source": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "confidence": "high",
+      "impact": "If official boundaries are released, geometry must be re-fit and metrics recomputed."
+    },
+    {
+      "id": "ASSUME-002",
+      "title": "Area fit deviation disclosure (site and per key area)",
+      "statement": "Computed site area from PROV-SITE-001 is 11.413 km2 vs official planning limit 11.400 km2 (0.11% deviation). Key areas measured on provisional scopes: zhongzhiyuan 192.92 ha vs 192.10 ha (+0.43%); ai-origin 104.32 ha vs 104.30 ha (+0.02%); dazhongsi 72.05 ha vs 72.00 ha (+0.06%); combined 369.29 ha vs 368.40 ha (+0.24%). The coordinated research scope (43.6 km2) and the overall design area are declared in the brief; the package geometry layer covers the overall design area only.",
+      "source": "brief/site-package/ranges/planning_limits.json; geometry/key_areas.geojson",
+      "confidence": "high",
+      "impact": "Area-linked metrics (green ratio, public space ratio, key-area totals) carry medium confidence and are recomputed per P4 once official boundaries release."
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "title": "Official control conditions absent; concept proposals only",
+      "statement": "Approved FAR, building height, density, road red lines, setbacks and facility standards are absent from the public site package. All land-use, building, road, green and public space geometries are concept design proposals (geometry_role = design_proposal); no FAR, height, demolition or relocation conclusions are drawn. floor_area_ratio is status=unknown.",
+      "source": "allowed_design_space.json",
+      "confidence": "high",
+      "impact": "Figures and narrative use 'concept suggestion' wording; control metrics stay unknown until official conditions release."
+    },
+    {
+      "id": "ASSUME-003",
+      "title": "Announcement planning indicators are unknown until data release",
+      "statement": "The planning indicator system required by announcement 1.5(2) (AI innovation index, talent density, AI output value) is registered in metrics.json with status=unknown; no fabricated values are supplied. Formulas and data sources are declared so the indicators can be computed once official statistics are published.",
+      "source": "brief/site-package/ranges/planning_limits.json",
+      "confidence": "high",
+      "impact": "Indicator cells render as 'unknown/pending' in figures and HTML until official data arrives; the submission stays auditable rather than presenting invented numbers."
+    },
+    {
+      "id": "ASSUME-004",
+      "title": "Deterministic generation",
+      "statement": "Geometry generated with fixed seed and deterministic algorithms; reruns reproduce identical outputs byte-for-byte.",
+      "source": "agent-declared",
+      "confidence": "high",
+      "impact": "Manifest hashes stable across regeneration."
+    },
+    {
+      "id": "ASSUME-005",
+      "title": "Programme proportions, investment matrix and funding mix are concept baselines",
+      "statement": "Land-use proportions (1+X+1: research 0802 about 19-25%, commerce 05 about 5-9%, housing 0701 about 11-16%, roads 1207 about 8-14%, green about 22-28%, reserved land 16 about 2-4%, culture/education/sports/medical combined about 12-17%) are recomputed from this package's concept layers (EPSG:4548: measured 21.9%, 7.0%, 13.6%, 10.7%, 25.0%, 2.7%, 14.4%) and are design-assumption baselines, not official land-use figures. Total programme scale about 8,000,000-12,000,000 sqm (800-1200 wan sqm concept estimate pending official phasing), retain/renovate/rebuild priority orderings (zhongzhiyuan retain>renovate>rebuild; ai-origin retain~renovate>rebuild; dazhongsi renovate>retain>rebuild) are concept baselines pending official survey and control-plan review - no proportions claimed before official data (previous 45/35/20, 40/35/25, 35/35/30 baseline points withdrawn as unsubstantiated), one-off construction investment about 360-910 M CNY (3.6-9.1 yi yuan, 11 items, excluding annual operation) plus annual operation 5-15 M CNY/year (0.05-0.15 yi yuan/year; combined 365-925 M CNY), P1 funding mix baseline fiscal guidance 45% / scenario revenue 20% / open-source public benefit 15% / social capital 20% (sum 100%; ranges float independently pending re-review), and conversion-funnel targets are all concept assumptions.",
+      "source": "land_use.geojson (recomputed); proposal.md sections S2/S4/S5/S6/S7; simulation.json",
+      "confidence": "medium",
+      "impact": "Any official land-use or control-plan release supersedes these baselines; updated per P4 review cycle, never presented as approved values."
+    },
+    {
+      "id": "ASSUME-006",
+      "title": "Two-wing orientations are concept proposals pending official release",
+      "statement": "The zhongguancun science-service wing and xiaohe-river scenario wing orientations are concept proposals inferred from publicly announced industry information; they are not official zone boundaries. Wing geometry, naming and scope will be updated under P4 once official release data is available.",
+      "source": "proposal.md section S1 (wing framework); ASSUME-005",
+      "confidence": "medium",
+      "impact": "Wing-related metrics remain conceptual until official release; no wing claims official status."
+    },
+    {
+      "id": "ASSUME-007",
+      "title": "Public issue #1029: Dazhongsi key-area centroid offset disclosed",
+      "statement": "Open issue #1029 reports that the centroid of PROV-KEY-003 (Dazhongsi AI-industry cluster) in provisional_boundaries.geojson sits near Beijing North Railway Station. This submission treats PROV-KEY-003 geometry as a provisional constraint only: its area (72 ha) is registered but excluded from any conclusion that depends on precise location (station-adjacent integration, retail street layout); spatial.json marks area-dazhongsi mode=concept. The location will be re-derived under the P4 re-check procedure once the official geometry is corrected.",
+      "source": "https://github.com/open-city-ai/haidian/issues/1029",
+      "linked": [
+        "ASSUME-001",
+        "ASSUME-002"
+      ]
+    }
+  ]
+}

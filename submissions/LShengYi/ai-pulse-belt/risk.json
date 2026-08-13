@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "summary": "本方案最需要人工复核的两类风险是实施复杂度与政策不确定性：方案涉及道路组织、公共空间改造和多主体协同，且全部控制条件（控规、红线、权属、空域）均待官方发布，不能以愿景叙事掩盖待确认事实。",
+  "rollback_trigger_registry": [
+    {
+      "id": "R-01",
+      "class_zh": "安全类",
+      "simulation_key": "safety",
+      "trigger_zh": "实体或线上安全事件，事故即停",
+      "used_in": "正文三重点区（众智园）；simulation.json rollback_triggers.safety"
+    },
+    {
+      "id": "R-02",
+      "class_zh": "隐私类",
+      "simulation_key": "privacy",
+      "trigger_zh": "数据越界即停，投诉即停",
+      "used_in": "正文三重点区（原点社区）；simulation.json rollback_triggers.privacy"
+    },
+    {
+      "id": "R-03",
+      "class_zh": "文保类",
+      "simulation_key": "heritage",
+      "trigger_zh": "文保冲突即撤除相关展示",
+      "used_in": "正文三重点区（大钟寺）；simulation.json rollback_triggers.heritage"
+    },
+    {
+      "id": "R-04",
+      "class_zh": "经济类",
+      "simulation_key": "economics",
+      "trigger_zh": "运营超支不可持续即暂停放量，重核资金组合",
+      "used_in": "正文三重点区（众智园）；simulation.json rollback_triggers.economics"
+    },
+    {
+      "id": "R-05",
+      "class_zh": "生态类",
+      "simulation_key": "ecology",
+      "trigger_zh": "生态侵占公共空间或绿量流失即停止相关建设",
+      "used_in": "simulation.json rollback_triggers.ecology"
+    }
+  ],
+  "dimensions": [
+    {
+      "id": "data_privacy",
+      "label": "数据隐私",
+      "score": 2,
+      "note": "公共空间 AI 服务仅使用公开资料、授权反馈和聚合指标，不采集个人敏感信息；数据最小化与留存期上限 30 天（见 proposal 场景章）。",
+      "mitigation": "场景卡一律声明数据边界与人工复核路径，健康类数据不落盘、不用于商业推荐，留存期满自动清除。",
+      "human_review": "由数据管理部门牵头，对照个人信息保护法及公开数据清单逐项核验数据上限、脱敏与匿名化措施，任何场景未经数据合规审查不得上线运行。"
+    },
+    {
+      "id": "implementation_complexity",
+      "label": "实施复杂度",
+      "score": 4,
+      "note": "涉及道路组织、公共空间改造和多主体协同，依赖专业深化和审批程序，分期与牵头主体为概念建议。",
+      "mitigation": "先做低成本、可撤回、可复盘的轻量试点，按脉冲协议 P1 申报—P2 测试—P3 发布—P4 复盘推进。",
+      "human_review": "由规划、交通、市政和运营团队联合复核实施边界与分期可行性，任何项目未过放行证据门不得进入下一节拍。"
+    },
+    {
+      "id": "public_acceptance",
+      "label": "公众接受度",
+      "score": 3,
+      "note": "机器人、自动驾驶或 AI 服务可能引发噪声、安全、体验和公平性担忧，高峰人流承载需分流。",
+      "mitigation": "在试点前公开说明边界，建立反馈渠道，允许公众退出或绕行，活动按立项—试办—评估—续办/退役管理。",
+      "human_review": "由属地街道与公众委员会共同组织听证与意见收集，凡可能影响周边居民的服务，在完成公示、异议回应与申诉通道校验前不得推进。"
+    },
+    {
+      "id": "operations_cost",
+      "label": "运维成本",
+      "score": 2,
+      "note": "设备、数据维护、现场运营和人工复核会产生持续成本，部分场景运营依赖补贴。",
+      "mitigation": "优先复用既有公共服务空间和运营主体，按三源资金组合（财政引导、场景服务收益、开源公益基金）分阶段评估。",
+      "human_review": "由实施运营主体按年度预算审定运营成本与资金来源，每项服务须具备明确运营预算与退场经费安排后方可进入发布阶段。"
+    },
+    {
+      "id": "policy_uncertainty",
+      "label": "政策不确定性",
+      "score": 4,
+      "note": "控规指标、道路断面、空域审批、数据治理规则均需后续主管部门确认，官方边界与重点区 polygons 尚未发布。",
+      "mitigation": "把相关内容写为概念建议和待确认事项，控制类指标保持 status=unknown，不表述为审定结论。",
+      "human_review": "由规划、交通、数据安全和法律合规专业人员复核全部待确认条件清单，官方数据发布后重算所有图层与指标。"
+    },
+    {
+      "id": "spatial_dispute",
+      "label": "空间争议",
+      "score": 2,
+      "note": "公共空间、慢行、活动和配送场景可能与居民、企业和既有交通需求冲突。",
+      "mitigation": "通过分时、分区、低速和可撤回设施降低冲突，文保冲突以撤回方案为默认路径。",
+      "human_review": "由规划主管部门会同铁路与文物部门复核站界与保护范围，任何跨越用地红线的布局在官方几何核定前仅作概念表达、不构成实施承诺。"
+    },
+    {
+      "id": "technology_maturity",
+      "label": "技术成熟度",
+      "score": 2,
+      "note": "部分 AI 场景仍需要真实环境测试，不应承诺稳定落地效果。",
+      "mitigation": "将技术应用限定为辅助建议或受监管试点，保留人工兜底与统一回滚触发器。",
+      "human_review": "由行业专家与独立评估机构对拟采用 AI 技术成熟度开展评估，未达到可控与可回退水平的技术不得进入正式运行。"
+    },
+    {
+      "id": "equity_inclusion",
+      "label": "公平与包容性",
+      "score": 3,
+      "note": "青年、老人、残障人士、游客和小企业对空间与服务的需求不同，数字化门槛可能造成排斥。",
+      "mitigation": "在场景设计中保留无障碍、低门槛、非数字化替代路径（人工导览、电话预约、线下服务）和多角色反馈。",
+      "human_review": "由无障碍与老年服务专家组参与需求评审，确保人工等价路径、非数字化服务与导视语音灯杆基线在各阶段持续在场并接受复核。"
+    }
+  ]
+}

@@ -4,6 +4,48 @@
 This script does not score submissions automatically. It only prepares a
 structured scorecard after the maintainer gate has confirmed that a package can
 enter formal professional scoring.
+
+The script runs the maintainer gate (``maintainer_review.py``) first. If the
+gate returns ``formal-review-ready``, the scorecard status is set to ``draft``
+and professional scorers can fill it in.  Otherwise the status is ``blocked``
+and the scorecard is not eligible for professional scoring until the
+participant resolves the reported blockers.
+
+Output files (written to ``--out``, default ``.maintainer-review/<slug>/formal-scorecard/``)
+--------------------------------------------------------------------------------------------
+- ``formal-scorecard.json`` — structured scorecard template with seven
+  dimensions, weights, and empty score/reason fields for expert panel
+- ``formal-scorecard-comment.md`` — PR comment template for posting the
+  final scores
+
+Seven scoring dimensions and weights
+-------------------------------------
+- ``brief_alignment`` — 任务书相关性 (20 %)
+- ``originality`` — 原创性 (10 %)
+- ``ai_planning_innovation`` — AI 与城市规划创新性 (15 %)
+- ``implementation_feasibility`` — 可实施性 (20 %)
+- ``public_interest_inclusion`` — 公共利益与包容性 (10 %)
+- ``risk_compliance`` — 风险与合规意识 (10 %)
+- ``expression_completeness`` — 表达完整度 (15 %)
+
+Usage
+-----
+Generate the scorecard template::
+
+    python3 scripts/generate_formal_scorecard.py submissions/<login>/<slug> \\
+        --pr-author <login>
+
+Print the PR comment template::
+
+    python3 scripts/generate_formal_scorecard.py submissions/<login>/<slug> \\
+        --pr-author <login> --comment
+
+Machine-readable JSON output::
+
+    python3 scripts/generate_formal_scorecard.py submissions/<login>/<slug> \\
+        --pr-author <login> --json
+
+Exit code is 0 when ``scoring_status`` is ``draft`` and 1 when ``blocked``.
 """
 
 from __future__ import annotations
@@ -139,13 +181,38 @@ def run_formal_scorecard(repo_root: Path, submission_dir: Path, pr_author: str, 
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("submission_dir")
-    parser.add_argument("--repo-root", default=".")
-    parser.add_argument("--pr-author", required=True)
-    parser.add_argument("--out")
-    parser.add_argument("--comment", action="store_true", help="Print formal-scorecard-comment.md content to stdout")
-    parser.add_argument("--json", action="store_true")
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument(
+        "submission_dir",
+        help="Path to the proposal directory, e.g. submissions/<login>/<slug>",
+    )
+    parser.add_argument(
+        "--repo-root",
+        default=".",
+        help="Repository root directory (default: current working directory)",
+    )
+    parser.add_argument(
+        "--pr-author",
+        required=True,
+        help="Exact GitHub login of the PR author",
+    )
+    parser.add_argument(
+        "--out",
+        help="Output directory for scorecard artifacts (default: .maintainer-review/<slug>/formal-scorecard)",
+    )
+    parser.add_argument(
+        "--comment",
+        action="store_true",
+        help="Print formal-scorecard-comment.md content to stdout",
+    )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Print machine-readable JSON scorecard to stdout",
+    )
     args = parser.parse_args()
 
     repo_root = Path(args.repo_root).resolve()

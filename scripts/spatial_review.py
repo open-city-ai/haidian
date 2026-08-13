@@ -2,7 +2,50 @@
 """Trusted spatial review for AI urban design packages.
 
 This script is intended for local/maintainer use. It depends on geospatial
-libraries and should not replace the dependency-free required PR validator.
+libraries (``shapely``, ``pyproj``, and optionally ``jsonschema``) and should
+not replace the dependency-free required PR validator.
+
+Checks performed
+----------------
+- ``site_boundary.geojson`` is non-empty and forms a valid polygon.
+- ``key_areas.geojson`` has exactly the three required key-area polygons, each
+  inside the site boundary and non-overlapping.  Official area values are
+  compared against known announcement figures (±3 % tolerance).
+- ``land_use.geojson`` completely covers the site boundary with no gaps or
+  overlaps between polygons (topology-safe partition check).
+- ``buildings.geojson``, ``green_space.geojson``, and ``public_space.geojson``
+  are all inside the site boundary.
+- Computed spatial metrics (site area, green ratio, public-space ratio, building
+  footprint area) are compared against declared ``metrics.json`` values (1 %
+  relative tolerance for areas, 1 % absolute tolerance for ratios).
+- When ``jsonschema`` is installed, GeoJSON layers are validated against the
+  repository's schema files.
+
+Spatial metrics computed
+------------------------
+- ``site_area_sqm`` — projected area of site boundary (EPSG:4548)
+- ``green_space_area_sqm`` — union of green-space features
+- ``public_space_area_sqm`` — union of public-space features
+- ``building_footprint_area_sqm`` — union of building footprints
+- ``green_ratio`` — ``green_space_area_sqm / site_area_sqm``
+- ``public_space_ratio`` — ``public_space_area_sqm / site_area_sqm``
+
+Usage
+-----
+Human-readable output::
+
+    python3 scripts/spatial_review.py submissions/<login>/<slug>
+
+Machine-readable JSON::
+
+    python3 scripts/spatial_review.py submissions/<login>/<slug> --json
+
+Install required dependencies first::
+
+    python3 -m pip install -r requirements-review.txt
+
+This script is gate 2 of the four-gate self-check. Run it directly or through
+``self_check_submission.py``.
 """
 
 from __future__ import annotations

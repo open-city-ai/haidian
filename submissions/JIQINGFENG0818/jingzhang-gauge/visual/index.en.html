@@ -3375,6 +3375,45 @@ footer{margin-top:58px;padding-top:20px;border-top:2px solid var(--ink);
   </ul>
 </section>
 
+<section id="s-tour">
+  <h2><span>14</span>3D Tour</h2>
+  <p class="lede">The scene below is drawn in your browser directly from this package&#x27;s <span class="mono">geometry/*.geojson</span>: EPSG:4548 projection, topology-preserving simplification, constrained Delaunay triangulation, driven by a hand-written WebGL renderer — <b>no third-party runtime library, no network request of any kind</b>. The red ribbon is the <b>Version Line</b>; the three red frames are the three stations; the red posts are datum stones D-01/D-02/D-03.</p>
+  <div id="gauge-tour" data-lang="en">
+    <div class="tour-stage">
+      <canvas tabindex="0" aria-label="Jing-Zhang Gauge 3D tour: arrow keys rotate and zoom, Shift+Up/Down tilts, number keys 0-3 switch views, Space orbits, E toggles height exaggeration, R resets"></canvas>
+      <div class="tour-hud"></div>
+      <div class="tour-badge"></div>
+      <div class="tour-fallback" style="display:none"></div>
+    </div>
+    <div class="tour-controls">
+      <button type="button" data-tour-view="0">Overview</button>
+      <button type="button" data-tour-view="1">1 Gauge Works</button>
+      <button type="button" data-tour-view="2">2 Proto Blocks</button>
+      <button type="button" data-tour-view="3">3 Market Floor</button>
+    </div>
+    <p class="tour-keys">Keyboard (click the canvas to focus): arrows rotate / zoom · Shift+Up/Down tilt · 1/2/3 stations · 0 overview · Space orbit · E height x1/x3 · R reset · mouse drag/wheel and one-finger rotate / two-finger pinch also work</p>
+    <p class="tour-note">Buildings are conceptual massing: height = <span class="mono">floors_assumed x 3.2 m</span> (assumed storeys, not an approved FAR basis), true scale by default; the x3 exaggeration toggled with E is illustrative and clearly labelled on screen. All geometry sits on the organiser&#x27;s provisional substitute boundaries, not an official redline; the system reduced-motion preference is honored.</p>
+  </div>
+  <noscript><p>JavaScript is disabled, so the 3D tour cannot start; the static figures in the sections above are generated from the same GeoJSON and carry the same information.</p></noscript>
+</section>
+
+<style>
+#s-tour .tour-stage{position:relative;border:1px solid var(--line);background:#F2F3F0}
+#s-tour canvas{display:block;width:100%;height:560px;background:#F2F3F0;cursor:grab;touch-action:none}
+#s-tour canvas:focus{outline:2px solid var(--version);outline-offset:2px}
+#s-tour .tour-hud{position:absolute;left:10px;top:8px;font:12px/1.6 var(--mono);color:var(--ink);background:rgba(242,243,240,.88);padding:2px 8px;border:1px solid var(--line)}
+#s-tour .tour-badge{position:absolute;right:10px;top:8px;font:12px/1.6 var(--mono);color:var(--ink);background:rgba(242,243,240,.88);padding:2px 8px;border:1px solid var(--line)}
+#s-tour .tour-badge-ex{color:#fff;background:var(--version);border-color:var(--version)}
+#s-tour .tour-fallback{padding:28px 18px;font:14px/1.8 var(--sans);color:var(--ink)}
+#s-tour .tour-controls{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+#s-tour .tour-controls button{font:12px/1.2 var(--mono);color:var(--ink);background:var(--paper);border:1px solid var(--rail);padding:6px 12px;cursor:pointer}
+#s-tour .tour-controls button:hover{border-color:var(--version);color:var(--version)}
+#s-tour .tour-keys{font:12px/1.9 var(--mono);color:var(--rail);margin:2px 0 0}
+#s-tour .tour-note{font:12px/1.8 var(--sans);color:var(--rail);border-left:3px solid var(--version);padding-left:10px;margin-top:10px}
+</style>
+<script src="assets/gauge-tour-data.js" defer></script>
+<script src="assets/gauge-tour.js" defer></script>
+
 <footer>
   <span>京张公制 THE JING-ZHANG GAUGE</span>
   <span>JZ-Gauge v0.1</span>

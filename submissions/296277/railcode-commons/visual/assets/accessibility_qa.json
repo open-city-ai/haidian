@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "checked_at": "2026-08-13",
+  "checker": "participant-side human review assisted by local browser and PDF rendering",
+  "status": "pass_with_declared_pdf_limit",
+  "scope": [
+    "report/proposal.html",
+    "report/proposal.en.html",
+    "visual/index.html",
+    "visual/index.en.html",
+    "drawings/*.pdf",
+    "assets/figures/*.png"
+  ],
+  "checks": [
+    {
+      "item": "core image alternative text",
+      "method": "human inspection of HTML img elements against figure meaning",
+      "result": "pass",
+      "evidence": "content-specific alt text is present for core figures and synthetic scenes"
+    },
+    {
+      "item": "HTML keyboard access",
+      "method": "Tab/Shift+Tab/Enter review of interactive delivery-contract buttons; static report requires no pointer-only action",
+      "result": "pass",
+      "evidence": "native buttons are reachable and activatable; focus follows document order"
+    },
+    {
+      "item": "HTML reading order and landmarks",
+      "method": "human DOM-order inspection at desktop and 390 px mobile width",
+      "result": "pass",
+      "evidence": "header, main sections, headings, figures, notes and footer retain logical order without horizontal overflow"
+    },
+    {
+      "item": "colour not sole carrier",
+      "method": "human inspection of all core figures",
+      "result": "pass",
+      "evidence": "IDs, labels, shapes, headers and stop/status text accompany palette encoding"
+    },
+    {
+      "item": "zoom/reflow",
+      "method": "desktop and 390 px viewport render inspection",
+      "result": "pass",
+      "evidence": "no overlap, clipping, missing image or horizontal overflow in bilingual pages"
+    },
+    {
+      "item": "PDF visual page order",
+      "method": "render every bilingual page and compare sequence, blank pages and cropping",
+      "result": "pass",
+      "evidence": "paired sequence retained; no blank or cropped pages"
+    },
+    {
+      "item": "PDF semantic tagging and selectable reading order",
+      "method": "manual capability check",
+      "result": "not_certified",
+      "evidence": "image-based board/booklet PDFs are visual presentation copies; Markdown and offline HTML are the accessible text alternatives",
+      "required_before_accessible_publication": "produce tagged PDFs with language, headings, alternative text, reading order, bookmarks and independent assistive-technology QA"
+    }
+  ],
+  "field_co_test_plan": {
+    "current_state": "not_recruited_not_field_run",
+    "minimum": "12 consented route tasks across at least 3 access-need groups plus 2 independent professional reviewer types",
+    "groups": [
+      "older users",
+      "mobility access",
+      "blind/low-vision",
+      "deaf/hard-of-hearing",
+      "cognitive or low digital literacy",
+      "no-smart-device users"
+    ],
+    "ethics": [
+      "no service entitlement exchanged for participation",
+      "plain-language notice and voluntary withdrawal",
+      "support person allowed",
+      "avoid recording identity or diagnosis unless separately necessary and authorised"
+    ],
+    "record": "de-identified segment, barrier, task outcome, assistance, correction owner/date and withdrawal flag",
+    "stop_and_exit": "pause on continuous-route, alternative-information, keyboard-access or human-fallback failure; correct, retest, sign off, or close and reinstate"
+  },
+  "limits": "Participant-side QA is not a WCAG, PDF/UA, legal accessibility, assistive-technology, or field-access certification."
+}

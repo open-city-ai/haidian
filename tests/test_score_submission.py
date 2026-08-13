@@ -214,5 +214,41 @@ class ScoreSubmissionTests(unittest.TestCase):
             self.assertEqual(payload["next_required_check"], "scripts/self_check_submission.py")
 
 
+
+    def test_placeholder_text_causes_missing_completeness(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_source_index(root)
+            # Inject a known placeholder string
+            body = VALID_BODY + "\n方案标题\n"
+            proposal = self.write_proposal(root, body)
+
+            report = score_proposal(root, proposal)
+            checks = self.check_map(report)
+
+            self.assertEqual(checks["表达完整度"], STATUS_MISSING)
+
+    def test_score_proposal_returns_all_eight_dimensions(self) -> None:
+        """score_proposal must always return exactly the eight rubric dimensions."""
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_source_index(root)
+            proposal = self.write_proposal(root)
+
+            report = score_proposal(root, proposal)
+
+            dimension_names = {check.dimension for check in report.checks}
+            expected = {
+                "任务书相关性",
+                "原创性",
+                "AI 与城市规划创新性",
+                "可实施性",
+                "公共利益",
+                "风险合规",
+                "表达完整度",
+                "公开资料引用",
+            }
+            self.assertEqual(dimension_names, expected)
+
 if __name__ == "__main__":
     unittest.main()

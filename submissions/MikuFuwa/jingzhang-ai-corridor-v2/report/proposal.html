@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张智脊·开源协议脊（v2.4） - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>京张智脊·开源协议脊（v2.4）</h1>
+<p class="summary">v2.4 形态关：街坊拼贴（v2.4 二次碎化）用地（非通长彩带）、三核簇群建筑、命名慢行断点、五图/A0/A3 真重渲且哈希验收；Open Protocol Spine 机制保持；provisional + FAR unknown + medium。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+</section>
+<h1>京张智脊·开源协议脊（v2.4）</h1>
+<h2>设计依据与资料清单</h2>
+<p>本 formal 包以海淀分局资格预审公告与仓库 <code>brief/site-package</code> 为机器可读依据 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup>。agent 任务来自开源征集任务书 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。资料用途边界以登记表区分 formal / background / provisional <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup>。</p>
+<p>坐标与面积路径必须分开表述：GeoJSON <strong>存储</strong>为 EPSG:4326；面积与比例一律经 <strong>EPSG:4548</strong> 投影复算，并写入要素 <code>crs_note</code> / <code>equal_area_projection</code> 字段 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup>。当前边界为 provisional，不得作为 official redline 或精确审批面积 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup>。边界要素见 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#SITE-001" title="空间数据：geometry/site_boundary.geojson#SITE-001">空间数据</sup>。</p>
+<h3>现状诊断与问题地图</h3>
+<p>基于公开叙事与 provisional 约束，提出 10 条可辩护问题（均标临时性）。每条闭环为 <strong>空间现象 → 人群 → 策略 ID → 假设 ID</strong> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="existing_conditions_diagnosis" title="深度：existing_conditions_diagnosis">深度</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CON-001" title="空间数据：geometry/constraints.geojson#CON-001">空间数据</sup>：</p>
+<p>1. P01 绿廊被快速路/封闭界面切断 → 通勤/通学人群慢行断裂 → OS-01 接口缝合 → A-BOUNDARY-001 2. P02 大钟寺站城四象限步行弱 → 到访/转化人群绕行 → OS-05 四象限连通 → A-STATION-001 3. P03 近校转化界面“看得见进不去” → 师生与创业者 → OS-04 转化街 → A-CAMPUS-001 4. P04 众智园测试干扰日常 → 居民与儿童 → OS-02/SCN-02 回退规则 → A-NOISE-001 5. P05 产业服务与中关村翼接驳不足 → 研发员工与访客 → 区域北纬预约接口 → A-REGIONAL-001 6. P06 生活翼服务密度不足 → 职住平衡人群 → SCN-08 生活样板街 → A-LIFE-001 7. P07 算力设施邻避与能耗未知 → 邻里社区 → OS-06 可回退驿站 → A-ENERGY-001 8. P08 文保/遗产与强度未知 → 公众与遗产管理 → 缓冲叠加不消费化 → A-HERITAGE-001 9. P09 机器人与人行/无障碍冲突 → 儿童、轮椅使用者 → OS-14 让行试验段 → A-ROBOT-001 10. P10 活动周与日常时段冲突 → 居民夜间休息 → OS-10 时段分区 → A-EVENT-001</p>
+<p>问题地图在 A0-02 与 [figure:assets/figures/mobility-bluegreen.png] 以约束底 + 断点诊断/缝合修复对照表达（概念，pending）。</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="概念总图与证据链"><figcaption>概念总图与证据链</figcaption></figure>
+<p>导航层 <code>agent_fact_pack</code> 仅作阅读索引 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>。品牌最小集见 <code>assets/brand/logo.svg</code>：轨枕几何 + OPEN 窗，深青/信号绿/靛蓝，禁止娱乐化与未授权商标。</p>
+<h2>三层范围工作框架</h2>
+<div class="proposal-table"><table><thead><tr><th>层级</th><th>目标</th><th>本包落点</th></tr></thead><tbody><tr><td>统筹研究 ~43.6 km²</td><td>生态、三区两翼、区域接口</td><td>区域协同一节 + 案例机制</td></tr><tr><td>总体设计 ~11.4 km²</td><td>更新框架、交通市政、风貌</td><td>site 边界复算 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup>=11412825.386 m²</td></tr><tr><td>重点区域 ~368.4 ha</td><td>三区详设</td><td>key_areas + visual/assets/detail_* <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup></td></tr></tbody></table></div>
+<p>总体结构仍是 <strong>一脊三核双翼十二节点</strong>，内核升级为 <strong>开源协议脊</strong>：公共空间=可版本化城市 API <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_level_scope_framework" title="深度：three_level_scope_framework">深度</sup>。十二节点与 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="visual/assets/scenario_nodes.json#SCN-01" title="空间数据：visual/assets/scenario_nodes.json#SCN-01">空间数据</sup> 及场景卡 ID 绑定（额外节点资产因仓库 geometry 白名单限制，存放于 <code>visual/assets/</code>，主图层仍在 geometry 可检文件中）。</p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="三层范围与用地单元"><figcaption>三层范围与用地单元</figcaption></figure>
+<h3>区域协同接口（各 1 个动作）</h3>
+<p>1. <strong>中关村科学城北区/北纬方向</strong>：空间落点=<strong>预约界面</strong>（验证核沙盒庭）— 输出标准与测评接口，供北侧研发集群预约。 2. <strong>未来科学城</strong>：空间落点=<strong>门户档期界面</strong>（体验核路演厅）— 联合路演档期接口（概念）。 3. <strong>怀柔科学城</strong>：空间落点=<strong>通道型回传节点</strong>（科技服务翼）— 基础研究—模型评测结果回传。 4. <strong>北京经济技术开发区</strong>：空间落点=<strong>中试反馈界面</strong>（产业服务广场）— 智能终端与智能体产品回路。 5. <strong>京津冀廊道</strong>：空间落点=<strong>南向门户</strong>（大钟寺站城口袋）— 到访与转化接口。</p>
+<p>以上均为协调建议，不构成跨区行政安排。</p>
+<h2>统筹研究范围产业与未来城市研究</h2>
+<h3>尖刀机制：开源协议脊</h3>
+<p>四字段强制贯穿结构、场景、治理与运营。接口生命周期（概念）：<strong>发布 Publish → 验证 Verify → 回退 Rollback → 审计 Audit</strong>。</p>
+<p>四字段：</p>
+<ul>
+<li><strong>接口 Interface</strong>：12 场景节点 = API endpoints</li>
+<li><strong>权限 Permission</strong>：公开 / 聚合 / 授权 / 禁止 四级数据</li>
+<li><strong>回退 Rollback</strong>：试验可暂停、装置可撤离</li>
+<li><strong>审计 Audit</strong>：荣誉墙可更正 + 治理论坛庭听证</li>
+</ul>
+<p>命名：中文「京张智脊」；英文「JingZhang Open Spine」；机制名「Open Protocol Spine / 开源协议脊」。Logo 见 <code>assets/brand/logo.svg</code>。最小可行试点建议在原点发布厅（SCN-01）或众智园沙盒庭（SCN-02），失败则下线活动或停测，不把“智慧家具”一次性锁死在街道上。</p>
+<h3>案例：3 深 + 3 浅</h3>
+<p><strong>深 1 · 波士顿 Kendall Square</strong> 机制：高校—实验室—企业步行三角。空间装置：近校转化街。治理：成果披露与安全评测并行。移植条件：原点社区有高校溢出。不移植：美国产权与基金结构。</p>
+<p><strong>深 2 · 伦敦 King’s Cross</strong> 机制：站城一体资产运营。空间装置：大钟寺四象限口袋。治理：公共空间时段分区。移植条件：轨道站点一体化研究。不移植：单一业主大地块模式。</p>
+<p><strong>深 3 · 新加坡 one-north</strong> 机制：研发—生活混合与测试走廊。空间装置：众智园花园型沙盒。治理：可预约测试许可。移植条件：验证核有平台主体。不移植：热带气候景观模板。</p>
+<p>浅案例：深圳南山（产城密度）、东京虎之门（垂直公共庭）、上海张江（国家平台集聚）——分别提示服务翼密度、立体公共庭、平台型验证空间。</p>
+<p>未来城市形态：空间预留可回退接口，而不是一次性“智慧家具堆砌” <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup>。</p>
+<h2>总体设计范围城市更新与控规深度城市设计</h2>
+<p>总体设计按控规深度 <strong>方法</strong> 组织，但缺官方控规时，容积率/高度/退线/道路红线一律 unknown <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-CONTROL-DETAILED-PLANNING" title="标准：MOHURD-CONTROL-DETAILED-PLANNING">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="深度：development_intensity_controls">深度</sup>。</p>
+<p>用地已加密为 <strong>30</strong> 个街坊/功能单元，覆盖提交边界 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="land_use_unit_count" title="指标：land_use_unit_count">指标</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="land_use_layout" title="深度：land_use_layout">深度</sup>。绿脊单元居中，两侧依次为科研、产业服务、教育转化、生活配套，并穿插文化/广场单元。</p>
+<p>建筑按三核簇群+脊缘界面布置（核密廊疏），概念基底 <strong>156</strong> 个，采用 <strong>院落/L/U/条形界面簇群</strong> 混合与轻微旋转，分类型布置于可建设单元，避免纯网格小矩形刷数 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_count" title="指标：building_count">指标</sup>=156 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup>。道路分级段 <strong>54</strong> 条（含断点诊断与缝合修复叙事段） <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="road_segment_count" title="指标：road_segment_count">指标</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup>。更新策略“先接口后体量”：先缝合慢行与协议节点，再进入需权属条件的深层更新。</p>
+<h2>重点区域详细设计</h2>
+<p>三处 KEY_AREA 仍为 provisional，结论为方向性概念建议 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup>。详设几何资产见 <code>visual/assets/detail_zhongzhiyuan.json</code>、<code>detail_beijing_ai_origin.json</code>、<code>detail_dazhongsi.json</code>（含主入口、慢行脊段、横缝、公共庭、建筑基底、场景锚点、风险叠加）。</p>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="三重点区差异"><figcaption>三重点区差异</figcaption></figure>
+<h3>众智园 · 验证核</h3>
+<blockquote><p>图号互指：A0-06 / A3 对应页 / [figure:assets/figures/key-areas.png] / <code>visual/assets/detail_zhongzhiyuan.json</code>；几何父级 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson" title="空间数据：geometry/key_areas.geojson">空间数据</sup>。</p></blockquote>
+<ul>
+<li><strong>定位</strong>：全栈自主、标准治理、安全测评主机。</li>
+<li><strong>问题链</strong>：展示/测试可能干扰日常（P04）；北端对外交通割裂（P01/P05）。</li>
+<li><strong>结构</strong>：清河界面验证水岸 + 安全治理沙盒庭 + 横缝步行；detail 资产绑定 parent_key_area。</li>
+<li><strong>公空与慢行</strong>：验证庭外延 PUBLIC 节点与绿脊北段连接。</li>
+<li><strong>形态原则</strong>：花园型低干扰界面，夜景以可解释信号而非广告屏为主。</li>
+<li><strong>拆改留方法</strong>：优先保留可复用结构，改造首层为可预约测试界面，新建集中在已明确可更新单元（类型学，非地块终审） <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="深度：retain_renovate_demolish">深度</sup>。</li>
+<li><strong>AI 场景</strong>：SCN-02 安全沙盒、SCN-04 算力驿站、SCN-12 治理论坛；均含红队与人工复核。</li>
+<li><strong>近期项目</strong>：OS-02 验证水岸、OS-06 算力驿站试点、OS-12 治理论坛庭。</li>
+<li><strong>风险</strong>：测试噪声/隐私；依赖蓝线、能源与安全许可（待确认）。</li>
+</ul>
+<h3>北京 AI 原点社区 · 开源核</h3>
+<blockquote><p>图号互指：A0-06 / A3 对应页 / [figure:assets/figures/key-areas.png] / <code>visual/assets/detail_beijing_ai_origin.json</code>；几何父级 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson" title="空间数据：geometry/key_areas.geojson">空间数据</sup>。</p></blockquote>
+<ul>
+<li><strong>定位</strong>：近校转化、开源发布、人才服务主机。</li>
+<li><strong>问题链</strong>：看得见进不去（P03）；活动与日常冲突（P10）。</li>
+<li><strong>结构</strong>：发布厅—转化街—荣誉墙串联。</li>
+<li><strong>公空与慢行</strong>：校缘缓冲与站点接驳口袋。</li>
+<li><strong>形态原则</strong>：低干扰、夜间协作友好，避免过度商业化占道。</li>
+<li><strong>拆改留方法</strong>：积极改造沿街界面，谨慎触碰权属不清地块。</li>
+<li><strong>AI 场景</strong>：SCN-01 发布厅、SCN-06 转化街、SCN-11 荣誉墙。</li>
+<li><strong>近期项目</strong>：OS-03 发布厅、OS-04 转化街、OS-07 荣誉墙。</li>
+<li><strong>风险</strong>：校园数据授权、扰民；依赖校区边界与许可。</li>
+</ul>
+<h3>大钟寺 · 体验核</h3>
+<blockquote><p>图号互指：A0-06 / A3 对应页 / [figure:assets/figures/key-areas.png] / <code>visual/assets/detail_dazhongsi.json</code>；几何父级 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson" title="空间数据：geometry/key_areas.geojson">空间数据</sup>。</p></blockquote>
+<ul>
+<li><strong>定位</strong>：智能经济、国际交往、站城一体主机。</li>
+<li><strong>问题链</strong>：四象限步行弱（P02）；数据与商业伦理（P07）。</li>
+<li><strong>结构</strong>：站城四象限口袋 + 路演厅 + 数据会客厅。</li>
+<li><strong>公空与慢行</strong>：路口四向连通与南门户广场。</li>
+<li><strong>形态原则</strong>：城市型界面，标识克制，服务到访与转化。</li>
+<li><strong>拆改留方法</strong>：公共界面优先，企业周边环境微更新。</li>
+<li><strong>AI 场景</strong>：SCN-05 路演、SCN-07 数据会客、SCN-10 活动周枢纽。</li>
+<li><strong>近期项目</strong>：OS-05 四象限连通、OS-08 路演客厅、OS-10 活动周路线。</li>
+<li><strong>风险</strong>：活动许可、商业标识清权、交通组织待专项。</li>
+</ul>
+<h2>AI 创新生态、人才画像与 AI+ 场景</h2>
+<h3>用户画像（6 类）</h3>
+<div class="proposal-table"><table><thead><tr><th>画像</th><th>需求</th><th>空间</th><th>冲突调解</th></tr></thead><tbody><tr><td>开源开发者</td><td>发布/协作/声誉</td><td>发布厅/荣誉墙</td><td>夜间噪声限时</td></tr><tr><td>初创团队</td><td>低成本试验</td><td>沙盒/驿站</td><td>安全评测门禁</td></tr><tr><td>企业访客</td><td>展示洽谈</td><td>路演厅</td><td>标识清权</td></tr><tr><td>通勤居民</td><td>连续慢行</td><td>绿脊/缝合</td><td>活动绕行</td></tr><tr><td>高校师生</td><td>转化实习</td><td>转化街</td><td>校园数据授权</td></tr><tr><td>照护者/行动不便者</td><td>无障碍可达</td><td>口袋与坡道原则</td><td>优先通行</td></tr></tbody></table></div>
+<h3>场景卡对象（12）</h3>
+<p>每张卡含：id, place_geometry_id, personas, data_minimization, human_review, rollback, pilot_kpi, spatial_requirement, non_goal。</p>
+<div class="proposal-table"><table><thead><tr><th>ID</th><th>名称</th><th>geometry</th><th>类型</th><th>回退</th><th>KPI（概念）</th></tr></thead><tbody><tr><td>SCN-01</td><td>开源发布厅</td><td>SCN-01</td><td>生态</td><td>下线活动</td><td>月发布场次</td></tr><tr><td>SCN-02</td><td>安全治理沙盒</td><td>SCN-02</td><td><strong>测试验证</strong></td><td>停测</td><td>红队闭环率</td></tr><tr><td>SCN-03</td><td>慢行断点诊断</td><td>SCN-03</td><td>生活</td><td>停止传感</td><td>断点修复数</td></tr><tr><td>SCN-04</td><td>端侧算力驿站</td><td>SCN-04</td><td><strong>测试验证</strong></td><td>断电下线</td><td>可用时长</td></tr><tr><td>SCN-05</td><td>国际路演客厅</td><td>SCN-05</td><td>产业</td><td>取消档期</td><td>到访转化线索</td></tr><tr><td>SCN-06</td><td>近校转化街</td><td>SCN-06</td><td>生态</td><td>收缩外摆</td><td>对接项目数</td></tr><tr><td>SCN-07</td><td>数据要素会客厅</td><td>SCN-07</td><td><strong>测试验证</strong></td><td>停授权</td><td>审计通过率</td></tr><tr><td>SCN-08</td><td>生活服务样板街</td><td>SCN-08</td><td>生活</td><td>降级人工窗</td><td>投诉闭环</td></tr><tr><td>SCN-09</td><td>京张记忆线路</td><td>SCN-09</td><td>文化</td><td>调整路线</td><td>导览完成率</td></tr><tr><td>SCN-10</td><td>全球AI活动周枢纽</td><td>SCN-10</td><td>运营</td><td>缩减规模</td><td>时段冲突数↓</td></tr><tr><td>SCN-11</td><td>智能体荣誉墙</td><td>SCN-11</td><td>朝圣</td><td>内容更正</td><td>更正时限</td></tr><tr><td>SCN-12</td><td>治理论坛庭</td><td>SCN-12</td><td>治理</td><td>休会</td><td>听证纪要公开</td></tr></tbody></table></div>
+<p>非目标：不做个人画像营销、不替代审批、不采集敏感轨迹 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="ai_scenario_card_count" title="指标：ai_scenario_card_count">指标</sup>。节点几何见 visual/assets/scenario_nodes.json。</p>
+<h2>用地、建筑规模与拆改留方案</h2>
+<p>用地设计意图是把“五条色带应付”升级为可讨论的街坊/功能单元，使更新项目能够落到可识别的单元边界上 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="标准：MNR-LAND-USE-CLASSIFICATION-GUIDE">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="land_use_layout" title="深度：land_use_layout">深度</sup>。topology 自检摘要见 <code>visual/assets/topology_check.json</code>。</p>
+<p>单元逻辑：科研创新（0802）— 开源绿脊与公园（1401/1403）— 产业服务与文化展示（05/0803）— 近校教育转化（0804）— 社区生活配套（0702）。单元面积由 EPSG:4548 复算并写入 metrics 的 land_use_* 项。</p>
+<p>建筑按三核簇群+脊缘界面布置（核密廊疏），概念基底分布在可建设类单元内；基底合计 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup>=177546.473 m²，概念密度 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_density" title="指标：building_density">指标</sup>=0.011003，是结构逻辑后的后验结果，不等于法定建筑密度 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup>。容积率 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="floor_area_ratio" title="指标：floor_area_ratio">指标</sup> 保持 unknown <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="深度：development_intensity_controls">深度</sup>。</p>
+<p>拆改留只提供类型学方法：优先保留可复用结构与文脉界面，改造积极沿街首层为协议接口与服务界面，新建集中在已明确可更新单元；缺少权属与工程条件时不做地块级拆除结论 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="深度：retain_renovate_demolish">深度</sup>。</p>
+<p>风貌原则：工业遗产克制材料 + 中关村开放协作气质 + 可解释信号界面；夜景以状态可读为主，拒绝广告屏化。建筑高度、退线与街墙分区原则待官方控规确认，不得写成审定控制值 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="height_massing_character" title="深度：height_massing_character">深度</sup>。</p>
+<h2>交通、轨道、市政与公共服务设施</h2>
+<p>设计意图：把被快速路与封闭界面切断的线性公园，转译为可日常使用的协议慢行总线，并用东西缝合把高校—社区—产业重新接上。道路图层现为 <strong>28</strong> 段分级概念线，不宣称红线 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="road_segment_count" title="指标：road_segment_count">指标</sup>。</p>
+<p>轨道接口：大钟寺四象限口袋、近校站点缓冲、北五环跨线断点识别优先于新建快速通道。机器人/低速配送仅允许在可回退试验段，必须让行行人与无障碍路径；冲突规则写入场景 non_goal。</p>
+<p>市政与新基建：算力驿站、分布式能源示意为可讨论层，缺管线与能源条件时不得工程化 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="municipal_new_infrastructure" title="深度：municipal_new_infrastructure">深度</sup>。停车与非机动车：优先共享路缘与站点接驳，不编造泊位供给量。</p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿网络"><figcaption>交通慢行与蓝绿网络</figcaption></figure>
+<h2>蓝绿空间、公共空间与城市风貌</h2>
+<p>蓝绿网络由绿脊分段、口袋公园、校缘缓冲与水岸示意组成 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup>=0.257067（绿地面积 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_space_area_sqm" title="指标：green_space_area_sqm">指标</sup>=2550859.082 m²）<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="blue_green_public_space" title="深度：blue_green_public_space">深度</sup>。公共空间网络支持接口庭、发布外延、路演前场与站点口袋 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup>=0.180722（公空面积 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_area_sqm" title="指标：public_space_area_sqm">指标</sup>=1326256.8 m²）<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup>。</p>
+<h3>三处朝圣地标</h3>
+<p>1. <strong>开源协议轨枕廊</strong>（绿脊中段）— 可签名贡献展示。 2. <strong>智能体荣誉墙</strong>（原点，SCN-11）— 可更正公示。 3. <strong>验证灯塔庭</strong>（众智园，SCN-12 邻近）— 运行状态可读信号。</p>
+<p>文化叙事：百年京张“自主建造” × 中关村“开放协作” × AI“可解释共治”，沿脊步行可体验。</p>
+<h2>更新项目清单、实施政策与分期计划</h2>
+<p>OS 表在原有主体/依赖/空间 id/KPI/回退基础上，补齐 <strong>enablers（使能条件）</strong> 与 <strong>概念许可门</strong>（权属确认→安全评测→活动许可→可回退下线），并与 <code>visual/assets/renewal_projects.json</code> 近期试点 footprint 及依赖链对位（概念示意，非法定地块）。试点失败默认路径：下线活动 / 停测 / 撤离可移动装置，不锁定街道家具。</p>
+<div class="proposal-table"><table><thead><tr><th>ID</th><th>名称</th><th>类型</th><th>分期</th><th>概念主体</th><th>依赖</th><th>空间</th><th>KPI</th><th>回退</th></tr></thead><tbody><tr><td>OS-01</td><td>绿脊断点缝合</td><td>公空/交通</td><td>近</td><td>公园运营+街道</td><td>桥下/道路条件</td><td>ROAD/GREEN</td><td>断点数↓</td><td>临时绕行</td></tr><tr><td>OS-02</td><td>验证水岸</td><td>蓝绿/产业</td><td>近</td><td>园区平台</td><td>蓝线/防洪</td><td>detail_zz</td><td>预约使用率</td><td>收缩测试</td></tr><tr><td>OS-03</td><td>开源发布厅</td><td>更新/运营</td><td>近</td><td>开源社区+高校</td><td>权属/首层</td><td>SCN-01</td><td>月发布场次</td><td>下线</td></tr><tr><td>OS-04</td><td>近校转化街</td><td>产业服务</td><td>中</td><td>转化中心</td><td>校区许可</td><td>SCN-06</td><td>对接数</td><td>缩外摆</td></tr><tr><td>OS-05</td><td>四象限连通</td><td>轨道/慢行</td><td>中</td><td>轨道+街道</td><td>站点条件</td><td>detail_dz</td><td>步行绕行↓</td><td>临时导流</td></tr><tr><td>OS-06</td><td>算力驿站试点</td><td>新基建</td><td>中</td><td>设施运营商</td><td>能源安全</td><td>SCN-04</td><td>可用时长</td><td>断电</td></tr><tr><td>OS-07</td><td>荣誉墙</td><td>文化</td><td>近</td><td>社区+平台</td><td>公空许可</td><td>SCN-11</td><td>更正时限</td><td>内容撤回</td></tr><tr><td>OS-08</td><td>路演客厅</td><td>产业</td><td>中</td><td>企业服务平台</td><td>活动许可</td><td>SCN-05</td><td>线索数</td><td>取消档期</td></tr><tr><td>OS-09</td><td>数据会客厅</td><td>产业测试</td><td>中</td><td>数据服务方</td><td>授权审计</td><td>SCN-07</td><td>审计通过率</td><td>停授权</td></tr><tr><td>OS-10</td><td>活动周路线</td><td>运营</td><td>长</td><td>活动组委会(概念)</td><td>安全许可</td><td>SCN-10</td><td>冲突数↓</td><td>缩规模</td></tr><tr><td>OS-11</td><td>生活样板街</td><td>生活</td><td>中</td><td>街道+商户</td><td>隐私规则</td><td>SCN-08</td><td>投诉闭环</td><td>降级人工</td></tr><tr><td>OS-12</td><td>治理论坛庭</td><td>治理</td><td>近</td><td>治理平台</td><td>场地</td><td>SCN-12</td><td>纪要公开</td><td>休会</td></tr><tr><td>OS-13</td><td>记忆线路</td><td>文化</td><td>中</td><td>文化机构</td><td>文保确认</td><td>SCN-09</td><td>导览完成</td><td>改线</td></tr><tr><td>OS-14</td><td>机器人试验段</td><td>交通测试</td><td>近</td><td>测试主体</td><td>安全评估</td><td>ROAD greenway</td><td>事件数</td><td>立即停测</td></tr></tbody></table></div>
+<p>分期图层见 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/phasing.geojson#PHASE-001" title="空间数据：geometry/phasing.geojson#PHASE-001">空间数据</sup>。分期深度由 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="phasing_implementation" title="深度：phasing_implementation">深度</sup> 约束，更新项目清单深度由 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="renewal_project_list" title="深度：renewal_project_list">深度</sup> 约束，项目数量见 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="renewal_project_count" title="指标：renewal_project_count">指标</sup>。</p>
+<h3>长期运营（agent.6）</h3>
+<p>春开源节、夏场景开放日、秋国际路演周、冬治理论坛；开发者贡献—验证—纪念闭环；国际传播以可复核证据包为主。所有日程为概念建议。</p>
+<h2>指标体系、面积复算与合规矩阵</h2>
+<ul>
+<li>边界面积 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup>=11412825.386 m²（medium，provisional）</li>
+<li>绿地/公共 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup>=0.257067 / <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup>=0.180722</li>
+<li>建筑基底 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup>=177546.473；概念建筑 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_count" title="指标：building_count">指标</sup>=87；道路段 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="road_segment_count" title="指标：road_segment_count">指标</sup>=28；用地单元 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="land_use_unit_count" title="指标：land_use_unit_count">指标</sup>=30</li>
+<li>三重点区面积 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="zhongzhiyuan_area_sqm" title="指标：zhongzhiyuan_area_sqm">指标</sup> / <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="beijing_ai_origin_area_sqm" title="指标：beijing_ai_origin_area_sqm">指标</sup> / <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="dazhongsi_area_sqm" title="指标：dazhongsi_area_sqm">指标</sup>；合计 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_detailed_design_area_sqm" title="指标：key_detailed_design_area_sqm">指标</sup></li>
+<li>FAR 等法定量 unknown</li>
+</ul>
+<p>矩阵：<code>compliance_matrix.json</code> 覆盖 1.3–1.5 与 agent.1–6；<code>design_depth_matrix.json</code> 15 项独立证据摘要；<code>standard_matrix.json</code> 响应本地标准库 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="核心指标复算与证据链图"><figcaption>核心指标复算与证据链图</figcaption></figure>
+<h2>风险、版权与合规说明</h2>
+<p>主要风险包括：provisional 边界精度不足、权属不清、市政消防与能源条件缺失、文保范围待确认、活动夜间扰民、数据隐私越界、机器人与行人冲突 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup>。约束示意见 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CON-001" title="空间数据：geometry/constraints.geojson#CON-001">空间数据</sup>，对应 assumptions 中多条假设，每条都有 resolution_path。</p>
+<p>数据分级强制为公开 / 聚合 / 授权 / 禁止四级；场景卡必须声明最小化采集、人工复核与回退。版权、字体与工具链披露见 <code>report/copyright_statement.md</code> 与 sources.json。双语契约已配对 proposal/HTML/PDF/图件。</p>
+<p>展板与文册：<code>drawings/a0-boards.pdf</code>（≥7 板真图文）、<code>drawings/a3-booklet.pdf</code>（完整文册）；离线总图 <code>visual/index.html</code> 内嵌由 GeoJSON 投影的 SVG。</p>
+<p>本方案全部空间、运营与政策内容均为概念建议或参考方案，可供专业团队深化，不构成法定规划、审批结论、投资承诺或政府已定安排。</p>
+<h2>参考资料</h2>
+<p>本方案依据公开任务书与仓库结构化资料编制，完整出处见 sources.json。</p>
+<ul>
+<li>brief/public-brief.md、design_brief.json、agent_taskbook.json</li>
+<li>data/source_registry.json、agent_fact_pack.md</li>
+<li>provisional_boundaries.geojson</li>
+<li>standards/references 本地快照</li>
+<li>visual/assets/scenario_nodes.json、detail_*.json、topology_check.json</li>
+<li>docs/formal-submission-guide.md 与 docs/terminology-glossary.md</li>
+<li>metrics.json / compliance_matrix.json / standard_matrix.json / design_depth_matrix.json <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup></li>
+</ul>
+<h3>三区典型断面（v2.4）</h3>
+<p>三重点区均给出<strong>平面剖切线 + 相对标高断面</strong>，互指见 <code>assets/figures/key-areas.png</code>、<code>assets/figures/key-area-sections.png</code> 与 <code>visual/assets/section_cuts.json</code>：</p>
+<div class="proposal-table"><table><thead><tr><th>区</th><th>剖切</th><th>断面主题（左→右）</th><th>抓手</th></tr></thead><tbody><tr><td>众智园·验证核</td><td>A-A</td><td>研发界面 | 生活缓冲 | 测试沙盒 | 绿脊 | 积极首层</td><td>隔离带厚度与可回退试验</td></tr><tr><td>原点·开源核</td><td>B-B</td><td>近校界面 | 转化街 | 发布庭 | 人才服务 | 慢行</td><td>校园—城市转化缝合</td></tr><tr><td>大钟寺·体验核</td><td>C-C</td><td>站城接驳 | 口袋广场 | 路演界面 | 零售混合 | 慢行</td><td>站城进深优先于新建快速通道</td></tr></tbody></table></div>
+<p>断面为<strong>相对标高示意</strong>，非测绘绝对高程；不得解读为审批竖向控制。</p>
+</main>
+</body>
+</html>

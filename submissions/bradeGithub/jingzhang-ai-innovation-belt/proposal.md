@@ -132,19 +132,19 @@ iteration: "v1.1"
 
 | 用地代码 | 用途 | 面积（m²） | 占比 | 设计逻辑 |
 |---|---|---|---|---|
-| 1401 | 公园绿地（京张活力带） | 2,642,389 | 23.2% | 主轴线与缝合媒介 |
-| 1402 | 防护绿地 | 79,625 | 0.7% | 北部门户绿楔 |
-| 0802 | 科研用地（AI研发） | 2,487,748 | 21.8% | 三核产业主体 |
-| 0804 | 教育用地 | 1,797,423 | 15.8% | 学院路高校走廊 |
-| 05 | 商业服务业用地 | 1,305,722 | 11.4% | 大钟寺智能原生新业态 |
-| 0701 | 城镇住宅用地 | 2,776,870 | 24.3% | 宜居社区与人才社区 |
-| 0702 | 社区服务设施用地 | 323,069 | 2.8% | 15分钟生活圈配套 |
+| 1401 | 公园绿地（京张活力带） | 1,991,800 | 17.5% | 主轴线与缝合媒介 |
+| 1402 | 防护绿地 | 136,108 | 1.2% | 北部门户绿楔 |
+| 0802 | 科研用地（AI研发） | 3,355,987 | 29.4% | 三核产业主体 |
+| 0804 | 教育用地 | 998,923 | 8.8% | 学院路高校走廊 |
+| 05 | 商业服务业用地 | 2,078,777 | 18.2% | 大钟寺智能原生新业态 |
+| 0701 | 城镇住宅用地 | 1,749,152 | 15.3% | 宜居社区与人才社区 |
+| 0702 | 社区服务设施用地 | 1,102,095 | 9.7% | 15分钟生活圈配套 |
 
 用地布局逻辑：**绿地主轴优先**（保证活力带连续贯通）、**产业沿轴集聚**（科研沿绿轴东侧展开，商业向南核集中）、**教育走廊保留强化**（学院路高校带）、**居住社区嵌入绿网**（西缘与东缘社区步行5分钟可达公园带）[depth:land_use_layout] [standard:MNR-LAND-USE-CLASSIFICATION]。
 
 ### 建筑规模与拆改留逻辑
 
-- 建筑基底共39个街区级概念块，总基底面积1,667,801 m²，作为产业街区、社区与站点综合体的示意性布局 [data:geometry/buildings.geojson] [metric:building_footprint_area_sqm]。
+- 建筑基底共262个街区级概念块，总基底面积1,070,482 m²，作为产业街区、社区与站点综合体的示意性布局 [data:geometry/buildings.geojson] [metric:building_footprint_area_sqm]。
 - **拆改留原则（方向性概念）**：优先保留高校、科研院所、轨道交通站点与历史建筑；沿公园带两侧以"微更新+功能置换"为主；仅对低效产业空间与断头地块提出"改造升级"建议；任何地块级拆改留结论须以官方现状调查为准 [assumption:A-EXISTING-001]。
 - 容积率、建筑高度等法定指标缺失，列为待确认事项，不给出数值结论 [metric:floor_area_ratio] [metric:building_height_m] [assumption:A-CONTROLS-001]。
 
@@ -232,23 +232,23 @@ iteration: "v1.1"
 
 ## 用地、建筑规模与拆改留方案
 
-用地结构与拆改留逻辑已在"总体设计"章节给出，此处补充指标链与设计意图：场地面积11,412,825 m²，绿地（1401+1402）合计2,722,014 m²、占比23.9%，科研（0802）2,487,748 m²、占比21.8%，商业（05）1,305,722 m²、占比11.4% [metric:site_area_sqm] [metric:green_ratio] [metric:land_use_area_1401_sqm]。教育（0804）1,797,423 m²、占比15.8%，居住（0701）2,776,870 m²、占比24.3%，社区服务（0702）323,069 m²、占比2.8%，上述逐项面积见 [metric:land_use_area_0802_sqm] [metric:land_use_area_0804_sqm] [metric:land_use_area_0701_sqm]，其余记录于 [metric:land_use_area_0702_sqm]。
+用地结构与拆改留逻辑已在"总体设计"章节给出，此处补充指标链与设计意图：场地面积11,412,825 m²，绿地（1401+1402）合计2,127,908 m²、占比18.6%，科研（0802）3,355,987 m²、占比29.4%，商业（05）2,078,777 m²、占比18.2% [metric:site_area_sqm] [metric:green_ratio] [metric:land_use_area_1401_sqm]。教育（0804）998,923 m²、占比8.8%，居住（0701）1,749,152 m²、占比15.3%，社区服务（0702）1,102,095 m²、占比9.7%，上述逐项面积见 [metric:land_use_area_0802_sqm] [metric:land_use_area_0804_sqm] [metric:land_use_area_0701_sqm]，其余记录于 [metric:land_use_area_0702_sqm]。
 
 全部比例可由 `land_use.geojson` 逐块复算，分区无缝隙、无重叠，各代码面积分别记录于 [metric:land_use_area_1402_sqm] [metric:land_use_area_05_sqm] [metric:land_use_area_0804_sqm]。其余代码见 [metric:land_use_area_0701_sqm] [metric:land_use_area_0702_sqm] [data:geometry/land_use.geojson]，设计深度记录见 [depth:land_use_layout]。
 
-建筑规模以39个街区级概念基底表达，总基底1,667,801 m²，布局遵循"科研沿绿轴东侧、商业向南核集中、居住嵌入绿网"的原则；基底仅为空间供给示意，不代表法定建筑面积或容积率结论 [data:geometry/buildings.geojson] [metric:building_footprint_area_sqm]。拆改留为方向性分类：优先保留高校、科研院所、轨道交通站点与历史建筑，公园带两侧以"微更新+功能置换"为主，仅对低效产业空间提出改造升级方向；地块级拆改留结论必须依据官方现状调查与权属数据，本方案不作结论 [assumption:A-EXISTING-001]。
+建筑规模以262个街区级概念基底表达，总基底1,070,482 m²，布局遵循"科研沿绿轴东侧、商业向南核集中、居住嵌入绿网"的原则；基底仅为空间供给示意，不代表法定建筑面积或容积率结论 [data:geometry/buildings.geojson] [metric:building_footprint_area_sqm]。拆改留为方向性分类：优先保留高校、科研院所、轨道交通站点与历史建筑，公园带两侧以"微更新+功能置换"为主，仅对低效产业空间提出改造升级方向；地块级拆改留结论必须依据官方现状调查与权属数据，本方案不作结论 [assumption:A-EXISTING-001]。
 
 容积率、建筑高度、密度、绿地率与退线等法定控制指标在资料包中缺失，列为待正式数据补齐，不给出数值 [metric:floor_area_ratio] [metric:building_height_m] [assumption:A-CONTROLS-001]。
 
 ## 交通、轨道、市政与公共服务设施
 
-- **道路与慢行**：三条南北向廊道（学院路科创走廊、活力轴服务路、公园慢行主廊道）+四条东西向联络线（清河绿道、知春路、北四环、众智园联络线），概念路网总长约26.7 km [data:geometry/roads.geojson] [metric:road_network_length_m]。慢行优先于公园带，采用无障碍连续断面 [standard:BARRIER-FREE-ENVIRONMENT-LAW]。
+- **道路与慢行**：三条南北向廊道（学院路科创走廊、活力轴服务路、公园慢行主廊道）+四条东西向联络线（清河绿道、知春路、北四环、众智园联络线），概念路网总长约34.5 km [data:geometry/roads.geojson] [metric:road_network_length_m]。慢行优先于公园带，采用无障碍连续断面 [standard:BARRIER-FREE-ENVIRONMENT-LAW]。
 - **轨道与站点一体化**：以轨道站点（含大钟寺站等既有站点概念）为TOD节点，建议站点300-500米圈层混合布局，具体线位与站点改造待工程论证 [assumption:A-CONTROLS-001]。
 - **市政与新型基础设施**：建议分布式能源、端侧算力与市政管线共建共廊、15分钟生活圈公共服务全覆盖，均为概念方向，不作工程可行性结论 [depth:municipal_new_infrastructure]。
 
 ## 蓝绿空间、公共空间与城市风貌
 
-- **蓝绿系统**：京张遗址公园活力带为南北主轴（1401绿地2,642,389 m²），清河滨水绿道、小月河场景翼为东西两翼，形成"一轴两翼"蓝绿骨架 [data:geometry/green_space.geojson] [data:geometry/roads.geojson#ROAD-004] [metric:green_space_area_sqm]。
+- **蓝绿系统**：京张遗址公园活力带为南北主轴（1401绿地1,991,800 m²，含北门户绿楔合计2,127,908 m²），清河滨水绿道、小月河场景翼为东西两翼，形成"一轴两翼"蓝绿骨架 [data:geometry/green_space.geojson] [data:geometry/roads.geojson#ROAD-004] [metric:green_space_area_sqm]。
 - **公共空间节点**：京张AI北门户广场、AI原点社区中央广场、大钟寺AI消费广场、五道口创新交往节点四个概念广场 [data:geometry/public_space.geojson] [metric:public_space_area_sqm]。
 
 - **AI朝圣地标（4个）**：
@@ -300,9 +300,9 @@ iteration: "v1.1"
 
 - **场地规模**：总体设计范围11,412,825 m²；统筹研究范围43.6 km²；重点区域合计368.4 ha [metric:site_area_sqm] [metric:coordinated_research_area_sqm] [metric:key_detailed_design_area_sqm]。
 
-- **用地结构**：绿地比例23.9%（含防护绿楔），科研21.8%，教育15.8%，商业11.4%，居住24.3% [metric:green_ratio] [metric:land_use_total_area_sqm]。
+- **用地结构**：绿地比例18.6%（含防护绿楔），科研29.4%，教育8.8%，商业18.2%，居住15.3%，社区服务9.7% [metric:green_ratio] [metric:land_use_total_area_sqm]。
 
-- **空间供给**：概念建筑基底166.8万 m²；公共空间节点13.1万 m²、占场地1.15% [metric:building_footprint_area_sqm] [metric:public_space_area_sqm] [metric:public_space_ratio]；路网26.7 km [metric:road_network_length_m]。
+- **空间供给**：概念建筑基底107.0万 m²（262栋）；公共空间节点11.0万 m²、占场地1.0% [metric:building_footprint_area_sqm] [metric:public_space_area_sqm] [metric:public_space_ratio]；路网34.5 km [metric:road_network_length_m]。
 
 - **任务覆盖**：12张场景卡（含3张测试验证）、5类用户画像、4个AI朝圣地标、6项Agent任务全覆盖，逐项记录于 `compliance_matrix.json` [metric:scenario_card_count] [metric:persona_class_count] [metric:ai_pilgrimage_landmark_count]。
 - **标准与深度**：9项专业标准逐项响应于 `standard_matrix.json`；15项设计深度项全部 `complete` 于 `design_depth_matrix.json`。

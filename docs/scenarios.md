@@ -28,3 +28,31 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot"]
 ## 维护方式
 
 维护者可在 `scenarios/` 下新增 JSON 文件，并按 `schema/scenario.schema.json` 填写。新增场景后，同步更新本文件，并在相关方案或合集里引用场景 ID。
+
+## Scenario card schema
+
+Each scenario in `scenarios/` must follow `schema/scenario.schema.json`. The required fields are:
+
+| Field | Type | Description |
+|---|---|---|
+| `id` | string | Unique slug, e.g. `ai-traffic-walkability` |
+| `title_zh` | string | Chinese scenario title |
+| `title_en` | string | English scenario title |
+| `summary_zh` | string | 1–3 sentence Chinese summary |
+| `summary_en` | string | 1–3 sentence English summary |
+| `service_targets` | array | Who the scenario serves (residents, enterprises, etc.) |
+| `required_data` | array | Data inputs needed for this scenario |
+| `public_value` | string | The public benefit delivered |
+| `risk_notes` | string | Known risks: privacy, safety, equity, operational |
+| `human_review_required` | bool | Whether human sign-off is required before deployment |
+
+## Current standard scenarios (English)
+
+| ID | Scenario | Suitable for |
+|---|---|---|
+| `ai-traffic-walkability` | AI + Traffic and Walking Assessment | Walkability gaps, transit connections, accessible routes |
+| `ai-health-service-navigation` | AI + Healthcare Service Navigation | Health guidance, appointment routing, emergency access |
+| `robot-delivery-low-speed` | Low-Speed Robot Delivery | Last-mile delivery, service robots, maintenance bots |
+| `ai-cultural-guide` | AI Cultural Guide and Narrative | Heritage park interpretation, event wayfinding |
+| `enterprise-service-copilot` | Enterprise Service Copilot | Developer community, data compliance, innovation services |
+| `public-safety-operations-review` | Public Safety and Event Operations Review | Crowd management, incident routing, human review gate |

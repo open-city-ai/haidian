@@ -1,0 +1,91 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the provisional rough boundary registered as DATA-SRC-PROVISIONAL-BOUNDARIES-20260605.",
+        "The value is reproducible for intake self-check and scenario comparison only; it is not an official or precise site area."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "The footprint is an agent-generated conceptual design layer, not a surveyed existing condition or approved building envelope."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "The numerator is an agent-generated conceptual design layer and the denominator is a provisional rough boundary.",
+        "Use only as a recalculable scenario indicator; publish with approximate precision and not as a statutory or engineering ratio."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "The numerator is an agent-generated conceptual design layer and the denominator is a provisional rough boundary.",
+        "Use only as a recalculable scenario indicator; publish with approximate precision and not as a statutory or engineering ratio."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "brief/site-package/agent_taskbook.json"
+      ],
+      "formula": "count(required_key_detailed_design_areas_named_in_agent_taskbook)",
+      "confidence": "high",
+      "assumptions": [
+        "High confidence applies only to the textual requirement for three named key areas; their submitted polygons remain provisional-only and low confidence."
+      ]
+    }
+  }
+}

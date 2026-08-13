@@ -1,0 +1,125 @@
+{
+ "schema_version": "0.1.0",
+ "assumptions": [
+  {
+   "id": "A-CONTROLS-001",
+   "status": "pending_professional_confirmation",
+   "statement": "控规控制条件、道路红线、权属、市政管线和工程约束必须从官方附件确认后才能用于法定用途。",
+   "impact": "本包仅就提供的 official/provisional 边界与提交设计图层作为 formal AI 提交评审；法定控制仍需专业确认。"
+  },
+  {
+   "id": "A-BOUNDARY-001",
+   "status": "pending_professional_confirmation",
+   "statement": "总体设计范围当前使用 provisional 粗略替代边界（PROV-SITE-001），待官方 polygon 发布后替换。",
+   "impact": "官方边界发布后 site boundary 与全部面积类指标须重算。"
+  },
+  {
+   "id": "A-KEYAREA-001",
+   "status": "pending_professional_confirmation",
+   "statement": "三处重点区域使用 provisional polygon（PROV-KEY-001/002/003），待官方 polygon 发布后替换。",
+   "impact": "重点区详细设计结论为方向性设计，官方 polygon 发布后需按新区划复核。"
+  },
+  {
+   "id": "A-LANDUSE-001",
+   "status": "concept_only",
+   "statement": "land_use 分区为坡度协议驱动的概念分区，不构成法定用地布局。",
+   "impact": "用地结论仅用于展示与讨论，法定用地以官方控规为准。"
+  },
+  {
+   "id": "A-BUILDING-001",
+   "status": "concept_only",
+   "statement": "建筑基底为程序化生成的概念体量，仅用于检验空间供给，不反映现状建筑与法定建筑规模。",
+   "impact": "建筑指标（building_footprint_area_sqm 等）为低置信度概念量。"
+  },
+  {
+   "id": "A-ROAD-001",
+   "status": "concept_only",
+   "statement": "道路中心线为概念线位，不代表道路红线或工程线位。",
+   "impact": "道路与慢行指标为概念长度，交通深化需专业设计。"
+  },
+  {
+   "id": "A-GREEN-001",
+   "status": "concept_only",
+   "statement": "绿地与公共空间为主脊与展线节点概念网络，面积按提交几何复算。",
+   "impact": "绿地/公共空间比例反映概念结构，非审批指标。"
+  },
+  {
+   "id": "A-PHASE-001",
+   "status": "concept_only",
+   "statement": "分期为概念推进路径，与 100 天征集提交周期无关。",
+   "impact": "分期面积用于空间组织讨论，实施时序需专业与审批确认。"
+  },
+  {
+   "id": "A-METRIC-001",
+   "status": "recompute_on_data_update",
+   "statement": "全部面积类指标从提交几何在 EPSG:4548 复算；official 数据发布后整包重算。",
+   "impact": "指标数值仅对当前 provisional 几何有效。"
+  },
+  {
+   "id": "A-SCENARIO-001",
+   "status": "concept_only",
+   "statement": "AI 场景卡为概念运营设计，未成熟技术（如端侧推理、自动驾驶等）不承诺可全面部署。",
+   "impact": "场景不得表述为已批准运营。"
+  },
+  {
+   "id": "A-GOVERNANCE-001",
+   "status": "concept_only",
+   "statement": "创新坡度协议、坡度信号与治理沙盒为概念治理机制，不构成政府决策或政策承诺。",
+   "impact": "治理建议仅供专业团队深化研究。"
+  },
+  {
+   "id": "A-CULTURE-001",
+   "status": "based_on_public_history",
+   "statement": "文化叙事（1909 通车、关沟段 33‰ 坡道、人字展线、智能京张）基于公开史料，未使用未经授权材料。",
+   "impact": "文化表述以史实为底线，不歪曲历史。"
+  },
+  {
+   "id": "A-OPERATION-001",
+   "status": "concept_only",
+   "statement": "年度活动、开发者社区、场景开放与招商转化均为概念安排，不表述为已确定政府安排。",
+   "impact": "运营机制供运营团队深化，不得夸大承诺。"
+  },
+  {
+   "id": "A-DEMAND-001",
+   "status": "inferred_from_public_data",
+   "statement": "客流、通勤与产业需求判断基于公开资料推断，未使用非公开或个人数据。",
+   "impact": "需求判断为方向性，量化分析需现场调研与官方数据。"
+  },
+  {
+   "id": "A-OWNERSHIP-001",
+   "status": "data_gap",
+   "statement": "未获取各地块权属信息；涉及权属的结论（拆改留、改造界面）一律为概念方向。",
+   "impact": "权属确认是项目闸门 C1 的前置条件。"
+  },
+  {
+   "id": "A-COST-001",
+   "status": "concept_only",
+   "statement": "项目包成本量级（如 JZ-01 1–3 千万、JZ-05 5 千万–2 亿）为概念区间，依据同类公共项目公开经验推断。",
+   "impact": "成本量级仅用于检验实施可行性，不构成投资测算、财政承诺或审批依据。"
+  },
+  {
+   "id": "A-EQUITY-001",
+   "status": "concept_only",
+   "statement": "社区保护四机制（留改提优先、收益共享、可负担监测、保障性住房概念）为概念机制。",
+   "impact": "不构成住房政策承诺；具体机制与比例待专业深化与控规确认。"
+  },
+  {
+   "id": "A-CROWD-001",
+   "status": "inferred_from_public_data",
+   "statement": "客流与通勤量级（应用坡 2–4 万/日等）为公开资料推断的低置信度区间。",
+   "impact": "需求判断仅作方向参考，待现场调研与官方数据校准。"
+  },
+  {
+   "id": "A-STAFF-001",
+   "status": "concept_only",
+   "statement": "人力编制概念测算（合计约 40–75 人）按同类公共设施公开经验推断。",
+   "impact": "编制为概念测算，非财政承诺。"
+  },
+  {
+   "id": "A-EMERGENCY-001",
+   "status": "concept_only",
+   "statement": "两级应急响应预案为概念流程，具体职责、时限与资源待运营主体确认。",
+   "impact": "预案供专业运营团队深化，不替代正式应急预案。"
+  }
+ ]
+}

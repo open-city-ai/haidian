@@ -4,7 +4,7 @@ author_github: "siddhartha-yz"
 language: "en"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
-iteration: "v1.5"
+iteration: "v1.17"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Turn the Centennial Jing-Zhang corridor from an AI showcase into civic infrastructure for exposing, co-testing, learning from, and repairing long-tail conditions before systems scale."
@@ -135,6 +135,14 @@ The first portfolio is small, reversible and testable:
 | EC-06 | EDGECASE WEEK | annual open walks, challenges, reviews | event permit and public-safety plan |
 
 Implementation policy should not create a regulatory exemption zone. It should create a stricter deployment gate. Every pilot needs an accountable owner, test question, data boundary, success/failure measures, human takeover, stop rule, retest version and exit plan. Completion of T1 is a prerequisite for T2; evidence from T2 is a prerequisite for T3. Ordinary public-space rights remain intact, and entering the park never counts as consent to participate. Companies receive higher-quality field evidence, not weaker public protections.
+
+| Current tier | Permitted activity | Evidence required before release or continued operation | If unmet |
+| --- | --- | --- | --- |
+| T1 controlled testing | controlled replay, equipment and sensor conflicts, emergency-stop drills | failure conditions are reproducible; stop or power isolation works; records support review | do not enter the community; repair and repeat controlled testing |
+| T2 community co-testing | informed accessibility, multilingual, public-service and robot co-tests | exit and non-AI routes are equally reachable; staffed takeover is available; data are minimized | return to desks, paper wayfinding or staffed guidance; pause the co-test |
+| T3 everyday open environments | everyday navigation, crowd operations and agent-handoff pilots | an accountable operator is named; capacity and low-confidence triggers work; staffed after-sales support is reachable | switch to staffed operation or take the service offline; log the issue and return to T1/T2 |
+
+This table is a minimum evidence checklist for accountable operators, not an automatic promotion system, deployment approval or safety certification. T3 has no undefined “next tier”; its third column is the gate for continued operation.
 
 The phasing geometry provides a machine-checkable three-part partition, but the real implementation sequence is mechanism-first. In years 0-1, establish governance, the problem library, base slow mobility and three movable prototypes. In years 1-3, expand scenarios, company services and ground-floor interfaces based on evidence. Only after official controls are available should permanent redevelopment be studied. Any AI pilot can be removed while the underlying space continues as ordinary park, community service or event space; reversibility is a design requirement. [data:geometry/phasing.geojson#PHASE-001] [depth:renewal_project_list]
 

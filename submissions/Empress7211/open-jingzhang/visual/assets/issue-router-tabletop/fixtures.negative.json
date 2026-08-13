@@ -1,0 +1,171 @@
+{
+  "schema_version": "1.0.0",
+  "fixture_type": "synthetic_negative_set",
+  "contract_id": "OJZ-S14-ISSUE-ROUTER-TABLETOP",
+  "base_case": {
+    "synthetic": true,
+    "field_run": false,
+    "issue": {
+      "issue_id": "SYN-ISSUE-NEG-BASE",
+      "summary": "合成公共空间导览问题",
+      "public_interest": "保留同任务人工入口",
+      "affected_groups": [
+        "route_users",
+        "frontline_staff"
+      ],
+      "requested_branch": "public_space_review",
+      "data_classification": "synthetic_no_personal_data",
+      "source_type": "synthetic_fixture"
+    },
+    "raci": {
+      "accountable": [
+        "scenario_owner"
+      ],
+      "responsible": [
+        "data_steward",
+        "technical_owner"
+      ],
+      "consulted": [
+        "domain_professional",
+        "affected_group_steward"
+      ],
+      "informed": [
+        "operations_owner"
+      ],
+      "appeal": [
+        "independent_appeal_officer"
+      ]
+    },
+    "role_assignments": {
+      "scenario_owner": "SYN-ROLE-SCENARIO-OWNER-N",
+      "data_steward": "SYN-ROLE-DATA-STEWARD-N",
+      "technical_owner": "SYN-ROLE-TECHNICAL-OWNER-N",
+      "domain_professional": "SYN-ROLE-DOMAIN-PROFESSIONAL-N",
+      "affected_group_steward": "SYN-ROLE-AFFECTED-GROUP-STEWARD-N",
+      "operations_owner": "SYN-ROLE-OPERATIONS-OWNER-N",
+      "independent_appeal_officer": "SYN-ROLE-INDEPENDENT-APPEAL-N"
+    },
+    "human_review": {
+      "initial_review_roles": [
+        "scenario_owner",
+        "data_steward",
+        "technical_owner",
+        "domain_professional",
+        "affected_group_steward"
+      ],
+      "rehearsal_decision": "pass_for_human_review",
+      "reason": "合成基准声明；runner 必须覆盖任何阻断项。"
+    },
+    "red_card": {
+      "holder_role": "affected_group_steward",
+      "triggered": false,
+      "reason": null
+    },
+    "independent_appeal": {
+      "required": false,
+      "completed": false,
+      "officer_role": "independent_appeal_officer",
+      "outcome": "not_invoked",
+      "reason": "基准未触发。"
+    },
+    "controls": {
+      "same_task_non_ai_route": "staffed_counter_and_paper_form",
+      "human_reassignment_available": true,
+      "consent_withdrawal_available": true,
+      "public_priority_set_by_ai": false
+    },
+    "evidence": {
+      "deletion": {
+        "record_id": "SYN-EV-DEL-N",
+        "owner_role": "data_steward",
+        "action": "delete_synthetic_session_payload",
+        "verification": "no_session_payload_after_rehearsal",
+        "status": "synthetic_rehearsed_not_field_verified"
+      },
+      "rollback": {
+        "record_id": "SYN-EV-ROLLBACK-N",
+        "owner_role": "technical_owner",
+        "action": "restore_manual_routing_ruleset",
+        "verification": "manual_ruleset_handles_same_fixture",
+        "status": "synthetic_rehearsed_not_field_verified"
+      },
+      "restoration": {
+        "record_id": "SYN-EV-RESTORE-N",
+        "owner_role": "operations_owner",
+        "action": "restore_staffed_counter_and_paper_form",
+        "verification": "same_task_non_ai_route_available",
+        "status": "synthetic_rehearsed_not_field_verified"
+      },
+      "public_receipt": {
+        "record_id": "SYN-EV-RECEIPT-N",
+        "owner_role": "scenario_owner",
+        "action": "publish_deidentified_reason_and_next_gate",
+        "verification": "no_personal_or_contact_fields",
+        "status": "synthetic_rehearsed_not_field_verified"
+      }
+    }
+  },
+  "cases": [
+    {
+      "case_id": "S14-HOLD-001",
+      "title_zh": "出现禁止的真实联系电话字段",
+      "mutation": {
+        "type": "add_issue_field",
+        "field": "phone_number",
+        "value": "SYNTHETIC-NOT-A-REAL-NUMBER"
+      },
+      "expected_decision": "HOLD",
+      "expected_reason": "FORBIDDEN_ISSUE_FIELD:phone_number"
+    },
+    {
+      "case_id": "S14-HOLD-002",
+      "title_zh": "数据责任角色缺失",
+      "mutation": {
+        "type": "remove_role_assignment",
+        "role": "data_steward"
+      },
+      "expected_decision": "HOLD",
+      "expected_reason": "ROLE_ASSIGNMENT_MISSING:data_steward"
+    },
+    {
+      "case_id": "S14-HOLD-003",
+      "title_zh": "同任务非 AI 通道不可用",
+      "mutation": {
+        "type": "set_control",
+        "control": "same_task_non_ai_route",
+        "value": ""
+      },
+      "expected_decision": "HOLD",
+      "expected_reason": "NON_AI_ROUTE_MISSING"
+    },
+    {
+      "case_id": "S14-HOLD-004",
+      "title_zh": "受影响群体红牌已触发但独立申诉尚未完成",
+      "mutation": {
+        "type": "trigger_red_card_pending",
+        "reason": "synthetic_accessibility_service_difference"
+      },
+      "expected_decision": "HOLD",
+      "expected_reason": "RED_CARD_APPEAL_PENDING"
+    },
+    {
+      "case_id": "S14-HOLD-005",
+      "title_zh": "初审人与独立申诉角色未隔离",
+      "mutation": {
+        "type": "overlap_appeal_assignee"
+      },
+      "expected_decision": "HOLD",
+      "expected_reason": "APPEAL_NOT_INDEPENDENT"
+    },
+    {
+      "case_id": "S14-RETIRED-001",
+      "title_zh": "红牌经独立复核确认后退役并保留恢复证据",
+      "mutation": {
+        "type": "retire_after_independent_review",
+        "reason": "synthetic_repeated_service_equivalence_failure"
+      },
+      "expected_decision": "RETIRED",
+      "expected_reason": "RED_CARD_UPHELD_RETIRE"
+    }
+  ]
+}

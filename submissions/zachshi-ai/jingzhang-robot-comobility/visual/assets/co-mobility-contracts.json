@@ -1,0 +1,743 @@
+{
+  "schema_version": "0.1.0",
+  "concept": "Co-Mobility License (共行执照)",
+  "canonical_contract": {
+    "zh": "proposal.md",
+    "en": "proposal.en.md"
+  },
+  "scenario_count": 12,
+  "contracts": [
+    {
+      "scenario_id": "SCN-01-COMMUNITY-DELIVERY",
+      "short_id": "RB-01",
+      "title_zh": "社区智递到家",
+      "title_en": "Community Smart Delivery",
+      "key_area_id": "zhongzhiyuan_ai_acceleration_area",
+      "station_id": "BLD-016",
+      "service_class": "delivery",
+      "baseline": {
+        "non_ai_service_zh": "驿站人工取件窗口与电话下单",
+        "non_ai_service_en": "Station staffed window and phone ordering",
+        "access_without_account": true,
+        "human_contact_required": true,
+        "ordinary_route_open": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "bounded_location": "BLD-016",
+        "human_owner": "ROLE-OPERATIONS",
+        "allowed_data": [
+          "order_address",
+          "station_slot_id",
+          "aggregate_flow_count"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "speed_limit_kmh": 15
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-SAFETY",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "unplug_action_zh": "断开模型、网络、传感器和自动执行器；恢复普通路径与人工服务",
+        "unplug_action_en": "Disconnect model, network, sensors and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ],
+        "stop_trigger_zh": "连续两次越界、碰撞或急停",
+        "stop_trigger_en": "Two consecutive boundary violations, collisions or emergency stops"
+      },
+      "bequest": {
+        "asset_zh": "驿站人工取件窗口与可触摸包裹信息牌",
+        "asset_en": "Staffed station window and tactile parcel info board",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "tactile_sign",
+          "human_directory",
+          "maintenance_manual"
+        ]
+      }
+    },
+    {
+      "scenario_id": "SCN-02-MEDICINE-EXPRESS",
+      "short_id": "RB-02",
+      "title_zh": "医药品专送",
+      "title_en": "Medicine Express",
+      "key_area_id": "beijing_ai_origin_community",
+      "station_id": "BLD-017",
+      "service_class": "delivery",
+      "baseline": {
+        "non_ai_service_zh": "药店人工配送与社区志愿者代取",
+        "non_ai_service_en": "Pharmacy staff delivery and community volunteer pickup",
+        "access_without_account": true,
+        "human_contact_required": true,
+        "ordinary_route_open": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "bounded_location": "BLD-017",
+        "human_owner": "ROLE-OPERATIONS",
+        "allowed_data": [
+          "order_address",
+          "station_slot_id",
+          "aggregate_flow_count"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "speed_limit_kmh": 15
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-SAFETY",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "unplug_action_zh": "断开模型、网络、传感器和自动执行器；恢复普通路径与人工服务",
+        "unplug_action_en": "Disconnect model, network, sensors and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ],
+        "stop_trigger_zh": "温控异常或送达超时30分钟",
+        "stop_trigger_en": "Temperature anomaly or delivery delay over 30 min"
+      },
+      "bequest": {
+        "asset_zh": "药店配送热线与社区药品代收点",
+        "asset_en": "Pharmacy delivery hotline and community medicine pickup point",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "tactile_sign",
+          "human_directory",
+          "maintenance_manual"
+        ]
+      }
+    },
+    {
+      "scenario_id": "SCN-03-CAMPUS-DELIVERY",
+      "short_id": "RB-03",
+      "title_zh": "校园无人配送",
+      "title_en": "Campus Delivery",
+      "key_area_id": "beijing_ai_origin_community",
+      "station_id": "BLD-018",
+      "service_class": "delivery",
+      "baseline": {
+        "non_ai_service_zh": "校园快递点人工取件",
+        "non_ai_service_en": "Campus parcel point staffed pickup",
+        "access_without_account": true,
+        "human_contact_required": true,
+        "ordinary_route_open": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "bounded_location": "BLD-018",
+        "human_owner": "ROLE-OPERATIONS",
+        "allowed_data": [
+          "order_address",
+          "station_slot_id",
+          "aggregate_flow_count"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "speed_limit_kmh": 15
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-SAFETY",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "unplug_action_zh": "断开模型、网络、传感器和自动执行器；恢复普通路径与人工服务",
+        "unplug_action_en": "Disconnect model, network, sensors and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ],
+        "stop_trigger_zh": "校园人流密集时段冲突",
+        "stop_trigger_en": "Conflict during dense campus pedestrian hours"
+      },
+      "bequest": {
+        "asset_zh": "校园快递中心人工窗口",
+        "asset_en": "Campus parcel center staffed window",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "tactile_sign",
+          "human_directory",
+          "maintenance_manual"
+        ]
+      }
+    },
+    {
+      "scenario_id": "SCN-04-PARK-GUIDE",
+      "short_id": "RB-04",
+      "title_zh": "公园自动导览",
+      "title_en": "Park Tour Guide",
+      "key_area_id": "beijing_ai_origin_community",
+      "station_id": "BLD-019",
+      "service_class": "tour_guide",
+      "baseline": {
+        "non_ai_service_zh": "纸面导览图与公园志愿者讲解",
+        "non_ai_service_en": "Paper map and park volunteer guides",
+        "access_without_account": true,
+        "human_contact_required": true,
+        "ordinary_route_open": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "bounded_location": "BLD-019",
+        "human_owner": "ROLE-OPERATIONS",
+        "allowed_data": [
+          "order_address",
+          "station_slot_id",
+          "aggregate_flow_count"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "speed_limit_kmh": 15
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-SAFETY",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "unplug_action_zh": "断开模型、网络、传感器和自动执行器；恢复普通路径与人工服务",
+        "unplug_action_en": "Disconnect model, network, sensors and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ],
+        "stop_trigger_zh": "导览机器人故障或迷路",
+        "stop_trigger_en": "Guide robot malfunction or disorientation"
+      },
+      "bequest": {
+        "asset_zh": "沿线导览牌与纸面地图",
+        "asset_en": "Along-route guide signs and paper maps",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "tactile_sign",
+          "human_directory",
+          "maintenance_manual"
+        ]
+      }
+    },
+    {
+      "scenario_id": "SCN-05-NIGHT-PATROL",
+      "short_id": "RB-05",
+      "title_zh": "夜间安全巡检",
+      "title_en": "Night Safety Patrol",
+      "key_area_id": "dazhongsi_ai_industry_cluster",
+      "station_id": "BLD-020",
+      "service_class": "patrol",
+      "baseline": {
+        "non_ai_service_zh": "保安人员夜间巡逻",
+        "non_ai_service_en": "Security personnel night patrol",
+        "access_without_account": true,
+        "human_contact_required": true,
+        "ordinary_route_open": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "bounded_location": "BLD-020",
+        "human_owner": "ROLE-OPERATIONS",
+        "allowed_data": [
+          "order_address",
+          "station_slot_id",
+          "aggregate_flow_count"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "speed_limit_kmh": 15
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-SAFETY",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "unplug_action_zh": "断开模型、网络、传感器和自动执行器；恢复普通路径与人工服务",
+        "unplug_action_en": "Disconnect model, network, sensors and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ],
+        "stop_trigger_zh": "误报率超阈值或隐私投诉",
+        "stop_trigger_en": "False-alarm rate exceeding threshold or privacy complaint"
+      },
+      "bequest": {
+        "asset_zh": "沿线紧急呼叫柱与人工安防岗",
+        "asset_en": "Emergency call columns and staffed security posts",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "tactile_sign",
+          "human_directory",
+          "maintenance_manual"
+        ]
+      }
+    },
+    {
+      "scenario_id": "SCN-06-ACCESSIBLE-PICKUP",
+      "short_id": "RB-06",
+      "title_zh": "无障碍代取件",
+      "title_en": "Barrier-Free Pickup Assist",
+      "key_area_id": "beijing_ai_origin_community",
+      "station_id": "BLD-017",
+      "service_class": "delivery",
+      "baseline": {
+        "non_ai_service_zh": "社区上门服务预约与志愿者代取",
+        "non_ai_service_en": "Community door-to-door service booking and volunteer pickup",
+        "access_without_account": true,
+        "human_contact_required": true,
+        "ordinary_route_open": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "bounded_location": "BLD-017",
+        "human_owner": "ROLE-OPERATIONS",
+        "allowed_data": [
+          "order_address",
+          "station_slot_id",
+          "aggregate_flow_count"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "speed_limit_kmh": 15
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-SAFETY",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "unplug_action_zh": "断开模型、网络、传感器和自动执行器；恢复普通路径与人工服务",
+        "unplug_action_en": "Disconnect model, network, sensors and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ],
+        "stop_trigger_zh": "用户投诉或无障碍通道受阻",
+        "stop_trigger_en": "User complaint or barrier-free route blocked"
+      },
+      "bequest": {
+        "asset_zh": "社区上门服务热线与志愿者网络",
+        "asset_en": "Community service hotline and volunteer network",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "tactile_sign",
+          "human_directory",
+          "maintenance_manual"
+        ]
+      }
+    },
+    {
+      "scenario_id": "SCN-07-INTERNAL-MAIL",
+      "short_id": "RB-07",
+      "title_zh": "企业园区内部件",
+      "title_en": "Park Internal Mail",
+      "key_area_id": "zhongzhiyuan_ai_acceleration_area",
+      "station_id": "BLD-016",
+      "service_class": "delivery",
+      "baseline": {
+        "non_ai_service_zh": "园区物业人工收发",
+        "non_ai_service_en": "Park property staff mailroom",
+        "access_without_account": true,
+        "human_contact_required": true,
+        "ordinary_route_open": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "bounded_location": "BLD-016",
+        "human_owner": "ROLE-OPERATIONS",
+        "allowed_data": [
+          "order_address",
+          "station_slot_id",
+          "aggregate_flow_count"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "speed_limit_kmh": 15
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-SAFETY",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "unplug_action_zh": "断开模型、网络、传感器和自动执行器；恢复普通路径与人工服务",
+        "unplug_action_en": "Disconnect model, network, sensors and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ],
+        "stop_trigger_zh": "内部件丢失或错投",
+        "stop_trigger_en": "Internal mail loss or misdelivery"
+      },
+      "bequest": {
+        "asset_zh": "园区收发室人工窗口",
+        "asset_en": "Park mailroom staffed window",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "tactile_sign",
+          "human_directory",
+          "maintenance_manual"
+        ]
+      }
+    },
+    {
+      "scenario_id": "SCN-08-METRO-HANDOFF",
+      "short_id": "RB-08",
+      "title_zh": "快递地铁接驳",
+      "title_en": "Parcel-Metro Handoff",
+      "key_area_id": "dazhongsi_ai_industry_cluster",
+      "station_id": "BLD-020",
+      "service_class": "delivery",
+      "baseline": {
+        "non_ai_service_zh": "站点人工快递柜与骑手接驳",
+        "non_ai_service_en": "Station staffed locker and courier handoff",
+        "access_without_account": true,
+        "human_contact_required": true,
+        "ordinary_route_open": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "bounded_location": "BLD-020",
+        "human_owner": "ROLE-OPERATIONS",
+        "allowed_data": [
+          "order_address",
+          "station_slot_id",
+          "aggregate_flow_count"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "speed_limit_kmh": 15
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-SAFETY",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "unplug_action_zh": "断开模型、网络、传感器和自动执行器；恢复普通路径与人工服务",
+        "unplug_action_en": "Disconnect model, network, sensors and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ],
+        "stop_trigger_zh": "高峰人流冲突或站区拥堵",
+        "stop_trigger_en": "Peak pedestrian conflict or station congestion"
+      },
+      "bequest": {
+        "asset_zh": "站点人工快递柜",
+        "asset_en": "Station staffed locker",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "tactile_sign",
+          "human_directory",
+          "maintenance_manual"
+        ]
+      }
+    },
+    {
+      "scenario_id": "SCN-09-CONFLICT-TEST",
+      "short_id": "RB-09★",
+      "title_zh": "人机共行冲突测试场",
+      "title_en": "Co-Mobility Conflict Test Field",
+      "key_area_id": "zhongzhiyuan_ai_acceleration_area",
+      "station_id": "BLD-021",
+      "service_class": "test_validation",
+      "baseline": {
+        "non_ai_service_zh": "封闭测试场无行人基线",
+        "non_ai_service_en": "Closed test field with no-pedestrian baseline",
+        "access_without_account": true,
+        "human_contact_required": true,
+        "ordinary_route_open": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "bounded_location": "BLD-021",
+        "human_owner": "ROLE-OPERATIONS",
+        "allowed_data": [
+          "order_address",
+          "station_slot_id",
+          "aggregate_flow_count"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "speed_limit_kmh": 15
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-SAFETY",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "unplug_action_zh": "断开模型、网络、传感器和自动执行器；恢复普通路径与人工服务",
+        "unplug_action_en": "Disconnect model, network, sensors and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ],
+        "stop_trigger_zh": "冲突率未降级或测试协议违反",
+        "stop_trigger_en": "Conflict rate not improving or protocol violation"
+      },
+      "bequest": {
+        "asset_zh": "测试场安全护栏与应急停车带",
+        "asset_en": "Test field safety barriers and emergency stop zone",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "tactile_sign",
+          "human_directory",
+          "maintenance_manual"
+        ]
+      }
+    },
+    {
+      "scenario_id": "SCN-10-WEATHER-VALIDATION",
+      "short_id": "RB-10★",
+      "title_zh": "夜间与雨雪安全验证",
+      "title_en": "Night & Weather Safety Validation",
+      "key_area_id": "dazhongsi_ai_industry_cluster",
+      "station_id": "BLD-022",
+      "service_class": "test_validation",
+      "baseline": {
+        "non_ai_service_zh": "人工骑手全天候配送基线",
+        "non_ai_service_en": "Human courier all-weather delivery baseline",
+        "access_without_account": true,
+        "human_contact_required": true,
+        "ordinary_route_open": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "bounded_location": "BLD-022",
+        "human_owner": "ROLE-OPERATIONS",
+        "allowed_data": [
+          "order_address",
+          "station_slot_id",
+          "aggregate_flow_count"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "speed_limit_kmh": 15
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-SAFETY",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "unplug_action_zh": "断开模型、网络、传感器和自动执行器；恢复普通路径与人工服务",
+        "unplug_action_en": "Disconnect model, network, sensors and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ],
+        "stop_trigger_zh": "感知失效或制动距离超标",
+        "stop_trigger_en": "Perception failure or braking distance exceeding limit"
+      },
+      "bequest": {
+        "asset_zh": "人工配送备份通道",
+        "asset_en": "Human delivery backup channel",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "tactile_sign",
+          "human_directory",
+          "maintenance_manual"
+        ]
+      }
+    },
+    {
+      "scenario_id": "SCN-11-ACCESSIBLE-VALIDATION",
+      "short_id": "RB-11★",
+      "title_zh": "无障碍配送全流程验证",
+      "title_en": "Barrier-Free Delivery Validation",
+      "key_area_id": "beijing_ai_origin_community",
+      "station_id": "BLD-017",
+      "service_class": "test_validation",
+      "baseline": {
+        "non_ai_service_zh": "无障碍组织参与验收的人工基线",
+        "non_ai_service_en": "Accessibility-org-accepted human baseline",
+        "access_without_account": true,
+        "human_contact_required": true,
+        "ordinary_route_open": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "bounded_location": "BLD-017",
+        "human_owner": "ROLE-OPERATIONS",
+        "allowed_data": [
+          "order_address",
+          "station_slot_id",
+          "aggregate_flow_count"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "speed_limit_kmh": 15
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-SAFETY",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "unplug_action_zh": "断开模型、网络、传感器和自动执行器；恢复普通路径与人工服务",
+        "unplug_action_en": "Disconnect model, network, sensors and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ],
+        "stop_trigger_zh": "无障碍验收不过或投诉超阈值",
+        "stop_trigger_en": "Accessibility acceptance failure or complaint threshold"
+      },
+      "bequest": {
+        "asset_zh": "驿站无障碍坡道与语音取件终端",
+        "asset_en": "Station barrier-free ramp and voice pickup terminal",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "tactile_sign",
+          "human_directory",
+          "maintenance_manual"
+        ]
+      }
+    },
+    {
+      "scenario_id": "SCN-12-TAKEOVER-DRILL",
+      "short_id": "RB-12★",
+      "title_zh": "远程接管应急演练",
+      "title_en": "Remote Takeover Drill",
+      "key_area_id": "zhongzhiyuan_ai_acceleration_area",
+      "station_id": "BLD-022",
+      "service_class": "test_validation",
+      "baseline": {
+        "non_ai_service_zh": "人工配送全程基线",
+        "non_ai_service_en": "Full human delivery baseline",
+        "access_without_account": true,
+        "human_contact_required": true,
+        "ordinary_route_open": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "bounded_location": "BLD-022",
+        "human_owner": "ROLE-OPERATIONS",
+        "allowed_data": [
+          "order_address",
+          "station_slot_id",
+          "aggregate_flow_count"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "speed_limit_kmh": 15
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-SAFETY",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "unplug_action_zh": "断开模型、网络、传感器和自动执行器；恢复普通路径与人工服务",
+        "unplug_action_en": "Disconnect model, network, sensors and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ],
+        "stop_trigger_zh": "接管时延超标或链路中断",
+        "stop_trigger_en": "Takeover latency exceeding limit or link interruption"
+      },
+      "bequest": {
+        "asset_zh": "人工配送备份与急停按钮",
+        "asset_en": "Human delivery backup and emergency stop button",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "tactile_sign",
+          "human_directory",
+          "maintenance_manual"
+        ]
+      }
+    }
+  ]
+}

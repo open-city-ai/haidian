@@ -5,175 +5,659 @@
     "area": "sqm"
   },
   "metrics": {
-    "site_area_sqm": {
-      "status": "known",
-      "value": 11412825.386,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/site_boundary.geojson"
+    "ai_innovation_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [],
+      "formula": "future measurement method required",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-GA-INDUSTRY-004",
+        "A-GA-EXISTING-003"
       ],
-      "formula": "polygon_area(SITE-001)",
-      "confidence": "medium",
-      "assumptions": []
-    },
-    "building_footprint_area_sqm": {
-      "status": "known",
-      "value": 435119.119,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/buildings.geojson"
-      ],
-      "formula": "union_area(BUILDING_FOOTPRINT)",
-      "confidence": "medium",
-      "assumptions": []
-    },
-    "green_ratio": {
-      "status": "known",
-      "value": 0.272161,
-      "unit": "ratio",
-      "source_files": [
-        "geometry/green_space.geojson",
-        "geometry/site_boundary.geojson"
-      ],
-      "formula": "union_area(GREEN_SPACE)/area(SITE-001)",
-      "confidence": "medium",
-      "assumptions": []
-    },
-    "public_space_ratio": {
-      "status": "known",
-      "value": 0.060783,
-      "unit": "ratio",
-      "source_files": [
-        "geometry/public_space.geojson",
-        "geometry/site_boundary.geojson"
-      ],
-      "formula": "union_area(PUBLIC_SPACE)/area(SITE-001)",
-      "confidence": "medium",
-      "assumptions": []
-    },
-    "main_interface_length_m": {
-      "status": "known",
-      "value": 9438.429,
-      "unit": "m",
-      "source_files": [
-        "geometry/roads.geojson"
-      ],
-      "formula": "length(MAIN-IF-01)",
-      "confidence": "medium",
-      "assumptions": []
-    },
-    "parallel_human_path_length_m": {
-      "status": "known",
-      "value": 9438.428,
-      "unit": "m",
-      "source_files": [
-        "geometry/roads.geojson"
-      ],
-      "formula": "length(PARALLEL-HUMAN-01)",
-      "confidence": "medium",
-      "assumptions": []
-    },
-    "endpoint_count": {
-      "status": "known",
-      "value": 3,
-      "unit": "count",
-      "source_files": [
-        "geometry/key_areas.geojson",
-        "geometry/public_space.geojson"
-      ],
-      "formula": "count(ZZY-SB-01, ORG-OSC-COURT, DZS-SWITCH-01)",
-      "confidence": "high",
-      "assumptions": []
-    },
-    "scenario_node_count": {
-      "status": "known",
-      "value": 12,
-      "unit": "count",
-      "source_files": [
-        "geometry/public_space.geojson"
-      ],
-      "formula": "count(layer=SCENARIO_NODE)",
-      "confidence": "high",
-      "assumptions": []
-    },
-    "human_review_gate_count": {
-      "status": "known",
-      "value": 12,
-      "unit": "count",
-      "source_files": [
-        "geometry/public_space.geojson"
-      ],
-      "formula": "count(SCENARIO_NODE where human_review_gate=true)",
-      "confidence": "high",
-      "assumptions": []
-    },
-    "no_device_fallback_coverage": {
-      "status": "known",
-      "value": 1.0,
-      "unit": "ratio",
-      "source_files": [
-        "geometry/public_space.geojson"
-      ],
-      "formula": "scenario_nodes(no_device_fallback=true)/all_scenario_nodes",
-      "confidence": "high",
-      "assumptions": []
-    },
-    "renewal_project_count": {
-      "status": "known",
-      "value": 12,
-      "unit": "count",
-      "source_files": [
-        "proposal.md",
-        "geometry/phasing.geojson"
-      ],
-      "formula": "count(project registry JZOI-P01..P12)",
-      "confidence": "high",
-      "assumptions": []
-    },
-    "public_interface_uptime_target": {
-      "status": "known",
-      "value": 0.99,
-      "unit": "ratio",
-      "source_files": [
-        "proposal.md"
-      ],
-      "formula": "design service target; monthly available hours/planned public hours",
-      "confidence": "low",
-      "assumptions": []
+      "canonical_status": "future_monitoring",
+      "canonical_unit": "index",
+      "canonical_value": null,
+      "canonical_metric_id": "ai_innovation_index",
+      "canonical_project_ids": [],
+      "canonical_scenario_ids": [],
+      "provenance_role": "canonical_metric_registry",
+      "definition": "Composite future index covering verified research-to-prototype, startup/service, testing, adoption, talent, compute, data, and international-network indicators. Weighting and normalization are not defined in Gate A.",
+      "numerator": null,
+      "denominator": null,
+      "measurement_method": "Define and validate a privacy-safe measurement protocol before reporting a value.",
+      "limitation": "Gate C design/provisional registry value; not a statutory or surveyed existing-condition fact.",
+      "reason": "Future monitoring KPI; baseline not established.",
+      "monitoring_definition": "Define and validate a privacy-safe measurement protocol before reporting a value."
     },
     "appeal_response_target_hours": {
-      "status": "known",
-      "value": 48,
-      "unit": "hour",
-      "source_files": [
-        "proposal.md"
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [],
+      "formula": "median first human response time",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-GA-EXISTING-003"
       ],
-      "formula": "design operations target; median first human response",
-      "confidence": "low",
-      "assumptions": []
+      "canonical_status": "design_target",
+      "canonical_unit": "hour",
+      "canonical_value": null,
+      "canonical_metric_id": "appeal_response_target_hours",
+      "canonical_project_ids": [
+        "JZOI-P06"
+      ],
+      "canonical_scenario_ids": [
+        "SC-09"
+      ],
+      "provenance_role": "canonical_metric_registry",
+      "definition": "Proposed target for first human response to a documented appeal, pending service-hours and staffing design.",
+      "numerator": null,
+      "denominator": null,
+      "measurement_method": "Future appeal ledger after service protocol is approved; no current SLA is confirmed.",
+      "limitation": "Gate C design/provisional registry value; not a statutory or surveyed existing-condition fact.",
+      "reason": "Design target; no observed/confirmed value.",
+      "target_value": null,
+      "target_unit": "hour",
+      "target_definition": "Proposed target for first human response to a documented appeal, pending service-hours and staffing design."
     },
-    "floor_area_ratio": {
+    "capital_ip_service_case_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "completed eligible service cases",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-GA-INDUSTRY-004",
+        "A-GA-EXISTING-003"
+      ],
+      "canonical_status": "future_monitoring",
+      "canonical_unit": "count",
+      "canonical_value": null,
+      "canonical_metric_id": "capital_ip_service_case_count",
+      "canonical_project_ids": [],
+      "canonical_scenario_ids": [],
+      "provenance_role": "canonical_metric_registry",
+      "definition": "Count of completed capital or IP service cases with a documented request, provider, outcome, and no implied funding commitment.",
+      "numerator": "completed eligible service cases",
+      "denominator": null,
+      "measurement_method": "Define and validate a privacy-safe measurement protocol before reporting a value.",
+      "limitation": "Gate C design/provisional registry value; not a statutory or surveyed existing-condition fact.",
+      "reason": "Future monitoring KPI; baseline not established.",
+      "monitoring_definition": "Define and validate a privacy-safe measurement protocol before reporting a value."
+    },
+    "compute_service_capacity_gpu_hours_month": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [],
+      "formula": "available GPU-equivalent service hours",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-GA-INDUSTRY-004",
+        "A-GA-EXISTING-003"
+      ],
+      "canonical_status": "future_monitoring",
+      "canonical_unit": "gpu_equivalent_hours_per_month",
+      "canonical_value": null,
+      "canonical_metric_id": "compute_service_capacity_gpu_hours_month",
+      "canonical_project_ids": [],
+      "canonical_scenario_ids": [],
+      "provenance_role": "canonical_metric_registry",
+      "definition": "Auditable GPU-equivalent service hours made available through JZOI-linked lawful compute services per month.",
+      "numerator": "available GPU-equivalent service hours",
+      "denominator": null,
+      "measurement_method": "Define and validate a privacy-safe measurement protocol before reporting a value.",
+      "limitation": "Gate C design/provisional registry value; not a statutory or surveyed existing-condition fact.",
+      "reason": "Future monitoring KPI; baseline not established.",
+      "monitoring_definition": "Define and validate a privacy-safe measurement protocol before reporting a value."
+    },
+    "lawful_dataset_access_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "eligible dataset access records",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-GA-INDUSTRY-004",
+        "A-GA-EXISTING-003"
+      ],
+      "canonical_status": "future_monitoring",
+      "canonical_unit": "count",
+      "canonical_value": null,
+      "canonical_metric_id": "lawful_dataset_access_count",
+      "canonical_project_ids": [
+        "JZOI-P11"
+      ],
+      "canonical_scenario_ids": [
+        "SC-05",
+        "SC-09",
+        "SC-11"
+      ],
+      "provenance_role": "canonical_metric_registry",
+      "definition": "Count of datasets made available to a JZOI project with source, license/legal basis, purpose, retention, and access controls documented.",
+      "numerator": "eligible dataset access records",
+      "denominator": null,
+      "measurement_method": "Define and validate a privacy-safe measurement protocol before reporting a value.",
+      "limitation": "Gate C design/provisional registry value; not a statutory or surveyed existing-condition fact.",
+      "reason": "Future monitoring KPI; baseline not established.",
+      "monitoring_definition": "Define and validate a privacy-safe measurement protocol before reporting a value."
+    },
+    "operational_service_coverage": {
       "status": "unknown",
       "value": null,
       "unit": "ratio",
-      "source_files": [
-        "brief/site-package/ranges/planning_limits.json"
-      ],
-      "formula": "total_floor_area/official_site_area",
+      "source_files": [],
+      "formula": "covered required service periods / required service periods",
       "confidence": "unknown",
-      "assumptions": [],
-      "reason": "Official FAR controls and official boundary are absent."
-    },
-    "key_area_count": {
-      "status": "known",
-      "value": 3,
-      "unit": "count",
-      "source_files": [
-        "geometry/key_areas.geojson"
+      "assumptions": [
+        "A-GA-EXISTING-003"
       ],
-      "formula": "count(required key areas)",
-      "confidence": "medium",
-      "assumptions": []
+      "canonical_status": "unknown",
+      "canonical_unit": "ratio",
+      "canonical_value": null,
+      "canonical_metric_id": "operational_service_coverage",
+      "canonical_project_ids": [
+        "JZOI-P05",
+        "JZOI-P09",
+        "JZOI-P10"
+      ],
+      "canonical_scenario_ids": [
+        "SC-01",
+        "SC-02",
+        "SC-03",
+        "SC-04",
+        "SC-05",
+        "SC-06",
+        "SC-07",
+        "SC-08",
+        "SC-09",
+        "SC-10",
+        "SC-11",
+        "SC-12"
+      ],
+      "provenance_role": "canonical_metric_registry",
+      "definition": "Share of required scenario service periods covered by staffed capacity and published service hours.",
+      "numerator": "covered required service periods",
+      "denominator": "required service periods",
+      "measurement_method": "Requires service-hours, roster, capacity, and incident records.",
+      "limitation": "Gate C design/provisional registry value; not a statutory or surveyed existing-condition fact.",
+      "reason": "Current value is unknown; required evidence or baseline is not available."
+    },
+    "physical_human_review_feature_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "count(distinct scenario.human_review.feature_id)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-GA-BOUNDARY-001"
+      ],
+      "canonical_status": "design_target",
+      "canonical_unit": "count",
+      "canonical_value": null,
+      "canonical_metric_id": "physical_human_review_feature_count",
+      "canonical_project_ids": [
+        "JZOI-P01",
+        "JZOI-P02",
+        "JZOI-P03",
+        "JZOI-P04",
+        "JZOI-P05",
+        "JZOI-P06",
+        "JZOI-P07",
+        "JZOI-P08",
+        "JZOI-P12"
+      ],
+      "canonical_scenario_ids": [
+        "SC-01",
+        "SC-02",
+        "SC-03",
+        "SC-04",
+        "SC-05",
+        "SC-06",
+        "SC-07",
+        "SC-08",
+        "SC-09",
+        "SC-10",
+        "SC-11",
+        "SC-12"
+      ],
+      "provenance_role": "accepted_gate_b_design_feature",
+      "definition": "Count of distinct accepted Gate B physical staffed review or human-desk feature IDs used by scenarios.",
+      "numerator": null,
+      "denominator": null,
+      "measurement_method": "Distinct serialized Gate B feature IDs; not a policy boolean.",
+      "limitation": "Gate C design/provisional registry value; not a statutory or surveyed existing-condition fact.",
+      "reason": "Design target; no observed/confirmed value.",
+      "target_value": null,
+      "target_unit": "count",
+      "target_definition": "Count of distinct accepted Gate B physical staffed review or human-desk feature IDs used by scenarios."
+    },
+    "policy_fallback_coverage": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "scenarios with structured fallback requirement / all scenarios",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-GA-EXISTING-003"
+      ],
+      "canonical_status": "design_target",
+      "canonical_unit": "ratio",
+      "canonical_value": null,
+      "canonical_metric_id": "policy_fallback_coverage",
+      "canonical_project_ids": [
+        "JZOI-P01",
+        "JZOI-P02",
+        "JZOI-P03",
+        "JZOI-P04",
+        "JZOI-P05",
+        "JZOI-P06",
+        "JZOI-P07",
+        "JZOI-P08",
+        "JZOI-P10",
+        "JZOI-P12"
+      ],
+      "canonical_scenario_ids": [
+        "SC-01",
+        "SC-02",
+        "SC-03",
+        "SC-04",
+        "SC-05",
+        "SC-06",
+        "SC-07",
+        "SC-08",
+        "SC-09",
+        "SC-10",
+        "SC-11",
+        "SC-12"
+      ],
+      "provenance_role": "canonical_metric_registry",
+      "definition": "Share of scenarios with a policy-level non-digital fallback requirement and named fallback feature relation.",
+      "numerator": "scenarios with structured fallback requirement",
+      "denominator": "all scenarios",
+      "measurement_method": "Registry policy check only; not a distance or capacity claim.",
+      "limitation": "Gate C design/provisional registry value; not a statutory or surveyed existing-condition fact.",
+      "reason": "Design target; no observed/confirmed value.",
+      "target_value": null,
+      "target_unit": "ratio",
+      "target_definition": "Share of scenarios with a policy-level non-digital fallback requirement and named fallback feature relation."
+    },
+    "prototype_to_adoption_conversion": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "prototypes with documented adoption decision / prototypes entering controlled testing in the same cohort",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-GA-INDUSTRY-004",
+        "A-GA-EXISTING-003"
+      ],
+      "canonical_status": "future_monitoring",
+      "canonical_unit": "ratio",
+      "canonical_value": null,
+      "canonical_metric_id": "prototype_to_adoption_conversion",
+      "canonical_project_ids": [
+        "JZOI-P02"
+      ],
+      "canonical_scenario_ids": [
+        "SC-01",
+        "SC-06",
+        "SC-10"
+      ],
+      "provenance_role": "canonical_metric_registry",
+      "definition": "Share of prototypes entering controlled testing that later pass human/professional review and receive a documented time-bounded adoption decision.",
+      "numerator": "prototypes with documented adoption decision",
+      "denominator": "prototypes entering controlled testing in the same cohort",
+      "measurement_method": "Define and validate a privacy-safe measurement protocol before reporting a value.",
+      "limitation": "Gate C design/provisional registry value; not a statutory or surveyed existing-condition fact.",
+      "reason": "Future monitoring KPI; baseline not established.",
+      "monitoring_definition": "Define and validate a privacy-safe measurement protocol before reporting a value."
+    },
+    "public_interface_space_capacity_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [],
+      "formula": "qualifying usable area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-GA-INDUSTRY-004",
+        "A-GA-EXISTING-003"
+      ],
+      "canonical_status": "unknown",
+      "canonical_unit": "sqm",
+      "canonical_value": null,
+      "canonical_metric_id": "public_interface_space_capacity_sqm",
+      "canonical_project_ids": [
+        "JZOI-P01",
+        "JZOI-P03",
+        "JZOI-P04",
+        "JZOI-P06",
+        "JZOI-P07",
+        "JZOI-P08",
+        "JZOI-P12"
+      ],
+      "canonical_scenario_ids": [
+        "SC-03",
+        "SC-11"
+      ],
+      "provenance_role": "canonical_metric_registry",
+      "definition": "Measured usable indoor and sheltered public-interface space that meets access, fire, and operating-hour criteria.",
+      "numerator": "qualifying usable area",
+      "denominator": null,
+      "measurement_method": "Define and validate a privacy-safe measurement protocol before reporting a value.",
+      "limitation": "Gate C design/provisional registry value; not a statutory or surveyed existing-condition fact.",
+      "reason": "Current value is unknown; required evidence or baseline is not available."
+    },
+    "public_interface_uptime_target": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "available public-interface hours / planned public-interface hours",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-GA-EXISTING-003"
+      ],
+      "canonical_status": "design_target",
+      "canonical_unit": "ratio",
+      "canonical_value": null,
+      "canonical_metric_id": "public_interface_uptime_target",
+      "canonical_project_ids": [
+        "JZOI-P01",
+        "JZOI-P07",
+        "JZOI-P09",
+        "JZOI-P12"
+      ],
+      "canonical_scenario_ids": [
+        "SC-02",
+        "SC-11",
+        "SC-12"
+      ],
+      "provenance_role": "canonical_metric_registry",
+      "definition": "Proposed share of planned public-interface hours with a published staffed or fallback service state.",
+      "numerator": "available public-interface hours",
+      "denominator": "planned public-interface hours",
+      "measurement_method": "Future service-hours log after staffing and operating agreement; no current value is asserted.",
+      "limitation": "Gate C design/provisional registry value; not a statutory or surveyed existing-condition fact.",
+      "reason": "Design target; no observed/confirmed value.",
+      "target_value": null,
+      "target_unit": "ratio",
+      "target_definition": "Proposed share of planned public-interface hours with a published staffed or fallback service state."
+    },
+    "scenario_human_review_required_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "count(scenario.human_review.required=true)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-GA-EXISTING-003"
+      ],
+      "canonical_status": "design_target",
+      "canonical_unit": "count",
+      "canonical_value": null,
+      "canonical_metric_id": "scenario_human_review_required_count",
+      "canonical_project_ids": [
+        "JZOI-P01",
+        "JZOI-P02",
+        "JZOI-P03",
+        "JZOI-P04",
+        "JZOI-P05",
+        "JZOI-P06",
+        "JZOI-P07",
+        "JZOI-P08",
+        "JZOI-P12"
+      ],
+      "canonical_scenario_ids": [
+        "SC-01",
+        "SC-02",
+        "SC-03",
+        "SC-04",
+        "SC-05",
+        "SC-06",
+        "SC-07",
+        "SC-08",
+        "SC-09",
+        "SC-10",
+        "SC-11",
+        "SC-12"
+      ],
+      "provenance_role": "canonical_metric_registry",
+      "definition": "Count of scenarios whose structured human_review.required is true.",
+      "numerator": null,
+      "denominator": null,
+      "measurement_method": "Registry count; not a physical-feature count.",
+      "limitation": "Gate C design/provisional registry value; not a statutory or surveyed existing-condition fact.",
+      "reason": "Design target; no observed/confirmed value.",
+      "target_value": null,
+      "target_unit": "count",
+      "target_definition": "Count of scenarios whose structured human_review.required is true."
+    },
+    "spatial_service_coverage": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "verified served demand points / measured demand points",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-GA-BOUNDARY-001",
+        "A-GA-EXISTING-003"
+      ],
+      "canonical_status": "unknown",
+      "canonical_unit": "ratio",
+      "canonical_value": null,
+      "canonical_metric_id": "spatial_service_coverage",
+      "canonical_project_ids": [
+        "JZOI-P01",
+        "JZOI-P03",
+        "JZOI-P05",
+        "JZOI-P10"
+      ],
+      "canonical_scenario_ids": [
+        "SC-01",
+        "SC-02",
+        "SC-03",
+        "SC-04",
+        "SC-05",
+        "SC-06",
+        "SC-07",
+        "SC-08",
+        "SC-09",
+        "SC-10",
+        "SC-11",
+        "SC-12"
+      ],
+      "provenance_role": "measurement_evidence_gap",
+      "definition": "Measured share of scenario demand points within an accepted staffed-service approach relation after accessibility survey.",
+      "numerator": "verified served demand points",
+      "denominator": "measured demand points",
+      "measurement_method": "Requires accessibility survey, service-distance method, and capacity data.",
+      "limitation": "Gate C design/provisional registry value; not a statutory or surveyed existing-condition fact.",
+      "reason": "Accessibility survey and service-distance evidence are not yet available."
+    },
+    "talent_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [],
+      "formula": "verified eligible persons / verified occupied AI ecosystem space in hectares",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-GA-INDUSTRY-004",
+        "A-GA-EXISTING-003"
+      ],
+      "canonical_status": "future_monitoring",
+      "canonical_unit": "people_per_ha",
+      "canonical_value": null,
+      "canonical_metric_id": "talent_density",
+      "canonical_project_ids": [],
+      "canonical_scenario_ids": [
+        "SC-08"
+      ],
+      "provenance_role": "canonical_metric_registry",
+      "definition": "Verified eligible AI research, startup, professional-service, and operations personnel divided by verified occupied AI ecosystem space.",
+      "numerator": "verified eligible persons",
+      "denominator": "verified occupied AI ecosystem space in hectares",
+      "measurement_method": "Define and validate a privacy-safe measurement protocol before reporting a value.",
+      "limitation": "Gate C design/provisional registry value; not a statutory or surveyed existing-condition fact.",
+      "reason": "Future monitoring KPI; baseline not established.",
+      "monitoring_definition": "Define and validate a privacy-safe measurement protocol before reporting a value."
+    },
+    "university_industry_projects": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "eligible active projects",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-GA-INDUSTRY-004",
+        "A-GA-EXISTING-003"
+      ],
+      "canonical_status": "future_monitoring",
+      "canonical_unit": "count",
+      "canonical_value": null,
+      "canonical_metric_id": "university_industry_projects",
+      "canonical_project_ids": [
+        "JZOI-P04",
+        "JZOI-P08",
+        "JZOI-P11"
+      ],
+      "canonical_scenario_ids": [
+        "SC-05",
+        "SC-10"
+      ],
+      "provenance_role": "canonical_metric_registry",
+      "definition": "Count of active projects with at least one verified university/research party, one verified enterprise or public adopter, a signed/recorded scope, and a JZOI prototype, test, or adoption activity during the measurement period.",
+      "numerator": "eligible active projects",
+      "denominator": null,
+      "measurement_method": "Define and validate a privacy-safe measurement protocol before reporting a value.",
+      "limitation": "Gate C design/provisional registry value; not a statutory or surveyed existing-condition fact.",
+      "reason": "Future monitoring KPI; baseline not established.",
+      "monitoring_definition": "Define and validate a privacy-safe measurement protocol before reporting a value."
+    },
+    "verified_ai_enterprise_capacity_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "eligible active enterprises or teams",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-GA-INDUSTRY-004",
+        "A-GA-EXISTING-003"
+      ],
+      "canonical_status": "future_monitoring",
+      "canonical_unit": "count",
+      "canonical_value": null,
+      "canonical_metric_id": "verified_ai_enterprise_capacity_count",
+      "canonical_project_ids": [],
+      "canonical_scenario_ids": [
+        "SC-08"
+      ],
+      "provenance_role": "canonical_metric_registry",
+      "definition": "Count of verified AI enterprises or teams actively using JZOI research, testing, adoption, or scale-up services under a published inclusion rule.",
+      "numerator": "eligible active enterprises or teams",
+      "denominator": null,
+      "measurement_method": "Define and validate a privacy-safe measurement protocol before reporting a value.",
+      "limitation": "Gate C design/provisional registry value; not a statutory or surveyed existing-condition fact.",
+      "reason": "Future monitoring KPI; baseline not established.",
+      "monitoring_definition": "Define and validate a privacy-safe measurement protocol before reporting a value."
+    },
+    "verified_land_unit_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "verified candidate land units",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-GA-INDUSTRY-004",
+        "A-GA-EXISTING-003"
+      ],
+      "canonical_status": "unknown",
+      "canonical_unit": "count",
+      "canonical_value": null,
+      "canonical_metric_id": "verified_land_unit_count",
+      "canonical_project_ids": [],
+      "canonical_scenario_ids": [],
+      "provenance_role": "canonical_metric_registry",
+      "definition": "Count of candidate land units with official boundary/control source, ownership status, and permitted-use evidence verified.",
+      "numerator": "verified candidate land units",
+      "denominator": null,
+      "measurement_method": "Define and validate a privacy-safe measurement protocol before reporting a value.",
+      "limitation": "Gate C design/provisional registry value; not a statutory or surveyed existing-condition fact.",
+      "reason": "Current value is unknown; required evidence or baseline is not available."
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.385554,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "Area of the provisional SITE_BOUNDARY compatibility frame.",
+      "confidence": "low",
+      "assumptions": [
+        "A-GA-BOUNDARY-001"
+      ],
+      "compatibility_only": true,
+      "canonical_status": "not_in_gate_c_metric_registry",
+      "geometry_frame_status": "provisional",
+      "statutory_metric_claim": false,
+      "reason": "Legacy visual/spatial contract metric derived only within provisional projected geometry; not an observed site fact or statutory control."
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.025972,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "Projected GREEN_SPACE union divided by provisional SITE_BOUNDARY area.",
+      "confidence": "low",
+      "assumptions": [
+        "A-GA-BOUNDARY-001"
+      ],
+      "compatibility_only": true,
+      "canonical_status": "not_in_gate_c_metric_registry",
+      "geometry_frame_status": "provisional",
+      "statutory_metric_claim": false,
+      "reason": "Legacy visual/spatial contract metric derived only within provisional projected geometry; not an observed site fact or statutory control."
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.120974,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "Projected polygonal PUBLIC_SPACE/AI service union divided by provisional SITE_BOUNDARY area.",
+      "confidence": "low",
+      "assumptions": [
+        "A-GA-BOUNDARY-001"
+      ],
+      "compatibility_only": true,
+      "canonical_status": "not_in_gate_c_metric_registry",
+      "geometry_frame_status": "provisional",
+      "statutory_metric_claim": false,
+      "reason": "Legacy visual/spatial contract metric derived only within provisional projected geometry; not an observed site fact or statutory control."
     }
   }
 }

@@ -59,7 +59,9 @@
       "source_locator": "brief/site-package/geometry/provisional_boundaries.geojson，PROV-SITE-001 等要素",
       "collection_method": "从仓库树 commit 0e856ea035 直接读取并在 EPSG:4548 下复算面积。**这是本包全部空间结论的唯一几何来源，也是它们全部的限制所在**：官方 polygon 未公开发布，该边界为推定，本包所有派生读数在官方几何到位后须整体重算，此点登记为 A-BOUNDARY-001。",
       "published_date": "2026-08-08",
-      "evidence_class": "official_context"
+      "evidence_class": "provisional",
+      "upstream_registry_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+      "evidence_class_note_zh": "上游 `data/source_registry.json` 对同一份 geometry 记为 `review_status: provisional` / `usable_for_formal: provisional_only` / `authority_level: PROVISIONAL_REPOSITORY`，并把「精确面积计算」列入 prohibited_uses。本文件此前记为 official_context，与上游登记表、也与本包 metrics.json 里把全部边界派生指标记为 provisional 的做法互相矛盾——评审同时收到这两份文件。已改为 provisional。"
     },
     {
       "id": "KEY-AREA-SOURCE",
@@ -74,7 +76,9 @@
       "source_locator": "PROV-KEY-001 / PROV-KEY-002 / PROV-KEY-003",
       "collection_method": "从仓库树 commit 0e856ea035 直接读取。三处重点区的**名称与数量**取自公告文字，**几何为临时替代边界**——两者的证据强度不同，本包在图纸与正文中分开表述。",
       "published_date": "2026-08-08",
-      "evidence_class": "official_context"
+      "evidence_class": "provisional",
+      "upstream_registry_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+      "evidence_class_note_zh": "上游 `data/source_registry.json` 对同一份 geometry 记为 `review_status: provisional` / `usable_for_formal: provisional_only` / `authority_level: PROVISIONAL_REPOSITORY`，并把「精确面积计算」列入 prohibited_uses。本文件此前记为 official_context，与上游登记表、也与本包 metrics.json 里把全部边界派生指标记为 provisional 的做法互相矛盾——评审同时收到这两份文件。已改为 provisional。"
     },
     {
       "id": "OFFICIAL-ANNOUNCEMENT",
@@ -327,7 +331,7 @@
       "id": "MOHURD-ARCH-DESIGN-DEPTH-2016",
       "url": "未取得——本包从未打开该文件，因此不给出链接；给一个没读过的文件配上链接会让这条登记看起来像读过的",
       "source_type": "official_public",
-      "evidence_class": "regulatory_baseline",
+      "evidence_class": "background_only",
       "title": "建筑工程设计文件编制深度规定（2016年版）",
       "publisher": "中华人民共和国住房和城乡建设部",
       "document_number": "未在本包中核对",
@@ -337,7 +341,8 @@
       "source_locator": "**本包未取得也未打开该文件**",
       "collection_method": "**未收集。** 本包在合规矩阵中把该规定列为 mandatory=false、review_status=data_gap，即「待取得官方文件后启用」。此处如实登记为未核对，而不是给出一个看起来完整的记录——一条自己没读过的标准，若登记得和读过的一样详细，那份登记本身就是伪造确定性。",
       "license_or_reuse_terms": "待取得后补记。",
-      "usage": "仅作为缺资料清单与深化提醒；本包不据此给出任何建筑专业深度结论。"
+      "usage": "仅作为缺资料清单与深化提醒；本包不据此给出任何建筑专业深度结论。",
+      "evidence_class_note_zh": "本条 `retrieved_at` 为「未取得」——本包从未打开这份文件，只依据其公开的条文编号与标题引用。**一份没有被读过的文件不能充当法规基线**，因此证据等级降为 background_only，并在 standard_matrix 中同步记为 data_gap。此前记为 regulatory_baseline 是高估。"
     }
   ]
 }

@@ -1,5 +1,34 @@
 #!/usr/bin/env python3
-"""Promote a materially edited scaffold to a review-ready submission package."""
+"""Promote a materially edited scaffold to a review-ready submission package.
+
+This script verifies that all scaffold-generated placeholder content has been
+replaced with real design work and then flips ``package_state`` from
+``"scaffold"`` to ``"ready_for_review"``.  It also refreshes the SHA-256
+hashes of every listed file so ``validate_submission.py`` can confirm integrity
+without a separate manifest-update step.
+
+Checks performed
+----------------
+- ``proposal.md`` no longer contains the ``SCAFFOLD-DRAFT`` marker.
+- All five required figures have been replaced (SHA-256 differs from scaffold).
+- At least one participant-controlled geometry layer has been replaced.
+- Both PDF drawings have been replaced with non-empty PDFs.
+- When ``bilingual_contract_version: "1"`` is declared, all required bilingual
+  counterparts exist and carry correct ``language`` / ``translation_of``
+  front-matter.
+
+After a successful run the script prints the next command to execute:
+``self_check_submission.py --mark-self-checked --json``.
+
+Usage
+-----
+Run from the repository root (or any directory) with the proposal path:
+
+    python3 scripts/finalize_submission.py submissions/<login>/<slug>
+
+The script exits 0 on success and 1 when scaffold checks fail.  Fix every
+reported error before opening a pull request.
+"""
 
 from __future__ import annotations
 
@@ -39,12 +68,19 @@ READABLE_OUTPUTS = ["proposal.md", "report/proposal.html", "visual/index.html"]
 
 
 def digest(path: Path) -> str:
+    """Return the SHA-256 hex digest of *path*."""
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("submission_dir")
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument(
+        "submission_dir",
+        help="Path to the proposal directory, e.g. submissions/<login>/<slug>",
+    )
     args = parser.parse_args()
     root = Path(args.submission_dir).resolve()
     manifest_path = root / "manifest.json"
@@ -176,7 +212,11 @@ def main() -> int:
             item["sha256"] = digest(root / rel)
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Review-ready package: {root}")
-    print("Run self_check_submission.py --mark-self-checked --json now; it records the four-gate report and refreshes self_check.json's manifest hash. Any later file edit requires refreshed manifest hashes and another full validation.")
+    print(
+        "Run self_check_submission.py --mark-self-checked --json now; "
+        "it records the four-gate report and refreshes self_check.json's manifest hash. "
+        "Any later file edit requires refreshed manifest hashes and another full validation."
+    )
     return 0
 
 

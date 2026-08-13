@@ -1,0 +1,53 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "ASM-001",
+      "title_zh": "正式边界缺失",
+      "description_zh": "当前使用临时粗略边界，所有面积指标需待正式数据到位后重新计算。",
+      "recalculation_trigger": "Official boundary polygon becomes available",
+      "affected_metrics": ["site_area_overall_design", "site_area_coordinated_research", "site_area_key_detailed_design", "green_space_ratio", "floor_area_ratio", "building_density"],
+      "affected_files": ["geometry/site_boundary.geojson", "geometry/key_areas.geojson"]
+    },
+    {
+      "id": "ASM-002",
+      "title_zh": "规划控制指标缺失",
+      "description_zh": "容积率、建筑密度、建筑高度、绿地率等法定控规指标未包含在征集资料包中。",
+      "recalculation_trigger": "Official regulatory planning indicators are published",
+      "affected_metrics": ["floor_area_ratio", "building_density", "green_space_ratio", "total_floor_area"],
+      "affected_files": ["geometry/land_use.geojson", "proposal.md"]
+    },
+    {
+      "id": "ASM-003",
+      "title_zh": "用地权属未知",
+      "description_zh": "地块权属、现有建筑产权等信息未提供。建筑更新策略为概念性建议。",
+      "recalculation_trigger": "Official land ownership data becomes available",
+      "affected_metrics": ["total_floor_area", "building_density"],
+      "affected_files": ["geometry/buildings.geojson", "proposal.md"]
+    },
+    {
+      "id": "ASM-004",
+      "title_zh": "临时边界为矩形近似",
+      "description_zh": "三个层级范围均基于公告四至描述做矩形包络近似，实际边界可能不规则。",
+      "recalculation_trigger": "Precise surveyed boundary CAD/GIS data is released",
+      "affected_metrics": ["site_area_coordinated_research", "site_area_overall_design", "site_area_key_detailed_design"],
+      "affected_files": ["geometry/site_boundary.geojson", "geometry/key_areas.geojson", "geometry/phasing.geojson"]
+    },
+    {
+      "id": "ASM-005",
+      "title_zh": "建筑布局为概念性",
+      "description_zh": "建筑体量、高度、布局均为概念性设计表达，未经结构、消防等专业验证。",
+      "recalculation_trigger": "Professional architectural design with structural review",
+      "affected_metrics": ["total_floor_area", "building_density"],
+      "affected_files": ["geometry/buildings.geojson"]
+    },
+    {
+      "id": "ASM-006",
+      "title_zh": "交通方案需专业模型验证",
+      "description_zh": "交通组织方案为概念性框架，未经交通仿真模型验证。",
+      "recalculation_trigger": "Professional traffic simulation model validation",
+      "affected_metrics": ["road_area_ratio"],
+      "affected_files": ["geometry/roads.geojson", "proposal.md"]
+    }
+  ]
+}

@@ -92,10 +92,12 @@
       "scenario_id": "14",
       "name": "城市议题路由台",
       "maximum_current_state": "simulation",
-      "objective": "验证去标识议题能否按公开规则进入 Branch 或 Hold，并保留人工改派与申诉。",
+      "execution_status": "synthetic_offline_rehearsal_complete",
+      "field_run": false,
+      "objective": "以确定性 runner 验证合成、去标识议题能否按公开规则进入 PASS、HOLD 或 RETIRED，并保留人工改派、红牌、独立申诉和退出恢复。",
       "simulation_inputs": [
         "合成议题",
-        "虚构联系人",
+        "固定正负 fixtures",
         "固定空间和场景目录"
       ],
       "excluded_inputs": [
@@ -104,16 +106,31 @@
         "位置轨迹",
         "政务数据"
       ],
-      "success_threshold": "每条模拟议题可由两名独立复核者解释路由理由；无责任主体或法定条件的议题进入 Hold；所有结果可人工改派。",
+      "success_threshold": "7 个固定合成 fixtures 由 runner 确定性复演并全部符合预期；PASS 仅表示材料可送交未来真实人审，无责任主体、法定条件、同任务非 AI 路径或独立申诉时进入 Hold。",
       "pause_threshold": "出现个人或敏感字段、自动排序高影响公共事项、无法解释路由、无法撤回或人工接管失败。",
       "human_review": [
-        "future Issue Committee",
-        "Data Steward",
-        "领域专业人员",
-        "独立申诉人"
+        "future Scenario Owner (pending_confirmation)",
+        "Data Steward (pending_confirmation)",
+        "领域专业人员与受影响群体代表 (pending_confirmation)",
+        "独立申诉人，须与初审角色职责隔离 (pending_confirmation)"
       ],
       "data_boundary": "只处理合成、去标识测试记录；AI 不决定公共优先级。",
       "exit": "删除模拟会话数据，保留无个人信息的规则版本和失败案例，恢复人工受理入口。",
+      "replay_evidence": {
+        "contract": "visual/assets/issue-router-tabletop/contract.json",
+        "runner": "visual/assets/issue-router-tabletop/run_tabletop.js",
+        "receipts": "visual/assets/issue-router-tabletop/receipts.json",
+        "fixtures": 7,
+        "guard_checks": 2,
+        "decisions": {
+          "PASS": 1,
+          "HOLD": 5,
+          "RETIRED": 1
+        },
+        "all_expectations_matched": true,
+        "human_decision_required": true,
+        "field_status": "not_authorized_not_run"
+      },
       "external_signoffs": [
         "真实运营主体",
         "数据处理依据",

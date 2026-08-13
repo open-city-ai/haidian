@@ -115,8 +115,9 @@
       "unit": "m",
       "source_files": ["sources.json#HD-LANJINGLIJIA-SCHEME-ADOPTION-20250606"],
       "formula": "max(building_height_values_recorded_in_adjacent_exhibited_scheme)",
-      "confidence": "medium",
-      "assumptions": ["Official reference scale, not a design value of this proposal; recorded for parcel HD00-1603-01 in an adjacent renewal scheme inside the Dazhongsi pilot area.", "The value is read from an authority consultation-adoption notice, not from a control sheet, so it evidences what an official height statement looks like along the belt and nothing more.", "This proposal recommends no building height and does not apply this value to any parcel in its own scope."],
+      "confidence": "low",
+      "evidence_class": "background_only",
+      "assumptions": ["Background-only official reference that the submitting party registered by hand from a public notice; it is not recalculated evidence produced inside this package and must not be scored as a package-internal result. Recorded for parcel HD00-1603-01 in an adjacent renewal scheme inside the Dazhongsi pilot area.", "The value is read from an authority consultation-adoption notice, not from a control sheet, so it evidences what an official height statement looks like along the belt and nothing more.", "This proposal recommends no building height and does not apply this value to any parcel in its own scope."],
       "responsible_role": "regulatory-plan implementation professional",
       "collection_gate": "G0",
       "recalculation_trigger": "revision, approval, or withdrawal of the adjacent scheme, or receipt of controls applicable to this proposal's own scope",
@@ -128,8 +129,9 @@
       "unit": "m",
       "source_files": ["sources.json#HD-LANJINGLIJIA-SCHEME-ADOPTION-20250606"],
       "formula": "min(building_height_values_recorded_in_adjacent_exhibited_scheme)",
-      "confidence": "medium",
-      "assumptions": ["Official reference scale, not a design value of this proposal; the notice records the height without naming its parcel.", "Registered together with the maximum so that the published height span is reported in full rather than selectively.", "This proposal recommends no building height and does not apply this value to any parcel in its own scope."],
+      "confidence": "low",
+      "evidence_class": "background_only",
+      "assumptions": ["Background-only official reference that the submitting party registered by hand from a public notice; it is not recalculated evidence produced inside this package and must not be scored as a package-internal result. The notice records the height without naming its parcel.", "Registered together with the maximum so that the published height span is reported in full rather than selectively.", "This proposal recommends no building height and does not apply this value to any parcel in its own scope."],
       "responsible_role": "regulatory-plan implementation professional",
       "collection_gate": "G0",
       "recalculation_trigger": "revision, approval, or withdrawal of the adjacent scheme, or receipt of controls applicable to this proposal's own scope",
@@ -141,8 +143,9 @@
       "unit": "sqm",
       "source_files": ["sources.json#HD-LANJINGLIJIA-RENEWAL-CASE-20260612"],
       "formula": "published_approximate_site_area_hectares * 10000",
-      "confidence": "medium",
-      "assumptions": ["Official reference scale, not a design value of this proposal; the source states approximately 3.95 hectares, converted at 1 ha = 10,000 sqm.", "An approximate published figure, not a precise, surveyed, or statutory area, and it is not comparable with the recalculated areas of this submission's provisional geometry.", "Registered to show the scale at which official land information is published along the belt; it is not extrapolated to any area of this proposal."],
+      "confidence": "low",
+      "evidence_class": "background_only",
+      "assumptions": ["Background-only official reference that the submitting party registered by hand from a public case page; it is not recalculated evidence produced inside this package and must not be scored as a package-internal result. The source states approximately 3.95 hectares, converted at 1 ha = 10,000 sqm.", "An approximate published figure, not a precise, surveyed, or statutory area, and it is not comparable with the recalculated areas of this submission's provisional geometry.", "Registered to show the scale at which official land information is published along the belt; it is not extrapolated to any area of this proposal."],
       "responsible_role": "regulatory-plan implementation professional",
       "collection_gate": "G0",
       "recalculation_trigger": "publication of a surveyed parcel area or revision of the renewal project scope",
@@ -227,6 +230,72 @@
         "rounding": "integer count",
         "responsible_role": "spatial-analysis professional",
         "recalculation_trigger": "revision of the scenario-node feature collection"
+      }
+    },
+    "ai_off_declared_network_length_m": {
+      "status": "known",
+      "value": 17322.014,
+      "unit": "m",
+      "source_files": ["geometry/roads.geojson"],
+      "formula": "sum(length(centreline)) over features whose design_role declares independence from AI, matched against the token list in visual/assets/seb-op04-chain-data.json (ai_off_edge_rule.declared_tokens)",
+      "confidence": "medium",
+      "assumptions": [
+        "Which centrelines remain usable once AI is off is read from each feature's own design_role declaration, not judged by the computing tool; two of the five submitted centrelines carry such a declaration.",
+        "Centrelines express relationships on provisional working geometry. The figure is not a built length, a right-of-way, a gradient-checked walking route, or an engineering quantity."
+      ],
+      "calculation_metadata": {
+        "method_source": "PACKAGE-SPATIAL-RECALCULATION-METHOD",
+        "projection": "EPSG:4548",
+        "verified_on": "2026-08-12",
+        "rounding": "0.001 m",
+        "responsible_role": "spatial-analysis professional",
+        "recalculation_trigger": "revision of any road centreline or of its design_role declaration",
+        "reproduction_command": "node seb-op04-chain-run.js (in visual/assets)"
+      }
+    },
+    "ai_off_network_component_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": ["geometry/roads.geojson"],
+      "formula": "count(connected components) of the graph formed by AI-off declared centrelines, noded at their mutual intersections",
+      "confidence": "medium",
+      "assumptions": [
+        "A value above 1 means the routes declared equivalent once AI is off do not form a single connected network. Here the two declared lines run parallel north-south and their only connections are three cross links, none of which carries such a declaration.",
+        "The count describes the submitted conceptual geometry, not the existing street network, and may not be read as a statement about real-world connectivity in the area."
+      ],
+      "calculation_metadata": {
+        "method_source": "PACKAGE-SPATIAL-RECALCULATION-METHOD",
+        "projection": "EPSG:4548",
+        "verified_on": "2026-08-12",
+        "rounding": "integer count",
+        "responsible_role": "spatial-analysis professional",
+        "recalculation_trigger": "revision of any road centreline or of its design_role declaration",
+        "reproduction_command": "node seb-op04-chain-run.js (in visual/assets)"
+      }
+    },
+    "op04_ai_off_unreachable_same_area_node_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "denominator_note": "Denominator is 2, the other scenario nodes inside the same provisional key area PROV-KEY-003, namely OP-08 and OP-09.",
+      "source_files": ["geometry/roads.geojson", "geometry/constraints.geojson"],
+      "formula": "count(nodes in the same key area with no finite shortest network trip from OP-04 on the AI-off edge set), denominator = count(other nodes in that key area)",
+      "confidence": "medium",
+      "assumptions": [
+        "Unreachable here means the submitted geometry holds no continuous route independent of AI between the two nodes; it is a property of the conceptual network, not a survey finding about the site.",
+        "Each node attaches to the network by a straight access stub assumed walkable. That assumption has been audited by nobody and is the largest source of uncertainty in this reading.",
+        "This is a spatial count. It is neither a reading for ai_off_service_equivalence_gap nor a substitute for one; that metric stays unknown and can only come from an ethically run paired test with real participants."
+      ],
+      "calculation_metadata": {
+        "method_source": "PACKAGE-SPATIAL-RECALCULATION-METHOD",
+        "projection": "EPSG:4548",
+        "verified_on": "2026-08-12",
+        "rounding": "integer count",
+        "responsible_role": "spatial-analysis professional",
+        "recalculation_trigger": "revision of any road centreline, of its design_role declaration, or of the node positions in that key area",
+        "reproduction_command": "node seb-op04-chain-run.js (in visual/assets)",
+        "change_receipt_id": "CR-2026-08-12-003"
       }
     },
     "work_package_count": {
@@ -470,11 +539,11 @@
       "source_files": ["assumptions.json"],
       "formula": "required_role_groups_with_voluntary_participation / role_groups_required_by_approved_protocol",
       "confidence": "unknown",
-      "assumptions": ["Role-group coverage does not measure personal ability, diagnosis, identity, or representativeness by headcount."],
+      "assumptions": ["Role-group coverage does not measure personal ability, diagnosis, identity, or representativeness by headcount.", "The protocol role groups extend beyond the six personas: residents along the belt, micro and small merchants at ground-floor frontages, caregivers and adults travelling with children, and early-career talent are named role groups because a renewal process affects them even when they are not the end user of a scenario.", "Naming a role group adds no persona row. `persona_count` stays at 6 and the persona table remains the demand framework, while the role groups define who must be at the table before a change is approved.", "Every G3 review registers a non-participant impact check: the groups a change may affect but who did not take part in that round, and the channel by which they are informed. A missing check is a stop condition for that round, not a note."],
       "reason": "No approved ethics protocol, recruitment record, or participant-role structure exists.",
-      "numerator_definition": "protocol-required participant, caregiver where relevant, operator, maintainer, and professional role groups with at least one voluntary contribution recorded",
-      "denominator_definition": "all role groups required by the approved co-design protocol for that task",
-      "exclusions": "observers without a recorded contribution; withdrawals remain reported",
+      "numerator_definition": "protocol-required role groups with at least one voluntary contribution recorded, counted across participants, caregivers where relevant, residents along the belt, micro and small merchants, early-career talent, operators, maintainers, and professionals",
+      "denominator_definition": "all role groups required by the approved co-design protocol for that task, which must include the directly affected non-user groups — residents along the belt, micro and small merchants, caregivers and adults travelling with children, and early-career talent — alongside participant, operator, maintainer, and professional groups",
+      "exclusions": "observers without a recorded contribution; withdrawals remain reported; a role group may never be removed from the denominator because it proved hard to recruit",
       "responsible_role": "co-design lead, ethics reviewer, and participant representatives",
       "collection_gate": "G0",
       "recalculation_trigger": "task scope, participant group, operating model, or protocol change",

@@ -1,3 +1,4 @@
+import copy
 import json
 import sys
 import tempfile
@@ -24,9 +25,9 @@ VALID_INDEX = {
             "public_status": "public-draft",
             "citation": "brief/public-brief.md",
             "usage_note": "参赛方案可作为任务背景引用。",
-            "risk_note": "正式发布前仍需维护者确认。"
+            "risk_note": "正式发布前仍需维护者确认。",
         }
-    ]
+    ],
 }
 
 
@@ -47,9 +48,7 @@ class PublicSourcesTests(unittest.TestCase):
             (root / "brief").mkdir()
             (root / "brief" / "public-brief.md").write_text("# brief", encoding="utf-8")
             self.write_json(root, "sources/public-sources.json", VALID_INDEX)
-
             report = validate_source_index(root)
-
             self.assertTrue(report.ok, report.errors)
             self.assertEqual(report.source_count, 1)
 
@@ -57,9 +56,7 @@ class PublicSourcesTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             self.write_json(root, "sources/public-sources.json", VALID_INDEX)
-
             report = validate_source_index(root)
-
             self.assertFalse(report.ok)
             self.assertIn("referenced path is missing", "\n".join(report.errors))
 
@@ -68,26 +65,76 @@ class PublicSourcesTests(unittest.TestCase):
             root = Path(tmp)
             (root / "brief").mkdir()
             (root / "brief" / "public-brief.md").write_text("# brief", encoding="utf-8")
-            bad_index = json.loads(json.dumps(VALID_INDEX))
-            bad_index["sources"].append(json.loads(json.dumps(VALID_INDEX["sources"][0])))
+            bad_index = copy.deepcopy(VALID_INDEX)
+            bad_index["sources"].append(copy.deepcopy(VALID_INDEX["sources"][0]))
             self.write_json(root, "sources/public-sources.json", bad_index)
-
             report = validate_source_index(root)
-
             self.assertFalse(report.ok)
             self.assertIn("duplicate id", "\n".join(report.errors))
 
     def test_unsafe_local_path_fails(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            bad_index = json.loads(json.dumps(VALID_INDEX))
+            bad_index = copy.deepcopy(VALID_INDEX)
             bad_index["sources"][0]["path"] = "../private.md"
             self.write_json(root, "sources/public-sources.json", bad_index)
-
             report = validate_source_index(root)
-
             self.assertFalse(report.ok)
             self.assertIn("unsafe path", "\n".join(report.errors))
+
+    def test_invalid_type_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "brief").mkdir()
+            (root / "brief" / "public-brief.md").write_text("# brief", encoding="utf-8")
+            bad_index = copy.deepcopy(VALID_INDEX)
+            bad_index["sources"][0]["type"] = "unknown-type"
+            self.write_json(root, "sources/public-sources.json", bad_index)
+            report = validate_source_index(root)
+            self.assertFalse(report.ok)
+            self.assertTrue(any("type must be one of" in e for e in report.errors))
+
+    def test_invalid_public_status_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "brief").mkdir()
+            (root / "brief" / "public-brief.md").write_text("# brief", encoding="utf-8")
+            bad_index = copy.deepcopy(VALID_INDEX)
+            bad_index["sources"][0]["public_status"] = "classified"
+            self.write_json(root, "sources/public-sources.json", bad_index)
+            report = validate_source_index(root)
+            self.assertFalse(report.ok)
+            self.assertTrue(any("public_status must be one of" in e for e in report.errors))
+
+    def test_source_without_url_or_path_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            bad_index = copy.deepcopy(VALID_INDEX)
+            del bad_index["sources"][0]["path"]
+            self.write_json(root, "sources/public-sources.json", bad_index)
+            report = validate_source_index(root)
+            self.assertFalse(report.ok)
+            self.assertTrue(any("`path` or `url` is required" in e or "path" in e for e in report.errors))
+
+    def test_https_url_passes_without_local_path(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            url_source = {
+                "id": "ext-source-001",
+                "title": "官方公告",
+                "type": "brief",
+                "url": "https://example.gov.cn/announcement.pdf",
+                "publisher": "主管部门",
+                "published_at": "2026-05-15",
+                "public_status": "confirmed-public",
+                "citation": "https://example.gov.cn/announcement.pdf",
+                "usage_note": "可引用",
+                "risk_note": "无风险",
+            }
+            index = {"version": 1, "sources": [url_source]}
+            self.write_json(root, "sources/public-sources.json", index)
+            report = validate_source_index(root)
+            self.assertTrue(report.ok, report.errors)
 
 
 if __name__ == "__main__":

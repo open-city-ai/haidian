@@ -1,0 +1,25 @@
+{
+  "title_zh": "场景 14 城市议题路由台桌面推演说明",
+  "title_en": "Scenario 14 Civic Issue Router Tabletop Guide",
+  "purpose_zh": "用零依赖、完全离线、确定性的规则执行器证明 PASS / HOLD / RETIRED 判据可以被逐条复演。",
+  "purpose_en": "Use a zero-dependency, fully offline, deterministic rule runner to rehearse PASS / HOLD / RETIRED criteria item by item.",
+  "files": {
+    "contract.json": "规则、RACI、红牌、独立申诉、数据边界和证据契约",
+    "fixtures.positive.json": "一条完整 PASS 合成样例",
+    "fixtures.negative.json": "五条 HOLD 与一条 RETIRED 合成样例及变异说明",
+    "run_tabletop.js": "Node.js 内置模块执行器；默认核对提交内回执",
+    "receipts.json": "确定性公开回执；不含个人数据或现场结果",
+    "test_tabletop.js": "聚焦回归测试"
+  },
+  "commands": [
+    "node visual/assets/issue-router-tabletop/run_tabletop.js",
+    "node visual/assets/issue-router-tabletop/run_tabletop.js --json",
+    "node visual/assets/issue-router-tabletop/run_tabletop.js --write-receipts",
+    "node visual/assets/issue-router-tabletop/test_tabletop.js"
+  ],
+  "generation_note_zh": "默认命令不写文件；仅显式 --write-receipts 会机械刷新确定性回执。提交前再次运行默认命令会逐字核对 committed receipts。",
+  "generation_note_en": "The default command writes no files; only explicit --write-receipts mechanically refreshes deterministic receipts. Run the default command again before submission to compare the committed receipts byte-for-byte.",
+  "decision_note_zh": "PASS 只表示合成材料可提交真实人审；HOLD 表示阻断且需补证据；RETIRED 表示合成 Branch 已关闭归档。三者都不是现场授权。",
+  "decision_note_en": "PASS only makes the synthetic package eligible for real human review; HOLD blocks it pending evidence; RETIRED closes and archives the synthetic Branch. None is a field authorisation.",
+  "field_status": "synthetic_only_not_authorized_not_run"
+}

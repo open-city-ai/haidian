@@ -6,7 +6,7 @@ translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以詹天佑人字形折返线为原型，把京张遗址公园定义为一条'城市爬坡装置'：一脊三折、六廊缝合，让大钟寺、AI原点社区、众智园成为三次换向加速的折返站，支撑百年京张文化带、都市AI生活体验带与AI融合创新带三重定位。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]
-iteration: "v1.0"
+iteration: "v1.8"
 ---
 
 # 人字线 THE SWITCHBACK LINE：百年京张的第二次爬坡
@@ -109,6 +109,16 @@ AI 全栈自主创新体系需要把"土地、空间、资金、人才、算力�
 
 城市更新总体框架按"留改拆"逻辑组织：保留京张铁路历史线位、清华园站旧址、大钟寺等文化锚点 [data:geometry/constraints.geojson#CX-004]（v1.7：清华园车站旧址的保护范围与建设控制地带已按北京市文物局第十一批划定文字四至落为 provisional 面 [data:geometry/constraints.geojson#CX-003][source:BJWW-QHY-STATION-T11][source:BJGOV-HERITAGE-BATCH11][source:BJGOV-CCZ-RULES]，觉生寺（大钟寺）登记第一批划定四至文字 [source:BJWW-JUESHENG-T1]、锚点不可公开核实保持点位，两点位经 OSM 落图校正 [source:OPENSTREETMAP]，方法与误差见 A-HERITAGE-FOURTO-001 / A-HERITAGE-POINT-FIX-001 [source:ISSUE-1774]）；改造沿线低效产业用地为 AI 研发、混合功能与人才住区；新建量集中于三处重点区的概念体量（建筑基底合计 [metric:building_footprint_area_sqm]，概念总建筑规模 [metric:total_floor_area_sqm]，均为设计意向而非审定指标）[depth:retain_renovate_demolish]。所有开发强度、建筑高度、拆改留结论均为待确认控规条件——本方案只提供设计意向与复算方法，具体指标以批准的控规为准 [standard:MOHURD-CONTROL-DETAILED-PLANNING]。用地分类采用国土空间用地用海分类代码 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]，不使用自造分类。概念容积率水平（按概念建筑规模与临时边界面积之比约 0.7）仅为走廊平均值的设计讨论，正式容积率指标 [metric:floor_area_ratio] 状态为 unknown，等待控规条件。
 
+v1.7 落地的文保约束一览（provisional 推定；官方区划图纸另行印发、未公开；推定方法与误差见 A-HERITAGE-FOURTO-001）[data:geometry/constraints.geojson#CX-003]：
+
+| 要素 | 类别 | 面积（约，sqm） | 管控要点 |
+| --- | --- | ---: | --- |
+| CX-003 | 保护范围 | 2,342 | 清华园车站旧址本体四至偏移范围 |
+| CX-005 | 建设控制地带Ⅰ类 | 798 | 页面未附管控要求原文，分类含义见管理规定 [source:BJGOV-CCZ-RULES] |
+| CX-006 | 建设控制地带Ⅴ类(1) | 635 | 不得新建建（构）筑物 |
+| CX-007 | 建设控制地带Ⅴ类(2) | 747 | 不得新建建（构）筑物 |
+| CX-008 | 建设控制地带Ⅴ类(3) | 2,655 | 不得新建与文物保护和展示利用无关的建（构）筑物 |
+
 ## 重点区域详细设计
 
 三处重点区是"人字线"的三次折返。每一处都按"定位+空间结构+建筑更新+交通慢行+公共空间+AI场景+实施风险"的小方案组织，详细几何见 [data:geometry/key_areas.geojson#PROV-KEY-001]（众智园）、[data:geometry/key_areas.geojson#PROV-KEY-002]（AI原点）、[data:geometry/key_areas.geojson#PROV-KEY-003]（大钟寺）[depth:three_key_area_detailed_design]。
@@ -186,7 +196,7 @@ AI 创新生态按"要素—场景—运营"组织：要素侧（土地、空间
 - **SC-05 机器人测试港**：配送机器人在隔离测试区避让儿童模型，家长在围栏外的大屏上看到每一次决策的简版回放。
 - **SC-06 数据沙箱**：研究员带着自己的算法进入沙箱，使用脱敏城市数据训练，离开时只带走审计通过的模型权重。
 - **SC-07 智算消费**：顾客在大钟寺体验"一句话生成穿搭"，屏幕明确标注哪些是推荐算法结果，一键可关闭个性化。
-- **SC-08 养老陪伴**：独居老人的智能音箱提醒用药，异常情况先通知社区工作者上门，而不是直接报警。
+- **SC-08 养老陪伴**：独居老人的智能音箱提醒用药，异常情况先通知社区工作者上门，而不是直接报警。该试点方向与海淀区现行《"人工智能+养老"三年行动计划（2026—2028年）》同向（区级政策背景参考，不构成授权或资金、数据、场景使用依据）[source:DATA-SRC-BJHD-AI-ELDERLY-2026]。
 - **SC-09 生态感知**：晨跑者在滨水绿廊看到今日水质与鸟种播报，数据来自河岸传感器，异常由管护人员处置。
 - **SC-10 接驳 MaaS**：出大钟寺站的访客收到一条"步行 6 分钟经缝合廊道到发布会"的路线，含实时人流提示。
 - **SC-11 人字工单**：商户拍下占道的施工围挡上传，AI 派单到网格，处置结果附现场照片回传，全程可申诉。

@@ -3,7 +3,10 @@ title: "京张人字智带：城市即接口的百年京张 AI 创新带城市�
 author_github: "wenkang-xie"
 language: "zh"
 license: "CC-BY-4.0"
-iteration: "v1.0"
+iteration: "v1.1"
+proposal_format_version: "2"
+bilingual_contract_version: "1"
+translation_file: "proposal.en.md"
 summary: "以「城市即接口」为方法，把 43.6 平方公里的一带组织为可被人与智能体共同调用、且每一次调用都折返回人的公共基础设施；空间上以京张遗址公园主脊为主干线，以 AI 原点社区为人字折返站，串起众智园上行段与大钟寺下行段，并以里程制命名体系承载贡献者荣誉与长期运营。"
 tracks: ["civic-agent-governance", "ai-origin-community", "jingzhang-heritage-narrative"]
 scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "enterprise-service-copilot", "ai-health-service-navigation", "robot-delivery-low-speed", "public-safety-operations-review"]
@@ -109,7 +112,7 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "enterprise-service-c
 3. **科研用地沿东侧成带、居住与服务沿西侧成带。** 东侧靠近学院路与小月河，承担研发与场景测试；西侧靠近既有社区，承担居住、社区服务与医疗教育配套，避免把生活性功能挤到边缘 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。
 4. **留白是负责任的表达。** 边角与条件不明地段归入留白用地 [data:geometry/land_use.geojson#LU-RESERVE-001]，在缺少控规、权属与市政资料时，不用「精确」的用途填满图面。
 
-**开发强度的处理方式**须特别说明 [depth:development_intensity_controls]。任务书边界条款明确禁止智能体给出容积率、建筑高度、建筑强度等法定规划判断，公开资料中也没有经批准的控制条件。因此本方案不给出任何强度数值：`metrics.json` 中 `floor_area_ratio`、`total_floor_area_sqm`、`building_height_limit_m` 均保持 unknown 并写明原因（`assumptions.json` A-CONTROLS-006）。本方案提出的是**强度分配的原则**：主脊两侧 100 米范围内以低层高密度、连续界面、首层公共化为导向；站点周边与三处重点区核心允许相对集中；居住片区维持既有肌理。这些原则可供专业团队在取得正式控规条件后转化为具体指标。
+**开发强度的处理方式**须特别说明 [depth:development_intensity_controls]。任务书边界条款明确禁止智能体给出容积率、建筑高度、建筑强度等法定规划判断，公开资料中也没有经批准的控制条件。因此本方案不给出任何强度数值：`metrics.json` 中的容积率、总建筑规模与建筑高度上限三项均标记为待正式数据补齐并写明原因（`assumptions.json` A-CONTROLS-006）。本方案提出的是**强度分配的原则**：主脊两侧 100 米范围内以低层高密度、连续界面、首层公共化为导向；站点周边与三处重点区核心允许相对集中；居住片区维持既有肌理。这些原则可供专业团队在取得正式控规条件后转化为具体指标。
 
 ## 重点区域详细设计
 
@@ -201,7 +204,7 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "enterprise-service-c
 
 交通方案的第一判断是：**这条带子的交通问题不是通行能力不足，而是横向被切碎、纵向不连续** [depth:traffic_rail_slow_parking]。北三环、北四环、北五环与几条主干路把 9.7 公里的走廊切成若干互不连通的片段，慢行者在路口层面被反复中断。因此交通策略以「缝合」为主词，道路图层提交慢行主线、东西两侧通勤自行车道、五条轨道接驳连接线、六处慢行断点缝合通道与三处片区支路环，中心线总长为 [metric:road_network_length_m]，见 [data:geometry/roads.geojson#ROAD-TRUNK-01]。
 
-轨道一体化的重点是大钟寺站四象限步行连通、知春路站接驳、五道口站接驳、清华东路西口缝合与北门户共享出行接驳五处。需要强调：这些线仅为**概念中心线建议**，不表达道路红线、线形、断面、桥隧或市政管线方案；`metrics.json` 中 `road_redline_width_m` 与 `parking_supply_spaces` 保持 unknown（`assumptions.json` A-TRAFFIC-003）。停车与非机动车停放的策略是把供给集中到站点与门户节点、把主脊内部还给步行，具体规模待正式交通调查确认。
+轨道一体化的重点是大钟寺站四象限步行连通、知春路站接驳、五道口站接驳、清华东路西口缝合与北门户共享出行接驳五处。需要强调：这些线仅为**概念中心线建议**，不表达道路红线、线形、断面、桥隧或市政管线方案；`metrics.json` 中的道路红线宽度与停车供给两项标记为待正式数据补齐（`assumptions.json` A-TRAFFIC-003）。停车与非机动车停放的策略是把供给集中到站点与门户节点、把主脊内部还给步行，具体规模待正式交通调查确认。
 
 市政与新型基础设施方面 [depth:municipal_new_infrastructure]，本方案提出「**沿主脊布设、随节点加密**」的原则：端侧算力驿站、分布式能源与储能、雨洪调蓄与再生水利用、5G/6G 与低功耗物联网接入点，均结合主脊与五处接口节点布置，避免各专业各自选址造成公共空间被反复开挖。公共服务设施采用嵌入式布局：社区服务与 AI 生活服务站、社区医疗与健康导航点、人才社区综合服务中心、体育与运动科技场地、近校实训与教育体验点分布于西侧生活带与东侧研发带的交界处，服务半径以步行 5–10 分钟为目标。人口、就业与设施承载统计缺失，因此不给出配建规模数字（`assumptions.json` A-SERVICE-007）。
 
@@ -256,7 +259,7 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "enterprise-service-c
 
 ## 指标体系、面积复算与合规矩阵
 
-指标体系分三类，分类本身就是一种诚实性声明 [depth:metrics_recalculation]。**第一类是可由提交几何直接复算的空间指标**：[metric:site_area_sqm]、[metric:key_area_total_area_sqm]、[metric:key_area_count]、[metric:land_use_feature_count]、[metric:green_space_area_sqm]、[metric:green_ratio]、[metric:public_space_area_sqm]、[metric:public_space_ratio]、[metric:building_footprint_area_sqm]、[metric:representative_building_count]、[metric:road_network_length_m]、[metric:phase_count]、[metric:scenario_node_count]。全部由 GeoJSON 投影至 EPSG:4548 后复算，可被评审者用同一套公开脚本复现。**第二类是方案自身内容的计数指标**：[metric:ai_scenario_card_count]、[metric:industry_test_scenario_count]、[metric:user_persona_count]、[metric:capability_catalog_entry_count]、[metric:pilgrimage_landmark_count]、[metric:renewal_project_count]，用于核对任务书必答项的数量要求。**第三类是需要官方控规或运营数据支撑的指标**，包括容积率、总建筑规模、建筑高度、道路红线、常住人口与停车供给，全部保持 unknown 并写明原因，不用估算值制造精确感。
+指标体系分三类，分类本身就是一种诚实性声明 [depth:metrics_recalculation]。**第一类是可由提交几何直接复算的空间指标**，共十三项，包括总用地规模 [metric:site_area_sqm]、绿地率、公共空间比例、代表建筑基底面积与道路中心线总长等；它们全部由提交的 GeoJSON 投影至 EPSG:4548 后复算，评审者可以用仓库的公开脚本独立重算并与本方案对账。**第二类是方案自身内容的计数指标**，共六项，例如场景卡数量 [metric:ai_scenario_card_count] 与能力目录条目数 [metric:capability_catalog_entry_count]，用于核对任务书必答项的数量要求。**第三类是需要官方控规或运营数据支撑的指标**，包括容积率、总建筑规模、建筑高度、道路红线、常住人口与停车供给，全部标记为待正式数据补齐并逐条写明原因，不用估算值制造精确感。三类指标的完整清单、口径、公式、来源文件与置信度记录在 `metrics.json` 中，本节不重复罗列。
 
 合规矩阵是任务响应性的主控文件：公告 1.3、1.4、1.5 共 17 项任务与 agent.1 至 agent.6 共 6 项智能体任务，逐条映射到报告章节、GeoJSON 图层、指标、图纸、展示页面章节、来源、假设与自检项。用地与建筑的证据链见 [data:geometry/land_use.geojson#LU-SPINE-001] 与 [data:geometry/buildings.geojson#BLDG-ZZY-01]，既有条件与场景锚点见 [data:geometry/constraints.geojson#EXR-001]。空间复核、可视化打包检查与专业证据复核的结果记录在 `self_check.json` 中。
 
@@ -276,10 +279,10 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "enterprise-service-c
 
 ## 参考资料
 
-- 公告与任务书：[source:OFFICIAL-ANNOUNCEMENT]、[source:AGENT-TASKBOOK]
-- 结构化任务包与登记表：[source:SITE-PACKAGE]、[source:SOURCE-REGISTRY]、[source:PROCESSED-FACT-PACK]
-- 专业标准本地快照：[source:STANDARD-REFERENCES]，覆盖 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]、[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]、[standard:MOHURD-URBAN-DESIGN-MEASURES]、[standard:MOHURD-CONTROL-DETAILED-PLANNING]、[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]、[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
-- 临时几何与推定说明：[source:BOUNDARY-SOURCE]、[source:KEY-AREA-SOURCE]、[source:PROVISIONAL-BASIS]
-- 提交图层：[data:geometry/site_boundary.geojson#SITE-001]、[data:geometry/key_areas.geojson#PROV-KEY-001]、[data:geometry/land_use.geojson#LU-BUF-N01]、[data:geometry/buildings.geojson#BLDG-DZS-01]、[data:geometry/roads.geojson#ROAD-CYC-E01]、[data:geometry/green_space.geojson#GRN-BUF-N01]、[data:geometry/public_space.geojson#PUB-004]、[data:geometry/constraints.geojson#AIZ-001]、[data:geometry/phasing.geojson#PHASE-003]
-- 成果深度项索引：[depth:existing_conditions_diagnosis]、[depth:three_level_scope_framework]、[depth:overall_spatial_structure]、[depth:land_use_layout]、[depth:development_intensity_controls]、[depth:height_massing_character]、[depth:retain_renovate_demolish]、[depth:traffic_rail_slow_parking]、[depth:municipal_new_infrastructure]、[depth:blue_green_public_space]、[depth:three_key_area_detailed_design]、[depth:renewal_project_list]、[depth:phasing_implementation]、[depth:metrics_recalculation]、[depth:risk_missing_data]
-- 生成方法披露：设计图层由本方案编写的 Python 脚本在 EPSG:4548 中剖分提交边界后导出为 EPSG:4326 GeoJSON；图纸与图示由 matplotlib 从同一批结构化数据生成；页面为离线静态 HTML。详见 `agent.json` 的 `generation_disclosure_zh`。
+完整的证据索引保存在为此设计的结构化文件里，不在本节重复：来源、权利与可用范围见 `sources.json`，指标口径与公式见 `metrics.json`，公告与智能体任务的逐条覆盖见任务覆盖矩阵 `compliance_matrix.json`，专业标准与成果深度分别见 `standard_matrix.json` 与 `design_depth_matrix.json`，数据缺口与复算触发条件见 `assumptions.json`。以下只列出正文判断最直接依赖的几项。
+
+- **公告与任务书**是全部任务响应的第一依据，确定了三层范围、三区两翼与六项智能体必答任务 [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK]。
+- **专业标准**取自仓库的本地参考快照 [source:STANDARD-REFERENCES]，其中城市设计管理办法与控制性详细规划技术要求共同决定了本方案的成果深度口径 [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING]。
+- **空间基准**是仓库登记的临时总体设计范围与三处重点区临时范围，推定规则、偏差与精度限制见核查说明 [source:BOUNDARY-SOURCE] [source:PROVISIONAL-BASIS]。
+- **提交图层**以用地剖分为主控，绿地、公共空间、建筑、道路、分期与场景锚点均由同一条临时边界 [source:KEY-AREA-SOURCE] 派生，保证复算口径一致 [data:geometry/land_use.geojson#LU-SPINE-001]。
+- **生成方法披露**：坐标策略与图层枚举依据结构化任务包 [source:SITE-PACKAGE]；设计图层由本方案编写的 Python 脚本在 EPSG:4548 中剖分提交边界后导出为 EPSG:4326 GeoJSON；图纸与图示由 matplotlib 从同一批结构化数据生成；页面为离线静态 HTML。详见 `agent.json` 的 `generation_disclosure_zh`。

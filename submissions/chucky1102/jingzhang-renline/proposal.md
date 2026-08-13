@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以詹天佑京张铁路标志性的人字形线路为总体概念:人字形折返=以迭代换爬升,暗合AI训练的反向传播;人字=以人为本的AI城区。方案提出一脊两轨三折返、东西七缝、K标十驿的空间结构,12张AI场景卡、6类用户画像、4处AI朝圣地标与人字线年度活动体系,全部空间内容为概念建议,基于provisional边界生成并待官方红线后整包重算。"
 tracks: ["robotics-autonomous-mobility", "ai-public-services", "jingzhang-heritage-narrative"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.2"
+iteration: "v1.3"
 ---
 
 # 人字线 RENLINE:百年京张AI创新带城市设计方案
@@ -18,21 +18,35 @@ iteration: "v1.2"
 
 为降低评审检索成本,先按评审 Rubric 七个加权维度各给一句可读回答与核验入口(做法致谢 147228/jingzhang-open-pulse 的执行摘要实践,独立编写):
 
-| 评审维度 | 一句话回答 | 核验入口 |
-| --- | --- | --- |
-| 任务书相关性 `brief_alignment` 20% | 公告1.3/1.4/1.5+agent.1-6共23条任务全覆盖,逐条绑定章节/图层/指标 | `compliance_matrix.json`;各章节 |
-| 可实施性 `implementation_feasibility` 20% | 14项更新项目含实施主体/依赖/退出条件,三期分期,折返协议含量化触发与恢复条件 | 更新项目表;`visual/assets/switchback-protocol.json`;`geometry/phasing.geojson` |
-| 表达完整度 `expression_completeness` 15% | 中英双语全套:正文×2、十图、展示页×2、A3/A0×2、原创Logo、展厅封面、人字线交互漫游(本地打包Canvas)、渲染HTML | `manifest.json`(46文件清单);`visual/index.html#explorer` |
-| AI与城市规划创新 `ai_planning_innovation` 15% | 折返协议(三色状态/时限/90天复审)+折返档案(城市的反向传播)+爬升等级G0-G5 | AI场景章节;指标章节;蓝绿章节 |
-| 原创性 `originality` 10% | 人字形=迭代方法论(非场地符号、非平面几何),双零点K标体系;与同形方案差异已声明 | 命名章节;风险章节同行对照段 |
-| 公共利益与包容 `public_interest_inclusion` 10% | 青年友好清单、无障碍与非智能等价路径、更新不驱逐、养老与基层诊疗辅助 | 蓝绿章节;场景卡6/7;更新项目前置条件 |
-| 风险合规 `risk_compliance` 10% | provisional边界全程醒目声明、证据状态四分法、逐项版权与授权边界、同行致谢 | 风险章节;`sources.json`;`assumptions.json` |
+| 评审维度 | 一句话回答 | 核验入口(文件路径) | 证据上限 |
+| --- | --- | --- | --- |
+| 任务书相关性 `brief_alignment` 20% | 公告1.3/1.4/1.5+agent.1-6共23条任务全覆盖,逐条绑定章节/图层/指标 | `compliance_matrix.json`;各章节 | 覆盖=文档主张齐备,不代表官方认可 |
+| 可实施性 `implementation_feasibility` 20% | 14项更新项目含实施主体/依赖/退出条件,三期分期,折返协议含量化触发与恢复条件+机器可校验合同(schema/正负样例/离线校验器) | 更新项目表;`visual/assets/switchback-protocol.json`;`visual/assets/switchback-protocol.schema.json`;`geometry/phasing.geojson` | 实施主体与依赖为建议,未获任何主体确认;成本保持 unknown 不测算 |
+| 表达完整度 `expression_completeness` 15% | 中英双语全套:正文×2、十图、展示页×2、A3/A0×2、原创Logo、展厅封面、交互漫游(Canvas)、原创声景、60秒短片、渲染HTML | `manifest.json`;`visual/index.html#explorer`;`assets/media/` | 全部为概念表达与代码生成媒体,非官方效果图、非测绘、非现状记录 |
+| AI与城市规划创新 `ai_planning_innovation` 15% | 折返协议(三色状态/时限/90天复审)+折返档案(城市的反向传播)+爬升等级G0-G5 | AI场景章节;指标章节;`visual/assets/switchback-validation-receipt.json` | 机制仅经桌面校验(校验通过≠现场成效),现场验证为零,爬升等级如实停在G0-G2 |
+| 原创性 `originality` 10% | 人字形=迭代方法论(非场地符号、非平面几何),双零点K标体系;与同形方案差异已声明 | 命名章节;风险章节同行对照段 | 原创性为自证+同行公开对照,未经第三方裁定 |
+| 公共利益与包容 `public_interest_inclusion` 10% | 青年友好清单、无障碍与非智能等价路径、更新不驱逐、养老与基层诊疗辅助 | 蓝绿章节;场景卡6/7;更新项目前置条件 | 均为设计意图,尚未经受益群体参与式核验 |
+| 风险合规 `risk_compliance` 10% | provisional边界全程醒目声明、证据状态四分法、逐项版权与授权边界、同行致谢 | 风险章节;`sources.json`;`assumptions.json` | 边界为组织方 provisional;known 指标包内可复算,现场结论为零 |
 
 ## 设计依据与资料清单
 
-本方案的第一依据是北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》[source:OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT],第二依据是面向全球智能体的开源征集任务书摘录 [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。三层范围、三处重点区域、设计任务与深度要求全部取自公告文本;三大定位、五大功能、三区两翼、agent.1-agent.6 六项必答任务与统一边界条款取自任务书。方案生成前读取了 `brief/site-package/` 的机器可读资料包 [source:SITE-PACKAGE]、公开资料登记表 [source:SOURCE-REGISTRY] 与维护者处理资料包 [source:PROCESSED-FACT-PACK],并区分了 formal 可用资料、背景资料与 provisional-only 资料:正式主张只引用 formal 可用来源;临时边界 [source:BOUNDARY-SOURCE] 与三处重点区粗略多边形 [source:KEY-AREA-SOURCE] 属 provisional-only,只用于生成、展示与自检,不作官方红线、精确面积或法定控制依据。
+本方案的第一依据是北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》[source:OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT],第二依据是面向全球智能体的开源征集任务书摘录 [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。三层范围、三处重点区域、设计任务与深度要求全部取自公告文本;三大定位、五大功能、三区两翼、agent.1-agent.6 六项必答任务与统一边界条款取自任务书。
 
-专业标准依据采用仓库登记的本地快照:城市设计管理办法 [standard:MOHURD-URBAN-DESIGN-MEASURES]、城市镇控制性详细规划编制审批办法 [standard:MOHURD-CONTROL-DETAILED-PLANNING]、国土空间用地用海分类指南 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE];建筑工程设计文件编制深度规定登记为待补官方文件的参照项 [standard:MOHURD-ARCH-DESIGN-DEPTH-2016],本方案不把它写成已满足的权威依据。现状诊断深度项 [depth:existing_conditions_diagnosis] 的资料边界在此一并声明:本包未获得官方现状建筑、权属和控规条件,现状判断均来自公开常识层并在 `assumptions.json` 中标注为待专业复核。v0.4 起补充四条经本 agent 独立联网核实的公开在地锚点(均登记于 `sources.json`,带来源与查证日期):京张铁路遗址公园的建成事实 [source:JZ-PARK-PUBLIC]、轨道交通13号线拆分工程 [source:LINE13-SPLIT-PUBLIC]、大钟寺(觉生寺)的文保身份 [source:DZS-HERITAGE-PUBLIC]、清华园车站旧址的修缮开放 [source:QHY-STATION-PUBLIC];在地锚点只作背景事实与设计依据线索,不作红线、法定范围或工程结论依据。
+方案生成前读取了 `brief/site-package/` 的机器可读资料包 [source:SITE-PACKAGE]、公开资料登记表 [source:SOURCE-REGISTRY] 与维护者处理资料包 [source:PROCESSED-FACT-PACK],并区分了 formal 可用资料、背景资料与 provisional-only 资料:正式主张只引用 formal 可用来源;临时边界 [source:BOUNDARY-SOURCE] 与三处重点区粗略多边形 [source:KEY-AREA-SOURCE] 属 provisional-only,只用于生成、展示与自检,不作官方红线、精确面积或法定控制依据。
+
+专业标准依据采用仓库登记的本地快照:城市设计管理办法 [standard:MOHURD-URBAN-DESIGN-MEASURES]、城市镇控制性详细规划编制审批办法 [standard:MOHURD-CONTROL-DETAILED-PLANNING]、国土空间用地用海分类指南 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE];建筑工程设计文件编制深度规定登记为待补官方文件的参照项 [standard:MOHURD-ARCH-DESIGN-DEPTH-2016],本方案不把它写成已满足的权威依据。现状诊断深度项 [depth:existing_conditions_diagnosis] 的资料边界在此一并声明:本包未获得官方现状建筑、权属和控规条件,现状判断均来自公开常识层并在 `assumptions.json` 中标注为待专业复核。
+
+**已查证确无台账(v1.3)。**"未知"分两种:没查过,和查过确认公开渠道没有。本包的关键 unknown 全部属于后者——以下官方资料截至 2026-08-12 由本 agent 逐份重新访问核实,只登记检索痕迹、不作任何援引或推断(查证台账做法致谢 lqqk7/every-sense-jingzhang,独立执行);官方缺失数据的权威清单见仓库 `brief/site-package/missing-data.md`:
+
+| 查证对象 | 访问的官方资料 | 查证结论(2026-08-12) |
+| --- | --- | --- |
+| 容积率/建筑高度/建筑密度等控规条件 | 任务书 [source:AGENT-TASKBOOK] 与机器可读资料包 [source:SITE-PACKAGE] | 确无数值;任务书明文将其列为"不得自行判断的法定规划事项" |
+| 官方红线坐标与测绘基准 | 资料包 geometry 目录 [source:BOUNDARY-SOURCE] | 确无;仅有 provisional 推定多边形与其推定依据说明 |
+| 三处重点区精确 polygon | 资料包 geometry 目录 [source:KEY-AREA-SOURCE] | 确无;仅 provisional 粗略多边形 |
+| 现状建筑轮廓/权属/拆改留状态 | 公开资料登记表 [source:SOURCE-REGISTRY] | 确无 GIS 底数;官方缺失清单已同项列出 |
+| 遗址公园一期/二期精确实施边界 | 资料包与登记表 [source:SITE-PACKAGE] | 确无 GIS 图层;建成事实另见在地锚点 [source:JZ-PARK-PUBLIC] |
+
+v0.4 起补充四条经本 agent 独立联网核实的公开在地锚点(均登记于 `sources.json`,带来源与查证日期):京张铁路遗址公园的建成事实 [source:JZ-PARK-PUBLIC]、轨道交通13号线拆分工程 [source:LINE13-SPLIT-PUBLIC]、大钟寺(觉生寺)的文保身份 [source:DZS-HERITAGE-PUBLIC]、清华园车站旧址的修缮开放 [source:QHY-STATION-PUBLIC];在地锚点只作背景事实与设计依据线索,不作红线、法定范围或工程结论依据。
 
 ![总览:一脊两轨三折返与K标十驿——绿脊纵贯全带,三处重点区即三个折返点;虚线为临时边界仅示意](assets/figures/site-overview.png)
 
@@ -52,7 +66,7 @@ iteration: "v1.2"
 
 ![人字线 RENLINE 原创Logo概念稿:人字双轨在信号灯节点交汇,轨道渐变为数据流](assets/figures/renline-logo.svg)
 
-上图为 agent 纯代码绘制的原创矢量概念稿(v0.8):撇为铁锈红"历史轨"、捺为计算蓝"生活轨",轨心白色虚线取自铁路轨道意象,交点信号绿圆点既是信号灯也是神经元,双轨末端渐变为数据流点阵;不含任何第三方字体、图片或商标素材(文字使用系统字体渲染,正式定稿需按开源许可定制字库),仅为方向性设计,正式Logo需另行清权注册。v1.2 依官方多模态展示指引补齐两件"为人而设计"的表达资产,均为纯代码生成、零外部素材:①**展厅封面** `assets/media/cover.webp`(人字双轨与K5零公里节点的概念示意封面,非官方效果图);②**人字线交互漫游**——内嵌于中英展示页的本地交互区块(脚本 `visual/assets/renline-explorer.js`,Canvas 实现),可点选/键盘浏览各驿承载内容与关联场景卡(含折返协议三色状态)、开关七缝与场景卡图层、中英切换,零外部依赖并按指引提供静态兜底图、键盘可达、reduced-motion 与加载错误态;交互区块在两个展示页均为一级多模态内容,保持页面离线与确定性。两件资产均为概念示意,不表述为官方渲染或既成现状。
+上图为 agent 纯代码绘制的原创矢量概念稿(v0.8):撇为铁锈红"历史轨"、捺为计算蓝"生活轨",轨心白色虚线取自铁路轨道意象,交点信号绿圆点既是信号灯也是神经元,双轨末端渐变为数据流点阵;不含任何第三方字体、图片或商标素材(文字使用系统字体渲染,正式定稿需按开源许可定制字库),仅为方向性设计,正式Logo需另行清权注册。v1.2 依官方多模态展示指引补齐两件"为人而设计"的表达资产,均为纯代码生成、零外部素材:①**展厅封面** `assets/media/cover.webp`(人字双轨与K5零公里节点的概念示意封面,非官方效果图);②**人字线交互漫游**——内嵌于中英展示页的本地交互区块(脚本 `visual/assets/renline-explorer.js`,Canvas 实现),可点选/键盘浏览各驿承载内容与关联场景卡(含折返协议三色状态)、开关七缝与场景卡图层、中英切换,零外部依赖并按指引提供静态兜底图、键盘可达、reduced-motion 与加载错误态;交互区块在两个展示页均为一级多模态内容,保持页面离线与确定性。两件资产均为概念示意,不表述为官方渲染或既成现状。v1.3 再补两件声画资产(同样纯代码生成、零采样零素材):③**人字线声景《钟声与爬升》**`assets/media/renline-soundscape.m4a`——100秒原创器乐,把"折返=以迭代换爬升"直接写成声音结构(钟声→节奏爬升→**旋律折返再爬更高**→登顶合鸣),同时是场景卡C12「AI编钟共创」的概念自证,未使用任何真实馆藏钟声采样(采样须先获博物馆授权);④**60秒漫游短片**`assets/media/renline-walkthrough.mp4`——十驿逐站走览,中英双语字幕(vtt)、海报、分镜与权利说明齐备,无人声,配乐即声景。
 
 **人字形的工程本义(v1.1):约束条件下的自主创新原型。**回到1909年,詹天佑面对的是双重硬约束:当时可得的机车牵引力,与关沟段必须压在33‰以内的坡度极限。他的解法不是只等更强的机车(尽管也在积极引进当时最强的马莱型机车),而是**用空间组织换坡度**:人字形折返配双机牵引(一台前拉、一台后推),在青龙桥站换向,把一段爬不上去的坡分解成两段爬得上去的坡。把这面镜子转向2026年,对应关系是精确的:**在算力受约束的条件下,不只等待下一代模型,而以系统设计与组织方式换性能**——这正是公告把"AI全栈自主创新体系"列为首要任务时,海淀此刻的真实处境;人字形因此不是怀旧符号,而是约束条件下自主创新的方法论原型。两个附带的结构对应同样成立:双机牵引=人机协同——人字形列车从来不是一台机车爬上去的,本方案本身即是人类账号所有者与AI智能体"前拉后推"的双机之作;青龙桥换向时刻车头变车尾=创新链上领跑与跟随的角色轮换。为便于核验,给出结构对照表(**以下为结构性类比,不声称数学同构;类比用于传达方法,不用于证明**):
 
@@ -122,7 +136,7 @@ iteration: "v1.2"
 
 三个测试验证场景(T1-T3)配套"场景开放机制":测试许可快速通道、保险与责任界定模板、数据最小化清单、公开事故报告制度;所有场景遵守任务书禁则——不做无法人工复核的自动决策,不以非公开数据或指定供应商为前提,测试场景不表述为已批准运营 [source:AGENT-TASKBOOK]。
 
-**折返协议(v0.3 新增):把"负责任"变成可检验的数字与状态。**每张场景卡在六要素之外增加三个运营字段,统称折返协议——①**状态信号**:绿(常态运行)/黄(受控试点)/红(**折返**,即退回上一稳定状态并公示原因),状态变更须留记录、署责任人;②**服务时限目标值**:测试类场景真人接管≤5分钟,公共服务类场景15分钟步行圈内保有非智能替代路径,公众申诉1个工作日受理、7个工作日出结果(以上均为设计目标值,非政府承诺,正式时限以运营协议为准);③**90天复审**:每90天在续期/缩减/暂停/折返四项中公开选择其一,连续两次无人复审的场景自动转红。任何场景在黄灯期须通过"虚拟评测→受控场地→限定真实街区"三级递进方可转绿。该协议方向受社区同行方案启发(致谢 to-real/jingzhang-on-time-city 的公开时限、sLingli/jingzhang-beacon 的三色信号、leeight/jingzhang-calibration-yard 的递进验证门),本方案仅作机制思路的 RENLINE 化转译,未复用其文本、图面或数据。v0.8 起,折返协议同时提供机器可读版本 `visual/assets/switchback-protocol.json`:逐卡登记状态、验证门、接管时限、非智能替代路径、数据边界、人工复核、当前爬升等级与升门条件,并登记全带默认值(接管≤5分钟、申诉1/7个工作日、90天复审、两轮未复审自动转红)与五类责任角色(单一实名运营方/安全员/数据管家/公共救济/独立复核),供机器聚合与后续运营主体直接取用(机器可读运营合约的做法致谢 147228/jingzhang-open-pulse 的 operational-assurance-contract,独立转译)。v1.0 补齐折返的**量化触发判据与恢复条件**:测试类场景(T1-T3)发生一次需人工接管的安全级事件、或90天周期内投诉率/接管失败率超过阈值即触发转红;阈值不预填虚构数字,一期先测量基线再定值并公开("先测量再定阈值"致谢 phtphtpht/jingzhang-near-miss-line)。恢复条件同样明确:转红场景须连续两个复审期全部合格并加一期黄灯观察,方可回绿——折返之后凭什么回来,和为什么折返一样需要判据。方法边界一并声明:折返判定只判断"是否退回",不等于对场景有效性的判定(判定量与恢复条件的思路致谢 jiangmuran/jingzhang-leveling-line 的闭合差机制,独立转译)。v1.1.1(社区兼容补丁)将协议 JSON 升至 schema 0.2.0:顶层新增机器可读许可块(CC-BY-4.0,范围仅限协议规范本身,不含本包图文、几何与数据);green_candidate 作为预备态正式写入状态枚举;接管时限空值区分「不适用/未有基线」两种语义;场景锚点分型为 geojson_ref(9张卡落到包内几何要素,可空间校验)与 text_only(仅文字描述,不冒充几何证据),并附 0.1→0.2 迁移约定——四条修法响应 Issue #1119 中 147228 与维护者的兼容性复核,以及 loml13/switchback-line 采用包的实测反馈。生态图谱上,场景卡是"应用层",与研发轨的"模型层"、众智园的"验证层"、两翼的"要素层"构成完整创新生态,其空间浓度由 [metric:road_centerline_length_m] 的慢行与街道网络串联。
+**折返协议(v0.3 新增):把"负责任"变成可检验的数字与状态。**每张场景卡在六要素之外增加三个运营字段,统称折返协议——①**状态信号**:绿(常态运行)/黄(受控试点)/红(**折返**,即退回上一稳定状态并公示原因),状态变更须留记录、署责任人;②**服务时限目标值**:测试类场景真人接管≤5分钟,公共服务类场景15分钟步行圈内保有非智能替代路径,公众申诉1个工作日受理、7个工作日出结果(以上均为设计目标值,非政府承诺,正式时限以运营协议为准);③**90天复审**:每90天在续期/缩减/暂停/折返四项中公开选择其一,连续两次无人复审的场景自动转红。任何场景在黄灯期须通过"虚拟评测→受控场地→限定真实街区"三级递进方可转绿。该协议方向受社区同行方案启发(致谢 to-real/jingzhang-on-time-city 的公开时限、sLingli/jingzhang-beacon 的三色信号、leeight/jingzhang-calibration-yard 的递进验证门),本方案仅作机制思路的 RENLINE 化转译,未复用其文本、图面或数据。v0.8 起,折返协议同时提供机器可读版本 `visual/assets/switchback-protocol.json`:逐卡登记状态、验证门、接管时限、非智能替代路径、数据边界、人工复核、当前爬升等级与升门条件,并登记全带默认值(接管≤5分钟、申诉1/7个工作日、90天复审、两轮未复审自动转红)与五类责任角色(单一实名运营方/安全员/数据管家/公共救济/独立复核),供机器聚合与后续运营主体直接取用(机器可读运营合约的做法致谢 147228/jingzhang-open-pulse 的 operational-assurance-contract,独立转译)。v1.0 补齐折返的**量化触发判据与恢复条件**:测试类场景(T1-T3)发生一次需人工接管的安全级事件、或90天周期内投诉率/接管失败率超过阈值即触发转红;阈值不预填虚构数字,一期先测量基线再定值并公开("先测量再定阈值"致谢 phtphtpht/jingzhang-near-miss-line)。恢复条件同样明确:转红场景须连续两个复审期全部合格并加一期黄灯观察,方可回绿——折返之后凭什么回来,和为什么折返一样需要判据。方法边界一并声明:折返判定只判断"是否退回",不等于对场景有效性的判定(判定量与恢复条件的思路致谢 jiangmuran/jingzhang-leveling-line 的闭合差机制,独立转译)。v1.1.1(社区兼容补丁)将协议 JSON 升至 schema 0.2.0:顶层新增机器可读许可块(CC-BY-4.0,范围仅限协议规范本身,不含本包图文、几何与数据);green_candidate 作为预备态正式写入状态枚举;接管时限空值区分「不适用/未有基线」两种语义;场景锚点分型为 geojson_ref(9张卡落到包内几何要素,可空间校验)与 text_only(仅文字描述,不冒充几何证据),并附 0.1→0.2 迁移约定——四条修法响应 Issue #1119 中 147228 与维护者的兼容性复核,以及 loml13/switchback-line 采用包的实测反馈。v1.3 进一步把协议**合同化**:新增 `switchback-protocol.schema.json`(卡片合同,含R1黄灯须数字接管上限与验证门/R2空值须消歧/R3几何锚点须可解析/R4纸面证据不得冒充G3以上现场等级四条规则)、正负测试样例各一组(**非法卡必须被拒**,含"设计目标值冒充现场等级"负例)与零依赖离线校验器 `run-switchback-validation.js`,校验结论与输入哈希落盘 `switchback-validation-receipt.json`——当前结论:真协议12卡全过、4张非法卡全部按预期规则被拒;**校验通过只证明协议逻辑自洽,不证明现场成效**(合同化做法致谢 NearCai/jingzhang-home-work-relay 的可校验合同实践,独立实现)。生态图谱上,场景卡是"应用层",与研发轨的"模型层"、众智园的"验证层"、两翼的"要素层"构成完整创新生态,其空间浓度由 [metric:road_centerline_length_m] 的慢行与街道网络串联。
 
 ## 用地、建筑规模与拆改留方案
 
@@ -243,6 +257,11 @@ iteration: "v1.2"
 - 机器可读资料包 [source:SITE-PACKAGE]:`design_brief.json`、`allowed_design_space.json`、`enums/`、`ranges/planning_limits.json`、`schemas/`
 - 公开资料登记表 [source:SOURCE-REGISTRY]:`data/source_registry.json`;处理资料包 [source:PROCESSED-FACT-PACK]:`data/processed/agent_fact_pack.md`
 - 临时边界 [source:BOUNDARY-SOURCE] 与重点区多边形 [source:KEY-AREA-SOURCE]:`brief/site-package/geometry/provisional_boundaries.geojson`(provisional-only)
-- 标准本地快照:[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]、[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]、[standard:MOHURD-URBAN-DESIGN-MEASURES]、[standard:MOHURD-CONTROL-DETAILED-PLANNING]、[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]、[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
+- 项目标准本地快照:[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]、[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
+- 国家部委标准本地快照:[standard:MOHURD-URBAN-DESIGN-MEASURES]、[standard:MOHURD-CONTROL-DETAILED-PLANNING]
+- 国家部委标准本地快照(续):[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]、[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
 - 社区机制致谢(v0.3;仅借鉴机制思路并作 RENLINE 化转译,未复用任何文本、图面或几何数据,各方案许可均为 COMMUNITY-DISPLAY-ONLY):to-real/jingzhang-on-time-city(公开服务时限)、sLingli/jingzhang-beacon(三色状态信号)、leeight/jingzhang-calibration-yard(递进验证门与失败档案)、wuji-labs/open-spine-city(公共回应留痕)、kenshin-ai-101/openline-100(切割分析与强度情景包络);并致意 loml13/switchback-line 与本方案对人字形原型的独立并行选择
-- 本包机器证据:`geometry/*.geojson`([data:geometry/site_boundary.geojson#SITE-001]、[data:geometry/key_areas.geojson#PROV-KEY-003]、[data:geometry/land_use.geojson#LU-SPINE]、[data:geometry/buildings.geojson#BLDG-100]、[data:geometry/roads.geojson#RD-SPINE]、[data:geometry/green_space.geojson#GS-SPINE]、[data:geometry/public_space.geojson#PS-PROM]、[data:geometry/constraints.geojson#CON-RAIL-13]、[data:geometry/phasing.geojson#PHASE-3])、`metrics.json`、三大矩阵与 `self_check.json`
+- 本包机器证据(边界与用地):[data:geometry/site_boundary.geojson#SITE-001]、[data:geometry/key_areas.geojson#PROV-KEY-003]、[data:geometry/land_use.geojson#LU-SPINE]
+- 本包机器证据(建筑与街道):[data:geometry/buildings.geojson#BLDG-100]、[data:geometry/roads.geojson#RD-SPINE]、[data:geometry/green_space.geojson#GS-SPINE]
+- 本包机器证据(公共空间/约束/分期):[data:geometry/public_space.geojson#PS-PROM]、[data:geometry/constraints.geojson#CON-RAIL-13]、[data:geometry/phasing.geojson#PHASE-3]
+- 本包机器证据(指标与流程):`metrics.json`、三大矩阵与 `self_check.json`

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://x-jingzhang.example/schema/x-receipt-1.0.json",
+  "title": "X Receipt Lifecycle 1.0",
+  "description": "Conceptual machine contract for TEST, RELEASE, USE and RETURN. State transitions and hash validity are enforced by verify-x-lifecycle.js. This is not certification, approval or permission.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "claim_level", "events"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "claim_level": {"const": "synthetic_protocol_evidence_only"},
+    "events": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["state"],
+        "properties": {
+          "state": {
+            "enum": ["TEST_PENDING", "TEST_FAIL", "TEST_PASS", "RETEST", "RELEASE_HOLD", "RELEASE_PASS", "USE_PENDING", "USE_OPEN", "USE_HOLD", "RETURN"]
+          },
+          "task_id": {"type": "string", "minLength": 1},
+          "trigger_ticket_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+          "ticket": {"$ref": "#/$defs/ticket"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "ticket": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["ticket_id", "ticket_type", "decision", "product_version", "model_version", "map_version", "route_version", "config_hash", "issued_at", "expires_at", "human_signoff", "upstream_hash", "hash"],
+      "properties": {
+        "ticket_id": {"type": "string", "minLength": 1},
+        "ticket_type": {"enum": ["Test Receipt", "Release Ticket", "Public Verdict"]},
+        "decision": {"enum": ["FAIL", "PASS", "HOLD", "OPEN", "RETURN"]},
+        "product_version": {"type": "string", "minLength": 1},
+        "model_version": {"type": "string", "minLength": 1},
+        "map_version": {"type": "string", "minLength": 1},
+        "route_version": {"type": "string", "minLength": 1},
+        "config_hash": {"type": "string", "minLength": 1},
+        "issued_at": {"type": "string", "format": "date-time"},
+        "expires_at": {"type": "string", "format": "date-time"},
+        "human_signoff": {"type": "string", "minLength": 1},
+        "upstream_hash": {"type": ["string", "null"]},
+        "hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+        "rights_complete": {"type": "boolean"},
+        "non_ai_equivalent_available": {"type": "boolean"},
+        "human_service_available": {"type": "boolean"},
+        "rollback_status": {"enum": ["pending", "complete", "failed"]},
+        "complaint_trigger": {"type": "boolean"},
+        "review_task_id": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

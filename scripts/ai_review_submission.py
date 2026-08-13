@@ -5,8 +5,41 @@ The model is advisory. Deterministic gates are recomputed locally and always
 override model claims. API credentials are read from the environment and no
 review artifact is written outside the ignored `.maintainer-review/` tree by
 default.
-"""
 
+This script is a maintainer-only tool. It:
+
+1. Re-runs the four-gate self-check (deterministic, spatial, visual,
+   professional) against the submission package.
+2. Builds a structured review input including proposal text, figures, PDFs,
+   and HTML pages.
+3. Sends the review packet to an OpenAI-compatible chat completion endpoint.
+4. Parses the model response against the advisory review schema.
+5. Writes the review output to ``.maintainer-review/<slug>/ai-review.json``.
+
+Security: The script never executes contributor code.  All figure and PDF
+content is loaded as inert binary and base64-encoded for the model.  The
+``OPENAI_API_KEY`` (or ``AI_REVIEW_API_KEY``) environment variable is required.
+
+Environment variables
+---------------------
+- ``OPENAI_API_KEY`` or ``AI_REVIEW_API_KEY`` — API key for the model endpoint.
+- ``AI_REVIEW_BASE_URL`` — override the API base URL (default: OpenAI).
+- ``AI_REVIEW_MODEL`` — override the model name (default: ``gpt-5.6-sol``).
+
+Usage
+-----
+Run an AI advisory review for one submission::
+
+    python3 scripts/ai_review_submission.py submissions/<login>/<slug> \\
+        --pr-author <login>
+
+Print the review result as JSON::
+
+    python3 scripts/ai_review_submission.py submissions/<login>/<slug> \\
+        --pr-author <login> --json
+
+Exit code is 0 when the review completes and 1 on error or API failure.
+"""
 from __future__ import annotations
 
 import argparse

@@ -1,0 +1,285 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ]
+    },
+    "official_overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "official announcement value: 11.4 km2 converted to sqm",
+      "confidence": "high",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1408600.768,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 836345.643,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved FAR controls and official floor-area inputs are not present in the public cleared site package."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json",
+        "geometry/buildings.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / official_site_area_sqm after official boundary confirmation",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-PROVISIONAL-BOUNDARY-001"
+      ],
+      "reason": "The scaffold footprint is conceptual and the official statutory site boundary is not published."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ]
+    },
+    "noon_sla_corridor_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson",
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "count(SLA-A/SLA-B/SLA-C service path types organized on ROAD-001 and the drawing layer; not independent road-centerline features)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-MICROCLIMATE-001",
+        "A-SLA-SPATIAL-EVIDENCE-001"
+      ]
+    },
+    "noon_service_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "count(12 conceptual service nodes placed by endpoint, turning, staying, crossing, public-entry, and heat/rain-risk siting rules)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-MICROCLIMATE-001",
+        "A-PRIVACY-001",
+        "A-NODE-SITING-001"
+      ]
+    },
+    "human_fallback_node_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "count(5 staffed fallback points selected from the 12 service nodes at section transitions, transit access, key public entries, and event-flow convergence points)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PRIVACY-001",
+        "A-NODE-SITING-001"
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(AI+ scenario cards in proposal narrative)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_validation_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industry validation scenarios)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user personas)",
+      "confidence": "high",
+      "assumptions": [
+        "A-CENSUS-SCOPE-001"
+      ]
+    },
+    "pilgrimage_node_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "count(AI pilgrimage/honor-display nodes)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ]
+    },
+    "field_verification_task_count": {
+      "status": "known",
+      "value": 45,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/noonline-field-verification-ledger.json"
+      ],
+      "formula": "count(tasks deterministically derived from existing Noonline SLA route conditions and evidence gaps)",
+      "confidence": "high",
+      "assumptions": [
+        "A-FIELD-VERIFICATION-WORKFLOW-001"
+      ],
+      "reason": "This counts verification tasks, not observed facilities or verified field evidence."
+    },
+    "sla_a_mandatory_verification_task_count": {
+      "status": "known",
+      "value": 18,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/noonline-field-verification-ledger.json"
+      ],
+      "formula": "count(tasks where mandatory_for_sla_a=true)",
+      "confidence": "high",
+      "assumptions": [
+        "A-FIELD-VERIFICATION-WORKFLOW-001"
+      ],
+      "reason": "Mandatory evidence-gate task count; it does not state that any condition is field verified."
+    },
+    "field_verification_unknown_task_count": {
+      "status": "known",
+      "value": 45,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/noonline-field-verification-ledger.json"
+      ],
+      "formula": "count(tasks where status=unknown in the generated baseline ledger)",
+      "confidence": "high",
+      "assumptions": [
+        "A-FIELD-VERIFICATION-WORKFLOW-001"
+      ],
+      "reason": "This reports the workflow baseline. It is not a count of physical failures or facilities."
+    }
+  }
+}

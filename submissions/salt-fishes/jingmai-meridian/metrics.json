@@ -1,0 +1,551 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "description": "总体设计范围面积（overall_design_area，provisional polygon 复算；官方公告 11.4 km²=11400000 m²）",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "brief/site-package/design_brief.json",
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "polygon_area(submitted_site_boundary, EPSG:4548)=11412825.386; official_announcement_declared_area=11400000 (11.4 km^2)",
+      "confidence": "medium",
+      "assumptions": [
+        "总体设计范围边界为临时粗略替代边界（official_boundary=false），不得作为审批依据。"
+      ]
+    },
+    "site_area_calculated_sqm": {
+      "status": "known",
+      "description": "总体设计范围 provisional polygon 复算面积（EPSG:4548，与 site_area_sqm 一致）",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "总体设计范围边界为临时粗略替代边界（official_boundary=false），不得作为审批依据。"
+      ]
+    },
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "description": "统筹研究范围面积（coordinated_research_area）",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json",
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_announcement_declared_coordinated_research_area(43.6 km^2)",
+      "confidence": "medium",
+      "assumptions": [
+        "统筹研究范围官方精界 polygon 未释出，面积依据 design_brief.json 的 official_text_area_and_boundary_description，不得作为审批依据。"
+      ]
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "description": "重点区域范围面积（三核合计，key_detailed_design_area）",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "brief/site-package/design_brief.json",
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(announced_key_area_areas)=1921000+1043000+720000",
+      "confidence": "medium",
+      "assumptions": [
+        "三核官方精界未释出，面积基于 provisional_boundaries，官方精界到达后重算。"
+      ]
+    },
+    "zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "description": "众智园AI加速区面积（zhongzhiyuan_ai_acceleration_area，北核）",
+      "value": 1921000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "official_announced_area(PROV-KEY-001); area_sqm_calculated=1929201.877",
+      "confidence": "medium",
+      "assumptions": [
+        "三核官方精界未释出，面积基于 provisional_boundaries，官方精界到达后重算。"
+      ]
+    },
+    "beijing_ai_origin_area_sqm": {
+      "status": "known",
+      "description": "AI原点社区面积（beijing_ai_origin_community，中核）",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "official_announced_area(PROV-KEY-002); area_sqm_calculated=1043236.909",
+      "confidence": "medium",
+      "assumptions": [
+        "三核官方精界未释出，面积基于 provisional_boundaries，官方精界到达后重算。"
+      ]
+    },
+    "dazhongsi_area_sqm": {
+      "status": "known",
+      "description": "大钟寺AI产业集群面积（dazhongsi_ai_industry_cluster，南核）",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "official_announced_area(PROV-KEY-003); area_sqm_calculated=720454.221",
+      "confidence": "medium",
+      "assumptions": [
+        "三核官方精界未释出，面积基于 provisional_boundaries，官方精界到达后重算。"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "三核官方精界未释出，面积基于 provisional_boundaries，官方精界到达后重算。"
+      ]
+    },
+    "cultural_axis_length_m": {
+      "status": "known",
+      "value": 9000,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/green_space.geojson"
+      ],
+      "formula": "京张文化主脉南北总长约9公里（目标值）",
+      "confidence": "medium",
+      "assumptions": [
+        "蓝绿指标为目标值非现状。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "description": "绿地率空间复算值（green_space 图层仅含 G 绿地广场类，不含 E 生态绿地；目标值见 target_green_ratio）",
+      "value": 0.209845,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm（spatial recomputation from current geometry，仅含 G 类）",
+      "confidence": "medium",
+      "assumptions": [
+        "总体设计范围边界为临时粗略替代边界（official_boundary=false），不得作为审批依据。"
+      ]
+    },
+    "target_green_ratio": {
+      "status": "known",
+      "description": "目标绿地率（G 绿地广场 15% + E 生态绿地 15%，为更新后目标构型）",
+      "value": 0.3,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "target_ratio(G)+target_ratio(E)=15%+15%",
+      "confidence": "low",
+      "assumptions": [
+        "用地结构为目标值非现状，依靠存量功能置换实现。",
+        "green_space.geojson 图层仅含 G 类，空间复算绿地率见 green_ratio。"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2394921.508,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space_features))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_R_ratio": {
+      "status": "known",
+      "value": 0.28,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "target_ratio(residential)=28%",
+      "confidence": "medium",
+      "assumptions": [
+        "用地结构为目标值非现状，依靠存量功能置换实现。"
+      ]
+    },
+    "land_use_A_ratio": {
+      "status": "known",
+      "value": 0.2,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "target_ratio(AI_research)=20%",
+      "confidence": "medium",
+      "assumptions": [
+        "用地结构为目标值非现状，依靠存量功能置换实现。"
+      ]
+    },
+    "land_use_B_ratio": {
+      "status": "known",
+      "value": 0.1,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "target_ratio(commercial)=10%",
+      "confidence": "medium",
+      "assumptions": [
+        "用地结构为目标值非现状，依靠存量功能置换实现。"
+      ]
+    },
+    "land_use_C_ratio": {
+      "status": "known",
+      "value": 0.05,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "target_ratio(cultural)=5%",
+      "confidence": "medium",
+      "assumptions": [
+        "用地结构为目标值非现状，依靠存量功能置换实现。"
+      ]
+    },
+    "land_use_G_ratio": {
+      "status": "known",
+      "value": 0.15,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "target_ratio(green_plaza)=15%",
+      "confidence": "medium",
+      "assumptions": [
+        "用地结构为目标值非现状，依靠存量功能置换实现。"
+      ]
+    },
+    "land_use_E_ratio": {
+      "status": "known",
+      "value": 0.15,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "target_ratio(ecological)=15%",
+      "confidence": "medium",
+      "assumptions": [
+        "用地结构为目标值非现状，依靠存量功能置换实现。"
+      ]
+    },
+    "land_use_T_ratio": {
+      "status": "known",
+      "value": 0.04,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "target_ratio(transport)=4%",
+      "confidence": "medium",
+      "assumptions": [
+        "用地结构为目标值非现状，依靠存量功能置换实现。"
+      ]
+    },
+    "land_use_U_ratio": {
+      "status": "known",
+      "value": 0.03,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "target_ratio(municipal)=3%",
+      "confidence": "medium",
+      "assumptions": [
+        "用地结构为目标值非现状，依靠存量功能置换实现。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 111816.454,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.007628,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 87054.545,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space_features))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方控规容积率条件尚未释出，方案仅给出概念性 FAR 目标建议（三核 1.5-4.0），不作为法定结论。"
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_height_controls",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方建筑高度控制尚未释出，方案给出概念性高度建议（18-50m），不作为法定结论。"
+    },
+    "walkability_network_density": {
+      "status": "known",
+      "value": 9.0,
+      "unit": "index",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "慢行网络密度目标值8-10 km/km^2，取中位9.0",
+      "confidence": "medium",
+      "assumptions": [
+        "交通指标为目标值非现状。"
+      ]
+    },
+    "transit_coverage_800m": {
+      "status": "known",
+      "value": 0.8,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "轨道站点800m覆盖率目标值≥80%",
+      "confidence": "medium",
+      "assumptions": [
+        "交通指标为目标值非现状。"
+      ]
+    },
+    "barrier_free_coverage": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "无障碍覆盖率目标值100%",
+      "confidence": "medium",
+      "assumptions": [
+        "交通指标为目标值非现状。"
+      ]
+    },
+    "blue_green_network_density": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "index",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/roads.geojson"
+      ],
+      "formula": "蓝绿网络密度目标值≥3 km/km^2",
+      "confidence": "medium",
+      "assumptions": [
+        "蓝绿指标为目标值非现状。"
+      ]
+    },
+    "per_capita_park_green_sqm": {
+      "status": "known",
+      "value": 15,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "人均公园绿地目标值≥15 m^2",
+      "confidence": "low",
+      "assumptions": [
+        "蓝绿指标为目标值非现状。"
+      ]
+    },
+    "sponge_city_rate": {
+      "status": "known",
+      "value": 0.7,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "海绵城市达标率目标值≥70%",
+      "confidence": "low",
+      "assumptions": [
+        "蓝绿指标为目标值非现状。"
+      ]
+    },
+    "scenario_count": {
+      "status": "known",
+      "description": "空间挂接场景数量（6 个注册 scenario + 2 个非注册场景描述：青年友好公共空间、产业生态智能体）",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "scenarios/*.json"
+      ],
+      "formula": "8 个与九节点空间挂接的场景；场景卡总数见 scenario_card_count",
+      "confidence": "medium",
+      "assumptions": [
+        "AI 场景为概念建议，非已实施。",
+        "非注册场景（青年友好公共空间、产业生态智能体）为方案扩展描述，不在 scenarios/ 注册表。"
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "description": "AI 场景卡总数（10 张 = 6 注册场景 + 2 非注册场景 + 2 扩展场景：开源发布厅、数据要素会客厅）",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "scenarios/*.json"
+      ],
+      "formula": "10 张场景卡 = scenario_count(8) + 2 个扩展场景",
+      "confidence": "medium",
+      "assumptions": [
+        "AI 场景为概念建议，非已实施。",
+        "场景卡以正文与 visual/index.html 的映射表表达。"
+      ]
+    },
+    "governance_loop_coverage": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "经络五步闭环覆盖目标值100%（公开资料读取→方案推演→公众反馈→人工复核→风险提示）",
+      "confidence": "low",
+      "assumptions": [
+        "治理机制为概念建议，实施须遵循法定程序。"
+      ]
+    },
+    "party_leadership_coverage": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "党建引导七项职能全面贯穿覆盖率目标值100%",
+      "confidence": "low",
+      "assumptions": [
+        "治理机制为概念建议，实施须遵循法定程序。"
+      ]
+    },
+    "human_review_coverage": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "人工复核覆盖率目标值100%（清华园反馈站为核心复核穴位）",
+      "confidence": "low",
+      "assumptions": [
+        "治理机制为概念建议，实施须遵循法定程序。",
+        "AI 场景为概念建议，非已实施。"
+      ]
+    },
+    "meridian_connectivity": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/green_space.geojson"
+      ],
+      "formula": "经络贯通率目标值100%",
+      "confidence": "low",
+      "assumptions": [
+        "AI 场景为概念建议，非已实施。"
+      ]
+    },
+    "public_participation_channels": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "公众参与渠道数量目标值≥9（九节点各嵌反馈渠道）",
+      "confidence": "low",
+      "assumptions": [
+        "治理机制为概念建议，实施须遵循法定程序。"
+      ]
+    },
+    "node_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "九节点数量（三核+六场景节点）",
+      "confidence": "medium",
+      "assumptions": [
+        "AI 场景为概念建议，非已实施。"
+      ]
+    },
+    "phasing_period_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "分期数量（一期试点/二期三核/三期九节/四期进化）",
+      "confidence": "medium",
+      "assumptions": [
+        "分期时间为概念建议。"
+      ]
+    }
+  }
+}

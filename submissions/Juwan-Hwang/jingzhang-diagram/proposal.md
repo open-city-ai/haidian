@@ -8,12 +8,7 @@ author_github: "Juwan-Hwang"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 status: "正式提交包主件；融合多个 agent 与模型的输出再创作，统一于 provisional 边界纪律"
-summary: >-
-  以铁路的总谱——运行图——为元概念，把百年京张创新带设计为一座"按图行车的城市"：
-  空间上，以人字折返单元为空间操作系统；治理上，把铁路安全四制（信号·闭塞·联锁·路票）
-  完整转译为 AI 进城治理协议；度量上，以创新回路延迟（ILL）与运行图准点率为核心KPI；
-  精神上，以詹天佑"各出所学、各尽所知"为开源城市宪法。全部空间与数值均为概念建议，
-  待官方边界与控规发布后按 EPSG:4548 复算。
+summary: "以铁路的总谱——运行图——为元概念，把百年京张创新带设计为一座“按图行车的城市”：空间上，以人字折返单元为空间操作系统；治理上，把铁路安全四制（信号·闭塞·联锁·路票）完整转译为 AI 进城治理协议；度量上，以创新回路延迟（ILL）与运行图准点率为核心KPI；精神上，以詹天佑“各出所学、各尽所知”为开源城市宪法。全部空间与数值均为概念建议，待官方边界与控规发布后按 EPSG:4548 复算。"
 tracks:
   - ai-traffic-walkability
   - enterprise-services-ecosystem
@@ -28,7 +23,7 @@ scenarios:
 ## 百年京张 AI 创新带城市设计方案
 
 > **1909 年，詹天佑用一条人字线回答了山的提问，用"各出所学、各尽所知"回答了人的提问。**
-> **2019 年，京张高铁用世界首条智能铁路回答了速度的提问。**
+> **2019 年，京张高铁用世界首条智能高铁回答了速度的提问。**
 > **2026 年，我们用一张运行图回答智能的提问——让每一次创新按图行车，让每一个人随时下车。**
 >
 > **The railway that taught China to climb now runs on a diagram written by everyone.**
@@ -39,17 +34,17 @@ scenarios:
 
 本正式方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据 [source:OFFICIAL-ANNOUNCEMENT]，并以 `brief/site-package/` 中经维护者登记的临时粗略边界、重点区域、枚举、指标和来源清单为机器可读依据 [source:SITE-PACKAGE] [source:AGENT-TASKBOOK]。生成前必须读取 `design_brief.json`、`allowed_design_space.json`、`sources.json`、`enums/`、`ranges/`、`schemas/`、`data/source_registry.json` 与 `data/processed/agent_fact_pack.md`，并用 `project_scope_summary.csv`、`agent_task_requirements.csv`、`source_use_matrix.csv`、`missing_data_checklist.csv` 建立任务、范围、资料用途和缺口清单 [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK]。所有设计判断都要拆分为可追溯来源、可复算指标、可校验图层和可人工复核假设。
 
-**统一纪律（硬约束）**：本方案全部空间落地建议均为概念建议、参考方案或可供专业团队深化研究；不冒充法定控制线，不虚构容积率/建筑高度/密度/绿地率，不虚构企业、投资额、产值、政策承诺或工程可行性。官方精确边界（SITE_BOUNDARY / KEY_AREA polygon）、控规指标与现状数据目前缺失，本方案基于官方文本四至与面积数据展开概念设计，正式打包阶段采用仓库临时边界并显著标注 `provisional`，承诺按 EPSG:4548 复算 [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]。
+**统一纪律（硬约束）**：本方案全部空间落地建议均为概念建议、参考方案或可供专业团队深化研究；不冒充法定控制线，不虚构容积率/建筑高度/密度/绿地率，不虚构企业、投资额、产值、政策承诺或工程可行性。官方精确边界（SITE_BOUNDARY / KEY_AREA polygon）、控规指标与现状数据目前缺失，本方案基于官方文本四至与面积数据展开概念设计，正式打包阶段采用仓库临时边界并显著标注 `provisional`，承诺按 EPSG:4548 复算 [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE] [assumption:A-CONTROLS-001]。
 
 资料登记表的使用边界如下 [source:SOURCE-REGISTRY]：`data/source_registry.json` 登记公开、清权与临时资料的用途边界；当前登记摘要为 formal 可用资料、背景资料与 provisional-only 资料三类。agent 不得把 background_only 或 provisional_only 资料升级为 official boundary、法定控规、正式评分依据或政府实施承诺。`data/processed/agent_fact_pack.md` 是本方案的阅读导航层，不是新的权威来源 [source:PROCESSED-FACT-PACK]。
 
 ![方案总览：运行图元概念与四次"第一"叠印](assets/figures/site-overview.png)
 
-本方案在官方 `SITE_BOUNDARY` 或三处 `KEY_AREA` 尚未取得时，使用 `brief/site-package/geometry/provisional_boundaries.geojson` 生成临时 formal 包 [source:BOUNDARY-SOURCE]。提交包中的 `geometry/site_boundary.geojson` 与 `geometry/key_areas.geojson` 均标注为 `provisional_constraint`、`official_boundary=false`，只能用于方案生成、自检、可视化和设计讨论，不能作为 official redline、审批依据、精确面积依据或法定控制结论 [data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm] [depth:existing_conditions_diagnosis]。该组织方数据缺口本身不阻断内容评分；替换 official polygons 后，site boundary、key areas、land use、roads、green space、public space、buildings、phasing 和 metrics 均需重算。
+本方案在官方 `SITE_BOUNDARY` 或三处 `KEY_AREA` 尚未取得时，使用 `brief/site-package/geometry/provisional_boundaries.geojson` 生成临时 formal 包 [source:BOUNDARY-SOURCE]。提交包中的 `geometry/site_boundary.geojson` 与 `geometry/key_areas.geojson` 均标注为 `provisional_constraint`、`official_boundary=false`，只能用于方案生成、自检、可视化和设计讨论，不能作为 official redline、审批依据、精确面积依据或法定控制结论 [data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm] [depth:existing_conditions_diagnosis]。该组织方数据缺口本身不阻断内容评分；替换 official polygons 后，site boundary、key areas、land use、roads、green space、public space、buildings、phasing 和 metrics 均需重算 [self_check:SPATIAL_REVIEW]。
 
 ## 三层范围工作框架
 
-方案按照公告确定的三个层次组织工作 [source:OFFICIAL-ANNOUNCEMENT]：统筹研究范围关注 43.6 平方公里的 AI 产业生态、战略定位、创新链和未来城市形态；总体设计范围关注 11.4 平方公里京张遗址公园周边 1-2 公里城市地区和产业区，要求形成城市更新总体框架、产业空间布局、交通市政支撑和城市风貌控制；重点区域范围关注 368.4 公顷三处详细设计地区，要求明确功能业态、建筑规模、拆改留分类、公共空间连通和交通组织。三层范围在 `compliance_matrix.json` 中逐条映射，保证公告 1.3、1.4、1.5 与 agent.1-agent.6 的必选任务都有章节、图层、指标、图纸和 HTML 证据 [depth:three_level_scope_framework] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
+方案按照公告确定的三个层次组织工作 [source:OFFICIAL-ANNOUNCEMENT]：统筹研究范围关注 43.6 平方公里的 AI 产业生态、战略定位、创新链和未来城市形态；总体设计范围关注 11.4 平方公里京张遗址公园周边 1-2 公里城市地区和产业区，要求形成城市更新总体框架、产业空间布局、交通市政支撑和城市风貌控制；重点区域范围关注 368.4 公顷三处详细设计地区，要求明确功能业态、建筑规模、拆改留分类、公共空间连通和交通组织。三层范围在 `compliance_matrix.json` 中逐条映射，保证公告 1.3、1.4、1.5 与 agent.1-agent.6 的必选任务都有章节、图层、指标、图纸和 HTML 证据 [depth:three_level_scope_framework] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [self_check:PROFESSIONAL_EVIDENCE]。
 
 | 层级 | 官方范围 | 本方案概念动作 |
 |---|---|---|
@@ -90,7 +85,7 @@ scenarios:
 
 ### 核心命题：一座按图行车的城市
 
-这块地真正不可复制的是同一走廊上的三次"世界第一/第一"叠印 [source:OFFICIAL-ANNOUNCEMENT]：1909 自主——首条由中国人自行设计建造的干线铁路，詹天佑面对 33‰ 坡度以人字形折返线回应用拓扑换坡度、用折返换可逆；1980s 创业——中关村电子一条街，中国市场化科技创新的原点；2019 智能——世界首条智能高铁，实现时速 350 公里级自动驾驶与北斗应用（公开报道口径，正式阶段以权威来源核定）；2026 共生——人类第一次要回答人与智能以何种坡度共同爬升。**京张基因里本就有"自动驾驶的铁路"**——这是此前所有方案都漏掉的关键锚点。詹天佑"各出所学，各尽所知"据公开史料归于勉励青年工学家，正式提交前以权威来源逐字核定；这是 1909 年写下的开源宣言，本方案把它立为精神宪法 [depth:overall_spatial_structure]。
+这块地真正不可复制的是同一走廊上的三次"世界第一/第一"叠印 [source:OFFICIAL-ANNOUNCEMENT]：1909 自主——首条由中国人自行设计建造的干线铁路，詹天佑面对 33‰ 坡度以人字形折返线回应用拓扑换坡度、用折返换可逆；1980s 创业——中关村电子一条街，中国市场化科技创新的原点；2019 智能——世界首条时速 350 公里的智能化高铁，实现 350 公里级自动驾驶与北斗应用（据交通运输部部长 2025 年全国两会表述 [source:AUTHORITY-MOT-2025]）；2026 共生——人类第一次要回答人与智能以何种坡度共同爬升。**京张基因里本就有"自动驾驶的铁路"**——这是此前所有方案都漏掉的关键锚点。詹天佑"各出所学，各尽所知"出自 1914 年汉口欧美同学恳亲会演说，原文为"各出所学，各尽所知，使国家富强，不受外侮，足以自立于地球之上" [source:BAIKE-ZHANTIANYOU]；这是 1914 年——京张铁路建成五年后——写下的开源宣言，本方案把它立为精神宪法 [depth:overall_spatial_structure] [assumption:A-FACT-ZHANTIANYOU-001] [assumption:A-FACT-SMART-HSR-2019-002]。
 
 ### 元概念：运行图——铁路的总谱
 
@@ -260,7 +255,7 @@ AI 研究者（算力、场景、同行 → 试车线测试场、原点礼堂发
 ```
 第一幕 · 1909 自主   → 山在那里，詹天佑的回答是"人"字——以智取胜；他说，各出所学，各尽所知
 第二幕 · 1980s 创业  → 体制的高坡在那里，中关村的回答是市场——以智立业
-第三幕 · 2019 智能   → 速度的极限在那里，京张高铁的回答是智能——世界首条智能铁路
+第三幕 · 2019 智能   → 速度的极限在那里，京张高铁的回答是智能——世界首条智能高铁
 第四幕 · 2026 共生   → 智能的坡度在那里，我们的回答是"人本"——以人定局，按图行车
 ```
 
@@ -283,7 +278,7 @@ AI 研究者（算力、场景、同行 → 试车线测试场、原点礼堂发
 
 ### 文化红线
 
-不歪曲历史事实；不把文化当作科技装饰；不使用未授权肖像、商标与版权材料；全部史实表述在正式打包阶段以权威史料二次核定（核定清单见 assumptions.json 的 A-HIST 系列条目）。
+不歪曲历史事实；不把文化当作科技装饰；不使用未授权肖像、商标与版权材料；全部史实表述已据公开权威来源核定（核定结果见 assumptions.json 的 A-FACT 系列条目）[assumption:A-FACT-OPENING-DATE-003]。
 
 ## 更新项目清单、实施政策与分期计划
 
@@ -330,13 +325,13 @@ AI Urban Performance Index：Innovation Loop Latency / 场景可达性 / 实验�
 
 ## 风险、版权与合规说明
 
-1. **法定边界**：本方案所有空间落地建议均为概念建议、参考方案或可供专业团队深化研究，不替代正式规划，不构成政府审定结论 [depth:risk_missing_data]。
+1. **法定边界**：本方案所有空间落地建议均为概念建议、参考方案或可供专业团队深化研究，不替代正式规划，不构成政府审定结论 [depth:risk_missing_data] [self_check:DETERMINISTIC_VALIDATION]。
 2. **数据边界**：官方精确边界 polygon、控规指标、现状测绘、土地权属、市政管线与文保测绘均未公开获得；凡涉及容积率、高度、拆改留结论、道路线位与投资测算一律列为待确认 [data:geometry/constraints.geojson]。
-3. **事实风险**：詹天佑题词、京张高铁"世界首条智能高铁"表述、通车纪念日等史实均按公开来源定性引用，正式提交前逐条以权威来源核定 [source:OFFICIAL-ANNOUNCEMENT]。
+3. **事实风险**：詹天佑"各出所学，各尽所知"题词（1914 年汉口欧美同学恳亲会演说）、京张高铁"世界首条时速 350 公里的智能化高铁"表述（交通运输部部长 2025 年全国两会表述）、京张铁路通车纪念日（1909 年 10 月 2 日南口通车典礼；全线开行列车为 9 月 24 日）等史实已据公开权威来源核定，详见 assumptions.json [source:BAIKE-ZHANTIANYOU] [source:AUTHORITY-MOT-2025]。
 4. **技术风险**：自动驾驶、机器人、算力耦合等场景均设为限速限区可逆试验，保留人类最终决定权与退出预案。
 5. **社会风险**：遗产活化可能带来绅士化压力——以社区嵌入计划、原地居民荣誉体系与公共服务增量对冲（借鉴高线公园教训）。
 6. **治理风险**：监管机构被利益俘获的风险——以独立审计、开源优先、公开约束手册与拒绝凭证公开制度对冲。
-7. **版权**：不使用未授权字体、图像、商标与人物肖像；Logo 仅提供方向描述；组件库以开源许可发布。
+7. **版权**：不使用未授权字体、图像、商标与人物肖像；Logo 仅提供方向描述；组件库以开源许可发布 [self_check:VISUAL_PACKAGING]。
 8. **生成披露**：本方案由 AI 智能体融合多个 agent 与模型的输出后再创作，方法与局限按共创宪章披露。最终方案文本由 Kimi K3 × WorkBuddy 融合生成；正式提交包由 DeepSeek V4 Flash × Trae 完成，创作链见 `agent.json`。
 
 **底线清单（全文适用）**：不把 provisional boundary 写成官方红线；不虚构 FAR/高度/密度/绿地率；不虚构企业、投资额、产值；不虚构政策承诺；不虚构工程可行性；不把 AI 测试写成已批准运营；不使用未授权素材；不使用个人隐私或非公开数据；不把 AI 变成监控城市；不使用"冠军/最佳"等自封表述。
@@ -349,4 +344,4 @@ AI Urban Performance Index：Innovation Loop Latency / 场景可达性 / 实验�
 - 来源登记表 data/source_registry.json 与处理后事实包 data/processed/agent_fact_pack.md [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK]
 - 临时粗略边界与重点区域 geometry/provisional_boundaries.geojson [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]
 - 专业标准：城市设计管理办法、控规深度要求、用地分类指南（见 standard_matrix.json）[standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]
-- 待后续以权威来源核定的史实：詹天佑"各出所学，各尽所知"题词、京张高铁"世界首条智能高铁"表述、通车纪念日（见 assumptions.json）
+- 已核定史实：詹天佑"各出所学，各尽所知"题词（1914 年汉口欧美同学恳亲会演说）、京张高铁"世界首条时速 350 公里的智能化高铁"表述（交通运输部 2025 年表述）、京张铁路通车纪念日（1909 年 10 月 2 日南口通车典礼）（见 assumptions.json）

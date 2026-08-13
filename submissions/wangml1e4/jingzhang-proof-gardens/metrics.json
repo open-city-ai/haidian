@@ -1,0 +1,244 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Denominator is the submitted provisional geometry and is not a statutory or precise site area."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1434847.304,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(conceptual_green_space, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Denominator is the submitted provisional geometry and is not a statutory or precise site area."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 62918.757,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(conceptual_public_space, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Denominator is the submitted provisional geometry and is not a statutory or precise site area."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 43680.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(conceptual_test_fit_footprints, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual test fits only; no existing-building, demolition, or approved-scale claim."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.125722,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / submitted_provisional_site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Denominator is the submitted provisional geometry and is not a statutory or precise site area."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.005513,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / submitted_provisional_site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Denominator is the submitted provisional geometry and is not a statutory or precise site area."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required_key_area_features)",
+      "confidence": "high",
+      "assumptions": [
+        "Names and count follow the announcement; polygons remain provisional."
+      ]
+    },
+    "ai_scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "design_depth_matrix.json"
+      ],
+      "formula": "count(bilingual_scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(industry_validation_protocols)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(non-tracking_design_personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(proposed_pilgrimage_and_honour_nodes)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(evidence_gated_project_list)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "requires official professional inputs",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official parcel/site boundaries are not published."
+    },
+    "maximum_building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "requires official professional inputs",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official height controls and verified existing buildings are not published."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "requires official professional inputs",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official parcel controls and a verified building survey are not published."
+    },
+    "statutory_green_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "requires official professional inputs",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved green-space controls and an official boundary are not published."
+    },
+    "road_redline_length_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "requires official professional inputs",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official road redlines and engineering alignments are not published."
+    },
+    "demolition_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "requires official professional inputs",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Existing-building condition, ownership, heritage, and structural surveys are not published."
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "requires official professional inputs",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved development intensity or architectural schedule is available."
+    }
+  }
+}

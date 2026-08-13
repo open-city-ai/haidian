@@ -5,8 +5,48 @@ This maintainer tool deliberately keeps deterministic Markdown structure and
 machine-readable evidence references unchanged while translating prose with a
 local language model.  It writes one submission at a time so a long run can be
 resumed safely.
-"""
 
+The script translates an existing ``proposal.md`` (or its counterpart) into
+the missing language and writes the result as a standalone sibling file
+(``proposal.en.md`` or ``proposal.zh.md``).  It never modifies the primary
+proposal; it only creates new files.
+
+Requirements
+------------
+Install the translation dependency group before running::
+
+    python3 -m pip install -r requirements-translation.txt
+
+The default model is ``Qwen/Qwen2.5-3B-Instruct`` via the
+``transformers`` pipeline.  On Apple Silicon, ``mlx-community/Qwen2.5-7B-Instruct-4bit``
+is used automatically when MLX is available.
+
+Translation preserves
+---------------------
+- YAML front matter (translated front matter fields are added, not replaced).
+- ATX headings structure and nesting.
+- Evidence markers (``[source:...]``, ``[depth:...]``, etc.) unchanged.
+- Inline images and figure paths unchanged.
+- Fenced code blocks unchanged.
+- Markdown links unchanged.
+
+Usage
+-----
+Backfill all merged submissions::
+
+    python3 scripts/backfill_bilingual_submissions.py
+
+Backfill a specific submission::
+
+    python3 scripts/backfill_bilingual_submissions.py \\
+        --only submissions/alice/my-proposal
+
+Dry run without writing files::
+
+    python3 scripts/backfill_bilingual_submissions.py --dry-run
+
+Exit code is 0 on success and 1 when any submission fails to translate.
+"""
 from __future__ import annotations
 
 import argparse

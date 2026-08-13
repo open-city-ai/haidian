@@ -1,0 +1,175 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "calculation_note": "All spatial metrics are recalculated from submitted GeoJSON in EPSG:4548; provisional boundary limits precision.",
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional rough boundary is used pending official geometry."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual design footprint layer."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual green-space layer."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual public-space layer."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official FAR controls and official boundary are not present."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "Key-area polygons remain provisional."
+      ]
+    },
+    "robot_service_node_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(features where layer=SCENARIO_NODE and network_role=service_node)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual nodes, not approved facilities."
+      ]
+    },
+    "robot_loop_length_m": {
+      "status": "known",
+      "value": 16181.2,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(feature[id=ROBOT-NETWORK-001])",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual centreline; not a surveyed route."
+      ]
+    },
+    "walk_priority_coverage": {
+      "status": "not_applicable",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "geometry/roads.geojson"
+      ],
+      "formula": "all_robot_services_yield_to_pedestrians",
+      "confidence": "concept",
+      "assumptions": [
+        "Operating rule to verify in pilot."
+      ],
+      "target_value": 1.0
+    },
+    "governance_audit_rate": {
+      "status": "not_applicable",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "geometry/roads.geojson"
+      ],
+      "formula": "audited_tasks / total_tasks",
+      "confidence": "concept",
+      "assumptions": [
+        "Requires accountable operator and logging."
+      ],
+      "target_value": 1.0
+    },
+    "pilot_gate_pass_rate": {
+      "status": "not_applicable",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "geometry/roads.geojson"
+      ],
+      "formula": "pilot_sessions_meeting_all_gate_conditions / pilot_sessions_reviewed",
+      "confidence": "concept",
+      "assumptions": [
+        "No pilot data is included; metric defines a phase-gate record only."
+      ],
+      "target_value": 1.0
+    },
+    "human_takeover_record_rate": {
+      "status": "not_applicable",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "geometry/roads.geojson"
+      ],
+      "formula": "exceptions_with_named_takeover_record / total_exceptions",
+      "confidence": "concept",
+      "assumptions": [
+        "Requires a named operator and auditable exception log during a future pilot."
+      ],
+      "target_value": 1.0
+    }
+  }
+}

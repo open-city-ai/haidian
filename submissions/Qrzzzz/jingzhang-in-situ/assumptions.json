@@ -1,0 +1,112 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-GEOM-001",
+      "status": "open_data_gap",
+      "statement": "The organizers have not supplied verifiable official polygons for the three scope levels or the three named key areas. Submitted SITE_BOUNDARY and KEY_AREA geometries are rough provisional substitutes derived from public text and approximate areas under DATA-SRC-PROVISIONAL-BOUNDARIES-20260605.",
+      "impact": "All geometry-derived areas, ratios, diagrams and spatial relationships are provisional-only. With prominent provisional labeling they may support intake self-check, offline visualization, design discussion and review of proposal content, but they must not be scored as official boundaries, precise spatial evidence, statutory conclusions, approval or implementation bases.",
+      "affected_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson",
+        "geometry/buildings.geojson",
+        "geometry/green_space.geojson",
+        "geometry/land_use.geojson",
+        "geometry/phasing.geojson",
+        "geometry/public_space.geojson",
+        "geometry/roads.geojson",
+        "metrics.json",
+        "assets/figures/",
+        "drawings/",
+        "report/",
+        "visual/"
+      ],
+      "recalculation_trigger": "Replace provisional scope and key-area polygons with organizer-issued, coordinate-system-verified geometry; rerun topology, clipping, areas, ratios, figures, HTML and PDFs as one versioned batch."
+    },
+    {
+      "id": "A-SURVEY-001",
+      "status": "open_data_gap",
+      "statement": "No verified site survey, georeferenced field photography, building inventory, structural condition, ground-floor use, tree-canopy/shade survey, pedestrian count, accessibility audit or maintenance record is present in the package.",
+      "impact": "Existing-condition, accessibility and performance statements remain hypotheses or design intentions. The submission must not claim surveyed compliance, existing-condition completeness or engineering feasibility.",
+      "affected_files": [
+        "geometry/buildings.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/roads.geojson",
+        "assets/figures/",
+        "report/",
+        "visual/"
+      ],
+      "recalculation_trigger": "Register fieldwork date, method, coverage, consent, collection rights and limitations; reconcile every surveyed feature and performance baseline before upgrading confidence."
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Approved regulatory controls, cadastral ownership, road redlines, heritage boundaries, ecological controls, municipal utilities, fire safety, daylight, underground space and engineering constraints are unavailable.",
+      "impact": "FAR, height, density, setbacks, demolition/retention, road and infrastructure proposals cannot be treated as statutory, approved or buildable conclusions. The constraints layer intentionally remains empty rather than fabricating official geometry.",
+      "affected_files": [
+        "geometry/constraints.geojson",
+        "geometry/buildings.geojson",
+        "geometry/land_use.geojson",
+        "geometry/roads.geojson",
+        "metrics.json"
+      ],
+      "recalculation_trigger": "Obtain official or expressly cleared control documents and geometries, register their authority and reuse limits, and complete professional planning and engineering review."
+    },
+    {
+      "id": "A-OPS-001",
+      "status": "open_data_gap",
+      "statement": "Operators, asset owners, delivery partners, budgets, procurement routes, staffing, maintenance capacity, pilot durations and binding service commitments have not been verified.",
+      "impact": "Programs, events, AI services, 24-hour support, financing and phased projects are proposals with entry/exit conditions, not commitments by government, owners or partners.",
+      "affected_files": [
+        "geometry/phasing.geojson",
+        "report/",
+        "visual/"
+      ],
+      "recalculation_trigger": "Confirm accountable entities, approvals, budget ranges, staffing, maintenance frequencies, pilot periods, success metrics, human takeover and stop actions in a project-level implementation table."
+    },
+    {
+      "id": "A-REGION-001",
+      "status": "open_data_gap",
+      "statement": "No verified cooperation agreements, operating interfaces or current datasets establish project-level links with Beiwei Community, Future Science City, Huairou Science City, Beijing Economic-Technological Development Area or the Beijing-Tianjin-Hebei region.",
+      "impact": "Regional collaboration loops and external resource flows are conceptual network hypotheses only; named organizations must not be presented as committed partners.",
+      "affected_files": [
+        "report/",
+        "visual/",
+        "assets/figures/"
+      ],
+      "recalculation_trigger": "Add current first-party sources and, where commitments are claimed, written confirmation from the responsible organization; distinguish background precedent from a local agreement."
+    },
+    {
+      "id": "A-RIGHTS-001",
+      "status": "cleared_for_submission",
+      "statement": "Path-level rights evidence was reconciled against the final manifest on 2026-08-13. The unresolved optional AI cover was removed; authored text, structured data, concept geometry, generated figures, HTML and PDFs are recorded in report/copyright_statement.md, and redistributed Noto subsets carry their full OFL text and copyright notice.",
+      "impact": "The rights audit supports redistribution of this submission snapshot under its stated limits. It does not convert provisional data into official evidence or provide a legal non-infringement guarantee; any later asset change reopens the audit.",
+      "affected_files": [
+        "report/copyright_statement.md",
+        "assets/figures/",
+        "drawings/",
+        "report/",
+        "visual/"
+      ],
+      "recalculation_trigger": "Any added or regenerated asset, font-source change, third-party media, or manifest hash change requires a new path-level rights reconciliation before publication."
+    },
+    {
+      "id": "A-BILINGUAL-001",
+      "status": "reviewed_2026-08-13",
+      "statement": "Deterministic counterpart checks do not establish substantive equivalence, so a dated manual comparison was completed on 2026-08-13 for Chinese and English names, claims, metrics, captions, source markers, SC/CX/IM/C IDs and spatial labels.",
+      "impact": "The current bilingual snapshot is cleared for review as substantively aligned. This finding does not guarantee legal translation or future-file parity; any edit to paired text, figures, HTML or PDFs reopens the comparison.",
+      "affected_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "assets/figures/",
+        "drawings/",
+        "report/proposal.html",
+        "report/proposal.en.html",
+        "visual/index.html",
+        "visual/index.en.html"
+      ],
+      "recalculation_trigger": "Complete a dated human bilingual review covering proper names, claims, approximate indicators, source IDs, scenario limits, figure numbers and on-figure locations."
+    }
+  ]
+}

@@ -1,5 +1,13 @@
 # 方案迭代记录
 
+## v0.4 - 2026-08-13
+
+- Added a four-level implementation-feasibility verdict with owner types, relative cost, dependencies, acceptance evidence and stop conditions.
+- Distinguished actions that can enter field preparation, conditionally feasible reversible pilots, and permanent works that remain explicitly not build-ready.
+- Increased minimum web/report typography and line spacing; added a five-minute reading route and larger review panels.
+- Reflowed A3 pages around near-full-width figures and expanded A0 output so feasibility, pilot, work packages, operations and metrics are no longer compressed onto shared boards.
+- Preserved provisional geometry, non-budget cost bands and non-authorization limits.
+
 ## v0.3 - 2026-08-10
 
 - Added the bounded 90-day Veranda Receipt tabletop with G0-G6 gates, one positive control, four negative stop branches and five rollback steps.

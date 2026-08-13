@@ -21,7 +21,7 @@ This is a conceptual design submission by the AI urban-design agent "JingHeng" t
 
 Only public or cleared data is used; no secret maps, non-public planning materials, or personal data are included. All spatial suggestions are "conceptual proposals" and "reference schemes", not substitutes for formal planning or government decisions [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [source:SOURCE-REGISTRY]. Complete sources, metrics, standards, design depth, and task coverage live in `sources.json`, `metrics.json`, `compliance_matrix.json`, `standard_matrix.json`, and `design_depth_matrix.json`.
 
-Core design judgment: **railway interlocking is the best spatial and governance metaphor for the AI Innovation Belt.** On the Jing-Zhang Railway, switches, signals, and routes must interlock — unless every switch is confirmed and every signal cleared, no route is granted. This is not restriction; it is safe acceleration: because interlocking is reliable, trains run fast. This proposal translates that mechanism into spatial organization: **one main route (Jing-Zhang heritage park) + three switch groups (three key areas) + a signal system (AI scenario nodes) + an interlocking table (open governance rules)**, so innovation accelerates within "controlled openness".
+Core design judgment: **railway interlocking is the best spatial and governance metaphor for the AI Innovation Belt.** On the Jing-Zhang Railway, switches, signals, and routes must interlock — unless every switch is confirmed and every signal cleared, no route is granted. This is not restriction; it is safe acceleration: because interlocking is reliable, trains run fast. This proposal translates that mechanism into spatial organization: **one main route (Jing-Zhang heritage park) + three switch groups (three key areas) + a signal system (AI scenario nodes) + an interlocking table (open governance rules)**, so innovation accelerates within "controlled openness". One catchphrase: **NO INTERLOCK, NO ROUTE** — echoing the century-old staff-and-ticket block system of the Jing-Zhang Railway (one staff, one section; no token, no entry) [source:AGENT-TASKBOOK].
 
 ## 2. Three-Level Scope Framework
 
@@ -43,7 +43,9 @@ Disclosure: the boundary and key-area polygons used here are the repository-prov
 
 **Primary name: Jingzhang Interlock Belt (京张联锁带).** "Jingzhang" carries the lineage; "interlock" carries the mechanism — the underlying logic that kept the Jing-Zhang Railway safe for a century, and the underlying logic of AI-era city governance: freedom interlocked with safety, efficiency with equity, technology with humanity [depth:three_level_scope_framework].
 
-**Logo direction**: three rail lines converging at a node into a "人" (human) shaped fork — honoring Zhan Tianyou's switchback while expressing the "switch" decision image; a square "interface" mark sits at the fork center, meaning the standard interface between AI and the city, and between humans and machines. Palette: rail gray (heritage) + Haidian blue-green (innovation) + signal red/yellow (safety prompts). This is a conceptual direction for professional design teams to deepen [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
+**Logo direction**: three rail lines converging at a node into a "人" (human) shaped fork — honoring Zhan Tianyou's switchback while expressing the "switch" decision image; a square "interface" mark sits at the fork center, meaning the standard interface between AI and the city, and between humans and machines. Palette: rail gray (heritage) + Haidian blue-green (innovation) + signal red/yellow (safety prompts). This is a conceptual direction for professional design teams to deepen [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]. A logo concept is attached with this package (`assets/media/logo-vi.png`):
+
+![JingHeng Interlock Belt logo concept](assets/media/logo-vi.png)
 
 ### 3.2 Three Positionings and Five Functions
 
@@ -157,6 +159,17 @@ Without official regulatory conditions (FAR, height, density), no statutory figu
 | P5 Student family | 13 y.o. student + parent | AI education, public experience | Heritage park |
 | P6 International developer | 30 | Open source, international communication | Developer plaza + Origin |
 
+### 6.1 Interlock Spatial Grammar (v1.3 deepening)
+
+To move the "interlock" mechanism beyond metaphor, this proposal lands it as verifiable spatial layers [data:geometry/land_use.geojson] [data:geometry/public_space.geojson]:
+
+- **Switches**: the three key areas (`key_areas.geojson`) — decision nodes that set the direction of innovation;
+- **Block sections**: three `AI_SERVICE_ZONE`s (Zhongzhiyuan acceleration / AI Origin incubation / Dazhongsi landing; data in visual/assets/interlock-zones.json) — each a minimum governance unit with data boundaries, human review, and a responsible entity, **not allowed to operate until passing the interlocking-table admission gates**;
+- **Signals**: 12 `SCENARIO_NODE`s (SN-T1~SN-E8; data in visual/assets/scenario-nodes.json) — the spatial anchors of the 12 scenario cards;
+- **Staff-exchange points**: the three switch plazas (`public_space.geojson`) — carrying permission handover and east-west stitching interfaces.
+
+Mechanism → layer → metric → narrative form a closed chain; any scenario goes live only through the interlock path "switch confirmed → block-section verified → signal cleared → staff exchange" [data:geometry/public_space.geojson#PUBLIC-001].
+
 ### 6.2 AI Scenario Cards (12; 4 are test/validation)
 
 **Test/validation (T)**:
@@ -203,9 +216,13 @@ Full scenario mapping lives in `compliance_matrix.json` (agent.3) [source:AGENT-
 
 **Rail**: existing rail alignment and Metro Line 13 are kept as constraint layers (indicative) [data:geometry/constraints.geojson#CONS-001]; station-connection space is reserved at the three switch plazas (conceptual; no alignment engineering claims) [assumption:A-RAIL-001].
 
-**Municipal and new infrastructure**: distributed energy and edge-computing utility trenches are suggested along the main route (conceptual); Zhongzhiyuan computing loads and Dazhongsi commercial loads need professional calculation [assumption:A-CONTROLS-001].
+**Municipal and new infrastructure**: distributed energy and edge-computing utility trenches are suggested along the main route (conceptual). **Indicative computing-load estimate (conceptual, based on public case magnitudes)**: referencing typical domestic AI-computing centers (PUE 1.2–1.4, 8–15 kW per rack), if the Zhongzhiyuan pilot park configures about 50–100 AI-computing racks, the indicative power load would be about 0.4–1.5 MW with annual consumption of about 3.5–13 GWh — a starting point for professional calculation, not a commitment [assumption:A-CONTROLS-001].
 
 **Public services**: existing universities and community services are leveraged; AI innovation service platforms (incubation, IP, scenario opening) and talent-life services (talent housing, childcare, eldercare) are added [depth:municipal_new_infrastructure].
+
+**AI technical architecture (conceptual)**: a four-layer technical skeleton is reserved along the main route — (1) edge-computing nodes (distributed energy and edge-computing utility trenches); (2) data sandbox (federated learning / privacy computing, data stays in domain); (3) model services and scenario gateway (the interlocking-table admission engine, releasing a route only after route-release conditions are verified); (4) human-review queues (professional final review and safety officers for healthcare, government-service, and mobility scenarios) [data:visual/assets/governance-interlock.json]. The architecture is conceptual and pending professional calculation and engineering deepening [assumption:A-CONTROLS-001].
+
+![AI signal system four-layer technical architecture](assets/figures/ai-signal-architecture.en.png)
 
 ## 9. Blue-Green Network, Public Space, and Urban Character
 
@@ -231,6 +248,18 @@ Full scenario mapping lives in `compliance_matrix.json` (agent.3) [source:AGENT-
 - **Mid (2028–2030)**: landing switch + transition belts — Dazhongsi, mid R&D belt, north transition;
 - **Long (2030–2035)**: south incubation belt + south-end reserve.
 
+**Pilot zones (conceptual)**: two low-cost, reversible, reviewable pilots first — the Qinghuayuan Origin plaza (near term) and the Zhongzhiyuan pilot park (near term) — to validate the interlocking-table governance rules before horizontal replication.
+
+**Project packages (conceptual)**: four independently pausable packages — (1) main-route green belt through-link, (2) Origin switch package (Qinghuayuan plaza + memorial), (3) Zhongzhiyuan pilot package, (4) Dazhongsi renewal package. Pausing any package does not block the others.
+
+**Access gates (conceptual)**: before any AI scenario node operates, it must pass the interlocking-table gates — data boundaries confirmed, human review in place, responsible entity clear, and a parallel-traditional-service plan ready; all four conditions are required [data:visual/assets/governance-interlock.json].
+
+**Indicative staffing (not a commitment)**: 2–3 scenario-operation staff per switch node (three nodes) plus a 5–8 person interlocking-table coordination group, about 11–17 people in total (conceptual, for operation teams to deepen).
+
+**Emergency response (conceptual)**: four-level degradation on scenario anomaly — (1) automatic fallback to human service (parallel traditional services), (2) single-scenario shutdown, (3) switch-node area closure, (4) whole-belt review [assumption:A-SCENARIO-001].
+
+**Community-interest safeguards (conceptual)**: renewal follows "lock/calibrate/switch/reserve", retaining existing communities in the key areas; a "participate — inform — negotiate" three-step process (hearing, disclosure, co-operation) is proposed for original residents and merchants, so AI-scenario dividends reach surrounding residents through public space, employment, and community services [standard:BARRIER-FREE-ENVIRONMENT-LAW].
+
 **Policy (conceptual)**: scenario-opening list system, data-sandbox filing, developer contribution credits linked to space access, parallel-traditional-service review [standard:ELDERLY-SMART-TECH-PLAN-2020-45].
 
 **Global AI event system and long-term operation (agent.6)**:
@@ -238,6 +267,8 @@ Full scenario mapping lives in `compliance_matrix.json` (agent.3) [source:AGENT-
 - **Annual events**: Jingzhang Interlock Day (May 18, anniversary of the taskbook) + AI open-source marathon (spring/autumn) + Switch Forum (rotating across the three areas) + Global Developer Interlock Camp;
 - **Brand IP**: event visual system on the "interlock" motif (rail/switch/bell); medals and badges;
 - **Developer community operation**: this open call is the first interlock experiment — PR is contribution, Issue is demand, review is interlock checking; an "interlocking table" of open governance rules (data boundaries, ethics review, human review, exit) is proposed;
+
+![Interlocking-table route-release logic](assets/figures/interlock-table-logic.en.png)
 - **Scenario-open operation**: scenario cards open in three grades (test—show—scale) with pre-agreed IP and data boundaries;
 - **International communication and conversion**: bilingual contract, open repository, annual white paper, forming a "participate—contribute—land" pathway [source:AGENT-TASKBOOK]. All events and policies are conceptual, not confirmed government arrangements [assumption:A-SCENARIO-001].
 

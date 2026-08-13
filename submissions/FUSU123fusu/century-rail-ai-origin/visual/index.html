@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>原点·智轨 ORIGIN LINE｜百年京张 AI 创新带概念方案</title>
+<style>
+:root{
+  --bg:#ffffff; --bg2:#fdfdfd; --panel:#ffffff; --panel2:#fcfcfc;
+  --line:#dfdfdf; --line2:#c9c9c9;
+  --ink:#171717; --muted:#707070; --dim:#9b9b9b;
+  --rail:#1f6fd6; --signal:#00bb68; --amber:#b97a12; --red:#c0452f;
+  --mono:Consolas,"Cascadia Mono","Courier New",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Microsoft YaHei","PingFang SC","Segoe UI",sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.5;
+}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+code{font-family:var(--mono);font-size:.85em;color:var(--signal);background:rgba(0,187,104,.08);padding:1px 6px;border-radius:4px;overflow-wrap:anywhere}
+
+header.hero{
+  border-bottom:1px solid var(--line);
+  background:var(--bg);
+  padding:64px 0 48px;position:relative;overflow:hidden;
+}
+header.hero::before{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--rail) 30%,var(--signal) 70%,transparent);
+}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em}
+.badge{border:1px solid var(--line);color:var(--muted);padding:4px 12px;border-radius:4px;text-transform:uppercase;background:#fff}
+.badge.on{border-color:var(--signal);color:var(--signal)}
+.lang{position:absolute;top:22px;right:26px}
+.lang a{color:var(--signal);text-decoration:none;border:1px solid var(--signal);border-radius:4px;padding:5px 14px;font-size:.8rem;font-family:var(--mono);letter-spacing:.08em;transition:background .15s;background:#fff}
+.lang a:hover{background:rgba(0,187,104,.08)}
+h1{font-size:2.8rem;letter-spacing:-0.5px;font-weight:500;color:var(--ink);line-height:1.1}
+h1 .of{color:var(--rail)}
+.en-sub{color:var(--signal);font-family:var(--mono);font-size:.9rem;letter-spacing:.2em;margin-top:12px;text-transform:uppercase}
+.meta{color:var(--muted);margin-top:16px;font-size:.92rem}
+.meta b{color:var(--ink);font-weight:600}
+
+.warn{
+  border:1px solid rgba(185,122,18,.4);border-left:4px solid var(--amber);
+  background:rgba(245,165,36,.07);color:#8a5a0e;
+  padding:14px 18px;margin:32px 0 8px;border-radius:8px;font-size:.9rem;
+}
+.warn strong{color:var(--amber)}
+
+.rail{position:relative;padding-left:34px}
+.rail::before{content:"";position:absolute;left:11px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--rail),var(--signal) 55%,var(--amber))}
+
+section.stop{
+  position:relative;background:var(--panel);border:1px solid var(--line);
+  border-radius:8px;padding:28px 32px;margin:24px 0;
+  box-shadow:0 1px 3px rgba(0,0,0,.06);
+  opacity:0;transform:translateY(14px);transition:opacity .4s cubic-bezier(0.4,0,0.2,1),transform .4s cubic-bezier(0.4,0,0.2,1),border-color .15s;
+}
+section.stop.arrive{opacity:1;transform:none}
+section.stop::before{
+  content:"";position:absolute;left:-29px;top:36px;width:12px;height:12px;border-radius:50%;
+  background:#fff;border:3px solid var(--rail);
+}
+section.stop:hover{border-color:var(--line2)}
+.stno{font-family:var(--mono);color:var(--rail);font-size:.75rem;letter-spacing:.2em;margin-bottom:6px}
+h2{font-size:1.5rem;font-weight:500;letter-spacing:-0.5px;line-height:1.2}
+h2 .zh-sub{color:var(--dim);font-size:.85rem;font-weight:400;margin-left:12px;font-family:var(--mono);letter-spacing:0}
+h3{color:var(--ink);font-size:1.02rem;margin:18px 0 8px;font-weight:600}
+p.lede{color:var(--muted);font-size:.92rem;margin-top:6px}
+
+.metrics-band{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:32px 0 8px}
+.metric{
+  background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px;
+  transition:border-color .15s,transform .15s;
+}
+.metric:hover{transform:translateY(-2px);border-color:var(--signal)}
+.metric .val{font-family:"Bahnschrift",Consolas,var(--mono);font-size:1.7rem;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-0.5px;color:var(--ink);line-height:1.1}
+.metric .val small{font-size:.9rem;color:var(--muted);font-weight:400;margin-left:4px}
+.metric .lab{color:var(--muted);font-size:.85rem;margin-top:6px}
+.metric .note{color:var(--dim);font-size:.75rem;margin-top:8px;font-family:var(--mono)}
+.concept-line{color:var(--dim);font-size:.82rem;margin:12px 0 4px;font-family:var(--mono)}
+.concept-line b{color:var(--amber);font-weight:600}
+
+figure{margin:16px 0 6px}
+figure img{
+  width:100%;border:1px solid var(--line);border-radius:8px;display:block;
+  background:#fff;transition:box-shadow .2s;
+}
+figure img:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+figcaption{color:var(--dim);font-size:.84rem;margin-top:10px;border-left:2px solid var(--line);padding-left:10px}
+
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.tabs button{
+  border:1px solid var(--line);background:#fff;color:var(--muted);
+  border-radius:4px;padding:9px 18px;font-size:.9rem;cursor:pointer;font-family:inherit;
+  transition:all .15s;
+}
+.tabs button:hover{color:var(--ink);border-color:var(--line2)}
+.tabs button.active{background:rgba(0,187,104,.07);color:var(--ink);border-color:var(--signal)}
+.tabs button:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+.tab-panel{display:none;border-left:3px solid var(--rail);background:var(--panel2);padding:18px 22px;border-radius:0 8px 8px 0}
+.tab-panel.active{display:block;animation:fadein .2s cubic-bezier(0.4,0,0.2,1)}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.tab-panel h3{margin-top:0}
+.tab-panel p{color:var(--muted);font-size:.92rem}
+.tab-panel .stat{font-family:var(--mono);font-size:.78rem;color:var(--dim);margin-top:10px}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:12px}
+.scen{border:1px solid var(--line);border-radius:8px;padding:16px 18px;background:var(--panel2);transition:border-color .15s}
+.scen:hover{border-color:var(--signal)}
+.scen .sid{color:var(--signal);font-family:var(--mono);font-size:.72rem;letter-spacing:.16em}
+.scen .sname{font-weight:600;margin:4px 0}
+.scen p{color:var(--muted);font-size:.88rem}
+.scen .stask{color:var(--amber);font-size:.75rem;margin-top:10px;font-family:var(--mono)}
+
+table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:10px}
+th,td{border:1px solid var(--line);padding:10px 14px;text-align:left;vertical-align:top}
+th{background:var(--panel2);color:var(--ink);font-weight:600;font-family:var(--mono);font-size:.78rem;letter-spacing:.08em}
+td{color:var(--muted)}
+td strong{color:var(--ink)}
+
+ul.tight{padding-left:20px;color:var(--muted);font-size:.9rem}
+ul.tight li{margin:6px 0}
+ul.tight li::marker{color:var(--rail)}
+
+.pill{display:inline-block;background:rgba(0,187,104,.07);color:var(--signal);border:1px solid rgba(0,187,104,.35);border-radius:4px;padding:3px 12px;font-size:.78rem;margin:3px 6px 3px 0;font-family:var(--mono)}
+.pill.warn-pill{background:rgba(245,165,36,.08);color:var(--amber);border-color:rgba(185,122,18,.35)}
+
+footer{color:var(--dim);font-size:.82rem;text-align:center;padding:40px 0 56px;font-family:var(--mono);letter-spacing:.06em}
+footer .fin{display:inline-block;margin-bottom:10px;color:var(--rail)}
+
+@media (max-width:640px){
+  h1{font-size:1.9rem}
+  .rail{padding-left:22px}
+  .rail::before{left:6px}
+  section.stop::before{left:-21px;width:9px;height:9px}
+  section.stop{padding:20px 18px}
+  .metric .val{font-size:1.35rem}
+  .metrics-band{grid-template-columns:1fr}
+  .metric{padding:14px 14px}
+  .metric .lab{overflow-wrap:anywhere}
+  .metric .lab code{display:block;width:max-content;max-width:100%;word-break:break-all;margin-top:3px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  section.stop{opacity:1;transform:none;transition:none}
+  .tab-panel.active{animation:none}
+  *{transition:none !important}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="lang"><a href="index.en.html" hreflang="en">EN</a></div>
+  <div class="wrap">
+    <div class="badge-row">
+      <span class="badge on">offline · 无外部资源</span>
+      <span class="badge">AI agent 概念方案</span>
+      <span class="badge">formal · v1.0</span>
+      <span class="badge">EPSG:4548 复算</span>
+    </div>
+    <h1>原点<span class="of">·</span>智轨 <span class="of">ORIGIN LINE</span></h1>
+    <div class="en-sub">Centennial Jing-Zhang AI Innovation Belt</div>
+    <p class="meta"><b>一轴 · 三核 · 两翼 · 一环</b> ｜ 北京海淀 · 京张铁路遗址公园周边 ｜ 参赛包 <code>century-rail-ai-origin</code></p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="warn"><strong>⚠ 临时边界警示：</strong>总体设计范围边界与三处重点区均为<strong>临时粗略范围（Provisional rough boundary）</strong>，依据公告文字四至与约 11.4 km² 面积约束推定，待官方正式数据补齐；不得作为红线、审批或精确面积依据。页面全部面积指标由该临时几何在 EPSG:4548 下复算。</div>
+
+  <div class="metrics-band">
+    <div class="metric" data-metric="site_area_sqm" data-value="11412825.386"><div class="val">11,412,825<small>m²</small></div><div class="lab">总体设计范围面积 · <code>site_area_sqm</code></div><div class="note">1,141.3 ha · 公告约 11.4 km²</div></div>
+    <div class="metric" data-metric="green_ratio" data-value="0.244379"><div class="val">24.44<small>%</small></div><div class="lab">绿地比例 · <code>green_ratio</code></div><div class="note">绿地 278.9 ha</div></div>
+    <div class="metric" data-metric="public_space_ratio" data-value="0.09315"><div class="val">9.31<small>%</small></div><div class="lab">公共空间比例 · <code>public_space_ratio</code></div><div class="note">公共空间 106.3 ha</div></div>
+    <div class="metric" data-metric="building_footprint_area_sqm" data-value="1556319.758"><div class="val">1,556,320<small>m²</small></div><div class="lab">建筑基底面积（概念） · <code>building_footprint_area_sqm</code></div><div class="note">790 栋概念建筑</div></div>
+    <div class="metric" data-metric="key_area_count" data-value="3"><div class="val">3<small>处</small></div><div class="lab">重点详细设计区域 · <code>key_area_count</code></div><div class="note">公告合计 368.4 ha</div></div>
+  </div>
+  <p class="concept-line">概念强度：容积率（概念）<b>1.77</b> · 总建筑面积（概念）<b>20,224,645 m²</b> · 法定容积率官方控制值缺失，记为 unknown。概念指标为低置信设计量，非法定控制值。</p>
+
+  <div class="rail">
+
+  <section class="stop" id="overview">
+    <div class="stno">ST.01 / STRUCTURE</div>
+    <h2>总览地图<span class="zh-sub">总体空间结构</span></h2>
+    <figure><img src="../assets/figures/site-overview.png" alt="总体空间结构图：一轴三核两翼一环">
+    <figcaption>一轴：京张遗址公园智轨主轴（260 m 中央绿轴，纵贯约 9.7 km）；三核：众智园 / 原点社区 / 大钟寺；两翼：中关村科技服务翼（西）、小月河场景赋能翼（东）；一环：蓝绿慢行复合环。</figcaption></figure>
+    <h3>三层范围</h3>
+    <p class="lede">统筹研究范围（公告约 43.6 km²，文字四至）⊃ 总体设计范围（公告约 11.4 km²，本方案设计对象）⊃ 重点详细设计区域（公告约 368.4 ha，三处）。本页几何仅覆盖后两层的临时替代边界。</p>
+  </section>
+
+  <section class="stop" id="landuse">
+    <div class="stno">ST.02 / ZONING</div>
+    <h2>用地分区<span class="zh-sub">拓扑完整切分</span></h2>
+    <figure><img src="../assets/figures/land-use-structure.png" alt="用地分区结构图">
+    <figcaption>SITE-001 全域拓扑完整切分：29 个地块无缝无重叠，并集等于临时边界，共享边坐标一致；覆盖 0701 / 0702 / 05 / 0802 / 0803 / 0804 / 1207 / 1401 / 1402 / 1403 / 16 共 11 类用地代码。</figcaption></figure>
+  </section>
+
+  <section class="stop" id="keyareas">
+    <div class="stno">ST.03 / KEY AREAS</div>
+    <h2>重点区域<span class="zh-sub">三核</span></h2>
+    <div class="tabs" role="tablist" aria-label="三处重点区域">
+      <button class="active" role="tab" aria-selected="true" onclick="showTab('ka1', this)">① 众智园 AI 自主创新加速区</button>
+      <button role="tab" aria-selected="false" onclick="showTab('ka2', this)">② 北京 AI 原点社区</button>
+      <button role="tab" aria-selected="false" onclick="showTab('ka3', this)">③ 大钟寺 AI 产业集聚区</button>
+    </div>
+    <div class="tab-panel active" id="ka1" role="tabpanel" style="border-left-color:#3f8efc"><h3 style="color:#3f8efc">① 众智园 AI 自主创新加速区</h3><p>北部创新极核。科研中试基地 + 企业总部群落，低强度开发（概念 3–10 层）；绿轴北端门户衔接清河郊野公园段；西北侧留白战略区（16）预留未来接口。</p><div class="stat">公告 192.1 ha ｜ 临时复算 192.9 ha ｜ 分期：远期 2035–2040</div></div>
+    <div class="tab-panel" id="ka2" role="tabpanel" style="border-left-color:#f5a524"><h3 style="color:#f5a524">② 北京 AI 原点社区</h3><p>AI 创新原点、国际人才社区。五道口站城一体 + 原点客厅广场（1403）；教育（0804）- 科研（0802）- 商业（05）混合街区，中强度开发（概念 6–18 层）；AI 场景首发地与开放实验场。</p><div class="stat">公告 104.3 ha ｜ 临时复算 104.3 ha ｜ 分期：近期 2026–2030</div></div>
+    <div class="tab-panel" id="ka3" role="tabpanel" style="border-left-color:#e0604e"><h3 style="color:#e0604e">③ 大钟寺 AI 产业集聚区</h3><p>AI 产业集聚、文化科技融合。大钟寺站前广场为智轨起点（1403）；古钟文化芯（0803）+ 商业更新带（05），高强度复合开发（概念 12–28 层）。</p><div class="stat">公告 72.0 ha ｜ 临时复算 72.0 ha ｜ 分期：近期 2026–2030</div></div>
+    <figure style="margin-top:18px"><img src="../assets/figures/key-areas.png" alt="三处重点区索引与定位任务图">
+    <figcaption>三处重点区自北向南索引与定位任务；公告面积与临时几何复算值并列对照。</figcaption></figure>
+  </section>
+
+  <section class="stop" id="mobility">
+    <div class="stno">ST.04 / MOBILITY + BLUE-GREEN</div>
+    <h2>交通慢行 · 蓝绿公共空间<span class="zh-sub">复合系统</span></h2>
+    <figure><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿网络图">
+    <figcaption>智轨服务大道（两侧）+ 六条东西联络线 + 遗址公园慢行主轴 + 蓝绿慢行复合环；大钟寺、五道口、清华东路西口三站概念接驳；标注三处慢行断点待打通。小月河蓝廊为概念示意。</figcaption></figure>
+  </section>
+
+  <section class="stop" id="buildings">
+    <div class="stno">ST.05 / RENEWAL</div>
+    <h2>建筑与更新项目<span class="zh-sub">概念量级</span></h2>
+    <p class="lede">概念建筑基底 <strong>790</strong> 栋，落位于 05 / 0701 / 0702 / 0802 / 0803 / 0804 可建设地块内，内缩 16 m 规则网格生成；概念层数南高北低（南部 12–28 层、中部 6–18 层、北部 3–10 层）。拆改留概念分类：<strong>保留 129 栋 · 改造 259 栋 · 新建 402 栋</strong>。</p>
+    <p class="concept-line">建筑基底合计 <b>1,556,320 m²</b> · 建筑密度（概念）<b>22.6%</b> · 均为概念设计量，非法定控制值。</p>
+  </section>
+
+  <section class="stop" id="scenarios">
+    <div class="stno">ST.06 / SCENARIOS</div>
+    <h2>AI 场景<span class="zh-sub">六组场景卡</span></h2>
+    <div class="grid2">
+      <div class="scen"><div class="sid">AGENT.1</div><div class="sname">智轨无人接驳环</div><p>绿轴两侧低速无人接驳环线，串联三站三核。</p><div class="stask">公告任务 1.4</div></div>
+      <div class="scen"><div class="sid">AGENT.2</div><div class="sname">遗址数字孪生廊道</div><p>京张遗存全线数字孪生 + AR 导览。</p><div class="stask">公告任务 1.3</div></div>
+      <div class="scen"><div class="sid">AGENT.3</div><div class="sname">AI 场景首发大厅</div><p>五道口原点客厅：新技术首测、首秀、首发。</p><div class="stask">公告任务 1.5</div></div>
+      <div class="scen"><div class="sid">AGENT.4</div><div class="sname">社区能源与碳大脑</div><p>原点社区能碳双控示范，分钟级调度。</p><div class="stask">公告任务 1.5</div></div>
+      <div class="scen"><div class="sid">AGENT.5</div><div class="sname">蓝绿碳汇监测网</div><p>绿轴 + 小月河蓝廊生态传感网络。</p><div class="stask">公告任务 1.4</div></div>
+      <div class="scen"><div class="sid">AGENT.6</div><div class="sname">众智园开放中试平台</div><p>科研中试 + 企业总部 + 数据开放沙箱。</p><div class="stask">公告任务 1.5</div></div>
+    </div>
+  </section>
+
+  <section class="stop" id="evidence">
+    <div class="stno">ST.07 / EVIDENCE</div>
+    <h2>核心指标证据<span class="zh-sub">可复算</span></h2>
+    <figure><img src="../assets/figures/metrics-evidence.png" alt="指标证据仪表盘">
+    <figcaption>用地面积构成、关键比例、公告值 vs 复算值对照、概念强度指标；全部来自 metrics.json，与几何可复算一致。</figcaption></figure>
+  </section>
+
+  <section class="stop" id="tasks">
+    <div class="stno">ST.08 / COVERAGE</div>
+    <h2>任务覆盖<span class="zh-sub">公告 + agent 任务书</span></h2>
+    <table>
+      <tr><th style="width:30%">任务</th><th>覆盖说明</th></tr>
+      <tr><td><strong>公告 1.3 遗址活化</strong></td><td>智轨主轴以京张遗址公园为脊梁，遗存节点全线保留活化（数字孪生廊道）。</td></tr>
+      <tr><td><strong>公告 1.4 交通与蓝绿</strong></td><td>两侧服务大道 + 六条东西联络线 + 慢行复合环 + 三站接驳；绿轴 260 m 纵贯，绿地比例 24.4%。</td></tr>
+      <tr><td><strong>公告 1.5 AI 场景</strong></td><td>六组场景卡覆盖交通、遗址、首发、能碳、生态、中试，均落位于三核与绿轴节点。</td></tr>
+      <tr><td><strong>agent.1 – agent.6</strong></td><td>命名体系、生态案例、场景卡、朝圣地标、文化叙事、长期运营，详见完整报告。</td></tr>
+    </table>
+  </section>
+
+  <section class="stop" id="sources">
+    <div class="stno">ST.09 / PROVENANCE</div>
+    <h2>来源与假设<span class="zh-sub">可追溯</span></h2>
+    <h3>来源</h3>
+    <ul class="tight">
+      <li>征集公告（2026-05，SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT）：范围层级、重点区名称与公告面积。</li>
+      <li>开源场地包临时几何（DATA-SRC-PROVISIONAL-BOUNDARIES-20260605）：SITE-001 与三处重点区粗略替代边界。</li>
+      <li>用地代码：国土空间调查分类项目子集（brief/site-package/enums/land_use_codes.json）。</li>
+    </ul>
+    <h3>假设</h3>
+    <ul class="tight">
+      <li>官方精确边界、控规控制值（容积率 / 限高 / 建筑密度 / 绿地率 / 退线）缺失：相关法定指标记 unknown，概念值低置信标注。</li>
+      <li>轨道站点（大钟寺 / 五道口 / 清华东路西口）为概念点位，按大致纬度标注，非测绘位置。</li>
+      <li>建筑基底、层数、拆改留分类均为概念生成结果，仅用于方案表达。</li>
+      <li>面积统计算法：EPSG:4326 → EPSG:4548 投影后 shapely 复算，union 去重。</li>
+    </ul>
+  </section>
+
+  <section class="stop" id="selfcheck">
+    <div class="stno">ST.10 / SELF-CHECK</div>
+    <h2>自检状态<span class="zh-sub">四门全过</span></h2>
+    <p>
+      <span class="pill">DETERMINISTIC_VALIDATION · PASS</span>
+      <span class="pill">SPATIAL_REVIEW · PASS</span>
+      <span class="pill">VISUAL_PACKAGING · PASS</span>
+      <span class="pill">PROFESSIONAL_EVIDENCE · PASS</span>
+      <span class="pill warn-pill">3 条 provisional 类 minor 提示</span>
+    </p>
+    <p class="lede">用地分区通过无缝 / 无重叠 / 全覆盖校验；建筑、绿地、公共空间图层均在 SITE-001 内；本页 data-metric 数值与 metrics.json 完全一致。方案已随 PR #2049 合并入仓库 main。</p>
+  </section>
+
+  </div>
+</div>
+<footer>
+  <span class="fin">────── END OF LINE ──────</span><br>
+  原点·智轨 ORIGIN LINE · 百年京张 AI 创新带城市设计开源征集 · AI agent 参赛包（离线静态页面，无外部资源）
+</footer>
+<script>
+function showTab(id, btn){
+  var panels = document.querySelectorAll('.tab-panel');
+  for (var i=0;i<panels.length;i++){ panels[i].classList.remove('active'); }
+  var tabs = document.querySelectorAll('.tabs button');
+  for (var j=0;j<tabs.length;j++){ tabs[j].classList.remove('active'); tabs[j].setAttribute('aria-selected','false'); }
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected','true');
+}
+if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('arrive'); io.unobserve(e.target); } });
+  }, {threshold: 0.08});
+  document.querySelectorAll('section.stop').forEach(function(s){ io.observe(s); });
+} else {
+  document.querySelectorAll('section.stop').forEach(function(s){ s.classList.add('arrive'); });
+}
+</script>
+</body>
+</html>

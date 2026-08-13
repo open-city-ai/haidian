@@ -1,0 +1,325 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(site_boundary, EPSG:4548)",
+   "confidence": "high",
+   "assumptions": [
+    "Provisional site boundary from brief/site-package/geometry/provisional_boundaries.geojson#PROV-SITE-001; official polygon to be substituted later."
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3.0,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_area features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "key_area_total_sqm": {
+   "status": "known",
+   "value": 3692893.005,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "sum(polygon_area(key_area features, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional key-area polygons; announced total is 368.4 ha."
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 2785275.488,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "Concept green network along the Jing-Zhang heritage park spine and switchback pocket parks."
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 333427.599,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(polygon_area(public_space, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "Plaza segments of the spine plus key-area public nodes."
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 1397575.664,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building footprints, EPSG:4548))",
+   "confidence": "low",
+   "assumptions": [
+    "Conceptual massing only; not statutory building area."
+   ]
+  },
+  "building_count": {
+   "status": "known",
+   "value": 365.0,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(building features)",
+   "confidence": "low",
+   "assumptions": [
+    "Conceptual count."
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.244048,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.029215,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "road_total_length_m": {
+   "status": "known",
+   "value": 38973.106,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(line_length(roads, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual centerlines; not statutory alignment."
+   ]
+  },
+  "gradient_band_count": {
+   "status": "known",
+   "value": 3.0,
+   "unit": "count",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "concept: three grade bands mapped to three key areas",
+   "confidence": "high",
+   "assumptions": [
+    "Grade-0 Dazhongsi application slope, Grade-1 Origin research slope, Grade-2 Zhongzhiyuan acceleration slope."
+   ]
+  },
+  "switchback_transfer_node_count": {
+   "status": "known",
+   "value": 3.0,
+   "unit": "count",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "concept: three switchback pocket parks at transfer nodes",
+   "confidence": "medium",
+   "assumptions": [
+    "Pocket parks on east band act as gradient transfer nodes."
+   ]
+  },
+  "land_use_research_sqm": {
+   "status": "known",
+   "value": 2738950.832,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(LU with code 0802))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "land_use_residential_sqm": {
+   "status": "known",
+   "value": 2499036.274,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(LU with code 0701))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "land_use_commercial_sqm": {
+   "status": "known",
+   "value": 1208840.144,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(LU with code 05))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "land_use_green_sqm": {
+   "status": "known",
+   "value": 2785283.081,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(LU with code 1401))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "land_use_plaza_sqm": {
+   "status": "known",
+   "value": 270289.211,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(LU with code 1403))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "land_use_reserve_sqm": {
+   "status": "known",
+   "value": 1119805.146,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(LU with code 16))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "land_use_education_sqm": {
+   "status": "known",
+   "value": 328652.362,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(LU with code 0804))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "land_use_cultural_sqm": {
+   "status": "known",
+   "value": 461968.336,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(LU with code 0803))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "phase_1_area_sqm": {
+   "status": "known",
+   "value": 6250070.975,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(PHASE P1)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "phase_2_area_sqm": {
+   "status": "known",
+   "value": 2878881.653,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(PHASE P2)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "phase_3_area_sqm": {
+   "status": "known",
+   "value": 2248496.705,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(PHASE P3)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "ai_scenario_node_count": {
+   "status": "known",
+   "value": 12.0,
+   "unit": "count",
+   "source_files": [],
+   "formula": "concept schedule: 12 scenario nodes across grade bands",
+   "confidence": "low",
+   "assumptions": [
+    "Nodes are described in proposal text and figures; no separate geometry file."
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "conceptual gross floor area / land area; awaiting official regulatory plan",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Official regulatory plan (FAR control) is not provided in the site package; recompute after official controls are published. Conceptual building massing in geometry/buildings.geojson is NOT a statutory FAR value."
+  },
+  "operations_team_concept_headcount": {
+   "status": "known",
+   "value": 75.0,
+   "unit": "count",
+   "source_files": [],
+   "formula": "concept staffing: sum of upper bounds (main-line ops 40 + verification 20 + community 10 + guiding 5)",
+   "confidence": "low",
+   "assumptions": [
+    "Concept estimate from comparable public-facility experience; not a fiscal commitment."
+   ]
+  },
+  "daily_visitors_concept_mid": {
+   "status": "known",
+   "value": 42500.0,
+   "unit": "count",
+   "source_files": [],
+   "formula": "concept: (band midpoints 30k+15k+40k) summed and halved = 42.5k daily visitors",
+   "confidence": "low",
+   "assumptions": [
+    "Low-confidence range inferred from public data; calibrate by site survey and official data."
+   ]
+  }
+ }
+}

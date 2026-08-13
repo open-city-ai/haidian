@@ -1,0 +1,395 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "JZ-FIELD-EVIDENCE-INTAKE-R15",
+  "as_of": "2026-08-13",
+  "status": "empty_template_no_go",
+  "purpose_zh": "把既有 D01—D08 现实替换缺口与 H01—H07 专业证据门转成可现场使用、可保管、可退回、可否决的空白采集合同；不生成任何现场观察、测量、访谈、批准、责任接受或绩效。",
+  "purpose_en": "Turn the existing D01-D08 replacement gaps and H01-H07 professional gates into an empty, field-usable contract for collection, custody, return and rejection; it creates no field observation, measurement, interview, approval, duty acceptance or performance result.",
+  "template_warning": {
+    "zh": "模板不等于证据；字段完整不等于资料已取得；专业接收不等于批准或成熟度升级。",
+    "en": "A template is not evidence; complete fields do not mean material has been obtained; professional receipt is not approval or a maturity upgrade."
+  },
+  "current_reality_state": {
+    "collection_state": "not_collected",
+    "field_collection_count": 0,
+    "artifact_count": 0,
+    "field_value": null,
+    "accepted_for_recalculation_count": 0,
+    "approval_count": 0,
+    "confirmed_collector_count": 0,
+    "confirmed_custodian_count": 0,
+    "confirmed_professional_reviewer_count": 0,
+    "completed_route_walk_count": 0,
+    "known_field_result_count": 0,
+    "current_gate": "G0",
+    "decision": "NO-GO"
+  },
+  "packet_envelope": {
+    "required_identity_fields": [
+      "packet_id",
+      "replacement_id",
+      "artifact_type",
+      "source_or_issuer_type",
+      "collector_or_receiver_role_type",
+      "custodian_role_type",
+      "professional_reviewer_role_type"
+    ],
+    "required_provenance_fields": [
+      "source_locator",
+      "issued_or_captured_at",
+      "received_at",
+      "version",
+      "applicable_place_scope",
+      "applicable_time_scope",
+      "coordinate_reference_system_if_applicable",
+      "coordinate_precision_if_applicable",
+      "capture_method",
+      "device_or_instrument_if_applicable",
+      "calibration_status_if_applicable",
+      "sha256",
+      "supersedes_packet_id"
+    ],
+    "required_rights_and_safety_fields": [
+      "lawful_or_authorized_basis",
+      "reuse_scope",
+      "personal_data_present",
+      "sensitive_data_present",
+      "consent_record_ref_if_applicable",
+      "withdrawal_route_if_applicable",
+      "redaction_status",
+      "retention_and_deletion_rule",
+      "public_release_level",
+      "rights_review_status"
+    ],
+    "required_review_fields": [
+      "completeness_check",
+      "integrity_check",
+      "conflict_refs",
+      "limitations",
+      "can_prove",
+      "cannot_prove",
+      "linked_handoff_pack_ids",
+      "disposition",
+      "disposition_reason",
+      "reviewed_at",
+      "expiry_or_recheck_trigger"
+    ],
+    "empty_instance": {
+      "packet_id": null,
+      "collection_state": "not_collected",
+      "artifact_count": 0,
+      "field_value": null,
+      "source_or_issuer": "unknown",
+      "collector_or_receiver": "unknown",
+      "custodian": "unknown",
+      "professional_reviewer": "unknown",
+      "issued_or_captured_at": null,
+      "received_at": null,
+      "version": null,
+      "source_locator": null,
+      "sha256": null,
+      "rights_review_status": "not_reviewed",
+      "disposition": "not_submitted",
+      "approval_count": 0,
+      "accepted_count": 0
+    }
+  },
+  "artifact_type_rules": [
+    {
+      "artifact_type": "official_document",
+      "minimum_quality_gate": "issuer, authority, issue date, version, exact applicable scope, complete pages and integrity hash are present",
+      "privacy_and_rights_gate": "record access and reuse terms; redact protected identifiers only on the public copy while retaining a controlled original if lawful",
+      "cannot_prove": "field conditions, implementation, construction, operation or compliance outside the document's exact scope"
+    },
+    {
+      "artifact_type": "survey_or_geospatial",
+      "minimum_quality_gate": "qualified source type, survey date, CRS, precision, method, control basis, coverage and machine-readable geometry are present",
+      "privacy_and_rights_gate": "remove personal traces and disclose database, survey and redistribution rights",
+      "cannot_prove": "ownership, statutory status, future condition or accessibility compliance without the relevant professional decision"
+    },
+    {
+      "artifact_type": "photo_or_video",
+      "minimum_quality_gate": "capture time field, place-scope field, direction/context, unedited original hash and derivative history are present",
+      "privacy_and_rights_gate": "no identifiable person, face, plate, private interior or sensitive screen enters public release without an applicable basis and review",
+      "cannot_prove": "dimension, continuous duration, absence of hazards, ownership, approval or performance beyond the recorded view"
+    },
+    {
+      "artifact_type": "measurement",
+      "minimum_quality_gate": "quantity, unit, method, instrument, calibration status, conditions, repetitions, uncertainty and raw-record hash are present",
+      "privacy_and_rights_gate": "collect only the minimum non-personal value required for the declared decision",
+      "cannot_prove": "compliance or general performance without a predeclared protocol, denominator and competent review"
+    },
+    {
+      "artifact_type": "interview_or_consent",
+      "minimum_quality_gate": "participant category, accessible information, voluntary consent, withdrawal route, question version and de-identification method are present",
+      "privacy_and_rights_gate": "do not publish identity, contact, voice, sensitive narrative or raw transcript by default; safeguarding applies to children and vulnerable groups",
+      "cannot_prove": "population prevalence, unanimous support, institutional commitment or legal authorization"
+    },
+    {
+      "artifact_type": "operating_record",
+      "minimum_quality_gate": "task, state axis, start/end event fields, responsible role type, denominator, exception and source system/version are present",
+      "privacy_and_rights_gate": "aggregate and minimize; public records exclude personal trails and hidden worker surveillance",
+      "cannot_prove": "service quality, causation, fairness or duty acceptance unless separately evidenced"
+    },
+    {
+      "artifact_type": "approval_or_authorization",
+      "minimum_quality_gate": "competent issuer, exact activity/place/time/version, conditions, expiry, withdrawal and appeal fields are present",
+      "privacy_and_rights_gate": "publish only the portion authorized for disclosure and preserve a controlled complete record",
+      "cannot_prove": "construction completion, operational success, rights clearance or permission beyond its stated scope"
+    },
+    {
+      "artifact_type": "restoration_receipt",
+      "minimum_quality_gate": "before-state packet, affected components, removal/data disposition, after-state record, unresolved harm and independent acceptance fields are linked",
+      "privacy_and_rights_gate": "retain only necessary incident and responsibility information; public disclosure is de-identified",
+      "cannot_prove": "automatic restart eligibility, absence of latent harm or acceptance by every affected group"
+    }
+  ],
+  "replacement_packet_templates": [
+    {
+      "replacement_id": "D01_OFFICIAL_GEOMETRY",
+      "label_zh": "官方边界与重点区",
+      "label_en": "Official boundary and key areas",
+      "accepted_artifact_types": ["official_document", "survey_or_geospatial"],
+      "responsibility_types": ["competent issuing authority", "qualified geospatial professional", "planning reviewer"],
+      "required_specific_fields": ["legal_or_administrative_basis", "feature_identifier", "CRS", "precision", "validity", "use_permission", "difference_report_against_provisional_geometry"],
+      "can_prove": "the exact geometry and scope expressly issued, after authenticity and applicability review",
+      "cannot_prove": "approval of this proposal, ownership, buildability, field condition or performance",
+      "linked_handoff_pack_ids": ["H02_APPROVAL_SCOPE", "H03_BASELINE"],
+      "replacement_trigger": "valid authoritative geometry is accepted for recalculation",
+      "expiry_or_recheck_trigger": "superseding issue, scope change, revoked authority or unresolved geometry conflict",
+      "current_state": "not_collected",
+      "artifact_count": 0,
+      "field_value": null,
+      "accepted_count": 0,
+      "approval_count": 0
+    },
+    {
+      "replacement_id": "D02_EXISTING_CONDITION_SURVEY",
+      "label_zh": "现状与竣工测绘",
+      "label_en": "Existing-condition and as-built survey",
+      "accepted_artifact_types": ["survey_or_geospatial", "photo_or_video", "measurement"],
+      "responsibility_types": ["qualified survey professional", "accessibility survey role", "site custodian role"],
+      "required_specific_fields": ["coverage", "levels", "access_points", "surfaces", "vegetation", "facilities", "opening_conditions", "before_state_version"],
+      "can_prove": "dated conditions actually covered by the survey within its stated precision",
+      "cannot_prove": "statutory right, structural safety, universal accessibility or conditions outside the survey window",
+      "linked_handoff_pack_ids": ["H03_BASELINE", "H06_PUBLIC_PARITY"],
+      "replacement_trigger": "reviewed survey can verify, revise or delete a concept relationship",
+      "expiry_or_recheck_trigger": "physical change, incomplete coverage, stale date or incompatible methods",
+      "current_state": "not_collected",
+      "artifact_count": 0,
+      "field_value": null,
+      "accepted_count": 0,
+      "approval_count": 0
+    },
+    {
+      "replacement_id": "D03_REGULATORY_OWNERSHIP",
+      "label_zh": "控规、权属与使用边界",
+      "label_en": "Regulatory, ownership and use boundaries",
+      "accepted_artifact_types": ["official_document", "approval_or_authorization"],
+      "responsibility_types": ["competent planning authority", "verified rights holder role", "legal reviewer"],
+      "required_specific_fields": ["effective_control_version", "ownership_or_use_basis", "four_line_controls", "activity_scope", "conditions", "expiry", "conflict_register"],
+      "can_prove": "only the rights, controls or decisions expressly stated for the exact scope",
+      "cannot_prove": "site approval for this proposal, building condition, fire compliance or future consent",
+      "linked_handoff_pack_ids": ["H02_APPROVAL_SCOPE"],
+      "replacement_trigger": "competent review resolves each relevant control and right",
+      "expiry_or_recheck_trigger": "control revision, right change, appeal, withdrawal or conflict",
+      "current_state": "not_collected",
+      "artifact_count": 0,
+      "field_value": null,
+      "accepted_count": 0,
+      "approval_count": 0
+    },
+    {
+      "replacement_id": "D04_ACCESSIBILITY_PUBLIC_PARITY",
+      "label_zh": "无障碍与同任务公共同权",
+      "label_en": "Accessibility and same-task public parity",
+      "accepted_artifact_types": ["survey_or_geospatial", "measurement", "interview_or_consent", "operating_record"],
+      "responsibility_types": ["accessibility professional", "affected-user co-test facilitator", "rights and safeguarding reviewer"],
+      "required_specific_fields": ["same_task_definition", "route_condition", "user_group_category", "consent_and_withdrawal", "non_ai_completion", "staffed_fallback", "barrier_and_group_difference"],
+      "can_prove": "group-specific findings for the preregistered task and tested window",
+      "cannot_prove": "universal accessibility, population-wide acceptance or parity outside the tested task",
+      "linked_handoff_pack_ids": ["H03_BASELINE", "H06_PUBLIC_PARITY"],
+      "replacement_trigger": "consented same-task evidence supports revision of the public path and fallback",
+      "expiry_or_recheck_trigger": "route, service, interface, user group or task version changes",
+      "current_state": "not_collected",
+      "artifact_count": 0,
+      "field_value": null,
+      "accepted_count": 0,
+      "approval_count": 0
+    },
+    {
+      "replacement_id": "D05_TRANSPORT_AND_PEAK_CONTINUITY",
+      "label_zh": "交通、高峰与普通通行连续性",
+      "label_en": "Transport, peak and ordinary-route continuity",
+      "accepted_artifact_types": ["survey_or_geospatial", "measurement", "operating_record", "official_document"],
+      "responsibility_types": ["transport professional", "qualified count team", "route custodian role"],
+      "required_specific_fields": ["mode", "count_method", "denominator", "desire_line", "station_interface", "peak_definition", "conflict", "ordinary_route_interruption"],
+      "can_prove": "dated movement and conflict conditions within the declared counting and coverage limits",
+      "cannot_prove": "future demand, statutory road boundary, causation or approved event capacity",
+      "linked_handoff_pack_ids": ["H03_BASELINE", "H05_STOP_RECOVERY"],
+      "replacement_trigger": "reviewed evidence can stress-test and revise ordinary-route protection",
+      "expiry_or_recheck_trigger": "network, timetable, season, construction or observation-method change",
+      "current_state": "not_collected",
+      "artifact_count": 0,
+      "field_value": null,
+      "accepted_count": 0,
+      "approval_count": 0
+    },
+    {
+      "replacement_id": "D06_SPECIALIST_CONSTRAINTS",
+      "label_zh": "专项约束与专业否决",
+      "label_en": "Specialist constraints and professional veto",
+      "accepted_artifact_types": ["official_document", "survey_or_geospatial", "measurement", "approval_or_authorization"],
+      "responsibility_types": ["applicable railway, heritage, water, ecology, municipal, fire, emergency, structure, lighting or acoustics professional"],
+      "required_specific_fields": ["discipline", "competence_basis", "exact_scope", "standard_or_rule_version", "finding", "condition", "veto_or_revision", "unresolved_conflict"],
+      "can_prove": "the competent discipline's finding for the exact reviewed scope",
+      "cannot_prove": "all-discipline clearance, construction approval or absence of unreviewed constraints",
+      "linked_handoff_pack_ids": ["H02_APPROVAL_SCOPE", "H05_STOP_RECOVERY"],
+      "replacement_trigger": "discipline finding revises, conditions, rejects or deletes the affected concept",
+      "expiry_or_recheck_trigger": "design, site, standard, hazard or professional scope changes",
+      "current_state": "not_collected",
+      "artifact_count": 0,
+      "field_value": null,
+      "accepted_count": 0,
+      "approval_count": 0
+    },
+    {
+      "replacement_id": "D07_RESPONSIBILITY_OPERATIONS",
+      "label_zh": "责任接受与运营资源",
+      "label_en": "Duty acceptance and operating resources",
+      "accepted_artifact_types": ["official_document", "operating_record", "approval_or_authorization"],
+      "responsibility_types": ["accountable role", "operational role", "stop holder", "maintenance and retirement role", "labour and budget reviewer"],
+      "required_specific_fields": ["written_acceptance", "reachable_contact_channel", "coverage_window", "backup", "stop_and_restart_authority", "staffing_basis", "budget_basis", "maintenance_and_retirement_duty"],
+      "can_prove": "accepted duties and resources only for their exact signed scope and validity",
+      "cannot_prove": "future availability, volunteer sufficiency, service quality, procurement or site authorization",
+      "linked_handoff_pack_ids": ["H01_AUTHORITY", "H05_STOP_RECOVERY", "H07_RETEST_DECISION"],
+      "replacement_trigger": "all required roles and resources are confirmed for a separately authorized envelope",
+      "expiry_or_recheck_trigger": "role, contact, shift, budget, scope, labour or authorization change",
+      "current_state": "not_collected",
+      "artifact_count": 0,
+      "field_value": null,
+      "accepted_count": 0,
+      "approval_count": 0
+    },
+    {
+      "replacement_id": "D08_RIGHTS_AND_REUSE",
+      "label_zh": "权利、许可与复用",
+      "label_en": "Rights, permission and reuse",
+      "accepted_artifact_types": ["official_document", "interview_or_consent", "approval_or_authorization"],
+      "responsibility_types": ["rights holder role", "data-protection reviewer", "copyright and database-right reviewer", "independent file-level auditor"],
+      "required_specific_fields": ["asset_or_data_scope", "rights_holder_basis", "license_or_terms", "consent", "territory", "duration", "derivative_and_translation_right", "withdrawal", "audit_finding"],
+      "can_prove": "only the uses explicitly cleared for the identified asset, data and version",
+      "cannot_prove": "blanket clearance, field accuracy, endorsement or rights for an unlisted derivative",
+      "linked_handoff_pack_ids": ["H04_DATA_SAFETY", "H07_RETEST_DECISION"],
+      "replacement_trigger": "independent file-level audit closes every applicable use context",
+      "expiry_or_recheck_trigger": "asset, terms, owner, use, territory, duration or derivative changes",
+      "current_state": "not_collected",
+      "artifact_count": 0,
+      "field_value": null,
+      "accepted_count": 0,
+      "approval_count": 0
+    }
+  ],
+  "professional_disposition_contract": {
+    "allowed_states": [
+      "not_submitted",
+      "received_unverified",
+      "return_for_completion",
+      "conflict_hold",
+      "professionally_rejected",
+      "accepted_for_recalculation",
+      "expired"
+    ],
+    "state_meanings": {
+      "not_submitted": "No artifact has been attached; remain NO-GO.",
+      "received_unverified": "Material exists but authenticity, integrity, applicability, rights or competence has not closed.",
+      "return_for_completion": "Required metadata, coverage, rights, denominator or linkage is incomplete; return to the responsible source.",
+      "conflict_hold": "Sources or professional findings conflict; protect ordinary public rights and pause the affected proof overlay.",
+      "professionally_rejected": "A competent review finds the material or concept unusable; revise or retire it without altering official evidence.",
+      "accepted_for_recalculation": "The material may replace a typed placeholder and trigger downstream recalculation; this is not site, planning, construction, operation or G1 approval.",
+      "expired": "The material is no longer valid for the intended place, time, version or use; return to NO-GO."
+    },
+    "current_state_counts": {
+      "not_submitted": 8,
+      "received_unverified": 0,
+      "return_for_completion": 0,
+      "conflict_hold": 0,
+      "professionally_rejected": 0,
+      "accepted_for_recalculation": 0,
+      "expired": 0
+    }
+  },
+  "three_differentiated_future_routes": [
+    {
+      "route_id": "FIELD-ROUTE-ZZY",
+      "key_area_ref": "geometry/key_areas.geojson#PROV-KEY-001",
+      "label_zh": "众智园：设备隔离与还场基线路",
+      "label_en": "Zhongzhiyuan: equipment-isolation and restoration-baseline route",
+      "ordinary_right_first": "continuous public observation bypass remains open and outside any equipment loop",
+      "collection_sequence": ["freeze ordinary bypass and before-state", "document equipment/service edge without activation", "test only the evidence completeness of stop and staffed-takeover design", "record removal and restoration acceptance fields"],
+      "priority_packets": ["D02_EXISTING_CONDITION_SURVEY", "D06_SPECIALIST_CONSTRAINTS", "D07_RESPONSIBILITY_OPERATIONS"],
+      "stop_condition": "unclear isolation, route intrusion, absent stop holder, missing before-state or unresolved specialist conflict",
+      "cannot_be_copied_as": "a resident consent route or a peak commuting survey",
+      "completed_walk_count": 0,
+      "current_state": "future_method_not_executed"
+    },
+    {
+      "route_id": "FIELD-ROUTE-ORIGIN",
+      "key_area_ref": "geometry/key_areas.geojson#PROV-KEY-002",
+      "label_zh": "原点社区：同意撤回与居民日常路",
+      "label_en": "Origin Community: consent-withdrawal and resident-ordinary-life route",
+      "ordinary_right_first": "one daily street and screen-free same-task route remain complete without registration, QR code, screen or AI",
+      "collection_sequence": ["publish accessible purpose and prohibited-data notice", "offer paper and staffed consent/withdrawal", "record group-specific barriers without identity", "return findings and delete or retain data under the declared rule"],
+      "priority_packets": ["D04_ACCESSIBILITY_PUBLIC_PARITY", "D07_RESPONSIBILITY_OPERATIONS", "D08_RIGHTS_AND_REUSE"],
+      "stop_condition": "unclear consent, failed withdrawal, safeguarding gap, resident-life displacement, quiet failure or personal-data excess",
+      "cannot_be_copied_as": "an equipment safety test or a transit throughput route",
+      "completed_walk_count": 0,
+      "current_state": "future_method_not_executed"
+    },
+    {
+      "route_id": "FIELD-ROUTE-DZS",
+      "key_area_ref": "geometry/key_areas.geojson#PROV-KEY-003",
+      "label_zh": "大钟寺：高峰连续与来源纠错路",
+      "label_en": "Dazhongsi: peak continuity and source-correction route",
+      "ordinary_right_first": "four-way commuting remains continuous; staffed service and evidence release stay off-route",
+      "collection_sequence": ["declare count coverage and peak definition as empty fields before work", "protect desire lines and quiet rest", "version every published source and correction", "remove evidence release when conflict or route intrusion appears"],
+      "priority_packets": ["D02_EXISTING_CONDITION_SURVEY", "D05_TRANSPORT_AND_PEAK_CONTINUITY", "D08_RIGHTS_AND_REUSE"],
+      "stop_condition": "route intrusion, queue spill, missing source version, rights dispute, stale service notice or unverified peak definition",
+      "cannot_be_copied_as": "a device-isolation court or resident co-learning street",
+      "completed_walk_count": 0,
+      "current_state": "future_method_not_executed"
+    }
+  ],
+  "peer_method_lineage": {
+    "source_pr": "https://github.com/open-city-ai/haidian/pull/2266",
+    "merged_commit": "8cd86936a434b532645c13932281a90417344bd7",
+    "source_package": "submissions/xyh202131/jingzhang-commons-loop-v1",
+    "authorship_relation": "same_contributor_separate_proposal",
+    "borrowed_method_only": "make disposition understandable to the public and keep an explicit path for correction, pause and return",
+    "normalized_mapping": {
+      "keep": "retain the verified ordinary baseline or public right; never infer that a proof overlay is approved",
+      "modify": "return an incomplete evidence packet for correction or revise the affected concept",
+      "pause": "apply NO-GO or conflict hold and stop the affected proof overlay while ordinary use remains",
+      "return": "return the packet to its responsible source for completion, or restore ordinary use and retire the affected overlay"
+    },
+    "explicitly_not_reused": [
+      "Jing-Zhang Commons Loop name or brand",
+      "one spine, two wings or three translation courtyards",
+      "source proposal geometry or metrics",
+      "source proposal figures, media or text assets",
+      "any provisional or real-world claim"
+    ]
+  },
+  "publication_and_authorization_boundary": {
+    "geometry_changed": false,
+    "metrics_changed": false,
+    "new_scene_count": 0,
+    "new_project_count": 0,
+    "new_key_area_count": 0,
+    "template_is_evidence": false,
+    "accepted_for_recalculation_is_approval": false,
+    "pr_or_merge_is_real_world_authorization": false,
+    "professional_veto": "Competent evidence may revise, reject or delete the concept. Official evidence must not be altered to preserve the proposal.",
+    "rights_status": "not_fully_cleared"
+  }
+}

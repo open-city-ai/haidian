@@ -25,17 +25,19 @@
       return ((number^number>>>14)>>>0)/4294967296;
     };
   }
-  window.renderCover=function(item,index,titleHTML){
-    if(item.coverUrl){
-      const coverUrl=escapeHTML(item.coverUrl);
-      const author=escapeHTML(item.author||'open-city');
-      return `<div class="cover-art cover-art-custom" style="--cover-bg:#07111d">
-        <img src="${coverUrl}" alt="" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-        <span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 25%,#03070de8 100%)"></span>
-        <span class="cover-mark" aria-hidden="true">${String(index+1).padStart(2,'0')}</span>
-        <div class="cover-copy"><div class="cover-kicker">@${author} · AGENT COVER</div><div class="cover-title">${titleHTML}</div></div>
-      </div>`;
+  window.handleCoverImageError=function(image){
+    const cover=image.closest('.cover-art');
+    const layer=image.closest('.cover-custom-layer');
+    if(layer) layer.remove();
+    if(cover){
+      cover.classList.remove('cover-art-custom');
+      const signal=cover.querySelector('.cover-signal');
+      const copy=cover.querySelector('.cover-default-copy');
+      if(signal) signal.style.visibility='';
+      if(copy) copy.style.visibility='';
     }
+  };
+  window.renderCover=function(item,index,titleHTML){
     const seed=hash(`${item.title}|${item.author}|${(item.tags||[]).join('|')}`);
     const random=seededRandom(seed);
     const palette=palettes[seed%palettes.length];
@@ -53,11 +55,17 @@
       return `<span class="cover-tile" style="--tile-color:${color};--tile-opacity:${opacity};--tile-rotate:${rotate};--tile-scale:${scale};--tile-flip:${flip};--tile-duration:${duration};--tile-delay:${delay}"></span>`;
     }).join('');
     const author=escapeHTML(item.author||'open-city');
-    return `<div class="cover-art" style="--cover-bg:${palette[0]};--cover-accent:${palette[palette.length-1]};--cover-angle:${angle};--signal-angle:${signalAngle};--signal-top:${signalTop}">
+    const customCover=item.coverUrl?`<div class="cover-custom-layer" style="position:absolute;inset:0">
+        <img src="${escapeHTML(item.coverUrl)}" alt="" loading="lazy" decoding="async" onerror="handleCoverImageError(this)" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 25%,#03070de8 100%)"></span>
+        <div class="cover-copy"><div class="cover-kicker">@${author} · AGENT COVER</div><div class="cover-title">${titleHTML}</div></div>
+      </div>`:'';
+    return `<div class="cover-art${customCover?' cover-art-custom':''}" style="--cover-bg:${palette[0]};--cover-accent:${palette[palette.length-1]};--cover-angle:${angle};--signal-angle:${signalAngle};--signal-top:${signalTop}">
       <div class="cover-grid" aria-hidden="true">${tiles}</div>
-      <span class="cover-signal" aria-hidden="true"></span>
+      <span class="cover-signal" aria-hidden="true"${customCover?' style="visibility:hidden"':''}></span>
+      ${customCover}
       <span class="cover-mark" aria-hidden="true">${String(index+1).padStart(2,'0')}</span>
-      <div class="cover-copy"><div class="cover-kicker">@${author} · OPEN CITY PROPOSAL</div><div class="cover-title">${titleHTML}</div></div>
+      <div class="cover-copy cover-default-copy"${customCover?' style="visibility:hidden"':''}><div class="cover-kicker">@${author} · OPEN CITY PROPOSAL</div><div class="cover-title">${titleHTML}</div></div>
     </div>`;
   };
 })();

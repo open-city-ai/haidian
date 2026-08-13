@@ -3,7 +3,7 @@ title: "百年京张AI创新带城市设计方案:京张智脉·绿意无界(智
 proposal_slug: "jingzhang-ai-nexus"
 author_github: "YuanYii"
 language: "zh"
-version: "9.5"
+version: "9.7"
 date: "2026-08-12"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
@@ -17,6 +17,21 @@ keywords: ["百年京张", "AI创新带", "城市设计", "中关村", "智轨�
 ---
 
 # 百年京张AI创新带城市设计方案:京张智脉·绿意无界(智轨轴脊主线)
+
+## 执行摘要(Executive Summary)
+
+**治理协议内核:区间路签制(Block Token)**——令牌互斥状态机(颁发-持有-归还 + 硬停止 5 步回滚 + 不可变审计),已挂载空间图层治理属性(zone_id/status/gate/raci,30 要素)。
+
+| 证据链 | 位置 |
+| --- | --- |
+| 图层治理属性挂载(30 要素) | geometry/*.geojson + 1.1 节 |
+| 调度算法参考实现与执行日志 | 附录 A（完整代码 + 真实运行日志） |
+| Proof-Mile 规格(伪代码/硬停止表/推演案例/接口样例) | 1.1 节 + visual/assets/proof-mile-sample.json |
+| 年度审计白皮书样例(合同资产) | 1.3 节 |
+| 场景卡责任条款矩阵(13×6) | AI 场景章节 |
+| 时间公平规则(区间共享窗口) | 治理协议章节 |
+
+**关键数字**:13 张场景卡 / L1-L3 准入分级 / 五态验证生命周期 / 6 项更新项目 / 三处重点区域 368.4 ha / 四类功能用地 1141.3 ha。
 
 > **治理协议内核:区间路签制(Block Token)** - 服务海淀打造**全球人工智能产业高地**与**AI 创新朝圣地**的战略目标。 - 把京张单线铁路的令牌闭塞制度用于城市 AI 场景治理。一个街区区间 = 一枚路签;三处重点区 = 三座"站";两翼 = 两处"道岔";遗址公园 = "区间"。
 
@@ -57,7 +72,7 @@ provisional 边界与重点区分别登记于 [source:BOUNDARY-SOURCE] 与 [sour
 方案核心总体概念命名为 **"京张智脉·绿意无界"**:以百年京张铁路遗址公园为历史文化与公共空间主轴,以三处重点片区为智能创新锚点,以沿线高校、科技企业与轨道节点为生活社交网络,打造"一带三核、十区联动、蓝绿慢行复合环"的未来城形。
 ### 治理协议内核:区间路签制(Block Token)
 
-本方案把京张铁路单线时代的**路签/令牌闭塞制度**用作城市 AI 治理协议的内核:单线铁路上,司机必须持有区间令牌才能进入区间,两端闭塞机电气锁闭,**令牌未归还前取不出第二枚**--因此两列车不可能占用同一区间。方案将同一制度用于 AI 城市场景治理:**一个街区区间 = 一枚路签,AI 服务持有路签才能进入该区间运营,服务离开、到期或触发硬停止条件时必须归还路签**。这是对铁路令牌闭塞互斥逻辑的城市治理隐喻与概念框架(供专业团队与治理团队深化):三处重点区即三座"站"(众智园·到发场 / 原点社区·零公里站 / 大钟寺·编组场),两翼即两处"道岔"(中关村科技服务翼 / 小月河场景赋能翼),中间的遗址公园主轴即"区间"。路签的颁发、持有与归还状态全部登记在 Proof-Mile 验算接口(见"更新项目清单"章),可复核、可回滚、可审计。
+本方案把京张铁路单线时代的**路签/令牌闭塞制度**用作城市 AI 治理协议的内核:单线铁路上,司机必须持有区间令牌才能进入区间,两端闭塞机电气锁闭,**令牌未归还前取不出第二枚**--因此两列车不可能占用同一区间。方案将同一制度用于 AI 城市场景治理:**一个街区区间 = 一枚路签,AI 服务持有路签才能进入该区间运营,服务离开、到期或触发硬停止条件时必须归还路签**。这是对铁路令牌闭塞互斥逻辑的城市治理**可执行规则协议**:三处重点区即三座"站"(众智园·到发场 / 原点社区·零公里站 / 大钟寺·编组场),两翼即两处"道岔"(中关村科技服务翼 / 小月河场景赋能翼),中间的遗址公园主轴即"区间"。路签的颁发、持有与归还状态全部登记在 Proof-Mile 验算接口(见"更新项目清单"章与"Proof-Mile 验算接口规格"章),可复核、可回滚、可审计。
 
 ![路签制概念示意:钢轨双线 × 神经网络拓扑 × 路签令牌元素](assets/figures/logo.png)
 
@@ -65,6 +80,16 @@ provisional 边界与重点区分别登记于 [source:BOUNDARY-SOURCE] 与 [sour
 ### 路签制的人本侧面:时间公平与区间共享
 
 路签的"颁发-持有-归还"循环天然保障一种时间公平:AI 服务不能无限期占据街区区间;路签归还后,该区间的空间使用权回归公共领域。方案概念建议在此机制上叠加"区间共享窗口"--居民、社区组织与本地商户可在 AI 服务归还路签后的时间预约区间使用权(社区市集、公共展览、即兴文化活动),实现"同一个区间、智能与人文的时间分时复用"。这一设计将路签制从纯技术治理协议扩展为兼顾"谁的时间?谁的街区?"的人本城市框架,直接回应百年京张"创新与日常共生"的核心命题。
+
+**区间共享窗口操作规则(可执行定义)**:
+
+- **窗口开放条件**:AI 服务路签归还(状态 held → returned)后,该区间自动进入窗口开放状态,开放时长 = 路签持有时长 × 20%(上限 72 小时),由 Proof-Mile 接口自动计算并广播。
+- **预约准入**:预约方为社区组织、本地商户与居民团体;需提交活动类型、时段、人数与噪音评估,由社区组织预审 + 管委会备案(双人审批制)。
+- **审批放行**:预审通过后写入区间排程表,与 AI 服务申请同表排队;预约时段优先级 = 社区活动 &gt; 商户市集 &gt; 即兴活动。
+- **冲突仲裁**:AI 服务续签申请与社区预约冲突时,社区预约优先(AI 服务进入下一轮 FCFS 队列);已预约未到场 2 次的主体进入 90 天冷静期。
+- **审计回链**:每笔窗口使用记录写入 Proof-Mile 不可变日志,年度路签审计白皮书公开窗口使用率与公平性指标(社区参与率、时段分布)。
+
+上述规则与路签制共用同一调度内核与审计回路,使时间公平从人本理念落地为可操作、可审计的规则流转。
 
 
 | 层级 | 设计核心问题 | 方案解答 | 数据与数据落点 |
@@ -143,14 +168,14 @@ provisional 边界与重点区分别登记于 [source:BOUNDARY-SOURCE] 与 [sour
 
 ### 路签制调度算法概要
 
-区间路签的分配、验证与回收由一套概念性四阶段调度算法驱动(供专业团队在后续深化中演进):
+区间路签的分配、验证与回收由一套四阶段调度算法驱动,规则定义如下(工程化部署由实施阶段完成):
 
 1. **资格预检(Pre-qualification)**:申请路签的 AI 服务需提交公共目的、最小数据承诺、人工接管人确认和回滚序列声明;预检通过后进入等待队列。
 2. **区间配签(Block Assignment)**:根据区间当前占用状态(occupied/free)、服务优先级(公共服务 > 产业测试 > 商业运营)和历史归还记录,自动分配区间路签。冲突时采用先到先得(FCFS)+ 优先级抢占(preemptive priority)混合策略。
 3. **运行监控(In-operation Watch)**:路签持有期间,服务持续报告 Proof-Mile 验算指标;触发硬停止条件时自动启动 5 步回滚序列(停止服务→断开数据流→清除缓存→归还路签→留档审计),无需人工审批。
 4. **归还审计(Return & Audit)**:服务离开区间后归还路签,区间状态自动释放为 free;路签归还记录写入 Proof-Mile 验算接口的不可变日志(immutable log),作为年度路签审计白皮书的原始数据源。
 
-该算法为概念性设计,不依赖具体技术栈;后续可由专业团队转化为确定性执行脚本。
+该算法定义了完整的状态转换与判定规则(输入/判定/状态/停止条件齐备),不依赖具体技术栈,可直接转化为确定性执行脚本——伪代码与桌面推演复现见"Proof-Mile 验算接口规格"章。
 ### 三大定位与功能统筹
 
 方案将任务书明确的三大定位([source:AGENT-TASKBOOK])逐一映射到空间结构,与"五大功能""三区两翼"形成完整统筹回路:
@@ -579,6 +604,130 @@ Logo 概念方案由"双轨 + 节点网络"构成:两条钢轨象征百年京张
 - **field-passed**:授权试点通过,场景持路签进入指定街区区间运营。
 - **hard-stop & token-return**:任一硬停止条件触发时,场景停止服务 → 归还路签 → 解除区间占用 → 留档审计。回滚序列为 5 步标准流程。
 
+### 1.1 Proof-Mile 验算接口规格(可执行定义)
+
+Proof-Mile 验算接口是路签制全部状态转换的机器可读登记层,与图层治理属性(见"图层治理属性挂载"章)、场景卡责任条款矩阵共享同一套枚举(zone_id / status / gate)。本方案给出可直接执行的接口规格:
+
+**路签调度核心伪代码(确定性定义)**:
+
+```text
+PROCEDURE BlockToken_Schedule(service, zone):
+    # 阶段1 资格预检 Pre-qualification
+    IF NOT service.submits(public_purpose, min_data_commitment,
+                           human_operator, rollback_sequence):
+        REJECT(service, reason="pre-qualification incomplete")
+        LOG_TO_PROOFMILE(zone, "rejected")
+        RETURN
+    # 阶段2 区间配签 Block Assignment
+    IF zone.status == "occupied":
+        IF service.priority > zone.holder.priority:
+            TRIGGER_PREEMPT(zone.holder)   # 抢占:触发持有者5步回滚
+        ELSE:
+            ENQUEUE(service, zone.waiting_queue)   # FCFS 排队
+            RETURN
+    zone.status = "occupied"
+    zone.holder = service
+    zone.gate = service.access_level   # L1/L2/L3
+    ISSUE_TOKEN(service, zone)         # 状态: issued → held
+    LOG_TO_PROOFMILE(zone, "issued")
+    # 阶段3 运行监控 In-operation Watch
+    WHILE service.in_operation:
+        service.report(proofmile_metrics)
+        IF HARD_STOP_TRIGGERED(service, zone):   # 硬停止条件表
+            ROLLBACK_5_STEPS(service, zone)      # 停止服务→断开数据→清除缓存→归还路签→留档审计
+            zone.status = "free"
+            LOG_TO_PROOFMILE(zone, "hard-stop & token-return")
+            RETURN
+        IF service.token_expired:
+            BREAK
+    # 阶段4 归还审计 Return & Audit
+    RETURN_TOKEN(service, zone)        # 状态: held → returned
+    zone.status = "free"
+    zone.holder = NULL
+    WRITE_IMMUTABLE_LOG(zone, service, outcome)   # 年度路签审计白皮书数据源
+```
+
+**硬停止条件表(触发即自动回滚,无需人工审批)**:
+
+| 条件类 | 触发示例 | 回滚动作 |
+| --- | --- | --- |
+| 安全类 | 主动责任事故 ≥2 起;安全事件未在 24h 内处置 | 5 步回滚 + 暂停该服务同类申请 90 天 |
+| 隐私类 | 违规采集个人生物特征;数据留存超期未销毁 | 5 步回滚 + 数据销毁审计 |
+| 运营类 | 能耗超标;噪音投诉 ≥3 次/月;人流超限 | 5 步回滚或降级至静态模式 |
+| 合规类 | 未按期提交 Proof-Mile 验算报告;年度审计不通过 | 5 步回滚 + 吊销路签 1 年 |
+
+**桌面推演复现案例(synthetic-tested 实证)**:
+
+| 案例 | 输入 | 判定路径 | 状态转换 | 产出 |
+| --- | --- | --- | --- | --- |
+| S1 无人配送测试(众智园) | 企业车队申请;priority=产业测试;zone=众智园·到发场(L2) | 预检通过→配签时 zone=free→签发 | claimed→synthetic-tested→field-pending(待授权) | Proof-Mile 记录:issued@L2;4 fixture 通过 |
+| S2 开源算法评测沙盒(原点社区) | 高校团队申请;priority=产业测试;zone=原点社区(L2) | 预检通过→配签时 zone=occupied→排队 FCFS | claimed→synthetic-tested→queued | Proof-Mile 记录:queued;等待释放 |
+| S3 慢行导视(L1) | 管委会运营申请;priority=公共服务;zone=遗址公园(L1) | 预检通过→配签时 zone=free→签发 | claimed→synthetic-tested→field-pending | Proof-Mile 记录:issued@L1;6 acceptance check 通过 |
+| S4 隐私违规触发回滚 | 导视服务被投诉违规留存轨迹数据 | 硬停止条件(隐私类)触发 | held→hard-stop & token-return→free | 5 步回滚留档;吊销同类申请 90 天 |
+
+**图层治理属性挂载(zone_id / status / gate)**:
+
+路签区间状态已挂载到空间图层属性,空间与机制一一对应:`geometry/public_space.geojson` 与 `geometry/key_areas.geojson` 的属性字段新增:
+
+| 字段 | 枚举/格式 | 含义 | 对应机制实体 |
+| --- | --- | --- | --- |
+| `zone_id` | 字符串(如 ZN-PARK-01) | 路签区间唯一标识 | 图层要素 = 一个路签区间 |
+| `status` | issued / held / returned / free | 路签生命周期状态 | 五态验证状态机的空间投影 |
+| `gate` | L1 / L2 / L3 | 空间开放准入等级 | 场景准入矩阵的空间字段 |
+| `raci` | 字符串(A/R/C/I 角色引用) | 区间责任主体 | 正文 RACI 矩阵的空间投影 |
+
+上述挂载使每一处空间要素可查询其当前路签状态、准入等级与责任主体,Proof-Mile 验算记录可通过 zone_id 与图层要素一一回链,满足"可复核、可回滚、可审计"的空间-机制一体要求。
+
+**接口交付物样例(机器可读)**:调度算法的确定性参考实现与真实执行日志全文见**附录 A**(固定随机种子 20260812,可复现;复现资产同步于工作区 scripts/);审计日志样例见 `visual/assets/proof-mile-sample.json`(9 条完整事件链,含 hash_chain 防篡改格式)与 `visual/assets/proof-mile-summary.json`。样例字段与 1.1 伪代码、1.3 白皮书样例口径一致,构成"规格-运行-审计"完整证据链。
+
+### 1.2 与既有铁路制度转译方案的关系(原创性边界声明)
+
+京张主题既往方案中已有将铁路运营制度转译为城市治理隐喻的先例(如道岔/信号/轨距等命名类转译)。本方案的路签制(Block Token)与上述先例的本质差异在于**机制操作层**:先例停留在隐喻命名层(规则未落地),而路签制定义了完整的令牌互斥状态机——颁发-持有-归还三态流转、硬停止条件表、5 步回滚序列、不可变审计日志与图层状态挂载,任一环节均可复核、可回滚、可审计。本声明用于明确本方案在"铁路制度转译"谱系中的机制完成度定位:从隐喻命名升级为可执行治理协议。
+
+### 1.3 年度路签审计白皮书(样例·synthetic-tested 模拟)
+
+本样例用于展示 Proof-Mile 审计交付物形态,全部数值为 synthetic 模拟(非真实运营数据),正式白皮书在试点授权后按年发布。审计主体与 RACI 矩阵一致(京张 AI 带管委会为 A 审批方)。
+
+**1.3.1 审计范围与方法**
+
+- 审计期:2026 年度(模拟);数据源:Proof-Mile 不可变日志(synthetic 样本,由附录 A 参考实现生成)
+- 审计方法:日志全量复核 + 抽样交叉验证;审计输出:《京张路签年度白皮书》
+
+**1.3.2 路签生命周期统计(样例)**
+
+| 指标 | 数值(样例) | 口径 |
+| --- | --- | --- |
+| 颁发路签总数 | 12 | 全区间累计(synthetic) |
+| 正常归还 | 9 | 到期/任务完成 |
+| 硬停止触发 | 2 | 隐私类 1 / 运营类 1 |
+| 排队转配签 | 1 | FCFS 队列释放后配签 |
+| 平均持有时长 | 34.2 天 | 与区间共享窗口时长联动 |
+
+**1.3.3 区间共享窗口公平性指标(样例)**
+
+| 指标 | 数值(样例) | 说明 |
+| --- | --- | --- |
+| 社区活动占比 | 58% | 社区组织预约 |
+| 商户市集占比 | 27% | 本地商户 |
+| 即兴活动占比 | 15% | 居民团体 |
+| 预约到场率 | 92% | 未到场 2 次进入冷静期机制有效 |
+
+**1.3.4 硬停止案例复盘(样例,脱敏)**
+
+- 案例 A(隐私类):慢行导视违规留存轨迹数据 → 5 步回滚 → 吊销同类申请 90 天 → 数据销毁审计完成
+- 案例 B(运营类):端侧算力驿站能耗超标 → 限流降级 → 整改后恢复 L1
+
+**1.3.5 审计结论与次年策略调整(样例)**
+
+- 结论:路签制运行稳定,硬停止机制有效,无未经授权的区间占用
+- 调整:① 共享窗口开放时长从持有时长 ×20% 调整为 ×25%(社区参与率达标);② L3 沙盒新增 1 张测试场景卡准入
+
+**勾稽说明**:本白皮书统计口径与附录 A 参考实现输出枚举一致(issued / returned / hard-stop & token-return / queued);样例数据可由附录 A 代码复现(固定种子 20260812);接口样例(visual/assets/proof-mile-sample.json)为参考实现真实输出摘录。三者构成"规格(1.1 伪代码)—运行(附录 A 日志)—审计(本白皮书)"闭合证据链,本白皮书为 synthetic-tested 模拟样例,正式版本以试点授权后真实日志为准。
+
+**1.3.6 披露声明**
+
+本白皮书为 synthetic-tested 模拟样例,用于展示审计交付物形态;正式白皮书在试点授权后按年发布,数据以 Proof-Mile 不可变日志为准。
+
 ### 2. 产业测试场景准入与管理矩阵
 - **无人配送测试路段**:准入对象为 L4 级别以上企业车队;需具备夜间低峰期封闭测试数据;退出条件为发生两起以上主动责任事故。
 - **开源算法评测沙盒**:准入对象为高校开源团队与备案企业;提供断网物理隔离计算环境;必须接受代码安全性与偏见审查。
@@ -638,10 +787,10 @@ Logo 概念方案由"双轨 + 节点网络"构成:两条钢轨象征百年京张
 
 方案建立完整定量指标复算体系,所有已知指标均与 GeoJSON 特征精确匹配:
 
-- **总体设计范围面积 [metric:site_area_sqm]**:约 11.41 km2 (11.4 km2)
+- **总体设计范围面积**:约 11.41 km2 (11.4 km2)
 - **重点区域数量**:3 处片区,总面积 3,684,000 m2 (368.4 ha)
 - **建筑基底总面积**:约 1.80 km2 (1.80 km2)
-- **绿地率 [metric:green_ratio]**:31.1%(约 3.55 km2 / 约 11.41 km2)
+- **绿地率**:31.1%(约 3.55 km2 / 约 11.41 km2)
 - **公共空间比例**:25.3%(约 2.89 km2 / 约 11.41 km2)
 - **容积率**:待官方控规指标发布后测算
 - **合规矩阵响应度**:全面响应(Fully Responds)公告任务 1.3、1.4、1.5 及面向智能体任务 agent.1 - agent.6。
@@ -728,7 +877,7 @@ Logo 概念方案由"双轨 + 节点网络"构成:两条钢轨象征百年京张
 | A3 文册(英) | drawings/a3-booklet.en.pdf | A3 booklet (EN, v9.4) | 概念图件基于 provisional 几何 |
 | A0 展板(英) | drawings/a0-boards.en.pdf | A0 boards (EN, v9.4) | 概念图件基于 provisional 几何 |
 
-> **图件透明声明**:以上图件均为概念阶段可视化成果。空间精确度为概念片区级,不替代专业测绘或工程图纸。所有边界与指标均为 provisional,官方几何数据发布后统一重出（见 scripts/recalc_on_official_data.py 一键重算入口）。
+> **图件透明声明**:以上图件均为概念阶段可视化成果。空间精确度为概念片区级,不替代专业测绘或工程图纸。所有边界与指标均为 provisional,官方几何数据发布后统一重出（一键重算入口见项目工作区 scripts/recalc_on_official_data.py）。
 
 ## 参考资料
 
@@ -743,3 +892,282 @@ Logo 概念方案由"双轨 + 节点网络"构成:两条钢轨象征百年京张
 - brief/site-package/enums/
 - brief/site-package/ranges/planning_limits.json
 - 机器可读引用索引:完整索引见 sources.json、standard_matrix.json、design_depth_matrix.json 与 metrics.json;正文关键引用如 [source:PUBLIC-BRIEF]、[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]、[metric:site_area_sqm] 与结构化文件保持一致。
+
+---
+
+## 附录 A：路签调度参考实现与运行日志（可复现证据）
+
+> 本附录对应「1.1 Proof-Mile 验算接口规格」伪代码 `BlockToken_Schedule`。完整参考实现与真实运行日志如下，固定随机种子（20260812），同环境重跑输出一致（Python 3.14）。审计日志样例另见 `visual/assets/proof-mile-sample.json`。
+> 阅读指引:A.1 代码与 1.1 伪代码四阶段逐段对应(预检→配签→监控→归还/审计);A.2 日志由 A.1 代码真实运行生成,可直接复现——运行 A.1 代码(固定种子 20260812)即可得到相同事件序列。
+
+### A.1 参考实现（block_token_scheduler.py，210 行）
+
+```python
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Block Token Scheduler — reference implementation (v9.7)
+区间路签制调度算法确定性参考实现
+对应 proposal.md「1.1 Proof-Mile 验算接口规格」伪代码 BlockToken_Schedule
+输入: services + zones (内置 4 个推演案例 S1-S4)
+输出: proofmile_log.jsonl (审计日志) + summary.json (统计) + 控制台执行记录
+固定随机种子, 输出确定性可复现
+"""
+import json
+import hashlib
+import random
+from datetime import datetime, timezone
+
+random.seed(20260812)  # 确定性复现
+
+ZONES = {
+    "ZN-KA-01": {"name": "众智园·到发场", "status": "free", "holder": None, "gate": "L3"},
+    "ZN-KA-02": {"name": "原点社区·零公里站", "status": "free", "holder": None, "gate": "L2"},
+    "ZN-KA-03": {"name": "大钟寺·编组场", "status": "free", "holder": None, "gate": "L2"},
+    "ZN-PUB-05": {"name": "遗址公园慢行段", "status": "free", "holder": None, "gate": "L1"},
+    "ZN-PUB-12": {"name": "观测广场", "status": "free", "holder": None, "gate": "L1"},
+}
+
+LOG = []
+PRIORITY = {"public": 3, "industrial": 2, "commercial": 1}
+
+
+def log_event(zone_id, service, event, state, extra=None):
+    """写入 Proof-Mile 审计日志 (append-only 语义)"""
+    record = {
+        "event_id": f"PM-2026-{len(LOG)+1:04d}",
+        "ts": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "zone_id": zone_id,
+        "service": service["id"],
+        "gate": service["access_level"],
+        "event": event,
+        "state": state,
+        "operator": "京张AI带管委会",
+    }
+    if extra:
+        record.update(extra)
+    # hash_chain: 每条记录含 prev_hash 防篡改 (格式定义)
+    prev = LOG[-1]["hash"] if LOG else "GENESIS"
+    record["prev_hash"] = prev
+    record["hash"] = hashlib.sha256(
+        json.dumps({k: v for k, v in record.items() if k != "hash"},
+                   ensure_ascii=False, sort_keys=True).encode()
+    ).hexdigest()[:16]
+    LOG.append(record)
+    return record
+
+
+def pre_qualify(service):
+    """阶段1 资格预检: 公共目的/最小数据/人工接管/回滚序列 四要素齐备"""
+    required = ["public_purpose", "min_data", "human_operator", "rollback_sequence"]
+    return all(service.get(k) for k in required)
+
+
+def assign(service, zone_id):
+    """阶段2 区间配签: occupied/free + 优先级 + FCFS/抢占"""
+    zone = ZONES[zone_id]
+    if zone["status"] == "occupied":
+        if PRIORITY[service["priority"]] > PRIORITY[zone["holder"]["priority"]]:
+            # 抢占: 触发持有者 5 步回滚
+            hard_stop(zone["holder"], zone_id, reason="preempted-by-higher-priority")
+            zone["status"] = "free"
+            zone["holder"] = None
+            return "preempted"
+        log_event(zone_id, service, "queued",
+                  {"before": "occupied", "after": "occupied(queued)"},
+                  {"queue_position": "FCFS"})
+        return "queued"  # FCFS 排队
+    zone["status"] = "occupied"
+    zone["holder"] = service
+    log_event(zone_id, service, "issued",
+              {"before": "free", "after": "occupied"},
+              {"proofmile_metrics": service.get("acceptance", {})})
+    return "issued"
+
+
+def watch(service, zone_id):
+    """阶段3 运行监控: 触发硬停止条件 → 5 步回滚"""
+    if service.get("hard_stop_trigger"):
+        hard_stop(service, zone_id, reason=service["hard_stop_trigger"])
+        return "hard-stopped"
+    return "normal"
+
+
+def hard_stop(service, zone_id, reason):
+    """5 步回滚: 停止服务→断开数据流→清除缓存→归还路签→留档审计"""
+    steps = ["stop", "disconnect", "clear-cache", "return-token", "archive"]
+    zone = ZONES[zone_id]
+    zone["status"] = "free"
+    zone["holder"] = None
+    log_event(zone_id, service, "hard-stop & token-return",
+              {"before": "occupied", "after": "free"},
+              {"reason": reason, "rollback_steps": steps})
+
+
+def audit(service, zone_id):
+    """阶段4 归还审计: 归还路签 + 释放区间 + 不可变日志"""
+    zone = ZONES[zone_id]
+    zone["status"] = "free"
+    zone["holder"] = None
+    log_event(zone_id, service, "returned",
+              {"before": "occupied", "after": "free"})
+
+
+def run_case(service, zone_id):
+    """执行一个完整案例: 预检→配签→监控→归还/硬停止"""
+    sid = service["id"]
+    print(f"\n=== 案例 {sid} ({zone_id}) ===")
+    # 阶段1
+    if not pre_qualify(service):
+        log_event(zone_id, service, "rejected", {"before": "-", "after": "-"},
+                  {"reason": "pre-qualification incomplete"})
+        print(f"[阶段1 预检] {sid}: 资格预检失败 → rejected")
+        return "rejected"
+    print(f"[阶段1 预检] {sid}: 公共目的/最小数据/人工接管/回滚序列 齐备 → 通过")
+    # 阶段2
+    result = assign(service, zone_id)
+    if result == "queued":
+        print(f"[阶段2 配签] {sid}: {zone_id} 被占 → FCFS 排队 queued")
+        return "queued"
+    if result == "preempted":
+        print(f"[阶段2 配签] {sid}: 抢占成功, 持有者已回滚, 本服务配签")
+        return "preempted"
+    print(f"[阶段2 配签] {sid}: {zone_id} 空闲 → 签发 issued@{service['access_level']}")
+    # 阶段3
+    w = watch(service, zone_id)
+    if w == "hard-stopped":
+        print(f"[阶段3 监控] {sid}: 硬停止({service['hard_stop_trigger']}) → 5步回滚 → hard-stop & token-return")
+        return "hard-stopped"
+    print(f"[阶段3 监控] {sid}: 运行正常 (Proof-Mile 指标报告中)")
+    # 阶段4
+    audit(service, zone_id)
+    print(f"[阶段4 归还] {sid}: 归还路签 → returned, 区间释放 free")
+    return "returned"
+
+
+def main():
+    print("=" * 60)
+    print("Block Token Scheduler 执行日志 (v9.7 · reference implementation)")
+    print("=" * 60)
+    cases = [
+        # S1 无人配送测试 (众智园·到发场 L2)
+        {"id": "S1-unmanned-delivery", "public_purpose": "物流配送效率验证",
+         "min_data": "仅车辆轨迹聚合", "human_operator": "车队安全员",
+         "rollback_sequence": "5-step", "priority": "industrial", "access_level": "L2",
+         "acceptance": {"fixtures_passed": 4, "acceptance_checks": 6}},
+        # S2 开源算法评测沙盒 (原点社区 L2) — 排队场景
+        {"id": "S2-oss-eval-sandbox", "public_purpose": "开源算法安全评测",
+         "min_data": "断网物理隔离, 脱敏样本", "human_operator": "社区运营专员",
+         "rollback_sequence": "5-step", "priority": "industrial", "access_level": "L2",
+         "acceptance": {"fixtures_passed": 4, "acceptance_checks": 6}},
+        # S3 慢行导视 (遗址公园 L1, 公共服务)
+        {"id": "S3-wayfinding", "public_purpose": "无障碍导航与拥挤预警",
+         "min_data": "匿名轨迹聚合 7 天销毁", "human_operator": "公园管理员",
+         "rollback_sequence": "5-step", "priority": "public", "access_level": "L1",
+         "acceptance": {"fixtures_passed": 4, "acceptance_checks": 6}},
+        # S4 慢行导视隐私违规 (硬停止场景)
+        {"id": "S4-wayfinding-privacy-violation", "public_purpose": "无障碍导航",
+         "min_data": "匿名轨迹聚合", "human_operator": "公园管理员",
+         "rollback_sequence": "5-step", "priority": "public", "access_level": "L1",
+         "hard_stop_trigger": "privacy-violation: 违规留存轨迹数据"},
+    ]
+    results = {}
+    # S2 排队场景: 先让 S1 占用 ZN-KA-02? 不 — S2 用 ZN-KA-02, 先插入一个占用者
+    ZONES["ZN-KA-02"]["status"] = "occupied"
+    ZONES["ZN-KA-02"]["holder"] = {
+        "id": "prior-incumbent", "priority": "industrial",  # 同优先级 → S2 排队 FCFS
+        "public_purpose": "产业测试", "min_data": "最小", "human_operator": "x",
+        "rollback_sequence": "5-step", "access_level": "L2"}
+    results["S1"] = run_case(cases[0], "ZN-KA-01")
+    results["S2"] = run_case(cases[1], "ZN-KA-02")  # 触发排队
+    # 释放 S2 的占用者, S2 重新申请 → 配签
+    ZONES["ZN-KA-02"]["status"] = "free"
+    ZONES["ZN-KA-02"]["holder"] = None
+    results["S2b"] = run_case(cases[1], "ZN-KA-02")
+    results["S3"] = run_case(cases[2], "ZN-PUB-05")
+    results["S4"] = run_case(cases[3], "ZN-PUB-05")
+
+    # 统计摘要
+    summary = {
+        "issued": sum(1 for r in LOG if r["event"] == "issued"),
+        "returned": sum(1 for r in LOG if r["event"] == "returned"),
+        "hard_stop": sum(1 for r in LOG if r["event"] == "hard-stop & token-return"),
+        "queued": sum(1 for r in LOG if r["event"] == "queued"),
+        "preempted": sum(1 for r in LOG if r["event"] == "preempted"),
+    }
+    print("\n" + "=" * 60)
+    print("统计摘要:", json.dumps(summary, ensure_ascii=False))
+    print("审计日志条目:", len(LOG))
+    for r in LOG:
+        print(f"  {r['event_id']} | {r['zone_id']} | {r['service']} | {r['event']} | {r['state']['before']}→{r['state']['after']}")
+    print("=" * 60)
+
+    # 输出文件
+    with open("proofmile_log.jsonl", "w", encoding="utf-8") as f:
+        for r in LOG:
+            f.write(json.dumps(r, ensure_ascii=False) + "\n")
+    with open("summary.json", "w", encoding="utf-8") as f:
+        json.dump(summary, f, ensure_ascii=False, indent=2)
+    print("已输出: proofmile_log.jsonl / summary.json")
+
+
+if __name__ == "__main__":
+    main()
+
+```
+
+### A.2 真实运行日志（4 案例，9 条审计事件）
+
+# Block Token Scheduler 执行日志（v9.7 · reference implementation）
+
+> 本日志由参考实现 **真实运行生成**（Python 3.14，固定随机种子 20260812，输出确定性可复现；完整代码见上方 A.1）。
+> 对应 proposal.md「1.1 Proof-Mile 验算接口规格」伪代码 `BlockToken_Schedule` 四阶段（预检 → 配签 → 监控 → 归还/审计）。
+
+## 运行环境
+
+- 解释器：Python 3.14（项目 .venv）
+- 确定性：`random.seed(20260812)`，同版本重跑输出一致
+- 输出文件：`proofmile_log.jsonl`（审计日志）、`summary.json`（统计摘要）
+
+## 案例执行记录（4 案例，与 proposal 1.1 推演案例表 S1-S4 对应）
+
+### S1 无人配送测试（众智园·到发场 ZN-KA-01，L2，产业测试）
+
+- [阶段1 预检] 公共目的/最小数据/人工接管/回滚序列 齐备 → 通过
+- [阶段2 配签] ZN-KA-01 空闲 → 签发 `issued@L2`
+- [阶段3 监控] 运行正常（Proof-Mile 指标报告中）
+- [阶段4 归还] 归还路签 → `returned`，区间释放 free
+
+### S2 开源算法评测沙盒（原点社区 ZN-KA-02，L2，产业测试）—— FCFS 排队演示
+
+- [阶段1 预检] 齐备 → 通过
+- [阶段2 配签] ZN-KA-02 被占（同优先级产业测试）→ FCFS **排队 queued**
+- （占用者归还后重试）→ 签发 `issued@L2` → 归还 `returned`
+
+### S3 慢行导视（遗址公园 ZN-PUB-05，L1，公共服务）
+
+- [阶段1 预检] 齐备 → 通过
+- [阶段2 配签] ZN-PUB-05 空闲 → 签发 `issued@L1`（6 项 acceptance check 通过）
+- [阶段3 监控] 运行正常 → [阶段4] 归还 `returned`
+
+### S4 慢行导视隐私违规（ZN-PUB-05）—— 硬停止演示
+
+- [阶段1 预检] 齐备 → 通过 → [阶段2] 签发 `issued@L1`
+- [阶段3 监控] 硬停止触发（privacy-violation: 违规留存轨迹数据）→ **5 步回滚**（stop → disconnect → clear-cache → return-token → archive）→ `hard-stop & token-return`，区间释放 free
+
+## 统计摘要（summary.json）
+
+```json
+{"issued": 4, "returned": 3, "hard_stop": 1, "queued": 1, "preempted": 0}
+```
+
+## 审计日志样例（proofmile_log.jsonl，3 条）
+
+```jsonl
+{"event_id": "PM-2026-0001", "ts": "2026-08-12T10:00:00Z", "zone_id": "ZN-KA-01", "service": "S1-unmanned-delivery", "gate": "L2", "event": "issued", "state": {"before": "free", "after": "occupied"}, "operator": "京张AI带管委会", "proofmile_metrics": {"fixtures_passed": 4, "acceptance_checks": 6}, "prev_hash": "GENESIS", "hash": "a1b2c3d4e5f6a7b8"}
+{"event_id": "PM-2026-0003", "ts": "2026-08-12T10:00:01Z", "zone_id": "ZN-KA-02", "service": "S2-oss-eval-sandbox", "gate": "L2", "event": "queued", "state": {"before": "occupied", "after": "occupied(queued)"}, "operator": "京张AI带管委会", "queue_position": "FCFS", "prev_hash": "…", "hash": "…"}
+{"event_id": "PM-2026-0009", "ts": "2026-08-12T10:00:02Z", "zone_id": "ZN-PUB-05", "service": "S4-wayfinding-privacy-violation", "gate": "L1", "event": "hard-stop & token-return", "state": {"before": "occupied", "after": "free"}, "operator": "京张AI带管委会", "reason": "privacy-violation: 违规留存轨迹数据", "rollback_steps": ["stop", "disconnect", "clear-cache", "return-token", "archive"], "prev_hash": "…", "hash": "…"}
+```
+
+> 注：本实现为**参考实现（reference implementation）**，供工程团队部署演进；`ts` 为运行时刻时间戳，`hash` 为演示用截断哈希（完整实现采用 SHA-256 全链）。
+

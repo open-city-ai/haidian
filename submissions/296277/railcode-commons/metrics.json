@@ -1,0 +1,246 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary; no trusted official site polygon is available.",
+        "Recalculate all spatial metrics and derived figures when official geometry is supplied."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "Geometry uses the repository provisional rough boundary and is not an official red line."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Geometry uses the repository provisional rough boundary and is not an official red line."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Geometry uses the repository provisional rough boundary and is not an official red line."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(documented_scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(documented_personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_sandbox_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(documented_industry_sandboxes)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "honour_node_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(documented_honour_nodes)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "pilot_duration_days": {
+      "status": "known",
+      "value": 90,
+      "unit": "day",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "documented_pilot_duration",
+      "confidence": "high",
+      "assumptions": [
+        "Self-imposed reversible pilot duration; not a government schedule."
+      ]
+    },
+    "implementation_gate_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(G0..G4)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "delivery_contract_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(RC-01..RC-06)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "redline_kpi_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(documented_redline_KPIs)",
+      "confidence": "high",
+      "assumptions": [
+        "Project targets, not statutory metrics or achieved performance."
+      ]
+    },
+    "human_fallback_target_seconds": {
+      "status": "known",
+      "value": 30,
+      "unit": "second",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "pilot_target",
+      "confidence": "high",
+      "assumptions": [
+        "Self-imposed target; subject to pilot measurement."
+      ]
+    },
+    "implementation_readiness_record_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/delivery_contracts.json",
+        "visual/assets/implementation_readiness.json"
+      ],
+      "formula": "count(RC-01..RC-06 with preflight, pause, resume, and dual-signoff fields)",
+      "confidence": "high",
+      "assumptions": [
+        "Counts package records only; no authorization, institution, field run, or achieved performance is claimed."
+      ]
+    },
+    "cultural_evidence_record_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/cultural_evidence_matrix.json"
+      ],
+      "formula": "count(CUL-01..CUL-05)",
+      "confidence": "high",
+      "assumptions": [
+        "Counts evidence-plan records, including pending and creative states; not verified heritage inventory."
+      ]
+    },
+    "regional_contract_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/regional_collaboration_contracts.json"
+      ],
+      "formula": "count(REG-01..REG-05)",
+      "confidence": "high",
+      "assumptions": [
+        "Portable unconfirmed templates; no institutional participation claimed."
+      ]
+    },
+    "developer_funnel_stage_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/developer_conversion_funnel.json"
+      ],
+      "formula": "count(join, co-create, test, publish, reuse)",
+      "confidence": "high",
+      "assumptions": [
+        "Operating-design stages only; no recruited developer or conversion performance claimed."
+      ]
+    }
+  }
+}

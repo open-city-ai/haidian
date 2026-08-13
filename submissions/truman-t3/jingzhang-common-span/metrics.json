@@ -1,0 +1,55 @@
+{
+  "schema_version": "0.1.0",
+  "units": { "length": "m", "area": "sqm" },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known", "value": 11412825.386, "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "polygon_area(submitted_site_boundary)", "confidence": "medium",
+      "assumptions": ["A-CONTROLS-001"]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known", "value": 18968.631621207962, "unit": "sqm",
+      "source_files": ["geometry/buildings.geojson"],
+      "formula": "sum(polygon_area(building_footprints))", "confidence": "medium",
+      "assumptions": ["A-SPAN-001"],
+      "reason": "Concept layer only; official baseline and professional recomputation are pending."
+    },
+    "green_ratio": {
+      "status": "known", "value": 0.026606860977172277, "unit": "ratio",
+      "source_files": ["geometry/green_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "green_space_area_sqm / site_area_sqm", "confidence": "medium",
+      "assumptions": ["A-SPAN-001"],
+      "reason": "Concept layer only; official baseline and professional recomputation are pending."
+    },
+    "public_space_ratio": {
+      "status": "known", "value": 0.001994386792581291, "unit": "ratio",
+      "source_files": ["geometry/public_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "sum(area(load_card_anchor_polygons)) / site_area_sqm", "confidence": "low",
+      "assumptions": ["A-SPAN-001"],
+      "reason": "Derived from three conceptual Load Card anchor polygons. It is a design-test footprint, not a statutory public-space quota; authoritative boundary and survey data are required before approval."
+    },
+    "floor_area_ratio": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "total_floor_area_sqm / official_site_area_sqm", "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known", "value": 3, "unit": "count",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "count(key_detailed_design_areas)", "confidence": "high", "assumptions": []
+    },
+    "span_type_count": {
+      "status": "known", "value": 3, "unit": "count",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "count(span_types)", "confidence": "medium", "assumptions": ["A-SPAN-001"]
+    },
+    "load_card_anchor_count": {
+      "status": "known", "value": 3, "unit": "count",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "count(load_card_anchor_polygons)", "confidence": "medium", "assumptions": ["A-SPAN-001"]
+    }
+  }
+}

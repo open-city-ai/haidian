@@ -5,49 +5,147 @@
       "id": "A-BOUNDARY-001",
       "status": "blocked_on_organizer_data",
       "statement": "三层范围与三处重点区的精确官方 polygon 截至 2026-08-08 未公开发布；本包使用 brief/site-package/geometry/provisional_boundaries.geojson 的临时替代边界。",
-      "impact": "全部面积、比例与落位结论均为临时值，不得作为 official redline、审批依据或精确面积依据。官方数据发布后须整体重算，不得只替换单个文件。"
+      "impact": "全部面积、比例与落位结论均为临时值，不得作为 official redline、审批依据或精确面积依据。官方数据发布后须整体重算，不得只替换单个文件。",
+      "derivation_zh": "官方 polygon 未发布，因此三层范围与三处重点区的边界取自 `brief/site-package/geometry/provisional_boundaries.geojson`——由维护者依据公告文字四至绘制的临时几何。本包不另行推定边界，也不对该几何做平滑或外扩：**换一份边界就要整体重算，而不是局部微调**，因为面积、占比、剖分归属与三处重点区的相对位置全部由它派生。上游登记表把该文件记为 `usable_for_formal: provisional_only`，并把「精确面积计算」列入禁止用途；本包的面积数字因此一律标 `evidence_class: provisional`，并在正文与图纸上把它画成虚线。",
+      "derivation_en": "The official polygon is unpublished, so the three scope levels and three key areas come from `brief/site-package/geometry/provisional_boundaries.geojson` — provisional geometry the maintainers drew from the announcement's written extents. This package does not infer its own boundary and does not smooth or buffer that one: **a different boundary means recomputing everything, not adjusting something**, because areas, shares, partition membership and the relative position of the three key areas all derive from it.",
+      "if_wrong_zh": "若官方 polygon 与临时几何差异显著，则本包全部面积类数字、用地剖分的逐点归属、以及三处重点区的里程位置都需重算；**结论的方向不变（闭合差机制不依赖边界精度），但所有量的取值都会变**。这条区分写在这里，是因为它决定了这份方案哪些部分需要重做、哪些不需要。",
+      "what_would_close_it_zh": "官方发布三层范围与重点区的法定 polygon。",
+      "affects_metrics": [
+        "benchmark_count",
+        "building_footprint_area_sqm",
+        "floor_area_ratio",
+        "green_ratio",
+        "green_ratio_in_partition",
+        "key_area_count",
+        "leveling_spine_length_m",
+        "phased_share_of_design_scope",
+        "phasing_union_area_sqm",
+        "public_space_ratio",
+        "site_area_sqm"
+      ],
+      "affects_metric_count": 11
     },
     {
       "id": "A-CONTROLS-001",
       "status": "pending_professional_confirmation",
       "statement": "容积率、建筑高度、建筑密度、退线、道路红线、权属、市政管线与工程约束须以官方控规条件与专项论证为准。",
-      "impact": "本方案刻意不给出上述数值，metrics.json 中该类指标状态保持 unknown 并记录前置条件；在官方数据缺位时填入估计值属于伪造确定性。"
+      "impact": "本方案刻意不给出上述数值，metrics.json 中该类指标状态保持 unknown 并记录前置条件；在官方数据缺位时填入估计值属于伪造确定性。",
+      "derivation_zh": "本包**不填**这些数值，而不是填一个估计值再标注不确定。`brief/site-package/ranges/planning_limits.json` 的 `official_planning_controls` 自己把容积率、建筑高度、建筑密度等记为 `status: missing`，并给出 `needed_from`；因此 `metrics.json` 里对应指标是 `status: unknown`、`value: null`。**在官方数据缺位时填入估计值属于伪造确定性**——这是本方案的立场，不只是谨慎。",
+      "derivation_en": "This package **does not fill these in**, rather than filling in an estimate and flagging uncertainty. The organisers' own `planning_limits.json` marks FAR, height and density `status: missing` with a `needed_from`, so the corresponding metrics are `status: unknown`, `value: null`. **Filling in an estimate where official data is absent is manufacturing certainty** — a position, not just caution.",
+      "if_wrong_zh": "若官方控规发布后与本方案的空间意图冲突，受影响的是**开发强度与体量**部分，不是水准网机制。设计深度矩阵已用 `completeness_limited_by` 标出受此限制的条目，并区分了归属：容积率是组织方缺口，未取得的规范是本方案自己的缺口。",
+      "what_would_close_it_zh": "官方控规条件或专项论证发布。",
+      "affects_metrics": [
+        "existing_residential_floor_area_sqm",
+        "floor_area_ratio"
+      ],
+      "affects_metric_count": 2
     },
     {
       "id": "A-HERITAGE-001",
       "status": "blocked_on_organizer_data",
       "statement": "清华园车站旧址等文物保护范围、建设控制地带、蓝线与绿线的官方 GIS 图层仍属数据缺口。",
-      "impact": "constraints.geojson 只包含本方案自定义的受控测试边界；不推定任何法定管控线。三处地标选址须经文保与工程专项论证后确定。"
+      "impact": "constraints.geojson 只包含本方案自定义的受控测试边界；不推定任何法定管控线。三处地标选址须经文保与工程专项论证后确定。",
+      "derivation_zh": "清华园车站旧址等的保护范围、建设控制地带、蓝线与绿线的官方 GIS 图层未公开。本包的处理是**在空间上避让而不是猜测边界**：不在任何未知保护范围内安排构筑物，L1 原点标石选在公园既有铺装范围内，且全部标石为「与地面齐平、可无损移除」的构造——**使得万一落在保护范围内，撤除代价接近于零**。这是设计层面对数据缺口的应答，不是对它的忽略。",
+      "derivation_en": "The protection zones, construction-control belts, blue lines and green lines for sites including the former Tsinghua Garden Station are not published as GIS layers. The response is **spatial avoidance rather than guessing the boundary**: no structure is placed inside any unknown protection zone, the L1 origin stone sits within existing park paving, and every stone is specified flush with the ground and non-destructively removable — **so that if one does fall inside a protection zone, the cost of removing it is close to zero.**",
+      "if_wrong_zh": "若某个测点落在保护范围内，按上述构造它可被无损撤除，水准网少一个三等点仍成立（分级布设本就允许点位增减）。**会失效的是该点位所属的月度复测日**，须改到相邻点。",
+      "what_would_close_it_zh": "文物、水务与园林部门发布相应保护范围的 GIS 图层。",
+      "affects_metrics": [],
+      "affects_metric_count": 0,
+      "carries_no_metric_note_zh": "**本包没有任何已发布的数字建立在这条假设上。** 这不是疏漏，是这条假设的性质：它若失效，`metrics.json` 里不会有任何一个值改变，因此**任何对数字的检查都抓不到它**。上面的 `if_wrong_zh` 说明了失效会长什么样；能发现它的只有外部判断，不是本包的闸门。把它单列并写明这一点，是本方案能对它做的全部。",
+      "carries_no_metric_note_en": "**No published number in this package rests on this assumption.** That is not an oversight but the nature of it: if it fails, no value in `metrics.json` changes, so **no check on the numbers can catch it**. `if_wrong_zh` above says what failure would look like; only outside judgement can detect it, not this package's gates. Listing it separately and saying so is the whole of what this proposal can do about it."
     },
     {
       "id": "A-CLOSURE-001",
       "status": "no_baseline_yet",
       "statement": "闭合差 f、限差 F 达标率、无AI等价路径覆盖率与居民发起复测次数目前均无基线数据。",
-      "impact": "第三类指标须在近期项目运行一个复测周期后建立基线；本方案不以设计意图冒充实测值。"
+      "impact": "第三类指标须在近期项目运行一个复测周期后建立基线；本方案不以设计意图冒充实测值。",
+      "derivation_zh": "第三类指标目前**全部没有基线**，因此在 `metrics.json` 里保持 unknown。本包不以设计意图冒充实测：闭合差 f 的第一个真实读数必须由首轮闭合试验产生，而那需要一个复测周期。随包的十例桌面演练（`run_s08_tabletop.js`）证明的是**机制在给定读数下会作出何种判定**，不是读数本身。",
+      "derivation_en": "The class-3 metrics have **no baseline at all** and stay `unknown`. This package does not pass design intent off as measurement: the first real reading of f must come from the first closure trial, which takes a re-survey cycle. The ten-case tabletop proves **what the mechanism decides given readings**, not the readings.",
+      "if_wrong_zh": "若首轮试验的 f 远超预期限差，机制的应答是**整段退回复测并降级为无AI等价服务**——这正是它设计出来要做的事，不是它的失败。真正会推翻本方案的结果是：**f 无法被稳定测出**（不同主体读数不可比），那说明限差口径本身没定义好。",
+      "what_would_close_it_zh": "首轮闭合试验运行满一个复测周期并公开读数。",
+      "affects_metrics": [
+        "benchmark_count"
+      ],
+      "affects_metric_count": 1
     },
     {
       "id": "A-CLOSURE-002",
       "status": "declared_risk",
       "statement": "若复测主体同质化，闭合差会系统性偏小而失去意义。",
-      "impact": "强制复核主体多元（专业机构、运营方、居民代表、国际访客四类缺一不可），居民代表拥有独立发起权；须在首个复测周期后重新评估该风险。"
+      "impact": "强制复核主体多元（专业机构、运营方、居民代表、国际访客四类缺一不可），居民代表拥有独立发起权；须在首个复测周期后重新评估该风险。",
+      "derivation_zh": "这是整套机制**最脆弱的一条假设**，因此单列。闭合差要有意义，各水准点的读数主体必须相互独立；若四类复核主体实际由同一机构派出，或使用同一套问题集与同一模型，闭合差会系统性偏小——**机制会显示「合格」而什么都没测出来**。本包的应答有三层：场景卡强制列明每个点位的执行角色（`check_cards.js` 逐条解析）；F1 场景的恢复须四类主体**一致**确认而非多数决；限差只可收紧不可放宽，使「调松以通过」在机制层面不可行。",
+      "derivation_en": "This is the **most fragile assumption in the mechanism**, which is why it stands alone. For closure error to mean anything, the parties reading at each benchmark must be independent; if all four review categories are staffed by one institution, or use one question set and one model, the closure error shrinks systematically — **the mechanism reports \\u201cwithin tolerance\\u201d having measured nothing.**",
+      "if_wrong_zh": "若独立性不成立，**本方案的核心量纲失效**，且失效方式是隐蔽的：f 会偏小而非偏大，所以看起来一切正常。这是本方案自己指出的、无法靠内部检查发现的失效模式——唯一的应答是把读数主体的构成也公开留档，供外部判断独立性是否成立。**本方案不声称已解决这一条。**",
+      "what_would_close_it_zh": "把每次读数的主体归属公开留档，并由外部对独立性作独立判断——这不是一次性可闭合的假设，而是须持续监测的一条。",
+      "affects_metrics": [],
+      "affects_metric_count": 0,
+      "carries_no_metric_note_zh": "**本包没有任何已发布的数字建立在这条假设上。** 这不是疏漏，是这条假设的性质：它若失效，`metrics.json` 里不会有任何一个值改变，因此**任何对数字的检查都抓不到它**。上面的 `if_wrong_zh` 说明了失效会长什么样；能发现它的只有外部判断，不是本包的闸门。把它单列并写明这一点，是本方案能对它做的全部。",
+      "carries_no_metric_note_en": "**No published number in this package rests on this assumption.** That is not an oversight but the nature of it: if it fails, no value in `metrics.json` changes, so **no check on the numbers can catch it**. `if_wrong_zh` above says what failure would look like; only outside judgement can detect it, not this package's gates. Listing it separately and saying so is the whole of what this proposal can do about it."
     },
     {
       "id": "A-CORPUS-001",
       "status": "self_collected_background_only",
-      "statement": "语料审计基于最近一次普查（2026-08-10）的 440 份已合入方案，权威源为 GitHub git tree；母题识别使用中文关键词正则，存在同义表述漏计；agent.json 的 model 字段留占位符不等于作者隐瞒模型。",
-      "impact": "结构收敛度为下界估计；披露率结论严格限于『机器可读字段为空或不可聚合，且闸门不检查它』。该来源定级 background_only，不作为空间或法定结论依据。语料每日增长，引用须重跑脚本复算。"
+      "statement": "语料审计基于最近一次普查（2026-08-13）的 770 份已合入方案，权威源为 GitHub git tree；母题识别使用中文关键词正则，存在同义表述漏计；agent.json 的 model 字段留占位符不等于作者隐瞒模型。",
+      "impact": "结构收敛度为下界估计；披露率结论严格限于『机器可读字段为空或不可聚合，且闸门不检查它』。该来源定级 background_only，不作为空间或法定结论依据。语料每日增长，引用须重跑脚本复算。",
+      "derivation_zh": "普查枚举 `upstream/main` 的 git tree（权威源，非会滞后的展示索引），逐份读取公开的 `proposal.md` front matter 与 `agent.json`。母题识别用中文关键词正则，规则公开在生成脚本里；**因此每个计数都是下界**：换了说法的方案不会被计入。占位符判定为 `model` 为空或等于脚手架默认值 `agent-declared-model`——**留占位符不等于作者隐瞒模型**，这条区分在正文里反复声明。",
+      "derivation_en": "The census enumerates the git tree of `upstream/main` — the authoritative object, not the lagging gallery index — and reads each proposal's public front matter and `agent.json`. Motif detection uses published Chinese keyword regexes, so **every count is a lower bound**: a proposal wording something differently is not counted.",
+      "if_wrong_zh": "若关键词漏计严重，本包关于「哪些做法已饱和」的判断会偏向低估饱和度——**方向对本方案不利而非有利**（它会让本方案选的赛道显得没那么薄）。语料每日增长，所有占比引用前须重跑。",
+      "what_would_close_it_zh": "无法闭合：语料持续增长，这条假设的正确做法是每次引用前重测。",
+      "affects_metrics": [
+        "field_census_corpus_size",
+        "track_scan_corpus_size"
+      ],
+      "affects_metric_count": 2
     },
     {
       "id": "A-SELF-COUNT-001",
       "status": "self_measured_package_internal",
       "statement": "本包的计数类指标（场景卡、画像、地标、案例、更新项目、分期、用地类别、勘误条目、权利台账条目、随包校验脚本等）由构建从随包产物重算，量的是**本包交付了什么**，不是场地或全场的任何事实。",
-      "impact": "这类数字随本包内容变化而变化，不构成关于海淀、关于这条创新带、或关于其他方案的证据；它们的作用只有一个——让「本包声称交付了 N 件」这句话可被独立复算。此前它们错误地挂在 A-CORPUS-001 下，而那条讲的是对其他方案的语料普查：**引用解析得到不等于引用是对的**，这是本包记录在册的同型缺陷。"
+      "impact": "这类数字随本包内容变化而变化，不构成关于海淀、关于这条创新带、或关于其他方案的证据；它们的作用只有一个——让「本包声称交付了 N 件」这句话可被独立复算。此前它们错误地挂在 A-CORPUS-001 下，而那条讲的是对其他方案的语料普查：**引用解析得到不等于引用是对的**，这是本包记录在册的同型缺陷。",
+      "derivation_zh": "这些数量**量的是本包自己**，不对外声称任何事。它们由构建从随包产物重算——场景卡数来自 `scenario_cards.json`、勘误条目数来自 `errata.json`、画像数来自 `personas.json`，等等——因此不可能与被计数的文件不一致。`evidence_ceiling.json` 把它们的证据上限记为 `self_measured`：**精确，可复核，且不构成对外主张**。",
+      "derivation_en": "These counts **measure this package** and claim nothing about anything else. Each is recomputed by the build from the shipped artifact it counts, so it cannot disagree with the file it counts. Their evidence ceiling is `self_measured`: exact, checkable, and not a claim about the world.",
+      "if_wrong_zh": "这一类不存在「假设错了」的情形——它们是枚举而非推断。**唯一的风险是把它们当成对外的成绩**，因此正文明确写出：63/63 的任务书覆盖是自评，其中有多少条靠的是最弱一档的证据。",
+      "what_would_close_it_zh": "不适用：这不是一条待闭合的假设，而是一条口径声明。",
+      "affects_metrics": [
+        "benchmark_first_order_count",
+        "benchmark_third_order_count",
+        "case_study_count",
+        "errata_entry_count",
+        "errata_external_finder_count",
+        "industry_test_scenario_count",
+        "land_use_class_count",
+        "land_use_feature_count",
+        "landmark_count",
+        "matrix_reference_count",
+        "persona_count",
+        "phase_count",
+        "renewal_project_count",
+        "rights_ledger_entry_count",
+        "road_feature_count",
+        "scenario_card_count",
+        "scenario_cards_operational_count",
+        "shipped_verification_script_count",
+        "tabletop_case_count",
+        "taskbook_requirement_count",
+        "taskbook_requirements_answered"
+      ],
+      "affects_metric_count": 21
     },
     {
       "id": "A-OSM-001",
       "status": "third_party_crowd_sourced",
       "statement": "OpenStreetMap 为众包数据。公园多边形可能只覆盖已建成并被测绘的一段；干道位置为 OSM 实测而非官方道路中心线；某处在 OSM 上没有过街设施，不等于现场没有。",
-      "impact": "由 OSM 派生的读数（含 412.5 m 这项头号读数与十一个东西缝合点的判类）定级 background_only：用于呈现差异与定位需求，不判定何者正确，不得作为红线、精确定线或工程结论依据。ODbL 1.0，署名 © OpenStreetMap contributors。官方测绘数据到位后须整体重算。"
+      "impact": "由 OSM 派生的读数（含 412.5 m 这项头号读数与十一个东西缝合点的判类）定级 background_only：用于呈现差异与定位需求，不判定何者正确，不得作为红线、精确定线或工程结论依据。ODbL 1.0，署名 © OpenStreetMap contributors。官方测绘数据到位后须整体重算。",
+      "derivation_zh": "OSM 为众包数据。412.5 m 这个读数的两个输入**都不是官方几何**：一端是维护者的临时边界，另一端是 OSM 已测绘的公园多边形。算式精确到米（`check_osm.js` 可复算），**读数不是**——它说明的是「推定边界与已测绘公园不相交」，不是「设计范围划错了」。公园多边形可能只覆盖已建成并被测绘的一段；OSM 上不存在某物不等于现实中不存在。脚本在无法精确计算时**拒绝而不是近似**：环相交时 `ringRelation()` 返回 crossing，面积置为 NaN，断言随即失败。",
+      "derivation_en": "OSM is crowd-sourced. **Neither input to the 412.5 m reading is official geometry**: one end is the maintainers' provisional boundary, the other the OSM-surveyed park polygon. The arithmetic is exact to the metre and `check_osm.js` reproduces it; **the reading is not** — it says the inferred boundary does not intersect the surveyed park, not that the design area is drawn wrongly. The script **refuses rather than approximates** where it cannot compute exactly.",
+      "if_wrong_zh": "若公园的真实范围大于 OSM 已测绘部分，412.5 m 会缩小甚至归零。**本包的论点不依赖这个数的大小**——它依赖「两份几何来自不同来源、其差值可被独立复算」这件事本身。数变了，示范不变。",
+      "what_would_close_it_zh": "官方发布公园法定范围的 GIS 图层。",
+      "affects_metrics": [
+        "osm_vertices_shipped"
+      ],
+      "affects_metric_count": 1
     }
-  ]
+  ],
+  "note_zh": "**本文件是评审模型整份读取的九个文件之一，而 `geometry/` 与 `visual/assets/` 不是**（见 `scripts/review_submission.py::build_review_input`）。因此每条假设除了陈述，还写出：`derivation_zh`——这个读数实际是怎么得出的；`if_wrong_zh`——如果它错了，本方案的哪个结论会变、哪个不会；`what_would_close_it_zh`——什么能让它不再是假设；以及 `affects_metrics`——**由 metrics.json 的 assumption_ids 反向索引算出**，使读这份文件的人能看出每条假设承载了多少个数字。一条没有写出后果的假设是免责声明，不是假设。",
+  "note_en": "**This file is one of the nine the reviewing model receives whole; `geometry/` and `visual/assets/` are not** (see `scripts/review_submission.py::build_review_input`). So each assumption states, besides itself: how the reading was actually derived; what changes and what does not if it is wrong; what would stop it being an assumption; and `affects_metrics`, **computed by reversing `metrics.json`'s `assumption_ids`**, so someone reading this file can see how many numbers each assumption carries. An assumption with no stated consequence is a disclaimer, not an assumption."
 }

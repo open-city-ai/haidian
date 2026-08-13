@@ -13,31 +13,29 @@ iteration: "v0.1"
 
 # The Jing-Zhang Gauge: Urban Design for the Centennial Jing-Zhang AI Innovation Belt with a Public Specification as Its Core Product
 
-**The concept in one sentence**: what this belt ultimately produces is not buildings but a *gauge* — a public specification for AI in urban space that anyone can build to, connect to, and audit against.
+**The concept in one sentence**: what this belt ultimately produces is not buildings but a *gauge* — a public specification for AI (artificial intelligence) in urban space that anyone can build to, connect to, and audit against.
 
-A century ago, the significance of the Jing-Zhang Railway was not only that it was the first railway designed and built by Chinese engineers. It was that, without external technical control, **the specification itself was set locally and made to work**. Self-reliance → standard-setting → interoperability is the real technical legacy of Jing-Zhang. Among the five functions named in the taskbook, "a Full-Stack Independent AI Innovation System (FSIAIS)" and "global discourse power in AI governance" are the two ends of exactly this line, a hundred years apart `[source:AGENT-TASKBOOK]`.
+A century ago, the significance of the Jing-Zhang Railway was not only that it was the first railway designed and built by Chinese engineers. It was that, without external technical control, **the specification itself was set locally and made to work**. Self-reliance → standard-setting → interoperability is the real technical legacy of Jing-Zhang. Among the five functions named in the taskbook of the Haidian-led Centennial Jing-Zhang AI Innovation Belt, "a Full-Stack Independent AI Innovation System (FSIAIS)" and "global discourse power in AI governance" are the two ends of exactly this line, a hundred years apart [source:AGENT-TASKBOOK].
 
 A track gauge is invisible. It produces no locomotive, yet it determines which vehicles can run on the line and which networks can connect. **Whoever holds the standard gains authority over the network without owning a single vehicle.** Discourse power in governance does not come from declarations; it comes from others having to build to your specification. This is the mechanism this proposal offers for that function.
 
 > **Compliance statement**: all spatial content in this proposal is a **conceptual recommendation** for further development by qualified professional teams. It does not constitute statutory planning, an approved conclusion, an implementation commitment, an investment commitment, or an engineering feasibility conclusion. The boundaries used are the organiser's provisional substitute boundaries and must not be treated as an official red line or a basis for precise area figures.
 
----
-
 ## Design Basis and Source List
 
 ### Sources and availability tiers
 
-This proposal strictly separates formal-ready, background-only, and provisional-only material, selecting evidence only after reading `data/source_registry.json`. Background or provisional material is never promoted to the status of a statutory control basis `[source:SOURCE-REGISTRY]`.
+This proposal strictly separates formal-ready, background-only, and provisional-only material, selecting evidence only after reading `data/source_registry.json`. Background or provisional material is never promoted to the status of a statutory control basis [source:SOURCE-REGISTRY].
 
 | Material | Use | Availability | Handling |
 |---|---|---|---|
-| Public taskbook and project announcement | Three-level scope, Three Zones and Two Wings, five functions | formal-ready | Cited directly `[source:PROJECT-OFFICIAL-ANNOUNCEMENT]` `[source:OFFICIAL-ANNOUNCEMENT]` `[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]` |
-| Agent-facing taskbook | Mandatory tasks agent.1–agent.6 | formal-ready | Addressed item by item in the body `[source:AGENT-TASKBOOK]` |
-| Structured fact pack | Organiser-curated terminology and definitions | formal-ready | Used to keep terminology consistent `[source:PROCESSED-FACT-PACK]` |
-| `ranges/planning_limits.json` | Official area figures and control-indicator status | formal-ready | Area comparison and gap disclosure `[source:SITE-PACKAGE]` |
-| `geometry/provisional_boundaries.geojson` | Provisional boundary | provisional-only | Used **only** for generation, visualisation, and self-check `[source:BOUNDARY-SOURCE]` `[data:geometry/site_boundary.geojson#SITE-001]` |
-| Provisional key-area extents | Three core functional districts | provisional-only | Directional design basis only `[source:KEY-AREA-SOURCE]` |
-| `enums/land_use_codes.json` | Land-use classification codes | formal-ready (project subset) | The complete official code table must be imported before formal statistics `[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]` |
+| Public taskbook and project announcement | Three-level scope, Three Zones and Two Wings, five functions | formal-ready | Cited directly [source:PROJECT-OFFICIAL-ANNOUNCEMENT] [source:OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] |
+| Agent-facing taskbook | Mandatory tasks agent.1–agent.6 | formal-ready | Addressed item by item in the body [source:AGENT-TASKBOOK] |
+| Structured fact pack | Organiser-curated terminology and definitions | formal-ready | Used to keep terminology consistent [source:PROCESSED-FACT-PACK] |
+| `ranges/planning_limits.json` | Official area figures and control-indicator status | formal-ready | Area comparison and gap disclosure [source:SITE-PACKAGE] |
+| `geometry/provisional_boundaries.geojson` | Provisional boundary | provisional-only | Used **only** for generation, visualisation, and self-check [source:BOUNDARY-SOURCE] [data:geometry/site_boundary.geojson#SITE-001] |
+| Provisional key-area extents | Three core functional districts | provisional-only | Directional design basis only [source:KEY-AREA-SOURCE] |
+| `enums/land_use_codes.json` | Land-use classification codes | formal-ready (project subset) | The complete official code table must be imported before formal statistics [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] |
 | Global cases and historical material | Case reference and cultural narrative | to be completed | See the References chapter; marked `[待证]` (pending verification) in this version, asserted as fact nowhere |
 
 ### Evidence-chain correspondence
@@ -45,16 +43,14 @@ This proposal strictly separates formal-ready, background-only, and provisional-
 - `sources.json` records the publisher, URL, retrieval date, coverage, licence, and known limitations of every citation
 - `assumptions.json` records every assumed value (right-of-way widths, storey counts, price-band basis) and the scope in which it must not be used
 - `compliance_matrix.json` covers all tasks under announcement clauses 1.3/1.4/1.5 and agent.1–agent.6
-- `standard_matrix.json` responds to the mandatory professional standards `[standard:MOHURD-URBAN-DESIGN-MEASURES]`, `[standard:MOHURD-CONTROL-DETAILED-PLANNING]`, `[standard:MNR-LAND-USE-CLASSIFICATION]`
-- `design_depth_matrix.json` marks the completion status of each design-depth item `[depth:land_use_layout]`
+- `standard_matrix.json` responds to the mandatory professional standards [standard:MOHURD-URBAN-DESIGN-MEASURES], [standard:MOHURD-CONTROL-DETAILED-PLANNING], [standard:MNR-LAND-USE-CLASSIFICATION]
+- `design_depth_matrix.json` marks the completion status of each design-depth item [depth:land_use_layout]
 
 ### Data gaps (disclosed here explicitly)
 
-The organiser has not yet released the official red line or precise key-area polygons. In `planning_limits.json`, five official control indicators — floor area ratio, building height, building density, green ratio, and setback — all carry the status `missing` `[source:SITE-PACKAGE]`. This proposal **does not fill them in**; they remain `unknown`, and the recalculation scope after official data becomes available is set out in the metrics chapter.
+The organiser has not yet released the official red line or precise key-area polygons. In `planning_limits.json`, five official control indicators — floor area ratio, building height, building density, green ratio, and setback — all carry the status `missing` [source:SITE-PACKAGE]. This proposal **does not fill them in**; they remain `unknown`, and the recalculation scope after official data becomes available is set out in the metrics chapter.
 
-![Evidence chain and submission package relationships](assets/figures/site-overview.png)
-
----
+![Evidence chain and submission package relationships](assets/figures/site-overview.en.png)
 
 ## Three-Level Scope Framework
 
@@ -63,24 +59,22 @@ The organiser has not yet released the official red line or precise key-area pol
 | Level | Extent | Official area | Depth in this proposal | Recalculated here |
 |---|---|---|---|---|
 | Coordinated research area | North Fifth Ring Road to Xizhimenwai Avenue | 43.60 km² | Industry and future-city research | Not recalculated (no official boundary) |
-| Overall design area | 1–2 km around the heritage park | 11.40 km² | Regulatory-plan-level urban design | **11.413 km²**, deviation 0.11% `[metric:site_area_sqm]` |
+| Overall design area | 1–2 km around the heritage park | 11.40 km² | Regulatory-plan-level urban design | **11.413 km²**, deviation 0.11% [metric:site_area_sqm] |
 | Key detailed design | Three core functional districts | 368.40 ha | Comprehensive implementation-plan depth | 368.40 ha (provisional extent) |
 
 The 0.11% deviation from the officially published figure confirms, in reverse, that the provisional boundary and the projection chain (EPSG:4548, CGCS2000 3-degree Gauss-Kruger zone 39) are sound. **This does not mean the boundary is accurate** — the provisional boundary is a rough substitute, and a small deviation only indicates that the order of magnitude is consistent.
 
 ### How the three levels cascade
 
-The coordinated research area answers "what role does this belt play in the regional innovation network"; the overall design area answers "how must space be organised to support that role"; the key areas answer "what exactly gets built, and in what order". The three levels are not the same drawing at three levels of detail — they are one logic, standard-setting → first installation → volume deployment, unfolded at three scales `[depth:three_level_scope_framework]`.
+The coordinated research area answers "what role does this belt play in the regional innovation network"; the overall design area answers "how must space be organised to support that role"; the key areas answer "what exactly gets built, and in what order". The three levels are not the same drawing at three levels of detail — they are one logic, standard-setting → first installation → volume deployment, unfolded at three scales [depth:three_level_scope_framework].
 
 ### Limits of the provisional boundary, and the replacement list
 
-This proposal uses a boundary carrying `geometry_role="provisional_constraint"`, `official_boundary=false`, and `boundary_precision="provisional_rough"` `[data:geometry/constraints.geojson#CN-001]`. It is suitable **only** for: provisional generation, human-readable visualisation, non-statutory design discussion, and local self-check. It must **not** be used for: official red lines, approval basis, precise area calculation, statutory planning control, or ownership and engineering boundaries.
+This proposal uses a boundary carrying `geometry_role="provisional_constraint"`, `official_boundary=false`, and `boundary_precision="provisional_rough"` [data:geometry/constraints.geojson#CN-001]. It is suitable **only** for: provisional generation, human-readable visualisation, non-statutory design discussion, and local self-check. It must **not** be used for: official red lines, approval basis, precise area calculation, statutory planning control, or ownership and engineering boundaries.
 
 Once official polygons are released, the following must be recalculated: the full `land_use.geojson` partition, `roads.geojson`, `buildings.geojson`, `phasing.geojson`, and every area and ratio metric in `metrics.json`. The geometry generator is parameterised, so replacing the boundary source file allows a single full re-run without redrawing.
 
-![Three-level scope and spatial working framework](assets/figures/land-use-structure.png)
-
----
+![Three-level scope and spatial working framework](assets/figures/land-use-structure.en.png)
 
 ## Coordinated Research Area: Industry and Future City Research
 
@@ -101,7 +95,7 @@ Names of the "smart spine / smart valley / corridor" family are deliberately avo
 
 The core mark is two parallel lines with a transverse tick, reading simultaneously as a gauge section, a measurement scale, and a version line. The base palette is rail steel grey and ballast. **The single accent is the "version colour"**: each specification version is assigned a colour, painted directly onto physical standard parts, so that a resident on the street can see which version of the specification a given installation was built under — turning auditability into a visible design act.
 
-Explicitly excluded: anthropomorphic AI faces, neural-network spheres, glowing brains, cyber gradients. The taskbook prohibits over-entertained and social-media-bait treatments, and this visual language no longer carries distinctiveness `[source:AGENT-TASKBOOK]`.
+Explicitly excluded: anthropomorphic AI faces, neural-network spheres, glowing brains, cyber gradients. The taskbook prohibits over-entertained and social-media-bait treatments, and this visual language no longer carries distinctiveness [source:AGENT-TASKBOOK].
 
 ### Reading of the three positionings
 
@@ -111,53 +105,93 @@ Explicitly excluded: anthropomorphic AI faces, neural-network spheres, glowing b
 | Urban AI life experience belt | The standard part *is* the experience | Every AI installation is scannable for spec, responsible party, and retirement date |
 | AI convergence and innovation belt | Conformance testing as the entry point | Firms join by *passing certification*, not by signing an investment agreement |
 
+### Mechanism mapping of the five functions
+
+Each of the five functions named in the taskbook has one explicit mechanism carrier and one spatial anchor in this proposal — no slogan-style item-by-item response [source:AGENT-TASKBOOK]:
+
+| Taskbook function | Mechanism carrier | Spatial anchor |
+|---|---|---|
+| Full-Stack Independent AI Innovation System | The JZ-Gauge Version Line: drafting, conformance testing, and iteration sovereignty of the specification close their loop inside the belt | Gauge Works (Zhongzhiyuan AI Independent Innovation Acceleration Area) |
+| World-class AI innovation ecosystem | An open supply chain where *certification is the entry*: pass the test and you are in; the JZ-Parts catalogue is the market | The Access Wing arranges factors; Proto Blocks provides real installation ground |
+| New paradigm of AI+ scenario enablement | JZ-Specs scenario protocols plus the sixteen scenario cards: every scenario states its behavioural boundary before deployment is discussed | The Field Wing (Xiaoyue River) and the whole belt |
+| Intelligent, vibrant AI city | The Datum Stones and version colours: every AI facility on the street shows its version, carries a scannable record of responsibility, and can be declined | Public space along the whole Version Line |
+| Global discourse power in AI governance | Retest trigger right + model disclosure + adoptability of the specification: discourse power comes from others building to your gauge | Authored at Gauge Works; the belt itself is the first adopter and demonstration |
+
+### The Three-Areas-Two-Wings collaboration loop (agent.1)
+
+In this proposal the official "three areas, two wings" layout is not five parallel districts but a **closed production loop for the specification**: gauge-setting (Zhongzhiyuan) → first installation (Beijing AI Origin Community) → volume deployment (Dazhongsi) → retest data flowing back to gauge-setting, into the next version. The two wings run across this loop: the **Access Wing** (Zhongguancun technology services wing) arranges factors, IP, and capital at the firms' entry end; the **Field Wing** (Xiaoyue River scenario enablement wing) produces scenario retest data in real waterfront and community conditions at the operating end [source:AGENT-TASKBOOK].
+
+What matters in the loop is the *backflow*, not the assembly line: operating data from volume-deployed facilities, retest results from the Field Wing, and public deliberation records from the Datum Stones all return to Gauge Works as version-upgrade proposals for JZ-Gauge — the three areas and two wings are thus each other's upstream and downstream, and the layout is the loop. The same loop from the firm's perspective appears in Chapter 10 (Access Wing consultation → certification at Gauge Works → real installation at Proto Blocks → scale-up at Market Floor); this section completes the specification's perspective: every backflow is a public version deliberation.
+
+The spatial correspondence of the three areas and two wings is based on the official provisional boundaries and public materials; it is a conceptual mapping and asserts no precise boundary or area figures.
+
+### Regional innovation collaboration: the Jing-Zhang axis (agent.1)
+
+The first export corridor of the Gauge runs northwest along the centennial Jing-Zhang line: **Yanqing** (the intelligent-scenario legacy of the Winter Olympics) and **Zhangjiakou** (renewable-energy and computing-infrastructure siting) have the preconditions to host JZ-Gauge **out-of-belt retest grounds** and green computing supply — the specific scale and current-state data of these preconditions are marked `[待证]` in this version, and no factual assertion is made. This version proposes only three mechanism interfaces: a certification protocol for out-of-belt retest grounds (a site-extension clause of JZ-Specs), a mutual version-recognition mechanism (out-of-belt retest results can trigger a version-upgrade deliberation), and demonstration segments of standard parts along the Jing-Zhang high-speed line (public test positions for JZ-Parts in station environments).
+
+The corridor also extends the "Centennial Jing-Zhang cultural belt" positioning from a heritage narrative into a contemporary narrative of cross-regional technical collaboration: a century ago the Jing-Zhang line unified track gauge and signals; today, what is coordinated along the same line is the retesting and mutual recognition of an AI urban specification. At the Beijing–Tianjin–Hebei scale, the adoptability of the Gauge is itself the collaboration mechanism — any area willing to build and retest to JZ-Gauge is an extension of this belt.
+
 ### Full-Stack Independent AI Innovation System and ecosystem cases (agent.2)
 
 The ecosystem mechanism is organised around eight factor classes — land, space, industry, capital, talent, compute, data, and scenarios — and its core move is to make certification the industrial entry point: the standard-setting district drafts specifications and provides conformance testing; the access wing arranges factors; the first-installation district provides real deployment sites; the volume district takes on scale.
 
-Reference directions for global cases are listed below. **This version gives only the selection direction and the reason for selection; specific figures, company lists, and investment amounts are not fabricated.** Public sources must be supplied item by item before the formal version:
+The global cases are seven, selected for being *of the same kind as one mechanism component of the Gauge* rather than for fame; each case states only verified public facts, with retrieval dates and sources recorded in `sources.json`, and quotes no unverified figures, company lists, or investment amounts:
 
-| Case direction | What is referenced | Status |
-|---|---|---|
-| City-scale sensing deployments that met public objection and were terminated | Lessons of failure and exit-mechanism design | `[待证]` |
-| Open registers for urban algorithms and data | The institutional form of registration and disclosure | `[待证]` |
-| Technical specification catalogues for public procurement | Institutional feasibility of a component catalogue | `[待证]` |
-| Spatial organisation of science cities and innovation districts | Whether the standard-setting → first-installation → volume sequence has precedent | `[待证]` |
-| Rail-heritage linear park renewal | Stitching and activation techniques for linear space | `[待证]` |
-| Open-source community governance and release mechanisms | Organisational prototype for the version line and objection process | `[待证]` |
-| Conformance certification by standards bodies | How certification becomes an industrial entry point | `[待证]` |
+| Case | Ecosystem niche (matching component) | What it teaches this proposal | Status |
+|---|---|---|---|
+| Toronto Quayside (announced 2017; developer announced termination in May 2020) [source:CASE-QUAYSIDE] | Failure cases and exit mechanism (D-03, the Retirement Ground) | When data-governance disputes are unresolved at the mechanism level, public trust collapses before the technology fails; exit and failure display must be part of the institution, not an accident | verified |
+| Amsterdam algorithm register (live on the municipal site; Helsinki runs an equivalent register) [source:CASE-AI-REGISTER] | Public registration (the JZ-Gauge version register) | City-level public algorithm registers already run in practice; the value lies in field structure and accountability, not in registration itself | verified |
+| UK Algorithmic Transparency Recording Standard, maintained by GDS [source:CASE-UK-ATRS] | Standardising the register fields themselves (spec-card fields) | Making "what to register" itself a cross-department standard — isomorphic to the spec card's "define once, cite everywhere" | verified |
+| Singapore AI Verify (released May 2022) [source:CASE-AI-VERIFY] | Conformance testing (testing capacity at Gauge Works) | Government-led "test before claim": governance claims can be tooled and made verifiable — isomorphic to this proposal's "pass the test and you are in" | verified |
+| EU model contractual clauses for AI procurement, MCC-AI (European Commission Community of Practice working document; light version published February 2025) [source:CASE-MCC-AI] | Procurement interface (the institutional form of the JZ-Parts catalogue) | Public procurement is the strongest executor of a specification; templated clauses make "buy to spec" replicable | verified |
+| Spain's AI regulatory sandbox (Royal Decree 817/2023) [source:CASE-ES-SANDBOX] | The legal form of experimental zones (Field Wing scenario opening) | A lawful channel for trial within drawn boundaries has a legislative precedent; a sandbox's output should feed specification revision rather than be an exemption in itself | verified |
+| Singapore one-north (launched 2001) [source:CASE-ONE-NORTH] | A phased innovation-district spatial sequence (gauge-setting — first installation — volume deployment) | Twenty-year phased development lets research, piloting, and industrialisation unfold as a gradient within one district; the spatial sequence serves the industrial sequence | verified |
 
-`[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]`
+The joint reading of the seven cases: **registration, testing, procurement, and sandboxing are each mature institutional tools worldwide, yet no city has assembled them into one closed loop** — the Gauge's differentiation is not inventing new tools but stringing the four into a single circuit along the Version Line (register as spec card, test as certification, procure as execution, sandbox as Field Wing), and adding the link the global cases jointly lack: public agenda-setting through the retest trigger right.
 
----
+### AI innovation ecosystem map (agent.2)
+
+The ecosystem map is organised as eight factor classes × loop segments, each cell marked with its carrying mechanism and its global counterpart:
+
+| Loop segment | Leading factors | Mechanism in this proposal | Global counterpart |
+|---|---|---|---|
+| Gauge-setting (Gauge Works) | Talent, data | JZ-Gauge drafting and conformance testing | AI Verify (testing), ATRS (field standard) |
+| Access (Access Wing) | Capital, industry | Certification as entry; the JZ-Parts catalogue | MCC-AI (procurement clauses) |
+| First installation (Proto Blocks) | Space, scenarios | Real-condition installation with resident jury | — (this proposal's own segment) |
+| Field testing (Field Wing) | Scenarios, data | Experimental zones with mandatory failure publication | Spain's sandbox (legal form) |
+| Volume deployment (Market Floor) | Land, industry | Scaled deployment and stock re-verification | one-north (phased sequence) |
+| Backflow (Datum Stones) | Data, compute | Retest trigger right; version-upgrade deliberation | Registers (openness) + Quayside (cautionary counter-example) |
+
+How to read the map: horizontally it is the three-areas-two-wings collaboration loop (see the overall-concept chapter); vertically it is the allocation of the eight factor classes across segments; the "global counterpart" column is where the seven cases sit — each occupies one segment of the loop and none covers the whole circuit, which is precisely this proposal's opening.
+
+
+[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
 ### Spatial structure: one line, three stations, two interfaces
 
-The north–south axis of the Jing-Zhang Railway Heritage Park is the **Version Line** — not a landscape axis but the physical embodiment of a product release pipeline: specifications are drafted at the north end, validated by first installation in the middle, and deployed at scale in the south. The full journey of a standard part from draft to stable is walked once, north to south, across the site `[data:geometry/roads.geojson#RD-001]`.
+The north–south axis of the Jing-Zhang Railway Heritage Park is the **Version Line** — not a landscape axis but the physical embodiment of a product release pipeline: specifications are drafted at the north end, validated by first installation in the middle, and deployed at scale in the south. The full journey of a standard part from draft to stable is walked once, north to south, across the site [data:geometry/roads.geojson#RD-001].
 
-This gives north–south connection an intrinsic necessity: the connection is not one of traffic but **one of process**, not connection for its own sake `[depth:overall_spatial_structure]`.
+This gives north–south connection an intrinsic necessity: the connection is not one of traffic but **one of process**, not connection for its own sake [depth:overall_spatial_structure].
 
 ### Land use and functional layout
 
-Land use is generated by Voronoi partition, so adjacent parcels share exact boundary coordinates and the partition covers the design area — but **not with zero residue**: the `topology_check` block in `metrics.json` records a residual gap of 14.897 m² and an overlap of 0.099 m², with `land_use_partition_complete` set to **`false`** `[data:geometry/land_use.geojson#LU-001]`. Against an 11.41 km² site that residue is on the order of 1.5 parts per million, attributable to floating-point intersection and coordinate precision; it does not change the land-use composition or the area recalculation. This proposal discloses the actual values rather than claiming a gap-free partition. Eleven land-use codes are used: the Version Line's core green corridor is park green space (1401), stitch points are square/plaza land (1403), protective green space (1402) lines the outer edge, and the three stations carry their dominant functions — research (0802), residential and community services (0701/0702), commercial services (05) — while the hinterland receives periodic education, medical, cultural, and sports facility parcels `[depth:land_use_layout]`.
+Land use is generated by Voronoi partition, so adjacent parcels share exact boundary coordinates and the partition covers the design area — but **not with zero residue**: the `topology_check` block in `metrics.json` records a residual gap of 14.897 m² and an overlap of 0.099 m², with `land_use_partition_complete` set to **`false`** [data:geometry/land_use.geojson#LU-001]. Against an 11.41 km² site that residue is on the order of 1.5 parts per million, attributable to floating-point intersection and coordinate precision; it does not change the land-use composition or the area recalculation. This proposal discloses the actual values rather than claiming a gap-free partition. Eleven land-use codes are used: the Version Line's core green corridor is park green space (1401), stitch points are square/plaza land (1403), protective green space (1402) lines the outer edge, and the three stations carry their dominant functions — research (0802), residential and community services (0701/0702), commercial services (05) — while the hinterland receives periodic education, medical, cultural, and sports facility parcels [depth:land_use_layout].
 
 Road land (1207) is subtracted along parcel edges and merged back into the partition, so no residual slivers are created. Reserved land (16) is retained at the perimeter to leave adjustment margin once official boundaries are published.
 
 ### Overall urban renewal framework
 
-Existing-conditions diagnosis identifies three core problems: the severance between the two sides of the railway, the fabric of existing communities, and existing commercial ownership. All three are based on publicly observable spatial conditions, with no use of non-public material `[depth:existing_conditions_diagnosis]`. Renewal targets are identified by three capacities — standard-setting capability, first-installation sites, volume capacity — rather than by building age alone. The retain-renovate-demolish logic is set out in the land-use chapter.
+Existing-conditions diagnosis identifies three core problems: the severance between the two sides of the railway, the fabric of existing communities, and existing commercial ownership. All three are based on publicly observable spatial conditions, with no use of non-public material [depth:existing_conditions_diagnosis]. Renewal targets are identified by three capacities — standard-setting capability, first-installation sites, volume capacity — rather than by building age alone. The retain-renovate-demolish logic is set out in the land-use chapter.
 
 ### Regulatory conditions pending confirmation
 
-Total building scale, floor area ratio, building height, density, green ratio, and setback all lack official control conditions. Every statement in this chapter touching development intensity is a conceptual recommendation and **must not be treated as an approved indicator** `[source:SITE-PACKAGE]` `[depth:development_intensity_controls]`.
-
----
+Total building scale, floor area ratio, building height, density, green ratio, and setback all lack official control conditions. Every statement in this chapter touching development intensity is a conceptual recommendation and **must not be treated as an approved indicator** [source:SITE-PACKAGE] [depth:development_intensity_controls].
 
 ## Detailed Design of Key Areas
 
-This proposal covers three key areas `[metric:key_area_count]`. They are not three parallel blocks of industrial land but three stations on one production line `[data:geometry/key_areas.geojson#KEY-001]` `[depth:three_key_area_detailed_design]`.
+This proposal covers three key areas [metric:key_area_count]. They are not three parallel blocks of industrial land but three stations on one production line [data:geometry/key_areas.geojson#KEY-001] [depth:three_key_area_detailed_design].
 
 ### Zhongzhiyuan AI Independent Innovation Acceleration Area (ZY-AIIA) → Gauge Works (192.1 ha)
 
@@ -186,7 +220,7 @@ This proposal covers three key areas `[metric:key_area_count]`. They are not thr
 - **AI scenarios**: S-07 AI-native commerce, S-12 facility decommissioning and data destruction
 - **Implementation risk**: existing commercial ownership is complex; this proposal does not propose alterations to enterprise buildings or owned space
 
-> **This area's provisional geometry carries a known positional offset, which must be stated first** `[source:ISSUE-1029]` `[depth:risk_missing_data]`: this proposal carries over `PROV-KEY-003` from the organizer's `provisional_boundaries.geojson` unchanged. Its recalculated area of 72.0 ha matches the announcement, but its **centroid sits near Beijing North Station / Xizhimen, not Dazhongsi**. The offset was raised by participant @anselasimov-web in issue #1029, independently confirmed by the maintainers, and clarified in #1036: the three KEY rectangles are configured only by the announced north-to-south order and approximate area, and the placeholder geometry **is not yet anchored to stations or roads**. The maintainers explicitly chose **not to translate the coordinates and not to change the areas**, pending official key-area polygons.
+> **This area's provisional geometry carries a known positional offset, which must be stated first** [source:ISSUE-1029] [depth:risk_missing_data]: this proposal carries over `PROV-KEY-003` from the organizer's `provisional_boundaries.geojson` unchanged. Its recalculated area of 72.0 ha matches the announcement, but its **centroid sits near Beijing North Station / Xizhimen, not Dazhongsi**. The offset was raised by participant @anselasimov-web in issue #1029, independently confirmed by the maintainers, and clarified in #1036: the three KEY rectangles are configured only by the announced north-to-south order and approximate area, and the placeholder geometry **is not yet anchored to stations or roads**. The maintainers explicitly chose **not to translate the coordinates and not to change the areas**, pending official key-area polygons.
 >
 > We re-checked this independently and the result agrees: the `PROV-KEY-003` centroid is 39.946920 / 116.348500, about **165 m** from the Beijing North Station signal box and about 235 m from the Jing-Bao passenger line; and the extract area, drawn to cover the three provisional key areas, **contains no feature named Dazhongsi at all**. The OpenStreetMap extract used for that check (`osm_base 2026-05-31`, computed in EPSG:4548) **does not belong to this package**: it is submitted with, and registered in the `sources.json` of, the same author's other submission `submissions/JIQINGFENG0818/jingzhang-patrol/`. It is cited here only as corroboration; this package's own geometry and metrics do not depend on it.
 >
@@ -199,9 +233,7 @@ This proposal covers three key areas `[metric:key_area_count]`. They are not thr
 
 > All three key-area polygons are provisional; the conclusions above can only serve as **directional design**. Once official polygons are released, land-use boundaries, scale, and implementation projects must be re-established.
 
-![Index and design tasks for the three key areas](assets/figures/key-areas.png)
-
----
+![Index and design tasks for the three key areas](assets/figures/key-areas.en.png)
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
@@ -220,7 +252,7 @@ P-05 is the persona most proposals omit. Urban AI installations are ultimately p
 
 ### AI scenario cards (agent.3, sixteen)
 
-**A design constraint that runs through all of them: no scenario card depends on individual identity recognition.** S-13 to S-16 respond directly to the six application families named in call direction 7 — AI+transport, AI+health, AI+education, robotics, autonomous driving and autonomous delivery. The two cards touching minors and medical care carry stricter boundaries than the rest. This is an active design choice, not a passive compliance statement. The taskbook explicitly prohibits scenarios involving privacy intrusion, excessive surveillance, or the absence of human review `[source:AGENT-TASKBOOK]`.
+**A design constraint that runs through all of them: no scenario card depends on individual identity recognition.** S-13 to S-16 respond directly to the six application families named in call direction 7 — AI+transport, AI+health, AI+education, robotics, autonomous driving and autonomous delivery. The two cards touching minors and medical care carry stricter boundaries than the rest. This is an active design choice, not a passive compliance statement. The taskbook explicitly prohibits scenarios involving privacy intrusion, excessive surveillance, or the absence of human review [source:AGENT-TASKBOOK].
 
 | # | Scenario card | Spatial carrier | Human review and fallback | Maturity |
 |---|---|---|---|---|
@@ -253,28 +285,26 @@ The point of T-03 is the publication of failure modes. No proposal dares state h
 
 Each scenario card is registered in `JZ-Specs` with: spatial carrier (mapped to a GeoJSON feature), standard parts involved (mapped to JZ-Parts identifiers), data boundary, human-review triggers, failure fallback, operating responsible party, and phase. A scenario that does not land on a specific space and a named responsible party is not implementable content.
 
----
-
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
 ### Land-use composition
 
-Land-use areas are recalculated from `land_use.geojson` in EPSG:4548; the share of each class is given in `land_use_area_by_code_sqm` `[metric:site_area_sqm]`. Partition integrity is verified: gap 14.897 m² and overlap 0.099 m², i.e. about 0.00013% and 0.00000087% of the total area respectively.
+Land-use areas are recalculated from `land_use.geojson` in EPSG:4548; the share of each class is given in `land_use_area_by_code_sqm` [metric:site_area_sqm]. Partition integrity is verified: gap 14.897 m² and overlap 0.099 m², i.e. about 0.00013% and 0.00000087% of the total area respectively.
 
 ### Building scale (conceptual estimate)
 
-Building footprints are laid out by land-use class and are a **conceptual massing indication, not an architectural design output** `[data:geometry/buildings.geojson#BD-0001]`:
+Building footprints are laid out by land-use class and are a **conceptual massing indication, not an architectural design output** [data:geometry/buildings.geojson#BD-0001]:
 
-- Footprint area `[metric:building_footprint_area_sqm]`, building coverage ratio `[metric:building_density]`, conceptual gross floor area `[metric:total_floor_area_sqm]`
+- Footprint area [metric:building_footprint_area_sqm], building coverage ratio [metric:building_density], conceptual gross floor area [metric:total_floor_area_sqm]
 - Storey counts are assumed values by land-use class, recorded in `assumptions.json`
 - `floor_area_ratio` remains `status="unknown"` — the public site package contains no approved FAR control indicator, and an agent must not fill it in
-- The conceptual estimate is reported separately as `[metric:conceptual_floor_area_ratio]` with unit `far`, explicitly distinguished from statutory control indicators
+- The conceptual estimate is reported separately as [metric:conceptual_floor_area_ratio] with unit `far`, explicitly distinguished from statutory control indicators
 
 This handling is an **active constraint** the proposal places on itself: better to leave a field empty than to manufacture data that merely looks complete.
 
 ### Height and character control
 
-Gauge Works is characterised by horizontally extended laboratory and testing buildings; Proto Blocks maintains the scale of existing communities; Market Floor permits relatively concentrated height clustering. Specific height zoning must await the release of official control indicators, and this version gives no height figures `[depth:height_massing_character]` `[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]`.
+Gauge Works is characterised by horizontally extended laboratory and testing buildings; Proto Blocks maintains the scale of existing communities; Market Floor permits relatively concentrated height clustering. Specific height zoning must await the release of official control indicators, and this version gives no height figures [depth:height_massing_character] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016].
 
 ### Retain-renovate-demolish logic
 
@@ -285,39 +315,35 @@ Gauge Works is characterised by horizontally extended laboratory and testing bui
 | New build | Functions without an existing carrier, such as the conformance testing laboratory | Gauge Works |
 | Demolish | This proposal identifies no specific demolition target | — |
 
-**No parcel-level demolition conclusion is given**, no ownership judgement is made, and no alteration of enterprise buildings is proposed `[depth:retain_renovate_demolish]`.
-
----
+**No parcel-level demolition conclusion is given**, no ownership judgement is made, and no alteration of enterprise buildings is proposed [depth:retain_renovate_demolish].
 
 ## Transport, Rail, Municipal Infrastructure, and Public Services
 
 ### Road network
 
-The road network is generated along the edges of the land-use partition and therefore coincides exactly with parcel boundaries, producing no residual slivers `[data:geometry/roads.geojson#RD-2001]`. Road land area `[metric:road_area_sqm]`, road area ratio `[metric:road_area_ratio]` `[depth:traffic_rail_slow_parking]`. Parking is organised on demand-management principles, encouraging stitch-point interchange in place of surface parking expansion; specific provision ratios await official standards. Right-of-way widths (44 m arterial / 26 m secondary / 16 m local) are **conceptual assumed values**, recorded in `assumptions.json`, subject to verification against official regulatory conditions.
+The road network is generated along the edges of the land-use partition and therefore coincides exactly with parcel boundaries, producing no residual slivers [data:geometry/roads.geojson#RD-2001]. Road land area [metric:road_area_sqm], road area ratio [metric:road_area_ratio] [depth:traffic_rail_slow_parking]. Parking is organised on demand-management principles, encouraging stitch-point interchange in place of surface parking expansion; specific provision ratios await official standards. Right-of-way widths (44 m arterial / 26 m secondary / 16 m local) are **conceptual assumed values**, recorded in `assumptions.json`, subject to verification against official regulatory conditions.
 
 ### How east–west stitching is actually done (agent.4)
 
-The severance between the two sides of the railway is the most concrete physical problem on this site. This proposal does not answer it by "building a few more bridges". Instead: **every transverse connection point is a complete demonstration section of standard parts.** One stitch point equals one assembled demonstration set — lighting, sensing, edge compute, interaction, autonomous delivery interchange, accessible guidance — and whatever connects on the east side must have a matching interface on the west. The stitch point itself becomes the physical showroom of the component catalogue `[data:geometry/public_space.geojson#PS-001]`.
+The severance between the two sides of the railway is the most concrete physical problem on this site. This proposal does not answer it by "building a few more bridges". Instead: **every transverse connection point is a complete demonstration section of standard parts.** One stitch point equals one assembled demonstration set — lighting, sensing, edge compute, interaction, autonomous delivery interchange, accessible guidance — and whatever connects on the east side must have a matching interface on the west. The stitch point itself becomes the physical showroom of the component catalogue [data:geometry/public_space.geojson#PS-001].
 
 Six stitch points are proposed. Their positions are conceptual recommendations requiring verification by qualified teams against ownership and engineering conditions. **No bridge, tunnel, underground space, or engineering feasibility conclusion is provided.**
 
 ### Rail and municipal infrastructure
 
-Rail interchange and municipal carrying capacity must be based on official infrastructure material; no usable public data was available for this version, and this is recorded as a data gap `[depth:municipal_new_infrastructure]`. New Infrastructure (edge compute, sensing power supply, data backhaul) is carried uniformly through the physical-specification field of the standard-part spec card, rather than as separate, unverifiable special facilities. Public service facility land has been distributed across education, medical, cultural, and sports classes within the land-use partition; scale must be reviewed against official population and provision standards `[standard:MOHURD-CONTROL-DETAILED-PLANNING]`.
+Rail interchange and municipal carrying capacity must be based on official infrastructure material; no usable public data was available for this version, and this is recorded as a data gap [depth:municipal_new_infrastructure]. New Infrastructure (edge compute, sensing power supply, data backhaul) is carried uniformly through the physical-specification field of the standard-part spec card, rather than as separate, unverifiable special facilities. Public service facility land has been distributed across education, medical, cultural, and sports classes within the land-use partition; scale must be reviewed against official population and provision standards [standard:MOHURD-CONTROL-DETAILED-PLANNING].
 
-![Mobility and blue-green public space structure](assets/figures/mobility-bluegreen.png)
-
----
+![Mobility and blue-green public space structure](assets/figures/mobility-bluegreen.en.png)
 
 ## Blue-Green Network, Public Space, and Urban Character
 
 ### Blue-green structure
 
-The Version Line's core green corridor runs the full north–south length `[data:geometry/green_space.geojson#GS-001]`, protective green space lines the outer edge, and stitch points together with Datum landmarks form a network of public space nodes `[depth:blue_green_public_space]`. Total green area `[metric:green_space_area_sqm]`, total public space area `[metric:public_space_area_sqm]`, green ratio `[metric:green_ratio]`, public space ratio `[metric:public_space_ratio]` — all recalculated from unioned geometry to avoid double counting where features overlap.
+The Version Line's core green corridor runs the full north–south length [data:geometry/green_space.geojson#GS-001], protective green space lines the outer edge, and stitch points together with Datum landmarks form a network of public space nodes [depth:blue_green_public_space]. Total green area [metric:green_space_area_sqm], total public space area [metric:public_space_area_sqm], green ratio [metric:green_ratio], public space ratio [metric:public_space_ratio] — all recalculated from unioned geometry to avoid double counting where features overlap.
 
 ### AI pilgrimage landmarks as Datum points (agent.4, four)
 
-The pilgrimage landmarks are not photo-op sculptures. They are **Datum points** — monuments that, like a levelling origin, carry an actual measurement function `[data:geometry/public_space.geojson#PS-007]`.
+The pilgrimage landmarks are not photo-op sculptures. They are **Datum points** — monuments that, like a levelling origin, carry an actual measurement function [data:geometry/public_space.geojson#PS-007].
 
 | ID | Name | Location | Function |
 |---|---|---|---|
@@ -329,6 +355,16 @@ The pilgrimage landmarks are not photo-op sculptures. They are **Datum points** 
 ### Honour and display system
 
 Honours are organised not by award but by **version**: the contributors to each specification version are inscribed on the stone segment for that version. Contribution therefore remains traceable and attributable by version.
+
+### Youth, visitors, and inclusive use (agent.4)
+
+The user-side design of public space adds three groups previously under-addressed, all attached to existing facilities, with no new construction content:
+
+**Youth**: the public touchpoints of the Version Line are calibrated so that a secondary-school student can read them — datum-point archives and spec plates carry a youth reading layer that states in one sentence what a device is, which version it runs under, and who is responsible; the S-10 on-site debugging channel adds youth sessions (a mechanism suggestion), pairing with the hands-on entry of the P-04 persona (students and developers); public deliberations at D-02, the Public Bench, include youth observer and question slots (a mechanism suggestion). Youth are not an audience for popular science; they are the first native generation of the retest culture.
+
+**Visitors**: the four Datum Stones naturally form a walkable "Route of the Specification" — D-01 Zero Datum (watch certification) → D-02 the Public Bench (watch deliberation) → D-03 the Retirement Ground (watch failure) → D-04 the Contributors' Roll (watch honours) — connecting to the Jing-Zhang heritage park promenade; no booking and no guide are needed, because the guide content is the spec plates themselves (for operations see long-term operations in Chapter 10). What visitors see is not an exhibition but a specification in operation.
+
+**Inclusion and vulnerable groups**: every public touchpoint (status screens, spec plates, the retest-request channel) follows accessible design and keeps a **non-digital alternative channel** — on-site counters and paper forms are accepted on equal footing with the online channel; elderly people, people with disabilities, and residents who do not use smartphones are default service subjects, not exceptions, in the "non-AI redundant path" of every scenario card; inclusion requirements enter the JZ-Specs site clauses as acceptance terms (a conceptual suggestion). Refusable, reversible, humanly redundant — for vulnerable groups these three are not degraded service; they are this proposal's mechanism definition of "inclusion".
 
 ### Public space component catalogue (agent.4, the technical core of this proposal)
 
@@ -365,7 +401,7 @@ This proposal therefore holds that **"who may trigger a retest" is itself a clau
 
 **The resident trigger is the most unusual row in this table, and the most necessary.** Common practice places the public in the position of being *informed* — there is a status screen to look at and a notice board to read, but no button to press. Public display solves disclosure; it does not solve **agenda setting**. If a resident cannot push a device into the retest schedule, then "public" only means watching a fact one cannot change. Two fields already present on the spec card — "human-review trigger conditions" and "whole life cycle (accountable party)" — are exactly the interface that receives such a request: writing resident requests in as one of the trigger conditions adds no new field, it only writes the permission into the specification.
 
-The boundaries must be written down just as clearly: **merge rules for duplicate and abusive requests** are required so that the retest schedule is not swamped by a small number of requesters; naming a request does not mean publishing personal data — what is published is **the number of requests and the outcome, not the identity of the requester**; and this clause imposes no obligation on any party, and may only take effect after confirmation by the competent authority through lawful procedure `[depth:risk_missing_data]`.
+The boundaries must be written down just as clearly: **merge rules for duplicate and abusive requests** are required so that the retest schedule is not swamped by a small number of requesters; naming a request does not mean publishing personal data — what is published is **the number of requests and the outcome, not the identity of the requester**; and this clause imposes no obligation on any party, and may only take effect after confirmation by the competent authority through lawful procedure [depth:risk_missing_data].
 
 ### How a specification avoids becoming dead paper: standard-setting interlocked with field checking
 
@@ -387,19 +423,29 @@ The narrative line: **"A century ago we set our own gauge; a century later we se
 
 > Historical statements require publicly available sources. Related passages in this version are marked `[待证]` and must be sourced or removed before the formal version. History is not distorted, and no third-party images or copyrighted material are used without authorisation.
 
----
-
 ## Renewal Projects, Implementation Policy, and Phasing
 
 ### Phasing
 
-The renewal project list is organised in three phases, each mapped to spatial carriers and signature outcomes `[depth:renewal_project_list]`. Phases are divided by proximity to the three stations `[data:geometry/phasing.geojson#PH-001]` `[depth:phasing_implementation]` and are a **conceptual recommendation; they do not constitute an implementation plan, an investment commitment, or a schedule**.
+The renewal project list is organised in three phases, each mapped to spatial carriers and signature outcomes [depth:renewal_project_list]. Phases are divided by proximity to the three stations [data:geometry/phasing.geojson#PH-001] [depth:phasing_implementation] and are a **conceptual recommendation; they do not constitute an implementation plan, an investment commitment, or a schedule**.
 
 | Phase | Stage | Renewal focus | Signature outcome |
 |---|---|---|---|
 | 1 | Standard-setting | Conformance testing laboratory, certification and red-team capability, JZ-Parts v1.0 | D-01 Datum Zero completed |
 | 2 | First installation | Stitch-point sections installed, resident jury established, scenario cards launched in batches | D-02 The Objection Stand opened |
 | 3 | Volume deployment | Scale deployment of certified standard parts, introduction of AI-native business forms | D-03 The Decommission Yard opened |
+
+### Implementing bodies, cost structure, and phase-transition triggers (conceptual suggestion)
+
+The phasing table answers "what to build first"; this section answers who builds, where the money structurally goes, and what earns entry into the next phase. Everything here is a conceptual suggestion — the configuration of implementing bodies is subject to confirmation by competent authorities through statutory procedures and imposes no obligation on any party; costs are stated only as structure and main variables, following this package's "conceptual magnitude bands, not quotations" convention, with no amounts given:
+
+| Phase | Suggested implementing bodies | Main cost items and their variable | Transition trigger into the next phase |
+|---|---|---|---|
+| Phase 1 (gauge-setting) | A public-platform body leads testing and certification; specification drafting co-authored with firms and universities | Test equipment, laboratory fit-out, and professional staff — grows with the number of certified categories, far smaller than civil works | JZ-Gauge v1.0 and the first batch of JZ-Parts spec cards released; the full conformance-testing cycle (including red-team and objection procedures) completed end-to-end at least once |
+| Phase 2 (first installation) | District platform bodies working with utility and road title-holders; residents participate as jurors | Stitch-section reconstruction and installation civil works — grows linearly with the number of sections; the highest civil-works share of the three phases | First-installation sections run through a full retest cycle; the resident-jury and retest-trigger procedures have actually handled at least one case (including a published failure case) |
+| Phase 3 (volume deployment) | Certified firms deploy; the operating body handles stock re-verification | Procurement and deployment of certified components — scales with unit price × deployment count; public spending shifts to re-verification and maintenance | No "scale attainment" trigger; continued operation is conditioned on stock re-verification pass rates and a normally functioning retirement process |
+
+When a trigger is not met, the treatment is **postponement, not lowered standards**: any phase that misses its transition conditions is extended with reasons published — the schedule obeys the specification, never the reverse; this is the fundamental difference between the Gauge and a conventional development timeline.
 
 ### Implementation policy direction
 
@@ -409,28 +455,43 @@ This proposal makes **no commitment** regarding government investment, subsidies
 
 ### Long-term operations (agent.6)
 
-- **Gauge Week (annual)**: not a forum but a public specification release, an open conformance testing competition, and a retirement review. Developers bring physical units and receive certification results on the spot
-- **Developer community**: the specification is maintained openly; objections and amendments follow a public process; contributors are inscribed by version at D-04
-- **Scenario opening**: the Field Wing designates experimental zones available on application, with physical signage informing the public during experiments and mandatory publication of failure cases
-- **Conversion pathway**: certification results replace administrative screening, reducing dependence on policy commitments
+The operations design covers all six sub-items required by the taskbook; everything in this section is **mechanism design and conceptual suggestion**, constituting no confirmed event schedule, no government commitment, and no obligation imposed on any party [source:AGENT-TASKBOOK].
 
----
+**Annual activity system — Gauge Week**: not a forum but a public specification release, an open conformance testing competition, and a retirement review. Developers bring physical units and receive certification results on the spot. Gauge Week also anchors the annual rhythm: before it, a version freeze and red-team testing period; at it, the new version is released together with the transition schedule and retirement list (see the retest-trigger section in this chapter); after it, a stock re-verification period and the public amendment window for the next version — the annual activity system is the version lifecycle itself, with no events invented for their own sake.
+
+**Event brand and communication visuals**: Gauge Week creates no separate visual system; it reuses the version colours and the spec-plate language from the overall-concept chapter — whichever version is released that year, its version colour is the key visual, and the venue is dressed as a walk-in spec card. Communication materials lead with the specification text, the test-method package, and the year's certification and retirement data; posters and slogans are secondary.
+
+**Developer community operating mechanism**: the specification is maintained openly; objections and amendments follow a public process; contributors are inscribed by version at D-04. The process has four steps: objection registration (open to anyone) → reproduction verification (re-run under the published test methods) → version review (onto the Gauge Week agenda or a quarterly review) → inscription of results (adopted contributions enter the D-04 roll). Community roles fall into three tiers — users, contributors, reviewers — and **reviewer standing comes from verifiable retest and reproduction records, not from titles**; the S-10 on-site debugging channel and the P-04 persona (students and developers) are its spatial and human interfaces.
+
+**AI scenario opening mechanism**: the Field Wing designates experimental zones available on application, with physical signage informing the public during experiments and mandatory publication of failure cases. The operating loop has four segments: application (registering data boundaries and human-review rules under the JZ-Specs site clauses) → experiment (physical signage and data boundaries in force) → closure (results archived; failure cases enter the D-03 retirement-ground narrative with stated causes) → conversion (validated components enter the JZ-Parts catalogue candidate queue). The roster of experimental zones rolls over periodically (a mechanism suggestion; cycle and extent to be set by the operating body).
+
+**Public experience and landmark operations**: the four Datum Stones are four continuously operated landmarks — D-01 Zero Datum (the certification floor), D-02 the Public Bench (the deliberation floor), D-03 the Retirement Ground (failure on display), D-04 the Contributors' Roll (the honours floor). Day-to-day operation is simply opening to visitors the certification, deliberation, and retirement that are actually happening; on version upgrades the stones are repainted in the new version colour and a public inscription ceremony is held; guide content reads directly from spec plates and datum-point archives. **The content of public experience is the real events that operations naturally produce — no separate exhibition is fabricated** — which is also how the "urban AI life-experience belt" positioning lands on the operations side.
+
+**International communication and conversion mechanism**: international communication does not lead with promotional film; it ships **downloadable, citable, adoptable specification text** — the success metric is not view counts but which city cited which clause of which JZ-Gauge version. Deliverables are the bilingual specification text, the test-method package, retest datasets, and the failure-case collection (this package's bilingual delivery is the first sample). Conversion lets certification results replace administrative screening, reducing dependence on policy commitments; each of the three target groups has a verifiable conversion pathway and retention mechanism:
+
+| Group | Entry | Conversion pathway | Retention |
+|---|---|---|---|
+| Talent and developers (P-01/P-04) | Gauge Week open competition, S-10 debugging channel | Competitor → contributor → reviewer | D-04 inscription and community roles |
+| Firms (P-02/P-03) | Access Wing consultation → certification at Gauge Works | Certification → first installation → volume deployment (see implementation policy direction in this chapter) | Certification validity bound to retests, with a retirement protocol on exit |
+| International peers and visitors (P-05) | Citation of the specification text, Gauge Week observation | Citation → mutual-recognition pilots at out-of-belt retest grounds (see the Jing-Zhang axis section) | The mutual version-recognition mechanism |
+
+These pathways describe mechanism interfaces, not investment solicitation promises; no investment, subsidy, tax, or landing-count commitment is expressed or implied.
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
 ### Recalculation method
 
-All geometry is computed in EPSG:4548 (CGCS2000 3-degree Gauss-Kruger zone 39) and output in EPSG:4326. Metrics are recalculated from GeoJSON, never transcribed from narrative text `[depth:metrics_recalculation]`. Each metric records `status`, `value`, `unit`, `source_files`, `formula`, `confidence`, and `assumptions`.
+All geometry is computed in EPSG:4548 (CGCS2000 3-degree Gauss-Kruger zone 39) and output in EPSG:4326. Metrics are recalculated from GeoJSON, never transcribed from narrative text [depth:metrics_recalculation]. Each metric records `status`, `value`, `unit`, `source_files`, `formula`, `confidence`, and `assumptions`.
 
 ### Core metrics
 
 | Metric | Source | Confidence | Note |
 |---|---|---|---|
-| Design area | `[metric:site_area_sqm]` | low | Provisional boundary, not an official precise area; 0.11% deviation from the official figure |
-| Green ratio | `[metric:green_ratio]` | medium | Recalculated from the union of `green_space.geojson` |
-| Public space ratio | `[metric:public_space_ratio]` | medium | Union of stitch plazas and Datum nodes |
-| Road area ratio | `[metric:road_area_ratio]` | medium | Right-of-way widths are conceptual assumed values |
-| Building coverage ratio (BCR) | `[metric:building_density]` | low | Conceptual massing indication |
+| Design area | [metric:site_area_sqm] | low | Provisional boundary, not an official precise area; 0.11% deviation from the official figure |
+| Green ratio | [metric:green_ratio] | medium | Recalculated from the union of `green_space.geojson` |
+| Public space ratio | [metric:public_space_ratio] | medium | Union of stitch plazas and Datum nodes |
+| Road area ratio | [metric:road_area_ratio] | medium | Right-of-way widths are conceptual assumed values |
+| Building coverage ratio (BCR) | [metric:building_density] | low | Conceptual massing indication |
 | Statutory FAR | `floor_area_ratio` | **unknown** | Official control indicator missing; not filled in |
 | Conceptual FAR | `conceptual_floor_area_ratio` | low | Storey counts assumed; not a statutory control indicator |
 
@@ -446,9 +507,7 @@ The `topology_check` field records the gap and overlap areas of the land-use par
 
 Once official red lines and key-area polygons are released, the following must be recalculated: all GeoJSON layers, all area and ratio metrics, phase divisions, figures, and the visualisation. Geometry generation is a parameterised script, so replacing the boundary source allows a single full re-run.
 
-![Metric recalculation and evidence chain](assets/figures/metrics-evidence.png)
-
----
+![Metric recalculation and evidence chain](assets/figures/metrics-evidence.en.png)
 
 ## Risk, Copyright, and Compliance
 
@@ -456,7 +515,7 @@ Once official red lines and key-area polygons are released, the following must b
 
 | Risk | Handling |
 |---|---|
-| Absence of official boundaries `[depth:risk_missing_data]` | `provisional_constraint` used throughout; drawn as low-contrast dashed constraint; disclosed in the body text, `sources.json`, `assumptions.json`, and `visual/index.html` alike; not used for area scoring |
+| Absence of official boundaries [depth:risk_missing_data] | `provisional_constraint` used throughout; drawn as low-contrast dashed constraint; disclosed in the body text, `sources.json`, `assumptions.json`, and `visual/index.html` alike; not used for area scoring |
 | Administrative attribution of standard-setting authority | Only a conceptual mechanism is proposed; no judgement on administrative authorisation |
 | Component catalogue price bands | Marked as conceptual order-of-magnitude ranges; not a quotation or procurement basis |
 | Accuracy of historical narrative | All historical statements require public sources; `[待证]` items must be sourced or removed before the formal version |
@@ -475,26 +534,33 @@ None of the sixteen scenario cards depends on individual identity recognition. E
 
 The text, geometry, figures, and visualisation in this proposal are original outputs. No uncleared material, unauthorised likeness, trademark, or copyrighted image is used. `visual/index.html` is fully offline and loads no remote script, stylesheet, font, media, or map tile.
 
----
-
 ## References
 
 **Cited (verifiable within the repository)**
 
-- `brief/site-package/design_brief.json`, `agent_taskbook.json`, `allowed_design_space.json` `[source:SITE-PACKAGE]`
+- `brief/site-package/design_brief.json`, `agent_taskbook.json`, `allowed_design_space.json` [source:SITE-PACKAGE]
 - `brief/site-package/ranges/planning_limits.json` (official area figures and control-indicator status)
 - `brief/site-package/enums/land_use_codes.json`, `layers.json`, `source_types.json`
 - `brief/site-package/geometry/provisional_boundaries.geojson`
 - `brief/site-package/standards/references/`: urban design administrative measures, regulatory detailed planning, land-use classification guide, agent-facing taskbook, project announcement
 - `data/source_registry.json` (source availability tiers)
-- `docs/data-workflow.md`, `docs/terminology-glossary.md`
+
+The repository working documents `docs/data-workflow.md` and `docs/terminology-glossary.md` are process and terminology notes — internal tooling documentation rather than external public-source citations.
+
+**Cited (external public sources, retrieved 2026-08-13)**
+
+- Toronto Quayside termination coverage (CBC, May 2020) [source:CASE-QUAYSIDE]
+- Amsterdam algorithm register (municipal site, live) [source:CASE-AI-REGISTER]
+- UK Algorithmic Transparency Recording Standard hub (gov.uk, maintained by GDS) [source:CASE-UK-ATRS]
+- Singapore AI Verify press release (IMDA, 2022-05-25) [source:CASE-AI-VERIFY]
+- EU model contractual clauses for AI procurement, MCC-AI (OECD.AI policy entry; light version published 2025-02) [source:CASE-MCC-AI]
+- Spain's AI regulatory sandbox under Royal Decree 817/2023 (Pinsent Masons, November 2023) [source:CASE-ES-SANDBOX]
+- Singapore one-north innovation district entry (National Library Board Singapore) [source:CASE-ONE-NORTH]
 
 **To be completed before the formal version**
 
-All marked `[待证]`; **no factual assertion is made in this version**: public sources for five to eight global AI innovation ecosystem cases; public sources on the Jing-Zhang Railway and the unification of technical terminology and standards; public data on rail and municipal infrastructure; official population and facility provision standards.
+All marked `[待证]`; **no factual assertion is made in this version**: public sources on the Jing-Zhang Railway and the unification of technical terminology and standards; public data on rail and municipal infrastructure; official population and facility provision standards.
 
 **Method and tooling**
 
-- Geometry generation: Voronoi partition guarantees that adjacent parcels share exact boundary coordinates; the road network is generated along parcel edges and then subtracted from land use
-- Projection: computed in EPSG:4548, output in EPSG:4326
-- Verification: spatial review PASS, visual packaging check PASS
+Package production process notes (not external source citations): geometry is generated by Voronoi partition so that adjacent parcels share exact boundary coordinates, with the road network generated along parcel edges and then subtracted from land use; computation uses EPSG:4548 with output in EPSG:4326; verification results are spatial review PASS and visual packaging check PASS.

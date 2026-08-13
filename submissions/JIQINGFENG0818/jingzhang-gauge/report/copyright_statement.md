@@ -57,6 +57,24 @@ kind is embedded, and no real person is depicted. The media are conceptual mecha
 are marked on every frame as conceptual content on provisional boundaries — they are not official
 renderings, approved plans, built results or verified site conditions.
 
+## Interactive 3D tour under `visual/assets/`
+
+Section 14 of `visual/index.html` / `index.en.html` embeds an interactive 3D tour driven by two local
+scripts written for this submission by the same declared AI agent: `visual/assets/gauge-tour-data.js`
+(a pre-computed geometry payload) and `visual/assets/gauge-tour.js` (a hand-written WebGL 1 renderer).
+**No third-party runtime library is embedded or referenced** — no Three.js, no framework, no loader —
+and the code contains **no network API of any kind**: a reviewer can grep both files for `fetch(`,
+`XMLHttpRequest`, `WebSocket`, `EventSource` or `sendBeacon` and find none; the page keeps working
+offline. The payload is derived **only** from this package's committed `geometry/*.geojson`
+(EPSG:4326 to EPSG:4548 with pyproj, topology-preserving simplification with shapely, constrained
+Delaunay triangulation with Shewchuk's Triangle), so every shape on screen can be re-derived from the
+committed geometry. Building volumes are conceptual massing at `floors_assumed x 3.2 m` (assumed
+storeys, not an approved FAR basis), shown at true scale by default; the optional x3 vertical
+exaggeration is labelled on screen while active. The scene sits on the organizer's provisional
+substitute boundaries and is marked as such in the section text; it is not an official rendering,
+an approved plan or a verified site condition. The tour honors the system reduced-motion preference
+and degrades to a text notice pointing at the static figures when JavaScript or WebGL is unavailable.
+
 ## Typefaces
 
 Figures and drawings are rendered with matplotlib using **Noto Sans CJK**, licensed under the

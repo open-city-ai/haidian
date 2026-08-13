@@ -3375,6 +3375,45 @@ footer{margin-top:58px;padding-top:20px;border-top:2px solid var(--ink);
   </ul>
 </section>
 
+<section id="s-tour">
+  <h2><span>14</span>三维巡览</h2>
+  <p class="lede">下方三维场景由本包 <span class="mono">geometry/*.geojson</span> 在浏览器内直接绘制：EPSG:4548 投影、拓扑保持简化、约束 Delaunay 三角化，手写 WebGL 渲染器驱动，<b>不引入任何第三方运行库，无任何网络请求</b>。红色飘带即<b>版本线 Version Line</b>，三处红框为三工位，红色立柱为 D-01/D-02/D-03 基准点。</p>
+  <div id="gauge-tour" data-lang="zh">
+    <div class="tour-stage">
+      <canvas tabindex="0" aria-label="京张公制三维巡览：方向键旋转与缩放，Shift+上下键调俯仰，数字键 0-3 切换视角，空格环绕，E 切换高度放大，R 复位"></canvas>
+      <div class="tour-hud"></div>
+      <div class="tour-badge"></div>
+      <div class="tour-fallback" style="display:none"></div>
+    </div>
+    <div class="tour-controls">
+      <button type="button" data-tour-view="0">总览</button>
+      <button type="button" data-tour-view="1">① 制标区 Gauge Works</button>
+      <button type="button" data-tour-view="2">② 首装区 Proto Blocks</button>
+      <button type="button" data-tour-view="3">③ 量产区 Market Floor</button>
+    </div>
+    <p class="tour-keys">键盘（点击画面获得焦点后）：←→ 旋转 · ↑↓ 缩放 · Shift+↑↓ 俯仰 · 1/2/3 三工位 · 0 总览 · 空格 环绕 · E 高度 ×1/×3 · R 复位 · 鼠标拖拽/滚轮、触屏单指旋转/双指缩放同样可用</p>
+    <p class="tour-note">建筑为概念体量：高度 = <span class="mono">floors_assumed × 3.2 m</span>（假设层数，非审定容积率依据），默认真实比例；按 E 的 ×3 放大仅为示意并在画面右上角明示。全部几何基于组织方临时替代边界，非官方红线；遵循系统的减少动效偏好设置。</p>
+  </div>
+  <noscript><p>本浏览器未启用 JavaScript，三维巡览不可用；上方各节静态图件由同一套 GeoJSON 生成，信息等价。</p></noscript>
+</section>
+
+<style>
+#s-tour .tour-stage{position:relative;border:1px solid var(--line);background:#F2F3F0}
+#s-tour canvas{display:block;width:100%;height:560px;background:#F2F3F0;cursor:grab;touch-action:none}
+#s-tour canvas:focus{outline:2px solid var(--version);outline-offset:2px}
+#s-tour .tour-hud{position:absolute;left:10px;top:8px;font:12px/1.6 var(--mono);color:var(--ink);background:rgba(242,243,240,.88);padding:2px 8px;border:1px solid var(--line)}
+#s-tour .tour-badge{position:absolute;right:10px;top:8px;font:12px/1.6 var(--mono);color:var(--ink);background:rgba(242,243,240,.88);padding:2px 8px;border:1px solid var(--line)}
+#s-tour .tour-badge-ex{color:#fff;background:var(--version);border-color:var(--version)}
+#s-tour .tour-fallback{padding:28px 18px;font:14px/1.8 var(--sans);color:var(--ink)}
+#s-tour .tour-controls{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+#s-tour .tour-controls button{font:12px/1.2 var(--mono);color:var(--ink);background:var(--paper);border:1px solid var(--rail);padding:6px 12px;cursor:pointer}
+#s-tour .tour-controls button:hover{border-color:var(--version);color:var(--version)}
+#s-tour .tour-keys{font:12px/1.9 var(--mono);color:var(--rail);margin:2px 0 0}
+#s-tour .tour-note{font:12px/1.8 var(--sans);color:var(--rail);border-left:3px solid var(--version);padding-left:10px;margin-top:10px}
+</style>
+<script src="assets/gauge-tour-data.js" defer></script>
+<script src="assets/gauge-tour.js" defer></script>
+
 <footer>
   <span>京张公制 THE JING-ZHANG GAUGE</span>
   <span>JZ-Gauge v0.1</span>

@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="《京张企校共创带：从零公里到九公里》离线方案可视化，以地铁线路图语言呈现全线站点、三层范围、企校共创机制与证据指标。">
+  <link rel="icon" href="data:,">
+  <title>京张企校共创带：从零公里到九公里</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink-strong: #11253a;
+      --ink: #23384c;
+      --ink-soft: #607083;
+      --paper: #f5f1e8;
+      --surface: #fffdf8;
+      --surface-blue: #eaf3f5;
+      --surface-red: #f8e8e3;
+      --surface-amber: #fff2d2;
+      --line: #d7d1c4;
+      --line-strong: #aaa394;
+      --mainline: #c53b32;
+      --mainline-dark: #8f2824;
+      --transfer: #196a96;
+      --transfer-soft: #83b7c8;
+      --bluegreen: #187d78;
+      --bluegreen-soft: #a9d2c4;
+      --key: #d58b21;
+      --key-dark: #88510c;
+      --white: #ffffff;
+      --shadow: 0 1rem 3rem rgba(29, 53, 68, .1);
+      --radius-sm: .5rem;
+      --radius-md: .875rem;
+      --radius-lg: 1.5rem;
+      --space-1: .25rem;
+      --space-2: .5rem;
+      --space-3: .75rem;
+      --space-4: 1rem;
+      --space-5: 1.5rem;
+      --space-6: 2rem;
+      --space-7: 3rem;
+      --space-8: 4rem;
+      --text-xs: .75rem;
+      --text-sm: .875rem;
+      --text-base: 1rem;
+      --text-lg: 1.25rem;
+      --text-xl: clamp(1.75rem, 3vw, 2.5rem);
+      --text-display: clamp(2.5rem, 6.5vw, 5.8rem);
+      --measure: 66ch;
+      --page: 82rem;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(213, 139, 33, .13), transparent 26rem),
+        linear-gradient(rgba(17, 37, 58, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(17, 37, 58, .025) 1px, transparent 1px),
+        var(--paper);
+      background-size: auto, 2rem 2rem, 2rem 2rem, auto;
+      color: var(--ink);
+      font-family: "FZLanTingHeiS-R-GB", "Source Han Sans SC", "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.65;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; }
+    a:focus-visible, [tabindex]:focus-visible {
+      outline: .1875rem solid var(--key-dark);
+      outline-offset: .25rem;
+    }
+    .skip-link {
+      position: fixed;
+      inset: var(--space-3) auto auto var(--space-3);
+      z-index: 10;
+      padding: var(--space-2) var(--space-4);
+      background: var(--ink-strong);
+      color: var(--white);
+      border-radius: var(--radius-sm);
+      transform: translateY(-200%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .wrap { width: min(calc(100% - 2rem), var(--page)); margin-inline: auto; }
+    .eyebrow {
+      margin: 0 0 var(--space-3);
+      color: var(--mainline);
+      font-size: var(--text-xs);
+      font-weight: 800;
+      letter-spacing: .18em;
+    }
+    h1, h2, h3, p { margin-block-start: 0; }
+    h1, h2, h3 { color: var(--ink-strong); text-wrap: balance; }
+    h1 {
+      max-width: 11ch;
+      margin-bottom: var(--space-5);
+      font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+      font-size: var(--text-display);
+      font-weight: 900;
+      letter-spacing: -.055em;
+      line-height: .98;
+    }
+    h2 { margin-bottom: var(--space-3); font-size: var(--text-xl); line-height: 1.16; letter-spacing: -.025em; }
+    h3 { margin-bottom: var(--space-2); font-size: var(--text-lg); line-height: 1.35; }
+    p { margin-bottom: var(--space-4); text-wrap: pretty; }
+    .section-copy { max-width: var(--measure); color: var(--ink-soft); }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 43rem;
+      padding-block: var(--space-7) var(--space-8);
+      background: var(--ink-strong);
+      color: #eaf0f3;
+      border-bottom: .5rem solid var(--mainline);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 62rem;
+      height: 62rem;
+      inset: -32rem -18rem auto auto;
+      border: 8rem solid rgba(25, 106, 150, .15);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: .375rem;
+      background: linear-gradient(90deg, var(--mainline) 0 49%, var(--transfer) 49% 69%, var(--bluegreen) 69% 86%, var(--key) 86%);
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(18rem, .6fr);
+      gap: var(--space-7);
+      align-items: end;
+    }
+    .hero h1 { color: var(--surface); }
+    .hero .eyebrow { color: #f3a49b; }
+    .origin {
+      max-width: 48rem;
+      margin-bottom: var(--space-6);
+      padding-left: var(--space-5);
+      border-left: .25rem solid var(--mainline);
+      color: #dbe5ea;
+      font-size: clamp(1.05rem, 2vw, 1.4rem);
+    }
+    .route-summary { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+    .route-summary span {
+      padding: var(--space-2) var(--space-3);
+      border: 1px solid rgba(255, 255, 255, .24);
+      border-radius: 999px;
+      color: #f5f7f8;
+      font-size: var(--text-sm);
+    }
+    .status-card {
+      padding: var(--space-5);
+      background: linear-gradient(145deg, rgba(255,255,255,.11), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.21);
+      border-radius: var(--radius-lg) var(--radius-lg) var(--radius-sm) var(--radius-lg);
+      box-shadow: inset 0 1px rgba(255,255,255,.15);
+    }
+    .status-label { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); font-weight: 800; }
+    .status-label::before { content: ""; width: .75rem; height: .75rem; background: var(--key); border-radius: 50%; box-shadow: 0 0 0 .375rem rgba(213,139,33,.18); }
+    .status-card p { margin: 0; color: #cbd8de; font-size: var(--text-sm); }
+    .board-nav { background: var(--surface); border-bottom: 1px solid var(--line); }
+    .board-nav .wrap { display: flex; gap: var(--space-2); overflow-x: auto; padding-block: var(--space-3); scrollbar-width: thin; }
+    .board-nav a { flex: 0 0 auto; padding: var(--space-2) var(--space-3); text-decoration: none; color: var(--ink-soft); font-size: var(--text-sm); font-weight: 700; border-radius: var(--radius-sm); }
+    .board-nav a:hover, .board-nav a:focus-visible { background: var(--surface-red); color: var(--mainline-dark); }
+    main { padding-block: var(--space-7) var(--space-8); }
+    .section { padding-block: var(--space-7); border-top: 1px solid var(--line-strong); }
+    .section:first-child { padding-top: 0; border-top: 0; }
+    .section-head { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: var(--space-5); margin-bottom: var(--space-6); }
+    .section-index { color: var(--mainline); font-size: var(--text-sm); font-weight: 900; letter-spacing: .12em; }
+    .map-panel {
+      overflow: hidden;
+      padding: var(--space-5);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg) var(--radius-sm) var(--radius-lg) var(--radius-sm);
+      box-shadow: var(--shadow);
+    }
+    .map-scroll { overflow-x: auto; padding-bottom: var(--space-2); }
+    .metro-map { display: block; width: 100%; min-width: 0; height: auto; }
+    .metro-map text { font-family: inherit; }
+    .legend { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-5); margin-top: var(--space-4); color: var(--ink-soft); font-size: var(--text-sm); }
+    .legend span { display: inline-flex; align-items: center; gap: var(--space-2); }
+    .legend i { width: 1.75rem; height: .3rem; background: var(--legend-color); border-radius: 999px; }
+    .next-stop {
+      display: grid;
+      grid-template-columns: .7fr 1.3fr;
+      gap: var(--space-5);
+      margin-top: var(--space-5);
+      padding: var(--space-5);
+      background: var(--ink-strong);
+      color: #dce6ea;
+      border-radius: var(--radius-sm) var(--radius-lg) var(--radius-sm) var(--radius-lg);
+    }
+    .next-stop h3 { color: var(--white); }
+    .next-stop p { margin: 0; }
+    .next-stop strong { display: block; margin-bottom: var(--space-2); color: #f3a49b; font-size: var(--text-xs); letter-spacing: .15em; }
+    .scope-layout { display: grid; grid-template-columns: .82fr 1.18fr; gap: var(--space-6); align-items: start; }
+    .scope-line { position: relative; display: grid; gap: var(--space-4); padding-left: var(--space-6); }
+    .scope-line::before { content: ""; position: absolute; inset: .75rem auto .75rem .6875rem; width: .25rem; background: linear-gradient(var(--mainline), var(--key)); border-radius: 999px; }
+    .scope-item { position: relative; padding: var(--space-4) var(--space-5); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm) var(--radius-md) var(--radius-md); }
+    .scope-item::before { content: ""; position: absolute; left: -1.875rem; top: 1.25rem; width: 1rem; height: 1rem; background: var(--surface); border: .25rem solid var(--mainline); border-radius: 50%; }
+    .scope-item:nth-child(2)::before { border-color: var(--transfer); }
+    .scope-item:nth-child(3)::before { border-color: var(--key); }
+    .scope-item p { margin: 0; color: var(--ink-soft); font-size: var(--text-sm); }
+    .key-areas { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+    .key-card { min-height: 14rem; padding: var(--space-5); background: var(--surface-amber); border-top: .375rem solid var(--key); }
+    .key-card .number { color: var(--key-dark); font-size: 2.5rem; font-weight: 300; line-height: 1; }
+    .key-card p { margin: 0; color: #665230; }
+    .principle {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: var(--space-4);
+      border: 1px solid var(--line-strong);
+      background: var(--surface);
+    }
+    .principle div { padding: var(--space-4); border-left: 1px solid var(--line); }
+    .principle div:first-child { border-left: 0; }
+    .principle b { display: block; color: var(--mainline); font-size: var(--text-xs); letter-spacing: .1em; }
+    .co-create-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(18rem, .95fr); gap: var(--space-5); }
+    .mechanism { padding: var(--space-6); background: var(--surface-blue); border-radius: var(--radius-lg) var(--radius-sm); }
+    .mechanism-flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2); margin-block: var(--space-5); overflow: hidden; }
+    .mechanism-step { position: relative; padding: var(--space-4); background: var(--surface); border-bottom: .25rem solid var(--transfer); }
+    .mechanism-step:not(:last-child)::after { content: "→"; position: absolute; right: -.8rem; top: 50%; z-index: 1; color: var(--transfer); font-weight: 900; transform: translateY(-50%); }
+    .mechanism-step b { display: block; color: var(--transfer); font-size: var(--text-sm); }
+    .mechanism p:last-child { margin-bottom: 0; }
+    .ai-desk { padding: var(--space-6); background: var(--ink-strong); color: #dbe5e9; border-radius: var(--radius-sm) var(--radius-lg); }
+    .ai-desk h3 { color: var(--white); }
+    .ai-desk .concept { display: inline-block; margin-bottom: var(--space-4); padding: var(--space-1) var(--space-2); color: #ffdca4; border: 1px solid var(--key); font-size: var(--text-xs); font-weight: 800; }
+    .ai-desk ul { margin: 0; padding-left: 1.2rem; }
+    .ai-desk li { margin-block: var(--space-2); }
+    .people { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-5); }
+    .people span { padding: var(--space-2) var(--space-3); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; color: var(--ink); font-size: var(--text-sm); }
+    .scenario-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); margin-top: var(--space-5); }
+    .scenario { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); min-height: 8rem; background: var(--surface); border: 1px solid var(--line); }
+    .scenario-node { display: grid; place-items: center; padding: var(--space-3); background: var(--mainline); color: var(--white); text-align: center; font-size: var(--text-xs); font-weight: 800; }
+    .scenario-body { padding: var(--space-4); }
+    .scenario-body p { margin: 0; color: var(--ink-soft); font-size: var(--text-sm); }
+    .metrics-board { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); background: var(--ink-strong); color: var(--white); border-radius: var(--radius-sm) var(--radius-lg); overflow: hidden; }
+    .metric { min-height: 11rem; padding: var(--space-5); border-left: 1px solid rgba(255,255,255,.16); }
+    .metric:first-child { border-left: 0; }
+    .metric-label { display: block; min-height: 3rem; color: #adbec7; font-size: var(--text-sm); }
+    .metric strong { display: block; margin-top: var(--space-3); color: var(--white); font-size: clamp(1.2rem, 2.2vw, 2.35rem); font-variant-numeric: tabular-nums; line-height: 1; letter-spacing: -.04em; overflow-wrap: anywhere; }
+    .metric small { display: block; margin-top: var(--space-2); color: #adbec7; }
+    .unknowns { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: var(--space-4); border: 1px solid var(--line-strong); }
+    .unknown { padding: var(--space-4); border-left: 1px solid var(--line); background: var(--surface); }
+    .unknown:first-child { border-left: 0; }
+    .unknown b, .unknown span { display: block; }
+    .unknown b { margin-bottom: var(--space-2); font-size: var(--text-sm); }
+    .unknown span { color: var(--mainline-dark); font-size: var(--text-xs); font-weight: 800; }
+    .evidence-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: var(--space-5); }
+    .evidence-card { padding: var(--space-5); background: var(--surface); border-top: .375rem solid var(--transfer); }
+    .evidence-card.assumption { border-color: var(--key); }
+    .evidence-card ul { margin: 0; padding-left: 1.2rem; }
+    .evidence-card li { margin-block: var(--space-2); }
+    .evidence-note { margin-top: var(--space-5); padding: var(--space-4) var(--space-5); background: var(--surface-red); border-left: .25rem solid var(--mainline); }
+    .evidence-note p { margin: 0; }
+    .audit-strip { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
+    .audit-strip span { padding: var(--space-1) var(--space-2); background: var(--surface-blue); color: var(--transfer); font-size: var(--text-xs); font-weight: 800; }
+    footer { padding-block: var(--space-5); background: var(--ink-strong); color: #b7c5cc; font-size: var(--text-sm); }
+    footer p { margin: 0; }
+
+    @media (max-width: 64rem) {
+      .hero-grid, .scope-layout, .co-create-grid, .evidence-grid { grid-template-columns: 1fr; }
+      .hero { min-height: auto; }
+      .status-card { max-width: 35rem; }
+      .metrics-board { grid-template-columns: repeat(2, 1fr); }
+      .metric { border-top: 1px solid rgba(255,255,255,.16); }
+      .metric:nth-child(odd) { border-left: 0; }
+      .metric:first-child, .metric:nth-child(2) { border-top: 0; }
+      .metric:last-child { grid-column: 1 / -1; }
+      .unknowns { grid-template-columns: repeat(2, 1fr); }
+      .unknown:nth-child(odd) { border-left: 0; }
+      .unknown:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .unknown:last-child { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 42rem) {
+      .wrap { width: min(calc(100% - 1.25rem), var(--page)); }
+      .hero { padding-block: var(--space-6) var(--space-7); }
+      .hero-grid { gap: var(--space-6); }
+      h1 { font-size: clamp(2.45rem, 14vw, 4rem); }
+      .section { padding-block: var(--space-6); }
+      .section-head { grid-template-columns: 1fr; gap: var(--space-2); margin-bottom: var(--space-5); }
+      .map-panel { padding: var(--space-3); }
+      .metro-map { min-width: 0; }
+      .next-stop, .key-areas, .principle, .mechanism-flow, .scenario-list { grid-template-columns: 1fr; }
+      .principle div { border-left: 0; border-top: 1px solid var(--line); }
+      .principle div:first-child { border-top: 0; }
+      .mechanism-step:not(:last-child)::after { content: "↓"; inset: auto 50% -.95rem auto; transform: translateX(50%); }
+      .metrics-board, .unknowns { grid-template-columns: 1fr; }
+      .metric, .metric:nth-child(2), .metric:first-child { min-height: auto; border-left: 0; border-top: 1px solid rgba(255,255,255,.16); }
+      .metric:first-child { border-top: 0; }
+      .metric:last-child, .unknown:last-child { grid-column: auto; }
+      .unknown, .unknown:nth-child(n+3) { border-left: 0; border-top: 1px solid var(--line); }
+      .unknown:first-child { border-top: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+
+    @media print {
+      body { background: var(--white); }
+      .board-nav, .skip-link { display: none; }
+      .hero { min-height: 0; print-color-adjust: exact; }
+      .section { break-inside: avoid; }
+      .map-scroll { overflow: visible; }
+      .metro-map { min-width: 0; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳至主要内容</a>
+
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">百年京张人工智能创新带 · 概念方案</p>
+        <h1>京张企校共创带：从零公里到九公里</h1>
+        <p class="origin">一名北交大学生每天通勤，路过转河边的公园入口却从不进入：入园方向与通勤方向不一致，绕行让入口只成为边界，而不是目的地。</p>
+        <div class="route-summary" aria-label="方案构成">
+          <span>连续九公里主线</span>
+          <span>六个主线站</span>
+          <span>十个换乘节点</span>
+          <span>三个重点区</span>
+        </div>
+      </div>
+      <aside class="status-card" aria-label="边界数据状态">
+        <div class="status-label">临时约束范围</div>
+        <p>当前范围不是官方红线，仅用于概念生成、空间讨论与内容评审；不影响方案内容评分。待正式数据发布后替换边界并复算全部面积与比例。</p>
+      </aside>
+    </div>
+  </header>
+
+  <nav class="board-nav" aria-label="页面章节">
+    <div class="wrap">
+      <a href="#line">全线站点图</a>
+      <a href="#scope">三层范围与重点区</a>
+      <a href="#co-create">企校共创与共创台</a>
+      <a href="#metrics">核心指标</a>
+      <a href="#evidence">来源与假设</a>
+    </div>
+  </nav>
+
+  <main id="main" class="wrap">
+    <section id="line" class="section" aria-labelledby="line-title">
+      <div class="section-head">
+        <div class="section-index">第一部分</div>
+        <div>
+          <p class="eyebrow">总览地图 · 全线站点图</p>
+          <h2 id="line-title">把九公里公园读成一条每天都能使用的线路</h2>
+          <p class="section-copy">主线不是观光清单，而是连续的日常公共空间。六站串起铁路身份与公共生活，十个换乘节点把高校、科研院校、科技园、公共文化、交通枢纽和滨水绿廊接入；转河水岸作为零公里的子节点，先修正“路过却不进入”的真实断点。</p>
+        </div>
+      </div>
+
+      <div class="map-panel">
+          <div class="map-scroll" tabindex="0" role="region" aria-label="可纵向滚动的九公里南北主线站点图">
+            <svg class="metro-map" viewBox="0 0 1280 900" role="img" aria-labelledby="map-title map-desc">
+            <title id="map-title">从京张零公里到京张之环的九公里主线图</title>
+              <desc id="map-desc">红色竖直主线从南向北连接六个站点，与地铁13号线自北京北站至清河段的走向并行；蓝色支线标示十个经官方公开资料与开放地图交叉核验的换乘资源，按真实东西方位分列主线两侧；蓝绿色支线标示转河水岸子节点；琥珀色圆环标示三个重点区。</desc>
+            <defs>
+              <filter id="station-shadow" x="-50%" y="-50%" width="200%" height="200%">
+                <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#11253a" flood-opacity=".18"/>
+              </filter>
+              <linearGradient id="rail-bed" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#8f2824"/>
+                <stop offset=".5" stop-color="#c53b32"/>
+                <stop offset="1" stop-color="#8f2824"/>
+              </linearGradient>
+            </defs>
+
+            <path d="M520 760 V538 V479 V419 V261 V60" fill="none" stroke="#e1d9cc" stroke-width="34" stroke-linecap="round"/>
+            <path d="M520 760 V538 V479 V419 V261 V60" fill="none" stroke="url(#rail-bed)" stroke-width="15" stroke-linecap="round"/>
+            <path d="M520 760 V538 V479 V419 V261 V60" fill="none" stroke="#fffdf8" stroke-width="2" stroke-dasharray="3 19" opacity=".72"/>
+            <rect x="440" y="34" width="160" height="752" rx="80" fill="none" stroke="#aaa394" stroke-width="3" stroke-dasharray="10 10" opacity=".6"/>
+            <text x="610" y="20" fill="#607083" font-size="14" font-weight="700">临时约束范围（仅作概念示意）</text>
+
+            <g fill="none" stroke="#196a96" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M520 760 H930 V710"/>
+              <path d="M520 760 H350 V710"/>
+              <path d="M520 760 H380 V780 H350"/>
+              <path d="M520 479 H350 V480"/>
+              <path d="M520 419 H350 V378"/>
+              <path d="M520 419 H930 V410"/>
+              <path d="M520 261 H350 V228"/>
+              <path d="M520 261 H930 V252"/>
+              <path d="M520 60 H350 V30"/>
+              <path d="M520 60 H380 V90 H350"/>
+            </g>
+            <g fill="#fffdf8" stroke="#196a96" stroke-width="5">
+              <circle cx="930" cy="710" r="10"/><circle cx="350" cy="710" r="10"/><circle cx="350" cy="780" r="10"/>
+              <circle cx="350" cy="480" r="10"/><circle cx="350" cy="388" r="10"/><circle cx="930" cy="410" r="10"/>
+              <circle cx="350" cy="238" r="10"/><circle cx="930" cy="252" r="10"/><circle cx="350" cy="30" r="10"/><circle cx="350" cy="90" r="10"/>
+            </g>
+
+              <circle cx="435" cy="792" r="12" fill="#fffdf8" stroke="#187d78" stroke-width="6"/>
+              <path d="M435 792 L350 780" stroke="#187d78" stroke-width="2.5" fill="none" stroke-dasharray="4 4"/>
+
+            <g fill="none" stroke="#d58b21" stroke-width="8" opacity=".95">
+              <circle cx="520" cy="538" r="31"/><circle cx="520" cy="419" r="31"/><circle cx="520" cy="261" r="31"/>
+            </g>
+
+            <g filter="url(#station-shadow)">
+              <g fill="#fffdf8" stroke="#c53b32" stroke-width="9">
+                <circle data-node="NODE-01" cx="520" cy="760" r="19"/><circle data-node="NODE-02" cx="520" cy="538" r="19"/><circle data-node="NODE-03" cx="520" cy="479" r="19"/><circle data-node="NODE-04" cx="520" cy="419" r="19"/><circle data-node="NODE-05" cx="520" cy="261" r="19"/><circle data-node="NODE-06" cx="520" cy="60" r="19"/>
+              </g>
+              <g fill="#c53b32">
+                 <circle cx="520" cy="760" r="6"/><circle cx="520" cy="538" r="6"/><circle cx="520" cy="479" r="6"/><circle cx="520" cy="419" r="6"/><circle cx="520" cy="261" r="6"/><circle cx="520" cy="60" r="6"/>
+              </g>
+            </g>
+
+            <g fill="#11253a" font-size="16" font-weight="800">
+                <text x="555" y="748"><tspan x="555">京张零公里 / 北京北站</tspan><tspan x="555" dy="20" font-size="13">NODE-01 · 南端</tspan></text>
+                <text x="555" y="526"><tspan x="555">大钟寺社区活力段</tspan><tspan x="555" dy="20" font-size="13">NODE-02 · 重点区</tspan></text>
+                <text x="555" y="467"><tspan x="555">知春路 · 四道口</tspan><tspan x="555" dy="20" font-size="13">NODE-03</tspan></text>
+                <text x="555" y="407"><tspan x="555">五道口 / 清华园车站</tspan><tspan x="555" dy="20" font-size="13">NODE-04 · 重点区</tspan></text>
+                <text x="555" y="249"><tspan x="555">清华东路—科研院校公共空间</tspan><tspan x="555" dy="20" font-size="13">NODE-05 · 重点区</tspan></text>
+                <text x="555" y="48"><tspan x="555">京张之环 / 北五环方向</tspan><tspan x="555" dy="20" font-size="13">NODE-06 · 北端</tspan></text>
+                <text x="480" y="200" font-size="12" fill="#6b7686" font-style="italic" transform="rotate(-90 480 200)" text-anchor="middle">与地铁13号线并行（北京北站—清河）</text>
+            </g>
+
+            <g fill="#fffdf8" stroke="#196a96" stroke-width="2">
+               <rect x="950" y="686" width="310" height="48" rx="9"/><rect x="20" y="686" width="310" height="48" rx="9"/><rect x="20" y="756" width="310" height="48" rx="9"/>
+               <rect x="20" y="456" width="310" height="48" rx="9"/><rect x="20" y="364" width="310" height="48" rx="9"/><rect x="950" y="386" width="310" height="48" rx="9"/>
+               <rect x="20" y="214" width="310" height="48" rx="9"/><rect x="950" y="228" width="310" height="48" rx="9"/><rect x="20" y="6" width="310" height="48" rx="9"/><rect x="20" y="66" width="310" height="48" rx="9"/>
+            </g>
+            <g fill="#196a96" font-size="14" font-weight="800">
+               <text x="965" y="707">TRANSFER-01 西直门枢纽</text><text x="965" y="729" font-size="12">东侧 · 锚定 NODE-01</text>
+               <text x="35" y="707">TRANSFER-02 北交大</text><text x="35" y="729" font-size="12">西侧 · 锚定 NODE-01</text>
+               <text x="35" y="777">TRANSFER-06 国家图书馆</text><text x="35" y="799" font-size="12">西侧 · 公共文化 · NODE-01</text>
+               <text x="35" y="477">TRANSFER-07 卫星制造厂科技园</text><text x="35" y="499" font-size="12">西侧 · 老厂更新 · NODE-03</text>
+                <text x="35" y="235">TRANSFER-03 清华大学</text><text x="35" y="257" font-size="12">西侧 · 锚定 NODE-05</text>
+                <text x="965" y="407">TRANSFER-08 北京航空航天大学</text><text x="965" y="429" font-size="12">东侧 · 锚定 NODE-04</text>
+                <text x="35" y="385">TRANSFER-04 中科院(中关村)</text><text x="35" y="407" font-size="12">西侧 · 锚定 NODE-04</text>
+               <text x="965" y="249">TRANSFER-09 北京林业大学</text><text x="965" y="271" font-size="12">东侧 · 锚定 NODE-05</text>
+               <text x="35" y="27">TRANSFER-05 清河滨水绿廊</text><text x="35" y="49" font-size="12">西侧 · 锚定 NODE-06</text>
+               <text x="35" y="87">TRANSFER-10 北京体育大学</text><text x="35" y="109" font-size="12">西侧 · 锚定 NODE-06</text>
+            </g>
+              <text x="435" y="832" text-anchor="middle" fill="#187d78" font-size="14" font-weight="800">转河水岸 · NODE-01A</text>
+
+             <g fill="#fffaf0" stroke="#d58b21" stroke-width="2">
+                <rect x="835" y="548" width="270" height="38" rx="9"/><rect x="800" y="448" width="310" height="38" rx="9"/><rect x="835" y="300" width="270" height="38" rx="9"/>
+             </g>
+             <g fill="#88510c" font-size="16" font-weight="900">
+                <text x="850" y="573">大钟寺重点区 · PROV-KEY-003</text>
+                <text x="815" y="473">北京人工智能原点社区 · PROV-KEY-002</text>
+                <text x="850" y="325">众智园重点区 · PROV-KEY-001</text>
+             </g>
+
+            <g fill="#607083" font-size="15">
+                <text x="1080" y="780">零公里 · 南端</text>
+                <text x="1080" y="80">九公里 · 北端</text>
+              </g>
+              <g fill="#196a96" font-size="15" font-weight="800">
+                <text x="470" y="766" text-anchor="end">0 km</text><text x="470" y="544" text-anchor="end">2.8 km</text><text x="470" y="485" text-anchor="end">3.6 km</text><text x="470" y="425" text-anchor="end">4.3 km</text><text x="470" y="267" text-anchor="end">6.3 km</text><text x="470" y="66" text-anchor="end">8.9 km</text>
+              </g>
+             <path d="M480 760 V60" stroke="#aaa394" stroke-width="2" stroke-dasharray="4 8"/>
+             <path d="M472 760 H488 M472 60 H488" stroke="#aaa394" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="legend" aria-label="图例">
+          <span style="--legend-color: var(--mainline)"><i></i>九公里主线</span>
+          <span style="--legend-color: var(--transfer)"><i></i>换乘节点</span>
+          <span style="--legend-color: var(--bluegreen)"><i></i>蓝绿公共空间与子节点</span>
+          <span style="--legend-color: var(--key)"><i></i>重点区域</span>
+        </div>
+      </div>
+
+      <div class="next-stop">
+        <div>
+          <strong>第一层 · 下一站</strong>
+          <h3>先告诉人“往哪里走”</h3>
+          <p>方向、距离、步行时间与无障碍路径，服务当下通勤和日常使用。</p>
+        </div>
+        <div>
+          <strong>第二层 · 到站之后</strong>
+          <h3>再说明“为什么值得进去”</h3>
+          <p>公园活动、铁路记忆、校企开放日和共创反馈点形成目的地信息。零公里首轮先解决转河水岸入口绕行与目的地感不足。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="scope" class="section" aria-labelledby="scope-title">
+      <div class="section-head">
+        <div class="section-index">第二部分</div>
+        <div>
+          <p class="eyebrow">三层范围 · 重点区域</p>
+          <h2 id="scope-title">从区域协同到可被走进的三个重点区</h2>
+          <p class="section-copy">三层范围不是三张互不相干的图：统筹研究范围回答创新资源如何协同，总体设计范围回答九公里公共界面如何连续，重点区域回答具体节点怎样承载开放交换。</p>
+        </div>
+      </div>
+
+      <div class="scope-layout">
+        <div class="scope-line" aria-label="三层范围">
+          <article class="scope-item">
+            <h3>统筹研究范围</h3>
+            <p>组织高校、科研院校、企业与区域交通资源，建立九公里创新协同关系。</p>
+          </article>
+          <article class="scope-item">
+            <h3>总体设计范围</h3>
+            <p>以连续公园主线统筹用地分区、交通慢行、蓝绿公共空间、建筑与更新项目。</p>
+          </article>
+          <article class="scope-item">
+            <h3>重点区域范围</h3>
+            <p>以三个开放交换节点承接产业、社区、校园与公共空间的具体接口。</p>
+          </article>
+        </div>
+
+        <div class="key-areas" aria-label="三个重点区域">
+          <article class="key-card">
+            <div class="number">01</div>
+            <h3>众智园</h3>
+            <p>面向自主创新加速与企业验证，把研发成果、产业需求和开放展示接入公园主线。</p>
+          </article>
+          <article class="key-card">
+            <div class="number">02</div>
+            <h3>北京人工智能原点社区</h3>
+            <p>面向高校源头创新与社区生活，让成果转化、人才服务和铁路记忆在近校空间相遇。</p>
+          </article>
+          <article class="key-card">
+            <div class="number">03</div>
+            <h3>大钟寺</h3>
+            <p>面向城市型人工智能产业与社区活力，以公共空间连接企业服务、生活配套和主线活动。</p>
+          </article>
+          <div class="principle" aria-label="空间层级原则">
+            <div><b>第一优先</b>每天愿意使用的公园</div>
+            <div><b>第二层</b>可被识别的京张铁路身份</div>
+            <div><b>少量强化</b>真正开放的交换节点</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="co-create" class="section" aria-labelledby="co-create-title">
+      <div class="section-head">
+        <div class="section-index">第三部分</div>
+        <div>
+          <p class="eyebrow">企校共创 · AI 场景</p>
+          <h2 id="co-create-title">高校产出人才与知识，企业提出真实问题，公园成为公共界面</h2>
+          <p class="section-copy">“企校共创”不另建封闭园区，而是在日常公园里设置少量开放接口：把高校的人才和研究能力、企业的场景需求、居民与通勤者的使用反馈放到同一条可见的迭代链上。</p>
+        </div>
+      </div>
+
+      <div class="co-create-grid">
+        <article class="mechanism">
+          <h3>从开放问题到可验证改进</h3>
+          <div class="mechanism-flow" aria-label="企校共创流程">
+            <div class="mechanism-step"><b>高校</b>人才、研究、原型</div>
+            <div class="mechanism-step"><b>公园</b>公共展示、体验、反馈</div>
+            <div class="mechanism-step"><b>企业</b>问题、验证、迭代</div>
+          </div>
+          <p>公园先服务每日经过的人，再承载京张记忆，最后只在少数节点安排开放交流；交流功能不能挤占通行、休息、运动和无障碍使用。</p>
+          <div class="people" aria-label="主要使用者">
+            <span>北交大学生</span><span>科研人员</span><span>企业工程师</span><span>社区居民</span><span>亲子与长者</span>
+          </div>
+        </article>
+
+        <aside class="ai-desk">
+          <span class="concept">概念建议</span>
+          <h3>人工智能共创台（AI共创台）</h3>
+          <p>实体模型与无登录公共屏幕构成主要体验，可选二维码只用于希望继续参与的人。</p>
+          <ul>
+            <li>匿名参与，不做人脸识别，只收集完成反馈所需的最少数据。</li>
+            <li>按“体验—反馈—迭代”公开展示问题、建议和改进结果。</li>
+            <li>首轮不测试宏大城市愿景，先改进零公里节点本身：入口是否顺路、信息是否清楚、是否值得停留。</li>
+          </ul>
+        </aside>
+      </div>
+
+      <div class="scenario-list" aria-label="与站点绑定的场景卡">
+        <article class="scenario"><div class="scenario-node">零公里</div><div class="scenario-body"><h3>通勤路径共测</h3><p>学生、居民共同标注绕行、停留与无障碍断点，共创台公开首轮改进。</p></div></article>
+        <article class="scenario"><div class="scenario-node">大钟寺</div><div class="scenario-body"><h3>社区需求开放日</h3><p>社区提出生活服务问题，企业与高校团队现场展示可测试的小型原型。</p></div></article>
+        <article class="scenario"><div class="scenario-node">四道口</div><div class="scenario-body"><h3>铁路记忆采集</h3><p>以口述、档案与现场识读补充线路记忆，人工复核后进入公共叙事。</p></div></article>
+        <article class="scenario"><div class="scenario-node">清华园</div><div class="scenario-body"><h3>校企原型会客</h3><p>高校团队与企业围绕真实需求短时交流，成果以可理解方式向公众开放。</p></div></article>
+        <article class="scenario"><div class="scenario-node">科研院校</div><div class="scenario-body"><h3>研究能力导航</h3><p>用“下一站”信息连接科研院校开放活动，不采集个人轨迹。</p></div></article>
+        <article class="scenario"><div class="scenario-node">京张之环</div><div class="scenario-body"><h3>蓝绿线路接驳</h3><p>把主线活动与清河滨水绿廊联动，验证九公里连续步行与骑行体验。</p></div></article>
+      </div>
+    </section>
+
+    <section id="metrics" class="section" aria-labelledby="metrics-title">
+      <div class="section-head">
+        <div class="section-index">第四部分</div>
+        <div>
+          <p class="eyebrow">核心指标 · 自检状态</p>
+          <h2 id="metrics-title">已知值来自同一组临时几何，未知控制保持未知</h2>
+          <p class="section-copy">以下数值与指标文件逐项对应。面积与比例用于当前概念方案的复算与一致性检查，不升级为官方面积、法定控制或实施承诺。</p>
+        </div>
+      </div>
+
+      <div class="metrics-board" aria-label="七项已知核心指标">
+        <div class="metric"><span class="metric-label">总体设计范围面积</span><strong data-metric="site_area_sqm" data-value="13251651.236635">约 13.25 km²</strong><small>平方米 · 临时复算</small></div>
+        <div class="metric"><span class="metric-label">绿地空间面积</span><strong data-metric="green_space_area_sqm" data-value="1965448.269">约 1.97 km²</strong><small>平方米 · 临时复算</small></div>
+        <div class="metric"><span class="metric-label">公共空间面积</span><strong data-metric="public_space_area_sqm" data-value="2053676.422">约 2.05 km²</strong><small>平方米 · 临时复算</small></div>
+        <div class="metric"><span class="metric-label">绿地空间比例</span><strong data-metric="green_ratio" data-value="0.148317">约 14.8%</strong><small>临时设计几何</small></div>
+        <div class="metric"><span class="metric-label">公共空间比例</span><strong data-metric="public_space_ratio" data-value="0.154975">约 15.5%</strong><small>临时设计几何</small></div>
+        <div class="metric"><span class="metric-label">建筑基底面积</span><strong data-metric="building_footprint_area_sqm" data-value="10034.91">约 10,035 m²</strong><small>平方米 · 低置信度</small></div>
+        <div class="metric"><span class="metric-label">重点区域数量</span><strong data-metric="key_area_count" data-value="3">3</strong><small>处</small></div>
+      </div>
+
+      <div class="unknowns" aria-label="待补齐的法定控制指标">
+        <div class="unknown" data-metric="floor_area_ratio"><b>容积率</b><span>待正式数据补齐</span></div>
+        <div class="unknown" data-metric="building_height_m"><b>建筑高度</b><span>待正式数据补齐</span></div>
+        <div class="unknown" data-metric="building_density"><b>建筑密度</b><span>待正式数据补齐</span></div>
+        <div class="unknown" data-metric="statutory_green_ratio"><b>法定绿地率</b><span>待正式数据补齐</span></div>
+        <div class="unknown" data-metric="setback_m"><b>退线</b><span>待正式数据补齐</span></div>
+      </div>
+    </section>
+
+    <section id="evidence" class="section" aria-labelledby="evidence-title">
+      <div class="section-head">
+        <div class="section-index">第五部分</div>
+        <div>
+          <p class="eyebrow">来源 · 假设 · 证据边界</p>
+          <h2 id="evidence-title">让可确认的内容清楚，让仍需核验的内容同样清楚</h2>
+          <p class="section-copy">本页是人类可读的离线摘要；结构化来源、假设、几何与指标文件仍是复核依据。</p>
+        </div>
+      </div>
+
+      <div class="evidence-grid">
+        <article class="evidence-card">
+          <h3>主要来源</h3>
+          <ul>
+            <li>公开征集公告与智能体任务书：确认三层范围、任务与概念设计边界。</li>
+            <li>京张铁路遗址公园公开报道、清华园车站与西直门站旧址资料：支撑九公里、站点和铁路文化线索。</li>
+            <li>城市设计、控制性详细规划、用地分类与无障碍相关公开规范：约束表达方法，不提供本项目法定数值。</li>
+            <li>临时粗略边界：仅用于生成、展示、自检和设计讨论。</li>
+          </ul>
+        </article>
+        <article class="evidence-card assumption">
+          <h3>关键假设</h3>
+          <ul>
+            <li>官方总体边界与三个重点区范围尚未发布，正式数据到位后必须替换并复算。</li>
+            <li>容积率、建筑高度、建筑密度、法定绿地率、退线、道路红线、权属、市政和文保控制仍待专业确认。</li>
+            <li>人工智能共创台与站点活动均为概念建议，不代表审批、投资、工程可行性或实施承诺。</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="evidence-note">
+        <p><strong>现场证据限制：</strong>当前节点判断主要来自参与者记忆、公开资料与两张既有路径照片，本轮未补拍；转河水岸入口仍缺少新的现场照片与连续行为观察，后续需用工作日与周末分时段踏勘核验。</p>
+      </div>
+      <div class="audit-strip" aria-label="结构化证据覆盖">
+        <span>用地分区</span><span>交通慢行</span><span>蓝绿公共空间</span><span>建筑</span><span>更新项目</span><span>人工智能场景</span><span>任务覆盖</span><span>来源</span><span>假设</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap"><p>离线静态方案页 · 页面不联网、不跟踪、不提交数据 · 结构化证据以本地指标、来源、假设与几何文件为准</p></div>
+  </footer>
+</body>
+</html>

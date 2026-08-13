@@ -1,49 +1,51 @@
-# 版权与合规声明（Copyright Statement）
+# 版权与合规声明（逐项资产权利清单）
 
-本文件说明提交包 `submissions/sierhaha/jingzhang-ai-commons`（双螺旋创新带方案，v0.2）内全部交付物的生成方式、素材来源、字体与工具链使用情况，供评审进行版权与来源核查。
+本文件逐项列明提交包 `submissions/sierhaha/jingzhang-ai-commons`（双螺旋创新带方案，v0.7）内全部交付物的生成方式、素材来源与权利边界，供评审按资产逐项核查。
 
-## 1. 生成方式声明
+## 1. 生成方式
 
-本提交包内所有文本、空间几何（GeoJSON）、指标（metrics.json）、矩阵（compliance/standard/design-depth）、示意图（assets/figures/*.png）、报告 HTML（report/*.html）、可视化仪表盘（visual/*.html）与图纸（drawings/*.pdf）均由声明的 AI 智能体 **sier-hermes**（运行于 Hermes Agent CLI，模型 deepseek-v4-flash）编写/生成，并经确定性校验脚本（finalize_submission.py / self_check_submission.py / participant_preflight.py）验证。
+本包全部文本、空间几何、指标、矩阵、图件、HTML、图纸均由声明的 AI 智能体 **sier-hermes**（Hermes Agent CLI，模型 deepseek）编写/生成，并经确定性校验（finalize_submission.py / self_check_submission.py --mark-self-checked / validate_submission.py）验证。生成脚本清单（位于参赛者本地工作区，未随包分发）：`tools/gen_geometry.py`、`tools/gen_metrics.py`、`tools/gen_matrices.py`、`tools/gen_figures.py`、`tools/gen_renders.py`、`tools/gen_visual.py`、`tools/gen_drawings.py`、`tools/fetch_osm.py`、`tools/embed_font.py`。
 
-生成过程使用的自动化脚本清单（位于参赛者本地工作区，未随提交包分发）：
-- `tools/gen_geometry.py`：基于场地包 provisional 边界生成用地/建筑/道路/绿地/公共空间/约束/分期 GeoJSON，面积在 EPSG:4548 下复算；
-- `tools/gen_metrics.py`、`tools/gen_matrices.py`：生成指标与三张矩阵；
-- `tools/gen_figures.py`：使用 matplotlib 生成全部正式图；
-- `tools/gen_visual.py`、`tools/gen_drawings.py`：生成离线 HTML 仪表盘与 A3/A0 PDF。
+## 2. 逐项资产权利清单
 
-## 2. 素材来源
+| 资产 | 来源 | 许可/权利 | 使用方式 |
+| --- | --- | --- | --- |
+| 空间几何（9 GeoJSON） | 基于 `brief/site-package/geometry/provisional_boundaries.geojson` 由智能体推导 | 设计推导数据 | 提交、评审展示 |
+| 示意图件（9×中英 PNG） | 智能体用 matplotlib 程序化绘制 | 自创 | 提交、评审展示 |
+| 概念渲染图（6×中英 PNG） | 智能体用 matplotlib 程序化绘制 | 自创 | 提交、评审展示 |
+| A3 文册 / A0 展板（PDF） | 智能体用 matplotlib 生成 | 自创 | 提交、评审展示 |
+| 离线 HTML（visual/report） | 智能体生成；内嵌 Noto Sans CJK SC 字体子集 | 自创 + OFL 字体子集 | 提交、离线展示 |
+| **OSM 底图** | OpenStreetMap（经 Overpass API 提取道路/水系/铁路/公园） | **ODbL 1.0，© OpenStreetMap contributors** | 图件底图，已署名 |
+| 字体 | Noto Sans CJK SC（SIL OFL 1.1） | OFL-1.1 | 图件/PDF 渲染 + HTML 内嵌子集 |
+| 政策引用 | 国务院《2030年前碳达峰行动方案》国发〔2021〕23号 | 公开政府文件（事实引用） | 正文引用，见 sources.json |
 
-- 全部空间数据由智能体基于 `brief/site-package/geometry/provisional_boundaries.geojson`（临时约束范围）推导生成，属设计推导数据，不来源于任何商业地图、OSM、新闻示意图或未清权底图。
-- 全部示意图为程序化绘制（matplotlib），不包含任何第三方照片、渲染图、截图、商标、Logo、人物肖像或企业标识。
-- 文本中引用的政策背景（如国务院《2030年前碳达峰行动方案》，国发〔2021〕23号）为公开政府文件的事实性引用，出处见 `sources.json`（POLICY-CARBON-PEAK）。
-- 专业标准依据仓库内 `brief/site-package/standards/references/` 的本地快照，出处见 `standard_matrix.json` 与 `sources.json`。
+## 3. OSM 署名与 ODbL 义务
 
-## 3. 字体使用
+- 总览图、空间结构图使用 OpenStreetMap 底图，图面左下角标注「底图 © OpenStreetMap contributors (ODbL)」；ODbL 要求在衍生数据库场景下以相同许可共享，本方案仅为评审展示性引用，不发布衍生数据库。
+- 若主办方需公开发布图件，可提供无底图版本或按 ODbL 提供对应图层。
 
-- 图件与图纸（PDF）使用 **Noto Sans CJK SC（OFL-1.1 开源字体，fonts-noto-cjk 包）** 渲染，由 matplotlib 嵌入显示所需字体子集；字体可自由使用、嵌入与分发（SIL Open Font License 1.1），无版权清权障碍。
-- 无任何专有字体（如 SimHei/微软雅黑）用于本包交付物。
+## 4. 字体使用
 
-## 4. 工具链与许可证
+- 图件与 PDF 使用 Noto Sans CJK SC（OFL-1.1）渲染，嵌入显示子集；离线 HTML 内嵌 woff2 字体子集（约 400 KB），确保评审环境无中文系统字体时不出现方框字。
+- 无任何专有字体（SimHei/微软雅黑）用于交付物。
+
+## 5. 工具链与依赖
 
 | 组件 | 用途 | 许可证 |
 | --- | --- | --- |
-| Python 3.11 | 生成与校验运行环境 | PSF License |
-| matplotlib | 图件/图纸绘制 | PSF 兼容（matplotlib license） |
-| shapely | 空间几何运算 | BSD-3-Clause |
-| pyproj | EPSG:4548 坐标投影与面积计算 | MIT |
-| Pillow | 图像处理 | HPND |
-| Noto Sans CJK SC | 图件与 PDF 中文字体 | SIL Open Font License 1.1 |
+| Python 3.11 | 生成与校验 | PSF |
+| matplotlib | 图件/图纸 | PSF 兼容 |
+| shapely / pyproj / Pillow | 几何/投影/图像 | BSD-3 / MIT / HPND |
+| fontTools + brotli | 字体子集化（仅本地构建，不随包分发依赖） | MIT / MIT |
+| Node.js | JZ-05 试点脚本（run_jz05_pilot.js，纯标准库） | MIT |
 | jsonschema | 结构化校验 | MIT |
 
-以上组件均以未修改形式使用，不改变其许可证义务。
+## 6. 外部资源与离线声明
 
-## 5. 外部资源声明
+- 全部 HTML 完全离线，不加载 CDN、远程字体、地图瓦片、外部脚本、iframe 或跟踪代码。
+- 本包不含任何需另行授权的第三方视觉素材；Logo 为概念方向（未定稿），字体/图像/商标/肖像需清权后使用。
 
-- `visual/index.html` 与 `report/proposal.html` 为完全离线静态文件，不加载任何 CDN、远程地图瓦片、外部脚本、外部字体、iframe 或跟踪代码。
-- 本包不包含任何需要另行授权的第三方视觉素材；若后续修订引入外部素材，将先完成清权并更新本声明。
+## 7. 边界与事实性声明
 
-## 6. 边界与事实性声明
-
-- 本方案边界为临时约束范围（provisional constraint），非官方红线；官方 polygon 发布后全部面积类指标需复算。
-- 本方案不声称官方批准、审定控规、最终权属、最终建设规模或保证实施；所有空间与机制建议为概念建议或参考方案。
+- 边界为临时约束范围（provisional），官方 polygon 发布后全部面积类指标复算。
+- 本方案不声称官方批准、审定控规、最终权属或实施承诺；全部机制/试点/指标为概念建议或候选口径。

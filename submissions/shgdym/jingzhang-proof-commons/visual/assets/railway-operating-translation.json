@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "claim_level": "design_translation_not_railway_operation_or_product_certification",
+  "principles": [
+    {
+      "id": "RAIL-01-SECTION",
+      "verified_railway_basis": "铁路运行以车站、区间或闭塞分区形成有边界的运行段；列车进入区间需要规定的行车凭证。",
+      "source_ids": ["NRA-TECHNICAL-RULES"],
+      "x_translation": "TEST、RELEASE、USE是三个不可越级的责任区段；产品不能凭自身判断进入下一段。",
+      "not_claimed": "X区段不是铁路闭塞设备，也不提供铁路级安全保证。"
+    },
+    {
+      "id": "RAIL-02-AUTHORITY",
+      "verified_railway_basis": "发车前需确认进路、凭证、信号和责任条件；司机确认行车凭证与发车信号后方可起动。",
+      "source_ids": ["NRA-TECHNICAL-RULES"],
+      "x_translation": "三张票据分别证明技术、权利和公众使用条件，且必须由对应人工角色签注。",
+      "not_claimed": "Test Receipt、Release Ticket、Public Verdict不是路票、许可证、政府审批或产品认证。"
+    },
+    {
+      "id": "RAIL-03-STOP",
+      "verified_railway_basis": "进站、出站、进路和通过信号显示不明、不正确或熄灭时均按停车信号处理。",
+      "source_ids": ["NRA-TECHNICAL-RULES"],
+      "x_translation": "缺票、过期、hash断裂、版本变化或人工责任不明时默认HOLD/STOP，不以模型置信度补齐。",
+      "not_claimed": "项目视觉色彩不复刻真实铁路信号含义。"
+    },
+    {
+      "id": "RAIL-04-RESTORE-LOG",
+      "verified_railway_basis": "闭塞设备故障、供电恢复或列车退回等非正常情况需要确认条件、调度命令、人工复原并登记。",
+      "source_ids": ["NRA-TECHNICAL-RULES"],
+      "x_translation": "RETURN关闭USE、生成复核任务、保留失败历史；未重测不得再次RELEASE。",
+      "not_claimed": "本地JSON日志不是法定行车日志。"
+    },
+    {
+      "id": "JZ-05-SWITCHBACK",
+      "verified_railway_basis": "京张铁路青龙桥人字形线路以折返线原理适应坡度；方向转换是解决具体工程约束的方法。",
+      "source_ids": ["BEIJING-HERITAGE-JZ", "NRA-JINGZHANG-HISTORY"],
+      "x_translation": "RETURN不是失败后的删除或宣传修补，而是明确改变方向，带着旧FAIL记录回到新一轮TEST。",
+      "not_claimed": "青龙桥人字形铁路不位于本项目临时设计范围；本方案不把折返历史几何伪装成场地现状。"
+    },
+    {
+      "id": "JZ-06-LINE-AS-PUBLIC-COMMONS",
+      "verified_railway_basis": "京张铁路遗址公园以约9公里线性遗产和公共绿地连接城市，保留老正线、旧铁轨、道岔等铁路元素。",
+      "source_ids": ["BEIJING-JZ-PARK-PHASE1", "BEIJING-JZ-PARK-9KM"],
+      "x_translation": "X沿既有线性公共空间组织可见的站间交接；人的普通通行始终是主线，AI只占可关闭的侧袋。",
+      "not_claimed": "概念节点不得压占真实遗产、绿线、道路或公共通行；落位需文保与现场复核。"
+    }
+  ],
+  "excluded_metaphors": [
+    "不把公众称为乘客或把城市称为调度中心",
+    "不把真实铁路信号颜色直接用作AI合法性标志",
+    "不声称X票据具备铁路行车凭证的法律或技术效力",
+    "不把青龙桥折返线误写为海淀临时设计范围内的遗存"
+  ]
+}

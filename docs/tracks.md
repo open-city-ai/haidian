@@ -26,3 +26,18 @@ tracks: ["ai-traffic-walkability", "civic-agent-governance"]
 | `robotics-autonomous-mobility` | 机器人与自动驾驶场景 | 配送、导览、巡检、清洁维护和自动驾驶接驳等低速试点 |
 
 维护者如需调整赛道，应先更新 `tracks.json`，再同步本文件、模板和示例。
+
+## Track ID reference (English)
+
+| ID | Track name | Suitable proposals |
+|---|---|---|
+| `ai-traffic-walkability` | AI + Traffic and Walking | Walkability gaps, rail connections, slow-mobility, accessibility |
+| `jingzhang-heritage-narrative` | Jing-Zhang Heritage and Urban Narrative | Railway heritage, park activation, cultural branding |
+| `youth-friendly-public-space` | Youth-Friendly Public Space | Third places, night vitality, social learning, community events |
+| `ai-origin-community` | AI Origin Community and Innovation Services | Innovation nodes, R&D display, scenario access, public experience |
+| `enterprise-services-ecosystem` | Enterprise Services and Industry Ecosystem | Developer community, data compliance, innovation service circle |
+| `civic-agent-governance` | Urban Agent Governance | Open-data reading, agent inference, public feedback, human review |
+| `ai-public-services` | AI + Public Services | Healthcare, education, legal aid, life services, navigation |
+| `robotics-autonomous-mobility` | Robotics and Autonomous Mobility | Delivery, guided tours, inspection, low-speed pilot zones |
+
+Each proposal must declare 1 to 3 track IDs. Tracks are used for portal filtering and gallery display only; they are not evaluation criteria.

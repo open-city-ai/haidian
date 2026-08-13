@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jing-Zhang Spine · Proposal Visualization</title>
+<style>
+:root { --ink:#162033; --muted:#667085; --paper:#fff; --soft:#f6f8fb; --line:#d7dee8; --navy:#101827; --gold:#c79838; --green:#15803d; --blue:#0f7490; --red:#be123c; --amber:#b45309; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans SC",Arial,sans-serif; background:#eef2f6; color:var(--ink); line-height:1.6; }
+.wrap { max-width:1280px; margin:0 auto; padding:0 20px; }
+header { background:linear-gradient(135deg,#101827 0%,#1e3a5f 100%); color:#fff; border-bottom:5px solid var(--gold); }
+.hero { display:grid; grid-template-columns:minmax(0,1fr) 360px; gap:26px; padding:34px 0 28px; }
+.eyebrow { color:#9fd7c0; letter-spacing:.16em; text-transform:uppercase; font-size:12px; margin:0 0 10px; }
+h1 { font-size:32px; line-height:1.2; margin:0 0 12px; }
+h2 { font-size:22px; margin:0 0 10px; }
+h3 { font-size:16px; margin:0 0 8px; }
+p { margin:0 0 10px; }
+.hero-copy { color:#d8e3ef; font-size:15.5px; max-width:860px; }
+.status-box { border:1px solid rgba(255,255,255,.25); border-radius:10px; padding:16px; background:rgba(255,255,255,.06); font-size:13.5px; }
+.status-box strong { display:block; font-size:17px; margin-bottom:8px; color:#fff; }
+.pills { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+.pill { border:1px solid rgba(255,255,255,.3); border-radius:999px; padding:5px 12px; font-size:12px; }
+main { padding:22px 0 40px; }
+.sheet { background:var(--paper); border:1px solid var(--line); border-radius:10px; margin:0 auto 18px; box-shadow:0 14px 34px rgba(22,32,51,.08); overflow:hidden; }
+.sheet-head { display:flex; justify-content:space-between; gap:16px; align-items:flex-start; padding:20px 22px; border-bottom:1px solid #e6ebf2; background:#fbfcfe; }
+.sheet-head p { color:var(--muted); max-width:780px; font-size:14px; }
+.tag { background:#eef2f7; color:#1d4f7a; border-radius:999px; padding:4px 12px; font-size:12px; white-space:nowrap; }
+.map-grid { display:grid; grid-template-columns:minmax(0,1.6fr) minmax(300px,.6fr); gap:20px; padding:20px 22px; }
+.map-frame { border:1px solid #b9c4d3; border-radius:10px; background:#f8fafc; overflow:hidden; }
+svg { display:block; width:100%; height:auto; }
+.legend { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px; padding:12px 0 0; font-size:12.5px; color:#334155; }
+.sw { display:inline-block; width:13px; height:13px; border-radius:3px; margin-right:6px; vertical-align:-2px; }
+.metrics { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.metric { border:1px solid var(--line); border-radius:8px; padding:12px; background:var(--soft); }
+.metric .m-label { font-size:13px; color:#334155; }
+.metric i { color:var(--muted); font-style:normal; font-size:11.5px; }
+.metric strong { display:block; font-size:21px; color:#1e3a5f; margin:4px 0 2px; }
+.metric .m-note { font-size:11px; color:var(--muted); margin:0; }
+.grid3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; padding:20px 22px; }
+.card { border:1px solid var(--line); border-radius:8px; padding:14px; background:#fff; }
+.card h3 { color:#1e3a5f; }
+.card p { font-size:13.5px; color:var(--muted); }
+.scenario-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; padding:20px 22px; }
+.scenario-card { border:1px solid var(--line); border-left:4px solid var(--red); border-radius:6px; padding:10px; font-size:13px; }
+.scenario-card b { display:block; color:#7f1d1d; margin-bottom:4px; }
+.evidence { display:grid; grid-template-columns:1fr 1fr; gap:18px; padding:20px 22px; }
+.source-line { font-size:12px; color:#1d4f7a; background:#eef2f7; border-radius:6px; padding:8px 10px; margin-top:8px; }
+.risk { border-left:4px solid var(--amber); background:#fffbeb; border-radius:6px; padding:12px 14px; font-size:13.5px; margin:0 22px 20px; }
+footer { color:var(--muted); font-size:12.5px; padding:0 0 30px; text-align:center; }
+@media (max-width:900px) { .hero,.map-grid,.evidence { grid-template-columns:1fr; } .grid3,.scenario-grid { grid-template-columns:repeat(2,1fr); } h1{ font-size:24px; } }
+</style>
+</head>
+<body>
+<header><div class="wrap hero">
+  <div>
+    <div class="eyebrow">Centennial Jing-Zhang AI Innovation Belt · Open City Haidian</div>
+    <h1>Jing-Zhang Spine · Proposal Visualization</h1>
+    <p class="hero-copy">Offline digital presentation: overview map, three scopes, three key areas, land use, mobility and slow traffic, blue-green public space, AI scenarios, core metrics, task coverage, self-check state, sources and assumptions. Authoritative data live in GeoJSON, metrics.json and the three matrices.</p>
+    <div class="pills">
+      <span class="pill">三层范围</span><span class="pill">重点区域</span><span class="pill">AI 场景</span>
+      <span class="pill">Task coverage</span><span class="pill">Self-check</span>
+    </div>
+  </div>
+  <aside class="status-box">
+    <strong>Provisional-boundary intake</strong>
+    <p>Provisional boundary intake: display/discussion only; full recomputation required once official polygons are published</p>
+    <p>Regulatory indicators (FAR, height) are unknown until official conditions are published.</p>
+  </aside>
+</div></header>
+<main class="wrap">
+<section class="sheet"><div class="sheet-head"><div><h2>Overview Map</h2><p>Land use, the Spine Greenway, public plazas, mobility axes and AI scenario nodes in one view; dashed rectangles are provisional key-area constraints.</p></div><span class="tag">geometry + metrics</span></div>
+<div class="map-grid"><div><div class="map-frame" aria-label="Overview map"><svg viewBox="0 0 1040 880" role="img" aria-label="Jing-Zhang Spine overall map">
+<rect x="0" y="0" width="1040" height="880" fill="#eef2f6"/>
+<polygon points="89.7,798.0 85.8,775.6 80.0,741.5 41.8,517.1 80.4,419.5 89.7,419.5 179.3,419.5 269.0,419.5 388.5,419.5 508.0,419.5 508.0,478.0 388.5,478.0 269.0,478.0 179.3,478.0 89.7,478.0 89.7,546.3 179.3,546.3 269.0,546.3 269.0,614.6 269.0,682.9 269.0,741.5 269.0,775.6 179.3,775.6 179.3,809.8 269.0,809.8 269.0,839.0 269.0,858.5 269.0,868.3 179.3,868.3 101.6,868.3 96.6,839.0 91.6,809.8 89.7,798.0" fill="#bbf7d0" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="144.0,258.5 161.4,214.6 181.8,146.3 269.0,146.3 269.0,200.0 269.0,258.5 269.0,312.2 179.3,312.2 179.3,258.5 144.0,258.5" fill="#bbf7d0" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="269.0,809.8 388.5,809.8 508.0,809.8 508.0,839.0 508.0,858.5 508.0,868.3 388.5,868.3 269.0,868.3 269.0,858.5 269.0,839.0 269.0,809.8" fill="#bfdbfe" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="269.0,775.6 269.0,741.5 269.0,682.9 269.0,614.6 269.0,546.3 388.5,546.3 508.0,546.3 508.0,614.6 508.0,682.9 508.0,741.5 508.0,775.6 388.5,775.6 269.0,775.6" fill="#bfdbfe" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="269.0,312.2 269.0,258.5 269.0,200.0 388.5,200.0 508.0,200.0 508.0,258.5 508.0,312.2 388.5,312.2 269.0,312.2" fill="#bfdbfe" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="508.0,839.0 508.0,809.8 627.6,809.8 747.1,809.8 866.7,809.8 944.4,809.8 974.3,809.8 974.3,839.0 974.3,858.5 974.3,868.3 944.4,868.3 866.7,868.3 747.1,868.3 627.6,868.3 508.0,868.3 508.0,858.5 508.0,839.0" fill="#fed7aa" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="944.4,809.8 944.4,775.6 866.7,775.6 747.1,775.6 627.6,775.6 508.0,775.6 508.0,741.5 627.6,741.5 747.1,741.5 866.7,741.5 944.4,741.5 974.3,741.5 974.3,775.6 974.3,809.8 944.4,809.8" fill="#fed7aa" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="747.1,741.5 627.6,741.5 508.0,741.5 508.0,682.9 508.0,614.6 508.0,546.3 627.6,546.3 747.1,546.3 866.7,546.3 866.7,478.0 747.1,478.0 747.1,419.5 747.1,365.9 747.1,312.2 866.7,312.2 874.4,312.2 854.7,370.7 940.8,546.3 974.3,614.6 974.3,682.9 974.3,741.5 944.4,741.5 866.7,741.5 747.1,741.5" fill="#fde68a" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="508.0,478.0 508.0,419.5 627.6,419.5 627.6,478.0 508.0,478.0" fill="#fde68a" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="874.4,312.2 866.7,312.2 747.1,312.2 747.1,258.5 747.1,200.0 866.7,200.0 866.7,146.3 930.0,146.3 892.4,258.5 874.4,312.2" fill="#e2e8f0" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="974.3,14.6 930.0,146.3 866.7,146.3 866.7,87.8 866.7,39.0 944.4,39.0 944.4,14.6 974.3,14.6" fill="#fde68a" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="213.9,39.0 269.0,39.0 269.0,87.8 199.3,87.8 213.9,39.0" fill="#a7f3d0" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="944.4,14.6 944.4,39.0 866.7,39.0 866.7,14.6 944.4,14.6" fill="#a7f3d0" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="179.3,258.5 179.3,312.2 179.3,365.9 179.3,419.5 89.7,419.5 80.4,419.5 89.7,396.1 144.0,258.5 179.3,258.5" fill="#bbf7d0" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="269.0,39.0 213.9,39.0 221.1,14.6 269.0,14.6 388.5,14.6 508.0,14.6 627.6,14.6 747.1,14.6 866.7,14.6 866.7,39.0 866.7,87.8 747.1,87.8 627.6,87.8 508.0,87.8 388.5,87.8 269.0,87.8 269.0,39.0" fill="#bbf7d0" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="89.7,478.0 179.3,478.0 269.0,478.0 269.0,546.3 179.3,546.3 89.7,546.3 89.7,478.0" fill="#bbf7d0" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="269.0,87.8 269.0,146.3 181.8,146.3 199.3,87.8 269.0,87.8" fill="#bbf7d0" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="179.3,775.6 269.0,775.6 388.5,775.6 508.0,775.6 508.0,809.8 388.5,809.8 269.0,809.8 179.3,809.8 179.3,775.6" fill="#ddd6fe" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="269.0,365.9 388.5,365.9 388.5,419.5 269.0,419.5 179.3,419.5 179.3,365.9 269.0,365.9" fill="#c7d2fe" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="627.6,365.9 747.1,365.9 747.1,419.5 627.6,419.5 508.0,419.5 508.0,365.9 627.6,365.9" fill="#c7d2fe" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="269.0,312.2 388.5,312.2 508.0,312.2 627.6,312.2 747.1,312.2 747.1,365.9 627.6,365.9 508.0,365.9 388.5,365.9 269.0,365.9 179.3,365.9 179.3,312.2 269.0,312.2" fill="#bfdbfe" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="269.0,478.0 388.5,478.0 508.0,478.0 508.0,546.3 388.5,546.3 269.0,546.3 269.0,478.0" fill="#bfdbfe" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="388.5,146.3 508.0,146.3 627.6,146.3 747.1,146.3 866.7,146.3 866.7,200.0 747.1,200.0 627.6,200.0 508.0,200.0 388.5,200.0 269.0,200.0 269.0,146.3 388.5,146.3" fill="#c7d2fe" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="388.5,87.8 508.0,87.8 627.6,87.8 747.1,87.8 866.7,87.8 866.7,146.3 747.1,146.3 627.6,146.3 508.0,146.3 388.5,146.3 269.0,146.3 269.0,87.8 388.5,87.8" fill="#e5e7eb" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="388.5,419.5 388.5,365.9 508.0,365.9 508.0,419.5 388.5,419.5" fill="#e5e7eb" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="627.6,775.6 747.1,775.6 866.7,775.6 944.4,775.6 944.4,809.8 866.7,809.8 747.1,809.8 627.6,809.8 508.0,809.8 508.0,775.6 627.6,775.6" fill="#ddd6fe" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="508.0,478.0 627.6,478.0 747.1,478.0 866.7,478.0 866.7,546.3 747.1,546.3 627.6,546.3 508.0,546.3 508.0,478.0" fill="#fde68a" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="747.1,312.2 627.6,312.2 508.0,312.2 508.0,258.5 508.0,200.0 627.6,200.0 747.1,200.0 747.1,258.5 747.1,312.2" fill="#fecaca" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="627.6,478.0 627.6,419.5 747.1,419.5 747.1,478.0 627.6,478.0" fill="#fbcfe8" opacity="0.85" stroke="#cbd5e1" stroke-width="0.8"/>
+<polygon points="388.5,87.8 508.0,87.8 627.6,87.8 747.1,87.8 866.7,87.8 866.7,146.3 747.1,146.3 627.6,146.3 508.0,146.3 388.5,146.3 269.0,146.3 269.0,87.8 388.5,87.8" fill="#fde68a" opacity="0.9" stroke="#d97706" stroke-width="0.8"/>
+<polygon points="388.5,419.5 388.5,365.9 508.0,365.9 508.0,419.5 388.5,419.5" fill="#fde68a" opacity="0.9" stroke="#d97706" stroke-width="0.8"/>
+<polygon points="609.7,775.6 609.7,783.4 549.9,783.4 549.9,775.6 609.7,775.6" fill="#fde68a" opacity="0.9" stroke="#d97706" stroke-width="0.8"/>
+<polygon points="245.1,361.6 245.1,368.1 185.3,368.1 185.3,361.6 245.1,361.6" fill="#fde68a" opacity="0.9" stroke="#d97706" stroke-width="0.8"/>
+<polygon points="179.3,733.7 179.3,739.5 119.5,739.5 119.5,733.7 179.3,733.7" fill="#fde68a" opacity="0.9" stroke="#d97706" stroke-width="0.8"/>
+<polyline points="119.5,852.7 119.5,809.8 137.5,663.4 149.4,517.1 161.4,370.7 167.4,224.4 167.4,194.6" fill="none" stroke="#15803d" stroke-width="2.4" opacity="0.9"/>
+<polyline points="298.9,809.8 298.9,682.9 304.8,546.3 310.8,419.5 310.8,312.2 310.8,200.0 316.8,87.8 328.7,39.0" fill="none" stroke="#15803d" stroke-width="2.4" opacity="0.9"/>
+<polyline points="119.5,365.9 209.2,364.9 328.7,364.9 508.0,364.9 687.4,364.9 856.7,364.9" fill="none" stroke="#0f7490" stroke-width="2.4" opacity="0.9"/>
+<polyline points="119.5,541.5 269.0,541.5 448.3,541.5 627.6,541.5 806.9,541.5 938.4,541.5" fill="none" stroke="#0f7490" stroke-width="2.4" opacity="0.9"/>
+<polyline points="149.4,273.2 298.9,273.2 478.2,273.2 657.5,273.2 866.7,273.2" fill="none" stroke="#64748b" stroke-width="2.4" opacity="0.9"/>
+<polyline points="239.1,41.0 418.4,40.0 597.7,40.0 777.0,40.0 896.6,41.0" fill="none" stroke="#15803d" stroke-width="2.4" opacity="0.9"/>
+<polyline points="466.2,792.2 693.3,792.2 693.3,766.8 466.2,766.8 466.2,792.2" fill="none" stroke="#15803d" stroke-width="2.4" opacity="0.9"/>
+<polyline points="310.8,409.8 448.3,404.9 567.8,400.0" fill="none" stroke="#64748b" stroke-width="2.4" opacity="0.9"/>
+<polyline points="388.5,146.3 585.7,146.3 765.1,146.3 866.7,136.6" fill="none" stroke="#64748b" stroke-width="2.4" opacity="0.9"/>
+<polyline points="597.7,756.1 597.7,682.9" fill="none" stroke="#64748b" stroke-width="2.4" opacity="0.9"/>
+<polyline points="747.1,809.8 747.1,741.5 747.1,682.9 747.1,614.6 747.1,541.5 747.1,478.0 747.1,419.5 747.1,365.9 747.1,312.2 747.1,258.5 747.1,200.0" fill="none" stroke="#0f7490" stroke-width="2.4" opacity="0.9"/>
+<polyline points="328.7,200.0 358.6,146.3 388.5,87.8 418.4,39.0" fill="none" stroke="#64748b" stroke-width="2.4" opacity="0.9"/>
+<polygon points="101.6,868.3 974.3,868.3 974.3,614.6 854.7,370.7 974.3,14.6 221.1,14.6 161.4,214.6 41.8,517.1 101.6,868.3" fill="none" stroke="#1e293b" stroke-width="3"/>
+<polygon points="239.1,200.0 896.6,200.0 896.6,19.5 239.1,19.5 239.1,200.0" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-dasharray="8 5"/>
+<polygon points="179.3,434.1 836.8,434.1 836.8,336.6 179.3,336.6 179.3,434.1" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-dasharray="8 5"/>
+<polygon points="179.3,819.5 956.3,819.5 956.3,762.5 179.3,762.5 179.3,819.5" fill="none" stroke="#f59e0b" stroke-width="2.2" stroke-dasharray="8 5"/>
+<circle cx="448.3" cy="390.2" r="7" fill="#be123c" stroke="#ffffff" stroke-width="1.4"/>
+<text x="458.3" y="394.2" font-size="11" fill="#7f1d1d">京张原点·开源发布厅</text>
+<circle cx="597.7" cy="126.8" r="7" fill="#be123c" stroke="#ffffff" stroke-width="1.4"/>
+<text x="607.7" y="130.8" font-size="11" fill="#7f1d1d">模型安全评测沙盒</text>
+<circle cx="717.2" cy="68.3" r="7" fill="#be123c" stroke="#ffffff" stroke-width="1.4"/>
+<text x="727.2" y="72.3" font-size="11" fill="#7f1d1d">端侧算力驿站</text>
+<circle cx="119.5" cy="419.5" r="7" fill="#be123c" stroke="#ffffff" stroke-width="1.4"/>
+<text x="129.5" y="423.5" font-size="11" fill="#7f1d1d">慢行断点诊断智能体点</text>
+<circle cx="149.4" cy="565.9" r="7" fill="#be123c" stroke="#ffffff" stroke-width="1.4"/>
+<text x="159.4" y="569.9" font-size="11" fill="#7f1d1d">京张记忆AR导览站</text>
+<circle cx="627.6" cy="775.6" r="7" fill="#be123c" stroke="#ffffff" stroke-width="1.4"/>
+<text x="637.6" y="779.6" font-size="11" fill="#7f1d1d">大钟寺智能体市集</text>
+<circle cx="806.9" cy="780.5" r="7" fill="#be123c" stroke="#ffffff" stroke-width="1.4"/>
+<text x="816.9" y="784.5" font-size="11" fill="#7f1d1d">数据要素合规会客厅</text>
+<circle cx="478.2" cy="346.3" r="7" fill="#be123c" stroke="#ffffff" stroke-width="1.4"/>
+<text x="488.2" y="350.3" font-size="11" fill="#7f1d1d">近校成果转化驿站</text>
+<circle cx="388.5" cy="97.6" r="7" fill="#be123c" stroke="#ffffff" stroke-width="1.4"/>
+<text x="398.5" y="101.6" font-size="11" fill="#7f1d1d">自主模型与标准工作坊</text>
+<circle cx="179.3" cy="731.7" r="7" fill="#be123c" stroke="#ffffff" stroke-width="1.4"/>
+<text x="189.3" y="735.7" font-size="11" fill="#7f1d1d">全球AI朝圣周·启点驿站</text>
+<circle cx="597.7" cy="273.2" r="7" fill="#be123c" stroke="#ffffff" stroke-width="1.4"/>
+<text x="607.7" y="277.2" font-size="11" fill="#7f1d1d">无障碍AI服务亭</text>
+<circle cx="328.7" cy="48.8" r="7" fill="#be123c" stroke="#ffffff" stroke-width="1.4"/>
+<text x="338.7" y="52.8" font-size="11" fill="#7f1d1d">绿色算力与能源管家点</text>
+<circle cx="896.6" cy="224.4" r="7" fill="#be123c" stroke="#ffffff" stroke-width="1.4"/>
+<text x="906.6" y="228.4" font-size="11" fill="#7f1d1d">具身智能测试街区入口</text>
+<circle cx="239.1" cy="362.9" r="7" fill="#be123c" stroke="#ffffff" stroke-width="1.4"/>
+<text x="249.1" y="366.9" font-size="11" fill="#7f1d1d">五道口青年创客站</text>
+<text x="502.1" y="127.8" font-size="15" font-weight="700" fill="#92400e" text-anchor="middle">众智园 Zhongzhiyuan</text>
+<text x="442.3" y="395.1" font-size="15" font-weight="700" fill="#92400e" text-anchor="middle">AI原点社区 Origin Community</text>
+<text x="490.1" y="796.7" font-size="15" font-weight="700" fill="#92400e" text-anchor="middle">大钟寺 Dazhongsi</text>
+</svg></div>
+<div class="legend">
+  <span><i class="sw" style="background:#c7d2fe"></i>R&D</span>
+  <span><i class="sw" style="background:#bfdbfe"></i>Education</span>
+  <span><i class="sw" style="background:#fed7aa"></i>Commercial</span>
+  <span><i class="sw" style="background:#fde68a"></i>Residential</span>
+  <span><i class="sw" style="background:#86efac"></i>Park</span>
+  <span><i class="sw" style="background:#fde68a;border:1px solid #d97706"></i>Plaza</span>
+  <span><i class="sw" style="background:#15803d"></i>Greenway</span>
+  <span><i class="sw" style="background:#0f7490"></i>Vehicular axis</span>
+  <span><i class="sw" style="background:#be123c;border-radius:50%"></i>AI node</span>
+</div></div>
+<aside><h3>Core Metrics</h3>
+<div class="metrics">
+  <div class="metric">
+  <span class="m-label">总体设计面积<br><i>Site area</i></span>
+  <strong data-metric="site_area_sqm" data-value="11412825.386">11,412,825 m²</strong>
+  <p class="m-note">EPSG:4548 复算<br><i>recomputed in EPSG:4548</i></p>
+</div>
+  <div class="metric">
+  <span class="m-label">绿地比例<br><i>Green ratio</i></span>
+  <strong data-metric="green_ratio" data-value="0.259896">0.260</strong>
+  <p class="m-note">公园+防护绿地 / 总面积<br><i>park+buffer / total</i></p>
+</div>
+  <div class="metric">
+  <span class="m-label">公共空间比例<br><i>Public-space ratio</i></span>
+  <strong data-metric="public_space_ratio" data-value="0.060698">0.061</strong>
+  <p class="m-note">广场与活动空间 / 总面积<br><i>plazas / total</i></p>
+</div>
+  <div class="metric">
+  <span class="m-label">道路比例<br><i>Road ratio</i></span>
+  <strong data-metric="road_ratio" data-value="0.025526">0.026</strong>
+  <p class="m-note">道路用地面 / 总面积<br><i>road area / total</i></p>
+</div>
+  <div class="metric">
+  <span class="m-label">重点区域数量<br><i>Key areas</i></span>
+  <strong data-metric="key_area_count" data-value="3">3 处</strong>
+  <p class="m-note">三处重点片区<br><i>three key areas</i></p>
+</div>
+  <div class="metric">
+  <span class="m-label">AI场景节点<br><i>Scenario nodes</i></span>
+  <strong data-metric="scenario_node_count" data-value="14">14 个</strong>
+  <p class="m-note">12 张场景卡映射<br><i>12 scenario cards mapped</i></p>
+</div>
+  <div class="metric">
+  <span class="m-label">绿道与慢行长度<br><i>Greenway length</i></span>
+  <strong data-metric="greenway_length_m" data-value="18428.9">18,429 m</strong>
+  <p class="m-note">绿道/步道/骑行道<br><i>greenway/walk/cycle</i></p>
+</div>
+  <div class="metric">
+  <span class="m-label">概念建筑基底<br><i>Building footprint</i></span>
+  <strong data-metric="building_footprint_area_sqm" data-value="1233199.201">1,233,199 m²</strong>
+  <p class="m-note">低置信度概念量<br><i>low-confidence concept</i></p>
+</div>
+</div>
+<div class="risk"><b>Self-check state：</b>Deterministic validation, spatial review, visual packaging and professional evidence review must all pass before PR preflight; this page loads no remote resources.</div>
+</aside></div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>Three-Level Scope</h2><p>The coordinated research area, overall design area, and key detailed-design area cascade industrial judgments, urban structure, and district design.</p></div><span class="tag">project_scope_summary.csv</span></div>
+<div class="grid3">
+  <article class="card"><h3>Coordinated research area 43.6 km²</h3><p>Three-areas-two-wings synergy, innovation chain, future urban form, cultural narrative, global events.</p></article>
+  <article class="card"><h3>Overall design area 11.4 km²</h3><p>One-belt-one-axis-three-cores-two-wings network, land use, 12 renewal projects, transport and blue-green systems.</p></article>
+  <article class="card"><h3>Key design area 368.4 ha</h3><p>Zhongzhiyuan (Core·Source), AI Origin Community (Core·Origin), Dazhongsi (Core·Confluence).</p></article>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>Three Key Areas</h2><p>Each district completes positioning, structure, building renewal, mobility, public space, AI scenarios and risks.</p></div><span class="tag">key_areas.geojson</span></div>
+<div class="grid3">
+  <article class="card"><h3>Zhongzhiyuan · Core·Source</h3><p>Garden-style full-stack autonomy district: Qinghe interface, evaluation plaza, model safety sandbox (T1), standards workshop (T2).</p></article>
+  <article class="card"><h3>Origin Community · Core·Origin</h3><p>Near-campus conversion community: open-source hall, central park, Wudaokou station integration, low-disturbance renewal.</p></article>
+  <article class="card"><h3>Dazhongsi · Core·Confluence</h3><p>Urban intelligent-economy district: four-quadrant walk ring, agent market, data-element lounge, station plaza.</p></article>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>AI Scenarios</h2><p>12 scenario cards (including three industry testing-validation scenarios T1–T3), each mapped to a spatial node, users, data boundary, human review and operator.</p></div><span class="tag">12 scenario cards</span></div>
+<div class="scenario-grid">
+  <div class="scenario-card"><b>S-01 开源发布厅</b>开源发布厅 Open-source hall</div><div class="scenario-card"><b>S-02 T1</b>T1 模型安全评测沙盒 T1 safety sandbox</div><div class="scenario-card"><b>S-03 端侧算力驿站</b>端侧算力驿站 Edge-compute kiosk</div><div class="scenario-card"><b>S-04 慢行断点诊断</b>慢行断点诊断 Slow-gap diagnosis</div><div class="scenario-card"><b>S-05 京张记忆AR导览</b>京张记忆AR导览 AR heritage guide</div><div class="scenario-card"><b>S-06 大钟寺智能体市集</b>大钟寺智能体市集 Agent market</div><div class="scenario-card"><b>S-07 数据要素会客厅</b>数据要素会客厅 Data-element lounge</div><div class="scenario-card"><b>S-08 近校成果转化驿站</b>近校成果转化驿站 Conversion station</div><div class="scenario-card"><b>S-09 T2</b>T2 标准工作坊 T2 standards workshop</div><div class="scenario-card"><b>S-10 朝圣周启点驿站</b>朝圣周启点驿站 Pilgrimage start</div><div class="scenario-card"><b>S-11 无障碍AI服务亭</b>无障碍AI服务亭 Accessible kiosk</div><div class="scenario-card"><b>S-12 T3</b>T3 具身智能测试街 T3 embodied test street</div>
+</div></section>
+
+<section class="sheet"><div class="sheet-head"><div><h2>Task Coverage and Evidence</h2><p>compliance_matrix.json covers announcement 1.3/1.4/1.5 and agent.1–agent.6; standard and depth matrices evidence professional standards and depth.</p></div><span class="tag">matrix evidence</span></div>
+<div class="evidence">
+  <div><h3>Sources</h3><p>Official announcement, cleared taskbook, site package, source registry and six public ecosystem cases (background).</p><div class="source-line">sources.json · standard_matrix.json · design_depth_matrix.json</div></div>
+  <div><h3>Assumptions and pending data</h3><p>Official boundary, regulatory controls, road redlines, ownership, utilities and heritage conditions are registered in assumptions.json.</p><div class="source-line">assumptions.json · self_check.json · missing_data_checklist.csv</div></div>
+</div></section>
+</main>
+<footer>Derived from the submission GeoJSON / metrics.json / three matrices; provisional boundaries are for display and discussion only, not official redlines. · bilingual contract v1 · offline static page</footer>
+</body>
+</html>

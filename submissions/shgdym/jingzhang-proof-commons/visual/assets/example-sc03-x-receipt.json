@@ -1,0 +1,90 @@
+{
+  "schema_version": "0.1.0",
+  "receipt_id": "XR-SC03-SYNTHETIC-001",
+  "scenario_id": "SC-03",
+  "claim_level": "synthetic_tabletop_only",
+  "route": ["TEST", "RELEASE", "USE", "RETURN"],
+  "technical_stack": {
+    "mobility_envelope": "proposed low-speed geofenced robot; exact platform, speed and route require professional confirmation",
+    "perception": ["proposed lidar or depth sensing", "wheelchair and pedestrian obstacle classes", "no face recognition"],
+    "localisation": ["proposed odometry", "bounded local map", "geofence monitored independently from route planner"],
+    "decision": ["local route planner", "minimum-risk stop state", "no autonomous expansion of route or operating hours"],
+    "safety": ["physical emergency stop", "staffed remote stop", "independent speed limiter", "public path remains outside the machine envelope"],
+    "logging": ["event state", "software version", "stop source", "human decision", "no image retention in this tabletop"]
+  },
+  "rights_boundary": {
+    "personal_data": "none",
+    "biometrics": "prohibited",
+    "external_connections": "disabled",
+    "non_ai_path": "A continuous ordinary accessible route remains open; staff use a printed detour and incident card if the test layer closes.",
+    "retention": "Synthetic in-memory fixture states are deleted after evidence generation; schema, empty fixtures and aggregate results remain."
+  },
+  "fixtures": [
+    {
+      "id": "SC03-T01",
+      "condition": "ordinary pedestrian remains outside the machine envelope",
+      "expected_state": "PASS",
+      "expected_action": "continue at the proposed bounded speed under staff observation",
+      "public_path_state": "OPEN"
+    },
+    {
+      "id": "SC03-T02",
+      "condition": "wheelchair user approaches the crossing priority zone",
+      "expected_state": "HOLD",
+      "expected_action": "robot yields and reaches a minimum-risk stop before the priority zone",
+      "public_path_state": "OPEN"
+    },
+    {
+      "id": "SC03-T03",
+      "condition": "child or older person crosses unexpectedly inside the bounded fixture",
+      "expected_state": "RETURN",
+      "expected_action": "independent emergency stop, human takeover and failed-test record",
+      "public_path_state": "OPEN"
+    },
+    {
+      "id": "SC03-T04",
+      "condition": "network and route-planner outputs become unavailable",
+      "expected_state": "RETURN",
+      "expected_action": "minimum-risk stop, isolate tools, switch to staffed ordinary route and restore the test pocket",
+      "public_path_state": "OPEN"
+    }
+  ],
+  "human_gates": [
+    {
+      "station": "Zhongzhi",
+      "question": "Can it work safely inside a bounded test envelope?",
+      "candidate_owner": "authorized test-site operator with independent safety reviewer",
+      "output": "Test Receipt"
+    },
+    {
+      "station": "AI Origin",
+      "question": "Are version, licence, limits, reproduction and accountable owner fit for public release?",
+      "candidate_owner": "authorized release steward with rights and accessibility reviewers",
+      "output": "Release Ticket"
+    },
+    {
+      "station": "Dazhongsi",
+      "question": "Does informed public use justify continuation without harming non-participants?",
+      "candidate_owner": "authorized public-space operator with user and community reviewers",
+      "output": "Public Verdict"
+    }
+  ],
+  "stop_conditions": [
+    "robot crosses the machine envelope or enters the ordinary accessible route",
+    "physical or staffed emergency stop is unavailable",
+    "unapproved personal data, biometrics or external connection appears",
+    "complaint, collision, near miss or accessibility obstruction is not closed by a human decision"
+  ],
+  "return_actions": [
+    "stop and isolate the robot and route-planning tools",
+    "keep the ordinary accessible route open under staffed or printed guidance",
+    "freeze the minimum incident state and delete prohibited or expired data",
+    "remove temporary barriers and restore the test pocket to ordinary public use",
+    "issue a Return Record and require a new Test Receipt before any later gate"
+  ],
+  "decision": {
+    "tabletop": "pending",
+    "field_pilot": "not_authorized_not_run",
+    "reason": "Only a synthetic, disconnected tabletop may run. Official geometry, site survey, platform specification, accountable operator, permits, insurance and real takeover capacity are absent."
+  }
+}

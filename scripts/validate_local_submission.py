@@ -3,6 +3,24 @@
 
 This is a contributor-friendly wrapper around validate_submission.py. It
 discovers files under one proposal directory and passes them as changed files.
+
+Usage
+-----
+Run from the repository root (or pass --repo-root explicitly):
+
+    python3 scripts/validate_local_submission.py submissions/<login>/<slug> \\
+        --pr-author <login>
+
+Add --json to get machine-readable output suitable for automated repair:
+
+    python3 scripts/validate_local_submission.py submissions/<login>/<slug> \\
+        --pr-author <login> --json
+
+The exit code is 0 when the package passes all blocking checks and 1 when one
+or more errors are found.  Warnings do not affect the exit code.
+
+Use --allow-pending-self-check to skip the self_checked assertion when the
+four-gate self-check is still running in a background process.
 """
 
 from __future__ import annotations

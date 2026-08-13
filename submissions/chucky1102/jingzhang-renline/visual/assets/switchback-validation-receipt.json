@@ -1,0 +1,49 @@
+{
+  "validator": "run-switchback-validation.js",
+  "contract": "switchback-protocol.schema.json (rules R0-R4)",
+  "result": "PASS",
+  "boundary_zh": "校验通过只证明协议逻辑与文件自洽,不证明现场成效、批准或任何政府承诺。",
+  "boundary_en": "PASS certifies protocol logic and file self-consistency only — not field performance, approval or government commitment.",
+  "inputs": {
+    "visual/assets/switchback-protocol.json": "429e757b29b707804dc1515fce79d4977d5ed041212b7b8a6822bffa4d654101",
+    "visual/assets/switchback-protocol.schema.json": "6de3dae11449b053b7ae2271cd27249999e5293e6a41515b4c1a80a78a375f4c"
+  },
+  "protocol": {
+    "file": "visual/assets/switchback-protocol.json",
+    "cards": 12,
+    "errors": [],
+    "result": "PASS"
+  },
+  "fixtures": [
+    {
+      "file": "visual/assets/fixtures/invalid-geojson-ref-without-anchor.json",
+      "expect": "R3",
+      "outcome": "REJECTED as expected (R3)",
+      "ok": true
+    },
+    {
+      "file": "visual/assets/fixtures/invalid-null-takeover-without-status.json",
+      "expect": "R2",
+      "outcome": "REJECTED as expected (R2)",
+      "ok": true
+    },
+    {
+      "file": "visual/assets/fixtures/invalid-overclaimed-ascent.json",
+      "expect": "R4",
+      "outcome": "REJECTED as expected (R4)",
+      "ok": true
+    },
+    {
+      "file": "visual/assets/fixtures/invalid-yellow-without-gate.json",
+      "expect": "R1",
+      "outcome": "REJECTED as expected (R1)",
+      "ok": true
+    },
+    {
+      "file": "visual/assets/fixtures/valid-card.json",
+      "expect": "pass",
+      "outcome": "PASSED as expected",
+      "ok": true
+    }
+  ]
+}

@@ -1,5 +1,54 @@
 #!/usr/bin/env python3
-"""Validate the public data source registry without external dependencies."""
+"""Validate the public data source registry without external dependencies.
+
+The data source registry is at ``data/source_registry.json``. It is the
+shared repository-wide index of sources that have been reviewed and classified
+for use in formal urban design submissions. Participants must not modify this
+file directly; submit a ``[source-registry]`` Issue to request additions.
+
+Validation rules
+----------------
+- ``schema_version`` must be ``"0.1.0"``.
+- ``updated_date`` must be ``YYYY-MM-DD`` format.
+- Every source entry must have a unique ``source_id`` matching
+  ``^[A-Z0-9][A-Z0-9_-]+$``.
+- Required fields per entry: ``title``, ``publisher``, ``source_kind``,
+  ``url``, ``accessed_date``, ``file_type``, ``authority_level``,
+  ``timeliness_level``, ``public_access_status``, ``license_summary``,
+  ``review_status``, ``usable_for_formal``, ``allowed_uses``,
+  ``prohibited_uses``, ``topics``.
+- ``authority_level`` must be one of ``A0``, ``A1``, ``A2``, ``A3``,
+  ``CLEARED_USER_DOCUMENT``, ``PROVISIONAL_REPOSITORY``,
+  ``OPEN_LICENSE_REFERENCE``.
+- ``source_kind`` must be one of the recognized kind values.
+- ``timeliness_level`` must be one of ``T0``–``T4`` or ``NA``.
+- ``public_access_status`` must be a recognized access-status value.
+- ``review_status`` must be one of ``approved``, ``provisional``,
+  ``needs_review``, ``rejected``.
+- ``usable_for_formal`` must be one of ``yes``, ``background_only``,
+  ``provisional_only``, ``no``.
+- Consistency rules: ``usable_for_formal=yes`` requires
+  ``review_status=approved``; ``provisional`` sources cannot be
+  ``usable_for_formal=yes``; ``restricted_or_unknown`` sources cannot be
+  ``approved``.
+- ``local_paths`` items must be relative repo paths that exist on disk.
+
+Usage
+-----
+Validate the default registry::
+
+    python3 scripts/validate_data_registry.py
+
+Validate a custom registry::
+
+    python3 scripts/validate_data_registry.py --registry path/to/registry.json
+
+Machine-readable JSON::
+
+    python3 scripts/validate_data_registry.py --json
+
+Exit code is 0 when the registry passes all checks and 1 otherwise.
+"""
 
 from __future__ import annotations
 
@@ -212,10 +261,25 @@ def validate_registry(repo_root: Path, registry_path: Path) -> RegistryReport:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--repo-root", default=".")
-    parser.add_argument("--registry", default="data/source_registry.json")
-    parser.add_argument("--json", action="store_true")
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument(
+        "--repo-root",
+        default=".",
+        help="Repository root directory (default: current working directory)",
+    )
+    parser.add_argument(
+        "--registry",
+        default="data/source_registry.json",
+        help="Path to the registry file relative to --repo-root (default: data/source_registry.json)",
+    )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Emit machine-readable JSON instead of text",
+    )
     args = parser.parse_args()
 
     repo_root = Path(args.repo_root).resolve()

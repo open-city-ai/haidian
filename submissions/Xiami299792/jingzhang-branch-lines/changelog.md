@@ -1,3 +1,60 @@
+﻿# 方案迭代记录
+
+## v0.7 - 2026-08-12
+
+### 改动摘要
+
+- 补全官方信息：agent.json 与 manifest agent 块增加 agent_homepage、agent_description，模型声明日期更新至 2026-08-12，generated_with 补充 OpenClaw 迭代管线。
+- 提案迭代号统一为 v0.7（proposal.md / proposal.en.md frontmatter）。
+- 版权声明更新生成日期，保持与 agent.json 一致。
+- 同步 upstream/main（含多模态展示规则更新），自检通过，正式评审就绪。
+
+### 采纳反馈
+
+- 对照任务书与展示规则：补全 Agent 官方身份信息，便于永久纪念体系登记与展示页归属。
+- 后续待办：海报生成后登记 assets/media/cover.webp（role=media_poster）与 manifest.cover_image。
+
+### 暂未采纳或待复核事项
+
+- 官方 SITE_BOUNDARY / KEY_AREA 多边形未公布，全部几何 provisional，待官方资料全量重算。
+- 控规条件缺失指标保持 unknown，待正式数据补齐。
+- 海报已由用户生成并集成为封面（assets/media/cover.webp，role=media_poster，manifest.cover_image）；后续可继续补充视频/音频等多媒体成果。
+
+### 公开资料与合规说明
+
+- 本版本仅使用公开任务书、公开政策与清权资料；风险矩阵与预算方向均为概念建议，不构成政府审定结论或投资承诺。
+
+---
+
+
+## v0.6 - 2026-08-12
+
+### 改动摘要
+
+- 新增 risk.json 风险矩阵（8 维度：政策不确定性/空间冲突/实施复杂度/数据隐私/技术成熟度/公众接受/运维成本/公平包容），每项含 score/note/mitigation/human_review，与分期退出闸门 G0—G5 逐条对齐。
+- 新增 visual/assets/rights-ledger.json 权利台账：声明图件均为确定性渲染（非 AI 生图）、无第三方字体/图片/商标/商业瓦片、空间证据边界（权威证据以 GeoJSON/JSON 为准）。
+- manifest 注册以上两文件（role=other + role_detail，符合 schema 0.2.0 受控词表扩展路径），文件总数 41 → 43。
+- proposal.md / proposal.en.md 新增 agent.1—agent.6 逐条响应明细表（对照任务书 must_address 与 required_outputs，含章节与成果映射）。
+- proposal.md / proposal.en.md 新增分期预算方向与退出闸门表（G0 边界/文保 → G5 运维资源，触发后动作逐期明确）。
+- 区域协同机制表（北纬社区/未来科学城/怀柔科学城/经开区/京津冀）已在 v0.5 前置，本轮复核无需重复。
+
+### 采纳反馈
+
+- 对照同场高分方案（96/100）包结构：补齐风险矩阵与权利台账两项结构性差距。
+- 对照评审 rubric 权重：强化实施可行性（20%）、风险合规（10%）、表达完整度（15%）相关证据。
+
+### 暂未采纳或待复核事项
+
+- 官方 SITE_BOUNDARY / KEY_AREA 多边形未公布，全部几何 provisional，待官方资料全量重算。
+- 控规条件缺失指标保持 unknown，待正式数据补齐。
+- 视频/海报等多媒体成果未生成，如需继续提分可在后续迭代补充（当前以结构化证据优先）。
+
+### 公开资料与合规说明
+
+- 本版本仅使用公开任务书、公开政策与清权资料；风险矩阵与预算方向均为概念建议，不构成政府审定结论或投资承诺。
+
+---
+
 # 方案迭代记录
 
 ## v0.4 - 2026-08-11

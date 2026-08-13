@@ -1,0 +1,401 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area of repository provisional polygon after EPSG:4548 projection",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "scope": "technical QA only; not official or precise planning area"
+    },
+    "green_space_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "requires an evidence-supported existing-condition green-space polygon layer and EPSG:4548 area recomputation",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-EVIDENCE-ZERO-001"
+      ],
+      "reason": "No cleared existing-condition green-space polygons are available; the submitted Point is a data-gap annotation, not green-space geometry.",
+      "recalculation_trigger": "Recompute after a dated, citable green-space inventory with geometry, access status, and maintenance scope is supplied."
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "submitted evidence-supported green-space polygon area (none asserted) / provisional submission envelope",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-EVIDENCE-ZERO-001"
+      ],
+      "scope": "validator-required technical packaging sentinel only; actual existing-condition and planning green ratios are unknown",
+      "comparability": "not_comparable",
+      "aggregation_policy": "exclude from cross-submission planning or existing-condition statistics",
+      "reason": "The current visual validator requires a numeric green_ratio declaration even when no evidence-supported green-space polygon exists."
+    },
+    "public_space_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "requires an evidence-supported existing-condition public-space polygon layer and EPSG:4548 area recomputation",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-EVIDENCE-ZERO-001"
+      ],
+      "reason": "No cleared existing-condition public-space polygons are available; the submitted Point is a data-gap annotation, not public-space geometry.",
+      "recalculation_trigger": "Recompute after a dated, citable public-space inventory with access, opening, ownership, and maintenance attributes is supplied."
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "submitted evidence-supported public-space polygon area (none asserted) / provisional submission envelope",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-EVIDENCE-ZERO-001"
+      ],
+      "scope": "validator-required technical packaging sentinel only; actual existing-condition and planning public-space ratios are unknown",
+      "comparability": "not_comparable",
+      "aggregation_policy": "exclude from cross-submission planning or existing-condition statistics",
+      "reason": "The current visual validator requires a numeric public_space_ratio declaration even when no evidence-supported public-space polygon exists."
+    },
+    "building_footprint_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "requires cleared existing survey and separately approved proposal footprints",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BUILDINGS-001"
+      ],
+      "reason": "No cleared existing buildings and no design footprints are proposed."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "brief/site-package/agent_taskbook.json"
+      ],
+      "formula": "count of taskbook-required key-area records",
+      "confidence": "high",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "problem_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "formula": "count of site-specific walkability problems confirmed by field and participant evidence",
+      "confidence": "high",
+      "assumptions": [
+        "A-CANDIDATE-NODES-001"
+      ],
+      "scope": "document status only; zero does not mean the site has no problems"
+    },
+    "confirmed_walkability_problem_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "formula": "count of site-specific walkability problems confirmed by field and participant evidence",
+      "confidence": "high",
+      "assumptions": [
+        "A-CANDIDATE-NODES-001"
+      ],
+      "scope": "document status only; zero does not mean the site has no problems"
+    },
+    "candidate_audit_site_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "formula": "count of candidate audit environments A-C retained after public project-status review",
+      "confidence": "high",
+      "assumptions": [
+        "A-CANDIDATE-NODES-001"
+      ],
+      "scope": "research-design count; not intervention sites"
+    },
+    "walkability_hypothesis_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "formula": "count of hypotheses H1-H5",
+      "confidence": "high",
+      "assumptions": [
+        "A-FIELD-METHOD-001"
+      ],
+      "scope": "hypotheses, not findings"
+    },
+    "action_contract_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "formula": "count of Action Contracts ACT-001..ACT-009",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of compliance scenario cards SC-01..SC-10",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_necessary_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "cards where AI itself is the controlled test object",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "hypothesis_group_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of hypothesis_persona recruitment frames",
+      "confidence": "high",
+      "assumptions": [],
+      "scope": "not demographic findings"
+    },
+    "landmark_interface_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count mandated by taskbook and downgraded to temporary information interfaces",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "sources.json",
+        "proposal.md"
+      ],
+      "formula": "count of mechanism-comparison cases retained",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "field_research_record_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "report/narrative.md"
+      ],
+      "formula": "count of completed site visits, interviews, surveys or joint walk-throughs in this submission",
+      "confidence": "high",
+      "assumptions": [],
+      "scope": "document status, not a claim that the site has no users or problems"
+    },
+    "observation_record_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "report/narrative.md"
+      ],
+      "formula": "count of completed structured field-observation records",
+      "confidence": "high",
+      "assumptions": [
+        "A-FIELD-METHOD-001"
+      ],
+      "scope": "document status only"
+    },
+    "public_feedback_record_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "report/narrative.md"
+      ],
+      "formula": "count of cleared anonymous public-feedback records",
+      "confidence": "high",
+      "assumptions": [
+        "A-STAKEHOLDERS-001"
+      ],
+      "scope": "document status only"
+    },
+    "implemented_pilot_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "formula": "count of implemented and measured walkability pilots",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "scope": "document status only"
+    },
+    "confirmed_actor_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "formula": "count of actors with documented consent/authority to implement an Action Contract",
+      "confidence": "high",
+      "assumptions": [],
+      "scope": "document status only"
+    },
+    "confirmed_budget_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "formula": "count of Action Contracts with a confirmed budget",
+      "confidence": "high",
+      "assumptions": [],
+      "scope": "document status only"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "requires official control plan and parcel geometry",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved FAR is absent."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "requires official controls and surveyed/proposed building footprints",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-BUILDINGS-001"
+      ],
+      "reason": "Approved density and building evidence are absent."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "requires survey, heritage review and approved controls",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-HERITAGE-001"
+      ],
+      "reason": "No reliable height basis exists."
+    },
+    "conceptual_walking_network_length_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "requires verified station exits, destinations and joint route audit",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-EXISTING-001"
+      ],
+      "reason": "No route alignment is proposed."
+    },
+    "road_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "requires official road redlines",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-EXISTING-001"
+      ],
+      "reason": "Road redlines are absent."
+    },
+    "municipal_capacity_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [],
+      "formula": "requires utility asset and capacity data",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-EXISTING-001"
+      ],
+      "reason": "Utility baseline is absent."
+    }
+  }
+}

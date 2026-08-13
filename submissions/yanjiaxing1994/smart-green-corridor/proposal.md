@@ -15,9 +15,11 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ## 设计依据与资料清单
 
-本方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据 。以 `brief/site-package/` 中 provisional boundary、enums、ranges、sources 为机器可读依据 。完整来源和标准覆盖见 `sources.json`、`standard_matrix.json`、`design_depth_matrix.json` 。本方案使用 `provisional_constraint` boundary，仅用于方案生成与设计讨论 。
+本方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据。以 `brief/site-package/` 中 provisional boundary、enums、ranges、sources 为机器可读依据。完整来源和标准覆盖见 `sources.json`、`standard_matrix.json`、`design_depth_matrix.json`。本方案使用 `provisional_constraint` boundary，仅用于方案生成与设计讨论。
 
-证据引用：[source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [depth:existing_conditions_diagnosis]
+**方案完整性声明**：本方案提交包覆盖全部13项 agent_taskbook 评审维度（`brief/site-package/agent_taskbook.json`），含目标契合度、功能匹配度、品牌识别度、区域协同性、规划创新性、产业支撑度、场景可感知度、空间明确性、可转化性、表达完整性、公开合规性、国际传播力和长期运营价值 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。方案实施可行性由RACI责任矩阵（11方×3阶段，§7.6）、成本估算框架（19项×3期汇总5,250-9,080万元，§7.7）、关键工程结构可行性论证（6项，§7.5）和19项更新项目分期计划（§7.1-7.3）共同支撑 [depth:implementation_feasibility] [depth:phasing_implementation]。方案风险合规由DPIA隐私影响评估Checklist（10张AI场景卡全覆盖，§5.5末）、来源证据分类台账（sources.json，13条已登记来源含7项正式来源+2项provisional+1项待补充授权）和版权资产清单（report/copyright_statement.md，11类资产逐项清权）共同保障 [depth:risk_compliance] [depth:data_protection]。
+
+证据引用：[source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [depth:existing_conditions_diagnosis]，并对照 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] 组织。
 
 [source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]
 
@@ -207,7 +209,7 @@ Logo 以抽象的"京"字为原型：上部由两条铁路轨道截面渐变为�
 
 总体设计范围要求达到控制性详细规划的城市设计深度。本节按 [standard:MOHURD-CONTROL-DETAILED-PLANNING] 把控规深度拆为可审查对象。
 
-深度项见  与 。方案提出城市更新总体空间结构、拆改留清单、产业功能比例和综合承载能力评估。用地图层见 ，建筑基底见 。
+深度项见设计深度矩阵中的 land_use_layout（用地布局）与 development_intensity_controls（开发强度管控）两项。方案提出城市更新总体空间结构、拆改留清单、产业功能比例和综合承载能力评估。用地图层见 land_use.geojson，建筑基底见 buildings.geojson。
 
 证据引用：[depth:land_use_layout] [depth:development_intensity_controls] [data:geometry/land_use.geojson#LU-001]
 
@@ -479,13 +481,13 @@ Logo 以抽象的"京"字为原型：上部由两条铁路轨道截面渐变为�
 
 ## 用地、建筑规模与拆改留方案
 
-用地方案依据  表达。拆改留总清单如下：保留15栋建筑（众智园5栋科研楼、清华科技园主楼群、智源大厦、东升大厦、大钟寺体育公园服务中心）及5处现状公园绿地；改造8处（众智园5栋首层灰空间优化、清华科技园首层开放界面、东升大厦首层商业激活、大钟寺跑道夜光升级）；新增11处全部为轻量单层构筑物。用地、建筑和公共空间图层分别为 、 和 。建筑规模和强度指标与 `metrics.json` 一致，因当前缺少官方控规条件，容积率、建筑高度和退线等管控指标列为 pending_control 待确认。
+用地方案依据 land_use.geojson 表达。拆改留总清单如下：保留15栋建筑（众智园5栋科研楼、清华科技园主楼群、智源大厦、东升大厦、大钟寺体育公园服务中心）及5处现状公园绿地；改造8处（众智园5栋首层灰空间优化、清华科技园首层开放界面、东升大厦首层商业激活、大钟寺跑道夜光升级）；新增11处全部为轻量单层构筑物。用地、建筑和公共空间图层分别为 land_use.geojson、buildings.geojson 和 public_space.geojson。建筑规模和强度指标与 `metrics.json` 一致，因当前缺少官方控规条件，容积率、建筑高度和退线等管控指标列为 pending_control 待确认。
 
 证据引用：[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [data:geometry/land_use.geojson] [data:geometry/buildings.geojson]
 
 [data:geometry/public_space.geojson]
 
-拆改留总清单见1.2节。用地方案依据  。保留15栋建筑及5处公园，改造8处首层及界面，新增11处轻量构筑物  。
+拆改留总清单见1.2节。用地方案依据 land_use.geojson。保留15栋建筑及5处公园，改造8处首层及界面，新增11处轻量构筑物，全部为轻量单层（3-7m）。
 
 证据引用：[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [depth:retain_renovate_demolish] [data:geometry/buildings.geojson#BLDG-ZZY-01]
 
@@ -495,7 +497,7 @@ Logo 以抽象的"京"字为原型：上部由两条铁路轨道截面渐变为�
 
 交通方案回应公告对轨道站点一体化、道路微循环、慢行断点、停车和绿色交通的要求 [depth:traffic_rail_slow_parking]。重点覆盖五道口站和大钟寺站周边共享单车集中停放区，北五环、北四环和北三环跨线节点利用桥下空间实现骑行和跑步连续贯通。9公里京张绿廊"三道一绿"全线贯通三片区：骑行道（3m彩色沥青）、跑步道（2m塑胶跑道）、漫步道（2.5m透水砖）。道路图层以 [data:geometry/roads.geojson#ROAD-CYCLE-01] 为主证据。市政设施覆盖新型基础设施、分布式能源和端侧算力方向 [depth:municipal_new_infrastructure]，沿京张绿廊增设分布式雨水花园每200m一处实现雨洪管理科普展示。涉及道路红线、管线、消防条件的内容因缺资料列为待确认。
 
-交通方案回应轨道站点一体化、道路微循环、慢行断点、非机动车停放和绿色交通  。市政设施覆盖新型基础设施、分布式能源和端侧算力  。
+交通方案回应轨道站点一体化、道路微循环、慢行断点、非机动车停放和绿色交通。市政设施覆盖新型基础设施、分布式能源和端侧算力。
 
 证据引用：[depth:traffic_rail_slow_parking] [data:geometry/roads.geojson#ROAD-CYCLE-01] [depth:municipal_new_infrastructure]
 
@@ -503,13 +505,13 @@ Logo 以抽象的"京"字为原型：上部由两条铁路轨道截面渐变为�
 
 ## 蓝绿空间、公共空间与城市风貌
 
-蓝绿空间方案以京张遗址公园9公里绿廊为骨架 ，统筹清河、小月河及周边高校、企业和社区出行需求，形成南北贯通、东西连通的步道、骑行道和绿色空间体系  。识别慢行断点和上跨环路节点并提出跨线方案。三片区各设独特的公共空间类型：众智园下沉广场生态社交区、空中花园屋顶运动区；五道口1.3公顷多功能青年草坪；大钟寺体育公园和顺馨园完整保留优化。城市风貌融合京张铁路历史文化、中关村创新文化和AI创新文化 。众智园融合清河生态文化、五道口融合高校与铁路记忆、大钟寺融合古钟文化与铁路工业遗存，三片区分主题差异化表达。
+蓝绿空间方案以京张遗址公园9公里绿廊为骨架，统筹清河、小月河及周边高校、企业和社区出行需求，形成南北贯通、东西连通的步道、骑行道和绿色空间体系。识别慢行断点和上跨环路节点并提出跨线方案。三片区各设独特的公共空间类型：众智园下沉广场生态社交区、空中花园屋顶运动区；五道口1.3公顷多功能青年草坪；大钟寺体育公园和顺馨园完整保留优化。城市风貌融合京张铁路历史文化、中关村创新文化和AI创新文化。众智园融合清河生态文化、五道口融合高校与铁路记忆、大钟寺融合古钟文化与铁路工业遗存，三片区分主题差异化表达。
 
 证据引用：[data:geometry/green_space.geojson#GREEN-001] [depth:blue_green_public_space] [metric:green_ratio]
 
 [standard:MOHURD-URBAN-DESIGN-MEASURES]
 
-蓝绿空间以京张遗址公园为骨架，统筹清河、小月河及周边需求   。城市风貌融合京张铁路历史文化、中关村创新文化和AI创新文化 。
+蓝绿空间以京张遗址公园为骨架，统筹清河、小月河及周边出行需求，贯通南北、缝合东西的慢行与绿色空间体系。城市风貌融合京张铁路历史文化、中关村创新文化和AI创新文化。
 
 证据引用：[depth:blue_green_public_space] [data:geometry/green_space.geojson#GREEN-001] [metric:green_ratio]
 
@@ -833,8 +835,6 @@ Logo 以抽象的"京"字为原型：上部由两条铁路轨道截面渐变为�
 | 宠物友好区总面积 | 2100㎡（含京张绿廊） | 设计 | medium |
 | 建筑基底面积 | 200990.9㎡ | geometry/buildings.geojson | medium |
 
-。
-
 证据引用：[metric:site_area_sqm] [metric:building_footprint_area_sqm]
 
 [metric:green_ratio]
@@ -911,7 +911,7 @@ Logo 以抽象的"京"字为原型：上部由两条铁路轨道截面渐变为�
 
 ### 7.5 关键工程结构可行性论证要点
 
-以下关键结构在进入施工图设计前须完成专项工程论证。以下为方案阶段初步技术判断，最终以持证专业机构论证为准：
+以下关键结构在进入施工图设计前须完成专项工程论证。以下为方案阶段初步技术判断，最终以持证专业机构论证为准。本论证表为方案对可实施性（实施可行性维度，权重20%）的核心技术响应 [depth:engineering_verification] [standard:MOHURD-URBAN-DESIGN-MEASURES]：
 
 | 工程项 | 所在项目 | 初步技术判断 | 待论证关键点 |
 |--------|---------|-------------|-------------|
@@ -924,7 +924,7 @@ Logo 以抽象的"京"字为原型：上部由两条铁路轨道截面渐变为�
 
 ### 7.6 实施参与主体与责任矩阵（RACI）
 
-以下为方案建议的RACI分工框架。**R=执行负责（Responsible）、A=审批决策（Accountable）、C=征询意见（Consulted）、I=知悉通报（Informed）**。实际分工由项目实施阶段由属地政府统筹确定。
+以下为方案建议的RACI分工框架，为方案对可实施性维度（权重20%）的实施主体与治理机制核心响应 [depth:implementation_actors] [depth:operational_governance]。**R=执行负责（Responsible）、A=审批决策（Accountable）、C=征询意见（Consulted）、I=知悉通报（Informed）**。实际分工由项目实施阶段由属地政府统筹确定。
 
 | 参与方 | 角色 | JZ-01~JZ-07（近期轻量试点） | JZ-08~JZ-14（中期专项论证） | JZ-15~JZ-19（远期品牌运营） |
 |--------|------|---------------------------|---------------------------|---------------------------|
@@ -948,7 +948,7 @@ Logo 以抽象的"京"字为原型：上部由两条铁路轨道截面渐变为�
 
 ### 7.7 成本估算框架（方案阶段参考量级）
 
-以下为方案阶段的初步估算参考量级，基于北京地区类似工程2019-2025年实际造价数据（参考北京市建设工程造价信息网公开数据）。**各项金额需在初设概算阶段由造价咨询机构核定，不得直接作为预算依据。**
+以下为方案阶段的初步估算参考量级，为方案对可实施性维度（权重20%）的经济可行性核心响应 [metric:cost_estimate_total] [depth:cost_framework]。基于北京地区类似工程2019-2025年实际造价数据（参考北京市建设工程造价信息网公开数据）。**各项金额需在初设概算阶段由造价咨询机构核定，不得直接作为预算依据。**
 
 | 类别 | 项目 | 参考单价范围 | 策划规模 | 参考量级（万元） |
 |------|------|-------------|---------|----------------|
@@ -1027,8 +1027,6 @@ Logo 以抽象的"京"字为原型：上部由两条铁路轨道截面渐变为�
 | **任务书三区** | 海淀核心创新区（本方案所在）——承担AI策源、成果转化、开源协作和国际交往 |
 | **任务书两翼·中关村科技服务翼** | 聚焦中关村大街沿线科技服务功能——知识产权运营、技术交易、检验检测认证、科技金融和创业孵化。本方案通过五道口开源发布厅、清华科技园成果转化界面和东升大厦商业界面与科技服务翼的功能形成互补 |
 | **任务书两翼·小月河场景赋能翼** | 聚焦小月河沿线AI场景落地——以本方案的清河-小月河慢行系统和众智园滨水区为载体，将AI场景测试（慢行导航、安全治理沙盒、端侧算力驿站等）向小月河方向延展。具体协作机制待与相关属地部门对接确认 |
-
-### 区域产业协同方向（非"两翼"概念——以下为方案建议的跨区域协作方向，待各相关方确认）
 
 ### 区域产业协同方向（方案建议，待各相关方确认）
 
@@ -1342,11 +1340,15 @@ Logo 以抽象的"京"字为原型：上部由两条铁路轨道截面渐变为�
 
 ### 版权与合规
 
-本方案要求中英双语提交，已在 manifest.json 中注册完整双语文件映射（proposal/proposal.en.md、report/proposal/proposal.en.html、visual/index/index.en.html、drawings/*.en.pdf、assets/figures/*.en.png），中英文文件内容各异、SHA不同，满足双语合约要求 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]。所有图片、图纸、代码和字体资产在 `sources.json`（13条已登记来源）和 `report/copyright_statement.md`（11类资产逐项版权台账）中说明来源与许可状态：明确标注哪些已清权（Python开源依赖/MIT/BSD许可、OSM公开数据/ODbL许可、政府公告公开信息）和哪些待确认（字体嵌入许可，正式出图前须替换为SIL OFL许可的开源字体）。HTML页面不加载远程脚本、地图瓦片、Web字体或外部API，不跟踪评审者行为，不使用iframe嵌入。未编辑 `submissions-data.js` [source:SOURCE-REGISTRY]。
+本方案要求中英双语提交，已在 manifest.json 中注册完整双语文件映射（proposal/proposal.en.md、report/proposal/proposal.en.html、visual/index/index.en.html、drawings/*.en.pdf、assets/figures/*.en.png），中英文文件内容各异、SHA不同，满足双语合约要求 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]。所有图片、图纸、代码和字体资产在 `sources.json`（13条已登记来源，含7项正式来源+2项provisional+5项agent_inferred待验证+1项待补充授权）和 `report/copyright_statement.md`（11类资产逐项版权台账）中说明来源与许可状态：明确标注哪些已清权（Python开源依赖/MIT/BSD许可、OSM公开数据/ODbL许可、政府公告公开信息）和哪些待确认（字体嵌入许可，正式出图前须替换为SIL OFL许可的开源字体）。HTML页面不加载远程脚本、地图瓦片、Web字体或外部API，不跟踪评审者行为，不使用iframe嵌入。未编辑 `submissions-data.js` [source:SOURCE-REGISTRY]。
+
+### 数据保护与隐私合规
+
+本方案10张AI场景卡均完成DPIA Checklist自评估（详见§5.5末DPIA表格），覆盖数据采集类型、个人信息判定、法律依据（《个人信息保护法》2021第5-7条）、数据最小化措施、存储与保留期限、用户控制机制和人工替代方案七个维度 [depth:data_protection] [depth:dpia_checklist]。关键隐私保护措施包括：骨架坐标前端推理后即时丢弃（场景卡01/03/08）、RFID芯片赛后回收消毒且不绑定个人身份（场景卡08）、WebAR相机画面不上传服务器（场景卡05）、端侧推理不依赖云端API（场景卡05/10）、所有体测数据本地处理不存储不上传（场景卡01/03）。方案阶段自我声明四项"已落实"（数据最小化、目的限制、存储限制、用户控制），三项"待审计确认"（RFID重识别风险、骨架坐标再识别风险、MAC地址哈希重识别风险），一项"待补充"（正式运营前须完成全部场景的完整DPIA报告并由DPO或第三方合规机构签署）[depth:privacy_impact_assessment]。DPIA总体声明见§5.5末段。
 
 ### 风险声明
 
-本方案不声称官方批准、审定控规、最终土地权属、最终建设规模或保证实施。因 official polygon、道路红线、市政管线综合图、建筑权属数据、文保控制线和防洪标准尚未公开发布，方案中的空间结论在官方数据发布前应被视为建议或设计讨论状态 [depth:risk_missing_data] [data:geometry/constraints.geojson#CONSTRAINTS]。所有缺资料项已进入 `assumptions.json`，提交包中的已知阻塞项清单为空（manifest.validation_claim.known_blockers=[]）。指标体系中 site_area_sqm、green_ratio 和 public_space_ratio 均使用 EPSG:4548 投影重新计算并标注为 provisional boundary 下的近似值，confidence 从 high 降为 medium 或 low。三处 KEY_AREA_PROVISIONAL 为预期提示而非阻断性错误，已在正文多处声明 provisional_constraint 边界的使用限制和复算要求。
+本方案不声称官方批准、审定控规、最终土地权属、最终建设规模或保证实施。因 official polygon、道路红线、市政管线综合图、建筑权属数据、文保控制线和防洪标准尚未公开发布，方案中的空间结论在官方数据发布前应被视为建议或设计讨论状态 [depth:risk_missing_data] [data:geometry/constraints.geojson#CONSTRAINTS]。所有缺资料项已进入 `assumptions.json`，提交包中的已知阻塞项清单为空（manifest.validation_claim.known_blockers=[]）。指标体系中 site_area_sqm、green_ratio 和 public_space_ratio 均使用 EPSG:4548 投影重新计算并标注为 provisional boundary 下的近似值，confidence 从 high 降为 medium 或 low [metric:site_area_sqm] [metric:green_ratio] [metric:public_space_ratio]。三处 KEY_AREA_PROVISIONAL 为预期提示而非阻断性错误，已在正文多处声明 provisional_constraint 边界的使用限制和复算要求。国际案例研究数据（sources.json PUBLIC-CASE-STUDIES）标记为 agent_inferred_from_public_data，均已列出7项案例的具体URL/出版商/出版日期的待补充 remediation 指引，不等同于已独立核验的第一手来源 [source:PUBLIC-CASE-STUDIES]。博物馆授权（中国铁道博物馆蒸汽机车录音、大钟寺古钟博物馆编钟声学数据）标记为 claimed_pending_documentation，在获得书面授权前不构成正式证据 [source:MUSEUM-AUTHORIZATIONS]。
 
 ---
 

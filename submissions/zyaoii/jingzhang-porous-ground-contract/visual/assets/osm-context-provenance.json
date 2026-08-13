@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "title": "OSM context snapshot provenance",
+  "source": "OpenStreetMap contributors via Overpass API",
+  "license": "ODbL 1.0",
+  "license_url": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "attribution": "© OpenStreetMap contributors",
+  "copyright_url": "https://www.openstreetmap.org/copyright",
+  "snapshot_timestamp_osm_base": [
+    "2026-06-17T07:45:45Z"
+  ],
+  "raw_snapshot_files_local_only": [
+    "porous-ground-osm-context-20260812.json",
+    "porous-ground-osm-buildings-20260812.json"
+  ],
+  "queries": {
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "context_overpass_ql": "[out:json][timeout:90];\n(\n  way[\"railway\"](39.938,116.31285,40.027,116.37215);\n  way[\"highway\"~\"^(trunk|primary|secondary|tertiary)$\"](39.938,116.31285,40.027,116.37215);\n  way[\"waterway\"](39.938,116.31285,40.027,116.37215);\n  way[\"natural\"=\"water\"](39.938,116.31285,40.027,116.37215);\n  way[\"leisure\"=\"park\"](39.938,116.31285,40.027,116.37215);\n  way[\"landuse\"~\"^(railway|industrial|commercial|education)$\"](39.938,116.31285,40.027,116.37215);\n  nwr[\"railway\"=\"station\"](39.938,116.31285,40.027,116.37215);\n  nwr[\"name\"~\"大钟寺|知春路|清华东路西口|西土城|五道口|上地|清河\"](39.938,116.31285,40.027,116.37215);\n);\nout geom tags;",
+    "buildings_overpass_ql": "[out:json][timeout:120];\nway[\"building\"](39.939,116.3397,40.0265,116.3553);\nout geom tags;"
+  },
+  "geometry_handling": {
+    "rule": "Preserve full geometry for every way intersecting its query bbox; no tile/image content is copied.",
+    "query_bbox_is_not_clip": true,
+    "actual_geometry_extent": [
+      116.1244153,
+      39.8215646,
+      116.5519654,
+      40.0810258
+    ],
+    "partial_outside_query_bbox_count": 303,
+    "partial_outside_query_bbox_count_by_source": {
+      "porous-ground-osm-context-20260812.json": 172,
+      "porous-ground-osm-buildings-20260812.json": 131
+    }
+  },
+  "transformation": [
+    "Read the two local raw Overpass JSON snapshots listed above.",
+    "Deduplicate by OSM element type and id.",
+    "Retain only the declared context classes and a minimal tag allow-list.",
+    "Convert node/way geometry to GeoJSON without clipping full intersecting ways.",
+    "Write a minified data-only JavaScript assignment plus this provenance JSON; no remote runtime request is made."
+  ],
+  "use": "Draw an attributed public context layer and indexed conceptual sections; do not infer current condition or authorization.",
+  "limitations": "Not official/canonical geometry, not a current survey or completeness guarantee, not title/accessibility/fire/source/operating evidence, and not authorization. Verify every feature before professional use.",
+  "privacy": "No individual movement, device, image, health, identity or trajectory data are present."
+}

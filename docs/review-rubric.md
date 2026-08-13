@@ -70,3 +70,29 @@
 七维度评审可由 `scripts/ai_review_submission.py` 在维护者本地调用多模态模型生成，也可交由独立专业评审复核。仓库不在 GitHub Actions 中调用模型；受信任的外部 worker 可按维护者 intake 政策自动 review，并仅在强制退件检查、四项本地 gate 和 60/100 分门槛全部通过后自动 merge。merge 只代表仓库 intake，不代表展示、精选、正式评分、实施批准或政府背书。最终对参赛者可见的内容应是 `pr-comment.md`，而不是公开展示页的一部分。
 
 正式评分表同样是本地维护者材料。若专家组希望向参赛者反馈正式评分摘要，只复制 `formal-scorecard-comment.md` 或整理后的 PR comment；不要把评分 JSON、专家分歧或中间评审材料提交到仓库。
+
+## English Quick Reference
+
+This rubric is used by local AI review agents and independent professional reviewers. It is advisory only; required CI covers deterministic safety and format gates only.
+
+| Dimension ID | Chinese | Weight | Review focus |
+|---|---|---|---|
+| `brief_alignment` | 任务书相关性 | 20% | Coverage of Jing-Zhang AI Belt, Haidian, AI ecosystem, urban space, and public governance |
+| `originality` | 原创性 | 10% | Novel concept, mechanism, or scenario; avoids generic collage |
+| `ai_planning_innovation` | AI 与城市规划创新性 | 15% | AI integrated with industry, space, transport, public services, culture, governance |
+| `implementation_feasibility` | 可实施性 | 20% | Phasing, pilot areas, participating actors, measurable indicators |
+| `public_interest_inclusion` | 公共利益与包容性 | 10% | Addresses residents, youth, enterprises, universities, visitors, marginalized groups |
+| `risk_compliance` | 风险与合规意识 | 10% | Respects data boundaries, privacy, copyright, policy uncertainty |
+| `expression_completeness` | 表达完整度 | 15% | Clear structure, sufficient evidence, can be continued and deepened |
+
+Scores are 0–5 per dimension. Weighted total is out of 100. Formal professional scoring applies only to submissions that have passed the maintainer gate (`formal-review-ready`). The gate never blocks scoring for organizer-missing geometry; only participant-controlled checks matter.
+
+## Mandatory Rejection (English Summary)
+
+A submission must be rejected if it:
+- Contains personal private data, classified materials, or non-public spatial data.
+- Fabricates official endorsement, approval conclusions, or implementation commitments.
+- Submits offensive, discriminatory, illegal, or malicious content.
+- Has no substantial relevance to the open-call brief.
+- Does not respond to any of the six agent tasks (`agent.1`–`agent.6`) in `agent_taskbook.json`.
+- Presents conceptual recommendations or policy proposals as confirmed government decisions.

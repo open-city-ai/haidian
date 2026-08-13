@@ -1,0 +1,34 @@
+{
+  "version": "0.2",
+  "name_zh": "AI公共登记卡",
+  "name_en": "Civic AI Register Card",
+  "purpose": "A proposal-level transparency contract for AI entering public-service pilots. It is inspired by public AI-register mechanisms but redesigned for local institutional review; it is not presented as an enacted Beijing registry standard.",
+  "required_fields": [
+    {"id":"purpose","label_zh":"用途","question":"这个AI被允许帮助解决什么具体问题？"},
+    {"id":"status","label_zh":"当前状态","question":"草案、测试、降级、人工接管、停止还是退出？"},
+    {"id":"responsible_body","label_zh":"责任主体","question":"哪个机构/岗位对继续运行和错误处理负责？"},
+    {"id":"data_categories","label_zh":"数据类别与来源","question":"用了什么数据，为什么需要，是否可以少采？"},
+    {"id":"version_update","label_zh":"版本与更新时间","question":"当前模型/规则何时发生过实质变化？"},
+    {"id":"prohibited_capabilities","label_zh":"AI不能做什么","question":"哪些决定、识别、推断或数据用途被明确禁止？"},
+    {"id":"non_ai_route","label_zh":"非AI等价路径","question":"不使用AI的人怎样完成同一项必要公共任务？"},
+    {"id":"human_review","label_zh":"人工复核/接管","question":"在哪里、由谁、以什么方式转人工或停机？"},
+    {"id":"complaint_entry","label_zh":"投诉与申诉","question":"错误、歧视、隐私或服务问题向谁提出并怎样闭环？"},
+    {"id":"last_shutdown_or_change","label_zh":"最近停机/重大修改","question":"最近一次为什么停、为什么改、是否留下公共回执？"}
+  ],
+  "sample_design_record": {
+    "scenario_id": "S10",
+    "name_zh": "低速机器人受控配送",
+    "purpose": "在限定低速测试区验证短距配送是否能减少重复搬运，同时不增加行人和无障碍使用者负担。",
+    "status": "concept_not_field_tested",
+    "responsible_body": "UNKNOWN — must be verified before pilot launch",
+    "data_categories": "Conceptual minimum: robot localization, obstacle perception and operational logs; exact sensors/data retention remain UNKNOWN until operator and legal review.",
+    "version_update": "N/A before field pilot",
+    "prohibited_capabilities": ["no pedestrian priority override", "no autonomous enforcement", "no expansion outside approved controlled boundary", "no continued operation when safe takeover is unavailable"],
+    "non_ai_route": "human delivery + full ordinary pedestrian route",
+    "human_review": "named remote/on-site takeover role required before G1",
+    "complaint_entry": "must be a real staffed/public channel before G1; currently UNKNOWN",
+    "last_shutdown_or_change": "not field tested"
+  },
+  "publication_rule": "The public-facing card must use plain language and an accessible non-digital equivalent at civic service locations. Sensitive/security information is not made public merely for the sake of transparency; disclosure scope requires professional and legal review.",
+  "no_self_certification": "AI may draft or summarize a card but may not declare itself safe, compliant, approved or ready. A real accountable person/institution must sign the launch/continue/stop judgment."
+}

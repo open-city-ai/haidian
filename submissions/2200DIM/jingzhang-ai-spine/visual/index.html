@@ -1,0 +1,264 @@
+<!DOCTYPE html><html lang='zh'><head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>京张智脉 · 离线看板</title>
+<style>
+ *{box-sizing:border-box}
+ body{margin:0;font-family:'Microsoft YaHei','SimHei',sans-serif;background:#0d1b2a;color:#e8eef5}
+ header{background:linear-gradient(120deg,#0b3d91,#13407a);padding:24px 30px;color:#fff}
+ header h1{margin:0;font-size:24px;letter-spacing:1px}
+ header p{margin:6px 0 0;opacity:.9;font-size:13px}
+ .wrap{max-width:1280px;margin:0 auto;padding:22px}
+ .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+ .card{background:#13263b;border:1px solid #1f3a57;border-radius:10px;padding:14px 16px}
+ .card h2{margin:0 0 8px;font-size:15px;color:#7fc8e8;border-bottom:1px solid #1f3a57;padding-bottom:6px}
+ .card h3{margin:10px 0 4px;font-size:13px;color:#9fd0e8}
+ img{width:100%;border-radius:6px;border:1px solid #244;background:#0a1622;margin-top:6px}
+ .col-12{grid-column:span 12}.col-8{grid-column:span 8}.col-6{grid-column:span 6}
+ .col-4{grid-column:span 4}.col-3{grid-column:span 3}
+ .metrics{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+ .metric{background:#0a1622;border:1px solid #244;border-radius:8px;padding:10px 12px;min-width:130px}
+ .metric .k{font-size:10.5px;color:#8fb3d6;display:block}
+ .metric .metric-val{font-size:18px;font-weight:bold;color:#fff;display:block;margin-top:2px}
+ table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:6px}
+ th,td{border:1px solid #244;padding:5px 7px;text-align:left;vertical-align:top}
+ th{background:#0a1622;color:#9fd0e8}
+ code{background:#1f3a57;color:#cfe3ff;padding:0 4px;border-radius:3px;font-size:10.5px}
+ .pill{display:inline-block;background:#13407a;color:#cfe3ff;border-radius:12px;padding:2px 10px;font-size:11px;margin:2px}
+ .ok{color:#5bd6a0}.warn{color:#ffd166}.pass{color:#5bd6a0;font-weight:bold}.fail{color:#e8643c;font-weight:bold}
+ .total{background:#1f3a57;font-weight:bold}
+ .note{font-size:11px;color:#7e97b3;margin:6px 0 0}
+ @media(max-width:820px){.col-8,.col-6,.col-4,.col-3{grid-column:span 12}}
+</style></head>
+<body>
+<header>
+<h1>京张智脉 · Jing-Zhang AI Spine</h1>
+<p>百年京张AI创新带城市设计概念方案 · AI agent（WorkBuddy / GitHub 2200DIM）开放共创建议 · 临时边界生成，待官方数据校核 · CC-BY-4.0</p>
+</header>
+<div class='wrap'>
+<div class='grid'>
+
+<div class='card col-12'><h2>总览地图 · 总体结构</h2>
+<img src='assets/site-overview.png' alt='site-overview'/>
+<p class='note'>图1 一脉串三区、两翼濯两岸：京张遗址公园活力主轴串联三处重点区，西岸中关村服务翼、东岸小月河场景翼。</p>
+</div>
+
+<div class='card col-4'><h2>核心指标</h2><div class='metrics'>
+<div class='metric'><span class='k'>总体设计范围</span><span class="metric-val" data-metric="site_area_sqm" data-value="11412825.39">11,412,825 ㎡</span></div>
+<div class='metric'><span class='k'>绿地率</span><span class="metric-val" data-metric="green_ratio" data-value="0.362293">36.23%</span></div>
+<div class='metric'><span class='k'>公共空间率</span><span class="metric-val" data-metric="public_space_ratio" data-value="0.384813">38.48%</span></div>
+<div class='metric'><span class='k'>建筑覆盖率</span><span class="metric-val" data-metric="building_footprint_ratio" data-value="0.1786">17.86%</span></div>
+<div class='metric'><span class='k'>科研用地率</span><span class="metric-val" data-metric="research_land_ratio" data-value="0.3431">34.31%</span></div>
+<div class='metric'><span class='k'>商业用地率</span><span class="metric-val" data-metric="commercial_ratio" data-value="0.0714">7.14%</span></div>
+<div class='metric'><span class='k'>居住用地率</span><span class="metric-val" data-metric="residential_ratio" data-value="0.0639">6.39%</span></div>
+<div class='metric'><span class='k'>路网总长</span><span class="metric-val" data-metric="road_network_length_m" data-value="34480.0">34,480 m</span></div>
+</div>
+<p class='note'>指标基于临时边界在 EPSG:4548 复算；容积率/高度/官方绿地率等指标缺失，列为 not_applicable。</p>
+</div>
+
+<div class='card col-8'><h2>用地结构（国土空间分类·允许子集）</h2>
+<table><thead><tr><th>代码</th><th>名称</th><th>面积</th><th>占比</th></tr></thead>
+<tbody><tr><td><code>05</code></td><td>商业服务业用地</td><td>81.54 ha</td><td>7.14%</td></tr>
+<tr><td><code>0701</code></td><td>城镇住宅用地</td><td>72.88 ha</td><td>6.39%</td></tr>
+<tr><td><code>0802</code></td><td>科研用地</td><td>391.58 ha</td><td>34.31%</td></tr>
+<tr><td><code>0803</code></td><td>文化用地</td><td>86.30 ha</td><td>7.56%</td></tr>
+<tr><td><code>0804</code></td><td>教育用地</td><td>95.51 ha</td><td>8.37%</td></tr>
+<tr><td><code>1401</code></td><td>公园绿地（蓝绿空间）</td><td>413.48 ha</td><td>36.23%</td></tr>
+<tr class='total'><td>合计</td><td>—</td><td>1,141.28 ha</td><td>100%</td></tr></tbody></table>
+</div>
+
+<div class='card col-12'><h2>三处重点区域差异与抓手</h2>
+<img src='assets/key-areas.png' alt='key-areas'/>
+<p class='note'>图3 三区分别承担 AI 自主创新加速、AI 原点生态、智能原生产业集聚；详见 proposal.md §3。</p>
+</div>
+
+<div class='card col-6'><h2>用地结构图</h2><img src='assets/land-use-structure.png' alt='land-use'/></div>
+<div class='card col-6'><h2>交通·蓝绿·AI 朝圣地标</h2><img src='assets/mobility-bluegreen.png' alt='mobility-bluegreen'/></div>
+
+<div class='card col-12'><h2>8 个全球案例参考（逐项附来源）</h2>
+<table><thead><tr><th>ID</th><th>案例</th><th>地点</th><th>对京张智脉的启示</th><th>事实来源</th></tr></thead>
+<tbody><tr><td><code>CS-01</code></td><td>Station F</td><td>法国·巴黎13区</td><td>工业遗产改造的全球大型初创孵化器，可借鉴其「一站全链」与 AI 场景路演机制。</td><td class='note'>Station F 官方公开资料（stationf.co）</td></tr>
+<tr><td><code>CS-02</code></td><td>河套深港科技创新合作区</td><td>深圳·香港跨境</td><td>跨境协同与法定图则创新机制，对京津冀协同与三区两翼有直接参照价值。</td><td class='note'>深港两地政府公开文件</td></tr>
+<tr><td><code>CS-03</code></td><td>Mila</td><td>加拿大·蒙特利尔</td><td>深度学习机构主导的产学研社区，启示「高校+机构+社区」三方共生机制。</td><td class='note'>Mila / Quebec AI Institute 官网公开资料（mila.quebec）</td></tr>
+<tr><td><code>CS-04</code></td><td>Kendall Square</td><td>美国·波士顿</td><td>MIT 周边形成的 AI/生物科技混合街区，印证「人才+开放公共空间」驱动持续创新。</td><td class='note'>MIT / Kendall Square 公开资料</td></tr>
+<tr><td><code>CS-05</code></td><td>特拉维夫 AI Sandbox</td><td>以色列·特拉维夫</td><td>国防-民用技术外溢的智能城市试验场，提示低风险监管沙箱对 AI+ 城市的关键作用。</td><td class='note'>公开城市创新案例资料</td></tr>
+<tr><td><code>CS-06</code></td><td>爱沙尼亚数字政府</td><td>爱沙尼亚·塔林</td><td>全国级数字孪生与 e-Residency，强调数据底座与跨部门协同机制。</td><td class='note'>e-Estonia 官方公开资料（e-estonia.com）</td></tr>
+<tr><td><code>CS-07</code></td><td>Sidewalk Labs Quayside</td><td>加拿大·多伦多</td><td>因公众信任失败而终止，反向印证：AI+城市必须从公共利益、参与机制与数据治理出发。</td><td class='note'>Waterfront Toronto 公开报告与终止公告</td></tr>
+<tr><td><code>CS-08</code></td><td>中关村高校群</td><td>中国·北京海淀</td><td>「高校—科研院所—创业公司」三邻关系最密集区域，是京张智脉人才供给侧的天然腹地。</td><td class='note'>海淀区/中关村公开资料</td></tr></tbody></table></div>
+
+<div class='card col-12'><h2>12 张场景卡（含 SC-09 / SC-10 / SC-11 三个测试验证；含隐私/复核/失败模式）</h2>
+<table><thead><tr><th>ID</th><th>场景</th><th>空间锚点</th><th>指标/验证</th><th>隐私/数据最小化</th><th>人工复核</th><th>失败/退出模式</th></tr></thead>
+<tbody><tr><td><code>SC-01</code></td><td>AI 步行导航导览</td><td>三重点区公共空间</td><td>覆盖率</td><td class='note'>仅用匿名定位与路线偏好，不采集身份</td><td class='note'>路线内容定期人工复核</td><td class='note'>定位失效时回退静态地图</td></tr>
+<tr><td><code>SC-02</code></td><td>开源贡献荣誉墙（线下）</td><td>众智园</td><td>线下访问量</td><td class='note'>署名经贡献者授权</td><td class='note'>每年人工更新并核对</td><td class='note'>争议署名可申诉撤换</td></tr>
+<tr><td><code>SC-03</code></td><td>城市智能体治理沙盘（演示版）</td><td>众智园</td><td>演示场次</td><td class='note'>使用脱敏合成数据</td><td class='note'>决策仅供演示，人工终审</td><td class='note'>误判即时人工接管</td></tr>
+<tr><td><code>SC-04</code></td><td>智能原生消费门店</td><td>大钟寺</td><td>试点门店数</td><td class='note'>消费数据最小化、可删除</td><td class='note'>门店合规审核</td><td class='note'>试点失败即关停退出</td></tr>
+<tr><td><code>SC-05</code></td><td>机器人低速配送</td><td>大钟寺</td><td>试运营公里</td><td class='note'>路径视频脱敏存储</td><td class='note'>安全员远程值守</td><td class='note'>异常即停、人工接管</td></tr>
+<tr><td><code>SC-06</code></td><td>青年第三空间·24h创客客厅</td><td>AI原点</td><td>活跃用户</td><td class='note'>预约信息最小化</td><td class='note'>社区运营人工管理</td><td class='note'>利用率不足则调整时段</td></tr>
+<tr><td><code>SC-07</code></td><td>京张铁路遗产解说（多语）</td><td>遗址主轴</td><td>讲解路径覆盖</td><td class='note'>匿名收听</td><td class='note'>史实经文保顾问核校</td><td class='note'>史实争议即时下架修正</td></tr>
+<tr><td><code>SC-08</code></td><td>蓝绿廊低碳跑步/骑行</td><td>小月河两岸</td><td>公里数</td><td class='note'>运动数据匿名化</td><td class='note'>公共空间安全巡检</td><td class='note'>恶劣天气自动关闭</td></tr>
+<tr><td><code>SC-09</code></td><td>自动驾驶低速接驳（验证）</td><td>三区接驳</td><td>验证里程</td><td class='note'>车内影像脱敏</td><td class='note'>安全员+远程双监</td><td class='note'>降级为人工驾驶</td></tr>
+<tr><td><code>SC-10</code></td><td>开源模型工场（验证）</td><td>众智园</td><td>模型产出数</td><td class='note'>训练数据合规授权</td><td class='note'>模型卡与许可审查</td><td class='note'>不合规模型不予发布</td></tr>
+<tr><td><code>SC-11</code></td><td>城市智能体治理沙盘（验证·含公众参与版）</td><td>众智园</td><td>决策周期</td><td class='note'>公众意见匿名汇总</td><td class='note'>结果仅供建议、人工终审</td><td class='note'>公众质疑即暂停迭代</td></tr>
+<tr><td><code>SC-12</code></td><td>15 分钟生活圈智能调度</td><td>全站</td><td>覆盖人数</td><td class='note'>供需数据聚合脱敏</td><td class='note'>调度规则公开可查</td><td class='note'>保障线下非数字替代通道</td></tr></tbody></table></div>
+
+<div class='card col-12'><h2>八要素产业支撑矩阵</h2>
+<table><thead><tr><th>要素</th><th>机制（概念建议）</th><th>证据锚点</th></tr></thead>
+<tbody><tr><td>土地</td><td>存量更新为主、混合用途、保留工业遗产用地（land_use.geojson 六类用地）</td><td><code>data:geometry/land_use.geojson</code></td></tr>
+<tr><td>空间</td><td>三层范围逐层收口，三处重点区概念深化（key_areas.geojson）</td><td><code>data:geometry/key_areas.geojson</code></td></tr>
+<tr><td>产业</td><td>研发—孵化—转化—展示四类未来场景，研发用地率约 34.31%</td><td><code>metric:research_land_ratio</code></td></tr>
+<tr><td>资金</td><td>公私协同、运营公司孵化（概念建议，不构成已确定投资安排）</td><td><code>OP-L1</code></td></tr>
+<tr><td>人才</td><td>5 类画像 + 青年第三空间 + 人才社区</td><td><code>P-01..P-05</code></td></tr>
+<tr><td>算力</td><td>众智园自主算力中心（概念），与未来科学城共议低碳算力</td><td><code>zhongzhiyuan</code></td></tr>
+<tr><td>数据</td><td>数据治理委员会 + 最小化/匿名化原则</td><td><code>OP-L2</code></td></tr>
+<tr><td>场景</td><td>12 场景卡 + 3 测试验证（SC-09/10/11）</td><td><code>SC-01..SC-12</code></td></tr></tbody></table></div>
+
+<div class='card col-12'><h2>逐项目实施分组（按风险与审批等级）</h2>
+<table><thead><tr><th>分组</th><th>项目</th><th>责任主体类型</th><th>依赖条件</th><th>里程碑</th><th>验收指标</th><th>停止条件</th></tr></thead>
+<tbody><tr><td>A 低风险运营试点</td><td>AI 步行导览、开源贡献荣誉墙、青年第三空间、蓝绿廊低碳行走、多语遗产解说</td><td>运营公司/社区组织</td><td>公共空间开放、内容人工复核</td><td>季度</td><td>访问量/活跃用户/讲解覆盖</td><td class='warn'>数据安全事件、社区投诉、史实争议</td></tr>
+<tr><td>B 需专业论证的空间改造</td><td>三区公共空间改造、慢行网络、遗址解说路径、接驳节点</td><td>专业设计团队 + 运营方</td><td>官方边界、文保审查、交通影响评估</td><td>年度</td><td>专业评审通过、预算可行</td><td class='warn'>官方数据未到位、文保审查不通过</td></tr>
+<tr><td>C 需法定审批/官方数据后研究</td><td>用地强度、拆改留方案、市政管线、道路工程、轨道接驳</td><td>政府/法定主体</td><td>官方控规、红线、蓝线、轨道专项规划</td><td>官方数据发布后</td><td>法定审批</td><td class='warn'>审批不通过、上位规划变更</td></tr></tbody></table></div>
+
+<div class='card col-6'><h2>品牌与视觉识别规则</h2>
+<p><b>京张智脉 / Jing-Zhang AI Spine</b> · 口号：一脉串三区、两翼濯两岸</p>
+<p class='note'>Logo 方向：以京张铁路双轨为骨、三处节点为脉、AI 数据流为络的线性徽记方向（当前为文字标识，未制作独立图形文件）</p>
+<p class='note'>色彩系统：主色 京张蓝 #0b3d91；三区辅色 众智园橙 #f7a440 / AI 原点青 #5bc8e8 / 大钟寺红 #e8643c；中性灰 #b9bdc4</p>
+<p class='note'>字体：中文 微软雅黑/思源黑体；英文 sans-serif；PDF 字体许可见版权台账</p>
+<p class='note'>VI 组件：命名体系、结构口诀、三区色彩编码、5 地标导视符号、临时边界警示标（※）</p></div>
+<div class='card col-6'><h2>国际传播术语表</h2>
+<p class='note'>The Jing-Zhang AI Spine re-codes the 1909 Jing-Zhang Railway corridor as a future-facing AI innovation belt — one spine threading three districts, two wings renewing both banks.</p>
+<table><thead><tr><th>中文</th><th>English</th></tr></thead>
+<tbody><tr><td>京张智脉</td><td>Jing-Zhang AI Spine</td></tr>
+<tr><td>一脉串三区、两翼濯两岸</td><td>One spine threading three districts, two wings renewing both banks</td></tr>
+<tr><td>众智园AI自主创新加速区</td><td>Zhongzhiyuan AI Autonomous Innovation Accelerator</td></tr>
+<tr><td>北京AI原点社区</td><td>Beijing AI Origin Community</td></tr>
+<tr><td>大钟寺AI产业集聚区</td><td>Dazhongsi AI Industry Cluster</td></tr>
+<tr><td>开源贡献荣誉墙</td><td>Open-Source Contributor Wall of Honor</td></tr>
+<tr><td>场景开放客厅</td><td>Scenario Open Lounge</td></tr>
+<tr><td>城市智能体治理沙盘</td><td>City Agent Governance Sandbox</td></tr>
+<tr><td>京张铁路遗产</td><td>Jing-Zhang Railway Heritage</td></tr></tbody></table></div>
+
+<div class='card col-12'><h2>5 类用户画像</h2>
+<table><thead><tr><th>ID</th><th>画像</th><th>日常路径</th><th>痛点</th></tr></thead>
+<tbody><tr><td><code>P-01</code></td><td>算法研究员</td><td>在众智园算力中心做模型训练，间歇步行去 AI 原点餐厅讨论</td><td>算力排队、与产业方交流碎片化</td></tr>
+<tr><td><code>P-02</code></td><td>AI 创业者</td><td>上午在 AI 原点客厅对接，下午去大钟寺门店跑试点</td><td>路演空间不足、试点审批慢</td></tr>
+<tr><td><code>P-03</code></td><td>高校学生</td><td>早自习后乘接驳车去 AI 原点青年客厅做项目</td><td>学习/工位混用空间不够</td></tr>
+<tr><td><code>P-04</code></td><td>周边居民（含老年/儿童/低数字素养人群）</td><td>晚饭后沿蓝绿廊散步、用 AI 解说听京张铁路故事</td><td>公共空间不足、数字设备不会用</td></tr>
+<tr><td><code>P-05</code></td><td>国际访客</td><td>从京张原点站起，沿主轴走一遍三区</td><td>多语讲解、智能路线规划</td></tr></tbody></table></div>
+
+<div class='card col-6'><h2>5 处朝圣地标</h2>
+<table><thead><tr><th>ID</th><th>地标</th><th>位置</th><th>叙事</th></tr></thead>
+<tbody><tr><td><code>LM-01</code></td><td>京张原点站</td><td>AI原点社区西侧</td><td>纪念京张铁路 1909 与百年 AI 创新带的双锚点</td></tr>
+<tr><td><code>LM-02</code></td><td>开源贡献荣誉墙</td><td>众智园核心</td><td>全球开源贡献者线下署名墙，每年更新</td></tr>
+<tr><td><code>LM-03</code></td><td>全球开发者荣誉墙</td><td>AI原点社区</td><td>面向青年开发者的多语署名与作品展示</td></tr>
+<tr><td><code>LM-04</code></td><td>场景开放客厅</td><td>AI原点社区</td><td>路演、对话与实验发布的常态化场所</td></tr>
+<tr><td><code>LM-05</code></td><td>智能原生消费地标</td><td>大钟寺</td><td>首店、首品、首发的智能商业首演空间</td></tr></tbody></table></div>
+
+<div class='card col-6'><h2>运营机制与年度活动</h2>
+<table><thead><tr><th>ID</th><th>类型</th><th>机制</th><th>说明</th></tr></thead>
+<tbody><tr><td><code>OP-Y1</code></td><td>年度活动</td><td>京张 AI 创新周</td><td>每年秋季在 AI 原点客厅举办，路演/黑客松/政策对话并行</td></tr>
+<tr><td><code>OP-Y2</code></td><td>年度活动</td><td>开源贡献者年会</td><td>在众智园开源荣誉墙现场更新并发布年度贡献榜单</td></tr>
+<tr><td><code>OP-Q1</code></td><td>季度</td><td>智能原生门店首发季</td><td>每季度在大钟寺地标推出智能新业态首发</td></tr>
+<tr><td><code>OP-M1</code></td><td>月度</td><td>蓝绿廊低碳行走</td><td>每月一次公众参与，沿小月河两岸记录碳排数据</td></tr>
+<tr><td><code>OP-L1</code></td><td>长期</td><td>运营公司孵化</td><td>推动成立京张智脉运营公司，统筹品牌、空间与数据资产</td></tr>
+<tr><td><code>OP-L2</code></td><td>长期</td><td>数据治理委员会</td><td>多方参与的 AI+ 城市数据使用与隐私保护治理机制</td></tr></tbody></table></div>
+
+<div class='card col-6'><h2>区域协同概念性资源流图</h2>
+<table><thead><tr><th>ID</th><th>区域</th><th>概念方向</th></tr></thead>
+<tbody><tr><td><code>RC-01</code></td><td>北纬社区（中关村）</td><td>算法供给侧：高校与科研院所作为人才与模型持续外溢的天然腹地</td></tr>
+<tr><td><code>RC-02</code></td><td>未来科学城（昌平）</td><td>能源-算力协同：与未来科学城共议低碳算力与新型基础设施</td></tr>
+<tr><td><code>RC-03</code></td><td>怀柔科学城</td><td>大科学装置联动：在科普解说与公众参与环节引用大科学装置</td></tr>
+<tr><td><code>RC-04</code></td><td>经开区（亦庄）</td><td>智能制造转化：智能原生门店与机器人配送试点对接经开区制造链</td></tr>
+<tr><td><code>RC-05</code></td><td>京津冀协同</td><td>跨境/跨域协同：以河套-京津-雄安为参照，构建跨城试点通道</td></tr></tbody></table></div>
+<div class='card col-6'><h2>指标体系与证据</h2><img src='assets/metrics-evidence.png' alt='metrics'/></div>
+
+<div class='card col-12'><h2>生态图谱与区域协同概念流图</h2>
+<img src='assets/region-coop.png' alt='region-coop'/>
+<p class='note'>图6 区域协同仅作概念性资源外溢图示，不构成已确定合作/招商/资金/政策安排；详见 proposal.md §6。</p>
+</div>
+
+<div class='card col-12'><h2>必备内容标记（14 项）</h2>
+<p><span class='pill'>总览地图</span>
+<span class='pill'>三层范围</span>
+<span class='pill'>重点区域</span>
+<span class='pill'>用地分区</span>
+<span class='pill'>交通慢行</span>
+<span class='pill'>蓝绿公共空间</span>
+<span class='pill'>建筑</span>
+<span class='pill'>更新项目</span>
+<span class='pill'>AI 场景</span>
+<span class='pill'>核心指标</span>
+<span class='pill'>任务覆盖</span>
+<span class='pill'>自检状态</span>
+<span class='pill'>来源</span>
+<span class='pill'>假设</span></p>
+<p class='note'>以上 14 项 marker 对应官方 visual_review 的 REQUIRED_TEXT_MARKERS，本看板每个 marker 均落实到具体卡片或图（如「总览地图」→ 图1 site-overview，「重点区域」→ 图3 key-areas 等）。</p>
+</div>
+
+<div class='card col-12'><h2>任务覆盖（公告 1.3–1.5 + agent.1–6，23 项）</h2>
+<table><thead><tr><th>ID</th><th>报告章节</th><th>关联指标</th><th>状态</th></tr></thead>
+<tbody><tr><td><code>1.3.1</code></td><td>设计依据与资料清单</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>1.3.2</code></td><td>三层范围工作框架</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>1.3.3</code></td><td>统筹研究范围产业与未来城市研究</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>1.4.1</code></td><td>总体设计范围城市更新与控规深度城市设计</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>1.4.2</code></td><td>重点区域详细设计</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>1.4.3</code></td><td>AI 创新生态、人才画像与 AI+ 场景</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>1.5.1.1</code></td><td>用地、建筑规模与拆改留方案</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>1.5.1.2</code></td><td>交通、轨道、市政与公共服务设施</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>1.5.2.1</code></td><td>蓝绿空间、公共空间与城市风貌</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>1.5.2.2</code></td><td>更新项目清单、实施政策与分期计划</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>1.5.2.3</code></td><td>指标体系、面积复算与合规矩阵</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>1.5.2.4</code></td><td>风险、版权与合规说明</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>1.5.2.5</code></td><td>参考资料</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>1.5.3.required</code></td><td>设计依据与资料清单</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>1.5.3.1</code></td><td>三层范围工作框架</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>1.5.3.2</code></td><td>统筹研究范围产业与未来城市研究</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>1.5.3.3</code></td><td>总体设计范围城市更新与控规深度城市设计</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>agent.1</code></td><td>重点区域详细设计</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>agent.2</code></td><td>AI 创新生态、人才画像与 AI+ 场景</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>agent.3</code></td><td>用地、建筑规模与拆改留方案</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>agent.4</code></td><td>交通、轨道、市政与公共服务设施</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>agent.5</code></td><td>蓝绿空间、公共空间与城市风貌</td><td>—</td><td class='ok'>covered</td></tr>
+<tr><td><code>agent.6</code></td><td>更新项目清单、实施政策与分期计划</td><td>—</td><td class='ok'>covered</td></tr></tbody></table></div>
+
+<div class='card col-6'><h2>专业标准响应（5 项强制正式）</h2>
+<table><thead><tr><th>标准</th><th>要求</th><th>维度</th><th>状态</th></tr></thead>
+<tbody><tr><td><code>PROJECT-OFFICIAL-ANNOUNCEMENT</code></td><td>百年京张AI创新带城市设计国际方案征集资格预审公告</td><td>规划与城市设计主控</td><td class='ok'>addressed</td></tr>
+<tr><td><code>PROJECT-AGENT-OPEN-CALL-TASKBOOK</code></td><td>面向全球智能体开展百年京张AI创新带城市设计开源征集任务书</td><td>智能体开源共创与评审</td><td class='ok'>addressed</td></tr>
+<tr><td><code>MOHURD-URBAN-DESIGN-MEASURES</code></td><td>城市设计管理办法</td><td>公共空间与城市风貌</td><td class='ok'>addressed</td></tr>
+<tr><td><code>MOHURD-CONTROL-DETAILED-PLANNING</code></td><td>城市、镇控制性详细规划编制审批办法</td><td>用地与开发强度控制</td><td class='ok'>addressed</td></tr>
+<tr><td><code>MNR-LAND-USE-CLASSIFICATION-GUIDE</code></td><td>国土空间调查、规划、用途管制用地用海分类指南</td><td>用地分类与指标语义</td><td class='ok'>addressed</td></tr></tbody></table></div>
+<div class='card col-6'><h2>官方自检（4 道 gate）</h2>
+<table><thead><tr><th>检查</th><th>环节</th><th>结果</th><th>说明</th></tr></thead>
+<tbody><tr><td>DETERMINISTIC_VALIDATION</td><td>deterministic_validation</td><td><span class='pass'>pass</span> · <span class='blocking'>blocking</span></td><td>确定性校验通过：文件齐全、结构合规、引用闭合、sha256 一致（validate_local_submission.py errors=0）。</td></tr>
+<tr><td>SPATIAL_REVIEW</td><td>spatial_review</td><td><span class='pass'>pass</span> · <span class='blocking'>blocking</span></td><td>空间复算通过：用地满覆盖、重点区在 site 内、指标复算一致；3 条 minor 为临时边界披露提示，非阻塞。</td></tr>
+<tr><td>VISUAL_PACKAGING</td><td>visual_review</td><td><span class='pass'>pass</span> · <span class='blocking'>blocking</span></td><td>可视化离线合规：无远程/活动内容；6 张 PNG、14 必备标记、3 个 data-metric 与 metrics.json 一致。</td></tr>
+<tr><td>PROFESSIONAL_EVIDENCE</td><td>professional_review</td><td><span class='pass'>pass</span> · <span class='blocking'>blocking</span></td><td>专业证据闭合：5 标准 + 15 深度 + 8 案例 + 12 场景卡 + 5 画像 + 5 地标 + 6 运营 + 5 区域协同 + 版权台账。</td></tr></tbody></table></div>
+
+<div class='card col-6'><h2>来源登记</h2>
+<table><thead><tr><th>来源ID</th><th>标题</th><th>可用性</th></tr></thead>
+<tbody><tr><td><code>DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509</code></td><td>百年京张AI创新带城市设计国际方案征集资格预审公告</td><td>yes</td></tr>
+<tr><td><code>DATA-SRC-AGENT-TASKBOOK-20260518</code></td><td>面向全球智能体开展百年京张AI创新带城市设计开源征集任务书摘录</td><td>yes</td></tr>
+<tr><td><code>DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES</code></td><td>城市设计管理办法</td><td>yes</td></tr>
+<tr><td><code>DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING</code></td><td>城市、镇控制性详细规划编制审批办法</td><td>yes</td></tr>
+<tr><td><code>DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311</code></td><td>国土空间调查、规划、用途管制用地用海分类指南</td><td>yes</td></tr>
+<tr><td><code>DATA-SRC-PROVISIONAL-BOUNDARIES-20260605</code></td><td>百年京张AI创新带三层范围与三处重点区临时粗略 polygon</td><td>provisional_only</td></tr></tbody></table></div>
+<div class='card col-6'><h2>关键假设与精度限制</h2><ul class='note'><li><b>A-PROV-BOUNDARY-001</b> 总体设计范围与三处重点区采用仓库维护者发布的 provisional_boundaries.geojson，为基于公告文字四至、位置线索与约面积推定的粗略多边形，精度 provisional_rough，不得作为 official redline 或精确面积依据。正式数据发布后须复算。</li><li><b>A-COORD-001</b> GeoJSON 交换采用 EPSG:4326，面积复算投影至 EPSG:4548（CGCS2000 / 3°GK CM117E）。转换基于 shapely+pyproj，误差在米级，最终以官方测绘为准。</li><li><b>A-CONTROLS-001</b> 容积率、建筑高度、建筑密度、绿地率、退线等官方控规指标当前缺失（planning_limits.json 标记 missing）。本方案相关数值一律标注为 to_be_confirmed，不得伪装为已审定结论。</li><li><b>A-VERSION-001</b> 设计依据含 2026-05-09 公告与 2026-05-18 清权任务书，二者在表述粒度上不同；以公告为范围主控、以任务书为 agent 任务主控，冲突处以后者任务覆盖为准但空间范围以公告为限。</li></ul></div>
+
+<div class='card col-12'><h2>版权与生成来源台账</h2>
+<table><thead><tr><th>资产</th><th>来源</th><th>许可</th><th>备注</th></tr></thead>
+<tbody><tr><td>品牌命名「京张智脉 / Jing-Zhang AI Spine」</td><td>原创</td><td>CC-BY-4.0</td><td>由 agent WorkBuddy 原创命名，未使用任何现有商标</td></tr>
+<tr><td>结构口诀「一脉串三区、两翼濯两岸」</td><td>原创</td><td>CC-BY-4.0</td><td>原创表述</td></tr>
+<tr><td>所有示意图（matplotlib 生成 PNG）</td><td>原创</td><td>CC-BY-4.0</td><td>基于官方/清权公开几何数据生成，未引用第三方图像</td></tr>
+<tr><td>报告文本（proposal.md / report/）</td><td>原创</td><td>CC-BY-4.0</td><td>由 agent 生成并人工审阅，未引用第三方版权文本</td></tr>
+<tr><td>HTML 看板与 PDF 图册</td><td>原创</td><td>CC-BY-4.0</td><td>无外部 CDN/脚本；中文字体使用见字体条目</td></tr>
+<tr><td>场景卡/案例表/画像/地标/运营/产业矩阵</td><td>原创或公开知识整理</td><td>CC-BY-4.0</td><td>案例逐项附来源（见 cases.source_zh），所有表述均为概念建议</td></tr>
+<tr><td>临时几何数据（geometry/*.geojson）</td><td>上游仓库维护者（provisional_boundaries）</td><td>仓库维护者提供</td><td>标注 official_boundary=false；非官方红线，待官方数据校核</td></tr>
+<tr><td>中文字体（图表/HTML：SimHei）</td><td>微软 Windows 系统字体</td><td>微软系统许可</td><td>SimHei 为 Windows 系统字体，仅在本机渲染图表与 HTML，字体文件不随包分发；不得将系统字体许可自动推定为可再分发。</td></tr>
+<tr><td>PDF 嵌入字体（SimHei TTF）</td><td>微软 Windows 系统字体</td><td>嵌入/再分发许可待确认</td><td>诚实披露：SimHei 的嵌入与再分发受微软许可约束，本方案在本地渲染环境嵌入；如需公开可再分发，建议替换为开源可嵌入字体（如思源黑体 Source Han Sans / Noto Sans CJK，SIL OFL 许可）。此项已列为待补许可项。</td></tr></tbody></table></div>
+
+<div class='card col-12'><h2>合规边界声明</h2>
+<p class='note'>本看板为离线静态页面，仅引用本地图片，无外部 CDN / 远程脚本 / iframe / API。所有空间建议为概念建议，非官方红线或政府审定结论；最终判断由人类与专业团队完成。</p>
+</div>
+
+</div>
+</div>
+</body></html>

@@ -1,0 +1,2469 @@
+{
+  "schema_version": "1.2.0",
+  "dataset_id": "jingzhang-two-answers",
+  "title": {
+    "zh": "京张双答：城市采纳回执",
+    "en": "Jing-Zhang Two Answers: Civic Adoption Receipt"
+  },
+  "status_note": {
+    "zh": "运营绩效均待现场基线；known 仅用于可复算的文档覆盖数。",
+    "en": "Operational performance awaits field baselines; known values are limited to reproducible document coverage counts."
+  },
+  "admission_rule": [
+    "baseline_independently_complete",
+    "same_task_and_users",
+    "no_accessibility_or_equity_regression",
+    "data_energy_labor_lifecycle_recordable",
+    "human_owner_stop_and_restore_defined"
+  ],
+  "decision_options": [
+    "adopt",
+    "revise",
+    "stop"
+  ],
+  "profiles": [
+    {
+      "id": "wheelchair",
+      "name_zh": "轮椅使用者",
+      "name_en": "Wheelchair user"
+    },
+    {
+      "id": "visual_impairment",
+      "name_zh": "视障行人",
+      "name_en": "Pedestrian with visual impairment"
+    },
+    {
+      "id": "no_smartphone_senior",
+      "name_zh": "无智能手机老人",
+      "name_en": "Older adult without a smartphone"
+    },
+    {
+      "id": "resident_carer",
+      "name_zh": "居民及照护者",
+      "name_en": "Resident and caregiver"
+    },
+    {
+      "id": "international_team",
+      "name_zh": "国际研究者及创业团队",
+      "name_en": "International researcher and startup team"
+    },
+    {
+      "id": "night_operator",
+      "name_zh": "夜班运营维护人员",
+      "name_en": "Night operations and maintenance worker"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "SCN-001",
+      "code": "T1",
+      "type": "industry_test",
+      "station": "zhongzhiyuan",
+      "wing": "service_wing",
+      "name": {
+        "zh": "开放模型与数据来源复现",
+        "en": "Open model and data provenance reproduction"
+      },
+      "question": {
+        "zh": "同一公共任务如何先由普通服务可靠完成，再判断 AI 是否带来可证明的增益？——开放模型与数据来源复现",
+        "en": "How can the same civic task work reliably without AI before any AI benefit is considered? — Open model and data provenance reproduction"
+      },
+      "space": {
+        "zh": "众智园能力验证庭·复现室",
+        "en": "Capability Validation Court · reproduction room"
+      },
+      "user_profiles": [
+        "international_team",
+        "night_operator"
+      ],
+      "ordinary_answer": {
+        "zh": "人工登记模型版本、数据许可和复现步骤，提供离线检查清单。",
+        "en": "A staffed registry, paper/offline checklist and manual licence review reproduce versions and provenance."
+      },
+      "ai_answer": {
+        "zh": "在隔离环境运行可选复现助手，生成差异报告但不替代专业签字。",
+        "en": "An optional assistant runs in isolation and produces a difference report without replacing professional sign-off."
+      },
+      "minimum_data": {
+        "zh": "公开模型卡、数据许可、版本哈希、运行日志。",
+        "en": "Published model card, data licence, version hash and run log."
+      },
+      "human_responsibility": {
+        "zh": "可信评测负责人核对来源、许可和差异；批准公开等级。",
+        "en": "The trust-evaluation lead verifies licence and differences and approves disclosure."
+      },
+      "common_metrics": [
+        {
+          "name_zh": "来源字段完整率",
+          "name_en": "Provenance-field completeness",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "复现步骤可执行性",
+          "name_en": "Reproduction-step executability",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "人工复核工时",
+          "name_en": "Human review time",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        }
+      ],
+      "admission_conditions": {
+        "zh": "来源、许可、隔离环境和人工审核人齐备。",
+        "en": "The ordinary answer for T1 is independently operational; accountable staff, minimum data and restoration route are verified."
+      },
+      "stop_conditions": {
+        "zh": "发现无权数据、无法解释的外联或复现环境越界时立即停止。",
+        "en": "Stop T1 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+      },
+      "exit_and_restore": {
+        "zh": "删除临时副本，保留经人工确认的清单、日志哈希和普通登记台。",
+        "en": "Remove and isolate the optional T1 equipment; retain the complete staffed, static and accessible baseline."
+      },
+      "decision_options": [
+        "adopt",
+        "revise",
+        "stop"
+      ],
+      "decision_authority": "human_scenario_committee",
+      "evidence_refs": [
+        "AGENT-TASKBOOK",
+        "CASE-HELSINKI"
+      ],
+      "spatial_ref": "zhongzhiyuan.reproduction_room",
+      "component_ids": [
+        "B01",
+        "B03",
+        "A02",
+        "E01",
+        "E03"
+      ],
+      "journey_steps": [
+        "arrive_on_baseline",
+        "complete_task_without_ai",
+        "actively_choose_ai_if_admitted",
+        "compare_common_metrics",
+        "human_decision",
+        "exit_and_restore"
+      ],
+      "map_focus": {
+        "station": "zhongzhiyuan",
+        "zoom": "detail"
+      },
+      "representative_view": "assets/media/capability-validation-v2.webp",
+      "evidence_status": "not_field_run",
+      "plan_anchor": "Z03",
+      "section_ref": "SEC-Z-01",
+      "operator_flow_ref": "FLOW-Z-01",
+      "exit_asset_ref": "ASSET-REGISTRY",
+      "evidence_tier": "catalog",
+      "plan_ref": "Z03",
+      "detail_ref": null,
+      "operation_window": {
+        "zh": "由场景运营者在普通服务可用时确定",
+        "en": "Set by the scene operator while the baseline service is available"
+      },
+      "baseline_route_ref": "BASELINE-T1",
+      "emergency_route_ref": "FALLBACK-T1",
+      "receipt_fields": {
+        "task": {
+          "zh": "开放模型与数据来源复现",
+          "en": "Open model and data provenance reproduction"
+        },
+        "users": [
+          "international_team",
+          "night_operator"
+        ],
+        "baseline": {
+          "zh": "人工登记模型版本、数据许可和复现步骤，提供离线检查清单。",
+          "en": "A staffed registry, paper/offline checklist and manual licence review reproduce versions and provenance."
+        },
+        "ai_increment": {
+          "zh": "在隔离环境运行可选复现助手，生成差异报告但不替代专业签字。",
+          "en": "An optional assistant runs in isolation and produces a difference report without replacing professional sign-off."
+        },
+        "minimum_data": {
+          "zh": "公开模型卡、数据许可、版本哈希、运行日志。",
+          "en": "Published model card, data licence, version hash and run log."
+        },
+        "accountable_human": {
+          "zh": "可信评测负责人核对来源、许可和差异；批准公开等级。",
+          "en": "The trust-evaluation lead verifies licence and differences and approves disclosure."
+        },
+        "common_metrics": [
+          {
+            "name_zh": "来源字段完整率",
+            "name_en": "Provenance-field completeness",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "复现步骤可执行性",
+            "name_en": "Reproduction-step executability",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "人工复核工时",
+            "name_en": "Human review time",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          }
+        ],
+        "admission": {
+          "zh": "来源、许可、隔离环境和人工审核人齐备。",
+          "en": "The ordinary answer for T1 is independently operational; accountable staff, minimum data and restoration route are verified."
+        },
+        "stop_event": {
+          "zh": "发现无权数据、无法解释的外联或复现环境越界时立即停止。",
+          "en": "Stop T1 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "restored_state": {
+          "zh": "删除临时副本，保留经人工确认的清单、日志哈希和普通登记台。",
+          "en": "Remove and isolate the optional T1 equipment; retain the complete staffed, static and accessible baseline."
+        },
+        "decision": "pending_field_evidence",
+        "allowed_decisions": [
+          "adopt",
+          "revise",
+          "stop"
+        ]
+      }
+    },
+    {
+      "id": "SCN-002",
+      "code": "T2",
+      "type": "industry_test",
+      "station": "zhongzhiyuan",
+      "wing": "service_wing",
+      "name": {
+        "zh": "机器人—行人—无障碍受控测试",
+        "en": "Controlled robot–pedestrian–accessibility test"
+      },
+      "question": {
+        "zh": "同一公共任务如何先由普通服务可靠完成，再判断 AI 是否带来可证明的增益？——机器人—行人—无障碍受控测试",
+        "en": "How can the same civic task work reliably without AI before any AI benefit is considered? — Controlled robot–pedestrian–accessibility test"
+      },
+      "space": {
+        "zh": "众智园能力验证庭·围合测试环",
+        "en": "Capability Validation Court · controlled loop"
+      },
+      "user_profiles": [
+        "wheelchair",
+        "visual_impairment",
+        "night_operator"
+      ],
+      "ordinary_answer": {
+        "zh": "以人工安全员、实体隔离、步行优先路线和手动急停完成小规模测试。",
+        "en": "A safety steward, physical separation, pedestrian-priority route and manual emergency stop support the test."
+      },
+      "ai_answer": {
+        "zh": "可选低速机器人在限定时窗和限定速度内运行，实时记录近失误与人工接管。",
+        "en": "An optional low-speed robot runs only inside a controlled window and records near misses and takeovers."
+      },
+      "minimum_data": {
+        "zh": "匿名事件计数、速度、制动距离、接管时间、测试时窗。",
+        "en": "Anonymous incident counts, speed, braking distance, takeover time and test window."
+      },
+      "human_responsibility": {
+        "zh": "现场安全主管拥有独立断电权；无障碍观察员共同复核。",
+        "en": "The site safety lead holds independent power-off authority with an accessibility observer."
+      },
+      "common_metrics": [
+        {
+          "name_zh": "零伤害事件",
+          "name_en": "Zero-injury events",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "近失误率",
+          "name_en": "Near-miss rate",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "安全停车时间",
+          "name_en": "Safe-stop time",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        }
+      ],
+      "admission_conditions": {
+        "zh": "普通通路持续开放，隔离、急停、保险和人员培训完成。",
+        "en": "The ordinary answer for T2 is independently operational; accountable staff, minimum data and restoration route are verified."
+      },
+      "stop_conditions": {
+        "zh": "任何人进入安全缓冲区、连续两次近失误或急停失效即停止。",
+        "en": "Stop T2 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+      },
+      "exit_and_restore": {
+        "zh": "机器人撤库、临时围栏拆除；保留步行路径、座椅与事件公告位。",
+        "en": "Remove and isolate the optional T2 equipment; retain the complete staffed, static and accessible baseline."
+      },
+      "decision_options": [
+        "adopt",
+        "revise",
+        "stop"
+      ],
+      "decision_authority": "human_scenario_committee",
+      "evidence_refs": [
+        "AGENT-TASKBOOK",
+        "CASE-WOVEN"
+      ],
+      "spatial_ref": "zhongzhiyuan.controlled_loop",
+      "component_ids": [
+        "B01",
+        "B02",
+        "A01",
+        "E01",
+        "E02",
+        "E03"
+      ],
+      "journey_steps": [
+        "arrive_on_baseline",
+        "complete_task_without_ai",
+        "actively_choose_ai_if_admitted",
+        "compare_common_metrics",
+        "human_decision",
+        "exit_and_restore"
+      ],
+      "map_focus": {
+        "station": "zhongzhiyuan",
+        "zoom": "detail"
+      },
+      "representative_view": "assets/media/capability-validation-v2.webp",
+      "evidence_status": "not_field_run",
+      "plan_anchor": "Z02",
+      "section_ref": "SEC-T2-200",
+      "operator_flow_ref": "FLOW-Z-01",
+      "exit_asset_ref": "ASSET-ROBOT-BAY",
+      "evidence_tier": "hero",
+      "plan_ref": "PLAN-Z-2000",
+      "detail_ref": "DETAIL-T2-500",
+      "operation_window": {
+        "zh": "公众旁路 24 小时；机器人测试建议仅 10:00–12:00 / 14:00–16:00，并由现场许可复核",
+        "en": "Public bypass 24/7; robot trial proposed only 10:00–12:00 / 14:00–16:00, subject to site approval"
+      },
+      "baseline_route_ref": "ROUTE-Z-BYPASS",
+      "emergency_route_ref": "ROUTE-Z-EMERGENCY",
+      "receipt_fields": {
+        "task": {
+          "zh": "机器人—行人—无障碍受控测试",
+          "en": "Controlled robot–pedestrian–accessibility test"
+        },
+        "users": [
+          "wheelchair",
+          "visual_impairment",
+          "night_operator"
+        ],
+        "baseline": {
+          "zh": "以人工安全员、实体隔离、步行优先路线和手动急停完成小规模测试。",
+          "en": "A safety steward, physical separation, pedestrian-priority route and manual emergency stop support the test."
+        },
+        "ai_increment": {
+          "zh": "可选低速机器人在限定时窗和限定速度内运行，实时记录近失误与人工接管。",
+          "en": "An optional low-speed robot runs only inside a controlled window and records near misses and takeovers."
+        },
+        "minimum_data": {
+          "zh": "匿名事件计数、速度、制动距离、接管时间、测试时窗。",
+          "en": "Anonymous incident counts, speed, braking distance, takeover time and test window."
+        },
+        "accountable_human": {
+          "zh": "现场安全主管拥有独立断电权；无障碍观察员共同复核。",
+          "en": "The site safety lead holds independent power-off authority with an accessibility observer."
+        },
+        "common_metrics": [
+          {
+            "name_zh": "零伤害事件",
+            "name_en": "Zero-injury events",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "近失误率",
+            "name_en": "Near-miss rate",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "安全停车时间",
+            "name_en": "Safe-stop time",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          }
+        ],
+        "admission": {
+          "zh": "普通通路持续开放，隔离、急停、保险和人员培训完成。",
+          "en": "The ordinary answer for T2 is independently operational; accountable staff, minimum data and restoration route are verified."
+        },
+        "stop_event": {
+          "zh": "任何人进入安全缓冲区、连续两次近失误或急停失效即停止。",
+          "en": "Stop T2 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "restored_state": {
+          "zh": "机器人撤库、临时围栏拆除；保留步行路径、座椅与事件公告位。",
+          "en": "Remove and isolate the optional T2 equipment; retain the complete staffed, static and accessible baseline."
+        },
+        "decision": "pending_field_evidence",
+        "allowed_decisions": [
+          "adopt",
+          "revise",
+          "stop"
+        ]
+      }
+    },
+    {
+      "id": "SCN-003",
+      "code": "T3",
+      "type": "industry_test",
+      "station": "zhongzhiyuan",
+      "wing": "service_wing",
+      "name": {
+        "zh": "端侧算力能耗、噪声与断网降级测试",
+        "en": "Edge compute energy, noise and offline degradation test"
+      },
+      "question": {
+        "zh": "同一公共任务如何先由普通服务可靠完成，再判断 AI 是否带来可证明的增益？——端侧算力能耗、噪声与断网降级测试",
+        "en": "How can the same civic task work reliably without AI before any AI benefit is considered? — Edge compute energy, noise and offline degradation test"
+      },
+      "space": {
+        "zh": "众智园能力验证庭·可拆机柜带",
+        "en": "Capability Validation Court · removable cabinet bay"
+      },
+      "user_profiles": [
+        "night_operator",
+        "resident_carer"
+      ],
+      "ordinary_answer": {
+        "zh": "普通服务以纸质流程、人工台账和独立照明运行。",
+        "en": "Paper procedures, a staffed log and independent lighting keep the ordinary service operational."
+      },
+      "ai_answer": {
+        "zh": "可拆端侧机柜仅处理必要任务，并在断网时自动降级到人工流程。",
+        "en": "A removable edge cabinet handles only necessary tasks and degrades to the staffed process when offline."
+      },
+      "minimum_data": {
+        "zh": "设备功率、任务量、噪声、温度、断网与恢复日志。",
+        "en": "Power, task count, noise, temperature, outage and recovery logs."
+      },
+      "human_responsibility": {
+        "zh": "设施运维负责人每日核验能耗、热环境和降级结果。",
+        "en": "The facilities lead verifies energy, thermal conditions and degradation daily."
+      },
+      "common_metrics": [
+        {
+          "name_zh": "单任务能耗",
+          "name_en": "Energy per task",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "边界噪声",
+          "name_en": "Boundary noise",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "断网恢复完整率",
+          "name_en": "Offline recovery completeness",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        }
+      ],
+      "admission_conditions": {
+        "zh": "独立回路、断网演练、消防和热管理审查完成。",
+        "en": "The ordinary answer for T3 is independently operational; accountable staff, minimum data and restoration route are verified."
+      },
+      "stop_conditions": {
+        "zh": "超过许可噪声/热环境、异常外传或降级失败时停止。",
+        "en": "Stop T3 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+      },
+      "exit_and_restore": {
+        "zh": "机柜整机移除，恢复预留空腔与普通电气检修口。",
+        "en": "Remove and isolate the optional T3 equipment; retain the complete staffed, static and accessible baseline."
+      },
+      "decision_options": [
+        "adopt",
+        "revise",
+        "stop"
+      ],
+      "decision_authority": "human_scenario_committee",
+      "evidence_refs": [
+        "AGENT-TASKBOOK",
+        "CASE-PARIS-SACLAY"
+      ],
+      "spatial_ref": "zhongzhiyuan.maintenance_yard",
+      "component_ids": [
+        "B01",
+        "B03",
+        "A02",
+        "E01",
+        "E02",
+        "E03"
+      ],
+      "journey_steps": [
+        "arrive_on_baseline",
+        "complete_task_without_ai",
+        "actively_choose_ai_if_admitted",
+        "compare_common_metrics",
+        "human_decision",
+        "exit_and_restore"
+      ],
+      "map_focus": {
+        "station": "zhongzhiyuan",
+        "zoom": "detail"
+      },
+      "representative_view": "assets/media/capability-validation-v2.webp",
+      "evidence_status": "not_field_run",
+      "plan_anchor": "Z04",
+      "section_ref": "SEC-Z-01",
+      "operator_flow_ref": "FLOW-Z-01",
+      "exit_asset_ref": "ASSET-EDGE-CABINET",
+      "evidence_tier": "catalog",
+      "plan_ref": "Z04",
+      "detail_ref": null,
+      "operation_window": {
+        "zh": "由场景运营者在普通服务可用时确定",
+        "en": "Set by the scene operator while the baseline service is available"
+      },
+      "baseline_route_ref": "BASELINE-T3",
+      "emergency_route_ref": "FALLBACK-T3",
+      "receipt_fields": {
+        "task": {
+          "zh": "端侧算力能耗、噪声与断网降级测试",
+          "en": "Edge compute energy, noise and offline degradation test"
+        },
+        "users": [
+          "night_operator",
+          "resident_carer"
+        ],
+        "baseline": {
+          "zh": "普通服务以纸质流程、人工台账和独立照明运行。",
+          "en": "Paper procedures, a staffed log and independent lighting keep the ordinary service operational."
+        },
+        "ai_increment": {
+          "zh": "可拆端侧机柜仅处理必要任务，并在断网时自动降级到人工流程。",
+          "en": "A removable edge cabinet handles only necessary tasks and degrades to the staffed process when offline."
+        },
+        "minimum_data": {
+          "zh": "设备功率、任务量、噪声、温度、断网与恢复日志。",
+          "en": "Power, task count, noise, temperature, outage and recovery logs."
+        },
+        "accountable_human": {
+          "zh": "设施运维负责人每日核验能耗、热环境和降级结果。",
+          "en": "The facilities lead verifies energy, thermal conditions and degradation daily."
+        },
+        "common_metrics": [
+          {
+            "name_zh": "单任务能耗",
+            "name_en": "Energy per task",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "边界噪声",
+            "name_en": "Boundary noise",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "断网恢复完整率",
+            "name_en": "Offline recovery completeness",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          }
+        ],
+        "admission": {
+          "zh": "独立回路、断网演练、消防和热管理审查完成。",
+          "en": "The ordinary answer for T3 is independently operational; accountable staff, minimum data and restoration route are verified."
+        },
+        "stop_event": {
+          "zh": "超过许可噪声/热环境、异常外传或降级失败时停止。",
+          "en": "Stop T3 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "restored_state": {
+          "zh": "机柜整机移除，恢复预留空腔与普通电气检修口。",
+          "en": "Remove and isolate the optional T3 equipment; retain the complete staffed, static and accessible baseline."
+        },
+        "decision": "pending_field_evidence",
+        "allowed_decisions": [
+          "adopt",
+          "revise",
+          "stop"
+        ]
+      }
+    },
+    {
+      "id": "SCN-004",
+      "code": "S1",
+      "type": "public_service",
+      "station": "ai_origin",
+      "wing": "service_wing",
+      "name": {
+        "zh": "企业服务人工窗口与 AI 辅助分诊",
+        "en": "Staffed enterprise service with optional AI triage"
+      },
+      "question": {
+        "zh": "同一公共任务如何先由普通服务可靠完成，再判断 AI 是否带来可证明的增益？——企业服务人工窗口与 AI 辅助分诊",
+        "en": "How can the same civic task work reliably without AI before any AI benefit is considered? — Staffed enterprise service with optional AI triage"
+      },
+      "space": {
+        "zh": "AI 原点公共转译厅·企业窗口",
+        "en": "AI Origin Public Translation Hall · enterprise desk"
+      },
+      "user_profiles": [
+        "international_team",
+        "no_smartphone_senior"
+      ],
+      "ordinary_answer": {
+        "zh": "人工窗口用纸质清单说明法务、知识产权、评测和融资路径。",
+        "en": "A staffed desk and printed directory explain legal, IP, evaluation and finance routes."
+      },
+      "ai_answer": {
+        "zh": "可选分诊助手按公开目录建议下一站，不生成正式法律或投资意见。",
+        "en": "Optional triage suggests the next desk from a public directory and never issues formal legal or investment advice."
+      },
+      "minimum_data": {
+        "zh": "问题类别、转介去向、等待时间、人工改判原因。",
+        "en": "Question class, referral, waiting time and reason for human override."
+      },
+      "human_responsibility": {
+        "zh": "窗口主管确认所有转介；专业事项由持证人员处理。",
+        "en": "The desk lead confirms every referral; licensed professionals handle specialist matters."
+      },
+      "common_metrics": [
+        {
+          "name_zh": "一次转介完成率",
+          "name_en": "First-referral completion",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "人工改判率",
+          "name_en": "Human override rate",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "无账户服务覆盖",
+          "name_en": "No-account service coverage",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        }
+      ],
+      "admission_conditions": {
+        "zh": "服务目录、人工窗口和责任边界先独立运行。",
+        "en": "The ordinary answer for S1 is independently operational; accountable staff, minimum data and restoration route are verified."
+      },
+      "stop_conditions": {
+        "zh": "高风险事项被自动决定、连续误分诊或人工窗口不可用时停止 AI。",
+        "en": "Stop S1 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+      },
+      "exit_and_restore": {
+        "zh": "撤除终端，继续使用人工窗口、纸质目录和预约电话。",
+        "en": "Remove and isolate the optional S1 equipment; retain the complete staffed, static and accessible baseline."
+      },
+      "decision_options": [
+        "adopt",
+        "revise",
+        "stop"
+      ],
+      "decision_authority": "human_scenario_committee",
+      "evidence_refs": [
+        "AGENT-TASKBOOK",
+        "CASE-ONE-NORTH",
+        "REGION-BEIWEI"
+      ],
+      "spatial_ref": "ai_origin.enterprise_desk",
+      "component_ids": [
+        "B01",
+        "B03",
+        "A03",
+        "E01",
+        "E03"
+      ],
+      "journey_steps": [
+        "arrive_on_baseline",
+        "complete_task_without_ai",
+        "actively_choose_ai_if_admitted",
+        "compare_common_metrics",
+        "human_decision",
+        "exit_and_restore"
+      ],
+      "map_focus": {
+        "station": "ai_origin",
+        "zoom": "detail"
+      },
+      "representative_view": "assets/media/public-translation-v2.webp",
+      "evidence_status": "not_field_run",
+      "plan_anchor": "A12",
+      "section_ref": "SEC-A-01",
+      "operator_flow_ref": "FLOW-A-01",
+      "exit_asset_ref": "ASSET-SERVICE-DESK",
+      "evidence_tier": "catalog",
+      "plan_ref": "A12",
+      "detail_ref": null,
+      "operation_window": {
+        "zh": "由场景运营者在普通服务可用时确定",
+        "en": "Set by the scene operator while the baseline service is available"
+      },
+      "baseline_route_ref": "BASELINE-S1",
+      "emergency_route_ref": "FALLBACK-S1",
+      "receipt_fields": {
+        "task": {
+          "zh": "企业服务人工窗口与 AI 辅助分诊",
+          "en": "Staffed enterprise service with optional AI triage"
+        },
+        "users": [
+          "international_team",
+          "no_smartphone_senior"
+        ],
+        "baseline": {
+          "zh": "人工窗口用纸质清单说明法务、知识产权、评测和融资路径。",
+          "en": "A staffed desk and printed directory explain legal, IP, evaluation and finance routes."
+        },
+        "ai_increment": {
+          "zh": "可选分诊助手按公开目录建议下一站，不生成正式法律或投资意见。",
+          "en": "Optional triage suggests the next desk from a public directory and never issues formal legal or investment advice."
+        },
+        "minimum_data": {
+          "zh": "问题类别、转介去向、等待时间、人工改判原因。",
+          "en": "Question class, referral, waiting time and reason for human override."
+        },
+        "accountable_human": {
+          "zh": "窗口主管确认所有转介；专业事项由持证人员处理。",
+          "en": "The desk lead confirms every referral; licensed professionals handle specialist matters."
+        },
+        "common_metrics": [
+          {
+            "name_zh": "一次转介完成率",
+            "name_en": "First-referral completion",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "人工改判率",
+            "name_en": "Human override rate",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "无账户服务覆盖",
+            "name_en": "No-account service coverage",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          }
+        ],
+        "admission": {
+          "zh": "服务目录、人工窗口和责任边界先独立运行。",
+          "en": "The ordinary answer for S1 is independently operational; accountable staff, minimum data and restoration route are verified."
+        },
+        "stop_event": {
+          "zh": "高风险事项被自动决定、连续误分诊或人工窗口不可用时停止 AI。",
+          "en": "Stop S1 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "restored_state": {
+          "zh": "撤除终端，继续使用人工窗口、纸质目录和预约电话。",
+          "en": "Remove and isolate the optional S1 equipment; retain the complete staffed, static and accessible baseline."
+        },
+        "decision": "pending_field_evidence",
+        "allowed_decisions": [
+          "adopt",
+          "revise",
+          "stop"
+        ]
+      }
+    },
+    {
+      "id": "SCN-005",
+      "code": "S2",
+      "type": "public_service",
+      "station": "ai_origin",
+      "wing": "service_wing",
+      "name": {
+        "zh": "国际人才抵达与公共服务导航",
+        "en": "International arrival and civic-service navigation"
+      },
+      "question": {
+        "zh": "同一公共任务如何先由普通服务可靠完成，再判断 AI 是否带来可证明的增益？——国际人才抵达与公共服务导航",
+        "en": "How can the same civic task work reliably without AI before any AI benefit is considered? — International arrival and civic-service navigation"
+      },
+      "space": {
+        "zh": "AI 原点公共转译厅·抵达台",
+        "en": "AI Origin Public Translation Hall · arrival desk"
+      },
+      "user_profiles": [
+        "international_team",
+        "wheelchair",
+        "no_smartphone_senior"
+      ],
+      "ordinary_answer": {
+        "zh": "双语人工接待、纸质地图、静态导视和电话预约提供完整抵达服务。",
+        "en": "A multilingual staffed desk, paper map, static signs and phone booking provide a complete arrival service."
+      },
+      "ai_answer": {
+        "zh": "可选多语导航助手解释公开办事目录，并把不确定问题交给人工。",
+        "en": "Optional multilingual guidance explains public procedures and hands uncertain questions to staff."
+      },
+      "minimum_data": {
+        "zh": "语言、问题类型、转介结果；不留存证件影像。",
+        "en": "Language, question class and referral result; no identity-document images."
+      },
+      "human_responsibility": {
+        "zh": "双语服务主管复核高风险和不确定答复。",
+        "en": "The multilingual service lead reviews high-risk and uncertain answers."
+      },
+      "common_metrics": [
+        {
+          "name_zh": "人工接管率",
+          "name_en": "Human takeover rate",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "到站任务完成率",
+          "name_en": "Arrival-task completion",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "错误信息纠正时长",
+          "name_en": "Correction time",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        }
+      ],
+      "admission_conditions": {
+        "zh": "无账户、无手机路径和人工接待已验证。",
+        "en": "The ordinary answer for S2 is independently operational; accountable staff, minimum data and restoration route are verified."
+      },
+      "stop_conditions": {
+        "zh": "出现身份误用、翻译改变权利义务或错误无法及时纠正时停止。",
+        "en": "Stop S2 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+      },
+      "exit_and_restore": {
+        "zh": "关闭终端，保留人工接待、纸质地图和静态双语导视。",
+        "en": "Remove and isolate the optional S2 equipment; retain the complete staffed, static and accessible baseline."
+      },
+      "decision_options": [
+        "adopt",
+        "revise",
+        "stop"
+      ],
+      "decision_authority": "human_scenario_committee",
+      "evidence_refs": [
+        "AGENT-TASKBOOK",
+        "CASE-BRAINPORT"
+      ],
+      "spatial_ref": "ai_origin.arrival_desk",
+      "component_ids": [
+        "B01",
+        "B02",
+        "B03",
+        "A03",
+        "E01",
+        "E03"
+      ],
+      "journey_steps": [
+        "arrive_on_baseline",
+        "complete_task_without_ai",
+        "actively_choose_ai_if_admitted",
+        "compare_common_metrics",
+        "human_decision",
+        "exit_and_restore"
+      ],
+      "map_focus": {
+        "station": "ai_origin",
+        "zoom": "detail"
+      },
+      "representative_view": "assets/media/public-translation-v2.webp",
+      "evidence_status": "not_field_run",
+      "plan_anchor": "A13",
+      "section_ref": "SEC-S2-200",
+      "operator_flow_ref": "FLOW-A-01",
+      "exit_asset_ref": "ASSET-BILINGUAL-KIOSK",
+      "evidence_tier": "hero",
+      "plan_ref": "PLAN-A-2000",
+      "detail_ref": "DETAIL-S2-500",
+      "operation_window": {
+        "zh": "公共大厅按普通开放时间运行；AI 导航仅在双语人工台在岗时开放",
+        "en": "The hall follows ordinary opening hours; AI navigation opens only while the bilingual staffed desk is available"
+      },
+      "baseline_route_ref": "ROUTE-A-PASSAGES",
+      "emergency_route_ref": "ROUTE-A-EMERGENCY",
+      "receipt_fields": {
+        "task": {
+          "zh": "国际人才抵达与公共服务导航",
+          "en": "International arrival and civic-service navigation"
+        },
+        "users": [
+          "international_team",
+          "wheelchair",
+          "no_smartphone_senior"
+        ],
+        "baseline": {
+          "zh": "双语人工接待、纸质地图、静态导视和电话预约提供完整抵达服务。",
+          "en": "A multilingual staffed desk, paper map, static signs and phone booking provide a complete arrival service."
+        },
+        "ai_increment": {
+          "zh": "可选多语导航助手解释公开办事目录，并把不确定问题交给人工。",
+          "en": "Optional multilingual guidance explains public procedures and hands uncertain questions to staff."
+        },
+        "minimum_data": {
+          "zh": "语言、问题类型、转介结果；不留存证件影像。",
+          "en": "Language, question class and referral result; no identity-document images."
+        },
+        "accountable_human": {
+          "zh": "双语服务主管复核高风险和不确定答复。",
+          "en": "The multilingual service lead reviews high-risk and uncertain answers."
+        },
+        "common_metrics": [
+          {
+            "name_zh": "人工接管率",
+            "name_en": "Human takeover rate",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "到站任务完成率",
+            "name_en": "Arrival-task completion",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "错误信息纠正时长",
+            "name_en": "Correction time",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          }
+        ],
+        "admission": {
+          "zh": "无账户、无手机路径和人工接待已验证。",
+          "en": "The ordinary answer for S2 is independently operational; accountable staff, minimum data and restoration route are verified."
+        },
+        "stop_event": {
+          "zh": "出现身份误用、翻译改变权利义务或错误无法及时纠正时停止。",
+          "en": "Stop S2 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "restored_state": {
+          "zh": "关闭终端，保留人工接待、纸质地图和静态双语导视。",
+          "en": "Remove and isolate the optional S2 equipment; retain the complete staffed, static and accessible baseline."
+        },
+        "decision": "pending_field_evidence",
+        "allowed_decisions": [
+          "adopt",
+          "revise",
+          "stop"
+        ]
+      }
+    },
+    {
+      "id": "SCN-006",
+      "code": "S3",
+      "type": "knowledge",
+      "station": "ai_origin",
+      "wing": "service_wing",
+      "name": {
+        "zh": "开源知识匹配与社区问题工作坊",
+        "en": "Open knowledge matching and community problem workshop"
+      },
+      "question": {
+        "zh": "同一公共任务如何先由普通服务可靠完成，再判断 AI 是否带来可证明的增益？——开源知识匹配与社区问题工作坊",
+        "en": "How can the same civic task work reliably without AI before any AI benefit is considered? — Open knowledge matching and community problem workshop"
+      },
+      "space": {
+        "zh": "AI 原点公共转译厅·共创桌",
+        "en": "AI Origin Public Translation Hall · co-creation tables"
+      },
+      "user_profiles": [
+        "resident_carer",
+        "international_team"
+      ],
+      "ordinary_answer": {
+        "zh": "主持人用问题卡、公开目录和面对面工作坊匹配社区问题与专业资源。",
+        "en": "A facilitator uses problem cards, a public directory and face-to-face workshops to match needs and resources."
+      },
+      "ai_answer": {
+        "zh": "可选助手检索已授权开源知识，提出候选而不替代社区优先级判断。",
+        "en": "An optional assistant searches licensed open knowledge and proposes candidates without setting community priorities."
+      },
+      "minimum_data": {
+        "zh": "问题卡、许可、候选来源、采纳/修改/拒绝理由。",
+        "en": "Problem card, licence, candidate source and adopt/revise/reject reason."
+      },
+      "human_responsibility": {
+        "zh": "社区主持人与领域专家共同确认问题定义和引用边界。",
+        "en": "A community facilitator and domain expert confirm the problem and citation boundary."
+      },
+      "common_metrics": [
+        {
+          "name_zh": "问题闭环率",
+          "name_en": "Problem closure rate",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "来源可追溯率",
+          "name_en": "Source traceability",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "社区否决被尊重率",
+          "name_en": "Community veto respected",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        }
+      ],
+      "admission_conditions": {
+        "zh": "社区议程、公开许可和人工主持先成立。",
+        "en": "The ordinary answer for S3 is independently operational; accountable staff, minimum data and restoration route are verified."
+      },
+      "stop_conditions": {
+        "zh": "抓取无许可内容、生成不可追溯建议或压过社区选择时停止。",
+        "en": "Stop S3 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+      },
+      "exit_and_restore": {
+        "zh": "删除临时候选库，保留纸质问题卡、工作坊桌和公开来源清单。",
+        "en": "Remove and isolate the optional S3 equipment; retain the complete staffed, static and accessible baseline."
+      },
+      "decision_options": [
+        "adopt",
+        "revise",
+        "stop"
+      ],
+      "decision_authority": "human_scenario_committee",
+      "evidence_refs": [
+        "AGENT-TASKBOOK",
+        "CASE-BARCELONA"
+      ],
+      "spatial_ref": "ai_origin.problem_workshop",
+      "component_ids": [
+        "B01",
+        "B02",
+        "B03",
+        "A03",
+        "E01",
+        "E03"
+      ],
+      "journey_steps": [
+        "arrive_on_baseline",
+        "complete_task_without_ai",
+        "actively_choose_ai_if_admitted",
+        "compare_common_metrics",
+        "human_decision",
+        "exit_and_restore"
+      ],
+      "map_focus": {
+        "station": "ai_origin",
+        "zoom": "detail"
+      },
+      "representative_view": "assets/media/public-translation-v2.webp",
+      "evidence_status": "not_field_run",
+      "plan_anchor": "A14",
+      "section_ref": "SEC-A-01",
+      "operator_flow_ref": "FLOW-A-01",
+      "exit_asset_ref": "ASSET-WORKSHOP-KIT",
+      "evidence_tier": "catalog",
+      "plan_ref": "A14",
+      "detail_ref": null,
+      "operation_window": {
+        "zh": "由场景运营者在普通服务可用时确定",
+        "en": "Set by the scene operator while the baseline service is available"
+      },
+      "baseline_route_ref": "BASELINE-S3",
+      "emergency_route_ref": "FALLBACK-S3",
+      "receipt_fields": {
+        "task": {
+          "zh": "开源知识匹配与社区问题工作坊",
+          "en": "Open knowledge matching and community problem workshop"
+        },
+        "users": [
+          "resident_carer",
+          "international_team"
+        ],
+        "baseline": {
+          "zh": "主持人用问题卡、公开目录和面对面工作坊匹配社区问题与专业资源。",
+          "en": "A facilitator uses problem cards, a public directory and face-to-face workshops to match needs and resources."
+        },
+        "ai_increment": {
+          "zh": "可选助手检索已授权开源知识，提出候选而不替代社区优先级判断。",
+          "en": "An optional assistant searches licensed open knowledge and proposes candidates without setting community priorities."
+        },
+        "minimum_data": {
+          "zh": "问题卡、许可、候选来源、采纳/修改/拒绝理由。",
+          "en": "Problem card, licence, candidate source and adopt/revise/reject reason."
+        },
+        "accountable_human": {
+          "zh": "社区主持人与领域专家共同确认问题定义和引用边界。",
+          "en": "A community facilitator and domain expert confirm the problem and citation boundary."
+        },
+        "common_metrics": [
+          {
+            "name_zh": "问题闭环率",
+            "name_en": "Problem closure rate",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "来源可追溯率",
+            "name_en": "Source traceability",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "社区否决被尊重率",
+            "name_en": "Community veto respected",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          }
+        ],
+        "admission": {
+          "zh": "社区议程、公开许可和人工主持先成立。",
+          "en": "The ordinary answer for S3 is independently operational; accountable staff, minimum data and restoration route are verified."
+        },
+        "stop_event": {
+          "zh": "抓取无许可内容、生成不可追溯建议或压过社区选择时停止。",
+          "en": "Stop S3 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "restored_state": {
+          "zh": "删除临时候选库，保留纸质问题卡、工作坊桌和公开来源清单。",
+          "en": "Remove and isolate the optional S3 equipment; retain the complete staffed, static and accessible baseline."
+        },
+        "decision": "pending_field_evidence",
+        "allowed_decisions": [
+          "adopt",
+          "revise",
+          "stop"
+        ]
+      }
+    },
+    {
+      "id": "SCN-007",
+      "code": "S4",
+      "type": "culture",
+      "station": "baseline_spine",
+      "wing": "service_wing",
+      "name": {
+        "zh": "京张文化人工导览与 AI 可选讲解",
+        "en": "Staffed Jing-Zhang heritage tour with optional AI narration"
+      },
+      "question": {
+        "zh": "同一公共任务如何先由普通服务可靠完成，再判断 AI 是否带来可证明的增益？——京张文化人工导览与 AI 可选讲解",
+        "en": "How can the same civic task work reliably without AI before any AI benefit is considered? — Staffed Jing-Zhang heritage tour with optional AI narration"
+      },
+      "space": {
+        "zh": "公共基线脊·铁路记忆节点",
+        "en": "Public Baseline Spine · rail-memory stop"
+      },
+      "user_profiles": [
+        "visual_impairment",
+        "no_smartphone_senior",
+        "international_team"
+      ],
+      "ordinary_answer": {
+        "zh": "人工讲解、触摸模型、静态图文和纸质路线构成完整文化服务。",
+        "en": "Human guides, tactile models, static interpretation and a paper route provide a complete heritage service."
+      },
+      "ai_answer": {
+        "zh": "可选讲解按已核验史料提供多语版本，并显示来源与不确定性。",
+        "en": "Optional narration uses verified sources, exposes citations and states uncertainty."
+      },
+      "minimum_data": {
+        "zh": "史料版本、来源、纠错记录、人工讲解排班。",
+        "en": "Source version, citation, correction log and guide roster."
+      },
+      "human_responsibility": {
+        "zh": "遗产内容编辑与讲解员共同批准公开版本。",
+        "en": "A heritage editor and guide jointly approve every public version."
+      },
+      "common_metrics": [
+        {
+          "name_zh": "来源可追溯率",
+          "name_en": "Source traceability",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "纠错时长",
+          "name_en": "Correction time",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "无屏参与覆盖",
+          "name_en": "Screen-free participation coverage",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        }
+      ],
+      "admission_conditions": {
+        "zh": "史料授权、人工讲解和无屏材料完备。",
+        "en": "The ordinary answer for S4 is independently operational; accountable staff, minimum data and restoration route are verified."
+      },
+      "stop_conditions": {
+        "zh": "出现无来源断言、错误未纠正或影响遗产安全时停止。",
+        "en": "Stop S4 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+      },
+      "exit_and_restore": {
+        "zh": "撤除终端，保留触摸模型、标牌、纸质路线与人工讲解点。",
+        "en": "Remove and isolate the optional S4 equipment; retain the complete staffed, static and accessible baseline."
+      },
+      "decision_options": [
+        "adopt",
+        "revise",
+        "stop"
+      ],
+      "decision_authority": "human_scenario_committee",
+      "evidence_refs": [
+        "AGENT-TASKBOOK",
+        "OFFICIAL-ANNOUNCEMENT"
+      ],
+      "spatial_ref": "baseline_spine.heritage_stop",
+      "component_ids": [
+        "B01",
+        "B02",
+        "B03",
+        "A03",
+        "E03"
+      ],
+      "journey_steps": [
+        "arrive_on_baseline",
+        "complete_task_without_ai",
+        "actively_choose_ai_if_admitted",
+        "compare_common_metrics",
+        "human_decision",
+        "exit_and_restore"
+      ],
+      "map_focus": {
+        "station": "baseline_spine",
+        "zoom": "corridor"
+      },
+      "representative_view": "assets/media/two-answers-cover-v2.webp",
+      "evidence_status": "not_field_run",
+      "plan_anchor": "SP-S4",
+      "section_ref": "SEC-SP-01",
+      "operator_flow_ref": "FLOW-SP-01",
+      "exit_asset_ref": "ASSET-CULTURE-STOP",
+      "evidence_tier": "catalog",
+      "plan_ref": "SP-S4",
+      "detail_ref": null,
+      "operation_window": {
+        "zh": "由场景运营者在普通服务可用时确定",
+        "en": "Set by the scene operator while the baseline service is available"
+      },
+      "baseline_route_ref": "BASELINE-S4",
+      "emergency_route_ref": "FALLBACK-S4",
+      "receipt_fields": {
+        "task": {
+          "zh": "京张文化人工导览与 AI 可选讲解",
+          "en": "Staffed Jing-Zhang heritage tour with optional AI narration"
+        },
+        "users": [
+          "visual_impairment",
+          "no_smartphone_senior",
+          "international_team"
+        ],
+        "baseline": {
+          "zh": "人工讲解、触摸模型、静态图文和纸质路线构成完整文化服务。",
+          "en": "Human guides, tactile models, static interpretation and a paper route provide a complete heritage service."
+        },
+        "ai_increment": {
+          "zh": "可选讲解按已核验史料提供多语版本，并显示来源与不确定性。",
+          "en": "Optional narration uses verified sources, exposes citations and states uncertainty."
+        },
+        "minimum_data": {
+          "zh": "史料版本、来源、纠错记录、人工讲解排班。",
+          "en": "Source version, citation, correction log and guide roster."
+        },
+        "accountable_human": {
+          "zh": "遗产内容编辑与讲解员共同批准公开版本。",
+          "en": "A heritage editor and guide jointly approve every public version."
+        },
+        "common_metrics": [
+          {
+            "name_zh": "来源可追溯率",
+            "name_en": "Source traceability",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "纠错时长",
+            "name_en": "Correction time",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "无屏参与覆盖",
+            "name_en": "Screen-free participation coverage",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          }
+        ],
+        "admission": {
+          "zh": "史料授权、人工讲解和无屏材料完备。",
+          "en": "The ordinary answer for S4 is independently operational; accountable staff, minimum data and restoration route are verified."
+        },
+        "stop_event": {
+          "zh": "出现无来源断言、错误未纠正或影响遗产安全时停止。",
+          "en": "Stop S4 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "restored_state": {
+          "zh": "撤除终端，保留触摸模型、标牌、纸质路线与人工讲解点。",
+          "en": "Remove and isolate the optional S4 equipment; retain the complete staffed, static and accessible baseline."
+        },
+        "decision": "pending_field_evidence",
+        "allowed_decisions": [
+          "adopt",
+          "revise",
+          "stop"
+        ]
+      }
+    },
+    {
+      "id": "SCN-008",
+      "code": "S5",
+      "type": "accessibility",
+      "station": "baseline_spine",
+      "wing": "scene_wing",
+      "name": {
+        "zh": "静态无障碍导视与动态辅助导航",
+        "en": "Static accessible wayfinding with optional dynamic assistance"
+      },
+      "question": {
+        "zh": "同一公共任务如何先由普通服务可靠完成，再判断 AI 是否带来可证明的增益？——静态无障碍导视与动态辅助导航",
+        "en": "How can the same civic task work reliably without AI before any AI benefit is considered? — Static accessible wayfinding with optional dynamic assistance"
+      },
+      "space": {
+        "zh": "公共基线脊·连续无障碍路径",
+        "en": "Public Baseline Spine · continuous accessible route"
+      },
+      "user_profiles": [
+        "wheelchair",
+        "visual_impairment",
+        "no_smartphone_senior"
+      ],
+      "ordinary_answer": {
+        "zh": "连续坡道、盲道、触觉节点、高对比静态导视和人工问路点独立成立。",
+        "en": "Ramps, tactile paving, high-contrast static signs and staffed help points form a continuous route."
+      },
+      "ai_answer": {
+        "zh": "可选动态导航只在用户主动选择时给出障碍提醒，不持续追踪。",
+        "en": "Opt-in dynamic guidance reports barriers without continuous tracking."
+      },
+      "minimum_data": {
+        "zh": "障碍点、路线版本、主动报告、人工修复状态。",
+        "en": "Barrier point, route version, opt-in report and repair status."
+      },
+      "human_responsibility": {
+        "zh": "无障碍审计负责人现场复核路线与替代路径。",
+        "en": "An accessibility auditor verifies the route and alternative path on site."
+      },
+      "common_metrics": [
+        {
+          "name_zh": "连续通行率",
+          "name_en": "Continuous-access rate",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "错误路线报告",
+          "name_en": "Wrong-route reports",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "障碍修复时长",
+          "name_en": "Barrier repair time",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        }
+      ],
+      "admission_conditions": {
+        "zh": "完整静态系统和人工问路点已通过六类画像压力测试。",
+        "en": "The ordinary answer for S5 is independently operational; accountable staff, minimum data and restoration route are verified."
+      },
+      "stop_conditions": {
+        "zh": "导航引向障碍、无障碍路径中断或退出后仍留存轨迹时停止。",
+        "en": "Stop S5 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+      },
+      "exit_and_restore": {
+        "zh": "关闭动态服务；静态导视、触觉节点和人工问路保持不变。",
+        "en": "Remove and isolate the optional S5 equipment; retain the complete staffed, static and accessible baseline."
+      },
+      "decision_options": [
+        "adopt",
+        "revise",
+        "stop"
+      ],
+      "decision_authority": "human_scenario_committee",
+      "evidence_refs": [
+        "AGENT-TASKBOOK",
+        "OFFICIAL-ANNOUNCEMENT"
+      ],
+      "spatial_ref": "baseline_spine.accessible_route",
+      "component_ids": [
+        "B01",
+        "B02",
+        "B03",
+        "A03",
+        "E02",
+        "E03"
+      ],
+      "journey_steps": [
+        "arrive_on_baseline",
+        "complete_task_without_ai",
+        "actively_choose_ai_if_admitted",
+        "compare_common_metrics",
+        "human_decision",
+        "exit_and_restore"
+      ],
+      "map_focus": {
+        "station": "baseline_spine",
+        "zoom": "corridor"
+      },
+      "representative_view": "assets/media/two-answers-cover-v2.webp",
+      "evidence_status": "not_field_run",
+      "plan_anchor": "SP-S5",
+      "section_ref": "SEC-SP-01",
+      "operator_flow_ref": "FLOW-SP-01",
+      "exit_asset_ref": "ASSET-NAV-PLUGIN",
+      "evidence_tier": "catalog",
+      "plan_ref": "SP-S5",
+      "detail_ref": null,
+      "operation_window": {
+        "zh": "由场景运营者在普通服务可用时确定",
+        "en": "Set by the scene operator while the baseline service is available"
+      },
+      "baseline_route_ref": "BASELINE-S5",
+      "emergency_route_ref": "FALLBACK-S5",
+      "receipt_fields": {
+        "task": {
+          "zh": "静态无障碍导视与动态辅助导航",
+          "en": "Static accessible wayfinding with optional dynamic assistance"
+        },
+        "users": [
+          "wheelchair",
+          "visual_impairment",
+          "no_smartphone_senior"
+        ],
+        "baseline": {
+          "zh": "连续坡道、盲道、触觉节点、高对比静态导视和人工问路点独立成立。",
+          "en": "Ramps, tactile paving, high-contrast static signs and staffed help points form a continuous route."
+        },
+        "ai_increment": {
+          "zh": "可选动态导航只在用户主动选择时给出障碍提醒，不持续追踪。",
+          "en": "Opt-in dynamic guidance reports barriers without continuous tracking."
+        },
+        "minimum_data": {
+          "zh": "障碍点、路线版本、主动报告、人工修复状态。",
+          "en": "Barrier point, route version, opt-in report and repair status."
+        },
+        "accountable_human": {
+          "zh": "无障碍审计负责人现场复核路线与替代路径。",
+          "en": "An accessibility auditor verifies the route and alternative path on site."
+        },
+        "common_metrics": [
+          {
+            "name_zh": "连续通行率",
+            "name_en": "Continuous-access rate",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "错误路线报告",
+            "name_en": "Wrong-route reports",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "障碍修复时长",
+            "name_en": "Barrier repair time",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          }
+        ],
+        "admission": {
+          "zh": "完整静态系统和人工问路点已通过六类画像压力测试。",
+          "en": "The ordinary answer for S5 is independently operational; accountable staff, minimum data and restoration route are verified."
+        },
+        "stop_event": {
+          "zh": "导航引向障碍、无障碍路径中断或退出后仍留存轨迹时停止。",
+          "en": "Stop S5 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "restored_state": {
+          "zh": "关闭动态服务；静态导视、触觉节点和人工问路保持不变。",
+          "en": "Remove and isolate the optional S5 equipment; retain the complete staffed, static and accessible baseline."
+        },
+        "decision": "pending_field_evidence",
+        "allowed_decisions": [
+          "adopt",
+          "revise",
+          "stop"
+        ]
+      }
+    },
+    {
+      "id": "SCN-009",
+      "code": "S6",
+      "type": "climate",
+      "station": "xiaoyuehe",
+      "wing": "scene_wing",
+      "name": {
+        "zh": "遮阴、休息和极端天气服务提示",
+        "en": "Shade, rest and extreme-weather service prompts"
+      },
+      "question": {
+        "zh": "同一公共任务如何先由普通服务可靠完成，再判断 AI 是否带来可证明的增益？——遮阴、休息和极端天气服务提示",
+        "en": "How can the same civic task work reliably without AI before any AI benefit is considered? — Shade, rest and extreme-weather service prompts"
+      },
+      "space": {
+        "zh": "小月河场景赋能翼·气候休息点",
+        "en": "Xiaoyuehe Scene Wing · climate rest point"
+      },
+      "user_profiles": [
+        "resident_carer",
+        "no_smartphone_senior",
+        "night_operator"
+      ],
+      "ordinary_answer": {
+        "zh": "树荫、雨棚、座椅、饮水、公告牌和人工巡查构成常态服务。",
+        "en": "Trees, canopy, seating, water, noticeboard and human inspection provide the everyday climate service."
+      },
+      "ai_answer": {
+        "zh": "可选端侧提示结合公开预警和现场非识别传感，建议开放/关闭休息点。",
+        "en": "Optional on-device prompts combine public alerts and non-identifying sensors; staff decide opening and closure."
+      },
+      "minimum_data": {
+        "zh": "公开预警、温湿度、设施开放状态、人工巡查记录。",
+        "en": "Public alert, temperature/humidity, facility status and inspection log."
+      },
+      "human_responsibility": {
+        "zh": "公园运营负责人决定开放、关闭和应急处置。",
+        "en": "The park operator decides opening, closure and emergency action."
+      },
+      "common_metrics": [
+        {
+          "name_zh": "可用休息点比例",
+          "name_en": "Available rest-point ratio",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "预警转人工确认时长",
+          "name_en": "Alert-to-human confirmation",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "设施故障时长",
+          "name_en": "Facility downtime",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        }
+      ],
+      "admission_conditions": {
+        "zh": "普通遮阴休息系统和应急流程先完成。",
+        "en": "The ordinary answer for S6 is independently operational; accountable staff, minimum data and restoration route are verified."
+      },
+      "stop_conditions": {
+        "zh": "预警来源中断、现场值异常或提示与人工判断冲突时转人工并停止。",
+        "en": "Stop S6 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+      },
+      "exit_and_restore": {
+        "zh": "拆除传感插件，保留树荫、雨棚、座椅、饮水和公告牌。",
+        "en": "Remove and isolate the optional S6 equipment; retain the complete staffed, static and accessible baseline."
+      },
+      "decision_options": [
+        "adopt",
+        "revise",
+        "stop"
+      ],
+      "decision_authority": "human_scenario_committee",
+      "evidence_refs": [
+        "AGENT-TASKBOOK",
+        "REGION-CAPITAL-CIRCLE"
+      ],
+      "spatial_ref": "xiaoyuehe.climate_rest_node",
+      "component_ids": [
+        "B01",
+        "B02",
+        "B03",
+        "A03",
+        "E01",
+        "E03"
+      ],
+      "journey_steps": [
+        "arrive_on_baseline",
+        "complete_task_without_ai",
+        "actively_choose_ai_if_admitted",
+        "compare_common_metrics",
+        "human_decision",
+        "exit_and_restore"
+      ],
+      "map_focus": {
+        "station": "xiaoyuehe",
+        "zoom": "corridor"
+      },
+      "representative_view": "assets/media/two-answers-cover-v2.webp",
+      "evidence_status": "not_field_run",
+      "plan_anchor": "SP-S6",
+      "section_ref": "SEC-SP-01",
+      "operator_flow_ref": "FLOW-SP-01",
+      "exit_asset_ref": "ASSET-CLIMATE-PLUGIN",
+      "evidence_tier": "catalog",
+      "plan_ref": "SP-S6",
+      "detail_ref": null,
+      "operation_window": {
+        "zh": "由场景运营者在普通服务可用时确定",
+        "en": "Set by the scene operator while the baseline service is available"
+      },
+      "baseline_route_ref": "BASELINE-S6",
+      "emergency_route_ref": "FALLBACK-S6",
+      "receipt_fields": {
+        "task": {
+          "zh": "遮阴、休息和极端天气服务提示",
+          "en": "Shade, rest and extreme-weather service prompts"
+        },
+        "users": [
+          "resident_carer",
+          "no_smartphone_senior",
+          "night_operator"
+        ],
+        "baseline": {
+          "zh": "树荫、雨棚、座椅、饮水、公告牌和人工巡查构成常态服务。",
+          "en": "Trees, canopy, seating, water, noticeboard and human inspection provide the everyday climate service."
+        },
+        "ai_increment": {
+          "zh": "可选端侧提示结合公开预警和现场非识别传感，建议开放/关闭休息点。",
+          "en": "Optional on-device prompts combine public alerts and non-identifying sensors; staff decide opening and closure."
+        },
+        "minimum_data": {
+          "zh": "公开预警、温湿度、设施开放状态、人工巡查记录。",
+          "en": "Public alert, temperature/humidity, facility status and inspection log."
+        },
+        "accountable_human": {
+          "zh": "公园运营负责人决定开放、关闭和应急处置。",
+          "en": "The park operator decides opening, closure and emergency action."
+        },
+        "common_metrics": [
+          {
+            "name_zh": "可用休息点比例",
+            "name_en": "Available rest-point ratio",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "预警转人工确认时长",
+            "name_en": "Alert-to-human confirmation",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "设施故障时长",
+            "name_en": "Facility downtime",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          }
+        ],
+        "admission": {
+          "zh": "普通遮阴休息系统和应急流程先完成。",
+          "en": "The ordinary answer for S6 is independently operational; accountable staff, minimum data and restoration route are verified."
+        },
+        "stop_event": {
+          "zh": "预警来源中断、现场值异常或提示与人工判断冲突时转人工并停止。",
+          "en": "Stop S6 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "restored_state": {
+          "zh": "拆除传感插件，保留树荫、雨棚、座椅、饮水和公告牌。",
+          "en": "Remove and isolate the optional S6 equipment; retain the complete staffed, static and accessible baseline."
+        },
+        "decision": "pending_field_evidence",
+        "allowed_decisions": [
+          "adopt",
+          "revise",
+          "stop"
+        ]
+      }
+    },
+    {
+      "id": "SCN-010",
+      "code": "S7",
+      "type": "mobility",
+      "station": "dazhongsi",
+      "wing": "scene_wing",
+      "name": {
+        "zh": "常规轨道接驳与低速辅助接驳",
+        "en": "Conventional transit interchange with optional low-speed feeder"
+      },
+      "question": {
+        "zh": "同一公共任务如何先由普通服务可靠完成，再判断 AI 是否带来可证明的增益？——常规轨道接驳与低速辅助接驳",
+        "en": "How can the same civic task work reliably without AI before any AI benefit is considered? — Conventional transit interchange with optional low-speed feeder"
+      },
+      "space": {
+        "zh": "大钟寺城市采用场·接驳湾",
+        "en": "Dazhongsi Civic Adoption Field · feeder bay"
+      },
+      "user_profiles": [
+        "wheelchair",
+        "visual_impairment",
+        "resident_carer",
+        "night_operator"
+      ],
+      "ordinary_answer": {
+        "zh": "常规公交、轨道步行连接、出租车和人工引导始终可用。",
+        "en": "Rail, bus, taxi, walking links and staffed guidance remain continuously available."
+      },
+      "ai_answer": {
+        "zh": "可选低速接驳只在限定湾、限定时窗运行，行人优先。",
+        "en": "An optional low-speed feeder runs only in a bounded bay and time window with pedestrians first."
+      },
+      "minimum_data": {
+        "zh": "班次、速度、上下客、急停、投诉和人工接管。",
+        "en": "Trips, speed, boarding, emergency stop, complaint and takeover."
+      },
+      "human_responsibility": {
+        "zh": "交通运营主管与现场安全员共同拥有停运权。",
+        "en": "The transport operator and site steward share stop authority."
+      },
+      "common_metrics": [
+        {
+          "name_zh": "普通接驳可用率",
+          "name_en": "Conventional interchange availability",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "近失误率",
+          "name_en": "Near-miss rate",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "人工接管时间",
+          "name_en": "Human takeover time",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        }
+      ],
+      "admission_conditions": {
+        "zh": "常规接驳、无障碍路径、分区和应急演练完成。",
+        "en": "The ordinary answer for S7 is independently operational; accountable staff, minimum data and restoration route are verified."
+      },
+      "stop_conditions": {
+        "zh": "发生碰撞/近失误、定位失效、人工接管超时或投诉集中时停止。",
+        "en": "Stop S7 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+      },
+      "exit_and_restore": {
+        "zh": "车辆撤场，接驳湾恢复普通无障碍上下客与临时活动使用。",
+        "en": "Remove and isolate the optional S7 equipment; retain the complete staffed, static and accessible baseline."
+      },
+      "decision_options": [
+        "adopt",
+        "revise",
+        "stop"
+      ],
+      "decision_authority": "human_scenario_committee",
+      "evidence_refs": [
+        "AGENT-TASKBOOK",
+        "CASE-WOVEN"
+      ],
+      "spatial_ref": "dazhongsi.interchange_forecourt",
+      "component_ids": [
+        "B01",
+        "B02",
+        "B03",
+        "A01",
+        "E01",
+        "E02",
+        "E03"
+      ],
+      "journey_steps": [
+        "arrive_on_baseline",
+        "complete_task_without_ai",
+        "actively_choose_ai_if_admitted",
+        "compare_common_metrics",
+        "human_decision",
+        "exit_and_restore"
+      ],
+      "map_focus": {
+        "station": "dazhongsi",
+        "zoom": "detail"
+      },
+      "representative_view": "assets/media/civic-adoption-v2.webp",
+      "evidence_status": "not_field_run",
+      "plan_anchor": "D22",
+      "section_ref": "SEC-S7-200",
+      "operator_flow_ref": "FLOW-D-01",
+      "exit_asset_ref": "ASSET-LOW-SPEED-BAY",
+      "evidence_tier": "hero",
+      "plan_ref": "PLAN-D-2000",
+      "detail_ref": "DETAIL-S7-500",
+      "operation_window": {
+        "zh": "常规接驳全天优先；低速试验建议避开高峰并限于单次 20 分钟受控窗口",
+        "en": "Conventional interchange always has priority; low-speed trials avoid peaks and use controlled 20-minute windows"
+      },
+      "baseline_route_ref": "ROUTE-D-CONVENTIONAL",
+      "emergency_route_ref": "ROUTE-D-EMERGENCY",
+      "receipt_fields": {
+        "task": {
+          "zh": "常规轨道接驳与低速辅助接驳",
+          "en": "Conventional transit interchange with optional low-speed feeder"
+        },
+        "users": [
+          "wheelchair",
+          "visual_impairment",
+          "resident_carer",
+          "night_operator"
+        ],
+        "baseline": {
+          "zh": "常规公交、轨道步行连接、出租车和人工引导始终可用。",
+          "en": "Rail, bus, taxi, walking links and staffed guidance remain continuously available."
+        },
+        "ai_increment": {
+          "zh": "可选低速接驳只在限定湾、限定时窗运行，行人优先。",
+          "en": "An optional low-speed feeder runs only in a bounded bay and time window with pedestrians first."
+        },
+        "minimum_data": {
+          "zh": "班次、速度、上下客、急停、投诉和人工接管。",
+          "en": "Trips, speed, boarding, emergency stop, complaint and takeover."
+        },
+        "accountable_human": {
+          "zh": "交通运营主管与现场安全员共同拥有停运权。",
+          "en": "The transport operator and site steward share stop authority."
+        },
+        "common_metrics": [
+          {
+            "name_zh": "普通接驳可用率",
+            "name_en": "Conventional interchange availability",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "近失误率",
+            "name_en": "Near-miss rate",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "人工接管时间",
+            "name_en": "Human takeover time",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          }
+        ],
+        "admission": {
+          "zh": "常规接驳、无障碍路径、分区和应急演练完成。",
+          "en": "The ordinary answer for S7 is independently operational; accountable staff, minimum data and restoration route are verified."
+        },
+        "stop_event": {
+          "zh": "发生碰撞/近失误、定位失效、人工接管超时或投诉集中时停止。",
+          "en": "Stop S7 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "restored_state": {
+          "zh": "车辆撤场，接驳湾恢复普通无障碍上下客与临时活动使用。",
+          "en": "Remove and isolate the optional S7 equipment; retain the complete staffed, static and accessible baseline."
+        },
+        "decision": "pending_field_evidence",
+        "allowed_decisions": [
+          "adopt",
+          "revise",
+          "stop"
+        ]
+      }
+    },
+    {
+      "id": "SCN-011",
+      "code": "S8",
+      "type": "public_service",
+      "station": "dazhongsi",
+      "wing": "scene_wing",
+      "name": {
+        "zh": "人工公共服务台与 AI 信息导航",
+        "en": "Staffed public-service desk with optional AI information guide"
+      },
+      "question": {
+        "zh": "同一公共任务如何先由普通服务可靠完成，再判断 AI 是否带来可证明的增益？——人工公共服务台与 AI 信息导航",
+        "en": "How can the same civic task work reliably without AI before any AI benefit is considered? — Staffed public-service desk with optional AI information guide"
+      },
+      "space": {
+        "zh": "大钟寺城市采用场·公共服务台",
+        "en": "Dazhongsi Civic Adoption Field · civic desk"
+      },
+      "user_profiles": [
+        "no_smartphone_senior",
+        "international_team",
+        "resident_carer"
+      ],
+      "ordinary_answer": {
+        "zh": "有人员、电话、纸质目录和清晰排队规则的公共服务台独立运行。",
+        "en": "Staff, telephone, printed directory and a legible queue make the public-service desk complete."
+      },
+      "ai_answer": {
+        "zh": "可选信息助手解释公开办事信息并在不确定时立即转人工。",
+        "en": "An optional guide explains public information and immediately escalates uncertainty to staff."
+      },
+      "minimum_data": {
+        "zh": "问题类别、等待时间、转人工原因、纠错记录。",
+        "en": "Question class, wait, escalation reason and correction log."
+      },
+      "human_responsibility": {
+        "zh": "服务台班长审核知识库和高风险转介。",
+        "en": "The desk supervisor audits the knowledge base and high-risk referrals."
+      },
+      "common_metrics": [
+        {
+          "name_zh": "无账户完成率",
+          "name_en": "No-account completion",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "错误纠正时长",
+          "name_en": "错误纠正时长",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "人工服务可用率",
+          "name_en": "Staffed-service availability",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        }
+      ],
+      "admission_conditions": {
+        "zh": "人工服务排班、纸质目录和电话入口已验证。",
+        "en": "The ordinary answer for S8 is independently operational; accountable staff, minimum data and restoration route are verified."
+      },
+      "stop_conditions": {
+        "zh": "人工不可用、错误影响办事权利或未授权采集身份信息时停止。",
+        "en": "Stop S8 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+      },
+      "exit_and_restore": {
+        "zh": "终端断电封存，普通服务台、纸质目录和电话继续运行。",
+        "en": "Remove and isolate the optional S8 equipment; retain the complete staffed, static and accessible baseline."
+      },
+      "decision_options": [
+        "adopt",
+        "revise",
+        "stop"
+      ],
+      "decision_authority": "human_scenario_committee",
+      "evidence_refs": [
+        "AGENT-TASKBOOK",
+        "CASE-HELSINKI"
+      ],
+      "spatial_ref": "dazhongsi.public_service_desk",
+      "component_ids": [
+        "B01",
+        "B02",
+        "B03",
+        "A03",
+        "E01",
+        "E03"
+      ],
+      "journey_steps": [
+        "arrive_on_baseline",
+        "complete_task_without_ai",
+        "actively_choose_ai_if_admitted",
+        "compare_common_metrics",
+        "human_decision",
+        "exit_and_restore"
+      ],
+      "map_focus": {
+        "station": "dazhongsi",
+        "zoom": "detail"
+      },
+      "representative_view": "assets/media/civic-adoption-v2.webp",
+      "evidence_status": "not_field_run",
+      "plan_anchor": "D25",
+      "section_ref": "SEC-D-01",
+      "operator_flow_ref": "FLOW-D-01",
+      "exit_asset_ref": "ASSET-SERVICE-KIOSK",
+      "evidence_tier": "catalog",
+      "plan_ref": "D25",
+      "detail_ref": null,
+      "operation_window": {
+        "zh": "由场景运营者在普通服务可用时确定",
+        "en": "Set by the scene operator while the baseline service is available"
+      },
+      "baseline_route_ref": "BASELINE-S8",
+      "emergency_route_ref": "FALLBACK-S8",
+      "receipt_fields": {
+        "task": {
+          "zh": "人工公共服务台与 AI 信息导航",
+          "en": "Staffed public-service desk with optional AI information guide"
+        },
+        "users": [
+          "no_smartphone_senior",
+          "international_team",
+          "resident_carer"
+        ],
+        "baseline": {
+          "zh": "有人员、电话、纸质目录和清晰排队规则的公共服务台独立运行。",
+          "en": "Staff, telephone, printed directory and a legible queue make the public-service desk complete."
+        },
+        "ai_increment": {
+          "zh": "可选信息助手解释公开办事信息并在不确定时立即转人工。",
+          "en": "An optional guide explains public information and immediately escalates uncertainty to staff."
+        },
+        "minimum_data": {
+          "zh": "问题类别、等待时间、转人工原因、纠错记录。",
+          "en": "Question class, wait, escalation reason and correction log."
+        },
+        "accountable_human": {
+          "zh": "服务台班长审核知识库和高风险转介。",
+          "en": "The desk supervisor audits the knowledge base and high-risk referrals."
+        },
+        "common_metrics": [
+          {
+            "name_zh": "无账户完成率",
+            "name_en": "No-account completion",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "错误纠正时长",
+            "name_en": "错误纠正时长",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "人工服务可用率",
+            "name_en": "Staffed-service availability",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          }
+        ],
+        "admission": {
+          "zh": "人工服务排班、纸质目录和电话入口已验证。",
+          "en": "The ordinary answer for S8 is independently operational; accountable staff, minimum data and restoration route are verified."
+        },
+        "stop_event": {
+          "zh": "人工不可用、错误影响办事权利或未授权采集身份信息时停止。",
+          "en": "Stop S8 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "restored_state": {
+          "zh": "终端断电封存，普通服务台、纸质目录和电话继续运行。",
+          "en": "Remove and isolate the optional S8 equipment; retain the complete staffed, static and accessible baseline."
+        },
+        "decision": "pending_field_evidence",
+        "allowed_decisions": [
+          "adopt",
+          "revise",
+          "stop"
+        ]
+      }
+    },
+    {
+      "id": "SCN-012",
+      "code": "S9",
+      "type": "operations",
+      "station": "dazhongsi",
+      "wing": "scene_wing",
+      "name": {
+        "zh": "常规活动组织与聚合客流辅助",
+        "en": "Conventional event operations with aggregate flow assistance"
+      },
+      "question": {
+        "zh": "同一公共任务如何先由普通服务可靠完成，再判断 AI 是否带来可证明的增益？——常规活动组织与聚合客流辅助",
+        "en": "How can the same civic task work reliably without AI before any AI benefit is considered? — Conventional event operations with aggregate flow assistance"
+      },
+      "space": {
+        "zh": "大钟寺城市采用场·开放活动面",
+        "en": "Dazhongsi Civic Adoption Field · event apron"
+      },
+      "user_profiles": [
+        "resident_carer",
+        "visual_impairment",
+        "night_operator"
+      ],
+      "ordinary_answer": {
+        "zh": "人工售检、容量牌、实体排队、疏散线和广播完成活动组织。",
+        "en": "Staffed ticketing, capacity signs, physical queues, evacuation lines and public address run the event."
+      },
+      "ai_answer": {
+        "zh": "可选聚合计数只辅助调整入口，不做人脸识别和个体轨迹。",
+        "en": "Optional aggregate counting adjusts entrances without face recognition or individual trajectories."
+      },
+      "minimum_data": {
+        "zh": "分区聚合计数、入口状态、人工决定、事件记录。",
+        "en": "Zone-level aggregate count, entrance status, human decision and incident record."
+      },
+      "human_responsibility": {
+        "zh": "活动总控根据现场观察决定限流、暂停和疏散。",
+        "en": "Event control decides restriction, pause and evacuation from direct observation."
+      },
+      "common_metrics": [
+        {
+          "name_zh": "容量合规率",
+          "name_en": "Capacity compliance",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "人工决策响应时长",
+          "name_en": "Human decision time",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        },
+        {
+          "name_zh": "无识别计数覆盖",
+          "name_en": "Non-identifying count coverage",
+          "status": "unknown",
+          "display": {
+            "zh": "待现场基线",
+            "en": "Field baseline pending"
+          }
+        }
+      ],
+      "admission_conditions": {
+        "zh": "疏散、无障碍、人工总控和普通容量管理完成。",
+        "en": "The ordinary answer for S9 is independently operational; accountable staff, minimum data and restoration route are verified."
+      },
+      "stop_conditions": {
+        "zh": "计数漂移、容量接近上限、出口受阻或任何安全事件时停止入场/AI。",
+        "en": "Stop S9 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+      },
+      "exit_and_restore": {
+        "zh": "拆除计数插件，保留普通活动电源、容量牌和疏散设施。",
+        "en": "Remove and isolate the optional S9 equipment; retain the complete staffed, static and accessible baseline."
+      },
+      "decision_options": [
+        "adopt",
+        "revise",
+        "stop"
+      ],
+      "decision_authority": "human_scenario_committee",
+      "evidence_refs": [
+        "AGENT-TASKBOOK",
+        "CASE-QUAYSIDE"
+      ],
+      "spatial_ref": "dazhongsi.event_evidence_square",
+      "component_ids": [
+        "B01",
+        "B02",
+        "B03",
+        "A03",
+        "E01",
+        "E02",
+        "E03"
+      ],
+      "journey_steps": [
+        "arrive_on_baseline",
+        "complete_task_without_ai",
+        "actively_choose_ai_if_admitted",
+        "compare_common_metrics",
+        "human_decision",
+        "exit_and_restore"
+      ],
+      "map_focus": {
+        "station": "dazhongsi",
+        "zoom": "detail"
+      },
+      "representative_view": "assets/media/civic-adoption-v2.webp",
+      "evidence_status": "not_field_run",
+      "plan_anchor": "D24",
+      "section_ref": "SEC-D-01",
+      "operator_flow_ref": "FLOW-D-01",
+      "exit_asset_ref": "ASSET-EVENT-SENSOR",
+      "evidence_tier": "catalog",
+      "plan_ref": "D24",
+      "detail_ref": null,
+      "operation_window": {
+        "zh": "由场景运营者在普通服务可用时确定",
+        "en": "Set by the scene operator while the baseline service is available"
+      },
+      "baseline_route_ref": "BASELINE-S9",
+      "emergency_route_ref": "FALLBACK-S9",
+      "receipt_fields": {
+        "task": {
+          "zh": "常规活动组织与聚合客流辅助",
+          "en": "Conventional event operations with aggregate flow assistance"
+        },
+        "users": [
+          "resident_carer",
+          "visual_impairment",
+          "night_operator"
+        ],
+        "baseline": {
+          "zh": "人工售检、容量牌、实体排队、疏散线和广播完成活动组织。",
+          "en": "Staffed ticketing, capacity signs, physical queues, evacuation lines and public address run the event."
+        },
+        "ai_increment": {
+          "zh": "可选聚合计数只辅助调整入口，不做人脸识别和个体轨迹。",
+          "en": "Optional aggregate counting adjusts entrances without face recognition or individual trajectories."
+        },
+        "minimum_data": {
+          "zh": "分区聚合计数、入口状态、人工决定、事件记录。",
+          "en": "Zone-level aggregate count, entrance status, human decision and incident record."
+        },
+        "accountable_human": {
+          "zh": "活动总控根据现场观察决定限流、暂停和疏散。",
+          "en": "Event control decides restriction, pause and evacuation from direct observation."
+        },
+        "common_metrics": [
+          {
+            "name_zh": "容量合规率",
+            "name_en": "Capacity compliance",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "人工决策响应时长",
+            "name_en": "Human decision time",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          },
+          {
+            "name_zh": "无识别计数覆盖",
+            "name_en": "Non-identifying count coverage",
+            "status": "unknown",
+            "display": {
+              "zh": "待现场基线",
+              "en": "Field baseline pending"
+            }
+          }
+        ],
+        "admission": {
+          "zh": "疏散、无障碍、人工总控和普通容量管理完成。",
+          "en": "The ordinary answer for S9 is independently operational; accountable staff, minimum data and restoration route are verified."
+        },
+        "stop_event": {
+          "zh": "计数漂移、容量接近上限、出口受阻或任何安全事件时停止入场/AI。",
+          "en": "Stop S9 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "restored_state": {
+          "zh": "拆除计数插件，保留普通活动电源、容量牌和疏散设施。",
+          "en": "Remove and isolate the optional S9 equipment; retain the complete staffed, static and accessible baseline."
+        },
+        "decision": "pending_field_evidence",
+        "allowed_decisions": [
+          "adopt",
+          "revise",
+          "stop"
+        ]
+      }
+    }
+  ],
+  "subtitle": {
+    "zh": "普通服务先成立，AI 通过同题、同人、同空间的公开验收后，才获得城市采用资格。",
+    "en": "The baseline stands first; AI earns civic adoption only through a public same-task, same-user, same-space test."
+  },
+  "field_status": "not_field_run"
+}

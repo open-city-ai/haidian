@@ -237,9 +237,17 @@ scenarios: ["ai-cultural-guide", "ai-health-service-navigation", "ai-traffic-wal
 
 ### 最小可复演单元
 
-城市提问站提供一套离线公共验收桌面演练。它只使用明确标为合成的测试问题，不写入文件、不联网、不处理个人信息，也不声称已经开展现场试验。正例演练检查一条问题能否显示状态、责任、人工路径、停止条件和修订记录。负例分别模拟责任人缺失、数据超限、人工路径失效、无法暂停和修订未公开。任一负例被错误放行，桌面演练就失败。
+城市提问站提供一套可离线执行的公共验收桌面演练。`run_tabletop.js`只读取十二份方案场景合同，不联网、不处理个人信息。每个场景运行一条合格样例和五条失败分支，分别模拟责任人缺失、数据越过上限、人工路径失效、无法暂停和修订未公开，共形成72条合成检查与机器可读回执。当前运行结果为72/72符合预期，其中12条合格样例仅获“桌面演练放行”，60条负例全部拦截。任一负例被错误放行，整套演练即失败 [metric:simulation_task_count] [metric:synthetic_negative_branch_count]。
 
-这套单元的意义在于让运营团队在搭建设备以前先复演权利和责任。当前状态固定为“尚未获准、尚未现场运行”，真实性能保持空值。结构化合同和合成样例位于 `visual/assets/public-acceptance-tabletop/`，总览页同步呈现验收协议。它只能证明规则可检查，不能证明服务有效 [metric:public_acceptance_tabletop_negative_case_count] [depth:renewal_project_list]。
+这套单元的意义在于让运营团队在搭建设备以前先复演权利和责任。代码、十二份合同、回执和任务台账位于 `visual/assets/public-acceptance-tabletop/` 与 `simulation.json`，任何审阅者都可离线重跑。当前状态固定为“尚未获准、尚未现场运行”。100%的合成分类正确率只证明规则实现闭合，不能证明服务有效、安全、合规或获得批准 [metric:simulation_success_rate] [depth:renewal_project_list]。
+
+### 清华园城市提问站1:1站外原型
+
+首期产品不是一块智能屏，而是一条可以不用AI完成任务、能够停机并恢复的五段公共空间。普通路径保证路人不参与也能通行。提问门槛提供独立式纸卡和状态说明。人工前台允许匿名提交与真人协助。公开回执板只显示问题编号、责任角色、证据门和下次复核。文物安静边保留无屏幕的历史参观。装置不接触文物本体，宽度、消防、承载和安装位置全部留待实测与专业审查 [metric:question_station_spatial_zone_count] [source:TSINGHUA-STATION-CONSERVATION]。
+
+一次完整演示从“一问”开始，经过问题护照、人工基线、受控AI检查、公开回执，再主动执行一次断电、转人工、撤除构件和场地恢复。实体停机后，人工前台仍完成同一任务。只有正式文保控制线、权属同意、实测、文物影响、消防人流、无障碍、运营责任和恢复资金同时齐备，原型才可从桌面演练进入现场评审。结构化空间协议位于 `visual/assets/question-station-prototype.json`。
+
+![清华园城市提问站1:1站外公共原型协议](assets/figures/question-station-prototype.png)
 
 ### 四个可深化地标
 
@@ -297,6 +305,8 @@ scenarios: ["ai-cultural-guide", "ai-health-service-navigation", "ai-traffic-wal
 | 年度开放活动系统 | G2至G3 | 轮值开放日、开发者周和公众复盘会 | 预算、安保、容量、投诉、复盘和场地恢复 | 三区两翼联合运营机构 |
 
 近期阶段从2026至2028年的概念顺序开始，重点完成数据、协议、可撤回公共空间和小型场景。中期北段推进研发验证、蓝绿联系与原点转译网络。中长期南段在位置和交通条件核准后推进城市服务与国际展示。年份只表示工作顺序，证据门决定能否前进。实际启动仍由审批、资金、权属、专业评估和公众协商共同决定 [data:geometry/phasing.geojson#PHASE-1] [metric:phasing_total_area_sqm] [depth:phasing_implementation]。
+
+首个100天把首期工作压缩成可检查的八步。D1—14完成公开资料与调查协议。D15—30建立公众任务和无AI基线。D31—45只用普通可撤回构件搭建站外1:1样机。D46—60运行72条合成检查和影子流程。D61—75只有通过G2并取得许可才小规模开放。D76主动演练停机、转人工与恢复。D77—90由独立方复测并公开失败。D91—100作出继续、修改或撤除决定。日期安排工作顺序，不能越过G0至G4；任一道门失败，场地保持或恢复日常模式 [metric:first_100_days_action_count]。
 
 ![项目分期、证据门与恢复责任](assets/figures/phasing-risk.png)
 

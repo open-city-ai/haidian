@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1.0",
+  "ok": true,
+  "can_enter_formal_review": true,
+  "checks": [
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md, manifest.json, all package files",
+      "message": "All deterministic checks passed: SHA256 hashes match, required files present, frontmatter valid, evidence markers within limits."
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/*.geojson, metrics.json",
+      "message": "Spatial review passed. Site boundary, key areas, land use, buildings, roads, green space, and public space layers validated. Metrics recomputation: green_ratio=0.191423, public_space_ratio=0.069353. Warnings: KEY_AREA_PROVISIONAL (3), METRIC_RECALC_DRIFT (1)."
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "message": "Visual packaging check passed. All required sections present, all required metrics declared with matching data-value attributes."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "compliance_matrix.json, standard_matrix.json, design_depth_matrix.json",
+      "message": "Professional evidence review passed. 23 compliance items, 7 standards, 15 design depth items covered. All required items present."
+    }
+  ]
+}

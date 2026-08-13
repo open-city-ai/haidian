@@ -1,0 +1,308 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "total_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "design_brief.json",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "EPSG:4548 area of overall_design_area polygon",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional boundary used; official polygon not yet available"
+      ]
+    },
+    "key_area_zhongzhiyuan_sqm": {
+      "status": "known",
+      "value": 1921000,
+      "unit": "sqm",
+      "source_files": [
+        "design_brief.json",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "EPSG:4548 area of PROV-KEY-001",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional boundary used"
+      ]
+    },
+    "key_area_ai_origin_sqm": {
+      "status": "known",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": [
+        "design_brief.json",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "EPSG:4548 area of PROV-KEY-002",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional boundary used"
+      ]
+    },
+    "key_area_dazhongsi_sqm": {
+      "status": "known",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": [
+        "design_brief.json",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "EPSG:4548 area of PROV-KEY-003",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional boundary used"
+      ]
+    },
+    "green_space_ratio": {
+      "status": "known",
+      "value": 0.259847,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area / site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Design concept green space"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.030757,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area / site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Design concept only"
+      ]
+    },
+    "scenario_cards_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "manual count of scenario cards in proposal",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "test_validation_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "manual count of test scenarios",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "user_personas_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "manual count of personas in proposal (expanded from 5 to 8 with inclusion personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_landmarks_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "manual count of landmarks",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "eco_case_studies_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "manual count of case studies",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "concept_building_count": {
+      "status": "known",
+      "value": 48,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count of features in buildings.geojson",
+      "confidence": "low",
+      "assumptions": [
+        "Concept buildings only; not regulatory"
+      ]
+    },
+    "phases_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count of distinct phases",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "slow_mobility_network_length_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "EPSG:4548 length of all slow-mobility road segments",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional boundary; network length approximate"
+      ],
+      "reason": "Exact slow-mobility path geometry not yet defined; to be calculated after official boundary available"
+    },
+    "concept_gfa_range_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(building_footprint_area * concept_FAR)",
+      "confidence": "low",
+      "assumptions": [
+        "FAR values are concept suggestions only"
+      ],
+      "reason": "Actual GFA depends on regulatory plan conditions not yet available"
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "EPSG:4548 area of overall_design_area polygon",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional boundary used; official polygon not yet available"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2965586.395,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum of green space polygon areas (EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Design concept green space; actual ratio depends on regulatory plan"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 351028.707,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum of public space polygon areas (EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Design concept only"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 2118385.755,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum of building footprint polygon areas (EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual massing only"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.259847,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area / site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Design concept green space"
+      ]
+    },
+    "accessibility_coverage_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "accessible_path_length / total_path_length",
+      "confidence": "low",
+      "assumptions": [
+        "Concept target: 100% in key areas; requires professional accessibility audit"
+      ],
+      "reason": "Concept target defined in proposal.md §8.4 inclusion indicators; value pending operational plan and survey data"
+    },
+    "community_farming_participants_annual": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "annual registered community farming participants",
+      "confidence": "low",
+      "assumptions": [
+        "Concept target: >=2000; requires operational plan"
+      ],
+      "reason": "Concept target defined in proposal.md §8.4 inclusion indicators; value pending operational plan and survey data"
+    },
+    "k12_education_visits_annual": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "annual K-12 student visits to science education sites",
+      "confidence": "low",
+      "assumptions": [
+        "Concept target: >=10000; requires education partnership"
+      ],
+      "reason": "Concept target defined in proposal.md §8.4 inclusion indicators; value pending operational plan and survey data"
+    }
+  }
+}

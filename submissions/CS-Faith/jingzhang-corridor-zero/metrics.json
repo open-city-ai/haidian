@@ -1,0 +1,351 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "high",
+      "assumptions": [
+        "Provisional boundary from brief/site-package/geometry/provisional_boundaries.geojson; recalculate after official boundary release."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 4260178.656,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space_features))",
+      "confidence": "medium",
+      "assumptions": [
+        "Green space includes the heritage spine corridor and the blue-green ring."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.373,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 1897402.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space_features))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.166,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1380357.075,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual building footprints only; require survey data and approved regulatory conditions for formal values."
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.121,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 83095.538,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(road_centerlines))",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual grid roads; official road redlines required for formal use."
+      ]
+    },
+    "land_use_coverage_sqm": {
+      "status": "known",
+      "value": 11412846.387,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_partition))",
+      "confidence": "high",
+      "assumptions": [
+        "Land-use partition fully covers the submitted boundary without gaps or overlaps."
+      ]
+    },
+    "land_use_area_05_sqm": {
+      "status": "known",
+      "value": 925867.455,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_code==05))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_area_0701_sqm": {
+      "status": "known",
+      "value": 738206.895,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_code==0701))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_area_0802_sqm": {
+      "status": "known",
+      "value": 1457912.664,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_code==0802))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_area_0804_sqm": {
+      "status": "known",
+      "value": 870753.613,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_code==0804))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_area_0806_sqm": {
+      "status": "known",
+      "value": 192563.152,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_code==0806))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_area_1401_sqm": {
+      "status": "known",
+      "value": 1955134.263,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_code==1401))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_area_1402_sqm": {
+      "status": "known",
+      "value": 2305044.393,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_code==1402))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_area_1403_sqm": {
+      "status": "known",
+      "value": 1897402.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_code==1403))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_area_16_sqm": {
+      "status": "known",
+      "value": 1069961.052,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_code==16))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_PROV-KEY-001_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area_feature PROV-KEY-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon from the site package; official polygons replace on release."
+      ]
+    },
+    "key_area_PROV-KEY-002_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area_feature PROV-KEY-002)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon from the site package; official polygons replace on release."
+      ]
+    },
+    "key_area_PROV-KEY-003_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area_feature PROV-KEY-003)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon from the site package; official polygons replace on release."
+      ]
+    },
+    "phase_PHASE-P1_area_sqm": {
+      "status": "known",
+      "value": 2344288.728,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_PHASE-P1)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "phase_PHASE-P2_area_sqm": {
+      "status": "known",
+      "value": 4452463.86,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_PHASE-P2)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "phase_PHASE-P3_area_sqm": {
+      "status": "known",
+      "value": 5338554.963,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_PHASE-P3)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(floor_area_by_building)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved building program or official regulatory conditions are available; floor areas must not be invented."
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(road_polygon_area)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official road redlines are not in the public site package; road area remains pending official geometry."
+    },
+    "star_ground_product_latency_min": {
+      "status": "unknown",
+      "value": null,
+      "unit": "min",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "T_product = T_onboard_identify_compress + T_downlink + T_ground_product_generation (single-scene, ending at human-review-ready product)",
+      "confidence": "low",
+      "assumptions": [],
+      "reason": "在轨计算星与三个试点均为概念建议阶段，无实测或硬件在环基线数据；仅登记口径与单位，待硬件在环基线化后回填 P50/P95。过境等待（revisit 单星 1-2 次/天）与人工复核段不含在本指标内，另列于正文。"
+    }
+  }
+}
