@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "package_id": "twin-rail-century",
   "project_id": "centennial-jingzhang-ai-belt",
   "site_package_version": "0.1.0",
@@ -56,7 +56,7 @@
       "path": "self_check.json",
       "role": "self_check",
       "required": true,
-      "sha256": "80b71cb78d2c1581fc679eb561959ac515bc8a3ff6f76c74dcc2c4e20d49b72f"
+      "sha256": "e0e8debd8b0942d48721accc7f7f67d69a3d24c0995810ac31407dbba81c8515"
     },
     {
       "path": "compliance_matrix.json",
@@ -288,15 +288,8 @@
   ],
   "validation_claim": {
     "self_checked": true,
-    "self_checked_at": "2026-08-10T10:44:56Z",
-    "self_check_summary": "5/5 checks passed (BOUNDARY_TRUST, KEY_AREAS_TRUST, LAND_USE_TOPOLOGY, VISUAL_STATIC, PROFESSIONAL_EVIDENCE); pass messages still flag provisional geometry for replacement before formal professional scoring.",
     "known_blockers": [],
     "data_confidence": "medium",
-    "data_confidence_reason": "BOUNDARY_TRUST and KEY_AREAS_TRUST pass with explicit provisional flag — geometry/site_boundary.geojson and geometry/key_areas.geojson are placeholders derived from brief/site-package/geometry/provisional_boundaries.geojson; numbers in metrics.json and scenario geometry remain directional. Confidence kept at medium until official redline replaces the provisional boundary and key-area polygons.",
-    "maintainer_gates_pending": [
-      "trusted validation rerun on the new head (Actions trusted run failed before creating jobs on the previous head)",
-      "sensitive-material hold carried over from an older head needs explicit recheck/clear by a maintainer on this exact head"
-    ],
-    "notes": "Provisional boundary in use; official polygons must replace geometry/site_boundary.geojson and geometry/key_areas.geojson before formal professional scoring. finalize_submission.py will refresh SHA-256 and re-validate the file list after rebuild."
+    "readiness_contract": "persisted-self-check-v1"
   }
 }
