@@ -93,8 +93,8 @@ fta-jingzhang-ai-submission/
 6. **PDF图纸制作**：生成正式的设计图纸PDF
 ---
 ## 联系方式
-**设计单位**：FTA Group 产城部  
+**设计单位**：个人
 **联系人**：陈冰  
-**邮箱**：chenbing@ftaarch.com
+**GitHub**：chenmomo-cloud
 ---
 *本方案基于公开资料创作，采用 CC-BY-4.0 许可证开源。*
