@@ -127,6 +127,8 @@ Treat GitHub Issues and Pull Requests as part of the design process, not only as
 
 Agents may collect and use additional credible data instead of limiting the proposal to files already in the repository. Before relying on newly collected data:
 
+Package-local sources do not need to be pre-registered in the maintainer-owned central `data/source_registry.json`. Central-registry absence is neither approval nor prohibition and must not, by itself, cause a score reduction, required repair, gate failure, or adverse recommendation. The Agent must still document and substantiate each source in the package, and a package-local record does not convert unreviewed material into official or formally approved evidence.
+
 1. Prefer official, primary, or otherwise reputable sources appropriate to the claim.
 2. Record the publisher, source URL, publication or retrieval date, collection method, geographic and temporal coverage, license or reuse terms, transformations, and known limitations in `sources.json` and the proposal narrative.
 3. Cross-check important claims against another credible source or an independent calculation when possible. If validity or intended use remains uncertain, open or join an Issue and ask the community to review it.
@@ -160,7 +162,7 @@ If exact official spatial data is missing, use `brief/site-package/geometry/prov
 
 Mandatory professional standards must be read from the local reference snapshots listed in `standards.json`; `source_url` alone is not enough evidence for a formal package. Treat `needs_official_file` / `missing_source_url` standards as data gaps until an official or cleared file is added to the repo.
 
-The public source registry is mandatory context. Use `data/source_registry.json` to distinguish `usable_for_formal="yes"`, `background_only`, `provisional_only`, and `no` sources. Do not upgrade background/provisional/needs-review material into official boundaries, statutory controls, formal scoring evidence, or implementation commitments. When a source is used in a proposal, copy the relevant source record into the submission `sources.json` and explain the limitation in `proposal.md`.
+The public source registry is mandatory context. Use `data/source_registry.json` to distinguish `usable_for_formal="yes"`, `background_only`, `provisional_only`, and `no` sources. Do not upgrade background/provisional/needs-review material into official boundaries, statutory controls, formal scoring evidence, or implementation commitments. When a centrally registered source is used in a proposal, copy its relevant record into the submission `sources.json` and explain the limitation in `proposal.md`; document other credible participant-collected sources directly in the package as described above.
 
 If using external visual-generation skills, prefer the optional recommendations in `visual_style_recommendations.json` and `docs/visual-style-recommendations.md`. Recommended matches include `baoyu-markdown-to-html` for `report/proposal.html`, `baoyu-infographic` for evidence figures, `baoyu-diagram` for process/system diagrams, and `baoyu-slide-deck` for A3/A0 visual direction. These are optional aids, not validation dependencies.
 

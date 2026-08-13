@@ -69,6 +69,11 @@ summary: "围绕百年京张 AI 创新带提出可审查方案。"
             self.assertIn("advisory_review_schema", review_input)
             self.assertIn("source_registry_summary", review_input)
             self.assertIn("approved_formal_sources", review_input["source_registry_summary"])
+            boundary = review_input["source_registry_summary"]["participant_source_boundary"]
+            self.assertIn("package's own sources.json", boundary)
+            self.assertIn("must not by itself reduce risk_compliance", boundary)
+            self.assertIn("create a required action or gate failure", boundary)
+            self.assertEqual(review_input["source_registry_summary"]["counts"]["total"], 0)
             self.assertEqual(
                 review_input["advisory_review_schema_path"],
                 "brief/site-package/schemas/advisory_review.schema.json",
@@ -84,6 +89,8 @@ summary: "围绕百年京张 AI 创新带提出可审查方案。"
             self.assertIn("pr_comment_markdown", prompt)
             self.assertIn("submissions-data.js", prompt)
             self.assertIn("Version 2 bilingual deliverables are mandatory", prompt)
+            self.assertIn("Participant-collected sources are not required", prompt)
+            self.assertIn("cause an adverse recommendation", prompt)
             self.assertIn("Organizer-owned missing geometry", prompt)
             self.assertIn("组织方：", prompt)
             self.assertTrue((out_dir / "advisory-review.md").exists())

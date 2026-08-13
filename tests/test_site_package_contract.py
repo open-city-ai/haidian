@@ -261,6 +261,8 @@ class SitePackageContractTests(unittest.TestCase):
             self.assertIn("assets/media/", text)
             self.assertIn("cover_image", text)
         self.assertIn("Cross-check important claims", skill)
+        self.assertIn("Package-local sources do not need to be pre-registered", skill)
+        self.assertIn("must not, by itself, cause a score reduction", skill)
         self.assertIn("## Research Beyond the Repository", skill)
         self.assertIn("follow up at the first available opportunity", skill)
         self.assertIn("Do not post a question and abandon", skill)

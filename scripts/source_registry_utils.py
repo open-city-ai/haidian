@@ -84,6 +84,13 @@ def summarize_source_registry(registry: dict[str, Any], limit: int = 8) -> dict[
         "background_sources": background[:limit],
         "provisional_sources": provisional[:limit],
         "needs_review_sources": needs_review[:limit],
+        "participant_source_boundary": (
+            "Participant-collected sources belong in the package's own sources.json and are not "
+            "required to appear in the maintainer-owned central registry. Absence from the central "
+            "registry is neither approval nor prohibition and must not by itself reduce "
+            "risk_compliance, create a required action or gate failure, or cause an adverse "
+            "recommendation. Judge these sources using the package evidence and applicable rules."
+        ),
         "usage_rule": "Use approved formal sources for formal evidence; background_only sources for context; provisional_only sources for intake/visualization only; needs_review sources must not be used until reviewed.",
     }
 
