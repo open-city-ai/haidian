@@ -82,6 +82,7 @@ FIGURE_FILES = (
 DRAWING_FILES = ("drawings/a3-booklet.pdf", "drawings/a0-boards.pdf")
 VISUAL_FILES = ("report/proposal.html", "visual/index.html")
 USER_AGENT = "open-city-haidian-peer-reader/1.0"
+SCRIPT_REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
 class PeerReaderError(RuntimeError):
@@ -238,11 +239,12 @@ def item_summary(item: dict[str, Any]) -> dict[str, Any]:
 def download_bundle(item: dict[str, Any], args: argparse.Namespace) -> dict[str, Any]:
     base = proposal_base(item)
     output = Path(args.output_dir).expanduser().resolve() / proposal_key(item)
-    submissions_root = (Path(args.repo_root).expanduser().resolve() / "submissions").resolve()
-    if output.resolve().is_relative_to(submissions_root):
-        raise PeerReaderError(
-            f"peer download cache must stay outside the submissions tree: {output}"
-        )
+    roots = {Path(args.repo_root).expanduser().resolve(), SCRIPT_REPO_ROOT.resolve()}
+    for root in roots:
+        if output.resolve().is_relative_to((root / "submissions").resolve()):
+            raise PeerReaderError(
+                f"peer download cache must stay outside the submissions tree: {output}"
+            )
     output.mkdir(parents=True, exist_ok=True)
     files = list(DEFAULT_TEXT_FILES)
     if args.full_text:

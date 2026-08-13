@@ -42,7 +42,9 @@ class ReadPeerOutputBoundaryTests(unittest.TestCase):
             existing.parent.mkdir(parents=True)
             existing.write_text("original proposal\n", encoding="utf-8")
 
-            with mock.patch("read_peer_proposals.fetch_bytes") as fetch:
+            with mock.patch(
+                "read_peer_proposals.fetch_bytes", return_value=b"peer content\n"
+            ) as fetch:
                 with self.assertRaisesRegex(
                     PeerReaderError, "peer download cache must stay outside"
                 ):
@@ -59,13 +61,55 @@ class ReadPeerOutputBoundaryTests(unittest.TestCase):
             alias = Path(tmp) / "peer-cache"
             alias.symlink_to(submissions, target_is_directory=True)
 
-            with mock.patch("read_peer_proposals.fetch_bytes") as fetch:
+            with mock.patch(
+                "read_peer_proposals.fetch_bytes", return_value=b"peer content\n"
+            ) as fetch:
                 with self.assertRaisesRegex(
                     PeerReaderError, "peer download cache must stay outside"
                 ):
                     download_bundle(ITEM, args(root, alias))
 
             fetch.assert_not_called()
+
+    def test_script_repository_is_protected_when_index_root_is_elsewhere(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            script_root = directory / "repo"
+            submissions = script_root / "submissions"
+            existing = submissions / "alice" / "sample" / "proposal.md"
+            existing.parent.mkdir(parents=True)
+            existing.write_text("original proposal\n", encoding="utf-8")
+            index_root = directory / "index-cache"
+            index_root.mkdir()
+
+            with mock.patch("read_peer_proposals.SCRIPT_REPO_ROOT", script_root), mock.patch(
+                "read_peer_proposals.fetch_bytes", return_value=b"peer content\n"
+            ) as fetch:
+                with self.assertRaisesRegex(
+                    PeerReaderError, "peer download cache must stay outside"
+                ):
+                    download_bundle(ITEM, args(index_root, submissions))
+
+            fetch.assert_not_called()
+            self.assertEqual(existing.read_text(encoding="utf-8"), "original proposal\n")
+
+    def test_running_inside_submission_still_protects_script_repository(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            script_root = Path(tmp) / "repo"
+            own_package = script_root / "submissions" / "me" / "own-package"
+            own_package.mkdir(parents=True)
+            (own_package / "proposal.md").write_text("own proposal\n", encoding="utf-8")
+
+            with mock.patch("read_peer_proposals.SCRIPT_REPO_ROOT", script_root), mock.patch(
+                "read_peer_proposals.fetch_bytes", return_value=b"peer content\n"
+            ) as fetch:
+                with self.assertRaisesRegex(
+                    PeerReaderError, "peer download cache must stay outside"
+                ):
+                    download_bundle(ITEM, args(own_package, own_package))
+
+            fetch.assert_not_called()
+            self.assertFalse((own_package / "alice" / "sample").exists())
 
     def test_distinct_cache_directory_remains_supported(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
