@@ -222,8 +222,20 @@ def main() -> int:
     output = Path(args.output) if args.output else submission_dir / "exhibit.json"
     output_resolved = output.resolve()
     for label, input_path in generation_inputs(repo_root, submission_dir):
-        if output_resolved == input_path.resolve():
+        if output_resolved == input_path.resolve() or (
+            output.exists() and output.samefile(input_path)
+        ):
             parser.error(f"output must not overwrite the {label} input: {input_path}")
+    submissions_root = (repo_root / "submissions").resolve()
+    default_output = (submission_dir / "exhibit.json").resolve()
+    if (
+        output_resolved != default_output
+        and output_resolved.is_relative_to(submissions_root)
+        and output_resolved.exists()
+    ):
+        parser.error(
+            f"output must not overwrite an existing file inside submissions/: {output}"
+        )
 
     exhibit = build_exhibit(repo_root, submission_dir)
     validate_against_schema(repo_root, exhibit)
