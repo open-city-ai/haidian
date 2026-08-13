@@ -60,6 +60,46 @@
         }
       }
     },
+    "package_state": {
+      "type": "string",
+      "minLength": 1
+    },
+    "content_review_eligible": {
+      "type": "boolean"
+    },
+    "professional_scoring_eligible": {
+      "type": "boolean"
+    },
+    "professional_scoring_blocked_by": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "official_site_boundary",
+          "official_key_areas"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "can_enter_formal_review": {
+      "type": "boolean",
+      "description": "Legacy alias for content_review_eligible. It does not authorize formal professional scoring."
+    },
+    "content_review_status": {
+      "type": "string",
+      "enum": [
+        "content-review-ready",
+        "revision-requested"
+      ]
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "formal-review-ready",
+        "revision-requested"
+      ],
+      "description": "Legacy status; formal-review-ready means content-review readiness only."
+    },
     "ok": {
       "type": "boolean",
       "description": "Whether the persisted four-gate self-check passed. This is a contributor-controlled replay record, not an independent attestation; trusted CI or a maintainer rerun supplies provenance."
@@ -110,12 +150,10 @@
       }
     },
     "can_enter_formal_review": {
-      "type": "boolean"
+      "type": "boolean",
+      "description": "Legacy alias for content_review_eligible. It does not authorize formal professional scoring."
     },
     "package_type": {
-      "type": "string"
-    },
-    "review_status": {
       "type": "string"
     },
     "next_actions": {

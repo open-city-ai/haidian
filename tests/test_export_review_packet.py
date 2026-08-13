@@ -16,6 +16,7 @@ from export_review_packet import (  # noqa: E402
     export_review_packet,
     normalize_submission_dirs,
     render_pdf,
+    self_check_professional_readiness,
 )
 
 
@@ -100,6 +101,11 @@ version: "0.2"
     write_json(
         submission_dir / "self_check.json",
         {
+            "package_state": "ready_for_review",
+            "content_review_eligible": True,
+            "professional_scoring_eligible": False,
+            "professional_scoring_blocked_by": ["official_site_boundary", "official_key_areas"],
+            "can_enter_formal_review": True,
             "checks": [
                 {
                     "check_id": "BOUNDARY_TRUST",
@@ -128,6 +134,13 @@ version: "0.2"
     return submission_dir
 
 
+class ReadinessBoundaryTests(unittest.TestCase):
+    def test_legacy_content_alias_is_not_a_professional_score_gate(self) -> None:
+        self.assertFalse(
+            self_check_professional_readiness({"can_enter_formal_review": True})
+        )
+
+
 class ExportReviewPacketTests(unittest.TestCase):
     def test_export_single_submission_markdown_and_html(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -150,11 +163,24 @@ class ExportReviewPacketTests(unittest.TestCase):
             self.assertIn("### 快速判断", markdown)
             self.assertIn("### 风险与待补条件", markdown)
             self.assertIn("### 完整方案正文", markdown)
+            self.assertIn("### 正式专业评分阻断项", markdown)
+            self.assertIn("`official_site_boundary`", markdown)
+            self.assertIn("可进入内容评审：YES", markdown)
+            self.assertIn("可进行正式专业评分：NO", markdown)
             self.assertIn("../submissions/alice/proposal-a/assets/figures/site-overview.png", markdown)
             self.assertIn("AI 慢行网络", html)
             self.assertIn("quick-grid", html)
+            self.assertIn("内容评审", html)
+            self.assertIn("正式评分", html)
+            self.assertIn("official_key_areas", html)
             self.assertIn("../submissions/alice/proposal-a/assets/figures/site-overview.png", html)
             self.assertEqual(manifest["submissions"][0]["path"], "submissions/alice/proposal-a")
+            self.assertTrue(manifest["submissions"][0]["content_review_eligible"])
+            self.assertFalse(manifest["submissions"][0]["professional_scoring_eligible"])
+            self.assertEqual(
+                ["official_site_boundary", "official_key_areas"],
+                manifest["submissions"][0]["professional_scoring_blocked_by"],
+            )
 
     def test_discover_all_submissions_and_export_multi_packet(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

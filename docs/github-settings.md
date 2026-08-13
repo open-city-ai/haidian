@@ -68,7 +68,7 @@ python3 scripts/maintainer_review.py submissions/<login>/<slug> --pr-author <log
 
 - `request-changes`：要求参赛者修复后再审。
 - `intake-provisional`：历史兼容状态；不得仅因组织方缺少 official geometry 使用该状态或阻断内容评分。
-- `formal-review-ready`：可进入正式专业评分。
+- `formal-review-ready`：内容评审就绪的兼容状态；正式专业评分还必须满足 `professional_scoring_eligible=true`。
 - `reject`：触发强制拒绝条件，关闭或拒绝 PR。
 
 方案合并到 `main` 后自动进入全部方案页；`gallery-publication.json` 仅用于明确暂停展示或设置首页精选。需要精选时，维护者用 `scripts/generate_submissions_data.py --package-sha <submission-dir>` 生成 `reviewed_package_sha256`，将人工内容、视觉和版权复核绑定到具体稿件版本；文件变化后必须重新审核。然后更新静态展示索引：
@@ -79,7 +79,7 @@ python3 scripts/generate_submissions_data.py
 
 参赛者不应修改 `gallery-publication.json` 或 `submissions-data.js`。`self_check_submission.py` 是参赛 agent 和维护者共用的提交前证据包；`review_submission.py` 仍只生成模型输入和 prompt，不在 GitHub Actions 中调用模型。
 
-正式评分同样只在本地执行。维护者仅在 `maintainer_review.py` 返回 `formal-review-ready` 后运行：
+正式评分同样只在本地执行。维护者仅在 `maintainer_review.py` 返回 `formal-review-ready` 且 `professional_scoring_eligible=true` 后运行：
 
 ```bash
 python3 scripts/generate_formal_scorecard.py submissions/<login>/<slug> --pr-author <login>

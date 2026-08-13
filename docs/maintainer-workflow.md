@@ -49,11 +49,11 @@ python3 scripts/maintainer_review.py \
 把命令输出复制到 PR comment。maintainer review 的可见结果只在 PR comment 中展示，不进入 `submissions-data.js`、方案卡片或公开展示页。按建议状态处理：
 
 - `request-changes`：要求参赛者修复后再审。
-- `intake-provisional`：历史状态，仅用于识别旧审核结果；不得仅因组织方缺少正式 geometry 继续使用该状态。历史包在 gallery 中可能为公开连续性保留既有展示分类，但该分类不构成新的可信正式证据。
-- `formal-review-ready`：可进入正式专业评分。
+- `intake-provisional`：历史状态，仅用于识别旧审核结果；不得仅因组织方缺少正式 geometry 继续使用该状态。
+- `formal-review-ready`：历史兼容状态，表示已通过内容评审门槛，不单独表示可以进行正式专业评分。
 - `reject`：触发强制拒绝条件，关闭或拒绝 PR。
 
-`package_type` 描述提交物种类，`review_status` 描述审核决定。组织方缺少 official boundary/key areas 只能形成精度与复算警示，不得阻断内容评分或导致扣分。
+`package_type` 描述提交物种类，`review_status` 描述审核决定。审核结果还要分别记录 `package_state`、`content_review_eligible`、`professional_scoring_eligible` 和 `professional_scoring_blocked_by`。旧字段 `can_enter_formal_review` 继续保留，但只作为内容评审资格的兼容别名。组织方缺少 official boundary/key areas 不得阻断内容评审，却会在正式专业评分阶段保持 blocked。
 
 ### Intake 最低质量门槛
 
@@ -96,7 +96,7 @@ python3 scripts/audit_bilingual_backfill.py
 
 ## 4A. 上线前模拟 PR 审核
 
-公开前或大改审核流程后，维护者可用仓库内 provisional 样例模拟一次 PR 审核。组织方缺少正式 geometry 不得阻断内容评分，因此参与者可控制的检查全部通过时，预期建议状态必须是 `formal-review-ready`，同时保留精度警示与复算要求：
+公开前或大改审核流程后，维护者可用仓库内 provisional 样例模拟一次 PR 审核。组织方缺少正式 geometry 不得阻断内容评审，因此参与者可控制的检查全部通过时，预期建议状态仍是兼容值 `formal-review-ready`；同时 `professional_scoring_eligible` 必须为 `false`，并保留精度警示与复算要求：
 
 ```bash
 python3 scripts/maintainer_review.py \
@@ -112,7 +112,7 @@ python3 scripts/generate_submissions_data.py --check
 python3 scripts/prelaunch_check.py
 ```
 
-若输出不是 `Recommendation: **formal-review-ready**`，或 `prelaunch_check.py` 失败，应先修复审核逻辑、展示索引或公开文档，不要发布新的投稿入口。
+若输出不是 `Recommendation: **formal-review-ready**`，或三轴状态与预期不符，或 `prelaunch_check.py` 失败，应先修复审核逻辑、展示索引或公开文档，不要发布新的投稿入口。
 
 ## 5. 合并后更新公开展示与首页精选
 
@@ -172,7 +172,7 @@ python3 scripts/render_portal.py \
 
 ## 6. 正式专业评分
 
-只有 `maintainer_review.py` 返回 `formal-review-ready` 后，才运行正式评分表生成器：
+只有 `maintainer_review.py` 返回 `formal-review-ready` 且 `professional_scoring_eligible=true` 后，才运行正式评分表生成器：
 
 ```bash
 python3 scripts/generate_formal_scorecard.py \
@@ -180,7 +180,7 @@ python3 scripts/generate_formal_scorecard.py \
   --pr-author <github-login>
 ```
 
-该命令会复跑维护者 gate，并在 `.maintainer-review/<proposal-slug>/formal-scorecard/` 生成 `formal-scorecard.json` 和 `formal-scorecard-comment.md`。如果方案仍是 `intake-provisional`、`request-changes` 或 `reject`，命令会返回非零并把 `scoring_status` 标为 `blocked`，不得填写正式分数。
+该命令会复跑维护者 gate，并在 `.maintainer-review/<proposal-slug>/formal-scorecard/` 生成 `formal-scorecard.json` 和 `formal-scorecard-comment.md`。如果方案仍是 `intake-provisional`、`request-changes` 或 `reject`，或者 `professional_scoring_eligible=false`，命令会返回非零并把 `scoring_status` 标为 `blocked`，不得填写正式分数。
 
 正式评分表使用 `brief/site-package/schemas/formal_scorecard.schema.json`，七维度按 0-5 分填写并折算为 100 分。评分 JSON、专家分歧和中间材料不提交到仓库；如需反馈参赛者，只复制最终整理后的 PR comment。
 
@@ -247,7 +247,9 @@ python3 scripts/ai_review_submission.py \
 - `pr-comment.md`：可复制到 PR 的最终意见。
 - `review-input.json`、`review-prompt.md`、`request-metadata.json`：本地审计材料。
 
-发布建议分为 `do-not-publish`、`publish-qualified` 和 `featured-candidate`。它只由 schema 合规输出、本地 gate 和加权分共同派生；`featured-candidate` 仍需通过维护者发布脚本写入 `gallery-publication.json`，AI 脚本本身不修改发布清单、不提交、不评论 PR、不 merge。
+发布建议分为 `do-not-publish`、`publish-qualified` 和 `featured-candidate`。它是内容评审与发布政策的 advisory 轴，和 `professional_scoring_eligible` 分开记录；组织方 geometry 缺口不会因为这两个字段被自动追溯改写为历史发布撤销。`featured-candidate` 仍需通过维护者发布脚本写入 `gallery-publication.json`，AI 脚本本身不修改发布清单、不提交、不评论 PR、不 merge。
+
+实际 merge/publication promotion 仍由维护者 queue 的可信 exact-head gate 决定，包括四项确定性门、绝对分数阈值和同一投稿目录的历史分数保护。新候选低于受保护的可信历史最高分时，只能 hold/request-changes；已经合并或已经公开的版本不回溯删除，下一次恢复必须通过新的 exact head 达到对应分数。旧投稿在迁移前继续沿用既有公开状态，新增三轴字段不会触发 retroactive reclassification。
 
 AI 无法仅凭文件内容证明现实世界中的版权归属或资料公开性。缺少授权、来源或权属证据时，prompt 要求返回 `request-changes` 和具体补证清单，而不是臆测“已合规”。
 

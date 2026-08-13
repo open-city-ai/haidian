@@ -14,7 +14,7 @@
 - 风险合规：是否尊重公开资料边界、隐私、版权和政策不确定性。
 - 表达完整度：是否结构清晰、证据充分、可被继续讨论和深化。
 
-正式专业评分只适用于维护者 gate 已返回 `formal-review-ready` 的方案。评分输出必须遵守 `brief/site-package/schemas/formal_scorecard.schema.json`，并由 `scripts/generate_formal_scorecard.py` 生成本地空白评分表后填写。
+正式专业评分只适用于维护者 gate 已返回 `formal-review-ready` 且 `professional_scoring_eligible=true` 的方案。评分输出必须遵守 `brief/site-package/schemas/formal_scorecard.schema.json`，并由 `scripts/generate_formal_scorecard.py` 生成本地空白评分表后填写。
 
 权重建议如下：
 

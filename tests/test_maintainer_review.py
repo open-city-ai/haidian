@@ -11,6 +11,8 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(REPO_ROOT / "scripts"))
+from maintainer_review import build_summary  # noqa: E402
 HAS_REVIEW_DEPS = all(
     importlib.util.find_spec(name) is not None for name in ["shapely", "pyproj", "jsonschema"]
 )
@@ -72,6 +74,22 @@ def run_maintainer_comment(submission_dir: Path, pr_author: str, repo_root: Path
     return subprocess.run(command, capture_output=True, text=True, check=False)
 
 
+class MaintainerReadinessBoundaryTests(unittest.TestCase):
+    def test_legacy_content_alias_does_not_authorize_professional_scoring(self) -> None:
+        summary = build_summary(
+            REPO_ROOT,
+            REPO_ROOT / "submissions" / "alice" / "legacy",
+            "alice",
+            {"stdout": {"ok": True, "can_enter_formal_review": True}},
+        )
+        self.assertTrue(summary["content_review_eligible"])
+        self.assertFalse(summary["professional_scoring_eligible"])
+        self.assertIn(
+            "professional_scoring_eligibility_missing",
+            summary["professional_scoring_blocked_by"],
+        )
+
+
 @unittest.skipUnless(HAS_REVIEW_DEPS, "Install requirements-review.txt to run maintainer review tests")
 class MaintainerReviewTests(unittest.TestCase):
     def test_provisional_package_is_not_blocked_by_organizer_data_gap(self) -> None:
@@ -84,6 +102,12 @@ class MaintainerReviewTests(unittest.TestCase):
             summary = json.loads(completed.stdout)
             self.assertEqual("formal-review-ready", summary["recommendation"])
             self.assertTrue(summary["can_enter_formal_review"])
+            self.assertTrue(summary["content_review_eligible"])
+            self.assertFalse(summary["professional_scoring_eligible"])
+            self.assertEqual(
+                ["official_site_boundary", "official_key_areas"],
+                summary["professional_scoring_blocked_by"],
+            )
             self.assertTrue((out_dir / "review-summary.json").exists())
             self.assertTrue((out_dir / "maintainer-comment.md").exists())
             advisory = (out_dir / "advisory-review.md").read_text(encoding="utf-8")
@@ -143,6 +167,9 @@ class MaintainerReviewTests(unittest.TestCase):
             summary = json.loads(completed.stdout)
             self.assertEqual("formal-review-ready", summary["recommendation"])
             self.assertTrue(summary["can_enter_formal_review"])
+            self.assertTrue(summary["content_review_eligible"])
+            self.assertTrue(summary["professional_scoring_eligible"])
+            self.assertEqual([], summary["professional_scoring_blocked_by"])
             self.assertEqual("PASS", summary["checks"]["spatial_review"])
 
 

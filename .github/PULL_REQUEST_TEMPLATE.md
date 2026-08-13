@@ -34,6 +34,8 @@
 - [ ] `geometry/site_boundary.geojson` 使用可信 official boundary，且 `official_boundary=true`
 - [ ] `geometry/key_areas.geojson` 使用三处可信 official key-area polygons，且 `official_boundary=true`
 - [ ] `manifest.validation_claim.known_blockers` 为空
+- [ ] `self_check_submission.py` 输出 `content_review_eligible=true`（`can_enter_formal_review=true` 为兼容别名）
+- [ ] 如申请正式专业评分，输出 `professional_scoring_eligible=true`
 - [ ] `self_check_submission.py --mark-self-checked` 输出 `can_enter_formal_review=true`，并将 `manifest.validation_claim.readiness_contract` 写为 `persisted-self-check-v1`、`self_checked` 写为 `true`
 - [ ] 没有 blocking self-check、空间复核、视觉复核或专业证据链缺口
 

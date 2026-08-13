@@ -202,13 +202,13 @@ def build_prompt(review_input: dict) -> str:
             "The JSON must include:",
             "- Mandatory rejection check result",
             "- Gate check summaries for deterministic validation, spatial review, machine visual-packaging checks, and professional evidence review",
-            "- Whether the package can enter formal professional review",
+            "- Whether the package can enter content review and whether it is eligible for formal professional scoring",
             "- Seven-dimension rubric scores and comments using the supplied `rubric_dimensions[].dimension_id` values",
             "- Agent taskbook comments inside the relevant rubric comments when agent_taskbook_review_dimensions is present",
             "- Data gaps and repair actions",
             "- `pr_comment_markdown`: concise Markdown for a PR comment",
             "",
-            "Important: deterministic validation and spatial review results are evidence. Treat blocking self-checks, known blockers, and missing official geometry as serious readiness limits.",
+            "Important: deterministic validation and spatial review results are evidence. Treat blocking self-checks as content-review blockers; treat known blockers and missing official geometry as explicit professional-scoring prerequisites.",
             "Treat background_only, provisional_only, and needs_review registry entries as non-formal evidence unless the submitted package separately provides reviewed official/cleared evidence.",
             "Version 2 bilingual deliverables are mandatory. A missing, incomplete, malformed, or incorrectly mapped Chinese/English counterpart is a blocking package-readiness failure. Historical version 1 packages remain compatible; review their available language without inventing missing content. Human reviewers must still compare translated claims, metrics, evidence, and figure positions for substantive equivalence.",
             "When English counterparts are present, the multimodal packet includes language-paired figure, PDF first-page, and HTML screenshot evidence. Do not reduce expression_completeness merely because a counterpart is absent from the multimodal packet; the deterministic bilingual gate and human package review own that mapping check.",
@@ -235,15 +235,18 @@ def build_template(review_input: dict) -> str:
     lines.append("## Formal Review Readiness")
     self_check = review_input.get("pre_submit_self_check", {}).get("stdout", {})
     if isinstance(self_check, dict):
-        ready = "YES" if self_check.get("can_enter_formal_review") else "NO"
+        content_ready = "YES" if self_check.get("content_review_eligible", self_check.get("can_enter_formal_review")) else "NO"
+        professional_ready = "YES" if self_check.get("professional_scoring_eligible") else "NO"
         lines.append(f"- Pre-submit self-check: {'PASS' if self_check.get('ok') else 'FAIL'}")
+        lines.append(f"- Can enter content review: {content_ready}")
+        lines.append(f"- Eligible for formal professional scoring: {professional_ready}")
         professional = self_check.get("professional_review", {})
         if isinstance(professional, dict):
             lines.append(f"- Professional evidence review: {'PASS' if professional.get('ok') else 'FAIL'}")
-        lines.append(f"- Can enter formal professional review: {ready}")
     else:
         lines.append("- Pre-submit self-check: TODO")
-        lines.append("- Can enter formal professional review: TODO")
+        lines.append("- Can enter content review: TODO")
+        lines.append("- Eligible for formal professional scoring: TODO")
     lines.append("- Result: TODO")
     lines.append("- Blocking issues: TODO")
     lines.append("")
