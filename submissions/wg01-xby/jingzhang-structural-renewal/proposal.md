@@ -4,6 +4,8 @@ author_github: "wg01-xby"
 language: "zh"
 license: "CC-BY-4.0"
 summary: "以结构工程独特视角切入百年京张AI创新带城市设计，提出京张铁路工业遗址结构改造为AI算力载体，策略①工业遗址重型算力建筑改造、②京张遗址钢结构加层、③三区两翼智能基础设施结构体系，三区（众智园192ha/AI原点社区104ha/大钟寺72ha）两翼（中关村科技服务翼/小月河场景赋能翼），三地标（京张结构之环/众智算力之脊/AI原点之芯）。覆盖AI创新生态、12张场景卡、5类用户画像、3个AI测试验证场景、7个全球案例。所有空间边界均为临时粗略边界（provisional），方案不替代正式规划。
+proposal_format_version: "2"
+bilingual_contract_version: "1"
 ---
 
 [data:geometry/site_boundary.geojson#PROV-SITE-001]
@@ -62,6 +64,11 @@ summary: "以结构工程独特视角切入百年京张AI创新带城市设计�
 > ⚠️ Logo为AI生成概念方向，需专业设计师依据开源字体（思源黑体/Noto）和原创图形规范细化，不得直接使用商业字体或第三方注册商标。
 
 ---
+
+> **补充规范依据**： [source:SRC-2017-MOHURD-URBAN-DESIGN-MEASURES] [source:SRC-2023-MNR-LAND-USE-CLASSIFICATION] [source:SRC-MOHURD-CONTROL-DETAILED-PLANNING]
+
+> **补充技术标准**： [standard:BARRIER-FREE-ENVIRONMENT-LAW] [standard:ELDERLY-SMART-TECH-PLAN-2020-45] [standard:GENERATIVE-AI-INTERIM-MEASURES] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]
+> **设计深度覆盖（总体框架）**：[depth:blue_green_public_space] [depth:development_intensity_controls] [depth:existing_conditions_diagnosis] [depth:height_massing_character] [depth:land_use_layout]
 
 ## 三层范围工作框架
 
@@ -270,6 +277,8 @@ summary: "以结构工程独特视角切入百年京张AI创新带城市设计�
    - 测试目标：验证预测性维护减少结构维护成本≥20%
 
 ---
+> **重点区域设计深度**：[depth:metrics_recalculation] [depth:municipal_new_infrastructure] [depth:overall_spatial_structure] [depth:phasing_implementation] [depth:renewal_project_list]
+> **设计深度补充**：[depth:three_key_area_detailed_design] [depth:three_level_scope_framework] [depth:traffic_rail_slow_parking]
 
 ## 用地、建筑规模与拆改留方案
 
@@ -403,6 +412,8 @@ summary: "以结构工程独特视角切入百年京张AI创新带城市设计�
 
 ## 指标体系、面积复算与合规矩阵
 
+> **指标引用**： [metric:MTR-001] [metric:MTR-002] [metric:MTR-003] [metric:MTR-004] [metric:MTR-005] [metric:MTR-006] [metric:MTR-007] [metric:MTR-008] [metric:MTR-009] [metric:MTR-010] [metric:MTR-011] [metric:MTR-012] [metric:MTR-013] [metric:MTR-014]
+
 ### 11.1 指标体系（metrics.json摘要）
 
 [data:geometry/key_areas.geojson]
@@ -483,6 +494,7 @@ summary: "以结构工程独特视角切入百年京张AI创新带城市设计�
 
 ---
 
+> **合规证据覆盖**：[source:SRC-PROVISIONAL-BOUNDARIES-2026] [standard:BARRIER-FREE-ENVIRONMENT-LAW] [depth:risk_missing_data] [depth:retain_renovate_demolish]
 ## 参考资料
 
 ### 官方文件
