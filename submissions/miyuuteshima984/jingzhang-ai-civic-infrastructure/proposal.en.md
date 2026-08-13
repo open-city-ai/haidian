@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Uses City Completeness as the spatial review method for the Centennial Jing-Zhang AI Innovation Belt: seven ordinary-city capabilities—HOME, LEARN, CARE, MOVE, GREEN, WORK and COMMON LIFE—form a durable everyday base first, while AI enters research, community, mobility and commerce as an optional enhancement layer. The structure is one public green spine, six completeness segments, six east-west stitching links and three key areas; Shuangfen Fortress remains only a community-name easter egg inside AI Origin Community."
 tracks: ["ai-origin-community", "ai-public-services", "ai-traffic-walkability"]
 scenarios: ["ai-traffic-walkability", "robot-delivery-low-speed", "enterprise-service-copilot", "ai-cultural-guide", "ai-health-service-navigation"]
-iteration: "v0.8"
+iteration: "v0.9"
 ---
 
 # JING-ZHANG CITY COMPLETENESS
@@ -145,6 +145,22 @@ The same prototype is embedded differently in the three key areas. Zhongzhiyuan 
 
 Each key area receives five stable observation categories—**arrival continuity, no-account/staffed equivalence, accessibility and staying, test boundary, shutdown/recovery and maintenance**—for 15 `observation_id` values in total. [metric:preregistered_observation_slot_count] All are currently `not_measured`; coordinates, sample sizes, thresholds, field readings, permission and named responsible entities remain pending real survey and professional confirmation. This is a future field-work package, not field evidence. See `visual/assets/field-observation-register.json`.
 <!-- V08-PROTOTYPE-END -->
+
+<!-- V09-REALITY-START -->
+### v0.9 | REALITY-ANCHORED: a source enters the design story only if it changes a spatial decision
+
+v0.9 is a **reality-anchored parallel candidate** branched independently from the v0.7 exact head; it does not inherit the v0.8 prototype-convergence experiment. It applies a narrower rule: a public source enters the main design narrative only when it changes a section, interface, node, or the precision of an unknown. This round registers three official-public reality anchors and five explicit design-response rules. [metric:official_constraint_anchor_count] [metric:design_response_rule_count]
+
+![How reality constraints change spatial design rather than becoming a bibliography](assets/figures/reality-constraint-design-response.en.svg)
+
+**Zhichun Road:** the official public response to the draft control plan records this railway-related segment as underpassing the railway and unsuitable for an at-grade junction. [source:HD00-1601-DRAFT-RESPONSE-V09] The proposal therefore stops drawing every east-west stitch as the same surface crossing. Zhichun Road becomes a **vertical-continuity problem to be resolved**, with pedestrian continuity, level changes, accessibility and engineering conditions left for professional verification. No bridge/tunnel alignment or feasibility is claimed.
+
+**Jing-Zhang green edge:** the official planning-response material for Lanjinglijia calls for integration with the Jing-Zhang railway green corridor and improved spatial quality. [source:HD-LANJINGLIJIA-INTEGRATED-RESPONSE-V09] The design response is people-first: continuous walking, staying and public frontage precede AI equipment, logistics and replaceable service modules. The case is not transferred as a parcel control.
+
+**Reality scale references:** three published planning-condition documents cover seven plots, with reference FAR values of 2.20–5.00 and reference height controls of 24–80 m; some also publish density and green-ratio conditions. [source:HD-PLOT-CONDITIONS-REFERENCE-V09] These values answer only “what has appeared in approved plot conditions nearby”; they do not answer “what this proposal should receive”. Proposal `approved_*` metrics remain unknown. [metric:reference_plot_condition_count]
+
+All five response rules are machine-readable in `visual/assets/reality-constraint-register.json`. The fixed `mobility-bluegreen.en.png` is rebuilt to distinguish ordinary stitching, the underpass/vertical-continuity condition, people-first green-corridor frontage, station-city arrival, and the future official-data recomputation trigger.
+<!-- V09-REALITY-END -->
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 

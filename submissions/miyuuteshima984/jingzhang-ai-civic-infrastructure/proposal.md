@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以城市完整度作为百年京张AI创新带的空间审查方法：居、学、护、行、绿、工、交七项普通城市能力先形成长期可用的日常底盘，AI作为可选增强层进入科研、社区、交通和商业。总体形成一条公共绿脊、六段完整度片区、六条东西缝合联系与三处重点区；爽粉堡垒仅作为AI原点社区中的社区命名彩蛋。"
 tracks: ["ai-origin-community", "ai-public-services", "ai-traffic-walkability"]
 scenarios: ["ai-traffic-walkability", "robot-delivery-low-speed", "enterprise-service-copilot", "ai-cultural-guide", "ai-health-service-navigation"]
-iteration: "v0.8"
+iteration: "v0.9"
 ---
 
 # 京张城市完整度 / JING-ZHANG CITY COMPLETENESS
@@ -155,6 +155,22 @@ v0.8 是从 v0.7 exact head 分出的 **prototype-first 并行候选**。它不�
 
 每个槽位只回答四件事：未来要观察什么、由谁确认、什么情况必须停止解释、AI 退出后普通城市功能如何验收。任何未测字段都不得被图纸或指标自动补成“达标”。
 <!-- V08-PROTOTYPE-END -->
+
+<!-- V09-REALITY-START -->
+### v0.9｜REALITY-ANCHORED：只有能改变空间判断的资料才进入主叙事
+
+v0.9 是从 v0.7 exact head 分出的 **reality-anchored 并行候选**，不继承 v0.8 的原型收束实验。它把“来源更多”改成更窄的规则：**一条现实资料只有在改变断面、界面、节点或 unknown 的表达方式时，才进入设计主叙事。** 本轮登记 3 组官方公开现实锚点，并形成 5 条可检查的设计响应。[metric:official_constraint_anchor_count] [metric:design_response_rule_count]
+
+![现实约束如何改变空间设计，而不是变成参考文献堆](assets/figures/reality-constraint-design-response.svg)
+
+**第一条是知春路。** 海淀规自部门公开的控规草案采信通告明确，该铁路节点处知春路属于下穿段、不具备平交条件，并以分离式立交思路预留联通条件。[source:HD00-1601-DRAFT-RESPONSE-V09] 因此本案不再把六条东西缝合都画成同一种“地面横穿”：知春路改成**竖向连续性待解节点**，后续必须核实地面步行连续、上下层关系、无障碍和工程条件；当前不画桥隧线位、不声称工程可行。
+
+**第二条是京张绿廊界面。** 蓝景丽家相关官方规划综合实施方案采信信息要求其商业商务规划与东侧京张铁路绿廊衔接并提升空间品质。[source:HD-LANJINGLIJIA-INTEGRATED-RESPONSE-V09] 本案据此把绿廊侧的优先级写得更硬：连续步行、可停留公共界面和人优先首层在前，AI 设备、物流与可替换服务模块不得切断公共通行。该个案不被外推为本案地块条件。
+
+**第三条是现实强度标尺。** 三份公开《建设项目规划条件》覆盖 7 个地块，公开 FAR 参照为 2.20–5.00、建筑限高参照为 24–80m，部分地块另有密度与绿地率条件。[source:HD-PLOT-CONDITIONS-REFERENCE-V09] 这些数值只回答“现实里已经出现过什么量级”，绝不回答“本案应该批多少”。因此 `approved_floor_area_ratio`、`approved_building_height_m` 等继续保持 unknown，概念建筑也不套用任何相邻样本。[metric:reference_plot_condition_count]
+
+五条设计响应完整记录于 `visual/assets/reality-constraint-register.json`。本轮固定 `mobility-bluegreen.png` 重建为不同类型的现实接口：普通缝合、下穿节点竖向连续性、绿廊人优先界面、站城到达与 official-data 重算触发器，不再用同一种蓝色虚线代表所有问题。
+<!-- V09-REALITY-END -->
 
 ## 用地、建筑规模与拆改留方案
 
