@@ -1,5 +1,11 @@
 # 提交附录：权利台账与双语实质等值核验 / Submission Appendix: Rights Ledger and Bilingual Equivalence
 
+## V4 证据包索引 / V4 Evidence Pack Index
+
+`visual/assets/v4-evidence-pack.json` is the machine-readable companion to this appendix. It registers the six agent-task deliverables, six global mechanism references, ecosystem map, eight-factor matrix, twelve scenario cards, three conceptual validation pilots, inclusion segments, public-space components, landmarks, regional interfaces, implementation projects, annual activity system, operating loop, conversion pathway, rights ledger, bilingual equivalence checks, and pending human sign-off. It is a participant-authored review index; it does not upgrade provisional geometry, public-source summaries, or conceptual operations into official facts.
+
+The authoritative package status remains: four blocking intake gates pass and are persisted; the submission may enter content scoring; geometry and several controls remain provisional or unknown; all public or commercial use still needs specialist, rights, and human language review. Any conflict is resolved in favour of the official source registry, current validator output, and the explicit limitations in `metrics.json` and `assumptions.json`.
+
 > 本附录覆盖 `submissions/ETO-MQC/ai-heritage-spine/` 的静态交付物。它记录 **AI 生成后的版本核验**，不冒充人工签署。正式公开、评奖或实施前，必须由获得授权的中英文专业人员、权利审核人和提交责任人完成实质等值、来源和许可复核。
 
 ## 1. 资产权利与使用边界 / Asset Rights and Use Boundaries

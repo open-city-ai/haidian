@@ -6,12 +6,31 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "1.1.0-v3-jury-edition"
-summary: "以京张铁路“人字形”展线为空间母题，提出“京张人字线 · 智脉共生带”总体概念：一条南北主脊、两翼、三处重点区、三处朝圣地标与12张AI场景卡。V3 增设独立评委首读册、遗产—服务—治理四重规则、概念性慢行锚点、AI 场景驿站服务蓝图、包容性用户旅程与可退出决策门。全部几何基于 provisional boundary 生成并在 EPSG:4548 下复算；数字服务不接入真实个人数据，正式资料发布后整包重算。"
+iteration: "1.2.0-v4-evidence-edition"
+summary: "以京张铁路“人字形”展线为空间母题，提出“京张人字线 · 智脉共生带”总体概念：一条南北主脊、两翼、三处重点区、三处朝圣地标与12张AI场景卡。V4 增加机器可读任务证据包、六个全球案例、八要素生态矩阵、试点验证卡、实施项目、年度运营，以及逐资产权利和双语台账。全部几何基于 provisional boundary 生成并在 EPSG:4548 下复算；数字服务不接入真实个人数据，正式资料发布后整包重算。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
 # 智轨新脉：京张人字线 · 百年AI创新带总体城市设计
+
+## V4 评审证据导航：从任务到可退出路径
+
+V4 在 V3 首读册之外增加一份机器可读的任务证据包 `visual/assets/v4-evidence-pack.json`。它不是新的官方数据源，也不替代 `compliance_matrix.json`、`metrics.json`、GeoJSON、图册或人工专业审核；它把评审者最容易漏看的内容压缩成“任务—交付物—核对点—限制条件”，并把概念主张连接到空间、运营、权利与退出条件。视觉索引提供入口，以下六项均可在证据包中逐条检索 [data:visual/assets/v4-evidence-pack.json#task_evidence] [source:AGENT-TASKBOOK]。
+
+| 智能体任务 | V4 可核对交付物 | 首要核对问题 |
+| --- | --- | --- |
+| agent.1 总体统筹 | Logo/VI、总体结构、三区两翼与区域接口 | 命名、空间母题、产业回路是否清晰且不冒充官方标识 |
+| agent.2 全栈生态 | 6 个全球案例、生态图谱、八类要素保障矩阵 | 案例是否有发布主体/日期/链接/权利边界，机制是否落到空间 |
+| agent.3 场景赋能 | 12 张场景卡、3 个概念性验证场景、5 类核心画像与 6 类包容性群体 | 输入、TRL、指标、运营方、人工复核和退出条件是否完整 |
+| agent.4 公共空间与地标 | 6 项组件、3 个概念地标、开放贡献与公共价值展示 | 是否尊重文保、蓝线、绿地、交通和权属前置条件 |
+| agent.5 文化叙事 | 历史资源六步系统、导视层级、国际传播文案 | 是否把史实、文化权利、双语和导视责任分开处理 |
+| agent.6 长期运营 | 季度/年度活动、开发者社区、场景开放五步、品牌治理与转化路径 | 是否有节奏、角色、审计、申诉、扩展/退出，而非只有口号 |
+
+V4 明确八类要素保障的工作关系：土地与空间回答“在哪里、什么前置条件”；产业、人才与算力回答“谁来测试、由何种能力支撑”；资金回答“如何分阶段讨论而不预设承诺”；数据回答“何种授权、目的、留存与审计”；场景回答“如何小范围验证、复盘并退出”。这八类机制是设计建议，不是企业名单、财政安排、招商承诺或已确定合作 [data:visual/assets/v4-evidence-pack.json#eight_factor_matrix] [depth:risk_missing_data]。
+
+区域协作也采用“接口类型 + 交换内容 + 空间触点 + 建议属性”表达：北纬社区对应慢行与公共空间接口，未来科学城对应标准与人才接口，怀柔科学城对应研究与可追溯数据接口，经开区对应产业梯度接口，京津冀对应人才、算力与场景学习接口；不写成已签协议或已获得数据 [data:visual/assets/v4-evidence-pack.json#regional_cooperation_interfaces] [source:AGENT-TASKBOOK]。
+
+V4 的状态边界统一为：`formal-review-ready` 只表示四门 intake gate 已通过并可进入内容评分；geometry 仍为 provisional，FAR/高度/密度/产权/市政/文保等仍待核验，运营、活动、合作与地标均为概念建议。逐资产权利台账、双语核对与人工签署状态见 `report/narrative.md` 和证据包；COMMUNITY-DISPLAY-ONLY 不等于第三方商业再许可 [data:visual/assets/v4-evidence-pack.json#review_contract] [source:SOURCE-REGISTRY]。
 
 ## 设计依据与资料清单
 

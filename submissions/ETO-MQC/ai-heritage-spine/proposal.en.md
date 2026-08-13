@@ -6,12 +6,31 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "1.1.0-v3-jury-edition"
-summary: "Using the Jing-Zhang Railway herringbone alignment as a spatial motif, the proposal presents one north-south spine, two wings, three key areas, three pilgrimage landmarks, and 12 AI scenario cards. V3 adds an independent jury first-read booklet, a four-part heritage–service–governance rule, a conceptual active-travel anchor, an AI scenario-station service blueprint, inclusive user journeys, and exit-ready decision gates. All geometry derives from the provisional boundary and is recalculated in EPSG:4548; digital service uses no real personal data, and the full package is recomputed when formal data are published."
+iteration: "1.2.0-v4-evidence-edition"
+summary: "Using the Jing-Zhang Railway herringbone alignment as a spatial motif, the proposal presents one north-south spine, two wings, three key areas, three pilgrimage landmarks, and 12 AI scenario cards. V4 adds a machine-readable task evidence pack, six global cases, an eight-factor ecosystem matrix, pilot validation cards, implementation projects, annual operations, and per-asset rights and bilingual ledgers. All geometry derives from the provisional boundary and is recalculated in EPSG:4548; digital service uses no real personal data, and the full package is recomputed when formal data are published."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
 # Smart Rail, New Pulse: The Jing-Zhang Ren-Line Century AI Innovation Belt Overall Urban Design
+
+## V4 Review Evidence Navigation: From Tasks to Exit-Ready Paths
+
+V4 adds a machine-readable task evidence pack, `visual/assets/v4-evidence-pack.json`, alongside the V3 first-read booklet. It is not a new official data source and does not replace `compliance_matrix.json`, `metrics.json`, GeoJSON, drawings, or human professional review. It compresses the items most likely to be missed into “task–deliverable–check point–limitation” and connects conceptual claims to space, operations, rights, and exit conditions. The visual index links to it, and all six tasks can be queried there [data:visual/assets/v4-evidence-pack.json#task_evidence] [source:AGENT-TASKBOOK].
+
+| Agent task | V4 reviewable deliverables | Primary check |
+| --- | --- | --- |
+| agent.1 overall coordination | Logo/VI, overall structure, three areas/two wings and regional interfaces | Is the naming, spatial motif, and industry loop clear without impersonating an official mark? |
+| agent.2 full-stack ecosystem | Six global cases, ecosystem map, eight-factor enabling matrix | Does each case have publisher/date/link/rights boundary, and is its mechanism spatially transferred? |
+| agent.3 scenario enablement | 12 scenario cards, three conceptual validation pilots, five core personas and six inclusion segments | Are inputs, TRL, metrics, operator type, human review, and exit conditions complete? |
+| agent.4 public space and landmarks | Six components, three concept landmarks, open-contribution/public-value display | Are heritage, blue-line, green-space, traffic, and ownership prerequisites respected? |
+| agent.5 cultural narrative | Six-step heritage system, signage hierarchy, international copy | Are historical facts, cultural rights, bilingual language, and wayfinding responsibility separated? |
+| agent.6 long-term operation | quarterly/annual activities, developer community, five-stage scenario opening, brand governance and conversion path | Are cadence, roles, audit, appeal, expansion, and exit defined rather than only slogans? |
+
+V4 makes the eight enabling factors explicit: land and space answer where and which prerequisites apply; industry, talent, and compute answer who tests and what supports capability; finance describes staged discussion without a promise; data defines authorization, purpose, retention, and audit; scenarios define bounded testing, review, and exit. These are design mechanisms, not company lists, fiscal arrangements, recruitment promises, or confirmed partnerships [data:visual/assets/v4-evidence-pack.json#eight_factor_matrix] [depth:risk_missing_data].
+
+Regional collaboration is expressed as “interface type + exchange + spatial touchpoint + suggested status”: Beiwei Community for slow-traffic/public-space interfaces, Future Science City for standards/talent, Huairou Science City for provenance-aware research, E-Town for an industry-gradient interface, and the Beijing–Tianjin–Hebei region for talent, compute, and scenario learning. None is written as a signed agreement or confirmed data access [data:visual/assets/v4-evidence-pack.json#regional_cooperation_interfaces] [source:AGENT-TASKBOOK].
+
+V4 keeps the status boundary consistent: `formal-review-ready` means only that the four intake gates pass and the package may enter content scoring; geometry remains provisional, and FAR/height/density/ownership/municipal/heritage inputs remain unverified. Operations, activities, partners, and landmarks are conceptual proposals. The per-asset rights ledger, bilingual comparison, and human-sign-off status are in `report/narrative.md` and the evidence pack; COMMUNITY-DISPLAY-ONLY is not third-party commercial re-licensing [data:visual/assets/v4-evidence-pack.json#review_contract] [source:SOURCE-REGISTRY].
 
 ## Design Basis and Source List
 
