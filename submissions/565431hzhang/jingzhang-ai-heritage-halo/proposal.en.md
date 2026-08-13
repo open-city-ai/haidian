@@ -25,54 +25,66 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 The two tracks run in parallel and reinforce each other, forming a distinctive urban-renewal paradigm of "anchored by history, winged by AI, and centered on people."
 
-## Executive Summary: One Belt, Three Cores, Multi-Scenario Nodes, Blue-Green Slow-Mobility Composite Ring
+## Design Basis and Source Inventory
 
-### Spatial Framework
+This formal proposal takes as its primary basis the *Pre-qualification Announcement for the International Design Solicitation for the Urban Design of the Centennial Jing-Zhang AI Innovation Belt* issued by the Haidian Branch of the Beijing Municipal Commission of Planning and Natural Resources, and takes the provisional rough boundaries, key areas, enums, metrics, and source inventory registered by maintainers in `brief/site-package/` as machine-readable bases. Before generating a proposal, an AI agent must read `design_brief.json`, `allowed_design_space.json`, `sources.json`, `enums/`, `ranges/`, `schemas/`, `data/source_registry.json`, and `data/processed/agent_fact_pack.md`, and use `project_scope_summary.csv`, `agent_task_requirements.csv`, `source_use_matrix.csv`, and `missing_data_checklist.csv` to build the task, scope, source-use, and data-gap lists. All design judgments must be decomposed into traceable sources, recomputable metrics, verifiable layers, and manually reviewable assumptions. The announcement requires the proposal to reach the urban design depth of a regulatory detailed plan and the urban design depth of a comprehensive planning implementation plan, so narrative text cannot replace the GeoJSON, metric tables, A3 booklet, A0 boards, and HTML e-display deliverables.
 
-The proposal organizes the 11.4 km² urban area along the Jing-Zhang Heritage Park under the principle of "One Belt, Three Cores, Multi-Scenario Nodes, Blue-Green Slow-Mobility Composite Ring," transforming it into a perceptible, operable, and growable AI-native urban prototype.
+The proposal is not a standalone vision document; it organizes deliverables from the announcement, the agent-facing taskbook, and the site materials. This section only places the most critical evidence beside the judgment it supports [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [depth:existing_conditions_diagnosis]. Complete source and standard coverage is preserved respectively in `sources.json`, `standard_matrix.json`, and `design_depth_matrix.json`, and the machine index is not repeated in the narrative.
 
-| Spatial Tier | Composition | Design Intent | Key Data |
-|-------------|------------|---------------|----------|
-| One Belt | Jing-Zhang Heritage Park vitality corridor (~9 km) | Continuous carrier of historical memory, slow-mobility, public space, AI experience | Area 11,412,825 m², slow-mobility connectivity target >=90% |
-| Three Cores | Zhongzhi Park AI Acceleration Zone (192.9 ha), AI Origin Community (104.3 ha), Dazhongsi AI Industry Cluster (72.1 ha) | Three innovation anchors, each radiating halo effects into surrounding neighborhoods | Total key area 368.4 ha, covering all three required areas |
-| Multi-Scenario Nodes | 10 AI scenario cards + 3 industry test/validation scenarios + 5 user profiles | Translating AI capability into operable, experienceable, measurable urban nodes | Each scenario card has independent spatial carrier and operator |
-| Composite Ring | Slow-mobility, blue-green, event route triple loop | Slow-mobility connectivity, green ratio, public space ratio, event route coverage form triple network | Green ratio 48.7%, slow-mobility roads ~42.3 km, blue-green/slow-mobility overlap >=60% |
+The usage boundaries of the source inventory are as follows [source:SOURCE-REGISTRY]:
 
-### Three-Zone/Two-Wing Synergy Loop
+- `data/source_registry.json` registers the permitted-use boundaries of public, cleared, and provisional materials.
+- Current registry summary: 7 formal-ready sources, 1 background-only source, and 1 provisional-only source.
+- An agent must not upgrade `background_only` or `provisional_only` materials into official boundaries, statutory regulatory controls, formal scoring evidence, or government implementation commitments.
 
-The three key areas form a functionally complementary collaborative network through the Three Zones, Two Wings framework:
+`data/processed/agent_fact_pack.md` is the reading navigation layer for this proposal, not a new authoritative source [source:PROCESSED-FACT-PACK]. It helps the agent organize the three scope levels, three key areas, announcement tasks, agent.1–agent.6, source availability, and missing-data matters into a readable proposal; factual judgments must still return to the registered primary materials [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK], and the complete source relationships are preserved in `sources.json`.
 
-- Zhongzhi Park -> Origin Community: Technology output (full-stack autonomous innovation) to talent feedback (open source, transformation), forming a technology-talent positive cycle
-- Origin Community -> Dazhongsi: Incubation outcomes (startups, open source projects) to industry landing (flagship enterprises, global roadshows), forming an innovation-industry conversion chain
-- Dazhongsi -> Zhongzhi Park: Market feedback (data elements, scenario demand) to technology iteration (security governance, standards), forming a market-technology closed loop
-- Zhongguancun Tech Service Wing: Provides talent supply, capital allocation, policy innovation, and international services across all three zones
-- Xiaoyuehe Scenario Wing: Hosts AI scenario experiences, public space, and event routes, making three-zone innovation outcomes perceptible
+![Evidence chain and submission package relationship](assets/figures/site-overview.png)
 
-### Five-Function Closed Loop
+Where the official `SITE_BOUNDARY` or the three `KEY_AREA` polygons are not yet available, this scaffold uses `brief/site-package/geometry/provisional_boundaries.geojson` to generate a temporary formal package. Both `geometry/site_boundary.geojson` and `geometry/key_areas.geojson` in the package must be labeled `provisional_constraint` and `official_boundary=false`; they may only be used for proposal generation, self-check, visualization, and design discussion, and may not serve as an official redline, approval basis, precise-area basis, or statutory control conclusion. This organizer data gap does not itself block content scoring; after official polygons are substituted, the site boundary, key areas, land use, roads, green space, public space, buildings, phasing, and metrics must all be recalculated.
 
-| Five Functions | Spatial Anchor | Industry Mechanism | Governance Entity | Implementation Project |
-|---------------|---------------|-------------------|-------------------|----------------------|
-| 1 AI full-stack innovation | Zhongzhi Park (core) + West Wing Zhongguancun | LLM training/evaluation, security sandbox, standard-setting, chip-framework synergy | Standards consortium + Zhongzhi Park operator | Qinghe innovation interface, security sandbox |
-| 2 World-class AI ecosystem | Origin Community (core) + East Wing universities | Open-source collaboration, incubation, talent zone, international community, brand events | Community co-governance committee + university operator | University-adjacent transformation street, open-source release hall |
-| 3 AI+ scenario enablement | Xiaoyuehe Scenario Wing (core) + Belt public space | 10 scenario cards, 3 test/validation scenarios, open data and scenario plan | Public space operator + community/commercial joint operator | Dazhongsi pedestrian connectivity, edge compute nodes |
-| 4 Smart AI vibrant city | Composite ring system | Slow-mobility AI navigation, smart public space management, accessibility AI assistance | Public space operator + municipal department | Jing-Zhang Heritage Park AI slow-mobility system |
-| 5 AI governance global voice | Zhongzhi Park (standards) + Dazhongsi (global roadshows) | Security governance sandbox, data element compliance, international event system | Standards consortium + global event committee | Dazhongsi global roadshow hall, data element lounge |
+The reviewable status generated by this scaffold is: **temporary boundary, precision caveat retained, subject to recalculation once official data is published; not blocking content scoring.** Accordingly, the spatial structure, scenarios, projects, and metrics in the narrative are written on the principle of "discussable, reviewable, and recomputable after substitution of the official boundary." When official boundary and key-area polygons are updated, the agent must rerun the scaffold, self-check, and drawing/HTML generation, not merely replace a single file.
 
-### Design Highlights
+Boundary interpretation can return to the overall scope layer and area recalculation [data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm]. The three key areas are cross-checked by standalone layers and count metrics [data:geometry/key_areas.geojson#PROV-KEY-001] [metric:key_area_count]. This means a reader can move from the narrative into the evidence without first reading a string of machine identifiers.
 
-1. Halo radiation model: The three key areas are not enclosed parks but luminous nodes radiating innovation energy through public space, slow-mobility systems, and scenario service nodes.
-2. Three-tier agent collaboration architecture: Spatial perception (edge agents) to scenario service (10 scenario agents) to city coordination (orchestration + human confirmation), forming a runnable, auditable AI-native urban system.
-3. Digital Twin City OS: Four-layer tech architecture (perception, data, model, application) providing a unified base for AI scenarios, with all data flows following the minimization principle.
-4. Human-in-the-loop always: All AI services retain manual fallback channels; public services do not interrupt when agents fail; residents can opt out of smart services.
-5. Phased implementation: Three-phase roadmap (near-term 1-3yr, mid-term 3-7yr, long-term 7-15yr), each phase with Go/No-Go decision points.
+### Parameter Confidence Table (Implementation Evidence)
 
-## Three-Level Working Framework
+Many parameters in this proposal (building counts, function mixes, heights, retain-renovate-demolish ratios, TOD radii, phasing years, funding channels, and employment figures) are conceptual assumptions until the official regulatory plan, current-building survey, ownership, and engineering conditions are released. To let reviewers and later deepening phases trace the evidence quality of every figure, the table below grades each key parameter by **evidence source**; every value can be located in `sources.json`, `metrics.json`, `assumptions.json` and `missing_data_checklist.csv` [source:PROCESSED-MISSING-DATA-CHECKLIST]:
 
-The proposal organizes work according to the three levels defined in the announcement: the coordinated research scope (43.6 km sq) covers AI industry ecology and strategic positioning; the overall design scope (11.4 km sq) covers the urban renewal framework, industrial spatial layout, and transport/municipal support; the key-area scope (368.4 ha) covers detailed design of the three zones. The three levels are mapped item by item in compliance_matrix.json, ensuring that every mandatory requirement has chapter, layer, metric, drawing, and HTML evidence.
+| Parameter | Stage | Evidence Grade | Basis / Pending Condition |
+|-----------|-------|----------------|---------------------------|
+| Site area 11,412,825 m² | Overall | **A Structured recalculation** | Recalculated from site_boundary + land_use [metric:site_area_sqm]; provisional boundary, recalculate after official redline |
+| Green ratio 48.7%, public space ratio 2.5% | Overall | **A Structured recalculation** | Recalculated from green_space / public_space layers |
+| Building coverage 5.7%, roads 42.3 km | Overall | **A Structured recalculation** | Recalculated from buildings / roads layers |
+| Three key-area extents 368.4 ha | Overall | **A Structured recalculation** | Recalculated from key_areas layer [metric:key_area_count] |
+| Building counts 80-100 / 40-50 / 30-40 | Key areas | **B Conceptual indication** | Conceptual massing; pending current-building survey and regulatory plan |
+| Function mixes (R&D office 60%, etc.) | Key areas | **B Conceptual indication** | Inferred from industry positioning; pending demand model and current tenure calibration |
+| Building heights 60-80m / 80-100m / 3-5 storeys | Key areas | **B Conceptual indication** | Pending regulatory height zones and heritage height control |
+| Retain-renovate-demolish ratios (35/40/25 etc.) | Key areas | **B Conceptual indication** | Pending current quality survey and structural safety assessment |
+| TOD 200m radii and intensity | Key areas | **B Conceptual indication** | Pending rail station tiering and regulatory plan |
+| Phasing years (Phase 1 2026-2028, etc.) | Implementation | **C Implementation assumption** | Aligned with the competition landing cycle; pending ownership, funding, and approval path |
+| Funding channels and investment model | Implementation | **C Implementation assumption** | Policy-framework discussion; pending operating entity and investment estimate |
+| Employment and workforce estimates | Industry | **C Implementation assumption** | Industry-scale projection; pending demand model and investment attraction data |
 
-The three levels are not disconnected drawing collections. The coordinated research determines industry chain and urban form judgments, the overall design translates these into renewal projects and spatial structure, and the key-area detailed design verifies the implementability of specific plots and AI application scenarios. Depth items are constrained by [depth:three_level_scope_framework], with spatial evidence based on [data:geometry/site_boundary.geojson#SITE-001] and [data:geometry/key_areas.geojson#PROV-KEY-001].
+**Grading rule**: **A** = directly recalculable from the package's structured GeoJSON/metrics; **B** = conceptual indication, clearly marked awaiting formal data; **C** = implementation and operation policy assumption, presented as a discussion direction rather than a commitment. The purpose of grading is not to devalue conceptual parameters but to let reviewers distinguish "already recalculated" from "needs deepening", avoiding calibrated figures being misread as current facts. No B/C parameter is written as a formal conclusion; each is presented as a calibration checklist item [source:PROCESSED-MISSING-DATA-CHECKLIST] [depth:extant_conditions_evidence].
 
-![Three-level scope map](assets/figures/land-use-structure.png)
+## Three-Level Scope Working Framework
+
+Following the three levels established in the announcement, the proposal is organized as follows: the coordinated research scope addresses the AI industry ecosystem, strategic positioning, innovation chain, and future urban form across 43.6 km²; the overall design scope addresses the 1–2 km urban and industrial belt around the 11.4 km² Jing-Zhang Heritage Park, and requires an overall urban-renewal framework, industrial spatial layout, transport and municipal support, and urban-character control; the key-area scope addresses 368.4 ha across three detailed-design areas, and requires clarification of functional formats, building scale, retain/renovate/demolish/new-build classification, public-space connectivity, and transport organization. The three scope levels are mapped one-by-one in `compliance_matrix.json` to guarantee that the mandatory tasks in announcement sections 1.3, 1.4, and 1.5 and agent.1–agent.6 all have chapter, layer, metric, drawing, and HTML evidence.
+
+The depth items of the three-level framework are governed by [depth:three_level_scope_framework] and [depth:overall_spatial_structure]; the spatial evidence is based on [data:geometry/site_boundary.geojson#SITE-001] and [data:geometry/key_areas.geojson#PROV-KEY-001]; the task basis is [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]; and the scope index is navigated by the three-level scope table in `project_scope_summary.csv` within [source:PROCESSED-FACT-PACK].
+
+![Three-level scope and spatial working framework](assets/figures/land-use-structure.png)
+
+The three levels are not a disconnected set of drawings. The coordinated research determines the industry-chain and urban-form judgment; the overall design translates that judgment into renewal projects, spatial structure, and facility capacity; and the key-area detailed design verifies the implementability of specific parcels, buildings, transport, public space, and AI application scenarios. When generating a proposal, the agent must first lock the official or provisional boundary and constraints adopted by the current submission, then generate land use, buildings, roads, green space, public space, phasing, and AI service nodes, and finally recalculate metrics from these layers and explain in the narrative which conclusions remain limited by the provisional boundary. Any area, ratio, scale, or project count that cannot be recalculated from structured data must not be written into a formal conclusion.
+
+The overall concept proposed by this package is the "Jing-Zhang AI Pulse Symbiotic Belt": with the Jing-Zhang Heritage Park as the historical and public-space main axis, the three key areas—众智园 (Zhongzhi Park), Beijing AI Origin Community, and 大钟寺 (Dazhongsi)—as innovation anchors, and universities, enterprises, communities, and rail stations as the daily network, it forms a spatial organization of "one belt, three cores, multiple scenario nodes, and a blue-green slow-mobility composite ring." Here the "belt" is not an additionally drawn red line but a translation of the three scope levels in the announcement into a working method; the "three cores" correspond to the three key areas; the "multiple scenario nodes" correspond to operable AI+ public-service, industry-service, and urban-life nodes; and the "composite ring" corresponds to the linkage of slow mobility, green space, public space, and activity routes.
+
+| Level | Design question | Proposal response | Data location |
+| --- | --- | --- | --- |
+| Coordinated research scope | How to organize the AI industry ecosystem and future urban form | Build the innovation chain of "university origination–open-source collaboration–enterprise transformation–public experience–international dissemination" | compliance_matrix.json, standard_matrix.json |
+| Overall design scope | How to put industrial space, urban renewal, transport/municipal, and character on the map | Expressed jointly by land-use, building, road, green-space, public-space, and phasing layers | [data:geometry/land_use.geojson#LU-001], [data:geometry/roads.geojson#ROAD-001] |
+| Key-area scope | How to bring the three areas to detailed-design depth | Propose positioning, spatial moves, AI scenarios, and implementation dependencies for each | [data:geometry/key_areas.geojson#PROV-KEY-001], [data:geometry/key_areas.geojson#PROV-KEY-002], [data:geometry/key_areas.geojson#PROV-KEY-003] |
 
 ## Coordinated Research Scope: Industry and Future-City Study
 
@@ -732,41 +744,6 @@ Metric recalculation follows the unified design depth requirement [depth:metrics
 The compliance matrix is the master control document for task responsiveness. Each announcement task and agent_taskbook task must correspond to a report chapter, layer, metric, drawing, HTML page, source, assumption, and self-check item. If any mandatory task under announcement sections 1.3, 1.4, 1.5, or agent.1–agent.6 is not covered, the proposal must not enter formal professional scoring.
 
 During formal deepening, the agent should also classify each metric into three categories: the first category comprises spatial metrics directly recomputable from submitted geometry, such as boundary area, green ratio, public-space ratio, building footprint area, and phased area; the second category comprises regulatory metrics requiring official regulatory-plan or taskbook attachments, such as FAR, building height, building density, setbacks, road red lines, and facility standards; the third category comprises performance metrics requiring continuous calibration from operational or industry data, such as AI innovation index, talent density, industry-service satisfaction, slow-mobility accessibility, event participation, and scenario usage frequency. The three categories should be entered respectively into `metrics.json`, `assumptions.json`, and `compliance_matrix.json`, avoiding the misrepresentation of operational visions as approved planning conditions.
-
-
-
-## Design Basis and Source Inventory
-
-This formal proposal takes as its primary basis the Pre-qualification Announcement for the International Design Solicitation for the Urban Design of the Centennial Jing-Zhang AI Innovation Belt and the provisional boundaries, key areas, enums, metrics, and source inventory registered in brief/site-package/. All design judgments are decomposed into traceable sources, recomputable metrics, verifiable layers, and manually reviewable assumptions.
-
-Complete source and standard coverage is preserved in sources.json, standard_matrix.json, and design_depth_matrix.json. Source usage boundaries:
-
-- data/source_registry.json registers the permitted-use boundaries of public, cleared, and provisional materials (7 formal-ready, 1 background-only, 1 provisional-only)
-- An agent must not upgrade background_only or provisional_only materials into official boundaries, statutory controls, formal scoring evidence, or government commitments
-- This package uses brief/site-package/geometry/provisional_boundaries.geojson for the temporary formal package; all geometry files are labeled provisional_constraint and official_boundary=false
-
-![Evidence chain and submission package relationship](assets/figures/site-overview.png)
-
-### Parameter Confidence Table
-
-Many parameters are conceptual assumptions until the official regulatory plan, current-building survey, ownership, and engineering conditions are released. The table below grades each key parameter by evidence source:
-
-| Parameter | Stage | Evidence Grade | Basis / Pending Condition |
-|-----------|-------|----------------|---------------------------|
-| Site area 11,412,825 m sq | Overall | A Structured recalculation | Recalculated from site_boundary + land_use; provisional boundary |
-| Green ratio 48.7%, public space ratio 2.5% | Overall | A Structured recalculation | Recalculated from green_space / public_space layers |
-| Building coverage 5.7%, roads 42.3 km | Overall | A Structured recalculation | Recalculated from buildings / roads layers |
-| Three key-area extents 368.4 ha | Overall | A Structured recalculation | Recalculated from key_areas layer |
-| Building counts 80-100 / 40-50 / 30-40 | Key areas | B Conceptual indication | Conceptual massing; pending current-building survey |
-| Function mixes (R&D office 60%, etc.) | Key areas | B Conceptual indication | Inferred from industry positioning; pending demand model |
-| Building heights 60-80m / 80-100m / 3-5 storeys | Key areas | B Conceptual indication | Pending regulatory height zones |
-| Retain-renovate-demolish ratios | Key areas | B Conceptual indication | Pending current quality survey |
-| TOD 200m radii and intensity | Key areas | B Conceptual indication | Pending rail station tiering |
-| Phasing years (Phase 1 2026-2028, etc.) | Implementation | C Implementation assumption | Pending ownership, funding, approval path |
-| Funding channels and investment model | Implementation | C Implementation assumption | Policy-framework discussion |
-| Employment and workforce estimates | Industry | C Implementation assumption | Industry-scale projection |
-
-**Grading rule**: A = directly recalculable from structured GeoJSON/metrics; B = conceptual indication, awaiting formal data; C = implementation assumption, presented as discussion direction. No B/C parameter is written as a formal conclusion.
 
 ## Risk, Copyright, and Compliance Statement
 

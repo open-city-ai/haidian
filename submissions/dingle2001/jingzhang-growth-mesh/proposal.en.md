@@ -15,6 +15,17 @@ scenarios: ["enterprise-service-copilot", "ai-traffic-walkability", "robot-deliv
 
 > **Core proposition: universities and leading firms are anchors, the district is an incubator, and community is infrastructure.** Haidian does not lack innovation sources; it needs urban interfaces that turn talent relations into projects, projects into firms, and growing firms into the next round of shared capacity.
 
+## Original AI-planning mechanism: an auditable multi-agent control plane
+
+The proposal does not treat AI image production as planning innovation. Its original contribution is a six-agent evidence-compilation chain that turns incomplete site signals into reviewable investigation tasks, spatial options, bounded scenarios and operating contracts—without allowing an agent to approve its own output. A1 stewards provenance; A2 compiles the seven-part health check; A3 locates projects and exposes spatial conflicts; A4 designs bounded scenarios with a non-AI equivalent; A5 binds operations to RACI, accounts and acceptance; A6 may veto release when accessibility, affordability or resident safeguards fail. This chain integrates **industry, space, mobility, public service, culture and governance** on one decision record rather than using six disconnected dashboards.
+
+It differs from a conventional industrial park by refusing to substitute occupancy for locally generated projects, and from a conventional smart-city dashboard by refusing to substitute sensors and composite scores for signable project contracts. Its originality is falsifiable: the method fails and steps back if a missing baseline still creates works, an agent can self-sign, a pilot deprives people of an existing service, or comparable nodes show no net public value. The fixed kernel is portable, but every district must re-enter its industry chain, heritage, geometry, regulation and service floor as local adapters.
+
+![Multi-agent urban-renewal control plane](assets/figures/metrics-evidence.en.png)
+
+Four named human gates retain evidence acceptance, pilot release, professional sign-off, and continue/adjust/exit decisions. The public-interest gate requires at least two resident signers, at least 20% affordable service hours and an always-open human/non-AI route. A stepped, non-deprivation evaluation compares similar nodes starting at different times while nobody loses an existing service route; outcomes include time-to-project, valid tests, first orders, anonymous access, affordable hours, accessibility, complaints/takeover and group gaps. The protocol is a concept ready for professional development—not proof of deployment—and produces no field score before a real baseline and human review.[depth:risk_missing_data]
+
+
 ## Design Basis and Source List
 
 The proposal combines the public brief, repository site package, professional references and reproducible provisional geometry with the author's original Mars Plan theories: park-city-network evolution, the five-stage growth loop and enterprise lifecycle observation. Local research supplies methods only; no internal Chaoyang market-regulation data is copied. Facts about Alibaba Beijing headquarters, incubation and creator communities are rechecked against public primary district sources.[source:OFFICIAL-ANNOUNCEMENT] [source:MARS-THEORY]
@@ -30,6 +41,43 @@ The SITE_BOUNDARY and three KEY_AREA polygons remain repository provisional cons
 The coordinated study area asks how Haidian's AI resources form a collaborative network; the overall design area asks how the heritage park becomes a continuous innovation-living district; the key areas ask how validation, incubation and commercialization become tangible spatial products. One evidence chain links strategy, space, operations and metrics.[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [depth:three_level_scope_framework]
 
 Official polygons must replace provisional constraints before any statutory use. Land-use topology and all derived metrics must then be recalculated rather than retaining old values on a new base.[data:geometry/key_areas.geojson#PROV-KEY-001] [depth:metrics_recalculation]
+
+## Diagnostic Foundation | No Health Check, No Renewal
+
+The scheme begins with a **seven-dimensional baseline**, not a drawing. The operational chain is: **health check → problem/resource lists → project library → implementation plan → operations-first → long-term operation → comparable review**. A metric anomaly never creates a project by itself. A project enters the library only when the affected people, spatial object, root cause, usable resource, accountable owner, acceptance evidence and stop condition can be named. This converts the course method “discover—generate—deliver—review” into a district operating rule.[source:MARS-COURSE] [depth:renewal_project_list]
+
+![Seven-dimensional site diagnosis](assets/figures/dia-23-diagnosis.en.png)
+
+| ID | Dimension | Required baseline | Current evidence-safe diagnosis | Release / stop gate |
+|---|---|---|---|---|
+| HC-01 | Structure and facility safety | Measured survey, structural appraisal, equipment loads, envelope and utility register | Current layers identify stock objects but do not prove safe equipment loads or public opening. | No permanent works or equipment move-in without professional sign-off |
+| HC-02 | Fire and operational safety | Fire compartments, egress, water, electrical, hazardous use and event-capacity checks | Labs, night school, public opening and robotics overlap without an approved operating basis. | No opening without egress, insurance, e-stop and named accountability |
+| HC-03 | Heritage and place value | Relic survey, age/value appraisal, view corridors, component and archive rights | The rail axis has strong narrative potential, while components, dates, display rights and grades remain unverified. | Survey before design; uncleared content stays off walls and digital channels |
+| HC-04 | Rights and governance conditions | Land/building rights, leases, permits, management limits, stakeholders and claims | Provisional polygons cannot replace rights or management limits; opening, maintenance and revenue duties are unsettled. | No implementation-library entry without named coordinating, delivery, operating and accepting parties |
+| HC-05 | Industry-space fit | Enterprise lifecycle, spatial demand, equipment, service gaps, affordability and alternatives | Haidian has strong innovation sources but weak validation-incubation-first-order interfaces; office supply is not industry service. | No construction investment without a problem owner, real users and operating brief |
+| HC-06 | Access and continuity | Transit exits, walking/cycling, crossings, accessibility, loading, emergency and time conflicts | The north-south spine has continuity potential; east-west links, portals, accessibility and test flows need field checks. | Tests and events may not occupy anonymous passage, accessible or emergency routes |
+| HC-07 | Public realm, ecology and inclusion | Green-blue systems, comfort, stormwater, lighting, stay, all-age use, opening and maintenance survey | Public space can be innovation infrastructure, but comfort, inclusion, maintenance and tech opt-out lack baselines. | Public service cannot depend on data consent; no facility expansion without maintenance funding |
+
+The current submission records **known, unknown and proposed** separately. Geometry and concept ratios can be recomputed; structure, fire, rights, demand, traffic capacity, investment and approval remain unknown pending official surveys. Unknowns never receive an invented score. Their output is a signed investigation task and a decision gate.[assumption:A-CONTROLS-001]
+
+### Problem and Resource Lists to Project Library
+
+1. Locate a symptom by object, time and affected group; 2. trace direct and institutional causes; 3. identify spatial, organizational, cultural, ecological and financial resources; 4. compare construction, policy, operating and governance responses; 5. define the project boundary, owner, funding class, phase and acceptance evidence; 6. place it in opportunity, reserve, implementation or annual-plan status. Rights, safety, public value or operating evidence can return a project to the previous stage.
+
+### Official Task and Review Evidence Navigation
+
+| Review dimension | Direct answer | Primary evidence |
+|---|---|---|
+| Brief alignment 20% | Direct mapping of three positions, five functions, two wings and agent.1-6 | Front matrix + five core figures |
+| Originality 10% | Park-city-network, growth loop and no-check-no-renewal compiler | Originality and case-boundary table |
+| AI planning innovation 15% | D0-D3, human release, appeal/takeover, evidence gates and scenario contracts | 12 scenario briefs + governance figure |
+| Feasibility 20% | 7D check, 15 contracts, WP0-6, 90-day pilot and funding accounts | Project cards + mainline + funding matrix |
+| Public interest 10% | Anonymous passage, accessibility, affordability, family support and tech opt-out | Public gates + resident scenarios |
+| Risk and compliance 10% | Provisional limits, sign-off, stop rules, rights clearance and no invented score | Assumption/compliance matrices + stop conditions |
+| Expression completeness 15% | Bilingual report, 54-page evidence-led A3, A0, HTML, GeoJSON and shared metrics | Manifest + bilingual contract + self-check |
+
+This matrix is a reading guide, not a self-awarded score. Formal review remains external.[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
+
 
 ## Coordinated Research Area: Industry and Future City Research
 
@@ -69,9 +117,65 @@ Cases provide mechanism comparisons only; no media, foreign scale, investment or
 
 These nodes are coordinated-scope proposals only. No participation, endorsement, resource opening or government partnership is claimed. Each interface requires confirmed contacts, resource catalogues, IP, data and responsibility boundaries before a pilot.[depth:three_level_scope_framework]
 
+### Site location and regional collaboration
+
+The Jingzhang Growth Mesh sits on Haidian's Jingzhang rail heritage corridor, north to the Zhongguancun Science City and the Shangdi information base, south to Dazhongsi and the Xizhimen rail hub, at the core junction of the "Three Cities One Zone" (Zhongguancun, Huairou and Future science cities, plus the economic-technological zone) and the Zhongguancun national autonomous innovation demonstration zone, layered with the Yuan Dadu heritage zone. The location's dividend is not land but interface: a multi-anchor network of universities, institutes, leading firms and professional services distinguishes Jingzhang from a single industrial park.[source:OFFICIAL-ANNOUNCEMENT]
+
+![Site location and regional collaboration](assets/figures/dia-21-location.en.png)
+
+
+
+## District position and problem evidence
+
+The proposal does not replace site judgment with a generic technology-park image. Official public evidence establishes three safe premises: the roughly 9-km Jingzhang railway heritage park meets Line 13, high-speed rail and cross streets through varied vertical relationships, breaks and difficult crossings; railway, universities, institutes, subdistricts, parks and communities create a multi-owner, phased coordination problem; and the roughly 37-km² AI innovation belt defines three zones, two wings and a 1-2 km urban interface where universities, research, firms, talent and public space overlap.[source:OFFICIAL-JINGZHANG-PLANNING-2021] [source:OFFICIAL-HAIDIAN-AI-BELT-2026]
+
+![District location and innovation anchors](assets/figures/map-a1-regional-location.en.png)
+
+The health check separates E0 official/primary evidence, E1 provisional derivation and E3 field verification. Complex longitudinal/cross movement, multiple actors and sectional differences are E0; a continuous service chain among the three cores is E1; interface quality, accessibility obstacles, real flows and user needs remain E3 until supported by photographs, observation and interviews. E3 cannot trigger permanent works.
+
+![Problem evidence and health-check grades](assets/figures/map-a2-evidence-diagnosis.en.png)
+
+## Masterplan and located project portfolio
+
+The masterplan locates all fifteen projects: Zhongzhiyuan asks whether a technology can be validated credibly; AI Origin asks whether people can become a stable team and project; Dazhongsi asks whether a verified project can secure a first order and grow into an enterprise. The Zhongguancun service wing provides callable compute, data, IP, compliance and capital interfaces; the Xiaoyuehe wing supplies bounded public-realm test settings. Six cross-corridor seams prioritize links among stations, universities, parks, communities and river edges; exact widths, levels and works await survey.
+
+![Masterplan and fifteen located projects](assets/figures/map-a3-masterplan-projects.en.png)
+
+## Operating scheme and project contracts
+
+Operations follow a steering committee—district platform—three core units—professional partners—users/public responsibility chain. Shared validation, the open-source living room/night school, and first-order/enterprise services each define a catalogue, public duty, operating income, cost account, acceptance evidence and stop gate. Every project contract includes problem evidence, spatial boundary, works and operating task, RACI, quantities/cost method, milestones, acceptance evidence, risks and stop conditions.
+
+![Operating scheme and project contracts](assets/figures/ops-a1-operations-contracts.en.png)
+
+Quantity and cost follow “price only measured quantities; no quantity, no invented total.” Public realm, building renewal, validation equipment, operating launch and contingency keep separate quantity sources. Formal estimates require a confirmed boundary, engineering survey, professional design, market quotation and an authorized delivery model. The unit account defines revenue, cost and stress-test formulas only—never invented rent, investment or payback.
+
+
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
 The structure is one axis, three cores and two wings. The heritage park is the cultural, walking and innovation-display axis. Zhongzhiyuan validates, the AI Origin Community incubates, and Dazhongsi commercializes. The Zhongguancun wing makes policy, data, compute, IP, compliance and finance callable; the Xiaoyuehe wing turns mobility, environment, community and public-space questions into testable orders.[data:geometry/roads.geojson#ROAD-001] [depth:overall_spatial_structure]
+This structure is a direct response to the official taskbook's three positionings, five functions and three-areas-two-wings, not a separate naming system:
+
+| Official taskbook requirement | Proposal response |
+|---|---|
+| Positioning 1: Century Jingzhang Culture Belt | Jingzhang heritage-park axis + three-layer cultural narrative (railway—Zhongguancun—AI) |
+| Positioning 2: Urban AI Life Experience Belt | three-core public interfaces + 12 scenario cards + intergenerational AI living lab |
+| Positioning 3: AI Integration Innovation Belt | five-stage growth loop + three-areas-two-wings synergy + global developer nodes |
+| Function 1: AI full-stack indigenous innovation | Zhongzhiyuan shared validation chain (model-safety eval—compute adaptation—robot testing—standards co-creation) |
+| Function 2: world-class AI innovation ecosystem | ecosystem network + enterprise services + first-order conversion + international exchange |
+| Function 3: AI+ scenario empowerment paradigm | 12 scenario cards + scenario-space-operation mapping + Xiaoyuehe wing |
+| Function 4: intelligent AI vibrant city | civic agent operation desk + all-age friendliness + public-space component library |
+| Function 5: AI governance global voice | governance matrix + data classification + human review + standards co-creation |
+
+The synergy loop flows through "validation (Zhongzhiyuan) — incubation (AI Origin Community) — conversion (Dazhongsi) — service (Zhongguancun wing) — scenario (Xiaoyuehe wing)" so the three positionings do not fragment and the five functions do not drift apart.[source:OFFICIAL-ANNOUNCEMENT] [depth:overall_spatial_structure]
+
+### Design strategy: inherit · connect · grow · govern
+
+Four strategies condense Jingzhang's century memory, spatial network, growth loop and long-term governance into parallel threads: **inherit** (the historical base of the Jingzhang railway and industrial heritage), **connect** (the one-axis-three-cores-two-wings network and scenario orders), **grow** (the five-stage loop converting relations to projects and projects to firms), and **govern** (operations-first, the civic agent and performance review for long-term operation). They run in parallel—inherit as base, connect as skeleton, grow as engine, govern as safeguard.[source:MARS-THEORY]
+
+![Design strategy](assets/figures/dia-22-strategy.en.png)
+
+
+
 
 ![District-scale aerial and three-core placement](assets/figures/concept-district-overall-annotated.en.jpg)
 
@@ -154,6 +258,154 @@ Personas set thresholds, service entries, data boundaries and human fallback rat
 
 All industrial tests have bounded space, accountable operators, human release and review. Public services use minimum necessary data, clear notice, shutoff, appeal and offline alternatives.[metric:scenario_card_count] [metric:industry_test_scenario_count]
 
+### Twelve Executable Scenario Briefs
+
+Each scenario preserves a no-AI equivalent, named human release, stop condition and acceptance evidence. Technology may improve service but may never become the only route to a basic public service.
+
+#### SCN-01｜Model safety evaluation sandbox
+| Field | Executable definition |
+|---|---|
+| Problem | No independent reproducible safety check before release |
+| Journey | Register—isolate—two-person review—sign-off—review |
+| Data | D3 restricted; minimum authorization |
+| No-AI equivalent | Offline test sheet and human panel |
+| Human release | Safety lead releases high-risk results |
+| Stop | Seal on privilege breach, irreproducibility or isolation failure |
+| Acceptance | Complete version, permission, test and review record |
+Users: Research and startup teams
+
+#### SCN-02｜Domestic compute adaptation workshop
+| Field | Executable definition |
+|---|---|
+| Problem | Migration is costly and parameters are sensitive |
+| Journey | Book—authorize—adapt—review—migration list |
+| Data | D2 commercially sensitive |
+| No-AI equivalent | Human compatibility test and document comparison |
+| Human release | Firm confirms report release |
+| Stop | Withdraw on leak or failed migration |
+| Acceptance | Reviewable report with authorized inputs |
+Users: Developers and growth firms
+
+#### SCN-03｜Bounded robotics field loop
+| Field | Executable definition |
+|---|---|
+| Problem | Urban testing conflicts with public safety |
+| Journey | Opening check—bounded run—takeover—review |
+| Data | D2 device and incident |
+| No-AI equivalent | Physical barrier, safety staff and manual testing |
+| Human release | Daily human opening and remote takeover |
+| Stop | E-stop on breach or takeover failure |
+| Acceptance | No unhandled breach; all events logged |
+Users: Robotics firms and public
+
+#### SCN-04｜Open-source project clinic
+| Field | Executable definition |
+|---|---|
+| Problem | Contributions fail to become stable roadmaps |
+| Journey | License check—diagnosis—roadmap—ownership |
+| Data | D1 project record |
+| No-AI equivalent | In-person code review and paper checklist |
+| Human release | Maintainer confirms license and merge |
+| Stop | Pause on license or attribution dispute |
+| Acceptance | License, roadmap and owner list per case |
+Users: Researchers and independent developers
+
+#### SCN-05｜Founder residency
+| Field | Executable definition |
+|---|---|
+| Problem | Short team formation lacks space and support |
+| Journey | Apply—conflict check—reside—review—exit |
+| Data | D2 identity and project |
+| No-AI equivalent | Public desk application and interview |
+| Human release | Voluntary disclosure and mentor recusal |
+| Stop | Terminate on unresolved bias or conflict |
+| Acceptance | Complete exit, deletion and ownership clauses |
+Users: Independent developers and startups
+
+#### SCN-06｜AI talent night school
+| Field | Executable definition |
+|---|---|
+| Problem | No stable evening learning entry |
+| Journey | Co-create—review—teach—feedback—repeat |
+| Data | D0 course + D1 registration |
+| No-AI equivalent | On-site registration, print and human teaching |
+| Human release | Instructor reviews content; operator controls time |
+| Stop | Cancel or reschedule unsafe/disturbing content |
+| Acceptance | Syllabus, feedback and noise-response record |
+Users: Talent and residents
+
+#### SCN-07｜Intergenerational AI living lab
+| Field | Executable definition |
+|---|---|
+| Problem | Life needs miss R&D while vulnerable users risk passive participation |
+| Journey | Co-create—consent—small test—human service—exit/delete |
+| Data | D2 sensitive personal |
+| No-AI equivalent | Fully equivalent offline service |
+| Human release | Participant/guardian consent + ethics review |
+| Stop | Exit and delete on distress or withdrawal |
+| Acceptance | 100% reversible; basic service not conditional |
+Users: Families and developers
+
+#### SCN-08｜Accessible multimodal wayfinding
+| Field | Executable definition |
+|---|---|
+| Problem | Routes are hard to understand and tech failure amplifies barriers |
+| Journey | Professional route check—publish—assist—close complaints |
+| Data | D0 wayfinding + D2 assistance |
+| No-AI equivalent | Physical signs, human desk and paper map |
+| Human release | Accessibility professional signs off |
+| Stop | Switch offline on error or outage |
+| Acceptance | Professional pre-opening check and traceable complaints |
+Users: Residents and visitors
+
+#### SCN-09｜Talent family support station
+| Field | Executable definition |
+|---|---|
+| Problem | Childcare and eldercare information is fragmented |
+| Journey | Register—human confirm—authorize—receipt/withdraw |
+| Data | D2 family service |
+| No-AI equivalent | Walk-in and phone referral |
+| Human release | Human desk confirms each referral |
+| Stop | Stop interface on wrong referral or privacy linkage |
+| Acceptance | Authorization, receipt and withdrawal every time |
+Users: Researchers and families
+
+#### SCN-10｜First-order scenario exchange
+| Field | Executable definition |
+|---|---|
+| Problem | Technology is disconnected from real demand and procurement |
+| Journey | Publish—conflict disclose—validate—co-sign—procurement review |
+| Data | D2 procurement/business |
+| No-AI equivalent | Public problem session, human panel and offline matching |
+| Human release | Demand owner and compliance co-sign |
+| Stop | Remove false demand or conflict |
+| Acceptance | Complete problem-validation-procurement evidence |
+Users: Startups and demand owners
+
+#### SCN-11｜Enterprise compliance clinic
+| Field | Executable definition |
+|---|---|
+| Problem | AI advice may cross professional qualification limits |
+| Journey | Classify—retrieve—human review—sign or refer |
+| Data | D2 enterprise compliance |
+| No-AI equivalent | Human consultation and paper checklist |
+| Human release | Qualified professional signs formal advice |
+| Stop | Refuse bad, out-of-scope or obsolete advice |
+| Acceptance | All formal advice traceable to signer |
+Users: Firms and professional services
+
+#### SCN-12｜Urban-agent operations desk
+| Field | Executable definition |
+|---|---|
+| Problem | Cross-scenario operations lack audit, appeal and takeover |
+| Journey | Read—recommend—human authorize—act—audit—appeal |
+| Data | D1 operations + D2 complaints |
+| No-AI equivalent | Manual register, phone and in-person service |
+| Human release | Human authorization for each high-risk action |
+| Stop | Read-only on breach, drift or appeal backlog |
+| Acceptance | Least privilege, full logs, sampling and takeover |
+Users: Operators and public
+
 ### Technical Governance Matrix for All Twelve Scenarios
 
 Data classes are D0 public/non-personal, D1 ordinary operating records, D2 personal or commercially sensitive, and D3 restricted test data. Maturity is M1 protocol-ready, M2 bounded pilot and M3 repeatable service. The following values are proposed pilot gates, not current performance.
@@ -207,6 +459,26 @@ The Open-Source Milestone records verified public contributions along the rail t
 
 Recommended clear space is at least one node-circle diameter; minimum width is 25 mm in print and 120 px on screen, with a mono node mark below that size. The identity uses project-authored geometry and code, not third-party icon packs or corporate marks. These are application recommendations pending trademark search, registration and heritage-signage approval.
 
+### Century Jingzhang Culture, Zhongguancun Culture and AI New-Culture Narrative
+
+The cultural narrative explains why this corridor exists here and for whom it grows. Three layers compose a continuous growth motif:[source:MARS-COURSE]
+
+1. **The Jingzhang railway layer — the gene of "connection".** From the Jingzhang railway led by Zhan Tianyou in 1909 to the heritage park released after the high-speed line went underground in 2016, this linear space carries the collective memory of independent Chinese engineering. The heritage axis translates "independence, breakthrough and connection" into the public narrative base of the AI innovation belt; historical components, dates and stories are activated on a survey-first, display-later, rights-cleared basis—no fakes, no over-commercialization.[depth:culture_heritage]
+
+2. **The Zhongguancun innovation layer — the relay from "Electronics Street to Science City".** From electronics street, to science city, to a global AI innovation ecosystem, Zhongguancun distilled a culture of daring, tolerance, openness and sharing. The proposal translates it into open-source living rooms, project clinics, standards co-creation and first-order mechanisms, moving innovation from individual heroism to public infrastructure.
+
+3. **The AI new-culture layer — the third generation of "open source, developers, global nodes".** The cultural gene of the AI era is open collaboration, developer communities and a global knowledge network. The proposal makes developer contribution records, open-source milestones and a global node wall verifiable public cultural devices, so that "growth" itself becomes visible, remembered and inherited.
+
+Spatially, the Jingzhang heritage line supplies the "vertical axis of time", the two wings and three cores supply the "horizontal axis of life", and the AI growth mesh supplies the "network of growth". The international copy uses "From Railway to Growth Mesh" as its motif—independence, connection, growth—without fabricating history or conflating cultural signage with the master logo system.[depth:culture_heritage]
+
+![Three-layer cultural timeline](assets/figures/dia-17-culture-timeline.en.png)
+
+### Honor Display System and Public-Space Component Library
+
+The honor display system shows only authorized, verifiable and withdrawable public contributions—no advertising, rating or investment advice. The Jingzhang Open-Source Milestone records verified contributions along the rail trace; the Origin Co-creation Hall and Global Developer Node Wall show cross-city cooperation without unauthorized personal data; the Dazhongsi Enterprise Growth Rings record stages from validation to first order and community return. Every display follows an "authorize—verify—display—withdraw" loop.[metric:landmark_count]
+
+The public-space component library standardizes the park's facilities into composable, updatable modules: walking surfaces and accessible ramps (basic reachability first), modular seating and shading frames (reversible), railway relic cases and story index (rights-cleared), and AI scenario nodes (explicit data boundaries and offline fallback). Components use technology blue, railway rust, growth green and warm gray; all dimensions remain concept-stage, NTS and pending specialist verification—not engineering or construction conclusions.[depth:public_space_component]
+
 ### Proposed Quantified Public-Interest Gates
 
 | Topic | Proposed gate | Evidence/status |
@@ -218,6 +490,82 @@ Recommended clear space is at least one node-circle diameter; minimum width is 2
 | Affordability | Proposed minimum 20% of community-program hours free or low-cost; prices and waivers public | A proposed gate until operating contract approval |
 
 ## Renewal Projects, Implementation Policy, and Phasing
+
+The proposal upgrades the renewal-project list from a static table into a complete urban-renewal process that a competent department can schedule directly: health checks surface problems, a project library takes on tasks, operations-first constrains design, funding balance secures delivery, and long-term operations preserve outcomes. The mechanisms below are stated as concept recommendations for professional deepening, not departmental mandates, approval judgments or government commitments.[source:MARS-COURSE]
+
+### Implementation master plan: six closed loops and four integrations
+
+The Jingzhang belt is stock-space improvement, not greenfield development. Under the Beijing Urban Renewal Regulations it combines industrial renewal (Zhongzhiyuan and Dazhongsi stock buildings and plants), public-space renewal (the linear park) and comprehensive regional renewal (three areas, two wings), proceeding as "health check first, planning second, implementation third, operations last".[source:MARS-COURSE]
+
+Implementation must close six loops; any missing loop becomes a later bottleneck: **problem diagnosis** (health checks identify real problems), **planning policy** (projects land on plans and policy tools), **stakeholder negotiation** (government, rights holders, firms and residents agree), **funding balance** (investment has a source and an exit), **construction-operation** (built is operated and operation feeds design), and **evaluation iteration** (performance review drives the next round).[source:MARS-COURSE]
+
+Four integrations pass industrial direction, public tasks and concrete projects down level by level: **city integration** (position Jingzhang's industrial role within Haidian's "three cities, one zone"; see far), **district-enterprise integration** (district coordination with SOEs and professional operators; land firmly), **block integration** (coordinate functions and operations across the heritage axis and two wings; connect through), and **project integration** (land requirements on each project's design, construction, leasing and operation; execute precisely).[source:MARS-COURSE]
+
+![Six closed loops and four integrations](assets/figures/dia-08-six-loops.en.png)
+
+### Urban health check and two-tier project library
+
+Beijing's mainline is "project library—renewal plan—implementation plan—joint review—parallel approval". The proposal recommends two tiers: a **reserve library** ("why do this, is the direction right") and an **implementation library** ("who coordinates, where are the boundaries, where does the money come from, when to proceed"). Maturity advances through opportunity—reserve—implementation—annual-plan; projects long lacking feasibility return to the opportunity list. Entering the library is neither approval nor automatic funding.[source:MARS-COURSE]
+
+Health checks begin project planning. For Jingzhang's stock objects, the proposal recommends baselines across structure safety, fire safety, heritage value, rights, industrial fit, mobility reachability and public-space quality, forming a "problem—cause—resource" correspondence table; only content traceable to a clear problem and accountable owner enters the library.[data:geometry/site_boundary.geojson#SITE-001] [depth:renewal_project_list]
+
+![Site diagnosis](assets/figures/dia-23-diagnosis.en.png)
+
+
+
+### Operations-first: decide who uses, who manages, and where the money comes from
+
+Operations-first is not early leasing but bringing future users and operators into decisions from inception, across five stages—**positioning, design, investment, construction, delivery**: positioning sets the users and role; design back-derives clear heights, loads, circulation, MEP and adaptable space from operational needs; investment tests costs with real formats and lease assumptions; construction controls details affecting opening and maintenance; delivery completes brands, programs, staff, systems and trial operation.[source:MARS-COURSE]
+
+True operations-first passes five deliverable checks: ①verifiable user and demand research; ②format technical conditions written into the design brief; ③revenue-cost models per format; ④leasing, content and community operation plans; ⑤long-term maintenance funding and responsibility. A concept positioning or brand list alone remains "build first, find operators later".
+
+Every key area and project should draft an "operation brief" at inception answering seven positioning steps: **block role—service radius—user tiers—demand scenarios—competitive substitutes—value proposition—operating metrics**. Operating models choose among fixed rent, minimum-plus-share, joint/self operation and public-service procurement by project nature, and feed the results back into the design brief.[source:MARS-COURSE]
+
+![Operations-first: five stages and five checks](assets/figures/dia-12-operations-first.en.png)
+
+### Funding and balance
+
+Beijing's urban renewal is stock upgrading under reduced growth; construction quotas are scarce and valuable, so cost cannot default to new floor area. Balance comes from stock asset revitalization, public investment, industrial revenue and long-term operations. Funding follows project nature: **public-benefit** (public space, science interface) relies on government and public investment; **quasi-public** (shared validation, enterprise services) combines special bonds, policy loans and fiscal guidance; **commercial** (enterprise-service street, residency units, roadshow steps) uses market financing and operating revenue.[source:MARS-COURSE]
+
+Mature operating assets may exit and reinvest through infrastructure public REITs—but REITs are a mature-asset tool, not early financing. Early projects rely on "government-fund guidance + social-capital participation + stakeholder responsibility" and on "three assets, three conversions": turn resources into assets and assets into capital. The proposal invents no investment totals, payback periods or fiscal commitments; it only establishes a unit operating account and sensitivity assumptions.[assumption:A-UNIT-ECONOMICS-007]
+
+### Budgeting and funding-balance framework
+
+Budgeting is not numbers before money; it threads operations-first estimates, project-library boundaries and implementation-plan lists into one reviewable funding-balance table. The proposal invents no investment totals, rents or payback; it gives account structure, variables and sensitivity, with concrete values filled in by professional teams from official assets, rights, market appraisal and authorized decisions.[assumption:A-UNIT-ECONOMICS-007]
+
+**Revenue accounts** (by project nature): ①government funding and public investment (public space, science interface, community services); ②special bonds and policy loans (quasi-public facilities, shared validation); ③social capital and operating revenue (commercial space, industrial services); ④funds and REIT exits (mature operating assets). **Expenditure accounts**: structural strengthening and fire safety, utilities and MEP, public space, industrial-service facilities, operation preparation and first-year operation, compliance and data security.[source:MARS-COURSE]
+
+**Balance logic**: each project holds an account where "total revenue (channels × amounts) ≥ total expenditure (construction + operation + financing cost + public obligations)". Public-benefit projects may carry a policy gap covered by public investment; commercial projects must self-balance; quasi-public projects balance "public subsidy + operating revenue". Across projects, the block "pairs fat and thin"—commercial returns support public maintenance—but such support must be pre-agreed, accountable and auditable.[source:MARS-COURSE]
+
+**Unit operating account and sensitivity**: commercial space holds a unit account "rent/service revenue − operating cost − maintenance provision − public obligation" with sensitivity variables: occupancy, unit rent, operating-cost ratio, industrial-service conversion and maintenance provision. Estimates only compare options and judge feasibility, never promising returns.[assumption:A-UNIT-ECONOMICS-007]
+
+**Per-project funding matrix** (concept):
+
+| Project | Funding type | Suggested channel | Suggested operator | Phasing |
+|---|---|---|---|---|
+| Z1 Shared validation laboratory | Quasi-public | Fiscal guidance + special bond + service revenue | Professional test operator + universities | 0–1y pilot |
+| Z2 Domestic compute adaptation workshop | Quasi-public | Policy loan + compute provider + task fees | Compute provider + open-source community | 0–1y pilot |
+| Z3 Bounded robot testing ring | Quasi-public | Fiscal guidance + site operation + test fees | Site operator + safety owner | 0–1y pilot |
+| Z4 Standards co-creation room | Public | Public investment + association dues | Industry association + professionals | 0–1y pilot |
+| Z5 Public science interface | Public | Public investment + science-institution funds | Park operator + science institution | 0–1y pilot |
+| O1 Origin open-source living room | Quasi-public | Public subsidy + community operation + sponsorship | Community operator + maintainers | 1–3y |
+| O2 Founder residency units | Commercial | Operating revenue + incubation fund | Professional incubator | 1–3y |
+| O3 Geek café and night school | Commercial | Operating revenue + course income | Community business + curator | 1–3y |
+| O4 Talent family support station | Public | Public investment + community-service funds | Community service agency | 1–3y |
+| O5 Intergenerational AI living lab | Quasi-public | Public subsidy + tech-team input | Community + tech team | 1–3y |
+| D1 Scenario first-order center | Quasi-public | Operating revenue + first-order service fees | Industrial operation platform | 1–3y |
+| D2 Enterprise service hall | Commercial | Service fees + operating revenue | Professional service consortium | 1–3y |
+| D3 Compliance front-desk clinic | Commercial | Service fees | Registration, IP and legal professionals | 1–3y |
+| D4 Capital roadshow staircase | Commercial | Operating revenue + event fees | Operator + investment institutions | 1–3y |
+| D5 Global developer exchange station | Quasi-public | Public subsidy + partner input | Community operator + partners | 3–5y |
+
+**Budgeting and approval flow**: budget shares one source with the project library and implementation plan—reserve projects carry only a framework cost band (feasibility); implementation projects compile the funding-balance table in "one map, two tables, six lists" and enter joint review; accounts involving government funding or public investment follow statutory budget and procurement procedures; parallel approval does not replace project approval, budget, procurement, planning permit, construction permit or fire review. After operation, the four-layer performance review feeds back and adjusts or exits.[source:MARS-COURSE] [depth:renewal_project_list]
+
+
+
+### Implementation-plan framework: one map, two tables, six lists
+
+Each implementation plan should follow "one map, two tables, six lists": one implementation master map (scope, method, phasing); a phasing table and a funding-balance table; and six lists of problems, resources, rights, policies, approvals and risks. Each project writes objectives with a "problem—cause—measure—output—result—indicator" table; planning indicators land on specific parcels and buildings; investment corresponds to quantities; revenue corresponds to operable space; resident commitments correspond to responsible units. The list below gives this recommended granularity; formal implementation plans follow professional teams and rights holders.[source:MARS-COURSE] [depth:renewal_project_list]
 
 | ID | Project | Area | Users | Suggested operator | Dependencies | Near-term action | Risk |
 |---|---|---|---|---|---|---|---|
@@ -237,9 +585,231 @@ Recommended clear space is at least one node-circle diameter; minimum width is 2
 | D4 | Capital milestone steps | Dazhongsi | Project teams and investors | Operator + investment institutions | Manage disclosure and investor suitability | Run evidence-based milestone sessions | Misleading financing promotion |
 | D5 | Global developer exchange | Dazhongsi | Developers and international institutions | Community operator + partners | Clear copyright, trademark and cross-border data limits | Connect online and physical nodes | One-off eventization |
 
+### Fifteen Project Delivery Contracts
+
+Each card aligns problem, cause, action, output, result and metric, then adds operation, phasing, funding class and a stop gate. Amounts remain blank until official quantities and authorized appraisals exist.
+
+#### Z1｜Shared validation laboratory
+| Field | Delivery definition |
+|---|---|
+| Problem | Small teams lack trusted test facilities |
+| Cause | High equipment thresholds and missing sharing/accountability rules |
+| Measure | Verify large spans, then operate shared equipment through booking, tiered access and professional sign-off |
+| Output | Equipment catalogue, booking protocol, test sheet and incident log |
+| Result | Validation moves from endorsement to reproducible evidence |
+| Metric | Equipment use, reproducible-test share and major incidents |
+| Operating brief | Professional test operator; account by equipment hour and task service |
+| Phase | 0-1 year protocol and small pilot |
+| Funding | Quasi-public: public guidance plus equipment service; amount pending |
+| Stop gate | No move-in without structure, fire and load sign-off |
+
+#### Z2｜Domestic compute adaptation workshop
+| Field | Delivery definition |
+|---|---|
+| Problem | Domestic-compute migration has high trial cost |
+| Cause | Compatibility knowledge is fragmented and parameters are sensitive |
+| Measure | Run adaptation, migration and review with authorized data in an isolated environment |
+| Output | Compatibility report, migration list and issue knowledge base |
+| Result | Reduce repeated failure and create reusable migration paths |
+| Metric | Report review rate, closed migrations and leak incidents |
+| Operating brief | Compute provider plus open-source community; task and equipment fees |
+| Phase | 0-1 year first task cohort |
+| Funding | Quasi-public: provider input, policy tools and task fees |
+| Stop gate | Pause if provenance, authorization or isolation is unclear |
+
+#### Z3｜Bounded robotics test loop
+| Field | Delivery definition |
+|---|---|
+| Problem | Robotics firms lack a low-risk urban test setting |
+| Cause | Public walking conflicts with test flows; insurance and takeover duties are unclear |
+| Measure | Use physical limits, time windows, speed caps, e-stop, remote takeover and on-site safety staff |
+| Output | Test-window plan, opening checklist, incident and review logs |
+| Result | Create a governable pre-deployment urban test |
+| Metric | Unhandled boundary breach, e-stop response and incident closure |
+| Operating brief | Site operator plus accountable safety entity; charge by test window |
+| Phase | 0-1 year closed tests |
+| Funding | Quasi-public: site input plus test fees |
+| Stop gate | E-stop on public-lane intrusion or takeover failure |
+
+#### Z4｜Standards co-creation room
+| Field | Delivery definition |
+|---|---|
+| Problem | Test results rarely become cross-firm rules |
+| Cause | Topics, IP and ownership of outputs are unclear |
+| Measure | Organize problem sheet, evidence pack, workshop and public summary |
+| Output | Topic register, minutes, evidence summary and draft advice |
+| Result | Turn one-off tests into shareable rules |
+| Metric | Drafts produced, adoption feedback and rights disputes |
+| Operating brief | Industry association plus professionals; dues and task procurement |
+| Phase | 0-1 year quarterly workshop |
+| Funding | Public-benefit: public support plus association resources |
+| Stop gate | No topic without a problem owner and clear IP boundary |
+
+#### Z5｜Public science interface
+| Field | Delivery definition |
+|---|---|
+| Problem | Secure testing lacks an interface for public understanding |
+| Cause | Test space is closed and science communication can become marketing |
+| Measure | Provide observation walks, weekend opening and non-sensitive result interpretation |
+| Output | Opening rules, science script, risk separation and feedback |
+| Result | Improve public understanding and return from the AI ecosystem |
+| Metric | Open hours, accessible coverage and complaint closure |
+| Operating brief | Park operator plus science institution; public-service procurement |
+| Phase | 0-1 year weekend pilot |
+| Funding | Public-benefit: public and science-institution input |
+| Stop gate | No opening before segregation, interpretation duty and rights clearance |
+
+#### O1｜Origin open-source living room
+| Field | Delivery definition |
+|---|---|
+| Problem | Developers attend events but lack durable project collaboration |
+| Cause | Contribution licenses, diagnosis and persistent maintainers are missing |
+| Measure | Run weekly clinics, maintainer hours and contribution records |
+| Output | License list, roadmap, responsibility allocation and review |
+| Result | Convert visitor relations into durable projects |
+| Metric | Persistent teams, merged contributions and dispute closure |
+| Operating brief | Community operator plus maintainers; membership and public subsidy |
+| Phase | 0-1 year operate before works |
+| Funding | Quasi-public: public subsidy, sponsorship and services |
+| Stop gate | Adjust if license disputes persist or footfall produces no projects |
+
+#### O2｜Founder residency units
+| Field | Delivery definition |
+|---|---|
+| Problem | Early teams lack affordable short-cycle work-life support |
+| Cause | Long leases, deposits and live-work limits exclude them |
+| Measure | Use small short-stay cohorts, explicit use, mentor recusal and stage review |
+| Output | Residency agreement, recusal record, milestone and exit form |
+| Result | Reduce life and space friction during team formation |
+| Metric | Completion, team stability and exit disputes |
+| Operating brief | Professional incubator; short-stay and incubation services |
+| Phase | 1-3 year rolling small cohorts |
+| Funding | Commercial: operating income plus incubation fund |
+| Stop gate | No occupancy without legal use, fire safety and fair selection |
+
+#### O3｜Geek cafe and night school
+| Field | Delivery definition |
+|---|---|
+| Problem | Researchers and residents lack a low-barrier evening interface |
+| Cause | Daytime office use dominates; evening content may disturb neighbors |
+| Measure | Use time-shared rooms, co-created courses, noise limits and no-purchase seats |
+| Output | Program, conversion checklist, noise and feedback records |
+| Result | Build durable cross-institution weak ties |
+| Metric | Repeat programs, no-purchase hours and disturbance complaints |
+| Operating brief | Community business plus course curator; separate food and course accounts |
+| Phase | 0-1 year lightning-talk pilot |
+| Funding | Commercial: operating and course income |
+| Stop gate | Reduce hours if disturbance or consumption displaces public time |
+
+#### O4｜Talent family support station
+| Field | Delivery definition |
+|---|---|
+| Problem | Talent families face high childcare, eldercare and emergency referral cost |
+| Cause | Service information is fragmented and privacy/duty boundaries are weak |
+| Measure | Provide a human desk, authorized referral, receipt and withdrawal |
+| Output | Service catalogue, referral, receipt and complaint closure |
+| Result | Reduce everyday friction that drives talent away |
+| Metric | Effective referrals, response time, withdrawals and complaints |
+| Operating brief | Community service institution; public-service procurement |
+| Phase | 0-1 year needs register, then recurring service |
+| Funding | Public-benefit: public and community-service funding |
+| Stop gate | Stop the interface on unconfirmed referral or privacy linkage |
+
+#### O5｜Intergenerational AI living lab
+| Field | Delivery definition |
+|---|---|
+| Problem | R&D misses life feedback while residents risk becoming passive subjects |
+| Cause | Consent, vulnerable-user protection and basic-service boundaries are weak |
+| Measure | Use small co-creation, free exit, equivalent offline service and ethics review |
+| Output | Consent, test, exit/deletion and needs records |
+| Result | Life needs improve products without sacrificing basic rights |
+| Metric | Withdrawal execution, adopted needs and adverse events |
+| Operating brief | Community plus technical team; research service and public support |
+| Phase | 1-3 year bounded co-creation |
+| Funding | Quasi-public: public subsidy plus technical input |
+| Stop gate | Stop if withdrawal fails or basic service depends on participation |
+
+#### D1｜First-order scenario center
+| Field | Delivery definition |
+|---|---|
+| Problem | Early projects struggle to secure a first real customer |
+| Cause | Demand publication, validation and procurement judgment are disconnected |
+| Measure | Use a problem catalogue, validation sheet, co-sign and procurement review |
+| Output | Problem sheet, validation report, conflict declaration and procurement review |
+| Result | Give technology a verifiable first application opportunity |
+| Metric | Complete evidence chains, procurement-review conversion and false demand |
+| Operating brief | Industry operating platform; service fee and procurement support |
+| Phase | 0-1 year problem catalogue, then recurring |
+| Funding | Quasi-public: operating income plus service fees |
+| Stop gate | Remove false demand or undisclosed conflicts immediately |
+
+#### D2｜Enterprise service hall
+| Field | Delivery definition |
+|---|---|
+| Problem | Startups spend heavily finding registration, tax and IP services |
+| Cause | Entries are fragmented and qualifications/prices are opaque |
+| Measure | Provide one catalogue, named professionals, booking and evaluation |
+| Output | Service catalogue, qualifications, prices, booking and receipt |
+| Result | Reduce enterprise formation and growth transaction cost |
+| Metric | Closed services, reduced repeat inquiries and complaint handling |
+| Operating brief | Professional service consortium; transparent service fees |
+| Phase | 1-3 year staged entry |
+| Funding | Commercial: service fees plus space operation |
+| Stop gate | No entry without transparent qualification, price and accountability |
+
+#### D3｜Pre-compliance clinic
+| Field | Delivery definition |
+|---|---|
+| Problem | AI firms lack compliance judgment before opening and scenario launch |
+| Cause | AI advice may replace professional judgment and cross-discipline issues lack sign-off |
+| Measure | AI only organizes material; qualified professionals review, sign and record limits |
+| Output | Opening checklist, signed advice, referral and version record |
+| Result | Move correction from post-event enforcement to pre-launch |
+| Metric | Professional sign-off, correction closure and out-of-scope refusal |
+| Operating brief | Registration, legal and IP professionals; per-case service |
+| Phase | 0-1 year checklist pilot |
+| Funding | Commercial: professional service fees |
+| Stop gate | Refuse unsigned, out-of-scope or obsolete advice |
+
+#### D4｜Capital milestone steps
+| Field | Delivery definition |
+|---|---|
+| Problem | Projects have many pitches but little milestone and risk evidence |
+| Cause | Promotion replaces validation; suitability and disclosure are weak |
+| Measure | Admit only evidence-gated projects using milestone, risk and use-of-funds templates |
+| Output | Evidence pack, disclosure, Q&A record and follow-up |
+| Result | Improve credible capital links without implying financing |
+| Metric | Valid follow-ups, information corrections and complaints |
+| Operating brief | Operator plus investment institutions; event service fees |
+| Phase | 1-3 year quarterly sessions |
+| Funding | Commercial: event and professional services |
+| Stop gate | Remove misleading presentation or evidence-deficient projects |
+
+#### D5｜Global developer exchange
+| Field | Delivery definition |
+|---|---|
+| Problem | International collaboration often stops at one-off events |
+| Cause | Partnership rights, cross-border data and follow-up conversion are weak |
+| Measure | Use bilingual problems, open-source license, node recognition and 90-day follow-up |
+| Output | Rights-cleared content, exchange record, follow-up and withdrawal route |
+| Result | Build a durable developer network and project conversion |
+| Metric | Continuing collaboration, bilingual access and rights objections |
+| Operating brief | Community operator plus written-confirmed partners; project basis |
+| Phase | 3-5 years after evidence matures |
+| Funding | Quasi-public: public support plus partner input |
+| Stop gate | No name/mark use or cross-border transfer without written confirmation |
+
 In 0-1 years, begin with rules and pilots: space/equipment catalogue, problem list, clinics, pre-compliance checklist, community operations and three bounded tests. In 1-3 years, reversible works and service streets depend on evidence from pilots. In 3-5 years, consider replication, global events and long-term assets. Every stage has continue, adjust and exit gates.[data:geometry/phasing.geojson#PHASE-001] [depth:renewal_project_list]
 
 The proposed operating platform combines a public or ownership base, professional space/community/business operations, and a council of universities, firms, advisers and residents. Market regulation, law, IP, data and safety enter before fit-out and scenario launch; complaints, service use, enterprise changes, project conversion and public feedback support continuous operational health checks. This is a reference mechanism, not an assigned government duty.
+
+### Long-term operations and performance review
+
+Long-term operations are not post-construction property management but five shifts from property to industry operation: the core goal moves from "renting out space" to "growing industry"; revenue moves from rent to industrial services, platform operation and equity; customer relations move from tenant management to supply-chain partnership; value moves from asset valuation to industrial influence and network value; exit moves from asset sale to incubation, platform output and IP licensing.[source:MARS-COURSE]
+
+![From property to industry operation](assets/figures/dia-14-property-industry.en.png)
+
+Performance review runs four layers: **engineering output** (completion, quality, safety, schedule), **use effect** (reachability, frequency, coverage, satisfaction), **comprehensive benefit** (public services, industry, employment, consumption, ecology, culture) and **sustainability** (maintenance funding, responsible owner, equipment life, complaint response, renewal capacity). Every project saves its pre-renovation baseline and sets collection frequency at inception; shortfalls distinguish design error, implementation deviation, operational shortfall and external change before deciding to supplement, adjust formats, change management or terminate low-value input.[source:MARS-COURSE] [depth:renewal_project_list]
 
 ### Annual Programs, RACI and International Conversion
 
@@ -278,6 +848,41 @@ The packages translate what the fifteen projects do into who can procure them, w
 The pilot treats executable rules, reproducible tests, human takeover, public appeal and failure exit—not permanent construction or recruitment counts—as acceptance objects. Day 90 produces only a continue, adjust or exit recommendation for the next cycle; it is not project approval, a funding arrangement or a government implementation decision.
 
 The unit account uses a normalized sensitivity example rather than invented currency: revenue index equals utilization × unit price × operable quantity. Test a 20% utilization decline, 10% price decline and 20% equipment-hour decline. If any case crowds out public-service hours, maintenance reserve or safety staffing, expansion stops and the space mix or low-performing project is adjusted or exited. Parameter ranges are added only when ownership, operator and contract/procurement evidence exists.[assumption:A-UNIT-ECONOMICS-007]
+
+### Pre-opening Project-Library Completeness Rehearsal
+
+The project-library gate was run against **310 deterministic synthetic fixtures**: one complete fixture for each of the 34 declared health-check, scenario and project contracts, plus one negative fixture for every mandatory field removed. All **310/310** decisions matched the declared rule. A missing field returns the item to the problem or project library; a complete declaration can only move to professional and field review, never directly to opening or approval.[metric:synthetic_rehearsal_case_count] [depth:renewal_project_list]
+
+| Contract set | Declared contracts | Required fields | Synthetic cases | Expected matches |
+|---|---|---|---|---|
+| Seven health checks | 7 | 6 | 49 | 49 |
+| Scenario contracts | 12 | 7 | 96 | 96 |
+| Project contracts | 15 | 10 | 165 | 165 |
+
+The machine-readable result is `visual/assets/project_library_rehearsal.json`. Its `field_result` values remain null and `field_results_completed=0`: this rehearsal checks contract structure, not site performance, staffing, safety, budget, service quality, approval or public outcome.[metric:field_rehearsal_completed_count]
+
+
+## Reviewer Evidence Index
+
+| Review dimension | Direct answer | Evidence entry |
+|---|---|---|
+| Brief alignment 20% | Direct mapping of three positions, five functions, two wings and agent.1-6 | Front matrix + five core figures |
+| Originality 10% | Park-city-network, growth loop and no-check-no-renewal compiler | Originality and case-boundary table |
+| AI planning innovation 15% | D0-D3, human release, appeal/takeover, evidence gates and scenario contracts | 12 scenario briefs + governance figure |
+| Feasibility 20% | 7D check, 15 contracts, WP0-6, 90-day pilot and funding accounts | Project cards + mainline + funding matrix |
+| Public interest 10% | Anonymous passage, accessibility, affordability, family support and tech opt-out | Public gates + resident scenarios |
+| Risk and compliance 10% | Provisional limits, sign-off, stop rules, rights clearance and no invented score | Assumption/compliance matrices + stop conditions |
+| Expression completeness 15% | Bilingual report, 54-page evidence-led A3, A0, HTML, GeoJSON and shared metrics | Manifest + bilingual contract + self-check |
+
+Every claimed mechanism points to a document, figure, owner, limit and acceptance state; field results remain zero until actual operation.
+
+
+### Reproducible proofing and rights surface
+
+The machine-readable record `visual/assets/qa-proofing-record.json` checks all **124 PDF pages** across the four bilingual A0/A3 files for text blocks outside the page box, inventories every embedded font, compares bilingual page/kind/image sequences, checks all four HTML entries for remote active dependencies and missing image alternative text, and records contrast ratios for the core palette. The release condition is zero out-of-page text blocks, zero non-OFL embedded fonts, zero missing image alternatives and zero remote active dependencies. This is the contributor's repeatable self-check—not accessibility certification, legal clearance, engineering sign-off or assistive-technology user testing.
+
+The rights ledger groups authored text/methods, official/public sources, provisional geometry, code-generated drawings, AI concept views, brand/basic geometry, fonts and finished layouts. Noto Sans SC subsets in the PDFs use the SIL Open Font License; no standalone font files are shipped. AI views remain removable experience images, while plans, sections, GeoJSON and contracts preserve the core evidence chain.[source:RIGHTS-NOTO-OFL]
+
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 

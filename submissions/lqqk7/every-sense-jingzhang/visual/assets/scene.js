@@ -37,7 +37,7 @@
       canvasOff: '轴测场景：AI 关闭状态。主脊与低刺激替代线上显示固定导视牌面，每个节点旁显示人工求助点，十个独立完成节点全部可达。',
       statusOn: '已切换到 AI 开启。可独立完成节点 10 / 10，等价路径 2 条，重点区覆盖 3 / 3。',
       statusOff: '已切换到 AI 关闭。可独立完成节点 10 / 10，等价路径 2 条，重点区覆盖 3 / 3。读数与 AI 开启完全一致。',
-      selected: '已选中 ',
+      selected: '已选中 ', period: '。',
       closed: '已关闭场景卡。',
       exag: '横向 ×3.6 示意',
       north: '北',
@@ -65,7 +65,7 @@
       canvasOff: 'Axonometric scene, AI OFF. The spine and the low-stimulation alternative route carry fixed signage plates, every node shows a staffed help point, and all ten independent-completion nodes stay reachable.',
       statusOn: 'Switched to AI ON. Independent-completion nodes 10 of 10, equivalent routes 2, key-area coverage 3 of 3.',
       statusOff: 'Switched to AI OFF. Independent-completion nodes 10 of 10, equivalent routes 2, key-area coverage 3 of 3. The readout is identical to AI ON.',
-      selected: 'Selected ',
+      selected: 'Selected ', period: '.',
       closed: 'Scenario card closed.',
       exag: 'cross-axis ×3.6, schematic',
       north: 'N',
@@ -752,7 +752,7 @@
         fillCard(n);
         card.hidden = false;
         empty.hidden = true;
-        if (announce !== false) status.textContent = t.selected + n.id + ' ' + n[lang].name + '。';
+        if (announce !== false) status.textContent = t.selected + n.id + ' ' + n[lang].name + t.period;
       }
       if (rendered) paint();
     }

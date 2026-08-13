@@ -13,12 +13,13 @@
 | 原创文字与方法 | `proposal*.md`、`report/narrative.md` | dingle2001；“园—城—网”、五级生长回路等来自作者清权的火星计划研究 | 投稿者命题与Agent辅助整理 | 投稿者作者声明＋Git历史；以COMMUNITY-DISPLAY-ONLY提交 | 可用于本投稿展示；不把案例机制写成海淀事实 |
 | 官方任务与专业要求 | 任务书、公告、专业标准的事实性概括 | `sources.json`所列政府／标准机构 | 短摘要、索引和设计深度核对 | 仅引用名称、编号和必要事实；不复制标准正文或图表 | 不主张拥有原文版权；不构成标准符合性或审批声明 |
 | 国际及朝阳案例 | 七个国际案例与阿里总部周边机制 | `sources.json`所列机构和政府网页 | 文字层面的短摘要和机制比较 | 公开网页事实引用；无网页图片、Logo、版式或长段文字复制 | 仅作比较；不能证明项目合作或资源开放 |
+| 区位底图 | `map-a1`—`map-a3`中的道路、轨道与地名背景 | OpenStreetMap contributors，见`OSM-CONTEXT-20260813` | 静态切片拼接后叠加项目自绘范围、节点、证据等级和项目标记 | Open Database License 1.0；图内保留“© OpenStreetMap contributors, ODbL”署名 | 仅作区位辨识，不是法定规划、产权、测绘或工程底图；无在线瓦片请求 |
 | GeoJSON与指标 | `geometry/*`、`metrics.json` | 仓库临时资料＋本方案概念派生 | 统一字段、EPSG:4548复算、拓扑校验 | 仓库任务包使用范围；派生方法由投稿者脚本生成 | `provisional constraint`；不是官方红线、产权或统计依据 |
 | 代码生成地图／剖面／关系图 | 除概念视景外的PNG图件 | dingle2001／Agent工作流 | Python、Matplotlib、Pillow、ReportLab、PyProj、Shapely以基础几何和文字生成 | 原创布局与几何；第三方库仅用于渲染，库二进制和源码未随投稿再分发 | 图件为概念设计；工程尺寸、结构、消防和无障碍须专业核验 |
 | Logo与品牌图形 | `landmarks*.png`中的品牌规范及PDF／HTML标题标识 | dingle2001／Agent工作流 | 京张轨迹、圆点、线段与字标的原创几何组合 | 作者声明＋生成文件SHA-256；不使用第三方图标包 | 商标检索、注册和遗产标识审批尚未完成；不得暗示企业合作 |
 | 图标与装饰元素 | 北针、比例尺、箭头、节点、人物／机器人比例参照、状态章 | dingle2001／Agent工作流 | 代码绘制的线、圆、矩形、路径和文字 | 原创基础几何；未调用外部图标库 | 仅随本方案整体展示 |
 | AI概念视景 | `concept-overall-ai*`、`concept-zhongzhiyuan-ai*`、`concept-origin-ai*`、`concept-dazhongsi-ai*`、`concept-district-overall*`及标注衍生图 | dingle2001通过OpenAI图像生成服务生成，Agent辅助提示与版面标注 | 文本提示生成；后续裁切、压缩、加注释 | 按OpenAI现行服务协议，在投稿者与服务商之间、在法律允许范围内，投稿者拥有输出；见`[source:RIGHTS-OPENAI-OUTPUT]` | 非唯一且可能与第三方内容相似；投稿者仍负责侵权检查。未输入第三方摄影、Logo或需授权人物素材；只作概念体验，不作事实、工程或审批证据 |
-| 字体 | PDF中的微软雅黑子集；HTML的系统字体栈 | Microsoft YaHei／Segoe UI等系统字体 | 在已许可Windows环境中排版；PDF嵌入必要字形子集；HTML不下载字体 | 字体权利归各字体权利人；Microsoft文档嵌入指引见`[source:RIGHTS-MICROSOFT-FONT-EMBEDDING]`；投稿包不含`.ttf/.ttc/.woff`独立字体文件 | 仅随成品PDF显示；不得从PDF提取或单独再分发字体；不同设备HTML可使用本地回退字体 |
+| 字体 | 四份PDF嵌入Noto Sans SC Regular／Bold字形子集；HTML使用本地系统回退栈 | Google Noto项目 | 构建时从Noto Sans SC可变字体提取两种字重；PDF只嵌入用到的字形；HTML不下载字体 | SIL Open Font License 1.1，见`[source:RIGHTS-NOTO-OFL]`；投稿包不含`.ttf/.ttc/.woff`独立字体文件 | `visual/assets/qa-proofing-record.json`逐份登记PDF实际字体，非OFL字体必须为0；不同设备HTML可使用本地回退字体 |
 | 成品版式与模板 | A0、A3、HTML、双语结构 | dingle2001／Agent工作流 | 自建网格、色板、页眉、图签和响应式CSS | 未使用商业PPT／网页模板、CDN、远程字体、地图瓦片或跟踪代码 | 整体以COMMUNITY-DISPLAY-ONLY展示 |
 | 外部软件 | Python及上述渲染库 | 各开源项目维护者 | 构建工具，不是投稿内容 | 各自开源许可证适用于软件；投稿不再分发其源码或二进制 | 不把软件许可扩张为对第三方素材的授权 |
 

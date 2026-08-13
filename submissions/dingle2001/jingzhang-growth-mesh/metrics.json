@@ -175,7 +175,7 @@
     },
     "a3_booklet_page_count": {
       "status": "known",
-      "value": 32,
+      "value": 54,
       "unit": "count",
       "source_files": [
         "drawings/a3-booklet.pdf"
@@ -184,16 +184,75 @@
       "confidence": "high",
       "assumptions": []
     },
-    "review_pptx_slide_count": {
+    "urban_health_dimension_count": {
       "status": "known",
-      "value": 28,
+      "value": 7,
       "unit": "count",
       "source_files": [
-        "local review artifact"
+        "proposal.md",
+        "drawings/a3-booklet.pdf"
       ],
-      "formula": "PPTX slide count",
+      "formula": "count(seven-dimensional diagnostic briefs)",
       "confidence": "high",
       "assumptions": []
+    },
+    "project_delivery_contract_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "drawings/a3-booklet.pdf"
+      ],
+      "formula": "count(project contracts with delivery and stop fields)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_delivery_contract_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "drawings/a3-booklet.pdf"
+      ],
+      "formula": "count(scenario contracts with no-AI, release, stop and acceptance fields)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "synthetic_rehearsal_case_count": {
+      "status": "known",
+      "value": 310,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/project_library_rehearsal.json"
+      ],
+      "formula": "count(complete contract fixtures + one-required-field-removed fixtures)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "synthetic_rehearsal_expected_match_count": {
+      "status": "known",
+      "value": 310,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/project_library_rehearsal.json"
+      ],
+      "formula": "count(expected_outcome_matched == true)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "field_rehearsal_completed_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/project_library_rehearsal.json"
+      ],
+      "formula": "count(non-null field_result)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No field rehearsal has occurred; synthetic fixtures do not prove site performance."
     }
   }
 }

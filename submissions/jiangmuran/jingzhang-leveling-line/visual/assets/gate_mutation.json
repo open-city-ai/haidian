@@ -1,0 +1,161 @@
+{
+  "generated_by": "analysis/gate_mutation_qa.py",
+  "note_zh": "**本包的每一道闸门此前都只被看见通过过，而一道从不失败的闸门与一道不会失败的闸门无法区分。** 本文件对每道闸门人为制造它应当抓住的那种损坏，并要求它既非零退出、又在输出里指名损坏所在——只退出不指名，等于把评审打发去翻整个包（同 E50：坏消息属于它发生的地方）。原始字节在 finally 中恢复，中断也不会留下损坏的包。**有一条损坏没被抓住即构建失败**，因为那意味着本包引作证据的检查做不到它被引用的那件事。",
+  "note_en": "**Every gate in this package had only ever been observed passing, and a gate that never fails cannot be told apart from a gate that cannot fail.** Each entry damages the package in a way one gate was built to catch, and requires that gate both to exit non-zero and to name the damage in its output — exiting without naming it sends a reviewer through the whole package (E50: bad news belongs where it happened). Original bytes are restored in a `finally`, so an interrupted run leaves nothing damaged. **One surviving mutation fails the build**, because it would mean a check this package cites as evidence does not do what it is cited for.",
+  "mutations": [
+    {
+      "id": "M1",
+      "gate": "figure_citation_qa.py",
+      "target": "proposal.md",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "把正文里对 FIG.21 的引用改坏，使这张图只剩目录里一行。",
+      "what_en": "Break the prose citation of FIG.21 so the sheet survives only as an index row.",
+      "why_zh": "这正是建立该闸门的原因：二十一张图里十四张只在目录中出现过。如果闸门抓不到人为制造的同一情况，它当初报出的那十四张也不构成证据。",
+      "why_en": "This is the condition the gate was built for — fourteen of twenty-one sheets were once cited nowhere but the index. If it cannot catch the same condition introduced deliberately, the fourteen it once reported were not evidence either."
+    },
+    {
+      "id": "M2",
+      "gate": "assumption_refs_qa.py",
+      "target": "metrics.json",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "把某个 metric 指向的假设 id 改成一个不存在的号。",
+      "what_en": "Point a metric's assumption id at a record that does not exist.",
+      "why_zh": "本包的中心主张是「一个数应当能连到它所依赖的前提」。连接断了而闸门不响，这条主张就只是排版。",
+      "why_en": "This package's central claim is that a number should join to the caveats it rests on. If the join breaks and nothing objects, the claim is typography."
+    },
+    {
+      "id": "M3",
+      "gate": "cjk_leak_qa.py",
+      "target": "proposal.en.md",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "在英文版末尾留一句未翻译的中文。",
+      "what_en": "Leave one untranslated Chinese sentence at the end of the English edition.",
+      "why_zh": "英文评审读到的是英文版。一句漏译在人工通读中最容易被跳过——它读起来像排版问题，不像内容缺失。",
+      "why_en": "An English-reading reviewer gets the English edition. A single untranslated sentence is the easiest thing for a human pass to skip, because it reads as a typesetting artefact rather than as missing content."
+    },
+    {
+      "id": "M4",
+      "gate": "markdown_structure_qa.py",
+      "target": "proposal.en.md",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "追加一张分隔行与表头列数不符的表——渲染出来根本不是表。",
+      "what_en": "Append a table whose separator row does not match its header — it does not render as a table at all.",
+      "why_zh": "E51 就是这个：十一列的表用了 21 个字段的分隔行，正落在「每一列都是必填的」那句话下面，而且只在英文版里，因此按章节比对的 parity 闸门看不见它。内容闸门读文字，形状缺陷要靠形状闸门。",
+      "why_en": "This is E51: an eleven-column table with a 21-field separator, sitting directly under the sentence \"every column is mandatory\", in the English edition only — so the section-by-section parity gate could not see it. Content gates read words; a shape defect needs a shape gate."
+    },
+    {
+      "id": "M5",
+      "gate": "figure_citation_qa.py",
+      "target": "proposal.en.md",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "把英文版里对 personas.json 的唯一指名改掉，使这份随包文件无人提及。",
+      "what_en": "Rename the only mention of personas.json in the English edition so the shipped file goes unnamed.",
+      "why_zh": "同一道闸门的第二条规则：随包成品必须在正文里被指名。一道只有一半被验证过的闸门，是一道只有一半的闸门。",
+      "why_en": "The second rule inside the same gate: a shipped deliverable must be named in the prose. A gate with only half of it exercised is half a gate."
+    },
+    {
+      "id": "M6",
+      "gate": "computed_value_qa.py",
+      "target": "proposal.md",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "把正文里手写的最近距离从 412.5 m 改成 481.2 m，模拟图层改动后句子没跟着改。",
+      "what_en": "Change one hand-written nearest-distance from 412.5 m to 481.2 m, simulating a layer that moved while the sentence did not.",
+      "why_zh": "`412.5 m` 在中文版生成块之外手写了六处。图层一改，六句话同时变错，而旁边生成的表是对的——闸门必须抓住这种不一致，否则它保护的正是它自己声称在防的缺陷。",
+      "why_en": "`412.5 m` is hand-written six times in the Chinese edition outside any generated block. If the layer moves, six sentences go wrong at once while the generated table beside them goes right — the gate has to catch that, or it protects exactly the defect it claims to prevent."
+    },
+    {
+      "id": "M7",
+      "gate": "claim_audit_qa.py",
+      "target": "proposal.en.md",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "在英文版追加一个只有英文版有的带单位测量值。",
+      "what_en": "Append a unit-carrying measurement that exists in the English edition only.",
+      "why_zh": "这正是该闸门存在的原因——英文版曾独有 39.6%、30.0% 与一整段 0.24% 的论证。人为制造同一情况若不报错，那三处当初被报出来就只是巧合。",
+      "why_en": "This is the condition the gate was built for: the English edition once carried 39.6%, 30.0% and a whole 0.24% paragraph the Chinese did not. If the same condition introduced deliberately goes unreported, catching those three was luck."
+    },
+    {
+      "id": "M8",
+      "gate": "stale_corpus_qa.py",
+      "target": "proposal.md",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "在正文里加一句把旧语料规模 435 份说成本次实测的当期值。",
+      "what_en": "Add a sentence presenting the superseded corpus size of 435 as the current reading.",
+      "why_zh": "一次对抗性通读查出的十二处缺陷里有八处是同一型：数是对着更早的语料量的，语料动了，句子没动。这道闸门就是为此建的——**它必须能认出人为放进去的同一处**。",
+      "why_en": "Eight of twelve defects an adversarial read found in one pass were this one shape: a count measured against an earlier corpus, left in a sentence after the census moved. The gate exists for that, so it has to recognise the same thing put back deliberately."
+    },
+    {
+      "id": "M9",
+      "gate": "sources_qa.py",
+      "target": "sources.json",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "把一条 source 记录的 `evidence_class` 改名为 `evidenceClass`，制造同义字段。",
+      "what_en": "Rename one source record's `evidence_class` to `evidenceClass`, creating a synonym field.",
+      "why_zh": "`sources.json` 是评审流程整份读取的文件之一。一份记录用两个名字回答同一个问题，机器就无法判断两条记录是否可比——而这正是本方案要求别人做到的那件事。",
+      "why_en": "`sources.json` is one of the files the review pipeline reads whole. If one record answers a question under a second name, nothing can decide whether two records are comparable — which is precisely what this proposal asks of everyone else."
+    },
+    {
+      "id": "M10",
+      "gate": "matrix_refs_qa.py",
+      "target": "compliance_matrix.json",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "把某条矩阵记录指向的证据路径改成一个不存在的目录。",
+      "what_en": "Point one matrix record's evidence path at a directory that does not exist.",
+      "why_zh": "矩阵的全部价值在于「这条要求由那份证据支撑」这句话可以被打开核对。指向不存在的文件的矩阵，比没有矩阵更糟：它把「无法核对」伪装成「已核对」。",
+      "why_en": "A matrix is worth having only because \"this requirement is carried by that evidence\" can be opened and checked. One pointing at files that do not exist is worse than none: it dresses up unverifiable as verified."
+    },
+    {
+      "id": "M11",
+      "gate": "parity_qa.py",
+      "target": "proposal.md",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "给中文版追加一整章、英文版不加，使分节覆盖率下降。",
+      "what_en": "Append a whole Chinese-only chapter with no English counterpart, so section coverage falls.",
+      "why_zh": "第一版英文覆盖率量的是「交出去翻译的字符串是否都翻回来了」——恒为 100%，而实际内容覆盖只有 65%，设计章节接近 45%。**改口径之后必须验证新口径真的会掉下来**，否则换的只是一个更好听的 100%。",
+      "why_en": "The first coverage number measured whether the strings handed to the translator came back translated — always 100%, while real content coverage was 65% and the design chapters nearer 45%. **After changing what is measured, the new measure has to be shown capable of falling**, or all that changed is a nicer-sounding 100%."
+    }
+  ],
+  "caught": 11,
+  "survived": 0,
+  "gates_proven_able_to_fail": [
+    "assumption_refs_qa.py",
+    "cjk_leak_qa.py",
+    "claim_audit_qa.py",
+    "computed_value_qa.py",
+    "figure_citation_qa.py",
+    "markdown_structure_qa.py",
+    "matrix_refs_qa.py",
+    "parity_qa.py",
+    "sources_qa.py",
+    "stale_corpus_qa.py"
+  ],
+  "gates_not_covered": {
+    "overflow_qa.py": "reads rendered SVGs, which the next build step overwrites — proving it can fail needs a mutated drawing source and a re-render",
+    "accessibility_qa.py": "same: contrast and glyph height are measured on rendered output, not on text a byte-swap can reach",
+    "census_claims_qa.py": "its expected values come from files a mutation would have to damage in step, which tests the harness rather than the gate",
+    "forward_reference_qa.py": "the defect is a *direction* — a reference that resolves and points the wrong way — which needs a reordering, not a swap"
+  },
+  "coverage_note_zh": "**覆盖率的分母写在这里。** 本包共 16 道闸门，其中 10 道已被证明会失败；其余 4 道没有，理由逐条列出而不是省略——一个不写分母的覆盖声明，正是本包在别人包里、以及两次在自己包里查出的那种缺陷。",
+  "coverage_note_en": "**The denominator is written down.** Of this package's 16 gates, 10 have been shown capable of failing and 4 have not, each with its reason stated rather than omitted — a coverage claim with an unstated denominator is the defect this package keeps finding in other people's work and, twice, in its own."
+}

@@ -35,20 +35,20 @@
 
 ### 镜头 02 · 总体结构 00:05.21 — 00:14.17
 
-- **画面：** `assets/figures/site-overview.png` 中「京张走廊总体结构」地图的局部，自西向东缓慢推移并轻微推近；画面内可见通用可达底线、低刺激替代线、三处重点区框线、十个任务完成点编号、中关村科技服务翼与小月河场景赋能翼的关系箭头。
-- **画面文字：** 章节头 01 总体结构与三处重点区 / OVERALL STRUCTURE — THREE KEY AREAS；AI 开启 = AI 关闭 / AI ON = AI OFF；一条公共底线 · 两条等价路径 / One public baseline · two equivalent routes；公开背景 · 临时边界 · 概念建议 / Public background · provisional boundary · concept；角标 概念建议 / CONCEPT。
+- **画面：** `assets/figures/site-overview.png` 中「京张走廊总体结构」地图带的局部，自西向东缓慢右移并推近；取景上下边界锁定在地图带内，画面内可见通用可达底线、低刺激替代路径、三处重点区框线、十个独立完成点编号，以及中关村科技服务翼与小月河场景赋能翼的关系箭头。
+- **画面文字：** 章节头 01 总体结构与三处重点区 / OVERALL STRUCTURE — THREE KEY AREAS；AI 开启或关闭，公共任务都能独立完成 / Public tasks stay independently completable, AI on or off；一条公共底线 · 一条低刺激替代路径 / One public baseline · one quiet alternative；公开背景 · 临时边界 · 概念建议 / Public background · provisional boundary · concept；角标 概念建议 / CONCEPT。
 - **对应旁白：** 第 2、3 句。
 
-### 镜头 03 · 骨架与等价服务网络 00:14.17 — 00:20.94
+### 镜头 03 · 骨架与可达域审计 00:14.17 — 00:20.94
 
-- **画面：** `assets/figures/mobility-bluegreen.png` 中「概念网络」的局部，自上而下缓慢下移，从直接多模态线与低刺激替代线上的十个节点，移到 AI ON 与 AI OFF 的成对对照框。
-- **画面文字：** 章节头 02 骨架与等价服务网络 / FRAMEWORK AND EQUIVALENT SERVICE NETWORK；三座多感官实验院 · 两翼支持网 / Three sensory labs · two supporting wings；直接多模态线 + 低刺激安静替代线 / Direct multimodal line + low-stimulation quiet route；十个独立完成点 OP-01—OP-10 / Ten independent-completion points；角标 概念建议 / CONCEPT。
+- **画面：** `assets/figures/mobility-bluegreen.png` 中三处重点区双态可达域平面图的局部，自上而下缓慢下移：从双态可达域与慢行线位的图例行，经众智园与 AI 原点社区两幅平面图，移到大钟寺平面图，沿途经过 OP-01 至 OP-10 十个独立完成点与 AI 开启 300 m、AI 关闭 150 m 的服务半径标注。
+- **画面文字：** 章节头 02 骨架与可达域审计 / FRAMEWORK AND REACHABILITY AUDIT；三座多感官实验院 · 两翼支持网 / Three sensory labs · two supporting wings；通用可达底线（主脊）· 低刺激安静替代路线 / Universal baseline (spine) · quiet alternative；十个独立完成点 OP-01—OP-10 / Ten independent-completion points；角标 概念建议 / CONCEPT。
 - **对应旁白：** 第 4 句。
-- **图件版本：** 本镜头取自本片首次渲染时（v5.0）的 `mobility-bluegreen.png`；该图已于 v5.1 整体重造为《十节点服务可达域与蓝绿慢行系统图》，图内名称与画面构图随之改变。v5.4 重出成片时本镜头沿用原有图件副本，未按新版图件重新取材，此处如实登记该差异，现行图件以 `assets/figures/` 为准。
+- **重摄记录：** 本镜头于 v5.9 按现行 `assets/figures/mobility-bluegreen.png` 重摄。该图自本片首次渲染（v5.0）以来先后重造为《十节点服务可达域与蓝绿慢行系统图》并于 v5.7 再度重排为现行的《AI 关闭后可达域收缩：差集是审计靶区》，图内主张与构图均已改变，本镜头此前沿用的 v5.0 图件副本随之作废。重摄同时按现行图件口径改写本镜头的章节头与要点行：章节头由「骨架与等价服务网络 / FRAMEWORK AND EQUIVALENT SERVICE NETWORK」改为「骨架与可达域审计 / FRAMEWORK AND REACHABILITY AUDIT」，第二条要点由「直接多模态线 + 低刺激安静替代线」改为现行图件图例的原文「通用可达底线（主脊）· 低刺激安静替代路线」，以免片中出现权威图已不再主张的「等价」表述。旁白、字幕文本与全片时间轴不受影响。
 
 ### 镜头 04 · 三处重点区的运行合同 00:20.94 — 00:34.99
 
-- **画面：** `assets/figures/key-areas.png` 中三张重点区卡片的局部，自左向右依次经过众智园通用接口实验院、AI 原点社区独立生活共创院、大钟寺包容采用市场的首层运行图，镜头末段下移到「同一视线内的等价路径」色块带与 STOP / RESUME 条款。
+- **画面：** `assets/figures/key-areas.png` 中三张重点区卡片的局部，自左向右依次经过众智园通用接口实验院、AI 原点社区独立生活共创院、大钟寺包容采用市场的卡头、角色标签与首层运行图，镜头末段下移到「同一视线内的等价路径」色块带、STOP / RESUME 条款与「日常模式 ⇄ 测试模式（可撤回）」按钮。
 - **画面文字（前半）：** 章节头 03 三处重点区的运行合同 / HUMAN-SCALE OPERATING CONTRACTS；众智园 · 验证 / ZHONGZHIYUAN · VERIFY；AI 原点社区 · 共同设计 / AI ORIGIN COMMUNITY · CO-DESIGN；大钟寺 · 采用与退出 / DAZHONGSI · ADOPT AND EXIT。
 - **画面文字（后半）：** 可识别 · 可停留 · 可测试 · 可退出 / Identifiable · pausable · testable · exitable；同一视线内的等价路径 / Equivalent routes within one line of sight；失败即停止，恢复须有证据 / Stop on failure; resume only with evidence；角标 概念建议 / CONCEPT。
 - **对应旁白：** 第 5、6 句。
@@ -66,6 +66,7 @@
 - **画面：** `assets/figures/brand-system.png` 中「标志与图形构成」区域的局部，自左向右横移，经过深底标志、浅底标志与图形构成说明。
 - **画面文字：** 章节头 05 品牌语法与文化底线 / BRAND GRAMMAR AND CULTURAL BASELINE；平行感知线 · 开放节点 / Parallel sensory lines · open nodes；统一轨距 → 通用设计 / Common gauge → universal design；断网断电时，铸刻与盲文仍可读 / Cast text and braille stay readable when power and network fail；角标 概念建议 / CONCEPT。
 - **对应旁白：** 第 9 句。
+- **重摄记录：** 本镜头于 v5.9 按现行 `assets/figures/brand-system.png` 重摄。该图自本片首次渲染以来两次修订，改动均落在本镜头取景窗口之外的下半幅（字体授权表述由「全部使用系统预装或开源字体」改为「字体授权状态逐项核验中」，数值示例由 11.4128 km² 改为 11.41 km²），窗口内的标志与图形构成区逐像素未变，因此重摄后画面无可见变化；取景参数与运动轨迹一并沿用，此处如实登记以说明源图血统已归一到现行版本。
 
 ### 镜头 07 · 片尾 00:52.26 — 01:03.48
 
@@ -121,8 +122,8 @@
 
 | 项目 | 记录 |
 | --- | --- |
-| 画面渲染 | 为本片手写的 HTML/CSS 排版页，经 Playwright 驱动的 Chromium 无头浏览器逐帧截图，1920×1080，30 fps，共 1905 帧。每帧的镜头位置由时间参数确定性计算，不依赖实时动画，因此不存在掉帧或快慢不均 |
-| 图件来源 | 本投稿包 `assets/figures/` 下的 `site-overview.png`、`mobility-bluegreen.png`、`key-areas.png`、`brand-system.png`（4800×3000，投稿方自制）。预缩放至 3000×1875 后在页面内做推移与缩放，未修改图内任何内容、未添加或删除图内要素。镜头 02、03、04、06 取自本片首次渲染时（v5.0）的图件版本：其中 `mobility-bluegreen.png` 已于 v5.1 整体重造为《十节点服务可达域与蓝绿慢行系统图》，`site-overview.png` 与 `brand-system.png` 亦有 v5.1 之后的显示精度与表述修订；v5.4 为修正镜头 05 重出全片时，这四个镜头沿用了原有的图件副本，未按新版图件重新取材，现行图件以 `assets/figures/` 为准 |
+| 画面渲染 | 为本片手写的 HTML/CSS 排版页，经 Playwright 驱动的 Chromium 无头浏览器逐帧截图，1920×1080，30 fps，共 1905 帧。每帧的镜头位置由时间参数确定性计算，不依赖实时动画，因此不存在掉帧或快慢不均。v5.9 重摄只重新渲染受影响的两段帧号区间（第 152—1054 帧即镜头 02 至 04 及其前后转场、第 1392—1572 帧即镜头 06 及其前后转场，合计 1084 帧）；片头、镜头 05 交互实录与片尾的 821 帧逐字节复用上一版渲染结果，未重新渲染 |
+| 图件来源 | 本投稿包 `assets/figures/` 下的 `site-overview.png`、`mobility-bluegreen.png`、`key-areas.png`、`brand-system.png`（4800×3000，投稿方自制）。预缩放至 3000×1875 后在页面内做推移与缩放，未修改图内任何内容、未添加或删除图内要素。镜头 02、03、04、06 已于 v5.9 按现行图件重摄：四张源图逐一取自本表登记之日的 `assets/figures/`，此前沿用的 v5.0 图件副本全部作废，片中不再存在与权威静态图不一致的图版。四张图在 v5.0 之后均经重造或修订（`mobility-bluegreen.png` 两度重排，主张由「十节点等价服务网络」改为「AI 关闭后可达域收缩：差集是审计靶区」；`site-overview.png` 与 `key-areas.png` 在 v5.5—v5.7 按接收分辨率重排版面；`brand-system.png` 修订了字体授权表述与数值精度），因此镜头 02、03、04 的取景窗口与推移参数按新版面重新量测，镜头 06 因改动落在取景窗口之外而沿用原参数；镜头 03 的章节头与要点行按新版图件口径改写，详见第二节该镜头的重摄记录 |
 | 标志图形 | 由本包 `assets/logo.svg` 的深色模式配色重绘为内联 SVG（感知线 #5fb3ab、节点环 #f2efe7、原点 #e08975），几何路径与原文件完全一致 |
 | 交互场景录制 | 用同一浏览器打开本包 `visual/index.html` 第 16 章交互场景，把 `requestAnimationFrame` 替换为可手动推进的队列，使动画相位每帧严格递增固定量，再逐帧截取「AI 开关条 + 场景舞台」区域（1344×595 CSS 像素，设备像素比 2，即 2688×1190 实际像素）。录制过程中依次执行两次点击：「播放引导流光」与「AI 关闭」。被录制页面的文件内容未作任何修改，运行期间不加载任何远程脚本、字体、瓦片或统计代码。本镜头已于 v5.4 按同一脚本、同一几何与同一点击帧号对当时的页面重新录制，因此画面中的读数面板即现行的声明与实测分列六行版本 |
 | 字体 | 画面文字由运行环境预装字体渲染（PingFang SC、Georgia 等），未嵌入、未随包分发任何字体文件 |
@@ -132,7 +133,7 @@
 | 字幕时间轴 | 非人工估读，由裁剪后各句样本的实际长度与静音间隔精确累加得到，与音频严格同步；烧录字幕与外挂 `journey.vtt` 用词、时间轴完全一致 |
 | 视频编码 | H.264（x264 两遍编码，目标 590 kbps，preset veryslow，tune stillimage，关键帧间隔 60），High Profile Level 4.0，yuv420p，有限色域（tv range，BT.709），`moov` 前置（faststart），便于网页流式播放 |
 | 音频编码 | AAC-LC，单声道 32 kHz，64 kbps |
-| 成片规格 | 1920×1080，30 fps，视频 1904 帧（63.467 秒），音频 32 kHz 单声道（63.477 秒），容器时长 63.477 秒，5,080,248 字节 |
+| 成片规格 | 1920×1080，30 fps，视频 1904 帧（63.467 秒），音频 32 kHz 单声道（63.477 秒），容器时长 63.477 秒，5,055,021 字节。v5.9 重摄沿用同一音轨与同一编码参数重出，音频基本流逐字节与上一版一致，全片时间轴、字幕时间码与各句起止时刻均未变化 |
 | 音乐与音效 | 无。全片仅有合成语音与静音间隔，不含背景音乐、音效、环境声或任何采样素材 |
 | 实拍与实地录音 | 无。不含任何现场摄影、航拍、录像、环境声或在真实场地采集的素材 |
 | 生成式影像 | 无。未使用任何图像或视频生成模型，画面全部由排版代码、包内自制图件与包内交互页面的真实运行结果构成 |
@@ -155,7 +156,7 @@
 
 ## 七、已知限制
 
-1. **合成语音的固有限制。** 系统语音在长句、专有名词与多音字上的语调与切分可能不够自然。该旁白用于信息传达，不用于替代专业配音或正式播报。
+1. **合成语音的固有限制。** 合成语音在长句、专有名词与多音字上的语调与切分可能不够自然。该旁白用于信息传达，不用于替代专业配音或正式播报。
 2. **单一配音语言。** 目前仅提供简体中文旁白；画面关键标注为中英双语，字幕轨提供中文 `journey.vtt` 与英文 `journey-en.vtt` 两条，未制作英文配音版本。英文内容以 `proposal.en.md` 为准。
 3. **未覆盖的无障碍通道。** 本片未提供手语视频、易读（Easy Read）改写版本与独立的音频描述（AD）音轨。画面中的关键信息已通过旁白、双语标注、烧录字幕与本文件第二节的分镜描述四重冗余提供；但严格意义上的音频描述音轨仍属缺项。方案主张手语与易读版本须由相应使用者群体参与评估后方可发布，在缺少该条件前不以机器生成结果充数。
 4. **镜头运动带来的边缘截断。** 图版局部推移过程中，画面边缘可能出现被裁切的文字或图形。完整图版见 `assets/figures/` 下的原始图件，本片不替代其阅读。
@@ -169,7 +170,7 @@
 
 This 63-second film is a **fully synthetic presentation artifact**. Its narration was produced with the MiniMax text-to-speech service (model `speech-2.8-hd`, preset synthetic voice "Chinese (Mandarin)_Reliable_Executive", accessed via the official `mmx` CLI) under the terms of that service, using the same voice as the package's `audio-guide.m4a`. It contains **no human voice recording, no voice cloning or imitation of any real person, no music, no sound effects, no sampled audio, no field recording, no photography, no drone or video footage, and no image- or video-generation model output**.
 
-Every frame was rendered from hand-written HTML/CSS through a headless Chromium browser and captured frame by frame. The visual material consists solely of (a) the submission package's own figure plates in `assets/figures/`, moved and zoomed without altering their content — captured at the version current when the film was rendered (v5.0), while `mobility-bluegreen.png` was rebuilt in v5.1 as "Ten-Node Service Reachability + Blue-Green & Slow Mobility" and `site-overview.png` and `brand-system.png` carry display-precision and wording revisions made from v5.1 onward; when the film was re-rendered in v5.4 to correct shot 05, those plate shots were not re-sourced from the newer versions, and the plates in `assets/figures/` are authoritative — (b) the package's own logo geometry from `assets/logo.svg`, and (c) a frame-accurate capture of the package's own interactive scene in `visual/index.html`, chapter 16, driven by two real clicks: "play guidance flow" and "AI OFF" — re-captured in v5.4 against the page as it now stands, so the readout panel on screen is the current six-row declared/measured split. The captured page loads no remote script, font, tile or tracker. Type is rendered with fonts preinstalled in the runtime; no font file is embedded or redistributed. The OpenStreetMap background carried inside the figure plates is credited on the plates themselves and appears with them on screen.
+Every frame was rendered from hand-written HTML/CSS through a headless Chromium browser and captured frame by frame. The visual material consists solely of (a) the submission package's own figure plates in `assets/figures/`, moved and zoomed without altering their content — re-sourced in v5.9 from the plates as they now stand in `assets/figures/`, so no shot carries a superseded plate any more. All four plates had changed since the film was first rendered: `mobility-bluegreen.png` was rebuilt twice and now argues "AI off halves the reachable domain: the gap is the audit target", `site-overview.png` and `key-areas.png` were re-laid out for receiving resolution in v5.5-v5.7, and `brand-system.png` revised its font-licensing wording and a displayed precision. Shots 02, 03 and 04 therefore had their crop windows and camera moves re-measured against the new layouts, and shot 03 also had its chapter heading and note row rewritten to the current plate's wording, so the film no longer states an equivalence the authoritative plate has stopped claiming; shot 06 kept its original camera move because the plate's edits fall outside its window — (b) the package's own logo geometry from `assets/logo.svg`, and (c) a frame-accurate capture of the package's own interactive scene in `visual/index.html`, chapter 16, driven by two real clicks: "play guidance flow" and "AI OFF" — re-captured in v5.4 against the page as it now stands, so the readout panel on screen is the current six-row declared/measured split. The captured page loads no remote script, font, tile or tracker. Type is rendered with fonts preinstalled in the runtime; no font file is embedded or redistributed. The OpenStreetMap background carried inside the figure plates is credited on the plates themselves and appears with them on screen.
 
 The narration, the burnt-in Chinese captions, the WebVTT track (`journey.vtt`) and the transcript in section 3 above carry **identical wording**, so the film can be used by watching, by listening, or by reading text alone — an application of the proposal's own "AI ON = AI OFF" and dual-channel redundancy requirements to its own deliverable.
 

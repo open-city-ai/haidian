@@ -94,6 +94,18 @@ The three key areas must appear in `geometry/key_areas.geojson`. Where official 
 | Beijing AI Origin Community | Campus-adjacent achievement-translation and talent community | Stitch campus, park, and blocks with slow mobility; add release halls, talent services, housing-life support, and open-source collaboration space | Open-source community, achievement release, talent-zone services, campus-adjacent incubation | [data:geometry/key_areas.geojson#PROV-KEY-002], [source:AGENT-TASKBOOK] |
 | Dazhongsi AI Industry Cluster | Urban intelligent-economy and international-exchange district | Dazhongsi Station integration, four-quadrant pedestrian connectivity, commercial services, and public-realm renewal around leading enterprises | AI-agent and intelligent-terminal showcase, content consumption, data elements, international roadshows | [data:geometry/key_areas.geojson#PROV-KEY-003], [metric:key_area_count] |
 
+### Zhongzhiyuan AI Acceleration Area (detailed)
+
+The conceptual programme mix (labelled as a concept allocation) is about 55% full-stack R&D and pilot testing, 20% technology services and governance display, 15% talent housing and amenities, and 10% public and blue-green space. The retain-renovate-demolish approach keeps modern industrial buildings and the green skeleton, converts underused factory floors into R&D and exhibition frontages, and adds new R&D clusters in the north; the belt-wide AI R&D building footprint of about 94.7 hectares (ai_r_and_d, concept basis) is hosted mainly here [data:geometry/buildings.geojson#BLDG-001]. Public-interface work leads with the Qinghe waterfront and external transport, stitched into the heritage slow-mobility greenway; building heights, massing and exact scale all await regulatory-plan and engineering conditions [depth:height_massing_character].
+
+### Beijing AI Origin Community (detailed)
+
+The conceptual mix is roughly 40% research and achievement translation, 25% education and open-source collaboration, 20% talent housing, and 15% public services and community commerce. The classification keeps education-research fabric (education, about 10.0 hectares of footprint) and existing neighbourhood grain, converts underused ground floors into a campus-adjacent translation street, and adds small-scale incubator and release facilities; the residential footprint (about 21.9 hectares, concept basis) sits mainly in the two flanking mixed neighbourhoods. Slow-mobility stitching across campus, park and blocks matters more than wholesale demolition; the retain-renovate-demolish ratio and ground-floor programme await ownership surveys [depth:retain_renovate_demolish].
+
+### Dazhongsi AI Industry Cluster (detailed)
+
+The conceptual mix is about 45% AI R&D and corporate headquarters, 30% commercial and business services, 15% AI-native consumption and display, and 10% public exchange and plazas. The classification keeps leading enterprises and existing business towers, refits the commercial footprint (retail, about 24.6 hectares) along the station frontage, and adds a data-element reception hall and international roadshow node next to the forecourt plaza. Station-area TOD integration and four-quadrant pedestrian connectivity form the main public-realm upgrade axis [data:geometry/public_space.geojson#PUBLIC-001]; any retrofit around leading enterprises requires owner participation, and no engineering-feasibility conclusion is offered [depth:three_key_area_detailed_design].
+
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
 The proposal builds spatial-need profiles for AI talent and enterprises, covering R&D offices, open-source collaboration, achievement release, enterprise services, talent housing, social learning, consumption and daily life, sports and leisure, and international exchange. AI+ scenarios follow the announcement directions of transport, services, consumption, healthcare, education, legal, and daily-life services, forming both industry-development scenarios and AI-empowered urban-function scenarios. Each scenario states its users, spatial location, data sources, privacy boundaries, human-review mechanism, and operating body.
@@ -184,6 +196,19 @@ The implementation scheme forms a reviewable renewal-project list stating each p
 Phasing is distinguished from the 100-day open-call design period: the call period is the deliverable schedule, while implementation phasing is the advancement path of renewal and construction. The concept phasing is — near-term pilot (2026–2028): Dazhongsi area, heritage-park south section, and the AI Origin Forum plaza, prioritizing lightweight facilities, operating activities, and public experience; mid-term renewal (2028–2031): the Origin Community, heritage-park central section, and pilot testing; long-term deepening (2031–2035): the Zhongzhiyuan full-stack innovation area and the Qinghe greenway, deepened only after regulatory planning, municipal, and property-rights conditions are confirmed. Near-term starts use lightweight, reversible measures; anything requiring statutory conditions waits for confirmation.
 
 **Long-term operation (agent.6).** The proposal outlines, as concept suggestions open for further professional study, an annual events system (an AI Origin Forum, scenario open days, a developer festival, and a Global AI Week route linking heritage culture, the open-source community, industry showcases, and international roadshows); developer-community operation; a booking-based open-scenario operation; public experience routes; and international communication and attraction/conversion of talent and enterprises. For each, the prose states the operating object, frequency, responsibility boundaries, conversion paths, and risks — none are confirmed government events or committed arrangements.
+
+### Long-term operations mechanism (agent.6 deepening)
+
+The annual operations calendar below is a concept design; cadence and responsibility boundaries must be confirmed with the competent district bodies and operators before implementation:
+
+| Quarter | Flagship activity | Responsibility boundary (concept) | Conversion path | Main risks and prerequisites |
+| --- | --- | --- | --- | --- |
+| Q1 | AI Origin Forum (academic + industry annual meeting) | Organizer/host to be confirmed, academia joins | Release -> matchmaking -> follow-up tracking | Event permits, guest and material authorization |
+| Q2 | Scenario Open Day (open districts + public test calendar) | Operator plus district coordination, reservation access | Public experience -> trial -> feedback into repository | Data compliance and safety isolation |
+| Q3 | Developer Festival (open-source collaboration + competition roadshow) | Community operator governance, public repo + convenings | Contribution -> incubation -> investment matchmaking | Rights clearance for competition material |
+| Q4 | Global AI Week public route | Multi-party coordination, heritage-open-source-industry chain | Visits -> project conversion -> annual release | Human review for mass-event safety |
+
+The community loop runs on open-source practice: public repositories, regular meetups, a contribution wall and an honour display; scenario opening uses reservations, and only test projects passing safety assessment enter the public test calendar. The conversion pathway is designed as three concept chains: talent from visitor to community member to local professional; startups from test field to acceleration to landing; enterprises from site visit to headquarters matchmaking to long-term cooperation - none of these are framed as committed investment-attraction, policy or funding promises [source:AGENT-TASKBOOK].
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 

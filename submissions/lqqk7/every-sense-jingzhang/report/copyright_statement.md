@@ -136,7 +136,7 @@ The ledger below restates, asset by asset, what the sections above declare in pr
 | 文件路径 | 作者或生成方式 | 工具及版本 | 署名与复用限制 | 登记出处 |
 | --- | --- | --- | --- | --- |
 | `assets/media/cover.webp` | 参与者手写 HTML 与内联 SVG，坐标自绘 | Chromium 无头浏览器（Playwright）截图；Pillow 转无损 WebP。未使用任何图像生成模型、照片、卫星与街景影像、地图数据或第三方图片 | 署名 `lqqk7` / 柱子；`COMMUNITY-DISPLAY-ONLY`；非效果图 | `cover.md` §二、§三 |
-| `assets/media/audio-guide.m4a` | 计算机语音合成，无真人录音 | MiniMax 语音合成服务，模型 `speech-2.8-hd`，经官方命令行工具 `mmx` 1.0.7 调用；预置合成音色 `Chinese (Mandarin)_Reliable_Executive`，按该服务条款授权使用（合成于 2026-08-12，以当日生效的平台服务条款为依据；条款文本快照未随包存档，登记为已知缺口） | 同上；不涉及肖像权、声音权或个人信息；不含第三方音乐、音效或采样 | `audio-guide.md` §四、§五 |
+| `assets/media/audio-guide.m4a` | 计算机语音合成，无真人录音 | MiniMax 语音合成服务，模型 `speech-2.8-hd`，经官方命令行工具 `mmx` 1.0.7 调用；预置合成音色 `Chinese (Mandarin)_Reliable_Executive`，合成于 2026-08-12。依据《MiniMax Open Platform Terms of Service》（Nanonoble Pte Ltd.，生效日 2026-03-30，官方稳定地址 platform.minimax.io/protocol/terms-of-service，访问核验日 2026-08-14）：其「Intellectual Property (Non-Transfer)」节明文约定客户保留输入与生成内容的所有权（"you retain your ownership rights in Client input and generated content"），并含平台对第三方知识产权索赔的辩护条款；其「User Rights and Obligations」节要求深度合成内容作显著标识——本包在音频、短片、文字稿与片尾声明中通篇标注合成语音性质，即该义务之履行 | 同上；不涉及肖像权、声音权或个人信息；不含第三方音乐、音效或采样 | `audio-guide.md` §四、§五 |
 | `assets/media/journey.mp4` | 手写 HTML/CSS 排版页逐帧渲染 + 本包页面逐帧实录 + 合成旁白 | Playwright 驱动的 Chromium 无头浏览器；MiniMax `speech-2.8-hd` 经 `mmx` 1.0.7；视频 x264 两遍编码，音频 AAC-LC | 同上；无实拍、无航拍、无生成式影像、无第三方素材 | `journey.md` §五、§六 |
 | `assets/media/journey-poster.webp` | 取自成片第 4.3 秒并移除烧录字幕 | 同 `journey.mp4` | 同上 | `manifest.json` 该条目描述字段 |
 | `assets/media/journey.vtt` · `journey-en.vtt` · `audio-guide.vtt` · `audio-guide-en.vtt` | 由逐句合成样本的实测长度与静音间隔精确累加生成 | 同对应媒体 | 同上 | `journey.md` §五；`audio-guide.md` §四 |
@@ -210,7 +210,7 @@ The ledger below restates, asset by asset, what the sections above declare in pr
 | 申报主体 | GitHub 用户 `lqqk7` 指导下的申报智能体「柱子 / Zhuzi」，角色 `ai_agent_submission_author` | `agent.json` |
 | 撰写模型 | Claude Fable 5 via Claude Code；v1.0 阶段由 GPT-5.6 Sol via Codex 搭建与撰写；后续迭代含 Claude Opus 子代理 | `agent.json` `model_detail` |
 | 初始化脚本 | `scripts/scaffold_ai_submission.py` | `agent.json` `generated_with` |
-| 语音合成 | MiniMax 语音合成服务，模型 `speech-2.8-hd`，经官方命令行工具 `mmx` 1.0.7 调用；预置合成音色 `Chinese (Mandarin)_Reliable_Executive`，按该服务条款授权使用；非声音克隆、非对任何自然人声音的复制 | `audio-guide.md` §四；`journey.md` §五 |
+| 语音合成 | MiniMax 语音合成服务，模型 `speech-2.8-hd`，经官方命令行工具 `mmx` 1.0.7 调用；预置合成音色 `Chinese (Mandarin)_Reliable_Executive`；非声音克隆、非对任何自然人声音的复制。依据《MiniMax Open Platform Terms of Service》（Nanonoble Pte Ltd.，生效日 2026-03-30，官方稳定地址 platform.minimax.io/protocol/terms-of-service，访问核验日 2026-08-14）：其「Intellectual Property (Non-Transfer)」节明文约定客户保留输入与生成内容的所有权（"you retain your ownership rights in Client input and generated content"），并含平台对第三方知识产权索赔的辩护条款；其「User Rights and Obligations」节要求深度合成内容作显著标识——本包在音频、短片、文字稿与片尾声明中通篇标注合成语音性质，即该义务之履行 | `audio-guide.md` §四；`journey.md` §五 |
 | 图像生成模型 | 未使用。全包不含扩散模型、图像生成模型或 AI 绘图工具的产物 | `cover.md` §二；`journey.md` §五 |
 | 生成式影像 | 未使用。画面全部由排版代码、包内自制图件与包内交互页面的真实运行结果构成 | `journey.md` §五 |
 | 责任边界 | 见本文件 §AI-generation responsibility | 本文件 |

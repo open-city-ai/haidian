@@ -25,8 +25,8 @@
     "id": "KIT-01",
     "name_zh": "标石与铭牌",
     "name_en": "Benchmark stone and plaque",
-    "hard_constraint_zh": "标石顶面与铺装高差 ≤ ±5 mm（无公差的「齐平」判不了不合格）；400 × 400 × 600 mm，基础底面低于当地标准冻深不少于 100 mm；铭牌编号唯一且与 geometry 中的 benchmark_id 一一对应。详图 FIG.16",
-    "hard_constraint_en": "Stone top within ±5 mm of the paving — \"flush\" with no tolerance cannot be failed; 400 × 400 × 600 mm, foundation underside at least 100 mm below the local standard frost depth; plaque number unique and matching a `benchmark_id` in the geometry one-for-one. Detailed in FIG.16",
+    "hard_constraint_zh": "标石顶面与铺装高差 ≤ ±5 mm（无公差的「齐平」判不了不合格）；400 × 400 × 600 mm，基础底面低于当地标准冻深不少于 100 mm；铭牌编号唯一且与 geometry 中的 benchmark_id 一一对应。详图 FIG.16；这条约束在冬季与它自己冲突——齐平嵌进平铺装的标志坐在积水里，结冰即成绊倒风险；解法与冬季读数见 FIG.22",
+    "hard_constraint_en": "Stone top within ±5 mm of the paving — \"flush\" with no tolerance cannot be failed; 400 × 400 × 600 mm, foundation underside at least 100 mm below the local standard frost depth; plaque number unique and matching a `benchmark_id` in the geometry one-for-one. Detailed in FIG.16. **In winter this constraint collides with itself** — a mark set flush into level paving sits in standing water and becomes the trip hazard once frozen; the resolution and the winter reading are FIG.22",
     "serves_personas": [
      "P4",
      "P5",
@@ -63,8 +63,8 @@
     "id": "KIT-04",
     "name_zh": "无障碍引导",
     "name_en": "Accessible wayfinding",
-    "hard_constraint_zh": "引导带宽 300 mm、连续不断点，止于标石外缘 300 mm（不把人引到标石上）；触觉与视觉双通道；读数位轮椅回转 Ø1,500 mm、净空 ≥ 2,100 mm；接入路径不得以台阶为唯一方式。详图 FIG.16",
-    "hard_constraint_en": "Guidance strip 300 mm wide and continuous, stopping 300 mm short of the stone so it does not lead onto it; tactile and visual channels both; Ø1,500 mm turning space with 2,100 mm headroom at the reading position; the approach may not be by steps alone. Detailed in FIG.16",
+    "hard_constraint_zh": "引导带宽 300 mm、连续不断点，止于标石外缘 300 mm（不把人引到标石上）；触觉与视觉双通道；读数位轮椅回转 Ø1,500 mm、净空 ≥ 2,100 mm；接入路径不得以台阶为唯一方式。详图 FIG.16；在 FIG.21 判为违规的区段内兼作寻点导视，见 FIG.23",
+    "hard_constraint_en": "Guidance strip 300 mm wide and continuous, stopping 300 mm short of the stone so it does not lead onto it; tactile and visual channels both; Ø1,500 mm turning space with 2,100 mm headroom at the reading position; the approach may not be by steps alone. Detailed in FIG.16; inside the stretches FIG.21 marks as failing it also carries the find-the-benchmark information, FIG.23",
     "serves_personas": [
      "P5",
      "P6",
@@ -472,8 +472,8 @@
    ],
    "sessions_per_year_total": 47,
    "paid_hours_total": [
-    133.0,
-    214.0
+    138.7,
+    219.7
    ],
    "volunteer_hours_total": [
     148.0,
@@ -487,13 +487,26 @@
     120,
     260
    ],
+   "survey_hours_total": [
+    133.0,
+    214.0
+   ],
+   "maintenance": {
+    "per_benchmark": 1.4166666666666667,
+    "swaps": 11.333333333333334,
+    "hours": 5.666666666666667,
+    "cny": [
+     680,
+     1473
+    ]
+   },
    "labour_cny_total": [
-    15960,
-    55640
+    16644,
+    57122
    ],
    "annual_cny_total": [
-    18760,
-    62440
+    19444,
+    63922
    ],
    "derivation_zh": "每行的年次数由 `spatial.json` 中该点自己声明的复测周期换算，未在此处手写；工时 = 年次数 × 人数 × 每次工时区间；金额 = 工时 × 费率区间 + 耗材区间。",
    "derivation_en": "Sessions per year are converted from the re-survey cadence each point declares in `spatial.json`, not typed into this table; hours = sessions × people × the per-session band; money = hours × the rate band plus consumables.",
@@ -503,15 +516,24 @@
     "extra_third_order_points": 9,
     "extra_sessions": 108,
     "extra_hours": [
-     162.0,
-     270.0
+     168.4,
+     276.4
     ],
+    "extra_maintenance": {
+     "per_benchmark": 1.4166666666666667,
+     "swaps": 12.75,
+     "hours": 6.375,
+     "cny": [
+      765,
+      1658
+     ]
+    },
     "extra_cny": [
-     21240,
-     74700
+     22005,
+     76358
     ],
-    "note_zh": "上表为**现状布点**的年运营成本。FIG.21 量出全线最远处距最近水准点 1,107 m，对 P5 是 30.8 分钟，九个区段中六个不满足本方案自己的十五分钟规则；补齐需新增 9 个三等点。**那不是同一张表**：补齐后的网络按同一模型另需下列一笔。把现状成本当作合规网络的成本，是本包会在别人包里指出的那种替换。",
-    "note_en": "The table above prices the network **as laid out**. FIG.21 measures the worst walk on the line at 1,107 m — 30.8 minutes for P5 — and finds six of nine segments failing this proposal's own fifteen-minute rule; closing it needs nine more third-order points. **That is not the same table**: a compliant network costs the following again, on the same model. Letting the as-laid-out figure stand in for the compliant one is the substitution this package would flag in someone else's."
+    "note_zh": "上表为**现状布点**的年运营成本。FIG.21 量出全线最远处距最近水准点 1,111 m，对 P5 是 30.9 分钟，九个区段中六个不满足本方案自己的十五分钟规则；补齐需新增 9 个三等点。**那不是同一张表**：补齐后的网络按同一模型另需下列一笔——复测工时、耗材，以及九套标准件每年的更换与安装工时（勘误 E67：这一行曾只算复测，与上表被修正之前犯的是同一个错，只低一行）。把现状成本当作合规网络的成本，是本包会在别人包里指出的那种替换。",
+    "note_en": "The table above prices the network **as laid out**. FIG.21 measures the worst walk on the line at 1,111 m — 30.9 minutes for P5 — and finds six of nine segments failing this proposal's own fifteen-minute rule; closing it needs nine more third-order points. **That is not the same table**: a compliant network costs the following again, on the same model — re-survey hours, consumables, and the yearly part swaps and fitting labour for nine more kits (errata E67: this row counted re-survey only, the same omission the table above had just been corrected for, one row lower). Letting the as-laid-out figure stand in for the compliant one is the substitution this package would flag in someone else's."
    },
    "weakest_input_zh": "**这张表里唯一不是数出来的数，是费率**：120–260 元/工时是一个区间估计，包内没有可核对的费率来源，证据等级 provisional。其余每一格都是次数、人数、小时或件数。把费率换成你自己的口径，整张表重算即可——公式随表公布正是为了这个。",
    "weakest_input_en": "**The only number here that is not counted is the rate**: CNY 120–260 per hour is a band with no verifiable source in this package, and it is graded provisional. Every other cell is a count of sessions, people, hours or items. Substitute your own rate and the table recomputes — the formula ships beside it for exactly that reason."
