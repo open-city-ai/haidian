@@ -1,5 +1,14 @@
 {
  "schema_version": "personas-v1",
+ "walking_speed_ms": {
+  "typical_adult": 1.2,
+  "P4": 0.9,
+  "P5": 0.6,
+  "basis_zh": "假设值，非实测。P5 为需要连续无台阶路径者的步速，P4 为周边长期居民（老年人）的步速，一般成人取 1.2 m/s。FIG.13、FIG.14、FIG.17 与 FIG.21 的全部步行时间与「十五分钟规则」均由这三个数算出——**换掉它们，那四张图一起改**。",
+  "basis_en": "Assumptions, not measurements. P5 is the speed of someone who needs a continuous step-free route, P4 that of an older long-term resident, and 1.2 m/s a typical adult. Every walking time on FIG.13, FIG.14 and FIG.17, and the fifteen-minute rule on FIG.21, is computed from these three numbers — **change them and those four sheets change together**.",
+  "rule_speed": "P5",
+  "rule_speed_why_zh": "间距规则按 P5 取值，不按一般成人——按后者定规则，等于把规则定成大多数人用不到的那一档。"
+ },
  "note_zh": "九个画像此前只存在于正文表格里。它们是全包承重的：场景卡的执行角色、运营周期的主导方、组件库每条硬约束「为谁而设」、以及无障碍论证（P4 部分不使用智能手机、P5 需要连续无台阶路径）都引用它们——**而包内没有任何东西能核对这些引用**。现在有了：本文件是唯一定义，正文表格由它生成，正文与卡片里每一个 P 编号构建时逐个断言可解析。",
  "note_en": "The nine personas existed only in a prose table. They are load-bearing across the package — scenario cards name them as executing roles, operating cadences name who leads, each kit component names who its hard constraint is for, and the accessibility argument turns on P4 partly not using a smartphone and P5 needing a continuous step-free route — and **nothing in the package could check any of those references**. Now it can: this file is the definition, the prose table is generated from it, and every `P<n>` in the prose and the cards is asserted against it at build time.",
  "count": 9,

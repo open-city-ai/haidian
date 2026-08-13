@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "protocol_version": "1.1",
+  "legend": {
+    "R": "responsible - performs the work",
+    "A": "accountable - one named human accepts the decision",
+    "C": "consulted - evidence is requested before the decision",
+    "I": "informed - receives the decision and appeal route"
+  },
+  "roles": ["public participant", "scenario steward", "authorised site operator", "accessibility/public-interest reviewer", "data-rights reviewer", "emergency/maintenance lead"],
+  "activities": [
+    {"activity": "register issue and requested public outcome", "public participant": "R", "scenario steward": "A", "authorised site operator": "C", "accessibility/public-interest reviewer": "C", "data-rights reviewer": "C", "emergency/maintenance lead": "I"},
+    {"activity": "approve site and operating window", "public participant": "I", "scenario steward": "R", "authorised site operator": "A", "accessibility/public-interest reviewer": "C", "data-rights reviewer": "C", "emergency/maintenance lead": "C"},
+    {"activity": "approve data and rights plan", "public participant": "C", "scenario steward": "R", "authorised site operator": "C", "accessibility/public-interest reviewer": "C", "data-rights reviewer": "A", "emergency/maintenance lead": "I"},
+    {"activity": "walk route and verify clear band", "public participant": "C", "scenario steward": "R", "authorised site operator": "C", "accessibility/public-interest reviewer": "A", "data-rights reviewer": "I", "emergency/maintenance lead": "C"},
+    {"activity": "open or hold operating window", "public participant": "I", "scenario steward": "R", "authorised site operator": "A", "accessibility/public-interest reviewer": "C", "data-rights reviewer": "C", "emergency/maintenance lead": "C"},
+    {"activity": "trigger stop and manual takeover", "public participant": "R", "scenario steward": "R", "authorised site operator": "I", "accessibility/public-interest reviewer": "I", "data-rights reviewer": "I", "emergency/maintenance lead": "A"},
+    {"activity": "approve recovery after incident", "public participant": "I", "scenario steward": "R", "authorised site operator": "A", "accessibility/public-interest reviewer": "C", "data-rights reviewer": "C", "emergency/maintenance lead": "C"},
+    {"activity": "merge, rollback, or retire", "public participant": "C", "scenario steward": "R", "authorised site operator": "A", "accessibility/public-interest reviewer": "C", "data-rights reviewer": "C", "emergency/maintenance lead": "C"}
+  ],
+  "invariants": ["Exactly one A per activity", "A and R are always human roles", "Any person may request STOP", "No model can approve GO, recovery, or retirement"]
+}

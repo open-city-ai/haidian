@@ -7,8 +7,8 @@ summary: A concept urban-design package in which every AI deployment carries a p
 proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: proposal.md
-version: 1.0.0
-iteration: v1.0
+version: 1.1.0
+iteration: v1.1
 ---
 
 # Jing-Zhang Open Ledger: A Traceable AI Public-Return Belt
@@ -17,9 +17,13 @@ iteration: v1.0
 
 ![Jing-Zhang Commons concept atmosphere: track trace, shade, rain garden, and civic-reading interface; original generated visual, not a built condition.](assets/media/cover.webp)
 
+![Original concept atmosphere for the three commons: everyday verification, translation, and return; it only aids reading people, interfaces, and mood, not a real location, scale, existing condition, or approved construction.](assets/media/three-commons-atmosphere.webp)
+
+**Three-commons concept-atmosphere note:** This original triptych only helps readers understand people, human service, maintenance, and accessibility. Spatial judgement remains with the provisional GeoJSON, drawings, metrics, and text; it does not represent a real site, scale, existing condition, or approved construction. [source:SRC-AI-GENERATED-THREE-COMMONS-20260813]
+
 ## Design Basis and Source List
 
-This v1.0 concept package begins with the public call, its taskbook, allowed design space, provisional boundary material, relevant standards, and public Beijing-Haidian policy context. The official call establishes the three work scales, but does not publish a precise vector redline that may be treated as a statutory boundary. Every mapped element is therefore labelled as a provisional constraint or an agent-generated concept, never as a survey, ownership boundary, legal zoning, engineering drawing, or approval. Areas are recalculated in EPSG:4548 only for internal consistency. A cleared boundary, building and parcel survey, road and utility data, heritage controls, and engineering constraints must replace these inputs before professional or statutory action. [source:SRC-OFFICIAL-ANNOUNCEMENT] · [source:SRC-PROVISIONAL-BOUNDARY] · [source:SRC-HAIDIAN-1X1-2026] · [data:geometry/site_boundary.geojson]
+This v1.1 concept package begins with the public call, its taskbook, allowed design space, provisional boundary material, relevant standards, and public Beijing-Haidian policy context. The official call establishes the three work scales, but does not publish a precise vector redline that may be treated as a statutory boundary. Every mapped element is therefore labelled as a provisional constraint or an agent-generated concept, never as a survey, ownership boundary, legal zoning, engineering drawing, or approval. Areas are recalculated in EPSG:4548 only for internal consistency. A cleared boundary, building and parcel survey, road and utility data, heritage controls, and engineering constraints must replace these inputs before professional or statutory action. [source:SRC-OFFICIAL-ANNOUNCEMENT] · [source:SRC-PROVISIONAL-BOUNDARY] · [source:SRC-HAIDIAN-1X1-2026] · [data:geometry/site_boundary.geojson]
 
 ## Translation, Not Copying: International Methods
 
@@ -99,7 +103,7 @@ The key spatial risk is the absence of a cleared exact redline and baseline surv
 
 ## References
 
-`sources.json` records provenance and use limits; `sources.json` and `report/narrative.md` record provenance, local translations, non-copying cautions, and the v1.0 design review record.
+`sources.json` records provenance and use limits; `sources.json` and `report/narrative.md` record provenance, local translations, non-copying cautions, and the v1.0-to-v1.1 design review record.
 
 [source:SRC-OFFICIAL-ANNOUNCEMENT] Public call and repository site package.
 

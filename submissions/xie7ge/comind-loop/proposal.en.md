@@ -30,6 +30,8 @@ This revision names the mechanism the **CoMind Translation Protocol (CTP)**. It 
 | How does it avoid an "AI showroom"? | Success, failure and withdrawal all enter public return; a service without public return cannot renew | Return archive, failure log and annual handover |
 | What is the evidence boundary? | Provisional polygons support concept generation and recalculation only, never red lines or approvals | GeoJSON, metrics, assumptions, risk register and four local gates |
 
+v4 turns “operable” from prose into reproducible evidence. `visual/assets/run-ctp-validator.js` reads each station topology, switches off AI nodes, and tests eight conditions: public exit, accessible equivalent path, staffed review, pilot isolation, paper receipt, complaint pause, retirement on maintenance failure, and surviving public use. The current result is **24/24 PASS**. It proves only that the package topology satisfies its declared rules; it is not evidence of construction, compliance or field performance [metric:ctp_executable_test_pass_ratio] [data:visual/assets/ctp-validator-results.json].
+
 Exact official polygons are unavailable. The submitted site and key areas use repository provisional rough geometry for generation, visualization and intake checks only. They are not official boundaries, approval evidence or precise-area evidence; every layer, metric, figure and PDF must be recalculated when official polygons arrive [data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm].
 
 ![Concept and evidence boundary](assets/figures/site-overview.en.png)
@@ -158,6 +160,8 @@ Plug-in service cabinets may combine edge compute, sensing, emergency communicat
 
 ![Mobility and blue-green public interfaces](assets/figures/mobility-bluegreen.en.png)
 
+The plate resolves every station into a permanent public spine, a closable pilot pocket and a staffed review interface. The pilot pocket may stop, isolate and be removed; public passage, continuous accessibility, rest and staffed service must remain. The six reversible components use conceptual bolted/clamped fixing, reachable maintenance faces and replaceable panels. Survey and relevant professionals must determine dimensions, material, foundations, loads, drainage, fire safety and night lighting. These plans, sections and details express control relationships, not existing measurements or construction drawings [metric:station_section_control_coverage_ratio] [depth:traffic_rail_slow_parking].
+
 ## Blue-Green Network, Public Space, and Urban Character
 
 The CoMind green loop emphasizes continuous walking, ecological interfaces, three public courts and twelve scenario nodes while keeping the provisional boundary faint and dashed. Green and public-space ratios are internal concept-consistency metrics, not statutory ratios [data:geometry/green_space.geojson#GREEN-101] [metric:green_ratio] [metric:public_space_ratio].
@@ -181,13 +185,23 @@ Eight concept projects translate the spatial strategy into accountable stage gat
 
 Phasing is not an investment or government commitment. Phase 1 opens low-cost public interfaces and question lists; Phase 2 mends building and mobility networks after professional review; Phase 3 considers additions needing regulatory, engineering and long-term operational support [data:geometry/phasing.geojson#PHASE-101] [metric:renewal_project_count] [depth:phasing_implementation].
 
+### 90-day zero stage: produce evidence before promising construction
+
+The first 90 days create a handover-ready evidence pack only. G0 (days 1–30) verifies data, rights, responsibility and permissions and produces a site-difference register, consent/data protocol and twelve task scripts. G1 (days 31–45) builds six removable prototype types and rehearses installation, maintenance and removal. G2 (days 46–60) runs paired AI-on/off tests in a closed setting and reruns the three-station topology. G3 (days 61–90) is an independent review by professionals not involved in production and participant representatives; outcomes are correction, bounded pilot or stop. No gate advances with incomplete responsibility, equivalent path, objection receipt or recovery evidence [metric:zero_stage_gate_count] [data:visual/assets/zero-stage-90-days.json].
+
+Ranges replace invented budgets: approximately **190–340 person-days, 44–83 participant sessions and six paired rounds** across four gates. These are execution-scale assumptions, not investment estimates or commitments. They must be recalculated from real labor, insurance, reasonable accommodation, site and engineering conditions; participant time and accommodation are not free resources [metric:zero_stage_person_days_max] [depth:phasing_implementation].
+
+### Eight implementation handover contracts
+
+`visual/assets/handover-contracts.json` gives C01–C08 the same twelve fields: site/right evidence, accountable role, required professions, permission/insurance, baseline/sample, capital/operations/maintenance/removal cost classes, acceptance evidence, closure condition and recovery use. Resources use only S (existing people/information), M (demountable components/specialist service) and L (engineering or long-term operation); no unverified money values are stated. Every contract answers what closes, what remains and how the site returns after failure [metric:handover_contract_field_coverage_ratio] [data:visual/assets/handover-contracts.json].
+
 The proposed annual cycle is spring problem intake, summer responsible testing, autumn open translation and winter public handover. Communications distinguish submitted, reviewed, selected and implemented status.
 
 Annual operation produces a **City Return Package** recording which questions were translated accurately, which scenarios failed, which public objections changed research, which services retired, and who takes responsibility next. It turns failure into a civic learning asset and prevents events from leaving equipment without knowledge or accountability. A project without a complete receipt, public failure record and next owner does not advance [metric:stage_gate_project_ratio] [depth:phasing_implementation].
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
-Internal recalculation gives a provisional site area of 11.413 square kilometres, 6.4% concept green coverage, 0.4% coverage by three key public courts, twelve scenario nodes and eight concept renewal projects. These figures describe coverage in the submitted layers, not planning targets or statutory ratios. Public-value acceptance requires 12/12 scenarios with human fallback, 12/12 Urban Translation Receipts, 12/12 declared public returns, local review in 3/3 key areas and stage gates for 8/8 concept projects; later operators can continue auditing these conditions [metric:translation_receipt_coverage_ratio] [metric:public_return_scenario_ratio] [depth:metrics_recalculation].
+Internal recalculation gives a provisional site area of 11.413 square kilometres, 6.4% concept green coverage, 0.4% coverage by three key public courts, twelve scenario nodes and eight concept renewal projects. These figures describe coverage in the submitted layers, not planning targets or statutory ratios. Public-value conditions require 12/12 fallbacks, receipts and returns, local review in 3/3 areas and gates for 8/8 projects. v4 adds 24/24 package topology checks, four zero-stage gates and complete twelve-field handover contracts for 8/8 projects. These measure package completeness and future acceptance conditions, not built performance [metric:ctp_executable_test_pass_ratio] [metric:handover_contract_field_coverage_ratio] [depth:metrics_recalculation].
 
 ![Metrics and evidence chain](assets/figures/metrics-evidence.en.png)
 

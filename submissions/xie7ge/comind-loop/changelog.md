@@ -1,5 +1,18 @@
 # 方案迭代记录
 
+## v4.0 - 2026-08-13
+
+This update follows the 84/100 intake review of PR #2365 and concentrates on executable evidence and professional handover. Peer submissions were reviewed only for evaluation method; no peer text, image, geometry, code or branded concept is reused.
+
+- Added a deterministic CTP topology validator with eight AI-off/failure tests for each of the three translation stations; the current package result is 24/24 PASS.
+- Added an offline interactive Canvas view so reviewers can switch station and AI state and inspect the public spine, staffed interface, pilot pocket and exit.
+- Rebuilt the station plate as plan-and-section controls with a continuous accessible public spine, closable pilot pocket and six demountable component types.
+- Added a four-gate, 90-day zero stage with explicit stop conditions, 190–340 concept person-days, 44–83 participant sessions and six paired test rounds.
+- Added eight implementation handover contracts with twelve required evidence/cost/closure fields and explicit recovery or return use.
+- Extended bilingual narrative, metrics, visual index, PDFs and manifest evidence while preserving the provisional-geometry disclaimer.
+
+The executable result verifies internal package logic only. It is not evidence of construction, statutory compliance, field performance, government endorsement, procurement or an authorized budget.
+
 ## v3.0 - 2026-08-13
 
 This update follows the 75/100 intake review of PR #2331. It does not borrow peer concepts; it addresses the proposal's remaining weakness by making the three station experiences spatially inspectable.

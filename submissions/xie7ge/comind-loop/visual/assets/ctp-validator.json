@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "status": "concept_protocol_test_not_field_performance",
+  "description_zh": "三译站概念拓扑的可执行失效测试；验证空间与服务逻辑，不证明现场已建成或达标。",
+  "description_en": "Executable failure tests for three conceptual station topologies; validates service-space logic, not built performance.",
+  "stations": [
+    {
+      "id": "ZHONGZHIYUAN",
+      "name_zh": "众智园责任拆译庭",
+      "name_en": "Zhongzhiyuan Responsibility Court",
+      "nodes": [
+        {"id":"arrival","type":"public","accessible":true,"ai_dependent":false},
+        {"id":"limits","type":"threshold","accessible":true,"ai_dependent":false},
+        {"id":"court","type":"pilot","accessible":true,"ai_dependent":true,"isolatable":true},
+        {"id":"staff","type":"human_review","accessible":true,"ai_dependent":false,"staffed":true},
+        {"id":"receipt","type":"return","accessible":true,"ai_dependent":false},
+        {"id":"exit","type":"public","accessible":true,"ai_dependent":false}
+      ],
+      "edges": [["arrival","limits"],["limits","court"],["court","staff"],["staff","receipt"],["receipt","exit"],["limits","staff"],["arrival","staff"]],
+      "tests": ["ai_off_public_exit","accessible_equivalent_path","staffed_review_reachable","pilot_isolatable","paper_receipt_reachable","complaint_can_pause","maintenance_failure_can_retire","return_use_after_retire"]
+    },
+    {
+      "id": "AI_ORIGIN",
+      "name_zh": "AI 原点开放编译院",
+      "name_en": "AI Origin Open Compilation Yard",
+      "nodes": [
+        {"id":"arrival","type":"public","accessible":true,"ai_dependent":false},
+        {"id":"license","type":"threshold","accessible":true,"ai_dependent":false},
+        {"id":"workshop","type":"pilot","accessible":true,"ai_dependent":true,"isolatable":true},
+        {"id":"library","type":"return","accessible":true,"ai_dependent":false},
+        {"id":"staff","type":"human_review","accessible":true,"ai_dependent":false,"staffed":true},
+        {"id":"exit","type":"public","accessible":true,"ai_dependent":false}
+      ],
+      "edges": [["arrival","license"],["license","workshop"],["workshop","library"],["library","exit"],["license","staff"],["staff","library"],["arrival","library"]],
+      "tests": ["ai_off_public_exit","accessible_equivalent_path","staffed_review_reachable","pilot_isolatable","paper_receipt_reachable","complaint_can_pause","maintenance_failure_can_retire","return_use_after_retire"]
+    },
+    {
+      "id": "DAZHONGSI",
+      "name_zh": "大钟寺城市试译场",
+      "name_en": "Dazhongsi Urban Pilot Commons",
+      "nodes": [
+        {"id":"arrival","type":"public","accessible":true,"ai_dependent":false},
+        {"id":"consent","type":"threshold","accessible":true,"ai_dependent":false},
+        {"id":"booths","type":"pilot","accessible":true,"ai_dependent":true,"isolatable":true},
+        {"id":"terrace","type":"return","accessible":true,"ai_dependent":false},
+        {"id":"staff","type":"human_review","accessible":true,"ai_dependent":false,"staffed":true},
+        {"id":"exit","type":"public","accessible":true,"ai_dependent":false}
+      ],
+      "edges": [["arrival","consent"],["consent","booths"],["booths","terrace"],["terrace","exit"],["consent","staff"],["staff","terrace"],["arrival","terrace"]],
+      "tests": ["ai_off_public_exit","accessible_equivalent_path","staffed_review_reachable","pilot_isolatable","paper_receipt_reachable","complaint_can_pause","maintenance_failure_can_retire","return_use_after_retire"]
+    }
+  ],
+  "expected": {"station_count":3,"tests_per_station":8,"total_tests":24,"required_passes":24}
+}

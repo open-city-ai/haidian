@@ -1,0 +1,249 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+      "confidence": "high",
+      "assumptions": [
+        "数值由提交边界在 EPSG:4548 投影下复算，边界为临时边界，官方红线发布后需重算。"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 3305261.164,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "绿地范围包含京张遗址公园活力带与蓝绿廊道概念范围，待官方蓝线与文保边界确认后复核。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.289609,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "与 visual/index.html 核心指标区声明数值一致，边界替换后需联动重算。"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 92195.385,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "公共空间以重点区域与活力带节点为核心，未包含道路与绿地重复计算。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.008078,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "与 visual/index.html 核心指标区声明数值一致，边界替换后需联动重算。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 599545.326,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "建筑基底为概念体量表达，非现状精确测绘，拆改留结论需现状建筑与权属资料校准。"
+      ]
+    },
+    "building_footprint_count": {
+      "status": "known",
+      "value": 396,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building_footprint_features)",
+      "confidence": "high",
+      "assumptions": [
+        "按提交图层要素计数，随建筑体量概念调整而变化。"
+      ]
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 37660.589,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(road_centerlines, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "道路中心线为概念走向，道路红线以官方专项规划为准，故置信度取低。"
+      ]
+    },
+    "land_use_parcel_count": {
+      "status": "known",
+      "value": 469,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use_features)",
+      "confidence": "high",
+      "assumptions": [
+        "用地分区按覆盖无缝隙、无重叠原则生成，分类代码遵循用地用海分类指南。"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "三处重点区域为众智园、北京AI原点社区、大钟寺，对应临时多边形，官方多边形发布后重算。"
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(scenario_cards_in_proposal)",
+      "confidence": "medium",
+      "assumptions": [
+        "满足任务书不少于10张AI场景卡的要求，每张场景卡注明空间载体与运营边界。"
+      ]
+    },
+    "persona_type_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(persona_types_in_proposal)",
+      "confidence": "medium",
+      "assumptions": [
+        "覆盖开源开发者、初创团队、头部企业访客、周边居民、高校师生五类用户画像。"
+      ]
+    },
+    "ecosystem_case_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "standard_matrix.json"
+      ],
+      "formula": "count(global_ecosystem_case_references)",
+      "confidence": "medium",
+      "assumptions": [
+        "全球生态案例用于对标世界级AI创新生态体系，仅作背景参考。"
+      ]
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(ai_landmarks_in_proposal)",
+      "confidence": "medium",
+      "assumptions": [
+        "三个AI朝圣地标：智轨之门（京张AI记忆之环）、原点之光（AI创始者广场）、智钟回响（大钟寺AI智核）。"
+      ]
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "phasing.geojson"
+      ],
+      "formula": "count(renewal_projects_in_proposal)",
+      "confidence": "medium",
+      "assumptions": [
+        "更新项目清单覆盖公共空间、蓝绿界面、产业街道、轨道一体化、新基建与运营路线，实施依赖以风险披露。"
+      ]
+    },
+    "test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(industry_test_scenarios_in_proposal)",
+      "confidence": "medium",
+      "assumptions": [
+        "满足任务书不少于3个产业测试验证场景的要求，场景需合规授权与人工复核。"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_height_control_from_regulatory_plan",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official building height controls are not present in the public site package."
+    }
+  }
+}

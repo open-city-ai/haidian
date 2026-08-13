@@ -1,0 +1,330 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.39,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(site_boundary, EPSG:4548)",
+   "confidence": "high",
+   "assumptions": [
+    "Boundary is the provisional overall-design polygon (11.4 km2 per official announcement text); recalculate when official redline arrives."
+   ]
+  },
+  "land_use_area_0802_sqm": {
+   "status": "known",
+   "value": 1682849.11,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area(LAND_USE features with land_use_code=0802), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Concept partition of the provisional boundary; codes follow MNR land-use classification subset."
+   ]
+  },
+  "land_use_area_05_sqm": {
+   "status": "known",
+   "value": 3996502.37,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area(LAND_USE features with land_use_code=05), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Commercial and business land: incubation, publishing, experience uses (concept)."
+   ]
+  },
+  "land_use_area_0701_sqm": {
+   "status": "known",
+   "value": 1838991.93,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area(LAND_USE features with land_use_code=0701), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Talent community band (concept)."
+   ]
+  },
+  "land_use_area_1401_sqm": {
+   "status": "known",
+   "value": 3894507.21,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area(LAND_USE features with land_use_code=1401), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Heritage park spine, Qinghe creation band and riverside greens (concept)."
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 803788.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(area(BUILDING_FOOTPRINT), EPSG:4548)",
+   "confidence": "low",
+   "assumptions": [
+    "Concept building footprints only; no existing-building survey was available. Marked as low-confidence design volume, not statutory control."
+   ]
+  },
+  "total_floor_area_sqm": {
+   "status": "known",
+   "value": 5226062.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(footprint_area * floors_concept)",
+   "confidence": "low",
+   "assumptions": [
+    "Concept floor area from design footprints and assumed floor counts; not an approved development scale."
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "known",
+   "value": 0.4579,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "total_floor_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "Concept FAR of the design proposal. The statutory FAR control is missing from the site package and remains unknown; see assumptions A-CONTROLS-001."
+   ]
+  },
+  "building_density": {
+   "status": "known",
+   "value": 0.0704,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_footprint_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "Concept building density; statutory building-density control remains unknown."
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 4359514.78,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(area(GREEN_SPACE), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Includes the heritage-park spine, Qinghe/Xiaoyuehe riverside greens and four pocket parks, all concept extents."
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.381984,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "Computed on provisional boundary; official green-ratio control is missing."
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 204857.12,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(area(PUBLIC_SPACE), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Seven plaza/heritage nodes; scenario nodes (points) carry no area."
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.01795,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "Plaza-level public space only; street-level open space is not double-counted."
+   ]
+  },
+  "road_area_sqm": {
+   "status": "known",
+   "value": 462634.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/roads.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(buffer(ROAD_CENTERLINE, half_width by road_kind) clipped to site, EPSG:4548)",
+   "confidence": "low",
+   "assumptions": [
+    "Concept half-widths: mainline 12 m, cross links 8 m, riverside 6 m, wing link 7 m. No official road redlines available."
+   ]
+  },
+  "road_area_ratio": {
+   "status": "known",
+   "value": 0.0405,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/roads.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "road_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "Concept value; existing boundary roads excluded from the designed network sum."
+   ]
+  },
+  "phasing_area_phase1_sqm": {
+   "status": "known",
+   "value": 1354992.61,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "area(PH-1 feature, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Near term 2026-2028: Engine and Publishing stations open first."
+   ]
+  },
+  "phasing_area_phase2_sqm": {
+   "status": "known",
+   "value": 3677794.77,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "area(PH-2 feature, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Mid term 2028-2031: Inspiration Station, Qinghe band and South Gateway."
+   ]
+  },
+  "phasing_area_phase3_sqm": {
+   "status": "known",
+   "value": 6380058.73,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "area(PH-3 feature, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Long term 2031-2035: campus band, tech-service wing and park spine."
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(KEY_AREA)",
+   "confidence": "high",
+   "assumptions": [
+    "Three official key areas per announcement; polygons are provisional."
+   ]
+  },
+  "key_area_zhongzhiyuan_sqm": {
+   "status": "known",
+   "value": 1929201.88,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson",
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "area(PROV-KEY-001, EPSG:4548); official declared value 1,921,000 sqm",
+   "confidence": "high",
+   "assumptions": [
+    "Provisional polygon placeholder; recalculate with official polygon."
+   ]
+  },
+  "key_area_beijing_origin_sqm": {
+   "status": "known",
+   "value": 1043236.91,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson",
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "area(PROV-KEY-002, EPSG:4548); official declared value 1,043,000 sqm",
+   "confidence": "high",
+   "assumptions": [
+    "Provisional polygon placeholder; recalculate with official polygon."
+   ]
+  },
+  "key_area_dazhongsi_sqm": {
+   "status": "known",
+   "value": 720454.22,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson",
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "area(PROV-KEY-003, EPSG:4548); official declared value 720,000 sqm",
+   "confidence": "high",
+   "assumptions": [
+    "Provisional polygon placeholder; recalculate with official polygon."
+   ]
+  },
+  "scenario_node_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(SCENARIO_NODE)",
+   "confidence": "high",
+   "assumptions": [
+    "12 scenario nodes: 3 industry test/validation, 9 experience scenarios."
+   ]
+  },
+  "pilgrimage_landmark_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(public_space_kind = landmark_plaza)",
+   "confidence": "high",
+   "assumptions": [
+    "Three AI pilgrimage landmarks: Engine Sanctum, Gate of the Ninth Art, AI Creation Tower; plus one heritage memorial court (Tsinghua station)."
+   ]
+  }
+ }
+}

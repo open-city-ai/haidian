@@ -133,6 +133,63 @@
       ],
       "reason": "Counts conceptual testbed scenarios, not certified institutions."
     },
+    "yield_protocol_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/protocol/scenario_cards.json"
+      ],
+      "formula": "count(protocol.scenarios)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PROTOCOL-001"
+      ],
+      "reason": "Counts machine-readable concept-stage contracts, not authorised or operating services."
+    },
+    "yield_protocol_fixture_count": {
+      "status": "known",
+      "value": 18,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/protocol/tabletop_results.json"
+      ],
+      "formula": "count(tabletop_results.decisions)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PROTOCOL-001"
+      ],
+      "reason": "Counts deterministic synthetic fixtures; it is not a field-trial sample size."
+    },
+    "yield_protocol_expected_outcome_match_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/protocol/tabletop_results.json"
+      ],
+      "formula": "matched_fixture_count / fixture_count",
+      "confidence": "high",
+      "assumptions": [
+        "A-PROTOCOL-001"
+      ],
+      "reason": "Measures internal contract-test agreement only; it does not measure safety, reliability, or public benefit."
+    },
+    "yield_protocol_fail_closed_guard_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/protocol/scenario_cards.json",
+        "visual/assets/protocol/tabletop_results.json"
+      ],
+      "formula": "count(shared_gate_contract.stop_gates)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PROTOCOL-001"
+      ],
+      "reason": "Counts proposed fail-closed safety guards; professional validation is still required before any field use."
+    },
     "human_waiting_seconds": {
       "status": "unknown",
       "value": null,

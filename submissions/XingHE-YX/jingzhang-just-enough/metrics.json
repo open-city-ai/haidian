@@ -1,0 +1,411 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412832.793,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Areas are calculated from the repository's provisional rough boundary and are not official redline values."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 28224.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area(building_footprints, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Six small adaptive-reuse/new-build prototypes are conceptual design proposals.",
+        "Areas are calculated from the repository's provisional rough boundary and are not official redline values."
+      ]
+    },
+    "total_floor_area_sqm": {
+      "status": "known",
+      "value": 47040.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(building_footprint_area * storeys_concept)",
+      "confidence": "low",
+      "assumptions": [
+        "Concept storey counts support comparison only and are not approved architectural quantities.",
+        "Areas are calculated from the repository's provisional rough boundary and are not official redline values."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "known",
+      "value": 0.004122,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "concept_total_floor_area_sqm / provisional_site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Concept comparison only; not a statutory FAR.",
+        "Areas are calculated from the repository's provisional rough boundary and are not official redline values."
+      ]
+    },
+    "building_density_concept": {
+      "status": "known",
+      "value": 0.002473,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / provisional_site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Concept comparison only; not an approved building density.",
+        "Areas are calculated from the repository's provisional rough boundary and are not official redline values."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2330405.572,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(green_space, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Areas are calculated from the repository's provisional rough boundary and are not official redline values."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.204192,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Areas are calculated from the repository's provisional rough boundary and are not official redline values."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 1553602.861,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(public_space_polygons, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Point scenario nodes have zero area and are excluded from the public-space area total.",
+        "Areas are calculated from the repository's provisional rough boundary and are not official redline values."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.136128,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Areas are calculated from the repository's provisional rough boundary and are not official redline values."
+      ]
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 12066.886,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(road_centerlines, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "The three centerlines describe a concept mobility structure, not official road alignments.",
+        "Areas are calculated from the repository's provisional rough boundary and are not official redline values."
+      ]
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json",
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(official_road_redline_area)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official road-redline geometry and widths are unavailable; centerlines are insufficient for an area claim."
+    },
+    "road_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json",
+        "geometry/roads.geojson"
+      ],
+      "formula": "road_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official road area and official site boundary are unavailable."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_area_features)",
+      "confidence": "medium",
+      "assumptions": [
+        "Three named areas are official facts, but their polygons are provisional rough substitutes."
+      ]
+    },
+    "land_use_0802_area_sqm": {
+      "status": "known",
+      "value": 2415628.52,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area where land_use_code='0802', EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual functional allocation, not statutory land use.",
+        "Areas are calculated from the repository's provisional rough boundary and are not official redline values."
+      ]
+    },
+    "land_use_1401_area_sqm": {
+      "status": "known",
+      "value": 2330405.572,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area where land_use_code='1401', EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual functional allocation, not statutory land use.",
+        "Areas are calculated from the repository's provisional rough boundary and are not official redline values."
+      ]
+    },
+    "land_use_0803_area_sqm": {
+      "status": "known",
+      "value": 1553602.861,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area where land_use_code='0803', EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual functional allocation, not statutory land use.",
+        "Areas are calculated from the repository's provisional rough boundary and are not official redline values."
+      ]
+    },
+    "land_use_05_area_sqm": {
+      "status": "known",
+      "value": 3366137.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area where land_use_code='05', EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual functional allocation, not statutory land use.",
+        "Areas are calculated from the repository's provisional rough boundary and are not official redline values."
+      ]
+    },
+    "land_use_0702_area_sqm": {
+      "status": "known",
+      "value": 1747058.64,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area where land_use_code='0702', EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual functional allocation, not statutory land use.",
+        "Areas are calculated from the repository's provisional rough boundary and are not official redline values."
+      ]
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 4483074.867,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_1, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual conditional-adoption phase.",
+        "Areas are calculated from the repository's provisional rough boundary and are not official redline values."
+      ]
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 3603157.956,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_2, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual conditional-adoption phase.",
+        "Areas are calculated from the repository's provisional rough boundary and are not official redline values."
+      ]
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 3326603.209,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_3, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual conditional-adoption phase.",
+        "Areas are calculated from the repository's provisional rough boundary and are not official redline values."
+      ]
+    },
+    "key_area_zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(zhongzhiyuan_ai_acceleration_area, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Official name and announced area; polygon is a repository provisional rough substitute and not an official redline."
+      ]
+    },
+    "key_area_beijing_ai_origin_community_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(beijing_ai_origin_community, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Official name and announced area; polygon is a repository provisional rough substitute and not an official redline."
+      ]
+    },
+    "key_area_dazhongsi_ai_industry_cluster_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(dazhongsi_ai_industry_cluster, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Official name and announced area; polygon is a repository provisional rough substitute and not an official redline."
+      ]
+    },
+    "official_floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_control_value",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "The public site package does not contain an approved official control value; professional verification is required before statutory use."
+    },
+    "official_building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_control_value",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "The public site package does not contain an approved official control value; professional verification is required before statutory use."
+    },
+    "official_building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_control_value",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "The public site package does not contain an approved official control value; professional verification is required before statutory use."
+    },
+    "official_setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_control_value",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "The public site package does not contain an approved official control value; professional verification is required before statutory use."
+    },
+    "official_road_redline_width_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_control_value",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "The public site package does not contain an approved official control value; professional verification is required before statutory use."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_control_value",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "The public site package does not contain an approved official control value; professional verification is required before statutory use."
+    }
+  }
+}

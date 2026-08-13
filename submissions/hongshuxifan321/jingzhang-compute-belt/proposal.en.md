@@ -379,15 +379,27 @@ All three landmarks are conceptual, not approved construction; people and enterp
 
 ### Three Phases
 
-- **Phase 1 - Origin Community and heritage core** (corridor core north of ~39.982°N): honor wall, service counters, first green-corridor segment - "prove services trustworthy first".
-- **Phase 2 - Zhongzhiyuan and the north**: evaluation fields, test rings, open-source protocol market - "then prove trials controllable".
-- **Phase 3 - Dazhongsi and the southern wings**: complex, open market, wing scenarios - "finally prove operations sustainable".
+- **Phase 1 - Origin Community and heritage core** (corridor core north of ~39.982°N): honor wall, service counters, first green-corridor segment - "prove services trustworthy first". Dependencies: alignment with the already-opened heritage-park section and completion of community consultation; service scenarios do not involve regulatory-plan or transport approvals and can start first.
+- **Phase 2 - Zhongzhiyuan and the north**: evaluation fields, test rings, open-source protocol market - "then prove trials controllable". Dependencies: site and property-rights confirmation, release of pilot admission rules (evaluation-field data boundary agreements, test-ring safety operating procedures); controlled pilots run on provisional boundaries before regulatory-plan and special data arrive.
+- **Phase 3 - Dazhongsi and the southern wings**: complex, open market, wing scenarios - "finally prove operations sustainable". Dependencies: rail/transport special-data confirmation, industrial recruitment and operator selection, event approval; projects involving renewal and mixed functional ratios await regulatory-plan confirmation.
 
 The phasing logic is "trustworthy - controllable - sustainable", matched to the maturity of the five-stage relay; phase areas are in `geometry/phasing.geojson`.[source:AGENT-TASKBOOK] [data:geometry/phasing.geojson] [metric:renewal_project_count]; additionally, [metric:phased_area_sqm] [depth:phasing_implementation]
 
 ### Global AI Innovation Event System and Long-Term Operations
 
 This proposal introduces the "Compute Belt Open Day" annual event brand (open-source protocol market + hackathon + achievement display + developer community operations) with quarterly developer workshops and a public experience route. All events, recruitment, funding, policy, and operation arrangements are conceptual suggestions or deepening directions, not stated as confirmed government arrangements.[source:AGENT-TASKBOOK] [depth:renewal_project_list]
+
+**Annual evolvability loop**: this proposal's "evolvable" claim runs on an annual cycle rather than as a slogan - each spring, after the Haidian statistical bulletin is published, the data base is refreshed (district economic data, road and green-space surveys, availability of official boundaries and regulatory-plan conditions); at the autumn Compute Belt Open Day the project publishes "last year's validation results + next year's route update", covering scenario-card maturity upgrades/downgrades, duty-table adjustments, indicator recalculation, and phasing calibration. The loop links to the "shutdown thresholds - pilot gates" mechanism: scenario cards failing the annual evaluation are downgraded or shut down, and replacement scenarios enter pilots. The annual rhythm matches the "trustworthy - controllable - sustainable" phasing, so any year's commitments can be checked against public evidence.
+
+### AI Governance Visibility: How the Belt Is Seen and Stopped
+
+Corresponding to the scenario-card "shutdown thresholds", this proposal makes AI governance a public space that is visible, hearable, and stoppable, rather than a background rule:
+
+- **Public task-queue display**: the Zhongzhiyuan Validation Duty Hall hosts a public display board showing the weekly list of running AI services and test tasks (task type, responsible party, duty status, shutdown threshold); it contains task metadata only, no personal data or model internals.
+- **Human stop channel**: each key area's duty hall provides a human stop channel (one-button stop by the duty operator + public appeal entry); anyone may file an appeal at the display point, stop decisions are reviewed by the responsible duty party and recorded on the board, and no service resumes without a record.
+- **Failed-run archive**: the Zhongzhiyuan Open-Source Achievement Gallery hosts a "Failed-Run Archive" display showing stopped tasks, scenario cards that failed the annual evaluation, and their shutdown reasons (redacted). The archive is not a punitive display but evidence of "evolvability" - publicly proving that shutdown thresholds and pilot gates actually operate, trading honesty for long-term trust.
+
+Governance visibility shares the same responsible-party and record system as the scenario-card duty tables; stops, appeals, and archiving all leave public records (redacted), forming an auditable evidence chain with metrics.json evaluation data.[source:AGENT-TASKBOOK]
 
 ## Indicator System, Area Recalculation, and Compliance Matrix
 

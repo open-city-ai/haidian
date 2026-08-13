@@ -1,0 +1,264 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(SITE-001) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "SITE-001 is a provisional working polygon, not an official redline."
+      ]
+    },
+    "official_overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "11.4 km2 * 1,000,000",
+      "confidence": "high",
+      "assumptions": [
+        "Official published area value; exact polygon is missing."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1995497.923,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(GREEN_SPACE)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Concept reference, clipped to provisional boundary; not existing green-space inventory."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 83883.437,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(PUBLIC_SPACE)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Concept reference; six reversible civic rooms."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 35360.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area(BUILDING_FOOTPRINT prototypes)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Prototype intervention footprints only; not total existing or proposed building stock."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.174847,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Both numerator and denominator are conceptual/provisional."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.00735,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Both numerator and denominator are conceptual/provisional."
+      ]
+    },
+    "land_use_partition_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(LAND_USE)) / area(SITE-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "Topology measure only; does not validate statutory land-use suitability."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "high",
+      "assumptions": [
+        "Count is official; polygons are provisional."
+      ]
+    },
+    "ensemble_run_count": {
+      "status": "known",
+      "value": 64,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/physarum-runs.json",
+        "visual/assets/reproduce_physarum.js"
+      ],
+      "formula": "count(run_records), seeds 0..63",
+      "confidence": "high",
+      "assumptions": [
+        "Execution count is reproducible with the disclosed standard-library Node.js verifier and its original implementation of CPython integer-seeded MT19937 draw semantics; scenario inputs remain low-confidence proxies."
+      ]
+    },
+    "persistent_corridor_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/physarum-inputs.json",
+        "visual/assets/physarum-runs.json",
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(edges with selection_frequency >= 0.70)",
+      "confidence": "low",
+      "assumptions": [
+        "Threshold is a design governance choice, not an official standard."
+      ]
+    },
+    "disagreement_corridor_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/physarum-inputs.json",
+        "visual/assets/physarum-runs.json",
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(edges with 0.35 <= selection_frequency < 0.70)",
+      "confidence": "low",
+      "assumptions": [
+        "Disagreement identifies questions for review, not defects to erase."
+      ]
+    },
+    "mean_persistent_frequency": {
+      "status": "known",
+      "value": 0.830729,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/physarum-runs.json"
+      ],
+      "formula": "mean(selection_frequency of persistent candidates)",
+      "confidence": "low",
+      "assumptions": [
+        "Frequency depends on disclosed weight ranges and proxy graph."
+      ]
+    },
+    "network_detour_factor": {
+      "status": "known",
+      "value": 1.022722,
+      "unit": "index",
+      "source_files": [
+        "visual/assets/physarum-inputs.json",
+        "visual/assets/physarum-runs.json"
+      ],
+      "formula": "mean(shortest_selected_network_distance / Euclidean_distance) over all connected unordered node pairs",
+      "confidence": "low",
+      "assumptions": [
+        "Normalized conceptual nodes; not observed trips or pedestrian network."
+      ]
+    },
+    "single_edge_loss_retention": {
+      "status": "known",
+      "value": 0.955284,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/physarum-inputs.json",
+        "visual/assets/physarum-runs.json"
+      ],
+      "formula": "mean(global_efficiency_after_each_selected_edge_removal / baseline_global_efficiency)",
+      "confidence": "low",
+      "assumptions": [
+        "Topological stress test only; does not represent emergency engineering performance."
+      ]
+    },
+    "disagreement_share": {
+      "status": "known",
+      "value": 0.571429,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/physarum-runs.json"
+      ],
+      "formula": "disagreement_corridor_count / selected_corridor_count",
+      "confidence": "low",
+      "assumptions": [
+        "Selected set uses frequency >= 0.35."
+      ]
+    },
+    "phase1_reversible_area_sqm": {
+      "status": "known",
+      "value": 211717.023,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(PHASE-001) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual maximum search envelope, not an approved construction area."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR, official boundary, parcels, and building inventory are absent."
+    },
+    "approved_height_limit_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/missing-data.md"
+      ],
+      "formula": "maximum approved height from statutory controls",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official height controls and heritage view-corridor requirements are absent."
+    }
+  }
+}

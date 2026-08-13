@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "dimensions": [
+    {
+      "id": "data_privacy",
+      "label": "数据隐私与未成年人保护",
+      "score": 4,
+      "note": "公共服务场景可能接触身份信息、生物特征或未成年人数据。",
+      "mitigation": "执行数据最少化、禁止生物识别前置、人工接管和公开回执规则。",
+      "human_review": "由数据合规、伦理和未成年人保护专业人员在场景开放前联合审查。"
+    },
+    {
+      "id": "implementation_complexity",
+      "label": "跨专业实施复杂度",
+      "score": 4,
+      "note": "轨道、交通、消防、市政、无障碍和运营接口需要同步协调。",
+      "mitigation": "采用五级决策关口和分包责任矩阵，专项意见未齐全时停止进入建设。",
+      "human_review": "由规划、交通、消防、市政和运营单位在 G2 专项审查阶段联合会签。"
+    },
+    {
+      "id": "public_acceptance",
+      "label": "公众接受与服务信任",
+      "score": 3,
+      "note": "新型公共服务可能增加理解成本并影响既有使用习惯。",
+      "mitigation": "开展九类人群共测，公开服务说明、申诉渠道、处理回执和退出日期。",
+      "human_review": "由社区、使用者代表和独立观察员复核共测记录。"
+    },
+    {
+      "id": "operations_cost",
+      "label": "长期运维与成本",
+      "score": 4,
+      "note": "设施上线后可能出现人员、备件、经费和服务时段不足。",
+      "mitigation": "将人员配置、备件、维护周期、降级模式和年度预算纳入采购条件。",
+      "human_review": "由运营、财政和设施维护单位在开放前确认全生命周期资源。"
+    },
+    {
+      "id": "policy_uncertainty",
+      "label": "规划与政策条件",
+      "score": 4,
+      "note": "容积率、高度、市政容量和项目授权仍需法定规划与专项程序确定。",
+      "mitigation": "将未知控制项纳入资料清单，依据正式成果复算并更新项目边界。",
+      "human_review": "由主管部门和具备相应资质的专业单位核对适用程序及控制要求。"
+    },
+    {
+      "id": "spatial_dispute",
+      "label": "边界、权属与交通安全",
+      "score": 5,
+      "note": "工作底图可能与正式红线、权属范围、轨道安全界面或疏散条件不一致。",
+      "mitigation": "建设前取得正式边界、权属、测绘、客流和安全资料，逐项完成空间复核。",
+      "human_review": "由规划、测绘、产权、轨道、交通和消防单位共同确认空间条件。"
+    },
+    {
+      "id": "technology_maturity",
+      "label": "技术成熟度与故障接管",
+      "score": 3,
+      "note": "智能设备和模型可能出现中断、误导、性能衰减或维护困难。",
+      "mitigation": "先开展桌面推演和受控测试，保留人工路径、急停权限与可逆退出条件。",
+      "human_review": "由独立测试、信息安全和一线运营人员核对负向测试与接管演练。"
+    },
+    {
+      "id": "equity_inclusion",
+      "label": "公平与包容性影响",
+      "score": 4,
+      "note": "数字门槛、施工中断或租金变化可能对特定人群形成不均衡负担。",
+      "mitigation": "执行同等人工服务、连续无障碍路径、影响台账和程序性停止权。",
+      "human_review": "由残障使用者、儿童家庭、长者、租户和一线服务人员参与专项走查。"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "status": "proposal_risk_ledger",
+  "risks": [
+    {"id":"R-01","topic":"boundary_and_ownership","risk_zh":"示意边界或概念体量被误解为法定成果","control":"全图显著标记 provisional，实施前完成红线、产权和逐栋调查","stop":"正式边界与方案动作无法对应"},
+    {"id":"R-02","topic":"rail_and_transport","risk_zh":"慢行和公共空间影响轨道安全、客流或疏散","control":"G2 前取得交通、轨道和消防专项意见","stop":"疏散或轨道安全条件不满足"},
+    {"id":"R-03","topic":"privacy_and_minors","risk_zh":"场景采集身份、生物特征或未成年人数据","control":"合成、设备级或去标识汇总数据；八项协议规则自动检查","stop":"出现个人、生物识别或未经同意的数据"},
+    {"id":"R-04","topic":"accessibility","risk_zh":"数字服务或施工中断无障碍和基本公共服务","control":"同等人工路径、连续绕行、残障使用者共测","stop":"关键任务无法完成或障碍未关闭"},
+    {"id":"R-05","topic":"operations","risk_zh":"设备上线后维护人员、备件和经费不足","control":"RACI、SLA、维护周期和降级模式进入采购条件","stop":"人工接管或维护资源未落实"},
+    {"id":"R-06","topic":"climate_and_drainage","risk_zh":"概念雨水花园无法满足真实水文条件","control":"工程阶段开展水影响评价、土壤和管线核查","stop":"无安全溢流和维护责任"},
+    {"id":"R-07","topic":"commercial_displacement","risk_zh":"更新提高租金或增加经营中断","control":"租户和小微经营者影响台账、可逆试点和分期施工","stop":"续租、施工期安排或利益协调未形成"},
+    {"id":"R-08","topic":"rights_and_claims","risk_zh":"外部素材、机构名称或方案数字被误读为授权和背书","control":"权利清理台账、来源标注和建议值状态字段","stop":"权利来源、许可或机构授权无法确认"}
+  ]
+}

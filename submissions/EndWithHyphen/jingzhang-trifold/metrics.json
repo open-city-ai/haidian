@@ -1,0 +1,389 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算",
+        "场地实算面积约 1141.28 万平方米，与公告口径约 1140 万平方米偏差约 0.1%，源于临时边界粗略性"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2309174.951,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(union(green_space)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算",
+        "独立绿地图层口径（公园绿地与防护绿地实体），与用地平衡口径（约 28.9%）分别披露"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.2023,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算",
+        "独立绿地图层口径约 20.2%；用地平衡口径绿地开敞空间约 28.9%（1401+1402 用地面积占比），两口径并存披露"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 238875.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(union(public_space)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算",
+        "34 处独立广场与公共开敞空间实体的并集面积"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0209,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算",
+        "约 2.1% 的独立广场用地密度，支撑步行 500 米内一处可停留公共场所的概念目标"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1994737.795,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(union(building_footprints)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算",
+        "A-CONCEPT-VOLUMES：784 处概念建筑基底为表达空间意图的设计量，不等于法定建筑规模",
+        "整体基底率约 17.5%（building_footprint_area_sqm / site_area_sqm）"
+      ]
+    },
+    "road_centerline_total_length_m": {
+      "status": "known",
+      "value": 80311.967,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(road_centerlines)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算",
+        "含主脊慢行绿道（约 9.7 公里）、二十条缝合街与小月河滨水骑行道等概念线位"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "A-KEY-AREA-RECT：三处重点区为临时粗略矩形，矩形边不得解释为地块或道路红线"
+      ]
+    },
+    "key_area_area_sqm_zhongzhiyuan": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area PROV-KEY-001 众智园AI自主创新加速区) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算",
+        "A-KEY-AREA-RECT：粗略矩形范围，实算约 192.9 公顷，与公告约 192.1 公顷偏差小于 0.5%"
+      ]
+    },
+    "key_area_area_sqm_beijing_ai_origin": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area PROV-KEY-002 北京AI原点社区) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算",
+        "A-KEY-AREA-RECT：粗略矩形范围，实算约 104.3 公顷，与公告约 104.3 公顷偏差小于 0.5%"
+      ]
+    },
+    "key_area_area_sqm_dazhongsi": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area PROV-KEY-003 大钟寺AI产业聚集区) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算",
+        "A-KEY-AREA-RECT：粗略矩形范围，实算约 72.0 公顷，与公告约 72.0 公顷偏差小于 0.5%"
+      ]
+    },
+    "land_use_area_sqm_05": {
+      "status": "known",
+      "value": 1203424.575,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code='05' 商业用地)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算",
+        "用地平衡口径约占 10.5%"
+      ]
+    },
+    "land_use_area_sqm_07": {
+      "status": "known",
+      "value": 1997383.905,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code in ('0701','0702') 居住与社区服务用地)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算",
+        "用地平衡口径约占 17.5%"
+      ]
+    },
+    "land_use_area_sqm_0802": {
+      "status": "known",
+      "value": 1316027.373,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code='0802' 科研用地)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算",
+        "用地平衡口径约占 11.5%"
+      ]
+    },
+    "land_use_area_sqm_0803": {
+      "status": "known",
+      "value": 467039.567,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code='0803' 文化用地)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算",
+        "用地平衡口径约占 4.1%"
+      ]
+    },
+    "land_use_area_sqm_0804": {
+      "status": "known",
+      "value": 899082.088,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code='0804' 教育用地)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算",
+        "用地平衡口径约占 7.9%"
+      ]
+    },
+    "land_use_area_sqm_1207": {
+      "status": "known",
+      "value": 1647330.47,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code='1207' 道路用地)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算",
+        "用地平衡口径约占 14.4%"
+      ]
+    },
+    "land_use_area_sqm_14": {
+      "status": "known",
+      "value": 3293583.138,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code in ('1401','1402') 公园绿地与防护绿地)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算",
+        "用地平衡口径绿地开敞空间约占 28.9%，与独立绿地图层口径（green_ratio 约 20.2%）分别披露"
+      ]
+    },
+    "land_use_area_sqm_16": {
+      "status": "known",
+      "value": 588954.268,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code='16' 留白用地)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算",
+        "用地平衡口径约占 5.2%，主要位于北港，为下一代通用技术预留接口"
+      ]
+    },
+    "phasing_area_sqm_phase_1": {
+      "status": "known",
+      "value": 4411530.582,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(union(phasing where phase='phase_1_near' 近期2026-2028 南港启动)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算"
+      ]
+    },
+    "phasing_area_sqm_phase_2": {
+      "status": "known",
+      "value": 3853127.754,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(union(phasing where phase='phase_2_mid' 中期2029-2031 中港成形)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算"
+      ]
+    },
+    "phasing_area_sqm_phase_3": {
+      "status": "known",
+      "value": 3148167.05,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(union(phasing where phase='phase_3_long' 远期2032-2035 北港展开)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY：临时粗略边界（provisional），官方精确边界与重点区 polygon 发布后须按 assumptions.json 登记路径整体重算"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "官方控规条件未随清权资料包提供，待正式数据补齐；在官方条件发布前本方案不作法定规划结论（见 assumptions.json A-CONTROLS-001）"
+    },
+    "building_height_max_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "max(official_building_height_limit_m)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "官方控规条件未随清权资料包提供，待正式数据补齐；在官方条件发布前本方案不作法定规划结论（见 assumptions.json A-CONTROLS-001）"
+    },
+    "building_density_control": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_building_density_control_value",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "官方控规条件未随清权资料包提供，待正式数据补齐；在官方条件发布前本方案不作法定规划结论（见 assumptions.json A-CONTROLS-001）"
+    },
+    "green_ratio_control": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_green_ratio_control_value",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "官方控规条件未随清权资料包提供，待正式数据补齐；在官方条件发布前本方案不作法定规划结论（见 assumptions.json A-CONTROLS-001）"
+    },
+    "setback_control": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_building_setback_requirement_m",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "官方控规条件未随清权资料包提供，待正式数据补齐；在官方条件发布前本方案不作法定规划结论（见 assumptions.json A-CONTROLS-001）"
+    }
+  }
+}

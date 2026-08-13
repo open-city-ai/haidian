@@ -1,0 +1,53 @@
+{
+ "schema_version": "0.1.0",
+ "assumptions": [
+  {
+   "id": "A-CONTROLS-001",
+   "status": "pending_professional_confirmation",
+   "statement": "法定控规指标（容积率、建筑高度、建筑密度、绿地率、退线）未包含在公开资料包中。",
+   "impact": "本方案的体量、高度与强度均为概念设计量（低置信度），不得作为法定规划控制值；官方控规发布后须整体复核。"
+  },
+  {
+   "id": "A-BOUNDARY-001",
+   "status": "provisional",
+   "statement": "总体设计范围与重点区域 polygon 为仓库临时推定边界（provisional_constraint），非官方红线。",
+   "impact": "所有面积类指标均为临时复算值；取得官方红线后需重算全部图层、指标与图纸，替换而非修补。"
+  },
+  {
+   "id": "A-WATER-001",
+   "status": "provisional",
+   "statement": "清河、小月河的位置与走向按公开地图常识推定，未取得实测蓝线。",
+   "impact": "滨河设计均为概念示意，不得作为蓝线管理或工程依据。"
+  },
+  {
+   "id": "A-BUILDINGS-001",
+   "status": "concept_only",
+   "statement": "buildings.geojson 为概念建筑基底，不是现状建筑测绘。",
+   "impact": "拆改留分类仅按功能区概念表达；正式方案需现状测绘、权属与工程条件确认。"
+  },
+  {
+   "id": "A-ROADS-001",
+   "status": "provisional",
+   "statement": "现状道路（北五环、学院路、西直门外大街、大钟寺东路/荷清路、西土城路-学清路）按公告文字四至推定走向。",
+   "impact": "道路红线与交通组织均为概念建议，非工程方案。"
+  },
+  {
+   "id": "A-HERITAGE-001",
+   "status": "provisional",
+   "statement": "京张铁路遗址公园与清华园火车站遗址的保护范围、建控地带以文物部门公布为准，本包仅按公开信息概念表达。",
+   "impact": "地标与场景不得侵入文保控制要求；具体保护要求到位后需复核空间方案。"
+  },
+  {
+   "id": "A-CASES-001",
+   "status": "public_sources_cross_checked",
+   "statement": "全球 AI 创新生态案例来自公开报道与机构官网，检索日期 2026-08-13，仅用于机制借鉴，不构成对任何企业的背书或数据承诺。",
+   "impact": "案例数据不得转述为招商、投资或政策承诺。"
+  },
+  {
+   "id": "A-METRICS-001",
+   "status": "recalculation_trigger",
+   "statement": "当官方边界、控规条件或现状测绘到位时，须重跑几何生成与 metrics 复算流程。",
+   "impact": "self_check 的 METRIC_RECALC_MISMATCH 检查将强制触发；不得手工改哈希。"
+  }
+ ]
+}

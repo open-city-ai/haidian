@@ -1,0 +1,47 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-PROV-BOUNDARY",
+      "status": "active_provisional",
+      "statement": "场地边界与三处重点区均采用仓库登记的临时粗略边界（provisional boundary），仅用于 AI 生成、可视化与本地自检，不得解释为官方红线、审批依据或精确面积依据。",
+      "impact": "全部面积与比例类指标置信度以 medium 封顶；官方精确边界与重点区 polygon 发布后，用地、建筑、道路、绿地、公共空间、分期与全部面积指标须整体重算并更新 metrics.json 与各矩阵。"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "官方控规条件（容积率、建筑高度、建筑密度、绿地率控制值、退线、道路红线、权属信息与市政工程条件）未随清权资料包提供，法定控制指标一律记为待正式数据补齐。",
+      "impact": "floor_area_ratio、building_height_max_m、building_density_control、green_ratio_control、setback_control 在 metrics.json 中均为 unknown；本方案不给出任何法定规划结论，控规条件到位后须重算并复核全部空间建议。"
+    },
+    {
+      "id": "A-CONCEPT-VOLUMES",
+      "status": "active_concept",
+      "statement": "建筑图层的 784 处概念建筑基底（合计约 199.5 万平方米、基底率约 17.5%）是从概念几何实算的设计量，用于表达空间意图，不等于法定建筑规模或总建筑面积。",
+      "impact": "building_footprint_area_sqm 仅作概念量引用；总建筑面积、容积率与高度在官方控规条件补齐前不作结论。"
+    },
+    {
+      "id": "A-KEY-AREA-RECT",
+      "status": "active_provisional",
+      "statement": "三处重点区（众智园、北京AI原点社区、大钟寺）的 polygon 为依据公告名称、南北顺序与约面积生成的粗略矩形，矩形边不得解释为地块或道路红线。",
+      "impact": "三港内部的空间结构（一广场一装置一市集/一原点一桥一径/一场一门一留白）均为方向性表达；官方重点区数据补齐后内部结构需整体复核。"
+    },
+    {
+      "id": "A-RETENTION",
+      "status": "active_directional",
+      "statement": "建筑图层的 retention_class 拆改留分类（保留/改造/新建/留白）为方向性建议：保留既有社区、高校、科研建筑与遗产点，改造沿廊低效空间，新建限于三港内少量公共建筑与测试设施，北港留白暂不定义功能。",
+      "impact": "任何具体地块的拆改留结论须由专业机构在法定程序中确定；现状建筑台账与权属信息补齐后须逐项复核分类结果。"
+    },
+    {
+      "id": "A-SCENARIO-TEST",
+      "status": "active_concept",
+      "statement": "T1 低速无人配送测试段、T2 AI 音乐生成公开测试场、T3 城市服务机器人候场单元均为概念机制建议，不构成已批准运营；所有测试场景实行'公示—试运行—评估—转正或退出'程序并设人工复核与退出机制。",
+      "impact": "场景相关合规义务由未来运营主体按现行法规履行，本方案不作合规认定结论；场景落地前须经安全评估与公众公示。"
+    },
+    {
+      "id": "A-INFRA",
+      "status": "active_concept",
+      "statement": "'智脉管廊'（沿主脊预留算力、数据与分布式能源复合接口）与端侧算力节点为概念设想，具体容量、负荷与工程可行性均需专业团队深化测算。",
+      "impact": "本方案不作任何市政与新型基础设施的工程结论；工程条件资料补齐前相关设施仅为空间预留表达。"
+    }
+  ]
+}

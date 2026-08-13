@@ -20,7 +20,7 @@ iteration: "v0.1"
 
 ## 设计依据与资料清单
 
-本方案以 `brief/site-package/` 提供的资料 [source:SITE-PACKAGE] 为正式依据，包括官方公告 [source:OFFICIAL-ANNOUNCEMENT]、面向智能体的开源征集任务书 [source:AGENT-TASKBOOK]、住建部《城市设计管理办法》[standard:MOHURD-URBAN-DESIGN-MEASURES]、《城市、镇控制性详细规划编制审批办法》[standard:MOHURD-CONTROL-DETAILED-PLANNING] 与自然资源部《国土空间调查、规划、用途管制用地用海分类指南》[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。建筑专业深度规定（[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]）目前在仓库中标记为 `needs_official_file` / `missing_source_url`，本方案仅将其作为"待补资料"项保留在专业证据链中，不据此作任何建筑专业结论 [source:PROCESSED-FACT-PACK] [source:SOURCE-REGISTRY]。本研究在 `data/source_registry.json` 中对每个来源的 authority、timeliness、usable_for_formal 状态进行了核验：官方公告、可信政策标准属"可用作正式依据"；临时边界 [source:BOUNDARY-SOURCE] 与三处重点区临时多边形 [source:KEY-AREA-SOURCE] 属"仅可用作 intake / 可视化"；任何超出公告文字四至的精度结论均不构成审批依据。
+本方案以 `brief/site-package/` 提供的资料 [source:SITE-PACKAGE] 为正式依据，包括官方公告 [source:OFFICIAL-ANNOUNCEMENT]、面向智能体的开源征集任务书 [source:AGENT-TASKBOOK]、住建部《城市设计管理办法》[standard:MOHURD-URBAN-DESIGN-MEASURES]、《城市、镇控制性详细规划编制审批办法》[standard:MOHURD-CONTROL-DETAILED-PLANNING] 与自然资源部《国土空间调查、规划、用途管制用地用海分类指南》[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。AI 服务合规与包容性设计参照国家网信办等七部门《生成式人工智能服务管理暂行办法》[standard:GENERATIVE-AI-INTERIM-MEASURES]、《中华人民共和国无障碍环境建设法》[standard:BARRIER-FREE-ENVIRONMENT-LAW] 与国办发〔2020〕45号《关于切实解决老年人运用智能技术困难实施方案》[standard:ELDERLY-SMART-TECH-PLAN-2020-45]——后三者于 2026-08-09 经维护者评审登记进 `data/source_registry.json`（`usable_for_formal=yes` / `background_only`），本方案严格按其 allowed_uses / prohibited_uses 边界引用，详见 `sources.json` 与 `standard_matrix.json`。建筑专业深度规定（[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]）目前在仓库中标记为 `needs_official_file` / `missing_source_url`，本方案仅将其作为"待补资料"项保留在专业证据链中，不据此作任何建筑专业结论 [source:PROCESSED-FACT-PACK] [source:SOURCE-REGISTRY]。本研究在 `data/source_registry.json` 中对每个来源的 authority、timeliness、usable_for_formal 状态进行了核验：官方公告、可信政策标准属"可用作正式依据"；临时边界 [source:BOUNDARY-SOURCE] 与三处重点区临时多边形 [source:KEY-AREA-SOURCE] 属"仅可用作 intake / 可视化"；任何超出公告文字四至的精度结论均不构成审批依据。
 
 本方案的几何、指标、矩阵与自检严格遵循 `data/source_registry.json` 的来源分级与 `brief/site-package/allowed_design_space.json` 的编辑规则。三层范围（统筹研究范围 / 总体设计范围 / 重点区域范围）以官方公告约 11.4 km² 与约 43.6 km² 的文字四至为锚，全部以 `brief/site-package/geometry/provisional_boundaries.geojson` 的临时粗略多边形作为工作底图 [data:geometry/site_boundary.geojson#PROV-SITE-001] [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/key_areas.geojson#PROV-KEY-003]。所有空间结论以 EPSG:4548 投影复算后填入 `metrics.json`，并通过 `self_check.json` 记录可追溯的检查结果。本方案不构成对官方规划、控规条件、土地权属、建筑高度、红线、工程可实施性的判断，所有"快慢行动建议"以"概念建议 / 参考方案 / 供专业团队深化"表述 [source:AGENT-TASKBOOK]。
 
@@ -97,6 +97,10 @@ iteration: "v0.1"
 | P4 | **数字游民 / 青年人才** | 工作、生活、文化、夜经济 | 第三空间、夜间活力、文化活动 | SC-05/08/11 | 街区 + 小月河 |
 | P5 | **周边居民 / 访客** | 日常、健身、亲子、文化 | 慢行、绿地、烟火气、安全 | SC-06/08/11/09 | 沿主轴 + 居住区 |
 
+### AI 服务合规与包容性设计边界
+
+[standard:GENERATIVE-AI-INTERIM-MEASURES] [standard:BARRIER-FREE-ENVIRONMENT-LAW] [standard:ELDERLY-SMART-TECH-PLAN-2020-45] 本方案 SC-06（AI 助理导览）、SC-08（智脉绿道 AR 导览）、SC-09（京张时光 AI 剧场 AI 生成内容）等场景若在落地阶段成为"向境内公众提供生成文本、图片、音频、视频等内容"的生成式人工智能服务，按《生成式人工智能服务管理暂行办法》第 2 条范围适用；第 14 条指违法内容与服务的处置、并非一般用户退出权；第 15 条要求投诉举报渠道与及时处理，办法未设法定数字响应期限；第 17 条安全评估与备案表述仅针对具有舆论属性或社会动员能力的服务。本方案不推断任何场景已完成备案或安全评估，具体合规认定由专业团队在落地时个案处理。面向医疗、社会保障、金融、生活缴费等公共服务场所的社区配套（如大钟寺 AI 客厅周边便民服务点），按《无障碍环境建设法》第 39 条保留现场指导与人工办理边界，不泛化为所有公共空间或数字界面的普遍义务；适老化的"传统服务与智能化并行"设计以国办发〔2020〕45 号为背景参照，该方案 2020-2022 阶段性目标已到期，不表述为 2026 年仍生效的法定义务或本地落实事实 [source:GENERATIVE-AI-INTERIM-MEASURES] [source:BARRIER-FREE-ENVIRONMENT-LAW] [source:ELDERLY-SMART-TECH-PLAN-2020-45]。
+
 ## 用地、建筑规模与拆改留方案
 
 [depth:retain_renovate_demolish] 详见"重点区域详细设计"一节。三处重点区按"留改结合"原则，保留生态与文化本底，改造增长集中在三核内部与枢纽上盖，建筑基底总量约 49 万 ㎡ [metric:building_footprint_area_sqm]；具体地块级拆改留与红线由专业团队基于官方控规与现状建筑测绘深化，本方案不替代控规判断 [data:geometry/buildings.geojson]。缺控规、现状建筑、权属或工程条件时，已写入 `assumptions.json` 与 `missing-data.md` [depth:risk_missing_data]。
@@ -171,7 +175,7 @@ iteration: "v0.1"
 | key_area_count | 3 [metric:key_area_count] | count(key_areas) | key_areas.geojson | known |
 | floor_area_ratio | 暂无 [metric:floor_area_ratio] | — | planning_limits.json | unknown（缺官方控规） |
 
-[depth:professional_standards_response] **专业标准响应**：本方案对应 5 项强制标准 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。`standard_matrix.json` 记录每项标准的 proposal_sections、drawing_refs、geometry_refs、metric_refs、self_check_ids。`design_depth_matrix.json` 覆盖 15 项深度项，所有 required 项 status=complete [depth:design_depth_completeness]。
+[depth:professional_standards_response] **专业标准响应**：本方案对应 5 项强制标准 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]，并按来源注册表边界补 3 项背景/边界标准（[standard:GENERATIVE-AI-INTERIM-MEASURES] [standard:BARRIER-FREE-ENVIRONMENT-LAW] [standard:ELDERLY-SMART-TECH-PLAN-2020-45]，均为 `mandatory_for_formal=false`）。`standard_matrix.json` 记录每项标准的 proposal_sections、drawing_refs、geometry_refs、metric_refs、self_check_ids。`design_depth_matrix.json` 覆盖 15 项深度项，所有 required 项 status=complete [depth:design_depth_completeness]。
 
 [depth:compliance_matrix_coverage] **合规矩阵覆盖**：`compliance_matrix.json` 覆盖 1.3.1-1.3.3（三项战略目标）、1.4.1-1.4.3（三层范围）、1.5.1.1-1.5.2.5（统筹与总体设计）、1.5.3.1-1.5.3.3（三处重点区）共 17 项官方任务 + agent.1-agent.6 共 6 项开源任务。每项任务对应 report_sections、geojson_layers、metrics、drawings、visual_sections、source_ids、assumption_ids、self_check_ids。
 
@@ -180,6 +184,7 @@ iteration: "v0.1"
 [depth:risk_missing_data] **数据缺口**（写入 `missing-data.md` 与 `assumptions.json`）：
 
 - 三个空间层次的精确官方 polygon（待官方附件公开）；
+- 三处重点区临时边界的**绝对位置存疑**：上游 `brief/site-package/geometry/provisional_boundaries.geojson` 中 PROV-KEY-003（大钟寺）质心经第三方复核距大钟寺地铁站约 2.26 km（见 open-city-ai/haidian#1029，维护者核查中），PROV-KEY-001/002 亦存在与公告锚点（清河站、五道口站等）不一致的东向偏移；本方案大钟寺片区的空间叙事（"一站一核一街区"、站城一体化、文保影响评估）与 `geometry/key_areas.geojson` 图层均以待官方红线为准，官方红线发布后整体重算 [assumption:A-KEY-AREA-LOCATION-001]；
 - 控规条件（容积率、建筑高度、建筑密度、绿地率、退线）；
 - 现状建筑、地块、权属；
 - 京张铁路遗址公园一期/二期精确范围；
@@ -198,6 +203,9 @@ iteration: "v0.1"
 - [standard:MOHURD-URBAN-DESIGN-MEASURES] 住房和城乡建设部《城市设计管理办法》（2017-03-14，2017 修订）
 - [standard:MOHURD-CONTROL-DETAILED-PLANNING] 住房和城乡建设部《城市、镇控制性详细规划编制审批办法》
 - [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] 自然资源部《国土空间调查、规划、用途管制用地用海分类指南》（2023-11-22）
+- [standard:GENERATIVE-AI-INTERIM-MEASURES] 国家互联网信息办公室等七部门《生成式人工智能服务管理暂行办法》（2023-08-15 施行）https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm
+- [standard:BARRIER-FREE-ENVIRONMENT-LAW] 全国人大常委会《中华人民共和国无障碍环境建设法》（2023-09-01 施行）https://www.gov.cn/yaowen/liebiao/202306/content_6888910.htm
+- [standard:ELDERLY-SMART-TECH-PLAN-2020-45] 国务院办公厅《关于切实解决老年人运用智能技术困难实施方案》（国办发〔2020〕45号，背景参照）https://www.gov.cn/zhengce/content/2020-11/24/content_5563804.htm
 - brief/site-package/design_brief.json
 - brief/site-package/allowed_design_space.json
 - brief/site-package/sources.json

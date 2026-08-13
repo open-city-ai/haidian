@@ -1,0 +1,85 @@
+{
+  "schema_version": "0.2.0",
+  "project": "jingzhang-co-legible-interfaces",
+  "maturity": "operating-design-pending-operator-and-professional-confirmation",
+  "principles": [
+    "minimum-data",
+    "human-review",
+    "reversible-output",
+    "documented-error-and-backout",
+    "basic-task-works-with-ai-off"
+  ],
+  "functions": [
+    {
+      "id": "ai-seasonal-occlusion-change",
+      "name_zh": "季节性遮挡变化提示",
+      "name_en": "Seasonal Occlusion Change Alert",
+      "urban_task": "发现植被生长、临停或临设是否侵入已确认的公共视域。",
+      "urban_task_en": "Detect whether planting growth, temporary parking or installations intrude into a confirmed public sight field.",
+      "minimum_inputs": [
+        "经批准的基线视域模型",
+        "不含身份信息的定点场景图或人工巡检记录",
+        "天气、季相与临时事件标签"
+      ],
+      "output": "差异区域、置信说明和建议复核工单；不输出人员身份或处罚决定。",
+      "human_decision": "维护者现场确认后决定修剪、移动临设、保持现状或驳回建议。",
+      "error_handling": "低置信、光照突变或遮挡来源不明时只标记待人工复核；不得自动处置。",
+      "ai_off_baseline": "按固定巡检点位、季节计划和纸质检查表人工复核。",
+      "marginal_value_test": "在同一巡检周期比较发现时间、误报、漏报与人工工时；不合成为总分。",
+      "data_governance": "只保留复核所需的场景差异和工单版本；原始图像保存期、访问者与删除责任待运营确认。"
+    },
+    {
+      "id": "ai-interface-version-audit",
+      "name_zh": "施工与活动界面版本一致性审计",
+      "name_en": "Construction and Event Interface Version Audit",
+      "urban_task": "检查围挡、改道、临时活动和公共导向是否与批准版本一致。",
+      "urban_task_en": "Check whether barriers, detours, temporary events and public wayfinding match the approved version.",
+      "minimum_inputs": [
+        "批准的平面与导视版本",
+        "不含身份信息的现场状态记录",
+        "生效时间和责任人"
+      ],
+      "output": "版本差异、缺失固定线索和需人工确认的位置清单。",
+      "human_decision": "场地运营者与专业人员决定发布新版本、现场修正或回退。",
+      "error_handling": "版本号缺失、图像不可比或边界未确认时停止比对并转人工。",
+      "ai_off_baseline": "现场人员依据盖章或签认版本逐项核对并张贴纸质改道信息。",
+      "marginal_value_test": "比较发现版本漂移的时间、遗漏项和复核工时。",
+      "data_governance": "版本文件、差异记录和人工签认进入受控档案；不收集个人轨迹。"
+    },
+    {
+      "id": "ai-nonpersonal-visual-load-comparison",
+      "name_zh": "非个人化视觉负荷比较",
+      "name_en": "Non-personal Visual Load Comparison",
+      "urban_task": "比较广告、活动、雨夜反光与公共方向层的布局版本。",
+      "urban_task_en": "Compare layout versions for advertising, events, wet-night reflections and public-direction layers.",
+      "minimum_inputs": [
+        "经确认的视点和公共判断任务",
+        "候选布局或可授权的场景记录",
+        "光照、天气与活动条件标签"
+      ],
+      "output": "遮挡、层级冲突和条件敏感性比较；不输出统一可读性分数。",
+      "human_decision": "真实使用者与交通、无障碍、照明和运营专业共同判断是否采用。",
+      "error_handling": "参与者差异或条件不足时保留分歧并追加测试，不以模型结论替代使用者。",
+      "ai_off_baseline": "实体样板、现场走查、访谈与人工标注对比。",
+      "marginal_value_test": "比较方案筛选时间、漏掉的冲突类型和专业复核负担。",
+      "data_governance": "只记录布局、条件和聚合反馈；不做人脸、情绪或身份推断。"
+    }
+  ],
+  "shared_incident_flow": [
+    "detect-or-report",
+    "record-source-and-version",
+    "human-triage",
+    "professional-or-user-review",
+    "approve-reject-or-backout",
+    "publish-decision-and-expiry",
+    "retain-failure-as-evidence"
+  ],
+  "open_gates": [
+    "operator-and-raci",
+    "site-and-data-permission",
+    "retention-and-deletion-schedule",
+    "professional-thresholds",
+    "participant-protection",
+    "budget-and-procurement"
+  ]
+}

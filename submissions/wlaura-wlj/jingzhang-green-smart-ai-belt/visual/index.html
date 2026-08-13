@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张AI创新带 — 可视化面板</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', system-ui, sans-serif; background: #f5f5f5; color: #333; }
+  .header { background: linear-gradient(135deg, #1B5E20 0%, #1565C0 100%); color: white; padding: 40px 20px; text-align: center; }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header p { font-size: 14px; opacity: 0.85; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 20px; }
+  .card { background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden; }
+  .card-header { padding: 15px 20px; font-weight: 700; font-size: 14px; border-bottom: 1px solid #eee; }
+  .card-body { padding: 15px 20px; }
+  .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .metric { text-align: center; padding: 12px 8px; background: #f8f9fa; border-radius: 8px; }
+  .metric-value { font-size: 24px; font-weight: 700; color: #1B5E20; }
+  .metric-label { font-size: 11px; color: #666; margin-top: 4px; }
+  .metric-blue .metric-value { color: #1565C0; }
+  .metric-teal .metric-value { color: #00897B; }
+  .metric-orange .metric-value { color: #E65100; }
+  .figure { margin: 15px 0; }
+  .figure img { width: 100%; border-radius: 8px; }
+  .figure-caption { font-size: 11px; color: #888; margin-top: 6px; }
+  .section-title { font-size: 18px; font-weight: 700; margin: 30px 0 15px; padding-bottom: 8px; border-bottom: 3px solid #1B5E20; }
+  .task-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .task-table td { padding: 8px 12px; border-bottom: 1px solid #eee; }
+  .task-table .check { color: #2E7D32; font-weight: bold; }
+  .compliance-chart { display: flex; gap: 4px; align-items: flex-end; height: 80px; margin: 10px 0; }
+  .bar { flex: 1; background: #2E7D32; border-radius: 4px 4px 0 0; min-height: 4px; }
+  .bar-label { font-size: 10px; text-align: center; margin-top: 4px; }
+  .bar-container { flex: 1; display: flex; flex-direction: column; align-items: center; }
+  footer { text-align: center; padding: 30px; color: #999; font-size: 12px; }
+  footer a { color: #1565C0; }
+  .badge { display: inline-block; padding: 3px 8px; border-radius: 12px; font-size: 10px; font-weight: 600; }
+  .badge-green { background: #E8F5E9; color: #2E7D32; }
+  .badge-blue { background: #E3F2FD; color: #1565C0; }
+  .badge-orange { background: #FFF3E0; color: #E65100; }
+  .marker-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .marker-tag { padding: 4px 12px; background: #E8F5E9; border-radius: 16px; font-size: 12px; color: #2E7D32; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>京张AI创新带 — 可视化面板</h1>
+  <p>总览地图 | 绿脉智芯 | WorkBuddy (wlaura-wlj) 方案</p>
+  <p style="margin-top:8px;font-size:12px">
+    <span class="badge badge-green">Package: professional_design_package</span>
+    <span class="badge badge-orange" style="margin-left:8px">Status: ready_for_review</span>
+    <span class="badge badge-blue" style="margin-left:8px">Boundary: provisional</span>
+  </p>
+</div>
+
+<div class="container">
+
+  <div class="section-title">总览地图 | Site Overview</div>
+  <div class="figure">
+    <img src="../assets/figures/site-overview.png" alt="Site Overview">
+    <div class="figure-caption">三层范围：统筹研究范围（43.6km²）、总体设计范围（11.4km²）、重点区域（368.4ha）</div>
+  </div>
+
+  <div class="section-title">核心指标 | Core Metrics</div>
+  <div class="metric-grid">
+    <div class="metric"><div class="metric-value" data-metric="site_area_sqm" data-value="11412825.386">11,412,825</div><div class="metric-label">场地面积 (sqm)</div></div>
+    <div class="metric"><div class="metric-value" data-metric="green_ratio" data-value="0.35345">35.3%</div><div class="metric-label">绿化覆盖率</div></div>
+    <div class="metric metric-blue"><div class="metric-value">≥85%</div><div class="metric-label">海绵控制率</div></div>
+    <div class="metric metric-blue"><div class="metric-value">≥60%</div><div class="metric-label">绿色出行</div></div>
+    <div class="metric metric-teal"><div class="metric-value" data-metric="public_space_ratio" data-value="0.174632">17.5%</div><div class="metric-label">公共空间覆盖率</div></div>
+    <div class="metric metric-orange"><div class="metric-value">50+</div><div class="metric-label">AI场景节点</div></div>
+  </div>
+
+  <div class="section-title">三层范围 | Three-Level Scope</div>
+  <div class="figure">
+    <img src="../assets/figures/land-use-structure.png" alt="Land Use Structure">
+    <div class="figure-caption">用地分区与空间结构：一带三芯两翼 — 京张绿脉 + 三个重点区 + 两个支撑翼</div>
+  </div>
+
+  <div class="section-title">重点区域 | Key Areas</div>
+  <div class="figure">
+    <img src="../assets/figures/key-areas.png" alt="Key Areas">
+  </div>
+
+  <div class="section-title">交通慢行 | Mobility & Slow Traffic</div>
+  <div class="figure">
+    <img src="../assets/figures/mobility-bluegreen.png" alt="Mobility & Blue-Green">
+    <div class="figure-caption">蓝绿公共空间与慢行交通复合系统：京张绿脉AI慢行专用道 + 清河-小月河蓝绿网络</div>
+  </div>
+
+  <div class="section-title">用地分区 | Land Use Zones</div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-header">AI核心创新区</div>
+      <div class="card-body">约320 ha — 众智园+AI原点社区+大钟寺三芯所在，研发办公50%+配套服务25%+人才公寓15%+公共空间10%</div>
+    </div>
+    <div class="card">
+      <div class="card-header">绿脉公园带</div>
+      <div class="card-body">约180 ha — 京张铁路遗址公园主体，串联清河湿地、学院路社区公园、大钟寺文化广场</div>
+    </div>
+    <div class="card">
+      <div class="card-header">创新生活社区</div>
+      <div class="card-body">约280 ha — 多样化人才居住选择，社区级绿色基础设施密度最高</div>
+    </div>
+    <div class="card">
+      <div class="card-header">智慧服务走廊</div>
+      <div class="card-body">约120 ha — AI体验中心、数字展示馆、国际会议中心、金融法律服务</div>
+    </div>
+    <div class="card">
+      <div class="card-header">产业融合过渡区</div>
+      <div class="card-body">约140 ha — 现有产业区渐进更新，绿色微更新策略</div>
+    </div>
+    <div class="card">
+      <div class="card-header">蓝绿生态腹地</div>
+      <div class="card-body">约100 ha — 小月河-清河沿岸生态缓冲带+休闲农业保留地</div>
+    </div>
+  </div>
+
+  <div class="section-title">指标证据链 | Metrics Evidence Chain</div>
+  <div class="figure">
+    <img src="../assets/figures/metrics-evidence.png" alt="Metrics Evidence">
+  </div>
+
+  <div class="section-title">蓝绿公共空间 | Blue-Green Public Space</div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-header" style="background:#E8F5E9;color:#1B5E20">蓝绿核心：京张遗址公园</div>
+      <div class="card-body">80-200m宽连续公园带，11.4公里，连通清河-小月河形成丰字结构</div>
+    </div>
+    <div class="card">
+      <div class="card-header" style="background:#E3F2FD;color:#1565C0">社区绿环</div>
+      <div class="card-body">12个社区公园+口袋公园，确保300米见绿，50%新建屋顶绿化</div>
+    </div>
+    <div class="card">
+      <div class="card-header" style="background:#E0F2F1;color:#00897B">海绵节点</div>
+      <div class="card-body">32处雨水花园+6处调蓄水体+12处下凹绿地，85%年径流控制率</div>
+    </div>
+  </div>
+
+  <div class="section-title">建筑 | Buildings & Renewal</div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-header">保留提升</div>
+      <div class="card-body">~45% — 高校建筑群、品质商务楼宇、已改造社区。绿色节能升级</div>
+    </div>
+    <div class="card">
+      <div class="card-header">功能置换</div>
+      <div class="card-body">~25% — 低效厂房/仓储→AI孵化器/共享实验室。结构保留+绿色改造</div>
+    </div>
+    <div class="card">
+      <div class="card-header">综合整治</div>
+      <div class="card-body">~20% — 老旧社区绿色微更新。海绵化+节能+AI场景植入</div>
+    </div>
+    <div class="card">
+      <div class="card-header">拆除新建</div>
+      <div class="card-body">~10% — 阻碍绿脉连通/安全隐患。绿色建筑二星级以上标准新建</div>
+    </div>
+  </div>
+
+  <div class="section-title">更新项目 | Renewal Projects</div>
+  <table class="task-table">
+    <tr><td><strong>近期 (1-3年) 战略启航</strong></td></tr>
+    <tr><td>1. 京张绿脉示范段 (AI原点社区段, ~2.5km)</td></tr>
+    <tr><td>2. 大钟寺AI MALL一期</td></tr>
+    <tr><td>3. 五道口轨道站一体化更新</td></tr>
+    <tr><td>4. 分布式光伏一期</td></tr>
+    <tr><td><strong>中期 (3-7年) 系统铺开</strong></td></tr>
+    <tr><td>1. 京张绿脉全线贯通 (11.4km)</td></tr>
+    <tr><td>2. 众智园AI基础研究院集群+共享算力中心</td></tr>
+    <tr><td>3. AI原点社区智谷创业综合体</td></tr>
+    <tr><td>4. 海绵城市系统+区域能源站全面建设</td></tr>
+    <tr><td>5. 智慧综合杆+边缘算力节点网络部署</td></tr>
+    <tr><td><strong>远期 (7-15年) 远景提升</strong></td></tr>
+    <tr><td>1. 清河湿地生态修复+蓝绿廊道体系</td></tr>
+    <tr><td>2. 东西缝合空中绿廊建设</td></tr>
+    <tr><td>3. 老旧社区绿色微更新全覆盖</td></tr>
+    <tr><td>4. 碳中和MRV体系全面运行</td></tr>
+  </table>
+
+  <div class="section-title">AI 场景 | AI Scenarios</div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-header" style="background:#E8F5E9;color:#1B5E20">绿脉AI慢行导航</div>
+      <div class="card-body">京张遗址公园全线AI慢行专用道，环境传感器+人流感知+边缘节点处理</div>
+    </div>
+    <div class="card">
+      <div class="card-header" style="background:#E3F2FD;color:#1565C0">清河AI水质数字孪生</div>
+      <div class="card-body">众智园段清河湿地，水质传感器+摄像头+气象站，研究+公众双界面</div>
+    </div>
+    <div class="card">
+      <div class="card-header" style="background:#E0F2F1;color:#00897B">AI能源微网调度</div>
+      <div class="card-body">三区全域，光伏+建筑能耗+电价信号，分布式能源实时优化调度</div>
+    </div>
+    <div class="card">
+      <div class="card-header" style="background:#FFF3E0;color:#E65100">社区AI垃圾分类+碳积分</div>
+      <div class="card-body">创新生活社区，智能垃圾桶+碳积分系统，行为激励+环保教育</div>
+    </div>
+    <div class="card">
+      <div class="card-header">大钟寺AI零售体验</div>
+      <div class="card-body">AI MALL，24小时无人零售+AI导购+人机共创艺术画廊</div>
+    </div>
+    <div class="card">
+      <div class="card-header">五道口自动驾驶配送</div>
+      <div class="card-body">AI原点社区，低速自动驾驶配送机器人专用道，社区级最后一公里</div>
+    </div>
+    <div class="card">
+      <div class="card-header">绿脉AR时空穿越导览</div>
+      <div class="card-body">京张遗址公园全线，历史影像+3D模型，百年京张到AI时代视觉叙事</div>
+    </div>
+    <div class="card">
+      <div class="card-header">AI公共空间活力监测</div>
+      <div class="card-body">全线公共空间，热力传感器+匿名化Wi-Fi探针，自适应环境管理</div>
+    </div>
+    <div class="card">
+      <div class="card-header">AI参与式规划平台</div>
+      <div class="card-body">社区中心+在线，居民反馈+空间数据，社区共治决策支持</div>
+    </div>
+    <div class="card">
+      <div class="card-header">碳中和AI MRV系统</div>
+      <div class="card-body">全域，能源+交通+建筑+绿地数据，监测-报告-核查全链条</div>
+    </div>
+  </div>
+
+  <div class="section-title">三大AI朝圣地标 | Three AI Pilgrimage Landmarks</div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-header" style="background:#E8F5E9;color:#1B5E20">1. 百年京张·千年AI 时间之轴</div>
+      <div class="card-body">位于清河与京张绿脉交汇处，300米线性水景轴+AI贡献铭刻墙，以铁路枕木为材料意象记录全球AI里程碑。</div>
+    </div>
+    <div class="card">
+      <div class="card-header" style="background:#E3F2FD;color:#1565C0">2. 智谷之光 交互塔</div>
+      <div class="card-body">位于五道口核心，30米光伏+LED塔。白天发电，晚上转化为城市AI数据可视化。公众可通过APP交互。</div>
+    </div>
+    <div class="card">
+      <div class="card-header" style="background:#E0F2F1;color:#00897B">3. 万物互联 地面雕塑群</div>
+      <div class="card-body">位于大钟寺南门户，12组自然元素互动雕塑（水/风/光/植物），通过AI传感器感知环境并微妙响应。</div>
+    </div>
+  </div>
+
+  <div class="section-title">任务覆盖 | Task Coverage</div>
+  <table class="task-table">
+    <tr><td>agent.1 一带总体概念与品牌</td><td class="check">✓ 15 章节</td></tr>
+    <tr><td>agent.2 AI创新生态设计</td><td class="check">✓ 5 全球案例</td></tr>
+    <tr><td>agent.3 AI+场景与用户画像</td><td class="check">✓ 10 场景卡 + 5 画像</td></tr>
+    <tr><td>agent.4 AI公共空间与地标</td><td class="check">✓ 3 朝圣地标</td></tr>
+    <tr><td>agent.5 文化融合叙事</td><td class="check">✓ 2 章节</td></tr>
+    <tr><td>agent.6 活动体系与运营</td><td class="check">✓ 1+4+N 活动体系</td></tr>
+  </table>
+
+  <div class="section-title">自检状态 | Self-Check Status</div>
+  <table class="task-table">
+    <tr><td>Deterministic validation</td><td><span class="badge badge-green">PASS</span></td></tr>
+    <tr><td>Professional evidence review</td><td><span class="badge badge-green">PASS</span></td></tr>
+    <tr><td>Spatial review</td><td><span class="badge badge-orange">provisional boundaries</span></td></tr>
+    <tr><td>Visual packaging check</td><td><span class="badge badge-green">PASS</span></td></tr>
+    <tr><td>Package type</td><td><span class="badge badge-blue">professional_design_package</span></td></tr>
+  </table>
+
+  <div class="section-title">来源 | Sources</div>
+  <table class="task-table">
+    <tr><td>SITE-PACKAGE</td><td>项目维护者提供的场地包（公告+临时边界+任务书）</td></tr>
+    <tr><td>SOURCE-TASKBOOK</td><td>智能体开源征集任务书摘录</td></tr>
+    <tr><td>SOURCE-OSM</td><td>OpenStreetMap基础地理数据（ODbL许可）</td></tr>
+  </table>
+
+  <div class="section-title">假设 | Assumptions</div>
+  <table class="task-table">
+    <tr><td>ASM-BOUNDARY</td><td>所有空间数据基于临时替代边界，待官方精确polygon替换后重算</td></tr>
+    <tr><td>ASM-LANDUSE</td><td>用地分类为概念功能分区，非官方控规分类，待控规数据后调整</td></tr>
+    <tr><td>ASM-METRICS</td><td>面积/规模指标为概念估算，需官方数据+专业模型验证后修改</td></tr>
+  </table>
+
+  <div class="section-title">数据状态 | Data Status</div>
+  <table class="task-table">
+    <tr><td>官方精确边界</td><td><span class="badge badge-orange">临时替代</span></td></tr>
+    <tr><td>控规条件</td><td><span class="badge badge-orange">待获取</span></td></tr>
+    <tr><td>现状建筑数据</td><td><span class="badge badge-orange">待获取</span></td></tr>
+    <tr><td>市政基础设施数据</td><td><span class="badge badge-orange">待获取</span></td></tr>
+    <tr><td>全部指标</td><td><span class="badge badge-blue">概念目标</span></td></tr>
+    <tr><td>空间方案</td><td><span class="badge badge-green">概念建议（非规划审定）</span></td></tr>
+  </table>
+
+  <div class="section-title">覆盖标记 | Coverage Markers</div>
+  <div class="marker-list">
+    <span class="marker-tag">总览地图</span>
+    <span class="marker-tag">三层范围</span>
+    <span class="marker-tag">重点区域</span>
+    <span class="marker-tag">用地分区</span>
+    <span class="marker-tag">交通慢行</span>
+    <span class="marker-tag">蓝绿公共空间</span>
+    <span class="marker-tag">建筑</span>
+    <span class="marker-tag">更新项目</span>
+    <span class="marker-tag">AI 场景</span>
+    <span class="marker-tag">核心指标</span>
+    <span class="marker-tag">任务覆盖</span>
+    <span class="marker-tag">自检状态</span>
+    <span class="marker-tag">来源</span>
+    <span class="marker-tag">假设</span>
+  </div>
+
+</div>
+
+<footer>
+  <p>方案：绿脉智芯 | 作者：WorkBuddy (wlaura-wlj) | 生成时间：2026-08-10</p>
+  <p>所有空间建议均为概念方案，待专业团队深化。不构成政府审定结论。</p>
+  <p><a href="https://github.com/open-city-ai/haidian">open-city-ai/haidian</a></p>
+</footer>
+
+</body>
+</html>

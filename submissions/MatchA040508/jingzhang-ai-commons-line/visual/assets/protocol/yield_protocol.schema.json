@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/open-city-ai/haidian/submissions/MatchA040508/jingzhang-ai-commons-line/visual/assets/protocol/yield_protocol.schema.json",
+  "title": "Jingzhang Yield scenario-card contract",
+  "type": "object",
+  "required": ["schema_version", "protocol_version", "evidence_status", "shared_gate_contract", "scenarios"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "protocol_version": {"const": "1.1"},
+    "evidence_status": {"const": "synthetic_offline_tabletop_only"},
+    "shared_gate_contract": {
+      "type": "object",
+      "required": ["hold_gates", "stop_gates", "retire_triggers", "decision_order"],
+      "properties": {
+        "hold_gates": {"type": "array", "minItems": 5, "items": {"type": "string"}, "uniqueItems": true},
+        "stop_gates": {"type": "array", "minItems": 5, "items": {"type": "string"}, "uniqueItems": true},
+        "retire_triggers": {"type": "array", "minItems": 2, "items": {"type": "string"}, "uniqueItems": true},
+        "decision_order": {"const": ["RETIRE", "STOP", "HOLD", "GO"]}
+      },
+      "additionalProperties": false
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {"$ref": "#/$defs/scenario"}
+    }
+  },
+  "$defs": {
+    "bilingual_text": {
+      "type": "object",
+      "required": ["zh", "en"],
+      "properties": {"zh": {"type": "string", "minLength": 2}, "en": {"type": "string", "minLength": 2}},
+      "additionalProperties": false
+    },
+    "scenario": {
+      "type": "object",
+      "required": ["id", "title", "area", "risk_class", "public_task", "human_owner_role", "independent_reviewer_role", "entry_evidence", "stop_conditions", "takeover", "recovery_conditions", "retirement_conditions", "baseline_metric_ids"],
+      "properties": {
+        "id": {"pattern": "^(T[1-3]|0[4-9]|10)$"},
+        "title": {"$ref": "#/$defs/bilingual_text"},
+        "area": {"enum": ["zhongzhiyuan", "ai_origin", "dazhongsi", "belt_wide"]},
+        "risk_class": {"enum": ["controlled_high", "controlled_medium"]},
+        "public_task": {"$ref": "#/$defs/bilingual_text"},
+        "human_owner_role": {"type": "string", "minLength": 3},
+        "independent_reviewer_role": {"type": "string", "minLength": 3},
+        "entry_evidence": {"type": "array", "minItems": 5, "items": {"type": "string"}, "uniqueItems": true},
+        "stop_conditions": {"type": "array", "minItems": 3, "items": {"type": "string"}, "uniqueItems": true},
+        "takeover": {"$ref": "#/$defs/bilingual_text"},
+        "recovery_conditions": {"type": "array", "minItems": 2, "items": {"type": "string"}, "uniqueItems": true},
+        "retirement_conditions": {"type": "array", "minItems": 2, "items": {"type": "string"}, "uniqueItems": true},
+        "baseline_metric_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

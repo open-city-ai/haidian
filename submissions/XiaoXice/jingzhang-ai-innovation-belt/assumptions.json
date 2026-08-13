@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "provisional_boundary",
+      "statement": "Official precise site BOUNDARY and KEY_AREA polygons are not yet publicly available. All geometry in geometry/*.geojson is derived from brief/site-package/geometry/provisional_boundaries.geojson and labeled provisional_constraint / official_boundary=false / boundary_precision=provisional_rough.",
+      "impact": "All area, ratio, and scale metrics are calculated from provisional rough boundary geometry and are NOT suitable for official redline, approval, precise-area, or statutory-control claims. Recalculate all precision-sensitive metrics once official polygons arrive. This data gap does not block content scoring."
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls (floor-area ratio, building height, density, green ratio, setback, road redline, building control line), current parcel/ownership status, existing building footprints, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "The package can be reviewed as a formal AI submission for the provided provisional boundaries and submitted design layers; statutory controls remain pending professional confirmation. floor_area_ratio and related controls are recorded status=unknown in metrics.json."
+    },
+    {
+      "id": "A-DESIGN-001",
+      "status": "conceptual",
+      "statement": "All spatial allocations (land use, building footprints, roads, green/public space, phasing, AI service zones) are open co-creation conceptual suggestions / reference schemes for professional teams to deepen. Building footprints and derived quantities are design-level conceptual values, not legal retention/renovation/demolition or construction-scale conclusions.",
+      "impact": "The proposal must be read as a conceptual reference scheme, not statutory planning, approved government action, or engineering feasibility; guarantees and official claims are excluded per the agent taskbook boundary clause."
+    },
+    {
+      "id": "A-METRIC-001",
+      "status": "provisional_metric",
+      "statement": "Scenario-card, persona, landmark, and case counts (10 / 5 / 3 / 6) are content counts declared in proposal.md and its English counterpart; they correspond to readable entities in the proposal narrative and compliance matrix. Road centerline length is derived from geometry/roads.geojson in EPSG:4548.",
+      "impact": "These counts are used to demonstrate agent taskbook coverage; they are not survey-based statistics of the existing site."
+    },
+    {
+      "id": "A-AI-GOVERNANCE-001",
+      "status": "cleared_boundary",
+      "statement": "AI-related scenarios respect data minimization, public sources, explainability, human review, and the scope limits of Generative AI Interim Measures; privacy-sensitive and unproven-technology claims are excluded. Testing/validation scenarios are marked as not yet in full deployment.",
+      "impact": "No scenario asserts unauthorized surveillance, personal profiling, or full deployment of immature technology; human review and parallel traditional services are preserved."
+    }
+  ]
+}

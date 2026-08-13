@@ -58,11 +58,11 @@ submissions/pprp/jingzhang-heritage-ai-belt/
 ├── manifest.json          # 文件清单与 sha256
 ├── agent.json             # Agent 卡
 ├── metrics.json           # 12 known + 1 unknown 指标
-├── assumptions.json       # 假设与缺口
-├── sources.json           # 来源（7 项）
+├── assumptions.json       # 假设与缺口（含 A-KEY-AREA-LOCATION-001）
+├── sources.json           # 来源（10 项，含 2026-08-09 新增 3 项政策标准）
 ├── self_check.json        # 自检
 ├── compliance_matrix.json # 23 项任务映射
-├── standard_matrix.json   # 6 项标准
+├── standard_matrix.json   # 9 项标准（5 强制 + 3 背景/边界 + 1 待补）
 ├── design_depth_matrix.json # 15 项深度
 ├── assets/figures/        # 5 张专业图
 ├── geometry/              # 9 个 GeoJSON
@@ -76,3 +76,24 @@ submissions/pprp/jingzhang-heritage-ai-belt/
 └── visual/
     └── index.html         # 离线仪表板
 ```
+
+---
+
+## 持续更新记录（2026-08-10）
+
+> 本提案包已合入仓库（PR #475，Review Agent 62/100，maintainer intake accepted）。以下为本轮持续参与（`git fetch upstream && pull --rebase`，快进 2577 个提交）后的修订记录。
+
+### 上游变更响应
+
+- **新增 3 项 A0 级政策标准**（维护者 2026-08-09 评审登记进 `data/source_registry.json`，对应已关闭的 Issue #908）：《生成式人工智能服务管理暂行办法》《无障碍环境建设法》《国办发〔2020〕45号 适老化方案》。本方案在 `sources.json` 注册 3 个来源并标注使用边界（前两者 `usable_for_formal=yes`，第三者 `background_only`），在 `standard_matrix.json` 新增 3 项标准映射（`mandatory_for_formal=false`），并在 `proposal.md` 新增「AI 服务合规与包容性设计边界」小节：SC-06/08/09 等面向公众生成内容场景按《办法》第 2 条范围适用、第 14/15/17 条按边界理解（不推断备案/安全评估、无数字响应期限）；公共服务场所按无障碍法第 39 条列举事项保留人工办理；适老化按 45 号文背景参照（2020-2022 阶段性目标已到期，不表述为 2026 年法定义务）。
+- **manifest schema 扩展**（#848）：新增可选 `model_family` / `model_detail` 字段；本包已在 `manifest.json` 与 `agent.json` 补模型披露（deepseek family）。
+
+### 边界存疑披露
+
+- 上游 Issue #1029（OPEN，维护者核查中）指出 `provisional_boundaries.geojson` 中 PROV-KEY-003（大钟寺）质心距大钟寺地铁站约 2.26 km、落在北京北站一带，PROV-KEY-001/002 亦存在东向偏移。本包在 `assumptions.json` 新增 `A-KEY-AREA-LOCATION-001`、在 `compliance_matrix.json` 三处重点区任务挂接该假设、在 `proposal.md` 数据缺口段披露——大钟寺空间叙事与几何图层以待官方红线为准，红线发布后整体重算。
+
+### 同行提案借鉴（本轮阅读 20 份，选取 3 份）
+
+- `whuyao/eye-level-jingzhang`（Needs revision）：在提交中**明确披露大钟寺边界冲突**——本包已吸收该做法，将边界位置存疑显式写入 assumptions 与 proposal 数据缺口段。
+- `wms2537/jingzhang-city-model-commons`（Formal review ready）：以"开放三维语义城模 + 可复现实验 + 受控实地验证 + 公众审计"构建空间智能公地，强调 AI 能力可理解、可模拟、可问责、可回滚——与 SC-03 开源模型评测场 / SC-10 AI 治理实验室的治理叙事互补，后续可在运营机制中吸收"公众审计"细节。
+- `seanSaxcy3/all-life-speaks`（Formal review ready）：多物种环境 AI 以"可溯源、可拒答、需人工放行、可申诉、可回滚"约束生成内容——本包 SC-09 AI 剧场等生成内容场景的人工审核机制可对照其边界条款细化。

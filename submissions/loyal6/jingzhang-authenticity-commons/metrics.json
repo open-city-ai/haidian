@@ -129,6 +129,144 @@
         "Geometry is provisional; names and announced areas follow the official announcement."
       ]
     },
+    "correction_right_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/correction-protocol.json"
+      ],
+      "formula": "count(rights)",
+      "confidence": "high",
+      "assumptions": [
+        "These are proposal rights and operating tests, not enacted statutory rights."
+      ]
+    },
+    "station_contract_complete_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features with accountable_role, human_handover_channel, correction_return_channels, pause_trigger, shutdown_trigger and recovery_action)",
+      "confidence": "high",
+      "assumptions": [
+        "Completeness measures proposal readiness, not live service performance."
+      ]
+    },
+    "same_channel_contract_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "stations with one or more named correction_return_channels / all staffed stations",
+      "confidence": "high",
+      "assumptions": [
+        "Named channels are conceptual contractual fields and require field verification before operation."
+      ]
+    },
+    "human_handover_contract_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "stations with a named human_handover_channel / all staffed stations",
+      "confidence": "high",
+      "assumptions": [
+        "Coverage indicates a documented route, not current staffing availability."
+      ]
+    },
+    "pilot_duration_days": {
+      "status": "known",
+      "value": 90,
+      "unit": "day",
+      "source_files": [
+        "visual/assets/pilot-playbook.json"
+      ],
+      "formula": "declared reversible pilot duration",
+      "confidence": "high",
+      "assumptions": [
+        "The pilot is a proposal and has not been authorized or operated."
+      ]
+    },
+    "human_handover_time_min": {
+      "status": "unknown",
+      "value": null,
+      "unit": "min",
+      "source_files": [
+        "visual/assets/pilot-playbook.json"
+      ],
+      "formula": "median(minutes from intake to qualified human acceptance), disaggregated by access mode",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No authorized live service or baseline observation exists; the 90-day pilot would establish it."
+    },
+    "same_channel_correction_time_h": {
+      "status": "unknown",
+      "value": null,
+      "unit": "hour",
+      "source_files": [
+        "visual/assets/pilot-playbook.json"
+      ],
+      "formula": "median(hours from approved correction to confirmation across every affected channel)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Affected channels and service agreements have not yet been field-inventoried."
+    },
+    "screenless_parity_completion_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/pilot-playbook.json"
+      ],
+      "formula": "screenless users completing the same core decision and appeal journey / all observed screenless users",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires accessible field observation with consent; no participant data is fabricated."
+    },
+    "appeal_reversal_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/pilot-playbook.json"
+      ],
+      "formula": "appeals resulting in changed or withdrawn adverse conclusions / resolved appeals",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No live cases exist; future reporting must also publish unresolved and withdrawn cases."
+    },
+    "user_understanding_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/pilot-playbook.json"
+      ],
+      "formula": "participants who can explain that provenance does not prove truth / participants completing an accessible comprehension check",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires a reviewed multilingual and accessible field instrument."
+    },
+    "asset_data_recovery_completion_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/phasing.geojson",
+        "visual/assets/pilot-playbook.json"
+      ],
+      "formula": "retired services with confirmed data deletion or export and physical asset restoration / all retired services",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires actual retirement events and independent recovery records."
+    },
     "floor_area_ratio": {
       "status": "unknown",
       "value": null,

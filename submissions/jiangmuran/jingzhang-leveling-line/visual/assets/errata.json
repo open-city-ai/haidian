@@ -4,17 +4,17 @@
  "note_en": "A register of this package's own errors. Not a changelog: a changelog says what changed, this says what was wrong, what shape the error had, who found it, and which commit fixed it. Every entry names a commit, and the build verifies that commit exists and touched the file blamed. An errata register that cannot be joined to the repository is the defect it records.",
  "why_zh": "全场 351 份方案中没有一份勘误、撤回或作者自述的复盘。一个主张城市应当公开自身误差的方案，不能自己呈现一个无瑕的表面：它提出的整套机制都建立在「看不见失败的测量不值得信任」之上，文档同理。",
  "counts": {
-  "total": 61,
+  "total": 62,
   "by_found_by": {
    "audit": 25,
    "own-gate": 5,
    "external-reviewer": 4,
-   "self": 27
+   "self": 28
   },
   "by_shape": {
    "reference-does-not-resolve": 4,
    "number-outlived-the-sentence-holding-it": 4,
-   "two-copies-of-one-thing-drifted": 6,
+   "two-copies-of-one-thing-drifted": 7,
    "check-measured-the-convenient-thing": 13,
    "geometry-does-not-mean-what-it-says": 4,
    "term-of-art-misapplied": 1,
@@ -478,6 +478,16 @@
    "what_zh": "图纸索引上方写「共十二张图纸，FIG.00–FIG.11 连续编号」，下方的表只有九行（FIG.01–FIG.09）。缺 FIG.00（全文开篇那张）、FIG.10（人视街道剖面）与 FIG.11（区域协同接口）——**而正文在 L531 按编号引用了 FIG.11**，把读者指向一个不含它的索引。同一处的复核清单则编号成 1…10、8、9，十二项用了十个号。",
    "why_zh": "两个语种带着同样的九行，所以这不是翻译疏漏，是**完整性声明写在表格上方那句话里、而不是由表格本身承担**。清单的编号是看得见的那个缺陷，危险的是另一个：清单上每一项都指名一个路径，一份把评审指向不存在文件的清单，比没有清单更糟。",
    "fix_zh": "两者都改为生成：索引由 `build_figure_index.py` 从随包 PNG 生成，句中的份数写自 `len(FIGURES)`，并断言每张随包图有编号、每个编号有文件、正文引用的每个 FIG.NN 都能解析到行；清单由 `enumerate` 编号，且十二项声明的 17 条路径必须全部在包内解析。"
+  },
+  {
+   "id": "E62",
+   "commit": "2c231030",
+   "file": "assets/figures/kit-of-parts.png",
+   "found_by": "self",
+   "shape": "two-copies-of-one-thing-drifted",
+   "what_zh": "E61（牌面印毫米、契约定义为无量纲比率）之后，把同一个问题问遍全部图纸脚本：**凡是一个数同时出现在图上和随包 JSON 里，就去比一次。** 共查出五处：①E61 单位分歧；②FIG.09 的运营周期是 `build_operations.CYCLE` 的第二份副本；③步速 0.6/0.9/1.2 m/s 在三个图纸脚本里各存一份；④FIG.15 的 `CADENCE_BY_ORDER` 是 `spatial.json` 逐点声明的复测周期的第三份副本；⑤FIG.16 的七个尺寸与组件库硬约束文本互为副本——**这一处是我两小时前自己造的**。",
+   "why_zh": "**五处里有四处，在我去看的那一刻是一致的。** 只有 FIG.09 已经分开：图上写半年度路线复测由「专业机构主导，四类复核主体到齐」，数据里写 P1、P2。两句话都不荒谬，所以没人发现——**一份可机器校验，一份不可**。真正的缺陷不是那四处「暂时还一致」，而是**包内没有任何东西能在它们不再一致时说出来**。并且方向是固定的：漂移的总是图，因为图是没有被机器校验的那一份。这也是本包一直在别人包里指出的那件事——只是这次它长在图纸与数据之间。",
+   "fix_zh": "能合并的合并：FIG.09 的周期改由 `build_operations.CYCLE` 推导（测点编号取自 `BENCH_ORDER`，主导方取自 `led_by_personas`，人名查 `personas.json`）；步速移入 `personas.json` 的 `walking_speed_ms`——**它们是关于人的假设，应当在评审拿得到的文件里，而不是在三个没人收到的构建脚本里**，并写明「换掉这三个数，那四张图一起改」；FIG.15 改读新导出的 `sessions_by_benchmark()`。不能合并的加断言：FIG.16 的尺寸带着表格放不下的逐条理由，故保留两份，但构建时逐个比对组件库硬约束文本，缺一即拒——已用把 ±5 mm 改成 ±8 mm 自测过，构建确实拒绝。**代价写明**：FIG.09 原本印完整画像描述，现在印编号（英文下全名撑破栏宽），图上信息因此变少，同时它也不再能说出数据里没有的话。**一处旁证**：把 FIG.15 与 FIG.16 改为读取之后，两张图的成品字节完全未变，提交里只动了 manifest 的摘要——这正说明那两处副本当时确实一致，而「当时一致」从来不是不管它的理由。"
   },
   {
    "id": "E61",

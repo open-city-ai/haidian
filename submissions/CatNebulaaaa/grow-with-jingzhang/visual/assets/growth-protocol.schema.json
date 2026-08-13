@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "growth-protocol.schema.json",
+  "title": "8-80 Equal-Service Protocol",
+  "type": "object",
+  "required": ["schema_version", "protocol", "services", "negative_cases"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {"type": "string"},
+    "schema_version": {"const": "1.0.0"},
+    "protocol": {"const": "8-80_equal_service"},
+    "services": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {"$ref": "#/$defs/service"}
+    },
+    "negative_cases": {
+      "type": "array",
+      "minItems": 8,
+      "items": {"$ref": "#/$defs/negative_case"}
+    }
+  },
+  "$defs": {
+    "negative_case": {
+      "type": "object",
+      "required": ["id", "name_zh", "name_en", "must_violate"],
+      "additionalProperties": true,
+      "properties": {
+        "id": {"type": "string", "pattern": "^X[0-9]{2}$"},
+        "name_zh": {"type": "string", "minLength": 2},
+        "name_en": {"type": "string", "minLength": 2},
+        "must_violate": {"enum": ["R1_OWNER", "R2_EQUAL_SERVICE", "R3_MINIMUM_DATA", "R4_NO_BIOMETRIC", "R5_TAKEOVER", "R6_STOP_AUTHORITY", "R7_NOTICE", "R8_RECEIPT"]}
+      }
+    },
+    "service": {
+      "type": "object",
+      "required": [
+        "id", "name_zh", "name_en", "area", "purpose", "owner",
+        "data_mode", "personal_data", "biometric_identification",
+        "non_digital_equivalent", "human_takeover", "stop_authority",
+        "public_notice", "evidence_receipt", "review_cycle", "status"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "id": {"type": "string", "pattern": "^[SX][0-9]{2}$"},
+        "name_zh": {"type": "string", "minLength": 2},
+        "name_en": {"type": "string", "minLength": 2},
+        "area": {"type": "string", "minLength": 2},
+        "purpose": {"type": "string", "minLength": 5},
+        "owner": {"type": "string", "minLength": 2},
+        "data_mode": {"enum": ["none", "synthetic", "device_only", "voluntary_aggregate", "local_ephemeral"]},
+        "personal_data": {"const": false},
+        "biometric_identification": {"const": false},
+        "non_digital_equivalent": {"type": "string", "minLength": 4},
+        "human_takeover": {"type": "string", "minLength": 4},
+        "stop_authority": {"type": "string", "minLength": 4},
+        "public_notice": {"type": "boolean", "const": true},
+        "evidence_receipt": {"type": "array", "minItems": 2, "items": {"type": "string"}},
+        "review_cycle": {"enum": ["per_session", "monthly", "quarterly", "annual"]},
+        "status": {"enum": ["proposed", "controlled_test", "retired"]}
+      }
+    }
+  }
+}

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Adaptive Jing-Zhang | A human-governed learning city</title>
+<style>
+    :root{--ink:#17212b;--paper:#f4f2ec;--white:#fffefa;--teal:#087f7a;--coral:#e26952;--lime:#9cae3a;--violet:#75698c;--muted:#697178;--line:#d7d8d4}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,"Microsoft YaHei",system-ui,sans-serif;line-height:1.55}
+    a{color:inherit}a:focus-visible,.skip:focus-visible{outline:4px solid var(--coral);outline-offset:4px}.skip{position:absolute;left:-9999px;top:12px;background:#fff;padding:10px;z-index:9}.skip:focus{left:12px}
+    header{background:var(--ink);color:#fff;min-height:88vh;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(420px,.95fr);gap:2rem;padding:5vw;align-items:center}
+    .eyebrow{color:#ff8067;font-size:.8rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.logo{display:inline-grid;grid-template-columns:3.5rem 1fr;gap:1rem;align-items:center}.glyph{width:3.5rem;height:3.5rem;border:2px solid #fff;border-radius:50%;position:relative}.glyph:before,.glyph:after{content:"";position:absolute;left:.7rem;right:.7rem;height:3px;background:var(--teal);transform-origin:left}.glyph:before{top:1.35rem;transform:rotate(-25deg)}.glyph:after{bottom:1.35rem;transform:rotate(25deg);background:var(--coral)}
+    h1{font-size:clamp(3rem,7vw,7rem);line-height:.96;margin:.6rem 0 1.2rem;letter-spacing:-.05em}.lede{font-size:clamp(1.1rem,2vw,1.55rem);max-width:45rem;color:#d9ddd9}.hero-note{border-left:4px solid var(--coral);padding-left:1rem;margin-top:2rem;color:#bfc6c8}.hero-figure{background:#fff;border-radius:2rem;padding:.8rem;box-shadow:0 2rem 6rem #0005}.hero-figure img,.figure img{width:100%;display:block;border-radius:1.35rem}.status{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:#786a92;margin:.7rem .4rem 0;font-weight:800}
+    nav{position:sticky;top:0;z-index:5;background:#fffefaeF;border-bottom:1px solid var(--line);backdrop-filter:blur(12px);overflow:auto;white-space:nowrap;padding:.8rem 3vw}nav a{display:inline-block;text-decoration:none;font-size:.85rem;font-weight:800;margin-right:.8rem;padding:.3rem 0;border-bottom:2px solid transparent}nav a:hover{border-color:var(--coral)}
+    main{max-width:1440px;margin:auto;padding:4rem 4vw}.section{scroll-margin-top:5rem;padding:3rem 0;border-bottom:1px solid var(--line)}h2{font-size:clamp(2rem,4.5vw,4.5rem);line-height:1.02;margin:0 0 1rem;letter-spacing:-.035em}.intro{font-size:1.2rem;max-width:58rem;color:#45505a}
+    .metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem;margin:2rem 0}.metric{background:#fff;padding:1.25rem;border-radius:1rem;border:1px solid var(--line)}.metric b{font-size:2rem;display:block;line-height:1.1}.metric span{font-size:.76rem;color:var(--muted);text-transform:uppercase;font-weight:800}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}.card{background:#fff;border:1px solid var(--line);border-radius:1.3rem;padding:1.5rem}.card h3{font-size:1.35rem;margin:.2rem 0 .7rem}.accent-teal{border-top:7px solid var(--teal)}.accent-coral{border-top:7px solid var(--coral)}.accent-violet{border-top:7px solid var(--violet)}
+    .figure{background:#fff;padding:.75rem;border-radius:1.6rem;border:1px solid var(--line);margin:2rem 0}.caption{font-size:.82rem;color:var(--muted);padding:.8rem}.ledger{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--ink);border-radius:1.3rem;overflow:hidden;margin:2rem 0}.ledger div{background:#fff;padding:1.4rem;min-height:9rem}.ledger strong{display:block;color:var(--teal);font-size:.8rem;letter-spacing:.08em;margin-bottom:.6rem}
+    .scenario-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem}.scenario{background:var(--ink);color:#fff;border-radius:1rem;padding:1rem;min-height:9rem}.scenario b{color:#ff8067;display:block;margin-bottom:.5rem}.gate{background:var(--ink);color:#fff;border-radius:1.5rem;padding:2rem;margin:2rem 0}.gate strong{color:#ff8067}.table{width:100%;table-layout:fixed;border-collapse:collapse;background:#fff;border-radius:1rem;overflow:hidden}.table th,.table td{text-align:left;padding:.85rem;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:anywhere;word-break:break-word}.table th{background:#e9e5ef}
+    .source-list{columns:2;column-gap:3rem}.source-list li{break-inside:avoid;margin:.5rem 0}.footer{background:var(--ink);color:#fff;padding:4rem 5vw}.footer p{max-width:65rem;color:#cbd0d1}.pill{display:inline-block;border:1px solid currentColor;border-radius:99rem;padding:.3rem .7rem;margin:.2rem;font-size:.78rem;font-weight:800}
+    @media(max-width:1000px){header{grid-template-columns:1fr;min-height:auto}.metrics{grid-template-columns:repeat(3,1fr)}.scenario-grid{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:1fr}.ledger{grid-template-columns:1fr}.source-list{columns:1}}
+    @media(max-width:650px){main{padding:2rem 1rem}.metrics{grid-template-columns:repeat(2,1fr)}.grid-2{grid-template-columns:1fr}.scenario-grid{grid-template-columns:1fr}h1{font-size:3.2rem}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+    @media print{nav{display:none}header{min-height:0;break-after:page}.section{break-inside:avoid}.hero-figure{box-shadow:none}}
+    </style>
+</head>
+<body>
+<a class="skip" href="#overview">Skip to the proposal</a>
+<header>
+  <div>
+    <div class="logo"><span class="glyph" aria-hidden="true"></span><span class="eyebrow">Adaptive civic network concept reference</span></div>
+    <h1>ADAPTIVE<br>JING-ZHANG</h1>
+    <p class="lede">Let many paths emerge. Build only the connections that earn trust.</p>
+    <p>A Physarum-inspired network is not an urban decision-maker. It generates alternatives and exposes disagreement; people and accountable institutions set goals, safeguards and red lines, stop rules, and final decisions.</p>
+    <p class="hero-note">Every placement is a conceptual recommendation or reference scheme for professional teams to develop further; provisional polygons are not official boundaries and do not constitute government approval.</p>
+    <p><a href="index.html" lang="zh-CN">中文</a></p>
+  </div>
+  <figure class="hero-figure">
+    <img src="../assets/figures/site-overview.en.png" alt="Conceptual site overview showing a provisional working area, candidate connections, and three key areas">
+    <figcaption class="caption">NORMALIZED CONCEPTUAL GEOMETRY - NOT TO SCALE · PROVISIONAL BOUNDARY ≠ OFFICIAL REDLINE</figcaption>
+  </figure>
+</header>
+<nav aria-label="Proposal sections"><a href="#overview">Overview</a><a href="#scales">Three scales</a><a href="#land">Land use</a><a href="#areas">Key areas</a><a href="#mobility">Mobility</a><a href="#green">Blue-green</a><a href="#ai">AI scenarios</a><a href="#buildings">Buildings</a><a href="#projects">Projects</a><a href="#metrics">Metrics</a><a href="#tasks">Task coverage</a><a href="#check">Review gates</a><a href="#sources">Sources</a><a href="#assumptions">Assumptions</a></nav>
+<main>
+  <section class="section" id="overview">
+    <span class="eyebrow">Overview</span>
+    <h2>A strong frame, a loose fit, and fast feedback</h2>
+    <p class="intro">A strong frame secures public obligations. A loose fit keeps multiple spatial options open. Fast feedback makes pilots correctable. People and accountable institutions set the goals, safeguards, stop rules, and final decisions; the model only proposes alternatives.</p>
+    <div class="metrics"><div class="metric"><b data-metric="site_area_sqm" data-value="11412825.386">11.413 km²</b><span>provisional design area</span></div><div class="metric"><b data-metric="green_ratio" data-value="0.174847">17.5%</b><span>conceptual green-space share</span></div><div class="metric"><b data-metric="public_space_ratio" data-value="0.00735">0.7%</b><span>conceptual public-space share</span></div><div class="metric"><b data-metric="ensemble_run_count" data-value="64">64</b><span>fixed-seed ensemble runs</span></div><div class="metric"><b data-metric="persistent_corridor_count" data-value="6">6</b><span>persistent candidates</span></div><div class="metric"><b data-metric="disagreement_corridor_count" data-value="8">8</b><span>disputed candidates</span></div></div>
+    <div class="ledger"><div><strong>01</strong><h3>PUBLIC INPUTS</h3><p>Official, provisional, proxy, and missing inputs remain distinct.</p></div><div><strong>02</strong><h3>64-RUN GENERATOR</h3><p>Fixed seeds are held constant while human-defined weights vary within disclosed ranges.</p></div><div><strong>03</strong><h3>DISAGREEMENT ATLAS</h3><p>Persistent, disputed, and pruned candidates remain visible.</p></div><div><strong>04</strong><h3>HUMAN GATES</h3><p>People may reject, revise, pilot, or retire any candidate.</p></div><div><strong>05</strong><h3>FEEDBACK</h3><p>Feedback records use, maintenance, exclusion, complaints, and failure.</p></div></div>
+    <div class="gate"><strong>Human authority</strong><p>People may reject, revise, pilot, or retire every candidate and connection. Model stability is not public legitimacy.</p></div>
+  </section>
+
+  <section class="section" id="scales">
+    <span class="eyebrow">Three scales</span>
+    <h2>Coordinate widely; design carefully; pilot locally</h2>
+    <div class="grid-3">
+      <div class="card accent-violet"><h3>≈43.6 km²</h3><p><strong>Coordinated research area.</strong> A comparative frame for industry, institutions, talent, and daily life—not a new statutory boundary.</p></div>
+      <div class="card accent-teal"><h3>≈11.4 km²</h3><p><strong>Overall design area.</strong> A provisional reference structure for interfaces, conceptual land-use relationships, and auditable network alternatives.</p></div>
+      <div class="card accent-coral"><h3>≈368.4 ha</h3><p><strong>Three key areas.</strong> Differentiated 90-day pilots with explicit stop-or-recover rules and professional review before any spatial commitment.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="land">
+    <span class="eyebrow">Land use</span>
+    <h2>One shared-edge partition; several future choices</h2>
+    <p class="intro">The reference partition covers the submitted provisional polygon without gaps or overlaps. It tests relationships among production, research, public service, mixed use, green space, and public space; it is not a statutory land-use plan.</p>
+    <figure class="figure"><img src="../assets/figures/land-use-structure.en.png" style="width:100%;display:block;border-radius:1.1rem" alt="Conceptual shared-edge land-use partition with provisional boundaries"><figcaption class="caption">Shared-edge partition coverage: 100% · provisional conceptual geometry. Professional teams must reconcile official parcels, ownership, heritage, utilities, flood risk, and planning controls.</figcaption></figure>
+  </section>
+
+  <section class="section" id="areas">
+    <span class="eyebrow">Key areas</span>
+    <h2>Three places, three learning contracts</h2>
+    <div class="grid-3">
+      <div class="card accent-teal"><h3>Zhongzhiyuan AI Acceleration Area</h3><p>Test accessible station-to-workplace links, repair-oriented ground floors, and a controlled service pilot. Stop when access, safety, or maintenance thresholds fail.</p></div>
+      <div class="card accent-coral"><h3>Beijing AI Origin Community</h3><p>Test Jing-Zhang heritage interpretation, public-service navigation, and a model-appeal table. Recover the public realm if verified use or trust does not materialize.</p></div>
+      <div class="card accent-violet"><h3>Dazhongsi AI Industry Cluster</h3><p>Test enterprise services, event-day support, and shade-and-stormwater operations. Retire services that cannot meet rights, privacy, or human-review conditions.</p></div>
+    </div>
+    <figure class="figure"><img src="../assets/figures/key-areas.en.png" style="width:100%;display:block;border-radius:1.1rem" alt="Three provisional key-area polygons with differentiated pilot themes"><figcaption class="caption">The three polygons are provisional study areas, not official boundaries. Their placement is a reference scheme for further professional work.</figcaption></figure>
+  </section>
+
+  <section class="section" id="mobility">
+    <span class="eyebrow">Mobility</span>
+    <h2>Read persistence as a question, not a route approval</h2>
+    <p class="intro">Persistent edges are candidates for professional study, disputed edges become explicit design questions, and pruned edges remain in the audit history. Human review must compare access, safety, heritage, cost, operations, and local experience before any pilot.</p>
+    <figure class="figure"><img src="../assets/figures/mobility-bluegreen.en.png" style="width:100%;display:block;border-radius:1.1rem" alt="Persistent and disputed conceptual corridors over a blue-green public-space reference network"><figcaption class="caption">A normalized topology stress test. Model outputs are not transport or engineering evidence.</figcaption></figure>
+  </section>
+
+  <section class="section" id="green">
+    <span class="eyebrow">Blue-green public space</span>
+    <h2>One network, four public duties</h2>
+    <div class="grid-2">
+      <div class="card accent-teal"><h3>Move and include</h3><p>Use continuous, legible, step-free public routes as a design test, while keeping non-digital navigation available.</p></div>
+      <div class="card accent-coral"><h3>Shade and manage rain</h3><p>Test shade, cooling, and stormwater functions together; confirm hydrology and planting with qualified professionals.</p></div>
+      <div class="card accent-violet"><h3>Hold memory and habitat</h3><p>Make heritage interpretation, biodiversity, and everyday use visible without turning proxy scores into official protection claims.</p></div>
+      <div class="card accent-teal"><h3>Maintain and fail safely</h3><p>Name a maintainer, budget for repair, record complaints, and keep a recovery path when a pilot underperforms.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="ai">
+    <span class="eyebrow">AI scenarios</span>
+    <h2>Ten scenario cards; one governance contract</h2>
+    <p class="intro">Every scenario identifies its place type, minimum data, human review, non-digital fallback, accountable operator, and stop rule. The cards are conceptual service specifications, not authorizations to deploy.</p>
+    <div class="scenario-grid"><div class="scenario"><b>S01</b><h3>Accessible mobility</h3><p>Stations, crossings, and public routes; accessibility data; trained human review; a signed-route fallback; a named mobility operator; and a stop rule for unsafe or exclusionary guidance.</p></div><div class="scenario"><b>S02</b><h3>Jing-Zhang heritage interpretation</h3><p>Heritage places; verified archives; curatorial review; printed interpretation; a named heritage operator; and a stop rule for unverified or harmful claims.</p></div><div class="scenario"><b>S03</b><h3>Public-service navigation</h3><p>Civic-service places; current service directories; staff review; counter and telephone fallbacks; a named service operator; and a stop rule when information is stale.</p></div><div class="scenario"><b>S04</b><h3>Health-service wayfinding and referral</h3><p>Health-service places; approved directories only; qualified human review; telephone and desk fallbacks; a named health operator; and a stop rule for clinical or safety risk.</p></div><div class="scenario"><b>S05</b><h3>Legal and compliance orientation</h3><p>Service desks; current public rules; qualified human review; printed and in-person fallbacks; a named compliance operator; and a stop rule before the system is mistaken for legal advice.</p></div><div class="scenario"><b>S06</b><h3>Enterprise-service copilot</h3><p>Business-service places; approved program records; staff review; counter and telephone fallbacks; a named enterprise operator; and a stop rule for confidentiality or eligibility errors.</p></div><div class="scenario"><b>S07</b><h3>Low-speed delivery and repair</h3><p>Controlled test routes; mapped hazards; on-site supervision; manual delivery fallback; a named fleet operator; and a stop rule for conflict, access, or maintenance failure.</p></div><div class="scenario"><b>S08</b><h3>Heatwave shade operations</h3><p>Heat-exposed public spaces; verified weather and shade inputs; staff review; physical signage and staffed refuges; a named public-realm operator; and a stop rule for sensor or coverage failure.</p></div><div class="scenario"><b>S09</b><h3>Event-day flow support</h3><p>Event routes and thresholds; approved event plans; command-post review; steward and signage fallbacks; a named event operator; and a stop rule for crowding or conflicting instructions.</p></div><div class="scenario"><b>S10</b><h3>Appeals and model retirement</h3><p>Every deployed service; decision and complaint logs; independent human review; in-person appeal channels; a named accountable institution; and a binding stop, rollback, or retirement rule.</p></div></div>
+    <div class="gate"><strong>Non-tradeable gates</strong><p>Safety; rights; heritage; affordability; accessibility; privacy; human review. Each gate is an independent veto: a favorable weighted score cannot override it.</p></div>
+  </section>
+
+  <section class="section" id="buildings">
+    <span class="eyebrow">Buildings</span>
+    <h2>Verify before retaining; retrofit first; add reversibly</h2>
+    <div class="grid-3">
+      <div class="card accent-violet"><h3>Retain and repair</h3><p>Prioritize continuing use, public memory, adaptability, and repair value after professional survey.</p></div>
+      <div class="card accent-teal"><h3>Light retrofit</h3><p>Improve accessibility, fire safety, ventilation, services, and ground-floor openness through tested interventions.</p></div>
+      <div class="card accent-coral"><h3>Pending professional judgment</h3><p>Make no removal decision without parcel, ownership, structural, heritage, environmental, and public-interest evidence.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <span class="eyebrow">Projects and phasing</span>
+    <h2>Evidence first, then space, then institutions</h2>
+    <div><span class="pill">P01 Boundary and Evidence Room</span><span class="pill">P02 Disagreement Atlas</span><span class="pill">P03 Accessible Station Link</span><span class="pill">P04 90-Day AI Registry</span><span class="pill">P05 Model Commons and Appeal Table</span><span class="pill">P06 Controlled Robot Test</span><span class="pill">P07 Arrival and Repair Ground Floor</span><span class="pill">P08 Shade and Stormwater Segment</span><span class="pill">P09 Open-Source Service Desk</span><span class="pill">P10 Maintenance Parts Library</span><span class="pill">P11 Annual Atlas Rerun</span></div>
+    <p class="intro">Phase 0 verifies data and accountability. Phase 1 runs reversible 90-day micro-pilots. Phase 2 learns across at least two seasons. Phase 3 may institutionalize only what passes human, professional, financial, maintenance, and public-interest review.</p>
+  </section>
+
+  <section class="section" id="metrics">
+    <span class="eyebrow">Metrics and evidence</span>
+    <h2>Model stability is not public legitimacy</h2>
+    <p class="intro">The 64 fixed-seed runs show how candidate topologies respond to disclosed proxy weights. Persistence, detour, and single-edge-loss results support comparison inside this conceptual model only; they do not prove demand, capacity, constructability, safety, or social consent.</p>
+    <figure class="figure"><img src="../assets/figures/metrics-evidence.en.png" style="width:100%;display:block;border-radius:1.1rem" alt="Evidence ledger showing model inputs, ensemble runs, disagreement, human gates, and feedback"><figcaption class="caption">Metrics are labeled by evidence type. Geometry-derived values, policy proxies, and missing official controls must not be conflated.</figcaption></figure>
+  </section>
+
+  <section class="section" id="tasks">
+    <span class="eyebrow">Task coverage</span>
+    <h2>Traceable brief, agent tasks, and professional design depth</h2>
+    <table class="table">
+      <thead><tr><th>Review object</th><th>Coverage</th><th>Audit record</th></tr></thead>
+      <tbody>
+        <tr><td>Official open-call requirements</td><td>17 requirements plus six agent tasks</td><td>compliance_matrix.json</td></tr>
+        <tr><td>Mandatory professional standards</td><td>All items addressed at the declared concept level</td><td>standard_matrix.json</td></tr>
+        <tr><td>Formal design depth</td><td>15 items complete as conceptual or reference deliverables</td><td>design_depth_matrix.json</td></tr>
+        <tr><td>Reproducibility</td><td>Inputs, seeds, weights, runs, and outputs are recorded</td><td>physarum-inputs.json · physarum-runs.json · reproduce_physarum.js</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section" id="check">
+    <span class="eyebrow">Review gates</span>
+    <h2>Four checks mean reviewable—never approved</h2>
+    <div class="grid-2">
+      <div class="card"><h3>1. Deterministic records</h3><p>Required files, identifiers, hashes, and declared relationships are machine-checkable.</p></div>
+      <div class="card"><h3>2. Spatial structure</h3><p>Submitted geometries can be parsed, measured, and checked for the declared topological relationships.</p></div>
+      <div class="card"><h3>3. Offline visual review</h3><p>The proposal can be read without remote scripts, fonts, tiles, trackers, forms, or network requests.</p></div>
+      <div class="card"><h3>4. Evidence discipline</h3><p>Official, provisional, conceptual, proxy, and missing evidence remain visibly separate.</p></div>
+    </div>
+    <p class="intro">Passing these checks does not mean government approval, professional certification, engineering feasibility, confirmed investment, or guaranteed implementation. The recorded state is reviewability only.</p>
+  </section>
+
+  <section class="section" id="sources">
+    <span class="eyebrow">Sources</span>
+    <h2>Each source supports only the claim it can support</h2>
+    <ul class="source-list">
+      <li>Official open-call announcement and Agent Taskbook</li>
+      <li>Repository source registry, allowed design space, and provisional geometry</li>
+      <li>Local snapshots of mandatory professional standards</li>
+      <li>Tero et al. on Physarum-inspired network adaptation, used as a methodological reference</li>
+      <li>Structured metrics, assumptions, sources, standards, design-depth, and compliance records</li>
+      <li>Issues and peer precedents cited in the proposal's source ledger</li>
+    </ul>
+  </section>
+
+  <section class="section" id="assumptions">
+    <span class="eyebrow">Assumptions and limits</span>
+    <h2>Missing evidence does not remove constraints</h2>
+    <ul><li>The working-area and key-area polygons are provisional; they are not official boundaries and do not constitute government approval.</li><li>Nodes and candidate edges are normalized conceptual proxies.</li><li>Equity, climate, heritage, and maintenance inputs are policy proxies, not observed data.</li><li>Official floor-area ratio, height, ownership, parcel-level heritage, flood, utility, and origin-destination data remain unavailable.</li><li>Every spatial placement remains a conceptual recommendation or reference scheme for professional teams to develop further.</li><li>No element asserts approved planning, engineering feasibility, confirmed investment, or government endorsement.</li></ul>
+  </section>
+</main>
+<footer class="footer">
+  <h2>Not a slime-mould city—a human learning city.</h2>
+  <p>Physarum is used only as a transparent metaphor for generating alternatives. Every corridor may be tested, rejected, revised, or retired. All spatial conclusions are conceptual recommendations or reference schemes for professional teams to develop further.</p>
+</footer>
+</body>
+</html>

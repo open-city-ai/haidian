@@ -1,0 +1,115 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "ASM-001",
+      "title_zh": "临时边界待官方替换后全图层重算",
+      "statement_zh": "提交包的站点边界与三处重点区域使用 provisional 临时几何；官方 SITE_BOUNDARY 与 KEY_AREA 发布后，须对 site boundary、key areas、land use、roads、green space、public space、buildings、phasing 与全部指标整体重算。",
+      "impact_zh": "官方边界替换前，空间结构、面积与比例结论只作设计讨论；替换时不得只更新单个文件，须重跑脚手架、自检与图纸/HTML 生成。",
+      "source_ids": [
+        "SRC-PROVISIONAL-BOUNDARIES-2026",
+        "BOUNDARY-SOURCE",
+        "KEY-AREA-SOURCE",
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
+      ],
+      "verification_status": "pending_official_data"
+    },
+    {
+      "id": "ASM-002",
+      "title_zh": "规划控制指标待控规确认",
+      "statement_zh": "容积率、建筑高度、建筑密度、绿地率、退线与建筑控制线均以官方控制性详细规划为准；官方控规条件未随公开资料包提供，方案以设计建议层级表达。",
+      "impact_zh": "metrics.json 中 floor_area_ratio 与 building_height_m 列为 unknown；正文凡涉及开发强度与高度控制的内容均写为待正式控规条件确认。",
+      "source_ids": [
+        "SRC-MOHURD-CONTROL-DETAILED-PLANNING",
+        "SITE-PACKAGE"
+      ],
+      "verification_status": "pending_official_data"
+    },
+    {
+      "id": "ASM-003",
+      "title_zh": "道路红线与轨道线位为概念走向",
+      "statement_zh": "道路中心线、道路红线与轨道线位、站点一体化范围仅为概念性走向，需以官方专项交通与轨道方案确认。",
+      "impact_zh": "交通与轨道结论仅作为临时设计讨论，不构成审定线位或红线段界。",
+      "source_ids": [
+        "SITE-PACKAGE",
+        "OFFICIAL-ANNOUNCEMENT"
+      ],
+      "verification_status": "pending_official_data"
+    },
+    {
+      "id": "ASM-004",
+      "title_zh": "建筑基底为概念体量",
+      "statement_zh": "建筑基底表达概念体量与拆改留方法，非现状精确测绘，也不代表权属边界；现状建筑、权属与工程条件资料到位后需校准。",
+      "impact_zh": "建筑基底面积与密度相关数值仅作空间研究量级，不得作为精确建设规模依据。",
+      "source_ids": [
+        "BOUNDARY-SOURCE",
+        "SITE-PACKAGE"
+      ],
+      "verification_status": "agent_inferred"
+    },
+    {
+      "id": "ASM-005",
+      "title_zh": "文保与蓝线边界为概念参考",
+      "statement_zh": "文物保护范围、建设控制地带与河道蓝线边界为概念参考表达，最终以官方公布与批复的法定边界为准。",
+      "impact_zh": "涉及文保与蓝线的风貌、蓝绿与退线结论须在官方边界发布后复核，严禁给出伪精确控制线。",
+      "source_ids": [
+        "SRC-2017-MOHURD-URBAN-DESIGN-MEASURES",
+        "SITE-PACKAGE"
+      ],
+      "verification_status": "pending_official_data"
+    },
+    {
+      "id": "ASM-006",
+      "title_zh": "京张遗址公园范围以官方文保公布为准",
+      "statement_zh": "京张遗址公园活力带（智链主轴）的范围、设施与活动承载以官方文物保护与公园规划公布为准。",
+      "impact_zh": "一带的空间动作与慢行断点缝合项目待官方范围确认后深化，不声称官方批准。",
+      "source_ids": [
+        "OFFICIAL-ANNOUNCEMENT",
+        "SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT"
+      ],
+      "verification_status": "pending_official_data"
+    },
+    {
+      "id": "ASM-007",
+      "title_zh": "OSM 仅作背景核图",
+      "statement_zh": "OpenStreetMap 数据仅用于背景核图，遵守 ODbL 署名要求，不作为任何空间结论、面积或线位的依据。",
+      "impact_zh": "提交图件与指标不依赖 OSM 派生结论，来源与许可按 OSM 版权声明执行。",
+      "source_ids": [
+        "SRC-OSM-COPYRIGHT"
+      ],
+      "verification_status": "confirmed_by_source"
+    },
+    {
+      "id": "ASM-008",
+      "title_zh": "数据要素与AI场景需合规授权与人工复核",
+      "statement_zh": "AI 场景、数据要素流通与城市智能体应用须符合数据最小化、公开来源、授权许可、可解释与人工复核原则，不得输出未经授权的个人画像。",
+      "impact_zh": "每张场景卡与测试验证场景均注明空间位置、数据来源、隐私边界、人工复核机制与运营主体。",
+      "source_ids": [
+        "AGENT-TASKBOOK",
+        "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK"
+      ],
+      "verification_status": "confirmed_by_source"
+    },
+    {
+      "id": "ASM-009",
+      "title_zh": "活动与运营为概念建议非确定安排",
+      "statement_zh": "年度智链节、开发者社区、场景开放日、全球AI活动周路线等运营安排为概念建议与参考方案，供专业团队深化研究，非已确定的政府活动或实施承诺。",
+      "impact_zh": "运营表述均为可讨论机制，注明运营对象、频率、责任边界、转化路径与风险，不写为确定安排。",
+      "source_ids": [
+        "AGENT-TASKBOOK"
+      ],
+      "verification_status": "agent_inferred"
+    },
+    {
+      "id": "ASM-010",
+      "title_zh": "双语合约承诺",
+      "statement_zh": "方案承诺中英双语完整对照：proposal.en.md 与 A3/A0 图纸、HTML 均提供语言副本，术语优先采用赛事推荐译法；缺任一必需译稿或语言映射则包不可最终化。",
+      "impact_zh": "交付必须包含完整双语成果与版权清权说明，否则提交包不满足最终化条件。",
+      "source_ids": [
+        "AGENT-TASKBOOK",
+        "SITE-PACKAGE"
+      ],
+      "verification_status": "confirmed_by_source"
+    }
+  ]
+}

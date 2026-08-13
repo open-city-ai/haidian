@@ -11,12 +11,13 @@
 | `assets/media/safety-acceptance-garden-v3.webp` | Codex 城市设计智能体 / OpenAI 内置图像生成工具 | 2026-08-12 文本生成；无输入参考图；提示词要求北京气候公共花园、轮椅使用者、受控机器人测试、人类安全员与物理暂停设施，无文字/品牌 | 生成式合成场景；不对应众智园真实地块、人物或设备 | 只说明“普通花园 + 受控测试”的设计意图；不证明安全、无障碍或实施条件 |
 | `assets/media/rights-contribution-arcade-v3.webp` | Codex 城市设计智能体 / OpenAI 内置图像生成工具 | 2026-08-12 文本生成；无输入参考图；提示词要求适应性再利用廊道、有人值守的权利台、共验长桌、连续普通通行，无文字/品牌 | 生成式合成场景；不对应原点社区真实建筑、人物或机构 | 只说明来源、质询、撤回与公众穿行并置的设计意图 |
 | `assets/media/cover-v3.webp` | Codex 城市设计智能体 | 2026-08-12 由上述三张合成场景本地裁切、拼接并叠加原创色块；无新增第三方素材 | 上述三张图的派生封面 | 仅作封面，不作为空间或现场证据 |
-| `assets/figures/*.png` | Codex 城市设计智能体 | Pillow/原创矢量几何离线绘制；v3.2 的五张主评图、三张重点区详图、遗产叙事图、建筑—公共空间界面图与八项目交付矩阵均由同一结构化证据链生成；重点区详图嵌入上述合成场景并加醒目标注 | 无商业地图、地图瓦片、商标或可识别真实人物素材 | 图像是条件式设计与解释层，结构化数据与专业核验优先 |
+| `assets/figures/*.png` | Codex 城市设计智能体 | Pillow/原创矢量几何离线绘制；v3.3 的五张主评图、三张重点区详图、时空许可备选图、大钟寺 dossier、遗产叙事、建筑—公共空间界面与八项目落位均由同一结构化证据链生成 | OSM背景按ODbL署名；无商业地图、地图瓦片、商标或可识别真实人物素材 | 图像是条件式设计与解释层，结构化数据与专业核验优先 |
 | `visual/index.html`、`report/proposal.html` | Codex 城市设计智能体 | 原创 HTML/CSS/本地交互与仓库本地渲染器 | 无 CDN、远程脚本、外部字体、API、iframe 或表单；交互不发送或保存数据 | 离线阅读，不覆盖 GeoJSON/metrics |
-| `visual/assets/acceptance-*.json`、`visual/assets/renewal-projects.json`、`acceptance-runner.js` | Codex 城市设计智能体 | 12张原创场景护照、24条合成测试路径、8份项目交付合约与只读零联网 Node 校验器 | 不导入第三方数据或代码；只读本地 JSON、不写文件、不联网 | 只验证规则逻辑；`field_performance=null`、`deployment_decision=not_authorized_not_run` |
+| `visual/assets/acceptance-*.json`、`spatiotemporal-permits.json`、`visual/assets/renewal-projects.json`、两个 runner | Codex 城市设计智能体 | 12张原创场景护照、24条验收路径、三区9备选与3份限时许可、8份项目交付合约及只读零联网 Node 校验器 | 不导入第三方代码；只读本地 JSON、不写文件、不联网 | 只验证规则结构；`field_performance=null`、`deployment_decision=not_authorized_not_run` |
+| `visual/assets/public-context.json` | OpenStreetMap contributors；本案清理与低对比转译 | 2026-08-13由公开Overpass响应提取众智园/AI原点窗口的GeoJSON结构道路、建筑、水系矢量 | © OpenStreetMap contributors，ODbL 1.0 | 仅方向性公共背景；不是官方现状、红线、权属、工程或完整调查 |
 | `drawings/a3-booklet*.pdf`、`drawings/a0-boards*.pdf` | Codex 城市设计智能体 | 原创图面离线编排并展平为整页图像；中英版本由同一版式与数据生成 | PDF 不依赖或分发外部字体文件 | 输出为展示成果，不是审批图纸 |
 | 国际案例文字 | 各案例官方机构；本方案仅作摘要与转译 | 依据官方公开页面形成短摘要 | URL、访问日期和 background-only 状态见 `sources.json` | 不支撑本地红线、绩效或实施承诺 |
 
-曾尝试通过公开 OpenStreetMap 接口取得现状背景数据，但接口连续超时，最终成果未纳入任何 OSM 几何、截图或地图瓦片，也不据此推断道路、站口、建筑、水系或官方边界。三处重点区图因此明确标为“空间原型，待 official polygons、公开现状与现场踏勘校准”。
+v3.3 通过公开 OpenStreetMap 接口取得众智园与 AI 原点两个研究窗口的道路、建筑和水系矢量，仅以低对比方向性公共背景使用；未复制任何商业地图、地图截图或远程瓦片。署名为“© OpenStreetMap contributors, ODbL 1.0”，提取日期 2026-08-13。OSM 不作为官方现状、法定边界、权属、站口、工程线位或完整调查；大钟寺只使用官方公开关系绘制条件式关系图，不以失败或不完整的 OSM 请求补造现状。三处重点区图均明确标为“公共底图/空间原型，待 official polygons、现场踏勘和专业图纸校准”。
 
 大钟寺图像提示的核心约束为：100 米公共验收街、四段可逆公共空间、连续无障碍与触觉引导、老人/残障者/家庭/开发者和人工服务人员共同使用。众智园提示的核心约束为：低层创新园区边缘的季节性花园、清晰普通通道、受控测试环、安全员、轮椅使用者、物理暂停信号；原点提示的核心约束为：砖木或旧工业界面的适应性廊道、人工权利服务台、贡献者共验长桌、普通穿行。三份提示均禁止文字、标志、商标、人脸识别、强制闸机、巨型屏幕、赛博朋克、企业或政府背书。输出只在本地压缩为 WebP 并进入投稿目录；源 PNG 不在提交包中再分发。

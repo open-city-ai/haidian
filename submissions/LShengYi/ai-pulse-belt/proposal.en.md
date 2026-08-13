@@ -111,7 +111,7 @@ This section provides review-dimension evidence indexes and response checklists;
 | Narrative | proposal.md, proposal.en.md | Bilingual 1:1, resolvable citations, four gates |
 | Geometry | geometry/*.geojson (9 layers) | Topology/CRS/seamless coverage (G2) |
 | Figures | assets/figures/* (6 figures zh/en) | Size/resolution/bilingual (G3) |
-| Drawings | drawings/a3-booklet.pdf, a0-boards.pdf (zh/en) | Page count > 0, valid PDF (G3) |
+| Drawings | drawings/a3-booklet.pdf (cover, AI scenario concept-rendering page, implementation-matrix page), a0-boards.pdf (zh/en) | Page count > 0, valid PDF (G3) |
 | Visualization | visual/index.html (zh/en) | Zero external links, opens offline (G3) |
 | Structured registries | metrics/assumptions/risk/sources/compliance/standard/design_depth/simulation/spatial.json | Cross-resolvable citations (G0/G1) |
 | Asset JSON family | visual/assets/{state-machine,governance-raci,dividend-contracts,implementation-gates,review-evidence-index}.json | Schema-versioned, one-to-one with narrative mechanisms (G0) |

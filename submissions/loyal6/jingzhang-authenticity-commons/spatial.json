@@ -2,107 +2,13 @@
   "$schema": "../../../schema/spatial.schema.json",
   "version": 1,
   "disclaimer": "concept-only",
-  "summary": "概念空间仅说明服务角色与相互关系；不包含官方红线、权属或审定指标。",
+  "summary": "A bidirectional evidence spine links a Failure Evidence Yard, Civic Review Hall and Reversible Adoption Hall. Evidence moves south into use; corrections return north into review, retesting and product revision.",
   "items": [
-    {
-      "id": "corridor-authenticity-spine",
-      "type": "corridor",
-      "title": "京张验真公地主脊",
-      "summary": "沿铁路遗产与公共空间串联六座人工服务站的概念慢行与服务主脊。",
-      "source": "brief/site-package/agent_taskbook.json",
-      "public_level": "provisional",
-      "linked_scenarios": [
-        "ai-traffic-walkability",
-        "ai-health-service-navigation"
-      ],
-      "order": 1,
-      "geometry": {
-        "mode": "concept",
-        "label": "总体设计范围临时边界内，随官方多边形整体重算"
-      }
-    },
-    {
-      "id": "area-zhongzhiyuan-evaluation",
-      "type": "area",
-      "title": "众智园评测锚点",
-      "summary": "承载多模态取证、开放基准、模型发布闸门和标准协作。",
-      "source": "official announcement + provisional key area",
-      "public_level": "provisional",
-      "linked_scenarios": [
-        "public-safety-operations-review",
-        "enterprise-service-copilot"
-      ],
-      "order": 2,
-      "geometry": {
-        "mode": "concept",
-        "label": "众智园AI自主创新加速区临时范围"
-      }
-    },
-    {
-      "id": "area-origin-translation",
-      "type": "area",
-      "title": "北京AI原点转化锚点",
-      "summary": "承载开源发布、媒介素养、证据档案与纠错恢复。",
-      "source": "official announcement + provisional key area",
-      "public_level": "provisional",
-      "linked_scenarios": [
-        "ai-cultural-guide",
-        "ai-health-service-navigation"
-      ],
-      "order": 3,
-      "geometry": {
-        "mode": "concept",
-        "label": "北京AI原点社区临时范围"
-      }
-    },
-    {
-      "id": "area-dazhongsi-procurement",
-      "type": "area",
-      "title": "大钟寺可信采购锚点",
-      "summary": "承载小企业采购验证、无屏服务、内容经济与轨道接驳。",
-      "source": "official announcement + provisional key area",
-      "public_level": "provisional",
-      "linked_scenarios": [
-        "enterprise-service-copilot",
-        "ai-traffic-walkability"
-      ],
-      "order": 4,
-      "geometry": {
-        "mode": "concept",
-        "label": "大钟寺AI产业聚集区临时范围"
-      }
-    },
-    {
-      "id": "node-correction-recovery",
-      "type": "node",
-      "title": "纠错恢复站",
-      "summary": "为误标个人和企业提供冻结标签、独立复核、同步更正与信誉修复。",
-      "source": "agent generated design",
-      "public_level": "cleared",
-      "linked_scenarios": [
-        "public-safety-operations-review"
-      ],
-      "order": 5,
-      "geometry": {
-        "mode": "concept",
-        "label": "六站网络中的中段公共服务节点"
-      }
-    },
-    {
-      "id": "node-screenless-counter",
-      "type": "node",
-      "title": "无屏服务窗",
-      "summary": "不要求智能手机、账户、面部扫描或付费，提供纸面、电话和现场同权办理。",
-      "source": "agent generated design",
-      "public_level": "cleared",
-      "linked_scenarios": [
-        "ai-health-service-navigation"
-      ],
-      "order": 6,
-      "geometry": {
-        "mode": "concept",
-        "label": "大钟寺与社区服务设施复合设置"
-      }
-    }
+    {"id": "corridor-bidirectional-evidence-spine", "type": "corridor", "title": "双向证据脊 / Bidirectional Evidence Spine", "summary": "证据南行：测试—解释—采用；纠错北返：伤害—同渠道恢复—重测修订。", "source": "brief/site-package/agent_taskbook.json + agent-generated design", "public_level": "provisional", "linked_scenarios": ["ai-cultural-guide", "ai-health-service-navigation", "enterprise-service-copilot"], "order": 1, "geometry": {"mode": "concept", "label": "topological corridor inside the provisional overall design scope"}},
+    {"id": "area-zhongzhiyuan-failure-evidence-yard", "type": "area", "title": "众智园失效证据场 / Zhongzhiyuan Failure Evidence Yard", "summary": "Controlled testing, public observation, subgroup review, isolation, repair and retest.", "source": "official announcement + provisional key area + agent-generated prototype", "public_level": "provisional", "linked_scenarios": ["public-safety-operations-review", "enterprise-service-copilot"], "order": 2, "geometry": {"mode": "concept", "label": "inside provisional Zhongzhiyuan key-area geometry"}},
+    {"id": "area-origin-civic-review-hall", "type": "area", "title": "AI原点共同复核厅 / AI Origin Civic Review Hall", "summary": "Screenless intake, evidence vestibule, private review, civic translation and correction-return wall.", "source": "official announcement + provisional key area + agent-generated prototype", "public_level": "provisional", "linked_scenarios": ["ai-cultural-guide", "ai-health-service-navigation"], "order": 3, "geometry": {"mode": "concept", "label": "inside provisional Beijing AI Origin Community geometry"}},
+    {"id": "area-dazhongsi-reversible-adoption-hall", "type": "area", "title": "大钟寺可逆采用门厅 / Dazhongsi Reversible Adoption Hall", "summary": "Trusted procurement, lifecycle cost, exit testing, evidence expiry and screenless recovery.", "source": "official announcement + provisional key area + agent-generated prototype", "public_level": "provisional", "linked_scenarios": ["enterprise-service-copilot", "ai-traffic-walkability"], "order": 4, "geometry": {"mode": "concept", "label": "inside provisional Dazhongsi key-area geometry"}},
+    {"id": "node-correction-recovery", "type": "node", "title": "纠错恢复站 / Correction and Recovery Station", "summary": "Pauses harmful propagation, conducts independent review, returns correction to every affected channel and tracks recovery.", "source": "agent-generated design", "public_level": "cleared", "linked_scenarios": ["public-safety-operations-review"], "order": 5, "geometry": {"mode": "concept", "label": "one staffed node in the six-station network"}},
+    {"id": "node-screenless-counter", "type": "node", "title": "无屏服务窗 / Screenless Service Counter", "summary": "Provides an equivalent core journey without a smartphone, account, face scan or fee, using paper, telephone and staffed support.", "source": "agent-generated design", "public_level": "cleared", "linked_scenarios": ["ai-health-service-navigation"], "order": 6, "geometry": {"mode": "concept", "label": "co-located with Dazhongsi and community public-service facilities"}}
   ]
 }

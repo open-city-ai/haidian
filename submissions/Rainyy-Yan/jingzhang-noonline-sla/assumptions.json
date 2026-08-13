@@ -35,13 +35,13 @@
     {
       "id": "A-SLA-SPATIAL-EVIDENCE-001",
       "status": "conceptual_service_level",
-      "statement": "SLA-A, SLA-B and SLA-C are three observable service-level path types organized on the existing ROAD-001 midday spine and drawings, not three separate surveyed road-centerline features.",
+      "statement": "SLA-A, SLA-B and SLA-C are three observable service-level path types organized across the current multi-segment route network and drawings, not three independently surveyed existing road-centerline features.",
       "impact": "Each SLA level is judged by spatial conditions such as shade continuity, rest, water, public entry, crossing waiting, summer detour and staffed fallback; detailed thresholds require field survey before implementation."
     },
     {
       "id": "A-NODE-SITING-001",
       "status": "conceptual_siting_rule",
-      "statement": "The 12 service nodes and 5 staffed fallback points are concept locations selected by endpoint, turning, staying, crossing, public-entry, heat/rain-risk and event-flow rules.",
+      "statement": "The 12 service nodes and 5 staffed fallback points are concept Point locations in geometry/public_space.geojson, selected by endpoint, turning, staying, crossing, public-entry, heat/rain-risk and event-flow rules and linked to the current route segments.",
       "impact": "They explain the Round 1 urban-design network and visual package; they are not existing facility inventories and must be surveyed before construction or operation."
     },
     {
@@ -49,6 +49,48 @@
       "status": "verification_workflow_baseline",
       "statement": "The V2 verification ledger is deterministically derived from the existing Noonline SLA route conditions and evidence gaps. Every generated task starts unknown and no AI actor may write observed, verified or rejected field-evidence states.",
       "impact": "The ledger can explain why Verified SLA remains B, structure authorized human field verification and permit a subsequent SLA-A gate recheck only after all mandatory evidence is human-verified with verifier, timestamp and evidence reference. It is not evidence that any existing facility, path, shade, water point, seat, entry, crossing or staffed service has been observed."
+    },
+    {
+      "id": "A-GEOMETRY-DERIVED-METRICS-001",
+      "status": "concept_geometry_calculation",
+      "statement": "V3 node spacing is calculated as great-circle coordinate distance among concept Point features sharing a declared route_id or area_id. Point-to-Line association is calculated from the same concept GeoJSON network.",
+      "impact": "The resulting values describe internal consistency and spatial distribution of the submitted concept geometry. They are not surveyed walking distance, legal accessibility, travel time, facility catchment, public access or existing-condition evidence. Disconnected route interfaces and cross-area gaps remain visible rather than being interpolated as walkable links."
+    },
+    {
+      "id": "A-SLA-DESIGN-TARGETS-001",
+      "status": "participant_design_target",
+      "statement": "The V3 values of 400 m for Level 1 concept support spacing, 400 m for conceptual seat/water service distance, 150 m for maximum continuous exposed walking, and at least one staffed fallback role per key area are participant-authored design targets for a future deliverable midday path.",
+      "impact": "The 400 m support-spacing target applies only to explicit Level 1 SLA service-zone LineStrings in Zhongzhiyuan, AI Origin and Dazhongsi, using primary nodes plus non-staffed secondary support points. It does not apply to Level 2 inter-zone connectors. None of these targets is a statutory standard, a claim about present facilities or field performance, or an Engine promotion threshold."
+    },
+    {
+      "id": "A-ACCESSIBLE-ROUTE-001",
+      "status": "requires_field_measurement",
+      "statement": "No confirmed curb, ramp, lift, slope, legal-crossing, gate-opening or barrier-free route survey is included for the concept network.",
+      "impact": "Straight-line and concept-LineString distances cannot stand in for accessible detour. The Dazhongsi and AI Origin crossing/entry concepts require a separately measured, legally usable accessible alternative before any continuous-access claim is made."
+    },
+    {
+      "id": "A-HERITAGE-SEQUENCE-001",
+      "status": "pending_authoritative_heritage_data",
+      "statement": "The Jing-Zhang heritage–AI sequence assigns conceptual public-space roles to existing concept nodes but does not locate, alter or identify a specific protected heritage asset.",
+      "impact": "Exact heritage-intervention locations, conservation controls, interpretive texts, materials and approvals require authoritative heritage/site data and professional review. The sequence must not be read as a heritage-inventory or conservation decision."
+    },
+    {
+      "id": "A-FAILURE-RESPONSE-001",
+      "status": "conceptual_operational_rule",
+      "statement": "For this concept, closed public entry, unacceptable crossing risk, inaccessible or excessive detour, test occupation of the pedestrian clearway, unmaintainable water, failed static signage or absent staffed responsibility trigger reroute, downgrade, suspension or removal of the related service claim.",
+      "impact": "AI prediction or dynamic recommendation cannot compensate for a missing physical safety, access or responsibility condition. The actual trigger thresholds and authority to act require site operator and professional confirmation."
+    },
+    {
+      "id": "A-SERVICE-NETWORK-TIER-001",
+      "status": "conceptual_service_scope",
+      "statement": "The concept network has two explicit levels. Level 1 SLA service zones are the three key areas and their direct access segments. Level 2 inter-zone connectors are ROAD-001 between Dazhongsi and AI Origin and ROAD-003 between AI Origin and Zhongzhiyuan.",
+      "impact": "Level 1 is the only scope for the <=400 m support-spacing design target and future seat/water/fallback coverage design. Level 2 carries only concept corridor continuity, fixed route recognition, Jing-Zhang cultural sequence and AI-OFF physical wayfinding; it does not claim continuous SLA service, seats, water, staffed coverage or field-verified access."
+    },
+    {
+      "id": "A-SECONDARY-SUPPORT-POINTS-001",
+      "status": "secondary_concept_support",
+      "statement": "Eight V3.3.5 support_point_id features are non-staffed concept locations for fixed wayfinding and future shade/rest reservation within Level 1 service zones. They are separate from the 12 primary service nodes and five manual fallback points.",
+      "impact": "A support point does not assert an existing seat, drinking-water point, public entry, crossing, staff member, accessible facility or verified physical service. Every support point remains concept_design_not_field_verified and must be surveyed, permitted, designed and maintained before it can support an operational claim."
     }
   ]
 }

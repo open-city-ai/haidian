@@ -731,6 +731,183 @@
       "documentation_coverage_is_not_field_performance": true
     }
   },
+  "public_signal_interface_round18": {
+    "contract_id": "JZ-PUBLIC-SIGNAL-R18",
+    "serial_round": 18,
+    "as_of": "2026-08-13",
+    "status": "concept_only_g0_not_live",
+    "purpose_zh": "把既有入口、时段、状态、人工、来源、退出六类城市信号，落实为三座换轨场在普通、验证、故障、恢复四态下可读、可停止、可静态降级的公共界面；不新增品牌、场景、项目、几何、设施、排班、批准或现实结果。",
+    "purpose_en": "Turn the inherited entry, time, state, human, source and exit signals into a readable, stoppable and statically degradable public interface across ordinary, proof, failure and recovery at the three switchyards, without adding a brand, scene, project, geometry, facility, roster, approval or real-world result.",
+    "inherits_without_reinvention": [
+      "visual/assets/key-area-evidence-matrix.json#twin_track_frontend_contract",
+      "visual/assets/key-area-evidence-matrix.json#round2_spatial_deepening",
+      "visual/assets/non-ai-parity-contract.json",
+      "visual/assets/civic-operations-contract.json",
+      "visual/assets/failure-governance-register.json",
+      "visual/assets/reversible-component-restoration-register.json"
+    ],
+    "interface_fields": [
+      {
+        "signal_id": "SIGNAL-ENTRY",
+        "public_question_zh": "普通入口与旁侧验证入口分别在哪里？",
+        "public_question_en": "Where are the ordinary entrance and the separate side proof entrance?",
+        "truth_rule": "ordinary_entry_first; proof_entry_physical_and_optional; exact_location_unknown"
+      },
+      {
+        "signal_id": "SIGNAL-TIME",
+        "public_question_zh": "现在属于哪类窗口，真实时段与人工是否已确认？",
+        "public_question_en": "Which window type applies, and are real times and staffed presence confirmed?",
+        "truth_rule": "window_type_visible; confirmed_schedule_and_roster_are_unknown_or_0"
+      },
+      {
+        "signal_id": "SIGNAL-STATE",
+        "public_question_zh": "这里是普通、验证、故障还是恢复？",
+        "public_question_en": "Is this ordinary, proof, failure or recovery?",
+        "truth_rule": "number_text_and_line_style_required; colour_never_sole_channel; all_scenes_g0"
+      },
+      {
+        "signal_id": "SIGNAL-HUMAN",
+        "public_question_zh": "人工角色是否真的在线，谁负责停止与解释？",
+        "public_question_en": "Is a person actually present, and who is responsible for stop and explanation?",
+        "truth_rule": "show_actual_presence_not_just_role_type; confirmed_staff_and_duty_acceptance_0"
+      },
+      {
+        "signal_id": "SIGNAL-SOURCE",
+        "public_question_zh": "来源、版本、限制和纠错记录是什么？",
+        "public_question_en": "What are the source, version, limits and correction record?",
+        "truth_rule": "backlink_to_existing_evidence; no_unverified_release_claim"
+      },
+      {
+        "signal_id": "SIGNAL-EXIT",
+        "public_question_zh": "如何不注册、不扫码、不使用 AI 地绕行、撤回、申诉或离开？",
+        "public_question_en": "How can a person bypass, withdraw, appeal or leave without registration, QR scanning or AI?",
+        "truth_rule": "complete_non_ai_exit_always_visible; refusal_never_blocks_ordinary_task"
+      }
+    ],
+    "state_contract": [
+      {
+        "state": "ordinary",
+        "display_rule_zh": "普通路径、无屏信息与退出先成立；验证叠层关闭。",
+        "display_rule_en": "Ordinary route, screen-free information and exit work first; the proof overlay is off.",
+        "confirmed_real_window": "unknown",
+        "confirmed_staffed_presence": 0
+      },
+      {
+        "state": "proof",
+        "display_rule_zh": "只显示公告、批准、有责任人且自愿进入的限域候选；日常路径继续。",
+        "display_rule_en": "Show only a bounded candidate that is announced, approved, accountable and voluntary; the ordinary route continues.",
+        "scheduled_window_count": 0,
+        "field_test_count": 0
+      },
+      {
+        "state": "failure",
+        "display_rule_zh": "先物理停止并隔离旁侧叠层，再如实显示人工状态、绕行和申诉。",
+        "display_rule_en": "Physically stop and isolate the side overlay first, then show truthful human status, bypass and appeal.",
+        "real_incident_count": 0,
+        "known_recovery_duration": "unknown"
+      },
+      {
+        "state": "recovery",
+        "display_rule_zh": "先恢复普通场所；还场、维护、居民确认与独立复核缺一项即 NO-GO、关闭或退役。",
+        "display_rule_en": "Restore the ordinary place first; one missing restoration, maintenance, resident-confirmation or independent-review item means NO-GO, closure or retirement.",
+        "real_restoration_acceptance_count": 0,
+        "go_decision_count": 0
+      }
+    ],
+    "site_carriers": [
+      {
+        "key_area_feature_id": "PROV-KEY-001",
+        "name_zh": "众智园",
+        "name_en": "Zhongzhiyuan",
+        "carrier_zh": "连续观察绕行 + 旁侧隔离验证边",
+        "carrier_en": "Continuous observation bypass + side-positioned isolated proof edge",
+        "failure_extent": "isolated_proof_edge_only",
+        "recovery_object": "continuous_bypass_then_proof_edge",
+        "evidence_refs": [
+          "geometry/key_areas.geojson#PROV-KEY-001",
+          "visual/assets/key-area-evidence-matrix.json#KAE-001"
+        ]
+      },
+      {
+        "key_area_feature_id": "PROV-KEY-002",
+        "name_zh": "原点社区",
+        "name_en": "Origin Community",
+        "carrier_zh": "一条日常街 + 两院 + 四个可分别撤回节点",
+        "carrier_en": "One daily street + two courts + four independently withdrawable nodes",
+        "failure_extent": "selected_node_only",
+        "recovery_object": "daily_street_and_courts_then_affected_node",
+        "evidence_refs": [
+          "geometry/key_areas.geojson#PROV-KEY-002",
+          "visual/assets/key-area-evidence-matrix.json#KAE-002"
+        ]
+      },
+      {
+        "key_area_feature_id": "PROV-KEY-003",
+        "name_zh": "大钟寺",
+        "name_en": "Dazhongsi",
+        "carrier_zh": "四向连续通勤 + 路外一厅一台",
+        "carrier_en": "Continuous four-way commuting + an off-route hall and desk",
+        "failure_extent": "off_route_hall_and_service_siding_only",
+        "recovery_object": "four_way_commute_then_hall_and_desk",
+        "evidence_refs": [
+          "geometry/key_areas.geojson#PROV-KEY-003",
+          "visual/assets/key-area-evidence-matrix.json#KAE-003"
+        ]
+      }
+    ],
+    "interaction_contract": {
+      "complete_static_matrix_rows": 12,
+      "interface_fields_per_row": 6,
+      "keyboard_native_buttons": true,
+      "no_javascript_fallback_complete": true,
+      "no_remote_dependency": true,
+      "network_request_count": 0,
+      "account_qr_form_tracker_or_ai_requirement_count": 0,
+      "javascript_role": "reads_text_from_the_same_static_html_table_only",
+      "visual_refs": [
+        "visual/index.html#public-signal-interface",
+        "visual/index.en.html#public-signal-interface"
+      ]
+    },
+    "drawing_refs": [
+      "assets/figures/public-signal-interface.svg",
+      "assets/figures/public-signal-interface.en.svg",
+      "assets/figures/public-signal-interface.png",
+      "assets/figures/public-signal-interface.en.png"
+    ],
+    "evidence_backlinks": {
+      "spatial_contract": "visual/assets/key-area-evidence-matrix.json#round2_spatial_deepening",
+      "ordinary_rights": "visual/assets/non-ai-parity-contract.json",
+      "time_and_staff": "visual/assets/civic-operations-contract.json",
+      "stop_and_recovery": "visual/assets/failure-governance-register.json",
+      "site_truth": "visual/assets/site-grounding-register.json#public_signal_interface_round18"
+    },
+    "change_effect": {
+      "scene_count": 12,
+      "project_count": 8,
+      "key_area_count": 3,
+      "new_scene_ids": 0,
+      "new_project_ids": 0,
+      "new_key_area_ids": 0,
+      "geometry_changed": false,
+      "metrics_changed": false,
+      "maturity_changed": false,
+      "rights_status_changed": false
+    },
+    "reality_guard": {
+      "maturity": "all_scenes_g0",
+      "geometry": "provisional_only_not_official_redline_or_exact_site_truth",
+      "confirmed_staffed_presence": 0,
+      "confirmed_real_windows": 0,
+      "field_tests": 0,
+      "approvals": 0,
+      "go_decisions": 0,
+      "real_recoveries": 0,
+      "rights": "not_fully_cleared",
+      "presentation_is_not_evidence": true,
+      "pr_or_merge_is_not_approval": true
+    }
+  },
   "round2_spatial_deepening": {
     "contract_id": "JZ-SWITCHYARD-SPATIAL-02",
     "status": "concept_only_g0",

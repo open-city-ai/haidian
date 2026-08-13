@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JZ AI Innovation Belt — Visual Dashboard</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', system-ui, sans-serif; background: #f5f5f5; color: #333; }
+  .header { background: linear-gradient(135deg, #1B5E20 0%, #1565C0 100%); color: white; padding: 40px 20px; text-align: center; }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header p { font-size: 14px; opacity: 0.85; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 20px; }
+  .card { background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden; }
+  .card-header { padding: 15px 20px; font-weight: 700; font-size: 14px; border-bottom: 1px solid #eee; }
+  .card-body { padding: 15px 20px; }
+  .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .metric { text-align: center; padding: 12px 8px; background: #f8f9fa; border-radius: 8px; }
+  .metric-value { font-size: 24px; font-weight: 700; color: #1B5E20; }
+  .metric-label { font-size: 11px; color: #666; margin-top: 4px; }
+  .metric-blue .metric-value { color: #1565C0; }
+  .metric-teal .metric-value { color: #00897B; }
+  .metric-orange .metric-value { color: #E65100; }
+  .figure { margin: 15px 0; }
+  .figure img { width: 100%; border-radius: 8px; }
+  .figure-caption { font-size: 11px; color: #888; margin-top: 6px; }
+  .section-title { font-size: 18px; font-weight: 700; margin: 30px 0 15px; padding-bottom: 8px; border-bottom: 3px solid #1B5E20; }
+  .task-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .task-table td { padding: 8px 12px; border-bottom: 1px solid #eee; }
+  .task-table .check { color: #2E7D32; font-weight: bold; }
+  .compliance-chart { display: flex; gap: 4px; align-items: flex-end; height: 80px; margin: 10px 0; }
+  .bar { flex: 1; background: #2E7D32; border-radius: 4px 4px 0 0; min-height: 4px; }
+  .bar-label { font-size: 10px; text-align: center; margin-top: 4px; }
+  .bar-container { flex: 1; display: flex; flex-direction: column; align-items: center; }
+  footer { text-align: center; padding: 30px; color: #999; font-size: 12px; }
+  footer a { color: #1565C0; }
+  .badge { display: inline-block; padding: 3px 8px; border-radius: 12px; font-size: 10px; font-weight: 600; }
+  .badge-green { background: #E8F5E9; color: #2E7D32; }
+  .badge-blue { background: #E3F2FD; color: #1565C0; }
+  .badge-orange { background: #FFF3E0; color: #E65100; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>JZ AI Innovation Belt — Visual Dashboard</h1>
+  <p>Green Veins, Smart Core | Proposal by WorkBuddy (wlaura-wlj)</p>
+  <p style="margin-top:8px;font-size:12px">
+    <span class="badge badge-green">Package: professional_design_package</span>
+    <span class="badge badge-orange" style="margin-left:8px">Status: ready_for_review</span>
+    <span class="badge badge-blue" style="margin-left:8px">Boundary: provisional</span>
+  </p>
+</div>
+
+<div class="container">
+
+  <div class="section-title">Site Overview | 场地总览</div>
+  <div class="figure">
+    <img src="../assets/figures/site-overview.en.png" alt="Site Overview">
+    <div class="figure-caption">Three-level scope: Coordinated Research (43.6 km²), Overall Design (11.4 km²), Key Areas (368.4 ha)</div>
+  </div>
+
+  <div class="section-title">Core Metrics | 核心指标</div>
+  <div class="metric-grid">
+    <div class="metric"><div class="metric-value" data-metric="site_area_sqm" data-value="11412825.386">11,412,825</div><div class="metric-label">Site Area (sqm)</div></div>
+    <div class="metric"><div class="metric-value" data-metric="green_ratio" data-value="0.35345">35.3%</div><div class="metric-label">Green Coverage</div></div>
+    <div class="metric metric-blue"><div class="metric-value">≥85%</div><div class="metric-label">Sponge Capture</div></div>
+    <div class="metric metric-blue"><div class="metric-value">≥60%</div><div class="metric-label">Green Mobility</div></div>
+    <div class="metric metric-teal"><div class="metric-value" data-metric="public_space_ratio" data-value="0.174632">17.5%</div><div class="metric-label">Public Space Ratio</div></div>
+    <div class="metric metric-orange"><div class="metric-value">50+</div><div class="metric-label">AI Scenario Nodes</div></div>
+  </div>
+
+  <div class="section-title">Spatial Structure | 空间结构</div>
+  <div class="figure">
+    <img src="../assets/figures/land-use-structure.en.png" alt="Land Use Structure">
+    <div class="figure-caption">One Belt, Three Cores, Two Wings: Jing-Zhang Green Vein + Three Key Areas + Two Support Wings</div>
+  </div>
+
+  <div class="section-title">Key Areas | 重点区域</div>
+  <div class="figure">
+    <img src="../assets/figures/key-areas.en.png" alt="Key Areas">
+  </div>
+
+  <div class="section-title">Mobility & Blue-Green | 交通与蓝绿</div>
+  <div class="figure">
+    <img src="../assets/figures/mobility-bluegreen.en.png" alt="Mobility & Blue-Green">
+  </div>
+
+  <div class="section-title">Metrics Evidence Chain | 指标证据链</div>
+  <div class="figure">
+    <img src="../assets/figures/metrics-evidence.en.png" alt="Metrics Evidence">
+  </div>
+
+  <div class="section-title">Task Compliance | 任务合规</div>
+  <table class="task-table">
+    <tr><td>agent.1 Branding & Overall Concept</td><td class="check">✓</td></tr>
+    <tr><td>agent.2 AI Innovation Ecosystem</td><td class="check">✓</td></tr>
+    <tr><td>agent.3 AI+ Scenarios & Personas</td><td class="check">✓</td></tr>
+    <tr><td>agent.4 AI Public Space & Landmarks</td><td class="check">✓</td></tr>
+    <tr><td>agent.5 Cultural Narrative</td><td class="check">✓</td></tr>
+    <tr><td>agent.6 Events & Operations</td><td class="check">✓</td></tr>
+  </table>
+
+  <div class="section-title">Three AI Pilgrimage Landmarks | 三大AI朝圣地标</div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-header" style="background:#E8F5E9;color:#1B5E20">1. Timeline Axis</div>
+      <div class="card-body">300m linear water feature + AI Contribution Inscription Walls at Qinghe-Jingzhang confluence. Records global AI milestones on railway-sleeper-inspired walls.</div>
+    </div>
+    <div class="card">
+      <div class="card-header" style="background:#E3F2FD;color:#1565C0">2. Interactive Tower</div>
+      <div class="card-body">30m PV+LED tower at Wudaokou core. Day: solar power generator. Night: city-scale AI data visualization. Interactive via mobile app.</div>
+    </div>
+    <div class="card">
+      <div class="card-header" style="background:#E0F2F1;color:#00897B">3. Ground Sculpture Cluster</div>
+      <div class="card-body">12 nature-themed interactive sculptures at Dazhongsi south gateway. Water/wind/light/plant forms respond to environment via embedded AI sensors.</div>
+    </div>
+  </div>
+
+  <div class="section-title">Data Status | 数据状态</div>
+  <table class="task-table">
+    <tr><td>Official polygon boundaries</td><td><span class="badge badge-orange">provisional_rough</span></td></tr>
+    <tr><td>Regulatory plan conditions</td><td><span class="badge badge-orange">unknown</span></td></tr>
+    <tr><td>Building survey data</td><td><span class="badge badge-orange">unknown</span></td></tr>
+    <tr><td>Infrastructure survey</td><td><span class="badge badge-orange">unknown</span></td></tr>
+    <tr><td>All metrics</td><td><span class="badge badge-blue">conceptual targets</span></td></tr>
+    <tr><td>Spatial proposals</td><td><span class="badge badge-green">conceptual (not statutory)</span></td></tr>
+  </table>
+
+</div>
+
+<footer>
+  <p>Proposal: Green Veins, Smart Core | Author: WorkBuddy (wlaura-wlj) | Generated: 2026-08-10</p>
+  <p>All spatial suggestions are conceptual proposals pending professional review.</p>
+  <p><a href="https://github.com/open-city-ai/haidian">open-city-ai/haidian</a></p>
+</footer>
+
+</body>
+</html>

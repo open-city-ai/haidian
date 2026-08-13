@@ -30,6 +30,8 @@ scenarios: ["enterprise-service-copilot", "ai-traffic-walkability", "public-safe
 | 怎样避免“AI 展示园” | 成功、失败和撤回都进入公共回译；没有公共回报的服务不能续期 | 回译档案、失败记录、年度交接礼 |
 | 证据边界是什么 | 临时 polygon 只支撑概念生成和复算，不升级为红线或审批结论 | GeoJSON、指标、假设、风险登记和四道自检 |
 
+v4 把“可运行”从文字要求变为可复跑证据：`visual/assets/run-ctp-validator.js` 读取三站拓扑，逐站关闭 AI 节点并检查公众离场、无障碍等价路径、人工复核、试译隔离、纸质回执、投诉暂停、维护失联退场和退场后公共用途八项条件。当前结果为 **24/24 PASS**；该结果只证明本包概念拓扑内部满足所声明规则，不证明现场已建设、合规或达到绩效 [metric:ctp_executable_test_pass_ratio] [data:visual/assets/ctp-validator-results.json]。
+
 当前未取得官方精确总体边界和三处重点区 polygon。`site_boundary.geojson` 与 `key_areas.geojson` 均来自仓库临时粗略边界，仅用于生成、可视化和入口自检，不是官方红线、审批依据或精确面积依据；官方数据到位后，全部用地、建筑、道路、绿地、公共空间、分期、图件和指标必须统一复算 [data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm]。
 
 ![总体概念与资料边界](assets/figures/site-overview.png)
@@ -165,6 +167,8 @@ CTP 把公共利益落实为五项可检查的空间权利：**理解权**（不
 
 ![交通慢行与蓝绿公共接口](assets/figures/mobility-bluegreen.png)
 
+图中把三站统一拆成“永久公众主链 + 可关闭试译侧袋 + 人工复核接口”。试译侧袋可以停机、隔离、撤除，公众主链、连续无障碍路线、休息与人工服务不得随之关闭；六件可逆构件采用螺栓/夹具固定、可达检修面和可替换面板的概念构造，正式尺寸、材料、基础、荷载、排水、消防与夜间照明须由测绘及相应专业确定。平面、剖面和构件表达的是设计控制关系，不是现状测量或施工图 [metric:station_section_control_coverage_ratio] [depth:traffic_rail_slow_parking]。
+
 ## 蓝绿空间、公共空间与城市风貌
 
 共智绿廊把临时边界淡化为背景，把连续步行、清河/小月河生态界面、三座公共庭和十二场景节点作为主叙事。绿地和公共空间比例由提交几何复算，只是概念方案内部一致性指标，不是法定绿地率 [data:geometry/green_space.geojson#GREEN-101] [metric:green_ratio] [metric:public_space_ratio]。
@@ -186,13 +190,23 @@ CTP 把公共利益落实为五项可检查的空间权利：**理解权**（不
 
 分期不是投资或政府承诺：第一阶段先开放低成本公共接口与问题清单；第二阶段在专业核查后织补建筑和慢行网络；第三阶段才讨论需要控规、工程和长期运营支撑的增量。三段范围保存在 `phasing.geojson` [data:geometry/phasing.geojson#PHASE-101] [metric:renewal_project_count] [depth:phasing_implementation]。
 
+### 90 天零阶段：先形成证据，不承诺开工
+
+首个 90 天只建立可交接证据包。G0（第 1—30 天）核对资料、权属、责任和许可，形成场地差异表、数据/同意协议与十二项任务脚本；G1（第 31—45 天）制作六类可撤除原型，完成安装—检修—撤除演练；G2（第 46—60 天）在封闭环境进行 AI 开/关成对测试和三站拓扑复跑；G3（第 61—90 天）由未参与制作的专业人员与参与者代表独立复核，结论只能是修改、限定试点或停止。任一道门的责任、等价路径、异议回执或恢复证据不完整，均不得升级 [metric:zero_stage_gate_count] [data:visual/assets/zero-stage-90-days.json]。
+
+工作量采用区间而不是虚构预算：四道门合计约 **190—340 人日、44—83 参与人次、6 轮成对测试**。这些是执行量级假设，不是投资测算或主体承诺；取得真实劳务、保险、合理便利、场地和工程条件后必须复算，参与者时间与合理便利不得被当作免费资源 [metric:zero_stage_person_days_max] [depth:phasing_implementation]。
+
+### 八项实施交接合同
+
+`visual/assets/handover-contracts.json` 将 C01—C08 各项目统一拆成十二个交接字段：场地/权属证据、最终负责角色、所需专业、许可与保险、基线与样本、建设/运营/维护/撤除四类成本、验收证据、关闭条件和恢复用途。资源只分 S（既有人员/资料）、M（可拆构件/专项服务）、L（工程或长期运营）三级，不给出未经核定的金额。每项都预先回答“失败后关闭什么、仍开放什么、如何复原”，让专业团队可逐项签注 [metric:handover_contract_field_coverage_ratio] [data:visual/assets/handover-contracts.json]。
+
 年度运营建议包括春季“城市问题征集”、夏季“责任测试季”、秋季“开源转化周”、冬季“共智交接礼”；开发者社区以 issue、开放日和维护轮值运行；国际传播只发布可追溯材料，并明确“投稿、评审、入选、实施”四种状态。
 
 年度运行形成一份“城市回译包”：收录哪些问题被准确翻译、哪些场景失败、哪些公众意见改变了研发方向、哪些服务退场以及下一周期由谁接手。它把失败从负面新闻转成城市学习资产，也防止活动结束后只留下设备、没有责任与知识。若某项目没有完整回执、公开失败记录和下一责任人，则不进入下一阶段 [metric:stage_gate_project_ratio] [depth:phasing_implementation]。
 
 ## 指标体系、面积复算与合规矩阵
 
-内部复算得到：临时总体边界约 11.413 平方公里，概念绿地覆盖 6.4%，三个重点公共庭覆盖 0.4%，场景节点 12 个、概念更新项目 8 项。这些比例描述当前提交图层的覆盖，不是规划目标或法定绿地率。公共价值指标进一步要求：12/12 场景保留人工兜底、12/12 形成城市翻译回执、12/12 声明公共回报，3/3 重点区提供属地复核入口，8/8 概念项目设置阶段闸门；它们是可由后续运营团队继续核验的设计验收条件 [metric:translation_receipt_coverage_ratio] [metric:public_return_scenario_ratio] [depth:metrics_recalculation]。
+内部复算得到：临时总体边界约 11.413 平方公里，概念绿地覆盖 6.4%，三个重点公共庭覆盖 0.4%，场景节点 12 个、概念更新项目 8 项。这些比例描述当前提交图层的覆盖，不是规划目标或法定绿地率。公共价值指标要求 12/12 场景保留人工兜底、回执和公共回报，3/3 重点区提供属地复核入口，8/8 项目设置阶段闸门；v4 再加入 **24/24 包内拓扑测试、4 道零阶段证据门和 8/8 项目的十二字段交接合同**。它们衡量的是方案包完整度与未来验收条件，不是建成绩效 [metric:ctp_executable_test_pass_ratio] [metric:handover_contract_field_coverage_ratio] [depth:metrics_recalculation]。
 
 ![指标与证据链](assets/figures/metrics-evidence.png)
 

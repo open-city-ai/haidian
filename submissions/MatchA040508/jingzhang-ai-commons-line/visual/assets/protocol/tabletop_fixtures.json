@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "protocol_version": "1.1",
+  "default_observation": {
+    "site_permission": true,
+    "rights_clearance": true,
+    "owner_assigned": true,
+    "independent_reviewer": true,
+    "fallback_channel": true,
+    "clear_path": true,
+    "manual_takeover": true,
+    "physical_stop": true,
+    "weather_mode": true,
+    "emergency_channel": true,
+    "repeated_critical_failure": false,
+    "operating_mandate_withdrawn": false
+  },
+  "fixtures": [
+    {"id": "GO-T1", "scenario_id": "T1", "expected": "GO", "overrides": {}},
+    {"id": "GO-T2", "scenario_id": "T2", "expected": "GO", "overrides": {}},
+    {"id": "GO-T3", "scenario_id": "T3", "expected": "GO", "overrides": {}},
+    {"id": "GO-04", "scenario_id": "04", "expected": "GO", "overrides": {}},
+    {"id": "GO-05", "scenario_id": "05", "expected": "GO", "overrides": {}},
+    {"id": "GO-06", "scenario_id": "06", "expected": "GO", "overrides": {}},
+    {"id": "GO-07", "scenario_id": "07", "expected": "GO", "overrides": {}},
+    {"id": "GO-08", "scenario_id": "08", "expected": "GO", "overrides": {}},
+    {"id": "GO-09", "scenario_id": "09", "expected": "GO", "overrides": {}},
+    {"id": "GO-10", "scenario_id": "10", "expected": "GO", "overrides": {}},
+    {"id": "HOLD-RIGHTS", "scenario_id": "T2", "expected": "HOLD", "overrides": {"rights_clearance": false}},
+    {"id": "HOLD-REVIEWER", "scenario_id": "08", "expected": "HOLD", "overrides": {"independent_reviewer": false}},
+    {"id": "STOP-CLEAR-PATH", "scenario_id": "T1", "expected": "STOP", "overrides": {"clear_path": false}},
+    {"id": "STOP-NO-TAKEOVER", "scenario_id": "T3", "expected": "STOP", "overrides": {"manual_takeover": false}},
+    {"id": "STOP-NO-PHYSICAL-STOP", "scenario_id": "09", "expected": "STOP", "overrides": {"physical_stop": false}},
+    {"id": "STOP-WEATHER", "scenario_id": "06", "expected": "STOP", "overrides": {"weather_mode": false}},
+    {"id": "RETIRE-REPEAT-FAIL", "scenario_id": "T1", "expected": "RETIRE", "overrides": {"repeated_critical_failure": true}},
+    {"id": "RETIRE-MANDATE", "scenario_id": "10", "expected": "RETIRE", "overrides": {"operating_mandate_withdrawn": true}}
+  ]
+}

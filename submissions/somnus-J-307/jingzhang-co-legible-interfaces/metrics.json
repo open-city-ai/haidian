@@ -1,0 +1,168 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(site)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [],
+      "formula": "requires verified existing-building geometry",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BASELINE-001"
+      ],
+      "reason": "The current rectangular building layer is a schema scaffold, not a surveyed building baseline."
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "diagrammatic green geometry / provisional site geometry in EPSG:4548; not an existing-condition or approved ratio",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-BASELINE-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.075495,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "diagrammatic public-space geometry / provisional site geometry in EPSG:4548; mixes scaffold and concept prototypes",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-BASELINE-001"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "requires official controls",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Official controls and verified floor areas are unavailable."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "selected_scenario_count": {
+      "status": "known",
+      "value": 16,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenarios.json"
+      ],
+      "formula": "count(working candidate scenario records)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SCENARIO-MATURITY-001"
+      ]
+    },
+    "core_scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenarios.json"
+      ],
+      "formula": "count(working records tagged core)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SCENARIO-MATURITY-001"
+      ]
+    },
+    "flagship_test_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/flagship-tests.json"
+      ],
+      "formula": "count(protocol drafts designated as flagship tests)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-TEST-MATURITY-001"
+      ]
+    },
+    "ai_off_test_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/flagship-tests.json",
+        "visual/assets/field-protocol.json"
+      ],
+      "formula": "count(protocol drafts with explicit AI-off baselines)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-TEST-MATURITY-001"
+      ]
+    },
+    "shared_visibility_route_length_m": {
+      "status": "known",
+      "value": 2032.647,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(lines) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "prototype_envelope_area_sqm": {
+      "status": "known",
+      "value": 109834.532,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(union phase envelopes) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    }
+  }
+}

@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "在AI城市里，机器先学会给人让路。以三段400—800米概念证明段设计轮椅、儿童、老人、骑行者、夜间劳动者与低速机器人共享地面的实体空间、停止规则和人工接管；所有边界与指标均明确临时数据属性。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.0"
+iteration: "v1.1"
 ---
 
 # 京张让路 / JINGZHANG YIELD
@@ -94,6 +94,21 @@ iteration: "v1.0"
 
 T1—T3是产业测试验证概念，不是已挂牌机构或认证中心。所有场景统一通过 Issue → 数据与权利检查 → 受控原型 → 人工和公众评审 → 小规模发布 → 独立复核 → Merge、Rollback 或 Retire；这是本方案自设的可逆治理生命周期，不是法规规定的审批流程。[source:AGENT-TASKBOOK] 只有场景实际构成面向境内公众的生成式人工智能服务时，才在其适用范围内把《生成式人工智能服务管理暂行办法》作为内容、数据、个人信息、投诉和服务责任的外部边界；该办法不构成项目批准或低速机器人交通安全认证。[source:DATA-SRC-GENERATIVE-AI-INTERIM-MEASURES] 场景节点在GeoJSON中以十个概念点表达，位置置信度为 medium，只表示与三段证明和主线的关系；正式选址需通过产权、交通、文保和设施承载核验。[metric:scenario_node_count]
 
+### 可执行让路协议 v1.1
+
+本轮把十张场景卡落实为 `visual/assets/protocol/scenario_cards.json` 中的统一许可契约。任何场景都必须先取得五项 HOLD 门禁——场地许可、数据与权利清权、具名人类责任人、独立复核者和非数字替代通道；连续人行净宽、人工接管、物理停止、适用天气模式和应急通道五项安全门中任一缺失，判断必须失败关闭为 STOP。反复重大失败或运营授权撤回优先触发 RETIRE。只有全部门禁通过才是 GO，而 GO 仍只代表“可以进入被授权的小规模验证”，不代表批准、认证或可无人值守运行。[metric:yield_protocol_fail_closed_guard_count]
+
+| 决策 | 触发条件 | 人类动作 | 重新进入条件 |
+| --- | --- | --- | --- |
+| HOLD | 许可、清权、责任、复核或替代通道不完整 | 不开放测试，补齐证据 | 缺项由相应人类责任角色签署 |
+| STOP | 净宽、接管、物理停止、天气或应急通道不满足 | 立即停机、隔离设备、恢复人的通行 | 复核问题、重新演练并由授权人批准 |
+| RETIRE | 重大失败反复发生或授权撤回 | 关闭用途、保留事故与退役记录 | 不自动恢复；必须作为新方案重新论证 |
+| GO | 所有门禁通过 | 仅在批准时段、地点和包线内验证 | 每个窗口重新检查，不跨窗口继承 |
+
+离线桌面验证器 `visual/assets/protocol/run_tabletop.js` 对 18 个合成用例进行确定性复跑：10 个完整用例进入 GO，2 个缺许可/复核证据的用例 HOLD，4 个安全门缺失的用例 STOP，2 个退役触发用例 RETIRE，18/18 与预期一致。[metric:yield_protocol_fixture_count] [metric:yield_protocol_expected_outcome_match_ratio] 这个 1.0 是内部契约测试匹配率，不是安全率、可靠性或公众满意度。`visual/assets/protocol/baseline_measurement_plan.json` 另行规定六项 unknown 运营指标的现场采集方法、分层、质量门和禁止推断；在真实踏勘、授权、专业复核和参与者保护完成前，仍不填任何目标值或观测值。RACI 同时确保 GO、恢复和退役都只能由具名人类负责。
+
+![让路许可、失败关闭门禁与18项离线桌面验证](assets/figures/yield-protocol.png)
+
 ## 用地、建筑规模与拆改留方案
 
 用地模型采用四个连续概念分区来检验混合与平衡，不把它们命名为正式地块。AI研发创新区承载科研、孵化和受控测试；产业与商业服务区承载知识产权、法务、投融资、国际交往与消费；社区服务与配套区承载居住、教育、健康、文化和双通道公共服务；公园绿地与开敞空间区承载遗址叙事、慢行、休憩和低扰动场景。[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] 用地边界由同一临时场地拓扑切分，面积只反映当前方案模型，不能写入控规指标表。
@@ -138,7 +153,7 @@ T1—T3是产业测试验证概念，不是已挂牌机构或认证中心。所�
 
 ## 指标体系、面积复算与合规矩阵
 
-指标分为三类。第一类是公告约值：43.6平方公里统筹研究范围、11.4平方公里总体设计范围、192.1/104.3/72.0公顷三处重点区，用于描述任务量级；第二类是临时几何派生：场地11,412,825.386平方米、示意建筑基底310,807.184平方米、示意绿地率0.123423、示意公共空间率0.073281，用于拓扑与视觉一致性检查；第三类是让路运营KPI，包括人的等待秒数、连续净宽被占分钟、人工接管与恢复时间、无账号完成率、近失事件、雨夜可靠性、无障碍缺陷关闭和投诉退役闭环，原型运行前均保持 unknown。[metric:site_area_sqm] [metric:green_ratio] [metric:public_space_ratio]
+指标分为三类。第一类是公告约值：43.6平方公里统筹研究范围、11.4平方公里总体设计范围、192.1/104.3/72.0公顷三处重点区，用于描述任务量级；第二类是临时几何派生：场地11,412,825.386平方米、示意建筑基底310,807.184平方米、示意绿地率0.123423、示意公共空间率0.073281，用于拓扑与视觉一致性检查；第三类是让路运营KPI，包括人的等待秒数、连续净宽被占分钟、人工接管与恢复时间、无账号完成率、近失事件、雨夜可靠性、无障碍缺陷关闭和投诉退役闭环，原型运行前均保持 unknown。[metric:site_area_sqm] [metric:green_ratio] [metric:public_space_ratio] 另有四项协议包指标只描述可复核资产本身：10张场景卡、18个合成用例、5个失败关闭安全门和1.0预期结果匹配率；它们不得与现场绩效混用。[metric:yield_protocol_card_count]
 
 临时场地面积通过EPSG:4548投影计算多边形面积；绿地率和公共空间率分别由同一坐标系下的面状并集面积除以临时场地面积；建筑基底为示意建筑多边形面积之和。面积声明与几何复算采用同源函数，图件和HTML从 metrics.json 读取相同数字，避免人工抄录。[depth:metrics_recalculation] 但算法一致不等于资料权威：三项比率必须显示“设计示意/临时边界派生”，取得正式边界后九个图层与指标全部重算。
 
@@ -166,4 +181,4 @@ AI场景的核心风险包括隐私、偏差、错误自动化、厂商锁定、
 
 空间依据以 geometry/site_boundary.geojson 和 geometry/key_areas.geojson 的临时对象为准，设计图层包括 land_use、buildings、roads、green_space、public_space、constraints 与 phasing；指标依据为 metrics.json，假设依据为 assumptions.json，覆盖证据依据为 compliance_matrix、standard_matrix 和 design_depth_matrix，自检依据为 self_check.json。[data:geometry/constraints.geojson#GAP-BOUNDARY-001] 所有路径均位于 MatchA040508 的单一提交目录，便于本地审阅、未来PR差异审查和长期版本追溯。
 
-本方案生成日期为2026-08-11，全球案例页面获取日期同为2026-08-11。若页面、政策、项目任务或仓库schema后续更新，应以新版本重新核验，不把本稿视为持续有效的事实快照。作者署名、模型声明、提交路径和让路规则贡献机制同时记录在 proposal.md、agent.json、manifest.json 与未来Git历史中；是否发布到远端由 MatchA040508 在本地检查完成后另行决定。
+本方案 v1.1 更新于2026-08-13；全球案例页面的既有获取日期仍为2026-08-11。若页面、政策、项目任务或仓库schema后续更新，应以新版本重新核验，不把本稿视为持续有效的事实快照。作者署名、模型声明、提交路径、让路协议和验证记录同时写入 proposal.md、agent.json、manifest.json 与Git历史；现场实施仍须另行取得授权与专业确认。

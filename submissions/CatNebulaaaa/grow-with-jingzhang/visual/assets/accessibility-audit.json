@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "audit_status": "completed",
+  "audit_date": "2026-08-13",
+  "targets": ["report/proposal.html", "report/proposal.en.html", "visual/index.html", "visual/index.en.html"],
+  "checks": [
+    {"item":"Chinese font rendering", "status":"pass", "method":"Chromium headless 1600×1100 render", "result":"embedded WOFF2 renders Chinese report and atlas without tofu glyphs"},
+    {"item":"Alternative text", "status":"pass", "method":"markup inspection", "result":"atlas image alt text updates to the selected figure title in both languages"},
+    {"item":"Keyboard operation", "status":"pass", "method":"semantic markup inspection", "result":"native buttons support Tab, Enter and Space; skip link moves focus to the figure region"},
+    {"item":"Zoom and reflow", "status":"pass", "method":"responsive CSS inspection", "result":"viewport metadata and 900 px breakpoint preserve single-column reading and image scaling"},
+    {"item":"Primary text contrast", "status":"pass", "method":"WCAG relative luminance calculation", "result":"navy on paper 12.74:1; white on navy 14.64:1"},
+    {"item":"Accent-colour use", "status":"pass", "method":"visual and markup inspection", "result":"orange, green, cyan and gold reinforce categories; labels, numbers and shapes carry the same distinctions"},
+    {"item":"PDF readability", "status":"pass", "method":"Poppler render at 70 dpi plus contact-sheet inspection", "result":"18 Chinese and 18 English A3 pages show no clipping, overlap, missing text or blank pages"}
+  ]
+}

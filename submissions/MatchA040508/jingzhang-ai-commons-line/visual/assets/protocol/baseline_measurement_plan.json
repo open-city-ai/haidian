@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "protocol_version": "1.1",
+  "status": "methods_defined_values_unobserved",
+  "privacy_rule": "No face recognition, persistent person identifier, or individual route history. Publish aggregates only after human review and small-cell disclosure control.",
+  "measurements": [
+    {
+      "metric_id": "human_waiting_seconds",
+      "question": "Do people wait for a machine, and for how long?",
+      "observation_unit": "encounter",
+      "method": "Two trained observers timestamp first human pause and restored free passage on a shared clock; disagreements above two seconds are reviewed against an incident-free event note.",
+      "minimum_baseline": "Three reviewed operating windows per proof segment, including one busy window; sample sufficiency must be set by the authorised field team.",
+      "required_strata": ["proof segment", "operating window", "mobility-aid encounter when voluntarily observable"],
+      "quality_gate": "Inter-observer agreement and missing-event rate reported before any target is proposed.",
+      "prohibited_inference": "No identity, age, disability, or vulnerability classification by computer vision."
+    },
+    {
+      "metric_id": "clear_width_obstruction_minutes",
+      "question": "For how many minutes is the reviewed human clear band obstructed?",
+      "observation_unit": "one-minute route interval",
+      "method": "A steward marks occupied/not occupied against a pre-surveyed clear-band diagram; only cause category and duration are retained.",
+      "minimum_baseline": "Same windows as waiting-time observation plus one non-operating comparison window.",
+      "required_strata": ["proof segment", "cause category", "rain/night flag"],
+      "quality_gate": "Clear-band geometry is signed by an accessibility professional before collection.",
+      "prohibited_inference": "Do not infer legal compliance from the provisional design geometry."
+    },
+    {
+      "metric_id": "manual_takeover_seconds",
+      "question": "How long from a stop request until a named person acknowledges control?",
+      "observation_unit": "takeover drill or real stop event",
+      "method": "Use device and steward clocks synchronised before the window; record trigger, acknowledgement, safe-state, cause, and reviewer sign-off.",
+      "minimum_baseline": "At least one scheduled drill for every operating window; real events are reported separately.",
+      "required_strata": ["scenario", "scheduled drill/real event", "weather mode"],
+      "quality_gate": "A missing acknowledgement is a failed event, not missing data.",
+      "prohibited_inference": "A tabletop result is never counted as a field takeover."
+    },
+    {
+      "metric_id": "account_free_completion_ratio",
+      "question": "Can a person complete the service without an app or account?",
+      "observation_unit": "eligible service request",
+      "method": "Staff tally anonymous requests by chosen channel and completion status; channel switching is recorded without identifying the requester.",
+      "minimum_baseline": "A reviewed pilot period covering every advertised service channel.",
+      "required_strata": ["scenario", "channel", "completed/not completed"],
+      "quality_gate": "Denominator and eligibility rules are frozen before collection and published with the ratio.",
+      "prohibited_inference": "Do not treat channel choice as a proxy for age, disability, income, or digital ability."
+    },
+    {
+      "metric_id": "near_miss_closure_ratio",
+      "question": "Are reported near misses investigated and closed by accountable people?",
+      "observation_unit": "reviewed near-miss record",
+      "method": "Every report receives a severity, owner, immediate control, cause review, corrective action, independent sign-off, and closure or retirement state.",
+      "minimum_baseline": "All reports in a declared pilot period; zero reports must be published as zero observed, not as proof of safety.",
+      "required_strata": ["scenario", "severity", "closure state"],
+      "quality_gate": "Unverified auto-closure is prohibited; overdue records remain open.",
+      "prohibited_inference": "No comparison or ranking across operators before exposure and reporting practices are comparable."
+    },
+    {
+      "metric_id": "rain_night_reliability_ratio",
+      "question": "What share of pre-declared rain/night trials ends in the reviewed safe state?",
+      "observation_unit": "scheduled adverse-condition trial",
+      "method": "Declare condition, route, safe state, stop rule, observer, and cancellation rule before the trial; count safe autonomous completion, safe degradation, unsafe failure, and valid cancellation separately.",
+      "minimum_baseline": "A professional field plan must define weather bands and repetitions before operation.",
+      "required_strata": ["rain/night condition", "scenario", "outcome class"],
+      "quality_gate": "Safe degradation is reported separately from autonomous completion; cancellations never enter the success numerator.",
+      "prohibited_inference": "No percentage is published from synthetic fixtures or unreviewed demonstrations."
+    }
+  ]
+}

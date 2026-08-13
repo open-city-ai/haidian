@@ -285,6 +285,69 @@
       "confidence": "high",
       "assumptions": ["The kit is a concept-stage minimum, not a procurement list."]
     },
+    "ctp_executable_test_pass_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["visual/assets/ctp-validator-results.json", "visual/assets/run-ctp-validator.js"],
+      "formula": "passed executable package tests / 24 declared executable package tests",
+      "confidence": "high",
+      "assumptions": ["This verifies package topology and governance logic only; it is not evidence of field performance."]
+    },
+    "ctp_executable_test_count": {
+      "status": "known",
+      "value": 24,
+      "unit": "count",
+      "source_files": ["visual/assets/ctp-validator.json", "visual/assets/ctp-validator-results.json"],
+      "formula": "sum(declared executable tests across the three translation stations)",
+      "confidence": "high",
+      "assumptions": ["Eight deterministic tests are declared for each station package."]
+    },
+    "station_section_control_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["assets/figures/mobility-bluegreen.png", "proposal.md"],
+      "formula": "translation stations with plan-and-section control diagrams / 3 translation stations",
+      "confidence": "high",
+      "assumptions": ["Control diagrams are concept-stage spatial safeguards, not construction drawings."]
+    },
+    "zero_stage_gate_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": ["visual/assets/zero-stage-90-days.json", "proposal.md"],
+      "formula": "count(G0, G1, G2 and G3 evidence gates in the first 90 days)",
+      "confidence": "high",
+      "assumptions": ["The gates define evidence decisions before capital delivery."]
+    },
+    "zero_stage_person_days_max": {
+      "status": "known",
+      "value": 340,
+      "unit": "person_day",
+      "source_files": ["visual/assets/zero-stage-90-days.json"],
+      "formula": "sum(maximum concept resource ranges across G0-G3)",
+      "confidence": "low",
+      "assumptions": ["This is a concept resource envelope, not a budget, quotation, staffing commitment or procurement basis."]
+    },
+    "zero_stage_participant_session_max": {
+      "status": "known",
+      "value": 83,
+      "unit": "participant_session",
+      "source_files": ["visual/assets/zero-stage-90-days.json"],
+      "formula": "sum(maximum participant-session ranges across G0-G3)",
+      "confidence": "low",
+      "assumptions": ["Participation is voluntary, compensated where applicable, and subject to ethics and accessibility review."]
+    },
+    "handover_contract_field_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["visual/assets/handover-contracts.json"],
+      "formula": "declared handover field categories / 12 required handover field categories",
+      "confidence": "high",
+      "assumptions": ["Named parties, approvals and amounts remain placeholders until an accountable client confirms them."]
+    },
     "total_floor_area_sqm": {
       "status": "unknown",
       "value": null,

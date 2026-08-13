@@ -1,0 +1,1802 @@
+{
+  "schema_version": "0.2.0",
+  "maturity": "working-draft",
+  "selection_method": "qualitative eligibility gates plus diversity review; no combined score",
+  "counts": {
+    "total": 16,
+    "core": 12,
+    "support": 4,
+    "flagship_tests": 3
+  },
+  "scenarios": [
+    {
+      "scenario_id": "scn-find-station-01",
+      "status": "candidate",
+      "title_zh": "出站第一眼",
+      "title_en": "First Look After Exit",
+      "axes": {
+        "actor": {
+          "primary": "act-first-time-visitor",
+          "secondary": [
+            "act-older-pedestrian"
+          ],
+          "capability_or_constraint": "缺少路线记忆，需要在出站后快速建立方向感",
+          "future_digital_interface": "optional"
+        },
+        "task": {
+          "category": "find",
+          "objective": "从轨道站出口找到遗址公园和主要公共服务方向",
+          "perception_target_or_conflict_object": "方向标识、公共地标、广告屏与接驳人流"
+        },
+        "environment": {
+          "time": "日间与晚高峰",
+          "weather": "常态及雨天",
+          "visual_load": "商业广告、高峰人流和多出口造成高负荷",
+          "dynamic_conditions": [
+            "env-peak-crowd",
+            "env-event-overload"
+          ]
+        },
+        "space": {
+          "prototype_id": "spc-station-forecourt-03",
+          "type": "轨道站出口前场",
+          "candidate_areas": [
+            "dazhongsi"
+          ]
+        }
+      },
+      "existing_problem": "出站者必须在广告、接驳与多方向信息中停下试错，交通完成了到达，却没有帮助人进入城市。",
+      "spatial_causes": [
+        "公共导向缺少受保护的视域",
+        "出口前缓冲不足",
+        "地标与商业信息处于同一视觉层级"
+      ],
+      "proposed_spatial_changes": [
+        "建立连续可见的公共辨向带",
+        "把商业屏幕移出首个判断视域",
+        "设置不阻断人流的停看与人工问询口袋",
+        "用固定地标连接站口与公园入口"
+      ],
+      "ai_role": {
+        "necessity": "supporting",
+        "mode": "layout-comparison",
+        "inputs": [
+          "匿名聚合人流",
+          "标识遮挡与视域模型"
+        ],
+        "outputs": [
+          "不同布局下的可见性比较",
+          "高峰遮挡风险提示"
+        ],
+        "human_review": "required",
+        "reversible": true,
+        "personal_tracking": false
+      },
+      "no_ai_path": "固定导视、连续地标、纸质地图和人工问询在无 AI 时完整工作。",
+      "validation": {
+        "visible": {
+          "observation_method": "从各出口眼高位置记录公共方向信息首次可见点",
+          "professional_threshold_required": true
+        },
+        "legible": {
+          "observation_method": "让首次到访者不使用手机指出下一步方向并说明依据",
+          "professional_threshold_required": true
+        },
+        "timely": {
+          "observation_method": "记录从出站到完成首次方向选择所需停顿与折返",
+          "professional_threshold_required": true
+        }
+      },
+      "operation_and_maintenance": [
+        "商业内容变更不得侵入公共辨向带",
+        "定期检查临时设施和共享单车遮挡"
+      ],
+      "professional_confirmation": [
+        "轨道客流与站口条件",
+        "交通组织",
+        "无障碍与导视设计",
+        "广告与产权界面"
+      ],
+      "evidence_refs": [
+        "official:agent-taskbook",
+        "project:collision-scan-2026-08-11"
+      ],
+      "qualification_gates": {
+        "real_urban_task": "provisional-pass",
+        "explicit_spatial_change": "provisional-pass",
+        "public_beneficiary": "provisional-pass",
+        "ai_boundary_clear": "provisional-pass",
+        "no_ai_path": "provisional-pass",
+        "testable": "provisional-pass",
+        "privacy_compliant": "provisional-pass",
+        "area_fit": "provisional-pass",
+        "transferable": "provisional-pass"
+      },
+      "selection_note": "强候选；可作为大钟寺门户旗舰之一。",
+      "task_family": "find",
+      "selection_tier": "core",
+      "selected_order": 1,
+      "test_suites": [
+        "tst-dazhongsi-visual-congestion"
+      ]
+    },
+    {
+      "scenario_id": "scn-find-service-02",
+      "status": "candidate",
+      "title_zh": "不藏起来的社区入口",
+      "title_en": "A Community Entrance That Does Not Hide",
+      "axes": {
+        "actor": {
+          "primary": "act-older-pedestrian",
+          "secondary": [
+            "act-first-time-visitor"
+          ],
+          "capability_or_constraint": "对入口相似、低对比和绕行更敏感",
+          "future_digital_interface": "optional"
+        },
+        "task": {
+          "category": "find",
+          "objective": "找到社区服务入口与人工窗口",
+          "perception_target_or_conflict_object": "相似店面、停放自行车、雨棚和入口编号"
+        },
+        "environment": {
+          "time": "黄昏",
+          "weather": "常态",
+          "visual_load": "沿街入口相似且局部被停放物遮挡",
+          "dynamic_conditions": [
+            "env-dusk-low-light",
+            "env-curb-occupation"
+          ]
+        },
+        "space": {
+          "prototype_id": "spc-community-service-12",
+          "type": "社区公共服务入口",
+          "candidate_areas": [
+            "ai-origin"
+          ]
+        }
+      },
+      "existing_problem": "公共服务入口与普通店面难区分，标识常被停车、外摆或雨棚边缘遮挡。",
+      "spatial_causes": [
+        "入口缺少固定识别框",
+        "门前停留和停放侵占视域",
+        "夜间对比依赖发光屏"
+      ],
+      "proposed_spatial_changes": [
+        "设置跨时段可识别的入口框与门牌层级",
+        "入口前保留无停放视域",
+        "把等候和车辆停放移到侧向口袋",
+        "让人工窗口从主路径可见"
+      ],
+      "ai_role": {
+        "necessity": "optional",
+        "mode": "state-change-detection",
+        "inputs": [
+          "入口遮挡状态",
+          "标识维护记录"
+        ],
+        "outputs": [
+          "遮挡与损坏维护提示"
+        ],
+        "human_review": "required",
+        "reversible": true,
+        "personal_tracking": false
+      },
+      "no_ai_path": "高对比固定门牌、实体入口框和可见人工窗口承担全部基本辨认。",
+      "validation": {
+        "visible": {
+          "observation_method": "从主要到达方向记录入口标志是否被遮挡",
+          "professional_threshold_required": true
+        },
+        "legible": {
+          "observation_method": "邀请老年使用者区分公共服务入口与相邻店面",
+          "professional_threshold_required": true
+        },
+        "timely": {
+          "observation_method": "记录是否出现越过入口、折返或求助",
+          "professional_threshold_required": true
+        }
+      },
+      "operation_and_maintenance": [
+        "门前无停放区日常巡查",
+        "店面更替不改变公共入口固定层"
+      ],
+      "professional_confirmation": [
+        "建筑产权与消防",
+        "无障碍入口",
+        "社区运营"
+      ],
+      "evidence_refs": [
+        "official:agent-taskbook",
+        "project:collision-scan-2026-08-11"
+      ],
+      "qualification_gates": {
+        "real_urban_task": "provisional-pass",
+        "explicit_spatial_change": "provisional-pass",
+        "public_beneficiary": "provisional-pass",
+        "ai_boundary_clear": "provisional-pass",
+        "no_ai_path": "provisional-pass",
+        "testable": "provisional-pass",
+        "privacy_compliant": "provisional-pass",
+        "area_fit": "provisional-pass",
+        "transferable": "provisional-pass"
+      },
+      "selection_note": "强候选；体现社区日常与 AI 非必要边界。",
+      "task_family": "find",
+      "selection_tier": "core",
+      "selected_order": 2,
+      "test_suites": [
+        "tst-ai-origin-inclusive-wayfinding"
+      ]
+    },
+    {
+      "scenario_id": "scn-find-accessible-03",
+      "status": "candidate",
+      "title_zh": "雨天仍能辨认的可达支路",
+      "title_en": "An Accessible Branch Legible in Rain",
+      "axes": {
+        "actor": {
+          "primary": "act-low-vision-pedestrian",
+          "secondary": [
+            "act-wheelchair-stroller"
+          ],
+          "capability_or_constraint": "雨天反光、雨具遮挡和低对比会削弱路径辨认",
+          "future_digital_interface": "optional"
+        },
+        "task": {
+          "category": "find",
+          "objective": "识别连续无障碍支路及其入口",
+          "perception_target_or_conflict_object": "路径分叉、坡道入口、积水与临时路障"
+        },
+        "environment": {
+          "time": "白天与黄昏",
+          "weather": "雨天",
+          "visual_load": "反光、伞具与地面标线失真",
+          "dynamic_conditions": [
+            "env-rain-reflection"
+          ]
+        },
+        "space": {
+          "prototype_id": "spc-campus-threshold-04",
+          "type": "校园或园区门区",
+          "candidate_areas": [
+            "ai-origin",
+            "dazhongsi"
+          ]
+        }
+      },
+      "existing_problem": "可达路径常依赖地面色带或手机导航，雨天反光和积水使入口难以辨认。",
+      "spatial_causes": [
+        "只有单一视觉线索",
+        "坡道入口与普通铺装同质",
+        "积水与临时设施遮挡连续边界"
+      ],
+      "proposed_spatial_changes": [
+        "使用垂直与地面双重固定标志",
+        "强化路径边界和入口构造",
+        "把排水与临时设施位置纳入路径设计",
+        "保留触觉、声音和人工帮助接口"
+      ],
+      "ai_role": {
+        "necessity": "supporting",
+        "mode": "weather-condition-audit",
+        "inputs": [
+          "天气条件",
+          "材料反光与遮挡模拟"
+        ],
+        "outputs": [
+          "不同天气下的对比失效清单"
+        ],
+        "human_review": "required",
+        "reversible": true,
+        "personal_tracking": false
+      },
+      "no_ai_path": "固定边界、垂直标志、触觉路径和人工服务不依赖实时系统。",
+      "validation": {
+        "visible": {
+          "observation_method": "在干湿和不同亮度条件下记录路径入口可见性",
+          "professional_threshold_required": true
+        },
+        "legible": {
+          "observation_method": "由真实使用者判断标志是否明确指向连续路径",
+          "professional_threshold_required": true
+        },
+        "timely": {
+          "observation_method": "记录分叉前是否有足够距离完成选择",
+          "professional_threshold_required": true
+        }
+      },
+      "operation_and_maintenance": [
+        "雨后排水与遮挡检查",
+        "材料磨损和对比年度复核"
+      ],
+      "professional_confirmation": [
+        "无障碍专业",
+        "排水与材料",
+        "真实使用者共测"
+      ],
+      "evidence_refs": [
+        "official:agent-taskbook",
+        "peer:every-sense-jingzhang-boundary"
+      ],
+      "qualification_gates": {
+        "real_urban_task": "provisional-pass",
+        "explicit_spatial_change": "provisional-pass",
+        "public_beneficiary": "provisional-pass",
+        "ai_boundary_clear": "pass-with-condition",
+        "no_ai_path": "provisional-pass",
+        "testable": "provisional-pass",
+        "privacy_compliant": "provisional-pass",
+        "area_fit": "provisional-pass",
+        "transferable": "provisional-pass"
+      },
+      "selection_note": "保留；必须明确视觉专项不能替代完整无障碍设计。",
+      "task_family": "find",
+      "selection_tier": "core",
+      "selected_order": 3,
+      "test_suites": [
+        "tst-ai-origin-inclusive-wayfinding"
+      ]
+    },
+    {
+      "scenario_id": "scn-find-curb-05",
+      "status": "candidate",
+      "title_zh": "不用低头找的配送停靠位",
+      "title_en": "A Delivery Bay Found Without Looking Down",
+      "axes": {
+        "actor": {
+          "primary": "act-cycling-courier",
+          "secondary": [
+            "act-maintenance-worker"
+          ],
+          "capability_or_constraint": "移动中不应依赖读取手机寻找停靠位",
+          "future_digital_interface": "optional"
+        },
+        "task": {
+          "category": "find",
+          "objective": "在到达前识别合法短停、装卸或取件位置",
+          "perception_target_or_conflict_object": "路缘标志、停放车辆、排队人群和店铺入口"
+        },
+        "environment": {
+          "time": "午晚高峰",
+          "weather": "常态与雨天",
+          "visual_load": "商业标识密集且路缘被临停占据",
+          "dynamic_conditions": [
+            "env-curb-occupation",
+            "env-peak-crowd"
+          ]
+        },
+        "space": {
+          "prototype_id": "spc-curb-service-08",
+          "type": "路缘服务带",
+          "candidate_areas": [
+            "dazhongsi",
+            "ai-origin"
+          ]
+        }
+      },
+      "existing_problem": "配送员到门前才发现无停靠位，临时刹停或上人行道会制造新的遮挡与冲突。",
+      "spatial_causes": [
+        "停靠位只在地面或 App 中显示",
+        "缺少提前减速与进出关系",
+        "停靠、取件和行人入口重叠"
+      ],
+      "proposed_spatial_changes": [
+        "在到达路径上设置提前可见的垂直识别",
+        "建立短停口袋和减速进出段",
+        "将取件等待从人行主通道移开",
+        "用固定时段牌说明使用规则"
+      ],
+      "ai_role": {
+        "necessity": "supporting",
+        "mode": "aggregated-occupancy-assistance",
+        "inputs": [
+          "停靠位占用状态",
+          "时段规则"
+        ],
+        "outputs": [
+          "聚合空闲提示",
+          "异常占用维护提示"
+        ],
+        "human_review": "required",
+        "reversible": true,
+        "personal_tracking": false
+      },
+      "no_ai_path": "垂直标志、实体短停位和固定时段规则使配送员无需 App 也能使用。",
+      "validation": {
+        "visible": {
+          "observation_method": "从骑行到达方向记录停靠位首次识别距离",
+          "professional_threshold_required": true
+        },
+        "legible": {
+          "observation_method": "测试配送员能否区分短停、禁停和公众入口",
+          "professional_threshold_required": true
+        },
+        "timely": {
+          "observation_method": "记录是否能在不急刹和不侵入人行道的情况下完成减速",
+          "professional_threshold_required": true
+        }
+      },
+      "operation_and_maintenance": [
+        "路缘标志和占位巡查",
+        "高峰时段规则由人工审核"
+      ],
+      "professional_confirmation": [
+        "交通与路权",
+        "消防净空",
+        "配送运营与商户共创"
+      ],
+      "evidence_refs": [
+        "official:agent-taskbook",
+        "peer:autonomy-commons-boundary"
+      ],
+      "qualification_gates": {
+        "real_urban_task": "provisional-pass",
+        "explicit_spatial_change": "provisional-pass",
+        "public_beneficiary": "provisional-pass",
+        "ai_boundary_clear": "provisional-pass",
+        "no_ai_path": "provisional-pass",
+        "testable": "provisional-pass",
+        "privacy_compliant": "provisional-pass",
+        "area_fit": "provisional-pass",
+        "transferable": "provisional-pass"
+      },
+      "selection_note": "强候选；人类配送日常优先于机器人。",
+      "task_family": "find",
+      "selection_tier": "core",
+      "selected_order": 4,
+      "test_suites": []
+    },
+    {
+      "scenario_id": "scn-cross-green-corner-01",
+      "status": "candidate",
+      "title_zh": "共读转角测试",
+      "title_en": "Co-Legible Corner Test",
+      "axes": {
+        "actor": {
+          "primary": "act-older-pedestrian",
+          "secondary": [
+            "act-cycling-courier"
+          ],
+          "capability_or_constraint": "步速与反应节奏不同，双方都需要提前发现对方",
+          "future_digital_interface": "optional"
+        },
+        "task": {
+          "category": "cross",
+          "objective": "在绿化转角提前发现、判断并完成避让",
+          "perception_target_or_conflict_object": "对向移动者、转角边缘、临停车辆与植被"
+        },
+        "environment": {
+          "time": "黄昏",
+          "weather": "常态",
+          "visual_load": "植被生长和临停形成动态遮挡",
+          "dynamic_conditions": [
+            "env-dusk-low-light",
+            "env-vegetation-growth",
+            "env-curb-occupation"
+          ]
+        },
+        "space": {
+          "prototype_id": "spc-green-corner-01",
+          "type": "绿化街角",
+          "candidate_areas": [
+            "zhongzhiyuan"
+          ]
+        }
+      },
+      "existing_problem": "老人和骑行配送员在被灌木、围挡或临停车辆遮住的街角同时进入冲突区，只能依靠最后一刻刹停。",
+      "spatial_causes": [
+        "视线三角被植物和停车侵占",
+        "骑行线进入转角前没有减速界面",
+        "行人缺少短暂停看位置",
+        "黄昏背景对比不稳定"
+      ],
+      "proposed_spatial_changes": [
+        "建立可维护的视线三角",
+        "按视线高度分层控制植被",
+        "设置临停退出线与实体阻隔",
+        "在骑行侧形成提前减速界面",
+        "设置不占通行带的短暂停看口袋"
+      ],
+      "ai_role": {
+        "necessity": "supporting",
+        "mode": "state-change-detection-and-layout-comparison",
+        "inputs": [
+          "植被高度与季相",
+          "临停遮挡状态",
+          "不含个人身份的冲突观察"
+        ],
+        "outputs": [
+          "视线退化维护提示",
+          "不同布局比较报告"
+        ],
+        "human_review": "required",
+        "reversible": true,
+        "personal_tracking": false
+      },
+      "no_ai_path": "视线三角、植被分层、禁停边界、减速界面和停看口袋在无 AI 时承担全部基础安全。",
+      "validation": {
+        "visible": {
+          "observation_method": "从老人和骑行者双向眼高记录首次互见位置与遮挡来源",
+          "professional_threshold_required": true
+        },
+        "legible": {
+          "observation_method": "观察双方能否理解优先关系、减速点和行进方向",
+          "professional_threshold_required": true
+        },
+        "timely": {
+          "observation_method": "记录首次互见到冲突点之间是否具有足够判断与制动余量",
+          "professional_threshold_required": true
+        }
+      },
+      "operation_and_maintenance": [
+        "植物修剪按视线条件而非单一高度表执行",
+        "临停与围挡变更触发复核",
+        "黄昏条件定期复测"
+      ],
+      "professional_confirmation": [
+        "交通安全与制动距离",
+        "景观植物与养护",
+        "照明与低视力",
+        "无障碍与老年友好"
+      ],
+      "evidence_refs": [
+        "project:decision-001-flagship",
+        "official:agent-taskbook"
+      ],
+      "qualification_gates": {
+        "real_urban_task": "provisional-pass",
+        "explicit_spatial_change": "provisional-pass",
+        "public_beneficiary": "provisional-pass",
+        "ai_boundary_clear": "provisional-pass",
+        "no_ai_path": "provisional-pass",
+        "testable": "provisional-pass",
+        "privacy_compliant": "provisional-pass",
+        "area_fit": "provisional-pass",
+        "transferable": "provisional-pass"
+      },
+      "selection_note": "已确认旗舰；进入正式卡的优先级最高。",
+      "task_family": "cross",
+      "selection_tier": "core",
+      "selected_order": 5,
+      "test_suites": [
+        "tst-zhongzhiyuan-co-legible-corner"
+      ]
+    },
+    {
+      "scenario_id": "scn-cross-community-gate-02",
+      "status": "candidate",
+      "title_zh": "接送高峰的连续步行面",
+      "title_en": "A Continuous Footway Through Pickup Peak",
+      "axes": {
+        "actor": {
+          "primary": "act-child-caregiver",
+          "secondary": [
+            "act-cycling-courier",
+            "act-older-pedestrian"
+          ],
+          "capability_or_constraint": "儿童眼高较低，接送车辆会遮挡进出视线",
+          "future_digital_interface": "none"
+        },
+        "task": {
+          "category": "cross",
+          "objective": "穿过社区或校园车行出入口",
+          "perception_target_or_conflict_object": "进出车辆、儿童、接送停车与门区边界"
+        },
+        "environment": {
+          "time": "放学与接送高峰",
+          "weather": "常态",
+          "visual_load": "车辆、人群和停留同时叠加",
+          "dynamic_conditions": [
+            "env-peak-crowd",
+            "env-curb-occupation"
+          ]
+        },
+        "space": {
+          "prototype_id": "spc-campus-threshold-04",
+          "type": "校园或园区门区",
+          "candidate_areas": [
+            "ai-origin"
+          ]
+        }
+      },
+      "existing_problem": "接送车辆停在门区两侧，儿童和驾驶者都在遮挡后才看到对方。",
+      "spatial_causes": [
+        "门区车行面优先",
+        "停车侵入观察区",
+        "等候与通过混合",
+        "入口退让不足"
+      ],
+      "proposed_spatial_changes": [
+        "把人行连续面抬高贯穿车行口",
+        "门区退让形成双向观察区",
+        "将接送和等待移至侧向口袋",
+        "用实体边界阻止车辆侵入视线区"
+      ],
+      "ai_role": {
+        "necessity": "optional",
+        "mode": "peak-layout-audit",
+        "inputs": [
+          "人工或匿名聚合的高峰占用记录"
+        ],
+        "outputs": [
+          "遮挡热区与布置复核清单"
+        ],
+        "human_review": "required",
+        "reversible": true,
+        "personal_tracking": false
+      },
+      "no_ai_path": "抬高步行面、门区退让、禁停边界和人工引导独立工作。",
+      "validation": {
+        "visible": {
+          "observation_method": "按儿童、成人和驾驶员视点检查双向互见",
+          "professional_threshold_required": true
+        },
+        "legible": {
+          "observation_method": "检查车辆能否读出人行优先及减速关系",
+          "professional_threshold_required": true
+        },
+        "timely": {
+          "observation_method": "记录高峰条件下首次互见至冲突点的判断余量",
+          "professional_threshold_required": true
+        }
+      },
+      "operation_and_maintenance": [
+        "高峰禁停执管",
+        "活动和门区设施不得占用观察区"
+      ],
+      "professional_confirmation": [
+        "学校与社区安全",
+        "交通组织",
+        "儿童友好",
+        "消防"
+      ],
+      "evidence_refs": [
+        "official:agent-taskbook"
+      ],
+      "qualification_gates": {
+        "real_urban_task": "provisional-pass",
+        "explicit_spatial_change": "provisional-pass",
+        "public_beneficiary": "provisional-pass",
+        "ai_boundary_clear": "provisional-pass",
+        "no_ai_path": "provisional-pass",
+        "testable": "provisional-pass",
+        "privacy_compliant": "provisional-pass",
+        "area_fit": "provisional-pass",
+        "transferable": "provisional-pass"
+      },
+      "selection_note": "强候选；AI 很弱但空间价值高。",
+      "task_family": "cross",
+      "selection_tier": "core",
+      "selected_order": 6,
+      "test_suites": [
+        "tst-ai-origin-inclusive-wayfinding"
+      ]
+    },
+    {
+      "scenario_id": "scn-cross-station-flow-03",
+      "status": "candidate",
+      "title_zh": "站前四种速度的可见交叉",
+      "title_en": "A Visible Crossing of Four Speeds",
+      "axes": {
+        "actor": {
+          "primary": "act-wheelchair-stroller",
+          "secondary": [
+            "act-cycling-courier",
+            "act-first-time-visitor"
+          ],
+          "capability_or_constraint": "转向与避让空间需求较大，不能被自行车与候客占用",
+          "future_digital_interface": "optional"
+        },
+        "task": {
+          "category": "cross",
+          "objective": "穿越站前自行车、步行、候客与行李流",
+          "perception_target_or_conflict_object": "骑行流、候客队列、共享单车与接驳车辆"
+        },
+        "environment": {
+          "time": "早晚高峰",
+          "weather": "雨天可复核",
+          "visual_load": "多速度、多方向与伞具叠加",
+          "dynamic_conditions": [
+            "env-peak-crowd",
+            "env-rain-reflection"
+          ]
+        },
+        "space": {
+          "prototype_id": "spc-station-forecourt-03",
+          "type": "轨道站出口前场",
+          "candidate_areas": [
+            "dazhongsi"
+          ]
+        }
+      },
+      "existing_problem": "站前不同速度的流线在出口附近交叉，轮椅、婴儿车和行李使用者难以获得连续观察和等待位置。",
+      "spatial_causes": [
+        "自行车和步行交叉角度模糊",
+        "候客侵入通过区",
+        "停放设施遮挡低位视线",
+        "缺少中途停看空间"
+      ],
+      "proposed_spatial_changes": [
+        "明确交叉角度和优先关系",
+        "把候客与停车移出观察区",
+        "设置足够转向的停看岛",
+        "用材料与边缘区分速度而不制造台阶障碍"
+      ],
+      "ai_role": {
+        "necessity": "supporting",
+        "mode": "aggregated-flow-comparison",
+        "inputs": [
+          "匿名聚合流量与冲突类型",
+          "空间布局模型"
+        ],
+        "outputs": [
+          "布局方案比较",
+          "高峰管理提示"
+        ],
+        "human_review": "required",
+        "reversible": true,
+        "personal_tracking": false
+      },
+      "no_ai_path": "明确的空间分层、停看岛、停车边界和现场管理独立工作。",
+      "validation": {
+        "visible": {
+          "observation_method": "从轮椅和成人眼高检查各速度来向是否可见",
+          "professional_threshold_required": true
+        },
+        "legible": {
+          "observation_method": "观察各类使用者能否理解交叉位置和优先关系",
+          "professional_threshold_required": true
+        },
+        "timely": {
+          "observation_method": "记录是否能在进入交叉前完成停看与让行",
+          "professional_threshold_required": true
+        }
+      },
+      "operation_and_maintenance": [
+        "共享单车边界巡查",
+        "雨具与活动布置压力测试"
+      ],
+      "professional_confirmation": [
+        "轨道与交通",
+        "无障碍",
+        "客流安全",
+        "路缘管理"
+      ],
+      "evidence_refs": [
+        "official:agent-taskbook",
+        "peer:second-survey-boundary"
+      ],
+      "qualification_gates": {
+        "real_urban_task": "provisional-pass",
+        "explicit_spatial_change": "provisional-pass",
+        "public_beneficiary": "provisional-pass",
+        "ai_boundary_clear": "provisional-pass",
+        "no_ai_path": "provisional-pass",
+        "testable": "provisional-pass",
+        "privacy_compliant": "provisional-pass",
+        "area_fit": "provisional-pass",
+        "transferable": "provisional-pass"
+      },
+      "selection_note": "强候选；大钟寺高密度压力场核心卡。",
+      "task_family": "cross",
+      "selection_tier": "core",
+      "selected_order": 7,
+      "test_suites": [
+        "tst-dazhongsi-visual-congestion"
+      ]
+    },
+    {
+      "scenario_id": "scn-cross-glare-04",
+      "status": "candidate",
+      "title_zh": "不被广告光吞掉的过街信号",
+      "title_en": "A Crossing Signal Not Lost in Advertising Glare",
+      "axes": {
+        "actor": {
+          "primary": "act-low-vision-pedestrian",
+          "secondary": [
+            "act-older-pedestrian"
+          ],
+          "capability_or_constraint": "对眩光和低对比背景更敏感",
+          "future_digital_interface": "none"
+        },
+        "task": {
+          "category": "cross",
+          "objective": "识别过街信号、等待边界和安全岛",
+          "perception_target_or_conflict_object": "信号灯、广告屏、车灯、路缘与中央等待区"
+        },
+        "environment": {
+          "time": "夜间",
+          "weather": "雨后",
+          "visual_load": "广告、车灯与湿地反光形成高负荷",
+          "dynamic_conditions": [
+            "env-dusk-low-light",
+            "env-rain-reflection",
+            "env-event-overload"
+          ]
+        },
+        "space": {
+          "prototype_id": "spc-crossing-02",
+          "type": "城市过街口",
+          "candidate_areas": [
+            "dazhongsi"
+          ]
+        }
+      },
+      "existing_problem": "信号本身存在，但在高亮商业背景和湿地反射中难以形成稳定辨认。",
+      "spatial_causes": [
+        "安全信息没有背景保护",
+        "广告光进入等待者视域",
+        "安全岛边界低对比",
+        "反光材料选择不当"
+      ],
+      "proposed_spatial_changes": [
+        "为信号与等待信息建立低干扰背景区",
+        "限制关键视域内动态高亮内容",
+        "强化安全岛和路缘的形体边界",
+        "提供非视觉等价信号"
+      ],
+      "ai_role": {
+        "necessity": "supporting",
+        "mode": "glare-scenario-audit",
+        "inputs": [
+          "照明与屏幕时段模型",
+          "材料反射模型"
+        ],
+        "outputs": [
+          "高风险时段和视域清单",
+          "设计方案比较"
+        ],
+        "human_review": "required",
+        "reversible": true,
+        "personal_tracking": false
+      },
+      "no_ai_path": "固定信号背景、实体边界、声响或触觉信号在无 AI 时工作。",
+      "validation": {
+        "visible": {
+          "observation_method": "由低视力使用者在不同背景亮度下检查信号和安全岛",
+          "professional_threshold_required": true
+        },
+        "legible": {
+          "observation_method": "测试是否能区分等待、通过和中途停留状态",
+          "professional_threshold_required": true
+        },
+        "timely": {
+          "observation_method": "记录信号识别与开始行动之间是否出现延迟",
+          "professional_threshold_required": true
+        }
+      },
+      "operation_and_maintenance": [
+        "广告和夜景变更前复核关键视域",
+        "雨夜实地检查"
+      ],
+      "professional_confirmation": [
+        "公安交管",
+        "照明与广告管理",
+        "无障碍和低视力共测"
+      ],
+      "evidence_refs": [
+        "official:agent-taskbook",
+        "peer:light-enough-boundary",
+        "peer:the-ai-line-boundary"
+      ],
+      "qualification_gates": {
+        "real_urban_task": "provisional-pass",
+        "explicit_spatial_change": "provisional-pass",
+        "public_beneficiary": "provisional-pass",
+        "ai_boundary_clear": "provisional-pass",
+        "no_ai_path": "provisional-pass",
+        "testable": "provisional-pass",
+        "privacy_compliant": "provisional-pass",
+        "area_fit": "provisional-pass",
+        "transferable": "provisional-pass"
+      },
+      "selection_note": "强候选；注意不扩张为完整夜间照明方案。",
+      "task_family": "cross",
+      "selection_tier": "support",
+      "selected_order": 8,
+      "test_suites": [
+        "tst-dazhongsi-visual-congestion"
+      ]
+    },
+    {
+      "scenario_id": "scn-share-greenway-01",
+      "status": "candidate",
+      "title_zh": "能停、能走、能超越的绿道",
+      "title_en": "A Greenway for Stopping, Moving and Passing",
+      "axes": {
+        "actor": {
+          "primary": "act-older-pedestrian",
+          "secondary": [
+            "act-cycling-courier",
+            "act-child-caregiver"
+          ],
+          "capability_or_constraint": "步速、停留与超越需求不同",
+          "future_digital_interface": "optional"
+        },
+        "task": {
+          "category": "share",
+          "objective": "在共享绿道中行走、骑行、停留和超越",
+          "perception_target_or_conflict_object": "弯道来流、座椅、落叶、婴儿车与骑行者"
+        },
+        "environment": {
+          "time": "周末日间",
+          "weather": "常态与落叶季",
+          "visual_load": "植被弯道和停留设施形成遮挡",
+          "dynamic_conditions": [
+            "env-peak-crowd",
+            "env-vegetation-growth"
+          ]
+        },
+        "space": {
+          "prototype_id": "spc-greenway-05",
+          "type": "共享绿道",
+          "candidate_areas": [
+            "zhongzhiyuan",
+            "ai-origin"
+          ]
+        }
+      },
+      "existing_problem": "通行、休息与超越挤在同一窄带，座椅和植物把低速使用者藏在弯道后。",
+      "spatial_causes": [
+        "停留设施侵入运动视域",
+        "缺少超越口袋",
+        "速度关系不明确",
+        "季节性落叶和植物改变边界"
+      ],
+      "proposed_spatial_changes": [
+        "把座椅和停留移入侧向口袋",
+        "在视线允许处设置超越段",
+        "通过形体和材料表达速度分层",
+        "建立弯道植被和落叶维护界面"
+      ],
+      "ai_role": {
+        "necessity": "supporting",
+        "mode": "seasonal-layout-audit",
+        "inputs": [
+          "植被季相",
+          "匿名聚合冲突观察"
+        ],
+        "outputs": [
+          "弯道视线退化和维护提示",
+          "空间方案比较"
+        ],
+        "human_review": "required",
+        "reversible": true,
+        "personal_tracking": false
+      },
+      "no_ai_path": "停留口袋、超越段、速度分层和固定养护规则独立工作。",
+      "validation": {
+        "visible": {
+          "observation_method": "从步行和骑行双向检查弯道来流与停留者",
+          "professional_threshold_required": true
+        },
+        "legible": {
+          "observation_method": "观察使用者是否理解通行、停留和超越的位置",
+          "professional_threshold_required": true
+        },
+        "timely": {
+          "observation_method": "记录超越和避让是否在冲突前完成",
+          "professional_threshold_required": true
+        }
+      },
+      "operation_and_maintenance": [
+        "落叶季与植物生长复核",
+        "停留家具不得临时移入通行带"
+      ],
+      "professional_confirmation": [
+        "慢行交通",
+        "景观养护",
+        "儿童与老年友好"
+      ],
+      "evidence_refs": [
+        "official:agent-taskbook"
+      ],
+      "qualification_gates": {
+        "real_urban_task": "provisional-pass",
+        "explicit_spatial_change": "provisional-pass",
+        "public_beneficiary": "provisional-pass",
+        "ai_boundary_clear": "provisional-pass",
+        "no_ai_path": "provisional-pass",
+        "testable": "provisional-pass",
+        "privacy_compliant": "provisional-pass",
+        "area_fit": "provisional-pass",
+        "transferable": "provisional-pass"
+      },
+      "selection_note": "强候选；从转角扩展到连续绿道。",
+      "task_family": "share",
+      "selection_tier": "core",
+      "selected_order": 9,
+      "test_suites": [
+        "tst-zhongzhiyuan-co-legible-corner"
+      ]
+    },
+    {
+      "scenario_id": "scn-share-rain-queue-04",
+      "status": "candidate",
+      "title_zh": "雨棚下仍连续的通行带",
+      "title_en": "A Continuous Route Beneath the Canopy",
+      "axes": {
+        "actor": {
+          "primary": "act-wheelchair-stroller",
+          "secondary": [
+            "act-resident-frontage",
+            "act-older-pedestrian"
+          ],
+          "capability_or_constraint": "雨天绕行和转向空间有限，不能穿越拥挤队列",
+          "future_digital_interface": "none"
+        },
+        "task": {
+          "category": "share",
+          "objective": "在雨棚下共享排队、等候、进出和连续步行",
+          "perception_target_or_conflict_object": "队列、伞具、门口积水、座椅与通行边界"
+        },
+        "environment": {
+          "time": "办事高峰",
+          "weather": "雨天",
+          "visual_load": "伞具降低视线并扩大占用",
+          "dynamic_conditions": [
+            "env-rain-reflection",
+            "env-peak-crowd"
+          ]
+        },
+        "space": {
+          "prototype_id": "spc-community-service-12",
+          "type": "社区公共服务入口",
+          "candidate_areas": [
+            "ai-origin",
+            "dazhongsi"
+          ]
+        }
+      },
+      "existing_problem": "雨天所有人挤入檐下，排队与等候切断连续通行，低位使用者看不到出口。",
+      "spatial_causes": [
+        "雨棚只覆盖门前狭窄区域",
+        "队列没有侧向组织",
+        "排水迫使人绕行",
+        "座椅占用转向空间"
+      ],
+      "proposed_spatial_changes": [
+        "扩展雨棚并把队列折入侧向",
+        "保留连续清晰的无障碍带",
+        "把座椅和取号移出转向区",
+        "排水不穿越入口和通行带"
+      ],
+      "ai_role": {
+        "necessity": "optional",
+        "mode": "weather-use-audit",
+        "inputs": [
+          "天气与人工观察记录"
+        ],
+        "outputs": [
+          "雨天空间失效清单"
+        ],
+        "human_review": "required",
+        "reversible": true,
+        "personal_tracking": false
+      },
+      "no_ai_path": "雨棚、侧向队列、排水和连续通行带完全固定。",
+      "validation": {
+        "visible": {
+          "observation_method": "在伞具和队列存在时检查出口与通行边界",
+          "professional_threshold_required": true
+        },
+        "legible": {
+          "observation_method": "确认排队者和通过者理解各自空间",
+          "professional_threshold_required": true
+        },
+        "timely": {
+          "observation_method": "记录轮椅或婴儿车是否需停下等待队列移动",
+          "professional_threshold_required": true
+        }
+      },
+      "operation_and_maintenance": [
+        "雨天队列由人工调整",
+        "排水和雨棚维护"
+      ],
+      "professional_confirmation": [
+        "无障碍",
+        "建筑与排水",
+        "公共服务运营"
+      ],
+      "evidence_refs": [
+        "official:agent-taskbook",
+        "peer:every-sense-jingzhang-boundary"
+      ],
+      "qualification_gates": {
+        "real_urban_task": "provisional-pass",
+        "explicit_spatial_change": "provisional-pass",
+        "public_beneficiary": "provisional-pass",
+        "ai_boundary_clear": "provisional-pass",
+        "no_ai_path": "provisional-pass",
+        "testable": "provisional-pass",
+        "privacy_compliant": "provisional-pass",
+        "area_fit": "provisional-pass",
+        "transferable": "provisional-pass"
+      },
+      "selection_note": "强候选；AI 很弱但可作为无 AI 空间能力基准。",
+      "task_family": "share",
+      "selection_tier": "support",
+      "selected_order": 10,
+      "test_suites": [
+        "tst-ai-origin-inclusive-wayfinding"
+      ]
+    },
+    {
+      "scenario_id": "scn-share-visual-field-07",
+      "status": "candidate",
+      "title_zh": "公共导视的保护视域",
+      "title_en": "A Protected Visual Field for Public Wayfinding",
+      "axes": {
+        "actor": {
+          "primary": "act-first-time-visitor",
+          "secondary": [
+            "act-low-vision-pedestrian",
+            "act-resident-frontage"
+          ],
+          "capability_or_constraint": "需要在商业信息中稳定找到公共方向与服务",
+          "future_digital_interface": "optional"
+        },
+        "task": {
+          "category": "share",
+          "objective": "让公共导视与商业招牌共享街道视觉场而不互相吞没",
+          "perception_target_or_conflict_object": "公共方向、店招、动态屏、橱窗和活动海报"
+        },
+        "environment": {
+          "time": "昼夜与促销活动",
+          "weather": "常态",
+          "visual_load": "高密度商业视觉信息",
+          "dynamic_conditions": [
+            "env-event-overload",
+            "env-dusk-low-light"
+          ]
+        },
+        "space": {
+          "prototype_id": "spc-commercial-frontage-06",
+          "type": "商业沿街界面",
+          "candidate_areas": [
+            "dazhongsi"
+          ]
+        }
+      },
+      "existing_problem": "公共信息在商业招牌和动态屏中失去层级，新增更多标志只会进一步过载。",
+      "spatial_causes": [
+        "公共与商业标识没有垂直和亮度层级",
+        "动态内容进入方向判断视域",
+        "店面更替不断改变背景"
+      ],
+      "proposed_spatial_changes": [
+        "划定连续公共导视保护带",
+        "把商业动态内容移出关键判断视域",
+        "整合重复店招并保留固定地址层",
+        "以建筑首层界面组织信息而非增加杆件"
+      ],
+      "ai_role": {
+        "necessity": "supporting",
+        "mode": "visual-load-audit",
+        "inputs": [
+          "清权立面图像或程序化界面模型",
+          "标识位置与亮度规则"
+        ],
+        "outputs": [
+          "遮挡、竞争与重复信息清单",
+          "改造方案比较"
+        ],
+        "human_review": "required",
+        "reversible": true,
+        "personal_tracking": false
+      },
+      "no_ai_path": "导视保护带、店招规则和固定地址层独立成立。",
+      "validation": {
+        "visible": {
+          "observation_method": "在不同促销和夜景状态下检查公共方向首次被注意的位置",
+          "professional_threshold_required": true
+        },
+        "legible": {
+          "observation_method": "测试使用者能否区分公共方向、地址和商业内容",
+          "professional_threshold_required": true
+        },
+        "timely": {
+          "observation_method": "记录移动中是否能在选择点前完成方向读取",
+          "professional_threshold_required": true
+        }
+      },
+      "operation_and_maintenance": [
+        "店招和屏幕变更进入界面复核",
+        "公共保护带不得出租"
+      ],
+      "professional_confirmation": [
+        "城市设计与店招管理",
+        "照明",
+        "无障碍与低视力",
+        "商业运营"
+      ],
+      "evidence_refs": [
+        "official:agent-taskbook",
+        "project:collision-scan-2026-08-11"
+      ],
+      "qualification_gates": {
+        "real_urban_task": "provisional-pass",
+        "explicit_spatial_change": "provisional-pass",
+        "public_beneficiary": "provisional-pass",
+        "ai_boundary_clear": "provisional-pass",
+        "no_ai_path": "provisional-pass",
+        "testable": "provisional-pass",
+        "privacy_compliant": "provisional-pass",
+        "area_fit": "provisional-pass",
+        "transferable": "provisional-pass"
+      },
+      "selection_note": "强候选；最能体现大钟寺视觉压力场和空间界面主题。",
+      "task_family": "share",
+      "selection_tier": "core",
+      "selected_order": 11,
+      "test_suites": [
+        "tst-dazhongsi-visual-congestion"
+      ]
+    },
+    {
+      "scenario_id": "scn-share-heritage-layer-08",
+      "status": "candidate",
+      "title_zh": "遗产阅读不占用方向判断",
+      "title_en": "Heritage Reading Without Occupying Direction Choice",
+      "axes": {
+        "actor": {
+          "primary": "act-first-time-visitor",
+          "secondary": [
+            "act-older-pedestrian",
+            "act-child-caregiver"
+          ],
+          "capability_or_constraint": "赶路与停留阅读需要不同时间和空间",
+          "future_digital_interface": "optional"
+        },
+        "task": {
+          "category": "share",
+          "objective": "共享遗产节点中的通行、方向判断和深度阅读",
+          "perception_target_or_conflict_object": "展板、触觉模型、导视、座椅和拍照停留"
+        },
+        "environment": {
+          "time": "周末与活动时段",
+          "weather": "常态",
+          "visual_load": "游客停留和解说内容密集",
+          "dynamic_conditions": [
+            "env-peak-crowd",
+            "env-event-overload"
+          ]
+        },
+        "space": {
+          "prototype_id": "spc-heritage-node-11",
+          "type": "遗产解说节点",
+          "candidate_areas": [
+            "ai-origin",
+            "dazhongsi"
+          ]
+        }
+      },
+      "existing_problem": "触觉模型、解说和拍照点布置在最直路径上，阅读者与通过者互相遮挡。",
+      "spatial_causes": [
+        "停留深度和通行速度没有分层",
+        "方向标识与展陈同位竞争",
+        "拍照视点占用无障碍路径"
+      ],
+      "proposed_spatial_changes": [
+        "将深度阅读和触觉模型放入侧向安静口袋",
+        "保持方向层连续",
+        "明确拍照与会合位置",
+        "提供实体多感官替代而不依赖屏幕"
+      ],
+      "ai_role": {
+        "necessity": "optional",
+        "mode": "layout-and-content-audit",
+        "inputs": [
+          "展陈布置",
+          "活动计划"
+        ],
+        "outputs": [
+          "停留与通行冲突检查"
+        ],
+        "human_review": "required",
+        "reversible": true,
+        "personal_tracking": false
+      },
+      "no_ai_path": "固定分层展陈、触觉模型和实体导视独立工作。",
+      "validation": {
+        "visible": {
+          "observation_method": "检查阅读者存在时方向和出口仍可见",
+          "professional_threshold_required": true
+        },
+        "legible": {
+          "observation_method": "确认通过者和阅读者理解空间分层",
+          "professional_threshold_required": true
+        },
+        "timely": {
+          "observation_method": "记录通过者是否因展陈停留而迟滞或绕行",
+          "professional_threshold_required": true
+        }
+      },
+      "operation_and_maintenance": [
+        "展陈更新不得侵入方向层",
+        "史实和无障碍内容专业复核"
+      ],
+      "professional_confirmation": [
+        "文保与策展",
+        "无障碍",
+        "公共空间运营"
+      ],
+      "evidence_refs": [
+        "official:agent-taskbook",
+        "peer:the-ai-line-boundary"
+      ],
+      "qualification_gates": {
+        "real_urban_task": "provisional-pass",
+        "explicit_spatial_change": "provisional-pass",
+        "public_beneficiary": "provisional-pass",
+        "ai_boundary_clear": "pass-with-condition",
+        "no_ai_path": "provisional-pass",
+        "testable": "provisional-pass",
+        "privacy_compliant": "provisional-pass",
+        "area_fit": "provisional-pass",
+        "transferable": "provisional-pass"
+      },
+      "selection_note": "与 Find-07 高度相邻，正式选择时二选一或合并。",
+      "task_family": "share",
+      "selection_tier": "support",
+      "selected_order": 12,
+      "test_suites": []
+    },
+    {
+      "scenario_id": "scn-adapt-vegetation-01",
+      "status": "candidate",
+      "title_zh": "会长大的视线三角",
+      "title_en": "A Sight Triangle That Accounts for Growth",
+      "axes": {
+        "actor": {
+          "primary": "act-maintenance-worker",
+          "secondary": [
+            "act-older-pedestrian",
+            "act-cycling-courier"
+          ],
+          "capability_or_constraint": "养护决定转角在不同季节是否仍可互见",
+          "future_digital_interface": "optional"
+        },
+        "task": {
+          "category": "adapt",
+          "objective": "让绿化转角在植物生长和季相变化后仍保持可读",
+          "perception_target_or_conflict_object": "灌木、枝叶、临时支撑和对向移动者"
+        },
+        "environment": {
+          "time": "全年与黄昏",
+          "weather": "多季节",
+          "visual_load": "植物高度与叶量持续变化",
+          "dynamic_conditions": [
+            "env-vegetation-growth",
+            "env-dusk-low-light"
+          ]
+        },
+        "space": {
+          "prototype_id": "spc-green-corner-01",
+          "type": "绿化街角",
+          "candidate_areas": [
+            "zhongzhiyuan",
+            "ai-origin"
+          ]
+        }
+      },
+      "existing_problem": "设计完成时可见的转角在一个生长季后可能失效，常规修剪表只管整齐而不管互见。",
+      "spatial_causes": [
+        "种植选择没有成年尺度",
+        "养护没有视线目标",
+        "临时支撑和补植侵入观察区"
+      ],
+      "proposed_spatial_changes": [
+        "按成年冠幅与眼高建立种植分层",
+        "把视线三角写入养护图而非只写高度",
+        "预留补植和支撑禁入区",
+        "设置可由现场人员复核的固定观察点"
+      ],
+      "ai_role": {
+        "necessity": "supporting",
+        "mode": "seasonal-change-detection",
+        "inputs": [
+          "定期非个人化现场图像或人工记录",
+          "植物养护台账"
+        ],
+        "outputs": [
+          "视线退化提示",
+          "修剪前后比较"
+        ],
+        "human_review": "required",
+        "reversible": true,
+        "personal_tracking": false
+      },
+      "no_ai_path": "成年尺度种植、固定观察点和人工季节巡查保持完整。",
+      "validation": {
+        "visible": {
+          "observation_method": "在固定双向观察点按季节记录互见范围",
+          "professional_threshold_required": true
+        },
+        "legible": {
+          "observation_method": "检查植物分层是否清楚表达转角边界而非制造开放误读",
+          "professional_threshold_required": true
+        },
+        "timely": {
+          "observation_method": "比较生长前后首次互见至冲突点的余量",
+          "professional_threshold_required": true
+        }
+      },
+      "operation_and_maintenance": [
+        "季相复测",
+        "修剪和补植由景观专业与现场运营共同确认"
+      ],
+      "professional_confirmation": [
+        "景观植物与生态",
+        "交通安全",
+        "养护资源"
+      ],
+      "evidence_refs": [
+        "project:decision-001-flagship",
+        "official:agent-taskbook"
+      ],
+      "qualification_gates": {
+        "real_urban_task": "provisional-pass",
+        "explicit_spatial_change": "provisional-pass",
+        "public_beneficiary": "provisional-pass",
+        "ai_boundary_clear": "provisional-pass",
+        "no_ai_path": "provisional-pass",
+        "testable": "provisional-pass",
+        "privacy_compliant": "provisional-pass",
+        "area_fit": "provisional-pass",
+        "transferable": "provisional-pass"
+      },
+      "selection_note": "强运营候选；可并入共读转角旗舰的长期维护部分。",
+      "task_family": "adapt",
+      "selection_tier": "support",
+      "selected_order": 13,
+      "test_suites": [
+        "tst-zhongzhiyuan-co-legible-corner"
+      ]
+    },
+    {
+      "scenario_id": "scn-adapt-construction-04",
+      "status": "candidate",
+      "title_zh": "围挡改变，方向不断",
+      "title_en": "Changing Hoardings, Continuous Direction",
+      "axes": {
+        "actor": {
+          "primary": "act-first-time-visitor",
+          "secondary": [
+            "act-low-vision-pedestrian",
+            "act-wheelchair-stroller"
+          ],
+          "capability_or_constraint": "无法依赖旧路线记忆，临时路径必须连续且可达",
+          "future_digital_interface": "optional"
+        },
+        "task": {
+          "category": "adapt",
+          "objective": "在施工围挡和阶段转换中继续找到可达路线",
+          "perception_target_or_conflict_object": "围挡、旧标识、临时路径、坡道和施工车辆"
+        },
+        "environment": {
+          "time": "施工阶段",
+          "weather": "多天气",
+          "visual_load": "新旧信息冲突且频繁变更",
+          "dynamic_conditions": [
+            "env-construction-detour",
+            "env-system-offline"
+          ]
+        },
+        "space": {
+          "prototype_id": "spc-campus-threshold-04",
+          "type": "校园或园区门区",
+          "candidate_areas": [
+            "ai-origin",
+            "dazhongsi",
+            "zhongzhiyuan"
+          ]
+        }
+      },
+      "existing_problem": "围挡先建、临时导视后补，新旧路线并存，低视力和轮椅使用者常在尽端才发现不可通过。",
+      "spatial_causes": [
+        "改道信息出现过晚",
+        "旧标识未遮蔽",
+        "临时坡道和转向空间未同步",
+        "围挡广告占据方向层"
+      ],
+      "proposed_spatial_changes": [
+        "在最后可选择点设置模块化改道框",
+        "同步遮蔽失效旧信息",
+        "临时路线先完成可达性再封闭原路",
+        "围挡保留连续公共方向带和观察窗"
+      ],
+      "ai_role": {
+        "necessity": "supporting",
+        "mode": "version-consistency-check",
+        "inputs": [
+          "施工阶段计划",
+          "现场人工确认",
+          "临时路径图"
+        ],
+        "outputs": [
+          "新旧信息冲突与断链提示"
+        ],
+        "human_review": "required",
+        "reversible": true,
+        "personal_tracking": false
+      },
+      "no_ai_path": "模块化实体导视、人工值守、连续坡道和纸面地图独立工作。",
+      "validation": {
+        "visible": {
+          "observation_method": "每次阶段转换后从各到达方向检查连续标志",
+          "professional_threshold_required": true
+        },
+        "legible": {
+          "observation_method": "由不同使用者复述临时路线和不可达边界",
+          "professional_threshold_required": true
+        },
+        "timely": {
+          "observation_method": "记录是否在尽端或台阶前才发现改道",
+          "professional_threshold_required": true
+        }
+      },
+      "operation_and_maintenance": [
+        "每日开工前人工走查",
+        "阶段结束同步撤销临时层"
+      ],
+      "professional_confirmation": [
+        "施工交通组织",
+        "无障碍",
+        "消防",
+        "校园与社区运营"
+      ],
+      "evidence_refs": [
+        "official:agent-taskbook"
+      ],
+      "qualification_gates": {
+        "real_urban_task": "provisional-pass",
+        "explicit_spatial_change": "provisional-pass",
+        "public_beneficiary": "provisional-pass",
+        "ai_boundary_clear": "provisional-pass",
+        "no_ai_path": "provisional-pass",
+        "testable": "provisional-pass",
+        "privacy_compliant": "provisional-pass",
+        "area_fit": "provisional-pass",
+        "transferable": "provisional-pass"
+      },
+      "selection_note": "强候选；形成可复制的施工期共读组件。",
+      "task_family": "adapt",
+      "selection_tier": "core",
+      "selected_order": 14,
+      "test_suites": [
+        "tst-ai-origin-inclusive-wayfinding"
+      ]
+    },
+    {
+      "scenario_id": "scn-adapt-crowd-buffer-08",
+      "status": "candidate",
+      "title_zh": "人多时仍有判断余量",
+      "title_en": "Decision Margin During Crowd Surges",
+      "axes": {
+        "actor": {
+          "primary": "act-first-time-visitor",
+          "secondary": [
+            "act-older-pedestrian",
+            "act-wheelchair-stroller",
+            "act-cycling-courier"
+          ],
+          "capability_or_constraint": "高峰密度降低视线、移动自由和反应时间",
+          "future_digital_interface": "optional"
+        },
+        "task": {
+          "category": "adapt",
+          "objective": "在站商界面拥挤时仍能辨向、停看和离开冲突流",
+          "perception_target_or_conflict_object": "出口、人群、骑行横流、队列与缓冲口袋"
+        },
+        "environment": {
+          "time": "突发高峰与活动散场",
+          "weather": "常态",
+          "visual_load": "人体遮挡和流向变化极大",
+          "dynamic_conditions": [
+            "env-peak-crowd",
+            "env-event-overload"
+          ]
+        },
+        "space": {
+          "prototype_id": "spc-station-forecourt-03",
+          "type": "轨道站出口前场",
+          "candidate_areas": [
+            "dazhongsi"
+          ]
+        }
+      },
+      "existing_problem": "常态下可读的前场在散场时失效，停下辨向的人又成为流线障碍。",
+      "spatial_causes": [
+        "缺少离流停看口袋",
+        "公共标志容易被人体遮挡",
+        "队列和骑行横流侵入出口缓冲",
+        "没有回退到人工组织的空间"
+      ],
+      "proposed_spatial_changes": [
+        "设置多个离流停看和恢复口袋",
+        "让关键方向信息跨高度冗余",
+        "保护出口缓冲与横流边界",
+        "预留人工分流和临时隔离接口"
+      ],
+      "ai_role": {
+        "necessity": "supporting",
+        "mode": "aggregated-crowd-state-assistance",
+        "inputs": [
+          "不识别个人的聚合占用",
+          "活动时段"
+        ],
+        "outputs": [
+          "启用人工分流和备用口袋提示"
+        ],
+        "human_review": "required",
+        "reversible": true,
+        "personal_tracking": false
+      },
+      "no_ai_path": "离流口袋、跨高度标识、固定边界和人工分流预案独立工作。",
+      "validation": {
+        "visible": {
+          "observation_method": "用不同人群密度模拟检查方向和出口可见性",
+          "professional_threshold_required": true
+        },
+        "legible": {
+          "observation_method": "测试使用者能否理解备用停看与人工分流",
+          "professional_threshold_required": true
+        },
+        "timely": {
+          "observation_method": "记录拥挤时完成辨向和离流所需时间与距离",
+          "professional_threshold_required": true
+        }
+      },
+      "operation_and_maintenance": [
+        "聚合状态只触发人工处置",
+        "活动后回到常态布置"
+      ],
+      "professional_confirmation": [
+        "客流与公共安全",
+        "无障碍",
+        "轨道与活动运营",
+        "隐私"
+      ],
+      "evidence_refs": [
+        "official:agent-taskbook",
+        "peer:edgecase-boundary"
+      ],
+      "qualification_gates": {
+        "real_urban_task": "provisional-pass",
+        "explicit_spatial_change": "provisional-pass",
+        "public_beneficiary": "provisional-pass",
+        "ai_boundary_clear": "provisional-pass",
+        "no_ai_path": "provisional-pass",
+        "testable": "provisional-pass",
+        "privacy_compliant": "provisional-pass",
+        "area_fit": "provisional-pass",
+        "transferable": "provisional-pass"
+      },
+      "selection_note": "强候选；可成为大钟寺第三项产业压力测试。",
+      "task_family": "adapt",
+      "selection_tier": "core",
+      "selected_order": 15,
+      "test_suites": [
+        "tst-dazhongsi-visual-congestion"
+      ]
+    },
+    {
+      "scenario_id": "scn-adapt-ai-offline-09",
+      "status": "candidate",
+      "title_zh": "AI 关闭后城市仍然说得清",
+      "title_en": "The City Still Explains Itself with AI Off",
+      "axes": {
+        "actor": {
+          "primary": "act-first-time-visitor",
+          "secondary": [
+            "act-older-pedestrian",
+            "act-low-vision-pedestrian",
+            "act-maintenance-worker"
+          ],
+          "capability_or_constraint": "断网、断电或拒绝授权时仍需完成基本城市任务",
+          "future_digital_interface": "disabled-during-test"
+        },
+        "task": {
+          "category": "adapt",
+          "objective": "在 AI 与动态信息全部关闭时继续辨向、求助和完成基本通行",
+          "perception_target_or_conflict_object": "固定地标、实体导视、人工窗口、纸质信息与失效屏幕"
+        },
+        "environment": {
+          "time": "任意时段",
+          "weather": "多天气",
+          "visual_load": "动态信息消失或停留在错误状态",
+          "dynamic_conditions": [
+            "env-system-offline"
+          ]
+        },
+        "space": {
+          "prototype_id": "spc-station-forecourt-03",
+          "type": "轨道站出口至公共服务链",
+          "candidate_areas": [
+            "dazhongsi",
+            "ai-origin",
+            "zhongzhiyuan"
+          ]
+        }
+      },
+      "existing_problem": "若动态屏、导航或状态提示失效，空间可能只剩没有语义的设备，公众无法判断信息是否仍有效。",
+      "spatial_causes": [
+        "固定地标和实体导视被数字层替代",
+        "失效状态不清楚",
+        "人工窗口和纸质路径后置",
+        "离线模式未作为空间测试"
+      ],
+      "proposed_spatial_changes": [
+        "建立不依赖电力的固定方向骨架",
+        "让动态层关闭时明确显示不可用而非冻结",
+        "人工窗口与纸质地图处于主路径可见位置",
+        "将 AI-off 演练纳入三区空间验收"
+      ],
+      "ai_role": {
+        "necessity": "none-during-use",
+        "mode": "failure-drill-only",
+        "inputs": [
+          "演练脚本与人工记录"
+        ],
+        "outputs": [
+          "失效断点和恢复清单"
+        ],
+        "human_review": "required",
+        "reversible": true,
+        "personal_tracking": false
+      },
+      "no_ai_path": "本场景本身即验证无 AI 路径：固定地标、实体导视、人工服务和纸质信息。",
+      "validation": {
+        "visible": {
+          "observation_method": "关闭全部动态层后检查固定方向、求助和不可用状态",
+          "professional_threshold_required": true
+        },
+        "legible": {
+          "observation_method": "测试使用者能否区分固定有效信息与已失效设备",
+          "professional_threshold_required": true
+        },
+        "timely": {
+          "observation_method": "比较 AI 开启与关闭时完成基本任务的关键延误",
+          "professional_threshold_required": true
+        }
+      },
+      "operation_and_maintenance": [
+        "定期进行 AI-off 与断电演练",
+        "固定系统不得因数字升级而撤除"
+      ],
+      "professional_confirmation": [
+        "应急与消防",
+        "轨道和公共服务运营",
+        "无障碍",
+        "电力与网络安全"
+      ],
+      "evidence_refs": [
+        "project:decision-001-ai-boundary",
+        "official:agent-taskbook",
+        "peer:every-sense-jingzhang-boundary"
+      ],
+      "qualification_gates": {
+        "real_urban_task": "provisional-pass",
+        "explicit_spatial_change": "provisional-pass",
+        "public_beneficiary": "provisional-pass",
+        "ai_boundary_clear": "provisional-pass",
+        "no_ai_path": "provisional-pass",
+        "testable": "provisional-pass",
+        "privacy_compliant": "provisional-pass",
+        "area_fit": "provisional-pass",
+        "transferable": "provisional-pass"
+      },
+      "selection_note": "强候选；不是抄用 AI ON=AI OFF，而是验证本项目的空间先行原则。",
+      "task_family": "adapt",
+      "selection_tier": "core",
+      "selected_order": 16,
+      "test_suites": [
+        "tst-zhongzhiyuan-co-legible-corner",
+        "tst-ai-origin-inclusive-wayfinding",
+        "tst-dazhongsi-visual-congestion"
+      ]
+    }
+  ]
+}

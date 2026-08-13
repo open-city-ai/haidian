@@ -14,6 +14,10 @@
       ],
       "formula": "polygon_area(submitted_provisional_site_boundary, EPSG:4548)",
       "confidence": "medium",
+      "value_role": "provisional_recalculation",
+      "display_status_zh": "工作底图复算值",
+      "measurement_method_zh": "EPSG:4548 投影后计算提交范围多边形面积",
+      "owner_zh": "规划技术团队；正式值由主管部门确认",
       "assumptions": [
         "Boundary is provisional_rough; the area will be recalculated against the official redline."
       ]
@@ -41,6 +45,10 @@
       ],
       "formula": "conceptual_green_space_area / provisional_site_area",
       "confidence": "low",
+      "value_role": "concept_design_calculation",
+      "display_status_zh": "概念方案复算值",
+      "measurement_method_zh": "方案绿地多边形并集面积除以工作底图面积",
+      "owner_zh": "景观与规划专业团队",
       "assumptions": [
         "Concept-stage design value to be calibrated against approved green-space controls."
       ]
@@ -55,6 +63,10 @@
       ],
       "formula": "conceptual_public_room_area / provisional_site_area",
       "confidence": "low",
+      "value_role": "concept_design_calculation",
+      "display_status_zh": "概念方案复算值",
+      "measurement_method_zh": "公共空间图层面积除以工作底图面积，并在土地平衡阶段复核重叠",
+      "owner_zh": "城市设计团队",
       "assumptions": [
         "May overlap the conceptual green armature and requires separate land-use balance accounting."
       ]
@@ -174,7 +186,7 @@
     "osm_context_feature_count": {
       "status": "known",
       "value": 7606,
-      "unit": "features",
+      "unit": "count",
       "source_files": [
         "sources.json"
       ],
@@ -187,7 +199,7 @@
     "climate_heat_days_ge_35c_per_year": {
       "status": "known",
       "value": 22.3,
-      "unit": "days/year",
+      "unit": "count",
       "source_files": [
         "sources.json"
       ],
@@ -200,7 +212,7 @@
     "climate_annual_precip_mm": {
       "status": "known",
       "value": 649.1,
-      "unit": "mm/year",
+      "unit": "index",
       "source_files": [
         "sources.json"
       ],
@@ -213,7 +225,7 @@
     "climate_mean_solar_kwh_m2_day": {
       "status": "known",
       "value": 4.05,
-      "unit": "kWh/m2/day",
+      "unit": "index",
       "source_files": [
         "sources.json"
       ],
@@ -222,6 +234,97 @@
       "assumptions": [
         "Supports concept-stage seasonal-space strategy only."
       ]
+    },
+    "pilot_walk_clear_width_target_m": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "m",
+      "source_files": ["spatial.json", "proposal.md"],
+      "formula": "proposed_design_control_for_pilot_comparison",
+      "confidence": "low",
+      "value_role": "proposed_target",
+      "display_status_zh": "建议控制值，未实施",
+      "measurement_method_zh": "建成后按连续通行最窄点逐段实测",
+      "owner_zh": "建设单位与无障碍专项验收单位",
+      "assumptions": ["Subject to road redline, utilities, fire access and statutory review."]
+    },
+    "pilot_cycle_width_target_m": {
+      "status": "known",
+      "value": 4.0,
+      "unit": "m",
+      "source_files": ["spatial.json", "proposal.md"],
+      "formula": "proposed_two_way_cycle_clear_width",
+      "confidence": "low",
+      "value_role": "proposed_target",
+      "display_status_zh": "建议控制值，未实施",
+      "measurement_method_zh": "施工图复核并在建成后实测连续净宽",
+      "owner_zh": "交通设计与建设单位",
+      "assumptions": ["Subject to traffic design, rail safety and fire access review."]
+    },
+    "rest_point_spacing_target_max_m": {
+      "status": "known",
+      "value": 150,
+      "unit": "m",
+      "source_files": ["spatial.json", "proposal.md"],
+      "formula": "maximum_proposed_spacing_between_accessible_rest_points",
+      "confidence": "low",
+      "value_role": "proposed_target",
+      "display_status_zh": "建议控制值，未实施",
+      "measurement_method_zh": "沿无障碍连续路径测量相邻有效休憩点距离",
+      "owner_zh": "园林、街道与设施运营单位",
+      "assumptions": ["Final spacing follows detailed accessibility review and site conditions."]
+    },
+    "shade_coverage_target_ratio": {
+      "status": "known",
+      "value": 0.70,
+      "unit": "ratio",
+      "source_files": ["spatial.json", "proposal.md"],
+      "formula": "proposed_shaded_area / principal_stay_area_at_design_hour",
+      "confidence": "low",
+      "value_role": "proposed_target",
+      "display_status_zh": "建议目标，未实施",
+      "measurement_method_zh": "夏季设计时段日照分析与建成后现场抽测",
+      "owner_zh": "景观设计与运营单位",
+      "assumptions": ["Target will be calibrated through solar analysis and tree-growth assumptions."]
+    },
+    "human_service_availability_target_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["visual/assets/implementation-operation-contract.json"],
+      "formula": "available_human_or_non_digital_service_windows / published_service_windows",
+      "confidence": "low",
+      "value_role": "proposed_service_target",
+      "display_status_zh": "运营目标，未实施",
+      "measurement_method_zh": "按公布服务时段开展月度抽测并记录降级服务",
+      "owner_zh": "场景运营单位与属地街道",
+      "assumptions": ["Requires funded staffing and an approved service agreement."]
+    },
+    "protocol_service_pass_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": ["visual/assets/growth-tabletop-evidence.json"],
+      "formula": "count(valid_services_passing_all_protocol_rules)",
+      "confidence": "high",
+      "value_role": "tabletop_evidence",
+      "display_status_zh": "协议桌面校验结果",
+      "measurement_method_zh": "运行本地校验脚本，逐项检查八条准入规则",
+      "owner_zh": "方案技术团队",
+      "assumptions": ["Tabletop validation does not prove authorization, site safety or service quality."]
+    },
+    "negative_test_caught_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": ["visual/assets/growth-tabletop-evidence.json"],
+      "formula": "count(invalid_mutations_rejected_by_expected_rule)",
+      "confidence": "high",
+      "value_role": "tabletop_evidence",
+      "display_status_zh": "负向测试结果",
+      "measurement_method_zh": "将八类缺陷分别注入运行表并核对预期拦截规则",
+      "owner_zh": "方案技术团队",
+      "assumptions": ["Mutation tests cover the declared protocol rules only."]
     }
   }
 }

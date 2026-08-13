@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "status": "proposed_protocol_not_authorized",
+  "title_zh": "百年京张AI创新带项目实施与运营管理建议",
+  "title_en": "Centennial Jingzhang AI Innovation Belt project delivery and operations guidance",
+  "equal_service_rule": "每项公共人工智能服务同步配置人工或实体办理方式，系统故障期间保持基本公共服务连续。",
+  "raci": {
+    "accountable": ["项目统筹机构：范围、预算、准入和退出"],
+    "responsible": ["城市设计与工程", "无障碍与公共服务", "数据与安全", "设施运营"],
+    "consulted": ["居民和使用者代表", "产权单位", "交通、轨道、消防、园林和市政专业单位", "采购与版权审查人员"],
+    "informed": ["公众：用途、数据、责任、故障、整改和退出状态"],
+    "separation_of_duties": "同一技术供应商不得同时承担实施、验收和异议裁决。"
+  },
+  "cost_classes": {
+    "S": {"range_cny": "below_5_million", "use": "调查、治理、培训、轻量设备和可逆试点"},
+    "M": {"range_cny": "5_to_20_million", "use": "节点改造、共享首层和连续公共空间"},
+    "L": {"range_cny": "20_to_50_million", "use": "综合站区界面、受控测试场和成段基础设施"},
+    "note": "概念比较级别，不构成投资估算、采购限额或财政承诺。"
+  },
+  "packages": [
+    {"id":"P-01","name_zh":"京张沿线慢行示范段","class":"M","duration_months":"6-18","start":["正式红线和权属界面","综合交通及轨道安全意见","市政与消防条件"],"owner_types":["区级统筹","属地街道","产权单位","交通与园林专业单位"],"acceptance":["连续通行实测","节点间距复核","雨水设施责任牌"],"maintenance":"monthly_walkthrough","exit":"无法形成连续路径或维护责任时缩减建设范围"},
+    {"id":"P-02","name_zh":"大钟寺站城衔接先导项目","class":"L","duration_months":"12-24","start":["客流与疏散专项","轨道接口书面意见","消防和产权协议"],"owner_types":["属地街道","站区运营","交通专业单位","产权单位"],"acceptance":["四向到达检查","两处人工服务点在岗检查","多语言导向纠错"],"maintenance":"monthly_peak_period_audit","exit":"疏散、客流或轨道安全条件不满足时保留导向和人工服务，停止空间扩建"},
+    {"id":"P-03","name_zh":"众智园研发测试场","class":"L","duration_months":"12-24","start":["场地权属","项目准入","数据和安全评估","应急停止演练"],"owner_types":["园区运营","高校和企业测试方","独立安全评估"],"acceptance":["人车让行检查","紧急停止检查","公众说明记录"],"maintenance":"review_every_test","exit":"发生重大事件或两轮整改失败后停止测试并独立复核"},
+    {"id":"P-04","name_zh":"AI 原点社区共享首层","class":"M","duration_months":"9-18","start":["权属和租约","房屋安全和消防","分时运营协议"],"owner_types":["产权单位","属地街道","高校和社区","专业运营方"],"acceptance":["3000 平方米目标按实际可用面积复核","开放时段和收费公示","人工服务可用性测试"],"maintenance":"quarterly_use_review","exit":"权属、消防或运营协议不成立时取消固定改造，保留短期活动"},
+    {"id":"P-05","name_zh":"公共服务节点样板","class":"M","duration_months":"6-12","start":["地下管线复核","设施接入","场地许可","维护责任"],"owner_types":["属地街道","社区","园林和设施运维"],"acceptance":["无障碍闭环","24-36 平方米人工服务空间","雨水花园溢流检查"],"maintenance":"monthly_facility_check","exit":"维护经费或人员未落实时撤除设备，保留座椅、遮阴和人工公告"},
+    {"id":"P-06","name_zh":"公共人工智能服务管理系统","class":"S","duration_months":"3-9","start":["数据分类","责任主体","应急预案","投诉流程"],"owner_types":["区级统筹","服务运营","独立评估"],"acceptance":["十二项服务逐项审查","八类异常处置流程核对","公示和项目调整模板"],"maintenance":"quarterly_protocol_review","exit":"责任单位、人工办理或基本服务保障缺失时暂停项目"}
+  ],
+  "gates": [
+    {"id":"G0","name_zh":"资料归集","pass":"边界、权属、现状和数据缺口登记完成","stop":"资料来源或授权状态无法识别"},
+    {"id":"G1","name_zh":"可行协商","pass":"方案、受影响人群、维护主体和非数字路径确认","stop":"关键人群负担或维护责任未处理"},
+    {"id":"G2","name_zh":"专项审查","pass":"交通、轨道、消防、市政、无障碍、数据和场景准入完成","stop":"任一法定或安全接口未通过"},
+    {"id":"G3","name_zh":"验收开放","pass":"工程验收、人员培训、急停和降级演练完成","stop":"人工接管、证据回执或应急能力缺失"},
+    {"id":"G4","name_zh":"年度复审","pass":"绩效、负担、故障、维护和公众意见形成公开报告","stop":"未达到门槛则调整、缩减或退出"}
+  ],
+  "sla": {
+    "human_help_acknowledgement_seconds": 60,
+    "critical_fault_action": "立即隔离、标识并切换至人工或非数字路径",
+    "routine_fault_work_order_hours": 24,
+    "public_comment_response_workdays": 5
+  },
+  "audit_cycle": ["每次测试记录急停和接管", "每月汇总故障与人工服务", "每季度复核场景协议", "每年决定延续、调整或退出"]
+}

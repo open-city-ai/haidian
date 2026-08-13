@@ -1,0 +1,208 @@
+{
+  "schema_version": "0.1.0",
+  "units": {"length": "m", "area": "sqm"},
+  "metrics": {
+    "total_site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "value_nature": "computed_from_geometry_provisional",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "area(site_boundary polygon reprojected WGS84->EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Boundary is PROV-SITE-001, precision provisional_rough",
+        "Official announcement states ~11.4 km2 (11,400,000 m2) as a rounded figure",
+        "All area metrics must be recomputed when an official polygon is provided"
+      ],
+      "derivation": "Computed area of the PROV-SITE-001 provisional boundary polygon reprojected to EPSG:4548 = 11,412,825.386 m2 (11.4128 km2). The official announcement rounds this to ~11.4 km2 (11,400,000 m2); the 18,825 m2 gap is rounding + provisional-boundary precision, not a factual discrepancy. Boundary is provisional_rough; recompute on official polygon."
+    },
+    "green_coverage_ratio": {
+      "status": "known",
+      "value": 0.4,
+      "unit": "ratio",
+      "value_nature": "design_target",
+      "source_files": ["geometry/green_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "target: (green_space + water area) / total_site_area >= 40%",
+      "confidence": "low",
+      "assumptions": [
+        "Design target, NOT a measured/achieved result",
+        "Requires official boundary + current land-use survey to verify"
+      ],
+      "derivation": "Design target: green + water coverage >= 40%. This is a planning objective, not a measured outcome. The spatially computed green_ratio under the provisional boundary is 0.35345 (see green_ratio) because the provisional green_space footprint is smaller than the target envelope."
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.35345,
+      "unit": "ratio",
+      "value_nature": "computed_from_geometry_provisional",
+      "source_files": ["geometry/green_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "sum(green_space.geojson polygon areas) / total_site_area (EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Computed from provisional green_space footprint",
+        "Will change with official boundary and detailed green network design"
+      ],
+      "derivation": "Computed from green_space.geojson polygon area / site_boundary area (EPSG:4548). Represents the directly drawn green + water footprint under the provisional boundary; lower than the 40% design target (see green_coverage_ratio)."
+    },
+    "sponge_capture_rate_ratio": {
+      "status": "known",
+      "value": 0.85,
+      "unit": "ratio",
+      "value_nature": "design_target",
+      "source_files": ["geometry/green_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "target: annual runoff capture rate per Sponge City guideline, corresponding to 33.6mm design rainfall",
+      "confidence": "low",
+      "assumptions": [
+        "Design target, NOT a modeled result",
+        "Requires hydrology, drainage-system and rainfall data to verify"
+      ],
+      "derivation": "Design target: annual runoff capture rate >= 85% (33.6mm design rainfall) per Sponge City guideline. No hydraulic model has been run; figure of 50 facilities is conceptual (see sponge_facilities_count)."
+    },
+    "renewable_energy_share_ratio": {
+      "status": "known",
+      "value": 0.2,
+      "unit": "ratio",
+      "value_nature": "design_target",
+      "source_files": ["geometry/buildings.geojson"],
+      "formula": "target: renewable energy / total energy consumption >= 20%",
+      "confidence": "low",
+      "assumptions": [
+        "Design target, NOT a modeled result",
+        "Requires building/regional energy load, rooftop availability, geological and municipal capacity data"
+      ],
+      "derivation": "Design target: renewable energy share >= 20% (15 MWp PV + ground-source/water-source heat pumps). No energy model performed; 15 MWp is a conceptual estimate pending rooftop and load data."
+    },
+    "green_mode_share_ratio": {
+      "status": "known",
+      "value": 0.6,
+      "unit": "ratio",
+      "value_nature": "design_target",
+      "source_files": ["geometry/roads.geojson", "geometry/public_space.geojson"],
+      "formula": "target: (slow_traffic + public_transit) / total_trips >= 60%",
+      "confidence": "low",
+      "assumptions": [
+        "Design target, NOT a measured result",
+        "Requires OD survey and walk-network analysis to verify"
+      ],
+      "derivation": "Design target: slow-mobility + public-transit mode share >= 60%. No OD survey or network analysis performed; 100% 500m public-space coverage (see public_space_500m_coverage_ratio) is likewise a target, not a network-analysis result."
+    },
+    "public_space_500m_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "value_nature": "design_target",
+      "source_files": ["geometry/public_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "target: share of site within 500m walking distance of public space = 100%",
+      "confidence": "low",
+      "assumptions": [
+        "Design target, NOT a network-analysis result",
+        "Requires pedestrian-network and service-radius analysis to verify"
+      ],
+      "derivation": "Design target: 100% of site within 500m walking distance of public space. No service-radius / network analysis performed; the directly drawn public_space footprint ratio is 0.174632 (see public_space_ratio)."
+    },
+    "total_gfa_sqm": {
+      "status": "known",
+      "value": 13000000.0,
+      "unit": "sqm",
+      "value_nature": "conceptual_estimate",
+      "source_files": ["geometry/land_use.geojson"],
+      "formula": "conceptual estimate from land-use allocation (gross FAR ~1.1-1.2)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual estimate only",
+        "Pending official regulatory plan (control plan) data"
+      ],
+      "derivation": "Conceptual estimate of total building floor area (~13 million m2, gross FAR ~1.1-1.2) derived from land-use allocation. NOT based on official regulatory-plan parameters; must be re-derived with control-plan data."
+    },
+    "ai_scenario_nodes_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "n/a",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Conceptual target of 50+ nodes; exact count depends on implementation detail beyond concept-design scope."
+    },
+    "talent_apartment_ratio": {
+      "status": "known",
+      "value": 0.15,
+      "unit": "ratio",
+      "value_nature": "conceptual_recommendation",
+      "source_files": ["geometry/land_use.geojson"],
+      "formula": "recommendation: 15% of residential GFA as talent apartments",
+      "confidence": "low",
+      "assumptions": [
+        "Concept recommendation, not a committed/approved figure",
+        "Pending housing policy and regulatory confirmation"
+      ],
+      "derivation": "Concept recommendation: 15% of residential GFA allocated as talent apartments. Not a government commitment."
+    },
+    "annual_ai_events_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "n/a",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Operational vision of 100+ events/year; not a government commitment, depends on future operational planning."
+    },
+    "phased_projects_count": {
+      "status": "known",
+      "value": 13.0,
+      "unit": "count",
+      "value_nature": "narrative_count",
+      "source_files": ["geometry/phasing.geojson", "proposal.md", "proposal.en.md"],
+      "formula": "count of named projects in proposal chapter 9 (4 near-term + 5 mid-term + 4 long-term = 13)",
+      "confidence": "low",
+      "assumptions": [
+        "phasing.geojson currently spatializes 7 representative pilot projects (3 near + 2 mid + 2 long); the remaining 6 are described in text only",
+        "Project list is conceptual and subject to official planning"
+      ],
+      "derivation": "Count of named projects in the proposal narrative (chapter 9): 4 near-term + 5 mid-term + 4 long-term = 13. NOTE: phasing.geojson spatializes 7 representative pilot projects; the other 6 are text-only. Previously stated as 15 in error; corrected to 13 to match the enumerated narrative."
+    },
+    "sponge_facilities_count": {
+      "status": "known",
+      "value": 50.0,
+      "unit": "count",
+      "value_nature": "conceptual_estimate",
+      "source_files": ["geometry/green_space.geojson"],
+      "formula": "32 rain gardens + 6 detention water bodies + 12 sunken green spaces (conceptual)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual facility count",
+        "Pending detailed sponge-system design"
+      ],
+      "derivation": "Conceptual count: 32 rain gardens + 6 detention water bodies + 12 sunken green spaces = 50. Not yet located in GIS; conceptual only."
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "value_nature": "computed_from_geometry_provisional",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "alias of total_site_area_sqm (provisional SITE_BOUNDARY area, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional boundary; recompute on official polygon"
+      ],
+      "derivation": "Alias for total_site_area_sqm; provisional SITE_BOUNDARY area (EPSG:4548) = 11,412,825.386 m2."
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.174632,
+      "unit": "ratio",
+      "value_nature": "computed_from_geometry_provisional",
+      "source_files": ["geometry/public_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "sum(public_space.geojson polygon areas) / total_site_area (EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Direct polygon coverage, NOT 500m service radius",
+        "Requires network analysis for service-radius coverage"
+      ],
+      "derivation": "Computed from public_space.geojson polygon area / site_boundary area (EPSG:4548). Represents direct polygon coverage only, not the 500m service-radius coverage claimed as a target (see public_space_500m_coverage_ratio)."
+    }
+  }
+}

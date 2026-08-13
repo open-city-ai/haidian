@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "In an AI city, machines learn to yield first. Three 400–800 m conceptual proof segments turn human priority, clear walking width, docking, physical stop, and accountable handover into spatial and operating rules while preserving explicit provisional-data warnings."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.0"
+iteration: "v1.1"
 ---
 
 # JINGZHANG YIELD / 京张让路
@@ -87,6 +87,21 @@ The ten scenarios are proposals; T1–T3 are industry-validation concepts, not c
 
 All scenarios follow Issue → data and rights check → controlled prototype → human and public review → limited release → independent review → Merge, Rollback, or Retire. This is a proposal-defined reversible governance lifecycle, not a statutory approval process. [source:AGENT-TASKBOOK] Only where a scenario actually constitutes a public-facing generative-AI service in China is the Interim Measures for Generative Artificial Intelligence Services used, within its scope, as an external boundary for content, data, personal information, complaints, and provider responsibility. The Measures do not approve this project or certify low-speed-robot traffic safety. [source:DATA-SRC-GENERATIVE-AI-INTERIM-MEASURES] Each scenario has a named person, baseline, start gate, stop threshold, physical takeover, recovery condition, and retirement evidence. Scenario points in GeoJSON are medium-confidence concept locations and require later ownership, transport, heritage, and facility verification. [metric:scenario_node_count]
 
+### Executable Yield Protocol v1.1
+
+This iteration turns all ten scenario cards into one permission contract in `visual/assets/protocol/scenario_cards.json`. Every scenario must first pass five HOLD gates: site permission, data and rights clearance, a named human owner, an independent reviewer, and a non-digital fallback channel. Any missing safety gate—human clear path, manual takeover, physical stop, applicable weather mode, or emergency channel—fails closed to STOP. Repeated critical failure or withdrawal of the operating mandate takes priority and returns RETIRE. Only a fully complete contract returns GO, and GO means only “eligible for an authorised small-scale test,” never approved, certified, or safe to run unattended. [metric:yield_protocol_fail_closed_guard_count]
+
+| Decision | Trigger | Human action | Re-entry condition |
+| --- | --- | --- | --- |
+| HOLD | Permission, rights, ownership, review, or fallback evidence is incomplete | Do not open the test; complete the evidence | The corresponding human role signs the missing item |
+| STOP | Clear path, takeover, physical stop, weather, or emergency channel fails | Stop, isolate the device, and restore human passage | Review the issue, repeat the drill, and obtain authorised approval |
+| RETIRE | Critical failure repeats or the operating mandate is withdrawn | Close the use and preserve incident and retirement records | No automatic restart; treat it as a new proposal |
+| GO | Every gate passes | Test only inside the approved time, place, and envelope | Recheck for each window; do not inherit GO |
+
+The dependency-free verifier `visual/assets/protocol/run_tabletop.js` reruns 18 deterministic synthetic cases: 10 complete cases return GO, 2 missing readiness/review evidence return HOLD, 4 missing safety guards return STOP, and 2 retirement triggers return RETIRE. All 18/18 match their expected decisions. [metric:yield_protocol_fixture_count] [metric:yield_protocol_expected_outcome_match_ratio] The 1.0 value is an internal contract-test match ratio, not a safety, reliability, or satisfaction rate. `visual/assets/protocol/baseline_measurement_plan.json` separately defines collection method, strata, quality gate, and prohibited inference for the six still-unknown operating metrics; no target or observed value is inserted before real survey, permission, professional review, and participant protection. The RACI also ensures that GO, recovery, and retirement remain named-human decisions.
+
+![Yield permission, fail-closed gates, and 18 offline tabletop tests](assets/figures/yield-protocol.en.png)
+
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
 The four conceptual land-use families test a mixed district: AI research and innovation; industry and commercial service; community service and support; and parks, green, and open space. Research and test functions are paired with legal, intellectual-property, finance, maintenance, public-service, learning, care, culture, and everyday needs. The partition is cut from one provisional topology and must not enter a statutory schedule. [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]
@@ -131,7 +146,7 @@ Long-term value is measured by maintained rights rather than opening-day spectac
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
-Three classes of metric are separated. Published approximate values describe scope: 43.6 km², 11.4 km², and 192.1/104.3/72.0 ha for the key areas. Provisional geometry outputs—11,412,825.386 m² site area, 310,807.184 m² illustrative footprint, 0.123423 illustrative green ratio, and 0.073281 illustrative public-space ratio—test topology and display consistency. Yield operating measures remain unknown until prototypes produce a baseline. [metric:site_area_sqm] [metric:green_ratio] [metric:public_space_ratio]
+Three classes of metric are separated. Published approximate values describe scope: 43.6 km², 11.4 km², and 192.1/104.3/72.0 ha for the key areas. Provisional geometry outputs—11,412,825.386 m² site area, 310,807.184 m² illustrative footprint, 0.123423 illustrative green ratio, and 0.073281 illustrative public-space ratio—test topology and display consistency. Yield operating measures remain unknown until prototypes produce a baseline. [metric:site_area_sqm] [metric:green_ratio] [metric:public_space_ratio] Four additional package metrics describe reviewable assets only: ten cards, 18 synthetic fixtures, five fail-closed safety gates, and a 1.0 expected-outcome match ratio. They must never be mixed with field performance. [metric:yield_protocol_card_count]
 
 The provisional area is calculated in EPSG:4548. Green and public-space ratios use projected union area divided by the same provisional site area; building footprint sums illustrative polygons. One calculation source feeds metrics, figures, HTML, and PDFs. Computational consistency does not create source authority. A formal boundary replacement triggers regeneration of all layers and outputs. [depth:metrics_recalculation]
 
@@ -159,4 +174,4 @@ The eight first-party case sources are JTC’s Singapore one-north page [source:
 
 Spatial evidence is stored in the nine geometry files; metrics and assumptions in metrics.json and assumptions.json; requirement coverage in the compliance, standard, and depth matrices; and machine self-check results in self_check.json. All live under MatchA040508’s single submission directory for local review, future PR scope review, and version history. [data:geometry/constraints.geojson#GAP-BOUNDARY-001]
 
-This proposal snapshot is dated 2026-08-11. Sources, policies, schemas, and repository state may change and should be refreshed before remote publication. The author, model disclosure, path, and yielding-rule contribution are recorded in proposal.md, agent.json, manifest.json, and any future Git history. Remote publication remains a separate decision by MatchA040508 after local inspection.
+This v1.1 proposal was updated on 2026-08-13; the existing retrieval date for the global case pages remains 2026-08-11. Sources, policies, schemas, and repository state may change and should be refreshed before each remote iteration. The author, model disclosure, path, Yield Protocol, and verification record are stored in proposal.md, agent.json, manifest.json, and Git history. Any field implementation still requires separate authorisation and professional confirmation.

@@ -152,7 +152,7 @@
         "proposal.md",
         "visual/index.html"
       ],
-      "formula": "count(SLA-A/SLA-B/SLA-C service path types organized on ROAD-001 and the drawing layer; not independent road-centerline features)",
+      "formula": "count(SLA-A/SLA-B/SLA-C service path types organized across the current multi-segment route network and drawing layer; not equal to the number of road-centerline features)",
       "confidence": "medium",
       "assumptions": [
         "A-MICROCLIMATE-001",
@@ -164,10 +164,11 @@
       "value": 12,
       "unit": "count",
       "source_files": [
+        "geometry/public_space.geojson",
         "proposal.md",
         "visual/index.html"
       ],
-      "formula": "count(12 conceptual service nodes placed by endpoint, turning, staying, crossing, public-entry, and heat/rain-risk siting rules)",
+      "formula": "count(features with node_id in geometry/public_space.geojson; excludes secondary support_point_id features; primary nodes are concept points placed by endpoint, turning, staying, crossing, public-entry, and heat/rain-risk siting rules)",
       "confidence": "medium",
       "assumptions": [
         "A-MICROCLIMATE-001",
@@ -180,10 +181,11 @@
       "value": 5,
       "unit": "count",
       "source_files": [
+        "geometry/public_space.geojson",
         "proposal.md",
         "visual/index.html"
       ],
-      "formula": "count(5 staffed fallback points selected from the 12 service nodes at section transitions, transit access, key public entries, and event-flow convergence points)",
+      "formula": "count(features with fallback_id in geometry/public_space.geojson; fallback points are selected from the service-node network at section transitions, transit access, key public entries, crossings, and event-flow convergence points)",
       "confidence": "medium",
       "assumptions": [
         "A-PRIVACY-001",
@@ -280,6 +282,313 @@
         "A-FIELD-VERIFICATION-WORKFLOW-001"
       ],
       "reason": "This reports the workflow baseline. It is not a count of physical failures or facilities."
+    },
+    "geometry_service_node_on_declared_line_ratio": {
+      "status": "known",
+      "value": 1,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(service_node Point with 0 m distance to one declared linked LineString) / count(service_node Point) = 12 / 12; geometric relation only",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEOMETRY-DERIVED-METRICS-001",
+        "A-NODE-SITING-001"
+      ],
+      "reason": "This verifies coordinate association in the concept network. It does not verify public access, walking continuity or an existing facility."
+    },
+    "geometry_route_node_spacing_max_m": {
+      "status": "known",
+      "value": 4298.796,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "maximum network distance between adjacent primary service nodes along the explicit concept LineString graph, including Level 1 service zones and Level 2 inter-zone connectors",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEOMETRY-DERIVED-METRICS-001"
+      ],
+      "maximum_gap": {
+        "node_a": "N05",
+        "node_b": "N09",
+        "route_id": "JZ-MAIN",
+        "road_ids": ["ROAD-002", "ROAD-001"],
+        "area_relationship": "beijing_ai_origin_community_to_dazhongsi_ai_industry_cluster",
+        "network_m": 4298.796,
+        "straight_line_m": 4298.796,
+        "service_network_level": "LEVEL_2_INTER_ZONE_CONNECTOR"
+      },
+      "reason": "This full-corridor primary-node diagnostic includes Level 2 connectors. The 4,298.796 m N05-to-N09 gap is an inter-zone connector, not a Level 1 SLA-service-zone coverage claim. Its equal straight-line and concept-network lengths result from the submitted collinear LineStrings, not a surveyed pedestrian route."
+    },
+    "geometry_route_node_spacing_median_m": {
+      "status": "known",
+      "value": 553.765,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "median network distance of the 11 adjacent primary-service-node gaps along the explicit full concept LineString graph, including Level 2 inter-zone connectors",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEOMETRY-DERIVED-METRICS-001"
+      ],
+      "reason": "This full-corridor diagnostic is not a measured walking or accessible distance and is not used to assess the Level 1 <=400 m design target."
+    },
+    "geometry_primary_corridor_adjacent_gap_count": {
+      "status": "known",
+      "value": 11,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(adjacent primary service-node gaps along the explicit full concept LineString graph; secondary support points excluded)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEOMETRY-DERIVED-METRICS-001"
+      ],
+      "gap_table": [
+        {"rank": 1, "node_a": "N05", "node_b": "N09", "route_id": "JZ-MAIN", "road_ids": ["ROAD-002", "ROAD-001"], "network_m": 4298.796, "straight_line_m": 4298.796, "relationship": "AI Origin to Dazhongsi Level 2 inter-zone connector"},
+        {"rank": 2, "node_a": "N06", "node_b": "N01", "route_id": "JZ-MAIN", "road_ids": ["ROAD-003"], "network_m": 1556.729, "straight_line_m": 1556.729, "relationship": "AI Origin to Zhongzhiyuan Level 2 inter-zone connector"},
+        {"rank": 3, "node_a": "N01", "node_b": "N04", "route_id": "JZ-ZZY-ACCESS", "road_ids": ["ROAD-011"], "network_m": 1028.553, "straight_line_m": 1028.553, "relationship": "Zhongzhiyuan Level 1 service-zone spine; secondary supports inserted separately"},
+        {"rank": 4, "node_a": "N05", "node_b": "N06", "route_id": "JZ-MAIN", "road_ids": ["ROAD-002"], "network_m": 555.975, "straight_line_m": 555.975, "relationship": "AI Origin Level 1 service-zone spine; secondary support inserted separately"},
+        {"rank": 5, "node_a": "N10", "node_b": "N11", "route_id": "JZ-DAZHONGSI-ACCESS", "road_ids": ["ROAD-007"], "network_m": 554.102, "straight_line_m": 554.102, "relationship": "Dazhongsi Level 1 transit connector; secondary support inserted separately"},
+        {"rank": 6, "node_a": "N05", "node_b": "N07", "route_id": "JZ-LATERAL", "road_ids": ["ROAD-008"], "network_m": 553.765, "straight_line_m": 553.765, "relationship": "AI Origin Level 1 lateral connector; secondary support inserted separately"},
+        {"rank": 7, "node_a": "N01", "node_b": "N02", "route_id": "JZ-ZZY-ACCESS", "road_ids": ["ROAD-004"], "network_m": 468.44, "straight_line_m": 468.44, "relationship": "Zhongzhiyuan Level 1 research-test interface; secondary support inserted separately"},
+        {"rank": 8, "node_a": "N03", "node_b": "N04", "route_id": "JZ-ZZY-ACCESS", "road_ids": ["ROAD-005"], "network_m": 468.376, "straight_line_m": 468.376, "relationship": "Zhongzhiyuan Level 1 public-entry interface; secondary support inserted separately"},
+        {"rank": 9, "node_a": "N05", "node_b": "N08", "route_id": "JZ-ORIGIN-ACCESS", "road_ids": ["ROAD-006"], "network_m": 383.376, "straight_line_m": 383.376, "relationship": "AI Origin Level 1 public-entry connector"},
+        {"rank": 10, "node_a": "N09", "node_b": "N10", "route_id": "JZ-DAZHONGSI-ACCESS", "road_ids": ["ROAD-007"], "network_m": 326.913, "straight_line_m": 326.913, "relationship": "Dazhongsi Level 1 transit connector"},
+        {"rank": 11, "node_a": "N09", "node_b": "N12", "route_id": "JZ-CROSSING", "road_ids": ["ROAD-010"], "network_m": 255.728, "straight_line_m": 255.728, "relationship": "Dazhongsi Level 1 crossing interface"}
+      ],
+      "reason": "The table documents primary-node distribution only. It does not claim an existing legal, accessible or field-verified walking network."
+    },
+    "level1_sla_service_zone_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(key areas with LEVEL_1_SLA_SERVICE_ZONE route features: Zhongzhiyuan, AI Origin, Dazhongsi)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SERVICE-NETWORK-TIER-001",
+        "A-PROVISIONAL-BOUNDARY-001"
+      ],
+      "reason": "Service-zone extents follow provisional concept geometry, not official area boundaries."
+    },
+    "level2_inter_zone_connector_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(LineString features with service_network_level=LEVEL_2_INTER_ZONE_CONNECTOR: ROAD-001 and ROAD-003)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SERVICE-NETWORK-TIER-001"
+      ],
+      "reason": "Level 2 carries concept corridor continuity, route recognition, cultural sequence and AI-OFF wayfinding; it does not claim <=400 m service-point continuity."
+    },
+    "secondary_support_point_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features with support_point_id; excludes primary node_id and fallback_id features)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SECONDARY-SUPPORT-POINTS-001"
+      ],
+      "reason": "These are non-staffed concept support points for fixed wayfinding and future shade/rest reservation, not existing seats, water, entries or staffed service."
+    },
+    "level1_support_spacing_max_m": {
+      "status": "known",
+      "value": 389.182,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "maximum network distance between adjacent primary node_id or secondary support_point_id features on explicit LEVEL_1_SLA_SERVICE_ZONE LineStrings",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEOMETRY-DERIVED-METRICS-001",
+        "A-SERVICE-NETWORK-TIER-001",
+        "A-SECONDARY-SUPPORT-POINTS-001"
+      ],
+      "breakdown_m": {
+        "zhongzhiyuan_ai_acceleration_area": {"max": 389.182, "median": 234.22, "count_over_400": 0},
+        "beijing_ai_origin_community": {"max": 383.376, "median": 279.565, "count_over_400": 0},
+        "dazhongsi_ai_industry_cluster": {"max": 326.913, "median": 277.051, "count_over_400": 0}
+      },
+      "reason": "A geometry-derived concept-network result only. It proves neither public access nor installed shade, seats, water, entries, crossings, staffing or accessible walking continuity."
+    },
+    "level1_support_spacing_median_m": {
+      "status": "known",
+      "value": 272.789,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "median network distance of 17 adjacent primary node_id or secondary support_point_id gaps on explicit LEVEL_1_SLA_SERVICE_ZONE LineStrings",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEOMETRY-DERIVED-METRICS-001",
+        "A-SERVICE-NETWORK-TIER-001",
+        "A-SECONDARY-SUPPORT-POINTS-001"
+      ],
+      "reason": "A geometry-derived concept-network result only; field walking and accessible distances require verification."
+    },
+    "level1_support_spacing_over_400_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(adjacent primary node_id or secondary support_point_id network gaps greater than 400 m on explicit LEVEL_1_SLA_SERVICE_ZONE LineStrings)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEOMETRY-DERIVED-METRICS-001",
+        "A-SERVICE-NETWORK-TIER-001",
+        "A-SECONDARY-SUPPORT-POINTS-001"
+      ],
+      "reason": "This is a concept-geometry target check. It does not certify field service coverage or Verified SLA."
+    },
+    "design_target_service_node_spacing_m": {
+      "status": "known",
+      "value": 400,
+      "unit": "m",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "participant-declared <=400 m concept spacing target between adjacent primary node_id or secondary support_point_id features on explicit Level 1 SLA service-zone LineStrings only; not an official standard or existing-condition measurement",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SLA-DESIGN-TARGETS-001",
+        "A-ACCESSIBLE-ROUTE-001"
+      ],
+      "reason": "Current concept geometry meets this target only inside the three Level 1 service zones. It does not apply to Level 2 inter-zone connectors and does not prove legal, continuous or accessible field routes."
+    },
+    "design_target_seat_water_service_distance_m": {
+      "status": "known",
+      "value": 400,
+      "unit": "m",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "participant-declared concept design target for walking service distance to seating and drinking-water provision; not an official standard or existing facility inventory",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SLA-DESIGN-TARGETS-001"
+      ],
+      "reason": "This is a future implementation target within Level 1 service zones. Secondary support points do not provide, prove or count as seats or water; location, availability and access remain field-verification tasks."
+    },
+    "design_target_max_continuous_exposure_m": {
+      "status": "known",
+      "value": 150,
+      "unit": "m",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "participant-declared maximum continuous exposed-walking design target for a deliverable midday path; not a measured shade result or official standard",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SLA-DESIGN-TARGETS-001",
+        "A-MICROCLIMATE-001"
+      ],
+      "reason": "No tree canopy, building-shadow or summer field dataset is available to calculate current exposure."
+    },
+    "design_target_staffed_fallback_per_key_area_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "participant-declared minimum concept target of one staffed fallback role per key area, with additional roles at complex transfer points; not confirmed staffing availability",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SLA-DESIGN-TARGETS-001",
+        "A-FAILURE-RESPONSE-001"
+      ],
+      "reason": "The five fallback points are concept locations only. Responsible actors and service hours remain unverified."
+    },
+    "field_verified_shade_continuity_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/noonline-field-verification-ledger.json"
+      ],
+      "formula": "field-verified shaded route length / field-verified legal route length during the approved midday condition",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-MICROCLIMATE-001",
+        "A-FIELD-VERIFICATION-WORKFLOW-001"
+      ],
+      "reason": "No field-verified canopy, shadow, legal route or midday observation data is present in the baseline ledger."
+    },
+    "field_verified_max_continuous_exposure_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/noonline-field-verification-ledger.json"
+      ],
+      "formula": "maximum measured continuous exposed distance along a field-verified legal route during the approved midday condition",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-MICROCLIMATE-001",
+        "A-FIELD-VERIFICATION-WORKFLOW-001"
+      ],
+      "reason": "No field measurement of continuous exposure exists in the submission."
+    },
+    "field_verified_accessible_detour_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/noonline-field-verification-ledger.json"
+      ],
+      "formula": "measured accessible alternative route length minus measured direct legal route length, after field verification",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-ACCESSIBLE-ROUTE-001",
+        "A-FIELD-VERIFICATION-WORKFLOW-001"
+      ],
+      "reason": "Curb, ramp, lift, legal crossing and public-entry conditions have not been field verified; straight-line geometry is not an accessible-detour proxy."
+    },
+    "field_verified_public_entry_opening_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/noonline-field-verification-ledger.json"
+      ],
+      "formula": "count(field-verified public entries open in approved service window) / count(declared required public entries)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-FIELD-VERIFICATION-WORKFLOW-001"
+      ],
+      "reason": "No timestamped public-entry opening and accessibility observations are present."
     }
   }
 }

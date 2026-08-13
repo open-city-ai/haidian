@@ -4,6 +4,35 @@
 >
 > This file applies only to `submissions/xyh202131/jingzhang-ai-pilgrimage-belt/`. It is a package-local copy reference, not a repository-level reusable template, public PR template, or maintainer policy. No `[x]` may be inherited when it is copied into another submission or later PR.
 
+## Round 18 public signal interface and readable civic timetable / 第 18 轮公共信号界面与可读时刻表
+
+第 18 轮在第 17 轮 PR #2369 合并并进入 `origin/main@5a284d177c9c6a7719378711d67514ac6c709f76` 后开始；开始编辑前，同一投稿包没有开放竞争 PR，GitHub 与 Git 作者身份均为 `xyh202131`。本轮不增加新品牌、场景、项目或规划方向，只把既有入口、时段、状态、人工、来源、退出六类城市信号，落实为三座换轨场在普通、验证、故障、恢复四态下的公共界面。
+
+Round 18 began after Round 17 PR #2369 merged into `origin/main@5a284d177c9c6a7719378711d67514ac6c709f76`. Before editing, no open PR competed for this package, and both GitHub and Git author identities were `xyh202131`. The round adds no brand, scene, project or planning direction. It turns the inherited entry, time, state, human, source and exit signals into a public interface for ordinary, proof, failure and recovery at the three switchyards.
+
+三处载体保持不可互换：众智园的连续观察绕行始终成立，设备与验证只在隔离边旁侧出现，故障只隔离验证边，恢复先核绕行；原点社区的一街两院保持居民日常，一次只候选一个可撤回节点，故障和恢复只落到受影响节点；大钟寺的四向步行保持通勤连续，一厅一台退到流线旁侧，故障关闭服务支线而不关闭步行交叉，恢复先核通勤。这里的载体、入口和状态都是设计关系，不是既建设施、现状街院、车站锚点、精确位置或场地批准。
+
+The carriers remain non-interchangeable. Zhongzhiyuan keeps the continuous observation bypass while equipment and proof stay at an isolated side edge; failure isolates that edge and recovery checks the bypass first. Origin keeps one street and two courts for resident daily life; only one withdrawable node may become a candidate, and failure/recovery stay with the affected node. Dazhongsi protects four-way commuting while the hall and desk remain off-route; failure closes the service siding rather than the walking crossing, and recovery checks commuting first. These carriers, entrances and states are design relationships—not built facilities, existing street/court records, station anchors, exact locations or site approvals.
+
+双语离线 visual 在 `#public-signal-interface` 提供三处 × 四态的选择器，但 JavaScript 只从同页 12 行静态 HTML 表读取六个字段，不联网、不存储、不采集、不调用 AI。选择器使用原生按钮；状态同时用编号、文字和线型表达，颜色只辅助。禁用 JavaScript 后，默认六问和 12 行合同仍全部可读。该可访问性和交互只是包内表达意图，不是独立认证、人工在线或运营系统。
+
+The bilingual offline visual provides a three-place × four-state selector at `#public-signal-interface`, but JavaScript only reads six fields from the same twelve-row static HTML table. It makes no network request, stores and collects nothing, and calls no AI. Native buttons are used; numbers, words and line styles carry state while colour is supplementary. Without JavaScript, the default six questions and all twelve rows remain readable. This accessibility and interaction work is package-level presentation intent, not independent certification, staffed presence or an operating system.
+
+结构化闭环位于 `visual/assets/key-area-evidence-matrix.json#public_signal_interface_round18` 与 `visual/assets/site-grounding-register.json#public_signal_interface_round18`，并回链非 AI 同权、全年运营、失败治理、可逆恢复和三框场地读取。真实起止时段、班次、位置、尺寸、责任接受与表现保持 `unknown`；人工在线、已确认窗口、现场测试、现实事故、恢复验收、批准与 GO 决定均为 0。geometry、`metrics.json`、12 场景、8 项目、3 重点区、全部 G0、临时边界、NO-GO 与 `not_fully_cleared` 均未改变。
+
+Structured closure sits in `visual/assets/key-area-evidence-matrix.json#public_signal_interface_round18` and `visual/assets/site-grounding-register.json#public_signal_interface_round18`, backlinking non-AI parity, year-round operations, failure governance, reversible restoration and three-frame site reading. Real times, rosters, locations, dimensions, accepted duties and performance remain `unknown`; staffed presence, confirmed windows, field tests, real incidents, restoration acceptances, approvals and GO decisions are all 0. Geometry, `metrics.json`, 12 scenes, 8 projects, 3 key areas, all-G0 status, provisional boundaries, NO-GO and `not_fully_cleared` do not change.
+
+四份出版物在两个新 Python 进程中用固定顺序、固定元数据、`invariant=1`、页压缩和同一静态字体参数重建，逐文件字节一致。中英文 A3 各 14 页、A0 各 8 页，共 44 页；第 18 轮公共信号图进入一页 A3 和最终 A0 公共信号/专业交接板。manifest、逐文件权利台账和实际文件集合目标为 140/140/140；独立逐文件清权仍为 0。确定性与版面 PASS 只证明当前文件可复核，不证明现场、专业、批准、运营、G1 或权利许可。
+
+Two fresh Python processes rebuilt all four publications with fixed order, fixed metadata, `invariant=1`, page compression and the same static-font parameters; every file was byte-identical. Each language retains fourteen A3 pages and eight A0 pages, 44 total. The Round 18 signal figure enters one A3 page and the final A0 public-signal/professional-handoff board. Manifest, file-rights and actual-file sets target 140/140/140, with 0 completed independent file-level rights audits. Determinism and layout PASS prove only that current files can be reviewed; they prove no field condition, professional acceptance, approval, operation, G1 status or rights licence.
+
+| 文件 / File | 页数与版式 / Pages and format | SHA-256 |
+|---|---:|---|
+| `drawings/a3-booklet.pdf` | 14 / A3 landscape | `1fd03fbdaae9946d908facd2215e6c164ca237015b250a1fd8bf5d05cbca0013` |
+| `drawings/a3-booklet.en.pdf` | 14 / A3 landscape | `3941565853498f0a909e22e4bbde08fff97f67d84d0b6921c98b2bebafdc767f` |
+| `drawings/a0-boards.pdf` | 8 / A0 landscape | `6b093ff0b1bcb7cafae8f4fa888a91b3f0ae8ea8e66eb96ccd904d73d5204c02` |
+| `drawings/a0-boards.en.pdf` | 8 / A0 landscape | `49b7a49ebd14e2cbc2110f801d9f85038ec0c9140875f67f4c45ee15a58bdf79` |
+
 ## Round 17 site grounding and expression reduction / 第 17 轮场地锚定与表达减重
 
 第 17 轮只重组评审阅读和证据责任，不改变方案实体。前台现在按“公开背景定位—临时设计容器—可深化设计关系”三框分读，禁止套准成一张现实总图：背景只说明报道方向，`PROV-SITE-001` / `PROV-KEY-*` 只组织资料接收与概念关系，双轨只表达普通任务、旁侧验证、人工交接、停止、恢复和退出。Issue #846 记录的 OSM 背景 0% 相交／约 412.5m 差异只作为复核报警，不是几何平移依据；Issue #1029 尚未证明 `PROV-KEY-003` 的大钟寺车站、道路、地块或建筑锚点，因此图中“四向”只表示服务与移动关系。geometry、`metrics.json`、12 个场景、8 个项目、三处重点区、G0、公共权利与 `not_fully_cleared` 均不变；现场资料、现场结果、GO、批准和新增责任接受均为 0。
@@ -18,9 +47,9 @@ The bilingual visual entry uses a 30-second / 3-minute / 15-minute funnel. An un
 
 Two fresh Python processes rebuilt all four publications with fixed input order, fixed metadata, `invariant=1`, page compression, and static 500/700 weights from local `NotoSansSC-VF.ttf`; every file was byte-identical across runs. Each language has a 14-page A3 booklet and an 8-page A0 set, for 44 pages total. Full PyMuPDF inspection found 0 blank pages, 0 replacement glyphs, and 0 out-of-page text blocks; searchable spans in all four PDFs use only `NotoSansSC-Medium` / `NotoSansSC-Bold`. Local contact sheets and targeted page renders showed no clipping. Publication QA proves file readability and current-environment reproducibility only; it proves no field condition, approval, construction, operation, G1 status or rights clearance.
 
-`visual/assets/site-grounding-register.json#jury_reading_contract.package_validation_contract` 固化本轮的专项回归期望：10 个 geometry／metrics 输入哈希、389 个唯一空间 ID、12 场景／8 项目／3 重点区、44 页出版、双语浏览器与无 JavaScript 降级、134 项清单／权利路径和 T02 精确回放。它可供最终提交或后续轮次重放，只验证投稿文件和表达合同；即使全部通过，现场调查、专业验收、批准、运营和清权仍为 0 或未完成。
+`visual/assets/site-grounding-register.json#jury_reading_contract.package_validation_contract` 固化当前包的专项回归期望：10 个 geometry／metrics 输入哈希、389 个唯一空间 ID、12 场景／8 项目／3 重点区、44 页出版、双语浏览器与无 JavaScript 降级、140 项清单／权利路径和 T02 精确回放。它可供最终提交或后续轮次重放，只验证投稿文件和表达合同；即使全部通过，现场调查、专业验收、批准、运营和清权仍为 0 或未完成。
 
-`visual/assets/site-grounding-register.json#jury_reading_contract.package_validation_contract` freezes the round-specific regression expectations: ten geometry/metrics input hashes; 389 unique spatial IDs; 12 scenes, eight projects and three key areas; 44 publication pages; bilingual browser and no-JavaScript fallback behavior; 134 manifest/rights paths; and exact T02 replay. It can be replayed against the final commit or a later round, but validates package files and presentation contracts only. A complete PASS still leaves fieldwork, professional acceptance, approval, operation and rights clearance at 0 or incomplete.
+`visual/assets/site-grounding-register.json#jury_reading_contract.package_validation_contract` freezes current-package regression expectations: ten geometry/metrics input hashes; 389 unique spatial IDs; 12 scenes, eight projects and three key areas; 44 publication pages; bilingual browser and no-JavaScript fallback behavior; 140 manifest/rights paths; and exact T02 replay. It can be replayed against the final commit or a later round, but validates package files and presentation contracts only. A complete PASS still leaves fieldwork, professional acceptance, approval, operation and rights clearance at 0 or incomplete.
 
 | 文件 / File | 页数与版式 / Pages and format | SHA-256 |
 |---|---:|---|
