@@ -93,6 +93,29 @@ def gh_json(repo: str, args: list[str], *, cwd: Path) -> Any:
         raise WorkerError(f"invalid JSON from gh {' '.join(args)}") from exc
 
 
+def queued_prs(repo: str, label: str, cwd: Path) -> list[dict[str, Any]]:
+    """Return queued PRs from object labels, without GitHub search indexing."""
+    open_prs = gh_json(
+        repo,
+        [
+            "pr",
+            "list",
+            "--state",
+            "open",
+            "--limit",
+            "1000",
+            "--json",
+            "number,author,headRefOid,state,isDraft,mergeable,statusCheckRollup,labels",
+        ],
+        cwd=cwd,
+    )
+    return [
+        item
+        for item in open_prs
+        if any(str(entry.get("name") or "") == label for entry in item.get("labels", []))
+    ]
+
+
 def pr_file_paths(repo: str, number: int, cwd: Path) -> list[str]:
     completed = run(
         ["gh", "api", "--paginate", "--slurp", f"repos/{repo}/pulls/{number}/files"],
@@ -437,22 +460,7 @@ def main() -> int:
         fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
     except BlockingIOError as exc:
         raise WorkerError("another auto-review worker is already running") from exc
-    candidates = gh_json(
-        args.repo,
-        [
-            "pr",
-            "list",
-            "--state",
-            "open",
-            "--label",
-            args.label,
-            "--limit",
-            "1000",
-            "--json",
-            "number,author,headRefOid,state,isDraft,mergeable,statusCheckRollup,labels",
-        ],
-        cwd=repo_root,
-    )
+    candidates = queued_prs(args.repo, args.label, repo_root)
     selected = []
     results = []
     for candidate in sorted(candidates, key=lambda item: int(item["number"])):

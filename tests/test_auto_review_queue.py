@@ -16,6 +16,7 @@ from auto_review_queue import (  # noqa: E402
     load_cached_review,
     parse_args,
     pr_file_paths,
+    queued_prs,
     submission_dir_from_files,
 )
 from generate_submissions_data import package_sha256  # noqa: E402
@@ -100,6 +101,19 @@ class AutoReviewQueueTests(unittest.TestCase):
             ],
             cwd=ROOT,
         )
+
+    def test_queued_prs_filter_object_labels_without_search(self) -> None:
+        open_prs = [
+            {"number": 101, "labels": [{"name": "review/queued"}]},
+            {"number": 102, "labels": [{"name": "review/ci-failed"}]},
+            {"number": 103, "labels": []},
+        ]
+        with patch("auto_review_queue.gh_json", return_value=open_prs) as mocked_gh_json:
+            self.assertEqual([open_prs[0]], queued_prs("open-city-ai/haidian", "review/queued", ROOT))
+
+        args = mocked_gh_json.call_args.args[1]
+        self.assertNotIn("--label", args)
+        self.assertIn("labels", args[-1])
 
     def test_ci_state(self) -> None:
         self.assertEqual(
