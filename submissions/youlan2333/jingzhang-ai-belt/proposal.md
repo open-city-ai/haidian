@@ -23,7 +23,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 资料登记表的使用边界如下 [source:SOURCE-REGISTRY]：
 
 - data/source_registry.json 登记公开、清权与临时资料的用途边界。
-- 当前登记摘要：formal 可用资料 0 条，背景资料 0 条，provisional-only 资料 0 条。
+- 当前登记摘要：sources.json 已登记 7 项来源（official_public 2、repository_public_registry 1、repository_processed_reference 1、agent_inferred_from_public_data 2、user_provided_cleared 1）；其中边界与重点片区为 agent_inferred_from_public_data 且 official_boundary=false，无 formal 控规级官方红线或 SITE_BOUNDARY，相关面积/指标均为 provisional 派生值。
 - agent 不得把 background_only 或 provisional_only 资料升级为 official boundary、法定控规、正式评分依据或政府实施承诺。
 
 `data/processed/agent_fact_pack.md` 是本方案的阅读导航层，不是新的权威来源 [source:PROCESSED-FACT-PACK]。它帮助 agent 把三层范围、三处重点区、公告任务、agent.1-agent.6、资料可用性和缺资料事项组织成可读方案；事实判断仍需回到已登记的原始材料 [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK]，完整来源关系由 `sources.json` 保存。
