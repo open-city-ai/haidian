@@ -1205,6 +1205,29 @@ def is_symlink_free_contained_path(path: Path, root: Path) -> bool:
     return path.resolve().is_relative_to(root.resolve())
 
 
+def resolve_only_selection(found: list[Path], only: list[str], repo_root: Path) -> list[Path]:
+    if not only:
+        return found
+    selected: list[Path] = []
+    for raw in only:
+        candidate = Path(raw)
+        if candidate.is_absolute():
+            matches = [path for path in found if path == candidate.resolve()]
+        elif "/" in raw or "\\" in raw:
+            target = (repo_root / candidate).resolve()
+            matches = [path for path in found if path == target]
+        else:
+            matches = [path for path in found if path.name == raw]
+            if len(matches) > 1:
+                choices = ", ".join(path.relative_to(repo_root).as_posix() for path in matches)
+                raise ValueError(f"--only `{raw}` is ambiguous; use an exact path: {choices}")
+        if not matches:
+            raise ValueError(f"--only `{raw}` did not match a discovered submission")
+        if matches[0] not in selected:
+            selected.append(matches[0])
+    return sorted(selected)
+
+
 def proposal_dirs(repo_root: Path, only: list[str]) -> list[Path]:
     submissions_root = repo_root / "submissions"
     found = sorted(
@@ -1212,10 +1235,7 @@ def proposal_dirs(repo_root: Path, only: list[str]) -> list[Path]:
         for path in submissions_root.glob("*/*/proposal.md")
         if is_symlink_free_contained_path(path, submissions_root)
     )
-    if not only:
-        return found
-    wanted = set(only)
-    return [path for path in found if path.name in wanted or path.as_posix() in wanted]
+    return resolve_only_selection(found, only, repo_root)
 
 
 def backfill_proposal(
@@ -1302,10 +1322,13 @@ def main() -> int:
     args = parser.parse_args()
 
     repo_root = args.repo_root.resolve()
-    zh_to_en, en_to_zh = load_glossary(repo_root / "docs" / "terminology-glossary.md")
-    dirs = proposal_dirs(repo_root, args.only)
+    try:
+        dirs = proposal_dirs(repo_root, args.only)
+    except ValueError as exc:
+        parser.error(str(exc))
     if args.limit:
         dirs = dirs[: args.limit]
+    zh_to_en, en_to_zh = load_glossary(repo_root / "docs" / "terminology-glossary.md")
     directions: set[tuple[str, str]] = set()
     for directory in dirs:
         front, body = parse_front_matter((directory / "proposal.md").read_text(encoding="utf-8"))

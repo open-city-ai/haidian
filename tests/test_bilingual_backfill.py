@@ -1,5 +1,7 @@
 import hashlib
 import json
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -67,6 +69,52 @@ class BilingualBackfillTests(unittest.TestCase):
             )
 
             self.assertEqual([regular], proposal_dirs(root, []))
+
+    def test_only_rejects_ambiguous_slug_and_accepts_exact_path(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "repo"
+            first = root / "submissions" / "alice" / "same-slug"
+            second = root / "submissions" / "bob" / "same-slug"
+            for package in (first, second):
+                package.mkdir(parents=True)
+                (package / "proposal.md").write_text("proposal", encoding="utf-8")
+
+            with self.assertRaisesRegex(ValueError, "ambiguous"):
+                proposal_dirs(root, ["same-slug"])
+            self.assertEqual([first], proposal_dirs(root, ["submissions/alice/same-slug"]))
+            self.assertEqual([second], proposal_dirs(root, [str(second)]))
+
+    def test_only_rejects_empty_selection(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "repo"
+            package = root / "submissions" / "alice" / "sample"
+            package.mkdir(parents=True)
+            (package / "proposal.md").write_text("proposal", encoding="utf-8")
+
+            with self.assertRaisesRegex(ValueError, "did not match"):
+                proposal_dirs(root, ["missing"])
+
+    def test_cli_reports_selection_errors_before_loading_runtime(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "repo"
+            package = root / "submissions" / "alice" / "sample"
+            package.mkdir(parents=True)
+            (package / "proposal.md").write_text("proposal", encoding="utf-8")
+            completed = subprocess.run(
+                [
+                    sys.executable,
+                    str(ROOT / "scripts" / "backfill_bilingual_submissions.py"),
+                    "--repo-root",
+                    str(root),
+                    "--only",
+                    "missing",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertNotEqual(0, completed.returncode)
+            self.assertIn("did not match a discovered submission", completed.stderr)
 
     def test_backfill_refuses_translation_symlinks(self) -> None:
         for target_exists, force in ((False, False), (True, True)):
