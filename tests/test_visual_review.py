@@ -4,6 +4,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import fitz
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
@@ -40,6 +42,47 @@ def write_valid_visual_package(root: Path) -> Path:
         encoding="utf-8",
     )
     return submission
+
+
+def write_drawing_pdf(path: Path, *, sparse: bool, text: str = "Substantial board content") -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    document = fitz.open()
+    page = document.new_page(width=842, height=1191)
+    if sparse:
+        page.insert_text((32, 40), "Minimal board label", fontsize=12, color=(0, 0, 0))
+    else:
+        page.draw_rect(fitz.Rect(40, 40, 802, 1151), color=(0, 0, 0), fill=(0.15, 0.35, 0.55))
+        page.insert_text((80, 120), text, fontsize=30, color=(1, 1, 1))
+    document.save(path)
+    document.close()
+
+
+def write_top_heavy_drawing_pdf(path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    document = fitz.open()
+    page = document.new_page(width=842, height=1191)
+    page.draw_rect(fitz.Rect(40, 40, 802, 470), color=(0, 0, 0), fill=(0.15, 0.35, 0.55))
+    page.insert_text((80, 120), "Top-heavy board content", fontsize=30, color=(1, 1, 1))
+    document.save(path)
+    document.close()
+
+
+def write_border_only_drawing_pdf(path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    document = fitz.open()
+    page = document.new_page(width=842, height=1191)
+    page.draw_rect(fitz.Rect(20, 20, 822, 1171), color=(0, 0, 0), width=1)
+    document.save(path)
+    document.close()
+
+
+def write_uniform_drawing_pdf(path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    document = fitz.open()
+    page = document.new_page(width=842, height=1191)
+    page.draw_rect(page.rect, color=(0.15, 0.35, 0.55), fill=(0.15, 0.35, 0.55))
+    document.save(path)
+    document.close()
 
 
 class VisualReviewTests(unittest.TestCase):
@@ -181,6 +224,117 @@ class VisualReviewTests(unittest.TestCase):
 
             self.assertFalse(report.ok)
             self.assertIn("VISUAL_METRIC_NONFINITE_VALUE", {issue.check_id for issue in report.issues})
+
+    def test_near_blank_drawing_page_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            write_drawing_pdf(submission / "drawings" / "a0-boards.pdf", sparse=True)
+            report = review_visual(submission)
+            self.assertFalse(report.ok)
+            self.assertIn("DRAWING_PAGE_NEAR_BLANK", {issue.check_id for issue in report.issues})
+
+    def test_near_blank_localized_drawing_page_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            write_drawing_pdf(submission / "drawings" / "a0-boards.en.pdf", sparse=True)
+            report = review_visual(submission)
+            self.assertFalse(report.ok)
+            self.assertIn("DRAWING_PAGE_NEAR_BLANK", {issue.check_id for issue in report.issues})
+
+    def test_border_only_drawing_page_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            write_border_only_drawing_pdf(submission / "drawings" / "a0-boards.pdf")
+            report = review_visual(submission)
+            self.assertFalse(report.ok)
+            self.assertIn("DRAWING_PAGE_NEAR_BLANK", {issue.check_id for issue in report.issues})
+
+    def test_uniform_drawing_page_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            write_uniform_drawing_pdf(submission / "drawings" / "a0-boards.pdf")
+            report = review_visual(submission)
+            self.assertFalse(report.ok)
+            self.assertIn("DRAWING_PAGE_NEAR_UNIFORM", {issue.check_id for issue in report.issues})
+
+    def test_substantial_drawing_page_passes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            write_drawing_pdf(submission / "drawings" / "a0-boards.pdf", sparse=False)
+            report = review_visual(submission)
+            self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
+
+    def test_unknown_control_metric_numeric_claim_in_drawing_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            metrics_path = submission / "metrics.json"
+            metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+            metrics["metrics"]["floor_area_ratio"] = {
+                "status": "unknown",
+                "value": None,
+                "reason": "Official planning controls are not available.",
+            }
+            metrics_path.write_text(json.dumps(metrics), encoding="utf-8")
+            write_drawing_pdf(
+                submission / "drawings" / "a0-boards.pdf",
+                sparse=False,
+                text="FAR 0.526",
+            )
+
+            report = review_visual(submission)
+
+            self.assertFalse(report.ok)
+            self.assertIn("DRAWING_PDF_UNKNOWN_METRIC_NUMERIC_CLAIM", {issue.check_id for issue in report.issues})
+
+    def test_unknown_control_metric_non_numeric_drawing_label_passes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            metrics_path = submission / "metrics.json"
+            metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+            metrics["metrics"]["floor_area_ratio"] = {
+                "status": "unknown",
+                "value": None,
+                "reason": "Official planning controls are not available.",
+            }
+            metrics_path.write_text(json.dumps(metrics), encoding="utf-8")
+            write_drawing_pdf(
+                submission / "drawings" / "a0-boards.pdf",
+                sparse=False,
+                text="FAR unknown; board area 114 ha",
+            )
+
+            report = review_visual(submission)
+
+            self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
+
+    def test_known_control_metric_numeric_drawing_label_is_not_a_unknown_claim(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            metrics_path = submission / "metrics.json"
+            metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+            metrics["metrics"]["floor_area_ratio"] = {
+                "status": "known",
+                "value": 0.526,
+                "unit": "ratio",
+            }
+            metrics_path.write_text(json.dumps(metrics), encoding="utf-8")
+            write_drawing_pdf(
+                submission / "drawings" / "a0-boards.pdf",
+                sparse=False,
+                text="FAR 0.526",
+            )
+
+            report = review_visual(submission)
+
+            self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
+
+    def test_large_blank_region_is_human_review_advisory(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            write_top_heavy_drawing_pdf(submission / "drawings" / "a0-boards.pdf")
+            report = review_visual(submission)
+            self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
+            self.assertIn("DRAWING_PAGE_LARGE_BLANK_REGION", {issue.check_id for issue in report.issues})
 
 
 if __name__ == "__main__":
