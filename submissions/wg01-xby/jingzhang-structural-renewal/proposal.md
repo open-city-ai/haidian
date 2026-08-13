@@ -67,8 +67,11 @@ bilingual_contract_version: "1"
 
 > **补充规范依据**： [source:SRC-2017-MOHURD-URBAN-DESIGN-MEASURES] [source:SRC-2023-MNR-LAND-USE-CLASSIFICATION] [source:SRC-MOHURD-CONTROL-DETAILED-PLANNING]
 
-> **补充技术标准**： [standard:BARRIER-FREE-ENVIRONMENT-LAW] [standard:ELDERLY-SMART-TECH-PLAN-2020-45] [standard:GENERATIVE-AI-INTERIM-MEASURES] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]
-> **设计深度覆盖（总体框架）**：[depth:blue_green_public_space] [depth:development_intensity_controls] [depth:existing_conditions_diagnosis] [depth:height_massing_character] [depth:land_use_layout]
+> **补充技术标准**：[standard:BARRIER-FREE-ENVIRONMENT-LAW] [standard:ELDERLY-SMART-TECH-PLAN-2020-45] [standard:GENERATIVE-AI-INTERIM-MEASURES]
+> **补充技术标准（续2）**：[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016] [standard:MOHURD-CONTROL-DETAILED-PLANNING]
+> **补充技术标准（续3）**：[standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]
+> **设计深度覆盖（总体框架）**：[depth:blue_green_public_space] [depth:development_intensity_controls] [depth:existing_conditions_diagnosis]
+> **设计深度覆盖（总体框架）（续2）**：[depth:height_massing_character] [depth:land_use_layout]
 
 ## 三层范围工作框架
 
@@ -277,7 +280,8 @@ bilingual_contract_version: "1"
    - 测试目标：验证预测性维护减少结构维护成本≥20%
 
 ---
-> **重点区域设计深度**：[depth:metrics_recalculation] [depth:municipal_new_infrastructure] [depth:overall_spatial_structure] [depth:phasing_implementation] [depth:renewal_project_list]
+> **重点区域设计深度**：[depth:metrics_recalculation] [depth:municipal_new_infrastructure] [depth:overall_spatial_structure]
+> **重点区域设计深度（续2）**：[depth:phasing_implementation] [depth:renewal_project_list]
 > **设计深度补充**：[depth:three_key_area_detailed_design] [depth:three_level_scope_framework] [depth:traffic_rail_slow_parking]
 
 ## 用地、建筑规模与拆改留方案
@@ -412,7 +416,11 @@ bilingual_contract_version: "1"
 
 ## 指标体系、面积复算与合规矩阵
 
-> **指标引用**： [metric:MTR-001] [metric:MTR-002] [metric:MTR-003] [metric:MTR-004] [metric:MTR-005] [metric:MTR-006] [metric:MTR-007] [metric:MTR-008] [metric:MTR-009] [metric:MTR-010] [metric:MTR-011] [metric:MTR-012] [metric:MTR-013] [metric:MTR-014]
+> **指标引用**：[metric:MTR-001] [metric:MTR-002] [metric:MTR-003]
+> **指标引用（续2）**：[metric:MTR-004] [metric:MTR-005] [metric:MTR-006]
+> **指标引用（续3）**：[metric:MTR-007] [metric:MTR-008] [metric:MTR-009]
+> **指标引用（续4）**：[metric:MTR-010] [metric:MTR-011] [metric:MTR-012]
+> **指标引用（续5）**：[metric:MTR-013] [metric:MTR-014]
 
 ### 11.1 指标体系（metrics.json摘要）
 
@@ -494,7 +502,8 @@ bilingual_contract_version: "1"
 
 ---
 
-> **合规证据覆盖**：[source:SRC-PROVISIONAL-BOUNDARIES-2026] [standard:BARRIER-FREE-ENVIRONMENT-LAW] [depth:risk_missing_data] [depth:retain_renovate_demolish]
+> **合规证据覆盖**：[source:SRC-PROVISIONAL-BOUNDARIES-2026] [standard:BARRIER-FREE-ENVIRONMENT-LAW] [depth:risk_missing_data]
+> **合规证据覆盖（续2）**：[depth:retain_renovate_demolish]
 ## 参考资料
 
 ### 官方文件
