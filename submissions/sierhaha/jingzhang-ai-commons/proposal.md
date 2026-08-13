@@ -61,7 +61,7 @@ scenarios: ["ai-cultural-guide", "enterprise-service-copilot", "ai-traffic-walka
 | 案例 | 借鉴点 | 可转化空间动作 | 适用条件 | 不适用条件 |
 | --- | --- | --- | --- | --- |
 | 硅谷 | 资本—人才—大学闭环 | 近校成果转化街（BLDG-006）、大钟寺AI路演客厅（场景 06） | 高校/科研密集、资本活跃 | 无高校腹地的片区 |
-| 特拉维夫 | 国防技术溢出与创业密集区 | 众智园自主模型测试场与安全治理沙盒（场景 02/03，民用化表达） | 有测试/安全合规需求 | 涉密或授权未清的领域 |
+| 特拉维夫 | 国防技术溢出与创业密集区 | 众智园自主模型测试场与安全治理沙盒（场景 02/03，民用化表达） | 有测试/安全合规需求 | 授权未清或不宜公开的领域 |
 | 伦敦国王十字 | 铁路遗产更新为知识街区 | 京张遗址公园带保留段活化、清华园站文化馆（BLDG-005） | 有铁路遗产与站房资源 | 遗产本体不可扰动区域 |
 | 新加坡纬壹 | 高密度研发社区 | 众智园科研用地混合开发、清河创新界面（场景 07） | 高密度、轨道可达 | 低密度远郊片区 |
 | 深圳南山 | 生产—研发—生活混合 | 中段社区服务带产城融合（场景 09） | 居住与产业交错 | 严格分区控规区域 |
@@ -70,6 +70,8 @@ scenarios: ["ai-cultural-guide", "enterprise-service-copilot", "ai-traffic-walka
 "不适用条件"用于防止案例照搬——本方案只借鉴机制，不移植形态 [source:AGENT-TASKBOOK] [depth:three_level_scope_framework]。
 
 **区域协同机制（概念建议）。** 统筹研究范围不是孤立片区，创新带必须接入更大的创新网络才能兑现“世界级”定位。本方案建议建立“三区两翼 + 五向协同”的区域协同框架：三区（众智园、AI原点社区、大钟寺）与两翼（中关村科技服务翼、小月河场景赋能翼）向内形成创新回路；向外与中关村科学城（策源协同）、未来科学城（能源与基础设施实验协同）、怀柔科学城（大科学装置与基础研究协同）、北京经济技术开发区（智造与产业化协同）及京津冀协同发展（算力—能源—场景跨域联动）五向对接，具体协同机制（飞地孵化、算力共享、能源互济、活动联动）均为概念建议，待专业团队与主管部门深化 [source:AGENT-TASKBOOK] [depth:three_level_scope_framework]。区域协同同时要求能源基础设施跨区统筹：创新带的配电网、储能与充电网络应纳入北京市新型电力系统与京津冀电力互济的总体布局，避免以街区为界的“孤岛式”能源建设 [source:POLICY-CARBON-PEAK] [depth:municipal_new_infrastructure]。
+
+**国际传播（概念建议，量化指标）。** 国际传播不只是一句口号，给出可核验的候选指标：①全球 AI 朝圣周（场景 10）年办期数 ≥ 4 期；②年度国际交流/路演活动场次 ≥ 12 场；③多语言内容覆盖（中英双语）全部 12 张场景卡、15 张图件与离线 HTML（100%）；④JZ-HX 品牌触点（导视/数字界面/活动视觉）≥ 100 处（候选）；⑤能源数字孪生站提供英文界面与国际参观路线 [metric:international_event_count_target] [metric:brand_touchpoint_count_target]。以上均为候选目标值，正式标定待运营试点与主管部门确认 [depth:risk_missing_data]。
 
 ## 总体设计范围城市更新与控规深度城市设计
 ![双螺旋空间结构图（含能源链 E链）](assets/figures/spatial-structure.png)
@@ -159,7 +161,7 @@ AI 创新生态由四类空间共同承载：研发测试空间（众智园）�
 
 ## 交通、轨道、市政与公共服务设施
 
-交通方案以京张遗址公园慢行主轴（约 9.7 公里）为骨架，配合创新服务主轴、学院路东侧干道与若干东西联络道，形成「双主轴、多联络」的网络；三处重点区围绕轨道站点组织一体化接驳与四象限步行连通 [data:geometry/roads.geojson#ROAD-001] [depth:traffic_rail_slow_parking]。现状快速路与铁路、水系作为约束图层锁定，不越权提出工程可行性结论 [data:geometry/constraints.geojson#CONSTRAINT-001] [data:geometry/constraints.geojson#CONSTRAINT-004]。
+交通方案以京张遗址公园慢行主轴（约 9.7 公里）为骨架，配合创新服务主轴、学院路东侧干道与若干东西联络道，形成「双主轴、多联络」的网络；三处重点区围绕轨道站点组织一体化接驳与四象限步行连通 [data:geometry/roads.geojson#ROAD-001] [depth:traffic_rail_slow_parking]。慢行主轴上设置**连续无障碍流线**（低障碍路径），并在三处重点区配置无障碍服务锚点（社区服务设施），保证老年人、残障人士与推车人群全程可达 [data:geometry/roads.geojson#ROAD-020] [data:geometry/roads.geojson#ROAD-021] [depth:traffic_rail_slow_parking]。现状快速路与铁路、水系作为约束图层锁定，不越权提出工程可行性结论 [data:geometry/constraints.geojson#CONSTRAINT-001] [data:geometry/constraints.geojson#CONSTRAINT-004]。
 
 ![交通·慢行·蓝绿公共空间复合系统图](assets/figures/mobility-bluegreen.png)
 
@@ -200,7 +202,7 @@ AI 创新生态由四类空间共同承载：研发测试空间（众智园）�
 | V2G 充电桩 | 按车位比与服务半径估算：桩数 ≈ 重点区车位数 × 可参与率 × 桩位系数 | 若重点区车位约 6000 个、参与率 30% → 约 1800 个 V2G 桩位 | 车网互动试点政策与电网接入 |
 | 能源数字孪生 | 数据采集点覆盖发电/储能/充电/碳排四类台账，按站级颗粒度 | 约 4 类台账 × 12 场景节点 → 覆盖全带能源数据 | 数据标准、接口协议与运维主体 |
 
-所有估算公式与系数均为公开工程经验的简化引用（非精确设计值），正式标定待试点与专业深化 [source:POLICY-CARBON-PEAK] [depth:municipal_new_infrastructure]。
+所有估算公式与系数均为公开工程经验的简化引用（非精确设计值），正式标定待试点与专业深化 [source:POLICY-CARBON-PEAK] [depth:municipal_new_infrastructure]。参数选择依据与敏感度分析见 `report/narrative.md` 附件十一（如光伏单位装机 0.10-0.20 kW/m² 取值、储能 DOD 0.9、V2G 参与率 20-30% 的经验来源），高敏感项（光伏面积、V2G 参与率）在正式标定时优先现场核查与政策对接 [depth:risk_missing_data]。
 
 ## 蓝绿空间、公共空间与城市风貌
 ![品牌识别与 Logo 方向](assets/figures/brand-identity.png)

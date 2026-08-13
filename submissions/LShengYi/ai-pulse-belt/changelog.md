@@ -1,3 +1,18 @@
+## v10.5.2（2026-08-13）
+
+- **CI 哈希修复**：v10.5.1 在 finalize 之后追加 changelog 条目，违反「finalize 是内容轮最后写文件步骤」纪律，导致 manifest 声明与磁盘 changelog.md 哈希不一致（CI deterministic FAIL）。修复：版本串连锁 v10.5.1 → v10.5.2（gen_01/02/02b/03/04/05 + gen_simulation SEED 全重生成），changelog 编辑并入 finalize 轮内，四门重校验全 PASS。
+
+## v10.5.1（2026-08-13）
+
+- **评审前补写修正**：EN 重点区表格行、三区小方案标题的协议原型具名补齐（此前脚本中途退出未落盘，实际只落 2 处）；「v10.4 数据资产族」标记随版本演进为 v10.5；PDF 元数据加版本戳；版本串连锁 v10.5.0 → v10.5.1（gen_01/02/02b/03/04/05 + gen_simulation SEED 全重生成），四门校验全 PASS。
+
+## v10.5（2026-08-13）
+
+- **取经 95+ 案例后的提分升级（85 → 目标 95+）**，四个波次：
+  - **Wave 1 表达判断密度**：执行摘要加单句命题「先把公共 AI 服务的申报、测试、发布、退役画进空间，再允许它进入城市」；四拍沿带成链成为全带最短空间记忆线（P1 绿廊申报台→P2 测试沙盒街区→P3 发布客厅街区→P4 验收退役街区）；三重点区全部具名协议原型（Test-Sandbox / Release-Lounge / Bequest-Acceptance Quarter），重点区章判断句、命名体系表、13 处章节「本章判断」句 zh/en 全同步。
+  - **Wave 2 视觉系统化**：site-overview 图叠加四拍空间链条带（链线+徽章+P1-P4 具名）；metrics-evidence 新增「协议状态机与五闸门」面板（E0-E4 五门+回滚箭头+8 态条+三区 P2/P3/P4 编号）；A3 封面升级品牌页（Logo 圆徽「脉」+轨道波形、三态波形图例=停用/测试/发布、四拍链、三色板）；visual HTML 首屏加协议状态条（P3 发布高亮，呼应模拟状态机当前态）。
+  - **Wave 3 校验重跑**：版本串 v10.4.2 → v10.5.0（gen_03/04/05 + gen_simulation SEED），frontmatter iteration 10→11，全套产物重生成，四门校验全 PASS。
+
 ## v10.4.1（2026-08-13）
 
 - **评审前全包一致性收口**：manifest 补登 6 项 `visual/assets/` 数据资产（role=evidence_data/verification_script，54 项登记与磁盘完全一致）；指标口径全包统一 76 项（视觉页脚 64→76、数据资产族计数 10→12 与 known 分项加和 14+7+19+9+12=61 闭合）；EN 章节标题对齐官方措辞（Blue-Green Network）与「15 chapters」；章号引用全部自洽（交通第八章/蓝绿风貌第九章/更新项目第十章/100 天第十一章）；frontmatter iteration 9→10；「修订版（v9.x）」→v11.x；质量门 G0-G4 更名 Q0-Q4 以消除与项目闸 G0-G7 的符号碰撞；user persona 8 类与 metrics 对齐；spatial.json 补登记 public-safety-operations-review（19 项）；risk.json 8 维全带 human_review。

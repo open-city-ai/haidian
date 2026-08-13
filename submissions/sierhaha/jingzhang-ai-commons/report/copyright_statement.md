@@ -45,7 +45,22 @@
 - 全部 HTML 完全离线，不加载 CDN、远程字体、地图瓦片、外部脚本、iframe 或跟踪代码。
 - 本包不含任何需另行授权的第三方视觉素材；Logo 为概念方向（未定稿），字体/图像/商标/肖像需清权后使用。
 
-## 7. 边界与事实性声明
+## 7. 图件复现说明（生成脚本与可复现性）
+
+- 全部图件/图纸由以下脚本生成（确定性：无随机种子依赖，输入为 geometry/*.geojson、metrics.json、OSM 缓存与固定 T 文本表）：
+
+| 资产 | 生成脚本 | 输入 | 可复现步骤 |
+| --- | --- | --- | --- |
+| 9 张正式图（×中英） | tools/gen_figures.py | geometry/*.geojson + artifacts/osm_cache.json | `python3 tools/gen_figures.py zh|en` |
+| 6 张概念渲染图（×中英） | tools/gen_renders.py | geometry/*.geojson + 固定 T 文本 | `python3 tools/gen_renders.py all` |
+| A3/A0 图纸（×中英） | tools/gen_drawings.py | assets/figures/*.png | `python3 tools/gen_drawings.py` |
+| 离线 HTML | tools/gen_visual.py + scripts/render_proposal_html.py + tools/embed_font.py | proposal.md + metrics.json + figures | 依次运行后 `python3 tools/embed_font.py` 嵌入字体子集 |
+
+- OSM 底图数据源：`tools/fetch_osm.py`（Overpass API 查询，bbox 116.330,39.930,116.365,40.035，要素类型道路/水系/铁路/公园），缓存于参赛者本地 artifacts/osm_cache.json，不随包分发；图面已署名。
+- 字体子集：`tools/embed_font.py`（fontTools 子集化 Noto Sans CJK SC → woff2 → base64 内嵌）。
+- 任何第三方可按上述脚本复现全部图件；随机种子未使用，输出与评审所见一致。
+
+## 8. 边界与事实性声明
 
 - 边界为临时约束范围（provisional），官方 polygon 发布后全部面积类指标复算。
 - 本方案不声称官方批准、审定控规、最终权属或实施承诺；全部机制/试点/指标为概念建议或候选口径。
