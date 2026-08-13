@@ -111,8 +111,14 @@ def main() -> int:
     if not out_path.is_absolute():
         out_path = repo_root / out_path
     registry_path = repo_root / DEFAULT_SOURCE_REGISTRY_PATH
-    if out_path.resolve() == registry_path.resolve():
-        parser.error(f"output must not overwrite the source registry input: {registry_path}")
+    resolved_out = out_path.resolve()
+    aliases_registry = resolved_out == registry_path.resolve() or (
+        out_path.exists()
+        and registry_path.exists()
+        and out_path.samefile(registry_path)
+    )
+    if aliases_registry or resolved_out.parts[-2:] == Path(DEFAULT_SOURCE_REGISTRY_PATH).parts:
+        parser.error(f"output must not overwrite a source registry input: {resolved_out}")
     content = render_js(build_frontend_data(repo_root))
     if args.check:
         if not out_path.exists():

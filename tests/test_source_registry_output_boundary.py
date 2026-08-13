@@ -57,7 +57,7 @@ class SourceRegistryOutputBoundaryTests(unittest.TestCase):
             result = self.run_generator(root, registry)
 
             self.assertNotEqual(result.returncode, 0)
-            self.assertIn("output must not overwrite the source registry input", result.stderr)
+            self.assertIn("output must not overwrite a source registry input", result.stderr)
             self.assertEqual(registry.read_bytes(), original)
 
     def test_symlink_alias_to_source_registry_is_rejected(self) -> None:
@@ -71,8 +71,37 @@ class SourceRegistryOutputBoundaryTests(unittest.TestCase):
             result = self.run_generator(root, alias)
 
             self.assertNotEqual(result.returncode, 0)
-            self.assertIn("output must not overwrite the source registry input", result.stderr)
+            self.assertIn("output must not overwrite a source registry input", result.stderr)
             self.assertEqual(registry.read_bytes(), original)
+
+    def test_hardlink_alias_to_source_registry_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            registry = self.make_registry(root)
+            alias = root / "registry-output.js"
+            alias.hardlink_to(registry)
+            original = registry.read_bytes()
+
+            result = self.run_generator(root, alias)
+
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("output must not overwrite a source registry input", result.stderr)
+            self.assertEqual(registry.read_bytes(), original)
+
+    def test_cross_root_canonical_registry_output_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            source_root = directory / "source"
+            victim_root = directory / "victim"
+            self.make_registry(source_root)
+            victim = self.make_registry(victim_root)
+            original = victim.read_bytes()
+
+            result = self.run_generator(source_root, victim)
+
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("output must not overwrite a source registry input", result.stderr)
+            self.assertEqual(victim.read_bytes(), original)
 
     def test_distinct_output_is_written(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
