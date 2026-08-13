@@ -42,8 +42,11 @@ import argparse
 from datetime import date
 import hashlib
 import json
+import os
 import re
+import stat
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any
 from urllib.parse import quote
@@ -498,6 +501,30 @@ def render_js(items: list[dict[str, Any]]) -> str:
     )
 
 
+def write_text_atomically(path: Path, content: str) -> None:
+    mode = stat.S_IMODE(path.stat().st_mode) if path.exists() else 0o644
+    temporary: str | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            dir=path.parent,
+            prefix=f".{path.name}-",
+            suffix=".tmp",
+            delete=False,
+            mode="w",
+            encoding="utf-8",
+        ) as handle:
+            temporary = handle.name
+            handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.chmod(temporary, mode)
+        os.replace(temporary, path)
+    except BaseException:
+        if temporary:
+            Path(temporary).unlink(missing_ok=True)
+        raise
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo-root", default=".")
@@ -520,6 +547,15 @@ def main() -> int:
     out_path = Path(args.out)
     if not out_path.is_absolute():
         out_path = repo_root / out_path
+    publication_path = repo_root / PUBLICATION_FILE
+    resolved_out = out_path.resolve()
+    aliases_publication = resolved_out == publication_path.resolve() or (
+        out_path.exists()
+        and publication_path.exists()
+        and out_path.samefile(publication_path)
+    )
+    if aliases_publication or resolved_out.name == PUBLICATION_FILE:
+        parser.error(f"output must not overwrite a gallery publication input: {resolved_out}")
     generated = render_js(build_data(repo_root))
     if args.check:
         existing = out_path.read_text(encoding="utf-8") if out_path.exists() else ""
@@ -527,7 +563,7 @@ def main() -> int:
             print(f"{out_path.relative_to(repo_root)} is out of date; run scripts/generate_submissions_data.py", file=sys.stderr)
             return 1
         return 0
-    out_path.write_text(generated, encoding="utf-8")
+    write_text_atomically(out_path, generated)
     print(out_path.relative_to(repo_root))
     return 0
 
