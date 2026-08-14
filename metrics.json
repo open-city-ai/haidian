@@ -1,0 +1,138 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional_site_boundary, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional rough boundary; not an official redline or exact statutory area."
+      ]
+    },
+    "announced_overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json#OFFICIAL-ANNOUNCEMENT"
+      ],
+      "formula": "11.4 km2 × 1,000,000",
+      "confidence": "high",
+      "assumptions": [
+        "Textual approximate area from the public announcement; not a polygon calculation."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 617440.2339999999,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(concept_building_footprint_area, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Concept footprints only; survey and retain-renovate-demolish audit pending."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.183465,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "concept_green_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Design performance indicator, not a statutory green-space ratio."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.116626,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "concept_public_space_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Concept public-space polygons; property and access rights unverified."
+      ]
+    },
+    "rain_station_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(phase_1_rain_station_prototypes)",
+      "confidence": "medium",
+      "assumptions": [
+        "Design commitment for pilot programming; exact locations require site survey."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(provisional_key_area_features)",
+      "confidence": "medium",
+      "assumptions": [
+        "Names and announced areas are official; displayed polygons are provisional rough geometry."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official FAR controls and verified building data are absent."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official height control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official height controls are absent."
+    },
+    "stormwater_capture_capacity_sqm_mm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "verified contributing_area × verified design_rainfall_mm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No official drainage catchments, elevations, soil infiltration tests, or design-rainfall criterion are available; the One Millimeter name is narrative, not an engineering capacity claim."
+    }
+  }
+}
