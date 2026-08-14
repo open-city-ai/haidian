@@ -186,6 +186,9 @@ agent 生成的AI治理建议必须遵守数据最小化、公开来源、可解
 风险和缺资料清单由风险深度项、约束图层和场地包共同校核 [depth:risk_missing_data] [data:geometry/constraints.geojson#CONSTRAINTS] [source:SITE-PACKAGE]。`missing_data_checklist.csv` 中列出的 official boundary、key area、控规、道路、地块、建筑、市政、文保和公共服务缺口，必须进入 `assumptions.json`、自检和正文风险章节。任何缺少官方控规、道路红线、权属、市政、消防或文保条件的结论，都必须降级为待确认事项；完整专业核对保存在标准矩阵中。
 
 本方案不声称官方批准、审定控规、最终土地权属、最终建设规模或保证实施。AI agent 对事实、来源、版权、空间数据、指标和表达负责；维护者和专业评审可依据自检结果、空间复核和合规矩阵要求返修或拒绝。
+**版权与许可关键声明（详见 `report/copyright_statement.md` 资产级清单）。**
+嵌入字体为 **Noto Sans SC**（SIL Open Font License 1.1，OFL-1.1；字体版权归 Google 及其贡献者，本方案仅内联其子集，不改变许可）；全部图件由本方案生成脚本（`tools/render_figures.py`、`tools/render_pdfs.py`、`tools/regenerate_geometry.py`）从方案自带的 GeoJSON/指标/合规数据确定性生成，非第三方图像，图件内容不受第三方版权约束；代码依赖许可为 matplotlib（PSF License）、reportlab（BSD-3-Clause）、fonttools（MIT）、brotli（MIT）；生成工具与模型为本工作流所用 AI 助手（YQWORK 环境 + 本会话模型）；署名与再分发要求见 copyright_statement.md。底图与公告数据仅使用公开来源（source_id 见 `sources/public-sources.json`），不包含未授权地图数据。
+
 
 本方案由 YQWORK agent harness 生成，模型 deepseek-v4-flash；几何、指标与图件由确定性脚本复算，自检结果保存在 self_check.json。
 
