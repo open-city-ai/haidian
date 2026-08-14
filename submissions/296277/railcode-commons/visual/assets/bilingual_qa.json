@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "checked_at": "2026-08-13",
+  "checked_at": "2026-08-14",
   "checker": "participant-side manual review assisted by local deterministic rendering",
   "status": "pass",
   "scope": [
@@ -9,7 +9,7 @@
     "visual/index.html and visual/index.en.html",
     "drawings/a3-booklet.pdf and drawings/a3-booklet.en.pdf",
     "drawings/a0-boards.pdf and drawings/a0-boards.en.pdf",
-    "11 paired core figures and 3 paired prototype names"
+    "11 paired core figures, 3 paired prototype names, 24 tabletop fixtures/receipts, and 6 quantity/cost method records"
   ],
   "pdf_page_audit": [
     {
@@ -62,6 +62,21 @@
     },
     "evidence_and_stop_conditions": {
       "result": "equivalent in sampled narrative, figures, HTML, and PDFs"
+    },
+    "tabletop_receipts": {
+      "checked": 24,
+      "matched": 24,
+      "field_runs": 0,
+      "result": "equivalent claim boundary in zh/en narrative, HTML, figures, and PDFs"
+    },
+    "quantity_cost_methods": {
+      "checked": 6,
+      "currency_amounts_present": 0,
+      "result": "method present; real inputs explicitly absent"
+    },
+    "review_evidence_dimensions": {
+      "checked": 7,
+      "result": "primary evidence paths exist"
     }
   },
   "visual_checks": {
@@ -70,7 +85,24 @@
     "provisional_warning_visible": true,
     "core_figure_alt_text_present": true,
     "not_to_scale_notice_present": true,
-    "offline_html_dependencies": "no remote font, script, API, map tile, form, iframe, or tracker"
+    "offline_html_dependencies": "no remote font, script, API, map tile, form, iframe, or tracker",
+    "browser_render_audit": {
+      "pages": [
+        "report/proposal.html",
+        "report/proposal.en.html",
+        "visual/index.html",
+        "visual/index.en.html"
+      ],
+      "viewports": [
+        {"name": "desktop", "width": 1440, "height": 1000},
+        {"name": "mobile", "width": 390, "height": 844}
+      ],
+      "horizontal_overflow": false,
+      "broken_images": 0,
+      "console_errors": 0,
+      "keyboard_controls_present": true,
+      "result": "pass"
+    }
   },
   "repairs_made": [
     "Stabilised the English visual hero title as two explicit lines.",
@@ -80,13 +112,11 @@
     "Corrected the residual English Version 1.1 sentence to Version 1.2 and rechecked titles, status wording, numbers, evidence anchors, and figure order."
   ],
   "manual_signoff": {
-    "signed_at": "2026-08-13",
+    "signed_at": "2026-08-14",
     "signer_role": "participant-side package reviewer",
-    "version_pair": "v1.2 zh/en",
-    "differences_found": [
-      "English narrative retained one Version 1.1 sentence after the v1.2 title update."
-    ],
-    "resolution": "Corrected to Version 1.2; rebuilt bilingual HTML/PDF/figures and repeated visual and deterministic checks.",
+    "version_pair": "v1.3 zh/en",
+    "differences_found": [],
+    "resolution": "Rebuilt paired narrative, HTML, figures, A3/A0, tabletop records, and quantity/cost methods; completed desktop/mobile browser render audit with no overflow, broken images, or console errors.",
     "status": "pass"
   },
   "limits": "This package QA verifies rendered completeness and paired claims; it is not a certified translation, WCAG audit, print proof, legal rights opinion, site accessibility test, or engineering review."

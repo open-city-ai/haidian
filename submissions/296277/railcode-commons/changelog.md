@@ -1,5 +1,15 @@
 # 方案迭代记录
 
+## v1.3 - 2026-08-14
+
+- Completed final 1440px/390px browser audit for both language versions; enabled safe wrapping for long evidence paths, with no horizontal overflow, broken images, or console errors.
+
+- 以官方任务书、评分规则、schema 与维护者工作流为主约束；五个高分项目仅用于比较证据组织方式，不复制其内容或资产。
+- 新增可离线复演的 RC 桌面包：6 份合同各含 1 条合成通过和 3 条拒绝/暂停分支，共 24/24 与预期一致；现场运行固定为 0。
+- 新增六份工程量与全生命周期成本方法，明确对象、单位、测量依据、询价证据和资本/运营/维护/撤除/恢复公式；数量、单价和金额保持空值。
+- 新增七维证据导航，将每个评审维度指向首要原始工件；导航不替代正式证据。
+- 重绘实施就绪图和指标证据图，将“规则可复演”与“现实门未启动”并列展示；重建双语 HTML、A3/A0 与 manifest。
+
 ## v1.2 - 2026-08-13
 
 - 在中英正文首屏增加四项评委判断表：任务回应、试点转化、暂停/恢复责任和数字边界。

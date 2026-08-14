@@ -3423,6 +3423,39 @@ class SubmissionWorkflowTests(unittest.TestCase):
             self.assertFalse(report.ok)
             self.assertIn("invalid or unclosed geometry", "\n".join(report.errors))
 
+    def test_nonfinite_ai_package_third_ordinate_fails_validation(self) -> None:
+        for nonfinite in (float("nan"), float("inf"), float("-inf")):
+            with self.subTest(nonfinite=nonfinite), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                base = "submissions/alice/ai-urban-loop"
+                changed = self.write_minimal_ai_package(root, base)
+                site_path = root / base / "geometry/site_boundary.geojson"
+                site = json.loads(site_path.read_text(encoding="utf-8"))
+                ring = site["features"][0]["geometry"]["coordinates"][0]
+                ring[0].append(nonfinite)
+                ring[-1].append(nonfinite)
+                site_path.write_text(json.dumps(site), encoding="utf-8")
+                report = validate_submission(root, "alice", changed)
+                self.assertFalse(report.ok)
+                self.assertIn("invalid or unclosed geometry", "\n".join(report.errors))
+
+    def test_large_integer_ai_package_third_ordinate_does_not_crash(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            site_path = root / base / "geometry/site_boundary.geojson"
+            site = json.loads(site_path.read_text(encoding="utf-8"))
+            ring = site["features"][0]["geometry"]["coordinates"][0]
+            large_integer = 10**1000
+            ring[0].append(large_integer)
+            ring[-1].append(large_integer)
+            site_path.write_text(json.dumps(site), encoding="utf-8")
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertTrue(report.ok, report.errors)
+
     def test_local_submission_wrapper_validates_directory(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import os
 import re
 import sys
@@ -1003,7 +1004,12 @@ def load_required_standard_ids(repo_root: Path) -> set[str]:
 def coordinate_pair_is_valid(value: object) -> bool:
     if not isinstance(value, list) or len(value) < 2:
         return False
-    if any(isinstance(item, bool) or not isinstance(item, (int, float)) for item in value):
+    if any(
+        isinstance(item, bool)
+        or not isinstance(item, (int, float))
+        or (isinstance(item, float) and not math.isfinite(item))
+        for item in value
+    ):
         return False
     lon, lat = value[0], value[1]
     return -180 <= lon <= 180 and -90 <= lat <= 90

@@ -41,11 +41,11 @@
   }
  },
  "english_coverage": {
-  "entries_with_english_summary": 26,
+  "entries_with_english_summary": 40,
   "entries_total": 79,
   "cited_in_english_edition_and_readable": true,
-  "note_zh": "**全部条目的正文（what/why/fix）目前只有中文。** 英文读者打开本文件，得到的是一份说明、一张形状直方图，以及逐条的编号、提交、文件与形状——没有正文。本包最常被称道的就是这份登记册，而它在英文里是一份读不到论证的目录。已写英文摘要的有 26 条 / 共 79 条；**其中英文正文按编号引用的每一条都必须有摘要，这一点由构建强制**——把读者指向他读不了的东西，不是翻译缺口，是一条恰好能解析的坏引用。全部翻译是真实的工作量，此处不假装已完成：报出分子与分母，而不是把做了一半的事说成做完了。",
-  "note_en": "**Every entry's body (what/why/fix) is currently Chinese only.** An English-reading reviewer opening this file gets a note, a shape histogram and rows of id, commit, file and shape with no text in them — and this register is the artifact this package is most often described by. 26 of 79 entries carry an English summary, and **every entry the English edition cites by number must carry one, enforced at build time**: pointing a reader at something they cannot read is not a translation gap but a broken reference that happens to resolve. Translating all of them is real work and is not pretended here — the numerator and the denominator are both published instead of a half-done job described as finished."
+  "note_zh": "**全部条目的正文（what/why/fix）目前只有中文。** 英文读者打开本文件，得到的是一份说明、一张形状直方图，以及逐条的编号、提交、文件与形状——没有正文。本包最常被称道的就是这份登记册，而它在英文里是一份读不到论证的目录。已写英文摘要的有 40 条 / 共 79 条；**其中英文正文按编号引用的每一条都必须有摘要，这一点由构建强制**——把读者指向他读不了的东西，不是翻译缺口，是一条恰好能解析的坏引用。全部翻译是真实的工作量，此处不假装已完成：报出分子与分母，而不是把做了一半的事说成做完了。",
+  "note_en": "**Every entry's body (what/why/fix) is currently Chinese only.** An English-reading reviewer opening this file gets a note, a shape histogram and rows of id, commit, file and shape with no text in them — and this register is the artifact this package is most often described by. 40 of 79 entries carry an English summary, and **every entry the English edition cites by number must carry one, enforced at build time**: pointing a reader at something they cannot read is not a translation gap but a broken reference that happens to resolve. Translating all of them is real work and is not pretended here — the numerator and the denominator are both published instead of a half-done job described as finished."
  },
  "found_by_meaning_zh": {
   "self": "作者在本轮工作中自查发现",
@@ -62,7 +62,8 @@
    "shape": "reference-does-not-resolve",
    "what_zh": "两处机读引用指向不存在的要素 id：BUILDING-001 与 LANDUSE-001，真实 id 为 BLDG-001 与 LU-001。十一个锚点中两个失效。",
    "why_zh": "本方案要求全场采用机读引用，而自己的引用没有被任何检查解析过。",
-   "fix_zh": "改正引用，并在 verify.js 中加入「每个 [data:file#id] 必须解析到随包要素」的断言。"
+   "fix_zh": "改正引用，并在 verify.js 中加入「每个 [data:file#id] 必须解析到随包要素」的断言。",
+   "summary_en": "Two machine-readable references pointed at feature ids that do not exist — `BUILDING-001` and `LANDUSE-001` against the real `BLDG-001` and `LU-001`."
   },
   {
    "id": "E02",
@@ -72,7 +73,8 @@
    "shape": "number-outlived-the-sentence-holding-it",
    "what_zh": "「机器人赛道不足次薄者的一半」在算术上不成立：14 对 28 恰为一半。",
    "why_zh": "该说法写下时为真（12 对 25），语料增长后没人重算运算符。",
-   "fix_zh": "先改为「恰为一半」，此后普查解析器修复使数值再变，最终删除比值只留两个计数。"
+   "fix_zh": "先改为「恰为一半」，此后普查解析器修复使数值再变，最终删除比值只留两个计数。",
+   "summary_en": "「less than half the second-thinnest track」 did not hold arithmetically: 14 against 28 is exactly half."
   },
   {
    "id": "E03",
@@ -82,7 +84,8 @@
    "shape": "reference-does-not-resolve",
    "what_zh": "十二张场景卡中六张把水准点写成 BM-2x、BM-3xx——占位符而非 id，接不到 public_space.geojson 中任何一点。",
    "why_zh": "卡片是 markdown 表格，表格无法与几何联接，因此没有任何东西会发现它接不上。",
-   "fix_zh": "卡片改为 scenario_cards.json 单一真源，check_cards.js 逐卡解析，--selftest 用八份改坏的卡片证明检查会拒绝。"
+   "fix_zh": "卡片改为 scenario_cards.json 单一真源，check_cards.js 逐卡解析，--selftest 用八份改坏的卡片证明检查会拒绝。",
+   "summary_en": "Six of twelve scenario cards wrote the benchmark as `BM-2x` or `BM-3xx` — placeholders, not ids, joining to no point in the shipped geometry."
   },
   {
    "id": "E04",
@@ -92,7 +95,8 @@
    "shape": "two-copies-of-one-thing-drifted",
    "what_zh": "英文版卡表默默丢掉了「空间载体」一列，而其首句声明该列必给。",
    "why_zh": "双语对等按段落词数度量，看不见表格少了一列。",
-   "fix_zh": "两版表格均由同一份 JSON 生成。"
+   "fix_zh": "两版表格均由同一份 JSON 生成。",
+   "summary_en": "The English card table silently dropped the spatial-anchor column while its own opening sentence declared that column mandatory."
   },
   {
    "id": "E05",
@@ -102,7 +106,8 @@
    "shape": "check-measured-the-convenient-thing",
    "what_zh": "verify.js 末尾三条结构性结论只是 console.log，不进退出码。official_boundary 若翻成 true，会打印 true 然后退出 0。",
    "why_zh": "与本方案在别人包里报告的缺陷同型，且就在它邀请评审运行的文件里。",
-   "fix_zh": "改为断言并新增十余条；打开后当场红了四项，均属实。"
+   "fix_zh": "改为断言并新增十余条；打开后当场红了四项，均属实。",
+   "summary_en": "Three structural conclusions at the end of `verify.js` were `console.log` only and never reached the exit code — flip `official_boundary` to true and it printed the problem and passed."
   },
   {
    "id": "E06",
@@ -122,7 +127,8 @@
    "shape": "number-outlived-the-sentence-holding-it",
    "what_zh": "一级指标表仍写 82,413 m²，而同一文档两百行外称该值已废止。",
    "why_zh": "表格与正文由不同方式维护。",
-   "fix_zh": "改正，并加入「一级指标表必须引用 metrics.json 当前值」的断言。"
+   "fix_zh": "改正，并加入「一级指标表必须引用 metrics.json 当前值」的断言。",
+   "summary_en": "A class-1 metrics table still carried 82,413 m² while the same document, two hundred lines away, called that value superseded."
   },
   {
    "id": "E08",
@@ -132,7 +138,8 @@
    "shape": "reference-does-not-resolve",
    "what_zh": "369.3 ha 被安在 PROV-KEY-001 上，而该要素单独只有 192.9 ha——369.3 是三处合计。",
    "why_zh": "数值正确，锚点错误；没有检查会核对二者。",
-   "fix_zh": "改为三处并列，并加入「任何引用 369.3 ha 的行必须同时列出三个 id」的断言。"
+   "fix_zh": "改为三处并列，并加入「任何引用 369.3 ha 的行必须同时列出三个 id」的断言。",
+   "summary_en": "369.3 ha was attributed to a single feature that is 192.9 ha on its own; 369.3 is the total of three."
   },
   {
    "id": "E09",
@@ -142,7 +149,8 @@
    "shape": "geometry-does-not-mean-what-it-says",
    "what_zh": "三期图层的第三期包含第二期的 96.44%，40% 面积被重复计算——分期不表达任何顺序。",
    "why_zh": "该图层不进入任何指标，也不进入任何检查。",
-   "fix_zh": "改为互不重叠的增量，加两两重叠闸门，并首次纳入复算路径。"
+   "fix_zh": "改为互不重叠的增量，加两两重叠闸门，并首次纳入复算路径。",
+   "summary_en": "The third phase layer contained 96.44% of the second, double-counting 40% of the area — the phasing expressed no sequence at all."
   },
   {
    "id": "E10",
@@ -152,7 +160,8 @@
    "shape": "geometry-does-not-mean-what-it-says",
    "what_zh": "ROAD-003 自相交：直线回抽 BM-0 穿过自己两条前段，其中一处距 BM-301 仅 6 m。",
    "why_zh": "没有 is_simple 检查。",
-   "fix_zh": "附合路线改为开放线并记 closes_at，全图层加 is_simple 闸门。"
+   "fix_zh": "附合路线改为开放线并记 closes_at，全图层加 is_simple 闸门。",
+   "summary_en": "A closing route self-intersected: the straight return to the origin crossed two of its own earlier legs, one of them within 6 m of a benchmark."
   },
   {
    "id": "E11",
@@ -162,7 +171,8 @@
    "shape": "geometry-does-not-mean-what-it-says",
    "what_zh": "三个水准点没有可步行连接（BM-21 距主脊 501 m、BM-22 距 323 m、BM-2 距 59.8 m），只有勘测直线弦相连——而本方案自己的规则是「没有水准点的路段，不允许机器人运行」。",
    "why_zh": "闸门原本只打算写在两个已知点上；写成全量规则后当场抓出第三个。",
-   "fix_zh": "加三条人行支线；闸门写在全部水准点上，且结构性排除带 route_id 的弦。"
+   "fix_zh": "加三条人行支线；闸门写在全部水准点上，且结构性排除带 route_id 的弦。",
+   "summary_en": "Three benchmarks had no walkable connection to the spine — 501 m, 323 m and 59.8 m away — joined only by survey chords, in a proposal whose argument is that anyone can walk up to one."
   },
   {
    "id": "E12",
@@ -172,7 +182,8 @@
    "shape": "geometry-does-not-mean-what-it-says",
    "what_zh": "三栋建筑站在与自身类型矛盾的用地上，最严重的是 7,820 m² 交通接驳设施整体落在公园绿地内。",
    "why_zh": "建筑在用地剖分之后生成，二者从不相互核对。",
-   "fix_zh": "建筑改为先于剖分生成并各获匹配用地的地块；闸门保持严格，由几何去满足它。"
+   "fix_zh": "建筑改为先于剖分生成并各获匹配用地的地块；闸门保持严格，由几何去满足它。",
+   "summary_en": "Three buildings stood on land uses that contradict their own type, the worst a 7,820 m² mobility hub sitting entirely inside park green space."
   },
   {
    "id": "E13",
@@ -184,7 +195,8 @@
    "why_zh": "检查问的是「有没有说错」，而不是「有没有说」。本方案已在英文覆盖率、CJK 泄漏与构建判定表达式上犯过三次同型错误，这是第四次。",
    "fix_zh": "schema 改为必填且 const: true；检查器以字段缺失为名拒绝；桌面演练增加省略用例。",
    "found_by_name": "@anselasimov-web",
-   "found_in": "PR #1002"
+   "found_in": "PR #1002",
+   "summary_en": "`non_ai_path_available` was not required by the schema and the checker rejected only an explicit false — omitting the field passed, so the AI-off guarantee could be satisfied by silence."
   },
   {
    "id": "E14",
@@ -204,7 +216,8 @@
    "shape": "term-of-art-misapplied",
    "what_zh": "「起算基准」被安在 BM-1 上。测绘学中起算基准是高程被传递出去的点，本方案里那是 BM-0，随包 check_closure.js 也强制自 BM-0 起测。",
    "why_zh": "设标准的地方与起算的地方是两件事，被共用了一个词。",
-   "fix_zh": "BM-1 改称限差基准；起算基准只留给 BM-0。"
+   "fix_zh": "BM-1 改称限差基准；起算基准只留给 BM-0。",
+   "summary_en": "「Origin datum」 was attached to the wrong benchmark: in surveying it is the point heights are transferred *from*, which here is BM-0, as the package's own closure checker already enforced."
   },
   {
    "id": "E16",
@@ -214,7 +227,8 @@
    "shape": "check-measured-the-convenient-thing",
    "what_zh": "附合路线的可检验性来自终止于另一个独立已知点，而检查器只管起点不管终点。",
    "why_zh": "同 E13：检查了容易检查的那一半。",
-   "fix_zh": "按随包几何解析末站等级，非一等点即拒；桌面演练增至十例。"
+   "fix_zh": "按随包几何解析末站等级，非一等点即拒；桌面演练增至十例。",
+   "summary_en": "A closing route is checkable because it ends on a second independently known point, and the checker verified the start and never the end."
   },
   {
    "id": "E17",
@@ -504,7 +518,7 @@
    "shape": "claim-outlived-the-package",
    "what_zh": "E78 立的规矩是「把分子与分母一起公布」。**它自己的 fix 里手写了「13 / 77」——而写下这句话的那一刻，分母已经是 78，因为 E78 本身就是第 78 条。** 随包 JSON 里的 `english_coverage` 是构建现算的，一直是对的；错的只有登记册正文里那一处手抄。",
    "why_zh": "**错误就在陈述这条规则的那句话内部。** E77 刚把「现为 N」列为禁令，而「13 / 77」是同一个缺陷换了身衣服：它不含「现」字，因此从检查底下走了过去。这是连续第四次由同一个方法查出——「我上一轮写下的那句话，是否违反了它自己主张的规则」——而这一次的间隔最短：规则与反例是同一个括号里的两件事。",
-   "fix_zh": "改为「**该次修复时** 13 / 78」，把数系在它的时刻上。并把时态闸门扩到分数：**分母接近本册条目总数的「N / M」，必须由「该次修复时／该次修复后／当时」引出**，否则拒绝构建。**自测过**：去掉那四个字，构建立即拒绝并指名 E78.fix_zh。扩闸门的第一版对所有分数报警，抓到八处合法的历史读数（91/100、354/106、16/18 等）——那些正是一条历史记录该有的东西。**分不出缺陷与常态的检查，测的是别的东西**（同 `claim_audit_qa` 里设计了但没上线的那条），因此收窄到只看分母等于本册规模的那一类。同一次提交另补 13 条英文摘要，**该次修复后**覆盖 26 / 78。"
+   "fix_zh": "改为「**该次修复时** 13 / 78」，把数系在它的时刻上。并把时态闸门扩到分数：**分母接近本册条目总数的「N / M」，必须由「该次修复时／该次修复后／当时」引出**，否则拒绝构建。**自测过**：去掉那四个字，构建立即拒绝并指名 E78.fix_zh。扩闸门的第一版对所有分数报警，抓到八处合法的历史读数（91/100、354/106、16/18 等）——那些正是一条历史记录该有的东西。**分不出缺陷与常态的检查，测的是别的东西**（同 `claim_audit_qa` 里设计了但没上线的那条），因此收窄到只看分母等于本册规模的那一类。同一次提交另补 13 条英文摘要，**该次修复后**覆盖 26 / 79。（这一处初稿写的是「26 / 78」——**又一次被本条自己的存在改错**，E79 就是第 79 条。同型不再单列，就地更正。）"
   },
   {
    "id": "E78",
