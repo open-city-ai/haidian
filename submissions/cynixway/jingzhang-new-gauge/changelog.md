@@ -1,5 +1,15 @@
 # 方案迭代记录
 
+## v8.0 - 2026-08-14
+
+**ai_planning_innovation (15w) + expression_completeness (15w) upgrade** — closing the remaining two 15-weight dimensions after v7.1 took brief_alignment (20) + implementation_feasibility (20):
+
+- **New section AI planning workflow, agent feedback loops and measurable outputs (ai_planning_innovation upgrade)** ~150 lines: 5-stage AI planning workflow, 3 concrete agent feedback loops, 5 planning-quality indicators.
+- **New section Multimodal deliverables list and expression closed loop (expression_completeness upgrade)** ~100 lines: uniform register of 6 figures + 4 PDFs + 2 HTML + 5 JSON + 9 GeoJSON; 4 multimodal extensions as draft specs only.
+- **Updated section seven-dimension evidence map**: ai_planning_innovation + expression_completeness rows point at new sections.
+- **Mirrored to proposal.en.md**: full English translation.
+- **Zero new artifacts**: both sections reuse existing JSON.
+
 ## v7.1 - 2026-08-14
 
 **Substantive proposal upgrade to trigger full advisory review** (v7.0.1 was manifest-only and was scored as "non-submission code/docs/test PR"):
