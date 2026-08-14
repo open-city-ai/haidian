@@ -1,0 +1,230 @@
+{
+  "schema_version": "0.1.0",
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.39,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use partition area projected to EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY-001"
+      ],
+      "note": "临时边界复算，非正式面积依据。"
+    },
+    "key_area_zhongzhiyuan_sqm": {
+      "status": "known",
+      "value": 1929201.88,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "PROV-KEY-001 polygon area @EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY-001"
+      ]
+    },
+    "key_area_ai_origin_sqm": {
+      "status": "known",
+      "value": 1043236.91,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "PROV-KEY-002 polygon area @EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY-001"
+      ]
+    },
+    "key_area_dazhongsi_sqm": {
+      "status": "known",
+      "value": 720454.22,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "PROV-KEY-003 polygon area @EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.362293,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/green_space.geojson"
+      ],
+      "formula": "(1401+1403)/site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY-001"
+      ],
+      "note": "绿地率（概念建议，待官方控规校核）。"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.384813,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "(1401+1403+0803)/site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY-001"
+      ]
+    },
+    "building_footprint_ratio": {
+      "status": "known",
+      "value": 0.1786,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(building footprints)/site_area",
+      "confidence": "low",
+      "assumptions": [
+        "A-PROV-BOUNDARY-001"
+      ]
+    },
+    "research_land_ratio": {
+      "status": "known",
+      "value": 0.3431,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "0802/site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY-001"
+      ]
+    },
+    "road_land_ratio": {
+      "status": "not_applicable",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/roads.geojson"
+      ],
+      "formula": "道路为线状概念 overlay，无面状用地单元，面积率不可计算",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-PROV-BOUNDARY-001"
+      ],
+      "note": "征集允许代码 1207 城镇村道路用地在本方案中仅作线状 overlay 表达（geometry/roads.geojson），不构成面状用地单元；故不设道路面积率，待官方道路用地数据发布后复算。"
+    },
+    "water_ratio": {
+      "status": "not_applicable",
+      "value": 0.0531,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "水体并入 1401 蓝绿空间核算（征集允许代码集合无 17xx 水域类）",
+      "confidence": "low",
+      "assumptions": [
+        "A-PROV-BOUNDARY-001"
+      ],
+      "note": "项目允许用地代码集合不含水域类（17xx），原临时边界水体已并入 1401 公园绿地/蓝绿空间核算；待官方蓝线或水域数据发布后按官方代码复算。"
+    },
+    "residential_ratio": {
+      "status": "known",
+      "value": 0.0639,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "0701/site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY-001"
+      ]
+    },
+    "commercial_ratio": {
+      "status": "known",
+      "value": 0.0714,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "05/site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROV-BOUNDARY-001"
+      ],
+      "note": "征集允许用地代码集合以 05（商业服务业用地，一级类）替代 09xx；占比为临时边界复算。"
+    },
+    "floor_area_ratio": {
+      "status": "not_applicable",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "N/A",
+      "confidence": "none",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "note": "官方控规容积率缺失，列为待补条件，不得伪装官方审定。"
+    },
+    "building_height_m": {
+      "status": "not_applicable",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "N/A",
+      "confidence": "none",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "note": "建筑高度控制缺失，列为待补条件。"
+    },
+    "green_ratio_official": {
+      "status": "not_applicable",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "N/A",
+      "confidence": "none",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "note": "官方绿地率指标缺失，待补。"
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 34480.0,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "roads.geojson 长度复算",
+      "confidence": "low",
+      "assumptions": [
+        "A-PROV-BOUNDARY-001"
+      ],
+      "note": "字段名与单位一致；显示按 m/(1000) 换算为 km。"
+    }
+  },
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  }
+}
