@@ -1,6 +1,6 @@
 ---
 title: "Open Jing-Zhang — The First City Built with git"
-author_github: "FionaXia008"
+author_github: "18237127125"
 language: "en"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Reinterpreting the century-old self-reliance history of the Beijing-Zhangjiakou Railway through the spirit of open-source collaboration, proposing the 'Open Jing-Zhang' brand system that designs the 43.6 km² innovation belt as a city-scale open-source project driven by the Git branching model, building a complete innovation compilation pipeline from Fork to Release, deploying 12 AI scenario cards, 5 user personas, 3 pilgrimage landmarks, and an annual event operation system."
