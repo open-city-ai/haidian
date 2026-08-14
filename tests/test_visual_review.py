@@ -259,7 +259,7 @@ class VisualReviewTests(unittest.TestCase):
             self.assertIn("VISUAL_METRIC_MISSING", {issue.check_id for issue in report.issues})
 
     def test_unknown_required_metric_invalid_string_value_fails(self) -> None:
-        for raw_value in ["unknown", "pending", "", "not-available"]:
+        for raw_value in ["unknown", "pending", "", "null", "not-available"]:
             with self.subTest(raw_value=raw_value), tempfile.TemporaryDirectory() as tmp:
                 submission = write_valid_visual_package(Path(tmp))
                 set_required_ratios_unknown(submission)
@@ -274,8 +274,63 @@ class VisualReviewTests(unittest.TestCase):
 
                 report = review_visual(submission)
 
-            self.assertFalse(report.ok)
-            self.assertIn("VISUAL_METRIC_INVALID_VALUE", {issue.check_id for issue in report.issues})
+                self.assertFalse(report.ok)
+                self.assertIn("VISUAL_METRIC_INVALID_VALUE", {issue.check_id for issue in report.issues})
+
+    def test_non_required_unknown_empty_value_remains_compatible(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            metrics_path = submission / "metrics.json"
+            metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+            metrics["metrics"]["floor_area_ratio"] = {
+                "status": "unknown",
+                "value": None,
+                "reason": "Official planning controls are not available.",
+            }
+            metrics_path.write_text(json.dumps(metrics), encoding="utf-8")
+            html = VALID_HTML.replace(
+                "</body>",
+                '<span data-metric="floor_area_ratio" data-value="">unknown</span></body>',
+            )
+            (submission / "visual" / "index.html").write_text(html, encoding="utf-8")
+
+            report = review_visual(submission)
+
+            self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
+
+    def test_non_required_unknown_null_value_remains_compatible(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            metrics_path = submission / "metrics.json"
+            metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+            metrics["metrics"]["floor_area_ratio"] = {
+                "status": "unknown",
+                "value": None,
+                "reason": "Official planning controls are not available.",
+            }
+            metrics_path.write_text(json.dumps(metrics), encoding="utf-8")
+            html = VALID_HTML.replace(
+                "</body>",
+                '<span data-metric="floor_area_ratio" data-value="null">unknown</span></body>',
+            )
+            (submission / "visual" / "index.html").write_text(html, encoding="utf-8")
+
+            report = review_visual(submission)
+
+            self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
+
+    def test_non_required_unregistered_garbage_value_remains_compatible(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            html = VALID_HTML.replace(
+                "</body>",
+                '<span data-metric="unregistered_ratio" data-value="garbage">unknown</span></body>',
+            )
+            (submission / "visual" / "index.html").write_text(html, encoding="utf-8")
+
+            report = review_visual(submission)
+
+            self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
 
 
 if __name__ == "__main__":

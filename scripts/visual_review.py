@@ -139,12 +139,14 @@ class VisualMetricParser(HTMLParser):
             return
         raw_value = attributes["data-value"]
         if not isinstance(raw_value, str):
-            self.invalid_value_metrics.add(name)
+            if name in REQUIRED_METRICS:
+                self.invalid_value_metrics.add(name)
             return
         try:
             value = float(html.unescape(raw_value))
         except ValueError:
-            self.invalid_value_metrics.add(name)
+            if name in REQUIRED_METRICS:
+                self.invalid_value_metrics.add(name)
             return
         if not math.isfinite(value):
             self.nonfinite_metrics.add(name)
