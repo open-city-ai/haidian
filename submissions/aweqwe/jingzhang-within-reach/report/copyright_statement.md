@@ -16,6 +16,14 @@ Official, repository, public, background-only, and provisional sources are indiv
 
 Raster figures and PDFs were rendered locally with operating-system fonts (`Microsoft YaHei` and `Segoe UI`) for glyph output only; font files are not redistributed. The generation workflow used local Python libraries including Pillow, ReportLab, and pypdf. The offline HTML uses system font fallbacks and does not bundle or request a remote font.
 
+## Custom cover provenance
+
+`assets/media/cover.png` is an original conceptual cover generated in the OpenAI Codex session with the built-in image-generation tool on 2026-08-14, then selected by the participant for this package. Its composition is based on this proposal's own “无单点失效的到达” mechanism and the three key areas; no external image, logo, map tile, or third-party asset was used. It is synthetic presentation media, not a photograph, survey, current-condition record, approved plan, resident opinion, or engineering representation.
+
+## 自定义封面说明
+
+`assets/media/cover.png` 于 2026-08-14 在 OpenAI Codex 会话中使用内置图像生成工具原创生成，并由投稿者选定用于本包。画面基于本方案“无单点失效的到达”机制和三个重点区域构图；未使用外部图片、标志、地图瓦片或第三方素材。它是合成的概念展示媒介，不是照片、测绘现状、批准方案、居民意见或工程表达。
+
 ## Network and personal data
 
 `visual/index.html` and `visual/index.en.html` require no remote assets. They load no CDN, remote map, iframe, form, external API, analytics, cookie tracker, or personal data. No private dataset, credential, personal location history, face image, biometric template, or named-person profile is included.
