@@ -1,5 +1,5 @@
 ---
-title: "Centennial Jingzhang AI Belt"
+title: "Jingzhang AI Symbiosis Corridor"
 author_github: "youlan2333"
 language: "en"
 proposal_format_version: "2"
@@ -12,7 +12,10 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 ---
 
 
-# Centennial Jingzhang AI Belt
+# Jingzhang AI Symbiosis Corridor
+
+**Project Name (项目名):** Centennial Jingzhang AI Belt  (百年京张AI创新带; `project_id`: centennial-jingzhang-ai-belt)
+
 
 ## Design Basis and Source Inventory
 
