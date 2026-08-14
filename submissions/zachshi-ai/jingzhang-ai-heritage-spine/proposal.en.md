@@ -27,6 +27,18 @@ All spatial recommendations are conceptual suggestions, reference schemes, or ma
 
 ![Site Overview and Evidence Chain Diagram](assets/figures/site-overview.en.png)
 
+## Existing Conditions Diagnosis and Problem Baseline
+
+The design is based on the following existing-condition problems identified from public materials [source:official-announcement]:
+
+**Spatial and Transport Baseline**: Jing-Zhang Railway Heritage Park Phase I (2.5 km, 16.8 ha) is open, but Phase II (~9 km) is unbuilt, leaving physical connectivity gaps along the north-south axis [source:agent-taskbook]. The railway's legacy physical division separates east-west urban functions with insufficient slow-mobility connections. Existing roads prioritize vehicles; the slow-mobility network has numerous break points.
+
+**Industry and Innovation Baseline**: Haidian's AI core industry continues to grow, but the three key areas (Zhongzhiyuan, AI Origin Community, Dazhongsi) lack systematic industrial-ecosystem spatial organization [source:agent-taskbook]. Zhongguancun has leading technology-service capabilities, but the coordination mechanism for capital, IP, and scenario testing remains underdeveloped.
+
+**Cultural and Public Space Baseline**: The former Tsinghuayuan Station site is open for display, providing material carriers for the Jing-Zhang railway cultural lineage, but the cultural narrative lacks systematic spatial organization. Public accessibility and experiential continuity are insufficient. Public spaces are primarily linear corridors lacking nodal gathering and high-quality dwelling spaces.
+
+**Data Gap Statement**: Precise baseline data on building quality, population density, slow-mobility flow, and public-service accessibility require official statistical support; this proposal makes conceptual diagnoses based on public materials [assumption:A-CONTROLS-001].
+
 ## Three-Level Scope Framework
 
 ### Coordinated Research Area (approx. 43.6 km²)
@@ -77,6 +89,32 @@ The proposal defines synergy interfaces with innovation nodes outside Haidian [s
 - **Beijing-Tianjin-Hebei**: Zhongguancun Service Wing's capital and IP resources radiate to Tianjin and Hebei, forming a regional AI industrial division network
 
 All synergies are conceptual suggestions requiring deepening after regional planning and policy coordination conditions are confirmed.
+
+
+### Logo Visual Identity Specification
+
+**Core Form**: Using the Jing-Zhang railway gauge line (1.435m standard gauge) as the visual motif, fused with AI neural-network node graphics, forming a "rail + neural network" dual-layer overlay symbol. The rail lines are arranged diagonally at 45°, symbolizing "crossing"; the neural-network nodes use a hexagonal honeycomb structure, symbolizing "connection and emergence."
+
+**Color Specification**: Primary deep blue (#1E50A0, innovation), ochre (#8B5A2B, heritage), bright cyan (#00D4AA, AI vitality). Supporting colors: warm gray (#F5F5F5, background), dark charcoal (#333333, text). No highly saturated colors outside brand colors.
+
+**Application Rules**: Minimum Logo size no less than 24px (screen) or 10mm (print); clearance around Logo no less than 1/2 of Logo height; no distortion, rotation, or shadow effects. Chinese and English use sans-serif fonts (Chinese: Source Han Sans; English: Helvetica Neue), Bold weight.
+
+**Extension System**: The Logo can be decomposed into the rail motif (for cultural contexts) and neural-network motif (for AI contexts), forming a composable identity system. The three-zone Logos share the core motif but differentiate by primary color (Zhongzhiyuan - deep blue, Origin Community - bright cyan, Dazhongsi - ochre).
+
+All Logos are conceptual directions requiring trademark registration, copyright clearance, and professional design deepening before use [standard:MOHURD-URBAN-DESIGN-MEASURES].
+
+
+### Operational KPIs and Monitoring Indicators
+
+| Indicator | Target | Monitoring Frequency | Exit/Adjustment Threshold |
+|-----------|--------|---------------------|--------------------------|
+| Annual event participation | Year 1 ≥5,000 people | Quarterly | Adjust event format if <1,000 for 2 consecutive quarters |
+| Scenario trial occupancy | Year 1 ≥60% | Monthly | Pause recruitment if <30% for 3 consecutive months |
+| Developer community activity | Monthly avg ≥100 contributions | Monthly | Adjust strategy if <30 for 2 consecutive months |
+| Public space usage | Daily avg ≥200 person-times | Weekly | Optimize space design if <50 for 2 consecutive weeks |
+| Green/public space maintenance | Annual compliance ≥95% | Quarterly | Replace maintenance provider if <90% for 2 consecutive quarters |
+
+All KPIs are conceptual operational indicators requiring quantification by professional teams after operating entities, funding, and professional review are confirmed [assumption:A-CONTROLS-001].
 
 ### Global AI Innovation Ecosystem Case Studies
 

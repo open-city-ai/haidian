@@ -26,6 +26,18 @@ All spatial proposals are conceptual recommendations, reference schemes, or subj
 
 ![Site overview and civic-data commons framework](assets/figures/site-overview.png)
 
+## Existing Conditions Diagnosis and Problem Baseline
+
+The design is based on the following existing-condition problems identified from public materials [source:official-announcement]:
+
+**Data Openness Baseline**: The Beijing Public Data Open Platform has opened catalog-level data on rail lines, bus stops, and public services, but most data files/APIs require login or userKey; machine-readable open datasets remain limited [source:agent-taskbook]. Haidian has rich AI industry data, but public-data supply channels for citizens and developers are not smooth.
+
+**Public Service Digitalization Baseline**: Government, health, and legal services each have their own digital systems, but cross-department data interoperability and service integration are insufficient; citizens must make multiple trips. AI technology in public services is still at the navigation and Q&A stage, lacking a systematic "data as public good" concept.
+
+**Community and Participation Baseline**: Residents, university faculty/students, and enterprise employees around the three key areas have diverse AI service needs, but lack participatory AI service co-creation platforms and public data experimentation spaces.
+
+**Data Gap Statement**: Precise public-data openness rates, data quality, and citizen usage data require official statistical support; this proposal makes conceptual diagnoses based on public materials [assumption:A-CONTROLS-001].
+
 ## Three-Level Scope Framework
 
 ### Coordinated Research Area (approx. 43.6 km²)
@@ -55,6 +67,30 @@ The proposal advances "Jingzhang AI Civic Data Commons" as its overall concept, 
 ### Three Positionings, Five Functions, and Three-Areas-Two-Wings Coordination
 
 The proposal implements the taskbook's three positionings (Centennial Jingzhang Cultural Belt, Urban AI Life-Experience Belt, AI-Integration Innovation Belt) and five functions (data opening, service co-creation, industry cultivation, public experience, governance demonstration) [source:agent-taskbook]. In the three-areas-two-wings coordination, the three key areas respectively take on data production (Zhongzhiyuan), citizen service (AI-Origin Community), and industrial transformation (Dazhongsi); the Xiaoyuehe scenario wing carries public-experience routes, and the Zhongguancun service wing carries the developer community and policy consulting [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
+
+
+### Logo Visual Identity Specification
+
+**Core Form**: Based on the combination of open data flows (parallel flowing lines) and the Jing-Zhang railway gauge symbol. The data flows use 3 equidistant parallel lines, symbolizing "openness, flow, transparency"; the gauge line interweaves, symbolizing "connecting past and future."
+
+**Color Specification**: Primary data blue (#2563EB, openness), public green (#059669, public), transparent gray (#E5E7EB, governable).
+
+**Application Rules**: Minimum Logo size no less than 24px; no distortion or line-proportion changes; Chinese and English use open-source fonts (Source Han Sans / Inter), Regular weight.
+
+All Logos are conceptual directions requiring trademark registration, copyright clearance, and professional design deepening before use [standard:MOHURD-URBAN-DESIGN-MEASURES].
+
+
+### Operational KPIs and Monitoring Indicators
+
+| Indicator | Target | Monitoring Frequency | Exit/Adjustment Threshold |
+|-----------|--------|---------------------|--------------------------|
+| Open dataset count | Year 1 ≥50 datasets | Quarterly | Adjust openness strategy if <20 for 2 consecutive quarters |
+| Co-creation project count | Year 1 ≥20 projects | Quarterly | Lower entry barriers if <5 for 2 consecutive quarters |
+| Data call volume | Monthly avg ≥10,000 calls | Monthly | Optimize data catalog if <3,000 for 2 consecutive months |
+| Citizen participation | Annual ≥5,000 person-times | Quarterly | Adjust participation mechanism if <1,000 for 2 consecutive quarters |
+| Data compliance review pass rate | ≥95% | Quarterly | Strengthen compliance training if <90% for 2 consecutive quarters |
+
+All KPIs are conceptual operational indicators requiring quantification by professional teams after operating entities, data licenses, and professional review are confirmed [assumption:A-CONTROLS-001].
 
 ### Global Civic-Data and AI-Service Co-Creation Case Studies
 
