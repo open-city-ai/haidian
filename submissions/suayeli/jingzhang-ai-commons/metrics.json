@@ -13,9 +13,11 @@
         "geometry/site_boundary.geojson"
       ],
       "formula": "polygon_area(submitted_site_boundary)",
-      "confidence": "high",
+      "confidence": "medium",
       "assumptions": [
-        "Trusted official boundary is present in the site package."
+        "Value is derived from repository-maintained provisional rough geometry in geometry/site_boundary.geojson.",
+        "The value is for design discussion, visualization, and package self-check only; it is not an official redline area or statutory planning indicator.",
+        "Recalculate after trusted official geometry with a verified coordinate reference system becomes available."
       ]
     },
     "building_footprint_area_sqm": {
@@ -39,7 +41,10 @@
       ],
       "formula": "green_space_area_sqm / site_area_sqm",
       "confidence": "medium",
-      "assumptions": []
+      "assumptions": [
+        "Numerator is a conceptual design layer and denominator is derived from provisional rough geometry.",
+        "The ratio is a proposal diagnostic, not an approved planning-control indicator."
+      ]
     },
     "public_space_ratio": {
       "status": "known",
@@ -51,7 +56,10 @@
       ],
       "formula": "public_space_area_sqm / site_area_sqm",
       "confidence": "medium",
-      "assumptions": []
+      "assumptions": [
+        "Numerator is a conceptual design layer and denominator is derived from provisional rough geometry.",
+        "The ratio is a proposal diagnostic, not an approved planning-control indicator."
+      ]
     },
     "floor_area_ratio": {
       "status": "unknown",
@@ -73,8 +81,10 @@
         "geometry/key_areas.geojson"
       ],
       "formula": "count(key_detailed_design_areas)",
-      "confidence": "high",
-      "assumptions": []
+      "confidence": "medium",
+      "assumptions": [
+        "The count follows the three key-area names required by the taskbook, while their submitted polygons remain provisional rough geometry."
+      ]
     }
   }
 }
