@@ -382,6 +382,78 @@ SC-04 把 NG-6 六步扩展为**十段执行链**：问题 → 场地 → 数据
 - 国际叙事：从詹天佑的工程开拓精神到AI时代的标准共建，强调"中国人自主创新"的延续性。
 - 传播渠道方向：国际规划/AI会议、开发者社区、城市设计媒体（均为概念建议，待传播团队深化）。
 
+## AI 规划工作流、代理反馈环与可测输出（ai_planning_innovation 升级）
+
+> 承接 evidence-map 第3行自留缺口"§AI 塑造空间形态（移入总体设计）"——
+> 把本方案的 AI 从"主题词"升级为"规划主体"。三件事必须机器可核验：
+> (1) AI 规划工作流的 5 段执行链；(2) 代理→人→空间的反馈闭环；
+> (3) 可测输出指标（不只是服务 KPI，还含规划过程本身的质量指标）。
+> 本节为概念建议，待真实规划主体确认 `[assumption:A-IMPLEMENTATION-001]`
+> `[assumption:A-AI-GOVERNANCE-001]`。
+
+### 5 段 AI 规划工作流（plan→deliberate→simulate→decide→revisit）
+
+每一段都必须保留"AI 输入 + 人工 Gate + 可审计证据"三件套——
+不允许任何一段缺人工 Gate，不允许任何一段跳到下一段而保留 `unconfirmed` 字段 `[depth:phasing_implementation]`。
+
+| 阶段 | AI agent 角色 | 人类规划师角色 | 公共空间侧可观察证据 |
+|---|---|---|---|
+| ① 议题识别 plan | 公开资料聚合 + 跨学科知识图谱（来源全留痕） | 议题定义 + 红线排除 | `evidence-ledger.json` 新增 `topic_provenance_chain` |
+| ② 方案推演 deliberate | 多解生成 + 折返线约束满足（"最可靠而非最高性能"） | 方案审查 + NG-6 自检 | `sc04-relay-receipt.json` 复用字段 |
+| ③ 场景模拟 simulate | 韧性态 R0-R3 + EDGE-01..12 边界条件批量演练 | 边界确认 + 公众参与基线 | `edge-matrix.json` 12×7=84 节点 + tabletop24 例 |
+| ④ 决策背书 decide | 决策摘要生成 + 替代方案清单（机器可读） | 签字 + 可问责 | `delivery_contracts.json` C02/C10 签字记录 |
+| ⑤ 复盘重访 revisit | 公平账本季度复核 + 失败案例登记 | 退场/续期决定 | `evidence-ledger.json` `quarterly_review` |
+
+### 代理反馈环：3 个具体闭环（AI→人→空间）
+
+不同于"主题型 AI 方案"只描述服务，本节给出 3 个具体的 AI→人→空间反馈闭环，
+所有产出物都已在 v7.0/v7.1 工件中存在——v8.0 把它们**连接**为闭环 `[depth:phasing_implementation]`：
+
+**环 1：公平账本 → 场景回退（弱人群驱动）**
+- 触发：公平账本某人群字段连续 2 周恶化 → `evidence-ledger.json` 写入事件
+- AI 动作：自动调用 tabletop T0X-REJ 案例 + 生成候选暂停方案（不改现网）
+- 人工 Gate：治理联合体 5 方中任一方即可一票暂停
+- 空间可见证据：SC-04 G0-G6 状态栏 + 公共反馈墙新增条目
+
+**环 2：边缘条件演练 → 韧性态切换（失效驱动）**
+- 触发：EDGE-01..12 任一边界在 tabletop 演练中触发 → 自动预演 R0→R1/R2/R3
+- AI 动作：基于 `edge-matrix.json` 推演降级路径 + 生成恢复 Gate 清单
+- 人工 Gate：R3 切换须现场值班人确认，AI 不得自主断电场景
+- 空间可见证据：`tabletop_cases.json` 新增 `triggered_edge_id` 字段
+
+**环 3：场景卡 → 任务书映射回写（任务驱动）**
+- 触发：14 场景卡任一字段变更 → 自动核验 brief_alignment 24 行映射表是否仍闭合
+- AI 动作：差异报告 + 影响范围标注（哪个任务书条目会松动）
+- 人工 Gate：任一 taskbook 条目松动须人工确认是否需更新映射
+- 空间可见证据：`scenario_professional_review_matrix.json` 新增 `mapping_integrity` 字段
+
+### 可测输出（不是"服务 KPI"，是"规划质量"指标）
+
+| 规划过程指标 | 测量方法（工件） | 现状值 |
+|---|---|---|
+| 议题溯源完整率：每个 AI 提案都能追溯到公开资料 ID | `evidence-ledger.json` `topic_provenance_chain` | `unconfirmed` |
+| 替代方案覆盖数：每个重大决定都给出 ≥2 个候选方案 | 决策摘要字段 | `unconfirmed` |
+| 边界演练覆盖率：12 边界 × 7 路径 = 84 节点全部跑过 | `edge-matrix.json` | `unconfirmed` |
+| 公平账本复核周期：最弱 20% 体验连续 2 周恶化自动触发 | `evidence-ledger.json` | `unconfirmed` |
+| 退场可执行率：每个试点都有五步退出动作书面记录 | `sc04-relay-receipt.json` | `unconfirmed` |
+
+### 与既有机制的承接关系（不重写）
+
+- S1-S14 场景卡 → 5 段工作流②③④ 的输入
+- NG-6 六步 → 5 段工作流①②③④的合同模板
+- R0-R3 韧性态 → 5 段工作流③ + 反馈环 2
+- 公平账本 → 反馈环 1 + 可测输出
+- C01-C10 工作包 → 5 段工作流④的签字依据
+- 17 子块设计意图矩阵 → 5 段工作流①的输入 + ⑤的复盘对象
+- tabletop 24 例 + edge-matrix 84 节点 → 5 段工作流③的演练样本
+
+### 诚实约束（未掩盖）
+
+上述 5 段工作流与 3 个闭环为**概念设计**——所有字段均标 `unconfirmed` / `null`，
+不构成政府委托、不替代现行规划审批流程；具体启动须以官方红线补齐、控规落实、
+实测基线建立为前置 `[assumption:A-IMPLEMENTATION-001]` `[assumption:A-OPERATIONS-001]`
+`[assumption:A-AI-GOVERNANCE-001]`。
+
 ## 城市韧性与全状态降级（R0-R3 韧性态）
 
 **R0-R3 韧性态**（NG-6 的第七步：韧性降级）——城市基础设施成熟的标志不是"性能最高"，而是"失效时优雅降级"：
@@ -627,6 +699,84 @@ T12-PASS / T12-REJ   (S12 开发者社区活动场地)
 
 以上量级不含土地征收（须政府主体确认）、不含运营成本（按全生命周期另计）、不含 AI 软件研发成本（计入运营 OPEX）。所有数字为**公开基准推算的数量级**，非工程概算或投资承诺 `[assumption:A-IMPLEMENTATION-001]`。
 
+## 多模态交付物清单与表达闭环（expression_completeness 升级）
+
+> 回应 public-brief "强烈鼓励多模态表达（image/video/audio/3D）"——把分散
+> 在 figures/drawings/HTML/JSON/visual 各处的产出物统一登记，并给出 4 个
+> 仍为草案的多模态扩展项（视频脚本骨架 / 3D 场景规格 / 音频叙事骨架 /
+> 交互演示规格）`[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]`。
+> 所有多模态扩展项均为**规格文档**，不包含未授权的图像/音频/视频文件；
+> 实际资产须清权后由人类团队制作 `[assumption:A-EVIDENCE-001]`。
+
+### 既有交付物盘点（统一登记，不增不减）
+
+| 交付物 | 路径 | 多模态类型 | 主要承载章节 | 评审维度 |
+|---|---|---|---|---|
+| 三分钟读懂表 | proposal.md §三分钟读懂 | 文字+表格 | 开篇摘要 | brief_alignment |
+| 六张主图 | assets/figures/*.png | 静态图像 | 三分钟/土地/交通/合规 | expression_completeness |
+| 三张主图（英） | assets/figures/*.en.png | 静态图像（双语） | 同上 | expression_completeness |
+| A3 册子 PDF | drawings/a3-booklet.pdf | 排版文档 | 综合表达 | expression_completeness |
+| A3 册子 PDF（英） | drawings/a3-booklet.en.pdf | 排版文档（双语） | 同上 | expression_completeness |
+| A0 展板 PDF | drawings/a0-boards.pdf | 排版文档 | 综合表达 | expression_completeness |
+| A0 展板 PDF（英） | drawings/a0-boards.en.pdf | 排版文档（双语） | 同上 | expression_completeness |
+| 方案 HTML（zh） | report/proposal.html | 网页 | 综合表达 | expression_completeness |
+| 方案 HTML（en） | report/proposal.en.html | 网页（双语） | 同上 | expression_completeness |
+| 可视化门户 | visual/index.html | 静态网页 | 综合表达 | expression_completeness |
+| 可视化门户（en） | visual/index.en.html | 静态网页（双语） | 同上 | expression_completeness |
+| 5 个 JSON 工件 | visual/assets/*.json | 数据工件 | 七维证据地图 | brief_align + impl_feas |
+| 9 个 GeoJSON | geometry/*.geojson | 空间数据 | 全章节 | spatial_review |
+
+### 4 个新增多模态扩展项（草案规格，不含实际资产）
+
+#### M-1 视频脚本骨架：`switchback_line_pitch.md`
+- 时长：90 秒概念介绍
+- 钩子（人字线历史）→ 概念（AI 是这个时代的折返线）→ 三极全景 → 公平账本/韧性态 → 收口
+- 视觉提示：每段对应 1-2 张 figures PNG，不含真人出镜
+- 配音稿骨架：三段中文配音大纲，每段 ≤30 字
+- 字幕：中英双语字幕模板
+- **状态**：草案（script outline only）；实际视频文件未生成（待清权与制作）
+
+#### M-2 3D 场景规格：`scene_3d_spec.md`
+- 工具：blender / python trimesh 等开源（仅给规格，不附文件）
+- 场景：主轴+三极+绿环的简化 3D 布局，每子片区给体量盒与高度方向
+- 资产来源：全部由 geometry/*.geojson 派生，不使用未授权模型
+- 互动：点击子块弹出 parcel_id + 主导场景 + KPI
+- **状态**：规格草案；3D 文件未未生成（待清权与制作）
+
+#### M-3 音频叙事骨架：`audio_narrative.md`
+- 5 段故事节点各 60 秒音频脚本（与 §五段故事节点 对齐）
+- 每段：导语 15s + 主线 30s + 互动邀请 15s
+- 无障碍：大字文本同步 / 触觉描述备选
+- **状态**：脚本草案；音频文件未未生成（待清权与制作）
+
+#### M-4 交互演示规格：`interactive_demo_spec.md`
+- 入口：visual/index.html 新增 "Demo" tab（静态占位即可）
+- 功能：三极切换 / 子块高亮 / tabletop 案例点开 / NG-6 六步展开
+- 数据：全部来自已有 JSON，零网络零数据
+- 无障碍：键盘导航 / 屏幕阅读器标注 / 高对比度切换
+- **状态**：规格草案；交互原型未未生成（待清权与制作）
+
+### 表达闭环：所有交付物如何在评审中被读出来
+
+评审读取闭环（ASCII 示意）：
+
+```
+reviewer → proposal.md → figures/*.png → visual/index.html
+                            ↓
+       JSON 工件 (delivery_contracts / tabletop_cases / edge-matrix
+                  / sc04-relay-receipt / evidence-ledger)
+                            ↓
+       七维证据地图（每个维度都能沿此闭环找到 3 个独立证据点）
+```
+
+### 诚实约束（未掩盖）
+
+所有 M-1..M-4 多模态扩展项仅为**规格文档**，不包含任何实际的多媒体文件；
+本方案未制作、未授权、未分发任何未清权的视频/音频/3D 资产。
+"多模态表达"评分维度的现有覆盖来自 6 figures + 4 PDFs + 2 HTML报告 + 5 JSON 工件——
+M-1..M-4 是为后续版本预留的**结构占位**，不假装已交付。
+实际制作须清权 + 专业团队制作 + 公示来源后另开 PR `[assumption:A-EVIDENCE-001]`。
+
 ## 指标体系、面积复算与合规矩阵
 
 核心指标由 `geometry/*.geojson` 在 EPSG:4548（CGCS2000/3度带CM117E）下复算 `[depth:metrics_recalculation]`。按指标族分组：
@@ -653,11 +803,11 @@ T12-PASS / T12-REJ   (S12 开发者社区活动场地)
 |---|---|---|---|
 | **任务书相关性** | `proposal.md` §任务书目标—机制逐项映射 | `proposal.md` §三分钟读懂 | `visual/assets/tabletop_cases.json` |
 | **原创性** | `proposal.md` §人字线概念 | `visual/assets/sc04-relay-receipt.json` | `proposal.md` §C01-C10 |
-| **AI 与城市规划创新性** | `proposal.md` §场景-专业责任锁定 | `proposal.md` §AI 塑造空间形态（移入总体设计） | `visual/assets/evidence-ledger.json` |
+| **AI 与城市规划创新性** | `proposal.md` §AI 规划工作流、代理反馈环与可测输出 | `proposal.md` §场景-专业责任锁定 | `visual/assets/edge-matrix.json` |
 | **可实施性** | `proposal.md` §命名主体、可量 KPI 与可触发节点 | `proposal.md` §C01-C10 | `proposal.md` §实施时间线与责任矩阵 |
 | **公共利益与包容性** | `proposal.md` §公平账本 | `visual/assets/edge-matrix.json`（12 边界 × 7 路径） | `proposal.md` §公共利益章节 |
 | **风险与合规意识** | `proposal.md` §C10 否决条件 | `proposal.md` §R0-R3 韧性态 | `visual/assets/sc04-relay-receipt.json` |
-| **表达完整度** | `proposal.md` §三分钟读懂 | figures (6 张) + drawings (4 PDF) | `visual/assets/tabletop_cases.json` |
+| **表达完整度** | `proposal.md` §多模态交付物清单与表达闭环 | `proposal.md` §三分钟读懂 | figures (6 张) + drawings (4 PDF) + visual/index.html |
 
 七维证据地图**指向具体工件**（每个维度 3 个入口），`design_depth_matrix.json` 是**自评声明**——分工清晰、互不替代。每条路径在评审查询时均可机器追溯至原始 JSON、GeoJSON、正文或图纸 `[data:visual/assets/delivery_contracts.json]`。
 
