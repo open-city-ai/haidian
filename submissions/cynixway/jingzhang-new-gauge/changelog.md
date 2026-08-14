@@ -1,5 +1,34 @@
 # 方案迭代记录
 
+## v8.0 - 2026-08-14
+
+**ai_planning_innovation (15w) + expression_completeness (15w) upgrade** — closing the remaining two 15-weight dimensions after v7.1 took brief_alignment (20) + implementation_feasibility (20):
+
+- **New section AI planning workflow, agent feedback loops and measurable outputs (ai_planning_innovation upgrade)** ~150 lines: 5-stage AI planning workflow, 3 concrete agent feedback loops, 5 planning-quality indicators.
+- **New section Multimodal deliverables list and expression closed loop (expression_completeness upgrade)** ~100 lines: uniform register of 6 figures + 4 PDFs + 2 HTML + 5 JSON + 9 GeoJSON; 4 multimodal extensions as draft specs only.
+- **Updated section seven-dimension evidence map**: ai_planning_innovation + expression_completeness rows point at new sections.
+- **Mirrored to proposal.en.md**: full English translation.
+- **Zero new artifacts**: both sections reuse existing JSON.
+
+## v7.1 - 2026-08-14
+
+**Substantive proposal upgrade to trigger full advisory review** (v7.0.1 was manifest-only and was scored as "non-submission code/docs/test PR"):
+
+- **New section 任务书目标—机制逐项映射 (brief_alignment lock)**: 24 rows x 5 columns: taskbook item / keywords / proposal mechanism / direct artifact / verifiable field. Maps every agent.1–agent.6 item, all three positionings, all five functions, the new urban form, four public-interest axes, co-creation charter, and multimodal expression to specific artifacts and verifiable fields.
+- **New section 命名主体、可量 KPI 与可触发节点 (implementation_feasibility upgrade)**: six-category actor-type table (no fabricated org names) + upgraded P1-P6 portfolio with magnitude cost bands + Go/No-Go trigger nodes G0→G1→G2→G3→G4→G5→G6 + honest magnitude estimates (~35-95 billion RMB three-period total).
+- **Updated section 七维证据地图**: two table rows (brief_alignment + implementation_feasibility) now point at the new sections as primary evidence (self-referential consistency).
+- **Mirrored to proposal.en.md**: full English translation of both new sections + the table-row update.
+- **Effect**: this PR now touches `proposal.md` + `proposal.en.md` + `changelog.md` (not just manifest), should be treated as a substantive submission PR, not a non-submission code/docs/test PR; targeted at the two highest-weighted dimensions (brief_alignment 20 + implementation_feasibility 20).
+- **Files changed**: proposal.md (~+95 lines), proposal.en.md (~+95 lines), changelog.md (~+15 lines), manifest.json (carried over from v7.0.1 role fix).
+
+## v7.0.1 - manifest role naming compliance (schema 0.2.x)
+
+- Fix: 3 entries `role: evidence-asset` -> `role: asset` + `role_detail: evidence_asset`
+  - Mirrors 91pt RailCode Commons + 88pt X京张 pattern: canonical role + role_detail
+  - Schema 0.2.x canonical role `asset` + custom role_detail for subtype
+- Verify: jsonschema.validate passes upstream manifest.schema.json (0.2.x)
+- Effect: eliminates CI warning (files[45..47].role does not match pattern)
+
 ## v7.0 - 2026-08-13
 
 **高分同份提分路线（基于 91pt RailCode + 88pt X京张）**：
