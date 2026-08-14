@@ -1,6 +1,6 @@
 ---
 title: "开源京张 — 世界上第一座用 git 建造的城市"
-author_github: "openjingzhang"
+author_github: "FionaXia008"
 language: "zh"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以开源协作精神重新诠释京张铁路百年自主创新史，提出「开源京张」品牌体系，将43.6平方公里创新带设计为Git分支模型驱动的城市级开源项目，构建从Fork到Release的完整创新编译链路，部署12个AI场景卡、5类用户画像、3个朝圣地标和年度活动运营体系。"
