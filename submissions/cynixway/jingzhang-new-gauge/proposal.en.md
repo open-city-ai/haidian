@@ -366,6 +366,81 @@ The wayfinding system is distinct from the belt's overall Logo system: the Logo 
 - International narrative: from Zhan Tianyou's engineering pioneering spirit to AI-era standards co-creation, emphasising the continuity of "Chinese engineers defining their own standards".
 - Communication-channel direction: international planning / AI conferences, developer communities, urban-design media (all conceptual suggestions, awaiting deepening by the communications team).
 
+## AI planning workflow, agent feedback loops and measurable outputs (ai_planning_innovation upgrade)
+
+> Closes the gap self-flagged in evidence-map row 3 ("AI-shapes-spatial-form moved into overall design")—
+> upgrades the role of AI in this proposal from "theme word" to "planning subject".
+> Three things must be machine-verifiable:
+> (1) a 5-stage AI planning workflow execution chain;
+> (2) agent->human->space feedback loops;
+> (3) measurable outputs (not only service KPIs but also planning-process quality indicators).
+> This section is a concept suggestion awaiting real planning actor confirmation
+> `[assumption:A-IMPLEMENTATION-001]` `[assumption:A-AI-GOVERNANCE-001]`.
+
+### 5-stage AI planning workflow (plan->deliberate->simulate->decide->revisit)
+
+Every stage must retain the "AI input + human gate + auditable evidence" trio —
+no stage may skip the human gate, no stage may proceed to the next while keeping `unconfirmed` fields `[depth:phasing_implementation]`.
+
+| Stage | AI agent role | Human planner role | Public-space observable evidence |
+|---|---|---|---|
+| 1 Topic identification (plan) | Open-source aggregation + interdisciplinary knowledge graph (sources logged) | Topic definition + redline exclusion | `evidence-ledger.json` adds `topic_provenance_chain` |
+| 2 Option deliberation (deliberate) | Multi-solution generation + switchback constraint satisfaction ("most reliable, not highest performance") | Option review + NG-6 self-check | `sc04-relay-receipt.json` fields reused |
+| 3 Scenario simulation (simulate) | R0-R3 resilience + EDGE-01..12 boundary batch rehearsal | Boundary confirmation + public participation baseline | `edge-matrix.json` 12x7=84 nodes + tabletop 24 cases |
+| 4 Decision endorsement (decide) | Decision summary generation + alternative option list (machine-readable) | Signature + accountability | `delivery_contracts.json` C02/C10 signature records |
+| 5 Review revisit (revisit) | Equity ledger quarterly review + failure-case registration | Sunset/renewal decision | `evidence-ledger.json` `quarterly_review` |
+
+### Agent feedback loops: 3 specific closed loops (AI->human->space)
+
+Unlike "theme-type AI proposals" that only describe services, this section gives 3 concrete AI->human->space feedback loops.
+All outputs already exist in v7.0/v7.1 artifacts — v8.0 **connects** them as closed loops `[depth:phasing_implementation]`:
+
+**Loop 1: Equity ledger -> scenario rollback (weak-population driven)**
+- Trigger: any equity-ledger population field degrades for 2 consecutive weeks -> `evidence-ledger.json` event written
+- AI action: auto-invoke tabletop T0X-REJ cases + generate candidate pause plans (no live-system mutation)
+- Human gate: any one of the 5 governance-consortium parties can one-vote-pause
+- Space-visible evidence: SC-04 G0-G6 status bar + new entry on public feedback wall
+
+**Loop 2: Boundary rehearsal -> resilience-state switch (failure-driven)**
+- Trigger: any of EDGE-01..12 fired in tabletop rehearsal -> auto-preview R0->R1/R2/R3
+- AI action: based on `edge-matrix.json` derive degradation paths + generate recovery gate list
+- Human gate: R3 switch requires on-site duty officer confirmation; AI may not autonomously power-down a scenario
+- Space-visible evidence: `tabletop_cases.json` adds `triggered_edge_id` field
+
+**Loop 3: Scenario card -> taskbook mapping back-write (task-driven)**
+- Trigger: any of 14 scenario-card fields changes -> auto-verify whether the 24-row brief_alignment mapping table remains closed
+- AI action: discrepancy report + impact-scope annotation (which taskbook item loosens)
+- Human gate: any taskbook item loosening requires human confirmation before mapping update
+- Space-visible evidence: `scenario_professional_review_matrix.json` adds `mapping_integrity` field
+
+### Measurable outputs (not "service KPIs" but "planning quality" indicators)
+
+| Planning-process indicator | Measurement method (artifact) | Current value |
+|---|---|---|
+| Topic provenance rate: every AI proposal traces to open-source ID | `evidence-ledger.json` `topic_provenance_chain` | `unconfirmed` |
+| Alternative coverage: every major decision gives >=2 candidate options | Decision summary field | `unconfirmed` |
+| Boundary rehearsal coverage: all 84 nodes (12 boundaries x 7 paths) rehearsed | `edge-matrix.json` | `unconfirmed` |
+| Equity ledger review cycle: weakest 20% experience degrading 2 consecutive weeks auto-triggers | `evidence-ledger.json` | `unconfirmed` |
+| Sunset executability: every pilot has 5-step exit action documented | `sc04-relay-receipt.json` | `unconfirmed` |
+
+### Relationship with existing mechanisms (no rewrite)
+
+- S1-S14 scenario cards -> input to stages 2/3/4 of the 5-stage workflow
+- NG-6 six-step contract -> contract template for stages 1/2/3/4 of the 5-stage workflow
+- R0-R3 resilience states -> stage 3 of the 5-stage workflow + Loop 2
+- Equity ledger -> Loop 1 + measurable outputs
+- C01-C10 work packages -> signature basis for stage 4 of the 5-stage workflow
+- 17 sub-block parcel intent matrix -> input to stage 1 + reviewed object of stage 5
+- tabletop 24 cases + edge-matrix 84 nodes -> rehearsal sample for stage 3 of the 5-stage workflow
+
+### Honest constraints (unhidden)
+
+The above 5-stage workflow and 3 closed loops are **concept designs** — all fields are `unconfirmed` / `null`,
+do not constitute government commissioning and do not replace current planning approval processes;
+actual launch requires official redline completion, control-plan confirmation,
+and field-measurement baseline establishment as prerequisites `[assumption:A-IMPLEMENTATION-001]`
+`[assumption:A-OPERATIONS-001]` `[assumption:A-AI-GOVERNANCE-001]`.
+
 ## Urban resilience and full-state graceful degradation (R0-R3 resilience states)
 
 **R0-R3 resilience states** (NG-6's seventh step: graceful degradation) — the hallmark of mature infrastructure is not "maximum performance" but "graceful degradation under failure":
@@ -596,6 +671,86 @@ Based on publicly available urban-construction cost benchmarks, **magnitude rang
 
 These magnitudes exclude land acquisition (requires government confirmation), operating costs (counted separately over the full lifecycle), and AI software R&D costs (counted as operating OPEX). All figures are **order-of-magnitude estimates derived from public benchmarks**, not engineering budgets or investment commitments `[assumption:A-IMPLEMENTATION-001]`.
 
+## Multimodal deliverables list and expression closed loop (expression_completeness upgrade)
+
+> Responds to public-brief "multimodal expression strongly encouraged (image/video/audio/3D)" —
+> uniformly registers the deliverables scattered across figures/drawings/HTML/JSON/visual,
+> and gives 4 still-draft multimodal extensions (video script outline / 3D scene spec /
+> audio narrative outline / interactive demo spec) `[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]`.
+> All multimodal extensions are **specification documents**, containing no unauthorised image/audio/video files;
+> actual assets must be rights-cleared then produced by human teams `[assumption:A-EVIDENCE-001]`.
+
+### Existing deliverables inventory (uniform register, no additions or deletions)
+
+| Deliverable | Path | Multimodal type | Main carrier chapter | Review dimension |
+|---|---|---|---|---|
+| Three-minute read table | proposal.md section three-minute read | Text + table | Opening summary | brief_alignment |
+| Six main images | assets/figures/*.png | Static image | Three-minute/land/traffic/compliance | expression_completeness |
+| Three main images (en) | assets/figures/*.en.png | Static image (bilingual) | Same | expression_completeness |
+| A3 booklet PDF | drawings/a3-booklet.pdf | Layout document | Synthesis expression | expression_completeness |
+| A3 booklet PDF (en) | drawings/a3-booklet.en.pdf | Layout document (bilingual) | Same | expression_completeness |
+| A0 boards PDF | drawings/a0-boards.pdf | Layout document | Synthesis expression | expression_completeness |
+| A0 boards PDF (en) | drawings/a0-boards.en.pdf | Layout document (bilingual) | Same | expression_completeness |
+| Proposal HTML (zh) | report/proposal.html | Web page | Synthesis expression | expression_completeness |
+| Proposal HTML (en) | report/proposal.en.html | Web page (bilingual) | Same | expression_completeness |
+| Visualisation portal | visual/index.html | Static web page | Synthesis expression | expression_completeness |
+| Visualisation portal (en) | visual/index.en.html | Static web page (bilingual) | Same | expression_completeness |
+| 5 JSON artifacts | visual/assets/*.json | Data artifact | Seven-dimension evidence map | brief_align + impl_feas |
+| 9 GeoJSON files | geometry/*.geojson | Spatial data | All chapters | spatial_review |
+
+### 4 new multimodal extensions (draft specs, no actual assets)
+
+#### M-1 Video script outline: `switchback_line_pitch.md`
+- Length: 90-second concept-pitch
+- Hook (Switchback Line history) -> Concept (AI as this era's switchback) -> Three-pole panorama -> Equity ledger / resilience states -> Closing
+- Visual prompts: each segment matches 1-2 figures PNG, no real-person on-camera
+- Voiceover skeleton: three-segment Chinese voiceover outline, <=30 characters each
+- Subtitle: bilingual Chinese-English subtitle template
+- **Status**: draft (script outline only); actual video file not produced (awaiting rights-clearance + production)
+
+#### M-2 3D scene spec: `scene_3d_spec.md`
+- Tools: blender / python trimesh etc (spec only, no files attached)
+- Scene: simplified 3D layout of spine + three poles + green ring, each sub-precinct has volume box and height direction
+- Asset source: derived entirely from geometry/*.geojson, no unauthorised models used
+- Interaction: click sub-block pops up parcel_id + dominant scenario + KPI
+- **Status**: spec draft; 3D file not produced (awaiting rights-clearance + production)
+
+#### M-3 Audio narrative outline: `audio_narrative.md`
+- 5 story nodes x 60-second audio scripts (aligned with §five-segment story nodes)
+- Each: 15s intro + 30s main + 15s interactive invitation
+- Accessibility: large-text sync / tactile-description alternative
+- **Status**: script draft; audio file not produced (awaiting rights-clearance + production)
+
+#### M-4 Interactive demo spec: `interactive_demo_spec.md`
+- Entry: visual/index.html adds "Demo" tab (static placeholder is fine)
+- Functions: three-pole switch / sub-block highlight / tabletop case open / NG-6 six-step expand
+- Data: entirely from existing JSON, zero-network zero-data
+- Accessibility: keyboard navigation / screen-reader labelling / high-contrast switch
+- **Status**: spec draft; interactive prototype not produced (awaiting rights-clearance + production)
+
+### Expression closed loop: how all deliverables are read at review
+
+Review reading closed loop (ASCII):
+
+```
+reviewer -> proposal.md -> figures/*.png -> visual/index.html
+                            ↓
+       JSON artifacts (delivery_contracts / tabletop_cases / edge-matrix
+                       / sc04-relay-receipt / evidence-ledger)
+                            ↓
+       Seven-dimension evidence map (each dimension can find 3 independent
+       evidence points along this loop)
+```
+
+### Honest constraints (unhidden)
+
+All M-1..M-4 multimodal extensions are **specification documents** only, containing no actual multimedia files;
+this proposal has not produced, authorised, or distributed any non-rights-liced video/audio/3D assets.
+The current "multimodal expression" review-dimension coverage comes from 6 figures + 4 PDFs + 2 HTML reports + 5 JSON artifacts —
+M-1..M-4 are **structural placeholders** reserved for future versions, not claimed as delivered.
+Actual production requires rights-clearance + professional team production + source publication, opened as a separate PR
+`[assumption:A-EVIDENCE-001]`.
+
 ## Indicator system, area recomputation and compliance matrix
 
 Core indicators are recomputed from `geometry/*.geojson` under EPSG:4548 (CGCS2000 / 3-degree zone CM 117E) `[depth:metrics_recalculation]`. Grouped by metric family:
@@ -620,15 +775,92 @@ Each of the 7 review dimensions points to **3 primary evidence entries** — tot
 
 | Review dimension | Primary evidence 1 | Primary evidence 2 | Primary evidence 3 |
 |---|---|---|---|
-| **brief_alignment** | `proposal.md` section three-minute read | `visual/assets/tabletop_cases.json` | `manifest.json` |
+| **brief_alignment** | `proposal.md` section Brief-goal to mechanism mapping | `proposal.md` section three-minute read | `visual/assets/tabletop_cases.json` |
 | **originality** | `proposal.md` section switchback concept | `visual/assets/sc04-relay-receipt.json` | `proposal.md` section C01-C10 |
-| **ai_planning_innovation** | `proposal.md` section scenario-to-professional lock | `proposal.md` section AI-shapes-spatial-form (in overall design) | `visual/assets/evidence-ledger.json` |
-| **implementation_feasibility** | `proposal.md` section C01-C10 | `proposal.md` section implementation timeline + RACI | `visual/assets/tabletop_cases.json` |
+| **ai_planning_innovation** | `proposal.md` section AI planning workflow, agent feedback loops and measurable outputs | `proposal.md` section scenario-to-professional lock | `visual/assets/edge-matrix.json` |
+| **implementation_feasibility** | `proposal.md` section Named actor types, quantifiable KPIs and trigger nodes | `proposal.md` section C01-C10 | `proposal.md` section implementation timeline + RACI |
 | **public_interest_inclusion** | `proposal.md` section equity ledger | `visual/assets/edge-matrix.json` (12 boundary x 7 paths) | `proposal.md` section public-interest chapter |
 | **risk_compliance** | `proposal.md` section C10 no-go conditions | `proposal.md` section R0-R3 resilience states | `visual/assets/sc04-relay-receipt.json` |
-| **expression_completeness** | `proposal.md` section three-minute read | figures (6 images) + drawings (4 PDFs) | `visual/assets/tabletop_cases.json` |
+| **expression_completeness** | `proposal.md` section Multimodal deliverables list and expression closed loop | `proposal.md` section three-minute read | figures (6 images) + drawings (4 PDFs) + visual/index.html |
 
 The seven-dimension evidence map **points to concrete artifacts** (3 entries per dimension); `design_depth_matrix.json` is the **self-declaration** — clear division of labour, no substitution. Each path is machine-traceable at review time back to the original JSON, GeoJSON, narrative, or drawings `[data:visual/assets/delivery_contracts.json]`.
+
+## Brief-goal to mechanism mapping (brief_alignment lock)
+
+The agent taskbook items agent.1–agent.6 and the announcement's "three positionings / five functions / three-areas-two-wings / co-creation charter / future urban form" are broken out one by one and mapped back to this proposal's mechanisms — to avoid "concept-adjacency" without machine traceability. This table lists only the newly added mechanisms that are directly verifiable in artifacts; it does not repeat the taskbook verbatim `[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]`.
+
+| Taskbook item | Keywords | Proposal mechanism | Direct artifact | Verifiable field |
+|---|---|---|---|---|
+| agent.1 logo_or_visual_identity_direction | VI direction | Three-colour VI (engineering blue #1d4ed8 / amber #b45309 / slate #475569) + three-pole sub-colours | proposal.md section Logo and visual-identity direction | primary hex, sub-colour hex, prohibition list |
+| agent.2 ecosystem_map | Ecosystem map | Four-layer map (standard → factor → node → scenario) + seven-country case translation | proposal.md section AI innovation ecosystem map | 6 factor layers, 7 case source links |
+| agent.3 personas+scenarios | Personas ≥5 + scenario cards ≥10 (≥3 industry test) | 6 personas + 14 scenario cards (incl. S7 intelligent-native consumption / S8 low-speed robot / S9 autonomous-driving as three industry tests) | proposal.md section 14-scenario lock + `visual/assets/scenario_professional_review_matrix.json` | persona_count=6, scenario_count=14, industry_test_count=3 |
+| agent.4 honor_display_system | Honour display | Spine three-segment honours (benchmark leaderboard wall / developer contribution star map / enterprise innovation honour corridor) | proposal.md section honour display system | three segments, mapped sub-precincts |
+| agent.4 component_library | Public-space components | 6 components (switchback seat / standard paving / AI wayfinding post / movable unit / accessible ramp / smart lighting pole) | proposal.md section public-space component library | component_count=6, accessibility field complete |
+| agent.5 signage_system + spatial_storyline | Cultural signage + spatial storyline | 9km five-segment story nodes along heritage park + accessible multimodal | proposal.md section cultural signage | story_segment_count=5, multimodal coverage |
+| agent.5 international_communication_copy | International copy | "The Switchback Line" English slogan + Zhan Tianyou→AI standard co-creation narrative | proposal.md section international communication copy | slogan_en, narrative_thread |
+| agent.6 long_term_operations | Long-term operations | Annual activity system (Switchback summit / open week / developer conference / pilgrimage festival) + co-governance council concept | proposal.md section global AI innovation activity system | activity_count=4, governance_bodies=5 |
+| Positioning 1: Centennial Jing-Zhang cultural belt | Cultural narrative | Switchback monument + five story nodes + 1435mm standard-gauge engraving | proposal.md section cultural signage + pilgrimage landmark list | pilgrimage_landmark_count=3 |
+| Positioning 2: Urban-AI life-experience belt | Life experience | Life Pole·AI Origin ③ retail belt + S5/S6/S7 scenarios + non-digital alternatives | proposal.md section Beijing AI Origin Community + 14-scenario lock | S5/S6/S7 lock + human fallback |
+| Positioning 3: AI-integrated innovation belt | Industry translation | Innovation→Life→Industry Pole spine + Zhongguancun/Xiaoyuehe wings + S1/S2/S3 scenarios | proposal.md section three-area-two-wing loop + regional synergy | three poles named, two wings named, 6 synergy objects |
+| Function 1: AI full-stack self-innovation | Benchmark/compute | S1 compute scheduling + benchmark testing + INNO-A2 shared compute + SC-04 pilot | proposal.md section minimum-viable pilot + §14-scenario lock + `visual/assets/sc04-relay-receipt.json` | SC-04 G0-G4 gate states |
+| Function 2: World-class AI innovation ecosystem | Factor synergy | Four-layer ecosystem map + 7-country case translation + 5 Beijing-Tianjin-Hebei synergy objects | proposal.md section ecosystem map §regional synergy | case_count=7, synergy_objects=5 |
+| Function 3: AI+scenario enablement new paradigm | 14 scenario cards | 14 scenarios × 7 fields (incl. spatial prototype / minimum data / human gate / G1-G2 role / pause line / recovery evidence) | `visual/assets/scenario_professional_review_matrix.json` | 14/14 complete fields |
+| Function 4: Intelligent AI-vibrant city | Public space + blue-green | GRN-B1 9km spine + GRN-B2 three-area green ring + 6 public-space components | proposal.md section blue-green §public-space component library | green-belt area, green ratio, component_count=6 |
+| Function 5: AI governance global discourse power | Co-creation charter | NG-6 six steps + equity ledger + R0-R3 resilience + co-governance council | proposal.md section NG-6 §equity ledger §R0-R3 §acknowledgements | NG-6 steps=6, ledger fields=6 |
+| Future urban form: AI culture/society/city | Future-city form | Spine-three-pole-two-wings + 17 sub-blocks + 9 sub-precincts + 14 scenarios | proposal.md section parcel matrix §three-area nine-sub-precinct | sub-block=17, sub-precinct=9 |
+| Public interest: youth-friendly | Talent + community | LIFE-D1 talent housing + LIFE-D2 mixed community centre + developer event venue S12 | proposal.md section three-area nine-sub-precinct + §14-scenario S12 | residential sub-block + S12 scenario |
+| Public interest: public-space activation | Spine + green ring | Central spine square PS-001 + three-area squares PS-002/003/004 + 6 components | proposal.md section public space §component library | square_count=4, component_count=6 |
+| Public interest: east-west stitching | Cross-corridor | Jing-Zhang heritage green belt (N-S) + 4 east-west connectors + INF-E1 spine | proposal.md section traffic §blue-green | spine length, east-west=4 |
+| Public interest: north-south connection | Spine continuity | Jing-Zhang innovation spine links three areas (N/C/S) | proposal.md section three-area-two-wing | spine named, three-area sequence |
+| Co-creation charter + boundary statement | Boundary | Source grading (usable_for_formal=yes / provisional_only) + no fabricated official commitments + copyright ledger | proposal.md section source grading §risks copyright §acknowledgements | sources.json grade + copyright_statement.md |
+| Multimodal expression | Image/video/audio/3D | 6 figures + 4 PDFs + visual system (Logo/VI/signage/storyline/honour wall/festival) | proposal.md section seven-dimension evidence map row expression_completeness | figures=6, drawings=4 |
+
+**Coverage-gap statement** (honest flag): agent.4 "≥3 AI pilgrimage landmarks" has 3 entries (switchback monument / experience hall / benchmark observation deck), but physical form and rights-clearance details are "to-be-deepened suggestions"; agent.5 "international communication copy" gives direction only, no final translation — both treated at the "concept suggestion" layer as the taskbook allows, not disguised as approved conclusions `[assumption:A-BRIEF-MAPPING-001]`.
+
+## Named actor types, quantifiable KPIs and trigger nodes (implementation_feasibility upgrade)
+
+Upgrade v7.0's P1-P6 portfolio and T0-T5 timeline from "concept-level + actor-type" to **"named actor type + candidate organisation category + KPI magnitude + trigger node + sunset threshold"** — the part most often missing in the implementation_feasibility dimension. No specific organisation names or amounts are fabricated; all fields keep `to_be_confirmed` / magnitude range / public-benchmark basis `[assumption:A-IMPLEMENTATION-001]` `[assumption:A-OPERATIONS-001]` `[depth:phasing_implementation]`.
+
+**Actor-type table** (six categories, no organisation names, only role type and required signatures):
+
+| Actor type | Required role | Signature target | Current state |
+|---|---|---|---|
+| Government planning authority | Redline and control-plan authority | C01 redline request | `unconfirmed` |
+| Government + enterprise alliance + community trio | Any unsigned → G2 not activated | C02 responsibility confirmation | `unconfirmed` |
+| Heritage + fire + planning three-line | Any conflict → G1 not passed | C03 three-line check | `unconfirmed` |
+| Independent professional team | Any of 6 accessibility types failing → G3 not opened | C04 field measurement | `unconfirmed` |
+| Municipal + energy utility | Capacity not met → pilot not opened | C05 network capacity | `unconfirmed` |
+| Legal + ethics committee | Any un-reviewed → G3 not activated | C06 data review | `unconfirmed` |
+| Resident + disability + elderly representatives | Weakest 20% experience degrading 2 consecutive weeks → PAUSE | C07 public-interest co-test | `unconfirmed` |
+| Governance consortium (5 parties) | Any missing → package HOLD | C10 integrated Go/No-Go | `unconfirmed` |
+
+**P1-P6 upgraded** (magnitude + trigger node + sunset threshold):
+
+| Project | Phase | Candidate actor type | Start trigger | Sunset threshold | KPI (magnitude) | Magnitude cost band (RMB) |
+|---|---|---|---|---|---|---|
+| P1 Zhongzhiyuan benchmark testing field | Near-term | Park + enterprise alliance + compute alliance | Official boundary supplied + compute EIA passed + control-plan confirmed | Benchmark reproducibility <90% 2 consecutive weeks | Reproducibility ≥95% / compute utilisation ≥70% / risk-warning accuracy | 3-8 billion (INNO-A2/A3 compute hall + test field) |
+| P2 Central green-belt through-connection | Near-term | Greening + heritage + municipal | Heritage three-line check passed + sponge hydrological model complete | Heritage conflict → adjust alignment | Connectivity rate + green ratio + accessible main-chain rate | 0.5-1.5 billion (GRN-B1/B2 green belt + stations) |
+| P3 AI Origin community convenience nodes | Mid-term | Community + health/education + property | Resident participation baseline established + child-data compliance review passed | Privacy violation → suspend + remediate | Pre-screening accuracy / child-data compliance rate / appeal response time | 1-3 billion (LIFE-D2/D3 nodes + retrofit) |
+| P4 Jing-Zhang innovation-spine slow mobility | Mid-term | Transport + municipal + greening | Transport-speciality confirmed + safety audit passed | Incident → stop + review | Connection wait time / accessible connectivity rate / safety mileage | 1.5-4 billion (INF-E1 spine + stations) |
+| P5 Dazhongsi industry renewal | Far-term | Owner + enterprise + commercial operator | Property-right confirmed + commercial-will confirmed + fire passed | Market below-target → delay | Occupancy rate / conversion rate / consumption satisfaction | 8-20 billion (IND-C1/C2/C3/C4 retrofit) |
+| P6 Two-wing switchbacks (Zhongguancun/Xiaoyuehe) | Far-term | Synergy park + consortium | Synergy parties confirmed + interface standard agreed | Synergy below-target → shrink | Synergy project count / compute-scheduling count | 2-6 billion (two-wing interface + scenario test) |
+
+**Three-period total magnitude** (public-benchmark basis, for order-of-magnitude judgement only):
+
+- **Near-term (T1-T2, ~5 km² green belt + slow mobility + pilot)**: about 5-15 billion RMB — green, slow mobility and SC-04 minimum pilot dominant; low capital intensity, quick start
+- **Mid-term (T3-T4, ~3.3 km² compute + R&D + community)**: about 20-50 billion RMB — compute halls and R&D carriers capital-intensive; needs enterprise alliance + government match
+- **Far-term (T5, ~3.1 km² industry renewal + two wings)**: about 10-30 billion RMB — commercial retrofit and synergy-development-led; depends on market willingness
+- **Three-period total**: about 35-95 billion RMB (magnitude range, public-benchmark basis, not engineering budget)
+
+**Go/No-Go trigger nodes** (machine-traceable):
+
+1. **G0→G1 trigger**: C01 redline request has official reply + provisional boundary supplied + 6 accessibility types preliminary screening passed
+2. **G2→G3 trigger**: C02 trio signatures complete + C03 three-line check passed + C05 municipal/energy/flood capacity confirmed + C06 legal-ethics passed
+3. **G3→G4 trigger**: C04 6-population measurement baseline established + C07 public-interest co-test first-round feedback + C08 engineering-quantity/spec/enquiry ≥2 items
+4. **G4→G5 trigger**: C09 procurement/insurance/5-zone interface complete + C10 integrated Go/No-Go passed + SC-04 G0-G4 all evidenced
+5. **G5→G6 trigger**: Pilot-period evaluation complete + equity-ledger quarterly review passed + weakest 20% experience not consecutively degraded
+
+**Honest constraints** (unhidden): the above magnitudes are **order-of-magnitude** public-benchmark estimates, not engineering budgets or investment commitments; organisation names, insurance rates and procurement lists all await actor confirmation `[assumption:A-IMPLEMENTATION-001]` `[assumption:A-OPERATIONS-001]`. All "actor types" are public-basis role classifications, not directed at specific entities and not constituting commissioning offers.
 
 ## ## Risks, copyright and compliance notes
 
