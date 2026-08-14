@@ -23,7 +23,7 @@ This proposal is not an independent vision statement; it organizes deliverables 
 The usage boundaries for the source registry are as follows [source:SOURCE-REGISTRY]:
 
 - `data/source_registry.json` registers the usage boundaries for public, cleared-rights, and provisional sources.
-- Current registry summary: 0 formal-use sources, 0 background sources, 0 provisional-only sources.
+- Current registry summary: 7 sources registered in sources.json (official_public×2, repository_public_registry×1, repository_processed_reference×1, agent_inferred_from_public_data×2, user_provided_cleared×1). Site boundary and key areas are classified as agent_inferred_from_public_data with official_boundary=false. No formal 控规-level official redline or SITE_BOUNDARY exists; all derived area/metric values are provisional.
 - The agent must not upgrade `background_only` or `provisional_only` sources to official boundary, statutory 控规, formal scoring basis, or government implementation commitment.
 
 `data/processed/agent_fact_pack.md` serves as a reading navigation layer for this proposal and is not a new authoritative source [source:PROCESSED-FACT-PACK]. It helps the agent organize the three-layer scope, three key areas, announcement tasks, agent.1–agent.6, source availability, and data-gap items into a readable proposal; factual judgments still require returning to registered raw materials [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK]. Complete source relationships are preserved in `sources.json`.
