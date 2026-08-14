@@ -251,6 +251,48 @@ code {
 <li>国际叙事：从詹天佑的工程开拓精神到AI时代的标准共建，强调&quot;中国人自主创新&quot;的延续性。</li>
 <li>传播渠道方向：国际规划/AI会议、开发者社区、城市设计媒体（均为概念建议，待传播团队深化）。</li>
 </ul>
+<h2>AI 规划工作流、代理反馈环与可测输出（ai_planning_innovation 升级）</h2>
+<p>&gt; 承接 evidence-map 第3行自留缺口&quot;§AI 塑造空间形态（移入总体设计）&quot;—— &gt; 把本方案的 AI 从&quot;主题词&quot;升级为&quot;规划主体&quot;。三件事必须机器可核验： &gt; (1) AI 规划工作流的 5 段执行链；(2) 代理→人→空间的反馈闭环； &gt; (3) 可测输出指标（不只是服务 KPI，还含规划过程本身的质量指标）。 &gt; 本节为概念建议，待真实规划主体确认 <code>[assumption:A-IMPLEMENTATION-001]</code> &gt; <code>[assumption:A-AI-GOVERNANCE-001]</code>。</p>
+<h3>5 段 AI 规划工作流（plan→deliberate→simulate→decide→revisit）</h3>
+<p>每一段都必须保留&quot;AI 输入 + 人工 Gate + 可审计证据&quot;三件套—— 不允许任何一段缺人工 Gate，不允许任何一段跳到下一段而保留 <code>unconfirmed</code> 字段 <code><span class="evidence evidence-depth">[depth:phasing_implementation]</span></code>。</p>
+<p>| 阶段 | AI agent 角色 | 人类规划师角色 | 公共空间侧可观察证据 | |---|---|---|---| | ① 议题识别 plan | 公开资料聚合 + 跨学科知识图谱（来源全留痕） | 议题定义 + 红线排除 | <code>evidence-ledger.json</code> 新增 <code>topic_provenance_chain</code> | | ② 方案推演 deliberate | 多解生成 + 折返线约束满足（&quot;最可靠而非最高性能&quot;） | 方案审查 + NG-6 自检 | <code>sc04-relay-receipt.json</code> 复用字段 | | ③ 场景模拟 simulate | 韧性态 R0-R3 + EDGE-01..12 边界条件批量演练 | 边界确认 + 公众参与基线 | <code>edge-matrix.json</code> 12×7=84 节点 + tabletop24 例 | | ④ 决策背书 decide | 决策摘要生成 + 替代方案清单（机器可读） | 签字 + 可问责 | <code>delivery_contracts.json</code> C02/C10 签字记录 | | ⑤ 复盘重访 revisit | 公平账本季度复核 + 失败案例登记 | 退场/续期决定 | <code>evidence-ledger.json</code> <code>quarterly_review</code> |</p>
+<h3>代理反馈环：3 个具体闭环（AI→人→空间）</h3>
+<p>不同于&quot;主题型 AI 方案&quot;只描述服务，本节给出 3 个具体的 AI→人→空间反馈闭环， 所有产出物都已在 v7.0/v7.1 工件中存在——v8.0 把它们**连接**为闭环 <code><span class="evidence evidence-depth">[depth:phasing_implementation]</span></code>：</p>
+<p>**环 1：公平账本 → 场景回退（弱人群驱动）**</p>
+<ul>
+<li>触发：公平账本某人群字段连续 2 周恶化 → <code>evidence-ledger.json</code> 写入事件</li>
+<li>AI 动作：自动调用 tabletop T0X-REJ 案例 + 生成候选暂停方案（不改现网）</li>
+<li>人工 Gate：治理联合体 5 方中任一方即可一票暂停</li>
+<li>空间可见证据：SC-04 G0-G6 状态栏 + 公共反馈墙新增条目</li>
+</ul>
+<p>**环 2：边缘条件演练 → 韧性态切换（失效驱动）**</p>
+<ul>
+<li>触发：EDGE-01..12 任一边界在 tabletop 演练中触发 → 自动预演 R0→R1/R2/R3</li>
+<li>AI 动作：基于 <code>edge-matrix.json</code> 推演降级路径 + 生成恢复 Gate 清单</li>
+<li>人工 Gate：R3 切换须现场值班人确认，AI 不得自主断电场景</li>
+<li>空间可见证据：<code>tabletop_cases.json</code> 新增 <code>triggered_edge_id</code> 字段</li>
+</ul>
+<p>**环 3：场景卡 → 任务书映射回写（任务驱动）**</p>
+<ul>
+<li>触发：14 场景卡任一字段变更 → 自动核验 brief_alignment 24 行映射表是否仍闭合</li>
+<li>AI 动作：差异报告 + 影响范围标注（哪个任务书条目会松动）</li>
+<li>人工 Gate：任一 taskbook 条目松动须人工确认是否需更新映射</li>
+<li>空间可见证据：<code>scenario_professional_review_matrix.json</code> 新增 <code>mapping_integrity</code> 字段</li>
+</ul>
+<h3>可测输出（不是&quot;服务 KPI&quot;，是&quot;规划质量&quot;指标）</h3>
+<p>| 规划过程指标 | 测量方法（工件） | 现状值 | |---|---|---| | 议题溯源完整率：每个 AI 提案都能追溯到公开资料 ID | <code>evidence-ledger.json</code> <code>topic_provenance_chain</code> | <code>unconfirmed</code> | | 替代方案覆盖数：每个重大决定都给出 ≥2 个候选方案 | 决策摘要字段 | <code>unconfirmed</code> | | 边界演练覆盖率：12 边界 × 7 路径 = 84 节点全部跑过 | <code>edge-matrix.json</code> | <code>unconfirmed</code> | | 公平账本复核周期：最弱 20% 体验连续 2 周恶化自动触发 | <code>evidence-ledger.json</code> | <code>unconfirmed</code> | | 退场可执行率：每个试点都有五步退出动作书面记录 | <code>sc04-relay-receipt.json</code> | <code>unconfirmed</code> |</p>
+<h3>与既有机制的承接关系（不重写）</h3>
+<ul>
+<li>S1-S14 场景卡 → 5 段工作流②③④ 的输入</li>
+<li>NG-6 六步 → 5 段工作流①②③④的合同模板</li>
+<li>R0-R3 韧性态 → 5 段工作流③ + 反馈环 2</li>
+<li>公平账本 → 反馈环 1 + 可测输出</li>
+<li>C01-C10 工作包 → 5 段工作流④的签字依据</li>
+<li>17 子块设计意图矩阵 → 5 段工作流①的输入 + ⑤的复盘对象</li>
+<li>tabletop 24 例 + edge-matrix 84 节点 → 5 段工作流③的演练样本</li>
+</ul>
+<h3>诚实约束（未掩盖）</h3>
+<p>上述 5 段工作流与 3 个闭环为**概念设计**——所有字段均标 <code>unconfirmed</code> / <code>null</code>， 不构成政府委托、不替代现行规划审批流程；具体启动须以官方红线补齐、控规落实、 实测基线建立为前置 <code>[assumption:A-IMPLEMENTATION-001]</code> <code>[assumption:A-OPERATIONS-001]</code> <code>[assumption:A-AI-GOVERNANCE-001]</code>。</p>
 <h2>城市韧性与全状态降级（R0-R3 韧性态）</h2>
 <p>**R0-R3 韧性态**（NG-6 的第七步：韧性降级）——城市基础设施成熟的标志不是&quot;性能最高&quot;，而是&quot;失效时优雅降级&quot;：</p>
 <p>| 状态 | 触发条件 | AI 服务降级 | 最低服务标准 | 恢复路径 | |---|---|---|---|---| | **R0 正常态** | 晴天、网络通、电力通 | 全部运行 | 所有 NG-6 步骤正常 | — | | **R1 雨天态** | 降雨&gt;50mm/24h | 接驳/配送/自动驾驶暂停 | 物理标识+人工配送+避雨点每200m | 雨停后人工检查→恢复 | | **R2 断网态** | 网络中断&gt;30min | 所有 AI 场景暂停 | 物理标识+人工窗口+离线地图 | 网络恢复→重新校验→逐步恢复 | | **R3 断电态** | 电力中断&gt;15min | 全部暂停+备用电池 | 应急照明+人工疏散+急停可触发 | 电力恢复→设备自检→恢复 |</p>
@@ -364,6 +406,48 @@ code {
 <li>**远期（T5，~3.1 km² 产业更新+两翼）**：量级约 100-300 亿元——以商业改造和协同发展为主，依赖市场意愿。</li>
 </ul>
 <p>以上量级不含土地征收（须政府主体确认）、不含运营成本（按全生命周期另计）、不含 AI 软件研发成本（计入运营 OPEX）。所有数字为**公开基准推算的数量级**，非工程概算或投资承诺 <code>[assumption:A-IMPLEMENTATION-001]</code>。</p>
+<h2>多模态交付物清单与表达闭环（expression_completeness 升级）</h2>
+<p>&gt; 回应 public-brief &quot;强烈鼓励多模态表达（image/video/audio/3D）&quot;——把分散 &gt; 在 figures/drawings/HTML/JSON/visual 各处的产出物统一登记，并给出 4 个 &gt; 仍为草案的多模态扩展项（视频脚本骨架 / 3D 场景规格 / 音频叙事骨架 / &gt; 交互演示规格）<code><span class="evidence evidence-standard">[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]</span></code>。 &gt; 所有多模态扩展项均为**规格文档**，不包含未授权的图像/音频/视频文件； &gt; 实际资产须清权后由人类团队制作 <code>[assumption:A-EVIDENCE-001]</code>。</p>
+<h3>既有交付物盘点（统一登记，不增不减）</h3>
+<p>| 交付物 | 路径 | 多模态类型 | 主要承载章节 | 评审维度 | |---|---|---|---|---| | 三分钟读懂表 | proposal.md §三分钟读懂 | 文字+表格 | 开篇摘要 | brief_alignment | | 六张主图 | assets/figures/*.png | 静态图像 | 三分钟/土地/交通/合规 | expression_completeness | | 三张主图（英） | assets/figures/*.en.png | 静态图像（双语） | 同上 | expression_completeness | | A3 册子 PDF | drawings/a3-booklet.pdf | 排版文档 | 综合表达 | expression_completeness | | A3 册子 PDF（英） | drawings/a3-booklet.en.pdf | 排版文档（双语） | 同上 | expression_completeness | | A0 展板 PDF | drawings/a0-boards.pdf | 排版文档 | 综合表达 | expression_completeness | | A0 展板 PDF（英） | drawings/a0-boards.en.pdf | 排版文档（双语） | 同上 | expression_completeness | | 方案 HTML（zh） | report/proposal.html | 网页 | 综合表达 | expression_completeness | | 方案 HTML（en） | report/proposal.en.html | 网页（双语） | 同上 | expression_completeness | | 可视化门户 | visual/index.html | 静态网页 | 综合表达 | expression_completeness | | 可视化门户（en） | visual/index.en.html | 静态网页（双语） | 同上 | expression_completeness | | 5 个 JSON 工件 | visual/assets/*.json | 数据工件 | 七维证据地图 | brief_align + impl_feas | | 9 个 GeoJSON | geometry/*.geojson | 空间数据 | 全章节 | spatial_review |</p>
+<h3>4 个新增多模态扩展项（草案规格，不含实际资产）</h3>
+<h4>M-1 视频脚本骨架：<code>switchback_line_pitch.md</code></h4>
+<ul>
+<li>时长：90 秒概念介绍</li>
+<li>钩子（人字线历史）→ 概念（AI 是这个时代的折返线）→ 三极全景 → 公平账本/韧性态 → 收口</li>
+<li>视觉提示：每段对应 1-2 张 figures PNG，不含真人出镜</li>
+<li>配音稿骨架：三段中文配音大纲，每段 ≤30 字</li>
+<li>字幕：中英双语字幕模板</li>
+<li>**状态**：草案（script outline only）；实际视频文件未生成（待清权与制作）</li>
+</ul>
+<h4>M-2 3D 场景规格：<code>scene_3d_spec.md</code></h4>
+<ul>
+<li>工具：blender / python trimesh 等开源（仅给规格，不附文件）</li>
+<li>场景：主轴+三极+绿环的简化 3D 布局，每子片区给体量盒与高度方向</li>
+<li>资产来源：全部由 geometry/*.geojson 派生，不使用未授权模型</li>
+<li>互动：点击子块弹出 parcel_id + 主导场景 + KPI</li>
+<li>**状态**：规格草案；3D 文件未未生成（待清权与制作）</li>
+</ul>
+<h4>M-3 音频叙事骨架：<code>audio_narrative.md</code></h4>
+<ul>
+<li>5 段故事节点各 60 秒音频脚本（与 §五段故事节点 对齐）</li>
+<li>每段：导语 15s + 主线 30s + 互动邀请 15s</li>
+<li>无障碍：大字文本同步 / 触觉描述备选</li>
+<li>**状态**：脚本草案；音频文件未未生成（待清权与制作）</li>
+</ul>
+<h4>M-4 交互演示规格：<code>interactive_demo_spec.md</code></h4>
+<ul>
+<li>入口：visual/index.html 新增 &quot;Demo&quot; tab（静态占位即可）</li>
+<li>功能：三极切换 / 子块高亮 / tabletop 案例点开 / NG-6 六步展开</li>
+<li>数据：全部来自已有 JSON，零网络零数据</li>
+<li>无障碍：键盘导航 / 屏幕阅读器标注 / 高对比度切换</li>
+<li>**状态**：规格草案；交互原型未未生成（待清权与制作）</li>
+</ul>
+<h3>表达闭环：所有交付物如何在评审中被读出来</h3>
+<p>评审读取闭环（ASCII 示意）：</p>
+<p>``<code> reviewer → proposal.md → figures/*.png → visual/index.html ↓ JSON 工件 (delivery_contracts / tabletop_cases / edge-matrix / sc04-relay-receipt / evidence-ledger) ↓ 七维证据地图（每个维度都能沿此闭环找到 3 个独立证据点） </code>``</p>
+<h3>诚实约束（未掩盖）</h3>
+<p>所有 M-1..M-4 多模态扩展项仅为**规格文档**，不包含任何实际的多媒体文件； 本方案未制作、未授权、未分发任何未清权的视频/音频/3D 资产。 &quot;多模态表达&quot;评分维度的现有覆盖来自 6 figures + 4 PDFs + 2 HTML报告 + 5 JSON 工件—— M-1..M-4 是为后续版本预留的**结构占位**，不假装已交付。 实际制作须清权 + 专业团队制作 + 公示来源后另开 PR <code>[assumption:A-EVIDENCE-001]</code>。</p>
 <h2>指标体系、面积复算与合规矩阵</h2>
 <p>核心指标由 <code>geometry/*.geojson</code> 在 EPSG:4548（CGCS2000/3度带CM117E）下复算 <code><span class="evidence evidence-depth">[depth:metrics_recalculation]</span></code>。按指标族分组：</p>
 <ul>
@@ -385,7 +469,7 @@ code {
 <figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="核心指标复算与证据链"><figcaption>核心指标复算与证据链</figcaption></figure>
 <h2>七维证据地图（评审可追溯）</h2>
 <p>7 个评审维度各自指向 **3 个首要证据入口**——共 21 条可追溯路径。**每条路径都可在工件中机器核验** <code><span class="evidence evidence-standard">[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]</span></code> <code><span class="evidence evidence-depth">[depth:risk_missing_data]</span></code>：</p>
-<p>| 评审维度 | 首要证据 1 | 首要证据 2 | 首要证据 3 | |---|---|---|---| | **任务书相关性** | <code>proposal.md</code> §任务书目标—机制逐项映射 | <code>proposal.md</code> §三分钟读懂 | <code>visual/assets/tabletop_cases.json</code> | | **原创性** | <code>proposal.md</code> §人字线概念 | <code>visual/assets/sc04-relay-receipt.json</code> | <code>proposal.md</code> §C01-C10 | | **AI 与城市规划创新性** | <code>proposal.md</code> §场景-专业责任锁定 | <code>proposal.md</code> §AI 塑造空间形态（移入总体设计） | <code>visual/assets/evidence-ledger.json</code> | | **可实施性** | <code>proposal.md</code> §命名主体、可量 KPI 与可触发节点 | <code>proposal.md</code> §C01-C10 | <code>proposal.md</code> §实施时间线与责任矩阵 | | **公共利益与包容性** | <code>proposal.md</code> §公平账本 | <code>visual/assets/edge-matrix.json</code>（12 边界 × 7 路径） | <code>proposal.md</code> §公共利益章节 | | **风险与合规意识** | <code>proposal.md</code> §C10 否决条件 | <code>proposal.md</code> §R0-R3 韧性态 | <code>visual/assets/sc04-relay-receipt.json</code> | | **表达完整度** | <code>proposal.md</code> §三分钟读懂 | figures (6 张) + drawings (4 PDF) | <code>visual/assets/tabletop_cases.json</code> |</p>
+<p>| 评审维度 | 首要证据 1 | 首要证据 2 | 首要证据 3 | |---|---|---|---| | **任务书相关性** | <code>proposal.md</code> §任务书目标—机制逐项映射 | <code>proposal.md</code> §三分钟读懂 | <code>visual/assets/tabletop_cases.json</code> | | **原创性** | <code>proposal.md</code> §人字线概念 | <code>visual/assets/sc04-relay-receipt.json</code> | <code>proposal.md</code> §C01-C10 | | **AI 与城市规划创新性** | <code>proposal.md</code> §AI 规划工作流、代理反馈环与可测输出 | <code>proposal.md</code> §场景-专业责任锁定 | <code>visual/assets/edge-matrix.json</code> | | **可实施性** | <code>proposal.md</code> §命名主体、可量 KPI 与可触发节点 | <code>proposal.md</code> §C01-C10 | <code>proposal.md</code> §实施时间线与责任矩阵 | | **公共利益与包容性** | <code>proposal.md</code> §公平账本 | <code>visual/assets/edge-matrix.json</code>（12 边界 × 7 路径） | <code>proposal.md</code> §公共利益章节 | | **风险与合规意识** | <code>proposal.md</code> §C10 否决条件 | <code>proposal.md</code> §R0-R3 韧性态 | <code>visual/assets/sc04-relay-receipt.json</code> | | **表达完整度** | <code>proposal.md</code> §多模态交付物清单与表达闭环 | <code>proposal.md</code> §三分钟读懂 | figures (6 张) + drawings (4 PDF) + visual/index.html |</p>
 <p>七维证据地图**指向具体工件**（每个维度 3 个入口），<code>design_depth_matrix.json</code> 是**自评声明**——分工清晰、互不替代。每条路径在评审查询时均可机器追溯至原始 JSON、GeoJSON、正文或图纸 <code><span class="evidence evidence-data">[data:visual/assets/delivery_contracts.json]</span></code>。</p>
 <h2>任务书目标—机制逐项映射（brief_alignment 锁链）</h2>
 <p>把任务书 agent.1–agent.6 与公告&quot;三大定位 / 五大功能 / 三区两翼 / 共创公约 / 未来城市形态&quot;逐条拆开，再把本方案的对应机制一格一格对回去——避免&quot;概念沾边&quot;而不能机器追溯。本表只列本方案新增的、可在工件中直接核验的承接机制，不重复任务书原文 <code><span class="evidence evidence-standard">[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]</span></code>：</p>
