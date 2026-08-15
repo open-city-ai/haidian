@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -Eeuo pipefail
 
 usage() {
   cat <<'EOF'
@@ -13,7 +13,7 @@ EOF
 }
 
 if [[ ${1:-} == "-h" || ${1:-} == "--help" ]]; then usage; exit 0; fi
-count=${1:-2000}
+count=${1-2000}
 output_dir=${2:-commit-review-fixture}
 branch=${3:-review-load-test}
 base_repo=${4:-}
@@ -21,24 +21,33 @@ base_repo=${4:-}
 [[ $count =~ ^[1-9][0-9]*$ ]] || { printf 'error: COUNT must be a positive integer\n' >&2; exit 2; }
 [[ ! -e $output_dir ]] || { printf 'error: output path already exists: %s\n' "$output_dir" >&2; exit 2; }
 git check-ref-format --branch "$branch" >/dev/null 2>&1 || { printf 'error: invalid branch name: %s\n' "$branch" >&2; exit 2; }
-
-mkdir -p "$output_dir"
-output_dir=$(cd "$output_dir" && pwd)
 if [[ -n $base_repo ]]; then
   git -C "$base_repo" rev-parse --verify HEAD >/dev/null
   [[ -z $(git -C "$base_repo" status --porcelain) ]] || { printf 'error: BASE_REPO worktree must be clean\n' >&2; exit 2; }
+fi
+
+mkdir -p "$output_dir"
+output_dir=$(cd "$output_dir" && pwd)
+cleanup_output() {
+  status=${1:-$?}
+  trap - ERR
+  rm -rf -- "$output_dir"
+  exit "$status"
+}
+trap cleanup_output ERR
+
+if [[ -n $base_repo ]]; then
   mkdir "$output_dir/repo"
   repo="$output_dir/repo"
   git -C "$repo" init --quiet --initial-branch=fixture-base
-  (
-    cd "$base_repo"
-    git ls-files -z | tar --null -T - -cf -
-  ) | tar -xf - -C "$repo"
   git -C "$repo" config user.name "Review Load Fixture"
   git -C "$repo" config user.email "fixture@example.invalid"
-  git -C "$repo" add --all
+  git -C "$repo" config commit.gpgSign false
+  git -C "$repo" config gc.auto 0
+  git -C "$base_repo" archive --format=tar HEAD | tar -xf - -C "$repo"
+  git -C "$repo" add --all --force
   GIT_AUTHOR_DATE='@1704067199 +0000' GIT_COMMITTER_DATE='@1704067199 +0000' \
-    git -C "$repo" commit --quiet -m 'fixture: record review base'
+    git -C "$repo" commit --quiet --no-gpg-sign -m 'fixture: record review base'
   base_sha=$(git -C "$repo" rev-parse HEAD)
   git -C "$repo" switch --quiet -c "$branch"
 else
@@ -63,14 +72,17 @@ for ((index = 1; index <= count; index++)); do
   git -C "$repo" add .review-load-fixture
   timestamp=$((1704067200 + index))
   GIT_AUTHOR_DATE="@$timestamp +0000" GIT_COMMITTER_DATE="@$timestamp +0000" \
-    git -C "$repo" commit --quiet -m "fixture: add audit event $sequence of $count"
+    git -C "$repo" commit --quiet --no-gpg-sign -m "fixture: add audit event $sequence of $count"
 done
 
 if [[ -n $base_sha ]]; then range="$base_sha..HEAD"; expected_roots=0; else range=HEAD; expected_roots=1; fi
 actual=$(git -C "$repo" rev-list --count "$range")
 roots=$(git -C "$repo" rev-list --max-parents=0 --count "$range")
 merges=$(git -C "$repo" rev-list --min-parents=2 --count "$range")
-[[ $actual -eq $count && $roots -eq $expected_roots && $merges -eq 0 && -z $(git -C "$repo" status --porcelain) ]] || exit 1
+if [[ $actual -ne $count || $roots -ne $expected_roots || $merges -ne 0 || -n $(git -C "$repo" status --porcelain) ]]; then
+  printf 'error: generated repository failed verification\n' >&2
+  cleanup_output 1
+fi
 
 git -C "$repo" log --reverse --format='%H%x09%aI%x09%s' "$range" > "$output_dir/commits.tsv"
 git -C "$repo" bundle create "$output_dir/review-fixture.bundle" "$branch" >/dev/null
@@ -87,6 +99,7 @@ working_tree=clean
 head=$head
 bundle=$output_dir/review-fixture.bundle
 inventory=$output_dir/commits.tsv
-clone_command=git clone -b $branch $output_dir/review-fixture.bundle review-fixture
+clone_command=git clone -b $branch $output_dir/review-fixture.bundle review-fixture-clone
 EOF
+trap - ERR
 printf 'Generated %d commits in %s\nBundle: %s\nInventory: %s\n' "$actual" "$repo" "$output_dir/review-fixture.bundle" "$output_dir/commits.tsv"
