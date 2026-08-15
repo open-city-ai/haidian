@@ -1,0 +1,224 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.385554,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积基于总体设计范围临时替代边界在 EPSG:4548 下复算；官方红线到位后必须整体重算。"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 2225453.143207,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints))",
+   "confidence": "low",
+   "assumptions": [
+    "面积基于总体设计范围临时替代边界在 EPSG:4548 下复算；官方红线到位后必须整体重算。",
+    "建筑基底为概念体量示意，不代表现状建筑、权属或审定建设规模。"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.255468,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "面积基于总体设计范围临时替代边界在 EPSG:4548 下复算；官方红线到位后必须整体重算。"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.084533,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "面积基于总体设计范围临时替代边界在 EPSG:4548 下复算；官方红线到位后必须整体重算。"
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_areas.features)",
+   "confidence": "high",
+   "assumptions": [
+    "面积基于总体设计范围临时替代边界在 EPSG:4548 下复算；官方红线到位后必须整体重算。"
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 2915607.537664,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/land_use.geojson"
+   ],
+   "formula": "area(union(land_use where code in {1401,1402})) == area(union(green_space))",
+   "confidence": "medium",
+   "assumptions": [
+    "面积基于总体设计范围临时替代边界在 EPSG:4548 下复算；官方红线到位后必须整体重算。"
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 964758.926373,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/land_use.geojson"
+   ],
+   "formula": "area(union(land_use where code == 1403)) == area(union(public_space))",
+   "confidence": "medium",
+   "assumptions": [
+    "面积基于总体设计范围临时替代边界在 EPSG:4548 下复算；官方红线到位后必须整体重算。"
+   ]
+  },
+  "road_network_length_m": {
+   "status": "known",
+   "value": 41275.326503,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(length(road_centerlines))",
+   "confidence": "medium",
+   "assumptions": [
+    "面积基于总体设计范围临时替代边界在 EPSG:4548 下复算；官方红线到位后必须整体重算。"
+   ]
+  },
+  "greenway_length_m": {
+   "status": "known",
+   "value": 15046.621615,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(length(road_centerlines where road_class == 'greenway'))",
+   "confidence": "medium",
+   "assumptions": [
+    "面积基于总体设计范围临时替代边界在 EPSG:4548 下复算；官方红线到位后必须整体重算。"
+   ]
+  },
+  "land_use_coverage_ratio": {
+   "status": "known",
+   "value": 1.0,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "area(union(land_use)) / site_area_sqm",
+   "confidence": "high",
+   "assumptions": [
+    "面积基于总体设计范围临时替代边界在 EPSG:4548 下复算；官方红线到位后必须整体重算。"
+   ]
+  },
+  "building_density_ratio": {
+   "status": "known",
+   "value": 0.194996,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_footprint_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "面积基于总体设计范围临时替代边界在 EPSG:4548 下复算；官方红线到位后必须整体重算。",
+    "概念设计量，不等于法定建筑密度控制值。"
+   ]
+  },
+  "pilgrimage_landmark_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(public_space where is_pilgrimage_landmark == true)",
+   "confidence": "high",
+   "assumptions": [
+    "面积基于总体设计范围临时替代边界在 EPSG:4548 下复算；官方红线到位后必须整体重算。"
+   ]
+  },
+  "phase_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "count(phasing.features)",
+   "confidence": "high",
+   "assumptions": [
+    "面积基于总体设计范围临时替代边界在 EPSG:4548 下复算；官方红线到位后必须整体重算。"
+   ]
+  },
+  "ai_scenario_node_count": {
+   "status": "known",
+   "value": 13,
+   "unit": "count",
+   "source_files": [
+    "geometry/constraints.geojson"
+   ],
+   "formula": "count(constraints.features where layer == SCENARIO_NODE)",
+   "confidence": "high",
+   "assumptions": [
+    "面积基于总体设计范围临时替代边界在 EPSG:4548 下复算；官方红线到位后必须整体重算。"
+   ]
+  },
+  "industry_test_scenario_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/constraints.geojson"
+   ],
+   "formula": "count(scenario_nodes where scenario_kind == industry_test)",
+   "confidence": "high",
+   "assumptions": [
+    "面积基于总体设计范围临时替代边界在 EPSG:4548 下复算；官方红线到位后必须整体重算。"
+   ]
+  }
+ }
+}
