@@ -5,7 +5,6 @@ language: "zh"
 license: "CC-BY-4.0"
 summary: "以结构工程独特视角切入百年京张AI创新带城市设计，提出京张铁路工业遗址结构改造为AI算力载体，策略①工业遗址重型算力建筑改造、②京张遗址钢结构加层、③三区两翼智能基础设施结构体系，三区（众智园192ha/AI原点社区104ha/大钟寺72ha）两翼（中关村科技服务翼/小月河场景赋能翼），三地标（京张结构之环/众智算力之脊/AI原点之芯）。覆盖AI创新生态、12张场景卡、5类用户画像、3个AI测试验证场景、7个全球案例。所有空间边界均为临时粗略边界（provisional），方案不替代正式规划。
 proposal_format_version: "2"
-bilingual_contract_version: "1"
 ---
 
 [data:geometry/site_boundary.geojson#PROV-SITE-001]
