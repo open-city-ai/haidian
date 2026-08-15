@@ -43,6 +43,12 @@ def write_valid_visual_package(root: Path) -> Path:
 
 
 class VisualReviewTests(unittest.TestCase):
+    def declare_visual_asset(self, submission: Path, rel_path: str) -> None:
+        (submission / "manifest.json").write_text(
+            json.dumps({"files": [{"path": rel_path}]}),
+            encoding="utf-8",
+        )
+
     def test_valid_static_visual_passes(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             submission = write_valid_visual_package(Path(tmp))
@@ -74,6 +80,76 @@ class VisualReviewTests(unittest.TestCase):
             report = review_visual(submission)
             self.assertFalse(report.ok)
             self.assertIn("VISUAL_REMOTE_OR_ACTIVE_CONTENT", {issue.check_id for issue in report.issues})
+
+    def test_remote_css_and_active_javascript_fail_even_when_undeclared(self) -> None:
+        for rel_path, content in (
+            ("visual/assets/theme.css", '@import url("https://cdn.example.com/theme.css");'),
+            ("visual/assets/nested/runtime.js", 'fetch("https://example.com/data.json");'),
+        ):
+            with self.subTest(rel_path=rel_path), tempfile.TemporaryDirectory() as tmp:
+                submission = write_valid_visual_package(Path(tmp))
+                asset = submission / rel_path
+                asset.parent.mkdir(parents=True, exist_ok=True)
+                asset.write_text(content, encoding="utf-8")
+
+                report = review_visual(submission)
+
+                self.assertFalse(report.ok)
+                issue = next(
+                    item
+                    for item in report.issues
+                    if item.check_id == "VISUAL_REMOTE_OR_ACTIVE_CONTENT"
+                    and item.path == rel_path
+                )
+                self.assertTrue(issue.message)
+
+    def test_declared_non_utf8_visual_code_asset_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            rel_path = "visual/assets/runtime.js"
+            asset = submission / rel_path
+            asset.parent.mkdir(parents=True, exist_ok=True)
+            asset.write_bytes(b"\xff\xfe")
+
+            report = review_visual(submission)
+
+            self.assertFalse(report.ok)
+            self.assertTrue(
+                any(issue.path == rel_path and "UTF-8" in issue.message for issue in report.issues)
+            )
+
+    def test_declared_local_visual_code_assets_pass(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            rel_path = "visual/assets/theme.css"
+            asset = submission / rel_path
+            asset.parent.mkdir(parents=True, exist_ok=True)
+            asset.write_text("body { background: url(icons/grid.svg); }", encoding="utf-8")
+            self.declare_visual_asset(submission, rel_path)
+
+            report = review_visual(submission)
+
+            self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
+
+    def test_symlinked_visual_asset_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            submission = write_valid_visual_package(root)
+            assets = submission / "visual" / "assets"
+            assets.mkdir()
+            external = root / "external.js"
+            external.write_text('fetch("https://example.com/data.json")', encoding="utf-8")
+            (assets / "runtime.js").symlink_to(external)
+
+            report = review_visual(submission)
+
+            self.assertFalse(report.ok)
+            self.assertTrue(
+                any(
+                    issue.path == "visual/assets/runtime.js" and "symbolic links" in issue.message
+                    for issue in report.issues
+                )
+            )
 
     def test_autoplay_media_fails(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

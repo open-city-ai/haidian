@@ -21,6 +21,7 @@ from typing import Iterable
 from front_matter import parse_front_matter
 from git_blob_hashes import git_blob_sha256
 from metric_types import is_json_number
+from visual_asset_safety import visual_code_asset_issues
 
 
 POLICY_ROOT = Path(__file__).resolve().parents[1]
@@ -2532,6 +2533,8 @@ def validate_ai_package_dir(
                 f"{proposal_dir}/visual/{visual_name}",
                 translation_advisory=visual_name != "index.html" and not strict_bilingual,
             )
+    for rel_path, message in visual_code_asset_issues(base):
+        report.add_error(f"{proposal_dir}/{rel_path}: {message}")
 
     for geometry_name in sorted(ALLOWED_GEOMETRY_FILES):
         geometry_path = base / "geometry" / geometry_name

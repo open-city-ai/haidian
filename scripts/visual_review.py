@@ -44,6 +44,7 @@ from pathlib import Path
 from typing import Any
 
 from metric_types import is_json_number
+from visual_asset_safety import visual_code_asset_issues
 
 
 REQUIRED_TEXT_MARKERS = [
@@ -171,6 +172,8 @@ def review_visual(submission_dir: Path) -> VisualReport:
     for pattern, message in FORBIDDEN_PATTERNS:
         if pattern.search(text):
             report.add("VISUAL_REMOTE_OR_ACTIVE_CONTENT", "blocking", display_path, message)
+    for rel_path, message in visual_code_asset_issues(submission_dir):
+        report.add("VISUAL_REMOTE_OR_ACTIVE_CONTENT", "blocking", rel_path, message)
 
     plain = re.sub(r"<[^>]+>", " ", text)
     plain = html.unescape(re.sub(r"\s+", " ", plain))
