@@ -12,7 +12,9 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 ---
 # Jing-Zhang In Place
 
-Jing-Zhang is not a blank line to fill with AI. Running rail, parallel transit, open and in-delivery park works, controlled campuses, innovation carriers, everyday commerce, water and heritage make an existing city with unequal status, permissions and sections. The first judgment is to keep that city working, then admit AI only where there is a real task and a verifiable spatial consequence.
+Jing-Zhang is not a blank line to fill with AI. Running rail, parallel transit, open and in-delivery park works, controlled campuses, innovation carriers, everyday commerce, water and heritage make an existing city with unequal status, permissions and sections. `STATUS × ACTION` first decides what that city may do; only where ordinary space is demonstrably insufficient can AI earn a minimum reversible spatial difference inside that action. Of 12 tasks, only S01, S04 and S07 become deep spatial packets, and all three return to ordinary city after use. [data:visual/assets/ai-spatial-admission.json#admission_chain]
+
+> Three concept handoffs: S01 / S04 / S07 | D0–30 evidence and rights | D31–60 minimum reversible interface | D61–100 bounded task | STOP / RESET; not an approved schedule. [data:visual/assets/ai-spatial-admission.json#delivery_contracts]
 
 ## Design Basis and Source List
 
@@ -32,6 +34,8 @@ The coordinated field recognises six assets: controlled research/education edges
 
 The overall field is STATUS × ACTION: BUILT_OPERATING, APPROVED_OR_IN_DELIVERY, CONTROLLED_ACCESS, SURVEY_ONLY_UNKNOWN and VERIFIED_ADAPTABLE enter RETAIN, REPAIR, OPEN_EDGE, SUBDIVIDE_RECONNECT or ADAPT/INFILL only when their condition is met. Every patch records source, limit, users, trigger, section, mobility, service, blue-green relation, role, stop and exit; replacement is not a default action. [data:visual/assets/status-action-register.json#P-N1] [metric:status_action_patch_count] [depth:land_use_layout] Street enclosure, active ground floor, threshold depth and legible service edges guide character while numeric intensity and height controls remain unconfirmed. [standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:development_intensity_controls] [depth:height_massing_character]
 
+AI Spatial Admission is not a second city spine: it is a task test inside an already permitted action. Ordinary routes, rooms, maintenance and human service work first; sufficient ordinary space, missing evidence/rights, or absent qualified human authority means ordinary carrier, removable ordinary tool or NO BUILD—not reserved construction for AI. [data:visual/assets/ai-spatial-admission.json#city_framework]
+
 ![Land use, actions and urban repair structure](assets/figures/land-use-structure.en.png)
 
 | Status | Action judgment | Boundary that cannot be crossed |
@@ -46,17 +50,32 @@ The overall field is STATUS × ACTION: BUILT_OPERATING, APPROVED_OR_IN_DELIVERY,
 
 Zhongzhiyuan is a water–compound–regional-arrival mosaic: real physical validation stays inside a surveyed carrier, separate from public river/park and reset/service space. AI Origin is a public-side campus threshold: permanent city routes never depend on campus interiors, and ordinary learning/community rooms come before any controlled state. Dazhongsi is a grade-separated station-city renewal field: four-direction accessibility, surface continuity, cycling, loading and everyday commerce are the questions, not a parcel or station-corner plan from a placeholder rectangle. [source:QINGHE-HUB] [source:CAMPUS-ACCESS] [source:GRADE-SEPARATION] This is the detailed-design depth response. [depth:three_key_area_detailed_design] The three areas must not repeat one courtyard, lobby or AI room.
 
+All three are scale-free `S0 ordinary city → S1 admitted specialist state → S2 exit/reset` typologies, with no parcel, dimension, ownership, station-exit, engineering or statutory claim. Zhongzhiyuan keeps water/route continuity while validation stays inside a carrier and equipment removal leaves maintenance and training/work; AI Origin keeps a public-side threshold and ordinary room while a removable controlled collaboration layer is staffed and cleared; Dazhongsi keeps accessible arrival and human service independent of a privacy-aware staffed review that resets to ordinary professional/community service. [data:visual/assets/ai-spatial-admission.json#interfaces]
+
 ![Three key areas and differentiated sections](assets/figures/key-areas.en.png)
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
-With AI off, public routes, mixed city life, blue-green space, ordinary rooms, human service and maintenance still work. The three deep task packets are north controlled physical validation, middle reversible secure collaboration, and south staffed adoption/compliance review; each defines human responsibility, non-AI baseline, state, TTL, minimum resource, data boundary, ordinary-space test, degraded state, stop and exit. [data:simulation.json#S01] [data:simulation.json#S04] [data:simulation.json#S07] Their count comes from structured evidence. [metric:deep_ai_task_packet_count] Other scenarios state NO BUILD where no spatial difference exists; 12 scenario cards, 3 industry tests and 8 personas cover ordinary days, evenings, weekends, weather and digital/facility failure. [metric:ai_scenario_count] [metric:industry_validation_scenario_count] [metric:persona_count] Municipal and new-infrastructure capacity still needs professional confirmation. [depth:municipal_new_infrastructure]
+With AI off, public routes, mixed city life, blue-green space, ordinary rooms, human service and maintenance still work. AI follows one planning decision: ordinary city → ordinary-space sufficiency → special condition needed? → evidence/rights/human authority → minimum reversible delta → TTL/stop/degrade → exit/reset → ordinary city. It does not replace `STATUS × ACTION` or automatically authorize spatial change. [data:visual/assets/ai-spatial-admission.json#admission_chain]
 
-| Deep task packet | Spatial difference | Human and exit condition |
-| --- | --- | --- |
-| North physical validation | Controlled test, reset/service and observation sections | Supervisor/stop; ordinary training/work after removal |
-| Middle secure collaboration | Reversible partition, acoustic/data boundary and handover | Clear on authorization expiry; restore ordinary room |
-| South adoption/compliance review | Staff sightline, private queue and ordinary service side-by-side | Stop without reviewer or current evidence; reuse as ordinary service |
+Twelve tasks are not twelve construction reasons: S01, S04 and S07 are the only deep spatial packets; the other nine keep ordinary carrier, human service, physical fallback or NO BUILD. Every row keeps human authority, TTL, stop and exit; the canonical admission source extracts the existing facts from `simulation.json`. [data:visual/assets/ai-spatial-admission.json#tasks] [metric:deep_ai_task_packet_count]
+
+| Task | Ordinary baseline / sufficiency | Spatial outcome | Human / TTL | Stop and exit/reset |
+| --- | --- | --- | --- | --- |
+| S01 physical validation | ordinary room for code/simulation; physical test insufficient | DEEP controlled test, observation, service/reset | qualified role / session | stale authority, unsafe state or route conflict; remove equipment |
+| S02 robustness | non-physical test sufficient | NO BUILD | human role / test window | unverified carrier or harm; restore carrier |
+| S03 safety review | ordinary meeting room sufficient | NO BUILD | human reviewer / evidence version | stale evidence; authorised archive/delete, ordinary room |
+| S04 controlled collaboration | ordinary learning sufficient; authorised state insufficient | DEEP reversible partition/data-acoustic edge | qualified role / booking | route/opening impact; clear resources, ordinary room |
+| S05 open learning | ordinary learning/community room sufficient | NO BUILD | facilitator / event | moderation/accessibility failure; ordinary room |
+| S06 community service | human desk and normal rooms sufficient | NO BUILD | human service / service cycle | bias/exclusion/walk-in loss; ordinary service point |
+| S07 adoption/compliance | ordinary referral sufficient; staffed privacy review insufficient | DEEP staff sightline, queue privacy, review side | qualified reviewer / as-of date | stale evidence or absent reviewer; ordinary service |
+| S08 interchange assistance | signs and staffed help sufficient | NO BUILD | human role / facility state | unverified route; ordinary wayfinding |
+| S09 maintenance | manual inspection/work order sufficient | NO BUILD | maintenance lead / inspection | no field confirmation; remove closure |
+| S10 facility notice | staff/fixed alternative sufficient | NO BUILD | operator / short window | stale status; normal signs remain |
+| S11 event boundary | manual stewarding sufficient | NO BUILD | event stop role / event | noise/light/access threshold; remove apparatus |
+| S12 evidence review | professional planning sufficient | NO BUILD | professional decision / source version | missing provenance; retain prior state |
+
+Twelve scenario cards, three industry tests and eight personas continue to cover ordinary days, evenings, weekends, weather and digital/facility failure; municipal and new-infrastructure capacity still needs professional confirmation. [metric:ai_scenario_count] [metric:industry_validation_scenario_count] [metric:persona_count] [depth:municipal_new_infrastructure]
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
@@ -72,9 +91,19 @@ Regional transit arrival, ordinary public streets, walking/accessibility, cyclin
 
 The heritage park, Qinghe, Xiaoyuehe, ordinary streets, courts/forecourts, public-side institutional thresholds and station-city arrival fields are distinct blue-green/public-realm types. Every response checks soil/root zones, drainage, shade/rain refuge, maintenance, season, night light/noise and accessibility; green/public areas are derived concept geometry, not survey or statutory values. [source:PARK-PHASE1] [source:WATER-PROJECTS] [metric:green_ratio] The public-space ratio is also a concept consistency check only. [metric:public_space_ratio] [depth:blue_green_public_space] Before delivery, every green patch needs tree/soil/water/maintenance, heat and night-impact review; where roots, drainage or maintenance safety conflict, removable elements are withdrawn and the existing maintenance condition remains.
 
+The public-rights floor does not add a new regime: an admitted specialist state cannot remove the ordinary route or task; human access, affected-user contest/stop, accessible fallback and ordinary reset must survive. [data:visual/assets/ai-spatial-admission.json#public_rights_floor]
+
 ## Renewal Projects, Implementation Policy, and Phasing
 
 Fifteen project families begin at G0 evidence/interface registration and accessibility audit. G1 makes only low-regret repairs and at most one consented reversible test in each area. G2 permits adaptive renewal after independent professional review. G3 permits infill only after measured need and official controls. G4 maintains, listens and revises evidence. Every family declares first evidence, dependencies, beneficiaries, AI/NO AI, success, stop and responsible role. [data:visual/assets/renewal-project-portfolio.json#PRJ-01] [metric:renewal_project_family_count] [depth:renewal_project_list] Phase gates and project-boundary rules are indexed separately. [depth:phasing_implementation]
+
+The 15 families do not become 15 implementation promises: only the three admitted packets receive a D0–D100 concept handoff. Each first confirms ordinary baseline, evidence, rights/access and qualified roles; then draws the minimum reversible interface and rehearses human stop; finally it records public safeguard, measurement, reset and handoff in a bounded task. Costs remain classes with pending component/quantity/procurement inputs—never a RMB total, partner, procurement or implementation commitment. [data:visual/assets/ai-spatial-admission.json#delivery_contracts]
+
+| Contract | D0–D30 | D31–D60 | D61–D100 / handoff |
+| --- | --- | --- | --- |
+| CONTRACT-S01 Zhongzhiyuan | insufficiency, carrier, rights/route and safety evidence | public/controlled/service-reset interface, supervised test and accessibility check | bounded session; measure route, safety, fallback/reset; dossier, drawing, stop/reset record |
+| CONTRACT-S04 AI Origin | public-side carrier, access/opening/affordability, rights/data and handover | removable partition/data-acoustic edge, no public-route loss | authorised session; measure access, handover, clearance/restoration; checklist, boundary, reset record |
+| CONTRACT-S07 Dazhongsi | ordinary carrier, reviewer competence, privacy/appeal, arrival and paper/phone fallback | intake/queue/privacy/review interface, human contest/stop rehearsal | bounded staffed review; measure referral, reviewer, appeal/reset; review, appeal, reset record |
 
 | Gate | Evidence requirement | Action allowed |
 | --- | --- | --- |
