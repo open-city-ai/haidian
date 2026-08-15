@@ -1,0 +1,135 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted provisional site boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Repository provisional rough boundary; not an official redline or precise-area basis."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 792279.06,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(conceptual_building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual footprints only; existing survey and statutory controls are pending."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.260912,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual network derived from provisional geometry."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.114351,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual public-space system derived from provisional geometry."
+      ]
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 14271.8,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(conceptual_slow_mobility_lines))",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual alignments; not road redlines or engineering centerlines."
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenario_nodes.json"
+      ],
+      "formula": "count(scenario_nodes)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phasing_features)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required_key_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "Official area values are known; submitted polygons remain provisional."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official precise boundary are not present in the cleared site package."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official control condition",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official height, aviation, heritage and skyline controls are pending."
+    }
+  }
+}
