@@ -76,6 +76,8 @@ class ProcessedDataTests(unittest.TestCase):
         self.assertIn("GAP-BOUNDARY-002", gaps)
         self.assertIn("official polygon", gaps["GAP-BOUNDARY-001"]["missing_item"])
         self.assertIn("official KEY_AREA polygon", gaps["GAP-BOUNDARY-002"]["missing_item"])
+        self.assertIn("站点/道路锚定关系", gaps["GAP-BOUNDARY-002"]["missing_item"])
+        self.assertIn("未完成地物/站点锚定核验", gaps["GAP-BOUNDARY-002"]["agent_rule"])
 
     def test_source_registry_lists_processed_local_paths(self) -> None:
         registry = json.loads((ROOT / "data" / "source_registry.json").read_text(encoding="utf-8"))
