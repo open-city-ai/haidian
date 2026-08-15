@@ -16,6 +16,8 @@ iteration: "v1.0"
 
 > A century of self-reliance on one railway, the intelligent pulse of a city.
 
+> **Down-Precision Unified Statement (Conceptual Suggestion / Reference Scheme):** All planning-control indicators in this proposal (building height, floor-area ratio, building density, green-space ratio, setback), the retain–renovate–demolish–build classification, TOD transport organization, municipal capacity, policy incentives, and implementation phasing are **conceptual suggestions and reference schemes** based on public information, for professional teams to deepen through research only. **They are not a basis for approval, land grant, engineering, or investment decisions.** Formal control conditions follow official regulatory detailed plans, special plans, and approval documents. Any value tagged `provisional_assumption` / `missing` / `NEEDS OFFICIAL DATA` is not an approved indicator and must be recomputed — with the `manifest` hashes refreshed — once official data is supplied.
+
 ## 1. Design Basis and Source Inventory
 
 This proposal is generated on the basis of publicly available and rights-cleared materials. The core source system is centrally registered in `source_registry.json` (i.e., `sources.json`), encompassing four categories of sources: official announcements, government documents, public reporting, and academic literature [source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT]. Each source is annotated with an authority level — A0 (primary official document), A1 (derivative official information), provisional, or web_research — and with explicit usage restrictions, enabling downstream reviewers to verify provenance and limitations independently.
@@ -404,3 +406,32 @@ Official areas are taken directly from the Pre-Announcement text (known, high co
 ## AI Innovation Ecosystem, Talent Personas & AI+ Scenarios
 
 See Chinese version for full content. This section covers AI innovation ecosystem design, 6 talent personas, 12 AI+ scenario cards, and 3 AI landmark destinations.
+
+
+## 14. Recent Pilot Project Cards & Public-Interest Impact Assessment (Phase D, Substantive)
+
+This chapter is the Phase D substantive fill (task #38). Cards are bound to Haidian urban-renewal policy and near-term carriers (Heritage Park Phase II, Dazhongsi TOD, Beijing AI Origin Community, scenario cards S01–S06); responsible entities and resource scales are indicative and require formal confirmation.
+
+### 14.1 Recent Pilot Project Cards
+
+| Card | Name | Responsible entity (indicative) | Scope | Resource scale (provisional) | O&M | Data governance | Human fallback | Accessibility alt. | KPI | Stop condition | Reversible exit |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| P1 | Heritage Park Phase II full 9km continuity | Haidian Gardening Bureau / Park Mgmt | 9km green corridor, 5 clusters, boundary demolition & stitching | Investment per gov. annual plan | Park ops + subdistrict | Anonymous video aggregation | Security monitoring | Accessible paths & signage | Continuity rate, carrying capacity | Safety/heritage risk | Segmented, reversible |
+| P2 | Dazhongsi Station TOD launch zone | Beijing TTD / Haidian Planning | Station mixed-use + slow-traffic interface | Station scheme pending rail authority | TOD integrated ops | Anonymous real-time flow | Manual dispatch | Accessible transfer | TOD coverage | Rail conditions unmet | Phased dev. |
+| P3 | Beijing AI Origin Community deepening | Haidian Park Mgmt / THU-PKU synergy | Origin Plaza + accelerator + public living room | Per regulatory plan & annual invest. | Community ops + dev. community | Learning/behavior de-id | Teacher/expert review | Age-friendly design | Incubated firms | Tenure/heritage conflict | Modular, reversible |
+| P4 | Scenario cards S01–S06 scale-up | Park ops + scenario operators | Park/community/campus scenario network | Operator self-fund + pilot subsidy | Sandbox + operator | Minimal necessary/authorized | Per-scenario human review | Closeable/exportable | Scenario coverage | Privacy/safety incident | Stop & exit immediately |
+| P5 | Zhongzhiyuan national AI compute platform | Haidian Gov. / compute operator | Around northern ecological reserve | Investment TBD (provisional) | Compute scheduling ops | Experiment data stays in sandbox | Security range fencing | Int'l talent housing | Compute scale / talent density | Energy/safety exceed | Elastic downscale |
+| P6 | Xiaoyuehe embodied-AI test zone (S11) | Enterprise pilot + gov. regulator | Xiaoyuehe wing confined area | Pilot special (provisional) | Fencing + e-stop | Confined-area perception | In-fence + e-stop | Public隔离 belt | Test pass rate | Safety accident | Site withdrawal reversible |
+
+### 14.2 Public-Interest Impact Assessment (Six Dimensions)
+
+| Dimension | Assessment focus | Proposal response | Risk & mitigation |
+|---|---|---|---|
+| Equity | Worsening digital divide | Public living room / smart library universal; AI training in community | Elderly/low-income under-coverage → keep human window & free access |
+| Privacy | Data minimization & rights | Anonymous video, de-id learning, closeable/exportable | Boundary-scenario retention → sandbox + min retention + audit |
+| Accessibility | Physical/digital barrier-free | Accessible paths/transfer/age-friendly; multilingual translation | Lagging old-area renewal → phasing + temporary alt routes |
+| Employment | Substitution vs. new | New AI R&D/ops/maintenance jobs; retain renovation jobs | Automation substitution → reskilling + incubation |
+| Environment | Energy/carbon/blue-green | Distributed energy + sponge city + blue-green composite | Compute energy → green power + efficiency caps |
+| Reversibility | Exit cost & social impact | Modular/segmented/sandbox, stop & exit | Heavy-asset sunk → light-asset pilot first |
+
+- Note: The cards and assessment above are the Phase D substantive fill. Responsible entities and resource scales are indicative and require formal confirmation, annual investment plans, and special-plan approval before implementation; they do not constitute a determined project or investment commitment.
