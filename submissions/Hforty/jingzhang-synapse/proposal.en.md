@@ -36,7 +36,7 @@ The proposal is implemented across three spatial tiers, forming a working framew
 
 **Tier 1: Coordinated Research Scope (approximately 43.6 km²) — Regional Innovation Coordination.** This tier responds to Pre-Announcement Section 1.3, addressing questions of industrial strategy and future urban form. Within the scope, the proposal coordinates the innovation resources of the Zhongguancun Science City core area, 37 universities including Tsinghua University, Peking University, and the Chinese Academy of Sciences (CAS), 106 national-level research institutions, and the spatial distribution of 95,000 AI talents [source:SRC-2026-BJ-KW-THREE-AREAS-WINGS]. Some public reports cite an approximately 37 km² coordinated research scope, which differs from the Pre-Announcement text figure of 43.6 km²; this proposal follows the Pre-Announcement text. The coordinated research scope connects outward to the Northern Latitude Community (Haidian northern AI industrial expansion zone), Future Science City (Huairou Science City), the Economic and Technological Development Zone (Yizhuang high-precision manufacturing), and the Beijing-Tianjin-Hebei collaborative innovation network, forming a four-pole Beijing AI innovation configuration of "Jing-Zhang Innovation Belt — Northern Latitude Community — Future Science City — Economic Development Zone" [source:SRC-2026-HAIDIAN-GOV-REPORT]. Design depth: strategic research and conceptual framework.
 
-**Tier 2: Overall Design Scope (approximately 11.4 km²) — Regulatory-Depth Urban Design.** This tier responds to Pre-Announcement Section 1.4, achieving the urban design depth of regulatory detailed planning [standard:MOHURD-CONTROL-DETAILED-PLANNING]. Within the scope, spatial structure, functional layout, transportation organization, blue-green systems, urban character, and overall building volume control are implemented. The geometric recomputation yields an area of 11,427,387 m² (approximately 11.43 km²), which is essentially consistent with the Pre-Announcement text figure of 11.4 km² [metric:site_area]. Design depth: regulatory-depth urban design.
+**Tier 2: Overall Design Scope (approximately 11.4 km²) — Regulatory-Depth Urban Design.** This tier responds to Pre-Announcement Section 1.4, achieving the urban design depth of regulatory detailed planning [standard:MOHURD-CONTROL-DETAILED-PLANNING]. Within the scope, spatial structure, functional layout, transportation organization, blue-green systems, urban character, and overall building volume control are implemented. Caliber note: the official Pre-Announcement text states approximately 11.4 km² (textual caliber, high confidence); this package's provisional geometric recomputation yields approximately 12.0 km² (provisional_rough, hand-drafted provisional boundary, to be recalculated once the official redline is released, with the official figure prevailing) [metric:site_area][metric:site_area_official_sqm]. Design depth: regulatory-depth urban design.
 
 **Tier 3: Key Areas (approximately 368.4 ha) — Detailed Design.** This tier responds to Pre-Announcement Section 1.5, achieving the depth of a comprehensive planning implementation scheme for each of the three key areas. The Zhongzhiyuan AI Self-Innovation Acceleration Zone (north, 192.1 ha), the Beijing AI Origin Community (central, 104.3 ha), and the Dazhongsi AI Industry Agglomeration Zone (south, 72.0 ha), totaling 368.4 ha [data:geometry/key_areas.geojson]. Design depth: comprehensive planning implementation scheme.
 
@@ -221,6 +221,20 @@ In the following scenario cards, S01–S09 are deployed or near-term deployable 
 
 All scenarios follow three prohibition boundaries: no privacy infringement, no excessive surveillance, no absence of human review. Test/validation scenarios (S10–S12) are explicitly marked as "testing/validation" status, not approved for operation [standard:GENERATIVE-AI-INTERIM-MEASURES]. The Xiaoyue River Scenario Empowerment Wing carries embodied intelligence and life-service scenarios such as S11, forming a "scenario — space — operations" mapping matrix [depth:ai_scenario_cards].
 
+### 6.3 Vulnerable-Group Journeys and Accessibility Design
+
+To prevent AI scenarios from widening the digital divide, five vulnerable groups receive dedicated spatial and service designs (design suggestions only, not approved projects; implementation depends on annual government investment plans and dedicated planning approvals) [source:SRC-2023-BARRIER-FREE-ENVIRONMENT-LAW][standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]:
+
+| Group | Main Barriers | Spatial Response | Service Response | Fallback |
+|---|---|---|---|---|
+| Elderly (60+, incl. solo / disabled) | Unfamiliar with digital tools; AI response speed varies | Public living rooms keep offline counters and large-print signs; park benches every 200 m; enhanced night lighting | Smart reading rooms offer "1-on-1 escort for elderly"; AI medical consultation forced hand-off to human; voice replaces touch screen | 24h community call center (human) + home visits |
+| Disabled (visual / hearing / mobility) | Physical accessibility; information accessibility | Full barrier-free continuity (ramps ≤ 1:12, continuous tactile paving, lowered counters); audio-visual dual-channel wayfinding; tactile maps | AI sign-language screen, captioned wayfinding, hearing-impaired one-key text customer service | Disability service specialist on site; direct service complaint channel |
+| Child caregivers (parents of 0–12) | Stroller access; temporary childcare; child safety | Step-free stroller paths throughout park; nursery rooms and child toilets every 500 m; safety enclosures | Smart reading rooms with parent-child corner; AI education agents cap continuous usage with forced breaks | On-site care volunteer rotation |
+| Low-income groups | Device barrier; network barrier; trust barrier | Public living rooms with free WiFi and shared tablets; AI scenarios with "free trial lane" | AI interview / legal consultation keeps human counters and free time slots; no mandatory App download | Government / social-work referral channel |
+| Non-smartphone users | Feature phones only or no terminal | Park phone-booth style "one-key inquiry"; community bulletin boards updated daily | Customer service center face-to-face; paper activity calendar distributed weekly | Community grid worker door-to-door notification |
+
+**Universal principles:** (1) Every AI scenario must provide a "human-replaceable" button (voice / touch / in-person, any one); (2) Public spaces are designed and accepted together under the Barrier-Free Environment Construction Law and Urban Design Management Measures [standard:MOHURD-URBAN-DESIGN-MEASURES]; (3) No unnecessary biometric data on vulnerable groups, following the generative-AI interim measures minimization principle [standard:GENERATIVE-AI-INTERIM-MEASURES].
+
 ## 7. Land Use, Building Scale, and Retain-Convert-Demolish Plan
 
 ### 7.1 Land Use Layout
@@ -356,14 +370,16 @@ Stock-renewal incentives (FAR bonuses for converting underutilized industrial sp
 
 ### 11.1 Core Metrics
 
-`metrics.json` records the calculation formulas, source files, and confidence levels for all metrics [metric:site_area]. Core metrics include:
+`metrics.json` is the single source of truth for all publicly displayed metrics (see the metrics truth table in `changelog.md`); different calibers are listed separately below and must not be mixed across files. Core metrics include:
 
-- Overall design scope area: 11,427,387 m² (approximately 11.43 km²), confidence medium [metric:site_area]
-- Total land-use area: 12,963,543 m² (including bounding-box outer rectangle), confidence medium [metric:land_use_total]
-- Green space area: 2,728,517 m² (green ratio 23.9%), target ≥30% [metric:green_space_ratio]
-- Public space area: 607,814 m² [metric:public_space_area]
-- Total key area: 369.8 ha (official area 368.4 ha) [metric:key_areas_total]
+- Overall design scope area: official Pre-Announcement approximately 11.4 km² (textual caliber, high confidence); provisional geometric recomputation 12,000,000 m² (approximately 12.0 km², provisional_rough) [metric:site_area][metric:site_area_official_sqm]
+- Total land-use area: 12,000,000 m² (provisional geometric partition sum, provisional_rough) [metric:land_use_total]
+- Green space area: 2,385,000 m² (green ratio 19.875%, provisional_rough), target ≥30% [metric:green_ratio]
+- Public space area: 600,000 m² (public space ratio 5.0%, provisional_rough) [metric:public_space_ratio]
+- Total key area: 368.4 ha = Zhongzhiyuan 192.1 ha + Beijing AI Origin Community 104.3 ha + Dazhongsi 72.0 ha (official caliber; provisional geometric recomputation under the same caliber) [metric:key_areas_total_ha]
 - Building count: 15 (conceptual massing) [metric:building_count]
+
+Caliber disambiguation (must not be mixed): (1) 11.4 km² = announced overall design scope (official text); (2) 12.0 km² = this package's provisional-boundary geometric recomputation (provisional); (3) 16.68 km² (1,668.2 ha) = Beijing MUNR block regulatory plan approval extent (background reference, source pending central source-registry review, not this package's design scope); (4) 43.6 km² = announced coordinated research scope. Earlier coarse estimates of green/public-space ratios (18.1%/4.3%) are superseded; the canonical values are 19.875%/5.0% (provisional geometric recomputation).
 
 ![Metrics Evidence](assets/figures/metrics-evidence.png)
 

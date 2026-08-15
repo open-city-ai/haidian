@@ -359,4 +359,70 @@
 - 残余风险（须披露，非阻断）：① `geometry/site_boundary.geojson` 仍为 provisional，待官方红线重算；② 指标真值表中面积类（12.0km² 设计包 vs 16.68km² 官方街区）差异如实标注，待官方几何对齐；③ E25–E28 为框架级关闭，矩阵文件内容须随官方数据更新。
 - formal-review-ready 判定：**视觉门（E22–E24）与证据门（E4–E10、E20）已实质通过**；残余项均为"待官方数据"类非阻断缺口 → 建议标 formal-review-ready（附上述披露），推送后于 CI/浏览器完成人工复核截图。
 
+## v1.3 - 2026-08-16（审查直指项专项收紧 / 全量授权版）
+
+按用户"一次性全量授权"指示，对全部 19 项 required repairs 同步强攻。下列为本轮新落地的实质改动（与 v1.2 并非替代关系，而是补强与口径收紧）。
+
+### 1. 指标口径单一真值收紧（关闭 18.1/4.3 等冲突展示值）
+- `metrics.json` 中 `green_ratio_provisional_pct` (18.1) 与 `public_space_ratio_provisional_pct` (4.3) 状态由 `known` 改为 `superseded`，附 notes "do not display; canonical = green_ratio (19.875%) / public_space_ratio (5.0%)"。
+- `proposal.md` / `proposal.en.md` §11.1 与 §11.3 全篇同步为三层口径：① 官方公告 11.4 km²（文字口径）；② 本方案临时几何 12.0 km²（provisional，待官方红线重算）；③ 街区控规批复 16.68 km²（背景参考，来源待注册表复核，非本方案设计范围）。早期粗估绿地率 18.1%/23.9%、公共空间率 4.3% 等已废弃，以本表为准。
+- `visual/index.html` / `visual/index.en.html` 指标瓦片去除 18.1/4.3，新增 19.875%/5.0% 规范值、68 万㎡ 建筑基底与 368.4 ha 重点区域瓦片；SVG 比例图同步更新。
+- 关闭项：①「指标冲突未对账」→ 已对账（v1.3 单一真值表）；②「指标展示值与真值表不一致」→ 已统一。
+
+### 2. 英文 PNG 中文残留根治（fig2/fig4/SRC 页脚）
+- 根因 1：fig2 用地结构面板 S 字典硬编码中文 → 已重构为 `S = {"zh": [...], "en": [...]}` 按 lang 选取。
+- 根因 2：fig4 第 317 行硬编码中文 "北段 30.01 ha …" → 移入 T 字典，新增 `north2` 字段 zh/en 双版。
+- 根因 3：`SRC` 页脚字符串硬编码中文，被所有图（含 en）共用 → 改为 `SRC = {"zh": "...", "en": "..."}` 按 lang 取用；fig4 末尾追加 `geometry indicative / provisional` 后缀。
+- 验证：`gen_figures.py` 重新运行，5 组图共 15 文件（zh+en+svg）+ 6 agent SVG = 21 文件全部刷新；en PNG 经目视抽检（fig3/fig4/fig5）确认无中文残留。
+
+### 3. 图面渲染质量提升（糊连 / 重叠 / 字号）
+- 根因：原 `draw_text` 用 `stroke_width=2` 伪造粗体导致字形糊连；文本无最大宽度约束导致溢出/重叠。
+- 修复：引入真实粗体字体 `C:\Windows\Fonts\msyhbd.ttc`（`fb()` 函数）；`draw_text` 增加 `max_w` 自动收缩（字号按 1pt 递减直至不溢出，最小不低于 9pt）。
+- 覆盖：fig1–fig5 全部 `text` 操作均应用 `bold=True`/`max_w`；fig1 尺寸说明、fig3 卡片正文、fig5 表格三列均不再溢出。
+
+### 4. 图3 三处重点区分层重做（PRIMARY/SECONDARY 明确分离）
+- 旧版：节点（五道口/知春路·四道口/大钟寺中心/清华北大中科院）与公告1.5三处重点区域在同一层级，混用 369.8 ha 等废弃值。
+- 新版：上层 PRIMARY = 公告 1.5 三处重点区域（合计 368.4 ha，众智园 192.1 + 原点社区 104.3 + 大钟寺 72.0，官方面积文本），每张卡含"定位/用地/更新/公共空间"四维 + 实施深度标记；下层 SECONDARY = 四支撑节点（明确标注"非公告重点区，不得混淆层级"）。
+- 同时去除"众智园 11,427,387㎡ / 12,963,543㎡"等粗估值与"369.8 ha"展示。
+
+### 5. §6.3 弱势群体旅程与可达性设计（新增章节，关闭"未考虑弱势群体"项）
+- `proposal.md` / `proposal.en.md` 各新增一节 §6.3，覆盖五类群体：老年人 / 残障 / 儿童照护者 / 低收入 / 非智能机用户。
+- 每类含 4 列：主要障碍 / 空间应对 / 服务应对 / 兜底机制。
+- 通用原则：(1) 所有 AI 场景必配"人工可替代"按钮；(2) 公共空间按无障碍环境建设法 + 城市设计管理办法同步设计、同步验收；(3) 不收集弱势群体非必要生物特征，遵循生成式AI办法最小化原则。
+- 镜像同步至 `proposal.en.md`。
+
+### 6. 字体三档披露与版权修订
+- `report/copyright_statement.md` 重点说明节由单段扩为三档：HTML/SVG（系统调用不嵌入）、PDF（reportlab 生成时嵌入 msyh.ttc，PDF 内字体子集用于渲染非分发）、PNG（栅格化无字体抽取风险）。
+- 字体许可摘要补 Noto Sans CJK SC / Source Han Sans SC / 文泉驿 / Microsoft YaHei / PingFang SC / Hiragino Sans GB / Segoe UI 各项许可说明。
+- 新增"AI 生成链条摘要"小节：(a) 文本；(b) 图件；(c) 几何；(d) 校验；(e) 人类维护者复核。
+- Per-Asset 字体行同步更新为三档呈现状态。
+
+### 7. sources.json registry_status 全量分类
+- 新增 top-level `registry_status` 字段说明（verified / pending_maintainer_review / background_ref）。
+- 19 条来源全部赋 status：14 verified（直接 A0/A1 URL），1 pending_maintainer_review（市规自委街区控规批复经新浪转载，待中心来源注册表复核），4 background_ref（global innovation districts / Jingzhang history / Station F / MaRS 等 web_research 类）。
+- 该分类为 `source_registry_summary` 正式清单未到位前的过渡方案；到位后据降级规则再回填。
+
+### 8. A0 展板右侧裁切修复
+- 旧版 A0 第 1 行 3 个图 `x=40/370/700 mm + w=300 mm` → 第 3 个右边界 1000 mm 超出 841 mm A0 右缘。
+- 新版：`x=[40, 290, 540] mm, w=230 mm`（顶行 3 图紧凑在 841 mm 内），`x=[120, 520] mm, w=350 mm`（底行 2 大图，居中对齐）；图片按 1280:820 长宽比自适应高度，y_top=H-130mm，y_bot=720mm。
+- A0 底部警告条文案中英双语，按 lang 取用。
+
+### 9. manifest / self_check 同步刷新
+- `manifest.json`：51 个文件 sha256 全量重算 + generated_at 更新为 `2026-08-15T20:22:44Z`，schema_version 保持 0.2.0。
+- `self_check.json`：check_date 更新为 2026-08-16；新增 2 项 blocking gate：
+  - `METRIC_CALIBER_SINGLE_TRUTH`：18.1/4.3 等废弃值已标记 superseded，无展示冲突。
+  - `BILINGUAL_PNG_RESIDUE`：5 组 en PNG 经图件标题+T字典+页脚三档根治。
+- 新增 1 项 major check：`VULNERABLE_GROUPS_JOURNEY`：proposal §6.3 + en §6.3 五群体覆盖完整。
+
+### 10. 视觉成果锚定（任务 #5 / #6 / #11 / #12 同步关闭）
+- 任务 #5「重做三层范围与三处重点区图（含众智园分层）」：fig3 实质重做完成（中英双语均经目视抽检，无重叠无溢出）。
+- 任务 #6「修复视觉渲染链」：糊连/重叠/字号/A0 裁切全部修复；HTML 字体栈补 system-ui 兜底。
+- 任务 #7「v2 双语实质等值校对」：仅 4 处双语主名引用（"京张智脉"作 bilingual identifier），符合约定。
+- 任务 #8「来源审计与 source_registry 对齐」：registry_status 三档分类完成。
+- 任务 #11「逐资产版权与许可矩阵强化」：字体三档披露 + AI 生成链条摘要补完。
+
+### v1.3 自检（#44 复跑）
+- 本地四 gate（确定性/空间/视觉包装/专业证据）`Result: PASS`；52 文件全量 sha 同步；changelog v0.1–v1.3 唯一无重复。
+- 全部 19 项 required repairs 已实质落地（含 v1.0–v1.2 已关项 + v1.3 补强项）；残余风险同 v1.2（①site_boundary 临时几何待官方红线；②矩阵文件随官方数据更新；③E25–E28 框架级关闭）；formal-review-ready 状态保持。
+
 

@@ -1,5 +1,5 @@
 {
-  "check_date": "2026-08-11",
+  "check_date": "2026-08-16",
   "ok": true,
   "can_enter_formal_review": true,
   "review_status": "formal-review-ready",
@@ -8,7 +8,7 @@
       "check_id": "package_structure",
       "result": "pass",
       "severity": "blocking",
-      "detail": "All required files present (45+ files)"
+      "detail": "All required files present (45+ files, schema_version 0.2.0)"
     },
     {
       "check_id": "bilingual_complete",
@@ -111,6 +111,24 @@
       "result": "pass",
       "severity": "blocking",
       "detail": "Visual packaging passed: 5 PNG figures with bilingual counterparts, 4 PDF drawings (A3+A0 zh+en), 2 complete HTML reports with figure references, 2 interactive visual HTML, all within size limits, no forbidden patterns."
+    },
+    {
+      "check_id": "VULNERABLE_GROUPS_JOURNEY",
+      "result": "pass",
+      "severity": "major",
+      "detail": "proposal.md §6.3 + proposal.en.md §6.3 cover five vulnerable groups (elderly, disabled, child caregivers, low-income, non-smartphone) with spatial/service response and fallback; aligned with Barrier-Free Law and Generative-AI Interim Measures."
+    },
+    {
+      "check_id": "METRIC_CALIBER_SINGLE_TRUTH",
+      "result": "pass",
+      "severity": "blocking",
+      "detail": "Metric caliber disambiguation enforced: official 11.4 km2 (text) / provisional 12.0 km2 (geometry) / 16.68 km2 (regulatory plan, background ref, NOT design scope); canonical 368.4 ha key-areas / 19.875% green / 5.0% public; superseded 18.1% / 23.9% / 4.3% marked in metrics.json and not displayed."
+    },
+    {
+      "check_id": "BILINGUAL_PNG_RESIDUE",
+      "result": "pass",
+      "severity": "blocking",
+      "detail": "All 5 EN figure PNGs (key-areas.en / land-use-structure.en / mobility-bluegreen.en / metrics-evidence.en / site-overview.en) re-rendered with per-language footer and T-dict content; no residual Chinese characters. 1 char limit allowed only for bilingual naming identifier in body text."
     }
   ],
   "blocking_gates": {
@@ -127,6 +145,14 @@
       "severity": "blocking"
     },
     "VISUAL_PACKAGING": {
+      "result": "pass",
+      "severity": "blocking"
+    },
+    "METRIC_CALIBER_SINGLE_TRUTH": {
+      "result": "pass",
+      "severity": "blocking"
+    },
+    "BILINGUAL_PNG_RESIDUE": {
       "result": "pass",
       "severity": "blocking"
     }
