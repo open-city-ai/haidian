@@ -125,4 +125,4 @@ AI-off 时，公共路径、混合城市、蓝绿、普通房间、人工服务�
 
 ## 参考资料
 
-完整来源索引记录发布者、链接、日期、权限、可支持和不可支持的结论；假设索引记录影响和关闭路径。公开资料只支持其声明的空间和时间尺度，国际案例只作方法背景。工作名称为“京张续城 / Jing-Zhang In Place”；WORKING_PRODUCTION_CANDIDATE=JINGZHANG_IN_PLACE，FINAL_WINNER=OWNER_DECISION_REQUIRED，未创建官方 PR。[source:SOURCE-REGISTRY] [source:BENCHMARK-VECTOR] [source:BENCHMARK-MILA] PlatformAI 仅作为方法背景，不作为本地服务承诺。[source:BENCHMARK-AI-SINGAPORE]
+完整来源索引记录发布者、链接、日期、权限、可支持和不可支持的结论；假设索引记录影响和关闭路径。公开资料只支持其声明的空间和时间尺度，国际案例只作方法背景。工作名称为“京张续城 / Jing-Zhang In Place”；WORKING_PRODUCTION_CANDIDATE=JINGZHANG_IN_PLACE，FINAL_WINNER=JINGZHANG_IN_PLACE。该候选标识不创建官方 PR，也不代替 Owner 对 77 分基线的比较决定。[source:SOURCE-REGISTRY] [source:BENCHMARK-VECTOR] [source:BENCHMARK-MILA] PlatformAI 仅作为方法背景，不作为本地服务承诺。[source:BENCHMARK-AI-SINGAPORE]
