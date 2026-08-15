@@ -1,4 +1,4 @@
----
+   ---
 title: "百年京张AI创新带结构再生与智能基础设施设计方案"
 author_github: "wg01-xby"
 language: "zh"
@@ -554,3 +554,4 @@ proposal_format_version: "2"
 *方案版本：v0.2.0 | 更新时间：2026-08-11 | 参赛者：wg01-xby | GitHub：https://github.com/open-city-ai/haidian/pull/1564*  
 *方案性质：开放共创建议，不替代正式规划，不构成政府审定结论，不构成工程实施依据*  
 *License: CC-BY-4.0*
+ 
