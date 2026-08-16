@@ -157,6 +157,23 @@ def run_scaffold(output_dir: Path, stage: str = "formal", cwd: Path = REPO_ROOT)
     )
 
 
+class LandUseScaffoldContractTests(unittest.TestCase):
+    def test_scaffold_uses_official_commercial_service_land_code(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            output_dir = Path(tmp) / "submission"
+            result = run_scaffold(output_dir)
+            self.assertEqual(0, result.returncode, result.stderr)
+            land_use = json.loads(
+                (output_dir / "geometry" / "land_use.geojson").read_text(encoding="utf-8")
+            )
+            codes = {
+                feature["properties"].get("land_use_code")
+                for feature in land_use["features"]
+            }
+            self.assertIn("09", codes)
+            self.assertNotIn("05", codes)
+
+
 def complete_scaffold(
     output_dir: Path,
     synchronized_paths: tuple[str, ...] = (),
