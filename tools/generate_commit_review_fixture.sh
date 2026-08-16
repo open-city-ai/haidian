@@ -43,6 +43,7 @@ if [[ -n $base_repo ]]; then
   git -C "$repo" config user.name "Review Load Fixture"
   git -C "$repo" config user.email "fixture@example.invalid"
   git -C "$repo" config commit.gpgSign false
+  git -C "$repo" config core.hooksPath "$repo/.git/disabled-hooks"
   git -C "$repo" config gc.auto 0
   git -C "$base_repo" archive --format=tar HEAD | tar -xf - -C "$repo"
   git -C "$repo" add --all --force
@@ -59,6 +60,7 @@ fi
 git -C "$repo" config user.name "Review Load Fixture"
 git -C "$repo" config user.email "fixture@example.invalid"
 git -C "$repo" config commit.gpgSign false
+git -C "$repo" config core.hooksPath "$repo/.git/disabled-hooks"
 git -C "$repo" config gc.auto 0
 
 fixture_dir="$repo/.review-load-fixture"
@@ -69,7 +71,7 @@ width=${#count}
 for ((index = 1; index <= count; index++)); do
   printf -v sequence "%0${width}d" "$index"
   printf '{"sequence":%d,"fixture":"review-load-test","record":"%s"}\n' "$index" "$sequence" >> "$events"
-  git -C "$repo" add .review-load-fixture
+  git -C "$repo" add --force .review-load-fixture
   timestamp=$((1704067200 + index))
   GIT_AUTHOR_DATE="@$timestamp +0000" GIT_COMMITTER_DATE="@$timestamp +0000" \
     git -C "$repo" commit --quiet --no-gpg-sign -m "fixture: add audit event $sequence of $count"

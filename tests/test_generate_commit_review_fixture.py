@@ -19,11 +19,29 @@ def git(repo: Path, *args: str, env: dict[str, str] | None = None) -> subprocess
     return run(["git", "-C", str(repo), *args], env=env)
 
 
-def init_repo(path: Path) -> None:
+def controlled_git_env(root: Path) -> dict[str, str]:
+    global_config = root / "global.gitconfig"
+    global_config.write_text("", encoding="utf-8")
+    return {**os.environ, "GIT_CONFIG_GLOBAL": str(global_config), "GIT_CONFIG_NOSYSTEM": "1"}
+
+
+def install_failing_hook(root: Path, env: dict[str, str]) -> None:
+    hooks = root / "hooks"
+    hooks.mkdir()
+    pre_commit = hooks / "pre-commit"
+    pre_commit.write_text("#!/bin/sh\nexit 1\n", encoding="utf-8")
+    pre_commit.chmod(0o755)
+    subprocess.run(
+        ["git", "config", "--file", env["GIT_CONFIG_GLOBAL"], "core.hooksPath", str(hooks)],
+        check=True,
+    )
+
+
+def init_repo(path: Path, *, env: dict[str, str]) -> None:
     path.mkdir()
-    subprocess.run(["git", "-C", str(path), "init", "--quiet", "--initial-branch=main"], check=True)
-    subprocess.run(["git", "-C", str(path), "config", "user.name", "Fixture Base"], check=True)
-    subprocess.run(["git", "-C", str(path), "config", "user.email", "base@example.invalid"], check=True)
+    subprocess.run(["git", "-C", str(path), "init", "--quiet", "--initial-branch=main"], check=True, env=env)
+    subprocess.run(["git", "-C", str(path), "config", "user.name", "Fixture Base"], check=True, env=env)
+    subprocess.run(["git", "-C", str(path), "config", "user.email", "base@example.invalid"], check=True, env=env)
 
 
 def read_summary(path: Path) -> dict[str, str]:
@@ -33,8 +51,11 @@ def read_summary(path: Path) -> dict[str, str]:
 class CommitReviewFixtureTests(unittest.TestCase):
     def test_standalone_history_and_bundle_are_self_contained(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
-            output = Path(tmp) / "fixture"
-            completed = run([str(SCRIPT), "3", str(output), "review/test"])
+            root = Path(tmp)
+            env = controlled_git_env(root)
+            install_failing_hook(root, env)
+            output = root / "fixture"
+            completed = run([str(SCRIPT), "3", str(output), "review/test"], env=env)
             self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
             summary = read_summary(output / "summary.txt")
             self.assertEqual(summary["base"], "standalone")
@@ -51,21 +72,22 @@ class CommitReviewFixtureTests(unittest.TestCase):
     def test_base_snapshot_uses_head_tree_with_sparse_and_ignored_files(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
+            env = controlled_git_env(root)
             base = root / "base"
-            init_repo(base)
+            init_repo(base, env=env)
             (base / "keep").mkdir()
             (base / "drop").mkdir()
             (base / "keep" / "k.txt").write_text("keep\n", encoding="utf-8")
             (base / "drop" / "d.txt").write_text("drop\n", encoding="utf-8")
             (base / "tracked.log").write_text("tracked\n", encoding="utf-8")
-            (base / ".gitignore").write_text("*.log\n", encoding="utf-8")
-            subprocess.run(["git", "-C", str(base), "add", "--all", "--force"], check=True)
-            subprocess.run(["git", "-C", str(base), "commit", "--quiet", "-m", "base"], check=True)
-            subprocess.run(["git", "-C", str(base), "sparse-checkout", "set", "keep"], check=True)
+            (base / ".gitignore").write_text("*.log\n*.jsonl\n", encoding="utf-8")
+            subprocess.run(["git", "-C", str(base), "add", "--all", "--force"], check=True, env=env)
+            subprocess.run(["git", "-C", str(base), "commit", "--quiet", "-m", "base"], check=True, env=env)
+            subprocess.run(["git", "-C", str(base), "sparse-checkout", "set", "keep"], check=True, env=env)
 
-            global_config = root / "global.gitconfig"
+            global_config = Path(env["GIT_CONFIG_GLOBAL"])
             global_config.write_text("[commit]\n\tgpgSign = true\n[gpg]\n\tprogram = false\n", encoding="utf-8")
-            env = {**os.environ, "GIT_CONFIG_GLOBAL": str(global_config)}
+            install_failing_hook(root, env)
             output = root / "fixture"
             completed = run([str(SCRIPT), "3", str(output), "review/test", str(base)], env=env)
             self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
@@ -77,11 +99,14 @@ class CommitReviewFixtureTests(unittest.TestCase):
             self.assertIn("drop/d.txt", actual)
             self.assertIn("tracked.log", actual)
             self.assertEqual(git(output / "repo", "rev-list", "--count", f'{summary["base"]}..HEAD').stdout.strip(), "3")
+            self.assertEqual((output / "repo" / ".review-load-fixture" / "audit-events.jsonl").read_text().count("\n"), 3)
 
     def test_empty_count_is_rejected_without_creating_output(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
-            output = Path(tmp) / "fixture"
-            completed = run([str(SCRIPT), "", str(output)])
+            root = Path(tmp)
+            env = controlled_git_env(root)
+            output = root / "fixture"
+            completed = run([str(SCRIPT), "", str(output)], env=env)
             self.assertEqual(completed.returncode, 2)
             self.assertIn("COUNT must be a positive integer", completed.stderr)
             self.assertFalse(output.exists())
@@ -89,18 +114,19 @@ class CommitReviewFixtureTests(unittest.TestCase):
     def test_copy_failure_removes_partial_output(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
+            env = controlled_git_env(root)
             base = root / "base"
-            init_repo(base)
+            init_repo(base, env=env)
             (base / "tracked.txt").write_text("tracked\n", encoding="utf-8")
-            subprocess.run(["git", "-C", str(base), "add", "tracked.txt"], check=True)
-            subprocess.run(["git", "-C", str(base), "commit", "--quiet", "-m", "base"], check=True)
+            subprocess.run(["git", "-C", str(base), "add", "tracked.txt"], check=True, env=env)
+            subprocess.run(["git", "-C", str(base), "commit", "--quiet", "-m", "base"], check=True, env=env)
 
             fake_bin = root / "bin"
             fake_bin.mkdir()
             fake_tar = fake_bin / "tar"
             fake_tar.write_text("#!/bin/sh\nexit 44\n", encoding="utf-8")
             fake_tar.chmod(0o755)
-            env = {**os.environ, "PATH": f"{fake_bin}:{os.environ['PATH']}"}
+            env = {**env, "PATH": f"{fake_bin}:{os.environ['PATH']}"}
             output = root / "fixture"
             completed = run([str(SCRIPT), "3", str(output), "review/test", str(base)], env=env)
             self.assertNotEqual(completed.returncode, 0)
