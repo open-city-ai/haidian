@@ -46,7 +46,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
+import stat
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -82,6 +85,30 @@ def render_js(data: dict[str, Any]) -> str:
         + json.dumps(data, ensure_ascii=False, indent=2)
         + ";\n"
     )
+
+
+def write_text_atomically(path: Path, content: str) -> None:
+    mode = stat.S_IMODE(path.stat().st_mode) if path.exists() else 0o644
+    temporary: str | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            dir=path.parent,
+            prefix=f".{path.name}-",
+            suffix=".tmp",
+            delete=False,
+            mode="w",
+            encoding="utf-8",
+        ) as handle:
+            temporary = handle.name
+            handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.chmod(temporary, mode)
+        os.replace(temporary, path)
+    except BaseException:
+        if temporary:
+            Path(temporary).unlink(missing_ok=True)
+        raise
 
 
 def main() -> int:
@@ -129,7 +156,7 @@ def main() -> int:
             print(f"{out_path}: generated data is stale; run scripts/generate_source_registry_data.py", file=sys.stderr)
             return 1
         return 0
-    out_path.write_text(content, encoding="utf-8")
+    write_text_atomically(out_path, content)
     print(out_path.relative_to(repo_root) if out_path.is_relative_to(repo_root) else out_path)
     return 0
 

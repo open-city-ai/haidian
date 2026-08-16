@@ -103,6 +103,31 @@ class SourceRegistryOutputBoundaryTests(unittest.TestCase):
             self.assertIn("output must not overwrite a source registry input", result.stderr)
             self.assertEqual(victim.read_bytes(), original)
 
+    def test_cross_root_hardlink_alias_is_detached_before_writing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            source_root = directory / "source"
+            victim_root = directory / "victim"
+            self.make_registry(source_root)
+            victim = self.make_registry(victim_root)
+            output = source_root / "registry-output.js"
+            output.hardlink_to(victim)
+            original = victim.read_bytes()
+            self.assertTrue(output.samefile(victim))
+
+            result = self.run_generator(source_root, output)
+
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertEqual(victim.read_bytes(), original)
+            self.assertTrue(output.is_file())
+            self.assertFalse(output.is_symlink())
+            self.assertFalse(output.samefile(victim))
+            self.assertIn(
+                "window.HAIDIAN_SOURCE_REGISTRY",
+                output.read_text(encoding="utf-8"),
+            )
+            self.assertEqual([], list(output.parent.glob(f".{output.name}-*.tmp")))
+
     def test_distinct_output_is_written(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
