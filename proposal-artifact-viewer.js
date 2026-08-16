@@ -5,6 +5,14 @@
   const palette = ['#65b7ff', '#ffc46b', '#9d8cff', '#62d6a8', '#e08b78', '#75c7bd'];
   let config = null;
   let selectedIndex = -1;
+  let returnFocusElement = null;
+
+  const focusableSelector = [
+    'a[href]', 'button:not([disabled])', 'input:not([disabled])',
+    'select:not([disabled])', 'textarea:not([disabled])', 'audio[controls]',
+    'video[controls]', 'summary', 'iframe',
+    '[tabindex]:not([tabindex="-1"])', '[contenteditable="true"]'
+  ].join(',');
 
   const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, ch => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -358,6 +366,33 @@
     elements.forEach(element => observer.observe(element));
   }
 
+  function focusableElements(viewer) {
+    return [...viewer.querySelectorAll(focusableSelector)].filter(element =>
+      !element.hasAttribute('hidden') && element.getAttribute('aria-hidden') !== 'true' && element.getClientRects().length
+    );
+  }
+
+  function trapFocus(event, viewer) {
+    const elements = focusableElements(viewer);
+    if (!elements.length) {
+      event.preventDefault();
+      viewer.focus({preventScroll: true});
+      return;
+    }
+    const first = elements[0];
+    const last = elements[elements.length - 1];
+    if (!viewer.contains(document.activeElement)) {
+      event.preventDefault();
+      first.focus({preventScroll: true});
+    } else if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus({preventScroll: true});
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus({preventScroll: true});
+    }
+  }
+
   async function renderSelected(item) {
     const body = document.getElementById('artifactViewerBody');
     const path = item.path;
@@ -397,6 +432,10 @@
     const item = config.artifacts[selectedIndex];
     const viewer = document.getElementById('artifactViewer');
     const body = document.getElementById('artifactViewerBody');
+    if (viewer.hidden) {
+      const active = document.activeElement;
+      returnFocusElement = active && typeof active.focus === 'function' ? active : null;
+    }
     document.getElementById('artifactViewerType').textContent = config.type(path);
     document.getElementById('artifactViewerTitle').textContent = config.label(path);
     document.getElementById('artifactViewerPath').textContent = path;
@@ -413,16 +452,24 @@
 
   function close() {
     const viewer = document.getElementById('artifactViewer');
-    if (!viewer) return;
+    if (!viewer || viewer.hidden) return;
+    const restoreFocus = returnFocusElement;
+    returnFocusElement = null;
     viewer.hidden = true; viewer.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('artifact-viewer-open');
+    if (restoreFocus?.isConnected) restoreFocus.focus({preventScroll: true});
   }
 
   function bindViewer() {
     document.getElementById('artifactViewerClose')?.addEventListener('click', close);
     document.getElementById('artifactPrev')?.addEventListener('click', () => selectedIndex > 0 && open(config.artifacts[selectedIndex - 1].path));
     document.getElementById('artifactNext')?.addEventListener('click', () => selectedIndex < config.artifacts.length - 1 && open(config.artifacts[selectedIndex + 1].path));
-    document.addEventListener('keydown', event => { if (event.key === 'Escape' && !document.getElementById('artifactViewer')?.hidden) { event.stopImmediatePropagation(); close(); } }, true);
+    document.addEventListener('keydown', event => {
+      const viewer = document.getElementById('artifactViewer');
+      if (!viewer || viewer.hidden) return;
+      if (event.key === 'Escape') { event.preventDefault(); event.stopImmediatePropagation(); close(); return; }
+      if (event.key === 'Tab') trapFocus(event, viewer);
+    }, true);
   }
 
   function mount(options) {
