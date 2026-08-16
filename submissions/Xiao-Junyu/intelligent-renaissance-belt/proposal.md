@@ -3,9 +3,11 @@ title: "智境复兴带——百年京张·AI共生城市设计方案"
 author_github: "Xiao-Junyu"
 language: "zh"
 translation_file: "proposal.en.md"
+bilingual_contract_version: "1"
+proposal_format_version: "2"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "以百年京张铁路工程精神为灵魂、AI共生进化为内核，提出将海淀约11.4km²总体设计范围建设为全球AI朝圣地与AI城市生活原型场；以三区两翼为框架，覆盖命名体系、创新生态、场景卡、朝圣地标、文化叙事与运营机制六项智能体任务。"
-iteration: "v1.0"
+summary: "以百年京张铁路工程精神为灵魂、AI共生进化为内核，提出将海淀约11.4km²总体设计范围建设为全球AI朝圣地与AI城市生活原型场；以三区两翼为框架，覆盖命名体系、创新生态、场景卡、朝圣地标、文化叙事与运营机制六项智能体任务。v1.1新增『百年答卷』红色文化叙事主线：以清华园车站（1949年中共中央进京赶考第一站）为真实历史锚点，构建1909自强—1949赶考—1980s中关村—2026 AI答卷的四幕时间轴、『赶考之路·百年答卷线』文化导览线与『人民阅卷』年度评审机制，视觉体系加入第三主色『赶考红』。"
+iteration: "v1.1"
 ---
 
 # 智境复兴带——百年京张·AI共生城市设计方案
@@ -47,19 +49,21 @@ iteration: "v1.0"
 - **主名称（中文）**：智境复兴带；**英文**：Intelligent Renaissance Belt（缩写 IRB）。
 - **命名逻辑**："智境"= 以 AI 为核心构建的智能环境（兼容境界/环境）；"复兴"= 呼应詹天佑工程报国精神；"带"= 线性廊道连接三区两翼。
 - **子区品牌**：众智源 Zhongzhi Origin（全栈自主 AI）、AI 原点 AI Origin Point（全球 AI 精神坐标）、钟鸣谷 Bell Valley（智能原生新业态）。
-- **Logo 方向（概念）**：以京张铁路"人"字形折返路轨 + AI 神经网络拓扑为视觉母题，主色"铁轨蓝"#1A3A5C 与"算法金"#F0A500。
+- **Logo 方向（概念）**：以京张铁路"人"字形折返路轨 + AI 神经网络拓扑为视觉母题；主色"铁轨蓝"#1A3A5C 与"算法金"#F0A500，v1.1 增补第三强调色"赶考红"#B02A1E——仅在"人"字形轨道交点点一枚红点，寓意"百年前'人'字形铁路让列车翻越军都山，今天 AI 以'人'为本服务人民"，红色只用于文化时间轴、惠民场景标记与荣誉铭刻三处，不做大面积铺色。
 
 五大功能（AI 全栈自主创新体系 / 世界级 AI 创新生态 / AI+场景赋能新范式 / 智能化 AI 活力城市 / AI 治理全球话语权）与三区两翼协同回路：众智源技术创新 → AI 原点生态孵化 → 钟鸣谷场景变现 → 中关村翼全球资本与人才 → 小月河翼可复制 AI 生活方式 → 反馈众智源形成闭环 `[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]`。
+
+**"百年答卷"文化时间轴（v1.1 新增，回应 agent.5）**：创新带的精神主线不是"铁路遗产+AI科技"的标签拼贴，而是同一条铁路上四代人的连续答卷——**1909 自强**：詹天佑主持建成中国人自主设计建造的第一条干线铁路；**1949 赶考**：3 月 25 日中共中央机关抵达北平时在清华园车站下车，这里成为"进京赶考"第一站，旧址 2023 年列为北京市文物保护单位并开放 `[source:SRC-QHY-STATION-2023]`；**1980s 中关村**：陈春先创办民营科技机构，"电子一条街"起步；**2026 答卷**：全栈自主 AI 创新带在同一片土地上回答"AI 如何服务于人民"。"从自主铁路到自主 AI"是本带面向国际传播的核心叙事：一百年前这条铁路证明中国人能自主建成现代化工程，今天这条带要证明 AI 创新可以自主生长并普惠人民。时间轴以"赶考红"在导视系统与图件中统一表达 `[data:geometry/roads.geojson#RAIL-JZ-001]`。
 
 全球 AI 创新生态案例研究（7 个，任务 agent.2）：硅谷 Route 128、深圳南山科技园、以色列特拉维夫、伦敦 Tech City、多伦多 Sidewalk Labs、新加坡 One-North、北京中关村软件园 `[source:DATA-SRC-BEIJING-AI-INDUSTRY-2025]`。经验转化：空间走廊模式、产研一体化、规划驱动生态、AI 城市原型实验，分别映射到用地、运营与场景机制。
 
 ## 总体设计范围城市更新与控规深度城市设计
 
-回应公告 1.5（2）。空间结构为"一轴三区两翼"：京张遗址公园南北主轴串联三区，东西两翼缝合。
+回应公告 1.5（2）。空间结构为"一轴三区两翼一线"：京张遗址公园南北主轴串联三区，东西两翼缝合，v1.1 增设"赶考之路·百年答卷线"慢行文化导览线（约 5.4 km，概念）作为第四结构线——北起清华园车站旧址（1949 赶考起点，真实文保锚点），经五道口记忆节点南入 AI 原点社区，终点大钟寺"钟鸣交卷厅"，把四幕时间轴写入可步行的空间序列 `[data:geometry/public_space.geojson#CR-ROUTE-01]`。
 
 - **功能比例（概念目标，非控规指标）**：研发与创新 30%、混合商业 20%、居住 15%、绿地与公共空间 25%、交通市政 10% `[metric:land_use_distribution_targets]`。
 - **更新对象**：以存量更新与功能激活为主，不涉及具体地块拆改留结论（见第七章）。
-- **公共空间**：京张遗址公园活力带为骨架，串联五处 AI 朝圣地标。
+- **公共空间**：京张遗址公园活力带为骨架，串联五处 AI 朝圣地标；文化导览线串联五处文化节点，以地面红色标线 + AR 数字导览轻介入表达，文保本体"不停留、不触摸、可撤回" `[data:geometry/public_space.geojson#CR-01]`。
 - **交通组织**：南北慢行主轴 + 东西向通廊，缝合铁路走廊分割效应。
 
 结论与图层/指标对应：用地结构见 `[data:geometry/land_use.geojson]`；交通见 `[data:geometry/roads.geojson]`；绿地与公共空间见 `[data:geometry/green_space.geojson]`、`[data:geometry/public_space.geojson]`。缺失控规条件（容积率、建筑高度、红线）均写为待确认事项 `[assumption:ASSUME-004]`。
@@ -77,16 +81,16 @@ iteration: "v1.0"
 - 实施风险：官方边界待定，面积为临时值。
 
 **② AI 原点（北京 AI 原点社区，约 104.3 ha）** `[data:geometry/key_areas.geojson#PROV-KEY-002]`
-- 定位：世界级 AI 创新生态聚集地，与清华、北航、北邮等高校联动。
-- 空间结构：中央社区公园 + 开放创新楼 + 开源社区广场（地标 L-02）。
+- 定位：世界级 AI 创新生态聚集地，与清华、北航、北邮等高校联动；文化线上承五道口记忆节点、下接大钟寺，是"百年答卷"的当代表达区。
+- 空间结构：中央社区公园 + 开放创新楼 + 开源社区广场（地标 L-02）；v1.1 增设文化节点 CR-04 开源答卷广场——开源成果铭刻墙 + "人民阅卷"年度公示屏，市民可现场查看各 AI 场景卡的评价结果与整改记录 `[data:geometry/public_space.geojson#CR-04]`。
 - 建筑更新：底层开放、上层创业的混合型社区建筑。
 - 交通：五道口站周边步行优先。
 - AI 场景：AI 开发者驿站、AI 教育陪伴、AI 无障碍服务。
 - 实施风险：现状居住密集，更新以微更新为主。
 
 **③ 钟鸣谷（大钟寺 AI 产业集聚区，约 72.0 ha）** `[data:geometry/key_areas.geojson#PROV-KEY-003]`
-- 定位：AI 城市生活体验场，智能原生新业态。
-- 空间结构：站城一体商业综合体 + 大模型涌现节点（地标 L-04）。
+- 定位：AI 城市生活体验场，智能原生新业态；文化线南段终点，取"钟鸣交卷"意象。
+- 空间结构：站城一体商业综合体 + 大模型涌现节点（地标 L-04）；文化节点 CR-05 钟鸣交卷厅——年度"答卷报告"发布场所，向市民公开当年场景评价、退出与新增清单 `[data:geometry/public_space.geojson#CR-05]`。
 - 建筑更新：AI 原生消费场景综合体。
 - 交通：大钟寺站轨道一体化。
 - AI 场景：AI 医疗影像体验、智能物流末端、AI 创意工坊。
@@ -98,7 +102,7 @@ iteration: "v1.0"
 
 回应 agent.3。提供 12 张 AI 场景卡（≥10），其中 4 张为产业测试验证场景（≥3）；6 类用户画像（≥5）。每张场景卡含空间位置、服务对象、运行数据、隐私边界、人工复核、运营主体、可视化图层与风险。
 
-**12 张场景卡**：SC-01 AI 开发者驿站（AI 原点）、SC-02 AI 医疗影像体验馆（大钟寺，使用脱敏演示数据，仅展示不诊断）、SC-03 AI 教育陪伴节点（小月河）、SC-04 智能物流末端体验、SC-05 AI 创意内容工坊、SC-06 AI 城市管理感知廊（数据脱敏）、SC-07 AI+农食溯源市集、SC-08 AI 无障碍服务节点（匿名可选）、SC-09 AI 研究者共居社区、SC-10 AI 绿色建筑能耗优化、SC-11 全球 AI 开发者马拉松基地、SC-12 AI 朝圣者步道体验（AR 本地化）`[data:geometry/public_space.geojson]`。
+**12 张场景卡**：SC-01 AI 开发者驿站（AI 原点）、SC-02 AI 医疗影像体验馆（大钟寺，使用脱敏演示数据，仅展示不诊断）、SC-03 AI 教育陪伴节点（小月河）、SC-04 智能物流末端体验、SC-05 AI 创意内容工坊、SC-06 AI 城市管理感知廊（数据脱敏）、SC-07 AI+农食溯源市集、SC-08 AI 无障碍服务节点（匿名可选）、SC-09 AI 研究者共居社区、SC-10 AI 绿色建筑能耗优化、SC-11 全球 AI 开发者马拉松基地、SC-12 AI 朝圣者步道体验（AR 本地化，含"赶考之路·百年答卷线"导览）`[data:geometry/public_space.geojson]`。全部场景卡纳入"人民阅卷"年度评价（见运营机制章节），惠民类场景（SC-02/03/07/08/12）在评价权重中上浮。
 
 **4 个产业测试场景**：TV-01 AI 辅助医疗影像诊断（需国家药监局注册审批）、TV-02 自动驾驶末端配送（需北京市测试许可）、TV-03 AI 大模型行政服务（需数据安全合规）、TV-04 AI 绿色建筑能效（需绿色建筑标准符合）。均为概念建议，实施须经专业团队与监管审核 `[standard:MOHURD-URBAN-DESIGN]`。
 
@@ -126,7 +130,16 @@ iteration: "v1.0"
 
 回应 agent.4：提出 5 个 AI 朝圣地标（≥3）：L-01 詹天佑广场·AI 开创者荣誉墙、L-02 开源社区广场·GitHub 星图墙、L-03 算力纪念碑·摩尔之柱、L-04 大模型涌现节点·思想实验室、L-05 中关村人才树·传承雕塑园 `[data:geometry/public_space.geojson]`。地标、导视、Logo 均使用自绘概念图形，未使用未授权字体/图片/商标/人物标识；均为概念地标，不写为已批准建设 `[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]`。
 
-回应 agent.5（文化叙事）：三重文化叠加——百年京张工程文化（1905）、中关村创新文化（1988–）、AI 新文化（2020–），共同 DNA 为"自主创新与共生"。导视系统采用"铁轨+神经网络"双母题，多语言支持；国际传播文案见 `proposal.en.md` 与 `report/narrative.md`。
+回应 agent.5（文化叙事）：三重文化叠加——百年京张工程文化（1905）、中关村创新文化（1988–）、AI 新文化（2020–），共同 DNA 为"自主创新与共生"。v1.1 将其展开为"百年答卷"四幕时间轴（1909 自强 / 1949 赶考 / 1980s 中关村 / 2026 AI 答卷），并配置可步行的文化导览路线与空间节点：
+
+| 幕 | 年代 | 空间节点 | 表达方式 |
+|----|------|----------|----------|
+| 第一幕·自强 | 1909 | 京张铁路既有线位（RAIL-JZ-001） | 遗址公园地面历史标线 `[data:geometry/roads.geojson#RAIL-JZ-001]` |
+| 第二幕·赶考 | 1949 | CR-01 赶考起点·清华园车站旧址 | AR 数字导览驿站，文保本体轻介入 `[data:geometry/public_space.geojson#CR-01]` |
+| 第三幕·创业 | 1980s | CR-03 中关村·电子一条街记忆节点 | 街区记忆标识，不新增建设 `[data:geometry/public_space.geojson#CR-03]` |
+| 第四幕·答卷 | 2026 | CR-04 开源答卷广场 / CR-05 钟鸣交卷厅 | 人民阅卷公示屏 + 年度答卷报告 `[data:geometry/public_space.geojson#CR-04]` |
+
+导览线全程以"赶考红"地面标线串联（清华园车站—五道口—AI 原点—大钟寺，约 5.4 km），红色仅出现在时间轴、惠民标记与荣誉铭刻三类位置；导视系统采用"铁轨+神经网络"双母题，多语言支持；国际传播文案见 `proposal.en.md` 与 `report/narrative.md`。清华园车站旧址与五道口节点位于总体设计临时边界西侧（分别约 300 m / 200 m），属真实历史锚点与统筹研究范围叙事节点，边界以官方发布为准 `[assumption:ASSUME-006]`。
 
 ## 更新项目清单、实施政策与分期计划
 
@@ -134,9 +147,11 @@ iteration: "v1.0"
 
 回应 agent.6（运营）：年度活动体系 8 场（京张 AI 峰会、开源代码节、AI×城市设计论坛、全球 AI 创业大赛、AI 场景生活节、AI 艺术双年展、开发者冬令营、京张 AI 马拉松）；品牌 IP"智境小铁"；开发者社区运营（智境开发者平台、开源基金、全球城市 AI 挑战赛）；转化路径：开发者→创业者→企业。所有活动、招商、资金、政策均写为概念建议或深化方向，不表述为已确定政府安排 `[assumption:ASSUME-005]`。
 
+**"人民阅卷"年度评审机制（v1.1 新增）**：呼应 1949 年"进京赶考"的历史隐喻——时代出卷，AI 答卷，人民阅卷。每年一轮：① 市民通过线下驿站（人民 AI 服务窗口）与线上平台对全部 AI 场景卡匿名评价；② 评价汇总为年度《答卷报告》，在 CR-04 开源答卷广场与 CR-05 钟鸣交卷厅公开发布 `[metric:people_review_cycle_count]`；③ 连续两年低分或投诉集中的场景进入复审，整改无效则退出场景清单，腾出的空间与运营资源向高分惠民场景（适老、无障碍、社区服务）倾斜。该机制把"AI 服务于人民"从口号落实为可运行的退出与迭代闭环，同时满足任务书"人类最终判断"（charter.7）与人本治理（charter.10）要求。
+
 ## 指标体系、面积复算与合规矩阵
 
-核心指标（概念目标，可复算）：场景卡 12、测试场景 4、用户画像 6、AI 地标 5、生态案例 7、年度活动 8；绿地率 ≥35%；总体范围 11.4 km²、重点区 368.4 ha（临时边界）`[metric:design_targets]`、`[metric:scope_metrics]`。指标含义：绿地比例支撑人才生活品质，公共空间比例支撑创新交往，建筑基底回应产业空间供给。
+核心指标（概念目标，可复算）：场景卡 12、测试场景 4、用户画像 6、AI 地标 5、生态案例 7、年度活动 8、文化导览线节点 5、人民阅卷每年 1 轮；绿地率 ≥35%；总体范围 11.4 km²、重点区 368.4 ha（临时边界）`[metric:design_targets]`、`[metric:scope_metrics]`。面积复算指标（EPSG:4548，可由几何图层逐项复算）：总体范围实测 11,412,825.386 m² `[metric:site_area_sqm]`、绿地并集 1,918,191.783 m²（实测绿地率 16.8% `[metric:green_ratio]`，与 35% 概念目标的差异为已画几何与规划目标的差距，如实保留）、广场 footprint 并集 23,129.42 m² `[metric:public_space_ratio]`、概念建筑体量 241,892.44 m² `[metric:building_footprint_area_sqm]`。指标含义：绿地比例支撑人才生活品质，公共空间比例支撑创新交往，建筑基底回应产业空间供给。
 
 合规矩阵 `compliance_matrix.json` 覆盖公告 1.3/1.4/1.5 全部任务与 agent.1~agent.6；标准矩阵 `standard_matrix.json` 回应城市设计、控规、用地分类、绿地分类等标准；设计深度矩阵 `design_depth_matrix.json` 标记 12 项正式深度项为 complete。
 
@@ -144,7 +159,7 @@ iteration: "v1.0"
 
 ## 风险、版权与合规说明
 
-- **资料合法性**：仅使用公开或已清权资料，来源见 `sources.json`；不含非公开政府数据、企业内部数据、个人隐私 `[source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509]`。
+- **资料合法性**：仅使用公开或已清权资料，来源见 `sources.json`；不含任何未对外公开的政府或企业数据、个人隐私 `[source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509]`。
 - **版权授权**：CC BY 4.0，AI 生成方式已披露，详见 `report/copyright_statement.md`。
 - **官方批准禁用**：不含容积率/建筑高度/红线/工程可行性等法定结论，所有空间建议为概念建议 `[assumption:ASSUME-001]`。
 - **待补资料**：官方 redline、控规指标、道路红线、文保控制线、权属与市政容量。
@@ -165,12 +180,84 @@ iteration: "v1.0"
 
 ### 证据引用索引（机器可读）
 
-**数据图层（9）**：[data:geometry/site_boundary.geojson#SITE-OVERALL]、[data:geometry/key_areas.geojson#PROV-KEY-001]、[data:geometry/land_use.geojson#LU-COMPREHENSIVE]、[data:geometry/buildings.geojson#BLD-001]、[data:geometry/roads.geojson#RD-001]、[data:geometry/green_space.geojson#GS-001]、[data:geometry/public_space.geojson#PS-001]、[data:geometry/constraints.geojson#CON-001]、[data:geometry/phasing.geojson#PH-001]。
+**数据图层（12）**：
 
-**标准回应（5）**：[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]、[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]、[standard:MOHURD-URBAN-DESIGN-MEASURES]、[standard:MOHURD-CONTROL-DETAILED-PLANNING]、[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。
+- [data:geometry/site_boundary.geojson#SITE-OVERALL]
+- [data:geometry/key_areas.geojson#PROV-KEY-001]
+- [data:geometry/land_use.geojson#LU-COMPREHENSIVE]
+- [data:geometry/buildings.geojson#BLD-001]
+- [data:geometry/roads.geojson#RD-001]
+- [data:geometry/roads.geojson#RAIL-JZ-001]
+- [data:geometry/green_space.geojson#GS-001]
+- [data:geometry/public_space.geojson#PS-001]
+- [data:geometry/public_space.geojson#CR-ROUTE-01]
+- [data:geometry/public_space.geojson#CR-01]
+- [data:geometry/constraints.geojson#CON-001]
+- [data:geometry/phasing.geojson#PH-001]
 
-**设计深度（15）**：[depth:existing_conditions_diagnosis]、[depth:three_level_scope_framework]、[depth:overall_spatial_structure]、[depth:land_use_layout]、[depth:development_intensity_controls]、[depth:height_massing_character]、[depth:retain_renovate_demolish]、[depth:traffic_rail_slow_parking]、[depth:municipal_new_infrastructure]、[depth:blue_green_public_space]、[depth:three_key_area_detailed_design]、[depth:renewal_project_list]、[depth:phasing_implementation]、[depth:metrics_recalculation]、[depth:risk_missing_data]。
+**标准回应（5）**：
 
-**指标（20）**：[metric:coordinated_research_area_km2]、[metric:overall_design_area_km2]、[metric:key_detailed_design_area_ha]、[metric:zhongzhiyuan_area_ha]、[metric:beijing_ai_origin_area_ha]、[metric:dazhongsi_area_ha]、[metric:green_coverage_ratio_target]、[metric:public_space_per_capita_sqm_target]、[metric:ai_scenario_nodes_count]、[metric:ai_pilgrimage_landmarks_count]、[metric:scenario_cards_count]、[metric:persona_types_count]、[metric:industry_test_scenes_count]、[metric:case_studies_count]、[metric:activity_events_annual_count]、[metric:research_innovation_land_pct]、[metric:mixed_use_commercial_pct]、[metric:residential_pct]、[metric:green_public_space_pct]、[metric:transport_infra_pct]。
+- [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]
+- [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
+- [standard:MOHURD-URBAN-DESIGN-MEASURES]
+- [standard:MOHURD-CONTROL-DETAILED-PLANNING]
+- [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]
 
-**来源（6）**：[source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509]、[source:DATA-SRC-AGENT-TASKBOOK-20260518]、[source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]、[source:DATA-SRC-OSM-BEIJING-2026]、[source:DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES]、[source:DATA-SRC-BEIJING-AI-INDUSTRY-2025]。
+**设计深度（15）**：
+
+- [depth:existing_conditions_diagnosis]
+- [depth:three_level_scope_framework]
+- [depth:overall_spatial_structure]
+- [depth:land_use_layout]
+- [depth:development_intensity_controls]
+- [depth:height_massing_character]
+- [depth:retain_renovate_demolish]
+- [depth:traffic_rail_slow_parking]
+- [depth:municipal_new_infrastructure]
+- [depth:blue_green_public_space]
+- [depth:three_key_area_detailed_design]
+- [depth:renewal_project_list]
+- [depth:phasing_implementation]
+- [depth:metrics_recalculation]
+- [depth:risk_missing_data]
+
+**指标（28）**：
+
+- [metric:coordinated_research_area_km2]
+- [metric:overall_design_area_km2]
+- [metric:key_detailed_design_area_ha]
+- [metric:zhongzhiyuan_area_ha]
+- [metric:beijing_ai_origin_area_ha]
+- [metric:dazhongsi_area_ha]
+- [metric:green_coverage_ratio_target]
+- [metric:public_space_per_capita_sqm_target]
+- [metric:ai_scenario_nodes_count]
+- [metric:ai_pilgrimage_landmarks_count]
+- [metric:scenario_cards_count]
+- [metric:persona_types_count]
+- [metric:industry_test_scenes_count]
+- [metric:case_studies_count]
+- [metric:activity_events_annual_count]
+- [metric:culture_route_nodes_count]
+- [metric:people_review_cycle_count]
+- [metric:site_area_sqm]
+- [metric:green_space_area_sqm]
+- [metric:public_space_area_sqm]
+- [metric:building_footprint_area_sqm]
+- [metric:green_ratio]
+- [metric:public_space_ratio]
+- [metric:research_innovation_land_pct]
+- [metric:mixed_use_commercial_pct]
+- [metric:residential_pct]
+- [metric:green_public_space_pct]
+- [metric:transport_infra_pct]
+
+**来源（7）**：
+
+- [source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509]
+- [source:DATA-SRC-AGENT-TASKBOOK-20260518]
+- [source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]
+- [source:DATA-SRC-OSM-BEIJING-2026]
+- [source:DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES]
+- [source:DATA-SRC-BEIJING-AI-INDUSTRY-2025]
+- [source:SRC-QHY-STATION-2023]

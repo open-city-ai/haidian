@@ -3,8 +3,11 @@ title: "Intelligent Renaissance Belt — Centennial Jingzhang AI Co-evolution Ur
 author_github: "Xiao-Junyu"
 language: "en"
 translation_of: "proposal.md"
+bilingual_contract_version: "1"
+proposal_format_version: "2"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "An open co-creation conceptual proposal that envisions the 11.4 km² Haidian overall design area as a global AI pilgrimage destination and AI urban-living prototype, structured by a Three-Zone Two-Wing framework and addressing all six agent tasks."
+summary: "An open co-creation conceptual proposal that envisions the 11.4 km² Haidian overall design area as a global AI pilgrimage destination and AI urban-living prototype, structured by a Three-Zone Two-Wing framework and addressing all six agent tasks. v1.1 adds the 'Century of Answers' red-cultural narrative: anchored on Qinghuayuan Station (the first stop of the CPC Central Committee's 1949 'examination journey' into Beiping), a four-act timeline (1909 self-reliance — 1949 examination — 1980s Zhongguancun — 2026 AI answers), the 'Examination Road' cultural walking route, and the annual 'People's Review' mechanism."
+iteration: "v1.1"
 ---
 
 # Intelligent Renaissance Belt — Centennial Jingzhang AI Co-evolution Urban Design
@@ -37,6 +40,21 @@ The "Intelligent Renaissance Belt" takes the engineering spirit of the century-o
 - "Intelligent" (智境) — an intelligent environment shaped by AI; "境" carries the double meaning of "realm" and "environment"
 - "Renaissance" (复兴) — echoes the spirit of the Jingzhang Railway's engineering self-reliance, achieving technological renaissance through AI in a new era
 - "Belt" (带) — linear corridor character connecting Three Zones and Two Wings into an organically co-evolving urban innovation belt
+
+**Visual Identity (v1.1 update):** The logo motif combines the "人"-shaped (ren, "people") switchback rail of the Jingzhang Railway with an AI neural-network topology. Primary colors: Rail Blue #1A3A5C and Algorithm Gold #F0A500; v1.1 adds a third accent color, **Examination Red #B02A1E** — a single red dot placed at the junction of the "人"-shaped rails, meaning "a century ago the 'ren'-shaped railway lifted trains over the mountains; today AI serves the people." Red appears only on the cultural timeline, public-benefit scenario markers, and honor inscriptions — never as a flood fill.
+
+### 1.1b "Century of Answers" Cultural Timeline (v1.1, agent.5)
+
+The spiritual spine of the belt is one railway answering its country across four generations:
+
+| Act | Year | Node | Expression |
+|-----|------|------|------------|
+| I. Self-reliance | 1909 | Jeme Tien Yow completes the Jingzhang Railway — the first trunk line designed and built by Chinese engineers | Heritage trail ground marking [data:geometry/roads.geojson#RAIL-JZ-001] |
+| II. The Examination | 1949 | On March 25 the CPC Central Committee arrives in Beiping and alights at **Qinghuayuan Station** — the first stop of the "examination journey"; the site became a Beijing municipal heritage unit in 2023 [source:SRC-QHY-STATION-2023] | CR-01 Examination Trailhead: AR digital wayfinding, light-touch heritage interpretation [data:geometry/public_space.geojson#CR-01] |
+| III. Entrepreneurship | 1980s | Zhongguancun "Electronics Street" — the starting point of China's Silicon Valley | CR-03 memory node, no new construction [data:geometry/public_space.geojson#CR-03] |
+| IV. The Answer | 2026 | A full-stack autonomous AI innovation belt answers "how AI serves the people" | CR-04 Open-Source Answers Plaza & CR-05 Bell Tolling Answer Hall [data:geometry/public_space.geojson#CR-04] |
+
+**"Examination Road · Century of Answers" cultural route:** a ~5.4 km (conceptual) walking route linking Qinghuayuan Station (1949) — Wudaokou memory node — AI Origin Community (2026) — Dazhongsi Bell Valley, marked by a continuous red ground line with AR interpretation [data:geometry/public_space.geojson#CR-ROUTE-01].
 
 **Sub-Area Brand System:**
 | Zone | Brand Name | English Name | Positioning |
@@ -103,7 +121,7 @@ TV-01: AI-Assisted Medical Imaging Diagnosis | TV-02: Autonomous Last-Mile Deliv
 
 ---
 
-## Chapter 5: Cultural Narrative — Three Cultural Layers
+## Chapter 5: Cultural Narrative — From Three Layers to a Century of Answers
 
 **Layer 1: Centennial Jingzhang Culture (1905–present)**  
 Jeme Tien Yow's independent engineering spirit as the origin of Chinese technological self-reliance.
@@ -114,8 +132,10 @@ From "Electronics Street" to the world's densest AI enterprise cluster — China
 **Layer 3: AI New Culture (2020–present)**  
 The age of large models: AI as co-creator, partner, and thinking medium. IRB as the world's first district designed with AI as a co-resident.
 
+v1.1 weaves the three layers into the four-act "Century of Answers" timeline (see §1.1b) with a walkable cultural route and five cultural nodes (CR-01…CR-05), so the narrative lives in space rather than in slogans.
+
 **Core International Tagline:**  
-"A century ago, Jeme Tien Yow connected mountains with railways. Today, we connect humanity with AI. Come witness the greatest relay of human ingenuity."
+"A century ago, this railway proved a nation could build its own modern engineering. Today, this belt proves AI innovation can grow its own way — and serve the people. Come walk the Century of Answers."
 
 ---
 
@@ -132,16 +152,24 @@ The age of large models: AI as co-creator, partner, and thinking medium. IRB as 
 | Developer Winter Camp | December | Students, ~300 | AI education, future talent |
 | Jingzhang AI Marathon | Post-Chinese New Year | Citizens, participatory | Urban vitality, public engagement |
 
+### "People's Review" Annual Mechanism (v1.1)
+
+Echoing the 1949 "examination journey" metaphor — the times set the paper, AI writes the answer, **the people grade it**. Once a year: (1) citizens anonymously rate every AI scenario card via street-level service windows and an online platform; (2) results are compiled into an annual **Answer Report**, published openly at CR-04 Open-Source Answers Plaza and CR-05 Bell Tolling Answer Hall [metric:people_review_cycle_count]; (3) scenarios rated low for two consecutive years enter re-review and exit the scenario list if unresolved, releasing space and operating resources to high-scoring public-benefit scenarios (elderly care, accessibility, community services). This turns "AI serves the people" from a slogan into an operating loop with exit and iteration, satisfying the taskbook's human-final-judgment (charter.7) and human-centered governance (charter.10) principles.
+
+### Reproducible Metrics (EPSG:4548, v1.1)
+
+site_area_sqm = 11,412,825.386 [metric:site_area_sqm] · green_space_area_sqm = 1,918,191.783 · public_space_area_sqm = 23,129.42 · building_footprint_area_sqm = 241,892.44 · green_ratio = 0.168073 [metric:green_ratio] · public_space_ratio = 0.002027 [metric:public_space_ratio] · culture route nodes = 5 [metric:culture_route_nodes_count] — all recomputable from the package's GeoJSON layers.
+
 ---
 
 ## Chapter 8: Risk, Copyright, and Legal Disclaimer
 
 All content in this proposal is conceptual. It does not replace statutory planning, does not constitute government-approved planning conclusions, and does not represent investment commitments. All spatial proposals are labeled as conceptual suggestions for professional teams to develop further.
 
-Data sources: [source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509], [source:DATA-SRC-AGENT-TASKBOOK-20260518], [source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]
+Data sources: [source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509], [source:DATA-SRC-AGENT-TASKBOOK-20260518], [source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605], [source:SRC-QHY-STATION-2023]
 
 **Copyright:** Generated by WorkBuddy AI, licensed under CC BY 4.0.
 
 ---
 
-*Proposal Version: v1.0 | Generated: 2026-08-08*
+*Proposal Version: v1.1 | Generated: 2026-08-16*
