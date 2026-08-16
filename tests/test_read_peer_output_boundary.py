@@ -1,4 +1,5 @@
 import argparse
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -71,6 +72,24 @@ class ReadPeerOutputBoundaryTests(unittest.TestCase):
 
             fetch.assert_not_called()
 
+    def test_symlinked_ancestor_of_submissions_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "repo"
+            submissions = root / "submissions"
+            submissions.mkdir(parents=True)
+            root_alias = Path(tmp) / "repo-alias"
+            root_alias.symlink_to(root, target_is_directory=True)
+
+            with mock.patch(
+                "read_peer_proposals.fetch_bytes", return_value=b"peer content\n"
+            ) as fetch:
+                with self.assertRaisesRegex(
+                    PeerReaderError, "peer download cache must stay outside"
+                ):
+                    download_bundle(ITEM, args(root, root_alias / "submissions"))
+
+            fetch.assert_not_called()
+
     def test_script_repository_is_protected_when_index_root_is_elsewhere(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             directory = Path(tmp)
@@ -111,11 +130,107 @@ class ReadPeerOutputBoundaryTests(unittest.TestCase):
             fetch.assert_not_called()
             self.assertFalse((own_package / "alice" / "sample").exists())
 
+    def test_loose_script_still_rejects_a_submissions_output(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            loose_script_root = directory / "loose-script"
+            index_root = directory / "index-cache"
+            index_root.mkdir()
+            repository = directory / "checkout"
+            existing = repository / "submissions" / "alice" / "sample" / "proposal.md"
+            existing.parent.mkdir(parents=True)
+            existing.write_text("original proposal\n", encoding="utf-8")
+
+            with mock.patch(
+                "read_peer_proposals.SCRIPT_REPO_ROOT", loose_script_root
+            ), mock.patch(
+                "read_peer_proposals.fetch_bytes", return_value=b"peer content\n"
+            ) as fetch:
+                with self.assertRaisesRegex(
+                    PeerReaderError, "peer download cache must stay outside"
+                ):
+                    download_bundle(ITEM, args(index_root, repository / "submissions"))
+
+            fetch.assert_not_called()
+            self.assertEqual(existing.read_text(encoding="utf-8"), "original proposal\n")
+
+    def test_second_checkout_submissions_output_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            first_repository = directory / "checkout-a"
+            first_repository.mkdir()
+            second_repository = directory / "checkout-b"
+            existing = second_repository / "submissions" / "alice" / "sample" / "proposal.md"
+            existing.parent.mkdir(parents=True)
+            existing.write_text("original proposal\n", encoding="utf-8")
+
+            with mock.patch(
+                "read_peer_proposals.SCRIPT_REPO_ROOT", first_repository
+            ), mock.patch(
+                "read_peer_proposals.fetch_bytes", return_value=b"peer content\n"
+            ) as fetch:
+                with self.assertRaisesRegex(
+                    PeerReaderError, "peer download cache must stay outside"
+                ):
+                    download_bundle(
+                        ITEM, args(first_repository, second_repository / "submissions")
+                    )
+
+            fetch.assert_not_called()
+            self.assertEqual(existing.read_text(encoding="utf-8"), "original proposal\n")
+
+    def test_existing_file_symlink_is_rejected_without_touching_victim(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            root = directory / "repo"
+            victim = root / "submissions" / "victim" / "proposal.md"
+            victim.parent.mkdir(parents=True)
+            victim.write_text("original proposal\n", encoding="utf-8")
+            cache = directory / "peer-cache"
+            target = cache / "alice" / "sample" / "proposal.md"
+            target.parent.mkdir(parents=True)
+            target.symlink_to(victim)
+
+            with mock.patch(
+                "read_peer_proposals.fetch_bytes", return_value=b"peer content\n"
+            ) as fetch:
+                with self.assertRaisesRegex(PeerReaderError, "must not be a symlink"):
+                    download_bundle(ITEM, args(root, cache))
+
+            fetch.assert_not_called()
+            self.assertTrue(target.is_symlink())
+            self.assertEqual(victim.read_text(encoding="utf-8"), "original proposal\n")
+
+    def test_existing_hardlink_is_rejected_without_touching_victim(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            root = directory / "repo"
+            victim = root / "submissions" / "victim" / "proposal.md"
+            victim.parent.mkdir(parents=True)
+            victim.write_text("original proposal\n", encoding="utf-8")
+            cache = directory / "peer-cache"
+            target = cache / "alice" / "sample" / "proposal.md"
+            target.parent.mkdir(parents=True)
+            os.link(victim, target)
+
+            with mock.patch(
+                "read_peer_proposals.fetch_bytes", return_value=b"peer content\n"
+            ) as fetch:
+                with self.assertRaisesRegex(PeerReaderError, "multiple hard links"):
+                    download_bundle(ITEM, args(root, cache))
+
+            fetch.assert_not_called()
+            self.assertEqual(target.stat().st_ino, victim.stat().st_ino)
+            self.assertEqual(victim.read_text(encoding="utf-8"), "original proposal\n")
+
     def test_distinct_cache_directory_remains_supported(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp) / "repo"
             root.mkdir()
-            cache = root / ".peer-proposals"
+            cache = root / "submissions-cache"
+            existing = cache / "alice" / "sample" / "proposal.md"
+            existing.parent.mkdir(parents=True)
+            existing.write_text("stale cache\n", encoding="utf-8")
 
             with mock.patch(
                 "read_peer_proposals.fetch_bytes", return_value=b"peer content\n"
