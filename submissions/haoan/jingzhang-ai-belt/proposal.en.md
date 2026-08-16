@@ -26,6 +26,22 @@ All spatial recommendations in this proposal are **concept proposals, reference 
 
 ![Master concept and evidence relations](assets/figures/site-overview.en.png)
 
+## Site Understanding and Policy Basis
+
+### Historical Thread: A Railway that Materialized Self-Reliance
+
+Built under Zhan Tianyou in 1909, the Jing-Zhang Railway was the first trunk railway independently designed and built by Chinese engineers; its "zigzag" switchback is a national memory of "overcoming technical barriers with Chinese ingenuity". Qinghuayuan Station (red-brick building) is a historic gateway for examination candidates; after the 2019 high-speed railway moved underground within the 5th Ring, the surface was transformed into the Jing-Zhang Railway Heritage Park — Phase 1 opened in 2023 and Phase 2 recently, turning a ~9 km transport corridor into public space and cultural memory [source:DATA-SRC-JINGZHANG-RAILWAY-HISTORY][source:DATA-SRC-REGULATORY-PLAN-APPROVED-20260811].
+
+### Current Conditions: A High-Density Talent Corridor with Ignited Renewal Momentum
+
+Universities, research institutes, and tech parks cluster densely along the corridor (public background materials); the Beijing Satellite Manufacturing Factory Science Park north of Zhichun Road has completed brownfield renewal and attracted high-precision institutions — an on-site example of "stock-space mining"; Phase 2 of the park added 3 fishbone slow-traffic channels linking the Qinghe waterfront green corridor and Dongsheng Bajia Country Park, with forest theater, children's play areas, sports fields, and convenience nodes serving all ages [source:DATA-SRC-REGULATORY-PLAN-APPROVED-20260811]. Issue diagnosis (concept): slow-traffic gaps and weak east-west stitching, aging buildings, weak university-enterprise-community linkage, lack of public-space continuity and landmarks.
+
+### Policy Window
+
+- Beijing AI Innovation Highland Action Plan (2026-01): nine actions (technology sourcing, computing ecosystem, data aggregation, application enablement, embodied-intelligence leap, etc.), core AI industry scale toward one trillion yuan within about two years [source:DATA-SRC-BEIJING-AI-ACTION-PLAN]
+- Haidian "Two Belts, One Zone" comprehensive plan: Origin Community, Beiwai Community, and the Centennial Jing-Zhang AI Innovation Belt as core anchors, rolling out Origin Community 2.0 with city-wide real-scenario testing [source:DATA-SRC-LIANGQU-YIDAI]
+- **Regulatory plan approved 2026-08-11** (see alignment section below): the statutory base is in place; this proposal is a concept deepening above it
+
 ## Three-Level Scope Framework
 
 The three scope levels follow Section 1.4 of the announcement [source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509] and cascade from strategy to structure to implementation:
@@ -39,6 +55,12 @@ The three scope levels follow Section 1.4 of the announcement [source:DATA-SRC-O
 Cascading logic: the coordinated level defines the "three cores, two wings" industry-space pattern and indicator requirements; the overall level translates the pattern into land use, transport, blue-green, and character structures [data:geometry/land_use.geojson]; the key-area level produces actionable project anchors and scenario lists in the three districts [data:geometry/key_areas.geojson#KEY-001][data:geometry/key_areas.geojson#KEY-002][data:geometry/key_areas.geojson#KEY-003].
 
 **Provisional boundary statement**: both `geometry/site_boundary.geojson` and `geometry/key_areas.geojson` are flagged `geometry_role=provisional_constraint`, `official_boundary=false`, `boundary_precision=provisional_rough` [depth:three_level_scope_framework]. Layers and metrics requiring recalculation after official polygons are released include: all land-use areas and ratios, green ratio, public-space ratio, building footprints, road lengths, key-area areas, and the five figures plus HTML displays.
+
+### Alignment with the Approved Regulatory Plan
+
+The Regulatory Detailed Plan for Blocks HD00-1601 et al. along the Jing-Zhang Railway Heritage Park (AI Innovation District Key Area), Block Level (2024-2035), was approved on 2026-08-11 [source:DATA-SRC-REGULATORY-PLAN-APPROVED-20260811][source:DATA-SRC-REGULATORY-PLAN-ALT]: scope in southern Haidian (east to Xinjiekouwai Street, west to Zhongguancun Street, north to Chengfu Road, south to Xizhimen Outer Street), 9 blocks, about 1668.2 ha; spatial structure "**one belt, one axis, two centers, multiple nodes**" — belt = Jing-Zhang Heritage Park industry innovation belt, axis = Zhongguancun Street innovation axis, centers = Dazhongsi Center and Wudaokou Center, nodes = Zhichun Road, Sidaokou, etc.; industries target foundation models, agents, and embodied intelligence via brownfield renewal; slow-traffic connects north-south and east-west, building 15-minute community service circles fusing living and innovation.
+
+**Hierarchy (precise)**: the approved plan covers 9 blocks south of Chengfu Road (statutory block-level base); our overall design area (11.4 km², north to the North 5th Ring) is larger, and the Zhongzhiyuan key area lies north of Chengfu Road, outside this plan, still based on the prequalification announcement and provisional boundaries. This proposal positions itself as "**concept deepening above the regulatory base**": the AI Spine Corridor extends the "one belt" north-south; Dazhongsi Center and Wudaokou Center are explicitly absorbed into our three-core system (Dazhongsi = Bazaar core, Wudaokou = Core radiation node); Zhichun Road and Sidaokou enter the node library. News-release data is citation-grade only; official drawings await the official package and must not be treated as official redlines.
 
 ![Three-level scope framework](assets/figures/land-use-structure.en.png)
 
@@ -69,6 +91,8 @@ Logo direction: the switchback "zigzag" track of the Qinglongqiao on the Jing-Zh
 | 6 | Hangzhou Future Sci-Tech City | Hangzhou, China | Digital economy + talent policies; **industry-talent-scenario triad** |
 | 7 | Pangyo Techno Valley | Gyeonggi, Korea | Government-planned tech valley + smart-city testing; **showcase-driven spatial marketing** |
 | 8 | Zhongguancun Software Park | Beijing, China | Local experience: **anchor enterprises + professional park operating companies** |
+| 9 | Station F | Paris, France | Railway heritage converted into the world's largest startup campus: **heritage space hosting startup ecosystem + corporate accelerators** |
+| 10 | Shenzhen Bay Tech Eco-Park | Shenzhen, China | Industry-city integration: R&D offices + talent apartments + public space in one, "**park as community**" operations |
 
 Six transferable mechanisms: ① walkable research-industry circles (<15-min walking chain); ② mixed use and talent housing (industry-livability balance); ③ heritage activation as innovation container (railway heritage → innovation corridor); ④ open test beds and scenario release mechanisms; ⑤ anchor-enterprise ecosystem chains plus professional park operators; ⑥ event branding linked to spatial marketing. All cases are background factual references [source:DATA-SRC-GLOBAL-CASES]; only mechanisms are drawn, never copied forms [agent.2].
 
@@ -188,8 +212,9 @@ Ecosystem elements are organized along eight factors — "**land, space, industr
 | University student | 18-28, internship and social driven | Affordable food, public study spaces, events | AI education lab, hackathons |
 | Local resident (incl. elderly) | all ages, daily-life driven | Markets, parks, barrier-free facilities | Barrier-free AI services, health navigation |
 | Developer/visitor | global, event driven | Transit connection, wayfinding, commemorative experiences | AI cultural guide, Open-Source Gallery |
+| New-economy workers (riders/drivers) | all-day mobile, rest/recharge driven | Node charging/water/rest/first aid | Node services, delivery coordination |
 
-### AI Scenario Cards (10, incl. 3 testing/validation scenarios)
+### AI Scenario Cards (12, incl. 3 testing/validation scenarios)
 
 | # | Scenario card | Type | Spatial anchor | Users | Data/privacy boundary | Human review | Suggested operator |
 |---|---|---|---|---|---|---|---|
@@ -203,6 +228,8 @@ Ecosystem elements are organized along eight factors — "**land, space, industr
 | 8 | City-agent operations center (AI+governance) | Application | Zhongzhiyuan | Managers | Compliant public data | Human decision confirmation | Government + professionals |
 | 9 | AI security patrol (AI+public safety) | Application | Whole belt | Residents | Minimized video data | Control-room human review | Property/police cooperation |
 | 10 | Enterprise service co-pilot (AI+services) | Application | Dazhongsi/Zhongguancun Wing | Enterprises | Authorized enterprise data | Service staff review | Park operator |
+| 11 | AI elder companionship (AI+daily life) | Application | AI Spine Nodes | Elderly residents | Localized data, family consent | Community staff + family review | Community + operator |
+| 12 | Smart public-space maintenance (AI+O&M) | Application | Spine corridor green spaces | All users | Anonymous environment sensing | Human maintenance review | Park operator |
 
 Scenario-space-operation mapping follows "**open scenarios, data minimization, human reviewability, traceable accountability**" [standard:GENERATIVE-AI-INTERIM-MEASURES][standard:BARRIER-FREE-ENVIRONMENT-LAW]; standard scenarios reference the repository scenario library (AI+traffic walkability, AI cultural guide, AI health navigation, enterprise co-pilot, public-safety review, low-speed robot delivery) [agent.3].
 
@@ -395,6 +422,22 @@ All event, investment, policy, and operation arrangements are **concept proposal
 **Scenario-open revenue directions**: scenario testing fees, compliant anonymized data services, event and brand income, and node naming rights are used to **replenish node operation and the community fund** (specific ratios and pricing determined by the operator per law; no calculation in this proposal); OMP incentives are realized through computing subsidies and scenario revenue shares (concept). **No investment calculations, return commitments, or budget arrangements.**
 
 **Phased funding focus (concept)**: pilot period (government special funds + urban renewal fund direction) → growth period (operating income + social capital direction) → maturity period (scenario revenue + brand output direction). All are directional concepts; actual arrangements subject to official approval.
+
+### Implementation Assurance System (concept framework)
+
+**Actor responsibility matrix (concept)**: divide implementation actors into "public goods — quasi-public goods — market-based" tiers to avoid dangling responsibility:
+
+| Tier | Representative projects | Leading actor (concept) | Responsibility boundary (concept) |
+|---|---|---|---|
+| Public goods | Spine corridor connection, slow-traffic stitching, public-space component library | District government + park operator + rail-related units | Planning linkage, construction, O&M standards |
+| Quasi-public goods | AI public service nodes, scenario test beds, honor display system | Park committee + industry platform + universities | Scenario admission, data governance, public welfare backstop |
+| Market-based | Industry service complexes, AI-native consumption, operations/events | Market entities + operators | Investment, brand operation, sustained self-funding |
+
+**Three-source funding framework (concept calculation direction, NOT a budget commitment)**: government guidance (special funds + urban renewal fund direction) leverages public goods; state platforms + industry funds carry quasi-public goods; rents/services/events/shares support market-based projects, gradually reducing fiscal dependence. **All amounts and ratios are conceptual directions, to be replaced after feasibility studies; no budget or return commitments.**
+
+**Approval pathway (concept)**: the proposal is a concept deepening above the regulatory base, proceeding along the statutory chain "block regulatory plan (approved [source:DATA-SRC-REGULATORY-PLAN-APPROVED-20260811]) → plot-level urban design/implementation scheme → project approval → planning and construction permits → construction and operation"; formal drawings, ownership, and engineering conditions are mapped item by item when available; no substitute for statutory approval [standard:MOHURD-CONTROL-DETAILED-PLANNING].
+
+**Scenario "validation → scale-up" mechanism (concept)**: scenario cards enter as "pilot validation" (technology maturity met, permits obtained, human fallback), upgrade to "scale-up" after hitting exit-condition KPI thresholds, otherwise exit or downgrade, forming an auditable validation ledger and avoiding concept-only or over-committed scenarios [depth:phasing_implementation].
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
