@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import stat
 import subprocess
 import sys
 import tempfile
@@ -24,7 +25,8 @@ class GenerateExhibitOutputBoundaryTests(unittest.TestCase):
         proposal = submission / "proposal.md"
         proposal.write_text(
             f'---\ntitle: "{slug}"\nsummary: "Sample published exhibit"\n'
-            f'author_github: "{author}"\n---\n# Sample\n',
+            f'author_github: "{author}"\ntracks: ["sample-track"]\n'
+            'scenarios: ["sample-scenario"]\n---\n# Sample\n',
             encoding="utf-8",
         )
         figure.write_bytes(b"fixture image")
@@ -71,6 +73,9 @@ class GenerateExhibitOutputBoundaryTests(unittest.TestCase):
         sys.path.insert(0, str(ROOT / "scripts"))
         from generate_submissions_data import package_sha256
 
+        schema = root / "schema" / "exhibit.schema.json"
+        schema.parent.mkdir()
+        schema.write_bytes((ROOT / "schema" / "exhibit.schema.json").read_bytes())
         registry = root / "gallery-publication.json"
         registry.write_text(
             json.dumps(
@@ -115,6 +120,7 @@ class GenerateExhibitOutputBoundaryTests(unittest.TestCase):
             ("self-check", own_files["self-check"]),
             ("manifest", own_files["manifest"]),
             ("publication registry", registry),
+            ("exhibit schema", schema),
             ("proposal figure", own_files["proposal figure"]),
             ("reviewed package artifact", own_files["reviewed package artifact"]),
         ], other_files
@@ -140,56 +146,175 @@ class GenerateExhibitOutputBoundaryTests(unittest.TestCase):
         )
 
     def test_output_cannot_overwrite_generation_inputs(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp)
-            submission, inputs, _other_files = self.make_fixture(root)
+        labels = (
+            "proposal",
+            "self-check",
+            "manifest",
+            "publication registry",
+            "exhibit schema",
+            "proposal figure",
+            "reviewed package artifact",
+        )
+        for label in labels:
+            with self.subTest(label=label), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                submission, inputs, _other_files = self.make_fixture(root)
+                input_path = dict(inputs)[label]
+                original = input_path.read_bytes()
 
-            for label, input_path in inputs:
-                with self.subTest(label=label):
-                    original = input_path.read_bytes()
-                    result = self.run_generator(root, submission, input_path)
+                result = self.run_generator(root, submission, input_path)
 
-                    self.assertNotEqual(result.returncode, 0)
-                    self.assertIn(f"output must not overwrite the {label} input", result.stderr)
-                    self.assertEqual(input_path.read_bytes(), original)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn(f"output must not overwrite the {label} input", result.stderr)
+                self.assertEqual(input_path.read_bytes(), original)
 
     def test_output_cannot_overwrite_another_published_package(self):
+        labels = (
+            "proposal",
+            "self-check",
+            "manifest",
+            "reviewed package artifact",
+            "proposal figure",
+        )
+        for label in labels:
+            with self.subTest(label=label), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                submission, _inputs, other_files = self.make_fixture(root)
+                target = other_files[label]
+                original = target.read_bytes()
+
+                result = self.run_generator(root, submission, target)
+
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn(
+                    "output must not overwrite an existing file inside submissions/",
+                    result.stderr,
+                )
+                self.assertEqual(target.read_bytes(), original)
+
+    def test_output_cannot_overwrite_input_through_hardlink(self):
+        labels = (
+            "proposal",
+            "self-check",
+            "manifest",
+            "publication registry",
+            "exhibit schema",
+            "proposal figure",
+            "reviewed package artifact",
+        )
+        for label in labels:
+            with self.subTest(label=label), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                submission, inputs, _other_files = self.make_fixture(root)
+                target = dict(inputs)[label]
+                alias = root / f"{label.replace(' ', '-')}-alias"
+                os.link(target, alias)
+                original = target.read_bytes()
+
+                result = self.run_generator(root, submission, alias)
+
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn(f"output must not overwrite the {label} input", result.stderr)
+                self.assertEqual(target.read_bytes(), original)
+
+    def test_output_cannot_overwrite_input_through_symlink(self):
+        for package in ("selected", "other"):
+            with self.subTest(package=package), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                submission, inputs, other_files = self.make_fixture(root)
+                target = (
+                    dict(inputs)["proposal"]
+                    if package == "selected"
+                    else other_files["proposal"]
+                )
+                alias = root / f"{package}-proposal-symlink.md"
+                alias.symlink_to(target)
+                original = target.read_bytes()
+
+                result = self.run_generator(root, submission, alias)
+
+                self.assertNotEqual(result.returncode, 0)
+                self.assertEqual(target.read_bytes(), original)
+
+    def test_external_hardlink_to_other_package_is_replaced_atomically(self):
+        labels = (
+            "proposal",
+            "self-check",
+            "manifest",
+            "reviewed package artifact",
+            "proposal figure",
+        )
+        for label in labels:
+            with self.subTest(label=label), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                submission, _inputs, other_files = self.make_fixture(root)
+                target = other_files[label]
+                alias = root / f"external-{label.replace(' ', '-')}-hardlink"
+                os.link(target, alias)
+                original = target.read_bytes()
+
+                result = self.run_generator(root, submission, alias)
+
+                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                self.assertEqual(target.read_bytes(), original)
+                self.assertFalse(alias.samefile(target))
+                self.assertEqual(json.loads(alias.read_text(encoding="utf-8"))["version"], 1)
+
+    def test_default_output_alias_to_other_package_is_replaced_atomically(self):
+        for alias_kind in ("symlink", "hardlink"):
+            with self.subTest(alias_kind=alias_kind), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                submission, _inputs, other_files = self.make_fixture(root)
+                target = other_files["proposal"]
+                output = submission / "exhibit.json"
+                if alias_kind == "symlink":
+                    output.symlink_to(target)
+                else:
+                    os.link(target, output)
+                original = target.read_bytes()
+
+                result = self.run_generator(root, submission)
+
+                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                self.assertEqual(target.read_bytes(), original)
+                self.assertFalse(output.is_symlink())
+                self.assertFalse(output.samefile(target))
+                self.assertEqual(json.loads(output.read_text(encoding="utf-8"))["version"], 1)
+
+    def test_output_cannot_create_files_in_another_package(self):
+        targets = (
+            "exhibit.json",
+            "assets/figures/injected.png",
+            "report/proposal.html",
+        )
+        for relative in targets:
+            with self.subTest(relative=relative), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                submission, _inputs, other_files = self.make_fixture(root)
+                other_submission = other_files["proposal"].parent
+                output = other_submission / relative
+
+                result = self.run_generator(root, submission, output)
+
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn("output must not write a new file inside submissions/", result.stderr)
+                self.assertFalse(output.exists())
+
+    def test_dangling_symlink_inside_submissions_cannot_escape(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             submission, _inputs, other_files = self.make_fixture(root)
+            outside = root / "outside" / "escaped.json"
+            outside.parent.mkdir()
+            output = other_files["proposal"].parent / "dangling-output.json"
+            output.symlink_to(outside)
 
-            for label in (
-                "proposal",
-                "manifest",
-                "reviewed package artifact",
-                "proposal figure",
-            ):
-                with self.subTest(label=label):
-                    target = other_files[label]
-                    original = target.read_bytes()
-                    result = self.run_generator(root, submission, target)
-
-                    self.assertNotEqual(result.returncode, 0)
-                    self.assertIn(
-                        "output must not overwrite an existing file inside submissions/",
-                        result.stderr,
-                    )
-                    self.assertEqual(target.read_bytes(), original)
-
-    def test_output_cannot_overwrite_input_through_hardlink(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp)
-            submission, inputs, _other_files = self.make_fixture(root)
-            proposal = dict(inputs)["proposal"]
-            alias = root / "proposal-alias.md"
-            os.link(proposal, alias)
-            original = proposal.read_bytes()
-
-            result = self.run_generator(root, submission, alias)
+            result = self.run_generator(root, submission, output)
 
             self.assertNotEqual(result.returncode, 0)
-            self.assertIn("output must not overwrite the proposal input", result.stderr)
-            self.assertEqual(proposal.read_bytes(), original)
+            self.assertIn("output must not write a new file inside submissions/", result.stderr)
+            self.assertTrue(output.is_symlink())
+            self.assertFalse(outside.exists())
 
     def test_default_output_can_be_regenerated(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -197,12 +322,15 @@ class GenerateExhibitOutputBoundaryTests(unittest.TestCase):
             submission, _inputs, _other_files = self.make_fixture(root)
 
             first = self.run_generator(root, submission)
+            output = submission / "exhibit.json"
+            output.chmod(0o640)
             second = self.run_generator(root, submission)
 
             self.assertEqual(first.returncode, 0, first.stdout + first.stderr)
             self.assertEqual(second.returncode, 0, second.stdout + second.stderr)
+            self.assertEqual(stat.S_IMODE(output.stat().st_mode), 0o640)
             self.assertEqual(
-                json.loads((submission / "exhibit.json").read_text(encoding="utf-8"))["version"],
+                json.loads(output.read_text(encoding="utf-8"))["version"],
                 1,
             )
 
