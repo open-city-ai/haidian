@@ -29,7 +29,7 @@ iteration: "v0.1"
 
 | 资料 | 用途 | 可用性 | 本方案处理 |
 |---|---|---|---|
-| 公开任务书与项目公告 | 三层范围、三区两翼、五大功能口径 | formal-ready | 直接引用 [source:PROJECT-OFFICIAL-ANNOUNCEMENT] [source:OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] |
+| 公开任务书与项目公告 | 三层范围、三区两翼、五大功能口径 | formal-ready | 直接引用 [source:OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] |
 | 结构化事实包 | 经组织方整理的口径与术语 | formal-ready | 用于统一表述 [source:PROCESSED-FACT-PACK] |
 | 面向智能体任务书 | agent.1–agent.6 必答任务 | formal-ready | 逐条在正文展开 [source:AGENT-TASKBOOK] |
 | `ranges/planning_limits.json` | 官方面积口径与控制指标状态 | formal-ready | 面积对照与缺口披露 [source:SITE-PACKAGE] |
@@ -43,7 +43,7 @@ iteration: "v0.1"
 - `sources.json` 记录每条引用的发布者、URL、检索日期、覆盖范围、许可与已知局限
 - `assumptions.json` 记录全部假设值（红线宽度、层数、价格带口径）及其不可用范围
 - `compliance_matrix.json` 覆盖公告 1.3/1.4/1.5 全部任务与 agent.1–agent.6
-- `standard_matrix.json` 回应强制性专业标准 [standard:MOHURD-URBAN-DESIGN-MEASURES]、[standard:MOHURD-CONTROL-DETAILED-PLANNING]、[standard:MNR-LAND-USE-CLASSIFICATION]
+- `standard_matrix.json` 回应强制性专业标准 [standard:MOHURD-URBAN-DESIGN-MEASURES]、[standard:MOHURD-CONTROL-DETAILED-PLANNING]、[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]
 - `design_depth_matrix.json` 逐项标注设计深度完成状态 [depth:land_use_layout]
 
 ### 数据缺口（本章明确披露）
@@ -501,7 +501,7 @@ JZ-Parts / <编号>
 
 ### 合规矩阵对应
 
-`compliance_matrix.json` 覆盖公告 1.3、1.4、1.5 全部任务与 agent.1–agent.6；`standard_matrix.json` 覆盖全部强制性专业标准；`design_depth_matrix.json` 中必需的 formal 深度项标注完成状态 [depth:metrics_recomputation]。
+`compliance_matrix.json` 覆盖公告 1.3、1.4、1.5 全部任务与 agent.1–agent.6；`standard_matrix.json` 覆盖全部强制性专业标准；`design_depth_matrix.json` 中必需的 formal 深度项标注完成状态 [depth:metrics_recalculation]。
 
 ### 官方数据替换后的重算范围
 

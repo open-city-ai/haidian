@@ -43,6 +43,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
 
+from metric_types import is_json_number
+
 
 REQUIRED_TEXT_MARKERS = [
     "总览地图",
@@ -215,7 +217,7 @@ def review_visual(submission_dir: Path) -> VisualReport:
             )
             continue
         expected = metric.get("value")
-        if not isinstance(expected, (int, float)):
+        if not is_json_number(expected):
             report.add(
                 "VISUAL_METRIC_SOURCE_MISSING",
                 "major",
@@ -233,7 +235,18 @@ def review_visual(submission_dir: Path) -> VisualReport:
             )
     for name in REQUIRED_METRICS:
         if name not in declared:
-            report.add("VISUAL_METRIC_MISSING", "major", display_path, f"Missing data-metric `{name}`.")
+            metric = metrics.get(name)
+            status = metric.get("status") if isinstance(metric, dict) else None
+            detail = f" (metrics.json status is `{status}`)" if status is not None else ""
+            report.add(
+                "VISUAL_METRIC_MISSING",
+                "major",
+                display_path,
+                f"Missing numeric data-metric `{name}`{detail}. Formal core visual metrics must be known finite "
+                "design-model outputs recomputable from submitted geometry; add or repair the relevant geometry "
+                "and metric, then declare its matching numeric data-value. Do not substitute unknown, "
+                "not_applicable, or a geometry-free placeholder.",
+            )
     return report
 
 

@@ -45,8 +45,33 @@ summary: "围绕百年京张 AI 创新带提出可审查方案。"
 """,
                 encoding="utf-8",
             )
-            for name in ["manifest.json", "metrics.json", "assumptions.json", "sources.json", "self_check.json", "agent.json"]:
+            for name in ["metrics.json", "assumptions.json", "sources.json", "self_check.json", "agent.json"]:
                 (base / name).write_text("{}", encoding="utf-8")
+            (base / "geometry").mkdir()
+            (base / "geometry" / "evidence.geojson").write_text(
+                '{"type":"FeatureCollection","features":[]}', encoding="utf-8"
+            )
+            (base / "visual" / "assets").mkdir(parents=True)
+            (base / "visual" / "assets" / "verify.py").write_text(
+                "raise SystemExit('must not run')\n", encoding="utf-8"
+            )
+            (base / "assets" / "figures").mkdir(parents=True)
+            (base / "assets" / "figures" / "site-overview.png").write_bytes(b"preview")
+            (base / "drawings").mkdir()
+            (base / "drawings" / "a3-booklet.pdf").write_bytes(b"%PDF-preview")
+            (base / "manifest.json").write_text(
+                json.dumps(
+                    {
+                        "files": [
+                            {"path": "geometry/evidence.geojson", "role": "evidence_data"},
+                            {"path": "visual/assets/verify.py", "role": "verification_script"},
+                            {"path": "assets/figures/site-overview.png", "role": "proposal_figure"},
+                            {"path": "drawings/a3-booklet.pdf", "role": "drawing"},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
             out_dir = root / "review-out"
             completed = subprocess.run(
                 [
@@ -68,6 +93,21 @@ summary: "围绕百年京张 AI 创新带提出可审查方案。"
             self.assertIn("rubric_dimensions", review_input)
             self.assertIn("advisory_review_schema", review_input)
             self.assertIn("source_registry_summary", review_input)
+            boundary = review_input["review_input_access_boundary"]
+            self.assertIn("proposal.md", boundary["raw_text_paths"])
+            self.assertIn("assets/figures/site-overview.png", boundary["rendered_preview_paths"])
+            self.assertIn("drawings/a3-booklet.pdf", boundary["partial_preview_paths"])
+            self.assertIn("first page", boundary["partial_preview_rule"])
+            self.assertIn("geometry/evidence.geojson", boundary["not_supplied_paths"])
+            self.assertIn("visual/assets/verify.py", boundary["not_supplied_paths"])
+            self.assertNotIn("assets/figures/site-overview.png", boundary["not_supplied_paths"])
+            self.assertNotIn("drawings/a3-booklet.pdf", boundary["not_supplied_paths"])
+            self.assertFalse(boundary["participant_verification_scripts_executed"])
+            artifacts = {item["path"]: item for item in boundary["manifest_artifacts"]}
+            self.assertEqual(artifacts["geometry/evidence.geojson"]["role"], "evidence_data")
+            self.assertFalse(artifacts["visual/assets/verify.py"]["raw_content_in_review_input_json"])
+            self.assertTrue(artifacts["assets/figures/site-overview.png"]["rendered_preview_supplied"])
+            self.assertTrue(artifacts["drawings/a3-booklet.pdf"]["partial_preview_supplied"])
             self.assertIn("approved_formal_sources", review_input["source_registry_summary"])
             self.assertEqual(
                 review_input["advisory_review_schema_path"],
@@ -79,6 +119,10 @@ summary: "围绕百年京张 AI 创新带提出可审查方案。"
             self.assertIn("Seven-dimension", prompt)
             self.assertIn("advisory_review.schema.json", prompt)
             self.assertIn("source_registry_summary", prompt)
+            self.assertIn("review_input_access_boundary", prompt)
+            self.assertIn("not_supplied_paths", prompt)
+            self.assertIn("Do not claim to have inspected or executed an unsupplied artifact", prompt)
+            self.assertIn("first PDF page", prompt)
             self.assertIn("background_only", prompt)
             self.assertIn("Pull Request comment", prompt)
             self.assertIn("pr_comment_markdown", prompt)

@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+    },
+    {
+      "id": "A-COORD-OFFSET-001",
+      "status": "pending_professional_confirmation",
+      "statement": "The author's real Physarum + NSGA-II network lies ~2-3 km west of the provisional site boundary (only ~140 m overlap). A direct clip would discard ~95% of the real network.",
+      "impact": "The proposal adopts a method-first approach: formal geometry uses a conceptual network inside the provisional boundary, and the real Physarum result is method-validation evidence only. No coordinate translation or fabrication is performed."
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Heritage protection (HERITAGE_PROTECTION) is a locked layer (editable_by_agent=false) with no citable official geometry in the public site package.",
+      "impact": "geometry/constraints.geojson is intentionally kept as an empty set. The heritage boundary is declared in sources.json and this assumption rather than injected as an official_constraint; an empty set is preferred over fabrication."
+    },
+    {
+      "id": "A-HERITAGE-002",
+      "status": "pending_professional_confirmation",
+      "statement": "The public site package provides no official heritage geometry with a non-default heritage_factor, so the four-objective f3 (heritage impact) degenerates to f2 (cost) in computation — i.e. f3≡f2.",
+      "impact": "The recorded '0 heritage crossings' in the Physarum run is only the g1 hard-constraint behavior (protection_scope crossing count is always 0) at method level. It is NOT an independent in-site heritage-protection compliance conclusion; in-site heritage compliance remains unmeasured pending official heritage geometry."
+    },
+    {
+      "id": "A-PROVISIONAL-BOUNDARY-001",
+      "status": "pending_professional_confirmation",
+      "statement": "The site boundary and three key areas are provisional (geometry_role=provisional_constraint, official_boundary=false), sourced from brief/site-package/geometry/provisional_boundaries.geojson.",
+      "impact": "All areas, ratios, and metrics are design-discussion values, not statutory approval values. When official polygons are published, site boundary, key areas, land use, roads, green space, public space, buildings, phasing, and metrics must be recalculated."
+    }
+  ]
+}

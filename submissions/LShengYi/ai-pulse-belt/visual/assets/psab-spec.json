@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0.0",
+  "psab_version": "1.0",
+  "package_version": "v10.9.0",
+  "name": "Public Service Admission Baseline",
+  "name_zh": "公共服务准入基准",
+  "intended_use": "把公共 AI 服务的进入/测试/发布/退役判定提炼为机器可读、可复用的准入基准：任何服务对象可离线核验，判定不依赖方案自述。PSAB 由本方案的智脉四问（P1 可申报/P2 可测试/P3 可发布/P4 可退役）、11 字段服务护照、E0-E4 证据门、双闸门 G0-G7/C0-C7、8 状态机与四段退场红利合同提炼而成，作为与正文机制一一对应的机器可读规范。",
+  "origin": "LShengYi/ai-pulse-belt proposal.md 第六章（脉冲协议）与 visual/assets/{implementation-gates,state-machine,dividend-contracts,simulation}.json",
+  "license": "CC BY-SA 4.0 (author's own normative content; no third-party clauses incorporated)",
+  "elements": [
+    {
+      "id": "ADMISSIBLE",
+      "title_zh": "可申报",
+      "title_en": "Admissible",
+      "core_question_zh": "服务凭什么进入？",
+      "clauses": [
+        {"id": "ADM-1", "zh": "服务护照 11 项必填字段逐项完备（服务与地点/服务对象/非AI基线/数据上限/责任主体/运营主体/人工等价路径/成功证据/失败信号/申诉与暂停/退役与恢复）", "en": "Service passport: all 11 mandatory fields complete", "noncompliance_zh": "缺项退回，不进入场景匹配与测试", "noncompliance_en": "Rejected; no admission to matching or testing"},
+        {"id": "ADM-2", "zh": "P1 申报书为护照公开版本，五要素逐项核验记录公开", "en": "P1 application = public passport; five-element verification records public", "noncompliance_zh": "核验记录缺失视为未申报", "noncompliance_en": "Missing verification record counts as unsubmitted"},
+        {"id": "ADM-3", "zh": "场景闸 C0-C7 与护照字段一一对应，缺项对应门不得放行", "en": "Scenario gates C0-C7 map 1:1 to passport fields; a missing field holds its gate", "noncompliance_zh": "对应门保持关闭", "noncompliance_en": "Gate stays closed"}
+      ]
+    },
+    {
+      "id": "TESTABLE",
+      "title_zh": "可测试",
+      "title_en": "Testable",
+      "core_question_zh": "服务如何被测试？",
+      "clauses": [
+        {"id": "TES-1", "zh": "受控试点：预约、分区、现场安全员、实体急停、结束日期", "en": "Controlled pilot: booking, zoning, on-site safety officer, physical emergency stop, end date", "noncompliance_zh": "保持日常模式，不进入受控开放", "noncompliance_en": "Stay in daily mode; no controlled opening"},
+        {"id": "TES-2", "zh": "五类回滚触发器（安全/隐私/文保/经济/生态）任一触发即停机阀", "en": "Five rollback trigger classes (safety/privacy/heritage/economy/ecology); any trigger halts", "noncompliance_zh": "触发即降级或停用，处置记录公开", "noncompliance_en": "Degrade or halt; disposition public"},
+        {"id": "TES-3", "zh": "人工等价路径在试点期实测可用（不用 AI 完成同一基本任务）", "en": "Same-task human route verified in pilot", "noncompliance_zh": "实测不可用即不得上线", "noncompliance_en": "No launch while human route unavailable"}
+      ]
+    },
+    {
+      "id": "PUBLISHABLE",
+      "title_zh": "可发布",
+      "title_en": "Publishable",
+      "core_question_zh": "服务凭什么留下？",
+      "clauses": [
+        {"id": "PUB-1", "zh": "三道异议门（公众委员会/受影响者/专业评审）无未决异议", "en": "Three objection gates clear of unresolved objections", "noncompliance_zh": "异议未决不发布", "noncompliance_en": "Unresolved objection blocks release"},
+        {"id": "PUB-2", "zh": "五项公共底线指标全部达标（门槛+证据）", "en": "Five public bottom-line indicators met (threshold + evidence)", "noncompliance_zh": "任一未达标降级回 P2 或停止", "noncompliance_en": "Any miss degrades to P2 or stops service"},
+        {"id": "PUB-3", "zh": "E3 独立复测通过（原始与失败记录、人工接管、受影响人群意见、场地恢复）", "en": "E3 independent retest passed (raw & failure records, human takeover, affected-people input, site restoration)", "noncompliance_zh": "修正后重测或退出", "noncompliance_en": "Retest after correction or exit"}
+      ]
+    },
+    {
+      "id": "RETIRABLE",
+      "title_zh": "可退役",
+      "title_en": "Retirable",
+      "core_question_zh": "服务怎么离开？",
+      "clauses": [
+        {"id": "RET-1", "zh": "四段退场红利合同完整：BASE（无AI基线）/BOOST（AI增益与边界）/BLACKOUT（停摆安排）/BEQUEST（退场契约）", "en": "Four-segment exit-dividend contract complete: BASE/BOOST/BLACKOUT/BEQUEST", "noncompliance_zh": "无退场合同不得发布（15/15 全覆盖）", "noncompliance_en": "No exit contract, no release (15/15 coverage)"},
+        {"id": "RET-2", "zh": "8 状态机转移必经停摆演练与退场审计（不可跳过）", "en": "State machine: blackout drill and bequest audit mandatory, non-skippable", "noncompliance_zh": "跳过即状态机失效，全流程重验", "noncompliance_en": "Skipping invalidates the state machine"},
+        {"id": "RET-3", "zh": "退役即平线档案墙公开陈列（服务名/运行周期/复盘结论/失败记录匿名化）+ 数据与场地恢复确认", "en": "Retirement = public display on flatline archive wall + data/site restoration confirmation", "noncompliance_zh": "未完成数据与场地恢复不得关闭档案", "noncompliance_en": "Archive stays open until restoration confirmed"}
+      ]
+    },
+    {
+      "id": "EVIDENCED",
+      "title_zh": "可核验",
+      "title_en": "Evidenced",
+      "core_question_zh": "判定如何被证明？",
+      "clauses": [
+        {"id": "EVI-1", "zh": "运营证据门 E0-E4 控制推进，日历只安排顺序、不能代替任何一道门", "en": "Evidence gates E0-E4 gate all progress; calendars schedule order but never replace a gate", "noncompliance_zh": "无证据不前进", "noncompliance_en": "No progress without evidence"},
+        {"id": "EVI-2", "zh": "全部判定登记带独立回执哈希，可离线重跑（simulate-check.js 退出码契约 0/1/2）", "en": "Every determination carries a receipt hash, re-runnable offline (exit-code contract 0/1/2)", "noncompliance_zh": "回执不可复算的主张不成立", "noncompliance_en": "Claims without reproducible receipts do not stand"},
+        {"id": "EVI-3", "zh": "复算纪律：展示值从全值截断，任何依赖计算从登记文件取值；旧计数不得直接引用", "en": "Recalculation discipline: display values truncate full values; dependent computations read registered files; stale counts are not citable", "noncompliance_zh": "违反即对应主张降级待确认", "noncompliance_en": "Violation downgrades the claim to pending"}
+      ]
+    }
+  ],
+  "passport_fields": [
+    {"id": "PF-01", "zh": "服务与地点", "en": "Service and location", "missing_zh": "不进入场景匹配"},
+    {"id": "PF-02", "zh": "服务对象", "en": "Service recipients", "missing_zh": "不进入共创"},
+    {"id": "PF-03", "zh": "非 AI 基线", "en": "Non-AI baseline", "missing_zh": "不得声称 AI 带来改善"},
+    {"id": "PF-04", "zh": "数据上限", "en": "Data ceiling", "missing_zh": "未声明数据不得采集"},
+    {"id": "PF-05", "zh": "责任主体", "en": "Accountable party", "missing_zh": "不进入测试"},
+    {"id": "PF-06", "zh": "运营主体", "en": "Operator", "missing_zh": "不进入发布"},
+    {"id": "PF-07", "zh": "人工等价路径", "en": "Same-task human route", "missing_zh": "缺失时不得上线"},
+    {"id": "PF-08", "zh": "成功证据", "en": "Success evidence", "missing_zh": "不得扩大范围"},
+    {"id": "PF-09", "zh": "失败信号", "en": "Failure signals", "missing_zh": "立即进入复核"},
+    {"id": "PF-10", "zh": "申诉与暂停", "en": "Appeals and pause", "missing_zh": "不得向公众开放"},
+    {"id": "PF-11", "zh": "退役与恢复", "en": "Retirement and restoration", "missing_zh": "不得启动"}
+  ],
+  "open_items": [
+    {
+      "id": "CR-001",
+      "title_zh": "护照字段集无数据跨境判定",
+      "title_en": "Passport field set has no cross-border data clause",
+      "found_in": "psab-validate.js --drill (boundary sample data_cross_border)",
+      "severity": "medium",
+      "disposition_zh": "已登记自否推演回执（psab-drill.json）；规范 v1.0 保持原 11 字段并标注开放项，字段集修订（ADM-1 增补数据跨境声明）列为 v1.1 变更项，变更前跨境数据声明无必填承载",
+      "disposition_en": "Registered in self-negation drill receipts; spec v1.0 keeps 11 fields and marks the item open; field-set revision (cross-border declaration in ADM-1) queued for v1.1"
+    },
+    {
+      "id": "CR-002",
+      "title_zh": "E0 证据集无听证留档强制子句",
+      "title_en": "E0 evidence set lacks mandatory hearing-archiving clause",
+      "found_in": "psab-validate.js --drill (boundary sample hearing_record)",
+      "severity": "medium",
+      "disposition_zh": "已登记回执；E0 最少证据清单增补'公众委员会听证记录留档'列为 v1.1 变更项",
+      "disposition_en": "Registered; 'hearing record archiving' addition to E0 minimum-evidence list queued for v1.1"
+    },
+    {
+      "id": "CR-003",
+      "title_zh": "BOOST 段合同无增益分配登记项",
+      "title_en": "BOOST segment has no gain-allocation field",
+      "found_in": "psab-validate.js --drill (boundary sample gain_allocation)",
+      "severity": "low",
+      "disposition_zh": "已登记回执；'节省的时间由谁支付、增益归谁'在正文有原则表述（第十二章）但合同 schema 无承载字段，增补列为 v1.1 变更项",
+      "disposition_en": "Registered; principle exists in narrative (Ch. 12) but contract schema lacks a field; addition queued for v1.1"
+    }
+  ],
+  "evidence_contract": {
+    "validator": "visual/assets/psab-validate.js",
+    "rerun_zh": "node visual/assets/psab-validate.js（audit 模式核验 9 项真实服务；--drill 模式执行边界推演并重写 psab-drill.json）",
+    "exit_codes": {"0": "全部通过", "1": "存在缺口（合规拒绝，按设计返回）", "2": "输入或运行错误"}
+  },
+  "reuse_scenarios_zh": [
+    "其他公共 AI 服务提案可直接引用 PSAB 作为准入基线（CC BY-SA 4.0 规范文本）",
+    "评审端可离线对任意服务对象执行 audit 判定，不依赖本方案",
+    "城市更新后续运营可直接以 PSAB 子句作为服务合同前置条款"
+  ]
+}

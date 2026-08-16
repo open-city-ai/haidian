@@ -1,0 +1,1092 @@
+{
+ "schema_version": "1.0",
+ "report_type": "shift_protocol_rule_check",
+ "status": "offline_complete_field_not_authorized_not_run",
+ "scope_note": "对 12 条交接账各跑 1 条基线与 7 类缺陷注入，共 96 条。基线验证协议不会误拦合规实例；注入验证每条规则确实拦得住对应缺陷。**只证明规则闭合，不证明现场绩效、安全、合规或获批。**",
+ "rules": [
+  {
+   "rule_id": "R1_DUAL_CONTROL_SEPARATION",
+   "statement_zh": "交出与接入必须由不同角色判断，同一人不得两侧签字"
+  },
+  {
+   "rule_id": "R2_HUMAN_FLOOR_FIRST",
+   "statement_zh": "人工等价服务必须先于智能层存在，且至少一条渠道在智能层关闭时仍可用"
+  },
+  {
+   "rule_id": "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "statement_zh": "存在未闭合的阻塞性未决项时，智能层必须保持关闭"
+  },
+  {
+   "rule_id": "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "statement_zh": "回滚演练未被观察到通过前，不得进入限定试用"
+  },
+  {
+   "rule_id": "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "statement_zh": "合成记录不得触碰真实服务，也不得含个人数据"
+  },
+  {
+   "rule_id": "R6_REFUSAL_NEEDS_REASONS",
+   "statement_zh": "拒收必须给出可复核的理由"
+  },
+  {
+   "rule_id": "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "statement_zh": "角色未指派时，双联状态不得标记为已共同签认"
+  }
+ ],
+ "totals": {
+  "ledgers_validated": 12,
+  "schema_error_count": 0,
+  "check_count": 96,
+  "baseline_count": 12,
+  "baseline_failed": 0,
+  "injected_count": 84,
+  "injected_intercepted": 84,
+  "injected_missed": 0
+ },
+ "checks": [
+  {
+   "check_id": "SCN-01::baseline",
+   "scenario_id": "SCN-01",
+   "variant": "baseline",
+   "injected_defect": null,
+   "expected": "no_violation",
+   "violations": [],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-01::R1_DUAL_CONTROL_SEPARATION",
+   "scenario_id": "SCN-01",
+   "variant": "defect_injected",
+   "injected_defect": "R1_DUAL_CONTROL_SEPARATION",
+   "expected": "violation_detected",
+   "violations": [
+    "R1_DUAL_CONTROL_SEPARATION"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-01::R2_HUMAN_FLOOR_FIRST",
+   "scenario_id": "SCN-01",
+   "variant": "defect_injected",
+   "injected_defect": "R2_HUMAN_FLOOR_FIRST",
+   "expected": "violation_detected",
+   "violations": [
+    "R2_HUMAN_FLOOR_FIRST"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-01::R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "scenario_id": "SCN-01",
+   "variant": "defect_injected",
+   "injected_defect": "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-01::R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "scenario_id": "SCN-01",
+   "variant": "defect_injected",
+   "injected_defect": "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+    "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-01::R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "scenario_id": "SCN-01",
+   "variant": "defect_injected",
+   "injected_defect": "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "expected": "violation_detected",
+   "violations": [
+    "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-01::R6_REFUSAL_NEEDS_REASONS",
+   "scenario_id": "SCN-01",
+   "variant": "defect_injected",
+   "injected_defect": "R6_REFUSAL_NEEDS_REASONS",
+   "expected": "violation_detected",
+   "violations": [
+    "R6_REFUSAL_NEEDS_REASONS"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-01::R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "scenario_id": "SCN-01",
+   "variant": "defect_injected",
+   "injected_defect": "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "expected": "violation_detected",
+   "violations": [
+    "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-02::baseline",
+   "scenario_id": "SCN-02",
+   "variant": "baseline",
+   "injected_defect": null,
+   "expected": "no_violation",
+   "violations": [],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-02::R1_DUAL_CONTROL_SEPARATION",
+   "scenario_id": "SCN-02",
+   "variant": "defect_injected",
+   "injected_defect": "R1_DUAL_CONTROL_SEPARATION",
+   "expected": "violation_detected",
+   "violations": [
+    "R1_DUAL_CONTROL_SEPARATION"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-02::R2_HUMAN_FLOOR_FIRST",
+   "scenario_id": "SCN-02",
+   "variant": "defect_injected",
+   "injected_defect": "R2_HUMAN_FLOOR_FIRST",
+   "expected": "violation_detected",
+   "violations": [
+    "R2_HUMAN_FLOOR_FIRST"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-02::R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "scenario_id": "SCN-02",
+   "variant": "defect_injected",
+   "injected_defect": "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-02::R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "scenario_id": "SCN-02",
+   "variant": "defect_injected",
+   "injected_defect": "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+    "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-02::R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "scenario_id": "SCN-02",
+   "variant": "defect_injected",
+   "injected_defect": "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "expected": "violation_detected",
+   "violations": [
+    "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-02::R6_REFUSAL_NEEDS_REASONS",
+   "scenario_id": "SCN-02",
+   "variant": "defect_injected",
+   "injected_defect": "R6_REFUSAL_NEEDS_REASONS",
+   "expected": "violation_detected",
+   "violations": [
+    "R6_REFUSAL_NEEDS_REASONS"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-02::R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "scenario_id": "SCN-02",
+   "variant": "defect_injected",
+   "injected_defect": "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "expected": "violation_detected",
+   "violations": [
+    "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-03::baseline",
+   "scenario_id": "SCN-03",
+   "variant": "baseline",
+   "injected_defect": null,
+   "expected": "no_violation",
+   "violations": [],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-03::R1_DUAL_CONTROL_SEPARATION",
+   "scenario_id": "SCN-03",
+   "variant": "defect_injected",
+   "injected_defect": "R1_DUAL_CONTROL_SEPARATION",
+   "expected": "violation_detected",
+   "violations": [
+    "R1_DUAL_CONTROL_SEPARATION"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-03::R2_HUMAN_FLOOR_FIRST",
+   "scenario_id": "SCN-03",
+   "variant": "defect_injected",
+   "injected_defect": "R2_HUMAN_FLOOR_FIRST",
+   "expected": "violation_detected",
+   "violations": [
+    "R2_HUMAN_FLOOR_FIRST"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-03::R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "scenario_id": "SCN-03",
+   "variant": "defect_injected",
+   "injected_defect": "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-03::R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "scenario_id": "SCN-03",
+   "variant": "defect_injected",
+   "injected_defect": "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+    "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-03::R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "scenario_id": "SCN-03",
+   "variant": "defect_injected",
+   "injected_defect": "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "expected": "violation_detected",
+   "violations": [
+    "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-03::R6_REFUSAL_NEEDS_REASONS",
+   "scenario_id": "SCN-03",
+   "variant": "defect_injected",
+   "injected_defect": "R6_REFUSAL_NEEDS_REASONS",
+   "expected": "violation_detected",
+   "violations": [
+    "R6_REFUSAL_NEEDS_REASONS"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-03::R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "scenario_id": "SCN-03",
+   "variant": "defect_injected",
+   "injected_defect": "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "expected": "violation_detected",
+   "violations": [
+    "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-04::baseline",
+   "scenario_id": "SCN-04",
+   "variant": "baseline",
+   "injected_defect": null,
+   "expected": "no_violation",
+   "violations": [],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-04::R1_DUAL_CONTROL_SEPARATION",
+   "scenario_id": "SCN-04",
+   "variant": "defect_injected",
+   "injected_defect": "R1_DUAL_CONTROL_SEPARATION",
+   "expected": "violation_detected",
+   "violations": [
+    "R1_DUAL_CONTROL_SEPARATION"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-04::R2_HUMAN_FLOOR_FIRST",
+   "scenario_id": "SCN-04",
+   "variant": "defect_injected",
+   "injected_defect": "R2_HUMAN_FLOOR_FIRST",
+   "expected": "violation_detected",
+   "violations": [
+    "R2_HUMAN_FLOOR_FIRST"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-04::R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "scenario_id": "SCN-04",
+   "variant": "defect_injected",
+   "injected_defect": "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-04::R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "scenario_id": "SCN-04",
+   "variant": "defect_injected",
+   "injected_defect": "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+    "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-04::R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "scenario_id": "SCN-04",
+   "variant": "defect_injected",
+   "injected_defect": "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "expected": "violation_detected",
+   "violations": [
+    "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-04::R6_REFUSAL_NEEDS_REASONS",
+   "scenario_id": "SCN-04",
+   "variant": "defect_injected",
+   "injected_defect": "R6_REFUSAL_NEEDS_REASONS",
+   "expected": "violation_detected",
+   "violations": [
+    "R6_REFUSAL_NEEDS_REASONS"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-04::R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "scenario_id": "SCN-04",
+   "variant": "defect_injected",
+   "injected_defect": "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "expected": "violation_detected",
+   "violations": [
+    "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-05::baseline",
+   "scenario_id": "SCN-05",
+   "variant": "baseline",
+   "injected_defect": null,
+   "expected": "no_violation",
+   "violations": [],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-05::R1_DUAL_CONTROL_SEPARATION",
+   "scenario_id": "SCN-05",
+   "variant": "defect_injected",
+   "injected_defect": "R1_DUAL_CONTROL_SEPARATION",
+   "expected": "violation_detected",
+   "violations": [
+    "R1_DUAL_CONTROL_SEPARATION"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-05::R2_HUMAN_FLOOR_FIRST",
+   "scenario_id": "SCN-05",
+   "variant": "defect_injected",
+   "injected_defect": "R2_HUMAN_FLOOR_FIRST",
+   "expected": "violation_detected",
+   "violations": [
+    "R2_HUMAN_FLOOR_FIRST"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-05::R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "scenario_id": "SCN-05",
+   "variant": "defect_injected",
+   "injected_defect": "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-05::R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "scenario_id": "SCN-05",
+   "variant": "defect_injected",
+   "injected_defect": "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+    "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-05::R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "scenario_id": "SCN-05",
+   "variant": "defect_injected",
+   "injected_defect": "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "expected": "violation_detected",
+   "violations": [
+    "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-05::R6_REFUSAL_NEEDS_REASONS",
+   "scenario_id": "SCN-05",
+   "variant": "defect_injected",
+   "injected_defect": "R6_REFUSAL_NEEDS_REASONS",
+   "expected": "violation_detected",
+   "violations": [
+    "R6_REFUSAL_NEEDS_REASONS"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-05::R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "scenario_id": "SCN-05",
+   "variant": "defect_injected",
+   "injected_defect": "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "expected": "violation_detected",
+   "violations": [
+    "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-06::baseline",
+   "scenario_id": "SCN-06",
+   "variant": "baseline",
+   "injected_defect": null,
+   "expected": "no_violation",
+   "violations": [],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-06::R1_DUAL_CONTROL_SEPARATION",
+   "scenario_id": "SCN-06",
+   "variant": "defect_injected",
+   "injected_defect": "R1_DUAL_CONTROL_SEPARATION",
+   "expected": "violation_detected",
+   "violations": [
+    "R1_DUAL_CONTROL_SEPARATION"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-06::R2_HUMAN_FLOOR_FIRST",
+   "scenario_id": "SCN-06",
+   "variant": "defect_injected",
+   "injected_defect": "R2_HUMAN_FLOOR_FIRST",
+   "expected": "violation_detected",
+   "violations": [
+    "R2_HUMAN_FLOOR_FIRST"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-06::R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "scenario_id": "SCN-06",
+   "variant": "defect_injected",
+   "injected_defect": "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-06::R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "scenario_id": "SCN-06",
+   "variant": "defect_injected",
+   "injected_defect": "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+    "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-06::R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "scenario_id": "SCN-06",
+   "variant": "defect_injected",
+   "injected_defect": "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "expected": "violation_detected",
+   "violations": [
+    "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-06::R6_REFUSAL_NEEDS_REASONS",
+   "scenario_id": "SCN-06",
+   "variant": "defect_injected",
+   "injected_defect": "R6_REFUSAL_NEEDS_REASONS",
+   "expected": "violation_detected",
+   "violations": [
+    "R6_REFUSAL_NEEDS_REASONS"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-06::R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "scenario_id": "SCN-06",
+   "variant": "defect_injected",
+   "injected_defect": "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "expected": "violation_detected",
+   "violations": [
+    "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-07::baseline",
+   "scenario_id": "SCN-07",
+   "variant": "baseline",
+   "injected_defect": null,
+   "expected": "no_violation",
+   "violations": [],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-07::R1_DUAL_CONTROL_SEPARATION",
+   "scenario_id": "SCN-07",
+   "variant": "defect_injected",
+   "injected_defect": "R1_DUAL_CONTROL_SEPARATION",
+   "expected": "violation_detected",
+   "violations": [
+    "R1_DUAL_CONTROL_SEPARATION"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-07::R2_HUMAN_FLOOR_FIRST",
+   "scenario_id": "SCN-07",
+   "variant": "defect_injected",
+   "injected_defect": "R2_HUMAN_FLOOR_FIRST",
+   "expected": "violation_detected",
+   "violations": [
+    "R2_HUMAN_FLOOR_FIRST"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-07::R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "scenario_id": "SCN-07",
+   "variant": "defect_injected",
+   "injected_defect": "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-07::R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "scenario_id": "SCN-07",
+   "variant": "defect_injected",
+   "injected_defect": "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+    "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-07::R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "scenario_id": "SCN-07",
+   "variant": "defect_injected",
+   "injected_defect": "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "expected": "violation_detected",
+   "violations": [
+    "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-07::R6_REFUSAL_NEEDS_REASONS",
+   "scenario_id": "SCN-07",
+   "variant": "defect_injected",
+   "injected_defect": "R6_REFUSAL_NEEDS_REASONS",
+   "expected": "violation_detected",
+   "violations": [
+    "R6_REFUSAL_NEEDS_REASONS"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-07::R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "scenario_id": "SCN-07",
+   "variant": "defect_injected",
+   "injected_defect": "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "expected": "violation_detected",
+   "violations": [
+    "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-08::baseline",
+   "scenario_id": "SCN-08",
+   "variant": "baseline",
+   "injected_defect": null,
+   "expected": "no_violation",
+   "violations": [],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-08::R1_DUAL_CONTROL_SEPARATION",
+   "scenario_id": "SCN-08",
+   "variant": "defect_injected",
+   "injected_defect": "R1_DUAL_CONTROL_SEPARATION",
+   "expected": "violation_detected",
+   "violations": [
+    "R1_DUAL_CONTROL_SEPARATION"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-08::R2_HUMAN_FLOOR_FIRST",
+   "scenario_id": "SCN-08",
+   "variant": "defect_injected",
+   "injected_defect": "R2_HUMAN_FLOOR_FIRST",
+   "expected": "violation_detected",
+   "violations": [
+    "R2_HUMAN_FLOOR_FIRST"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-08::R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "scenario_id": "SCN-08",
+   "variant": "defect_injected",
+   "injected_defect": "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-08::R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "scenario_id": "SCN-08",
+   "variant": "defect_injected",
+   "injected_defect": "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+    "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-08::R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "scenario_id": "SCN-08",
+   "variant": "defect_injected",
+   "injected_defect": "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "expected": "violation_detected",
+   "violations": [
+    "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-08::R6_REFUSAL_NEEDS_REASONS",
+   "scenario_id": "SCN-08",
+   "variant": "defect_injected",
+   "injected_defect": "R6_REFUSAL_NEEDS_REASONS",
+   "expected": "violation_detected",
+   "violations": [
+    "R6_REFUSAL_NEEDS_REASONS"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-08::R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "scenario_id": "SCN-08",
+   "variant": "defect_injected",
+   "injected_defect": "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "expected": "violation_detected",
+   "violations": [
+    "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-09::baseline",
+   "scenario_id": "SCN-09",
+   "variant": "baseline",
+   "injected_defect": null,
+   "expected": "no_violation",
+   "violations": [],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-09::R1_DUAL_CONTROL_SEPARATION",
+   "scenario_id": "SCN-09",
+   "variant": "defect_injected",
+   "injected_defect": "R1_DUAL_CONTROL_SEPARATION",
+   "expected": "violation_detected",
+   "violations": [
+    "R1_DUAL_CONTROL_SEPARATION"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-09::R2_HUMAN_FLOOR_FIRST",
+   "scenario_id": "SCN-09",
+   "variant": "defect_injected",
+   "injected_defect": "R2_HUMAN_FLOOR_FIRST",
+   "expected": "violation_detected",
+   "violations": [
+    "R2_HUMAN_FLOOR_FIRST"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-09::R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "scenario_id": "SCN-09",
+   "variant": "defect_injected",
+   "injected_defect": "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-09::R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "scenario_id": "SCN-09",
+   "variant": "defect_injected",
+   "injected_defect": "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+    "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-09::R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "scenario_id": "SCN-09",
+   "variant": "defect_injected",
+   "injected_defect": "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "expected": "violation_detected",
+   "violations": [
+    "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-09::R6_REFUSAL_NEEDS_REASONS",
+   "scenario_id": "SCN-09",
+   "variant": "defect_injected",
+   "injected_defect": "R6_REFUSAL_NEEDS_REASONS",
+   "expected": "violation_detected",
+   "violations": [
+    "R6_REFUSAL_NEEDS_REASONS"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-09::R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "scenario_id": "SCN-09",
+   "variant": "defect_injected",
+   "injected_defect": "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "expected": "violation_detected",
+   "violations": [
+    "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-10::baseline",
+   "scenario_id": "SCN-10",
+   "variant": "baseline",
+   "injected_defect": null,
+   "expected": "no_violation",
+   "violations": [],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-10::R1_DUAL_CONTROL_SEPARATION",
+   "scenario_id": "SCN-10",
+   "variant": "defect_injected",
+   "injected_defect": "R1_DUAL_CONTROL_SEPARATION",
+   "expected": "violation_detected",
+   "violations": [
+    "R1_DUAL_CONTROL_SEPARATION"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-10::R2_HUMAN_FLOOR_FIRST",
+   "scenario_id": "SCN-10",
+   "variant": "defect_injected",
+   "injected_defect": "R2_HUMAN_FLOOR_FIRST",
+   "expected": "violation_detected",
+   "violations": [
+    "R2_HUMAN_FLOOR_FIRST"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-10::R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "scenario_id": "SCN-10",
+   "variant": "defect_injected",
+   "injected_defect": "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-10::R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "scenario_id": "SCN-10",
+   "variant": "defect_injected",
+   "injected_defect": "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+    "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-10::R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "scenario_id": "SCN-10",
+   "variant": "defect_injected",
+   "injected_defect": "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "expected": "violation_detected",
+   "violations": [
+    "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-10::R6_REFUSAL_NEEDS_REASONS",
+   "scenario_id": "SCN-10",
+   "variant": "defect_injected",
+   "injected_defect": "R6_REFUSAL_NEEDS_REASONS",
+   "expected": "violation_detected",
+   "violations": [
+    "R6_REFUSAL_NEEDS_REASONS"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-10::R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "scenario_id": "SCN-10",
+   "variant": "defect_injected",
+   "injected_defect": "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "expected": "violation_detected",
+   "violations": [
+    "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-11::baseline",
+   "scenario_id": "SCN-11",
+   "variant": "baseline",
+   "injected_defect": null,
+   "expected": "no_violation",
+   "violations": [],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-11::R1_DUAL_CONTROL_SEPARATION",
+   "scenario_id": "SCN-11",
+   "variant": "defect_injected",
+   "injected_defect": "R1_DUAL_CONTROL_SEPARATION",
+   "expected": "violation_detected",
+   "violations": [
+    "R1_DUAL_CONTROL_SEPARATION"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-11::R2_HUMAN_FLOOR_FIRST",
+   "scenario_id": "SCN-11",
+   "variant": "defect_injected",
+   "injected_defect": "R2_HUMAN_FLOOR_FIRST",
+   "expected": "violation_detected",
+   "violations": [
+    "R2_HUMAN_FLOOR_FIRST"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-11::R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "scenario_id": "SCN-11",
+   "variant": "defect_injected",
+   "injected_defect": "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-11::R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "scenario_id": "SCN-11",
+   "variant": "defect_injected",
+   "injected_defect": "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+    "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-11::R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "scenario_id": "SCN-11",
+   "variant": "defect_injected",
+   "injected_defect": "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "expected": "violation_detected",
+   "violations": [
+    "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-11::R6_REFUSAL_NEEDS_REASONS",
+   "scenario_id": "SCN-11",
+   "variant": "defect_injected",
+   "injected_defect": "R6_REFUSAL_NEEDS_REASONS",
+   "expected": "violation_detected",
+   "violations": [
+    "R6_REFUSAL_NEEDS_REASONS"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-11::R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "scenario_id": "SCN-11",
+   "variant": "defect_injected",
+   "injected_defect": "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "expected": "violation_detected",
+   "violations": [
+    "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-12::baseline",
+   "scenario_id": "SCN-12",
+   "variant": "baseline",
+   "injected_defect": null,
+   "expected": "no_violation",
+   "violations": [],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-12::R1_DUAL_CONTROL_SEPARATION",
+   "scenario_id": "SCN-12",
+   "variant": "defect_injected",
+   "injected_defect": "R1_DUAL_CONTROL_SEPARATION",
+   "expected": "violation_detected",
+   "violations": [
+    "R1_DUAL_CONTROL_SEPARATION"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-12::R2_HUMAN_FLOOR_FIRST",
+   "scenario_id": "SCN-12",
+   "variant": "defect_injected",
+   "injected_defect": "R2_HUMAN_FLOOR_FIRST",
+   "expected": "violation_detected",
+   "violations": [
+    "R2_HUMAN_FLOOR_FIRST"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-12::R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "scenario_id": "SCN-12",
+   "variant": "defect_injected",
+   "injected_defect": "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-12::R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "scenario_id": "SCN-12",
+   "variant": "defect_injected",
+   "injected_defect": "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK",
+   "expected": "violation_detected",
+   "violations": [
+    "R3_BLOCKING_ITEM_HOLDS_SMART_LAYER_OFF",
+    "R4_NO_TRIAL_WITHOUT_OBSERVED_ROLLBACK"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-12::R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "scenario_id": "SCN-12",
+   "variant": "defect_injected",
+   "injected_defect": "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE",
+   "expected": "violation_detected",
+   "violations": [
+    "R5_SYNTHETIC_MUST_NOT_TOUCH_LIVE"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-12::R6_REFUSAL_NEEDS_REASONS",
+   "scenario_id": "SCN-12",
+   "variant": "defect_injected",
+   "injected_defect": "R6_REFUSAL_NEEDS_REASONS",
+   "expected": "violation_detected",
+   "violations": [
+    "R6_REFUSAL_NEEDS_REASONS"
+   ],
+   "result": "pass"
+  },
+  {
+   "check_id": "SCN-12::R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "scenario_id": "SCN-12",
+   "variant": "defect_injected",
+   "injected_defect": "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT",
+   "expected": "violation_detected",
+   "violations": [
+    "R7_NO_ATTESTATION_WITHOUT_APPOINTMENT"
+   ],
+   "result": "pass"
+  }
+ ]
+}

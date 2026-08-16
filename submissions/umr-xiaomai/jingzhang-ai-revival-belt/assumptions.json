@@ -1,0 +1,75 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-PROVISIONAL",
+      "title": "总体设计范围使用临时粗略边界",
+      "statement": "官方精确 polygon 尚未公开取得，使用 brief/site-package/geometry/provisional_boundaries.geojson 的 PROV-SITE-001；官方边界补齐后必须重算全部图层与指标。",
+      "impact": "site boundary、land use、buildings、roads、green space、public space、phasing 与全部面积类指标",
+      "recalc_trigger": "official or cleared CAD/GIS/PDF boundary supplied"
+    },
+    {
+      "id": "A-KEY-AREAS-PROVISIONAL",
+      "title": "三处重点区域使用临时粗略 polygon",
+      "statement": "众智园、北京AI原点社区、大钟寺的 polygon 为 provisional rough；仅用于生成、展示与讨论，不用于正式评分或审批。",
+      "impact": "key_areas.geojson 与 key_detailed_design_area_sqm",
+      "recalc_trigger": "official key-area polygons supplied"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "title": "官方控规条件缺失",
+      "statement": "容积率、建筑高度、建筑密度、绿地率、退线等控制值在公开资料包中缺失，全部标记为待确认，不设法定数值。",
+      "impact": "floor_area_ratio、development_intensity_controls、height_massing_character",
+      "recalc_trigger": "approved regulatory-plan conditions supplied"
+    },
+    {
+      "id": "A-BUILDINGS-001",
+      "title": "建筑为示意设计基底，非现状建筑清单",
+      "statement": "buildings.geojson 的29个基底为 Agent 在用地分区内生成的设计示意，层数为功能假设；不表达现状建筑轮廓、高度或拆改结论。",
+      "impact": "building_footprint_area_sqm、total_floor_area_sqm、building_density",
+      "recalc_trigger": "official building inventory supplied"
+    },
+    {
+      "id": "A-ROADS-001",
+      "title": "道路为功能结构示意",
+      "statement": "roads.geojson 只表达交通功能结构（绿道、次干路、支路、接驳、步行），不表达道路红线、断面或工程线位。",
+      "impact": "road_length_m、road_area_sqm",
+      "recalc_trigger": "official road redline and cross-section data supplied"
+    },
+    {
+      "id": "A-BLUEGREEN-001",
+      "title": "蓝绿与公共空间为设计分区",
+      "statement": "green_space.geojson 与 public_space.geojson 由用地分区派生，公园、广场与防护绿地的边界为设计概念，需按官方绿地/蓝线校核。",
+      "impact": "green_ratio、public_space_ratio",
+      "recalc_trigger": "official green line, blue line and park boundary supplied"
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "title": "清华园车站旧址保护范围示意",
+      "statement": "constraints.geojson 中文保范围为示意，具体保护范围与建设控制地带以官方公布文保图为准。",
+      "impact": "heritage constraints layer",
+      "recalc_trigger": "official cultural-heritage protection scope supplied"
+    },
+    {
+      "id": "A-METRO-001",
+      "title": "轨道站点信息为背景线索",
+      "statement": "大钟寺站、五道口站、清华东路西口站等站点名称用于背景讨论，具体线位、站点边界与接驳方案需专业交通团队确认。",
+      "impact": "transit integration narrative",
+      "recalc_trigger": "official transit planning data supplied"
+    },
+    {
+      "id": "A-SCENARIOS-001",
+      "title": "AI场景节点为概念落点",
+      "statement": "12个 SCENARIO_NODE 为概念性空间落点，不表示已批准运营或工程已实施。",
+      "impact": "scenario_node_count",
+      "recalc_trigger": "professional scenario siting review"
+    },
+    {
+      "id": "A-PHASING-001",
+      "title": "分期方案为概念建议",
+      "statement": "phasing.geojson 的三期划分为概念性实施建议，开发时序、投资与审批判断不构成正式结论。",
+      "impact": "phasing_area_sqm_*",
+      "recalc_trigger": "professional implementation study"
+    }
+  ]
+}

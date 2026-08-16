@@ -1,6 +1,6 @@
 # 普通生活空间场景册 / Ordinary-Life Spatial Scenes
 
-> **概念可视化 / Conceptual visualization.** 本图由 OpenAI 图像生成工具于 2026-08-13 生成，只用于解释三处公共空间原型的人尺度关系。它不是现状照片、测绘视点、已确认位置、建筑改造方案、设备或材料选型、获批设计、运营记录、公众意见或任何现场证据。 / Generated with the OpenAI image-generation tool on 2026-08-13 solely to explain human-scale relationships in three public-space prototypes. It is not a site photograph, surveyed viewpoint, confirmed location, building-renovation scheme, equipment or material selection, approved design, operating record, public opinion, or field evidence.
+> **概念可视化 / Conceptual visualization.** 本三联图与配套封面由 OpenAI 内置图像生成工具于 2026-08-14 生成底图，只用于解释三处公共空间原型和“双轨”关系。它们不是现状照片、测绘视点、已确认位置、建筑改造方案、设备或材料选型、获批设计、运营记录、公众意见或任何现场证据。 / The triptych and companion cover use base images generated with the OpenAI built-in image-generation tool on 2026-08-14 solely to explain three public-space prototypes and the Twin-Track relationship. They are not site photographs, surveyed viewpoints, confirmed locations, building-renovation schemes, equipment or material selections, approved designs, operating records, public opinion, or field evidence.
 
 ## 长描述 / Long description
 
@@ -20,6 +20,16 @@ The middle panel conceptually shows the **screen-free daily street of Beijing AI
 
 The right panel conceptually shows **off-route staffed service beside Dazhongsi commuting**. A broad promenade keeps a legible four-way commuting character; a quiet staffed hall and low platform sit to the sides. Commuters continue through, and optional staying does not create an enclosure or queue. If a release or event pauses, ordinary commuting, rest, and staffed service can still exist independently.
 
+## 配套封面长描述 / Companion Cover Long Description
+
+封面是一张 1600 × 900 的建筑竞赛拼贴式概念图。连续明亮的日常步行带从左下穿过三个不同的人尺度片段并延伸到右上：左侧为与通路平行、可独立隔离的庭院；中部为一条居民街打开到两处日常院落；右侧为四向通勤关系及退在通路外的人工服务厅。底图没有生成文字，也不包含地图图钉、真实站房、铁路走向或可确认地标。
+
+左上深色区域叠加确定性双语标题和三项动作；其下用“日常路径 / ORDINARY PATH”的连续实线、“可选叠层 / OPTIONAL LAYER”的间歇虚线，以及带端部横杠和“停止 / 隔离 / STOP / ISOLATE”文字的分支表达双轨语法。右下明确写出 `G0 概念展示 / CONCEPT ONLY` 与 `非现场证据 / NOT FIELD EVIDENCE`。线型、形状和文字共同传达含义，颜色不是唯一编码；封面不放证据矩阵。
+
+The 1600 × 900 cover is an architectural-competition-style conceptual collage. A bright, continuous ordinary walking band crosses three distinct human-scale moments from lower left to upper right: a parallel court that can be isolated without closing the route; a resident street opening into two everyday courts; and a four-way commuter relationship with a staffed hall set off the route. The generated base contains no text, map-pin marker, real station building, rail alignment, or identifiable landmark.
+
+The calm upper-left field carries deterministic bilingual title and action typography. Below it, the twin-track grammar is encoded by a continuous solid line labelled “日常路径 / ORDINARY PATH”, an intermittent dashed line labelled “可选叠层 / OPTIONAL LAYER”, and a branched line with an end bar and the words “停止 / 隔离 / STOP / ISOLATE”. The lower-right disclosure reads `G0 概念展示 / CONCEPT ONLY` and `非现场证据 / NOT FIELD EVIDENCE`. Words, line style, and shape carry the meaning in addition to colour; no evidence matrix appears on the cover.
+
 ## 普通—验证—故障—恢复读法 / Ordinary—Proof—Fault—Recovery Reading
 
 1. **普通 / Ordinary:** 实体导向、连续无障碍路径、无屏停留和人工说明先成立；无需账户、扫码、屏幕、模型、网络或 AI。 / Physical wayfinding, continuous accessible movement, screen-free staying, and staffed explanation work first; no account, scan, screen, model, network, or AI is needed.
@@ -29,12 +39,16 @@ The right panel conceptually shows **off-route staffed service beside Dazhongsi 
 
 ## 生成与权利披露 / Generation and Rights Disclosure
 
-- 工具 / Tool: OpenAI built-in image generation; exact serving snapshot is not asserted.
-- 输入 / Input: package-authored prompt only; no site photograph, map screenshot, private image, identifiable person, logo, or third-party visual was supplied.
-- 输出处理 / Output processing: selected raster converted locally to WebP without compositional editing; EXIF/GPS metadata absent at inspection.
+- 工具 / Tool: OpenAI built-in image generation; exact serving snapshot not asserted.
+- 日期 / Date: 2026-08-14.
+- 候选 / Candidates: three internal candidates / 三个内部候选。普通生活三联图候选被接受；第一版封面因 map-pin / site-reading risk（地图图钉与已确认场地读法风险）被拒绝且未进入包；修正后的无文字封面底图被接受。
+- 输入 / Input: package-authored prompts only; external input assets = 0. No site photograph, map screenshot, private image, identifiable person, logo, or third-party visual was supplied.
+- 普通生活图输出 / Ordinary output: the accepted 1774 × 887 RGB raster kept its source resolution and was deterministically encoded as WebP (`quality=94`, `method=6`, `exact=true`). No crop, resize, retouching, object removal/addition, or other compositional edit was applied; EXIF/GPS/XMP/ICC data is absent at inspection.
+- 封面输出 / Cover output: the accepted 1672 × 941 RGB base was reduced, never upscaled, to a gallery-compatible 1600 × 900 RGB WebP using a centered 16:9 fit, followed by a local deterministic title and track-grammar overlay. Encoding used `quality=94`, `method=6`, `exact=true`; EXIF/GPS/XMP/ICC data is absent at inspection.
+- 字体 / Font: the overlay rasterizes the already-recorded local DengXian Regular/Bold 1.22 files only; no font file ships. Their recorded local hashes match the build inputs, but this record does not claim licence or embedding clearance.
 - 人物 / People: synthetic, generic, and non-identifiable; no claim of real participation, consent, preference, or field observation.
 - 证据地位 / Evidence status: presentation only; authoritative package evidence remains GeoJSON, metrics, matrices, cited sources, and self-check records.
-- 权利状态 / Rights status: `not_fully_cleared`; repository review only pending complete terms and independent file-level audit. No public or professional reuse licence is asserted.
+- 权利状态 / Rights status: `not_fully_cleared`; repository review only pending complete terms and independent review. The independent file-level audit count remains 0. No public or professional reuse licence is asserted.
 - 禁止推断 / Forbidden inference: no exact site, scale, dimension, material, accessibility compliance, fire/railway/municipal conclusion, operator, shift, opening hour, approval, procurement, construction, performance, or restoration result may be inferred.
 
 结构化登记 / Structured register: `../../visual/assets/ordinary-life-media-register.json`.

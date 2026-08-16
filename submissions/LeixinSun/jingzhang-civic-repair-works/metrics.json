@@ -1,0 +1,681 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied."
+      ]
+    },
+    "land_use_partition_area_sqm": {
+      "status": "known",
+      "value": 11412825.385,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(union(land_use_polygons), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "land_use_gap_sqm": {
+      "status": "known",
+      "value": 0.001,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(site_boundary - union(land_use_polygons), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "land_use_overlap_sqm": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(pairwise_intersection_area(land_use_polygons), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 631303.728,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(building_footprints), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "building_footprint_ratio": {
+      "status": "known",
+      "value": 0.055315,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_building_coverage_control",
+      "confidence": "unknown",
+      "assumptions": [
+        "The separately reported building_footprint_ratio is a low-confidence conceptual design quantity and is not a statutory building density."
+      ],
+      "reason": "Approved regulatory planning conditions and a verified existing-building survey are unavailable."
+    },
+    "building_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building_footprint_features)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "microfactory_cluster_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(distinct cluster_id)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "equipment_family_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(distinct equipment_family)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1195969.592,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(green_space_polygons), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.104792,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 395592.331,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(public_space_polygons), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.034662,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 24440.989,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(union(road_centerlines), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "road_centerline_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(road_centerline_features)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "phasing_coverage_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(union(phase_polygons), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "phasing_gap_sqm": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(site_boundary - union(phase_polygons), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "phasing_overlap_sqm": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(pairwise_intersection_area(phase_polygons), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(provisional_key_area_features)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied."
+      ]
+    },
+    "provisional_key_area_total_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(union(provisional_key_area_polygons), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied."
+      ]
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(building_floor_area)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied."
+      ],
+      "reason": "Official height, floor-count, existing-building, and regulatory controls are unavailable."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied."
+      ],
+      "reason": "Approved FAR controls and exact official site geometry are unavailable."
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "area(official_or_approved_road_space)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied."
+      ],
+      "reason": "Road redlines and approved cross-sections are unavailable; conceptual centerlines are not road areas."
+    },
+    "road_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "road_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied."
+      ],
+      "reason": "Road redlines and approved cross-sections are unavailable."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_building_height_control",
+      "confidence": "unknown",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied."
+      ],
+      "reason": "Approved height controls and verified existing-building heights are unavailable."
+    },
+    "land_use_05_area_sqm": {
+      "status": "known",
+      "value": 2625364.024,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(feature) where land_use_code == '05', EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "land_use_0702_area_sqm": {
+      "status": "known",
+      "value": 1285807.398,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(feature) where land_use_code == '0702', EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "land_use_0802_area_sqm": {
+      "status": "known",
+      "value": 3085471.068,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(feature) where land_use_code == '0802', EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "land_use_0803_area_sqm": {
+      "status": "known",
+      "value": 1398013.468,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(feature) where land_use_code == '0803', EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "land_use_0804_area_sqm": {
+      "status": "known",
+      "value": 1149166.417,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(feature) where land_use_code == '0804', EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "land_use_1401_area_sqm": {
+      "status": "known",
+      "value": 1869003.01,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(feature) where land_use_code == '1401', EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 3648302.198,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(feature where phase == 'phase_1', EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 3534711.65,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(feature where phase == 'phase_2', EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 4229811.537,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(feature where phase == 'phase_3', EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied.",
+        "Generated as a low-confidence conceptual design inside provisional geometry; it is not an approved land-use, building, road, engineering, ownership, or implementation control."
+      ]
+    },
+    "key_area_zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(provisional key area 'zhongzhiyuan_ai_acceleration_area', EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied."
+      ]
+    },
+    "key_area_beijing_ai_origin_community_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(provisional key area 'beijing_ai_origin_community', EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied."
+      ]
+    },
+    "key_area_dazhongsi_ai_industry_cluster_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(provisional key area 'dazhongsi_ai_industry_cluster', EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated in EPSG:4548 from repository provisional rough geometry; suitable only for conceptual comparison and must be recalculated after official polygons are supplied."
+      ]
+    },
+    "release_replay_fixture_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/tabletop/fixtures.json",
+        "visual/assets/tabletop/results.json"
+      ],
+      "formula": "count(synthetic tabletop fixtures)",
+      "confidence": "high",
+      "assumptions": [
+        "Synthetic rule replay only; eight release-gate branches and four AI-authority boundary branches are represented. field_runs=0 and no device performance is represented."
+      ]
+    },
+    "release_replay_expected_match_rate": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/tabletop/results.json"
+      ],
+      "formula": "matched_expected_decisions / fixture_count",
+      "confidence": "high",
+      "assumptions": [
+        "Measures deterministic rule consistency only, not field safety, effectiveness, or authorization."
+      ]
+    },
+    "release_replay_field_run_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/tabletop/results.json"
+      ],
+      "formula": "count(real field runs represented by the tabletop package)",
+      "confidence": "high",
+      "assumptions": [
+        "The package intentionally contains no field run."
+      ]
+    },
+    "ai_authority_replay_fixture_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/ai_human_authority_matrix.json",
+        "visual/assets/tabletop/fixtures.json",
+        "visual/assets/tabletop/results.json"
+      ],
+      "formula": "count(synthetic fixtures where rule_family = ai_authority_boundary)",
+      "confidence": "high",
+      "assumptions": [
+        "Synthetic deterministic policy replay only; it does not measure model accuracy, field safety, professional acceptance, or institutional authorization."
+      ]
+    },
+    "ai_authority_replay_expected_match_rate": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/tabletop/results.json"
+      ],
+      "formula": "authority_boundary_matched / authority_boundary_fixture_count",
+      "confidence": "high",
+      "assumptions": [
+        "Measures whether four participant-authored AI overreach branches are refused or held as expected; it is not a model-performance result."
+      ]
+    },
+    "service_continuity_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/kpi_measurement_plan.json"
+      ],
+      "formula": "public-service outage events with equivalent service / eligible public-service outage events",
+      "confidence": "unknown",
+      "assumptions": [
+        "No lawful pilot baseline exists."
+      ],
+      "reason": "Requires real outage, fallback, accessibility, and closure records."
+    },
+    "receipt_completeness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/asset_return_contract.json",
+        "visual/assets/kpi_measurement_plan.json"
+      ],
+      "formula": "complete R5 receipts / R5 reviewed cases",
+      "confidence": "unknown",
+      "assumptions": [
+        "No live R5 receipt exists."
+      ],
+      "reason": "Requires real reviewed work orders and receipts."
+    },
+    "unverified_part_rejection_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/interchangeability_test_registry.json",
+        "visual/assets/kpi_measurement_plan.json"
+      ],
+      "formula": "candidate parts rejected for missing or failed evidence / candidate parts",
+      "confidence": "unknown",
+      "assumptions": [
+        "Synthetic registry record is not a real part."
+      ],
+      "reason": "Requires authorized candidate-part tests."
+    },
+    "same_fault_recurrence_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/kpi_measurement_plan.json"
+      ],
+      "formula": "same-fault returns within declared observation period / released assets",
+      "confidence": "unknown",
+      "assumptions": [
+        "Observation period must be declared by equipment family."
+      ],
+      "reason": "Requires real release and recurrence events."
+    },
+    "qualified_handover_traceability_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/regulated_material_handoff.json",
+        "visual/assets/kpi_measurement_plan.json"
+      ],
+      "formula": "handover cases with recipient scope-match and custody record / handover cases",
+      "confidence": "unknown",
+      "assumptions": [
+        "No real regulated-material handover is represented."
+      ],
+      "reason": "Requires actual classification, recipient qualification, and custody records."
+    }
+  }
+}

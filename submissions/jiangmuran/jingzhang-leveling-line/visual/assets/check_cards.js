@@ -71,8 +71,22 @@ function check(cards, world) {
     // eight; the table used to deliver six.
     for (const f of ['name_zh', 'name_en', 'data_source_zh', 'data_source_en',
                      'human_review_zh', 'human_review_en', 'f_definition_zh',
-                     'f_family', 'tolerance_level', 'privacy_boundary']) {
+                     'f_family', 'tolerance_level', 'privacy_boundary',
+                     'non_ai_equivalent_zh', 'non_ai_equivalent_en']) {
       if (!c[f] || String(c[f]).trim() === '') fail(`${at}: ${f} is empty — the cards promise this field`);
+    }
+
+    // The stop rule this whole package turns on is that a scenario may not be
+    // returned to service without an equivalent that does not need the model.
+    // The closure reader enforces the boolean; nothing enforced that the card
+    // says what the equivalent IS, and for a while none of them did.
+    if (c.tolerance_level === 'F1' && c.non_ai_equivalent_permanent !== true) {
+      fail(`${at}: is F1 and does not mark its non-AI equivalent permanent — ` +
+           `at F1 the equivalent is not withdrawn when the AI comes back`);
+    }
+    if (c.tolerance_level !== 'F1' && c.non_ai_equivalent_permanent === true) {
+      fail(`${at}: marks its non-AI equivalent permanent at ${c.tolerance_level}; ` +
+           `permanence is the F1 rule and claiming it elsewhere makes the rule mean less`);
     }
 
     // Benchmarks: real ids, not placeholders.
@@ -199,6 +213,11 @@ const MUTATIONS = [
   }],
   ['a registry scenario no card carries', (c) => { c.cards[5].registry_scenario = null;
     c.cards[5].registry_note_zh = 'x'; c.cards[5].registry_note_en = 'x'; }],
+  ['a card that does not say what its non-AI equivalent is', (c) => {
+    c.cards[2].non_ai_equivalent_zh = ''; }],
+  ['an F1 card whose non-AI equivalent is not permanent', (c) => {
+    const f1 = c.cards.find((x) => x.tolerance_level === 'F1');
+    f1.non_ai_equivalent_permanent = false; }],
 ];
 
 function selftest(base, w) {
@@ -239,8 +258,12 @@ if (problems.length) {
   for (const p of problems) console.error(`  - ${p}`);
   process.exit(1);
 }
+const named = cards.cards.filter((c) => c.non_ai_equivalent_zh && c.non_ai_equivalent_en).length;
+const permanent = cards.cards.filter((c) => c.non_ai_equivalent_permanent === true).length;
 console.log(`check_cards.js: ${total} cards, every benchmark and anchor resolves, ` +
             `every exit quantity is defined.`);
+console.log(`  non-AI equivalent named on ${named}/${total} cards, ${permanent} of them permanent ` +
+            `(every F1 card and no other): the stop rule is only as good as the path it falls back to.`);
 console.log(`  operational now: ${live}/${total}. The remaining ${total - live} are blocked on ` +
             `tolerances that are set in the assembly at BM-1, not here — the package says so in a ` +
             `field rather than in the word 「超限」.`);

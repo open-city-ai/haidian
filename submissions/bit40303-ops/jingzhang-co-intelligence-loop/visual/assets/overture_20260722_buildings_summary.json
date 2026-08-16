@@ -1,0 +1,117 @@
+{
+  "dataset": "Overture Maps Buildings",
+  "release": "2026-07-22.0",
+  "client_version": "1.0.1",
+  "official_quickstart": "https://docs.overturemaps.org/getting-data/",
+  "official_python_client_docs": "https://docs.overturemaps.org/getting-data/overturemaps-py/",
+  "official_schema": "https://docs.overturemaps.org/schema/reference/buildings/building/",
+  "official_attribution_and_licensing": "https://docs.overturemaps.org/attribution/",
+  "stac_catalog": "https://stac.overturemaps.org/catalog.json",
+  "release_cloud_path": "s3://overturemaps-us-west-2/release/2026-07-22.0/theme=buildings/type=building/*",
+  "accessed_date": "2026-08-08",
+  "theme_license": "Open Database License 1.0 (ODbL)",
+  "required_attribution": "© OpenStreetMap contributors, Overture Maps Foundation",
+  "upstream_non_osm_source": {
+    "dataset": "doi:10.5281/zenodo.8174931",
+    "url": "https://doi.org/10.5281/zenodo.8174931",
+    "title": "A first high-quality vector data of buildings in East Asian countries based on a comprehensive large-scale mapping framework",
+    "publisher": "Zenodo",
+    "published_date": "2023-07-22",
+    "coverage_statement": "China, Japan, North Korea, South Korea and Mongolia",
+    "license": "Creative Commons Attribution 4.0 International",
+    "citation": "Qian Shi, Jiajun Zhu, Zhengyu Liu, Haonan Guo, Mengxi Liu, Zihong Liu and Xiaoping Liu (2023), A first high-quality vector data of buildings in East Asian countries based on a comprehensive large-scale mapping framework, Zenodo, https://doi.org/10.5281/zenodo.8174931",
+    "overture_source_update_time": "2024-11-01T00:00:00.000Z"
+  },
+  "download": {
+    "query_bbox_wgs84": [
+      116.3397,
+      39.939,
+      116.3553,
+      40.0265
+    ],
+    "command": "overturemaps download --bbox=116.3397,39.939,116.3553,40.0265 -f geojson -t building -o overture-jingzhang-buildings-bbox.geojson",
+    "state": {
+      "last_release": "2026-07-22.0",
+      "last_run": "2026-08-08T08:20:27.971417+00:00",
+      "theme": "buildings",
+      "type": "building",
+      "bbox": {
+        "xmin": 116.3397,
+        "ymin": 39.939,
+        "xmax": 116.3553,
+        "ymax": 40.0265
+      },
+      "backend": "geojson"
+    },
+    "source_geojson_size_bytes": 2801709,
+    "source_geojson_sha256": "e032a9c4dd0af458c0431b971ace497cb55547494c97a92df55daaa7d04db0a0",
+    "state_json_size_bytes": 336,
+    "state_json_sha256": "f90b742e0f212de27e27a73d029ae9364aa23a98d134f692d6506caba12c630c",
+    "raw_bbox_feature_count": 5225
+  },
+  "clip_boundary": "geometry/site_boundary.geojson#SITE-001",
+  "clip_boundary_status": "provisional_rough_nonstatutory",
+  "horizontal_crs": "EPSG:4326",
+  "area_crs": "EPSG:4548",
+  "source_geometry_types": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "source_geometry_invalid_count": 0,
+  "site_intersect_feature_count": 4533,
+  "site_edge_clipped_feature_count": 234,
+  "site_source_feature_counts": {
+    "OpenStreetMap": 1699,
+    "doi:10.5281/zenodo.8174931": 2834
+  },
+  "site_source_sum_area_sqm": {
+    "OpenStreetMap": 2078050.579,
+    "doi:10.5281/zenodo.8174931": 573679.871
+  },
+  "site_source_update_time_ranges": {
+    "OpenStreetMap": [
+      "2011-08-31T13:54:09.000Z",
+      "2026-06-25T05:52:43.000Z"
+    ],
+    "doi:10.5281/zenodo.8174931": [
+      "2024-11-01T00:00:00.000Z",
+      "2024-11-01T00:00:00.000Z"
+    ]
+  },
+  "existing_osm_context": {
+    "feature_count": 1688,
+    "union_area_sqm": 2017912.446,
+    "direct_record_id_matches_in_overture": 1684,
+    "area_covered_by_full_overture_sqm": 2014714.81
+  },
+  "full_overture_site_context": {
+    "feature_count": 4533,
+    "sum_area_sqm": 2651730.45,
+    "union_area_sqm": 2623630.587,
+    "incremental_union_area_over_existing_osm_sqm": 608915.776
+  },
+  "retained_non_osm_increment": {
+    "selection_rule": "SITE-001-intersecting Overture buildings whose source dataset set is exactly doi:10.5281/zenodo.8174931; OSM-sourced Overture features are excluded to avoid duplicating the existing OSM layer.",
+    "feature_count": 2834,
+    "edge_clipped_feature_count": 95,
+    "sum_area_sqm": 573679.882,
+    "union_area_sqm": 573676.833,
+    "overlap_with_existing_osm_union_sqm": 14.791,
+    "incremental_union_area_over_existing_osm_sqm": 573662.042,
+    "incremental_area_gain_ratio_vs_existing_osm_union": 0.284285
+  },
+  "combined_existing_building_context": {
+    "feature_count": 4522,
+    "union_area_sqm": 2591574.488,
+    "union_area_share_of_provisional_site": 0.227076
+  },
+  "canonical_layer_update": {
+    "path": "geometry/buildings.geojson",
+    "design_features_preserved": 8,
+    "osm_existing_features_preserved": 1688,
+    "overture_non_osm_increment_features_added": 2834,
+    "canonical_total_feature_count": 4530
+  },
+  "method": "Downloaded the release-specific building theme through the official bbox client, validated the release state and all source geometries, clipped by provisional SITE-001, projected areas to EPSG:4548, matched Overture OSM record IDs against the retained OSM snapshot, excluded all OSM-sourced Overture features, and appended only the East Asian non-OSM increment to the canonical existing-condition building layer.",
+  "usage_boundary": "Open concept-stage building-footprint/roofprint screening only. Overture release date is not an acquisition or survey date; the retained upstream source was published in 2023 and carries a 2024-11-01 Overture source update timestamp, while source imagery dates and per-feature confidence are not established here. Automated footprints can contain omission, commission, roof displacement, generalisation and multipart errors. The provisional clip, sparse height/floor attributes and nonstatutory licensing prevent use for cadastral, ownership, permit, demolition, precise building area/height, fire, accessibility, structural, utility, as-built or survey-acceptance conclusions."
+}

@@ -1,0 +1,79 @@
+{
+  "schema_version": "0.1.0",
+  "title": "MEET YARD 会车协议状态机 Schema",
+  "description": "七步会车协议（预约—披露—互证—人审—试行—回退—归档）的机器可读契约，与 proposal.md §06.1 一致：8 值 status_code + record_status 双字段，绿/琥珀/红三级风险，7 类执行角色。",
+  "source_ref": "proposal.md §06.1（06.1.2 七步协议、06.1.3 角色矩阵）",
+  "protocol_steps": [
+    "APPLIED",
+    "DISCLOSED",
+    "CROSS_VERIFICATION",
+    "HUMAN_REVIEWED",
+    "PILOTING",
+    "ROLLED_BACK",
+    "ARCHIVED"
+  ],
+  "status_codes": [
+    "APPLIED",
+    "DISCLOSED",
+    "CROSS_VERIFICATION",
+    "HUMAN_REVIEWED",
+    "PILOTING",
+    "PAUSED",
+    "ROLLED_BACK",
+    "ARCHIVED"
+  ],
+  "status_code_zh": {
+    "APPLIED": "申请中",
+    "DISCLOSED": "已披露",
+    "CROSS_VERIFICATION": "待互证",
+    "HUMAN_REVIEWED": "已人审",
+    "PILOTING": "限域试行",
+    "PAUSED": "已暂停",
+    "ROLLED_BACK": "已回退",
+    "ARCHIVED": "已归档"
+  },
+  "record_statuses": ["draft", "verified", "blocked"],
+  "record_status_rule": "record_status=draft 时 status_code=null；只有 record_status=verified 且协议字段齐全的场景卡才可进入试行、图件成果或已验证叙述（proposal §06.1.2）。",
+  "transitions": {
+    "APPLIED": ["DISCLOSED", "PAUSED"],
+    "DISCLOSED": ["CROSS_VERIFICATION", "PAUSED"],
+    "CROSS_VERIFICATION": ["HUMAN_REVIEWED", "PAUSED", "ROLLED_BACK"],
+    "HUMAN_REVIEWED": ["PILOTING", "PAUSED", "ROLLED_BACK"],
+    "PILOTING": ["PAUSED", "ARCHIVED", "ROLLED_BACK"],
+    "PAUSED": ["CROSS_VERIFICATION", "ROLLED_BACK", "ARCHIVED"],
+    "ROLLED_BACK": ["ARCHIVED"],
+    "ARCHIVED": []
+  },
+  "terminal_states": ["ARCHIVED"],
+  "risk_levels": ["green", "amber", "red"],
+  "risk_escalation_rule": "涉及个人/敏感数据、未成年人或脆弱群体、物理设备运动、公共服务资格、法律/医疗/安全后果、持续监测或难以撤销影响的最低从琥珀色起评；不确定时自动上调一级，仍无法满足时退出而不是降级描述（proposal §06.1.2）。",
+  "roles": [
+    "APPLICANT",
+    "ACCOUNTABLE_OWNER",
+    "SITE_OPERATOR",
+    "DOMAIN_SECURITY_REVIEWER",
+    "AFFECTED_GROUP_ADVISOR",
+    "INCIDENT_COORDINATOR",
+    "ARCHIVE_CUSTODIAN"
+  ],
+  "roles_zh": {
+    "APPLICANT": "申请主体",
+    "ACCOUNTABLE_OWNER": "可问责负责人",
+    "SITE_OPERATOR": "场地运营角色",
+    "DOMAIN_SECURITY_REVIEWER": "领域/安全审核角色",
+    "AFFECTED_GROUP_ADVISOR": "受影响群体/无障碍评议角色",
+    "INCIDENT_COORDINATOR": "事故协调角色",
+    "ARCHIVE_CUSTODIAN": "档案维护角色"
+  },
+  "role_fields": ["can", "cannot", "must_record", "absent_handling"],
+  "required_fields_per_state": {
+    "APPLIED": ["scenario_id", "applicant_role", "purpose", "resources", "expected_public_value", "time_window", "log_location"],
+    "DISCLOSED": ["data_source_ids", "data_class", "risk_level", "risk_reason", "model_or_rule_version"],
+    "CROSS_VERIFICATION": ["credential_exchange_log_id", "affected_groups", "human_decision_point"],
+    "HUMAN_REVIEWED": ["decision_log_id", "reviewer_roles", "review_date", "accountable_owner"],
+    "PILOTING": ["operator_role", "stop_triggers", "manual_alternative", "time_window", "incident_notice"],
+    "PAUSED": ["incident_notice", "restore_condition", "log_location"],
+    "ROLLED_BACK": ["rollback_steps", "manual_alternative", "restore_condition", "log_location"],
+    "ARCHIVED": ["retention_or_license", "archive_version", "reuse_conditions", "log_location"]
+  }
+}

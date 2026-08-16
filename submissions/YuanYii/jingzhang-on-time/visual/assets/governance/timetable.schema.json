@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "jingzhang-on-time/urban-operating-diagram-timetable-v1",
+  "title": "Urban Operating Diagram service timetable entry",
+  "description": "运行图登记契约：每项 AI 公共服务在获得运行资格前必须登记的时刻表条目。G0 登记门槛的机器可读形态。",
+  "type": "object",
+  "required": [
+    "service_id",
+    "stop_id",
+    "zone_id",
+    "raci",
+    "gate",
+    "access_tier",
+    "schedule",
+    "punctuality_definition",
+    "delay_threshold_minutes",
+    "change_notice_hours",
+    "suspension_notice_hours",
+    "transfer",
+    "ai_off_path",
+    "stop_condition"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "service_id": {
+      "type": "string",
+      "pattern": "^T-[0-9]{2}(-[A-Z0-9]+)?$",
+      "description": "场景卡编号（T-01~T-08）或其派生服务实例"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^T-[0-9]{2}$",
+      "description": "场景卡编号（八张卡登记名，与 service_id 同源）"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "场景名"
+    },
+    "space": {
+      "type": "string",
+      "minLength": 1,
+      "description": "空间载体（八要素之一，登记时冗余存于卡内）"
+    },
+    "trl": {
+      "type": "string",
+      "description": "技术成熟度（N/A 或 5-9 区间字符串）"
+    },
+    "stop_id": {
+      "type": "string",
+      "enum": ["ZJ-01", "ZJ-02", "ZJ-03", "MS-01", "MS-02", "MS-03", "MS-04", "MS-05", "MS-06", "LINE-WIDE"],
+      "description": "停靠点：三座功能主站 / 六座区间乘降所 / 全线"
+    },
+    "zone_id": {
+      "type": "string",
+      "enum": ["ZN-PUB", "ZN-KA"],
+      "description": "治理分区断言（与 geojson properties 同口径）"
+    },
+    "raci": {
+      "type": "string",
+      "enum": ["R-STATION-OPS", "R-COMMUNITY-CARE", "R-DELIVERY", "R-TEST-SAFETY", "R-SERVICE-OPS"],
+      "description": "责任角色（与合规矩阵/场景卡责任字段一一对应）"
+    },
+    "gate": {
+      "type": "string",
+      "enum": ["G0_REGISTERED", "G1_BASELINE", "G2_CONTROLLED_TRIAL", "G3_PUNCTUAL", "G4_RELEASE", "G4_SUSPENDED"],
+      "description": "运行图门位：登记→基线核验→受控试运行→正点考核→放行/停运"
+    },
+    "access_tier": {
+      "type": "string",
+      "enum": ["L1", "L2", "L3"],
+      "description": "准入分级：L1 开放展示 / L2 受限测试 / L3 沙盒验证"
+    },
+    "schedule": {
+      "type": "object",
+      "description": "时空时刻表：间隔/窗口",
+      "required": ["interval", "window"],
+      "additionalProperties": false,
+      "properties": {
+        "interval": {
+          "type": "string",
+          "description": "发车/服务间隔（如 every-15min、daily-09-18）"
+        },
+        "window": {
+          "type": "string",
+          "description": "服务窗口（ISO 8601 时间或区间表达式）"
+        },
+        "maintenance_window": {
+          "type": "string",
+          "const": "Tuesday 06:00-12:00",
+          "description": "每周天窗：全线 AI 停摆检修（固定）"
+        }
+      }
+    },
+    "punctuality_definition": {
+      "type": "string",
+      "description": "正点判定：按时刻表完成且无人工接管"
+    },
+    "delay_threshold_minutes": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 120,
+      "description": "晚点阈值（分钟）：超过即亮黄+公告+补偿"
+    },
+    "change_notice_hours": {
+      "type": "integer",
+      "minimum": 24,
+      "description": "变更公告提前量（小时，自设标准 ≥24）"
+    },
+    "suspension_notice_hours": {
+      "type": "integer",
+      "minimum": 48,
+      "description": "停运预告提前量（小时，自设标准 ≥48）"
+    },
+    "transfer": {
+      "type": "object",
+      "description": "跨服务换乘衔接",
+      "required": ["connected_service", "connection_rule"],
+      "additionalProperties": false,
+      "properties": {
+        "connected_service": {
+          "type": "string",
+          "description": "衔接的服务 ID（或 none）"
+        },
+        "connection_rule": {
+          "type": "string",
+          "enum": ["transfer-time-match", "human-signed-receipt", "none"],
+          "description": "换乘规则：按换乘时刻匹配；凭证人工签署；晚点不得静默跳过换乘"
+        },
+        "max_wait_minutes": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "换乘最长等待（分钟）"
+        }
+      }
+    },
+    "ai_off_path": {
+      "type": "string",
+      "minLength": 1,
+      "description": "无 AI 等价路径：智能层关闭时完成同一件事的具体渠道"
+    },
+    "stop_condition": {
+      "type": "string",
+      "minLength": 1,
+      "description": "停止条件：触发即红灯停运的具体判定"
+    },
+    "rollback": {
+      "type": "object",
+      "description": "回滚包（九件套的字段化登记）",
+      "additionalProperties": false,
+      "properties": {
+        "stable_version": {"type": "string"},
+        "manual_sop": {"type": "string"},
+        "public_notice": {"type": "string"},
+        "responsible_person": {"type": "string"}
+      }
+    }
+  }
+}

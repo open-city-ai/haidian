@@ -1,0 +1,53 @@
+{
+ "schema_version": "0.1.0",
+ "assumptions": [
+  {
+   "id": "A-BOUNDARY-001",
+   "status": "pending_official_data",
+   "statement": "提交的总体设计范围与三处重点区均为仓库临时粗略边界（provisional constraint），仅用于概念生成、可视化与自检；不作官方红线、审批依据或精确面积依据。",
+   "statement_en": "Submitted site boundary and key areas are repository provisional rough geometry; concept use only, never an official redline or precise-area basis.",
+   "impact": "官方多边形发布后，land_use/buildings/roads/green_space/public_space/phasing 与全部派生指标须在 EPSG:4548 下重算。",
+   "recalculation_trigger": "official SITE_BOUNDARY / KEY_AREA polygons released"
+  },
+  {
+   "id": "A-CONTROLS-001",
+   "status": "pending_professional_confirmation",
+   "statement": "控规容积率、建筑高度、建筑密度上限、绿地率下限、退线、道路红线、权属、市政管线和工程约束均未公开；constraints.geojson 刻意保持空集合并登记数据缺口，不以推定线条冒充约束。",
+   "statement_en": "Regulatory controls, road redlines, parcels, utilities and engineering constraints are not public; constraints.geojson stays an intentionally empty layer with a declared data gap.",
+   "impact": "所有法定控制类指标在 metrics.json 记为 unknown；正式控制条件补齐后复算。",
+   "recalculation_trigger": "approved regulatory plan conditions published"
+  },
+  {
+   "id": "A-KEYAREA-003",
+   "status": "known_data_deviation",
+   "statement": "社区核查 Issue #1029 指出大钟寺临时重点区质心较真实大钟寺站偏南约 2.26 km；本方案大钟寺节点设计只作方向性概念。",
+   "statement_en": "Issue #1029 reports the provisional Dazhongsi key-area centroid about 2.26 km south of the real station; node design remains directional.",
+   "impact": "智汇站详细设计结论不绑定具体地块，待官方重点区多边形校核。",
+   "recalculation_trigger": "official dazhongsi key-area polygon released"
+  },
+  {
+   "id": "A-SITE-846",
+   "status": "known_data_deviation",
+   "statement": "社区核查 Issue #846 指出临时总体设计范围与 OSM 测绘遗址公园最近约 412.5 m 不相交；主脊线位为本方案概念线位，不代表遗址公园官方线位。",
+   "statement_en": "Issue #846 reports the provisional design boundary stays 412.5 m from the OSM-mapped heritage park; the spine is a concept alignment.",
+   "impact": "慢行主脊与枕木单元位置为概念布置，待官方公园资料校核。",
+   "recalculation_trigger": "official heritage park boundary released"
+  },
+  {
+   "id": "A-CONCEPT-MASSING-001",
+   "status": "concept_estimate",
+   "statement": "概念建筑基底、概念总建筑规模与概念密度为低置信度量级估计，由概念图层按概念层数估算，不构成开发强度结论。",
+   "statement_en": "Concept footprint, floor area and density are low-confidence magnitudes, not development-intensity conclusions.",
+   "impact": "仅用于产业空间量级讨论；正式控规补齐后重算。",
+   "recalculation_trigger": "approved regulatory plan conditions published"
+  },
+  {
+   "id": "A-OPERATIONS-001",
+   "status": "concept_proposal",
+   "statement": "年度活动、测试段协议、荣誉墙规则、入驻转化路径均为运营机制设想，不构成政府安排、资金承诺或活动确定安排。",
+   "statement_en": "Events, test-section protocol, honour-wall rules and conversion pathways are mechanism proposals, not government or funding commitments.",
+   "impact": "实施与否由主办与运营主体决策。",
+   "recalculation_trigger": "organizer operation framework published"
+  }
+ ]
+}

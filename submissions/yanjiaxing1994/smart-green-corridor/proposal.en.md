@@ -37,6 +37,10 @@ Core task: building a world-class AI innovation ecosystem through the spatial fr
 | Youth-Friendly | AI professionals, students, entrepreneurs: sports, social, commute, leisure | 3 skate parks, 11 new public spaces |
 | Blue-Green Continuity | 9km Jing-Zhang Heritage Park green corridor ecological connection | "Three Paths, One Green" cycling+running+walking |
 
+**Core mechanism — a closed "Micro-Renewal → Strong Links → Operations Activation" loop.** This is not a one-off physical makeover but a self-sustaining renewal mechanism: (1) **Micro-renewal** — low-cost, low-risk interventions (ground-floor gray-space, slow-traffic connections, pocket facilities, lightweight single-story structures) that avoid the capital, approval, and social cost of demolition-and-rebuild (all 19 projects are low-intervention on retained assets, §7.1-7.3); (2) **Strong links** — the 9km "Three Paths, One Green" corridor physically ties the three districts, campuses, parks, and transit stations into one network, while AI scenario data flows (fitness, events, footfall, energy) add a "digital link" across districts (§7.6 RACI cross-agency coordination); (3) **Operations activation** — sustained use via ≥8 monthly events, the three-district league system, open-source community, and brand IP, with operating revenue (60/30/10 government/social/campus-enterprise) reinvested in maintenance (§7.7) and usage/satisfaction feeding the next round of updates — a use→feedback→iterate loop.
+
+**Differentiated claim.** Unlike demolition-and-rebuild renewal (capital-heavy, slow, socially disruptive) or pure landscape beautification (not operable, not measurable, decays after one investment), this proposal is a **"light-asset, operable, measurable, linear AI-ecosystem renewal"**: it unfolds the AI innovation chain (source→transfer→open source→experience) along the 9km railway heritage corridor as a **linear** AI innovation ecosystem — distinct from point-district or new-town models (consistent with the global case-study conclusion) — and every spatial intervention is bound to an operation mechanism and measurable indicators (cost framework, RACI, DPIA), keeping the concept→design→operation path continuously transformable.
+
 ### 1.2 Retain-Renovate-New Ledger
 
 | Category | Count | Detail |
@@ -45,7 +49,7 @@ Core task: building a world-class AI innovation ecosystem through the spatial fr
 | Renovate | 8 | Ground-floor gray-space (5), Tsinghua Science Park open interface, Dongsheng commercial activation, Dazhongsi track night-glow |
 | New | 11 lightweight | Railway Memory Pavilion, Open Source Forum, Bell Culture Station, Youth Lawn Kiosk, Sunken Plaza Youth Center, Bowl Kiosk — all single-story 3-7m |
 
-Evidence: [data:geometry/buildings.geojson#BLDG-ZZY-01] [depth:retain_renovate_demolish] [metric:retain_building_count] [metric:renovate_space_count] [metric:new_facility_count]
+Evidence: [data:geometry/buildings.geojson#BLDG-ZZY-01] [depth:retain_renovate_demolish], with metrics [metric:retain_building_count], [metric:renovate_space_count], [metric:new_facility_count]
 
 ![Overview](assets/figures/site-overview.en.png)
 
@@ -231,7 +235,15 @@ All new structures are single-story lightweight (3-7m), with no large-scale demo
 
 ## Renewal Project List, Implementation Policy, and Phasing
 
-The proposal forms a reviewable renewal project list of 19 items (JZ-01 ~ JZ-19), with location, type, function, responsible entity, dependency, and phase stated in the phasing tables below. Phasing spatial evidence: [data:geometry/phasing.geojson#PHASE-1]. Recommended strategy: "lightweight start → progressive deepening → brand operation".
+The proposal forms a reviewable renewal project list of 19 items (JZ-01 ~ JZ-19), with location, type, function, responsible entity, dependency, and phase stated in the phasing tables below. Phasing spatial evidence: [data:geometry/phasing.geojson#PHASE-1]. Recommended strategy: "lightweight start → progressive deepening → brand operation". [depth:renewal_project_list] [depth:phasing_implementation]
+
+**Implementation summary (phases × actors × indicators):**
+
+| Phase | Launch projects (examples) | Primary participating actors | Measurable indicators |
+|-------|---------------------------|------------------------------|------------------------|
+| **Near-term (0-2y)** | Slow-traffic full through-route, 3 skate plazas, tri-district pet-friendly zones, youth lawn, Sunken Plaza Youth Center (JZ-01~JZ-07) | Site managers, sub-district offices, district sports bureau, licensed design institutions, contractors | 9km slow-traffic route 100% connected, 3 skate plazas built, cost CNY 28–47M |
+| **Mid-term (2-5y)** | Ground-floor gray-space optimization, innovation interactive hall, open-source forum, ancient-bell culture station, night-glow track (JZ-08~JZ-14) | District government departments (planning/sports/landscape/culture-tourism), heritage authorities, licensed institutions, site managers | 8 building retrofits, 3 cultural facilities built, 7 special assessments completed, cost CNY 21.5–37.8M |
+| **Long-term (5y+)** | League branding, Global AI Open Day route, pet-friendly system full through-route, cultural interpretation system (JZ-15~JZ-19) | Third-party operators, district sports bureau, culture-tourism bureau, community/campus/enterprise representatives | ≥8 monthly events, annual operation spend CNY 8–12M, satisfaction ≥80% (to be calibrated at operation planning) |
 
 ## 7. Phasing Implementation Plan
 
@@ -336,7 +348,7 @@ The Jing-Zhang AI Innovation Belt is the core longitudinal spine of Haidian's "T
 
 The task book's "two wings": the **Zhongguancun Technology Service Wing** (IP operation, tech trading, inspection/testing certification, tech finance, incubation — complemented by the Wudaokou open-source forum, Tsinghua Science Park transfer interface, and Dongsheng commercial interface) and the **Xiaoyuehe Scenario Empowerment Wing** (AI scenario landing along Xiaoyuehe — extended via the Qinghe-Xiaoyuehe slow-traffic system and Zhongzhiyuan waterfront, pending confirmation with the relevant territorial department).
 
-**Xiaoyuehe Experience Path**: a ~5.5km cultural auxiliary line from Zhongzhi Park south through Wudaokou to Dazhongsi Shunxin Garden, forming an "one-spine-one-auxiliary" dual network with the greenway. Segments: North "Innovation Origins" (~2.5km, AI data-visualization light strip + innovation-milestone columns); Central "Knowledge Valley" (~1.5km, weekend book stalls, academic poster gallery, open-source project boards); South "Bell Reimagined" (~1.5km, pentatonic-scale stone paving rhythm + AI bell experience points). Walking-primary (2-2.5m permeable brick), partial cycling (3m colored asphalt), no e-bikes/motor vehicles; rest benches (sleeper-timber design language), warm 2700K low-level lighting, pet drinking points every 1km. [data:geometry/green_space.geojson#GREEN-XIAOYUE] [data:geometry/roads.geojson#ROAD-XIAOYUE-CULTURE]
+**Xiaoyuehe Experience Path**: a ~5.5km cultural auxiliary line from Zhongzhi Park south through Wudaokou to Dazhongsi Shunxin Garden, forming an "one-spine-one-auxiliary" dual network with the greenway. Segments: North "Innovation Origins" (~2.5km, AI data-visualization light strip + innovation-milestone columns); Central "Knowledge Valley" (~1.5km, weekend book stalls, academic poster gallery, open-source project boards); South "Bell Reimagined" (~1.5km, pentatonic-scale stone paving rhythm + AI bell experience points). Walking-primary (2-2.5m permeable brick), partial cycling (3m colored asphalt), no e-bikes/motor vehicles; rest benches (sleeper-timber design language), warm 2700K low-level lighting, pet drinking points every 1km. As a "cultural auxiliary line", its alignment follows the existing Xiaoyuehe river channel and green belts and is coordinated within the blue-green slow-traffic network; specific coordinates pending confirmation [data:geometry/green_space.geojson] [data:geometry/roads.geojson] [depth:blue_green_public_space]
 
 ---
 
@@ -451,12 +463,13 @@ Before official release, related conclusions are proposals/pending: official key
 
 ## References
 
-- Official Announcement [source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509]
-- Agent Task Book [source:DATA-SRC-AGENT-TASKBOOK-20260518]
-- Provisional Boundaries [source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]
-- agent_fact_pack.md, project_scope_summary.csv, missing_data_checklist.csv
-- Global cases: public planning documents, academic literature, official district websites (all marked agent_inferred, pending first-hand verification)
-- Site info: developer materials, government park announcements, planning public notices, news reports
-- Machine index: `sources.json`, `metrics.json`, `compliance_matrix.json`, `standard_matrix.json`, `design_depth_matrix.json`
+- Centennial Jing-Zhang AI Innovation Belt International Urban Design Open Call Prequalification Announcement [source:OFFICIAL-ANNOUNCEMENT]
+- Agent Open-Call Task Book [source:AGENT-TASKBOOK]
+- brief/site-package/geometry/provisional_boundaries.geojson [source:BOUNDARY-SOURCE]
+- data/processed/agent_fact_pack.md [source:PROCESSED-FACT-PACK]
+- data/processed/project_scope_summary.csv [source:PROCESSED-PROJECT-SCOPE]
+- data/processed/missing_data_checklist.csv [source:PROCESSED-MISSING-DATA]
+
+Full machine index is in `sources.json`, `metrics.json`, `compliance_matrix.json`, `standard_matrix.json`, `design_depth_matrix.json` (all machine-readable evidence generated inside this submission package, not external sources).
 
 <!-- revision: 2026-08-12-v5-comprehensive-en-mirror -->

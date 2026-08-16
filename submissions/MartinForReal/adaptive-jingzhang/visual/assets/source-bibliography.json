@@ -1,0 +1,444 @@
+{
+  "schema_version": "1.0.0",
+  "record_id": "adaptive_jingzhang.source_bibliography.v0_3",
+  "purpose_zh": "为 sources.json 提供书目字段与 14 条新增记录的唯一来源。任何本文件未能证实的字段一律留空并标注状态，不以推测填充。",
+  "purpose_en": "Single source for the bibliographic field shape of sources.json and for the 14 added records. Any field this file cannot substantiate is left null with an explicit status rather than filled by guess.",
+
+  "count_contract": {
+    "observed_at_checkpoint": 27,
+    "additions": 14,
+    "closed_final_total": 41,
+    "note_zh": "41 = 27 现有 + 8 语境 + 5 一手公开 + 1 气象。若实施前 sources.json 被本规范以外的改动修改，目标重算为“实测记录数 + 14”，并报告差异而非吸收。",
+    "note_en": "41 = 27 existing + 8 contextual + 5 primary public + 1 meteorological. If sources.json is altered before implementation by anything other than this specification, the target recomputes as observed records + 14 and the discrepancy is reported rather than absorbed."
+  },
+
+  "bibliographic_rules": {
+    "required_fields": ["title", "author_or_issuer", "year"],
+    "derivation_zh": "书目字段只能来自三处：仓库内既有登记（brief/site-package/sources.json、brief/auto-crawl-sources.md）、记录自身的稳定标识符或 URL 中已包含的信息、或经批准规范中逐字给出的记录描述。三处都没有时，字段为 null 并带 bibliographic_status。",
+    "derivation_en": "A bibliographic field may come only from three places: an existing repository registry (brief/site-package/sources.json, brief/auto-crawl-sources.md); information already contained in the record's own stable identifier or URL; or a record description given verbatim in the approved specification. When none of the three supplies it, the field is null and carries a bibliographic_status.",
+    "unresolved_status": "not_transcribed_from_source",
+    "unresolved_meaning_zh": "该字段尚未从原文逐字转录。记录仍可用于其已登记的用途，但书目字段本身不得被当作已核验事实引用。",
+    "unresolved_meaning_en": "The field has not been transcribed from the source itself. The record remains usable for its registered purpose, but the bibliographic field must not be cited as a verified fact."
+  },
+
+  "host_issuers": {
+    "comment_zh": "发布机构由记录自身已登记的域名直接确定，属于转录而非推断；域名不在此表时不猜测发布机构。",
+    "comment_en": "The issuer is determined directly by the record's own registered domain, which is transcription rather than inference; when a domain is absent from this table no issuer is guessed.",
+    "map": {
+      "ghzrzyw.beijing.gov.cn": "Beijing Municipal Commission of Planning and Natural Resources",
+      "www.beijing.gov.cn": "People's Government of Beijing Municipality",
+      "www.gov.cn": "State Council of the People's Republic of China",
+      "kw.beijing.gov.cn": "Beijing Municipal Science and Technology Commission",
+      "www.bjhd.gov.cn": "People's Government of Haidian District, Beijing",
+      "www.mohurd.gov.cn": "Ministry of Housing and Urban-Rural Development of the People's Republic of China",
+      "github.com": "open-city-ai/haidian public issue tracker",
+      "www.jtc.gov.sg": "JTC Corporation, Singapore",
+      "english.seoul.go.kr": "Seoul Metropolitan Government",
+      "www.universite-paris-saclay.fr": "Universite Paris-Saclay",
+      "mila.quebec": "Mila - Quebec Artificial Intelligence Institute",
+      "www.cambridgema.gov": "City of Cambridge, Massachusetts",
+      "forumvirium.fi": "Forum Virium Helsinki",
+      "www.waterfrontoronto.ca": "Waterfront Toronto",
+      "www.openstreetmap.org": "OpenStreetMap Foundation",
+      "search.worldcat.org": "OCLC WorldCat"
+    }
+  },
+
+  "repository_issuer": {
+    "comment_zh": "以仓库相对路径登记的记录，其发布机构就是本仓库的公开简报包，可由路径本身核验。",
+    "comment_en": "For records registered by repository-relative path, the issuer is this repository's public brief package, verifiable from the path itself.",
+    "value": "Haidian centennial Jing-Zhang open call brief package (repository-internal)"
+  },
+
+  "title_overrides": {
+    "comment_zh": "以下条目的书目数据可由记录中已登记的 DOI 直接核验，DOI 是权威，本文件只做转录。",
+    "comment_en": "Bibliographic data for the entries below is verifiable directly from the DOI already registered on each record; the DOI is the authority and this file only transcribes.",
+    "entries": {
+      "PHYSARUM-MAZE-2000": {
+        "title": "Maze-solving by an amoeboid organism",
+        "author_or_issuer": "Nakagaki, T., Yamada, H., and Toth, A.",
+        "year": 2000,
+        "container": "Nature"
+      },
+      "PHYSARUM-MODEL-2007": {
+        "title": "A mathematical model for adaptive transport network in path finding by true slime mold",
+        "author_or_issuer": "Tero, A., Kobayashi, R., and Nakagaki, T.",
+        "year": 2007,
+        "container": "Journal of Theoretical Biology"
+      },
+      "PHYSARUM-TOKYO-2010": {
+        "title": "Rules for Biologically Inspired Adaptive Network Design",
+        "author_or_issuer": "Tero, A., et al.",
+        "year": 2010,
+        "container": "Science"
+      },
+      "SCHELLING-1971": {
+        "title": "Dynamic models of segregation",
+        "author_or_issuer": "Schelling, T. C.",
+        "year": 1971,
+        "container": "The Journal of Mathematical Sociology"
+      },
+      "HOLLING-1973": {
+        "title": "Resilience and Stability of Ecological Systems",
+        "author_or_issuer": "Holling, C. S.",
+        "year": 1973,
+        "container": "Annual Review of Ecology and Systematics"
+      },
+      "OSTROM-COMMONS-1990": {
+        "title": "Governing the Commons: The Evolution of Institutions for Collective Action",
+        "author_or_issuer": "Ostrom, E.",
+        "year": 1990,
+        "container": "Cambridge University Press"
+      },
+      "OSTROM-POLYCENTRIC-2010": {
+        "title": "Beyond Markets and States: Polycentric Governance of Complex Economic Systems",
+        "author_or_issuer": "Ostrom, E.",
+        "year": 2010,
+        "container": "American Economic Review"
+      },
+      "SHEARING-LAYERS-BRAND-1994": {
+        "title": "How Buildings Learn: What Happens After They're Built",
+        "author_or_issuer": "Brand, S.",
+        "year": 1994,
+        "container": "Viking"
+      },
+      "HOLLING-ADAPTIVE-CYCLE-2001": {
+        "title": "Understanding the Complexity of Economic, Ecological, and Social Systems",
+        "author_or_issuer": "Holling, C. S.",
+        "year": 2001,
+        "container": "Ecosystems"
+      },
+      "PORTUGALI-SELF-ORGANIZING-1997": {
+        "title": "Self-organizing cities",
+        "author_or_issuer": "Portugali, J.",
+        "year": 1997,
+        "container": "Futures"
+      }
+    }
+  },
+
+  "evidence_contract": {
+    "reason_zh": "此前 41 条记录的字段形状不一致：6 条用 `path` 指向仓库内文件，5 条用 `local_reference_path: null` + `url_only_not_cleared`，其余 30 条既无本地状态也无限定说明，41 条全部没有机器可读的引用状态与双语 limitations。此处把三件事一次性写死：每条记录的引用状态、每条记录的本地证据状态、每条记录的双语使用限定。构建脚本据此规范化，测试据此逐条断言。",
+    "reason_en": "The 41 records did not share a field shape: 6 pointed at repository files through `path`, 5 used `local_reference_path: null` with `url_only_not_cleared`, and the remaining 30 carried neither a local-evidence state nor a limitation. None of the 41 carried a machine-readable reference state or bilingual limitations. This record fixes three things at once: the reference state of every record, the local-evidence state of every record, and the bilingual use limitation of every record. The build script normalizes from it and the contract test asserts against it record by record.",
+    "supersedes": {
+      "clause_zh": "C08 冻结的二选一本地证据契约：非空 repository-relative `local_reference_path` + 本地 SHA-256，或 `local_reference_path: null` + `url_only_not_cleared` + retrieval-time SHA-256 + reason。",
+      "clause_en": "The two-state local-evidence contract frozen in C08: either a non-empty repository-relative `local_reference_path` with a local SHA-256, or `local_reference_path: null` with `url_only_not_cleared`, a retrieval-time SHA-256, and a reason.",
+      "reason_zh": "33 条记录从未被抓取进本包，因此不存在 retrieval-time SHA-256。为它们填写哈希只能靠编造，这被禁止；删除它们会丢掉真实的方法谱系与案例出处。因此二选一契约被三选一契约取代，第三个状态显式声明“未抓取、无哈希”，并禁止该状态支持任何 clause-derived 数值、场地控制、合规或实施授权。取代关系写在此处，不追改 C08 的原文。",
+      "reason_en": "33 records were never retrieved into this package, so no retrieval-time SHA-256 exists for them. Filling in a hash would require inventing one, which is prohibited, and deleting the records would discard genuine method lineage and case provenance. The two-state contract is therefore superseded by a three-state contract whose third state declares \"not retrieved, no hash\" explicitly and forbids that state from supporting any clause-derived value, site control, compliance finding, or implementation authority. The supersession is recorded here; the original C08 text is not rewritten after the fact.",
+      "affected_record_count": 33
+    },
+    "reference_states": {
+      "cited": {
+        "meaning_zh": "该 ID 至少在一处结构化记录或发布正文中被有界引用。",
+        "meaning_en": "The identifier is cited in a bounded way in at least one structured record or publication surface."
+      },
+      "background_only": {
+        "meaning_zh": "该 ID 在包内没有任何引用，保留它只是为了不删除真实的方法谱系。它不支持任何结论，必须同时写明 allowed_uses 与 prohibited_inferences。",
+        "meaning_en": "The identifier is cited nowhere in the package and is retained only so that genuine method lineage is not deleted. It supports no conclusion and must carry both allowed_uses and prohibited_inferences."
+      }
+    },
+    "local_evidence_states": {
+      "repository_local_copy": {
+        "meaning_zh": "证据字节存在于本仓库，`local_reference_path` 为非空 repository-relative 路径。",
+        "meaning_en": "The evidence bytes exist in this repository and `local_reference_path` is a non-empty repository-relative path."
+      },
+      "url_only_not_cleared_with_retrieval_hash": {
+        "meaning_zh": "证据只有 URL，未清权，但持有获批规范中逐字迁移的 retrieval-time SHA-256。",
+        "meaning_en": "The evidence exists only as a URL, is not cleared, but carries a retrieval-time SHA-256 migrated verbatim from the approved specification."
+      },
+      "url_only_no_retrieval_hash": {
+        "meaning_zh": "证据只有 URL，从未抓取进本包，因此 `retrieved_content_sha256` 为 `null`。该状态不得支持 clause-derived 数值、场地控制、合规认定或实施授权。",
+        "meaning_en": "The evidence exists only as a URL and was never retrieved into this package, so `retrieved_content_sha256` is `null`. This state may not support a clause-derived value, a site control, a compliance finding, or implementation authority."
+      },
+      "source_not_selected": {
+        "meaning_zh": "该来源已登记但刻意未被选用为证据。",
+        "meaning_en": "The source is registered but deliberately not selected as evidence."
+      }
+    },
+    "by_source_type": {
+      "official_public": {
+        "local_evidence_state": "url_only_no_retrieval_hash",
+        "limitations_zh": "官方公开文本只证明其自身发布了什么。它不提供正式边界 polygon、地块、权属、控制指标或实施授权；本包不从中推导任何未在其文本中出现的空间或数值结论。",
+        "limitations_en": "An official public text establishes only what it itself published. It supplies no official boundary polygon, parcel, tenure, control value, or implementation authority, and this package derives from it no spatial or numeric conclusion that does not appear in its own text."
+      },
+      "repository_public_registry": {
+        "local_evidence_state": "repository_local_copy",
+        "limitations_zh": "仓库登记表用于导航与 ID 解析。它不是一手证据，不证明任何被登记条目的内容为真。",
+        "limitations_en": "A repository registry is used for navigation and identifier resolution. It is not primary evidence and does not establish that the content of any registered item is correct."
+      },
+      "repository_processed_reference": {
+        "local_evidence_state": "repository_local_copy",
+        "limitations_zh": "加工过的参考材料只作导航与背景，不作一手证据；任何结论必须回到其所引用的原始出处。",
+        "limitations_en": "A processed reference is used for navigation and background only, never as primary evidence; any conclusion must return to the original source it cites."
+      },
+      "agent_inferred_from_public_data": {
+        "local_evidence_state": "repository_local_copy",
+        "limitations_zh": "由公开资料推得的临时几何是工作假设，不是官方红线。它不支持精确面积、地块、站点关系或法定效力声明；官方 polygon 到位后整包重算。",
+        "limitations_en": "A provisional geometry inferred from public data is a working hypothesis, not an official redline. It supports no precise-area, parcel, station-relationship, or statutory claim, and the whole package is recomputed once an official polygon arrives."
+      },
+      "user_provided_cleared": {
+        "local_evidence_state": "repository_local_copy",
+        "limitations_zh": "已清权的任务书文本界定本次提交要回答什么，不界定场地的现状事实。它不替代测量、专业审查或主管部门决定。",
+        "limitations_en": "A cleared taskbook text defines what this submission must answer; it does not establish facts about existing site conditions and does not substitute for survey, professional review, or an authority decision."
+      },
+      "repository_issue": {
+        "local_evidence_state": "url_only_no_retrieval_hash",
+        "limitations_zh": "仓库 issue 记录的是被提出的质疑及其时间，不是被证实的结论。引用它只表示该质疑存在并已被回应，不表示质疑内容为真。",
+        "limitations_en": "A repository issue records that a question was raised and when. Citing it establishes that the question exists and has been answered, not that its content is correct."
+      },
+      "peer_reviewed_research": {
+        "local_evidence_state": "url_only_no_retrieval_hash",
+        "limitations_zh": "同行评议研究说明方法谱系与既往发现的条件，不构成关于本场地的事实，也不证明任何形态在社会、文化、生态或工程意义上最优。",
+        "limitations_en": "Peer-reviewed research documents method lineage and the conditions of prior findings. It establishes no fact about this site and proves no form to be socially, culturally, ecologically, or technically optimal."
+      },
+      "official_public_case": {
+        "local_evidence_state": "url_only_no_retrieval_hash",
+        "limitations_zh": "官方案例说明别处在别的制度与气候条件下做了什么。它不构成本场地的可行性、成本、时序或效果证据，也不构成任何机构的承诺。",
+        "limitations_en": "An official case documents what was done elsewhere under a different institutional and climatic setting. It is not evidence of feasibility, cost, timing, or outcome for this site, and it is not a commitment by any institution."
+      },
+      "institutional_public_case": {
+        "local_evidence_state": "url_only_no_retrieval_hash",
+        "limitations_zh": "机构自述案例带有自我陈述属性。它不构成本场地的可行性、成本或效果证据，也不构成独立评估。",
+        "limitations_en": "An institutionally self-published case is a self-description. It is not evidence of feasibility, cost, or outcome for this site, and it is not an independent evaluation."
+      },
+      "contextual_literature": {
+        "local_evidence_state": "url_only_no_retrieval_hash",
+        "limitations_zh": "背景文献提供概念与词汇。它不构成本场地的事实、控制指标或专业审查结论。",
+        "limitations_en": "Contextual literature supplies concepts and vocabulary. It establishes no fact about this site, no control value, and no professional review conclusion."
+      },
+      "official_standard": {
+        "local_evidence_state": "url_only_no_retrieval_hash",
+        "limitations_zh": "在未持有已清权条文正文之前，标准记录只证明该标准存在及其施行日期。它不证明条款适用性、不产生标准派生尺寸，也不构成合规认定。",
+        "limitations_en": "Until the cleared clause text is held, a standard record establishes only that the standard exists and when it took effect. It does not establish clause applicability, does not yield a standards-derived dimension, and is not a compliance finding."
+      },
+      "public_meteorological": {
+        "local_evidence_state": "source_not_selected",
+        "limitations_zh": "该气象来源已登记但未被选用为证据；季节合格条件因此保持未确立，相关观察门保持开放。",
+        "limitations_en": "This meteorological source is registered but was not selected as evidence, so the seasonal qualification condition remains unestablished and the dependent observation gate stays open."
+      }
+    },
+    "overrides": {
+      "SITE-PACKAGE": {
+        "local_evidence_state": "repository_local_copy",
+        "limitations_zh": "已清权的场地资料包界定本次提交可用的公开输入。其中的临时几何是工作假设而非官方红线，正式边界、权属、控制指标与实施授权都不在其中。",
+        "limitations_en": "The cleared site package defines the public inputs available to this submission. The provisional geometry inside it is a working hypothesis rather than an official redline, and it contains no official boundary, tenure record, control value, or implementation authority."
+      },
+      "BLUEVIEW-DISPOSITION-2025": {
+        "usage": "Registered as a public disposition record for renewal-project provenance; it is not used to establish any parcel, ownership, control value, or implementation authority."
+      },
+      "BLUEVIEW-RENEWAL-CASE-2026": {
+        "usage": "Registered as a public renewal-case record for precedent provenance; it is not used to establish feasibility, cost, timing, or outcome for this site."
+      },
+      "GB-55019-2021-OFFICIAL": {
+        "local_evidence_state": "url_only_not_cleared_with_retrieval_hash",
+        "usage": "Registered to establish that the mandatory national code exists and has been in force since 2022-04-01; it supports no clause-applicability judgement and no standards-derived dimension."
+      },
+      "DB11-T-2209-2023-OFFICIAL": {
+        "usage": "Registered to establish that the Beijing municipal local standard exists; it supports no applicability judgement and no road, crossing, or walking-and-cycling dimension."
+      },
+      "BEIJING-RESPONSIBILITY-PLANNER-2024": {
+        "usage": "Registered as evidence that a municipal responsibility-planner institution exists; it identifies no post-holder and confers no site remit."
+      }
+    },
+    "background_only": {
+      "PHYSARUM-CHINA-2013": {
+        "allowed_uses_zh": "仅作方法谱系登记：证明该研究存在于本包所引的谱系之中。",
+        "allowed_uses_en": "Method-lineage registration only: it establishes that the study exists within the lineage this package cites.",
+        "prohibited_inferences_zh": "不得用于支持任何廊道、网络、可达性或形态结论，不得作为本场地证据，也不得作为生物最优性证明。本包内无任何有界引用指向它。",
+        "prohibited_inferences_en": "It may not support any corridor, network, accessibility, or morphology conclusion, may not serve as site evidence, and may not serve as proof of biological optimality. No bounded citation in this package points to it."
+      },
+      "PHYSARUM-WUHAN-2023": {
+        "allowed_uses_zh": "仅作方法谱系登记：证明该研究存在于本包所引的谱系之中。",
+        "allowed_uses_en": "Method-lineage registration only: it establishes that the study exists within the lineage this package cites.",
+        "prohibited_inferences_zh": "不得用于支持任何廊道、网络、可达性或形态结论，不得作为本场地证据，也不得作为生物最优性证明。本包内无任何有界引用指向它。",
+        "prohibited_inferences_en": "It may not support any corridor, network, accessibility, or morphology conclusion, may not serve as site evidence, and may not serve as proof of biological optimality. No bounded citation in this package points to it."
+      }
+    }
+  },
+
+  "additions": {
+    "contextual": [
+      {
+        "id": "OPEN-BUILDING-HABRAKEN-2021",
+        "url": "https://doi.org/10.4324/9781003014713",
+        "source_type": "contextual_literature",
+        "usage": "Open-building and support/infill context only. Does not establish that any Beijing building, parcel, or tenure permits an open-building intervention.",
+        "year": 2021
+      },
+      {
+        "id": "SHEARING-LAYERS-BRAND-1994",
+        "url": "https://search.worldcat.org/search?q=isbn%3A0670835153",
+        "identifier": "ISBN 0670835153",
+        "source_type": "contextual_literature",
+        "usage": "Change-rate and shearing-layer context only. Does not establish any building's actual layer separation on this site.",
+        "year": 1994
+      },
+      {
+        "id": "OSTROM-COMMONS-1990",
+        "url": "https://doi.org/10.1017/CBO9780511807763",
+        "source_type": "contextual_literature",
+        "usage": "Commons-governance context only. Does not establish that any proposed governance arrangement here is lawful, funded, or authorized.",
+        "year": 1990
+      },
+      {
+        "id": "OSTROM-POLYCENTRIC-2010",
+        "url": "https://doi.org/10.1257/aer.100.3.641",
+        "source_type": "contextual_literature",
+        "usage": "Polycentric-governance context only. Does not name or authorize any operator, authority, or budget in this package.",
+        "year": 2010
+      },
+      {
+        "id": "REAL-OPTIONS-NEUFVILLE-2003",
+        "url": "https://doi.org/10.1076/iaij.4.1.26.16461",
+        "source_type": "contextual_literature",
+        "usage": "Real-options and staged-commitment context only. Does not constitute a financial appraisal, budget, or funding commitment.",
+        "year": 2003
+      },
+      {
+        "id": "HOLLING-ADAPTIVE-CYCLE-2001",
+        "url": "https://doi.org/10.1007/s10021-001-0101-5",
+        "source_type": "contextual_literature",
+        "usage": "Adaptive-cycle context only. Does not establish that this site occupies any particular phase of an adaptive cycle.",
+        "year": 2001
+      },
+      {
+        "id": "PORTUGALI-SELF-ORGANIZING-1997",
+        "url": "https://doi.org/10.1016/S0016-3287(97)00022-0",
+        "source_type": "contextual_literature",
+        "usage": "Urban self-organization context only. Does not prove that self-organization is desirable or that it is occurring on this site.",
+        "year": 1997
+      },
+      {
+        "id": "CAS-DYNAMIC-CITIES-2018",
+        "url": "https://doi.org/10.1080/13563475.2018.1439370",
+        "source_type": "contextual_literature",
+        "usage": "Urban complex-adaptive-systems context only. Does not license any biological analogy as a mechanism claim about Beijing.",
+        "year": 2018
+      }
+    ],
+
+    "primary_public": [
+      {
+        "id": "BLUEVIEW-DISPOSITION-2025",
+        "title": "Blueview public-comment disposition/adoption notice",
+        "url": "https://ghzrzyw.beijing.gov.cn/chengxiangguihua/ghlgg/hd_ghlgg/202506/t20250606_4107444.html",
+        "source_type": "official_public",
+        "author_or_issuer": "Beijing Municipal Commission of Planning and Natural Resources",
+        "year": 2025,
+        "local_reference_path": null,
+        "local_reference_status": "url_only_not_cleared",
+        "retrieved_content_sha256": null,
+        "not_cleared_reason_zh": "该页面内容未作为已清权的仓库文件存在，因此只登记 URL，不产生任何条款派生结论。",
+        "not_cleared_reason_en": "The page content does not exist as a cleared repository file, so only the URL is registered and no clause-derived conclusion follows from it.",
+        "allowed_uses_zh": "仅作时间受限的 HD00-1603 地块语境。",
+        "allowed_uses_en": "Narrow, time-bounded HD00-1603 parcel context only.",
+        "prohibited_inferences_zh": "不解决竞赛 72 公顷 polygon、重点区 polygon、车站出入口、精确站距、道路或铁路管辖、项目产权、容积率、高度或其他控制指标。公众意见中提到的 60 m 或 36 m 不是已批高度控制。",
+        "prohibited_inferences_en": "Does not resolve the competition 72 ha polygon, key-area polygons, station entrances, exact station distance, road or rail jurisdiction, project-wide tenure, FAR, height, or other controls. Public objections mentioning 60 m or 36 m are not approved height controls.",
+        "temporal_scope": "2025 HD00-1603-03 statement; never conflated with the 2026 HD00-1603-03A statement"
+      },
+      {
+        "id": "BLUEVIEW-RENEWAL-CASE-2026",
+        "title": "Blueview renewal case",
+        "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/zxzt/csgx/csgxfjszt/fjsztalzs/202606/t20260612_4698370.html",
+        "source_type": "official_public",
+        "author_or_issuer": "Beijing Municipal Commission of Planning and Natural Resources",
+        "year": 2026,
+        "local_reference_path": null,
+        "local_reference_status": "url_only_not_cleared",
+        "retrieved_content_sha256": null,
+        "not_cleared_reason_zh": "该页面内容未作为已清权的仓库文件存在，因此只登记 URL，不产生任何条款派生结论。",
+        "not_cleared_reason_en": "The page content does not exist as a cleared repository file, so only the URL is registered and no clause-derived conclusion follows from it.",
+        "allowed_uses_zh": "仅作时间受限的 HD00-1603 地块语境。",
+        "allowed_uses_en": "Narrow, time-bounded HD00-1603 parcel context only.",
+        "prohibited_inferences_zh": "同 BLUEVIEW-DISPOSITION-2025；2026 HD00-1603-03A 陈述与 2025 陈述在时间与地块上分别限定，不得混同。",
+        "prohibited_inferences_en": "As for BLUEVIEW-DISPOSITION-2025. The 2026 HD00-1603-03A statement is separately time- and parcel-scoped from the 2025 statement and the two are never conflated.",
+        "temporal_scope": "2026 HD00-1603-03A statement"
+      },
+      {
+        "id": "GB-55019-2021-OFFICIAL",
+        "title": "GB 55019-2021 official announcement",
+        "url": "https://www.gov.cn/zhengce/zhengceku/2022-03/30/content_5682480.htm",
+        "source_type": "official_standard",
+        "author_or_issuer": "Ministry of Housing and Urban-Rural Development of the People's Republic of China",
+        "year": 2021,
+        "effective_date": "2022-04-01",
+        "local_reference_path": null,
+        "local_reference_status": "url_only_not_cleared",
+        "retrieved_content_sha256": "EE78B16E1DEC13B83F2361FB4A1BD6A07EB6320B6F82D9082FDBCB9F8C7416BB",
+        "retrieved_content_sha256_note_zh": "该值为经批准规范中记录的检索时 PDF SHA-256，逐字迁移；本次实施未重新抓取该 PDF。",
+        "retrieved_content_sha256_note_en": "This is the retrieval-time PDF SHA-256 recorded in the approved specification, migrated verbatim; this implementation did not re-fetch the PDF.",
+        "not_cleared_reason_zh": "标准正文未以已清权、验证器可接受的形式存在于仓库，因此维持 url_only_not_cleared。",
+        "not_cleared_reason_en": "The exact standard text does not exist in a cleared, validator-admissible repository location, so the record remains url_only_not_cleared.",
+        "allowed_uses_zh": "仅确立该强制性国家规范存在且自 2022-04-01 起施行。",
+        "allowed_uses_en": "Establishes only that the mandatory national code exists and has been effective since 2022-04-01.",
+        "prohibited_inferences_zh": "不确立路线合规。条款适用性、现场测量与专业无障碍审查仍为外部依赖；在取得确切条款文本与专业适用性记录前，任何维度都不因此成为标准派生。",
+        "prohibited_inferences_en": "Does not establish route compliance. Clause applicability, survey, and professional accessibility review remain external; no dimension becomes standards-derived until exact clause text and a professional applicability record both exist."
+      },
+      {
+        "id": "DB11-T-2209-2023-OFFICIAL",
+        "title": "DB11/T 2209-2023",
+        "url": "https://ghzrzyw.beijing.gov.cn/biaozhunguanli/bz/szjgdjt/202405/t20240531_3700152.html",
+        "source_type": "official_standard",
+        "author_or_issuer": "Beijing Municipal Commission of Planning and Natural Resources",
+        "year": 2023,
+        "local_reference_path": null,
+        "local_reference_status": "url_only_not_cleared",
+        "retrieved_content_sha256": null,
+        "id_note_zh": "标识符刻意省略正式名称 DB11/T 2209-2023 中的斜杠，使 ID 保持纯字母数字与连字符；带斜杠的正式名称保存在 title 字段。",
+        "id_note_en": "The identifier deliberately drops the solidus from the published designation DB11/T 2209-2023 so the ID stays within a plain alphanumeric-and-hyphen character set; the published designation with its solidus is carried in the title field.",
+        "seeded_in": "brief/auto-crawl-sources.md",
+        "not_cleared_reason_zh": "标准正文未以已清权形式存在于仓库。",
+        "not_cleared_reason_en": "The standard text does not exist in a cleared repository location.",
+        "allowed_uses_zh": "仅确立该地方标准存在。",
+        "allowed_uses_en": "Establishes only that the local standard exists.",
+        "prohibited_inferences_zh": "不确立适用性。D08 在具备资质的交通/慢行专业人员针对确切已清权版本与所引条款作出适用性记录前保持开放，相关路线、道路与过街成果同时挂起。",
+        "prohibited_inferences_en": "Does not establish applicability. D08 remains open until a competent mobility/transport professional records applicability against the exact cleared edition and cited clauses, with dependent route, road, and crossing artifacts held."
+      },
+      {
+        "id": "BEIJING-RESPONSIBILITY-PLANNER-2024",
+        "title": "Beijing responsibility-planner instrument, 京规自发〔2024〕56号",
+        "url": "https://www.beijing.gov.cn/zhengce/zhengcefagui/202403/t20240308_3583459.html",
+        "source_type": "official_public",
+        "author_or_issuer": "People's Government of Beijing Municipality",
+        "year": 2024,
+        "local_reference_path": null,
+        "local_reference_status": "url_only_not_cleared",
+        "retrieved_content_sha256": null,
+        "not_cleared_reason_zh": "文件正文未以已清权形式存在于仓库。",
+        "not_cleared_reason_en": "The instrument text does not exist in a cleared repository location.",
+        "allowed_uses_zh": "仅确立责任规划师制度存在，可作为治理角色的制度语境。",
+        "allowed_uses_en": "Establishes only that the responsibility-planner instrument exists, as institutional context for a governance role.",
+        "prohibited_inferences_zh": "不指定任何具名责任规划师，不授予本方案任何审批、实施或代表政府的权限。",
+        "prohibited_inferences_en": "Names no individual responsibility planner and grants this package no approval, implementation, or government-representation authority."
+      }
+    ],
+
+    "meteorological": [
+      {
+        "id": "BEIJING-METEOROLOGICAL-SEASONAL-QUALIFICATION",
+        "source_type": "public_meteorological",
+        "selection_status": "not_selected",
+        "title": null,
+        "author_or_issuer": null,
+        "year": null,
+        "url": null,
+        "local_reference_path": null,
+        "local_reference_status": "source_not_selected",
+        "retrieved_content_sha256": null,
+        "frozen_id_note_zh": "标识符由经批准的规范冻结；规范明确不选择出版机构、数据集、阈值或运行值，本次实施也不选择，因为没有任何仓库内证据能证实候选来源满足全部准入条件。记录以未选定状态登记，以保持 41 条计数契约，同时保留该未知。",
+        "frozen_id_note_en": "The identifier is frozen by the approved specification, which explicitly does not choose a publisher, dataset, threshold, or operational value. This implementation does not choose one either, because no repository evidence substantiates that any candidate source satisfies every admissibility condition. The record is registered in an unselected state so that the 41-record count contract holds while the unknown is preserved.",
+        "admissibility_conditions_zh": [
+          "公开可引用，由气象主管部门或官方开放数据集发布，且有稳定 URL；",
+          "发布资格判据实际使用的变量，标明台站或格点位置，并声明其与场地的关系为近似、未经测量。"
+        ],
+        "admissibility_conditions_en": [
+          "public and citable, published by a meteorological authority or as an official open dataset, and reachable at a stable URL;",
+          "publishes the actual variables the qualification criteria use, at a stated station or grid cell, whose location is stated and whose relationship to the site is declared approximate and non-surveyed."
+        ],
+        "usage": "No seasonal qualification criterion, threshold, or operating window may be derived from this record while selection_status is not_selected.",
+        "closes_task": "C06",
+        "task_state": "open"
+      }
+    ]
+  }
+}

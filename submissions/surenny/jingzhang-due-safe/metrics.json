@@ -1,0 +1,167 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Value is computed from the repository's provisional rough polygon only; it is not an official or precise site area and must be recalculated from organizer-supplied geometry."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "Concept envelope only; no existing-building survey, ownership, fire, heritage or engineering confirmation."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Ratio is derived from participant-designed geometry divided by the provisional rough boundary; it is not a planning-control indicator."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Ratio is derived from participant-designed geometry divided by the provisional rough boundary; it is not a planning-control indicator."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "low",
+      "assumptions": [
+        "Count follows the taskbook's three conceptual key-area identifiers; submitted polygons remain provisional."
+      ]
+    },
+    "synthetic_case_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/due-safe-ledger.json"
+      ],
+      "formula": "count(cases)",
+      "confidence": "high",
+      "assumptions": [
+        "Synthetic tabletop fixtures only; not observed public-service cases."
+      ]
+    },
+    "channel_type_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/due-safe-ledger.json"
+      ],
+      "formula": "count(channels)",
+      "confidence": "high",
+      "assumptions": [
+        "Synthetic channel taxonomy only."
+      ]
+    },
+    "channel_closeout_fixture_count": {
+      "status": "known",
+      "value": 42,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/due-safe-ledger.json"
+      ],
+      "formula": "synthetic_case_count * channel_type_count",
+      "confidence": "high",
+      "assumptions": [
+        "Every synthetic case is checked against every synthetic channel type."
+      ]
+    },
+    "human_role_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/due-safe-ledger.json",
+        "visual/assets/protocol-audit.json"
+      ],
+      "formula": "count(named_roles)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual RACI roles require institution-specific assignment before any pilot."
+      ]
+    },
+    "offline_completion_rate": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/due-safe-ledger.json"
+      ],
+      "formula": "count(cases where offline_path=true) / synthetic_case_count",
+      "confidence": "high",
+      "assumptions": [
+        "Protocol assertion in six synthetic fixtures; not observed completion performance."
+      ]
+    },
+    "adverse_action_isolation_rate": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/due-safe-ledger.json"
+      ],
+      "formula": "count(cases where adverse_action_paused=true) / synthetic_case_count",
+      "confidence": "high",
+      "assumptions": [
+        "Protocol assertion in six synthetic fixtures; not a legal effect or field result."
+      ]
+    }
+  }
+}

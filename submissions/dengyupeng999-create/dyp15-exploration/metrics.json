@@ -1,0 +1,254 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.385553982,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(unary_union(geometry/site_boundary.geojson), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the submitted provisional rough SITE-001 boundary geometry; not suitable for official redline or statutory area claims.",
+        "Submission-derived participant design-model output for formal review; not an official planning control."
+      ],
+      "reason": "Known numeric participant design-model output required by the current formal visual contract; not an official site area.",
+      "recalculation_trigger": "Replace SITE-001 with cleared official boundary geometry when available, then recompute every boundary-sensitive metric."
+    },
+    "official_site_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "assumptions.json"
+      ],
+      "formula": "polygon_area(official_site_boundary)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A01-EXACT-KEY-AREA-BOUNDARIES"
+      ],
+      "reason": "Official GIS/CAD boundary is unavailable."
+    },
+    "building_footprint_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "assumptions.json"
+      ],
+      "formula": "sum(polygon_area(cleared_building_footprints))",
+      "confidence": "unknown",
+      "assumptions": [
+        "A03-BUILDING-ADAPTABILITY"
+      ],
+      "reason": "No cleared complete building-footprint dataset is available."
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 209504.8649792572,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(unary_union(all metric-bearing polygons in geometry/green_space.geojson), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Complete participant-proposal Green polygon universe only; not all existing green space in the study area.",
+        "N-H09 is NON_METRIC_BELT_WIDE_GREEN_INTENT and contributes no polygon or area.",
+        "Water, context-only OSM features, temporary/roof green, tree points, controlled/private support green, and LineStrings are excluded."
+      ],
+      "reason": "Submission-derived provisional participant design-model area; not an official planning quantity.",
+      "recalculation_trigger": "Recompute after any authorized Green-layer change and after official boundary replacement."
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 192272.2098199374,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(unary_union(all proposed-public polygons in geometry/public_space.geojson), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Complete participant-proposal Public polygon universe only; not all legally verified existing public spaces in Haidian.",
+        "public_access_status=proposed_public is future design intent; existing legal/public/accessibility status remains unknown.",
+        "AI-free and other LineStrings do not enter this polygon-area numerator."
+      ],
+      "reason": "Submission-derived provisional participant design-model area; not an official planning quantity.",
+      "recalculation_trigger": "Recompute after any authorized Public-layer change and after official boundary replacement."
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.01835696752571386,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Numerator and denominator are the locked provisional participant-submitted design-model geometries.",
+        "The result is not an official or statutory green-control ratio.",
+        "N-H09 remains non-metric and no target-ratio backsolving was used."
+      ],
+      "reason": "Known numeric submission-derived provisional design-model output for formal review.",
+      "recalculation_trigger": "Recompute after any authorized Green or SITE-001 change and when cleared official geometry becomes available."
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.016847029839193884,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Numerator and denominator are the locked provisional participant-submitted design-model geometries.",
+        "The result is not an official or statutory public-space control ratio.",
+        "Three cross-component AI-free LineString gaps remain evidence-blocked and do not enter the polygon numerator."
+      ],
+      "reason": "Known numeric submission-derived provisional design-model output for formal review.",
+      "recalculation_trigger": "Recompute after any authorized Public or SITE-001 change and when cleared official geometry becomes available."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/constraints.geojson",
+        "assumptions.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A02-REGULATORY-CONTROLS",
+        "A03-BUILDING-ADAPTABILITY"
+      ],
+      "reason": "No applicable cleared official regulatory-control geometry or metric table is available; see A02-REGULATORY-CONTROLS."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/constraints.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A02-REGULATORY-CONTROLS",
+        "A03-BUILDING-ADAPTABILITY"
+      ],
+      "reason": "No applicable cleared official regulatory-control geometry or metric table is available; see A02-REGULATORY-CONTROLS."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "assumptions.json"
+      ],
+      "formula": "applicable_official_height_control",
+      "confidence": "unknown",
+      "assumptions": [
+        "A02-REGULATORY-CONTROLS"
+      ],
+      "reason": "No applicable cleared official regulatory-control geometry or metric table is available; see A02-REGULATORY-CONTROLS."
+    },
+    "setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "assumptions.json"
+      ],
+      "formula": "applicable_official_setback_control",
+      "confidence": "unknown",
+      "assumptions": [
+        "A02-REGULATORY-CONTROLS"
+      ],
+      "reason": "No applicable cleared official regulatory-control geometry or metric table is available; see A02-REGULATORY-CONTROLS."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "sources.json"
+      ],
+      "formula": "count(published_named_key_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "Exact official polygons remain unavailable under A01-EXACT-KEY-AREA-BOUNDARIES."
+      ]
+    },
+    "published_overall_design_scope_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "published_approximate_11.4_km2 * 1000000",
+      "confidence": "medium",
+      "assumptions": [
+        "Published approximate magnitude; not a surveyed or polygon-derived exact area."
+      ]
+    },
+    "published_zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1921000,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "published_approximate_192.1_ha * 10000",
+      "confidence": "medium",
+      "assumptions": [
+        "Published approximate magnitude; exact official polygon unavailable."
+      ]
+    },
+    "published_ai_origin_area_sqm": {
+      "status": "known",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "published_approximate_104.3_ha * 10000",
+      "confidence": "medium",
+      "assumptions": [
+        "Published approximate magnitude; exact official polygon unavailable."
+      ]
+    },
+    "published_dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "published_approximate_72.0_ha * 10000",
+      "confidence": "medium",
+      "assumptions": [
+        "Published approximate magnitude; exact official polygon unavailable."
+      ]
+    }
+  }
+}

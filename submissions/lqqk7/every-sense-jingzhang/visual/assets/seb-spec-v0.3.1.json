@@ -1,0 +1,709 @@
+{
+ "spec_id": "service-equivalence-baseline",
+ "spec_name_en": "Service Equivalence Baseline",
+ "spec_name_zh": "服务等价基准",
+ "abbreviation": "SEB",
+ "version": "0.3.1",
+ "status": "draft_concept_recommendation",
+ "license": {
+  "spdx_id": "CC-BY-SA-4.0",
+  "name": "Creative Commons Attribution-ShareAlike 4.0 International",
+  "status": "granted_by_submitter",
+  "grant_file": "visual/assets/seb-license-grant.json",
+  "licensor_zh": "本征集提交方（GitHub 账号 lqqk7），以个人参赛者身份、作为著作权人授予；不代表任何机构",
+  "licensor_en": "The submitting participant (GitHub account lqqk7), granting as an individual copyright holder on behalf of no institution",
+  "rationale_zh": "相同方式共享要求任何城市改进判据后以同样条件公开，与本包空间数据所依托的 ODbL 生态在改进回流一点上取向一致。",
+  "rationale_en": "Share-alike requires any city that improves the criteria to publish the improvement on the same terms, matching the return-of-improvement stance of the ODbL ecosystem this package's spatial data depends on.",
+  "note_zh": "文本著作权许可与机构托管是两件事：前者已由著作权人在授予文件中授予（授予文件含法定正文全文与重建哈希）；基准的托管主体与官方发布渠道仍待授权主体确认，本许可不构成任何机构的发布、采纳或背书。v0.3.1 之前本字段只写「建议采用」而未实际授予，两个采用方曾在无有效许可的状态下运行——该缺陷登记于 CR-2026-08-15-005 失败样本",
+  "note_en": "The copyright licence of the text and the institutional hosting are two separate matters: the former is now granted by the copyright holder in the grant file (which carries the full legal code and a rebuild hash); the hosting body and official publication channel of the baseline still await confirmation by an authorised body, and this licence constitutes no institutional publication, adoption or endorsement. Before v0.3.1 this field merely recommended the licence without granting it, leaving two adopters running without a valid licence — registered as a failure sample in CR-2026-08-15-005"
+ },
+ "provenance": {
+  "authored_by": "submission lqqk7/every-sense-jingzhang, agent-generated design proposal",
+  "authored_on": "2026-08-12",
+  "derived_from": [
+   "geometry/constraints.geojson",
+   "metrics.json",
+   "risk.json",
+   "proposal.md 第「服务等价基准 SEB v0.3.1」章"
+  ],
+  "evidence_class": "concept_only",
+  "hosting_body": "to_be_confirmed",
+  "publication_channel": "to_be_confirmed",
+  "adoption_claim": "none",
+  "disclaimer_zh": "本规范是概念建议，不构成合规结论、认证资格或专业符合性评价，也不代表任何机构已采用。",
+  "disclaimer_en": "This specification is a conceptual recommendation. It is no compliance conclusion, certification, or professional conformity assessment, and represents adoption by no institution.",
+  "version_history": [
+   {
+    "version": "0.1.0",
+    "released_on": "2026-08-12",
+    "change_receipt_id": "CR-2026-08-12-001",
+    "summary_zh": "首次发布：把节点 schema、评分口径、等级定义、判定规则四个组件封装为机器可读规范。",
+    "summary_en": "First release: the node schema, the scoring definitions, the level definitions and the decision rules packaged as one machine-readable specification."
+   },
+   {
+    "version": "0.2.0",
+    "released_on": "2026-08-12",
+    "change_receipt_id": "CR-2026-08-12-002",
+    "origin_zh": "变更来源不是外部意见，而是本基准自身的桌面配对推演：把判据写成可执行代码时撞到三处只能由实现私自解释的缺口，已按版本治理条款登记在回执 CR-2026-08-12-001 的 failed_sample_register 中，本次予以闭合。",
+    "origin_en": "The change did not come from an outside opinion but from this baseline's own tabletop pairing run: turning the criteria into executable code hit three gaps that only an implementation could privately interpret. They were registered under version governance in the failed_sample_register of receipt CR-2026-08-12-001 and are closed here.",
+    "summary_zh": "三处升格为基准条文：ai_off_path 的拒绝依据由工具词表升格为 constraint_machine_rule（同类的 human_handoff 角色词表一并补齐）；等级定义的闸门字段由自由文本改为结构化 gate_binding，L4 与 G3 的关系由基准明文规定；分母完整性规则增加 applies_to，明确适用与排除的指标清单。",
+    "summary_en": "Three items rise to baseline text: the ground for refusing an ai_off_path value moves from a tool word list into constraint_machine_rule, with the same-class human_handoff role lexicon completed alongside it; the gate field of the level definitions changes from free text to a structured gate_binding, with the relation between L4 and G3 stated by the baseline itself; and the denominator-integrity rule gains applies_to, naming the metrics it covers and the metrics it excludes.",
+    "metric_values_affected": "none",
+    "metric_values_affected_note_zh": "本次为 schema 层变更，不产生也不改变任何指标读数；七项包容性指标在 metrics.json 中保持 unknown。",
+    "metric_values_affected_note_en": "This is a schema-layer change that produces and alters no metric reading; the seven inclusion metrics stay unknown in metrics.json."
+   }
+  ],
+  "as_of_zh": "本块为 v0.1—v0.2 发布期的带日期快照，其中 adoption_claim 记录的是当时状态；现行采用状态以顶层 adoption_claim 为唯一权威字段",
+  "as_of_en": "This block is a dated snapshot of the v0.1–v0.2 publication period; its adoption_claim records the status at that time. The current adoption status has exactly one authoritative field: the top-level adoption_claim"
+ },
+ "components": [
+  {
+   "component_id": "node_schema",
+   "name_zh": "节点 schema",
+   "name_en": "Node schema",
+   "machine_readable_location": {
+    "type": "adopter_declared",
+    "declared_in": "fixtures 顶层 consumes.node_source_of_record（相对 fixtures 文件所在目录解析）/ top-level consumes.node_source_of_record in the fixtures, resolved relative to the fixtures file",
+    "this_package_default": "geometry/constraints.geojson"
+   },
+   "machine_rule_contract_zh": "凡带 constraint_machine_rule 的字段，校验实现必须且只能按该字段判定取值是否合规；不带该字段的字段只校验存在性与枚举，实现不得自行补充取值约束。任何实现私自增加的判据都属于基准缺口，应登记为失败样本并在下一版本由基准回答。",
+   "machine_rule_contract_en": "Where a field carries constraint_machine_rule, a checker must rule on the value by that field and by nothing else. A field without it is checked only for presence and enumeration, and no implementation may add a value constraint of its own. Any criterion an implementation adds privately is a gap in the baseline: register it as a failed sample and let the next version answer it in the baseline itself.",
+   "required_fields": [
+    {
+     "field": "ai_off_path",
+     "name_zh": "AI 关闭后的等价路径",
+     "name_en": "Equivalent route once AI is off",
+     "type": "string",
+     "required": true,
+     "constraint_zh": "不得填写仍依赖同一系统的路径，例如引导至线上办理。",
+     "constraint_en": "Must not name a route that still depends on the same system, such as directing the user to the online service.",
+     "constraint_machine_rule": {
+      "type": "forbidden_dependency",
+      "match": "case_insensitive_substring",
+      "violation_code": "NODE_CONSTRAINT_VIOLATION:ai_off_path",
+      "forbidden_targets": [
+       "线上办理",
+       "在线办理",
+       "网上办理",
+       "扫码",
+       "二维码",
+       "小程序",
+       "下载应用",
+       "关注公众号",
+       "注册账户",
+       "登录账号",
+       "online service",
+       "scan the qr",
+       "download the app",
+       "register an account"
+      ],
+      "rationale_zh": "AI 关闭后的路径若仍依赖同一系统，服务等价差比较的将是同一条路径的两个入口而不是两条路径，等价性在定义上不成立。词表登记的是同一系统的典型入口形态，命中任意一项即拒绝该点位计入服务覆盖。",
+      "rationale_en": "If the route after AI is switched off still depends on the same system, the service-equivalence gap compares two doors into one route rather than two routes, and equivalence fails by definition. The list registers the typical shapes such a door takes; a hit on any entry bars the node from counting towards service coverage.",
+      "extension_rule_zh": "词表可随失败样本扩充：每一次扩充都属于判据本身的变化，必须递增版本号，并按版本治理同时提交失败样本登记与受影响指标的复算说明。以提高覆盖率为由删减词表，等同于用改判据的方式提高分数，不予合并。",
+      "extension_rule_en": "The list may grow as failed samples arrive. Each extension changes the criteria themselves, so it must raise the version number and arrive with a failed-sample register and a recalculation note, as version governance requires. Shortening the list in order to raise coverage is raising the score by rewriting the test and is not merged.",
+      "since_version": "0.2.0",
+      "promoted_from_zh": "v0.1 中该词表只存在于校验工具的代码里，属实现的私自解释，两个实现可能得到不同结果；v0.2 起为基准条文。",
+      "promoted_from_en": "In v0.1 the list existed only inside the checker's code as that implementation's private reading, so two implementations could disagree; from v0.2 it is baseline text."
+     }
+    },
+    {
+     "field": "human_handoff",
+     "name_zh": "人工接管角色",
+     "name_en": "Human takeover role",
+     "type": "string",
+     "required": true,
+     "constraint_zh": "须写明可被找到的角色，不得只写机构名称。",
+     "constraint_en": "Must name a findable role, not only an organisation.",
+     "constraint_machine_rule": {
+      "type": "required_role_token",
+      "match": "case_insensitive_substring",
+      "violation_code": "NODE_CONSTRAINT_VIOLATION:human_handoff",
+      "required_tokens": [
+       "人员",
+       "值守",
+       "岗位",
+       "主持人",
+       "代表",
+       "专员",
+       "维护者",
+       "服务员",
+       "operator",
+       "officer",
+       "steward",
+       "attendant",
+       "staff"
+      ],
+      "rationale_zh": "使用者站在现场需要找到的是一个人，不是一个机构；字段中至少出现一个角色词，才说明写下的是可被找到的岗位而不是责任归属声明。",
+      "rationale_en": "A user standing at the node needs to find a person, not an organisation. At least one role token must appear before the field can be said to name a post someone can walk up to rather than a statement of where responsibility lies.",
+      "extension_rule_zh": "词表可随失败样本扩充，扩充规则与 ai_off_path 相同：扩充即版本递增，并须附失败样本登记与复算说明。",
+      "extension_rule_en": "The list may grow as failed samples arrive, under the same rule as ai_off_path: an extension raises the version and carries a failed-sample register and a recalculation note.",
+      "since_version": "0.2.0",
+      "promoted_from_zh": "本条与 ai_off_path 属同一类缺口，v0.1 未被登记，在闭合 ai_off_path 时一并查明并处置，处置经过写在回执 CR-2026-08-12-002 中。",
+      "promoted_from_en": "This is the same class of gap as ai_off_path. It went unregistered in v0.1, was found while closing ai_off_path, and its handling is recorded in receipt CR-2026-08-12-002.",
+      "adopter_lexicon_rule_zh": "v0.3 起：采用方可在自己的 fixtures 顶层以 adopter_lexicon 数组声明附加角色词，校验判据为命中本词表与采用方词表的并集。附加词须满足与本词表同一硬判据——指向可问责的具名角色，不得是机构名、系统名或泛称（例：「志愿者」「社工」「网格员」「负责人」可，「志愿者团队」不可）。规范本体词表保持最小集，不因本地化扩充递增版本。",
+      "adopter_lexicon_rule_en": "From v0.3 an adopter may declare additional role tokens as a top-level adopter_lexicon array in its own fixtures; the check matches against the union of this list and the adopter lexicon. Additional tokens must meet the same hard test as this list — an accountable, findable role, never an organisation, system or generic collective (e.g. \"volunteer\", \"social worker\", \"grid steward\", \"person in charge\" pass; \"volunteer team\" fails). The spec's own list stays minimal and no longer version-bumps for localisation.",
+      "adopter_lexicon_eligibility_rule": {
+       "since_version": "0.3.1",
+       "type": "forbidden_suffix_and_evidence",
+       "match": "case_insensitive_suffix",
+       "forbidden_suffixes": [
+        "团队",
+        "总队",
+        "中心",
+        "平台",
+        "系统",
+        "部门",
+        "公司",
+        "机构",
+        "委员会",
+        "办公室",
+        "集团",
+        "小组",
+        "站点",
+        "热线",
+        "team",
+        "center",
+        "centre",
+        "platform",
+        "system",
+        "department",
+        "company",
+        "committee",
+        "office",
+        "group",
+        "unit",
+        "hotline"
+       ],
+       "evidence_requirement_zh": "每个附加词须在 fixtures 顶层 adopter_lexicon_evidence 对象中携带一条非空说明：该角色的岗位名与可被找到的位置。声明是公开登记行为，虚构证据由回执机制与人工登记环节处置",
+       "evidence_requirement_en": "Each token must carry one non-empty entry in a top-level adopter_lexicon_evidence object in the fixtures: the post name of the role and where it can be found. Declaring is a public act of registration; fabricated evidence is a matter for the receipt mechanism and the human registration step",
+       "violation_codes": {
+        "ADOPTER_LEXICON_INVALID_TOKEN": "附加词以任一禁用后缀结尾（后缀语义，非子串），整次运行拒绝 / a token ends in a forbidden suffix (suffix, not substring semantics); the whole run is refused",
+        "ADOPTER_LEXICON_EVIDENCE_MISSING": "附加词缺少非空的 adopter_lexicon_evidence 条目，整次运行拒绝 / a token lacks a non-empty adopter_lexicon_evidence entry; the whole run is refused",
+        "ADOPTER_LEXICON_MALFORMED": "adopter_lexicon 或 adopter_lexicon_evidence 存在但类型不合法，整次运行拒绝 / adopter_lexicon or adopter_lexicon_evidence is present but ill-typed; the whole run is refused"
+       },
+       "refusal_semantics_zh": "任一违例以退出码 2 拒绝整次运行，不作任何判定",
+       "refusal_semantics_en": "Any violation refuses the whole run with exit code 2 and no verdict",
+       "limitation_zh": "后缀筛与证据存在性是机器可判下限：它拦截显性的机构名、系统名、集合名与无证据声明，不能证明一个词确实指向可问责角色；合格性终审属登记环节的人工复核，其结论以回执登记。词表由失败样本扩充，扩充即判据变化、即版本递增。另一处诚实边界：required_role_token 对字段取值按子串匹配，取值「网格员团队轮班响应」会因含「网格员」通过机器下限——取值层面的机构化表述由 G3 人工复核处置，机器判据不裁此层",
+       "limitation_en": "The suffix screen plus evidence presence is the machine-decidable floor: it stops overt organisation, system and collective names and evidence-less declarations, but cannot prove a token names an accountable role; final eligibility is human review at registration, recorded by receipt. The list grows by failure samples; growth is a criteria change and bumps the version. One further honest boundary: required_role_token matches field values by substring, so a value like \"grid-steward team on rotation\" passes the machine floor because it contains a role token — organisation-shaped values are a matter for G3 human review, which this machine criterion does not rule on"
+      }
+     }
+    },
+    {
+     "field": "gate_id",
+     "name_zh": "当前所处闸门",
+     "name_en": "Current gate",
+     "type": "enum",
+     "required": true,
+     "allowed_values": [
+      "G0",
+      "G1",
+      "G2",
+      "G3"
+     ]
+    },
+    {
+     "field": "operating_mode",
+     "name_zh": "运行方式",
+     "name_en": "Operating mode",
+     "type": "string",
+     "required": true
+    },
+    {
+     "field": "responsible_role",
+     "name_zh": "责任专业",
+     "name_en": "Accountable discipline",
+     "type": "string",
+     "required": true
+    }
+   ],
+   "supporting_fields": [
+    "id",
+    "scenario_id",
+    "scenario_card_id",
+    "key_area_id"
+   ],
+   "validity_rule_zh": "缺任一必填字段的点位不得计入服务覆盖。",
+   "validity_rule_en": "A node missing any required field may not be counted towards service coverage.",
+   "machine_readable_location_rule_zh": "五个必填字段写在采用方自己的服务节点图层的 feature properties 中，图层路径由采用方在其 fixtures 或随包说明中声明；本包声明为 geometry/constraints.geojson。v0.2 曾把本包路径写成规范默认值，v0.3 起更正为采用方声明制。",
+   "machine_readable_location_rule_en": "The five required fields live in the feature properties of the adopter's own service-node layer, whose path the adopter declares in its fixtures or package notes; this package declares geometry/constraints.geojson. v0.2 wrote this package's path as if it were the spec default; from v0.3 the location is adopter-declared.",
+   "source_alignment_rule_zh": "来源对齐（v0.3.1 起为条文判据）：凡样例声明 source_of_record，或样例节点 id 与来源文件中的 feature id 相同，其必填字段须与来源逐字一致，违例记 SOURCE_MISMATCH 并计入该样例判定；声明了来源文件但文件不可读时，以 SOURCE_FILE_UNREADABLE 退出码 2 拒绝整次运行——不得静默跳过。未声明来源且节点 id 不命中来源文件时，本判据不适用。",
+   "source_alignment_rule_en": "Source alignment (a text criterion from v0.3.1): where a fixture declares a source_of_record, or its node id equals a feature id in the source file, the required fields must match the source verbatim, with violations recorded as SOURCE_MISMATCH in that fixture's verdict; where a source file is declared but unreadable, the whole run is refused with SOURCE_FILE_UNREADABLE at exit code 2 — never silently skipped. Where no source is declared and the node id hits nothing, the criterion does not apply.",
+   "supporting_fields_note_zh": "supporting_fields 为信息性字段：实现不对其施加存在性或取值校验",
+   "supporting_fields_note_en": "supporting_fields are informative: implementations apply no presence or value check to them"
+  },
+  {
+   "component_id": "scoring_definitions",
+   "name_zh": "评分口径",
+   "name_en": "Scoring definitions",
+   "machine_readable_location": "metrics.json",
+   "metric_group_count": 7,
+   "metric_field_count": 8,
+   "grouping_note_zh": "正文按七项口径陈述，其中人工接管一项同时包含成功率与响应耗时两个字段，因此字段数为八。",
+   "grouping_note_en": "The prose states seven definitions; the human-handover definition carries two fields, success rate and response time, so the field count is eight.",
+   "denominator_integrity_rule_zh": "分母不得删除失败样本：撤回、技术故障与非完成原因必须与完成数一并报告，删除任何一类即视为该次测量作废。",
+   "denominator_integrity_rule_en": "No failed sample may be dropped from a denominator: withdrawals, technical faults, and non-completion reasons must be reported alongside completions, and removing any of them voids that measurement.",
+   "denominator_integrity_required_categories": [
+    {
+     "category": "completed",
+     "label_zh": "完成",
+     "label_en": "completed"
+    },
+    {
+     "category": "withdrawn",
+     "label_zh": "撤回",
+     "label_en": "withdrawn"
+    },
+    {
+     "category": "technical_fault",
+     "label_zh": "技术故障",
+     "label_en": "technical fault"
+    },
+    {
+     "category": "non_completion_other",
+     "label_zh": "其他非完成原因",
+     "label_en": "other non-completion"
+    }
+   ],
+   "denominator_integrity_violation_code": "DENOMINATOR_SAMPLE_DROPPED",
+   "denominator_integrity_applies_to": {
+    "since_version": "0.2.0",
+    "rule_type": "participant_task_metrics_only",
+    "scope_zh": "分母完整性规则只适用于参与者任务型指标：分母由参与者的任务尝试、成对测试样本或接管触发构成，因而存在可被删除的失败样本。分母由清单枚举构成的指标不适用本规则，因为其中没有失败样本这一类对象。",
+    "scope_en": "The denominator-integrity rule covers participant-task metrics only: metrics whose denominator is made of participant attempts, paired-test samples or handover triggers, and which therefore contain failed samples that could be dropped. It does not cover metrics whose denominator is an enumerated list, because no such object as a failed sample exists there.",
+    "promoted_from_zh": "v0.1 未界定适用范围，校验实现按分母文字中是否出现有效样本或成对测试样本来推导，属实现的私自解释；v0.2 起以清单明文规定，并把人工接管响应耗时纳入适用范围——该项在 v0.1 的文字推导下会被漏判。",
+    "promoted_from_en": "v0.1 left the scope unbounded, so a checker inferred it from whether the denominator wording named valid samples or paired-test samples, which was that implementation's private reading. From v0.2 the scope is a stated list, and it brings human-handover response time inside, a metric the v0.1 wording heuristic would have missed.",
+    "included_metric_ids": [
+     "independent_task_completion_rate",
+     "ai_off_service_equivalence_gap",
+     "forced_abandonment_rate",
+     "human_handover_success_rate",
+     "human_handover_response_time_seconds"
+    ],
+    "excluded_metric_ids": [
+     {
+      "metric_id": "multichannel_information_coverage",
+      "reason_zh": "分母是全部审计点数，由审计点清单本身枚举而来，不含参与者尝试，因此没有失败样本可删；其分母由审计点清单固定，删点属于另一类问题，由清单本身而不是本规则约束。",
+      "reason_en": "The denominator is the total number of audit points, enumerated from the audit-point list itself. It holds no participant attempt and therefore no failed sample to drop; removing a point is a different fault, constrained by the list rather than by this rule."
+     },
+     {
+      "metric_id": "sensory_load_exceedance_point_count",
+      "reason_zh": "分母是路线分段数，按空间枚举且不折算比例，不含参与者尝试，因此没有失败样本可删。",
+      "reason_en": "The denominator counts route segments, enumerated spatially and never converted into a ratio. It holds no participant attempt and therefore no failed sample to drop."
+     },
+     {
+      "metric_id": "co_design_role_coverage_ratio",
+      "reason_zh": "分母是协议规定的全部角色组数，为事先固定的名册枚举，不含参与者尝试；名册不得删减这一点已由该指标自身的分母定义写死，不由本规则重复约束。",
+      "reason_en": "The denominator is the full set of role groups the protocol fixes in advance, a roster enumeration holding no participant attempt. That the roster may not be shortened is already written into the metric's own denominator definition and is not restated by this rule."
+     }
+    ],
+    "excluded_external_metric_ids": [
+     {
+      "metric_id": "scenario_exit_path_coverage",
+      "class": "file_completeness",
+      "reason_zh": "文件完整性型指标：分母是 geometry/constraints.geojson 中的点位总数，读数由文件内容直接得出，既无参与者也无尝试，不存在失败样本；复核方式是重读文件，不是重算样本。该指标不属于本基准的七项评分口径，在此列出是为了排除，而不是为了纳入。",
+      "reason_en": "A file-completeness metric: the denominator is the node total in geometry/constraints.geojson and the reading follows straight from the file contents, with no participant, no attempt and so no failed sample. It is re-checked by re-reading the file, not by recomputing samples. The metric is not one of this baseline's seven scoring definitions and is named here in order to be excluded, not included."
+     },
+     {
+      "metric_id": "scenario_human_review_coverage",
+      "class": "file_completeness",
+      "reason_zh": "同上，分母是同一份几何文件中的点位总数，读数为文件完整性口径，不适用分母完整性规则。",
+      "reason_en": "The same: the denominator is the node total in that same geometry file, the reading is a document-completeness figure, and the denominator-integrity rule does not apply."
+     }
+    ],
+    "unknown_metric_rule_zh": "既不在适用清单也不在排除清单中的指标编号，校验实现报 METRIC_ID_UNKNOWN，不得自行判断其归属；新增指标须先在本字段登记，才可被校验。",
+    "unknown_metric_rule_en": "A metric id that appears in neither list is reported as METRIC_ID_UNKNOWN, and no implementation may decide where it belongs; a new metric must be registered in this field before it can be checked.",
+    "completeness_rule_zh": "included_metric_ids 与 excluded_metric_ids 的并集必须恰好等于本组件 metrics 数组中的全部指标编号，excluded_external_metric_ids 必须全部不在该数组内。校验实现应在运行前检查这一条，检查不通过即视为基准与实现不一致，不得继续判定。",
+    "completeness_rule_en": "The union of included_metric_ids and excluded_metric_ids must equal exactly the metric ids in this component's metrics array, and no entry of excluded_external_metric_ids may appear in it. A checker should verify this before running; a failure means the baseline and the implementation disagree, and no verdict may be issued."
+   },
+   "metrics": [
+    {
+     "metric_id": "independent_task_completion_rate",
+     "numerator_zh": "在合理便利下无陪同独立完成的任务数",
+     "denominator_zh": "有效任务数，含撤回、技术故障与非完成原因"
+    },
+    {
+     "metric_id": "multichannel_information_coverage",
+     "numerator_zh": "具备两种等价通道的审计点数",
+     "denominator_zh": "全部审计点数"
+    },
+    {
+     "metric_id": "ai_off_service_equivalence_gap",
+     "numerator_zh": "AI 开启完成率减去 AI 关闭完成率",
+     "denominator_zh": "同一参与者、同一任务的成对测试样本"
+    },
+    {
+     "metric_id": "forced_abandonment_rate",
+     "numerator_zh": "因障碍中止的任务数",
+     "denominator_zh": "有效尝试数"
+    },
+    {
+     "metric_id": "human_handover_success_rate",
+     "numerator_zh": "成功接管数",
+     "denominator_zh": "有效接管触发数"
+    },
+    {
+     "metric_id": "human_handover_response_time_seconds",
+     "numerator_zh": "触发至人工确认的秒数",
+     "denominator_zh": "按次记录，不取平均掩盖长尾"
+    },
+    {
+     "metric_id": "sensory_load_exceedance_point_count",
+     "numerator_zh": "参与式审计确认的超限或无恢复点数量",
+     "denominator_zh": "按路线分段计数，不折算比例"
+    },
+    {
+     "metric_id": "co_design_role_coverage_ratio",
+     "numerator_zh": "已有自愿贡献记录的协议角色组数",
+     "denominator_zh": "协议规定的全部角色组数，须含沿线居民、小微商户、照护者与带儿童出行者、青年人才等直接受影响但非使用者的角色组"
+    }
+   ]
+  },
+  {
+   "component_id": "level_definitions",
+   "name_zh": "等级定义",
+   "name_en": "Level definitions",
+   "machine_readable_location": "proposal.md 第「更新项目清单、实施政策与分期计划」章的开放机制表",
+   "applicable_unit_zh": "场景 × 点位",
+   "applicable_unit_en": "one scenario at one node",
+   "aggregation_rule_zh": "工作包的对外层级取其全部点位中的最低者。",
+   "aggregation_rule_en": "A work package reports the lowest level among all its nodes.",
+   "downgrade_allowed": true,
+   "gate_binding_schema": {
+    "since_version": "0.2.0",
+    "gate_id": {
+     "type": "enum",
+     "allowed_values": [
+      "G0",
+      "G1",
+      "G2",
+      "G3",
+      "none"
+     ],
+     "desc_zh": "该等级对应的闸门编号；none 表示该等级不与任何闸门绑定，此时不做闸门比对。",
+     "desc_en": "The gate the level corresponds to; none means the level binds to no gate and no gate comparison is made."
+    },
+    "timing": {
+     "type": "enum",
+     "allowed_values": [
+      "before",
+      "at",
+      "after"
+     ],
+     "desc_zh": "该等级位于该闸门之前、之上还是之后。",
+     "desc_en": "Whether the level sits before, at, or after that gate."
+    },
+    "promoted_from_zh": "v0.1 的 gate 字段是自由文本（before G0、G1、after G3、post-G3 operation），校验实现须以正则抽取闸门编号才能与节点比对，其中 L4 对应 G3 属实现的推断；v0.2 起为结构化枚举，正则抽取与推断一并取消。",
+    "promoted_from_en": "The v0.1 gate field was free text — before G0, G1, after G3, post-G3 operation — so a checker had to extract the gate number by pattern before comparing it against a node, and the mapping of L4 onto G3 was that implementation's inference. From v0.2 it is a structured enumeration, and both the pattern extraction and the inference are gone."
+   },
+   "gate_match_rule_zh": "申报某一等级时，节点的 gate_id 必须等于该等级 gate_binding.gate_id；gate_id 为 none 时不做比对。timing 说明等级相对闸门的位置，不改变比对值，因此校验实现无须、也不得从自由文本中抽取闸门编号。",
+   "gate_match_rule_en": "When a level is claimed, the node's gate_id must equal that level's gate_binding.gate_id; where gate_id is none, no comparison is made. timing states where the level sits relative to that gate and does not change the compared value, so a checker neither needs nor may extract a gate number from free text.",
+   "gate_violation_code": "LEVEL_GATE_MISMATCH",
+   "l4_gate_rule_zh": "L4 与 G3 的关系由本基准明文规定，不由任何实现推断：L4 绑定 G3 且 timing 为 after，即 L4 是 G3 通过之后的常态运行状态，节点 gate_id 仍记为 G3。L3 与 L4 共用同一 gate_binding，二者的区别在于 L3 是限定条件下的开放而 L4 是常态运行，由 level_binding_fields 的准入与停止条件区分，不由闸门编号区分。",
+   "l4_gate_rule_en": "The relation between L4 and G3 is stated by this baseline and inferred by no implementation: L4 binds to G3 with timing after, meaning L4 is the state of continuous operation once G3 has been passed, while the node still records gate_id G3. L3 and L4 share the same gate_binding; what separates them is that L3 is a bounded opening and L4 is continuous operation, a difference carried by the entry and stop conditions in level_binding_fields rather than by the gate number.",
+   "levels": [
+    {
+     "level_id": "L0",
+     "name_zh": "资料与许可",
+     "name_en": "Evidence and permission",
+     "gate_binding": {
+      "gate_id": "G0",
+      "timing": "before"
+     }
+    },
+    {
+     "level_id": "L1",
+     "name_zh": "可逆原型",
+     "name_en": "Reversible prototype",
+     "gate_binding": {
+      "gate_id": "G1",
+      "timing": "at"
+     }
+    },
+    {
+     "level_id": "L2",
+     "name_zh": "封闭成对测试",
+     "name_en": "Closed paired testing",
+     "gate_binding": {
+      "gate_id": "G2",
+      "timing": "at"
+     }
+    },
+    {
+     "level_id": "L3",
+     "name_zh": "限定开放",
+     "name_en": "Bounded opening",
+     "gate_binding": {
+      "gate_id": "G3",
+      "timing": "after"
+     }
+    },
+    {
+     "level_id": "L4",
+     "name_zh": "采用与常态运行",
+     "name_en": "Adoption and continuous operation",
+     "gate_binding": {
+      "gate_id": "G3",
+      "timing": "after"
+     }
+    }
+   ],
+   "level_binding_fields": [
+    "entry_condition",
+    "stop_condition",
+    "recovery_evidence",
+    "accountable_operator"
+   ]
+  },
+  {
+   "component_id": "decision_rules",
+   "name_zh": "判定规则",
+   "name_en": "Decision rules",
+   "machine_readable_location": "risk.json",
+   "rule_zh": "停止条件触发即停止，不以限期整改替代停止；恢复须提交证据而不是承诺。",
+   "rule_en": "A triggered stop condition stops the work; a corrective-action deadline is not a substitute for stopping, and resumption requires evidence rather than a promise.",
+   "risk_entries": [
+    {
+     "risk_id": "R-01",
+     "label_zh": "数据隐私"
+    },
+    {
+     "risk_id": "R-02",
+     "label_zh": "实施复杂度"
+    },
+    {
+     "risk_id": "R-03",
+     "label_zh": "公众接受度"
+    },
+    {
+     "risk_id": "R-04",
+     "label_zh": "运维成本"
+    },
+    {
+     "risk_id": "R-05",
+     "label_zh": "政策不确定性"
+    },
+    {
+     "risk_id": "R-06",
+     "label_zh": "空间争议"
+    },
+    {
+     "risk_id": "R-07",
+     "label_zh": "技术成熟度"
+    },
+    {
+     "risk_id": "R-08",
+     "label_zh": "公平与包容性"
+    }
+   ]
+  }
+ ],
+ "version_governance": {
+  "change_requirements": [
+   "每次变更必须同时提交失败样本登记",
+   "每次变更必须同时提交受影响指标的复算说明"
+  ],
+  "rejection_rule_zh": "只改条文不交证据的修订不予合并。",
+  "rejection_rule_en": "A revision that edits wording without submitting evidence is not merged.",
+  "version_increment_rule_zh": "版本号仅在判据本身变化时递增，措辞与译文修订不递增。",
+  "version_increment_rule_en": "The version number rises only when the criteria themselves change, not for wording or translation fixes.",
+  "receipt_numbering_rule_zh": "回执编号 CR-YYYY-MM-DD-NNN：NNN 为全局递增序号（不随日期重置），日期前缀仅为信息性",
+  "receipt_numbering_rule_en": "Receipt ids CR-YYYY-MM-DD-NNN: NNN increments globally and never resets by date; the date prefix is informative only",
+  "strict_version_match_rationale_zh": "样例与规范快照严格同版是有意设计（快照入包制）：采用方持有自己的快照对，规范演进不触发任何重跑；混用不同版本的快照与样例属治理错误，工具以退出码 2 当场拒绝。工具另设最低版本门槛（0.2.0），拦截「同为低版本」的配对——v0.2 之前的基准未给出机器可读判据",
+  "strict_version_match_rationale_en": "Strict same-version pairing of fixtures and spec snapshot is deliberate (snapshot-in-package): an adopter holds its own snapshot pair and spec evolution triggers no re-run; mixing versions is a governance error the tool refuses on the spot at exit 2. A separate minimum-version floor (0.2.0) stops matched-but-ancient pairs — baselines before v0.2 stated no machine-readable criteria"
+ },
+ "reuse_examples": [
+  {
+   "context_zh": "中关村 AI 北纬社区的初创团队",
+   "takes": [
+    "node_schema",
+    "decision_rules"
+   ],
+   "outcome_zh": "为早期产品做一次 AI 关闭后仍可用的自测，不需要等待平台或授权。"
+  },
+  {
+   "context_zh": "未来科学城的能源与医药专业设备界面",
+   "takes": [
+    "scoring_definitions"
+   ],
+   "subset": [
+    "multichannel_information_coverage",
+    "human_handover_response_time_seconds"
+   ],
+   "outcome_zh": "把专业设备只给专业人员用的默认前提放到可测量的位置上。"
+  },
+  {
+   "context_zh": "任意城市的政务大厅",
+   "takes": [
+    "level_definitions"
+   ],
+   "subset": [
+    "L0",
+    "L1",
+    "L2"
+   ],
+   "outcome_zh": "在不改造任何空间的前提下完成一轮成对测试，得到本厅的服务等价差读数。"
+  }
+ ],
+ "revision_history": [
+  {
+   "version": "0.3.1",
+   "date": "2026-08-15",
+   "change_receipt_id": "CR-2026-08-15-005",
+   "driver": "维护方增量审计与三方独立盲审实测（绕过实验、误伤实测与全部失败样本见回执登记）/ maintainer incremental audit plus three independent blind reviews with live probes (bypass experiments, false-positive probes and all failure samples in the receipt register)",
+   "changes_zh": "附加词合格性判据升格进条文（后缀语义修正 includes 误伤：officer、community steward 类合法角色词不再被误拒；新增证据条目要求）；来源对齐升格为条文判据（授权 SOURCE_MISMATCH/SOURCE_FILE_UNREADABLE，声明来源不可读改为整次拒绝）；违例码登记表入文，两实现共用同一码集与同一合格性校验（OP-04 链复演器同步，此前其未执行合格性校验）；RULE_TYPE_UNSUPPORTED 升为兼容级整次拒绝；许可由「建议」改为著作权人实际授予（随包授予文件）；v0.2.0/v0.3.0 规范快照按字节随包发布，历史版本引用可解引用；样例扩至二十条补覆盖缺口",
+   "changes_en": "Token-eligibility criteria promoted into the text (suffix semantics fix the includes false positives — legitimate role words like officer or community steward are no longer refused; evidence entries now required); source alignment promoted to a text criterion (SOURCE_MISMATCH/SOURCE_FILE_UNREADABLE authorised, an unreadable declared source now refuses the run); a violation-code registry enters the text, both implementations sharing one code set and one eligibility check (the OP-04 chain replayer synchronised — it previously ran none); RULE_TYPE_UNSUPPORTED escalated to a compatibility-level refusal; the licence moves from recommended to actually granted by the copyright holder (grant file in package); byte-exact v0.2.0/v0.3.0 snapshots ship with the package so historical version references dereference; fixtures extended to twenty to close coverage gaps"
+  },
+  {
+   "version": "0.3.0",
+   "date": "2026-08-15",
+   "driver": "First external adoption feedback (open contribution issue #2549, submissions/Juwan-Hwang/jingzhang-diagram)",
+   "changes_zh": [
+    "machine_readable_location 由本包路径默认值更正为采用方声明制",
+    "新增 adopter_lexicon 机制：角色词表可由采用方在 fixtures 中声明附加词，规范本体词表保持最小集"
+   ],
+   "changes_en": [
+    "machine_readable_location corrected from this package's path to adopter-declared",
+    "adopter_lexicon added: adopters may declare additional role tokens in their fixtures while the spec's own list stays minimal"
+   ],
+   "credit_zh": "两项修订均由首个外部采用方《京张运行图》的采用反馈驱动（CC BY-SA 4.0 署名沿革见 Issue #2549）",
+   "credit_en": "Both revisions were driven by adoption feedback from The Jingzhang Diagram, the first external adopter (attribution trail in issue #2549)",
+   "change_receipt_id": "CR-2026-08-15-004"
+  },
+  {
+   "version": "0.2.0",
+   "date": "2026-08-12",
+   "changes_zh": [
+    "公开发布版本"
+   ],
+   "changes_en": [
+    "Public release"
+   ],
+   "change_receipt_id": "CR-2026-08-12-002"
+  }
+ ],
+ "adoptions": [
+  {
+   "adopter": "京张运行图 / The Jingzhang Diagram",
+   "package": "submissions/Juwan-Hwang/jingzhang-diagram",
+   "scope_zh": "四组件全部采用；对其方案十二张场景卡中的代表性节点做桌面配对推演，七条样例（正例三、反例四）全部与期望一致，退出码 0。2026-08-15 升级为 v0.3.0 快照入包：规范、校验器与回执样例整体收入其提交包 visual/assets/（附来源与 CC BY-SA 4.0 署名声明），并以 adopter_lexicon 声明五项本地角色词（志愿者、社工、网格员、安全员、辅导员），七条样例复跑与期望一致",
+   "scope_en": "All four components adopted; a desk paired replay over representative nodes of its scenario cards, seven fixtures (three positive, four negative) all matching expectation, exit code 0. Upgraded on 2026-08-15 to snapshot-in-package: the spec, checker and receipt sample ship inside its own package under visual/assets/ (with an origin and CC BY-SA 4.0 attribution declaration), an adopter_lexicon declaring five local role tokens, and the seven fixtures re-run matching expectation",
+   "registered": "2026-08-15",
+   "evidence": "open contribution issue #2549, adoption comment and maintainer receipt",
+   "note_zh": "采用方推演为方法学演示，无真实参与者，不产生绩效数值——与本基准期望的诚实用法一致",
+   "note_en": "The adopter's replay is a methodology demonstration with no real participants and no performance figures — consistent with the honest usage this baseline expects",
+   "registration_comment_url": "https://github.com/open-city-ai/haidian/issues/2549#issuecomment-5297113700",
+   "maintainer_receipt_url": "https://github.com/open-city-ai/haidian/issues/2549#issuecomment-5297331495",
+   "registered_utc": "2026-08-14T19:03:46Z",
+   "verification_note_zh": "「七条样例、退出码 0」为采用方登记自述；其快照入包后，本包已核验其提交包内 seb-spec.json 副本与官方 v0.3.0 快照逐字节一致（SHA-256 与 version_snapshots 登记值相同），快照存在性与版本一致性自此可独立核对；复跑结果仍为采用方自述",
+   "verification_note_en": "\"Seven fixtures, exit code 0\" is the adopter's own statement; after the snapshot shipped, this package verified that the seb-spec.json copy inside the adopter's package is byte-identical to the official v0.3.0 snapshot (SHA-256 equal to the version_snapshots register), so snapshot presence and version identity are independently checkable; the re-run result remains adopter-declared",
+   "upgrade_comment_url": "https://github.com/open-city-ai/haidian/issues/2549#issuecomment-5298399979",
+   "evidence_level": "snapshot_verified_replay_self_reported",
+   "evidence_level_note_zh": "快照存在性与版本一致性已由本包核验（下列 commit 与哈希可独立复核）；七条样例复跑结果为登记方自述，本包未独立复跑",
+   "evidence_level_note_en": "Snapshot presence and version identity verified by this package (commit and hash below are independently checkable); the seven-fixture re-run remains the adopter's own statement, not independently re-run here",
+   "adopter_snapshot_commit": "bc486e5",
+   "adopter_snapshot_path": "submissions/Juwan-Hwang/jingzhang-diagram/visual/assets/seb-spec.json",
+   "adopter_snapshot_sha256": "67200f3e981703ea82af1bde4dd778d4329ee943eea00db6efe371a6c6a59b54",
+   "verify_command": "git show <upstream-main>:submissions/Juwan-Hwang/jingzhang-diagram/visual/assets/seb-spec.json | shasum -a 256  # 应等于本条 adopter_snapshot_sha256，且等于 version_snapshots 中 0.3.0 的 sha256 / should equal this entry's hash and the 0.3.0 hash in version_snapshots"
+  },
+  {
+   "adopter": "京张智脊 / Jing-Zhang AI Spine",
+   "package": "submissions/oppry12102/jingzhang-ai-spine",
+   "scope_zh": "部分采用：node_schema 五字段判据，用于其「可停」纪律——每个服务点声明五字段、缺任一不计入服务覆盖，落位于「大钟寺·可停服务街」空间意象与十张场景卡逐卡自查（其 v1.7 起，已在其提交包内署名致谢）",
+   "scope_en": "Partial adoption: the five-field node_schema test, powering its 'stoppable' discipline — every service point declares the five fields, any missing field excludes it from service coverage; landed in the 'Dazhongsi stoppable service street' spatial figure and a card-by-card self-check of its ten scenario cards (from its v1.7, with attribution inside its package)",
+   "registered": "2026-08-15",
+   "evidence": "open contribution issue #2549, adoption comment and maintainer receipt",
+   "note_zh": "概念级采用（对齐判据条文与 schema），无推演、不产生绩效数值——性质声明诚实",
+   "note_en": "Concept-level adoption (aligning criteria text and schema), no replay, no performance figures — an honest statement of nature",
+   "registration_comment_url": "https://github.com/open-city-ai/haidian/issues/2549#issuecomment-5297533869",
+   "maintainer_receipt_url": "https://github.com/open-city-ai/haidian/issues/2549#issuecomment-5297576936",
+   "registered_utc": "2026-08-14T19:52:34Z",
+   "verification_note_zh": "采用范围与其包内署名为采用方登记自述（其登记同时自述该版本已合并入其上游提交）；本包未独立核验其包内容",
+   "verification_note_en": "The adoption scope and in-package attribution are the adopter's own registration statements (which also state the version is merged upstream); this package has not independently verified that package's contents",
+   "evidence_level": "self_reported_concept_adoption",
+   "evidence_level_note_zh": "概念级部分采用，采用范围与其包内署名为登记方自述；本包未独立核验其包内容",
+   "evidence_level_note_en": "Concept-level partial adoption; scope and in-package attribution are the adopter's own statements, not independently verified here"
+  }
+ ],
+ "adoption_claim": "voluntary_peer_adoption_registered",
+ "revision_history_note_zh": "本表为全部已发布版本的修订沿革，每版一条回执；v0.1 的来源与首发回执另见 provenance.version_history，两处互指不重复",
+ "revision_history_note_en": "This table is the revision history of every published version, one receipt per version; the origin and first-publication receipt of v0.1 sit in provenance.version_history, the two cross-referencing without duplication",
+ "contributors": [
+  {
+   "handle": "@Juwan-Hwang",
+   "work": "京张运行图 / The Jingzhang Diagram",
+   "contribution_zh": "首个外部采用；提出 machine_readable_location 语义缺陷与角色词表扩展需求，驱动 v0.3.0 两条修订",
+   "contribution_en": "First external adoption; surfaced the machine_readable_location defect and the lexicon-extension need, driving both v0.3.0 revisions"
+  },
+  {
+   "handle": "@oppry12102",
+   "work": "京张智脊 / Jing-Zhang AI Spine",
+   "contribution_zh": "第二例采用（node_schema 五字段拆用），验证组件级采用形态",
+   "contribution_en": "Second adoption (component-wise use of the five-field node_schema), validating partial adoption"
+  }
+ ],
+ "contributors_note_zh": "本字段为维护方对贡献者的致谢登记，与 CC BY-SA 4.0 的下游署名义务无关（该义务约束采用方对本基准的署名）。",
+ "contributors_note_en": "This field is the maintainer's acknowledgement of contributors and is distinct from CC BY-SA 4.0's downstream attribution duty (which binds adopters crediting this baseline).",
+ "date_convention_zh": "本包全部 SEB 文件（规范、样例、回执、快照登记、采用登记）中的日期均为北京时间（UTC+8）日历日；采用登记另附 UTC 时刻字段",
+ "date_convention_en": "Every date in every SEB file of this package (spec, fixtures, receipts, snapshot register, adoption register) is a Beijing-time (UTC+8) calendar day; adoption entries additionally carry a UTC timestamp field",
+ "violation_code_registry": {
+  "note_zh": "本表为全部判定码的规范名与语义，两个参考实现共用；实现不得发明本表之外的判定码（v0.3.1 前两实现各自编码缺字段/枚举违例，该缺口登记于 CR-2026-08-15-005）",
+  "note_en": "Canonical names and semantics of every verdict code, shared by both reference implementations; an implementation may not invent codes outside this table (before v0.3.1 the two implementations each improvised codes for missing fields and enum violations — registered in CR-2026-08-15-005)",
+  "codes": {
+   "NODE_FIELD_MISSING": "必填字段缺失或非字符串 / required field absent or not a string（严格 string 类型，实现不得以字符串强转弱化 / strict string type; no implementation may weaken it by coercion）",
+   "NODE_ENUM_INVALID": "字段取值不在允许集合内 / value outside the allowed set",
+   "NODE_CONSTRAINT_VIOLATION": "constraint_machine_rule 违例，冒号后接字段名 / machine-rule violation, field name after the colon",
+   "SOURCE_MISMATCH": "样例与来源文件逐字对齐失败 / verbatim source alignment failed",
+   "SOURCE_FILE_UNREADABLE": "声明的来源文件不可读，整次拒绝 / declared source file unreadable; whole run refused",
+   "DENOMINATOR_SAMPLE_DROPPED": "分母删除失败样本 / a failed sample dropped from the denominator",
+   "METRIC_ID_UNKNOWN": "指标不在适用或排除清单 / metric on neither list",
+   "LEVEL_UNKNOWN": "等级不在基准定义内 / level not defined",
+   "LEVEL_BINDING_MISSING": "等级绑定字段不齐 / a level binding field missing",
+   "LEVEL_GATE_MISMATCH": "申报等级与节点闸门不一致 / claimed level and node gate disagree",
+   "STOP_NOT_ENFORCED": "停止条件触发却续跑 / triggered stop condition continued",
+   "RESUME_WITHOUT_EVIDENCE": "以承诺而非证据恢复 / resumed on a promise",
+   "RISK_ID_UNKNOWN": "风险条目不在基准规则内 / risk entry outside the rules",
+   "ADOPTER_LEXICON_INVALID_TOKEN": "附加词后缀违例，整次拒绝 / forbidden token suffix; whole run refused",
+   "ADOPTER_LEXICON_EVIDENCE_MISSING": "附加词缺证据条目，整次拒绝 / token evidence missing; whole run refused",
+   "ADOPTER_LEXICON_MALFORMED": "词表或证据对象类型不合法，整次拒绝 / lexicon or evidence ill-typed; whole run refused",
+   "RULE_TYPE_UNSUPPORTED": "基准声明了实现未支持的规则类型：属兼容失败，整次以退出码 2 拒绝，不得记为样例违例 / a rule type the implementation does not support: a compatibility failure refusing the whole run at exit 2, never a per-fixture violation"
+  }
+ },
+ "version_snapshots": {
+  "note_zh": "历史版本按字节随包发布，采用方引用的任何已发布版本均可离线解引用并以哈希核对；本文件即现行版本",
+  "note_en": "Historical versions ship byte-exact with the package, so any published version an adopter cites dereferences offline and verifies by hash; this file is the current version",
+  "snapshots": [
+   {
+    "version": "0.2.0",
+    "file": "visual/assets/seb-spec-v0.2.0.json",
+    "upstream_commit": "554fb359d",
+    "sha256": "f131dbe80e37beca317375d9a9cb86eab72f2297977bd1195955c4b15d5350ea"
+   },
+   {
+    "version": "0.3.0",
+    "file": "visual/assets/seb-spec-v0.3.0.json",
+    "upstream_commit": "33031a588",
+    "sha256": "67200f3e981703ea82af1bde4dd778d4329ee943eea00db6efe371a6c6a59b54"
+   }
+  ]
+ },
+ "reference_implementations": {
+  "note_zh": "两个参考实现共用本文件的判据与违例码登记表；判定行为差异一律视为缺陷并登记失败样本",
+  "note_en": "Both reference implementations share this file's criteria and violation-code registry; any behavioural divergence is a defect and registers a failure sample",
+  "implementations": [
+   {
+    "file": "visual/assets/seb-tabletop-run.js",
+    "runner_version": "0.3.1",
+    "role_zh": "通用桌面校验器：判读规范+样例,可随快照被第三方整体取走",
+    "role_en": "general tabletop checker: reads spec plus fixtures, portable with a snapshot",
+    "node_support": ">=18"
+   },
+   {
+    "file": "visual/assets/seb-op04-chain-run.js",
+    "runner_version": "0.3.1",
+    "role_zh": "本包专用证据链复演器：绑定本包 geometry 数据与 OP-04 档案,不是通用 SEB 运行器;LineString 仅支持两点线段并在超限时报错拒跑",
+    "role_en": "package-specific evidence-chain replayer bound to this package's geometry and the OP-04 archive; not a general SEB runner; LineStrings support two-point segments only and any longer geometry refuses the run",
+    "node_support": ">=18"
+   }
+  ]
+ }
+}

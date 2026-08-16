@@ -1,0 +1,88 @@
+{
+ "receipt_file_id": "seb-change-receipt-v04",
+ "receipt_schema_id": "seb-change-receipt",
+ "receipt_schema_version": "0.3.0",
+ "schema_ref": "visual/assets/seb-change-receipt-sample.json",
+ "note_zh": "v0.4 系变更回执：一版本一回执（007=v0.4.0）。本版变更来源为维护方对四十二份公开竞品方案的横向短板侦察，属「外部方案对比」类驱动——治理回路第四次转动（前三次：采用反馈 v0.3.0、独立审查 v0.3.1、维护方自查）。侦察纪律：全部结论由维护方自行核验，未引用任何对手方案的来源条目或读数。",
+ "note_en": "v0.4-series change receipts: one receipt per version (007 = v0.4.0). This version is driven by the maintainer's lateral gap survey of forty-two public rival proposals — the fourth turn of the governance loop (after adoption feedback for v0.3.0, independent review for v0.3.1, and maintainer self-audit). Survey discipline: every conclusion was verified by the maintainer first-hand, citing no rival package's source entries or readings.",
+ "receipts": [
+  {
+   "receipt_id": "CR-2026-08-16-007",
+   "issued_at": "2026-08-16",
+   "gate_round": "not_applicable",
+   "node_id": "all",
+   "raised_by": {
+    "role_group": "维护方横向短板侦察（四条互不通气的审查线，覆盖综合、公平照护、产业转化、空间文化四类共四十二份公开方案）",
+    "role_group_en": "the maintainer's lateral gap survey (four mutually blind review lines over forty-two public proposals across four categories)",
+    "disclosure": "按包内署名，不记录个人身份信息；不引用对手方案来源条目 / per in-package attribution, no personal identifying data, no rival source entries cited"
+   },
+   "opinion": {
+    "zh": "基准只回答「能不能开始」，不回答「能运行多久、谁付钱、坏了谁修、退役时带走什么」——存续判据缺失是跨审查线命中次数最多的缺口；原 L4 把交接与无限期运行合并，隐含通过 G3 即默认永久运行；停止条件可被读作服务整体下线；等价定义缺条件维度，更慢、更贵、更难发现的人工路径可被判等价；总体指标可掩盖最差组恶化；AI 开启态的权限边界全然未定义",
+    "en": "the baseline answered only whether a service may start, not how long it may run, who pays, who repairs, and what leaves with it at decommissioning — the missing endurance criteria were the most-hit gap across review lines; the old L4 merged handover with open-ended operation, implying permanence by default after G3; stop conditions could be read as whole-service shutdown; the equivalence definition lacked its conditions, letting slower, dearer, harder-to-find manual paths be ruled equivalent; totals could mask worst-group deterioration; and the authority boundary of the AI-on state was undefined"
+   },
+   "finding": {
+    "zh": "逐项对照坐实为规范设计缺口而非实现缺陷：v0.3.1 文本内 L4 无到期机制、无付款方字段、无退役条款；停止处置未写明停止对象；ai_off_service_equivalence_gap 的分子判定无时间、成本、可发现性条件；五项参与者指标无分组报告要求；无任何条文约束 AI 开启态可自动执行的动作范围",
+    "en": "each point checked against the v0.3.1 text and confirmed as a specification gap rather than an implementation defect: L4 had no expiry mechanism, no funding field, no decommission clause; the stop action never named what stops; the gap metric's numerator ruling carried no time, cost or discoverability condition; the five participant metrics had no stratification requirement; and no clause bounded what the AI-on state may execute on its own"
+   },
+   "verdict": "adopted",
+   "change_made": {
+    "summary_zh": "基准升格为全生命周期基准：node_schema 新增生命周期字段组（funding_owner 自 L1 起必填、自 L3 起须 confirmed；non_ai_channel_floor 与 ai_off_vendor_independence 自 L3 起；decommission_path 自 L4a 起且三个取值均保全非 AI 通道；review_due 自 L4b 起，逾期按 REVIEW_OVERDUE 报有效等级 L0；residual_asset 信息性）；L4 拆 L4a 采用准备（三项就绪证据）与 L4b 有期限常态运行（期满自动回 L3 三方复核续期）；停止语义明文化（停止对象是 AI 层不是服务）；G3 结论四选一（第四项「关闭 AI 层保留服务」为合法结论）；新增第五组件 AI 权限边界（人工专属清单五项、action_id 精确匹配、越权反例四条）；等价定义补三维条件（时间比、附加成本、选择前可发现性，阈值预注册不可回溯）；分组分列报告与最差组护栏、组归属不采集不推断、不可靠必须声明、样本不足不得写成公平；违例码登记表新增十四码并为每码明文化 applies_when 触发输入域；风险条目新增 R-09 至 R-12",
+    "summary_en": "the baseline is promoted to a full-lifecycle baseline: node_schema gains the lifecycle field group (funding_owner from L1, confirmed from L3; non_ai_channel_floor and ai_off_vendor_independence from L3; decommission_path from L4a with all three values preserving non-AI channels; review_due from L4b, overdue handled as REVIEW_OVERDUE reporting effective level L0; residual_asset informative); L4 splits into L4a adoption readiness (three readiness evidences) and L4b time-bounded continuous operation (fallback to L3 on expiry for three-party renewal); stop semantics stated (the AI layer stops, not the service); G3 records one of four outcomes (the fourth, closing the AI layer while retaining the service, is legitimate); a fifth component, the AI authority boundary (five human-exclusive actions, exact action_id matching, four overreach counter-examples); the equivalence definition gains its three conditions (time ratio, extra cost, pre-selection discoverability, thresholds pre-registered and non-retroactive); stratified reporting with the worst-group guard, membership neither collected nor inferred, unreliability must be declared, insufficient samples never written up as fair; fourteen new violation codes each with an applies_when input domain; risk entries R-09 to R-12 added"
+   },
+   "not_adopted_reason": {
+    "zh": "两类侦察所见明确不追：①把等价三维升格为总体层新指标（会破坏七项口径的分母纪律与全包计数链，三维条件按「等价性判定条件」落位于 scoring_definitions，不新增指标键）；②对 AI 白名单做违例判定（白名单保持信息性清单——不在名单不自动违例，避免以枚举穷尽性冒充判据完备性，只对人工专属清单做精确匹配判定）",
+    "en": "two survey findings are expressly not adopted: promoting the three equivalence dimensions into new top-level metrics (which would break the seven-definition denominator discipline and the package-wide count chain — the dimensions land in scoring_definitions as conditions on the equivalence ruling, adding no metric key); and ruling violations against the AI whitelist (it stays informative — an unlisted action is no automatic violation, so enumeration exhaustiveness never impersonates criteria completeness; only the human-exclusive list is ruled on, by exact match)"
+   },
+   "failed_sample_register": {
+    "samples": [
+     {
+      "sample_id": "FS-059",
+      "description_zh": "v0.2.0–v0.3.1 的 L4「采用与常态运行」无到期机制、无付款方判据、无退役条款——通过 G3 的系统被默认允许永久运行",
+      "description_en": "from v0.2.0 to v0.3.1, L4 carried no expiry, no funding criterion and no decommission clause — a system past G3 was implicitly allowed to run forever",
+      "status": "fixed",
+      "disposition_zh": "L4 拆分 + 生命周期字段组 + REVIEW_OVERDUE 降级机制",
+      "disposition_en": "the L4 split, the lifecycle field group and the REVIEW_OVERDUE downgrade"
+     },
+     {
+      "sample_id": "FS-060",
+      "description_zh": "停止条件未写明停止对象，「停止」可被合规地执行为服务整体下线——与基准自身「非 AI 通道存续」的立场矛盾",
+      "description_en": "stop conditions never named their object, so a stop could be compliantly executed as a whole-service shutdown — contradicting the baseline's own stance that non-AI channels endure",
+      "status": "fixed",
+      "disposition_zh": "stop_semantics 明文化 + G3 第四结论 + DECOMMISSION_TAKES_NON_AI_CHANNEL",
+      "disposition_en": "stop_semantics stated, the fourth G3 outcome, and DECOMMISSION_TAKES_NON_AI_CHANNEL"
+     },
+     {
+      "sample_id": "FS-061",
+      "description_zh": "等价判定无条件维度：一条绕行三倍耗时、需先询问工作人员才能发现的人工路径，在 v0.3.1 文本下可被判为等价路径",
+      "description_en": "the equivalence ruling had no condition dimensions: a manual detour at three times the duration, discoverable only by asking staff, could be ruled equivalent under the v0.3.1 text",
+      "status": "fixed",
+      "disposition_zh": "三维条件 + 阈值预注册 + EQUIVALENCE_CONDITION_UNMET",
+      "disposition_en": "the three conditions, threshold pre-registration and EQUIVALENCE_CONDITION_UNMET"
+     },
+     {
+      "sample_id": "FS-062",
+      "description_zh": "五项参与者指标只报总体：总体改善可掩盖最差角色组恶化，且无条文禁止由行为数据推断组归属",
+      "description_en": "the five participant metrics reported totals only: an improving total could mask a deteriorating worst group, and nothing forbade inferring group membership from behavioural data",
+      "status": "fixed",
+      "disposition_zh": "分组分列 + 最差组护栏 + 不采集不推断条款",
+      "disposition_en": "stratified reporting, the worst-group guard and the neither-collected-nor-inferred clause"
+     }
+    ]
+   },
+   "affected_metrics": {
+    "summary_zh": "判据变更不触及任何登记读数：metrics.json 七项口径、八字段与全部保持未知指标键不变，等价三维条件按判定条件落位不新增指标键；OP-04 链 41+2 项读数不变（复演器加锁后复跑须 0 不符）；桌面样例扩充后全部样例须与期望一致退出 0",
+    "summary_en": "the criteria changes touch no registered reading: the seven definitions, eight fields and every kept-unknown key of metrics.json stand, the equivalence dimensions land as ruling conditions adding no key; the 41+2 chain figures stand (the hardened replayer must replay at zero disagreement); the extended tabletop set must match expectation at exit 0",
+    "readings_changed": 0
+   },
+   "verification": {
+    "zh": "对照 seb-spec-v0.3.1.json 快照 diff 现行规范核对全部条文升级；在 visual/assets 运行两个校验器（全部样例一致退出 0、链复演 0 不符）；注入实验复现 FUNDING_UNCONFIRMED_AT_L3、REVIEW_OVERDUE、AI_AUTHORITY_OVERREACH（近似词不得误伤）、WORST_GROUP_REGRESSION 各码退出 2",
+    "en": "diff the current spec against the seb-spec-v0.3.1.json snapshot to check every promotion; run both checkers inside visual/assets (all fixtures matching at exit 0, the chain replay at zero disagreement); reproduce FUNDING_UNCONFIRMED_AT_L3, REVIEW_OVERDUE, AI_AUTHORITY_OVERREACH (near-miss tokens must not be caught) and WORST_GROUP_REGRESSION at exit 2 by injection"
+   },
+   "posting": [
+    "visual/assets/seb-change-receipt-v04.json",
+    "proposal.md 服务等价基准章 / the SEB chapter of proposal.md"
+   ],
+   "status": "published"
+  }
+ ]
+}

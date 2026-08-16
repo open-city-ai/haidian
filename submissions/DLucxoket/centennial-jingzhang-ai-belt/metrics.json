@@ -1,0 +1,309 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "EPSG:4548投影面积",
+      "confidence": "low",
+      "assumptions": "provisional boundary"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.076608,
+      "unit": "percent",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "绿地面积/总面积*100",
+      "confidence": "conceptual",
+      "assumptions": "概念方案"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.001713,
+      "unit": "percent",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "公共空间面积/总面积*100",
+      "confidence": "conceptual",
+      "assumptions": "概念方案"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "直接计数",
+      "confidence": "high",
+      "assumptions": null
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 462931,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "EPSG:4548投影面积",
+      "confidence": "conceptual",
+      "assumptions": "概念方案"
+    },
+    "developer_walk_length_m": {
+      "status": "known",
+      "value": 9800,
+      "unit": "m",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "概念方案",
+      "confidence": "conceptual",
+      "assumptions": "开发者散步道全长"
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 20,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "直接计数",
+      "confidence": "conceptual",
+      "assumptions": null
+    },
+    "five_gate_pass_rate": {
+      "status": "known",
+      "value": 0.3,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "已通过/总数",
+      "confidence": "conceptual",
+      "assumptions": "概念方案"
+    },
+    "far_overall": {
+      "status": "known",
+      "value": 1.03,
+      "unit": "index",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "建筑总面积/总体设计面积",
+      "confidence": "conceptual",
+      "assumptions": "概念方案，假设平均层数10层"
+    },
+    "far_zhongzhi": {
+      "status": "known",
+      "value": 1.80,
+      "unit": "index",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "重点区域概念方案",
+      "confidence": "conceptual",
+      "assumptions": "待控规确认"
+    },
+    "far_yuandian": {
+      "status": "known",
+      "value": 1.50,
+      "unit": "index",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "重点区域概念方案",
+      "confidence": "conceptual",
+      "assumptions": "待控规确认"
+    },
+    "far_dazhongsi": {
+      "status": "known",
+      "value": 2.50,
+      "unit": "index",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "重点区域概念方案",
+      "confidence": "conceptual",
+      "assumptions": "待控规确认"
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.041,
+      "unit": "percent",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "建筑基底面积/总面积",
+      "confidence": "conceptual",
+      "assumptions": "概念方案"
+    },
+    "per_capita_public_space": {
+      "status": "known",
+      "value": 1.63,
+      "unit": "sqm_per_person",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "公共空间面积/服务人口",
+      "confidence": "conceptual",
+      "assumptions": "概念方案，服务人口12万人"
+    },
+    "employment_estimate": {
+      "status": "known",
+      "value": 85000,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "基于研发+商业+服务用地测算",
+      "confidence": "conceptual",
+      "assumptions": "概念方案"
+    },
+    "service_population": {
+      "status": "known",
+      "value": 120000,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "含常住+就业通勤人口",
+      "confidence": "conceptual",
+      "assumptions": "概念方案"
+    },
+    "green_ratio_zhongzhi": {
+      "status": "known",
+      "value": 0.12,
+      "unit": "percent",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "重点区域概念方案",
+      "confidence": "conceptual",
+      "assumptions": "概念方案"
+    },
+    "green_ratio_yuandian": {
+      "status": "known",
+      "value": 0.15,
+      "unit": "percent",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "重点区域概念方案",
+      "confidence": "conceptual",
+      "assumptions": "概念方案"
+    },
+    "green_ratio_dazhongsi": {
+      "status": "known",
+      "value": 0.065,
+      "unit": "percent",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "重点区域概念方案",
+      "confidence": "conceptual",
+      "assumptions": "概念方案，核心区建筑密度较高"
+    },
+    "ai_scenario_density": {
+      "status": "known",
+      "value": 1.75,
+      "unit": "count_per_sqkm",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "20个场景/11.4km²",
+      "confidence": "conceptual",
+      "assumptions": "概念方案"
+    },
+    "traditional_business_retention": {
+      "status": "known",
+      "value": 0.30,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "传统业态面积/商业服务业总面积",
+      "confidence": "conceptual",
+      "assumptions": "概念方案，刚性承诺"
+    },
+    "non_ai_sector_ratio": {
+      "status": "known",
+      "value": 0.20,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "非AI赛道面积/商业服务业总面积",
+      "confidence": "conceptual",
+      "assumptions": "概念方案，招商策略"
+    },
+    "digital_skill_station_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "三核各1处",
+      "confidence": "conceptual",
+      "assumptions": "概念方案"
+    },
+    "green_space_type_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "直接计数",
+      "confidence": "conceptual",
+      "assumptions": "概念方案"
+    },
+    "road_network_levels": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "直接计数",
+      "confidence": "conceptual",
+      "assumptions": "概念方案"
+    },
+    "building_type_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "直接计数",
+      "confidence": "conceptual",
+      "assumptions": "概念方案"
+    },
+    "public_space_type_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "直接计数",
+      "confidence": "conceptual",
+      "assumptions": "概念方案"
+    }
+  }
+}

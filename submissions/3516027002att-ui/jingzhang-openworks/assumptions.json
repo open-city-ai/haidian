@@ -1,0 +1,144 @@
+{
+  "schema_version": "0.1.0",
+  "policy_zh": "本文件登记本方案全部关键假设。每条假设说明：假设内容、对指标与结论的影响、以及取得官方资料后必须重算的对象。假设不是免责声明，而是设计条件。",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "title_zh": "总体设计范围与重点区域采用临时粗略边界",
+      "statement_zh": "组织方尚未发布官方精确红线。本方案的 site_boundary.geojson#SITE-001 与 key_areas.geojson#KEY-001/002/003 均由仓库 provisional_boundaries.geojson 导出，标记为 geometry_role=provisional_constraint、official_boundary=false、boundary_precision=provisional_rough。",
+      "impact_zh": "由 provisional geometry 派生的空间面积、比例与长度指标的绝对值受此限制，confidence 不高于 medium；公告文字值与正文计数不受该边界替换影响。重点区域复算面积与公告面积的差值即来自该精度。",
+      "recompute_zh": "取得官方 polygon 后须重算：site_boundary、key_areas、land_use、buildings、roads、green_space、public_space、constraints、phasing 九个图层，以及 metrics.json 中全部 geometry-derived 空间指标；公告文字值与正文计数不随边界重算。",
+      "gap_ids": [
+        "GAP-BOUNDARY-001",
+        "GAP-BOUNDARY-002"
+      ],
+      "source_ids": [
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      ],
+      "confidence": "medium",
+      "blocks_formal_scoring": false,
+      "note_zh": "规则明示组织方数据缺口本身不阻断内容评分。"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "title_zh": "法定控制指标未公开，不予推定",
+      "statement_zh": "已批准控规的容积率、建筑高度、建筑密度、绿地率控制指标与道路红线均未公开。本方案不推定上述任何数值。roads.geojson 中的 ROAD_AREA 仅为根据概念慢行线位和设计参数生成的道路空间预留叠加面，land_use_code=1207 且classification_status=conceptual_candidate_pending_official_redline，不构成官方道路红线，也不切入 LAND_USE 法定分类。",
+      "impact_zh": "metrics.json 中 floor_area_ratio、building_height_m、building_density、official_green_ratio_control、road_area_ratio 保持 status=unknown；conceptual_road_reservation_area_sqm 与其研究比率只用于方案内部空间校核；正文只给功能比例、空间组织与体量关系的概念建议。",
+      "recompute_zh": "取得控规条件后：将本方案 green_ratio 与审定绿地率比对并重算，补齐强度分区、高度分区与道路用地比例。",
+      "gap_ids": [
+        "GAP-CONTROL-001",
+        "GAP-ROAD-001"
+      ],
+      "source_ids": [
+        "DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING",
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      ],
+      "confidence": "unknown",
+      "blocks_formal_scoring": false,
+      "note_zh": "本方案 green_ratio 与 public_space_ratio 均为设计建议值，非审定控制指标。"
+    },
+    {
+      "id": "A-BUILDING-001",
+      "title_zh": "现状建筑底数缺失，建筑图层仅为研究体量",
+      "statement_zh": "现状建筑轮廓、高度、层数、用途、建成年代与保留改造拆除状态均未取得。buildings.geojson 的 16 个 feature 是研究体量示意，confidence=low。",
+      "impact_zh": "building_footprint_area_sqm 与 building_coverage_ratio_study 只反映研究体量占地，不代表现状或规划建筑规模；total_floor_area_sqm 保持 unknown。massing_treatment 只表达概念体量的干预方向与可逆性，不是现状建筑的拆改留分类。",
+      "recompute_zh": "取得现状建筑底数与权属资料后：重建 buildings 图层，重算基底面积与占地比，并据此形成可审定的拆改留方案。",
+      "gap_ids": [
+        "GAP-BUILDING-001",
+        "GAP-OWNERSHIP-001"
+      ],
+      "source_ids": [
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      ],
+      "confidence": "low",
+      "blocks_formal_scoring": false,
+      "note_zh": "不得据本图层给出任何地块级拆改留或工程结论。"
+    },
+    {
+      "id": "A-CRS-001",
+      "title_zh": "坐标与面积复算口径",
+      "statement_zh": "GeoJSON 交换坐标系 EPSG:4326（经度、纬度顺序）；面积与长度复算坐标系 EPSG:4548（CGCS2000 / 3 度带高斯-克吕格，中央经线 117°E），依 design_brief.json 的 coordinate_policy 指定。",
+      "impact_zh": "空间派生指标可由 shapely + pyproj 在该坐标系下复现；scripts/spatial_review.py 输出 6 个数值、自动比对其中 3 项，并另做用地覆盖几何门检查。非空间计数回到正文或登记资料。",
+      "recompute_zh": "正式使用前须与官方测绘基准和坐标系统说明核对。",
+      "gap_ids": [
+        "GAP-CRS-001"
+      ],
+      "source_ids": [
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      ],
+      "confidence": "medium",
+      "blocks_formal_scoring": false,
+      "note_zh": "design_brief.json 已提示该坐标系须与官方测绘数据确认。"
+    },
+    {
+      "id": "A-RESERVE-001",
+      "title_zh": "留白率是建议指标口径，不是法定指标",
+      "statement_zh": "本方案提出以《国土空间调查、规划、用途管制用地用海分类指南》的「16 留白用地」承接 AI 产业代际更替，并提出 reserve_ratio 指标口径。",
+      "impact_zh": "reserve_ratio = 弹性预留空间面积 / 提交边界面积，当前复算值 0.056474（5.65%，64.45 公顷）。该值是设计配置结果，不是审定控制指标，也不是对留白用地比例的规范性要求。",
+      "recompute_zh": "建议纳入后续控规研究讨论；若官方确定留白用地政策口径，须按官方口径重新界定分子分母并重算。",
+      "gap_ids": [
+        "GAP-CONTROL-001"
+      ],
+      "source_ids": [
+        "DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311"
+      ],
+      "confidence": "medium",
+      "blocks_formal_scoring": false,
+      "note_zh": "供专业团队与控规编制单位讨论的机制建议。"
+    },
+    {
+      "id": "A-VERSION-001",
+      "title_zh": "城市版本化分期是工作方法建议，不是开发时序",
+      "statement_zh": "phasing.geojson 的 v0/v1/v2 按干预的不可逆性排序，并为每个版本预设回滚触发条件，属更新工作方法建议。其中 PH-001/002/003 是阶段参照片区；PF-R01 至 PF-R08 是八项更新项目的概念作用范围，二者在 geometry_kind 字段中明确区分。",
+      "impact_zh": "project_footprint_count、project_footprint_area_sqm 与各阶段项目并集面积反映概念方案的空间落位，不代表征地、施工或投资范围；参照片区面积只用于解释三区和版本关系。两类面积均不构成开发时序、投资测算、审批判断或实施承诺。",
+      "recompute_zh": "取得官方红线、控规条件与权属资料后，v2 版本的结构性更新内容必须重新论证后才可进入实施讨论。",
+      "gap_ids": [
+        "GAP-CONTROL-001",
+        "GAP-OWNERSHIP-001"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "confidence": "medium",
+      "blocks_formal_scoring": false,
+      "note_zh": "任何版本的推进都以官方资料补齐与专业复核为前置条件。"
+    },
+    {
+      "id": "A-SCENARIO-001",
+      "title_zh": "AI 场景为概念建议，不含非公开数据",
+      "statement_zh": "12 张 AI 场景卡与 4 个产业测试验证场景均只使用公开数据或自愿提交数据，每张卡标注隐私边界与人工复核机制。",
+      "impact_zh": "scenario_card_count、industry_test_scenario_count、user_persona_count、pilgrimage_landmark_count、global_case_study_count 为正文内容计数，反映任务书数量要求的满足情况。",
+      "recompute_zh": "任何场景进入试点前，须由数据合规、隐私保护与公共安全专业复核，并完成受审批、可撤回的试点程序。",
+      "gap_ids": [
+        "GAP-FACILITY-001"
+      ],
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "confidence": "medium",
+      "blocks_formal_scoring": false,
+      "note_zh": "不使用个人隐私数据、企业内部数据或指定供应商作为必要条件。"
+    },
+    {
+      "id": "A-CASE-001",
+      "title_zh": "全球案例采用逐案官方背景来源",
+      "statement_zh": "7 个全球 AI 创新生态案例分别登记所在地政府或官方运营机构的公开来源；来源只支撑案例基本事实，本方案的迁移判断明确作为设计推论。",
+      "impact_zh": "global_case_study_count=7，满足任务书 5–8 个的要求。",
+      "recompute_zh": "若需引用具体数据或因果效果，须另行取得对应统计或研究来源并登记。",
+      "gap_ids": [],
+      "source_ids": [
+        "DATA-SRC-CASE-KENDALL-CAMBRIDGE",
+        "DATA-SRC-CASE-KINGS-CROSS-CAMDEN",
+        "DATA-SRC-CASE-BARCELONA-22AT",
+        "DATA-SRC-CASE-ONE-NORTH-JTC",
+        "DATA-SRC-CASE-PANGYO-OFFICIAL",
+        "DATA-SRC-CASE-OTANIEMI-ESPOO",
+        "DATA-SRC-CASE-XILI-NANSHAN"
+      ],
+      "confidence": "medium",
+      "blocks_formal_scoring": false,
+      "note_zh": "不编造企业名单、投资额、产值或政府承诺。"
+    }
+  ]
+}

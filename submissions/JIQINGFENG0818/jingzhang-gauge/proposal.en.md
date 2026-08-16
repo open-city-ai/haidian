@@ -29,7 +29,7 @@ This proposal strictly separates formal-ready, background-only, and provisional-
 
 | Material | Use | Availability | Handling |
 |---|---|---|---|
-| Public taskbook and project announcement | Three-level scope, Three Zones and Two Wings, five functions | formal-ready | Cited directly [source:PROJECT-OFFICIAL-ANNOUNCEMENT] [source:OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] |
+| Public taskbook and project announcement | Three-level scope, Three Zones and Two Wings, five functions | formal-ready | Cited directly [source:OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] |
 | Agent-facing taskbook | Mandatory tasks agent.1–agent.6 | formal-ready | Addressed item by item in the body [source:AGENT-TASKBOOK] |
 | Structured fact pack | Organiser-curated terminology and definitions | formal-ready | Used to keep terminology consistent [source:PROCESSED-FACT-PACK] |
 | `ranges/planning_limits.json` | Official area figures and control-indicator status | formal-ready | Area comparison and gap disclosure [source:SITE-PACKAGE] |
@@ -43,7 +43,7 @@ This proposal strictly separates formal-ready, background-only, and provisional-
 - `sources.json` records the publisher, URL, retrieval date, coverage, licence, and known limitations of every citation
 - `assumptions.json` records every assumed value (right-of-way widths, storey counts, price-band basis) and the scope in which it must not be used
 - `compliance_matrix.json` covers all tasks under announcement clauses 1.3/1.4/1.5 and agent.1–agent.6
-- `standard_matrix.json` responds to the mandatory professional standards [standard:MOHURD-URBAN-DESIGN-MEASURES], [standard:MOHURD-CONTROL-DETAILED-PLANNING], [standard:MNR-LAND-USE-CLASSIFICATION]
+- `standard_matrix.json` responds to the mandatory professional standards [standard:MOHURD-URBAN-DESIGN-MEASURES], [standard:MOHURD-CONTROL-DETAILED-PLANNING], [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]
 - `design_depth_matrix.json` marks the completion status of each design-depth item [depth:land_use_layout]
 
 ### Data gaps (disclosed here explicitly)

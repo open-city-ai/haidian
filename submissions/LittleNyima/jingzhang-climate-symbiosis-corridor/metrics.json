@@ -1,0 +1,344 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Repository provisional rough boundary; not an official area claim."
+      ]
+    },
+    "land_use_research_area_sqm": {
+      "status": "known",
+      "value": 2674562.492,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0802)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual partition within a provisional boundary."
+      ]
+    },
+    "land_use_green_area_sqm": {
+      "status": "known",
+      "value": 2589339.239,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=1401)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual partition within a provisional boundary."
+      ]
+    },
+    "land_use_service_area_sqm": {
+      "status": "known",
+      "value": 3366138.181,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=05)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual partition within a provisional boundary."
+      ]
+    },
+    "land_use_community_area_sqm": {
+      "status": "known",
+      "value": 2782792.823,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0702)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual partition within a provisional boundary."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 114144.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(conceptual_building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "Prototype footprints are not parcel-level demolition or construction decisions."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1059717.338,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "polygon_area(cool_spine_and_rain_gardens)",
+      "confidence": "low",
+      "assumptions": [
+        "Design geometry; ecological quality requires field survey."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 75402.626,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(three_landmark_public_spaces))",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual public-space footprints."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.092853,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Derived from provisional site geometry."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.006607,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Derived from provisional site geometry."
+      ]
+    },
+    "slow_mobility_length_m": {
+      "status": "known",
+      "value": 13895.275,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(priority_slow_mobility_lines))",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual alignments; road redlines and sections are unavailable."
+      ]
+    },
+    "walk_shade_target_ratio": {
+      "status": "known",
+      "value": 0.75,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/green_space.geojson"
+      ],
+      "formula": "target_shaded_priority_route_length / priority_route_length",
+      "confidence": "low",
+      "assumptions": [
+        "Design target, not a measured existing-condition value."
+      ]
+    },
+    "green_spine_continuity_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/roads.geojson"
+      ],
+      "formula": "connected_cool_spine_length / cool_spine_length",
+      "confidence": "low",
+      "assumptions": [
+        "Geometric design continuity only; biodiversity function awaits field survey."
+      ]
+    },
+    "rain_garden_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "count(rain_garden_modules)",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept modules subject to hydrological design."
+      ]
+    },
+    "climate_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(climate_landmark_public_spaces)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "inclusive_access_node_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(rest_and_service_node_types in accessibility concept)",
+      "confidence": "low",
+      "assumptions": [
+        "Node types are conceptual; entrances, gradients, crossings, and service areas require survey."
+      ]
+    },
+    "climate_scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(numbered_climate_scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(scenarios explicitly marked testing_and_validation)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "annual_climate_checkup_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "one published climate check-up cycle per year",
+      "confidence": "medium",
+      "assumptions": [
+        "Operating proposal, not a confirmed government programme."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official parcel data are unavailable."
+    },
+    "heat_exposure_reduction_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/green_space.geojson"
+      ],
+      "formula": "post_intervention_heat_exposure / baseline_heat_exposure",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Baseline mobile heat transects and calibrated microclimate simulation are unavailable."
+    },
+    "rainwater_retention_performance": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "event_retained_runoff / event_runoff",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Design storm, soil infiltration, groundwater, pipe capacity, and catchment data are unavailable."
+    },
+    "building_energy_reduction_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "weather_normalized_post_retrofit_energy / baseline_energy",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Public-building meters, floor area, use schedules, and retrofit baselines are unavailable."
+    },
+    "biodiversity_connectivity_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "field_validated_habitat_connectivity_model",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Species observations, habitat quality, and barrier permeability surveys are unavailable."
+    },
+    "elder_child_accessibility_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "eligible_destinations_with_step_free_shaded_route / eligible_destinations",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official entrances, gradients, curb ramps, crossings, and destination inventory are unavailable."
+    }
+  }
+}

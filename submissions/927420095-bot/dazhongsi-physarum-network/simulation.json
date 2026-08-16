@@ -1,0 +1,157 @@
+{
+  "schema_version": "0.1.0",
+  "title": "Bio-Physarum + NSGA-II simulation record (method validation)",
+  "status": "method_validation_off_site",
+  "scope_note": "This run is method-validation evidence only. Its network lies ~2-3 km west of the provisional site boundary (~140 m overlap), so it is NOT entered as formal geometry and no coordinate translation/fabrication is performed. The public site package provides no official heritage geometry. The author's own manually-digitized heritage boundary (data/heritage/heritage_boundary.geojson, MODEL credibility / trust B, penalties class_I=1.5 & class_IV=3.0, protection_scope=hard block) is loaded by the evaluator; in the H2-seg3 Pareto results the optimized skeleton (top-10% conductivity) edges do not fall inside the class_I/class_IV penalty zones, so f3≡f2 numerically. The recorded '0 heritage crossings' is therefore the g1 hard-constraint (protection_scope) crossing count only, NOT an independent in-site heritage-protection compliance conclusion.",
+  "reproducibility": {
+    "doc": "proposal.md#可复现性说明（方法验证）",
+    "status": "documented",
+    "environment": {
+      "os": "Windows 11 Home China 10.0.26200",
+      "python": "3.14.6",
+      "numpy": "2.5.1",
+      "pymoo": "0.6.2",
+      "shapely": "2.1.2",
+      "networkx": "3.6.1",
+      "matplotlib": "3.11.1"
+    },
+    "entry_point": "code/phase6_h/h2_seg.py",
+    "commands": [
+      "python code/phase6_h/h2_seg.py 1",
+      "python code/phase6_h/h2_seg.py 2",
+      "python code/phase6_h/h2_seg.py 3"
+    ],
+    "seed": 42,
+    "input_data": [
+      "data/gis/roads.geojson",
+      "data/gis/verified_nodes.json",
+      "data/heritage/heritage_boundary.geojson",
+      "data/osm/osm_parks.json",
+      "data/osm/osm_railways.json",
+      "data/osm/osm_subway.json",
+      "data/osm/osm_roads.json"
+    ],
+    "bit_exact_note": "NSGA-II runs multi-process (n_proc=8); evaluation order and float reduction vary by OS/hardware, so bit-exact reproduction is not guaranteed and objective values are approximate.",
+    "heritage_geometry_note": "data/heritage/heritage_boundary.geojson is manually digitized (MODEL credibility, trust B, geometry_origin=manual_digitization), NOT official redline geometry; its legal basis is the official four-side text (京政发〔1984〕128号 / 文物局 2018-01-02 公告), while the statutory map and redline drawing are marked 未获取 (not obtained)."
+  },
+  "algorithm": {
+    "method": "bio_physarum_adaptive_network + NSGA-II",
+    "physarum_reference": "Tero A. et al. (2010) Rules for biologically inspired adaptive network design, Science 327(5964): 439-442. DOI 10.1126/science.1177894",
+    "nsga2_reference": "Deb K. et al. (2002) A fast and elitist multiobjective genetic algorithm: NSGA-II, IEEE TEVC 6(2): 182-197. DOI 10.1109/4235.996017",
+    "nsga2": {
+      "pop_size": 80,
+      "n_generations": 30,
+      "seed": 42,
+      "n_proc": 8,
+      "sampling": "FloatRandomSampling",
+      "crossover": { "type": "SBX", "prob": 0.9, "eta": 15 },
+      "mutation": { "type": "PM", "prob": 0.1, "eta": 20 },
+      "eliminate_duplicates": true
+    },
+    "problem": {
+      "n_obj": 4,
+      "minimization_convention": "pymoo unified minimization: f1 efficiency (max -> negated), f2 cost (min), f3 heritage (min), f4 service coverage (max -> negated)",
+      "decision_variables": [
+        "alpha",
+        "beta",
+        "chemo_park",
+        "chemo_subway",
+        "chemo_railway",
+        "chemo_radius",
+        "decay_responsiveness"
+      ],
+      "xl": [0.5, 0.001, 0.5, 0.5, 0.5, 15.0, 0.5],
+      "xu": [3.0, 0.05, 2.0, 3.0, 2.5, 100.0, 2.0]
+    },
+    "objectives": {
+      "f1": { "name": "network_efficiency", "direction": "maximize", "note": "stored negated for minimization" },
+      "f2": { "name": "construction_cost", "direction": "minimize", "unit": "m", "note": "sum of network edge lengths" },
+      "f3": { "name": "heritage_impact", "direction": "minimize", "unit": "m", "note": "sum of length x heritage_factor; the manually-digitized heritage boundary (MODEL credibility) assigns class_I=1.5 / class_IV=3.0, but the optimized skeleton edges do not fall inside these penalty zones, so f3 ≡ f2 in the recorded results" },
+      "f4": { "name": "service_coverage", "direction": "maximize", "note": "stored negated for minimization" }
+    }
+  },
+  "run": {
+    "phase": "Phase6-H2-seg3",
+    "wall_seconds": 5035.6455109119415,
+    "n_evaluations": 800,
+    "avg_eval_seconds": 43.07235176175833,
+    "hypervolume": 528997832.9276301,
+    "hypervolume_initial": 306454712.9868679,
+    "hypervolume_improvement_percent": 72.61859926112429,
+    "ref_point": [-0.8480114233151756, 10845.076585675472, 10845.076585675472, -10.706513269030438],
+    "n_non_dominated": 6,
+    "objective_ranges": {
+      "f1_efficiency_max": [15.77032297362463, 19.198507559694058],
+      "f2_cost_min": [8797.34413369693, 9056.048533919926],
+      "f3_heritage_min": [8797.34413369693, 9056.048533919926],
+      "f4_coverage_max": [17.596547550037307, 17.74844893360302]
+    },
+    "pareto_solutions": [
+      { "x": [2.998969866340944, 0.001179407789883499, 1.998501446900135, 2.9954090181474777, 1.98810179398253, 79.62676911032538, 1.822551811200833], "f1": 19.192282647864847, "f2": 9009.778793773443, "f3": 9009.778793773443, "f4": 17.74844893360302 },
+      { "x": [2.999588226642879, 0.001184282558553657, 1.9984397858390004, 1.5635499627924458, 2.0014003110377163, 81.50791959160978, 1.7455547080936737], "f1": 17.31055028942042, "f2": 8813.063115110912, "f3": 8813.063115110912, "f4": 17.604959559654883 },
+      { "x": [2.9979788849028117, 0.0011777356297133534, 1.5619725839790388, 2.9710311121010706, 1.9697615501437724, 79.28492248172104, 1.8254294579797228], "f1": 15.77032297362463, "f2": 8899.319071039034, "f3": 8899.319071039034, "f4": 17.617112560915142 },
+      { "x": [2.998383877038917, 0.0011490832281351592, 1.9985204934235923, 1.5565159228098011, 1.970637286355479, 63.94695612951928, 1.7685798961034114], "f1": 17.298569521097754, "f2": 8797.34413369693, "f3": 8797.34413369693, "f4": 17.596547550037307 },
+      { "x": [2.9989614704515524, 0.0011836672310327314, 1.5576367235320328, 2.9928090679099806, 1.960651014973784, 68.59249991413351, 1.828894876528812], "f1": 15.79531896827931, "f2": 8899.319071039034, "f3": 8899.319071039034, "f4": 17.613731994528724 },
+      { "x": [2.998918749736987, 0.0011510334521240204, 1.9995881938190363, 2.9854612257729367, 2.0167364495270363, 64.37535342967351, 1.8225079894374867], "f1": 19.198507559694058, "f2": 9056.048533919926, "f3": 9056.048533919926, "f4": 17.74309523149209 }
+    ]
+  },
+  "scenario_selection": {
+    "A": { "label": "效率优先", "rule": "f1 network efficiency maximum", "efficiency": 19.198507559694058, "cost": 9056.048533919926, "heritage": 9056.048533919926, "service_coverage": 17.74309523149209 },
+    "B": { "label": "成本优先", "rule": "f2 construction cost minimum", "efficiency": 17.298569521097754, "cost": 8797.34413369693, "heritage": 8797.34413369693, "service_coverage": 17.596547550037307 },
+    "C": { "label": "服务覆盖优先", "rule": "f4 service coverage maximum (f3≡f2 coincides with B, re-judged by rule)", "efficiency": 19.192282647864847, "cost": 9009.778793773443, "heritage": 9009.778793773443, "service_coverage": 17.74844893360302 },
+    "D": { "label": "综合均衡", "rule": "minimum euclidean distance to utopia point", "efficiency": 17.31055028942042, "cost": 8813.063115110912, "heritage": 8813.063115110912, "service_coverage": 17.604959559654883 }
+  },
+  "task_count": 6,
+  "energy_estimate_note": "energy_used_kwh is an estimate: total seg3 wall 5035.65 s x 8 CPU processes at ~15 W/core, divided evenly across the 6 non-dominated solutions; energy_budget_kwh is a conservative per-task ceiling. Figures are the author's own run estimates, not audited metering.",
+  "tasks": [
+    { "task_id": "pareto_0", "efficiency": 19.192282647864847, "outcome": "success", "dispatch_schema_valid": true, "energy_used_kwh": 0.028, "energy_budget_kwh": 0.05, "audit_complete": true },
+    { "task_id": "pareto_1", "efficiency": 17.31055028942042, "outcome": "success", "dispatch_schema_valid": true, "energy_used_kwh": 0.028, "energy_budget_kwh": 0.05, "audit_complete": true },
+    { "task_id": "pareto_2", "efficiency": 15.77032297362463, "outcome": "success", "dispatch_schema_valid": true, "energy_used_kwh": 0.028, "energy_budget_kwh": 0.05, "audit_complete": true },
+    { "task_id": "pareto_3", "efficiency": 17.298569521097754, "outcome": "success", "dispatch_schema_valid": true, "energy_used_kwh": 0.028, "energy_budget_kwh": 0.05, "audit_complete": true },
+    { "task_id": "pareto_4", "efficiency": 15.79531896827931, "outcome": "success", "dispatch_schema_valid": true, "energy_used_kwh": 0.028, "energy_budget_kwh": 0.05, "audit_complete": true },
+    { "task_id": "pareto_5", "efficiency": 19.198507559694058, "outcome": "success", "dispatch_schema_valid": true, "energy_used_kwh": 0.028, "energy_budget_kwh": 0.05, "audit_complete": true }
+  ],
+  "frozen_metrics": {
+    "physarum_network_edge_count": { "value": 167, "source": "run7 skeleton n_edges (physarum_revision/run7/metrics.json)" },
+    "physarum_efficiency_index": { "value": 19.198507559694058, "source": "H2 optimal f1 max (objective_ranges.f1_efficiency_max[1])" },
+    "physarum_baseline_efficiency": { "value": 1.1430905451332438, "source": "h3 scenarios_summary.json baseline_efficiency" },
+    "physarum_run7_frozen_objective": { "value": 2.801701286151908, "source": "run7 after.efficiency (physarum_revision/run7/metrics.json)" },
+    "physarum_heritage_crossing_count": { "value": 0, "source": "run7 heritage_conflicts.protection_scope = 0 (g1 hard constraint)", "note": "g1 hard-constraint behavior only. Run7 also records class_I_control = 0 and class_IV_control = 4, and f3≡f2 because no official heritage geometry is supplied; this value is NOT an independent in-site heritage-protection compliance conclusion." },
+    "physarum_recommended_plan_uds": { "value": 80.34, "source": "phase5 round2 expert review mean score for plan_03 (城市融合), round2_summary.md", "note": "plan_03 genotype = D (综合均衡) fused with C (覆盖优先); skeleton_n_edges = 167, skeleton_total_length_m = 8813.1." }
+  },
+  "test_scenarios": [
+    {
+      "scenario_id": "test-tod-interchange",
+      "name": "大钟寺站 TOD 换乘验证 (Dazhongsi station TOD interchange)",
+      "status": "proposed",
+      "object": "Dazhongsi station (Beijing Subway Line 13) four-quadrant pedestrian connectivity and rail interchange",
+      "standard_basis": ["GB 50763-2012 无障碍设计规范", "GB/T 51328-2018 城市综合交通体系规划标准"],
+      "metric_target": "Barrier-free interchange flow throughout; station feeder axis aligned to the conceptual primary vein (geometry/roads.geojson ROAD-001)",
+      "method": "Walkability network analysis + barrier-free interchange flow check",
+      "data_pending": "Official station CAD/redline",
+      "note": "Suggested validation scenario; not yet executed. Await official station geometry."
+    },
+    {
+      "scenario_id": "test-stormwater-resilience",
+      "name": "小月河雨洪韧性验证 (Xiaoyue River stormwater resilience)",
+      "status": "proposed",
+      "object": "Blue-green corridor and permeable paving along Xiaoyue River",
+      "standard_basis": ["海绵城市建设技术指南——低影响开发雨水系统构建（试行）", "GB 50014 室外排水设计规范"],
+      "metric_target": "Recommended Plan03 design values: permeable paving ratio 0.691 (69.1%), green penetration 0.2517 (25.2%) — author Phase4 output plan_03_fusion_round2, pending official review",
+      "method": "Catchment runoff-coefficient calculation + permeability recheck",
+      "data_pending": "River blue line and pipe network data",
+      "note": "Suggested validation scenario; not yet executed. Design values are the author's Phase4 output, not an official acceptance metric."
+    },
+    {
+      "scenario_id": "test-community-accessibility",
+      "name": "AI 原点社区可达性验证 (AI Origin community accessibility)",
+      "status": "proposed",
+      "object": "Campus-park-block slow stitching of the Beijing AI Origin community",
+      "standard_basis": ["GB 50763-2012 无障碍设计规范"],
+      "metric_target": "Slow loops of the three key areas cover community-service and outcome-conversion nodes; continuous barrier-free passage",
+      "method": "Slow-network connectivity and barrier-free continuity check",
+      "data_pending": "Existing road network and ownership data",
+      "note": "Suggested validation scenario; not yet executed. Await existing network and ownership data."
+    }
+  ]
+}

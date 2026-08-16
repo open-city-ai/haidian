@@ -16,6 +16,23 @@ function connected(station, sourceRole, targetRole, closed) {
   while (queue.length) { const node = queue.shift(); if (targets.has(node)) return true; for (const next of graph.get(node)) if (!seen.has(next)) { seen.add(next); queue.push(next); } }
   return false;
 }
+function shortestPath(station, source, target, closed = new Set()) {
+  const live = new Set(station.nodes.filter(n => !closed.has(n.id)).map(n => n.id));
+  if (!live.has(source) || !live.has(target)) return Infinity;
+  const graph = new Map([...live].map(id => [id, []]));
+  for (const edge of station.edges) {
+    if (live.has(edge.from) && live.has(edge.to) && edge.mode !== 'return_only') {
+      graph.get(edge.from).push(edge.to); graph.get(edge.to).push(edge.from);
+    }
+  }
+  const queue = [[source, 0]], seen = new Set([source]);
+  while (queue.length) {
+    const [node, distance] = queue.shift();
+    if (node === target) return distance;
+    for (const next of graph.get(node)) if (!seen.has(next)) { seen.add(next); queue.push([next, distance + 1]); }
+  }
+  return Infinity;
+}
 const checks = [], signatures = [];
 function record(station, check_id, ok, detail) { checks.push({station, check_id, result: ok ? 'pass' : 'fail', detail}); }
 for (const station of data.stations) {
@@ -31,10 +48,34 @@ for (const station of data.stations) {
   const available = new Set(station.nodes.filter(n => !returned.has(n.id)).flatMap(n => n.roles));
   record(sid, 'ORDINARY_USES_SURVIVE_RETURN', station.required_ordinary_roles_after_closure.every(r => available.has(r)), 'required ordinary roles survive RETURN');
   record(sid, 'RETURN_RESTORES_ORDINARY_PUBLIC_USE', station.nodes.some(n => n.roles.includes('ordinary_public_after_return')), 'ordinary public use declared after removal');
+  const contract = station.conflict_contract || {};
+  const contractFields = ['conflict', 'public_arm', 'ai_arm', 'decision_node', 'opening_rule', 'failure_action'];
+  record(sid, 'X_CONFLICT_CONTRACT_COMPLETE', contractFields.every(k => typeof contract[k] === 'string' && contract[k].length > 0) &&
+    nodes.has(contract.public_arm) && nodes.has(contract.ai_arm) && nodes.has(contract.decision_node),
+    'two arms, decision node, opening rule and failure action are explicit');
+  if (station.operating_role === 'TEST') {
+    const decisionRoles = nodes.get(contract.decision_node) || new Set();
+    const bypass = shortestPath(station, contract.public_arm, contract.ai_arm, new Set([contract.decision_node]));
+    record(sid, 'TEST_CROSSING_STAFFED_PUBLIC_PRIORITY_NO_BYPASS', decisionRoles.has('staffed_stop') && decisionRoles.has('public_priority') && !Number.isFinite(bypass),
+      'machine arm reaches the public edge only through a staffed, public-priority decision node');
+  }
+  if (station.operating_role === 'RELEASE') {
+    const hasEdge = (a, b) => station.edges.some(e => (e.from === a && e.to === b) || (e.from === b && e.to === a));
+    const withdrawalRoles = nodes.get(contract.decision_node) || new Set();
+    record(sid, 'RELEASE_METHOD_RIGHTS_WITHDRAWAL_CO_VISIBLE', hasEdge(contract.public_arm, contract.ai_arm) && hasEdge(contract.ai_arm, contract.decision_node) && withdrawalRoles.has('publicly_visible_withdrawal'),
+      'method, rights review and public withdrawal form one visible frontage chain');
+  }
   if (station.operating_role === 'USE') {
     const service = new Set(station.nodes.filter(n => n.roles.includes('non_ai_service') && n.roles.includes('human_service')).map(n => n.id));
     const direct = station.edges.some(e => (service.has(e.from) && nodes.get(e.to).has('public_chain')) || (service.has(e.to) && nodes.get(e.from).has('public_chain')));
     record(sid, 'NON_AI_SERVICE_DIRECT_TO_PUBLIC_CHAIN', service.size > 0 && direct, 'staffed non-AI service directly adjoins public chain');
+    const publicChain = station.nodes.find(n => n.roles.includes('public_chain'))?.id;
+    const nonAiDistance = shortestPath(station, publicChain, contract.public_arm);
+    const aiDistance = shortestPath(station, publicChain, contract.ai_arm);
+    const decisionDistance = shortestPath(station, publicChain, contract.decision_node);
+    const decisionToTrial = shortestPath(station, contract.decision_node, contract.ai_arm);
+    record(sid, 'USE_NON_AI_PARITY_AND_COMPLAINT_AT_CONFLICT', nonAiDistance <= aiDistance && decisionDistance === 1 && decisionToTrial === 1,
+      `non_ai_hops=${nonAiDistance}; ai_hops=${aiDistance}; complaint_public_hops=${decisionDistance}; complaint_trial_hops=${decisionToTrial}`);
   }
   const special = ['machine_test_pocket', 'release_method', 'rights_review', 'withdrawal_interface', 'limited_use_pocket', 'non_ai_service'];
   signatures.push(station.nodes.flatMap(n => n.roles.filter(r => special.includes(r))).sort().join('|'));

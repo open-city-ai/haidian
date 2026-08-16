@@ -2,7 +2,8 @@
   "schema_version": "1.0.0",
   "matrix_id": "JZ-SUBMISSION-USE-RIGHTS-V1",
   "status": "not_fully_cleared",
-  "as_of": "2026-08-10",
+  "as_of": "2026-08-12",
+  "as_of_semantics": "date of last real content edit, verified from git history during the Round 26 as_of consistency audit; it is not a validity or freshness guarantee",
   "purpose_zh": "把官方公告 8.1 的文字、开源仓库评审场景和本包尚缺的逐文件授权证据分开记录；本矩阵是使用决策边界，不是法律意见或清权证明。",
   "purpose_en": "Separate the official announcement clause 8.1, the open-repository review context, and the still-missing file-level authorization evidence. This matrix is a use-decision boundary, not legal advice or proof of clearance.",
   "source_ref": "sources.json#DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
@@ -14,63 +15,141 @@
     "rule": "Do not infer permission from repository visibility, a validation PASS, or a clause whose applicability has not been confirmed."
   },
   "clause_register": [
-    {"clause_id": "8.1.1", "recorded_effect": "valid competition files are not returned", "package_interpretation": "record_only; no custody or return claim made"},
-    {"clause_id": "8.1.2", "recorded_effect": "intellectual property is jointly enjoyed by organizer/undertaker and entrant", "package_interpretation": "applicability_not_confirmed_for_this_open_repository_submission"},
-    {"clause_id": "8.1.2.1", "recorded_effect": "entrant attribution is retained; entrant external evaluation or display requires written organizer/undertaker consent; cross-project use is restricted", "package_interpretation": "external_display_and_cross_project_reuse_blocked_pending_confirmation"},
-    {"clause_id": "8.1.2.2", "recorded_effect": "entrant must secure sufficient authorization for third-party rights and bears infringement responsibility", "package_interpretation": "independent_file_level_audit_and_third_party_authorizations_still_missing"},
-    {"clause_id": "8.1.2.3", "recorded_effect": "organizer/undertaker may use and modify entries for this project, but not other projects", "package_interpretation": "project_specific_organizer_use_requires_applicability_confirmation"},
-    {"clause_id": "8.1.2.4", "recorded_effect": "organizer/undertaker may print, publish, exhibit, evaluate, display, and promote entries with attribution", "package_interpretation": "organizer_publication_right_requires_applicability_and_attribution_confirmation"},
-    {"clause_id": "8.1.2.5", "recorded_effect": "entrant owns architectural design copyright if any, except landscape objects and related structures", "package_interpretation": "no_architectural_copyright_scope_conclusion_asserted"}
+    {
+      "clause_id": "8.1.1",
+      "recorded_effect": "valid competition files are not returned",
+      "package_interpretation": "record_only; no custody or return claim made"
+    },
+    {
+      "clause_id": "8.1.2",
+      "recorded_effect": "intellectual property is jointly enjoyed by organizer/undertaker and entrant",
+      "package_interpretation": "applicability_not_confirmed_for_this_open_repository_submission"
+    },
+    {
+      "clause_id": "8.1.2.1",
+      "recorded_effect": "entrant attribution is retained; entrant external evaluation or display requires written organizer/undertaker consent; cross-project use is restricted",
+      "package_interpretation": "external_display_and_cross_project_reuse_blocked_pending_confirmation"
+    },
+    {
+      "clause_id": "8.1.2.2",
+      "recorded_effect": "entrant must secure sufficient authorization for third-party rights and bears infringement responsibility",
+      "package_interpretation": "independent_file_level_audit_and_third_party_authorizations_still_missing"
+    },
+    {
+      "clause_id": "8.1.2.3",
+      "recorded_effect": "organizer/undertaker may use and modify entries for this project, but not other projects",
+      "package_interpretation": "project_specific_organizer_use_requires_applicability_confirmation"
+    },
+    {
+      "clause_id": "8.1.2.4",
+      "recorded_effect": "organizer/undertaker may print, publish, exhibit, evaluate, display, and promote entries with attribution",
+      "package_interpretation": "organizer_publication_right_requires_applicability_and_attribution_confirmation"
+    },
+    {
+      "clause_id": "8.1.2.5",
+      "recorded_effect": "entrant owns architectural design copyright if any, except landscape objects and related structures",
+      "package_interpretation": "no_architectural_copyright_scope_conclusion_asserted"
+    }
   ],
   "use_decisions": [
     {
       "use_id": "USE-01_REPOSITORY_REVIEW",
       "use_context": "repository validation, issue discussion, and pull-request review",
       "current_decision": "allowed_for_disclosed_review_only",
-      "conditions": ["retain authorship and tool disclosure", "retain source and provisional boundaries", "do not claim public or professional reuse clearance"],
+      "conditions": [
+        "retain authorship and tool disclosure",
+        "retain source and provisional boundaries",
+        "do not claim public or professional reuse clearance"
+      ],
       "missing_evidence": []
     },
     {
       "use_id": "USE-02_ORGANIZER_PROJECT_USE",
       "use_context": "organizer or undertaker use or modification within this Jing-Zhang project",
       "current_decision": "needs_organizer_or_maintainer_confirmation",
-      "conditions": ["confirm clause applicability", "preserve attribution", "review third-party asset limits"],
-      "missing_evidence": ["written applicability confirmation", "completed third-party authorization audit"]
+      "conditions": [
+        "confirm clause applicability",
+        "preserve attribution",
+        "review third-party asset limits"
+      ],
+      "missing_evidence": [
+        "written applicability confirmation",
+        "completed third-party authorization audit"
+      ]
     },
     {
       "use_id": "USE-03_ORGANIZER_PUBLICATION",
       "use_context": "organizer printing, publication, exhibition, evaluation, display, or promotion",
       "current_decision": "needs_organizer_or_maintainer_confirmation",
-      "conditions": ["confirm clause applicability", "identify entrant or planning-design entity as required", "resolve font, OSM, logo, and third-party terms"],
-      "missing_evidence": ["written applicability confirmation", "attribution form", "completed release audit"]
+      "conditions": [
+        "confirm clause applicability",
+        "identify entrant or planning-design entity as required",
+        "resolve font, OSM, logo, and third-party terms"
+      ],
+      "missing_evidence": [
+        "written applicability confirmation",
+        "attribution form",
+        "completed release audit"
+      ]
     },
     {
       "use_id": "USE-04_ENTRANT_EXTERNAL_DISPLAY",
       "use_context": "entrant display through media, journals, books, exhibitions, or other external channels",
       "current_decision": "blocked_pending_written_consent_and_terms",
-      "conditions": ["obtain written consent if clause 8.1.2.1 applies", "obtain complete COMMUNITY-DISPLAY-ONLY terms", "complete file-level rights audit"],
-      "missing_evidence": ["written consent", "complete license terms", "completed independent file-level audit"]
+      "conditions": [
+        "obtain written consent if clause 8.1.2.1 applies",
+        "obtain complete COMMUNITY-DISPLAY-ONLY terms",
+        "complete file-level rights audit"
+      ],
+      "missing_evidence": [
+        "written consent",
+        "complete license terms",
+        "completed independent file-level audit"
+      ]
     },
     {
       "use_id": "USE-05_OTHER_PROJECT_REUSE",
       "use_context": "reuse of this proposal or its outcomes in another design project",
       "current_decision": "blocked",
-      "conditions": ["no reuse unless an authoritative rights review establishes a permitted exception or new authorization"],
-      "missing_evidence": ["authoritative rights decision", "new project-specific authorization"]
+      "conditions": [
+        "no reuse unless an authoritative rights review establishes a permitted exception or new authorization"
+      ],
+      "missing_evidence": [
+        "authoritative rights decision",
+        "new project-specific authorization"
+      ]
     },
     {
       "use_id": "USE-06_TRANSLATION_DERIVATIVE_DEEPENING",
       "use_context": "translation, derivative editing, professional deepening, or production handoff",
       "current_decision": "blocked_pending_scope_confirmation",
-      "conditions": ["separate review copies from public or professional reuse", "confirm modification and derivative scope", "retain provenance and change history"],
-      "missing_evidence": ["derivative-use scope", "professional-use authorization", "complete editable-source inventory"]
+      "conditions": [
+        "separate review copies from public or professional reuse",
+        "confirm modification and derivative scope",
+        "retain provenance and change history"
+      ],
+      "missing_evidence": [
+        "derivative-use scope",
+        "professional-use authorization",
+        "complete editable-source inventory"
+      ]
     },
     {
       "use_id": "USE-07_THIRD_PARTY_COMPONENTS",
       "use_context": "OSM-derived context, fonts, trademarks, logos, cited media, software, and generated assets",
       "current_decision": "blocked_for_release_pending_component_audit",
-      "conditions": ["verify source-specific license and attribution", "retain ODbL lineage where applicable", "resolve logo and landmark trademark status", "verify embedded-font and tool-output terms"],
-      "missing_evidence": ["independent component audit", "complete ODbL query and attribution record", "font embedding review", "logo and trademark review"]
+      "conditions": [
+        "verify source-specific license and attribution",
+        "retain ODbL lineage where applicable",
+        "resolve logo and landmark trademark status",
+        "verify embedded-font and tool-output terms"
+      ],
+      "missing_evidence": [
+        "independent component audit",
+        "complete ODbL query and attribution record",
+        "font embedding review",
+        "logo and trademark review"
+      ]
     }
   ],
   "release_gate": {

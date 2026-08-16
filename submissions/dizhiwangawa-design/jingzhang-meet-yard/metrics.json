@@ -1,0 +1,315 @@
+{
+  "metrics": {
+    "AREA-DZS-01": {
+      "assumptions": [
+        "公告参考 72.0 ha；polygon 为 provisional；概念角色=试行站"
+      ],
+      "confidence": "medium",
+      "formula": "polygon_area(PROV-KEY-003, EPSG:4548)",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "status": "known",
+      "unit": "sqm",
+      "value": 720454.219
+    },
+    "AREA-ORIGIN-01": {
+      "assumptions": [
+        "公告参考 104.3 ha；polygon 为 provisional；概念角色=互证站"
+      ],
+      "confidence": "medium",
+      "formula": "polygon_area(PROV-KEY-002, EPSG:4548)",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "status": "known",
+      "unit": "sqm",
+      "value": 1043236.909
+    },
+    "AREA-ZZY-01": {
+      "assumptions": [
+        "公告参考 192.1 ha；polygon 为 provisional；概念角色=造解站"
+      ],
+      "confidence": "medium",
+      "formula": "polygon_area(PROV-KEY-001, EPSG:4548)",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "status": "known",
+      "unit": "sqm",
+      "value": 1929201.877
+    },
+    "BLUEGREEN-PUBLIC-01": {
+      "assumptions": [
+        "绿地率采用 6 个绿地 polygon 的几何并集；重叠不重复计入覆盖面积。",
+        "要素面积总和 2208160.093 m²；并集面积 2176274.715 m²；重叠 31885.379 m²。"
+      ],
+      "confidence": "low",
+      "formula": "union_area(GREEN_SPACE, EPSG:4548)",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "status": "known",
+      "unit": "sqm",
+      "value": 2176274.715,
+      "reason": "覆盖面积/绿地率采用几何并集口径；官方现状绿地核验前仍为 provisional 概念值"
+    },
+    "BLUEGREEN-PUBLIC-02": {
+      "assumptions": [
+        "仅统计公共空间广场面；C01–C08 组件为点要素，不计面积"
+      ],
+      "confidence": "low",
+      "formula": "sum(polygon_area(PUBLIC_SPACE polygons, EPSG:4548))",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "status": "known",
+      "unit": "sqm",
+      "value": 185906.049
+    },
+    "BUILDING-RENEWAL-01": {
+      "assumptions": [
+        "概念建筑组团示意面积；非现状基底、非拆改留结论；容积率/高度等官方控制指标缺失"
+      ],
+      "confidence": "low",
+      "formula": "sum(polygon_area(BUILDING_FOOTPRINT, EPSG:4548))",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "status": "known",
+      "unit": "sqm",
+      "value": 774224.574
+    },
+    "GOV-OBS-01": {
+      "assumptions": [],
+      "confidence": "unknown",
+      "formula": "credential_pair_completeness = 完成双向凭证互证的试行场景数 ÷ 进入试行的场景总数（试行档案统计口径，公式待验证）",
+      "reason": "待定义：双向凭证互证界面（凭证互换）的凭证对完整率；不预填目标值",
+      "source_files": [],
+      "status": "unknown",
+      "unit": "index",
+      "value": null
+    },
+    "GOV-OBS-02": {
+      "assumptions": [],
+      "confidence": "unknown",
+      "formula": "decision_log_link_rate = 带可复核链接证据的决策日志数 ÷ 决策日志总数（试行档案统计口径，公式待验证）",
+      "reason": "待定义：人审决定日志关联率",
+      "source_files": [],
+      "status": "unknown",
+      "unit": "ratio",
+      "value": null
+    },
+    "GOV-OBS-03": {
+      "assumptions": [],
+      "confidence": "unknown",
+      "formula": "status_snapshot_freshness = 状态快照实际刷新间隔与承诺刷新周期之差的合规比例（试行档案统计口径，公式待验证）",
+      "reason": "待定义：治理状态索引快照新鲜度",
+      "source_files": [],
+      "status": "unknown",
+      "unit": "index",
+      "value": null
+    },
+    "INCLUSION-SERVICE-01": {
+      "assumptions": [],
+      "confidence": "unknown",
+      "formula": "无障碍路径连续性 = 覆盖无障碍/人工替代入口的公共组件节点比例（geometry/public_space.geojson 统计口径，公式待验证）",
+      "reason": "待定义：包容与服务连续性；每个场景至少绑定一项",
+      "source_files": [],
+      "status": "unknown",
+      "unit": "index",
+      "value": null
+    },
+    "LANDUSE-COVERAGE-01": {
+      "assumptions": [
+        "land_use 由同一网格剖分派生，共享边界坐标；gap/overlap 均 < 0.5 m²"
+      ],
+      "confidence": "high",
+      "formula": "1 - (gap+overlap)/site_area（EPSG:4548）",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "status": "known",
+      "unit": "ratio",
+      "value": 1
+    },
+    "MOBILITY-NETWORK-01": {
+      "assumptions": [
+        "概念网络长度；现状步行/骑行/公交网络无合规数据，覆盖率与可达性待核验"
+      ],
+      "confidence": "low",
+      "formula": "sum(line_length(ROAD_CENTERLINE, EPSG:4548))",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "status": "known",
+      "unit": "m",
+      "value": 20757.4
+    },
+    "OPS-WIN-01": {
+      "assumptions": [],
+      "confidence": "unknown",
+      "formula": "public_review_window_output_rate = 公共复核与质询窗口内完成答复并归档的意见数 ÷ 窗口意见总数（试行档案统计口径，公式待验证）",
+      "reason": "待定义：公共复核与质询窗口产出率；不预填目标值",
+      "source_files": [],
+      "status": "unknown",
+      "unit": "ratio",
+      "value": null
+    },
+    "OPS-WIN-02": {
+      "assumptions": [],
+      "confidence": "unknown",
+      "formula": "open_sessions / maintainer_retention / knowledge_package_reuse 三项运营统计（统计口径待验证）",
+      "reason": "待定义：运营绩效（开放场次、维护者留存、知识包复用量）",
+      "source_files": [],
+      "status": "unknown",
+      "unit": "count",
+      "value": null
+    },
+    "SCOPE-KEY-01": {
+      "assumptions": [
+        "公告文本合计约 368.4 ha（formal 文本来源）；polygon 为 provisional"
+      ],
+      "confidence": "medium",
+      "formula": "polygon_area(PROV-KEY-SCOPE-001, EPSG:4548)",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "status": "known",
+      "unit": "sqm",
+      "value": 3692893.005
+    },
+    "SCOPE-OVERALL-01": {
+      "assumptions": [
+        "公告文本约 11.4 km²（formal 文本来源）；polygon 为 provisional，精确面积评分需官方 polygon"
+      ],
+      "confidence": "medium",
+      "formula": "polygon_area(SITE-001, EPSG:4548)",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "status": "known",
+      "unit": "sqm",
+      "value": 11412825.386
+    },
+    "SCOPE-RESEARCH-01": {
+      "assumptions": [
+        "公告文本约 43.6 km²（formal 文本来源）；polygon 为 provisional，精确面积评分需官方 polygon"
+      ],
+      "confidence": "medium",
+      "formula": "polygon_area(CST-RESEARCH-001, EPSG:4548)",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "status": "known",
+      "unit": "sqm",
+      "value": 43609232.558
+    },
+    "SPINE-JZ-01": {
+      "assumptions": [
+        "任务书线索全长 9.6–9.8 km（叙事尺度，待核验中心线/起终点/测量方法）；本值为概念示意段长度，非精确事实"
+      ],
+      "confidence": "low",
+      "formula": "line_length(RD-SPINE-001, EPSG:4548)",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "status": "known",
+      "unit": "m",
+      "value": 8863.2
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(SITE-001, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional 边界复算；官方 polygon 发布后重算"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.190687,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "union_area(GREEN_SPACE, EPSG:4548) / polygon_area(SITE-001, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "绿地率采用绿地 polygon 几何并集，不采用要素面积求和。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0163,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(public_space)/area(site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "基于 provisional 边界；概念公共空间"
+      ]
+    },
+    "GOV-OBS-04": {
+      "status": "known",
+      "value": 7,
+      "formula": "len(protocol_steps)（visual/assets/data/meet-protocol.schema.json）",
+      "assumptions": [
+        "七步主序列：预约—披露—互证—人审—试行—回退—归档（proposal §06.1.2）"
+      ],
+      "source_files": [
+        "visual/assets/data/meet-protocol.schema.json"
+      ]
+    },
+    "GOV-OBS-05": {
+      "status": "known",
+      "value": 8,
+      "formula": "len(status_codes)（visual/assets/data/meet-protocol.schema.json）",
+      "assumptions": [
+        "8 值 status_code：申请中/已披露/待互证/已人审/限域试行/已暂停/已回退/已归档"
+      ],
+      "source_files": [
+        "visual/assets/data/meet-protocol.schema.json"
+      ]
+    },
+    "GOV-OBS-06": {
+      "status": "known",
+      "value": 14,
+      "formula": "drill_pass（visual/assets/check_meet_protocol.js 确定性演练输出）",
+      "assumptions": [
+        "drill_total=14, drill_pass=14（2026-08-15 生成，脚本逐字节可复跑）；证据见 visual/assets/data/meet-protocol-drill.json"
+      ],
+      "source_files": [
+        "visual/assets/check_meet_protocol.js",
+        "visual/assets/data/meet-protocol-drill.json"
+      ]
+    },
+    "NODE-SCENARIO-01": {
+      "status": "known",
+      "value": 3,
+      "formula": "count(component_id=C02)（geometry/public_space.geojson）",
+      "assumptions": [
+        "会车台节点 PS-C02-001（造解站）/PS-C02-002（原点社区）/PS-C02-003（试行站），共 3 处；一级会车总台 C01 与三级交接湾 C06 另计，不重复计入"
+      ],
+      "source_files": [
+        "geometry/public_space.geojson"
+      ]
+    }
+  },
+  "schema_version": "0.1.0",
+  "units": {
+    "area": "sqm",
+    "length": "m"
+  }
+}

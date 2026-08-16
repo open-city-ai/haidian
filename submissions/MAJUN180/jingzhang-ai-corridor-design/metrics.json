@@ -1,0 +1,251 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "high",
+      "assumptions": [
+        "Trusted official boundary is present in the site package."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_zhizhiyuan_area_ha": {
+      "status": "known",
+      "value": 192.1,
+      "unit": "ha",
+      "source_files": [
+        "brief/site-package/standards/references/project-official-announcement.md"
+      ],
+      "formula": "official_announcement_text_area(众智园AI自主创新加速区)",
+      "confidence": "medium",
+      "assumptions": [
+        "面积值来自公告文字，官方 polygon 到位后需重算"
+      ]
+    },
+    "key_area_origin_community_area_ha": {
+      "status": "known",
+      "value": 104.3,
+      "unit": "ha",
+      "source_files": [
+        "brief/site-package/standards/references/project-official-announcement.md"
+      ],
+      "formula": "official_announcement_text_area(北京AI原点社区)",
+      "confidence": "medium",
+      "assumptions": [
+        "面积值来自公告文字，官方 polygon 到位后需重算"
+      ]
+    },
+    "key_area_dazhongsi_area_ha": {
+      "status": "known",
+      "value": 72.0,
+      "unit": "ha",
+      "source_files": [
+        "brief/site-package/standards/references/project-official-announcement.md"
+      ],
+      "formula": "official_announcement_text_area(大钟寺AI产业聚集区)",
+      "confidence": "medium",
+      "assumptions": [
+        "面积值来自公告文字，官方 polygon 到位后需重算"
+      ]
+    },
+    "key_area_total_area_ha": {
+      "status": "known",
+      "value": 368.4,
+      "unit": "ha",
+      "source_files": [
+        "brief/site-package/standards/references/project-official-announcement.md"
+      ],
+      "formula": "sum(key_area_zhizhiyuan_area_ha, key_area_origin_community_area_ha, key_area_dazhongsi_area_ha)",
+      "confidence": "medium",
+      "assumptions": [
+        "面积值来自公告文字，官方 polygon 到位后需重算"
+      ]
+    },
+    "jingzhang_spirit_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "weighted_sum(heritage_sound_completeness, star_anchor_connectivity, corridor_immersion, lighthouse_brightness, fireworks_warmth)",
+      "confidence": "low",
+      "assumptions": [
+        "指标体系为概念建议，需运营数据持续校准",
+        "五项子指标权重待文明委员会确定"
+      ],
+      "reason": "Spirit index is a conceptual proposal requiring operational data and Civilization Committee weight calibration before measurement."
+    },
+    "data_flywheel_acceleration": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "new_data_generated / data_consumed per cycle",
+      "confidence": "low",
+      "assumptions": [
+        "飞轮机制为概念设计",
+        "需实际运营数据验证"
+      ],
+      "reason": "Flywheel acceleration ratio is a conceptual design metric requiring actual operational data to validate."
+    },
+    "agent_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(features where layer='agent_nodes')",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "buffer_zone_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(features where layer='data_stratification')",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "spirit_scene_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(铁轨遗音, 站驿星锚, 行车文廊, 黉门灯塔, 里巷烟火)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "heritage_sound_completeness": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/agent-nodes.geojson#AGENT-NODE-011"
+      ],
+      "formula": "historical_sound_coverage / total_railway_length",
+      "confidence": "low",
+      "assumptions": [
+        "需声景采集系统部署后度量"
+      ],
+      "reason": "Soundscape coverage requires deployment of sound collection systems along the railway heritage corridor."
+    },
+    "star_anchor_connectivity": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "station_civilization_resources / station_total",
+      "confidence": "low",
+      "assumptions": [
+        "需站点文明档案建立后度量"
+      ],
+      "reason": "Station civilization connectivity requires establishment of station civilization archives before measurement."
+    },
+    "lighthouse_brightness": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "avg(university_spirit_archive_completeness, achievement_propagation_rate)",
+      "confidence": "low",
+      "assumptions": [
+        "需高校精神灯塔档案建立后度量"
+      ],
+      "reason": "University lighthouse brightness index requires completion of university spirit archive before measurement."
+    },
+    "fireworks_warmth": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "geometry/agent-nodes.geojson#AGENT-NODE-012"
+      ],
+      "formula": "avg(community_activity_frequency, neighbor_mutual_help_records)",
+      "confidence": "low",
+      "assumptions": [
+        "需社区烟火采集点部署后度量"
+      ],
+      "reason": "Community warmth index requires deployment of community activity collection points before measurement."
+    }
+  }
+}

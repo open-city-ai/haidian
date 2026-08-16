@@ -1,0 +1,209 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://gr-87.jingzhang-ai-new-track/schemas/switchback-protocol.schema.json",
+  "title": "JZ-SWITCHBACK-001 人字回退四态协议 Schema",
+  "description": "「京张·新轨」AI 公共服务遇障折返协议的形式化定义。仿京张铁路青龙桥『人』字形线路双机车折返：服务遇障碍时折返回人工轨道（降级/暂停/退场），不死磕、不绕行。本文件为标准 JSON Schema（draft-07）文档，可被任意 JSON Schema 校验器加载核验；状态机转移以 x- 扩展关键字形式化列出，供外部交叉核验。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol_version",
+    "states",
+    "event",
+    "transitions",
+    "forbidden_transitions",
+    "recovery_asymmetry",
+    "rulebook"
+  ],
+  "properties": {
+    "protocol_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "states": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/state" },
+      "minItems": 4,
+      "uniqueItems": true,
+      "x-order": ["normal", "degraded", "paused", "retired"],
+      "x-notes": "回退方向与『人』字线一致：机车先向前爬（normal），遇陡坡折返换向（degraded），再无力则退回站内等待（paused），报废退场（retired）。恢复路径必须慢于回退路径（不对称）。"
+    },
+    "event": { "$ref": "#/definitions/event" },
+    "transitions": {
+      "type": "object",
+      "description": "合法转移表：from → to 及触发条件（与 check_switchback.js 判定分支一一对应，可交叉核验）",
+      "propertyNames": {
+        "enum": ["normal", "degraded", "paused", "retired"]
+      },
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["to", "condition", "rule_id"],
+          "properties": {
+            "to": { "$ref": "#/definitions/state" },
+            "condition": {
+              "type": "string",
+              "description": "转移触发条件（自然语言，供人工与脚本交叉核验）"
+            },
+            "rule_id": { "type": "string", "pattern": "^R[0-9]+$" }
+          }
+        }
+      }
+    },
+    "forbidden_transitions": {
+      "type": "array",
+      "description": "明令禁止的转移（fail-open 高危路径，评审可据此构造攻击用例）",
+      "items": {
+        "type": "object",
+        "required": ["from", "to", "reason", "rule_id"],
+        "properties": {
+          "from": { "$ref": "#/definitions/state" },
+          "to": { "$ref": "#/definitions/state" },
+          "reason": { "type": "string" },
+          "rule_id": { "type": "string", "pattern": "^R[0-9]+$" }
+        }
+      }
+    },
+    "recovery_asymmetry": {
+      "type": "object",
+      "required": ["consecutive_normal_periods_min", "note"],
+      "properties": {
+        "consecutive_normal_periods_min": {
+          "type": "integer",
+          "minimum": 2,
+          "const": 2,
+          "description": "paused 恢复 normal 所需连续合格期数下限"
+        },
+        "note": {
+          "type": "string",
+          "description": "回退快、恢复慢：退入 paused 只需一个事件，恢复 normal 须连续两期合格，且禁止局部修正（R4）与单期越级（R3）。"
+        }
+      }
+    },
+    "rulebook": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "description"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^R[0-9]+$" },
+          "description": { "type": "string" }
+        }
+      },
+      "minItems": 11
+    }
+  },
+  "definitions": {
+    "state": {
+      "type": "string",
+      "enum": ["normal", "degraded", "paused", "retired"]
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["history_track", "track_track", "data_track"],
+      "additionalProperties": false,
+      "properties": {
+        "history_track": {
+          "type": "boolean",
+          "description": "历史轨证据（历史记录/经验复盘，防服务失忆）"
+        },
+        "track_track": {
+          "type": "boolean",
+          "description": "轨道轨证据（现行规程/流程约束，防脱轨运行）"
+        },
+        "data_track": {
+          "type": "boolean",
+          "description": "数据轨证据（运行数据/指标闭环，防自证结论）"
+        }
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_type",
+        "current_state",
+        "target_state",
+        "obstacle_level",
+        "human_takeover_available",
+        "attempts",
+        "consecutive_normal_periods",
+        "fix_scope",
+        "hide_attempt",
+        "chain_steps_verified",
+        "evidence",
+        "test_section",
+        "service"
+      ],
+      "properties": {
+        "event_type": {
+          "type": "string",
+          "enum": ["service_start", "obstacle_reported", "recovery_attempt", "period_report", "audit"]
+        },
+        "current_state": {
+          "type": "string",
+          "enum": ["none", "normal", "degraded", "paused", "retired"]
+        },
+        "target_state": {
+          "anyOf": [
+            { "type": "null" },
+            { "$ref": "#/definitions/state" }
+          ],
+          "description": "请求/试图进入的目标态；判定 rejected 即实际判定不等于目标态"
+        },
+        "obstacle_level": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3,
+          "description": "0=无 1=低 2=高 3=致命"
+        },
+        "human_takeover_available": {
+          "type": "boolean",
+          "description": "人工接管是否可用"
+        },
+        "attempts": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "已尝试次数（>=3 且障碍未清除触发死磕上限 R11）"
+        },
+        "consecutive_normal_periods": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "连续合格期数（paused 恢复 normal 需 >=2，R3）"
+        },
+        "fix_scope": {
+          "type": "string",
+          "enum": ["none", "single_item", "partial", "full_retest"],
+          "description": "修复范围：仅修最差一项(single_item/partial)触发 R4 禁止局部修正"
+        },
+        "hide_attempt": {
+          "type": "boolean",
+          "description": "隐瞒运行企图（三轨全缺时触发 R5 强制退场）"
+        },
+        "chain_steps_verified": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 6,
+          "description": "6步公共服务链已验证步数（<6 即证据不完整，R7）"
+        },
+        "evidence": { "$ref": "#/definitions/evidence" },
+        "test_section": {
+          "type": "string",
+          "enum": ["JZ-SW1", "JZ-SW2", "JZ-SW3"],
+          "description": "折返试验段编号"
+        },
+        "service": {
+          "type": "string",
+          "description": "AI 公共服务标识"
+        }
+      }
+    }
+  },
+  "x-state-descriptions": {
+    "normal": "正常运行：三轨证据完整且6步链全验证，无碍运行",
+    "degraded": "降级人工：人工接管运行，证据有缺口或障碍未清除",
+    "paused": "暂停：障碍高/人工不可用/死磕上限，等待人工重新规划",
+    "retired": "退场：三轨证据全缺或终态判定，不可复活"
+  },
+  "x-transition-semantics": "transitions 属性为合法转移表；forbidden_transitions 为明令禁止的转移。判定器 check_switchback.js 与该表一一对应，可交叉核验；证据文件 jzsw-tabletop-evidence.json 的用例集含哈希，可防篡改自证。"
+}

@@ -1,0 +1,509 @@
+{
+ "schema_version": "0.1.0",
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(geometry/site_boundary.geojson, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+   ]
+  },
+  "announced_overall_area_sqm": {
+   "status": "known",
+   "value": 11400000,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "公告值（SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT）",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "site_area_delta_vs_announced_ratio": {
+   "status": "known",
+   "value": 0.0011,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "abs(计算值-公告值)/公告值",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "land_use_coverage_ratio": {
+   "status": "known",
+   "value": 0.999997,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "union(land_use)/site_area",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "land_use_zone_count": {
+   "status": "known",
+   "value": 13,
+   "unit": "count",
+   "source_files": [],
+   "formula": "len(land_use.features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "land_use_gap_sqm": {
+   "status": "known",
+   "value": 31.703,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "site_area - union(land_use)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "land_use_overlap_sqm": {
+   "status": "known",
+   "value": 0.0,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "逐图斑相交面积和",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "green_land_use_area_sqm": {
+   "status": "known",
+   "value": 6905475.885,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "sum(1401+1402 用地面积)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "commercial_land_use_area_sqm": {
+   "status": "known",
+   "value": 321433.128,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "sum(05 用地面积)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "research_land_use_area_sqm": {
+   "status": "known",
+   "value": 950929.036,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "sum(0802 用地面积)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "education_land_use_area_sqm": {
+   "status": "known",
+   "value": 379602.179,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "sum(0804 用地面积)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "residential_land_use_area_sqm": {
+   "status": "known",
+   "value": 1997488.416,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "sum(0701+0702 用地面积)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "culture_land_use_area_sqm": {
+   "status": "known",
+   "value": 857927.253,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "sum(0803+1403 用地面积)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 7182667.187,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "union(green_space)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.6294,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "green_area/site_area",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 417308.981,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "union(public_space)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.0366,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "public_area/site_area",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 529726.006,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "union(buildings)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "building_footprint_overlap_sqm": {
+   "status": "known",
+   "value": 0.0,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "逐图斑相交面积和",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "building_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [],
+   "formula": "len(buildings.features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "road_centerline_length_km": {
+   "status": "known",
+   "value": 32.447,
+   "unit": "km",
+   "source_files": [],
+   "formula": "sum(LineString 长度, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "pilot_corridor_length_km": {
+   "status": "known",
+   "value": 9.549,
+   "unit": "km",
+   "source_files": [],
+   "formula": "length(ROAD-SPINE, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "service_loop_length_km": {
+   "status": "known",
+   "value": 19.694,
+   "unit": "km",
+   "source_files": [],
+   "formula": "length(ROAD-RING, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [],
+   "formula": "len(key_areas.features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "key_areas_total_area_sqm": {
+   "status": "known",
+   "value": 3692893.005,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "union(key_areas)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "zhongzhiyuan_area_sqm": {
+   "status": "known",
+   "value": 1929201.877,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "area(PROV-KEY-001)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "beijing_ai_origin_area_sqm": {
+   "status": "known",
+   "value": 1043236.909,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "area(PROV-KEY-002)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "dazhongsi_area_sqm": {
+   "status": "known",
+   "value": 720454.219,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "area(PROV-KEY-003)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "phase_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [],
+   "formula": "len(phasing.features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "phase_1_area_sqm": {
+   "status": "known",
+   "value": 1517405.1,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "area(PHASE-1)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "phase_2_area_sqm": {
+   "status": "known",
+   "value": 7636200.3,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "area(PHASE-2)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "phase_3_area_sqm": {
+   "status": "known",
+   "value": 2259216.4,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "area(PHASE-3)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "phase_coverage_ratio": {
+   "status": "known",
+   "value": 1.0,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "union(phasing)/site_area",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "scenario_node_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [],
+   "formula": "设计方案计数（场景卡 SC-01..SC-12）",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "test_validation_scenario_count": {
+   "status": "known",
+   "value": 4,
+   "unit": "count",
+   "source_files": [],
+   "formula": "设计方案计数（T-01..T-04）",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "user_persona_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [],
+   "formula": "设计方案计数（P-01..P-06）",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "pilgrimage_landmark_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [],
+   "formula": "设计方案计数（L-01..L-03）",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "renewal_project_count": {
+   "status": "known",
+   "value": 8,
+   "unit": "count",
+   "source_files": [],
+   "formula": "设计方案计数（R-01..R-08）",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "待正式控规",
+   "confidence": "low",
+   "assumptions": [],
+   "reason": "Official regulatory planning conditions and local green-space/heritage/municipal data are not yet published; values stay unknown pending approved controls (see planning_limits.json)."
+  },
+  "building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [],
+   "formula": "待正式控规",
+   "confidence": "low",
+   "assumptions": [],
+   "reason": "Official regulatory planning conditions and local green-space/heritage/municipal data are not yet published; values stay unknown pending approved controls (see planning_limits.json)."
+  },
+  "building_density": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "待正式控规",
+   "confidence": "low",
+   "assumptions": [],
+   "reason": "Official regulatory planning conditions and local green-space/heritage/municipal data are not yet published; values stay unknown pending approved controls (see planning_limits.json)."
+  },
+  "green_ratio_official": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "待正式控规",
+   "confidence": "low",
+   "assumptions": [],
+   "reason": "Official regulatory planning conditions and local green-space/heritage/municipal data are not yet published; values stay unknown pending approved controls (see planning_limits.json)."
+  },
+  "setback_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [],
+   "formula": "待正式控规",
+   "confidence": "low",
+   "assumptions": [],
+   "reason": "Official regulatory planning conditions and local green-space/heritage/municipal data are not yet published; values stay unknown pending approved controls (see planning_limits.json)."
+  },
+  "annual_event_system_count": {
+   "status": "known",
+   "value": 4,
+   "unit": "count",
+   "source_files": [],
+   "formula": "设计方案计数（试验开放周/服务环大会/可信审计日/全球试点交换营）",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "heritage_control_area_sqm": {
+   "status": "unknown",
+   "value": null,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "待文保与遗产控制数据",
+   "confidence": "low",
+   "assumptions": [],
+   "reason": "Official regulatory planning conditions and local green-space/heritage/municipal data are not yet published; values stay unknown pending approved controls (see planning_limits.json)."
+  },
+  "human_review_coverage_ratio": {
+   "status": "known",
+   "value": 1.0,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "设计方案声明：全部 12 场景卡要求人工复核",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "non_digital_fallback_coverage_ratio": {
+   "status": "known",
+   "value": 1.0,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "设计方案声明：全部 12 场景卡要求非数字兜底",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "municipal_capacity_index": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "待正式市政资料",
+   "confidence": "low",
+   "assumptions": [],
+   "reason": "Official regulatory planning conditions and local green-space/heritage/municipal data are not yet published; values stay unknown pending approved controls (see planning_limits.json)."
+  },
+  "spine_series_total_area_sqm": {
+   "status": "known",
+   "value": 4149474.5,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(LU-SPINE-* 用地面积)",
+   "confidence": "medium",
+   "assumptions": [
+    "Calculated from provisional boundary geometry; not suitable for official area claims."
+   ]
+  },
+  "pilot_corridor_1401_area_sqm": {
+   "status": "known",
+   "value": 3872380.1,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(LU-SPINE-* 中 land_use_code=1401 面积)",
+   "confidence": "medium",
+   "assumptions": [
+    "Calculated from provisional boundary geometry; not suitable for official area claims."
+   ]
+  },
+  "gateway_plaza_area_sqm": {
+   "status": "known",
+   "value": 277094.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "area(LU-SPINE-DZS)",
+   "confidence": "medium",
+   "assumptions": [
+    "Calculated from provisional boundary geometry; not suitable for official area claims."
+   ]
+  },
+  "announced_key_areas_total_sqm": {
+   "status": "known",
+   "value": 3684000,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "公告三处重点区面积之和 368.4 ha（SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT）",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "announced_research_area_sqm": {
+   "status": "known",
+   "value": 43600000,
+   "unit": "sqm",
+   "source_files": [],
+   "formula": "公告值 43.6 km²（SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT）",
+   "confidence": "high",
+   "assumptions": []
+  }
+ },
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ }
+}

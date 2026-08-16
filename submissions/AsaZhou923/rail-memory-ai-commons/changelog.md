@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v0.4 - 2026-08-15
+
+- Aligned the readiness claim with the current official Skill contract: missing organizer-supplied official polygons remain a disclosed provisional-data limitation and recomputation trigger, but no longer appear as a participant-controlled content-scoring blocker.
+- Preserved medium data confidence, every provisional-boundary warning, and the requirement for official geometry and professional confirmation before statutory, approval, precise-area, or implementation use.
+- Migrated the merged package to the current persisted four-gate self-check contract using the state-appropriate `refresh_submission_manifest.py` workflow, including the strengthened finite-number and pending-Git-blob validation rules.
+
 ## v0.3 - 2026-08-10
 
 - Addressed the requested change on [PR #1389](https://github.com/open-city-ai/haidian/pull/1389) by aligning `manifest.validation_claim.self_checked` with the persisted all-pass `self_check.json` and a fresh exact-head self-check.

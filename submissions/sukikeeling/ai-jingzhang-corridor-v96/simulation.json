@@ -1,0 +1,152 @@
+{
+  "schema_version": "0.1.0",
+  "title_zh": "拔线测试可复演模拟记录",
+  "title_en": "Pull-the-plug test reproducible simulation record",
+  "description_zh": "将 OP-01 拔线配对测试的 12 个合成测试用例结构化为可复演的 simulation tasks。每个 task 记录 AI 关闭条件下的等价路径执行结果；校验器可从 tasks 数组自动派生聚合指标，任何人可逐项复算。本记录为方法学演示，使用合成测试用例，非真实世界普查基线；真实基线在 K4-K6 一期普查建立后填入。",
+  "source": "visual/assets/pilot-evidence.json (OP-01, scenario SC-01, switchback node SWB-01)",
+  "data_disclaimer_zh": "合成测试用例，非真实测量。价值在于方法与数据公开可复算，非数值本身。",
+  "task_count": 12,
+  "tasks": [
+    {
+      "task_id": "SIM-C01",
+      "case_ref": "C-01",
+      "request_zh": "轮椅用户从五道口站到开源穹顶的最短无障碍路线",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.0,
+      "energy_budget_kwh": 0.0,
+      "audit_complete": true,
+      "note": "引导岗现场指认+纸质图，与AI建议路径一致"
+    },
+    {
+      "task_id": "SIM-C02",
+      "case_ref": "C-02",
+      "request_zh": "视障用户从街角到议事厅的触觉导引路线",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.0,
+      "energy_budget_kwh": 0.0,
+      "audit_complete": true,
+      "note": "触觉导引带独立成立，不依赖AI"
+    },
+    {
+      "task_id": "SIM-C03",
+      "case_ref": "C-03",
+      "request_zh": "临时通行坡道被占用的绕行路线",
+      "outcome": "realtime_gap",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.0,
+      "energy_budget_kwh": 0.0,
+      "audit_complete": true,
+      "note": "AI基于实时占用数据重算绕行；关闭后引导岗未掌握实时占用，返回待现场确认"
+    },
+    {
+      "task_id": "SIM-C04",
+      "case_ref": "C-04",
+      "request_zh": "导览解说请求",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.0,
+      "energy_budget_kwh": 0.0,
+      "audit_complete": true,
+      "note": "固定解说牌+人工指认完成"
+    },
+    {
+      "task_id": "SIM-C05",
+      "case_ref": "C-05",
+      "request_zh": "夜间无障碍路线请求",
+      "outcome": "realtime_gap",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.0,
+      "energy_budget_kwh": 0.0,
+      "audit_complete": true,
+      "note": "AI夜间可用；ai_off_path引导岗不在岗，纸质图可用但无人工兜底"
+    },
+    {
+      "task_id": "SIM-C06",
+      "case_ref": "C-06",
+      "request_zh": "电梯运行状态查询",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.0,
+      "energy_budget_kwh": 0.0,
+      "audit_complete": true,
+      "note": "电梯状态由运营方电话核实，完成"
+    },
+    {
+      "task_id": "SIM-C07",
+      "case_ref": "C-07",
+      "request_zh": "积水路段避让请求",
+      "outcome": "realtime_gap",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.0,
+      "energy_budget_kwh": 0.0,
+      "audit_complete": true,
+      "note": "AI接入积水上报；关闭后引导岗未及时获知，记非完成"
+    },
+    {
+      "task_id": "SIM-C08",
+      "case_ref": "C-08",
+      "request_zh": "定时讲解服务请求",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.0,
+      "energy_budget_kwh": 0.0,
+      "audit_complete": true,
+      "note": "纸质折页+定时讲解完成"
+    },
+    {
+      "task_id": "SIM-C09",
+      "case_ref": "C-09",
+      "request_zh": "街区设施定位请求",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.0,
+      "energy_budget_kwh": 0.0,
+      "audit_complete": true,
+      "note": "视觉指引牌+图卡独立成立"
+    },
+    {
+      "task_id": "SIM-C10",
+      "case_ref": "C-10",
+      "request_zh": "封路绕行路线请求",
+      "outcome": "realtime_gap",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.0,
+      "energy_budget_kwh": 0.0,
+      "audit_complete": true,
+      "note": "AI基于封路数据重算；关闭后引导岗需电话多方核实，超时记非完成"
+    },
+    {
+      "task_id": "SIM-C11",
+      "case_ref": "C-11",
+      "request_zh": "主干路线导引请求",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.0,
+      "energy_budget_kwh": 0.0,
+      "audit_complete": true,
+      "note": "主干路线触觉导引带完备，完成"
+    },
+    {
+      "task_id": "SIM-C12",
+      "case_ref": "C-12",
+      "request_zh": "天桥直梯可用性查询",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.0,
+      "energy_budget_kwh": 0.0,
+      "audit_complete": true,
+      "note": "天桥直梯状态电话核实后完成"
+    }
+  ],
+  "baselines": {
+    "urban_llm_harness": {
+      "success_rate": 0.6666666666666666,
+      "tool_schema_pass_rate": 1.0,
+      "energy_budget_violations": 0,
+      "audit_completeness": 1.0
+    }
+  },
+  "derivation_note_zh": "校验器派生：simulation_success_rate = count(outcome==success)/12 = 8/12 = 0.6667；tool_schema_pass_rate = 1.0（全部 dispatch_schema_valid=true）；energy_budget_violations = 0（全部 used<=budget，本测试为无障碍路线非能耗场景，能耗记0）；audit_completeness = 1.0（全部 audit_complete=true）。与 pilot-evidence.json 的 ai_off_completion_rate=0.6667 一致。"
+}

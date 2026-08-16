@@ -1,0 +1,243 @@
+/* 百年京张 AI 创新带 · 生物黏菌路网交互演示 样式 */
+:root {
+  --ink: #111827;
+  --muted: #475569;
+  --soft: #f8fafc;
+  --blue: #0052D4;
+  --teal: #00B4DB;
+  --crimson: #8C2B2B;
+  --green: #15803d;
+  --warn: #FF6B6B;
+  --panel-bg: rgba(255, 255, 255, 0.96);
+  --shadow: 0 4px 16px rgba(17, 24, 39, 0.12);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--ink);
+  background: #eef1f6;
+}
+
+#map {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* ---------- 顶部标题栏 ---------- */
+.app-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  background: linear-gradient(90deg, rgba(0, 82, 212, 0.95), rgba(0, 180, 219, 0.92));
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+.app-header .brand-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+}
+.app-header h1 { font-size: 16px; margin: 0; font-weight: 700; letter-spacing: 0.5px; }
+.app-header .subtitle { font-size: 12px; opacity: 0.9; margin: 0; }
+
+/* ---------- 语言切换 ---------- */
+#lang-switch {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  z-index: 1100;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+#lang-switch:hover { background: #fff; }
+
+/* ---------- 控制面板 ---------- */
+#control-panel {
+  position: absolute;
+  top: 76px;
+  left: 14px;
+  z-index: 1000;
+  width: 230px;
+  background: var(--panel-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 14px;
+}
+#control-panel h2 { font-size: 13px; margin: 0 0 10px; color: var(--muted); font-weight: 600; }
+.btn-row { display: flex; flex-direction: column; gap: 8px; }
+.btn {
+  display: block;
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid #dbe2ea;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 13px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+.btn:hover { border-color: var(--blue); color: var(--blue); }
+.btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+.btn.warn { color: var(--crimson); }
+.btn.warn:hover, .btn.warn.active { background: var(--crimson); color: #fff; border-color: var(--crimson); }
+.check-row { margin-top: 12px; padding-top: 12px; border-top: 1px solid #eef1f6; display: flex; flex-direction: column; gap: 8px; }
+.check-row label {
+  display: flex; align-items: center; gap: 8px; font-size: 12.5px; cursor: pointer; color: var(--ink);
+}
+.check-row input { accent-color: var(--blue); }
+
+/* ---------- 状态提示 ---------- */
+#status-bar {
+  position: absolute;
+  top: 76px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  max-width: 70%;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: rgba(17, 24, 39, 0.82);
+  color: #fff;
+  font-size: 13px;
+  text-align: center;
+  transition: opacity 0.3s ease;
+}
+#status-bar.flash { background: rgba(0, 82, 212, 0.9); }
+#status-bar:empty { display: none; }
+
+/* ---------- 图例 ---------- */
+#legend {
+  position: absolute;
+  bottom: 22px;
+  left: 14px;
+  z-index: 1000;
+  width: 210px;
+  background: var(--panel-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 12px 14px;
+  font-size: 12px;
+}
+#legend h3 { margin: 0 0 8px; font-size: 12px; color: var(--muted); }
+.legend-item { display: flex; align-items: center; gap: 8px; margin: 5px 0; }
+.legend-line { width: 22px; height: 0; border-top-width: 3px; border-top-style: solid; flex: none; }
+.legend-line.dashed { border-top-style: dashed; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.legend-box { width: 14px; height: 10px; border: 1.5px solid; flex: none; border-radius: 2px; }
+
+/* ---------- 路径信息 ---------- */
+#route-info {
+  position: absolute;
+  top: 76px;
+  right: 14px;
+  z-index: 1000;
+  width: 240px;
+  background: var(--panel-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 14px;
+}
+.route-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--blue); }
+.route-empty { font-size: 12.5px; color: var(--crimson); }
+.route-row { display: flex; justify-content: space-between; gap: 8px; font-size: 12.5px; margin: 4px 0; }
+.route-row span { color: var(--muted); }
+.route-row b { font-weight: 600; text-align: right; }
+
+/* ---------- 数据性质声明 ---------- */
+#data-disclaimer {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  max-width: 560px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--muted);
+  font-size: 11.5px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+/* ---------- 地铁站图标 ---------- */
+.subway-icon { text-align: center; }
+.subway-dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--crimson); border: 2px solid #fff;
+  box-shadow: 0 0 0 2px var(--crimson), 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* ---------- Leaflet 细节覆盖 ---------- */
+.leaflet-tooltip {
+  font-family: inherit;
+  font-size: 12px;
+  border-radius: 6px;
+}
+
+/* ---------- 离线地图背景（无远程瓦片） ---------- */
+.leaflet-container { background: #eef1f6; }
+
+/* ---------- 方案说明与自检面板（必填章节标记 + 指标声明） ---------- */
+#docs-panel {
+  position: absolute;
+  right: 14px;
+  bottom: 130px;
+  z-index: 1000;
+  width: 330px;
+  background: var(--panel-bg);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  font-size: 12px;
+  overflow: hidden;
+}
+#docs-panel summary {
+  cursor: pointer;
+  padding: 9px 14px;
+  font-weight: 700;
+  color: var(--ink);
+  list-style: none;
+  border-left: 4px solid var(--blue);
+}
+#docs-panel summary::-webkit-details-marker { display: none; }
+#docs-panel .docs-body { padding: 2px 14px 12px; color: var(--muted); }
+#docs-panel h3 { font-size: 12px; color: var(--blue); margin: 9px 0 2px; font-weight: 700; }
+#docs-panel p { margin: 2px 0; line-height: 1.5; }
+#docs-panel .docs-metrics { margin: 4px 0; padding: 0; list-style: none; }
+#docs-panel .docs-metrics li { padding: 2px 0; }
+#docs-panel .docs-metrics b { color: var(--ink); font-weight: 600; }
+#docs-panel .docs-meta { font-size: 11px; color: var(--muted); }
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 720px) {
+  #control-panel, #legend, #route-info { width: 190px; }
+  .app-header h1 { font-size: 14px; }
+  .app-header .subtitle { display: none; }
+}

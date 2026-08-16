@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A three-scale urban design framework that links railway memory, public space, research translation and accountable AI adoption through VERIFY, LEARN and LIVE districts. All spatial locations remain provisional pending official data and professional verification."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-version: "8.0.0"
+version: "9.0.0-evidence-contract"
 ---
 
 # COMMON TIME JING-ZHANG
@@ -21,6 +21,18 @@ The spatial concept is **one spine, three evidence clocks, two wings and twelve 
 ![Public photographic context of Qinghuayuan, Qinghe, Jingzhang Park, Dazhongsi and Zhongguancun](assets/figures/site-photo-evidence-v3.jpg)
 
 The photographs above are real public photographs recorded individually in `visual/assets/photo-register.json`, including place, date, author, source page, CC BY-SA 4.0 licence and permitted use. Their dates range from 2020 to 2025. They provide urban context only; they do not constitute a complete 2026 survey and do not verify key-area boundaries, engineering conditions or design locations.
+
+## Why COMMON TIME Instead of Another AI Park
+
+Three routes are compared against the same public-value, spatial, delivery and exit conditions. The result is a reviewable design choice for this submission, not an expert score or a government decision.
+
+| Alternative | Strongest hypothesis | Principal cost and failure mode | COMMON TIME decision |
+| --- | --- | --- | --- |
+| A New-build expansion first | New buildings and landmarks can directly host innovation | Unknown ownership, demand, fire, utility, heritage and life-cycle cost can create vacancy, fiscal lock-in and spectacle | `HOLD`; consider construction only after existing-time and ground-floor options fail |
+| B Platform and sensors first | Data integration and algorithmic scheduling automatically improve efficiency | Wider attack surface, personal-data purpose drift and vendor lock-in may transfer public decisions to opaque systems | `REJECT AS DEFAULT`; real-data access requires separate legal, security and procurement review, while fixed rules and human service remain valid |
+| C Time-based adoption first | Register a real problem and non-AI baseline before reversible space and time-limited trials | Slower delivery and a need for real owners, independent evaluation, affected-group participation and retirement funds | `SELECTED FOR TESTING`; failure, stop and restoration are written into the same contract as deployment |
+
+Selecting C does not presume success. If weekday/weekend and day/night evidence does not show a time mismatch, or if sharing does not outperform the non-AI baseline on accessibility, residential quiet, frontline labour, maintenance and unit cost, the relevant action must `PIVOT` or `RETIRE`. The core concept can therefore be disproved by evidence rather than confirmed only by branding.
 
 ## Design Basis and Source List
 
@@ -62,6 +74,30 @@ The industry strategy is an adoption loop, not a list of fashionable sectors. Re
 | G7 Time-limited operation | owner’s real setting | SLA, monitoring, versioning, appeal, maintenance and residual value | renew explicitly |
 | G8 Replicate or retire | belt and partners | common metrics, cross-site reproduction, applicability, restoration cost | replicate mechanism, not hype |
 
+### Falsifiable G0–G8 Record Contract
+
+Each project may have only one current record. Required fields are `problem_owner_status`, `affected_groups`, `non_ai_baseline_status`, `evidence_refs`, `thresholds_status`, `independent_evaluator_status`, `human_route`, `appeal_route`, `expiry`, `retirement_fund_status`, `gate_decision` and `next_evidence_due`. Allowed states are `VERIFIED / PROPOSED / PENDING / HOLD / RETIRE`; an agent may not infer missing external evidence.
+
+1. If the problem owner, affected groups or non-AI baseline is unverified, the project can reach no further than G0 `HOLD`.
+2. Missing thresholds, emergency stop, independent evaluator or data rights prohibit entry to G3.
+3. Failure of the same-place, same-time and same-effect human/non-digital route, accessible task chain or appeal adjudication prohibits entry to G5.
+4. Missing owner budget, procurement route, operations, migration or retirement fund prohibits entry to G6.
+5. Any life-safety, heritage-authenticity, privacy-right or serious group-disparity failure causes `RETIRE` and cannot be averaged away by a composite score.
+
+Owners, site evidence, thresholds, budgets and independent evaluators for all three priority projects are `PENDING/HOLD`. This submission therefore proves only the contract structure and rejection logic; it does not claim that any project has passed G0–G8.
+
+### Five Named Regional Coordination Interfaces
+
+| Interface | What this belt offers | What the counterpart may offer | Required exchange receipt | Current state |
+| --- | --- | --- | --- | --- |
+| Beiwei Community | community problem cards, non-digital service and group-disparity tasks | resident/care, frontline-service and daily-life problems | joint problem owner, affected-group record, non-AI baseline and appeal responsibility | `PROPOSED / owner pending` |
+| Future Science City | VERIFY reproduction protocol, independent testing and failure archive | engineering research, facilities and cross-site reproduction conditions | same-threshold reproduction, difference note, supplier exit and data-rights proof | `PROPOSED / partner pending` |
+| Huairou Science City | public translation, model/data cards and urban-problem interface | big-science outputs and science-communication resources | rights-cleared package, reproducible steps, applicability boundary and human sign-off | `PROPOSED / partner pending` |
+| Beijing E-Town | LIVE bounded trial and kerb/service protocols | engineering manufacture, robotics and industrial test conditions | non-AI comparison, safety thresholds, liability cover, maintenance and retirement proof | `PROPOSED / partner pending` |
+| Beijing–Tianjin–Hebei coordination nodes | public metrics, failure archives and portable interfaces | different urban conditions and cross-regional problem owners | cross-site reproduction, regulatory/climate/population differences and replicate/do-not-replicate decision | `PROPOSED / nodes pending` |
+
+These are coordination-contract templates, not proof that any institution participates, authorises the work or commits resources. An interface becomes `VERIFIED` only when both named sides, a public purpose, cleared inputs, accountable people, a time boundary and exit evidence all exist.
+
 The gate sequence adapts NIST’s `GOVERN—MAP—MEASURE—MANAGE` logic without replacing Chinese law, sector regulation or public approval. [source:FRAME-NIST-AI-RMF] Seven activities—research, engineering verification, open collaboration, translation, enterprise growth, city trial and international communication—must each name inputs, outputs, responsibility and an exit artefact. VERIFY concentrates controlled testing and independent evaluation; LEARN connects authorised knowledge to public understanding and entrepreneurship; LIVE tests only limited urban services with visible human fallback. International precedents are used only for mechanisms such as research-to-adoption, open science, PoC support, co-location and station–campus coordination; foreign scales, laws and investment figures are not transferred. [source:CASE-VECTOR-TORONTO] [source:CASE-MILA-MONTREAL] [source:CASE-SEOUL-AI-HUB] [source:CASE-ONE-NORTH]
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
@@ -102,11 +138,38 @@ All three key areas use a common review frame—one central conflict, four inter
 
 Each district must ultimately provide a locatable plan, two sections through real interfaces, a time-based arrival and logistics plan, a retain/retrofit/remove drawing and a project-trigger drawing. Missing any one of these means “detailed design” is not complete. [depth:three_key_area_detailed_design]
 
+## Priority Project Contracts for the Three Key Areas
+
+Each priority project converts a spatial prototype into a work contract that can be rejected. All three are `PROPOSED`, and every current decision is `HOLD`: no real problem owner, asset/operator, official GIS, site condition, independent evaluator, procurement route, RMB budget or funding commitment has been verified.
+
+| Contract | Problem owner and non-AI baseline | Minimum spatial/service scope | Outcomes that must be recorded | `HOLD / RETIRE` conditions |
+| --- | --- | --- | --- | --- |
+| P-V01 Zhongzhiyuan VERIFY controlled verification and public explanation garden | real urban-problem owner `PENDING`; baseline is human/bench testing, paper records, human explanation, fixed separation and on-site safety procedure | public explanation forecourt, independent evaluation court, controlled core, logistics/emergency loop and ecological buffer; no fixed building or river line | reproducibility and failure archive, serious-incident closure, public understanding and group disparity, human takeover time, ecological maintenance burden and unit advancement cost | no real owner/evaluator; public routes cross the controlled/logistics core; safety, data-rights, heritage or ecology fails; no gain over baseline; unresolved appeal |
+| P-L01 AI Origin LEARN public learning court | public-learning/research-translation owner `PENDING`; no university, street, community or cultural institution is confirmed; baseline is offline lectures, library/paper material, human consultation and existing campus/community activity | only authorised translation, human hosting, paper/digital parity and accessible co-learning in an existing city-side ground floor/court; no change to campus access or heritage fabric | task understanding/reproduction, accessibility and non-digital parity, human correction, voluntary 90-day retention, non-commercial hours, group disparity and unit cost | heritage/copyright/IP unresolved; no human host or equal non-digital route; no evidenced result after two rounds; group disparity, noise or maintenance worsens; content cannot be corrected/removed |
+| P-D01 Dazhongsi LIVE arrival and quiet-service forecourt | transport/public-service owner `PENDING`; transport, station, street and community parties are unconfirmed; baseline is lawful right of way/signals, human information, paper maps, fixed kerb rules and site management | reversible staffed arrival, continuous accessibility, fixed-time kerb, quiet waiting and bounded trial; algorithms never control right of way | distribution of interchange time rather than averages, conflicts/near misses, accessible task success, human takeover, noise/appeals, frontline labour burden, unit cost and recovery time | evacuation, fire, right-of-way or accessibility failure; no site takeover; worse noise/labour; no net gain after two cycles; data misuse or unresolved appeal |
+
+The three contracts share the G0–G8 record fields but not success thresholds. Thresholds, samples, evaluators, accountable people, project finance and restoration funds can be confirmed only with the future owner, affected groups and relevant professionals; this submission does not prefill numbers.
+
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
 The adoption team contains research originators, open-source maintainers and technical architects; product owners, domain experts, service designers and bilingual communicators; adoption, MLOps/security and procurement specialists; and data stewards, facility operators and accessibility/community reviewers. [metric:innovation_role_count] The cycle is open problem → cross-functional team → accountable project → skills passport → adoption team → mentor return. It does not create a personal city score and does not require public identity disclosure.
 
-Six personas are hypotheses for co-design: a cross-campus student; a researcher or entrepreneur; a resident or caregiver; an older, disabled or temporarily mobility-limited person; a cleaner, guard, courier or facility worker; and a public-service problem owner. [metric:persona_count] Their journeys are measured across weekdays/weekends and day/night. Every journey requires a same-channel human or non-digital fallback: static maps and non-commercial seating; in-person intake and standard forms; a staffed desk and paper directory; guided travel and physical controls; fixed operating rules and local emergency stops; signed decisions and independent appeals. Average travel time may not hide group-specific failure.
+### Six Service Groups Pending Co-design
+
+Six personas are hypotheses for co-design: a cross-campus student; a researcher or entrepreneur; a resident or caregiver; an older, disabled or temporarily mobility-limited person; a cleaner, guard, courier or facility worker; and a domestic/international visitor or non-digital user. [metric:persona_count] Their journeys are measured across weekdays/weekends and day/night. Every journey requires a same-channel human or non-digital fallback: static maps and non-commercial seating; in-person intake and standard forms; a staffed desk and paper directory; guided travel and physical controls; fixed operating rules and local emergency stops; signed decisions and independent appeals. Average travel time may not hide group-specific failure. These are proposal hypotheses and must be revised through real participation by residents, disabled people, frontline workers, students, enterprises and visitors.
+
+### Public Rights, Appeal and Exit Contract
+
+| Public right | Proposal constraint | Evidence required before G5 | Current state |
+| --- | --- | --- | --- |
+| Unconditional access | public space and essential service remain available without login, purchase or personal data | on-site entrance audit and tasks refusing login/purchase | `PROPOSED / field test pending` |
+| Equal human/non-digital route | human, paper, static-map or physical-button routes operate at the same place, time and effect, not as degraded access | paired tasks comparing waiting time and decision effect with the digital channel | `PROPOSED / service owner pending` |
+| Accessibility and comprehension | routes, information, communication, emergency stop and departure form one task chain | full-chain testing led by disabled participants and specialists, with failures reported separately | `PROPOSED / co-design pending` |
+| Notice and minimum data | purpose, data, retention, accountable person and non-AI option are visible; no person is identified by default | data inventory, purpose limitation, deletion proof and human comprehension check | `PROPOSED / legal review pending` |
+| Appeal and independent adjudication | in-person, paper and phone submission; a supplier does not adjudicate its own appeal | named intake and independent review roles, service time, result notice and escalation route | `PROPOSED / authority and SLA pending` |
+| Pause, restore and exit | automation can stop on site, restore the human baseline, and provide export/deletion/withdrawal/retirement proof | emergency-stop drill, recovery time, export/deletion check and asset/supplier exit list | `PROPOSED / operator and fund pending` |
+
+This is an admission contract, not an operating participation mechanism. No affected-group co-design sample, field route test, approved service time or accountable institution yet exists. Any unclosed gap keeps the relevant project at `HOLD`.
 
 Twelve scenario cards cover mobility, enterprise services and civic governance. [metric:scenario_count] A mobility scenario compares fixed guidance and trained staff with AI-assisted routing; success requires fewer wrong routes and conflicts without discriminatory burden. A public-service assistant may retrieve authorised material but a named human signs the answer. A facility digital twin may support energy and maintenance simulation but must declare sensors, calibration, error, security, operator and retirement. A heritage guide may retrieve and translate cleared records but may not generate unsupported historical claims. Four testbeds provide controlled engineering, public translation, limited service and interoperability/exit testing. [metric:industry_testbed_count] Each card records purpose, problem owner, affected groups, non-AI baseline, minimum data, thresholds, stop rule, appeal, operator, evaluator, OPEX and retirement evidence.
 
@@ -161,6 +224,18 @@ The worst operating scenario is a high-activity, low-adoption and high-maintenan
 A unified digital platform could increase vendor lock-in, attack surface and purpose drift. Connecting real sensors, access-control, payment, identity or personal data is outside this proposal and requires separate legal, security, procurement and operational approval. Public space uses no facial recognition, individual tracking or opaque ranking. Event logs are limited to necessary incidents, accountable people, versions and review decisions.
 
 Railway, Zhongguancun and AI are related here by design interpretation, not by asserted historical causation. Original, restored, relocated, replicated and digitally reconstructed objects must be distinguished. Real photographs keep their CC BY-SA 4.0 author and source information and do not imply endorsement. Three concept images are labelled AI-generated, not existing conditions, not official plans and pending survey verification. OpenStreetMap background retains its attribution. The overall proposal uses `COMMUNITY-DISPLAY-ONLY` without restricting embedded CC BY-SA components; details are in `visual/assets/photo-register.json` and `report/copyright_statement.md`.
+
+### Rights, Licence and Generation-Status Summary
+
+| Content type | Rights/generation status | Boundary that must remain visible |
+| --- | --- | --- |
+| Chinese/English proposal and original diagrams | overall project `COMMUNITY-DISPLAY-ONLY` | does not claim third-party marks, heritage imagery or institutional endorsement |
+| Real photographs | each item recorded under CC BY-SA 4.0 with author, source page, date and crop/modification | the photographic component retains its source licence and conveys no endorsement |
+| OpenStreetMap background | Level-C public background with ODbL attribution | low-authority relationships only; not official GIS, cadastral, survey or engineering proof |
+| AI concept images | project-generated and labelled AI-generated, non-existing, non-official and pending survey | cannot prove built condition, real view, dimensions, ownership or approval |
+| Official/institutional public material | summarised and linked through `sources.json` | no full-work copying and no conversion of policy language into project authorisation, funding or commitment |
+| Fonts | no font file is distributed in this package | verify embedding rights or substitute an open font, then perform machine and human checks before publication |
+| Bilingual and tool output | both languages use the same fact states; tool output retains provenance | tool licensing does not approve source content; bilingual planning edit and human fact review remain pending before external publication |
 
 All spatial, policy, operating, event and identity proposals are concepts for professional development. They are not government approval, professional certification, investment, construction, procurement, tenant, operation or event commitments.
 

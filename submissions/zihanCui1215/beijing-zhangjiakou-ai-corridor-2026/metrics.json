@@ -1,0 +1,285 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "Sum of all site boundary polygons",
+      "confidence": "high",
+      "assumptions": [
+        "ASSUME-001"
+      ],
+      "label_zh": "总体设计范围面积",
+      "source": "geometry/site_boundary.geojson（EPSG:4548重算）"
+    },
+    "green_ratio": {
+      "value": 0.444148,
+      "unit": "ratio",
+      "status": "known",
+      "basis": "green_space union area / site area; basis changed from naive feature-sum (5546613.0 / 48.6%) to dissolve-union basis to match the official spatial_review checker; recorded here per basis discipline"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.082411,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area / site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "ASSUME-003"
+      ],
+      "label_zh": "公共空间配建率",
+      "source": "public_space_area/site_area"
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.0869,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "building_footprint_area / site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "ASSUME-004"
+      ]
+    },
+    "average_far": {
+      "status": "known",
+      "value": 1.13,
+      "unit": "index",
+      "source_files": [
+        "metrics.json"
+      ],
+      "formula": "total_floor_area / site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "ASSUME-005"
+      ]
+    },
+    "key_area_ai_origin_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "Key area polygon area",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "重点片区面积（几何重算）",
+      "source": "geometry/key_areas.geojson beijing_ai_origin_community"
+    },
+    "key_area_dazhongsi_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "Key area polygon area",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "重点片区面积（几何重算）",
+      "source": "geometry/key_areas.geojson dazhongsi_ai_industry_cluster"
+    },
+    "heritage_sites_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "Count of heritage protection features",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 3423847.616,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "Phase 1 polygon area",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "第1期实施面积（几何重算）",
+      "source": "geometry/phasing.geojson phase=1"
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 4565130.154,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "Phase 2 polygon area",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "第2期实施面积（几何重算）",
+      "source": "geometry/phasing.geojson phase=2"
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 3423847.616,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "Phase 3 polygon area",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "第3期实施面积（几何重算）",
+      "source": "geometry/phasing.geojson phase=3"
+    },
+    "green_space_area_sqm": {
+      "value": 5068978.93,
+      "unit": "sqm",
+      "status": "known",
+      "basis": "union of all green_space.geojson features (overlaps dissolved), recomputed by scripts/spatial_review.py and visual/assets/verify.js; equals official checker"
+    },
+    "public_space_area_sqm": {
+      "value": 940541.836,
+      "unit": "sqm",
+      "status": "known",
+      "label_zh": "公共空间面积",
+      "source": "geometry/public_space.geojson（EPSG:4548重算）"
+    },
+    "building_footprint_area_sqm": {
+      "value": 991270.259,
+      "unit": "sqm",
+      "status": "known",
+      "label_zh": "建筑基底面积",
+      "source": "geometry/buildings.geojson（EPSG:4548重算）"
+    },
+    "key_area_zhongzhiyuan_sqm": {
+      "value": 1929201.877,
+      "unit": "sqm",
+      "status": "known",
+      "label_zh": "重点片区面积（几何重算）",
+      "source": "geometry/key_areas.geojson zhongzhiyuan_ai_acceleration_area"
+    },
+    "total_gfa_sqm": {
+      "status": "known",
+      "value": 12885362.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(footprint_area x floors)",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "总建筑面积（按足迹×层数）",
+      "source": "geometry/buildings.geojson EPSG:4548"
+    },
+    "road_area_sqm": {
+      "status": "known",
+      "value": 1121689.032,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum of 1207 features",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "道路用地面积（1207）",
+      "source": "geometry/land_use.geojson code=1207"
+    },
+    "key_area_zhongzhiyuan_gfa_sqm": {
+      "status": "known",
+      "value": 3640575.7,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(building footprint x floors within key area)",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "重点区总建筑面积",
+      "source": "buildings∩key_areas zhongzhiyuan_ai_acceleration_area"
+    },
+    "key_area_zhongzhiyuan_far": {
+      "status": "known",
+      "value": 1.89,
+      "unit": "index",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "key area GFA / key area total area",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "重点区平均容积率",
+      "source": "buildings∩key_areas zhongzhiyuan_ai_acceleration_area"
+    },
+    "key_area_ai_origin_gfa_sqm": {
+      "status": "known",
+      "value": 656763.3,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(building footprint x floors within key area)",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "重点区总建筑面积",
+      "source": "buildings∩key_areas beijing_ai_origin_community"
+    },
+    "key_area_ai_origin_far": {
+      "status": "known",
+      "value": 0.63,
+      "unit": "index",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "key area GFA / key area total area",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "重点区平均容积率",
+      "source": "buildings∩key_areas beijing_ai_origin_community"
+    },
+    "key_area_dazhongsi_gfa_sqm": {
+      "status": "known",
+      "value": 1660359.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(building footprint x floors within key area)",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "重点区总建筑面积",
+      "source": "buildings∩key_areas dazhongsi_ai_industry_cluster"
+    },
+    "key_area_dazhongsi_far": {
+      "status": "known",
+      "value": 2.3,
+      "unit": "index",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "key area GFA / key area total area",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "重点区平均容积率",
+      "source": "buildings∩key_areas dazhongsi_ai_industry_cluster"
+    }
+  }
+}

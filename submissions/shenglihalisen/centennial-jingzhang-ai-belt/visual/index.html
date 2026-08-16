@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张智带 · The Learning Line — 视觉成果板</title>
+<style>
+:root{
+  --ink:#1F2329; --sub:#5A6475; --line:#E2E5EB; --bg:#F6F7F9; --paper:#FFFFFF;
+  --heritage:#A6412E; --learn:#16A6B6; --green:#4FA86A; --reserve:#DDDDE3;
+  --warn:#C8791F;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Noto Sans CJK SC","Source Han Sans SC","Microsoft YaHei","PingFang SC",
+    "Hiragino Sans GB",sans-serif;
+  font-size:14px; line-height:1.65; padding:28px 18px 60px;
+}
+.wrap{max-width:1180px;margin:0 auto}
+.masthead{
+  background:var(--ink); color:#fff; border-radius:14px; padding:34px 38px; margin-bottom:22px;
+}
+.masthead h1{font-size:34px;letter-spacing:.5px;font-weight:700}
+.masthead .sub{color:#A9B2C0;font-size:15px;margin-top:6px}
+.masthead .rule{height:4px;width:120px;background:var(--heritage);margin:18px 0 14px;border-radius:2px}
+.masthead .meta{color:#C7CDD8;font-size:12.5px}
+.toc{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0 26px}
+.toc a{
+  font-size:12px;color:var(--sub);text-decoration:none;background:var(--paper);
+  border:1px solid var(--line);border-radius:14px;padding:4px 11px
+}
+.board{
+  background:var(--paper); border:1px solid var(--line); border-radius:14px;
+  padding:0 0 26px; margin-bottom:20px; overflow:hidden;
+}
+.bh{display:flex;align-items:center;gap:16px;padding:18px 26px;border-bottom:1px solid var(--line)}
+.bno{
+  font-size:15px;font-weight:700;color:#fff;background:var(--heritage);
+  width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;
+  flex:0 0 38px
+}
+.bt h2{font-size:19px;font-weight:700}
+.bt p{font-size:11.5px;color:var(--sub);letter-spacing:.4px;text-transform:uppercase}
+.bbrand{margin-left:auto;font-size:11px;color:#A5AEBC;letter-spacing:.5px}
+.body{padding:20px 26px 0}
+.lead{font-size:14.5px;color:#2C333F;margin-bottom:16px}
+.lead b{color:var(--heritage)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:10px;margin:14px 0}
+.kpi{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 13px}
+.kpi-v{font-size:23px;font-weight:700;color:var(--ink);line-height:1.15}
+.kpi-u{font-size:11px;font-weight:500;color:var(--sub);margin-left:3px}
+.kpi-l{font-size:12px;color:var(--sub);margin-top:3px}
+.kpi-n{font-size:10.5px;color:#8C95A4;margin-top:4px}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:12.5px}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--bg);font-weight:600;color:#39414F}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.cols3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.card{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:13px 15px}
+.card h4{font-size:13.5px;margin-bottom:5px}
+.card p{font-size:12px;color:var(--sub)}
+.tag{
+  display:inline-block;font-size:10.5px;padding:1.5px 8px;border-radius:9px;
+  background:#EAF6F7;color:#0E7F8C;margin:0 4px 4px 0
+}
+.tag.h{background:#F8EAE6;color:#8E3625}
+.tag.g{background:#EAF5EE;color:#2F7A4C}
+.tag.w{background:#FBF1E2;color:#96601A}
+.note{
+  font-size:12px;color:#6A5024;background:#FDF6E8;border-left:3px solid var(--warn);
+  border-radius:0 8px 8px 0;padding:10px 13px;margin:14px 0
+}
+.fig{margin:14px 0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.fig img{width:100%;display:block}
+.fig figcaption{font-size:11.5px;color:var(--sub);padding:7px 12px;background:var(--bg)}
+.bar{height:9px;border-radius:5px;background:var(--line);overflow:hidden}
+.bar>span{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:11.5px;color:var(--sub);margin-top:8px}
+.legend i{width:11px;height:11px;border-radius:3px;display:inline-block;margin-right:5px;
+  vertical-align:-1px}
+footer{color:#8C95A4;font-size:11.5px;text-align:center;margin-top:26px;line-height:1.9}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="masthead">
+    <h1>京张智带 · The Learning Line</h1>
+    <div class="sub">百年京张 AI 创新带城市设计开源征集 · 视觉成果板（13 板）</div>
+    <div class="rule"></div>
+    <div class="meta">协同研究 43.60 km² ｜ 总体设计 11.40 km² ｜ 重点设计 3.68 km²　·　几何交换 EPSG:4326，量算 EPSG:4548　·　全部数值由 metrics.json 生成，离线可读</div>
+  </div>
+  <nav class="toc">
+    <a href="#v1-cover">01 封面与总体概念</a>
+    <a href="#v2-identity">02 命名与视觉识别</a>
+    <a href="#v3-structure">03 三区两翼结构图</a>
+    <a href="#v4-region">04 区域协同关系</a>
+    <a href="#v5-ecosystem">05 AI 创新生态图谱</a>
+    <a href="#v6-benchmark">06 全球对标</a>
+    <a href="#v7-scenarios">07 AI 场景卡矩阵</a>
+    <a href="#v8-publicspace">08 遗址公园公共空间</a>
+    <a href="#v9-landmarks">09 朝圣地标与组件库</a>
+    <a href="#v10-culture">10 文化叙事与导视</a>
+    <a href="#v11-operation">11 活动体系与长期运营</a>
+    <a href="#v12-metrics">12 指标与证据</a>
+    <a href="#v13-compliance">13 合规、假设与自检</a>
+  </nav>
+  <section class="board" id="v1-cover">
+    <header class="bh">
+      <div class="bno">01</div>
+      <div class="bt"><h2>封面与总体概念</h2><p>Cover and Overall Concept</p></div>
+      <div class="bbrand">京张智带 · The Learning Line</div>
+    </header>
+    <div class="body">
+      <p class="lead">把<b>百年京张</b>这条曾经切开城市的铁路，重新变成一条<b>持续学习的线</b>：空间载体是 9.7 km 连续贯通的遗址公园，运行机制是 14 张可更新、可退出的场景卡，边界纪律是 5 项如实登记的数据缺口。</p>
+      <div class="kpis">
+      <div class="kpi" data-metric="site_area_official_sqm" data-value="11400000.000000">
+        <div class="kpi-v">11.40<span class="kpi-u">km²</span></div>
+        <div class="kpi-l">总体设计范围</div>
+        <div class="kpi-n">原样采用主办方临时边界</div>
+      </div>
+      <div class="kpi" data-metric="research_area_official_sqm" data-value="43600000.000000">
+        <div class="kpi-v">43.60<span class="kpi-u">km²</span></div>
+        <div class="kpi-l">协同研究范围</div>
+      </div>
+      <div class="kpi" data-metric="key_area_official_sqm" data-value="3684000.000000">
+        <div class="kpi-v">3.68<span class="kpi-u">km²</span></div>
+        <div class="kpi-l">重点设计范围</div>
+        <div class="kpi-n">三处，占总体 32.4%</div>
+      </div>
+      <div class="kpi" data-metric="heritage_park_length_m" data-value="9665.200000">
+        <div class="kpi-v">9.7<span class="kpi-u">km</span></div>
+        <div class="kpi-l">遗址公园主脊</div>
+        <div class="kpi-n">连续不断线</div>
+      </div>
+      <div class="kpi" data-metric="scenario_node_count" data-value="14.000000">
+        <div class="kpi-v">14<span class="kpi-u">张</span></div>
+        <div class="kpi-l">AI 场景卡</div>
+        <div class="kpi-n">人工复核覆盖 100.0%</div>
+      </div>
+      </div>
+      <figure class="fig">
+        <img src="../assets/figures/site-overview.png" alt="总体范围与三区两翼结构">
+        <figcaption>图 1　总体范围与三区两翼结构（由 geometry/ 图层直接绘制）</figcaption>
+      </figure>
+      <div class="note"><b>边界声明</b>：本板全部内容为开放共创建议，不替代正式规划、不构成政府审定结论；不给出容积率、限高、密度、红线、拆改留、桥隧与地下空间、市政容量、权属与投资等法定或工程结论。</div>
+    </div>
+  </section>
+  <section class="board" id="v2-identity">
+    <header class="bh">
+      <div class="bno">02</div>
+      <div class="bt"><h2>命名与视觉识别</h2><p>Naming and Visual Identity</p></div>
+      <div class="bbrand">京张智带 · The Learning Line</div>
+    </header>
+    <div class="body">
+      <p class="lead">识别系统的母题是<b>钢轨接缝</b>：两段各自独立、却彼此传力——这正是遗产走廊与创新地带应有的关系。命名系统只有一条规则：<b>不懂 AI 的居民也能用得上这个名字</b>。</p>
+      <div class="cols">
+        <div>
+          <table>
+            <tr><th>层级</th><th>命名</th><th>依据</th></tr>
+            <tr><td>整带</td><td>京张智带 / The Learning Line</td><td>线在学习，城市随之学习</td></tr>
+            <tr><td>主脊</td><td>遗址公园绿道</td><td>9.7 km 连续贯通</td></tr>
+            <tr><td>重点区 A</td><td>众智园加速区</td><td>192.9 ha</td></tr>
+            <tr><td>重点区 B</td><td>AI 原点社区</td><td>104.3 ha</td></tr>
+            <tr><td>重点区 C</td><td>大钟寺集聚区</td><td>72.0 ha</td></tr>
+          </table>
+          <p style="font-size:12px;color:#5A6475">刻意禁用：AI 谷、智慧城市示范区、元宇宙园区，以及任何五年内会显得过时的词。</p>
+        </div>
+        <div>
+          <table>
+            <tr><th>角色</th><th>色值</th><th>用途</th></tr>
+            <tr><td><i style="display:inline-block;width:11px;height:11px;background:#A6412E;border-radius:3px"></i> 遗产红棕</td><td>#A6412E</td><td>铁路遗存、历史层</td></tr>
+            <tr><td><i style="display:inline-block;width:11px;height:11px;background:#16A6B6;border-radius:3px"></i> 学习青</td><td>#16A6B6</td><td>科研用地、AI 设施</td></tr>
+            <tr><td><i style="display:inline-block;width:11px;height:11px;background:#4FA86A;border-radius:3px"></i> 生活绿</td><td>#4FA86A</td><td>公园绿地、连续主脊</td></tr>
+            <tr><td><i style="display:inline-block;width:11px;height:11px;background:#DDDDE3;border-radius:3px"></i> 留白灰</td><td>#DDDDE3</td><td>留白用地，2.3%</td></tr>
+            <tr><td><i style="display:inline-block;width:11px;height:11px;background:#1F2329;border-radius:3px"></i> 墨</td><td>#1F2329</td><td>文字与结构线</td></tr>
+          </table>
+          <p style="font-size:12px;color:#5A6475">字体 Noto Sans CJK，本板不引用任何远程字体与脚本，断网状态下可完整审阅。</p>
+        </div>
+      </div>
+      <div class="kpis">
+      <div class="kpi" data-metric="land_use_area_16_sqm" data-value="266662.200000">
+        <div class="kpi-v">26.7<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">留白用地</div>
+        <div class="kpi-n">占比 2.3%</div>
+      </div>
+      <div class="kpi" data-metric="land_use_ratio_16" data-value="0.023365">
+        <div class="kpi-v">2.3%<span class="kpi-u"></span></div>
+        <div class="kpi-l">留白占比</div>
+        <div class="kpi-n">可逆建造</div>
+      </div>
+      </div>
+    </div>
+  </section>
+  <section class="board" id="v3-structure">
+    <header class="bh">
+      <div class="bno">03</div>
+      <div class="bt"><h2>三区两翼结构图</h2><p>Three Areas + Two Wings Structure</p></div>
+      <div class="bbrand">京张智带 · The Learning Line</div>
+    </header>
+    <div class="body">
+      <p class="lead">空间结构读作<b>“一脊三区两翼”</b>：一条 9.7 km 的遗址公园主脊把 11.40 km² 总体设计范围串成整体，三处重点设计范围 368.4 ha 承担不同的学习任务，两翼把中关村的科技服务能力与小月河的真实生活场景接进来。</p>
+      <figure class="fig">
+        <img src="../assets/figures/key-areas.png" alt="三处重点设计范围">
+        <figcaption>图 2　三处重点设计范围与主脊关系（geometry/key_areas.geojson）</figcaption>
+      </figure>
+      <table>
+        <tr><th>单元</th><th>命名</th><th class="n">面积 (ha)</th><th>学习任务</th></tr>
+        <tr><td>重点区 A</td><td>众智园加速区</td><td class="n" data-metric="key_area_001_recomputed_sqm" data-value="1929201.900000">192.9</td><td>大装置与验证工场：把实验室成果推到可复现</td></tr>
+        <tr><td>重点区 B</td><td>AI 原点社区</td><td class="n" data-metric="key_area_002_recomputed_sqm" data-value="1043236.900000">104.3</td><td>算力、人才与开源社群：把人留下来</td></tr>
+        <tr><td>重点区 C</td><td>大钟寺集聚区</td><td class="n" data-metric="key_area_003_recomputed_sqm" data-value="720454.200000">72.0</td><td>存量场站转型与消费级验证：把产品交给市民</td></tr>
+        <tr><td>西翼</td><td>中关村科技服务翼（带内承载段）</td><td class="n">225.9</td><td>科技服务、法务与融资对接</td></tr>
+        <tr><td>东翼</td><td>小月河场景赋能翼（带内承载段）</td><td class="n">270.6</td><td>真实城市场景与居民用户</td></tr>
+      </table>
+      <div class="kpis">
+      <div class="kpi" data-metric="key_area_recomputed_sqm" data-value="3692893.000000">
+        <div class="kpi-v">369.3<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">重点区合计</div>
+        <div class="kpi-n">官方 368.4 ha，偏差来自边界重算</div>
+      </div>
+      <div class="kpi" data-metric="key_area_share_of_site_ratio" data-value="0.323574">
+        <div class="kpi-v">32.4%<span class="kpi-u"></span></div>
+        <div class="kpi-l">占总体比例</div>
+        <div class="kpi-n">三处合计</div>
+      </div>
+      <div class="kpi" data-metric="research_area_recomputed_sqm" data-value="43609232.565552">
+        <div class="kpi-v">43.61<span class="kpi-u">km²</span></div>
+        <div class="kpi-l">协同研究范围</div>
+        <div class="kpi-n">重算值</div>
+      </div>
+      <div class="kpi" data-metric="site_area_deviation_ratio" data-value="0.001125">
+        <div class="kpi-v">0.1%<span class="kpi-u"></span></div>
+        <div class="kpi-l">边界偏差</div>
+        <div class="kpi-n">重算与官方口径之差</div>
+      </div>
+      </div>
+      <div class="note">三处重点区不是三个孤立园区，而是同一条学习回路的三个工位：A 出成果、B 出人和算力、C 出真实反馈。任何一处停摆，回路即断。</div>
+    </div>
+  </section>
+  <section class="board" id="v4-region">
+    <header class="bh">
+      <div class="bno">04</div>
+      <div class="bt"><h2>区域协同关系</h2><p>Regional Synergy</p></div>
+      <div class="bbrand">京张智带 · The Learning Line</div>
+    </header>
+    <div class="body">
+      <p class="lead">这条带不是自足单元，它的价值在于<b>把三个已有的强磁极连成一条可走通的线</b>：中关村的科技服务、高校院所的知识供给、小月河沿线的真实生活场景。协同研究范围 43.60 km² 是判断“外部依赖是否成立”的观察窗，而设计动作只落在 11.40 km² 的总体设计范围内。</p>
+      <table>
+        <tr><th>协同对象</th><th>带内接口</th><th>输入</th><th>输出</th></tr>
+        <tr><td>中关村科学城核心区</td><td>西翼承载段 225.9 ha</td><td>科技服务、知识产权、融资</td><td>可验证的场景与测试许可</td></tr>
+        <tr><td>清华、北大等高校院所</td><td>原点社区 104.3 ha</td><td>人才、开源项目、基础研究</td><td>低成本算力与中试场地</td></tr>
+        <tr><td>小月河沿线生活片区</td><td>东翼承载段 270.6 ha</td><td>真实用户与运营数据</td><td>公共服务改善与就业</td></tr>
+        <tr><td>京张高铁 / 城市轨道</td><td>9.7 km 主脊 + 站点门户</td><td>区域可达性</td><td>遗址公园的日常使用人群</td></tr>
+        <tr><td>张家口方向</td><td>大装置与验证工场</td><td>绿电与算力协同的可能性</td><td>验证需求外溢</td></tr>
+      </table>
+      <div class="kpis">
+      <div class="kpi" data-metric="research_area_official_sqm" data-value="43600000.000000">
+        <div class="kpi-v">43.60<span class="kpi-u">km²</span></div>
+        <div class="kpi-l">协同研究范围</div>
+        <div class="kpi-n">只研究、不设计</div>
+      </div>
+      <div class="kpi" data-metric="research_area_recomputed_sqm" data-value="43609232.565552">
+        <div class="kpi-v">43.61<span class="kpi-u">km²</span></div>
+        <div class="kpi-l">研究范围重算</div>
+        <div class="kpi-n">EPSG:4548</div>
+      </div>
+      <div class="kpi" data-metric="ew_reconnection_count" data-value="7.000000">
+        <div class="kpi-v">7<span class="kpi-u">处</span></div>
+        <div class="kpi-l">东西向再连接</div>
+        <div class="kpi-n">跨越铁路廊道</div>
+      </div>
+      <div class="kpi" data-metric="ew_new_road_count" data-value="5.000000">
+        <div class="kpi-v">5<span class="kpi-u">处</span></div>
+        <div class="kpi-l">其中新增通道</div>
+        <div class="kpi-n">概念示意，不含桥隧工程结论</div>
+      </div>
+      </div>
+      <div class="note">跨越铁路廊道的 7 处再连接中，5 处为新增通道建议。本包只给出位置与必要性判断，<b>不给出桥隧形式、净空与工程可行性结论</b>——这些需要专项论证。</div>
+    </div>
+  </section>
+  <section class="board" id="v5-ecosystem">
+    <header class="bh">
+      <div class="bno">05</div>
+      <div class="bt"><h2>AI 创新生态图谱</h2><p>AI Innovation Ecosystem Map</p></div>
+      <div class="bbrand">京张智带 · The Learning Line</div>
+    </header>
+    <div class="body">
+      <p class="lead">创新生态按<b>六层</b>组织，每一层都必须在空间上找得到落点，否则就只是 PPT 上的箭头。5 个 AI 服务功能区合计 668.1 ha，占总体设计范围 58.5%。</p>
+      <div class="cols">
+        <div>
+          <table>
+            <tr><th>层</th><th>内容</th><th>空间落点</th></tr>
+            <tr><td>L1</td><td>算力、数据集、评测环境、能源接入</td><td>算力与数据要素服务区 + 留白用地预留</td></tr>
+            <tr><td>L2</td><td>高校院所、新型研发机构、开源社区</td><td>众智园加速区 + 原点社区</td></tr>
+            <tr><td>L3</td><td>中试、验证、标准与检测</td><td>中试验证与开放测试服务区</td></tr>
+            <tr><td>L4</td><td>初创企业、成长期企业、产业配套</td><td>西翼科技服务承载段 + 存量楼宇更新地块</td></tr>
+            <tr><td>L5</td><td>真实城市场景、居民用户、运营反馈</td><td>东翼场景赋能承载段 + 14 张场景卡</td></tr>
+            <tr><td>L6</td><td>伦理审查、数据合规、公众参与</td><td>北五环门户治理对话中心 + 遗址公园公共界面</td></tr>
+          </table>
+        </div>
+        <div>
+          <table>
+            <tr><th>服务区</th><th class="n">面积 (ha)</th><th>主要服务对象</th></tr>
+            <tr><td>算力与数据要素服务区</td><td class="n">31.7</td><td>L3 模型团队、L5 中试团队</td></tr>
+            <tr><td>中试验证与开放测试服务区</td><td class="n">70.5</td><td>硬件与具身智能团队</td></tr>
+            <tr><td>人才与生活服务区</td><td class="n">69.4</td><td>全体从业者与家属</td></tr>
+            <tr><td>中关村科技服务翼（带内承载段）</td><td class="n">225.9</td><td>初创与成长期企业</td></tr>
+            <tr><td>小月河场景赋能翼（带内承载段）</td><td class="n">270.6</td><td>需要真实验证的产品团队</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="kpis">
+      <div class="kpi" data-metric="ai_service_zone_count" data-value="5.000000">
+        <div class="kpi-v">5<span class="kpi-u">个</span></div>
+        <div class="kpi-l">AI 服务功能区</div>
+      </div>
+      <div class="kpi" data-metric="ai_service_zone_area_sqm" data-value="6680568.300000">
+        <div class="kpi-v">668.1<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">服务区面积</div>
+      </div>
+      <div class="kpi" data-metric="ai_service_zone_ratio" data-value="0.585356">
+        <div class="kpi-v">58.5%<span class="kpi-u"></span></div>
+        <div class="kpi-l">占总体比例</div>
+      </div>
+      <div class="kpi" data-metric="land_use_area_0802_sqm" data-value="2152590.000000">
+        <div class="kpi-v">215.3<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">科研用地</div>
+        <div class="kpi-n">占比 18.9%</div>
+      </div>
+      <div class="kpi" data-metric="research_land_share_of_developable_ratio" data-value="0.290924">
+        <div class="kpi-v">29.1%<span class="kpi-u"></span></div>
+        <div class="kpi-l">科研占可建设用地</div>
+        <div class="kpi-n">生态成色的底线指标</div>
+      </div>
+      </div>
+      <div class="note">生态是否成立，看的不是园区数量，而是<b>三个流量</b>：人的流量（能否步行到达）、算力的流量（能否按小时买到）、反馈的流量（失败能否被记录并回到设计）。三者共同刻画“这条线是否还在学习”。</div>
+    </div>
+  </section>
+  <section class="board" id="v6-benchmark">
+    <header class="bh">
+      <div class="bno">06</div>
+      <div class="bt"><h2>全球对标</h2><p>Global Benchmarks</p></div>
+      <div class="bbrand">京张智带 · The Learning Line</div>
+    </header>
+    <div class="body">
+      <p class="lead">8 个对标案例被选中，不是因为它们“成功”，而是因为它们各自解决了本场地必然会遇到的一个具体问题。每条经验都附带<b>不可直接照搬的理由</b>——这比经验本身更重要。</p>
+      <table>
+        <tr><th>编号</th><th>案例</th><th>做了什么</th><th>对本场地的用法与限度</th><th>来源</th></tr>
+        <tr><td>B-01</td><td><b>Station F（巴黎）</b></td><td>1927 年铁路货运站 → 全球最大单体创业园区，单一屋顶下集齐孵化、投资、政务与生活</td><td>支撑本方案“把铁路遗存转为创新载体”的基本判断，大钟寺货运场站单元采用同一逻辑</td><td style="font-size:11px;color:#8C95A4">SRC-STATIONF</td></tr>
+        <tr><td>B-02</td><td><b>one-north（新加坡）</b></td><td>200 ha 分期二十年，功能配置持续调整，始终保留未定义地块</td><td>支撑留白用地与场景单元退出机制的设计</td><td style="font-size:11px;color:#8C95A4">SRC-ONENORTH</td></tr>
+        <tr><td>B-03</td><td><b>Kendall Square（波士顿）</b></td><td>大学—企业—医院步行 10 分钟内的高密度混合，偶遇率是核心资产</td><td>支撑三区两翼的紧凑布局与步行接入口数量控制</td><td style="font-size:11px;color:#8C95A4">SRC-KENDALL</td></tr>
+        <tr><td>B-04</td><td><b>King's Cross Knowledge Quarter（伦敦）</b></td><td>铁路棕地整体更新，公共空间先行、机构随后进驻，遗产构筑物全部保留再利用</td><td>支撑“公共空间先行”的分期策略与遗产构筑物再利用原则</td><td style="font-size:11px;color:#8C95A4">SRC-KINGSCROSS</td></tr>
+        <tr><td>B-05</td><td><b>The High Line（纽约）</b></td><td>废弃高架铁路转线性公园，靠常年活动编排维持活力，而非一次性建成</td><td>支撑遗址公园主脊的活动编排与长期运营机制</td><td style="font-size:11px;color:#8C95A4">SRC-HIGHLINE</td></tr>
+        <tr><td>B-06</td><td><b>泛加拿大人工智能战略 / AI 三角区</b></td><td>多中心分工（蒙特利尔—多伦多—埃德蒙顿），各有侧重、不重复建设</td><td>支撑与未来科学城、怀柔科学城、经开区的错位分工表</td><td style="font-size:11px;color:#8C95A4">SRC-CANADA</td></tr>
+        <tr><td>B-07</td><td><b>上海张江人工智能岛 / 张江科学城</b></td><td>AI 应用场景先行开放，以场景牵引企业集聚，形成可复制的场景清单制度</td><td>支撑场景卡制度与场景准入清单的写法</td><td style="font-size:11px;color:#8C95A4">SRC-ZHANGJIANG</td></tr>
+        <tr><td>B-08</td><td><b>河套深港科技创新合作区</b></td><td>跨行政主体的数据、人员与设备便利化通道，用制度设计而非物理扩张换效率</td><td>支撑跨区域算力与数据协同接口的预留</td><td style="font-size:11px;color:#8C95A4">SRC-HETAO</td></tr>
+      </table>
+      <div class="note">对标的边界：以上案例的用地强度、产权结构与审批制度与本场地不同，其容积率、密度与限高数据<b>不作为本方案的指标依据</b>；本包相关法定控制指标一律登记为 unknown（见第 13 板）。</div>
+    </div>
+  </section>
+  <section class="board" id="v7-scenarios">
+    <header class="bh">
+      <div class="bno">07</div>
+      <div class="bt"><h2>AI 场景卡矩阵</h2><p>AI Scenario Card Matrix</p></div>
+      <div class="bbrand">京张智带 · The Learning Line</div>
+    </header>
+    <div class="body">
+      <p class="lead">14 张<b>AI 场景卡</b>构成这条线的运行机制。每张卡都写明：谁在用、解决什么痛点、占多大空间、采什么数据、<b>人工在哪一步复核</b>、什么条件下退出。人工复核覆盖率 100.0%——没有一张卡可以在无人复核的情况下产生对居民有约束力的结果。</p>
+      <div class="kpis">
+      <div class="kpi" data-metric="scenario_node_count" data-value="14.000000">
+        <div class="kpi-v">14<span class="kpi-u">张</span></div>
+        <div class="kpi-l">场景卡</div>
+        <div class="kpi-n">geometry/scenario_nodes.geojson</div>
+      </div>
+      <div class="kpi" data-metric="scenario_node_human_review_ratio" data-value="1.000000">
+        <div class="kpi-v">100.0%<span class="kpi-u"></span></div>
+        <div class="kpi-l">人工复核覆盖</div>
+        <div class="kpi-n">无例外</div>
+      </div>
+      <div class="kpi" data-metric="ai_service_zone_count" data-value="5.000000">
+        <div class="kpi-v">5<span class="kpi-u">个</span></div>
+        <div class="kpi-l">承载服务区</div>
+      </div>
+      <div class="kpi" data-metric="phase_1_area_sqm" data-value="1763106.800000">
+        <div class="kpi-v">176.3<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">一期落地面积</div>
+        <div class="kpi-n">占 15.4%</div>
+      </div>
+      </div>
+      <table>
+        <tr><th>卡号</th><th>名称</th><th>片区</th><th>能力</th><th>期</th><th>人工复核环节</th><th>退出/降级条件</th></tr>
+        <tr><td>SC-01</td><td><b>西直门门户智能体政务驿站</b></td><td>大钟寺片区 / 西直门门户</td><td>智能体政务</td><td>PH-3</td><td>生成的办事清单须有人工窗口二次确认后方可作为依据</td><td>政策库版本号上墙，超期未更新自动降级为“仅指路”</td></tr>
+        <tr><td>SC-02</td><td><b>大钟寺 AI 消费体验街区</b></td><td>大钟寺 AI 产业聚集区</td><td>消费体验</td><td>PH-3</td><td>试销数据用于产品改进前须经商户与用户双向确认</td><td>展位使用权与试销义务绑定，连续三期不上新则收回</td></tr>
+        <tr><td>SC-03</td><td><b>大钟寺智能原生商务楼宇</b></td><td>大钟寺 AI 产业聚集区</td><td>楼宇运行</td><td>PH-3</td><td>涉及员工工作安排的调度建议必须由物业与用人单位人工确认</td><td>明确禁止输出个人在岗数据，仅按分区聚合</td></tr>
+        <tr><td>SC-04</td><td><b>北太平庄 AI 中试工场</b></td><td>北太平庄一带</td><td>中试制造</td><td>PH-2</td><td>质检判定结果须由工程师签署方可放行</td><td>排期公开、按小时计费，季度公示使用率</td></tr>
+        <tr><td>SC-05</td><td><b>蓟门桥智慧医养联合体</b></td><td>北太平庄 / 蓟门桥一带</td><td>健康照护</td><td>PH-2</td><td>任何预警必须由人工上门或电话核实后才触发响应，AI 不得直接调度救护</td><td>提供纯人工服务的等效路径，退出不影响原有服务</td></tr>
+        <tr><td>SC-06</td><td><b>知春路城市感知与数字孪生中枢</b></td><td>原点社区 / 知春路</td><td>感知与孪生</td><td>PH-1</td><td>仿真结论不得直接作为决策依据，须经专家评审与公众意见程序</td><td>以“外部开发者调用次数”而非“展示效果”作为考核口径</td></tr>
+        <tr><td>SC-07</td><td><b>原点社区开源开放算力平台</b></td><td>北京 AI 原点社区</td><td>开源算力</td><td>PH-1</td><td>配额分配规则公开，争议由社区委员会人工裁定</td><td>设单主体上限与季度轮换</td></tr>
+        <tr><td>SC-08</td><td><b>五道口具身智能测试街道</b></td><td>北京 AI 原点社区 / 五道口</td><td>具身智能</td><td>PH-1</td><td>现场安全员具备最高优先级的物理急停权</td><td>明确告知标识、可绕行路径、事故先行赔付机制</td></tr>
+        <tr><td>SC-09</td><td><b>五道口人才社区智能生活馆</b></td><td>五道口人才社区</td><td>生活服务</td><td>PH-1</td><td>涉及托育与安全的撮合必须有人工审核与资质核验</td><td>前 12 个月由运营方组织固定活动托底</td></tr>
+        <tr><td>SC-10</td><td><b>清华园车站 AI 记忆剧场</b></td><td>原点社区 / 清华园车站旧址</td><td>文化叙事</td><td>PH-1</td><td>所有历史内容须经史料核对，AI 生成部分必须显著标注“非史实复原”</td><td>建立史料白名单，生成内容分层标注并接受公众纠错</td></tr>
+        <tr><td>SC-11</td><td><b>东升自动驾驶接驳环线首末站</b></td><td>众智园 / 东升</td><td>智能交通</td><td>PH-2</td><td>驾驶位保留，全程可人工接管；调度异常由人工调度员介入</td><td>以“单位能耗人公里”而非“发车班次”考核</td></tr>
+        <tr><td>SC-12</td><td><b>小营低空物流起降枢纽</b></td><td>众智园 / 小营</td><td>低空物流</td><td>PH-2</td><td>每次起降须经地面人工放行，禁飞时段硬性执行</td><td>场地按普通物流与研发用途设计，低空为可选叠加</td></tr>
+        <tr><td>SC-13</td><td><b>众智园 AI 科学装置与验证工场</b></td><td>众智园 AI 自主创新加速区</td><td>科学装置</td><td>PH-2</td><td>评测报告须经第三方复核签署</td><td>标准制定引入多方委员会与公开评议</td></tr>
+        <tr><td>SC-14</td><td><b>北五环门户 AI 治理对话中心</b></td><td>众智园 / 北五环门户</td><td>治理对话</td><td>PH-2</td><td>所有合规意见均标注“非行政答复”，正式结论须走法定程序</td><td>明确自愿性质，咨询记录不作为审批依据</td></tr>
+      </table>
+      <div class="cols3">
+        <div class="card">
+          <h4>SC-01 西直门门户智能体政务驿站</h4>
+          <p><b>谁在用</b>：办事居民、初创企业负责人、外籍人员</p>
+          <p><b>痛点</b>：跨部门事项要跑多个窗口，政策条文读不懂、找不全</p>
+          <p><b>空间</b>：门户建筑首层 120—200 m²（概念）临街可视，配无障碍柜台与静音洽谈位</p>
+          <p><b>数据</b>：D1 排队与办理时长统计；不采集办事内容与身份影像</p>
+          <p><b>成效判据</b>：首次办结率、跑动次数、清单纠错次数</p>
+        </div>
+        <div class="card">
+          <h4>SC-02 大钟寺 AI 消费体验街区</h4>
+          <p><b>谁在用</b>：周边居民、到访者、AI 消费品牌</p>
+          <p><b>痛点</b>：AI 产品缺少可触摸、可比较的线下体验界面，发布即沉没</p>
+          <p><b>空间</b>：沿街连续商业界面，标准化展位模块 3 m×3 m，水电与网络预留</p>
+          <p><b>数据</b>：D1 客流计数与停留时长（去标识）；不采集人脸、不做客户画像追踪</p>
+          <p><b>成效判据</b>：试销产品数、复访率、街道空置率</p>
+        </div>
+        <div class="card">
+          <h4>SC-03 大钟寺智能原生商务楼宇</h4>
+          <p><b>谁在用</b>：楼宇业主、入驻企业、物业与运维人员</p>
+          <p><b>痛点</b>：存量商务楼宇能耗高、空间利用率低，改造成本回收周期长</p>
+          <p><b>空间</b>：既有楼宇改造，需增设分项计量与末端可控设备（概念）</p>
+          <p><b>数据</b>：D1 分区能耗与空间占用率；不采集工位级个人在岗时长</p>
+          <p><b>成效判据</b>：单位面积能耗、共享空间利用率、改造回收周期</p>
+        </div>
+        <div class="card">
+          <h4>SC-04 北太平庄 AI 中试工场</h4>
+          <p><b>谁在用</b>：硬件创业团队、高校实验室、供应链服务商</p>
+          <p><b>痛点</b>：从样机到小批量之间缺少可负担的中试空间与设备</p>
+          <p><b>空间</b>：老厂房大跨空间，柱距与层高满足设备吊装（概念），配备危化与噪声隔离</p>
+          <p><b>数据</b>：D2 试制过程数据仅在项目沙盒内可用，不出园区</p>
+          <p><b>成效判据</b>：试制批次数、一次通过率、平均试制周期</p>
+        </div>
+        <div class="card">
+          <h4>SC-05 蓟门桥智慧医养联合体</h4>
+          <p><b>谁在用</b>：社区长者、家属、社区医生与护理人员</p>
+          <p><b>痛点</b>：长者独居风险难以及时发现，家属与社区之间信息不通</p>
+          <p><b>空间</b>：社区级设施，步行 5 分钟可达，配日间照料与康复空间</p>
+          <p><b>数据</b>：D2 仅对签署知情同意的住户开启；D3 严禁住宅内部影像采集</p>
+          <p><b>成效判据</b>：预警准确率、误报率、响应时长、退出率</p>
+        </div>
+        <div class="card">
+          <h4>SC-06 知春路城市感知与数字孪生中枢</h4>
+          <p><b>谁在用</b>：规划与管理部门、研究者、开发者</p>
+          <p><b>痛点</b>：城市运行数据分散在各系统，方案比选缺少共同的事实基础</p>
+          <p><b>空间</b>：中枢空间需大屏协同室与开放旁听席，向公众定期开放</p>
+          <p><b>数据</b>：D1 为主，D2 需申请；不接入任何个体身份数据</p>
+          <p><b>成效判据</b>：开放数据集数量、外部调用次数、公众旁听场次</p>
+        </div>
+      </div>
+      <div class="note">场景卡是<b>可退出</b>的：连续两个评估周期未达成效判据、或触发风险条款，即降级为人工服务并释放空间。空间设计据此按“可逆建造”组织，留白用地 26.7 ha（2.3%）是这一机制的物理保障。</div>
+    </div>
+  </section>
+  <section class="board" id="v8-publicspace">
+    <header class="bh">
+      <div class="bno">08</div>
+      <div class="bt"><h2>遗址公园公共空间</h2><p>Heritage Park Public Space</p></div>
+      <div class="bbrand">京张智带 · The Learning Line</div>
+    </header>
+    <div class="body">
+      <p class="lead">遗址公园主脊 <b>9.7 km 连续不断线</b>，是全案唯一不可让渡的空间承诺。绿地与开放空间合计 214.9 ha，占总体设计范围 18.8%；广场与公共空间 32.3 ha 分 5 处锚在主脊上。</p>
+      <figure class="fig">
+        <img src="../assets/figures/mobility-bluegreen.png" alt="慢行与蓝绿系统">
+        <figcaption>图 3　慢行网络与蓝绿系统（geometry/roads.geojson、green_space.geojson、public_space.geojson）</figcaption>
+      </figure>
+      <div class="kpis">
+      <div class="kpi" data-metric="heritage_park_length_m" data-value="9665.200000">
+        <div class="kpi-v">9.7<span class="kpi-u">km</span></div>
+        <div class="kpi-l">主脊长度</div>
+        <div class="kpi-n">绿道等级，全线贯通</div>
+      </div>
+      <div class="kpi" data-metric="green_open_space_area_sqm" data-value="2149252.100000">
+        <div class="kpi-v">214.9<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">绿地与开放空间</div>
+        <div class="kpi-n">占 18.8%</div>
+      </div>
+      <div class="kpi" data-metric="green_space_layer_area_sqm" data-value="1826055.200000">
+        <div class="kpi-v">182.6<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">绿地图层</div>
+        <div class="kpi-n">33 个要素</div>
+      </div>
+      <div class="kpi" data-metric="public_space_area_sqm" data-value="323196.900000">
+        <div class="kpi-v">32.3<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">广场与公共空间</div>
+        <div class="kpi-n">5 处</div>
+      </div>
+      <div class="kpi" data-metric="road_length_pedestrian_m" data-value="3970.400000">
+        <div class="kpi-v">4.0<span class="kpi-u">km</span></div>
+        <div class="kpi-l">步行专用道</div>
+      </div>
+      <div class="kpi" data-metric="pedestrian_access_count" data-value="22.000000">
+        <div class="kpi-v">22<span class="kpi-u">处</span></div>
+        <div class="kpi-l">步行接入点</div>
+        <div class="kpi-n">主脊与街区衔接</div>
+      </div>
+      </div>
+      <table>
+        <tr><th>等级</th><th class="n">长度 (km)</th><th>角色</th></tr>
+        <tr><td>主干路</td><td class="n" data-metric="road_length_arterial_m" data-value="19330.600000">19.3</td><td>区域联系，不穿越主脊</td></tr>
+        <tr><td>次干路</td><td class="n" data-metric="road_length_secondary_m" data-value="25053.600000">25.1</td><td>片区骨架</td></tr>
+        <tr><td>支路</td><td class="n" data-metric="road_length_branch_m" data-value="54678.600000">54.7</td><td>小街区密路网的主体</td></tr>
+        <tr><td>街区内部通道</td><td class="n" data-metric="road_length_local_access_m" data-value="4827.000000">4.8</td><td>不计入路网密度口径</td></tr>
+        <tr><td>步行专用</td><td class="n" data-metric="road_length_pedestrian_m" data-value="3970.400000">4.0</td><td>主脊横向接入</td></tr>
+        <tr><td>绿道</td><td class="n" data-metric="road_length_greenway_m" data-value="9665.200000">9.7</td><td>遗址公园主脊本体</td></tr>
+        <tr><td><b>合计</b></td><td class="n" data-metric="road_centreline_length_total_m" data-value="117525.400000"><b>117.5</b></td><td>54 条中心线要素</td></tr>
+      </table>
+      <div class="kpis">
+      <div class="kpi" data-metric="road_network_density_km_per_km2" data-value="8.679954">
+        <div class="kpi-v">8.68<span class="kpi-u">km/km²</span></div>
+        <div class="kpi-l">路网密度</div>
+        <div class="kpi-n">主+次+支，GB/T 51328 口径</div>
+      </div>
+      <div class="kpi" data-metric="road_network_density_target_km_per_km2" data-value="8.000000">
+        <div class="kpi-v">8.0<span class="kpi-u">km/km²</span></div>
+        <div class="kpi-l">目标值</div>
+        <div class="kpi-n">小街区密路网</div>
+      </div>
+      <div class="kpi" data-metric="road_network_density_attainment_ratio" data-value="1.084994">
+        <div class="kpi-v">108.5%<span class="kpi-u"></span></div>
+        <div class="kpi-l">达成率</div>
+      </div>
+      <div class="kpi" data-metric="road_area_sqm" data-value="1597791.000000">
+        <div class="kpi-v">159.8<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">道路用地</div>
+        <div class="kpi-n">占 14.0%</div>
+      </div>
+      </div>
+      <div class="note">路网密度为<b>几何口径核算</b>，不等于交通性能结论。本包未做交通量预测、路口通行能力与服务水平评价，相关结论登记为 unknown。人均绿地指标同样为 unknown——常住人口数据缺失（见第 13 板）。</div>
+    </div>
+  </section>
+  <section class="board" id="v9-landmarks">
+    <header class="bh">
+      <div class="bno">09</div>
+      <div class="bt"><h2>朝圣地标与组件库</h2><p>Landmarks and Component Library</p></div>
+      <div class="bbrand">京张智带 · The Learning Line</div>
+    </header>
+    <div class="body">
+      <p class="lead">“朝圣地标”不做单体雕塑，而做<b>一套可复制的构件</b>：同一套构件在 10 个存量更新地块（合计 137.9 ha）反复出现，让人在 9.7 km 主脊上任何一点都能认出“这是同一条线”。</p>
+      <div class="cols">
+        <div>
+          <table>
+            <tr><th>构件</th><th>做法</th><th>为什么可复制</th></tr>
+            <tr><td><b>轨缝地标柱</b></td><td>1.2 m 见方、高 4—6 m 的耐候钢柱，柱身刻里程与年份，柱脚嵌旧轨枕</td><td>标准件，可在任意节点复制，造价与工期可控</td></tr>
+            <tr><td><b>站台转译台阶</b></td><td>把原货运站台高差 0.9—1.2 m 转译为可坐可停的连续台阶</td><td>利用既有高差，不新增土方，遗存肌理自然显形</td></tr>
+            <tr><td><b>可逆构筑单元</b></td><td>6 m × 6 m 轻钢模块，螺栓连接、独立基础，可整体拆卸移位</td><td>对应场景卡的退出机制，留白用地上不做不可逆建造</td></tr>
+            <tr><td><b>开放数据牌</b></td><td>每个 AI 场景节点入口的实体铭牌：采什么数据、谁负责、如何关闭</td><td>统一模板，居民无需上网即可知情</td></tr>
+            <tr><td><b>夜间安全灯序</b></td><td>沿主脊 25 m 一组的低位灯具 + 紧急呼叫柱</td><td>同一间距规则贯穿全线，形成可识别的夜间节律</td></tr>
+            <tr><td><b>记忆铺装带</b></td><td>以旧轨枕间距（约 600 mm）为模数的铺装分缝</td><td>只改材料不改模数，任何标段施工都能对上</td></tr>
+          </table>
+        </div>
+        <div>
+          <table>
+            <tr><th>更新地块</th><th class="n">面积 (ha)</th><th>更新取向</th></tr>
+            <tr><td>西直门外大街门户存量楼宇更新</td><td class="n">15.4</td><td>门户形象与首层界面活化，保留主体结构，加建连廊与展示面</td></tr>
+            <tr><td>大钟寺货运场站存量用地转型</td><td class="n">15.7</td><td>货运场站记忆保留 + AI 消费体验街区，站台肌理转译为公共廊道</td></tr>
+            <tr><td>北太平庄老工业厂房更新</td><td class="n">16.9</td><td>厂房大跨空间改中试工场，柱网适配机器人测试与设备吊装</td></tr>
+            <tr><td>蓟门桥高校周边院落织补</td><td class="n">18.6</td><td>校园边界院落织补，补足学生与青年研究者的第三空间</td></tr>
+            <tr><td>知春路低效科研楼宇更新</td><td class="n">14.9</td><td>低效科研楼宇按“可切换实验室”标准更新，提高层高与荷载适应性</td></tr>
+            <tr><td>五道口混合街区更新</td><td class="n">12.4</td><td>混合街区小尺度更新，保留烟火气与低租金创业单元</td></tr>
+            <tr><td>清华园车站旧址周边环境整治</td><td class="n">12.3</td><td>旧址周边做减法：以环境整治与视线通廊为主，不新增体量</td></tr>
+            <tr><td>东升科技园存量扩容</td><td class="n">10.0</td><td>存量园区内部填充，优先补公共服务而非办公面积</td></tr>
+            <tr><td>小营低效仓储用地再开发</td><td class="n">10.0</td><td>低效仓储转低空物流与末端配送研发，保留大场地</td></tr>
+            <tr><td>北五环门户产业园更新</td><td class="n">11.6</td><td>门户产业园更新为治理对话与国际交流界面</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="kpis">
+      <div class="kpi" data-metric="parcel_count" data-value="10.000000">
+        <div class="kpi-v">10<span class="kpi-u">个</span></div>
+        <div class="kpi-l">存量更新地块</div>
+        <div class="kpi-n">geometry/parcels.geojson</div>
+      </div>
+      <div class="kpi" data-metric="parcel_area_sqm" data-value="1378662.900000">
+        <div class="kpi-v">137.9<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">地块合计</div>
+      </div>
+      <div class="kpi" data-metric="parcel_mean_area_sqm" data-value="137866.290000">
+        <div class="kpi-v">13.8<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">平均规模</div>
+        <div class="kpi-n">小尺度、可分期</div>
+      </div>
+      <div class="kpi" data-metric="building_footprint_area_sqm" data-value="1908965.100000">
+        <div class="kpi-v">190.9<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">概念建筑基底</div>
+        <div class="kpi-n">118 个体量</div>
+      </div>
+      <div class="kpi" data-metric="max_conceptual_storeys" data-value="11.000000">
+        <div class="kpi-v">11<span class="kpi-u">层</span></div>
+        <div class="kpi-l">概念最高层数</div>
+        <div class="kpi-n">示意值，非限高结论</div>
+      </div>
+      </div>
+      <div class="note">建筑体量为<b>概念示意</b>：由基底乘假定层数得到，用于校核结构合理性，<b>不构成限高、密度或容积率建议</b>。官方限高与密度上限在本包中为 unknown。</div>
+    </div>
+  </section>
+  <section class="board" id="v10-culture">
+    <header class="bh">
+      <div class="bno">10</div>
+      <div class="bt"><h2>文化叙事与导视</h2><p>Culture Narrative and Signage</p></div>
+      <div class="bbrand">京张智带 · The Learning Line</div>
+    </header>
+    <div class="body">
+      <p class="lead">叙事只有一句话：<b>“这条线一直在学新东西。”</b>1909 年学的是自主修铁路，今天学的是让机器与城市共处。文化用地 34.5 ha（3.0%）与 32.3 ha 广场共同承担这条叙事的物质载体。</p>
+      <div class="cols">
+        <div>
+          <table>
+            <tr><th>时间层</th><th>留下的东西</th><th>今天的用法</th></tr>
+            <tr><td><b>1909</b></td><td>京张铁路建成，中国人自主勘测设计的第一条干线铁路</td><td>清华园车站旧址周边做减法，以视线通廊与环境整治呈现原状</td></tr>
+            <tr><td><b>1950—1990</b></td><td>沿线货运场站、仓储与工业厂房，铁路把城市切成两半</td><td>大钟寺货运场站、北太平庄厂房转为消费体验与中试工场</td></tr>
+            <tr><td><b>1988—2010</b></td><td>中关村从电子一条街到科技园区，知识密度沿这条线积累</td><td>西翼承载段延续科技服务功能，不另起炉灶</td></tr>
+            <tr><td><b>2019</b></td><td>京张高铁通车，既有线入地，地面走廊被释放</td><td>释放出的线性空间成为 9.7 km 遗址公园主脊的物理基础</td></tr>
+            <tr><td><b>今天</b></td><td>AI 从实验室走向街道，需要真实城市作为学习对象</td><td>14 张场景卡把学习行为写进空间，并规定它如何退出</td></tr>
+            <tr><td><b>此后</b></td><td>无法预知的下一次技术更替</td><td>留白用地与可逆构筑单元为下一轮学习预留位置</td></tr>
+          </table>
+        </div>
+        <div>
+          <table>
+            <tr><th>导视层级</th><th>内容</th><th>规则</th></tr>
+            <tr><td><b>一级：线</b></td><td>“京张智带 / The Learning Line” 与里程</td><td>只出现在主脊入口与门户，全线不超过 12 处</td></tr>
+            <tr><td><b>二级：片区</b></td><td>三个重点区与两翼的名称、步行分钟数</td><td>以时间而非距离标注，步行 5/10/15 分钟三档</td></tr>
+            <tr><td><b>三级：节点</b></td><td>AI 场景节点铭牌：能力、责任人、数据说明、关闭方式</td><td>统一模板，中英文对照，含盲文与语音码</td></tr>
+            <tr><td><b>四级：史迹</b></td><td>铁路遗存点位的年份、原用途与现状说明</td><td>只陈述事实，不做价值判断，不使用宣传性形容词</td></tr>
+            <tr><td><b>零级：不设</b></td><td>不设置任何需要扫码才能获取基本信息的导视</td><td>信息平权：不携带智能手机也能完整使用这条线</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="kpis">
+      <div class="kpi" data-metric="land_use_area_0803_sqm" data-value="344893.600000">
+        <div class="kpi-v">34.5<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">文化用地</div>
+        <div class="kpi-n">占 3.0%</div>
+      </div>
+      <div class="kpi" data-metric="heritage_study_extent_area_sqm" data-value="1504572.800000">
+        <div class="kpi-v">150.5<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">遗存研究范围</div>
+        <div class="kpi-n">研究示意，非法定保护范围</div>
+      </div>
+      <div class="kpi" data-metric="land_use_area_0804_sqm" data-value="634905.800000">
+        <div class="kpi-v">63.5<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">教育用地</div>
+        <div class="kpi-n">占 5.6%</div>
+      </div>
+      <div class="kpi" data-metric="land_use_area_0805_sqm" data-value="264930.700000">
+        <div class="kpi-v">26.5<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">体育用地</div>
+        <div class="kpi-n">占 2.3%</div>
+      </div>
+      </div>
+      <div class="note"><b>遗存范围声明</b>：京张铁路遗存的文物保护范围与建设控制地带未获得官方数据，geometry/heritage_protection.geojson 中 150.5 ha 为<b>研究示意范围</b>，不得当作法定控制线使用（自检项 SC_HERITAGE_REDLINE_GAP）。</div>
+    </div>
+  </section>
+  <section class="board" id="v11-operation">
+    <header class="bh">
+      <div class="bno">11</div>
+      <div class="bt"><h2>活动体系与长期运营</h2><p>Event System and Operation</p></div>
+      <div class="bbrand">京张智带 · The Learning Line</div>
+    </header>
+    <div class="body">
+      <p class="lead">运营的核心不是活动数量，而是<b>反馈能否回到设计</b>。因此设置年度节律、6 个物理测试床与 8 类使用者画像，并把三期建设 176.3 ha / 243.7 ha / 626.4 ha 设计为<b>每期都可暂停</b>。</p>
+      <div class="kpis">
+      <div class="kpi" data-metric="phase_1_area_sqm" data-value="1763106.800000">
+        <div class="kpi-v">176.3<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">一期</div>
+        <div class="kpi-n">占 15.4%，主脊贯通优先</div>
+      </div>
+      <div class="kpi" data-metric="phase_2_area_sqm" data-value="2436748.800000">
+        <div class="kpi-v">243.7<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">二期</div>
+        <div class="kpi-n">占 21.4%</div>
+      </div>
+      <div class="kpi" data-metric="phase_3_area_sqm" data-value="6263583.800000">
+        <div class="kpi-v">626.4<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">三期</div>
+        <div class="kpi-n">占 54.9%</div>
+      </div>
+      <div class="kpi" data-metric="phasing_coverage_ratio" data-value="0.916814">
+        <div class="kpi-v">91.7%<span class="kpi-u"></span></div>
+        <div class="kpi-l">分期覆盖</div>
+        <div class="kpi-n">未覆盖部分为长期留白</div>
+      </div>
+      <div class="kpi" data-metric="phase_count" data-value="3.000000">
+        <div class="kpi-v">3<span class="kpi-u">期</span></div>
+        <div class="kpi-l">分期数</div>
+      </div>
+      </div>
+      <table>
+        <tr><th>测试床</th><th>验证什么</th><th>空间条件</th><th>准入</th><th>安全冗余</th></tr>
+        <tr><td><b>TB-01 具身智能测试街道</b></td><td>服务机器人、配送机器人在真实人流中的避障与交互</td><td>支路级封闭可控路段，人机分行冗余，路侧充电与回收点</td><td>年度批次准入，事故率超阈值即暂停</td><td>物理围栏 + 远程急停 + 现场安全员</td></tr>
+        <tr><td><b>TB-02 自动驾驶接驳环线</b></td><td>园区级低速接驳的调度、上下客与混行安全</td><td>环线专用道 + 站点候车区，站距 400—600 m（概念）</td><td>路段分级开放，先夜间后全天</td><td>驾驶位保留 + 全程可人工接管</td></tr>
+        <tr><td><b>TB-03 低空物流走廊</b></td><td>末端配送与应急物资投送的起降与噪声影响</td><td>小营节点预留起降场地与缓冲绿地</td><td>须经空域主管部门批准，本方案仅预留空间可能性</td><td>地面隔离区 + 噪声监测 + 禁飞时段</td></tr>
+        <tr><td><b>TB-04 智慧医养联合体</b></td><td>面向长者的健康监测、跌倒预警与陪伴机器人</td><td>蓟门桥节点，社区级设施与住宅步行可达</td><td>参与者知情同意，可随时退出</td><td>人工护理不可被替代，AI 仅作提示</td></tr>
+        <tr><td><b>TB-05 城市数字孪生沙盒</b></td><td>规划与运行方案的仿真推演、方案比选</td><td>知春路中枢，需大屏与协同工位</td><td>面向公众开放旁听席位</td><td>仿真结论不得直接作为决策依据，须专家复核</td></tr>
+        <tr><td><b>TB-06 开源开放算力平台</b></td><td>国产算力软硬件栈的兼容性与能效验证</td><td>原点社区，需独立供电与冷却条件（概念）</td><td>开源项目优先配额，季度轮换</td><td>算力调度日志可审计，不留存用户数据内容</td></tr>
+      </table>
+      <table>
+        <tr><th>画像</th><th>一天</th><th>需要什么</th><th>触达场景卡</th><th>包容性要求</th></tr>
+        <tr><td><b>P-01</b><br><span style="font-size:11px;color:#8C95A4">算法工程师 / 28 岁 / 租住五道口</span></td><td>步行 15 分钟到岗 → 午间沿主脊散步 → 傍晚 Meetup → 夜间用平台算力跑训练</td><td>低成本算力、可随时开会的第三空间、夜间安全的步行环境</td><td>SC-07 / SC-08 / SC-09</td><td>夜间照明与紧急呼叫覆盖</td></tr>
+        <tr><td><b>P-02</b><br><span style="font-size:11px;color:#8C95A4">硬件创业者 / 35 岁 / 团队 12 人</span></td><td>上午在中试工场调试 → 下午到测试街道跑实车 → 晚上到科技服务翼谈融资</td><td>可负担的中试场地、真实验证环境、一站式合规与融资服务</td><td>SC-04 / SC-08 / SC-14</td><td>货运与设备装卸的机动车可达性</td></tr>
+        <tr><td><b>P-03</b><br><span style="font-size:11px;color:#8C95A4">在读研究生 / 23 岁 / 高校宿舍</span></td><td>上课 → 到原点社区做课题 → 在共享自习位复习 → 骑行回宿舍</td><td>免费或低价的算力配额、可长时间停留的免费空间、安全骑行道</td><td>SC-07 / SC-09 / SC-10</td><td>自行车停放与连续骑行路权</td></tr>
+        <tr><td><b>P-04</b><br><span style="font-size:11px;color:#8C95A4">本地长者 / 74 岁 / 世居居民</span></td><td>清晨在遗址公园锻炼 → 上午到社区服务站 → 午后在树荫下与邻居闲坐</td><td>步行 5 分钟内的服务与休憩、清晰的实体标识、可用的人工窗口</td><td>SC-05 / SC-01</td><td>无障碍连续路径、休憩间距 ≤ 100 m、大字号实体标识</td></tr>
+        <tr><td><b>P-05</b><br><span style="font-size:11px;color:#8C95A4">通勤白领 / 32 岁 / 居住在带外</span></td><td>轨道到站 → 接驳到园区 → 午餐在沿街商业 → 傍晚接驳返程</td><td>可预期的接驳时间、换乘距离短、午间可用的餐饮与休息</td><td>SC-11 / SC-02 / SC-03</td><td>候车遮蔽与实时到站的多通道告知（含语音）</td></tr>
+        <tr><td><b>P-06</b><br><span style="font-size:11px;color:#8C95A4">带娃家庭 / 38 岁 / 两个孩子</span></td><td>周末到遗址公园 → 参观记忆剧场 → 在体验街区消费 → 使用临时托育</td><td>安全的儿童活动场地、母婴与托育设施、推车友好路径</td><td>SC-09 / SC-10 / SC-02</td><td>推车与轮椅同标准的坡道、儿童视线高度的标识</td></tr>
+        <tr><td><b>P-07</b><br><span style="font-size:11px;color:#8C95A4">外来访客 / 45 岁 / 国际同行</span></td><td>从门户进入 → 沿主脊参观 → 到治理对话中心交流 → 在体验街区购物</td><td>中英双语导视、清晰的参观线索、可预约的交流机制</td><td>SC-01 / SC-14 / SC-13</td><td>中英双语与图形化标识，不依赖手机 App</td></tr>
+        <tr><td><b>P-08</b><br><span style="font-size:11px;color:#8C95A4">环卫与运维工人 / 50 岁 / 一线作业</span></td><td>凌晨作业 → 上午在休息点轮班 → 全天维护智能组件与公共设施</td><td>有尊严的休息与储物空间、可维护的设备设计、明确的作业安全边界</td><td>SC-03 / SC-08</td><td>设备须可现场断电与手动复位，不得只能远程操作</td></tr>
+      </table>
+      <table>
+        <tr><th>年度节律</th><th>内容</th><th>产出</th></tr>
+        <tr><td><b>春 · 开箱周</b></td><td>上一年度全部场景卡的成效判据与失败记录公开发布</td><td>《场景卡年报》与退出名单</td></tr>
+        <tr><td><b>夏 · 测试季</b></td><td>测试床开放批次准入，具身智能与低空物流集中验证</td><td>安全事件台账与准入规则修订</td></tr>
+        <tr><td><b>秋 · 校城周</b></td><td>高校院所开放日，开源项目与城市需求对接</td><td>下一年度场景卡候选清单</td></tr>
+        <tr><td><b>冬 · 共议会</b></td><td>居民、企业、管理方就治理规则面对面协商</td><td>治理规则修订案与数据使用清单</td></tr>
+        <tr><td><b>常态 · 月度巡线</b></td><td>沿主脊步行巡查，记录空间使用与失效点</td><td>空间维护工单与设计反馈</td></tr>
+      </table>
+      <div class="note">“可以暂停”本身是这条学习线的组成部分——一个不能停下来的更新过程，本质上也无法学习。分期覆盖率 91.7%，其余为长期留白，不预设建设时序。</div>
+    </div>
+  </section>
+  <section class="board" id="v12-metrics">
+    <header class="bh">
+      <div class="bno">12</div>
+      <div class="bt"><h2>指标与证据</h2><p>Metrics and Evidence</p></div>
+      <div class="bbrand">京张智带 · The Learning Line</div>
+    </header>
+    <div class="body">
+      <p class="lead">全部数值来自 geometry/ 图层在 <b>EPSG:4548</b> 下的量算，并由 metrics.json 统一登记：共 107 项指标，其中 <b>96 项已知、11 项登记为 unknown</b>。本板每个数字都带 data-metric 标记，可与 metrics.json 逐项比对。</p>
+      <figure class="fig">
+        <img src="../assets/figures/land-use-structure.png" alt="用地结构">
+        <figcaption>图 4　用地结构（geometry/land_use.geojson，2023 版国土空间用地分类代码）</figcaption>
+      </figure>
+      <table>
+        <tr><th>代码</th><th>用地类别</th><th class="n">面积 (ha)</th><th class="n">占比</th><th>构成</th></tr>
+        <tr><td>0802</td><td>科研用地<br><span style="font-size:10.5px;color:#8C95A4">Scientific Research</span></td><td class="n" data-metric="land_use_area_0802_sqm" data-value="2152590.000000">215.3</td><td class="n" data-metric="land_use_ratio_0802" data-value="0.188611">18.9%</td><td><div class="bar"><span style="width:94.3%;background:#16A6B6"></span></div></td></tr>
+        <tr><td>0701</td><td>城镇住宅用地<br><span style="font-size:10.5px;color:#8C95A4">Urban Residential</span></td><td class="n" data-metric="land_use_area_0701_sqm" data-value="1819095.000000">181.9</td><td class="n" data-metric="land_use_ratio_0701" data-value="0.159390">15.9%</td><td><div class="bar"><span style="width:79.7%;background:#E8C9A0"></span></div></td></tr>
+        <tr><td>05</td><td>商业服务业用地<br><span style="font-size:10.5px;color:#8C95A4">Commercial and Business Service</span></td><td class="n" data-metric="land_use_area_05_sqm" data-value="1393111.800000">139.3</td><td class="n" data-metric="land_use_ratio_05" data-value="0.122065">12.2%</td><td><div class="bar"><span style="width:61.0%;background:#E8A87C"></span></div></td></tr>
+        <tr><td>1207</td><td>城镇村道路用地<br><span style="font-size:10.5px;color:#8C95A4">Urban Road</span></td><td class="n" data-metric="land_use_area_1207_sqm" data-value="1597791.000000">159.8</td><td class="n" data-metric="land_use_ratio_1207" data-value="0.140000">14.0%</td><td><div class="bar"><span style="width:70.0%;background:#C9CDD4"></span></div></td></tr>
+        <tr><td>1401</td><td>公园绿地<br><span style="font-size:10.5px;color:#8C95A4">Park Green Space</span></td><td class="n" data-metric="land_use_area_1401_sqm" data-value="1540734.100000">154.1</td><td class="n" data-metric="land_use_ratio_1401" data-value="0.135000">13.5%</td><td><div class="bar"><span style="width:67.5%;background:#4FA86A"></span></div></td></tr>
+        <tr><td>0804</td><td>教育用地<br><span style="font-size:10.5px;color:#8C95A4">Education</span></td><td class="n" data-metric="land_use_area_0804_sqm" data-value="634905.800000">63.5</td><td class="n" data-metric="land_use_ratio_0804" data-value="0.055631">5.6%</td><td><div class="bar"><span style="width:27.8%;background:#9BB7D4"></span></div></td></tr>
+        <tr><td>0702</td><td>城镇社区服务设施用地<br><span style="font-size:10.5px;color:#8C95A4">Community Service Facilities</span></td><td class="n" data-metric="land_use_area_0702_sqm" data-value="458766.700000">45.9</td><td class="n" data-metric="land_use_ratio_0702" data-value="0.040197">4.0%</td><td><div class="bar"><span style="width:20.1%;background:#F0D9B5"></span></div></td></tr>
+        <tr><td>1403</td><td>广场用地<br><span style="font-size:10.5px;color:#8C95A4">Public Square</span></td><td class="n" data-metric="land_use_area_1403_sqm" data-value="323196.900000">32.3</td><td class="n" data-metric="land_use_ratio_1403" data-value="0.028319">2.8%</td><td><div class="bar"><span style="width:14.2%;background:#BFD8B8"></span></div></td></tr>
+        <tr><td>0806</td><td>医疗卫生用地<br><span style="font-size:10.5px;color:#8C95A4">Healthcare</span></td><td class="n" data-metric="land_use_area_0806_sqm" data-value="330844.300000">33.1</td><td class="n" data-metric="land_use_ratio_0806" data-value="0.028989">2.9%</td><td><div class="bar"><span style="width:14.5%;background:#E8918C"></span></div></td></tr>
+        <tr><td>0803</td><td>文化用地<br><span style="font-size:10.5px;color:#8C95A4">Culture</span></td><td class="n" data-metric="land_use_area_0803_sqm" data-value="344893.600000">34.5</td><td class="n" data-metric="land_use_ratio_0803" data-value="0.030220">3.0%</td><td><div class="bar"><span style="width:15.1%;background:#C89BD4"></span></div></td></tr>
+        <tr><td>16</td><td>留白用地<br><span style="font-size:10.5px;color:#8C95A4">Reserved Land</span></td><td class="n" data-metric="land_use_area_16_sqm" data-value="266662.200000">26.7</td><td class="n" data-metric="land_use_ratio_16" data-value="0.023365">2.3%</td><td><div class="bar"><span style="width:11.7%;background:#DDDDE3"></span></div></td></tr>
+        <tr><td>1402</td><td>防护绿地<br><span style="font-size:10.5px;color:#8C95A4">Protective Green Belt</span></td><td class="n" data-metric="land_use_area_1402_sqm" data-value="285321.100000">28.5</td><td class="n" data-metric="land_use_ratio_1402" data-value="0.025000">2.5%</td><td><div class="bar"><span style="width:12.5%;background:#8FBF7A"></span></div></td></tr>
+        <tr><td>0805</td><td>体育用地<br><span style="font-size:10.5px;color:#8C95A4">Sports</span></td><td class="n" data-metric="land_use_area_0805_sqm" data-value="264930.700000">26.5</td><td class="n" data-metric="land_use_ratio_0805" data-value="0.023213">2.3%</td><td><div class="bar"><span style="width:11.6%;background:#7FBF9E"></span></div></td></tr>
+        <tr><td colspan="2"><b>合计</b></td><td class="n" data-metric="land_use_total_area_sqm" data-value="11412843.200000"><b>1141.3</b></td><td class="n">100.0%</td><td>闭合率 1.0000</td></tr>
+      </table>
+      <div class="kpis">
+      <div class="kpi" data-metric="land_use_feature_count" data-value="121.000000">
+        <div class="kpi-v">121<span class="kpi-u">个</span></div>
+        <div class="kpi-l">用地要素</div>
+        <div class="kpi-n">完全覆盖、互不重叠</div>
+      </div>
+      <div class="kpi" data-metric="developable_land_area_sqm" data-value="7399137.900000">
+        <div class="kpi-v">739.9<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">可建设用地</div>
+        <div class="kpi-n">占 64.8%</div>
+      </div>
+      <div class="kpi" data-metric="estimated_gfa_sqm" data-value="14717044.200000">
+        <div class="kpi-v">1472<span class="kpi-u">万 m²</span></div>
+        <div class="kpi-l">概念总建面</div>
+        <div class="kpi-n">基底 × 假定层数</div>
+      </div>
+      <div class="kpi" data-metric="estimated_research_gfa_sqm" data-value="5417866.900000">
+        <div class="kpi-v">542<span class="kpi-u">万 m²</span></div>
+        <div class="kpi-l">其中科研类</div>
+      </div>
+      <div class="kpi" data-metric="estimated_far_site" data-value="1.289518">
+        <div class="kpi-v">1.290<span class="kpi-u"></span></div>
+        <div class="kpi-l">概念毛容积率</div>
+        <div class="kpi-n">对总体范围，非控制指标</div>
+      </div>
+      <div class="kpi" data-metric="estimated_far_developable" data-value="1.989021">
+        <div class="kpi-v">1.989<span class="kpi-u"></span></div>
+        <div class="kpi-l">对可建设用地</div>
+      </div>
+      <div class="kpi" data-metric="building_coverage_ratio_site" data-value="0.167265">
+        <div class="kpi-v">16.7%<span class="kpi-u"></span></div>
+        <div class="kpi-l">建筑覆盖率</div>
+        <div class="kpi-n">对总体范围</div>
+      </div>
+      <div class="kpi" data-metric="building_coverage_ratio_developable" data-value="0.257998">
+        <div class="kpi-v">25.8%<span class="kpi-u"></span></div>
+        <div class="kpi-l">对可建设用地</div>
+      </div>
+      </div>
+      <figure class="fig">
+        <img src="../assets/figures/metrics-evidence.png" alt="指标与证据">
+        <figcaption>图 5　关键指标与证据链（metrics.json → geometry/ 图层）</figcaption>
+      </figure>
+      <table>
+        <tr><th>校核项</th><th class="n">数值</th><th>口径与含义</th></tr>
+        <tr><td>场地面积（重算）</td><td class="n" data-metric="site_area_sqm" data-value="11412825.387573">1141.3 ha</td><td>EPSG:4548 平面量算</td></tr>
+        <tr><td>场地面积（官方）</td><td class="n" data-metric="site_area_official_sqm" data-value="11400000.000000">1140.0 ha</td><td>主办方声明值</td></tr>
+        <tr><td>偏差</td><td class="n" data-metric="site_area_deviation_ratio" data-value="0.001125">0.1%</td><td>投影与边界精度所致，&lt; 0.5% 视为一致</td></tr>
+        <tr><td>重点区（官方三处）</td><td class="n">192.1 / 104.3 / 72.0 ha</td><td>众智园 192.1、原点 104.3、大钟寺 72.0</td></tr>
+        <tr><td>重点区数量</td><td class="n" data-metric="key_area_count" data-value="3.000000">3</td><td>与任务书一致</td></tr>
+      </table>
+      <div class="kpis">
+      <div class="kpi" data-metric="key_official_zzy_sqm" data-value="1921000.000000">
+        <div class="kpi-v">192.1<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">众智园（官方）</div>
+      </div>
+      <div class="kpi" data-metric="key_official_origin_sqm" data-value="1043000.000000">
+        <div class="kpi-v">104.3<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">原点（官方）</div>
+      </div>
+      <div class="kpi" data-metric="key_official_dzs_sqm" data-value="720000.000000">
+        <div class="kpi-v">72.0<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">大钟寺（官方）</div>
+      </div>
+      <div class="kpi" data-metric="land_use_area_0701_sqm" data-value="1819095.000000">
+        <div class="kpi-v">181.9<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">住宅用地</div>
+        <div class="kpi-n">占 15.9%</div>
+      </div>
+      <div class="kpi" data-metric="land_use_area_0702_sqm" data-value="458766.700000">
+        <div class="kpi-v">45.9<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">社区服务设施</div>
+        <div class="kpi-n">占 4.0%</div>
+      </div>
+      <div class="kpi" data-metric="land_use_area_05_sqm" data-value="1393111.800000">
+        <div class="kpi-v">139.3<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">商业服务业</div>
+        <div class="kpi-n">占 12.2%</div>
+      </div>
+      <div class="kpi" data-metric="land_use_area_0806_sqm" data-value="330844.300000">
+        <div class="kpi-v">33.1<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">医疗卫生</div>
+        <div class="kpi-n">占 2.9%</div>
+      </div>
+      <div class="kpi" data-metric="land_use_area_1401_sqm" data-value="1540734.100000">
+        <div class="kpi-v">154.1<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">公园绿地</div>
+        <div class="kpi-n">占 13.5%</div>
+      </div>
+      <div class="kpi" data-metric="land_use_area_1402_sqm" data-value="285321.100000">
+        <div class="kpi-v">28.5<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">防护绿地</div>
+        <div class="kpi-n">占 2.5%</div>
+      </div>
+      <div class="kpi" data-metric="land_use_area_1403_sqm" data-value="323196.900000">
+        <div class="kpi-v">32.3<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">广场用地</div>
+        <div class="kpi-n">占 2.8%</div>
+      </div>
+      <div class="kpi" data-metric="land_use_area_1207_sqm" data-value="1597791.000000">
+        <div class="kpi-v">159.8<span class="kpi-u">ha</span></div>
+        <div class="kpi-l">道路用地</div>
+        <div class="kpi-n">占 14.0%</div>
+      </div>
+      <div class="kpi" data-metric="land_use_partition_closure_ratio" data-value="1.000002">
+        <div class="kpi-v">1.0000<span class="kpi-u"></span></div>
+        <div class="kpi-l">用地闭合率</div>
+        <div class="kpi-n">1.0000 为完全闭合</div>
+      </div>
+      </div>
+    </div>
+  </section>
+  <section class="board" id="v13-compliance">
+    <header class="bh">
+      <div class="bno">13</div>
+      <div class="bt"><h2>合规、假设与自检</h2><p>Compliance, Assumptions and Self-Check</p></div>
+      <div class="bbrand">京张智带 · The Learning Line</div>
+    </header>
+    <div class="body">
+      <p class="lead">本板是这份成果<b>最重要的一板</b>：49 项自检中 41 项通过、<b>5 项如实记为不通过</b>、1 项未知、2 项不适用；11 条假设全部可追溯；11 项官方数据缺口没有被任何“合理估计”掩盖。</p>
+      <div class="kpis">
+      <div class="kpi"><div class="kpi-v">49</div><div class="kpi-l">自检项</div><div class="kpi-n">全部登记在 self_check.json</div></div>
+      <div class="kpi"><div class="kpi-v">41</div><div class="kpi-l">通过</div></div>
+      <div class="kpi"><div class="kpi-v" style="color:#A6412E">5</div><div class="kpi-l">不通过（数据缺口）</div><div class="kpi-n">均因缺官方数据，不因回避</div></div>
+      <div class="kpi"><div class="kpi-v">11</div><div class="kpi-l">假设</div><div class="kpi-n">assumptions.json</div></div>
+      <div class="kpi"><div class="kpi-v">11</div><div class="kpi-l">unknown 指标</div><div class="kpi-n">未臆造任何数值</div></div>
+      </div>
+      <table>
+        <tr><th>自检项</th><th>结论</th><th>级别</th><th>说明</th></tr>
+        <tr><td><code>SC_OFFICIAL_CONTROL_GAP</code></td><td><span class="tag h">fail</span></td><td>blocking</td><td>容积率、建筑高度、建筑密度、绿地率、退线五项官方控制指标在场地包中标记为 missing，本包据实登记为 unknown，未臆造数值。</td></tr>
+        <tr><td><code>SC_OFFICIAL_BOUNDARY_GAP</code></td><td><span class="tag h">fail</span></td><td>blocking</td><td>主办方声明 official_boundary_available_in_repository = false，本包只能采用临时替代边界，全部面积类指标随边界替换而变化。</td></tr>
+        <tr><td><code>SC_HERITAGE_REDLINE_GAP</code></td><td><span class="tag h">fail</span></td><td>blocking</td><td>京张铁路遗存的法定保护范围与建设控制地带未获得官方数据，本包仅提供研究示意范围。</td></tr>
+        <tr><td><code>SC_POPULATION_GAP</code></td><td><span class="tag h">fail</span></td><td>major</td><td>缺少与本边界口径一致的常住人口与就业基数，人均绿地、职住比等衍生指标无法计算。</td></tr>
+        <tr><td><code>SC_EXISTING_SURVEY_GAP</code></td><td><span class="tag h">fail</span></td><td>major</td><td>缺少现状建筑普查数据，buildings.geojson 为概念体量而非现状测绘，estimated_far_site 仅为量级参照。</td></tr>
+        <tr><td><code>SC_UTILITY_CAPACITY</code></td><td><span class="tag ">not_applicable</span></td><td>info</td><td>市政容量、能源负荷、桥隧与地下空间工程可行性属任务书明令禁止的工程结论，本包不作测算。</td></tr>
+        <tr><td><code>SC_LAND_TENURE</code></td><td><span class="tag ">not_applicable</span></td><td>info</td><td>土地权属与投资测算属禁止范围，parcels.geojson 仅为更新单元的概念划分。</td></tr>
+        <tr><td><code>SC_TRAFFIC_MODEL</code></td><td><span class="tag w">unknown</span></td><td>minor</td><td>未开展交通量预测与仿真，路网密度只做几何口径核算，服务水平结论未知。</td></tr>
+      </table>
+      <table>
+        <tr><th>指标</th><th>状态</th><th>为什么是 unknown</th></tr>
+        <tr><td><code>green_space_per_capita_sqm</code></td><td><span class="tag w">unknown</span></td><td>No official resident-population baseline for the design area has been published in the site package.</td></tr>
+        <tr><td><code>official_far_cap</code></td><td><span class="tag w">unknown</span></td><td>planning_limits.json marks floor_area_ratio as status=missing and required_for_final_submission=true.</td></tr>
+        <tr><td><code>official_building_height_limit_m</code></td><td><span class="tag w">unknown</span></td><td>planning_limits.json marks building_height_m as status=missing.</td></tr>
+        <tr><td><code>official_building_density_cap</code></td><td><span class="tag w">unknown</span></td><td>planning_limits.json marks building_density as status=missing.</td></tr>
+        <tr><td><code>official_green_ratio_requirement</code></td><td><span class="tag w">unknown</span></td><td>planning_limits.json marks green_ratio as status=missing.</td></tr>
+        <tr><td><code>official_setback_m</code></td><td><span class="tag w">unknown</span></td><td>planning_limits.json marks setback_m as status=missing.</td></tr>
+        <tr><td><code>official_key_area_redline_area_sqm</code></td><td><span class="tag w">unknown</span></td><td>provisional_boundaries.geojson declares official_boundary_available_in_repository=false.</td></tr>
+        <tr><td><code>resident_population_count</code></td><td><span class="tag w">unknown</span></td><td>No census-grade population figure for this exact boundary is published in the site package.</td></tr>
+        <tr><td><code>employment_population_count</code></td><td><span class="tag w">unknown</span></td><td>No official employment figure for this exact boundary is published in the site package.</td></tr>
+        <tr><td><code>existing_building_gfa_sqm</code></td><td><span class="tag w">unknown</span></td><td>No official building survey layer is provided; buildings.geojson is conceptual massing only.</td></tr>
+        <tr><td><code>heritage_protection_redline_area_sqm</code></td><td><span class="tag w">unknown</span></td><td>Heritage control lines must come from the heritage authority; heritage_protection.geojson is an indicative study extent flagged not_a_control_line.</td></tr>
+      </table>
+      <table>
+        <tr><th>假设</th><th>影响</th><th>内容</th><th>解除方式</th></tr>
+        <tr><td><code>A-PROVISIONAL-GEOMETRY</code><br>临时边界直接采用主办方数据</td><td>high</td><td>主办方场地包声明 official_boundary_available_in_repository = false，仓库内仅提供临时替代边界。本方案对 PROV-SITE-001 与 PROV-KEY-001/002/003 逐坐标原样采用，不做任何改动，并在全部要素上标注 official_boundary = false。取得官方 CAD/GIS/PDF 边界后须整体替换并复算全部面积类指标。</td><td>取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。</td></tr>
+        <tr><td><code>A-AREA-CRS-4548</code><br>面积统一在 EPSG:4548 下计算</td><td>high</td><td>交换坐标系为 EPSG:4326（经纬度），面积与长度一律先正算到 EPSG:4548（CGCS2000 3 度带，中央经线 117°E）再用鞋带公式与欧氏距离计算。以此复算总体设计范围得 11.4128 km²，与主办方公布的 11.4 km² 相对偏差约 0.11%，可视为同一多边形的量算一致性验证。</td><td>取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。</td></tr>
+        <tr><td><code>A-LANDUSE-CONCEPT</code><br>用地布局为概念建议，编码依 2023 年分类指南</td><td>medium</td><td>land_use.geojson 是对临时边界的精确剖分（无缝隙、无重叠），用地编码采用《国土空间调查、规划、用途管制用地用海分类指南（2023 年）》的 05/07xx/08xx/1207/14xx/16 体系，而非 GB 50137-2011 的 R/B/M/G 体系。各地块边界与比例为概念建议，不构成控规调整依据。</td><td>取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。</td></tr>
+        <tr><td><code>A-BUILDING-STOREY</code><br>建筑体量与层数为概念假定</td><td>low</td><td>buildings.geojson 为地块内退界后的概念体量块，层数按用地类型统一假定（科研 10 层、商业 8 层、居住 9 层等），用于估算容积率量级。官方高度与容积率控制发布前，estimated_far_* 与 max_conceptual_storeys 只能作为量级参照，不得用于报建或指标核定。</td><td>取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。</td></tr>
+        <tr><td><code>A-ROAD-SECTION-WIDTH</code><br>道路断面宽度按等级假定</td><td>low</td><td>road_area.geojson 的路幅宽度按等级假定（主干路 40 m、次干路 30 m、支路 20 m、街区路 12 m），路网密度只计入机动车路网（arterial + secondary + branch），慢行与步行专用道不计入，以与 GB/T 51328-2018 的口径一致。</td><td>取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。</td></tr>
+        <tr><td><code>A-OFFICIAL-CONTROL-MISSING</code><br>官方规划控制指标缺失</td><td>high</td><td>planning_limits.json 中容积率、建筑高度、建筑密度、绿地率、退线五项均为 status = missing 且 required_for_final_submission = true。本方案不臆造这些数值，全部登记为 status = unknown、value = null，并在 self_check.json 中标记为 blocking，待官方发布后补齐。</td><td>取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。</td></tr>
+        <tr><td><code>A-POPULATION-EMPLOYMENT-UNKNOWN</code><br>人口与就业基数缺失</td><td>high</td><td>场地包未提供与本边界口径一致的常住人口与就业岗位基数，因此人均绿地、职住比、公服设施千人指标等衍生指标一律登记为 unknown，不以区级或街道级数据倒推。</td><td>取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。</td></tr>
+        <tr><td><code>A-PHASE-SPLIT</code><br>分期为策略性划分</td><td>low</td><td>phasing.geojson 将总体设计范围完整划分为三期且互不重叠，划分依据为遗址公园贯通进度、重点区成熟度与更新单元产权复杂度的定性判断，未接入投资计划或土地供应计划等官方时序数据。</td><td>取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。</td></tr>
+        <tr><td><code>A-HERITAGE-EXTENT-INDICATIVE</code><br>文保范围为研究示意</td><td>medium</td><td>heritage_protection.geojson 标注 not_a_control_line = true，geometry_role = analysis_helper，仅用于说明设计如何避让与呼应遗产要素；法定保护范围与建设控制地带须由文物主管部门公布数据替换。</td><td>取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。</td></tr>
+        <tr><td><code>A-KEYAREA-INTERNAL-STRUCTURE</code><br>重点区内部结构为概念建议</td><td>low</td><td>三处重点区的外轮廓原样采用主办方临时边界，但其内部的用地、路网、体量、场景节点均为本方案的概念建议，与官方尚未发布的详细设计条件无对应关系。</td><td>取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。</td></tr>
+        <tr><td><code>A-SCENARIO-GOVERNANCE</code><br>AI 场景以治理前置为前提</td><td>medium</td><td>全部 14 个场景节点默认边缘计算与匿名化处理、保留人工复核否决权、禁止将人脸识别用于个体追踪，并要求先完成个人信息影响评估再上线。场景清单为设计建议，不代表已获得数据授权或算法备案。</td><td>取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。</td></tr>
+      </table>
+      <h3 style="font-size:15px;margin:18px 0 8px">明确不做的八件事</h3>
+      <table>
+        <tr><th style="width:40px">#</th><th>不做什么</th></tr>
+        <tr><td>1</td><td>不在公共空间部署人脸识别、步态识别或任何个体身份识别装置。</td></tr>
+        <tr><td>2</td><td>不做覆盖全域的“城市大脑”式集中监控中枢，感知按场景分散部署、数据不默认汇聚。</td></tr>
+        <tr><td>3</td><td>不以“智慧化”为由取消人工服务窗口与线下办事通道。</td></tr>
+        <tr><td>4</td><td>不给出容积率、建筑高度、建筑密度、绿地率、退线等法定控制指标结论。</td></tr>
+        <tr><td>5</td><td>不给出拆改留判断、权属处置意见与征收拆迁安排。</td></tr>
+        <tr><td>6</td><td>不给出桥梁、隧道、地下空间与市政管线的工程结论。</td></tr>
+        <tr><td>7</td><td>不给出投资估算、资金来源、收益测算与审批时序。</td></tr>
+        <tr><td>8</td><td>不将文物保护范围、轨道保护区等法定控制线视为已知，相关图层均标注为研究示意范围。</td></tr>
+      </table>
+      <div class="note"><b>成果边界声明</b>：本成果为开放共创建议，不替代法定规划编制程序，不构成政府审定结论，不得作为审批依据。几何以 EPSG:4326 交换、EPSG:4548 量算；边界为主办方临时替代边界，官方边界发布后须整体替换并复算全部面积类指标。</div>
+    </div>
+  </section>
+  <footer>
+    京张智带 · The Learning Line ｜ 百年京张 AI 创新带城市设计开源征集<br>
+    本页由 metrics.json 自动生成，96 项指标标记可逐项校验；全文件不引用任何远程资源，断网可完整审阅。<br>
+    几何交换坐标系 EPSG:4326 ｜ 量算坐标系 EPSG:4548 ｜ 面积单位 m²，长度单位 m
+  </footer>
+</div>
+
+<section id="visual-page-index" style="margin:24px 0;padding:16px 20px;border:1px solid #d8dee4;border-radius:10px;background:#f6f8fa;font-size:14px;line-height:1.9">
+  <h2 style="margin:0 0 8px;font-size:16px">本页内容索引 / Page Index</h2>
+  <p style="margin:0 0 8px">总览地图 · 三层范围 · 重点区域 · 用地分区 · 交通慢行 · 蓝绿公共空间 · 建筑 · 更新项目 · AI 场景 · 核心指标 · 任务覆盖 · 自检状态 · 来源 · 假设</p>
+  <p style="margin:0">核心指标：<span data-metric="site_area_sqm" data-value="11412825.387573">站点面积 11.41 km²</span>；<span data-metric="green_ratio" data-value="0.16">绿地率 16.0%</span>；<span data-metric="public_space_ratio" data-value="0.028319">公共空间占比 2.83%</span>。数据与 metrics.json 一致，来源见来源章节，假设见假设章节。</p>
+</section>
+
+</body>
+</html>

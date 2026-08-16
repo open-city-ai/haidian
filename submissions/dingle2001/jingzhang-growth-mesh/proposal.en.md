@@ -15,6 +15,10 @@ scenarios: ["enterprise-service-copilot", "ai-traffic-walkability", "robot-deliv
 
 > **Core proposition: universities and leading firms are anchors, the district is an incubator, and community is infrastructure.** Haidian does not lack innovation sources; it needs urban interfaces that turn talent relations into projects, projects into firms, and growing firms into the next round of shared capacity.
 
+## Equivalent listening, viewing, reading and interaction routes
+
+This package proves its “community as infrastructure” principle through four equivalent offline routes: the bilingual report and drawings; a system-speech audio guide with transcript and captions; a silent five-sheet journey with captions and static originals; and a keyboard-operable project-gate rehearsal with a static fallback. None auto-plays or loads remote code, fonts, tiles or tracking. All frames are project-owned drawings; there is no human recording, music, field footage or third-party visual material. If media or JavaScript fails, the transcripts, five core figures and protocol fallback retain the same claims. These media communicate the concept and its truth boundary; they do not prove deployment or field impact.
+
 ## Original AI-planning mechanism: an auditable multi-agent control plane
 
 The proposal does not treat AI image production as planning innovation. Its original contribution is a six-agent evidence-compilation chain that turns incomplete site signals into reviewable investigation tasks, spatial options, bounded scenarios and operating contracts—without allowing an agent to approve its own output. A1 stewards provenance; A2 compiles the seven-part health check; A3 locates projects and exposes spatial conflicts; A4 designs bounded scenarios with a non-AI equivalent; A5 binds operations to RACI, accounts and acceptance; A6 may veto release when accessibility, affordability or resident safeguards fail. This chain integrates **industry, space, mobility, public service, culture and governance** on one decision record rather than using six disconnected dashboards.
@@ -860,6 +864,10 @@ The project-library gate was run against **310 deterministic synthetic fixtures*
 | Project contracts | 15 | 10 | 165 | 165 |
 
 The machine-readable result is `visual/assets/project_library_rehearsal.json`. Its `field_result` values remain null and `field_results_completed=0`: this rehearsal checks contract structure, not site performance, staffing, safety, budget, service quality, approval or public outcome.[metric:field_rehearsal_completed_count]
+
+#### Portable method product: Growth Mesh Project-Gate Protocol
+
+The proposal's six-Agent/four-human-gate method is also delivered as an executable offline product rather than prose alone: `growth-mesh-project-gate.json` defines roles, permissions, contract schemas, human gates, decision rules, falsification tests and truth boundaries; `growth-mesh-project-gate-fixtures.json` supplies positive and missing-field examples; `growth-mesh-project-gate-run.js` runs with Node.js and no package install; `growth-mesh-project-gate-receipt.json` records the actual run. Running `node visual/assets/growth-mesh-project-gate-run.js` reproduces **6/6 expected decisions**, including explicit rejection of a project without an operator, a scenario without a non-AI equivalent and a health check without a baseline. The protocol is a concept method ready for external rehearsal, not a planning standard, certification or deployed system; its licence remains COMMUNITY-DISPLAY-ONLY unless the contributor grants a separate written reuse licence.
 
 
 ## Reviewer Evidence Index

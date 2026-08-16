@@ -1,0 +1,1233 @@
+{
+ "package_id": "seb-op04-90day-implementation-pack",
+ "package_name_zh": "OP-04 节点九十天实施包（概念级建议）",
+ "package_name_en": "OP-04 node ninety-day implementation pack (concept-level recommendation)",
+ "version": "0.2.0",
+ "issued_on": "2026-08-15",
+ "status": "draft_concept_recommendation",
+ "baseline_spec": {
+  "spec_id": "service-equivalence-baseline",
+  "required_version": "0.4.0"
+ },
+ "node": {
+  "node_id": "OP-04",
+  "name_zh": "连续通行断点共测点",
+  "name_en": "Continuity-breakpoint joint test point",
+  "scenario_id": "S04",
+  "key_area_id": "dazhongsi_ai_industry_cluster",
+  "work_package_id": "JZ-01",
+  "gate_id_at_issue": "G0",
+  "level_at_issue": "L0",
+  "ai_off_continuity_status": "premise_unproven_pending_site_audit",
+  "premise_note_zh": "本节点的 AI 关闭等价路径缺少空间前提。按提交几何复算，AI 关闭状态下不存在一条不依赖 AI 的连续路径把本节点与同区 OP-08、OP-09 连起来（seb-op04-chain-data.json · stage_4 · finding_zh）。因此本实施包的第一期不是准备工作，而是一次可能得出否定结论的核验；第二期与第三期的存在本身就是条件性的。",
+  "premise_note_en": "The AI-off equivalent route at this node lacks its spatial premise. Recomputed from the submitted geometry, no route independent of AI joins this node to OP-08 or OP-09 inside the same key area (seb-op04-chain-data.json, stage 4, finding). Phase one of this pack is therefore not preparation but a verification that may return a negative conclusion, and phases two and three exist only conditionally."
+ },
+ "nature_zh": "本文件是针对单一概念点位 OP-04 的概念级实施建议，不是工程文件、不是造价文件、不是采购文件、不是保险方案、不是排期承诺。文件中的全部数字为概念级估算或设计目标值，没有一项来自询价、报价、投标、真实排期或已核定的劳务与保险条件。截至本次提交，本节点未获授权、未现场运行、没有任何一次真实测量、没有任何一名参与者、没有任何一件已安装构件。任何一张表在授权主体确认之前都不得被当作已生效的安排。",
+ "nature_en": "This is a concept-level implementation recommendation for one conceptual node, OP-04. It is not an engineering document, a cost estimate, a procurement document, an insurance scheme, or a schedule commitment. Every figure in it is a concept-level estimate or a design target value; none comes from a quotation, a tender, a real schedule, or settled labour and insurance conditions. As submitted, the node is not authorised, has never run on site, holds no measurement, has no participant, and has no component installed. Until the authorising body confirms, no table here may be treated as an arrangement in force.",
+ "disclaimer_zh": "一，责任主体：本文件出现的每一个责任位置一律为「待授权主体确认」。本方案不代任何政府部门、场地运营方、轨道或市政主体、专业机构、保险人、供应商或个人作出承诺，也不虚构任何机构名称、人名、产品名或保险产品。二，金额：金额区间以万元计，来源为按公开市场常识性区间的估计，并以本包既有《90 天零阶段资源框架》的人日与人次量级为折算锚点；本方案未向任何供应商询价，未取得任何报价，区间不构成对任何主体的资源要求，也不构成预算申请依据。三，时限：本文件的 SLA 数值全部取自本包正文《维护 SLA 与故障升级路径》既有条目，未另造新数；其中一级与二级为建议值，三级为规则。四，日期：第一天（D1）指授权主体确认并授权启动之日，本文件不绑定任何日历日期，也不承诺任何一期的开始或完成时间。五，指标：本文件不产生任何指标数值，metrics.json 中七项包容性指标保持待实测。",
+ "disclaimer_en": "One, accountability: every accountable position named here reads \"pending confirmation by the authorising body\". This proposal commits no government department, site operator, rail or utility body, professional organisation, insurer, supplier, or individual, and invents no organisation name, personal name, product name, or insurance product. Two, money: amounts are ranges in units of ten thousand yuan, estimated from commonly known public-market ranges and anchored on the person-day and participant counts of the package's existing ninety-day Stage Zero resource framework. No supplier was approached, no quotation was obtained, the ranges impose no resource requirement on any party, and they are no basis for a budget application. Three, time limits: every SLA figure is taken from the existing rows of the package's Maintenance SLA and escalation-path table, with no new number coined; levels one and two are suggested values and level three is a rule. Four, dates: day one (D1) means the day the authorising body confirms and authorises a start. This document is bound to no calendar date and promises no start or completion time for any phase. Five, metrics: this document produces no metric value, and the seven inclusion metrics in metrics.json remain unmeasured.",
+ "number_discipline_zh": "本文件把数字分为三类并逐项标注：（甲）沿用类——直接取自本包既有条文，不得改写，改写即须递增版本并附失败样本登记与复算说明，例如 SLA 的五分钟与十五分钟、值守班次、人日与人次量级区间；（乙）折算类——由沿用类量级按公开市场常识性区间折算而来的金额，属概念级估算；（丙）设计目标类——本文件首次给出的建议值，例如巡检频次与应急预留比例，一律标注为建议值待授权主体核定。任何一项在取得真实排期、劳务、保险与采购条件后都应重算，重算结果与本表的差异应公开登记而不是覆盖。",
+ "number_discipline_en": "Figures here fall into three classes, each marked: (a) carried over, taken straight from existing package text and not to be rewritten, since a rewrite raises the version and must arrive with a failed-sample register and a recalculation note (the five- and fifteen-minute SLA values, the duty-shift sizes, and the person-day and participant ranges); (b) converted, amounts derived from the carried-over quantities using commonly known public-market ranges, which are concept-level estimates; (c) design targets, values this document states for the first time, such as inspection frequency and the contingency percentage, all marked as suggested values pending confirmation by the authorising body. Every one of them should be recomputed once real scheduling, labour, insurance, and procurement conditions exist, and any difference from this table should be publicly registered rather than overwritten.",
+ "alignment_with_package_framework": {
+  "issue_zh": "本包正文的 90 天零阶段框架把第 61—90 天定为 G3 独立复核。本实施包把 OP-04 的第 61—90 天定为 L2 封闭成对测试的准备与前置闭合，两者并不冲突，但差异必须写明而不是让读者自己拼。",
+  "issue_en": "The package's ninety-day Stage Zero framework places the G3 independent-review gate in days 61–90. This pack places days 61–90 for OP-04 at preparation for and closure of the preconditions of L2 closed paired testing. The two do not conflict, but the difference must be stated rather than left for the reader to reconcile.",
+  "reason_zh": "全包框架的起点假设是一个已经具备连续可达路径的点位。OP-04 不是：其 AI 关闭态连续通道的存在性尚未核验，按《首批试点点位选取准则》物理可达行的既有规定，未经审计的点位不得进入 L1。因此本节点的节奏整体后移一档：第一期做的是全包框架里 G0 的内容加上一次本应更早完成的审计，第三期只到 L2 的门口，不到 G3。",
+  "reason_en": "The framework assumes a node that already has a continuous accessible route. OP-04 does not: whether a continuous AI-off route exists has not been verified, and under the physical-access row of the pilot-node selection criteria a node that has not been audited may not enter L1. This node's rhythm therefore shifts one step later. Phase one carries the framework's G0 content plus an audit that should have happened earlier, and phase three reaches only the door of L2, not G3.",
+  "non_substitution_zh": "本节点实施包不替代、不提前、不缩短全包的 G3 独立复核，也不使 OP-04 取得任何等级升级资格。本包 90 天结束时 OP-04 的最好结果是「具备申请 G2 的前置条件」，不是「已通过 G2」。",
+  "non_substitution_en": "This node-level pack does not replace, bring forward, or shorten the package-level G3 independent review, and confers no level upgrade on OP-04. At the end of these ninety days the best outcome available to OP-04 is holding the preconditions to apply for G2, not having passed it."
+ },
+ "phase_plan": {
+  "unit_zh": "适用单元为「场景 S04 × 点位 OP-04」，不是工作包 JZ-01 整体，也不是大钟寺片区。",
+  "unit_en": "The applicable unit is scenario S04 at node OP-04, not work package JZ-01 as a whole and not the Dazhongsi area.",
+  "day_zero_definition_zh": "D1 指授权主体确认并授权启动之日；在该主体确认之前，三期均为零日，不计时。",
+  "day_zero_definition_en": "D1 is the day the authorising body confirms and authorises a start. Before that confirmation all three phases stand at day zero and no clock runs.",
+  "conditionality_zh": "三期不是既定日程，而是三段条件序列。第二期与第三期的存在取决于第一期的核验结论；第一期给出否定结论时，本包按 branch_audit_stop 分支在第一期后收尾，这是有效产出而不是失败。",
+  "conditionality_en": "The three phases are not a fixed schedule but a conditional sequence. Phases two and three exist only if phase one's verification allows them. Where phase one returns a negative finding, the pack closes after phase one along the branch_audit_stop route, which is a valid outcome and not a failure.",
+  "phases": [
+   {
+    "phase_id": "P1",
+    "window_zh": "第 1—30 天",
+    "window_en": "Days 1–30",
+    "gate_id": "G0",
+    "gate_name_zh": "资料与许可闸门",
+    "gate_name_en": "Evidence and permission gate",
+    "level_id": "L0",
+    "level_name_zh": "资料与许可",
+    "level_name_en": "Evidence and permission",
+    "gate_binding_note_zh": "按 seb-spec.json · level_definitions · gate_binding，L0 绑定 G0；OP-04 的 gate_id 现为 G0，故本期申报的等级只能是 L0。",
+    "gate_binding_note_en": "Under the baseline's level_definitions gate_binding, L0 binds to G0. The gate_id of OP-04 is currently G0, so the only level claimable in this phase is L0.",
+    "objective_zh": "闭合 G0 必交证据，并执行 seb-op04-chain-data.json 裁决 D2 要求的核验：在 JZ-01 审计中优先核验 OP-04 所在段的东西向 AI 关闭态连续通道是否存在。本期不安装任何构件、不进行任何现场测试、不招募任何参与者。",
+    "objective_en": "Close the evidence required at G0 and carry out the verification demanded by ruling D2 in seb-op04-chain-data.json: within the JZ-01 audit, verify first whether an east–west continuous route usable with AI off exists on the stretch holding OP-04. No component is installed, no field test is run, and nobody is recruited in this phase.",
+    "entry_conditions": [
+     {
+      "id": "P1-E1",
+      "zh": "授权主体已确认，RACI 的 A 角色有名有姓地落位（《试点档案模板》：该主体确认之前任何一张表都不得被当作已生效的安排）。",
+      "en": "The authorising body is confirmed and the A role in the RACI carries an actual name (per the pilot dossier template: before that confirmation no table counts as an arrangement in force)."
+     },
+     {
+      "id": "P1-E2",
+      "zh": "场地使用为公共产权或已取得书面授权，且授权期覆盖试验期与撤除期（《许可与协议清单》场地使用行；缺失则该点位不得进入 L1）。",
+      "en": "Site use rests on public ownership or written authorisation whose term covers both the trial period and removal (permissions list, site-use row; absent it, the node may not enter L1)."
+     },
+     {
+      "id": "P1-E3",
+      "zh": "伦理审查已受理；按 ethics-protocol.json 协议 P1，实际招募不得早于伦理复核出具结论。",
+      "en": "The ethics review is under way. Under protocol P1 in ethics-protocol.json, recruitment may not begin before the ethics review issues its conclusion."
+     }
+    ],
+    "exit_conditions": [
+     {
+      "id": "P1-X1",
+      "zh": "东西向 AI 关闭态连续通道的存在性核验完成，结论为下列三者之一：既有连续通道成立；ALT-A 横向接口升级的成立条件全部具备；ALT-B 纵向安静线南端西延的成立条件全部具备。三者皆不成立即触发 P1-S4。",
+      "en": "Verification of the east–west AI-off continuity is complete and concludes in one of three ways: an existing continuous route holds; every condition for ALT-A, the cross-link upgrade, is in place; or every condition for ALT-B, the westward extension of the quiet line's south end, is in place. If none holds, stop condition P1-S4 triggers.",
+      "evidence_zh": "现场无障碍审计记录、坡度与路缘测绘、连续通道的分段结论；结论以变更回执发布，并以追加方式更新 geometry/constraints.geojson 中 OP-04 的 ai_off_continuity_status，既有 ai_off_path 原文不改写。"
+     },
+     {
+      "id": "P1-X2",
+      "zh": "接入段的直线可通行假定（chain-data 待办 OI-02）经现场核验：OP-08 与 OP-09 的接入段是否落在可通行地面上，逐段给出结论。核验未完成前，任何一个接入距离读数不得被解释为实际步行距离。",
+      "en": "The straight-line walkability assumption behind the access stubs (open item OI-02) is verified on site, segment by segment, for the stubs of OP-08 and OP-09. Until it is, no approach figure may be read as an actual walking distance."
+     },
+     {
+      "id": "P1-X3",
+      "zh": "G0 必交证据齐备：范围与服务清单核对记录、伦理与同意协议、可复测任务脚本；且证据所有者与复核人为不同的人（《各闸门证据负责人》）。",
+      "en": "The evidence required at G0 is complete — the scope and service-list verification record, the ethics and consent agreements, and repeatable task scripts — and the evidence owner and the reviewer are different people."
+     },
+     {
+      "id": "P1-X4",
+      "zh": "六项许可与协议中的伦理审查、知情同意、场地使用、数据处置四项生效。保险与责任须在第二期任何构件安装之前生效；影像与素材须在任何现场材料对外发布之前生效。",
+      "en": "Four of the six permissions are in force: ethics review, informed consent, site use, and data handling. Insurance and liability must be in force before any component is installed in phase two, and images and material before any site material is published."
+     },
+     {
+      "id": "P1-X5",
+      "zh": "相邻范围已与该点位的相邻使用者共同划定并登记，否决权的适用范围明确（正文《点位否决权》条款）。",
+      "en": "The adjacent extent has been drawn and registered jointly with the node's neighbouring users, so the reach of their veto is defined."
+     }
+    ],
+    "stop_conditions": [
+     {
+      "id": "P1-S1",
+      "risk_ids": [
+       "R-01",
+       "R-02",
+       "R-05",
+       "R-06"
+      ],
+      "zh": "沿用正文 90 天框架第 0—30 天的既有停止条件：R-01、R-02、R-05、R-06 任一责任或资料边界不清即暂停。",
+      "en": "Carried over from days 0–30 of the package framework: work pauses when any responsibility or evidence boundary under R-01, R-02, R-05, or R-06 is unclear."
+     },
+     {
+      "id": "P1-S2",
+      "risk_ids": [
+       "R-05"
+      ],
+      "zh": "适用许可、官方资料、专业责任或开放边界缺失，且现有证据不足以支持下一闸门（R-05 停止条件原文）。ALT-A 依赖轨道运营、市政与道路三类主体的资料与授权，任一未到位即 ALT-A 在本轮不成立。",
+      "en": "Applicable permissions, official evidence, professional accountability, or the opening boundary are missing and existing evidence cannot support the next gate (R-05 stop condition). ALT-A depends on evidence and authorisation from the rail operator, the utility bodies, and the road authority; if any is absent, ALT-A does not hold this round."
+     },
+     {
+      "id": "P1-S3",
+      "risk_ids": [
+       "R-06"
+      ],
+      "zh": "OP 节点、路线或构件与真实通行、消防、防洪、文保、权属或维护需求发生未解冲突（R-06 停止条件原文）。ALT-B 增补段的用地权属或地面连续性任一不成立即 ALT-B 在本轮不成立。",
+      "en": "An unresolved conflict arises between the node, the route, or a component and real movement, fire, flood, heritage, tenure, or maintenance needs (R-06 stop condition). If either land tenure or ground continuity fails for the ALT-B link, ALT-B does not hold this round."
+     },
+     {
+      "id": "P1-S4",
+      "zh": "节点特有停止条件：既有通道与两个备选三者皆不成立时，OP-04 不进入 L1，按《首批试点点位选取准则》降级为纯审计点，本包按 branch_audit_stop 在第一期后收尾。该结论须以变更回执发布并登记为失败样本，不得静默删除该点位，也不得以其他点位替代（呼应 chain-data 待办 OI-01 不静默修改的纪律）。",
+      "en": "A node-specific stop: where neither the existing route nor either alternative holds, OP-04 does not enter L1, is downgraded to an audit-only point under the pilot-node selection criteria, and this pack closes after phase one along branch_audit_stop. The conclusion must be published as a change receipt and entered in the failed-sample register; the node may not be quietly deleted, and no other node may be substituted for it."
+     }
+    ],
+    "produces_zh": "现场审计记录、连续通道核验结论、接入段可通行性结论、G0 三项必交证据、四项生效协议、相邻范围登记、一份变更回执。",
+    "produces_en": "The site audit record, the continuity verification conclusion, the access-stub walkability conclusion, the three items of G0 evidence, four agreements in force, the registered adjacent extent, and one change receipt.",
+    "does_not_produce_zh": "不产生任何指标数值，不产生任何参与者数据，不产生任何构件。"
+   },
+   {
+    "phase_id": "P2",
+    "window_zh": "第 31—60 天",
+    "window_en": "Days 31–60",
+    "gate_id": "G1",
+    "gate_name_zh": "可逆原型闸门",
+    "gate_name_en": "Reversible-prototype gate",
+    "level_id": "L1",
+    "level_name_zh": "可逆原型",
+    "level_name_en": "Reversible prototype",
+    "gate_binding_note_zh": "L1 绑定 G1。本期开始时 OP-04 的 gate_id 须已由 G0 推进至 G1，推进本身以 P1 的出口条件为唯一依据；P1 出口未全部满足即本期不启动，不以「边做边补」推进。",
+    "gate_binding_note_en": "L1 binds to G1. At the start of this phase the gate_id of OP-04 must have moved from G0 to G1, and that move rests solely on phase one's exit conditions. If any exit condition is unmet the phase does not start, and nothing proceeds on the basis of delivering first and completing evidence later.",
+    "objective_zh": "在核验成立的走向上制作可撤除构件，完成安装撤除演练，交付维护卡与故障绕行方案。构件不开放使用。本期仍不进行成对测试，不招募测试参与者，仅有安装撤除与通行冲突的在场检查。",
+    "objective_en": "On the alignment the verification allowed, build removable components, run the install-and-remove drill, and deliver the maintenance card and the fault-detour plan. Components stay closed to use. No paired testing runs and no test participants are recruited; only on-site checks of installation, removal, and movement conflicts take place.",
+    "entry_conditions": [
+     {
+      "id": "P2-E1",
+      "zh": "P1 全部出口条件满足，且核验结论已以变更回执发布、OP-04 的 ai_off_continuity_status 已以追加方式更新。",
+      "en": "Every phase-one exit condition is met, the verification conclusion has been published as a change receipt, and the ai_off_continuity_status of OP-04 has been updated by appending."
+     },
+     {
+      "id": "P2-E2",
+      "zh": "《许可与协议清单》保险与责任行生效——参与者意外、构件第三方责任、设备与用电安全三项全部覆盖；缺失则不得安装任何构件。",
+      "en": "The insurance and liability row of the permissions list is in force, covering participant accident, third-party liability for components, and equipment and electrical safety. Absent it, no component may be installed."
+     },
+     {
+      "id": "P2-E3",
+      "zh": "全部构件同时满足四项可逆性条件：可撤除、不改变主体结构、不减少通行净宽、不占用疏散路径（沿用正文《存量更新可逆改造》条既有四项）。任一不成立的构件不得进场。",
+      "en": "Every component satisfies four reversibility conditions at once — removable, no change to the primary structure, no reduction of clear passage width, no occupation of an escape route (carried over from the existing four conditions in the reversible-retrofit clause). A component failing any of them does not enter the site."
+     },
+     {
+      "id": "P2-E4",
+      "zh": "L1 公告已在现场与线上同时发布，采用易读中文、图示与语音三种等价形式，载明可撤除范围、试验期限、责任人与撤除方式；公告不以扫码、注册或下载应用为前提。",
+      "en": "The L1 notice is published on site and online at once, in three equivalent forms — easy-read Chinese, diagrams, and speech — stating the removable extent, the trial period, the accountable person, and the removal method, and requiring no code scan, registration, or app download."
+     }
+    ],
+    "exit_conditions": [
+     {
+      "id": "P2-X1",
+      "zh": "安装撤除测试记录、维护卡、故障绕行方案三项齐备，并经场地运营与安全复核；复核人与证据所有者为不同的人。",
+      "en": "The install-and-remove test record, the maintenance card, and the fault-detour plan are complete and reviewed by site operations and safety, with the reviewer and the evidence owner being different people."
+     },
+     {
+      "id": "P2-X2",
+      "zh": "构件在 AI 关闭状态下仍可读可用：固定多通道导视不依赖任何联网设备，人工接管灯的状态在断电或断网时以物理方式可辨，触觉带临时铺设在无照明条件下仍可循。",
+      "en": "Components remain readable and usable with AI off: fixed multisensory wayfinding depends on no networked device, the state of the human-handover light is physically legible on power or network loss, and the temporary tactile band can still be followed without lighting."
+     },
+     {
+      "id": "P2-X3",
+      "zh": "构件不阻断轮椅与婴儿车通行，经在场检查确认；检查含带婴儿车与手动轮椅两种实际通行的在场核对。",
+      "en": "Components block neither wheelchair nor pram movement, confirmed by on-site check, including actual passes with a pram and with a manual wheelchair."
+     }
+    ],
+    "stop_conditions": [
+     {
+      "id": "P2-S1",
+      "risk_ids": [
+       "R-03",
+       "R-04",
+       "R-06"
+      ],
+      "zh": "沿用开放机制表 L1 行的既有停止条件：构件不可撤回、不可维修，或阻断轮椅与婴儿车通行；并沿用 R-04 停止条件——没有明确值守班次、备件、维护卡、故障绕行或人工接管资源。",
+      "en": "Carried over from row L1 of the opening-mechanism table: a component cannot be withdrawn or repaired, or blocks wheelchair and pram movement; and from the R-04 stop condition, there is no defined duty shift, spare part, maintenance card, fault detour, or human-handover resource."
+     },
+     {
+      "id": "P2-S2",
+      "risk_ids": [
+       "R-03"
+      ],
+      "zh": "相邻使用者行使否决权：对于安装在其日常出入口直接相邻范围内的可撤除构件，沿线居民与在地小微商户的否决一经登记，该构件在本轮内移除或迁移；行使否决不需要说明理由，也不需要证明自己属于任何一类画像。",
+      "en": "A neighbouring user exercises the veto: for a removable component within the immediate vicinity of their everyday entrance, once residents or small local traders register an objection the component is removed or relocated within the round. Exercising the veto requires neither a reason nor proof of belonging to any persona."
+     },
+     {
+      "id": "P2-S3",
+      "zh": "值守缺岗时构件不得开放使用，当日改为闭场安装撤除演练（沿用《试点档案模板》单班行）。",
+      "en": "With a duty post unfilled, components stay closed to use and the day reverts to a closed-site install-and-remove drill."
+     }
+    ],
+    "produces_zh": "6—12 件可撤除构件（覆盖组件库六类各一至二件，沿用资源框架量级）、安装撤除测试记录、维护卡、故障绕行方案、问题日志。",
+    "produces_en": "Six to twelve removable components, one or two of each of the six toolkit types following the resource framework, plus the install-and-remove test record, the maintenance card, the fault-detour plan, and the problem log."
+   },
+   {
+    "phase_id": "P3",
+    "window_zh": "第 61—90 天",
+    "window_en": "Days 61–90",
+    "gate_id": "G2",
+    "gate_name_zh": "封闭成对测试闸门（本期只做前置闭合，不申报通过）",
+    "gate_name_en": "Closed paired-test gate (preconditions only in this phase; no claim of passage)",
+    "level_id": "L2",
+    "level_name_zh": "封闭成对测试",
+    "level_name_en": "Closed paired testing",
+    "gate_binding_note_zh": "L2 绑定 G2。本期的申报等级仍为 L1；把 L2 写成本期已达成的等级，正是 chain-data 反例 CL-N1 被拒绝的写法，判定为 LEVEL_GATE_MISMATCH。本期的产出是「具备申请 G2 的前置条件」，不是「已通过 G2」。",
+    "gate_binding_note_en": "L2 binds to G2. The level claimed in this phase remains L1. Writing L2 as achieved here is precisely the form rejected as negative fixture CL-N1, ruled LEVEL_GATE_MISMATCH. What this phase produces is the preconditions for applying to G2, not passage through it.",
+    "objective_zh": "闭合封闭成对测试的全部前置：成对测试协议、可复测任务脚本、合理便利与退出方式的事先约定、参与者代表联络、双班值守可排、匿名化与处置方案、两张登记表的空表结构就位；并完成一次不含参与者的闭场演练，覆盖人工接管触发与 AI 开启／关闭切换。",
+    "objective_en": "Close every precondition of closed paired testing: the paired-test protocol, repeatable task scripts, reasonable accommodation and exit agreed in advance, participant-representative liaison, a schedulable double shift, the anonymisation and disposal plan, and the empty structures of both registers; and run one closed-site drill without participants covering human-handover triggering and the AI-on/AI-off switch.",
+    "entry_conditions": [
+     {
+      "id": "P3-E1",
+      "zh": "P2 全部出口条件满足。",
+      "en": "Every phase-two exit condition is met."
+     },
+     {
+      "id": "P3-E2",
+      "zh": "伦理复核已出具结论；招募不得早于该结论（ethics-protocol.json 协议 P1）。伦理结论为否定或附条件而条件未闭合时，本期不进入任何招募动作。",
+      "en": "The ethics review has issued its conclusion, and recruitment may not precede it (protocol P1). Where the conclusion is negative or conditional with conditions unmet, no recruitment step occurs in this phase."
+     },
+     {
+      "id": "P3-E3",
+      "zh": "合理便利与退出方式事先约定（开放机制表 L2 行准入条件原文），且合理便利预算已单列，不得在压缩预算时首先被删（沿用资源框架结论段的既有告诫）。",
+      "en": "Reasonable accommodation and the exit route are agreed in advance, per the entry condition in row L2, and the reasonable-accommodation budget is a separate line that may not be the first thing cut when budgets tighten."
+     }
+    ],
+    "exit_conditions": [
+     {
+      "id": "P3-X1",
+      "zh": "成对测试协议、任务脚本、合理便利清单、退出与申诉路径、匿名化与处置方案齐备，并由参与者代表与无障碍专业复核（《各闸门证据负责人》G2 行复核人）。",
+      "en": "The paired-test protocol, task scripts, reasonable-accommodation list, exit and appeal routes, and the anonymisation and disposal plan are complete and reviewed by participant representatives and accessibility professionals, the reviewers named for G2."
+     },
+     {
+      "id": "P3-X2",
+      "zh": "失败样本登记表与受影响但未参与群体登记表的空表结构就位，分母四类（完成、撤回、技术故障、其他非完成原因）在表结构中已固定，删除任何一类即该次测量作废。",
+      "en": "The failed-sample register and the register of affected non-participants are in place as structures, with the four denominator categories — completed, withdrawn, technical fault, other non-completion — fixed in the structure; dropping any one voids the measurement."
+     },
+     {
+      "id": "P3-X3",
+      "zh": "闭场演练完成并留下问题日志，演练至少覆盖：人工接管触发与到位、AI 关闭状态下沿等价路径完成一次通行、构件故障后的绕行执行。演练不含任何参与者，其结果不得被写为参与者证据。",
+      "en": "The closed-site drill is complete with a problem log, covering at minimum: triggering and arrival of human handover, one passage along the equivalent route with AI off, and execution of the detour after a component fault. The drill involves no participant and its results may not be written up as participant evidence."
+     },
+     {
+      "id": "P3-X4",
+      "zh": "双班值守可排：测试主持、技术安全、无障碍值守、参与者代表联络四个岗位各有可确认的在岗人选。",
+      "en": "The double shift is schedulable: test facilitator, technical safety, accessibility steward, and participant-representative liaison each have a confirmable person on duty."
+     }
+    ],
+    "stop_conditions": [
+     {
+      "id": "P3-S1",
+      "risk_ids": [
+       "R-03",
+       "R-04",
+       "R-07",
+       "R-08"
+      ],
+      "zh": "沿用正文 90 天框架第 31—60 天的既有停止条件：R-03、R-04、R-07、R-08 的替代路径、运维和参与条件未闭合时不得升级，不得以内部演示替代参与者证据。",
+      "en": "Carried over from days 31–60 of the package framework: no upgrade while the alternative-route, operating, and participation conditions under R-03, R-04, R-07, and R-08 remain open, and an internal demonstration cannot substitute for participant evidence."
+     },
+     {
+      "id": "P3-S2",
+      "risk_ids": [
+       "R-08"
+      ],
+      "zh": "参与结构不足、合理便利缺失、撤回受阻，或分母删除非完成与技术故障（R-08 停止条件原文）。",
+      "en": "Participation structure is inadequate, reasonable accommodation is missing, withdrawal is obstructed, or non-completions and technical faults are dropped from the denominator (R-08 stop condition)."
+     },
+     {
+      "id": "P3-S3",
+      "risk_ids": [
+       "R-07"
+      ],
+      "zh": "失败模式未记录，系统状态不可见，急停、固定信息、人工接管或 AI 关闭路径失效（R-07 停止条件原文）。",
+      "en": "Failure modes are unrecorded, system state is invisible, or the emergency stop, fixed information, human handover, or AI-off route fails (R-07 stop condition)."
+     },
+     {
+      "id": "P3-S4",
+      "zh": "本期任何时刻出现把 L2 申报为已达成的表述，即按 LEVEL_GATE_MISMATCH 处理并撤回该申报。",
+      "en": "Any statement claiming L2 as achieved is handled as LEVEL_GATE_MISMATCH and the claim is withdrawn."
+     }
+    ],
+    "produces_zh": "成对测试协议与任务脚本、合理便利与退出约定、两张登记表的空表结构、闭场演练问题日志、G2 申请材料。",
+    "produces_en": "The paired-test protocol and task scripts, the reasonable-accommodation and exit agreements, the two empty register structures, the closed-site drill problem log, and the G2 application materials."
+   }
+  ],
+  "gate_crossreference_table": [
+   {
+    "phase_id": "P1",
+    "gate_id": "G0",
+    "level_id": "L0",
+    "gate_evidence_required_zh": "范围与服务清单核对记录、伦理与同意协议、可复测任务脚本",
+    "evidence_owner_zh": "资料所有者与数据治理人员（待填）",
+    "reviewer_zh": "法务与共创主持（待填）",
+    "default_if_unclosed_zh": "不进入 G1"
+   },
+   {
+    "phase_id": "P2",
+    "gate_id": "G1",
+    "level_id": "L1",
+    "gate_evidence_required_zh": "安装撤除测试记录、维护卡、故障绕行方案",
+    "evidence_owner_zh": "产品设计与维护人员（待填）",
+    "reviewer_zh": "场地运营与安全（待填）",
+    "default_if_unclosed_zh": "构件不得开放使用"
+   },
+   {
+    "phase_id": "P3",
+    "gate_id": "G2",
+    "level_id": "L1（申报），L2（准备中）",
+    "gate_evidence_required_zh": "成对测试协议、问题日志、匿名化测试证据、分母完整性登记",
+    "evidence_owner_zh": "测试主持人与技术安全人员（待填）",
+    "reviewer_zh": "参与者代表与无障碍专业（待填）",
+    "default_if_unclosed_zh": "不进入 G3"
+   },
+   {
+    "phase_id": "本包之外",
+    "gate_id": "G3",
+    "level_id": "L3",
+    "gate_evidence_required_zh": "八项风险条目的停止与恢复证据逐项核对、非参与者影响审查登记、公开回执",
+    "evidence_owner_zh": "未参与制作的独立专业人员（待填）",
+    "reviewer_zh": "参与者代表与数据治理（待填）",
+    "default_if_unclosed_zh": "本轮复核结论不成立",
+    "note_zh": "G3 不在本 90 天包范围内，列出是为了说明本包终点在哪里，而不是把它写成本包的产出。"
+   }
+  ]
+ },
+ "budget": {
+  "unit_zh": "万元人民币",
+  "unit_en": "CNY 10,000",
+  "nature_zh": "概念级估算，非造价文件、非报价、非承诺。全部区间按公开市场常识性区间估计，并以本包既有《90 天零阶段资源框架》的人日与人次量级为折算锚点；本方案未向任何供应商询价。",
+  "nature_en": "Concept-level estimates. Not a cost document, not a quotation, not a commitment. Every range is estimated from commonly known public-market ranges and anchored on the person-day and participant quantities of the package's existing ninety-day Stage Zero resource framework. No supplier was approached for a price.",
+  "scope_zh": "口径为单点位 OP-04 的 90 天，不含土建、不含永久工程、不含任何轨道或市政主体的工程内容，不含全包级共享工作（伦理协议模板、数据处置协议、基准维护）——共享工作已在包级资源框架内计列，此处不重复计列。",
+  "scope_en": "The scope is ninety days at node OP-04 alone. It excludes civil works, permanent construction, and any works belonging to a rail or utility body, and excludes package-level shared work such as the ethics protocol templates, the data-disposal protocol, and baseline maintenance, which the package-level resource framework already counts and which is not double-counted here.",
+  "convention_zh": "区间下限由各分项下限相加得出，上限由各分项上限相加得出；应急与退出预留按分项合计的 10%（下限）与 15%（上限）计。该 10%—15% 为本文件首次给出的建议比例，属设计目标类数字，待授权主体核定。",
+  "convention_en": "The low end of the total sums the low ends of the items and the high end sums the high ends; the contingency and exit reserve is 10 per cent of the subtotal at the low end and 15 per cent at the high end. That 10–15 per cent is stated here for the first time, is a design-target figure, and awaits confirmation by the authorising body.",
+  "items": [
+   {
+    "item_id": "B1",
+    "name_zh": "现场审计与测绘",
+    "name_en": "Site audit and survey",
+    "low": 4.0,
+    "high": 9.0,
+    "phase_share": {
+     "P1_low": 4.0,
+     "P1_high": 9.0,
+     "P2_low": 0.0,
+     "P2_high": 0.0,
+     "P3_low": 0.0,
+     "P3_high": 0.0
+    },
+    "covers_zh": "东西向 AI 关闭态连续通道存在性核验；OP-08 与 OP-09 接入段的可通行性逐段核验；坡度、路缘、通行净宽与休息位的现场无障碍审计；ALT-A 走向约 282 米与 ALT-B 走向约 282 米两条备选的地面连续性踏勘。",
+    "covers_en": "Verification that an east–west AI-off continuous route exists; segment-by-segment walkability checks of the access stubs to OP-08 and OP-09; a site accessibility audit of gradient, kerb, clear width, and rest positions; and ground-continuity walkovers of the roughly 282 m ALT-A alignment and the roughly 282 m ALT-B alignment.",
+    "basis_zh": "按公开市场常识性区间估计。折算锚点为第一期 8—14 人日中归属审计与测绘的部分，以及两条备选走向合计约 564 米的踏勘工作量；长度读数取自 seb-op04-chain-data.json 的入档值（v0.3.0，几何归位后），属概念口径，不代表工程测绘精度。",
+    "basis_en": "Estimated from commonly known public-market ranges, anchored on the audit and survey share of the eight to fourteen person-days in phase one and on walkovers of the roughly 564 m of the two alignments combined. The length figures are the archived concept-level readings (archive v0.3.0, after the geometry relocation) and do not imply engineering survey accuracy."
+   },
+   {
+    "item_id": "B2",
+    "name_zh": "可逆原型构件",
+    "name_en": "Reversible prototype components",
+    "low": 8.0,
+    "high": 18.0,
+    "phase_share": {
+     "P1_low": 0.0,
+     "P1_high": 0.0,
+     "P2_low": 8.0,
+     "P2_high": 18.0,
+     "P3_low": 0.0,
+     "P3_high": 0.0
+    },
+    "covers_zh": "6—12 件可撤除构件，覆盖组件库六类各一至二件：多通道导视柱、安静停留点、可调高度界面、触觉带临时铺设、人工接管灯、无账户服务台；含制作、运输、安装撤除工装与备件。",
+    "covers_en": "Six to twelve removable components, one or two of each of the six toolkit types — multisensory wayfinding posts, quiet stops, adjustable-height interfaces, a temporary tactile band, human-handover lights, and a no-account service desk — including fabrication, transport, install-and-remove fittings, and spares.",
+    "basis_zh": "按公开市场常识性区间估计。件数沿用资源框架 G1 行的 6—12 件，不新增数量主张。触觉带按临时铺设估计，不含任何永久铺装、开挖、埋设或固定基础；人工接管灯按不依赖联网、断电状态物理可辨的低复杂度做法估计。",
+    "basis_en": "Estimated from commonly known public-market ranges. The count of six to twelve follows the G1 row of the resource framework and adds no new quantity claim. The tactile band is costed as a temporary laid element with no permanent paving, excavation, burial, or fixed foundation, and the human-handover light on a low-complexity, non-networked basis whose state stays physically legible when power is lost."
+   },
+   {
+    "item_id": "B3",
+    "name_zh": "人员（值守／无障碍专业／协调）",
+    "name_en": "Personnel (stewarding, accessibility professionals, coordination)",
+    "low": 12.0,
+    "high": 26.0,
+    "phase_share": {
+     "P1_low": 3.0,
+     "P1_high": 6.0,
+     "P2_low": 5.0,
+     "P2_high": 11.0,
+     "P3_low": 4.0,
+     "P3_high": 9.0
+    },
+    "covers_zh": "第一期 8—14 人日（无障碍专业审计、资料与许可协调、来源登记）；第二期 14—24 人日（构件制作与安装撤除、维护卡、单班值守 1 班次／试验日）；第三期 12—20 人日（协议与脚本编制、闭场演练、双班值守 2 班次／测试日的排班准备）。三期合计 34—58 人日。",
+    "covers_en": "Eight to fourteen person-days in phase one (accessibility audit, evidence and permission coordination, source registration); fourteen to twenty-four in phase two (component build, install-and-remove, maintenance card, one steward shift per trial day); twelve to twenty in phase three (protocol and script drafting, the closed-site drill, and preparing the two shifts per test day). Thirty-four to fifty-eight person-days in total.",
+    "basis_zh": "按公开市场常识性区间估计，折算区间约每人日 0.35—0.45 万元。该费率是覆盖无障碍专业、协调与值守三类差异很大的劳务的混合口径，真实拆分后总额必然变化，重算差异应公开登记而不是覆盖。班次口径沿用《试点档案模板》，不新增数量主张。",
+    "basis_en": "Estimated from commonly known public-market ranges, converting at roughly CNY 3,500–4,500 per person-day. That rate is a blend across three quite different classes of labour — accessibility professionals, coordination, and stewarding — so the total will move once the split is real, and any difference should be publicly registered rather than overwritten. Shift sizes follow the pilot dossier template and add no new quantity claim."
+   },
+   {
+    "item_id": "B4",
+    "name_zh": "保险",
+    "name_en": "Insurance",
+    "low": 2.0,
+    "high": 5.0,
+    "phase_share": {
+     "P1_low": 0.5,
+     "P1_high": 1.2,
+     "P2_low": 1.0,
+     "P2_high": 2.4,
+     "P3_low": 0.5,
+     "P3_high": 1.4
+    },
+    "covers_zh": "公众责任险与参与者／志愿者意外险的保费概念级估计，保单期覆盖试验期与撤除期。第一期份额仅覆盖现场审计作业期间的基础责任，因该期不安装构件、不进行参与者活动。",
+    "covers_en": "A concept-level estimate of premiums for public liability cover and participant or volunteer accident cover, with policy terms spanning the trial period and removal. The phase-one share covers only basic liability during audit fieldwork, since that phase installs nothing and involves no participant activity.",
+    "basis_zh": "按公开市场常识性区间估计。本项为投保建议的费用位置，不是保险方案；保额、免赔、除外责任与承保范围须由授权主体与持牌保险中介核定。本方案不点名任何保险人、产品或经纪机构，亦不具备提供保险建议的资质。",
+    "basis_en": "Estimated from commonly known public-market ranges. This line holds the cost position of an insurance recommendation, not an insurance scheme; sums insured, deductibles, exclusions, and scope must be settled by the authorising body with a licensed intermediary. No insurer, product, or broker is named, and this proposal holds no qualification to advise on insurance."
+   },
+   {
+    "item_id": "B5",
+    "name_zh": "无障碍共创测试（参与者补偿／合理便利／交通）",
+    "name_en": "Accessible co-design testing (participant compensation, reasonable accommodation, transport)",
+    "low": 6.0,
+    "high": 14.0,
+    "phase_share": {
+     "P1_low": 1.0,
+     "P1_high": 3.0,
+     "P2_low": 2.5,
+     "P2_high": 6.0,
+     "P3_low": 2.5,
+     "P3_high": 5.0
+    },
+    "covers_zh": "第一期 3—6 人次（协议共读与任务脚本可读性检查，不进行现场测试）；第二期 4—8 人次（安装撤除与通行冲突的在场检查）；第三期 1—4 人次（参与者代表参与协议与脚本复核，不进行现场测试）。三期合计 8—18 人次。每人次含参与者时间补偿、合理便利（手语、易读材料、陪同支持）与无障碍交通往返。",
+    "covers_en": "Three to six participant sessions in phase one (joint reading of protocols and readability checks of task scripts, with no field testing); four to eight in phase two (on-site checks of installation, removal, and movement conflicts); one to four in phase three (participant representatives reviewing protocols and scripts, with no field testing). Eight to eighteen sessions in total, each covering the participant's time, reasonable accommodation such as sign language, easy-read material and companion support, and accessible transport both ways.",
+    "basis_zh": "按公开市场常识性区间估计。人次量级为单点位份额，须落在资源框架 G0 的 8—15 人次与 G1 的 10—20 人次之内。合理便利在本项内单列，不得在压缩预算时首先被删——资源框架结论段已把这一点写为既有告诫，此处只是执行它。",
+    "basis_en": "Estimated from commonly known public-market ranges. The session counts are a single node's share and must sit inside the framework's eight to fifteen at G0 and ten to twenty at G1. Reasonable accommodation is a separate line within this item and may not be the first thing cut when budgets tighten, which the resource framework already warned about and which this line simply enforces."
+   },
+   {
+    "item_id": "B6",
+    "name_zh": "应急与退出预留",
+    "name_en": "Contingency and exit reserve",
+    "low": 3.2,
+    "high": 10.8,
+    "phase_share": {
+     "P1_low": 0.85,
+     "P1_high": 2.88,
+     "P2_low": 1.2,
+     "P2_high": 4.5,
+     "P3_low": 1.15,
+     "P3_high": 3.42
+    },
+    "covers_zh": "构件撤除与场地恢复原状、故障处置与备件补充、停止条件触发时的即时停止与临时封闭、退出阶段的数据处置执行成本、以及核验结论推翻既定走向时的返工。",
+    "covers_en": "Component removal and site reinstatement, fault handling and spares replenishment, immediate stop and temporary closure when a stop condition triggers, the cost of executing data disposal at exit, and rework where a verification conclusion overturns the chosen alignment.",
+    "basis_zh": "按分项合计的 10%（下限）与 15%（上限）计，为本文件首次给出的建议比例，属设计目标类数字，待授权主体核定。比例取值偏高的理由写在这里而不是藏在数字里：本节点的空间前提未证成立，第一期存在真实的否定可能，返工与提前退出不是小概率情形。",
+    "basis_en": "Set at 10 per cent of the subtotal at the low end and 15 per cent at the high end, a proportion stated here for the first time as a design target pending confirmation. The reason it sits at the higher end is stated rather than hidden inside the number: this node's spatial premise is unproven, phase one may genuinely return a negative finding, and rework or early exit is not a remote scenario."
+   }
+  ],
+  "subtotal_before_contingency": {
+   "low": 32.0,
+   "high": 72.0
+  },
+  "total": {
+   "low": 35.2,
+   "high": 82.8
+  },
+  "branches": [
+   {
+    "branch_id": "branch_full",
+    "name_zh": "三期全部执行",
+    "name_en": "All three phases executed",
+    "condition_zh": "第一期核验结论允许 OP-04 进入 L1（既有通道成立，或 ALT-A 与 ALT-B 之一的成立条件全部具备）。",
+    "condition_en": "Phase one's verification allows OP-04 into L1: either an existing continuous route holds, or every condition for one of ALT-A and ALT-B is in place.",
+    "total": {
+     "low": 35.2,
+     "high": 82.8
+    }
+   },
+   {
+    "branch_id": "branch_audit_stop",
+    "name_zh": "第一期后收尾（审计结论为否）",
+    "name_en": "Closed after phase one (negative audit finding)",
+    "condition_zh": "触发 P1-S4：既有通道与两个备选三者皆不成立，OP-04 降级为纯审计点，不进入 L1。",
+    "condition_en": "P1-S4 triggers: neither the existing route nor either alternative holds, OP-04 is downgraded to an audit-only point, and it does not enter L1.",
+    "subtotal_before_contingency": {
+     "low": 8.5,
+     "high": 19.2
+    },
+    "total": {
+     "low": 9.35,
+     "high": 22.08
+    },
+    "note_zh": "该分支的产出是一份带否定结论的审计记录与一份变更回执。这不是把钱花掉却什么都没做成：把一条已经写在数据里、看上去合规的等价路径断言退回到未证成立的状态，本身就是本包最有价值的一种产出。",
+    "note_en": "What this branch produces is an audit record carrying a negative conclusion and one change receipt. That is not money spent for nothing: sending back an equivalence claim that already sat in the data and passed every field check, returning it to the state of being unproven, is among the most valuable things this pack can produce."
+   }
+  ],
+  "excluded_from_budget_zh": [
+   "土建、永久工程、任何形式的开挖埋设与铺装改造",
+   "轨道运营、市政与道路三类主体范围内的工程内容与其许可成本（ALT-A 依赖这三类主体，其成本不在本方案权限内，不得写入本预算）",
+   "用地取得、租金与权属处置成本",
+   "全包级共享工作与基准维护（已在包级资源框架内计列）",
+   "G3 独立复核的成本（不在本 90 天包范围内）",
+   "任何形式的活动、招商、宣传与传播物料"
+  ],
+  "excluded_from_budget_en": [
+   "Civil works, permanent construction, and any excavation, burial, or repaving",
+   "Works and permit costs falling to the rail operator, the utility bodies, or the road authority (ALT-A depends on all three; those costs lie outside this proposal's authority and may not be written into this budget)",
+   "Land acquisition, rent, and tenure costs",
+   "Package-level shared work and baseline maintenance, already counted in the package-level resource framework",
+   "The cost of the G3 independent review, which lies outside this ninety-day pack",
+   "Events, investment promotion, publicity, and communication material of any kind"
+  ]
+ },
+ "procurement": {
+  "nature_zh": "采购方式建议，非采购文件、非招标文件、非对任何供应商的邀约。具体适用方式与限额须由授权主体按其自身采购制度确定；本方案不引用任何具体限额数值，也不推荐任何供应商。",
+  "nature_en": "Recommended procurement routes. Not a procurement document, not a tender, and no invitation to any supplier. The applicable route and thresholds are for the authorising body to set under its own procurement rules; no threshold figure is cited here and no supplier is recommended.",
+  "routes": [
+   {
+    "route_id": "PR-1",
+    "route_zh": "小额零星采购",
+    "route_en": "Petty and one-off purchase",
+    "applies_to_zh": "构件耗材与备件、临时铺设的触觉带材料、参与者补偿与合理便利支出（手语、易读材料印制、无障碍交通）",
+    "applies_to_en": "Component consumables and spares, materials for the temporary tactile band, and participant compensation and reasonable-accommodation costs such as sign language, printing easy-read material, and accessible transport",
+    "rationale_zh": "单笔金额小、时效要求高、与参与者活动直接绑定；合理便利支出尤其不能因采购流程延误而临时取消，否则等于把便利变成条件。"
+   },
+   {
+    "route_id": "PR-2",
+    "route_zh": "比选（多方案比较）",
+    "route_en": "Competitive comparison of several offers",
+    "applies_to_zh": "现场无障碍审计与测绘服务、可撤除构件的制作与安装撤除服务",
+    "applies_to_en": "Site accessibility audit and survey services, and fabrication plus install-and-remove services for removable components",
+    "rationale_zh": "两项均为专业服务且质量差异直接影响判定结论，须以能力与方法而不是单纯价格比选；审计服务的比选材料应包含审计人自身的无障碍专业资历与既往可核对的审计记录。"
+   },
+   {
+    "route_id": "PR-3",
+    "route_zh": "框架协议",
+    "route_en": "Framework agreement",
+    "applies_to_zh": "值守与维护劳务、保险",
+    "applies_to_en": "Stewarding and maintenance labour, and insurance",
+    "rationale_zh": "两者都按日或按期发生、都需随试验日与测试日的排班浮动，且都必须覆盖试验期与撤除期；框架协议的期限须与场地使用授权期一致，授权期缩短时框架协议随之缩短。"
+   }
+  ],
+  "reversibility_requirements": {
+   "must_all_hold_zh": "凡进入本节点的构件，采购技术要求中须同时写入下列四项，任一不成立即不得采购、不得进场——四项直接沿用正文《存量更新可逆改造的豁免与备案》条既有条件，不是本文件新造：",
+   "must_all_hold_en": "The technical requirements for any component entering this node must carry all four conditions below at once; failing any one, it is neither purchased nor admitted. The four are carried over from the existing reversible-retrofit clause and are not coined here:",
+   "conditions": [
+    {
+     "id": "RV-1",
+     "zh": "可撤除",
+     "en": "Removable"
+    },
+    {
+     "id": "RV-2",
+     "zh": "不改变主体结构",
+     "en": "No change to the primary structure"
+    },
+    {
+     "id": "RV-3",
+     "zh": "不减少通行净宽",
+     "en": "No reduction of clear passage width"
+    },
+    {
+     "id": "RV-4",
+     "zh": "不占用疏散路径",
+     "en": "No occupation of an escape route"
+    }
+   ],
+   "additional_clauses_zh": [
+    "不动土建：不得采购需要开挖、埋设、浇筑固定基础或改变既有铺装的产品；触觉带一律为临时铺设，撤除后不得留下粘结残留或铺装损伤。",
+    "撤除即交付：供应商须一并交付安装撤除测试记录与维护卡，两者是 G1 的必交证据；未交付即视为未完成交付，不得以「构件已到场」结算。",
+    "AI 关闭仍可用：构件不得以扫码、二维码、小程序、下载应用、关注公众号、注册账户或登录账号作为唯一使用入口——该清单直接取自 seb-spec.json · node_schema · ai_off_path 的 forbidden_targets，采购要求与节点判据用的是同一份词表，不另立标准。",
+    "岗位可被找到：构件上的求助与责任标识须写明可被找到的角色而不是机构名称，判据同 node_schema · human_handoff 的 required_role_token。"
+   ],
+   "additional_clauses_en": [
+    "No civil works: nothing requiring excavation, burial, a poured fixed foundation, or alteration of existing paving may be purchased. The tactile band is always temporary and must leave no adhesive residue or paving damage on removal.",
+    "Removal is part of delivery: the supplier delivers the install-and-remove test record and the maintenance card alongside the components, both being evidence required at G1. Without them delivery is incomplete and may not be settled on the ground that the components have arrived.",
+    "Usable with AI off: no component may make a code scan, QR code, mini-program, app download, official-account follow, account registration, or login its only route of use. That list is taken directly from the forbidden_targets of ai_off_path in the baseline's node schema, so the procurement requirement and the node criterion read from one list and no separate standard is created.",
+    "A findable post: help and accountability markings on a component must name a findable role rather than an organisation, on the same criterion as required_role_token in human_handoff."
+   ]
+  },
+  "prohibited_zh": [
+   "不得采购任何以人脸、步态、障碍类别或健康状况为输入的识别设备（R-01 默认不采身份、健康或障碍类别）",
+   "不得以采购合同的形式向任何主体承诺场地、授权、后续订单或采用结果",
+   "不得采购需要长期联网服务订阅才能维持基本可用的产品——服务停止即等价路径失效，属 R-07 停止条件"
+  ],
+  "prohibited_en": [
+   "No purchase of recognition equipment taking face, gait, disability category, or health status as input, since R-01 collects none of identity, health, or disability categories by default",
+   "No procurement contract may promise any party a site, an authorisation, follow-on orders, or an adoption outcome",
+   "No purchase of a product whose basic usability depends on an ongoing networked subscription, because the equivalent route fails when the service stops, which is an R-07 stop condition"
+  ]
+ },
+ "raci": {
+  "nature_zh": "角色责任矩阵为概念建议。最终 A 角色为未来经授权的项目发起或运营主体（当前待确认）；在该主体确认之前，本矩阵不得被当作已生效的安排。矩阵沿用正文既有 RACI 结构，并按本节点的六类活动展开。",
+  "nature_en": "A concept-level responsibility matrix. The final A role is the future authorised initiating or operating body, currently to be confirmed, and until it is confirmed this matrix is no arrangement in force. It follows the RACI structure already in the proposal and unfolds it across this node's six activity classes.",
+  "roles": [
+   {
+    "role_id": "RL-1",
+    "zh": "场地运营方（待授权主体确认）",
+    "en": "Site operator (pending confirmation by the authorising body)"
+   },
+   {
+    "role_id": "RL-2",
+    "zh": "无障碍专业人员",
+    "en": "Accessibility professionals"
+   },
+   {
+    "role_id": "RL-3",
+    "zh": "参与者代表",
+    "en": "Participant representatives"
+   },
+   {
+    "role_id": "RL-4",
+    "zh": "维护方（本方案团队）",
+    "en": "Maintainer (this proposal's team)"
+   },
+   {
+    "role_id": "RL-5",
+    "zh": "监督方（授权主体，待确认）",
+    "en": "Oversight (the authorising body, to be confirmed)"
+   }
+  ],
+  "conflict_of_interest_rule_zh": "维护方即本方案团队，是被审对象的作者，因此在「现场审计」与「停止决定」两类活动上不得担任 R 或复核人，只能担任 C 并提供几何、复演器与记录。同一纪律的更强形式已写在正文：G3 的复核人必须未参与制作。",
+  "conflict_of_interest_rule_en": "The maintainer is this proposal's team, the author of what is being examined, and therefore may be neither R nor reviewer for site audit and stop decisions; it may only be C, supplying geometry, the replay tool, and records. The stronger form of the same discipline is already in the proposal: the reviewer at G3 must have taken no part in production.",
+  "matrix": [
+   {
+    "activity_id": "AC-1",
+    "activity_zh": "现场审计（连续通道核验、接入段可通行性、无障碍审计与测绘）",
+    "activity_en": "Site audit (continuity verification, access-stub walkability, accessibility audit and survey)",
+    "assignments": {
+     "RL-1": "C",
+     "RL-2": "R",
+     "RL-3": "C",
+     "RL-4": "C",
+     "RL-5": "A"
+    },
+    "note_zh": "维护方只提供提交几何、复演器与入档读数，不参与判定；审计结论若与本方案的入档读数不一致，以现场审计为准，差异登记为失败样本而不是被解释掉。"
+   },
+   {
+    "activity_id": "AC-2",
+    "activity_zh": "构件安装与撤除",
+    "activity_en": "Component installation and removal",
+    "assignments": {
+     "RL-1": "R",
+     "RL-2": "C",
+     "RL-3": "C",
+     "RL-4": "R",
+     "RL-5": "A"
+    },
+    "note_zh": "两个 R 的分工写明：场地运营方负责场地条件、安全放行与作业时段；维护方负责构件制作、安装、撤除、维护卡与故障绕行方案。"
+   },
+   {
+    "activity_id": "AC-3",
+    "activity_zh": "成对测试（本包内为 L2 前置闭合与闭场演练）",
+    "activity_en": "Paired testing (within this pack, closing L2 preconditions and running the closed-site drill)",
+    "assignments": {
+     "RL-1": "C",
+     "RL-2": "R",
+     "RL-3": "R",
+     "RL-4": "C",
+     "RL-5": "A"
+    },
+    "note_zh": "参与者代表在此为 R 而非 C，依据是开放机制表 L2 行已把参与者代表写为责任主体之一；维护方在此只能是 C，不得担任测试主持人。"
+   },
+   {
+    "activity_id": "AC-4",
+    "activity_zh": "数据（采集范围、匿名化、留存、访问与处置）",
+    "activity_en": "Data (collection scope, anonymisation, retention, access, and disposal)",
+    "assignments": {
+     "RL-1": "I",
+     "RL-2": "C",
+     "RL-3": "C",
+     "RL-4": "I",
+     "RL-5": "A"
+    },
+    "role_gap": {
+     "missing_r_zh": "本活动的 R 角色在本矩阵的五个角色中没有对应者。数据治理专业人员是 risk.json 中 R-01 的 owner_role 与 ethics-protocol.json 协议 P6 的责任专业，属独立于上述五者的第六个角色，须由授权主体另行指定。",
+     "missing_r_en": "No role in this five-role matrix corresponds to R for this activity. Data-governance professionals are the owner role for R-01 in risk.json and the accountable discipline for protocol P6 in the ethics pack, a sixth role independent of the five above, to be designated separately by the authorising body.",
+     "consequence_if_unfilled_zh": "未指定即测量记录不得开始（《许可与协议清单》数据处置行既有后果）。本矩阵不用把该活动硬塞给现有角色的方式把这个洞填上——填上就等于让一个不具备该专业的角色签字。"
+    },
+    "note_zh": "参与者代表在此为 C，是因为撤回权与知情同意的行使人是参与者本人；代表不得代替任何参与者行使撤回。"
+   },
+   {
+    "activity_id": "AC-5",
+    "activity_zh": "停止决定",
+    "activity_en": "Stop decisions",
+    "assignments": {
+     "RL-1": "R",
+     "RL-2": "C",
+     "RL-3": "C",
+     "RL-4": "R",
+     "RL-5": "A"
+    },
+    "note_zh": "三条纪律必须写明。其一，三级停止（停止条件触发）不是决定而是规则：现场任一值守可当场执行，不需请示，A 角色的确认不是停止的前置条件，也不得以未确认为由延迟停止。其二，参与者代表在本活动为 C，但相邻使用者的否决权独立于本矩阵：否决一经登记，该构件在本轮内移除或迁移，行使否决不需要说明理由。其三，维护方为 R 仅限于其自身构件相关的停止执行，不得对他人提出的停止作出否决。",
+    "note_en": "Three disciplines must be stated. First, a level-three stop, when a stop condition triggers, is not a decision but a rule: any steward on site executes it on the spot without asking, confirmation by the A role is not a precondition for stopping, and a pending confirmation is no ground for delay. Second, participant representatives are C here, but the neighbouring users' veto sits outside this matrix: once registered, the component is removed or relocated within the round, and no reason need be given. Third, the maintainer is R only for stopping in relation to its own components and may not veto a stop raised by anyone else."
+   },
+   {
+    "activity_id": "AC-6",
+    "activity_zh": "退出与恢复原状",
+    "activity_en": "Exit and reinstatement",
+    "assignments": {
+     "RL-1": "R",
+     "RL-2": "C",
+     "RL-3": "C",
+     "RL-4": "R",
+     "RL-5": "A"
+    },
+    "note_zh": "维护方负责撤除与场地恢复，场地运营方负责恢复验收；数据处置属退出的组成部分，其 R 角色同 AC-4，仍为待指定的数据治理人员。公众通过匿名化结果与公开回执获得 I。"
+   }
+  ],
+  "public_information_zh": "公众与维护者通过匿名化结果与变更回执获得 I，沿用正文既有 RACI 的知会安排；政府部门、商户、社区、高校或企业在取得书面授权前均不被写成承诺主体。",
+  "public_information_en": "The public and maintainers are informed through anonymised results and change receipts, following the notification arrangement already in the proposal. No government department, trader, community body, university, or enterprise is written as a committed party before written authorisation exists."
+ },
+ "staffing": {
+  "nature_zh": "班表与响应时限为概念建议。班次结构与规模沿用正文《试点档案模板：最终责任与值守排班》，不新增数量主张；响应时限沿用正文《维护 SLA 与故障升级路径》，未另造新数。",
+  "nature_en": "Roster and response times are concept-level recommendations. Shift structure and size follow the pilot dossier template and add no new quantity claim; response times follow the maintenance SLA table and coin no new figure.",
+  "rosters": [
+   {
+    "day_type_zh": "非测试日、非试验日（含第一期全部日期）",
+    "day_type_en": "Neither a test day nor a trial day, including every day of phase one",
+    "gate_id": "G0",
+    "shift_zh": "不设值守，零班次",
+    "shift_en": "No duty roster, zero shifts",
+    "roles_on_duty_zh": "不适用",
+    "unfilled_post_zh": "不适用",
+    "note_zh": "第一期不进行现场测试，也不安装构件，因此不设值守；这不是省人，而是因为该期没有需要有人在场承担的现场风险。"
+   },
+   {
+    "day_type_zh": "试验日（第二期，构件安装撤除演练日）",
+    "day_type_en": "Trial day (phase two, install-and-remove drill days)",
+    "gate_id": "G1",
+    "shift_zh": "单班，一班次／试验日",
+    "shift_en": "Single shift, one shift per trial day",
+    "roles_on_duty_zh": "无障碍值守人员、场地运营值守人员、维护人员待命",
+    "roles_on_duty_en": "Accessibility steward, site-operations steward, maintenance on call",
+    "unfilled_post_zh": "构件不得开放使用，当日改为闭场安装撤除演练",
+    "unfilled_post_en": "Components stay closed to use and the day reverts to a closed-site install-and-remove drill"
+   },
+   {
+    "day_type_zh": "测试日（第三期闭场演练日；G2 获准后的成对测试日同此口径）",
+    "day_type_en": "Test day (the closed-site drill in phase three; the same applies to paired-test days once G2 is granted)",
+    "gate_id": "G2",
+    "shift_zh": "双班，两班次／测试日",
+    "shift_en": "Double shift, two shifts per test day",
+    "roles_on_duty_zh": "测试主持人、技术安全人员、无障碍值守人员、参与者代表联络专员",
+    "roles_on_duty_en": "Test facilitator, technical-safety personnel, accessibility steward, participant-representative liaison officer",
+    "unfilled_post_zh": "当日测试取消，不以单班替代",
+    "unfilled_post_en": "Testing is cancelled for the day and a single shift is no substitute"
+   }
+  ],
+  "sla": {
+   "source_zh": "全部取自正文《维护 SLA 与故障升级路径》既有四行，本文件未新增任何时限数值。",
+   "source_en": "Every value is taken from the four existing rows of the maintenance SLA and escalation-path table; no new time limit is coined here.",
+   "levels": [
+    {
+     "level_id": "SLA-1",
+     "name_zh": "一级 现场人工",
+     "name_en": "Level one, on-site staff",
+     "trigger_zh": "单点提示失效、导视被遮挡、界面无响应",
+     "suggested_response_zh": "建议五分钟内到位",
+     "suggested_response_en": "Suggested: on the spot within five minutes",
+     "escalation_zh": "现场值守人员直接处置并登记问题日志",
+     "nature_zh": "建议值，待授权主体核定"
+    },
+    {
+     "level_id": "SLA-2",
+     "name_zh": "二级 值守协调",
+     "name_en": "Level two, steward coordination",
+     "trigger_zh": "人工接管未在约定时限内完成，或替代路径临时中断",
+     "suggested_response_zh": "建议十五分钟内接手",
+     "suggested_response_en": "Suggested: taken over within fifteen minutes",
+     "escalation_zh": "值守协调人调配班次并通知维护人员，必要时暂停该点位",
+     "nature_zh": "建议值，待授权主体核定"
+    },
+    {
+     "level_id": "SLA-3",
+     "name_zh": "三级 暂停降级",
+     "name_en": "Level three, suspend and downgrade",
+     "trigger_zh": "停止条件触发：等价路径失效、构件阻断通行或参与条件不成立",
+     "suggested_response_zh": "即时",
+     "suggested_response_en": "Immediate",
+     "escalation_zh": "该点位当场停止并按点位降级，不以限期整改替代停止",
+     "nature_zh": "规则，不可协商"
+    },
+    {
+     "level_id": "SLA-4",
+     "name_zh": "四级 G3 复核",
+     "name_en": "Level four, G3 review",
+     "trigger_zh": "同一停止条件重复触发，或异议未在本轮得到结论",
+     "suggested_response_zh": "建议排入最近一次复核",
+     "suggested_response_en": "Suggested: placed on the next review agenda",
+     "escalation_zh": "由未参与制作的专业人员与参与者代表复核并出具公开回执",
+     "nature_zh": "结论只能是修正、限定试点或停止"
+    }
+   ],
+   "human_handover_time_limit_note_zh": "关于「人工接管响应≤X 分钟」需要说清一件事，否则读者会读出一个本包并不存在的数值。正文给出的两个数是：一级现场人工建议五分钟内到位，二级在人工接管未在约定时限内完成时建议十五分钟内接手。人工接管本身那个「约定时限」，正文没有给出数值，本文件也不为它另设新数——该时限由授权主体在 G0 阶段与真实班次条件一并核定。可以从条文本身推出的只有一条逻辑约束：按二级的触发条件文义，「约定时限」的取值必然短于十五分钟，否则二级永远不会触发。这是推论，不是新数。",
+   "human_handover_time_limit_note_en": "One thing must be said plainly about any \"human handover responds within X minutes\", or a reader will take away a figure this package does not hold. The proposal gives two numbers: level one suggests on-site arrival within five minutes, and level two suggests takeover within fifteen minutes once human handover has failed to complete within its agreed limit. That agreed limit itself carries no figure in the proposal, and none is coined here; it is for the authorising body to set at G0 against real shift conditions. Only one constraint follows from the text: read against level two's trigger, the agreed limit must be shorter than fifteen minutes, or level two would never fire. That is an inference, not a new number.",
+   "measurement_note_zh": "以上全部为设计目标值，不是实测绩效。metrics.json 中 human_handover_success_rate 与 human_handover_response_time_seconds 保持待实测；在取得授权的 G2 协议下完成真实测量之前，本节点的人工接管表现是未知的。且该两项指标适用分母完整性规则：撤回、技术故障与其他非完成原因必须与完成数一并报告，删除任何一类该次测量作废。",
+   "measurement_note_en": "All of the above are design targets, not measured performance. In metrics.json, human_handover_success_rate and human_handover_response_time_seconds remain unmeasured, and until a real measurement is taken under an authorised G2 protocol this node's handover performance is unknown. Both metrics fall under the denominator-integrity rule: withdrawals, technical faults, and other non-completions must be reported alongside completions, and dropping any one voids the measurement."
+  }
+ },
+ "insurance": {
+  "nature_zh": "本节为投保建议，不是保险方案、不是保险产品推荐、不是保险经纪意见。本方案不点名任何保险人、产品、经纪或公估机构，不具备提供保险建议的资质，也不对任何承保结果作任何陈述。保额、免赔额、除外责任、承保范围与保单条款须由授权主体与持牌保险中介核定。",
+  "nature_en": "This section is an insurance recommendation, not an insurance scheme, a product recommendation, or a broker's opinion. No insurer, product, broker, or loss adjuster is named; this proposal holds no qualification to advise on insurance and makes no representation about any underwriting outcome. Sums insured, deductibles, exclusions, scope, and policy wording must be settled by the authorising body with a licensed intermediary.",
+  "binding_clause_zh": "本节对应《许可与协议清单》保险与责任行：覆盖参与者意外、构件第三方责任、设备与用电安全；当前状态为待办，缺失则不得安装任何构件。这不是流程建议，而是本方案的停止条件之一。",
+  "binding_clause_en": "This section corresponds to the insurance-and-liability row of the permissions list, covering participant accident, third-party liability for components, and equipment and electrical safety. Its current status is pending, and while it is missing no component may be installed. That is not a procedural suggestion but one of this proposal's stop conditions.",
+  "recommended_covers": [
+   {
+    "cover_id": "IN-1",
+    "name_zh": "公众责任",
+    "name_en": "Public liability",
+    "suggested_scope_zh": "可撤除构件对第三方造成的人身伤害与财产损失；安装、撤除与维护作业期间的作业责任；构件带电部分（人工接管灯）的电气责任；构件占用或临近通行空间引发的绊倒、碰撞与轮椅通行受阻。",
+    "suggested_scope_en": "Bodily injury and property damage to third parties caused by removable components; operations liability during installation, removal, and maintenance; electrical liability for any powered part such as the human-handover light; and trips, collisions, or obstruction of wheelchair movement arising where a component occupies or adjoins the passage.",
+    "note_zh": "第三方不限于参与者：本节点位于公共通行空间，绝大多数经过者从未同意参与任何测试，责任覆盖必须以他们为主要对象而不是附带对象。这与正文「受影响但未参与群体」的登记纪律指向同一件事。"
+   },
+   {
+    "cover_id": "IN-2",
+    "name_zh": "参与者与志愿者意外",
+    "name_en": "Participant and volunteer accident",
+    "suggested_scope_zh": "参与者在招募、往返交通、现场任务与撤回过程中的意外伤害；陪同人员与手语译员等合理便利支持人员应与参与者同等覆盖；参与者代表与共创主持人在场期间同等覆盖。",
+    "suggested_scope_en": "Accidental injury to participants during recruitment, travel to and from the site, on-site tasks, and withdrawal; companions and reasonable-accommodation support such as sign-language interpreters covered on the same terms as participants; and participant representatives and co-design facilitators covered while present.",
+    "note_zh": "合理便利支持人员必须被同等覆盖，否则合理便利会因为保险边界而被劝退，这是把便利变成条件的一种隐蔽方式。"
+   },
+   {
+    "cover_id": "IN-3",
+    "name_zh": "设备与用电安全",
+    "name_en": "Equipment and electrical safety",
+    "suggested_scope_zh": "构件本身的损坏、失窃与故障；临时用电的设备责任；若构件采用电池供电则含电池热失控风险。",
+    "suggested_scope_en": "Damage, theft, and failure of the components themselves; equipment liability for temporary power; and, where components are battery powered, battery thermal-runaway risk."
+   }
+  ],
+  "policy_period_rule_zh": "保单期须同时覆盖试验期与撤除期，与场地使用授权期的口径一致（《许可与协议清单》场地使用行原文）。撤除期结束前保单失效即构成停止条件：构件须在保单失效前撤除，不得以「即将撤除」为由裸期运行。",
+  "policy_period_rule_en": "The policy term must span both the trial period and removal, on the same footing as the site-use authorisation. A policy lapsing before removal is complete is itself a stop condition: components must be removed before the policy ends, and running uninsured on the ground that removal is imminent is not permitted.",
+  "unresolved_zh": [
+   "参与者中可能包含未成年人与需要监护同意的成年人，其意外险的可投保性与同意结构须由伦理复核与持牌中介一并处置，本方案不预判。",
+   "ALT-A 涉及轨道、市政与道路三类主体的场地，其责任边界与既有保险安排的关系不在本方案权限内，须由授权主体与该三类主体分别确认。",
+   "保费区间已列入预算科目 B4，属概念级估算；真实保费取决于保额、场地条件与参与者构成，取得真实报价后应重算并公开登记差异。"
+  ],
+  "unresolved_en": [
+   "Participants may include minors and adults requiring a guardian's consent; whether accident cover is available for them and how consent is structured must be handled jointly by the ethics review and a licensed intermediary, and this proposal prejudges neither.",
+   "ALT-A touches land held by the rail operator, the utility bodies, and the road authority; how liability there relates to their existing insurance lies outside this proposal's authority and must be confirmed with each of them by the authorising body.",
+   "The premium range sits in budget item B4 as a concept-level estimate. Real premiums depend on sums insured, site conditions, and participant composition, and should be recomputed with any difference publicly registered once real figures exist."
+  ]
+ },
+ "maintenance": {
+  "nature_zh": "维护边界、频次与报修路径为概念建议；频次为本文件首次给出的设计目标值，待授权主体核定。",
+  "nature_en": "Maintenance boundaries, frequencies, and the fault-reporting path are concept-level recommendations; the frequencies are design targets stated here for the first time, pending confirmation.",
+  "boundary": {
+   "in_scope_zh": "本节点范围内的可撤除构件：多通道导视柱、安静停留点、可调高度界面、触觉带临时铺设、人工接管灯、无账户服务台；以及这些构件的维护卡、备件与故障绕行方案。",
+   "in_scope_en": "The removable components within this node — multisensory wayfinding posts, quiet stops, adjustable-height interfaces, the temporary tactile band, human-handover lights, and the no-account service desk — together with their maintenance cards, spares, and fault-detour plans.",
+   "out_of_scope_zh": "既有市政设施、道路铺装、路缘、排水、照明、绿化、轨道站范围内的任何设施；ALT-A 所依赖的轨道运营、市政与道路三类主体范围内的一切内容。这些不在本方案的维护边界内，也不得被写成本方案可承诺的维护对象。",
+   "out_of_scope_en": "Existing utilities, road paving, kerbs, drainage, lighting, planting, and anything inside the station area; and everything falling to the rail operator, the utility bodies, and the road authority on which ALT-A depends. None of this lies within this proposal's maintenance boundary and none may be written as something it can undertake to maintain.",
+   "hard_limit_zh": "维护弥补不了不存在的物理通道。OP-04 的 ai_off_continuity_status 现为 premise_unproven_pending_site_audit：AI 关闭状态下不存在一条不依赖 AI 的连续路径把本节点与 OP-08、OP-09 连起来。再高的巡检频次、再快的响应时限都不改变这个结论，也不得被用来替代 P1 的连续通道核验。",
+   "hard_limit_en": "Maintenance cannot make up for a physical route that does not exist. The ai_off_continuity_status of OP-04 reads premise_unproven_pending_site_audit: with AI off, no route independent of AI joins this node to OP-08 or OP-09. No inspection frequency and no response time changes that, and neither may be offered in place of the continuity verification in phase one."
+  },
+  "frequency": [
+   {
+    "item_zh": "全部构件",
+    "when_zh": "试验日与测试日：开场前一次、闭场后一次",
+    "when_en": "Trial and test days: once before opening and once after closing",
+    "check_zh": "位置未移、固定未松、无锐边、通行净宽未被侵占、疏散路径未被占用",
+    "nature_zh": "建议值，待授权主体核定"
+   },
+   {
+    "item_zh": "全部构件",
+    "when_zh": "非试验日、非测试日：每周一次",
+    "when_en": "Days that are neither trial nor test days: once weekly",
+    "check_zh": "同上，另加破损、涂污与被移动的痕迹登记",
+    "nature_zh": "建议值，待授权主体核定"
+   },
+   {
+    "item_zh": "触觉带临时铺设",
+    "when_zh": "每次开场前",
+    "when_en": "Before each opening",
+    "check_zh": "边缘翘起、滑移、粘结失效、湿滑与轮椅前轮卡阻",
+    "nature_zh": "建议值，待授权主体核定"
+   },
+   {
+    "item_zh": "人工接管灯",
+    "when_zh": "每试验日与测试日",
+    "when_en": "Each trial and test day",
+    "check_zh": "亮灭状态与实际人工在岗状态一致；断电与断网条件下状态仍以物理方式可辨；不得出现灯亮而无人在岗",
+    "nature_zh": "建议值，待授权主体核定"
+   },
+   {
+    "item_zh": "多通道导视柱与无账户服务台",
+    "when_zh": "每试验日与测试日",
+    "when_en": "Each trial and test day",
+    "check_zh": "触觉、声音、图形、易读文字四类通道逐一可用；任一通道失效即该点位的双通道冗余不成立，按 SLA 一级处置",
+    "nature_zh": "建议值，待授权主体核定"
+   }
+  ],
+  "fault_reporting_path": {
+   "path_zh": "使用者或值守发现 → 现场值守人员（SLA 一级，建议五分钟内到位，直接处置并登记问题日志）→ 值守协调人（SLA 二级，建议十五分钟内接手，调配班次并通知维护人员，必要时暂停该点位）→ 停止条件触发即当场停止并按点位降级（SLA 三级，即时，规则不可协商）→ 同一停止条件重复触发或异议未得结论则排入 G3 复核（SLA 四级）。",
+   "path_en": "A user or steward notices a fault → the on-site steward (SLA level one, suggested arrival within five minutes, handling it directly and logging it) → the duty coordinator (SLA level two, suggested takeover within fifteen minutes, reallocating shifts, notifying maintenance, and suspending the node if necessary) → an on-the-spot stop and node downgrade once a stop condition triggers (SLA level three, immediate, a non-negotiable rule) → the next G3 review where the same stop condition recurs or an objection reaches no ruling (SLA level four).",
+   "no_account_rule_zh": "报修入口本身不得以扫码、注册或下载应用为前提：现场须有可直接开口求助的人工位，以及不需要任何设备的固定报修信息。若报修只能上线完成，则等价路径在故障时刻恰好失效，这与 ai_off_path 拒绝词表指向同一条纪律。",
+   "no_account_rule_en": "The fault-reporting route itself may not require a code scan, registration, or an app download: there must be a staffed position a person can simply speak to, and fixed reporting information needing no device. If reporting can only be done online, the equivalent route fails at exactly the moment of the fault, which is the same discipline the ai_off_path refusal list enforces."
+  },
+  "seb_human_handoff_correspondence": {
+   "rule_zh": "维护与值守链条上的每一个环节，在现场公告、维护卡、构件标识与节点属性中都必须写成可被找到的角色，不得只写机构名称。判据是 seb-spec.json · node_schema · human_handoff 的 required_role_token：字段中至少出现一个角色词，命中即通过，未命中即报 NODE_CONSTRAINT_VIOLATION:human_handoff。使用者站在断点前需要找到的是一个人，不是一个机构。",
+   "rule_en": "Every link in the maintenance and stewarding chain must be written as a findable role — in site notices, on maintenance cards, on component markings, and in the node attributes — never as an organisation alone. The criterion is required_role_token in the baseline's human_handoff field: at least one role token must appear, a hit passes and a miss reports NODE_CONSTRAINT_VIOLATION:human_handoff. A user standing at the breakpoint needs to find a person, not an organisation.",
+   "token_check": [
+    {
+     "string_zh": "无障碍值守人员",
+     "matched_token": "值守／人员",
+     "verdict": "PASS"
+    },
+    {
+     "string_zh": "值守协调人",
+     "matched_token": "值守",
+     "verdict": "PASS"
+    },
+    {
+     "string_zh": "维护人员",
+     "matched_token": "人员",
+     "verdict": "PASS"
+    },
+    {
+     "string_zh": "参与者代表",
+     "matched_token": "代表",
+     "verdict": "PASS"
+    },
+    {
+     "string_zh": "测试主持人",
+     "matched_token": "主持人",
+     "verdict": "PASS"
+    },
+    {
+     "string_zh": "技术安全人员",
+     "matched_token": "人员",
+     "verdict": "PASS"
+    },
+    {
+     "string_zh": "场地运营方",
+     "matched_token": null,
+     "verdict": "FAIL",
+     "fix_zh": "改写为「场地运营值守人员」后通过"
+    },
+    {
+     "string_zh": "无障碍专业团队",
+     "matched_token": null,
+     "verdict": "FAIL",
+     "fix_zh": "改写为「无障碍专业人员」后通过；「团队」还命中 v0.3.1 采用方词表资格规则的 forbidden_suffixes，属同一条硬判据指向的同一类错误——指向集体而不是可问责的具名岗位"
+    }
+   ],
+   "check_note_zh": "上表两项 FAIL 不是假设出来的反例，而是本实施包起草过程中真实写出来又被判据退回的两个写法：RACI 的角色名「场地运营方」与「无障碍专业团队」在矩阵里是合适的责任主体表述，但一旦被搬进现场公告或 human_handoff 字段就不合规。责任归属声明与可被找到的岗位是两件事，这正是该判据要分开的东西。OP-04 现有的 human_handoff 取值「无障碍专业人员与参与者代表共同复核断点」同时命中「人员」与「代表」，判定通过，与 chain-data 中 CL-A、CL-B 的 ACCEPT 判定一致。",
+   "check_note_en": "The two failures above are not invented negatives but two forms actually written while drafting this pack and sent back by the criterion: as accountable parties in the matrix, \"site operator\" and \"accessibility professional team\" read perfectly well, yet the moment either is carried into a site notice or the human_handoff field it fails. A statement of where responsibility lies and a post someone can walk up to are two different things, which is exactly what the criterion separates. The existing human_handoff value at OP-04 hits both tokens and passes, consistent with the ACCEPT verdicts recorded for CL-A and CL-B."
+  }
+ },
+ "exit_plan": {
+  "nature_zh": "退出安排为概念建议。退出不是失败选项之一，而是本包三种正常结局中的两种：审计结论为否而在第一期后收尾，或停止条件触发而当场停止并撤除。",
+  "nature_en": "Exit arrangements are concept-level recommendations. Exit is not one of the failure options but two of the three normal endings of this pack: closing after phase one on a negative audit finding, or stopping on the spot and removing components when a stop condition triggers.",
+  "exit_triggers": [
+   {
+    "id": "EX-T1",
+    "zh": "P1-S4 触发：既有通道与两个备选三者皆不成立，OP-04 降级为纯审计点",
+    "en": "P1-S4 triggers: neither the existing route nor either alternative holds and OP-04 is downgraded to an audit-only point"
+   },
+   {
+    "id": "EX-T2",
+    "zh": "SLA 三级触发：等价路径失效、构件阻断通行或参与条件不成立",
+    "en": "SLA level three triggers: the equivalent route fails, a component blocks passage, or participation conditions do not hold"
+   },
+   {
+    "id": "EX-T3",
+    "zh": "相邻使用者行使否决权，构件在本轮内移除或迁移",
+    "en": "A neighbouring user exercises the veto and the component is removed or relocated within the round"
+   },
+   {
+    "id": "EX-T4",
+    "zh": "场地使用授权期届满或提前终止；保单期无法覆盖至撤除完成",
+    "en": "The site-use authorisation expires or ends early, or the policy term cannot run to the end of removal"
+   },
+   {
+    "id": "EX-T5",
+    "zh": "90 天期满，本包正常结束",
+    "en": "The ninety days end and the pack closes normally"
+   }
+  ],
+  "cost_zh": "退出成本已计入预算科目 B6 应急与退出预留（3.2—10.8 万元，按分项合计的 10%—15%）。因全部构件在采购阶段即被要求可撤除、不动土建，退出成本的主要构成是人工、运输与场地恢复验收，不含拆除工程。这是把可逆性写进采购要求的直接收益：可逆性在采购时是一句技术要求，在退出时才兑现成一个数量级更小的成本。",
+  "cost_en": "Exit costs sit inside budget item B6, the contingency and exit reserve of 3.2 to 10.8 (10 to 15 per cent of the subtotal). Because every component was required at procurement to be removable and to involve no civil works, exit cost consists mainly of labour, transport, and reinstatement acceptance, with no demolition works. That is the direct return on writing reversibility into the procurement requirement: at purchase it is one technical clause, and only at exit does it cash out as a cost an order of magnitude smaller.",
+  "reinstatement_obligations": [
+   {
+    "id": "EX-R1",
+    "zh": "场地恢复至安装前状态：触觉带临时铺设撤除后不得留下粘结残留、色差、铺装损伤或高差；导视柱与服务台的临时固定点须复原；任何为构件加设的临时用电须一并拆除。",
+    "en": "The site returns to its pre-installation state: the temporary tactile band leaves no adhesive residue, discolouration, paving damage, or level difference; temporary fixings for posts and desks are made good; and any temporary power added for a component is removed with it."
+   },
+   {
+    "id": "EX-R2",
+    "zh": "恢复验收由场地运营方与无障碍专业人员共同确认，验收须包含一次带婴儿车与手动轮椅的实际通行核对——恢复原状的判据不是看上去一样，而是通行条件不比安装前差。",
+    "en": "Reinstatement is accepted jointly by the site operator and accessibility professionals, and acceptance includes an actual pass with a pram and with a manual wheelchair. The test of reinstatement is not that the site looks the same but that movement conditions are no worse than before installation."
+   },
+   {
+    "id": "EX-R3",
+    "zh": "撤除方式与撤除完成情况须按 L1 公告的口径在现场与线上同时公告，仍采用易读中文、图示与语音三种等价形式，不以扫码、注册或下载应用为前提。",
+    "en": "The removal method and its completion are announced on site and online on the same terms as the L1 notice, still in easy-read Chinese, diagrams, and speech, and still requiring no code scan, registration, or app download."
+   },
+   {
+    "id": "EX-R4",
+    "zh": "撤除须在保单期与场地授权期届满之前完成；两者任一先行届满即以先届满者为准，不得裸期运行。",
+    "en": "Removal completes before both the policy term and the site authorisation expire; whichever ends first governs, and running past it uninsured or unauthorised is not permitted."
+   }
+  ],
+  "data_disposal": {
+   "binding_zh": "数据处置执行 ethics-protocol.json 协议 P6 数据处置，并对应 risk.json 中 R-01 的停止与恢复条件；两者互指，本文件不另立标准。",
+   "binding_en": "Data disposal executes protocol P6 in ethics-protocol.json and answers the stop and recovery conditions of R-01 in risk.json. The two point at each other and no separate standard is created here.",
+   "obligations_zh": [
+    "采集范围、存储期限、销毁方式、第三方接触边界四项在退出时逐项核对并留下处置记录；四项中任一无法解释和记录即触发 R-01 停止条件。",
+    "默认不采身份、健康或障碍类别；任务编号化、最少留存、到期处置；每项额外数据须有单独取得的可撤回同意，退出时须核对该同意是否仍然有效。",
+    "撤回请求在退出后仍须可执行：处置记录须保留可供参与者核对其数据已被处置的方式，但该方式本身不得成为新的个人数据留存理由。",
+    "实际留存与处置记录由 G3 复核（R-01 的 human_review 既有安排：数据治理专业人员与参与者代表在 G0 审查协议，在 G3 复核实际留存和处置记录）。",
+    "本包若按 branch_audit_stop 在第一期后收尾，因该期不进行任何参与者活动，处置对象为零；零行处置记录须写明「本期未发生任何参与者数据采集」的理由，不得以空记录暗示已完成处置。"
+   ],
+   "obligations_en": [
+    "Collection scope, retention period, destruction method, and third-party access boundary are each checked at exit and a disposal record is kept; if any of the four cannot be explained and recorded, the R-01 stop condition triggers.",
+    "Identity, health, and disability categories are not collected by default; tasks are numbered, retention minimised, and disposal time-bounded; every additional item of data carries its own revocable consent, whose continuing validity is checked at exit.",
+    "Withdrawal requests remain executable after exit: the disposal record must let a participant verify that their data was disposed of, while that mechanism may not itself become a new reason to retain personal data.",
+    "Actual retention and disposal records are reviewed at G3, following the arrangement already in R-01 whereby data-governance professionals and participant representatives review the protocol at G0 and recheck the actual record at G3.",
+    "Where the pack closes after phase one along branch_audit_stop, that phase involves no participant activity and there is nothing to dispose of. A zero-row disposal record must state that no participant data was collected in the phase; an empty record may not be left to imply that disposal was carried out."
+   ]
+  },
+  "failure_sample_archiving": {
+   "binding_zh": "失败样本归档执行 ethics-protocol.json 的失败样本登记表结构，并执行 seb-spec.json · scoring_definitions 的分母完整性规则。",
+   "binding_en": "Failure-sample archiving uses the failed-sample register structure in ethics-protocol.json and enforces the denominator-integrity rule in the baseline's scoring definitions.",
+   "obligations_zh": [
+    "分母四类必须同时报告：完成、撤回、技术故障、其他非完成原因；删除其中任何一类，该次测量作废（违规代码 DENOMINATOR_SAMPLE_DROPPED）。该规则适用于五项参与者任务型指标，包括人工接管成功率与响应耗时。",
+    "本轮若未发生任何参与者测试，登记表为零行，且必须写明零行的理由——零行不表示「本轮无失败」，而表示本轮尚未发生任何一次测试。这两者被混同，就是把没做过说成做好了。",
+    "受影响但未参与群体登记表必须填写：登记本轮改动可能影响但未参与的人群及其知会方式；登记为空须给出理由；缺少该登记，本轮复核结论不成立。",
+    "第一期的否定结论本身须登记为失败样本并以变更回执发布：一条已经写在数据里、通过了全部字段校验的等价路径断言被空间核算退回，这是本包最应当被公开保留的一条记录。不得静默删除 OP-04，不得以其他点位替代，不得只改结论不交证据。",
+    "chain-data 待办 OI-01 已登记的同类问题（OP-08 与 OP-09 的物理接口线同为未声明 AI 关闭等价的 ROAD-004，接口固定口径下关闭态两点均无接入）在本包范围之外，退出时须原样移交下一轮，不得在本轮静默处理。"
+   ],
+   "obligations_en": [
+    "All four denominator categories are reported together — completed, withdrawn, technical fault, other non-completion — and dropping any one voids the measurement under code DENOMINATOR_SAMPLE_DROPPED. The rule covers the five participant-task metrics, including human-handover success rate and response time.",
+    "Where no participant test took place, the register holds zero rows and must state why. Zero rows do not mean the round had no failures; they mean no test has yet happened. Conflating the two is how never having done something gets reported as having done it well.",
+    "The register of affected non-participants must be completed, recording who this round's changes might affect without their taking part and how they were notified. An empty register requires a reason, and without the register the round's review conclusion does not stand.",
+    "A negative finding in phase one is itself registered as a failed sample and published as a change receipt: an equivalence claim that already sat in the data and passed every field check, sent back by a spatial computation, is the record this pack should most insist on keeping public. OP-04 may not be quietly deleted, no other node may be substituted, and no conclusion may change without evidence.",
+    "The related fault already registered as open item OI-01 — that OP-08 and OP-09 share the same physical interface line, ROAD-004, undeclared for AI-off equivalence, leaving neither with any attachment once AI is off — lies outside this pack's scope and is handed to the next round unchanged at exit rather than quietly handled here."
+   ]
+  },
+  "what_exit_does_not_mean_zh": "退出不解除三件事：已发布的变更回执不得改写；已登记的失败样本不得删除；已作出的知会不得撤回。已发布的记录留在原地，后续结论以追加方式呈现——这与 OP-04 的 ai_off_path 原文一字未改、结论以追加字段登记，是同一条纪律。",
+  "what_exit_does_not_mean_en": "Exit releases no one from three things: a published change receipt is never rewritten, a registered failed sample is never deleted, and a notification once given is never withdrawn. Published records stay where they are and later outcomes are appended — the same discipline under which not a word of the ai_off_path text at OP-04 was changed and the conclusion was registered by appending."
+ },
+ "consistency_checks": [
+  {
+   "check_id": "CK-1",
+   "zh": "预算自洽：六个分项的下限之和 = 4.0+8.0+12.0+2.0+6.0+3.2 = 35.2；上限之和 = 9.0+18.0+26.0+5.0+14.0+10.8 = 82.8；与 budget.total 一致。分项合计（不含应急）32.0—72.0 与 budget.subtotal_before_contingency 一致；应急 3.2 = 32.0×10%，10.8 = 72.0×15%。",
+   "en": "Budget self-consistency: the item lows sum to 35.2 and the highs to 82.8, matching budget.total; the subtotal before contingency of 32.0–72.0 matches; and the contingency equals 10 per cent of the low subtotal and 15 per cent of the high."
+  },
+  {
+   "check_id": "CK-2",
+   "zh": "分支自洽：branch_audit_stop 的分项合计 = 4.0+0+3.0+0.5+1.0 = 8.5（下限）与 9.0+0+6.0+1.2+3.0 = 19.2（上限），应急 0.85 = 8.5×10%、2.88 = 19.2×15%，总额 9.35—22.08，与 branches 中的登记值一致。各分项的第一期份额均不超过该分项总额。",
+   "en": "Branch self-consistency: the audit-stop branch sums to 8.5–19.2 before contingency, contingency is 0.85 and 2.88 at the stated percentages, giving 9.35–22.08 as registered; and every item's phase-one share is within that item's total."
+  },
+  {
+   "check_id": "CK-3",
+   "zh": "人日自洽：三期人日 8—14、14—24、12—20，合计 34—58 人日，落在资源框架 G0+G1+G2 合计 160—280 人日之内（单点位为其中一部分，不得超出）。",
+   "en": "Person-day consistency: the three phases total 34–58 person-days, inside the framework's combined 160–280 for G0, G1, and G2, as a single node's share must be."
+  },
+  {
+   "check_id": "CK-4",
+   "zh": "人次自洽：三期参与人次 3—6、4—8、1—4，合计 8—18 人次，落在资源框架 G0 的 8—15 与 G1 的 10—20 合计 18—35 人次之内。",
+   "en": "Participant-count consistency: the three phases total 8–18 sessions, inside the framework's combined 18–35 across G0 and G1."
+  },
+  {
+   "check_id": "CK-5",
+   "zh": "SLA 无新数：本文件出现的时限数值仅有五分钟、十五分钟、即时、排入最近一次复核四项，逐项与正文《维护 SLA 与故障升级路径》原文一致；「人工接管的约定时限」未被赋值。",
+   "en": "No new SLA figure: the only time values here are five minutes, fifteen minutes, immediate, and the next review agenda, each matching the maintenance SLA table verbatim; the agreed limit for human handover is left unvalued."
+  },
+  {
+   "check_id": "CK-6",
+   "zh": "闸门绑定自洽：P1 申报 L0／gate_id G0，P2 申报 L1／G1，P3 申报仍为 L1 而非 L2——把 L2 写为本期已达成，正是 chain-data 反例 CL-N1 被判 LEVEL_GATE_MISMATCH 的写法。",
+   "en": "Gate-binding consistency: phase one claims L0 at G0, phase two L1 at G1, and phase three still claims L1 rather than L2, since claiming L2 as achieved is the form ruled LEVEL_GATE_MISMATCH as negative fixture CL-N1."
+  },
+  {
+   "check_id": "CK-7",
+   "zh": "角色词自洽：本文件写入现场公告、维护卡与 human_handoff 字段的全部角色名逐项通过 required_role_token；两项未通过的写法已在 maintenance.seb_human_handoff_correspondence.token_check 中登记并给出改写。",
+   "en": "Role-token consistency: every role name this document places in site notices, maintenance cards, or the human_handoff field passes required_role_token, and the two that failed are registered with their corrections in the token check."
+  },
+  {
+   "check_id": "CK-8",
+   "zh": "责任主体自洽：全文没有任何一处写出具体机构名、人名、供应商名、保险人名或保险产品名；每一个责任位置都以角色加「待授权主体确认」表述。",
+   "en": "Accountability consistency: nowhere does this document name an organisation, person, supplier, insurer, or insurance product; every accountable position is stated as a role pending confirmation by the authorising body."
+  }
+ ],
+ "source_bindings": [
+  {
+   "module": "phase_plan",
+   "sources": [
+    "proposal.md 「更新项目清单、实施政策与分期计划」章 · 首个 90 天段落",
+    "proposal.md 同章 · 场景开放机制表 L0—L4",
+    "proposal.md 同章 · 首批试点点位选取准则 · 物理可达行",
+    "visual/assets/seb-op04-chain-data.json · stage_5 · adjudication D1／D2／D3",
+    "visual/assets/seb-spec.json · level_definitions · gate_binding",
+    "risk.json R-01—R-12"
+   ]
+  },
+  {
+   "module": "budget",
+   "sources": [
+    "proposal.md 同章 · 90 天零阶段资源框架",
+    "visual/assets/seb-op04-chain-data.json · stage_3 · alternatives works_length_m"
+   ]
+  },
+  {
+   "module": "procurement",
+   "sources": [
+    "proposal.md 「政策与制度建议」章 · 存量更新可逆改造的豁免与备案",
+    "visual/assets/seb-spec.json · node_schema · ai_off_path · forbidden_targets",
+    "visual/assets/seb-spec.json · node_schema · human_handoff · required_role_token",
+    "risk.json R-01、R-07"
+   ]
+  },
+  {
+   "module": "raci",
+   "sources": [
+    "proposal.md 同章 · 责任采用 RACI 结构段",
+    "proposal.md 同章 · 各闸门证据负责人",
+    "proposal.md 同章 · 点位否决权归属",
+    "risk.json R-01 owner_role",
+    "visual/assets/ethics-protocol.json · protocols P6"
+   ]
+  },
+  {
+   "module": "staffing",
+   "sources": [
+    "proposal.md 同章 · 试点档案模板：最终责任与值守排班",
+    "proposal.md 同章 · 维护 SLA 与故障升级路径",
+    "metrics.json · human_handover_success_rate、human_handover_response_time_seconds",
+    "visual/assets/seb-spec.json · scoring_definitions · denominator_integrity"
+   ]
+  },
+  {
+   "module": "insurance",
+   "sources": [
+    "proposal.md 同章 · 许可与协议清单 · 保险与责任行",
+    "visual/assets/ethics-protocol.json · preconditions"
+   ]
+  },
+  {
+   "module": "maintenance",
+   "sources": [
+    "proposal.md 同章 · 维护 SLA 与故障升级路径",
+    "proposal.md 「设计策略」章 · 公共空间组件库六类",
+    "visual/assets/seb-spec.json · node_schema · human_handoff",
+    "geometry/constraints.geojson · OP-04 · ai_off_continuity_status"
+   ]
+  },
+  {
+   "module": "exit_plan",
+   "sources": [
+    "proposal.md 同章 · 开放机制表 L1 与 L4a/L4b 行",
+    "proposal.md 同章 · 变更回执机制",
+    "visual/assets/ethics-protocol.json · protocols P6 · registers",
+    "visual/assets/seb-spec.json · scoring_definitions · denominator_integrity_required_categories",
+    "visual/assets/seb-op04-chain-data.json · open_items OI-01"
+   ]
+  }
+ ],
+ "open_items": [
+  {
+   "item_id": "IP-OI-01",
+   "zh": "本包的三期结构假定第一期的核验能在 30 天内得出结论。若官方道路、轨道、市政与权属资料在第一期内无法到位，核验只能得出「资料不足，无法判定」，这既不是肯定也不是否定；该情形下本包按 R-05 停止条件暂停而不是按 P1-S4 收尾，两者的区别必须在回执中写清楚，不得把「查不到」写成「不成立」。",
+   "en": "The three-phase structure assumes phase one can reach a conclusion within thirty days. If official road, rail, utility, and tenure evidence does not arrive in that time, the verification can only conclude that evidence is insufficient to rule — neither a yes nor a no. In that case the pack pauses under the R-05 stop condition rather than closing under P1-S4, and the receipt must keep the two apart: not found is not the same as does not hold."
+  },
+  {
+   "item_id": "IP-OI-02",
+   "zh": "数据活动的 R 角色在本矩阵五个角色中无对应者，须由授权主体另行指定数据治理人员。这个洞是本次真实查出来的，不是设计出来的留白；在指定之前，测量记录不得开始。",
+   "en": "No role among the five corresponds to R for data activities, and the authorising body must designate data-governance professionals separately. The gap was found in drafting rather than left as a decorative blank, and until it is filled no measurement record may begin."
+  },
+  {
+   "item_id": "IP-OI-03",
+   "zh": "预算的人员科目使用了一个混合日费率区间，覆盖无障碍专业、协调与值守三类差异很大的劳务。真实拆分后总额必然变化，且很可能不是等比例变化；取得真实劳务条件后应逐类重算，差异公开登记而不是覆盖。",
+   "en": "The personnel line uses a single blended day rate across three quite different classes of labour. The total will move once the split is real, and probably not proportionally; each class should be recomputed against real labour conditions, with differences publicly registered rather than overwritten."
+  },
+  {
+   "item_id": "IP-OI-04",
+   "zh": "应急与退出预留的 10%—15% 是本文件首次给出的比例，没有任何本包既有条文支持，也没有真实项目数据支持。它的唯一依据是本节点空间前提未证成立这一事实所隐含的返工概率，属判断而不是测算；取得真实条件后应替换为有依据的比例。",
+   "en": "The 10 to 15 per cent contingency is stated here for the first time, supported by no existing package text and by no real project data. Its only ground is the rework probability implied by this node's unproven spatial premise, which is a judgement rather than a calculation and should be replaced with a grounded figure once real conditions exist."
+  }
+ ],
+ "ai_off_day_drill": {
+  "since_version": "0.2.0",
+  "name_zh": "AI 关闭日演练",
+  "name_en": "AI-off day drill",
+  "design_zh": "G2 封闭成对测试收尾设连续一个完整测试日的全程关闭态运行：AI 层整日关闭，全部任务只经固定导视、触觉引导与人工通道尝试并完整记录；演练记录含每项任务的完成/未完成与原因、接管班次记录与值守者反馈，未完成任务不得从记录中删除；该记录为 G3 独立复核的必交证据。",
+  "design_en": "G2 closed paired testing ends with one full consecutive test day in the off state: the AI layer stays off all day, every task attempted and fully recorded through fixed signage, tactile guidance and staffed channels only; the drill record holds each task's completion or non-completion with causes, shift takeover records and steward feedback, and no incomplete task may be dropped; the record is a mandatory exhibit for the G3 review.",
+  "produces_no_metric_value": true
+ },
+ "independent_takeover_drill_items": {
+  "since_version": "0.2.0",
+  "name_zh": "独立接管演练六项清单（SEB v0.4 L4a 就绪证据的展开）",
+  "name_en": "Independent takeover drill, six checkable items (unfolding the SEB v0.4 L4a readiness evidence)",
+  "rule_zh": "两名非原团队人员在无供应商在场条件下逐项完成并签收；培训签收单与服务等级承诺随演练记录同卷归档。",
+  "rule_en": "Two people from outside the original team complete and sign each item with no vendor present; the training sign-off and the service-level commitment file alongside the drill record.",
+  "items_zh": [
+   "无供应商在场完成开机与关机",
+   "执行一次完整双联交接（交出/接收异角色署名，未决项随单移交，接收/拒收/暂缓三选一）",
+   "按维护卡处置一项标准故障",
+   "演示 AI 关闭态下的全部人工服务路径",
+   "签发一份退出回执",
+   "调取并解释最近一次演练记录"
+  ],
+  "items_en": [
+   "complete power-up and shutdown with no vendor present",
+   "execute one full two-part handover (different roles signing, open items carried on the slip, accept/refuse/hold chosen once)",
+   "handle one standard fault by the maintenance card",
+   "demonstrate every staffed service path in the AI-off state",
+   "issue one exit receipt",
+   "retrieve and explain the latest drill record"
+  ]
+ }
+}

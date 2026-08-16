@@ -10,7 +10,12 @@
 
    The two states never change node positions or reachability. Only the service
    channel changes: AI ON draws multimodal guidance flow, AI OFF draws fixed
-   signage plates and staffed help points. */
+   signage plates and staffed help points.
+
+   A second, orthogonal dimension is the time of day: morning peak, daytime,
+   evening, night. It shifts the lighting key of the picture and the scene
+   description only. Lighting itself is a baseline service, so the night halos
+   are drawn in both AI states. No readout depends on the period. */
 (function () {
   'use strict';
 
@@ -27,6 +32,18 @@
     muted: '#68787b', white: '#ffffff'
   };
   var ACCENT = { teal: C.teal, purple: C.purple, gold: C.gold };
+
+  /* Time-of-day keys. `wash` is a single translucent pass laid over the ground
+     plane before the service overlay, so terrain tone shifts while routes,
+     nodes and every label stay at full contrast. `day` is the neutral key and
+     carries no wash: the daytime picture is byte-identical to the picture the
+     scene drew before this dimension existed. */
+  var PERIODS = {
+    peak:    { bg: '#17414c', wash: 'rgba(224,172,84,0.10)',  lamp: 0 },
+    day:     { bg: '#10383d', wash: null,                     lamp: 0 },
+    evening: { bg: '#1c3138', wash: 'rgba(107,91,149,0.17)',  lamp: 0 },
+    night:   { bg: '#08222a', wash: 'rgba(6,26,38,0.34)',     lamp: 1 }
+  };
 
   var T = {
     zh: {
@@ -46,7 +63,7 @@
       areas: {
         zhongzhiyuan_ai_acceleration_area: '众智园 AI 自主创新加速区',
         beijing_ai_origin_community: '北京 AI 原点社区',
-        dazhongsi_ai_industry_cluster: '大钟寺 AI 产业聚集区'
+        dazhongsi_ai_industry_cluster: '大钟寺 AI 产业集聚区'
       },
       short: {
         zhongzhiyuan_ai_acceleration_area: '众智园',
@@ -55,14 +72,17 @@
       },
       staticOn: '显示静态视图', staticOff: '返回交互场景',
       playOn: '播放引导流光', playOff: '暂停引导流光',
-      reduced: '已按系统的“减少动效”设置停用动画。'
+      reduced: '已按系统的“减少动效”设置停用动画。',
+      periodNow: '当前时段：',
+      periodSwitched: '已切换到时段：',
+      periodInvariant: '时段只改变画面的光照基调与场景描述；节点位置、可达性与全部读数不变。'
     },
     en: {
       loading: 'Preparing the scene…',
       failed: 'The interactive scene cannot run in this environment; the static view is shown below.',
       onLabel: 'AI ON', offLabel: 'AI OFF',
-      canvasOn: 'Axonometric scene, AI ON. The spine and the low-stimulation alternative route carry multimodal guidance flow, and all ten independent-completion nodes stay reachable.',
-      canvasOff: 'Axonometric scene, AI OFF. The spine and the low-stimulation alternative route carry fixed signage plates, every node shows a staffed help point, and all ten independent-completion nodes stay reachable.',
+      canvasOn: 'Axonometric scene, AI ON. The spine and the low-stimulation alternative route carry multimodal guidance flow, and all ten independent-completion nodes keep their declared coverage (declaration completeness, not a field-reachability conclusion).',
+      canvasOff: 'Axonometric scene, AI OFF. The spine and the low-stimulation alternative route carry fixed signage plates, every node shows a staffed help point, and all ten independent-completion nodes keep their declared coverage (declaration completeness, not a field-reachability conclusion).',
       statusOn: 'Switched to AI ON. Independent-completion nodes 10 of 10, equivalent routes 2, key-area coverage 3 of 3.',
       statusOff: 'Switched to AI OFF. Independent-completion nodes 10 of 10, equivalent routes 2, key-area coverage 3 of 3. The readout is identical to AI ON.',
       selected: 'Selected ', period: '.',
@@ -83,7 +103,10 @@
       },
       staticOn: 'Show static view', staticOff: 'Back to interactive scene',
       playOn: 'Play guidance flow', playOff: 'Pause guidance flow',
-      reduced: 'Animation is disabled because the system asks for reduced motion.'
+      reduced: 'Animation is disabled because the system asks for reduced motion.',
+      periodNow: 'Current period: ',
+      periodSwitched: 'Switched to period: ',
+      periodInvariant: 'The period changes only the lighting key of the picture and the scene description; node positions, reachability and every readout stay unchanged.'
     }
   };
 
@@ -110,6 +133,7 @@
     this.lang = lang;
     this.t = T[lang] || T.zh;
     this.state = 'on';
+    this.period = 'day';
     this.selected = null;
     this.phase = 0;
     this.playing = false;
@@ -307,8 +331,9 @@
   Scene.prototype.draw = function (ctx) {
     var i, q, a, n, self = this;
     var s = this.s, dense = this.dense;
+    var P = PERIODS[this.period] || PERIODS.day;
     ctx.clearRect(0, 0, this.w, this.h);
-    ctx.fillStyle = C.deep;
+    ctx.fillStyle = P.bg;
     ctx.fillRect(0, 0, this.w, this.h);
 
     /* Ground plate: provisional scope, drawn with a dashed edge on purpose. */
@@ -351,6 +376,15 @@
     }
     this.stroke(ctx, this.spine, Z_ROAD, Math.max(3.5, 7000 * s * 0.0012), C.teal, null);
     this.stroke(ctx, this.alt, Z_ROAD, Math.max(2.4, 7000 * s * 0.0009), 'rgba(23,124,120,0.95)', [9, 7]);
+
+    /* Time-of-day pass. The wash lands on the terrain only; the service
+       overlay, the nodes and every label are drawn after it and keep full
+       contrast, so legibility does not depend on the period. */
+    if (P.wash) {
+      ctx.fillStyle = P.wash;
+      ctx.fillRect(0, 0, this.w, this.h);
+    }
+    if (P.lamp) this.lamps(ctx);
 
     /* State overlay on both routes. */
     if (this.state === 'on') {
@@ -515,6 +549,32 @@
     ctx.restore();
   };
 
+  /* Night lighting. Lighting is a baseline service, not an AI feature, so the
+     halos are drawn in both AI states: along both equivalent routes and at
+     every node. They are the reason a fixed signage plate stays readable and a
+     staffed help point stays findable when AI is off. */
+  Scene.prototype.lamps = function (ctx) {
+    function halo(x, y, r, a) {
+      var g = ctx.createRadialGradient(x, y, 0, x, y, r);
+      g.addColorStop(0, 'rgba(246,222,160,' + a + ')');
+      g.addColorStop(0.55, 'rgba(214,161,59,' + (a * 0.34) + ')');
+      g.addColorStop(1, 'rgba(214,161,59,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    var routes = [[this.spine, 92], [this.alt, 120]], i, k, pts, b;
+    for (i = 0; i < routes.length; i++) {
+      pts = this.samples(routes[i][0], Z_ROAD, routes[i][1], routes[i][1] / 2);
+      for (k = 0; k < pts.length; k++) halo(pts[k].x, pts[k].y - 3, 12, 0.30);
+    }
+    for (i = 0; i < this.nodes.length; i++) {
+      b = this.p(this.nodes[i].X, this.nodes[i].Y, 0);
+      halo(b[0], b[1] - 4, 25, 0.44);
+    }
+  };
+
   Scene.prototype.signs = function (ctx, poly, z, step) {
     var pts = this.samples(poly, z, step, step / 2), i;
     for (i = 0; i < pts.length; i++) {
@@ -638,7 +698,17 @@
   /* ------------------------------------------------------------------ boot */
   function boot() {
     var root = document.querySelector('.jz-scene');
-    if (!root || !window.JZ_SCENE) return;
+    if (!root) return;
+    if (!window.JZ_SCENE) {
+      /* dataset failed to load: reveal the static fallback instead of an empty stage */
+      root.setAttribute('data-view', 'static');
+      var bar = root.querySelector('.jz-bar');
+      if (bar) {
+        var bs = bar.querySelectorAll('button');
+        for (var bi = 0; bi < bs.length; bi++) bs[bi].disabled = true;
+      }
+      return;
+    }
     var lang = root.getAttribute('data-lang') === 'en' ? 'en' : 'zh';
     var t = T[lang];
     var wrap = root.querySelector('.jz-canvaswrap');
@@ -652,6 +722,13 @@
     var btnStatic = root.querySelector('[data-jz="static"]');
     var btnPlay = root.querySelector('[data-jz="play"]');
     var railButtons = root.querySelectorAll('.jz-rail button');
+    var periodButtons = root.querySelectorAll('[data-jz-period]');
+    var periodLabelEl = root.querySelector('.jz-plabel');
+    var periodTextEl = root.querySelector('.jz-ptext');
+    var periods = {};
+    (function (list) {
+      for (var j = 0; j < list.length; j++) periods[list[j].id] = list[j];
+    })(window.JZ_SCENE.periods || []);
     var ctx;
     try {
       ctx = canvas.getContext('2d');
@@ -713,11 +790,48 @@
       }
     }
 
+    /* The canvas label carries both dimensions, and restates that the second
+       one is presentational: a screen-reader user must not have to guess
+       whether the period moved a node or a number. */
+    function periodCopy(id) {
+      var p = periods[id];
+      return p ? p[lang] : null;
+    }
+
+    function applyAria() {
+      var base = scene.state === 'on' ? t.canvasOn : t.canvasOff;
+      var c = periodCopy(scene.period);
+      if (!c) { canvas.setAttribute('aria-label', base); return; }
+      canvas.setAttribute('aria-label',
+        base + ' ' + t.periodNow + c.label + t.period + ' ' + t.periodInvariant);
+    }
+
+    function setPeriod(id, announce) {
+      var j, c;
+      if (!periods[id]) id = 'day';
+      scene.period = id;
+      root.setAttribute('data-period', id);
+      for (j = 0; j < periodButtons.length; j++) {
+        periodButtons[j].setAttribute('aria-pressed',
+          periodButtons[j].getAttribute('data-jz-period') === id ? 'true' : 'false');
+      }
+      c = periodCopy(id);
+      if (c) {
+        if (periodLabelEl) periodLabelEl.textContent = c.label;
+        if (periodTextEl) periodTextEl.textContent = c.text;
+        if (announce !== false) {
+          status.textContent = t.periodSwitched + c.label + t.period + ' ' + c.text;
+        }
+      }
+      applyAria();
+      if (rendered) paint();
+    }
+
     function setState(next) {
       scene.state = next;
       btnOn.setAttribute('aria-pressed', next === 'on' ? 'true' : 'false');
       btnOff.setAttribute('aria-pressed', next === 'off' ? 'true' : 'false');
-      canvas.setAttribute('aria-label', next === 'on' ? t.canvasOn : t.canvasOff);
+      applyAria();
       root.setAttribute('data-state', next);
       status.textContent = next === 'on' ? t.statusOn : t.statusOff;
       if (scene.selected) fillCard(scene.selected);
@@ -774,6 +888,13 @@
 
     btnOn.addEventListener('click', function () { setState('on'); });
     btnOff.addEventListener('click', function () { setState('off'); });
+    for (var pi = 0; pi < periodButtons.length; pi++) {
+      (function (b) {
+        b.addEventListener('click', function () {
+          setPeriod(b.getAttribute('data-jz-period'));
+        });
+      })(periodButtons[pi]);
+    }
     for (var i = 0; i < railButtons.length; i++) {
       (function (b) {
         b.addEventListener('click', function () {
@@ -827,6 +948,7 @@
       else if (mq.addListener) mq.addListener(applyReduced);
     }
     applyReduced();
+    setPeriod('day', false);
     setState('on');
 
     /* Lazy first paint: when the chapter approaches the viewport, or as a

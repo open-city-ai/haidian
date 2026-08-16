@@ -1,0 +1,749 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(site_boundary, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "临时粗略边界(PROV-SITE-001)，非官方红线；官方红线发布后整包重算"
+   ]
+  },
+  "land_use_area_0802_sqm": {
+   "status": "known",
+   "value": 3589082.8,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use, EPSG:4548) where land_use_code=0802)",
+   "confidence": "medium",
+   "assumptions": [
+    "概念分区，非控规用地；部分由 POI 现状特征识别"
+   ]
+  },
+  "land_use_area_0804_sqm": {
+   "status": "known",
+   "value": 2081417.8,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use, EPSG:4548) where land_use_code=0804)",
+   "confidence": "medium",
+   "assumptions": [
+    "概念分区，非控规用地"
+   ]
+  },
+  "land_use_area_05_sqm": {
+   "status": "known",
+   "value": 2917160.8,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use, EPSG:4548) where land_use_code=05)",
+   "confidence": "medium",
+   "assumptions": [
+    "概念分区，非控规用地；站域/POI生活特征识别"
+   ]
+  },
+  "land_use_area_0701_sqm": {
+   "status": "known",
+   "value": 1882340.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use, EPSG:4548) where land_use_code=0701)",
+   "confidence": "medium",
+   "assumptions": [
+    "概念分区，非控规用地"
+   ]
+  },
+  "land_use_area_1401_sqm": {
+   "status": "known",
+   "value": 930171.8,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use, EPSG:4548) where land_use_code=1401)",
+   "confidence": "medium",
+   "assumptions": [
+    "概念分区，非控规用地"
+   ]
+  },
+  "land_use_area_0806_sqm": {
+   "status": "known",
+   "value": 12652.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use, EPSG:4548) where land_use_code=0806)",
+   "confidence": "medium",
+   "assumptions": [
+    "概念分区；POI 医疗特征识别"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 1981454.924,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "union_area(building_footprints, EPSG:4548)",
+   "confidence": "low",
+   "assumptions": [
+    "概念体量示意，非建筑方案或拆改留结论；无官方现状建筑底数"
+   ]
+  },
+  "building_density": {
+   "status": "known",
+   "value": 0.1736,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_footprint_area/site_area",
+   "confidence": "low",
+   "assumptions": [
+    "概念体量示意，非法定建筑密度"
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 1322230.117,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "union_area(green_space, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "含现状OSM公园与概念绿带；现状公园边界为OSM口径"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.1159,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area/site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "同上"
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 202104.178,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "union_area(public_space, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "概念广场节点，非实施工程"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.0177,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area/site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "同上"
+   ]
+  },
+  "road_centerline_length_m": {
+   "status": "known",
+   "value": 66977.0,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(length(road_centerlines, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "设计道路为概念线位，非道路红线或工程线位"
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(KEY_AREA features)",
+   "confidence": "medium",
+   "assumptions": [
+    "三处重点区为临时粗略范围(PROV-KEY-001/002/003)"
+   ]
+  },
+  "wilson_supercritical_net_pct": {
+   "status": "known",
+   "value": 29.17,
+   "unit": "%",
+   "source_files": [],
+   "formula": "λ_ij=exp(-d_ij/2500m)>0.42 配对占比（OSM路网口径，16节点，C1脚本）",
+   "confidence": "medium",
+   "assumptions": [
+    "代理口径；见 sources DATA-SRC-CASA-KB-KUN"
+   ]
+  },
+  "core5_giant_span_ratio": {
+   "status": "known",
+   "value": 0.4,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "三区两翼5核超临界连通分量占比（C1脚本）",
+   "confidence": "medium",
+   "assumptions": [
+    "现状诊断值；设计缝合后重算"
+   ]
+  },
+  "corridor_crossing_count": {
+   "status": "known",
+   "value": 7,
+   "unit": "count",
+   "source_files": [],
+   "formula": "遗址公园走廊与主干路交叉断点数（C2脚本，OSM口径）",
+   "confidence": "medium",
+   "assumptions": [
+    "几何口径，未含标高/交通管制"
+   ]
+  },
+  "street_network_D_large": {
+   "status": "known",
+   "value": 1.746,
+   "unit": "dimensionless",
+   "source_files": [],
+   "formula": "盒计数分形维（1200-500m段，C6脚本）",
+   "confidence": "medium",
+   "assumptions": [
+    "健康老城区间1.6-1.8（Arcaute/Batty）"
+   ]
+  },
+  "intersection_density_per_km2": {
+   "status": "known",
+   "value": 132.9,
+   "unit": "1/km2",
+   "source_files": [],
+   "formula": "OSM 三岔以上交叉口密度（C7脚本）",
+   "confidence": "medium",
+   "assumptions": [
+    "对照老城>200/车本新城<80"
+   ]
+  },
+  "poi_total_count": {
+   "status": "known",
+   "value": 25476,
+   "unit": "count",
+   "source_files": [],
+   "formula": "高德POI 12类抓取总数（C7脚本）",
+   "confidence": "high",
+   "assumptions": [
+    "2026-08-15快照，GCJ-02→WGS84"
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "total_floor_area/site_area",
+   "confidence": "unknown",
+   "assumptions": [
+    "控规容积率/建筑规模待官方数据补齐；不得给出审定容积率"
+   ],
+   "reason": "控规容积率与建筑规模条件未公开，待官方数据补齐后按 total_floor_area/site_area 复算；本包不给出审定容积率。"
+  },
+  "corridor_intersection_density_per_km2": {
+   "status": "known",
+   "value": 39.0,
+   "unit": "1/km2",
+   "source_files": [],
+   "formula": "Toledo-style intersection density (corridor band, C4b script)",
+   "confidence": "medium",
+   "assumptions": [
+    "OSM-based; zones are analytical definitions"
+   ]
+  },
+  "campus_intersection_density_per_km2": {
+   "status": "known",
+   "value": 167.0,
+   "unit": "1/km2",
+   "source_files": [],
+   "formula": "Toledo-style intersection density (campus belt)",
+   "confidence": "medium",
+   "assumptions": [
+    "OSM-based"
+   ]
+  },
+  "grid_intersection_density_per_km2": {
+   "status": "known",
+   "value": 65.2,
+   "unit": "1/km2",
+   "source_files": [],
+   "formula": "Toledo-style intersection density (grid new town)",
+   "confidence": "medium",
+   "assumptions": [
+    "OSM-based"
+   ]
+  },
+  "corridor_reach_400m_mean": {
+   "status": "known",
+   "value": 24.0,
+   "unit": "count",
+   "source_files": [],
+   "formula": "mean nodes reachable within 400m (corridor band, C4b)",
+   "confidence": "medium",
+   "assumptions": [
+    "metric (shortest-path)"
+   ]
+  },
+  "campus_reach_400m_mean": {
+   "status": "known",
+   "value": 53.7,
+   "unit": "count",
+   "source_files": [],
+   "formula": "mean nodes reachable within 400m (campus belt)",
+   "confidence": "medium",
+   "assumptions": [
+    "metric"
+   ]
+  },
+  "poi_xueyuanqiao_int_pct": {
+   "status": "known",
+   "value": 97.5,
+   "unit": "percentile",
+   "source_files": [],
+   "formula": "POI syntactic placement: whole-network integration percentile (Xueyuanqiao)",
+   "confidence": "medium",
+   "assumptions": [
+    "segment-node graph"
+   ]
+  },
+  "poi_tsinghuayuan_int_pct": {
+   "status": "known",
+   "value": 93.5,
+   "unit": "percentile",
+   "source_files": [],
+   "formula": "POI syntactic placement: Tsinghuayuan Station heritage site",
+   "confidence": "medium",
+   "assumptions": [
+    "segment-node graph"
+   ]
+  },
+  "poi_dazhongsi_int_pct": {
+   "status": "known",
+   "value": 20.2,
+   "unit": "percentile",
+   "source_files": [],
+   "formula": "POI syntactic placement: Dazhongsi Station",
+   "confidence": "medium",
+   "assumptions": [
+    "segment-node graph"
+   ]
+  },
+  "poi_wudaokou_int_pct": {
+   "status": "known",
+   "value": 57.1,
+   "unit": "percentile",
+   "source_files": [],
+   "formula": "POI syntactic placement: Wudaokou Station",
+   "confidence": "medium",
+   "assumptions": [
+    "segment-node graph"
+   ]
+  },
+  "ecosystem_ai_enterprises_bj": {
+   "status": "known",
+   "value": 2400,
+   "unit": "count",
+   "source_files": [],
+   "formula": "Beijing AI enterprises (public reporting, ecosystem data draft)",
+   "confidence": "medium",
+   "assumptions": [
+    "approximate; see sources ecosystem entry"
+   ]
+  },
+  "ecosystem_registered_models": {
+   "status": "known",
+   "value": 123,
+   "unit": "count",
+   "source_files": [],
+   "formula": "Beijing registered foundation models (public)",
+   "confidence": "medium",
+   "assumptions": [
+    "approximate"
+   ]
+  },
+  "ecosystem_compute_eflops": {
+   "status": "known",
+   "value": 45,
+   "unit": "EFLOPS",
+   "source_files": [],
+   "formula": "Beijing intelligent compute scale (public)",
+   "confidence": "medium",
+   "assumptions": [
+    "approximate"
+   ]
+  },
+  "ecosystem_hukou_threshold": {
+   "status": "known",
+   "value": 117,
+   "unit": "point",
+   "source_files": [],
+   "formula": "Beijing points-based hukou threshold (public)",
+   "confidence": "medium",
+   "assumptions": [
+    "public; evidence of the dramatic tension"
+   ]
+  },
+  "health_factor_H": {
+   "status": "known",
+   "value": 1.556,
+   "unit": "dimensionless",
+   "source_files": [],
+   "formula": "H=γ_创新/β_基建（γ=1.178, β=0.758；400m单元POI标度拟合 n=72）",
+   "confidence": "medium",
+   "assumptions": [
+    "γ 为 POI 标度拟合代理；临界参照 H=1.35、H<1=消耗自己"
+   ]
+  },
+  "innovation_gamma": {
+   "status": "known",
+   "value": 1.178,
+   "unit": "dimensionless",
+   "source_files": [],
+   "formula": "work类POI随单元规模的标度指数 γ（log-log 拟合，R²=0.67）",
+   "confidence": "medium",
+   "assumptions": [
+    "POI 快照代理"
+   ]
+  },
+  "employment_gini": {
+   "status": "known",
+   "value": 0.823,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "办公楼POI 200m网格Gini",
+   "confidence": "medium",
+   "assumptions": [
+    "POI快照口径"
+   ]
+  },
+  "employment_top10pct_share": {
+   "status": "known",
+   "value": 0.689,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "前10%网格承载就业POI比例",
+   "confidence": "medium",
+   "assumptions": [
+    "对照伦敦0.4%面积承载10%就业"
+   ]
+  },
+  "deviation_finance_pct": {
+   "status": "known",
+   "value": -63.0,
+   "unit": "%",
+   "source_files": [],
+   "formula": "功能偏离度诊断（12类POI均匀参考）",
+   "confidence": "medium",
+   "assumptions": [
+    "均匀参考为诊断基准"
+   ]
+  },
+  "deviation_research_pct": {
+   "status": "known",
+   "value": -45.9,
+   "unit": "%",
+   "source_files": [],
+   "formula": "功能偏离度诊断（科研机构）",
+   "confidence": "medium",
+   "assumptions": [
+    "同上"
+   ]
+  },
+  "best_balance_station_offices": {
+   "status": "known",
+   "value": 243,
+   "unit": "count",
+   "source_files": [],
+   "formula": "学知园站1km写字楼POI（就业-交通平衡点）",
+   "confidence": "medium",
+   "assumptions": [
+    "POI口径"
+   ]
+  },
+  "simulacra_jobs_reach_base": {
+   "status": "known",
+   "value": 323.5,
+   "unit": "count",
+   "source_files": [],
+   "formula": "SIMULACRA-lite：居住单元25分钟圈平均可达就业（基线，E→P→R→M四部门）",
+   "confidence": "medium",
+   "assumptions": [
+    "POI与代理参数口径见计算/c11_simulacra.json meta.proxies"
+   ]
+  },
+  "simulacra_jobs_reach_stitched": {
+   "status": "known",
+   "value": 374.9,
+   "unit": "count",
+   "source_files": [],
+   "formula": "SIMULACRA-lite：缝合后25分钟圈平均可达就业",
+   "confidence": "medium",
+   "assumptions": [
+    "同上；缝合=主脊单元出行成本×0.6"
+   ]
+  },
+  "simulacra_reach_gain_pct": {
+   "status": "known",
+   "value": 15.9,
+   "unit": "%",
+   "source_files": [],
+   "formula": "SIMULACRA-lite：就业可达扩张幅度",
+   "confidence": "medium",
+   "assumptions": [
+    "同上"
+   ]
+  },
+  "simulacra_commute_cost_drop_pct": {
+   "status": "known",
+   "value": 3.4,
+   "unit": "%",
+   "source_files": [],
+   "formula": "SIMULACRA-lite：流加权通勤成本降幅",
+   "confidence": "medium",
+   "assumptions": [
+    "同上"
+   ]
+  },
+  "ca_no_intervention_change": {
+   "status": "known",
+   "value": 0,
+   "unit": "count",
+   "source_files": [],
+   "formula": "CA模拟60步无干预单元变化数（路径锁定证据）",
+   "confidence": "medium",
+   "assumptions": [
+    "100m格；规则见计算/c12_ca.json meta"
+   ]
+  },
+  "ca_intervention_change": {
+   "status": "known",
+   "value": 42,
+   "unit": "count",
+   "source_files": [],
+   "formula": "CA模拟60步干预单元变化数（解锁证据）",
+   "confidence": "medium",
+   "assumptions": [
+    "同上"
+   ]
+  },
+  "ca_overlap_manual": {
+   "status": "known",
+   "value": 0.368,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "CA涌现分区与人工分区400m重合度（反事实）",
+   "confidence": "medium",
+   "assumptions": [
+    "同上"
+   ]
+  },
+  "fractal_building_AP_D": {
+   "status": "known",
+   "value": 1.04,
+   "unit": "dimensionless",
+   "source_files": [],
+   "formula": "面积-周长标度D（建筑斑块，P∝A^(D/2)）",
+   "confidence": "medium",
+   "assumptions": [
+    "概念体量斑块"
+   ]
+  },
+  "fractal_manual_partition_AP_D": {
+   "status": "known",
+   "value": 0.58,
+   "unit": "dimensionless",
+   "source_files": [],
+   "formula": "面积-周长标度D（人工400m分区）——强加网格的分形指纹",
+   "confidence": "medium",
+   "assumptions": [
+    "人工概念分区"
+   ]
+  },
+  "employment_decay_gamma_spine": {
+   "status": "known",
+   "value": 1.8544565685184056,
+   "unit": "dimensionless",
+   "source_files": [],
+   "formula": "就业密度沿主脊衰减γ（Hyper Line的形态学证据）",
+   "confidence": "medium",
+   "assumptions": [
+    "对数环带拟合R²=0.60"
+   ]
+  },
+  "employment_decay_gamma_station": {
+   "status": "known",
+   "value": 1.1600192778572451,
+   "unit": "dimensionless",
+   "source_files": [],
+   "formula": "就业密度距轨道站衰减γ",
+   "confidence": "medium",
+   "assumptions": [
+    "对数环带拟合R²=0.51"
+   ]
+  },
+  "green_lacunarity": {
+   "status": "known",
+   "value": 5.072832204534368,
+   "unit": "dimensionless",
+   "source_files": [],
+   "formula": "绿地空隙度Lacunarity（200m格）",
+   "confidence": "medium",
+   "assumptions": [
+    "固定网格近似"
+   ]
+  },
+  "network_efficiency_eta_now": {
+   "status": "known",
+   "value": 0.2303,
+   "unit": "dimensionless",
+   "source_files": [],
+   "formula": "SNA 网络效率 η=1/[N(N-1)]·Σ(1/d)，d=1/λ（5核）现状",
+   "confidence": "medium",
+   "assumptions": [
+    "λ 为 C1 代理口径；η 为拓扑协同度",
+    "v0.18 重算（大钟寺工作边界校正后）：0.1918 → 0.2303"
+   ]
+  },
+  "network_efficiency_eta_after": {
+   "status": "known",
+   "value": 0.3685,
+   "unit": "dimensionless",
+   "source_files": [],
+   "formula": "SNA 网络效率 η（缝合后）",
+   "confidence": "medium",
+   "assumptions": [
+    "缝合=λ×1.6 代理",
+    "v0.18 重算（大钟寺工作边界校正后）：0.307 → 0.3685"
+   ]
+  },
+  "nash_lock_status_now": {
+   "status": "known",
+   "value": 1,
+   "unit": "flag",
+   "source_files": [],
+   "formula": "协同博弈纳什均衡：1=锁定(D,D 各自为战)，0=解锁(C,C 协同)；现状=1",
+   "confidence": "medium",
+   "assumptions": [
+    "2×2 简化博弈，效用抽象量纲"
+   ]
+  },
+  "nash_lock_status_after": {
+   "status": "known",
+   "value": 0,
+   "unit": "flag",
+   "source_files": [],
+   "formula": "协同博弈纳什均衡（缝合+相变论坛后）：0=解锁(C,C)",
+   "confidence": "medium",
+   "assumptions": [
+    "r=1.2 概念假设"
+   ]
+  },
+  "jhr_mean": {
+   "status": "known",
+   "value": 0.393,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "职住平衡指数 JHR=jobs/(jobs+residents) 均值（400m单元）",
+   "confidence": "medium",
+   "assumptions": [
+    "POI口径代理"
+   ]
+  },
+  "jhr_balanced_share": {
+   "status": "known",
+   "value": 0.384,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "JHR∈[0.4,0.6] 健康带单元占比",
+   "confidence": "medium",
+   "assumptions": [
+    "健康目标60%"
+   ]
+  },
+  "luti_match_ratio_now": {
+   "status": "known",
+   "value": 0.462,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "用地强度-可达性匹配单元占比（现状LUTI评价）",
+   "confidence": "medium",
+   "assumptions": [
+    "标准化错配阈值0.25"
+   ]
+  },
+  "luti_match_ratio_stitched": {
+   "status": "known",
+   "value": 0.615,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "用地强度-可达性匹配单元占比（缝合后）",
+   "confidence": "medium",
+   "assumptions": [
+    "主脊可达性×1.4代理"
+   ]
+  },
+  "luti_undeveloped_cells": {
+   "status": "known",
+   "value": 45,
+   "unit": "count",
+   "source_files": [],
+   "formula": "欠开发单元数（高可达×低强度）",
+   "confidence": "medium",
+   "assumptions": [
+    "POI口径"
+   ]
+  },
+  "beta_infra_mean": {
+   "status": "known",
+   "value": 0.758,
+   "unit": "dimensionless",
+   "source_files": [],
+   "formula": "H 健康因子中 β=(β_road 0.915+β_bldg 0.60)/2 的概念平均（基建亚线性基准）",
+   "confidence": "medium",
+   "assumptions": [
+    "道路β取自C3 98个概念分区单元；建筑基底β取自C3；H 的 γ 取自 72 个 400m POI 单元拟合"
+   ]
+  }
+ }
+}

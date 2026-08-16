@@ -4,7 +4,7 @@ author_github: "siddhartha-yz"
 language: "zh"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
-iteration: "v1.17"
+iteration: "v1.26"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把百年京张从AI成果展示带转化为面向真实城市长尾条件的训练、共测与公开学习基础设施：先暴露边界，再扩大部署。"
@@ -66,7 +66,7 @@ EDGECASE JINGZHANG 的产业定位是 **Urban Edgecase Infrastructure / 城市�
 
 **北京AI原点社区 / Human Edge Commons（T2）**：把“模型对平均用户有效”推进到“服务对不同人可用”。这里以高校源头创新和社区日常为优势，设置人类接管屋、无障碍共测环、跨语言导视试验、老人非智能手机替代入口、儿童与监护人边界场景、社区服务 Copilot 柜台。参与测试必须显式 opt-in；同一服务必须同时展示 AI 路径、人工路径和离线/无账号路径。空间上强调校区—园区—社区慢行缝合、开放首层和小型发布/复盘空间，不把居民画像用于商业推荐。[data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/public_space.geojson#PUBLIC-002]
 
-**大钟寺 / Market Edge Street（T3）**：面向已经过 T1/T2 的低风险能力，测试真实商业与高流动环境中的智能体交接、终端兼容、消费信息可信、排队/拥挤、弱网和人工售后。这里最重要的不是“无人化”，而是 **handoff quality / 交接质量**：当商家智能体、地图导航、支付终端、公共服务入口或内容生成发生冲突时，使用者是否知道谁负责、怎样退出、怎样找到人。由于仓库 Issue #1058 对 provisional KEY-003 位置提出有效疑问，本方案不使用该 polygon 计算站点半径、路口四象限或精准 TOD 指标；这些内容必须等 official geometry 后重算。[source:REPO-ISSUE-KEY003] [data:geometry/key_areas.geojson#PROV-KEY-003]
+**大钟寺 / Market Edge Street（T3）**：面向已经过 T1/T2 的低风险能力，测试真实商业与高流动环境中的智能体交接、终端兼容、消费信息可信、排队/拥挤、弱网和人工售后。这里最重要的不是“无人化”，而是 **handoff quality / 交接质量**：当商家智能体、地图导航、支付终端、公共服务入口或内容生成发生冲突时，使用者是否知道谁负责、怎样退出、怎样找到人。由于仓库 Issue #1029 对 provisional KEY-003 位置提出有效疑问，本方案不使用该 polygon 计算站点半径、路口四象限或精准 TOD 指标；这些内容必须等 official geometry 后重算。[source:REPO-ISSUE-KEY003] [data:geometry/key_areas.geojson#PROV-KEY-003]
 
 ![三处重点区域与T1/T2/T3角色](assets/figures/key-areas.png)
 
@@ -125,14 +125,16 @@ EDGECASE JINGZHANG 的产业定位是 **Urban Edgecase Infrastructure / 城市�
 
 首批项目强调小尺度、可撤销和可以验证：
 
-| 编号 | 项目 | 首要产出 | 进入下一阶段条件 |
-| --- | --- | --- | --- |
-| EC-01 | Edgecase Mile 基础导视与6条慢行连接 | 非AI也可使用的连续路线 | 专业交通/无障碍核验 |
-| EC-02 | 众智园 Controlled Edge Court | E1机器人与多模态压测 | 事故/急停机制通过审查 |
-| EC-03 | 原点 Human Override House | E2公共服务共测与人工接管 | 参与同意、隐私、人工服务就绪 |
-| EC-04 | 大钟寺 Market Edge Forum | E3多智能体/终端交接测试 | KEY-003 official geometry + 商户授权 |
-| EC-05 | Long-tail Atlas | 失败类型、修复版本、复测记录 | 脱敏和版权审核 |
-| EC-06 | EDGECASE WEEK | 年度问题征集、公开走测、开发者复盘 | 活动许可和公共安全方案 |
+| 编号 | 项目 | 建议责任角色 | 独立核验角色 | 首要产出与验收证据 | 进入下一阶段条件 |
+| --- | --- | --- | --- | --- | --- |
+| EC-01 | Edgecase Mile 基础导视与6条慢行连接 | 公共空间运营方 | 交通与无障碍专业团队、使用者代表 | 非AI也可使用的连续路线；盲测走行记录与障碍清单 | 专业交通/无障碍核验通过，未通过项进入整改台账 |
+| EC-02 | 众智园 Controlled Edge Court | 试点技术方与场地运营方共同负责 | 独立安全评估人员 | E1机器人与多模态压测；急停演练、事件日志和复测版本 | 事故响应与急停机制通过书面审查 |
+| EC-03 | 原点 Human Override House | 公共服务运营方 | 社区代表、隐私与无障碍顾问 | E2公共服务共测与人工接管；同意记录、接管时延和非AI路径抽检 | 参与同意、隐私最小化、人工服务与退出路径就绪 |
+| EC-04 | 大钟寺 Market Edge Forum | 商户服务运营方 | 商户代表与消费者权益顾问 | E3多智能体/终端交接；责任链演练、人工售后可达性记录 | KEY-003 official geometry 核验、商户授权和责任链签认 |
+| EC-05 | Long-tail Atlas | 数据保管与发布责任方 | 独立复现团队、版权审核人员 | 失败类型、修复版本、复测记录；可复现样本与发布清单 | 脱敏、版权和另一团队复现审核通过 |
+| EC-06 | EDGECASE WEEK | 活动运营方 | 公共安全、社区与无障碍观察员 | 年度问题征集、公开走测、开发者复盘；问题闭环率与退出路径抽检 | 活动许可及公共安全方案完备，未闭环问题回到 EC-02—05 |
+
+这些是招采或试点任务书可采用的**责任角色**，不是对现有机构的任命。每项开工前仍须把角色落实为实名责任主体、核验人员、证据保管位置和签认日期；同一单位不得同时承担试点交付与最终独立核验。
 
 实施政策不是建立一个“AI特区”豁免监管，而是设置更严格的上线门槛：每个试点必须有 owner、测试问题、数据边界、成功/失败指标、人工接管、停止条件、复测版本和退出计划；只有完成 T1 才能申请 T2，完成 T2 才能进入 T3。公共空间不因试点而失去普通使用权，居民也不因为进入公园就自动同意参与实验。企业得到的是更高质量的真实反馈与场景接口，而不是对公众权利的折扣。
 
@@ -175,4 +177,6 @@ EDGECASE JINGZHANG 的产业定位是 **Urban Edgecase Infrastructure / 城市�
 - Seoul Metropolitan Government Seoul AI Hub [source:CASE-SEOUL-AI-HUB]
 - Mila Ventures research-to-venture ecosystem [source:CASE-MILA]
 - Vector Institute research-to-adoption ecosystem [source:CASE-VECTOR]
-- `metrics.json`, `assumptions.json`, `compliance_matrix.json`, `standard_matrix.json`, `design_depth_matrix.json` 为本方案机器可读主索引。
+本方案的机器可读主索引为：
+
+- `metrics.json`, `assumptions.json`, `compliance_matrix.json`, `standard_matrix.json`, `design_depth_matrix.json`

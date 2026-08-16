@@ -1,42 +1,153 @@
-<!doctype html><html lang='zh'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>京张公共门廊 v0.4：让创新带成为可进入、可理解、可共同维护的城市公共客厅</title><style>
-    :root{--paper:#F4F0E6;--ink:#13283A;--teal:#087A74;--orange:#EF7F45;--muted:#687783;}
-    *{box-sizing:border-box} html{font-size:clamp(18px,1.1vw,21px);scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Segoe UI',Arial,sans-serif;line-height:1.82;text-rendering:optimizeLegibility}
-    main{width:min(1180px,92vw);margin:30px auto 110px} h1{font-size:clamp(2.7rem,6vw,5.5rem);line-height:1.04;margin:.65em 0 .35em;letter-spacing:-.03em}
-    h2{margin-top:3em;border-top:3px solid var(--ink);padding-top:.75em;font-size:clamp(1.75rem,3vw,2.45rem);line-height:1.22} h3{margin-top:2.1em;color:var(--teal);font-size:1.35rem;line-height:1.35}
-    p,li{max-width:76ch} li{margin:.42em 0} img{display:block;width:100%;max-height:820px;object-fit:contain;background:#fff;border:1px solid #c8c2b6;border-radius:16px;box-shadow:10px 12px 0 #d6d0c4}
-    figure{margin:3em 0} table{border-collapse:collapse;width:100%;font-size:.9rem;background:#fff} th,td{border:1px solid #bdb6a9;padding:12px;vertical-align:top} th{background:#dfe9e6}
-    blockquote{margin:2em 0;padding:1em 1.5em;border-left:5px solid var(--orange);background:#fff} sup.evidence{background:#e4dfd4;color:var(--teal);padding:2px 5px;border-radius:5px;margin-left:3px}
-    code{background:#e6e0d5;padding:2px 4px;border-radius:3px} a{color:var(--teal)}
-    .reading-route{position:sticky;top:0;z-index:10;margin:0;background:#13283A;color:#fff;padding:14px max(4vw,24px);font-size:.82rem;line-height:1.5;letter-spacing:.02em}
-    .reading-route b{color:#66d7cf} .reading-route span{color:#dce5e6}
-    @media(max-width:760px){html{font-size:17px}main{width:92vw}.reading-route{position:static}}
-    </style></head><body><aside class='reading-route'><b>5分钟阅读路径</b> <span>总体主张 → 三个重点区 → 可行性判定 → 90天试点 → 风险与退出</span></aside><main><h1>京张公共门廊 v0.4</h1>
-<p><strong>JING-ZHANG COMMON VERANDA</strong> 不是把 AI 展品排成一条街，也不是在旧铁路旁塑造一座封闭科技园。它把京张遗产走廊理解为海淀面向未来的公共门廊：人们在这里遮阴、步行、换乘、学习、工作和相遇，也能知道一个 AI 场景使用什么数据、由谁负责、何时暂停以及如何退出。</p>
-<p>v0.4 保留“一脊、三廊、六门、十二场景”的空间骨架，但把重点从‘展示完整’转向‘实施可证’：AI 原点增加一个尚未获批、尚未现场运行的90天门廊回执试验；五个区域节点用输入、最低输出、责任类型和退出闸门连接；十二个工程包逐一记录成本档、依赖、验收和停止条件；日、月、季、年运营台账决定场景继续、修改或退役。全部空间动作均为概念建议，可供专业团队深化研究，不替代正式规划、机构授权或政府审定。</p>
-<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="总体城市设计"><figcaption>总体城市设计</figcaption></figure>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张公共门廊：AI退出以后，城市仍然成立 - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>京张公共门廊：AI退出以后，城市仍然成立</h1>
+<p class="summary">京张公共门廊在真实京张走廊上提交同一底图的AI开启与关闭两套总平：可关闭智能插件只进入独立口袋，关闭后公众主路、乔荫、座椅、静态导视、人工服务和普通用途继续成立；清华东路西口午饭门是其中一项场地验证。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+</section>
+<h1>京张公共门廊</h1>
+<p><strong>AI 退出以后，城市仍然成立。</strong> 本案不把“可关闭”停留在声明里，而为同一真实场地画出两套同时成立的总平：AI 开启时，测试、学习或日常服务只进入可独立关闭的插件口袋；AI 关闭时，公众主路、乔荫、座椅、静态导视、人工台和普通用途继续工作。</p>
+<p>这套双态空间语法落在北京北站—大钟寺—知春路—五道口—清华东路西口—北五环的京张遗产主脊，并服从西直门外大街至北五环的总体设计文字四至。运营轨道始终保持独立安全界面，东西联系只使用真实道路与待专业核验的既有跨越条件。所有边界、线位、容量与工程动作均为可替换的概念建议。</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="同一真实底图上的AI开启与关闭总体城市设计"><figcaption>同一真实底图上的AI开启与关闭总体城市设计</figcaption></figure>
+<h3>双态总平：关闭不是备用说明，而是第二张总平</h3>
+<p>三条验收规则贯穿三个重点区和六个城市门：第一，AI 口袋不得截断公众主路；第二，关闭后必须恢复明确的普通用途，而不是留下空置设备场；第三，人工服务、静态导视与无障碍通行不得依赖同一套网络或模型。当前图纸证明的是空间关系与交接方法，不证明现场净宽、值守排班、断电时长或真实恢复绩效；这些仍需进场许可、共同踏勘和专业审计。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup></p>
 <h2>设计依据与资料清单</h2>
 <h3>资料层级</h3>
-<p>1. <strong>任务层</strong>：官方公告确认项目名称、43.6 平方公里统筹研究范围、约 11.4 平方公里总体设计范围和 368.4 公顷重点范围；智能体任务书确认命名、生态、场景、地标、文化和运营六项必答任务。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> 2. <strong>背景层</strong>：v0.4 从 OpenStreetMap 公共数据提取道路、轨道、水系、绿地、公共设施和重点区建筑轮廓，用于理解城市关系和提高图纸可读性；其完整性和精度不等同官方测绘。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OSM-CONTEXT-20260810" title="来源：OSM-CONTEXT-20260810">来源</sup> 3. <strong>设计层</strong>：主脊、六门、公共节点、绿地、功能分区、建筑原型与十二个场景均为智能体生成的概念建议。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup> 4. <strong>展示层</strong>：三张重点区场景透视为原创 AI 生成概念图，用来说明空间氛围和人群关系，不是现场照片或建成承诺。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="GEN-V02-CONCEPT-RENDERS" title="来源：GEN-V02-CONCEPT-RENDERS">来源</sup></p>
+<p>1. <strong>任务层</strong>：官方公告确认项目名称、43.6 平方公里统筹研究范围、约 11.4 平方公里总体设计范围和 368.4 公顷重点范围；智能体任务书确认命名、生态、场景、地标、文化和运营六项必答任务。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> 2. <strong>背景层</strong>：方案从 OpenStreetMap 公共数据提取道路、轨道、水系、绿地、公共设施和重点区建筑轮廓，用于理解城市关系和提高图纸可读性；其完整性和精度不等同官方测绘。一期公园范围以知春路至清华东路公开开放信息为准；官方总体设计四至用于约束概念范围，不被反推为精确红线。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OSM-CONTEXT-20260810" title="来源：OSM-CONTEXT-20260810">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="JINGZHANG-PHASE1-OPEN-2023" title="来源：JINGZHANG-PHASE1-OPEN-2023">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> 3. <strong>设计层</strong>：主脊、六门、公共节点、绿地、功能分区、建筑原型与十二个场景均为智能体生成的概念建议。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup> 4. <strong>展示层</strong>：三张重点区透视与一张“午饭走进公园”场景为原创 AI 生成概念图，用来说明空间氛围和人群关系，不是现场照片、精确现状复原或建成承诺。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="GEN-V02-CONCEPT-RENDERS" title="来源：GEN-V02-CONCEPT-RENDERS">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="GEN-V05-LUNCH-WALK-RENDER" title="来源：GEN-V05-LUNCH-WALK-RENDER">来源</sup></p>
 <p>当前 site boundary 和三处 key area 仍采用仓库 provisional geometry。提交边界在 EPSG:4548 下复算约为 <strong>11.41 平方公里</strong>，只用于本轮内部比较；官方 polygon 到位后，GeoJSON、指标、图纸、HTML 和 PDF 必须整包再生成。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup></p>
-<figure class="proposal-figure"><img src="../assets/figures/existing-conditions.png" alt="现状底图与五类矛盾"><figcaption>现状底图与五类矛盾</figcaption></figure>
-<h3>五类场地矛盾</h3>
+<figure class="proposal-figure"><img src="../assets/figures/existing-conditions.png" alt="真实京张走廊与建设状态"><figcaption>真实京张走廊与建设状态</figcaption></figure>
+<h3>六类场地矛盾</h3>
 <ul>
 <li><strong>连续与断裂</strong>：铁路遗产形成强烈南北轴线，但沿线道路、围墙和大尺度园区边界削弱东西城市联系。</li>
 <li><strong>创新与公共性</strong>：研发资源高度集聚，普通居民和访客却很难看到“研究如何转化为公共价值”。</li>
 <li><strong>可达与最后一公里</strong>：轨道和主干路条件较强，站点到园区、社区和公共空间的步行、骑行、无障碍体验仍需要逐点核验。</li>
 <li><strong>历史与日常</strong>：铁路、中关村和 AI 三段文化叙事丰富，但尚缺少可以每天使用而非只在节庆观看的共同载体。</li>
+<li><strong>办公与生活</strong>：总体设计范围内高校、园区、社区与商业高度混合；真正需要缝合的是知春路、成府路、清华东路西口、大钟寺站四象限等真实东西接口。短板不是再增加办公概念，而是让既有职住、商业与公园在真实门口形成能停留、可过街、可求助的日常公共空间。</li>
 <li><strong>智能与责任</strong>：场景数量增长很快，城市空间中却缺少清楚的责任人、解释台、暂停条件和人工申诉入口。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="existing_conditions_diagnosis" title="深度：existing_conditions_diagnosis">深度</sup></li>
 </ul>
+<h3>午饭门：双态总平的一次日常验证</h3>
+<p>午饭门验证双态总平的公共底线：门口先能走、断电仍可用，再允许一层可关闭的日常服务 AI。500–600 米是一期真实城市门周边的目标服务半径，不是已完成测距。优先核验清华东路西口，其次知春路、成府路/五道口和大钟寺站四象限。AI 只做买水、人工协寻、遗失物；球场先审计一期已有 2 块，不默认新建。这不是居民偏好普查，也不构成客流结论。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="JINGZHANG-PHASE1-OPEN-2023" title="来源：JINGZHANG-PHASE1-OPEN-2023">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="haidian_everyday_life" title="深度：haidian_everyday_life">深度</sup></p>
 <h3>北京本地证据如何转译为设计动作</h3>
-<p>v0.4 不再只以国际案例说明愿景，而把北京与海淀的公开政策转译成可检查的设计约束：海淀“十五五”规划将百年京张 AI 创新带、南北 AI 双核、可感可及的标杆场景、开源生态和安全可控写入区域行动框架，因此方案以“问题—验证—采用—公共回报”而非单纯招商组织三廊；海淀创新应用场景指南要求场景方、明确需求、技术指标、空间设施、伦理安全和可复制成果，因此旗舰试验先锁责任和退出，再谈技术运行。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="HAIDIAN-15TH-FIVE-YEAR-PLAN-2026" title="来源：HAIDIAN-15TH-FIVE-YEAR-PLAN-2026">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="HAIDIAN-INNOVATION-SCENARIO-GUIDE-2025" title="来源：HAIDIAN-INNOVATION-SCENARIO-GUIDE-2025">来源</sup></p>
+<p>方案把北京与海淀的公开政策转译成可检查的设计约束：海淀“十五五”规划将百年京张 AI 创新带、南北 AI 双核、可感可及的标杆场景、开源生态和安全可控写入区域行动框架，因此方案以“问题—验证—采用—公共回报”而非单纯招商组织三廊；海淀创新应用场景指南要求场景方、明确需求、技术指标、空间设施、伦理安全和可复制成果，因此旗舰试验先锁责任和退出，再谈技术运行。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="HAIDIAN-15TH-FIVE-YEAR-PLAN-2026" title="来源：HAIDIAN-15TH-FIVE-YEAR-PLAN-2026">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="HAIDIAN-INNOVATION-SCENARIO-GUIDE-2025" title="来源：HAIDIAN-INNOVATION-SCENARIO-GUIDE-2025">来源</sup></p>
 <p>《北京市城市更新条例》强调公共空间更新、权利相关者参与和协商共治，转译为“没有场地、权利和公众接口就不进入下一闸门”；《无障碍环境建设法》转译为连续通行、信息可达、人工等价服务和残障/老年使用者共审；北京海绵城市意见只支持雨洪花园、透水空间和维护方向，不被用来虚构本场地径流目标。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-URBAN-RENEWAL-REGULATION" title="来源：BEIJING-URBAN-RENEWAL-REGULATION">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CHINA-ACCESSIBILITY-LAW-2023" title="来源：CHINA-ACCESSIBILITY-LAW-2023">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-SPONGE-CITY-2017" title="来源：BEIJING-SPONGE-CITY-2017">来源</sup></p>
 <h3>既有实施基线与控规草案对齐</h3>
-<p>方案不是从一张“空白场地”开始。官方公开信息显示，知春路至清华东路约2.5公里的遗址公园一期已于2023年开放，保留铁轨与桥梁记忆，并形成雨水设施、桥下活动和东西缝合的现实基底。v0.4因此不在一期范围重复制造景观概念，而把六门核验、无障碍连续、责任界面和运营回执叠加为既有公共资产的审计与服务层。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="JINGZHANG-PHASE1-OPEN-2023" title="来源：JINGZHANG-PHASE1-OPEN-2023">来源</sup></p>
+<p>方案不是从一张“空白场地”开始。官方公开信息显示，知春路至清华东路约2.5公里的遗址公园一期已于2023年开放，保留铁轨与桥梁记忆，并形成雨水设施、桥下活动和东西缝合的现实基底。方案不在一期范围重复制造景观概念，而把六门核验、无障碍连续、责任界面、午饭步行半径和运营回执叠加为既有公共资产的审计与服务层。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="JINGZHANG-PHASE1-OPEN-2023" title="来源：JINGZHANG-PHASE1-OPEN-2023">来源</sup></p>
+<p>一期公开资料还明确列出1块标准足球场、1块五人制足球场、2块篮球场以及跑步、步行、骑行设施；清华东路南侧公共空间项目已批并包含站点周边自行车停车与“站—园—街”衔接；二期仍在建设。故本案把既有运动和蓝绿设施当作基线，不重复承诺球场或站口造景；G5只补无障碍审计、责任服务和运营回执，G6在二期完成与验收前不承诺连续开放。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="JINGZHANG-PHASE1-FACILITIES-2024" title="来源：JINGZHANG-PHASE1-FACILITIES-2024">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="QINGHUA-EAST-PUBLIC-SPACE-2026" title="来源：QINGHUA-EAST-PUBLIC-SPACE-2026">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="JINGZHANG-PHASE2-2026" title="来源：JINGZHANG-PHASE2-2026">来源</sup></p>
 <p>2024年公开征求意见的HD00-1601等街区控规草案提出“一带一轴、两心多点”：京张铁路遗址公园创新交往带、中关村大街创新发展轴线、大钟寺与五道口中心及多个空间节点；其公示图还列出2035年人口、建设用地、建筑规模、公共设施和交通方向。公共门廊的“一脊、三廊、六门、十二场景”是叠加在这套结构上的公共服务与责任协议，不替代法定空间结构。公示数值只属于该草案范围，不写入本方案 <code>metrics.json</code>，也不从图片反推官方矢量红线。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="JINGZHANG-CONTROL-PLAN-DRAFT-2024" title="来源：JINGZHANG-CONTROL-PLAN-DRAFT-2024">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="public_plan_alignment" title="深度：public_plan_alignment">深度</sup></p>
-<p>2021年官方规划解读已识别全线断点、多元权属与分期实施难题，并提出总师/责任工程师、沿线“城市合伙人”和全过程共建共治机制。v0.4把这些既有机制转译为工作包牵头角色、专业验收、季度回执和退出决策，但不声称任何机构已接受本方案角色。当前仍缺最终批准文本与可复用GIS/CAD，所有提交边界、重点区和面积继续保持 provisional。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="JINGZHANG-PLAN-INTERPRETATION-2021" title="来源：JINGZHANG-PLAN-INTERPRETATION-2021">来源</sup></p>
+<p>2021年官方规划解读已识别全线断点、多元权属与分期实施难题，并提出总师/责任工程师、沿线“城市合伙人”和全过程共建共治机制。方案把这些既有机制转译为工作包牵头角色、专业验收、季度回执和退出决策，但不声称任何机构已接受本方案角色。当前仍缺最终批准文本与可复用GIS/CAD，所有提交边界、重点区和面积继续保持 provisional。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="JINGZHANG-PLAN-INTERPRETATION-2021" title="来源：JINGZHANG-PLAN-INTERPRETATION-2021">来源</sup></p>
 <h2>三层范围工作框架</h2>
-<p>43.6 平方公里统筹研究范围回答“创新生态如何协同”；约 11.4 平方公里总体设计范围回答“公共空间、交通、产业与生活如何组织”；三个重点区回答“空间原型如何被专业团队继续深化”。三层通过同一公共价值契约连接：公共入口、责任解释、最少数据、人工复核和可退出。</p>
-<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="三层范围与六段功能"><figcaption>三层范围与六段功能</figcaption></figure>
+<p>43.6 平方公里统筹研究范围北至北五环、东至京藏高速、南至西直门外大街、西至万泉河路，回答“创新生态如何协同”；约 11.4 平方公里总体设计范围南至西直门外大街、北至北五环、东至学院路/西土城路等、西至大钟寺东路/荷清路等，回答“公共空间、交通、产业与生活如何组织”；约 368.4 公顷重点范围自北向南为众智园、AI 原点和大钟寺，回答“空间原型如何被专业团队继续深化”。三层通过同一公共价值契约连接：公共入口、责任解释、最少数据、人工复核和可退出。</p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="同一条午饭门规则传到三层范围"><figcaption>同一条午饭门规则传到三层范围</figcaption></figure>
 <p>六段功能不是六个封闭园区，而是沿公共主脊共享首层、开放时段和服务协议：北部自主创新与验证、清河蓝绿共享、开放学习与转化、社区照护与服务、智能生活与商业、南部铁路记忆与国际传播。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_level_scope_framework" title="深度：three_level_scope_framework">深度</sup></p>
 <h2>统筹研究范围产业与未来城市研究</h2>
 <h3>创新生态闭环</h3>
@@ -57,48 +168,54 @@
 <p>公共主脊叠合铁路文化导览、全天候慢行、连续乔荫、雨洪花园、公共服务和场景责任接口。它不是一条必须一次建成的工程线，而是一组可以分段验证、逐步连接的公共空间标准。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="land_use_layout" title="深度：land_use_layout">深度</sup></p>
 <h3>六门</h3>
 <p>六处东西城市门将跨越铁路、道路、围墙和园区边界的问题拆成六项独立核验任务。每处城市门至少需要连续步行、骑行停靠、无障碍坡道、夜间照明、清晰导视、人工服务和雨洪缓冲；涉及桥隧或工程结构的部分必须在专业勘察后决定。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="east_west_link_count" title="指标：east_west_link_count">指标</sup></p>
-<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="交通与慢行系统"><figcaption>交通与慢行系统</figcaption></figure>
+<p>午饭门只锚定一期已经接到城市的东西向路口。放大节点是<strong>清华东路西口</strong>：东侧校园与办公沿清华东路到达信号过街、自行车停放和公园入口。门的第一件事是连续、可停、不被挤入车行道的地面层；时间、净宽、流量和无障碍均待现场审计。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="haidian_everyday_life" title="深度：haidian_everyday_life">深度</sup></p>
+<p><code>mobility-bluegreen</code> 用双尺度证明这句话：左侧是全线南北慢行，右侧放大清华东路西口午饭门，下方是东侧城市—过街—人工台—公园—铁轨安全界面。<strong>500–600 米</strong>只是门口服务半径目标。入口只叠一层可关闭的 AI：买水、人工协寻、遗失物，默认不传照片，失败转人工。</p>
+<figure class="proposal-figure"><img src="../assets/renders/lunch-walk-park.jpg" alt="午饭步行进入铁路公园的概念场景"><figcaption>午饭步行进入铁路公园的概念场景</figcaption></figure>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="午饭门证据：全线、G5 与东西向过街"><figcaption>午饭门证据：全线、G5 与东西向过街</figcaption></figure>
 <h3>六段功能与建筑更新</h3>
 <p>用地分区只表达公共功能主导关系，不替代法定控规。建筑采用“保留价值—开放首层—适应性改造—可逆加建—待确认”五级交接：现状价值明确的建筑优先保留；适合开放的研发、教育和商业首层建议增加公共界面；新建门廊构件必须与建筑本体分离、可维护、可撤换；没有权属和结构资料的建筑不做拆改结论。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="深度：retain_renovate_demolish">深度</sup></p>
 <p>22 个建筑基底仍是概念性空间原型，投影面积约 <strong>12.67 公顷</strong>，不代表现状普查或建设规模。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup></p>
+<figure class="proposal-figure"><img src="../assets/figures/building-context.png" alt="现状建筑背景与概念更新容量分层"><figcaption>现状建筑背景与概念更新容量分层</figcaption></figure>
 <h2>重点区域详细设计</h2>
-<p>三个重点区均采用“现状背景—公共主轴—横向城市门—中央公共开场—六个功能节点—专业交接条件”的设计语法；真实建筑底图用于理解城市肌理，彩色轴线和节点为概念建议。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup></p>
-<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="三处重点区总览"><figcaption>三处重点区总览</figcaption></figure>
+<p>三个重点区使用完全相同的道路、轨道、建筑背景与临时范围，各自并列 AI ON / AI OFF 两张总平。众智园检验测试口袋关闭后公众线和普通庭院能否恢复；AI 原点检验学习插件关闭后纸质来源台与人工课堂能否继续；大钟寺检验日常服务插件关闭后人工台、饮水、休息与换乘能否继续。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup></p>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="三个重点区在同一真实底图上的AI开启与关闭双态总平"><figcaption>三个重点区在同一真实底图上的AI开启与关闭双态总平</figcaption></figure>
 <h3>01 众智园 AI 自主创新加速区：实验门廊</h3>
-<p>众智园不是把园区变成无人测试场，而是把测试过程组织成可观察、可解释、可接管的公共创新空间。公共观察廊与测试车道物理分开；测试申请、风险说明、人工安全员和关闭按钮在进入测试区前出现；红队评测、机器人低速运行、算力能源审计形成一条可对公众开放的证据链。</p>
+<p>众智园不是把园区变成无人测试场，而是把测试过程组织成可观察、可解释、可接管的公共创新空间。公共观察廊与测试车道物理分开；测试申请、风险说明、人工安全员和关闭按钮在进入测试区前出现；红队评测、机器人低速运行、算力能源审计形成一条可对公众开放的证据链。AI OFF 状态下，测试设备与临时围界撤出，公众主路保持原位，测试口袋恢复为普通庭院或开放绿地；若恢复用途不能成立，AI ON 不得开启。</p>
 <figure class="proposal-figure"><img src="../assets/figures/keyarea-zhongzhiyuan.png" alt="众智园实验门廊概念详图"><figcaption>众智园实验门廊概念详图</figcaption></figure>
 <figure class="proposal-figure"><img src="../assets/renders/zhongzhiyuan-test-veranda.jpg" alt="众智园概念场景"><figcaption>众智园概念场景</figcaption></figure>
 <p>六个节点为测试申请与解释厅、低速机器人沙盒、红队评测庭院、能源与安全审计亭、公众观察廊和人工接管台。前置条件包括园区与企业授权、消防与工业安全、测试边界、数据许可和现场责任人；越界、失联、无法复现或人工接管缺位时立即停止。</p>
 <h3>02 北京 AI 原点社区：学习门廊</h3>
-<p>AI 原点社区把校园、研究园区、创业社区和周边居民之间的边界转化为“知识可以被看见、被讨论、被继续使用”的开放学习界面。开源发布门负责许可和来源检查；公共学习阶支持讲座、课程和社区解释；研究转化桌把论文、模型和公共服务问题连接；无障碍学习环和铁路雨洪花园保证空间首先是日常公共空间。</p>
+<p>AI 原点社区把校园、研究园区、创业社区和周边居民之间的边界转化为“知识可以被看见、被讨论、被继续使用”的开放学习界面。开源发布门负责许可和来源检查；公共学习阶支持讲座、课程和社区解释；研究转化桌把论文、模型和公共服务问题连接；无障碍学习环和铁路雨洪花园保证空间首先是日常公共空间。学习门廊也包括六道口、五道口已经活着的学生生活：吃饭、电影、桌游和晚上还待得住的店。没有这类第三空间，开放学习只剩发布会，留不住人的气息。AI OFF 状态下，模型解释和智能检索停止，纸质来源台、人工课堂、学习阶与无障碍环继续；知识公共性不能依赖一次在线演示。</p>
 <figure class="proposal-figure"><img src="../assets/figures/keyarea-ai-origin.png" alt="AI 原点学习门廊概念详图"><figcaption>AI 原点学习门廊概念详图</figcaption></figure>
 <figure class="proposal-figure"><img src="../assets/renders/ai-origin-learning-veranda.jpg" alt="AI 原点学习门廊概念场景"><figcaption>AI 原点学习门廊概念场景</figcaption></figure>
 <p>六个节点为开源发布门、公共学习阶、研究转化桌、无障碍学习环、铁路雨洪花园和社区复核台。校园开放时段、知识产权、未成年人保护、活动噪声和站点接驳需要专业及运营团队共同确认。</p>
 <h3>旗舰试验：门廊回执90天协议</h3>
 <figure class="proposal-figure"><img src="../assets/figures/veranda-receipt.png" alt="门廊回执90天试验"><figcaption>门廊回执90天试验</figcaption></figure>
-<p>v0.4 不把十二个场景同时做深，而选择 AI 原点“公共学习请求”建立一个最小可复演试验。公众提出问题后，系统只使用五个合成案例演练来源检索、人工解释和证据回执；始终保留纸质问题卡、打印来源单、现场人工解释和申诉窗口。该试验状态为 <strong>tabletop only / not authorized / not run</strong>：它证明G0—G6决策顺序、四个停止分支和五步回滚结构可以复演，不证明现场安全、模型性能、公众接受、场地许可或政府认可。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="veranda_receipt_pilot" title="深度：veranda_receipt_pilot">深度</sup></p>
+<p>方案不把十二个场景同时做深，而选择 AI 原点“公共学习请求”建立一个最小可复演试验。公众提出问题后，系统只使用五个合成案例演练来源检索、人工解释和证据回执；始终保留纸质问题卡、打印来源单、现场人工解释和申诉窗口。该试验状态为 <strong>tabletop only / not authorized / not run</strong>：它证明G0—G6决策顺序、四个停止分支和五步回滚结构可以复演，不证明现场安全、模型性能、公众接受、场地许可或政府认可。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="veranda_receipt_pilot" title="深度：veranda_receipt_pilot">深度</sup></p>
 <p>七道闸门依次为：G0授权范围、G1场地与无障碍/疏散记录、G2最少数据、G3权利与来源、G4人工控制、G5公众告知与非AI路径、G6回执/申诉/退出。正向对照通过；四个负向案例分别在个人数据、权利缺失、责任人缺失和退出缺失处停止，当前机器结果为5/5符合预期。真实试验必须重新分配发起者、现场管家、数据/IP复核、无障碍共审和公众观察角色，并获得场地及专业授权。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="tabletop_expected_outcome_match_rate" title="指标：tabletop_expected_outcome_match_rate">指标</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CAC-AI-CONTENT-LABEL-2025" title="来源：CAC-AI-CONTENT-LABEL-2025">来源</sup></p>
 <h3>03 大钟寺 AI 产业聚集区：生活门廊</h3>
-<p>大钟寺承担“AI 如何进入普通城市生活”的验证。轨道到达、商业首层、社区服务和铁路文化在一个全天候公共客厅中相遇；责任零售柜台、长者服务导航和社区申诉台默认有人值守；百年公共账本钟展示场景的运行、暂停、投诉和修复，而不是只展示技术成就。</p>
+<p>大钟寺承担“AI 如何进入普通城市生活”的验证。轨道到达、商业首层、社区服务和铁路文化在一个全天候公共客厅中相遇；责任零售柜台、长者服务导航和社区申诉台默认有人值守；百年公共账本钟展示场景的运行、暂停、投诉和修复，而不是只展示技术成就。生活门廊聚焦大钟寺站四象限、既有商业首层、社区服务与京张南段的真实步行关系；跨区消费叙事不作为场地设计依据。AI OFF 状态下，导航、协寻和遗失物插件关闭，人工服务台、饮水、休息、卫生间导引与换乘路径继续开放。</p>
 <figure class="proposal-figure"><img src="../assets/figures/keyarea-dazhongsi.png" alt="大钟寺生活门廊概念详图"><figcaption>大钟寺生活门廊概念详图</figcaption></figure>
 <figure class="proposal-figure"><img src="../assets/renders/dazhongsi-living-veranda.jpg" alt="大钟寺生活门廊概念场景"><figcaption>大钟寺生活门廊概念场景</figcaption></figure>
 <p>六个节点为轨道到达客厅、责任零售柜台、长者服务导航、百年公共账本钟、夜间共治花园和社区申诉台。交通组织、商业权属、隐私、广告边界、噪声和夜间安全均为落地前置条件。</p>
 <h2>AI 创新生态、人才画像与 AI+ 场景</h2>
-<p>六类主要用户包括研究者、初创团队、高校学生、周边家庭、老年与残障使用者、城市运营与公共服务人员。每类用户获得一种不以“成为行业内人士”为前提的公共能力：安静停留、无障碍到达、成果解释、人工申诉、场景暂停或继续参与。</p>
+<p>六类主要用户包括研究者、初创团队、高校学生、周边家庭、老年与残障使用者、城市运营与公共服务人员。方案不另造一个互相重叠的“第七类”，而是在六类画像中补入此前被忽略的日常状态：附近工作者午饭晚饭散步，学生与居民周末吃饭、看电影、玩桌游，儿童及其照护者停留，在管理规则允许范围内的携宠者通行。每类用户获得一种不以“成为行业内人士”为前提的公共能力：安静停留、无障碍到达、成果解释、人工申诉、场景暂停或继续参与。</p>
 <figure class="proposal-figure"><img src="../assets/figures/scenario-atlas.png" alt="十二个责任场景"><figcaption>十二个责任场景</figcaption></figure>
 <p>十二个场景按产业测试、学习开放、公共照护和治理文化四组组织。每张场景卡都必须说明：发生空间、最少必要数据、人工责任人、公众可见信息、暂停条件和退出路径。模型红队湾、低速机器人沙盒、能源审计亭和责任零售为四个产业验证场景；其余场景服务教育、无障碍、长者、文化导览、夜间照明和社区治理。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-006" title="空间数据：geometry/public_space.geojson#PUBLIC-006">空间数据</sup></p>
+<p>日常城市门的 AI 不承担“把创新带变成特区”的任务；产业测试与学习场景留在各自可关闭口袋。门口层只优先处理三件普通人能直接说出的需求：买一瓶水；孩子走散时一键联系人工服务台，由工作人员广播并分区巡查；遗失物品登记后由人工核对领取。找人场景默认不上传照片、不做人脸识别，也不自动判断未成年人位置；机器只做意图分流或低风险配送，不必做人形。即使互联网企业内部的 Agent 落地仍不稳定，公园场景更必须默认人工柜台、纸质回执和一键暂停；高影响判断不得自动执行。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="haidian_everyday_life" title="深度：haidian_everyday_life">深度</sup></p>
 <h2>用地、建筑规模与拆改留方案</h2>
 <p>功能分区采用公开分类术语，但仅作为概念性组织。门廊跨越用地边界的方式，是将遮阴、休憩、雨洪、导视、公共服务和责任接口做成连续公共层，而不声称改变法定权属。<sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="标准：MNR-LAND-USE-CLASSIFICATION-GUIDE">标准</sup></p>
 <p>建筑更新首先识别现状价值与公共界面潜力：历史和具再利用价值的砖混、工业或铁路设施优先保留；普通研发和办公建筑通过首层开放、共享门厅和可移动构件改善公共性；没有现场调查和结构鉴定，不提出拆除、加层或地下开发结论。具体高度、消防间距、日照、结构荷载、文保视线和设备条件由专业团队深化。<sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-ARCH-DESIGN-DEPTH-2016" title="标准：MOHURD-ARCH-DESIGN-DEPTH-2016">标准</sup></p>
 <h2>交通、轨道、市政与公共服务设施</h2>
-<p>交通系统分四级：轨道站点作为创新带城市门户；六处城市门承担东西缝合；公共主脊承担连续步行、骑行和无障碍；园区和社区微循环完成最后一公里。任何跨铁路、跨快速路、桥隧或地下连接都只提出问题与概念方向，不给出工程可行性结论。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup></p>
+<p>交通系统按风险与速度分层：运营轨道保持独立安全界面；六处城市门只使用既有或经专业论证的跨越条件；公共主脊优先连续步行与无障碍，跑步只在宽段分流，骑行在净宽不足处转入城市道路；服务与应急车辆限时、限速并服从行人优先。任何跨铁路、跨快速路、桥隧或地下连接都只提出问题与概念方向，不给出工程可行性结论。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup></p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-separation.png" alt="人、车、跑步、骑行与轨道的分层关系"><figcaption>人、车、跑步、骑行与轨道的分层关系</figcaption></figure>
 <p>市政采用“低技术基础层 + 可拔插智能层”：座椅、遮阴、坡道、饮水和导视在断电时仍可使用；传感器、端侧算力、能源计量和照明控制独立供电、独立授权并可人工关闭。公共服务不以扩大数据采集为前提，高影响判断必须转人工。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="municipal_new_infrastructure" title="深度：municipal_new_infrastructure">深度</sup></p>
 <h2>蓝绿空间、公共空间与城市风貌</h2>
 <figure class="proposal-figure"><img src="../assets/figures/bluegreen-publicrealm.png" alt="蓝绿公共空间系统"><figcaption>蓝绿公共空间系统</figcaption></figure>
-<p>连续乔荫、透水铺装、下凹绿地和可见雨水花园形成公共主脊的生态基底。临时边界下复算绿地比例约 <strong>12.1%</strong>、公共空间比例约 <strong>2.2%</strong>，只用于比较概念方案内部空间配置，不构成法定绿地率或公共空间指标。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup></p>
+<p>连续乔荫、透水铺装、下凹绿地和可见雨水花园形成公共主脊的生态基底。临时边界下复算绿地比例约 <strong>12.1%</strong>、公共空间比例约 <strong>2.1%</strong>，只用于比较概念方案内部空间配置，不构成法定绿地率或公共空间指标。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup></p>
 <figure class="proposal-figure"><img src="../assets/figures/public-realm-section.png" alt="公共门廊概念剖面与构件"><figcaption>公共门廊概念剖面与构件</figcaption></figure>
-<p>概念剖面由雨洪花园、骑行与应急通道、乔荫步行、公共门廊和开放首层组成。图示宽度为模块范围，必须根据正式红线、消防、市政、无障碍和现状测量调整。构件优先级是：遮阴与通行优先于屏幕，人工服务优先于自动判断，物理关闭优先于默认持续运行。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="blue_green_public_space" title="深度：blue_green_public_space">深度</sup></p>
-<p>三座朝圣地标分别是众智园“责任转换器”、AI 原点“开源提交阶”和大钟寺“百年公共账本钟”。它们记录贡献、责任和修复，不塑造技术崇拜；实体形式须在文保、景观、夜间照明和公共安全审查后确定。</p>
+<p>概念剖面由雨洪花园、骑行与应急通道、乔荫步行、公共门廊和开放首层组成。图示宽度为模块范围，必须根据正式红线、消防、市政、无障碍和现状测量调整。主脊原则上把跑步与步行分开，避免午饭散步和跑步抢一条窄路；能否平行分流及其宽度必须由现场测量、树木与市政条件决定。运动设施以既有资产为基线：一期公开资料已列明 <strong>2 块篮球场</strong>、1块标准足球场与1块五人制足球场。方案不默认新增球场，而是先审计既有场地的开放时段、噪声、照明、无障碍、边线缓冲和排队冲突；只有需求、净宽、声环境与运营责任同时成立时，才在直行流线外研究可逆补充。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="blue_green_public_space" title="深度：blue_green_public_space">深度</sup> [assumption:A-COURT-001]</p>
+<p>构件优先级是：遮阴与通行优先于屏幕，人工服务优先于自动判断，物理关闭优先于默认持续运行。三座朝圣地标分别是众智园“责任转换器”、AI 原点“开源提交阶”和大钟寺“百年公共账本钟”。它们记录贡献、责任和修复，不塑造技术崇拜；实体形式须在文保、景观、夜间照明和公共安全审查后确定。</p>
 <h2>可行性判定：现在能做什么，什么还不能做</h2>
 <figure class="proposal-figure"><img src="../assets/figures/feasibility-verdict.png" alt="分阶段实施可行性判定"><figcaption>分阶段实施可行性判定</figcaption></figure>
 <p><strong>总体结论：方案作为“分阶段、可回退的开放城市设计流程”具有条件可行性，但当前不是可施工方案。</strong> 现阶段可以启动概念评审、官方资料核对、六门现场审计和责任/权利映射；取得场地授权、明确运营责任并完成消防、市政、无障碍等专业核验后，可以先建设遮阴、座椅、导视、人工服务等低技术公共基线，再选择 AI 原点的一项场景做90天可逆试点。跨铁路桥隧、永久建筑、法定指标和真实投资额均未达到实施条件。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="implementation_feasibility_assessment" title="深度：implementation_feasibility_assessment">深度</sup></p>
@@ -127,20 +244,26 @@
 <p>运营不是建成后的附注，而是智能层的前置许可。每日检查开放、无障碍、告知、人工值守与事件；每月维护者会客厅处理未结修复和异议；每季度公开运行、暂停、申诉和修复回执并决定继续/修改/退役；每年 Open Veranda Week 同时审计公共资产、来源许可和品牌使用。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="operations_brand_ledger" title="深度：operations_brand_ledger">深度</sup></p>
 <p>没有明确的运营责任人、维护/备件窗口、人工等价服务排班、保险与退出资金，智能层不得开启。若一个季度无法公开责任、修复和退出证据，场景默认进入PAUSED；连续两个季度仍未闭环，必须提交退役决定。Logo与模板允许署名复用，但OPEN/TEST/PAUSED状态颜色、AI生成内容显式标识和版本记录不得移除。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-URBAN-RENEWAL-REGULATION" title="来源：BEIJING-URBAN-RENEWAL-REGULATION">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CAC-AI-CONTENT-LABEL-2025" title="来源：CAC-AI-CONTENT-LABEL-2025">来源</sup></p>
 <h2>指标体系、面积复算与合规矩阵</h2>
-<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="指标、证据与风险"><figcaption>指标、证据与风险</figcaption></figure>
-<p>指标分三类：可由 GeoJSON 重算的空间指标；必须等待官方控规的法定指标；需要运营台账积累的绩效指标。第一类写入当前数值，第二类保持 unknown，第三类只定义采集方法、责任人和隐私边界。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup></p>
-<p>空间指标由 <code>geometry/site_boundary.geojson</code>、<code>green_space.geojson</code>、<code>public_space.geojson</code> 与 <code>buildings.geojson</code> 在 EPSG:4548 下复算：临时总体边界约 <strong>11.41 平方公里</strong>，概念绿地比例约 <strong>12.1%</strong>，公共空间比例约 <strong>2.2%</strong>。这些数值用于检查方案内部是否自洽，并与 <code>metrics.json</code> 的计算方法、来源图层和状态逐项对应；由于边界与重点区仍为临时几何，它们不应写成法定用地面积、绿地率或政府审定指标。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup></p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="证据分级与官方边界到位后的确定性替换链"><figcaption>证据分级与官方边界到位后的确定性替换链</figcaption></figure>
+<p>先验收三组双态总平，再看面积。</p>
+<p>四条边界提示不是四个独立缺陷，而是同一主办方数据缺口的四次显式报告：1个总体范围和3个重点区尚无公开官方 polygon。官方公告可正式引用的是文字四至与约面积；OSM 和政府项目公开信息只作为真实背景；本案六门、双态总平和面积比例仍是可复算概念建议。只有来源、授权、版本和坐标系均可核验的官方文件到位后，才启动整包替换，不以视觉拟真度升级证据等级。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup></p>
+<p>门口服务半径、球场先审计、AI 三件事可关闭、断电后低技术层仍可用，是本轮要被看见的验收句。面积指标仍分三类：可由 GeoJSON 重算的空间指标；必须等待官方控规的法定指标；需要运营台账积累的绩效指标。第一类写入当前数值，第二类保持 unknown，第三类只定义采集方法、责任人和隐私边界。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup></p>
+<p>空间指标由 <code>geometry/site_boundary.geojson</code>、<code>green_space.geojson</code>、<code>public_space.geojson</code> 与 <code>buildings.geojson</code> 在 EPSG:4548 下复算：临时总体边界约 <strong>11.41 平方公里</strong>，概念绿地比例约 <strong>12.1%</strong>，公共空间比例约 <strong>2.1%</strong>。这些数值用于检查方案内部是否自洽，并与 <code>metrics.json</code> 的计算方法、来源图层和状态逐项对应；由于边界与重点区仍为临时几何，它们不应写成法定用地面积、绿地率或政府审定指标。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup></p>
 <p>法定容积率、建筑高度、开发容量、停车配建、专项市政容量与文保控制保持 <code>unknown</code>，不通过视觉估算补齐；资料到位后触发“替换边界—重算相交图层—重绘中英文图件—重生成 PDF/HTML—重新自检”的完整链条。任务覆盖矩阵响应公告任务与 agent.1—agent.6，专业标准矩阵记录法规判断，设计深度矩阵记录每一项的图纸、几何、指标、来源和缺口。机器校验通过只说明方案可进入内容评审，不等同于空间质量、入选、规划批准或工程可行性。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#SITE-001" title="空间数据：geometry/site_boundary.geojson#SITE-001">空间数据</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup></p>
 <h2>风险、版权与合规说明</h2>
 <p>最大风险是把临时精确感误写成官方结论。官方边界、控规、建筑与权属、交通市政、文保与气候五类资料均设置替换触发；新资料到位后必须从来源层开始，替换 geometry、重算 metrics、重画图纸、重生成 HTML/PDF 并重新自检。涉及隐私、个人数据或未成年人信息时坚持最少数据、人工复核与可申诉；资料公开性、来源授权、版权和实施风险均写入闸门与停止条件。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup></p>
-<p>OSM 数据遵循 ODbL 1.0 并标注 © OpenStreetMap contributors。三张概念透视由图像生成工具原创生成，并在正文和 sources.json 中披露；它们不包含第三方照片、商标或已建成声称。Logo、图表、HTML 和 PDF 为本方案原创生成。</p>
+<p>OSM 数据遵循 ODbL 1.0 并标注 © OpenStreetMap contributors。三张重点区透视与一张“午饭走进公园”场景由图像生成工具原创生成，并在正文和 sources.json 中披露；它们不包含第三方照片、商标或已建成声称。Logo、图表、HTML 和 PDF 为本方案原创生成。</p>
 <p>所有空间、政策、招商、活动和运营内容均为概念建议或参考方案；不声称官方批准、审定控规、最终权属、投资承诺、工程可行性或保证实施。维护者、公众与专业团队保留最终判断。</p>
 <h2>参考资料</h2>
 <ul>
 <li>北京市规划和自然资源委员会海淀分局：《百年京张 AI 创新带城市设计国际方案征集资格预审公告》。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup></li>
 <li>面向全球智能体的开源征集任务书摘录、场地包与专业标准快照。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup></li>
+<li>北京市交通委员会：昌平线南延一期开通信息，含学知园站，仅作投稿者工作观察的站名，不作为公园入口。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BJ-METRO-CHANGPING-SOUTH-2023" title="来源：BJ-METRO-CHANGPING-SOUTH-2023">来源</sup></li>
 <li>OpenStreetMap 道路、轨道、水系、绿地、设施与建筑公共数据，ODbL 1.0。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OSM-CONTEXT-20260810" title="来源：OSM-CONTEXT-20260810">来源</sup></li>
 <li>JTC one-north、City of Cambridge Kendall Square、MaRS 官方页面。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-ONE-NORTH" title="来源：CASE-ONE-NORTH">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-KENDALL" title="来源：CASE-KENDALL">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-MARS" title="来源：CASE-MARS">来源</sup></li>
 <li>Knowledge Quarter London、Mila、STATION F 官方页面。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-KQ" title="来源：CASE-KQ">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-MILA" title="来源：CASE-MILA">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-STATION-F" title="来源：CASE-STATION-F">来源</sup></li>
 <li>完整来源、许可、用途和局限见 <code>sources.json</code>；空间、指标和假设分别见 GeoJSON、<code>metrics.json</code> 和 <code>assumptions.json</code>。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OSM-CONTEXT-20260810" title="来源：OSM-CONTEXT-20260810">来源</sup></li>
-</ul></main></body></html>
+</ul>
+</main>
+</body>
+</html>

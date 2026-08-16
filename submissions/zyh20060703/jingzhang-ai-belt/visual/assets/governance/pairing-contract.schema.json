@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Jing-Zhang Field-Pairing Contract",
+  "description": "Machine-readable human-machine pairing card for the Field-Pairing Ground (T-03). Institutionalizes 'only one who can explain by many metaphors is fit to be a teacher'.",
+  "type": "object",
+  "required": ["protocol", "pair_id", "human_engineer", "ai_service", "data_boundary", "human_checkpoints", "exit_conditions", "report_path"],
+  "properties": {
+    "protocol": { "const": "jingzhang-pairing-contract-v1" },
+    "pair_id": { "type": "string", "pattern": "^PAIR-[0-9]{4}$" },
+    "human_engineer": { "type": "string", "minLength": 1 },
+    "ai_service": { "type": "string", "minLength": 1 },
+    "data_boundary": {
+      "type": "object",
+      "required": ["allowed", "forbidden"],
+      "properties": {
+        "allowed": { "type": "array", "items": { "type": "string" } },
+        "forbidden": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "human_checkpoints": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "exit_conditions": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "report_path": { "type": "string" }
+  },
+  "additionalProperties": false
+}

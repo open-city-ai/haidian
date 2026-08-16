@@ -1,0 +1,105 @@
+{
+  "schema_version": "0.1.0",
+  "schema_id": "urban-operating-diagram-logs-v1",
+  "description": "运行图日志契约：6 类事件，试点开始后唯一数据源",
+  "event_types": [
+    {
+      "type": "registration",
+      "description": "服务登记进入运行图",
+      "fields": [
+        "service_id",
+        "stop_id",
+        "timestamp",
+        "gate",
+        "evidence_hash"
+      ]
+    },
+    {
+      "type": "trial",
+      "description": "试运行",
+      "fields": [
+        "service_id",
+        "stop_id",
+        "timestamp",
+        "trial_result",
+        "human_takeover"
+      ]
+    },
+    {
+      "type": "on_time",
+      "description": "正点",
+      "fields": [
+        "service_id",
+        "stop_id",
+        "timestamp",
+        "scheduled_time",
+        "actual_time"
+      ]
+    },
+    {
+      "type": "delay",
+      "description": "晚点",
+      "fields": [
+        "service_id",
+        "stop_id",
+        "timestamp",
+        "delay_minutes",
+        "threshold",
+        "notice_issued"
+      ]
+    },
+    {
+      "type": "suspension",
+      "description": "停运",
+      "fields": [
+        "service_id",
+        "stop_id",
+        "timestamp",
+        "reason",
+        "recovery_plan",
+        "public_notice"
+      ]
+    },
+    {
+      "type": "compensation",
+      "description": "补偿",
+      "fields": [
+        "service_id",
+        "stop_id",
+        "timestamp",
+        "channel",
+        "equivalent_path",
+        "appeal_open"
+      ]
+    }
+  ],
+  "common_fields": {
+    "service_id": "string (T-xx or service registry id)",
+    "stop_id": "string (ZJ-01/02/03 or MS-01~06)",
+    "timestamp": "ISO 8601",
+    "status_code": "enum [GREEN, AMBER, RED]",
+    "human_takeover": "boolean",
+    "evidence_hash": "sha256"
+  },
+  "kpi_source": [
+    "punctuality_rate",
+    "delay_rate",
+    "suspension_fulfillment_rate",
+    "maintenance_window_execution_rate",
+    "transfer_connection_punctuality",
+    "compensation_fulfillment_rate"
+  ],
+  "pre_pilot": "unknown (no fabrication)",
+  "isomorphic_with": "check_timetable.js",
+  "example_entry_template": {
+    "event_type": "on_time",
+    "service_id": "T-07-P001",
+    "stop_id": "ZJ-02",
+    "timestamp": "ISO8601",
+    "scheduled_time": "ISO8601",
+    "actual_time": "ISO8601",
+    "status_code": "GREEN",
+    "human_takeover": false,
+    "evidence_hash": "sha256"
+  }
+}

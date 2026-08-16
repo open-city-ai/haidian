@@ -1,0 +1,827 @@
+{
+  "schema_version": "0.2.0",
+  "record_id": "KEY-AREA-DESIGN",
+  "purpose_zh": "本记录是三个耦合城市学习实验室的空间内容来源：每个片区一张有条件平面（或非定位拓扑）、两张带剖切号的剖面、构件与路线清单、可审计的无障碍连续路径、季节与运行方案，以及第一期可逆信封。所有数值均声明依据类型；凡属场地事实而未经测量者一律为 pending 且取值为空。",
+  "purpose_en": "This record is the spatial source of truth for the three coupled urban learning labs: one conditional plan (or non-georeferenced topology) per area, two keyed sections, component and route inventories, an auditable step-free chain, seasonal and operating provisions, and a Phase-1 reversible envelope. Every numeric value declares its basis type; anything that would be a site fact without a survey is pending with a null value.",
+  "basis_note_zh": "剖面尺寸只有两种依据。proposed_module 表示该尺寸是本方案自己提出的模数，以米计，不是对现状的陈述，也未经任何一方核验；pending 表示未知，单位同样为米，取值必须为空，并写明取得何种证据后由谁复算。不得从规范条文、场地照片或本包的临时几何推出剖面尺寸：临时范围不是实测，把它的跨度标在剖面上，等于把一条本方案自己声明存疑的边界当成施工尺寸。",
+  "basis_note_en": "A section dimension has exactly two admissible bases. proposed_module means the dimension is a module this proposal itself proposes, stated in metres; it is not a statement about existing conditions, and no party has verified it. pending means the dimension is unknown: the unit is still metres, the value must be null, and the record names the evidence that would resolve it and the trigger to recompute. No section dimension may be inferred from a standard clause, from a site photograph, or from the provisional geometry in this package: a provisional extent is not a survey, and printing its span on a section would treat a boundary this proposal itself disputes as a construction quantity.",
+  "counts": {
+    "areas": 3,
+    "plans": 3,
+    "sections": 6,
+    "step_free_chains": 3,
+    "phase1_envelopes": 3
+  },
+  "areas": [
+    {
+      "area_feature_id": "PROV-KEY-001",
+      "area_id": "zhongzhiyuan_ai_acceleration_area",
+      "prefix": "ZZY",
+      "name_zh": "众智园 AI 自主创新加速区 · 学习实验室一",
+      "name_en": "Zhongzhiyuan AI Independent Innovation Acceleration Area · Learning Lab 1",
+      "georeferenced": true,
+      "spatial_mode": "provisional_extent",
+      "plan": {
+        "id": "ZZY-PLAN-01",
+        "plate_concept_id": "02",
+        "title_zh": "众智园 · 有条件地面平面：公众观察与受控试验的并置",
+        "title_en": "Zhongzhiyuan · conditional ground plan: public observation set beside controlled testing",
+        "condition_zh": "本平面以临时工作范围为底，不是官方边界内的设计。官方多边形一经发布，构图关系保留，坐标与面积全部作废重绘。",
+        "condition_en": "The plan is drawn over the provisional working extent, not inside an official boundary. When the official polygon is published the compositional relationships survive and every coordinate and area is voided and redrawn.",
+        "cut_keys": [
+          { "key": "A", "section_id": "ZZY-SEC-A", "note_zh": "横切观察廊与受控试验舱之间的分隔带", "note_en": "cut across the separation zone between the observation gallery and the controlled test enclosure" },
+          { "key": "B", "section_id": "ZZY-SEC-B", "note_zh": "纵切物流脊线，经维护面与应急回车位", "note_en": "cut along the logistics spine, through a maintenance face and an emergency turning bay" }
+        ],
+        "elements": [
+          { "id": "Z-E01", "kind": "public_observation", "name_zh": "公众观察环线", "name_en": "Public observation loop", "drawn_as": "continuous 2.4 m wide line, entered and left from outside the test field, never sharing an edge with it" },
+          { "id": "Z-E02", "kind": "controlled_test", "name_zh": "受控试验场", "name_en": "Controlled test field", "drawn_as": "hatched closed figure with its own entry face, no shared threshold with the observation loop" },
+          { "id": "Z-E03", "kind": "logistics", "name_zh": "试验物流脊线", "name_en": "Test logistics spine", "drawn_as": "heavy dashed line with loading faces marked at each module bay" },
+          { "id": "Z-E04", "kind": "emergency", "name_zh": "应急撤离与救援通道", "name_en": "Emergency egress and rescue route", "drawn_as": "dash-dot line with turning bays shown as open squares" },
+          { "id": "Z-E05", "kind": "maintenance", "name_zh": "维护接近通道", "name_en": "Maintenance access route", "drawn_as": "dotted line reaching every module face from outside the test field" },
+          { "id": "Z-E06", "kind": "staffed_desk", "name_zh": "值守服务台", "name_en": "Staffed service desk", "drawn_as": "solid rectangle on the observation loop, within sight of the arrival threshold" },
+          { "id": "Z-E07", "kind": "module_bay", "name_zh": "可逆模块单元", "name_en": "Reversible module bay", "drawn_as": "1.2 m grid squares, demountable, no foundation shown" },
+          { "id": "Z-E08", "kind": "snow_storage", "name_zh": "融雪暂存位", "name_en": "Snow storage bay", "drawn_as": "stippled area set back from every marked route" },
+          { "id": "Z-E09", "kind": "threshold", "name_zh": "无高差入场门槛", "name_en": "Level arrival threshold", "drawn_as": "double line with the level change annotated as pending" }
+        ]
+      },
+      "separation": {
+        "public_observation_enters_controlled_test": false,
+        "public_observation_depends_on_controlled_test": false,
+        "note_zh": "公众观察环线不进入受控试验场，也不以其为通过条件：试验场停用或封闭时，观察环线仍然完整可走。",
+        "note_en": "The public observation loop neither enters the controlled test field nor passes through it as a condition of use: if the test field is suspended or closed, the observation loop remains complete and walkable."
+      },
+      "sections": [
+        {
+          "id": "ZZY-SEC-A",
+          "plate_concept_id": "03",
+          "key": "A",
+          "title_zh": "剖面 A：公众观察与受控试验的分离",
+          "title_en": "Section A: separation of public observation from controlled testing",
+          "shows_zh": "剖面显示公众观察廊与受控试验舱之间的空间分离带、各自独立的到达面，以及试验舱停用时观察廊不受影响的高差与视线关系。",
+          "shows_en": "The section shows the separation zone between the public observation gallery and the controlled test enclosure, the independent arrival face each one has, and the level and sightline relationship that keeps the gallery usable when the enclosure is shut.",
+          "dimensions": [
+            { "id": "ZZY-SEC-A-D1", "label_zh": "观察廊建议净宽", "label_en": "proposed observation gallery clear width", "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:ZZY-PLAN-01", "status": "proposed_not_verified" },
+            { "id": "ZZY-SEC-A-D2", "label_zh": "分隔带建议进深", "label_en": "proposed separation zone depth", "value": 1.2, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:ZZY-PLAN-01", "status": "proposed_not_verified" },
+            { "id": "ZZY-SEC-A-D3", "label_zh": "剖切线上现状地面高差", "label_en": "existing ground level difference along the cut", "value": null, "unit": "m", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey", "recalculation_trigger_zh": "取得实测竖向或官方重点区 polygon 后，以米复算并重绘本剖面", "recalculation_trigger_en": "recompute in metres and redraw this section once a measured level survey or the official key-area polygon is available" },
+            { "id": "ZZY-SEC-A-D4", "label_zh": "受控试验舱净高", "label_en": "controlled test enclosure clear height", "value": null, "unit": "m", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BUILDING-001", "status": "pending_survey", "recalculation_trigger_zh": "取得建筑实测净高后，以米复算并重绘本剖面", "recalculation_trigger_en": "recompute in metres and redraw this section once a measured building clear height is available" }
+          ],
+          "evidence_refs": ["area:PROV-KEY-001", "drawing:ZZY-PLAN-01", "component:Z-C01", "component:Z-C02", "route:Z-R01", "data:assumptions.json#A-BUILDING-001"]
+        },
+        {
+          "id": "ZZY-SEC-B",
+          "plate_concept_id": "03",
+          "key": "B",
+          "title_zh": "剖面 B：物流、维护与应急恢复",
+          "title_en": "Section B: logistics, maintenance and emergency recovery",
+          "shows_zh": "剖面沿物流脊线展开，显示模块装卸面、维护人员从试验场之外到达故障设备的路径，以及应急回车位在事故后恢复通行所需的空间。",
+          "shows_en": "Taken along the logistics spine, the section shows the module loading face, the path by which maintenance staff reach a failed machine from outside the test field, and the space an emergency turning bay needs for recovery of movement after an incident.",
+          "dimensions": [
+            { "id": "ZZY-SEC-B-D1", "label_zh": "临时工作范围东西向跨度", "label_en": "provisional working extent east-west span", "value": null, "unit": "m", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_official_boundary", "recalculation_trigger_zh": "取得官方重点区 polygon 或实测范围后，以米复算跨度并重绘本剖面；在此之前本剖面不主张任何跨度数值", "recalculation_trigger_en": "recompute the span in metres and redraw this section once the official key-area polygon or a measured extent is available; until then this section asserts no span value" },
+            { "id": "ZZY-SEC-B-D2", "label_zh": "物流装卸位建议进深", "label_en": "proposed logistics loading bay depth", "value": 3.6, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:ZZY-PLAN-01", "status": "proposed_not_verified" },
+            { "id": "ZZY-SEC-B-D3", "label_zh": "应急车辆回转半径", "label_en": "emergency vehicle turning radius", "value": null, "unit": "m", "basis_type": "pending", "source_ref": "data:assumptions.json#A-CONTROLS-001", "status": "pending_professional_audit", "recalculation_trigger_zh": "取得消防与交通主管部门认可的回转半径后，以米复算并重绘本剖面", "recalculation_trigger_en": "recompute in metres and redraw this section once a turning radius accepted by the fire and traffic authorities is available" },
+            { "id": "ZZY-SEC-B-D4", "label_zh": "维护面建议净空", "label_en": "proposed maintenance face clearance", "value": 1.2, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:ZZY-PLAN-01", "status": "proposed_not_verified" }
+          ],
+          "evidence_refs": ["area:PROV-KEY-001", "drawing:ZZY-PLAN-01", "component:Z-C05", "route:Z-R03", "route:Z-R04", "route:Z-R05", "standard:MOHURD-ARCH-DESIGN-DEPTH-2016"]
+        }
+      ],
+      "components": [
+        { "id": "Z-C01", "kind": "public", "name_zh": "公众观察廊", "name_en": "Public observation gallery", "reversible": true, "drawing_ref": "ZZY-SEC-A", "evidence_refs": ["drawing:ZZY-PLAN-01", "section:ZZY-SEC-A", "source:CASE-ONE-NORTH"] },
+        { "id": "Z-C02", "kind": "controlled", "name_zh": "受控试验舱", "name_en": "Controlled test enclosure", "reversible": true, "drawing_ref": "ZZY-SEC-A", "evidence_refs": ["drawing:ZZY-PLAN-01", "section:ZZY-SEC-A", "source:CASE-MILA"] },
+        { "id": "Z-C03", "kind": "service", "name_zh": "值守服务点", "name_en": "Staffed service point", "reversible": true, "drawing_ref": "ZZY-SEC-A", "evidence_refs": ["drawing:ZZY-PLAN-01", "standard:BARRIER-FREE-ENVIRONMENT-LAW", "source:ISSUE-1774"] },
+        { "id": "Z-C04", "kind": "structure", "name_zh": "可逆模块基座", "name_en": "Reversible module base", "reversible": true, "drawing_ref": "ZZY-SEC-B", "evidence_refs": ["section:ZZY-SEC-B", "source:OPEN-BUILDING-HABRAKEN-2021", "metric:phase1_reversible_area_sqm"] },
+        { "id": "Z-C05", "kind": "operations", "name_zh": "维护与物流平台", "name_en": "Maintenance and logistics platform", "reversible": true, "drawing_ref": "ZZY-SEC-B", "evidence_refs": ["section:ZZY-SEC-B", "source:SHEARING-LAYERS-BRAND-1994", "route:Z-R03"] }
+      ],
+      "routes": [
+        { "id": "Z-R01", "kind": "public_observation", "name_zh": "公众观察环线", "name_en": "Public observation loop", "drawing_ref": "ZZY-PLAN-01", "enters_controlled_test": false, "evidence_refs": ["drawing:ZZY-PLAN-01", "component:Z-C01", "metric:public_space_ratio"] },
+        { "id": "Z-R02", "kind": "controlled_test", "name_zh": "受控试验作业线", "name_en": "Controlled test operating line", "drawing_ref": "ZZY-PLAN-01", "public_accessible": false, "evidence_refs": ["drawing:ZZY-PLAN-01", "component:Z-C02", "data:assumptions.json#A-CONTROLS-001"] },
+        { "id": "Z-R03", "kind": "logistics", "name_zh": "试验物流脊线", "name_en": "Test logistics spine", "drawing_ref": "ZZY-SEC-B", "evidence_refs": ["section:ZZY-SEC-B", "component:Z-C05", "source:PROCESSED-FACT-PACK"] },
+        { "id": "Z-R04", "kind": "emergency", "name_zh": "应急撤离与救援通道", "name_en": "Emergency egress and rescue route", "drawing_ref": "ZZY-SEC-B", "evidence_refs": ["section:ZZY-SEC-B", "data:assumptions.json#A-CONTROLS-001", "source:HOLLING-1973"] },
+        { "id": "Z-R05", "kind": "maintenance", "name_zh": "维护接近通道", "name_en": "Maintenance access route", "drawing_ref": "ZZY-SEC-B", "evidence_refs": ["section:ZZY-SEC-B", "component:Z-C05", "source:SHEARING-LAYERS-BRAND-1994"] }
+      ],
+      "step_free_chain": {
+        "id": "ZZY-SFC-01",
+        "status": { "proposed": true, "verified": false, "accessibility_gate": "G5:pending", "survey": "pending", "professional_audit": "pending" },
+        "nodes": [
+          { "id": "Z-N1", "role": "arrival", "name_zh": "到达门槛", "name_en": "Arrival threshold", "drawing_ref": "ZZY-PLAN-01" },
+          { "id": "Z-N2", "role": "decision", "name_zh": "首个抉择点与总平面牌", "name_en": "First decision point with orientation board", "drawing_ref": "ZZY-PLAN-01" },
+          { "id": "Z-N3", "role": "rest", "name_zh": "带靠背休息位", "name_en": "Rest point with backed seating", "drawing_ref": "ZZY-SEC-A" },
+          { "id": "Z-N4", "role": "toilet_direction", "name_zh": "卫生间指向点", "name_en": "Toilet direction point", "drawing_ref": "ZZY-PLAN-01" },
+          { "id": "Z-N5", "role": "staffed_service", "name_zh": "值守服务台", "name_en": "Staffed service desk", "drawing_ref": "ZZY-SEC-A" },
+          { "id": "Z-N6", "role": "principal_program", "name_zh": "公众观察平台", "name_en": "Public observation platform", "drawing_ref": "ZZY-SEC-A" },
+          { "id": "Z-N7", "role": "exit", "name_zh": "离场门槛", "name_en": "Exit threshold", "drawing_ref": "ZZY-PLAN-01" }
+        ],
+        "segments": [
+          {
+            "id": "Z-S1", "from": "Z-N1", "to": "Z-N2", "drawing_ref": "ZZY-PLAN-01",
+            "surface_zh": "连续硬质铺装，无高差，接缝宽度不超过模数网格接缝",
+            "surface_en": "continuous firm paving with no level change, joints no wider than the module grid joint",
+            "obstruction_rule_zh": "试验期间不得在此段临时堆放设备或围挡；违规堆放按停止触发处理",
+            "obstruction_rule_en": "no temporary equipment or hoarding may stand on this segment during a test; an obstruction here is treated as a stop trigger",
+            "maintenance_access_zh": "维护人员从试验场之外的维护通道接近，不占用本段",
+            "maintenance_access_en": "maintenance staff approach from the maintenance route outside the test field and do not occupy this segment",
+            "clear_width": { "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:ZZY-PLAN-01", "status": "proposed_not_verified" },
+            "gradient": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "crossfall": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "passing_points": { "value": 2, "unit": "count", "basis_type": "proposed_module", "source_ref": "drawing:ZZY-PLAN-01", "status": "proposed_not_verified" },
+            "rest_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "drawing:ZZY-PLAN-01", "status": "proposed_not_verified" }
+          },
+          {
+            "id": "Z-S2", "from": "Z-N2", "to": "Z-N3", "drawing_ref": "ZZY-PLAN-01",
+            "surface_zh": "同种铺装延续，抉择点周边设触感提示面",
+            "surface_en": "the same paving continues, with a tactile warning surface around the decision point",
+            "obstruction_rule_zh": "指示牌与临时展位须退出通行带，落地支腿不得进入净宽范围",
+            "obstruction_rule_en": "signs and temporary stands stay out of the movement band and their feet may not enter the clear width",
+            "maintenance_access_zh": "清扫车从物流脊线进入，作业时保留半幅通行",
+            "maintenance_access_en": "cleaning plant enters from the logistics spine and leaves half the width open while working",
+            "clear_width": { "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:ZZY-PLAN-01", "status": "proposed_not_verified" },
+            "gradient": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "crossfall": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "passing_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "drawing:ZZY-PLAN-01", "status": "proposed_not_verified" },
+            "rest_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "drawing:ZZY-PLAN-01", "status": "proposed_not_verified" }
+          },
+          {
+            "id": "Z-S3", "from": "Z-N3", "to": "Z-N4", "drawing_ref": "ZZY-SEC-A",
+            "surface_zh": "休息位至卫生间指向点保持同一铺装，避免材质变化造成的误判",
+            "surface_en": "one paving material runs from the rest point to the toilet direction point so a material change cannot be read as a route change",
+            "obstruction_rule_zh": "座椅与垃圾容器置于通行带之外的设施带内",
+            "obstruction_rule_en": "seating and waste containers sit in a furniture band outside the movement band",
+            "maintenance_access_zh": "设施带内的构件可从观察廊一侧单独更换，不封闭通行带",
+            "maintenance_access_en": "items in the furniture band can be replaced from the gallery side without closing the movement band",
+            "clear_width": { "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "section:ZZY-SEC-A", "status": "proposed_not_verified" },
+            "gradient": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "crossfall": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "passing_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "section:ZZY-SEC-A", "status": "proposed_not_verified" },
+            "rest_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "section:ZZY-SEC-A", "status": "proposed_not_verified" }
+          },
+          {
+            "id": "Z-S4", "from": "Z-N4", "to": "Z-N5", "drawing_ref": "ZZY-SEC-A",
+            "surface_zh": "接近服务台一段设置导向条，条纹方向与行进方向一致",
+            "surface_en": "a guidance strip approaches the service desk with its ribs running along the direction of travel",
+            "obstruction_rule_zh": "排队区以地面标识划定，不得越入导向条",
+            "obstruction_rule_en": "the queuing area is marked on the ground and may not encroach on the guidance strip",
+            "maintenance_access_zh": "服务台后勤补给走维护通道，不穿越排队区",
+            "maintenance_access_en": "supplies for the desk arrive along the maintenance route and do not cross the queuing area",
+            "clear_width": { "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "section:ZZY-SEC-A", "status": "proposed_not_verified" },
+            "gradient": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "crossfall": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "passing_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "section:ZZY-SEC-A", "status": "proposed_not_verified" },
+            "rest_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "section:ZZY-SEC-A", "status": "proposed_not_verified" }
+          },
+          {
+            "id": "Z-S5", "from": "Z-N5", "to": "Z-N6", "drawing_ref": "ZZY-SEC-A",
+            "surface_zh": "进入观察平台不设台阶与坡道，平台面与廊道面同高",
+            "surface_en": "the observation platform is reached without step or ramp; platform and gallery are one surface",
+            "obstruction_rule_zh": "观察平台栏杆下缘不得设置遮挡轮椅使用者视线的实体面",
+            "obstruction_rule_en": "no solid panel may sit below the platform guarding where it would block a seated visitor's sightline",
+            "maintenance_access_zh": "平台设备检修从受控试验场之外的维护面进行",
+            "maintenance_access_en": "platform equipment is serviced from a maintenance face outside the controlled test field",
+            "clear_width": { "value": 3.6, "unit": "m", "basis_type": "proposed_module", "source_ref": "section:ZZY-SEC-A", "status": "proposed_not_verified" },
+            "gradient": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "crossfall": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "passing_points": { "value": 2, "unit": "count", "basis_type": "proposed_module", "source_ref": "section:ZZY-SEC-A", "status": "proposed_not_verified" },
+            "rest_points": { "value": 2, "unit": "count", "basis_type": "proposed_module", "source_ref": "section:ZZY-SEC-A", "status": "proposed_not_verified" }
+          },
+          {
+            "id": "Z-S6", "from": "Z-N6", "to": "Z-N7", "drawing_ref": "ZZY-PLAN-01",
+            "surface_zh": "离场段与到达段互不重叠，避免人流对冲；铺装同种",
+            "surface_en": "the exit leg does not overlap the arrival leg, so opposing flows do not meet head on; paving is the same",
+            "obstruction_rule_zh": "试验场封闭时本段仍须保持全宽通行",
+            "obstruction_rule_en": "this segment keeps its full width even when the test field is closed",
+            "maintenance_access_zh": "融雪暂存位设于本段之外，清运车不占用通行带",
+            "maintenance_access_en": "the snow storage bay sits off this segment and removal vehicles do not occupy the movement band",
+            "clear_width": { "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:ZZY-PLAN-01", "status": "proposed_not_verified" },
+            "gradient": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "crossfall": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "passing_points": { "value": 2, "unit": "count", "basis_type": "proposed_module", "source_ref": "drawing:ZZY-PLAN-01", "status": "proposed_not_verified" },
+            "rest_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "drawing:ZZY-PLAN-01", "status": "proposed_not_verified" }
+          }
+        ],
+        "equivalents": {
+          "tactile": { "provided_zh": "全程连续导向条与抉择点提示面，材质对比在图例中声明", "provided_en": "a continuous guidance strip along the chain with warning surfaces at each decision point, material contrast declared in the legend", "status": "proposed_pending_audit" },
+          "visual_contrast": { "provided_zh": "门槛、抉择点与平台边缘设明度对比带，对比值待专业审核", "provided_en": "luminance contrast bands at thresholds, decision points and the platform edge; contrast values pending professional audit", "status": "proposed_pending_audit" },
+          "audio": { "provided_zh": "服务台与观察平台设可请求的语音说明，不依赖个人设备", "provided_en": "spoken description available on request at the desk and the platform, not dependent on a personal device", "status": "proposed_pending_audit" },
+          "staffed": { "provided_zh": "开放时段值守服务台可代办全部数字环节", "provided_en": "during opening hours the staffed desk can complete every digital step on a visitor's behalf", "status": "proposed_pending_audit" },
+          "paper": { "provided_zh": "纸质平面与试验日程在到达门槛与服务台常备", "provided_en": "paper plan and test timetable held at the arrival threshold and the desk", "status": "proposed_pending_audit" },
+          "telephone": { "provided_zh": "公布语音电话号码，可完成预约、问询与停止申诉", "provided_en": "a published voice telephone number handles booking, enquiry and stop appeals", "status": "proposed_pending_audit" }
+        },
+        "operating_modes": [
+          { "mode": "day", "route_availability_zh": "全链路开放，观察环线与试验场各自独立运行", "route_availability_en": "the whole chain is open and the observation loop runs independently of the test field", "manual_fallback_zh": "值守服务台代办数字环节", "manual_fallback_en": "the staffed desk completes digital steps manually", "stop_action_zh": "任一段净宽被占用即暂停该段并改道", "stop_action_en": "if any segment loses its clear width that segment is suspended and traffic is diverted", "recovery_condition_zh": "占用物移除并由值守人员复核后恢复", "recovery_condition_en": "restored once the obstruction is removed and staff have re-checked the segment" },
+          { "mode": "night", "route_availability_zh": "观察环线保留照明并开放，受控试验场关闭", "route_availability_en": "the observation loop stays lit and open; the controlled test field is closed", "manual_fallback_zh": "无人值守时段以电话与纸质指引替代", "manual_fallback_en": "when the desk is unstaffed, telephone and paper guidance take over", "stop_action_zh": "照明失效段即刻关闭并在入口处标示", "stop_action_en": "a segment whose lighting fails is closed at once and marked at the arrival threshold", "recovery_condition_zh": "照明修复并实测照度合格后重开", "recovery_condition_en": "reopened when lighting is repaired and measured illuminance is acceptable" },
+          { "mode": "event", "route_availability_zh": "活动期间观察环线不得被展位截断，须保留全宽", "route_availability_en": "during an event the observation loop may not be cut by stands and keeps its full width", "manual_fallback_zh": "增派人手在抉择点引导，纸质平面加印", "manual_fallback_en": "extra staff guide visitors at decision points and additional paper plans are printed", "stop_action_zh": "通行带被占用超过十五分钟即中止活动布置", "stop_action_en": "if the movement band is occupied for more than fifteen minutes the event layout is stopped", "recovery_condition_zh": "布置撤回至设施带以内后恢复", "recovery_condition_en": "resumed once the layout is withdrawn inside the furniture band" },
+          { "mode": "snow", "route_availability_zh": "先清无障碍链路再清其他路径，融雪暂存位不占用链路", "route_availability_en": "the step-free chain is cleared before any other route and the snow storage bay never occupies it", "manual_fallback_zh": "清雪期间由值守人员陪同通过受影响段", "manual_fallback_en": "staff accompany visitors through affected segments while clearing is under way", "stop_action_zh": "结冰且未完成除冰时关闭该段", "stop_action_en": "a segment that is iced and not yet treated is closed", "recovery_condition_zh": "除冰完成并复核摩擦条件后开放", "recovery_condition_en": "reopened when de-icing is complete and surface condition has been re-checked" },
+          { "mode": "maintenance", "route_availability_zh": "维护作业从试验场之外接近，链路保留半幅或设等效改道", "route_availability_en": "maintenance approaches from outside the test field; the chain keeps half its width or an equivalent diversion is signed", "manual_fallback_zh": "改道段设人工引导与纸质示意", "manual_fallback_en": "a diverted segment is staffed and shown on a paper diagram", "stop_action_zh": "无法保留等效路径时暂停对外开放", "stop_action_en": "if no equivalent route can be kept the area closes to visitors", "recovery_condition_zh": "作业结束并恢复原铺装后开放", "recovery_condition_en": "reopened when work ends and the original paving is reinstated" },
+          { "mode": "power_failure", "route_availability_zh": "链路本身不依赖供电，仅照明与语音说明受影响", "route_availability_en": "the chain itself does not depend on power; only lighting and spoken description are affected", "manual_fallback_zh": "手持照明与人工口述引导", "manual_fallback_en": "hand lighting and spoken guidance from staff", "stop_action_zh": "夜间断电即关闭观察环线", "stop_action_en": "a night-time outage closes the observation loop", "recovery_condition_zh": "供电恢复且照明复核合格后开放", "recovery_condition_en": "reopened when supply returns and lighting is re-checked" },
+          { "mode": "digital_failure", "route_availability_zh": "全链路不因数字系统失效而关闭", "route_availability_en": "no part of the chain closes because a digital system has failed", "manual_fallback_zh": "纸质预约名单、人工登记与电话问询全程可用", "manual_fallback_en": "paper booking lists, manual registration and telephone enquiry remain available throughout", "stop_action_zh": "若仅剩数字通道可用则暂停对外开放", "stop_action_en": "if a digital channel becomes the only way in, the area closes to visitors", "recovery_condition_zh": "非数字等效渠道恢复后开放", "recovery_condition_en": "reopened when the non-digital equivalent is working again" }
+        ],
+        "evidence_refs": ["area:PROV-KEY-001", "drawing:ZZY-PLAN-01", "section:ZZY-SEC-A", "standard:BARRIER-FREE-ENVIRONMENT-LAW", "standard:ELDERLY-SMART-TECH-PLAN-2020-45", "source:ISSUE-1774"]
+      },
+      "seasonal_operations": {
+        "plate_concept_id": "04",
+        "winter_section_ref": "ZZY-SEC-B",
+        "shows_zh": "以剖面 B 为底叠加冬季工况：融雪暂存位、排水与结冰面、遮蔽位置、日照与风向关系、夜间照明与噪声界面、保洁与垃圾动线、服务车接近面、设备与断电时的人工替代，以及撤除与恢复的作业空间。",
+        "shows_en": "Section B carries the winter case: the snow storage bay, drainage and icing surfaces, shelter positions, the sun and wind relationship, the night lighting and noise interface, cleaning and waste movement, the service vehicle approach face, the manual substitute for equipment and power failure, and the working space that removal and restoration need.",
+        "snow_storage": {
+          "overlaps_step_free_route": false,
+          "overlaps_tactile_route": false,
+          "rule_zh": "融雪暂存位一律设于无障碍链路与导向条之外；无合规暂存位时须外运，不得就近堆放。",
+          "rule_en": "Snow storage is always placed off the step-free chain and off the guidance strip; where no compliant bay exists the snow is carried away rather than heaped nearby.",
+          "locations": [
+            { "id": "Z-SS1", "name_zh": "物流脊线北侧暂存位", "name_en": "Storage bay north of the logistics spine", "clear_of": ["step_free", "tactile"], "drawing_ref": "ZZY-SEC-B" },
+            { "id": "Z-SS2", "name_zh": "维护平台端头暂存位", "name_en": "Storage bay at the end of the maintenance platform", "clear_of": ["step_free", "tactile"], "drawing_ref": "ZZY-SEC-B" }
+          ]
+        },
+        "topics": [
+          { "id": "drainage_ice", "shown_zh": "剖面标注排水方向与易结冰面，链路段落坡向背离通行带", "shown_en": "the section marks drainage direction and the surfaces that ice first; chain segments fall away from the movement band", "spatial_ref": "ZZY-SEC-B" },
+          { "id": "shelter", "shown_zh": "休息位与服务台上方设可拆遮蔽，遮蔽投影不进入导向条", "shown_en": "demountable shelter over the rest point and the desk, its footprint kept off the guidance strip", "spatial_ref": "ZZY-SEC-A" },
+          { "id": "sun_wind", "shown_zh": "观察平台朝向与冬季主导风向的关系在剖面上标注", "shown_en": "the section annotates the observation platform orientation against the prevailing winter wind", "spatial_ref": "ZZY-SEC-A" },
+          { "id": "night_noise", "shown_zh": "夜间照明高度与试验噪声界面在剖面上分离标注", "shown_en": "night lighting height and the test noise interface are annotated separately on the section", "spatial_ref": "ZZY-SEC-B" },
+          { "id": "cleaning_waste", "shown_zh": "保洁动线与垃圾暂存位设于设施带内，不穿越链路", "shown_en": "cleaning movement and waste holding sit in the furniture band and do not cross the chain", "spatial_ref": "ZZY-PLAN-01" },
+          { "id": "service_access", "shown_zh": "服务车接近面位于试验场之外，装卸时链路保留半幅", "shown_en": "the service vehicle approach face lies outside the test field and the chain keeps half its width during loading", "spatial_ref": "ZZY-SEC-B" },
+          { "id": "equipment_power_failure", "shown_zh": "设备与断电时以人工与纸质替代，替代位置在平面上标注", "shown_en": "manual and paper substitutes for equipment and power failure, with their positions marked on the plan", "spatial_ref": "ZZY-PLAN-01" },
+          { "id": "removal_restoration", "shown_zh": "模块撤除所需的作业面与恢复后的地面做法在剖面上表达", "shown_en": "the working face that module removal needs and the reinstated ground build-up are drawn on the section", "spatial_ref": "ZZY-SEC-B" }
+        ],
+        "pilot": {
+          "days": 90,
+          "sufficient_for_year_round": false,
+          "note_zh": "九十天试点只能证明九十天内的表现。冬季结冰、夏季暴雨与全年维护负荷均不在其观测窗口之内，不得据此推断全年性能。",
+          "note_en": "A ninety-day pilot can only evidence ninety days. Winter icing, summer downpour and the full-year maintenance load all fall outside its observation window and no year-round performance may be inferred from it."
+        },
+        "thresholds": [
+          { "id": "ZZY-TH-01", "label_zh": "除雪后链路恢复时限", "label_en": "time to restore the chain after snowfall", "proposed_target_zh": "建议目标：降雪停止后优先清理无障碍链路", "proposed_target_en": "proposed target: the step-free chain is cleared first once snowfall stops", "status": "pending", "approved_threshold": null, "pilot_start_allowed": false },
+          { "id": "ZZY-TH-02", "label_zh": "公众观察环线全年可用率", "label_en": "year-round availability of the public observation loop", "proposed_target_zh": "建议目标：试验场停用不影响观察环线开放", "proposed_target_en": "proposed target: suspension of the test field does not close the observation loop", "status": "pending", "approved_threshold": null, "pilot_start_allowed": false }
+        ],
+        "evidence_refs": ["area:PROV-KEY-001", "section:ZZY-SEC-B", "data:assumptions.json#A-CLIMATE-001", "data:assumptions.json#A-PILOT-001", "source:ISSUE-2170"]
+      },
+      "phase1_envelope": {
+        "id": "ZZY-P1-ENV",
+        "reversible": true,
+        "georeferenced": true,
+        "description_zh": "第一期只投放可拆装模块单元、观察廊面层与值守服务台，全部坐落于 1.2 米模数网格之上，不设永久基础，不改变现状竖向。",
+        "description_en": "Phase 1 places only demountable module bays, the observation gallery surface and the staffed desk, all set out on the 1.2 m module grid with no permanent foundation and no change to existing levels.",
+        "removal_zh": "所有构件以机械连接固定，可按相反顺序拆卸并整体运离；拆卸不需破坏性作业。",
+        "removal_en": "Every component is mechanically fixed, dismantled in reverse order and carried away whole; removal requires no destructive work.",
+        "restoration_zh": "撤除后恢复原铺装或原地表覆盖，恢复范围与做法在剖面 B 上标注；恢复能力尚未由任何一方确认。",
+        "restoration_en": "After removal the original paving or ground cover is reinstated, with extent and build-up annotated on Section B; restoration capacity has not been confirmed by any party.",
+        "liability_zh": "拆除、运离与恢复的剩余责任尚无承担主体；在主体确定之前不得开工。",
+        "liability_en": "Residual liability for dismantling, removal and reinstatement has no holder; no work may begin before one is named.",
+        "authorization_state": "not_authorized",
+        "funding_state": "unfunded",
+        "blocked_by": ["D01", "D05", "D09"],
+        "evidence_refs": ["area:PROV-KEY-001", "component:Z-C04", "section:ZZY-SEC-B", "metric:phase1_reversible_area_sqm", "source:OPEN-BUILDING-HABRAKEN-2021", "source:REAL-OPTIONS-NEUFVILLE-2003"]
+      },
+      "evidence_refs": ["area:PROV-KEY-001", "drawing:ZZY-PLAN-01", "section:ZZY-SEC-A", "section:ZZY-SEC-B", "source:KEY-AREA-SOURCE", "source:CASE-ONE-NORTH", "metric:site_area_sqm"]
+    },
+    {
+      "area_feature_id": "PROV-KEY-002",
+      "area_id": "beijing_ai_origin_community",
+      "prefix": "AIO",
+      "name_zh": "北京 AI 原点社区 · 学习实验室二",
+      "name_en": "Beijing AI Origin Community · Learning Lab 2",
+      "georeferenced": true,
+      "spatial_mode": "provisional_extent",
+      "plan": {
+        "id": "AIO-PLAN-01",
+        "plate_concept_id": "02",
+        "title_zh": "AI 原点社区 · 有条件地面平面：发布公地与日常服务的共处",
+        "title_en": "AI Origin Community · conditional ground plan: the release commons sharing ground with daily service",
+        "condition_zh": "本平面只落位方案自己提出的构件与关系，不描绘现状权属、界线或既有房屋。底图为临时工作范围，官方多边形发布后重绘。",
+        "condition_en": "The plan places only the components and relationships this proposal puts forward; it depicts no existing tenure, boundary or building stock. The base is the provisional working extent and is redrawn when the official polygon is published.",
+        "cut_keys": [
+          { "key": "A", "section_id": "AIO-SEC-A", "note_zh": "横切发布公地、值守服务位与照护沿街面", "note_en": "cut across the release commons, the staffed service position and the care frontage" },
+          { "key": "B", "section_id": "AIO-SEC-B", "note_zh": "纵切慢行缝，经安静沿街面与冬季避风位", "note_en": "cut along the slow seam, through the quiet frontage and the winter shelter position" }
+        ],
+        "elements": [
+          { "id": "O-E01", "kind": "release_commons", "name_zh": "模型发布公地", "name_en": "Model release commons", "drawn_as": "open square figure with no enclosing line, reachable from three sides" },
+          { "id": "O-E02", "kind": "staffed_service", "name_zh": "有人值守日常服务位", "name_en": "Staffed daily service position", "drawn_as": "solid rectangle facing the commons, open during published hours" },
+          { "id": "O-E03", "kind": "non_digital_service", "name_zh": "非数字日常服务位", "name_en": "Non-digital daily service position", "drawn_as": "solid rectangle with a paper-counter symbol, usable without any device" },
+          { "id": "O-E04", "kind": "care_frontage", "name_zh": "照护沿街面", "name_en": "Care frontage", "drawn_as": "thickened frontage band with seating shown outside the movement band" },
+          { "id": "O-E05", "kind": "quiet_frontage", "name_zh": "安静沿街面", "name_en": "Quiet frontage", "drawn_as": "frontage band annotated as kept clear of amplified sound" },
+          { "id": "O-E06", "kind": "affordable_frontage", "name_zh": "可负担沿街面", "name_en": "Affordable frontage", "drawn_as": "frontage band of small, subdividable units on the 2.4 m module" },
+          { "id": "O-E07", "kind": "conditional_slow_seam", "name_zh": "有条件慢行缝", "name_en": "Conditional slow seam", "drawn_as": "dashed seam annotated conditional; drawn only where the proposal itself creates the surface" },
+          { "id": "O-E08", "kind": "snow_storage", "name_zh": "融雪暂存位", "name_en": "Snow storage bay", "drawn_as": "stippled area set back from the seam and every frontage" },
+          { "id": "O-E09", "kind": "shelter", "name_zh": "冬季避风位", "name_en": "Winter shelter position", "drawn_as": "demountable canopy outline over the rest point" }
+        ]
+      },
+      "not_claimed": [
+        "campus_gates",
+        "boundaries",
+        "access_controls",
+        "ownership",
+        "rights_of_way",
+        "parcels",
+        "existing_ground_floor_space"
+      ],
+      "not_claimed_note_zh": "本片区不绘制、不推断园区门禁、界线、通行控制、权属、通行权、地块或既有底层空间。慢行缝之所以标注为有条件，正因为其成立与否取决于上述任一未知项。",
+      "not_claimed_note_en": "This area draws and infers no campus gates, boundaries, access controls, ownership, rights of way, parcels or existing ground-floor space. The slow seam is annotated conditional precisely because whether it can exist depends on one of those unknowns.",
+      "sections": [
+        {
+          "id": "AIO-SEC-A",
+          "plate_concept_id": "03",
+          "key": "A",
+          "title_zh": "剖面 A：发布公地、值守服务与照护沿街面",
+          "title_en": "Section A: release commons, staffed service and care frontage",
+          "shows_zh": "剖面显示发布公地与沿街面之间的高差与遮蔽关系、有人值守与非数字服务位的柜台高度关系、照护沿街面的座椅与通行带分离，以及冬季避风位如何在不占用通行带的前提下覆盖休息位；同时标注保洁与维护的接近面。",
+          "shows_en": "The section shows the level and shelter relationship between the release commons and the frontage, the counter relationship of the staffed and non-digital service positions, the separation of seating from the movement band along the care frontage, and how the winter shelter covers the rest point without occupying the movement band; the cleaning and maintenance approach face is annotated on the same cut.",
+          "dimensions": [
+            { "id": "AIO-SEC-A-D1", "label_zh": "沿街面通行带建议净宽", "label_en": "proposed frontage movement band clear width", "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:AIO-PLAN-01", "status": "proposed_not_verified" },
+            { "id": "AIO-SEC-A-D2", "label_zh": "可负担单元建议开间模数", "label_en": "proposed affordable unit bay module", "value": 3.6, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:AIO-PLAN-01", "status": "proposed_not_verified" },
+            { "id": "AIO-SEC-A-D3", "label_zh": "既有沿街面净高", "label_en": "existing frontage clear height", "value": null, "unit": "m", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BUILDING-001", "status": "pending_survey", "recalculation_trigger_zh": "取得沿街面实测净高后，以米复算并重绘本剖面", "recalculation_trigger_en": "recompute in metres and redraw this section once a measured frontage clear height is available" },
+            { "id": "AIO-SEC-A-D4", "label_zh": "公地与沿街面之间现状高差", "label_en": "existing level difference between commons and frontage", "value": null, "unit": "m", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey", "recalculation_trigger_zh": "取得实测竖向或官方重点区 polygon 后，以米复算并重绘本剖面", "recalculation_trigger_en": "recompute in metres and redraw this section once a measured level survey or the official key-area polygon is available" }
+          ],
+          "evidence_refs": ["area:PROV-KEY-002", "drawing:AIO-PLAN-01", "component:O-C01", "component:O-C02", "route:O-R01", "source:OSTROM-COMMONS-1990"]
+        },
+        {
+          "id": "AIO-SEC-B",
+          "plate_concept_id": "03",
+          "key": "B",
+          "title_zh": "剖面 B：慢行缝、安静沿街面、冬季避风与维护",
+          "title_en": "Section B: slow seam, quiet frontage, winter shelter and maintenance",
+          "shows_zh": "剖面沿慢行缝展开，显示安静沿街面的声学退距、冬季避风位与融雪暂存位的相对位置、维护车辆接近面，以及慢行缝在权属或通行权不成立时如何整段取消而不影响其余空间。",
+          "shows_en": "Taken along the slow seam, the section shows the acoustic setback of the quiet frontage, the winter shelter set against the snow storage bay, the maintenance vehicle approach face, and how the whole seam can be withdrawn if ownership or right of way turns out not to support it, without disturbing the rest of the ground.",
+          "dimensions": [
+            { "id": "AIO-SEC-B-D1", "label_zh": "临时工作范围南北向跨度", "label_en": "provisional working extent north-south span", "value": null, "unit": "m", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_official_boundary", "recalculation_trigger_zh": "取得官方重点区 polygon 或实测范围后，以米复算跨度并重绘本剖面；在此之前本剖面不主张任何跨度数值", "recalculation_trigger_en": "recompute the span in metres and redraw this section once the official key-area polygon or a measured extent is available; until then this section asserts no span value" },
+            { "id": "AIO-SEC-B-D2", "label_zh": "慢行缝建议净宽", "label_en": "proposed slow seam clear width", "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:AIO-PLAN-01", "status": "proposed_conditional_not_verified" },
+            { "id": "AIO-SEC-B-D3", "label_zh": "安静沿街面声学退距", "label_en": "quiet frontage acoustic setback", "value": null, "unit": "m", "basis_type": "pending", "source_ref": "data:assumptions.json#A-EQUITY-001", "status": "pending_professional_audit", "recalculation_trigger_zh": "取得声环境实测与专业声学审核结论后，以米复算并重绘本剖面", "recalculation_trigger_en": "recompute in metres and redraw this section once acoustic measurements and a professional acoustic review are available" },
+            { "id": "AIO-SEC-B-D4", "label_zh": "避风位建议进深", "label_en": "proposed shelter depth", "value": 1.2, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:AIO-PLAN-01", "status": "proposed_not_verified" }
+          ],
+          "evidence_refs": ["area:PROV-KEY-002", "drawing:AIO-PLAN-01", "component:O-C05", "route:O-R04", "route:O-R05", "data:assumptions.json#A-CLIMATE-001"]
+        }
+      ],
+      "components": [
+        { "id": "O-C01", "kind": "commons", "name_zh": "模型发布公地", "name_en": "Model release commons", "reversible": true, "drawing_ref": "AIO-SEC-A", "evidence_refs": ["drawing:AIO-PLAN-01", "section:AIO-SEC-A", "source:OSTROM-POLYCENTRIC-2010"] },
+        { "id": "O-C02", "kind": "service", "name_zh": "有人值守服务位", "name_en": "Staffed service position", "reversible": true, "drawing_ref": "AIO-SEC-A", "evidence_refs": ["drawing:AIO-PLAN-01", "standard:ELDERLY-SMART-TECH-PLAN-2020-45", "source:ISSUE-1781"] },
+        { "id": "O-C03", "kind": "service", "name_zh": "非数字服务位", "name_en": "Non-digital service position", "reversible": true, "drawing_ref": "AIO-SEC-A", "evidence_refs": ["drawing:AIO-PLAN-01", "standard:GENERATIVE-AI-INTERIM-MEASURES", "source:ISSUE-1781"] },
+        { "id": "O-C04", "kind": "frontage", "name_zh": "照护、安静与可负担沿街面组", "name_en": "Care, quiet and affordable frontage set", "reversible": true, "drawing_ref": "AIO-SEC-A", "evidence_refs": ["section:AIO-SEC-A", "source:CASE-KENDALL", "metric:public_space_ratio"] },
+        { "id": "O-C05", "kind": "seam", "name_zh": "有条件慢行缝", "name_en": "Conditional slow seam", "reversible": true, "drawing_ref": "AIO-SEC-B", "evidence_refs": ["section:AIO-SEC-B", "source:SCHELLING-1971", "metric:network_detour_factor"] }
+      ],
+      "routes": [
+        { "id": "O-R01", "kind": "daily_service", "name_zh": "日常服务动线", "name_en": "Daily service line", "drawing_ref": "AIO-PLAN-01", "evidence_refs": ["drawing:AIO-PLAN-01", "component:O-C02", "component:O-C03"] },
+        { "id": "O-R02", "kind": "release_access", "name_zh": "发布公地到达动线", "name_en": "Release commons approach", "drawing_ref": "AIO-PLAN-01", "evidence_refs": ["drawing:AIO-PLAN-01", "component:O-C01", "source:OSTROM-COMMONS-1990"] },
+        { "id": "O-R03", "kind": "care_access", "name_zh": "照护沿街面到达动线", "name_en": "Care frontage approach", "drawing_ref": "AIO-SEC-A", "evidence_refs": ["section:AIO-SEC-A", "component:O-C04", "standard:BARRIER-FREE-ENVIRONMENT-LAW"] },
+        { "id": "O-R04", "kind": "conditional_slow", "name_zh": "有条件慢行缝路径", "name_en": "Conditional slow seam route", "drawing_ref": "AIO-SEC-B", "conditional": true, "evidence_refs": ["section:AIO-SEC-B", "component:O-C05", "data:assumptions.json#A-NETWORK-001"] },
+        { "id": "O-R05", "kind": "maintenance", "name_zh": "维护与保洁动线", "name_en": "Maintenance and cleaning line", "drawing_ref": "AIO-SEC-B", "evidence_refs": ["section:AIO-SEC-B", "source:SHEARING-LAYERS-BRAND-1994", "data:assumptions.json#A-CLIMATE-001"] }
+      ],
+      "step_free_chain": {
+        "id": "AIO-SFC-01",
+        "status": { "proposed": true, "verified": false, "accessibility_gate": "G5:pending", "survey": "pending", "professional_audit": "pending" },
+        "nodes": [
+          { "id": "O-N1", "role": "arrival", "name_zh": "沿街到达面", "name_en": "Frontage arrival face", "drawing_ref": "AIO-PLAN-01" },
+          { "id": "O-N2", "role": "decision", "name_zh": "公地边缘抉择点", "name_en": "Decision point at the edge of the commons", "drawing_ref": "AIO-PLAN-01" },
+          { "id": "O-N3", "role": "rest", "name_zh": "避风休息位", "name_en": "Sheltered rest point", "drawing_ref": "AIO-SEC-B" },
+          { "id": "O-N4", "role": "toilet_direction", "name_zh": "卫生间指向点", "name_en": "Toilet direction point", "drawing_ref": "AIO-PLAN-01" },
+          { "id": "O-N5", "role": "staffed_service", "name_zh": "有人值守与非数字服务位", "name_en": "Staffed and non-digital service positions", "drawing_ref": "AIO-SEC-A" },
+          { "id": "O-N6", "role": "principal_program", "name_zh": "模型发布公地", "name_en": "Model release commons", "drawing_ref": "AIO-SEC-A" },
+          { "id": "O-N7", "role": "exit", "name_zh": "沿街离场面", "name_en": "Frontage exit face", "drawing_ref": "AIO-PLAN-01" }
+        ],
+        "segments": [
+          {
+            "id": "O-S1", "from": "O-N1", "to": "O-N2", "drawing_ref": "AIO-PLAN-01",
+            "surface_zh": "沿街面连续硬质铺装，接缝顺行进方向，无门槛高差",
+            "surface_en": "continuous firm paving along the frontage with joints running along the direction of travel and no threshold step",
+            "obstruction_rule_zh": "外摆座椅、广告牌与临时展位一律退入设施带，通行带不得占用",
+            "obstruction_rule_en": "outdoor seating, signboards and temporary stands all withdraw into the furniture band; the movement band may not be occupied",
+            "maintenance_access_zh": "保洁与配送从设施带一侧接近，作业时保留全宽",
+            "maintenance_access_en": "cleaning and deliveries approach from the furniture band side and leave the full width open",
+            "clear_width": { "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:AIO-PLAN-01", "status": "proposed_not_verified" },
+            "gradient": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "crossfall": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "passing_points": { "value": 2, "unit": "count", "basis_type": "proposed_module", "source_ref": "drawing:AIO-PLAN-01", "status": "proposed_not_verified" },
+            "rest_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "drawing:AIO-PLAN-01", "status": "proposed_not_verified" }
+          },
+          {
+            "id": "O-S2", "from": "O-N2", "to": "O-N3", "drawing_ref": "AIO-SEC-B",
+            "surface_zh": "抉择点至避风休息位设触感提示面，铺装不变",
+            "surface_en": "a tactile warning surface marks the decision point; the paving does not change",
+            "obstruction_rule_zh": "避风位落地支腿不得进入通行带，冬季挡风板同样退距",
+            "obstruction_rule_en": "the shelter feet may not enter the movement band, and winter wind panels are set back on the same line",
+            "maintenance_access_zh": "避风位构件可从公地一侧单独更换",
+            "maintenance_access_en": "shelter components can be replaced from the commons side on their own",
+            "clear_width": { "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "section:AIO-SEC-B", "status": "proposed_not_verified" },
+            "gradient": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "crossfall": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "passing_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "section:AIO-SEC-B", "status": "proposed_not_verified" },
+            "rest_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "section:AIO-SEC-B", "status": "proposed_not_verified" }
+          },
+          {
+            "id": "O-S3", "from": "O-N3", "to": "O-N4", "drawing_ref": "AIO-PLAN-01",
+            "surface_zh": "经照护沿街面前行，铺装与座椅带分离，座椅不进入通行带",
+            "surface_en": "the route passes the care frontage with paving separated from the seating band, and seating stays out of the movement band",
+            "obstruction_rule_zh": "照护沿街面外摆须留出连续通行带，不得分段截断",
+            "obstruction_rule_en": "anything set out along the care frontage must leave a continuous movement band and may not break it into pieces",
+            "maintenance_access_zh": "座椅带内构件从沿街面一侧维护，通行带不封闭",
+            "maintenance_access_en": "items in the seating band are maintained from the frontage side without closing the movement band",
+            "clear_width": { "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:AIO-PLAN-01", "status": "proposed_not_verified" },
+            "gradient": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "crossfall": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "passing_points": { "value": 2, "unit": "count", "basis_type": "proposed_module", "source_ref": "drawing:AIO-PLAN-01", "status": "proposed_not_verified" },
+            "rest_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "drawing:AIO-PLAN-01", "status": "proposed_not_verified" }
+          },
+          {
+            "id": "O-S4", "from": "O-N4", "to": "O-N5", "drawing_ref": "AIO-SEC-A",
+            "surface_zh": "接近服务位一段设导向条，与排队区地面标识分开",
+            "surface_en": "a guidance strip approaches the service positions, kept separate from the queuing marks on the ground",
+            "obstruction_rule_zh": "排队区不得越入导向条；非数字服务位前须保留轮椅回转空间",
+            "obstruction_rule_en": "the queuing area may not encroach on the guidance strip and a wheelchair turning space is kept in front of the non-digital position",
+            "maintenance_access_zh": "服务位补给从后侧设施带进入，不穿越排队区",
+            "maintenance_access_en": "supplies reach the service positions from the furniture band behind and do not cross the queuing area",
+            "clear_width": { "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "section:AIO-SEC-A", "status": "proposed_not_verified" },
+            "gradient": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "crossfall": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "passing_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "section:AIO-SEC-A", "status": "proposed_not_verified" },
+            "rest_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "section:AIO-SEC-A", "status": "proposed_not_verified" }
+          },
+          {
+            "id": "O-S5", "from": "O-N5", "to": "O-N6", "drawing_ref": "AIO-SEC-A",
+            "surface_zh": "进入发布公地不设台阶与坡道，公地面与沿街面同高",
+            "surface_en": "the release commons is entered without step or ramp; commons and frontage are one surface",
+            "obstruction_rule_zh": "发布活动设备不得占用公地三面到达口中的任意一面",
+            "obstruction_rule_en": "equipment for a release event may not occupy any of the three approach faces of the commons",
+            "maintenance_access_zh": "公地设备检修从慢行缝一侧接近；慢行缝不成立时改由沿街面接近",
+            "maintenance_access_en": "commons equipment is serviced from the slow seam side, or from the frontage if the seam does not come about",
+            "clear_width": { "value": 3.6, "unit": "m", "basis_type": "proposed_module", "source_ref": "section:AIO-SEC-A", "status": "proposed_not_verified" },
+            "gradient": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "crossfall": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "passing_points": { "value": 2, "unit": "count", "basis_type": "proposed_module", "source_ref": "section:AIO-SEC-A", "status": "proposed_not_verified" },
+            "rest_points": { "value": 2, "unit": "count", "basis_type": "proposed_module", "source_ref": "section:AIO-SEC-A", "status": "proposed_not_verified" }
+          },
+          {
+            "id": "O-S6", "from": "O-N6", "to": "O-N7", "drawing_ref": "AIO-PLAN-01",
+            "surface_zh": "离场面与到达面分设，铺装同种；安静沿街面一段不设扩声",
+            "surface_en": "the exit face is separate from the arrival face with the same paving, and no amplified sound is placed along the quiet frontage leg",
+            "obstruction_rule_zh": "慢行缝取消时本段仍须独立成立，不得依赖缝内空间",
+            "obstruction_rule_en": "if the slow seam is withdrawn this segment must still stand on its own and may not rely on space inside the seam",
+            "maintenance_access_zh": "融雪暂存位设于本段之外，清运不占用通行带",
+            "maintenance_access_en": "the snow storage bay sits off this segment and removal does not occupy the movement band",
+            "clear_width": { "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:AIO-PLAN-01", "status": "proposed_not_verified" },
+            "gradient": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "crossfall": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "passing_points": { "value": 2, "unit": "count", "basis_type": "proposed_module", "source_ref": "drawing:AIO-PLAN-01", "status": "proposed_not_verified" },
+            "rest_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "drawing:AIO-PLAN-01", "status": "proposed_not_verified" }
+          }
+        ],
+        "equivalents": {
+          "tactile": { "provided_zh": "沿街面导向条连续，服务位与公地边缘设提示面", "provided_en": "the frontage guidance strip is continuous, with warning surfaces at the service positions and the edge of the commons", "status": "proposed_pending_audit" },
+          "visual_contrast": { "provided_zh": "沿街面口部、服务柜台与公地边界设明度对比带", "provided_en": "luminance contrast bands at frontage openings, service counters and the commons boundary", "status": "proposed_pending_audit" },
+          "audio": { "provided_zh": "服务位可提供口述指引，不要求携带设备", "provided_en": "spoken guidance is available at the service positions and requires no device", "status": "proposed_pending_audit" },
+          "staffed": { "provided_zh": "公布时段内有人值守，可代办发布公地的全部登记环节", "provided_en": "staffed during published hours and able to complete every registration step for the commons on a resident's behalf", "status": "proposed_pending_audit" },
+          "paper": { "provided_zh": "非数字服务位常备纸质表单、平面与发布公告", "provided_en": "the non-digital position holds paper forms, plans and release notices at all times", "status": "proposed_pending_audit" },
+          "telephone": { "provided_zh": "公布语音电话，可完成问询、预约与投诉", "provided_en": "a published voice telephone line handles enquiry, booking and complaint", "status": "proposed_pending_audit" }
+        },
+        "operating_modes": [
+          { "mode": "day", "route_availability_zh": "全链路开放，慢行缝按当日条件标注可用或取消", "route_availability_en": "the whole chain is open and the slow seam is signed as available or withdrawn according to that day's conditions", "manual_fallback_zh": "非数字服务位承担所有不使用设备的办理", "manual_fallback_en": "the non-digital position handles everything that does not use a device", "stop_action_zh": "通行带被占用即撤除占用物并暂停外摆许可", "stop_action_en": "an occupied movement band leads to removal of the obstruction and suspension of the outdoor-setting permission", "recovery_condition_zh": "通行带复原并复核后恢复", "recovery_condition_en": "restored when the band is clear again and has been re-checked" },
+          { "mode": "night", "route_availability_zh": "沿街链路保留照明开放，发布公地关闭", "route_availability_en": "the frontage chain stays lit and open; the release commons closes", "manual_fallback_zh": "电话与纸质指引替代无人值守时段", "manual_fallback_en": "telephone and paper guidance cover the unstaffed hours", "stop_action_zh": "照明失效段关闭并在到达面标示", "stop_action_en": "a segment whose lighting fails is closed and marked at the arrival face", "recovery_condition_zh": "照明修复并复核后重开", "recovery_condition_en": "reopened when lighting is repaired and re-checked" },
+          { "mode": "event", "route_availability_zh": "发布活动期间沿街通行带全宽保留，安静沿街面不得布设扩声", "route_availability_en": "during a release event the frontage keeps its full movement band and no amplified sound is placed along the quiet frontage", "manual_fallback_zh": "增派人手引导并加印纸质材料", "manual_fallback_en": "extra staff guide visitors and additional paper material is printed", "stop_action_zh": "安静沿街面声压越界即停止扩声", "stop_action_en": "amplified sound stops as soon as it crosses the quiet frontage limit", "recovery_condition_zh": "扩声撤除并复核后恢复活动", "recovery_condition_en": "the event resumes once amplification is removed and the frontage is re-checked" },
+          { "mode": "snow", "route_availability_zh": "优先清理无障碍链路与非数字服务位入口，暂存位不占链路", "route_availability_en": "the step-free chain and the way into the non-digital position are cleared first, and storage never occupies the chain", "manual_fallback_zh": "清雪期间由值守人员陪同并延长办理时限", "manual_fallback_en": "staff accompany residents while clearing is under way and processing times are extended", "stop_action_zh": "结冰未处理段关闭", "stop_action_en": "an untreated iced segment is closed", "recovery_condition_zh": "除冰完成并复核后开放", "recovery_condition_en": "reopened when de-icing is complete and the surface is re-checked" },
+          { "mode": "maintenance", "route_availability_zh": "维护从设施带一侧接近，链路保留全宽或设等效改道", "route_availability_en": "maintenance approaches from the furniture band side and the chain keeps its full width or an equivalent diversion is signed", "manual_fallback_zh": "改道段设人工引导与纸质示意", "manual_fallback_en": "a diverted segment is staffed and shown on a paper diagram", "stop_action_zh": "无等效路径时暂停沿街面对外服务", "stop_action_en": "if no equivalent route exists, frontage services to the public are suspended", "recovery_condition_zh": "作业结束并恢复铺装后开放", "recovery_condition_en": "reopened when work ends and paving is reinstated" },
+          { "mode": "power_failure", "route_availability_zh": "链路与非数字服务位不依赖供电，继续运行", "route_availability_en": "the chain and the non-digital position do not depend on power and keep running", "manual_fallback_zh": "纸质表单与手工登记，收据现场签发", "manual_fallback_en": "paper forms and manual registration, with receipts issued on the spot", "stop_action_zh": "夜间断电关闭沿街链路", "stop_action_en": "a night-time outage closes the frontage chain", "recovery_condition_zh": "供电恢复且照明复核后开放", "recovery_condition_en": "reopened when supply returns and lighting is re-checked" },
+          { "mode": "digital_failure", "route_availability_zh": "发布公地与日常服务均不因数字系统失效而关闭", "route_availability_en": "neither the release commons nor daily service closes because a digital system has failed", "manual_fallback_zh": "非数字服务位承接全部办理，公告改以纸质张贴", "manual_fallback_en": "the non-digital position takes over all processing and notices are posted on paper", "stop_action_zh": "若仅剩数字渠道则暂停对外服务", "stop_action_en": "if a digital channel becomes the only route, public service is suspended", "recovery_condition_zh": "非数字等效渠道恢复后开放", "recovery_condition_en": "reopened when the non-digital equivalent is working again" }
+        ],
+        "evidence_refs": ["area:PROV-KEY-002", "drawing:AIO-PLAN-01", "section:AIO-SEC-A", "component:O-C03", "standard:BARRIER-FREE-ENVIRONMENT-LAW", "source:ISSUE-1781"]
+      },
+      "seasonal_operations": {
+        "plate_concept_id": "04",
+        "winter_section_ref": "AIO-SEC-B",
+        "shows_zh": "以剖面 B 为底叠加冬季工况：融雪暂存位与链路的分离、排水与结冰面、避风位、日照与风向、夜间照明与安静沿街面的噪声界面、保洁与垃圾动线、服务车接近面、设备与断电时的非数字替代，以及慢行缝取消后的恢复做法。",
+        "shows_en": "Section B carries the winter case: snow storage held apart from the chain, drainage and icing surfaces, the shelter position, sun and wind, night lighting against the noise interface of the quiet frontage, cleaning and waste movement, the service vehicle approach face, the non-digital substitute for equipment and power failure, and the reinstatement that follows if the slow seam is withdrawn.",
+        "snow_storage": {
+          "overlaps_step_free_route": false,
+          "overlaps_tactile_route": false,
+          "rule_zh": "暂存位一律位于沿街通行带与导向条之外，且不得堵塞非数字服务位入口；无合规位置时外运。",
+          "rule_en": "Storage sits outside the frontage movement band and the guidance strip and never blocks the way into the non-digital service position; where no compliant place exists the snow is carried away.",
+          "locations": [
+            { "id": "O-SS1", "name_zh": "设施带端头暂存位", "name_en": "Storage bay at the end of the furniture band", "clear_of": ["step_free", "tactile"], "drawing_ref": "AIO-SEC-B" },
+            { "id": "O-SS2", "name_zh": "公地北侧暂存位", "name_en": "Storage bay north of the commons", "clear_of": ["step_free", "tactile"], "drawing_ref": "AIO-SEC-B" }
+          ]
+        },
+        "topics": [
+          { "id": "drainage_ice", "shown_zh": "沿街面坡向背离通行带，易结冰口部在剖面上标注", "shown_en": "the frontage falls away from the movement band and the openings that ice first are annotated on the section", "spatial_ref": "AIO-SEC-B" },
+          { "id": "shelter", "shown_zh": "冬季避风位覆盖休息位，挡风板退出通行带", "shown_en": "the winter shelter covers the rest point with its wind panels set back from the movement band", "spatial_ref": "AIO-SEC-B" },
+          { "id": "sun_wind", "shown_zh": "公地与沿街面的冬季日照与主导风向关系在剖面上表达", "shown_en": "the winter sun and prevailing wind relationship of the commons and the frontage is drawn on the section", "spatial_ref": "AIO-SEC-B" },
+          { "id": "night_noise", "shown_zh": "夜间照明高度与安静沿街面的噪声界面分别标注", "shown_en": "night lighting height and the noise interface of the quiet frontage are annotated separately", "spatial_ref": "AIO-SEC-B" },
+          { "id": "cleaning_waste", "shown_zh": "保洁动线与垃圾暂存位设于设施带，不穿越链路", "shown_en": "cleaning movement and waste holding sit in the furniture band and do not cross the chain", "spatial_ref": "AIO-PLAN-01" },
+          { "id": "service_access", "shown_zh": "服务车接近面在设施带一侧，卸货时链路保留全宽", "shown_en": "the service vehicle approach face is on the furniture band side and the chain keeps its full width during unloading", "spatial_ref": "AIO-SEC-B" },
+          { "id": "equipment_power_failure", "shown_zh": "断电与设备失效时由非数字服务位承接，位置在平面上标注", "shown_en": "the non-digital position takes over on power or equipment failure, and its place is marked on the plan", "spatial_ref": "AIO-PLAN-01" },
+          { "id": "removal_restoration", "shown_zh": "慢行缝与沿街构件撤除后的恢复做法与作业面在剖面上表达", "shown_en": "the reinstatement build-up and the working face needed after the seam and frontage components are removed are drawn on the section", "spatial_ref": "AIO-SEC-B" }
+        ],
+        "pilot": {
+          "days": 90,
+          "sufficient_for_year_round": false,
+          "note_zh": "九十天试点只覆盖九十天。冬季结冰、夏季高温与全年照护需求的季节波动不在观测窗口内，不能据此得出全年结论。",
+          "note_en": "A ninety-day pilot covers ninety days. Winter icing, summer heat and the seasonal swing in care demand fall outside its observation window and no year-round conclusion follows from it."
+        },
+        "thresholds": [
+          { "id": "AIO-TH-01", "label_zh": "非数字渠道全年可用率", "label_en": "year-round availability of the non-digital channel", "proposed_target_zh": "建议目标：数字系统失效不减少非数字办理能力", "proposed_target_en": "proposed target: a digital failure does not reduce non-digital processing capacity", "status": "pending", "approved_threshold": null, "pilot_start_allowed": false },
+          { "id": "AIO-TH-02", "label_zh": "冬季沿街链路净宽保持率", "label_en": "retention of frontage chain clear width in winter", "proposed_target_zh": "建议目标：清雪期间沿街通行带不被暂存雪占用", "proposed_target_en": "proposed target: stored snow never occupies the frontage movement band during clearing", "status": "pending", "approved_threshold": null, "pilot_start_allowed": false }
+        ],
+        "evidence_refs": ["area:PROV-KEY-002", "section:AIO-SEC-B", "data:assumptions.json#A-CLIMATE-001", "data:assumptions.json#A-EQUITY-001", "source:CASE-KALASATAMA"]
+      },
+      "phase1_envelope": {
+        "id": "AIO-P1-ENV",
+        "reversible": true,
+        "georeferenced": true,
+        "description_zh": "第一期只投放发布公地面层、两处服务位与沿街可拆构件；慢行缝列为条件项，权属或通行权不成立即整段不实施。",
+        "description_en": "Phase 1 places only the release commons surface, the two service positions and demountable frontage components; the slow seam is held as a conditional item and is not built at all if ownership or right of way does not support it.",
+        "removal_zh": "构件以机械连接固定于既有地面之上，可整体拆卸运离，不破坏原铺装。",
+        "removal_en": "Components are mechanically fixed above the existing ground, dismantled whole and carried away without damaging the original paving.",
+        "restoration_zh": "撤除后恢复原沿街铺装与地表覆盖，恢复范围在剖面 B 上标注；恢复能力尚未由任何一方确认。",
+        "restoration_en": "After removal the original frontage paving and ground cover are reinstated, with the extent annotated on Section B; restoration capacity has not been confirmed by any party.",
+        "liability_zh": "撤除、运离与恢复的剩余责任尚无承担主体；慢行缝一旦实施又撤除，其恢复责任同样未定。",
+        "liability_en": "Residual liability for removal, transport and reinstatement has no holder; if the slow seam were built and then withdrawn, liability for its reinstatement is equally undetermined.",
+        "authorization_state": "not_authorized",
+        "funding_state": "unfunded",
+        "blocked_by": ["D02", "D06", "D11"],
+        "evidence_refs": ["area:PROV-KEY-002", "component:O-C05", "section:AIO-SEC-B", "metric:phase1_reversible_area_sqm", "data:assumptions.json#A-NETWORK-001", "source:REAL-OPTIONS-NEUFVILLE-2003"]
+      },
+      "evidence_refs": ["area:PROV-KEY-002", "drawing:AIO-PLAN-01", "section:AIO-SEC-A", "section:AIO-SEC-B", "source:OSTROM-COMMONS-1990", "source:CASE-KENDALL", "metric:public_space_ratio"]
+    },
+    {
+      "area_feature_id": "PROV-KEY-003",
+      "area_id": "dazhongsi_ai_industry_cluster",
+      "prefix": "DZS",
+      "name_zh": "大钟寺 AI 产业聚集区 · 学习实验室三",
+      "name_en": "Dazhongsi AI Industry Cluster · Learning Lab 3",
+      "georeferenced": false,
+      "spatial_mode": "not_to_scale_topology",
+      "disclosure_zh": "Issue #1029 记录临时范围与车站参照之间存在约 2.26 公里的质疑偏差；本图不建立车站空间关系。",
+      "disclosure_en": "Issue #1029 records a questioned discrepancy of approximately 2.26 km between the provisional extent and the station reference; this drawing establishes no station relationship.",
+      "evidence_consequence": "invalidate_and_redesign_lab_3",
+      "evidence_consequence_note_zh": "若日后取得官方定位证据，其作用是使本拓扑图作废并重做实验室三，而不是证实本图。",
+      "evidence_consequence_note_en": "If official positional evidence is obtained later, its effect is to void this topology and redesign Lab 3, not to confirm the diagram.",
+      "plan": {
+        "id": "DZS-TOPO-01",
+        "plate_concept_id": "02",
+        "kind": "not_to_scale_topology",
+        "not_to_scale": true,
+        "scale_bar": false,
+        "north_arrow": false,
+        "title_zh": "大钟寺 · 四位性能拓扑（非比例、非定位）",
+        "title_en": "Dazhongsi · four-position performance topology (not to scale, not georeferenced)",
+        "condition_zh": "本图只表达四个性能位之间的先后关系：到达、换乘、停留、维修。四位落于四象限之内，象限本身不代表方位、距离或用地；每个位的实际落位待测量后指定。",
+        "condition_en": "The diagram states only the order between four performance positions: arrive, transfer, stay, repair. The four sit in four quadrants, and the quadrants carry no direction, no distance and no land claim; where each position actually lands is to be assigned after survey.",
+        "cut_keys": [
+          { "key": "A", "section_id": "DZS-SEC-A", "note_zh": "剖切建议的自行车停放与维修模块，不涉及任何落位", "note_en": "cut through the proposed cycle parking and repair module, involving no position at all" },
+          { "key": "B", "section_id": "DZS-SEC-B", "note_zh": "剖切建议的停留与遮蔽模块", "note_en": "cut through the proposed stay and shelter module" }
+        ],
+        "positions": [
+          { "role": "arrive", "quadrant": "Q1", "assignment": "to_be_assigned_by_survey", "name_zh": "到达位", "name_en": "Arrive position", "performance_zh": "到达后能在无人协助的情况下确定下一步方向", "performance_en": "on arriving, a visitor can establish the next direction without assistance" },
+          { "role": "transfer", "quadrant": "Q2", "assignment": "to_be_assigned_by_survey", "name_zh": "换乘位", "name_en": "Transfer position", "performance_zh": "换乘动作在遮蔽之下完成，且不要求使用个人设备", "performance_en": "the transfer is made under shelter and requires no personal device" },
+          { "role": "stay", "quadrant": "Q3", "assignment": "to_be_assigned_by_survey", "name_zh": "停留位", "name_en": "Stay position", "performance_zh": "提供可坐、可等、可避风的停留，且不以消费为条件", "performance_en": "provides somewhere to sit, wait and shelter that is not conditional on spending" },
+          { "role": "repair", "quadrant": "Q4", "assignment": "to_be_assigned_by_survey", "name_zh": "维修位", "name_en": "Repair position", "performance_zh": "自行车可就地停放并完成小修，不必离开本片区", "performance_en": "a cycle can be parked and given a small repair on the spot without leaving the area" }
+        ],
+        "elements": [
+          { "id": "D-E01", "kind": "arrive_position", "name_zh": "到达位标记", "name_en": "Arrive position token", "drawn_as": "unplaced token in quadrant Q1, no dimension and no direction" },
+          { "id": "D-E02", "kind": "transfer_position", "name_zh": "换乘位标记", "name_en": "Transfer position token", "drawn_as": "unplaced token in quadrant Q2, linked to Q1 by an order arrow only" },
+          { "id": "D-E03", "kind": "stay_position", "name_zh": "停留位标记", "name_en": "Stay position token", "drawn_as": "unplaced token in quadrant Q3, linked to Q2 by an order arrow only" },
+          { "id": "D-E04", "kind": "repair_position", "name_zh": "维修位标记", "name_en": "Repair position token", "drawn_as": "unplaced token in quadrant Q4, linked to Q3 by an order arrow only" },
+          { "id": "D-E05", "kind": "cycle_parking", "name_zh": "自行车停放模块", "name_en": "Cycle parking module", "drawn_as": "module symbol shown against the repair token, sized by the proposed module only" },
+          { "id": "D-E06", "kind": "cycle_repair", "name_zh": "自行车维修模块", "name_en": "Cycle repair module", "drawn_as": "module symbol with a tool bench mark, sized by the proposed module only" },
+          { "id": "D-E07", "kind": "staffed_desk", "name_zh": "值守服务位", "name_en": "Staffed service position", "drawn_as": "module symbol against the transfer token, opening hours annotated" },
+          { "id": "D-E08", "kind": "shelter", "name_zh": "遮蔽模块", "name_en": "Shelter module", "drawn_as": "demountable canopy symbol over the stay token" },
+          { "id": "D-E09", "kind": "snow_storage", "name_zh": "融雪暂存位", "name_en": "Snow storage bay", "drawn_as": "stippled token annotated as held clear of every marked route" }
+        ]
+      },
+      "sections": [
+        {
+          "id": "DZS-SEC-A",
+          "plate_concept_id": "03",
+          "key": "A",
+          "title_zh": "剖面 A：建议的自行车停放与维修模块",
+          "title_en": "Section A: proposed cycle parking and repair module",
+          "shows_zh": "剖面只切建议模块本身，不切场地：显示停放位与维修台的相对高度、工具与备件的收纳位置、模块可拆装的连接方式，以及维护人员的作业空间。模块可安放于任何一处待指定的落位，本剖面不因此获得位置含义。",
+          "shows_en": "The section cuts the proposed module and nothing on the ground: it shows the relative heights of the parking position and the repair bench, where tools and spares are held, how the module is demountably connected, and the working space a maintainer needs. The module could sit at any position still to be assigned, and the section gains no positional meaning from that.",
+          "dimensions": [
+            { "id": "DZS-SEC-A-D1", "label_zh": "停放模块建议开间", "label_en": "proposed parking module bay width", "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:DZS-TOPO-01", "status": "proposed_not_verified" },
+            { "id": "DZS-SEC-A-D2", "label_zh": "维修台建议进深", "label_en": "proposed repair bench depth", "value": 1.2, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:DZS-TOPO-01", "status": "proposed_not_verified" },
+            { "id": "DZS-SEC-A-D3", "label_zh": "待指定落位处的可用净宽", "label_en": "usable clear width at any position still to be assigned", "value": null, "unit": "m", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey", "recalculation_trigger_zh": "取得测量指定的落位与实测净宽后，以米复算并重绘本剖面", "recalculation_trigger_en": "recompute in metres and redraw this section once survey-assigned placements and a measured clear width are available" },
+            { "id": "DZS-SEC-A-D4", "label_zh": "待指定落位处的地面起伏", "label_en": "ground surface variation at any position still to be assigned", "value": null, "unit": "m", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey", "recalculation_trigger_zh": "取得测量指定的落位与实测地面起伏后，以米复算并重绘本剖面", "recalculation_trigger_en": "recompute in metres and redraw this section once survey-assigned placements and a measured ground surface variation are available" }
+          ],
+          "evidence_refs": ["area:PROV-KEY-003", "drawing:DZS-TOPO-01", "component:D-C04", "route:D-R04", "source:ISSUE-1029"]
+        },
+        {
+          "id": "DZS-SEC-B",
+          "plate_concept_id": "03",
+          "key": "B",
+          "title_zh": "剖面 B：建议的停留与遮蔽模块",
+          "title_en": "Section B: proposed stay and shelter module",
+          "shows_zh": "剖面显示停留模块的座位高度与靠背、遮蔽面的覆盖范围与滴水位置、冬季挡风板的可拆连接，以及值守服务位的柜台关系。所有关系均属模块内部，不对片区之外作任何空间断言。",
+          "shows_en": "The section shows seat height and back support in the stay module, the extent of the shelter and where water is shed, the demountable fixing of the winter wind panel, and the counter relationship at the staffed service position. Every relationship is internal to the module and asserts nothing spatial beyond it.",
+          "dimensions": [
+            { "id": "DZS-SEC-B-D1", "label_zh": "遮蔽模块建议净高", "label_en": "proposed shelter module clear height", "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:DZS-TOPO-01", "status": "proposed_not_verified" },
+            { "id": "DZS-SEC-B-D2", "label_zh": "停留模块建议进深", "label_en": "proposed stay module depth", "value": 3.6, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:DZS-TOPO-01", "status": "proposed_not_verified" },
+            { "id": "DZS-SEC-B-D3", "label_zh": "值守柜台建议台面高", "label_en": "proposed staffed counter working height", "value": 1.2, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:DZS-TOPO-01", "status": "proposed_not_verified" },
+            { "id": "DZS-SEC-B-D4", "label_zh": "四位之间的实际间距", "label_en": "actual separation between the four positions", "value": null, "unit": "m", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey_no_position_claimed", "recalculation_trigger_zh": "取得测量指定的四处落位后，以米复算并重绘本剖面；在此之前本图不主张任何间距", "recalculation_trigger_en": "recompute in metres and redraw this section once the four positions have been assigned by survey; until then this drawing asserts no separation" }
+          ],
+          "evidence_refs": ["area:PROV-KEY-003", "drawing:DZS-TOPO-01", "component:D-C02", "component:D-C03", "route:D-R02", "data:assumptions.json#A-CLIMATE-001"]
+        }
+      ],
+      "components": [
+        { "id": "D-C01", "kind": "arrival", "name_zh": "到达标识模块", "name_en": "Arrival wayfinding module", "reversible": true, "drawing_ref": "DZS-TOPO-01", "evidence_refs": ["drawing:DZS-TOPO-01", "source:ISSUE-1029", "standard:BARRIER-FREE-ENVIRONMENT-LAW"] },
+        { "id": "D-C02", "kind": "service", "name_zh": "值守服务模块", "name_en": "Staffed service module", "reversible": true, "drawing_ref": "DZS-SEC-B", "evidence_refs": ["section:DZS-SEC-B", "standard:ELDERLY-SMART-TECH-PLAN-2020-45", "source:ISSUE-1781"] },
+        { "id": "D-C03", "kind": "shelter", "name_zh": "停留与遮蔽模块", "name_en": "Stay and shelter module", "reversible": true, "drawing_ref": "DZS-SEC-B", "evidence_refs": ["section:DZS-SEC-B", "data:assumptions.json#A-CLIMATE-001", "source:CASE-SEOUL-AI-HUB"] },
+        { "id": "D-C04", "kind": "cycle", "name_zh": "自行车停放与维修模块", "name_en": "Cycle parking and repair module", "reversible": true, "drawing_ref": "DZS-SEC-A", "evidence_refs": ["section:DZS-SEC-A", "source:CASE-QUAYSIDE", "metric:public_space_ratio"] },
+        { "id": "D-C05", "kind": "operations", "name_zh": "非数字办理模块", "name_en": "Non-digital processing module", "reversible": true, "drawing_ref": "DZS-SEC-B", "evidence_refs": ["section:DZS-SEC-B", "standard:GENERATIVE-AI-INTERIM-MEASURES", "source:ISSUE-1781"] }
+      ],
+      "routes": [
+        { "id": "D-R01", "kind": "arrive_to_transfer", "name_zh": "到达位至换乘位的次序连线", "name_en": "Order link from the arrive position to the transfer position", "drawing_ref": "DZS-TOPO-01", "positional_claim": "void", "evidence_refs": ["drawing:DZS-TOPO-01", "component:D-C01", "source:ISSUE-1029"] },
+        { "id": "D-R02", "kind": "transfer_to_stay", "name_zh": "换乘位至停留位的次序连线", "name_en": "Order link from the transfer position to the stay position", "drawing_ref": "DZS-TOPO-01", "positional_claim": "void", "evidence_refs": ["drawing:DZS-TOPO-01", "component:D-C02", "component:D-C03"] },
+        { "id": "D-R03", "kind": "stay_to_repair", "name_zh": "停留位至维修位的次序连线", "name_en": "Order link from the stay position to the repair position", "drawing_ref": "DZS-TOPO-01", "positional_claim": "void", "evidence_refs": ["drawing:DZS-TOPO-01", "component:D-C03", "component:D-C04"] },
+        { "id": "D-R04", "kind": "cycle", "name_zh": "自行车停放与维修动线", "name_en": "Cycle parking and repair line", "drawing_ref": "DZS-SEC-A", "positional_claim": "void", "evidence_refs": ["section:DZS-SEC-A", "component:D-C04", "source:CASE-QUAYSIDE"] },
+        { "id": "D-R05", "kind": "maintenance", "name_zh": "模块维护动线", "name_en": "Module maintenance line", "drawing_ref": "DZS-SEC-A", "positional_claim": "void", "evidence_refs": ["section:DZS-SEC-A", "source:SHEARING-LAYERS-BRAND-1994", "component:D-C05"] }
+      ],
+      "excluded_evidence": [
+        {
+          "category": "buildings",
+          "reason_zh": "本包没有关于本片区既有房屋的任何可核证据，因此不引用房屋类证据，也不作任何关于既有建筑的断言。",
+          "reason_en": "The package holds no verifiable evidence about existing building stock in this area, so it cites no building evidence and asserts nothing about what is already built.",
+          "excluded_refs": ["standard:MOHURD-ARCH-DESIGN-DEPTH-2016", "source:BLUEVIEW-RENEWAL-CASE-2026"]
+        },
+        {
+          "category": "phasing",
+          "reason_zh": "四位次序不是建设时序。本片区不引用分期类证据，也不宣称任何一位先于另一位建成。",
+          "reason_en": "The order of the four positions is not a construction sequence. This area cites no phasing evidence and claims no position is built before another.",
+          "excluded_refs": ["source:BLUEVIEW-DISPOSITION-2025", "data:assumptions.json#A-BUILDING-001"]
+        },
+        {
+          "category": "station_position",
+          "reason_zh": "Issue #1029 对临时范围的位置提出质疑，本包因此没有可用的定位证据；不引用定位类证据，也不建立任何正向空间关系。",
+          "reason_en": "Issue #1029 questions where the provisional extent lies, so the package holds no usable positional evidence; no positional evidence is cited and no positive spatial relationship is established.",
+          "excluded_refs": ["source:BOUNDARY-SOURCE", "data:assumptions.json#A-BOUNDARY-001"]
+        }
+      ],
+      "step_free_chain": {
+        "id": "DZS-SFC-01",
+        "status": { "proposed": true, "verified": false, "accessibility_gate": "G5:pending", "survey": "pending", "professional_audit": "pending" },
+        "chain_note_zh": "本链路是四位之间的次序链，不是一条已落位的路径。每一节的实际长度、坡度与横坡都待测量后确定。",
+        "chain_note_en": "This chain is an order between the four positions, not a route that has been placed. The real length, gradient and crossfall of every link await survey.",
+        "nodes": [
+          { "id": "D-N1", "role": "arrival", "name_zh": "到达位", "name_en": "Arrive position", "drawing_ref": "DZS-TOPO-01" },
+          { "id": "D-N2", "role": "decision", "name_zh": "方向抉择位", "name_en": "Direction decision position", "drawing_ref": "DZS-TOPO-01" },
+          { "id": "D-N3", "role": "rest", "name_zh": "遮蔽停留位", "name_en": "Sheltered stay position", "drawing_ref": "DZS-SEC-B" },
+          { "id": "D-N4", "role": "toilet_direction", "name_zh": "卫生间指向位", "name_en": "Toilet direction position", "drawing_ref": "DZS-TOPO-01" },
+          { "id": "D-N5", "role": "staffed_service", "name_zh": "值守服务位", "name_en": "Staffed service position", "drawing_ref": "DZS-SEC-B" },
+          { "id": "D-N6", "role": "principal_program", "name_zh": "自行车维修位", "name_en": "Cycle repair position", "drawing_ref": "DZS-SEC-A" },
+          { "id": "D-N7", "role": "exit", "name_zh": "离开位", "name_en": "Departure position", "drawing_ref": "DZS-TOPO-01" }
+        ],
+        "segments": [
+          {
+            "id": "D-S1", "from": "D-N1", "to": "D-N2", "drawing_ref": "DZS-TOPO-01",
+            "surface_zh": "建议为连续硬质铺装并无高差；实际做法待落位指定后确定",
+            "surface_en": "proposed as continuous firm paving with no level change; the actual build-up follows once a position is assigned",
+            "obstruction_rule_zh": "任何临时设施不得占用本节建议净宽",
+            "obstruction_rule_en": "no temporary installation may occupy the proposed clear width of this link",
+            "maintenance_access_zh": "模块维护从标记位背面接近，不占用本节",
+            "maintenance_access_en": "modules are maintained from behind the token and the link is not occupied",
+            "clear_width": { "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:DZS-TOPO-01", "status": "proposed_not_verified" },
+            "gradient": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "crossfall": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "passing_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "drawing:DZS-TOPO-01", "status": "proposed_not_verified" },
+            "rest_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "drawing:DZS-TOPO-01", "status": "proposed_not_verified" }
+          },
+          {
+            "id": "D-S2", "from": "D-N2", "to": "D-N3", "drawing_ref": "DZS-SEC-B",
+            "surface_zh": "抉择位设触感提示面，铺装保持一致",
+            "surface_en": "a tactile warning surface marks the decision position and the paving stays the same",
+            "obstruction_rule_zh": "遮蔽模块支腿与挡风板退出建议净宽",
+            "obstruction_rule_en": "the shelter feet and wind panels are set back from the proposed clear width",
+            "maintenance_access_zh": "遮蔽面清理从停留模块外侧进行",
+            "maintenance_access_en": "the shelter surface is cleaned from outside the stay module",
+            "clear_width": { "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "section:DZS-SEC-B", "status": "proposed_not_verified" },
+            "gradient": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "crossfall": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "passing_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "section:DZS-SEC-B", "status": "proposed_not_verified" },
+            "rest_points": { "value": 2, "unit": "count", "basis_type": "proposed_module", "source_ref": "section:DZS-SEC-B", "status": "proposed_not_verified" }
+          },
+          {
+            "id": "D-S3", "from": "D-N3", "to": "D-N4", "drawing_ref": "DZS-TOPO-01",
+            "surface_zh": "停留位至卫生间指向位铺装不变，避免材质变化被误读为路径变化",
+            "surface_en": "the paving does not change between the stay position and the toilet direction position, so a material change cannot be misread as a change of route",
+            "obstruction_rule_zh": "座椅与垃圾容器设于建议净宽之外",
+            "obstruction_rule_en": "seating and waste containers sit outside the proposed clear width",
+            "maintenance_access_zh": "容器清运从停留模块背面进行",
+            "maintenance_access_en": "containers are emptied from behind the stay module",
+            "clear_width": { "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:DZS-TOPO-01", "status": "proposed_not_verified" },
+            "gradient": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "crossfall": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "passing_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "drawing:DZS-TOPO-01", "status": "proposed_not_verified" },
+            "rest_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "drawing:DZS-TOPO-01", "status": "proposed_not_verified" }
+          },
+          {
+            "id": "D-S4", "from": "D-N4", "to": "D-N5", "drawing_ref": "DZS-SEC-B",
+            "surface_zh": "接近值守位一段设导向条，与等候标识分开",
+            "surface_en": "a guidance strip approaches the staffed position, kept separate from the waiting marks",
+            "obstruction_rule_zh": "等候区不得越入导向条，柜台前保留轮椅回转空间",
+            "obstruction_rule_en": "the waiting area may not encroach on the guidance strip and a wheelchair turning space is kept in front of the counter",
+            "maintenance_access_zh": "值守模块补给从背面接近，不穿越等候区",
+            "maintenance_access_en": "supplies reach the staffed module from behind and do not cross the waiting area",
+            "clear_width": { "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "section:DZS-SEC-B", "status": "proposed_not_verified" },
+            "gradient": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "crossfall": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "passing_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "section:DZS-SEC-B", "status": "proposed_not_verified" },
+            "rest_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "section:DZS-SEC-B", "status": "proposed_not_verified" }
+          },
+          {
+            "id": "D-S5", "from": "D-N5", "to": "D-N6", "drawing_ref": "DZS-SEC-A",
+            "surface_zh": "进入维修位不设台阶与坡道，维修台面与停放面同一标高体系",
+            "surface_en": "the repair position is reached without step or ramp, and the bench sits in the same level system as the parking surface",
+            "obstruction_rule_zh": "停放的自行车不得占用本节建议净宽",
+            "obstruction_rule_en": "parked cycles may not occupy the proposed clear width of this link",
+            "maintenance_access_zh": "工具与备件补给从维修模块背面进入",
+            "maintenance_access_en": "tools and spares are restocked from behind the repair module",
+            "clear_width": { "value": 3.6, "unit": "m", "basis_type": "proposed_module", "source_ref": "section:DZS-SEC-A", "status": "proposed_not_verified" },
+            "gradient": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "crossfall": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "passing_points": { "value": 2, "unit": "count", "basis_type": "proposed_module", "source_ref": "section:DZS-SEC-A", "status": "proposed_not_verified" },
+            "rest_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "section:DZS-SEC-A", "status": "proposed_not_verified" }
+          },
+          {
+            "id": "D-S6", "from": "D-N6", "to": "D-N7", "drawing_ref": "DZS-TOPO-01",
+            "surface_zh": "离开位与到达位分设，铺装同种，次序连线不重叠",
+            "surface_en": "the departure position is separate from the arrive position, the paving is the same, and the order links do not overlap",
+            "obstruction_rule_zh": "融雪暂存位设于本节之外",
+            "obstruction_rule_en": "the snow storage bay sits off this link",
+            "maintenance_access_zh": "清运车不占用本节建议净宽",
+            "maintenance_access_en": "removal vehicles do not occupy the proposed clear width of this link",
+            "clear_width": { "value": 2.4, "unit": "m", "basis_type": "proposed_module", "source_ref": "drawing:DZS-TOPO-01", "status": "proposed_not_verified" },
+            "gradient": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "crossfall": { "value": null, "unit": "percent", "basis_type": "pending", "source_ref": "data:assumptions.json#A-BOUNDARY-001", "status": "pending_survey" },
+            "passing_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "drawing:DZS-TOPO-01", "status": "proposed_not_verified" },
+            "rest_points": { "value": 1, "unit": "count", "basis_type": "proposed_module", "source_ref": "drawing:DZS-TOPO-01", "status": "proposed_not_verified" }
+          }
+        ],
+        "equivalents": {
+          "tactile": { "provided_zh": "四位之间设连续导向条，各位边缘设提示面；实际敷设待落位指定", "provided_en": "a continuous guidance strip runs between the four positions with warning surfaces at each edge; actual laying follows position assignment", "status": "proposed_pending_audit" },
+          "visual_contrast": { "provided_zh": "模块口部与柜台边缘设明度对比带", "provided_en": "luminance contrast bands at module openings and counter edges", "status": "proposed_pending_audit" },
+          "audio": { "provided_zh": "值守位提供口述指引，不要求携带设备", "provided_en": "spoken guidance at the staffed position, requiring no device", "status": "proposed_pending_audit" },
+          "staffed": { "provided_zh": "公布时段内有人值守，可代办全部数字环节", "provided_en": "staffed during published hours and able to complete every digital step on a visitor's behalf", "status": "proposed_pending_audit" },
+          "paper": { "provided_zh": "非数字办理模块常备纸质示意图与表单", "provided_en": "the non-digital processing module holds paper diagrams and forms at all times", "status": "proposed_pending_audit" },
+          "telephone": { "provided_zh": "公布语音电话，可完成问询与维修预约", "provided_en": "a published voice telephone line handles enquiry and repair booking", "status": "proposed_pending_audit" }
+        },
+        "operating_modes": [
+          { "mode": "day", "route_availability_zh": "四位次序链全程可用，维修位按公布时段开放", "route_availability_en": "the four-position order chain is usable throughout and the repair position opens during published hours", "manual_fallback_zh": "值守位代办全部数字环节", "manual_fallback_en": "the staffed position completes every digital step manually", "stop_action_zh": "任一节建议净宽被占用即暂停该节并改由相邻位承接", "stop_action_en": "if a link loses its proposed clear width that link is suspended and the neighbouring position takes over", "recovery_condition_zh": "占用物移除并复核后恢复", "recovery_condition_en": "restored once the obstruction is removed and re-checked" },
+          { "mode": "night", "route_availability_zh": "到达位与停留位保留照明，维修位关闭", "route_availability_en": "the arrive and stay positions stay lit; the repair position closes", "manual_fallback_zh": "无人值守时以电话与纸质示意替代", "manual_fallback_en": "telephone and paper diagrams cover the unstaffed hours", "stop_action_zh": "照明失效的位即刻关闭并标示", "stop_action_en": "a position whose lighting fails is closed at once and marked", "recovery_condition_zh": "照明修复并复核后重开", "recovery_condition_en": "reopened when lighting is repaired and re-checked" },
+          { "mode": "event", "route_availability_zh": "活动期间四位次序不得被布置打断，停留位保持免费可用", "route_availability_en": "the order of the four positions may not be interrupted by an event layout and the stay position remains free to use", "manual_fallback_zh": "增派人手在抉择位引导", "manual_fallback_en": "extra staff guide people at the decision position", "stop_action_zh": "停留位被占为消费用途即中止活动布置", "stop_action_en": "if the stay position is taken over for paid use the event layout is stopped", "recovery_condition_zh": "停留位恢复免费可用后继续", "recovery_condition_en": "resumed once the stay position is free to use again" },
+          { "mode": "snow", "route_availability_zh": "先清四位之间的次序链，暂存位不占用任何一节", "route_availability_en": "the links between the four positions are cleared first and storage occupies none of them", "manual_fallback_zh": "清雪期间由值守人员陪同通过受影响节", "manual_fallback_en": "staff accompany people through affected links while clearing is under way", "stop_action_zh": "结冰未处理的节关闭", "stop_action_en": "an untreated iced link is closed", "recovery_condition_zh": "除冰完成并复核后开放", "recovery_condition_en": "reopened when de-icing is complete and re-checked" },
+          { "mode": "maintenance", "route_availability_zh": "模块维护从标记背面进行，次序链保持连通", "route_availability_en": "modules are maintained from behind their tokens and the order chain stays connected", "manual_fallback_zh": "受影响节设人工引导与纸质示意", "manual_fallback_en": "an affected link is staffed and shown on a paper diagram", "stop_action_zh": "次序链断开即暂停对外开放", "stop_action_en": "if the order chain is broken the area closes to the public", "recovery_condition_zh": "连通恢复并复核后开放", "recovery_condition_en": "reopened when connectivity is restored and re-checked" },
+          { "mode": "power_failure", "route_availability_zh": "次序链与非数字办理不依赖供电，继续运行", "route_availability_en": "the order chain and non-digital processing do not depend on power and keep running", "manual_fallback_zh": "手持照明、纸质表单与人工登记", "manual_fallback_en": "hand lighting, paper forms and manual registration", "stop_action_zh": "夜间断电关闭停留位与维修位", "stop_action_en": "a night-time outage closes the stay and repair positions", "recovery_condition_zh": "供电恢复且照明复核后开放", "recovery_condition_en": "reopened when supply returns and lighting is re-checked" },
+          { "mode": "digital_failure", "route_availability_zh": "四位均不因数字系统失效而关闭", "route_availability_en": "none of the four positions closes because a digital system has failed", "manual_fallback_zh": "非数字办理模块承接全部登记与维修预约", "manual_fallback_en": "the non-digital processing module takes over all registration and repair booking", "stop_action_zh": "若仅剩数字渠道则暂停对外服务", "stop_action_en": "if a digital channel becomes the only route, public service is suspended", "recovery_condition_zh": "非数字等效渠道恢复后开放", "recovery_condition_en": "reopened when the non-digital equivalent is working again" }
+        ],
+        "evidence_refs": ["area:PROV-KEY-003", "drawing:DZS-TOPO-01", "section:DZS-SEC-B", "component:D-C05", "standard:BARRIER-FREE-ENVIRONMENT-LAW", "source:ISSUE-1029"]
+      },
+      "seasonal_operations": {
+        "plate_concept_id": "04",
+        "winter_section_ref": "DZS-SEC-B",
+        "shows_zh": "以剖面 B 为底叠加冬季工况，全部限于模块内部与四位之间的次序链：融雪暂存位与次序链的分离、排水与结冰面、遮蔽、日照与风向、夜间照明与噪声、保洁与垃圾、服务车接近、设备与断电时的非数字替代，以及模块撤除所需的作业面。撤除后地面处于何种状态取决于尚未勘测的现状，剖面不画。",
+        "shows_en": "Section B carries the winter case, all of it confined to the modules and the order chain between the four positions: snow storage held apart from the chain, drainage and icing surfaces, shelter, sun and wind, night lighting and noise, cleaning and waste, service vehicle approach, the non-digital substitute for equipment and power failure, and the working face that module removal needs. What state the ground is left in depends on conditions nobody has surveyed, and the section does not draw it.",
+        "snow_storage": {
+          "overlaps_step_free_route": false,
+          "overlaps_tactile_route": false,
+          "rule_zh": "暂存位不得占用四位之间的任何一节次序链，也不得堵塞值守位与非数字办理模块；无合规位置时外运。",
+          "rule_en": "Storage may occupy no link of the order chain and may not block the staffed position or the non-digital processing module; where no compliant place exists the snow is carried away.",
+          "locations": [
+            { "id": "D-SS1", "name_zh": "维修模块背侧暂存位", "name_en": "Storage bay behind the repair module", "clear_of": ["step_free", "tactile"], "drawing_ref": "DZS-SEC-A" },
+            { "id": "D-SS2", "name_zh": "遮蔽模块背侧暂存位", "name_en": "Storage bay behind the shelter module", "clear_of": ["step_free", "tactile"], "drawing_ref": "DZS-SEC-B" }
+          ]
+        },
+        "topics": [
+          { "id": "drainage_ice", "shown_zh": "遮蔽面滴水位置与易结冰面在剖面上标注，滴水不落在次序链上", "shown_en": "where the shelter sheds water and which surfaces ice first are annotated on the section, and the water does not fall on the order chain", "spatial_ref": "DZS-SEC-B" },
+          { "id": "shelter", "shown_zh": "遮蔽模块覆盖停留位与等候区，挡风板可拆", "shown_en": "the shelter module covers the stay position and the waiting area, with demountable wind panels", "spatial_ref": "DZS-SEC-B" },
+          { "id": "sun_wind", "shown_zh": "遮蔽模块的冬季日照与主导风向关系在剖面上表达，不涉及方位断言", "shown_en": "the winter sun and prevailing wind relationship of the shelter module is drawn on the section without asserting any orientation on the ground", "spatial_ref": "DZS-SEC-B" },
+          { "id": "night_noise", "shown_zh": "夜间照明高度与停留位的噪声界面分别标注", "shown_en": "night lighting height and the noise interface at the stay position are annotated separately", "spatial_ref": "DZS-SEC-B" },
+          { "id": "cleaning_waste", "shown_zh": "保洁动线与垃圾暂存设于模块背侧，不占用次序链", "shown_en": "cleaning movement and waste holding sit behind the modules and do not occupy the order chain", "spatial_ref": "DZS-SEC-A" },
+          { "id": "service_access", "shown_zh": "服务车接近面位于模块背侧，补给时次序链保持连通", "shown_en": "the service vehicle approach face lies behind the modules and the order chain stays connected during restocking", "spatial_ref": "DZS-SEC-A" },
+          { "id": "equipment_power_failure", "shown_zh": "设备与断电时由非数字办理模块承接，位置在拓扑图上标注", "shown_en": "the non-digital processing module takes over on equipment or power failure, and its place is marked on the topology", "spatial_ref": "DZS-TOPO-01" },
+          { "id": "removal_restoration", "shown_zh": "模块撤除所需的作业面在剖面上表达；撤除后的地面恢复做法未经勘测，剖面不画", "shown_en": "the section draws the working face that module removal needs; what reinstating the ground would involve is unsurveyed and is not drawn", "spatial_ref": "DZS-SEC-A" }
+        ],
+        "pilot": {
+          "days": 90,
+          "sufficient_for_year_round": false,
+          "note_zh": "九十天试点只能说明九十天。本片区落位尚未指定，试点结果连位置条件都无法固定，更不足以推断全年性能。",
+          "note_en": "A ninety-day pilot speaks only for ninety days. No position here has been assigned, so a pilot cannot even hold the positional conditions constant, let alone support a year-round inference."
+        },
+        "thresholds": [
+          { "id": "DZS-TH-01", "label_zh": "遮蔽停留位全年可用率", "label_en": "year-round availability of the sheltered stay position", "proposed_target_zh": "建议目标：冬季不因结冰或积雪关闭停留位", "proposed_target_en": "proposed target: the stay position does not close in winter because of ice or lying snow", "status": "pending", "approved_threshold": null, "pilot_start_allowed": false },
+          { "id": "DZS-TH-02", "label_zh": "自行车维修位可用时段", "label_en": "hours the cycle repair position is usable", "proposed_target_zh": "建议目标：公布时段内维修位可用且不要求使用设备", "proposed_target_en": "proposed target: the repair position is usable during published hours and requires no device", "status": "pending", "approved_threshold": null, "pilot_start_allowed": false }
+        ],
+        "evidence_refs": ["area:PROV-KEY-003", "section:DZS-SEC-B", "data:assumptions.json#A-CLIMATE-001", "data:assumptions.json#A-PILOT-001", "source:ISSUE-1029"]
+      },
+      "phase1_envelope": {
+        "id": "DZS-P1-ENV",
+        "reversible": true,
+        "georeferenced": false,
+        "description_zh": "第一期只投放四组可拆装模块：到达标识、值守服务、停留遮蔽、自行车停放与维修。模块不定位、不落界，安放于测量后指定的位置之上；模块与既有地面、竖向及疏散条件如何相接尚未勘测，本图不作任何工程结论。",
+        "description_en": "Phase 1 places only four demountable module sets: arrival wayfinding, staffed service, stay and shelter, and cycle parking with repair. The modules carry no position and no boundary, and they sit at places assigned after survey. How they would meet the existing ground, levels, or evacuation conditions is unsurveyed, and this drawing draws no engineering conclusion about it.",
+        "removal_zh": "模块以机械连接固定，按可整体拆卸运离提出，不需破坏性作业。",
+        "removal_en": "The modules are mechanically fixed and are put forward as dismantled whole and carried away with no destructive work.",
+        "restoration_zh": "撤场按拆卸清单逐件移除并留存记录。撤除后地表以何种做法恢复，取决于尚未勘测的现状；恢复做法与恢复能力均未由任何一方确认，剖面 A 只画模块自身的做法，不画任何场地做法。",
+        "restoration_en": "At closure the set is removed item by item against a dismantling checklist, with a record retained. What reinstating the ground would involve depends on conditions nobody has surveyed; neither a restoration method nor a restoration capacity has been confirmed by any party, and Section A draws the module build-up alone, never a site build-up.",
+        "liability_zh": "剩余责任尚无承担主体。若日后取得官方定位证据，本信封连同拓扑图一并作废重做，重做成本的承担主体同样未定。",
+        "liability_en": "Residual liability has no holder. If official positional evidence is obtained later, this envelope is voided together with the topology and redesigned, and who carries the cost of that redesign is equally undetermined.",
+        "authorization_state": "not_authorized",
+        "funding_state": "unfunded",
+        "blocked_by": ["D03", "D07", "D14"],
+        "evidence_refs": ["area:PROV-KEY-003", "component:D-C03", "component:D-C04", "section:DZS-SEC-A", "metric:phase1_reversible_area_sqm", "source:ISSUE-1029"]
+      },
+      "evidence_refs": ["area:PROV-KEY-003", "drawing:DZS-TOPO-01", "section:DZS-SEC-A", "section:DZS-SEC-B", "source:ISSUE-1029", "source:KEY-AREA-SOURCE", "metric:key_area_count"]
+    }
+  ]
+}

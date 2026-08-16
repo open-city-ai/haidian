@@ -1,210 +1,199 @@
+<!--
+[INPUT]: metrics.json; assets/figures/*.en.png; proposal.en.md v1.23 eco commitments (#capital guide)
+[OUTPUT]: offline visual/index.en.html
+[POS]: English exhibit twin of visual/index.html
+[PROTOCOL]: update this header on change, then check CLAUDE.md
+-->
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Jing-Zhang AI Axis OPENLINE 100</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why Jing-Zhang: The Openline 100 · Exhibit</title>
 <style>
-
-:root{--ink:#1a1a1a;--paper:#f7f6f3;--panel:#ffffff;--steel:#2f4a5c;--umber:#8b5342;--sage:#5a7560;--line:#c8c4ba;--muted:#6b6b63}
-*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif}
-main{max-width:1440px;margin:auto;padding:28px 40px 88px} .eyebrow{font:600 11px/1.2 "IBM Plex Mono",ui-monospace,monospace;color:var(--steel);letter-spacing:.18em;text-transform:uppercase}
-h1{font-size:clamp(40px,6.5vw,84px);line-height:.95;margin:20px 0 14px;letter-spacing:-.03em;font-weight:600} h2{font-size:28px;margin:0 0 20px;font-weight:600} h3{margin:0 0 10px;color:var(--steel);font-weight:600}
-.hero{min-height:86vh;display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center} .hero img,.figure img{width:100%;display:block;border:1px solid var(--line)}
-.tagline{font-size:22px;margin:22px 0;color:var(--ink)} .lede{font-size:17px;line-height:1.75;color:var(--muted);max-width:640px}
-.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:32px;background:var(--line);border:1px solid var(--line)} .metric{background:var(--panel);padding:18px}
-.metric b{display:block;color:var(--steel);font:600 26px/1.1 "IBM Plex Mono",ui-monospace,monospace} .metric span{color:var(--muted);font-size:12px}
-.section{padding:80px 0 8px;border-top:1px solid var(--line)} .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)} .card{background:var(--panel);padding:24px;border-left:none}
-.card p,.note{color:var(--muted);line-height:1.7;margin:0} .figure{margin:28px 0 40px} .markers{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:28px}
-.markers span,.markers a{padding:12px 8px;background:var(--panel);color:var(--muted);text-align:center;font-size:11px;letter-spacing:.04em;text-decoration:none;display:block}
-.markers a:hover{color:var(--steel);background:#eef2f4}
-.figure-caption{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.55;max-width:920px}
-.warning{border:1px solid var(--line);background:#f0ebe3;padding:18px;color:var(--umber);margin-top:24px}
-.footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);display:flex;justify-content:space-between;gap:20px;font-size:12px}
-.scope-frame{border:1px solid var(--line);background:var(--panel);padding:18px}
-.scope-layer{border:1px solid var(--line);padding:18px 20px;margin-top:14px;background:rgba(247,246,243,.72)}
-.scope-layer:first-child{margin-top:0} .scope-l1{background:#eef2f4} .scope-l2{background:#f4f1ec} .scope-l3{background:#f7f6f3}
-.scope-kicker{font:600 11px/1.2 "IBM Plex Mono",ui-monospace,monospace;color:var(--steel);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
-.scope-title{display:flex;justify-content:space-between;gap:16px;align-items:baseline;margin-bottom:8px;flex-wrap:wrap}
-.scope-title h3{margin:0;color:var(--ink)} .scope-title b{font:600 20px/1 "IBM Plex Mono",ui-monospace,monospace;color:var(--steel)}
-.scope-layer p{margin:0;color:var(--muted);line-height:1.7}
-.engine-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
-.engine-chip{border:1px solid var(--line);background:var(--panel);padding:12px 14px}
-.engine-chip strong{display:block;color:var(--steel);font-size:14px;margin-bottom:4px} .engine-chip span{color:var(--muted);font-size:12px;line-height:1.5}
-.main-chain{margin-top:18px;border:1px solid var(--line);background:var(--panel);padding:20px 22px}
-.main-chain .chain-steps{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:14px 0 12px}
-.main-chain .step{border-top:2px solid var(--steel);padding-top:10px;font-size:13px;line-height:1.45;color:var(--ink)}
-.main-chain .step em{display:block;font:600 10px/1.2 "IBM Plex Mono",ui-monospace,monospace;font-style:normal;color:var(--steel);letter-spacing:.12em;margin-bottom:6px}
-.main-chain p{margin:0;color:var(--muted);line-height:1.7}
-.scope-aside{margin-top:16px;display:grid;grid-template-columns:1.1fr .9fr;gap:1px;background:var(--line);border:1px solid var(--line)}
-.cover-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:8px 0 18px}
-.cover-item{background:var(--panel);padding:18px 20px}
-.cover-item .num{font:600 11px/1.2 "IBM Plex Mono",ui-monospace,monospace;color:var(--steel);letter-spacing:.14em}
-.cover-item h3{margin:8px 0 8px;color:var(--ink);font-size:17px}
-.cover-item p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
-.cover-item .status{display:inline-block;margin-top:10px;font:600 10px/1 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.12em;color:var(--sage);border:1px solid var(--line);padding:4px 8px}
-.scenario-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:10px 0 16px}
-.scenario-item{background:var(--panel);padding:16px 16px 18px;min-height:148px}
-.scenario-item .sid{font:600 11px/1 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.08em;color:var(--steel)}
-.scenario-item .domain{float:right;color:var(--muted);font-size:11px}
-.scenario-item h3{margin:10px 0 8px;color:var(--ink);font-size:15px;clear:both}
-.scenario-item p{margin:0 0 6px;color:var(--muted);font-size:12px;line-height:1.55}
-.scenario-item .stop{margin:8px 0 0;color:var(--umber);font-size:12px;line-height:1.5}
-.scenario-item.validated{box-shadow:inset 3px 0 0 var(--umber)}
-.scenario-item .badge{display:inline-block;margin-left:6px;font:600 10px/1 "IBM Plex Mono",ui-monospace,monospace;letter-spacing:.08em;color:var(--umber);border:1px solid var(--line);padding:3px 6px}
-.gate-bar{border:1px solid var(--line);background:var(--panel);padding:18px 20px;margin-bottom:8px}
-.gate-bar .gate-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0 8px}
-.gate-bar .gate{border-top:2px solid var(--steel);padding-top:10px}
-.gate-bar .gate strong{display:block;font-size:14px;color:var(--ink);margin-bottom:4px}
-.gate-bar .gate span{color:var(--muted);font-size:12px;line-height:1.5}
-.gate-bar p{margin:0;color:var(--muted);font-size:13px;line-height:1.65}
-.visual-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:26px 0 18px}
-.visual-card{margin:0;background:var(--panel);border:1px solid var(--line);overflow:hidden}
-.visual-card img{width:100%;display:block;aspect-ratio:3/2;object-fit:cover}
-.visual-card figcaption{padding:12px 14px;color:var(--muted);font-size:12px;line-height:1.55}
-.visual-card figcaption strong{display:block;color:var(--ink);font-size:14px;margin-bottom:3px}
-@media(max-width:1100px){.scenario-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:850px){main{padding:18px}.hero,.grid2,.scope-aside,.engine-row,.main-chain .chain-steps,.cover-grid,.gate-bar .gate-row,.scenario-grid,.visual-grid{grid-template-columns:1fr}.metrics{grid-template-columns:1fr}.markers{grid-template-columns:repeat(2,1fr)}}
-
+:root{--ink:#1C1917;--muted:#78716C;--paper:#F7F5F0;--line:#D6D3D1;--green:#2D6A4F;--water:#168AAD;--coral:#E76F51}
+*{box-sizing:border-box}body{margin:0;font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;background:var(--paper);color:var(--ink);line-height:1.55}
+.wrap{max-width:1180px;margin:auto;padding:0 20px 40px}header{padding:36px 0 18px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:12px;letter-spacing:.14em;color:var(--green);text-transform:uppercase}h1{font-size:32px;margin:8px 0 10px;font-family:"Avenir Next","Segoe UI",sans-serif}
+.lede{max-width:720px;color:var(--muted);margin:0}nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+nav a{font-size:12px;font-family:"Avenir Next","Segoe UI",sans-serif;color:var(--ink);text-decoration:none;border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:#fff}
+.grid{display:grid;grid-template-columns:1.4fr .8fr;gap:18px;margin-top:22px}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:18px}
+.card h2{font-size:18px;margin:0 0 8px;font-family:"Avenir Next","Segoe UI",sans-serif}.card p,.card li{font-size:14px;color:#44403C}
+.figure{width:100%;border-radius:8px;border:1px solid var(--line);display:block}
+.metrics{display:grid;gap:10px}.metric{border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--paper)}
+.metric span{display:block;font-size:11px;color:var(--muted)}.metric strong{font-size:22px;font-variant-numeric:tabular-nums}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.cols article{border-top:3px solid var(--green);padding-top:10px}
+.cols article:nth-child(2){border-top-color:var(--coral)}.cols article:nth-child(3){border-top-color:var(--water)}
+.scenes{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.scenes article{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:10px;min-height:110px}
+.scenes b{font-size:12px;font-family:"Avenir Next","Segoe UI",sans-serif}.scenes p{font-size:11px;color:var(--muted);margin:6px 0 0}
+.note{font-size:12px;color:var(--muted);margin-top:8px}
+@media(max-width:900px){.grid,.cols,.scenes{grid-template-columns:1fr}}
 </style>
 </head>
-<body><main>
-<nav class="markers" aria-label="Exhibit index"><a href="#overview">Overview</a><a href="#blueprint">Blueprint</a><a href="#framework">Three tiers</a><a href="#ecosystem">Ecosystem</a><a href="#case-comparison">Cases</a><a href="#eight-factors">Eight factors</a><a href="#factor-mechanisms">3-factor dig</a><a href="#key-areas">Key areas</a><a href="#land-use">Land use</a><a href="#mobility">Mobility</a><a href="#blue-green">Blue–green</a><a href="#landmark-catalog">Landmarks</a><a href="#contrib-band">Contrib band</a><a href="#pilgrimage-path">Pilgrimage</a><a href="#culture-triptych">3 cultures</a><a href="#culture-overlay">Culture overlay</a><a href="#culture-nodes">Culture nodes</a><a href="#ai-scenes">AI scenes</a><a href="#scenario-pins">Pins</a><a href="#future-day">Future day</a><a href="#ops-catalog">Ops catalog</a><a href="#coverage">Task coverage</a></nav>
-<section class="hero" id="overview">
-<div><div class="eyebrow">JING–ZHANG OPEN INTELLIGENCE LINE / 2026</div><h1>A Century of<br>Jing-Zhang<br><span style="color:var(--steel)">OPENLINE 100</span></h1>
-<p class="tagline">Reliable, trustworthy and controllable AI removes four urban gradients. Here technology and the humanities meet.</p><p class="lede">A century ago, herringbone switchback engineering overcame physical gradients; in the next century OPENLINE 100 removes gradients in information, movement, service and participation. People do not merely watch innovation—they can independently reach, use, correct and exit it.</p>
-<div class="metrics" id="metrics"><div class="metric" data-metric="site_area_sqm" data-value="11412825.385554"><b>11.41 km²</b><span>provisional boundary recomputed</span></div><div class="metric" data-metric="green_ratio" data-value="0.165836"><b>16.6%</b><span>conceptual green ratio</span></div><div class="metric" data-metric="public_space_ratio" data-value="0.024759"><b>2.5%</b><span>conceptual public-space ratio</span></div><div class="metric" data-metric="axis_segment_count" data-value="7"><b>7</b><span>axis space sequence</span></div><div class="metric" data-metric="renzi_motif_count" data-value="3"><b>3</b><span>station forms (one each)</span></div><div class="metric" data-metric="strategic_interface_count" data-value="3"><b>3+6</b><span>strategic / everyday interfaces</span></div></div></div>
-<div><img src="../assets/figures/site-overview.en.png" alt="OPENLINE 100 overview map and concept structure"></div></section>
+<body>
+<div class="wrap">
+<header>
+  <div class="eyebrow">Centennial Jing-Zhang AI Innovation Belt · provisional intake</div>
+  <h1>Why Jing-Zhang: The Openline 100</h1>
+  <p class="lede">Three chapters together: the Openline is the road, Open Ticket is the fare, rails of humanity is the soul. Authority remains in GeoJSON / metrics / matrices. Provisional footprints are not official redlines.</p>
+  <nav>
+    <a href="#overview">Overview</a><a href="#ticket">Road and ticket</a><a href="#capital">Capital loop</a><a href="#heritage">Rails of humanity</a><a href="#immerse">Walk in</a><a href="#wudaokou">Stitch deck</a>
+    <a href="#ecosystem">Ecosystem</a><a href="#regimes">Three regimes</a><a href="#mobility">Spine & stitches</a>
+    <a href="#scenes">Scenarios</a><a href="#metrics">Evidence</a><a href="../report/proposal.en.html">Readable report</a>
+  </nav>
+</header>
 
-<section class="section" id="human-charter"><div class="eyebrow">00 / HUMAN-CENTRED CHARTER</div><h2>From physical to urban gradients</h2><p class="lede">A century ago, Zhan Tianyou used herringbone switchback engineering to overcome physical gradients so ordinary trains could cross Guangou; in the next century, the OPENLINE 100 project uses reliable, trustworthy and controllable AI to remove gradients people face in the city—information, movement, service and participation. Here technology and the humanities meet.</p><div class="figure"><img src="../assets/figures/human-gradient-framework.en.png" alt="Remove four gradients from the city"></div></section>
-
-<section class="section" id="blueprint"><div class="eyebrow">00B / BLUEPRINT</div><h2>A blueprint that can be recalculated, stopped, and continued</h2>
-<p class="lede" style="max-width:760px;margin:0 0 14px">Seven story lines—geographic space, population, mobility, industry, livelihood, talent, capital—tell the people-first claim where tech and humanities meet. Recalculable · stoppable · continuable.</p>
-<div class="figure"><img src="../assets/figures/metrics-evidence.en.png" alt="People-first blueprint: seven story lines · three verbs"><p class="figure-caption">Core idea board: seven lines tell the claim; three verbs keep a stop key and recalc pipeline. District population is not downscaled to the site.</p></div>
-</section>
-
-<section class="section" id="framework"><div class="eyebrow">01 / FRAMEWORK</div><h2>Three tiers, one spine</h2>
-<p class="lede" style="max-width:760px;margin:0 0 22px">Tiers nest from large to small; one collaborative chain runs through all three and writes back to the same project passport—not four equal cards.</p>
-<div class="scope-frame">
-  <div class="scope-layer scope-l1">
-    <div class="scope-kicker">L1 · Strategic research</div>
-    <div class="scope-title"><h3>Why Haidian, why here</h3><b>~43.6 km²</b></div>
-    <p>A full ecology of research, open source, testing, incubation, capital and city adoption. District-level open data guides direction only—never downscaled into site facts.</p>
-    <div class="scope-layer scope-l2">
-      <div class="scope-kicker">L2 · Overall design</div>
-      <div class="scope-title"><h3>How the city carries it</h3><b>~11.4 km²</b></div>
-      <p>One axis, two wings, three engines, seven spaces, three station forms; west wing for professional services and patient capital, east wing for living scenes and community culture; axis–river weave as the public display layer.</p>
-      <div class="scope-layer scope-l3">
-        <div class="scope-kicker">L3 · Key areas</div>
-        <div class="scope-title"><h3>Where the first step happens</h3><b>~368.4 ha · three stations</b></div>
-        <p>Three stations, three gates (one form each): supply face + demand face; east wing as intake, stations as landing points.</p>
-        <div class="engine-row">
-          <div class="engine-chip"><strong>Zhongzhiyuan</strong><span>Verify × Accept · Switchback Loop</span></div>
-          <div class="engine-chip"><strong>AI Origin</strong><span>Translate × Transfer · Renzi Plaza</span></div>
-          <div class="engine-chip"><strong>Dazhongsi</strong><span>Adopt × Feedback · Four-Way Stitch</span></div>
-        </div>
-      </div>
+<section class="grid" id="overview">
+  <div class="card">
+    <h2>How five layers become one Openline</h2>
+    <img class="figure" src="../assets/figures/site-overview.en.png" alt="Exploded axonometric and recomposition">
+    <p class="note">Base → Ecology → Infra → Program → Activity · Sasaki v1.1 · provisional soft constraint</p>
+  </div>
+  <aside class="card">
+    <h2>Recomputed metrics</h2>
+    <div class="metrics">
+      <div class="metric"><span>site_area_sqm (provisional)</span><strong data-metric="site_area_sqm" data-value="11412825.386">11,412,825</strong></div>
+      <div class="metric"><span>green_ratio</span><strong data-metric="green_ratio" data-value="0.199641">0.200</strong></div>
+      <div class="metric"><span>public_space_ratio</span><strong data-metric="public_space_ratio" data-value="0.078955">0.079</strong></div>
+      <div class="metric"><span>key_area_count</span><strong data-metric="key_area_count" data-value="3">3</strong></div>
     </div>
+    <p class="note">FAR / height / density: block structure overlaid on the 2026-08-11 plan's public text; parcel intensity still unknown. Do not mix 1,668.2 ha with 11.41 km². Recalculate the whole package when adopted sheets arrive.</p>
+    <h2 style="margin-top:16px">Open Ticket</h2>
+    <p style="font-size:13px;color:#44403C;margin:0">Join · Verify · Exit · Inherit — walkable public rules; dual-line L1 Fact / L2 Spine + three east–west stitches.</p>
+  </aside>
+</section>
+
+<section class="card" id="ticket">
+  <h2>Open Ticket institutional section · the fare system of the Openline</h2>
+  <img class="figure" src="../assets/figures/open-ticket-governance.en.png" alt="Open Ticket institutional section: govern / space / data / time × Join / Verify / Exit / Inherit">
+  <p class="note">The Openline is the road; the Ticket is its rule of use—the 1909 right-of-way, rewritten as the citizen right-of-way of the digital century. Locked data trust, three-tier consent, one-click revocation with deletion receipt, versioned kit-of-parts. Governance concept, not adopted policy—to be co-built with district and data authorities.</p>
+</section>
+
+<section class="card" id="capital">
+  <h2>Three chapters side by side · capital-loop guide</h2>
+  <div class="cols">
+    <article><h3>Road and ticket</h3><p>The Openline is the road; Open Ticket is the fare. A line without a fare system is engineering. <a href="#ticket">See the institutional section</a></p></article>
+    <article><h3>Capital loop</h3><p>Each phase answers build / pay / operate / return. Reversibility is low risk.</p></article>
+    <article><h3>Rails of humanity</h3><p>In 1909 “ren” drew the line's shape; in this century it names whom the line belongs to. <a href="#heritage">See the soulful board</a></p></article>
   </div>
-</div>
-<div class="main-chain">
-  <div class="eyebrow">Collaborative chain · across all tiers</div>
-  <div class="chain-steps">
-    <div class="step"><em>01</em>Problem</div>
-    <div class="step"><em>02</em>Translate</div>
-    <div class="step"><em>03</em>Professional service</div>
-    <div class="step"><em>04</em>Trusted test</div>
-    <div class="step"><em>05</em>Incubate / patient capital</div>
-    <div class="step"><em>06</em>Feedback</div>
+  <img class="figure" src="../assets/figures/phasing-capital.en.png" alt="Capital logic: each phase answers build / pay / operate / return" style="margin-top:14px">
+  <p class="note">Special-purpose bond → district pooling → corporate adoption relay—not a multiple-choice. The Wudaokou deck is bolted, not poured: a wrong demo is not a sunk cost. Magnitudes only (A-CAPITAL-001), not a cost plan. Full phase table in the readable report and the winning-kit below.</p>
+</section>
+
+<section class="card" id="immerse">
+  <h2>Three walk-in atmospheres · space first</h2>
+  <p class="note">Urban design competition bar: atmosphere before consulting copy. Not CDs—but make people want to enter.</p>
+  <img class="figure" src="../assets/figures/immerse-l1-walk.en.png" alt="Walk in · L1 Fact Line">
+  <p class="note">① L1: rails underfoot · canopy overhead · Kilometer Zero ahead</p>
+  <img class="figure" src="../assets/figures/immerse-wudaokou-deck.en.png" alt="Walk in · Wudaokou stitch deck" style="margin-top:14px">
+  <p class="note">② Wudaokou: EVs below · people mid · view above · deepen after redline</p>
+  <img class="figure" src="../assets/figures/immerse-dazhongsi-aerial.en.png" alt="Walk in · Native Street" style="margin-top:14px">
+  <p class="note">③ Dazhongsi: SW street entry · SE school-safe · NW Bell Museum wayfinding · NE grocery—Adoption must be reachable</p>
+</section>
+
+<section class="card" id="heritage">
+  <h2>Rails of humanity · visible and soulful</h2>
+  <img class="figure" src="../assets/figures/rails-in-fabric.en.png" alt="L1 Fact Line place section: paving / trench / rail as seat">
+  <p class="note">Place section · one L1 ground, city on both sides. Paving / trench / old rail as seat—reviewers see steel, not icons.</p>
+  <img class="figure" src="../assets/figures/heritage-five-translations.en.png" alt="L1 five material translations as one place section" style="margin-top:14px">
+  <p class="note">One ground, five cuts: paving / trench / seat and lamp / thinking stone / talk by the rails.</p>
+  <img class="figure" src="../assets/figures/heritage-soul.en.png" alt="Heritage made soulful: 3 grades × 3 voices × 3 turns" style="margin-top:14px">
+  <p class="note">From preserving to continuing Jing-Zhang: 1909 the train turned on the ridge → 2026 the city turns over the built stock → this century AI turns on human rails. Grading is a literature framework pending survey; voice slots await real collection (A-HERITAGE-001).</p>
+</section>
+
+<section class="card" id="wudaokou">
+  <h2>Wudaokou stitch deck · OL-07</h2>
+  <img class="figure" src="../assets/figures/wudaokou-stitch-deck.en.png" alt="Wudaokou place section: existing city | L1 | three decks | heritage park">
+  <p class="note">Place section: existing city · L1 steel in the cut · piers · three paper-thin decks · Jing-Zhang heritage park. Deepen after redline—courage, not false precision.</p>
+    <img class="figure" src="../assets/figures/signature-wudaokou-deck.en.png" alt="Signature image · Wudaokou deck section-perspective: material, level change and real people" style="margin-top:14px">
+    <p class="note">Signature image: from concept engineering drawing to a section-perspective with material, level change and real people—the spatial proof of EVs below, people mid, view above.</p>
+</section>
+
+<section class="card" id="board-map">
+  <h2>Overview map · three-level scope · land-use structure</h2>
+  <p>Overview map with the three-level scope and land-use structure on the Openline.</p>
+  <img class="figure" src="../assets/figures/regional-structure.en.png" alt="Three areas + two wings are the engine; 43.6 is the bench">
+  <p class="note">43.6 is the bench; three areas and two wings are the engine. Science City North and the Jing-Zhang north continue are interfaces, not a second park. Qinghe is a river, not Qinghe Station.</p>
+  <img class="figure" src="../assets/figures/regional-bond.en.png" alt="The park is the bond; six actors sit in real geography" style="margin-top:14px">
+  <p class="note">The park is the bond. Campuses, parks, rail, firms and communities sit in real geography; Financial Street is a south-of-Xizhimen adjacency, not inside 43.6.</p>
+  <img class="figure" src="../assets/figures/site-overview.en.png" alt="Overview map" style="margin-top:14px">
+  <div class="cols" style="margin-top:14px">
+    <article><h3>Three-level scope · research</h3><p>43.6 km² ecosystem and future form.</p></article>
+    <article><h3>Three-level scope · overall</h3><p>11.4 km² regulatory-depth design. Overlay: approved block plan (16.68 km², north to Chengfu Rd)—one belt, one axis, two centers.</p></article>
+    <article><h3>Key areas</h3><p>Three directional detailed-design areas.</p></article>
   </div>
-  <p>L1 frames questions and actor mixes; L2 supplies space and wing interfaces; L3 checks the next gate. Capital enters only after the test gate.</p>
-</div>
-<div class="scope-aside">
-  <div class="card"><h3>Three positions × five functions</h3><p>Cultural belt · urban AI living belt · AI fusion innovation belt; full-stack autonomy · world-class ecology · AI+ paradigm · intelligent lively city · global AI governance voice.</p></div>
-  <div class="card"><h3>Three districts · two wings</h3><p>Zhongzhiyuan, AI Origin, Dazhongsi + Zhongguancun service wing + Xiaoyue River scene wing; east wing is demand intake, stations are accept / translate / feedback landings.</p></div>
-</div>
-<div class="figure" id="land-use"><img src="../assets/figures/land-use-structure.en.png" alt="One axis, two wings, three engines, seven spaces and land-use structure"><p class="figure-caption">One axis · two wings · three engines · seven spaces</p></div>
-<div class="figure" id="visual-identity"><img src="../assets/figures/visual-identity.en.png" alt="OPENLINE 100 belt brand visual identity: merge mark, palette, naming, don’ts"><p class="figure-caption">Belt brand VI: renzi-merge mark · four primaries · naming lock · don’ts</p></div>
-<div class="figure" id="visual-applications"><img src="../assets/figures/visual-applications.en.png" alt="OPENLINE 100 VI applications: wayfinding · Commit Plinth · passport cover"><p class="figure-caption">VI applications: wayfinding / Commit Plinth / passport cover</p></div>
-
 </section>
 
-<section class="section" id="ecosystem">
-<div class="eyebrow">01B / ECOSYSTEM</div>
-<h2>Ecosystem: cases · eight-factor table · three-factor dig</h2>
-<p class="lede" style="max-width:760px;margin:0 0 14px">Seven-gate chain + twelve actors; five-column case table (extract · this scheme translates · why it fits · do not copy); eight factors in one grammar—landing names a checkable seat, gates are hard preconditions, exits are operable stop keys; capital / compute / data dug one level deeper. Capital activates only after validation.</p>
-<div class="figure" id="ecosystem-actors"><img src="../assets/figures/ecosystem-actors.en.png" alt="Innovation ecosystem actor placement"><p class="figure-caption">Twelve actor classes on one axis, three gates and two wings</p></div>
-<div class="figure" id="case-comparison"><img src="../assets/figures/case-comparison.en.png" alt="Global case comparison: extract · translate · fit · do not copy"><p class="figure-caption">Case comparison v0.5.7: extract · this scheme translates · why it fits THIS project · do not copy</p></div>
-<div class="figure" id="eight-factors"><img src="../assets/figures/eight-factors.en.png" alt="Eight factor master table"><p class="figure-caption">Eight-factor master table v0.5.6: landing · entry gate · exit/stop</p></div>
-<div class="figure" id="factor-mechanisms"><img src="../assets/figures/factor-mechanisms.en.png" alt="Three factor mechanisms: capital · compute · data"><p class="figure-caption">Capital / compute / data: deeper one-pager (concept only)</p></div>
+<section class="card" id="board-key">
+  <h2>Key areas · winning-kit five</h2>
+  <img class="figure" src="../assets/figures/key-areas.en.png" alt="Why not one park template: Innovation Source / Native Street / Garden Innovation Street">
+  <img class="figure" src="../assets/figures/key-plans-2000.en.png" alt="Three 1:2000-level master plans" style="margin-top:14px">
+  <p class="note">1:2000-level block refinement, not a statutory sheet. Motherboard courts · conversion street · street wall.</p>
+  <img class="figure" src="../assets/figures/key-massing-skyline.en.png" alt="Massing and skyline" style="margin-top:14px">
+  <img class="figure" src="../assets/figures/key-eyes.en.png" alt="Five place sections: Zhongzhiyuan / Origin / Wudaokou / Dazhongsi / Qinghe" style="margin-top:14px">
+  <p class="note">Place sections, not one-point symbol streets. Cut to see the court, KM0, the deck, the station below, the river.</p>
+  <img class="figure" src="../assets/figures/key-sections.en.png" alt="Typical street sections" style="margin-top:14px">
+  <img class="figure" src="../assets/figures/key-phasing.en.png" alt="Phasing" style="margin-top:14px">
+  <img class="figure" src="../assets/figures/phasing-capital.en.png" alt="Capital logic: each phase answers build / pay / operate / return" style="margin-top:14px">
+  <p class="note">Phasing counterpart; capital-loop guide sits above at <a href="#capital">#capital</a>. Reversibility is low risk: bond → district pooling → corporate adoption relay. Magnitudes only (A-CAPITAL-001), not a cost plan.</p>
+  <p>Zhongzhiyuan (required competition key area / not covered by this block plan’s published extents) / Origin (Wudaokou center) / Dazhongsi (Dazhongsi center): building envelopes and renewal projects OL-01–OL-09; retain/renovate method only.</p>
 </section>
 
-<section class="section" id="key-areas"><div class="eyebrow">02 / THREE ENGINES</div><h2>Three stations, different gates</h2><div class="figure"><img src="../assets/figures/key-areas.en.png" alt="Detailed design of Zhongzhiyuan, Origin and Dazhongsi"></div><div class="figure"><img src="../assets/figures/station-forms.en.png" alt="Three station forms: Switchback Loop, Renzi Plaza, Four-Way Walk Stitch"></div><div class="grid2"><div class="card" id="buildings"><h3>Buildings &amp; renewal</h3><p>Prototype envelopes only test small clusters, open ground floors and reversible retrofit; FAR, height, density and real retain/renovate/demolish conclusions stay unknown.</p></div><div class="card" id="projects"><h3>12 renewal projects</h3><p>Each names a proposed owner, precondition, KPI and exit; operate first, light retrofit next, engineering last.</p></div></div></section>
-
-<section class="section" id="mobility"><div class="eyebrow">03 / PUBLIC COMMONS</div><h2>Seven spaces × axis–river weave · pilgrimage landmarks</h2><div class="figure" id="blue-green"><img src="../assets/figures/mobility-bluegreen.en.png" alt="Seven-space rhythm, interface grades, axis–river weave and five landmarks"></div><div class="figure" id="host-overlay"><img src="../assets/figures/host-design-layers.en.png" alt="Host × design overlay"><p class="figure-caption">Why 16.6%/2.5% must not be misread</p></div><div class="figure" id="rail-texture"><img src="../assets/figures/rail-texture-field.en.png" alt="Rail texture field"><p class="figure-caption">Ties · platform · under-bridge · memory · v0.5.15</p></div><div class="grid2"><div class="card"><h3>Seven spaces, not one corridor</h3><p>Each segment has a dominant public behavior—from trusted-test watching to quiet R&amp;D, school–city porch, Origin plaza, community living room, underpass dark exhibit, and Next Station Hall. Segment 03 stays medium intensity so the mid-axis climax remains at Origin Plaza.</p></div><div class="card"><h3>Five landmarks + second system</h3><p>Agent Garden, Station Zero, City Commit Wall, Commons Compiler and Next Station Hall encode five public acts; Qinghe and Xiaoyue River edges weave the axis into real water systems.</p></div></div>
-<div class="figure" id="landmark-catalog"><img src="../assets/figures/landmark-catalog.en.png" alt="Five landmarks master table: act · pin · kit · honor/exit"><p class="figure-caption">Landmark catalog v0.5.9 — same checkable grammar as scenario pins</p></div>
-<div class="figure" id="contrib-band"><img src="../assets/figures/contrib-band.en.png" alt="Contribution visibility band: Walk × SC-01 × Commit Wall"><p class="figure-caption">Contribution band: movement · gallery · honor wall · quiet edge</p></div>
-<div class="figure" id="pilgrimage-path"><img src="../assets/figures/pilgrimage-path.en.png" alt="Pilgrimage path: validate → translate → see → adopt"><p class="figure-caption">~90 min concept pilgrimage · N→S · child / access / night lines</p></div>
+<section class="card" id="board-mob">
+  <h2>Slow mobility · blue-green public space</h2>
+  <img class="figure" src="../assets/figures/mobility-bluegreen.en.png" alt="Mobility and blue-green">
+  <p>N–S Openline and E–W stitches; blue–green public space along the heritage-park band.</p>
+  <img class="figure" src="../assets/figures/eco-commitments.en.png" alt="Ecological commitments in numbers: verifiable targets each phase" style="margin-top:14px">
+  <p class="note">Blue–green is five numbers, not an adjective: carbon budget / runoff capture 75→85% / heat island −0.5→−2.0 °C / biodiversity net gain +5→+10% / canopy 25→35%. Sensors feed the civic data trust; the Verify gate publishes quarterly; misses trigger component-library fixes. Design targets (A-ECO-001), not measured results.</p>
 </section>
 
-<section class="section" id="culture-narrative"><div class="eyebrow">03B / CULTURE NARRATIVE</div><h2>Three cultures · overlay · node catalog</h2>
-<p class="lede" style="max-width:760px;margin:0 0 14px">agent.5: Rail × Zhongguancun × AI commons as one checkable table; overlay shares the spine with pilgrimage but does not replace it; C01–C10 feed Commit Walk / Passport tour.</p>
-<div class="figure" id="culture-triptych"><img src="../assets/figures/culture-triptych.en.png" alt="Three-cultures narrative table"><p class="figure-caption">Culture triptych v0.5.10: spirit · anchor · pin · object · do-not</p></div>
-<div class="figure" id="culture-overlay"><img src="../assets/figures/culture-overlay.en.png" alt="Dual-rail score"><p class="figure-caption">Culture stave / pilgrimage stave · bar lines = co-axial stops · not stacked cards</p></div>
-<div class="figure" id="culture-nodes"><img src="../assets/figures/culture-nodes.en.png" alt="Cultural nodes catalog"><p class="figure-caption">Ten checkable stops C01–C10</p></div>
+<section class="card" id="board-tasks">
+  <h2>Task coverage · self-check status</h2>
+  <p>Task coverage for announcement §§1.3–1.5 and agent.1–agent.6. Self-check status: provisional intake only; full recalculation after official polygons.</p>
+  <img class="figure" src="../assets/figures/metrics-evidence.en.png" alt="Metrics evidence">
 </section>
 
-<section class="section" id="ai-scenes"><div class="eyebrow">04 / AI IN EVERYDAY LIFE</div><h2>Pin the street · walk a day · 12 cards</h2>
-<p class="lede" style="max-width:760px;margin:0 0 14px">Pins first, then a day thread, then the card grid. Health / education / commerce carry street pins; SC-06 hosts on the Xiaoyuehe east wing. SC-02–05 are controlled validations; stop keys stay on.</p>
-<div class="figure" id="scenario-pins"><img src="../assets/figures/scenario-pins.en.png" alt="Scenario pin map: twelve SC on seven spaces, nine stitches, east wing"><p class="figure-caption">Scenario pin map v0.5.8 — concept pins, not addresses</p></div>
-<div class="figure" id="future-day"><img src="../assets/figures/scenario-day.en.png" alt="A future day on the axis: three persona threads"><p class="figure-caption">Future day: clinician/teacher · founder/maintainer · community organizer</p></div>
-<div class="figure"><img src="../assets/figures/scenario-cards.en.png" alt="Twelve street-level scenario cards: place, boundary and stop conditions"></div>
-<div class="figure" id="human-first-services"><img src="../assets/figures/human-first-services.en.png" alt="Three human-centred flagship services"><p class="figure-caption">AI stays backstage · no app / login / scan · human owner · exit any time</p></div>
-<div class="scenario-grid">
-  <div class="scenario-item"><span class="sid">SC-01</span><span class="domain">Culture + research</span><h3>Open-source exhibit corridor</h3><p>Origin E04 · Developer Walk<br>Authorized public · retractable corrections</p><p class="stop">Stop: unmaintained or authorization withdrawn</p></div>
-  <div class="scenario-item validated"><span class="sid">SC-02</span><span class="badge">VAL A</span><span class="domain">AI + health</span><h3>Primary-care eye-health station</h3><p>N station → Jimen/Xiaoyuehe clinic interface<br>Clinician review · no auto-diagnosis</p><p class="stop">Stop: clinical safety / appeal over line</p></div>
-  <div class="scenario-item validated"><span class="sid">SC-03</span><span class="badge">VAL B</span><span class="domain">AI + education</span><h3>Teacher lesson co-creation</h3><p>Origin school-city stitch · near-campus porch<br>Teacher review · no auto penalties</p><p class="stop">Stop: error or opt-out complaints over line</p></div>
-  <div class="scenario-item validated"><span class="sid">SC-04</span><span class="badge">VAL C</span><span class="domain">AI + mobility</span><h3>Non-surveillance walking aid</h3><p>Nine stitch mouths (3+6)<br>Anonymous aggregate · no enforcement</p><p class="stop">Stop: re-ID risk or high false positives</p></div>
-  <div class="scenario-item validated"><span class="sid">SC-05</span><span class="badge">VAL D</span><span class="domain">AI + commerce</span><h3>Shop-operations copilot</h3><p>Living-street GF after 4-way stitch<br>Merchant opt-in · no sensitive profiling</p><p class="stop">Stop: opaque pricing or net-revenue drop</p></div>
-  <div class="scenario-item"><span class="sid">SC-06</span><span class="domain">AI + governance</span><h3>City repair Pull Request</h3><p>Xiaoyuehe east wing · community assets<br>AI classifies · humans dispatch</p><p class="stop">Stop: lasting classification drift</p></div>
-  <div class="scenario-item"><span class="sid">SC-07</span><span class="domain">AI + energy</span><h3>Low-carbon compute display</h3><p>Zhongzhiyuan indoor + Qinghe edge<br>Facility-level data · measure before build</p><p class="stop">Stop: energy/fire conditions unmet</p></div>
-  <div class="scenario-item"><span class="sid">SC-08</span><span class="domain">AI + professional</span><h3>Law &amp; IP clinic</h3><p>Station Zero<br>Licensed practitioners issue opinions</p><p class="stop">Stop: machine opinion mistaken as formal</p></div>
-  <div class="scenario-item"><span class="sid">SC-09</span><span class="domain">AI + culture</span><h3>City memory decoder</h3><p>Historic interpretation points<br>Curator review · heritage first</p><p class="stop">Stop: heritage prerequisites unmet</p></div>
-  <div class="scenario-item"><span class="sid">SC-10</span><span class="domain">AI + public space</span><h3>Park quiet-hours scheduling</h3><p>E05 five garden rooms<br>Human decides · free access first</p><p class="stop">Stop: events crowding out publicness</p></div>
-  <div class="scenario-item"><span class="sid">SC-11</span><span class="domain">AI + talent</span><h3>International collaboration passport</h3><p>Three-station desks<br>Voluntary profile · no tracking</p><p class="stop">Stop: bias / harassment appeals over line</p></div>
-  <div class="scenario-item"><span class="sid">SC-12</span><span class="domain">Safety infrastructure</span><h3>Agent Garden red-team contest</h3><p>North Station controlled field<br>Synthetic tasks · tiered disclosure</p><p class="stop">Stop: major issues unfixed → no city pilot</p></div>
-</div>
-<div class="card"><h3>Shared baseline</h3><p>Data minimization · purpose limitation · human responsibility · explainability · appeal · exit. Formal pilots require ethics/safety, procurement, data and professional review. Pins are concept priority—no fake addresses.</p></div>
+<section class="card" id="ecosystem">
+  <h2>AI innovation ecosystem map · 17 actor types</h2>
+  <img class="figure" src="../assets/figures/ecosystem-map.en.png" alt="AI innovation ecosystem relationship map">
+  <p class="note">Role-type map—no named institutions, firms, or amounts. Center: full-stack R&D | open questions | urban adoption + two wings. Flows: problem / adoption / resource / commons.</p>
 </section>
 
-<section class="section" id="long-term-ops"><div class="eyebrow">05 / LONG-TERM OPS</div><h2>Annual operating products</h2>
-<p class="lede" style="max-width:760px;margin:0 0 14px">agent.6: A01–A08 checkable; closed loop and inbound/on-site/outbound bands stay in prose—catalog is the plate. One week ≠ fifty-one.</p>
-<div class="figure" id="ops-catalog"><img src="../assets/figures/ops-catalog.en.png" alt="Annual ops catalog A01–A08"><p class="figure-caption">Ops catalog: rhythm · host · owner · I/O · KPI/stop</p></div>
-</section>
-
-<section class="section" id="coverage"><div class="eyebrow">05 / EVIDENCE</div><h2>From claim back to data</h2>
-<p class="lede" style="max-width:720px;margin:0 0 8px">See the core idea board under <a href="#blueprint" style="color:var(--steel)">Blueprint</a>. This section lists agent task coverage and self-checks only.</p>
-<h3 style="margin:8px 0 6px;color:var(--ink)">Agent task coverage (agent.1–agent.6)</h3>
-<p class="lede" style="max-width:720px;margin:0 0 14px">Each task lands on concrete evidence—no empty labels.</p>
-<div class="cover-grid">
-  <div class="cover-item"><div class="num">01</div><h3>Overall concept</h3><p>Dual naming + belt brand VI (renzi-merge mark / four colors / don’ts); one axis, two wings, three engines, seven spaces, three forms.</p><span class="status">DELIVERED</span></div>
-  <div class="cover-item"><div class="num">02</div><h3>Innovation ecology</h3><p>Seven-gate open chain, collaborative spine, seven case translations, twelve actor classes.</p><span class="status">DELIVERED</span></div>
-  <div class="cover-item"><div class="num">03</div><h3>Future living</h3><p>Pin map + future-day threads + twelve cards; street pins for health/edu/commerce; SC-06 east-wing host.</p><span class="status">DELIVERED</span></div>
-  <div class="cover-item"><div class="num">04</div><h3>Public landmarks</h3><p>Five landmarks + developer walkway as maintainable public acts.</p><span class="status">DELIVERED</span></div>
-  <div class="cover-item"><div class="num">05</div><h3>Cultural narrative</h3><p>Rail→Code→Commons tour; Suzhou-numeral milestones; failure cabinets and retractable honor.</p><span class="status">DELIVERED</span></div>
-  <div class="cover-item"><div class="num">06</div><h3>Global programs</h3><p>A01–A08 catalog; loop and global bands in prose; passport as international entry.</p><span class="status">DELIVERED</span></div>
-</div>
-<div class="gate-bar" id="self-check">
-  <div class="eyebrow">Package self-check · FOUR GATES</div>
-  <div class="gate-row">
-    <div class="gate"><strong>Boundary honesty</strong><span>Provisional boundary labeled; never sold as a redline</span></div>
-    <div class="gate"><strong>Readable evidence</strong><span>Geometry · metrics · narrative share one citation chain</span></div>
-    <div class="gate"><strong>Gap disclosure</strong><span>Controls / tenure / transit unknowns made explicit</span></div>
-    <div class="gate"><strong>Offline static</strong><span>No scripts · no remote assets · no tracking</span></div>
+<section class="card" id="regimes">
+  <h2>Three regimes — not one park template</h2>
+  <div class="cols">
+    <article><h3>Zhongzhiyuan · Upgradeable Urban Motherboard</h3><p>The shared base stays stable while five R&D unit types keep upgrading; the Full-Stack Collaboration Street links upstream and downstream teams, and the governance center embeds standards, safety, and responsibility in R&D. Do not rebuild the Jing-Zhang Ring.</p></article>
+    <article><h3>AI Origin · source-across-the-wall ecology</h3><p>Authorization window + eight-find co-location + open release + community micro-scenes; the Failure Case Library is Card 01's inherit interface, not the whole 104 ha. No claimed campus/owner consent. Official ~3 km² does not replace 104 ha.</p></article>
+    <article><h3>Dazhongsi · Native Street</h3><p>Verified capability must go on the street: try / buy / subscribe / refuse. Station integration and four quadrants are arrival only. No replica bell; do not rename the mall atrium.</p></article>
   </div>
-  <p>Machine self-check passed; human lock awaits official geometry before final freeze.</p>
+</section>
+
+<section class="card" id="scenes">
+  <h2>Three full-depth scenario cards + ten-item scene index</h2>
+  <div class="scenes">
+    <article><b>Card 01 AI+Origin Community · How origination crosses the wall</b><p>Rights → match → claim → use → leave · skip one link and it is only a near-campus park</p></article>
+    <article><b>Card 02 Dazhongsi · Verified capability must go on the street</b><p>Street rule ‖ off-street exception ‖ living remainder · 8 minutes only tests a passerby</p></article>
+    <article><b>Card 03 Zhongzhiyuan · How the full stack upgrades without demolishing the city</b><p>Invariant / variable / license · 15 minutes only tests readability after change</p></article>
+    <article><b>S-01 Open-source hall</b><p>Origin · standalone form of Card 01 open release</p></article>
+    <article><b>S-02 Safety sandbox</b><p>Governance center + controlled Embodied AI ground · visible at the public explanation interface</p></article>
+    <article><b>S-03 Edge-compute station</b><p>Spine node · test</p></article>
+    <article><b>S-04 AI walking nav</b><p>Spine · opt-out</p></article>
+    <article><b>S-05 Pitch hall</b><p>Dazhongsi · cleared media</p></article>
+    <article><b>S-06 Qinghe low-carbon innovation corridor</b><p>Shared green base · human patrol</p></article>
+    <article><b>S-07 Conversion street</b><p>Origin · human legal window</p></article>
+    <article><b>S-08 Data-element parlor</b><p>Adoption · test</p></article>
+    <article><b>S-09 Answer before the call</b><p>Xiaoyuehe-wing stations · hear/anticipate/resolve · not a key-area depth card</p></article>
+    <article><b>S-10 Activity Week route</b><p>Belt public system</p></article>
+  </div>
+</section>
+
+<section class="card" id="metrics">
+  <h2>Evidence and gaps</h2>
+  <img class="figure" src="../assets/figures/metrics-evidence.en.png" alt="Metrics evidence figure">
+  <p>Sources: sources.json · Assumptions: A-CONTROLS-001 / A-PROV-BOUNDARY-001 / A-OPENLINE-CONCEPT-001 · empty constraints.geojson beats invented control lines.</p>
+  <p class="note">Offline static page: no CDN, remote tiles, external fonts, iframes, or APIs.</p>
+</section>
 </div>
-<div class="warning" id="assumptions"><strong>Assumptions:</strong> All spatial quantities on this page are recomputed from the repository provisional boundary and this package’s conceptual layers—not official redlines, statutory controls or construction commitments. Recompute wholesale when official data arrives. Public space and green layers overlap; ratios must not be added.</div>
-<div class="card" id="sources" style="margin-top:16px"><h3>Sources</h3><p>Open-call announcement, repository site package, Beijing/Haidian public statistics, and first-party pages from The Engine, Station F, Nesta, AI Singapore, Helsinki, Seoul and Tsukuba. Full URLs, uses and limits live in sources.json.</p></div></section>
-<footer class="footer"><span>OPENLINE 100 / COMMUNITY-DISPLAY-ONLY / EN</span><span>Offline static · no scripts · no remote assets · no tracking</span></footer>
-</main></body></html>
+</body>
+</html>

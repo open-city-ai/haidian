@@ -7,18 +7,77 @@
  * implements the same MT19937 initialization and 53-bit random() construction,
  * then recomputes all 64 runs from the published inputs.
  *
+ * The computation it verifies is the Seeded Kruskal minimum-spanning-tree topology
+ * and selection-instability probe over hand-declared candidate edges.
+ *
  * It verifies computation, not urban truth: every node attribute and candidate
  * edge is a disclosed conceptual policy proxy rather than observed site data.
+ *
+ * Both frozen assets are opened read-only through absolute paths, so the script runs
+ * from any working directory, while the report cites the two stable package-relative
+ * locations. Nothing here writes to disk.
  */
 
 const fs = require("fs");
 const path = require("path");
 
 const METHOD_ID = "adaptive_jingzhang.topology_proxy_ensemble.v0";
+const METHOD_NAME_EN = "Seeded Kruskal minimum-spanning-tree topology and selection-instability probe over hand-declared candidate edges.";
+const METHOD_NAME_ZH = "在人工声明的候选边上运行的带种子 Kruskal 最小生成树拓扑与选择不稳定性探针。";
 const SEED_COUNT = 64;
 const EXTRA_EDGE_COUNT = 2;
 const PERSISTENT_THRESHOLD = 0.7;
 const DISAGREEMENT_THRESHOLD = 0.35;
+
+// The anisotropic normalized-to-metre scale is a declared constant of the method, not a
+// quantity the reproducer is free to solve for. Fitting it from the same 24 lengths that
+// are then checked against it would make the check circular: any coordinate corruption
+// would simply move the fit and still "verify". These two numbers are therefore fixed and
+// executable, and every candidate length is rebuilt from them and compared.
+const X_SCALE_M = 1374.006827;
+const Y_SCALE_M = 9723.469847;
+// Residual validation tolerance only. It is the largest accepted disagreement, in metres,
+// between a recorded edge length and the same length rebuilt from the constants above. It
+// is never used to round a value and never used to relax the constants.
+const SCALE_RESIDUAL_TOLERANCE_M = 0.001;
+
+// The reproducer publishes the numbers a reader is invited to quote, and asserts each one
+// against a value it recomputes from the frozen assets on this run. The literals below are
+// the expectation, never the source: if the frozen data ever stops producing them the run
+// aborts and names the disagreement instead of quietly publishing a different number.
+const PUBLISHED_EXPECTATIONS = {
+  selection_count_bands: {
+    persistent: [45, 64],
+    disagreement: [23, 44],
+    not_selected: [0, 22],
+  },
+  effective_persistent_cutoff: 0.703125,
+  effective_disagreement_cutoff: 0.359375,
+  knife_edge_frequency: 0.6875,
+  knife_edge_edges: ["E05", "E13"],
+  cutoff_gap: 0.0125,
+  persistence_graph_components: {
+    "0.70": [["N0", "N1", "N2"], ["N3", "N4", "N5"], ["N6"], ["N7", "N8", "N9"]],
+    "0.6875": [["N0", "N1", "N2", "N3", "N4", "N5", "N6"], ["N7", "N8", "N9"]],
+    "0.50": "connected",
+    "0.35": "connected",
+  },
+  zero_jitter_ablation: {
+    persistent_edges: 11,
+    disagreement_band_edges: 0,
+    persistence_graph: "connected",
+  },
+};
+
+// Serialized into the report verbatim so a reader can cite one stable location for the two
+// frozen assets. The files themselves are resolved absolutely, so the run is cwd-independent.
+const PACKAGE_RELATIVE_ASSETS = {
+  inputs: "visual/assets/physarum-inputs.json",
+  runs: "visual/assets/physarum-runs.json",
+};
+
+const LIMITATION_EN = "Selection frequency describes behaviour under the disclosed weight ranges and jitter policy over the hand-declared candidate graph; it does not establish public legitimacy or an observed Beijing condition.";
+const LIMITATION_ZH = "入选频率描述的是在已公开的权重范围与抖动策略下、在人工声明的候选图上的行为；它不能确立公共合法性，也不能确立任何已观测到的北京现状。";
 const WEIGHT_ORDER = [
   "length",
   "equity_gain",
@@ -241,6 +300,43 @@ function statusFor(frequency) {
   return "discarded_in_this_reference_run";
 }
 
+// One seed of the ensemble. `useJitter` is the only difference between the published run
+// and the zero-jitter ablation: the jitter draw is consumed either way, so both variants
+// read the same stream position for every edge and differ in exactly one term of the score.
+function selectForSeed(seed, edges, nodeIds, useJitter) {
+  const rng = new PythonRandom(seed);
+  const rawWeights = WEIGHT_ORDER.map((name) => rng.uniform(...WEIGHT_RANGES[name]));
+  const weightTotal = rawWeights.reduce((total, value) => total + value, 0);
+  const weights = rawWeights.map((value) => value / weightTotal);
+  const scored = edges.map((edge) => {
+    const jitter = rng.uniform(...JITTER_RANGE);
+    const score = weights[0] * edge.length_norm
+      - weights[1] * edge.equity_gain_proxy
+      - weights[2] * edge.climate_gain_proxy
+      + weights[3] * edge.heritage_review_proxy
+      + weights[4] * edge.maintenance_proxy
+      + (useJitter ? jitter : 0);
+    return { score, edge };
+  });
+  const tree = chooseTree(scored, nodeIds);
+  const used = new Set(tree.map((edge) => edge.id));
+  const extras = [...scored].sort(scoreCompare)
+    .filter((item) => !used.has(item.edge.id))
+    .slice(0, EXTRA_EDGE_COUNT)
+    .map((item) => item.edge);
+  return { weights, selected: [...tree, ...extras] };
+}
+
+function selectionCounts(edges, nodeIds, useJitter) {
+  const counts = new Map(edges.map((edge) => [edge.id, 0]));
+  for (let seed = 0; seed < SEED_COUNT; seed += 1) {
+    for (const edge of selectForSeed(seed, edges, nodeIds, useJitter).selected) {
+      counts.set(edge.id, counts.get(edge.id) + 1);
+    }
+  }
+  return counts;
+}
+
 function buildEdges(inputs, comparisons) {
   if (!Array.isArray(inputs.nodes) || !Array.isArray(inputs.edges)) {
     throw new Error("input asset must contain node and edge arrays");
@@ -298,6 +394,276 @@ function buildEdges(inputs, comparisons) {
   return { nodeIds: [...nodes.keys()], edges };
 }
 
+// The frozen input publishes node positions only as normalized coordinates. Metres come
+// from the two declared scale constants above, never from a fit over the same lengths that
+// are then validated. For every edge the reproducer rebuilds
+//   length_m = hypot(dx * X_SCALE_M, dy * Y_SCALE_M)
+// at full binary64 precision and compares it with the recorded length. The tolerance is a
+// pass/fail bound on that residual; an edge outside it aborts the run by name.
+function reconstructCoordinateScale(inputs) {
+  const byId = new Map(inputs.nodes.map((node) => [node.id, node]));
+  const residuals = {};
+  const offenders = [];
+  let worstResidual = 0;
+  let worstEdgeId = null;
+  for (const edge of inputs.edges) {
+    const p = byId.get(edge.a);
+    const q = byId.get(edge.b);
+    const reconstructed = Math.hypot(
+      (p.x_normalized - q.x_normalized) * X_SCALE_M,
+      (p.y_normalized - q.y_normalized) * Y_SCALE_M,
+    );
+    const residual = Math.abs(reconstructed - edge.length_m);
+    residuals[edge.id] = residual;
+    if (residual > worstResidual) {
+      worstResidual = residual;
+      worstEdgeId = edge.id;
+    }
+    if (!(residual <= SCALE_RESIDUAL_TOLERANCE_M)) {
+      offenders.push({ edge_id: edge.id, recorded_m: edge.length_m, reconstructed_m: reconstructed, residual_m: residual });
+    }
+  }
+  if (offenders.length > 0) {
+    const named = offenders
+      .sort((left, right) => right.residual_m - left.residual_m)
+      .map((item) => (
+        `${item.edge_id} (recorded ${item.recorded_m} m, reconstructed ${item.reconstructed_m} m, `
+        + `residual ${item.residual_m} m)`
+      ))
+      .join("; ");
+    throw new Error(
+      `the declared coordinate scale X_SCALE_M=${X_SCALE_M}, Y_SCALE_M=${Y_SCALE_M} does not `
+      + `reproduce the recorded length of ${offenders.length} edge(s) within the `
+      + `${SCALE_RESIDUAL_TOLERANCE_M} m validation tolerance: ${named}. The constants are `
+      + "fixed; the reproducer does not re-fit them to make a corrupted input verify.",
+    );
+  }
+  return {
+    sx: X_SCALE_M,
+    sy: Y_SCALE_M,
+    worst_residual_m: worstResidual,
+    worst_residual_edge_id: worstEdgeId,
+    residuals_m: residuals,
+  };
+}
+
+// Connected components of an edge subset over the full node set, returned as sorted node
+// lists in sorted order so two runs of the same graph always serialize identically.
+function connectedComponents(nodeIds, edgeList) {
+  const parent = new Map(nodeIds.map((id) => [id, id]));
+  function find(id) {
+    let current = id;
+    while (parent.get(current) !== current) {
+      parent.set(current, parent.get(parent.get(current)));
+      current = parent.get(current);
+    }
+    return current;
+  }
+  for (const edge of edgeList) {
+    const rootA = find(edge.a);
+    const rootB = find(edge.b);
+    if (rootA !== rootB) parent.set(rootA, rootB);
+  }
+  const groups = new Map();
+  for (const id of nodeIds) {
+    const root = find(id);
+    if (!groups.has(root)) groups.set(root, []);
+    groups.get(root).push(id);
+  }
+  return [...groups.values()]
+    .map((group) => [...group].sort())
+    .sort((left, right) => {
+      if (left[0] < right[0]) return -1;
+      if (left[0] > right[0]) return 1;
+      return 0;
+    });
+}
+
+// "connected" is published in place of a single-component partition so the reader sees the
+// same word the proposal uses, and so the assertion compares like with like.
+function componentsOrConnected(nodeIds, edgeList) {
+  const components = connectedComponents(nodeIds, edgeList);
+  return components.length === 1 ? "connected" : components;
+}
+
+function shortestPathMatrix(nodeIds, edgeList) {
+  const index = new Map(nodeIds.map((id, position) => [id, position]));
+  const size = nodeIds.length;
+  const dist = Array.from({ length: size }, (_, i) => Array.from(
+    { length: size },
+    (_, j) => (i === j ? 0 : Infinity),
+  ));
+  for (const edge of edgeList) {
+    const i = index.get(edge.a);
+    const j = index.get(edge.b);
+    if (edge.length_m < dist[i][j]) {
+      dist[i][j] = edge.length_m;
+      dist[j][i] = edge.length_m;
+    }
+  }
+  for (let k = 0; k < size; k += 1) {
+    for (let i = 0; i < size; i += 1) {
+      const dik = dist[i][k];
+      if (dik === Infinity) continue;
+      for (let j = 0; j < size; j += 1) {
+        const candidate = dik + dist[k][j];
+        if (candidate < dist[i][j]) dist[i][j] = candidate;
+      }
+    }
+  }
+  return dist;
+}
+
+function unorderedPairs(size) {
+  const pairs = [];
+  for (let i = 0; i < size; i += 1) {
+    for (let j = i + 1; j < size; j += 1) pairs.push([i, j]);
+  }
+  return pairs;
+}
+
+// Global efficiency with 1/d taken as 0 for pairs left unreachable by an edge removal,
+// so a removal that disconnects the graph is penalised rather than silently skipped.
+function globalEfficiency(dist, pairs) {
+  let total = 0;
+  for (const [i, j] of pairs) {
+    total += dist[i][j] === Infinity ? 0 : 1 / dist[i][j];
+  }
+  return total / pairs.length;
+}
+
+// Every number the package quotes about the selection structure is recomputed here from
+// the frozen counts and then checked against PUBLISHED_EXPECTATIONS. A disagreement is a
+// finding about the data, so it aborts the run and names both values rather than being
+// absorbed into a silently updated report.
+function computePublishedNumbers(edges, nodeIds, counts, zeroJitterCounts) {
+  const frequencyOf = (id) => counts.get(id) / SEED_COUNT;
+  // The declared cutoffs are real-valued, but a selection count is an integer out of 64,
+  // so each cutoff has an effective integer band. These are derived, not assumed.
+  const minPersistentCount = Math.ceil(PERSISTENT_THRESHOLD * SEED_COUNT);
+  const minDisagreementCount = Math.ceil(DISAGREEMENT_THRESHOLD * SEED_COUNT);
+  const bands = {
+    persistent: [minPersistentCount, SEED_COUNT],
+    disagreement: [minDisagreementCount, minPersistentCount - 1],
+    not_selected: [0, minDisagreementCount - 1],
+  };
+
+  const grouped = { persistent: [], disagreement: [], not_selected: [] };
+  for (const edge of edges) {
+    const status = statusFor(frequencyOf(edge.id));
+    if (status === "persistent_candidate") grouped.persistent.push(edge);
+    else if (status === "disagreement_candidate") grouped.disagreement.push(edge);
+    else grouped.not_selected.push(edge);
+  }
+
+  const bandReport = {};
+  const bandFailures = [];
+  for (const [name, [low, high]] of Object.entries(bands)) {
+    const observed = grouped[name].map((edge) => counts.get(edge.id));
+    for (const edge of grouped[name]) {
+      const count = counts.get(edge.id);
+      if (count < low || count > high) {
+        bandFailures.push(`${edge.id} holds ${count} of ${SEED_COUNT} selections, outside the ${name} band ${low}-${high}`);
+      }
+    }
+    bandReport[name] = {
+      band: [low, high],
+      edges: grouped[name].length,
+      observed_min_count: observed.length > 0 ? Math.min(...observed) : null,
+      observed_max_count: observed.length > 0 ? Math.max(...observed) : null,
+    };
+  }
+  if (bandFailures.length > 0) {
+    throw new Error(`selection counts fall outside their declared bands: ${bandFailures.join("; ")}`);
+  }
+
+  const disagreementCounts = grouped.disagreement.map((edge) => counts.get(edge.id));
+  const knifeEdgeCount = Math.max(...disagreementCounts);
+  const knifeEdgeFrequency = knifeEdgeCount / SEED_COUNT;
+  const knifeEdgeEdges = grouped.disagreement
+    .filter((edge) => counts.get(edge.id) === knifeEdgeCount)
+    .map((edge) => edge.id)
+    .sort();
+
+  const componentThresholds = [
+    ["0.70", PERSISTENT_THRESHOLD],
+    ["0.6875", knifeEdgeFrequency],
+    ["0.50", 0.5],
+    ["0.35", DISAGREEMENT_THRESHOLD],
+  ];
+  const componentsByThreshold = {};
+  for (const [label, threshold] of componentThresholds) {
+    componentsByThreshold[label] = componentsOrConnected(
+      nodeIds,
+      edges.filter((edge) => frequencyOf(edge.id) >= threshold),
+    );
+  }
+
+  const zeroJitterFrequencyOf = (id) => zeroJitterCounts.get(id) / SEED_COUNT;
+  const zeroJitterPersistent = edges.filter(
+    (edge) => statusFor(zeroJitterFrequencyOf(edge.id)) === "persistent_candidate",
+  );
+  const zeroJitterDisagreement = edges.filter(
+    (edge) => statusFor(zeroJitterFrequencyOf(edge.id)) === "disagreement_candidate",
+  );
+
+  const computed = {
+    runs: SEED_COUNT,
+    selection_count_bands: bandReport,
+    effective_cutoffs: {
+      persistent_declared_frequency: PERSISTENT_THRESHOLD,
+      persistent_effective_count: minPersistentCount,
+      persistent_effective_frequency: minPersistentCount / SEED_COUNT,
+      disagreement_declared_frequency: DISAGREEMENT_THRESHOLD,
+      disagreement_effective_count: minDisagreementCount,
+      disagreement_effective_frequency: minDisagreementCount / SEED_COUNT,
+      knife_edge_count: knifeEdgeCount,
+      knife_edge_frequency: knifeEdgeFrequency,
+      knife_edge_edges: knifeEdgeEdges,
+      cutoff_gap: Number((PERSISTENT_THRESHOLD - knifeEdgeFrequency).toFixed(6)),
+      cutoff_gap_definition: "declared persistent cutoff minus the highest frequency any disagreement edge reaches",
+    },
+    persistence_graph_components: componentsByThreshold,
+    zero_jitter_ablation: {
+      persistent_edges: zeroJitterPersistent.length,
+      persistent_edge_ids: zeroJitterPersistent.map((edge) => edge.id),
+      disagreement_band_edges: zeroJitterDisagreement.length,
+      disagreement_band_edge_ids: zeroJitterDisagreement.map((edge) => edge.id),
+      persistence_graph: componentsOrConnected(nodeIds, zeroJitterPersistent),
+    },
+  };
+
+  const assertions = [
+    ["selection_count_bands.persistent", PUBLISHED_EXPECTATIONS.selection_count_bands.persistent, bandReport.persistent.band],
+    ["selection_count_bands.disagreement", PUBLISHED_EXPECTATIONS.selection_count_bands.disagreement, bandReport.disagreement.band],
+    ["selection_count_bands.not_selected", PUBLISHED_EXPECTATIONS.selection_count_bands.not_selected, bandReport.not_selected.band],
+    ["effective_persistent_cutoff", PUBLISHED_EXPECTATIONS.effective_persistent_cutoff, computed.effective_cutoffs.persistent_effective_frequency],
+    ["effective_disagreement_cutoff", PUBLISHED_EXPECTATIONS.effective_disagreement_cutoff, computed.effective_cutoffs.disagreement_effective_frequency],
+    ["knife_edge_frequency", PUBLISHED_EXPECTATIONS.knife_edge_frequency, knifeEdgeFrequency],
+    ["knife_edge_edges", PUBLISHED_EXPECTATIONS.knife_edge_edges, knifeEdgeEdges],
+    ["cutoff_gap", PUBLISHED_EXPECTATIONS.cutoff_gap, computed.effective_cutoffs.cutoff_gap],
+    ["zero_jitter_ablation.persistent_edges", PUBLISHED_EXPECTATIONS.zero_jitter_ablation.persistent_edges, computed.zero_jitter_ablation.persistent_edges],
+    ["zero_jitter_ablation.disagreement_band_edges", PUBLISHED_EXPECTATIONS.zero_jitter_ablation.disagreement_band_edges, computed.zero_jitter_ablation.disagreement_band_edges],
+    ["zero_jitter_ablation.persistence_graph", PUBLISHED_EXPECTATIONS.zero_jitter_ablation.persistence_graph, computed.zero_jitter_ablation.persistence_graph],
+  ];
+  for (const [label, expected] of Object.entries(PUBLISHED_EXPECTATIONS.persistence_graph_components)) {
+    assertions.push([`persistence_graph_components["${label}"]`, expected, componentsByThreshold[label]]);
+  }
+
+  const drift = assertions
+    .filter(([, expected, actual]) => !sameValue(expected, actual))
+    .map(([label, expected, actual]) => (
+      `${label}: published ${canonical(expected)}, recomputed ${canonical(actual)}`
+    ));
+  if (drift.length > 0) {
+    throw new Error(
+      `the frozen assets no longer produce the published selection-structure numbers: ${drift.join("; ")}. `
+      + "This is a finding about the data, not a number to update.",
+    );
+  }
+  return computed;
+}
+
 function validateFromAssets() {
   const assetPaths = locateAssets();
   const inputs = readJson(assetPaths.inputs);
@@ -345,27 +711,7 @@ function validateFromAssets() {
   const counts = new Map(edges.map((edge) => [edge.id, 0]));
   const selectedPerRun = nodeIds.length - 1 + EXTRA_EDGE_COUNT;
   for (let seed = 0; seed < SEED_COUNT; seed += 1) {
-    const rng = new PythonRandom(seed);
-    const rawWeights = WEIGHT_ORDER.map((name) => rng.uniform(...WEIGHT_RANGES[name]));
-    const weightTotal = rawWeights.reduce((total, value) => total + value, 0);
-    const weights = rawWeights.map((value) => value / weightTotal);
-    const scored = edges.map((edge) => {
-      const jitter = rng.uniform(...JITTER_RANGE);
-      const score = weights[0] * edge.length_norm
-        - weights[1] * edge.equity_gain_proxy
-        - weights[2] * edge.climate_gain_proxy
-        + weights[3] * edge.heritage_review_proxy
-        + weights[4] * edge.maintenance_proxy
-        + jitter;
-      return { score, edge };
-    });
-    const tree = chooseTree(scored, nodeIds);
-    const used = new Set(tree.map((edge) => edge.id));
-    const extras = [...scored].sort(scoreCompare)
-      .filter((item) => !used.has(item.edge.id))
-      .slice(0, EXTRA_EDGE_COUNT)
-      .map((item) => item.edge);
-    const selected = [...tree, ...extras];
+    const { weights, selected } = selectForSeed(seed, edges, nodeIds, true);
     const selectedIds = selected.map((edge) => edge.id);
     for (const edge of selected) counts.set(edge.id, counts.get(edge.id) + 1);
 
@@ -410,30 +756,99 @@ function validateFromAssets() {
   const persistent = edges.filter((edge) => statuses[edge.id] === "persistent_candidate");
   const disagreement = edges.filter((edge) => statuses[edge.id] === "disagreement_candidate");
   const selected = [...persistent, ...disagreement];
-  const meanPersistent = persistent.reduce((sum, edge) => sum + frequencies[edge.id], 0) / persistent.length;
+  // Averaged over the exact selection counts, not over the six-decimal values published in
+  // the report, so no rounding enters a derived metric.
+  const meanPersistent = persistent
+    .reduce((sum, edge) => sum + counts.get(edge.id) / SEED_COUNT, 0) / persistent.length;
   comparisons.compare("derived_metrics", "persistent_corridor_count", runs.derived_metrics?.persistent_corridor_count, persistent.length);
   comparisons.compare("derived_metrics", "disagreement_corridor_count", runs.derived_metrics?.disagreement_corridor_count, disagreement.length);
   comparisons.compare("derived_metrics", "selected_corridor_count", runs.derived_metrics?.selected_corridor_count, selected.length);
   comparisons.compareRounded6("derived_metrics", "mean_persistent_frequency", runs.derived_metrics?.mean_persistent_frequency, meanPersistent);
   comparisons.compareRounded6("derived_metrics", "disagreement_share", runs.derived_metrics?.disagreement_share, disagreement.length / selected.length);
 
+  // Both graph metrics are read over the 14 selected edges only, weighted by the
+  // published length_m, on coordinates rebuilt from the declared scale constants and
+  // validated against every recorded length before they are used.
+  const scale = reconstructCoordinateScale(inputs);
+  const orderedNodes = inputs.nodes;
+  const pairs = unorderedPairs(orderedNodes.length);
+  const straightLine = orderedNodes.map((p) => orderedNodes.map((q) => Math.hypot(
+    (p.x_normalized - q.x_normalized) * scale.sx,
+    (p.y_normalized - q.y_normalized) * scale.sy,
+  )));
+  const selectedDist = shortestPathMatrix(nodeIds, selected);
+  let detourTotal = 0;
+  for (const [i, j] of pairs) detourTotal += selectedDist[i][j] / straightLine[i][j];
+  comparisons.compareRounded6(
+    "derived_metrics",
+    "mean_pair_detour_factor",
+    runs.derived_metrics?.mean_pair_detour_factor,
+    detourTotal / pairs.length,
+  );
+
+  const baseEfficiency = globalEfficiency(selectedDist, pairs);
+  let retentionTotal = 0;
+  for (let removed = 0; removed < selected.length; removed += 1) {
+    const remaining = selected.filter((_, position) => position !== removed);
+    retentionTotal += globalEfficiency(shortestPathMatrix(nodeIds, remaining), pairs)
+      / baseEfficiency;
+  }
+  comparisons.compareRounded6(
+    "derived_metrics",
+    "single_edge_loss_efficiency_retention",
+    runs.derived_metrics?.single_edge_loss_efficiency_retention,
+    retentionTotal / selected.length,
+  );
+
   const mismatchCount = comparisons.mismatches.length;
+  const published = computePublishedNumbers(
+    edges,
+    nodeIds,
+    counts,
+    selectionCounts(edges, nodeIds, false),
+  );
   return {
     status: mismatchCount === 0 ? "PASS" : "FAIL",
     exit_code: mismatchCount === 0 ? 0 : 1,
     mismatch_count: mismatchCount,
     method_id: METHOD_ID,
+    method_name: METHOD_NAME_EN,
+    method_name_zh: METHOD_NAME_ZH,
     evidence_boundary: "Reproduces the published conceptual proxy calculation; it does not validate the proxies as observed urban facts.",
+    limitation_en: LIMITATION_EN,
+    limitation_zh: LIMITATION_ZH,
     assets: {
-      inputs: assetPaths.inputs,
-      runs: assetPaths.runs,
+      inputs: PACKAGE_RELATIVE_ASSETS.inputs,
+      runs: PACKAGE_RELATIVE_ASSETS.runs,
     },
     runtime_contract: {
       implementation: "Original JavaScript implementation of CPython integer-seeded MT19937 and 53-bit random()",
       arithmetic: "IEEE-754 binary64",
       draw_order: "five weight draws, then one jitter draw per edge in published array order",
       selection: "Kruskal minimum-cost spanning tree plus two lowest-score non-tree edges",
+      method_name: METHOD_NAME_EN,
+      method_name_zh: METHOD_NAME_ZH,
+      guaranteed_by_construction: "connectivity of each run, and exactly 11 selected edges per run",
+      not_computed: [
+        "movement",
+        "demand",
+        "engineering feasibility",
+        "accessibility",
+        "biological adaptation",
+        "public preference",
+        "optimality for Beijing",
+      ],
+      coordinate_basis: {
+        declared_as: "two fixed executable scale constants; the reproducer never re-fits them",
+        x_scale_m: X_SCALE_M,
+        y_scale_m: Y_SCALE_M,
+        residual_validation_tolerance_m: SCALE_RESIDUAL_TOLERANCE_M,
+        worst_length_residual_m: scale.worst_residual_m,
+        worst_length_residual_edge_id: scale.worst_residual_edge_id,
+        note: "the scale is anisotropic; the tolerance validates the reconstruction and never rounds or relaxes it",
+      },
     },
+    published_numbers: published,
     summary: {
       seeds_recomputed: SEED_COUNT,
       seed_first: 0,
@@ -463,6 +878,7 @@ function main() {
       exit_code: 2,
       mismatch_count: null,
       method_id: METHOD_ID,
+      method_name: METHOD_NAME_EN,
       error_type: "asset_or_configuration_error",
       error: error instanceof Error ? error.message : String(error),
     };
@@ -471,7 +887,43 @@ function main() {
   }
 }
 
-module.exports = { PythonRandom, validateFromAssets };
+// The selection internals are exported so the zero-jitter comparison runs the same
+// scoring and the same Kruskal pass as the published record rather than a second
+// implementation that could drift away from it.
+module.exports = {
+  PythonRandom,
+  validateFromAssets,
+  buildEdges,
+  chooseTree,
+  scoreCompare,
+  statusFor,
+  selectForSeed,
+  selectionCounts,
+  connectedComponents,
+  componentsOrConnected,
+  reconstructCoordinateScale,
+  locateAssets,
+  readJson,
+  constants: {
+    METHOD_ID,
+    METHOD_NAME_EN,
+    METHOD_NAME_ZH,
+    SEED_COUNT,
+    EXTRA_EDGE_COUNT,
+    PERSISTENT_THRESHOLD,
+    DISAGREEMENT_THRESHOLD,
+    X_SCALE_M,
+    Y_SCALE_M,
+    SCALE_RESIDUAL_TOLERANCE_M,
+    WEIGHT_ORDER,
+    WEIGHT_RANGES,
+    JITTER_RANGE,
+    PACKAGE_RELATIVE_ASSETS,
+    PUBLISHED_EXPECTATIONS,
+    LIMITATION_EN,
+    LIMITATION_ZH,
+  },
+};
 
 if (require.main === module) {
   process.exitCode = main();

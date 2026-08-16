@@ -579,6 +579,27 @@ The implementation plan should form a reviewable renewal project list, specifyin
 
 Project list and phasing depth are managed by [depth:renewal_project_list] and [depth:phasing_implementation]; the spatial evidence for phasing is [data:geometry/phasing.geojson#PHASE-001]. Where ownership, funding, implementing entity, and approval pathways are absent, the proposal must present them as implementation risks, not as committed deliverables.
 
+### Jing-Zhang Four-Gate Release Protocol
+
+The Jing-Zhang Railway's signal system uses "gates" to control whether trains may pass. This proposal translates that engineering tradition into an implementation management rule: each project must pass through four gates in sequence; missing any gate keeps the project `halted` [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [depth:phasing_implementation].
+
+| Gate | Name | Conditions to confirm | If not passed | Corresponding milestone |
+| --- | --- | --- | --- | --- |
+| **G0 Readiness** | 资格闸 | Ownership boundary, funding source, approval pathway, operating entity — all four confirmed | Project stays `halted` | Pre-M1–M6 |
+| **G1 Pilot** | 试点闸 | Lightweight pilot completed: temporary facilities/operational activities/data collection running ≥90 days, pilot report produced | Does not enter formal construction | M1–M4 |
+| **G2 Release** | 放行闸 | Pilot report passes Go/No-Go review: social acceptance ≥ threshold, operational data meets targets, no unclosed community complaints | Does not enter phase 2; adjust and retry | M5–M6 → M7–M10 |
+| **G3 Retirement** | 退役闸 | Service/facility exit: public retirement record, reason stated, replacement provided, site restored | Cannot demolish or abandon | All projects' end-of-life |
+
+**Four-gate verification rules**:
+- **G0 Readiness** checks four conditions: ① ownership confirmed (government-issued), ② funding in place (fiscal + market), ③ approval pathway clear (planning + transport + municipal), ④ operating entity selected (public competition). Missing any one → `halted`.
+- **G1 Pilot** requires lightweight先行: before formal construction, run temporary facilities, operational activities, or service platforms for ≥90 days, collecting usage data, community feedback, and operational costs. Pilot report must include quantitative metrics (users, satisfaction, cost) and qualitative assessment (community opinions, safety incidents).
+- **G2 Release** is the Go/No-Go decision point: pilot report submitted to joint governance committee. Review criteria: social acceptance meets threshold (no unclosed complaints), operational data meets targets (users ≥50% of expectation, cost ≤120% of expectation), safety compliance (0 major incidents). All three pass = Go; any fail = No-Go (adjust and retry, do not force-push).
+- **G3 Retirement** requires exit trail: when any AI service or facility retires, record on public improvement wall: retirement reason, replacement plan, site restoration status, and resident feedback. Records retained ≥3 years, auditable and traceable.
+
+**One-line test**: If a project cannot produce any one of G0 readiness confirmation, G1 pilot report, G2 release decision, or G3 retirement plan, it is not ready to proceed to the next phase. (Assumption A-GATE-001)
+
+> The four gates are a conceptual framework, pending confirmation of gate standards and review processes by competent authorities and operating entities in the detailed design phase. Conceptual phasing does not constitute implementation commitment.
+
 | Project ID | Project name | Type | Key dependencies | Suggested phase | Investment level | Main risks | Evaluation metrics | Evidence reference |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | JZ-01 | Jing-Zhang Heritage Park slow-mobility gap stitching | Public space / Transport | Road red lines, under-bridge space, transport organization review | Near-term (1-3 yr) | Small/medium (municipal/landscape) | Transport coordination, utility relocation | Gap count repaired, slow-mobility connectivity rate | [data:geometry/roads.geojson#ROAD-001] |

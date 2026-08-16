@@ -24,7 +24,10 @@
   li { margin:.3rem 0; font-size:.9rem; }
   .note { font-size:.88rem; color:var(--muted); }
   footer { max-width:1080px; margin:0 auto; padding:1rem 1.5rem 2.5rem; color:var(--muted); font-size:.82rem; }
-  @media (max-width:820px) { main { grid-template-columns:1fr; } .map { position:static; } }
+  .jz3d { max-width:1080px; margin:0 auto 1.5rem; padding:0 1.5rem; }
+  .jz3d .card { padding:1.25rem; }
+  #jz-3d { width:100%; height:480px; border-radius:12px; overflow:hidden; background:#0f172a; }
+  @media (max-width:820px) { main { grid-template-columns:1fr; } .map { position:static; } #jz-3d { height:340px; } }
 </style>
 </head>
 <body>
@@ -49,6 +52,10 @@
 <section class="card"><h2>Self-check status</h2><p class="note">Four gates (deterministic / spatial / visual / professional) pass before submission; provisional boundary.</p></section>
 <section class="card"><h2>Sources</h2><p class="note">Official announcement, agent taskbook, urban-design measures, regulatory-plan measures, land-use classification guide, generative-AI measures, six global cases.</p></section>
 <section class="card"><h2>Assumptions</h2><p class="note">Controls, redlines, ownership, municipal and heritage conditions pending; design layers are conceptual.</p></section></main>
+<section class="jz3d"><div class="card"><h2>三维轴测场景 / 3D Axonometric Scene</h2><div id="jz-3d"></div><div id="jz-3d-fallback" style="display:none;padding:2rem;text-align:center;color:#64748b;">三维场景需要 WebGL 支持；请查看上方二维平面图。</div><p class="note">拖拽旋转 · 滚轮缩放 · 方向键移动（键盘可访问 · 尊重「减弱动效」偏好）</p></div></section>
 <footer>Conceptual suggestion / reference scheme / material for professional teams — not government approval</footer>
+<script src="assets/three.min.js"></script>
+<script src="assets/scene-data.js"></script>
+<script src="assets/scene.js"></script>
 </body>
 </html>

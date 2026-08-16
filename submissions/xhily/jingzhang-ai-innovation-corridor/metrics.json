@@ -1,0 +1,111 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson#PROV-SITE-001"
+      ],
+      "formula": "EPSG:4548 投影下 PROV-SITE-001 多边形闭合面积 (m²)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "note_zh": "总体设计范围面积（provisional boundary，待正式 SITE_BOUNDARY 复算）"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1680831.603,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "Σ(BLD-* 建筑基底多边形面积)，EPSG:4548 投影",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-OWNERSHIP-001"
+      ],
+      "note_zh": "建筑基底面积（设计建议，基底轮廓来自 provisional 建筑图层，待正式测绘确认）"
+    },
+    "building_footprint_ratio": {
+      "status": "known",
+      "value": 0.1473,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson#PROV-SITE-001"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-OWNERSHIP-001"
+      ],
+      "note_zh": "建筑基底率 = 1680831.603 / 11412825.386 ≈ 0.147（provisional，图 metrics-evidence 标注为 0.147）"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.15775,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson#PROV-SITE-001"
+      ],
+      "formula": "green_space 多边形面积 / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "note_zh": "绿地与开敞空间占总体范围比例（provisional）"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.174736,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson#PROV-SITE-001"
+      ],
+      "formula": "public_space 多边形面积 / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "note_zh": "公共空间占总体范围比例（provisional）"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "key_areas 图层 feature 数量",
+      "confidence": "low",
+      "assumptions": [
+        "A-KEYAREA-001"
+      ],
+      "note_zh": "三处重点详细设计区域数量（provisional，非官方红线）"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "总建筑面积 / 用地面积（需正式控规条件方可计算）",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-FAR-001"
+      ],
+      "reason": "容积率、建筑高度、建筑密度、退线、道路红线、设施标准等需正式控规条件；provisional boundary 下不作为审定指标，列入 unknown 不计入正式评分证据。",
+      "note_zh": "强度类指标统一按 status=unknown 处理"
+    }
+  }
+}

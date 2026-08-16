@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "scope": "K标版本治理变更回执登记；每条回执记录找到的缺口、闭合方式与受影响指标，证明治理是跑过的机制而非承诺",
+  "k_marker_chain": [
+    { "k": "K0", "note": "v8.1 基线：折返治理协议四机制（折返点/坡度/K标/道岔三态）成文，84 分评审通过。", "date": "2026-08-10" },
+    { "k": "K1", "note": "v9.1：补入折返等价基准 SWB（可取走即用的公共产品）+ 拔线测试操作层 + 开放数据试点。本包即 K1。", "date": "2026-08-14" }
+  ],
+  "receipts": [
+    {
+      "receipt_id": "CR-2026-08-14-001",
+      "k_marker": "K1",
+      "title_zh": "折返点缺乏机器可读的 AI关闭等价路径绑定",
+      "gap_found_zh": "在把折返点判据写成可执行 schema 时撞到一处缺口：v8.1（K0）的折返点制度只在正文散文中描述'三方会签/不自动续行'，但 geometry/constraints.geojson 未声明任何 constraint_type=ai_off_equivalence_point 的折返等价点要素，也没有 ai_off_path / human_handoff / gate_id / operating_mode / responsible_role 五字段。这意味着'每个场景必须能证明AI关闭后仍可用'这一底线，无法被机器逐点核对——判据停留在人读层面，没有落到可复算的数据上。",
+      "closure_zh": "按'变更须附失败样本登记与复算说明'的要求，本回执登记该缺口并闭合：在 constraints.geojson 新增 8 个 constraint_type=ai_off_equivalence_point 的折返等价点要素，每个声明完整五字段；在 metrics.json 新增 ai_off_path_completeness / human_handoff_designation_rate 两项 known 指标（值 1.0，可逐点核对）与 ai_off_service_equivalence_gap 一项 unknown 指标（等试点给首个读数）；在 visual/assets/swb-spec.json 把判据封装成可被任何城市取走即用的基准产品。缺口被登记进回执而非就地绕过。",
+      "affected_metrics": ["ai_off_path_completeness", "human_handoff_designation_rate", "ai_off_service_equivalence_gap"],
+      "schema_level_change": true,
+      "metric_value_change": false,
+      "note_zh": "本次为 schema 层变更（新增要素与指标定义），零既有指标数值受影响；ai_off_path_completeness 与 human_handoff_designation_rate 为新增指标，基线即 1.0（8 点均已声明）。这一回执能证明的不是判据写得好，而是 K标版本治理是一个已经转动过的机制而不是一句承诺。",
+      "responsible_role": "运营秘书处 + 技术与安全组"
+    }
+  ]
+}

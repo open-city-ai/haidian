@@ -1,0 +1,211 @@
+{
+  "schema_version": "0.1.0",
+  "scope_note_zh": "首期一百天交付框架：工作包、退出门、采购主题与监测窗。cost_class 为相对投入量级（light/medium/heavy），不是造价估算——绝对造价须待权属、现状建筑与市政条件确认后由专业造价团队测算。全部内容为概念建议，不构成实施承诺、采购承诺或投资承诺。",
+  "scope_note_en": "First-100-days delivery frame: work packages, exit gates, procurement themes and monitoring windows. cost_class is a relative effort magnitude (light/medium/heavy), not a cost estimate — absolute costs must be priced by a professional cost team once title, existing-building and utility conditions are confirmed. Everything here is a conceptual proposal, not a delivery, procurement or investment commitment.",
+  "work_package_count": 10,
+  "exit_gate_count": 5,
+  "procurement_theme_count": 8,
+  "monitoring_window_count": 3,
+  "work_packages": [
+    {
+      "id": "WP-L1",
+      "band": "line",
+      "name_zh": "令牌台账与首个预约窗口试运行",
+      "name_en": "Token ledger and first booking-window pilot",
+      "precondition_zh": "线路运营方与场景准入委员会组建完成（G0）",
+      "precondition_en": "Line Operator and Scenario Admission Panel constituted (G0)",
+      "evidence_zh": "公开的预约记录与归还台账；首窗审计记录",
+      "evidence_en": "Public booking record and return ledger; first-window audit record",
+      "cost_class": "light",
+      "depends_on": []
+    },
+    {
+      "id": "WP-L2",
+      "band": "line",
+      "name_zh": "主线慢行贯通性排查与临时导行",
+      "name_en": "Spine walk-through continuity audit and temporary wayfinding",
+      "precondition_zh": "现状踏勘许可；无障碍与消防专业复核同步启动（G2）",
+      "precondition_en": "Site-walk permission; step-free and fire-egress professional review started in parallel (G2)",
+      "evidence_zh": "贯通性断点清单（对 step_free_continuity_breaks 指标供数）",
+      "evidence_en": "Continuity break list (feeds the step_free_continuity_breaks metric)",
+      "cost_class": "light",
+      "depends_on": []
+    },
+    {
+      "id": "WP-S1a",
+      "band": "S1",
+      "name_zh": "到发场站前广场临时开放（轻量设施与活动日）",
+      "name_en": "Arrival Yard plaza temporary opening (light fittings and event days)",
+      "precondition_zh": "场地使用协调完成；不涉建筑主体与征拆",
+      "precondition_en": "Site-use coordination complete; no structural work, no expropriation",
+      "evidence_zh": "开放日记录与人流观察记录",
+      "evidence_en": "Opening-day record and footfall observation record",
+      "cost_class": "light",
+      "depends_on": ["WP-L2"]
+    },
+    {
+      "id": "WP-S1b",
+      "band": "S1",
+      "name_zh": "产业展示界面首展与既有建筑改造前置评估",
+      "name_en": "First industry-display frontage and pre-assessment of existing buildings",
+      "precondition_zh": "权属与现状建筑资料取得（缺则触发 G1 暂停本包）",
+      "precondition_en": "Title and existing-building data obtained (missing data triggers G1 pause for this package)",
+      "evidence_zh": "改造前置评估报告；13 处更新抓手中 S1 段建筑的逐栋条件记录",
+      "evidence_en": "Pre-assessment report; per-building condition records for the S1 renewal handles",
+      "cost_class": "medium",
+      "depends_on": ["WP-S1a"]
+    },
+    {
+      "id": "WP-S1c",
+      "band": "S1",
+      "name_zh": "到达板与识别系统首装",
+      "name_en": "First installation of the arrival board and identity system",
+      "precondition_zh": "识别系统规范（图 12）评审通过",
+      "precondition_en": "Identity-system spec (Fig. 12) reviewed",
+      "evidence_zh": "安装验收记录；双语与无障碍标识核查单",
+      "evidence_en": "Installation acceptance record; bilingual and accessibility signage checklist",
+      "cost_class": "light",
+      "depends_on": ["WP-S1a"]
+    },
+    {
+      "id": "WP-S4a",
+      "band": "S4",
+      "name_zh": "零公里碑与发布厅临时馆",
+      "name_en": "Zero-kilometre marker and pop-up release hall",
+      "precondition_zh": "站台广场用地协调完成；构筑物为可逆轻量装配",
+      "precondition_en": "Platform-plaza site coordination complete; structures reversible and light-assembled",
+      "evidence_zh": "可逆性核查单（拆除即可恢复原状）；安装验收记录",
+      "evidence_en": "Reversibility checklist (removal restores prior state); installation acceptance record",
+      "cost_class": "medium",
+      "depends_on": ["WP-L2"]
+    },
+    {
+      "id": "WP-S4b",
+      "band": "S4",
+      "name_zh": "首场开源发布日（复用已完成场景窗口）",
+      "name_en": "First open-source release day (reusing completed scenario windows)",
+      "precondition_zh": "场景卡 02/03/05 的已完成窗口证据在案；WP-L1 台账在运行",
+      "precondition_en": "Completed-window evidence of scenario cards 02/03/05 on file; WP-L1 ledger operating",
+      "evidence_zh": "发布日记录；预约达成情况（对 booked_window_utilisation_ratio 供数）",
+      "evidence_en": "Release-day record; booking outcomes (feeds booked_window_utilisation_ratio)",
+      "cost_class": "light",
+      "depends_on": ["WP-L1", "WP-S4a"]
+    },
+    {
+      "id": "WP-S4c",
+      "band": "S4",
+      "name_zh": "零公里站四象限步行连通预检",
+      "name_en": "Zero-Km Station four-quadrant walk-link pre-check",
+      "precondition_zh": "跨越方式与净空的交通市政专业复核意见取得（G2）",
+      "precondition_en": "Transport/utility professional review of crossings and clearances obtained (G2)",
+      "evidence_zh": "四象限连通预检单（对 step_free_continuity_breaks 供数）",
+      "evidence_en": "Four-quadrant link pre-check sheet (feeds step_free_continuity_breaks)",
+      "cost_class": "light",
+      "depends_on": ["WP-L2"]
+    },
+    {
+      "id": "WP-S6a",
+      "band": "S6",
+      "name_zh": "编组场地景一期：草甸整理与安全围护",
+      "name_en": "Marshalling-yard landscape phase 1: meadow clearing and safety enclosure",
+      "precondition_zh": "场地污染与轨道设施安全排查完成（不通过则触发 G2）",
+      "precondition_en": "Ground-contamination and rail-fixture safety screen complete (failure triggers G2)",
+      "evidence_zh": "排查报告与围护验收记录",
+      "evidence_en": "Screening report and enclosure acceptance record",
+      "cost_class": "medium",
+      "depends_on": ["WP-L2"]
+    },
+    {
+      "id": "WP-S6b",
+      "band": "S6",
+      "name_zh": "工程测试场地准入条件编制",
+      "name_en": "Drafting admission conditions for the engineering test ground",
+      "precondition_zh": "场景准入委员会在运行（G0）；数据边界模板评审通过",
+      "precondition_en": "Scenario Admission Panel operating (G0); data-boundary template reviewed",
+      "evidence_zh": "准入条件文本与首批受理记录（对 scenario_admission_turnaround_days 供数）",
+      "evidence_en": "Admission-condition text and first intake records (feeds scenario_admission_turnaround_days)",
+      "cost_class": "light",
+      "depends_on": ["WP-S6a"]
+    }
+  ],
+  "exit_gates": [
+    {
+      "id": "G0",
+      "name_zh": "启动门",
+      "name_en": "Start gate",
+      "trigger_zh": "线路运营方或场景准入委员会任一未组建",
+      "trigger_en": "Either the Line Operator or the Scenario Admission Panel is not constituted",
+      "action_zh": "不启动任何工作包；先补治理，再动空间",
+      "action_en": "No work package starts; governance first, space second"
+    },
+    {
+      "id": "G1",
+      "name_zh": "边界门",
+      "name_en": "Boundary gate",
+      "trigger_zh": "官方红线、控规条件或权属资料发布后与本包空间假设抵触",
+      "trigger_en": "Official redline, regulatory conditions or title data, once released, contradict this package's spatial assumptions",
+      "action_zh": "暂停受影响的空间类工作包，按新边界复算后再续——复算，而不是争辩",
+      "action_en": "Pause the affected spatial packages, recompute against the new boundary, then resume — recompute, do not argue"
+    },
+    {
+      "id": "G2",
+      "name_zh": "安全门",
+      "name_en": "Safety gate",
+      "trigger_zh": "无障碍通路、消防疏散或场地安全复核不通过",
+      "trigger_en": "Step-free continuity, fire egress or site-safety review fails",
+      "action_zh": "相关布设回退至上一可用状态；可逆构筑物按可逆性核查单拆除恢复",
+      "action_en": "Roll the affected installation back to the last usable state; reversible structures are removed per the reversibility checklist"
+    },
+    {
+      "id": "G3",
+      "name_zh": "治理门",
+      "name_en": "Governance gate",
+      "trigger_zh": "异议超过公示办结时限未处理，或场景越出声明数据边界采集",
+      "trigger_en": "An objection is unresolved past its published deadline, or a scenario collects beyond its declared data boundary",
+      "action_zh": "收回令牌、暂停预约窗口；恢复须经场景准入委员会重审",
+      "action_en": "Revoke the token and pause booking windows; resumption requires re-review by the Scenario Admission Panel"
+    },
+    {
+      "id": "G4",
+      "name_zh": "移交门",
+      "name_en": "Handover gate",
+      "trigger_zh": "百日期末评估未达成各工作包声明的证据产出清单",
+      "trigger_en": "The 100-day review finds the declared evidence outputs of the work packages unmet",
+      "action_zh": "转入整改或有序退出：可逆设施拆除、场地归还公共使用、台账封存公开",
+      "action_en": "Move to remediation or orderly exit: reversible fittings removed, sites returned to public use, ledgers sealed and published"
+    }
+  ],
+  "procurement_themes": [
+    {"id": "PT-1", "name_zh": "轻量站台构筑物租赁与装配", "name_en": "Light platform-structure rental and assembly"},
+    {"id": "PT-2", "name_zh": "标识与导视系统制作安装", "name_en": "Signage and wayfinding fabrication and installation"},
+    {"id": "PT-3", "name_zh": "草甸与雨水花园整理养护", "name_en": "Meadow and rain-garden clearing and maintenance"},
+    {"id": "PT-4", "name_zh": "活动与开放日运营服务", "name_en": "Event and open-day operation services"},
+    {"id": "PT-5", "name_zh": "无障碍与消防安全评估咨询", "name_en": "Accessibility and fire-safety assessment consulting"},
+    {"id": "PT-6", "name_zh": "数据边界与准入审计服务", "name_en": "Data-boundary and admission audit services"},
+    {"id": "PT-7", "name_zh": "公众责任保险与应急预案服务", "name_en": "Public-liability insurance and emergency-plan services"},
+    {"id": "PT-8", "name_zh": "展陈与发布设备租赁", "name_en": "Exhibition and release equipment rental"}
+  ],
+  "monitoring_windows": [
+    {
+      "id": "MW-3M",
+      "months": 3,
+      "starts_measuring": ["booked_window_utilisation_ratio", "scenario_admission_turnaround_days"],
+      "note_zh": "百日期末评估窗：预约达成与准入时效开始记账，供 G4 移交门判定",
+      "note_en": "The 100-day review window: booking utilisation and admission turnaround start accruing, informing gate G4"
+    },
+    {
+      "id": "MW-12M",
+      "months": 12,
+      "starts_measuring": ["step_free_continuity_breaks", "non_digital_equivalence_ratio", "objection_resolution_days"],
+      "note_zh": "首个完整运营年：无障碍连续性、非数字等效与异议办结时限进入常态监测",
+      "note_en": "First full operating year: step-free continuity, non-digital equivalence and objection resolution enter routine monitoring"
+    },
+    {
+      "id": "MW-36M",
+      "months": 36,
+      "starts_measuring": ["public_space_return_compliance_ratio"],
+      "note_zh": "三年窗：公共使用归还合规率可被完整评估；六项绩效指标全部具备真实数据后回填 metrics.json",
+      "note_en": "Three-year window: public-use return compliance becomes assessable; once all six performance metrics have real data they are backfilled into metrics.json"
+    }
+  ]
+}

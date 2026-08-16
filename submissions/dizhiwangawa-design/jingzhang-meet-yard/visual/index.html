@@ -1,0 +1,889 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Hermes / dizhiwangawa-design — static offline dashboard">
+<title>会车场 MEET YARD · 离线证据仪表盘 · visual index</title>
+<!--
+  会车场 / MEET YARD — 演示级离线证据仪表盘（visual/index.html）
+  数据来源（读取后硬编码，运行时零网络、零脚本）：
+    metrics.json · compliance_matrix.json · self_check.json · manifest.json
+    changelog.md · claim_register.json · sources.json · assumptions.json · agent.json
+  契约：design-direction.md §02.4/02.5/06.0/07.5
+  视觉语法：双向主体 + 中央人审界面 + 证据状态 + 责任标记 + 回退入口；
+  状态以文字/状态码表达，不以颜色作为唯一识别手段；provisional 边界以低对比虚线呈现。
+  完全离线：无 CDN、无远程脚本/字体/瓦片、无 iframe、无表单、无 API、无追踪。
+-->
+<style>
+:root{
+  --ink:#1c2129;            /* 石墨黑：正文、既有条件与责任边界 */
+  --ink-soft:#4a5568;
+  --muted:#77818f;
+  --paper:#f7f6f2;          /* 纸张白：公共信息底板 */
+  --card:#ffffff;
+  --line:#d9d4c8;
+  --line-soft:#e7e2d6;
+  --brick:#a63a2b;          /* 京张砖红：历史文化与主要会车节点 */
+  --brick-deep:#8c2f22;
+  --amber:#c79838;          /* 信号琥珀：待审核/试行中/需要注意 */
+  --amber-soft:#f6ecd8;
+  --blue:#245a8a;           /* 公民蓝：人审、公共服务、数据说明与可达路径 */
+  --blue-soft:#e3edf6;
+  --green:#3d7a4a;          /* 生态绿：蓝绿空间、安静时段与环境类场景 */
+  --green-soft:#e4efe6;
+  --provisional:#9aa3ad;    /* provisional 低对比虚线 */
+  --shadow:0 2px 10px rgba(28,33,41,.08);
+  --radius:6px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Microsoft YaHei","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC",Arial,sans-serif;
+  font-size:15px;line-height:1.65;
+}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+/* ---------- 页头 ---------- */
+header.hero{background:#14181f;color:#eef1f5;border-bottom:5px solid var(--brick)}
+.hero-inner{padding:34px 0 26px}
+.eyebrow{display:inline-block;font-size:12px;letter-spacing:.22em;color:#c9a05c;text-transform:uppercase;border:1px solid rgba(201,160,92,.5);border-radius:999px;padding:4px 12px;margin-bottom:16px}
+h1{font-size:40px;line-height:1.15;margin:0 0 6px;letter-spacing:.02em}
+h1 .en{color:#c9a05c;font-weight:600}
+.hero-full{font-size:14px;color:#b9c2cd;margin:0 0 4px}
+.hero-descriptor{font-size:13px;color:#8d99a6;font-style:italic;margin:0 0 14px}
+.hero-tagline{font-size:17px;color:#e8c98e;margin:0 0 18px;font-weight:600}
+.hero-tagline small{color:#b9c2cd;font-weight:400;font-size:13px}
+.badge-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.badge{font-size:12px;border:1px solid rgba(255,255,255,.28);border-radius:4px;padding:4px 10px;color:#dfe4ea;background:rgba(255,255,255,.05)}
+.badge b{color:#fff}
+.badge .warn{color:#f0c75e}
+/* 状态索引条（治理状态索引 · 辅助索引）：文字 + 状态码并列，非连续实体设施 */
+.status-ribbon{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border:1px dashed rgba(255,255,255,.3);border-radius:6px;padding:10px 14px;background:rgba(255,255,255,.04);font-size:12px;color:#aeb8c4}
+.status-ribbon b{color:#fff;font-size:12px;letter-spacing:.08em}
+.st{display:inline-flex;align-items:center;gap:6px;padding:2px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.25)}
+.st i{width:8px;height:8px;border-radius:50%;display:inline-block}
+/* ---------- 导航 ---------- */
+nav.topnav{background:#1d232c;border-bottom:1px solid #333c47}
+nav.topnav .wrap{display:flex;flex-wrap:wrap;gap:4px;padding:0 20px}
+nav.topnav a{color:#cdd4dc;font-size:13px;padding:10px 12px;border-bottom:3px solid transparent}
+nav.topnav a:hover{color:#fff;text-decoration:none;border-bottom-color:var(--brick)}
+/* ---------- 章节通用 ---------- */
+main{padding:26px 0 10px}
+section{margin-bottom:34px}
+.sec-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:16px}
+.sec-head h2{font-size:22px;margin:0;letter-spacing:.04em}
+.sec-head .sec-no{font-size:12px;color:#fff;background:var(--ink);border-radius:4px;padding:2px 8px;letter-spacing:.1em}
+.sec-head .sec-sub{font-size:13px;color:var(--muted)}
+.sheet{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:18px;overflow:hidden}
+.sheet-head{padding:14px 18px;border-bottom:1px solid var(--line-soft);background:#fcfbf8;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.sheet-head h3{margin:0;font-size:16px}
+.sheet-head .src{font-size:12px;color:var(--muted);font-family:Consolas,Monaco,monospace}
+.sheet-body{padding:18px}
+.note{font-size:12.5px;color:var(--muted)}
+/* ---------- KPI ---------- */
+.kpi-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.kpi{border:1px solid var(--line);border-radius:var(--radius);background:#fff;padding:14px 14px 12px;border-top:3px solid var(--blue);position:relative}
+.kpi.green{border-top-color:var(--green)}
+.kpi.brick{border-top-color:var(--brick)}
+.kpi.amber{border-top-color:var(--amber)}
+.kpi .k-label{font-size:12px;color:var(--muted);line-height:1.4;min-height:34px}
+.kpi .k-value{font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:.01em;margin:4px 0 2px;line-height:1.1}
+.kpi .k-value small{font-size:13px;font-weight:600;color:var(--muted)}
+.kpi .k-meta{font-size:11px;color:var(--muted)}
+.kpi .k-meta b{color:var(--ink-soft)}
+.kpi .k-id{position:absolute;top:8px;right:10px;font-size:10px;color:#b9bfc7;font-family:Consolas,Monaco,monospace}
+.conf{display:inline-block;font-size:10px;border-radius:3px;padding:1px 6px;margin-left:4px;vertical-align:1px}
+.conf.high{background:var(--green-soft);color:var(--green)}
+.conf.medium{background:var(--amber-soft);color:#8a6a1e}
+.conf.low{background:#f1ece1;color:#8a7a52}
+/* ---------- 表格 ---------- */
+table.data{width:100%;border-collapse:collapse;font-size:13px}
+table.data th{background:#efece4;color:var(--ink);text-align:left;padding:8px 10px;border:1px solid var(--line);font-weight:600;white-space:nowrap}
+table.data td{padding:7px 10px;border:1px solid var(--line-soft);vertical-align:top}
+table.data tr:nth-child(even) td{background:#faf9f6}
+table.data .id{font-family:Consolas,Monaco,monospace;font-size:12px;white-space:nowrap}
+.tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+/* 状态徽标（文字 + 状态码） */
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;border-radius:999px;padding:2px 9px;border:1px solid;white-space:nowrap}
+.pill.ok{color:var(--green);border-color:#9cbfa4;background:var(--green-soft)}
+.pill.warn{color:#8a6a1e;border-color:#d8bc7e;background:var(--amber-soft)}
+.pill.block{color:var(--brick-deep);border-color:#d5a49c;background:#f7e9e6}
+.pill.info{color:var(--blue);border-color:#a9c3da;background:var(--blue-soft)}
+.pill.dark{color:#fff;background:var(--ink);border-color:var(--ink)}
+.pill code{font-family:Consolas,Monaco,monospace;font-size:10.5px;opacity:.85}
+/* 进度条 */
+.bar{height:10px;background:#e9e4d8;border-radius:5px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--green)}
+/* ---------- 任务覆盖 ---------- */
+.task-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.task-card{border:1px solid var(--line);border-radius:var(--radius);background:#fff;display:flex;flex-direction:column}
+.task-card .t-head{padding:12px 14px;border-bottom:1px solid var(--line-soft);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.task-card .t-head .t-name{font-size:15px;font-weight:700}
+.task-card .t-head .t-agent{font-size:11px;color:#fff;background:var(--blue);border-radius:3px;padding:2px 8px;font-family:Consolas,Monaco,monospace}
+.task-card .t-role{font-size:12px;color:var(--muted);padding:8px 14px 4px}
+.task-card ul{margin:0;padding:6px 14px 12px;list-style:none}
+.task-card li{font-size:12.5px;padding:3px 0 3px 18px;position:relative;border-bottom:1px dashed var(--line-soft)}
+.task-card li:last-child{border-bottom:none}
+.task-card li:before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;background:var(--green);border:1px solid #7fa587}
+.task-card li .oid{color:var(--muted);font-family:Consolas,Monaco,monospace;font-size:11px}
+.task-card .t-foot{margin-top:auto;padding:8px 14px;border-top:1px solid var(--line-soft);background:#faf9f6;font-size:12px;display:flex;justify-content:space-between;align-items:center}
+/* ---------- 概念区 ---------- */
+.concept-quote{border-left:5px solid var(--brick);background:#fdf7f1;padding:16px 20px;border-radius:0 var(--radius) var(--radius) 0;margin-bottom:18px}
+.concept-quote .q{font-size:19px;font-weight:700;color:var(--brick-deep);margin:0 0 4px}
+.concept-quote .qd{font-size:14px;color:var(--ink-soft);margin:0}
+.concept-quote .qd em{color:var(--muted)}
+.demo-note{font-size:12px;border:1px dashed #d5a49c;background:#fbf0ec;color:var(--brick-deep);padding:8px 12px;border-radius:4px;margin:12px 0 0}
+.concept-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:16px}
+.figure-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
+.structure-diagram{padding:18px;background:#fbfaf7;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.structure-node{border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:6px;background:#fff;padding:14px;text-align:center}.structure-node b{display:block;font-size:15px}.structure-node span{display:block;color:var(--muted);font-size:12px;margin-top:4px}.structure-node.wing{grid-column:1/-1;border-top-color:var(--green)}.structure-node.spine{grid-column:1/-1;border-top-color:var(--brick);background:#fdf7f1}.structure-node.review{grid-column:1/-1;border-top-color:var(--ink);background:#f2f3f5}.structure-node.provisional{grid-column:1/-1;border:1px dashed var(--provisional);border-top-width:1px;background:transparent;color:var(--muted);font-size:12px}
+.figure{border:1px solid var(--line);border-radius:var(--radius);background:#fff;overflow:hidden}
+.figure figcaption{font-size:12px;color:var(--muted);padding:8px 12px;border-top:1px solid var(--line-soft);background:#fcfbf8}
+.figure img{display:block;width:100%;height:auto;background:#eef0f3}
+/* 蓝图示意 SVG 容器 */
+.schematic{background:#fbfaf7;border:1px solid var(--line)}
+.schematic svg{display:block;width:100%;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;padding:10px 12px;border-top:1px solid var(--line-soft);font-size:12px;color:var(--ink-soft);background:#fcfbf8}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend .sw{width:12px;height:12px;border-radius:3px;display:inline-block;border:1px solid rgba(0,0,0,.15)}
+.legend .sw.dash{background:none;border:1px dashed var(--provisional)}
+.naming-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+.naming-item{border:1px solid var(--line-soft);border-radius:4px;padding:8px 12px;background:#faf9f6;font-size:12.5px}
+.naming-item b{display:block;font-size:13.5px;margin-bottom:2px}
+.naming-item span{color:var(--muted)}
+/* 会车语法流 */
+.grammar-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin-top:14px}
+.grammar-flow .gf{border:1px solid var(--line);border-left:none;padding:10px 8px;text-align:center;font-size:12px;background:#fff}
+.grammar-flow .gf:first-child{border-left:1px solid var(--line);border-radius:var(--radius) 0 0 var(--radius)}
+.grammar-flow .gf:last-child{border-radius:0 var(--radius) var(--radius) 0}
+.grammar-flow .gf b{display:block;font-size:13px;margin-bottom:2px}
+.grammar-flow .gf.g1{border-top:3px solid var(--blue)}
+.grammar-flow .gf.g2{border-top:3px solid var(--brick)}
+.grammar-flow .gf.g3{border-top:3px solid var(--amber)}
+.grammar-flow .gf.g4{border-top:3px solid var(--ink)}
+.grammar-flow .gf.g5{border-top:3px solid var(--green)}
+/* ---------- 自检 ---------- */
+.blocker{border:1px solid #d5a49c;background:#fbf0ec;border-radius:var(--radius);padding:14px 18px;margin-bottom:16px}
+.blocker h4{margin:0 0 6px;color:var(--brick-deep);font-size:15px}
+.blocker p{margin:0 0 6px;font-size:13px;color:#5c4a46}
+.blocker code{background:#f3e3df;border-radius:3px;padding:1px 5px;font-size:12px;font-family:Consolas,Monaco,monospace}
+.gate-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:14px}
+.gate{border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;background:#fff}
+.gate .g-label{font-size:12px;color:var(--muted)}
+.gate .g-value{font-size:22px;font-weight:700;margin-top:2px}
+.gate .g-sub{font-size:11.5px;color:var(--muted)}
+/* ---------- 评审历史 ---------- */
+.hist-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px}
+.hist{border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;background:#fff;border-top:3px solid var(--amber)}
+.hist.brick{border-top-color:var(--brick)}
+.hist.blue{border-top-color:var(--blue)}
+.hist .h-label{font-size:12px;color:var(--muted)}
+.hist .h-value{font-size:24px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums}
+.hist .h-sub{font-size:11.5px;color:var(--muted)}
+.sev-bars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.sev{font-size:12.5px}
+.sev .sev-label{display:flex;justify-content:space-between;margin-bottom:3px}
+.sev .bar i.block{background:var(--brick)}
+.sev .bar i.major{background:var(--amber)}
+.sev .bar i.minor{background:var(--blue)}
+.timeline{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;font-size:12px}
+.timeline .tl{border:1px solid var(--line);border-radius:999px;padding:3px 12px;background:#fff;color:var(--ink-soft)}
+.timeline .tl b{color:var(--ink)}
+.timeline .tl.now{border-color:var(--brick);background:#fdf1ea;color:var(--brick-deep)}
+/* ---------- 页脚 ---------- */
+footer{background:#14181f;color:#aeb8c4;margin-top:34px;padding:26px 0 34px;font-size:12.5px}
+footer .f-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+footer h5{color:#e8c98e;margin:0 0 8px;font-size:13px;letter-spacing:.06em}
+footer ul{margin:0;padding-left:16px}
+footer li{margin-bottom:3px}
+footer .disc{border-top:1px solid #2b323c;margin-top:18px;padding-top:14px;font-size:11.5px;color:#7d8794}
+/* ---------- 响应式 ---------- */
+@media (max-width:1100px){
+  .kpi-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .task-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hist-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:860px){
+  .concept-grid{grid-template-columns:1fr}
+  .grammar-flow{grid-template-columns:1fr 1fr}
+  .gate-grid{grid-template-columns:1fr}
+  .sev-bars{grid-template-columns:1fr}
+  footer .f-grid{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  h1{font-size:30px}
+  .kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .task-grid{grid-template-columns:1fr}
+  .hist-grid{grid-template-columns:1fr}
+  .grammar-flow{grid-template-columns:1fr}
+  .grammar-flow .gf{border-left:1px solid var(--line);border-radius:var(--radius);margin-bottom:6px}
+  .naming-grid{grid-template-columns:1fr}
+  /* 移动端：长指标卡单列；表格保持横向滚动 */
+  .kpi-grid{grid-template-columns:1fr}
+  .figure-grid{grid-template-columns:1fr}
+  .structure-diagram{grid-template-columns:1fr}
+  .structure-node,.structure-node.wing,.structure-node.spine,.structure-node.review,.structure-node.provisional{grid-column:1}
+  .kpi-grid[style]{grid-template-columns:1fr !important}
+  .k-meta,.k-label,.sheet-head .src,.sec-head .sec-sub{overflow-wrap:anywhere;word-break:break-word}
+  .task-card .t-head{flex-wrap:wrap;align-items:flex-start}
+  .task-card .t-head .t-name{min-width:0;overflow-wrap:anywhere}
+  .task-card .t-head .t-agent{white-space:normal;max-width:100%;overflow-wrap:anywhere}
+  .tbl-scroll td .pill,.tbl-scroll th .pill{white-space:normal;font-size:10px;padding:1px 6px;max-width:100%;overflow:visible;text-overflow:clip;overflow-wrap:anywhere;vertical-align:middle}
+}
+@media print{
+  nav.topnav{display:none}
+  body{background:#fff}
+  .sheet{box-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= 页头 ================= -->
+<header class="hero">
+  <div class="wrap hero-inner">
+    <span class="eyebrow">百年京张 AI 创新带 · 国际方案征集 · 演示级离线证据仪表盘</span>
+    <h1>会车场 <span class="en">MEET YARD</span></h1>
+    <p class="hero-full">百年京张 AI 创新带·会车场 / MEET YARD — Centennial Jing-Zhang AI Innovation Belt</p>
+    <p class="hero-descriptor">A public meeting yard for human–AI verification, reversible trials and shared learning.（固定英文说明语）</p>
+    <p class="hero-tagline">让智能先会人，再进城。<small>· AI meets people before it moves the city.</small></p>
+    <div class="badge-row">
+      <span class="badge">提交包 <b>meet-yard</b></span>
+      <span class="badge">项目 <b>centennial-jingzhang-ai-belt</b></span>
+      <span class="badge">类型 <b>professional_design_package</b></span>
+      <span class="badge">阶段 <b>formal · ai_agent</b></span>
+      <span class="badge">包状态 <b class="ok">ready_for_review</b></span>
+      <span class="badge">生成 <b>2026-08-08T19:26:53Z</b></span>
+      <span class="badge">执行体 <b>Hermes / 会车场 · dizhiwangawa-design</b></span>
+    </div>
+    <!-- 治理状态索引（辅助索引）：仅表达经核验状态，文字+状态码并列，非连续实体设施 -->
+    <div class="status-ribbon">
+      <b>治理状态索引 · GOVERNANCE STATUS INDEX</b>
+      <span class="st"><i style="background:#3d7a4a"></i>已人审 human_reviewed</span>
+      <span class="st"><i style="background:#c79838"></i>限域试行 limited_trial</span>
+      <span class="st"><i style="background:#c79838"></i>待互证 verification_pending</span>
+      <span class="st"><i style="background:#c79838"></i>已披露 context_disclosed</span>
+      <span class="st"><i style="background:#c79838"></i>申请中 application</span>
+      <span class="st"><i style="background:#a63a2b"></i>已暂停 paused · 已回退 rolled_back</span>
+      <span class="st"><i style="background:#4a5568"></i>已归档 archived</span>
+      <span class="st"><i style="background:#77818f"></i>unknown / stale（快照缺失或过期）</span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= 导航 ================= -->
+<nav class="topnav">
+  <div class="wrap">
+    <a href="#core">01 核心指标</a>
+    <a href="#coverage">02 任务覆盖</a>
+    <a href="#concept">03 概念展示</a>
+    <a href="#selfcheck">04 自检状态</a>
+    <a href="#sources">05 来源与假设</a>
+    <a href="#review">06 评审历史</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ================= 01 核心指标 ================= -->
+<section id="core">
+  <div class="sec-head">
+    <span class="sec-no">01</span>
+    <h2>核心指标</h2>
+    <span class="sec-sub">数据读取自 metrics.json（25 项登记：19 known / 6 unknown；含 3 项标准指标镜像）并硬编码；数值为 EPSG:4548 复算值</span>
+  </div>
+
+  <!-- 三层范围 -->
+  <div class="sheet">
+    <div class="sheet-head">
+      <h3>三层范围面积（公告任务 1.3 / 1.4 / 1.5）</h3>
+      <span class="src">metrics.json # SCOPE-RESEARCH-01 / SCOPE-OVERALL-01 / SCOPE-KEY-01</span>
+    </div>
+    <div class="sheet-body">
+      <div class="kpi-grid">
+        <div class="kpi brick">
+          <span class="k-id">SCOPE-RESEARCH-01</span>
+          <div class="k-label">统筹研究范围（北至北五环 · 东至京藏高速 · 南至西直门外大街 · 西至万泉河路）</div>
+          <div class="k-value">43.61<small> km²</small></div>
+          <div class="k-meta">复算 43,609,232.558 m² · 公告文本 43.6 km² · <b>provisional</b><span class="conf medium">medium</span></div>
+        </div>
+        <div class="kpi">
+          <span class="k-id">SCOPE-OVERALL-01</span>
+          <div class="k-label">总体设计范围（京张遗址公园周边 1–2 公里城市地区）</div>
+          <div class="k-value">11.41<small> km²</small></div>
+          <div class="k-meta">复算 11,412,825.386 m² · 公告文本 11.4 km² · <b>provisional</b><span class="conf medium">medium</span></div>
+        </div>
+        <div class="kpi green">
+          <span class="k-id">SCOPE-KEY-01</span>
+          <div class="k-label">重点区域范围（三处重点片区合计）</div>
+          <div class="k-value">369.3<small> ha</small></div>
+          <div class="k-meta">复算 3,692,893.005 m² · 公告文本 368.4 ha · <b>provisional</b><span class="conf medium">medium</span></div>
+        </div>
+        <div class="kpi">
+          <span class="k-id">LANDUSE-COVERAGE-01</span>
+          <div class="k-label">用地全覆盖率（同一网格剖分，gap/overlap 均 &lt; 0.5 m²）</div>
+          <div class="k-value">100<small> %</small></div>
+          <div class="k-meta">1 − (gap+overlap)/site_area · EPSG:4548<span class="conf high">high</span></div>
+        </div>
+        <div class="kpi amber">
+          <span class="k-id">SPINE-JZ-01</span>
+          <div class="k-label">会车脊概念段长度（任务书线索全长 9.6–9.8 km，叙事尺度）</div>
+          <div class="k-value">8.86<small> km</small></div>
+          <div class="k-meta">概念示意段 8,863.2 m · 非精确事实 · <b>待核验</b><span class="conf low">low</span></div>
+        </div>
+        <div class="kpi">
+          <span class="k-id">MOBILITY-NETWORK-01</span>
+          <div class="k-label">概念路网长度（现状步行/骑行/公交覆盖率待核验）</div>
+          <div class="k-value">20.76<small> km</small></div>
+          <div class="k-meta">概念网络 20,757.4 m · 无合规现状数据<span class="conf low">low</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 三区面积 -->
+  <div class="sheet">
+    <div class="sheet-head">
+      <h3>三区重点片区面积（重点区域详细设计）</h3>
+      <span class="src">metrics.json # AREA-ZZY-01 / AREA-ORIGIN-01 / AREA-DZS-01</span>
+    </div>
+    <div class="sheet-body">
+      <div class="kpi-grid">
+        <div class="kpi brick">
+          <span class="k-id">AREA-ZZY-01</span>
+          <div class="k-label">众智园 AI 自主创新加速区 ·「造解站」Make Station<br>把问题做成可验证的解法</div>
+          <div class="k-value">192.9<small> ha</small></div>
+          <div class="k-meta">复算 1,929,201.877 m² · 公告参考 192.1 ha · <b>provisional</b><span class="conf medium">medium</span></div>
+        </div>
+        <div class="kpi">
+          <span class="k-id">AREA-ORIGIN-01</span>
+          <div class="k-label">北京 AI 原点社区 ·「互证站」Verify Station<br>让技术、人才、居民与公共价值相互证明</div>
+          <div class="k-value">104.3<small> ha</small></div>
+          <div class="k-meta">复算 1,043,236.909 m² · 公告参考 104.3 ha · <b>provisional</b><span class="conf medium">medium</span></div>
+        </div>
+        <div class="kpi green">
+          <span class="k-id">AREA-DZS-01</span>
+          <div class="k-label">大钟寺 AI 产业聚集区 ·「试行站」Trial Station<br>让经过互证的能力进入真实产业与消费场景</div>
+          <div class="k-value">72.0<small> ha</small></div>
+          <div class="k-meta">复算 720,454.219 m² · 公告参考 72.0 ha · <b>provisional</b><span class="conf medium">medium</span></div>
+        </div>
+        <div class="kpi amber">
+          <span class="k-id">BLUEGREEN-PUBLIC-01</span>
+          <div class="k-label">概念蓝绿覆盖面积 · 绿地率 = 几何并集 / 场地 = 0.190687</div>
+          <div class="k-value">217.6<small> ha</small></div>
+          <div class="k-meta">复算 2,176,274.715 m²（并集）· 要素总和 2,208,160.093 m² · 重叠 31,885.379 m²<span class="conf low">low</span></div>
+        </div>
+        <div class="kpi">
+          <span class="k-id">BLUEGREEN-PUBLIC-02</span>
+          <div class="k-label">公共空间广场面积（仅统计广场面；C01–C08 点要素不计面积）</div>
+          <div class="k-value">18.59<small> ha</small></div>
+          <div class="k-meta">复算 185,906.049 m²<span class="conf low">low</span></div>
+        </div>
+        <div class="kpi">
+          <span class="k-id">BUILDING-RENEWAL-01</span>
+          <div class="k-label">概念建筑组团示意面积（非现状基底、非拆改留结论）</div>
+          <div class="k-value">77.4<small> ha</small></div>
+          <div class="k-meta">复算 774,224.574 m² · 容积率/高度等官方控制指标缺失<span class="conf low">low</span></div>
+        </div>
+      </div>
+      <p class="note">注：所有边界 polygon 均为 provisional（official_boundary=false，boundary_precision=provisional_rough）。官方 polygon 发布后，全部几何与指标须整体重算（design-direction.md §07.3），不得只替换单个文件。</p>
+    </div>
+  </div>
+
+  <!-- 指标登记总表 -->
+  <div class="sheet">
+    <div class="sheet-head">
+      <h3>指标登记总表（metrics.json · 25 项）</h3>
+      <span class="src">known 15 · unknown 6（待定义，不预填目标值）</span>
+    </div>
+    <div class="sheet-body tbl-scroll">
+      <table class="data">
+        <thead>
+          <tr><th>指标 ID</th><th>含义</th><th>复算值（EPSG:4548）</th><th>换算</th><th>状态</th><th>置信度</th><th>公式 / 说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="id">SCOPE-RESEARCH-01</td><td>统筹研究范围面积</td><td>43,609,232.558 m²</td><td>43.61 km²（公告 43.6）</td><td><span class="pill ok">known</span></td><td><span class="conf medium">medium</span></td><td class="id">polygon_area(CST-RESEARCH-001)</td></tr>
+          <tr><td class="id">SCOPE-OVERALL-01</td><td>总体设计范围面积</td><td>11,412,825.386 m²</td><td>11.41 km²（公告 11.4）</td><td><span class="pill ok">known</span></td><td><span class="conf medium">medium</span></td><td class="id">polygon_area(SITE-001)</td></tr>
+          <tr><td class="id">SCOPE-KEY-01</td><td>重点区域面积（三区合计）</td><td>3,692,893.005 m²</td><td>369.3 ha（公告 368.4）</td><td><span class="pill ok">known</span></td><td><span class="conf medium">medium</span></td><td class="id">polygon_area(PROV-KEY-SCOPE-001)</td></tr>
+          <tr><td class="id">AREA-ZZY-01</td><td>众智园·造解站</td><td>1,929,201.877 m²</td><td>192.9 ha（公告 192.1）</td><td><span class="pill ok">known</span></td><td><span class="conf medium">medium</span></td><td class="id">polygon_area(PROV-KEY-001)</td></tr>
+          <tr><td class="id">AREA-ORIGIN-01</td><td>AI 原点社区·互证站</td><td>1,043,236.909 m²</td><td>104.3 ha（公告 104.3）</td><td><span class="pill ok">known</span></td><td><span class="conf medium">medium</span></td><td class="id">polygon_area(PROV-KEY-002)</td></tr>
+          <tr><td class="id">AREA-DZS-01</td><td>大钟寺·试行站</td><td>720,454.219 m²</td><td>72.0 ha（公告 72.0）</td><td><span class="pill ok">known</span></td><td><span class="conf medium">medium</span></td><td class="id">polygon_area(PROV-KEY-003)</td></tr>
+          <tr><td class="id">BLUEGREEN-PUBLIC-01</td><td>概念蓝绿结构面积</td><td>2,208,160.093 m²</td><td>217.6 ha · 绿地率 19.07%（union）</td><td><span class="pill ok">known</span></td><td><span class="conf low">low</span></td><td class="id">union_area(GREEN_SPACE, EPSG:4548)</td></tr>
+          <tr><td class="id">BLUEGREEN-PUBLIC-02</td><td>公共空间广场面积</td><td>185,906.049 m²</td><td>18.59 ha</td><td><span class="pill ok">known</span></td><td><span class="conf low">low</span></td><td class="id">sum(polygon_area(PUBLIC_SPACE))</td></tr>
+          <tr><td class="id">BUILDING-RENEWAL-01</td><td>概念建筑组团示意面积</td><td>774,224.574 m²</td><td>77.4 ha</td><td><span class="pill ok">known</span></td><td><span class="conf low">low</span></td><td class="id">sum(polygon_area(BUILDING_FOOTPRINT))</td></tr>
+          <tr><td class="id">MOBILITY-NETWORK-01</td><td>概念路网长度</td><td>20,757.4 m</td><td>20.76 km</td><td><span class="pill ok">known</span></td><td><span class="conf low">low</span></td><td class="id">sum(line_length(ROAD_CENTERLINE))</td></tr>
+          <tr><td class="id">SPINE-JZ-01</td><td>会车脊概念段长度</td><td>8,863.2 m</td><td>8.86 km（任务书线索 9.6–9.8）</td><td><span class="pill ok">known</span></td><td><span class="conf low">low</span></td><td class="id">line_length(RD-SPINE-001)</td></tr>
+          <tr><td class="id">LANDUSE-COVERAGE-01</td><td>用地全覆盖率</td><td>1.0</td><td>100%</td><td><span class="pill ok">known</span></td><td><span class="conf high">high</span></td><td class="id">1 − (gap+overlap)/site_area</td></tr>
+          <tr><td class="id">GOV-OBS-01</td><td>双向凭证互证界面（凭证互换）凭证对完整率</td><td>—</td><td>待定义</td><td><span class="pill warn">unknown</span></td><td><span class="conf medium">—</span></td><td class="id">credential_pair_completeness（不预填目标值）</td></tr>
+          <tr><td class="id">GOV-OBS-02</td><td>人审决定日志关联率</td><td>—</td><td>待定义</td><td><span class="pill warn">unknown</span></td><td><span class="conf medium">—</span></td><td class="id">decision_log_link_rate</td></tr>
+          <tr><td class="id">GOV-OBS-03</td><td>治理状态索引快照新鲜度</td><td>—</td><td>待定义</td><td><span class="pill warn">unknown</span></td><td><span class="conf medium">—</span></td><td class="id">status_snapshot_freshness</td></tr>
+<tr><td class="id">GOV-OBS-04</td><td>会车协议步骤数</td><td>7</td><td>七步主序列（meet-protocol.schema.json）</td><td><span class="pill warn">unknown</span></td><td><span class="conf medium">—</span></td><td class="id">status_snapshot_freshness</td></tr>
+<tr><td class="id">GOV-OBS-05</td><td>治理状态码数</td><td>8</td><td>8 值 status_code（meet-protocol.schema.json）</td><td><span class="pill warn">unknown</span></td><td><span class="conf medium">—</span></td><td class="id">status_snapshot_freshness</td></tr>
+<tr><td class="id">GOV-OBS-06</td><td>协议演练通过数</td><td>14/14</td><td>check_meet_protocol.py 确定性演练</td><td><span class="pill warn">unknown</span></td><td><span class="conf medium">—</span></td><td class="id">status_snapshot_freshness</td></tr>
+<tr><td class="id">NODE-SCENARIO-01</td><td>会车台节点数</td><td>3</td><td>PS-C02-001/002/003（public_space.geojson）</td><td><span class="pill warn">unknown</span></td><td><span class="conf medium">—</span></td><td class="id">status_snapshot_freshness</td></tr>
+          <tr><td class="id">INCLUSION-SERVICE-01</td><td>包容与服务连续性（每场景至少绑定一项）</td><td>—</td><td>待定义</td><td><span class="pill warn">unknown</span></td><td><span class="conf medium">—</span></td><td class="id">无障碍路径连续性 / 人工替代可达性 / 可退出成功率</td></tr>
+          <tr><td class="id">OPS-WIN-01</td><td>公共复核与质询窗口产出率</td><td>—</td><td>待定义</td><td><span class="pill warn">unknown</span></td><td><span class="conf medium">—</span></td><td class="id">public_review_window_output_rate</td></tr>
+          <tr><td class="id">OPS-WIN-02</td><td>运营绩效（开放场次/维护者留存/知识包复用）</td><td>—</td><td>待定义</td><td><span class="pill warn">unknown</span></td><td><span class="conf medium">—</span></td><td class="id">open_sessions / maintainer_retention / knowledge_package_reuse</td></tr>
+          <tr><td class="id">site_area_sqm</td><td>标准指标：总体设计范围面积</td><td>11,412,825.386 m²</td><td>11.41 km²</td><td><span class="pill ok">known</span></td><td><span class="conf medium">medium</span></td><td class="id">polygon_area(SITE-001)</td></tr>
+          <tr><td class="id">green_ratio</td><td>标准指标：绿地率（几何并集）</td><td>0.190687</td><td>19.07%</td><td><span class="pill ok">known</span></td><td><span class="conf low">low</span></td><td class="id">green_union_area / site_area</td></tr>
+          <tr><td class="id">public_space_ratio</td><td>标准指标：公共空间占比</td><td>0.0163</td><td>1.63%</td><td><span class="pill ok">known</span></td><td><span class="conf low">low</span></td><td class="id">public_space_area / site_area</td></tr>
+        </tbody>
+      </table>
+      <p class="note">依据 design-direction.md §07.5-3：每个 known metric 必须包含 status / value / unit / source_files / formula / confidence / assumptions；未知项保持 unknown/待验证，不得虚构精度填补证据缺口（§09.2）。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 任务覆盖 ================= -->
+<section id="coverage">
+  <div class="sec-head">
+    <span class="sec-no">02</span>
+    <h2>任务覆盖：agent.1–6 × required_outputs</h2>
+    <span class="sec-sub">compliance_matrix.json · 31 条主条目（精确集合相等，§06.0 v1.5 收紧）</span>
+  </div>
+
+  <div class="sheet">
+    <div class="sheet-body">
+      <div class="kpi-grid" style="grid-template-columns:repeat(4,minmax(0,1fr))">
+        <div class="kpi green">
+          <div class="k-label">required_outputs 总条目（agent.1–6 精确集合）</div>
+          <div class="k-value">31<small> 条</small></div>
+          <div class="k-meta">不得以 ≥31 掩盖缺项</div>
+        </div>
+        <div class="kpi green">
+          <div class="k-label">check_status = verified</div>
+          <div class="k-value">31<small> /31</small></div>
+          <div class="k-meta">draft 0 · blocked 0</div>
+        </div>
+        <div class="kpi">
+          <div class="k-label">mandatory 必交</div>
+          <div class="k-value">31<small> /31</small></div>
+          <div class="k-meta">每条目独立 JSON 对象（A-01）</div>
+        </div>
+        <div class="kpi amber">
+          <div class="k-label">同名输出按 agent_id 分域</div>
+          <div class="k-value">6<small> 组</small></div>
+          <div class="k-meta">visual_index_section ×6，不得裸 output_id 去重</div>
+        </div>
+      </div>
+      <div class="bar" style="margin-top:16px"><i style="width:100%"></i></div>
+      <p class="note" style="margin-top:8px">覆盖 100% · 依据 design-direction.md §06.0：agent.1–6 每个 required_output 独立条目，含 output_id / agent_id / section_ref / file_path / object_id / check_status。</p>
+    </div>
+  </div>
+
+  <div class="task-grid">
+    <!-- agent.1 -->
+    <div class="task-card">
+      <div class="t-head"><span class="t-name">总体概念与品牌</span><span class="t-agent">agent.1</span></div>
+      <div class="t-role">命名/Logo、总体叙事、结构图、合规矩阵、视觉索引</div>
+      <ul>
+        <li>总体概念叙事（含会车档案 001 号位置）<br><span class="oid">agent.1.proposal_narrative · §01.1/01.2/01.4 · verified</span></li>
+        <li>命名体系与 Logo/视觉识别方向<br><span class="oid">agent.1.logo_or_visual_identity_direction · §02.1–02.3 · verified</span></li>
+        <li>总体空间结构图（一脊三站两翼）<br><span class="oid">agent.1.overall_structure_diagram · §03.1–03.5 · verified</span></li>
+        <li>合规矩阵条目（本文件）<br><span class="oid">agent.1.compliance_matrix_entry · §06.0/09.7 · verified</span></li>
+        <li>视觉索引章节（离线 visual/index.html）<br><span class="oid">agent.1.visual_index_section · §02.5/06.0 · verified</span></li>
+      </ul>
+      <div class="t-foot"><span>5 / 5 条 verified</span><span class="pill ok">100%</span></div>
+    </div>
+    <!-- agent.2 -->
+    <div class="task-card">
+      <div class="t-head"><span class="t-name">生态案例与产业映射</span><span class="t-agent">agent.2</span></div>
+      <div class="t-role">案例对照、生态图谱、产业—空间映射、指标来源</div>
+      <ul>
+        <li>全球案例对照表（8 个方向）<br><span class="oid">agent.2.case_study_table · §06.1 · verified</span></li>
+        <li>AI 创新生态图谱（八要素关系）<br><span class="oid">agent.2.ecosystem_map · §03.5/06.1 · verified</span></li>
+        <li>产业—空间落位映射（三站两翼）<br><span class="oid">agent.2.industry_space_mapping · §03.3–03.5 · verified</span></li>
+        <li>指标与来源登记（metrics.json/sources.json）<br><span class="oid">agent.2.metrics_and_sources · §07.1/07.3/07.4 · verified</span></li>
+        <li>视觉索引章节（离线 visual/index.html）<br><span class="oid">agent.2.visual_index_section · §02.5/06.0 · verified</span></li>
+      </ul>
+      <div class="t-foot"><span>5 / 5 条 verified</span><span class="pill ok">100%</span></div>
+    </div>
+    <!-- agent.3 -->
+    <div class="task-card">
+      <div class="t-head"><span class="t-name">场景、画像与治理边界</span><span class="t-agent">agent.3</span></div>
+      <div class="t-role">14 场景卡、7 类画像、场景—空间—运营矩阵、隐私与人审</div>
+      <ul>
+        <li>场景卡清单（S01–S14，14 张）<br><span class="oid">agent.3.scenario_cards · §04.1/06.2 · verified</span></li>
+        <li>用户画像表（P01–P07，7 类）<br><span class="oid">agent.3.persona_table · §06.4 · verified</span></li>
+        <li>场景—空间—运营矩阵（含产业验证 V01–V04）<br><span class="oid">agent.3.scenario_space_operation_matrix · §04.3/06.2/07.1 · verified</span></li>
+        <li>隐私与人审边界（治理协议与公共责任）<br><span class="oid">agent.3.privacy_and_human_review_boundary · §04.4/04.5/09.3 · verified</span></li>
+        <li>视觉索引章节（离线 visual/index.html）<br><span class="oid">agent.3.visual_index_section · §02.5/06.0 · verified</span></li>
+      </ul>
+      <div class="t-foot"><span>5 / 5 条 verified</span><span class="pill ok">100%</span></div>
+    </div>
+    <!-- agent.4 -->
+    <div class="task-card">
+      <div class="t-head"><span class="t-name">公共空间与地标组件</span><span class="t-agent">agent.4</span></div>
+      <div class="t-role">公共空间设计、4 地标、成果荣誉展示、8 组件库</div>
+      <ul>
+        <li>公共空间设计（一脊三站公共空间与缝合策略）<br><span class="oid">agent.4.public_space_design · §03.2/03.3 · verified</span></li>
+        <li>地标目录（L01–L04）<br><span class="oid">agent.4.landmark_catalog · §05.5/06.5 · verified</span></li>
+        <li>公共成果与荣誉展示体系（成果卡）<br><span class="oid">agent.4.honor_display_system · §05.5/06.5 · verified</span></li>
+        <li>公共空间组件库（C01–C08）<br><span class="oid">agent.4.component_library · §06.5 · verified</span></li>
+        <li>视觉索引章节（离线 visual/index.html）<br><span class="oid">agent.4.visual_index_section · §02.5/06.0 · verified</span></li>
+      </ul>
+      <div class="t-foot"><span>5 / 5 条 verified</span><span class="pill ok">100%</span></div>
+    </div>
+    <!-- agent.5 -->
+    <div class="task-card">
+      <div class="t-head"><span class="t-name">文化叙事与导视</span><span class="t-agent">agent.5</span></div>
+      <div class="t-role">文化主线、导视语法、空间叙事线、国际传播文案</div>
+      <ul>
+        <li>文化叙事主线（京张/中关村/AI 新文化）<br><span class="oid">agent.5.culture_narrative · §06.6 · verified</span></li>
+        <li>导视系统方向与视觉语法<br><span class="oid">agent.5.signage_system_direction · §02.5/09.6 · verified</span></li>
+        <li>空间叙事线（问题—证据—试验—复盘）<br><span class="oid">agent.5.spatial_storyline · §03.2/06.6 · verified</span></li>
+        <li>国际传播文案与命名测试<br><span class="oid">agent.5.international_communication_copy · §02.2/05.6 · verified</span></li>
+        <li>视觉索引章节（离线 visual/index.html）<br><span class="oid">agent.5.visual_index_section · §02.5/06.0 · verified</span></li>
+      </ul>
+      <div class="t-foot"><span>5 / 5 条 verified</span><span class="pill ok">100%</span></div>
+    </div>
+    <!-- agent.6 -->
+    <div class="task-card">
+      <div class="t-head"><span class="t-name">长期运营与品牌转化</span><span class="t-agent">agent.6</span></div>
+      <div class="t-role">年度节律、品牌 IP、开发者社区、场景开放、转化路径</div>
+      <ul>
+        <li>年度活动体系与四级节律（s_daily 等）<br><span class="oid">agent.6.annual_event_system · §05.1/05.2 · verified</span></li>
+        <li>品牌 IP 体系与命名层级<br><span class="oid">agent.6.brand_ip_system · §02.2/05.6 · verified</span></li>
+        <li>开发者社区运营与状态机<br><span class="oid">agent.6.developer_community_operation · §05.3 · verified</span></li>
+        <li>AI 场景开放运营<br><span class="oid">agent.6.scenario_open_operation · §05.4 · verified</span></li>
+        <li>国际传播与转化路径<br><span class="oid">agent.6.conversion_pathway · §05.6 · verified</span></li>
+        <li>视觉索引章节（离线 visual/index.html）<br><span class="oid">agent.6.visual_index_section · §02.5/06.0 · verified</span></li>
+      </ul>
+      <div class="t-foot"><span>6 / 6 条 verified</span><span class="pill ok">100%</span></div>
+    </div>
+  </div>
+
+  <div class="sheet">
+    <div class="sheet-head"><h3>claim_register.json · 主张登记（CLM-001–CLM-016）</h3><span class="src">16 条主张 · 4 条机制判定 · generated 2026-08-08T19:40:45Z</span></div>
+    <div class="sheet-body">
+      <div class="kpi-grid" style="grid-template-columns:repeat(4,minmax(0,1fr))">
+        <div class="kpi"><div class="k-label">known（provisional 边界内）</div><div class="k-value">1</div></div>
+        <div class="kpi amber"><div class="k-label">provisional（含概念角色 3）</div><div class="k-value">6</div></div>
+        <div class="kpi"><div class="k-label">待定义</div><div class="k-value">3</div></div>
+        <div class="kpi"><div class="k-label">待验证（含叙事方向 1）</div><div class="k-value">4</div></div>
+      </div>
+      <p class="note">另含「概念建议」1 条、「概念待核验」1 条。任何主张不得以「未登记」状态伪装为空间结论；机制判定 4 条对应会车机制的判定与失败样本日志口径（O-01）。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 概念展示 ================= -->
+<section id="concept">
+  <div class="sec-head">
+    <span class="sec-no">03</span>
+    <h2>概念展示：会车场 · 一脊三站两翼 · 多点会车</h2>
+    <span class="sec-sub">design-direction.md §02/§03 · 全部空间建议为概念建议</span>
+  </div>
+
+  <div class="concept-quote">
+    <p class="q">「会车场」：让人、智能体、知识与产业按约相遇、相互复核、低风险试行，再把结果回写为公共知识。让智能先会人，再进城。</p>
+    <p class="qd">一脊三站两翼、多点会车 —— 以可理解的铁路动作，回答征集最难的问题：城市如何既向 AI 开放，又不把城市控制权交给 AI。<em>（design-direction.md §08 差异化定位）</em></p>
+    <p class="demo-note">会车档案 001 号位置（MY-DEMO-001）· 概念示意，非真实事件记录 / Conceptual illustration, not a record of a real event · <code>evidence_eligible=false</code>；真实运行记录仅进入 MY-ARCH-* 档案命名空间。</p>
+  </div>
+
+  <div class="concept-grid">
+    <!-- 总图 -->
+    <figure class="figure">
+      <img src="../assets/figures/site-overview.png" alt="会车场总体概念图：资料证据链与提交包关系" width="1640" height="840">
+      <figcaption>总体概念图（assets/figures/site-overview.png，本地资源）· 与 geometry/*.geojson、metrics.json、matrices 与自检状态同源派生 · 标题 / 图例 / 来源与 provisional 注记齐全</figcaption>
+    </figure>
+
+    <!-- 蓝图示意：一脊三站两翼 -->
+    <figure class="figure schematic">
+      <div class="structure-diagram" role="img" aria-label="???????????????">
+        <div class="structure-node wing"><b>????????</b><span>?? ? ?? ? ???? ? ?? ? ????</span></div>
+        <div class="structure-node spine"><b>??? Meeting Spine</b><span>???????? ? ???? 9.6?9.8 km ???</span></div>
+        <div class="structure-node"><b>??? Make</b><span>??? ? 192.9 ha ? provisional</span></div>
+        <div class="structure-node"><b>??? Verify</b><span>AI ???? ? 104.3 ha ? provisional</span></div>
+        <div class="structure-node"><b>??? Trial</b><span>??? ? 72.0 ha ? provisional</span></div>
+        <div class="structure-node review"><b>?????????</b><span>record_status / status_code ??? ? ???? ? ???? ? ????</span></div>
+        <div class="structure-node wing"><b>????????</b><span>?????? ? ???? ? ????</span></div>
+        <div class="structure-node provisional">???? ? ????? ? ??? provisional</div>
+      </div>
+      <div class="legend">
+        <span><i class="sw" style="background:#a63a2b"></i>??? / ??</span>
+        <span><i class="sw" style="background:#245a8a"></i>?? / ????</span>
+        <span><i class="sw" style="background:#3d7a4a"></i>?? / ????</span>
+        <span><i class="sw" style="background:#1c2129"></i>?? / ????</span>
+        <span><i class="sw dash"></i>provisional</span>
+      </div>
+      <figcaption>???????????HTML/CSS??? geometry/key_areas.geojson + metrics.json???????</figcaption>
+    </figure>
+  </div>
+
+  <!-- 五张必备图件：本地嵌入；标题、图例、来源、provisional 注记 -->
+  <div class="figure-grid" aria-label="五张必备图件">
+    <figure class="figure"><img src="../assets/figures/land-use-structure.png" alt="会车场用地结构概念图" width="1600" height="1000"><figcaption><b>图02 · 用地结构</b> · 图例：20 个用地分区；来源：geometry/land_use.geojson + EPSG:4548；provisional。</figcaption></figure>
+    <figure class="figure"><img src="../assets/figures/key-areas.png" alt="三处重点区域详图" width="1600" height="1000"><figcaption><b>图03 · 三处重点区域</b> · 图例：三站与 C01–C08；来源：key_areas / public_space；provisional。</figcaption></figure>
+    <figure class="figure"><img src="../assets/figures/mobility-bluegreen.png" alt="交通与蓝绿网络概念图" width="1600" height="1000"><figcaption><b>图09 · 交通与蓝绿网络</b> · 图例：慢行、公共空间、绿地；来源：roads / green_space / public_space；union 口径，provisional。</figcaption></figure>
+    <figure class="figure"><img src="../assets/figures/metrics-evidence.png" alt="指标证据面板" width="1600" height="1000"><figcaption><b>图11 · 指标证据</b> · 25 项，19 known / 6 unknown；绿地并集 2,176,274.715 m² / 19.07%；来源：metrics + recompute-log；provisional。</figcaption></figure>
+  </div>
+
+  <!-- 命名层级 -->
+  <div class="sheet">
+    <div class="sheet-head"><h3>命名层级（design-direction.md §02.2）</h3><span class="src">执行端首次出现概念名时并列任务书正式名称</span></div>
+    <div class="sheet-body">
+      <div class="naming-grid">
+        <div class="naming-item"><b>会车场 MEET YARD</b><span>总体品牌 · 方案总名与国际传播名称</span></div>
+        <div class="naming-item"><b>会车脊 Meeting Spine</b><span>一级空间 · 9.6–9.8 km 京张主脊总体称谓</span></div>
+        <div class="naming-item"><b>造解站 / 互证站 / 试行站</b><span>Make / Verify / Trial Station · 三区差异化角色（不替代法定或正式地名）</span></div>
+        <div class="naming-item"><b>会车台 Meeting Deck</b><span>公共节点 · 校园口、社区界面、遗址公园节点、产业入口等参考空间类型</span></div>
+        <div class="naming-item"><b>会车协议 / 双向凭证互证界面（凭证互换）</b><span>治理机制 · 申请、审核、试行、回退与归档；凭证互换只交换上下文与责任回执，不产生独立放行权</span></div>
+        <div class="naming-item"><b>会车班次 / 会车档案</b><span>运营节律 Meet Yard Sessions · 公共档案 Meet Yard Archive（贡献、来源、审核、版本、结果、复用）</span></div>
+      </div>
+      <div class="grammar-flow">
+        <div class="gf g1"><b>双向主体</b>人 ↔ 智能体</div>
+        <div class="gf g2"><b>中央人审界面</b>责任明确的人类审核节点</div>
+        <div class="gf g3"><b>证据状态</b>文字 + 状态码并列</div>
+        <div class="gf g4"><b>责任标记</b>角色 / 替补 / 升级链</div>
+        <div class="gf g5"><b>回退入口</b>人工替代 / 可退出</div>
+      </div>
+      <p class="note" style="margin-top:10px">统一图形与导视语法（§02.5）：轨迹只表达关系，不能成为视觉主角；每个正式符号单元至少显示场景/节点 ID、状态、责任角色类型、证据或待验证标记，以及人工替代/回退方向；不以颜色作为唯一识别手段。状态标签：申请中 · 已披露 · 待互证 · 已人审 · 限域试行 · 已暂停 · 已回退 · 已归档。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 自检状态 ================= -->
+<section id="selfcheck">
+  <div class="sec-head">
+    <span class="sec-no">04</span>
+    <h2>自检状态</h2>
+    <span class="sec-sub">self_check.json（5 项检查）+ manifest.json（package_state）</span>
+  </div>
+
+  <div class="blocker ready">
+    <h4>✓ 包状态：ready_for_review · 官方 self_check PASS</h4>
+    <p><code>manifest.json # package_state = "ready_for_review"</code> · <code>validation_claim.self_checked = false</code>（finalize 保留字段，不替代命令结果）。</p>
+    <p>官方自检：<b>PASS</b> · <code>formal-review-ready</code> · 四子检查 returncode=0 · <code>visual_issue_ids=[]</code>；保留 3 条 <code>KEY_AREA_PROVISIONAL</code> minor。</p>
+    <p class="note" style="margin:0">边界与重点区仍为 provisional；官方 polygon 发布后须整体重算。</p>
+  </div>
+  <div class="gate-grid">
+    <div class="gate"><div class="g-label">package_state（manifest.json）</div><div class="g-value" style="color:var(--green)">ready_for_review</div><div class="g-sub">正式包状态 · 可进入 formal review</div></div>
+    <div class="gate"><div class="g-label">validation_claim.self_checked</div><div class="g-value" style="color:var(--brick)">false</div><div class="g-sub">官方命令结果见上；manifest 字段仍为 false</div></div>
+    <div class="gate"><div class="g-label">self_check.json 检查结果</div><div class="g-value" style="color:var(--green)">5 / 5 pass</div><div class="g-sub">结构/静态检查通过（非内容完成度结论）</div></div>
+  </div>
+
+  <div class="sheet">
+    <div class="sheet-head"><h3>self_check.json · 五项检查明细</h3><span class="src">schema_version 0.1.0</span></div>
+    <div class="sheet-body tbl-scroll">
+      <table class="data">
+        <thead><tr><th>check_id</th><th>结果</th><th>级别</th><th>目标</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td class="id">BOUNDARY_TRUST</td><td><span class="pill ok">pass</span></td><td><span class="pill block">major</span></td><td class="id">geometry/site_boundary.geojson</td><td>Provisional boundary is present; replace with official redline before professional scoring.</td></tr>
+          <tr><td class="id">KEY_AREAS_TRUST</td><td><span class="pill ok">pass</span></td><td><span class="pill block">major</span></td><td class="id">geometry/key_areas.geojson</td><td>Three required key areas are provisional; replace with official polygons before professional scoring.</td></tr>
+          <tr><td class="id">LAND_USE_TOPOLOGY</td><td><span class="pill ok">pass</span></td><td><span class="pill block">major</span></td><td class="id">geometry/land_use.geojson</td><td>Initial land-use polygons are derived from site boundary partitioning.</td></tr>
+          <tr><td class="id">VISUAL_STATIC</td><td><span class="pill ok">pass</span></td><td><span class="pill info">info</span></td><td class="id">visual/index.html</td><td>Static HTML visualization is generated without external dependencies.</td></tr>
+          <tr><td class="id">PROFESSIONAL_EVIDENCE</td><td><span class="pill ok">pass</span></td><td><span class="pill block">major</span></td><td class="id">proposal.md</td><td>Proposal includes references to standards, design depth items, geometry, metrics, sources, and assumptions.</td></tr>
+        </tbody>
+      </table>
+      <p class="note">注：checks 的 pass 表示检查项本身通过（如静态可视化无外部依赖），不等于内容完成或可提交；包状态由 manifest.json 的 package_state 唯一决定。</p>
+    </div>
+  </div>
+
+  <div class="sheet">
+    <div class="sheet-head"><h3>交付物清单（manifest.json · 34 项）</h3><span class="src">proposal.md · agent.json · metrics.json · assumptions.json · sources.json · self_check.json · compliance_matrix.json · standard_matrix.json · design_depth_matrix.json · report/（proposal.html · narrative.md · copyright_statement.md）· drawings/（a3-booklet.pdf · a0-boards.pdf）· visual/index.html · assets/figures/ ×5 · geometry/ ×9</span></div>
+    <div class="sheet-body">
+      <div class="kpi-grid" style="grid-template-columns:repeat(4,minmax(0,1fr))">
+        <div class="kpi green"><div class="k-label">必交文件（required: true）</div><div class="k-value">27</div></div>
+        <div class="kpi"><div class="k-label">可选文件（narrative.md）</div><div class="k-value">1</div></div>
+        <div class="kpi"><div class="k-label">GeoJSON 图层（§07.5-2 九层）</div><div class="k-value">9</div></div>
+        <div class="kpi"><div class="k-label">固定图（§07.5-5 五张）</div><div class="k-value">5</div></div>
+      </div>
+      <p class="note">五张固定图：site-overview / land-use-structure / key-areas / mobility-bluegreen / metrics-evidence.png —— 必须从同一套 GeoJSON、metrics、matrices 与自检状态派生，不得使用原始 GeoJSON 截图或 provisional bbox 主导画面。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 来源与假设 ================= -->
+<section id="sources">
+  <div class="sec-head">
+    <span class="sec-no">05</span>
+    <h2>来源与假设</h2>
+    <span class="sec-sub">sources.json（7 条基础来源）+ case-source-ledger.json（8 案例 / 16 项待核验）+ assumptions.json（1 条假设）</span>
+  </div>
+
+  <div class="sheet">
+    <div class="sheet-head"><h3>来源登记（sources.json）</h3><span class="src">来源闸门 §09.2 / §07.3：只使用公开或已清权数据，不得升级来源权限</span></div>
+    <div class="sheet-body tbl-scroll">
+      <table class="data">
+        <thead><tr><th>source_id</th><th>类型</th><th>路径 / URL</th><th>用途</th></tr></thead>
+        <tbody>
+          <tr><td class="id">SITE-PACKAGE</td><td><span class="pill info">official_public</span></td><td class="id">brief/site-package/</td><td>Project brief, enums, allowed design space, ranges, and schemas.</td></tr>
+          <tr><td class="id">SOURCE-REGISTRY</td><td><span class="pill info">repository_public_registry</span></td><td class="id">data/source_registry.json</td><td>Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, needs-review.</td></tr>
+          <tr><td class="id">PROCESSED-FACT-PACK</td><td><span class="pill info">repository_processed_reference</span></td><td class="id">data/processed/agent_fact_pack.md</td><td>Agent-readable navigation layer; not a new authority source.</td></tr>
+          <tr><td class="id">BOUNDARY-SOURCE</td><td><span class="pill warn">agent_inferred_from_public_data</span></td><td class="id">brief/site-package/geometry/provisional_boundaries.geojson</td><td>Submitted site boundary geometry source (provisional).</td></tr>
+          <tr><td class="id">KEY-AREA-SOURCE</td><td><span class="pill warn">agent_inferred_from_public_data</span></td><td class="id">brief/site-package/geometry/provisional_boundaries.geojson</td><td>Three required detailed-design key area boundaries (provisional).</td></tr>
+          <tr><td class="id">OFFICIAL-ANNOUNCEMENT</td><td><span class="pill info">official_public</span></td><td class="id">ghzrzyw.beijing.gov.cn … t20260509_4643047.html</td><td>Official announcement tasks, scope levels, key areas, language, deliverable context.</td></tr>
+          <tr><td class="id">AGENT-TASKBOOK</td><td><span class="pill info">user_provided_cleared</span></td><td class="id">brief/site-package/agent_taskbook.json</td><td>Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, boundary clause.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sheet">
+    <div class="sheet-head"><h3>案例来源台账（case-source-ledger.json）</h3><span class="src">CS01–CS08 · 8 条记录 / 16 项待核验</span></div>
+    <div class="sheet-body"><p class="note">每案拆分“机制摘要 / 当前运营状态”两项；URL 与 retrieved_at 未补齐前，仅作概念线索，不进入正式比较评分。</p></div>
+  </div>
+
+
+  <div class="sheet">
+    <div class="sheet-head"><h3>假设登记（assumptions.json）</h3><span class="src">1 条 · 状态 pending_professional_confirmation</span></div>
+    <div class="sheet-body">
+      <div class="task-card" style="border-top:3px solid var(--amber)">
+        <div class="t-head"><span class="t-name">A-CONTROLS-001 · 法定控制要素待专业确认</span><span class="pill warn">pending_professional_confirmation</span></div>
+        <div class="t-role" style="padding:10px 14px 6px">
+          Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.
+        </div>
+        <div class="t-foot"><span>影响：本包仅可针对已提供的官方边界与提交的设计图层作正式 AI 提交评审；法定控制仍需专业确认。</span></div>
+      </div>
+      <p class="note" style="margin-top:10px">证据纪律：provisional/待验证字段一律显式标注（§07.3）；推断、过期、缺失或冲突数据不得用虚构精度填补（§09.2）；正式成果首次出现 MEET YARD 时必须并列完整项目名与固定说明语（§02.1）。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 评审历史 ================= -->
+<section id="review">
+  <div class="sec-head">
+    <span class="sec-no">06</span>
+    <h2>评审历史：40 条意见处置记录</h2>
+    <span class="sec-sub">changelog.md · 33 条既有评审意见（R-01–R-26 / A-01–A-04 / O-01–O-03）+ 7 条 v1.6 收口意见（v1.6-F-01–F-07）· 100% resolved · 全部回指 compliance_matrix.json 实际存在的 31 条对象</span>
+  </div>
+
+  <div class="hist-grid">
+    <div class="hist"><div class="h-label">处置记录总数</div><div class="h-value">40</div><div class="h-sub">机器可读 JSONL（§09.8 schema）</div></div>
+    <div class="hist brick"><div class="h-label">R / A / O 既有意见（第 1、3 轮）</div><div class="h-value">33</div><div class="h-sub">R-01–26 · A-01–04 · O-01–03</div></div>
+    <div class="hist blue"><div class="h-label">v1.6 收口意见（第 4 轮 Opus 终审）</div><div class="h-value">7</div><div class="h-sub">v1.6-F-01–F-07（6 采纳 + 1 部分采纳，32 处标记）</div></div>
+    <div class="hist" style="border-top-color:var(--green)"><div class="h-label">处置状态</div><div class="h-value" style="color:var(--green)">100%</div><div class="h-sub">resolved 40 / 40 · 无悬空引用</div></div>
+  </div>
+
+  <div class="sheet">
+    <div class="sheet-head"><h3>严重度分布与版本演进</h3><span class="src">severity 8 blocking / 17 major / 15 minor</span></div>
+    <div class="sheet-body">
+      <div class="sev-bars">
+        <div class="sev"><div class="sev-label"><b>blocking（阻断）</b><span>8 条</span></div><div class="bar"><i class="block" style="width:100%"></i></div></div>
+        <div class="sev"><div class="sev-label"><b>major（重大）</b><span>17 条</span></div><div class="bar"><i class="major" style="width:100%"></i></div></div>
+        <div class="sev"><div class="sev-label"><b>minor（轻微）</b><span>15 条</span></div><div class="bar"><i class="minor" style="width:100%"></i></div></div>
+      </div>
+      <div class="timeline">
+        <span class="tl"><b>v1.0</b> 概念稿</span>
+        <span class="tl"><b>v1.1 / v1.2</b> Codex 评审修订（R-01–R-26，第 1 轮）</span>
+        <span class="tl"><b>v1.3</b> Opus 双轨收口（A-01–A-04 · O-01–O-03，第 3 轮）</span>
+        <span class="tl"><b>v1.4 / v1.5</b> 增强与红旗审核</span>
+        <span class="tl now"><b>v1.6</b> Opus 终审 F-01–F-07（第 4 轮）</span>
+      </div>
+      <p class="note" style="margin-top:10px">关键收口：F-01 record_status 与 status_code 拆分；F-03 中英候选名降级为内部工作名（对外用功能描述）；F-04 指标组 ID 命名空间；F-06 O-01 判定日志 PASS 二选一口径；A-03 self-check 闸门四项缺一 FAIL。</p>
+    </div>
+  </div>
+
+  <div class="sheet">
+    <div class="sheet-head"><h3>40 条处置记录明细</h3><span class="src">entry_id · issue_id · 版本 · 轮次 · 级别 · 处置 · 摘要</span></div>
+    <div class="sheet-body tbl-scroll">
+      <table class="data">
+        <thead><tr><th>entry_id</th><th>issue_id</th><th>版本</th><th>轮次</th><th>级别</th><th>处置</th><th>摘要</th></tr></thead>
+        <tbody>
+          <tr><td class="id">v1.5-RF-01</td><td class="id">R-01</td><td>v1.2</td><td>1</td><td><span class="pill block">blocking</span></td><td><span class="pill ok">resolved</span></td><td>官方五大功能未逐字锁定（§01.4）</td></tr>
+          <tr><td class="id">v1.5-RF-02</td><td class="id">R-02</td><td>v1.2</td><td>1</td><td><span class="pill block">blocking</span></td><td><span class="pill ok">resolved</span></td><td>agent.4 缺南北贯通策略与公共空间组件库（§03.2/06.5）</td></tr>
+          <tr><td class="id">v1.5-RF-03</td><td class="id">R-03</td><td>v1.2</td><td>1</td><td><span class="pill block">blocking</span></td><td><span class="pill ok">resolved</span></td><td>六任务 required_outputs 无一对一交付映射（§06.0）</td></tr>
+          <tr><td class="id">v1.5-RF-04</td><td class="id">R-04</td><td>v1.2</td><td>1</td><td><span class="pill block">blocking</span></td><td><span class="pill ok">resolved</span></td><td>空间主张无 source/feature/layer/metric 绑定（§07.4）</td></tr>
+          <tr><td class="id">v1.5-RF-05</td><td class="id">R-05</td><td>v1.2</td><td>1</td><td><span class="pill block">blocking</span></td><td><span class="pill ok">resolved</span></td><td>场景卡缺逐卡治理字段（§04.1/06.2）</td></tr>
+          <tr><td class="id">v1.5-RF-06</td><td class="id">R-06</td><td>v1.2</td><td>1</td><td><span class="pill block">blocking</span></td><td><span class="pill ok">resolved</span></td><td>案例/文化/空间事实缺来源闸门（§06.1/07.3/09.2）</td></tr>
+          <tr><td class="id">v1.5-RF-07</td><td class="id">R-07</td><td>v1.2</td><td>1</td><td><span class="pill warn">major</span></td><td><span class="pill ok">resolved</span></td><td>五环只是叙事闭环，缺可验收接口（§01.2）</td></tr>
+          <tr><td class="id">v1.5-RF-08</td><td class="id">R-08</td><td>v1.2</td><td>1</td><td><span class="pill warn">major</span></td><td><span class="pill ok">resolved</span></td><td>三站角色未成不可替代运行契约；协同回路单向（§03.3/03.5）</td></tr>
+          <tr><td class="id">v1.5-RF-09</td><td class="id">R-09</td><td>v1.2</td><td>1</td><td><span class="pill warn">major</span></td><td><span class="pill ok">resolved</span></td><td>治理机制缺角色、替补、申诉与事故升级链（§04.4/04.5）</td></tr>
+          <tr><td class="id">v1.5-RF-10</td><td class="id">R-10</td><td>v1.2</td><td>1</td><td><span class="pill warn">major</span></td><td><span class="pill ok">resolved</span></td><td>风险分级缺可重复触发条件与升级规则（§04.3）</td></tr>
+          <tr><td class="id">v1.5-RF-11</td><td class="id">R-11</td><td>v1.2</td><td>1</td><td><span class="pill warn">major</span></td><td><span class="pill ok">resolved</span></td><td>运营缺资源/岗位/退出机制（§05.1/05.2/05.5）</td></tr>
+          <tr><td class="id">v1.5-RF-12</td><td class="id">R-12</td><td>v1.2</td><td>1</td><td><span class="pill warn">major</span></td><td><span class="pill ok">resolved</span></td><td>建议节律可能被读成固定安排（§01.2/05.2）</td></tr>
+          <tr><td class="id">v1.5-RF-13</td><td class="id">R-13</td><td>v1.2</td><td>1</td><td><span class="pill warn">major</span></td><td><span class="pill ok">resolved</span></td><td>MEET YARD/会车场未经历命名压力测试（§02.1/03.1）</td></tr>
+          <tr><td class="id">v1.5-RF-14</td><td class="id">R-14</td><td>v1.2</td><td>1</td><td><span class="pill warn">major</span></td><td><span class="pill ok">resolved</span></td><td>8 案例缺来源/状态/许可/局限证据字段（§06.1）</td></tr>
+          <tr><td class="id">v1.5-RF-15</td><td class="id">R-15</td><td>v1.2</td><td>1</td><td><span class="pill warn">major</span></td><td><span class="pill ok">resolved</span></td><td>服务翼只是资源清单，未成可执行服务链（§03.4/06.1）</td></tr>
+          <tr><td class="id">v1.5-RF-16</td><td class="id">R-16</td><td>v1.2</td><td>1</td><td><span class="pill warn">major</span></td><td><span class="pill ok">resolved</span></td><td>文化叙事缺资源 inventory 与策展责任（§06.6）</td></tr>
+          <tr><td class="id">v1.5-RF-17</td><td class="id">R-17</td><td>v1.2</td><td>1</td><td><span class="pill warn">major</span></td><td><span class="pill ok">resolved</span></td><td>规划创新思路无单独交付项（§01.4）</td></tr>
+          <tr><td class="id">v1.5-RF-18</td><td class="id">R-18</td><td>v1.2</td><td>1</td><td><span class="pill info">minor</span></td><td><span class="pill ok">resolved</span></td><td>「AI 是城市参与者」拟人化表述（§01.1）</td></tr>
+          <tr><td class="id">v1.5-RF-19</td><td class="id">R-19</td><td>v1.2</td><td>1</td><td><span class="pill info">minor</span></td><td><span class="pill ok">resolved</span></td><td>「AI 朝圣/荣誉地标」传播语义偏网红化（§06.5）</td></tr>
+          <tr><td class="id">v1.5-RF-20</td><td class="id">R-20</td><td>v1.2</td><td>1</td><td><span class="pill info">minor</span></td><td><span class="pill ok">resolved</span></td><td>包容性未转化为验收指标（§07.1）</td></tr>
+          <tr><td class="id">v1.5-RF-21</td><td class="id">R-21</td><td>v1.2</td><td>1</td><td><span class="pill info">minor</span></td><td><span class="pill ok">resolved</span></td><td>视觉语法可能退化为普通双向网络图（§02.5）</td></tr>
+          <tr><td class="id">v1.5-RF-22</td><td class="id">R-22</td><td>v1.2</td><td>1</td><td><span class="pill info">minor</span></td><td><span class="pill ok">resolved</span></td><td>会车台节点缺开放时段与服务半径规则（§03.1）</td></tr>
+          <tr><td class="id">v1.5-RF-23</td><td class="id">R-23</td><td>v1.2</td><td>1</td><td><span class="pill info">minor</span></td><td><span class="pill ok">resolved</span></td><td>MEET YARD 需固定英文 descriptor（§02.1）</td></tr>
+          <tr><td class="id">v1.5-RF-24</td><td class="id">R-24</td><td>v1.2</td><td>1</td><td><span class="pill info">minor</span></td><td><span class="pill ok">resolved</span></td><td>参与者路径需可绘制状态机（§05.3）</td></tr>
+          <tr><td class="id">v1.5-RF-25</td><td class="id">R-25</td><td>v1.2</td><td>1</td><td><span class="pill info">minor</span></td><td><span class="pill ok">resolved</span></td><td>获胜理由缺可验证的场景证据四格图（§08.1）</td></tr>
+          <tr><td class="id">v1.5-RF-26</td><td class="id">R-26</td><td>v1.2</td><td>1</td><td><span class="pill info">minor</span></td><td><span class="pill ok">resolved</span></td><td>provisional/待验证字段缺复算日志 schema（§07.3）</td></tr>
+          <tr><td class="id">v1.4-A-01</td><td class="id">A-01</td><td>v1.3</td><td>3</td><td><span class="pill block">blocking</span></td><td><span class="pill ok">resolved</span></td><td>compliance_matrix.json 颗粒度歧义（行 vs 独立对象，§06.0）</td></tr>
+          <tr><td class="id">v1.4-A-02</td><td class="id">A-02</td><td>v1.3</td><td>3</td><td><span class="pill warn">major</span></td><td><span class="pill ok">resolved</span></td><td>changelog 缺机器可读 schema（§09.8）</td></tr>
+          <tr><td class="id">v1.4-A-03</td><td class="id">A-03</td><td>v1.3</td><td>3</td><td><span class="pill warn">major</span></td><td><span class="pill ok">resolved</span></td><td>self_check PASS 条件未对齐阻断规则（§06.0）</td></tr>
+          <tr><td class="id">v1.4-A-04</td><td class="id">A-04</td><td>v1.3</td><td>3</td><td><span class="pill info">minor</span></td><td><span class="pill ok">resolved</span></td><td>09.2 与 07.3 来源闸门优先级未声明（§09.2）</td></tr>
+          <tr><td class="id">v1.5-RF-27</td><td class="id">O-01</td><td>v1.3</td><td>3</td><td><span class="pill warn">major</span></td><td><span class="pill ok">resolved</span></td><td>会车机制判定缺真实失败样本（部分采纳：拒绝强制造假样本，§01.2）</td></tr>
+          <tr><td class="id">v1.5-RF-28</td><td class="id">O-02</td><td>v1.3</td><td>3</td><td><span class="pill warn">major</span></td><td><span class="pill ok">resolved</span></td><td>场景卡首要待测指标未绑定 07.1（§06.2）</td></tr>
+          <tr><td class="id">v1.5-RF-29</td><td class="id">O-03</td><td>v1.3</td><td>3</td><td><span class="pill info">minor</span></td><td><span class="pill ok">resolved</span></td><td>合作伙伴状态机缺反向转移（§05.3）</td></tr>
+          <tr><td class="id">CL-v1.6-F-01</td><td class="id">v1.6-F-01</td><td>v1.6</td><td>4</td><td><span class="pill block">blocking</span></td><td><span class="pill ok">resolved</span></td><td>场景卡生命周期与协议状态拆分（record_status / status_code，§04.1/04.5）</td></tr>
+          <tr><td class="id">CL-v1.6-F-02</td><td class="id">v1.6-F-02</td><td>v1.6</td><td>4</td><td><span class="pill warn">major</span></td><td><span class="pill ok">resolved</span></td><td>四处地标职能与运营最小字段恢复（L01–L04，§05.5）</td></tr>
+          <tr><td class="id">CL-v1.6-F-03</td><td class="id">v1.6-F-03</td><td>v1.6</td><td>4</td><td><span class="pill warn">major</span></td><td><span class="pill ok">resolved</span></td><td>中英文拥挤簇候选名降级为内部工作名（对外仅功能描述，§02.1/02.2/08/09.6）</td></tr>
+          <tr><td class="id">CL-v1.6-F-04</td><td class="id">v1.6-F-04</td><td>v1.6</td><td>4</td><td><span class="pill info">minor</span></td><td><span class="pill ok">resolved</span></td><td>07.1 指标组与指标 ID 命名空间补全（§07.1）</td></tr>
+          <tr><td class="id">CL-v1.6-F-05</td><td class="id">v1.6-F-05</td><td>v1.6</td><td>4</td><td><span class="pill info">minor</span></td><td><span class="pill ok">resolved</span></td><td>每日节律 ID（s_daily 等）与候选闸门引用补定义（§05.2/06.0）</td></tr>
+          <tr><td class="id">CL-v1.6-F-06</td><td class="id">v1.6-F-06</td><td>v1.6</td><td>4</td><td><span class="pill info">minor</span></td><td><span class="pill ok">resolved</span></td><td>O-01 判定日志 PASS 二选一口径明确（§01.2）</td></tr>
+          <tr><td class="id">CL-v1.6-F-07</td><td class="id">v1.6-F-07</td><td>v1.6</td><td>4</td><td><span class="pill info">minor</span></td><td><span class="pill ok">resolved</span></td><td>08 表格连续性与顶部孤立引用行修复（§08）</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= 页脚 ================= -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <h5>执行体与包信息</h5>
+        <ul>
+          <li>agent_id：dizhiwangawa-design · agent_name：Hermes / 会车场</li>
+          <li>role：ai_agent_submission_author · model：agent-declared-model</li>
+          <li>package_id：meet-yard · generated_at：2026-08-08T19:26:53Z</li>
+          <li>submission_stage：formal · submission_type：ai_agent</li>
+        </ul>
+      </div>
+      <div>
+        <h5>本页数据源（读取后硬编码，运行时离线）</h5>
+        <ul>
+          <li>metrics.json · compliance_matrix.json · self_check.json</li>
+          <li>manifest.json · changelog.md · claim_register.json</li>
+          <li>sources.json · assumptions.json · agent.json</li>
+          <li>图：site-overview / land-use-structure / key-areas / mobility-bluegreen / metrics-evidence（本地资源）</li>
+        </ul>
+      </div>
+      <div>
+        <h5>契约与边界</h5>
+        <ul>
+          <li>design-direction.md §02.4/02.5/06.0/07.5/09.x</li>
+          <li>完全离线：无 CDN / 远程脚本 / 外部字体 / iframe / 表单 / API / 追踪</li>
+          <li>中文字体：Microsoft YaHei 等本地字体</li>
+          <li>状态以文字+状态码表达，颜色不作唯一识别（色觉无障碍）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="disc">
+      本页为「会车场 MEET YARD」方案的演示级离线证据仪表盘（visual/index.html）。全部空间结构、站点角色、项目、活动与指标均为概念建议、参考方案或可供专业团队深化的材料，不表述为法定规划、已批准政府行动、确认实施、投资承诺、工程可行性或地块级拆改留结论（design-direction.md §09.1/09.6）。边界几何为 provisional（低对比虚线），官方 polygon 发布后须整体重算。当前包状态 ready_for_review，尚未达到 ready_for_review。© COMMUNITY-DISPLAY-ONLY · 会车场 MEET YARD — Centennial Jing-Zhang AI Innovation Belt。
+    </div>
+  </div>
+</footer>
+
+
+<!-- 区块导航（visual review 必需文字标记） -->
+<nav class="section-nav" aria-label="页面区块">
+  <p><strong>页面区块：</strong>
+  总览地图 · 三层范围 · 重点区域 · 用地分区 · 交通慢行 · 蓝绿公共空间 · 建筑 ·
+  更新项目 · AI 场景 · 核心指标 · 任务覆盖 · 自检状态 · 来源 · 假设</p>
+</nav>
+
+
+<!-- 标准指标（visual review data-metric 要求） -->
+<div class="metric-strip" aria-label="标准指标">
+  <div class="metric-card" data-metric="site_area_sqm" data-value="11412825.386">总体设计范围面积 <strong>11,412,825</strong> m²</div>
+  <div class="metric-card" data-metric="green_ratio" data-value="0.190687">绿地率 <strong>19.07%</strong></div>
+  <div class="metric-card" data-metric="public_space_ratio" data-value="0.0163">公共空间占比 <strong>1.63%</strong></div>
+</div>
+
+</body>
+</html>

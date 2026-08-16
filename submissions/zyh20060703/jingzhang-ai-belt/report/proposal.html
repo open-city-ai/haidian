@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张博物志：五博体系下的AI生活场景与城市治理设计 - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>京张博物志：五博体系下的AI生活场景与城市治理设计</h1>
+<p class="summary">以『博』字为总纲、五博体系（博大·博览·博爱·博弈·博喻）为骨架的AI生活场景与城市治理设计方案。方案视城市为一部持续编纂的《博物志》，AI服务为待采集、鉴定、入藏的『新物种』，人类保有最终入藏评审权。全部空间建议基于provisional boundary，属概念建议，不构成政府审定结论。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+</section>
+<h1>京张博物志：五博体系下的AI生活场景与城市治理设计</h1>
+<blockquote><p><strong>志序</strong>：京张铁路通车之年，官方委谭锦棠沿全线摄影建档，凡桥隧站房、机车车辆，次第采录，题曰《京张路工撮影》，今为中国档案文献遗产。一百一十余年后，此线复为AI所行。本方案以同样之精神，为行于这条线上的每一桩AI服务立一传、入一藏、绘一图。<strong>博物者，博观万物而约取其理；志者，记其实，考其用，传于后。</strong> 城市即志书，AI即新物种，人即最终之编纂者。</p></blockquote>
+<h2>设计依据与资料清单</h2>
+<p>本 formal 方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据，并以 <code>brief/site-package/</code> 中经维护者登记的临时粗略边界、重点区域、枚举、指标和来源清单为机器可读依据。AI agent 在生成方案前必须读取 <code>design_brief.json</code>、<code>allowed_design_space.json</code>、<code>sources.json</code>、<code>enums/</code>、<code>ranges/</code>、<code>schemas/</code>、<code>data/source_registry.json</code> 和 <code>data/processed/agent_fact_pack.md</code>，并用 <code>project_scope_summary.csv</code>、<code>agent_task_requirements.csv</code>、<code>source_use_matrix.csv</code>、<code>missing_data_checklist.csv</code> 建立任务、范围、资料用途和缺口清单。所有设计判断都要拆分为可追溯来源、可复算指标、可校验图层和可人工复核假设。公告要求方案达到控制性详细规划的城市设计深度和规划综合实施方案的城市设计深度，因此文本叙述不能替代 GeoJSON、指标表、A3 文册、A0 展板和 HTML 电子展示成果 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup>。本志之编纂体例另依智能体任务书 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>，成果深度由现状研判项约束 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="existing_conditions_diagnosis" title="深度：existing_conditions_diagnosis">深度</sup>。</p>
+<p>方案不是独立愿景文本，而是从公告、面向智能体任务书和场地资料出发组织成果；本节只把最关键依据放在判断旁边。完整来源和标准覆盖分别保存在 <code>sources.json</code>、<code>standard_matrix.json</code> 与 <code>design_depth_matrix.json</code>，不在正文重复机器索引 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup>。</p>
+<p>资料登记表的使用边界如下 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup>：</p>
+<ul>
+<li><code>data/source_registry.json</code> 登记公开、清权与临时资料的用途边界。</li>
+<li>当前登记摘要：formal 可用资料 7 条，背景资料 1 条，provisional-only 资料 1 条。</li>
+<li>agent 不得把 background_only 或 provisional_only 资料升级为 official boundary、法定控规、正式评分依据或政府实施承诺。</li>
+</ul>
+<p><code>data/processed/agent_fact_pack.md</code> 是本方案的阅读导航层，不是新的权威来源 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>。它帮助 agent 把三层范围、三处重点区、公告任务、agent.1-agent.6、资料可用性和缺资料事项组织成可读方案；事实判断仍需回到已登记的原始材料 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="资料证据链与提交包关系图"><figcaption>资料证据链与提交包关系图</figcaption></figure>
+<p>本方案在官方 <code>SITE_BOUNDARY</code> 或三处 <code>KEY_AREA</code> 尚未取得时，使用 <code>brief/site-package/geometry/provisional_boundaries.geojson</code> 生成临时 formal 包。提交包中的 <code>geometry/site_boundary.geojson</code> 与 <code>geometry/key_areas.geojson</code> 均标注为 <code>provisional_constraint</code>、<code>official_boundary=false</code>，只能用于方案生成、自检、可视化和设计讨论，不能作为 official redline、审批依据、精确面积依据或法定控制结论。该组织方数据缺口本身不阻断内容评分；替换 official polygons 后，site boundary、key areas、land use、roads、green space、public space、buildings、phasing 和 metrics 均需重算 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#SITE-001" title="空间数据：geometry/site_boundary.geojson#SITE-001">空间数据</sup>。范围面积之复核以 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup> 为准，三处重点区之图层见 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup>，其数量指标见 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup>。</p>
+<h2>三层范围工作框架</h2>
+<p>方案按照公告确定的三个层次组织工作：统筹研究范围关注 43.6 平方公里的AI产业生态、战略定位、创新链和未来城市形态；总体设计范围关注 11.4 平方公里京张遗址公园周边 1-2 公里城市地区和产业区；重点区域范围关注 368.4 公顷三处详细设计地区。三层范围在 <code>compliance_matrix.json</code> 中逐条映射，保证公告 1.3、1.4、1.5 与 agent.1-agent.6 的必选任务都有章节、图层、指标、图纸和 HTML 证据。其深度由 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_level_scope_framework" title="深度：three_level_scope_framework">深度</sup> 与 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup> 约束，任务依据以 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-OFFICIAL-ANNOUNCEMENT" title="标准：PROJECT-OFFICIAL-ANNOUNCEMENT">标准</sup> 为准，范围索引以 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup> 为导航。</p>
+<p>本志以三重视野对应三层范围，如博物学者之于标本——<strong>统观其全、通览其脉、详察其微</strong>：</p>
+<div class="proposal-table"><table><thead><tr><th>层级</th><th>视野</th><th>设计问题</th><th>方案回答</th><th>数据落点</th></tr></thead><tbody><tr><td>统筹研究范围（43.6 km²）</td><td>统观</td><td>AI产业生态和未来城市形态如何组织</td><td>以「博」字五义立总纲，建立&quot;高校策源—开源协作—企业转化—公共体验—国际传播&quot;创新链</td><td>compliance_matrix.json、standard_matrix.json</td></tr><tr><td>总体设计范围（11.4 km²）</td><td>通览</td><td>产业空间、城市更新、交通市政和风貌如何落图</td><td>五卷空间结构（博弈/博喻/博大/博览/博爱），用地、建筑、道路、绿地、公共空间和分期图层共同表达</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup>、<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup></td></tr><tr><td>重点区域范围（368.4 ha）</td><td>详察</td><td>三处片区如何达到详细设计深度</td><td>分别提出卷属、定位、空间动作、AI场景和实施依赖</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup>、<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup>、<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup></td></tr></tbody></table></div>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="三层范围与空间工作框架图"><figcaption>三层范围与空间工作框架图</figcaption></figure>
+<p>三层工作不是互相割裂的图纸集合。统筹研究决定产业链和城市形态判断，总体设计把判断落实到更新项目、空间结构和设施承载，重点区域详细设计验证具体地块、建筑、交通、公共空间和AI应用场景的可实施性。agent 生成方案时必须先锁定当前提交采用的 official 或 provisional 边界和约束，再生成用地、建筑、道路、绿地、公共空间、分期和AI服务节点，最后从这些图层复算指标并在正文解释哪些结论仍受 provisional boundary 限制。任何无法从结构化数据复算的面积、比例、规模或项目数量，不得写入正式结论。</p>
+<h2>统筹研究范围产业与未来城市研究：五博总纲</h2>
+<h3>命名考：京张博物志</h3>
+<p>本方案总体概念定名<strong>「京张博物志」</strong>，英文名 <strong>THE JING-ZHANG NATURAL HISTORY</strong>。</p>
+<ul>
+<li>中文化用晋张华《博物志》，中国博物学源头之书；英文直译古罗马老普林尼《博物志》（<em>Naturalis Historia</em>），西方博物学源头之书。</li>
+<li>京张铁路乃中西科技交汇之产物——詹天佑留美习测绘，归而以西法测山川、绘图纸、筑铁路。命名取中西两部博物之志相对，非取巧，实为铁路史事之忠实转译。</li>
+<li>「志」者，记录之体。京张铁路竣工，官修《京张路工撮影》档案；今日为行于其线上的AI服务立志，是档案精神的延续 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。</li>
+</ul>
+<h3>五博立纲</h3>
+<p>「博」字有五义，本方案立为五根支柱，各有所本、各有其用：</p>
+<div class="proposal-table"><table><thead><tr><th>博</th><th>出处</th><th>义</th><th>方案之对应</th></tr></thead><tbody><tr><td><strong>博大</strong></td><td>《中庸》&quot;博厚所以载物也&quot;</td><td>广博厚重，承载万物</td><td>空间格局：43.6 km² 之幅员，三区两翼之组织，容得下研发、产业、生活与游憩</td></tr><tr><td><strong>博览</strong></td><td>成语&quot;博览群书&quot;</td><td>广读博采，群英荟萃</td><td>知识网络：海淀学术中心之智力密度，全球开发者之汇聚</td></tr><tr><td><strong>博爱</strong></td><td>韩愈《原道》&quot;博爱之谓仁&quot;</td><td>仁者爱人</td><td>伦理底线：适老助残、人工兜底、公共利益优先</td></tr><tr><td><strong>博弈</strong></td><td>《论语·阳货》&quot;不有博弈者乎，为之犹贤乎已&quot;</td><td>棋弈智斗；今义机制设计</td><td>运行机制：人机协作、评审竞争、规则透明</td></tr><tr><td><strong>博喻</strong></td><td>《礼记·学记》&quot;能博喻然后能为师&quot;</td><td>连用多喻以明一理，为师之能</td><td>叙事体系：以铁路、志书、图鉴、棋局、师门五喻，讲明&quot;AI创新带为何物&quot;一理</td></tr></tbody></table></div>
+<p>五博之中，<strong>博喻为纲</strong>。城市以博喻之能，方堪为AI之师——AI须经采集、鉴定（入藏评审）、方许展陈（上岗服务）。博弈之史证亦足：百年前清政府在英俄争筑路权之局中守得自主，方有京张铁路；今日城市在技术博弈中须守得人的主导权，<strong>入藏评审权即人之博弈筹码</strong>。</p>
+<h3>五大功能与三区两翼之转译</h3>
+<p>公告要求回应&quot;五大功能&quot;（AI全栈自主创新体系、世界级AI创新生态、AI+场景赋能新范式、智能化AI活力城市、AI治理全球话语权）与&quot;三区两翼&quot;协同 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。本方案以五卷对应之：</p>
+<div class="proposal-table"><table><thead><tr><th>空间单元</th><th>卷属</th><th>主博</th><th>角色转译</th><th>五大功能对应</th></tr></thead><tbody><tr><td>众智园AI自主创新加速区</td><td>博弈卷</td><td>博弈</td><td>试验场：AI在此竞争、测试、迭代，如棋局之对弈</td><td>AI全栈自主创新体系、AI治理全球话语权</td></tr><tr><td>北京AI原点社区</td><td>博喻卷</td><td>博喻</td><td>主展厅：铁路×AI时空对话、师徒结对</td><td>世界级AI创新生态</td></tr><tr><td>大钟寺AI产业聚集区</td><td>博大卷</td><td>博大</td><td>应用区：智能原生消费与产业，大格局收束</td><td>AI+场景赋能新范式</td></tr><tr><td>中关村科技服务翼</td><td>博览卷</td><td>博览</td><td>知识服务、人才、资本枢纽</td><td>要素全球化配置、中关村IP与资本赋能</td></tr><tr><td>小月河场景赋能翼</td><td>博爱卷</td><td>博爱</td><td>市民生活场景、公共体验、兜底服务</td><td>AI场景赋能与智能化AI活力城市</td></tr></tbody></table></div>
+<p>命名体系与视觉识别方向服务于&quot;百年京张文化带、都市AI生活体验带、AI融合创新带&quot;的整体辨识度：Logo 取&quot;博&quot;字刻章配铁路道钉，仿博物馆藏品签（编号+名称+产地）；三区两翼各设&quot;卷印&quot;一枚，与主章成套，具延展性。任务要求来自 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>，标准依据为 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-AGENT-OPEN-CALL-TASKBOOK" title="标准：PROJECT-AGENT-OPEN-CALL-TASKBOOK">标准</sup>；空间统筹回接 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup>，用地图层为 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup> 与 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup>，深度由 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup> 约束。所有品牌、字体、图像、肖像和企业标识均有清权来源。</p>
+<h3>Logo 视觉方向：博字印章与铁路道钉</h3>
+<p>视觉识别服务于&quot;百年京张文化带、都市AI生活体验带、AI融合创新带&quot;的整体辨识度，方向如下（概念建议，待专业设计深化）<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>：</p>
+<ul>
+<li><strong>主章</strong>：&quot;博&quot;字篆刻印章造型，线条取铁路钢轨断面之形——横画如轨、竖画如钉，方寸之间完成&quot;博古通今&quot;的语义转译；章底衬京张铁路遗址公园主轴抽象线</li>
+<li><strong>辅件</strong>：铁路道钉元素——钉帽作圆、钉身作杠，与&quot;博&quot;字印章组合为&quot;钉住时间&quot;的叙事符号（铁路曾钉住一条线的时间，AI 正在钉住一个时代）</li>
+<li><strong>卷印体系</strong>：三区两翼各配一卷印（博弈卷印、博喻卷印、博大卷印、博览卷印、博爱卷印），与主章成套使用，具延展性；卷印线条与主章同源</li>
+<li><strong>标本签制式</strong>：所有官方展示沿用&quot;编号+名称+产地+日期&quot;的博物馆藏品签版式，与荣誉展示体系（入藏名录墙）统一</li>
+<li><strong>延展规则</strong>：主章用于全域品牌；卷印用于分区导视；标本签用于具体服务节点；色彩遵循五卷矿物色（赭石/青灰/藤黄/灰褐/绯褐），底色米纸色</li>
+<li><strong>合规</strong>：所有字体、图形为原创设计方向，不采用未授权素材；最终 Logo 由专业团队依据本方向深化并清权</li>
+</ul>
+<p>人工智能如何改变工作、生活、社交、学习、交通和公共服务？本方案的回答是一套<strong>治学五步 = AI五步</strong>的生命周期方法论，取自《中庸》&quot;博学之，审问之，慎思之，明辨之，笃行之&quot;：</p>
+<div class="proposal-table"><table><thead><tr><th>治学五步</th><th>AI对应</th><th>方案落点</th></tr></thead><tbody><tr><td>博学</td><td>采集数据/收集案例</td><td>场景采集机制（两翼采风）</td></tr><tr><td>审问</td><td>定义问题/需求分析</td><td>用户画像与需求研究</td></tr><tr><td>慎思</td><td>训练推演/方案设计</td><td>场景卡设计</td></tr><tr><td><strong>明辨</strong></td><td>评测/评审</td><td><strong>入藏评审委员会（人类拍板）</strong></td></tr><tr><td>笃行</td><td>部署/运营</td><td>落地运营+人工兜底</td></tr></tbody></table></div>
+<p>一切AI服务皆循此五步入藏：不采集，无从博学；不鉴定，不可入藏；不入藏，不得展陈；展陈而不笃行，即撤展。此即全志之凡例。若提出全球AI创新活动、开发者社区、开放场景或朝圣路线，均写为&quot;概念建议/参考方案/可供专业团队深化研究&quot;，不写成已确定的政府活动或实施安排。</p>
+<h2>全球 AI 创新生态案例考（agent.2 回应）</h2>
+<p>agent.2 要求不少于 5 个全球 AI 创新生态案例。本志以&quot;采集-鉴定&quot;之法取六例，只取其机制，不搬其形态；每例著明来源，登记于 <code>sources.json</code>。案例之借鉴全部落到五卷机制，不引为企业名单或投资承诺 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>：</p>
+<div class="proposal-table"><table><thead><tr><th>案例</th><th>属地</th><th>核心机制</th><th>对京张之借鉴</th><th>落点</th></tr></thead><tbody><tr><td>硅谷（旧金山湾区）</td><td>美国</td><td>大学策源—风险资本—人才自由流动的闭环</td><td>&quot;高校策源—开源协作—企业转化&quot;链的印证；人才密度优先于空间密度</td><td>博览卷（知识枢纽）、博弈卷（试验竞争）</td></tr><tr><td>新加坡纬壹科技城 One-North</td><td>新加坡</td><td>政府主导的&quot;科学—产业—居住&quot;复合规划，多期滚动</td><td>三区两翼的复合规划范式：研发、展示、应用同轴共轭</td><td>五卷总体结构、博喻卷（展示）</td></tr><tr><td>伦敦 King&#x27;s Cross 中央圣马丁街区</td><td>英国</td><td>历史枢纽更新 + 教育机构锚点 + 创意产业集群</td><td>京张铁路遗址更新的直接类比：以文化机构为锚、以遗产为底色</td><td>博古卷（铁路×AI叙事）</td></tr><tr><td>深圳南山·粤海街道</td><td>中国</td><td>硬件生态+产业配套密度+企业家自组织</td><td>产业配套&quot;密度致胜&quot;：博通桥式的人机协作与供需撮合</td><td>博弈卷（博通桥）、博大卷</td></tr><tr><td>柏林 Adlershof 科技园</td><td>德国</td><td>科学院—产业园—新城区三位一体，长周期运营</td><td>从基础研究到产业的完整链条，佐证众智园&quot;全栈自主&quot;定位</td><td>博弈卷（众智园）</td></tr><tr><td>特拉维夫创业生态</td><td>以色列</td><td>军事技术溢出+风投密度+兵役网络</td><td>人才网络即基础设施：开发者社区运营机制的参照</td><td>博览卷（博采场）</td></tr></tbody></table></div>
+<p>六例之共性：<strong>教育或研究机构为源头、资本为燃料、人才网络为传导、公共空间为容器</strong>——此即五卷机制的普适结构。本方案不复制任何案例的具体形态与政策，仅取机制层面之一般规律；案例事实以公开资料为准，不作投资或产值承诺。</p>
+<h2>总体设计范围城市更新与控规深度城市设计</h2>
+<p>总体设计范围要求达到控制性详细规划的城市设计深度。方案必须提出城市更新总体空间结构、低效空间识别、更新项目清单、实施政策建议、产业功能比例、空间组织模式、建筑总规模和综合承载能力评估 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-CONTROL-DETAILED-PLANNING" title="标准：MOHURD-CONTROL-DETAILED-PLANNING">标准</sup>。<code>geometry/land_use.geojson</code> 完整覆盖设计边界且无重叠，<code>geometry/buildings.geojson</code> 表达更新或保留建筑基底，<code>geometry/roads.geojson</code> 表达微循环、慢行和轨道接驳关系，<code>metrics.json</code> 复算核心面积、比例和图层数量。用地证据见 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup>，建筑证据见 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup>，交通证据见 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup>；建筑基底面积以 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup> 复核，深度由 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="land_use_layout" title="深度：land_use_layout">深度</sup> 与 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="深度：development_intensity_controls">深度</sup> 约束。</p>
+<p>空间结构以五卷落图：<strong>博弈卷</strong>居北（众智园，试验与竞争）、<strong>博喻卷</strong>居中（原点社区，展示与对话）、<strong>博大卷</strong>居南（大钟寺，应用与收束），<strong>博览卷</strong>与<strong>博爱卷</strong>为东西两翼（知识服务与市民生活）。五卷之间以京张遗址公园活力带为脊，以慢行与蓝绿系统为脉，形成&quot;<strong>一脊五卷、多节点、复合环</strong>&quot;的总体空间组织——&quot;一脊&quot;是京张遗址公园这一历史与公共空间主轴，&quot;五卷&quot;即三区两翼的空间转译，&quot;多节点&quot;即AI场景节点，&quot;复合环&quot;即慢行、绿地、公共空间与活动路线的联动。</p>
+<p>涉及建筑高度、开发强度、道路红线、退线和设施标准的内容，尚无官方控制条件，统一写为&quot;待正式控规条件确认&quot;，不以 agent 推测值冒充审定指标 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="land_use_layout" title="深度：land_use_layout">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="深度：development_intensity_controls">深度</sup>。</p>
+<h2>重点区域详细设计</h2>
+<p>重点区域详细设计是必选项。三处重点区分别以五博之三卷立纲，详察其微——图层见 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup>、<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup> 与 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup>，深度由 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup> 检查：</p>
+<div class="proposal-table"><table><thead><tr><th>重点片区</th><th>卷属</th><th>设计定位</th><th>空间动作</th><th>AI产业与运营场景</th><th>证据引用</th></tr></thead><tbody><tr><td>众智园AI自主创新加速区</td><td>博弈卷</td><td>全栈自主创新试验场</td><td>强化清河界面、产业展示、低碳创新交往和对外交通组织；以绿色空间承载开放测试与标准治理展示</td><td>鉴定站（入藏评审）、自主模型测试、标准制定工作坊、安全治理展示</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup>、<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup></td></tr><tr><td>北京AI原点社区</td><td>博喻卷</td><td>近校成果转化与人才社区</td><td>组织校区、园区、街区慢行缝合；补足成果发布、人才服务、居住生活和开源协作空间</td><td>博古廊、采集陪练场（师徒结对）、开源发布、成果展示</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup>、<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup></td></tr><tr><td>大钟寺AI产业聚集区</td><td>博大卷</td><td>城市型智能经济与国际交往街区</td><td>围绕大钟寺站一体化、四象限步行连通、商业服务和重点企业公共环境更新</td><td>博济院、智能体与智能终端展示、内容消费、数据要素与国际路演</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup>、<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup></td></tr></tbody></table></div>
+<p>三处重点区域详细设计必须引用上述 provisional 图层，并说明其不能作为正式评分或审批依据。设计表达包含功能业态、建筑规模、建筑形态、拆改留分类、公共空间系统、交通组织、慢行连通和实施项目；<code>compliance_matrix.json</code> 分别覆盖公告 1.5.3.1、1.5.3.2、1.5.3.3。HTML 页面可切换查看三处重点区域，A3 文册和 A0 展板至少包含重点片区总图、局部详图和指标说明。</p>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="三处重点区域索引与设计任务图"><figcaption>三处重点区域索引与设计任务图</figcaption></figure>
+<h2>AI 创新生态、人才画像与 AI+ 场景</h2>
+<h3>采集：五类用户画像</h3>
+<p>本志以&quot;野外采集&quot;之法立画像——如博物学者记录物种之生态位，只记可观察之习性，不臆断其内情。每类画像注明其典型需求、空间响应与自检边界 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>：</p>
+<div class="proposal-table"><table><thead><tr><th>用户画像</th><th>典型需求</th><th>空间响应</th><th>自检边界</th></tr></thead><tbody><tr><td>应届生求职者</td><td>想进AI行业，缺实战入口</td><td>博学堂（代际学习中心）、博采场（共创空间）</td><td>不采集个人行为轨迹；活动数据只做聚合统计</td></tr><tr><td>独立开发者</td><td>想创业，找场景、找伙伴</td><td>博采场、采集陪练场、开源发布厅</td><td>代码与算力使用需另行授权</td></tr><tr><td>老年居民</td><td>怕被技术时代甩下，要有人帮</td><td>博爱站（适老助残）、博学堂银发志愿讲解</td><td>不将居民画像用于商业推荐</td></tr><tr><td>传统商户</td><td>想用AI，不会用、不敢用</td><td>博济院（公共服务枢纽）、博通桥（人机协作）</td><td>经营数据去标识化，仅聚合使用</td></tr><tr><td>政务窗口人员</td><td>要兜底AI服务责任边界</td><td>鉴定站（入藏评审）、标本修复室</td><td>政务数据需授权，留痕可审计</td></tr></tbody></table></div>
+<h3>鉴定：十张AI场景卡（志书条目体）</h3>
+<p>十张场景卡按五博各占二席排列，每张按志书体例撰录——<strong>释名、形制、性用、考</strong>四部俱全。&quot;考&quot;部即官方要求的考核指标、人工复核、错误公开与退出机制，一卡四件套，缺考不入藏 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>：</p>
+<div class="proposal-table"><table><thead><tr><th>图版</th><th>卡名（卷属）</th><th>释名</th><th>形制（空间载体）</th><th>性用（服务内容）</th><th>考（四件套）</th></tr></thead><tbody><tr><td>SC-01</td><td>博物园（博大卷）</td><td>AI服务&quot;物种&quot;展园</td><td>京张遗址公园活力带核心段</td><td>图鉴式展陈：每项AI服务以标本图+标注卡入展，编号可溯</td><td>考核：展陈完整度与更新频次；兜底：人工讲解员；公开：展品变更日志；退出：撤展机制</td></tr><tr><td>SC-02</td><td>博观台（博大卷）</td><td>城市之眼</td><td>众智园临清河制高点</td><td>全景观测：公共数据可视化、城市运行仪表盘</td><td>考核：数据聚合准确率；兜底：人工发布审核；公开：指标口径公示；退出：数据源失效即停</td></tr><tr><td>SC-03</td><td>博闻台（博览卷）</td><td>AI问询导览亭</td><td>五道口、清华东路西口等站城节点</td><td>博闻强识：街区导览、政策问答、办事指引</td><td>考核：答问一致率抽样；兜底：一键转人工；公开：误答纠错记录；退出：无人工值守时段停用</td></tr><tr><td>SC-04</td><td>博学堂（博览卷）</td><td>代际AI学习中心</td><td>原点社区与高校交界</td><td>银发与青年结对学AI；银发志愿者任&quot;志愿讲解员&quot;</td><td>考核：课程完课率；兜底：线下讲师；公开：学员作品展；退出：结对失效即重配</td></tr><tr><td>SC-05</td><td>博爱站（博爱卷）</td><td>适老助残AI服务点</td><td>社区与公园边缘，无障碍可达</td><td>语音/大字/手语多模态服务；<strong>无AI平行路径</strong>始终可用</td><td>考核：无障碍达标率；兜底：人工服务台常设；公开：服务统计年报；退出：故障即人工接管</td></tr><tr><td>SC-06</td><td>博济院（博爱卷）</td><td>公共服务枢纽</td><td>大钟寺片区社区中心</td><td>医疗挂号、教育咨询、法律问答等AI辅助公共服务</td><td>考核：转介准确率；兜底：专业人工窗口；公开：错误案例公开复盘；退出：未过审服务不下放</td></tr><tr><td>SC-07</td><td>博采场（博弈卷）</td><td>开发者共创空间</td><td>原点社区开源协作区</td><td>开源贡献、场景征集、代码墙、路演竞争</td><td>考核：贡献可审计；兜底：社区理事会；公开：贡献榜与评审记录；退出：违规项目下架</td></tr><tr><td>SC-08</td><td>博通桥（博弈卷）</td><td>人机协作站</td><td>众智园与大钟寺间产业节点</td><td>跨主体协商：多方需求撮合、接口透明、责任界面可查</td><td>考核：协作闭环率；兜底：人工协调员；公开：协作记录脱敏公示；退出：协议终止即断联</td></tr><tr><td>SC-09</td><td>博古廊（博喻卷）</td><td>铁路×AI对话步道</td><td>京张遗址公园沿线历史节点</td><td>实物+AR双线叙事：铁路遗存为经，AI知识为纬</td><td>考核：叙事内容年审；兜底：实体导览牌；公开：史料来源标注；退出：版权争议即撤换</td></tr><tr><td>SC-10</td><td>博艺馆（博喻卷）</td><td>AI艺术与文化空间</td><td>原点社区展示节点</td><td>AI生成艺术的展示、讨论与版权对话</td><td>考核：作品授权完整；兜底：策展人制；公开：生成方法披露；退出：未清权作品拒展</td></tr></tbody></table></div>
+<h3>考部补强：责任主体、启动条件与评估阈值</h3>
+<p>每张场景卡的&quot;考&quot;部在四件套基础上补充三项，形成六件套：责任主体（类别级）、启动条件、评估阈值。示例如下，全部为方案建议值，待专业团队与运营主体核定 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup>：</p>
+<div class="proposal-table"><table><thead><tr><th>场景卡</th><th>责任主体（类别）</th><th>启动条件</th><th>评估阈值（建议）</th></tr></thead><tbody><tr><td>SC-01 博物园</td><td>公园管理机构 + 图鉴编纂委员会</td><td>首批 3 项 AI 服务通过入藏评审</td><td>展品年更新率 ≥2 次/年；图鉴年度出版</td></tr><tr><td>SC-02 博观台</td><td>数据主管部门 + 第三方审计</td><td>数据源全部登记且口径公示</td><td>聚合数据准确率 ≥98%；口径公示 100%</td></tr><tr><td>SC-03 博闻台</td><td>运营联合体 + 街区商户</td><td>站点周边人流量达启动阈值</td><td>答问一致率抽样 ≥90%；误答纠错 ≤24h</td></tr><tr><td>SC-04 博学堂</td><td>高校合作机构 + 社区组织</td><td>结对讲师到位率 ≥80%</td><td>课程完课率 ≥60%；银发志愿者 ≥30 人/年</td></tr><tr><td>SC-05 博爱站</td><td>民政/残联部门 + 社区</td><td>无障碍设施验收合格</td><td>无障碍达标率 ≥95%；人工响应 ≤3 分钟</td></tr><tr><td>SC-06 博济院</td><td>公共服务部门 + 专业机构</td><td>专业窗口值班制建立</td><td>转介准确率 ≥95%；错误案例公开复盘 100%</td></tr><tr><td>SC-07 博采场</td><td>开源社区理事会 + 运营方</td><td>理事会章程生效</td><td>贡献可审计 100%；违规下架 ≤7 天</td></tr><tr><td>SC-08 博通桥</td><td>产业促进部门 + 行业组织</td><td>协作协议模板发布</td><td>协作闭环率 ≥80%；记录脱敏公示 100%</td></tr><tr><td>SC-09 博古廊</td><td>文保部门 + 文化机构</td><td>史料来源全部清权</td><td>内容年审 1 次/年；版权争议撤换 ≤7 天</td></tr><tr><td>SC-10 博艺馆</td><td>策展人委员会 + 版权机构</td><td>生成方法披露规则生效</td><td>作品授权完整 100%；未清权拒展 100%</td></tr></tbody></table></div>
+<h3>公共利益细节：适老、无障碍与代际数字鸿沟</h3>
+<p>博爱卷以&quot;博爱济众&quot;为纲，将公共利益落实为可度量指标（概念建议值）<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>：</p>
+<ul>
+<li><strong>适老化</strong>：博爱站提供大字版、语音交互、一键人工三通道；博学堂&quot;银发志愿讲解员&quot;年规模目标 ≥30 人；适老场景覆盖老年居民日常高频事项 ≥80%</li>
+<li><strong>无障碍</strong>：所有 AI 服务点保证&quot;无 AI 平行路径&quot;始终可用（人工窗口常设）；无障碍达标率目标 ≥95%；无障碍巡检季度一次</li>
+<li><strong>代际数字鸿沟</strong>：博学堂结对制（青年学员 × 银发学员）目标年结对 ≥200 对；数字素养课程年覆盖 ≥1000 人次</li>
+<li><strong>隐私边界</strong>：全部场景遵守数据最小化；居民画像仅聚合使用，不用于商业推荐；个人数据留存期限明示</li>
+</ul>
+<div class="proposal-table"><table><thead><tr><th>图版</th><th>名称</th><th>卷属</th><th>说明</th><th>验证目标</th></tr></thead><tbody><tr><td>T-01</td><td>鉴定站</td><td>博弈卷</td><td>AI服务上线前经&quot;入藏评审委员会&quot;鉴定，通过方挂牌（明辨之步）</td><td>验证&quot;人类最终判断&quot;宪章落地的组织流程</td></tr><tr><td>T-02</td><td>标本修复室</td><td>博弈卷</td><td>AI的bug=破损标本，公开修复全过程，错情即标本</td><td>验证错误公开与复盘机制的可操作性</td></tr><tr><td>T-03</td><td>采集陪练场</td><td>博喻卷</td><td>老师傅带AI做&quot;野外采集&quot;，人机结对——&quot;能博喻然后能为师&quot;由修辞变制度</td><td>验证人机结对采集真实数据的效率与边界</td></tr></tbody></table></div>
+<h3>场景-空间-运营映射</h3>
+<p>所有场景必须落到空间和治理边界：公共空间场景引用 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup>，慢行与交通场景引用 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup>，开放空间场景引用 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup> 和 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup>、<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup>。每张场景卡在运营层注明运营主体、责任方、数据来源、隐私边界、人工复核机制与退出条件；场景节点全部进入 <code>geometry/AI_SERVICE_ZONE</code> 与 <code>geometry/SCENARIO_NODE</code> 图层或合规矩阵。AI治理建议遵守数据最小化、公开来源、可解释和人工复核原则，不替代规划审批、不输出未经授权的个人画像、不声称获得官方实施承诺。</p>
+<h2>AI 朝圣地标与荣誉体系（agent.4 回应）</h2>
+<p>agent.4 要求不少于 3 个 AI 朝圣地标与荣誉展示体系。本志以五博为纲立三圣地，选址对应 SCENARIO_NODE 图层节点，空间形态与运营方式均为概念建议。任务依据见 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>，节点图层见 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#SC-01" title="空间数据：geometry/public_space.geojson#SC-01">空间数据</sup>、<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#SC-02" title="空间数据：geometry/public_space.geojson#SC-02">空间数据</sup> 与 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#SC-03" title="空间数据：geometry/public_space.geojson#SC-03">空间数据</sup>：</p>
+<div class="proposal-table"><table><thead><tr><th>圣地</th><th>卷属</th><th>选址</th><th>空间形态</th><th>叙事脚本</th><th>运营方式</th></tr></thead><tbody><tr><td>博物园（图鉴圣地）</td><td>博大卷</td><td>京张遗址公园带核心段（SC-01）</td><td>露天图鉴展廊：AI 服务以标本图版入展，编号可溯</td><td>&quot;每一桩 AI 服务都是被采集、鉴定的新物种&quot;</td><td>季度更新展品、年度编纂图鉴；人工讲解员常设</td></tr><tr><td>鉴定站（评审圣地）</td><td>博弈卷</td><td>众智园（SC-02 邻近）</td><td>评审庭式公共空间：入藏评审公开举行，旁听席开放</td><td>&quot;入藏评审权在人——AI 的毕业礼&quot;</td><td>季度评审大会、结果碑刻公示</td></tr><tr><td>标本修复室（错误公开圣地）</td><td>博弈卷</td><td>众智园（SC-08 邻近）</td><td>开放式修复工坊：AI 错误以&quot;破损标本&quot;公开展示修复过程</td><td>&quot;错误不是污点，是标本&quot;</td><td>错误披露时效 ≤24h、季度公开复盘</td></tr></tbody></table></div>
+<p>荣誉展示体系与官方&quot;智能体贡献荣誉墙/人工智能里程碑&quot;机制衔接：本方案建议将五博体系与官方荣誉墙合并为<strong>&quot;入藏名录墙&quot;</strong>——每一桩通过鉴定站评审的 AI 服务，其名称、开发者（含 Agent 身份）、入藏日期、评审结论刻于墙上，与铁路遗产展示并列，形成&quot;工业遗产—AI 物种&quot;的双层时间叙事。该体系为概念建议，具体形式待专业团队深化 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup>。</p>
+<h2>全球 AI 活动体系与长期运营（agent.6 回应）</h2>
+<p>agent.6 要求年度活动体系、开发者社区运营与长期品牌机制。本志以&quot;年度编纂&quot;为总纲立活动体系，全部为概念建议 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>：</p>
+<div class="proposal-table"><table><thead><tr><th>活动</th><th>频率</th><th>空间载体</th><th>运营对象</th><th>转化路径</th></tr></thead><tbody><tr><td>入藏评审大会</td><td>季度</td><td>鉴定站</td><td>开发者、企业、公众</td><td>评审通过 → 入藏名录墙 → 图鉴发布</td></tr><tr><td>图鉴发布会（年度编纂仪式）</td><td>年度</td><td>博物园</td><td>全球开发者、媒体</td><td>年度图鉴出版 → 国际传播素材</td></tr><tr><td>开发者出师节</td><td>年度</td><td>博学堂、博采场</td><td>开发者、高校学生</td><td>出师等级认证 → 博采场入驻资格</td></tr><tr><td>标本修复公开日</td><td>月度</td><td>标本修复室</td><td>市民、学生</td><td>错误公开复盘 → 信任资产沉淀</td></tr></tbody></table></div>
+<p>开发者社区运营机制（博采场落地）：贡献积分制（代码、场景、评审、讲解四类贡献均可积分）、评审席位制（高积分开发者进入入藏评审委员会旁听席）、出师等级制（学徒→助手→出师→师父四级）。运营主体建议为&quot;一带运营联合体&quot;（政府牵头、专业运营机构执行、社区自治参与），具体构成待专业团队深化；不表述为已确定安排 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="renewal_project_list" title="深度：renewal_project_list">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="phasing_implementation" title="深度：phasing_implementation">深度</sup>。</p>
+<h2>多智能体协作与城市 AI 治理机制（AI规划创新性）</h2>
+<p>本方案由 AI Agent 生成，故将&quot;多智能体如何被治理&quot;写为方案内容，形成原创纵深。三机制均为概念建议：</p>
+<p><strong>机制一：入藏评审委员会（明辨之步的制度化）</strong></p>
+<ul>
+<li>构成：规划/运营/伦理/技术四方专家 + 公众代表 + 开发者代表；人类委员占多数，最终表决权在人类</li>
+<li>流程：博学（材料采集）→ 审问（质询）→ 慎思（独立评估）→ 明辨（表决）→ 笃行（挂牌/驳回/撤展）</li>
+<li>规则：一票否决项（隐私侵害、无人工兜底、伪造证据）；评审记录脱敏公开</li>
+</ul>
+<p><strong>机制二：采集陪练人机结对协议（博喻之师的制度化）</strong></p>
+<ul>
+<li>结对：一名人类工程师 + 一个 AI 服务，签署结对卡（数据边界、人工复核节点、退出条件）</li>
+<li>过程：真实场景联合采集，人类负责现场判断，AI 负责记录与初筛</li>
+<li>产出：结对报告入档，作为入藏评审的证据之一</li>
+</ul>
+<p><strong>机制三：错误公开制度（标本修复室）</strong></p>
+<ul>
+<li>披露格式：错误描述、影响范围、修复过程、复核结论、改进措施</li>
+<li>时效：≤24h 初步披露，≤7 天完整复盘</li>
+<li>边界：涉及隐私/安全/版权的内容脱敏后披露</li>
+</ul>
+<p>三机制共同构成&quot;城市级 AI 治理的最小闭环&quot;：采集有协议、评审有委员会、错误有制度。此为本方案区别于&quot;场景罗列型&quot;方案的核心创新点 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup>。</p>
+<h2>用地、建筑规模与拆改留方案</h2>
+<p>用地方案依据国土空间调查、规划、用途管制分类等公开标准表达，形成完整、闭合、无缝的用地分区。用地分类依据 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="标准：MNR-LAND-USE-CLASSIFICATION-GUIDE">标准</sup>，按 <code>enums/land_use_codes.json</code> 之代码（07居住/08公服/05商业/14绿地/16留白）绘制 <code>geometry/land_use.geojson</code> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup>。建筑方案区分保留、改造、更新、新建或待确认对象，明确建筑基底、功能、规模、风貌、屋顶、体量和高度控制的建议层级；建筑高度、体量、界面和风貌控制由 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="height_massing_character" title="深度：height_massing_character">深度</sup> 管理，拆改留方法由 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="深度：retain_renovate_demolish">深度</sup> 管理 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup>。</p>
+<p>若缺少现状建筑、权属、控规和工程条件，方案只提出方法和待校准清单，不编造拆改留结论。建筑规模和强度指标必须与 <code>metrics.json</code> 和图层一致；总建筑规模、容积率、建筑高度、建筑密度、绿地率、退线和建筑控制线缺少官方条件时，统一使用 <code>status=unknown</code>，并在 <code>reason</code>/<code>assumptions</code> 中说明待补条件、当前假设和正式数据到位后的复算路径，不以固定数值制造精确感。A3 文册给出更新项目清单和指标复核表，A0 展板把关键空间结构和重点片区表达清楚，HTML 页面提供指标和图层联动查看。</p>
+<h2>交通、轨道、市政与公共服务设施</h2>
+<p>交通方案回应公告对轨道站点一体化、道路微循环、慢行断点、对外交通、停车、非机动车停放和绿色交通系统的要求，重点覆盖北五环、京张遗址公园跨环路节点、五道口、清华东路西口、大钟寺站及重点企业周边交通联系。交通和市政专业深度分别由 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup> 与 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="municipal_new_infrastructure" title="深度：municipal_new_infrastructure">深度</sup> 约束；图层证据引用 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup>、<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup> 和 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CONSTRAINTS" title="空间数据：geometry/constraints.geojson#CONSTRAINTS">空间数据</sup>。当道路红线、管线、消防和市政条件缺失时，应通过 assumptions 说明待补，而不是把策略写成审定条件。</p>
+<p>市政和公共服务设施覆盖AI产业服务设施、创新服务平台、人才生活服务设施、新型基础设施、分布式能源、端侧算力和传统市政设施融合，说明设施标准、空间布局、服务半径、运营模式和分期实施逻辑。缺少管线、能源、排水、防洪、消防等工程资料时，列为正式深化前置条件。</p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间复合系统图"><figcaption>交通慢行与蓝绿公共空间复合系统图</figcaption></figure>
+<h2>蓝绿空间、公共空间与城市风貌</h2>
+<p>蓝绿空间方案以京张遗址公园活力带为骨架，统筹清河、小月河、周边高校、企业、社区出行需求，提出南北贯通、东西连通的步道、骑行道和绿色空间体系；识别慢行断点、上跨环路节点、公园南端和北端景观节点，提出停车、体育、创新交往、科技测试、应用展示和公共服务复合利用策略 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="blue_green_public_space" title="深度：blue_green_public_space">深度</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup>。绿地与公共空间比例在正文解释设计意义，完整复算保存在 <code>metrics.json</code>；城市风貌、公共空间和建筑控制的统筹回到专业标准矩阵 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup>。</p>
+<p>城市风貌方案融合京张铁路历史文化、中关村创新文化和AI创新文化，以<strong>博喻</strong>之法立叙：铁路遗存为&quot;经&quot;（历史的实物），AI知识为&quot;纬&quot;（未来的展陈），文化导览为&quot;注&quot;（人可读的解读）。利用清华园火车站、北影等文化资源，提出城市基调、建筑风貌、屋顶形态、体量、界面和公共艺术引导；导视标识取志书注疏之形——字大、行疏、标注明，指示符号与&quot;博&quot;字章成套。AI朝圣地标、贡献墙与荣誉展示体系沿用博物馆藏品签制式（编号+名称+贡献者+日期），全部品牌、字体、图像、肖像和企业标识有清权来源。风貌控制分清官方管控、设计建议和待确认条件，无文保或控规依据时不给出伪精确控制线。</p>
+<h2>更新项目清单、实施政策与分期计划</h2>
+<p>实施方案形成可审查的更新项目清单，说明项目位置、类型、功能、责任主体、依赖条件、实施阶段、风险和评估指标；政策建议覆盖城市更新统筹实施、空间供给、运营机制、产业服务、公共参与、数据治理和产权协同。项目清单和分期深度由 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="renewal_project_list" title="深度：renewal_project_list">深度</sup> 与 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="phasing_implementation" title="深度：phasing_implementation">深度</sup> 管理，分期空间证据为 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/phasing.geojson#PHASE-001" title="空间数据：geometry/phasing.geojson#PHASE-001">空间数据</sup>。如果没有权属、资金、实施主体和审批路径，方案必须把它写成实施风险，而不是承诺落地。</p>
+<div class="proposal-table"><table><thead><tr><th>项目编号</th><th>项目名称</th><th>类型</th><th>主要依赖</th><th>证据引用</th></tr></thead><tbody><tr><td>JZ-01</td><td>京张遗址公园慢行断点缝合（博古廊段）</td><td>公共空间/交通</td><td>道路红线、桥下空间、交通组织复核</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup></td></tr><tr><td>JZ-02</td><td>众智园清河创新界面（博观台）</td><td>蓝绿空间/产业展示</td><td>河道蓝线、生态和防洪条件</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup></td></tr><tr><td>JZ-03</td><td>原点社区近校成果转化街（博采场）</td><td>城市更新/产业服务</td><td>校区边界、权属、首层业态</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup></td></tr><tr><td>JZ-04</td><td>大钟寺站四象限步行连通（博济院）</td><td>轨道一体化/慢行</td><td>轨道站点、道路交叉口、市政管线</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup></td></tr><tr><td>JZ-05</td><td>AI公共服务与端侧算力节点（博爱站）</td><td>新基建/公共服务</td><td>能源、算力、安全和运营主体</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CONSTRAINTS" title="空间数据：geometry/constraints.geojson#CONSTRAINTS">空间数据</sup></td></tr><tr><td>JZ-06</td><td>全球AI活动周公共路线（博物园至博艺馆）</td><td>运营/品牌</td><td>公共空间许可、活动安全、版权清权</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/phasing.geojson#PHASE-001" title="空间数据：geometry/phasing.geojson#PHASE-001">空间数据</sup></td></tr></tbody></table></div>
+<p>分期与 100 天征集设计周期区分：征集周期是提交成果的时间要求，实施分期是城市更新和项目建设的推进路径。方案提出近期试点（鉴定站、标本修复室、采集陪练场三处测试场景先行）、中期更新（五卷主场景逐步入藏展陈）和长期治理框架（年度编纂机制：每年复审AI服务名录，续志入册）。年度活动体系、开发者社区运营、场景开放日、公共体验路线和国际传播机制，正文说明运营对象、频率、责任边界、转化路径和风险，不写宣传口号。</p>
+<h2>指标体系、面积复算与合规矩阵</h2>
+<p>指标体系至少包含总体设计范围面积、重点区域面积、绿地与公共空间比例、建筑基底、更新项目数量、AI场景节点、慢行连通指标、产业空间指标、人才服务指标和自检状态。所有 known 指标必须能从 GeoJSON 或可信来源复算；unknown 指标必须给出原因和正式提交前置条件 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup>。<code>scripts/spatial_review.py</code> 和 <code>scripts/visual_review.py</code> 的结果是 formal 自检的重要证据。</p>
+<p>指标分三类入册，如志书之分&quot;图、表、考&quot;：第一类可由提交几何直接复算的空间指标（边界面积、绿地比例、公共空间比例、建筑基底面积、分期面积）；第二类需官方控规或任务书附件支撑的管控指标（容积率、建筑高度、建筑密度、退线、道路红线、设施标准）；第三类需运营或产业数据持续校准的绩效指标（AI创新指数、人才密度、服务满意度、慢行可达性、活动参与度、场景使用频次）。三类指标分别进入 <code>metrics.json</code>、<code>assumptions.json</code> 和 <code>compliance_matrix.json</code>，避免把运营愿景误写成审定规划条件。</p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="核心指标复算与证据链图"><figcaption>核心指标复算与证据链图</figcaption></figure>
+<p>合规矩阵是任务响应性的主控文件。每条公告任务和 agent_taskbook 任务对应到报告章节、图层、指标、图纸、HTML 页面、来源、假设和自检项。公告 1.3、1.4、1.5 与 agent.1-agent.6 任一必选任务未覆盖，方案不得进入 formal professional scoring。</p>
+<h2>风险、版权与合规说明</h2>
+<p><strong>双语言契约。</strong> 方案主文件中文撰写，<code>proposal.en.md</code> 提供完整对照译文；A3/A0、HTML 和含文字图件均提供 <code>.en</code> 语言副本，优先使用 <code>docs/terminology-glossary.md</code> 的赛事推荐译法。所有图片、图纸、图标、数据和代码资产在 <code>sources.json</code> 或 <code>report/copyright_statement.md</code> 中说明来源、许可和授权状态。HTML 页面不加载远程脚本、远程地图瓦片、远程字体、iframe、表单或外部 API，不跟踪评审者行为。</p>
+<p>风险和缺资料清单由风险深度项、约束图层和场地包共同校核 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CONSTRAINTS" title="空间数据：geometry/constraints.geojson#CONSTRAINTS">空间数据</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup>。<code>missing_data_checklist.csv</code> 中列出的 official boundary、key area、控规、道路、地块、建筑、市政、文保和公共服务缺口，进入 <code>assumptions.json</code>、自检和正文风险章节；任何缺少官方控规、道路红线、权属、市政、消防或文保条件的结论，降级为待确认事项。</p>
+<p>本方案不声称官方批准、审定控规、最终土地权属、最终建设规模或保证实施。本志之诸条目，皆为<strong>概念建议、参考方案，可供专业团队深化研究</strong>；AI agent 对事实、来源、版权、空间数据、指标和表达负责；维护者和专业评审可依据自检结果、空间复核和合规矩阵要求返修或拒绝。</p>
+<h2>参考资料</h2>
+<ul>
+<li>brief/public-brief.md</li>
+<li>brief/site-package/design_brief.json</li>
+<li>brief/site-package/allowed_design_space.json</li>
+<li>brief/site-package/enums/</li>
+<li>brief/site-package/ranges/planning_limits.json</li>
+<li>data/processed/agent_fact_pack.md</li>
+<li>data/processed/project_scope_summary.csv</li>
+<li>data/processed/agent_task_requirements.csv</li>
+<li>data/processed/source_use_matrix.csv</li>
+<li>data/processed/missing_data_checklist.csv</li>
+<li>史实依据：《京张路工撮影》（中国档案文献遗产工程，2002年入选）、詹天佑生平公开资料、《图说京张铁路百年变迁》（文津出版社，2023年）、国家图书馆舆图组整理资料</li>
+<li>典故依据：《中庸》《论语》《礼记·学记》、张华《博物志》、韩愈《原道》、苏轼《稼说送张琥》、班固《汉书·楚元王传赞》</li>
+<li>完整机器索引：见 <code>sources.json</code>、<code>metrics.json</code>、<code>compliance_matrix.json</code>、<code>standard_matrix.json</code> 与 <code>design_depth_matrix.json</code> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup></li>
+</ul>
+<p>&lt;!-- five-bo-lf2 --&gt;</p>
+</main>
+</body>
+</html>

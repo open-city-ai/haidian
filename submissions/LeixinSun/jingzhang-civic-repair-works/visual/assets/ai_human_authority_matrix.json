@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0.0",
+  "package_version": "v1.2",
+  "purpose": "Define where AI may assist the return-to-service process, where it must refuse to act, and which decisions remain exclusively human.",
+  "claim_boundary": "Participant-authored authority contract only. It does not validate a model, appoint an institution, certify equipment, or authorize field operation.",
+  "current_state": "synthetic_contract_only_field_runs_zero",
+  "rules": [
+    {
+      "rule_id": "A01",
+      "stage_refs": ["R0", "R1"],
+      "space_zh": "大钟寺人工受理台",
+      "space_en": "Dazhongsi staffed intake desk",
+      "ai_may_zh": "归类故障描述、检查工单字段缺口、检索公开服务说明。",
+      "ai_may_en": "Classify fault descriptions, check missing work-order fields, and retrieve cleared service guidance.",
+      "ai_must_not_zh": "裁定保修责任、拒绝投诉、扩大个人数据采集范围。",
+      "ai_must_not_en": "Determine warranty liability, dismiss a complaint, or expand personal-data collection.",
+      "human_exclusive_zh": "确认受理范围、保修升级、数据访问与投诉路径。",
+      "human_exclusive_en": "Confirm intake scope, warranty escalation, data access, and complaint routes.",
+      "forced_refusal": "REJECT_DATA_REQUEST_R1"
+    },
+    {
+      "rule_id": "A02",
+      "stage_refs": ["R2"],
+      "space_zh": "众智园隔离诊断区",
+      "space_en": "Zhongzhiyuan isolation and diagnostics zone",
+      "ai_may_zh": "聚类错误码、检索相似工单、建议受控检查顺序。",
+      "ai_may_en": "Cluster error codes, retrieve similar cases, and suggest a controlled inspection order.",
+      "ai_must_not_zh": "判定危险废物属性、允许不安全上电、解除物理隔离。",
+      "ai_must_not_en": "Classify hazardous waste, permit unsafe energisation, or remove physical isolation.",
+      "human_exclusive_zh": "风险分类、隔离、应急处置与资格交接。",
+      "human_exclusive_en": "Risk classification, isolation, emergency action, and qualified handover.",
+      "forced_refusal": "HOLD_R2"
+    },
+    {
+      "rule_id": "A03",
+      "stage_refs": ["R3"],
+      "space_zh": "AI 原点互换件公库与校准台",
+      "space_en": "AI Origin Parts Commons and calibration bench",
+      "ai_may_zh": "生成候选部件短名单并标出机械、电气、通信、固件、校准和失效模式证据缺口。",
+      "ai_may_en": "Shortlist candidate parts and expose gaps across mechanical, electrical, communications, firmware, calibration, and failure-mode evidence.",
+      "ai_must_not_zh": "把外观相似当作兼容、隐藏负结果、授权换件。",
+      "ai_must_not_en": "Treat visual similarity as compatibility, hide negative findings, or authorize replacement.",
+      "human_exclusive_zh": "批准维修范围、确认兼容证据与召回处置。",
+      "human_exclusive_en": "Approve the repair scope, accept compatibility evidence, and handle recalls.",
+      "forced_refusal": "REJECT_AI_RECOMMENDATION_R3"
+    },
+    {
+      "rule_id": "A04",
+      "stage_refs": ["R4"],
+      "space_zh": "众智园整机回归场",
+      "space_en": "Zhongzhiyuan whole-system regression field",
+      "ai_may_zh": "编排已批准测试、比较基线、提示异常与证据缺口。",
+      "ai_may_en": "Orchestrate approved tests, compare baselines, and flag anomalies or evidence gaps.",
+      "ai_must_not_zh": "修改通过阈值、覆盖失败记录、签发校准或安全结论。",
+      "ai_must_not_en": "Change pass thresholds, overwrite failed evidence, or sign calibration or safety conclusions.",
+      "human_exclusive_zh": "急停、校准/测试签认、无障碍接受与残余限制确认。",
+      "human_exclusive_en": "Emergency stop, calibration/test sign-off, accessibility acceptance, and residual-limit confirmation.",
+      "forced_refusal": "HOLD_R4"
+    },
+    {
+      "rule_id": "A05",
+      "stage_refs": ["R5"],
+      "space_zh": "大钟寺人工放行室与重返运行广场",
+      "space_en": "Dazhongsi human-release room and Return-to-Service Square",
+      "ai_may_zh": "检查门链完整性、生成限定回执草稿、聚合不含个人画像的运营指标。",
+      "ai_may_en": "Check gate-trail completeness, draft a limited receipt, and aggregate non-profile operating metrics.",
+      "ai_must_not_zh": "决定复役、代签责任人、把低置信度建议写成专业结论。",
+      "ai_must_not_en": "Decide return to service, impersonate an accountable signatory, or present low-confidence advice as a professional conclusion.",
+      "human_exclusive_zh": "最终暂停、有限放行、退回或资格交接。",
+      "human_exclusive_en": "Final hold, limited release, return, or qualified handover.",
+      "forced_refusal": "HOLD_AI_AUTHORITY_R5"
+    }
+  ],
+  "summary": {
+    "rule_count": 5,
+    "field_runs": 0,
+    "ai_release_authority": false,
+    "human_release_required": true
+  }
+}

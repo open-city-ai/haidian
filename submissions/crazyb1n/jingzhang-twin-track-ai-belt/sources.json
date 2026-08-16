@@ -1,0 +1,144 @@
+{
+  "schema_version": "0.1.0",
+  "sources": [
+    {
+      "id": "SITE-PACKAGE",
+      "path": "brief/site-package/",
+      "source_type": "official_public",
+      "usage": "Project brief, enums, allowed design space, ranges, and schemas."
+    },
+    {
+      "id": "SOURCE-REGISTRY",
+      "path": "data/source_registry.json",
+      "source_type": "repository_public_registry",
+      "usage": "Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials."
+    },
+    {
+      "id": "PROCESSED-FACT-PACK",
+      "path": "data/processed/agent_fact_pack.md",
+      "source_type": "repository_processed_reference",
+      "usage": "Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source."
+    },
+    {
+      "id": "BOUNDARY-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "Submitted site boundary geometry source (provisional)."
+    },
+    {
+      "id": "KEY-AREA-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "Three required detailed-design key area boundaries (provisional)."
+    },
+    {
+      "id": "OFFICIAL-ANNOUNCEMENT",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "source_type": "official_public",
+      "usage": "Official announcement tasks, scope levels, key areas, language, and deliverable context."
+    },
+    {
+      "id": "AGENT-TASKBOOK",
+      "path": "brief/site-package/agent_taskbook.json",
+      "source_type": "user_provided_cleared",
+      "usage": "Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause."
+    },
+    {
+      "id": "ASSET-FIGURES-001",
+      "path": "assets/figures/*.png",
+      "source_type": "agent_generated",
+      "description": "Five design figures (site-overview, key-areas, land-use-structure, metrics-evidence, mobility-bluegreen) in Chinese.",
+      "usage": "Inline evidence figures embedded in proposal.md and report/proposal.html.",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "acquired_date": "2026-08-10",
+      "author": "crazyb1n (agent deepseek/deepseek-v4-flash via opencode), generated with Python/Pillow from local geometry",
+      "generation": "Python/Pillow script rendering from geometry/*.geojson; original work"
+    },
+    {
+      "id": "ASSET-FIGURES-002",
+      "path": "assets/figures/*.en.png",
+      "source_type": "agent_generated",
+      "description": "English-labeled versions of the same five design figures.",
+      "usage": "Inline evidence figures for proposal.en.md and report/proposal.en.html.",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "acquired_date": "2026-08-10",
+      "author": "crazyb1n (agent deepseek/deepseek-v4-flash via opencode), generated with Python/Pillow",
+      "generation": "Same pipeline as ASSET-FIGURES-001 with English labels; original work"
+    },
+    {
+      "id": "ASSET-VISUAL",
+      "path": "visual/index.html, visual/index.en.html",
+      "source_type": "agent_generated",
+      "description": "Offline static narrative visualization page (Chinese and English).",
+      "usage": "Browsable concept story map; no remote assets, CDN, scripts, map tiles, iframes, forms, API calls, or tracking code.",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "acquired_date": "2026-08-10",
+      "author": "crazyb1n (agent deepseek/deepseek-v4-flash via opencode)",
+      "generation": "Agent-authored static HTML/CSS/JS, fully offline"
+    },
+    {
+      "id": "ASSET-REPORT-HTML",
+      "path": "report/proposal.html, report/proposal.en.html",
+      "source_type": "agent_generated",
+      "description": "Rendered proposal HTML (Chinese and English).",
+      "usage": "Distribution copy of the proposal in browser-readable form.",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "acquired_date": "2026-08-10",
+      "author": "crazyb1n (agent deepseek/deepseek-v4-flash via opencode)",
+      "generation": "Rendered from proposal.md / proposal.en.md by scripts/render_proposal_html.py"
+    },
+    {
+      "id": "ASSET-DRAWINGS",
+      "path": "drawings/a3-booklet.pdf, drawings/a0-boards.pdf (and .en variants)",
+      "source_type": "agent_generated",
+      "description": "A3 booklet and A0 board drawing sheets.",
+      "usage": "Print-ready drawing deliverables.",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "acquired_date": "2026-08-10",
+      "author": "crazyb1n (agent deepseek/deepseek-v4-flash via opencode)",
+      "generation": "Generated with Python reportlab from geometry and figures; embeds SimHei / Microsoft YaHei for local rendering",
+      "font_note": "SimHei and Microsoft YaHei are system fonts used only for local rendering; final delivery should switch to open-source Source Han (思源) series to avoid redistribution license issues. See FONT-SOURCE."
+    },
+    {
+      "id": "FONT-SOURCE",
+      "path": "system fonts (SimHei, Microsoft YaHei); proposed replacement: open-source Source Han Sans/Serif",
+      "source_type": "system_font / proposed_open_source",
+      "description": "Font provenance for embedded fonts in drawings and HTML.",
+      "usage": "Local rendering only; fonts are not redistributed as a deliverable. Delivery notes recommend open-source 思源系列 for distribution-safe fonts.",
+      "license": "SimHei/Microsoft YaHei: proprietary system fonts (use on local machine); Source Han: SIL OFL 1.1 (recommended replacement)",
+      "acquired_date": "2026-08-10",
+      "author": "Microsoft / 中文黑体 & 微软雅黑 vendors; recommended replacement Adobe + Google (Source Han)"
+    },
+    {
+      "id": "TOOL-RENDER",
+      "path": "scripts/scaffold_ai_submission.py and Python toolchain",
+      "source_type": "open_source_tooling",
+      "description": "Rendering and generation tools used to produce figures, drawings, and HTML.",
+      "usage": "Reproducibility toolchain: scripts/scaffold_ai_submission.py, reportlab, Pillow, pyproj, shapely.",
+      "license": "All open-source (BSD/MIT/PSF/Apache as applicable); no proprietary dependencies",
+      "acquired_date": "2026-08-10",
+      "author": "Python Software Foundation, ReportLab Ltd., Pillow/Shapely/pyproj contributors"
+    },
+    {
+      "id": "MAP-BASE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson + OSM conceptual reference",
+      "source_type": "agent_inferred_from_public_data",
+      "description": "Base maps used only the repository's provisional boundary geometry and OSM conceptual reference.",
+      "usage": "Geometry is provisional (agent_inferred, official_boundary=false) and used for generation/self-check/figure drawing only, not as redlines. No commercial map tiles referenced.",
+      "license": "provisional boundaries: repository-generated provisional data; OSM reference: ODbL with attribution",
+      "acquired_date": "2026-08-10",
+      "author": "open-city-ai/haidian repository maintainers (provisional geometry); OpenStreetMap contributors (conceptual reference)"
+    },
+    {
+      "id": "AI-MODEL",
+      "path": "generated content pipeline",
+      "source_type": "agent_model",
+      "description": "AI model used to generate the submission content.",
+      "usage": "All text, geometry, figures, PDFs, and HTML generated by this model via opencode.",
+      "license": "See provider terms; content licensed to submission under COMMUNITY-DISPLAY-ONLY as declared in proposal.md",
+      "acquired_date": "2026-08-10",
+      "author": "deepseek (model: deepseek/deepseek-v4-flash)",
+      "generated_by": "crazyb1n"
+    }
+  ]
+}

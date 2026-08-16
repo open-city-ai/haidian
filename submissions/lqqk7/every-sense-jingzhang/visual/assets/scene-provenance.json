@@ -1,0 +1,143 @@
+{
+ "id": "scene-image-provenance",
+ "title_zh": "场景概念图生成档案（提示词全文、工具链、输出哈希）",
+ "title_en": "Concept Scene Image Provenance (full prompts, tool chain, output hashes)",
+ "generated_date": "2026-08-14",
+ "purpose_zh": "为六件场景概念图提供可独立核对的生成输入清单与交易过程登记：提示词全文、工具调用链、候选与选定、后处理链与最终输出哈希。配合 sources.json 中 OPENAI-TERMS-OF-USE-20260814 的条款存档快照，权利主张的每一环均可在包内或存档页面复核。",
+ "purpose_en": "An independently checkable generation record for the six concept scene images: full prompts, tool chain, candidates and selection, post-processing chain and final output hashes. Together with the archived terms snapshot registered under OPENAI-TERMS-OF-USE-20260814 in sources.json, every link of the rights claim can be verified inside the package or on the archived page.",
+ "generation_chain": {
+  "base_image_tool": "OpenAI image generation, invoked through the Codex CLI native image generation tool by the GPT-5.6 Sol agent (codex exec, workspace-write sandbox)",
+  "prompt_language": "English",
+  "candidates_per_scene": 2,
+  "annotation_layer": "Hand-written HTML overlay (package design system: header band, bilingual title, coral badge 概念意象 · AI 生成 · 非工程依据, annotation cards, footer rights pointer), rendered with Chromium via Playwright at device scale factor 4",
+  "post_processing": "PIL/Pillow: resize to 3000 px wide (LANCZOS), encode WebP quality 88 method 6",
+  "no_third_party_material": "Prompts reference no third-party artwork or style name; no unlicensed third-party material entered any generation call. The only image input (scene 3, geographic layout reference) was the package's own site-overview.png, which itself contains OpenStreetMap basemap elements used and attributed under ODbL — see the OSM entries in sources.json and the rights ledger.",
+  "no_third_party_material_zh": "提示词不引用任何第三方作品或风格名；任何生成调用均未输入未经许可的第三方素材。唯一图像输入（场景三，地理布局参照）为本包自绘 site-overview.png，其内含按 ODbL 许可使用并署名的 OpenStreetMap 底图要素——见 sources.json 与权利台账 OSM 条目。"
+ },
+ "scenes": [
+  {
+   "scene_id": "S1",
+   "name": "scene-dual-state",
+   "title_zh": "双态并置：遗址公园通用可达底线，AI 开启 = AI 关闭",
+   "prompt_full": "Photorealistic eye-level architectural visualization … generate ONE image split vertically down the exact center into two equal panels by a thin clean seam, showing THE SAME PLACE from THE SAME VIEWPOINT at the same dusk moment — a linear public greenway promenade in a historic Beijing railway heritage park (red-brick industrial rail buildings, preserved tracks to one side, mature trees, distant skyline). LEFT PANEL — smart systems ON: a soft teal light-guidance strip embedded flush in the paving glows gently and leads forward; slim ambient information totems softly lit; the scene feels calmly assisted. RIGHT PANEL — the exact same space with ALL smart systems OFF: no glow, totem screens dark; the space still works through permanent physical design — a low stone wayfinding wall with engraved lettering and a brass braille strip (abstract, non-legible, out of focus), a high-contrast tactile paving band, large fixed directional signage (abstract non-legible), a small staffed help point with warm conventional lighting. SAME people appear in both panels completing the same journey: an elderly man with a white cane walking ON the tactile paving band, a woman in a wheelchair on the SMOOTH paved lane (never on tactile paving), a child on a bicycle. Conventional street lighting is present in both panels (lighting is not a smart system). Hard constraints: no readable text anywhere, no logos, no watermarks, no UI overlays, no people looking at camera. Dusk warm-cool contrast, cinematic but restrained, true-to-life materials.",
+   "selected_candidate": "a",
+   "files": {
+    "zh": {
+     "path": "assets/figures/scene-dual-state.webp",
+     "sha256": "9686ea66dc625bc0f0dd60e15f8ed70a5d952ffc9c6e6657b3970f49356bccdd"
+    },
+    "en": {
+     "path": "assets/figures/scene-dual-state.en.webp",
+     "sha256": "16ee5a2257cdc6e62839d2b63b31bf87edea2c08bd459555e5b04a757eeac880"
+    }
+   },
+   "revision_v6_4_zh": "v6.4 同源重制：审查发现原成图的左右两幅为一次生成的双联、并非同一场景的两种状态（挡墙材质、触觉带宽度、信息牌与人物均存在双影级差异），与图版「同一空间·同一批人·同一任务」的声明不符。本版以原左幅（AI 开启态）为唯一底图，右幅由其经局部图像编辑生成——仅熄灭地面流光导引带、信息立牌屏面与挡墙嵌光条（掩膜内去饱和压暗），人物、建筑、材质、路灯与构图逐像素保持；编辑后全图像素变化率 3.7%（8% 容差下 2.8%），变化区域仅限灯光要素。左右两幅自此为真实的同源受控对照。",
+   "revision_v6_4_en": "v6.4 same-source remake: review found the original left and right panels were a single twin-panel generation, not two states of one scene (wall material, tactile-band width, totems and figures all drifted). This edition keeps the original left panel (AI on) as the sole base; the right panel is derived from it by local image editing — only the flowing guidance strip, totem screens and wall-mounted light strip are extinguished (masked desaturate-and-darken); people, buildings, materials, street lamps and composition remain pixel-identical. Post-edit pixel change is 3.7% (2.8% at 8% fuzz), confined to lighting elements. The two panels are now a genuine same-source controlled pair."
+  },
+  {
+   "scene_id": "S2",
+   "name": "scene-interface-yard",
+   "title_zh": "众智园通用接口实验院：接口在公开测试中",
+   "prompt_full": "Photorealistic eye-level architectural visualization, wide landscape: the inner courtyard of a 'universal interface testing yard' inside a Beijing tech-park campus (contemporary low-rise lab buildings with brick-and-glass facades around a calm courtyard). The courtyard is a public testing ground where city service interfaces are tested in the open: a ring of small freestanding interface stations at human scale (ticket-gate, kiosk, door, wayfinding post prototypes), each approachable from a continuous smooth accessible route; one clearly visible staffed HUMAN TAKEOVER point: a small warm-lit counter with a person present, positioned within the same line of sight as the stations; a continuous high-contrast equivalent-route band painted on the ground linking every station to the human counter — one calm teal-grey band, clearly a designed system, within one line of sight; a handful of diverse testers interacting: an older woman at a kiosk, a blind man with a white cane at a tactile model, a wheelchair user at a lowered counter, an engineer observing with a clipboard; status flags or small banners near stations kept ABSTRACT — plain colour markers (teal / amber / coral), no readable text. Late afternoon light, honest working atmosphere (a place being tested, not a showroom), true-to-life materials. Hard constraints: no readable text anywhere, no logos, no watermarks, no screens with legible UI.",
+   "selected_candidate": "a",
+   "files": {
+    "zh": {
+     "path": "assets/figures/scene-interface-yard.webp",
+     "sha256": "3aa484bf51de36585a0b6314f9d4f637cdfdac9c7bd52354e6851bd531f9d5dd"
+    },
+    "en": {
+     "path": "assets/figures/scene-interface-yard.en.webp",
+     "sha256": "337f91d7930cf057a530edc40265f1c0b7589dd6b500d9d20735de139475dd08"
+    }
+   }
+  },
+  {
+   "scene_id": "S3",
+   "name": "scene-corridor-aerial",
+   "title_zh": "走廊鸟瞰：一条底线穿过真实的北京，地标各在其位",
+   "prompt_full": "The attached image is the official site-structure map of our proposal (a north-south heritage railway corridor park in Haidian, Beijing, from the Wudaokou area in the north down to Xizhimen in the south). Use it ONLY as a geographic layout reference for the corridor's shape, its three key areas and its two flanking wings.\n\nUse your native image generation tool. Generate 2 candidate images, saved as scene3-geo-a.png and scene3-geo-b.png in the current working directory.\n\nImage spec — photorealistic aerial architectural visualization of REAL Beijing at dusk, wide landscape, highest quality. Camera hovers about 500 m above the Wudaokou section of the Jingzhang railway heritage corridor, looking SOUTH along the corridor axis. Geographic program (bearings verified against real coordinates — follow strictly):\n\n- FOREGROUND (bottom of frame): the preserved century-old Tsinghua-yuan railway station building (small grey-brick historic station with pitched roof) beside a green linear heritage park with preserved tracks and a generous accessible promenade with warm path lighting and small repeated node canopies.\n- MID-GROUND CENTER-RIGHT at 2.8 km: the Dazhongsi area — a courtyard compound with a distinctive traditional Chinese bell-tower hall (Big Bell Temple) with sweeping tiled roofs, gently lit, next to a market-hall district.\n- NEAR RIGHT at about 2 km: the Zhongguancun tech cluster — contemporary mid-rise and high-rise office towers with lit facades.\n- NEAR LEFT: the small Xiaoyue River waterway running parallel to the corridor through everyday residential fabric, with a lit riverside path.\n- FAR END OF CORRIDOR, CENTER at 5.5 km: Beijing North railway station with its arched roof and a fan of tracks, beside the three curved Xizhimen towers.\n- DISTANT LEFT HORIZON at about 14 km: the Beijing CBD skyline cluster — CITIC Tower (China Zun, the tallest, its distinctive tapered vase silhouette) with the stepped China World Trade Center Tower III and surrounding cluster, hazy in dusk light.\n- DISTANT RIGHT at about 9.5 km: the Central Radio and TV Tower — slender needle with a spherical observation pod, silhouetted.\n- EXTREME RIGHT HORIZON: the soft dark ridge of the Western Hills (Xishan).\n- The rest of the fabric: authentic Haidian mid-rise academic and residential blocks (Beijing's real grain: slab housing, tree-lined ring roads, an elevated ring road crossing the corridor mid-distance).\n\nThe corridor itself reads as ONE continuous calm lit ribbon (warm consistent lighting, ten small evenly spaced node canopies as subtle pools of light). No invented mega-landmarks, no fictional towers. Blue-hour sky, restrained realistic city lighting, true Beijing atmosphere.\n\nHard constraints: no readable text, no logos, no watermarks. After generating both, print SCENE3GEO-DONE.\n",
+   "selected_candidate": "a (geo-programmed regeneration)",
+   "geo_program_note_zh": "提示词中的地标方位与距离由真实 WGS84 坐标推算（视点五道口段 39.992N 116.337E，镜头朝向约 167°）；图注与标注层同口径声明为概念意象、非测绘复原。",
+   "files": {
+    "zh": {
+     "path": "assets/figures/scene-corridor-aerial.webp",
+     "sha256": "9ecfb48b5674c4e297abc1ada37ec26b411c6b8dc2b5d06360a7c4f5672887cf"
+    },
+    "en": {
+     "path": "assets/figures/scene-corridor-aerial.en.webp",
+     "sha256": "90be3cafcabd105e4e29309d3524c5b0542d62f824769c5e34d443330f7f0f4d"
+    }
+   }
+  }
+ ],
+ "speech_synthesis_cross_reference": {
+  "note_zh": "合成语音的输入清单与交易参数此前已随包登记，此处汇总指针以便一处核对：输入台本为 assets/media/audio-guide.md §三（26 句逐句台本，与 VTT 逐字同源）与 journey.md §二（11 句分镜台本）；模型、音色、调用工具与拼接参数登记于 audio-guide.md §四 与 journey.md §五；条款存档快照见 sources.json MINIMAX-PLATFORM-TOS-20260814 的 archive_url。",
+  "inputs": [
+   "assets/media/audio-guide.md",
+   "assets/media/journey.md"
+  ],
+  "terms_snapshot_source_id": "MINIMAX-PLATFORM-TOS-20260814"
+ },
+ "rights_source_id": "OPENAI-TERMS-OF-USE-20260814",
+ "limitations_zh": "生成服务本身不提供逐次调用的第三方签名回执；本档案登记的是方案方可提供的全部输入与输出证据（提示词、工具链、哈希、条款快照），不构成平台出具的交易凭证。",
+ "landmark_coordinate_table": {
+  "note_zh": "S3 图上地标标签的方位与距离依据下表 WGS84 坐标推算;视点 39.992N 116.337E(五道口段上空),镜头朝向约 167°。大钟寺条目指古钟博物馆古建本体(图中所绘对象),非本包大钟寺重点区临时多边形;按包内 geometry/key_areas.geojson 复算(v6.4 重点区几何归位后),大钟寺重点区质心距视点约 3.1 km、众智园重点区位于视点北侧(镜头后方,不在画面内),图内说明框与本表口径一致。",
+  "viewpoint": {
+   "lat": 39.992,
+   "lon": 116.337,
+   "heading_deg": 167
+  },
+  "landmarks": [
+   {
+    "label_zh": "中国尊 · 国贸三期",
+    "lat": 39.9085,
+    "lon": 116.4575,
+    "bearing_deg": 132,
+    "distance_km": 13.9,
+    "printed": "东南约 14 km"
+   },
+   {
+    "label_zh": "中央电视塔",
+    "lat": 39.9124,
+    "lon": 116.2953,
+    "bearing_deg": 202,
+    "distance_km": 9.5,
+    "printed": "西南约 9.5 km"
+   },
+   {
+    "label_zh": "北京北站 · 西直门",
+    "lat": 39.9447,
+    "lon": 116.3536,
+    "bearing_deg": 165,
+    "distance_km": 5.4,
+    "printed": "约 5.4 km"
+   },
+   {
+    "label_zh": "大钟寺(古钟博物馆古建本体)",
+    "lat": 39.9668,
+    "lon": 116.3374,
+    "bearing_deg": 179,
+    "distance_km": 2.8,
+    "printed": "约 2.8 km"
+   },
+   {
+    "label_zh": "中关村塔群",
+    "lat": 39.98,
+    "lon": 116.318,
+    "bearing_deg": 231,
+    "distance_km": 2.1,
+    "printed": "约 2.1 km"
+   },
+   {
+    "label_zh": "清华园车站旧址",
+    "lat": 39.9997,
+    "lon": 116.332,
+    "bearing_deg": 334,
+    "distance_km": 1.0,
+    "printed": "(不上图;位于镜头正后方,画面前景站亭为概念意象,不指认该建筑)"
+   }
+  ]
+ },
+ "placement_note_zh": "六件场景概念图的落位为 proposal 双语图引与离线展示页双语图版;有意不进入 A0 展板与 A3 图册,以保持四册图纸全部由包内数据与几何生成的血统单一性。该取舍在此登记。",
+ "post_processing_note_zh": "v5.17 起标注层全部文字提升至 CSS 12–17 像素;成图短边缩放至 768 像素接收口径时逐元素核算均 ≥12 像素,与五张核心图同一底线。"
+}

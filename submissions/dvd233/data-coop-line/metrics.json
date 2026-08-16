@@ -1,0 +1,199 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "This is a reproducible area of the repository provisional constraint, not an official redline area."
+      ],
+      "metric_kind": "provisional_recalculation"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 40063.344,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area(conceptual_reversible_room_test_fits, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual test-fit footprints are not surveyed buildings or approved construction envelopes."
+      ],
+      "metric_kind": "conceptual_design_quantity"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2384747.221,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(submitted_green_space_design, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual design quantity pending official green, water, heritage and ownership layers."
+      ],
+      "metric_kind": "conceptual_design_quantity"
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 98164.982,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(submitted_public_space_polygons, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Scenario points carry no area; the three reversible public rooms remain conceptual."
+      ],
+      "metric_kind": "conceptual_design_quantity"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.208953,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_union_area_sqm / provisional_site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Ratio is a design quantity over the provisional boundary and must be fully recalculated."
+      ],
+      "metric_kind": "conceptual_design_quantity"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.008601,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_union_area_sqm / provisional_site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Ratio is a design quantity over the provisional boundary and must be fully recalculated."
+      ],
+      "metric_kind": "conceptual_design_quantity"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls, official parcel/building data and the official site polygon are unavailable."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "official_height_control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No citable official height, heritage-control, aviation or detailed planning layer is present."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required_key_area_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(layer == SCENARIO_NODE)",
+      "confidence": "high",
+      "assumptions": [
+        "Locations are conceptual test points."
+      ]
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(scenario_type == testing_validation)",
+      "confidence": "high",
+      "assumptions": [
+        "Tests use synthetic, public or explicitly rights-cleared data only."
+      ]
+    },
+    "no_data_equivalent_service_target_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/roads.geojson"
+      ],
+      "formula": "scenario_cards_with_documented_non_data_route / all_scenario_cards",
+      "confidence": "low",
+      "assumptions": [
+        "Design target to be verified by accessibility and service-completion tests before operation."
+      ],
+      "metric_kind": "design_target"
+    },
+    "derivative_receipt_completion_target_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "withdrawal_drills_with_human_readable_and_machine_verifiable_receipt / all_withdrawal_drills",
+      "confidence": "low",
+      "assumptions": [
+        "Target permits delete, isolate, stop-use, retrain/unlearn, suspend or retire outcomes; it does not promise perfect erasure."
+      ],
+      "metric_kind": "design_target"
+    },
+    "public_return_acceptance_target_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "use_licences_with_named_beneficiary_due_date_and_acceptance_record / all_use_licences",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual governance target; operating and legal arrangements are unconfirmed."
+      ],
+      "metric_kind": "design_target"
+    }
+  }
+}

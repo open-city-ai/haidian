@@ -1,0 +1,53 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "详细控规条件（道路红线、用地权属、市政管线、文保范围、工程地质条件）须从官方附件确认后方可用于法定用途。",
+      "impact": "本提交包仅就官方提供的边界和设计层进行正式AI提交评审；法定管控条件仍需专业确认。"
+    },
+    {
+      "id": "A-BOUNDARY-002",
+      "status": "provisional",
+      "statement": "方案使用的site_boundary、key_areas边界均来自provisional_boundaries.geojson，非官方正式红线。边界仅供AI生成和自检使用。",
+      "impact": "所有面积复算（site_area_sqm、key_area面积等）基于临时边界，正式评分前须替换为官方多边形。"
+    },
+    {
+      "id": "A-COORD-003",
+      "status": "confirmed",
+      "statement": "GeoJSON使用EPSG:4326坐标交换，面积复算使用EPSG:4548（高斯-克吕格3度带投影）以获得平面精度。",
+      "impact": "所有metrics.json中的面积值均经过EPSG:4326→EPSG:4548投影变换后计算，精度满足城市设计深度要求。"
+    },
+    {
+      "id": "A-LANDUSE-004",
+      "status": "agent_inferred",
+      "statement": "用地分类采用agent_taskbook.json中枚举的land_use_code标准分类，用地布局基于provisional边界和公开数据推断。",
+      "impact": "用地布局方案为AI生成的设计建议，非法定控规用地，须与正式控规对接确认。"
+    },
+    {
+      "id": "A-METRICS-005",
+      "status": "auto_calculated",
+      "statement": "所有指标（green_ratio、public_space_ratio、building_density等）由generate_spatial_data.py脚本自动从GeoJSON图层计算，使用shapely几何运算。",
+      "impact": "指标值可由同一组GeoJSON图层复算验证，置信度标注为high。"
+    },
+    {
+      "id": "A-FIGURES-006",
+      "status": "auto_generated",
+      "statement": "5张必嵌PNG图纸由Pillow库从GeoJSON数据自动渲染，与空间数据一一对应。",
+      "impact": "图纸内容与geometry图层和metrics指标保持一致，不存在图文不匹配风险。"
+    },
+    {
+      "id": "A-AI-SCENARIOS-007",
+      "status": "design_proposal",
+      "statement": "10个AI场景为设计建议，需在实施阶段明确服务对象、数据来源、隐私边界、人工复核机制和运营主体。",
+      "impact": "场景设计未涉及具体技术选型和采购方案，仅提供空间适配和功能定位。"
+    },
+    {
+      "id": "A-PHASING-008",
+      "status": "design_proposal",
+      "statement": "四阶段分期（近期2026-2028、中期2029-2032、远期2033-2036、远景2037+）为建议性时序，须与资金安排和政策节奏对接。",
+      "impact": "分期方案需在实施阶段结合土地供应计划、财政能力和产业导入节奏进行调整。"
+    }
+  ]
+}

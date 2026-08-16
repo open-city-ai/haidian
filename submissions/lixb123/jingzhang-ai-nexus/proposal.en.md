@@ -7,7 +7,7 @@ bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Rooted in Haidian's innovation culture and the century-old Jing-Zhang legacy, Tianwen, Nuwa, and Yinglong organize an explainable, participatory, and climate-aware AI civic living room."
-iteration: "v1.2"
+iteration: "v1.3"
 ---
 
 # Haidian Minds Converge · Jing-Zhang Stars Aglow: Tiangong Star Atlas AI Civic Living Room
@@ -54,6 +54,8 @@ Land, space, industry, capital, talent, compute, data, and scenarios form one st
 Three future-street prototypes bring the structure to the ground. **Tianwen Star-Rail Street** organizes booked low-speed shuttles, walking, cycling, flexible curbs, and low-glare guidance. **Nuwa Weave Street** combines permeable tree pits, demountable civic tables, accessible micromobility, and quiet-priority crossings. **Yinglong Water-Mirror Loop** links shallow rain gardens, shade, and switchable water-level notices. [data:geometry/roads.geojson#ROAD-001] [data:geometry/roads.geojson#ROAD-002] [data:geometry/roads.geojson#ROAD-003]
 
 Four replaceable building prototypes translate the idea into civic interfaces: **Tianwen Cloud Terrace** links research, model evaluation, and a public gallery; **Nuwa Weave Nest** organizes live-work studios and repair spaces around a shared court; **Yinglong Water Court** uses a lifted public floor, rain garden, and deep eaves; **Star Atlas Interface** combines accessible transfer, public service, and changing exhibitions. [data:geometry/buildings.geojson#BLDG-001] [metric:building_footprint_area_sqm]
+
+![Building prototypes and continuous civic ground floor](assets/figures/building-prototypes.en.png)
 
 Renewal follows “inventory before intervention.” Once building age, structure, ownership, use, and historic value are verified, professional teams can classify maintenance, program infill, energy retrofit, interface opening, and conditional replacement. Until then, the proposal makes no parcel-level claim about demolition, floor-area ratio, height, or development quantity. [depth:renewal_framework]
 

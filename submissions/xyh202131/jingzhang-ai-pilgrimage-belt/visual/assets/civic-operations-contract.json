@@ -7,7 +7,8 @@
     "zh": "长期公共共同体运营：普通日常不断轨，季节计划可暂停、可复盘、可退役",
     "en": "Long-Term Civic Operations: Ordinary Life Stays Continuous while Seasonal Programmes Can Pause, Be Reviewed, and Retire"
   },
-  "as_of": "2026-08-12",
+  "as_of": "2026-08-13",
+  "as_of_semantics": "date of last real content edit, verified from git history during the Round 26 as_of consistency audit; it is not a validity or freshness guarantee",
   "base_commit": "905b8be6ed6b9eb9e84307ef2dbf565fe96dc6f0",
   "predecessor": {
     "round": 9,
@@ -175,8 +176,18 @@
   "resident_four_window_journey": {
     "journey_id": "OPS-JOURNEY-RESIDENT-01",
     "legacy_key_retained_for_backlinks": true,
-    "canonical_state_sequence": ["ordinary", "proof_optional_aid", "failure_stop", "recovery"],
-    "condition_labels_not_states": ["day", "night", "low_staff", "extreme_weather"],
+    "canonical_state_sequence": [
+      "ordinary",
+      "proof_optional_aid",
+      "failure_stop",
+      "recovery"
+    ],
+    "condition_labels_not_states": [
+      "day",
+      "night",
+      "low_staff",
+      "extreme_weather"
+    ],
     "not_a_new_scene": true,
     "person_type": "corridor resident using a normal public route and asking about a neighbourhood service",
     "public_task": "walk through the place, read current service information, submit or follow a neighbourhood question, and leave",
@@ -194,7 +205,11 @@
       {
         "window": "ordinary",
         "runtime_state": "ordinary",
-        "condition_labels": ["day", "night", "low_staff"],
+        "condition_labels": [
+          "day",
+          "night",
+          "low_staff"
+        ],
         "path": "ordinary public route remains primary; static bilingual and paper information identifies the same-task non-AI route; at night or low staffing, safe exit, screen-free information and quiet priority remain",
         "staffed_status": "show confirmed online/offline/unknown truthfully; current reality is unknown; no invented night shift",
         "proof_overlay": "off by default; events, broadcast, screens and proof yield to ordinary life"
@@ -202,7 +217,10 @@
       {
         "window": "proof_optional_aid",
         "runtime_state": "proof_optional_aid",
-        "condition_labels": ["day", "future_separately_authorized_window"],
+        "condition_labels": [
+          "day",
+          "future_separately_authorized_window"
+        ],
         "path": "the same ordinary task and non-AI control path remain continuous while proof appears only in a bounded side zone",
         "staffed_status": "responsible, takeover and stop roles must be confirmed before staffed presence is shown",
         "proof_overlay": "voluntary, announced, withdrawable and separately authorized; prepare one same-event three-carrier writeback"
@@ -210,7 +228,10 @@
       {
         "window": "failure_stop",
         "runtime_state": "failure_stop",
-        "condition_labels": ["any_time", "extreme_weather_if_triggered"],
+        "condition_labels": [
+          "any_time",
+          "extreme_weather_if_triggered"
+        ],
         "path": "proof overlay isolates or exits; resident continues by the ordinary non-AI path or receives a safe staffed refusal when independently confirmed staff exist",
         "staffed_status": "stop-authority and handoff role types required but assignments remain unconfirmed",
         "proof_overlay": "stopped; passport, timetable and evidence matrix prepare one conservative writeback"
@@ -218,7 +239,9 @@
       {
         "window": "recovery",
         "runtime_state": "recovery",
-        "condition_labels": ["after_failure_or_planned_stop"],
+        "condition_labels": [
+          "after_failure_or_planned_stop"
+        ],
         "path": "restore ordinary route, screen-free information, quiet conditions and the same basic task before discussing any proof restart",
         "staffed_status": "restoration acceptance and public update require confirmed future roles; current completion is 0",
         "proof_overlay": "remains off until root cause, responsibility, independent retest, place recovery and three-carrier consistency close; G0 and authorization do not auto-advance"
@@ -259,23 +282,168 @@
   "role_and_responsibility_matrix": {
     "roles_are_types_not_assignments": true,
     "role_types": [
-      {"role_id": "ROLE-ORDINARY-SERVICE", "duty": "keep or safely refuse the same basic task through staffed/non-AI means and publish truthful online/offline/unknown state", "assignment": "unconfirmed"},
-      {"role_id": "ROLE-COMMUNITY-AGENDA", "duty": "receive oral, paper and in-person agenda items; publish acceptance, deferral and rejection reasons", "assignment": "unconfirmed"},
-      {"role_id": "ROLE-INCIDENT-DUTY", "duty": "receive incidents and complaints and trigger the declared stop path", "assignment": "unconfirmed"},
-      {"role_id": "ROLE-STOP-AUTHORITY", "duty": "exercise immediate physical or procedural stop authority", "assignment": "unconfirmed"},
-      {"role_id": "ROLE-MAINTENANCE-RETIREMENT", "duty": "remove reversible components and document resource, interface, path and place restoration", "assignment": "unconfirmed"},
-      {"role_id": "ROLE-EVIDENCE-WRITEBACK", "duty": "append versions and synchronize passport, timetable and evidence matrix without deleting prior records", "assignment": "unconfirmed"},
-      {"role_id": "ROLE-RIGHTS-REVIEW", "duty": "review accessibility, consent, prohibited data, privacy-safe disclosure, screen-free parity and labour disclosure", "assignment": "unconfirmed"},
-      {"role_id": "ROLE-INDEPENDENT-REVIEW", "duty": "independently retest the affected task and advise keep, correct, expand or retire", "assignment": "unconfirmed"}
+      {
+        "role_id": "ROLE-ORDINARY-SERVICE",
+        "duty": "keep or safely refuse the same basic task through staffed/non-AI means and publish truthful online/offline/unknown state",
+        "assignment": "unconfirmed"
+      },
+      {
+        "role_id": "ROLE-COMMUNITY-AGENDA",
+        "duty": "receive oral, paper and in-person agenda items; publish acceptance, deferral and rejection reasons",
+        "assignment": "unconfirmed"
+      },
+      {
+        "role_id": "ROLE-INCIDENT-DUTY",
+        "duty": "receive incidents and complaints and trigger the declared stop path",
+        "assignment": "unconfirmed"
+      },
+      {
+        "role_id": "ROLE-STOP-AUTHORITY",
+        "duty": "exercise immediate physical or procedural stop authority",
+        "assignment": "unconfirmed"
+      },
+      {
+        "role_id": "ROLE-MAINTENANCE-RETIREMENT",
+        "duty": "remove reversible components and document resource, interface, path and place restoration",
+        "assignment": "unconfirmed"
+      },
+      {
+        "role_id": "ROLE-EVIDENCE-WRITEBACK",
+        "duty": "append versions and synchronize passport, timetable and evidence matrix without deleting prior records",
+        "assignment": "unconfirmed"
+      },
+      {
+        "role_id": "ROLE-RIGHTS-REVIEW",
+        "duty": "review accessibility, consent, prohibited data, privacy-safe disclosure, screen-free parity and labour disclosure",
+        "assignment": "unconfirmed"
+      },
+      {
+        "role_id": "ROLE-INDEPENDENT-REVIEW",
+        "duty": "independently retest the affected task and advise keep, correct, expand or retire",
+        "assignment": "unconfirmed"
+      }
     ],
     "responsibilities": [
-      {"action": "publish ordinary/no-event state", "R": ["ROLE-ORDINARY-SERVICE"], "A": ["ROLE-EVIDENCE-WRITEBACK"], "C": ["ROLE-COMMUNITY-AGENDA", "ROLE-RIGHTS-REVIEW"], "I": ["ROLE-INCIDENT-DUTY"]},
-      {"action": "admit a conditional programme", "R": ["ROLE-COMMUNITY-AGENDA"], "A": ["ROLE-STOP-AUTHORITY"], "C": ["ROLE-ORDINARY-SERVICE", "ROLE-MAINTENANCE-RETIREMENT", "ROLE-RIGHTS-REVIEW", "ROLE-INDEPENDENT-REVIEW"], "I": ["ROLE-EVIDENCE-WRITEBACK"]},
-      {"action": "receive complaint or incident", "R": ["ROLE-INCIDENT-DUTY"], "A": ["ROLE-STOP-AUTHORITY"], "C": ["ROLE-ORDINARY-SERVICE", "ROLE-RIGHTS-REVIEW"], "I": ["ROLE-EVIDENCE-WRITEBACK"]},
-      {"action": "stop and switch to ordinary service", "R": ["ROLE-STOP-AUTHORITY", "ROLE-ORDINARY-SERVICE"], "A": ["ROLE-STOP-AUTHORITY"], "C": ["ROLE-INCIDENT-DUTY", "ROLE-MAINTENANCE-RETIREMENT", "ROLE-RIGHTS-REVIEW"], "I": ["ROLE-EVIDENCE-WRITEBACK"]},
-      {"action": "three-carrier writeback", "R": ["ROLE-EVIDENCE-WRITEBACK"], "A": ["ROLE-STOP-AUTHORITY"], "C": ["ROLE-ORDINARY-SERVICE", "ROLE-INCIDENT-DUTY", "ROLE-RIGHTS-REVIEW"], "I": ["ROLE-COMMUNITY-AGENDA"]},
-      {"action": "restore place and service", "R": ["ROLE-MAINTENANCE-RETIREMENT", "ROLE-ORDINARY-SERVICE"], "A": ["ROLE-STOP-AUTHORITY"], "C": ["ROLE-RIGHTS-REVIEW", "ROLE-INDEPENDENT-REVIEW"], "I": ["ROLE-EVIDENCE-WRITEBACK"]},
-      {"action": "annual keep/correct/expand/retire advice", "R": ["ROLE-INDEPENDENT-REVIEW"], "A": ["ROLE-STOP-AUTHORITY"], "C": ["ROLE-COMMUNITY-AGENDA", "ROLE-RIGHTS-REVIEW", "ROLE-MAINTENANCE-RETIREMENT"], "I": ["ROLE-EVIDENCE-WRITEBACK", "ROLE-ORDINARY-SERVICE"]}
+      {
+        "action": "publish ordinary/no-event state",
+        "R": [
+          "ROLE-ORDINARY-SERVICE"
+        ],
+        "A": [
+          "ROLE-EVIDENCE-WRITEBACK"
+        ],
+        "C": [
+          "ROLE-COMMUNITY-AGENDA",
+          "ROLE-RIGHTS-REVIEW"
+        ],
+        "I": [
+          "ROLE-INCIDENT-DUTY"
+        ]
+      },
+      {
+        "action": "admit a conditional programme",
+        "R": [
+          "ROLE-COMMUNITY-AGENDA"
+        ],
+        "A": [
+          "ROLE-STOP-AUTHORITY"
+        ],
+        "C": [
+          "ROLE-ORDINARY-SERVICE",
+          "ROLE-MAINTENANCE-RETIREMENT",
+          "ROLE-RIGHTS-REVIEW",
+          "ROLE-INDEPENDENT-REVIEW"
+        ],
+        "I": [
+          "ROLE-EVIDENCE-WRITEBACK"
+        ]
+      },
+      {
+        "action": "receive complaint or incident",
+        "R": [
+          "ROLE-INCIDENT-DUTY"
+        ],
+        "A": [
+          "ROLE-STOP-AUTHORITY"
+        ],
+        "C": [
+          "ROLE-ORDINARY-SERVICE",
+          "ROLE-RIGHTS-REVIEW"
+        ],
+        "I": [
+          "ROLE-EVIDENCE-WRITEBACK"
+        ]
+      },
+      {
+        "action": "stop and switch to ordinary service",
+        "R": [
+          "ROLE-STOP-AUTHORITY",
+          "ROLE-ORDINARY-SERVICE"
+        ],
+        "A": [
+          "ROLE-STOP-AUTHORITY"
+        ],
+        "C": [
+          "ROLE-INCIDENT-DUTY",
+          "ROLE-MAINTENANCE-RETIREMENT",
+          "ROLE-RIGHTS-REVIEW"
+        ],
+        "I": [
+          "ROLE-EVIDENCE-WRITEBACK"
+        ]
+      },
+      {
+        "action": "three-carrier writeback",
+        "R": [
+          "ROLE-EVIDENCE-WRITEBACK"
+        ],
+        "A": [
+          "ROLE-STOP-AUTHORITY"
+        ],
+        "C": [
+          "ROLE-ORDINARY-SERVICE",
+          "ROLE-INCIDENT-DUTY",
+          "ROLE-RIGHTS-REVIEW"
+        ],
+        "I": [
+          "ROLE-COMMUNITY-AGENDA"
+        ]
+      },
+      {
+        "action": "restore place and service",
+        "R": [
+          "ROLE-MAINTENANCE-RETIREMENT",
+          "ROLE-ORDINARY-SERVICE"
+        ],
+        "A": [
+          "ROLE-STOP-AUTHORITY"
+        ],
+        "C": [
+          "ROLE-RIGHTS-REVIEW",
+          "ROLE-INDEPENDENT-REVIEW"
+        ],
+        "I": [
+          "ROLE-EVIDENCE-WRITEBACK"
+        ]
+      },
+      {
+        "action": "annual keep/correct/expand/retire advice",
+        "R": [
+          "ROLE-INDEPENDENT-REVIEW"
+        ],
+        "A": [
+          "ROLE-STOP-AUTHORITY"
+        ],
+        "C": [
+          "ROLE-COMMUNITY-AGENDA",
+          "ROLE-RIGHTS-REVIEW",
+          "ROLE-MAINTENANCE-RETIREMENT"
+        ],
+        "I": [
+          "ROLE-EVIDENCE-WRITEBACK",
+          "ROLE-ORDINARY-SERVICE"
+        ]
+      }
     ],
     "staffing_unknowns": {
       "confirmed_role_assignments": 0,
@@ -298,20 +466,54 @@
       {
         "carrier": "scene_passport",
         "existing_target": "visual/assets/pilot-readiness-register.json#records",
-        "operations_writeback": ["current ordinary/proof/failure/recovery state", "maturity", "authorization", "service state", "responsible-role vacancy", "version", "expiry or retirement"]
+        "operations_writeback": [
+          "current ordinary/proof/failure/recovery state",
+          "maturity",
+          "authorization",
+          "service state",
+          "responsible-role vacancy",
+          "version",
+          "expiry or retirement"
+        ]
       },
       {
         "carrier": "civic_timetable",
         "existing_target": "visual/assets/key-area-evidence-matrix.json#twin_track_frontend_contract.civic_timetable",
-        "operations_writeback": ["ordinary/no-event default", "conditional programme activation", "quiet/screen-free covenant", "truthful staffed online/offline/unknown", "detour", "next update or unknown"]
+        "operations_writeback": [
+          "ordinary/no-event default",
+          "conditional programme activation",
+          "quiet/screen-free covenant",
+          "truthful staffed online/offline/unknown",
+          "detour",
+          "next update or unknown"
+        ]
       },
       {
         "carrier": "evidence_matrix",
         "existing_target": "visual/assets/key-area-evidence-matrix.json#long_term_civic_operations_contract",
-        "operations_writeback": ["claim held or changed", "typed anchor", "scope and limitation", "complaint/appeal effect", "independent retest", "annual decision", "does not authorize"]
+        "operations_writeback": [
+          "claim held or changed",
+          "typed anchor",
+          "scope and limitation",
+          "complaint/appeal effect",
+          "independent retest",
+          "annual decision",
+          "does not authorize"
+        ]
       }
     ],
-    "writeback_events": ["programme_admission", "programme_pause", "staffed_state_change", "complaint_hold", "failure_stop", "correction", "recovery", "withdrawal", "retirement", "annual_decision"],
+    "writeback_events": [
+      "programme_admission",
+      "programme_pause",
+      "staffed_state_change",
+      "complaint_hold",
+      "failure_stop",
+      "correction",
+      "recovery",
+      "withdrawal",
+      "retirement",
+      "annual_decision"
+    ],
     "confirmed_real_writeback_events": 0
   },
   "three_area_operations": [
@@ -341,10 +543,31 @@
     }
   ],
   "community_agenda_and_complaints": {
-    "agenda_entry_modes": ["oral", "paper", "in_person", "telephone_if_a_future_service_is_confirmed"],
+    "agenda_entry_modes": [
+      "oral",
+      "paper",
+      "in_person",
+      "telephone_if_a_future_service_is_confirmed"
+    ],
     "account_qr_or_ai_required": false,
-    "agenda_record": ["public problem", "affected group", "ordinary-service touchpoint", "decision", "reason", "next review or unknown", "privacy-safe evidence reference"],
-    "complaint_effects": ["hold", "narrow", "correct", "retest", "withdraw", "retire", "reasoned_no_change"],
+    "agenda_record": [
+      "public problem",
+      "affected group",
+      "ordinary-service touchpoint",
+      "decision",
+      "reason",
+      "next review or unknown",
+      "privacy-safe evidence reference"
+    ],
+    "complaint_effects": [
+      "hold",
+      "narrow",
+      "correct",
+      "retest",
+      "withdraw",
+      "retire",
+      "reasoned_no_change"
+    ],
     "privacy_rule": "publish category, affected task, decision, correction and evidence version; do not publish identity, sensitive narrative, raw personal data or shame rankings",
     "current_real_agenda_items": 0,
     "current_real_complaints": 0,
@@ -402,47 +625,189 @@
   },
   "annual_decision": {
     "decision_options": [
-      {"decision": "keep", "condition": "ordinary value and rights remain intact; no expansion implied"},
-      {"decision": "correct", "condition": "root cause, responsibility, evidence or public impact requires a new bounded version"},
-      {"decision": "expand", "condition": "independent real evidence, local public benefit, confirmed resources and separately scoped authorization close; activity heat alone never qualifies"},
-      {"decision": "retire", "condition": "ordinary path, rights, responsibility, budget, maintenance, public benefit, evidence or recovery cannot close"}
+      {
+        "decision": "keep",
+        "condition": "ordinary value and rights remain intact; no expansion implied"
+      },
+      {
+        "decision": "correct",
+        "condition": "root cause, responsibility, evidence or public impact requires a new bounded version"
+      },
+      {
+        "decision": "expand",
+        "condition": "independent real evidence, local public benefit, confirmed resources and separately scoped authorization close; activity heat alone never qualifies"
+      },
+      {
+        "decision": "retire",
+        "condition": "ordinary path, rights, responsibility, budget, maintenance, public benefit, evidence or recovery cannot close"
+      }
     ],
     "no_automatic_annual_upgrade": true,
     "no_pr_or_ci_upgrade": true,
     "current_real_decisions": 0
   },
   "decision_metrics": [
-    {"id": "civic_operations_no_event_day_use_status", "name_zh": "无活动日公共使用状态", "status": "unknown", "value": null, "denominator": "同任务、同人群、同时段或同空间的普通日基线", "proof_ceiling": "现场观察 + 责任记录；概念日历不证明使用"},
-    {"id": "civic_operations_quiet_window_delivery_rate", "name_zh": "静音时段兑现率", "status": "unknown", "value": null, "denominator": "经确认的静音窗口总数", "proof_ceiling": "现场观察与投诉/维护记录；22:00-07:00 设计窗口不是成绩"},
-    {"id": "civic_operations_community_agenda_adoption_status", "name_zh": "社区议题采纳状态", "status": "unknown", "value": null, "denominator": "收到且符合最小记录要求的社区议题总数", "proof_ceiling": "议题回执与决定记录"},
-    {"id": "civic_operations_complaint_closure_duration", "name_zh": "投诉闭环时间", "status": "unknown", "value": null, "denominator": "可验证投诉事件及预注册起止点", "proof_ceiling": "时间戳与责任回执；不得虚构恢复时长"},
-    {"id": "civic_operations_role_vacancy_rate", "name_zh": "运营角色空缺率", "status": "unknown", "value": null, "denominator": "经责任主体确认的必需角色槽", "proof_ceiling": "书面责任接受与替补记录"},
-    {"id": "civic_operations_maintenance_budget_confirmation_status", "name_zh": "维护退役预算确认状态", "status": "unknown", "value": null, "denominator": "拟准入计划所需维护与退役预算项", "proof_ceiling": "经确认预算与退出资源；模板不证明资金"},
-    {"id": "civic_operations_failure_disclosure_completeness", "name_zh": "失败公开完整度", "status": "unknown", "value": null, "denominator": "经核验的失败、投诉、修正与退役事件", "proof_ceiling": "隐私安全年度公开记录"},
-    {"id": "civic_operations_international_retest_local_benefit_status", "name_zh": "国际复测本地公共收益状态", "status": "unknown", "value": null, "denominator": "完成且可公开的远程复测总数", "proof_ceiling": "本地议程决定与收益证据；传播热度不计"},
-    {"id": "civic_operations_volunteer_labour_disclosure_status", "name_zh": "志愿劳动披露状态", "status": "unknown", "value": null, "denominator": "涉及志愿劳动的已确认计划总数", "proof_ceiling": "有同意、时长、支持、退出和非替代责任的记录"},
-    {"id": "civic_operations_annual_retirement_completion_rate", "name_zh": "年度退役完成率", "status": "unknown", "value": null, "denominator": "年度决定为退役的对象总数", "proof_ceiling": "组件/数据/服务/场所/公开信息五类闭合回执"}
+    {
+      "id": "civic_operations_no_event_day_use_status",
+      "name_zh": "无活动日公共使用状态",
+      "status": "unknown",
+      "value": null,
+      "denominator": "同任务、同人群、同时段或同空间的普通日基线",
+      "proof_ceiling": "现场观察 + 责任记录；概念日历不证明使用"
+    },
+    {
+      "id": "civic_operations_quiet_window_delivery_rate",
+      "name_zh": "静音时段兑现率",
+      "status": "unknown",
+      "value": null,
+      "denominator": "经确认的静音窗口总数",
+      "proof_ceiling": "现场观察与投诉/维护记录；22:00-07:00 设计窗口不是成绩"
+    },
+    {
+      "id": "civic_operations_community_agenda_adoption_status",
+      "name_zh": "社区议题采纳状态",
+      "status": "unknown",
+      "value": null,
+      "denominator": "收到且符合最小记录要求的社区议题总数",
+      "proof_ceiling": "议题回执与决定记录"
+    },
+    {
+      "id": "civic_operations_complaint_closure_duration",
+      "name_zh": "投诉闭环时间",
+      "status": "unknown",
+      "value": null,
+      "denominator": "可验证投诉事件及预注册起止点",
+      "proof_ceiling": "时间戳与责任回执；不得虚构恢复时长"
+    },
+    {
+      "id": "civic_operations_role_vacancy_rate",
+      "name_zh": "运营角色空缺率",
+      "status": "unknown",
+      "value": null,
+      "denominator": "经责任主体确认的必需角色槽",
+      "proof_ceiling": "书面责任接受与替补记录"
+    },
+    {
+      "id": "civic_operations_maintenance_budget_confirmation_status",
+      "name_zh": "维护退役预算确认状态",
+      "status": "unknown",
+      "value": null,
+      "denominator": "拟准入计划所需维护与退役预算项",
+      "proof_ceiling": "经确认预算与退出资源；模板不证明资金"
+    },
+    {
+      "id": "civic_operations_failure_disclosure_completeness",
+      "name_zh": "失败公开完整度",
+      "status": "unknown",
+      "value": null,
+      "denominator": "经核验的失败、投诉、修正与退役事件",
+      "proof_ceiling": "隐私安全年度公开记录"
+    },
+    {
+      "id": "civic_operations_international_retest_local_benefit_status",
+      "name_zh": "国际复测本地公共收益状态",
+      "status": "unknown",
+      "value": null,
+      "denominator": "完成且可公开的远程复测总数",
+      "proof_ceiling": "本地议程决定与收益证据；传播热度不计"
+    },
+    {
+      "id": "civic_operations_volunteer_labour_disclosure_status",
+      "name_zh": "志愿劳动披露状态",
+      "status": "unknown",
+      "value": null,
+      "denominator": "涉及志愿劳动的已确认计划总数",
+      "proof_ceiling": "有同意、时长、支持、退出和非替代责任的记录"
+    },
+    {
+      "id": "civic_operations_annual_retirement_completion_rate",
+      "name_zh": "年度退役完成率",
+      "status": "unknown",
+      "value": null,
+      "denominator": "年度决定为退役的对象总数",
+      "proof_ceiling": "组件/数据/服务/场所/公开信息五类闭合回执"
+    }
   ],
   "ten_round_consistency_audit": {
     "audit_status": "local_package_consistency_and_artifact_validation_complete_pr_head_trusted_validation_pending_real_world_validation_not_started",
     "rounds": [
-      {"round": 1, "kept": "Twin-track Jing-Zhang front-stage grammar and civic timetable", "not_reopened": "brand, temporary boundary and scene count"},
-      {"round": 2, "kept": "three differentiated switchyard plans, sections, interfaces, journeys and four states", "not_reopened": "geometry, scale, exact siting and building conclusions"},
-      {"round": 3, "kept": "maintenance responsibility, human labour, repeated failure, retirement and ordinary-baseline restoration", "not_reopened": "unconfirmed work orders, staff or budgets"},
-      {"round": 4, "kept": "seven permanent rights and same-task non-AI parity", "not_reopened": "unconfirmed service windows or accessibility results"},
-      {"round": 5, "kept": "seven-resource whole-system accounting and exit destinations", "not_reopened": "unmeasured energy, compute, lifecycle, labour or cost"},
-      {"round": 6, "kept": "failure classes, stop authority types, three-carrier writeback, appeals, versions and active retirement", "not_reopened": "zero real failures, retests, recoveries and retirements"},
-      {"round": 7, "kept": "ordinary blue-green baseline, manual inspection, reversible prompts and vulnerable-group journey", "not_reopened": "unmeasured climate, hydraulic or accessibility outcomes"},
-      {"round": 8, "kept": "typed cultural evidence, correction, takedown and screen-free time education", "not_reopened": "unconfirmed archives, oral histories or content rights"},
-      {"round": 9, "kept": "public-task quality gate, fair entry, independent retest, exit and public-benefit reflow", "not_reopened": "zero tasks, partners, procurement or deployment"},
-      {"round": 10, "kept": "ordinary-year calendar, four-window resident journey, responsibility types, operational writeback and annual decision", "not_reopened": "unconfirmed calendar, roster, budget, partner, complaint or result"}
+      {
+        "round": 1,
+        "kept": "Twin-track Jing-Zhang front-stage grammar and civic timetable",
+        "not_reopened": "brand, temporary boundary and scene count"
+      },
+      {
+        "round": 2,
+        "kept": "three differentiated switchyard plans, sections, interfaces, journeys and four states",
+        "not_reopened": "geometry, scale, exact siting and building conclusions"
+      },
+      {
+        "round": 3,
+        "kept": "maintenance responsibility, human labour, repeated failure, retirement and ordinary-baseline restoration",
+        "not_reopened": "unconfirmed work orders, staff or budgets"
+      },
+      {
+        "round": 4,
+        "kept": "seven permanent rights and same-task non-AI parity",
+        "not_reopened": "unconfirmed service windows or accessibility results"
+      },
+      {
+        "round": 5,
+        "kept": "seven-resource whole-system accounting and exit destinations",
+        "not_reopened": "unmeasured energy, compute, lifecycle, labour or cost"
+      },
+      {
+        "round": 6,
+        "kept": "failure classes, stop authority types, three-carrier writeback, appeals, versions and active retirement",
+        "not_reopened": "zero real failures, retests, recoveries and retirements"
+      },
+      {
+        "round": 7,
+        "kept": "ordinary blue-green baseline, manual inspection, reversible prompts and vulnerable-group journey",
+        "not_reopened": "unmeasured climate, hydraulic or accessibility outcomes"
+      },
+      {
+        "round": 8,
+        "kept": "typed cultural evidence, correction, takedown and screen-free time education",
+        "not_reopened": "unconfirmed archives, oral histories or content rights"
+      },
+      {
+        "round": 9,
+        "kept": "public-task quality gate, fair entry, independent retest, exit and public-benefit reflow",
+        "not_reopened": "zero tasks, partners, procurement or deployment"
+      },
+      {
+        "round": 10,
+        "kept": "ordinary-year calendar, four-window resident journey, responsibility types, operational writeback and annual decision",
+        "not_reopened": "unconfirmed calendar, roster, budget, partner, complaint or result"
+      }
     ],
     "checks": [
-      {"check": "core_concept_focus", "result": "pass_document_scope", "evidence": "Twin-track Jing-Zhang remains the only front-stage master grammar; the new object is an operations contract, not a brand"},
-      {"check": "three_area_differentiation", "result": "pass_document_scope", "evidence": "VERIFY equipment isolation, CO-CREATE resident consent/quiet and PUBLISH commuting/correction remain non-interchangeable"},
-      {"check": "scenario_and_project_count_control", "result": "pass_document_scope", "evidence": "12 scenes, eight projects and three key areas frozen; no geometry change"},
-      {"check": "bilingual_and_figure_consistency", "result": "pass_local_artifact_scope_pr_head_trusted_validation_pending", "evidence": "paired Markdown headings, offline HTML sections, isomorphic SVG/PNG figures and deterministic bilingual A3/A0 publications pass local parity and visual QA; final authority remains the trusted validation attached to the exact PR head"},
-      {"check": "rights_and_reality_boundary", "result": "pass_document_scope", "evidence": "all remain G0, provisional, not_fully_cleared; roster, budget, event, partner, complaint and result unknown/0"}
+      {
+        "check": "core_concept_focus",
+        "result": "pass_document_scope",
+        "evidence": "Twin-track Jing-Zhang remains the only front-stage master grammar; the new object is an operations contract, not a brand"
+      },
+      {
+        "check": "three_area_differentiation",
+        "result": "pass_document_scope",
+        "evidence": "VERIFY equipment isolation, CO-CREATE resident consent/quiet and PUBLISH commuting/correction remain non-interchangeable"
+      },
+      {
+        "check": "scenario_and_project_count_control",
+        "result": "pass_document_scope",
+        "evidence": "12 scenes, eight projects and three key areas frozen; no geometry change"
+      },
+      {
+        "check": "bilingual_and_figure_consistency",
+        "result": "pass_local_artifact_scope_pr_head_trusted_validation_pending",
+        "evidence": "paired Markdown headings, offline HTML sections, isomorphic SVG/PNG figures and deterministic bilingual A3/A0 publications pass local parity and visual QA; final authority remains the trusted validation attached to the exact PR head"
+      },
+      {
+        "check": "rights_and_reality_boundary",
+        "result": "pass_document_scope",
+        "evidence": "all remain G0, provisional, not_fully_cleared; roster, budget, event, partner, complaint and result unknown/0"
+      }
     ],
     "deletion_or_stop_triggers": [
       "new event names that do not alter ordinary use, responsibility, evidence or exit",

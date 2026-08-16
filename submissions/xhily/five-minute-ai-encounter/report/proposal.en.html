@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Five-Minute AI Encounter - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>Five-Minute AI Encounter</h1>
+<p class="summary">Organizes the Jingzhang Relic Park, AI Origin Community, Zhongzhiyuan and Dazhongsi into a single walkable urban-scale AI experience network. Within a five-minute walk from any node, anyone can reach a usable AI service, AI public space, or AI pilgrimage landmark. All spatial judgments are conceptual suggestions pending recalculation once official boundaries are released.</p>
+<p class="translation-link"><a href="proposal.html">阅读中文版本</a></p>
+</section>
+<h1>Five-Minute AI Encounter</h1>
+<h2>Design Basis and Source Inventory</h2>
+<p>This formal proposal takes the Haidian District prequalification announcement for the <em>Centennial Jing-Zhang AI Innovation Belt International Urban Design Competition</em> as its primary basis, and uses the maintainer-registered provisional boundaries, key areas, enumerations, metrics and source lists under <code>brief/site-package/</code> as machine-readable evidence. AI agents must read <code>design_brief.json</code>, <code>allowed_design_space.json</code>, <code>sources.json</code>, <code>enums/</code>, <code>ranges/</code>, <code>schemas/</code>, <code>data/source_registry.json</code> and <code>data/processed/agent_fact_pack.md</code> before generating, and use <code>project_scope_summary.csv</code>, <code>agent_task_requirements.csv</code>, <code>source_use_matrix.csv</code>, <code>missing_data_checklist.csv</code> to build a task, scope, source-use and data-gap checklist. Every design judgment must decompose into traceable sources, recomputable metrics, verifiable layers, and human-reviewable assumptions <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="Source: OFFICIAL-ANNOUNCEMENT">Source</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="Source: AGENT-TASKBOOK">Source</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="existing_conditions_diagnosis" title="Depth: existing_conditions_diagnosis">Depth</sup>.</p>
+<p>The proposal uses <code>brief/site-package/geometry/provisional_boundaries.geojson</code> while official <code>SITE_BOUNDARY</code> and <code>KEY_AREA</code> polygons remain unavailable. The submitted <code>geometry/site_boundary.geojson</code> and <code>geometry/key_areas.geojson</code> must be marked <code>provisional_constraint</code> with <code>official_boundary=false</code>; they can be used only for generation, self-check, visualization and design discussion, and cannot serve as official redline, approval basis, precise area basis or statutory control conclusion. This organizer-side data gap alone does not block content scoring.</p>
+<h2>Three-Level Scope Framework</h2>
+<p>The proposal organizes work across three official levels: the 43.6 km² coordinated research area focusing on AI industrial ecology, strategic positioning, innovation chains and future urban form; the 11.4 km² overall design area focusing on urban renewal framework, industrial spatial layout, traffic/municipal support and urban character control; and the 368.4 ha key detailed design area covering three detailed design zones. All three levels are mapped item-by-item in <code>compliance_matrix.json</code>.</p>
+<h2>Overall Concept: Five-Minute AI Encounter</h2>
+<p>The overall concept is <strong>&quot;Five-Minute AI Encounter&quot;</strong>: organizing the Jingzhang Relic Park, Zhongzhiyuan, Beijing AI Origin Community and Dazhongsi into a single walkable urban-scale AI experience network, so that within a five-minute walk from any node, anyone can reach a real, usable AI service, AI public space, or AI pilgrimage landmark. &quot;Five minutes&quot; here is not a statutory service radius but a design commitment that can be reviewed and improved: once official boundaries are released, five-minute isochrones should be recomputed against the real road network and rail connections, and continuously calibrated by agents and the public <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="Source: AGENT-TASKBOOK">Source</sup>. Spatially it maps to &quot;one axis, three cores, many nodes&quot;; operationally it maps to &quot;day-scenario / week-scenario / year-scenario&quot; rhythms serving local workers, cross-district visitors and the global AI community respectively <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#SITE-001" title="Spatial data: geometry/site_boundary.geojson#SITE-001">Spatial data</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="Depth: overall_spatial_structure">Depth</sup>.</p>
+<p>This main thread chains the dispersed agent tasks into one experience chain: agent.1 naming and visual identity revolve around &quot;encounter&quot;; agent.2 industrial ecology cases translate into &quot;who you can meet and what you can collaborate on in this district&quot;; agent.3 scenario cards and personas are exactly what is reachable within five minutes; agent.4 pilgrimage landmarks and public-space components form the network nodes; agent.5 cultural narrative attaches the century-long innovation arc &quot;from Zhan Tianyou to AGI&quot; to a walkable path; agent.6 global event system upgrades this path into a communicable international route. All spatial proposals are conceptual suggestions, reference schemes, or material for professional teams to deepen <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-AGENT-OPEN-CALL-TASKBOOK" title="Standard: PROJECT-AGENT-OPEN-CALL-TASKBOOK">Standard</sup>.</p>
+<h2>Key Area Detailed Design</h2>
+<div class="proposal-table"><table><thead><tr><th>Key Area</th><th>Positioning</th><th>Spatial Move</th><th>AI Industry &amp; Operation Scenarios</th></tr></thead><tbody><tr><td>Zhongzhiyuan AI Acceleration Area</td><td>Garden-style full-stack autonomous innovation district</td><td>Strengthen Qinghe interface, industrial display, low-carbon innovation interaction and external traffic; green space carries open testing</td><td>Autonomous model testing, standard-making workshops, safety-governance display, low-carbon compute experience</td></tr><tr><td>Beijing AI Origin Community</td><td>Campus-adjacent transformation &amp; talent community</td><td>Stitch campus-district-street slow traffic; add release, talent service, residential and open-source collaboration space</td><td>Open-source community, release events, talent-zone services, campus-adjacent incubation</td></tr><tr><td>Dazhongsi AI Industry Cluster</td><td>Urban intelligent economy &amp; international exchange district</td><td>Dazhongsi station integration, four-quadrant pedestrian connectivity, business services and key-enterprise public realm</td><td>Agent and terminal display, content consumption, data elements and international roadshows</td></tr></tbody></table></div>
+<h2>AI Innovation Ecosystem, Personas and AI+ Scenarios</h2>
+<div class="proposal-table"><table><thead><tr><th>Persona</th><th>Typical Need</th><th>Spatial Response</th><th>Self-check Boundary</th></tr></thead><tbody><tr><td>Open-source developer</td><td>Release, collaboration, testing, community reputation</td><td>Origin community release hall, public code wall, night collaboration space</td><td>No personal trajectory collection; activity data is aggregate-only</td></tr><tr><td>Startup team</td><td>Low-cost office, compute access, product trial field</td><td>Zhongzhiyuan shared testbed, edge-compute service point, standards consultation</td><td>Compute and data services require separate authorization</td></tr><tr><td>Leading-enterprise visitor</td><td>Display, business, international hosting, talent recruiting</td><td>Dazhongsi international roadshow living room, rail-station access, key-enterprise public realm</td><td>Enterprise logos and cases must be rights-cleared</td></tr><tr><td>Local resident</td><td>Commute, leisure, community services, low-disturbance renewal</td><td>Jingzhang park slow loop, community-service inset, graded night lighting</td><td>Resident profiles not used for commercial recommendation</td></tr><tr><td>Faculty &amp; students</td><td>Tech transfer, cross-campus collaboration, daily slow traffic</td><td>Campus-district slow stitching, tech-transfer depot, AI education experience spots</td><td>Campus data and research outputs require authorization</td></tr></tbody></table></div>
+<div class="proposal-table"><table><thead><tr><th>Scenario Card</th><th>Spatial Carrier</th><th>What you can encounter in five minutes</th><th>Design Note</th></tr></thead><tbody><tr><td>01 Open-source Release Hall</td><td>Beijing AI Origin Community</td><td>An open-source model being demoed and its contributors</td><td>Release events, code-contribution display, small roadshows for universities, open-source communities and startups</td></tr><tr><td>02 Safety Governance Sandbox</td><td>Zhongzhiyuan</td><td>A red-team test or standards discussion you can observe</td><td>Standards-making, safety evaluation, model red-teaming rendered as visitable, bookable, supervisable nodes</td></tr><tr><td>03 Edge Compute Relay</td><td>Overall design nodes</td><td>An edge inference device serving passersby and its energy data</td><td>A new-infrastructure prototype tied to public service, enterprise service and low-carbon energy strategy</td></tr><tr><td>04 AI Slow-Traffic Navigator</td><td>Jingzhang Relic Park belt</td><td>A barrier-free path optimized by explainable signage</td><td>Identifies slow-traffic breakpoints, congestion nodes and accessibility needs via explainable signage and low-intrusion sensing</td></tr><tr><td>05 Dazhongsi International Roadshow Living Room</td><td>Dazhongsi cluster</td><td>An ongoing international roadshow or product launch</td><td>Display, negotiation, media release and international exchange for agents, terminals and content-consumption enterprises</td></tr><tr><td>06 Qinghe Low-Carbon Innovation Corridor</td><td>Zhongzhiyuan along Qinghe</td><td>A waterfront path where you can read district carbon data and AI model energy use while walking</td><td>Combines green stormwater space, walking, cycling and AI display as a district public living room</td></tr><tr><td>07 Campus-Adjacent Tech Transfer Street</td><td>Beijing AI Origin Community</td><td>A first-stop window for university tech transfer with in-house legal/IP advisors</td><td>Incubation, display, legal, IP and investment services for university tech transfer</td></tr><tr><td>08 Data Element Salon</td><td>Dazhongsi</td><td>A compliant, auditable data-circulation simulation interface with a docent</td><td>A city-service interface for data elements and digital assets under compliance, authorization and auditability</td></tr><tr><td>09 AI Life Service Sample Street</td><td>Community-commercial intersections</td><td>An AI pharmacy, an AI legal consulting spot, a set of AI education corners</td><td>Maps healthcare, education, legal and lifestyle AI+ scenarios into operable small-scale street space</td></tr><tr><td>10 Global AI Week Route</td><td>Belt-wide public space system</td><td>A walkable pilgrimage route chaining the nine scenarios above</td><td>A walkable, communicable experience route from relic culture through open-source community to industrial display and international roadshow</td></tr></tbody></table></div>
+<h2>Three AI Pilgrimage Landmarks (agent.4)</h2>
+<div class="proposal-table"><table><thead><tr><th>Landmark</th><th>District</th><th>What you can encounter in five minutes</th><th>Concept Form Direction (for further deepening only)</th></tr></thead><tbody><tr><td>L1 Jingzhang Smart-Spine Plaza</td><td>Jingzhang Relic Park core node</td><td>Jingzhang relic + a live AI model: a preserved relic fragment framing a public model-inference installation</td><td>Low-intervention relic-park node carrying a public AI installation; no large structure; respects heritage boundaries</td></tr><tr><td>L2 Origin Light</td><td>Beijing AI Origin Community central public space</td><td>A public light/wayfinding installation visualizing &quot;China&#x27;s AI happens here&quot; in real time</td><td>A &quot;public code wall&quot; concept showing only public contributions; no unauthorized personal or enterprise data</td></tr><tr><td>L3 Dazhongsi International Salon</td><td>Dazhongsi cluster core public space</td><td>A multilingual living room welcoming global AI visitors as a city gateway for roadshows, launches and hosting</td><td>Public space plus reversible temporary installations; no permanent building changes; all content rights-cleared</td></tr></tbody></table></div>
+<p>The honor-display system extends the same logic: a class of &quot;contribution wall / honor belt&quot; components in the public-space library projects公开 contributions, award-winning works and key milestones onto urban furniture and paving textures. Display objects must be authorized and revocable by the contributor; no personal profiles, non-public enterprise data, or commercially sensitive information may be shown.</p>
+<h2>Risk, Copyright and Compliance Statement</h2>
+<p><strong>Bilingual requirement.</strong> The main proposal file may be Chinese or English, but must provide a complete counterpart via <code>proposal.en.md</code> or <code>proposal.zh.md</code>; A3/A0 drawings, HTML and text-bearing figures must also provide language counterparts, using the competition terminology in <code>docs/terminology-glossary.md</code> where available. v2 packages missing any required translation, language mapping or valid file will be blocked by finalize and CI.</p>
+<p>This proposal does not claim official approval, statutory regulatory plan, final land rights, final construction scale, or guaranteed implementation. The AI agent is responsible for facts, sources, copyright, spatial data, metrics and expression; maintainers and professional reviewers may request rework or reject based on self-check, spatial review and the compliance matrix.</p>
+<h2>References</h2>
+<ul>
+<li>brief/public-brief.md</li>
+<li>brief/site-package/design_brief.json</li>
+<li>brief/site-package/allowed_design_space.json</li>
+<li>brief/site-package/enums/</li>
+<li>brief/site-package/ranges/planning_limits.json</li>
+<li>data/processed/agent_fact_pack.md</li>
+<li>Complete machine indexes: see <code>sources.json</code>, <code>metrics.json</code>, <code>compliance_matrix.json</code>, <code>standard_matrix.json</code> and <code>design_depth_matrix.json</code></li>
+</ul>
+</main>
+</body>
+</html>

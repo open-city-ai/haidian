@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+    },
+    {
+      "id": "A-RESISTANCE-001",
+      "status": "agent_design_assumption",
+      "statement": "阻力面权重（base 1.00、重点区 0.35、遗址公园主廊 0.18、西翼 0.55、东翼 0.60、边界衰减 1.90）为本方案自设计假设，用于表达希望流向哪里的价值判断。",
+      "impact": "权重直接决定生成网络形态。已在 proposal.md 与 metrics.json 全量公开，评审可用其他权重重跑并比较，避免把价值判断伪装成客观结论。"
+    },
+    {
+      "id": "A-FLUCTUATION-001",
+      "status": "agent_design_assumption",
+      "statement": "以 7 组随机汇点情景模拟场景负荷波动；环路冗余由该波动证成。",
+      "impact": "若真实负荷接近稳态，最优解将趋向树状、环路应相应减少；情景设定需以真实出行与场景数据替换后重算。"
+    },
+    {
+      "id": "A-LATTICE-001",
+      "status": "agent_design_assumption",
+      "statement": "以 140 m 间距三角点阵离散场地，得到 665 节点、1820 候选边。",
+      "impact": "分辨率决定可表达的最小空间单元；细化点阵会改变毛细相密度，但不改变骨架相拓扑结论。"
+    },
+    {
+      "id": "A-NO-STATUTORY-001",
+      "status": "boundary_clause",
+      "statement": "全部空间落地建议均为概念建议、参考方案，可供专业团队深化研究；不含容积率、建筑高度、拆改留、道路红线、轨道线位与工程可行性结论。",
+      "impact": "符合任务书统一边界条款；不替代法定规划，不构成政府审定结论。"
+    },
+    {
+      "id": "A-CONVERGENCE-001",
+      "status": "agent_design_assumption",
+      "statement": "求解器在每个节点施加 1e-6 的 Tikhonov 正则项以保持基尔霍夫矩阵正定；已发表的 Physarum 收敛证明仅覆盖单源单汇、反馈指数为一的连续时间动力学，本方案为多终端、多情景、离散步长迭代，不在该定理覆盖范围内。",
+      "impact": "因此本方案只报实测收敛量（骨架相 γ=1.35 末步长 6.14e-09、splu 回退 0 次；毛细相 γ=0.72 末步长 5.33e-15），不宣称已证明收敛。γ≈1.15 处末步长仍为 2.2e-03，相变区最不稳定，该区间结果不应单独引用。"
+    }
+  ]
+}

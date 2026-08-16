@@ -1,0 +1,132 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "submissions/3516027002att-ui/jingzhang-openworks",
+      "message": "scripts/validate_local_submission.py PASS：文件白名单、枚举值、YAML front matter、必需章节与最小字数、证据引用完整性、图片嵌入、PDF 非零页、manifest 哈希、体积上限均通过。"
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/",
+      "message": "scripts/spatial_review.py PASS：拓扑、覆盖、比例与指标可复现。仅剩三条 minor 级 KEY_AREA_PROVISIONAL 提示，成因是组织方尚未发布官方红线，规则明示不阻断内容评分。"
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "message": "scripts/visual_review.py PASS：离线静态、无远程资源与主动内容、14 项必需版块齐备、site_area_sqm / green_ratio / public_space_ratio 与 metrics.json 完全一致。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "scripts/professional_review.py PASS：6 项标准、15 项设计深度项、9 个 GeoJSON 图层、50 项 known 指标与 17 条来源在正文中全部被引用。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "146 个用地单元由提交边界平面剖分而来（在 EPSG:4548 下 noded + polygonize），相邻单元共享边界坐标；单元间重叠 0.000 sqm（真零）。"
+    },
+    {
+      "check_id": "LAND_USE_COVERAGE",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "用地分区并集 11,412,825.386 sqm 与提交边界 11,412,825.386 sqm 的覆盖差异：边界内未覆盖 0.00 sqm、越界 0.00 sqm（0 个单元），对称差 0.00 sqm，在仓库 1,141 sqm 容差内。三项均为构造性零：剖分在 EPSG:4548 下 noded 并 polygonize，提交边界环参与构图，可被任何人复算验证。"
+    },
+    {
+      "check_id": "METRIC_RECOMPUTATION",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "50 项 known 指标由本方案脚本在 EPSG:4548 下复算并可重跑，仓库 spatial_review.py 输出 6 个数值，其中 3 项与 metrics.json 自动比对；用地覆盖另作几何门检查；仓库脚本输出的 6 个数值为 site_area_sqm、green_space_area_sqm、public_space_area_sqm、building_footprint_area_sqm、green_ratio、public_space_ratio，其中与 metrics.json 自动数值比对的 3 项为 site_area_sqm、green_ratio、public_space_ratio，用地覆盖另作几何门检查；6 项 unknown 对应官方资料缺口，不由 agent 推定。"
+    },
+    {
+      "check_id": "PROJECT_FOOTPRINT_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/phasing.geojson",
+      "message": "R01–R08 共 8 个概念 project_footprint 已逐项落位，去重并集 1,540,564.824 sqm；每项携带 phase_version、key_area_ids、reversibility、设计参数依据与official_boundary=false，并把 gate_status 固定为 NOT_EVALUABLE；六个 gate record 字段闭合前不得判定通过，可与项目表交叉核验。",
+      "suggested_fix": "取得 official boundary、权属、现状与工程资料后重画项目边界；现有面积不得用于征地、投资或施工规模。"
+    },
+    {
+      "check_id": "CONCEPT_ROAD_RESERVATION",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/roads.geojson",
+      "message": "4 个 ROAD_AREA 概念预留叠加面合并 175,503.471 sqm，研究比率 0.015378；候选代码1207不切入 LAND_USE。所有面均 non_official=true，官方 road_area_ratio 继续保持 unknown。",
+      "suggested_fix": "取得官方道路红线和断面后，以官方数据替换 RA-001–RA-004，再决定是否将1207纳入用地剖分并重算所有比例。"
+    },
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "minor",
+      "target": "geometry/site_boundary.geojson",
+      "message": "提交边界为 provisional_rough 临时粗略边界，official_boundary=false，geometry_role=provisional_constraint。非官方红线，不作审批依据或精确面积依据。",
+      "suggested_fix": "取得官方 SITE_BOUNDARY polygon 后，按 proposal.md 第十二章复算清单重建九个图层并重算全部 geometry-derived 空间指标。"
+    },
+    {
+      "check_id": "KEY_AREA_PROVISIONAL",
+      "result": "pass",
+      "severity": "minor",
+      "target": "geometry/key_areas.geojson",
+      "message": "三处重点区域边界均为临时片区线，复算面积与公告面积的差值来自该精度；本方案重点区域结论仅作方向性设计。",
+      "suggested_fix": "取得官方 KEY_AREA polygon 后重算三处面积指标，并重新审视各区的空间动作与项目抓手。"
+    },
+    {
+      "check_id": "CONTROL_DATA_GAP",
+      "result": "unknown",
+      "severity": "minor",
+      "target": "metrics.json",
+      "message": "容积率、建筑高度、建筑密度、绿地率控制指标、总建筑规模与官方道路用地比例六项均未公开，保持 status=unknown。概念 ROAD_AREA 的研究比率不替代法定 road_area_ratio。本方案逐条转为「现在可做／补齐后才能做／补齐后要重算」的设计条件。",
+      "suggested_fix": "取得已批准控规条件与现状建筑底数后补齐上述六项，并与本方案 green_ratio 等设计建议值比对。"
+    },
+    {
+      "check_id": "ARCH_DEPTH_DATA_GAP",
+      "result": "not_applicable",
+      "severity": "minor",
+      "target": "standard_matrix.json",
+      "message": "《建筑工程设计文件编制深度规定（2016年版）》在仓库中登记为 missing_source_url，本方案未把它写成已满足的权威依据，standard_matrix.json 中 review_status 记为 data_gap。",
+      "suggested_fix": "取得该规定官方文本后再评估建筑专业深度。"
+    },
+    {
+      "check_id": "OFFICIAL_CLAIM_BOUNDARY",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "全文不声称取得政府批准、官方背书或实施承诺；空间落地建议一律表述为概念建议、参考方案或可供专业团队深化研究；不给容积率、建筑高度、地块拆改留、道路红线与工程可行性结论。"
+    },
+    {
+      "check_id": "PRIVACY_AND_HUMAN_REVIEW",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "12 张场景卡与 4 个测试验证场景均只使用公开数据或自愿提交数据，不做个体身份识别、人脸识别或轨迹追踪，每个场景保留人工复核与公众申诉通道。"
+    },
+    {
+      "check_id": "COPYRIGHT_AND_ASSETS",
+      "result": "pass",
+      "severity": "major",
+      "target": "report/copyright_statement.md",
+      "message": "全部图纸、HTML 与图片均由提交包内 GeoJSON 与 metrics 派生生成，不使用远程图片、data URI、外部地图截图或未清权素材，不嵌入未授权字体文件。"
+    },
+    {
+      "check_id": "SELF_CHECK_RUN_EVIDENCE",
+      "result": "pass",
+      "severity": "info",
+      "target": "manifest.json",
+      "message": "manifest.validation_claim 的 self_checked=true 来自构建期对 scripts/self_check_submission.py 的实际运行（命令：python scripts/self_check_submission.py submissions/3516027002att-ui/jingzhang-openworks --pr-author 3516027002att-ui；Windows 环境需设 PYTHONUTF8=1）。四门 gate 实测 PASS：DETERMINISTIC_VALIDATION、SPATIAL_REVIEW、VISUAL_PACKAGING、PROFESSIONAL_EVIDENCE。总体 data_confidence 取 medium：核心空间设计基底为 provisional_rough 临时粗略边界（见 BOUNDARY_TRUST 与 KEY_AREA_PROVISIONAL），公告文字值与正文计数按各自来源可更高置信；取得官方 polygon 后须按 proposal.md 第十二章复算清单整体重算。三条 minor 级 KEY_AREA_PROVISIONAL 提示源于官方红线未发布，规则明示不阻断内容评分。"
+    }
+  ],
+  "ok": true,
+  "can_enter_formal_review": true
+}

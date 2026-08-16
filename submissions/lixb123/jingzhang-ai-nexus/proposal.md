@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以海淀科创基因与百年京张文脉为底色，用天问、女娲、应龙三条文化母题组织可解释、可参与、可感知的 AI 城市客厅。"
 tracks: ["ai-traffic-walkability"]
 scenarios: ["ai-traffic-walkability"]
-iteration: "v1.2"
+iteration: "v1.3"
 ---
 
 # 海淀智汇·京张星耀：天工星图 AI 城市客厅
@@ -56,6 +56,8 @@ iteration: "v1.2"
 三条未来街把总体结构落到地面：**天问星轨智行街**组织低速预约接驳、步骑、弹性路缘和低眩光导向；**女娲织网共生街**组合渗透树池、可拆装长桌、无障碍微出行与安静优先路口；**应龙水镜慢行环**连接浅水花园、遮荫构件和可关闭的水位提示。[data:geometry/roads.geojson#ROAD-001] [data:geometry/roads.geojson#ROAD-002] [data:geometry/roads.geojson#ROAD-003]
 
 四类可替换建筑原型分别为：连接研发、模型评测与公共展廊的**天问云台**；围绕共享庭院组织共居创作与修补工坊的**女娲织巢**；以架空公共层、雨水庭院和深檐回应热雨环境的**应龙水庭**；整合无障碍接驳、公共服务和可变展陈的**星图界面**。[data:geometry/buildings.geojson#BLDG-001] [metric:building_footprint_area_sqm]
+
+![建筑原型与连续公共首层](assets/figures/building-prototypes.png)
 
 三条街和四类建筑只是可替换的空间原型，具体断面、消防间距、接驳组织、停车、市政设备和建筑边界，必须由交通、市政、建筑、无障碍和消防团队基于正式资料深化。控规层面只表达混合功能、公共界面和空间连续性的设计意图，不以暂定几何推导法定强度。[depth:renewal_framework]
 

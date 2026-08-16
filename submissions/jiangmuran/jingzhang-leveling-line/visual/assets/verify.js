@@ -125,6 +125,7 @@ const spine = (() => {
 })();
 const publicFeatures = read('geometry/public_space.geojson').features;
 
+const fabric = read('visual/assets/osm_fabric.json');
 const computed = {
   site_area_sqm: site,
   green_ratio: layerArea('green_space.geojson') / site,
@@ -163,7 +164,26 @@ const computed = {
   benchmark_third_order_count: publicFeatures.filter(
     (f) => f.properties.benchmark_order === 'third').length,
   phased_share_of_design_scope: layerArea('phasing.geojson') / site,
+
+  // The measured existing fabric, from the shipped `osm_fabric.json`. Two are
+  // re-derived from that file's own components — density from length and area,
+  // coverage from footprint and area — and four are the readings it carries,
+  // checked here against the copies in metrics.json. Copying a number into a
+  // second file is how two copies of one fact start to drift.
+  //
+  // Written out rather than spread in from a helper: the coverage gate reads
+  // the keys of this literal, so a key it cannot see here is a metric nobody
+  // can tell is covered.
+  existing_street_length_m: fabric.streets.total_km * 1000,
+  existing_street_density_m_per_sqm:
+    (fabric.streets.total_km * 1000) / (fabric.boundary.area_km2 * 1e6),
+  existing_junction_count: fabric.streets.junctions,
+  existing_block_median_area_sqm: fabric.blocks.median_ha * 1e4,
+  existing_oversized_built_block_count: fabric.blocks.oversized_built_count,
+  existing_building_coverage_ratio:
+    (fabric.buildings.footprint_km2 * 1e6) / (fabric.boundary.area_km2 * 1e6),
 };
+
 
 // Areas are compared with a relative tolerance: this file re-implements the
 // projection independently, so agreement to 1e-4 is the meaningful claim, not

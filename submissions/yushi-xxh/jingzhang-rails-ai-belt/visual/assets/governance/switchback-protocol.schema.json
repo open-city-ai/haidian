@@ -1,0 +1,130 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.org/jingzhang-rails-ai-belt/switchback-protocol.schema.json",
+  "title": "Symbiosis Belt Switchback Protocol 0.1",
+  "description": "Machine-readable reversibility contract for every AI capability admitted to the Centennial Jingzhang AI Symbiosis Belt. Named after the 1909 '人字形' switchback designed by Zhan Tianyou on the Jing-Zhang Railway: every forward capability must register a switchback path, and the belt must remain in a usable state after any reversal. A registered forward_state, switchback, and acceptance triple is required; unresolved items must never disappear during a handover. This schema validates structure only - it does not prove legal compliance, service availability, or on-site readiness.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol_version",
+    "node_id",
+    "capability_id",
+    "forward_state",
+    "switchback",
+    "acceptance",
+    "status"
+  ],
+  "properties": {
+    "protocol_version": {
+      "const": "0.1",
+      "description": "Version of the Switchback Protocol this entry conforms to."
+    },
+    "node_id": {
+      "type": "string",
+      "description": "Spatial node this capability attaches to, e.g. K1-I01 or JZ-03. Must reference a feature id present in the submitted geometry."
+    },
+    "capability_id": {
+      "type": "string",
+      "description": "Capability identifier, e.g. SCN-04-AI-SLOW-TRAFFIC-NAVIGATION."
+    },
+    "forward_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "inputs",
+        "deployment_mode",
+        "known_faults",
+        "no_ai_baseline"
+      ],
+      "properties": {
+        "scope": {
+          "type": "string",
+          "description": "What the capability does and where, in one sentence."
+        },
+        "inputs": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Data and material inputs; only public, authorized, synthetic or aggregate inputs are allowed."
+        },
+        "deployment_mode": {
+          "enum": ["sandbox_only", "pilot_limited", "public"],
+          "description": "sandbox_only = no production connection; pilot_limited = bounded trial area; public = available across the belt."
+        },
+        "known_faults": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Known limitations and failure modes registered BEFORE deployment."
+        },
+        "no_ai_baseline": {
+          "type": "string",
+          "description": "The non-AI equivalent service that remains available if the capability is deactivated."
+        }
+      }
+    },
+    "switchback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rollback_path",
+        "reversal_trigger",
+        "residual_traces",
+        "rollback_owner"
+      ],
+      "properties": {
+        "rollback_path": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "description": "Ordered steps that return the node to the previous usable state."
+        },
+        "reversal_trigger": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "description": "Conditions under which reversal must be initiated."
+        },
+        "residual_traces": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "What remains after reversal (aggregate statistics, deletion of raw data, physical traces)."
+        },
+        "rollback_owner": {
+          "$ref": "#/$defs/role_ref",
+          "description": "The human role responsible for executing and verifying the reversal."
+        }
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reproduction", "decision", "open_items"],
+      "properties": {
+        "reproduction": {
+          "type": "string",
+          "description": "How a third party reproduces the registered forward state from the submitted package."
+        },
+        "decision": {
+          "enum": ["accept", "reject", "accept_with_conditions"],
+          "description": "The independent incoming-party decision; unresolved items must be listed in open_items."
+        },
+        "open_items": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Unresolved items that remain visible; none may silently disappear in a handover."
+        }
+      }
+    },
+    "status": {
+      "enum": ["draft", "registered", "sandbox", "pilot", "rolled_back"],
+      "description": "Lifecycle state; only 'sandbox' or 'pilot' entries may be exercised."
+    }
+  },
+  "$defs": {
+    "role_ref": {
+      "type": "string",
+      "pattern": "^R-[A-Z0-9-]+$",
+      "description": "Reference to a role defined in role-spec.json, e.g. R-PUBLIC-SPACE."
+    }
+  }
+}

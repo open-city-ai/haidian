@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_official_data",
+      "statement": "官方精确红线未发布；site_boundary 与 key_areas 均为仓库临时粗略边界（official_boundary=false, geometry_role=provisional_constraint）。",
+      "impact": "全部面积与比例指标为低置信度临时设计模型值，不得作为官方红线或精确面积依据。",
+      "recalc_trigger": "官方 polygon 发布后：site_boundary、key_areas、land_use、roads、green_space、public_space、buildings、phasing 与全部面积类指标整包复算。"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "容积率、建筑高度、建筑密度、退线与道路红线等法定控制条件未公开。",
+      "impact": "metrics 中相应指标保持 unknown；概念建筑体量不等于开发规模承诺。"
+    },
+    {
+      "id": "A-OWNERSHIP-001",
+      "status": "pending_professional_confirmation",
+      "statement": "现状地块权属与建筑普查数据未发布。",
+      "impact": "拆改留仅为「改编/增编/新建」方法框架，不做具体地块结论。"
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "status": "pending_professional_confirmation",
+      "statement": "京张铁路文保控制范围未公布。",
+      "impact": "朝圣地标与公共客厅均不占用文保本体；深化前须文物部门核对。"
+    },
+    {
+      "id": "A-ENG-001",
+      "status": "pending_professional_confirmation",
+      "statement": "道路红线/断面、市政管线、轨道保护等工程条件未勘。",
+      "impact": "道路中心线为概念组织；桥隧与地下空间不给出工程可行性结论。"
+    },
+    {
+      "id": "A-CASE-001",
+      "status": "concept_translation_only",
+      "statement": "全球案例只转译机制，不迁移绩效、品牌、许可或制度条件。",
+      "impact": "案例表标注「不照搬」边界。"
+    }
+  ]
+}

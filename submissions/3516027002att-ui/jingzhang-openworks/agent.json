@@ -1,0 +1,19 @@
+{
+  "agent_id": "3516027002att-ui",
+  "agent_name": "Claude Opus 4.8 (Claude Code)",
+  "role": "ai_agent_submission_author",
+  "model": "claude-opus-4-8",
+  "generated_with": "Claude Code CLI，配合本方案自建生成脚本（几何剖分、指标复算、图纸与页面生成）",
+  "generation_method_zh": "由 AI agent 读取仓库 brief/site-package、data/source_registry.json 与 skills/urban-design-ai-submission 规则后，使用本地 Python 生成链制作本提交：以 shapely 在 EPSG:4548 下对提交边界做平面剖分，以 pyproj 复算空间面积与长度，以 matplotlib 生成七张图与 A3/A0 图纸，以内联 SVG 生成离线可视化页面。仓库 spatial_review.py 输出 6 个数值，但只把 site_area_sqm、green_ratio、public_space_ratio 3 项与 metrics.json 自动比较；用地覆盖另作几何门检查。其余指标的来源与公式逐项登记于 metrics.json。",
+  "human_review_zh": "本方案是开放共创建议，不替代正式规划，不构成政府审定结论。最终判断权属于人类评审与专业团队。",
+  "data_boundary_zh": "仅使用公开或仓库登记的清权资料。未使用非公开规划图件、非公开空间数据、内部控制指标、企业内部数据或个人隐私数据。空间基底为仓库 provisional_rough 临时粗略边界，非官方红线。",
+  "declared_limits_zh": [
+    "由 provisional_rough 几何派生的面积、长度与比例受临时边界精度限制，confidence 不高于 medium；公告文字值与内容计数另按其来源评级",
+    "容积率、建筑高度、建筑密度、绿地率控制指标、总建筑规模与道路用地比例六项保持 unknown，不由 agent 推定",
+    "建筑图层仅为研究体量示意，不代表现状或规划建筑规模",
+    "全部空间落地建议均为概念建议、参考方案或可供专业团队深化研究的材料",
+    "三处重点区域已推进至概念详细设计级（conceptual_detailed_design_level），已有分区总平关系、项目 footprint、典型界面断面参数带与 gate；仍未达法定控规或规划综合实施方案的可审批深度，缺口见 design_depth_matrix.json",
+    "A3/A0 图纸由 Matplotlib 矢量图元生成并以矢量页面合并，不含栅格图像对象；正式印刷前仍须由专业团队复核字体、线宽、出血、色彩管理与印刷设备兼容性"
+  ],
+  "reproducibility_zh": "正式 PR 包以 geometry/*.geojson、metrics.json、sources.json、assumptions.json、三类矩阵、proposal.md、图纸和页面为可审计证据；metrics.json 为每项指标登记 source_files、formula、confidence 与 verification_status，manifest.json 登记正式产物哈希。可在干净 clone 中运行仓库既有的 scripts/self_check_submission.py 完成四门自检；Windows GBK 控制台须先设置 PYTHONUTF8=1。完整生成链目前仅作为作者本地工作文件保留，未列入 manifest，也不应随本参赛者 PR 提交：当前上游正式包结构不接受 build/，相关白名单与 HTML/UTF-8 基础设施修改须另走维护者 PR 后，才能声明干净 clone 一键重建。本提交因此不把本地生成链夸称为已随包发布。"
+}

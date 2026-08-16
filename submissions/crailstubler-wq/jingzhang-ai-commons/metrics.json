@@ -1,0 +1,97 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "由临时边界计算，只服务概念图层自检，不是官方用地面积。"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 3456.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area(reversible_service_pavilion_envelopes, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "reason": "可撤除服务亭概念包络，不代表建设规模。"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.110896,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_union_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-OSM-CONTEXT-001"
+      ],
+      "reason": "概念性绿廊相对比例，不是控规绿地率。"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.006978,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_union_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-OPERATIONS-001"
+      ],
+      "reason": "三处试点公共空间相对比例，不是法定公共空间指标。"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "公开资料未提供正式边界与批准容积率，概念方案不自行设定。"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(provisional_key_detailed_design_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "数量来自公告任务，几何边界仍为临时范围。"
+    }
+  }
+}

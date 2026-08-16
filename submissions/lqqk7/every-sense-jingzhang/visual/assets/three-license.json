@@ -1,0 +1,61 @@
+{
+ "id": "three-license-mit-r160",
+ "title_zh": "three.js 许可正本与随包构建溯源（MIT，随包收录）",
+ "title_en": "three.js licence text and vendored-build provenance (MIT, shipped in package)",
+ "component": "three.js",
+ "component_version": "r160",
+ "npm_package": "three@0.160.0",
+ "license": "MIT",
+ "spdx_license_identifier": "MIT",
+ "copyright": "Copyright © 2010-2023 three.js authors",
+ "note_zh": "license_text 为 three.js 官方 LICENSE 逐字全文（MIT 要求再分发时附带版权声明与许可原文），按行拆分承载；以换行符连接 license_text 数组即可逐字节重建原文，重建后 SHA-256 应等于 plain_text_sha256。",
+ "note_en": "license_text carries the official three.js LICENSE verbatim (MIT requires the copyright notice and licence text to travel with redistributions), split by line; joining the array with newline characters rebuilds the original byte-for-byte, whose SHA-256 must equal plain_text_sha256.",
+ "plain_text_sha256": "852e0e8699169bf9f6fdc6bda3e682d078dcbc738b5d33e74df594721bff271d",
+ "retrieved_from": "https://raw.githubusercontent.com/mrdoob/three.js/r160/LICENSE",
+ "retrieved_date": "2026-08-16",
+ "upstream_artifact": {
+  "path_in_upstream": "build/three.module.min.js",
+  "download_url": "https://unpkg.com/three@0.160.0/build/three.module.min.js",
+  "bytes": 670681,
+  "sha256": "3e690ac7d180b0aadf0891bea39eec643e29e2d3e75c99b18689518665f69ba6",
+  "retrieved_date": "2026-08-16"
+ },
+ "packaged_artifact": {
+  "path": "visual/assets/three.min.js",
+  "bytes": 671320,
+  "sha256": "99361e0a3fcca3125a494b27f421cf9078bbf1847c2b82a839a2135ebe91b532",
+  "module_format": "classic script (IIFE), namespace on globalThis.THREE"
+ },
+ "transformation_zh": "为使页面在 file:// 下无需 ES 模块即可运行，本包将官方 module 构建机械重封装为单文件 IIFE：（1）在文件头部加一段许可与溯源注释；（2）将上游 module 主体逐字节放入 (function(){\"use strict\"; … })() 中；ES 模块本就是严格模式，因此 \"use strict\" 保持语义一致；（3）将全文唯一一条末尾 export{local as Exported, …} 语句（唯一被删除的语句）替换为等价的命名空间对象，赋给 globalThis.THREE 与 window.THREE。上游其余字节未做任何修改，导出名 416 个全部保留。",
+ "transformation_en": "To let the page run from file:// without ES modules, the official module build is mechanically repackaged into a single-file IIFE: (1) a licence and provenance comment is prepended; (2) the upstream module body is placed verbatim inside (function(){\"use strict\"; … })() -- ES modules are always strict, so \"use strict\" preserves semantics; (3) the single trailing export{local as Exported, …} statement, the only statement removed, is replaced by the equivalent namespace object assigned to globalThis.THREE and window.THREE. No other upstream byte is modified and all 416 exported names are preserved.",
+ "exported_name_count": 416,
+ "used_by": [
+  "visual/assets/spine3d.js"
+ ],
+ "network_behaviour_zh": "本包内使用不发起任何网络请求：仅使用 WebGLRenderer、几何与材质、本地 Canvas 纹理；不使用任何 Loader、不加载远程模型、贴图、字体或统计代码。",
+ "network_behaviour_en": "No network request is made from this package: only WebGLRenderer, geometry and material classes and locally drawn canvas textures are used; no loader, remote model, texture, font or analytics code is involved.",
+ "license_text": [
+  "The MIT License",
+  "",
+  "Copyright © 2010-2023 three.js authors",
+  "",
+  "Permission is hereby granted, free of charge, to any person obtaining a copy",
+  "of this software and associated documentation files (the \"Software\"), to deal",
+  "in the Software without restriction, including without limitation the rights",
+  "to use, copy, modify, merge, publish, distribute, sublicense, and/or sell",
+  "copies of the Software, and to permit persons to whom the Software is",
+  "furnished to do so, subject to the following conditions:",
+  "",
+  "The above copyright notice and this permission notice shall be included in",
+  "all copies or substantial portions of the Software.",
+  "",
+  "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR",
+  "IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,",
+  "FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE",
+  "AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER",
+  "LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,",
+  "OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN",
+  "THE SOFTWARE.",
+  ""
+ ]
+}

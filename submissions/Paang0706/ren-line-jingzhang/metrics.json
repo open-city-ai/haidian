@@ -1,0 +1,218 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "shapely.area(provisional SITE_BOUNDARY) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "provisional boundary; recompute after official polygon"
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "len(features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "key_area_total_sqm": {
+   "status": "known",
+   "value": 3692893.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "sum(polygon areas) EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "provisional key-area polygons"
+   ]
+  },
+  "land_use_coverage_sqm": {
+   "status": "known",
+   "value": 12946691.6,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "union of land-use polygons EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "mosaic covers site"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.3932,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "union(green_space)/site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "conceptual green bands; provisional boundary"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.0104,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "union(public_space)/site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "conceptual squares; provisional boundary"
+   ]
+  },
+  "green_public_ratio": {
+   "status": "known",
+   "value": 0.4036,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "(union(green)+union(public))/site",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 2230630.7,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "union(footprints)",
+   "confidence": "low",
+   "assumptions": [
+    "示意性概念建筑基底，不代表现状或审批建筑"
+   ]
+  },
+  "road_centerline_count": {
+   "status": "known",
+   "value": 10,
+   "unit": "count",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "len(features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "phase_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "len(features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "scenario_node_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "scenario cards in narrative",
+   "confidence": "high",
+   "assumptions": [
+    "10 required + 2 extra"
+   ]
+  },
+  "ai_landmark_count": {
+   "status": "known",
+   "value": 4,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "landmark catalog",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "persona_count": {
+   "status": "known",
+   "value": 5,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "persona table",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": null,
+   "confidence": "unknown",
+   "assumptions": [
+    "缺少官方控规条件；待正式数据补齐后复算"
+   ],
+   "reason": "official regulatory-plan conditions not yet published"
+  },
+  "building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [],
+   "formula": null,
+   "confidence": "unknown",
+   "assumptions": [
+    "缺少官方高度管控；待正式控规确认"
+   ],
+   "reason": "official height controls not yet published"
+  },
+  "building_density": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": null,
+   "confidence": "unknown",
+   "assumptions": [
+    "缺少官方控规条件"
+   ],
+   "reason": "official regulatory-plan conditions not yet published"
+  },
+  "green_ratio_statutory": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": null,
+   "confidence": "unknown",
+   "assumptions": [
+    "绿地率法定值待控规确认；本包只给概念复算值"
+   ],
+   "reason": "statutory green ratio pending official regulatory plan"
+  }
+ }
+}

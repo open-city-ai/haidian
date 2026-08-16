@@ -8,7 +8,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v1.2"
+iteration: "v1.3"
 summary: "Using railway coupling, switching and through-running as a cultural framework, the proposal links convertible homes, workplaces and public services through one line, three stations, four housing states, six relay contracts and a nine-state human handover; every spatial move is a conceptual recommendation based on provisional geometry."
 tracks: ["youth-friendly-public-space", "ai-public-services", "ai-origin-community"]
 scenarios: ["enterprise-service-copilot", "ai-health-service-navigation", "ai-traffic-walkability", "ai-cultural-guide"]

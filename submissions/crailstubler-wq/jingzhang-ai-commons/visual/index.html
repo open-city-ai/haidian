@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>京张新一站｜一条老铁路，三种新生活</title>
+  <link rel="stylesheet" href="assets/source-han-sans.css">
+  <style>
+    :root{
+      --paper:#f4f0e7;--card:#fffdf8;--ink:#24231f;--muted:#68645b;--rail:#6b5138;
+      --red:#a62d2d;--green:#39705a;--gold:#d29a2e;--blue:#315c78;--line:#d8d0c2;
+      --shadow:0 18px 54px rgba(65,49,31,.10);--radius:22px;--max:1260px
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:"Jingzhang Sans",sans-serif;line-height:1.72}
+    img{display:block;max-width:100%;height:auto}
+    a{color:inherit}
+    .skip{position:absolute;left:-999px;top:8px;background:#fff;padding:8px 12px;z-index:20}.skip:focus{left:8px}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin-inline:auto}
+    .topbar{border-bottom:1px solid rgba(255,255,255,.22);font-size:13px;color:#eee4d7}
+    .topbar .wrap{display:flex;justify-content:space-between;gap:20px;padding:10px 0}
+    header{background:linear-gradient(135deg,#3f3124 0%,#6b5138 54%,#7d5b39 100%);color:#fffdf8;overflow:hidden}
+    .hero{padding:54px 0 34px}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:28px;font-weight:700;letter-spacing:.08em}
+    .railmark{position:relative;width:56px;height:26px;flex:0 0 56px}
+    .railmark:before,.railmark:after{content:"";position:absolute;left:0;right:0;height:3px;background:#f7ead8;border-radius:3px}
+    .railmark:before{top:5px}.railmark:after{bottom:5px}
+    .railmark i{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--gold);left:4px;top:8px;box-shadow:21px 0 0 #f7ead8,42px 0 0 #f7ead8}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,.72fr) minmax(460px,1.28fr);align-items:end;gap:42px}
+    .kicker{font-size:14px;letter-spacing:.18em;color:#f0c879;margin:0 0 10px;font-weight:700}
+    h1{font-size:clamp(46px,6.2vw,84px);line-height:1.03;letter-spacing:-.045em;margin:0 0 16px}
+    .tagline{font-family:"Jingzhang Sans",sans-serif;font-size:clamp(24px,3vw,40px);line-height:1.25;margin:0 0 22px;color:#fff3dd}
+    .lead{font-size:18px;max-width:38em;color:#f0e8dc;margin:0 0 24px}
+    .benefits{display:flex;flex-wrap:wrap;gap:9px}.benefits span{border:1px solid rgba(255,255,255,.42);border-radius:999px;padding:6px 12px;background:rgba(255,255,255,.08)}
+    .hero-map{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:0 26px 70px rgba(24,15,8,.30);border:1px solid rgba(255,255,255,.42);background:#fff}
+    .hero-map img{width:100%}
+    .stamp{position:absolute;right:18px;bottom:18px;background:rgba(255,253,248,.94);color:var(--rail);border:2px solid var(--red);padding:8px 12px;font-weight:800;transform:rotate(-2deg);box-shadow:0 3px 14px rgba(0,0,0,.12)}
+    .questions{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:28px 0 48px}
+    .question{background:rgba(255,253,248,.10);border:1px solid rgba(255,255,255,.25);border-radius:16px;padding:18px 20px}
+    .question b{display:block;font-size:18px;margin-bottom:4px}.question span{font-size:14px;color:#eee1d0}
+    nav{position:sticky;top:0;z-index:10;background:rgba(244,240,231,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    nav .wrap{display:flex;gap:5px;overflow-x:auto;padding:10px 0;scrollbar-width:none}nav .wrap::-webkit-scrollbar{display:none}
+    nav a{text-decoration:none;white-space:nowrap;padding:7px 11px;border-radius:999px;font-size:14px;color:#514b42}nav a:hover,nav a:focus{background:#fff;border-color:var(--line)}
+    main{padding:54px 0 80px}
+    section{scroll-margin-top:72px;margin-bottom:70px}
+    .section-head{display:grid;grid-template-columns:90px minmax(0,1fr);gap:20px;margin-bottom:24px;align-items:start}
+    .section-no{color:var(--red);font-size:13px;font-weight:800;letter-spacing:.12em;border-top:2px solid var(--red);padding-top:8px}
+    h2{font-size:clamp(30px,4vw,50px);line-height:1.16;letter-spacing:-.035em;margin:0 0 10px}
+    .section-head p{margin:0;color:var(--muted);font-size:18px;max-width:48em}
+    .figure{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:12px;box-shadow:var(--shadow)}
+    .figure img{width:100%;border-radius:14px}
+    .caption{padding:12px 6px 2px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .notice{border-left:5px solid var(--gold);background:#fff8e8;border-radius:0 14px 14px 0;padding:16px 18px;margin-top:16px;color:#594b31}
+    .scope-grid,.zone-grid,.scene-grid,.operations-grid,.evidence-grid{display:grid;gap:16px}
+    .scope-grid{grid-template-columns:repeat(3,1fr);margin-top:22px}
+    .scope{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;position:relative;overflow:hidden}
+    .scope:after{content:attr(data-label);position:absolute;right:14px;top:4px;font-size:54px;font-weight:900;color:rgba(107,81,56,.07)}
+    .scope h3,.zone h3{font-size:22px;margin:0 0 8px}.scope p{color:var(--muted);margin:0}.scope b{display:block;color:var(--rail);margin-top:12px}
+    .history{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--card);box-shadow:var(--shadow)}
+    .time{padding:28px;border-right:1px solid var(--line);position:relative}.time:last-child{border:0}.time .year{font-size:34px;font-weight:900;color:var(--rail)}
+    .time.red .year{color:var(--red)}.time.today .year{color:var(--green)}.time h3{margin:2px 0 8px}.time p{margin:0;color:var(--muted)}
+    .zone-grid{grid-template-columns:repeat(3,1fr);margin-top:22px}
+    .zone{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;border-top:7px solid var(--green)}
+    .zone:nth-child(2){border-top-color:var(--gold)}.zone:nth-child(3){border-top-color:var(--blue)}
+    .zone .q{font-family:"Jingzhang Sans",sans-serif;font-size:22px;line-height:1.35;color:var(--rail);margin:0 0 14px}.zone ul{padding-left:1.1em;margin:12px 0 0}.zone li{margin:5px 0}
+    .concept-views{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}.concept-view{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}.concept-view img{width:100%;aspect-ratio:16/9;object-fit:cover}.concept-view figcaption{padding:16px 18px 18px}.concept-view strong{display:block;font-size:19px;color:var(--rail);margin-bottom:5px}.concept-view span{font-size:14px;color:var(--muted)}
+    .map-pair{display:grid;grid-template-columns:1fr 1fr;gap:18px}.map-pair .figure{align-self:start}
+    .plain-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px}
+    .plain-card h3{font-size:21px;margin:0 0 10px}.plain-card p{margin:0 0 10px;color:var(--muted)}
+    .plain-list{list-style:none;padding:0;margin:14px 0 0}.plain-list li{display:grid;grid-template-columns:30px 1fr;gap:10px;margin:12px 0}.plain-list b{width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#eee5d8;color:var(--rail)}
+    .scenario-intro{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-bottom:18px}
+    .rule-card{background:var(--rail);color:#fff;border-radius:18px;padding:24px}.rule-card h3{margin:0 0 10px;font-size:22px}.rule-card p{color:#f3e8db;margin:0}
+    .scene-grid{grid-template-columns:repeat(2,1fr)}
+    .scene{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;grid-template-columns:52px 1fr;gap:14px}
+    .scene .num{font-size:13px;font-weight:900;color:#fff;background:var(--green);border-radius:50%;width:48px;height:48px;display:grid;place-items:center}.scene.test .num{background:var(--red)}
+    .scene h3{font-size:19px;margin:0 0 5px}.scene p{margin:0;color:var(--muted);font-size:14px}.scene .fallback{display:block;color:var(--green);font-weight:700;margin-top:8px}
+    .process{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin:24px 0}.step{background:var(--card);border:1px solid var(--line);padding:18px 14px;min-height:132px;position:relative}.step:first-child{border-radius:16px 0 0 16px}.step:last-child{border-radius:0 16px 16px 0}.step:not(:last-child):after{content:"›";position:absolute;right:-10px;top:42px;width:20px;height:36px;background:var(--card);z-index:2;font-size:28px;color:var(--gold);text-align:center}.step b{display:block;color:var(--red);margin-bottom:6px}.step span{font-size:14px;color:var(--muted)}
+    .operations-grid{grid-template-columns:repeat(3,1fr)}
+    .rhythm{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px}.rhythm .when{font-size:13px;color:var(--red);font-weight:900;letter-spacing:.12em}.rhythm h3{font-size:22px;margin:6px 0 8px}.rhythm p{color:var(--muted);margin:0}
+    .metric-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:18px 0}
+    .metric{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}.metric span{display:block;font-size:13px;color:var(--muted)}.metric strong{display:block;font-size:24px;line-height:1.2;margin:6px 0;color:var(--rail);font-variant-numeric:tabular-nums}.metric small{color:var(--muted)}
+    .honesty{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}.honesty article{padding:22px;border-radius:18px}.known{background:#eaf3ed;border:1px solid #bfd2c5}.unknown{background:#fff1ea;border:1px solid #e4c0af}.honesty h3{margin:0 0 8px}.honesty ul{margin:0;padding-left:1.1em}
+    .evidence-grid{grid-template-columns:1.1fr .9fr}.source-list{margin:0;padding-left:1.2em}.source-list li{margin:8px 0}.source-list a{text-decoration-thickness:1px;text-underline-offset:3px}
+    .package-index{margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px}.package-index h3{font-size:21px;margin:0 0 6px}.package-index>p{margin:0 0 16px;color:var(--muted)}.index-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.index-item{border-left:3px solid var(--gold);padding:8px 10px;background:#faf6ee}.index-item b{display:block}.index-item span{font-size:13px;color:var(--muted)}
+    .smallprint{font-size:13px;color:var(--muted)}
+    footer{background:#2d2821;color:#efe7dc;padding:34px 0}.footer-grid{display:flex;justify-content:space-between;align-items:flex-end;gap:30px}.footer-grid strong{display:block;font-size:24px}.footer-grid p{margin:6px 0 0;color:#cfc4b5}.version{text-align:right;font-size:13px;color:#cfc4b5}
+    @media(max-width:980px){
+      .hero-grid,.scenario-intro,.evidence-grid{grid-template-columns:1fr}.hero-map{max-width:780px}.questions,.scope-grid,.zone-grid,.concept-views,.operations-grid{grid-template-columns:1fr}.map-pair{grid-template-columns:1fr}.history{grid-template-columns:1fr}.time{border-right:0;border-bottom:1px solid var(--line)}.metric-strip{grid-template-columns:repeat(2,1fr)}.process{grid-template-columns:repeat(2,1fr);gap:10px}.step,.step:first-child,.step:last-child{border-radius:14px}.step:not(:last-child):after{display:none}.index-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:620px){
+      .wrap{width:min(calc(100% - 24px),var(--max))}.topbar .wrap{display:block}.topbar span:last-child{display:none}.hero{padding-top:34px}.hero-grid{gap:26px}.hero-grid>div{min-width:0}.hero-map{border-radius:14px}.stamp{font-size:12px;right:10px;bottom:10px}.questions{padding-bottom:32px}.question{padding:15px}.section-head{grid-template-columns:1fr;gap:8px}.section-no{width:70px}.scene-grid{grid-template-columns:1fr}.scene{grid-template-columns:44px 1fr;padding:16px}.scene .num{width:42px;height:42px}.process{grid-template-columns:1fr}.step{min-height:auto}.metric-strip{grid-template-columns:1fr}.honesty{grid-template-columns:1fr}.index-grid{grid-template-columns:1fr}.footer-grid{display:block}.version{text-align:left;margin-top:18px}h1{font-size:44px}.tagline{font-size:26px}.lead,.section-head p{font-size:16px}main{padding-top:38px}section{margin-bottom:54px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#content">跳到主要内容</a>
+  <header>
+    <div class="topbar"><div class="wrap"><span>百年京张 AI 创新带城市设计开源征集</span><span>居民友好版 · 离线展示</span></div></div>
+    <div class="wrap hero">
+      <div class="brand"><span class="railmark" aria-hidden="true"><i></i></span><span>京张新一站 · NEXT STOP: JINGZHANG</span></div>
+      <div class="hero-grid">
+        <div>
+          <p class="kicker">一条老铁路 · 三种新生活</p>
+          <h1>京张<br>新一站</h1>
+          <p class="tagline">让百年京张的下一站，走进普通人的日常。</p>
+          <p class="lead">不是再造一条“科技走廊”，而是把铁路沿线变成人人看得懂、坐得下来、愿意再来的公共生活带。</p>
+          <div class="benefits" aria-label="四项居民利益"><span>更好逛</span><span>更好学</span><span>更方便</span><span>能参与</span></div>
+        </div>
+        <figure class="hero-map">
+          <img src="../assets/figures/concept-hero-resident-life-v1.jpg" alt="老铁路公共生活带设计想象图，居民在连续无障碍路径、社区花园、共创长桌和服务亭中活动">
+          <figcaption class="stamp">设计想象图 · 非现状照片</figcaption>
+        </figure>
+      </div>
+      <div class="questions" aria-label="三个居民问题">
+        <article class="question"><b>这里为什么值得来？</b><span>能看历史、走公园，也能找到一段适合自己的十分钟小路。</span></article>
+        <article class="question"><b>来了能做什么？</b><span>坐一坐、问路、参加课堂、看小规模测试，也可以完全不用手机。</span></article>
+        <article class="question"><b>我的意见会有回音吗？</b><span>口述、纸卡、线上都能提，保留原话、有人复核、可以回来查询。</span></article>
+      </div>
+    </div>
+  </header>
+
+  <nav aria-label="页面目录"><div class="wrap">
+    <a href="#idea">一眼看懂</a><a href="#history">百年记忆</a><a href="#zones">三种生活</a><a href="#proof">公共验证线</a><a href="#space">空间怎么变</a><a href="#scenes">十件小事</a><a href="#operate">怎么长期做</a><a href="#evidence">哪些已知</a>
+  </div></nav>
+
+  <main id="content" class="wrap">
+    <section id="idea">
+      <div class="section-head"><div class="section-no">01 / 判断</div><div><h2>先把沿线变成好用的地方，创新才有意义</h2><p>方案用三层范围处理不同问题：大范围看京张如何协同，中范围把慢行、公园和社区服务串起来，小范围先从三个居民问题做起。</p></div></div>
+      <div class="scope-grid">
+        <article class="scope" data-label="43.6"><h3>统筹研究范围</h3><p>约 43.6 平方公里，思考高校、园区、社区和历史文化怎样共同生长。</p><b>回答：这条带为什么是京张，而不是任何城市都能复制。</b></article>
+        <article class="scope" data-label="11.4"><h3>总体设计范围</h3><p>约 11.4 平方公里，用铁路、公园、道路和公共服务组织一条能走、能停、能连接的生活主线。</p><b>回答：普通人怎样真正用上这条带。</b></article>
+        <article class="scope" data-label="3"><h3>三个重点片区</h3><p>众智园、AI 原点社区、大钟寺各自先解决一个不同的生活问题。</p><b>回答：从哪里开始，怎样小步试、随时改。</b></article>
+      </div>
+      <figure class="figure" style="margin-top:22px"><img src="../assets/figures/site-overview.png" alt="京张创新带真实空间总览，显示北中南三段、铁路、公园、水系、道路和三个重点片区"><figcaption class="caption"><span>位置证据：真实铁路、道路、水系、公园和站点为背景；总体范围与重点区均为临时研究边界。</span><span>来源：OpenStreetMap 与投稿包几何</span></figcaption></figure>
+      <div class="notice"><strong>边界说明：</strong>本方案尚未取得组织方正式范围，图中是研究用临时范围，不是官方红线，也不用于审批、权属或工程放线。正式数据到位后统一复算。</div>
+    </section>
+
+    <section id="history">
+      <div class="section-head"><div class="section-no">02 / 记忆</div><div><h2>不是把历史做成布景，而是把“自主、赶考、共同答题”连起来</h2><p>清华园车站旧址是独立的红色历史锚点。它不被塞进三个当代创新节点，也不把今天设计的步行线说成历史真实路线。</p></div></div>
+      <div class="history">
+        <article class="time"><div class="year">1909</div><h3>自主修筑</h3><p>从京张铁路自主修筑的历史出发，记住解决真实问题的勇气和方法。</p></article>
+        <article class="time red"><div class="year">1949</div><h3>进京赶考</h3><p>在清华园车站旧址及经核实的导览中，用记忆红准确讲述抵达北平的重要历史。</p></article>
+        <article class="time today"><div class="year">今天</div><h3>共同答题</h3><p>把“新技术是否安全、知识能否共享、生活是否方便”交给居民、团队和专业人员共同回答。</p></article>
+      </div>
+      <div class="notice"><strong>红色记忆的底线：</strong>只使用可追溯史料；党史、铁路史、文博和属地专业人员审核后再公开。文保范围未取得正式图层前，不手画保护线，不设置未经核准的永久装置。</div>
+    </section>
+
+    <section id="zones">
+      <div class="section-head"><div class="section-no">03 / 三区</div><div><h2>三段路，不做三个一样的“科技园”</h2><p>每个片区先问一句普通人会问的话，再决定空间和服务。三个节点首先是能坐、能问、能不用手机的公共空间。</p></div></div>
+      <div class="figure">
+        <img src="../assets/figures/key-areas.png" alt="三个重点片区对照图：北部众智园、中部AI原点社区、南部大钟寺，以及清华园车站历史锚点">
+        <div class="caption"><span>北—中—南三个片区使用同一阅读框架，解决不同居民问题。</span><span>来源：投稿包中的空间图与登记资料</span></div>
+      </div>
+      <figure class="figure" style="margin-top:20px"><img src="../assets/figures/spatial-prototypes.png" alt="众智园、AI原点和大钟寺三处概念空间原型"><figcaption class="caption"><span>三处不是换名字的同一座亭子：花园里的限定测试、街边的一张共创长桌、连续的一条无障碍服务路。</span><span>概念空间原型 · 非建筑施工图</span></figcaption></figure>
+      <div class="zone-grid">
+        <article class="zone"><h3>众智园｜安全试验花园</h3><p class="q">“新东西，安全吗？”</p><p>把测试放在边界清楚、有人值守的小花园里；先礼让孩子、老人和轮椅，再谈进入日常。</p><ul><li>可移动座椅与遮荫</li><li>清楚围栏和一键停止</li><li>不占公共道路测试</li></ul></article>
+        <article class="zone"><h3>AI 原点｜共创问题站</h3><p class="q">“我的主意，能参与吗？”</p><p>居民说原话，学生和团队做小样，专业人员查安全与法规；意见不被漂亮提案盖过去。</p><ul><li>问题墙、长桌和纸板制作</li><li>人工服务窗与字幕协助</li><li>不擅自使用校园或私人空间</li></ul></article>
+        <article class="zone"><h3>大钟寺｜城市服务客厅</h3><p class="q">“日子，真的更方便了吗？”</p><p>先做好出站问路、休息、无障碍说明和成熟服务展示，不用一座昂贵地标证明创新。</p><ul><li>大字地图和休息座</li><li>人工问路与临时展台</li><li>不承诺未批准的桥隧工程</li></ul></article>
+      </div>
+      <div class="concept-views"><figure class="concept-view"><img src="../assets/figures/concept-zhongzhiyuan-safe-garden-v1.jpg" alt="众智园安全试验花园设计想象图"><figcaption><strong>众智园｜先试安全</strong><span>普通花园照常使用，测试只占一小块；边界清楚、有人值守、随时能停。</span></figcaption></figure><figure class="concept-view"><img src="../assets/figures/concept-ai-origin-co-creation-v1.jpg" alt="AI 原点共创问题站设计想象图"><figcaption><strong>AI 原点｜共同创造</strong><span>居民、学生和社区工作者围着同一张桌，把生活问题做成可讨论的小样。</span></figcaption></figure><figure class="concept-view"><img src="../assets/figures/concept-dazhongsi-service-living-room-v1.jpg" alt="大钟寺城市服务客厅设计想象图"><figcaption><strong>大钟寺｜检验方便</strong><span>能坐、能问、能无障碍通行；不用手机，也有真人可以帮忙。</span></figcaption></figure></div>
+      <div class="notice"><strong>图像边界：</strong>以上三图均为设计想象图，只表达居民体验，不代表现状、正式边界、获批建筑或工程实施结果。</div>
+    </section>
+
+    <section id="proof">
+      <div class="section-head"><div class="section-no">04 / 验证</div><div><h2>把社区问题变成京张最有辨识度的创新资源</h2><p>不是先招商再找场景，而是先提出真实问题，再让团队做小样、专业人员复核，最后把继续、修改或停止都公开。</p></div></div>
+      <figure class="figure"><img src="../assets/figures/regional-synergy.png" alt="京张公共验证线与区域协同"><figcaption class="caption"><span>社区问题 → 团队小样 → 安全与无障碍复核 → 三区限定试用 → 公开去留。</span><span>协同对象为角色建议，不代表已经承诺</span></figcaption></figure>
+      <div class="scope-grid"><article class="scope" data-label="沿线"><h3>三个公开试验场</h3><p>不仅展示成功，也公开失败、修改和停止。</p><b>让居民能够回来查到答案。</b></article><article class="scope" data-label="北京"><h3>形成问题合作</h3><p>建议连接高校、科学城、企业和独立专业人员。</p><b>不冒充已有合作、投资或场地。</b></article><article class="scope" data-label="中英"><h3>区域与全球交流</h3><p>每年用中英双语公开经验，与京津冀和国际同行讨论。</p><b>交流方法，不复制地标。</b></article></div>
+    </section>
+
+    <section id="space">
+      <div class="section-head"><div class="section-no">05 / 空间</div><div><h2>一条公共生活主线：慢慢走，也能随时停</h2><p>真实铁路、道路、水系与公园关系是底图；新增内容以可撤、可调的小设施和慢行建议为主。看不到官方依据的地方，宁可留白，不编一张“看起来完整”的规划图。</p></div></div>
+      <div class="map-pair">
+        <figure class="figure"><img src="../assets/figures/mobility-bluegreen.png" alt="铁路、道路、慢行、水系和绿地关系图"><figcaption class="caption"><span>慢行与蓝绿：优先补方向、休息、无障碍与东西联系。</span></figcaption></figure>
+        <figure class="figure"><img src="../assets/figures/land-use-structure.png" alt="用地结构图，正式控规缺失区域统一标为待核条件留白区"><figcaption class="caption"><span>用地：缺正式控规，整区保持“待核条件留白”，不虚构分区。</span></figcaption></figure>
+      </div>
+      <div class="map-pair" style="margin-top:18px">
+        <article class="plain-card"><h3>沿线先做四件小事</h3><ul class="plain-list"><li><b>1</b><span><strong>看得见方向</strong><br>北中南分段和十分钟小循环，大字写清步行时间。</span></li><li><b>2</b><span><strong>走累了能坐</strong><br>休息、遮荫、卫生间和人工服务优先于互动屏。</span></li><li><b>3</b><span><strong>历史讲准确</strong><br>清华园车站独立标识，不把当代设计冒充历史。</span></li><li><b>4</b><span><strong>问题有人接</strong><br>三个片区各设一个看得见、有人值守的问题服务点。</span></li></ul></article>
+        <article class="plain-card"><h3>建筑与更新怎么做</h3><p>新增的三个小型服务亭总占地建议约 3,456 平方米，均为可逆、可调整的概念组件，不代表已经获批建筑。</p><ul class="plain-list"><li><b>留</b><span>保留有价值的铁路、公园、社区生活与现状建筑线索。</span></li><li><b>改</b><span>优先利用开放首层、空闲场地和临时设施，减少一次性建设。</span></li><li><b>补</b><span>只补遮荫、座椅、无障碍、人工服务和必要的安全设施。</span></li><li><b>停</b><span>没有合法场地、维护人或真实使用，就到期撤下。</span></li></ul></article>
+      </div>
+    </section>
+
+    <section id="scenes">
+      <div class="section-head"><div class="section-no">06 / 日常</div><div><h2>AI 不必站在舞台中央，十件小事先让生活好一点</h2><p>征集主题要求回应 AI 创新带，但技术只是工具：帮助整理、翻译、查重和提示风险。建设、治理、权益和处罚都由人负责。任何服务在没有 AI 时也能继续。</p></div></div>
+      <div class="scenario-intro">
+        <article class="plain-card"><h3>三项产业测试，全部从小范围开始</h3><p>众智园测试设备礼让；AI 原点把居民问题做成小样；大钟寺测试到站后的问路服务。测试不等于批准，出现危险、隐私问题或无法人工接管，立即停止。</p></article>
+        <aside class="rule-card"><h3>一条总规则</h3><p>不强制下载 App，不把人脸识别当入口，不保存完整行程，不因拒绝提供数据而失去基本公共服务。</p></aside>
+      </div>
+      <div class="scene-grid">
+        <article class="scene"><span class="num">01</span><div><h3>今天走哪条路更轻松</h3><p>把核实后的无障碍、座椅和公共交通信息变成大字、语音或简明路线。</p><span class="fallback">不用 AI：固定地图、纸质路线卡、人工问路。</span></div></article>
+        <article class="scene test"><span class="num">02</span><div><h3>设备先学会礼让</h3><p>只在众智园围合小范围内测试减速、停车和让行，现场人员可一键停止。</p><span class="fallback">不用 AI：花园仍是普通休息空间。</span></div></article>
+        <article class="scene"><span class="num">03</span><div><h3>公园问题说出来、写下来</h3><p>口述、纸卡和线上意见都能登记；人工核对原话，给出可查询编号。</p><span class="fallback">不用 AI：人工登记本继续使用。</span></div></article>
+        <article class="scene"><span class="num">04</span><div><h3>家门口的技术防骗课</h3><p>把公开材料做成适合老人、儿童和普通居民的问答练习，专业人员审核。</p><span class="fallback">不用 AI：教师讲解和印刷手册。</span></div></article>
+        <article class="scene"><span class="num">05</span><div><h3>每个人都能参加的邻里议事</h3><p>字幕、翻译和议题整理帮助不同语言和听视障碍者表达，并保留原话核对。</p><span class="fallback">不用 AI：人工翻译、手写板和纸质议程。</span></div></article>
+        <article class="scene test"><span class="num">06</span><div><h3>把生活问题做成小样</h3><p>居民确认问题，团队做低成本小样，专业人员检查安全、无障碍和法规。</p><span class="fallback">不用 AI：面对面工作坊和纸板模型。</span></div></article>
+        <article class="scene"><span class="num">07</span><div><h3>公益好点子找到帮手</h3><p>公开条件做初步匹配，场地方、导师和组织单位自己审核并决定。</p><span class="fallback">不用 AI：公开目录、电话和开放日配对。</span></div></article>
+        <article class="scene test"><span class="num">08</span><div><h3>到站后少绕一点路</h3><p>大钟寺把经核对的路线做成大字、语音和多语言问路，不画未批桥隧。</p><span class="fallback">不用 AI：固定导视、纸质地图和人工问路。</span></div></article>
+        <article class="scene"><span class="num">09</span><div><h3>参加活动时有人帮一把</h3><p>简明说明、字幕和语音只是辅助；秩序、内容和无障碍帮助由主办方负责。</p><span class="fallback">不用 AI：主持人、印刷说明和志愿者。</span></div></article>
+        <article class="scene"><span class="num">10</span><div><h3>把京张和进京赶考讲准确</h3><p>只依据登记并经人工审核的史料生成讲解草稿，不娱乐化，不混写路线。</p><span class="fallback">不用 AI：固定展签、纸质导览和人工讲解。</span></div></article>
+      </div>
+    </section>
+
+    <section id="operate">
+      <div class="section-head"><div class="section-no">07 / 运行</div><div><h2>不是办完活动就散场，要让每个问题有回音</h2><p>居民提出问题后，先核对原话，再小范围试用；有人决定继续，也有人负责停止。建议的处理时限必须等责任单位正式确认后才能对外承诺。</p></div></div>
+      <div class="process" aria-label="居民参与六步流程">
+        <div class="step"><b>1 提问题</b><span>口述、纸卡或线上都可以。</span></div><div class="step"><b>2 对原话</b><span>现场人员确认没有理解错。</span></div><div class="step"><b>3 做小样</b><span>团队提出低成本、可退出的办法。</span></div><div class="step"><b>4 小范围试</b><span>限定地点、时间和负责人。</span></div><div class="step"><b>5 一起评价</b><span>居民和专业人员都能说“不行”。</span></div><div class="step"><b>6 决定去留</b><span>有权主体决定继续、修改或停止。</span></div>
+      </div>
+      <div class="operations-grid">
+        <article class="rhythm"><span class="when">每月</span><h3>居民开放日</h3><p>公开收到的问题、已处理事项和仍找不到责任主体的事项。失败和无进展也要说清。</p></article>
+        <article class="rhythm"><span class="when">每季度</span><h3>继续还是停</h3><p>逐项看安全、投诉、隐私、无障碍、真实使用和维护。只有继续、修改、暂停、停止四种结论。</p></article>
+        <article class="rhythm"><span class="when">每年</span><h3>人人看懂的城市答卷</h3><p>公开解决了什么、谁受益、哪里失败、成本属于哪类、下一年准备改什么。</p></article>
+      </div>
+    </section>
+
+    <section id="evidence">
+      <div class="section-head"><div class="section-no">08 / 证据</div><div><h2>哪些是事实，哪些只是建议，在图上就说清楚</h2><p>自动检查只是格式底线。作品更重要的标准是：居民能不能看懂，空间关系对不对，关键判断能不能回到来源，未知条件有没有被诚实标出。</p></div></div>
+      <figure class="figure"><img src="../assets/figures/metrics-evidence.png" alt="指标与证据图，区分已知、可复算和未知条件"><figcaption class="caption"><span>面积与比例来自当前临时几何复算；正式边界到位后必须重新计算。</span></figcaption></figure>
+      <div class="metric-strip" aria-label="核心指标">
+        <div class="metric"><span>总体设计范围</span><strong data-metric="site_area_sqm" data-value="11412825.386">约 11.41 km²</strong><small>临时边界复算</small></div>
+        <div class="metric"><span>绿地比例</span><strong data-metric="green_ratio" data-value="0.110896">约 11.09%</strong><small>设计几何复算</small></div>
+        <div class="metric"><span>公共空间比例</span><strong data-metric="public_space_ratio" data-value="0.006978">约 0.70%</strong><small>仅计新增建议图层</small></div>
+        <div class="metric"><span>可逆服务亭占地</span><strong>3,456 m²</strong><small>概念建议</small></div>
+        <div class="metric"><span>容积率</span><strong>未知</strong><small>缺正式控规与现状建筑数据</small></div>
+      </div>
+      <div class="honesty">
+        <article class="known"><h3>现在可以说明</h3><ul><li>京张铁路、公园、水系、道路与站点的公开背景关系</li><li>三个研究焦点与四段慢行建议的设计逻辑</li><li>场景、责任、隐私、人工兜底与停止条件</li><li>当前临时几何可以重复计算的面积和比例</li></ul></article>
+        <article class="unknown"><h3>还不能冒充已确定</h3><ul><li>正式项目红线、重点区边界与文保控制线</li><li>法定用地、容积率、建筑高度和工程量</li><li>权属、市政容量、交通工程和真实建设时序</li><li>运营单位、承诺时限、预算金额和审批结论</li></ul></article>
+      </div>
+      <div class="evidence-grid" style="margin-top:18px">
+        <article class="plain-card"><h3>主要公开来源</h3><ul class="source-list"><li>北京市相关部门发布的京张铁路、清华园车站红色历史、京张铁路遗址公园与文保资料</li><li>组织方公告、场地资料包和任务书</li><li>OpenStreetMap 公开道路、铁路、水系、公园与站点数据，依据 ODbL 使用并署名贡献者</li><li>剑桥 Kendall Square、MaRS、STATION F、Barcelona 22@、JTC LaunchPad、Seoul DMC 六个官方案例来源</li></ul></article>
+        <article class="plain-card"><h3>打开方式与版权</h3><p>这是离线页面，只读取投稿包内的本地图像，不连接远程地图、字体、脚本、接口或追踪服务。</p><p>四张居民场景图由生成式图像工具辅助制作，经过人工选择、修改、标注和风险判断；地图、信息图、文字和排版由参赛团队制作。具体边界见版权说明。</p><p class="smallprint">版本：2026-08-14 · 设计研究稿 · 非审批文件</p></article>
+      </div>
+      <div class="package-index">
+        <h3>成果阅读索引</h3>
+        <p>这些名称对应征集检查栏目。普通读者不必逐项核对，点回上方各节即可看到完整内容。</p>
+        <div class="index-grid">
+          <div class="index-item"><b>总览地图</b><span>整条京张带在哪里</span></div>
+          <div class="index-item"><b>重点区域</b><span>三个片区分别做什么</span></div>
+          <div class="index-item"><b>用地分区</b><span>缺控规处为什么诚实留白</span></div>
+          <div class="index-item"><b>交通慢行</b><span>怎么走得更顺、更安全</span></div>
+          <div class="index-item"><b>蓝绿公共空间</b><span>公园、水系与休息点怎样连接</span></div>
+          <div class="index-item"><b>更新项目</b><span>哪些先留、先改、再补</span></div>
+          <div class="index-item"><b>AI 场景</b><span>技术只在哪些小事里帮忙</span></div>
+          <div class="index-item"><b>核心指标</b><span>哪些数字能算，哪些还未知</span></div>
+          <div class="index-item"><b>任务覆盖</b><span>征集要求是否逐项回答</span></div>
+          <div class="index-item"><b>自检状态</b><span>哪些检查已做，哪些仍待完成</span></div>
+          <div class="index-item"><b>假设</b><span>缺什么正式资料、会影响什么</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-grid"><div><strong>京张新一站</strong><p>一条老铁路，三种新生活。</p></div><div class="version">居民友好离线展示 · 中英双语升级版 · 正式提交仍待用户确认<br>未 Push · 未创建 PR · 未公开发布</div></div></footer>
+</body>
+</html>

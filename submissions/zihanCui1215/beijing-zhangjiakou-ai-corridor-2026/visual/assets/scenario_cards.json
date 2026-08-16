@@ -1,0 +1,269 @@
+{
+ "schema_version": "scenario-cards-v1",
+ "note_zh": "任务书 agent.3 的十二张 AI+ 场景卡，从散文中取出写成结构。每张卡逐项声明：数据源与类别、模型能力边界、运营主体、人工复核、失败降级、绩效指标、退出条件。字段全部来自包内已有实体（画像 id、图层锚点、指标 id），构建时逐条断言锚点可解析。评审可用 visual/assets/check_cards.py 逐卡核验锚点。",
+ "note_en": "The twelve AI+ scenario cards required by taskbook agent.3, taken out of prose and written as structure. Each card declares: data source & class, model capability boundary, operator, human review, failure degradation, KPI, and exit condition. Every field references entities already in the package (persona ids, layer anchors, metric ids); anchors are asserted resolvable at build time. Reviewers can verify each card with visual/assets/check_cards.py.",
+ "cards": [
+  {
+   "id": "SC-01",
+   "name_zh": "社区AI诊所",
+   "name_en": "Community AI Clinic",
+   "anchor_layer": "geometry/public_space.geojson",
+   "anchor_feature": "public_plaza_beijing_ai_o",
+   "persona_ids": [
+    "P-elderly",
+    "P-resident"
+   ],
+   "data_sources": [
+    {
+     "class": "de-identified aggregate",
+     "item": "区域就诊需求数据（脱敏汇总，无个人病历）"
+    }
+   ],
+   "model_boundary_zh": "分诊建议与健康教育信息检索；不诊断、不开处方、不做基因/影像自主判读",
+   "human_review_zh": "执业医师在线复核每一条分诊建议，30 秒内可转人工",
+   "degradation_zh": "网络或模型异常时降级为挂号导航与叫号屏，全部功能可线下窗口完成",
+   "kpi": "首诊分诊准确率人工抽检≥95%；人工转接率≤15%",
+   "exit_zh": "连续两季人工抽检准确率<90% 即暂停场景并复盘"
+  },
+  {
+   "id": "SC-02",
+   "name_zh": "AI教育实验室",
+   "name_en": "AI Education Lab",
+   "anchor_layer": "geometry/public_space.geojson",
+   "anchor_feature": "public_node_03",
+   "persona_ids": [
+    "P-student",
+    "P-teacher"
+   ],
+   "data_sources": [
+    {
+     "class": "aggregated learning analytics",
+     "item": "课堂练习正确率（班级聚合，无个体画像）"
+    }
+   ],
+   "model_boundary_zh": "练习批改与学情汇总提示；不做学生行为识别、不做个体能力评级、不面向第三方共享",
+   "human_review_zh": "教师逐班复核学情报告，家长可申请纸质版",
+   "degradation_zh": "断网时降级为纸质练习与教师人工批改",
+   "kpi": "教师月度使用率≥60%；家长投诉为零生物识别采集",
+   "exit_zh": "出现任何个体画像用途即终止场景"
+  },
+  {
+   "id": "SC-03",
+   "name_zh": "无感支付便利店",
+   "name_en": "Frictionless Checkout Store",
+   "anchor_layer": "geometry/public_space.geojson",
+   "anchor_feature": "public_plaza_dazhongsi_ai",
+   "persona_ids": [
+    "P-visitor",
+    "P-resident"
+   ],
+   "data_sources": [
+    {
+     "class": "opt-in session data",
+     "item": "店内商品拿取行为（进店扫码明示同意，会话结束即删）"
+    }
+   ],
+   "model_boundary_zh": "商品识别与账单生成；默认关闭人脸识别，进店码为可选凭证；不做人流画像、不向第三方共享",
+   "human_review_zh": "顾客 72 小时内可人工申诉错账，一次申诉即人工处理",
+   "degradation_zh": "识别异常时降级为自助扫码收银",
+   "kpi": "错账申诉率≤0.5%，其中人工处理 100%",
+   "exit_zh": "申诉率连续两月>2% 即回退自助收银模式"
+  },
+  {
+   "id": "SC-04",
+   "name_zh": "康养之家",
+   "name_en": "Smart Eldercare Home",
+   "anchor_layer": "geometry/public_space.geojson",
+   "anchor_feature": "public_node_04",
+   "persona_ids": [
+    "P-elderly",
+    "P-caregiver"
+   ],
+   "data_sources": [
+    {
+     "class": "opt-in health telemetry",
+     "item": "跌倒检测毫米波雷达（不采集影像，开关由住户控制）"
+    }
+   ],
+   "model_boundary_zh": "跌倒与异常停留检测+人工呼叫；不做持续健康画像、不评估生活能力评级",
+   "human_review_zh": "所有警报由值班护理员人工确认后处置，误报可标记",
+   "degradation_zh": "住户关闭雷达后仅保留手动呼救按钮与定期上门",
+   "kpi": "警报人工确认率100%；误报率≤10%",
+   "exit_zh": "住户或监护人可随时无条件退出，数据留存≤30天"
+  },
+  {
+   "id": "SC-05",
+   "name_zh": "开源荣誉墙",
+   "name_en": "Open-source Honor Wall",
+   "anchor_layer": "geometry/public_space.geojson",
+   "anchor_feature": "public_plaza_beijing_ai_o",
+   "persona_ids": [
+    "P-developer"
+   ],
+   "data_sources": [
+    {
+     "class": "public repo metadata",
+     "item": "GitHub 公开仓库贡献元数据（merged PR 时间与编号）"
+    }
+   ],
+   "model_boundary_zh": "贡献编号序列展示；不排名、不打分、不分析贡献者行为",
+   "human_review_zh": "入选名单由社区委员会年度公示并接受异议",
+   "degradation_zh": "数据同步失败时显示上次快照与时间戳",
+   "kpi": "数据同步延迟≤24h；异议处理周期≤30天",
+   "exit_zh": "贡献者可申请随时移除自己的展示条目"
+  },
+  {
+   "id": "SC-06",
+   "name_zh": "城市感知灯杆",
+   "name_en": "Sensing Streetlights",
+   "anchor_layer": "geometry/roads.geojson",
+   "anchor_feature": "road_000",
+   "persona_ids": [
+    "P-city-ops"
+   ],
+   "data_sources": [
+    {
+     "class": "non-identifying sensor",
+     "item": "环境与客流计数（毫米波/地磁，无影像、无个体跟踪）"
+    }
+   ],
+   "model_boundary_zh": "照明调节与设施运维提示；不识别身份、不轨迹跟踪",
+   "human_review_zh": "运维工单由市政人员闭环确认",
+   "degradation_zh": "感知异常时固定照度运行",
+   "kpi": "故障发现到工单≤30分钟",
+   "exit_zh": "发现任何身份识别用途即改造拆除"
+  },
+  {
+   "public_output": true,
+   "id": "SC-07",
+   "name_zh": "低速机器人配送",
+   "name_en": "Low-speed Robot Delivery",
+   "anchor_layer": "geometry/roads.geojson",
+   "anchor_feature": "road_001",
+   "persona_ids": [
+    "P-resident",
+    "P-developer"
+   ],
+   "data_sources": [
+    {
+     "class": "on-device perception",
+     "item": "机载避障感知（数据不上云，仅本地闭环）"
+    }
+   ],
+   "model_boundary_zh": "固定线路低速配送与避障；不接入人脸库、不城市级追踪",
+   "human_review_zh": "远程安全员 1:多 监控，可随时接管",
+   "degradation_zh": "感知失效即停车呼叫远程接管",
+   "kpi": "百万公里接管次数；人行道冲突事件为零",
+   "exit_zh": "接管率超阈值即缩减运营区"
+  },
+  {
+   "id": "SC-08",
+   "name_zh": "自动驾驶接驳微循环",
+   "name_en": "Autonomous Shuttle Micro-circulation",
+   "anchor_layer": "geometry/roads.geojson",
+   "anchor_feature": "road_002",
+   "persona_ids": [
+    "P-commuter",
+    "P-visitor"
+   ],
+   "data_sources": [
+    {
+     "class": "on-device perception",
+     "item": "车端感知（本地处理，仅事件级脱敏数据用于改进）"
+    }
+   ],
+   "model_boundary_zh": "限定路段 L4 接驳；车内始终配安全员",
+   "human_review_zh": "安全员全程在环，每次急刹与事故人工复盘",
+   "degradation_zh": "恶劣天气降级停运，恢复人工接驳车",
+   "kpi": "准点率、急刹事件率、事故为零",
+   "exit_zh": "监管要求变化或事故指标越限时停运整改"
+  },
+  {
+   "id": "SC-09",
+   "name_zh": "社区事务共治屏",
+   "name_en": "Community Co-governance Board",
+   "anchor_layer": "visual/assets/operations.json",
+   "anchor_feature": "OPS-2",
+   "persona_ids": [
+    "P-resident",
+    "P-child-caregiver"
+   ],
+   "data_sources": [
+    {
+     "class": "aggregated community input",
+     "item": "居民提案与投票（实名登记、聚合展示）"
+    }
+   ],
+   "model_boundary_zh": "提案聚类与摘要生成；不评估提案人、不筛除批评性意见",
+   "human_review_zh": "摘要由社区工作者核校后发布",
+   "degradation_zh": "系统故障时改为线下公示栏张贴",
+   "kpi": "提案处理周期≤45天；线上/线下参与比",
+   "exit_zh": "参与率连续两季下滑即评估场景存续"
+  },
+  {
+   "id": "SC-10",
+   "name_zh": "AI 文体活动助手",
+   "name_en": "AI Culture & Sports Assistant",
+   "anchor_layer": "geometry/public_space.geojson",
+   "anchor_feature": "public_node_05",
+   "persona_ids": [
+    "P-student",
+    "P-visitor"
+   ],
+   "data_sources": [
+    {
+     "class": "booking metadata",
+     "item": "场馆预约与设备状态（无个人生物信息）"
+    }
+   ],
+   "model_boundary_zh": "场次推荐与场地调度提示；不向个人推送成瘾性内容",
+   "human_review_zh": "调度建议由场馆管理员确认执行",
+   "degradation_zh": "降级为现场排队叫号",
+   "kpi": "场地周转率提升幅度；投诉率",
+   "exit_zh": "若调度造成明显不公平分配即回退人工排期"
+  },
+  {
+   "id": "SC-11",
+   "name_zh": "数字遗产导览",
+   "name_en": "Digital Heritage Guide",
+   "anchor_layer": "geometry/public_space.geojson",
+   "anchor_feature": "public_plaza_zhongzhiyuan",
+   "persona_ids": [
+    "P-visitor",
+    "P-heritage-keeper"
+   ],
+   "data_sources": [
+    {
+     "class": "curated public content",
+     "item": "京张铁路史料与解说词（策展内容，无公众行为数据）"
+    }
+   ],
+   "model_boundary_zh": "多语种解说生成与路线推荐；不采集游客轨迹、不做画像",
+   "human_review_zh": "解说词由文保顾问逐条审校",
+   "degradation_zh": "断网时提供二维码图文版",
+   "kpi": "解说覆盖率；多语种准确率抽检",
+   "exit_zh": "内容出现史实错误即下架该条目"
+  },
+  {
+   "id": "SC-12",
+   "name_zh": "城市运维数字孪生",
+   "name_en": "City Operations Digital Twin",
+   "anchor_layer": "geometry/roads.geojson",
+   "anchor_feature": "road_000",
+   "persona_ids": [
+    "P-city-ops"
+   ],
+   "data_sources": [
+    {
+     "class": "facility registry",
+     "item": "市政设施台账与事件工单（设施级，非个人）"
+    }
+   ],
+   "model_boundary_zh": "设施状态可视化与工单分派建议；不做自动化执法、不涉个人数据",
+   "human_review_zh": "关键工单分派由市政主管确认",
+   "degradation_zh": "孪生失效时回退台账+网格员巡查",
+   "kpi": "工单闭环时长；重复故障率",
+   "exit_zh": "若被用于考核个人即限停并整改"
+  }
+ ]
+}

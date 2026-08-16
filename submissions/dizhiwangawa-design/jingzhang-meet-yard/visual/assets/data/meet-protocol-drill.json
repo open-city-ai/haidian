@@ -1,0 +1,108 @@
+{
+  "ok": true,
+  "schema_path": "visual/assets/data/meet-protocol.schema.json",
+  "drill_total": 14,
+  "drill_pass": 14,
+  "checks": [
+    {
+      "check_id": "SCHEMA_REQUIRED_FIELDS",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "meet-protocol.schema.json",
+      "message": "必填字段缺失: 无"
+    },
+    {
+      "check_id": "STATUS_CODE_COUNT_8",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "meet-protocol.schema.json",
+      "message": "status_codes 数量=8（要求 8 值，proposal §06.1.2）"
+    },
+    {
+      "check_id": "STATUS_CODE_ZH_MAPPING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "meet-protocol.schema.json",
+      "message": "status_code_zh 与 status_codes 一一对应"
+    },
+    {
+      "check_id": "TRANSITION_TARGETS_VALID",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "meet-protocol.schema.json",
+      "message": "非法转移目标: 无"
+    },
+    {
+      "check_id": "ALL_STATES_REACHABLE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "meet-protocol.schema.json",
+      "message": "不可达状态: 无"
+    },
+    {
+      "check_id": "ARCHIVED_TERMINAL",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "meet-protocol.schema.json",
+      "message": "ARCHIVED 出边: 无（终态）"
+    },
+    {
+      "check_id": "PAUSED_RECOVERY_RULE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "meet-protocol.schema.json",
+      "message": "PAUSED 出边 [CROSS_VERIFICATION,ROLLED_BACK,ARCHIVED]（须含 CROSS_VERIFICATION 且不得直通 PILOTING）"
+    },
+    {
+      "check_id": "RECORD_STATUS_RULE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "meet-protocol.schema.json",
+      "message": "record_status 枚举与 draft->null 规则字段存在"
+    },
+    {
+      "check_id": "RISK_LEVELS_VALID",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "meet-protocol.schema.json",
+      "message": "risk_levels=绿/琥珀/红 且升级规则字段存在"
+    },
+    {
+      "check_id": "ROLES_7_FIELDS_4",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "meet-protocol.schema.json",
+      "message": "角色 7 类、字段 [\"can\",\"cannot\",\"must_record\",\"absent_handling\"]"
+    },
+    {
+      "check_id": "FIXTURE_VALID_SEQUENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "meet-protocol.schema.json",
+      "message": "合法序列 预约→披露→互证→人审→试行→归档 通过"
+    },
+    {
+      "check_id": "FIXTURE_INVALID_SEQUENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "meet-protocol.schema.json",
+      "message": "非法序列 申请中→限域试行 被拒绝"
+    },
+    {
+      "check_id": "FIXTURE_UNKNOWN_STATE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "meet-protocol.schema.json",
+      "message": "未知状态被拒绝"
+    },
+    {
+      "check_id": "PER_STATE_REQUIRED_FIELDS",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "meet-protocol.schema.json",
+      "message": "分状态必填字段定义: 齐全"
+    }
+  ],
+  "generated_by": "visual/assets/check_meet_protocol.js",
+  "generated_at": "2026-08-15"
+}

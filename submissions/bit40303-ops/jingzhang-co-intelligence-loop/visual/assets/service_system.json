@@ -1,0 +1,165 @@
+{
+  "schema_version": "0.1.0",
+  "revision": "REV25-RAILWAY-ARCHIVE-MUSEUM",
+  "status": "conceptual_design",
+  "boundary_status": "provisional",
+  "concept": {
+    "name_zh": "京张同心百年线：民族文化展陈与 AI 日常城市",
+    "spatial_structure": "一轴三核两翼五类用地",
+    "core_rule": "公共服务基线独立运行，AI 仅作可选增强，并可停止、拆除和退出还场",
+    "ethnic_ai_definition": "以民族文化展陈、口述史与多语传播为入口，让文化持有者参与内容策展与AI转译；不识别、不推断、不画像个人民族身份",
+    "living_archive": "京张文明种子库把经授权的传统文化原始记录、人工校勘稿、AI转译版本、来源和撤回记录作为一个可迁移的长期保存单元；保存目标不是区块链口号，也不承诺任何单一介质真正永久。"
+  },
+  "cultural_memory_archive": {
+    "name_zh": "京张文明种子库",
+    "name_en": "Jingzhang Living Archive",
+    "spatial_model": "一库三站：AI原点设公共种子库，遗址主轴、大钟寺和众智园设置采录、校勘与再创作接口；具体点位依托既有概念公共空间并待权属、文保与运营条件复核。",
+    "preservation_goal": "以开放格式、可验证来源、分布式副本和周期迁移支持跨代长期保存；不宣称任何平台、链或存储介质本身能够保证永久。",
+    "archive_unit": ["授权原始记录", "无损保存母版", "人工校勘稿", "AI转译与再创作版本", "来源与权利声明", "内容哈希与版本清单", "撤回、封存与访问记录"],
+    "workflow": [
+      {"id":"A01","name_zh":"社区提名","rule":"由传承人、社区、文博机构或权利人主动提名，不由模型抓取私域材料。"},
+      {"id":"A02","name_zh":"知情授权","rule":"分别约定保存、公开、训练、翻译与再创作权限；沉默不视为同意。"},
+      {"id":"A03","name_zh":"原真采录","rule":"保留无损母版、语境、时间、地点口径与采录者，不先用AI改写原件。"},
+      {"id":"A04","name_zh":"AI转译","rule":"生成多语字幕、知识关联、修复建议或教育版本，始终标明模型、版本和不确定性。"},
+      {"id":"A05","name_zh":"人工校勘","rule":"由文化持有者与相关专业人员复核归属、语义、禁忌、版权和敏感内容。"},
+      {"id":"A06","name_zh":"版本固化","rule":"采用开放格式、内容哈希、至少三类故障域副本和离线清单，保存原件与派生版本关系。"},
+      {"id":"A07","name_zh":"迁移再生","rule":"定期校验可读性、修复损坏、迁移格式并记录变更；允许撤回公开、限制访问或封存。"}
+    ],
+    "governance": {
+      "cultural_owner": "传承人、社区代表或合法权利人决定语境、公开级别和撤回",
+      "professional_steward": "文博、档案、语言或相关文化专业人员负责校勘与保存策略",
+      "technical_custodian": "公共文化或档案运营方负责校验、备份、迁移、访问日志和灾难恢复",
+      "ai_role": "AI仅辅助转写、翻译、关联、修复建议和公众教育，不认定真实性、代表性或权利归属"
+    },
+    "preservation_controls": {
+      "minimum_failure_domains": 3,
+      "open_master_formats": ["TIFF/PNG", "WAV/BWF", "UTF-8 TXT/PDF-A", "JSON/CSV", "OBJ/glTF（适用时）"],
+      "fixity": "每份保存单元登记SHA-256等内容哈希并按计划校验",
+      "migration": "每年至少检查可读性，格式或载体濒危时迁移并保留完整日志",
+      "withdrawal": "撤回默认停止公开和AI再利用；法定或公共档案保留义务另行人工判断并告知权利人",
+      "restricted_material": "仪式禁忌、未成年人、精确敏感地点、商业秘密和未清权内容默认不公开、不训练"
+    },
+    "success_metrics": ["授权完整率", "来源可追溯率", "哈希校验通过率", "开放格式覆盖率", "人工校勘完成率", "撤回响应时长", "迁移演练通过率"],
+    "status": "conceptual_design"
+  },
+  "cultural_ai_museum": {
+    "name_zh": "京张民族文化AI展馆",
+    "positioning": "面向公共文化空间的共同策展、AI转译与可追溯保存系统，不是民族身份识别或固定民族展位。",
+    "halls": [
+      {"id":"M01","name_zh":"共同建设厅","content":"京张铁路自主建设、工业建设、科教报国与共同智能的口述史、图纸、照片和公共叙事","ai_role":"多语时间线、人物与工艺知识关联、分龄讲解","human_owner":"历史研究者、文化持有者与策展编辑"},
+      {"id":"M02","name_zh":"声音与语言厅","content":"原声、民族语言、普通话、文字、字幕、图形辅助与不可直译概念","ai_role":"语音转写、字幕对齐、翻译建议和语音合成","human_owner":"语言工作者与内容权利人"},
+      {"id":"M03","name_zh":"工艺知识厅","content":"材料、工具、动作、时间、师承、使用场景与禁忌边界","ai_role":"动作分段、材料关联、工序可视化与学习提示","human_owner":"传承人、工艺与安全专业人员"},
+      {"id":"M04","name_zh":"未来共创厅","content":"工程、语言、家园、生活记忆、开放知识、AI伦理和青年再创作年度主题","ai_role":"版本比较、跨媒介草图和多语传播辅助","human_owner":"文化权利人、青年创作者与公共文化机构"}
+    ],
+    "visitor_route": ["入场选择语言与无障碍方式","进入历史和生活语境","查看AI转译与模型说明","比较人工校勘与分歧","自愿留下可撤回贡献"],
+    "media_types": ["口述史","工艺","语言","图像","空间记忆","再创作"],
+    "archive_link": "所有展项与cultural_memory_archive共享授权、来源、人工校勘、AI派生、哈希、版本、撤回和迁移记录。",
+    "status": "conceptual_design"
+  },
+  "land_use_programs": [
+    {"code":"0802","name_zh":"AI研发创新用地","area_sqm":1897760.495,"share":0.166287,"programs":["模型研发","安全评测","低碳算力","中试智造","标准治理"]},
+    {"code":"1401","name_zh":"AI绿地与开放空间","area_sqm":2718806.75,"share":0.238225,"programs":["京张遗址公园","清河绿廊","小月河场景翼","热舒适与生态观察"]},
+    {"code":"05","name_zh":"AI线下产业服务","area_sqm":2977738.328,"share":0.260912,"programs":["知识产权","法务财税","投融资","人才服务","展示交易","城市采购"]},
+    {"code":"0702","name_zh":"社区服务与配套","area_sqm":2330402.168,"share":0.204197,"programs":["人才居住","政务服务","医疗养老","教育托育","社区商业","无障碍服务"]},
+    {"code":"0803","name_zh":"民族文化展陈与国际传播","area_sqm":1488125.141,"share":0.130378,"programs":["民族文化AI展陈","多语公共服务","京张遗产导览","国际交流","青年策展"]}
+  ],
+  "key_areas": [
+    {"id":"PROV-KEY-001","name_zh":"众智园 AI 自主创新加速区","role":"研发、验证、中试与安全治理","spatial_prototype":"一庭两环四院","boundary_status":"provisional"},
+    {"id":"PROV-KEY-002","name_zh":"北京 AI 原点社区","role":"成果转化、人才居业与公共服务","spatial_prototype":"一厅一街两翼","boundary_status":"provisional"},
+    {"id":"PROV-KEY-003","name_zh":"大钟寺 AI 产业聚集区","role":"线下产业服务、智能消费与国际交往","spatial_prototype":"一站四象限一客厅","boundary_status":"provisional"}
+  ],
+  "scenario_contract": {
+    "required_fields": ["id","domain","title_zh","location","users","ai_enhancement","human_owner","exit_path"],
+    "high_impact_rule": "医疗、政务、就业、教育、紧急响应必须由具名人员复核",
+    "identity_rule": "不得采集或推断民族身份，不得使用人脸识别作为公共服务准入",
+    "offline_rule": "拒绝授权、断网或停机时，线下服务质量不得降低"
+  },
+  "human_centered_co_creation": {
+    "title_zh": "民族文化展陈 × AI：共同策展，文化可追溯",
+    "doctrine": "AI服务于文化展陈、知识传播与日常城市服务，不替人作高影响决定",
+    "representation_boundary": "56席是轮换策展与公共议题席，覆盖多样文化内容和公共服务议题；不采集或推断个人民族身份，不代表法定民族机构或本地人口统计",
+    "user_rights": [
+      {"id":"R01","name_zh":"普通服务权","rule":"不使用AI时仍可通过窗口、电话、纸质、实体导向完成同等事项"},
+      {"id":"R02","name_zh":"知情权","rule":"看见数据来源、模型版本、置信度、适用范围和人工责任人"},
+      {"id":"R03","name_zh":"选择与拒绝权","rule":"可选择AI增强，也可拒绝授权，不因拒绝而降低服务质量"},
+      {"id":"R04","name_zh":"可达与多语权","rule":"为老人、儿童、残障人士和多语使用者提供无障碍及人工旁路"},
+      {"id":"R05","name_zh":"人工复核权","rule":"医疗、政务、就业、教育、紧急响应等高影响事项必须转具名人员"},
+      {"id":"R06","name_zh":"申诉与纠错权","rule":"可查看依据、提出异议、修正错误并获得处理时限"},
+      {"id":"R07","name_zh":"撤回与删除权","rule":"可撤回授权、撤下共创内容、删除临时副本并保留必要申诉记录"},
+      {"id":"R08","name_zh":"共同治理权","rule":"通过轮换策展席、用户代表和公开复盘参与采用、修改、暂停或退出决定"}
+    ],
+    "co_creation_stages": [
+      {"id":"S01","name_zh":"听见需求","action":"六类用户与轮换策展席共同提出日常问题和不可妥协的服务底线"},
+      {"id":"S02","name_zh":"共同设计","action":"把问题翻译成普通基线、可选AI增强、最小数据和责任人"},
+      {"id":"S03","name_zh":"小尺度试验","action":"在三处重点区进行限定周期测试，公开证据、差错、申诉和弱势群体影响"},
+      {"id":"S04","name_zh":"共同复核","action":"由人工责任人、专业人员、用户代表和轮换策展席检查安全、可达、内容语境和授权"},
+      {"id":"S05","name_zh":"决定去留","action":"只有证据优于普通基线才采用；否则修改、暂停或退出还场"}
+    ],
+    "safeguards": ["不以民族身份准入或画像", "不把文化固化为标签", "数字入口不成为唯一入口", "高影响事项有人负责", "临时数据到期删除", "停机后公共服务继续"]
+  },
+  "digital_infrastructure": [
+    {"layer":"感知层","components":["环境与设备状态","无障碍设施状态","匿名客流计数"],"boundary":"不做人脸识别，不采集民族身份"},
+    {"layer":"边缘层","components":["端侧推理盒","本地缓存","离线服务包"],"boundary":"能本地处理不上云，断网仍保留普通服务"},
+    {"layer":"数据层","components":["来源登记","授权记录","版本与留存策略"],"boundary":"最小必要、用途限定、到期删除"},
+    {"layer":"模型层","components":["多语模型","交通与能耗预测","公共服务知识库"],"boundary":"显示来源、版本、置信度与适用范围"},
+    {"layer":"服务层","components":["手机与网页","线下自助终端","电话与人工窗口"],"boundary":"数字入口不得成为唯一入口"},
+    {"layer":"治理层","components":["轮换策展席","具名责任人","申诉、停机与退出"],"boundary":"高影响决定必须人工复核"}
+  ],
+  "ai_node_types": [
+    {"id":"N01","name_zh":"研发开源节点","domain":"industry","typical_location":"众智园","count_concept":2},
+    {"id":"N02","name_zh":"安全评测节点","domain":"industry","typical_location":"众智园","count_concept":2},
+    {"id":"N03","name_zh":"中试智造节点","domain":"industry","typical_location":"众智园","count_concept":2},
+    {"id":"N04","name_zh":"企业服务节点","domain":"industry","typical_location":"AI原点、大钟寺","count_concept":3},
+    {"id":"N05","name_zh":"多式联运节点","domain":"mobility","typical_location":"三重点区与轨道站点","count_concept":4},
+    {"id":"N06","name_zh":"无障碍服务节点","domain":"mobility","typical_location":"全线公共入口","count_concept":4},
+    {"id":"N07","name_zh":"政务自助节点","domain":"civic","typical_location":"AI原点、两翼社区","count_concept":3},
+    {"id":"N08","name_zh":"社区生活节点","domain":"community","typical_location":"15分钟生活圈","count_concept":4},
+    {"id":"N09","name_zh":"健康照护节点","domain":"care","typical_location":"社区配套区","count_concept":3},
+    {"id":"N10","name_zh":"教育就业节点","domain":"care","typical_location":"AI原点、科技服务翼","count_concept":3},
+    {"id":"N11","name_zh":"民族文化展陈节点","domain":"culture","typical_location":"公共展馆与遗址主轴","count_concept":4},
+    {"id":"N12","name_zh":"AI绿地节点","domain":"culture","typical_location":"清河、小月河、遗址公园","count_concept":4},
+    {"id":"N13","name_zh":"文明种子库节点","domain":"culture","typical_location":"AI原点主库、遗址主轴与三重点区接口","count_concept":3}
+  ],
+  "domain_evaluation_contracts": {
+    "industry":{"baseline":"线下专业窗口、设备预约与纸质责任清单","minimum_data":"项目主动提交材料、设备状态与版本许可","stop_condition":"许可不清、安全围合失效、专业人员拒绝签署","audit_metrics":["人工接管率","安全事件数","许可复现通过率","单位任务能耗"],"measurement_status":"待现场基线"},
+    "mobility":{"baseline":"固定时刻表、实体导向、连续步行和人工站务","minimum_data":"公开运营数据与用户可选位置","stop_condition":"定位错误、无障碍状态不可靠、异常疏导失效","audit_metrics":["转人工时延","无障碍链中断次数","路线建议偏差","投诉数"],"measurement_status":"待现场基线"},
+    "civic":{"baseline":"人工窗口、纸质表单、电话预约和公开材料清单","minimum_data":"用户主动输入且仅限当次办理的必要材料","stop_condition":"翻译歧义、资格争议、原文无法追溯","audit_metrics":["预填差错率","人工接管率","材料退回率","申诉处理时长"],"measurement_status":"待现场基线"},
+    "community":{"baseline":"社区服务台、现场登记、电话和静态地图","minimum_data":"服务请求、时段与无障碍需求，不做长期画像","stop_condition":"公平排队受损、差别定价、线下入口不可用","audit_metrics":["线下服务可用率","预约公平性","人工处理时长","撤回完成率"],"measurement_status":"待现场基线"},
+    "care":{"baseline":"具名医生、教师、照护者、人工挂号和实体急救按钮","minimum_data":"用户主动提供的最小必要信息，默认不留存","stop_condition":"急症、模型不确定、未成年人或用户要求人工","audit_metrics":["转人工时延","误导事件数","急救旁路可用率","数据删除完成率"],"measurement_status":"待现场基线"},
+    "culture":{"baseline":"实体标识、志愿讲解、人工策展、开放格式母版和人工档案目录","minimum_data":"经分项授权的文化内容、来源与必要保存元数据，不采集身份画像","stop_condition":"错误归属、标签化、版权或授权不明、敏感语境外泄、完整性校验失败","audit_metrics":["授权完整率","勘误与撤回响应时长","哈希校验通过率","迁移演练通过率"],"measurement_status":"待现场基线"}
+  },
+  "scenarios": [
+    {"id":"I01","domain":"industry","title_zh":"开源模型与数据来源复现","location":"众智园","users":"开发者、高校","ai_enhancement":"版本、许可与复现步骤辅助核验","human_owner":"可信评测员","exit_path":"删除临时副本，保留人工清单"},
+    {"id":"I02","domain":"industry","title_zh":"机器人安全围合测试","location":"众智园","users":"研发团队、公众","ai_enhancement":"路径仿真、碰撞预警和测试记录","human_owner":"现场安全员","exit_path":"停机断电，测试庭恢复开放"},
+    {"id":"I03","domain":"industry","title_zh":"端侧算力与能耗弹性","location":"众智园","users":"企业、园区","ai_enhancement":"负荷预测和绿色时段建议","human_owner":"能源经理","exit_path":"恢复固定配额和人工调度"},
+    {"id":"I04","domain":"industry","title_zh":"企业服务一件事","location":"AI原点","users":"初创、中小企业","ai_enhancement":"法务、知识产权、融资和人才导航","human_owner":"专业服务人员","exit_path":"转人工窗口，不保留草稿"},
+    {"id":"M01","domain":"mobility","title_zh":"多式联运出行助手","location":"全线","users":"通勤者、访客","ai_enhancement":"轨道、公交、骑行和步行组合建议","human_owner":"站务员","exit_path":"纸质图和固定时刻表可用"},
+    {"id":"M02","domain":"mobility","title_zh":"微循环需求响应接驳","location":"三重点区","users":"居民、园区职工","ai_enhancement":"聚合匿名需求优化班次","human_owner":"调度员","exit_path":"恢复固定班次"},
+    {"id":"M03","domain":"mobility","title_zh":"无障碍连续路径","location":"全线","users":"老人、儿童、残障人士","ai_enhancement":"电梯状态、坡道和休息点提示","human_owner":"站务与护送人员","exit_path":"实体导向和电话预约"},
+    {"id":"M04","domain":"mobility","title_zh":"慢行断点诊断","location":"遗址公园","users":"行人、骑行者","ai_enhancement":"开放数据与人工复核识别断点","human_owner":"交通工程师","exit_path":"只保留人工巡查清单"},
+    {"id":"G01","domain":"civic","title_zh":"多语政务自助预填","location":"AI原点","users":"居民、访客","ai_enhancement":"表单翻译、材料清单和预填","human_owner":"政务窗口人员","exit_path":"清除会话并转纸质表单"},
+    {"id":"G02","domain":"civic","title_zh":"社区事项智能分流","location":"两翼社区","users":"居民","ai_enhancement":"诉求分配到具名责任部门","human_owner":"社区工作者","exit_path":"电话和现场登记"},
+    {"id":"G03","domain":"civic","title_zh":"政策问答与资格导航","location":"三重点区","users":"企业、居民","ai_enhancement":"引用原文回答并提示不确定性","human_owner":"专业窗口人员","exit_path":"关闭问答并提供原文目录"},
+    {"id":"G04","domain":"civic","title_zh":"公共预算参与助手","location":"同心议事厅","users":"公众、轮换策展席","ai_enhancement":"解释方案和汇总意见，不替代投票","human_owner":"社区议事会","exit_path":"导出意见并删除画像"},
+    {"id":"C01","domain":"community","title_zh":"15分钟生活服务管家","location":"社区配套区","users":"居民","ai_enhancement":"连接居住、消费、运动和社交服务","human_owner":"社区服务台","exit_path":"电话、地图和现场服务"},
+    {"id":"C02","domain":"community","title_zh":"智能消费与线下体验","location":"大钟寺","users":"消费者、企业","ai_enhancement":"产品讲解、适配和预约","human_owner":"店员与售后人员","exit_path":"关闭推荐且不影响价格"},
+    {"id":"C03","domain":"community","title_zh":"共享空间弹性预约","location":"三重点区","users":"社区、团队","ai_enhancement":"匹配时段和无障碍需求","human_owner":"场地管理员","exit_path":"现场登记和公平排队"},
+    {"id":"C04","domain":"community","title_zh":"社区能源与垃圾减量","location":"两翼社区","users":"家庭、物业","ai_enhancement":"能耗提示和分类辅助","human_owner":"物业人员","exit_path":"普通抄表和静态指引"},
+    {"id":"H01","domain":"care","title_zh":"社区健康导诊","location":"AI原点","users":"居民、老人","ai_enhancement":"症状信息整理和科室导航","human_owner":"具名医生","exit_path":"删除会话并人工挂号"},
+    {"id":"H02","domain":"care","title_zh":"养老陪伴与紧急呼叫","location":"社区配套区","users":"老人、照护者","ai_enhancement":"日程提醒、数字陪伴和异常提示","human_owner":"照护者和急救人员","exit_path":"实体呼叫按钮始终可用"},
+    {"id":"H03","domain":"care","title_zh":"AI素养与多语夜校","location":"AI原点","users":"居民、青年、访客","ai_enhancement":"分级学习、字幕和翻译辅助","human_owner":"教师","exit_path":"线下课堂不要求账号"},
+    {"id":"H04","domain":"care","title_zh":"公平就业与技能导航","location":"科技服务翼","users":"求职者、企业","ai_enhancement":"岗位解释和培训匹配，禁用身份推断","human_owner":"人力专员","exit_path":"人工招聘且不保留画像"},
+    {"id":"E01","domain":"culture","title_zh":"百年京张数字导览","location":"遗址主轴","users":"公众","ai_enhancement":"无障碍、多语和分龄历史解说","human_owner":"文保与历史专家","exit_path":"实体标识和志愿讲解"},
+    {"id":"E02","domain":"culture","title_zh":"年度共同建设展","location":"公共展馆与遗址主轴","users":"文化参与者与公众","ai_enhancement":"整理共同贡献、口述史与授权版本","human_owner":"文化权利人、社区代表与专业人员","exit_path":"撤回内容并更新展陈"},
+    {"id":"E03","domain":"culture","title_zh":"AI绿地生态管家","location":"清河、小月河","users":"公众、运维","ai_enhancement":"灌溉、热舒适和生物观察建议","human_owner":"园林人员","exit_path":"人工巡检和固定灌溉"},
+    {"id":"E04","domain":"culture","title_zh":"城市活动与国际传播","location":"全线","users":"公众、国际访客","ai_enhancement":"多语日程、路线和无障碍辅助","human_owner":"活动运营团队","exit_path":"静态日程和人工咨询"},
+    {"id":"E05","domain":"culture","title_zh":"京张文明种子库","location":"AI原点主库、遗址主轴与三重点区接口","users":"传承人、社区、研究者、公众","ai_enhancement":"经授权的多语转写、知识关联、修复建议和分龄教育版本","human_owner":"文化权利人、文博档案专业人员与公共文化运营方","exit_path":"停止公开和AI再利用，保留或封存经授权母版与撤回日志"}
+  ],
+  "user_groups": ["科研人员","创业团队","社区居民","老人儿童","多民族访客","残障人士"],
+  "implementation_phases": [
+    {"id":"P0","period":"0-6个月","title_zh":"资料闭环与共创","gate":"官方条件可用、普通服务基线可运行，并完成文化内容分项授权与敏感性分级"},
+    {"id":"P1","period":"6-18个月","title_zh":"三处小尺度试验","gate":"安全、隐私、平等、人工旁路与文明种子库迁移恢复演练通过"},
+    {"id":"P2","period":"18-36个月","title_zh":"主轴与社区扩展","gate":"现场证据证明不弱于普通基线"},
+    {"id":"P3","period":"36个月以后","title_zh":"常态运营与年度复盘","gate":"年度公开决定保留、修改、暂停或退出"}
+  ]
+}

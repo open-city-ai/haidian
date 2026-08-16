@@ -6,63 +6,156 @@
       "status": "pending_professional_confirmation",
       "statement": "总体设计范围与三处重点区域采用仓库 provisional_boundaries.geojson；它们不是官方红线。",
       "impact": "面积、比例、长度和分区仅用于方案比较，官方边界替换后必须全量复算。",
-      "recalculation_trigger": "官方盖章或权威发布的范围几何可用。"
+      "recalculation_trigger": "官方盖章或权威发布的范围几何可用。",
+      "affected_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson",
+        "geometry/land_use.geojson",
+        "metrics.json",
+        "assets/figures/site-overview.png",
+        "assets/figures/key-areas.png",
+        "assets/figures/metrics-evidence.png",
+        "assets/figures/land-use-structure.png",
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf",
+        "proposal.md"
+      ],
+      "responsible_role": "R-PUBLIC-SPACE",
+      "resolution_evidence": "取得清权后的官方 official polygon（盖章或权威发布），并可核对其坐标系与发布时点。",
+      "recalculation_scope": "九类几何与全部面积/比例/长度指标全量重算；26 张图件与四套 PDF 中所有依赖该边界的图面重出；正文与 HTML 中的面积表述同步订正。",
+      "risk_statement_zh": "临时边界被误读为正式红线。"
     },
     {
       "id": "A-CONTROLS-001",
       "status": "pending_professional_confirmation",
       "statement": "容积率、建筑高度、密度、绿地率、退界、道路红线和停车指标均无公开审定值。",
       "impact": "所有空间结构、建筑单元和分期均为城市设计概念建议，不构成控规或工程结论。",
-      "recalculation_trigger": "获得审定控规与专项条件。"
+      "recalculation_trigger": "获得审定控规与专项条件。",
+      "affected_files": [
+        "metrics.json",
+        "visual/assets/governance/measurement-protocol.json",
+        "proposal.md",
+        "design_depth_matrix.json"
+      ],
+      "responsible_role": "R-PUBLIC-SPACE",
+      "resolution_evidence": "正式控规、规划条件与技术审查结论；含容积率、高度、密度、退界与停车指标的审定值。",
+      "recalculation_scope": "六项 unknown 控制指标由 null 转为实测值；强度分区与形态原则据此复核；不改变几何。",
+      "risk_statement_zh": "概念用地与强度被误读为控规。"
     },
     {
       "id": "A-BASELINE-001",
       "status": "pending_professional_confirmation",
       "statement": "缺少正式现状用地、树木、水文、地形、公共空间与生态本底数据。",
       "impact": "蓝绿与公共空间面积是新增概念结构，不能解读为现状净增量。",
-      "recalculation_trigger": "完成现状测绘、生态调查与海绵专项。"
+      "recalculation_trigger": "完成现状测绘、生态调查与海绵专项。",
+      "affected_files": [
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "metrics.json",
+        "proposal.md"
+      ],
+      "responsible_role": "R-PUBLIC-SPACE",
+      "resolution_evidence": "正式现状用地、树木、水文、地形、公共空间与生态本底调查成果。",
+      "recalculation_scope": "绿地与公共空间的面积与比例重算；蓝绿策略据实况复核；场景选点复核。",
+      "risk_statement_zh": "缺少正式现状本底，绿地与公共空间口径只能按概念几何成立。"
     },
     {
       "id": "A-TRANSPORT-001",
       "status": "pending_professional_confirmation",
       "statement": "道路、铁路、站点、慢行、公交、停车及消防资料不完整。",
       "impact": "交接线与八条缝合支线只表达连接意图，不表达红线、断面、桥隧或工程可行性。",
-      "recalculation_trigger": "道路红线、轨道保护、交通模型与消防条件完成核验。"
+      "recalculation_trigger": "道路红线、轨道保护、交通模型与消防条件完成核验。",
+      "affected_files": [
+        "geometry/roads.geojson",
+        "metrics.json",
+        "assets/figures/mobility-bluegreen.png",
+        "proposal.md"
+      ],
+      "responsible_role": "R-PUBLIC-SPACE",
+      "resolution_evidence": "道路红线、轨道、交通量、市政与结构资料，以及消防车道与回车条件。",
+      "recalculation_scope": "道路面积与道路率由 null 转实测；八条缝合支线的线位与断面由交通专业复核；慢行断点处理方案据实况重做。",
+      "risk_statement_zh": "连接意图被误读为工程线位。"
     },
     {
       "id": "A-HERITAGE-001",
       "status": "pending_professional_confirmation",
       "statement": "文物本体、保护范围、建设控制地带、历史建筑和工业遗存名录尚未形成正式几何底图。",
       "impact": "文化节点均采用可逆、轻介入方向，具体选址与高度须接受文保前置审查。",
-      "recalculation_trigger": "取得文保部门确认的名录、边界与控制要求。"
+      "recalculation_trigger": "取得文保部门确认的名录、边界与控制要求。",
+      "affected_files": [
+        "geometry/constraints.geojson",
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "responsible_role": "R-CULTURE-VENUE",
+      "resolution_evidence": "文物保护范围、建设控制地带与历史建筑名录的正式几何底图，及文物影响评估结论。",
+      "recalculation_scope": "文化节点选点与口述史问答亭位置复核；涉及保护范围的空间动作重新判定；不改变总体结构。",
+      "risk_statement_zh": "文化节点与文保范围冲突。"
     },
     {
       "id": "A-MUNICIPAL-001",
       "status": "pending_professional_confirmation",
       "statement": "电力、算力、通信、给排水、热力、环卫与地下管线容量未知。",
       "impact": "边缘算力与场景接口仅为需求框架，不能据此承诺容量、投资或接入时间。",
-      "recalculation_trigger": "市政普查与容量评估完成。"
+      "recalculation_trigger": "市政普查与容量评估完成。",
+      "affected_files": [
+        "geometry/constraints.geojson",
+        "metrics.json",
+        "proposal.md"
+      ],
+      "responsible_role": "R-TEST-SAFETY",
+      "resolution_evidence": "市政主管部门核定的电力、算力、通信、给排水、热力、环卫与地下管线容量及接入条件。",
+      "recalculation_scope": "端侧能耗试验站与算力栈的接入规模据核定容量复核；不改变几何，仅改变可承载规模的表述。",
+      "risk_statement_zh": "市政接口被误读为容量承诺。"
     },
     {
       "id": "A-BUILDING-001",
       "status": "pending_professional_confirmation",
       "statement": "缺少完整现状建筑、结构安全、产权、租赁与使用状况调查。",
       "impact": "buildings.geojson 仅为二十个更新类型试验单元，拆改留坚持保留优先并逐栋核查。",
-      "recalculation_trigger": "逐栋测绘、权属核验、结构鉴定和利益相关方协商完成。"
+      "recalculation_trigger": "逐栋测绘、权属核验、结构鉴定和利益相关方协商完成。",
+      "affected_files": [
+        "geometry/buildings.geojson",
+        "metrics.json",
+        "proposal.md"
+      ],
+      "responsible_role": "R-PUBLIC-SPACE",
+      "resolution_evidence": "逐栋建筑、权属、结构安全、消防与社会影响调查成果。",
+      "recalculation_scope": "二十个更新类型单元由类型试验转为具体对象或撤销；联合基底面积重算；拆改留判断据调查重做。",
+      "risk_statement_zh": "概念建筑单元被误读为拆改留结论。"
     },
     {
       "id": "A-OPERATIONS-001",
       "status": "pending_professional_confirmation",
       "statement": "十二个AI场景是治理与空间原型，未获采购、经营或正式部署批准。",
       "impact": "每个场景必须小规模测试、人工复核、保留无AI等价服务，并设置退出阈值。",
-      "recalculation_trigger": "完成算法、隐私、安全、无障碍与公共利益影响评估。"
+      "recalculation_trigger": "完成算法、隐私、安全、无障碍与公共利益影响评估。",
+      "affected_files": [
+        "geometry/public_space.geojson",
+        "visual/assets/governance/shift-ledger-suite.json",
+        "visual/assets/governance/role-spec.json",
+        "visual/assets/governance/measurement-protocol.json",
+        "proposal.md"
+      ],
+      "responsible_role": "R-SERVICE-OPS",
+      "resolution_evidence": "场地权利与责任主体授权、许可、持续预算、维护与数据删除责任的书面确认。",
+      "recalculation_scope": "十二条双联交接账的 receiver_disposition 与 smart_layer_state 逐条复核；八个角色由 unassigned 转为已指派；KPI/SLO 基线与目标值方可讨论。",
+      "risk_statement_zh": "场景试点长期化、无法退出。"
     },
     {
       "id": "A-CASES-001",
       "status": "pending_professional_confirmation",
       "statement": "六个国际案例仅提取公开网页中的组织机制，不进行效果因果推断。",
       "impact": "案例只作为机制对照，不能直接类比北京治理、土地或资金条件。",
-      "recalculation_trigger": "专业团队开展现场访谈和二手证据交叉核验。"
+      "recalculation_trigger": "专业团队开展现场访谈和二手证据交叉核验。",
+      "affected_files": [
+        "sources.json",
+        "proposal.md"
+      ],
+      "responsible_role": "R-INDEPENDENT-REVIEW",
+      "resolution_evidence": "案例所在城市的制度条件核实，或案例方公开的可比较绩效数据。",
+      "recalculation_scope": "仅影响正文对案例的转译表述；不涉及任何几何、指标或图件。",
+      "risk_statement_zh": "国际案例被误读为效果承诺或可直接移植的经验。"
     }
   ]
 }

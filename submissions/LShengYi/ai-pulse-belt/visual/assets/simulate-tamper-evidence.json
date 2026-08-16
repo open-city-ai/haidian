@@ -1,0 +1,83 @@
+{
+ "schema_version": "1.0.0",
+ "package_version": "v10.7.3",
+ "intended_use": "自测证据：证明 simulate-check.js 的拒绝分支真实触发（同一份 check() 跑在八种篡改副本上，全部必须被拒）。自测只证明判定逻辑可复现、拒绝分支确实会触发；不证明任何实地读数、任何真实服务绩效——篡改用例是示意性的。",
+ "baseline_ok": true,
+ "cases": [
+  {
+   "id": "T1",
+   "rule": "缺任务（missing task）",
+   "expect": "拒绝：缺 card-12::post_exit_service_lapses",
+   "rejected": true,
+   "violations": [
+    "task_count 119 != 120",
+    "missing task test-wayfinding::post_exit_service_lapses"
+   ]
+  },
+  {
+   "id": "T2",
+   "rule": "任务重复（duplicate task key）",
+   "expect": "拒绝：duplicate task card-01::qualified",
+   "rejected": true,
+   "violations": [
+    "duplicate task card-01::qualified"
+   ]
+  },
+  {
+   "id": "T3",
+   "rule": "回执哈希被改写（receipt tamper）",
+   "expect": "拒绝：receipt mismatch",
+   "rejected": true,
+   "violations": [
+    "card-01::qualified: receipt mismatch"
+   ]
+  },
+  {
+   "id": "T4",
+   "rule": "失败分支被改成通过（negative branch flipped）",
+   "expect": "拒绝：outcome != negative_blocked",
+   "rejected": true,
+   "violations": [
+    "card-01::cannot_pause: outcome rule_check_success != negative_blocked"
+   ]
+  },
+  {
+   "id": "T5",
+   "rule": "计数声明被改（task_count 119）",
+   "expect": "拒绝：task_count 119 != 120",
+   "rejected": true,
+   "violations": [
+    "task_count 119 != 120"
+   ]
+  },
+  {
+   "id": "T6",
+   "rule": "擅自声称现场运行（field_run=true）",
+   "expect": "拒绝：field_run != false（未获授权、未现场运行的纪律）",
+   "rejected": true,
+   "violations": [
+    "card-01::qualified: field_run != false"
+   ]
+  },
+  {
+   "id": "T7",
+   "rule": "状态改为已上线（status=live）",
+   "expect": "拒绝：status != offline_complete_field_not_authorized_not_run",
+   "rejected": true,
+   "violations": [
+    "status live != offline_complete_field_not_authorized_not_run"
+   ]
+  },
+  {
+   "id": "T8",
+   "rule": "注入未知场景 id（unknown scenario_id）",
+   "expect": "拒绝：unknown scenario_id card-99",
+   "rejected": true,
+   "violations": [
+    "unknown scenario_id card-99",
+    "card-99::qualified: receipt mismatch"
+   ]
+  }
+ ],
+ "all_tamper_cases_rejected": true
+}

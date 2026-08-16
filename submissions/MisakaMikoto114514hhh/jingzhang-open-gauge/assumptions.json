@@ -1,0 +1,66 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "provisional",
+      "statement": "官方精确红线未公开，本包使用场地包临时粗略边界（PROV-SITE-001 与 PROV-KEY-001/002/003）作为生成与自检约束，不作为官方红线。",
+      "impact": "全部面积与指标按 EPSG:4548 复算但仅具概念意义；官方 polygon 发布后需整体重算 geometry、metrics 与图件。",
+      "recalculation_trigger": "official SITE_BOUNDARY / KEY_AREA GeoJSON 或清权 CAD/GIS 入库",
+      "evidence": "brief/site-package/geometry/provisional_boundaries_basis.md"
+    },
+    {
+      "id": "A-BOUNDARY-002",
+      "status": "known_gap",
+      "statement": "临时总体范围西界与 OpenStreetMap 实测京张铁路遗址公园已建成段（约17.49公顷）最近距离约412米；本方案以“历史轨=公园、标准轨=铭轨大道”的双轨叙事化解错位，并保留8处东西缝合口。",
+      "impact": "铭轨大道与真实公园的衔接关系待官方红线裁决；缝合口数量与位置为概念建议。",
+      "recalculation_trigger": "官方总体设计范围 polygon",
+      "evidence": "Issue #846 背景核对（独立复算一致：17.49 ha / 412.5 m / 覆盖率0%）。"
+    },
+    {
+      "id": "A-BOUNDARY-003",
+      "status": "known_gap",
+      "statement": "大钟寺重点区临时矩形（约39.944–39.950°N）与公告所指大钟寺站/觉生寺（北三环约39.966°N）存在约2公里南北偏差；本方案在临时范围内按公告名称布置鸣钟站功能，并注明真实锚点。",
+      "impact": "鸣钟站与大钟寺站TOD、觉生寺文保的空间关系待官方红线确认。",
+      "recalculation_trigger": "官方 KEY_AREA polygon（dazhongsi_ai_industry_cluster）",
+      "evidence": "OSM 大钟寺站≈(116.345,39.966)；wwj/首都之窗觉生寺位置（北三环西路甲31号）。"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_official_data",
+      "statement": "容积率、建筑高度、建筑密度、绿地率、退线等法定控规条件缺失；本方案将相关控制指标记为 unknown，仅以概念体量（832栋、基底密度约11.6%）作设计示意。",
+      "impact": "任何开发强度均非法定结论；转正条件是官方控规附件入库，并按其重算 total_floor_area、FAR 与高度。",
+      "recalculation_trigger": "approved regulatory planning conditions"
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "status": "pending_professional_confirmation",
+      "statement": "清华园车站旧址（市保，京政发〔2025〕3号公开表述）、觉生寺（1996国保）等文保仅按公开文件描述，未作精确落界。",
+      "impact": "方案不主张任何文保范围线；专业团队须以官方文保图则校核。"
+    },
+    {
+      "id": "A-OSM-001",
+      "status": "background_reference",
+      "statement": "OpenStreetMap 数据仅用于现状分析参考与图面背景，不进入法定边界、面积或控制性结论。",
+      "impact": "图件注明 ODbL 署名；OSM 不得替代官方数据。"
+    },
+    {
+      "id": "A-SCENARIO-001",
+      "status": "concept",
+      "statement": "12张场景卡、3个产业测试验证场景、朝圣地标、活动体系与运营机制均为概念建议/参考方案，不构成已批准运营或政府安排。",
+      "impact": "落地需安全评估、隐私影响评估与人工复核制度，按生成式AI服务管理公开边界执行。"
+    },
+    {
+      "id": "A-FIGURES-001",
+      "status": "synthetic",
+      "statement": "五张核心图由本包 GeoJSON 与 metrics 同源程序化生成；AI 生成图像（若使用）均为合成概念表达，不冒充现状影像或官方图件。",
+      "impact": "图件为解释层，权威数据以 GeoJSON/metrics 为准。"
+    },
+    {
+      "id": "A-METRICS-001",
+      "status": "recalculable",
+      "statement": "所有 known 指标均由 geometry/*.geojson 在 EPSG:4548 下复算，公式、来源文件与假设登记于 metrics.json。",
+      "impact": "任何人可复算核验；官方数据到位后按公式自动重算。"
+    }
+  ]
+}

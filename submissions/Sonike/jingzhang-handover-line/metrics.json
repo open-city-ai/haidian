@@ -357,13 +357,14 @@
     },
     "schema_valid_synthetic_shift_count": {
       "status": "known",
-      "value": 1,
+      "value": 12,
       "unit": "count",
       "source_files": [
-        "visual/assets/governance/example-scn05-shift-ledger.json",
+        "visual/assets/governance/shift-ledger-suite.json",
+        "visual/assets/governance/rule-check-report.json",
         "visual/assets/governance/validation-report.json"
       ],
-      "formula": "count(synthetic shift-ledger instances with structural error_count = 0)",
+      "formula": "count(synthetic shift-ledger instances validating against shift-ledger.schema.json with 0 errors)",
       "confidence": "high",
       "assumptions": [
         "A-OPERATIONS-001"
@@ -374,9 +375,36 @@
       "value": 0,
       "unit": "count",
       "source_files": [
+        "visual/assets/governance/rule-check-report.json",
         "visual/assets/governance/validation-report.json"
       ],
-      "formula": "count(jsonschema validation errors for the bundled synthetic SCN-05 instance)",
+      "formula": "count(jsonschema validation errors across all 12 bundled synthetic instances)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ]
+    },
+    "shift_protocol_rule_check_count": {
+      "status": "known",
+      "value": 96,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/rule-check-report.json"
+      ],
+      "formula": "count(12 baseline checks + 12 scenarios x 7 injected-defect checks)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ]
+    },
+    "shift_protocol_rule_check_miss_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/rule-check-report.json"
+      ],
+      "formula": "count(injected defects not intercepted by the protocol rules)",
       "confidence": "high",
       "assumptions": [
         "A-OPERATIONS-001"

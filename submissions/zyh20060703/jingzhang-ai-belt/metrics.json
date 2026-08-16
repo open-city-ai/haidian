@@ -1,0 +1,159 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional boundary; official polygon pending."
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_detailed_design_areas)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 256394,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.057695,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.118337,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "scenario_node_count": {
+   "status": "known",
+   "value": 10,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(SCENARIO_NODE features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Approved FAR controls and official site boundary not present."
+  },
+  "pilgrimage_landmark_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(AI pilgrimage landmarks)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "annual_event_count": {
+   "status": "known",
+   "value": 4,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(annual event system entries)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "accession_review_cadence": {
+   "status": "known",
+   "value": 4,
+   "unit": "times_per_year",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "design decision: quarterly accession review congress",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "machine_readable_governance_protocol_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "assets/governance/*.schema.json"
+   ],
+   "formula": "count(governance protocol schemas)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "schema_valid_sample_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "assets/governance/validation-report.json"
+   ],
+   "formula": "count(samples passing JSON Schema validation)",
+   "confidence": "high",
+   "assumptions": [
+    "0 structural errors only proves machine-parseability, not service availability or compliance."
+   ]
+  },
+  "protocol_validation_error_count": {
+   "status": "known",
+   "value": 0,
+   "unit": "count",
+   "source_files": [
+    "assets/governance/validation-report.json"
+   ],
+   "formula": "sum(validation errors across protocol samples)",
+   "confidence": "high",
+   "assumptions": []
+  }
+ }
+}

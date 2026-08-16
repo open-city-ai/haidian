@@ -1,0 +1,3671 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm",
+    "currency": "CNY",
+    "duration": "days"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "official_overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json",
+        "data/source_registry.json"
+      ],
+      "formula": "announced_overall_design_area",
+      "confidence": "high",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 2738886.469,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(unary_union(all submitted building footprints, including existing-condition references and design proposals))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ]
+    },
+    "building_density_design_ratio": {
+      "status": "known",
+      "value": 0.239983,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "unioned submitted building footprint area / submitted provisional site area; descriptive layer-coverage ratio, not statutory building density",
+      "confidence": "medium",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 6349529.187,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(unary_union(all green-space geometries))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.55635,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 1952115.745,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(unary_union(all public-space geometries)); point nodes add zero area",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CENTENNIAL-UNITY-NARRATIVE-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.171046,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 22202.042,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length_in_epsg_4548(roads))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-TRAFFIC-001",
+        "A-CENTENNIAL-UNITY-NARRATIVE-001"
+      ]
+    },
+    "land_use_partition_area_sqm": {
+      "status": "known",
+      "value": 11412832.882,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_partition))",
+      "confidence": "high",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "key_area_announced_total_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "announced_key_area_1 + announced_key_area_2 + announced_key_area_3",
+      "confidence": "high",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "ai_scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(readable_ai_scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_industry_test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(industry_test_scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user_persona_rows)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(ai_pilgrimage_landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(conceptual_renewal_project_list)",
+      "confidence": "high",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phase_features)",
+      "confidence": "high",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "官方草案只公开HD00-1601等街区汇总建筑规模，范围与竞赛总体设计边界不一致，且没有地块控制表或可计算正式边界，因此不能据此复算本方案容积率。"
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_height_control",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "正式高度、航空、文保和风貌控制条件待官方附件与专业团队确认。"
+    },
+    "official_curb_parking_site_count": {
+      "status": "known",
+      "value": 19,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/路侧停车位基础信息.xlsx"
+      ],
+      "formula": "count(deduplicated official curb-parking records within provisional SITE-001)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OFFICIAL-DATA-001"
+      ]
+    },
+    "official_curb_parking_capacity": {
+      "status": "known",
+      "value": 985,
+      "unit": "spaces",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/路侧停车位基础信息.xlsx"
+      ],
+      "formula": "sum(capacity_spaces for deduplicated official curb-parking records within provisional SITE-001)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OFFICIAL-DATA-001"
+      ]
+    },
+    "official_rail_line_count": {
+      "status": "known",
+      "value": 22,
+      "unit": "count",
+      "source_files": [
+        "https://service.jtw.beijing.gov.cn/cxsjxz/",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/轨道线路信息.xlsx",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/轨道站点信息.xlsx",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/公交线路信息.xlsx",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/公交站点信息.xlsx"
+      ],
+      "formula": "count(rows in official 轨道线路信息.xlsx)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OFFICIAL-TRANSIT-001"
+      ]
+    },
+    "official_rail_station_record_count": {
+      "status": "known",
+      "value": 1079,
+      "unit": "service records",
+      "source_files": [
+        "https://service.jtw.beijing.gov.cn/cxsjxz/",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/轨道线路信息.xlsx",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/轨道站点信息.xlsx",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/公交线路信息.xlsx",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/公交站点信息.xlsx"
+      ],
+      "formula": "count(rows in official 轨道站点信息.xlsx)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OFFICIAL-TRANSIT-001"
+      ]
+    },
+    "official_nearby_station_service_record_count": {
+      "status": "known",
+      "value": 31,
+      "unit": "service records",
+      "source_files": [
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/轨道站点信息.xlsx"
+      ],
+      "formula": "count(rail-station rows whose 车站名称 contains one of the documented nearby match terms)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OFFICIAL-TRANSIT-001"
+      ]
+    },
+    "official_bus_line_count": {
+      "status": "known",
+      "value": 1165,
+      "unit": "count",
+      "source_files": [
+        "https://service.jtw.beijing.gov.cn/cxsjxz/",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/轨道线路信息.xlsx",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/轨道站点信息.xlsx",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/公交线路信息.xlsx",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/公交站点信息.xlsx"
+      ],
+      "formula": "count(rows in official 公交线路信息.xlsx)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OFFICIAL-TRANSIT-001"
+      ]
+    },
+    "official_bus_stop_record_count": {
+      "status": "known",
+      "value": 58697,
+      "unit": "service records",
+      "source_files": [
+        "https://service.jtw.beijing.gov.cn/cxsjxz/",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/轨道线路信息.xlsx",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/轨道站点信息.xlsx",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/公交线路信息.xlsx",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/公交站点信息.xlsx"
+      ],
+      "formula": "count(rows in official 公交站点信息.xlsx)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OFFICIAL-TRANSIT-001"
+      ]
+    },
+    "haidian_resident_population_2025_persons": {
+      "status": "known",
+      "value": 3111000,
+      "unit": "persons",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/sjkf/tjgb/202604/t20260410_4811526.shtml"
+      ],
+      "formula": "official year-end resident population",
+      "confidence": "high",
+      "assumptions": [
+        "A-HAIDIAN-STATS-001"
+      ],
+      "note": "district-wide preliminary statistic"
+    },
+    "haidian_national_key_laboratory_count_2025": {
+      "status": "known",
+      "value": 92,
+      "unit": "count",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/sjkf/tjgb/202604/t20260410_4811526.shtml"
+      ],
+      "formula": "official count at year end",
+      "confidence": "high",
+      "assumptions": [
+        "A-HAIDIAN-STATS-001"
+      ]
+    },
+    "haidian_large_model_filing_count_2025": {
+      "status": "known",
+      "value": 123,
+      "unit": "count",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/sjkf/tjgb/202604/t20260410_4811526.shtml"
+      ],
+      "formula": "official filed models at year end",
+      "confidence": "high",
+      "assumptions": [
+        "A-HAIDIAN-STATS-001"
+      ]
+    },
+    "haidian_effective_invention_patent_count_2025": {
+      "status": "known",
+      "value": 349404,
+      "unit": "count",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/sjkf/tjgb/202604/t20260410_4811526.shtml"
+      ],
+      "formula": "official valid invention patents at year end",
+      "confidence": "high",
+      "assumptions": [
+        "A-HAIDIAN-STATS-001"
+      ]
+    },
+    "haidian_technical_contract_value_2025_yi_cny": {
+      "status": "known",
+      "value": 4053.1,
+      "unit": "100 million CNY",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/sjkf/tjgb/202604/t20260410_4811526.shtml"
+      ],
+      "formula": "official annual technical-contract transaction value",
+      "confidence": "high",
+      "assumptions": [
+        "A-HAIDIAN-STATS-001"
+      ]
+    },
+    "haidian_medical_institution_count_2025": {
+      "status": "known",
+      "value": 1456,
+      "unit": "count",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/sjkf/tjgb/202604/t20260410_4811526.shtml"
+      ],
+      "formula": "official year-end medical and health institutions",
+      "confidence": "high",
+      "assumptions": [
+        "A-HAIDIAN-STATS-001"
+      ]
+    },
+    "haidian_sports_venue_count_2025": {
+      "status": "known",
+      "value": 5816,
+      "unit": "count",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/sjkf/tjgb/202604/t20260410_4811526.shtml"
+      ],
+      "formula": "official district sports venues",
+      "confidence": "high",
+      "assumptions": [
+        "A-HAIDIAN-STATS-001"
+      ]
+    },
+    "haidian_pm25_annual_mean_2025_ug_m3": {
+      "status": "known",
+      "value": 25.7,
+      "unit": "ug/m3",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/sjkf/tjgb/202604/t20260410_4811526.shtml"
+      ],
+      "formula": "official annual mean PM2.5 concentration",
+      "confidence": "high",
+      "assumptions": [
+        "A-HAIDIAN-STATS-001"
+      ]
+    },
+    "haidian_ai_policy_measure_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/zwdt/zcwj/202509/t20250908_4786148.shtml"
+      ],
+      "formula": "count(numbered policy measures)",
+      "confidence": "high",
+      "assumptions": [
+        "A-HAIDIAN-POLICY-001"
+      ]
+    },
+    "qinghuayuan_restored_heritage_building_area_sqm": {
+      "status": "known",
+      "value": 257.25,
+      "unit": "sqm",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/ywdt/hdywx/202303/t20230327_4593584.shtml"
+      ],
+      "formula": "reported restored heritage-building area",
+      "confidence": "high",
+      "assumptions": [
+        "A-QINGHUAYUAN-CULTURE-001"
+      ]
+    },
+    "qinghuayuan_environment_landscaping_area_sqm": {
+      "status": "known",
+      "value": 4399,
+      "unit": "sqm",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/ywdt/hdywx/202303/t20230327_4593584.shtml"
+      ],
+      "formula": "reported environmental landscaping area",
+      "confidence": "high",
+      "assumptions": [
+        "A-QINGHUAYUAN-CULTURE-001"
+      ]
+    },
+    "qinghuayuan_restored_track_length_m": {
+      "status": "known",
+      "value": 372,
+      "unit": "m",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/ywdt/hdywx/202303/t20230327_4593584.shtml"
+      ],
+      "formula": "172 m paved track + 149 m green track + 51 m cast-in-place paved track",
+      "confidence": "high",
+      "assumptions": [
+        "A-QINGHUAYUAN-CULTURE-001"
+      ]
+    },
+    "qinghuayuan_exhibition_area_sqm": {
+      "status": "known",
+      "value": 210,
+      "unit": "sqm",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/ywdt/hdywx/202303/t20230327_4593584.shtml"
+      ],
+      "formula": "reported exhibition area",
+      "confidence": "high",
+      "assumptions": [
+        "A-QINGHUAYUAN-CULTURE-001"
+      ]
+    },
+    "control_plan_2035_resident_population_persons": {
+      "status": "known",
+      "value": 364000,
+      "unit": "persons",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/zwdt/tdzt/2018/zwgk/zdjs/202412/P020241230395098020252.pdf"
+      ],
+      "formula": "official draft infographic: approximately 36.4 ten-thousand persons x 10,000",
+      "confidence": "high",
+      "assumptions": [
+        "A-HAIDIAN-CONTROL-DRAFT-001"
+      ]
+    },
+    "control_plan_2035_urban_construction_land_sqm": {
+      "status": "known",
+      "value": 16481000,
+      "unit": "sqm",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/zwdt/tdzt/2018/zwgk/zdjs/202412/P020241230395098020252.pdf"
+      ],
+      "formula": "official draft infographic: approximately 1,648.1 ha x 10,000 sqm/ha",
+      "confidence": "high",
+      "assumptions": [
+        "A-HAIDIAN-CONTROL-DRAFT-001"
+      ]
+    },
+    "control_plan_2035_building_floor_area_sqm": {
+      "status": "known",
+      "value": 23693000,
+      "unit": "sqm",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/zwdt/tdzt/2018/zwgk/zdjs/202412/P020241230395098020252.pdf"
+      ],
+      "formula": "official draft infographic: approximately 2,369.3 ten-thousand sqm x 10,000",
+      "confidence": "high",
+      "assumptions": [
+        "A-HAIDIAN-CONTROL-DRAFT-001"
+      ]
+    },
+    "control_plan_public_service_facility_count": {
+      "status": "known",
+      "value": 298,
+      "unit": "count",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/zwdt/tdzt/2018/zwgk/zdjs/202412/P020241230395098020252.pdf"
+      ],
+      "formula": "official draft infographic facility count",
+      "confidence": "high",
+      "assumptions": [
+        "A-HAIDIAN-CONTROL-DRAFT-001"
+      ]
+    },
+    "control_plan_transport_facility_count": {
+      "status": "known",
+      "value": 37,
+      "unit": "count",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/zwdt/tdzt/2018/zwgk/zdjs/202412/P020241230395098020252.pdf"
+      ],
+      "formula": "official draft infographic facility count",
+      "confidence": "high",
+      "assumptions": [
+        "A-HAIDIAN-CONTROL-DRAFT-001"
+      ]
+    },
+    "control_plan_municipal_facility_count": {
+      "status": "known",
+      "value": 62,
+      "unit": "count",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/zwdt/tdzt/2018/zwgk/zdjs/202412/P020241230395098020252.pdf"
+      ],
+      "formula": "official draft infographic facility count",
+      "confidence": "high",
+      "assumptions": [
+        "A-HAIDIAN-CONTROL-DRAFT-001"
+      ]
+    },
+    "control_plan_urban_safety_facility_count": {
+      "status": "known",
+      "value": 36,
+      "unit": "count",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/zwdt/tdzt/2018/zwgk/zdjs/202412/P020241230395098020252.pdf"
+      ],
+      "formula": "official draft infographic facility count",
+      "confidence": "high",
+      "assumptions": [
+        "A-HAIDIAN-CONTROL-DRAFT-001"
+      ]
+    },
+    "control_plan_2035_road_network_density_km_per_sqkm": {
+      "status": "known",
+      "value": 8.0,
+      "unit": "km_per_sqkm",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/zwdt/tdzt/2018/zwgk/zdjs/202412/P020241230395098020252.pdf"
+      ],
+      "formula": "official draft infographic target including lanes and alleys",
+      "confidence": "high",
+      "assumptions": [
+        "A-HAIDIAN-CONTROL-DRAFT-001"
+      ]
+    },
+    "control_plan_2035_green_trip_share_percent": {
+      "status": "known",
+      "value": 80,
+      "unit": "percent",
+      "source_files": [
+        "https://zyk.bjhd.gov.cn/zwdt/tdzt/2018/zwgk/zdjs/202412/P020241230395098020252.pdf"
+      ],
+      "formula": "official draft infographic 2035 target",
+      "confidence": "high",
+      "assumptions": [
+        "A-HAIDIAN-CONTROL-DRAFT-001"
+      ]
+    },
+    "jingzhang_phase2_land_area_sqm": {
+      "status": "known",
+      "value": 530900,
+      "unit": "sqm",
+      "source_files": [
+        "https://www.bjhd.gov.cn/ztzx/2025/ysxtj/ttdkj/gzgxfn/202503/t20250314_4760993.shtml"
+      ],
+      "formula": "official project profile: 53.09 ten-thousand sqm x 10,000",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-PHASE2-OFFICIAL-001"
+      ]
+    },
+    "jingzhang_phase2_length_m": {
+      "status": "known",
+      "value": 9000,
+      "unit": "m",
+      "source_files": [
+        "https://www.bjhd.gov.cn/ztzx/2025/ysxtj/ttdkj/gzgxfn/202503/t20250314_4760993.shtml"
+      ],
+      "formula": "official project profile: 9 km x 1,000",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-PHASE2-OFFICIAL-001"
+      ]
+    },
+    "ai_origin_community_policy_area_sqm": {
+      "status": "known",
+      "value": 3000000,
+      "unit": "sqm",
+      "source_files": [
+        "https://kw.beijing.gov.cn/xwdt/kcyx/xwdtshgg/202601/t20260121_4452025.html"
+      ],
+      "formula": "official government news page: approximately 3 sq km x 1,000,000 sqm/sq km",
+      "confidence": "high",
+      "assumptions": [
+        "A-ORIGIN-COMMUNITY-SCOPE-001"
+      ]
+    },
+    "jingzhang_phase2_approved_package_area_sqm": {
+      "status": "known",
+      "value": 230800,
+      "unit": "sqm",
+      "source_files": [
+        "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202409/t20240923_3902988.htm",
+        "https://ggzyfw.beijing.gov.cn/jyxxggjtbyqs/20240926/4679916.html"
+      ],
+      "formula": "official implementation approval and tender notice: 23.08 ha x 10,000 sqm/ha",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-PHASE2-APPROVAL-SCOPE-001"
+      ]
+    },
+    "jingzhang_phase2_planned_total_investment_cny": {
+      "status": "known",
+      "value": 162520000,
+      "unit": "CNY",
+      "source_files": [
+        "https://ggzyfw.beijing.gov.cn/jyxxggjtbyqs/20240926/4679916.html",
+        "https://ggzyfw.beijing.gov.cn/cmsbj/u/cms/cn.gov.bjggzyfw.www/202409/8980774679916.pdf"
+      ],
+      "formula": "official tender notice planned total investment: CNY 16,252 ten-thousand x 10,000",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-PHASE2-COST-001"
+      ]
+    },
+    "jingzhang_phase2_planned_duration_days": {
+      "status": "known",
+      "value": 339,
+      "unit": "days",
+      "source_files": [
+        "https://ggzyfw.beijing.gov.cn/jyxxggjtbyqs/20240926/4679916.html"
+      ],
+      "formula": "official tender notice planned duration",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-PHASE2-COST-001"
+      ]
+    },
+    "jingzhang_phase2_tender_survey_estimate_cny": {
+      "status": "known",
+      "value": 1103100,
+      "unit": "CNY",
+      "source_files": [
+        "https://fgw.beijing.gov.cn/fzggzl/yfxz/xzxk_sgs/202409/t20240923_3902991.htm"
+      ],
+      "formula": "official tender-scheme approval: CNY 110.31 ten-thousand x 10,000",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-PHASE2-COST-001"
+      ]
+    },
+    "jingzhang_phase2_tender_design_estimate_cny": {
+      "status": "known",
+      "value": 5515600,
+      "unit": "CNY",
+      "source_files": [
+        "https://fgw.beijing.gov.cn/fzggzl/yfxz/xzxk_sgs/202409/t20240923_3902991.htm"
+      ],
+      "formula": "official tender-scheme approval: CNY 551.56 ten-thousand x 10,000",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-PHASE2-COST-001"
+      ]
+    },
+    "jingzhang_phase2_tender_construction_estimate_cny": {
+      "status": "known",
+      "value": 145601800,
+      "unit": "CNY",
+      "source_files": [
+        "https://fgw.beijing.gov.cn/fzggzl/yfxz/xzxk_sgs/202409/t20240923_3902991.htm"
+      ],
+      "formula": "official tender-scheme approval: CNY 14,560.18 ten-thousand x 10,000",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-PHASE2-COST-001"
+      ]
+    },
+    "jingzhang_phase2_tender_supervision_estimate_cny": {
+      "status": "known",
+      "value": 2386500,
+      "unit": "CNY",
+      "source_files": [
+        "https://fgw.beijing.gov.cn/fzggzl/yfxz/xzxk_sgs/202409/t20240923_3902991.htm"
+      ],
+      "formula": "official tender-scheme approval: CNY 238.65 ten-thousand x 10,000",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-PHASE2-COST-001"
+      ]
+    },
+    "jingzhang_phase2_supporting_north_segment_area_sqm": {
+      "status": "known",
+      "value": 300100,
+      "unit": "sqm",
+      "source_files": [
+        "https://yllhj.beijing.gov.cn/zwgk/zwxx/202607/t20260714_4761226.shtml"
+      ],
+      "formula": "official completion update: approximately 30.01 ha x 10,000 sqm/ha",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-PHASE2-COMPLETION-001"
+      ]
+    },
+    "jingzhang_phase2_supporting_survey_budget_cny": {
+      "status": "known",
+      "value": 621500,
+      "unit": "CNY",
+      "source_files": [
+        "https://www.ccgp.gov.cn/cggg/dfgg/qtgg/202501/t20250120_24089627.htm"
+      ],
+      "formula": "official procurement notice: CNY 62.15 ten-thousand x 10,000",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-PHASE2-SURVEY-PROCUREMENT-001"
+      ]
+    },
+    "jingzhang_phase2_supporting_survey_contract_days": {
+      "status": "known",
+      "value": 15,
+      "unit": "days",
+      "source_files": [
+        "https://www.ccgp.gov.cn/cggg/dfgg/qtgg/202501/t20250120_24089627.htm"
+      ],
+      "formula": "official procurement notice contract duration",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-PHASE2-SURVEY-PROCUREMENT-001"
+      ]
+    },
+    "jingzhang_2025_activity_count_min": {
+      "status": "known",
+      "value": 60,
+      "unit": "count",
+      "relation": "more_than",
+      "source_files": [
+        "https://www.beijing.gov.cn/fuwu/lqfw/gggs/202603/t20260330_4569001.html"
+      ],
+      "formula": "published lower threshold for the operator statement 'more than 60 activities'",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-OPERATIONS-001"
+      ]
+    },
+    "jingzhang_2025_visitor_count_min": {
+      "status": "known",
+      "value": 4300000,
+      "unit": "persons",
+      "relation": "more_than",
+      "source_files": [
+        "https://www.beijing.gov.cn/fuwu/lqfw/gggs/202603/t20260330_4569001.html"
+      ],
+      "formula": "published lower threshold for the operator statement 'more than 4.3 million visitors'",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-OPERATIONS-001"
+      ]
+    },
+    "ai_origin_university_count": {
+      "status": "known",
+      "value": 37,
+      "unit": "count",
+      "source_files": [
+        "https://www.beijing.gov.cn/fuwu/lqfw/gggs/202604/t20260401_4571735.html"
+      ],
+      "formula": "official broader AI Origin Community ecosystem count",
+      "confidence": "high",
+      "assumptions": [
+        "A-ORIGIN-COMMUNITY-ECOSYSTEM-001"
+      ]
+    },
+    "ai_origin_new_research_institution_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "https://www.beijing.gov.cn/fuwu/lqfw/gggs/202604/t20260401_4571735.html"
+      ],
+      "formula": "official broader AI Origin Community ecosystem count",
+      "confidence": "high",
+      "assumptions": [
+        "A-ORIGIN-COMMUNITY-ECOSYSTEM-001"
+      ]
+    },
+    "ai_origin_national_key_lab_count": {
+      "status": "known",
+      "value": 52,
+      "unit": "count",
+      "source_files": [
+        "https://www.beijing.gov.cn/fuwu/lqfw/gggs/202604/t20260401_4571735.html"
+      ],
+      "formula": "official broader AI Origin Community ecosystem count",
+      "confidence": "high",
+      "assumptions": [
+        "A-ORIGIN-COMMUNITY-ECOSYSTEM-001"
+      ]
+    },
+    "ai_origin_national_research_organization_count": {
+      "status": "known",
+      "value": 106,
+      "unit": "count",
+      "source_files": [
+        "https://www.beijing.gov.cn/fuwu/lqfw/gggs/202604/t20260401_4571735.html"
+      ],
+      "formula": "official broader AI Origin Community ecosystem count",
+      "confidence": "high",
+      "assumptions": [
+        "A-ORIGIN-COMMUNITY-ECOSYSTEM-001"
+      ]
+    },
+    "ai_origin_ai_scholar_count": {
+      "status": "known",
+      "value": 12300,
+      "unit": "persons",
+      "source_files": [
+        "https://www.beijing.gov.cn/fuwu/lqfw/gggs/202604/t20260401_4571735.html"
+      ],
+      "formula": "official broader AI Origin Community ecosystem count: 1.23 ten-thousand persons x 10,000",
+      "confidence": "high",
+      "assumptions": [
+        "A-ORIGIN-COMMUNITY-ECOSYSTEM-001"
+      ]
+    },
+    "ai_origin_resident_enterprise_count": {
+      "status": "known",
+      "value": 439,
+      "unit": "count",
+      "source_files": [
+        "https://www.beijing.gov.cn/fuwu/lqfw/gggs/202604/t20260401_4571735.html"
+      ],
+      "formula": "official broader AI Origin Community resident-enterprise count",
+      "confidence": "high",
+      "assumptions": [
+        "A-ORIGIN-COMMUNITY-ECOSYSTEM-001"
+      ]
+    },
+    "ai_origin_ai_enterprise_count": {
+      "status": "known",
+      "value": 325,
+      "unit": "count",
+      "source_files": [
+        "https://www.beijing.gov.cn/fuwu/lqfw/gggs/202604/t20260401_4571735.html"
+      ],
+      "formula": "official broader AI Origin Community AI-enterprise count",
+      "confidence": "high",
+      "assumptions": [
+        "A-ORIGIN-COMMUNITY-ECOSYSTEM-001"
+      ]
+    },
+    "ai_origin_ai_enterprise_share": {
+      "status": "known",
+      "value": 0.74,
+      "unit": "ratio",
+      "source_files": [
+        "https://www.beijing.gov.cn/fuwu/lqfw/gggs/202604/t20260401_4571735.html"
+      ],
+      "formula": "official published share of AI enterprises among resident enterprises",
+      "confidence": "high",
+      "assumptions": [
+        "A-ORIGIN-COMMUNITY-ECOSYSTEM-001"
+      ]
+    },
+    "jingzhang_existing_green_conversion_area_sqm": {
+      "status": "known",
+      "value": 168000,
+      "unit": "sqm",
+      "source_files": [
+        "https://yllhj.beijing.gov.cn/ztxx/lhysh/jj/202604/t20260423_4605970.shtml"
+      ],
+      "formula": "official text: 16.8 ha x 10,000 sqm/ha",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-PUBLIC-CONNECTIVITY-001"
+      ]
+    },
+    "jingzhang_connected_east_west_road_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "https://yllhj.beijing.gov.cn/ztxx/lhysh/jj/202604/t20260423_4605970.shtml"
+      ],
+      "formula": "official published existing-corridor count",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-PUBLIC-CONNECTIVITY-001"
+      ]
+    },
+    "jingzhang_opened_traffic_break_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "https://yllhj.beijing.gov.cn/ztxx/lhysh/jj/202604/t20260423_4605970.shtml"
+      ],
+      "formula": "official published existing-corridor count",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-PUBLIC-CONNECTIVITY-001"
+      ]
+    },
+    "jingzhang_served_community_count_approx": {
+      "status": "known",
+      "value": 70,
+      "unit": "count",
+      "source_files": [
+        "https://yllhj.beijing.gov.cn/ztxx/lhysh/jj/202604/t20260423_4605970.shtml"
+      ],
+      "formula": "published 'nearly 70 communities'",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-PUBLIC-CONNECTIVITY-001"
+      ],
+      "relation": "approximately_less_than"
+    },
+    "jingzhang_served_population_approx": {
+      "status": "known",
+      "value": 450000,
+      "unit": "persons",
+      "source_files": [
+        "https://yllhj.beijing.gov.cn/ztxx/lhysh/jj/202604/t20260423_4605970.shtml"
+      ],
+      "formula": "published approximate service population",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-PUBLIC-CONNECTIVITY-001"
+      ],
+      "relation": "approximately"
+    },
+    "jingzhang_served_university_count_min": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "https://yllhj.beijing.gov.cn/ztxx/lhysh/jj/202604/t20260423_4605970.shtml"
+      ],
+      "formula": "published lower threshold for 'more than 10 universities'",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-PUBLIC-CONNECTIVITY-001"
+      ],
+      "relation": "more_than"
+    },
+    "jingzhang_served_research_institution_count_min": {
+      "status": "known",
+      "value": 40,
+      "unit": "count",
+      "source_files": [
+        "https://yllhj.beijing.gov.cn/ztxx/lhysh/jj/202604/t20260423_4605970.shtml"
+      ],
+      "formula": "published lower threshold for 'more than 40 research institutions'",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-PUBLIC-CONNECTIVITY-001"
+      ],
+      "relation": "more_than"
+    },
+    "jingzhang_phase2_survey_contract_cny": {
+      "status": "known",
+      "value": 2046000,
+      "unit": "CNY",
+      "source_files": [
+        "https://ggzyfw.beijing.gov.cn/jyxxgcjshtgs/20240809/4627726.html"
+      ],
+      "formula": "signed public survey contract value",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-CONTRACT-CHAIN-001"
+      ]
+    },
+    "jingzhang_phase2_survey_contract_days": {
+      "status": "known",
+      "value": 20,
+      "unit": "days",
+      "source_files": [
+        "https://ggzyfw.beijing.gov.cn/jyxxgcjshtgs/20240809/4627726.html"
+      ],
+      "formula": "signed public survey contract duration",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-CONTRACT-CHAIN-001"
+      ]
+    },
+    "jingzhang_phase2_design_contract_cny": {
+      "status": "known",
+      "value": 8382500,
+      "unit": "CNY",
+      "source_files": [
+        "https://ggzyfw.beijing.gov.cn/jyxxgcjshtgs/20240809/4627730.html"
+      ],
+      "formula": "signed public main design contract value",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-CONTRACT-CHAIN-001"
+      ]
+    },
+    "jingzhang_phase2_design_contract_days": {
+      "status": "known",
+      "value": 20,
+      "unit": "days",
+      "source_files": [
+        "https://ggzyfw.beijing.gov.cn/jyxxgcjshtgs/20240809/4627730.html"
+      ],
+      "formula": "signed public main design contract duration",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-CONTRACT-CHAIN-001"
+      ]
+    },
+    "jingzhang_phase2_supporting_design_contract_cny": {
+      "status": "known",
+      "value": 4199200,
+      "unit": "CNY",
+      "source_files": [
+        "https://ggzyfw.beijing.gov.cn/jyxxgcjshtgs/20250402/5020849.html"
+      ],
+      "formula": "signed public supporting-design contract value",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-CONTRACT-CHAIN-001"
+      ]
+    },
+    "jingzhang_phase2_supporting_design_contract_days": {
+      "status": "known",
+      "value": 20,
+      "unit": "days",
+      "source_files": [
+        "https://ggzyfw.beijing.gov.cn/jyxxgcjshtgs/20250402/5020849.html"
+      ],
+      "formula": "signed public supporting-design contract duration",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-CONTRACT-CHAIN-001"
+      ]
+    },
+    "jingzhang_phase2_construction_contract_cny": {
+      "status": "known",
+      "value": 144782002.13,
+      "unit": "CNY",
+      "source_files": [
+        "https://ggzyfw.beijing.gov.cn/jyxxgcjshtgs/20241202/4752312.html"
+      ],
+      "formula": "signed public construction contract value",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-CONTRACT-CHAIN-001"
+      ]
+    },
+    "jingzhang_phase2_construction_contract_days": {
+      "status": "known",
+      "value": 339,
+      "unit": "days",
+      "source_files": [
+        "https://ggzyfw.beijing.gov.cn/jyxxgcjshtgs/20241202/4752312.html"
+      ],
+      "formula": "signed public construction contract duration",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-CONTRACT-CHAIN-001"
+      ]
+    },
+    "jingzhang_phase2_supervision_contract_cny": {
+      "status": "known",
+      "value": 2380000,
+      "unit": "CNY",
+      "source_files": [
+        "https://ggzyfw.beijing.gov.cn/jyxxgcjshtgs/20241202/4752290.html"
+      ],
+      "formula": "signed public supervision contract value",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-CONTRACT-CHAIN-001"
+      ]
+    },
+    "jingzhang_phase2_supervision_contract_days": {
+      "status": "known",
+      "value": 339,
+      "unit": "days",
+      "source_files": [
+        "https://ggzyfw.beijing.gov.cn/jyxxgcjshtgs/20241202/4752290.html"
+      ],
+      "formula": "signed public supervision duration",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-CONTRACT-CHAIN-001"
+      ]
+    },
+    "jingzhang_phase2_supporting_survey_award_cny": {
+      "status": "known",
+      "value": 608000,
+      "unit": "CNY",
+      "source_files": [
+        "https://www.ccgp.gov.cn/cggg/dfgg/cjgg/202502/t20250210_24148141.htm"
+      ],
+      "formula": "official supporting-survey award value",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-CONTRACT-CHAIN-001"
+      ]
+    },
+    "jingzhang_metro_safety_assessment_budget_cny": {
+      "status": "known",
+      "value": 530000,
+      "unit": "CNY",
+      "source_files": [
+        "https://www.ccgp.gov.cn/cggg/dfgg/qtgg/202502/t20250208_24141366.htm"
+      ],
+      "formula": "official metro safety assessment procurement budget",
+      "confidence": "high",
+      "assumptions": [
+        "A-JINGZHANG-METRO-SAFETY-001"
+      ]
+    },
+    "osm_existing_building_feature_count": {
+      "status": "known",
+      "value": 1688,
+      "unit": "count",
+      "source_files": [
+        "https://overpass-api.de/api/interpreter"
+      ],
+      "formula": "count of clipped OSM building features",
+      "confidence": "high",
+      "assumptions": [
+        "A-OSM-EXISTING-CONTEXT-001"
+      ]
+    },
+    "osm_existing_building_footprint_area_sqm": {
+      "status": "known",
+      "value": 2051532.131,
+      "unit": "sqm",
+      "source_files": [
+        "https://overpass-api.de/api/interpreter"
+      ],
+      "formula": "EPSG:4548 area of clipped OSM building polygons",
+      "confidence": "high",
+      "assumptions": [
+        "A-OSM-EXISTING-CONTEXT-001"
+      ]
+    },
+    "osm_existing_road_feature_count": {
+      "status": "known",
+      "value": 2489,
+      "unit": "count",
+      "source_files": [
+        "https://overpass-api.de/api/interpreter"
+      ],
+      "formula": "count of clipped OSM highway features",
+      "confidence": "high",
+      "assumptions": [
+        "A-OSM-EXISTING-CONTEXT-001"
+      ]
+    },
+    "osm_existing_road_length_m": {
+      "status": "known",
+      "value": 318609.095,
+      "unit": "m",
+      "source_files": [
+        "https://overpass-api.de/api/interpreter"
+      ],
+      "formula": "EPSG:4548 length of clipped OSM highway features",
+      "confidence": "high",
+      "assumptions": [
+        "A-OSM-EXISTING-CONTEXT-001"
+      ]
+    },
+    "osm_existing_active_mobility_length_m": {
+      "status": "known",
+      "value": 88590.2,
+      "unit": "m",
+      "source_files": [
+        "https://overpass-api.de/api/interpreter"
+      ],
+      "formula": "EPSG:4548 length of OSM cycleway, footway, path, pedestrian, steps, corridor and bridleway features",
+      "confidence": "high",
+      "assumptions": [
+        "A-OSM-EXISTING-CONTEXT-001"
+      ]
+    },
+    "osm_existing_rail_feature_count": {
+      "status": "known",
+      "value": 106,
+      "unit": "count",
+      "source_files": [
+        "https://overpass-api.de/api/interpreter"
+      ],
+      "formula": "count of clipped OSM railway features",
+      "confidence": "high",
+      "assumptions": [
+        "A-OSM-EXISTING-CONTEXT-001"
+      ]
+    },
+    "osm_existing_rail_length_m": {
+      "status": "known",
+      "value": 52056.569,
+      "unit": "m",
+      "source_files": [
+        "https://overpass-api.de/api/interpreter"
+      ],
+      "formula": "EPSG:4548 length of clipped OSM railway features",
+      "confidence": "high",
+      "assumptions": [
+        "A-OSM-EXISTING-CONTEXT-001"
+      ]
+    },
+    "osm_existing_water_feature_count": {
+      "status": "known",
+      "value": 23,
+      "unit": "count",
+      "source_files": [
+        "https://overpass-api.de/api/interpreter"
+      ],
+      "formula": "count of clipped OSM water features",
+      "confidence": "high",
+      "assumptions": [
+        "A-OSM-EXISTING-CONTEXT-001"
+      ]
+    },
+    "osm_existing_water_line_length_m": {
+      "status": "known",
+      "value": 9323.985,
+      "unit": "m",
+      "source_files": [
+        "https://overpass-api.de/api/interpreter"
+      ],
+      "formula": "EPSG:4548 length of clipped OSM water lines",
+      "confidence": "high",
+      "assumptions": [
+        "A-OSM-EXISTING-CONTEXT-001"
+      ]
+    },
+    "osm_existing_water_polygon_area_sqm": {
+      "status": "known",
+      "value": 125523.106,
+      "unit": "sqm",
+      "source_files": [
+        "https://overpass-api.de/api/interpreter"
+      ],
+      "formula": "EPSG:4548 area of clipped OSM water polygons",
+      "confidence": "high",
+      "assumptions": [
+        "A-OSM-EXISTING-CONTEXT-001"
+      ]
+    },
+    "osm_existing_poi_feature_count": {
+      "status": "known",
+      "value": 1058,
+      "unit": "count",
+      "source_files": [
+        "https://overpass-api.de/api/interpreter"
+      ],
+      "formula": "count of OSM amenity, leisure, public_transport and tourism features inside provisional SITE-001",
+      "confidence": "high",
+      "assumptions": [
+        "A-OSM-EXISTING-CONTEXT-001"
+      ]
+    },
+    "tianditu_haidian_1_500_catalog_record_count": {
+      "status": "known",
+      "value": 13230,
+      "unit": "count",
+      "source_files": [
+        "https://mulu.tianditu.gov.cn/catalog?source=156110000",
+        "sources.json"
+      ],
+      "formula": "official catalog UI count for 全国/北京/海淀区 + vector/land + 1:500",
+      "confidence": "high",
+      "assumptions": [
+        "A-TIANDITU-CONTROLLED-MAPPING-001"
+      ]
+    },
+    "tianditu_project_1_500_catalog_record_count": {
+      "status": "known",
+      "value": 1506,
+      "unit": "count",
+      "source_files": [
+        "https://mulu.tianditu.gov.cn/catalog?source=156110000",
+        "sources.json"
+      ],
+      "formula": "official catalog API count intersecting provisional SITE-001 WKT; includes historical versions",
+      "confidence": "high",
+      "assumptions": [
+        "A-TIANDITU-CONTROLLED-MAPPING-001"
+      ]
+    },
+    "tianditu_project_1_500_unique_sheet_count": {
+      "status": "known",
+      "value": 502,
+      "unit": "count",
+      "source_files": [
+        "https://mulu.tianditu.gov.cn/catalog?source=156110000",
+        "sources.json"
+      ],
+      "formula": "distinct idNewMapNum among 1506 catalog records intersecting provisional SITE-001",
+      "confidence": "high",
+      "assumptions": [
+        "A-TIANDITU-CONTROLLED-MAPPING-001"
+      ]
+    },
+    "tianditu_project_1_500_latest_2024_sheet_count": {
+      "status": "known",
+      "value": 253,
+      "unit": "count",
+      "source_files": [
+        "https://mulu.tianditu.gov.cn/catalog?source=156110000",
+        "sources.json"
+      ],
+      "formula": "latest record per distinct sheet is 2024 edition",
+      "confidence": "high",
+      "assumptions": [
+        "A-TIANDITU-CONTROLLED-MAPPING-001"
+      ]
+    },
+    "tianditu_project_1_500_latest_2021_sheet_count": {
+      "status": "known",
+      "value": 249,
+      "unit": "count",
+      "source_files": [
+        "https://mulu.tianditu.gov.cn/catalog?source=156110000",
+        "sources.json"
+      ],
+      "formula": "latest record per distinct sheet is 2021 edition",
+      "confidence": "high",
+      "assumptions": [
+        "A-TIANDITU-CONTROLLED-MAPPING-001"
+      ]
+    },
+    "worldcover_2021_valid_pixel_count": {
+      "status": "known",
+      "value": 173406,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/worldcover_2021_summary.json",
+        "visual/assets/worldcover_2021_classes.png"
+      ],
+      "formula": "count of WorldCover pixel centers inside provisional SITE-001",
+      "confidence": "medium",
+      "assumptions": [
+        "A-WORLDCOVER-2021-001"
+      ]
+    },
+    "worldcover_2021_estimated_covered_area_sqm": {
+      "status": "known",
+      "value": 11421935.869,
+      "unit": "sqm",
+      "source_files": [
+        "visual/assets/worldcover_2021_summary.json",
+        "visual/assets/worldcover_2021_classes.png"
+      ],
+      "formula": "row-specific EPSG:4548 pixel area multiplied by SITE-001 center-inclusion counts",
+      "confidence": "medium",
+      "assumptions": [
+        "A-WORLDCOVER-2021-001"
+      ]
+    },
+    "worldcover_2021_built_up_share": {
+      "status": "known",
+      "value": 0.734104,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/worldcover_2021_summary.json",
+        "visual/assets/worldcover_2021_classes.png"
+      ],
+      "formula": "WorldCover class 50 pixel count / valid clipped pixel count",
+      "confidence": "medium",
+      "assumptions": [
+        "A-WORLDCOVER-2021-001"
+      ]
+    },
+    "worldcover_2021_tree_cover_share": {
+      "status": "known",
+      "value": 0.245828,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/worldcover_2021_summary.json",
+        "visual/assets/worldcover_2021_classes.png"
+      ],
+      "formula": "WorldCover class 10 pixel count / valid clipped pixel count",
+      "confidence": "medium",
+      "assumptions": [
+        "A-WORLDCOVER-2021-001"
+      ]
+    },
+    "worldcover_2021_permanent_water_share": {
+      "status": "known",
+      "value": 0.002341,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/worldcover_2021_summary.json",
+        "visual/assets/worldcover_2021_classes.png"
+      ],
+      "formula": "WorldCover class 80 pixel count / valid clipped pixel count",
+      "confidence": "medium",
+      "assumptions": [
+        "A-WORLDCOVER-2021-001"
+      ]
+    },
+    "copdem_glo30_valid_sample_count": {
+      "status": "known",
+      "value": 15628,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/copdem_glo30_summary.json",
+        "visual/assets/copdem_glo30_elevation_dm.png"
+      ],
+      "formula": "count of GLO-30 RasterPixelIsPoint samples covered by provisional SITE-001",
+      "confidence": "medium",
+      "assumptions": [
+        "A-COPDEM-GLO30-001"
+      ]
+    },
+    "copdem_glo30_surface_elevation_min_m": {
+      "status": "known",
+      "value": 32.0,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/copdem_glo30_summary.json",
+        "visual/assets/copdem_glo30_elevation_dm.png"
+      ],
+      "formula": "minimum valid DSM sample",
+      "confidence": "medium",
+      "assumptions": [
+        "A-COPDEM-GLO30-001"
+      ]
+    },
+    "copdem_glo30_surface_elevation_max_m": {
+      "status": "known",
+      "value": 127.996,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/copdem_glo30_summary.json",
+        "visual/assets/copdem_glo30_elevation_dm.png"
+      ],
+      "formula": "maximum valid DSM sample",
+      "confidence": "medium",
+      "assumptions": [
+        "A-COPDEM-GLO30-001"
+      ]
+    },
+    "copdem_glo30_surface_elevation_mean_m": {
+      "status": "known",
+      "value": 49.784,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/copdem_glo30_summary.json",
+        "visual/assets/copdem_glo30_elevation_dm.png"
+      ],
+      "formula": "mean of valid DSM samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-COPDEM-GLO30-001"
+      ]
+    },
+    "copdem_glo30_surface_elevation_median_m": {
+      "status": "known",
+      "value": 37.112,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/copdem_glo30_summary.json",
+        "visual/assets/copdem_glo30_elevation_dm.png"
+      ],
+      "formula": "median of valid DSM samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-COPDEM-GLO30-001"
+      ]
+    },
+    "copdem_glo30_surface_relief_m": {
+      "status": "known",
+      "value": 95.996,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/copdem_glo30_summary.json",
+        "visual/assets/copdem_glo30_elevation_dm.png"
+      ],
+      "formula": "maximum valid DSM sample minus minimum valid DSM sample",
+      "confidence": "medium",
+      "assumptions": [
+        "A-COPDEM-GLO30-001"
+      ]
+    },
+    "copdem_glo30_surface_slope_valid_sample_count": {
+      "status": "known",
+      "value": 14872,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/copdem_glo30_summary.json",
+        "visual/assets/copdem_glo30_elevation_dm.png"
+      ],
+      "formula": "count of samples whose 3 x 3 neighbourhood is inside provisional SITE-001",
+      "confidence": "medium",
+      "assumptions": [
+        "A-COPDEM-GLO30-001"
+      ]
+    },
+    "copdem_glo30_surface_slope_median_deg": {
+      "status": "known",
+      "value": 4.256,
+      "unit": "degree",
+      "source_files": [
+        "visual/assets/copdem_glo30_summary.json",
+        "visual/assets/copdem_glo30_elevation_dm.png"
+      ],
+      "formula": "median arctangent of central-difference DSM gradient on EPSG:4548 spacing",
+      "confidence": "medium",
+      "assumptions": [
+        "A-COPDEM-GLO30-001"
+      ]
+    },
+    "copdem_glo30_surface_slope_p95_deg": {
+      "status": "known",
+      "value": 62.581,
+      "unit": "degree",
+      "source_files": [
+        "visual/assets/copdem_glo30_summary.json",
+        "visual/assets/copdem_glo30_elevation_dm.png"
+      ],
+      "formula": "95th percentile of central-difference DSM gradient on 3 x 3 valid samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-COPDEM-GLO30-001"
+      ]
+    },
+    "copdem_glo30_surface_slope_under_2deg_share": {
+      "status": "known",
+      "value": 0.191703,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/copdem_glo30_summary.json",
+        "visual/assets/copdem_glo30_elevation_dm.png"
+      ],
+      "formula": "valid 3 x 3 DSM slope samples below 2 degrees / all valid slope samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-COPDEM-GLO30-001"
+      ]
+    },
+    "copdem_glo30_surface_slope_2_to_under_5deg_share": {
+      "status": "known",
+      "value": 0.38475,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/copdem_glo30_summary.json",
+        "visual/assets/copdem_glo30_elevation_dm.png"
+      ],
+      "formula": "valid 3 x 3 DSM slope samples from 2 to below 5 degrees / all valid slope samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-COPDEM-GLO30-001"
+      ]
+    },
+    "copdem_glo30_surface_slope_5_to_under_15deg_share": {
+      "status": "known",
+      "value": 0.284562,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/copdem_glo30_summary.json",
+        "visual/assets/copdem_glo30_elevation_dm.png"
+      ],
+      "formula": "valid 3 x 3 DSM slope samples from 5 to below 15 degrees / all valid slope samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-COPDEM-GLO30-001"
+      ]
+    },
+    "copdem_glo30_surface_slope_15deg_or_more_share": {
+      "status": "known",
+      "value": 0.138986,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/copdem_glo30_summary.json",
+        "visual/assets/copdem_glo30_elevation_dm.png"
+      ],
+      "formula": "valid 3 x 3 DSM slope samples at or above 15 degrees / all valid slope samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-COPDEM-GLO30-001"
+      ]
+    },
+    "jrc_gsw_v15_site_pixel_count": {
+      "status": "known",
+      "value": 19230,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/jrc_gsw_v15_summary.json",
+        "visual/assets/jrc_gsw_v15_occurrence.png",
+        "visual/assets/jrc_gsw_v15_transitions.png",
+        "visual/assets/jrc_gsw_v15_max_extent_2022_2024.png"
+      ],
+      "formula": "count of approximately 30 m pixel centres covered by provisional SITE-001",
+      "confidence": "medium",
+      "assumptions": [
+        "A-JRC-GSW-V15-001"
+      ]
+    },
+    "jrc_gsw_v15_water_detected_pixel_count": {
+      "status": "known",
+      "value": 33,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/jrc_gsw_v15_summary.json",
+        "visual/assets/jrc_gsw_v15_occurrence.png",
+        "visual/assets/jrc_gsw_v15_transitions.png",
+        "visual/assets/jrc_gsw_v15_max_extent_2022_2024.png"
+      ],
+      "formula": "count of valid occurrence pixels with code 1-100",
+      "confidence": "medium",
+      "assumptions": [
+        "A-JRC-GSW-V15-001"
+      ]
+    },
+    "jrc_gsw_v15_water_detected_share": {
+      "status": "known",
+      "value": 0.001716,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/jrc_gsw_v15_summary.json",
+        "visual/assets/jrc_gsw_v15_occurrence.png",
+        "visual/assets/jrc_gsw_v15_transitions.png",
+        "visual/assets/jrc_gsw_v15_max_extent_2022_2024.png"
+      ],
+      "formula": "occurrence-detected pixels / valid SITE-001 occurrence pixels",
+      "confidence": "medium",
+      "assumptions": [
+        "A-JRC-GSW-V15-001"
+      ]
+    },
+    "jrc_gsw_v15_water_detected_estimated_area_sqm": {
+      "status": "known",
+      "value": 19557.417,
+      "unit": "sqm",
+      "source_files": [
+        "visual/assets/jrc_gsw_v15_summary.json",
+        "visual/assets/jrc_gsw_v15_occurrence.png",
+        "visual/assets/jrc_gsw_v15_transitions.png",
+        "visual/assets/jrc_gsw_v15_max_extent_2022_2024.png"
+      ],
+      "formula": "row-specific EPSG:4548 area estimate of occurrence-detected pixels",
+      "confidence": "medium",
+      "assumptions": [
+        "A-JRC-GSW-V15-001"
+      ]
+    },
+    "jrc_gsw_v15_detected_mean_occurrence_percent": {
+      "status": "known",
+      "value": 11.455,
+      "unit": "percent",
+      "source_files": [
+        "visual/assets/jrc_gsw_v15_summary.json",
+        "visual/assets/jrc_gsw_v15_occurrence.png",
+        "visual/assets/jrc_gsw_v15_transitions.png",
+        "visual/assets/jrc_gsw_v15_max_extent_2022_2024.png"
+      ],
+      "formula": "mean 1984-2024 occurrence code among pixels with code 1-100",
+      "confidence": "medium",
+      "assumptions": [
+        "A-JRC-GSW-V15-001"
+      ]
+    },
+    "jrc_gsw_v15_detected_max_occurrence_percent": {
+      "status": "known",
+      "value": 24,
+      "unit": "percent",
+      "source_files": [
+        "visual/assets/jrc_gsw_v15_summary.json",
+        "visual/assets/jrc_gsw_v15_occurrence.png",
+        "visual/assets/jrc_gsw_v15_transitions.png",
+        "visual/assets/jrc_gsw_v15_max_extent_2022_2024.png"
+      ],
+      "formula": "maximum 1984-2024 occurrence code within provisional SITE-001",
+      "confidence": "medium",
+      "assumptions": [
+        "A-JRC-GSW-V15-001"
+      ]
+    },
+    "jrc_gsw_v15_high_occurrence_75plus_pixel_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/jrc_gsw_v15_summary.json",
+        "visual/assets/jrc_gsw_v15_occurrence.png",
+        "visual/assets/jrc_gsw_v15_transitions.png",
+        "visual/assets/jrc_gsw_v15_max_extent_2022_2024.png"
+      ],
+      "formula": "count of occurrence pixels with code 75-100",
+      "confidence": "medium",
+      "assumptions": [
+        "A-JRC-GSW-V15-001"
+      ]
+    },
+    "jrc_gsw_v15_new_permanent_pixel_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/jrc_gsw_v15_summary.json",
+        "visual/assets/jrc_gsw_v15_occurrence.png",
+        "visual/assets/jrc_gsw_v15_transitions.png",
+        "visual/assets/jrc_gsw_v15_max_extent_2022_2024.png"
+      ],
+      "formula": "count of official v1.5 transition class 2 pixels",
+      "confidence": "medium",
+      "assumptions": [
+        "A-JRC-GSW-V15-001"
+      ]
+    },
+    "jrc_gsw_v15_new_seasonal_pixel_count": {
+      "status": "known",
+      "value": 21,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/jrc_gsw_v15_summary.json",
+        "visual/assets/jrc_gsw_v15_occurrence.png",
+        "visual/assets/jrc_gsw_v15_transitions.png",
+        "visual/assets/jrc_gsw_v15_max_extent_2022_2024.png"
+      ],
+      "formula": "count of official v1.5 transition class 5 pixels",
+      "confidence": "medium",
+      "assumptions": [
+        "A-JRC-GSW-V15-001"
+      ]
+    },
+    "jrc_gsw_v15_ephemeral_seasonal_pixel_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/jrc_gsw_v15_summary.json",
+        "visual/assets/jrc_gsw_v15_occurrence.png",
+        "visual/assets/jrc_gsw_v15_transitions.png",
+        "visual/assets/jrc_gsw_v15_max_extent_2022_2024.png"
+      ],
+      "formula": "count of official v1.5 transition class 10 pixels",
+      "confidence": "medium",
+      "assumptions": [
+        "A-JRC-GSW-V15-001"
+      ]
+    },
+    "jrc_gsw_v15_max_extent_2022_2024_water_pixel_count": {
+      "status": "known",
+      "value": 33,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/jrc_gsw_v15_summary.json",
+        "visual/assets/jrc_gsw_v15_occurrence.png",
+        "visual/assets/jrc_gsw_v15_transitions.png",
+        "visual/assets/jrc_gsw_v15_max_extent_2022_2024.png"
+      ],
+      "formula": "count of water-coded pixels in the included v1.5 2022-2024 extent layer",
+      "confidence": "medium",
+      "assumptions": [
+        "A-JRC-GSW-V15-001"
+      ]
+    },
+    "jrc_gsw_v15_max_extent_2022_2024_water_share": {
+      "status": "known",
+      "value": 0.001716,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/jrc_gsw_v15_summary.json",
+        "visual/assets/jrc_gsw_v15_occurrence.png",
+        "visual/assets/jrc_gsw_v15_transitions.png",
+        "visual/assets/jrc_gsw_v15_max_extent_2022_2024.png"
+      ],
+      "formula": "2022-2024 extent water pixels / valid SITE-001 extent pixels",
+      "confidence": "medium",
+      "assumptions": [
+        "A-JRC-GSW-V15-001"
+      ]
+    },
+    "jrc_gsw_v15_max_extent_2022_2024_water_estimated_area_sqm": {
+      "status": "known",
+      "value": 19557.417,
+      "unit": "sqm",
+      "source_files": [
+        "visual/assets/jrc_gsw_v15_summary.json",
+        "visual/assets/jrc_gsw_v15_occurrence.png",
+        "visual/assets/jrc_gsw_v15_transitions.png",
+        "visual/assets/jrc_gsw_v15_max_extent_2022_2024.png"
+      ],
+      "formula": "row-specific EPSG:4548 area estimate of 2022-2024 extent water pixels",
+      "confidence": "medium",
+      "assumptions": [
+        "A-JRC-GSW-V15-001"
+      ]
+    },
+    "sentinel2_20260715_scene_cloud_cover_percent": {
+      "status": "known",
+      "value": 0.004107,
+      "unit": "percent",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "Earth Search eo:cloud_cover for the selected COG item",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_site_10m_pixel_count": {
+      "status": "known",
+      "value": 114028,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "count of 10 m pixel centres covered by provisional SITE-001",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_analysis_valid_pixel_count": {
+      "status": "known",
+      "value": 112962,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "SITE-001 10 m pixels with four non-nodata bands and accepted SCL",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_analysis_valid_share": {
+      "status": "known",
+      "value": 0.990651,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "analysis-valid 10 m pixels / SITE-001 10 m pixels",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_scl_site_20m_pixel_count": {
+      "status": "known",
+      "value": 28511,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "count of 20 m SCL pixel centres covered by provisional SITE-001",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_scl_vegetation_pixel_count": {
+      "status": "known",
+      "value": 10765,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "count of SITE-001 20 m SCL code 4 pixels",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_scl_vegetation_share": {
+      "status": "known",
+      "value": 0.377574,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "SITE-001 20 m SCL code 4 pixels / SITE-001 SCL pixels",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_scl_not_vegetated_pixel_count": {
+      "status": "known",
+      "value": 17477,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "count of SITE-001 20 m SCL code 5 pixels",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_scl_not_vegetated_share": {
+      "status": "known",
+      "value": 0.612991,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "SITE-001 20 m SCL code 5 pixels / SITE-001 SCL pixels",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_scl_topographic_shadow_pixel_count": {
+      "status": "known",
+      "value": 266,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "count of SITE-001 20 m SCL code 2 pixels",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_scl_topographic_shadow_share": {
+      "status": "known",
+      "value": 0.00933,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "SITE-001 20 m SCL code 2 pixels / SITE-001 SCL pixels",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_scl_water_pixel_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "count of SITE-001 20 m SCL code 6 pixels",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_scl_water_share": {
+      "status": "known",
+      "value": 3.5e-05,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "SITE-001 20 m SCL code 6 pixels / SITE-001 SCL pixels",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_ndvi_median": {
+      "status": "known",
+      "value": 0.3428,
+      "unit": "index",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "median valid NDVI after reflectance, SCL and denominator screening",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_ndvi_above_030_pixel_count": {
+      "status": "known",
+      "value": 61648,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "count of valid 10 m NDVI pixels above 0.30",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_ndvi_above_030_share": {
+      "status": "known",
+      "value": 0.545741,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "valid 10 m NDVI pixels above 0.30 / all valid NDVI pixels",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_ndvi_above_050_pixel_count": {
+      "status": "known",
+      "value": 39545,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "count of valid 10 m NDVI pixels above 0.50",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_ndvi_above_050_share": {
+      "status": "known",
+      "value": 0.350073,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "valid 10 m NDVI pixels above 0.50 / all valid NDVI pixels",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_ndwi_median": {
+      "status": "known",
+      "value": -0.3577,
+      "unit": "index",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "median valid McFeeters NDWI after reflectance, SCL and denominator screening",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_ndwi_above_0_pixel_count": {
+      "status": "known",
+      "value": 1039,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "count of valid 10 m McFeeters NDWI pixels above zero",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "sentinel2_20260715_ndwi_above_0_share": {
+      "status": "known",
+      "value": 0.009198,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/sentinel2_20260715_summary.json",
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json"
+      ],
+      "formula": "valid 10 m McFeeters NDWI pixels above zero / all valid NDWI pixels",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SENTINEL2-L2A-20260715-001"
+      ]
+    },
+    "overture_building_raw_bbox_feature_count": {
+      "status": "known",
+      "value": 5225,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "visual/assets/overture_20260722_buildings_summary.json"
+      ],
+      "formula": "count of building records returned by the official bbox download before SITE-001 clipping",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OVERTURE-BUILDINGS-20260722-001"
+      ]
+    },
+    "overture_building_site_feature_count": {
+      "status": "known",
+      "value": 4533,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "visual/assets/overture_20260722_buildings_summary.json"
+      ],
+      "formula": "count of Overture building records intersecting provisional SITE-001 after geometry validation and clipping",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OVERTURE-BUILDINGS-20260722-001"
+      ]
+    },
+    "overture_building_osm_source_feature_count": {
+      "status": "known",
+      "value": 1699,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "visual/assets/overture_20260722_buildings_summary.json"
+      ],
+      "formula": "count of SITE-001 Overture records whose source set includes OpenStreetMap; excluded from the increment",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OVERTURE-BUILDINGS-20260722-001"
+      ]
+    },
+    "overture_building_east_asia_source_feature_count": {
+      "status": "known",
+      "value": 2834,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "visual/assets/overture_20260722_buildings_summary.json"
+      ],
+      "formula": "count of SITE-001 Overture records whose source set is the East Asian building DOI",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OVERTURE-BUILDINGS-20260722-001"
+      ]
+    },
+    "overture_building_direct_osm_record_match_count": {
+      "status": "known",
+      "value": 1684,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "visual/assets/overture_20260722_buildings_summary.json"
+      ],
+      "formula": "count of retained OSM building record IDs directly matched in Overture",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OVERTURE-BUILDINGS-20260722-001"
+      ]
+    },
+    "overture_building_full_union_area_sqm": {
+      "status": "known",
+      "value": 2623630.587,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "visual/assets/overture_20260722_buildings_summary.json"
+      ],
+      "formula": "EPSG:4548 union area of all Overture building geometries clipped to provisional SITE-001",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OVERTURE-BUILDINGS-20260722-001"
+      ]
+    },
+    "overture_building_existing_osm_union_area_sqm": {
+      "status": "known",
+      "value": 2017912.446,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "visual/assets/overture_20260722_buildings_summary.json"
+      ],
+      "formula": "EPSG:4548 union area of the retained existing OSM building layer",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OVERTURE-BUILDINGS-20260722-001"
+      ]
+    },
+    "overture_building_increment_feature_count": {
+      "status": "known",
+      "value": 2834,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "visual/assets/overture_20260722_buildings_summary.json"
+      ],
+      "formula": "count of retained non-OSM East Asian source features appended to the canonical building layer",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OVERTURE-BUILDINGS-20260722-001"
+      ]
+    },
+    "overture_building_increment_sum_area_sqm": {
+      "status": "known",
+      "value": 573679.882,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "visual/assets/overture_20260722_buildings_summary.json"
+      ],
+      "formula": "sum of EPSG:4548 areas for retained non-OSM clipped features before dissolving overlaps",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OVERTURE-BUILDINGS-20260722-001"
+      ]
+    },
+    "overture_building_increment_union_area_sqm": {
+      "status": "known",
+      "value": 573676.833,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "visual/assets/overture_20260722_buildings_summary.json"
+      ],
+      "formula": "EPSG:4548 union area of retained non-OSM increment features",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OVERTURE-BUILDINGS-20260722-001"
+      ]
+    },
+    "overture_building_increment_overlap_with_osm_sqm": {
+      "status": "known",
+      "value": 14.791,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "visual/assets/overture_20260722_buildings_summary.json"
+      ],
+      "formula": "EPSG:4548 intersection area between the retained non-OSM increment union and retained OSM building union",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OVERTURE-BUILDINGS-20260722-001"
+      ]
+    },
+    "overture_building_increment_over_osm_area_sqm": {
+      "status": "known",
+      "value": 573662.042,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "visual/assets/overture_20260722_buildings_summary.json"
+      ],
+      "formula": "retained non-OSM union area outside the retained OSM building union in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OVERTURE-BUILDINGS-20260722-001"
+      ]
+    },
+    "overture_building_increment_gain_ratio": {
+      "status": "known",
+      "value": 0.284285,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "visual/assets/overture_20260722_buildings_summary.json"
+      ],
+      "formula": "non-OSM incremental union area outside OSM / retained OSM building union area",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OVERTURE-BUILDINGS-20260722-001"
+      ]
+    },
+    "overture_building_combined_existing_feature_count": {
+      "status": "known",
+      "value": 4522,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "visual/assets/overture_20260722_buildings_summary.json"
+      ],
+      "formula": "retained OSM building feature count plus retained Overture non-OSM increment feature count",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OVERTURE-BUILDINGS-20260722-001"
+      ]
+    },
+    "overture_building_combined_union_area_sqm": {
+      "status": "known",
+      "value": 2591574.488,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "visual/assets/overture_20260722_buildings_summary.json"
+      ],
+      "formula": "EPSG:4548 union area of retained OSM and retained Overture non-OSM existing-condition footprints",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OVERTURE-BUILDINGS-20260722-001"
+      ]
+    },
+    "overture_building_combined_union_site_share": {
+      "status": "known",
+      "value": 0.227076,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "visual/assets/overture_20260722_buildings_summary.json"
+      ],
+      "formula": "combined existing-building union area / provisional SITE-001 area",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OVERTURE-BUILDINGS-20260722-001"
+      ]
+    },
+    "ghsl_builth_2018_valid_sample_count": {
+      "status": "known",
+      "value": 1743,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/ghsl_builth_2018_agbh_x100.png",
+        "visual/assets/ghsl_builth_2018_anbh_x100.png",
+        "visual/assets/ghsl_builth_2018_summary.json"
+      ],
+      "formula": "count of 3 arc-second pixel centres covered by provisional SITE-001 with positive AGBH and ANBH values",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-BUILT-H-2018-001"
+      ]
+    },
+    "ghsl_builth_2018_agbh_mean_m3_per_m2": {
+      "status": "known",
+      "value": 8.56342,
+      "unit": "m3_per_m2",
+      "source_files": [
+        "visual/assets/ghsl_builth_2018_agbh_x100.png",
+        "visual/assets/ghsl_builth_2018_anbh_x100.png",
+        "visual/assets/ghsl_builth_2018_summary.json"
+      ],
+      "formula": "mean 2018 AGBH across valid provisional SITE-001 samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-BUILT-H-2018-001"
+      ]
+    },
+    "ghsl_builth_2018_agbh_median_m3_per_m2": {
+      "status": "known",
+      "value": 8.324928,
+      "unit": "m3_per_m2",
+      "source_files": [
+        "visual/assets/ghsl_builth_2018_agbh_x100.png",
+        "visual/assets/ghsl_builth_2018_anbh_x100.png",
+        "visual/assets/ghsl_builth_2018_summary.json"
+      ],
+      "formula": "median 2018 AGBH across valid provisional SITE-001 samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-BUILT-H-2018-001"
+      ]
+    },
+    "ghsl_builth_2018_agbh_p95_m3_per_m2": {
+      "status": "known",
+      "value": 16.137699,
+      "unit": "m3_per_m2",
+      "source_files": [
+        "visual/assets/ghsl_builth_2018_agbh_x100.png",
+        "visual/assets/ghsl_builth_2018_anbh_x100.png",
+        "visual/assets/ghsl_builth_2018_summary.json"
+      ],
+      "formula": "95th percentile 2018 AGBH across valid provisional SITE-001 samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-BUILT-H-2018-001"
+      ]
+    },
+    "ghsl_builth_2018_agbh_max_m3_per_m2": {
+      "status": "known",
+      "value": 28.500154,
+      "unit": "m3_per_m2",
+      "source_files": [
+        "visual/assets/ghsl_builth_2018_agbh_x100.png",
+        "visual/assets/ghsl_builth_2018_anbh_x100.png",
+        "visual/assets/ghsl_builth_2018_summary.json"
+      ],
+      "formula": "maximum 2018 AGBH among valid provisional SITE-001 samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-BUILT-H-2018-001"
+      ]
+    },
+    "ghsl_builth_2018_anbh_min_m": {
+      "status": "known",
+      "value": 5.313112,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/ghsl_builth_2018_agbh_x100.png",
+        "visual/assets/ghsl_builth_2018_anbh_x100.png",
+        "visual/assets/ghsl_builth_2018_summary.json"
+      ],
+      "formula": "minimum 2018 ANBH among valid provisional SITE-001 samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-BUILT-H-2018-001"
+      ]
+    },
+    "ghsl_builth_2018_anbh_mean_m": {
+      "status": "known",
+      "value": 24.091944,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/ghsl_builth_2018_agbh_x100.png",
+        "visual/assets/ghsl_builth_2018_anbh_x100.png",
+        "visual/assets/ghsl_builth_2018_summary.json"
+      ],
+      "formula": "mean 2018 ANBH across valid provisional SITE-001 samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-BUILT-H-2018-001"
+      ]
+    },
+    "ghsl_builth_2018_anbh_median_m": {
+      "status": "known",
+      "value": 23.93125,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/ghsl_builth_2018_agbh_x100.png",
+        "visual/assets/ghsl_builth_2018_anbh_x100.png",
+        "visual/assets/ghsl_builth_2018_summary.json"
+      ],
+      "formula": "median 2018 ANBH across valid provisional SITE-001 samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-BUILT-H-2018-001"
+      ]
+    },
+    "ghsl_builth_2018_anbh_p95_m": {
+      "status": "known",
+      "value": 39.048023,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/ghsl_builth_2018_agbh_x100.png",
+        "visual/assets/ghsl_builth_2018_anbh_x100.png",
+        "visual/assets/ghsl_builth_2018_summary.json"
+      ],
+      "formula": "95th percentile 2018 ANBH across valid provisional SITE-001 samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-BUILT-H-2018-001"
+      ]
+    },
+    "ghsl_builth_2018_anbh_max_m": {
+      "status": "known",
+      "value": 57.290245,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/ghsl_builth_2018_agbh_x100.png",
+        "visual/assets/ghsl_builth_2018_anbh_x100.png",
+        "visual/assets/ghsl_builth_2018_summary.json"
+      ],
+      "formula": "maximum 2018 ANBH among valid provisional SITE-001 samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-BUILT-H-2018-001"
+      ]
+    },
+    "ghsl_builth_2018_anbh_under_10m_share": {
+      "status": "known",
+      "value": 0.054504,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ghsl_builth_2018_agbh_x100.png",
+        "visual/assets/ghsl_builth_2018_anbh_x100.png",
+        "visual/assets/ghsl_builth_2018_summary.json"
+      ],
+      "formula": "valid 2018 ANBH samples below 10 m / all valid ANBH samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-BUILT-H-2018-001"
+      ]
+    },
+    "ghsl_builth_2018_anbh_10_to_under_20m_share": {
+      "status": "known",
+      "value": 0.253586,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ghsl_builth_2018_agbh_x100.png",
+        "visual/assets/ghsl_builth_2018_anbh_x100.png",
+        "visual/assets/ghsl_builth_2018_summary.json"
+      ],
+      "formula": "valid 2018 ANBH samples from 10 m to below 20 m / all valid ANBH samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-BUILT-H-2018-001"
+      ]
+    },
+    "ghsl_builth_2018_anbh_20_to_under_30m_share": {
+      "status": "known",
+      "value": 0.48078,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ghsl_builth_2018_agbh_x100.png",
+        "visual/assets/ghsl_builth_2018_anbh_x100.png",
+        "visual/assets/ghsl_builth_2018_summary.json"
+      ],
+      "formula": "valid 2018 ANBH samples from 20 m to below 30 m / all valid ANBH samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-BUILT-H-2018-001"
+      ]
+    },
+    "ghsl_builth_2018_anbh_30_to_under_45m_share": {
+      "status": "known",
+      "value": 0.196787,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ghsl_builth_2018_agbh_x100.png",
+        "visual/assets/ghsl_builth_2018_anbh_x100.png",
+        "visual/assets/ghsl_builth_2018_summary.json"
+      ],
+      "formula": "valid 2018 ANBH samples from 30 m to below 45 m / all valid ANBH samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-BUILT-H-2018-001"
+      ]
+    },
+    "ghsl_builth_2018_anbh_45m_or_more_share": {
+      "status": "known",
+      "value": 0.014343,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ghsl_builth_2018_agbh_x100.png",
+        "visual/assets/ghsl_builth_2018_anbh_x100.png",
+        "visual/assets/ghsl_builth_2018_summary.json"
+      ],
+      "formula": "valid 2018 ANBH samples at or above 45 m / all valid ANBH samples",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-BUILT-H-2018-001"
+      ]
+    },
+    "ghsl_obat_chn_national_record_count": {
+      "status": "known",
+      "value": 5428385,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "count of data rows streamed from the integrity-validated CHN CSV",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_site_selected_record_count": {
+      "status": "known",
+      "value": 1366,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "GHS-OBAT rows retained by provisional SITE-001 centroid coverage or direct canonical GERS match",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_accepted_match_count": {
+      "status": "known",
+      "value": 1289,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "one-to-one accepted GHS-OBAT to canonical existing-building matches",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_accepted_match_share": {
+      "status": "known",
+      "value": 0.285051,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "accepted matches / canonical existing buildings",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_high_confidence_match_count": {
+      "status": "known",
+      "value": 1204,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "accepted matches with centroid coverage, unclipped canonical geometry and area ratio from 0.95 to 1.05",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_medium_confidence_match_count": {
+      "status": "known",
+      "value": 85,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "accepted matches meeting the wider documented one-to-one area rule",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_stable_gers_direct_match_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "normalized 2026 canonical non-OSM Overture ids directly found in the 2024 GHS-OBAT table",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_osm_match_share": {
+      "status": "known",
+      "value": 0.761256,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "accepted GHS-OBAT matches to OSM canonical features / all OSM canonical features",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_overture_non_osm_match_share": {
+      "status": "known",
+      "value": 0.001411,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "accepted GHS-OBAT matches to current Overture non-OSM canonical features / all such canonical features",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_unmatched_selected_record_count": {
+      "status": "known",
+      "value": 77,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "selected GHS-OBAT SITE-001 rows without an accepted canonical match",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_unmatched_canonical_building_count": {
+      "status": "known",
+      "value": 3233,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "canonical existing buildings without an accepted GHS-OBAT match",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_height_mean_m": {
+      "status": "known",
+      "value": 26.562514,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "mean model height among accepted GHS-OBAT matches",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_height_median_m": {
+      "status": "known",
+      "value": 25.64,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "median model height among accepted GHS-OBAT matches",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_height_p95_m": {
+      "status": "known",
+      "value": 39.974,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "95th percentile model height among accepted GHS-OBAT matches",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_residential_or_mixed_share": {
+      "status": "known",
+      "value": 0.875097,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "accepted matches classified as residential or compatible mixed use / accepted matches",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_non_residential_share": {
+      "status": "known",
+      "value": 0.124903,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "accepted matches classified as non-residential / accepted matches",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_epoch_before_1980_share": {
+      "status": "known",
+      "value": 0.904577,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "accepted matches assigned the before-1980 GHS-AGE class / accepted matches",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_epoch_1980s_share": {
+      "status": "known",
+      "value": 0.062064,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "accepted matches assigned the 1980-1990 GHS-AGE class / accepted matches",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_epoch_1990s_share": {
+      "status": "known",
+      "value": 0.024825,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "accepted matches assigned the 1990-2000 GHS-AGE class / accepted matches",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_epoch_2000s_share": {
+      "status": "known",
+      "value": 0.003103,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "accepted matches assigned the 2000-2010 GHS-AGE class / accepted matches",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_epoch_2010s_share": {
+      "status": "known",
+      "value": 0.005431,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "accepted matches assigned the 2010-2020 GHS-AGE class / accepted matches",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_eu_validation_height_mae_m": {
+      "status": "known",
+      "value": 2.89,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "official EUBUCCO authoritative-subset feature-level validation mean absolute height error; European benchmark only",
+      "confidence": "high",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_eu_validation_pre1980_correct_probability": {
+      "status": "known",
+      "value": 0.4,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "official European validation probability that a GHS-OBAT before-1980 label is correct",
+      "confidence": "high",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ]
+    },
+    "ghsl_obat_eu_validation_post1980_correct_probability_floor": {
+      "status": "known",
+      "value": 0.65,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json"
+      ],
+      "formula": "lower bound from official statement that post-1980 label likelihood is more than 65 percent in European validation",
+      "confidence": "high",
+      "assumptions": [
+        "A-GHSL-OBAT-2020-001"
+      ],
+      "comparison_operator": "greater_than"
+    },
+    "key_area_calculated_total_sqm": {
+      "status": "known",
+      "value": 3691722.898,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(projected provisional key-area polygons)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "bluehome_official_survey_point_count": {
+      "status": "known",
+      "value": 107,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/bluehome_official_survey_local.json"
+      ],
+      "formula": "published boundary point rows",
+      "confidence": "high",
+      "assumptions": [
+        "A-BLUEHOME-COORDINATE-001"
+      ]
+    },
+    "bluehome_official_total_area_sqm": {
+      "status": "known",
+      "value": 56427.48,
+      "unit": "sqm",
+      "source_files": [
+        "visual/assets/bluehome_official_survey_local.json"
+      ],
+      "formula": "published total survey area",
+      "confidence": "high",
+      "assumptions": [
+        "A-BLUEHOME-COORDINATE-001"
+      ]
+    },
+    "bluehome_official_building_land_area_sqm": {
+      "status": "known",
+      "value": 48722.625,
+      "unit": "sqm",
+      "source_files": [
+        "visual/assets/bluehome_official_survey_local.json"
+      ],
+      "formula": "published building-land subtotal",
+      "confidence": "high",
+      "assumptions": [
+        "A-BLUEHOME-COORDINATE-001"
+      ]
+    },
+    "bluehome_official_planned_road_area_sqm": {
+      "status": "known",
+      "value": 7704.855,
+      "unit": "sqm",
+      "source_files": [
+        "visual/assets/bluehome_official_survey_local.json"
+      ],
+      "formula": "published planned-road subtotal",
+      "confidence": "high",
+      "assumptions": [
+        "A-BLUEHOME-COORDINATE-001"
+      ]
+    },
+    "bluehome_sale_subset_area_sqm": {
+      "status": "known",
+      "value": 39522.111,
+      "unit": "sqm",
+      "source_files": [
+        "visual/assets/bluehome_official_survey_local.json"
+      ],
+      "formula": "HD00-1603-01 + HD00-1603-03A published areas",
+      "confidence": "high",
+      "assumptions": [
+        "A-BLUEHOME-COORDINATE-001"
+      ]
+    },
+    "bluehome_sale_subset_gross_floor_area_sqm": {
+      "status": "known",
+      "value": 96811.508,
+      "unit": "sqm",
+      "source_files": [
+        "visual/assets/bluehome_official_survey_local.json"
+      ],
+      "formula": "published 01 + 03A above-ground GFA",
+      "confidence": "high",
+      "assumptions": [
+        "A-BLUEHOME-COORDINATE-001"
+      ]
+    },
+    "centennial_narrative_stage_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/centennial_unity_program.json",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "conceptual curatorial stages",
+      "confidence": "medium",
+      "assumptions": [
+        "A-CENTENNIAL-UNITY-NARRATIVE-001"
+      ]
+    },
+    "ethnic_unity_co_creation_seat_count": {
+      "status": "known",
+      "value": 56,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/centennial_unity_program.json",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "equal rotating unity-seat design points",
+      "confidence": "medium",
+      "assumptions": [
+        "A-CENTENNIAL-UNITY-NARRATIVE-001"
+      ]
+    },
+    "centennial_timeline_start_year": {
+      "status": "known",
+      "value": 1909,
+      "unit": "year",
+      "source_files": [
+        "visual/assets/centennial_unity_program.json",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "Jingzhang railway narrative start",
+      "confidence": "medium",
+      "assumptions": [
+        "A-CENTENNIAL-UNITY-NARRATIVE-001"
+      ]
+    },
+    "centennial_plan_horizon_year": {
+      "status": "known",
+      "value": 2109,
+      "unit": "year",
+      "source_files": [
+        "visual/assets/centennial_unity_program.json",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "conceptual second-century horizon",
+      "confidence": "medium",
+      "assumptions": [
+        "A-CENTENNIAL-UNITY-NARRATIVE-001"
+      ]
+    },
+    "ai_everyday_scenario_count": {
+      "status": "known",
+      "value": 25,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/service_system.json"
+      ],
+      "formula": "count(scenarios)",
+      "confidence": "high",
+      "conceptual_status": "Count of documented design-program items; not a built or approved quantity."
+    },
+    "cultural_archive_workflow_stage_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/service_system.json",
+        "proposal.md"
+      ],
+      "formula": "count(cultural_memory_archive.workflow)",
+      "confidence": "high",
+      "conceptual_status": "Count of documented preservation workflow stages; not a built facility or archive holding quantity."
+    },
+    "cultural_archive_minimum_failure_domain_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/service_system.json",
+        "proposal.md"
+      ],
+      "formula": "cultural_memory_archive.preservation_controls.minimum_failure_domains",
+      "confidence": "high",
+      "conceptual_status": "Minimum conceptual resilience requirement; storage architecture and operators remain subject to professional design and procurement."
+    },
+    "cultural_archive_governance_role_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/service_system.json",
+        "proposal.md"
+      ],
+      "formula": "count(cultural owner, professional steward, technical custodian)",
+      "confidence": "high",
+      "conceptual_status": "Count of accountable governance roles; no operating institution is appointed by this proposal."
+    },
+    "cultural_ai_museum_hall_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/service_system.json",
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "count(cultural_ai_museum.halls)",
+      "confidence": "high",
+      "conceptual_status": "Count of conceptual exhibition halls; not a built or approved facility quantity."
+    },
+    "cultural_ai_museum_visitor_route_stage_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/service_system.json",
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "count(cultural_ai_museum.visitor_route)",
+      "confidence": "high",
+      "conceptual_status": "Count of conceptual visitor-route stages; detailed exhibition operations remain subject to professional design."
+    },
+    "cultural_ai_museum_media_type_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/service_system.json",
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "count(cultural_ai_museum.media_types)",
+      "confidence": "high",
+      "conceptual_status": "Count of documented cultural-media categories; not an archive holding or collection size."
+    },
+    "ai_everyday_scenario_domain_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/service_system.json"
+      ],
+      "formula": "count(distinct scenario domains)",
+      "confidence": "high",
+      "conceptual_status": "Count of documented design-program items; not a built or approved quantity."
+    },
+    "ai_everyday_user_group_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/service_system.json"
+      ],
+      "formula": "count(user_groups)",
+      "confidence": "high",
+      "conceptual_status": "Count of documented design-program items; not a built or approved quantity."
+    },
+    "ai_land_use_program_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/service_system.json"
+      ],
+      "formula": "count(land_use_programs)",
+      "confidence": "high",
+      "conceptual_status": "Count of documented design-program items; not a built or approved quantity."
+    },
+    "ai_industry_chain_stage_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(documented industry-chain stages)",
+      "confidence": "high",
+      "conceptual_status": "Count of documented design-program items; not a built or approved quantity."
+    },
+    "ordinary_ai_exit_contract_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(documented three-answer contracts)",
+      "confidence": "high",
+      "conceptual_status": "Count of documented design-program items; not a built or approved quantity."
+    },
+    "ethnic_ai_governance_guardrail_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/index.html"
+      ],
+      "formula": "count(documented ethnic-AI guardrails)",
+      "confidence": "high",
+      "conceptual_status": "Count of documented design-program items; not a built or approved quantity."
+    },
+    "implementation_phase_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/service_system.json"
+      ],
+      "formula": "count(implementation_phases)",
+      "confidence": "high",
+      "conceptual_status": "Count of documented design-program items; not a built or approved quantity."
+    },
+    "ai_node_type_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/service_system.json"
+      ],
+      "formula": "count(ai_node_types)",
+      "confidence": "high",
+      "conceptual_status": "Count of documented design-program items; not a built or approved quantity."
+    },
+    "ai_node_concept_count": {
+      "status": "known",
+      "value": 41,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/service_system.json"
+      ],
+      "formula": "sum(ai_node_types.count_concept)",
+      "confidence": "high",
+      "conceptual_status": "Count of documented design-program items; not a built or approved quantity."
+    },
+    "ai_digital_infrastructure_layer_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/service_system.json"
+      ],
+      "formula": "count(digital_infrastructure)",
+      "confidence": "high",
+      "conceptual_status": "Count of documented design-program items; not a built or approved quantity."
+    },
+    "ai_domain_evaluation_contract_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/service_system.json"
+      ],
+      "formula": "count(domain_evaluation_contracts)",
+      "confidence": "high",
+      "conceptual_status": "Count of documented design-program items; not a built or approved quantity."
+    },
+    "human_centered_user_right_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/service_system.json"
+      ],
+      "formula": "count(human_centered_co_creation.user_rights)",
+      "confidence": "high",
+      "conceptual_status": "Count of documented design-program items; not a built or approved quantity."
+    },
+    "human_centered_co_creation_stage_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/service_system.json"
+      ],
+      "formula": "count(human_centered_co_creation.co_creation_stages)",
+      "confidence": "high",
+      "conceptual_status": "Count of documented design-program items; not a built or approved quantity."
+    }
+  },
+  "land_use_area_by_code_sqm": {
+    "0802": 1897760.495,
+    "1401": 2718806.75,
+    "05": 2977738.328,
+    "0702": 2330402.168,
+    "0803": 1488125.141
+  },
+  "official_transit_snapshot": {
+    "source_id": "BEIJING-JTW-TRANSIT-OPERATIONS",
+    "accessed_date": "2026-08-07",
+    "download_sha256": {
+      "rail_lines": "9bb9ff83db1ccdbeb9d62ea0fd73ea3e0b23fe4eafc6361edb5154180df0b391",
+      "rail_stations": "06793c8debf37b8429512bb9893018aa06972af23d5a7d06202e7636baf902f2",
+      "bus_lines": "14f4b8fd16624d96d6c16eb3674e92f606f397b3eec3dca9fa4ffa4ea42907e2",
+      "bus_stops": "1d0752e9c814291c7bfce325a9dfcfca3a4b698994d016c34c03dd8b850e9575"
+    },
+    "coordinate_status": "none_in_four_catalog_tables",
+    "nearby_match_terms": [
+      "大钟寺",
+      "知春路",
+      "西土城",
+      "五道口",
+      "清华东路西口",
+      "北京大学东门",
+      "海淀黄庄"
+    ]
+  },
+  "official_context_snapshot": {
+    "revision": "REV09-CONTRACT-CHAIN-AND-OPEN-EXISTING-CONTEXT",
+    "accessed_date": "2026-08-08",
+    "district_statistics_scope": "Haidian district, not project area",
+    "policy_commitment_boundary": "alignment only; no automatic funding or approval",
+    "heritage_geometry_boundary": "reported areas are not project or heritage-control polygons",
+    "control_plan_boundary": "official raster reference available; georeferenced competition vector still pending",
+    "control_plan_status": "official 2026 government work report says technical review passed; no final approval inferred",
+    "phase2_geometry_boundary": "official 53.09 ha corridor profile, separate 23.08 ha approved construction package and 30.01 ha completed north supporting segment are available; no project or as-built polygon is published",
+    "phase2_delivery_status": "the municipal landscape authority reported the phase-two supporting project completed on 2026-07-13",
+    "survey_deliverable_status": "signed main survey contract confirms control, topographic, tree, underground-pipeline and engineering surveys with named commissioner and survey contractor; public deliverables remain unavailable",
+    "origin_community_scope_boundary": "official approximately 3 sq km policy district is broader than the competition 104.3 ha detailed-design key area",
+    "origin_community_ecosystem_scope": "research and enterprise counts describe the broader AI Origin Community, not the 104.3 ha competition key area",
+    "heritage_control_boundary": "Qinghuayuan Station former site is officially listed; protection-scope and construction-control drawings are separately issued and not exposed as public geometry",
+    "data_request_protocol": "sources.json#research_audit.data_request_protocol",
+    "design_deliverable_status": "signed main and supporting contracts confirm scheme, preliminary and construction-drawing design with a named designer; public drawings remain unavailable",
+    "metro_safety_report_status": "official procurement confirms an assessment was commissioned; final report is not public",
+    "open_existing_context_status": "ODbL building, road, rail, water and POI snapshots are included as nonstatutory context clipped to provisional SITE-001",
+    "data_custodian_trace": "sources.json#research_audit.data_request_protocol",
+    "open_geographic_catalog": {
+      "source_id": "TIANDITU-HAIDIAN-OFFICIAL-GEO-CATALOG",
+      "public_metadata": true,
+      "underlying_vector_products_public": false,
+      "sample_security_classification": "秘密",
+      "provisional_site_unique_1_500_sheet_count": 502
+    },
+    "worldcover_2021": {
+      "source_id": "ESA-WORLDCOVER-JINGZHANG-2021",
+      "license": "CC BY 4.0",
+      "resolution": "approximately 10 m",
+      "clip_boundary": "provisional SITE-001",
+      "usage_boundary": "historical surface-cover screening only"
+    },
+    "copernicus_dem_glo30": {
+      "source_id": "COPERNICUS-DEM-GLO30-JINGZHANG",
+      "product_type": "DSM, not bare-earth DTM",
+      "source_acquisition_period": "2011-2015 primary acquisition",
+      "resolution": "1 arc-second / approximately 30 m",
+      "horizontal_crs": "EPSG:4326",
+      "vertical_crs": "EPSG:3855 / EGM2008 metres",
+      "clip_boundary": "provisional SITE-001",
+      "usage_boundary": "historical coarse existing-surface and slope screening only"
+    },
+    "jrc_global_surface_water_v15": {
+      "source_id": "JRC-GSW-V15-JINGZHANG",
+      "release": "v1.5 / 2024",
+      "periods": "1984-2024 occurrence/transitions; included extent is 2022-2024",
+      "resolution": "0.00025 degrees / approximately 30 m",
+      "clip_boundary": "provisional SITE-001",
+      "usage_boundary": "long-term Landsat-observed surface-water screening only"
+    },
+    "sentinel2_l2a_20260715": {
+      "source_id": "COPERNICUS-SENTINEL2-L2A-JINGZHANG-20260715",
+      "official_product": "S2B_MSIL2A_20260715T030519_N0512_R075_T50TMK_20260715T060222.SAFE",
+      "scene_date": "2026-07-15",
+      "resolution": "10 m reflectance and derived indices; 20 m SCL",
+      "clip_boundary": "provisional SITE-001",
+      "usage_boundary": "single-scene optical, SCL and spectral screening only"
+    },
+    "overture_buildings_20260722": {
+      "source_id": "OVERTURE-MAPS-BUILDINGS-JINGZHANG-20260722",
+      "release": "2026-07-22.0",
+      "upstream_non_osm_source": "doi:10.5281/zenodo.8174931",
+      "clip_boundary": "provisional SITE-001",
+      "selection": "all OSM-sourced Overture records excluded; East Asian DOI-only records retained",
+      "usage_boundary": "machine-derived existing building footprint/roofprint screening only"
+    },
+    "ghsl_builth_r2023a_2018": {
+      "source_id": "JRC-GHSL-BUILT-H-R2023A-JINGZHANG-2018",
+      "product": "GHS-BUILT-H_GLOBE_R2023A",
+      "epoch": 2018,
+      "resolution": "3 arc-seconds in WGS84, approximately 100 m",
+      "layers": "AGBH gross built-volume density and ANBH average built-surface height",
+      "clip_boundary": "provisional SITE-001",
+      "usage_boundary": "historical approximately 100 m gridded context only; official building_height_m remains unknown"
+    },
+    "ghsl_obat_r2024a_2020": {
+      "source_id": "JRC-GHSL-GHS-OBAT-R2024A-JINGZHANG-2020",
+      "product": "GHS_OBAT_GLOBE_R2024A",
+      "epoch": 2020,
+      "source_overture_release": "2024-07-22.0",
+      "selection": "provisional SITE-001 centroid or stable-id selection, then strict one-to-one current-footprint matching",
+      "usage_boundary": "footprint-level model subset only; official building_height_m and current licensed existing-building survey remain unknown/pending"
+    },
+    "bluehome_dazhongsi_2025_2026": {
+      "source_ids": [
+        "BEIJING-GGZY-BLUEHOME-LAND-2025",
+        "BEIJING-GGZY-BLUEHOME-SURVEY-2025",
+        "BEIJING-GGZY-BLUEHOME-PLANNING-2025",
+        "BEIJING-GHZY-BLUEHOME-CASE-2026"
+      ],
+      "selection": "public official parent page, survey and planning attachments, and planning-authority renewal case",
+      "usage_boundary": "parcel facts apply only to the published BlueHome subproject; survey coordinates remain unprojected because the public report does not state CRS"
+    }
+  },
+  "official_planning_snapshot": {
+    "source_id": "HAIDIAN-JINGZHANG-CONTROL-PLAN-DRAFT",
+    "plan_name": "HD00-1601等街区控制性详细规划（街区层面）（2022-2035年）（草案）",
+    "scope_streets": [
+      "中关村街道",
+      "北下关街道",
+      "北太平庄街道"
+    ],
+    "spatial_structure": "一带一轴、两心多点",
+    "boundary_format": "raster infographic only",
+    "vector_status": "not publicly published",
+    "approval_boundary": "process draft; final result subject to planning approval"
+  },
+  "ai_everyday_city_program": {
+    "revision": "REV25-RAILWAY-ARCHIVE-MUSEUM",
+    "source_file": "visual/assets/service_system.json",
+    "scenario_count": 25,
+    "scenario_domains": [
+      "industry",
+      "mobility",
+      "civic",
+      "community",
+      "care",
+      "culture"
+    ],
+    "user_group_count": 6,
+    "land_use_program_count": 5,
+    "industry_chain_stage_count": 7,
+    "ordinary_ai_exit_contract_count": 4,
+    "implementation_phase_count": 4,
+    "ai_node_type_count": 13,
+    "ai_node_concept_count": 41,
+    "digital_infrastructure_layer_count": 6,
+    "domain_evaluation_contract_count": 6,
+    "human_centered_user_right_count": 8,
+    "human_centered_co_creation_stage_count": 5,
+    "cultural_archive_workflow_stage_count": 7,
+    "cultural_archive_minimum_failure_domain_count": 3,
+    "cultural_archive_governance_role_count": 3,
+    "cultural_ai_museum_hall_count": 4,
+    "cultural_ai_museum_visitor_route_stage_count": 5,
+    "cultural_ai_museum_media_type_count": 6,
+    "status": "conceptual_design",
+    "boundary_status": "provisional"
+  }
+}

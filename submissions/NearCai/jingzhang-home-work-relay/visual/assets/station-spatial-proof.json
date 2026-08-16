@@ -1,0 +1,71 @@
+{
+  "version": "1.0",
+  "status": "conceptual_relative_topologies_on_provisional_key_areas",
+  "purpose_zh": "把三处重点区从同一图形语法区分为三种可读的空间交接拓扑；节点关系是本方案的相对空间建议，不是测绘、实际站点、道路红线或工程落位。",
+  "purpose_en": "Distinguish the three key areas as three legible spatial handover topologies. Node relationships are relative design proposals, not survey data, actual station siting, road redlines or engineering layouts.",
+  "shared_boundary_zh": "三个重点区均继承 provisional polygon；图中方向和尺度仅服务于各站内部关系，不表示测量方位或实际比例。",
+  "shared_boundary_en": "All three key areas inherit provisional polygons. Diagram direction and scale serve only internal relationships and do not state surveyed orientation or actual scale.",
+  "stations": [
+    {
+      "station_id": "ST-01",
+      "area_id": "zhongzhiyuan_ai_acceleration_area",
+      "topology": "linear_threshold",
+      "topology_zh": "线性住研门槛",
+      "topology_en": "Linear live-work threshold",
+      "critical_boundary_zh": "安静居住、共享庭院、受控工作与服务到达沿同一公共门槛依次分开。",
+      "critical_boundary_en": "Quiet living, shared court, controlled work and service arrival are separated in sequence along one public threshold.",
+      "nodes": [
+        {"id": "ZZ-01", "label_zh": "安静居住", "label_en": "Quiet living", "role": "resident edge"},
+        {"id": "ZZ-02", "label_zh": "人工选项台", "label_en": "Staffed options desk", "role": "public threshold"},
+        {"id": "ZZ-03", "label_zh": "共享庭院", "label_en": "Shared court", "role": "common ground"},
+        {"id": "ZZ-04", "label_zh": "受控工作", "label_en": "Controlled work", "role": "separate access"},
+        {"id": "ZZ-05", "label_zh": "服务到达", "label_en": "Service arrival", "role": "back-of-house"}
+      ],
+      "edges": [["ZZ-01", "ZZ-02"], ["ZZ-02", "ZZ-03"], ["ZZ-03", "ZZ-04"], ["ZZ-04", "ZZ-05"]],
+      "source_anchor": "geometry/key_areas.geojson#PROV-KEY-001"
+    },
+    {
+      "station_id": "ST-02",
+      "area_id": "beijing_ai_origin_community",
+      "topology": "courtyard_consent_loop",
+      "topology_zh": "庭院同意环",
+      "topology_en": "Courtyard consent loop",
+      "critical_boundary_zh": "照护檐廊与共享庭院组织可变居住，服务在住户控制的私宅门槛之前停止。",
+      "critical_boundary_en": "A care porch and shared court organize adaptable living; service stops before the resident-controlled private threshold.",
+      "nodes": [
+        {"id": "AO-01", "label_zh": "无 App 入口", "label_en": "No-app entry", "role": "ordinary route"},
+        {"id": "AO-02", "label_zh": "照护檐廊", "label_en": "Care porch", "role": "assisted service"},
+        {"id": "AO-03", "label_zh": "共享庭院", "label_en": "Shared court", "role": "common ground"},
+        {"id": "AO-04", "label_zh": "可变居住", "label_en": "Adaptable living", "role": "reversible fit-out"},
+        {"id": "AO-05", "label_zh": "私宅门槛", "label_en": "Private threshold", "role": "resident consent"}
+      ],
+      "edges": [["AO-01", "AO-02"], ["AO-02", "AO-03"], ["AO-03", "AO-04"], ["AO-04", "AO-05"], ["AO-05", "AO-03"]],
+      "source_anchor": "geometry/key_areas.geojson#PROV-KEY-002"
+    },
+    {
+      "station_id": "ST-03",
+      "area_id": "dazhongsi_ai_industry_cluster",
+      "topology": "four_way_choice_hall",
+      "topology_zh": "四向选项厅",
+      "topology_en": "Four-way option hall",
+      "critical_boundary_zh": "抵达方向汇入第一把钥匙和选项厅，再分别进入住房、工位与城市服务；三种决定不合并。",
+      "critical_boundary_en": "Arrival approaches meet at the First Key and option hall, then separate toward housing, workspace and city services; the three decisions never merge.",
+      "nodes": [
+        {"id": "DZ-01", "label_zh": "四向抵达", "label_en": "Four-way arrival", "role": "approach"},
+        {"id": "DZ-02", "label_zh": "第一把钥匙", "label_en": "First Key", "role": "public landmark"},
+        {"id": "DZ-03", "label_zh": "选项厅", "label_en": "Option hall", "role": "staffed explanation"},
+        {"id": "DZ-04", "label_zh": "短住选项", "label_en": "Arrival stay", "role": "housing path"},
+        {"id": "DZ-05", "label_zh": "工位选项", "label_en": "Workspace path", "role": "work path"},
+        {"id": "DZ-06", "label_zh": "城市服务", "label_en": "City service", "role": "service path"}
+      ],
+      "edges": [["DZ-01", "DZ-02"], ["DZ-02", "DZ-03"], ["DZ-03", "DZ-04"], ["DZ-03", "DZ-05"], ["DZ-03", "DZ-06"]],
+      "source_anchor": "geometry/key_areas.geojson#PROV-KEY-003"
+    }
+  ],
+  "integrity_rules": [
+    "Three topology values must be distinct.",
+    "Every station must declare at least four nodes and a critical boundary.",
+    "Every station must reference its provisional key-area feature.",
+    "No node may be represented as an official coordinate, survey point or approved project."
+  ]
+}

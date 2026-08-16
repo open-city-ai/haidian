@@ -1,0 +1,49 @@
+{
+  "protocol_version": "0.1",
+  "node_id": "K1-I01-pilot-park-edge",
+  "capability_id": "SCN-04-AI-SLOW-TRAFFIC-NAVIGATION",
+  "forward_state": {
+    "scope": "A ~220 m low-impact slow-traffic entry pilot at the southern edge of the Jing-Zhang Heritage Park active belt (K1-I01); the AI capability only suggests walking routes and aggregates anonymized flow counts.",
+    "inputs": [
+      "public road network from the submitted roads layer",
+      "manual patrol counts (aggregate, no personal identifiers)",
+      "aggregate pedestrian flow counters (device-level data deleted after aggregation)"
+    ],
+    "deployment_mode": "sandbox_only",
+    "known_faults": [
+      "no surveyed terrain; elevation assumptions are concept-grade",
+      "under-bridge space use rights not yet confirmed",
+      "night-time lighting permit not yet issued"
+    ],
+    "no_ai_baseline": "the existing pedestrian path plus staffed enquiry remains available; paper maps and fixed wayfinding signage are unaffected by deactivation"
+  },
+  "switchback": {
+    "rollback_path": [
+      "deactivate digital flow counters and the route-suggestion display",
+      "restore always-on lighting and fixed wayfinding signage",
+      "restore the manual patrol schedule",
+      "publish the reversal notice on the public duty log"
+    ],
+    "reversal_trigger": [
+      "counter failure rate exceeds the pilot threshold",
+      "night-time safety complaints exceed the baseline threshold",
+      "under-bridge space use rights are rejected by the owner"
+    ],
+    "residual_traces": [
+      "only aggregate statistics remain",
+      "device-level raw data is deleted within the retention window",
+      "the physical counter housings are removed or repurposed"
+    ],
+    "rollback_owner": "R-PUBLIC-SPACE"
+  },
+  "acceptance": {
+    "reproduction": "a third party reproduces the pilot boundary from geometry/roads.geojson feature K1-I03-sandbox-safety-cross and the submitted site boundary in EPSG:4548",
+    "decision": "accept_with_conditions",
+    "open_items": [
+      "river blue-line verification (organizer-side data gap A-BOUNDARY-001)",
+      "night-time lighting permit",
+      "accessibility assessment before any public exercise"
+    ]
+  },
+  "status": "draft"
+}

@@ -1,0 +1,248 @@
+{
+  "type": "FeatureCollection",
+  "name": "connected_discovery_reproducibility_double_loop",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "ROAD-BASELINE",
+      "properties": {
+        "id": "ROAD-BASELINE",
+        "layer": "ROAD_CENTERLINE",
+        "source_type": "agent_generated_design",
+        "confidence": "medium",
+        "geometry_role": "design_proposal",
+        "official_status": "concept_only",
+        "road_class": "greenway",
+        "name_zh": "普通城市连续基线",
+        "name_en": "Continuous ordinary-city baseline",
+        "access_gradient": "P0",
+        "network_role": "continuous_non_ai_baseline",
+        "closed_loop": false,
+        "line_status": "conceptual_alignment_not_road_redline",
+        "continuity_requirement": "must_remain_open_or_have_a_signed_equivalent_detour_before_any_test",
+        "length_m_declared": 9223.334
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.3415, 39.941],
+          [116.3412, 39.9525],
+          [116.3402, 39.975],
+          [116.3409, 39.989],
+          [116.342, 40.006],
+          [116.3427, 40.0165],
+          [116.343, 40.024]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD-DISCOVERY",
+      "properties": {
+        "id": "ROAD-DISCOVERY",
+        "layer": "ROAD_CENTERLINE",
+        "source_type": "agent_generated_design",
+        "confidence": "medium",
+        "geometry_role": "design_proposal",
+        "official_status": "concept_only",
+        "road_class": "pedestrian",
+        "name_zh": "公共发现闭环",
+        "name_en": "Public Discovery Loop",
+        "access_gradient": "P1",
+        "network_role": "outer_public_discovery_loop",
+        "closed_loop": true,
+        "connected_route_ids": [
+          "ROAD-BASELINE",
+          "ROAD-REPRO",
+          "ROAD-HANDOVER-S",
+          "ROAD-HANDOVER-M",
+          "ROAD-HANDOVER-N"
+        ],
+        "line_status": "conceptual_alignment_not_road_redline",
+        "length_m_declared": 18412.087
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.3434, 39.946],
+          [116.3424, 39.9525],
+          [116.3416, 39.989],
+          [116.3434, 40.0165],
+          [116.344, 40.022],
+          [116.3528, 40.022],
+          [116.3524, 40.0165],
+          [116.3518, 39.989],
+          [116.3526, 39.9525],
+          [116.3524, 39.946],
+          [116.3434, 39.946]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD-REPRO",
+      "properties": {
+        "id": "ROAD-REPRO",
+        "layer": "ROAD_CENTERLINE",
+        "source_type": "agent_generated_design",
+        "confidence": "medium",
+        "geometry_role": "design_proposal",
+        "official_status": "concept_only",
+        "road_class": "pedestrian",
+        "name_zh": "专业复现闭环",
+        "name_en": "Professional Reproducibility Loop",
+        "access_gradient": "P2",
+        "network_role": "inner_professional_reproducibility_loop",
+        "closed_loop": true,
+        "connected_route_ids": [
+          "ROAD-DISCOVERY",
+          "ROAD-LOGISTICS",
+          "ROAD-HANDOVER-S",
+          "ROAD-HANDOVER-M",
+          "ROAD-HANDOVER-N"
+        ],
+        "line_status": "conceptual_alignment_not_road_redline",
+        "length_m_declared": 16582.377
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.346, 39.948],
+          [116.3458, 39.9525],
+          [116.3455, 39.989],
+          [116.3458, 40.0165],
+          [116.3462, 40.0195],
+          [116.3504, 40.0195],
+          [116.3502, 40.0165],
+          [116.35, 39.989],
+          [116.3503, 39.9525],
+          [116.35, 39.948],
+          [116.346, 39.948]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD-LOGISTICS",
+      "properties": {
+        "id": "ROAD-LOGISTICS",
+        "layer": "ROAD_CENTERLINE",
+        "source_type": "agent_generated_design",
+        "confidence": "medium",
+        "geometry_role": "design_proposal",
+        "official_status": "concept_only",
+        "road_class": "local_access",
+        "name_zh": "受控研发后勤线",
+        "name_en": "Controlled research logistics",
+        "access_gradient": "P3",
+        "network_role": "separated_service_and_emergency_spine",
+        "closed_loop": false,
+        "line_status": "conceptual_alignment_not_road_redline",
+        "length_m_declared": 8889.002
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.354, 39.944],
+          [116.3535, 39.9525],
+          [116.3528, 39.989],
+          [116.354, 40.0165],
+          [116.3548, 40.024]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD-HANDOVER-S",
+      "properties": {
+        "id": "ROAD-HANDOVER-S",
+        "layer": "ROAD_CENTERLINE",
+        "source_type": "agent_generated_design",
+        "confidence": "medium",
+        "geometry_role": "design_proposal",
+        "official_status": "concept_only",
+        "road_class": "transit_connection",
+        "name_zh": "大钟寺人工交接廊",
+        "name_en": "Dazhongsi human-governed handover link",
+        "access_gradient": "P0-P3",
+        "network_role": "south_cross_loop_handover",
+        "human_release_gate_id": "GATE-HUMAN-S",
+        "line_status": "conceptual_alignment_not_road_redline",
+        "length_m_declared": 1051.112
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.3412, 39.9525],
+          [116.3424, 39.9525],
+          [116.3458, 39.9525],
+          [116.3503, 39.9525],
+          [116.3526, 39.9525],
+          [116.3535, 39.9525]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD-HANDOVER-M",
+      "properties": {
+        "id": "ROAD-HANDOVER-M",
+        "layer": "ROAD_CENTERLINE",
+        "source_type": "agent_generated_design",
+        "confidence": "medium",
+        "geometry_role": "design_proposal",
+        "official_status": "concept_only",
+        "road_class": "transit_connection",
+        "name_zh": "原点人工交接廊",
+        "name_en": "Origin human-governed handover link",
+        "access_gradient": "P0-P3",
+        "network_role": "middle_cross_loop_handover",
+        "human_release_gate_id": "GATE-HUMAN-M",
+        "line_status": "conceptual_alignment_not_road_redline",
+        "length_m_declared": 1016.389
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.3409, 39.989],
+          [116.3416, 39.989],
+          [116.3455, 39.989],
+          [116.35, 39.989],
+          [116.3518, 39.989],
+          [116.3528, 39.989]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ROAD-HANDOVER-N",
+      "properties": {
+        "id": "ROAD-HANDOVER-N",
+        "layer": "ROAD_CENTERLINE",
+        "source_type": "agent_generated_design",
+        "confidence": "medium",
+        "geometry_role": "design_proposal",
+        "official_status": "concept_only",
+        "road_class": "transit_connection",
+        "name_zh": "众智园人工交接廊",
+        "name_en": "Zhongzhiyuan human-governed handover link",
+        "access_gradient": "P0-P3",
+        "network_role": "north_cross_loop_handover",
+        "human_release_gate_id": "GATE-HUMAN-N",
+        "line_status": "conceptual_alignment_not_road_redline",
+        "length_m_declared": 964.755
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [116.3427, 40.0165],
+          [116.3434, 40.0165],
+          [116.3458, 40.0165],
+          [116.3502, 40.0165],
+          [116.3524, 40.0165],
+          [116.354, 40.0165]
+        ]
+      }
+    }
+  ]
+}

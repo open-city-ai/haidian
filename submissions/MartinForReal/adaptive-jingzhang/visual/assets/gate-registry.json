@@ -1,0 +1,232 @@
+{
+  "schema_version": "0.1.0",
+  "purpose_zh": "本文件是包内门名称空间的唯一权威。它登记四个互不相通的名称空间：人工裁定的七项不可交易设计门（G）、机器自检门、外部证据门（D）与人工授权门（H）。任何制品发布门清单时，都从本文件取名称与顺序，不在制品内自行拼写。",
+  "purpose_en": "This file is the single authority for the gate namespaces used in the package. It registers four namespaces that never mix: the seven human-adjudicated non-tradeable design gates (G), the machine self-check gates, the external evidence gates (D), and the human authorization gate (H). Any artifact that publishes a gate list takes its names and order from here rather than spelling them locally.",
+  "namespace_separation_zh": "四个名称空间不可互相推定。机器自检门通过不代表任何 G 门通过；任何 G 门的人工裁定不关闭任何 D 门；任何 D 门的外部证据不构成 H01 的用户授权。",
+  "namespace_separation_en": "The four namespaces may not be inferred from one another. Passing the machine self-check gates does not pass any G gate; adjudicating any G gate does not close any D gate; external evidence at any D gate is not the user authorization that H01 records.",
+
+  "human_design_gate": {
+    "namespace": "G",
+    "heading_zh": "七项不可交易门",
+    "heading_en": "The seven non-tradeable gates",
+    "adjudication": "human",
+    "checkable": false,
+    "order_is_canonical": true,
+    "semantics_provenance_zh": "英文判定语句为冻结规范第 4.1 节的原文转录；中文判定语句是该原文的忠实翻译，不是另一套独立判据。",
+    "semantics_provenance_en": "The English failing clause is transcribed verbatim from Section 4.1 of the frozen specification; the Chinese failing clause is a faithful translation of that clause, not a second independent test.",
+    "applies_to_zh": "每一份提案、每一次试点、每一次扩展、每一件已发布制品。",
+    "applies_to_en": "Every proposal, every pilot, every expansion, and every published artifact.",
+    "gates": [
+      {
+        "id": "G1",
+        "name_zh": "安全",
+        "name_en": "Safety",
+        "fails_if_zh": "它给任何步行者、骑行者、使用助行器具者、现场作业者或应急响应者带来可预见的危害，而防护措施未能在试点开始之前到位。",
+        "fails_if_en": "it introduces a foreseeable hazard to any person on foot, on a cycle, using a mobility aid, working on site, or responding to an emergency, without a mitigation that is in place before the pilot begins"
+      },
+      {
+        "id": "G2",
+        "name_zh": "权利",
+        "name_en": "Rights",
+        "fails_if_zh": "它限制既有的合法通行、使用、权属、生计或集会权利，或主张参与者并不持有的权利。",
+        "fails_if_en": "it curtails an existing lawful right of access, use, tenure, livelihood, or assembly, or asserts a right the participant does not hold"
+      },
+      {
+        "id": "G3",
+        "name_zh": "遗产",
+        "name_en": "Heritage",
+        "fails_if_zh": "它在责任主管部门作出认定之前，改变、遮住或占用遗产实体、遗产环境与遗产解释，或对其作出预先决定。",
+        "fails_if_en": "it alters, obscures, encroaches upon, or pre-empts a decision about heritage fabric, heritage setting, or heritage interpretation without the responsible authority's determination"
+      },
+      {
+        "id": "G4",
+        "name_zh": "可负担",
+        "name_en": "Affordability",
+        "fails_if_zh": "它提高既有居民、务工者或小微经营者的日常生活成本，或造成迁离压力，或把维护成本转移给未曾同意的一方。",
+        "fails_if_en": "it raises the cost of daily life for existing residents, workers, or small operators, or creates displacement pressure, or transfers maintenance cost onto parties who did not consent"
+      },
+      {
+        "id": "G5",
+        "name_zh": "无障碍",
+        "name_en": "Accessibility",
+        "fails_if_zh": "它未能提供连续的无台阶路径、等效的非数字服务路径，或对存在感官与认知差异的使用者可读的信息。",
+        "fails_if_en": "it fails to provide a continuous step-free route, an equivalent non-digital service path, or legible information for users with sensory or cognitive differences"
+      },
+      {
+        "id": "G6",
+        "name_zh": "隐私",
+        "name_en": "Privacy",
+        "fails_if_zh": "它在没有声明用途、声明留存期限、声明责任管护人与可用的不参与替代方案的情况下，采集、留存、关联或披露个人数据，或使识别与追踪成为可能。",
+        "fails_if_en": "it collects, retains, links, or exposes personal data, or enables identification or tracking, without a declared purpose, a declared retention limit, a declared steward, and an available non-participating alternative"
+      },
+      {
+        "id": "G7",
+        "name_zh": "人工复核",
+        "name_en": "Human Review",
+        "fails_if_zh": "以上任何一项决定是由自动化过程作出、追认或实际决定的，而不是由具名的、可问责的人类角色作出。",
+        "fails_if_en": "any decision above was made, ratified, or effectively determined by an automated process rather than by a named accountable human role"
+      }
+    ]
+  },
+
+  "machine_self_check_gate": {
+    "namespace": "self_check",
+    "heading_zh": "四道自检门",
+    "heading_en": "The four self-check gates",
+    "adjudication": "machine",
+    "ids": [
+      "DETERMINISTIC_VALIDATION",
+      "SPATIAL_REVIEW",
+      "VISUAL_PACKAGING",
+      "PROFESSIONAL_EVIDENCE"
+    ],
+    "note_zh": "「四门」一词在包内只指这四个机器强制标识符，不再用于任何人工复核分组。",
+    "note_en": "The phrase \"four gates\" refers in this package only to these four machine-enforced identifiers, and is no longer used for any human-review grouping."
+  },
+
+  "human_authorization_gate": {
+    "namespace": "H",
+    "heading_zh": "人工授权门",
+    "heading_en": "Human authorization gate",
+    "adjudication": "human",
+    "checkable": false,
+    "gates": [
+      {
+        "id": "H01",
+        "name_zh": "用户明确授权",
+        "name_en": "Explicit user approval",
+        "state": "closed",
+        "evidence_pointer": "changelog.md#h01-批准与提交授权记录",
+        "note_zh": "H01 是独立的授权事件，不是 D 类专业依赖；任何 D 门的证据都不产生 H01。",
+        "note_en": "H01 is a standalone authorization event, not a D-class professional dependency; evidence at any D gate does not produce H01."
+      }
+    ]
+  },
+
+  "external_evidence_gate": {
+    "namespace": "D",
+    "heading_zh": "外部证据门",
+    "heading_en": "External evidence gates",
+    "adjudication": "external_professional_or_authority",
+    "checkable": false,
+    "state": "open",
+    "state_note_zh": "本表所有 17 项一律为无复选框的开放外部门。包内任何实现、测试或勾选都不改变、不关闭、也不减弱其中任何一项。局部证据只解决其实际覆盖的字段。",
+    "state_note_en": "All 17 rows are open external gates with no checkbox. No implementation, test, or checked item inside the package changes, closes, or weakens any of them. Partial evidence resolves only the fields it actually covers.",
+    "backreference_rule_zh": "`backreferences` 以 `路径#记录标识` 的形式，穷举包内在具名记录一层点名该门的每一处。取值由 `test-gate-namespace.js` 对 assumptions.json、metrics.json、standard_matrix.json、sources.json、action-governance.json、key-area-design.json 六个登记表重新扫描后逐字比对；多写、少写或写错都判定失败。散文中的提及不计入本字段。",
+    "backreference_rule_en": "`backreferences` exhaustively lists, in `path#record_id` form, every place inside the package where a named record cites the gate. The values are recomputed by `test-gate-namespace.js` from the six registries assumptions.json, metrics.json, standard_matrix.json, sources.json, action-governance.json, and key-area-design.json, and compared literally; an extra, a missing, or a wrong entry fails. Prose mentions are not counted in this field.",
+    "backreference_is_not_evidence_zh": "反向引用只说明包内哪里记录了对该门的依赖，不是该门已获满足的证据。",
+    "backreference_is_not_evidence_en": "A back-reference records where the package declares a dependency on the gate. It is not evidence that the gate has been satisfied.",
+    "gates": [
+      { "id": "D01", "name_zh": "正式场地边界 polygon", "name_en": "Official site boundary polygon", "checkable": false, "state": "open",
+        "backreferences": [
+          "visual/assets/action-governance.json#P00",
+          "visual/assets/key-area-design.json#zhongzhiyuan_ai_acceleration_area"
+        ] },
+      { "id": "D02", "name_zh": "正式重点区 polygons", "name_en": "Official key-area polygons", "checkable": false, "state": "open",
+        "backreferences": [
+          "metrics.json#official_key_area_area_sqm_001",
+          "metrics.json#official_key_area_area_sqm_002",
+          "metrics.json#official_key_area_area_sqm_003",
+          "visual/assets/action-governance.json#P00",
+          "visual/assets/key-area-design.json#beijing_ai_origin_community"
+        ] },
+      { "id": "D03", "name_zh": "站点接口", "name_en": "Station interface", "checkable": false, "state": "open",
+        "backreferences": [
+          "visual/assets/action-governance.json#P07",
+          "visual/assets/key-area-design.json#dazhongsi_ai_industry_cluster"
+        ] },
+      { "id": "D04", "name_zh": "地籍、权属、通行权、维护责任", "name_en": "Cadastre, tenure, right of way, and maintenance duty", "checkable": false, "state": "open",
+        "backreferences": [
+          "assumptions.json#A-TENURE-001",
+          "visual/assets/action-governance.json#P00",
+          "visual/assets/action-governance.json#P02",
+          "visual/assets/action-governance.json#P07"
+        ] },
+      { "id": "D05", "name_zh": "地形、标高、公用设施、排水与服务接口证据", "name_en": "Terrain, levels, utilities, drainage, and service-interface evidence", "checkable": false, "state": "open",
+        "backreferences": [
+          "visual/assets/action-governance.json#P01",
+          "visual/assets/action-governance.json#P08",
+          "visual/assets/key-area-design.json#zhongzhiyuan_ai_acceleration_area"
+        ] },
+      { "id": "D06", "name_zh": "结构/土木评估与既有建筑认定", "name_en": "Structural and civil assessment and existing-building determination", "checkable": false, "state": "open",
+        "backreferences": [
+          "visual/assets/action-governance.json#P02",
+          "visual/assets/action-governance.json#P07",
+          "visual/assets/key-area-design.json#beijing_ai_origin_community"
+        ] },
+      { "id": "D07", "name_zh": "无障碍设计审查与建成/开放前实测审计", "name_en": "Accessibility design review and pre-opening instrumented audit", "checkable": false, "state": "open",
+        "backreferences": [
+          "standard_matrix.json#BARRIER-FREE-ENVIRONMENT-LAW",
+          "standard_matrix.json#GB-55019-2021",
+          "visual/assets/action-governance.json#P01",
+          "visual/assets/action-governance.json#P06",
+          "visual/assets/key-area-design.json#dazhongsi_ai_industry_cluster"
+        ] },
+      { "id": "D08", "name_zh": "道路管辖、道路通行权、交通、过街与慢行标准适用性", "name_en": "Road jurisdiction, road right of way, traffic, crossing, and active-travel standard applicability", "checkable": false, "state": "open",
+        "backreferences": [
+          "sources.json#DB11-T-2209-2023-OFFICIAL",
+          "standard_matrix.json#BARRIER-FREE-ENVIRONMENT-LAW",
+          "standard_matrix.json#DB11-T-2209-2023",
+          "visual/assets/action-governance.json#P01"
+        ] },
+      { "id": "D09", "name_zh": "遗产认定", "name_en": "Heritage determination", "checkable": false, "state": "open",
+        "backreferences": [
+          "visual/assets/action-governance.json#P03",
+          "visual/assets/key-area-design.json#zhongzhiyuan_ai_acceleration_area"
+        ] },
+      { "id": "D10", "name_zh": "应急服务协调与恢复验证", "name_en": "Emergency-service coordination and restoration verification", "checkable": false, "state": "open",
+        "backreferences": [
+          "visual/assets/action-governance.json#P02",
+          "visual/assets/action-governance.json#P06"
+        ] },
+      { "id": "D11", "name_zh": "隐私/数据认定", "name_en": "Privacy and data determination", "checkable": false, "state": "open",
+        "backreferences": [
+          "visual/assets/action-governance.json#P00",
+          "visual/assets/action-governance.json#P03",
+          "visual/assets/action-governance.json#P04",
+          "visual/assets/action-governance.json#P05",
+          "visual/assets/key-area-design.json#beijing_ai_origin_community"
+        ] },
+      { "id": "D12", "name_zh": "成本、维护、恢复资金与剩余责任", "name_en": "Cost, maintenance, restoration funding, and residual liability", "checkable": false, "state": "open",
+        "backreferences": [
+          "visual/assets/action-governance.json#P01",
+          "visual/assets/action-governance.json#P02",
+          "visual/assets/action-governance.json#P03",
+          "visual/assets/action-governance.json#P04",
+          "visual/assets/action-governance.json#P05",
+          "visual/assets/action-governance.json#P06",
+          "visual/assets/action-governance.json#P07",
+          "visual/assets/action-governance.json#P08",
+          "visual/assets/action-governance.json#P09",
+          "visual/assets/action-governance.json#P10"
+        ] },
+      { "id": "D13", "name_zh": "全季节观察", "name_en": "Full-season observation", "checkable": false, "state": "open",
+        "backreferences": [
+          "visual/assets/action-governance.json#P08"
+        ] },
+      { "id": "D14", "name_zh": "批准高度控制", "name_en": "Approved height control", "checkable": false, "state": "open",
+        "backreferences": [
+          "metrics.json#approved_height_limit_m",
+          "visual/assets/key-area-design.json#dazhongsi_ai_industry_cluster"
+        ] },
+      { "id": "D15", "name_zh": "容积率", "name_en": "Floor area ratio", "checkable": false, "state": "open",
+        "backreferences": [
+          "metrics.json#floor_area_ratio"
+        ] },
+      { "id": "D16", "name_zh": "场地责任规划师职权或其他运营职权", "name_en": "Site chief-planner remit or other operating remit", "checkable": false, "state": "open",
+        "backreferences": [
+          "standard_matrix.json#GENERATIVE-AI-INTERIM-MEASURES",
+          "visual/assets/action-governance.json#P04",
+          "visual/assets/action-governance.json#P05",
+          "visual/assets/action-governance.json#P06",
+          "visual/assets/action-governance.json#P09",
+          "visual/assets/action-governance.json#P10",
+          "visual/assets/action-governance.json#P11"
+        ] },
+      { "id": "D17", "name_zh": "公众权重复核与分配性数据", "name_en": "Public weight review and distributional data", "checkable": false, "state": "open",
+        "backreferences": [
+          "visual/assets/action-governance.json#P11"
+        ] }
+    ]
+  }
+}

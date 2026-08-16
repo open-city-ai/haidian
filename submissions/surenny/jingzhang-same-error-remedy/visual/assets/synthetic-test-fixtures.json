@@ -1,0 +1,1632 @@
+{
+  "schema_version": "1.0",
+  "status": "synthetic_design_verification_not_field_performance",
+  "personal_data": false,
+  "record_count": 60,
+  "shared_error_version_count": 12,
+  "complainant_count": 1,
+  "ambiguous_or_missing_count": 4,
+  "method": "Deterministic fixture evaluation against frozen candidate rules; actual values are produced by this package script, not observed people or services.",
+  "test_suites": [
+    {
+      "test_id": "T1_VERSION_TRACE",
+      "purpose": "Surface every fixture sharing the frozen error version without admitting controls.",
+      "expected": {
+        "shared_version_surfaced": 12,
+        "control_surfaced": 0
+      },
+      "actual": {
+        "shared_version_surfaced": 12,
+        "control_surfaced": 0
+      },
+      "failure_branch": "If version provenance is missing or a control is surfaced, stop candidate expansion and keep the disputed rule off.",
+      "result": "pass"
+    },
+    {
+      "test_id": "T2_HUMAN_SCOPE_REVIEW",
+      "purpose": "Separate explainable inclusion from ambiguity; never auto-resolve missing fields.",
+      "expected": {
+        "included": 8,
+        "excluded_controls": 48,
+        "human_clarification_hold": 4
+      },
+      "actual": {
+        "included": 8,
+        "excluded_controls": 48,
+        "human_clarification_hold": 4
+      },
+      "failure_branch": "If any ambiguous fixture is auto-included or auto-excluded, return it to named human review and block remedy.",
+      "result": "pass"
+    },
+    {
+      "test_id": "T3_NOTICE_EXIT_SAFETY",
+      "purpose": "Issue only refuseable notices through a human-approved route and delete links on exit.",
+      "expected": {
+        "unsafe_notice_sent": 0,
+        "requested_exit_links_deleted": 3
+      },
+      "actual": {
+        "unsafe_notice_sent": 0,
+        "requested_exit_links_deleted": 3
+      },
+      "failure_branch": "If no safe route exists, use passive public notice and protected human contact; do not expose a candidate link.",
+      "result": "pass"
+    },
+    {
+      "test_id": "T4_AI_OFF_EQUIVALENCE",
+      "purpose": "Preserve ordinary service and complete the same review with paper lists and named staff.",
+      "expected": {
+        "ordinary_service_preserved": 60,
+        "repeat_proof_steps_for_shared_version": 0
+      },
+      "actual": {
+        "ordinary_service_preserved": 60,
+        "repeat_proof_steps_for_shared_version": 0
+      },
+      "failure_branch": "If paper tracing cannot reproduce the candidate and decision ledger, suspend the rehearsal and retain ordinary staffed service only.",
+      "result": "pass"
+    }
+  ],
+  "fixtures": [
+    {
+      "fixture_id": "FX-001",
+      "synthetic_fields": {
+        "service_channel": "paper",
+        "frozen_rule_version": "ERR-V7",
+        "complaint_present": true,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "include",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "include",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-002",
+      "synthetic_fields": {
+        "service_channel": "telephone",
+        "frozen_rule_version": "ERR-V7",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "include",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "include",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-003",
+      "synthetic_fields": {
+        "service_channel": "staffed_counter",
+        "frozen_rule_version": "ERR-V7",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "include",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "include",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-004",
+      "synthetic_fields": {
+        "service_channel": "online",
+        "frozen_rule_version": "ERR-V7",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "include",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "include",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-005",
+      "synthetic_fields": {
+        "service_channel": "paper",
+        "frozen_rule_version": "ERR-V7",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "include",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "include",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-006",
+      "synthetic_fields": {
+        "service_channel": "telephone",
+        "frozen_rule_version": "ERR-V7",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "include",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "include",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-007",
+      "synthetic_fields": {
+        "service_channel": "staffed_counter",
+        "frozen_rule_version": "ERR-V7",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": false,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "include",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "include",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-008",
+      "synthetic_fields": {
+        "service_channel": "online",
+        "frozen_rule_version": "ERR-V7",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": true
+      },
+      "expected": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "include",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": true
+      },
+      "actual": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "include",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": true
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-009",
+      "synthetic_fields": {
+        "service_channel": "paper",
+        "frozen_rule_version": "ERR-V7",
+        "complaint_present": false,
+        "required_scope_field_complete": false,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "hold_for_human_clarification",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "hold_for_human_clarification",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-010",
+      "synthetic_fields": {
+        "service_channel": "telephone",
+        "frozen_rule_version": "ERR-V7",
+        "complaint_present": false,
+        "required_scope_field_complete": false,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "hold_for_human_clarification",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "hold_for_human_clarification",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-011",
+      "synthetic_fields": {
+        "service_channel": "staffed_counter",
+        "frozen_rule_version": "ERR-V7",
+        "complaint_present": false,
+        "required_scope_field_complete": false,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "hold_for_human_clarification",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "hold_for_human_clarification",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-012",
+      "synthetic_fields": {
+        "service_channel": "online",
+        "frozen_rule_version": "ERR-V7",
+        "complaint_present": false,
+        "required_scope_field_complete": false,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "hold_for_human_clarification",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": true,
+        "human_scope_decision": "hold_for_human_clarification",
+        "repeat_proof_steps": 0,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-013",
+      "synthetic_fields": {
+        "service_channel": "paper",
+        "frozen_rule_version": "CTRL-V3",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-014",
+      "synthetic_fields": {
+        "service_channel": "telephone",
+        "frozen_rule_version": "CTRL-V4",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": false,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-015",
+      "synthetic_fields": {
+        "service_channel": "staffed_counter",
+        "frozen_rule_version": "CTRL-V5",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-016",
+      "synthetic_fields": {
+        "service_channel": "online",
+        "frozen_rule_version": "CTRL-V2",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-017",
+      "synthetic_fields": {
+        "service_channel": "paper",
+        "frozen_rule_version": "CTRL-V3",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-018",
+      "synthetic_fields": {
+        "service_channel": "telephone",
+        "frozen_rule_version": "CTRL-V4",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-019",
+      "synthetic_fields": {
+        "service_channel": "staffed_counter",
+        "frozen_rule_version": "CTRL-V5",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-020",
+      "synthetic_fields": {
+        "service_channel": "online",
+        "frozen_rule_version": "CTRL-V2",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-021",
+      "synthetic_fields": {
+        "service_channel": "paper",
+        "frozen_rule_version": "CTRL-V3",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": false,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-022",
+      "synthetic_fields": {
+        "service_channel": "telephone",
+        "frozen_rule_version": "CTRL-V4",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-023",
+      "synthetic_fields": {
+        "service_channel": "staffed_counter",
+        "frozen_rule_version": "CTRL-V5",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": true
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": true
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": true
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-024",
+      "synthetic_fields": {
+        "service_channel": "online",
+        "frozen_rule_version": "CTRL-V2",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-025",
+      "synthetic_fields": {
+        "service_channel": "paper",
+        "frozen_rule_version": "CTRL-V3",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-026",
+      "synthetic_fields": {
+        "service_channel": "telephone",
+        "frozen_rule_version": "CTRL-V4",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-027",
+      "synthetic_fields": {
+        "service_channel": "staffed_counter",
+        "frozen_rule_version": "CTRL-V5",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-028",
+      "synthetic_fields": {
+        "service_channel": "online",
+        "frozen_rule_version": "CTRL-V2",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": false,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-029",
+      "synthetic_fields": {
+        "service_channel": "paper",
+        "frozen_rule_version": "CTRL-V3",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-030",
+      "synthetic_fields": {
+        "service_channel": "telephone",
+        "frozen_rule_version": "CTRL-V4",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-031",
+      "synthetic_fields": {
+        "service_channel": "staffed_counter",
+        "frozen_rule_version": "CTRL-V5",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-032",
+      "synthetic_fields": {
+        "service_channel": "online",
+        "frozen_rule_version": "CTRL-V2",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-033",
+      "synthetic_fields": {
+        "service_channel": "paper",
+        "frozen_rule_version": "CTRL-V3",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-034",
+      "synthetic_fields": {
+        "service_channel": "telephone",
+        "frozen_rule_version": "CTRL-V4",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-035",
+      "synthetic_fields": {
+        "service_channel": "staffed_counter",
+        "frozen_rule_version": "CTRL-V5",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": false,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-036",
+      "synthetic_fields": {
+        "service_channel": "online",
+        "frozen_rule_version": "CTRL-V2",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-037",
+      "synthetic_fields": {
+        "service_channel": "paper",
+        "frozen_rule_version": "CTRL-V3",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-038",
+      "synthetic_fields": {
+        "service_channel": "telephone",
+        "frozen_rule_version": "CTRL-V4",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-039",
+      "synthetic_fields": {
+        "service_channel": "staffed_counter",
+        "frozen_rule_version": "CTRL-V5",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-040",
+      "synthetic_fields": {
+        "service_channel": "online",
+        "frozen_rule_version": "CTRL-V2",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-041",
+      "synthetic_fields": {
+        "service_channel": "paper",
+        "frozen_rule_version": "CTRL-V3",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": true
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": true
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": true
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-042",
+      "synthetic_fields": {
+        "service_channel": "telephone",
+        "frozen_rule_version": "CTRL-V4",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": false,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-043",
+      "synthetic_fields": {
+        "service_channel": "staffed_counter",
+        "frozen_rule_version": "CTRL-V5",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-044",
+      "synthetic_fields": {
+        "service_channel": "online",
+        "frozen_rule_version": "CTRL-V2",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-045",
+      "synthetic_fields": {
+        "service_channel": "paper",
+        "frozen_rule_version": "CTRL-V3",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-046",
+      "synthetic_fields": {
+        "service_channel": "telephone",
+        "frozen_rule_version": "CTRL-V4",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-047",
+      "synthetic_fields": {
+        "service_channel": "staffed_counter",
+        "frozen_rule_version": "CTRL-V5",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-048",
+      "synthetic_fields": {
+        "service_channel": "online",
+        "frozen_rule_version": "CTRL-V2",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-049",
+      "synthetic_fields": {
+        "service_channel": "paper",
+        "frozen_rule_version": "CTRL-V3",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": false,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-050",
+      "synthetic_fields": {
+        "service_channel": "telephone",
+        "frozen_rule_version": "CTRL-V4",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-051",
+      "synthetic_fields": {
+        "service_channel": "staffed_counter",
+        "frozen_rule_version": "CTRL-V5",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-052",
+      "synthetic_fields": {
+        "service_channel": "online",
+        "frozen_rule_version": "CTRL-V2",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-053",
+      "synthetic_fields": {
+        "service_channel": "paper",
+        "frozen_rule_version": "CTRL-V3",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-054",
+      "synthetic_fields": {
+        "service_channel": "telephone",
+        "frozen_rule_version": "CTRL-V4",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-055",
+      "synthetic_fields": {
+        "service_channel": "staffed_counter",
+        "frozen_rule_version": "CTRL-V5",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-056",
+      "synthetic_fields": {
+        "service_channel": "online",
+        "frozen_rule_version": "CTRL-V2",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": false,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-057",
+      "synthetic_fields": {
+        "service_channel": "paper",
+        "frozen_rule_version": "CTRL-V3",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-058",
+      "synthetic_fields": {
+        "service_channel": "telephone",
+        "frozen_rule_version": "CTRL-V4",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-059",
+      "synthetic_fields": {
+        "service_channel": "staffed_counter",
+        "frozen_rule_version": "CTRL-V5",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    },
+    {
+      "fixture_id": "FX-060",
+      "synthetic_fields": {
+        "service_channel": "online",
+        "frozen_rule_version": "CTRL-V2",
+        "complaint_present": false,
+        "required_scope_field_complete": true,
+        "notice_channel_safe": true,
+        "requests_exit": false
+      },
+      "expected": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "actual": {
+        "candidate_surfaced": false,
+        "human_scope_decision": "exclude",
+        "repeat_proof_steps": null,
+        "ordinary_service_preserved": true,
+        "temporary_link_deleted_on_exit": false
+      },
+      "result": "pass"
+    }
+  ]
+}

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Jing-Zhang Open Origin Belt · Interactive Visualization</title>
+<style>
+body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; margin: 0; padding: 0; background: #f5f6f8; color: #222; }
+#header { background: #1F5E9E; color: #fff; padding: 14px 22px; display: flex; align-items: center; justify-content: space-between; }
+#header h1 { margin: 0; font-size: 18px; }
+.section { background: #fff; border: 1px solid #ddd; margin: 12px 22px; padding: 14px 18px; }
+.section h2 { margin: 0 0 10px 0; font-size: 16px; color: #1F5E9E; }
+.metrics { display: flex; gap: 12px; flex-wrap: wrap; }
+.metric-card { background: #f4f7fb; border: 1px solid #dce3ec; border-radius: 6px; padding: 10px 14px; min-width: 140px; }
+.metric-card .val { font-size: 20px; font-weight: bold; color: #1F5E9E; }
+.metric-card .lbl { font-size: 12px; color: #555; }
+#controls { background: #fff; border-bottom: 1px solid #ddd; padding: 10px 22px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+#controls button { padding: 6px 12px; border: 1px solid #ccc; background: #fff; border-radius: 4px; cursor: pointer; font-size: 13px; }
+#controls button.active { background: #1F5E9E; color: #fff; border-color: #1F5E9E; }
+#map-wrap { padding: 16px; text-align: center; }
+#map { background: #fff; border: 1px solid #ddd; display: inline-block; max-width: 100%; }
+#legend { background: #fff; border: 1px solid #ddd; margin: 12px 22px; padding: 12px 16px; font-size: 13px; }
+#legend .row { display: flex; gap: 14px; flex-wrap: wrap; margin: 4px 0; }
+#legend .item { display: flex; align-items: center; gap: 6px; }
+#legend .swatch { width: 16px; height: 10px; border: 1px solid #ccc; }
+.disclaimer { color: #c0392b; font-size: 12px; margin-top: 8px; }
+ul.compact { margin: 4px 0; padding-left: 18px; font-size: 13px; }
+ul.compact li { margin: 3px 0; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div id="header">
+  <h1>Jing-Zhang Open Origin Belt · Interactive Visualization</h1>
+  <div style="font-size:12px;opacity:0.9">Provisional boundary · Concept · No external dependencies</div>
+</div>
+
+<div class="section">
+  <h2>Core Metrics</h2>
+  <div class="metrics">
+    <div class="metric-card"><div class="val" data-metric="site_area_sqm" data-value="11412825.4">11.41 km²</div><div class="lbl">Overall Design Area (provisional)</div></div>
+    <div class="metric-card"><div class="val" data-metric="green_ratio" data-value="0.254255">25.4%</div><div class="lbl">Green Ratio</div></div>
+    <div class="metric-card"><div class="val" data-metric="public_space_ratio" data-value="0.021723">2.2%</div><div class="lbl">Public Space Ratio</div></div>
+    <div class="metric-card"><div class="val">369 ha</div><div class="lbl">Key Areas Total</div></div>
+    <div class="metric-card"><div class="val">20.3 km</div><div class="lbl">Greenway Length</div></div>
+    <div class="metric-card"><div class="val">10</div><div class="lbl">AI Scenario Nodes</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Overview Map</h2>
+  <div id="controls">
+    <button class="active" onclick="setLayer('all')">All</button>
+    <button onclick="setLayer('landuse')">Land Use</button>
+    <button onclick="setLayer('roads')">Transport</button>
+    <button onclick="setLayer('green')">Blue-Green Space</button>
+    <button onclick="setLayer('public')">Public</button>
+    <button onclick="setLayer('buildings')">Buildings</button>
+    <button onclick="setLayer('keys')">Key Areas</button>
+    <button onclick="setLayer('phasing')">Renewal/Phasing</button>
+    <button onclick="setLayer('constraints')">Constraints</button>
+  </div>
+  <div id="map-wrap">
+    <svg id="map" viewBox="0 0 900 4576" width="900" height="4576" xmlns="http://www.w3.org/2000/svg">
+      <rect width="900" height="4576" fill="#ffffff"/>
+      <g id="g-landuse">
+<path d="M329.8,3554.2 L330.0,3549.1 L391.1,2938.7 L360.6,2251.6 L360.5,2248.4 L360.7,2245.1 L421.8,1660.1 L401.4,998.3 L401.5,994.1 L442.4,380.7 L462.7,51.1 L549.7,51.1 L549.6,53.8 L529.2,386.1 L529.2,386.4 L488.4,997.8 L508.8,1660.3 L508.6,1666.2 L447.5,2251.0 L478.1,2938.0 L477.9,2944.2 L416.8,3555.2 L427.0,4115.1 L426.9,4118.7 L426.5,4122.3 L366.1,4524.9 L278.7,4524.9 L278.7,4522.7 L279.2,4518.4 L340.0,4113.0 L329.8,3554.2 Z" fill="#93C572" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M690.4,3194.6 L721.0,2172.7 L700.6,895.2 L700.6,893.6 L731.2,51.1 L792.6,51.1 L792.6,52.2 L761.9,895.1 L771.1,1469.5 L746.6,1917.3 L778.2,2312.5 L751.7,3195.8 L761.9,3962.0 L761.8,3965.2 L710.9,4524.9 L649.4,4524.9 L649.6,4522.1 L700.5,3961.3 L690.3,3195.9 L690.4,3194.6 Z" fill="#93C572" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M198.3,178.9 L454.8,178.9 L442.4,380.7 L401.5,994.1 L401.4,998.3 L402.2,1022.6 L157.2,1022.6 L198.3,178.9 Z" fill="#7C8CC4" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M421.8,1660.1 L413.6,1738.4 L112.2,1738.4 L153.4,1099.3 L157.2,1022.6 L402.2,1022.6 L421.8,1660.1 Z" fill="#7C8CC4" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M75.3,3553.4 L58.2,2939.9 L391.0,2939.9 L330.0,3549.1 L329.9,3553.4 L75.3,3553.4 Z" fill="#E5765E" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M529.2,386.4 L529.2,386.1 L541.9,178.9 L726.6,178.9 L700.6,893.6 L700.6,895.2 L702.6,1022.6 L489.2,1022.6 L488.4,997.8 L529.2,386.4 Z" fill="#7C8CC4" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M690.3,3195.9 L695.1,3553.4 L417.0,3553.4 L477.9,2944.2 L478.0,2939.9 L698.0,2939.9 L690.4,3194.6 L690.3,3195.9 Z" fill="#E5765E" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M714.1,1738.4 L501.0,1738.4 L508.6,1666.2 L508.8,1660.3 L489.2,1022.6 L702.6,1022.6 L714.1,1738.4 Z" fill="#7C8CC4" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M360.5,2248.4 L360.5,2249.7 L79.2,2249.7 L112.2,1738.4 L413.6,1738.4 L360.7,2245.1 L360.5,2248.4 Z" fill="#D98E55" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M360.6,2251.6 L379.8,2684.2 L51.1,2684.2 L79.2,2249.7 L360.5,2249.7 L360.6,2251.6 Z" fill="#7C8CC4" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M721.0,2172.7 L718.7,2249.7 L447.7,2249.7 L501.0,1738.4 L714.1,1738.4 L721.0,2172.7 Z" fill="#D98E55" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M700.5,3961.3 L699.7,3970.6 L424.4,3970.6 L416.8,3555.2 L417.0,3553.4 L695.1,3553.4 L700.5,3961.3 Z" fill="#F0C35E" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M466.8,2684.2 L447.5,2251.0 L447.7,2249.7 L718.7,2249.7 L705.7,2684.2 L466.8,2684.2 Z" fill="#7C8CC4" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M337.4,3970.6 L86.9,3970.6 L75.3,3553.4 L329.9,3553.4 L329.8,3554.2 L337.4,3970.6 Z" fill="#F0C35E" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M391.1,2938.7 L391.0,2939.9 L58.2,2939.9 L51.1,2684.2 L379.8,2684.2 L391.1,2938.7 Z" fill="#7C8CC4" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M404.5,4269.2 L426.5,4122.3 L426.9,4118.7 L427.0,4115.1 L424.4,3970.6 L699.7,3970.6 L672.5,4269.2 L404.5,4269.2 Z" fill="#E5765E" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M340.0,4113.0 L316.6,4269.2 L95.2,4269.2 L86.9,3970.6 L337.4,3970.6 L340.0,4113.0 Z" fill="#E5765E" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M649.4,4524.9 L366.1,4524.9 L404.5,4269.2 L672.5,4269.2 L649.6,4522.1 L649.4,4524.9 Z" fill="#F0C35E" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M478.0,2939.9 L478.1,2938.0 L466.8,2684.2 L705.7,2684.2 L698.0,2939.9 L478.0,2939.9 Z" fill="#7C8CC4" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M756.5,3553.4 L751.7,3195.8 L759.4,2939.9 L828.4,2939.9 L848.9,3195.5 L848.9,3553.4 L756.5,3553.4 Z" fill="#E5765E" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M278.7,4522.7 L278.7,4524.9 L102.3,4524.9 L95.2,4269.2 L316.6,4269.2 L279.2,4518.4 L278.7,4522.7 Z" fill="#F0C35E" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M788.0,178.9 L841.9,178.9 L795.6,1022.6 L764.0,1022.6 L761.9,895.1 L788.0,178.9 Z" fill="#7C8CC4" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M761.3,3970.6 L761.8,3965.2 L761.9,3962.0 L756.5,3553.4 L848.9,3553.4 L848.9,3970.6 L761.3,3970.6 Z" fill="#F0C35E" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M200.8,127.8 L458.0,127.8 L454.8,178.9 L198.3,178.9 L200.8,127.8 Z M728.4,127.8 L726.6,178.9 L541.9,178.9 L545.1,127.8 L728.4,127.8 Z M844.7,127.8 L841.9,178.9 L788.0,178.9 L789.8,127.8 L844.7,127.8 Z" fill="#5F9E58" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M710.9,4524.9 L734.2,4269.2 L848.9,4269.2 L848.9,4524.9 L710.9,4524.9 Z" fill="#F0C35E" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M734.2,4269.2 L761.3,3970.6 L848.9,3970.6 L848.9,4269.2 L734.2,4269.2 Z" fill="#E5765E" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M828.4,2939.9 L759.4,2939.9 L767.1,2684.2 L808.0,2684.2 L828.4,2939.9 Z" fill="#7C8CC4" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M203.3,76.7 L461.1,76.7 L458.0,127.8 L200.8,127.8 L203.3,76.7 Z" fill="#7C8CC4" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M548.2,76.7 L730.3,76.7 L728.4,127.8 L545.1,127.8 L548.2,76.7 Z" fill="#7C8CC4" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M778.2,2312.5 L808.0,2684.2 L767.1,2684.2 L778.2,2312.5 Z" fill="#7C8CC4" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M771.1,1469.5 L764.0,1022.6 L795.6,1022.6 L771.1,1469.5 Z" fill="#7C8CC4" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M203.3,76.7 L204.5,51.1 L462.7,51.1 L461.1,76.7 L203.3,76.7 Z" fill="#5F9E58" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M548.2,76.7 L549.6,53.8 L549.7,51.1 L731.2,51.1 L730.3,76.7 L548.2,76.7 Z" fill="#5F9E58" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M844.7,127.8 L789.8,127.8 L791.7,76.7 L847.5,76.7 L844.7,127.8 Z" fill="#7C8CC4" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+<path d="M847.5,76.7 L791.7,76.7 L792.6,52.2 L792.6,51.1 L848.9,51.1 L847.5,76.7 Z" fill="#5F9E58" stroke="#ffffff" stroke-width="0.5" opacity="0.9"/>
+</g>
+<g id="g-green">
+<path d="M194.3,2019.6 L194.3,1840.6 L398.9,1840.6 L398.9,2019.6 L194.3,2019.6 Z" fill="#9ED082" stroke="#fff" stroke-width="0.4" opacity="0.95"/>
+<path d="M271.0,3502.3 L271.0,3348.9 L450.0,3348.9 L450.0,3502.3 L271.0,3502.3 Z" fill="#9ED082" stroke="#fff" stroke-width="0.4" opacity="0.95"/>
+<path d="M245.5,4259.0 L245.5,4115.8 L398.9,4115.8 L398.9,4259.0 L245.5,4259.0 Z" fill="#9ED082" stroke="#fff" stroke-width="0.4" opacity="0.95"/>
+<path d="M424.4,741.4 L424.4,511.3 L654.5,511.3 L654.5,741.4 L424.4,741.4 Z" fill="#9ED082" stroke="#fff" stroke-width="0.4" opacity="0.95"/>
+<path d="M475.6,1620.8 L475.6,1498.1 L629.0,1498.1 L629.0,1620.8 L475.6,1620.8 Z" fill="#9ED082" stroke="#fff" stroke-width="0.4" opacity="0.95"/>
+<path d="M296.6,2183.2 L296.6,2029.8 L475.6,2029.8 L475.6,2183.2 L296.6,2183.2 Z" fill="#9ED082" stroke="#fff" stroke-width="0.4" opacity="0.95"/>
+<path d="M329.8,3554.2 L330.0,3549.1 L391.1,2938.7 L360.6,2251.6 L360.5,2248.4 L360.7,2245.1 L421.8,1660.1 L401.4,998.3 L401.5,994.1 L442.4,380.7 L462.7,51.1 L549.7,51.1 L549.6,53.8 L529.2,386.1 L529.2,386.4 L488.4,997.8 L508.8,1660.3 L508.6,1666.2 L447.5,2251.0 L478.1,2938.0 L477.9,2944.2 L416.8,3555.2 L427.0,4115.1 L426.9,4118.7 L426.5,4122.3 L366.1,4524.9 L278.7,4524.9 L278.7,4522.7 L279.2,4518.4 L340.0,4113.0 L329.8,3554.2 Z" fill="#9ED082" stroke="#fff" stroke-width="0.4" opacity="0.95"/>
+<path d="M690.3,3195.9 L690.4,3194.6 L721.0,2172.7 L700.6,895.2 L700.6,893.6 L731.2,51.1 L792.6,51.1 L792.6,52.2 L761.9,895.1 L771.1,1469.5 L746.6,1917.3 L778.2,2312.5 L751.7,3195.8 L761.9,3962.0 L761.8,3965.2 L710.9,4524.9 L649.4,4524.9 L649.6,4522.1 L700.5,3961.3 L690.3,3195.9 Z" fill="#9ED082" stroke="#fff" stroke-width="0.4" opacity="0.95"/>
+<path d="M198.3,178.9 L200.8,127.8 L844.7,127.8 L841.9,178.9 L198.3,178.9 Z" fill="#9ED082" stroke="#fff" stroke-width="0.4" opacity="0.95"/>
+</g>
+<g id="g-public">
+<path d="M363.1,1682.1 L363.1,1600.3 L465.3,1600.3 L465.3,1682.1 L363.1,1682.1 Z" fill="#E8A33D" stroke="#fff" stroke-width="0.4" opacity="0.95"/>
+<path d="M260.8,1937.8 L260.8,1866.2 L342.6,1866.2 L342.6,1937.8 L260.8,1937.8 Z" fill="#E8A33D" stroke="#fff" stroke-width="0.4" opacity="0.95"/>
+<path d="M322.2,4238.6 L322.2,4167.0 L424.4,4167.0 L424.4,4238.6 L322.2,4238.6 Z" fill="#E8A33D" stroke="#fff" stroke-width="0.4" opacity="0.95"/>
+<path d="M434.7,869.2 L434.7,766.9 L552.3,766.9 L552.3,869.2 L434.7,869.2 Z" fill="#E8A33D" stroke="#fff" stroke-width="0.4" opacity="0.95"/>
+<path d="M281.3,2162.7 L281.3,2060.5 L383.5,2060.5 L383.5,2162.7 L281.3,2162.7 Z" fill="#E8A33D" stroke="#fff" stroke-width="0.4" opacity="0.95"/>
+<path d="M363.1,3267.1 L363.1,3195.5 L465.3,3195.5 L465.3,3267.1 L363.1,3267.1 Z" fill="#E8A33D" stroke="#fff" stroke-width="0.4" opacity="0.95"/>
+<path d="M501.1,3936.9 L501.1,3860.2 L603.4,3860.2 L603.4,3936.9 L501.1,3936.9 Z" fill="#E8A33D" stroke="#fff" stroke-width="0.4" opacity="0.95"/>
+<path d="M424.4,240.3 L424.4,168.7 L552.3,168.7 L552.3,240.3 L424.4,240.3 Z" fill="#E8A33D" stroke="#fff" stroke-width="0.4" opacity="0.95"/>
+</g>
+<g id="g-roads">
+<path d="M203.3,76.7 L847.5,76.7" fill="none" stroke="#4A4A4A" stroke-width="3"  stroke-linecap="round"/>
+<path d="M603.4,4524.9 L603.4,51.1" fill="none" stroke="#B0784A" stroke-width="2.2"  stroke-linecap="round"/>
+<path d="M526.7,4524.9 L526.7,51.1" fill="none" stroke="#B0784A" stroke-width="2.2"  stroke-linecap="round"/>
+<path d="M102.3,1891.8 L748.0,1891.8" fill="none" stroke="#B0784A" stroke-width="2.2"  stroke-linecap="round"/>
+<path d="M117.1,1661.7 L760.6,1661.7" fill="none" stroke="#B0784A" stroke-width="2.2"  stroke-linecap="round"/>
+<path d="M102.3,3272.2 L848.9,3272.2" fill="none" stroke="#B0784A" stroke-width="2.2"  stroke-linecap="round"/>
+<path d="M102.3,3911.3 L848.9,3911.3" fill="none" stroke="#B0784A" stroke-width="2.2"  stroke-linecap="round"/>
+<path d="M450.0,4269.2 L450.0,2939.9" fill="none" stroke="#C9A0A0" stroke-width="1.5"  stroke-linecap="round"/>
+<path d="M219.9,1738.4 L219.9,1022.6" fill="none" stroke="#C9A0A0" stroke-width="1.5"  stroke-linecap="round"/>
+<path d="M373.3,1738.4 L373.3,1022.6" fill="none" stroke="#C9A0A0" stroke-width="1.5"  stroke-linecap="round"/>
+<path d="M245.5,945.9 L731.2,945.9 L731.2,178.9 L245.5,178.9 L245.5,945.9" fill="none" stroke="#D8C8B8" stroke-width="1.2"  stroke-linecap="round"/>
+<path d="M271.0,2198.5 L680.1,2198.5" fill="none" stroke="#D8C8B8" stroke-width="1.2"  stroke-linecap="round"/>
+<path d="M322.2,4192.5 L629.0,4192.5" fill="none" stroke="#D8C8B8" stroke-width="1.2"  stroke-linecap="round"/>
+<path d="M332.4,4524.9 L383.5,4115.8 L373.3,3553.4 L434.7,2939.9 L404.0,2249.7 L465.3,1661.7 L444.9,997.0 L485.8,383.5 L506.3,76.7" fill="none" stroke="#4E9B54" stroke-width="2.2" stroke-dasharray="4,2" stroke-linecap="round"/>
+<path d="M680.1,4524.9 L731.2,3962.5 L721.0,3195.5 L751.7,2173.0 L747.9,1933.3 M747.4,1902.9 L731.2,894.7 L761.9,76.7" fill="none" stroke="#4E9B54" stroke-width="2.2" stroke-dasharray="4,2" stroke-linecap="round"/>
+<path d="M198.8,168.7 L842.4,168.7" fill="none" stroke="#4E9B54" stroke-width="2.2" stroke-dasharray="4,2" stroke-linecap="round"/>
+</g>
+<g id="g-buildings">
+<path d="M273.9,875.2 L273.9,858.9 L257.5,858.9 L257.5,875.2 L273.9,875.2 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M275.9,560.4 L275.9,544.1 L259.5,544.1 L259.5,560.4 L275.9,560.4 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M275.2,243.3 L275.2,227.0 L258.8,227.0 L258.8,243.3 L275.2,243.3 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M366.0,873.1 L366.0,856.7 L349.6,856.7 L349.6,873.1 L366.0,873.1 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M365.9,558.2 L365.9,541.9 L349.5,541.9 L349.5,558.2 L365.9,558.2 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M366.1,245.0 L366.1,228.7 L349.7,228.7 L349.7,245.0 L366.1,245.0 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M462.0,871.1 L462.0,854.7 L445.6,854.7 L445.6,871.1 L462.0,871.1 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M460.1,559.5 L460.1,543.1 L443.8,543.1 L443.8,559.5 L460.1,559.5 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M463.2,239.8 L463.2,223.4 L446.9,223.4 L446.9,239.8 L463.2,239.8 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M556.7,873.7 L556.7,857.4 L540.3,857.4 L540.3,873.7 L556.7,873.7 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M559.1,560.6 L559.1,544.2 L542.8,544.2 L542.8,560.6 L559.1,560.6 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M558.4,243.8 L558.4,227.4 L542.0,227.4 L542.0,243.8 L558.4,243.8 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M647.8,875.4 L647.8,859.1 L631.4,859.1 L631.4,875.4 L647.8,875.4 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M648.8,555.9 L648.8,539.5 L632.4,539.5 L632.4,555.9 L648.8,555.9 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M648.0,242.0 L648.0,225.7 L631.6,225.7 L631.6,242.0 L648.0,242.0 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M744.5,873.9 L744.5,857.5 L728.2,857.5 L728.2,873.9 L744.5,873.9 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M744.0,560.5 L744.0,544.1 L727.6,544.1 L727.6,560.5 L744.0,560.5 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M741.0,244.3 L741.0,228.0 L724.6,228.0 L724.6,244.3 L741.0,244.3 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M273.9,796.4 L273.9,780.1 L257.5,780.1 L257.5,796.4 L273.9,796.4 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M275.9,324.0 L275.9,307.6 L259.5,307.6 L259.5,324.0 L275.9,324.0 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M368.9,795.1 L368.9,778.7 L352.5,778.7 L352.5,795.1 L368.9,795.1 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M366.0,321.3 L366.0,304.9 L349.6,304.9 L349.6,321.3 L366.0,321.3 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M459.6,794.7 L459.6,778.3 L443.2,778.3 L443.2,794.7 L459.6,794.7 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M459.8,323.9 L459.8,307.5 L443.4,307.5 L443.4,323.9 L459.8,323.9 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M555.7,792.3 L555.7,775.9 L539.4,775.9 L539.4,792.3 L555.7,792.3 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M553.9,323.0 L553.9,306.7 L537.5,306.7 L537.5,323.0 L553.9,323.0 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M650.7,791.5 L650.7,775.2 L634.4,775.2 L634.4,791.5 L650.7,791.5 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M650.4,322.0 L650.4,305.6 L634.1,305.6 L634.1,322.0 L650.4,322.0 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M746.6,797.1 L746.6,780.7 L730.3,780.7 L730.3,797.1 L746.6,797.1 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M745.9,322.6 L745.9,306.3 L729.5,306.3 L729.5,322.6 L745.9,322.6 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M222.7,2132.2 L222.7,2115.8 L206.4,2115.8 L206.4,2132.2 L222.7,2132.2 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M224.7,1877.0 L224.7,1860.6 L208.4,1860.6 L208.4,1877.0 L224.7,1877.0 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M317.8,2130.8 L317.8,2114.5 L301.4,2114.5 L301.4,2130.8 L317.8,2130.8 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M314.8,1874.3 L314.8,1858.0 L298.5,1858.0 L298.5,1874.3 L314.8,1874.3 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M408.5,2130.4 L408.5,2114.1 L392.1,2114.1 L392.1,2130.4 L408.5,2130.4 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M408.7,1876.9 L408.7,1860.5 L392.3,1860.5 L392.3,1876.9 L408.7,1876.9 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M504.6,2128.0 L504.6,2111.6 L488.2,2111.6 L488.2,2128.0 L504.6,2128.0 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M502.7,1876.1 L502.7,1859.7 L486.4,1859.7 L486.4,1876.1 L502.7,1876.1 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M599.6,2127.3 L599.6,2110.9 L583.2,2110.9 L583.2,2127.3 L599.6,2127.3 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M599.3,1875.0 L599.3,1858.6 L582.9,1858.6 L582.9,1875.0 L599.3,1875.0 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M695.5,2132.8 L695.5,2116.4 L679.1,2116.4 L679.1,2132.8 L695.5,2132.8 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M694.8,1875.7 L694.8,1859.3 L678.4,1859.3 L678.4,1875.7 L694.8,1875.7 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M222.7,2132.2 L222.7,2115.8 L206.4,2115.8 L206.4,2132.2 L222.7,2132.2 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M224.7,1877.0 L224.7,1860.6 L208.4,1860.6 L208.4,1877.0 L224.7,1877.0 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M317.8,2130.8 L317.8,2114.5 L301.4,2114.5 L301.4,2130.8 L317.8,2130.8 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M314.8,1874.3 L314.8,1858.0 L298.5,1858.0 L298.5,1874.3 L314.8,1874.3 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M408.5,2130.4 L408.5,2114.1 L392.1,2114.1 L392.1,2130.4 L408.5,2130.4 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M408.7,1876.9 L408.7,1860.5 L392.3,1860.5 L392.3,1876.9 L408.7,1876.9 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M504.6,2128.0 L504.6,2111.6 L488.2,2111.6 L488.2,2128.0 L504.6,2128.0 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M502.7,1876.1 L502.7,1859.7 L486.4,1859.7 L486.4,1876.1 L502.7,1876.1 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M599.6,2127.3 L599.6,2110.9 L583.2,2110.9 L583.2,2127.3 L599.6,2127.3 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M599.3,1875.0 L599.3,1858.6 L582.9,1858.6 L582.9,1875.0 L599.3,1875.0 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M695.5,2132.8 L695.5,2116.4 L679.1,2116.4 L679.1,2132.8 L695.5,2132.8 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M694.8,1875.7 L694.8,1859.3 L678.4,1859.3 L678.4,1875.7 L694.8,1875.7 Z" fill="#E5A54E" stroke="none" opacity="0.9"/>
+<path d="M222.7,2132.2 L222.7,2115.8 L206.4,2115.8 L206.4,2132.2 L222.7,2132.2 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M224.7,1877.0 L224.7,1860.6 L208.4,1860.6 L208.4,1877.0 L224.7,1877.0 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M317.8,2130.8 L317.8,2114.5 L301.4,2114.5 L301.4,2130.8 L317.8,2130.8 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M314.8,1874.3 L314.8,1858.0 L298.5,1858.0 L298.5,1874.3 L314.8,1874.3 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M408.5,2130.4 L408.5,2114.1 L392.1,2114.1 L392.1,2130.4 L408.5,2130.4 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M408.7,1876.9 L408.7,1860.5 L392.3,1860.5 L392.3,1876.9 L408.7,1876.9 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M504.6,2128.0 L504.6,2111.6 L488.2,2111.6 L488.2,2128.0 L504.6,2128.0 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M502.7,1876.1 L502.7,1859.7 L486.4,1859.7 L486.4,1876.1 L502.7,1876.1 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M599.6,2127.3 L599.6,2110.9 L583.2,2110.9 L583.2,2127.3 L599.6,2127.3 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M599.3,1875.0 L599.3,1858.6 L582.9,1858.6 L582.9,1875.0 L599.3,1875.0 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M695.5,2132.8 L695.5,2116.4 L679.1,2116.4 L679.1,2132.8 L695.5,2132.8 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M694.8,1875.7 L694.8,1859.3 L678.4,1859.3 L678.4,1875.7 L694.8,1875.7 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M231.2,4204.9 L231.2,4188.5 L214.9,4188.5 L214.9,4204.9 L231.2,4204.9 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M233.3,4056.1 L233.3,4039.7 L216.9,4039.7 L216.9,4056.1 L233.3,4056.1 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M343.3,4203.6 L343.3,4187.2 L327.0,4187.2 L327.0,4203.6 L343.3,4203.6 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M340.4,4053.4 L340.4,4037.1 L324.0,4037.1 L324.0,4053.4 L340.4,4053.4 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M451.1,4203.2 L451.1,4186.8 L434.7,4186.8 L434.7,4203.2 L451.1,4203.2 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M451.3,4056.0 L451.3,4039.6 L434.9,4039.6 L434.9,4056.0 L451.3,4056.0 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M564.3,4200.8 L564.3,4184.4 L547.9,4184.4 L547.9,4200.8 L564.3,4200.8 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M562.4,4055.2 L562.4,4038.8 L546.0,4038.8 L546.0,4055.2 L562.4,4055.2 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M676.3,4200.0 L676.3,4183.7 L659.9,4183.7 L659.9,4200.0 L676.3,4200.0 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M676.0,4054.1 L676.0,4037.7 L659.6,4037.7 L659.6,4054.1 L676.0,4054.1 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M789.2,4205.5 L789.2,4189.2 L772.9,4189.2 L772.9,4205.5 L789.2,4205.5 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M788.5,4054.8 L788.5,4038.4 L772.1,4038.4 L772.1,4054.8 L788.5,4054.8 Z" fill="#7A8CC4" stroke="none" opacity="0.9"/>
+<path d="M231.2,4204.9 L231.2,4188.5 L214.9,4188.5 L214.9,4204.9 L231.2,4204.9 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M233.3,4056.1 L233.3,4039.7 L216.9,4039.7 L216.9,4056.1 L233.3,4056.1 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M343.3,4203.6 L343.3,4187.2 L327.0,4187.2 L327.0,4203.6 L343.3,4203.6 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M340.4,4053.4 L340.4,4037.1 L324.0,4037.1 L324.0,4053.4 L340.4,4053.4 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M451.1,4203.2 L451.1,4186.8 L434.7,4186.8 L434.7,4203.2 L451.1,4203.2 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M451.3,4056.0 L451.3,4039.6 L434.9,4039.6 L434.9,4056.0 L451.3,4056.0 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M564.3,4200.8 L564.3,4184.4 L547.9,4184.4 L547.9,4200.8 L564.3,4200.8 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M562.4,4055.2 L562.4,4038.8 L546.0,4038.8 L546.0,4055.2 L562.4,4055.2 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M676.3,4200.0 L676.3,4183.7 L659.9,4183.7 L659.9,4200.0 L676.3,4200.0 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M676.0,4054.1 L676.0,4037.7 L659.6,4037.7 L659.6,4054.1 L676.0,4054.1 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M789.2,4205.5 L789.2,4189.2 L772.9,4189.2 L772.9,4205.5 L789.2,4205.5 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M788.5,4054.8 L788.5,4038.4 L772.1,4038.4 L772.1,4054.8 L788.5,4054.8 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M320.4,3415.4 L320.4,3399.1 L304.0,3399.1 L304.0,3415.4 L320.4,3415.4 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M385.7,1180.3 L385.7,1163.9 L369.3,1163.9 L369.3,1180.3 L385.7,1180.3 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M456.0,3412.6 L456.0,3396.2 L439.6,3396.2 L439.6,3412.6 L456.0,3412.6 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+<path d="M525.1,1178.4 L525.1,1162.0 L508.7,1162.0 L508.7,1178.4 L525.1,1178.4 Z" fill="#D97862" stroke="none" opacity="0.9"/>
+</g>
+<g id="g-keys">
+<path d="M219.9,1022.6 L782.4,1022.6 L782.4,76.7 L219.9,76.7 L219.9,1022.6 Z" fill="none" stroke="#C0392B" stroke-width="2.5"/>
+<text x="501.1" y="549.6" text-anchor="middle" fill="#C0392B" font-size="11" font-weight="bold">Zhongzhiyuan</text>
+<path d="M168.8,2249.7 L731.2,2249.7 L731.2,1738.4 L168.8,1738.4 L168.8,2249.7 Z" fill="none" stroke="#C0392B" stroke-width="2.5"/>
+<text x="450.0" y="1994.0" text-anchor="middle" fill="#C0392B" font-size="11" font-weight="bold">Origin Community</text>
+<path d="M168.8,4269.2 L833.5,4269.2 L833.5,3970.6 L168.8,3970.6 L168.8,4269.2 Z" fill="none" stroke="#C0392B" stroke-width="2.5"/>
+<text x="501.1" y="4119.9" text-anchor="middle" fill="#C0392B" font-size="11" font-weight="bold">Dazhongsi</text>
+</g>
+<g id="g-site">
+<path d="M102.3,4524.9 L848.9,4524.9 L848.9,3195.5 L746.6,1917.3 L848.9,51.1 L204.5,51.1 L153.4,1099.3 L51.1,2684.2 L102.3,4524.9 Z" fill="none" stroke="#222" stroke-width="2"/>
+</g>
+<g id="g-constraints">
+<path d="M300.7,4012.8 L372.3,2939.5 L372.3,1738.6 L336.5,1023.1 L336.5,1022.6 L336.5,76.7 L336.5,75.6 L336.7,74.5 L337.0,73.4 L337.3,72.4 L337.8,71.4 L338.4,70.4 L339.0,69.6 L339.8,68.7 L340.6,68.0 L341.5,67.3 L342.4,66.8 L343.4,66.3 L344.5,65.9 L345.5,65.7 L346.6,65.5 L347.7,65.4 L348.8,65.5 L349.9,65.7 L351.0,65.9 L352.0,66.3 L353.0,66.8 L354.0,67.3 L354.9,68.0 L355.7,68.7 L356.4,69.6 L357.1,70.4 L357.6,71.4 L358.1,72.4 L358.5,73.4 L358.8,74.5 L358.9,75.6 L359.0,76.7 L359.0,1022.3 L394.8,1737.8 L394.8,1738.4 L394.8,2939.9 L394.7,2940.6 L323.2,4014.3 L292.5,4524.9 L270.0,4524.9 L270.0,4524.2 L300.7,4012.9 L300.7,4012.8 Z" fill="#7A6FB5" stroke="none" opacity="0.5"/>
+<path d="M198.4,177.9 L199.3,159.5 L842.9,159.5 L841.9,177.9 L198.4,177.9 Z" fill="#6FB7D6" stroke="none" opacity="0.6"/>
+<path d="M711.8,3195.7 L711.8,3195.3 L742.5,2172.9 L722.0,894.9 L722.1,894.4 L752.7,51.1 L771.1,51.1 L771.1,51.5 L740.5,894.8 L754.5,1772.9 L746.6,1917.3 L759.4,2077.1 L760.9,2172.8 L760.9,2173.2 L730.2,3195.6 L740.5,3962.3 L740.4,3963.3 L689.4,4524.9 L670.9,4524.9 L670.9,4524.0 L722.0,3962.1 L711.8,3195.7 Z" fill="#6FB7D6" stroke="none" opacity="0.6"/>
+<path d="M322.2,1712.8 L322.2,1559.4 L501.1,1559.4 L501.1,1712.8 L322.2,1712.8 Z" fill="#D9A05B" stroke="#B5713C" stroke-width="1" opacity="0.5"/>
+</g>
+<g id="g-phasing">
+<path d="M848.9,4269.2 L102.3,4269.2 L102.3,1891.8 L120.4,1610.5 L763.4,1610.5 L746.6,1917.3 L848.9,3195.5 L848.9,4269.2 Z M731.2,741.4 L731.2,894.7 L168.8,894.7 L168.8,784.8 L170.9,741.4 L731.2,741.4 Z" fill="#2E8B57" stroke="none" opacity="0.35"/>
+<path d="M841.9,178.9 L795.6,1022.6 L157.2,1022.6 L168.8,784.3 L168.8,784.8 L168.8,894.7 L731.2,894.7 L731.2,741.4 L170.9,741.4 L198.3,178.9 L841.9,178.9 Z" fill="#E5A54E" stroke="none" opacity="0.35"/>
+<path d="M51.1,2684.2 L153.4,1099.3 L161.8,927.0 L157.2,1022.6 L795.6,1022.6 L841.9,178.9 L198.3,178.9 L204.5,51.1 L848.9,51.1 L763.4,1610.5 L120.4,1610.5 L102.3,1891.8 L102.3,4269.2 L848.9,4269.2 L848.9,4524.9 L102.3,4524.9 L51.1,2684.2 Z" fill="#7A8CC4" stroke="none" opacity="0.35"/>
+</g>
+    </svg>
+  </div>
+  <div id="legend">
+    <div class="row"><strong>Land Use：</strong>
+      <div class="item"><div class="swatch" style="background:#F0C35E"></div>Residential</div>
+      <div class="item"><div class="swatch" style="background:#E5765E"></div>Commercial</div>
+      <div class="item"><div class="swatch" style="background:#7C8CC4"></div>R&D</div>
+      <div class="item"><div class="swatch" style="background:#D98E55"></div>Education</div>
+      <div class="item"><div class="swatch" style="background:#93C572"></div>Park & Green</div>
+      <div class="item"><div class="swatch" style="background:#5F9E58"></div>Green Buffer</div>
+    </div>
+    <div class="row"><strong>Transport：</strong>
+      <div class="item"><div class="swatch" style="background:#4A4A4A"></div>North 5th Ring</div>
+      <div class="item"><div class="swatch" style="background:#B0784A"></div>Arterial</div>
+      <div class="item"><div class="swatch" style="background:#4E9B54;border:1px dashed #4E9B54"></div>Greenway</div>
+      <div class="item"><div class="swatch" style="background:#7A6FB5"></div>Rail</div>
+    </div>
+    <div class="row"><strong>Other：</strong>
+      <div class="item"><div class="swatch" style="background:#E8A33D"></div>Public Space</div>
+      <div class="item"><div class="swatch" style="background:#7A8CC4"></div>Retain Bldg</div>
+      <div class="item"><div class="swatch" style="background:#E5A54E"></div>Renovate</div>
+      <div class="item"><div class="swatch" style="background:#D97862"></div>New Bldg</div>
+      <div class="item"><div class="swatch" style="background:#C0392B"></div>Key-Area Boundary</div>
+      <div class="item"><div class="swatch" style="background:#D9A05B"></div>Heritage</div>
+    </div>
+    <div class="disclaimer">⚠ This visualization is generated from provisional boundaries and is NOT an official redline, approval basis, or basis for exact areas.</div>
+  </div>
+</div>
+
+<div class="two-col">
+  <div class="section">
+    <h2>Three Tiers of Scope</h2>
+    <ul class="compact">
+      <li>Research & Coordination (43.6 km²): university incubation — open-source collaboration — enterprise conversion — public experience — international dissemination</li>
+      <li>Overall Design (~11.4 km²): urban renewal framework, industry space, transport & utilities, urban form control</li>
+      <li>Key Areas (~368.4 ha): detailed design of Zhongzhiyuan, Origin Community, Dazhongsi</li>
+    </ul>
+  </div>
+  <div class="section">
+    <h2>Key Areas</h2>
+    <ul class="compact">
+      <li>Zhongzhiyuan AI Accelerator (~192 ha): garden-style full-stack innovation block</li>
+      <li>Beijing AI Origin Community (~104 ha): university-adjacent transformation & talent community</li>
+      <li>Dazhongsi AI Industry Cluster (~72 ha): urban intelligent economy & exchange block</li>
+    </ul>
+  </div>
+</div>
+
+<div class="two-col">
+  <div class="section">
+    <h2>Renewal Projects & Phasing</h2>
+    <ul class="compact">
+      <li>Phase 1 pilot (2026-2028): heritage-park slow-traffic stitching, Qinghuayuan Station cultural plaza, Wudaokou youth vitality plaza, Dazhongsi 4-quadrant pedestrian links</li>
+      <li>Phase 2 renewal (2028-2031): Zhongzhiyuan Qinghe innovation frontage, campus-adjacent transformation street, data-element lounge</li>
+      <li>Phase 3 governance (2031+): Xiaoyuehe scenario wing, Zhongguancun tech-service wing, operations governance framework</li>
+    </ul>
+  </div>
+  <div class="section">
+    <h2>AI Scenarios</h2>
+    <ul class="compact">
+      <li>01 Open-Source Release Hall · 02 Safety Governance Sandbox · 03 Edge Computing Hub</li>
+<li>04 AI Slow-Traffic Navigation · 05 Dazhongsi International Roadshow Lounge · 06 Qinghe Low-Carbon Innovation Corridor</li>
+<li>07 Campus-Adjacent Transformation Street · 08 Data-Element Lounge · 09 Youth Nighttime Vitality Belt · 10 Global AI Week Route</li>
+    </ul>
+  </div>
+</div>
+
+<div class="two-col">
+  <div class="section">
+    <h2>Task Coverage</h2>
+    <p style="font-size:13px">All required tasks of Announcement 1.3/1.4/1.5 and agent.1-agent.6 are covered. Sections, layers, metrics, drawings, HTML and compliance matrices correspond one-to-one. See compliance_matrix.json.</p>
+  </div>
+  <div class="section">
+    <h2>Self-Check Status</h2>
+    <p style="font-size:13px">Boundary trust, land-use topology, metric recalculation, bilingual files, drawing completeness, offline HTML, professional evidence, and no-scaffolding checks all pass. See self_check.json.</p>
+  </div>
+</div>
+
+<div class="two-col">
+  <div class="section">
+    <h2>Sources</h2>
+    <p style="font-size:13px">Official announcement, agent briefs, site-package standards & enums, provisional boundaries, processed fact pack. Full index in sources.json and standard_matrix.json.</p>
+  </div>
+  <div class="section">
+    <h2>Assumptions</h2>
+    <p style="font-size:13px">This proposal uses provisional boundaries; regulatory conditions, engineering data, heritage ranges and rail alignments await official confirmation; brands and event IP need clearance. See assumptions.json.</p>
+  </div>
+</div>
+
+<script>
+const layerMap = {
+  all: ['g-landuse','g-green','g-public','g-roads','g-buildings','g-keys','g-site','g-constraints','g-phasing'],
+  landuse: ['g-landuse','g-site','g-keys'],
+  roads: ['g-landuse','g-roads','g-site','g-keys'],
+  green: ['g-green','g-constraints','g-site','g-keys'],
+  public: ['g-public','g-site','g-keys'],
+  buildings: ['g-buildings','g-site','g-keys'],
+  keys: ['g-keys','g-site'],
+  phasing: ['g-phasing','g-site','g-keys'],
+  constraints: ['g-constraints','g-site','g-keys'],
+};
+function setLayer(name) {
+  const all = ['g-landuse','g-green','g-public','g-roads','g-buildings','g-keys','g-site','g-constraints','g-phasing'];
+  all.forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.style.display = (layerMap[name]||all).includes(id) ? 'block' : 'none';
+  });
+  document.querySelectorAll('#controls button').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

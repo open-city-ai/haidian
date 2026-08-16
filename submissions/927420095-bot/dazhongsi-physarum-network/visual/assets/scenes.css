@@ -1,0 +1,98 @@
+/* 十大地标场景卡 —— 底部横滑条 */
+#scenes-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background: linear-gradient(0deg, rgba(17, 24, 39, 0.88), rgba(17, 24, 39, 0.62));
+  backdrop-filter: blur(6px);
+  padding: 10px 16px 12px;
+  transition: transform 0.3s ease;
+}
+#scenes-panel.collapsed #scenes-scroll { display: none; }
+
+.scenes-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.scenes-header h2 {
+  margin: 0;
+  font-size: 13px;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+#scenes-toggle {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 14px;
+  cursor: pointer;
+}
+#scenes-toggle:hover { background: rgba(255, 255, 255, 0.15); }
+
+#scenes-scroll {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.4) transparent;
+}
+#scenes-scroll::-webkit-scrollbar { height: 6px; }
+#scenes-scroll::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.4); border-radius: 3px; }
+
+.scene-card {
+  flex: 0 0 auto;
+  width: 200px;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border-top: 3px solid var(--scene-color, #0052D4);
+  transition: transform 0.15s ease;
+}
+.scene-card:hover { transform: translateY(-3px); }
+
+.scene-card .scene-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+.scene-card .scene-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+.scene-card .scene-index {
+  font-size: 11px;
+  color: var(--scene-color, #0052D4);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.scene-card h3 {
+  margin: 0 0 3px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+}
+.scene-card .scene-loc {
+  font-size: 11px;
+  color: #0052D4;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.scene-card .scene-desc {
+  font-size: 11.5px;
+  color: #475569;
+  line-height: 1.5;
+}
+
+/* 数据性质声明与场景条共存时的避让：声明条上移 */
+body.scenes-visible #data-disclaimer { bottom: 118px; }

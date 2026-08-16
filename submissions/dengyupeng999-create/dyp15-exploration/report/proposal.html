@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>普通城市优先：AI 空间深度（设计候选） - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>普通城市优先：AI 空间深度（设计候选）</h1>
+<p class="summary">普通城市先完整成立；软件、固定设备与具身系统只能进入其公众暴露、风险、证据、责任与恢复能力能够支撑的空间深度。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+</section>
+<h1>普通城市优先：AI 空间深度（设计候选）</h1>
+<blockquote><p><strong>ORDINARY CITY FIRST</strong> 不同类型、不同公众暴露与风险的 AI，以不同空间深度进入普通城市。 本稿是研究级设计候选，不是法定规划、工程设计、已批准项目、投资承诺或实施时序。</p></blockquote>
+<h2>1. 设计依据与资料清单</h2>
+<p>本方案以征集公告规定的三层范围、三区两翼和 formal 成果要求为任务边界，以面向智能体任务书的六项任务为内容清单。总体设计范围公告量级约 1,140 公顷，三个重点区公开量级分别约 192.1、104.3、72.0 公顷；这些是公开文本事实，不是当前 provisional polygon 的精确面积证明。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="official-announcement" title="来源：official-announcement">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="agent-taskbook" title="来源：agent-taskbook">来源</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="published_overall_design_scope_area_sqm" title="指标：published_overall_design_scope_area_sqm">指标</sup></p>
+<p>现有权威层分为四级：可追溯公开事实、公开来源支持的场地语境、设计候选、待正式数据补齐。九个 GeoJSON 图层继续作为机器审计层；其中场地与重点区 polygon 明确为临时粗略约束，OSM 只支持道路、蓝绿和辅助锚点研究，不证明产权、出入口、无障碍连续性、项目落位或审批许可。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="provisional-boundaries" title="来源：provisional-boundaries">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="openstreetmap-context-20260811" title="来源：openstreetmap-context-20260811">来源</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#SITE-PROV-001" title="空间数据：geometry/site_boundary.geojson#SITE-PROV-001">空间数据</sup></p>
+<p>海淀官方公开资料支持科技成果转化政策语境、AI 原点的创新与人才服务、众智园和大钟寺的更新语境、京张二期配套完工以及真实零售具身设备案例；它们不证明本方案的房间、责任主体、设施容量或商户同意。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="haidian-tech-transfer-policy" title="来源：haidian-tech-transfer-policy">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="ai-origin-community" title="来源：ai-origin-community">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="jingzhang-phase-two-completion" title="来源：jingzhang-phase-two-completion">来源</sup></p>
+<p>AI 进入公共空间必须同时满足无障碍、非数字替代、人工接管、维护和退出。缺少官方建筑深度文件时，不把参考标准写成已满足的工程深度；建筑、消防、结构、机电与运维容量由后续专业团队核验。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="accessibility-law" title="来源：accessibility-law">来源</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-ARCH-DESIGN-DEPTH-2016" title="标准：MOHURD-ARCH-DESIGN-DEPTH-2016">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup></p>
+<h2>2. 三层范围工作框架</h2>
+<p>三层范围不是三套相互竞争的方案。统筹研究范围回答产业、人才、算力、数据、资金与场景如何协同；总体设计范围回答普通城市底板如何保持连续；重点区回答同一套 AI 空间深度原则如何形成三种不同空间语法。<sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-OFFICIAL-ANNOUNCEMENT" title="标准：PROJECT-OFFICIAL-ANNOUNCEMENT">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_level_scope_framework" title="深度：three_level_scope_framework">深度</sup></p>
+<p>核心层级只有三层。L1 是“普通城市优先”；L2 是四条不变量：普通连续、人工接管、恢复与移除、证据状态；L3 是 <code>试点 → 测量 → 人工复核 → 保留/调整/移除 → 另行判断是否扩展</code>。Evidence First 是贯穿三层的证据方法，不是第二品牌，也不把软件 A/B Test 等同于城市规划。</p>
+<p>普通城市底板包含步行、骑行、公共交通、商业、文化、休憩、遮荫、无障碍、人工帮助和维护。图中相关日常使用均为概念性 urban-use layer，不宣称当前场地已经具备；任何 AI 节点关闭时，基本城市功能仍应成立。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-OSM-PRIMARY" title="空间数据：geometry/roads.geojson#ROAD-OSM-PRIMARY">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="existing_conditions_diagnosis" title="深度：existing_conditions_diagnosis">深度</sup></p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="总体证据与场地状态"><figcaption>总体证据与场地状态</figcaption></figure>
+<p>总体识别暂不锁定最终方案名称。当前仅使用“普通城市优先 / AI 空间深度”作为 <code>design_candidate</code> 描述；候选命名“京张·转场 / JINGZHANG TRANSITIONS”和“京张·共城 / JINGZHANG COMMON CITY”仍需双语理解、商标与公共语言测试。</p>
+<h2>3. 统筹研究范围产业与未来城市研究</h2>
+<p>AI 创新生态采用八项要素而不编造指标：土地提供可依法核验的空间条件；空间区分公共界面、受控工作、专业验证与后勤恢复；产业按软件、固定设备、具身系统区分验证义务；资金只提出公开透明的候选支持机制；人才包括研究者、创业团队、维护与一线服务劳动者；算力和数据保持受控接口；场景通过责任、失败和退出审查后才进入城市。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="haidian-tech-transfer-policy" title="来源：haidian-tech-transfer-policy">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup></p>
+<p>六个主案例只转译机制，不复制形态。Helsinki 提供可结束于评估而非自动采用的短周期实地试点；Punggol 提供日常园区运营与数据边界的提醒；伦敦 Smart Mobility Living Lab 提供受控验证、隔离和恢复梯度；Cornell Tech 提供公共地面与受控创新空间并置；Woven City 提供不同试验环境对应不同物理代理的对照；Quayside 说明公共空间数字系统必须可问责、可分离。Waterfront Toronto 的资料分别证明数字治理、隐私和公共问责进入审查，以及 Sidewalk Labs 后来退出；本方案不把退出归结为单一原因。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="C-SRC-101" title="来源：C-SRC-101">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="C-SRC-201" title="来源：C-SRC-201">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="C-SRC-301" title="来源：C-SRC-301">来源</sup></p>
+<p>Cornell 的公共空间与创新建筑关系由大学官方页面支持；Woven City 的空间和参与描述来自运营方，不能证明开放北京街区可成为试车场；Quayside 仅作治理与退出警示。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="C-SRC-502" title="来源：C-SRC-502">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="C-SRC-702" title="来源：C-SRC-702">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="C-SRC-801" title="来源：C-SRC-801">来源</sup></p>
+<p>Kashiwa-no-ha 与 aspern Seestadt 为两个扩展案例：前者提醒持续的公私学协调界面比科技地标更重要，后者提醒不同领域实验室可以和日常城区并存，而不是把整座城市变成统一试验场。所有八个案例都不能证明京张的场地可用、主体能力、资金、居民同意或制度可转移。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="C-SRC-401" title="来源：C-SRC-401">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="C-SRC-402" title="来源：C-SRC-402">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="C-SRC-601" title="来源：C-SRC-601">来源</sup></p>
+<figure class="proposal-figure"><img src="../assets/figures/cases-to-jingzhang.png" alt="案例到京张的可转移机制"><figcaption>案例到京张的可转移机制</figcaption></figure>
+<p>AI 空间深度以 D0–D4 表达进入关系：D0 普通城市、D1 公共界面、D2 可选 AI、D3 受控工作、D4 专业验证。<strong>Service / Recovery Support 是横向后场支持层，不是 D5、不是升级终点。</strong> D2、D3、D4 均必须能返回维护、修复、恢复、更换或移除。软件、固定设备、具身系统的线型不同，表示空间负担与恢复义务，不表示价值或成熟度。</p>
+<figure class="proposal-figure"><img src="../assets/figures/ai-spatial-depth.png" alt="AI 空间深度核心模型"><figcaption>AI 空间深度核心模型</figcaption></figure>
+<h2>4. 总体设计范围城市更新与控规深度城市设计</h2>
+<p>总体策略先保护普通城市网络，再决定 AI 可以触及多深。道路、慢行、公共空间、蓝绿和现状使用图层用于识别研究问题；由于缺少官方地块、道路红线、建筑与控规条件，不提出新道路定线、FAR、建筑高度、建筑量、拆除范围或精确开发强度。<sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-CONTROL-DETAILED-PLANNING" title="标准：MOHURD-CONTROL-DETAILED-PLANNING">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="land_use_layout" title="深度：land_use_layout">深度</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup></p>
+<p>当前 <code>land_use.geojson</code> 是完整覆盖 provisional site 的研究级单元，不是法定用地。建筑图层保持诚实的 unknown/空缺。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-PROV-001" title="空间数据：geometry/land_use.geojson#LU-PROV-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BUILDING-DATA-GAP" title="空间数据：geometry/buildings.geojson#BUILDING-DATA-GAP">空间数据</sup></p>
+<p>正式 Green/Public geometry 是本提案实际主张的、完整的 participant-authored provisional metric-bearing polygon 集合，不是全 11.4 km² 的现状绿地清查，也不是海淀全部法律确认公共空间；OSM 现状 context 已与计量几何分离并只作为可追溯的研究语境。由此复算的 <code>green_ratio</code> 与 <code>public_space_ratio</code> 是低置信度、确定可复算的设计模型输出，不是法定或官方规划控制指标。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup></p>
+<p>Public polygon 的 <code>public_access_status=proposed_public</code> 只表达未来设计意图，不证明现状法律开放或无障碍事实。AI Origin ↔ Xiaoyue、Xiaoyue ↔ Zhongzhiyuan、Zhongzhiyuan ↔ Dongsheng 三处跨组件普通通行仍为 <code>CONNECTIVITY_EVIDENCE_BLOCKED</code>；图示路线只证明组件内和已绘制线段的 AI-free ordinary access，不证明 belt-wide continuous AI-free route。三处 LineString 证据缺口不进入 <code>green_ratio</code> 或 <code>public_space_ratio</code>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="普通城市底板与更新逻辑"><figcaption>普通城市底板与更新逻辑</figcaption></figure>
+<p>城市界面使用四条不变量校核：AI-free path 必须连续；公众能看到当前 AI 状态和证据状态；人工服务在错误、拒绝参与或断网时可以完成基本任务；安装物能从公共界面返回后场并恢复原有空间。该判断适用于首层、街道、公共空间和后勤，而不预设具体建筑改造。</p>
+<h2>5. 重点区域详细设计</h2>
+<p>三个重点区共享 D0–D4 与后场支持，但不共享同一构图。其 polygon 仍为 provisional context，公开面积量级不被概念图转换成精确红线。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup></p>
+<p><strong>AI 原点 / Permeability。</strong> 普通生活围绕开放公共边缘，Visible Work Edge 允许选择性看见、理解和交流；可选 AI 停留在 D1–D2，受控项目工作向 D3 后退。多个普通入口、休息、导向和物理信息在 AI 关闭后继续使用。公开资料支持该区域的创新、服务和展示语境，不证明某条建筑边缘可开放。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="ai-origin-community" title="来源：ai-origin-community">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="ai-origin-talent-service" title="来源：ai-origin-talent-service">来源</sup></p>
+<p><strong>众智园 / Controlled Gradient。</strong> 城市或生态边缘先形成可理解公共界面，再进入 D3 受控研发和 D4 专业验证；软件、固定设备与具身系统分别配置停止、隔离和恢复条件。Validation Threshold 让公开、受控、暂停、不可用状态可读，但公众没有进入受控验证的权利。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="zhongzhiyuan-renewal" title="来源：zhongzhiyuan-renewal">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="tencent-xuezhiyuan" title="来源：tencent-xuezhiyuan">来源</sup></p>
+<p><strong>大钟寺 / Ordinary Network First + Optional AI Branch。</strong> 交通、商业、文化和人工服务是主网络；Dazhongsi Branch Court 只是一条可关闭、可恢复普通用途的侧支。AI 不能成为乘车、购物、休息、文化体验或求助的必经节点。公开更新语境与零售 AI 案例只支持研究必要性，不证明任何商户或场地参加。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="dazhongsi-renewal" title="来源：dazhongsi-renewal">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="galbot-g1-haidian" title="来源：galbot-g1-haidian">来源</sup></p>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="三重点区权威状态"><figcaption>三重点区权威状态</figcaption></figure>
+<figure class="proposal-figure"><img src="../assets/figures/three-key-area-depths.png" alt="三重点区的不同空间深度语法"><figcaption>三重点区的不同空间深度语法</figcaption></figure>
+<p>中关村科技服务翼承担证据诊所、要素转介与知识服务，小月河场景赋能翼承担可逆现场准备度审计；两翼是服务和方法网络，不画成新的重点区 polygon，也不自动成为项目。</p>
+<h2>6. AI 创新生态、人才画像与 AI+ 场景</h2>
+<p>十二个场景分为 <strong>8 个 Spatial + 4 个 System</strong>。Spatial 场景直接改变公共/受控边界、设备位置、测试空间或恢复关系；System 场景改变反馈、证据、服务连续或治理，不伪装成建筑。三类产业验证是 SCN-03 软件/模型、SCN-04 固定设备、SCN-10 具身系统。<sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-AGENT-OPEN-CALL-TASKBOOK" title="标准：PROJECT-AGENT-OPEN-CALL-TASKBOOK">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="municipal_new_infrastructure" title="深度：municipal_new_infrastructure">深度</sup></p>
+<div class="proposal-table"><table><thead><tr><th>ID</th><th>分类与场景</th><th>区域 / 深度</th><th>人工接管与退出</th></tr></thead><tbody><tr><td>SCN-01</td><td>Spatial：项目可见性</td><td>AI 原点，D0–D3</td><td>steward 更正主张；移除数字层，普通入口和实体说明保留</td></tr><tr><td>SCN-02</td><td>System：社区反馈</td><td>AI 原点与远程，D0–D2</td><td>人工读取原始意见；纸面、电话、在场渠道继续</td></tr><tr><td>SCN-03</td><td>Spatial / IND-TEST-01：受控软件研发</td><td>众智园，D3–D4</td><td>领域复核人停止模型并恢复人工基线</td></tr><tr><td>SCN-04</td><td>Spatial / IND-TEST-02：固定设备测试</td><td>众智园，D2–D4 + 后场支持</td><td>观察/维护者隔离电力网络、拆除并恢复表面与路径</td></tr><tr><td>SCN-05</td><td>Spatial：商业文化服务</td><td>大钟寺，D0–D2</td><td>一线人员旁路并完成普通服务</td></tr><tr><td>SCN-06</td><td>Spatial：自愿主办的零售应用</td><td>大钟寺，D2–D4 + 后场支持</td><td>授权员工停止设备并恢复普通零售布局</td></tr><tr><td>SCN-07</td><td>System：成果转化证据诊所</td><td>中关村翼，D1–D3</td><td>人类顾问核对材料；不自动决定资格、资金或审批</td></tr><tr><td>SCN-08</td><td>Spatial：可逆准备度审计</td><td>小月河翼，D0–D3</td><td>现场/人工记录优先；临时设备撤除并恢复</td></tr><tr><td>SCN-09</td><td>Spatial：可纠错文化解释</td><td>京张公共文化界面，D0–D3</td><td>内容 curator 停用、更正；物理路径和有据叙事保留</td></tr><tr><td>SCN-10</td><td>Spatial / IND-TEST-03：具身恢复演练</td><td>众智园，D3–D4 + 后场支持</td><td>训练角色急停、安全接近、隔离、恢复与撤场</td></tr><tr><td>SCN-11</td><td>System：AI-free 连续性演练</td><td>全带，D0–D4</td><td>激活普通服务；连续性失败则 AI 保持关闭或移除</td></tr><tr><td>SCN-12</td><td>System：双语开放证据复核</td><td>轮换/远程，D1–D3</td><td>人工翻译和 curator 更正、归档保留/调整/退出</td></tr></tbody></table></div>
+<figure class="proposal-figure"><img src="../assets/figures/scenario-system.png" alt="12 场景的空间/系统层级"><figcaption>12 场景的空间/系统层级</figcaption></figure>
+<p>角色不是调研样本。七个 User/Worker 分别是研究人员、成果转化团队、居民/普通城市用户、设施维护人员、访客/学生/公共文化用户、一线商业与人工服务人员、无障碍敏感用户及陪同者；PER-08 是独立的 steward/governance role，拥有纠错、暂停、关闭和记录理由的职责，不冒充一般 persona。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="accessibility-law" title="来源：accessibility-law">来源</sup></p>
+<figure class="proposal-figure"><img src="../assets/figures/persona-scenario-map.png" alt="角色—场景—接管关系"><figcaption>角色—场景—接管关系</figcaption></figure>
+<p>所有场景都必须通过“如果拿掉 AI 是否仍能提供基本城市功能”测试。AI 的不可替代价值只存在于可验证的识别、模拟、动态调整、受控验证或跨资源协同；若人工或普通设施更好，保留普通方案或移除 AI 都是成功结果。</p>
+<h2>7. 用地、建筑规模与拆改留方案</h2>
+<p>本阶段不具备精确建筑、权属、控规和工程证据，因此不把 Spatial Depth 画成建筑平面或层高。D0–D4 是关系性空间角色；后场支持可能是数字回滚、受控房间、维护通道或回收空间，具体形式、面积与位置待现场和专业核验。<sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="深度：development_intensity_controls">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="height_massing_character" title="深度：height_massing_character">深度</sup></p>
+<p>保留/改造/拆除/新建仍为待正式数据补齐。允许的当前判断只有：保留普通通行、商业、文化、休息和人工服务；优先使用可逆界面；不得以概念图决定拆改留；未证明维护与恢复能力的固定或具身设备不能开放。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="深度：retain_renovate_demolish">深度</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_density" title="指标：building_density">指标</sup></p>
+<p>用地表达继续采用机器可校验的正式分类框架，不用自造“AI 用地”替代国土空间分类。AI 以可撤回的使用、界面、受控工作和运营义务进入，而不是给城市再加一种未经法定程序的用地类别。<sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="标准：MNR-LAND-USE-CLASSIFICATION-GUIDE">标准</sup></p>
+<h2>8. 交通、轨道、市政与公共服务设施</h2>
+<p>京张二期配套完成后，不能继续把过去的铁路阻隔直接描述为当前普遍事实。现有 OSM 道路、水系与 POI 仅为研究快照，不能证明宽度、坡度、开放时间、合法穿越、无障碍或服务通道。任何断点与时间成本必须通过多时段现场、地图路线和专业核验再确认。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="jingzhang-phase-two-completion" title="来源：jingzhang-phase-two-completion">来源</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-OSM-PRIMARY" title="空间数据：geometry/roads.geojson#ROAD-OSM-PRIMARY">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup></p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="交通、蓝绿与 AI-free 研究底板"><figcaption>交通、蓝绿与 AI-free 研究底板</figcaption></figure>
+<p>AI-free path 是设计要求而非现状主张：不需要账号、手机、传感授权或参与试验；在断网、错误、维护和永久移除时仍连续。固定设备不得挤占净宽，具身系统默认留在 D3–D4 受控环境；任何 D2 公众试点必须另行审查非参与者、无障碍、劳动、急停和恢复路径。</p>
+<p>公共服务采用“普通入口 + 人工接管 + 可选 AI 侧支”。市政接口只登记电力、网络、弱电、充电、隔离、清洁和撤场等待核问题，不声称容量足够，也不把维护劳动隐形化。</p>
+<h2>9. 蓝绿空间、公共空间与城市风貌</h2>
+<p>蓝绿和公共空间首先服务休憩、遮荫、步行、骑行、文化、生态和人工帮助。AI 只能占据可关闭的侧支、解释界面或经批准的临时测试位置；主路径和基本公共价值不能依赖设备。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-OSM-COVERAGE" title="空间数据：geometry/green_space.geojson#GREEN-OSM-COVERAGE">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-OSM-COVERAGE" title="空间数据：geometry/public_space.geojson#PUBLIC-OSM-COVERAGE">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="blue_green_public_space" title="深度：blue_green_public_space">深度</sup></p>
+<p>三个主地标不是科技奇观，而是三种空间记忆：AI 原点的 <strong>Visible Work Edge / 可见工作廊</strong>，众智园的 <strong>Validation Threshold / 验证门廊</strong>，大钟寺的 <strong>Dazhongsi Branch Court / 大钟寺分支庭</strong>。前两者保留，后者是推荐设计候选；均无精确位置、尺寸、材料、建筑或运营承诺。</p>
+<p>Human Service Anchor 降级为所有公共界面的 <strong>Public Space Component</strong>；Three-Layer Story Stop 降级为分布式 <strong>Heritage Public Interface</strong>。组件库包括人工服务点、非数字信息板、可选 AI 入口、AI-free/bypass 标识、接管/协助标识、维护通道提示、恢复/移除界面、无障碍休息与等候。它们是概念类型，不是产品目录或已布置设施。</p>
+<figure class="proposal-figure"><img src="../assets/figures/landmark-component-system.png" alt="地标、文化界面与公共组件系统"><figcaption>地标、文化界面与公共组件系统</figcaption></figure>
+<p>文化叙事分三层：有据的京张铁路历史与公共空间现状；中关村的创新工作与成果转化；AI 新文化的可解释、可纠错、可接管和可退出。实体、有来源的基础叙事先存在，可选数字层后进入；不得以铁路形态等同 AI，不虚构人物、事件或官方解释。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="agent-taskbook" title="来源：agent-taskbook">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="jingzhang-phase-two-completion" title="来源：jingzhang-phase-two-completion">来源</sup></p>
+<p>Open Contribution Display 记录贡献、来源、公共价值、Review/试点状态、维护贡献、恢复/移除结果和贡献者署名。保留、调整和退出都可以被记录；它不是奖项、认证、采购背书或政府荣誉。</p>
+<h2>10. 更新项目清单、实施政策与分期计划</h2>
+<p>候选组合分为三类：7 个 Spatial Projects（CP-01、03、04、05、06、07、10），2 个 Operational Programmes（CP-09、11），2 个 Governance / Service Systems（CP-02、08）。项目一词不再覆盖所有机制；只有内在需要空间且获得权威位置证据的候选，未来才有资格进入 GeoJSON。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="renewal_project_list" title="深度：renewal_project_list">深度</sup></p>
+<div class="proposal-table"><table><thead><tr><th>类型</th><th>候选</th><th>Geometry eligibility</th></tr></thead><tbody><tr><td>Spatial Projects</td><td>Visible Work Edge；Validation Threshold；Software/Model Shadow Cell；Fixed-Device Test Bay；Embodied Recovery Yard / Room；Ordinary Service + Optional AI Branch；Heritage Public Interfaces</td><td>CP-01/03/05/06 = YES；CP-04/07/10 = MAYBE；均不授权当前绘制</td></tr><tr><td>Operational Programmes</td><td>Reversible Scenario Readiness Walks；Open Evidence Cycle &amp; Archive</td><td>NO</td></tr><tr><td>Governance / Service Systems</td><td>Community Feedback Interface；Transfer Evidence Clinic Network</td><td>CP-02 = NO；CP-08 = MAYBE，仅限未来核验的服务点</td></tr></tbody></table></div>
+<figure class="proposal-figure"><img src="../assets/figures/operations-project-sequencing.png" alt="运营、候选组合与证据触发的次序"><figcaption>运营、候选组合与证据触发的次序</figcaption></figure>
+<p>实施方法是 <code>ENTRY → SCREEN → PILOT → MEASURE → REVIEW → DECISION → ARCHIVE → SCALE</code>。Scale 不是自动结果；D4 验证成功不自动获得 D2 公共部署权，必须重新审查公共影响、普通连续、无障碍、一线劳动、维护、场地权利和退出。保持更深、暂停或移除均为正当决定。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="C-SRC-101" title="来源：C-SRC-101">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="C-SRC-302" title="来源：C-SRC-302">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="phasing_implementation" title="深度：phasing_implementation">深度</sup></p>
+<p>现有 <code>phasing.geojson</code> 的三个 OSM 点只是 analysis helpers，不是项目、阶段、时序或地标。最新版 validator 要求 formal phasing 非空，因此外部空层测试将触发契约阻断；本阶段按规则保留原文件并明确 <strong>Phasing Geometry Contract Blocked</strong>。设计次序只表达依赖关系，不给日期、预算或政府承诺。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/phasing.geojson#PHASE-CAND-001" title="空间数据：geometry/phasing.geojson#PHASE-CAND-001">空间数据</sup></p>
+<p>年度运营是候选机制：开放征集与 evidence clinic、开发者/维护者协作、场景开放、公众体验、双语 Review、退出归档和国际传播形成循环。活动品牌、场地、日历、经费、采购、合作方与转化效果均未确定；任何招引、资金或政策支持都不写成承诺。</p>
+<h2>11. 指标体系、面积复算与合规矩阵</h2>
+<p>已知指标包括由 provisional <code>SITE-001</code> 复算的 <code>site_area_sqm=11,412,825.385553982 m²</code>。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup> 13 个 participant-proposed Green polygons 的 union area 为 <code>209,504.8649792572 m²</code>，<code>green_ratio ≈ 1.84%</code>。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup> 19 个 participant-proposed Public polygons 的 union area 为 <code>192,272.2098199374 m²</code>，<code>public_space_ratio ≈ 1.68%</code>。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup> <code>key_area_count=3</code>。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup></p>
+<p>三项 required metrics 均是低置信度、submission-derived、provisional design-model outputs，不是官方面积或法定控制指标；公开总体范围约值 <code>11,400,000 m²</code> 只作版本/精度对照，不用于校准 polygon。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup></p>
+<p>建筑面积、FAR、建筑密度、高度、退线、官方精确 site polygon 及其他依赖未取得官方条件的指标继续保持 unknown。Green/Public 面积和比例则按上述 participant proposal geometry 以 known、low-confidence 保存，并在官方边界或设计几何变化时重新计算；这不削弱官方数据限制，也不把设计模型值升级为审批依据。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="floor_area_ratio" title="指标：floor_area_ratio">指标</sup></p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="指标、来源与 unknown 状态"><figcaption>指标、来源与 unknown 状态</figcaption></figure>
+<p><code>compliance_matrix.json</code> 已把公告任务与 agent.1–agent.6 映射到正文、图层、指标、图纸、来源、假设和 HTML；<code>standard_matrix.json</code> 只登记真实专业标准；<code>design_depth_matrix.json</code> 把 Spatial Depth、三区、场景、文化、运营、候选组合和后续专业核验放入 evidence chain。矩阵完整不等于审批、工程可行或正式自检通过。</p>
+<h2>12. 风险、版权与合规说明</h2>
+<p>最大风险不是图面不够具体，而是用漂亮的空间精度掩盖没有来源的边界、建筑、责任和容量。当前保持 unknown：官方 site/key-area polygon、地块与道路红线、建筑/首层/产权/租约、消防结构机电、无障碍连续、后场和服务路线、具体 operator/maintainer、SLA、资金、活动资源、试验阈值及法律许可。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup></p>
+<p>所有空间动作都是“概念建议”“参考方案”或“可供专业团队深化研究”。不得据此实施拆建、安装、封闭、测试、采购、招商或活动。D0–D4 是城市设计关系，不是法律风险、技术成熟度、认证或审批分类。</p>
+<p>文本、图件、PDF 和离线 HTML 由本次智能体工作流生成；公共事实均记录在 <code>sources.json</code>。案例只做事实转述和机制比较，不复用案例图片、Logo、图纸、商标或大段文字。字体由本机系统用于 PDF 嵌入，完整权利与构建说明见 <code>report/copyright_statement.md</code>。</p>
+<p>正式投稿资格以 <code>manifest.json</code> 与 <code>self_check.json</code> 的机器可读状态为准；本提案及其图件不构成审批、获选或实施状态声明。</p>
+<h2>13. 参考资料</h2>
+<p>完整的 28 条正式/场地/案例来源记录见 <code>sources.json</code>，包括发布者、URL、日期、用途、限制与复用说明；18 条去重假设记录见 <code>assumptions.json</code>。八个案例来源还包括 Helsinki 的城市创新公司说明、Punggol 的政府机构项目与测试公告、伦敦测试场运营方页面、Cornell Tech 大学页面、Woven City 运营方页面、Waterfront Toronto 公共机构声明、Kashiwa 官方项目页和 Seestadt 官方城区页。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="C-SRC-102" title="来源：C-SRC-102">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="C-SRC-202" title="来源：C-SRC-202">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="C-SRC-501" title="来源：C-SRC-501">来源</sup></p>
+<p>案例补充来源用于交叉支撑方法与空间关系，不证明北京转移：London private trials、Cornell campus、Woven Inventors、Waterfront Toronto withdrawal statement 和当前 Seestadt urban-lab page 均保留各自限制。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="C-SRC-302" title="来源：C-SRC-302">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="C-SRC-701" title="来源：C-SRC-701">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="C-SRC-802" title="来源：C-SRC-802">来源</sup></p>
+<p>本方案的审计优先级保持：GeoJSON → metrics → 三矩阵 → manifest/sources/assumptions/self-check → proposal → figures → HTML/PDF。若后续取得 official polygons、控规、建筑或责任证据，必须从权威层重新复算并同步所有呈现成果，而不是只改一张图。<sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-AGENT-OPEN-CALL-TASKBOOK" title="标准：PROJECT-AGENT-OPEN-CALL-TASKBOOK">标准</sup></p>
+</main>
+</body>
+</html>

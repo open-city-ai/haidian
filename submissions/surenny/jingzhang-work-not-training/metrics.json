@@ -1,0 +1,355 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "projected area of submitted provisional SITE_BOUNDARY in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-SITE-001"
+      ]
+    },
+    "land_use_partition_area_sqm": {
+      "status": "known",
+      "value": 11412832.818,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum projected areas of topology-derived LAND_USE partition",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-SITE-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 343329.353,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum projected areas of conceptual BUILDING_FOOTPRINT features",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-SITE-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.199654,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "projected GREEN_SPACE area / submitted provisional boundary area",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-SITE-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.208737,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "projected PUBLIC_SPACE area / submitted provisional boundary area",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-SITE-001"
+      ]
+    },
+    "concept_walk_network_length_m": {
+      "status": "known",
+      "value": 1065.997,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "projected length of the conceptual staffed ordinary-work and sensor-free route",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-SITE-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count required provisional KEY_AREA features",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-SITE-001"
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/taskbook-deliverables.json"
+      ],
+      "formula": "count scenario cards",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/taskbook-deliverables.json"
+      ],
+      "formula": "count task-based synthetic personas",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/taskbook-deliverables.json"
+      ],
+      "formula": "count industry/professional test scenarios",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/taskbook-deliverables.json"
+      ],
+      "formula": "count removable concept landmarks",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "named_human_role_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/work-training-protocol.json"
+      ],
+      "formula": "count distinct named human decision roles in work-training separation protocol",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "entry_gate_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/work-training-protocol.json"
+      ],
+      "formula": "count human-signed lifecycle gates REPORT through CLOSE",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "synthetic_persona_script_count": {
+      "status": "known",
+      "value": 60,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/synthetic-work-fixtures.json"
+      ],
+      "formula": "count row-level no-personal-data fixtures with expected, actual, result, and failure-branch suite coverage",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "requires approved regulatory planning conditions",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved FAR controls are unavailable."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "requires approved height and professional constraints",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved height, aviation, heritage, and engineering controls are unavailable."
+    },
+    "synthetic_test_pass_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/synthetic-work-fixtures.json"
+      ],
+      "formula": "count deterministic synthetic test suites where expected equals actual and every failure branch is declared",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ecosystem_case_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/taskbook-deliverables.json"
+      ],
+      "formula": "count documented background case questions in agent.2; not transferred policies or local performance evidence",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "annual_operation_cycle_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/taskbook-deliverables.json"
+      ],
+      "formula": "count distinct proposed operating cycles with an owner, output, conversion path, and stop rule",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ordinary_work_continuity_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "assumptions.json"
+      ],
+      "formula": "Requires approved live pilot and human audit; synthetic fixtures are not field evidence.",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-TRIGGER-001"
+      ],
+      "reason": "No authorized field site, legal/professional determination, affected-person co-review, or independent operating baseline is available.",
+      "label": "Real ordinary-work continuity after refusal or failure"
+    },
+    "anti_retaliation_audit_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "assumptions.json"
+      ],
+      "formula": "Requires lawful access to authorised aggregate workplace records and affected-worker review.",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-DERIVATIVE-001"
+      ],
+      "reason": "No authorized field site, legal/professional determination, affected-person co-review, or independent operating baseline is available.",
+      "label": "Real anti-retaliation equality audit rate"
+    },
+    "training_choice_review_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "assumptions.json"
+      ],
+      "formula": "Requires confirmed service ownership and applicable labour procedure.",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-DERIVATIVE-001",
+        "A-CHOICE-001"
+      ],
+      "reason": "No authorized field site, legal/professional determination, affected-person co-review, or independent operating baseline is available.",
+      "label": "Real human review rate for training choice and withdrawal"
+    },
+    "disputed_derivative_disablement_hours": {
+      "status": "unknown",
+      "value": null,
+      "unit": "hours",
+      "source_files": [
+        "proposal.md",
+        "assumptions.json"
+      ],
+      "formula": "Requires supplier inventory and verified timestamps.",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-TRIGGER-001",
+        "A-CHOICE-001"
+      ],
+      "reason": "No authorized field site, legal/professional determination, affected-person co-review, or independent operating baseline is available.",
+      "label": "Real hours to disable disputed derivative assets"
+    },
+    "livelihood_condition_disparity_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "assumptions.json"
+      ],
+      "formula": "Requires authorised aggregate evidence and anti-retaliation safeguards.",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-DERIVATIVE-001"
+      ],
+      "reason": "No authorized field site, legal/professional determination, affected-person co-review, or independent operating baseline is available.",
+      "label": "Real wage, shift, access, tools or facility disparity rate"
+    },
+    "synthetic_refusal_case_count": {
+      "status": "known",
+      "value": 20,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/synthetic-work-fixtures.json",
+        "visual/assets/verify-work-fixtures.js"
+      ],
+      "formula": "count(records where choice=refuse_or_withdraw)",
+      "confidence": "high",
+      "assumptions": [],
+      "label": "Synthetic refusal or withdrawal fixture count"
+    },
+    "synthetic_sensor_overreach_hold_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/synthetic-work-fixtures.json",
+        "visual/assets/verify-work-fixtures.js"
+      ],
+      "formula": "count(records where sensor_overreach=true)",
+      "confidence": "high",
+      "assumptions": [],
+      "label": "Synthetic sensor-overreach HOLD count"
+    }
+  }
+}

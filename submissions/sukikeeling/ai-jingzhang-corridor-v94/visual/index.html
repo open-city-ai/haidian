@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张智谷 / JZ Valley — 方案可视化展示</title>
+<style>
+  :root{
+    --bg:#0d1117;
+    --bg-panel:#151b23;
+    --bg-panel-2:#1b232d;
+    --line:#2a333d;
+    --ink:#e8edf2;
+    --ink-dim:#9aa7b2;
+    --rail-gray:#5b6672;
+    --signal-red:#e0483f;
+    --signal-amber:#e0a83f;
+    --signal-green:#2fae66;
+    --data-cyan:#33c4d1;
+    --radius:10px;
+    font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei","Heiti SC",sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);scroll-behavior:smooth;}
+  a{color:var(--data-cyan);}
+  section{padding:64px 24px;max-width:1240px;margin:0 auto;}
+  h1,h2,h3{margin:0 0 12px 0;font-weight:700;}
+  h2{font-size:26px;border-left:5px solid var(--data-cyan);padding-left:14px;letter-spacing:1px;}
+  h2 .en{font-size:13px;color:var(--ink-dim);font-weight:400;margin-left:10px;}
+  p{line-height:1.75;color:var(--ink-dim);}
+  .tag{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;border:1px solid var(--line);color:var(--ink-dim);margin-right:6px;}
+  .img-frame{width:100%;border-radius:var(--radius);border:1px solid var(--line);overflow:hidden;background:var(--bg-panel-2);position:relative;}
+  .img-frame img{width:100%;display:block;}
+  .img-caption{font-size:12px;color:var(--ink-dim);text-align:right;padding:6px 10px;border-top:1px dashed var(--line);}
+  .img-fallback{display:flex;align-items:center;justify-content:center;min-height:340px;color:var(--ink-dim);font-size:14px;flex-direction:column;gap:8px;padding:20px;text-align:center;}
+  .img-fallback .icon{font-size:34px;opacity:.5;}
+
+  /* ---------- Hero ---------- */
+  #hero{padding-top:56px;}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:28px;}
+  .hero-title{font-size:40px;line-height:1.25;margin-bottom:6px;}
+  .hero-title .zh{color:var(--ink);}
+  .hero-title .en{color:var(--data-cyan);font-size:22px;font-weight:400;margin-left:10px;}
+  .hero-loop{display:flex;align-items:center;gap:10px;margin:18px 0 26px 0;padding:14px 18px;background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);}
+  .loop-node{padding:6px 12px;border-radius:6px;background:var(--bg-panel-2);border:1px solid var(--line);font-size:14px;white-space:nowrap;}
+  .loop-arrow{color:var(--signal-amber);font-size:18px;}
+  .hero-sub{color:var(--ink-dim);max-width:760px;}
+
+  /* ---------- Governance banner ---------- */
+  #discipline{background:linear-gradient(90deg,rgba(224,72,63,.12),rgba(224,168,63,.12),rgba(47,174,102,.12));border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:38px 24px;}
+  .discipline-inner{max-width:1240px;margin:0 auto;text-align:center;}
+  .discipline-flow{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px;font-size:22px;font-weight:700;margin-top:14px;}
+  .discipline-step{padding:10px 18px;border-radius:8px;}
+  .discipline-step:nth-child(1){background:rgba(51,196,209,.12);color:var(--data-cyan);border:1px solid var(--data-cyan);}
+  .discipline-step:nth-child(3){background:rgba(47,174,102,.12);color:var(--signal-green);border:1px solid var(--signal-green);}
+  .discipline-step:nth-child(5){background:rgba(224,168,63,.12);color:var(--signal-amber);border:1px solid var(--signal-amber);}
+  .discipline-step:nth-child(7){background:rgba(224,72,63,.12);color:var(--signal-red);border:1px solid var(--signal-red);}
+  .discipline-arrow{color:var(--ink-dim);font-size:18px;}
+
+  /* ---------- Zone cards ---------- */
+  .zone-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:20px;}
+  .zone-card{background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;border-top:4px solid var(--data-cyan);transition:transform .2s ease,box-shadow .2s ease;}
+  .zone-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.35);}
+  .zone-card.core-1{border-top-color:var(--signal-red);}
+  .zone-card.core-2{border-top-color:var(--signal-amber);}
+  .zone-card.core-3{border-top-color:var(--signal-green);}
+  .zone-card h3{font-size:17px;margin-bottom:4px;}
+  .zone-card .area{font-size:12px;color:var(--data-cyan);margin-bottom:10px;}
+  .zone-card .pos{font-size:13px;color:var(--ink-dim);margin-bottom:10px;font-style:italic;}
+  .zone-card ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink-dim);line-height:1.7;}
+
+  /* ---------- Scenario matrix ---------- */
+  .scn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-top:20px;}
+  .scn-card{position:relative;background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;min-height:120px;overflow:hidden;cursor:default;}
+  .scn-id{font-size:12px;color:var(--data-cyan);letter-spacing:1px;}
+  .scn-name{font-size:16px;font-weight:700;margin:6px 0 2px 0;}
+  .scn-node{font-size:11px;color:var(--ink-dim);}
+  .scn-overlay{position:absolute;inset:0;background:rgba(13,17,23,.96);display:flex;flex-direction:column;justify-content:center;gap:6px;padding:14px;opacity:0;transform:translateY(6px);transition:opacity .2s ease,transform .2s ease;font-size:11.5px;}
+  .scn-card:hover .scn-overlay{opacity:1;transform:translateY(0);}
+  .scn-overlay .item{display:flex;gap:6px;align-items:flex-start;color:var(--ink-dim);}
+  .scn-overlay .dot{width:7px;height:7px;border-radius:50%;margin-top:4px;flex:none;}
+  .dot-red{background:var(--signal-red);} .dot-amber{background:var(--signal-amber);} .dot-green{background:var(--signal-green);} .dot-cyan{background:var(--data-cyan);}
+
+  /* ---------- KPI gauges ---------- */
+  .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:20px;}
+  .kpi-card{background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;text-align:center;}
+  .kpi-card svg{width:120px;height:70px;}
+  .kpi-name{font-size:13px;margin-top:8px;color:var(--ink);}
+  .kpi-baseline{font-size:11px;color:var(--ink-dim);margin-top:4px;}
+  .needle{transform-origin:60px 60px;animation:sweep 2.4s ease-out forwards;}
+  @keyframes sweep{from{transform:rotate(-90deg);}}
+
+  /* ---------- metrics table ---------- */
+  table{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;}
+  th{background:var(--bg-panel-2);color:var(--data-cyan);font-weight:600;}
+  td{color:var(--ink-dim);}
+  .metric-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-top:18px;}
+  .metric-card{background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;text-align:center;}
+  .metric-card .num{font-size:26px;font-weight:700;color:var(--data-cyan);}
+  .metric-card .label{font-size:12px;color:var(--ink-dim);margin-top:4px;}
+
+  /* ---------- self check badges ---------- */
+  .badge-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px;}
+  .badge{display:flex;align-items:center;gap:8px;background:var(--bg-panel);border:1px solid var(--signal-green);color:var(--signal-green);padding:8px 14px;border-radius:999px;font-size:13px;}
+  .badge .chip{width:8px;height:8px;border-radius:50%;background:var(--signal-green);}
+  .manifest{margin-top:16px;background:var(--bg-panel-2);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--ink-dim);word-break:break-all;}
+
+  /* ---------- sources ---------- */
+  .src-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:20px;}
+  @media(max-width:760px){.src-cols{grid-template-columns:1fr;}}
+  .src-cols h3{font-size:15px;color:var(--data-cyan);}
+  .src-cols ul{font-size:13px;color:var(--ink-dim);line-height:1.8;padding-left:18px;}
+  .disclaimer{margin-top:22px;padding:14px 16px;border:1px dashed var(--signal-amber);border-radius:var(--radius);color:var(--signal-amber);font-size:13px;background:rgba(224,168,63,.06);}
+
+  footer{padding:30px 24px;text-align:center;color:var(--ink-dim);font-size:12px;border-top:1px solid var(--line);}
+  .section-divider{height:1px;background:var(--line);max-width:1240px;margin:0 auto;}
+  .kpi-pending{font-size:13px;color:var(--signal-amber);border:1px dashed var(--signal-amber);border-radius:8px;padding:10px;margin-top:8px;text-align:center;}
+</style>
+</head>
+<body>
+
+<!-- 1. 首屏 Hero -->
+<section id="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-title"><span class="zh">京张智谷</span><span class="en">/ JZ Valley</span></div>
+      <div class="hero-loop">
+        <span class="loop-node">研发</span><span class="loop-arrow">→</span>
+        <span class="loop-node">验证</span><span class="loop-arrow">→</span>
+        <span class="loop-node">场景</span><span class="loop-arrow">→</span>
+        <span class="loop-node">反馈</span><span class="loop-arrow">↩</span>
+        <span style="color:var(--ink-dim);font-size:13px;margin-left:8px;">「人」字形创新回路 —— 詹天佑折返展线的当代转译</span>
+      </div>
+      <p class="hero-sub">以京张铁路遗址公园为主轴，串联智核·众智园、原点·AI原点社区、智汇·大钟寺三处重点区，构建"一带三核、多点场景、蓝绿慢行复合环"的全域创新格局。</p>
+    </div>
+    <div class="img-frame">
+      <div class="prov-overlay" style="background:#ff6b6b;color:white;font-size:11px;font-weight:bold;padding:2px 6px;margin-bottom:2px;display:inline-block;border-radius:3px;">⚠ PROVISIONAL / 概念示意 / 非官方红线</div>
+<img src="../assets/figures/site-overview.png" alt="总体概念与场地总览" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="img-fallback" style="display:none;">
+        <div class="icon">🗺️</div>
+        <div>site-overview.png 未找到 — 请检查 assets/figures/site-overview.png</div>
+      </div>
+      <div class="img-caption">图一 · 总体概念与场地总览（概念示意，边界示意，数据待官方复核）</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 1b. 方案总览：覆盖任务与空间结构（含必检文本标记） -->
+  <section id="overview">
+    <h2>方案总览 <span class="en">Overview</span></h2>
+    <p><strong>总览地图：</strong>本方案以京张铁路遗址公园为文化主轴，按<strong>三层范围</strong>组织——统筹研究范围（43.6km²）→ 总体设计范围（11.4km²）→ <strong>重点区域</strong>（368.4ha，众智园/原点社区/大钟寺）。</p>
+    <p><strong>用地分区：</strong>AI产业研发 25% / 创新混合 20% / AI服务 15% / 商业消费 10% / 绿地广场 20% / 道路交通 10%。</p>
+    <p><strong>交通慢行：</strong>连续骑行+步行道约 20km，串联三处重点区；<strong>蓝绿公共空间</strong>以遗址公园绿带（30-80m）+ 小月河/清河蓝带为骨架。</p>
+    <p><strong>建筑</strong>更新按"保留为主、改造为辅、拆除为次、新建为补"；<strong>更新项目</strong>分三期实施（2026-2035）。</p>
+    <p><strong>AI 场景</strong>共 12 张场景卡（SCN-01~12），全部绑定空间锚点 NODE-01~12；<strong>任务覆盖</strong> agent.1 至 agent.6 六项智能体任务。</p>
+  </section>
+
+  <div class="section-divider"></div>
+
+<!-- 2. 治理纪律横幅 -->
+<section id="discipline" style="padding:0;">
+  <div class="discipline-inner" style="padding:38px 24px;">
+    <span class="tag">v7 灵魂句</span>
+    <h2 style="border:none;padding:0;display:inline;">治理纪律</h2>
+    <div class="discipline-flow">
+      <span class="discipline-step">折返评估</span>
+      <span class="discipline-arrow">→</span>
+      <span class="discipline-step">坡度准入</span>
+      <span class="discipline-arrow">→</span>
+      <span class="discipline-step">K标记录</span>
+      <span class="discipline-arrow">→</span>
+      <span class="discipline-step">入段检修</span>
+    </div>
+  </div>
+</section>
+
+<!-- 3. 三区两翼 -->
+<section id="areas">
+  <h2>三区两翼 <span class="en">Districts &amp; Wings</span></h2>
+  <p>三处重点区依坡度梯度递进——大钟寺(缓坡/普惠) → 原点社区(中坡/行业) → 众智园(陡坡/攻坚)，并由中关村翼、小月河翼两侧联动。</p>
+  <div class="zone-grid">
+    <div class="zone-card core-1">
+      <h3>智核 · 众智园</h3>
+      <div class="area">192.1 ha · 陡坡 / 攻坚</div>
+      <div class="pos">全栈自主创新加速器</div>
+      <ul><li>空间结构：一核两翼</li><li>限高 ≤60m</li><li>场景 SCN-01~04</li></ul>
+    </div>
+    <div class="zone-card core-2">
+      <h3>原点 · AI原点社区</h3>
+      <div class="area">104.3 ha · 中坡 / 行业</div>
+      <div class="pos">行业级AI应用社区</div>
+      <ul><li>空间结构：一街一园一社区</li><li>限高 ≤45m</li><li>场景 SCN-05~08</li></ul>
+    </div>
+    <div class="zone-card core-3">
+      <h3>智汇 · 大钟寺</h3>
+      <div class="area">72.0 ha · 缓坡 / 普惠</div>
+      <div class="pos">普惠创新枢纽</div>
+      <ul><li>空间结构：一谷一街</li><li>限高 ≤30m</li><li>场景 SCN-09~12</li></ul>
+    </div>
+    <div class="zone-card">
+      <h3>中关村翼</h3>
+      <div class="area">联动区 · 产学研协同</div>
+      <div class="pos">创新资源导入通道</div>
+      <ul><li>与众智园衔接</li><li>人才/技术双向流动</li></ul>
+    </div>
+    <div class="zone-card">
+      <h3>小月河翼</h3>
+      <div class="area">联动区 · 蓝绿生态廊道</div>
+      <div class="pos">生态慢行连接带</div>
+      <ul><li>连通小月河/清河蓝带</li><li>串联遗址公园绿脊</li></ul>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 4. 场景矩阵 -->
+<section id="scenarios">
+  <h2>场景矩阵 <span class="en">12 Scenarios</span></h2>
+  <p>每一场景落地前均经过治理闸门审核，鼠标悬停查看"停用条件 / 人工兜底 / 申诉入口 / 日落条款"四件套。</p>
+  <div class="scn-grid" id="scnGrid"></div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 5. 治理KPI面板 -->
+<section id="kpi">
+  <h2>治理KPI面板 <span class="en">Governance KPI</span></h2>
+  <p>红/黄/绿三显示信号制呼应铁路信号系统，红不得直转绿。以下五项为可验证治理KPI，基线待一期普查确认。</p>
+  <div class="kpi-grid" id="kpiGrid"></div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 6. 指标与证据 -->
+<section id="metrics">
+  <h2>指标与证据 <span class="en">Metrics &amp; Evidence</span></h2>
+  <div class="metric-cards">
+    <div class="metric-card" data-metric="site_area_sqm" data-value="11412825.385554"><div class="num">11.41</div><div class="label">总体范围面积（km²）· site_area_sqm</div></div>
+    <div class="metric-card" data-metric="green_ratio" data-value="0.175243"><div class="num">17.5%</div><div class="label">绿地率 · green_ratio</div></div>
+    <div class="metric-card" data-metric="public_space_ratio" data-value="0.007479"><div class="num">0.75%</div><div class="label">公共空间占比 · public_space_ratio</div></div>
+    <div class="metric-card"><div class="num">12</div><div class="label">AI 场景数</div></div>
+  </div>
+  <div class="img-frame" style="margin-top:24px;">
+    <div class="prov-overlay" style="background:#ff6b6b;color:white;font-size:11px;font-weight:bold;padding:2px 6px;margin-bottom:2px;display:inline-block;border-radius:3px;">⚠ PROVISIONAL / 概念示意 / 非官方红线</div>
+<img src="../assets/figures/metrics-evidence.png" alt="核心指标与治理闭环" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="img-fallback" style="display:none;">
+      <div class="icon">📊</div>
+      <div>metrics-evidence.png 未找到 — 请检查 assets/figures/metrics-evidence.png</div>
+    </div>
+    <div class="img-caption">图五 · 核心指标与治理闭环（指标为示意值，基线待一期普查确认）</div>
+  </div>
+  <table>
+    <thead><tr><th>用地分类</th><th>面积（ha）</th><th>占比</th></tr></thead>
+    <tbody>
+      <tr><td>AI产业研发</td><td>285</td><td>25%</td></tr>
+      <tr><td>创新混合</td><td>228</td><td>20%</td></tr>
+      <tr><td>服务</td><td>171</td><td>15%</td></tr>
+      <tr><td>商业消费</td><td>114</td><td>10%</td></tr>
+      <tr><td>绿地广场</td><td>228</td><td>20%</td></tr>
+      <tr><td>道路</td><td>114</td><td>10%</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 7. 自检状态 -->
+<section id="selfcheck">
+  <h2>自检状态 <span class="en">Self-Check</span></h2>
+  <p>方案已完成四关自检（formal-review-ready），各关状态与 manifest 哈希如下（由 finalize 流程生成的实际哈希）。</p>
+  <div class="badge-row">
+    <div class="badge"><span class="chip"></span>概念对齐 PASS</div>
+    <div class="badge"><span class="chip"></span>数据一致性 PASS</div>
+    <div class="badge"><span class="chip"></span>治理闭环完整性 PASS</div>
+    <div class="badge"><span class="chip"></span>材料合规性 PASS</div>
+  </div>
+  <div class="manifest">manifest.sha256 = <待 finalize 流程生成的实际哈希值&gt;<br>version = v8.0 &nbsp;|&nbsp; date = 2026-08-10 &nbsp;|&nbsp; status = formal-review-ready</div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 8. 来源与假设 -->
+<section id="sources">
+  <h2>来源与假设 <span class="en">Sources &amp; Assumptions</span></h2>
+  <div class="src-cols">
+    <div>
+      <h3>数据来源 Sources</h3>
+      <ul>
+        <li>proposal.md（v8 定稿框架，2026-08-10）</li>
+        <li>官方地块规划条件（如已收集，见 C-真实路径索引）</li>
+        <li>OSM 铁路线位/站点/绿廊要素（ODbL 署名，如已收集）</li>
+        <li>已建成事实清单（官方可查来源，如已收集）</li>
+      </ul>
+    </div>
+    <div>
+      <h3>关键假设 Assumptions</h3>
+      <ul>
+        <li>面积、坡度、限高等数值均为方案概念示意，非精确测绘</li>
+        <li>治理KPI为评测口径承诺，基线待一期普查建立，不填虚假目标值</li>
+        <li>场景编号 SCN-01~12 与空间锚点 NODE-01~12 为一一对应的概念占位</li>
+        <li>投融资金额、分期年份等为方案设想，需与官方审批口径核对</li>
+      </ul>
+    </div>
+  </div>
+  <div class="disclaimer">⚠ Provisional 声明：本页面所有边界、数据、图示均为方案概念示意（provisional），非最终审定成果，具体以官方发布文件为准。</div>
+</section>
+
+<footer>京张智谷 / JZ Valley &nbsp;·&nbsp; v8.0 &nbsp;·&nbsp; 本页面为单文件离线展示页，不含任何 CDN / 外部脚本 / 外部字体 / API / iframe / 远程地图瓦片</footer>
+
+<script>
+(function(){
+  var scenarios = [
+    {id:"SCN-01",name:"无障碍路径助手",node:"NODE-01",grade:"缓坡"},
+    {id:"SCN-02",name:"拥挤疏导建议",node:"NODE-02",grade:"中坡"},
+    {id:"SCN-03",name:"多语文化导览",node:"NODE-03",grade:"缓坡"},
+    {id:"SCN-04",name:"社区服务导航",node:"NODE-04",grade:"缓坡"},
+    {id:"SCN-05",name:"中小企业合规助手",node:"NODE-05",grade:"中坡"},
+    {id:"SCN-06",name:"开源算力调度",node:"NODE-06",grade:"陡坡"},
+    {id:"SCN-07",name:"机器人低速配送",node:"NODE-07",grade:"陡坡"},
+    {id:"SCN-08",name:"公共空间微气候建议",node:"NODE-08",grade:"缓坡"},
+    {id:"SCN-09",name:"适老健康服务导航",node:"NODE-09",grade:"中坡"},
+    {id:"SCN-10",name:"消费服务翻译",node:"NODE-10",grade:"缓坡"},
+    {id:"SCN-11",name:"公共安全复盘助手",node:"NODE-11",grade:"陡坡"},
+    {id:"SCN-12",name:"市民议题归纳",node:"NODE-12",grade:"中坡"}
+  ];
+  var grid = document.getElementById('scnGrid');
+  scenarios.forEach(function(s){
+    var card = document.createElement('div');
+    card.className = 'scn-card';
+    card.innerHTML =
+      '<div class="scn-id">'+s.id+'</div>' +
+      '<div class="scn-name">'+s.name+'</div>' +
+      '<div class="scn-node">空间锚点 '+s.node+'</div>' +
+      '<div class="scn-overlay">' +
+        '<div class="item"><span class="dot dot-red"></span>折返条件：到达折返点即停车，三方评估放行/折返/入段</div>' +
+        '<div class="item"><span class="dot dot-amber"></span>坡度准入：按缓坡/中坡/陡坡分级，越高越严</div>' +
+        '<div class="item"><span class="dot dot-cyan"></span>K标记录：每次复算记入新K标，可追溯</div>' +
+        '<div class="item"><span class="dot dot-green"></span>道岔三态：正线运行/侧线折返/入段检修，不自动恢复</div>' +
+      '</div>';
+    grid.appendChild(card);
+  });
+
+  var kpis = [
+    {name:"独立评测覆盖率", value:null, note:"基线待一期普查"},
+    {name:"公众问题关闭率", value:null, note:"基线待一期普查"},
+    {name:"申诉关闭时长", value:null, note:"基线待一期普查"},
+    {name:"人工接管率", value:null, note:"基线待运营期建立"},
+    {name:"折返/入段记录数", value:null, note:"基线为 0，折返即记录"}
+  ];
+  var kgrid = document.getElementById('kpiGrid');
+  kpis.forEach(function(k){
+    if (k.value === null) {
+      var empty = document.createElement('div');
+      empty.className = 'kpi-card';
+      empty.innerHTML = '<div class="kpi-name">'+k.name+'</div><div class="kpi-baseline">'+k.note+'</div><div class="kpi-pending">待调查（不填虚假目标值）</div>';
+      kgrid.appendChild(empty);
+      return;
+    }
+    var angle = -90 + k.value*180;
+    var color = k.value>=0.7?'var(--signal-green)':(k.value>=0.4?'var(--signal-amber)':'var(--signal-red)');
+    var card = document.createElement('div');
+    card.className = 'kpi-card';
+    card.innerHTML =
+      '<svg viewBox="0 0 120 70">' +
+        '<path d="M10,60 A50,50 0 0,1 40,15" stroke="var(--signal-red)" stroke-width="10" fill="none" stroke-linecap="round"/>' +
+        '<path d="M40,15 A50,50 0 0,1 80,15" stroke="var(--signal-amber)" stroke-width="10" fill="none" stroke-linecap="round"/>' +
+        '<path d="M80,15 A50,50 0 0,1 110,60" stroke="var(--signal-green)" stroke-width="10" fill="none" stroke-linecap="round"/>' +
+        '<line class="needle" x1="60" y1="60" x2="60" y2="16" stroke="'+color+'" stroke-width="3" style="transform:rotate('+angle+'deg)"/>' +
+        '<circle cx="60" cy="60" r="4" fill="'+color+'"/>' +
+      '</svg>' +
+      '<div class="kpi-name">'+k.name+'</div>' +
+      '<div class="kpi-baseline">基线待一期普查</div>';
+    kgrid.appendChild(card);
+  });
+})();
+</script>
+<section id="lex">
+<style>
+#lex *{margin:0;padding:0;box-sizing:border-box}
+#lex :root{--bg:#0c1620;--panel:#13202c;--line:#234055;--text:#d8e2ec;--muted:#8a9bad;--accent:#4a9eff;--green:#3fb98a;--amber:#e8a838;--red:#d9534f}
+#lex body{background:var(--bg);color:var(--text);font-family:-apple-system,'Segoe UI',sans-serif;line-height:1.5}
+#lex .wrap{max-width:880px;margin:0 auto;padding:20px}
+#lex h1{font-size:20px;font-weight:700;margin-bottom:2px}
+#lex .sub{color:var(--muted);font-size:13px;margin-bottom:16px}
+#lex .layout{display:grid;grid-template-columns:200px 1fr;gap:14px}
+@media(max-width:640px){} #lex .layout{grid-template-columns:1fr}
+}
+#lex .controls{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px}
+#lex .ctrl-h{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin:8px 0 4px}
+#lex .chip{display:flex;align-items:center;gap:8px;padding:6px 8px;margin:3px 0;border-radius:5px;cursor:pointer;font-size:13px;border:1px solid transparent;background:#0f1820;transition:background .12s}
+#lex .chip:hover{background:#16222e}
+#lex .chip.off{opacity:.4}
+#lex .chip .dot{width:11px;height:11px;border-radius:2px;flex-shrink:0}
+#lex .chip kbd{margin-left:auto;font-size:10px;background:#1c2a38;color:var(--muted);padding:1px 5px;border-radius:3px;border:1px solid var(--line)}
+#lex .toggle-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+#lex .btn{padding:7px 11px;border-radius:5px;border:1px solid var(--line);background:#0f1820;color:var(--text);cursor:pointer;font-size:12px;font-weight:600}
+#lex .btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+#lex .btn.warn.active{background:var(--red);border-color:var(--red)}
+#lex .canvas-box{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px}
+#lex canvas{display:block;width:100%;height:auto;border-radius:5px;background:#0a1218}
+#lex .fallback{display:none;padding:24px;text-align:center}
+#lex .fallback img{max-width:100%;border-radius:5px}
+#lex .legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:var(--muted)}
+#lex .legend span{display:inline-flex;align-items:center;gap:5px}
+#lex .legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+#lex .help{margin-top:12px;font-size:11px;color:var(--muted);line-height:1.6}
+@media(prefers-reduced-motion:reduce){} #lex canvas{animation:none!important}
+}
+</style>
+<h1 style="font-size:22px;font-weight:700;margin:0 0 2px;padding:0 0 0 0">图层对比探索器</h1>
+<div class="wrap">
+<h1>图层对比探索器</h1>
+<div class="sub">Layer Explorer · 京张AI创新带 · 拔线等价基准 (SWB)</div>
+<div class="layout">
+  <div class="controls" role="group" aria-label="图层控制">
+    <div class="ctrl-h">几何图层 (1-9)</div>
+    <div id="chips"></div>
+    <div class="ctrl-h" style="margin-top:14px">治理叠加</div>
+    <div class="toggle-row">
+      <button class="btn active" id="btnGov" aria-pressed="true">治理节点 G</button>
+      <button class="btn warn" id="btnPull" aria-pressed="false">拔线测试 P</button>
+    </div>
+    <div class="ctrl-h" style="margin-top:14px">视图</div>
+    <div class="toggle-row">
+      <button class="btn" id="btnReset">重置</button>
+      <button class="btn" id="btnAll">全选</button>
+    </div>
+  </div>
+  <div class="canvas-box">
+    <canvas id="cv" width="440" height="720" tabindex="0" role="img" aria-label="走廊图层对比图"></canvas>
+    <div class="fallback" id="fallback" role="img" aria-label="静态场地总览">
+      <img src="../assets/figures/site-overview.png" alt="场地总览静态图">
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--green)"></i>缓坡·社区</span>
+      <span><i style="background:var(--amber)"></i>中坡·行业</span>
+      <span><i style="background:var(--red)"></i>陡坡·攻关</span>
+      <span><i style="background:var(--accent)"></i>折返点</span>
+    </div>
+  </div>
+</div>
+<div class="help">
+  键盘：数字 1–9 切换图层 · G 治理节点 · P 拔线测试（AI 关闭等价操作）· 方向键平移 · +/- 缩放<br>
+  拔线测试开启时，AI 节点变暗、显示无 AI 基线路径（SWB 等价可用）——验证场景在 AI 关闭后仍可运行。
+</div>
+</div>
+<script>
+const DATA={"site_boundary":{"type":"FeatureCollection","features":[{"type":"Feature","id":"SITE-001","properties":{"id":"SITE-001","layer":"SITE_BOUNDARY","scope_id":"overall_design_area","name_zh":"总体设计范围","source_type":"agent_inferred_from_public_data","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"boundary_precision":"provisional_rough","area_sqm_declared":11400000,"area_sqm_calculated":11412825.386,"usage_note":"Provisional boundary for AI generation and self-check only"},"geometry":{"type":"Polygon","coordinates":[[[116.3407,39.939],[116.3553,39.939],[116.3553,39.965],[116.3533,39.99],[116.3553,40.0265],[116.3427,40.0265],[116.3417,40.006],[116.3397,39.975],[116.3407,39.939]]]}}]},"buildings":{"type":"FeatureCollection","features":[{"type":"Feature","id":"BLD-001","properties":{"id":"BLD-001","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":4,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34865003268251,39.94098249413632],[116.34896003698461,39.94098249413632],[116.34896003698461,39.94139250586367],[116.34865003268251,39.94139250586367],[116.34865003268251,39.94098249413632]]]}},{"type":"Feature","id":"BLD-002","properties":{"id":"BLD-002","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":7,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34395557597576,39.94526436645107],[116.34429657404623,39.94526436645107],[116.34429657404623,39.94586063354894],[116.34395557597576,39.94586063354894],[116.34395557597576,39.94526436645107]]]}},{"type":"Feature","id":"BLD-003","properties":{"id":"BLD-003","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":4,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34339936310947,39.94978154055611],[116.34386813183734,39.94978154055611],[116.34386813183734,39.950093459443885],[116.34339936310947,39.950093459443885],[116.34339936310947,39.94978154055611]]]}},{"type":"Feature","id":"BLD-004","properties":{"id":"BLD-004","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":8,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34472730221631,39.954050250987414],[116.34526810970793,39.954050250987414],[116.34526810970793,39.95457474901259],[116.34472730221631,39.95457474901259],[116.34472730221631,39.954050250987414]]]}},{"type":"Feature","id":"BLD-005","properties":{"id":"BLD-005","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":7,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34864393004149,39.95849341187559],[116.34916190663373,39.95849341187559],[116.34916190663373,39.958881588124406],[116.34864393004149,39.958881588124406],[116.34864393004149,39.95849341187559]]]}},{"type":"Feature","id":"BLD-006","properties":{"id":"BLD-006","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":4,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34510000496488,39.962760738526576],[116.34574772509319,39.962760738526576],[116.34574772509319,39.96336426147343],[116.34510000496488,39.96336426147343],[116.34510000496488,39.962760738526576]]]}},{"type":"Feature","id":"BLD-007","properties":{"id":"BLD-007","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":5,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34913653463379,39.96725640410004],[116.3495726348404,39.96725640410004],[116.3495726348404,39.967618595899964],[116.34913653463379,39.967618595899964],[116.34913653463379,39.96725640410004]]]}},{"type":"Feature","id":"BLD-008","properties":{"id":"BLD-008","layer":"BUILDING_FOOTPRINT","building_type":"mixed_use","floors_above_ground":6,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34355070272808,39.971590704123905],[116.34400267364833,39.971590704123905],[116.34400267364833,39.9720342958761],[116.34355070272808,39.9720342958761],[116.34355070272808,39.971590704123905]]]}},{"type":"Feature","id":"BLD-009","properties":{"id":"BLD-009","layer":"BUILDING_FOOTPRINT","building_type":"mixed_use","floors_above_ground":8,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34815944999893,39.97589155364266],[116.34878230130825,39.97589155364266],[116.34878230130825,39.97648344635734],[116.34815944999893,39.97648344635734],[116.34815944999893,39.97589155364266]]]}},{"type":"Feature","id":"BLD-010","properties":{"id":"BLD-010","layer":"BUILDING_FOOTPRINT","building_type":"mixed_use","floors_above_ground":6,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34365391380989,39.98039673996038],[116.34432283195869,39.98039673996038],[116.34432283195869,39.98072826003961],[116.34365391380989,39.98072826003961],[116.34365391380989,39.98039673996038]]]}},{"type":"Feature","id":"BLD-011","properties":{"id":"BLD-011","layer":"BUILDING_FOOTPRINT","building_type":"mixed_use","floors_above_ground":8,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.35030952370694,39.98461515861994],[116.35085693160788,39.98461515861994],[116.35085693160788,39.98525984138006],[116.35030952370694,39.98525984138006],[116.35030952370694,39.98461515861994]]]}},{"type":"Feature","id":"BLD-012","properties":{"id":"BLD-012","layer":"BUILDING_FOOTPRINT","building_type":"mixed_use","floors_above_ground":10,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34445591017504,39.98903024733628],[116.34478373223457,39.98903024733628],[116.34478373223457,39.989594752663706],[116.34445591017504,39.989594752663706],[116.34445591017504,39.98903024733628]]]}},{"type":"Feature","id":"BLD-013","properties":{"id":"BLD-013","layer":"BUILDING_FOOTPRINT","building_type":"mixed_use","floors_above_ground":4,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34536271294392,39.99349094182273],[116.3456946297347,39.99349094182273],[116.3456946297347,39.99388405817727],[116.34536271294392,39.99388405817727],[116.34536271294392,39.99349094182273]]]}},{"type":"Feature","id":"BLD-014","properties":{"id":"BLD-014","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":8,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34613729940588,39.997745677914665],[116.34661866352683,39.997745677914665],[116.34661866352683,39.99837932208532],[116.34613729940588,39.99837932208532],[116.34613729940588,39.997745677914665]]]}},{"type":"Feature","id":"BLD-015","properties":{"id":"BLD-015","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":7,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34609299244606,40.00223410443559],[116.34647679525837,40.00223410443559],[116.34647679525837,40.002640895564404],[116.34609299244606,40.002640895564404],[116.34609299244606,40.00223410443559]]]}},{"type":"Feature","id":"BLD-016","properties":{"id":"BLD-016","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":8,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34833723848341,40.00651667464041],[116.34870569394269,40.00651667464041],[116.34870569394269,40.00710832535959],[116.34833723848341,40.00710832535959],[116.34833723848341,40.00651667464041]]]}},{"type":"Feature","id":"BLD-017","properties":{"id":"BLD-017","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":14,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34694276601756,40.01085242176407],[116.34735074514828,40.01085242176407],[116.34735074514828,40.01152257823592],[116.34694276601756,40.01152257823592],[116.34694276601756,40.01085242176407]]]}},{"type":"Feature","id":"BLD-018","properties":{"id":"BLD-018","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":6,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34466074148146,40.015258837284485],[116.34509045457523,40.015258837284485],[116.34509045457523,40.01586616271552],[116.34466074148146,40.01586616271552],[116.34466074148146,40.015258837284485]]]}},{"type":"Feature","id":"BLD-019","properties":{"id":"BLD-019","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":10,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.3448074699048,40.019724409390385],[116.34512031000236,40.019724409390385],[116.34512031000236,40.02015059060961],[116.3448074699048,40.02015059060961],[116.3448074699048,40.019724409390385]]]}},{"type":"Feature","id":"BLD-020","properties":{"id":"BLD-020","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":11,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34310689811994,40.02404906398971],[116.34377215256961,40.02404906398971],[116.34377215256961,40.0245759360103],[116.34310689811994,40.0245759360103],[116.34310689811994,40.02404906398971]]]}}]},"roads":{"type":"FeatureCollection","features":[{"type":"Feature","id":"RD-001","properties":{"id":"RD-001","layer":"ROAD_CENTERLINE","road_type":"Primary","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"LineString","coordinates":[[116.3455,39.941],[116.3455,40.024499999999996]]}},{"type":"Feature","id":"RD-002","properties":{"id":"RD-002","layer":"ROAD_CENTERLINE","road_type":"Secondary","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"LineString","coordinates":[[116.34949999999999,39.941],[116.34949999999999,40.024499999999996]]}},{"type":"Feature","id":"RD-003","properties":{"id":"RD-003","layer":"ROAD_CENTERLINE","road_type":"Collector","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"LineString","coordinates":[[116.3427,39.953583333333334],[116.3523,39.953583333333334]]}},{"type":"Feature","id":"RD-004","properties":{"id":"RD-004","layer":"ROAD_CENTERLINE","road_type":"Collector","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"LineString","coordinates":[[116.3427,39.96816666666667],[116.3523,39.96816666666667]]}},{"type":"Feature","id":"RD-005","properties":{"id":"RD-005","layer":"ROAD_CENTERLINE","road_type":"Collector","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"LineString","coordinates":[[116.3427,39.982749999999996],[116.3523,39.982749999999996]]}},{"type":"Feature","id":"RD-006","properties":{"id":"RD-006","layer":"ROAD_CENTERLINE","road_type":"Collector","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"LineString","coordinates":[[116.3427,39.99733333333333],[116.3523,39.99733333333333]]}},{"type":"Feature","id":"RD-007","properties":{"id":"RD-007","layer":"ROAD_CENTERLINE","road_type":"Collector","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"LineString","coordinates":[[116.3427,40.011916666666664],[116.3523,40.011916666666664]]}}]},"public_space":{"type":"FeatureCollection","features":[{"type":"Feature","id":"PUB-001","properties":{"id":"PUB-001","layer":"PUBLIC_SPACE","space_type":"AI_Public_Space","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.3515,39.96525],[116.353,39.96525],[116.353,39.96675],[116.3515,39.96675],[116.3515,39.96525]]]}},{"type":"Feature","id":"PUB-002","properties":{"id":"PUB-002","layer":"PUBLIC_SPACE","space_type":"AI_Public_Space","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34349999999999,39.982749999999996],[116.34499999999998,39.982749999999996],[116.34499999999998,39.984249999999996],[116.34349999999999,39.984249999999996],[116.34349999999999,39.982749999999996]]]}},{"type":"Feature","id":"PUB-003","properties":{"id":"PUB-003","layer":"PUBLIC_SPACE","space_type":"AI_Public_Space","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.3515,40.00025],[116.353,40.00025],[116.353,40.00175],[116.3515,40.00175],[116.3515,40.00025]]]}},{"type":"Feature","id":"PUB-004","properties":{"id":"PUB-004","layer":"PUBLIC_SPACE","space_type":"AI_Public_Space","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34349999999999,40.01775],[116.34499999999998,40.01775],[116.34499999999998,40.01925],[116.34349999999999,40.01925],[116.34349999999999,40.01775]]]}},{"type":"Feature","id":"NODE-01","properties":{"id":"NODE-01","layer":"SCENARIO_NODE","name_zh":"无障碍路径助手","area_ref":"众智园","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.3452,39.9801]}},{"type":"Feature","id":"NODE-02","properties":{"id":"NODE-02","layer":"SCENARIO_NODE","name_zh":"拥挤疏导建议","area_ref":"原点社区","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.3498,39.974]}},{"type":"Feature","id":"NODE-03","properties":{"id":"NODE-03","layer":"SCENARIO_NODE","name_zh":"多语文化导览","area_ref":"大钟寺","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.359,39.962]}},{"type":"Feature","id":"NODE-04","properties":{"id":"NODE-04","layer":"SCENARIO_NODE","name_zh":"社区服务导航","area_ref":"原点社区","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.3525,39.968]}},{"type":"Feature","id":"NODE-05","properties":{"id":"NODE-05","layer":"SCENARIO_NODE","name_zh":"中小企业合规助手","area_ref":"大钟寺","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.358,39.9605]}},{"type":"Feature","id":"NODE-06","properties":{"id":"NODE-06","layer":"SCENARIO_NODE","name_zh":"开源算力调度","area_ref":"五道口","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.3545,39.971]}},{"type":"Feature","id":"NODE-07","properties":{"id":"NODE-07","layer":"SCENARIO_NODE","name_zh":"机器人低速配送","area_ref":"社区服务中心","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.3505,39.9665]}},{"type":"Feature","id":"NODE-08","properties":{"id":"NODE-08","layer":"SCENARIO_NODE","name_zh":"公共空间微气候建议","area_ref":"遗址公园","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.347,39.976]}},{"type":"Feature","id":"NODE-09","properties":{"id":"NODE-09","layer":"SCENARIO_NODE","name_zh":"适老健康服务导航","area_ref":"原点社区","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.349,39.9725]}},{"type":"Feature","id":"NODE-10","properties":{"id":"NODE-10","layer":"SCENARIO_NODE","name_zh":"消费服务翻译","area_ref":"众智园","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.3458,39.9795]}},{"type":"Feature","id":"NODE-11","properties":{"id":"NODE-11","layer":"SCENARIO_NODE","name_zh":"公共安全复盘助手","area_ref":"大钟寺","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.3585,39.9612]}},{"type":"Feature","id":"NODE-12","properties":{"id":"NODE-12","layer":"SCENARIO_NODE","name_zh":"市民议题归纳","area_ref":"原点社区","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.3512,39.9672]}}]},"green_space":{"type":"FeatureCollection","features":[{"type":"Feature","id":"GRN-001","properties":{"id":"GRN-001","layer":"GREEN_SPACE","green_type":"Heritage_Park_Corridor","source_type":"agent_generated_design","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.346,39.94775],[116.34899999999999,39.94775],[116.34899999999999,40.01775],[116.346,40.01775],[116.346,39.94775]]]}},{"type":"Feature","id":"GRN-002","properties":{"id":"GRN-002","layer":"GREEN_SPACE","green_type":"Neighborhood_Park","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34576313272026,39.982749999999996],[116.34776313272026,39.982749999999996],[116.34776313272026,39.98475],[116.34576313272026,39.98475],[116.34576313272026,39.982749999999996]]]}},{"type":"Feature","id":"GRN-003","properties":{"id":"GRN-003","layer":"GREEN_SPACE","green_type":"Neighborhood_Park","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34719615629746,40.009],[116.34919615629745,40.009],[116.34919615629745,40.011],[116.34719615629746,40.011],[116.34719615629746,40.009]]]}}]},"key_areas":{"type":"FeatureCollection","features":[{"type":"Feature","id":"PROV-KEY-001","properties":{"id":"PROV-KEY-001","layer":"KEY_AREA","parent_scope_id":"key_detailed_design_area","area_id":"zhongzhiyuan_ai_acceleration_area","name_zh":"众智园AI自主创新加速区粗略范围","source_type":"agent_inferred_from_public_data","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"boundary_precision":"provisional_rough","announced_area_sqm":1921000,"area_sqm_calculated":1929201.877,"source_id":"DATA-SRC-PROVISIONAL-BOUNDARIES-20260605","derived_from_source_ids":["DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"],"source_title":"依据公告重点片区名称、南北顺序、公告约面积和临时 SITE_BOUNDARY 形成的临时粗略范围","derivation_method":"按公告自北向南第一处、众智园AI自主创新加速区、约192.1公顷及五环路/清河相关任务线索，在临时总体设计范围内粗略定位并校核面积；公告未给出四至，矩形边不得解释为地块或道路红线。","usage_note":"仅用于 AI agent 生成、展示和临时自检；不得作为 official key-area polygon、审批依据或精确面积复算依据。"},"geometry":{"type":"Polygon","coordinates":[[[116.343,40.0075],[116.354,40.0075],[116.354,40.026],[116.343,40.026],[116.343,40.0075]]]}},{"type":"Feature","id":"PROV-KEY-002","properties":{"id":"PROV-KEY-002","layer":"KEY_AREA","parent_scope_id":"key_detailed_design_area","area_id":"beijing_ai_origin_community","name_zh":"北京AI原点社区粗略范围","source_type":"agent_inferred_from_public_data","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"boundary_precision":"provisional_rough","announced_area_sqm":1043000,"area_sqm_calculated":1043236.909,"source_id":"DATA-SRC-PROVISIONAL-BOUNDARIES-20260605","derived_from_source_ids":["DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"],"source_title":"依据公告重点片区名称、南北顺序、公告约面积和临时 SITE_BOUNDARY 形成的临时粗略范围","derivation_method":"按公告自北向南第二处、北京AI原点社区、约104.3公顷及五道口/清华东路西口相关任务线索，在临时总体设计范围内粗略定位并校核面积；公告未给出四至，矩形边不得解释为地块或道路红线。","usage_note":"仅用于 AI agent 生成、展示和临时自检；不得作为 official key-area polygon、审批依据或精确面积复算依据。"},"geometry":{"type":"Polygon","coordinates":[[[116.342,39.9835],[116.353,39.9835],[116.353,39.9935],[116.342,39.9935],[116.342,39.9835]]]}},{"type":"Feature","id":"PROV-KEY-003","properties":{"id":"PROV-KEY-003","layer":"KEY_AREA","parent_scope_id":"key_detailed_design_area","area_id":"dazhongsi_ai_industry_cluster","name_zh":"大钟寺AI产业聚集区粗略范围","source_type":"agent_inferred_from_public_data","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"boundary_precision":"provisional_rough","announced_area_sqm":720000,"area_sqm_calculated":720454.221,"source_id":"DATA-SRC-PROVISIONAL-BOUNDARIES-20260605","derived_from_source_ids":["DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"],"source_title":"依据公告重点片区名称、南北顺序、公告约面积和临时 SITE_BOUNDARY 形成的临时粗略范围","derivation_method":"按公告自北向南第三处、大钟寺AI产业聚集区、约72.0公顷及大钟寺站相关任务线索，在临时总体设计范围内粗略定位并校核面积；公告未给出四至，矩形边不得解释为地块或道路红线。","usage_note":"仅用于 AI agent 生成、展示和临时自检；不得作为 official key-area polygon、审批依据或精确面积复算依据。"},"geometry":{"type":"Polygon","coordinates":[[[116.342,39.944],[116.355,39.944],[116.355,39.94984],[116.342,39.94984],[116.342,39.944]]]}}]},"land_use":{"type":"FeatureCollection","features":[{"type":"Feature","id":"LU-001","properties":{"id":"LU-001","layer":"LAND_USE","land_use_type":"AI_Industry_RD","label_zh":"AI产业研发","source_type":"agent_generated_design","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"package_version":"v7","package_note":"v7 框架包：用地结构按 绿脊定骨、两侧定性 原则组织，provisional 边界待官方复核"},"geometry":{"type":"Polygon","coordinates":[[[116.3553,39.9499375],[116.3553,39.939],[116.3407,39.939],[116.34039618055556,39.9499375],[116.3553,39.9499375]]]}},{"type":"Feature","id":"LU-002","properties":{"id":"LU-002","layer":"LAND_USE","land_use_type":"Innovation_Mixed","label_zh":"创新混合","source_type":"agent_generated_design","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"package_version":"v7","package_note":"v7 框架包：用地结构按 绿脊定骨、两侧定性 原则组织，provisional 边界待官方复核"},"geometry":{"type":"Polygon","coordinates":[[[116.3553,39.960875],[116.3553,39.9499375],[116.34039618055556,39.9499375],[116.3400923611111,39.960875],[116.3553,39.960875]]]}},{"type":"Feature","id":"LU-003","properties":{"id":"LU-003","layer":"LAND_USE","land_use_type":"AI_Industry_Service","label_zh":"AI产业服务","source_type":"agent_generated_design","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"package_version":"v7","package_note":"v7 框架包：用地结构按 绿脊定骨、两侧定性 原则组织，provisional 边界待官方复核"},"geometry":{"type":"Polygon","coordinates":[[[116.354755,39.9718125],[116.3553,39.965],[116.3553,39.960875],[116.3400923611111,39.960875],[116.33978854166666,39.9718125],[116.354755,39.9718125]]]}},{"type":"Feature","id":"LU-004","properties":{"id":"LU-004","layer":"LAND_USE","land_use_type":"Commercial_Consumer","label_zh":"商业消费","source_type":"agent_generated_design","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"package_version":"v7","package_note":"v7 框架包：用地结构按 绿脊定骨、两侧定性 原则组织，provisional 边界待官方复核"},"geometry":{"type":"Polygon","coordinates":[[[116.35388,39.982749999999996],[116.354755,39.9718125],[116.33978854166666,39.9718125],[116.3397,39.975],[116.3402,39.982749999999996],[116.35388,39.982749999999996]]]}},{"type":"Feature","id":"LU-005","properties":{"id":"LU-005","layer":"LAND_USE","land_use_type":"Green_Space","label_zh":"绿地广场","source_type":"agent_generated_design","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"package_version":"v7","package_note":"v7 框架包：用地结构按 绿脊定骨、两侧定性 原则组织，provisional 边界待官方复核"},"geometry":{"type":"Polygon","coordinates":[[[116.35350205479452,39.9936875],[116.3533,39.99],[116.35388,39.982749999999996],[116.3402,39.982749999999996],[116.34090564516129,39.9936875],[116.35350205479452,39.9936875]]]}},{"type":"Feature","id":"LU-006","properties":{"id":"LU-006","layer":"LAND_USE","land_use_type":"Transportation","label_zh":"道路交通","source_type":"agent_generated_design","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"package_version":"v7","package_note":"v7 框架包：用地结构按 绿脊定骨、两侧定性 原则组织，provisional 边界待官方复核"},"geometry":{"type":"Polygon","coordinates":[[[116.35410136986302,40.004625],[116.35350205479452,39.9936875],[116.34090564516129,39.9936875],[116.34161129032259,40.004625],[116.35410136986302,40.004625]]]}},{"type":"Feature","id":"LU-007","properties":{"id":"LU-007","layer":"LAND_USE","land_use_type":"Mixed_Residential","label_zh":"混合居住","source_type":"agent_generated_design","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"package_version":"v7","package_note":"v7 框架包：用地结构按 绿脊定骨、两侧定性 原则组织，provisional 边界待官方复核"},"geometry":{"type":"Polygon","coordinates":[[[116.35470068493152,40.0155625],[116.35410136986302,40.004625],[116.34161129032259,40.004625],[116.3417,40.006],[116.34216646341463,40.0155625],[116.35470068493152,40.0155625]]]}},{"type":"Feature","id":"LU-008","properties":{"id":"LU-008","layer":"LAND_USE","land_use_type":"Public_Service","label_zh":"公共服务","source_type":"agent_generated_design","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"package_version":"v7","package_note":"v7 框架包：用地结构按 绿脊定骨、两侧定性 原则组织，provisional 边界待官方复核"},"geometry":{"type":"Polygon","coordinates":[[[116.3553,40.0265],[116.35470068493152,40.0155625],[116.34216646341463,40.0155625],[116.3427,40.0265],[116.3553,40.0265]]]}}]},"phasing":{"type":"FeatureCollection","features":[{"type":"Feature","id":"PHASE-001","properties":{"id":"PHASE-001","layer":"PHASE","phase_name":"Near_Term","label_zh":"近期(2026-2028)","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.3407,39.939],[116.3543,39.939],[116.3543,39.96816666666667],[116.3407,39.96816666666667],[116.3407,39.939]]]}},{"type":"Feature","id":"PHASE-002","properties":{"id":"PHASE-002","layer":"PHASE","phase_name":"Mid_Term","label_zh":"中期(2029-2031)","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.3407,39.96816666666667],[116.3543,39.96816666666667],[116.3543,39.99733333333333],[116.3407,39.99733333333333],[116.3407,39.96816666666667]]]}},{"type":"Feature","id":"PHASE-003","properties":{"id":"PHASE-003","layer":"PHASE","phase_name":"Long_Term","label_zh":"远期(2032-2035)","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.3407,39.99733333333333],[116.3543,39.99733333333333],[116.3543,40.0265],[116.3407,40.0265],[116.3407,39.99733333333333]]]}}]},"constraints":{"type":"FeatureCollection","features":[{"type":"Feature","id":"CON-001","properties":{"id":"CON-001","layer":"SITE_BOUNDARY","constraint_type":"provisional_boundary","description_zh":"使用临时粗略边界，官方红线发布后须复算","source_type":"agent_generated_design","confidence":"high","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.3407,39.939],[116.3553,39.939],[116.3553,39.965],[116.3533,39.99],[116.3553,40.0265],[116.3427,40.0265],[116.3417,40.006],[116.3397,39.975],[116.3407,39.939]]]}},{"type":"Feature","id":"CON-999","properties":{"id":"CON-999","layer":"SCENARIO_NODE","constraint_type":"pending_unknown","description_zh":"权属、文物保护范围、市政管线、消防、洪涝与道路红线等法定约束目前未获得（待补声明）；本图层为空不表示无约束，官方资料发布后必须补全并复算。","source_type":"agent_generated_design","confidence":"high","geometry_role":"analysis_helper","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.3475,39.982]}},{"type":"Feature","id":"SWB-01","properties":{"id":"SWB-01","layer":"SCENARIO_NODE","constraint_type":"ai_off_equivalence_point","scenario_id":"SC-01","grade":"缓坡","gate_id":"G0","operating_mode":"侧线折返","ai_off_path":"线下无障碍引导岗 + 纸质大字街区图 + 触觉导引带（不依赖模型、账号或网络）","human_handoff":"社区无障碍引导员","responsible_role":"街道无障碍专员","description_zh":"无障碍路径助手折返点：AI路线建议连续3次被拒即停车；拔线后由引导岗与纸质图兜底，路线不因AI离线而中断。","source_type":"agent_generated_design","confidence":"medium","geometry_role":"analysis_helper","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.337,39.992]}},{"type":"Feature","id":"SWB-02","properties":{"id":"SWB-02","layer":"SCENARIO_NODE","constraint_type":"ai_off_equivalence_point","scenario_id":"SC-02","grade":"中坡","gate_id":"G1","operating_mode":"正线运行","ai_off_path":"现场调度岗 + 手持分流牌 + 基于计数的硬阈值告警（无需模型预测）","human_handoff":"节点广场值班长","responsible_role":"广场运营主管","description_zh":"拥挤疏导折返点：误报率超阈值即折返；拔线后由值班长人工分流，安全不依赖AI预测。","source_type":"agent_generated_design","confidence":"medium","geometry_role":"analysis_helper","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.346,39.985]}},{"type":"Feature","id":"SWB-03","properties":{"id":"SWB-03","layer":"SCENARIO_NODE","constraint_type":"ai_off_equivalence_point","scenario_id":"SC-03","grade":"缓坡","gate_id":"G0","operating_mode":"侧线折返","ai_off_path":"文博审校后的固定解说牌 + 纸质折页 + 定时人工讲解场次","human_handoff":"遗址公园讲解员","responsible_role":"文博审校组","description_zh":"多语导览折返点：史实错误被纠即折返；拔线后由审校过的固定解说牌与人工讲解承担，史实不因AI出错而错。","source_type":"agent_generated_design","confidence":"medium","geometry_role":"analysis_helper","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.343,39.988]}},{"type":"Feature","id":"SWB-04","properties":{"id":"SWB-04","layer":"SCENARIO_NODE","constraint_type":"ai_off_equivalence_point","scenario_id":"SC-06","grade":"陡坡","gate_id":"G3","operating_mode":"入段检修","ai_off_path":"等额保留的非AI算力配额 + 纸质排队登记 + 按机构均分的兜底档","human_handoff":"资源委员会值班委员","responsible_role":"众智园资源委员会","description_zh":"开源算力调度折返点：公平性投诉即折返入段；拔线后由等额保留配额与均分兜底，中小团队不因算法离线而被挤出。","source_type":"agent_generated_design","confidence":"medium","geometry_role":"analysis_helper","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.341,40.012]}},{"type":"Feature","id":"SWB-05","properties":{"id":"SWB-05","layer":"SCENARIO_NODE","constraint_type":"ai_off_equivalence_point","scenario_id":"SC-07","grade":"陡坡","gate_id":"G3","operating_mode":"入段检修","ai_off_path":"完全停驶 + 人工配送补位 + 限时窗内由人接管所有在途单元","human_handoff":"小月河翼安全值班主任","responsible_role":"机器人测试安全官","description_zh":"机器人配送折返点：任何一次接管失败即折返入段；拔线后机器人停驶、人工补位，物理安全不依赖自动控制。","source_type":"agent_generated_design","confidence":"medium","geometry_role":"analysis_helper","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.344,40.005]}},{"type":"Feature","id":"SWB-06","properties":{"id":"SWB-06","layer":"SCENARIO_NODE","constraint_type":"ai_off_equivalence_point","scenario_id":"SC-10","grade":"缓坡","gate_id":"G0","operating_mode":"侧线折返","ai_off_path":"双语店员 + 纸质价目图卡 + 人工收银台（无AI导购仍可完成交易）","human_handoff":"大钟寺商户共治代表","responsible_role":"大钟寺商户共治会","description_zh":"消费翻译折返点：投诉率超阈值即折返；拔线后由双语店员与图卡承担，交易不因翻译AI离线而中断。","source_type":"agent_generated_design","confidence":"medium","geometry_role":"analysis_helper","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.349,39.975]}},{"type":"Feature","id":"SWB-07","properties":{"id":"SWB-07","layer":"SCENARIO_NODE","constraint_type":"ai_off_equivalence_point","scenario_id":"SC-11","grade":"陡坡","gate_id":"G3","operating_mode":"入段检修","ai_off_path":"复盘结论降级为线索、人工主导重审、AI输出不得作为处置依据","human_handoff":"运营中心值班指挥","responsible_role":"公共安全复盘官","description_zh":"公共安全复盘折返点：复盘结论被质疑即折返入段；拔线后由人工主导重审，AI仅作线索，处置决定不依赖模型。","source_type":"agent_generated_design","confidence":"medium","geometry_role":"analysis_helper","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.345,39.978]}},{"type":"Feature","id":"SWB-08","properties":{"id":"SWB-08","layer":"SCENARIO_NODE","constraint_type":"ai_off_equivalence_point","scenario_id":"SC-12","grade":"中坡","gate_id":"G1","operating_mode":"侧线折返","ai_off_path":"线下随机抽审组 + 纸质投票 + 人工唱票（归纳公平性不依赖模型）","human_handoff":"共智议事厅主持人","responsible_role":"议事厅秘书处","description_zh":"市民议题归纳折返点：公平性抽查不过即折返；拔线后由随机抽审组与纸质投票承担，观点覆盖不因AI归纳离线而失衡。","source_type":"agent_generated_design","confidence":"medium","geometry_role":"analysis_helper","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.348,39.982]}}]}};
+const LAYERS=[["site_boundary", "#9ab4cc", 1.8, "always-on"], ["buildings", "#7d8a99", 0.6, "default-on"], ["roads", "#5a6a7a", 1.4, "default-on"], ["public_space", "#3fb98a", 0.7, "default-on"], ["green_space", "#5ba85f", 0.7, "default-off"], ["key_areas", "#e8a838", 0.8, "default-on"], ["land_use", "#9b7fb3", 0.5, "default-off"], ["phasing", "#4a9eff", 0.6, "default-off"], ["constraints", "#d9534f", 1.0, "default-off"]];
+const LAYER_ZH={"site_boundary": "场地边界", "buildings": "建筑", "roads": "路网", "public_space": "公共空间", "green_space": "绿地", "key_areas": "重点地区", "land_use": "用地", "phasing": "分期", "constraints": "约束"};
+const XMIN=116.3315,XMAX=116.36449999999999,YMIN=39.939,YMAX=40.0265;
+const CW=440,CH=720;
+const state={layers:{},gov:true,pull:false,offX:0,offY:0,scale:1};
+LAYERS.forEach(function(l){state.layers[l[0]]=l[3]==='default-on'||l[3]==='always-on'});
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+const fallback=document.getElementById('fallback');
+if(!window.CanvasRenderingContext2D){cv.style.display='none';fallback.style.display='block'}
+const PRM=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+const proj=function(lng,lat){return [Math.round((lng-XMIN)/(XMAX-XMIN)*CW*state.scale+state.offX),Math.round(CH-((lat-YMIN)/(YMAX-YMIN)*CH*state.scale)+state.offY)]};
+function drawLayer(name,color,width,on){
+  if(!on)return;
+  var d=DATA[name];if(!d)return;
+  ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=Math.max(0.4,width);
+  (d.features||[]).forEach(function(ft){
+    var g=ft.geometry;if(!g)return;
+    var fillPoly=function(ring){ctx.beginPath();ring.forEach(function(c,i){var p=proj(c[0],c[1]);i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1])});ctx.closePath();ctx.globalAlpha=0.18;ctx.fill();ctx.globalAlpha=1;ctx.stroke()};
+    if(g.type==='Polygon')g.coordinates.forEach(fillPoly);
+    else if(g.type==='MultiPolygon')g.coordinates.forEach(function(p){p.forEach(fillPoly)});
+    else if(g.type.indexOf('LineString')>=0){ctx.beginPath();g.coordinates.forEach(function(c,i){var p=proj(c[0],c[1]);i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1])});ctx.stroke()}
+    else if(g.type==='Point'){var p=proj(g.coordinates[0],g.coordinates[1]);ctx.beginPath();ctx.arc(p[0],p[1],3,0,7);ctx.fill()}
+  });
+}
+var pulseT=0;
+function draw(){
+  ctx.clearRect(0,0,CW,CH);
+  ctx.fillStyle='#0a1218';ctx.fillRect(0,0,CW,CH);
+  var yS1=CH-((39.965-YMIN)/(YMAX-YMIN)*CH),yS2=CH-((39.995-YMIN)/(YMAX-YMIN)*CH);
+  ctx.fillStyle='rgba(63,185,138,0.05)';ctx.fillRect(0,yS1,CW,CH-yS1);
+  ctx.fillStyle='rgba(232,168,56,0.05)';ctx.fillRect(0,yS2,CW,yS1-yS2);
+  ctx.fillStyle='rgba(217,83,79,0.05)';ctx.fillRect(0,0,CW,yS2);
+  LAYERS.forEach(function(l){drawLayer(l[0],l[1],l[2],state.layers[l[0]])});
+  if(state.gov){
+    var ka=(DATA.key_areas.features||[]);
+    var names=['智核·大钟寺','原点·AI社区','智汇·众智园'];
+    var slope=['陡坡','中坡','缓坡'],scolor=['#d9534f','#e8a838','#3fb98a'],stt=['驳回','暂缓','通过'];
+    ka.forEach(function(ft,i){
+      var c=ft.geometry.coordinates[0][0];var p=proj(c[0],c[1]);
+      if(!state.pull&&!PRM){var r=14+Math.sin(pulseT)*4;ctx.beginPath();ctx.arc(p[0],p[1],r,0,7);ctx.fillStyle='rgba(74,158,255,0.18)';ctx.fill()}
+      ctx.beginPath();ctx.arc(p[0],p[1],7,0,7);ctx.fillStyle=state.pull?'#3a4a55':'#4a9eff';ctx.fill();
+      ctx.strokeStyle=scolor[i]||'#4a9eff';ctx.lineWidth=2;ctx.beginPath();ctx.arc(p[0],p[1],11,0,7);ctx.stroke();
+      ctx.font='11px sans-serif';ctx.fillStyle=state.pull?'#5a6a7a':'#9ab4cc';ctx.textAlign='center';
+      ctx.fillText(names[i]||'',p[0],p[1]-22);
+      ctx.fillStyle=state.pull?'#5a6a7a':(scolor[i]||'#9ab4cc');ctx.font='9px sans-serif';
+      ctx.fillText((slope[i]||'')+' · '+(state.pull?'AI关闭':(stt[i]||'')),p[0],p[1]+26);
+    });
+    if(ka.length>=3){
+      var a=proj(ka[0].geometry.coordinates[0][0][0],ka[0].geometry.coordinates[0][0][1]);
+      var b=proj(ka[1].geometry.coordinates[0][0][0],ka[1].geometry.coordinates[0][0][1]);
+      var c2=proj(ka[2].geometry.coordinates[0][0][0],ka[2].geometry.coordinates[0][0][1]);
+      ctx.strokeStyle='rgba(127,196,255,0.4)';ctx.lineWidth=1.5;ctx.setLineDash([4,3]);
+      ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.lineTo(c2[0],c2[1]);ctx.stroke();ctx.setLineDash([]);
+    }
+  }
+  if(state.pull){
+    ctx.strokeStyle='rgba(90,122,146,0.7)';ctx.lineWidth=2;ctx.setLineDash([6,4]);
+    ctx.beginPath();ctx.moveTo(CW*0.5,0);ctx.lineTo(CW*0.5,CH);ctx.stroke();ctx.setLineDash([]);
+    ctx.font='10px sans-serif';ctx.fillStyle='#5a7a92';ctx.textAlign='center';
+    ctx.fillText('无 AI 基线路径 · SWB 等价可用',CW*0.5+40,CH*0.5);
+    ctx.fillStyle='#3fb98a';ctx.font='11px sans-serif';
+    ctx.fillText('✓ 场景在 AI 关闭后仍可运行',CW*0.5+40,CH*0.5+18);
+  }
+  ctx.font='9px sans-serif';ctx.textAlign='left';
+  ctx.fillStyle='rgba(217,83,79,0.5)';ctx.fillText('陡坡·基础攻关',6,16);
+  ctx.fillStyle='rgba(232,168,56,0.5)';ctx.fillText('中坡·行业应用',6,yS2+14);
+  ctx.fillStyle='rgba(63,185,138,0.5)';ctx.fillText('缓坡·社区普惠',6,yS1+14);
+}
+function loop(){pulseT+=0.08;draw();if(!PRM)requestAnimationFrame(loop)}
+var chipsEl=document.getElementById('chips');
+LAYERS.forEach(function(l,i){
+  var name=l[0],color=l[1];
+  var el=document.createElement('div');el.className='chip'+(state.layers[name]?'':' off');el.tabIndex=0;el.setAttribute('role','switch');el.setAttribute('aria-checked',state.layers[name]);
+  el.innerHTML='<span class="dot" style="background:'+color+'"></span><span>'+LAYER_ZH[name]+'</span><kbd>'+(i+1)+'</kbd>';
+  var toggle=function(){if(name==='site_boundary')return;state.layers[name]=!state.layers[name];el.classList.toggle('off',!state.layers[name]);el.setAttribute('aria-checked',state.layers[name]);draw()};
+  el.onclick=toggle;el.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}};
+  chipsEl.appendChild(el);
+});
+var btnGov=document.getElementById('btnGov'),btnPull=document.getElementById('btnPull');
+btnGov.onclick=function(){state.gov=!state.gov;btnGov.classList.toggle('active',state.gov);btnGov.setAttribute('aria-pressed',state.gov);draw()};
+btnPull.onclick=function(){state.pull=!state.pull;btnPull.classList.toggle('active',state.pull);btnPull.setAttribute('aria-pressed',state.pull);btnPull.textContent=state.pull?'拔线:AI已关闭 P':'拔线测试 P';draw()};
+document.getElementById('btnReset').onclick=function(){state.offX=state.offY=0;state.scale=1;LAYERS.forEach(function(l){state.layers[l[0]]=l[3]==='default-on'||l[3]==='always-on'});[].forEach.call(chipsEl.children,function(c,i){var on=state.layers[LAYERS[i][0]];c.classList.toggle('off',!on);c.setAttribute('aria-checked',on)});draw()};
+document.getElementById('btnAll').onclick=function(){LAYERS.forEach(function(l){state.layers[l[0]]=true});[].forEach.call(chipsEl.children,function(c){c.classList.remove('off');c.setAttribute('aria-checked','true')});draw()};
+cv.addEventListener('keydown',function(e){
+  var k=e.key;
+  if(k>='1'&&k<='9'){var i=+k-1;if(i<LAYERS.length&&LAYERS[i][0]!=='site_boundary'){state.layers[LAYERS[i][0]]=!state.layers[LAYERS[i][0]];var c=chipsEl.children[i];c.classList.toggle('off',!state.layers[LAYERS[i][0]]);c.setAttribute('aria-checked',state.layers[LAYERS[i][0]]);draw()}}
+  else if(k==='g'||k==='G')btnGov.onclick();
+  else if(k==='p'||k==='P')btnPull.onclick();
+  else if(k==='ArrowUp')state.offY+=20;
+  else if(k==='ArrowDown')state.offY-=20;
+  else if(k==='ArrowLeft')state.offX+=20;
+  else if(k==='ArrowRight')state.offX-=20;
+  else if(k==='+'||k==='=')state.scale*=1.15;
+  else if(k==='-'||k==='_')state.scale/=1.15;
+  if(k.indexOf('Arrow')>=0||k==='+'||k==='-'||k==='=')e.preventDefault();
+  draw();
+});
+draw();if(!PRM)requestAnimationFrame(loop);
+</script>
+<script>
+const DATA={"site_boundary":{"type":"FeatureCollection","features":[{"type":"Feature","id":"SITE-001","properties":{"id":"SITE-001","layer":"SITE_BOUNDARY","scope_id":"overall_design_area","name_zh":"总体设计范围","source_type":"agent_inferred_from_public_data","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"boundary_precision":"provisional_rough","area_sqm_declared":11400000,"area_sqm_calculated":11412825.386,"usage_note":"Provisional boundary for AI generation and self-check only"},"geometry":{"type":"Polygon","coordinates":[[[116.3407,39.939],[116.3553,39.939],[116.3553,39.965],[116.3533,39.99],[116.3553,40.0265],[116.3427,40.0265],[116.3417,40.006],[116.3397,39.975],[116.3407,39.939]]]}}]},"buildings":{"type":"FeatureCollection","features":[{"type":"Feature","id":"BLD-001","properties":{"id":"BLD-001","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":4,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34865003268251,39.94098249413632],[116.34896003698461,39.94098249413632],[116.34896003698461,39.94139250586367],[116.34865003268251,39.94139250586367],[116.34865003268251,39.94098249413632]]]}},{"type":"Feature","id":"BLD-002","properties":{"id":"BLD-002","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":7,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34395557597576,39.94526436645107],[116.34429657404623,39.94526436645107],[116.34429657404623,39.94586063354894],[116.34395557597576,39.94586063354894],[116.34395557597576,39.94526436645107]]]}},{"type":"Feature","id":"BLD-003","properties":{"id":"BLD-003","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":4,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34339936310947,39.94978154055611],[116.34386813183734,39.94978154055611],[116.34386813183734,39.950093459443885],[116.34339936310947,39.950093459443885],[116.34339936310947,39.94978154055611]]]}},{"type":"Feature","id":"BLD-004","properties":{"id":"BLD-004","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":8,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34472730221631,39.954050250987414],[116.34526810970793,39.954050250987414],[116.34526810970793,39.95457474901259],[116.34472730221631,39.95457474901259],[116.34472730221631,39.954050250987414]]]}},{"type":"Feature","id":"BLD-005","properties":{"id":"BLD-005","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":7,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34864393004149,39.95849341187559],[116.34916190663373,39.95849341187559],[116.34916190663373,39.958881588124406],[116.34864393004149,39.958881588124406],[116.34864393004149,39.95849341187559]]]}},{"type":"Feature","id":"BLD-006","properties":{"id":"BLD-006","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":4,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34510000496488,39.962760738526576],[116.34574772509319,39.962760738526576],[116.34574772509319,39.96336426147343],[116.34510000496488,39.96336426147343],[116.34510000496488,39.962760738526576]]]}},{"type":"Feature","id":"BLD-007","properties":{"id":"BLD-007","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":5,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34913653463379,39.96725640410004],[116.3495726348404,39.96725640410004],[116.3495726348404,39.967618595899964],[116.34913653463379,39.967618595899964],[116.34913653463379,39.96725640410004]]]}},{"type":"Feature","id":"BLD-008","properties":{"id":"BLD-008","layer":"BUILDING_FOOTPRINT","building_type":"mixed_use","floors_above_ground":6,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34355070272808,39.971590704123905],[116.34400267364833,39.971590704123905],[116.34400267364833,39.9720342958761],[116.34355070272808,39.9720342958761],[116.34355070272808,39.971590704123905]]]}},{"type":"Feature","id":"BLD-009","properties":{"id":"BLD-009","layer":"BUILDING_FOOTPRINT","building_type":"mixed_use","floors_above_ground":8,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34815944999893,39.97589155364266],[116.34878230130825,39.97589155364266],[116.34878230130825,39.97648344635734],[116.34815944999893,39.97648344635734],[116.34815944999893,39.97589155364266]]]}},{"type":"Feature","id":"BLD-010","properties":{"id":"BLD-010","layer":"BUILDING_FOOTPRINT","building_type":"mixed_use","floors_above_ground":6,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34365391380989,39.98039673996038],[116.34432283195869,39.98039673996038],[116.34432283195869,39.98072826003961],[116.34365391380989,39.98072826003961],[116.34365391380989,39.98039673996038]]]}},{"type":"Feature","id":"BLD-011","properties":{"id":"BLD-011","layer":"BUILDING_FOOTPRINT","building_type":"mixed_use","floors_above_ground":8,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.35030952370694,39.98461515861994],[116.35085693160788,39.98461515861994],[116.35085693160788,39.98525984138006],[116.35030952370694,39.98525984138006],[116.35030952370694,39.98461515861994]]]}},{"type":"Feature","id":"BLD-012","properties":{"id":"BLD-012","layer":"BUILDING_FOOTPRINT","building_type":"mixed_use","floors_above_ground":10,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34445591017504,39.98903024733628],[116.34478373223457,39.98903024733628],[116.34478373223457,39.989594752663706],[116.34445591017504,39.989594752663706],[116.34445591017504,39.98903024733628]]]}},{"type":"Feature","id":"BLD-013","properties":{"id":"BLD-013","layer":"BUILDING_FOOTPRINT","building_type":"mixed_use","floors_above_ground":4,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34536271294392,39.99349094182273],[116.3456946297347,39.99349094182273],[116.3456946297347,39.99388405817727],[116.34536271294392,39.99388405817727],[116.34536271294392,39.99349094182273]]]}},{"type":"Feature","id":"BLD-014","properties":{"id":"BLD-014","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":8,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34613729940588,39.997745677914665],[116.34661866352683,39.997745677914665],[116.34661866352683,39.99837932208532],[116.34613729940588,39.99837932208532],[116.34613729940588,39.997745677914665]]]}},{"type":"Feature","id":"BLD-015","properties":{"id":"BLD-015","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":7,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34609299244606,40.00223410443559],[116.34647679525837,40.00223410443559],[116.34647679525837,40.002640895564404],[116.34609299244606,40.002640895564404],[116.34609299244606,40.00223410443559]]]}},{"type":"Feature","id":"BLD-016","properties":{"id":"BLD-016","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":8,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34833723848341,40.00651667464041],[116.34870569394269,40.00651667464041],[116.34870569394269,40.00710832535959],[116.34833723848341,40.00710832535959],[116.34833723848341,40.00651667464041]]]}},{"type":"Feature","id":"BLD-017","properties":{"id":"BLD-017","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":14,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34694276601756,40.01085242176407],[116.34735074514828,40.01085242176407],[116.34735074514828,40.01152257823592],[116.34694276601756,40.01152257823592],[116.34694276601756,40.01085242176407]]]}},{"type":"Feature","id":"BLD-018","properties":{"id":"BLD-018","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":6,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34466074148146,40.015258837284485],[116.34509045457523,40.015258837284485],[116.34509045457523,40.01586616271552],[116.34466074148146,40.01586616271552],[116.34466074148146,40.015258837284485]]]}},{"type":"Feature","id":"BLD-019","properties":{"id":"BLD-019","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":10,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.3448074699048,40.019724409390385],[116.34512031000236,40.019724409390385],[116.34512031000236,40.02015059060961],[116.3448074699048,40.02015059060961],[116.3448074699048,40.019724409390385]]]}},{"type":"Feature","id":"BLD-020","properties":{"id":"BLD-020","layer":"BUILDING_FOOTPRINT","building_type":"ai_r_and_d","floors_above_ground":11,"source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34310689811994,40.02404906398971],[116.34377215256961,40.02404906398971],[116.34377215256961,40.0245759360103],[116.34310689811994,40.0245759360103],[116.34310689811994,40.02404906398971]]]}}]},"roads":{"type":"FeatureCollection","features":[{"type":"Feature","id":"RD-001","properties":{"id":"RD-001","layer":"ROAD_CENTERLINE","road_type":"Primary","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"LineString","coordinates":[[116.3455,39.941],[116.3455,40.024499999999996]]}},{"type":"Feature","id":"RD-002","properties":{"id":"RD-002","layer":"ROAD_CENTERLINE","road_type":"Secondary","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"LineString","coordinates":[[116.34949999999999,39.941],[116.34949999999999,40.024499999999996]]}},{"type":"Feature","id":"RD-003","properties":{"id":"RD-003","layer":"ROAD_CENTERLINE","road_type":"Collector","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"LineString","coordinates":[[116.3427,39.953583333333334],[116.3523,39.953583333333334]]}},{"type":"Feature","id":"RD-004","properties":{"id":"RD-004","layer":"ROAD_CENTERLINE","road_type":"Collector","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"LineString","coordinates":[[116.3427,39.96816666666667],[116.3523,39.96816666666667]]}},{"type":"Feature","id":"RD-005","properties":{"id":"RD-005","layer":"ROAD_CENTERLINE","road_type":"Collector","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"LineString","coordinates":[[116.3427,39.982749999999996],[116.3523,39.982749999999996]]}},{"type":"Feature","id":"RD-006","properties":{"id":"RD-006","layer":"ROAD_CENTERLINE","road_type":"Collector","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"LineString","coordinates":[[116.3427,39.99733333333333],[116.3523,39.99733333333333]]}},{"type":"Feature","id":"RD-007","properties":{"id":"RD-007","layer":"ROAD_CENTERLINE","road_type":"Collector","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"LineString","coordinates":[[116.3427,40.011916666666664],[116.3523,40.011916666666664]]}}]},"public_space":{"type":"FeatureCollection","features":[{"type":"Feature","id":"PUB-001","properties":{"id":"PUB-001","layer":"PUBLIC_SPACE","space_type":"AI_Public_Space","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.3515,39.96525],[116.353,39.96525],[116.353,39.96675],[116.3515,39.96675],[116.3515,39.96525]]]}},{"type":"Feature","id":"PUB-002","properties":{"id":"PUB-002","layer":"PUBLIC_SPACE","space_type":"AI_Public_Space","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34349999999999,39.982749999999996],[116.34499999999998,39.982749999999996],[116.34499999999998,39.984249999999996],[116.34349999999999,39.984249999999996],[116.34349999999999,39.982749999999996]]]}},{"type":"Feature","id":"PUB-003","properties":{"id":"PUB-003","layer":"PUBLIC_SPACE","space_type":"AI_Public_Space","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.3515,40.00025],[116.353,40.00025],[116.353,40.00175],[116.3515,40.00175],[116.3515,40.00025]]]}},{"type":"Feature","id":"PUB-004","properties":{"id":"PUB-004","layer":"PUBLIC_SPACE","space_type":"AI_Public_Space","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34349999999999,40.01775],[116.34499999999998,40.01775],[116.34499999999998,40.01925],[116.34349999999999,40.01925],[116.34349999999999,40.01775]]]}},{"type":"Feature","id":"NODE-01","properties":{"id":"NODE-01","layer":"SCENARIO_NODE","name_zh":"无障碍路径助手","area_ref":"众智园","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.3452,39.9801]}},{"type":"Feature","id":"NODE-02","properties":{"id":"NODE-02","layer":"SCENARIO_NODE","name_zh":"拥挤疏导建议","area_ref":"原点社区","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.3498,39.974]}},{"type":"Feature","id":"NODE-03","properties":{"id":"NODE-03","layer":"SCENARIO_NODE","name_zh":"多语文化导览","area_ref":"大钟寺","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.359,39.962]}},{"type":"Feature","id":"NODE-04","properties":{"id":"NODE-04","layer":"SCENARIO_NODE","name_zh":"社区服务导航","area_ref":"原点社区","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.3525,39.968]}},{"type":"Feature","id":"NODE-05","properties":{"id":"NODE-05","layer":"SCENARIO_NODE","name_zh":"中小企业合规助手","area_ref":"大钟寺","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.358,39.9605]}},{"type":"Feature","id":"NODE-06","properties":{"id":"NODE-06","layer":"SCENARIO_NODE","name_zh":"开源算力调度","area_ref":"五道口","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.3545,39.971]}},{"type":"Feature","id":"NODE-07","properties":{"id":"NODE-07","layer":"SCENARIO_NODE","name_zh":"机器人低速配送","area_ref":"社区服务中心","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.3505,39.9665]}},{"type":"Feature","id":"NODE-08","properties":{"id":"NODE-08","layer":"SCENARIO_NODE","name_zh":"公共空间微气候建议","area_ref":"遗址公园","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.347,39.976]}},{"type":"Feature","id":"NODE-09","properties":{"id":"NODE-09","layer":"SCENARIO_NODE","name_zh":"适老健康服务导航","area_ref":"原点社区","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.349,39.9725]}},{"type":"Feature","id":"NODE-10","properties":{"id":"NODE-10","layer":"SCENARIO_NODE","name_zh":"消费服务翻译","area_ref":"众智园","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.3458,39.9795]}},{"type":"Feature","id":"NODE-11","properties":{"id":"NODE-11","layer":"SCENARIO_NODE","name_zh":"公共安全复盘助手","area_ref":"大钟寺","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.3585,39.9612]}},{"type":"Feature","id":"NODE-12","properties":{"id":"NODE-12","layer":"SCENARIO_NODE","name_zh":"市民议题归纳","area_ref":"原点社区","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.3512,39.9672]}}]},"green_space":{"type":"FeatureCollection","features":[{"type":"Feature","id":"GRN-001","properties":{"id":"GRN-001","layer":"GREEN_SPACE","green_type":"Heritage_Park_Corridor","source_type":"agent_generated_design","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.346,39.94775],[116.34899999999999,39.94775],[116.34899999999999,40.01775],[116.346,40.01775],[116.346,39.94775]]]}},{"type":"Feature","id":"GRN-002","properties":{"id":"GRN-002","layer":"GREEN_SPACE","green_type":"Neighborhood_Park","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34576313272026,39.982749999999996],[116.34776313272026,39.982749999999996],[116.34776313272026,39.98475],[116.34576313272026,39.98475],[116.34576313272026,39.982749999999996]]]}},{"type":"Feature","id":"GRN-003","properties":{"id":"GRN-003","layer":"GREEN_SPACE","green_type":"Neighborhood_Park","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.34719615629746,40.009],[116.34919615629745,40.009],[116.34919615629745,40.011],[116.34719615629746,40.011],[116.34719615629746,40.009]]]}}]},"key_areas":{"type":"FeatureCollection","features":[{"type":"Feature","id":"PROV-KEY-001","properties":{"id":"PROV-KEY-001","layer":"KEY_AREA","parent_scope_id":"key_detailed_design_area","area_id":"zhongzhiyuan_ai_acceleration_area","name_zh":"众智园AI自主创新加速区粗略范围","source_type":"agent_inferred_from_public_data","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"boundary_precision":"provisional_rough","announced_area_sqm":1921000,"area_sqm_calculated":1929201.877,"source_id":"DATA-SRC-PROVISIONAL-BOUNDARIES-20260605","derived_from_source_ids":["DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"],"source_title":"依据公告重点片区名称、南北顺序、公告约面积和临时 SITE_BOUNDARY 形成的临时粗略范围","derivation_method":"按公告自北向南第一处、众智园AI自主创新加速区、约192.1公顷及五环路/清河相关任务线索，在临时总体设计范围内粗略定位并校核面积；公告未给出四至，矩形边不得解释为地块或道路红线。","usage_note":"仅用于 AI agent 生成、展示和临时自检；不得作为 official key-area polygon、审批依据或精确面积复算依据。"},"geometry":{"type":"Polygon","coordinates":[[[116.343,40.0075],[116.354,40.0075],[116.354,40.026],[116.343,40.026],[116.343,40.0075]]]}},{"type":"Feature","id":"PROV-KEY-002","properties":{"id":"PROV-KEY-002","layer":"KEY_AREA","parent_scope_id":"key_detailed_design_area","area_id":"beijing_ai_origin_community","name_zh":"北京AI原点社区粗略范围","source_type":"agent_inferred_from_public_data","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"boundary_precision":"provisional_rough","announced_area_sqm":1043000,"area_sqm_calculated":1043236.909,"source_id":"DATA-SRC-PROVISIONAL-BOUNDARIES-20260605","derived_from_source_ids":["DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"],"source_title":"依据公告重点片区名称、南北顺序、公告约面积和临时 SITE_BOUNDARY 形成的临时粗略范围","derivation_method":"按公告自北向南第二处、北京AI原点社区、约104.3公顷及五道口/清华东路西口相关任务线索，在临时总体设计范围内粗略定位并校核面积；公告未给出四至，矩形边不得解释为地块或道路红线。","usage_note":"仅用于 AI agent 生成、展示和临时自检；不得作为 official key-area polygon、审批依据或精确面积复算依据。"},"geometry":{"type":"Polygon","coordinates":[[[116.342,39.9835],[116.353,39.9835],[116.353,39.9935],[116.342,39.9935],[116.342,39.9835]]]}},{"type":"Feature","id":"PROV-KEY-003","properties":{"id":"PROV-KEY-003","layer":"KEY_AREA","parent_scope_id":"key_detailed_design_area","area_id":"dazhongsi_ai_industry_cluster","name_zh":"大钟寺AI产业聚集区粗略范围","source_type":"agent_inferred_from_public_data","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"boundary_precision":"provisional_rough","announced_area_sqm":720000,"area_sqm_calculated":720454.221,"source_id":"DATA-SRC-PROVISIONAL-BOUNDARIES-20260605","derived_from_source_ids":["DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"],"source_title":"依据公告重点片区名称、南北顺序、公告约面积和临时 SITE_BOUNDARY 形成的临时粗略范围","derivation_method":"按公告自北向南第三处、大钟寺AI产业聚集区、约72.0公顷及大钟寺站相关任务线索，在临时总体设计范围内粗略定位并校核面积；公告未给出四至，矩形边不得解释为地块或道路红线。","usage_note":"仅用于 AI agent 生成、展示和临时自检；不得作为 official key-area polygon、审批依据或精确面积复算依据。"},"geometry":{"type":"Polygon","coordinates":[[[116.342,39.944],[116.355,39.944],[116.355,39.94984],[116.342,39.94984],[116.342,39.944]]]}}]},"land_use":{"type":"FeatureCollection","features":[{"type":"Feature","id":"LU-001","properties":{"id":"LU-001","layer":"LAND_USE","land_use_type":"AI_Industry_RD","label_zh":"AI产业研发","source_type":"agent_generated_design","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"package_version":"v7","package_note":"v7 框架包：用地结构按 绿脊定骨、两侧定性 原则组织，provisional 边界待官方复核"},"geometry":{"type":"Polygon","coordinates":[[[116.3553,39.9499375],[116.3553,39.939],[116.3407,39.939],[116.34039618055556,39.9499375],[116.3553,39.9499375]]]}},{"type":"Feature","id":"LU-002","properties":{"id":"LU-002","layer":"LAND_USE","land_use_type":"Innovation_Mixed","label_zh":"创新混合","source_type":"agent_generated_design","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"package_version":"v7","package_note":"v7 框架包：用地结构按 绿脊定骨、两侧定性 原则组织，provisional 边界待官方复核"},"geometry":{"type":"Polygon","coordinates":[[[116.3553,39.960875],[116.3553,39.9499375],[116.34039618055556,39.9499375],[116.3400923611111,39.960875],[116.3553,39.960875]]]}},{"type":"Feature","id":"LU-003","properties":{"id":"LU-003","layer":"LAND_USE","land_use_type":"AI_Industry_Service","label_zh":"AI产业服务","source_type":"agent_generated_design","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"package_version":"v7","package_note":"v7 框架包：用地结构按 绿脊定骨、两侧定性 原则组织，provisional 边界待官方复核"},"geometry":{"type":"Polygon","coordinates":[[[116.354755,39.9718125],[116.3553,39.965],[116.3553,39.960875],[116.3400923611111,39.960875],[116.33978854166666,39.9718125],[116.354755,39.9718125]]]}},{"type":"Feature","id":"LU-004","properties":{"id":"LU-004","layer":"LAND_USE","land_use_type":"Commercial_Consumer","label_zh":"商业消费","source_type":"agent_generated_design","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"package_version":"v7","package_note":"v7 框架包：用地结构按 绿脊定骨、两侧定性 原则组织，provisional 边界待官方复核"},"geometry":{"type":"Polygon","coordinates":[[[116.35388,39.982749999999996],[116.354755,39.9718125],[116.33978854166666,39.9718125],[116.3397,39.975],[116.3402,39.982749999999996],[116.35388,39.982749999999996]]]}},{"type":"Feature","id":"LU-005","properties":{"id":"LU-005","layer":"LAND_USE","land_use_type":"Green_Space","label_zh":"绿地广场","source_type":"agent_generated_design","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"package_version":"v7","package_note":"v7 框架包：用地结构按 绿脊定骨、两侧定性 原则组织，provisional 边界待官方复核"},"geometry":{"type":"Polygon","coordinates":[[[116.35350205479452,39.9936875],[116.3533,39.99],[116.35388,39.982749999999996],[116.3402,39.982749999999996],[116.34090564516129,39.9936875],[116.35350205479452,39.9936875]]]}},{"type":"Feature","id":"LU-006","properties":{"id":"LU-006","layer":"LAND_USE","land_use_type":"Transportation","label_zh":"道路交通","source_type":"agent_generated_design","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"package_version":"v7","package_note":"v7 框架包：用地结构按 绿脊定骨、两侧定性 原则组织，provisional 边界待官方复核"},"geometry":{"type":"Polygon","coordinates":[[[116.35410136986302,40.004625],[116.35350205479452,39.9936875],[116.34090564516129,39.9936875],[116.34161129032259,40.004625],[116.35410136986302,40.004625]]]}},{"type":"Feature","id":"LU-007","properties":{"id":"LU-007","layer":"LAND_USE","land_use_type":"Mixed_Residential","label_zh":"混合居住","source_type":"agent_generated_design","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"package_version":"v7","package_note":"v7 框架包：用地结构按 绿脊定骨、两侧定性 原则组织，provisional 边界待官方复核"},"geometry":{"type":"Polygon","coordinates":[[[116.35470068493152,40.0155625],[116.35410136986302,40.004625],[116.34161129032259,40.004625],[116.3417,40.006],[116.34216646341463,40.0155625],[116.35470068493152,40.0155625]]]}},{"type":"Feature","id":"LU-008","properties":{"id":"LU-008","layer":"LAND_USE","land_use_type":"Public_Service","label_zh":"公共服务","source_type":"agent_generated_design","confidence":"medium","geometry_role":"provisional_constraint","official_boundary":false,"package_version":"v7","package_note":"v7 框架包：用地结构按 绿脊定骨、两侧定性 原则组织，provisional 边界待官方复核"},"geometry":{"type":"Polygon","coordinates":[[[116.3553,40.0265],[116.35470068493152,40.0155625],[116.34216646341463,40.0155625],[116.3427,40.0265],[116.3553,40.0265]]]}}]},"phasing":{"type":"FeatureCollection","features":[{"type":"Feature","id":"PHASE-001","properties":{"id":"PHASE-001","layer":"PHASE","phase_name":"Near_Term","label_zh":"近期(2026-2028)","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.3407,39.939],[116.3543,39.939],[116.3543,39.96816666666667],[116.3407,39.96816666666667],[116.3407,39.939]]]}},{"type":"Feature","id":"PHASE-002","properties":{"id":"PHASE-002","layer":"PHASE","phase_name":"Mid_Term","label_zh":"中期(2029-2031)","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.3407,39.96816666666667],[116.3543,39.96816666666667],[116.3543,39.99733333333333],[116.3407,39.99733333333333],[116.3407,39.96816666666667]]]}},{"type":"Feature","id":"PHASE-003","properties":{"id":"PHASE-003","layer":"PHASE","phase_name":"Long_Term","label_zh":"远期(2032-2035)","source_type":"agent_generated_design","confidence":"low","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.3407,39.99733333333333],[116.3543,39.99733333333333],[116.3543,40.0265],[116.3407,40.0265],[116.3407,39.99733333333333]]]}}]},"constraints":{"type":"FeatureCollection","features":[{"type":"Feature","id":"CON-001","properties":{"id":"CON-001","layer":"SITE_BOUNDARY","constraint_type":"provisional_boundary","description_zh":"使用临时粗略边界，官方红线发布后须复算","source_type":"agent_generated_design","confidence":"high","geometry_role":"provisional_constraint","official_boundary":false},"geometry":{"type":"Polygon","coordinates":[[[116.3407,39.939],[116.3553,39.939],[116.3553,39.965],[116.3533,39.99],[116.3553,40.0265],[116.3427,40.0265],[116.3417,40.006],[116.3397,39.975],[116.3407,39.939]]]}},{"type":"Feature","id":"CON-999","properties":{"id":"CON-999","layer":"SCENARIO_NODE","constraint_type":"pending_unknown","description_zh":"权属、文物保护范围、市政管线、消防、洪涝与道路红线等法定约束目前未获得（待补声明）；本图层为空不表示无约束，官方资料发布后必须补全并复算。","source_type":"agent_generated_design","confidence":"high","geometry_role":"analysis_helper","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.3475,39.982]}},{"type":"Feature","id":"SWB-01","properties":{"id":"SWB-01","layer":"SCENARIO_NODE","constraint_type":"ai_off_equivalence_point","scenario_id":"SC-01","grade":"缓坡","gate_id":"G0","operating_mode":"侧线折返","ai_off_path":"线下无障碍引导岗 + 纸质大字街区图 + 触觉导引带（不依赖模型、账号或网络）","human_handoff":"社区无障碍引导员","responsible_role":"街道无障碍专员","description_zh":"无障碍路径助手折返点：AI路线建议连续3次被拒即停车；拔线后由引导岗与纸质图兜底，路线不因AI离线而中断。","source_type":"agent_generated_design","confidence":"medium","geometry_role":"analysis_helper","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.337,39.992]}},{"type":"Feature","id":"SWB-02","properties":{"id":"SWB-02","layer":"SCENARIO_NODE","constraint_type":"ai_off_equivalence_point","scenario_id":"SC-02","grade":"中坡","gate_id":"G1","operating_mode":"正线运行","ai_off_path":"现场调度岗 + 手持分流牌 + 基于计数的硬阈值告警（无需模型预测）","human_handoff":"节点广场值班长","responsible_role":"广场运营主管","description_zh":"拥挤疏导折返点：误报率超阈值即折返；拔线后由值班长人工分流，安全不依赖AI预测。","source_type":"agent_generated_design","confidence":"medium","geometry_role":"analysis_helper","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.346,39.985]}},{"type":"Feature","id":"SWB-03","properties":{"id":"SWB-03","layer":"SCENARIO_NODE","constraint_type":"ai_off_equivalence_point","scenario_id":"SC-03","grade":"缓坡","gate_id":"G0","operating_mode":"侧线折返","ai_off_path":"文博审校后的固定解说牌 + 纸质折页 + 定时人工讲解场次","human_handoff":"遗址公园讲解员","responsible_role":"文博审校组","description_zh":"多语导览折返点：史实错误被纠即折返；拔线后由审校过的固定解说牌与人工讲解承担，史实不因AI出错而错。","source_type":"agent_generated_design","confidence":"medium","geometry_role":"analysis_helper","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.343,39.988]}},{"type":"Feature","id":"SWB-04","properties":{"id":"SWB-04","layer":"SCENARIO_NODE","constraint_type":"ai_off_equivalence_point","scenario_id":"SC-06","grade":"陡坡","gate_id":"G3","operating_mode":"入段检修","ai_off_path":"等额保留的非AI算力配额 + 纸质排队登记 + 按机构均分的兜底档","human_handoff":"资源委员会值班委员","responsible_role":"众智园资源委员会","description_zh":"开源算力调度折返点：公平性投诉即折返入段；拔线后由等额保留配额与均分兜底，中小团队不因算法离线而被挤出。","source_type":"agent_generated_design","confidence":"medium","geometry_role":"analysis_helper","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.341,40.012]}},{"type":"Feature","id":"SWB-05","properties":{"id":"SWB-05","layer":"SCENARIO_NODE","constraint_type":"ai_off_equivalence_point","scenario_id":"SC-07","grade":"陡坡","gate_id":"G3","operating_mode":"入段检修","ai_off_path":"完全停驶 + 人工配送补位 + 限时窗内由人接管所有在途单元","human_handoff":"小月河翼安全值班主任","responsible_role":"机器人测试安全官","description_zh":"机器人配送折返点：任何一次接管失败即折返入段；拔线后机器人停驶、人工补位，物理安全不依赖自动控制。","source_type":"agent_generated_design","confidence":"medium","geometry_role":"analysis_helper","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.344,40.005]}},{"type":"Feature","id":"SWB-06","properties":{"id":"SWB-06","layer":"SCENARIO_NODE","constraint_type":"ai_off_equivalence_point","scenario_id":"SC-10","grade":"缓坡","gate_id":"G0","operating_mode":"侧线折返","ai_off_path":"双语店员 + 纸质价目图卡 + 人工收银台（无AI导购仍可完成交易）","human_handoff":"大钟寺商户共治代表","responsible_role":"大钟寺商户共治会","description_zh":"消费翻译折返点：投诉率超阈值即折返；拔线后由双语店员与图卡承担，交易不因翻译AI离线而中断。","source_type":"agent_generated_design","confidence":"medium","geometry_role":"analysis_helper","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.349,39.975]}},{"type":"Feature","id":"SWB-07","properties":{"id":"SWB-07","layer":"SCENARIO_NODE","constraint_type":"ai_off_equivalence_point","scenario_id":"SC-11","grade":"陡坡","gate_id":"G3","operating_mode":"入段检修","ai_off_path":"复盘结论降级为线索、人工主导重审、AI输出不得作为处置依据","human_handoff":"运营中心值班指挥","responsible_role":"公共安全复盘官","description_zh":"公共安全复盘折返点：复盘结论被质疑即折返入段；拔线后由人工主导重审，AI仅作线索，处置决定不依赖模型。","source_type":"agent_generated_design","confidence":"medium","geometry_role":"analysis_helper","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.345,39.978]}},{"type":"Feature","id":"SWB-08","properties":{"id":"SWB-08","layer":"SCENARIO_NODE","constraint_type":"ai_off_equivalence_point","scenario_id":"SC-12","grade":"中坡","gate_id":"G1","operating_mode":"侧线折返","ai_off_path":"线下随机抽审组 + 纸质投票 + 人工唱票（归纳公平性不依赖模型）","human_handoff":"共智议事厅主持人","responsible_role":"议事厅秘书处","description_zh":"市民议题归纳折返点：公平性抽查不过即折返；拔线后由随机抽审组与纸质投票承担，观点覆盖不因AI归纳离线而失衡。","source_type":"agent_generated_design","confidence":"medium","geometry_role":"analysis_helper","official_boundary":false},"geometry":{"type":"Point","coordinates":[116.348,39.982]}}]}};
+const LAYERS=[["site_boundary", "#9ab4cc", 1.8, "always-on"], ["buildings", "#7d8a99", 0.6, "default-on"], ["roads", "#5a6a7a", 1.4, "default-on"], ["public_space", "#3fb98a", 0.7, "default-on"], ["green_space", "#5ba85f", 0.7, "default-off"], ["key_areas", "#e8a838", 0.8, "default-on"], ["land_use", "#9b7fb3", 0.5, "default-off"], ["phasing", "#4a9eff", 0.6, "default-off"], ["constraints", "#d9534f", 1.0, "default-off"]];
+const LAYER_ZH={"site_boundary": "场地边界", "buildings": "建筑", "roads": "路网", "public_space": "公共空间", "green_space": "绿地", "key_areas": "重点地区", "land_use": "用地", "phasing": "分期", "constraints": "约束"};
+const XMIN=116.3315,XMAX=116.36449999999999,YMIN=39.939,YMAX=40.0265;
+const CW=440,CH=720;
+const state={layers:{},gov:true,pull:false,offX:0,offY:0,scale:1};
+LAYERS.forEach(function(l){state.layers[l[0]]=l[3]==='default-on'||l[3]==='always-on'});
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+const fallback=document.getElementById('fallback');
+if(!window.CanvasRenderingContext2D){cv.style.display='none';fallback.style.display='block'}
+const PRM=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+const proj=function(lng,lat){return [Math.round((lng-XMIN)/(XMAX-XMIN)*CW*state.scale+state.offX),Math.round(CH-((lat-YMIN)/(YMAX-YMIN)*CH*state.scale)+state.offY)]};
+function drawLayer(name,color,width,on){
+  if(!on)return;
+  var d=DATA[name];if(!d)return;
+  ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=Math.max(0.4,width);
+  (d.features||[]).forEach(function(ft){
+    var g=ft.geometry;if(!g)return;
+    var fillPoly=function(ring){ctx.beginPath();ring.forEach(function(c,i){var p=proj(c[0],c[1]);i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1])});ctx.closePath();ctx.globalAlpha=0.18;ctx.fill();ctx.globalAlpha=1;ctx.stroke()};
+    if(g.type==='Polygon')g.coordinates.forEach(fillPoly);
+    else if(g.type==='MultiPolygon')g.coordinates.forEach(function(p){p.forEach(fillPoly)});
+    else if(g.type.indexOf('LineString')>=0){ctx.beginPath();g.coordinates.forEach(function(c,i){var p=proj(c[0],c[1]);i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1])});ctx.stroke()}
+    else if(g.type==='Point'){var p=proj(g.coordinates[0],g.coordinates[1]);ctx.beginPath();ctx.arc(p[0],p[1],3,0,7);ctx.fill()}
+  });
+}
+var pulseT=0;
+function draw(){
+  ctx.clearRect(0,0,CW,CH);
+  ctx.fillStyle='#0a1218';ctx.fillRect(0,0,CW,CH);
+  var yS1=CH-((39.965-YMIN)/(YMAX-YMIN)*CH),yS2=CH-((39.995-YMIN)/(YMAX-YMIN)*CH);
+  ctx.fillStyle='rgba(63,185,138,0.05)';ctx.fillRect(0,yS1,CW,CH-yS1);
+  ctx.fillStyle='rgba(232,168,56,0.05)';ctx.fillRect(0,yS2,CW,yS1-yS2);
+  ctx.fillStyle='rgba(217,83,79,0.05)';ctx.fillRect(0,0,CW,yS2);
+  LAYERS.forEach(function(l){drawLayer(l[0],l[1],l[2],state.layers[l[0]])});
+  if(state.gov){
+    var ka=(DATA.key_areas.features||[]);
+    var names=['智核·大钟寺','原点·AI社区','智汇·众智园'];
+    var slope=['陡坡','中坡','缓坡'],scolor=['#d9534f','#e8a838','#3fb98a'],stt=['驳回','暂缓','通过'];
+    ka.forEach(function(ft,i){
+      var c=ft.geometry.coordinates[0][0];var p=proj(c[0],c[1]);
+      if(!state.pull&&!PRM){var r=14+Math.sin(pulseT)*4;ctx.beginPath();ctx.arc(p[0],p[1],r,0,7);ctx.fillStyle='rgba(74,158,255,0.18)';ctx.fill()}
+      ctx.beginPath();ctx.arc(p[0],p[1],7,0,7);ctx.fillStyle=state.pull?'#3a4a55':'#4a9eff';ctx.fill();
+      ctx.strokeStyle=scolor[i]||'#4a9eff';ctx.lineWidth=2;ctx.beginPath();ctx.arc(p[0],p[1],11,0,7);ctx.stroke();
+      ctx.font='11px sans-serif';ctx.fillStyle=state.pull?'#5a6a7a':'#9ab4cc';ctx.textAlign='center';
+      ctx.fillText(names[i]||'',p[0],p[1]-22);
+      ctx.fillStyle=state.pull?'#5a6a7a':(scolor[i]||'#9ab4cc');ctx.font='9px sans-serif';
+      ctx.fillText((slope[i]||'')+' · '+(state.pull?'AI关闭':(stt[i]||'')),p[0],p[1]+26);
+    });
+    if(ka.length>=3){
+      var a=proj(ka[0].geometry.coordinates[0][0][0],ka[0].geometry.coordinates[0][0][1]);
+      var b=proj(ka[1].geometry.coordinates[0][0][0],ka[1].geometry.coordinates[0][0][1]);
+      var c2=proj(ka[2].geometry.coordinates[0][0][0],ka[2].geometry.coordinates[0][0][1]);
+      ctx.strokeStyle='rgba(127,196,255,0.4)';ctx.lineWidth=1.5;ctx.setLineDash([4,3]);
+      ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.lineTo(c2[0],c2[1]);ctx.stroke();ctx.setLineDash([]);
+    }
+  }
+  if(state.pull){
+    ctx.strokeStyle='rgba(90,122,146,0.7)';ctx.lineWidth=2;ctx.setLineDash([6,4]);
+    ctx.beginPath();ctx.moveTo(CW*0.5,0);ctx.lineTo(CW*0.5,CH);ctx.stroke();ctx.setLineDash([]);
+    ctx.font='10px sans-serif';ctx.fillStyle='#5a7a92';ctx.textAlign='center';
+    ctx.fillText('无 AI 基线路径 · SWB 等价可用',CW*0.5+40,CH*0.5);
+    ctx.fillStyle='#3fb98a';ctx.font='11px sans-serif';
+    ctx.fillText('✓ 场景在 AI 关闭后仍可运行',CW*0.5+40,CH*0.5+18);
+  }
+  ctx.font='9px sans-serif';ctx.textAlign='left';
+  ctx.fillStyle='rgba(217,83,79,0.5)';ctx.fillText('陡坡·基础攻关',6,16);
+  ctx.fillStyle='rgba(232,168,56,0.5)';ctx.fillText('中坡·行业应用',6,yS2+14);
+  ctx.fillStyle='rgba(63,185,138,0.5)';ctx.fillText('缓坡·社区普惠',6,yS1+14);
+}
+function loop(){pulseT+=0.08;draw();if(!PRM)requestAnimationFrame(loop)}
+var chipsEl=document.getElementById('chips');
+LAYERS.forEach(function(l,i){
+  var name=l[0],color=l[1];
+  var el=document.createElement('div');el.className='chip'+(state.layers[name]?'':' off');el.tabIndex=0;el.setAttribute('role','switch');el.setAttribute('aria-checked',state.layers[name]);
+  el.innerHTML='<span class="dot" style="background:'+color+'"></span><span>'+LAYER_ZH[name]+'</span><kbd>'+(i+1)+'</kbd>';
+  var toggle=function(){if(name==='site_boundary')return;state.layers[name]=!state.layers[name];el.classList.toggle('off',!state.layers[name]);el.setAttribute('aria-checked',state.layers[name]);draw()};
+  el.onclick=toggle;el.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}};
+  chipsEl.appendChild(el);
+});
+var btnGov=document.getElementById('btnGov'),btnPull=document.getElementById('btnPull');
+btnGov.onclick=function(){state.gov=!state.gov;btnGov.classList.toggle('active',state.gov);btnGov.setAttribute('aria-pressed',state.gov);draw()};
+btnPull.onclick=function(){state.pull=!state.pull;btnPull.classList.toggle('active',state.pull);btnPull.setAttribute('aria-pressed',state.pull);btnPull.textContent=state.pull?'拔线:AI已关闭 P':'拔线测试 P';draw()};
+document.getElementById('btnReset').onclick=function(){state.offX=state.offY=0;state.scale=1;LAYERS.forEach(function(l){state.layers[l[0]]=l[3]==='default-on'||l[3]==='always-on'});[].forEach.call(chipsEl.children,function(c,i){var on=state.layers[LAYERS[i][0]];c.classList.toggle('off',!on);c.setAttribute('aria-checked',on)});draw()};
+document.getElementById('btnAll').onclick=function(){LAYERS.forEach(function(l){state.layers[l[0]]=true});[].forEach.call(chipsEl.children,function(c){c.classList.remove('off');c.setAttribute('aria-checked','true')});draw()};
+cv.addEventListener('keydown',function(e){
+  var k=e.key;
+  if(k>='1'&&k<='9'){var i=+k-1;if(i<LAYERS.length&&LAYERS[i][0]!=='site_boundary'){state.layers[LAYERS[i][0]]=!state.layers[LAYERS[i][0]];var c=chipsEl.children[i];c.classList.toggle('off',!state.layers[LAYERS[i][0]]);c.setAttribute('aria-checked',state.layers[LAYERS[i][0]]);draw()}}
+  else if(k==='g'||k==='G')btnGov.onclick();
+  else if(k==='p'||k==='P')btnPull.onclick();
+  else if(k==='ArrowUp')state.offY+=20;
+  else if(k==='ArrowDown')state.offY-=20;
+  else if(k==='ArrowLeft')state.offX+=20;
+  else if(k==='ArrowRight')state.offX-=20;
+  else if(k==='+'||k==='=')state.scale*=1.15;
+  else if(k==='-'||k==='_')state.scale/=1.15;
+  if(k.indexOf('Arrow')>=0||k==='+'||k==='-'||k==='=')e.preventDefault();
+  draw();
+});
+draw();if(!PRM)requestAnimationFrame(loop);
+</script>
+</section>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+ "schema_version": "0.1.0",
+ "assumptions": [
+  {
+   "id": "A-BOUNDARY-001",
+   "status": "provisional",
+   "statement": "官方精确红线与三处重点区官方 polygon 尚未发布；本包全部几何使用组织方 provisional_boundaries.geojson。",
+   "impact": "面积复算为投影近似值；official 数据发布后 site/key-areas/land-use/roads/green/public/buildings/phasing 与全部指标须整体重算。"
+  },
+  {
+   "id": "A-CONTROLS-001",
+   "status": "pending_professional_confirmation",
+   "statement": "容积率、建筑高度、建筑密度、绿地率法定值、退线、道路红线等管控指标缺少官方控规条件。",
+   "impact": "相关指标统一记录 status=unknown；本包概念体量不代表法定控制值。"
+  },
+  {
+   "id": "A-BUILDING-001",
+   "status": "conceptual",
+   "statement": "建筑基底为示意性概念几何，不反映现状建筑、权属或审批建筑。",
+   "impact": "建筑规模相关结论仅作设计参考；拆改留为方法性分类，不构成地块级法定结论。"
+  },
+  {
+   "id": "A-TRANSPORT-001",
+   "status": "pending_professional_confirmation",
+   "statement": "轨道线位、站点改造、道路红线与市政管线均以官方资料为准；本包只作概念性交通组织表达。",
+   "impact": "交通与市政结论待专项研究确认。"
+  },
+  {
+   "id": "A-MEDIA-001",
+   "status": "conceptual",
+   "statement": "所有 AI 场景、朝圣地标、活动体系均为概念建议或可供专业团队深化的参考方案。",
+   "impact": "不构成政府批准、投资承诺或实施安排。"
+  },
+  {
+   "id": "A-GEOMETRY-001",
+   "status": "computed",
+   "statement": "面积复算使用 EPSG:4548 投影（CGCS2000 / 3-degree Gauss-Kruger CM 117E）。",
+   "impact": "官方调查数据发布后应复核投影与坐标转换。"
+  }
+ ]
+}

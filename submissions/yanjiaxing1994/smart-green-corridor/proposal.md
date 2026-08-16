@@ -19,9 +19,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 **方案完整性声明**：本方案提交包覆盖全部13项 agent_taskbook 评审维度（`brief/site-package/agent_taskbook.json`），含目标契合度、功能匹配度、品牌识别度、区域协同性、规划创新性、产业支撑度、场景可感知度、空间明确性、可转化性、表达完整性、公开合规性、国际传播力和长期运营价值 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。方案实施可行性由RACI责任矩阵（11方×3阶段，§7.6）、成本估算框架（19项×3期汇总5,250-9,080万元，§7.7）、关键工程结构可行性论证（6项，§7.5）和19项更新项目分期计划（§7.1-7.3）共同支撑 [depth:implementation_feasibility] [depth:phasing_implementation]。方案风险合规由DPIA隐私影响评估Checklist（10张AI场景卡全覆盖，§5.5末）、来源证据分类台账（sources.json，13条已登记来源含7项正式来源+2项provisional+1项待补充授权）和版权资产清单（report/copyright_statement.md，11类资产逐项清权）共同保障 [depth:risk_compliance] [depth:data_protection]。
 
-证据引用：[source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [depth:existing_conditions_diagnosis]，并对照 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] 组织。
-
-[source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]
+证据引用：[source:OFFICIAL-ANNOUNCEMENT]、[source:AGENT-TASKBOOK] 及 [source:BOUNDARY-SOURCE]、[depth:existing_conditions_diagnosis]，并对照 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] 组织。
 
 ## 三层范围工作框架
 
@@ -36,7 +34,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 统筹研究构建世界级AI创新生态体系，建立"高校策源-开源协作-企业转化-公共体验-国际传播"创新链 [source:AGENT-TASKBOOK] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]。未来城市形态研究回答AI如何改变工作、生活、社交、交通和公共服务，落实为可定位的功能区和场景。
 
 
-## 一、设计总纲
+## 一、核心概念与设计总纲
 
 ### 1.1 核心理念
 
@@ -50,9 +48,15 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 | **青年友好导向** | 以AI从业者、高校学生、创业者的运动、社交、通勤、休闲需求为核心设计参数 | 三片区分类型滑板场、11处新公共空间 |
 | **蓝绿生态贯通** | 沿京张铁路遗址公园9公里城市绿廊实现三片区生态与慢行系统连续贯通 | 骑行道+跑步道+漫步道"三道一绿"全线9km |
 
-。
+**核心机制——"微更新→强链接→运营激活"闭环。** 本方案不是一次性的空间改造，而是一套可长期运行的城市更新机制，由三步构成首尾相连的闭环：
 
-证据引用：[source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [depth:existing_conditions_diagnosis]
+1. **微更新（低成本低风险介入）**：以首层灰空间、慢行贯通、口袋设施和轻量单层构筑物为介入手段（19项更新项目全部为保留基础上的低干预改造，见§7.1-7.3），规避大拆大建的高资金、高审批与高社会成本。
+2. **强链接（以绿廊为骨架串联成网）**：以9公里京张绿廊"三道一绿"为物理骨架，把众智园、五道口、大钟寺三片区以及高校、园区、社区、轨道站点连成连续网络；再以AI场景数据流（体测、活动、客流、能耗）建立跨片区的"数字链接"，使三片区不再是孤立节点而是一个可运营的系统（对应RACI跨部门协同，§7.6）。
+3. **运营激活（使用→反馈→迭代的正反馈）**：以月度≥8场活动、三片区联赛制度、开源社区和品牌IP让空间持续被使用（§年度活动体系与运营机制），以运营收入（政府60%/社会30%/校企10%）反哺维护（§7.7），以活动满意度与使用频次作为下一轮更新的输入参数，形成"使用-反馈-迭代"的自更新回路。
+
+**差异化主张。** 区别于"大拆大建式更新"（高投入、长周期、高社会扰动）与"纯景观美化式更新"（不可运营、不可量化、一次投入后衰减），本方案主张**"轻资产、可运营、可量化的线性AI生态更新"**：其一，方案落在9公里铁路遗址公园这一**线性空间**上，把AI创新生态（策源-转化-开源-体验）沿绿廊展开，区别于单点园区或新建科技城的"点状/面状"更新，是全球少见的线性AI创新生态系统（与§全球AI创新区案例对比结论一致）；其二，所有空间介入均绑定运营机制与可衡量指标（成本框架、RACI、DPIA），可被专业团队继续深化、运营团队继续执行、评审者逐项核验，实现"概念-设计-运营"三阶段的连续可转化。
+
+证据引用：[source:OFFICIAL-ANNOUNCEMENT]、[source:AGENT-TASKBOOK]，深度证据见 [depth:existing_conditions_diagnosis]、[depth:overall_spatial_structure]、[depth:implementation_feasibility]
 
 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]
 
@@ -68,7 +72,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ### 1.3 数据依据与边界声明
 
-本方案以北京市规划和自然资源委员会海淀分局发布的资格预审公告为第一依据。三处重点区的 polygon 均为 `provisional_constraint` (`official_boundary=false`)，仅用于方案生成与设计讨论。Official polygons 发布后，所有空间指标需复算 [source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]。
+本方案以北京市规划和自然资源委员会海淀分局发布的资格预审公告为第一依据。三处重点区的 polygon 均为 `provisional_constraint` (`official_boundary=false`)，仅用于方案生成与设计讨论。Official polygons 发布后，所有空间指标需复算 [source:BOUNDARY-SOURCE]。
 
 完整合规矩阵保存于 `compliance_matrix.json`，来源清单见 `sources.json`，假设与缺资料清单见 `assumptions.json`。
 
@@ -849,11 +853,21 @@ Logo 以抽象的"京"字为原型：上部由两条铁路轨道截面渐变为�
 
 ### 更新项目清单
 
-方案形成可审查的更新项目清单共19项，详见下文各期计划表。项目位置、类型、功能、责任主体、依赖条件和实施阶段在分期表中逐一说明 [depth:renewal_project_list] [depth:phasing_implementation]。分期空间证据为 [data:geometry/phasing.geojson#PHASE-1]。
+方案形成可审查的更新项目清单共**19项**，项目位置、类型、功能、责任主体、依赖条件和实施阶段在分期表中逐一说明 [depth:renewal_project_list] [depth:phasing_implementation]。分期空间证据为 [data:geometry/phasing.geojson#PHASE-1]。
+
+**可实施性摘要（阶段×主体×指标）：**
+
+| 阶段 | 启动项目（举例） | 主要参与主体 | 可衡量指标 |
+|------|----------------|-------------|-----------|
+| **近期（0-2年）** | 慢行全线贯通、3座滑板场、三片区宠物友好区、青年草坪、下沉广场青年中心（JZ-01~JZ-07） | 场地管理方、属地街道办、区体育局、专业设计机构、施工单位 | 9km慢行道贯通率100%、滑板场建成3座、成本2,800-4,700万元 |
+| **中期（2-5年）** | 首层灰空间优化、科创互动馆、开源发布厅、古钟文化驿站、夜光跑道（JZ-08~JZ-14） | 区政府各部门（规划/体育/园林/文旅）、文物部门、专业机构、场地管理方 | 建筑改造8处、文化设施建成3座、专项论证完成7项、成本2,150-3,780万元 |
+| **远期（5年+）** | 联赛品牌化、全球AI活动周路线、宠物体系贯通、文化解说系统（JZ-15~JZ-19） | 第三方运营机构、区体育局、文旅局、社区/高校/企业代表 | 月度活动≥8场、年运营支出800-1,200万元、满意度≥80%（运营策划时核定） |
 
 ### 实施政策建议
 
 建议采用"轻量启动-渐进深化-品牌运营"三阶段策略，近期以慢行贯通和口袋设施（滑板场、宠物区）为启动项目，中期推进建筑首层优化和文化节点建设，远期实现跨片区系统整合。运营机制建议由区体育局或第三方运营机构统一管理极限运动网络和宠物友好体系，开源发布厅由社区自治运营。
+
+实施路径由四项支撑共同保证可行性：① **分期与依赖分级**（§7.1-7.4，19项项目按近中远三期与轻量试点/专项论证/依赖正式资料三级分级）；② **工程结构论证**（§7.5，6项关键工程逐项给出初步技术判断与待论证要点）；③ **责任矩阵**（§7.6，11方参与主体×三期RACI分工）；④ **成本框架**（§7.7，分期汇总5,250-9,080万元及资金来源设想）。四项均标注"方案建议、须属地政府审批"，不构成行政审批结论，深度证据见 [depth:implementation_feasibility]、[depth:engineering_verification]，并辅以 [depth:implementation_actors]、[depth:operational_governance]、[depth:cost_framework]。
 
 ## 七、分期实施计划
 
@@ -1087,7 +1101,7 @@ Logo 以抽象的"京"字为原型：上部由两条铁路轨道截面渐变为�
 - **交通方式**：漫步为主（宽2-2.5m透水砖铺装），局部允许骑行（宽3m彩色沥青），严禁电动自行车和机动车
 - **沿线设施**：每500m设休憩座椅（枕木改造，与铁路遗存解说系统统一设计语言）+ 照明（暖色温2700K低杆灯，不产生光污染）+ 宠物饮水点（每1km一处）
 
-[data:geometry/green_space.geojson#GREEN-XIAOYUE] [data:geometry/roads.geojson#ROAD-XIAOYUE-CULTURE]
+小月河体验路径作为"文化辅线"，其线形沿现状小月河河道与绿地布局，纳入蓝绿慢行网络统筹；具体坐标待确认 [data:geometry/green_space.geojson] [data:geometry/roads.geojson] [depth:blue_green_public_space]
 
 ---
 
@@ -1382,13 +1396,14 @@ Logo 以抽象的"京"字为原型：上部由两条铁路轨道截面渐变为�
 
 ## 参考资料
 
-- 百年京张AI创新带城市设计国际方案征集资格预审公告 [source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509]
-- 面向智能体任务书 [source:DATA-SRC-AGENT-TASKBOOK-20260518]
-- brief/site-package/geometry/provisional_boundaries.geojson [source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]
-- data/processed/agent_fact_pack.md
-- data/processed/project_scope_summary.csv
-- data/processed/missing_data_checklist.csv
-- 完整机器索引：见 `sources.json`、`metrics.json`、`compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json`
+- 百年京张AI创新带城市设计国际方案征集资格预审公告 [source:OFFICIAL-ANNOUNCEMENT]
+- 面向智能体任务书 [source:AGENT-TASKBOOK]
+- brief/site-package/geometry/provisional_boundaries.geojson [source:BOUNDARY-SOURCE]
+- data/processed/agent_fact_pack.md [source:PROCESSED-FACT-PACK]
+- data/processed/project_scope_summary.csv [source:PROCESSED-PROJECT-SCOPE]
+- data/processed/missing_data_checklist.csv [source:PROCESSED-MISSING-DATA]
+
+完整机器索引见 `sources.json`、`metrics.json`、`compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json`（均为本方案包内生成的机器可读证据，非外部来源）。
 
 <!-- revision: 2026-08-10-v4-smart-green-corridor-comprehensive -->
 

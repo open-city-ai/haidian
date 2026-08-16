@@ -1,41 +1,69 @@
 {
- "schema_version": "0.1.0",
- "assumptions": [
-  {
-   "id": "A-BOUNDARY-001",
-   "status": "pending_professional_confirmation",
-   "statement": "总体设计范围使用公告文字四至派生的临时粗略边界（约11.4平方公里），不是官方红线。",
-   "impact": "所有面积、比例和位置关系在官方边界到位后须整体重算；本包面积仅作概念讨论。"
-  },
-  {
-   "id": "A-KEYAREA-002",
-   "status": "pending_professional_confirmation",
-   "statement": "三处重点区域（众智园/原点社区/大钟寺）使用临时粗略矩形多边形，非官方划定范围。",
-   "impact": "重点区详细设计为方向性概念，官方多边形到位后重算面积与指标。"
-  },
-  {
-   "id": "A-CONTROLS-003",
-   "status": "pending_professional_confirmation",
-   "statement": "容积率、建筑高度、建筑密度、绿地率、退线等法定控制条件未在清权资料包中提供。",
-   "impact": "本包不宣称任何法定控制值；建筑基底与密度为概念设计量，待控规条件确认后复算。"
-  },
-  {
-   "id": "A-OSM-004",
-   "status": "acknowledged",
-   "statement": "本包未使用 OSM 或商业地图数据生成边界与指标；道路与建筑均为概念性设计图层。",
-   "impact": "道路中心线与建筑基底仅表达设计意图，不代表现状或工程线位。"
-  },
-  {
-   "id": "A-SCENARIO-005",
-   "status": "concept_only",
-   "statement": "全部 AI 场景、活动、运营与机制安排均为概念建议，不构成政府决策、招商承诺或实施安排。",
-   "impact": "场景卡与运营体系供专业团队深化研究，任何落地均须另行履行程序。"
-  },
-  {
-   "id": "A-BILINGUAL-006",
-   "status": "acknowledged",
-   "statement": "中英文双语材料按本包双语契约对齐，中文为主语言，英文为等价翻译。",
-   "impact": "图表与报告均提供中英双语版本。"
-  }
- ]
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_professional_confirmation",
+      "statement": "总体设计范围使用公告文字四至派生的临时粗略边界（约11.4平方公里），不是官方红线；三处重点区同样为临时粗略矩形（合计约369公顷，与公告约368公顷相符）。",
+      "impact": "全部面积、比例和位置关系在官方边界与重点区多边形到位后须整体重算；本包面积仅作概念讨论，不用于审批依据。",
+      "recalculation_trigger": "组织方发布官方红线或三处重点区 official polygon 时触发整包重算（替换边界→重分割用地→重算41项指标→重绘图纸→重跑四门自检）。",
+      "evidence_boundary": "provisional 几何不支撑：精确面积、权属、审批、工程线位、法定控制值。"
+    },
+    {
+      "id": "A-KEYAREA-002",
+      "status": "pending_professional_confirmation",
+      "statement": "三处重点区占位矩形按公告南北顺序与约面积配置，尚未完成站点/道路锚定（组织方已确认，issue #1029）；大钟寺矩形质心距同名车站约2.26公里。",
+      "impact": "重点区设计只表达定位、系统与验证顺序；不按占位矩形断言与轨道站点的几何关系，站城一体化按官方锚定关系到位后单独表述。",
+      "recalculation_trigger": "组织方统一重生成锚定后的重点区几何时，站点接驳、四象限组织与断面深化全部重做。",
+      "evidence_boundary": "占位矩形不支撑：站点位置、站城一体化几何、与先导区范围的空间包含关系。"
+    },
+    {
+      "id": "A-CONTROLS-003",
+      "status": "pending_professional_confirmation",
+      "statement": "法定控制指标（容积率、高度、密度、绿地率、退线）未在清权资料包提供；带内仅 HD00-1603 地块规划条件（2.45/2.2）已公开。",
+      "impact": "本包不宣称任何法定控制值；概念体量标注低置信度；带内官方标尺仅作量级参照，总量留给逐地块控规。",
+      "recalculation_trigger": "HD00-1601 等街区控规法定图则获批公开时，全部控制相关表述重算并发布差异表。",
+      "evidence_boundary": "不支撑：地块级控制结论、审批判断、工程可行性。"
+    },
+    {
+      "id": "A-OSM-004",
+      "status": "acknowledged",
+      "statement": "现状建成底数按 OpenStreetMap 公开建筑轮廓概念量测（提交边界内 1286 处、基底约196公顷、覆盖率约17.2%），OSM 数据随贡献者更新而变化。",
+      "impact": "该数字只作现状建成密度量级参照；'占满而未建足'为推断，待官方现状调查与权属底数核验。",
+      "recalculation_trigger": "官方现状测绘或权属底数到位时，以官方数据为准替换 OSM 量测。",
+      "evidence_boundary": "OSM 轮廓不支撑：空置判定、权属状态、可开发容量、测绘精度结论。"
+    },
+    {
+      "id": "A-SCENARIO-005",
+      "status": "concept_only",
+      "statement": "12 张场景卡与全部活动、招商、资金、政策、运营安排均为概念建议或深化方向，试点阈值须由实测基线冻结。",
+      "impact": "场景不构成运营承诺；红牌机制保证可暂停、可接管、可退役；试点永久化在结构上不可能（T4 窗口即到期日）。",
+      "recalculation_trigger": "任一场景进入试点前：基线实测、许可核验、责任主体确认。",
+      "evidence_boundary": "不支撑：已确定政府安排、投资承诺、工程可行性、合规认定。"
+    },
+    {
+      "id": "A-BILINGUAL-006",
+      "status": "acknowledged",
+      "statement": "中英双语为等义契约（proposal.md / proposal.en.md），英文版以中文版为准进行等义翻译。",
+      "impact": "双语差异（引用计数、术语括注）不改变内容等义性；渲染版 HTML 由正文生成。",
+      "recalculation_trigger": "正文修改时同步双语并重跑渲染。",
+      "evidence_boundary": "英文版不引入中文版没有的内容或结论。"
+    },
+    {
+      "id": "A-PARK-007",
+      "status": "pending_professional_confirmation",
+      "statement": "京张遗址公园二期配套项目：市园林绿化局 2026-07-14 记录完工；公共资源交易平台业绩公示工程规模 530900 平方米、竣工字段为'是'——两处记录对象均为二期配套项目（监理）。",
+      "impact": "本包据此读作二期规模口径；不断言二期整体通过竣工验收备案；完工日期以主管部门公布为准。",
+      "recalculation_trigger": "主管部门发布二期整体竣工验收或更权威规模口径时替换。",
+      "evidence_boundary": "业绩公示的'工程规模'与'是否竣工'字段不支撑：二期整体验收结论、精确红线、工程进度承诺。"
+    },
+    {
+      "id": "A-EXISTING-008",
+      "status": "pending_professional_confirmation",
+      "statement": "现状建筑底数（OSM 概念量测 17.2% 覆盖率）推断为'占满而未建足'——对建成区而言该覆盖率不高，呈高校校园与大院式用地形态。",
+      "impact": "推断成立则更新容量在立体与界面两个维度（缝合界面、开放首层），不新增用地；推断不成立则触媒策略需调整。",
+      "recalculation_trigger": "官方现状调查与权属底数到位时核验推断并调整实施策略。",
+      "evidence_boundary": "建筑轮廓不支撑：空置、权属、可开发容量。"
+    }
+  ]
 }

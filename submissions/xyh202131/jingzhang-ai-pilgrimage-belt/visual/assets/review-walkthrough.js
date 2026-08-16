@@ -1,4 +1,35 @@
 (() => {
+  const library = document.querySelector("details.backstage-library");
+  if (!library) return;
+
+  const printMedia = matchMedia("print");
+  let printing = printMedia.matches;
+  let restoreOpen = false;
+
+  function enterPrint() {
+    if (!printing) restoreOpen = library.open;
+    printing = true;
+    library.open = true;
+  }
+
+  function leavePrint() {
+    if (!printing) return;
+    printing = false;
+    library.open = restoreOpen;
+  }
+
+  if (printMedia.matches) library.open = true;
+  else library.open = false;
+
+  printMedia.addEventListener?.("change", (event) => {
+    if (event.matches) enterPrint();
+    else leavePrint();
+  });
+  addEventListener("beforeprint", enterPrint);
+  addEventListener("afterprint", leavePrint);
+})();
+
+(() => {
   document.documentElement.classList.add("js");
   const root = document.querySelector(".review-walk-shell");
   if (!root) return;
@@ -7,6 +38,9 @@
   const links = [...root.querySelectorAll("[data-step-link]")];
   const live = root.querySelector("[data-live]");
   if (!steps.length) return;
+
+  root.tabIndex = 0;
+  root.setAttribute("aria-keyshortcuts", "ArrowLeft ArrowRight Home End");
 
   const valid = new Set(steps.map((step) => step.id));
   const initialHash = location.hash.slice(1);
@@ -54,7 +88,7 @@
     if (valid.has(id)) show(id, true, false);
   });
   root.addEventListener("keydown", (event) => {
-    if (event.target.closest("a, button, summary, details, input, textarea, select")) return;
+    if (event.target.closest("a, button, summary, input, textarea, select")) return;
     const index = steps.findIndex((step) => step.id === current);
     const destinations = {
       ArrowRight: steps[Math.min(steps.length - 1, index + 1)].id,

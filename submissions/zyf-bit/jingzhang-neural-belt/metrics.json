@@ -1,0 +1,175 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 12116773,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "SUM(polygon_area) of provisional boundary polygons (EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "ASM-001",
+        "ASM-006"
+      ],
+      "label": "场地总面积"
+    },
+    "green_space_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "SUM(polygon_area) of green_space features",
+      "confidence": "unknown",
+      "assumptions": [
+        "ASM-006"
+      ],
+      "label": "绿地面积",
+      "reason": "场地边界为临时粗略范围，绿地面积需待正式边界确认后复算。"
+    },
+    "public_space_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "SUM(polygon_area) of public_space features",
+      "confidence": "unknown",
+      "assumptions": [
+        "ASM-006"
+      ],
+      "label": "公共空间面积",
+      "reason": "场地边界为临时粗略范围，公共空间面积需待正式边界确认后复算。"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.165216,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "geometry/green_space.geojson"
+      ],
+      "formula": "green_area / site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "ASM-006"
+      ],
+      "label": "绿地率"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.11852,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "public_space_area / site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "ASM-006"
+      ],
+      "label": "公共空间率"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 877400,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "SUM(polygon_area) of building footprints (EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "ASM-006",
+        "ASM-003"
+      ],
+      "label": "建筑基底总面积",
+      "reason": "基于provisional边界内的建筑多边形面积复算，待正式边界和建筑详查确认后更新。"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "total_floor_area / site_area",
+      "confidence": "unknown",
+      "assumptions": [
+        "ASM-003"
+      ],
+      "label": "容积率",
+      "reason": "官方征集文件未提供容积率控制指标，本方案未设定假设值，待正式控规发布后补充。"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "COUNT(key_area_features)",
+      "confidence": "high",
+      "assumptions": [],
+      "label": "重点地区数量"
+    },
+    "ai_scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "COUNT(scenario entries)",
+      "confidence": "high",
+      "assumptions": [],
+      "label": "AI场景数量"
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "COUNT(persona definitions)",
+      "confidence": "high",
+      "assumptions": [],
+      "label": "用户画像数量"
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "COUNT(AI landmark features)",
+      "confidence": "high",
+      "assumptions": [],
+      "label": "AI地标数量"
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "COUNT(global reference cases)",
+      "confidence": "high",
+      "assumptions": [],
+      "label": "全球案例参考数量"
+    }
+  }
+}

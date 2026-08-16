@@ -9,16 +9,16 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "基于 provisional boundary 和结构化自检要求生成的 formal AI 城市设计方案包；保留精度警示和复算要求，但组织方数据缺口不阻断内容评分。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v0.6"
+iteration: "v0.8"
 ---
 
 
 # 京张智脊：百年铁路遗产上的 AI 公民创新走廊
 
 
-### v0.6 One-Page Scoring Evidence Table / Reviewer Quick Map
+### v0.8 Reviewer Quick Map: spatial risk is now explicit, but design scoring still depends on spatial experience
 
-| AI Review Dimension | v0.6 direct repair | Visible evidence entry | Cannot prove |
+| AI Review Dimension | v0.8 direct repair | Visible evidence entry | Cannot prove |
 | --- | --- | --- | --- |
 | Brief alignment | agent.1-agent.6, three scope levels, three key areas, and the three-area/two-wing loop are compressed into ten visible claims linked to proposal, metrics, GeoJSON, visual pages, and self-check | `civic-spine-claim-provenance-audit.json`; `compliance_matrix.json`; `taskbook-delivery-checklist.json` | official selection or implementation authorization |
 | Originality | Jing-Zhang Civic Spine is framed as a civic operating system with claim provenance and delivery audit, not only a naming concept | `civic-spine-claim-provenance.json`; `score-repair-map.json`; six spatial prototypes | organizer adoption |
@@ -28,7 +28,7 @@ iteration: "v0.6"
 | Risk compliance | Core metrics, boundary, cases, rights, bilingual evidence, and four gates all carry cannot-support limits; provisional warnings remain visible | `civic-spine-claim-provenance-audit.json`; `sources.json`; `self_check.json` | official redline, FAR, height, or government endorsement |
 | Expression completeness | CN/EN proposal, report HTML, visual HTML, manifest, sources, and persisted audits expose the same v0.6 high-water evidence | `proposal.md` / `proposal.en.md`; `report/proposal.html`; `visual/index.html` | gallery publication or final score |
 
-> **v0.6 verifiable high-water evidence:** This revision adds two dependency-free local runners so the package is not just visually complete. `node visual/assets/run-civic-spine-claim-provenance.js --check` checks ten visible claims: core metrics, three key areas, 12 scenario cards, 12 delivery packages, six inclusion groups, eight global mechanism prompts, rights/bilingual evidence, and four-gate self-check status. `node visual/assets/run-civic-spine-delivery-audit.js --check` checks 12 AI scenario cards, 12 implementation projects, three key-area operating sections, and six inclusion response groups, then rejects four malformed negative fixtures. Both runners are `local_structural_audit` evidence only: they prove replayable traceability and stop conditions, not official redlines, field performance, AI model safety, publication, score, or government endorsement.
+> **v0.8 verifiable high-water evidence:** This revision adds two dependency-free local runners so the package is not just visually complete. `node visual/assets/run-civic-spine-claim-provenance.js --check` checks ten visible claims: core metrics, three key areas, 12 scenario cards, 12 delivery packages, six inclusion groups, eight global mechanism prompts, rights/bilingual evidence, and four-gate self-check status. `node visual/assets/run-civic-spine-delivery-audit.js --check` checks 12 AI scenario cards, 12 implementation projects, three key-area operating sections, and six inclusion response groups, then rejects four malformed negative fixtures. Both runners are `local_structural_audit` evidence only: they prove replayable traceability and stop conditions, not official redlines, field performance, AI model safety, publication, score, or government endorsement.
 
 本方案的核心主张是把京张铁路遗产公园从线性纪念空间升级为“AI 公民创新走廊”：以遗产轨迹作为公共记忆骨架，以三处重点区承载研发、验证、发布、生活与治理场景，以连续慢行和蓝绿公共空间把高校、企业、社区、轨道站点和公共服务串联为可运营的城市创新界面 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。方案不把 AI 简化为标识或展陈，而是把“数据可审计、场景可复核、运营可迭代”作为城市设计的空间约束：每一类 AI 服务节点都必须落到图层、指标、责任主体、隐私边界和人工复核机制中 [depth:municipal_new_infrastructure]。
 
@@ -53,6 +53,8 @@ iteration: "v0.6"
 本方案包在官方 `SITE_BOUNDARY` 或三处 `KEY_AREA` 尚未取得时，使用 `brief/site-package/geometry/provisional_boundaries.geojson` 生成临时 formal 包。提交包中的 `geometry/site_boundary.geojson` 与 `geometry/key_areas.geojson` 均必须标注为 `provisional_constraint`、`official_boundary=false`，只能用于方案生成、自检、可视化和设计讨论，不能作为 official redline、审批依据、精确面积依据或法定控制结论。该组织方数据缺口本身不阻断内容评分；替换 official polygons 后，site boundary、key areas、land use、roads、green space、public space、buildings、phasing 和 metrics 均需重算。
 
 本次方案包的可评分状态为：**临时边界，保留精度警示并待正式数据发布后复算；不阻断内容评分**。因此，正文中的空间结构、场景、项目和指标均按“可讨论、可复核、可替换官方边界后重算”的原则写入；当官方边界和重点区 polygon 更新后，agent 必须重新运行方案生成流程、自检和图纸/HTML生成，不能只替换单个文件。
+
+**2026-08-16 开放议题复查。** Issue #846 与已合并的 provisional boundary basis 进一步提示：OSM 已测绘的京张铁路遗址公园与 `PROV-SITE-001` 不相交，最近距离约 412.5 m；`PROV-KEY-003` 的临时大钟寺矩形可能与大钟寺站/觉生寺真实锚点存在约 2 km 级别的南北偏差；公告命名的四条边界街道中线与当前 `PROV-SITE-001` 同纬度边线存在约 533-898 m 的一致东偏读数 [source:ISSUE-846-PROVISIONAL-GEOMETRY-CHECK] [source:PROVISIONAL-BOUNDARIES-BASIS]。本方案只把这些读数作为 background risk，不把 OSM、peer comment 或街道中线反推升级为 official polygon。大钟寺片区在本包中因此被读作“站城服务与采用回流机制”的 operating section proxy；官方 key-area polygon、道路红线或清权锚点到位后，站前界面、四象限慢行、绿地复合利用、项目分期和三项核心指标必须整体迁移、重算并重新出图。
 
 边界解释可回到总体范围图层和面积复算 [data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm]。三处重点区则由独立图层和数量指标核对 [data:geometry/key_areas.geojson#PROV-KEY-001] [metric:key_area_count]。这意味着读者可以从正文进入证据，但不必先读一串机器编号。
 

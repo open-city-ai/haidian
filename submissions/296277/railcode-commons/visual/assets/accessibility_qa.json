@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
-  "checked_at": "2026-08-13",
+  "checked_at": "2026-08-14",
   "checker": "participant-side human review assisted by local browser and PDF rendering",
-  "status": "pass_with_declared_pdf_limit",
+  "status": "pass_with_html_markdown_fallback_and_declared_pdf_limit",
   "scope": [
     "report/proposal.html",
     "report/proposal.en.html",
@@ -76,5 +76,20 @@
     "record": "de-identified segment, barrier, task outcome, assistance, correction owner/date and withdrawal flag",
     "stop_and_exit": "pause on continuous-route, alternative-information, keyboard-access or human-fallback failure; correct, retest, sign off, or close and reinstate"
   },
-  "limits": "Participant-side QA is not a WCAG, PDF/UA, legal accessibility, assistive-technology, or field-access certification."
+  "limits": "Participant-side QA is not a WCAG, PDF/UA, legal accessibility, assistive-technology, or field-access certification.",
+  "accessible_fallback_contract": {
+    "primary_text_formats": [
+      "proposal.md",
+      "proposal.en.md",
+      "report/proposal.html",
+      "report/proposal.en.html"
+    ],
+    "browser_cases_checked": 8,
+    "horizontal_overflow_cases": 0,
+    "broken_images": 0,
+    "console_errors": 0,
+    "pdf_role": "visual presentation supplement only",
+    "pdf_accessibility_claim": false,
+    "evidence": "visual/assets/render_audit.json"
+  }
 }

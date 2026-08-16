@@ -1,0 +1,516 @@
+{
+  "meta": {
+    "title": "JZ-SWITCHBACK-001 人字回退桌面演练证据（tabletop evidence）",
+    "version": "1.0.0",
+    "protocol": "JZ-SWITCHBACK-001",
+    "hash_algorithm": "sha256",
+    "hash_note": "对 cases 数组做规范序列化（对象键排序、2 空格缩进、数组保序）后取 SHA-256。第三方可用任意语言复算比对，防止用例被篡改后自证结论。",
+    "evidence_hash": "a07745c1919cc322b67570987c6eead05672a1b50e8c8f84360084c881e25fd1"
+  },
+  "cases": [
+    {
+      "id": "P1",
+      "category": "正例",
+      "description": "冷启动：三轨证据完整、6步链全验证、无障碍 → 进入 normal",
+      "input": {
+        "event_type": "service_start",
+        "current_state": "none",
+        "target_state": "normal",
+        "obstacle_level": 0,
+        "human_takeover_available": true,
+        "attempts": 0,
+        "consecutive_normal_periods": 0,
+        "fix_scope": "none",
+        "hide_attempt": false,
+        "chain_steps_verified": 6,
+        "evidence": {
+          "history_track": true,
+          "track_track": true,
+          "data_track": true
+        },
+        "test_section": "JZ-SW1",
+        "service": "jz-ai-01"
+      },
+      "expected_state": "normal",
+      "expected_rule": "R1",
+      "expected_rejected": false,
+      "expected_reason": "三轨证据完整且无障，允许进入 normal"
+    },
+    {
+      "id": "P2",
+      "category": "正例",
+      "description": "降级态恢复：障碍清除且证据完整 → 恢复 normal",
+      "input": {
+        "event_type": "recovery_attempt",
+        "current_state": "degraded",
+        "target_state": "normal",
+        "obstacle_level": 0,
+        "human_takeover_available": true,
+        "attempts": 0,
+        "consecutive_normal_periods": 0,
+        "fix_scope": "none",
+        "hide_attempt": false,
+        "chain_steps_verified": 6,
+        "evidence": {
+          "history_track": true,
+          "track_track": true,
+          "data_track": true
+        },
+        "test_section": "JZ-SW1",
+        "service": "jz-ai-02"
+      },
+      "expected_state": "normal",
+      "expected_rule": "R8",
+      "expected_rejected": false,
+      "expected_reason": "障碍清除且证据完整，允许恢复 normal"
+    },
+    {
+      "id": "P3",
+      "category": "正例",
+      "description": "暂停态恢复：连续两期合格且整段重测完成 → 恢复 normal",
+      "input": {
+        "event_type": "recovery_attempt",
+        "current_state": "paused",
+        "target_state": "normal",
+        "obstacle_level": 0,
+        "human_takeover_available": true,
+        "attempts": 0,
+        "consecutive_normal_periods": 2,
+        "fix_scope": "none",
+        "hide_attempt": false,
+        "chain_steps_verified": 6,
+        "evidence": {
+          "history_track": true,
+          "track_track": true,
+          "data_track": true
+        },
+        "test_section": "JZ-SW2",
+        "service": "jz-ai-03"
+      },
+      "expected_state": "normal",
+      "expected_rule": "R3",
+      "expected_rejected": false,
+      "expected_reason": "连续两期合格，达到恢复条件，恢复 normal"
+    },
+    {
+      "id": "P4",
+      "category": "正例",
+      "description": "运行期报告：三轨完整、链验证齐全、无障碍 → 维持 normal",
+      "input": {
+        "event_type": "period_report",
+        "current_state": "normal",
+        "target_state": "normal",
+        "obstacle_level": 0,
+        "human_takeover_available": true,
+        "attempts": 0,
+        "consecutive_normal_periods": 1,
+        "fix_scope": "none",
+        "hide_attempt": false,
+        "chain_steps_verified": 6,
+        "evidence": {
+          "history_track": true,
+          "track_track": true,
+          "data_track": true
+        },
+        "test_section": "JZ-SW1",
+        "service": "jz-ai-01"
+      },
+      "expected_state": "normal",
+      "expected_rule": "R1",
+      "expected_rejected": false,
+      "expected_reason": "三轨证据完整、链验证齐全、无障碍，维持 normal"
+    },
+    {
+      "id": "P5",
+      "category": "正例",
+      "description": "降级态遇低障碍且人工接管可用 → 维持降级折返运行（非硬扛）",
+      "input": {
+        "event_type": "obstacle_reported",
+        "current_state": "degraded",
+        "target_state": "degraded",
+        "obstacle_level": 1,
+        "human_takeover_available": true,
+        "attempts": 0,
+        "consecutive_normal_periods": 0,
+        "fix_scope": "none",
+        "hide_attempt": false,
+        "chain_steps_verified": 6,
+        "evidence": {
+          "history_track": true,
+          "track_track": true,
+          "data_track": true
+        },
+        "test_section": "JZ-SW2",
+        "service": "jz-ai-02"
+      },
+      "expected_state": "degraded",
+      "expected_rule": "R8",
+      "expected_rejected": false,
+      "expected_reason": "障碍未清除，维持降级折返运行"
+    },
+    {
+      "id": "P6",
+      "category": "正例",
+      "description": "暂停态人工接管可用且障碍低 → 折返降级运行",
+      "input": {
+        "event_type": "recovery_attempt",
+        "current_state": "paused",
+        "target_state": "degraded",
+        "obstacle_level": 1,
+        "human_takeover_available": true,
+        "attempts": 0,
+        "consecutive_normal_periods": 0,
+        "fix_scope": "none",
+        "hide_attempt": false,
+        "chain_steps_verified": 6,
+        "evidence": {
+          "history_track": true,
+          "track_track": true,
+          "data_track": true
+        },
+        "test_section": "JZ-SW3",
+        "service": "jz-ai-03"
+      },
+      "expected_state": "degraded",
+      "expected_rule": "R10",
+      "expected_rejected": false,
+      "expected_reason": "人工接管可用且障碍未达致命，折返降级运行"
+    },
+    {
+      "id": "N1",
+      "category": "反例①",
+      "description": "反例① 缺三轨证据试图直接进入 normal（缺历史轨）→ 应驳回至 degraded",
+      "input": {
+        "event_type": "service_start",
+        "current_state": "none",
+        "target_state": "normal",
+        "obstacle_level": 0,
+        "human_takeover_available": true,
+        "attempts": 0,
+        "consecutive_normal_periods": 0,
+        "fix_scope": "none",
+        "hide_attempt": false,
+        "chain_steps_verified": 6,
+        "evidence": {
+          "history_track": false,
+          "track_track": true,
+          "data_track": true
+        },
+        "test_section": "JZ-SW1",
+        "service": "jz-ai-04"
+      },
+      "expected_state": "degraded",
+      "expected_rule": "R1",
+      "expected_rejected": true,
+      "expected_reason": "缺历史轨证据，不可进入 normal，折返降级"
+    },
+    {
+      "id": "N2",
+      "category": "反例②",
+      "description": "反例② 人工接管不可用仍试图硬扛（障碍等级=高 2）→ 必须折返 paused",
+      "input": {
+        "event_type": "obstacle_reported",
+        "current_state": "normal",
+        "target_state": "normal",
+        "obstacle_level": 2,
+        "human_takeover_available": false,
+        "attempts": 0,
+        "consecutive_normal_periods": 0,
+        "fix_scope": "none",
+        "hide_attempt": false,
+        "chain_steps_verified": 6,
+        "evidence": {
+          "history_track": true,
+          "track_track": true,
+          "data_track": true
+        },
+        "test_section": "JZ-SW1",
+        "service": "jz-ai-01"
+      },
+      "expected_state": "paused",
+      "expected_rule": "R2",
+      "expected_rejected": true,
+      "expected_reason": "障碍>=高且人工接管不可用，必须折返暂停"
+    },
+    {
+      "id": "N3",
+      "category": "反例③",
+      "description": "反例③ 仅一期合格试图跳过恢复条件 → 须连续两期，维持 paused",
+      "input": {
+        "event_type": "recovery_attempt",
+        "current_state": "paused",
+        "target_state": "normal",
+        "obstacle_level": 0,
+        "human_takeover_available": true,
+        "attempts": 0,
+        "consecutive_normal_periods": 1,
+        "fix_scope": "none",
+        "hide_attempt": false,
+        "chain_steps_verified": 6,
+        "evidence": {
+          "history_track": true,
+          "track_track": true,
+          "data_track": true
+        },
+        "test_section": "JZ-SW2",
+        "service": "jz-ai-03"
+      },
+      "expected_state": "paused",
+      "expected_rule": "R3",
+      "expected_rejected": true,
+      "expected_reason": "仅一期合格，须连续两期才可恢复（恢复缓慢不对称）"
+    },
+    {
+      "id": "N4",
+      "category": "反例④",
+      "description": "反例④ 只修最差一项试图绕过整段重测 → 驳回恢复请求，维持 paused",
+      "input": {
+        "event_type": "recovery_attempt",
+        "current_state": "paused",
+        "target_state": "normal",
+        "obstacle_level": 0,
+        "human_takeover_available": true,
+        "attempts": 0,
+        "consecutive_normal_periods": 2,
+        "fix_scope": "single_item",
+        "hide_attempt": false,
+        "chain_steps_verified": 6,
+        "evidence": {
+          "history_track": true,
+          "track_track": true,
+          "data_track": true
+        },
+        "test_section": "JZ-SW3",
+        "service": "jz-ai-03"
+      },
+      "expected_state": "paused",
+      "expected_rule": "R4",
+      "expected_rejected": true,
+      "expected_reason": "只修最差一项，禁止跳过整段重测"
+    },
+    {
+      "id": "N5",
+      "category": "反例⑤",
+      "description": "反例⑤ 三轨全缺试图隐瞒运行 → 证据崩塌，强制退场 retired",
+      "input": {
+        "event_type": "service_start",
+        "current_state": "none",
+        "target_state": "normal",
+        "obstacle_level": 0,
+        "human_takeover_available": true,
+        "attempts": 0,
+        "consecutive_normal_periods": 0,
+        "fix_scope": "none",
+        "hide_attempt": true,
+        "chain_steps_verified": 0,
+        "evidence": {
+          "history_track": false,
+          "track_track": false,
+          "data_track": false
+        },
+        "test_section": "JZ-SW1",
+        "service": "jz-ai-05"
+      },
+      "expected_state": "retired",
+      "expected_rule": "R5",
+      "expected_rejected": true,
+      "expected_reason": "三轨证据全缺且试图隐瞒运行，强制退场"
+    },
+    {
+      "id": "N6",
+      "category": "反例",
+      "description": "致命障碍(3)即使人工接管可用也试图维持 → 必须折返 paused，不硬扛",
+      "input": {
+        "event_type": "obstacle_reported",
+        "current_state": "degraded",
+        "target_state": "degraded",
+        "obstacle_level": 3,
+        "human_takeover_available": true,
+        "attempts": 0,
+        "consecutive_normal_periods": 0,
+        "fix_scope": "none",
+        "hide_attempt": false,
+        "chain_steps_verified": 6,
+        "evidence": {
+          "history_track": true,
+          "track_track": true,
+          "data_track": true
+        },
+        "test_section": "JZ-SW2",
+        "service": "jz-ai-02"
+      },
+      "expected_state": "paused",
+      "expected_rule": "R6",
+      "expected_rejected": true,
+      "expected_reason": "致命障碍即使人工接管可用也不硬扛，必须折返暂停"
+    },
+    {
+      "id": "N7",
+      "category": "反例",
+      "description": "降级态人工接管失效且障碍高，试图直接回 normal → 折返 paused",
+      "input": {
+        "event_type": "obstacle_reported",
+        "current_state": "degraded",
+        "target_state": "normal",
+        "obstacle_level": 2,
+        "human_takeover_available": false,
+        "attempts": 0,
+        "consecutive_normal_periods": 0,
+        "fix_scope": "none",
+        "hide_attempt": false,
+        "chain_steps_verified": 6,
+        "evidence": {
+          "history_track": true,
+          "track_track": true,
+          "data_track": true
+        },
+        "test_section": "JZ-SW1",
+        "service": "jz-ai-02"
+      },
+      "expected_state": "paused",
+      "expected_rule": "R2",
+      "expected_rejected": true,
+      "expected_reason": "人工接管失效且障碍>=高，折返暂停"
+    },
+    {
+      "id": "N8",
+      "category": "反例",
+      "description": "死磕上限：已尝试 3 次仍受阻 → 强制折返 paused，交由人工重新规划",
+      "input": {
+        "event_type": "period_report",
+        "current_state": "normal",
+        "target_state": "normal",
+        "obstacle_level": 1,
+        "human_takeover_available": true,
+        "attempts": 3,
+        "consecutive_normal_periods": 0,
+        "fix_scope": "none",
+        "hide_attempt": false,
+        "chain_steps_verified": 6,
+        "evidence": {
+          "history_track": true,
+          "track_track": true,
+          "data_track": true
+        },
+        "test_section": "JZ-SW2",
+        "service": "jz-ai-01"
+      },
+      "expected_state": "paused",
+      "expected_rule": "R11",
+      "expected_rejected": true,
+      "expected_reason": "已尝试 3 次未果，达到死磕上限，强制折返暂停"
+    },
+    {
+      "id": "N9",
+      "category": "反例",
+      "description": "退场后试图复活 → 终态禁止，任何事件不得恢复",
+      "input": {
+        "event_type": "recovery_attempt",
+        "current_state": "retired",
+        "target_state": "normal",
+        "obstacle_level": 0,
+        "human_takeover_available": true,
+        "attempts": 0,
+        "consecutive_normal_periods": 0,
+        "fix_scope": "none",
+        "hide_attempt": false,
+        "chain_steps_verified": 6,
+        "evidence": {
+          "history_track": true,
+          "track_track": true,
+          "data_track": true
+        },
+        "test_section": "JZ-SW1",
+        "service": "jz-ai-06"
+      },
+      "expected_state": "retired",
+      "expected_rule": "R9",
+      "expected_rejected": true,
+      "expected_reason": "终态不可复活"
+    },
+    {
+      "id": "N10",
+      "category": "反例",
+      "description": "障碍未清除从降级态试图恢复 normal → 驳回，维持降级",
+      "input": {
+        "event_type": "recovery_attempt",
+        "current_state": "degraded",
+        "target_state": "normal",
+        "obstacle_level": 1,
+        "human_takeover_available": true,
+        "attempts": 0,
+        "consecutive_normal_periods": 0,
+        "fix_scope": "none",
+        "hide_attempt": false,
+        "chain_steps_verified": 6,
+        "evidence": {
+          "history_track": true,
+          "track_track": true,
+          "data_track": true
+        },
+        "test_section": "JZ-SW2",
+        "service": "jz-ai-02"
+      },
+      "expected_state": "degraded",
+      "expected_rule": "R8",
+      "expected_rejected": true,
+      "expected_reason": "障碍未清除，不得由 degraded 恢复 normal"
+    },
+    {
+      "id": "N11",
+      "category": "反例",
+      "description": "冷启动缺两轨证据且无人工接管 → 折返 paused，不可正常启动",
+      "input": {
+        "event_type": "service_start",
+        "current_state": "none",
+        "target_state": "normal",
+        "obstacle_level": 0,
+        "human_takeover_available": false,
+        "attempts": 0,
+        "consecutive_normal_periods": 0,
+        "fix_scope": "none",
+        "hide_attempt": false,
+        "chain_steps_verified": 6,
+        "evidence": {
+          "history_track": true,
+          "track_track": false,
+          "data_track": false
+        },
+        "test_section": "JZ-SW3",
+        "service": "jz-ai-07"
+      },
+      "expected_state": "paused",
+      "expected_rule": "R1",
+      "expected_rejected": true,
+      "expected_reason": "缺两轨证据且无人工接管，折返暂停"
+    },
+    {
+      "id": "N12",
+      "category": "反例",
+      "description": "6步公共服务链仅验证 5 步试图维持 normal → 证据不完整(R7)，折返降级",
+      "input": {
+        "event_type": "period_report",
+        "current_state": "normal",
+        "target_state": "normal",
+        "obstacle_level": 0,
+        "human_takeover_available": true,
+        "attempts": 0,
+        "consecutive_normal_periods": 0,
+        "fix_scope": "none",
+        "hide_attempt": false,
+        "chain_steps_verified": 5,
+        "evidence": {
+          "history_track": true,
+          "track_track": true,
+          "data_track": true
+        },
+        "test_section": "JZ-SW1",
+        "service": "jz-ai-01"
+      },
+      "expected_state": "degraded",
+      "expected_rule": "R1",
+      "expected_rejected": true,
+      "expected_reason": "6步链仅验证 5 步，证据不完整（R7），折返降级"
+    }
+  ]
+}

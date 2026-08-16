@@ -1,0 +1,211 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEOMETRY-002"
+      ],
+      "reason": "Temporary recomputation only; not an official site area or statutory basis."
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 20486.884,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(conceptual_prototype_footprints in EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEOMETRY-002"
+      ],
+      "reason": "Conceptual unloaded prototype footprints only; not existing or approved building scale."
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.128565,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_union_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEOMETRY-002"
+      ],
+      "reason": "Conceptual ratio against provisional geometry; not a regulatory green-space ratio."
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.075626,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_union_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEOMETRY-002"
+      ],
+      "reason": "Conceptual ratio against provisional geometry; not a statutory public-space index."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Official boundary and approved FAR controls are unavailable."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved height control",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved height, fire, aviation, heritage, and landscape controls are unavailable."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required_key_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "paired_threshold_node_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features with id SECOND-KEY-*)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/second-key-deliverables.json"
+      ],
+      "formula": "count(industry_tests)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/second-key-deliverables.json"
+      ],
+      "formula": "count(scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/second-key-deliverables.json"
+      ],
+      "formula": "count(personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "case_study_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/second-key-deliverables.json",
+        "sources.json"
+      ],
+      "formula": "count(case_lenses)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/second-key-deliverables.json",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "component_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/second-key-deliverables.json"
+      ],
+      "formula": "count(components)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "implementation_gate_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/second-key-deliverables.json",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(implementation_gates)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "synthetic_path_equivalence_target": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/second-key-deliverables.json"
+      ],
+      "formula": "completed_non_biometric_tasks / 10 synthetic tasks",
+      "confidence": "medium",
+      "assumptions": [
+        "A-CAPACITY-003"
+      ],
+      "reason": "A tabletop acceptance target, not observed service capacity or field performance."
+    }
+  }
+}

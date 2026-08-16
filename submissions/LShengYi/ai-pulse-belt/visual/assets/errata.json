@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0.0",
+  "package_version": "v10.7.3",
+  "intended_use": "勘误登记册：记录本包自身被发现的错误——错在哪、错成什么形状、谁发现的、哪个版本修的。每条可经 changelog.md 复核。勘误册是变更记录之外的第二份台账：变更记录说改了什么，勘误册说错在哪。",
+  "shape_vocabulary": [
+    "同一件事的两份拷贝各自漂移",
+    "几何表达的不是它声称的意思",
+    "交付物在提交前没被看过",
+    "检查测了方便测的东西",
+    "规则对别人成立，对自己没有执行",
+    "文字活得比装它的那句话久"
+  ],
+  "entries": [
+    {
+      "id": "E01",
+      "shape": "同一件事的两份拷贝各自漂移",
+      "what": "zh/en 图件因 bbox_inches=\"tight\" 各自裁边，画布尺寸不一致，normalize 层把尺寸小的一侧缩放并居中贴白 → 11–26% 顶部空白带，标题被推到画面 14% 处，整套图看起来「乱的」",
+      "found_by": "用户视觉报告（「生成的大部分图片都是乱的」）",
+      "found_in": "v10.7.1",
+      "fixed_in": "v10.7.2",
+      "fix_how": "去 bbox_inches=\"tight\" 改固定画布渲染，zh/en 天然同尺寸；normalize 从缩放改校验告警"
+    },
+    {
+      "id": "E02",
+      "shape": "几何表达的不是它声称的意思",
+      "what": "title_block 中英标题重叠：19pt suptitle va=top @y=0.97 与 10.5pt 副题 baseline @y=0.945 在 6 张图全部必然碰撞",
+      "found_by": "机器视觉复核（gemini 视觉模型指控 + 像素扫描确认）",
+      "found_in": "v10.7.1",
+      "fixed_in": "v10.7.2",
+      "fix_how": "标题锚点改 y=0.972/0.92 va=center，两行文字带分离 46–94px"
+    },
+    {
+      "id": "E03",
+      "shape": "交付物在提交前没被看过",
+      "what": "mobility-bluegreen 深蓝底图上用深墨色标题，标题实际不可见",
+      "found_by": "机器视觉复核",
+      "found_in": "v10.7.1",
+      "fixed_in": "v10.7.2",
+      "fix_how": "title_block 增 dark=True 浅色变体"
+    },
+    {
+      "id": "E04",
+      "shape": "交付物在提交前没被看过",
+      "what": "land-use 图例落在比例尺上方，两者重叠",
+      "found_by": "机器视觉复核 + 像素扫描",
+      "found_in": "v10.7.1",
+      "fixed_in": "v10.7.2",
+      "fix_how": "图例移右上 bbox_to_anchor=(0.995,0.995)，与比例尺分置"
+    },
+    {
+      "id": "E05",
+      "shape": "交付物在提交前没被看过",
+      "what": "land-use 道路标签 ink 色直接压在道路线上，低对比度；走廊标签衬底半透明，文字与底图混叠",
+      "found_by": "机器视觉复核（真实线索，模型 4/10→5/10 与像素对比一致）",
+      "found_in": "v10.7.1",
+      "fixed_in": "v10.7.2",
+      "fix_how": "路名加白色不透明底衬，走廊标签 bbox 不透明度 0.96"
+    },
+    {
+      "id": "E06",
+      "shape": "文字活得比装它的那句话久",
+      "what": "metrics-evidence 副题与主标题重复（同一句「核心指标与证据图」出现两次）",
+      "found_by": "机器视觉复核",
+      "found_in": "v10.7.1",
+      "fixed_in": "v10.7.2",
+      "fix_how": "副题去重，recalc 行改 y=0.885 分离"
+    },
+    {
+      "id": "E07",
+      "shape": "规则对别人成立，对自己没有执行",
+      "what": "simulation.json 被旧版 15 任务协议版覆盖，120 任务版丢失 → metrics.json 声明 120 与任务派生 15 冲突；自己要求「超限整段重测、不局部打补丁」，管线顺序纪律自己先违反了",
+      "found_by": "自家校验闸门（metrics.simulation_task_count vs tasks 派生）",
+      "found_in": "v10.7.0",
+      "fixed_in": "v10.7.1",
+      "fix_how": "gen_simulation（120 任务版）固定为管线最后一步；顺序写入工具链纪律"
+    },
+    {
+      "id": "E08",
+      "shape": "同一件事的两份拷贝各自漂移",
+      "what": "core.autocrlf=true 使磁盘文件 CRLF、git blob LF，finalize 读磁盘哈希与 CI 校验 blob 哈希不一致",
+      "found_by": "finalize/CI 哈希闸门",
+      "found_in": "v10.5.x",
+      "fixed_in": "v10.7.0",
+      "fix_how": "仓库级 core.autocrlf=false，提交包文本文件统一 LF（磁盘=blob=finalize 读的内容）"
+    },
+    {
+      "id": "E09",
+      "shape": "检查测了方便测的东西",
+      "what": "frontmatter iteration 字段变化不算正文变化：render_proposal_html 剥离 frontmatter 后 HTML 字节不变，finalize 报 report/proposal.html unchanged 被拒",
+      "found_by": "finalize 闸门",
+      "found_in": "v10.7.0",
+      "fixed_in": "v10.7.1",
+      "fix_how": "版本串连锁之外必须在正文真实增改（本轮起每轮新增正文证据节）"
+    },
+    {
+      "id": "E10",
+      "shape": "几何表达的不是它声称的意思",
+      "what": "官方 provisional 边界 PROV-KEY-003（大钟寺）质心落在北京北站附近，与官方描述不符（公开 Issue #1029）",
+      "found_by": "公开 Issue #1029（非本包错误，但本包曾直接引用该几何）",
+      "found_in": "v10.4.x",
+      "fixed_in": "v10.7.0",
+      "fix_how": "大钟寺 72 ha 面积与定位全部标 provisional_constraint、不参与面积结论，待官方修正后按 P4 复核"
+    },
+    {
+      "id": "E11",
+      "shape": "几何表达的不是它声称的意思",
+      "what": "官方 provisional 总体范围多边形与京张铁路遗址公园不相交（最近 412.5 m，公开 Issue #846）——本包曾把两者表述为同一空间体系",
+      "found_by": "公开 Issue #846",
+      "found_in": "v10.4.x",
+      "fixed_in": "v10.7.0",
+      "fix_how": "全部几何以官方 provisional 边界为根；遗址公园作为绿廊要素单独登记，不以外推线缝合（表 A6/ASSUME-002）"
+    },
+    {
+      "id": "E12",
+      "shape": "检查测了方便测的东西",
+      "what": "机器视觉复核连续三次误报（「标题被裁切」「两张旋转标注重叠」「key-areas 面板碰撞」），像素扫描逐项证伪——flash 级视觉模型只测了它方便测的「看起来」",
+      "found_by": "Pillow/numpy 像素扫描",
+      "found_in": "v10.7.1",
+      "fixed_in": "v10.7.2",
+      "fix_how": "确立双层复核：视觉模型=提示源，像素扫描=判据；只采纳可被像素验证的问题（E03/E04/E05 为真，三项误报为假）"
+    },
+    {
+      "id": "E13",
+      "shape": "交付物在提交前没被看过",
+      "what": "设计边界（概念建议）画成实线，与官方 provisional 边界的虚线语义混同，会把「本方案概念建议」误读为已定边界",
+      "found_by": "版本自审（provisional 纪律）",
+      "found_in": "v10.7.1",
+      "fixed_in": "v10.7.2",
+      "fix_how": "site-overview 与 land-use 的概念边界全部虚线化（ls=(0,(8,5)) / (0,(6,4))）"
+    }
+  ]
+}

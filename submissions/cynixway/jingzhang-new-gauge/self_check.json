@@ -1,81 +1,7 @@
 {
-  "schema_version": "0.1.0",
-  "checks": [
-    {
-      "check_id": "BOUNDARY_TRUST",
-      "result": "pass",
-      "severity": "major",
-      "target": "geometry/site_boundary.geojson",
-      "message": "Provisional boundary is present; replace with official redline before professional scoring."
-    },
-    {
-      "check_id": "KEY_AREAS_TRUST",
-      "result": "pass",
-      "severity": "major",
-      "target": "geometry/key_areas.geojson",
-      "message": "Three required key areas are provisional; replace with official polygons before professional scoring."
-    },
-    {
-      "check_id": "LAND_USE_TOPOLOGY",
-      "result": "pass",
-      "severity": "major",
-      "target": "geometry/land_use.geojson",
-      "message": "Initial land-use polygons are derived from site boundary partitioning."
-    },
-    {
-      "check_id": "VISUAL_STATIC",
-      "result": "pass",
-      "severity": "info",
-      "target": "visual/index.html",
-      "message": "Static HTML visualization is generated without external dependencies."
-    },
-    {
-      "check_id": "PROFESSIONAL_EVIDENCE",
-      "result": "pass",
-      "severity": "blocking",
-      "target": "proposal.md",
-      "message": "Professional evidence chain complete (depth/standard/metric refs)."
-    },
-    {
-      "check_id": "OVERALL_OK",
-      "result": "pass",
-      "severity": "blocking",
-      "target": "submission package",
-      "message": "All four review gates passed; package is ready for formal review."
-    },
-    {
-      "check_id": "CAN_ENTER_FORMAL_REVIEW",
-      "result": "pass",
-      "severity": "blocking",
-      "target": "submission package",
-      "message": "Package state ready_for_review with stage formal; may enter formal review."
-    },
-    {
-      "check_id": "DETERMINISTIC_VALIDATION",
-      "result": "pass",
-      "severity": "blocking",
-      "target": "manifest.json",
-      "message": "All declared file hashes match on-disk bytes (deterministic validator)."
-    },
-    {
-      "check_id": "SPATIAL_REVIEW",
-      "result": "pass",
-      "severity": "blocking",
-      "target": "geometry/*.geojson",
-      "message": "No blocking spatial issues; land_use topology-safe; provisional advisory only."
-    },
-    {
-      "check_id": "VISUAL_PACKAGING",
-      "result": "pass",
-      "severity": "blocking",
-      "target": "visual/index.html",
-      "message": "Visual board is static, offline, and metric-consistent."
-    }
-  ],
   "ok": true,
-  "can_enter_formal_review": true,
-  "review_status": "formal-review-ready",
-  "package_type": "professional_design_package",
+  "submission_dir": "submissions\\cynixway\\jingzhang-new-gauge",
+  "pr_author": "cynixway",
   "stage": "formal",
   "deterministic_validation": {
     "returncode": 0,
@@ -134,15 +60,18 @@
         "submissions/cynixway/jingzhang-new-gauge/self_check.json",
         "submissions/cynixway/jingzhang-new-gauge/sources.json",
         "submissions/cynixway/jingzhang-new-gauge/standard_matrix.json",
+        "submissions/cynixway/jingzhang-new-gauge/visual/assets/delivery_contracts.json",
+        "submissions/cynixway/jingzhang-new-gauge/visual/assets/edge-matrix.json",
         "submissions/cynixway/jingzhang-new-gauge/visual/assets/evidence-ledger.json",
         "submissions/cynixway/jingzhang-new-gauge/visual/assets/sc04-relay-receipt.json",
+        "submissions/cynixway/jingzhang-new-gauge/visual/assets/tabletop_cases.json",
         "submissions/cynixway/jingzhang-new-gauge/visual/index.en.html",
         "submissions/cynixway/jingzhang-new-gauge/visual/index.html"
       ],
       "ai_package_stages": {
         "submissions/cynixway/jingzhang-new-gauge": "formal"
       },
-      "total_bytes": 3930565,
+      "total_bytes": 3794134,
       "maintainer_bypass": false
     },
     "stderr": ""
@@ -180,6 +109,33 @@
           "target_feature_id": "PROV-KEY-003",
           "expected": null,
           "actual": null
+        },
+        {
+          "check_id": "METRIC_RECALC_DRIFT",
+          "severity": "minor",
+          "target_file": "metrics.json",
+          "message": "site_area_sqm is within the legacy tolerance but drifts beyond ordinary reporting precision; reconcile before publication.",
+          "target_feature_id": null,
+          "expected": 11412825.385554,
+          "actual": 11412800.0
+        },
+        {
+          "check_id": "METRIC_RECALC_DRIFT",
+          "severity": "minor",
+          "target_file": "metrics.json",
+          "message": "public_space_area_sqm is within the legacy tolerance but drifts beyond ordinary reporting precision; reconcile before publication.",
+          "target_feature_id": null,
+          "expected": 338942.408054,
+          "actual": 338900.0
+        },
+        {
+          "check_id": "METRIC_RECALC_DRIFT",
+          "severity": "minor",
+          "target_file": "metrics.json",
+          "message": "building_footprint_area_sqm is within the legacy tolerance but drifts beyond ordinary reporting precision; reconcile before publication.",
+          "target_feature_id": null,
+          "expected": 79760.867776,
+          "actual": 79800.0
         }
       ],
       "metrics": {
@@ -225,12 +181,14 @@
         "standard_matrix_items": 6,
         "design_depth_items": 15,
         "known_metric_refs_required": 26,
+        "proposal_format_version": "2",
+        "evidence_contract": "section-anchors-plus-structured-audit",
         "proposal_reference_counts": {
-          "source": 22,
-          "standard": 7,
-          "depth": 16,
-          "data": 17,
-          "metric": 29
+          "source": 20,
+          "standard": 6,
+          "depth": 19,
+          "data": 18,
+          "metric": 19
         }
       }
     },
@@ -239,12 +197,47 @@
   "spatial_issue_ids": [
     "KEY_AREA_PROVISIONAL",
     "KEY_AREA_PROVISIONAL",
-    "KEY_AREA_PROVISIONAL"
+    "KEY_AREA_PROVISIONAL",
+    "METRIC_RECALC_DRIFT",
+    "METRIC_RECALC_DRIFT",
+    "METRIC_RECALC_DRIFT"
   ],
   "visual_issue_ids": [],
   "professional_issue_ids": [],
+  "missing_review_dependencies": [],
+  "can_enter_formal_review": true,
+  "package_type": "professional_design_package",
+  "review_status": "formal-review-ready",
   "next_actions": [],
-  "submission_dir": "submissions\\cynixway\\jingzhang-new-gauge",
-  "pr_author": "cynixway",
-  "missing_review_dependencies": []
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "validate_local_submission.py",
+      "message": "deterministic_validation: PASS"
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "spatial_review.py",
+      "message": "spatial_review: PASS"
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual_review.py",
+      "message": "visual_review: PASS"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "professional_review.py",
+      "message": "professional_review: PASS"
+    }
+  ]
 }

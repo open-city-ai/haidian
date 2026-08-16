@@ -236,6 +236,73 @@
         "Conceptual maximum search envelope, not an approved construction area."
       ]
     },
+    "official_key_area_area_sqm_001": {
+      "status": "known",
+      "value": 1921000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "published subarea value for zhongzhiyuan_ai_acceleration_area, transcribed",
+      "confidence": "high",
+      "assumptions": [
+        "Official published area value; the official polygon is absent, so this is not a polygon-derived area."
+      ],
+      "approximate": true,
+      "key_area_feature_id": "PROV-KEY-001",
+      "published_area_ha": 192.1,
+      "published_display_zh": "约 192.1 公顷",
+      "published_display_en": "about 192.1 ha",
+      "reason_not_exact": "The value is a published text area, not an area computed from an official polygon; it may not be used as a denominator, as a polygon proof, or as evidence that the provisional key-area extent is correct.",
+      "external_gate_refs": [
+        "D02"
+      ]
+    },
+    "official_key_area_area_sqm_002": {
+      "status": "known",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "published subarea value for beijing_ai_origin_community, transcribed",
+      "confidence": "high",
+      "assumptions": [
+        "Official published area value; the official polygon is absent, so this is not a polygon-derived area."
+      ],
+      "approximate": true,
+      "key_area_feature_id": "PROV-KEY-002",
+      "published_area_ha": 104.3,
+      "published_display_zh": "约 104.3 公顷",
+      "published_display_en": "about 104.3 ha",
+      "reason_not_exact": "The value is a published text area, not an area computed from an official polygon; it may not be used as a denominator, as a polygon proof, or as evidence that the provisional key-area extent is correct.",
+      "external_gate_refs": [
+        "D02"
+      ]
+    },
+    "official_key_area_area_sqm_003": {
+      "status": "known",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "published subarea value for dazhongsi_ai_industry_cluster, transcribed",
+      "confidence": "high",
+      "assumptions": [
+        "Official published area value; the official polygon is absent, so this is not a polygon-derived area.",
+        "The brief writes the hectare figure as 72; the one-decimal display 72.0 ha follows the area display precision used throughout this package and changes no digit of the published value."
+      ],
+      "approximate": true,
+      "key_area_feature_id": "PROV-KEY-003",
+      "published_area_ha": 72,
+      "published_display_zh": "约 72.0 公顷",
+      "published_display_en": "about 72.0 ha",
+      "reason_not_exact": "The value is a published text area, not an area computed from an official polygon; it may not be used as a denominator, as a polygon proof, or as evidence that the provisional key-area extent is correct. PROV-KEY-003 additionally claims no position at all, so this area is not a statement about where the cluster is.",
+      "external_gate_refs": [
+        "D02"
+      ]
+    },
     "floor_area_ratio": {
       "status": "unknown",
       "value": null,
@@ -246,7 +313,28 @@
       "formula": "total_floor_area_sqm / official_site_area_sqm",
       "confidence": "unknown",
       "assumptions": [],
-      "reason": "Approved FAR, official boundary, parcels, and building inventory are absent."
+      "reason": "Approved FAR, official boundary, parcels, and building inventory are absent.",
+      "resolver_or_profession": "The planning authority that approves parcel-specific plot ratio, working from the approved regulatory plan; no design or modelling step can substitute for it.",
+      "responsible_authority_role": "Planning authority with jurisdiction over the design area, as the issuer of the approved parcel-specific control.",
+      "recalculation_trigger": "An approved parcel-specific floor area ratio reaches the package together with the official parcel boundaries it applies to; the value and every dependent artifact are then recomputed.",
+      "downstream_artifacts": [
+        "compliance_matrix.json",
+        "design_depth_matrix.json",
+        "standard_matrix.json",
+        "proposal.md",
+        "proposal.en.md",
+        "report/proposal.html",
+        "report/proposal.en.html",
+        "visual/index.html",
+        "visual/index.en.html",
+        "drawings/a0-boards.pdf",
+        "drawings/a0-boards.en.pdf",
+        "drawings/a3-booklet.pdf",
+        "drawings/a3-booklet.en.pdf"
+      ],
+      "external_gate_refs": [
+        "D15"
+      ]
     },
     "approved_height_limit_m": {
       "status": "unknown",
@@ -258,7 +346,28 @@
       "formula": "maximum approved height from statutory controls",
       "confidence": "unknown",
       "assumptions": [],
-      "reason": "Official height controls and heritage view-corridor requirements are absent."
+      "reason": "Official height controls and heritage view-corridor requirements are absent.",
+      "resolver_or_profession": "The planning authority that approves parcel-specific height control, together with the heritage authority that holds any view-corridor requirement over the same parcels.",
+      "responsible_authority_role": "Planning authority with jurisdiction over the design area, as the issuer of the approved parcel-specific control.",
+      "recalculation_trigger": "An approved parcel-specific height control reaches the package together with any heritage view-corridor requirement that binds the same parcels; the value and every dependent artifact are then recomputed.",
+      "downstream_artifacts": [
+        "compliance_matrix.json",
+        "design_depth_matrix.json",
+        "standard_matrix.json",
+        "proposal.md",
+        "proposal.en.md",
+        "report/proposal.html",
+        "report/proposal.en.html",
+        "visual/index.html",
+        "visual/index.en.html",
+        "drawings/a0-boards.pdf",
+        "drawings/a0-boards.en.pdf",
+        "drawings/a3-booklet.pdf",
+        "drawings/a3-booklet.en.pdf"
+      ],
+      "external_gate_refs": [
+        "D14"
+      ]
     }
   }
 }

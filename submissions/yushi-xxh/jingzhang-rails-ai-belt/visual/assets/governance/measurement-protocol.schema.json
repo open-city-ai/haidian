@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.org/jingzhang-rails-ai-belt/measurement-protocol.schema.json",
+  "title": "Symbiosis Belt Measurement Protocol 0.1",
+  "description": "Machine-readable baseline-measurement protocol. Every pilot KPI must register a baseline source, a measurement method, a cadence, a measurer role, and a recalculation trigger BEFORE launch. Target values stay null until a real operator and service baseline are confirmed; only binary open/close gates and rollback states may be asserted before then.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["protocol_version", "measurements"],
+  "properties": {
+    "protocol_version": { "const": "0.1" },
+    "measurements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["metric_id", "baseline_source", "method", "cadence", "measurer", "recalculation_trigger", "target"],
+        "properties": {
+          "metric_id": { "type": "string" },
+          "baseline_source": { "type": "string" },
+          "method": { "type": "string" },
+          "cadence": { "type": "string" },
+          "measurer": { "$ref": "#/$defs/role_ref" },
+          "recalculation_trigger": { "type": "string" },
+          "target": {
+            "description": "null until a real operator and baseline are confirmed",
+            "anyOf": [{ "type": "null" }, { "type": "number" }, { "type": "string" }]
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "role_ref": {
+      "type": "string",
+      "pattern": "^R-[A-Z0-9-]+$"
+    }
+  }
+}

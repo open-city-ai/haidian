@@ -1,5 +1,29 @@
 # 方案迭代记录
 
+## v9.1 - 2026-08-16
+
+- Reworked the Chinese and English opening narrative around four plain questions: who owns the problem, who becomes the first user, who takes over operations and what evidence permits reuse.
+- Reduced repeated contrast formulas and machine-facing language in the human-reading layer while preserving every source, assumption, gate, stop condition and claim boundary.
+- Rewrote the visual-index first screen and twelve scenario-card summaries so a reviewer can identify the three-station chain, the 90-day pilot and each scenario's operating boundary without reading the full report.
+- Kept the submission scope unchanged: no new site, partnership, user result, order, funding or approval claim was introduced during copy editing.
+
+## v9.0 - 2026-08-15
+
+- Rebuilt all five mandatory bilingual review figures around the evidence that the official reviewer can see directly: OSM-based real-place orientation, the provisional land-use partition, three differentiated key areas, the ordinary-route/blue-green public baseline, and the G0-G4 delivery ledger.
+- Moved the real-place executive board to the first image of both proposals and the first section of both offline visual indexes, so spatial specificity, station duties, recomputable metrics and pending real-pilot outcomes appear within the fixed review viewport.
+- Replaced the first page of all four A3/A0 PDF sets with a bilingual A-series executive review board while preserving every later page.
+- Kept all adoption outcomes explicitly pending a real pilot; no user, operator, order, reuse or implementation result was invented during the score-entry redesign.
+
+## v8.0 - 2026-08-15
+
+- Added a rights-declared custom gallery cover that turns the three-station handoff into one thumbnail-readable First-Mile Gate scene, with live bilingual title text and an explicit non-evidence label.
+- Rejected the first cover draft after spatial review found portals and kiosks obstructing the preserved rail; V2 restores a continuous rail clearance zone and relocates every service node, user and accessible route to the side promenades.
+- Added an offline bilingual 90-day Canvas sequence so reviewers can move across readiness, first real use, operational handoff and reuse while seeing which station and G0-G4 evidence layer becomes active.
+- Kept the interaction deterministic, network-free and non-autoplaying, with native keyboard control, a static atlas fallback and clear wording that the timeline is a concept staging aid rather than reported progress.
+- Added separate 59.7-second Chinese and English concept films. Each file contains one narration language and its matching caption/transcript only; both use the same picture and restrained locally bundled sound marks, and the offline visual indexes prevent the two players from sounding together.
+- Replaced the Chinese film's non-standard dialect-like voice with the offline macOS `Tingting` standard-Mandarin female voice, removed per-line time stretching, and verified the complete mixed narration with local Mandarin speech recognition.
+- Migrated the manifest to the strict 0.2 media contract, registered the cover and updated generation provenance, copyright, assumptions and source records.
+
 ## v7.0 - 2026-08-10
 
 - Rewrote the bilingual human-reading layer in an authorial urban-design voice, replacing taskbook restatement and validator instructions with site judgments, spatial choices and implementation consequences.

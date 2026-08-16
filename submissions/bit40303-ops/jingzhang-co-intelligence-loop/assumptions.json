@@ -1,0 +1,276 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "official_raster_available_vector_pending",
+      "statement": "官方2024年控规草案已公开HD00-1601等街区规划范围栅格图；本包的site_boundary与三处key area仍使用仓库provisional rough polygon，因为竞赛范围的SHP/GeoJSON/CAD或坐标表未公开。",
+      "impact": "官方图件可用于范围位置和结构核对，但不能直接替换可计算几何；主办方或规划主管部门提供正式矢量后，所有派生图层和空间指标必须重算。",
+      "source_id": "HAIDIAN-JINGZHANG-CONTROL-PLAN-DRAFT"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "public_draft_summary_final_controls_pending",
+      "statement": "官方草案摘要已公开街区层面的2035年汇总规模和设施目标，但地块容积率、建筑高度、退线、道路红线、权属、消防、市政、文保和工程条件仍未公开。",
+      "impact": "草案汇总指标只作规划背景和一致性校核；本包的具体形态、拆改留、道路和设施仍是概念建议，不构成地块法定控制。",
+      "source_id": "HAIDIAN-JINGZHANG-CONTROL-PLAN-DRAFT"
+    },
+    {
+      "id": "A-TRAFFIC-001",
+      "status": "pending_professional_confirmation",
+      "statement": "道路与轨道接驳线表达的是慢行和公共交通策略，不是道路红线或轨道工程线位。",
+      "impact": "需由交通专业团队依据正式交通资料复核安全、容量、断面和实施边界。"
+    },
+    {
+      "id": "A-DATA-001",
+      "status": "known_public_data_boundary",
+      "statement": "方案仅使用仓库公开/清权资料与 agent 生成的概念层，不使用个人、企业或非公开空间数据。",
+      "impact": "场景采用最小化、聚合和人工复核原则；任何运营部署需另行授权。"
+    },
+    {
+      "id": "A-OWNERSHIP-001",
+      "status": "unknown",
+      "statement": "地块权属、既有建筑产权和运营主体未获得正式清单。",
+      "impact": "保留/改造/新建仅作为类型化策略，不能视为具体地块拆改结论。"
+    },
+    {
+      "id": "A-OPERATIONS-001",
+      "status": "conceptual_proposal",
+      "statement": "活动、开发者社区和场景开放机制是年度运营参考方案。",
+      "impact": "频率、预算、许可和责任主体需由维护者、专业团队和运营方共同深化。"
+    },
+    {
+      "id": "A-OFFICIAL-DATA-001",
+      "status": "official_open_data_filtered",
+      "statement": "北京市交通委公开页面标注路侧停车位基础信息无条件开放；本包使用下载快照并按 provisional SITE-001 进行 WGS84 点位筛选和重复记录去重。",
+      "impact": "公开停车节点和泊位数可用于现状参考与场景讨论；不能替代正式道路红线、停车管理边界、权属或规划条件。",
+      "source_id": "BEIJING-JTW-OPEN-TRANSPORT",
+      "retrieved_date": "2026-08-07"
+    },
+    {
+      "id": "A-OFFICIAL-TRANSIT-001",
+      "status": "official_open_data_catalog",
+      "statement": "北京市交通委官方页面将轨道线路、轨道站点、公交线路和公交站点信息标注为无条件开放；四份下载表无可核验项目坐标。",
+      "impact": "数据只用于轨道接驳、首末班和公交服务运营判断；不从站名推导空间点位，不替代正式交通、红线或工程资料。",
+      "source_id": "BEIJING-JTW-TRANSIT-OPERATIONS",
+      "retrieved_date": "2026-08-07"
+    },
+    {
+      "id": "A-HAIDIAN-STATS-001",
+      "status": "official_district_preliminary_statistics",
+      "statement": "海淀区2025年统计公报为官方区级资料，公报注明2025年数据均为初步数。",
+      "impact": "只用于海淀全区产业、人才、公共服务和环境背景；不得作为11.4平方公里项目范围或未来绩效指标。",
+      "source_id": "HAIDIAN-2025-STATISTICAL-BULLETIN"
+    },
+    {
+      "id": "A-HAIDIAN-POLICY-001",
+      "status": "official_policy_alignment_only",
+      "statement": "中科城〔2025〕91号现行有效，列出10条AI产业支持措施。",
+      "impact": "可用于机制校准，但任何补贴、资金、资格或活动支持均需另行申报审核，不构成本项目承诺。",
+      "source_id": "HAIDIAN-AI-POLICY-2025"
+    },
+    {
+      "id": "A-QINGHUAYUAN-CULTURE-001",
+      "status": "official_historical_baseline_nonspatial",
+      "statement": "海淀区政府门户资料记录清华园车站旧址已实施修缮、绿化、轨道复原和展陈数据。",
+      "impact": "用于文化资源和公共空间基线；不推导文保控制线、权属、项目边界或新增工程许可。",
+      "source_id": "HAIDIAN-QINGHUAYUAN-STATION-RESTORATION"
+    },
+    {
+      "id": "A-HAIDIAN-CONTROL-STATUS-001",
+      "status": "official_planning_status_only",
+      "statement": "The official 2025-08-20 progress page says the Jingzhang heritage-park corridor control plan was being compiled and the Haidian AI innovation-street plan was still a draft; no official polygon or statutory control table is published on that page.",
+      "impact": "Read this historical status together with the official 2024 draft and 2026 technical-review statement; the status page alone is not a boundary, approval or statutory control.",
+      "source_id": "HAIDIAN-JINGZHANG-CONTROL-PLAN-STATUS"
+    },
+    {
+      "id": "A-HAIDIAN-CONTROL-DRAFT-001",
+      "status": "official_public_draft_raster_nonvector",
+      "statement": "2024年官方公示附件是一张超长栅格图件，记录规划范围、空间结构、汇总规模、设施、景观、交通和地名规划。",
+      "impact": "可将汇总数值写入metrics并用图件核对空间关系；不得从截图声称获得精确坐标、竞赛重点区polygon或最终批复结论。",
+      "source_id": "HAIDIAN-JINGZHANG-CONTROL-PLAN-DRAFT"
+    },
+    {
+      "id": "A-HAIDIAN-CONTROL-TECH-REVIEW-001",
+      "status": "official_technical_review_status",
+      "statement": "海淀区2026年政府工作报告写明京张铁路遗址公园沿线街区控规通过技术审查。",
+      "impact": "只更新规划进度，不把技术审查解释为市政府批复、法定生效、可实施红线或项目承诺。",
+      "source_id": "HAIDIAN-2026-GOVERNMENT-WORK-REPORT"
+    },
+    {
+      "id": "A-JINGZHANG-PHASE2-OFFICIAL-001",
+      "status": "official_project_profile_nonpolygon",
+      "statement": "官方项目页记录京张二期南起西直门、北至北五环，用地53.09万平方米、长度9千米。",
+      "impact": "用于既有公共空间尺度和走廊连续性背景；不据此生成竞赛红线、二期工程polygon、权属或新增建设许可。",
+      "source_id": "HAIDIAN-JINGZHANG-PHASE2-PROJECT"
+    },
+    {
+      "id": "A-ORIGIN-COMMUNITY-SCOPE-001",
+      "status": "official_policy_district_nonpolygon",
+      "statement": "北京市科委、中关村管委会官方页面称海淀AI原点社区以五道口为核心、面积约3平方公里。",
+      "impact": "该口径用于更大创新街区的政策背景，不等同于征集公告104.3公顷原点社区重点设计区，不生成或替换重点区polygon。",
+      "source_id": "BEIJING-AI-ORIGIN-COMMUNITY"
+    },
+    {
+      "id": "A-JINGZHANG-PHASE2-APPROVAL-SCOPE-001",
+      "status": "official_approved_construction_package_nonpolygon",
+      "statement": "京发改（审）〔2024〕609号实施方案批复和公开招标公告记录西直门至知春路段批准建设包用地23.08公顷。",
+      "impact": "23.08公顷建设包与官方项目展示页53.09公顷全走廊口径分开记录；两者均不替代竞赛11.4平方公里范围，也不能据文字生成工程polygon。",
+      "source_id": "BEIJING-FRC-JINGZHANG-PHASE2-IMPLEMENTATION-APPROVAL"
+    },
+    {
+      "id": "A-JINGZHANG-PHASE2-COST-001",
+      "status": "official_tender_estimate_not_commitment",
+      "statement": "官方招标公告和核准意见记录计划总投资、计划工期及勘察、设计、施工、监理单项合同估算。",
+      "impact": "这些数值只用于既有公共工程的实施尺度和专业费用结构基线，不是最终结算、竞赛方案投资估算或任何新增资金承诺。",
+      "source_id": "BEIJING-GGZY-JINGZHANG-PHASE2-CONSTRUCTION-TENDER"
+    },
+    {
+      "id": "A-JINGZHANG-PHASE2-SURVEY-PROCUREMENT-001",
+      "status": "official_procurement_status_no_survey_deliverable",
+      "statement": "中国政府采购网公开二期配套项目勘察及相关服务比选公告，预算62.15万元、履行期限15日历天。",
+      "impact": "该公告证明勘察工作已被采购，但公开页没有勘察报告、现状测绘、坐标或地质结论；不得据采购存在性关闭DR-003、DR-007或DR-008。",
+      "source_id": "BEIJING-CCGP-JINGZHANG-PHASE2-SUPPORTING-SURVEY"
+    },
+    {
+      "id": "A-JINGZHANG-PHASE2-COMPLETION-001",
+      "status": "official_completed_supporting_project_nonpolygon",
+      "statement": "北京市园林绿化局2026年7月13日公开二期配套项目完工，北段清华东路至北五环整体建设约30.01公顷，南段为西直门至知春路附属配套工程。",
+      "impact": "用于把项目状态更新为完工并记录建设内容；30.01公顷是公开文字口径，不是竣工测量面积、工程polygon、竞赛边界或重点区polygon。",
+      "source_id": "BEIJING-YLLHJ-JINGZHANG-PHASE2-SUPPORTING-COMPLETION"
+    },
+    {
+      "id": "A-JINGZHANG-OPERATIONS-001",
+      "status": "official_feature_with_operator_attribution",
+      "statement": "北京市政府门户文章援引公园管理方项目负责人称，2025年举办主题活动60多场、游客量430多万人次。",
+      "impact": "按60场和430万人次的公开下限记录既有运营基线；不转换为项目范围需求预测、未来客流承诺或个人行为数据。",
+      "source_id": "BEIJING-JINGZHANG-2025-OPERATIONS"
+    },
+    {
+      "id": "A-ORIGIN-COMMUNITY-ECOSYSTEM-001",
+      "status": "official_broader_policy_community_nonspatial",
+      "statement": "北京市政府门户文章公开AI原点社区更大政策范围内的高校、研发机构、实验室、科研机构、AI学者和企业数量。",
+      "impact": "仅用于创新生态和公共服务对象校准；不视为征集公告104.3公顷重点区内统计，不生成地块、企业或人才点位。",
+      "source_id": "BEIJING-AI-ORIGIN-2026-ECOSYSTEM"
+    },
+    {
+      "id": "A-QINGHUAYUAN-HERITAGE-CONTROL-001",
+      "status": "official_heritage_status_geometry_pending",
+      "statement": "京政发〔2025〕3号现行有效通知将清华园车站旧址列为第十一批北京市文物保护单位第26项，并说明保护范围及建设控制地带说明和图纸另行印发。",
+      "impact": "文保身份作为法定前置条件写入方案；在正式图纸到位前不使用通用缓冲区冒充保护范围或建设控制地带，按sources.json中的DR-006索取并验收。",
+      "source_id": "BEIJING-HERITAGE-BATCH11-NOTICE"
+    },
+    {
+      "id": "A-JINGZHANG-PUBLIC-CONNECTIVITY-001",
+      "status": "official_existing_corridor_context_nonpolygon",
+      "statement": "北京市园林绿化局公开16.8公顷绿地、约9公里带状公共空间、5条东西向道路、8处交通断点及沿线服务对象等既有走廊文字指标。",
+      "impact": "用于现状公共空间与连通性基线；不生成工程polygon、竞赛边界或未来服务承诺。",
+      "source_id": "BEIJING-YLLHJ-JINGZHANG-CONNECTIVITY-CONTEXT"
+    },
+    {
+      "id": "A-JINGZHANG-CONTRACT-CHAIN-001",
+      "status": "official_signed_contracts_not_final_settlement",
+      "statement": "公共资源交易平台公开二期勘察、设计、施工和监理签约金额、期限、主体和服务范围。",
+      "impact": "签约值与此前招标估算分别记录，不将合同金额解释为最终结算、本竞赛投资或新增资金承诺。",
+      "source_id": "BEIJING-GGZY-JINGZHANG-PHASE2-SURVEY-CONTRACT",
+      "related_source_ids": [
+        "BEIJING-GGZY-JINGZHANG-PHASE2-DESIGN-CONTRACT",
+        "BEIJING-GGZY-JINGZHANG-PHASE2-SUPPORTING-DESIGN-CONTRACT",
+        "BEIJING-GGZY-JINGZHANG-PHASE2-CONSTRUCTION-CONTRACT",
+        "BEIJING-GGZY-JINGZHANG-PHASE2-SUPERVISION-CONTRACT",
+        "BEIJING-CCGP-JINGZHANG-PHASE2-SUPPORTING-SURVEY-AWARD"
+      ]
+    },
+    {
+      "id": "A-JINGZHANG-SURVEY-DELIVERABLES-001",
+      "status": "professional_deliverables_confirmed_named_custodians_access_pending",
+      "statement": "主合同确认控制测量、地形图、树木、地下管线和工程勘察，设计与施工/监理合同确认方案、初步、施工图及实施记录链条存在。",
+      "impact": "缺口已从‘不知道是否存在’收敛为‘已知发包人和专业单位但公开页未附成果’；需按DR-003、DR-005、DR-007和DR-008申请授权文件。",
+      "source_id": "BEIJING-GGZY-JINGZHANG-PHASE2-SURVEY-CONTRACT"
+    },
+    {
+      "id": "A-JINGZHANG-METRO-SAFETY-001",
+      "status": "official_assessment_procured_report_not_public",
+      "statement": "中国政府采购网确认二期配套项目地铁安全评估已采购，预算53万元，服务至提交最终评估报告。",
+      "impact": "证明评估报告应形成，但没有公开结论、轨道保护范围或报告附件；不得自行推导地铁安全条件。",
+      "source_id": "BEIJING-CCGP-JINGZHANG-METRO-SAFETY-ASSESSMENT"
+    },
+    {
+      "id": "A-OSM-EXISTING-CONTEXT-001",
+      "status": "odbl_nonstatutory_existing_context",
+      "statement": "2026-08-08从Overpass API下载建筑、道路、轨道、水系和POI快照，按provisional SITE-001裁切，保留OSM对象ID、文件哈希和ODbL署名。",
+      "impact": "用于概念阶段现状理解、现场核查清单和服务缺口筛查；不构成官方边界、权属、许可、拆改、道路红线、管线、文保或测绘精度结论。",
+      "source_id": "OPENSTREETMAP-JINGZHANG-EXISTING-CONTEXT"
+    },
+    {
+      "id": "A-TIANDITU-CONTROLLED-MAPPING-001",
+      "status": "official_catalog_metadata_public_underlying_products_controlled",
+      "statement": "全国地理信息资源目录公开了海淀区及临时项目范围相交的图幅元数据，但抽查的1:500、1:2000和1:10000矢量成果均为秘密DWG。",
+      "impact": "目录计数、图幅号、版本和分发单位可用于合规申请定位；受控产品本体不得下载、复制、反推或在公开参赛包中再分发，也不能替换provisional几何。",
+      "source_id": "TIANDITU-HAIDIAN-OFFICIAL-GEO-CATALOG"
+    },
+    {
+      "id": "A-WORLDCOVER-2021-001",
+      "status": "open_historical_surface_cover_provisional_clip",
+      "statement": "ESA WorldCover 2021 v200为约10 m全球土地覆盖分类，本包以SITE-001临时边界遮罩，并以无损分类PNG及JSON保留原始COG哈希、分类码、EPSG:4326地理参考和CC BY 4.0署名。",
+      "impact": "分类比例只用于2021年地表覆盖背景和现场核查优先级；不能解释为2026现状、规划用地、绿地率、蓝线、地块控制、权属或测绘结论。",
+      "source_id": "ESA-WORLDCOVER-JINGZHANG-2021"
+    },
+    {
+      "id": "A-COPDEM-GLO30-001",
+      "status": "open_historical_dsm_provisional_clip",
+      "statement": "Copernicus DEM GLO-30为约30 m数字表面模型，主要源数据采集于2011-2015年；本包以临时SITE-001进行点采样遮罩，并保留EPSG:4326、EGM2008、对象ETag、字节范围和块哈希。",
+      "impact": "高程与表面坡度仅用于概念阶段地形背景和复测优先级。建筑、基础设施、植被、年代、分辨率和临时边界都会影响数值，不能作为现状裸地DTM、竖向设计、排水、洪水、土方、无障碍、管线或工程验收依据。",
+      "source_id": "COPERNICUS-DEM-GLO30-JINGZHANG"
+    },
+    {
+      "id": "A-JRC-GSW-V15-001",
+      "status": "open_long_term_water_screening_provisional_clip",
+      "statement": "JRC Global Surface Water v1.5约30 m occurrence/transitions基于1984-2024 Landsat观测，included extent为2022-2024；裁切采用临时SITE-001，且官方提示Collection 1/2合并可出现通常亚像元、局部一像元或更大的残余配准偏差。",
+      "impact": "检出像元、发生频率、转移类别和估算面积只用于长期水体观测筛查。未检出不能证明窄、覆盖、间歇或近期变化的河渠/积水不存在；数据不能作为蓝线、排水能力、洪水、水质、现状调查或工程验收依据。",
+      "source_id": "JRC-GSW-V15-JINGZHANG"
+    },
+    {
+      "id": "A-SENTINEL2-L2A-20260715-001",
+      "status": "open_single_scene_optical_screening_provisional_clip",
+      "statement": "Sentinel-2B L2A数据为2026-07-15单景：B02/B03/B04/B08为10 m底层大气反射率，SCL为20 m；按公开scale/offset、临时SITE-001和像元中心裁切，使用SCL与分母阈值计算NDVI和McFeeters NDWI。",
+      "impact": "真彩色、SCL、NDVI和NDWI仅表示单景光学筛查；混合像元、阴影、屋顶、大气校正、10-20 m分辨率、单一季节和临时边界都会影响结果。不能作为法定边界、树木/建筑/水体清单、蓝线、洪水、排水、水质、工程或验收结论。",
+      "source_id": "COPERNICUS-SENTINEL2-L2A-JINGZHANG-20260715"
+    },
+    {
+      "id": "A-OVERTURE-BUILDINGS-20260722-001",
+      "status": "open_machine_derived_building_footprint_increment_provisional_clip",
+      "statement": "Overture Buildings 2026-07-22.0按provisional SITE-001裁切；为避免重复，仅接入source dataset恰为doi:10.5281/zenodo.8174931的2834条非OSM记录。发布日不是采集或测量日；上游数据2023年发布，Overture source update timestamp为2024-11-01，逐要素影像日期与置信度未在本包确认。",
+      "impact": "自动轮廓可能存在漏检、误检、屋顶位移、概化、多部件和局部重叠，仅用于概念阶段覆盖筛查。不能据此判断权属、许可、拆改、精确面积/高度/层数/用途/年代/状况、消防、无障碍、结构、管线、竣工或测绘验收。",
+      "source_id": "OVERTURE-MAPS-BUILDINGS-JINGZHANG-20260722"
+    },
+    {
+      "id": "A-GHSL-BUILT-H-2018-001",
+      "status": "open_historical_gridded_building_height_model_provisional_clip",
+      "statement": "GHS-BUILT-H R2023A为2018年产品纪元、3弧秒WGS84 PixelIsArea网格；高度由SRTM30（2000）、AW3D30（2006-2011）与2018 Sentinel-2阴影标记经全球模型提取。AGBH表示单元总表面积上的建筑体积密度，ANBH表示单元建成表面的平均高度；本包以临时SITE-001和像元中心遮罩。",
+      "impact": "19×106裁片及统计只用于2018年约100 m体量格局筛查。混合像元、全球模型误差、旧DEM输入、2018后建设/拆除和临时边界都会影响结果；不得将ANBH赋给单栋建筑或作为法定高度、层数、面积、权属、用途、状况、许可、消防、结构、管线、竣工、现状测绘或验收依据。",
+      "source_id": "JRC-GHSL-BUILT-H-R2023A-JINGZHANG-2018"
+    },
+    {
+      "id": "A-GHSL-OBAT-2020-001",
+      "status": "open_footprint_level_model_subset_not_current_survey",
+      "statement": "GHS-OBAT R2024A以Overture 2024-07-22.0建筑为对象，将约100 m ANBH高度均值、10/100 m功能多数值和约100 m GHS-AGE年代多数值分配到轮廓。本包对当前2026 Overture/OSM现状层仅接受一对一的质心覆盖与面积相近关联；2024 GERS ID未直接命中当前非OSM增量。",
+      "impact": "1289条关联只表示2020纪元公开模型子集，不表示当前完整建筑清单。官方欧洲验证显示高度特征级MAE 2.89 m、1980年前标签约40%正确，小型非住宅识别不足；中国还存在疑似Overture少报。不得据此作法定高度、逐栋实测、层数、总面积、权属、用途许可、真实建成年份、状况、拆改、消防、结构、管线、竣工或验收结论。",
+      "source_id": "JRC-GHSL-GHS-OBAT-R2024A-JINGZHANG-2020"
+    },
+    {
+      "id": "A-BLUEHOME-COORDINATE-001",
+      "status": "official_original_coordinate_table_crs_unstated_no_reprojection",
+      "statement": "蓝景丽家官方勘测报告公开107个Y/X点和点序，但未在公开文本中注明坐标参考系，部分边界还含圆弧。",
+      "impact": "原样保存点表用于事实核对和后续申请；不猜测EPSG、不转换WGS84、不生成GeoJSON、不把3.95公顷子项目替代72公顷竞赛重点区。",
+      "source_id": "BEIJING-GGZY-BLUEHOME-SURVEY-2025"
+    },
+    {
+      "id": "A-CENTENNIAL-UNITY-NARRATIVE-001",
+      "status": "conceptual_curatorial_and_governance_framework",
+      "statement": "1909—2109六个首尾连续时段是方案策展与运营框架；56个轮换策展与公共议题席用于组织多样文化内容和共同建设议题。",
+      "impact": "不是官方历史分期、民族空间分区、本地人口统计或个人身份标签；空间席位不永久绑定民族身份，不得进行身份推断、人脸识别、强制登记或刻板化展示。",
+      "source_id": "CHINA-GOV-ETHNIC-EQUALITY-WHITE-PAPER"
+    }
+  ]
+}

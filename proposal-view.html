@@ -430,7 +430,19 @@ async function fetchText(path){
   return response.text();
 }
 async function fetchJSON(path){
-  try{return JSON.parse(await fetchText(path))}catch(error){return null}
+  let lastError=null;
+  for(let attempt=0;attempt<2;attempt+=1){
+    try{
+      const separator=String(path).includes('?')?'&':'?';
+      const target=attempt===0?path:`${path}${separator}_evidence_retry=${Date.now()}`;
+      return JSON.parse(await fetchText(target));
+    }catch(error){
+      lastError=error;
+      if(attempt===0)await new Promise(resolve=>setTimeout(resolve,250));
+    }
+  }
+  console.error('Structured evidence JSON failed to load',path,lastError);
+  return null;
 }
 function sanitizeReport(root,reportUrl){
   root.querySelectorAll('script,style,link,meta,base,iframe,object,embed,form,input,textarea,select,button').forEach(node=>node.remove());
@@ -968,6 +980,9 @@ async function load(){
     fetchJSON(packageUrl('standard_matrix.json')),fetchJSON(packageUrl('design_depth_matrix.json')),
     fetchJSON(packageUrl('assumptions.json')),fetchJSON(packageUrl('self_check.json'))
   ]);
+  const requiredEvidence={manifest,sources,metrics,standards,depth,assumptions,selfCheck};
+  const failedEvidence=Object.entries(requiredEvidence).filter(([,value])=>!value).map(([name])=>name);
+  if(failedEvidence.length)throw new Error(`结构化证据加载失败：${failedEvidence.join('、')}。页面未计算覆盖率，请刷新重试。`);
   buildArtifacts(manifest);renderArtifacts();
   const parsed=new DOMParser().parseFromString(reportText,'text/html');
   const imported=(parsed.querySelector('main')||parsed.body).cloneNode(true);

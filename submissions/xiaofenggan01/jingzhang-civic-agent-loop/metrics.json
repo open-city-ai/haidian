@@ -323,6 +323,556 @@
       "assumptions": [
         "可验收的无障碍工程承诺"
       ]
+    },
+    "stitch_corridor_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count of role=stitch_corridor features (东西向转辙廊)",
+      "confidence": "high",
+      "assumptions": [
+        "对铁路长墙东西割裂的空间回应；转辙器母题的物理化身"
+      ]
+    },
+    "material_traceability_field_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count of material provenance fields (material_origin/carbon_audit_required/maintenance_contributors)",
+      "confidence": "high",
+      "assumptions": [
+        "Receipt 物质面：出处签下沉到空间对象；值为设计承诺与制度要求，不捏造碳数据"
+      ]
+    },
+    "agent_passport_field_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "report/narrative.md"
+      ],
+      "formula": "count of Agent Passport required fields",
+      "confidence": "high",
+      "assumptions": [
+        "是谁/能做什么/用什么数据/保留多久/谁能接管/如何投诉删除"
+      ]
+    },
+    "agent_passport_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "report/narrative.md"
+      ],
+      "formula": "count of ring passports (资料/推演/反馈/复核各一本)",
+      "confidence": "high",
+      "assumptions": [
+        "四环各持一本；全部标 sandbox_only 不冒充已运行"
+      ]
+    },
+    "ecosystem_merged_proposal_count": {
+      "status": "known",
+      "value": 833,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of submissions/*/*/proposal.md in upstream main tree (GitHub Trees API, 2026-08-15)",
+      "confidence": "high",
+      "assumptions": [
+        "可复现普查读数；随合并增长"
+      ]
+    },
+    "governance_track_sample_share": {
+      "status": "known",
+      "value": 0.675,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "27/40 randomly sampled proposals declaring civic-agent-governance track (seed=42)",
+      "confidence": "medium",
+      "assumptions": [
+        "抽样估计，非全量解析"
+      ]
+    },
+    "compute_governance_parcel_count": {
+      "status": "known",
+      "value": 11,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count of land_use code=0802 parcels with compute_quota_policy",
+      "confidence": "high",
+      "assumptions": [
+        "分级配额+绿电优先制度，数值待 G4 实测回填，不捏造"
+      ]
+    },
+    "energy_audit_field_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count of compute/energy governance fields (quota/audit/green priority)",
+      "confidence": "high",
+      "assumptions": [
+        "制度字段数，非能耗数值"
+      ]
+    },
+    "blueway_corridor_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of blueway corridors (小月河/清河)",
+      "confidence": "medium",
+      "assumptions": [
+        "规划概念层蓝廊，边界待官方水系蓝线确认"
+      ]
+    },
+    "sponge_policy_parcel_count": {
+      "status": "known",
+      "value": 11,
+      "unit": "count",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "count of green parcels with sponge_policy",
+      "confidence": "high",
+      "assumptions": [
+        "制度字段，渗透率数值待 G4 实测"
+      ]
+    },
+    "acoustic_zone_type_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count of acoustic zone types (low_noise/activity_allowed/buffered)",
+      "confidence": "high",
+      "assumptions": [
+        "分贝限值待 G4 实测与标准确认"
+      ]
+    },
+    "dark_friendly_lighting_parcel_count": {
+      "status": "known",
+      "value": 40,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count of parcels with night_light_policy=dark_friendly",
+      "confidence": "high",
+      "assumptions": [
+        "截光+暖色温制度，非亮度数值"
+      ]
+    },
+    "child_friendly_route_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count of stitch corridors with child_friendly_route",
+      "confidence": "high",
+      "assumptions": [
+        "通学动线与转辙廊复合，不新增占地"
+      ]
+    },
+    "all_age_node_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum of all_age_nodes across 5 corridors",
+      "confidence": "high",
+      "assumptions": [
+        "每廊 2 处概念节点，选址待公众参与确认"
+      ]
+    },
+    "regional_synergy_loop_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of regional synergy loops (海淀原创/怀柔装置/亦庄转化/区域放大)",
+      "confidence": "medium",
+      "assumptions": [
+        "区域分工为概念建议，机制待市级统筹确认"
+      ]
+    },
+    "zhongzhiyuan_workshop_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of zhongzhiyuan workshops (算力/研发/孵化/开放测试)",
+      "confidence": "high",
+      "assumptions": [
+        "四坊与 G0-G4 门闸一一对应，深化为概念分区"
+      ]
+    },
+    "ai_origin_hall_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of AI origin halls (纪元/共创/起居)",
+      "confidence": "high",
+      "assumptions": [
+        "三厅分别承接场景 07/11/10"
+      ]
+    },
+    "dazhongsi_market_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of dazhongsi markets (晨/日/夜)",
+      "confidence": "high",
+      "assumptions": [
+        "三市与四时段基线对应；夜市须满足暗夜友好照明制度"
+      ]
+    },
+    "developer_walkway_length_km": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "遗址公园全线长度(公开数据,km)",
+      "confidence": "medium",
+      "assumptions": [
+        "公开报道口径，非测绘值；散步道复合于绿廊不新增占地"
+      ]
+    },
+    "pilgrimage_route_color_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of pilgrimage route colors (治理/文化/生态)",
+      "confidence": "high",
+      "assumptions": [
+        "三色动线与品牌色系一致"
+      ]
+    },
+    "annual_event_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of seasonal events (春夏秋冬)",
+      "confidence": "high",
+      "assumptions": [
+        "概念日历，具体档期待运营方确认"
+      ]
+    },
+    "risk_dimension_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of risk matrix dimensions",
+      "confidence": "high",
+      "assumptions": [
+        "与 risk.json schema 八个固定维度一一对应"
+      ]
+    },
+    "photo_register_field_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "report/narrative.md"
+      ],
+      "formula": "count of photo register required fields",
+      "confidence": "high",
+      "assumptions": [
+        "登记制度，不下载图片，规避许可风险"
+      ]
+    },
+    "falsifiable_clause_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of falsifiable clauses (all 13 scenarios)",
+      "confidence": "high",
+      "assumptions": [
+        "13 张场景卡全部覆盖；阈值待 G4 标定"
+      ]
+    },
+    "visual_interactive_gate_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/index.html"
+      ],
+      "formula": "count of expandable gate details in visual",
+      "confidence": "high",
+      "assumptions": [
+        "纯 HTML details/summary 零脚本,满足离线约束"
+      ]
+    },
+    "stitch_corridor_map_annotation_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "assets/figures/mobility-bluegreen.png"
+      ],
+      "formula": "count of annotated stitch corridors in mobility figure",
+      "confidence": "high",
+      "assumptions": [
+        "图上逐廊标注名,转辙廊为最重视觉元素"
+      ]
+    },
+    "land_use_compatibility_rule_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of temporary-use compatibility rules (4 compatible + 2 conditional + 2 incompatible)",
+      "confidence": "high",
+      "assumptions": [
+        "留白验证区配套；不改法定用地性质"
+      ]
+    },
+    "metric_dictionary_entry_count": {
+      "status": "known",
+      "value": 67,
+      "unit": "count",
+      "source_files": [
+        "report/narrative.md",
+        "metrics.json"
+      ],
+      "formula": "count of dictionary rows = count of metrics.json entries",
+      "confidence": "high",
+      "assumptions": [
+        "字典由资料环自动生成，与 metrics.json 同步"
+      ]
+    },
+    "changelog_entry_count": {
+      "status": "known",
+      "value": 58,
+      "unit": "count",
+      "source_files": [
+        "changelog.md"
+      ],
+      "formula": "count of changelog version headings",
+      "confidence": "high",
+      "assumptions": [
+        "v2.0-v59.0 全量版本史"
+      ]
+    },
+    "reader_guide_step_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "report/narrative.md"
+      ],
+      "formula": "count of reader-guide steps (母题/治理/制品/空间/态度)",
+      "confidence": "high",
+      "assumptions": [
+        "面向评审与公众的快速导读"
+      ]
+    },
+    "iteration_count": {
+      "status": "known",
+      "value": 60,
+      "unit": "count",
+      "source_files": [
+        "changelog.md",
+        "proposal.md"
+      ],
+      "formula": "count of version iterations (v1 scaffold + v2-v60 一版一主题)",
+      "confidence": "high",
+      "assumptions": [
+        "60 版全程 changelog 留痕"
+      ]
+    },
+    "gate_deep_dive_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "report/narrative.md"
+      ],
+      "formula": "count of gate deep-dive cards completed",
+      "confidence": "high",
+      "assumptions": [
+        "G0-G6 逐道深化;当前完成 7/7"
+      ]
+    },
+    "persona_deep_dive_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of persona deep-dive cards",
+      "confidence": "high",
+      "assumptions": [
+        "七类画像逐类深化;当前 7/7"
+      ]
+    },
+    "corridor_deep_dive_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/roads.geojson"
+      ],
+      "formula": "count of corridor deep-dive cards",
+      "confidence": "high",
+      "assumptions": [
+        "五条转辙廊逐条深化;当前 5/5;geojson 同步挂属性"
+      ]
+    },
+    "receipt_optional_field_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "report/narrative.md"
+      ],
+      "formula": "count of receipt v2 optional fields",
+      "confidence": "high",
+      "assumptions": [
+        "影响相关方/缓解措施/申诉时限"
+      ]
+    },
+    "rollback_path_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "report/narrative.md"
+      ],
+      "formula": "count of rollback_map entries",
+      "confidence": "high",
+      "assumptions": [
+        "G0-G6 固化回滚去向"
+      ]
+    },
+    "compatibility_category_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "report/narrative.md"
+      ],
+      "formula": "count of compatibility categories",
+      "confidence": "high",
+      "assumptions": [
+        "兼容/有条件/不兼容三组"
+      ]
+    },
+    "passport_optional_field_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "report/narrative.md"
+      ],
+      "formula": "count of passport v2 optional fields",
+      "confidence": "high",
+      "assumptions": [
+        "更新频率/吊销条件"
+      ]
+    },
+    "visual_deep_dive_row_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/index.html"
+      ],
+      "formula": "count of deep-dive metric rows added to visual table",
+      "confidence": "high",
+      "assumptions": [
+        "深化指标进可视化"
+      ]
+    },
+    "visual_rollback_row_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/index.html"
+      ],
+      "formula": "count of rollback rows shown in visual gate section",
+      "confidence": "high",
+      "assumptions": [
+        "回滚映射可视化"
+      ]
+    },
+    "visual_scenario_clause_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "visual/index.html"
+      ],
+      "formula": "count of scenario cards with clause hint in visual",
+      "confidence": "high",
+      "assumptions": [
+        "场景卡条款可视化"
+      ]
+    },
+    "visual_source_row_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/index.html"
+      ],
+      "formula": "count of source rows in visual sources table",
+      "confidence": "high",
+      "assumptions": [
+        "含 3 公开数据源"
+      ]
     }
   }
 }

@@ -6,10 +6,10 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "以城市完整度作为百年京张AI创新带的空间审查方法：居、学、护、行、绿、工、交七项普通城市能力先形成长期可用的日常底盘，AI作为可选增强层进入科研、社区、交通和商业。总体形成一条公共绿脊、六段完整度片区、六条东西缝合联系与三处重点区；爽粉堡垒仅作为AI原点社区中的社区命名彩蛋。"
+summary: "以城市完整度作为百年京张AI创新带的空间审查方法：v0.15.s 将普通城市视为主机、AI视为可逆 sidecar；三条不绕行主路保持不变，测试、照护和到达增强只附着于九个既有建筑/公共空间宿主，不创造AI专用用地。"
 tracks: ["ai-origin-community", "ai-public-services", "ai-traffic-walkability"]
 scenarios: ["ai-traffic-walkability", "robot-delivery-low-speed", "enterprise-service-copilot", "ai-cultural-guide", "ai-health-service-navigation"]
-iteration: "v0.8"
+iteration: "v0.16"
 ---
 
 # 京张城市完整度 / JING-ZHANG CITY COMPLETENESS
@@ -19,6 +19,29 @@ iteration: "v0.8"
 > AI 可以增加城市能力，但不能替代住房、学校、照护、公共交通、绿地、工作空间和无需账号即可进入的公共生活。
 
 本方案为开放征集阶段的概念性城市设计。当前 `SITE_BOUNDARY` 与三处 `KEY_AREA` 采用仓库维护的 provisional rough geometry，仅用于方案生成、拓扑自检、相对关系、图面表达与包内复算，不构成法定红线、地块、权属、道路红线、控规或工程实施结论。[source:BOUNDARY-SOURCE] [source:ALLOWED-DESIGN-SPACE]
+
+
+<!-- V016-CORE-START -->
+## v0.16.s 核心判断｜CLEAN EXIT CITY / 可退出的 AI 城市
+
+**AI 不只要能关闭，还必须能被城市完整地撤走。** v0.15.s 已经证明“普通城市是主机，AI 只能侧挂”；v0.16.s 把“可逆”从一句原则升级为空间生命周期：**BASE CITY → ATTACH → OPERATE → CLEAN EXIT**。[metric:sidecar_lifecycle_stage_count] [metric:clean_exit_host_count]
+
+AI 进入城市时必须同时回答两个问题：它附着在哪里，以及拆掉以后这里恢复成什么普通城市用途。三条 `ROAD-009 / 010 / 011` 在四个生命周期阶段都保持相同 ordinary-city route；变化只发生在九个既有 host 的侧挂层。[metric:clean_exit_restore_use_coverage_ratio] [metric:ai_off_route_preservation_ratio]
+
+| 重点区 | BASE CITY | ATTACH / OPERATE | CLEAN EXIT 后恢复 | 不变的公共承诺 |
+| --- | --- | --- | --- | --- |
+| 众智园 | 研发首层、吃饭休息、绿脊与开放交流 | `TEST POCKET` 只占侧院/服务边，承担受控测试与临时接口 | 测试撤出后回到普通院落、工作休息与公共交流，不迁移 `ROAD-009` | **TEST WITHOUT BLOCKING** |
+| AI 原点 | 住宅、人工帮助、共学、公共首层与社区客厅 | `CARE PORCH` 只增加自愿导航、匹配与照护提示 | 数字层撤出后人工服务、公共首层和社区生活继续成立，不迁移 `ROAD-010` | **CARE WITHOUT ACCOUNT** |
+| 大钟寺 | 固定导视、人工问询、普通等候/商业与京张公共界面 | `ARRIVAL SIDECAR` 只增加动态翻译、信息与客流辅助 | 动态层撤出后固定导视和人工服务继续成立，不迁移 `ROAD-011` | **ARRIVE WITHOUT APP** |
+
+九个 sidecar host 都新增 `ordinary_restore_use`、`clean_exit_mode` 与 `field_check_required`；三条 route 新增 `clean_exit_route_preserved=true`。这些都是关系与生命周期语义，不改变建筑、公共空间或道路几何，也不创造第八类 AI 用地。[metric:new_ai_land_use_code_count]
+
+**CLEAN EXIT 不是“AI 关机”。** 关机只证明软件停止；clean exit 还要求临时设备、接口、标识与运营依赖能够撤出，宿主空间重新成为普通城市，并保留人工服务、固定导视、日常路径与公共使用权。真实拆除工艺、消防、市政、产权和设施处置仍须项目阶段确认，本案不虚构工程参数。
+
+大钟寺继续坚持 **REAL LEVEL DATA REQUIRED**：真实站口、竖向高程、桥隧、客流能力、产权与运营主体未确认前，不把 CLEAN EXIT 画成虚构工程线位。[data:geometry/key_areas.geojson#PROV-KEY-003]
+
+![三处重点区从普通城市、AI侧挂到完整退出：主路径与普通城市用途保持连续](assets/figures/key-areas.png)
+<!-- V016-CORE-END -->
 
 ## 设计依据与资料清单
 
@@ -86,11 +109,11 @@ v0.5 将任务书规定的结构从文字登记升级为显性设计闭环：**�
 
 ## 重点区域详细设计
 
-**众智园：从研发园到完整创新校园。** 科研、中试、孵化和企业服务仍是核心，但公共绿脊、横向慢行、吃饭休息、社区接口、公共交流场和受控测试空间必须同步存在。具身智能测试只在明确边界、可关闭、可审计环境中运行，普通公共通道不成为默认试验场。
+**众智园：完整创新校园 + TEST POCKET / 测试侧院。** 科研、中试、孵化和企业服务仍是核心，但普通工作、吃饭休息、公共绿脊和开放交流必须先形成同一条可读的日常链。`ROAD-009` 是不依赖 AI 的普通主路；`BLDG-012`、`BLDG-013` 与 `PUBLIC-006` 作为 sidecar 宿主，只承担可关闭的测试、临时设备和可替换服务接口。真实测试边界、净距、速度、急停、许可与安全性能均须现场调查和专业审查后确定，本案不预设工程数值。[data:geometry/roads.geojson#ROAD-009] [data:geometry/buildings.geojson#BLDG-012] [data:geometry/public_space.geojson#PUBLIC-006]
 
-**AI 原点社区：长期社区与近校创新并存。** 住宅不是“人才宿舍”的附属品。长期居住、托育/教育、社区照护、共享工作、普通商业、绿地和公共客厅构成短距离日常链。青年研究者可以换项目，家庭会出现儿童与老人，服务劳动者也应共享同一公共网络。一个居住片区采用 **“爽粉堡垒社区 / Shuangfen Fortress Community”** 的名字，但它只是命名彩蛋：不做城堡造型、不做封闭围墙、不因名字改变道路、密度、建筑语言或功能。[data:geometry/buildings.geojson#BLDG-007]
+**AI 原点社区：完整长期社区 + CARE PORCH / 照护门廊。** 住宅、共学、人工帮助、普通商业、绿地和社区客厅构成无需账号即可完成的日常链。`ROAD-010` 保持为 ordinary-city route；`BLDG-007`、`BLDG-009` 与 `PUBLIC-004` 的公共首层/公共界面承载自愿导航、服务匹配和照护提示。真实无障碍尺寸、服务半径、人员配置与响应时间必须由现场和运营资料确认；本案只锁定“拒绝登录或数据授权时，同一实体路径仍能到达人和服务”。[data:geometry/roads.geojson#ROAD-010] [data:geometry/buildings.geojson#BLDG-007] [data:geometry/public_space.geojson#PUBLIC-004]
 
-**大钟寺：站城、商业与普通城市生活共存。** 南段强化交通换乘、日常商业、文化与公共到达，但 provisional key-area rectangle 只承担任务定位，不能被当作真实站城工程边界。三区的差异化设计由功能缺口决定，而不是换三个视觉主题。[depth:three_key_area_detailed_design]
+**大钟寺：完整站城到达 + ARRIVAL SIDECAR / 到达侧带。** 普通到达、固定导视、人工问询、等候/商业和京张公共界面构成主机；动态翻译、信息提示和客流辅助只从侧边增强 `ROAD-011`。`BLDG-001`、`BLDG-002` 与 `PUBLIC-001` 是概念级宿主关系。由于 `PROV-KEY-003` 存在已知绝对位置风险，真实站口、高差、桥隧、竖向交通、通廊净宽、客流能力和权属运营全部标记为 **REAL LEVEL DATA REQUIRED**，不以概念图代替工程证据。[data:geometry/roads.geojson#ROAD-011] [data:geometry/public_space.geojson#PUBLIC-001] [data:geometry/key_areas.geojson#PROV-KEY-003]；补充证据：[depth:three_key_area_detailed_design]
 
 三处重点区均配置可进入的公共交流空间：众智园开放交流场、AI 原点社区公共客厅与南段城市公共界面，首先解决日常使用，再承担传播功能。[data:geometry/public_space.geojson#PUBLIC-004] [metric:public_space_count]
 
@@ -134,27 +157,40 @@ v0.7 不再把“评审索引”当作第一视觉，而从三类真实日常路
 
 ### AI 如何改变城市形态，而不是只增加屏幕
 
-AI 对城市形态的影响被压缩为六类可逆空间原型：测试口袋、无障碍求助节点、连续站城到达界面、可替换小型服务节点、人优先的公共首层，以及“观察—小范围原型—公共/专业复核—合并或回退”的可回退空间版本链。这回答的是 AI 如何改变空间组织和规划方法，而不是如何给既有空间附加更多数字界面。
+AI 对城市形态的影响仍由六类可逆空间原型承担：测试口袋、无障碍/人工求助节点、连续站城到达界面、可替换服务节点、人优先公共首层，以及可回退空间版本链。v0.15.s 进一步把前五类归并成 TEST POCKET、CARE PORCH、ARRIVAL SIDECAR 三种可读接口，并把宿主 feature 写进 geometry；第六类则成为三个 sidecar 共用的物理版本管理方法。这样 AI 的空间增量可以被定位、关闭、拆除和复核，而普通城市主机不必重画。[metric:ai_sidecar_type_count] [metric:ai_sidecar_host_feature_count]
 
 ![AI 如何改变城市形态：六类可逆物理接口](assets/figures/ai-urban-form-change.svg)
 
-<!-- V08-PROTOTYPE-START -->
-### v0.8｜把六类接口收束成一个 1:1 城市原型：C7 CIVIC STATION
+<!-- V09-REALITY-START -->
+### v0.10｜DESIGN-FIRST + REALITY：现实资料只在改变空间时出现
 
-v0.8 是从 v0.7 exact head 分出的 **prototype-first 并行候选**。它不再增加新的评分索引，而把已有六类可逆接口收束成一个评委可在一页内读懂、专业团队可在未来按真实条件深化的 1:1 公共空间原型：**C7 CIVIC STATION / 城市完整度站**。它不是一座“AI 亭子”，而是一段普通城市先完整、AI 再进入的空间序列。[metric:flagship_physical_prototype_count]
+v0.10 以获得 86 分的 v0.7 **design-first** 结构为底座，只吸收会改变空间判断的现实锚点；主叙事仍从人的日常任务开始，而不是从证据目录或评分结构开始。它把“来源更多”改成更窄的规则：**一条现实资料只有在改变断面、界面、节点或 unknown 的表达方式时，才进入设计主叙事。** 本轮登记 3 组官方公开现实锚点，并形成 5 条可检查的设计响应。[metric:official_constraint_anchor_count] [metric:design_response_rule_count]
 
-原型固定为五段：**①普通城市底座**（遮阴、坐凳、连续无障碍、实体双语导视、普通通行）→ **②人工服务层**（无账号窗口、纸质/电话入口、人工接手）→ **③可选 AI 层**（多语问答、路径辅助、服务匹配）→ **④受控测试口袋**（与公共通行物理分离，可封闭、可撤除）→ **⑤ AI-OFF 恢复状态**（设备停机后仍可通行、求助、停留并获得基本服务）。三种运行状态为 DAILY / CONTROLLED TEST / AI-OFF；任何测试不得以牺牲普通通行、无障碍或基本公共服务为代价。[metric:civic_station_operating_state_count]
+![现实约束如何改变空间设计，而不是变成参考文献堆](assets/figures/reality-constraint-design-response.svg)
 
-![C7 CIVIC STATION：一个可关闭、可恢复的 1:1 城市原型](assets/figures/c7-civic-station-prototype.svg)
+**第一条是知春路。** 海淀规自部门公开的控规草案采信通告明确，该铁路节点处知春路属于下穿段、不具备平交条件，并以分离式立交思路预留联通条件。[source:HD00-1601-DRAFT-RESPONSE-V09] 因此本案不再把六条东西缝合都画成同一种“地面横穿”：知春路改成**竖向连续性待解节点**，后续必须核实地面步行连续、上下层关系、无障碍和工程条件；当前不画桥隧线位、不声称工程可行。
 
-同一原型在三区采用不同嵌入方式：众智园侧重“研发日常 → 受控测试”，测试口袋必须与服务劳动者和访客的普通路径分离；AI 原点侧重“无手机/照护日常 → 人工服务 → 可选 AI”，拒绝账号不降低基本服务；大钟寺侧重“站城到达 → 实体双语导视 → 人工换乘 → 可选动态信息”，动态系统失效后回到固定路径与人工服务。固定 `key-areas.png` 因此改为直接展示同一原型在三种城市织体中的差异化落位。
+**第二条是京张绿廊界面。** 蓝景丽家相关官方规划综合实施方案采信信息要求其商业商务规划与东侧京张铁路绿廊衔接并提升空间品质。[source:HD-LANJINGLIJIA-INTEGRATED-RESPONSE-V09] 本案据此把绿廊侧的优先级写得更硬：连续步行、可停留公共界面和人优先首层在前，AI 设备、物流与可替换服务模块不得切断公共通行。该个案不被外推为本案地块条件。
 
-### v0.8｜15 个待测槽位：不填现场数值，先把未来验证工作定义清楚
+**第三条是现实强度标尺。** 三份公开《建设项目规划条件》覆盖 7 个地块，公开 FAR 参照为 2.20–5.00、建筑限高参照为 24–80m，部分地块另有密度与绿地率条件。[source:HD-PLOT-CONDITIONS-REFERENCE-V09] 这些数值只回答“现实里已经出现过什么量级”，绝不回答“本案应该批多少”。因此 `approved_floor_area_ratio`、`approved_building_height_m` 等继续保持 unknown，概念建筑也不套用任何相邻样本。[metric:reference_plot_condition_count]
 
-为避免“以后再测”成为空话，三区各预登记五类 observation slot：**到达连续性、无账号/人工等价、无障碍与停留、测试边界、停机恢复与维护**，共 15 个稳定 `observation_id`。[metric:preregistered_observation_slot_count] 当前全部为 `not_measured`，坐标、样本量、阈值、现场读数、许可和责任主体均保持待真实踏勘/专业确认；这是一份现场工作包，不是现场证据。详见 `visual/assets/field-observation-register.json`。
+五条设计响应完整记录于 `visual/assets/reality-constraint-register.json`。本轮固定 `mobility-bluegreen.png` 重建为不同类型的现实接口：普通缝合、下穿节点竖向连续性、绿廊人优先界面、站城到达与 official-data 重算触发器，不再用同一种蓝色虚线代表所有问题。
+<!-- V09-REALITY-END -->
 
-每个槽位只回答四件事：未来要观察什么、由谁确认、什么情况必须停止解释、AI 退出后普通城市功能如何验收。任何未测字段都不得被图纸或指标自动补成“达标”。
-<!-- V08-PROTOTYPE-END -->
+<!-- V016-LIFECYCLE-START -->
+### v0.16.s｜四步空间生命周期：BASE CITY → ATTACH → OPERATE → CLEAN EXIT
+
+这四步不是新的治理状态机，而是每一个 sidecar 都必须通过的**空间交接顺序**。`BASE CITY` 先确认普通城市可独立工作；`ATTACH` 只允许侧向、可识别、可拆除的新增层；`OPERATE` 要保留人工接管和普通路径；`CLEAN EXIT` 则必须把宿主交还给普通用途，并留下可复核的退出记录。[metric:sidecar_lifecycle_stage_count]
+
+| 生命周期 | 空间问题 | 众智园 | AI 原点 | 大钟寺 |
+| --- | --- | --- | --- | --- |
+| BASE CITY | 没有 AI 时这里是什么？ | 普通研发/工作院落 + 公共绿脊 | 住宅 + 人工服务 + 社区公共首层 | 固定导视 + 人工帮助 + 等候/商业 |
+| ATTACH | AI 从哪里进入且不占主路？ | 测试侧院 / 服务边 | 公共首层 / 照护门廊 | 到达侧带 / 信息界面 |
+| OPERATE | 运行时什么不能被 AI 接管？ | `ROAD-009` 与普通工作/休息链 | `ROAD-010`、人工帮助与无账号入口 | `ROAD-011`、固定导视与人工问询 |
+| CLEAN EXIT | 拆除后如何恢复普通城市？ | 撤设备与临时接口，恢复院落/公共交流 | 撤数字接口，保留人工服务和公共首层 | 撤动态层，保留固定导视、人工帮助与普通等候 |
+
+每个 host 的 `ordinary_restore_use` 都是定性空间用途，不声称现场已具备或已完成改造；每次真实 attach / clean exit 前后都需要现场核验。这样，“可逆”不再靠未来承诺，而是在设计时就预留了退出后的城市状态。[metric:clean_exit_restore_use_coverage_ratio]
+<!-- V016-LIFECYCLE-END -->
 
 ## 用地、建筑规模与拆改留方案
 

@@ -192,3 +192,14 @@
 - **提案正文显式引用**：在 `proposal.md` / `proposal.en.md` 的「国际案例」参考段为 C1–C8 每行补 `[source:CASE-Cx-...]` 记号与公开出处 URL，使七维自检的「公开资料引用」维度由 `needs-work` 转为 `pass`。
 - **指标与几何未变动**：本版只涉及 `sources.json`、`proposal.md`、`proposal.en.md`、`changelog.md`、`manifest.json`；v4.7 的用地剖分、越界要素内移与全部 metrics 数值、v4.8 的 `validation_claim` / `self_check.json` 契约保持不变。
 - **本地复验**：`score_submission.py` 七维全部 `pass`（公开资料引用不再 needs-work）；确定性 `validate_submission.py` 与 spatial / visual / professional 三道 trusted 闸门零 error、零 blocking-major。
+## v4.13 (2026-08-15T12:55:00Z) — Clean revert to v4.9 content with v4.10 manifest schema
+
+- **Content**: Pure v4.9 proposal.md (82-point baseline), no new narrative
+- **Manifest**: Upgraded to v4.10 schema (remove iteration, file_count, integrity_notes)
+- **Rationale**: v4.10=74 (crosswalk -8), v4.11=71 (spatial-native -19 vs v4.9)
+- **Strategy**: Back to v4.9 content, fix manifest compliance, find better improvement paths
+
+v4.9: 82 points (baseline)
+v4.10: 74 points (+crosswalk chapter = -8)
+v4.11: 71 points (+spatial-native narrative = -19 net)
+

@@ -4,7 +4,7 @@ author_github: "userInner"
 language: "en"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
-iteration: "v8.0"
+iteration: "v9.0"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A human-directed AI urban corridor where public memory accumulates, personal data can expire, and the benefits of innovation are shared."
@@ -14,15 +14,15 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 # DOUBLE MEMORY JINGZHANG
 
-> **v8.0 thesis:** Evidence must become a spatial constraint that can fail. This edition develops the 60 × 14 m minimum block into a pre-survey technical package: five coordinated drawings, ten desktop checks and two field-release tests are registered separately. Desktop logic passes 10/10; field performance remains 0/2 not run, so the block stays at `HOLD` and no drawing is presented as measured or built evidence.
+> **v9.0 thesis:** Good civic AI must prove not only that it can run when complete, but that it refuses release when evidence is missing or operations fail. This edition redraws the spine, three stations, two wings, nine cross-stitches and three proof blocks as one urban system, then adds the Double-Memory Fault-Injection Protocol: 12 complete contracts earn field-review eligibility only, 96 single-field omissions are blocked, and 12 operational faults fall back to ordinary service and `HOLD`. The 120/120 result is synthetic negative testing; field performance remains 0/2 not run.
 
-| Review dimension | Material v8.0 advance | Verification entry |
+| Review dimension | Material v9.0 advance | Verification entry |
 | --- | --- | --- |
 | Alignment and originality | The Proof Mile connects the public-memory spine, daily routes, passports, and implementation gates into one legible method | `proof-mile-spatial-atlas.json` |
-| AI-planning innovation | AI becomes a civic service constrained by D0–D4 data classes, deletion receipts, physical stops, and independent review | `forgetfulness-budget.json`; offline audit |
+| AI-planning innovation | An eight-field release contract and twelve fault injections block AI whenever scope, operator, ordinary service, minimum data, visible choice, human stop, evidence, or reinstatement is missing | `double-memory-fault-injection.json`; offline audit |
 | Feasibility | P01 plan, S01 section, D01 detail, O01 operations and T01 test form an auditable package; dimensions, cost and reinstatement are recomputed offline | `proof-block-technical-spec.json`; technical audit |
 | Public interest | A 4.0 m no-AI route remains open with at least 1.8 m accessible clear width; ordinary service needs no account and never crosses the test court | P01, S01 and T01 |
-| Risk and expression | Desktop checks 10/10 and field tests 0/2 are displayed separately; any failed field rejection line keeps the block at `HOLD` | Board 01; metrics-evidence figure |
+| Risk and expression | 120/120 synthetic negative tests and 0/2 field performance are separated; the masterplan, three mini-plans, nine stitches and four-zone section tell one spatial story | Board 01; five required figures |
 | International communication and long-term operation | The 24-Hour Civic Innovation Line sustains operation while three proof blocks govern incremental delivery and release | `24h-public-innovation-line.json`; Board 09 |
 
 ![Dual-Memory corridor vision: public-memory spine, blue-green systems, railway heritage and continuous civic life (AI-generated concept experience, not existing-condition or approval evidence)](assets/media/cover-v6-vision.webp)
@@ -113,13 +113,17 @@ One legible field language unifies the gradients: white dots mean free passage, 
 
 ![Three-zone consent section-perspective: no-AI passage, anonymous assistance and controlled testing retain staffed control and a continuous bypass](assets/renders/05-consent-section-perspective-v2.png)
 
-v8.0 turns the abstract gradient into a 60 m × 14 m prototype envelope that can be recalibrated on site: a 4.0 m continuous no-AI walk, 2.5 m anonymous-assist strip, 5.0 m controlled test court, and 2.5 m planted safety buffer. These are functional tests rather than parcel controls; accessible clear width must never fall below 1.8 m. Sensors remain visible, the edge cabinet can be disconnected, the court has a physical emergency stop and staffed controller, and the public bypass never crosses the test area. Full construction, responsibility, data, and stop conditions are in `visual/assets/memory-boundary-passports.json`. [depth:traffic_rail_slow_parking]
+v9.0 turns the abstract gradient into a 60 m × 14 m prototype envelope that can be recalibrated on site: a 4.0 m continuous no-AI walk, 2.5 m anonymous-assist strip, 5.0 m controlled test court, and 2.5 m planted safety buffer. These are functional tests rather than parcel controls; accessible clear width must never fall below 1.8 m. Sensors remain visible, the edge cabinet can be disconnected, the court has a physical emergency stop and staffed controller, and the public bypass never crosses the test area. Full construction, responsibility, data, and stop conditions are in `visual/assets/memory-boundary-passports.json`. [depth:traffic_rail_slow_parking]
 
-### v8 fail-able technical package
+### v9 release compiler and fault injection
 
 The minimum block is not a rendering but five drawings that must reconcile. P01 fixes the 14.0 m total and four-zone allocation. S01 keeps the ordinary route continuously open. D01 fixes a threshold no higher than 6 mm, crossfall no greater than 2%, head clearance of at least 2.2 m, a wheelchair turning circle of at least 1.5 m, and tactile warning at least 0.6 m deep. O01 fixes a human-takeover target within 10 seconds, local isolation within 120 seconds, and removal of the digital kit within 48 hours. T01 records every release and rejection condition.
 
 The technical audit recomputes a 14.0 m total, a 4.0 m ordinary route, emergency-stop design reach no greater than 15 m, and reconciliation between CNY 3.5–6.5 million for three blocks and CNY 7.5–13.5 million for the full programme. Ten of ten desktop checks pass. Qualifying field observation and physical stop/takeover timing remain unperformed at 0/2; until both pass, `release_decision` stays `HOLD`. The auditable specification and calculator are `visual/assets/proof-block-technical-spec.json` and `visual/assets/run-proof-block-technical-audit.js`. [metric:technical_desktop_check_count] [metric:field_performance_test_pass_count]
+
+Version 9 adds one eight-field release contract across all twelve scenarios: bounded scope, accountable operator, an independent ordinary-service equivalent, minimum data and retention, visible notice and choice, human takeover and physical stop, acceptance evidence, and timed rollback and reinstatement. Each scenario runs one complete contract plus eight single-field deletion cases, producing 12 baseline cases and 96 omission cases. Twelve cross-cutting fault cards cover sensor overreach, deletion timeout, account lockout, blocked accessible route, unreachable stop, absent operator, stale heritage source, provisional-boundary drift, complaint-channel failure, model/network outage, crowd conflict, and overdue reinstatement: 120 deterministic tests in total. [metric:synthetic_fault_test_count]
+
+The audit returns 120/120 `PASS`: complete contracts are not falsely rejected, every omission is correctly blocked, and every fault invokes ordinary service or local isolation while keeping `HOLD`. This is not safety certification, field performance, public consent or implementation permission. Data and replay entry points are `visual/assets/double-memory-fault-injection.json` and `visual/assets/run-double-memory-fault-injection.js`. [metric:omission_case_block_count] [metric:fault_safe_fallback_count]
 
 ### Memory Boundary Passports and the forgetfulness budget
 
@@ -155,7 +159,7 @@ All three areas follow retain, light retrofit, reversible trial, review, then ex
 
 ### Three Dual-Memory proof blocks: from vision to delivery unit
 
-v8.0 does not enlarge the three areas into unverified megaprojects. It first delivers one minimum block in each place. Zhongzhiyuan’s Stop Garden uses the 60 m × 14 m Consent Section as its envelope, retaining a 4 m no-AI route beside a bounded low-speed test court. AI Origin’s Provenance Clinic uses a reversible ground floor and forecourt for paper registration, staffed appeal and revocable provenance records. Dazhongsi’s Account-Free Commons combines step-free arrival, staffed multilingual service and optional on-device assistance at the station-neighbourhood interface.
+v9.0 does not enlarge the three areas into unverified megaprojects. It first delivers one minimum block in each place. Zhongzhiyuan’s Stop Garden uses the 60 m × 14 m Consent Section as its envelope, retaining a 4 m no-AI route beside a bounded low-speed test court. AI Origin’s Provenance Clinic uses a reversible ground floor and forecourt for paper registration, staffed appeal and revocable provenance records. Dazhongsi’s Account-Free Commons combines step-free arrival, staffed multilingual service and optional on-device assistance at the station-neighbourhood interface.
 
 The three blocks carry a concept band of CNY 3.5–6.5 million; shared baseline work, permits, operation, independent review and reinstatement readiness carry CNY 4.0–7.0 million, reconciling with the implementation contract’s CNY 7.5–13.5 million total. Release proceeds through G0 lock facts, G1 ordinary base first, G2 reversible prototype, G3 no more than 20 staffed windows, and G4 retain/revise/retire. Targets are 100% ordinary-route completion, 100% human handoff, at least 80% boundary comprehension and zero unresolved major issues. These are concept costs and pilot targets—not quotations, approved budgets or measured results. Any missing responsibility, permit or baseline keeps the block at `HOLD`. See `visual/assets/three-proof-blocks.json`. [depth:renewal_project_list]
 
@@ -255,9 +259,11 @@ Known metrics come only from submitted geometry or countable schedules: provisio
 
 The four rights have reviewable targets: all public AI systems disclose purpose, operator, data, and complaint route; every essential public service retains a non-AI equivalent; high-risk trials provide physical stop, human handoff, and a public response target; and each trial publishes cost, beneficiaries, saved resources, and reinvestment direction. Without field baselines, these remain targets and measurement protocols rather than achieved performance.
 
-The package includes two dependency-free audits: `node visual/assets/run-memory-passport-audit.js` and `node visual/assets/run-spatial-atlas-audit.js`. Both currently return `PASS`. The first checks passport responsibility, data, ordinary equivalence, stop, and release decisions. The second checks the four-level Proof Mile, three daily routes, account-free ordinary equivalents, not-field-tested state, missing statutory controls, and reversible renewal order. These results prove structural completeness only—not construction, system safety, public acceptance, or permission.
+The package includes three dependency-free audits: the Memory Passport audit, Spatial Atlas audit and Double-Memory Fault-Injection audit. All currently return `PASS`. The first two check responsibility, data, ordinary equivalence, the four-level Proof Mile and missing statutory controls. The third replays 120 synthetic cases and confirms that all 96 omissions block and all 12 faults invoke safe fallback. These results prove reproducible logic and rejection behaviour only—not construction, system safety, public acceptance, or permission.
 
 ## Risk, Copyright, and Compliance
+
+Public-source boundaries, personal privacy, copyright permission, human review, implementation risk and accountable compliance form one release chain. If provenance, reuse authority or the responsible operator cannot be verified, the related spatial claim and AI scenario remain at `HOLD`.
 
 Six stop rules define the hard boundary:
 

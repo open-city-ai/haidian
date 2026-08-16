@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Jing-Zhang Error Disclosure Protocol",
+  "description": "Machine-readable disclosure record for the Specimen Repair Room (T-02). An AI error is a damaged specimen; the repair process is public.",
+  "type": "object",
+  "required": ["protocol", "error_id", "service_id", "description", "impact", "repair_process", "review_conclusion", "disclosure_time"],
+  "properties": {
+    "protocol": { "const": "jingzhang-error-disclosure-v1" },
+    "error_id": { "type": "string", "pattern": "^ERR-[0-9]{4}$" },
+    "service_id": { "type": "string", "pattern": "^SC-[0-9]{2}$|^T-[0-9]{2}$" },
+    "description": { "type": "string", "minLength": 1 },
+    "impact": { "type": "string", "minLength": 1 },
+    "repair_process": { "type": "string", "minLength": 1 },
+    "review_conclusion": { "type": "string", "minLength": 1 },
+    "improvements": { "type": "array", "items": { "type": "string" } },
+    "disclosure_time": { "type": "string", "format": "date-time" },
+    "full_review_deadline": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

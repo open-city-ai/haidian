@@ -1115,6 +1115,54 @@
         "A-SCENARIO-LOCATION-001"
       ],
       "population_filter": "network_role_anchor=true"
+    },
+    "fp01_first_use_delivery_contract_template_count": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "count",
+      "source_files": [
+        "assumptions.json",
+        "geometry/public_space.geojson"
+      ],
+      "confidence": "high",
+      "assumptions": [
+        "A-FLAGSHIP-FP01",
+        "A-OPERATIONS-001"
+      ],
+      "scope_note": "Template-structure evidence only; not proof of execution, procurement, delivery or public benefit.",
+      "formula": "count(distinct FP01 first-use delivery contract template IDs with status=concept_template_unexecuted)"
+    },
+    "fp01_100_day_gate_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json",
+        "geometry/public_space.geojson"
+      ],
+      "confidence": "high",
+      "assumptions": [
+        "A-FLAGSHIP-FP01",
+        "A-OPERATIONS-001"
+      ],
+      "scope_note": "Template-structure evidence only; not proof of execution, procurement, delivery or public benefit.",
+      "formula": "count(required gate IDs D0,D30,D60,D90,D100 present in FP01-CONTRACT-001) / 5"
+    },
+    "fp01_contract_clause_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json",
+        "geometry/public_space.geojson"
+      ],
+      "confidence": "high",
+      "assumptions": [
+        "A-FLAGSHIP-FP01",
+        "A-OPERATIONS-001"
+      ],
+      "scope_note": "Template-structure evidence only; not proof of execution, procurement, delivery or public benefit.",
+      "formula": "count(required clauses C01 through C12 present in FP01-CONTRACT-001) / 12"
     }
   }
 }

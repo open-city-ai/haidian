@@ -7,65 +7,33 @@
   "metrics": {
     "site_area_sqm": {
       "status": "known",
-      "value": 11412825.385554,
+      "value": 11412825.386,
       "unit": "sqm",
       "source_files": [
         "geometry/site_boundary.geojson"
       ],
-      "formula": "polygon_area(SITE-001, EPSG:4548)",
+      "formula": "polygon_area(submitted_site_boundary)",
       "confidence": "medium",
       "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ],
-      "note_zh": "公告约11.4平方公里；此值为 provisional polygon 复算面积"
-    },
-    "land_use_area_sqm": {
-      "status": "known",
-      "value": 11412823.61289,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/land_use.geojson"
-      ],
-      "formula": "sum(area(LAND_USE), EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
+        "Site boundary is provisional (PROV-SITE-001); area is recalculated in EPSG:4548 for discussion only."
       ]
     },
-    "land_use_coverage_ratio": {
+    "building_footprint_area_sqm": {
       "status": "known",
-      "value": 1.0,
-      "unit": "ratio",
-      "source_files": [
-        "geometry/land_use.geojson",
-        "geometry/site_boundary.geojson"
-      ],
-      "formula": "union(LAND_USE) / SITE_BOUNDARY",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "green_space_area_sqm": {
-      "status": "known",
-      "value": 1892654.550428,
+      "value": 481624.937,
       "unit": "sqm",
       "source_files": [
-        "geometry/green_space.geojson"
+        "geometry/buildings.geojson"
       ],
-      "formula": "area(union(GREEN_SPACE), EPSG:4548)",
+      "formula": "sum(polygon_area(building_footprints))",
       "confidence": "medium",
       "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
+        "Footprints are conceptual Open Protocol node envelopes, not cadastral claims."
       ]
     },
     "green_ratio": {
       "status": "known",
-      "value": 0.165836,
+      "value": 0.199641,
       "unit": "ratio",
       "source_files": [
         "geometry/green_space.geojson",
@@ -73,28 +41,11 @@
       ],
       "formula": "green_space_area_sqm / site_area_sqm",
       "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "public_space_area_sqm": {
-      "status": "known",
-      "value": 282564.651211,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/public_space.geojson"
-      ],
-      "formula": "area(union(PUBLIC_SPACE), EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
+      "assumptions": []
     },
     "public_space_ratio": {
       "status": "known",
-      "value": 0.024759,
+      "value": 0.078955,
       "unit": "ratio",
       "source_files": [
         "geometry/public_space.geojson",
@@ -102,363 +53,40 @@
       ],
       "formula": "public_space_area_sqm / site_area_sqm",
       "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
+      "assumptions": []
     },
-    "building_footprint_area_sqm": {
+    "green_space_area_sqm": {
       "status": "known",
-      "value": 142800.267526,
+      "value": 2278462.681,
       "unit": "sqm",
-      "source_files": [
-        "geometry/buildings.geojson"
-      ],
-      "formula": "area(union(BUILDING_FOOTPRINT prototype envelopes), EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ],
-      "note_zh": "仅三处重点区概念原型包络，不代表现状建筑或全域建设量"
-    },
-    "road_centerline_length_m": {
-      "status": "known",
-      "value": 37774.269605,
-      "unit": "m",
-      "source_files": [
-        "geometry/roads.geojson"
-      ],
-      "formula": "sum(length(ROAD_CENTERLINE), EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "road_area_sqm": {
-      "status": "known",
-      "value": 336570.289843,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/roads.geojson"
-      ],
-      "formula": "area(union(buffer(centerline, width_m/2)), EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "road_ratio": {
-      "status": "known",
-      "value": 0.029491,
-      "unit": "ratio",
-      "source_files": [
-        "geometry/roads.geojson",
-        "geometry/site_boundary.geojson"
-      ],
-      "formula": "road_area_sqm / site_area_sqm",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "openline_length_m": {
-      "status": "known",
-      "value": 9081.276605,
-      "unit": "m",
-      "source_files": [
-        "geometry/roads.geojson"
-      ],
-      "formula": "length(ROAD-OPENLINE, EPSG:4548)",
-      "confidence": "low",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ],
-      "note_zh": "示意中线长度，不是遗址公园或道路官方长度"
-    },
-    "phasing_area_sqm": {
-      "status": "known",
-      "value": 11412824.861104,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/phasing.geojson"
-      ],
-      "formula": "sum(area(PHASE), EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "key_detailed_design_area_sqm": {
-      "status": "known",
-      "value": 3692893.005089,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/key_areas.geojson"
-      ],
-      "formula": "sum(area(three provisional KEY_AREA polygons), EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "key_area_count": {
-      "status": "known",
-      "value": 3,
-      "unit": "count",
-      "source_files": [
-        "geometry/key_areas.geojson"
-      ],
-      "formula": "count(KEY_AREA)",
-      "confidence": "high",
-      "assumptions": [
-        "任务书规定三处重点区；几何为 provisional"
-      ]
-    },
-    "land_use_parcel_count": {
-      "status": "known",
-      "value": 36,
-      "unit": "count",
-      "source_files": [
-        "geometry/land_use.geojson"
-      ],
-      "formula": "count(LAND_USE features)",
-      "confidence": "high",
-      "assumptions": [
-        "由本方案拓扑分区生成"
-      ]
-    },
-    "building_prototype_count": {
-      "status": "known",
-      "value": 34,
-      "unit": "count",
-      "source_files": [
-        "geometry/buildings.geojson"
-      ],
-      "formula": "count(BUILDING_FOOTPRINT prototype envelopes)",
-      "confidence": "high",
-      "assumptions": [
-        "概念原型包络数量，不代表现状建筑"
-      ]
-    },
-    "mobility_link_count": {
-      "status": "known",
-      "value": 12,
-      "unit": "count",
-      "source_files": [
-        "geometry/roads.geojson"
-      ],
-      "formula": "count(ROAD_CENTERLINE features)",
-      "confidence": "high",
-      "assumptions": [
-        "概念连接数量，不代表现状或规划道路"
-      ]
-    },
-    "landmark_count": {
-      "status": "known",
-      "value": 5,
-      "unit": "count",
-      "source_files": [
-        "geometry/public_space.geojson",
-        "proposal.md"
-      ],
-      "formula": "count(features with landmark_id)",
-      "confidence": "high",
-      "assumptions": [
-        "任务书最低要求3处；本方案提出5处概念地标"
-      ]
-    },
-    "scenario_count": {
-      "status": "known",
-      "value": 12,
-      "unit": "count",
-      "source_files": [
-        "proposal.md"
-      ],
-      "formula": "count(AI scenario cards)",
-      "confidence": "high",
-      "assumptions": [
-        "方案正文可读场景卡数量"
-      ]
-    },
-    "test_validation_scenario_count": {
-      "status": "known",
-      "value": 4,
-      "unit": "count",
-      "source_files": [
-        "proposal.md"
-      ],
-      "formula": "count(industry test/validation scenario cards)",
-      "confidence": "high",
-      "assumptions": [
-        "任务书最低要求3个；本方案提出4个"
-      ]
-    },
-    "persona_count": {
-      "status": "known",
-      "value": 7,
-      "unit": "count",
-      "source_files": [
-        "proposal.md"
-      ],
-      "formula": "count(user personas)",
-      "confidence": "high",
-      "assumptions": [
-        "方案正文可读画像数量"
-      ]
-    },
-    "global_case_count": {
-      "status": "known",
-      "value": 7,
-      "unit": "count",
-      "source_files": [
-        "proposal.md",
-        "sources.json"
-      ],
-      "formula": "count(global benchmark cases)",
-      "confidence": "high",
-      "assumptions": [
-        "均采用大学、政府或园区运营方一手公开来源"
-      ]
-    },
-    "renewal_project_count": {
-      "status": "known",
-      "value": 12,
-      "unit": "count",
-      "source_files": [
-        "proposal.md",
-        "geometry/phasing.geojson"
-      ],
-      "formula": "count(rows in renewal project list)",
-      "confidence": "high",
-      "assumptions": [
-        "概念项目包，不构成政府建设清单"
-      ]
-    },
-    "annual_program_count": {
-      "status": "known",
-      "value": 8,
-      "unit": "count",
-      "source_files": [
-        "proposal.md"
-      ],
-      "formula": "count(annual operating program families)",
-      "confidence": "high",
-      "assumptions": [
-        "概念活动体系，不构成已确定安排"
-      ]
-    },
-    "axis_segment_count": {
-      "status": "known",
-      "value": 7,
-      "unit": "count",
-      "source_files": [
-        "geometry/public_space.geojson"
-      ],
-      "formula": "count(features with public_space_type=axis_space_segment)",
-      "confidence": "high",
-      "assumptions": [
-        "智轴七段空间序列由本方案生成，为概念分段，段界与口部待官方红线核验"
-      ]
-    },
-    "display_frontage_length_m": {
-      "status": "known",
-      "value": 9354.578781,
-      "unit": "m",
-      "source_files": [
-        "geometry/public_space.geojson"
-      ],
-      "formula": "2 x sum(length(axis segments with display_intensity=high), EPSG:4548)",
-      "confidence": "low",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ],
-      "note_zh": "公共展示层高强度界面的双侧概念长度；展示界面率目标为设计导则建议，非法定指标"
-    },
-    "renzi_motif_count": {
-      "status": "known",
-      "value": 3,
-      "unit": "count",
-      "source_files": [
-        "geometry/public_space.geojson"
-      ],
-      "formula": "count(features with public_space_type=station_form_node)",
-      "confidence": "high",
-      "assumptions": [
-        "三站三形：折返环、人字广场、四向步行缝合；概念节点，非工程平面"
-      ]
-    },
-    "milestone_count": {
-      "status": "known",
-      "value": 9,
-      "unit": "count",
-      "source_files": [
-        "geometry/public_space.geojson"
-      ],
-      "formula": "count(features with public_space_type=suzhou_milestone_marker)",
-      "confidence": "high",
-      "assumptions": [
-        "苏州码子里程语言须完成史料核证并配无障碍替代"
-      ]
-    },
-    "strategic_interface_count": {
-      "status": "known",
-      "value": 3,
-      "unit": "count",
-      "source_files": [
-        "geometry/roads.geojson"
-      ],
-      "formula": "count(ROAD_CENTERLINE features with interface_grade=strategic)",
-      "confidence": "high",
-      "assumptions": [
-        "三个战略缝合接口为概念优先级，不构成道路或轨道工程结论"
-      ]
-    },
-    "severance_crossing_count": {
-      "status": "known",
-      "value": 7,
-      "unit": "count",
-      "source_files": [
-        "proposal.md"
-      ],
-      "formula": "count(severance corridor register rows)",
-      "confidence": "high",
-      "assumptions": [
-        "切割走廊名录取公开常识级道路名称，位置为相对暂定重点区质心的概念投影；等级与口部方式待官方红线核验"
-      ]
-    },
-    "water_interface_count": {
-      "status": "known",
-      "value": 2,
-      "unit": "count",
       "source_files": [
         "geometry/green_space.geojson"
       ],
-      "formula": "count(GREEN_SPACE features with green_type=water_interface_concept)",
-      "confidence": "high",
-      "assumptions": [
-        "清河/小月河官方水系线位未入库，界面带仅为缝合意图"
-      ]
+      "formula": "sum(polygon_area(green_space))",
+      "confidence": "medium",
+      "assumptions": []
     },
-    "intensity_scenario_count": {
+    "public_space_area_sqm": {
       "status": "known",
-      "value": 3,
+      "value": 901102.502,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3.0,
       "unit": "count",
       "source_files": [
-        "proposal.md"
+        "geometry/key_areas.geojson"
       ],
-      "formula": "count(development intensity scenario envelopes)",
+      "formula": "count(key_detailed_design_areas)",
       "confidence": "high",
-      "assumptions": [
-        "情景包络为方法框架，不含容积率、高度、密度等法定数值"
-      ]
+      "assumptions": []
     },
     "floor_area_ratio": {
       "status": "unknown",
@@ -470,19 +98,7 @@
       "formula": "total_floor_area_sqm / official_site_area_sqm",
       "confidence": "unknown",
       "assumptions": [],
-      "reason": "缺官方红线、控规容积率及建设规模条件；不得由 agent 推定"
-    },
-    "total_floor_area_sqm": {
-      "status": "unknown",
-      "value": null,
-      "unit": "sqm",
-      "source_files": [
-        "brief/site-package/ranges/planning_limits.json"
-      ],
-      "formula": "sum(floor_area by official parcel/building data)",
-      "confidence": "unknown",
-      "assumptions": [],
-      "reason": "缺现状建筑、规划建设量、权属及控规条件"
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
     },
     "building_density": {
       "status": "unknown",
@@ -491,10 +107,10 @@
       "source_files": [
         "brief/site-package/ranges/planning_limits.json"
       ],
-      "formula": "official_building_footprint_area / official_buildable_land",
+      "formula": "building_footprint_area_sqm / official_site_area_sqm",
       "confidence": "unknown",
       "assumptions": [],
-      "reason": "概念原型包络不能替代法定建筑密度"
+      "reason": "Official building density controls are missing from planning_limits.json."
     },
     "building_height_m": {
       "status": "unknown",
@@ -503,230 +119,10 @@
       "source_files": [
         "brief/site-package/ranges/planning_limits.json"
       ],
-      "formula": "height under approved controls",
+      "formula": "max(approved_height_controls)",
       "confidence": "unknown",
       "assumptions": [],
-      "reason": "缺航空限高、日照、文保建控、景观视廊和控规高度条件"
-    },
-    "transit_station_coverage_ratio": {
-      "status": "unknown",
-      "value": null,
-      "unit": "ratio",
-      "source_files": [
-        "brief/site-package/ranges/planning_limits.json"
-      ],
-      "formula": "area within 800m walking network of verified entrances / site_area",
-      "confidence": "unknown",
-      "assumptions": [],
-      "reason": "缺官方站点出入口与可步行路网数据"
-    },
-    "existing_daily_footfall": {
-      "status": "unknown",
-      "value": null,
-      "unit": "index",
-      "source_files": [
-        "assumptions.json"
-      ],
-      "formula": "privacy-preserving aggregated count",
-      "confidence": "unknown",
-      "assumptions": [],
-      "reason": "未使用商业热力图、个人轨迹或未经清权的骑手/网约车数据"
-    },
-    "land_use_05_area_sqm": {
-      "status": "known",
-      "value": 2568354.872994,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/land_use.geojson"
-      ],
-      "formula": "sum(area where land_use_code=05, EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "land_use_0701_area_sqm": {
-      "status": "known",
-      "value": 1253104.152022,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/land_use.geojson"
-      ],
-      "formula": "sum(area where land_use_code=0701, EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "land_use_0702_area_sqm": {
-      "status": "known",
-      "value": 1564099.359811,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/land_use.geojson"
-      ],
-      "formula": "sum(area where land_use_code=0702, EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "land_use_0802_area_sqm": {
-      "status": "known",
-      "value": 3474938.705589,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/land_use.geojson"
-      ],
-      "formula": "sum(area where land_use_code=0802, EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "land_use_0803_area_sqm": {
-      "status": "known",
-      "value": 964227.779532,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/land_use.geojson"
-      ],
-      "formula": "sum(area where land_use_code=0803, EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "land_use_0804_area_sqm": {
-      "status": "known",
-      "value": 908602.247243,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/land_use.geojson"
-      ],
-      "formula": "sum(area where land_use_code=0804, EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "land_use_0806_area_sqm": {
-      "status": "known",
-      "value": 317598.153152,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/land_use.geojson"
-      ],
-      "formula": "sum(area where land_use_code=0806, EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "land_use_1401_area_sqm": {
-      "status": "known",
-      "value": 361900.115209,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/land_use.geojson"
-      ],
-      "formula": "sum(area where land_use_code=1401, EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "phase_1_area_sqm": {
-      "status": "known",
-      "value": 4229811.020446,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/phasing.geojson"
-      ],
-      "formula": "area(PHASE-001, EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "phase_2_area_sqm": {
-      "status": "known",
-      "value": 3856939.259858,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/phasing.geojson"
-      ],
-      "formula": "area(PHASE-002, EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "phase_3_area_sqm": {
-      "status": "known",
-      "value": 3326074.5808,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/phasing.geojson"
-      ],
-      "formula": "area(PHASE-003, EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "key_area_1_calculated_sqm": {
-      "status": "known",
-      "value": 1929201.877427,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/key_areas.geojson"
-      ],
-      "formula": "area(PROV-KEY-001, EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "key_area_2_calculated_sqm": {
-      "status": "known",
-      "value": 1043236.908744,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/key_areas.geojson"
-      ],
-      "formula": "area(PROV-KEY-002, EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
-    },
-    "key_area_3_calculated_sqm": {
-      "status": "known",
-      "value": 720454.218919,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/key_areas.geojson"
-      ],
-      "formula": "area(PROV-KEY-003, EPSG:4548)",
-      "confidence": "medium",
-      "assumptions": [
-        "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
-        "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
+      "reason": "Approved height controls are not published in the public site package."
     }
   }
 }

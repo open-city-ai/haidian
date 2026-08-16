@@ -1,0 +1,281 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11411445.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional，面积仅供方向性参考；官方边界发布后需重算。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.246061,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "绿地含京张遗址公园绿轴、清河/小月河防护绿地与邻里公园；provisional 边界下为方向性。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.086552,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 419486.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "建筑基底为设计建议，非现状测绘；拆改留分类见 renovation_action 字段。"
+      ]
+    },
+    "slow_mobility_main_axis_length_m": {
+      "status": "known",
+      "value": 11963.475,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(road_centerlines, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "含慢行主轴与缝合次干路；人本尺度步行道为设计建议。"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_parcel_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use_parcels)",
+      "confidence": "high",
+      "assumptions": [
+        "用地多边形全覆盖、无重叠，含覆盖兜底留白。"
+      ]
+    },
+    "renewal_action_new_build": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(buildings where renovation_action=new_build)",
+      "confidence": "medium",
+      "assumptions": [
+        "拆改留为概念建议，非权属或工程结论。"
+      ]
+    },
+    "renewal_action_renovate": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(buildings where renovation_action=renovate)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "renewal_action_retain": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(buildings where renovation_action=retain)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方容积率控制条件在 site package 中为 missing，不得用推测值冒充审定指标。"
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_height_control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方建筑高度控制缺失；涉及文保/航空/景观限高时须待官方条件。"
+    },
+    "official_key_area_total_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "known_official_area_values.key_detailed_design_area_sqm",
+      "confidence": "high",
+      "assumptions": [
+        "公告已知值；重点区 polygon 为 provisional，分项面积待官方 polygon 复算。"
+      ]
+    },
+    "universities_along_corridor": {
+      "status": "known",
+      "value": 19,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE university)",
+      "confidence": "high",
+      "assumptions": [
+        "OSM 2026-08-10 沿线高校。"
+      ]
+    },
+    "subway_stations_along_corridor": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE subway)",
+      "confidence": "high",
+      "assumptions": [
+        "OSM 2026-08-10 现状站点。"
+      ]
+    },
+    "haidian_ai_core_industry_scale_billion_yuan": {
+      "status": "known",
+      "value": 282.2,
+      "unit": "billion_yuan",
+      "source_files": [],
+      "formula": "official",
+      "confidence": "high",
+      "assumptions": [
+        "北京市科委2025-07，2024年规模。"
+      ],
+      "source_id": "HAIDIAN-AI-INDUSTRY-STATS"
+    },
+    "haidian_ai_enterprises_count": {
+      "status": "known",
+      "value": 1900,
+      "unit": "count",
+      "source_files": [],
+      "formula": "official",
+      "confidence": "medium",
+      "assumptions": [
+        "双口径并存。"
+      ],
+      "source_id": "HAIDIAN-AI-INDUSTRY-STATS"
+    },
+    "zgc_largemodel_core_area_sqkm": {
+      "status": "known",
+      "value": 9.5,
+      "unit": "sqkm",
+      "source_files": [],
+      "formula": "official",
+      "confidence": "high",
+      "assumptions": [
+        "2023揭牌核心区。"
+      ],
+      "source_id": "ZGC-LARGEMODEL-CLUSTER-OFFICIAL"
+    },
+    "national_key_labs_in_haidian": {
+      "status": "known",
+      "value": 92,
+      "unit": "count",
+      "source_files": [],
+      "formula": "official",
+      "confidence": "high",
+      "assumptions": [
+        "海淀2024公报。"
+      ],
+      "source_id": "HAIDIAN-STATISTICS"
+    },
+    "heritage_park_length_km": {
+      "status": "known",
+      "value": 9.0,
+      "unit": "km",
+      "source_files": [],
+      "formula": "official",
+      "confidence": "high",
+      "assumptions": [
+        "京张遗址公园全长。"
+      ],
+      "source_id": "JINGZHANG-PARK-OFFICIAL"
+    },
+    "ai_pilot_areas_matched": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [],
+      "formula": "count",
+      "confidence": "high",
+      "assumptions": [
+        "五道口+大钟寺官方先导区。"
+      ],
+      "source_id": "HAIDIAN-AI-INNOVATION-BLOCK"
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario cards in AI+ scenario section)",
+      "confidence": "high",
+      "assumptions": [
+        "12 张场景卡，含 3 张测试验证场景（02/03/04）；每张卡标注感知→决策→行动闭环与人工复核点。"
+      ]
+    }
+  }
+}

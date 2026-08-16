@@ -12,10 +12,20 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--paper);color:var(--ink);font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;line-height:1.75;font-size:15px}
 .wrap{max-width:1080px;margin:0 auto;padding:28px 20px 60px}
-header.hero{border-bottom:3px solid var(--ink);padding:26px 0 20px;margin-bottom:8px}
-.hero h1{font-size:30px;letter-spacing:.5px}
-.hero .sub{color:var(--brick);font-size:16px;margin-top:6px}
-.hero .tag{color:var(--grey);font-size:12.5px;margin-top:10px}
+header.hero{background:var(--ink);color:#fff;padding:46px 20px 34px}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero-logo{background:var(--paper);border-radius:11px;padding:7px;display:block;margin-bottom:16px}
+.hero .kicker{font-size:11.5px;letter-spacing:.24em;color:var(--gold);font-weight:700;margin-bottom:12px}
+.hero h1{font-size:46px;line-height:1.16;letter-spacing:.5px;color:#fff}
+.hero .sub{color:#e3c470;font-size:17px;margin-top:10px}
+.hero .tag{color:#9fb0c4;font-size:12.5px;margin-top:10px}
+.hero .tag a{color:#fff}
+.hero .tag code{background:rgba(255,255,255,.1);color:#cfe0ef;border-radius:3px;padding:0 4px}
+.topbar{background:var(--panel);border-top:4px solid var(--brick);border-bottom:1px solid var(--light)}
+.topbar-inner{max-width:1080px;margin:0 auto;padding:11px 20px;display:flex;gap:22px;flex-wrap:wrap;font-size:13.5px;align-items:center}
+.topbar a{color:var(--ink);text-decoration:none;border-bottom:2px solid transparent;padding-bottom:2px}
+.topbar a:hover{border-bottom-color:var(--brick)}
+.topbar a.cta{color:var(--brick);font-weight:700}
 .banner{background:#faf1dc;border:1px solid var(--gold);border-left:6px solid var(--gold);
 padding:10px 14px;font-size:12.8px;color:#7a6420;margin:14px 0;border-radius:4px}
 section{margin:34px 0}
@@ -43,18 +53,81 @@ tr:nth-child(even) td{background:#f4f0e4}
 .muted{color:var(--grey);font-size:12.5px}
 footer{border-top:2px solid var(--ink);margin-top:44px;padding-top:14px;color:var(--grey);font-size:12px}
 .cols{columns:2;column-gap:28px}
-@media(max-width:760px){.cols{columns:1}.hero h1{font-size:23px}}
+@media(max-width:760px){.cols{columns:1}.hero h1{font-size:29px}header.hero{padding:32px 18px 26px}}
 @media print{body{background:#fff}}
+
+/* —— 对开协议·桌面推演（页内运行，数据与规则均取自包内文件） —— */
+#tabletop .tt-summary{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin:6px 0 18px}
+#tabletop .tt-sumcard{background:var(--ink);color:#fff;border-radius:8px;padding:16px 18px}
+#tabletop .tt-big{font-size:34px;font-weight:800;line-height:1.15;font-variant-numeric:tabular-nums}
+#tabletop .tt-sumk{font-size:14px;margin-top:2px}
+#tabletop .tt-sumn{font-size:12.5px;color:#b9c4d2;margin-top:4px}
+#tabletop .tt-h{font-size:15px;margin:22px 0 8px;color:var(--ink)}
+#tabletop .tt-intro{color:var(--grey);font-size:13px;margin-bottom:10px}
+#tabletop .tt-rules{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+#tabletop .tt-rule{background:var(--panel);border:1px solid var(--light);border-left:4px solid var(--green);border-radius:6px;padding:10px 12px;font-size:13px}
+#tabletop .tt-rid{display:inline-block;background:var(--green);color:#fff;border-radius:4px;font-size:11px;padding:1px 6px;margin-right:6px;font-weight:700}
+#tabletop .tt-rdesc{color:var(--grey);font-size:12.3px;margin-top:4px}
+#tabletop .tt-picker{display:flex;align-items:center;gap:10px;margin:10px 0}
+#tabletop .tt-pick-label{font-size:13px;color:var(--grey)}
+#tabletop .tt-select{font:inherit;font-size:13px;padding:5px 8px;border:1px solid var(--light);border-radius:5px;background:var(--panel);color:var(--ink);max-width:100%}
+#tabletop .tt-btns{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px}
+#tabletop .tt-btn{font:inherit;font-size:12.5px;cursor:pointer;padding:6px 12px;border-radius:99px;border:1px solid var(--light);background:var(--panel);color:var(--ink)}
+#tabletop .tt-btn:hover{border-color:var(--brick)}
+#tabletop .tt-btn-on{background:var(--brick);border-color:var(--brick);color:#fff}
+#tabletop .tt-verdict{background:var(--panel);border:1px solid var(--light);border-radius:6px;padding:14px 16px}
+#tabletop .tt-vhead{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+#tabletop .tt-vid{font-weight:800;font-size:16px}
+#tabletop .tt-badge{display:inline-block;border-radius:99px;padding:2px 11px;font-size:12px;font-weight:700}
+#tabletop .tt-ok{background:#e3f1ea;color:var(--green);border:1px solid var(--green)}
+#tabletop .tt-bad{background:#f7e4e0;color:var(--brick);border:1px solid var(--brick)}
+#tabletop .tt-vnote{color:var(--grey);font-size:13px}
+#tabletop .tt-vline{font-size:13px;margin-top:3px}
+#tabletop .tt-vrule{color:var(--brick);font-weight:700}
+#tabletop .tt-vwhy{color:var(--ink)}
+#tabletop .tt-tablebox{overflow-x:auto;border:1px solid var(--light);border-radius:6px;margin-top:6px}
+#tabletop .tt-table{width:100%;border-collapse:collapse;background:var(--panel);font-size:12.5px}
+#tabletop .tt-table th{background:var(--ink);color:#fff;text-align:left;padding:7px 9px}
+#tabletop .tt-table td{border-bottom:1px solid var(--light);padding:6px 9px;vertical-align:top}
+#tabletop .tt-mono{font-variant-numeric:tabular-nums;font-weight:700}
+#tabletop .tt-muts{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+#tabletop .tt-mut{background:var(--panel);border:1px solid var(--light);border-radius:6px;padding:10px 12px;font-size:12.5px}
+#tabletop .tt-mut-live{border-left:4px solid var(--green)}
+#tabletop .tt-mut-dead{border-left:4px solid var(--brick)}
+#tabletop .tt-muthead{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+#tabletop .tt-mutline{color:var(--grey);font-size:12.2px}
+#tabletop .tt-engine{color:var(--grey);font-size:12px;margin-top:14px}
+#tabletop noscript{display:block;color:var(--grey);font-size:13px}
+
+.hero-lede{font-size:16.5px;line-height:1.7;margin:18px 0 4px;color:#dbe4ee;border-left:4px solid var(--green);padding-left:14px}
+.hero-lede strong{color:#fff}
+.hero-stats{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin:20px 0 2px}
+.hero-stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:6px;padding:11px 13px}
+.hero-stat b{display:block;font-size:23px;font-variant-numeric:tabular-nums;line-height:1.2;color:#fff}
+.hero-stat>span{color:#9fb0c4;font-size:12px}
 </style>
-<div class="wrap">
 <header class="hero">
-<img src="../assets/two-way-line-logo.svg" alt="THE TWO-WAY LINE logo: two arrows on one track — parallel rails bound by sleeper bars, a north-pointing arrowhead above and a south-pointing one below, the negative space forming the skeleton of the character 开" width="54" height="54" style="display:block;margin-bottom:10px">
+<div class="hero-inner">
+<img class="hero-logo" src="../assets/two-way-line-logo.svg" alt="THE TWO-WAY LINE logo: two arrows on one track — parallel rails bound by sleeper bars, a north-pointing arrowhead above and a south-pointing one below, the negative space forming the skeleton of the character 开" width="54" height="54">
+<div class="kicker">CENTENNIAL JING-ZHANG AI INNOVATION BELT · OPEN-CALL SUBMISSION</div>
 <h1>THE TWO-WAY LINE 京张对开</h1>
 <div class="sub">Running the centennial corridor in both directions — offline exhibition page</div>
-<div class="tag">xr843 / jingzhang-two-way-line · v1.7 · 2026-08 · formal concept package</div>
-<div class="tag">The Two-Way Protocol is recomputable: <code>visual/assets/run_twoway_tabletop.js</code> (Node 18+, no dependencies) checks all twelve service cards against the protocol's six rules, then runs six mutant services that must be rejected — proving the gates are live rather than decorative. This package's recorded result is 12/12 schedulable and 6/6 mutants caught; see <code>visual/assets/twoway-tabletop-evidence.json</code>.</div>
-<div class="banner">⚠ Provisional boundary: all geometry sits on a self-derived, street-aligned provisional frame calibrated to announced areas — not an official redline; no approval, ownership, or precise-area use; full recalculation when official polygons arrive. Everything is an open co-creation concept, not statutory planning.</div>
+<div class="tag">xr843 / jingzhang-two-way-line · v1.10 · 2026-08 · formal concept package</div>
+<div class="tag">The Two-Way Protocol can be checked on the spot: the <a href="#tabletop">tabletop section</a> on this page runs the packaged rule engine live — 12/12 service cards pass the six rules, 6/6 malformed services are caught by their matching rule, and you can break a gate yourself. The same verdict is reproducible in a terminal with <code>node visual/assets/run_twoway_tabletop.js</code>.</div>
+<p class="hero-lede">Green power and compute at the Zhangjiakou end (the national East-Data-West-Compute Beijing–Tianjin–Hebei cluster plus the country's only national renewable-energy demonstration zone); models, talent and scenarios at the Haidian end; 47 minutes apart by rail — <strong>and not one place in the city yet expresses that 200-km relationship</strong>. This proposal reads the overall design scope as the corridor's southern terminal district, turning "two-way" into space you can walk into and a rule you can execute.</p>
+<div class="hero-stats"><div class="hero-stat"><b><span class="mv" data-metric="greenway_length_m" data-value="7829.5">7.83</span> km</b><span>Surface Line greenway, made continuous</span></div><div class="hero-stat"><b><span class="mv" data-metric="crossing_node_count" data-value="8">8</span></b><span>crossings stitching east to west</span></div><div class="hero-stat"><b><span class="mv" data-metric="ai_scenario_card_count" data-value="12">12</span></b><span>service cards bound by the protocol</span></div><div class="hero-stat"><b>32 / 4</b><span>metrics known / unknown</span></div></div>
+</div>
 </header>
+<nav class="topbar"><div class="topbar-inner">
+<a href="index.html">中文</a>
+<a class="cta" href="#tabletop">▶ Two-Way Protocol · live tabletop (runs in this page)</a>
+<a href="#scopes">Three scopes</a>
+<a href="#scenarios">AI scenarios</a>
+<a href="#metrics">Key metrics</a>
+<a href="#sources">Sources</a>
+</div></nav>
+<div class="wrap">
+<div class="banner">⚠ Provisional boundary: all geometry sits on a self-derived, street-aligned provisional frame calibrated to announced areas — not an official redline; no approval, ownership, or precise-area use; full recalculation when official polygons arrive. Everything is an open co-creation concept, not statutory planning.</div>
 <section id="overview"><h2>Overview Map<small>总览地图</small></h2>
 <p>A double-deck corridor: the 7.8-km Surface Line above, the HSR Under Line below; three stations, one gate, two platforms, eight crossings, and the twin-river cooling loop. Power and compute run up-line; models, talent, and scenarios run down-line.</p>
 <figure><img src="../assets/figures/site-overview.en.png" alt="master concept figure"><figcaption>FIG-01 · master concept, derived from packaged GeoJSON and metrics</figcaption></figure></section>
@@ -147,6 +220,11 @@ footer{border-top:2px solid var(--ink);margin-top:44px;padding-top:14px;color:va
 <tr><td>S11</td><td>Micro-climate sensing</td><td>whole spine</td><td>sensors</td><td>heat warnings & shade</td><td>stoppable points</td></tr>
 <tr><td>S12</td><td>Green-power chime</td><td>Bell plaza</td><td>green-power share</td><td>hourly chime</td><td>auditable source</td></tr>
 </table></div></section>
+<section id="tabletop"><h2>Two-Way Protocol tabletop<small>对开协议·桌面推演 — computed live, not pre-baked</small></h2>
+<p class="muted">The Two-Way Protocol is this proposal's admission condition for space: whether a public space can host an AI deployment depends on whether that service passes six rules. The tabletop below runs this package's own rule engine <code>assets/twoway-rules.js</code> in your browser against this package's timetable <code>assets/twoway-runbook.js</code> — the same rules and the same data as <code>node assets/run_twoway_tabletop.js</code>, so both must agree. You need not take this page's word for it; break a gate yourself.</p>
+<div id="tabletop-app"></div>
+<noscript>This section needs the packaged script to run the tabletop live. With scripting off, the same verdict can be recomputed with <code>node assets/run_twoway_tabletop.js</code> or read from <code>assets/twoway-tabletop-evidence.json</code>.</noscript>
+</section>
 <section id="metrics"><h2>Core Metrics<small>核心指标</small></h2>
 <div class="grid g4">
 <div class="card"><div class="k">Site area m²</div><div class="v"><span class="mv" data-metric="site_area_sqm" data-value="11400064.345">11,400,064</span></div><div class="n">polygon_area_epsg4548(site_boundary)</div></div>
@@ -221,7 +299,11 @@ footer{border-top:2px solid var(--ink);margin-top:44px;padding-top:14px;color:va
 <p><span class="pill warn">A-ENERGY-001</span> 端侧算力舱、分布式能源、余热回用「双河冷环」为概念系统, 未做能源负荷、热平衡与管网可行性测算。…<br><span class="muted">Impact: 须由市政与能源专业团队测算后方可进入工程深化; 不构成市政容量结论。…</span></p>
 <p><span class="pill warn">A-OSM-001</span> 现状底图取自OpenStreetMap(ODbL), 精度与时效不均; 道路中线、水系、隧道径线均为示意。…<br><span class="muted">Impact: 全部现状引用仅作bootstrap参照, 正式设计须以官方测绘与工程资料为准。…</span></p>
 </section>
-<footer>© OpenStreetMap contributors (ODbL 1.0) — base context data · This offline static page is generated from the packaged metrics.json and matrices; no external requests, scripts, or tracking. Everything is an open co-creation concept, not statutory planning or an approved government conclusion.<br>xr843 / jingzhang-two-way-line · Claude Fable 5 (Claude Code) · 2026-08</footer>
+<footer>© OpenStreetMap contributors (ODbL 1.0) — base context data · This page is offline and self-contained: every asset and script is a packaged file, with no external requests and no tracking. The Two-Way Protocol tabletop section runs the packaged rule engine live in this page; everything else is statically generated. Everything is an open co-creation concept, not statutory planning or an approved government conclusion.<br>xr843 / jingzhang-two-way-line · Claude Fable 5 (Claude Code) · 2026-08</footer>
 </div>
+<script src="assets/twoway-rules.js"></script>
+<script src="assets/twoway-runbook.js"></script>
+<script src="assets/twoway-tabletop.js"></script>
+<script>TwoWayTabletop.mount("tabletop-app", "en");</script>
 </body>
 </html>

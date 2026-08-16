@@ -24,7 +24,10 @@
   li { margin:.3rem 0; font-size:.9rem; }
   .note { font-size:.88rem; color:var(--muted); }
   footer { max-width:1080px; margin:0 auto; padding:1rem 1.5rem 2.5rem; color:var(--muted); font-size:.82rem; }
-  @media (max-width:820px) { main { grid-template-columns:1fr; } .map { position:static; } }
+  .jz3d { max-width:1080px; margin:0 auto 1.5rem; padding:0 1.5rem; }
+  .jz3d .card { padding:1.25rem; }
+  #jz-3d { width:100%; height:480px; border-radius:12px; overflow:hidden; background:#0f172a; }
+  @media (max-width:820px) { main { grid-template-columns:1fr; } .map { position:static; } #jz-3d { height:340px; } }
 </style>
 </head>
 <body>
@@ -80,6 +83,10 @@
 <section class="card"><h2>自检状态</h2><p class="note">四道门（确定性校验 / 空间复核 / 可视化打包 / 专业证据）在提交前运行并全绿；边界为 provisional，待官方数据重算。</p></section>
 <section class="card"><h2>来源</h2><p class="note">资格预审公告、面向智能体任务书、城市设计管理办法、控规编制审批办法、国土空间用途分类指南、生成式AI暂行办法、无障碍环境法及六个全球案例。</p></section>
 <section class="card"><h2>假设</h2><p class="note">控规指标、道路红线、权属、市政与文保条件待正式数据确认；设计图层为概念建议，不构成法定规划结论。</p></section></main>
+<section class="jz3d"><div class="card"><h2>三维轴测场景 / 3D Axonometric Scene</h2><div id="jz-3d"></div><div id="jz-3d-fallback" style="display:none;padding:2rem;text-align:center;color:#64748b;">三维场景需要 WebGL 支持；请查看上方二维平面图。</div><p class="note">拖拽旋转 · 滚轮缩放 · 方向键移动（键盘可访问 · 尊重「减弱动效」偏好）</p></div></section>
 <footer>概念建议 / 参考方案 / 可供专业团队深化研究 — 不构成政府审定结论</footer>
+<script src="assets/three.min.js"></script>
+<script src="assets/scene-data.js"></script>
+<script src="assets/scene.js"></script>
 </body>
 </html>

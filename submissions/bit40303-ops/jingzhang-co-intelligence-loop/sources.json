@@ -1,0 +1,3237 @@
+{
+  "schema_version": "0.1.0",
+  "sources": [
+    {
+      "id": "SITE-PACKAGE",
+      "source_id": "SITE-PACKAGE",
+      "path": "brief/site-package/",
+      "source_type": "official_public",
+      "review_status": "approved",
+      "usable_for": [
+        "task structure",
+        "enums",
+        "schema and validation rules"
+      ],
+      "not_usable_for": [
+        "missing official boundary",
+        "missing statutory controls"
+      ],
+      "usage": "任务书与机器可读结构。"
+    },
+    {
+      "id": "SOURCE-REGISTRY",
+      "source_id": "DATA-SOURCE-REGISTRY",
+      "path": "data/source_registry.json",
+      "source_type": "repository_public_registry",
+      "review_status": "approved",
+      "usable_for": [
+        "source usability classification"
+      ],
+      "not_usable_for": [
+        "inventing data beyond records"
+      ],
+      "usage": "来源分级与许可边界。"
+    },
+    {
+      "id": "PROCESSED-FACT-PACK",
+      "source_id": "PROCESSED-FACT-PACK",
+      "path": "data/processed/agent_fact_pack.md",
+      "source_type": "repository_processed_reference",
+      "review_status": "approved",
+      "usable_for": [
+        "navigation and task checklist"
+      ],
+      "not_usable_for": [
+        "new official authority"
+      ],
+      "usage": "Agent 阅读导航，不替代原始来源。"
+    },
+    {
+      "id": "OFFICIAL-ANNOUNCEMENT",
+      "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "source_type": "official_public",
+      "review_status": "approved",
+      "usable_for": [
+        "三层范围文字、任务方向、成果语境"
+      ],
+      "not_usable_for": [
+        "未提供的官方 polygon、控规数值"
+      ],
+      "usage": "确认公告任务和公开征集语境。"
+    },
+    {
+      "id": "AGENT-TASKBOOK",
+      "source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "path": "brief/site-package/agent_taskbook.json",
+      "source_type": "user_provided_cleared",
+      "review_status": "approved",
+      "usable_for": [
+        "六项 Agent 任务、场景、品牌、运营和边界条款"
+      ],
+      "not_usable_for": [
+        "官方红线、政府承诺、工程结论"
+      ],
+      "usage": "任务书摘录和共创原则。"
+    },
+    {
+      "id": "BOUNDARY-SOURCE",
+      "source_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "review_status": "provisional",
+      "usable_for": [
+        "临时生成、可视化、intake 自检"
+      ],
+      "not_usable_for": [
+        "official redline",
+        "精确面积",
+        "法定控制"
+      ],
+      "usage": "本包的临时 SITE_BOUNDARY 和 KEY_AREA 来源。"
+    },
+    {
+      "id": "KEY-AREA-SOURCE",
+      "source_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "review_status": "provisional",
+      "usable_for": [
+        "三处重点区的概念位置和展示"
+      ],
+      "not_usable_for": [
+        "精确重点区面积和红线"
+      ],
+      "usage": "三处重点区域均保留 provisional 标注。"
+    },
+    {
+      "id": "STANDARDS-LOCAL-REFERENCES",
+      "source_id": "LOCAL-STANDARD-SNAPSHOTS",
+      "path": "brief/site-package/standards/references/",
+      "source_type": "official_public",
+      "review_status": "approved_with_data_gap",
+      "usable_for": [
+        "城市设计、控规表达、用地分类和任务边界"
+      ],
+      "not_usable_for": [
+        "缺失的正式控规条件"
+      ],
+      "usage": "引用本地标准快照，MOHURD-ARCH-DESIGN-DEPTH-2016 保持 data_gap。"
+    },
+    {
+      "id": "BACKGROUND-CASES",
+      "source_id": "BACKGROUND-CASE-OBSERVATIONS",
+      "path": "proposal.md",
+      "source_type": "background_only",
+      "review_status": "background_only",
+      "usable_for": [
+        "案例结构性观察和机制对比"
+      ],
+      "not_usable_for": [
+        "本项目规划控制、企业名单、投资额或承诺"
+      ],
+      "usage": "六个公开案例仅用于机制启发，不引入精确经营数据。"
+    },
+    {
+      "id": "BEIJING-JTW-OPEN-TRANSPORT",
+      "source_id": "DATA-SRC-BEIJING-JTW-TRANSPORT-OPEN-20260807",
+      "title": "北京市交通出行数据下载：路侧停车位基础信息",
+      "publisher": "北京市交通委员会",
+      "source_kind": "official_open_data",
+      "url": "https://service.jtw.beijing.gov.cn/cxsjxz/",
+      "data_url": "https://service.jtw.beijing.gov.cn/cxsjxz/data/路侧停车位基础信息.xlsx",
+      "published_date": null,
+      "accessed_date": "2026-08-07",
+      "file_type": "xlsx",
+      "authority_level": "A0",
+      "timeliness_level": "T0",
+      "public_access_status": "official_open_unconditional",
+      "license_summary": "官方页面标注开放方式为‘无条件开放’；本包保留来源 URL、抓取日期和下载文件 SHA-256，不把筛选结果升级为法定边界。",
+      "review_status": "approved",
+      "usable_for_formal": "yes",
+      "allowed_uses": [
+        "public transport context",
+        "curb parking reference",
+        "scenario node evidence"
+      ],
+      "prohibited_uses": [
+        "official project redline",
+        "road redline",
+        "statutory parking control",
+        "ownership conclusion"
+      ],
+      "topics": [
+        "transport",
+        "parking",
+        "public_space",
+        "official_open_data"
+      ],
+      "local_paths": [
+        "geometry/public_space.geojson#JTW-PARK-001",
+        "metrics.json"
+      ],
+      "retrieved_file_sha256": "da70297cfa9ae848650d7fd94d07da5bd094a3f94fada7ce7f1ef8f3a243f736",
+      "retrieved_row_count": 1718,
+      "filtered_feature_count": 19,
+      "filtered_capacity_spaces": 985,
+      "notes_zh": "官方数据提供经纬度和泊位数量；本包只将落入 provisional SITE-001 的去重记录作为现状参考节点，并保留正式边界缺失说明。"
+    },
+    {
+      "id": "BEIJING-JTW-TRANSIT-OPERATIONS",
+      "source_id": "DATA-SRC-BEIJING-JTW-TRANSIT-OPERATIONS-20260807",
+      "title": "北京市交通出行数据下载：轨道/公交线路与站点信息",
+      "publisher": "北京市交通委员会",
+      "source_kind": "official_open_data",
+      "url": "https://service.jtw.beijing.gov.cn/cxsjxz/",
+      "data_urls": [
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/轨道线路信息.xlsx",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/轨道站点信息.xlsx",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/公交线路信息.xlsx",
+        "https://service.jtw.beijing.gov.cn/cxsjxz/data/公交站点信息.xlsx"
+      ],
+      "published_date": null,
+      "accessed_date": "2026-08-07",
+      "file_type": "xlsx",
+      "authority_level": "A0",
+      "timeliness_level": "T0",
+      "public_access_status": "official_open_unconditional",
+      "license_summary": "官方页面标注上述数据开放方式为‘无条件开放’；本包记录下载快照哈希和用途边界。",
+      "review_status": "approved",
+      "usable_for_formal": "yes",
+      "allowed_uses": [
+        "transport service context",
+        "rail access and operating hours",
+        "bus service context"
+      ],
+      "prohibited_uses": [
+        "official project redline",
+        "inferred coordinates from station names",
+        "statutory transport/road control"
+      ],
+      "topics": [
+        "transport",
+        "rail",
+        "bus",
+        "operations",
+        "official_open_data"
+      ],
+      "local_paths": [
+        "metrics.json",
+        "proposal.md",
+        "report/narrative.md",
+        "visual/index.html"
+      ],
+      "retrieved_files": [
+        {
+          "name": "轨道线路信息.xlsx",
+          "url": "https://service.jtw.beijing.gov.cn/cxsjxz/data/轨道线路信息.xlsx",
+          "sha256": "9bb9ff83db1ccdbeb9d62ea0fd73ea3e0b23fe4eafc6361edb5154180df0b391",
+          "rows_ex_header": 22
+        },
+        {
+          "name": "轨道站点信息.xlsx",
+          "url": "https://service.jtw.beijing.gov.cn/cxsjxz/data/轨道站点信息.xlsx",
+          "sha256": "06793c8debf37b8429512bb9893018aa06972af23d5a7d06202e7636baf902f2",
+          "rows_ex_header": 1079
+        },
+        {
+          "name": "公交线路信息.xlsx",
+          "url": "https://service.jtw.beijing.gov.cn/cxsjxz/data/公交线路信息.xlsx",
+          "sha256": "14f4b8fd16624d96d6c16eb3674e92f606f397b3eec3dca9fa4ffa4ea42907e2",
+          "rows_ex_header": 1165
+        },
+        {
+          "name": "公交站点信息.xlsx",
+          "url": "https://service.jtw.beijing.gov.cn/cxsjxz/data/公交站点信息.xlsx",
+          "sha256": "1d0752e9c814291c7bfce325a9dfcfca3a4b698994d016c34c03dd8b850e9575",
+          "rows_ex_header": 58697
+        }
+      ],
+      "nearby_station_name_match_terms": [
+        "大钟寺",
+        "知春路",
+        "西土城",
+        "五道口",
+        "清华东路西口",
+        "北京大学东门",
+        "海淀黄庄"
+      ],
+      "nearby_station_service_record_count": 31,
+      "notes_zh": "四份表格不含可核验的项目坐标；只用于轨道接驳、首末班和公交服务的运营背景，不生成项目空间点位。"
+    },
+    {
+      "id": "HAIDIAN-2025-STATISTICAL-BULLETIN",
+      "source_id": "DATA-SRC-HAIDIAN-STATISTICAL-BULLETIN-2025",
+      "title": "海淀区2025年国民经济和社会发展统计公报",
+      "publisher": "海淀统计局队",
+      "source_kind": "official_statistical_bulletin",
+      "url": "https://zyk.bjhd.gov.cn/sjkf/tjgb/202604/t20260410_4811526.shtml",
+      "published_date": "2026-04-10",
+      "accessed_date": "2026-08-07",
+      "authority_level": "A0",
+      "timeliness_level": "T0",
+      "public_access_status": "official_public_html",
+      "review_status": "approved",
+      "usable_for_formal": "yes",
+      "snapshot_sha256": "cff842448b7c3d2479db18e99af47f29b299e51ee2443a4f11173a035f510882",
+      "allowed_uses": [
+        "district innovation baseline",
+        "talent and public-service context",
+        "environment context"
+      ],
+      "prohibited_uses": [
+        "project-area statistic",
+        "parcel allocation",
+        "official project boundary",
+        "guaranteed future performance"
+      ],
+      "topics": [
+        "population",
+        "innovation",
+        "public_services",
+        "environment",
+        "official_statistics"
+      ],
+      "local_paths": [
+        "metrics.json",
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "data_status_note": "公报说明2025年数据均为初步数；所有数值是海淀全区背景，不是11.4平方公里项目范围统计。"
+    },
+    {
+      "id": "HAIDIAN-AI-POLICY-2025",
+      "source_id": "DATA-SRC-HAIDIAN-AI-POLICY-2025",
+      "title": "中关村科学城加快建设具有全球影响力人工智能产业高地的若干措施",
+      "publisher": "中关村科学城管理委员会",
+      "source_kind": "official_policy",
+      "url": "https://zyk.bjhd.gov.cn/zwdt/zcwj/202509/t20250908_4786148.shtml",
+      "attachment_url": "https://zyk.bjhd.gov.cn/zwdt/zcwj/202509/P020250908605967494516.doc",
+      "published_date": "2025-08-31",
+      "accessed_date": "2026-08-07",
+      "document_number": "中科城〔2025〕91号",
+      "validity": "现行有效",
+      "authority_level": "A0",
+      "timeliness_level": "T0",
+      "public_access_status": "official_public_html_and_doc",
+      "review_status": "approved_with_commitment_boundary",
+      "usable_for_formal": "yes",
+      "snapshot_sha256": "581ee1afce05cbe85b3b78081f2d36ed3449883e7f321396c47621dd342995c3",
+      "attachment_sha256": "b324024ffc5765bf91d6b276ccd8b78c987f592d74d6350db83569912d56a7d0",
+      "allowed_uses": [
+        "policy alignment",
+        "mechanism taxonomy",
+        "AI ecosystem and scenario-open design context"
+      ],
+      "prohibited_uses": [
+        "automatic eligibility",
+        "project funding commitment",
+        "approved subsidy",
+        "confirmed implementation arrangement"
+      ],
+      "topics": [
+        "AI_policy",
+        "compute",
+        "data",
+        "platform",
+        "scenarios",
+        "talent",
+        "incubation",
+        "finance",
+        "international_cooperation"
+      ],
+      "local_paths": [
+        "proposal.md",
+        "compliance_matrix.json",
+        "visual/index.html"
+      ],
+      "notes_zh": "政策共10条；资金与补贴表述不得转换为本项目承诺，具体适用性需另行申报和主管部门审核。"
+    },
+    {
+      "id": "HAIDIAN-QINGHUAYUAN-STATION-RESTORATION",
+      "source_id": "DATA-SRC-QINGHUAYUAN-STATION-RESTORATION-20230327",
+      "title": "‘进京赶考’抵京第一站 清华园车站旧址修缮后开放",
+      "publisher": "北京市海淀区人民政府门户网站（来源：海淀报）",
+      "source_kind": "official_government_publication",
+      "url": "https://zyk.bjhd.gov.cn/ywdt/hdywx/202303/t20230327_4593584.shtml",
+      "published_date": "2023-03-27",
+      "accessed_date": "2026-08-07",
+      "authority_level": "A1",
+      "timeliness_level": "T1",
+      "public_access_status": "official_public_html",
+      "review_status": "approved_for_historical_context",
+      "usable_for_formal": "yes",
+      "snapshot_sha256": "2615ca103acbff715e75f31fe6087836b642efc7aa012f0b974100233d873cd3",
+      "allowed_uses": [
+        "heritage baseline",
+        "public-space and exhibition context",
+        "Jingzhang cultural narrative"
+      ],
+      "prohibited_uses": [
+        "heritage control line",
+        "current ownership",
+        "new construction permission",
+        "project boundary"
+      ],
+      "topics": [
+        "heritage",
+        "Jingzhang_railway",
+        "public_space",
+        "landscape",
+        "exhibition"
+      ],
+      "local_paths": [
+        "metrics.json",
+        "geometry/public_space.geojson#PUBLIC-001",
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "notes_zh": "历史修缮数据用于说明已实施文化资源基线；不把报道中的面积转换为本项目用地或文保控制边界。"
+    },
+    {
+      "id": "HAIDIAN-JINGZHANG-CONTROL-PLAN-STATUS",
+      "source_id": "DATA-SRC-HAIDIAN-JINGZHANG-CONTROL-PLAN-STATUS-20250820",
+      "title": "Haidian 2025 annual task progress: AI innovation street and Jingzhang heritage-park corridor control-plan status",
+      "publisher": "Haidian District Government information disclosure portal",
+      "source_kind": "official_public_status_update",
+      "url": "https://zyk.bjhd.gov.cn/jbdt/auto4488_51784/zdrw/202508/t20250820_4783491.shtml",
+      "published_date": "2025-08-20",
+      "accessed_date": "2026-08-07",
+      "authority_level": "A0",
+      "timeliness_level": "T0",
+      "public_access_status": "official_public_html",
+      "review_status": "approved_for_status_only",
+      "usable_for_formal": "yes",
+      "allowed_uses": [
+        "planning-progress status",
+        "evidence that control-plan compilation was underway",
+        "provisional-data explanation"
+      ],
+      "prohibited_uses": [
+        "official project polygon",
+        "statutory control line",
+        "approved design or implementation commitment"
+      ],
+      "topics": [
+        "Jingzhang_railway",
+        "control_planning",
+        "AI_innovation_street",
+        "planning_status"
+      ],
+      "local_paths": [
+        "proposal.md",
+        "report/narrative.md",
+        "visual/index.html"
+      ],
+      "snapshot_status": "official_page_checked; html_snapshot_not_archived_in_package",
+      "notes_zh": "官方页面在2025-08-20任务进展中写明正在编制《京张铁路遗址公园沿线街区控规》，并形成《海淀人工智能创新街区规划（2025-2030年）》初稿；页面未提供polygon、控制指标或正式附件，因此只能证明规划正在编制，不能替代正式几何。"
+    },
+    {
+      "id": "HAIDIAN-JINGZHANG-CONTROL-PLAN-DRAFT",
+      "source_id": "DATA-SRC-HAIDIAN-JINGZHANG-CONTROL-PLAN-DRAFT-20241219",
+      "title": "关于《京张铁路遗址公园沿线（人工智能创新街区重点地区）街区控制性详细规划》（草案）的公示",
+      "publisher": "北京市规划和自然资源委员会海淀分局",
+      "source_kind": "official_public_planning_draft",
+      "url": "https://zyk.bjhd.gov.cn/zwdt/tdzt/2018/zwgk/zdjs/202412/t20241220_4751519.shtml",
+      "attachment_url": "https://zyk.bjhd.gov.cn/zwdt/tdzt/2018/zwgk/zdjs/202412/P020241230395098020252.pdf",
+      "published_date": "2024-12-19",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A0",
+      "timeliness_level": "T1",
+      "public_access_status": "official_public_html_and_pdf",
+      "review_status": "approved_for_draft_summary_and_raster_reference",
+      "usable_for_formal": "yes_with_draft_scope_boundary",
+      "snapshot_sha256": "0573bfcd89bb823a69541818261d53c620e07cbc3cf533826746642308552923",
+      "attachment_sha256": "3d7329fb9754d76d4f4ce13852c13a6e66f551006135fc6205e38ed2ab604e6e",
+      "allowed_uses": [
+        "official planning-scope raster reference",
+        "draft 2035 scale-control summary",
+        "draft spatial-structure and facility context",
+        "road-network and green-trip planning targets"
+      ],
+      "prohibited_uses": [
+        "competition project polygon",
+        "three competition key-area polygons",
+        "georeferenced vector boundary",
+        "parcel-level statutory control",
+        "final approved planning conclusion"
+      ],
+      "topics": [
+        "Jingzhang_railway",
+        "control_planning",
+        "AI_innovation_street",
+        "planning_boundary_raster",
+        "planning_controls"
+      ],
+      "local_paths": [
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md",
+        "visual/index.html"
+      ],
+      "boundary_availability": "Official planning scope is shown in a raster infographic; no downloadable georeferenced SHP/GeoJSON/CAD was published on the page.",
+      "draft_notice": "The attachment states that all drawings are process drafts and the final result is subject to planning approval.",
+      "notes_zh": "公示页公开了HD00-1601等街区控规草案及一张图读懂PDF。图件可用于核对规划范围、空间结构和汇总指标，但不是竞赛11.4平方公里总体设计范围或三处重点区的可计算矢量红线。"
+    },
+    {
+      "id": "HAIDIAN-2026-GOVERNMENT-WORK-REPORT",
+      "source_id": "DATA-SRC-HAIDIAN-GOVERNMENT-WORK-REPORT-2026",
+      "title": "北京市海淀区人民政府关于印发2026年《政府工作报告》的通知",
+      "publisher": "北京市海淀区人民政府办公室",
+      "source_kind": "official_government_work_report",
+      "url": "https://zyk.bjhd.gov.cn/zwdt/xxgk/zfgzbg/202602/t20260209_4805226.shtml",
+      "published_date": "2026-01-13",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A0",
+      "timeliness_level": "T0",
+      "public_access_status": "official_public_html",
+      "review_status": "approved_for_planning_status",
+      "usable_for_formal": "yes",
+      "snapshot_sha256": "81dc49db5b7edb413ce687e7c33d38b89b637c4041c234ae5777a5a32c62fb56",
+      "allowed_uses": [
+        "evidence that the Jingzhang corridor control plan passed technical review",
+        "current planning-progress status"
+      ],
+      "prohibited_uses": [
+        "government approval inference",
+        "official project polygon",
+        "statutory parcel control",
+        "implementation commitment"
+      ],
+      "topics": [
+        "control_planning",
+        "planning_status",
+        "technical_review"
+      ],
+      "local_paths": [
+        "sources.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md",
+        "visual/index.html"
+      ],
+      "notes_zh": "政府工作报告明确写明京张铁路遗址公园沿线街区控规通过技术审查；技术审查不等同于市政府批复，也不提供可计算边界。"
+    },
+    {
+      "id": "HAIDIAN-JINGZHANG-PHASE2-PROJECT",
+      "source_id": "DATA-SRC-HAIDIAN-JINGZHANG-PHASE2-PROJECT-20250220",
+      "title": "京张铁路遗址公共空间改造提升工程（二期）",
+      "publisher": "北京市海淀区人民政府门户网站（来源：海淀网）",
+      "source_kind": "official_government_project_profile",
+      "url": "https://www.bjhd.gov.cn/ztzx/2025/ysxtj/ttdkj/gzgxfn/202503/t20250314_4760993.shtml",
+      "published_date": "2025-02-20",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A1",
+      "timeliness_level": "T0",
+      "public_access_status": "official_public_html",
+      "review_status": "approved_for_project_profile",
+      "usable_for_formal": "yes",
+      "snapshot_sha256": "5fa6a636065b5b9a8bffabc1df34b757653ead553ca4bdb80462bd76cde10112",
+      "allowed_uses": [
+        "existing project length and land-area baseline",
+        "public-space and heritage-corridor context",
+        "location description"
+      ],
+      "prohibited_uses": [
+        "competition site boundary",
+        "phase-two project polygon",
+        "ownership or construction-permission inference",
+        "future delivery commitment"
+      ],
+      "topics": [
+        "Jingzhang_railway",
+        "public_space",
+        "urban_renewal"
+      ],
+      "local_paths": [
+        "metrics.json",
+        "proposal.md",
+        "report/narrative.md",
+        "visual/index.html"
+      ],
+      "notes_zh": "官方项目页记录二期沿13号线南起西直门、北至北五环，用地53.09万平方米、长度9千米；页面未提供可下载项目polygon。"
+    },
+    {
+      "id": "BEIJING-AI-ORIGIN-COMMUNITY",
+      "source_id": "DATA-SRC-BEIJING-AI-ORIGIN-COMMUNITY-20260121",
+      "title": "北京发布首批4个人工智能创新街区",
+      "publisher": "北京市科学技术委员会、中关村科技园区管理委员会（来源：科技日报）",
+      "source_kind": "official_government_news_reprint",
+      "url": "https://kw.beijing.gov.cn/xwdt/kcyx/xwdtshgg/202601/t20260121_4452025.html",
+      "published_date": "2026-01-21",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A1",
+      "timeliness_level": "T0",
+      "public_access_status": "official_public_html",
+      "review_status": "approved_for_policy_context",
+      "usable_for_formal": "yes_with_scope_boundary",
+      "snapshot_sha256": "a906bb087e13c471a8f5866209d0d737dbba13f547344aa1ae1cecdbae7cbecd",
+      "allowed_uses": [
+        "official context that the broader AI Origin Community uses Wudaokou as its core",
+        "official approximately 3 sq km innovation-district scale",
+        "AI talent and innovation-policy context"
+      ],
+      "prohibited_uses": [
+        "competition Origin Community key-area polygon",
+        "substitution for the announced 104.3 ha detailed-design area",
+        "statutory boundary or parcel control",
+        "funding or delivery commitment"
+      ],
+      "topics": [
+        "AI_Origin_Community",
+        "innovation_district",
+        "Wudaokou"
+      ],
+      "local_paths": [
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md",
+        "visual/index.html"
+      ],
+      "notes_zh": "官方页面称海淀‘原点社区’以五道口为核心、面积约3平方公里。该政策创新街区范围大于征集公告104.3公顷重点设计区，两者必须分层记录。"
+    },
+    {
+      "id": "BEIJING-FRC-JINGZHANG-PHASE2-IMPLEMENTATION-APPROVAL",
+      "source_id": "DATA-SRC-BEIJING-FRC-JINGZHANG-PHASE2-IMPLEMENTATION-APPROVAL-20240923",
+      "title": "关于京张铁路遗址公共空间改造提升工程（二期）实施方案的批复",
+      "publisher": "北京市发展和改革委员会",
+      "document_number": "京发改（审）〔2024〕609号",
+      "source_kind": "official_project_implementation_approval",
+      "url": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/202409/t20240923_3902988.htm",
+      "published_date": "2024-09-23",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A0",
+      "timeliness_level": "T1",
+      "public_access_status": "official_public_html",
+      "review_status": "approved_for_project_implementation_baseline",
+      "usable_for_formal": "yes",
+      "snapshot_sha256": "a1bc624e6e3a77a5013918c7c13c52caceb07b1268dfe0b75de935296aa3e275",
+      "allowed_uses": [
+        "approved construction-package area",
+        "approved location and project-purpose baseline",
+        "evidence of implementation-scheme approval"
+      ],
+      "prohibited_uses": [
+        "competition boundary",
+        "inference that the 23.08 ha package equals the full 53.09 ha project profile",
+        "construction drawing or project polygon",
+        "future-scope commitment"
+      ],
+      "topics": [
+        "Jingzhang_railway",
+        "public_space",
+        "implementation_approval"
+      ],
+      "local_paths": [
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md",
+        "visual/index.html"
+      ],
+      "notes_zh": "批复记录建设单位为海淀区园林绿化局、建设地点为西直门至知春路段之间、批准建设包用地约23.08公顷。该建设包口径与官方项目展示页53.09万平方米全走廊口径不同，不能合并或互相替代。"
+    },
+    {
+      "id": "BEIJING-FRC-JINGZHANG-PHASE2-TENDER-SCHEME",
+      "source_id": "DATA-SRC-BEIJING-FRC-JINGZHANG-PHASE2-TENDER-SCHEME-20240923",
+      "title": "关于京张铁路遗址公共空间改造提升工程（二期）建设项目招标方案核准意见书",
+      "publisher": "北京市发展和改革委员会",
+      "document_number": "京发改（审）〔2024〕609号",
+      "source_kind": "official_tender_scheme_approval",
+      "url": "https://fgw.beijing.gov.cn/fzggzl/yfxz/xzxk_sgs/202409/t20240923_3902991.htm",
+      "published_date": "2024-09-23",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A0",
+      "timeliness_level": "T1",
+      "public_access_status": "official_public_html",
+      "review_status": "approved_for_tender_estimate_baseline",
+      "usable_for_formal": "yes",
+      "snapshot_sha256": "ee5aa8f7e80109806a3efd15af57b67ac87c9ce6f0d47789cea86243dde6d5c1",
+      "allowed_uses": [
+        "survey, design, construction and supervision tender-estimate baselines",
+        "official procurement-structure context"
+      ],
+      "prohibited_uses": [
+        "final settlement or completed-project cost",
+        "competition investment commitment",
+        "contract award inference"
+      ],
+      "topics": [
+        "Jingzhang_railway",
+        "public_procurement",
+        "cost_baseline"
+      ],
+      "local_paths": [
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "notes_zh": "核准意见书公开勘察110.31万元、设计551.56万元、施工14560.18万元、监理238.65万元的单项合同估算；均是招标估算，不是结算或本方案投资承诺。"
+    },
+    {
+      "id": "BEIJING-GGZY-JINGZHANG-PHASE2-CONSTRUCTION-TENDER",
+      "source_id": "DATA-SRC-BEIJING-GGZY-JINGZHANG-PHASE2-CONSTRUCTION-TENDER-20240926",
+      "title": "京张铁路遗址公共空间改造提升工程（二期）（施工）资格预审公告",
+      "publisher": "北京市公共资源交易服务平台",
+      "transaction_id": "S110000A001039028001",
+      "source_kind": "official_public_resource_tender_notice",
+      "url": "https://ggzyfw.beijing.gov.cn/jyxxggjtbyqs/20240926/4679916.html",
+      "attachment_url": "https://ggzyfw.beijing.gov.cn/cmsbj/u/cms/cn.gov.bjggzyfw.www/202409/8980774679916.pdf",
+      "published_date": "2024-09-26",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A0",
+      "timeliness_level": "T1",
+      "public_access_status": "official_public_html_and_pdf",
+      "review_status": "approved_for_procurement_and_delivery_baseline",
+      "usable_for_formal": "yes",
+      "snapshot_sha256": "9960262f4f22b197f3c88d212f315e08fdc7397e9e7068026878c756a6c52996",
+      "attachment_sha256": "91000289c7d272f21a01378e238b0a47d08b9e225a4d8a74c433dfb0baf92df4",
+      "allowed_uses": [
+        "approved construction-package area",
+        "planned total investment and duration baseline",
+        "construction discipline and procurement-scope baseline"
+      ],
+      "prohibited_uses": [
+        "as-built completion inference",
+        "competition project boundary",
+        "construction drawing or road-redline inference",
+        "final cost commitment"
+      ],
+      "topics": [
+        "Jingzhang_railway",
+        "construction_tender",
+        "implementation"
+      ],
+      "local_paths": [
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md",
+        "visual/index.html"
+      ],
+      "notes_zh": "公告记录建设规模230800平方米、计划投资总额16252万元、工期339日历天，施工范围包括绿化、庭院、土方、给排水、电气、外电源和水源报装等。公告与附件公开，但资格预审文件需数字身份认证；本包未尝试绕过认证。"
+    },
+    {
+      "id": "BEIJING-CCGP-JINGZHANG-PHASE2-SUPPORTING-SURVEY",
+      "source_id": "DATA-SRC-BEIJING-CCGP-JINGZHANG-PHASE2-SUPPORTING-SURVEY-20250120",
+      "title": "京张铁路遗址公共空间改造提升工程（二期）配套项目（勘察）比选公告",
+      "publisher": "中国政府采购网",
+      "project_number": "KJY20250123",
+      "source_kind": "official_government_procurement_notice",
+      "url": "https://www.ccgp.gov.cn/cggg/dfgg/qtgg/202501/t20250120_24089627.htm",
+      "published_date": "2025-01-20",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A0",
+      "timeliness_level": "T1",
+      "public_access_status": "official_public_html_procurement_document_not_public",
+      "review_status": "approved_for_survey_procurement_status_only",
+      "usable_for_formal": "yes_with_deliverable_gap",
+      "snapshot_sha256": "fa459b762f4c785cec6633e5d1dcde9823e0e97d282ad1ff85605a9a60c97f5d",
+      "allowed_uses": [
+        "evidence that a supporting-project survey and related services were procured",
+        "published survey procurement budget and contract duration"
+      ],
+      "prohibited_uses": [
+        "geotechnical or topographic survey result inference",
+        "existing-building survey inference",
+        "official project polygon or coordinate extraction"
+      ],
+      "topics": [
+        "Jingzhang_railway",
+        "survey_procurement",
+        "supporting_project"
+      ],
+      "local_paths": [
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "notes_zh": "公告公开勘察及相关服务采购，预算62.15万元、合同履行期限15日历天。采购文件需现场购买和授权，公开页没有勘察成果、测绘图、坐标或地勘报告，因此只能证明专业工作被委托，不能补齐DR-003、DR-007或DR-008的成果数据。"
+    },
+    {
+      "id": "BEIJING-YLLHJ-JINGZHANG-PHASE2-SUPPORTING-COMPLETION",
+      "source_id": "DATA-SRC-BEIJING-YLLHJ-JINGZHANG-PHASE2-SUPPORTING-COMPLETION-20260713",
+      "title": "京张铁路遗址公共空间改造提升工程（二期）配套项目完工",
+      "publisher": "北京市园林绿化局（首都绿化委员会办公室）",
+      "source_kind": "official_government_completion_update",
+      "url": "https://yllhj.beijing.gov.cn/zwgk/zwxx/202607/t20260714_4761226.shtml",
+      "published_date": "2026-07-13",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A0",
+      "timeliness_level": "T0",
+      "public_access_status": "official_public_html",
+      "review_status": "approved_for_completed_project_status_and_scope_text",
+      "usable_for_formal": "yes_with_geometry_gap",
+      "snapshot_sha256": "92a892a51570588ec3845e3e8ce3e6cb808044af642e4a78d76d675512aeaeb2",
+      "allowed_uses": [
+        "current completion status of the phase-two supporting project",
+        "published north-segment area and endpoint description",
+        "completed work-discipline and slow-mobility-network context"
+      ],
+      "prohibited_uses": [
+        "as-built polygon or final surveyed area inference",
+        "competition boundary or key-area polygon",
+        "final settlement or statutory road-redline inference"
+      ],
+      "topics": [
+        "Jingzhang_railway",
+        "project_completion",
+        "public_space"
+      ],
+      "local_paths": [
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "notes_zh": "官方完工信息将配套项目分为南北两段：北段清华东路至北五环整体建设约30.01公顷，南段西直门至知春路设置附属配套工程，并公开绿化、庭院、管理用房、给排水、电气、架空线改移和涉铁工程等内容。页面没有竣工图、测量坐标或验收附件。"
+    },
+    {
+      "id": "BEIJING-JINGZHANG-2025-OPERATIONS",
+      "source_id": "DATA-SRC-BEIJING-JINGZHANG-2025-OPERATIONS-20260330",
+      "title": "何以京张",
+      "publisher": "北京市人民政府门户网站",
+      "source_kind": "official_government_feature",
+      "url": "https://www.beijing.gov.cn/fuwu/lqfw/gggs/202603/t20260330_4569001.html",
+      "published_date": "2026-03-30",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A1",
+      "timeliness_level": "T0",
+      "public_access_status": "official_public_html",
+      "review_status": "approved_for_park_operations_baseline",
+      "usable_for_formal": "yes_with_operator_attribution",
+      "snapshot_sha256": "7a9c4139f0744e448e3ae571e9dc51a70f5eac3efddbf87a5c530763e045b56a",
+      "allowed_uses": [
+        "2025 park activity and visitor-volume baseline",
+        "existing cultural-programming context"
+      ],
+      "prohibited_uses": [
+        "project-area demand forecast",
+        "future attendance commitment",
+        "competition boundary or pedestrian-flow geometry"
+      ],
+      "topics": [
+        "Jingzhang_railway",
+        "park_operations",
+        "visitor_baseline"
+      ],
+      "local_paths": [
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "notes_zh": "北京市政府门户文章援引公园管理方项目负责人称，2025年举办年轻态主题活动60多场、游客量430多万人次。本包按公开下限记录，不把运营方口径转换为未来客流承诺或重点区需求预测。"
+    },
+    {
+      "id": "BEIJING-AI-ORIGIN-2026-ECOSYSTEM",
+      "source_id": "DATA-SRC-BEIJING-AI-ORIGIN-2026-ECOSYSTEM-20260401",
+      "title": "原点爆发",
+      "publisher": "北京市人民政府门户网站",
+      "source_kind": "official_government_feature",
+      "url": "https://www.beijing.gov.cn/fuwu/lqfw/gggs/202604/t20260401_4571735.html",
+      "published_date": "2026-04-01",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A1",
+      "timeliness_level": "T0",
+      "public_access_status": "official_public_html",
+      "review_status": "approved_for_broader_origin_community_ecosystem_context",
+      "usable_for_formal": "yes_with_scope_boundary",
+      "snapshot_sha256": "b23a4fc4b2fda802e31d0e27a8798c1e4387c2ed842a7ae41cfd1f942fff4d32",
+      "allowed_uses": [
+        "broader AI Origin Community research and enterprise ecosystem baseline",
+        "university, research institution, laboratory, scholar and enterprise counts"
+      ],
+      "prohibited_uses": [
+        "competition key-area polygon",
+        "parcel-level tenant or employment inference",
+        "future investment, recruitment or delivery commitment"
+      ],
+      "topics": [
+        "AI_Origin_Community",
+        "innovation_ecosystem",
+        "enterprise_baseline"
+      ],
+      "local_paths": [
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "notes_zh": "官方文章公开AI原点社区更大政策范围内的科研和企业生态：37所高校、10个新型研发机构、52个全国重点实验室、106个国家级科研机构、1.23万名AI学者；入驻企业439家，其中AI企业325家、占74%。这些不是104.3公顷竞赛重点区的边界内统计。"
+    },
+    {
+      "id": "BEIJING-HERITAGE-BATCH11-NOTICE",
+      "source_id": "DATA-SRC-BEIJING-HERITAGE-BATCH11-NOTICE-20250114",
+      "title": "北京市人民政府关于公布第十一批文物保护单位保护范围及建设控制地带的通知",
+      "publisher": "北京市人民政府",
+      "document_number": "京政发〔2025〕3号",
+      "source_kind": "official_effective_heritage_notice",
+      "url": "https://www.beijing.gov.cn/zhengce/gfxwj/202501/t20250114_3989104.html",
+      "published_date": "2025-01-14",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A0",
+      "timeliness_level": "T0",
+      "public_access_status": "official_public_html",
+      "review_status": "approved_for_heritage_status_only",
+      "usable_for_formal": "yes_with_geometry_gap",
+      "snapshot_sha256": "65d86c525337596d1fc22907d1f4281cfc370f062f111bd81abb7b4c4f0f5a4e",
+      "allowed_uses": [
+        "current official heritage-protection status of Qinghuayuan Station former site",
+        "legal requirement to obtain protection-scope and construction-control drawings"
+      ],
+      "prohibited_uses": [
+        "invented heritage protection polygon",
+        "generic buffer substituted for the separately issued official drawings",
+        "construction permission inference"
+      ],
+      "topics": [
+        "Qinghuayuan_station",
+        "heritage_protection",
+        "construction_control_zone"
+      ],
+      "local_paths": [
+        "sources.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md",
+        "visual/index.html"
+      ],
+      "geometry_availability": "The notice lists Qinghuayuan Station former site as item 26 and states that scope descriptions and drawings are separately issued by the municipal heritage and planning authorities; no coordinate file or drawing attachment is exposed on the public notice page.",
+      "notes_zh": "清华园车站旧址已列入现行有效的第十一批北京市文物保护单位名单。通知确认保护范围和建设控制地带已经公布，但说明及图纸由市文物局、市规划自然资源委另行印发；公开页没有可下载图纸或坐标。"
+    },
+    {
+      "id": "BEIJING-YLLHJ-JINGZHANG-CONNECTIVITY-CONTEXT",
+      "source_id": "DATA-SRC-BEIJING-YLLHJ-JINGZHANG-CONNECTIVITY-20260210",
+      "title": "森林里的中关村 花园里的科学城",
+      "publisher": "北京市园林绿化局（首都绿化委员会办公室）",
+      "source_kind": "official_government_feature",
+      "url": "https://yllhj.beijing.gov.cn/ztxx/lhysh/jj/202604/t20260423_4605970.shtml",
+      "published_date": "2026-02-10",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A0",
+      "timeliness_level": "T0",
+      "public_access_status": "official_public_html",
+      "review_status": "approved_for_existing_corridor_connectivity_context",
+      "usable_for_formal": "yes_with_nonpolygon_scope_boundary",
+      "snapshot_sha256": "e18197cb34f704e3a0eec08e13c037c991a378063703ef89275ea9e745e9ee1f",
+      "allowed_uses": [
+        "existing green-conversion and corridor-connectivity baseline",
+        "published community, population, university and research-institution service context"
+      ],
+      "prohibited_uses": [
+        "official project polygon",
+        "competition boundary",
+        "future service or delivery commitment"
+      ],
+      "topics": [
+        "Jingzhang_railway",
+        "connectivity",
+        "public_space",
+        "communities"
+      ],
+      "local_paths": [
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "notes_zh": "官方文章记录铁路废弃地转化为16.8公顷绿地、形成约9公里带状公共空间、连通5条东西向道路、打通8处交通断点，并服务近70个社区、约45万人口、10余所高校和40余家科研机构。均为既有走廊文字口径，不是可计算polygon。"
+    },
+    {
+      "id": "BEIJING-GGZY-JINGZHANG-PHASE2-SURVEY-CONTRACT",
+      "source_id": "DATA-SRC-BEIJING-GGZY-JINGZHANG-PHASE2-SURVEY-CONTRACT-20240809",
+      "title": "京张铁路遗址公共空间改造提升工程（二期）（勘察）设计合同公示",
+      "publisher": "北京市公共资源交易服务平台",
+      "transaction_id": "S110000A001037792002",
+      "source_kind": "official_public_resource_contract_disclosure",
+      "url": "https://ggzyfw.beijing.gov.cn/jyxxgcjshtgs/20240809/4627726.html",
+      "published_date": "2024-08-09",
+      "contract_signed_date": "2024-07-31",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A0",
+      "timeliness_level": "T1",
+      "public_access_status": "official_public_html_deliverables_not_attached",
+      "review_status": "approved_for_contract_scope_and_data-custodian_trace",
+      "usable_for_formal": "yes_with_deliverable_gap",
+      "snapshot_sha256": "b970ddfd3c2e3cc86e4f3f728c7abf0d33cc9ec40f9087aa2e5c07c8ec30c472",
+      "contracting_authority": "北京市海淀区园林绿化局",
+      "contractor": "中材地质工程勘查研究院有限公司",
+      "allowed_uses": [
+        "signed survey contract value and duration",
+        "proof that control, topographic, tree, underground-pipeline and engineering surveys were commissioned",
+        "named commissioning and survey organizations for data request"
+      ],
+      "prohibited_uses": [
+        "survey-coordinate inference",
+        "underground-pipeline alignment or capacity inference",
+        "existing-building or official-boundary replacement without deliverables"
+      ],
+      "topics": [
+        "survey",
+        "topography",
+        "trees",
+        "underground_pipeline",
+        "data_custodian"
+      ],
+      "local_paths": [
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "notes_zh": "合同公示明确测绘范围包括控制测量、地形图测绘、树木测量、地下管线测量、工程勘察及其他技术服务；公开页未附成果文件。"
+    },
+    {
+      "id": "BEIJING-GGZY-JINGZHANG-PHASE2-DESIGN-CONTRACT",
+      "source_id": "DATA-SRC-BEIJING-GGZY-JINGZHANG-PHASE2-DESIGN-CONTRACT-20240809",
+      "title": "京张铁路遗址公共空间改造提升工程（二期）（设计）设计合同公示",
+      "publisher": "北京市公共资源交易服务平台",
+      "transaction_id": "S110000A001037792001",
+      "source_kind": "official_public_resource_contract_disclosure",
+      "url": "https://ggzyfw.beijing.gov.cn/jyxxgcjshtgs/20240809/4627730.html",
+      "published_date": "2024-08-09",
+      "contract_signed_date": "2024-07-31",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A0",
+      "timeliness_level": "T1",
+      "public_access_status": "official_public_html_drawings_not_attached",
+      "review_status": "approved_for_contract_scope_and_design-custodian_trace",
+      "usable_for_formal": "yes_with_deliverable_gap",
+      "snapshot_sha256": "95a2b8b383f11ac41e7f5bbaefb1ddd186229cb520316a4b7744d9175bad78c9",
+      "contracting_authority": "北京市海淀区园林绿化局",
+      "designer": "北京北林地景园林规划设计院有限责任公司",
+      "allowed_uses": [
+        "signed design contract value and duration",
+        "proof that scheme, preliminary and construction-drawing design were commissioned",
+        "named design organization for controlled data request"
+      ],
+      "prohibited_uses": [
+        "construction-drawing inference",
+        "official redline or parcel-control inference",
+        "final settlement inference"
+      ],
+      "topics": [
+        "design_contract",
+        "construction_drawings",
+        "data_custodian"
+      ],
+      "local_paths": [
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "notes_zh": "合同公开方案、初步和施工图设计范围及设计单位；未附任何设计图纸。"
+    },
+    {
+      "id": "BEIJING-GGZY-JINGZHANG-PHASE2-SUPPORTING-DESIGN-CONTRACT",
+      "source_id": "DATA-SRC-BEIJING-GGZY-JINGZHANG-SUPPORTING-DESIGN-CONTRACT-20250402",
+      "title": "京张铁路遗址公共空间改造提升工程（二期）配套项目（设计）合同公示",
+      "publisher": "北京市公共资源交易服务平台",
+      "transaction_id": "S110000A001038638001",
+      "source_kind": "official_public_resource_contract_disclosure",
+      "url": "https://ggzyfw.beijing.gov.cn/jyxxgcjshtgs/20250402/5020849.html",
+      "published_date": "2025-04-02",
+      "contract_signed_date": "2024-09-29",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A0",
+      "timeliness_level": "T1",
+      "public_access_status": "official_public_html_drawings_not_attached",
+      "review_status": "approved_for_contract_scope_and_design-custodian_trace",
+      "usable_for_formal": "yes_with_deliverable_gap",
+      "snapshot_sha256": "8b9ca72974b65d41773833098c65e3fd9719fc08c53096d4b26115a0e355c517",
+      "contracting_authority": "北京市海淀区园林绿化局",
+      "designer": "北京北林地景园林规划设计院有限责任公司",
+      "allowed_uses": [
+        "supporting-project design contract value and duration",
+        "proof of scheme, preliminary and construction-drawing design for north and south supporting segments"
+      ],
+      "prohibited_uses": [
+        "drawing or coordinate inference",
+        "competition polygon replacement",
+        "final settlement inference"
+      ],
+      "topics": [
+        "supporting_project",
+        "design_contract",
+        "construction_drawings"
+      ],
+      "local_paths": [
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "notes_zh": "合同地点覆盖清华东路至北五环段和西直门至知春路段；公开页未附图纸。"
+    },
+    {
+      "id": "BEIJING-GGZY-JINGZHANG-PHASE2-CONSTRUCTION-CONTRACT",
+      "source_id": "DATA-SRC-BEIJING-GGZY-JINGZHANG-CONSTRUCTION-CONTRACT-20241202",
+      "title": "京张铁路遗址公共空间改造提升工程（二期）（施工）合同公示",
+      "publisher": "北京市公共资源交易服务平台",
+      "transaction_id": "S110000A001039028001",
+      "source_kind": "official_public_resource_contract_disclosure",
+      "url": "https://ggzyfw.beijing.gov.cn/jyxxgcjshtgs/20241202/4752312.html",
+      "published_date": "2024-12-02",
+      "contract_signed_date": "2024-11-19",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A0",
+      "timeliness_level": "T1",
+      "public_access_status": "official_public_html_drawings_not_attached",
+      "review_status": "approved_for_signed_contract_and_delivery_chain",
+      "usable_for_formal": "yes_with_final-settlement_gap",
+      "snapshot_sha256": "add0b5db0f2f17ca33b66dcc2089943c43524a20e0674b31832039789dc496da",
+      "contracting_authority": "北京市海淀区园林绿化局",
+      "contractor": "北京金都园林绿化有限责任公司",
+      "allowed_uses": [
+        "signed construction contract value",
+        "construction discipline and delivery-chain trace",
+        "proof that design drawings governed construction scope"
+      ],
+      "prohibited_uses": [
+        "final settlement inference",
+        "as-built geometry inference",
+        "construction-drawing reproduction"
+      ],
+      "topics": [
+        "construction_contract",
+        "delivery_chain",
+        "implementation"
+      ],
+      "local_paths": [
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "notes_zh": "合同金额144782002.13元、建设规模230800平方米，施工范围引用设计图纸中的绿化、庭院、土方、给排水、电气、外电源和水源报装等全部工程。"
+    },
+    {
+      "id": "BEIJING-GGZY-JINGZHANG-PHASE2-SUPERVISION-CONTRACT",
+      "source_id": "DATA-SRC-BEIJING-GGZY-JINGZHANG-SUPERVISION-CONTRACT-20241202",
+      "title": "京张铁路遗址公共空间改造提升工程（二期）（监理）合同公示",
+      "publisher": "北京市公共资源交易服务平台",
+      "transaction_id": "S110000A001039028002",
+      "source_kind": "official_public_resource_contract_disclosure",
+      "url": "https://ggzyfw.beijing.gov.cn/jyxxgcjshtgs/20241202/4752290.html",
+      "published_date": "2024-12-02",
+      "contract_signed_date": "2024-11-19",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A0",
+      "timeliness_level": "T1",
+      "public_access_status": "official_public_html_supervision_records_not_attached",
+      "review_status": "approved_for_signed_contract_and-supervision-chain",
+      "usable_for_formal": "yes_with_record-gap",
+      "snapshot_sha256": "60ac6b9a90f2f4d316608b1675342f99d7c48e454c232bd429871855f21e98f6",
+      "contracting_authority": "北京市海淀区园林绿化局",
+      "supervisor": "北京中城建建设管理有限公司",
+      "allowed_uses": [
+        "signed supervision contract value and duration",
+        "named supervision organization for controlled record request",
+        "construction package scale and discipline cross-check"
+      ],
+      "prohibited_uses": [
+        "acceptance conclusion inference",
+        "as-built geometry inference",
+        "supervision-record inference"
+      ],
+      "topics": [
+        "supervision_contract",
+        "delivery_chain",
+        "quality_control"
+      ],
+      "local_paths": [
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "notes_zh": "监理合同覆盖230800平方米建设包和设计图纸中的全部工程，但未公开监理记录、竣工图或验收成果。"
+    },
+    {
+      "id": "BEIJING-CCGP-JINGZHANG-PHASE2-SUPPORTING-SURVEY-AWARD",
+      "source_id": "DATA-SRC-BEIJING-CCGP-JINGZHANG-SUPPORTING-SURVEY-AWARD-20250210",
+      "title": "京张铁路遗址公共空间改造提升工程（二期）配套项目（勘察）成交公告",
+      "publisher": "中国政府采购网",
+      "project_number": "KJY20250123",
+      "source_kind": "official_government_procurement_award",
+      "url": "https://www.ccgp.gov.cn/cggg/dfgg/cjgg/202502/t20250210_24148141.htm",
+      "published_date": "2025-02-10",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A0",
+      "timeliness_level": "T1",
+      "public_access_status": "official_public_html_procurement_document_not_public",
+      "review_status": "approved_for_award_and_data-custodian_trace",
+      "usable_for_formal": "yes_with_deliverable_gap",
+      "snapshot_sha256": "0c7a87a5d90f04fb18e0db5f38ac957ec7163a80253f6a72b9b164dcdcd227eb",
+      "supplier": "中材地质工程勘查研究院有限公司",
+      "allowed_uses": [
+        "supporting-survey award value and duration",
+        "named supporting-survey supplier",
+        "data-request routing"
+      ],
+      "prohibited_uses": [
+        "survey result inference",
+        "official coordinate or geometry extraction",
+        "final project boundary inference"
+      ],
+      "topics": [
+        "survey_award",
+        "supporting_project",
+        "data_custodian"
+      ],
+      "local_paths": [
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "notes_zh": "成交金额60.8万元、服务期15日历天；服务范围和成果标准仍指向未公开比选文件。"
+    },
+    {
+      "id": "BEIJING-CCGP-JINGZHANG-METRO-SAFETY-ASSESSMENT",
+      "source_id": "DATA-SRC-BEIJING-CCGP-JINGZHANG-METRO-SAFETY-20250208",
+      "title": "京张铁路遗址公共空间改造提升工程（二期）配套项目地铁安全评估比选公告",
+      "publisher": "中国政府采购网",
+      "project_number": "KJY20250187",
+      "source_kind": "official_government_procurement_notice",
+      "url": "https://www.ccgp.gov.cn/cggg/dfgg/qtgg/202502/t20250208_24141366.htm",
+      "published_date": "2025-02-08",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A0",
+      "timeliness_level": "T1",
+      "public_access_status": "official_public_html_report_not_public",
+      "review_status": "approved_for_assessment-procurement-status_only",
+      "usable_for_formal": "yes_with_report-gap",
+      "snapshot_sha256": "94e9915f616bab5d0809e5a3c44cb317bb22f3de3020fb2cc0ad7007d2570fef",
+      "allowed_uses": [
+        "evidence that a metro safety assessment was commissioned",
+        "published procurement budget",
+        "safety-data request routing"
+      ],
+      "prohibited_uses": [
+        "metro safety conclusion inference",
+        "rail protection-zone geometry inference",
+        "approval inference"
+      ],
+      "topics": [
+        "metro_safety",
+        "risk_assessment",
+        "supporting_project"
+      ],
+      "local_paths": [
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "notes_zh": "预算53万元，服务期至提交最终评估报告；公开页未附最终评估报告。"
+    },
+    {
+      "id": "OPENSTREETMAP-JINGZHANG-EXISTING-CONTEXT",
+      "source_id": "DATA-SRC-OPENSTREETMAP-JINGZHANG-CONTEXT-20260808",
+      "title": "OpenStreetMap existing-condition context clipped to provisional SITE-001",
+      "publisher": "OpenStreetMap contributors",
+      "source_kind": "external_public_open_data",
+      "url": "https://www.openstreetmap.org/copyright",
+      "data_url": "https://overpass-api.de/api/interpreter",
+      "accessed_date": "2026-08-08",
+      "snapshot_timestamp_utc": "2026-08-08T05:57:06Z",
+      "query_bbox_wgs84": [
+        39.939,
+        116.3397,
+        40.0265,
+        116.3553
+      ],
+      "authority_level": "A2",
+      "timeliness_level": "T0",
+      "public_access_status": "external_open_odbl",
+      "license_summary": "Copyright OpenStreetMap contributors; Open Database License (ODbL). Derived features retain attribution, source IDs, snapshot hashes and share-alike notice.",
+      "license_snapshot_sha256": "2470b78b100c1f799781366df1cf5082ec44d9475aae476c823e62218fa623fd",
+      "review_status": "approved_for_nonstatutory_existing_context",
+      "usable_for_formal": "yes_as_nonstatutory_context_only",
+      "allowed_uses": [
+        "existing-condition building, road, railway, water and POI context",
+        "concept-stage accessibility and service-gap screening",
+        "field-survey planning"
+      ],
+      "prohibited_uses": [
+        "official project or parcel boundary",
+        "ownership, permit or demolition conclusion",
+        "road redline, pipeline, heritage-control or rail-protection geometry",
+        "completeness or survey-grade accuracy claim"
+      ],
+      "topics": [
+        "open_data",
+        "existing_condition",
+        "buildings",
+        "roads",
+        "rail",
+        "water",
+        "poi"
+      ],
+      "local_paths": [
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
+        "geometry/constraints.geojson",
+        "geometry/public_space.geojson",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/copyright_statement.md"
+      ],
+      "retrieved_files": [
+        {
+          "name": "buildings",
+          "sha256": "99b6fe9d88bcd117b62f167a55fe96d4d0a6947491c44dfaaf3337d111e71803",
+          "elements": 1898,
+          "timestamp_utc": "2026-08-08T05:55:06Z"
+        },
+        {
+          "name": "highways",
+          "sha256": "cad2b9e5d85864e5bca5b6d5179cca484a5257d4eafe914ec819ed683db2a73e",
+          "elements": 2720,
+          "timestamp_utc": "2026-08-08T05:55:06Z"
+        },
+        {
+          "name": "rail_water",
+          "sha256": "d0e4a779c29621270e712bd02308bae1785bb1ee06637edbe9bfe62ee81653f5",
+          "elements": 131,
+          "timestamp_utc": "2026-08-08T05:55:06Z"
+        },
+        {
+          "name": "poi_nodes",
+          "sha256": "c90fd152c3d329e71a69e3edee91587e036baaec828df58d92ea6760a83b711f",
+          "elements": 729,
+          "timestamp_utc": "2026-08-08T05:57:06Z"
+        },
+        {
+          "name": "poi_ways",
+          "sha256": "17a88bab97d6275f8fc4bc7b6fdf8b374298532073d758b0764d5e51506a07de",
+          "elements": 475,
+          "timestamp_utc": "2026-08-08T05:57:06Z"
+        }
+      ],
+      "filtered_feature_counts": {
+        "buildings": 1688,
+        "roads": 2489,
+        "rail": 106,
+        "water": 23,
+        "pois": 1058
+      },
+      "notes_zh": "数据按provisional SITE-001裁切并作为existing_condition写入；不是官方底图、测绘成果或法定控制线。"
+    },
+    {
+      "id": "TIANDITU-HAIDIAN-OFFICIAL-GEO-CATALOG",
+      "source_id": "DATA-SRC-TIANDITU-HAIDIAN-OFFICIAL-GEO-CATALOG-20260808",
+      "title": "全国地理信息资源目录服务系统：北京海淀区地理信息成果目录",
+      "publisher": "中华人民共和国自然资源部（主办）、国家基础地理信息中心（承办）；北京地区成果由北京市测绘设计研究院分发",
+      "source_kind": "official_geographic_product_catalog",
+      "url": "https://mulu.tianditu.gov.cn/catalog?source=156110000",
+      "accessed_date": "2026-08-08",
+      "authority_level": "A0",
+      "timeliness_level": "T0",
+      "public_access_status": "catalog_metadata_public_products_controlled_order_account_required",
+      "review_status": "approved_for_product-existence_sheet-index-and-custodian-trace_only",
+      "usable_for_formal": "yes_for_catalog_evidence_only",
+      "catalog_snapshot_sha256": "d4c81e2d1515e3369ad335f3a7b2bfba313735ff245fa5030b9bd624e904b4c3",
+      "project_query_snapshot_sha256": "8683f94252211383eb4c57106f36d1f8732f91c5887734b3f7204f44a25d6785",
+      "sample_detail_snapshot_sha256": "b4eedaf356ffe473e2c481b2011a743ef39efb82257181265590e04a61d476b0",
+      "query": {
+        "administrative_path": "全国 / 北京 / 海淀区",
+        "catalog_gb": "156110108",
+        "product_type": "矢量地图数据 / 陆地",
+        "scale": "1:500",
+        "haidian_catalog_record_count": 13230,
+        "provisional_site_intersection_record_count": 1506,
+        "provisional_site_unique_sheet_count": 502,
+        "latest_sheet_versions": {
+          "2024版": 253,
+          "2021版": 249
+        },
+        "site_query_boundary": "geometry/site_boundary.geojson#SITE-001 (provisional rough WKT)"
+      },
+      "sample_product": {
+        "data_id": 14706272,
+        "sheet_number": "D-1-3-4(1)",
+        "production_date": "2024-07-01",
+        "edition": "2024版",
+        "format": "DWG",
+        "security_classification": "秘密",
+        "metadata_contact_and_distributor": "北京市测绘设计研究院",
+        "project": "北京市四环范围1:500地形图更新测绘与建库及地理实体更新"
+      },
+      "additional_sample_findings": [
+        "1:2000 sample dataId 124128 is DWG and classified 秘密",
+        "1:10000 sample dataId 12666980 is DWG and classified 秘密",
+        "anonymous /api/catalog/userInfo returned an empty object; the guide requires adding products to a list and submitting an order"
+      ],
+      "allowed_uses": [
+        "prove that high-resolution topographic/vector products exist",
+        "identify intersecting sheet indexes and current catalog editions using a disclosed provisional boundary",
+        "identify the official metadata contact and distributor for a controlled data request"
+      ],
+      "prohibited_uses": [
+        "download or reproduce classified products without authorization",
+        "treat catalog sheet footprints as project, parcel, road-redline or heritage-control geometry",
+        "claim that controlled DWG products are open data"
+      ],
+      "topics": [
+        "official_mapping_catalog",
+        "topography",
+        "controlled_data",
+        "data_custodian"
+      ],
+      "local_paths": [
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md"
+      ],
+      "notes_zh": "目录元数据公开且可按临时范围检索，但抽查的1:500、1:2000和1:10000矢量成果均标注“秘密”。本包只登记目录计数、图幅索引、版本和保管单位，不下载、不复制、不反推受控内容。"
+    },
+    {
+      "id": "ESA-WORLDCOVER-JINGZHANG-2021",
+      "source_id": "DATA-SRC-ESA-WORLDCOVER-JINGZHANG-2021-20260808",
+      "title": "ESA WorldCover 2021 v200 10 m land-cover product clipped to provisional SITE-001",
+      "publisher": "European Space Agency WorldCover consortium",
+      "source_kind": "official_open_earth_observation_dataset",
+      "url": "https://esa-worldcover.org/en/data-access",
+      "data_url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N39E114_Map.tif",
+      "accessed_date": "2026-08-08",
+      "product_year": 2021,
+      "authority_level": "A1",
+      "timeliness_level": "T3",
+      "public_access_status": "public_cog_no_login",
+      "review_status": "approved_for_historical_surface-cover_context",
+      "usable_for_formal": "yes_with_temporal_accuracy-and-provisional-clip_boundary",
+      "license": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+      "required_attribution": "© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+      "source_cog_sha256": "1abcb25bdbc0030eb2656dfba9881a333e0535f88a6d5ecee719c9ac476ea9ea",
+      "wms_capabilities_sha256": "a4a6a1789c29c7c998d2679ece55d6675ba949feded1944fe4f3b1ff012cf583",
+      "resolution": "approximately 10 m",
+      "crs": "EPSG:4326",
+      "reported_global_overall_accuracy": 0.767,
+      "allowed_uses": [
+        "concept-stage historical surface-cover baseline",
+        "screening of built-up, tree-cover, grassland, cropland and permanent-water classes",
+        "cross-checking field-survey priorities"
+      ],
+      "prohibited_uses": [
+        "current statutory land-use or green-space ratio",
+        "official water blue line, cadastral boundary, ownership or engineering conclusion",
+        "replacement of current survey or organizer geometry"
+      ],
+      "topics": [
+        "land_cover",
+        "earth_observation",
+        "tree_cover",
+        "built_up",
+        "water"
+      ],
+      "local_paths": [
+        "visual/assets/worldcover_2021_classes.png",
+        "visual/assets/worldcover_2021_summary.json",
+        "assets/figures/worldcover-2021-existing-context.png",
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md",
+        "report/copyright_statement.md"
+      ],
+      "notes_zh": "从免登录公共COG仅读取与SITE-001相交的内部压缩瓦片，以像元中心进行临时边界遮罩；无损分类PNG保留原始分类码，配套JSON保留EPSG:4326原点、像元尺寸和nodata。2021年产品只作历史地表覆盖参考，不能升级为现状测绘或法定用地结论。"
+    },
+    {
+      "id": "COPERNICUS-DEM-GLO30-JINGZHANG",
+      "source_id": "DATA-SRC-COPDEM-GLO30-JINGZHANG-20260808",
+      "title": "Copernicus DEM GLO-30 Public DSM clipped to provisional SITE-001",
+      "publisher": "European Union Copernicus programme and European Space Agency; derived from WorldDEM",
+      "source_kind": "official_open_elevation_dataset",
+      "url": "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+      "public_distribution_url": "https://registry.opendata.aws/copernicus-dem/",
+      "doi": "https://doi.org/10.5270/ESA-c5d3d65",
+      "data_urls": [
+        "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N40_00_E116_00_DEM/Copernicus_DSM_COG_10_N40_00_E116_00_DEM.tif",
+        "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N39_00_E116_00_DEM/Copernicus_DSM_COG_10_N39_00_E116_00_DEM.tif"
+      ],
+      "accessed_date": "2026-08-08",
+      "authority_level": "A1",
+      "timeliness_level": "T4_historical_2011_2015_acquisition",
+      "public_access_status": "public_s3_cog_no_account_byte_range_supported",
+      "review_status": "approved_for_historical_dsm_and_coarse_surface-slope_screening",
+      "usable_for_formal": "yes_for_concept-stage-context_with_dsm-vintage-resolution-and-provisional-clip-limitations",
+      "license": "Copernicus DEM GLO-30 free licence; worldwide public use with required attribution; all rights reserved",
+      "required_attribution": "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved",
+      "product_type": "digital surface model (DSM), not a bare-earth digital terrain model (DTM)",
+      "source_acquisition_period": "2011-2015 TanDEM-X; older DEM sources may fill gaps",
+      "distribution_release": "Copernicus DEM 2021 public release as COG; source S3 objects last modified 2022-05-09",
+      "resolution": "1.0 arc-second / approximately 30 m",
+      "horizontal_crs": "EPSG:4326 (WGS 84 / WGS84-G1150)",
+      "vertical_crs": "EPSG:3855 (EGM2008 geoid heights), metres",
+      "raster_pixel_interpretation": "RasterPixelIsPoint",
+      "official_accuracy_statement": {
+        "absolute_vertical": "less than 4 m LE90",
+        "relative_vertical": "less than 2 m for slopes at or below 20%; less than 4 m for slopes above 20%",
+        "absolute_horizontal": "less than 6 m CE90"
+      },
+      "source_object_integrity": [
+        {
+          "tile": "Copernicus_DSM_COG_10_N40_00_E116_00_DEM",
+          "etag": "f864fde13e9923a4b29898a8ffa64089",
+          "object_length_bytes": 46764581,
+          "last_modified": "2022-05-09T14:21:33Z",
+          "downloaded_byte_range_inclusive": [
+            42863155,
+            44410266
+          ],
+          "downloaded_block_sha256": "b4272125e676ad3c75971f3414b5847d73c646784c6ebc91c8c4a7b31c845e17"
+        },
+        {
+          "tile": "Copernicus_DSM_COG_10_N39_00_E116_00_DEM",
+          "etag": "693abe15604672d67b64e61497a3614a",
+          "object_length_bytes": 50462276,
+          "last_modified": "2022-05-09T14:20:50Z",
+          "downloaded_byte_range_inclusive": [
+            15536100,
+            18584647
+          ],
+          "downloaded_block_sha256": "f063aea2a79cb66374a0b98b59bd7d04c901ad86143b855e886f0011b9cac0f2"
+        }
+      ],
+      "allowed_uses": [
+        "concept-stage historical existing-surface context",
+        "coarse elevation-relief and surface-slope screening",
+        "identification of locations requiring current survey and engineering verification"
+      ],
+      "prohibited_uses": [
+        "bare-earth or current terrain claim",
+        "spot levels, grading, drainage direction, flood modelling or earthworks quantities",
+        "accessible-route, rail-safety, utility, statutory-boundary or survey-acceptance conclusion"
+      ],
+      "topics": [
+        "digital_surface_model",
+        "elevation",
+        "terrain_screening",
+        "survey_priority"
+      ],
+      "local_paths": [
+        "visual/assets/copdem_glo30_elevation_dm.png",
+        "visual/assets/copdem_glo30_summary.json",
+        "assets/figures/copdem-glo30-existing-surface.png",
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md",
+        "report/copyright_statement.md"
+      ],
+      "notes_zh": "官方GLO-30是约30 m数字表面模型，源数据主要采集于2011-2015年，建筑、基础设施和植被可进入高程。本包仅按HTTP Range取得两个相交内部块，保留对象ETag、长度、块范围和SHA-256；裁片边界仍为临时SITE-001。"
+    },
+    {
+      "id": "JRC-GSW-V15-JINGZHANG",
+      "source_id": "DATA-SRC-JRC-GSW-V15-JINGZHANG-20260808",
+      "title": "JRC Global Surface Water v1.5 water history clipped to provisional SITE-001",
+      "publisher": "European Commission Joint Research Centre and Google under the Copernicus Programme",
+      "source_kind": "official_open_long_term_surface_water_dataset",
+      "url": "https://global-surface-water.appspot.com/download",
+      "data_urls": [
+        "https://storage.googleapis.com/water-world/download2024/VER1-5/occurrence/occurrence_110E_40N_v1_5_2024.tif",
+        "https://storage.googleapis.com/water-world/download2024/VER1-5/occurrence/occurrence_110E_50N_v1_5_2024.tif",
+        "https://storage.googleapis.com/water-world/download2024/VER1-5/transitions/transitions_110E_40N_v1_5_2024.tif",
+        "https://storage.googleapis.com/water-world/download2024/VER1-5/transitions/transitions_110E_50N_v1_5_2024.tif",
+        "https://storage.googleapis.com/water-world/download2024/VER1-5/extent/extent_110E_40N_v1_5_2024.tif",
+        "https://storage.googleapis.com/water-world/download2024/VER1-5/extent/extent_110E_50N_v1_5_2024.tif"
+      ],
+      "accessed_date": "2026-08-08",
+      "authority_level": "A1",
+      "timeliness_level": "T2_release_v1_5_2024_with_source_objects_published_2026",
+      "public_access_status": "public_google_cloud_storage_http_range_no_account",
+      "review_status": "approved_for_long_term_landsat_water_observation_screening",
+      "usable_for_formal": "yes_for_concept-stage-water-history-context_with-resolution-registration-and-provisional-clip-limitations",
+      "license": "Copernicus Programme data; free of charge without restriction of use; acknowledgement required",
+      "required_map_attribution": "Source: EC JRC/Google",
+      "required_citation": "Pekel, Cottam, Gorelick and Belward (2016), High-resolution mapping of global surface water and its long-term changes, Nature 540, 418-422, doi:10.1038/nature20584",
+      "release": "v1.5 / 2024 data release",
+      "aggregation_period": "1984-2024 for occurrence and transitions; 2022-2024 for the included maximum-extent layer",
+      "resolution": "0.00025 degrees / approximately 30 m",
+      "horizontal_crs": "EPSG:4326",
+      "raster_pixel_interpretation": "RasterPixelIsArea",
+      "source_object_integrity": [
+        {
+          "layer": "occurrence",
+          "tile": "110E_40N",
+          "etag": "d99717b033b7cf321357c69ba4404f59",
+          "google_generation": "1781883573302089",
+          "object_length_bytes": 106033706,
+          "last_modified": "2026-06-19T15:39:33Z",
+          "header_range_inclusive": [
+            0,
+            2097151
+          ],
+          "header_range_sha256": "278612dea02f185aa1f8b14d3270de858178534a55565b6e83a01567ce6beca2",
+          "ifd_tail_range_inclusive": [
+            105551642,
+            106033705
+          ],
+          "ifd_tail_sha256": "639067acf50165dc48de689a82ba0c62604b00d3bdbda5e086b10a14c078624a",
+          "downloaded_byte_range_inclusive": [
+            480524,
+            819988
+          ],
+          "downloaded_strip_range_sha256": "1ee3cef9199ccf12c54792d5634fab5507f89baf2e79713987c59ad9d43287bd"
+        },
+        {
+          "layer": "occurrence",
+          "tile": "110E_50N",
+          "etag": "399fde71c461a4b76938ed2b54808395",
+          "google_generation": "1781883387310128",
+          "object_length_bytes": 29937552,
+          "last_modified": "2026-06-19T15:36:27Z",
+          "header_range_inclusive": [
+            0,
+            2097151
+          ],
+          "header_range_sha256": "c5c95b0a3adf0e5881a869593bef6c6b94a46e101d202990973f0c66fbed0ece",
+          "ifd_tail_range_inclusive": [
+            29455488,
+            29937551
+          ],
+          "ifd_tail_sha256": "5634e7429dc5e6758f5a9d775f38fc515d42098d3f70ff524083297be0dc57e2",
+          "downloaded_byte_range_inclusive": [
+            29280309,
+            29455487
+          ],
+          "downloaded_strip_range_sha256": "eb7dedcca43a5cfa7394ae825b9bb4dcdb0751b9dfa4d1b0719e5d6129b065b2"
+        },
+        {
+          "layer": "transitions",
+          "tile": "110E_40N",
+          "etag": "b4160a1387ed5a99a6937c3c57561faf",
+          "google_generation": "1782077436883592",
+          "object_length_bytes": 58419370,
+          "last_modified": "2026-06-21T21:30:36Z",
+          "header_range_inclusive": [
+            0,
+            2097151
+          ],
+          "header_range_sha256": "097e7a9028482abefee52aecb5c54234d13f544c3a248614bd56692d5e03aa41",
+          "ifd_tail_range_inclusive": [
+            57937306,
+            58419369
+          ],
+          "ifd_tail_sha256": "53ac7aa0990744384b76fdabcf826640f02c80ad6f1f8ce32b6135d6afc59e9d",
+          "downloaded_byte_range_inclusive": [
+            480524,
+            690345
+          ],
+          "downloaded_strip_range_sha256": "99ca0d00dc1505ac824bfb66dd5c9e113b9aad2e280df53538bd06d0bc7016ea"
+        },
+        {
+          "layer": "transitions",
+          "tile": "110E_50N",
+          "etag": "802e050962f9d04d61f0de7bc8313db7",
+          "google_generation": "1782077346654080",
+          "object_length_bytes": 22134882,
+          "last_modified": "2026-06-21T21:29:06Z",
+          "header_range_inclusive": [
+            0,
+            2097151
+          ],
+          "header_range_sha256": "da7e3d46c1bc987ebac54492166fa779c4118a24aa7caa3a5ec7f6ef82502a07",
+          "ifd_tail_range_inclusive": [
+            21652818,
+            22134881
+          ],
+          "ifd_tail_sha256": "3bb914d4eeef226dc83edb68f122a84b95160d77a09f3040124f496b1f71a514",
+          "downloaded_byte_range_inclusive": [
+            21548804,
+            21652817
+          ],
+          "downloaded_strip_range_sha256": "f983b2cfe7b71ad86a10130e7ffb351b5d6a6b721a567f806a8fda2dc281d9ed"
+        },
+        {
+          "layer": "max_extent_2022_2024",
+          "tile": "110E_40N",
+          "etag": "7c5e9cd75289d3f1831c5d792502d1fe",
+          "google_generation": "1781882986376263",
+          "object_length_bytes": 35120927,
+          "last_modified": "2026-06-19T15:29:46Z",
+          "header_range_inclusive": [
+            0,
+            2097151
+          ],
+          "header_range_sha256": "a9ad86d4810eacbd318d561d018e654d3234d6404094bb5077e7c07bde858fa6",
+          "ifd_tail_range_inclusive": null,
+          "ifd_tail_sha256": null,
+          "downloaded_byte_range_inclusive": [
+            480524,
+            627435
+          ],
+          "downloaded_strip_range_sha256": "90a751aa2851e169c84131c7c8b1a8bf8df3d7ada725d3db6135981b7cd7944c"
+        },
+        {
+          "layer": "max_extent_2022_2024",
+          "tile": "110E_50N",
+          "etag": "99cebfc71090441c77e41c124de3ddf5",
+          "google_generation": "1781882943940749",
+          "object_length_bytes": 17627917,
+          "last_modified": "2026-06-19T15:29:03Z",
+          "header_range_inclusive": [
+            0,
+            2097151
+          ],
+          "header_range_sha256": "a3a6b68448e7a35951a321e4d5957d88578454f0c1ebc65b9b2fbe94e3209fee",
+          "ifd_tail_range_inclusive": null,
+          "ifd_tail_sha256": null,
+          "downloaded_byte_range_inclusive": [
+            17561331,
+            17627916
+          ],
+          "downloaded_strip_range_sha256": "1b1cbaabb1db15cbe514c0cf34383a950fcc398eb2deb8b1a7fe0c3cc2db7c3b"
+        }
+      ],
+      "official_style_integrity": {
+        "urls": {
+          "occurrence": "https://storage.googleapis.com/global-surface-water/downloads_ancillary/occurrence.qml",
+          "transitions": "https://storage.googleapis.com/global-surface-water/downloads_ancillary/transitions.qml",
+          "extent": "https://storage.googleapis.com/global-surface-water/downloads_ancillary/extent.qml"
+        },
+        "sha256": {
+          "occurrence": "fe7ebb15ccad63a5e9076bd3e7ab6dd6f0d6e8736f6dd1014c18036705a9276e",
+          "transitions": "6307fcde4c9423273c2f18347278ec257c9f5ea756238d044659ba902502e1c1",
+          "extent": "05e8beae208f8023f13bbe6cc4f2f827f6517a0f9b7346a674d9d4d0805f2250"
+        }
+      },
+      "allowed_uses": [
+        "concept-stage screening of long-term Landsat-observed surface-water occurrence",
+        "screening of official transition classes and the 2022-2024 maximum-extent layer",
+        "identification of locations needing current field, drainage and flood verification"
+      ],
+      "prohibited_uses": [
+        "statutory blue line, channel, culvert, pipe or drainage-capacity claim",
+        "flood or inundation model, water-quality conclusion or current survey",
+        "proof that non-detected narrow, covered, intermittent or recently changed water is absent"
+      ],
+      "topics": [
+        "surface_water",
+        "water_occurrence",
+        "water_transition",
+        "environmental_screening"
+      ],
+      "local_paths": [
+        "visual/assets/jrc_gsw_v15_occurrence.png",
+        "visual/assets/jrc_gsw_v15_transitions.png",
+        "visual/assets/jrc_gsw_v15_max_extent_2022_2024.png",
+        "visual/assets/jrc_gsw_v15_summary.json",
+        "assets/figures/jrc-gsw-v15-water-history.png",
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md",
+        "report/copyright_statement.md"
+      ],
+      "notes_zh": "JRC v1.5修正了旧版部分发生频率处理不一致。本包保存六个源对象的URL、长度、ETag、Google generation、Last-Modified、头/IFD/项目行字节范围和SHA-256，并核对官方QML分类。约30 m产品及Collection 1/2配准偏差不能替代蓝线、水文、防洪或工程调查。"
+    },
+    {
+      "id": "COPERNICUS-SENTINEL2-L2A-JINGZHANG-20260715",
+      "source_id": "DATA-SRC-SENTINEL2-L2A-JINGZHANG-20260715-20260808",
+      "title": "Copernicus Sentinel-2B L2A 2026-07-15 current optical context clipped to provisional SITE-001",
+      "publisher": "European Union Copernicus Programme and ESA; public COG conversion and Earth Search STAC by Element 84",
+      "source_kind": "official_open_satellite_product_via_public_cog_derivative",
+      "url": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-2-l2a/items/S2B_MSIL2A_20260715T030519_N0512_R075_T50TMK_20260715T060222",
+      "official_product_page": "https://dataspace.copernicus.eu/explore-data/data-collections/sentinel-data/sentinel-2",
+      "public_distribution_url": "https://registry.opendata.aws/sentinel-2-l2a-cogs/",
+      "public_mirror_stac_query_url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items?bbox=116.3397,39.939,116.3553,40.0265&datetime=2026-07-01T00:00:00Z/2026-08-08T23:59:59Z&limit=100&sortby=-properties.datetime",
+      "data_urls": [
+        "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/T/MK/2026/7/S2B_T50TMK_20260715T031456_L2A/B02.tif",
+        "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/T/MK/2026/7/S2B_T50TMK_20260715T031456_L2A/B03.tif",
+        "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/T/MK/2026/7/S2B_T50TMK_20260715T031456_L2A/B04.tif",
+        "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/T/MK/2026/7/S2B_T50TMK_20260715T031456_L2A/B08.tif",
+        "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/T/MK/2026/7/S2B_T50TMK_20260715T031456_L2A/SCL.tif"
+      ],
+      "accessed_date": "2026-08-08",
+      "authority_level": "A1_official_product_B1_public_cog_transcoding",
+      "timeliness_level": "T1_2026_07_15_single_scene",
+      "public_access_status": "official_cdse_catalog_public_assets_authenticated_public_cog_mirror_no_account_http_range",
+      "review_status": "approved_for_single_scene_current_optical_and_spectral_screening",
+      "usable_for_formal": "yes_for_concept-stage-current-context_with-single-scene-resolution-classification-and-provisional-clip-limitations",
+      "license": "Copernicus Sentinel data free, full and open; attribution required under the applicable Copernicus Sentinel data legal notice",
+      "legal_notice_url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+      "required_attribution": "Contains modified Copernicus Sentinel data [2026]",
+      "official_item_id": "S2B_MSIL2A_20260715T030519_N0512_R075_T50TMK_20260715T060222",
+      "official_product_name": "S2B_MSIL2A_20260715T030519_N0512_R075_T50TMK_20260715T060222.SAFE",
+      "public_cog_item_id": "S2B_T50TMK_20260715T031456_L2A",
+      "platform": "sentinel-2b",
+      "grid_code": "MGRS-50TMK",
+      "processing_level": "Level-2A bottom-of-atmosphere surface reflectance",
+      "processing_baseline": "05.12",
+      "official_sensing_start_datetime": "2026-07-15T03:05:19.024000Z",
+      "granule_sensing_datetime": "2026-07-15T03:16:44.278000Z",
+      "processing_datetime": "2026-07-15T06:02:22.000000Z",
+      "resolution": "10 m B02/B03/B04/B08 surface reflectance; 20 m SCL",
+      "horizontal_crs": "EPSG:32650 (WGS 84 / UTM zone 50N)",
+      "raster_pixel_interpretation": "RasterPixelIsArea",
+      "reflectance_encoding": {
+        "source_dtype": "uint16",
+        "nodata_dn": 0,
+        "scale": 0.0001,
+        "offset": -0.1,
+        "formula": "surface_reflectance = DN * 0.0001 - 0.1"
+      },
+      "official_mirror_identity_checks": {
+        "platform": true,
+        "grid_code": true,
+        "product_name": true,
+        "processing_baseline": true,
+        "processing_datetime": true,
+        "sun_angles": true,
+        "datetime_note": "The official item datetime is the product sensing start; Earth Search datetime is the tile/granule sensing time. Both records identify the same product, tile, platform, generation time and processing baseline."
+      },
+      "stac_snapshot_integrity": {
+        "official_query_url": "https://stac.dataspace.copernicus.eu/v1/collections/sentinel-2-l2a/items?bbox=116.3397,39.939,116.3553,40.0265&datetime=2026-07-01T00:00:00Z/2026-08-08T23:59:59Z&limit=100&sortby=-properties.datetime",
+        "official_snapshot_sha256": "ac3b60918287db3774c8aa68cd5b0528495f45b5a0ae5cd4f97cc1257e2a29f4",
+        "official_returned_scene_count": 19,
+        "mirror_query_url": "https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items?bbox=116.3397,39.939,116.3553,40.0265&datetime=2026-07-01T00:00:00Z/2026-08-08T23:59:59Z&limit=100&sortby=-properties.datetime",
+        "mirror_snapshot_sha256": "dbb7184011fbfb9f800483bdae6a25111290a12ed3d29740e160073beb0671f5",
+        "mirror_returned_scene_count": 19,
+        "compact_scene_selection_path": "visual/assets/sentinel2_20260715_scene_selection.json"
+      },
+      "source_object_integrity": [
+        {
+          "band": "B02",
+          "url": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/T/MK/2026/7/S2B_T50TMK_20260715T031456_L2A/B02.tif",
+          "object_length_bytes": 219129568,
+          "etag": "\"2691438cc25ab0f0dfb600d513fa99f6-27\"",
+          "last_modified": "2026-07-15T07:12:30Z",
+          "published_multihash": "1220bb9306a81cf0c2a4d7d34b65ee95f4c083421ca29fa5c21bf69fea8b27835232",
+          "downloaded_internal_blocks": [
+            {
+              "tile_index": 70,
+              "tile_row": 6,
+              "tile_column": 4,
+              "downloaded_byte_range_inclusive": [
+                148195614,
+                149784856
+              ],
+              "compressed_byte_count": 1589243,
+              "downloaded_block_sha256": "d0976502542c12db1e54eade691d78516ab7ae8b060cd56c4bfa51f72b276896"
+            },
+            {
+              "tile_index": 81,
+              "tile_row": 7,
+              "tile_column": 4,
+              "downloaded_byte_range_inclusive": [
+                164183137,
+                165808393
+              ],
+              "compressed_byte_count": 1625257,
+              "downloaded_block_sha256": "64e9fdd9f4baae6d524f49cf12747c541bb25a4b3d9e625790e98ae11ef6ac47"
+            }
+          ]
+        },
+        {
+          "band": "B03",
+          "url": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/T/MK/2026/7/S2B_T50TMK_20260715T031456_L2A/B03.tif",
+          "object_length_bytes": 229014279,
+          "etag": "\"a471114653568d03acc899b11f369d25-28\"",
+          "last_modified": "2026-07-15T07:12:29Z",
+          "published_multihash": "12209ea72ec99e7f725e843a69dc5850abc2b4a03b6931e1bad3067e55c94a219ad2",
+          "downloaded_internal_blocks": [
+            {
+              "tile_index": 70,
+              "tile_row": 6,
+              "tile_column": 4,
+              "downloaded_byte_range_inclusive": [
+                156521184,
+                158121054
+              ],
+              "compressed_byte_count": 1599871,
+              "downloaded_block_sha256": "9b0968a6a4016762ba3eb75cfd21b3af02d1eac0bb66bd58feba10b89657992b"
+            },
+            {
+              "tile_index": 81,
+              "tile_row": 7,
+              "tile_column": 4,
+              "downloaded_byte_range_inclusive": [
+                172964431,
+                174592142
+              ],
+              "compressed_byte_count": 1627712,
+              "downloaded_block_sha256": "c632d99422a5c42e4e740658ba84c8aedad6a0192cd91295f668b9880971d0c9"
+            }
+          ]
+        },
+        {
+          "band": "B04",
+          "url": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/T/MK/2026/7/S2B_T50TMK_20260715T031456_L2A/B04.tif",
+          "object_length_bytes": 224677210,
+          "etag": "\"b24cb87d1f16b2698dda28bc29f3fdd9-27\"",
+          "last_modified": "2026-07-15T07:12:27Z",
+          "published_multihash": "122089761b20b324d76dfe8f0d213cf479fae9905d152043363c5d76b8bf89d5c6f1",
+          "downloaded_internal_blocks": [
+            {
+              "tile_index": 70,
+              "tile_row": 6,
+              "tile_column": 4,
+              "downloaded_byte_range_inclusive": [
+                152279634,
+                153891925
+              ],
+              "compressed_byte_count": 1612292,
+              "downloaded_block_sha256": "672c31c04f1a4aee95bccfd3a6537b4889c30982793e79c2f876866300f5e2f3"
+            },
+            {
+              "tile_index": 81,
+              "tile_row": 7,
+              "tile_column": 4,
+              "downloaded_byte_range_inclusive": [
+                168563616,
+                170205778
+              ],
+              "compressed_byte_count": 1642163,
+              "downloaded_block_sha256": "5a3309d8b1e1da35ffa09e744580cf3d1312202543a480c95283d247fc6abe65"
+            }
+          ]
+        },
+        {
+          "band": "B08",
+          "url": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/T/MK/2026/7/S2B_T50TMK_20260715T031456_L2A/B08.tif",
+          "object_length_bytes": 252488539,
+          "etag": "\"d46498a755ebbf7dd2c3648564569328-31\"",
+          "last_modified": "2026-07-15T07:12:33Z",
+          "published_multihash": "1220b23870f29f94b1975fe1f571f24f005516b6f2680f6ee88d4efcd09118c77e72",
+          "downloaded_internal_blocks": [
+            {
+              "tile_index": 70,
+              "tile_row": 6,
+              "tile_column": 4,
+              "downloaded_byte_range_inclusive": [
+                175097747,
+                176770508
+              ],
+              "compressed_byte_count": 1672762,
+              "downloaded_block_sha256": "ece0410d3f08b83ad2e7cfbe70f6f44fddd8917bd215e3ecff63755a48db71be"
+            },
+            {
+              "tile_index": 81,
+              "tile_row": 7,
+              "tile_column": 4,
+              "downloaded_byte_range_inclusive": [
+                192880757,
+                194560095
+              ],
+              "compressed_byte_count": 1679339,
+              "downloaded_block_sha256": "69196116cce849ea24154626866628af30739f5aa4834088d768c95d0d573969"
+            }
+          ]
+        },
+        {
+          "band": "SCL",
+          "url": "https://e84-earth-search-sentinel-data.s3.us-west-2.amazonaws.com/sentinel-2-c1-l2a/50/T/MK/2026/7/S2B_T50TMK_20260715T031456_L2A/SCL.tif",
+          "object_length_bytes": 2895987,
+          "etag": "\"a30e2f26906966bdf5f212ec0add5e84\"",
+          "last_modified": "2026-07-15T07:12:37Z",
+          "published_multihash": "12208bc1d050c7160f7242bc45ca56f4d9066d2ce51a209b77c28267ac92dc11bea2",
+          "downloaded_internal_blocks": [
+            {
+              "tile_index": 70,
+              "tile_row": 6,
+              "tile_column": 4,
+              "downloaded_byte_range_inclusive": [
+                1701110,
+                1733903
+              ],
+              "compressed_byte_count": 32794,
+              "downloaded_block_sha256": "b82af55aef15d0acec4a834827fd591deb9dd0a3559a2b86fdef1bf27b5fb1f1"
+            },
+            {
+              "tile_index": 81,
+              "tile_row": 7,
+              "tile_column": 4,
+              "downloaded_byte_range_inclusive": [
+                1957592,
+                1993597
+              ],
+              "compressed_byte_count": 36006,
+              "downloaded_block_sha256": "ff97736011367f4d43d401ba39a31136535aa145df922161f6a455991960786e"
+            }
+          ]
+        }
+      ],
+      "allowed_uses": [
+        "single-scene concept-stage current optical land-cover context",
+        "SCL, NDVI and McFeeters NDWI screening with recorded scale, offset and masks",
+        "identification of locations requiring multi-season imagery and field verification"
+      ],
+      "prohibited_uses": [
+        "cadastral, statutory, ownership, tree-inventory or precise-building claim",
+        "blue line, drainage, flood, water-quality, utility or engineering conclusion",
+        "multi-season ecological trend, regulatory compliance or survey acceptance"
+      ],
+      "topics": [
+        "sentinel_2",
+        "surface_reflectance",
+        "scene_classification",
+        "ndvi",
+        "ndwi",
+        "current_context"
+      ],
+      "local_paths": [
+        "visual/assets/sentinel2_20260715_b02_dn.png",
+        "visual/assets/sentinel2_20260715_b03_dn.png",
+        "visual/assets/sentinel2_20260715_b04_dn.png",
+        "visual/assets/sentinel2_20260715_b08_dn.png",
+        "visual/assets/sentinel2_20260715_scl.png",
+        "visual/assets/sentinel2_20260715_ndvi_x10000.png",
+        "visual/assets/sentinel2_20260715_ndwi_x10000.png",
+        "visual/assets/sentinel2_20260715_scene_selection.json",
+        "visual/assets/sentinel2_20260715_summary.json",
+        "assets/figures/sentinel2-20260715-current-context.png",
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md",
+        "report/copyright_statement.md"
+      ],
+      "notes_zh": "官方CDSE产品与Element 84 COG镜像通过产品名、平台、MGRS格网、处理基线、生成时间和太阳角度交叉核验。本包仅按HTTP Range读取五个COG各两个相交内部块；全对象校验和为发布方登记值，项目块另存SHA-256。单景10/20 m结果只作现状筛查。"
+    },
+    {
+      "id": "OVERTURE-MAPS-BUILDINGS-JINGZHANG-20260722",
+      "source_id": "DATA-SRC-OVERTURE-BUILDINGS-JINGZHANG-20260722-20260808",
+      "title": "Overture Maps Buildings release 2026-07-22.0 non-OSM increment clipped to provisional SITE-001",
+      "publisher": "Overture Maps Foundation; retained upstream records by Qian Shi et al. via Zenodo",
+      "source_kind": "open_foundation_building_database_with_published_research_upstream",
+      "url": "https://docs.overturemaps.org/getting-data/",
+      "python_client_docs": "https://docs.overturemaps.org/getting-data/overturemaps-py/",
+      "schema_url": "https://docs.overturemaps.org/schema/reference/buildings/building/",
+      "attribution_and_licensing_url": "https://docs.overturemaps.org/attribution/",
+      "stac_catalog": "https://stac.overturemaps.org/catalog.json",
+      "release_cloud_path": "s3://overturemaps-us-west-2/release/2026-07-22.0/theme=buildings/type=building/*",
+      "upstream_url": "https://doi.org/10.5281/zenodo.8174931",
+      "accessed_date": "2026-08-08",
+      "release": "2026-07-22.0",
+      "client_version": "1.0.1",
+      "authority_level": "A1_open_foundation_release_with_B1_published_research_upstream",
+      "timeliness_level": "T2_release_2026_07_22_upstream_update_2024_11_01",
+      "public_access_status": "public_no_account_bbox_download_via_official_client",
+      "review_status": "approved_for_concept-stage_existing-building-footprint_increment",
+      "usable_for_formal": "yes_for_open_existing-condition-screening_with_ODbL_automation_currentness_and_provisional-clip-limitations",
+      "license": "Open Database License 1.0 (ODbL)",
+      "required_attribution": "© OpenStreetMap contributors, Overture Maps Foundation",
+      "upstream_non_osm_source": {
+        "dataset": "doi:10.5281/zenodo.8174931",
+        "url": "https://doi.org/10.5281/zenodo.8174931",
+        "title": "A first high-quality vector data of buildings in East Asian countries based on a comprehensive large-scale mapping framework",
+        "publisher": "Zenodo",
+        "published_date": "2023-07-22",
+        "coverage_statement": "China, Japan, North Korea, South Korea and Mongolia",
+        "license": "Creative Commons Attribution 4.0 International",
+        "citation": "Qian Shi, Jiajun Zhu, Zhengyu Liu, Haonan Guo, Mengxi Liu, Zihong Liu and Xiaoping Liu (2023), A first high-quality vector data of buildings in East Asian countries based on a comprehensive large-scale mapping framework, Zenodo, https://doi.org/10.5281/zenodo.8174931",
+        "overture_source_update_time": "2024-11-01T00:00:00.000Z"
+      },
+      "download_provenance": {
+        "query_bbox_wgs84": [
+          116.3397,
+          39.939,
+          116.3553,
+          40.0265
+        ],
+        "command": "overturemaps download --bbox=116.3397,39.939,116.3553,40.0265 -f geojson -t building -o overture-jingzhang-buildings-bbox.geojson",
+        "state": {
+          "last_release": "2026-07-22.0",
+          "last_run": "2026-08-08T08:20:27.971417+00:00",
+          "theme": "buildings",
+          "type": "building",
+          "bbox": {
+            "xmin": 116.3397,
+            "ymin": 39.939,
+            "xmax": 116.3553,
+            "ymax": 40.0265
+          },
+          "backend": "geojson"
+        },
+        "source_geojson_size_bytes": 2801709,
+        "source_geojson_sha256": "e032a9c4dd0af458c0431b971ace497cb55547494c97a92df55daaa7d04db0a0",
+        "state_json_size_bytes": 336,
+        "state_json_sha256": "f90b742e0f212de27e27a73d029ae9364aa23a98d134f692d6506caba12c630c",
+        "raw_bbox_feature_count": 5225
+      },
+      "clip_boundary": "geometry/site_boundary.geojson#SITE-001",
+      "clip_boundary_status": "provisional_rough_nonstatutory",
+      "horizontal_crs": "EPSG:4326",
+      "area_crs": "EPSG:4548",
+      "selection_rule": "SITE-001-intersecting Overture buildings whose source dataset set is exactly doi:10.5281/zenodo.8174931; OSM-sourced Overture features are excluded to avoid duplicating the existing OSM layer.",
+      "allowed_uses": [
+        "concept-stage existing building footprint and roofprint coverage screening",
+        "cross-source comparison against the retained OSM snapshot",
+        "identification of areas requiring licensed current building survey"
+      ],
+      "prohibited_uses": [
+        "cadastral boundary, ownership, permit, demolition or redevelopment entitlement",
+        "precise building area, height, floor area, age, use, condition or occupancy conclusion",
+        "fire, accessibility, structure, utility, as-built, current-survey or acceptance conclusion"
+      ],
+      "topics": [
+        "buildings",
+        "existing_condition",
+        "overture_maps",
+        "east_asia_buildings",
+        "open_data_increment"
+      ],
+      "local_paths": [
+        "geometry/buildings.geojson",
+        "visual/assets/overture_20260722_buildings_summary.json",
+        "assets/figures/overture-20260722-building-increment.png",
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md",
+        "report/copyright_statement.md"
+      ],
+      "notes_zh": "官方客户端按bbox下载5225条发布记录；按provisional SITE-001裁切后为4533条。现有OSM来源记录全部排除，仅保留2834条source dataset恰为东亚建筑Zenodo DOI的非OSM增量，避免把同一批OSM记录重复接入。发布日不等于采集或测量日。"
+    },
+    {
+      "id": "JRC-GHSL-BUILT-H-R2023A-JINGZHANG-2018",
+      "source_id": "DATA-SRC-JRC-GHSL-BUILT-H-R2023A-JINGZHANG-2018-20260808",
+      "title": "JRC GHS-BUILT-H R2023A 2018 AGBH and ANBH clipped to provisional SITE-001",
+      "publisher": "European Commission Joint Research Centre",
+      "source_kind": "official_open_global_gridded_building_height_model",
+      "url": "https://human-settlement.emergency.copernicus.eu/ghs_buH2023.php",
+      "download_page": "https://human-settlement.emergency.copernicus.eu/download.php?ds=buH",
+      "use_conditions_url": "https://human-settlement.emergency.copernicus.eu/GHSLhowToCite.php",
+      "dataset_doi": "https://doi.org/10.2905/85005901-3A49-48DD-9D19-6261354F56FE",
+      "method_doi": "https://doi.org/10.1080/17538947.2024.2390454",
+      "data_urls": [
+        "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_BUILT_H_GLOBE_R2023A/GHS_BUILT_H_AGBH_E2018_GLOBE_R2023A_4326_3ss/V1-0/tiles/GHS_BUILT_H_AGBH_E2018_GLOBE_R2023A_4326_3ss_V1_0_R5_C30.zip",
+        "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_BUILT_H_GLOBE_R2023A/GHS_BUILT_H_ANBH_E2018_GLOBE_R2023A_4326_3ss/V1-0/tiles/GHS_BUILT_H_ANBH_E2018_GLOBE_R2023A_4326_3ss_V1_0_R5_C30.zip"
+      ],
+      "accessed_date": "2026-08-08",
+      "publisher_release": "R2023A / V1.0",
+      "epoch": 2018,
+      "authority_level": "A1_European_Commission_JRC_open_model",
+      "timeliness_level": "T3_2018_epoch_with_2000_and_2006_2011_elevation_inputs",
+      "public_access_status": "official_public_direct_tile_download_no_account",
+      "review_status": "approved_for_concept-stage_historical_gridded_building_height_and_volume-density_screening",
+      "usable_for_formal": "yes_for_historical_approximately_100m_context_with_model_epoch_resolution_and_provisional-clip-limitations",
+      "license": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+      "required_dataset_citation": "Pesaresi, M.; Politis, P. (2023), GHS-BUILT-H R2023A - GHS building height, derived from AW3D30, SRTM30, and Sentinel2 composite (2018), European Commission, Joint Research Centre, doi:10.2905/85005901-3A49-48DD-9D19-6261354F56FE",
+      "required_release_method_citation": "Pesaresi et al. (2024), Advances on the Global Human Settlement Layer by joint assessment of Earth Observation and population survey data, International Journal of Digital Earth 17(1), doi:10.1080/17538947.2024.2390454",
+      "product": "GHS-BUILT-H_GLOBE_R2023A",
+      "source_method": "Building heights extracted by filtering AW3D30 (2006-2011) and SRTM30 (2000) global elevation models, updated with shadow markers from the 2018 Sentinel-2 composite using linear regression techniques.",
+      "source_epoch_interpretation": "2018 product epoch; inputs include older elevation models and 2018 Sentinel-2 shadow markers, so it is not a 2018 field survey or a current 2026 building inventory.",
+      "source_resolution": "3 arc-seconds in WGS84, approximately 100 m",
+      "horizontal_crs": "EPSG:4326",
+      "raster_pixel_interpretation": "RasterPixelIsArea",
+      "source_tile": "R5_C30",
+      "source_tile_bbox_lon_lat": [
+        109.992,
+        39.1,
+        119.992,
+        49.1
+      ],
+      "source_object_integrity": [
+        {
+          "kind": "AGBH",
+          "description": "Average of the Gross Building Height",
+          "meaning": "built cubic metres per total cell surface unit",
+          "unit": "m3_per_m2",
+          "url": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_BUILT_H_GLOBE_R2023A/GHS_BUILT_H_AGBH_E2018_GLOBE_R2023A_4326_3ss/V1-0/tiles/GHS_BUILT_H_AGBH_E2018_GLOBE_R2023A_4326_3ss_V1_0_R5_C30.zip",
+          "zip_size_bytes": 41242836,
+          "zip_sha256": "02f4134fba87cdb3333a3dedd9cd866e064381c77cb0aa4b8786489c538f04db",
+          "zip_etag": "27550d4-62cb2f8e5ebae",
+          "zip_last_modified": "2025-01-27T16:57:31Z",
+          "archive_entries": [
+            "GHS_BUILT_H_AGBH_E2018_GLOBE_R2023A_4326_3ss_V1_0_R5_C30.tif",
+            "GHSL_Data_Package_2023_light.pdf"
+          ],
+          "selected_tiff": "GHS_BUILT_H_AGBH_E2018_GLOBE_R2023A_4326_3ss_V1_0_R5_C30.tif",
+          "selected_tiff_size_bytes": 42867106,
+          "selected_tiff_crc32": "5602a38a",
+          "selected_tiff_sha256": "9f333088d949d4f2ff229ab176b477d9edd39c1732a0c4531e5a37dbcdc65868",
+          "tiff_header": {
+            "width": 12000,
+            "height": 12000,
+            "source_dtype": "float32",
+            "source_nodata": 0,
+            "compression": "LZW",
+            "tile_width": 256,
+            "tile_height": 256,
+            "tile_count": 2209,
+            "origin_top_left_edge_lon_lat": [
+              109.99208292002217,
+              49.09958333863592
+            ],
+            "pixel_step_degrees": [
+              0.0008333333300325358,
+              -0.0008333333299793211
+            ],
+            "horizontal_crs": "EPSG:4326",
+            "raster_pixel_interpretation": "RasterPixelIsArea",
+            "checks": {
+              "dimensions": true,
+              "mode": true,
+              "bits_per_sample": true,
+              "sample_format_float": true,
+              "compression_lzw": true,
+              "predictor_none": true,
+              "tile_size": true,
+              "tile_table": true,
+              "pixel_step": true,
+              "tile_origin": true,
+              "raster_pixel_is_area": true,
+              "epsg_4326": true
+            }
+          },
+          "project_source_window_half_open": [
+            7617,
+            10887,
+            7636,
+            10993
+          ]
+        },
+        {
+          "kind": "ANBH",
+          "description": "Average of the Net Building Height",
+          "meaning": "average height of built surfaces in the cell",
+          "unit": "m",
+          "url": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_BUILT_H_GLOBE_R2023A/GHS_BUILT_H_ANBH_E2018_GLOBE_R2023A_4326_3ss/V1-0/tiles/GHS_BUILT_H_ANBH_E2018_GLOBE_R2023A_4326_3ss_V1_0_R5_C30.zip",
+          "zip_size_bytes": 30282304,
+          "zip_sha256": "2ec89dfb69be47f71ff8e91d00b081b6fb53e92b5ec654dda6e3a9190e1ea30b",
+          "zip_etag": "1ce1240-62cb2fc5fd8e7",
+          "zip_last_modified": "2025-01-27T16:58:30Z",
+          "archive_entries": [
+            "GHS_BUILT_H_ANBH_E2018_GLOBE_R2023A_4326_3ss_V1_0_R5_C30.tif",
+            "GHSL_Data_Package_2023_light.pdf"
+          ],
+          "selected_tiff": "GHS_BUILT_H_ANBH_E2018_GLOBE_R2023A_4326_3ss_V1_0_R5_C30.tif",
+          "selected_tiff_size_bytes": 31001230,
+          "selected_tiff_crc32": "4223a105",
+          "selected_tiff_sha256": "d300bd04dc62070884851a4fdf068f6e4384d886fc94660c6954e85b2c6743e4",
+          "tiff_header": {
+            "width": 12000,
+            "height": 12000,
+            "source_dtype": "float32",
+            "source_nodata": 0,
+            "compression": "LZW",
+            "tile_width": 256,
+            "tile_height": 256,
+            "tile_count": 2209,
+            "origin_top_left_edge_lon_lat": [
+              109.99208292002217,
+              49.09958333863592
+            ],
+            "pixel_step_degrees": [
+              0.0008333333300325358,
+              -0.0008333333299793211
+            ],
+            "horizontal_crs": "EPSG:4326",
+            "raster_pixel_interpretation": "RasterPixelIsArea",
+            "checks": {
+              "dimensions": true,
+              "mode": true,
+              "bits_per_sample": true,
+              "sample_format_float": true,
+              "compression_lzw": true,
+              "predictor_none": true,
+              "tile_size": true,
+              "tile_table": true,
+              "pixel_step": true,
+              "tile_origin": true,
+              "raster_pixel_is_area": true,
+              "epsg_4326": true
+            }
+          },
+          "project_source_window_half_open": [
+            7617,
+            10887,
+            7636,
+            10993
+          ]
+        }
+      ],
+      "clip_boundary": "geometry/site_boundary.geojson#SITE-001",
+      "clip_boundary_status": "provisional_rough_nonstatutory",
+      "output_encoding": {
+        "files": [
+          "visual/assets/ghsl_builth_2018_agbh_x100.png",
+          "visual/assets/ghsl_builth_2018_anbh_x100.png"
+        ],
+        "format": "16-bit grayscale PNG",
+        "formula": "decoded_value = png_uint16 / 100",
+        "nodata_code": 65535,
+        "AGBH_unit": "m3_per_m2",
+        "ANBH_unit": "m"
+      },
+      "allowed_uses": [
+        "concept-stage 2018 gridded building-height pattern screening",
+        "approximately 100 m gross built-volume density context",
+        "identification of locations requiring licensed current building-height survey"
+      ],
+      "prohibited_uses": [
+        "parcel, statutory or individual-building height control",
+        "floor count, gross floor area, ownership, age, use, condition, occupancy, permit or demolition conclusion",
+        "fire, accessibility, structural, utility, as-built, current-survey or acceptance conclusion"
+      ],
+      "topics": [
+        "ghsl",
+        "building_height",
+        "built_volume_density",
+        "historical_context",
+        "remote_sensing_model"
+      ],
+      "local_paths": [
+        "visual/assets/ghsl_builth_2018_agbh_x100.png",
+        "visual/assets/ghsl_builth_2018_anbh_x100.png",
+        "visual/assets/ghsl_builth_2018_summary.json",
+        "assets/figures/ghsl-builth-2018-context.png",
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md",
+        "report/copyright_statement.md"
+      ],
+      "notes_zh": "官方R2023A产品按R5_C30瓦片取得AGBH与ANBH完整ZIP，核验ZIP/TIFF哈希、ETag、Last-Modified、CRC、float32/LZW/256瓦片、EPSG:4326和PixelIsArea标签；仅输出19×106项目窗口。AGBH为单元总表面积上的建筑体积密度，ANBH为建成表面平均高度，二者均非逐栋测量。"
+    },
+    {
+      "id": "JRC-GHSL-GHS-OBAT-R2024A-JINGZHANG-2020",
+      "source_id": "DATA-SRC-JRC-GHSL-GHS-OBAT-R2024A-JINGZHANG-2020-20260808",
+      "title": "JRC GHS-OBAT R2024A footprint-level model attributes for provisional SITE-001",
+      "publisher": "European Commission, Joint Research Centre",
+      "source_kind": "official_open_global_footprint_level_model_attribute_table",
+      "url": "https://data.jrc.ec.europa.eu/dataset/f41a22f1-5741-4c41-86eb-6384654f6927",
+      "data_url": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_OBAT_GLOBE_R2024A/GHS_OBAT_CSV_GLOBE_R2024A/V1-0/GHS_OBAT_CSV_CHN_E2020_R2024A_V1_0.zip",
+      "dataset_doi": "https://doi.org/10.2905/f41a22f1-5741-4c41-86eb-6384654f6927",
+      "technical_report_doi": "https://doi.org/10.2760/4854352",
+      "scientific_paper_doi": "https://doi.org/10.1016/j.dib.2025.111751",
+      "open_code": "https://code.europa.eu/jrc-ghsl/building-data-intergrator",
+      "accessed_date": "2026-08-08",
+      "issued_date": "2024-12-16",
+      "catalog_modified_date": "2026-06-12",
+      "product": "GHS_OBAT_GLOBE_R2024A",
+      "epoch": 2020,
+      "source_overture_release": "2024-07-22.0",
+      "authority_level": "A1_European_Commission_JRC_open_model",
+      "timeliness_level": "T3_2020_model_attributes_from_2018_and_1975_2020_GHSL_inputs",
+      "public_access_status": "official_public_country_zip_download_no_account",
+      "review_status": "approved_for_concept-stage_subset_building_model_context_with_official_validation_and_coverage_limits",
+      "usable_for_formal": "yes_for_open_model_context_and_survey_prioritisation_not_for_statutory_or_as_built_conclusions",
+      "catalog_distribution_license": "Open Data Commons Open Database License v1.0",
+      "jrc_copyright_notice": "European Union rights licensed under CC BY 4.0; changes must be indicated",
+      "package_reuse_policy": "Treat the extracted CSV-derived database as ODbL 1.0 and retain EC/JRC plus Overture attribution; also acknowledge the JRC CC BY 4.0 notice.",
+      "required_citation": "Florio, P.; Politis, P.; Goch, K.; Uhl, J.H.; Melchiorri, M.; Pesaresi, M.; Kemper, T. (2024), GHS-OBAT R2024A - Global Open Building Attribute Table at footprint level, European Commission, Joint Research Centre, doi:10.2905/f41a22f1-5741-4c41-86eb-6384654f6927.",
+      "source_object_integrity": {
+        "url": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_OBAT_GLOBE_R2024A/GHS_OBAT_CSV_GLOBE_R2024A/V1-0/GHS_OBAT_CSV_CHN_E2020_R2024A_V1_0.zip",
+        "country": "CHN",
+        "format": "CSV in ZIP",
+        "zip_size_bytes": 157865361,
+        "zip_sha256": "136ae36bca1ef8ed569d1802fe8bdff2b1d7b25547424ae418c710258ec30356",
+        "zip_etag": "968d591-629b56b41a2ad",
+        "zip_last_modified": "2024-12-20T15:37:05Z",
+        "archive_entries": [
+          {
+            "name": "GHS_OBAT_CSV_CHN_E2020_R2024A_V1_0.csv",
+            "size_bytes": 500226316,
+            "crc32": "5b4e01fa"
+          },
+          {
+            "name": "GHS-OBAT_R2024_online_v2.pdf",
+            "size_bytes": 1820332,
+            "crc32": "bd8140e7"
+          }
+        ],
+        "catalog_distribution_license": "Open Data Commons Open Database License v1.0",
+        "jrc_copyright_notice": "European Union rights licensed under CC BY 4.0; changes must be indicated",
+        "package_policy": "Treat the extracted CSV-derived database as ODbL 1.0 and retain EC/JRC plus Overture attribution; also acknowledge the JRC CC BY 4.0 notice."
+      },
+      "source_columns": [
+        "id",
+        "lon",
+        "lat",
+        "country",
+        "adm1",
+        "height",
+        "shapefactor",
+        "use",
+        "epoch",
+        "area",
+        "perimeter"
+      ],
+      "national_csv_row_count": 5428385,
+      "selection_rule": "retain a CHN row when its centroid is covered by provisional SITE-001 or its stable 32-hex GERS id directly matches a canonical Overture non-OSM building that intersects SITE-001",
+      "clip_boundary": "geometry/site_boundary.geojson#SITE-001",
+      "clip_boundary_status": "provisional_rough_nonstatutory",
+      "matching": {
+        "accepted_match_count": 1289,
+        "accepted_match_share_of_canonical": 0.285051,
+        "direct_stable_gers_id_match_count": 0,
+        "canonical_overture_gers_id_not_found_in_2024_obat_count": 2834,
+        "canonical_overture_gers_id_not_found_examples": [
+          "00291a1480a248c0a95d60759f3596d5",
+          "00317ddde8f44e95bdbc7fd71aceeda8",
+          "0034317d48984cf7b0df2e3dba9bd541",
+          "0049782adf2544b2b47817a1a67b69c8",
+          "004c1ceaf2f546d787a633b3ef330559"
+        ],
+        "centroid_area_spatial_match_count": 1289,
+        "accepted_match_method_counts": {
+          "centroid_inside_and_area_similarity": 1289
+        },
+        "accepted_match_confidence_counts": {
+          "high": 1204,
+          "medium": 85
+        },
+        "matched_canonical_source_counts": {
+          "osm": 1285,
+          "overture_non_osm": 4
+        },
+        "matched_source_shares": {
+          "osm": 0.761256,
+          "overture_non_osm": 0.001411
+        },
+        "unmatched_selected_record_count": 77,
+        "unmatched_canonical_building_count": 3233,
+        "spatial_match_area_ratio_statistics": {
+          "valid_count": 1289,
+          "minimum": 0.502437,
+          "maximum": 1.20701,
+          "mean": 0.992347,
+          "median": 1.0008,
+          "p25": 1.000797,
+          "p75": 1.000803,
+          "p95": 1.000818
+        },
+        "candidate_pair_count_before_one_to_one_assignment": 1295
+      },
+      "attribute_encoding": {
+        "height": "mean of intersecting valid approximately 100 m GHS-BUILT-H ANBH cells, lower-bounded at 2.5 m",
+        "use": {
+          "0": "outside_built_up_raster_domain",
+          "1": "residential_or_compatible_mixed_use",
+          "2": "non_residential"
+        },
+        "epoch": {
+          "0": "outside_GHS_BUILT_S_domain",
+          "1": "before_1980",
+          "2": "1980_to_1990",
+          "3": "1990_to_2000",
+          "4": "2000_to_2010",
+          "5": "2010_to_2020"
+        },
+        "epoch_interpretation": "majority of intersecting approximately 100 m GHS-AGE cells; epoch when at least 50% of 2020 built-up surface existed, not a per-building construction record"
+      },
+      "official_validation_limits": {
+        "height_feature_level_mean_absolute_error_m_in_EU_validation": 2.89,
+        "older_than_1980_label_correct_probability_in_EU_validation": 0.4,
+        "post_1980_label_correct_probability_in_EU_validation": "more_than_0.65",
+        "small_non_residential_detection": "not_effective",
+        "china_coverage": "official report states severe discrepancies with probable underrepresentation of buildings in Overture",
+        "transferability_note": "Validation figures are European benchmarks and are not local Beijing accuracy estimates."
+      },
+      "allowed_uses": [
+        "concept-stage subset screening of modelled building height, function and construction epoch",
+        "prioritising buildings and blocks for licensed current field survey",
+        "auditing 2024-to-2026 open-building coverage and identifier changes"
+      ],
+      "prohibited_uses": [
+        "field-survey, cadastral, ownership, permit, demolition or current-2026 inventory conclusion",
+        "statutory height, floor count, gross floor area, condition, occupancy or valuation conclusion",
+        "fire, accessibility, structural, utility, as-built or acceptance conclusion"
+      ],
+      "topics": [
+        "ghsl",
+        "ghs_obat",
+        "building_height_model",
+        "building_function_model",
+        "construction_epoch_model",
+        "overture_version_matching"
+      ],
+      "local_paths": [
+        "visual/assets/ghsl_obat_2020_site_attributes.json",
+        "visual/assets/ghsl_obat_2020_summary.json",
+        "assets/figures/ghsl-obat-2020-context.png",
+        "sources.json",
+        "metrics.json",
+        "assumptions.json",
+        "proposal.md",
+        "report/narrative.md",
+        "report/copyright_statement.md"
+      ],
+      "notes_zh": "完整中国ZIP、SHA-256、ETag、Last-Modified、成员大小和CRC均已核验；流式扫描全国CSV后仅保留项目记录。2024 GERS ID与当前2026 Overture增量无直接命中，因此仅用严格质心覆盖和面积相近规则一对一关联。官方报告明确中国建筑可能少报，且欧洲验证误差不能当作北京本地精度。"
+    },
+    {
+      "id": "BEIJING-GGZY-BLUEHOME-LAND-2025",
+      "source_id": "DATA-SRC-BEIJING-GGZY-BLUEHOME-LAND-2025-20260813",
+      "title": "海淀区蓝景丽家地区HD00-1603-01、03A地块国有建设用地使用权挂牌出让公告",
+      "publisher": "北京市公共资源交易服务平台",
+      "source_kind": "official_land_listing_and_public_attachment_index",
+      "url": "https://ggzyfw.beijing.gov.cn/zpgcrgg/20251231/5391270.html",
+      "accessed_date": "2026-08-13",
+      "authority_level": "A1_official_public_source",
+      "public_access_status": "public_web",
+      "review_status": "approved_for_stated_factual_scope",
+      "usable_for_formal": "yes_for_published_facts_with_scope_and_coordinate_limits",
+      "notes_zh": "公开19项附件，覆盖供地、规划条件、勘测定界、交通、水务、市政、地灾、地震、噪声和现状地物；本包只转录可核事实，不再分发PDF。",
+      "document_date": "2025-12-31"
+    },
+    {
+      "id": "BEIJING-GGZY-BLUEHOME-SURVEY-2025",
+      "source_id": "DATA-SRC-BEIJING-GGZY-BLUEHOME-SURVEY-2025-20260813",
+      "title": "蓝景丽家地区土地勘测定界技术报告书（2025规自（海）测字0074号）",
+      "publisher": "北京市公共资源交易服务平台",
+      "source_kind": "official_public_land_survey_report",
+      "url": "https://ggzyfw.beijing.gov.cn/cmsbj/u/cms/cn.gov.bjggzyfw.www/202601/8132045391270.pdf",
+      "accessed_date": "2026-08-13",
+      "authority_level": "A1_official_public_source",
+      "public_access_status": "public_web",
+      "review_status": "approved_for_stated_factual_scope",
+      "usable_for_formal": "yes_for_published_facts_with_scope_and_coordinate_limits",
+      "notes_zh": "报告公开107个Y/X界址点和9个地块/道路面积，但未注明坐标参考系；保留原始点表，不转换为GeoJSON。",
+      "document_date": "2025-08-06",
+      "sha256": "bbb1b37b20ad529b2264a0049ffcf38c354e9d5f34820958e6daa91a8083aa86",
+      "local_paths": [
+        "visual/assets/bluehome_official_survey_local.json"
+      ]
+    },
+    {
+      "id": "BEIJING-GGZY-BLUEHOME-PLANNING-2025",
+      "source_id": "DATA-SRC-BEIJING-GGZY-BLUEHOME-PLANNING-2025-20260813",
+      "title": "京规自（海）供审函〔2025〕0006号蓝景丽家地块规划条件",
+      "publisher": "北京市公共资源交易服务平台",
+      "source_kind": "official_public_land_planning_conditions",
+      "url": "https://ggzyfw.beijing.gov.cn/cmsbj/u/cms/cn.gov.bjggzyfw.www/202601/2394495391270.pdf",
+      "accessed_date": "2026-08-13",
+      "authority_level": "A1_official_public_source",
+      "public_access_status": "public_web",
+      "review_status": "approved_for_stated_factual_scope",
+      "usable_for_formal": "yes_for_published_facts_with_scope_and_coordinate_limits",
+      "notes_zh": "01和03A出让子地块合计39522.111平方米、地上建筑规模96811.508平方米；指标只适用于公布地块，不外推至72公顷大钟寺重点区。",
+      "document_number": "京规自（海）供审函〔2025〕0006号",
+      "sha256": "7c296b791f2e547a23361dc2a24a88fdd284f56de267efb208038e47a6977f99"
+    },
+    {
+      "id": "BEIJING-GHZY-BLUEHOME-CASE-2026",
+      "source_id": "DATA-SRC-BEIJING-GHZY-BLUEHOME-CASE-2026-20260813",
+      "title": "蓝景丽家城市更新案例：大钟寺重点片区更新节点",
+      "publisher": "北京市规划和自然资源委员会",
+      "source_kind": "official_urban_renewal_case_status",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/zxzt/csgx/csgxfjszt/fjsztalzs/202606/t20260612_4698370.html",
+      "accessed_date": "2026-08-13",
+      "authority_level": "A1_official_public_source",
+      "public_access_status": "public_web",
+      "review_status": "approved_for_stated_factual_scope",
+      "usable_for_formal": "yes_for_published_facts_with_scope_and_coordinate_limits",
+      "notes_zh": "官方案例明确项目位于大钟寺试点片区、规模约3.95公顷，并记录2026-02-03取得土地及实施方案/前期手续状态；只用于位置和状态锚定。",
+      "document_date": "2026-06-12"
+    },
+    {
+      "id": "CHINA-GOV-ETHNIC-EQUALITY-WHITE-PAPER",
+      "source_id": "DATA-SRC-CHINA-GOV-ETHNIC-EQUALITY-WHITE-PAPER-20260813",
+      "title": "中国的少数民族政策及其实践",
+      "publisher": "中国政府网",
+      "source_kind": "official_state_council_white_paper_archive",
+      "url": "https://www.gov.cn/zhengce/2005-05/26/content_2615709.htm",
+      "accessed_date": "2026-08-13",
+      "authority_level": "A1_official_public_source",
+      "public_access_status": "public_web",
+      "review_status": "approved_for_stated_factual_scope",
+      "usable_for_formal": "yes_for_published_facts_with_scope_and_coordinate_limits",
+      "notes_zh": "中国政府网原文确认经识别的民族有56个，并阐明民族平等、团结、互助、共同发展；用于共创治理原则，不作为海淀本地人口结构证据。",
+      "document_date": "2005-05-26"
+    },
+    {
+      "id": "PEER-METHOD-JINGZHANG-TWO-ANSWERS-PR2272",
+      "source_id": "DATA-SRC-PEER-METHOD-JINGZHANG-TWO-ANSWERS-PR2272-20260813",
+      "title": "京张双答：每个城市问题，先有普通答案，再证明 AI 答案",
+      "publisher": "GitHub contributor felix-lhz / open-city-ai haidian PR #2272",
+      "source_kind": "peer_submission_method_reference",
+      "url": "https://github.com/open-city-ai/haidian/pull/2272",
+      "accessed_date": "2026-08-13",
+      "authority_level": "peer_nonofficial",
+      "public_access_status": "public_github_pull_request",
+      "review_status": "approved_for_method_attribution_only",
+      "usable_for_formal": "method_reference_only_not_official_evidence",
+      "notes_zh": "本方案借鉴其‘普通服务基线 + AI可选增强 + adopt/revise/stop’同题验证方法，并在正文明确归因；京张同心百年线、56席、八项人本权利、五步共创闭环、五类用地和24场景均为本方案独立编制，不复制对方图像、代码或长段文字。"
+    }
+  ],
+  "research_audit": {
+    "audited_date": "2026-08-13",
+    "channels_checked": [
+      {
+        "channel": "competition organizer announcement and attachment portal",
+        "result": "public announcement and form templates found; qualification package is password-protected",
+        "evidence_url": "http://www.bkpmzb.com/bidding/display.php?oid=257&pid=2894",
+        "boundary_impact": "exact organizer polygons may be inside the controlled qualification package, but are not unconditionally public"
+      },
+      {
+        "channel": "official open-city GitHub repository current tree, full history, issues and releases",
+        "result": "no official SHP, GeoJSON, CAD, coordinate table or heritage-control drawing found",
+        "evidence_url": "https://github.com/open-city-ai/haidian",
+        "boundary_impact": "repository provisional geometry remains correctly classified as provisional"
+      },
+      {
+        "channel": "Haidian planning public notices and official PDF attachments",
+        "result": "draft raster scope, main-function, facility, transport and road-network panels found",
+        "evidence_url": "https://zyk.bjhd.gov.cn/zwdt/tdzt/2018/zwgk/zdjs/202412/t20241220_4751519.shtml",
+        "boundary_impact": "useful official raster reference, but not final statutory or competition vector geometry"
+      },
+      {
+        "channel": "Beijing Public Data Open Platform",
+        "result": "historic heritage-control catalog found; exact searches for road redline, road centerline, underground pipeline, waterlogging point, building footprint and cadastre returned no datasets",
+        "evidence_url": "http://data.beijing.gov.cn/zyml/ajg/swwj/5972.htm",
+        "boundary_impact": "historic file is authenticated and predates the 2025 Qinghuayuan batch; it cannot close current geometry gaps"
+      },
+      {
+        "channel": "municipal heritage notices, detail pages and policy interpretation",
+        "result": "current Qinghuayuan municipal heritage status confirmed; public infographic is procedural and contains no site-specific map",
+        "evidence_url": "https://www.beijing.gov.cn/zhengce/gfxwj/202501/t20250114_3989104.html",
+        "boundary_impact": "current protection-scope and construction-control drawings remain separately issued"
+      },
+      {
+        "channel": "government procurement and public-resource transaction platforms",
+        "result": "survey, design, construction and supervision procurement parameters found; technical deliverables require controlled access or were not published",
+        "evidence_url": "https://www.ccgp.gov.cn/cggg/dfgg/qtgg/202501/t20250120_24089627.htm",
+        "boundary_impact": "confirms professional surveys exist with commissioning parties, but no coordinates or reports are open"
+      },
+      {
+        "channel": "municipal project approval and completion updates",
+        "result": "approved package, tender baseline and July 2026 supporting-project completion status found",
+        "evidence_url": "https://yllhj.beijing.gov.cn/zwgk/zwxx/202607/t20260714_4761226.shtml",
+        "boundary_impact": "adds text scope and current status without producing an as-built polygon"
+      },
+      {
+        "channel": "Beijing and Haidian official thematic reports and operating features",
+        "result": "Jingzhang operating volumes and broader AI Origin Community ecosystem counts found",
+        "evidence_url": "https://www.beijing.gov.cn/fuwu/lqfw/gggs/202604/t20260401_4571735.html",
+        "boundary_impact": "fills nonspatial context only; policy-community counts are kept outside the 104.3 ha key-area statistics"
+      },
+      {
+        "channel": "Beijing public-resource signed-contract disclosures",
+        "result": "signed survey, design, supporting-design, construction and supervision contracts found with named commissioning, survey, design, construction and supervision organizations; public pages expose scopes and values but no deliverables",
+        "evidence_url": "https://ggzyfw.beijing.gov.cn/jyxxgcjshtgs/20240809/4627726.html",
+        "boundary_impact": "proves that topographic, tree, underground-pipeline and design deliverables exist and identifies their likely custodians, but does not authorize publication or replace any geometry"
+      },
+      {
+        "channel": "OpenStreetMap and Overpass API",
+        "result": "ODbL building, highway, railway, water and POI snapshots downloaded, hash-recorded and clipped to provisional SITE-001",
+        "evidence_url": "https://www.openstreetmap.org/copyright",
+        "boundary_impact": "fills auditable nonstatutory existing context while official redlines, title, survey-grade accuracy and controlled infrastructure remain unresolved"
+      },
+      {
+        "channel": "official exact-search sweep for planning permits, completion acceptance and published technical reports",
+        "result": "no site-specific planning-permit attachment, completion-acceptance drawing, survey deliverable, metro safety report or current Qinghuayuan control drawing was located on the public official pages checked",
+        "evidence_url": "https://ggzyfw.beijing.gov.cn/",
+        "boundary_impact": "controlled deliverables remain formal information requests rather than unverified public-data claims"
+      },
+      {
+        "channel": "national_geographic_information_catalog_project_intersection_20260808",
+        "query": "全国/北京/海淀区 + 矢量地图数据/陆地 + 1:500 + provisional SITE-001 WKT",
+        "result": "海淀筛选显示13230条目录记录；临时项目范围相交1506条历史记录，按图幅号去重为502幅，最新目录版本为2024版253幅和2021版249幅。",
+        "boundary_impact": "目录证明高精度成果存在并锁定北京市测绘设计研究院，但抽查1:500、1:2000、1:10000均为秘密DWG，只能转为受控申请路径。"
+      },
+      {
+        "channel": "esa_worldcover_public_cog_20260808",
+        "query": "ESA WorldCover 2021 v200 N39E114 public COG clipped to SITE-001",
+        "result": "取得CC BY 4.0免登录10 m分类COG并生成188×1050像元裁片、统计JSON和预览PNG。",
+        "boundary_impact": "补齐历史地表覆盖参考，不改变临时边界状态，也不替代法定用地、绿地、水系蓝线或测绘。"
+      },
+      {
+        "channel": "copernicus_dem_official_and_aws_public_cog_20260808",
+        "query": "Copernicus DEM GLO-30 official collection, licence, accuracy, CRS and public COG tiles N39E116/N40E116",
+        "result": "官方产品页确认GLO-30全球免费许可、约30 m DSM、2011-2015主要采集期、EPSG:4326/3855和精度声明；AWS开放数据登记页提供免账户COG。按字节范围取得两块并生成57×315无损高程裁片。",
+        "boundary_impact": "补齐公开粗尺度表面高程与坡度筛查，不改变临时边界，也不替代现状地形图、裸地DTM、排水/洪水模型或工程测量。"
+      },
+      {
+        "channel": "jrc_global_surface_water_v1_5_official_20260808",
+        "query": "JRC Global Surface Water v1.5 official download, licence, citation, release notes, occurrence, transitions, 2022-2024 extent and QML classes",
+        "result": "确认v1.5/2024发布、1984-2024 occurrence/transitions、2022-2024 extent、免费开放使用和EC JRC/Google署名；按Range取得六个相交源对象的项目行并生成64×350无损分类裁片。",
+        "boundary_impact": "补充长期公开地表水观测筛查，不改变临时边界，不替代蓝线、窄/暗渠调查、排水能力、防洪、水质或工程测量。"
+      },
+      {
+        "channel": "copernicus_cdse_and_earth_search_sentinel2_20260808",
+        "query": "Copernicus CDSE STAC and Earth Search Sentinel-2 Collection 1 L2A scenes intersecting SITE-001 from 2026-07-01 through 2026-08-08",
+        "result": "两端均返回19景；选取2026-07-15最低云量Sentinel-2B产品，核对官方产品身份后从免账户COG镜像按Range提取B02/B03/B04/B08和SCL，生成10 m/20 m原始值、NDVI、NDWI和统计。",
+        "boundary_impact": "补充单景近期光学现状与植被/水样筛查，不把10-20 m像元升级为现状测绘、树木清单、蓝线、法定用地或多季生态结论。"
+      },
+      {
+        "channel": "overture_maps_buildings_release_and_east_asia_upstream_20260808",
+        "query": "Overture latest Buildings release, official bbox client, schema, ODbL attribution and non-OSM East Asian building source for SITE-001",
+        "result": "核验2026-07-22.0发布、官方bbox客户端、建筑schema和ODbL署名；确认东亚建筑上游为Zenodo DOI 10.5281/zenodo.8174931（CC BY 4.0）。SITE-001内4533条记录中，排除1699条含OSM来源记录，保留2834条非OSM增量。",
+        "boundary_impact": "显著改善公开建筑轮廓覆盖，但裁切仍使用临时边界；自动建筑轮廓不替代正式红线、现状测绘、权属、用途、高度、结构、拆改或竣工资料。"
+      },
+      {
+        "channel": "jrc_ghsl_built_h_r2023a_2018_official_20260808",
+        "query": "JRC GHSL GHS-BUILT-H R2023A China coverage, 2018 AGBH/ANBH definitions, resolution, tile download, methodology, licence and citation",
+        "result": "确认R2023A提供2018年AGBH/ANBH、100 m Mollweide和3弧秒WGS84；中国北京由R5_C30覆盖。官方说明产品来自SRTM30、AW3D30和2018 Sentinel-2阴影标记，CC BY 4.0且须引用产品与方法论文。取得两个完整瓦片ZIP并生成19×106无损项目裁片、统计和预览。",
+        "boundary_impact": "补充2018年约100 m建筑高度和体量密度背景，不改变临时边界，不把网格平均值升级为地块控制、逐栋高度、层数、面积或当前测绘。"
+      },
+      {
+        "channel": "jrc_ghsl_ghs_obat_r2024a_official_20260808",
+        "query": "JRC GHS-OBAT R2024A China footprint-level height function construction epoch attributes, methods, validation, licence and downloadable country file",
+        "result": "确认GHS-OBAT公开按国家下载的CSV/GPKG，以Overture 2024-07-22.0轮廓关联GHSL高度、功能和年代模型。取得157865361字节中国ZIP，核验SHA-256、ETag、Last-Modified、成员大小和CRC；全国5428385条中选出SITE-001相关1366条，对当前4522条现状建筑接受1289条一对一关联。",
+        "boundary_impact": "缩小公开逐栋属性完全空白，但仅覆盖当前建筑的28.5051%，且属性为栅格分配模型。不改变临时边界、法定控制和逐栋现状测绘申请。"
+      },
+      {
+        "channel": "official_bluehome_land_listing_attachments_and_urban_renewal_case_20260813",
+        "query": "蓝景丽家 HD00-1603-01 03A 勘测定界 规划条件 交通 水务 市政 大钟寺 城市更新",
+        "result": "核验公共资源交易父页面、19项公开附件、成交页和北京市规自委城市更新案例；转录107个原始Y/X点、分地块面积、规划指标及工程约束。",
+        "boundary_impact": "补齐大钟寺内3.95公顷子项目的公开地块事实并纠正早期大钟寺概念面误位；因报告未注明CRS且不等于72公顷竞赛重点区，竞赛polygon继续为provisional。"
+      },
+      {
+        "channel": "official_ethnic_equality_policy_source_20260813",
+        "query": "中国政府网 56个民族 民族平等 团结 共同发展",
+        "result": "核验中国政府网白皮书原文，作为56个同心建设席的平等、共同参与和反歧视治理依据。",
+        "boundary_impact": "不产生空间红线，不推断本地人口结构或个人民族身份。"
+      }
+    ],
+    "remaining_data_gaps": [
+      {
+        "gap": "georeferenced competition project and three key-area polygons",
+        "status": "competition_vectors_open_bluehome_subproject_original_coordinates_added_crs_unstated",
+        "evidence": "竞赛11.4平方公里及三处重点区仍无可计算正式矢量；大钟寺内蓝景丽家子项目已公开107个Y/X点和地块面积，但公开报告未注明CRS，且3.95公顷子项目不等于72公顷竞赛重点区。",
+        "required_from": "主办方、征集组织机构或规划主管部门的可计算正式附件"
+      },
+      {
+        "gap": "final statutory parcel controls and existing-building survey",
+        "status": "bluehome_subproject_controls_public_corridor_wide_controls_and_current_survey_still_required",
+        "evidence": "蓝景丽家01/03A地块面积、容积率、地上规模、高度、绿地率及地物/交通/市政等条件已公开；这些只覆盖大钟寺内出让子项目。全走廊最终控规、逐栋实测、权属、用途、年代和状况仍未公开。",
+        "required_from": "规划主管部门、海淀区园林绿化局、北京市测绘设计研究院及合同勘察/设计单位依法授权提供；受控测绘成果不得因目录元数据公开而被视为开放数据。"
+      },
+      {
+        "gap": "official heritage protection and construction-control geometry",
+        "status": "official_status_public_geometry_separately_issued",
+        "evidence": "京政发〔2025〕3号现行有效通知将清华园车站旧址列为第26项，并明确说明及图纸由市文物局、市规划自然资源委另行印发；公开通知页没有图纸附件或坐标文件。",
+        "required_from": "北京市文物局、北京市规划自然资源委或海淀区主管部门提供的正式说明和图纸"
+      },
+      {
+        "gap": "ownership, road redlines and municipal capacity",
+        "status": "open_context_added_named_contract_custodians_identified_operational_data_not_public",
+        "evidence": "OSM补充非statutory道路与设施现状参考；勘察合同明确地下管线测量已经委托，施工和监理合同明确给排水、电气、外电源、水源报装等专业内容已依据设计图纸实施或监理，但公开页面没有权属、道路红线、管线坐标、容量、接入许可、竣工图或验收记录。",
+        "required_from": "北京市海淀区园林绿化局、相关权属/运营单位、中材地质工程勘查研究院、北京北林地景园林规划设计院、施工和监理单位依法提供的授权资料"
+      }
+    ],
+    "data_request_protocol": {
+      "purpose": "Replace provisional or nonspatial evidence without misrepresenting public summaries as statutory geometry.",
+      "default_crs": "EPSG:4548",
+      "accepted_formats": [
+        "GeoPackage",
+        "SHP with .prj and encoding declaration",
+        "GeoJSON",
+        "DWG/DXF with coordinate-system note",
+        "georeferenced PDF plus coordinate table"
+      ],
+      "requests": [
+        {
+          "request_id": "DR-001",
+          "priority": "blocking_for_precision_design",
+          "dataset": "competition overall-design boundary and three key-area boundaries",
+          "requested_from": "主办方、征集组织机构或北京市规划自然资源委海淀分局",
+          "minimum_fields": [
+            "feature_id",
+            "official_name",
+            "scope_level",
+            "approval_or_issue_date",
+            "issuing_authority",
+            "crs",
+            "geometry"
+          ],
+          "acceptance_checks": [
+            "valid closed polygon topology",
+            "declared CRS and coordinate units",
+            "overall-design area reconciles to the announced approximately 11.4 sq km with documented tolerance",
+            "three key-area areas reconcile to 192.1 ha, 104.3 ha and 72.0 ha with documented tolerance",
+            "source document number or organizer transmittal is attached"
+          ],
+          "replacement_targets": [
+            "geometry/site_boundary.geojson",
+            "geometry/key_areas.geojson",
+            "all derived geometry, metrics, figures, drawings and HTML"
+          ],
+          "public_subproject_reference": "蓝景丽家107个原始Y/X点和9个分区面积已保存；CRS需主管部门确认，且不得替代三处竞赛重点区边界。"
+        },
+        {
+          "request_id": "DR-002",
+          "priority": "blocking_for_statutory_controls",
+          "dataset": "final approved control plan, parcel drawings and control schedule",
+          "requested_from": "北京市规划自然资源委及海淀分局",
+          "minimum_fields": [
+            "parcel_id",
+            "land_use_code",
+            "parcel_area_sqm",
+            "floor_area_ratio",
+            "building_height_m",
+            "building_density_percent",
+            "green_ratio_percent",
+            "setbacks",
+            "public_facility_requirements",
+            "approval_document_number"
+          ],
+          "acceptance_checks": [
+            "approval status and effective date are explicit",
+            "parcel table matches parcel geometry",
+            "road, green, blue and municipal lines are distinguishable",
+            "draft and approved versions are not mixed"
+          ],
+          "replacement_targets": [
+            "proposal statutory-control statements",
+            "geometry/land_use.geojson",
+            "geometry/buildings.geojson",
+            "metrics.json"
+          ],
+          "public_subproject_reference": "京规自（海）供审函〔2025〕0006号已补齐01/03A指标；仍需全走廊最终批准控规与其余地块图则。"
+        },
+        {
+          "request_id": "DR-003",
+          "priority": "blocking_for_building_action",
+          "dataset": "existing-building and land-use survey",
+          "requested_from": "北京市海淀区园林绿化局（发包人）、中材地质工程勘查研究院有限公司（勘察测绘单位）、北京北林地景园林规划设计院有限责任公司（设计单位）及相关产权单位；北京市测绘设计研究院（受控地形图目录分发单位）",
+          "minimum_fields": [
+            "building_id",
+            "footprint",
+            "floor_count",
+            "height_m",
+            "gross_floor_area_sqm",
+            "structure_type",
+            "construction_year",
+            "condition_grade",
+            "current_use",
+            "vacancy_status",
+            "heritage_flag"
+          ],
+          "acceptance_checks": [
+            "survey date and responsible surveyor are recorded",
+            "building identifiers are stable and non-personal",
+            "footprints pass topology checks",
+            "personal and tenant information is removed or aggregated"
+          ],
+          "replacement_targets": [
+            "geometry/buildings.geojson",
+            "retain-renovate-remove recommendations",
+            "floor-area and density metrics"
+          ],
+          "public_reference_layer": "OSM/Overture轮廓、GHS-OBAT 2020模型属性、GHSL 2018网格高度/体量、WorldCover 2021、Copernicus GLO-30、Sentinel-2 2026-07-15和天地图目录只用于公开筛查与申请定位；均不能替代逐栋属性调查、专业测绘或验收。",
+          "catalog_reference": {
+            "source_id": "TIANDITU-HAIDIAN-OFFICIAL-GEO-CATALOG",
+            "provisional_site_unique_1_500_sheet_count": 502,
+            "latest_versions": {
+              "2024版": 253,
+              "2021版": 249
+            },
+            "sample_format": "DWG",
+            "sample_security_classification": "秘密",
+            "request_route": "由有权主体向北京市测绘设计研究院提交合规用途、范围、坐标系、保密和成果使用申请；不得由本公开提交包下载或转发。"
+          },
+          "public_subproject_reference": "蓝景丽家地物报告公开验收范围内无未拆除建筑、52株树木及13号线钢棚柱侵界约束；不外推至其他地块。"
+        },
+        {
+          "request_id": "DR-004",
+          "priority": "blocking_for_implementation",
+          "dataset": "land ownership, management and operation responsibility",
+          "requested_from": "海淀区主管部门、国资及产权管理单位",
+          "minimum_fields": [
+            "parcel_or_asset_id",
+            "rights_type",
+            "responsible_entity",
+            "management_entity",
+            "lease_or_use_expiry_if_disclosable",
+            "restriction_summary"
+          ],
+          "acceptance_checks": [
+            "legal source and update date are recorded",
+            "personal identifiers are excluded",
+            "conflicting rights are flagged",
+            "public and restricted fields are separated"
+          ],
+          "replacement_targets": [
+            "project responsibility matrix",
+            "phasing and delivery assumptions",
+            "ownership risk statements"
+          ]
+        },
+        {
+          "request_id": "DR-005",
+          "priority": "blocking_for_traffic_design",
+          "dataset": "road redlines, intersection controls, transit entrances and traffic survey",
+          "requested_from": "北京市规划自然资源委海淀分局、海淀区交通主管部门、北京市海淀区园林绿化局及北京北林地景园林规划设计院有限责任公司",
+          "minimum_fields": [
+            "road_or_node_id",
+            "road_class",
+            "redline_geometry",
+            "cross_section",
+            "access_control",
+            "transit_entrance_geometry",
+            "survey_period",
+            "pedestrian_bicycle_vehicle_counts"
+          ],
+          "acceptance_checks": [
+            "survey date and peak-period definition are explicit",
+            "redlines and operational centerlines are distinguished",
+            "station entrances and emergency access are verified",
+            "all geometry uses a declared CRS"
+          ],
+          "replacement_targets": [
+            "geometry/roads.geojson",
+            "mobility calculations",
+            "intersection and accessibility recommendations"
+          ],
+          "public_reference_layer": "geometry/roads.geojson OSM-* features provide nonstatutory centerline context only"
+        },
+        {
+          "request_id": "DR-006",
+          "priority": "blocking_for_heritage_adjacent_design",
+          "dataset": "heritage protection scope and construction-control zone drawings",
+          "requested_from": "北京市文物局、北京市规划自然资源委及海淀区文化主管部门",
+          "minimum_fields": [
+            "heritage_id",
+            "official_name",
+            "protection_scope_geometry",
+            "construction_control_geometry",
+            "control_requirements",
+            "issuing_document_number",
+            "issue_date"
+          ],
+          "acceptance_checks": [
+            "matches 京政发〔2025〕3号 item 26 for Qinghuayuan Station former site",
+            "protection and construction-control geometries are separate",
+            "drawing edition and issuing authorities are recorded",
+            "no generic buffer is substituted for official geometry"
+          ],
+          "replacement_targets": [
+            "geometry/constraints.geojson",
+            "heritage design controls",
+            "project-permission prerequisites"
+          ]
+        },
+        {
+          "request_id": "DR-007",
+          "priority": "blocking_for_engineering",
+          "dataset": "municipal utilities and capacity conditions",
+          "requested_from": "北京市海淀区园林绿化局、中材地质工程勘查研究院有限公司、北京北林地景园林规划设计院有限责任公司及供水、排水、电力、通信等权属运营单位",
+          "minimum_fields": [
+            "utility_id",
+            "utility_type",
+            "alignment_or_service_area",
+            "elevation_or_depth",
+            "current_capacity",
+            "available_capacity",
+            "connection_condition",
+            "protection_distance"
+          ],
+          "acceptance_checks": [
+            "survey or operating-data date is explicit",
+            "underground and overhead assets are distinguished",
+            "capacity and connection permission are separately stated",
+            "sensitive infrastructure is handled under controlled access"
+          ],
+          "replacement_targets": [
+            "utility strategy",
+            "AI edge-compute and energy feasibility",
+            "stormwater and fire-safety design"
+          ]
+        },
+        {
+          "request_id": "DR-008",
+          "priority": "blocking_for_environmental_and_safety_design",
+          "dataset": "flood, drainage, soil, noise, contamination, water and tree survey",
+          "requested_from": "北京市海淀区园林绿化局、中材地质工程勘查研究院有限公司、地铁运营/保护主管单位，以及水务、生态环境、应急和园林主管部门",
+          "minimum_fields": [
+            "survey_id",
+            "hazard_or_asset_type",
+            "survey_date",
+            "geometry",
+            "measurement",
+            "unit",
+            "threshold_or_grade",
+            "required_action"
+          ],
+          "acceptance_checks": [
+            "official or qualified survey source is recorded",
+            "return period and climate baseline are explicit for flood data",
+            "contamination and safety-sensitive details use controlled disclosure",
+            "tree identifiers and protection grades are field-verified"
+          ],
+          "replacement_targets": [
+            "geometry/constraints.geojson",
+            "blue-green and sponge-city design",
+            "construction risk and phasing"
+          ],
+          "known_commissioned_reports": [
+            "main phase-two tree survey",
+            "supporting-project survey",
+            "metro safety assessment"
+          ],
+          "public_reference_layer": "WorldCover 2021提供历史地表覆盖，Copernicus GLO-30提供历史DSM，JRC GSW v1.5提供1984-2024水体发生/转移和2022-2024最大范围，Sentinel-2 L2A提供2026-07-15单景SCL/NDVI/NDWI；均按provisional SITE-001裁切。仍需有资质单位提供生态、水文、蓝线、洪水、排水、土壤、污染、树木、轨道安全、裸地地形、竣工和验收记录。"
+        }
+      ],
+      "replacement_sequence": [
+        "archive the received source and calculate SHA-256",
+        "record issuing authority, document number, date, CRS, license and access restrictions",
+        "validate schema, topology, area and cross-layer consistency",
+        "replace provisional constraints without deleting source provenance",
+        "recompute all EPSG:4548 geometry metrics",
+        "regenerate figures, drawings, HTML and manifest hashes",
+        "rerun deterministic, spatial, visual and professional review"
+      ]
+    },
+    "evaluated_not_used": [
+      {
+        "title": "公租自行车停车位基础信息",
+        "publisher": "北京市交通委员会",
+        "url": "https://service.jtw.beijing.gov.cn/cxsjxz/data/公租自行车停车位基础信息.xlsx",
+        "snapshot_sha256": "4b5d5b88c31b026aa270486c5f28ccfd9cda4d3b2890847841f1bbd22211b9e0",
+        "reason": "仅含站名、位置文本和车位数，无坐标；项目周边没有可靠精确匹配，未纳入指标或空间图层。"
+      },
+      {
+        "title": "北京市公园名录",
+        "publisher": "北京市园林绿化局",
+        "url": "https://data.beijing.gov.cn/zyml/ajg/syllhj/91ee7c118e5e4eb0b51b08e1da158615.htm",
+        "reason": "目录元数据公开，但文件下载在核验时跳转统一身份认证；未获得可校验数据快照，故不引用行级数据。"
+      },
+      {
+        "title": "北京市市级以上文物保护单位保护范围及建设控制地带",
+        "publisher": "北京市文物局 / 北京市公共数据开放平台",
+        "url": "http://data.beijing.gov.cn/zyml/ajg/swwj/5972.htm",
+        "snapshot_sha256": "6f492a27be7a58341b92ee2b62ee35ca5d305cc403b5792bdba65c3075705ae4",
+        "reason": "官方目录公开字段包含标题、批次、保护范围和建设控制地带，但CSV/XLS下载与API需要北京市统一身份认证；公开文件名显示数据版本为2020-10-19，早于清华园车站旧址2025年第十一批控制范围发布，不能补齐当前DR-006几何。"
+      },
+      {
+        "title": "征集组织机构资格预审文件安全下载页",
+        "publisher": "北京科技园拍卖招标有限公司",
+        "url": "http://www.bkpmzb.com/bidding/xz.php?oid=257&pid=2894",
+        "reason": "征集公告公开列出资格预审文件，但下载页需要主办方发放的密码；报名期已结束。本包不绕过密码或使用个人信息重新报名，因此该文件不属于无条件公开数据。"
+      },
+      {
+        "candidate": "第三方公共采购成交公告镜像（KJY20250187）",
+        "url": "https://beijing.jianyu360.cn/jybx/20250219_250218162458477.html",
+        "reason": "镜像显示北京交大建筑勘察设计院有限公司和50.16万元成交信息，但未定位到中国政府采购网官方成交页；不纳入正式来源、不写入已核验成交指标，仅保留为向采购人核对最终报告持有人的线索。"
+      },
+      {
+        "title": "TUM GlobalBuildingAtlas LoD1 and GBA.Height",
+        "publisher": "Technical University of Munich",
+        "url": "https://github.com/zhu-xlab/GlobalBuildingAtlas",
+        "reason": "数据与论文曾用于研究核验，但派生成果受CC BY-NC 4.0及潜在复合许可义务约束。为避免公开赛事、奖金或后续使用的商业性质不确定性，REV22提交包不分发其属性表、统计、图片或派生指标，也不以其支撑任何设计结论。",
+        "included_in_submission": false
+      }
+    ],
+    "official_status_updates": [
+      {
+        "source_id": "HAIDIAN-JINGZHANG-CONTROL-PLAN-STATUS",
+        "finding": "The official 2025-08-20 progress page records continuing control-plan compilation and an AI innovation-street draft.",
+        "impact": "Retained as historical progress evidence and read together with the 2024 public draft and 2026 technical-review statement."
+      },
+      {
+        "source_id": "HAIDIAN-JINGZHANG-CONTROL-PLAN-DRAFT",
+        "finding": "The official 2024 public notice exposes a raster planning-scope map and draft summary controls for HD00-1601 and related blocks.",
+        "impact": "Closes the former claim that no control-plan material was public, but does not provide a competition polygon or georeferenced vector."
+      },
+      {
+        "source_id": "HAIDIAN-2026-GOVERNMENT-WORK-REPORT",
+        "finding": "The official 2026 government work report states that the Jingzhang heritage-park corridor control plan passed technical review.",
+        "impact": "Updates planning status beyond compilation while preserving the distinction between technical review and final government approval."
+      },
+      {
+        "source_id": "BEIJING-HERITAGE-BATCH11-NOTICE",
+        "finding": "The effective municipal notice lists Qinghuayuan Station former site and confirms that protection-scope and construction-control drawings are separately issued.",
+        "impact": "Closes the heritage-status gap but leaves the official geometry as a controlled data request."
+      },
+      {
+        "source_id": "BEIJING-FRC-JINGZHANG-PHASE2-IMPLEMENTATION-APPROVAL",
+        "finding": "The municipal implementation approval records a 23.08 ha approved construction package from Xizhimen to Zhichun Road.",
+        "impact": "Adds an approved implementation baseline while keeping it separate from the 53.09 ha full-corridor project profile and the competition area."
+      },
+      {
+        "source_id": "BEIJING-YLLHJ-JINGZHANG-PHASE2-SUPPORTING-COMPLETION",
+        "finding": "The municipal landscape authority records completion of the supporting project and a 30.01 ha north segment from Qinghua East Road to the North Fifth Ring Road.",
+        "impact": "Updates project status from procurement to completed supporting works without treating the text as an as-built polygon or final survey."
+      },
+      {
+        "source_id": "BEIJING-CCGP-JINGZHANG-PHASE2-SUPPORTING-SURVEY",
+        "finding": "The government procurement notice confirms a supporting-project survey contract scope, budget and duration, but exposes no survey deliverable.",
+        "impact": "Shows that survey data should exist with the commissioning parties; it does not close the existing-building, municipal or safety data requests."
+      },
+      {
+        "source_id": "BEIJING-GGZY-JINGZHANG-PHASE2-SURVEY-CONTRACT",
+        "finding": "The signed main survey contract explicitly includes control survey, topographic mapping, tree survey, underground-pipeline survey and engineering survey, and names the commissioning and survey organizations.",
+        "impact": "Changes the gap from unknown existence to identified controlled deliverables; the public page still exposes no report, coordinates or drawings."
+      },
+      {
+        "source_id": "BEIJING-GGZY-JINGZHANG-PHASE2-DESIGN-CONTRACT",
+        "finding": "Signed main and supporting design contracts confirm scheme, preliminary and construction-drawing design and name the design organization.",
+        "impact": "Creates a precise data-request route without treating unpublished drawings as public or inferred geometry."
+      },
+      {
+        "source_id": "OPENSTREETMAP-JINGZHANG-EXISTING-CONTEXT",
+        "finding": "ODbL snapshots add clipped building, road, railway, water and POI context with source element IDs and hashes.",
+        "impact": "Improves concept-stage existing-condition coverage while leaving statutory, title, controlled-infrastructure and survey-accuracy gaps open."
+      },
+      {
+        "source_id": "TIANDITU-HAIDIAN-OFFICIAL-GEO-CATALOG",
+        "finding": "Official catalog metadata identifies 502 independent 1:500 sheets intersecting the disclosed provisional site and names the Beijing Institute of Surveying and Mapping as metadata contact/distributor; sampled vector products are classified secret DWG files.",
+        "impact": "Changes the topographic gap from unknown availability to a precise controlled-order route without treating restricted products as open data."
+      },
+      {
+        "source_id": "ESA-WORLDCOVER-JINGZHANG-2021",
+        "finding": "A no-login CC BY 4.0 WorldCover COG provides a reproducible 2021 10 m land-cover clip for the provisional site.",
+        "impact": "Adds historical surface-cover context while retaining current-survey, statutory-control and boundary gaps."
+      },
+      {
+        "source_id": "COPERNICUS-DEM-GLO30-JINGZHANG",
+        "finding": "The official Copernicus collection describes GLO-30 as a worldwide free-licence 1 arc-second DSM with 2011-2015 primary acquisition, EPSG:4326 horizontal and EGM2008 vertical reference; the AWS Open Data Registry exposes no-account public COGs.",
+        "impact": "Adds reproducible coarse historical surface elevation and slope screening while retaining the need for current bare-earth survey, engineering levels, drainage, flood and statutory geometry."
+      },
+      {
+        "source_id": "JRC-GSW-V15-JINGZHANG",
+        "finding": "The official JRC page exposes v1.5 water occurrence and transition aggregates for 1984-2024 and a v1.5 2022-2024 maximum-extent layer, with unrestricted use, required attribution/citation and documented co-registration limitations.",
+        "impact": "Adds reproducible long-term public surface-water observation screening while retaining blue-line, drainage, flood, water-quality and current-survey requests."
+      },
+      {
+        "source_id": "COPERNICUS-SENTINEL2-L2A-JINGZHANG-20260715",
+        "finding": "The official CDSE STAC identifies the selected Sentinel-2B L2A product, and the AWS Open Data Registry documents a no-account COG conversion containing all original scenes; product identity was cross-checked before range extraction.",
+        "impact": "Adds a traceable 2026-07-15 single-scene optical, SCL, NDVI and NDWI snapshot while retaining field, survey, multi-season and regulatory data requests."
+      },
+      {
+        "source_id": "OVERTURE-MAPS-BUILDINGS-JINGZHANG-20260722",
+        "finding": "Overture's official release, client, building schema and attribution pages expose the 2026-07-22.0 Buildings database under ODbL; retained non-OSM records identify the published East Asian building dataset DOI as their sole source.",
+        "impact": "Adds a traceable open machine-derived building-footprint increment while retaining statutory, cadastral, licensed survey and building-attribute requests."
+      },
+      {
+        "source_id": "JRC-GHSL-BUILT-H-R2023A-JINGZHANG-2018",
+        "finding": "The official JRC page publishes GHS-BUILT-H R2023A AGBH and ANBH for epoch 2018 at 100 m Mollweide and 3 arc-second WGS84, under CC BY 4.0 with product and release-method citations.",
+        "impact": "Adds traceable historical gridded height and gross built-volume-density context while retaining statutory and licensed current individual-building survey requests."
+      },
+      {
+        "source_id": "JRC-GHSL-GHS-OBAT-R2024A-JINGZHANG-2020",
+        "finding": "JRC publishes GHS-OBAT R2024A as open country-level footprint attribute tables derived from Overture 2024-07-22.0 and GHSL grids, with height, function, construction epoch, area, perimeter and compactness plus explicit validation and China coverage limits.",
+        "impact": "Adds auditable model attributes for a rigorously matched subset of current footprints while preserving the licensed current survey and statutory-control requests."
+      },
+      {
+        "source_id": "BEIJING-GHZY-BLUEHOME-CASE-2026",
+        "finding": "北京市规自委2026-06-12案例页将约3.95公顷蓝景丽家项目明确置于大钟寺试点片区，并记录取得土地和前期实施状态。",
+        "impact": "用于纠正大钟寺概念区位置和补充真实更新条件，但不把子项目边界外推为竞赛重点区。"
+      }
+    ],
+    "resolved_public_gaps": [
+      {
+        "item": "official planning-scope raster and draft summary controls",
+        "source_id": "HAIDIAN-JINGZHANG-CONTROL-PLAN-DRAFT",
+        "resolution": "Public official PDF located, downloaded, hash-recorded and transcribed into structured metrics with draft limitations."
+      },
+      {
+        "item": "current control-plan progress",
+        "source_id": "HAIDIAN-2026-GOVERNMENT-WORK-REPORT",
+        "resolution": "Official 2026 report confirms the plan passed technical review; no approval or geometry is inferred."
+      },
+      {
+        "item": "Jingzhang public-space phase-two scale",
+        "source_id": "HAIDIAN-JINGZHANG-PHASE2-PROJECT",
+        "resolution": "Official length, land area and endpoint description added as non-polygon baseline."
+      },
+      {
+        "item": "approved phase-two construction-package scope and procurement baseline",
+        "source_id": "BEIJING-GGZY-JINGZHANG-PHASE2-CONSTRUCTION-TENDER",
+        "resolution": "Official approved package area, planned investment, duration, construction disciplines and attachment hash added without inferring project geometry."
+      },
+      {
+        "item": "Qinghuayuan Station municipal heritage status",
+        "source_id": "BEIJING-HERITAGE-BATCH11-NOTICE",
+        "resolution": "Current official heritage status is now verified; the separately issued official control drawings remain requested through DR-006."
+      },
+      {
+        "item": "broader AI Origin Community policy scale",
+        "source_id": "BEIJING-AI-ORIGIN-COMMUNITY",
+        "resolution": "Official approximately 3 sq km innovation-district context added and explicitly separated from the competition's 104.3 ha key-area scope."
+      },
+      {
+        "item": "current phase-two supporting-project status and north-segment scale",
+        "source_id": "BEIJING-YLLHJ-JINGZHANG-PHASE2-SUPPORTING-COMPLETION",
+        "resolution": "Official completion status, 30.01 ha north-segment area and work disciplines added as non-polygon as-built context."
+      },
+      {
+        "item": "Jingzhang park operating baseline",
+        "source_id": "BEIJING-JINGZHANG-2025-OPERATIONS",
+        "resolution": "Official government feature records lower-bound 2025 activity and visitor volumes with operator attribution and no future-demand inference."
+      },
+      {
+        "item": "AI Origin Community research and enterprise ecosystem",
+        "source_id": "BEIJING-AI-ORIGIN-2026-ECOSYSTEM",
+        "resolution": "Latest official counts are added for the broader policy community and explicitly kept outside the 104.3 ha competition key-area statistics."
+      },
+      {
+        "item": "nonstatutory existing-condition map context",
+        "source_id": "OPENSTREETMAP-JINGZHANG-EXISTING-CONTEXT",
+        "resolution": "ODbL building, road, rail, water and POI snapshots are hash-recorded, clipped to the disclosed provisional boundary and kept separate from statutory geometry."
+      },
+      {
+        "item": "existence and likely custody of survey/design deliverables",
+        "source_id": "BEIJING-GGZY-JINGZHANG-PHASE2-SURVEY-CONTRACT",
+        "resolution": "Signed public contracts identify commissioning, survey, design, construction and supervision organizations and exact service scopes; deliverable access remains controlled."
+      },
+      {
+        "item": "open historical surface-cover classification",
+        "source_id": "ESA-WORLDCOVER-JINGZHANG-2021",
+        "resolution": "A hash-recorded, georeferenced, provisionally masked WorldCover 2021 clip and class summary are included under CC BY 4.0."
+      },
+      {
+        "item": "open coarse historical digital-surface elevation screening",
+        "source_id": "COPERNICUS-DEM-GLO30-JINGZHANG",
+        "resolution": "A byte-range-traceable, georeferenced, provisionally masked 16-bit GLO-30 elevation clip, statistical sidecar and preview are included with the required Copernicus attribution."
+      },
+      {
+        "item": "open long-term satellite-observed surface-water history screening",
+        "source_id": "JRC-GSW-V15-JINGZHANG",
+        "resolution": "Lossless v1.5 occurrence, transition and 2022-2024 extent code rasters, official styles, source-object integrity and project statistics are included with required EC JRC/Google attribution and citation."
+      },
+      {
+        "item": "open recent single-scene optical land-cover and spectral screening",
+        "source_id": "COPERNICUS-SENTINEL2-L2A-JINGZHANG-20260715",
+        "resolution": "Four lossless 10 m source-DN bands, 20 m SCL, encoded NDVI/NDWI, official/mirror STAC identity, byte-range provenance, sidecar and preview are included for 2026-07-15."
+      },
+      {
+        "item": "open cross-source machine-derived building footprint coverage beyond OSM",
+        "source_id": "OVERTURE-MAPS-BUILDINGS-JINGZHANG-20260722",
+        "resolution": "The package retains 2,834 Overture records sourced only to the public East Asian building DOI, excludes every OSM-sourced Overture record, and records release, raw hash, clipping, union-area comparison, ODbL attribution and limitations."
+      },
+      {
+        "item": "open historical gridded building height and gross volume-density context",
+        "source_id": "JRC-GHSL-BUILT-H-R2023A-JINGZHANG-2018",
+        "resolution": "The package includes lossless 2018 AGBH and ANBH SITE-001 clips, complete source ZIP/TIFF integrity, georeferencing, licence, citations, definitions, statistics and explicit non-building-level limitations."
+      },
+      {
+        "item": "open footprint-level model height function and construction-epoch subset",
+        "source_id": "JRC-GHSL-GHS-OBAT-R2024A-JINGZHANG-2020",
+        "resolution": "The package includes the complete China source identity and integrity, project-level extracted rows, one-to-one match audit, model attribute statistics, official validation limits, coverage shortfall and reuse conditions."
+      },
+      {
+        "item": "official parcel-level facts for a Dazhongsi renewal subproject",
+        "source_id": "BEIJING-GGZY-BLUEHOME-SURVEY-2025",
+        "resolution": "公开勘测报告和规划条件补入107点原始坐标表、9个地块/道路面积及01/03A指标；CRS未公开，因此未生成伪WGS84地块。"
+      }
+    ]
+  }
+}

@@ -1,0 +1,312 @@
+{
+  "schema_version": "0.1.0",
+  "status_legend": {
+    "known": "已登记：数值由临时边界/假设模型复算得出，approved_control=false、confidence=low、assumptions 已声明其临时性与非法定属性；待官方 polygon 替换后须重算。",
+    "unknown": "尚未获得，value=null 且须附 reason。",
+    "not_applicable": "本方案不适用。"
+  },
+  "approved_control_notice": "本文件全部数值均不属于任何已批准、已审定或法定的规划/工程指标。它们仅在临时边界与假设模型下用于体量量级演示和方法可复算验证，严禁作为拆改留、容积率、建筑高度、开发强度或工程实施结论。",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "approved_control": false,
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "projected_area(site_boundary, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "临时边界（provisional）复算面积；非法定红线面积，官方 polygon 到位后须重算并更新全部依赖指标。"
+      ]
+    },
+    "land_use_area_0802_sqm": {
+      "status": "known",
+      "approved_control": false,
+      "value": 2674562.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(projected_area(land_use polygons code=0802))",
+      "confidence": "low",
+      "assumptions": [
+        "用地多边形基于临时边界生成，仅方向性量级。"
+      ]
+    },
+    "land_use_area_1401_sqm": {
+      "status": "known",
+      "approved_control": false,
+      "value": 2589339.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(projected_area(land_use polygons code=1401))",
+      "confidence": "low",
+      "assumptions": [
+        "用地多边形基于临时边界生成，仅方向性量级。"
+      ]
+    },
+    "land_use_area_05_sqm": {
+      "status": "known",
+      "approved_control": false,
+      "value": 3366138.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(projected_area(land_use polygons code=05))",
+      "confidence": "low",
+      "assumptions": [
+        "用地多边形基于临时边界生成，仅方向性量级。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "approved_control": false,
+      "value": 870417.816,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "projected_area(unary_union(building_footprints), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "建筑足迹为假设模型生成，非现状普查；仅供体量量级演示。"
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "approved_control": false,
+      "value": 0.0763,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "分子分母均为临时边界/假设模型下的方向性值。"
+      ]
+    },
+    "total_floor_area_sqm": {
+      "status": "known",
+      "approved_control": false,
+      "value": 9057082.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(footprint_area * floors)",
+      "confidence": "low",
+      "assumptions": [
+        "层数取自假设建筑模型；非实测，须经现状普查复核。"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "known",
+      "approved_control": false,
+      "value": 0.7936,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "total_floor_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "综合容积率 0.79 为假设模型下的演示值，非批准控规指标；实际须待控规条件确认。"
+      ]
+    },
+    "green_area_sqm": {
+      "status": "known",
+      "approved_control": false,
+      "value": 1408600.8,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(projected_area(green_space))",
+      "confidence": "low",
+      "assumptions": [
+        "基于临时边界生成，仅方向性量级。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "approved_control": false,
+      "value": 0.1234,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "临时边界下方向性估算，非批准绿地率。"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "approved_control": false,
+      "value": 836345.6,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(projected_area(public_space))",
+      "confidence": "low",
+      "assumptions": [
+        "基于临时边界生成，仅方向性量级。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "approved_control": false,
+      "value": 0.0733,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "临时边界下方向性估算，非批准公共空间率。"
+      ]
+    },
+    "road_area_sqm": {
+      "status": "known",
+      "approved_control": false,
+      "value": 967289.1,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(projected_area(buffer(road_centerline, 20m)))",
+      "confidence": "low",
+      "assumptions": [
+        "中心线 20 m 缓冲近似，非道路红线或横断面结论；待市政与园林条件确认。"
+      ]
+    },
+    "road_ratio": {
+      "status": "known",
+      "approved_control": false,
+      "value": 0.0848,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "中心线缓冲近似，非批准道路面积率。"
+      ]
+    },
+    "phasing_area_sqm": {
+      "status": "known",
+      "approved_control": false,
+      "value": 11412829.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(projected_area(phase polygons))",
+      "confidence": "low",
+      "assumptions": [
+        "分期面积为基于临时边界与假设开发模型的概念性量级估算，非法定分期或工程投资结论。"
+      ]
+    },
+    "phasing_coverage_ratio": {
+      "status": "known",
+      "approved_control": false,
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/phasing.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "phasing_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "概念性分期覆盖演示。"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "approved_control": false,
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "三处重点区范围基于临时边界，公告口径为方向性参考。"
+      ]
+    },
+    "key_area_zhongzhiyuan_sqm": {
+      "status": "known",
+      "approved_control": false,
+      "value": 1929201.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "projected_area(zhongzhiyuan key area)",
+      "confidence": "low",
+      "assumptions": [
+        "临时边界；公告口径约 192.1 ha，仅为方向性参考。"
+      ]
+    },
+    "key_area_beijing_ai_origin_sqm": {
+      "status": "known",
+      "approved_control": false,
+      "value": 1043236.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "projected_area(beijing ai origin key area)",
+      "confidence": "low",
+      "assumptions": [
+        "临时边界；公告口径约 104.3 ha，仅为方向性参考。"
+      ]
+    },
+    "key_area_dazhongsi_sqm": {
+      "status": "known",
+      "approved_control": false,
+      "value": 720454.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "projected_area(dazhongsi key area)",
+      "confidence": "low",
+      "assumptions": [
+        "临时边界；公告口径约 72.0 ha，仅为方向性参考。"
+      ]
+    },
+    "ai_service_node_count": {
+      "status": "known",
+      "approved_control": false,
+      "value": 14,
+      "unit": "count",
+      "formula": "count(scenario_cards)",
+      "confidence": "low",
+      "assumptions": [
+        "场景节点为概念落点，非既有设施普查；原 ai_service_nodes.geojson 已随上一轮整改移除，现以 visual/assets/scenario-cards.json（14 个 NODE-01…NODE-14 场景卡）作为唯一权威引用。"
+      ]
+    }
+  }
+}

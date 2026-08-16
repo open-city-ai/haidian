@@ -1,0 +1,441 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "EPSG4548_polygon_area(PROV-SITE-001)",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时替代边界（provisional constraint）计算，官方边界公布后须整包重算。"
+   ]
+  },
+  "land_use_partition_area_sqm": {
+   "status": "known",
+   "value": 11412844.6,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(EPSG4548_polygon_area(LAND_USE))",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时替代边界（provisional constraint）计算，官方边界公布后须整包重算。",
+    "用地分区为总体设计范围的完整无重叠剖分，与site_area之差为几何计算误差。"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 3136673.5,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(EPSG4548_polygon_area(BUILDING_FOOTPRINT))",
+   "confidence": "low",
+   "assumptions": [
+    "基于临时替代边界（provisional constraint）计算，官方边界公布后须整包重算。",
+    "建筑基底为概念性设计量，非法定控制值，缺现状建筑数据。"
+   ]
+  },
+  "building_density": {
+   "status": "known",
+   "value": 0.2748,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_footprint_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "概念建筑密度，非法定指标；现状保留建筑未纳入，待现状数据补齐后重算。"
+   ]
+  },
+  "concept_gross_floor_area_sqm": {
+   "status": "known",
+   "value": 27962339.6,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(footprint_area * concept_floors)",
+   "confidence": "low",
+   "assumptions": [
+    "概念层数假设（住宅12层/研发10层/商业8层等），非法定容积率依据。"
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "gross_floor_area / site_area (法定值待官方控规条件)",
+   "confidence": "unknown",
+   "assumptions": [
+    "官方控规容积率缺失（planning_limits.json status=missing）；概念参考值见concept_gross_floor_area_sqm/site_area≈2.45，仅为设计讨论量。"
+   ],
+   "reason": "官方控规容积率条件缺失（planning_limits.json 中 status=missing）；待正式控制条件公布后以官方口径复算。概念参考值见 concept_gross_floor_area_sqm。"
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 1684559.8,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(EPSG4548_polygon_area(GREEN_SPACE))",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时替代边界（provisional constraint）计算，官方边界公布后须整包重算。"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.1476,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "不含街头附属绿地；现状绿地底数缺失，官方数据到位后重算。"
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 1757973.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(EPSG4548_polygon_area(PUBLIC_SPACE))",
+   "confidence": "medium",
+   "assumptions": [
+    "公共空间含遗址公园绿脊（与绿地图层按用途重叠统计）、9处人字口广场与3处地标前广场。"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.154,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "绿脊同时计入绿地与公共空间两个功能图层，比例分母为总体设计范围面积。"
+   ]
+  },
+  "road_land_area_sqm": {
+   "status": "known",
+   "value": 497949.8,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area where land_use_code=1207)",
+   "confidence": "medium",
+   "assumptions": [
+    "仅含本方案新组织的两条南北次干路与缝合支路用地，现状道路红线数据缺失。"
+   ]
+  },
+  "road_land_ratio": {
+   "status": "known",
+   "value": 0.0436,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "road_land_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "不含现状城市干路（缺官方红线数据），待补齐后重算。"
+   ]
+  },
+  "phase_1_area_sqm": {
+   "status": "known",
+   "value": 4247275.9,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "EPSG4548_polygon_area(PHASE-1)",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时替代边界（provisional constraint）计算，官方边界公布后须整包重算。"
+   ]
+  },
+  "phase_2_area_sqm": {
+   "status": "known",
+   "value": 4746175.9,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "EPSG4548_polygon_area(PHASE-2)",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时替代边界（provisional constraint）计算，官方边界公布后须整包重算。"
+   ]
+  },
+  "phase_3_area_sqm": {
+   "status": "known",
+   "value": 2419386.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "EPSG4548_polygon_area(PHASE-3)",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时替代边界（provisional constraint）计算，官方边界公布后须整包重算。"
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(KEY_AREA features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "key_area_zhongzhiyuan_sqm": {
+   "status": "known",
+   "value": 1929201.9,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "EPSG4548_polygon_area(PROV-KEY-001)",
+   "confidence": "medium",
+   "assumptions": [
+    "临时替代polygon复算值，公告面积192.1公顷为官方值。"
+   ]
+  },
+  "key_area_origin_community_sqm": {
+   "status": "known",
+   "value": 1043236.9,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "EPSG4548_polygon_area(PROV-KEY-002)",
+   "confidence": "medium",
+   "assumptions": [
+    "临时替代polygon复算值，公告面积104.3公顷为官方值。"
+   ]
+  },
+  "key_area_dazhongsi_sqm": {
+   "status": "known",
+   "value": 720454.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "EPSG4548_polygon_area(PROV-KEY-003)",
+   "confidence": "medium",
+   "assumptions": [
+    "临时替代polygon复算值，公告面积72.0公顷为官方值。"
+   ]
+  },
+  "ren_switch_plaza_count": {
+   "status": "known",
+   "value": 9,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(public_space_type='ren_switch_plaza')",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "ai_pilgrimage_landmark_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(public_space_type='landmark_forecourt')",
+   "confidence": "high",
+   "assumptions": [
+    "地标建筑本体为概念建议；此处统计其前广场空间。"
+   ]
+  },
+  "renewal_project_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "count(renewal projects in proposal chapter 9)",
+   "confidence": "medium",
+   "assumptions": [
+    "项目清单为概念建议，非政府审定项目库。"
+   ]
+  },
+  "land_use_05_area_sqm": {
+   "status": "known",
+   "value": 1291094.3,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area where land_use_code=05)",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时替代边界（provisional constraint）计算，官方边界公布后须整包重算。"
+   ]
+  },
+  "land_use_0701_area_sqm": {
+   "status": "known",
+   "value": 2796723.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area where land_use_code=0701)",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时替代边界（provisional constraint）计算，官方边界公布后须整包重算。"
+   ]
+  },
+  "land_use_0702_area_sqm": {
+   "status": "known",
+   "value": 471201.6,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area where land_use_code=0702)",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时替代边界（provisional constraint）计算，官方边界公布后须整包重算。"
+   ]
+  },
+  "land_use_0802_area_sqm": {
+   "status": "known",
+   "value": 2872139.8,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area where land_use_code=0802)",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时替代边界（provisional constraint）计算，官方边界公布后须整包重算。"
+   ]
+  },
+  "land_use_0803_area_sqm": {
+   "status": "known",
+   "value": 524189.5,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area where land_use_code=0803)",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时替代边界（provisional constraint）计算，官方边界公布后须整包重算。"
+   ]
+  },
+  "land_use_0804_area_sqm": {
+   "status": "known",
+   "value": 548122.9,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area where land_use_code=0804)",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时替代边界（provisional constraint）计算，官方边界公布后须整包重算。"
+   ]
+  },
+  "land_use_0805_area_sqm": {
+   "status": "known",
+   "value": 350720.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area where land_use_code=0805)",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时替代边界（provisional constraint）计算，官方边界公布后须整包重算。"
+   ]
+  },
+  "land_use_0806_area_sqm": {
+   "status": "known",
+   "value": 376143.1,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area where land_use_code=0806)",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时替代边界（provisional constraint）计算，官方边界公布后须整包重算。"
+   ]
+  },
+  "land_use_1207_area_sqm": {
+   "status": "known",
+   "value": 497949.8,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area where land_use_code=1207)",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时替代边界（provisional constraint）计算，官方边界公布后须整包重算。"
+   ]
+  },
+  "land_use_1401_area_sqm": {
+   "status": "known",
+   "value": 1635277.1,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area where land_use_code=1401)",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时替代边界（provisional constraint）计算，官方边界公布后须整包重算。"
+   ]
+  },
+  "land_use_1402_area_sqm": {
+   "status": "known",
+   "value": 49282.7,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area where land_use_code=1402)",
+   "confidence": "medium",
+   "assumptions": [
+    "基于临时替代边界（provisional constraint）计算，官方边界公布后须整包重算。"
+   ]
+  }
+ }
+}

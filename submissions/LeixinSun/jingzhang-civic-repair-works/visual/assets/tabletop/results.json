@@ -1,0 +1,106 @@
+{
+  "schema_version": "1.0.0",
+  "claim_level": "synthetic_rule_replay",
+  "purpose": "Check that participant-authored R0-R5 and AI-authority rules stop or divert known negative branches.",
+  "field_runs": 0,
+  "fixture_count": 12,
+  "matched_expected_decisions": 12,
+  "expected_match_rate": 1,
+  "authority_boundary_fixture_count": 4,
+  "authority_boundary_matched": 4,
+  "authority_boundary_match_rate": 1,
+  "all_matched": true,
+  "cases": [
+    {
+      "fixture_id": "T01",
+      "rule_family": "release_gate",
+      "expected": "HOLD_R1",
+      "actual": "HOLD_R1",
+      "matched": true
+    },
+    {
+      "fixture_id": "T02",
+      "rule_family": "release_gate",
+      "expected": "QUALIFIED_HANDOVER_R2",
+      "actual": "QUALIFIED_HANDOVER_R2",
+      "matched": true
+    },
+    {
+      "fixture_id": "T03",
+      "rule_family": "release_gate",
+      "expected": "HOLD_R3",
+      "actual": "HOLD_R3",
+      "matched": true
+    },
+    {
+      "fixture_id": "T04",
+      "rule_family": "release_gate",
+      "expected": "REJECT_PART_R3",
+      "actual": "REJECT_PART_R3",
+      "matched": true
+    },
+    {
+      "fixture_id": "T05",
+      "rule_family": "release_gate",
+      "expected": "HOLD_R5",
+      "actual": "HOLD_R5",
+      "matched": true
+    },
+    {
+      "fixture_id": "T06",
+      "rule_family": "release_gate",
+      "expected": "RETURN_TO_SERVICE_R5",
+      "actual": "RETURN_TO_SERVICE_R5",
+      "matched": true
+    },
+    {
+      "fixture_id": "T07",
+      "rule_family": "release_gate",
+      "expected": "HOLD_R4",
+      "actual": "HOLD_R4",
+      "matched": true
+    },
+    {
+      "fixture_id": "T08",
+      "rule_family": "release_gate",
+      "expected": "HOLD_R2",
+      "actual": "HOLD_R2",
+      "matched": true
+    },
+    {
+      "fixture_id": "T09",
+      "rule_family": "ai_authority_boundary",
+      "expected": "REJECT_AI_RECOMMENDATION_R3",
+      "actual": "REJECT_AI_RECOMMENDATION_R3",
+      "matched": true
+    },
+    {
+      "fixture_id": "T10",
+      "rule_family": "ai_authority_boundary",
+      "expected": "HOLD_AI_AUTHORITY_R5",
+      "actual": "HOLD_AI_AUTHORITY_R5",
+      "matched": true
+    },
+    {
+      "fixture_id": "T11",
+      "rule_family": "ai_authority_boundary",
+      "expected": "REJECT_DATA_REQUEST_R1",
+      "actual": "REJECT_DATA_REQUEST_R1",
+      "matched": true
+    },
+    {
+      "fixture_id": "T12",
+      "rule_family": "ai_authority_boundary",
+      "expected": "HOLD_R5",
+      "actual": "HOLD_R5",
+      "matched": true
+    }
+  ],
+  "not_proven": [
+    "field safety",
+    "device performance",
+    "institutional authorization",
+    "public acceptance",
+    "professional approval"
+  ]
+}

@@ -1,0 +1,307 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A01-EXACT-KEY-AREA-BOUNDARIES",
+      "status": "unknown",
+      "statement": "三个重点区的精确 official polygons 当前未进入本轮证据包；现有 provisional context 只支持关系研究，公共地图锚点不得重新定义边界。",
+      "missing_evidence": [
+        "经清权的官方 CAD/GIS/PDF 边界附件",
+        "坐标系、版本、发布日期与来源哈希"
+      ],
+      "current_allowed_use": "Research organization, relational design, figure location, and known low-confidence participant design-model metrics derived from explicitly provisional submitted geometry; not official or statutory claims.",
+      "prohibited_claim": "不得称为 official redline，不得据此确定道路、地块、建筑、拆改留或精确面积。",
+      "impact": "Provisional participant-design geometry may support known low-confidence design-model outputs for formal review. Official redlines, statutory controls, and official quantities remain unresolved; all boundary-sensitive metrics must be recalculated after cleared official geometry arrives.",
+      "resolution_path": [
+        "取得官方 polygon 或清权附件",
+        "在 sources.json 登记来源、版本、坐标系与哈希",
+        "替换 provisional geometry",
+        "重新运行 spatial review 并复算 metrics",
+        "同步复核 proposal、figures、HTML、PDF 与 manifest hashes"
+      ],
+      "required_for_formal_submission": false,
+      "metric_scope_note": "Known provisional design-model metrics do not resolve the official-boundary evidence gap and must not be presented as official planning controls."
+    },
+    {
+      "id": "A02-REGULATORY-CONTROLS",
+      "status": "unknown",
+      "statement": "总建筑规模、FAR、建筑高度、建筑密度、绿地率、退线和建筑控制线均缺少可用于本方案的正式控制依据。",
+      "missing_evidence": [
+        "有效控规及相关审批附件",
+        "正式地块边界、道路红线和控制线",
+        "可追溯的现状与规划指标表"
+      ],
+      "current_allowed_use": "只可讨论普通城市功能保留、界面关系、受控门槛和候选适应性。",
+      "prohibited_claim": "不得给出法定 FAR、建筑高度、建筑密度、绿地率、退线、总建筑面积或审批结论。",
+      "impact": "第7章和第11章只能登记 unknown controls、公开约值、provisional-computed site area 与复算方法；Phase 17 metrics 不构成 V0.2 法定或实施指标。",
+      "resolution_path": [
+        "取得并登记官方控规和控制附件",
+        "由专业团队核对适用版本与地块对应关系",
+        "把允许使用的控制值录入 metrics.json",
+        "复算并交叉检查 geometry、compliance 和图纸"
+      ],
+      "required_for_formal_submission": true
+    },
+    {
+      "id": "A03-BUILDING-ADAPTABILITY",
+      "status": "unknown",
+      "statement": "候选建筑的 exact floor use、retrofit permission、ownership、lease、fire safety 与 utility capacity 尚未核实。 这也包括公共边缘、受控房间、设备 bay 与地标候选的 exact host、权利、消防和适应性。",
+      "missing_evidence": [
+        "逐栋现状测绘与楼层使用资料",
+        "权属、租约与运营许可",
+        "消防、结构、荷载、供电和网络条件"
+      ],
+      "current_allowed_use": "只可把 public edge、visible work、controlled threshold 和 candidate adaptation 作为调查框架。",
+      "prohibited_claim": "不得指定某房间、某首层、某建筑可改造，也不得承诺安装设备或改变用途。",
+      "impact": "三种首层剖面是关系性 study，不是具体建筑设计或改造许可。",
+      "resolution_path": [
+        "建立逐栋现场与权属台账",
+        "核对消防、结构、设备和无障碍条件",
+        "取得业主与运营方可验证授权",
+        "由专业团队判断可适应范围并更新图纸"
+      ],
+      "required_for_formal_submission": true
+    },
+    {
+      "id": "A04-BACK-OF-HOUSE-LOCATIONS",
+      "status": "unknown",
+      "statement": "维修、装卸、设备交接、故障隔离、充电或换电、备件、工具、值守与撤场所需的具体后场位置均未确认。 任何维护、隔离、恢复、替换、数据删除和场地修复能力都不得被预设。",
+      "missing_evidence": [
+        "设备规格和维护手册",
+        "运营、物业和供应商责任分工",
+        "装卸、消防、供电、储物和回收条件"
+      ],
+      "current_allowed_use": "只确认城市设计必须回答前场—后场—人工接管—退出的关系，不确认已有任何对应空间。",
+      "prohibited_claim": "不得声称现有维修中心、机器人回收点、充电站、仓库、测试区或服务后场已经可用。",
+      "impact": "后场只能作为 Candidate need；未闭合责任与空间链之前，不进入长期公共部署。",
+      "resolution_path": [
+        "按具体设备建立责任和故障清单",
+        "现场核查装卸、隔离、充电、储物和撤出条件",
+        "由运营/物业/供应商确认 SLA 与人工接管",
+        "仅在证据成立后定位并更新空间方案"
+      ],
+      "required_for_formal_submission": true
+    },
+    {
+      "id": "A05-MERCHANT-PARTICIPATION",
+      "status": "unknown",
+      "statement": "大钟寺商户、物业和运营方是否愿意参与 optional AI 试点，以及由谁承担安装、培训、维护、投诉和撤场劳动，当前未知。",
+      "missing_evidence": [
+        "商户与物业访谈或书面意向",
+        "责任、成本、数据和退出协议",
+        "普通经营不受影响的运营验证"
+      ],
+      "current_allowed_use": "只可表达普通商业/文化/交通网络完整、AI 为可绕行支路的设计底线。",
+      "prohibited_claim": "不得把商户、员工、物业或顾客写成已同意参与者，也不得把 AI 设为经营或服务必经节点。",
+      "impact": "大钟寺 optional AI 仍为 Candidate，不构成部署或合作计划。",
+      "resolution_path": [
+        "开展自愿、可撤回的商户与运营方访谈",
+        "记录额外劳动、成本与失败责任",
+        "形成普通服务保留和退出协议",
+        "仅对明确同意且条件成立的微型接口继续深化"
+      ],
+      "required_for_formal_submission": true
+    },
+    {
+      "id": "A06-PUBLIC-PARTICIPATION-AND-USE",
+      "status": "unknown",
+      "statement": "居民、访客、老年人、残障人士、陪同者和服务劳动者是否愿意参加 AI 试验或使用数字服务，不能预设。 自愿参与、补偿/工作量、代表性、隐私与退出条件仍需独立核验。",
+      "missing_evidence": [
+        "分人群现场观察与参与式调研",
+        "无障碍、门禁、开放时间与人工服务核查",
+        "告知、同意、投诉和退出机制"
+      ],
+      "current_allowed_use": "以 ordinary route、实体信息、人工服务、无障碍和非数字路径为优先设计约束。",
+      "prohibited_claim": "不得把公共通行自动转化为训练、测试、数据采集或强制数字服务，也不得假设居民会参与。",
+      "impact": "AI-free path 必须连续；任何 AI 层都应可绕行、可关闭、可撤出。",
+      "resolution_path": [
+        "现场核查不同人群的普通服务路径",
+        "开展可撤回的公众参与与无障碍评估",
+        "验证人工和非数字替代是否独立可用",
+        "根据反馈保留、调整或退出候选试点"
+      ],
+      "required_for_formal_submission": true
+    },
+    {
+      "id": "A07-ACTOR-CAPACITY",
+      "status": "unknown",
+      "statement": "Future accountable actor classes could be assigned for operation, maintenance, data/content, safety, accessibility and public review.",
+      "missing_evidence": [
+        "Named organisations, mandates, staffing, SLA, conflicts, budgets and agreements."
+      ],
+      "current_allowed_use": "Design a responsibility interface and screen-out incomplete candidates.",
+      "prohibited_claim": "A government, university, company, merchant or community organisation has accepted a role.",
+      "impact": "No candidate may open or scale; operation remains a mechanism proposal.",
+      "resolution_path": [
+        "Stakeholder process, written role/authority/capacity review and project-specific agreement."
+      ],
+      "required_for_formal_submission": true
+    },
+    {
+      "id": "A08-DESIGN-PERSONAS",
+      "status": "unknown",
+      "statement": "The eight task-based personas expose relevant ordinary-city, AI, failure and service needs.",
+      "missing_evidence": [
+        "Voluntary local research with actual diverse users/workers and evidence of frequency/priority."
+      ],
+      "current_allowed_use": "Stress-test candidate spatial/operational obligations.",
+      "prohibited_claim": "These are surveyed residents, representative demographics, demand forecasts or interview findings.",
+      "impact": "Needs and priorities may change after engagement.",
+      "resolution_path": [
+        "Accessible, voluntary and privacy-respecting engagement",
+        "publish methods, limitations and dissent."
+      ],
+      "required_for_formal_submission": true
+    },
+    {
+      "id": "A09-GLOBAL-TRANSFER",
+      "status": "unknown",
+      "statement": "Selected global mechanisms can generate useful questions for Jingzhang.",
+      "missing_evidence": [
+        "Comparative legal, institutional, land, data, funding and operational fit for Beijing/Haidian."
+      ],
+      "current_allowed_use": "Derive testable design principles and transfer warnings.",
+      "prohibited_claim": "A global case proves that Beijing must or can build the same system.",
+      "impact": "Cases remain research references, not implementation precedents.",
+      "resolution_path": [
+        "Local professional/institutional review and bounded pilots under applicable rules."
+      ],
+      "required_for_formal_submission": true
+    },
+    {
+      "id": "A10-DATA-AND-AI-FIT",
+      "status": "unknown",
+      "statement": "Some candidate tasks may receive meaningful value from AI after ordinary and human baselines are established.",
+      "missing_evidence": [
+        "Task-specific data legality/quality, model capability, accessibility, error distribution and comparative baseline."
+      ],
+      "current_allowed_use": "Define optional AI hypotheses and failure tests.",
+      "prohibited_claim": "AI is necessary, mature, accurate or available for any candidate.",
+      "impact": "Candidates may be implemented without AI or rejected if value is not demonstrated.",
+      "resolution_path": [
+        "Offline/shadow-mode evaluation against a human/ordinary baseline, domain and accessibility review."
+      ],
+      "required_for_formal_submission": true
+    },
+    {
+      "id": "A11-CURRENT-ACCESSIBILITY",
+      "status": "unknown",
+      "statement": "A continuous ordinary and AI-free path can be designed or protected for future candidates.",
+      "missing_evidence": [
+        "Field-verified entrances, gradients, surfaces, crossings, barriers, hours, crowding and service routes."
+      ],
+      "current_allowed_use": "Use continuity as a non-negotiable design gate.",
+      "prohibited_claim": "Any current route is continuous, step-free, public or accessible.",
+      "impact": "Exact spatial layout and public opening are blocked until field/professional verification.",
+      "resolution_path": [
+        "Multi-time field audit with diverse users and relevant professionals/authorities."
+      ],
+      "required_for_formal_submission": true
+    },
+    {
+      "id": "A12-NAMING-CONFLICT",
+      "status": "unknown",
+      "statement": "The three naming territories are sufficiently distinct for concept review.",
+      "missing_evidence": [
+        "Comprehensive trademark, domain, bilingual linguistic, political/cultural and public-recognition screening."
+      ],
+      "current_allowed_use": "Compare identity direction and communication fit.",
+      "prohibited_claim": "Any name is legally available, approved or final.",
+      "impact": "Formal naming/Logo remains unresolved.",
+      "resolution_path": [
+        "Human selection, legal/trademark search, bilingual/public-language test and rights review."
+      ],
+      "required_for_formal_submission": true
+    },
+    {
+      "id": "A13-ANNUAL-OPERATIONS",
+      "status": "unknown",
+      "statement": "A recurring open-evidence cycle could support long-term learning better than isolated showcases.",
+      "missing_evidence": [
+        "Organiser, calendar, venue, budget, procurement, audience, safety and archive custody."
+      ],
+      "current_allowed_use": "Design an operational mechanism and evidence outputs.",
+      "prohibited_claim": "An event is scheduled, funded, sponsored or government-backed.",
+      "impact": "Annual system is a candidate framework only.",
+      "resolution_path": [
+        "Operator/venue feasibility, resource plan, public-value and accessibility review."
+      ],
+      "required_for_formal_submission": true
+    },
+    {
+      "id": "A14-PHASING-GEOMETRY",
+      "status": "unknown",
+      "statement": "Some approved concept candidates may later receive defensible spatial geometry.",
+      "missing_evidence": [
+        "Official/cleared project/site extents, CRS, rights, exact host and professional design review."
+      ],
+      "current_allowed_use": "Define migration gates and non-geometric design sequencing.",
+      "prohibited_claim": "OSM points, provisional polygons or narrative imply a project point/corridor/polygon.",
+      "impact": "Current OSM helpers should exit future phasing; an empty layer may remain correct.",
+      "resolution_path": [
+        "Human project shortlist then authoritative spatial evidence and full downstream recalculation."
+      ],
+      "required_for_formal_submission": true
+    },
+    {
+      "id": "A15-LANDMARK-SITE-AND-RIGHTS",
+      "status": "unknown",
+      "statement": "A reversible public interface could become memorable without monumental construction.",
+      "missing_evidence": [
+        "Exact site, heritage/public-space permission, structural/material/accessibility/maintenance design and asset rights."
+      ],
+      "current_allowed_use": "Compare public value and AI-off functions.",
+      "prohibited_claim": "A landmark is approved, buildable, located, dimensioned or rights-cleared.",
+      "impact": "Only type/role candidates are valid.",
+      "resolution_path": [
+        "Heritage/site/operator/accessibility/rights review followed by professional design."
+      ],
+      "required_for_formal_submission": true
+    },
+    {
+      "id": "A16-TEST-THRESHOLDS",
+      "status": "unknown",
+      "statement": "Future test protocols can establish appropriate success/failure thresholds.",
+      "missing_evidence": [
+        "Specific technology, baseline, hazard analysis, domain standards, user needs and measurement/privacy cost."
+      ],
+      "current_allowed_use": "Define categories of evidence and mandatory failure/recovery tests.",
+      "prohibited_claim": "A numeric threshold, certification criterion or technology readiness level has been established.",
+      "impact": "No industrial test can pass or scale from this framework alone.",
+      "resolution_path": [
+        "Project-specific professional protocol, pre-registration where appropriate and independent/domain review."
+      ],
+      "required_for_formal_submission": true
+    },
+    {
+      "id": "A17-CULTURE-CONTENT",
+      "status": "unknown",
+      "statement": "The three-layer culture framework can integrate history, innovation work and accountable AI without distortion.",
+      "missing_evidence": [
+        "Detailed heritage source review, exact artifacts/sites, interpretive authority, rights and public-language testing."
+      ],
+      "current_allowed_use": "Set narrative hierarchy and prohibited metaphors.",
+      "prohibited_claim": "Any unstated historical fact, official interpretation or approved heritage intervention.",
+      "impact": "Only existing verified formal-source facts may migrate; uncertain content remains absent.",
+      "resolution_path": [
+        "Historian/heritage/institutional and rights review with source-level corrections."
+      ],
+      "required_for_formal_submission": true
+    },
+    {
+      "id": "A18-INTERNATIONAL-COMMUNICATION",
+      "status": "unknown",
+      "statement": "A human-reviewed bilingual evidence passport can support international exchange.",
+      "missing_evidence": [
+        "Audience, partner, translation workflow, accessibility, archive platform, rights and follow-up owner."
+      ],
+      "current_allowed_use": "Design communication fields and review pathway.",
+      "prohibited_claim": "International partnership, investment, audience reach or conversion effect.",
+      "impact": "Communication remains a candidate public-knowledge mechanism.",
+      "resolution_path": [
+        "Human translation/editorial review, rights/accessibility checks and accountable host."
+      ],
+      "required_for_formal_submission": true
+    }
+  ]
+}

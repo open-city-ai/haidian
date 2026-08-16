@@ -1,0 +1,547 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.385554,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional geometry; recalculate with the cleared official polygon."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 7859.940752,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(unary_union(conceptual_program_footprints), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Twelve human-scale conceptual carriers, not surveyed existing or approved buildings."
+      ]
+    },
+    "conceptual_program_footprint_ratio": {
+      "status": "known",
+      "value": 0.000688694,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / provisional_site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "This is a design-prototype footprint ratio, not statutory building density."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2240774.277437,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(unary_union(conceptual_green_space), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual blue-green layer; not a statutory green-space boundary."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.196338,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "conceptual_green_area_sqm / provisional_site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual design ratio; not a statutory green-space control."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 2862737.748502,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(unary_union(hosted_public_interface_precincts), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Public-interface precincts are conceptual and may overlap other program categories."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.250835,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / provisional_site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual public-interface ratio; not a statutory public-space control."
+      ]
+    },
+    "conceptual_route_length_m": {
+      "status": "known",
+      "value": 56139.055914,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(projected_length(conceptual_route_centerlines, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "Alignments express a connected hierarchy only and are not road redlines."
+      ]
+    },
+    "route_feature_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(conceptual_route_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "closed_loop_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(route_features where properties.closed_loop == true)",
+      "confidence": "high",
+      "assumptions": [
+        "Counts the closed Public Discovery Loop and Professional Reproducibility Loop as design features."
+      ]
+    },
+    "land_use_zone_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(shared_edge_conceptual_land_use_precincts)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_05_area_sqm": {
+      "status": "known",
+      "value": 1801343.488753,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(projected_area(features where land_use_code == '05'), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual program partition; does not amend statutory land use."
+      ]
+    },
+    "land_use_0702_area_sqm": {
+      "status": "known",
+      "value": 748566.409609,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(projected_area(features where land_use_code == '0702'), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual program partition; does not amend statutory land use."
+      ]
+    },
+    "land_use_0802_area_sqm": {
+      "status": "known",
+      "value": 5240046.693889,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(projected_area(features where land_use_code == '0802'), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual program partition; does not amend statutory land use."
+      ]
+    },
+    "land_use_0803_area_sqm": {
+      "status": "known",
+      "value": 2740560.449052,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(projected_area(features where land_use_code == '0803'), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual program partition; does not amend statutory land use."
+      ]
+    },
+    "land_use_1401_area_sqm": {
+      "status": "known",
+      "value": 882308.344252,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(projected_area(features where land_use_code == '1401'), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual program partition; does not establish a park boundary."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(provisional_key_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "conceptual_program_footprint_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(conceptual_program_footprints)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(features where layer == 'SCENARIO_NODE' and node_type == 'design_scenario')",
+      "confidence": "high",
+      "assumptions": [
+        "Counts design scenario nodes, not implemented or approved projects."
+      ]
+    },
+    "ai_service_zone_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(features where layer == 'AI_SERVICE_ZONE' and zone_type == 'taskbook_service_wing')",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual relationship zones only; not statutory boundaries or confirmed institutional footprints."
+      ]
+    },
+    "human_release_gate_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(features where node_type == 'human_release_gate')",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual governance nodes located at the three cross-loop handovers."
+      ]
+    },
+    "access_level_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(distinct access_gradient values P0,P1,P2,P3)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "evidence_gate_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(question,data,experiment,reproduction,human_release_gates)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json",
+        "assumptions.json"
+      ],
+      "formula": "sum(approved_floor_area_after_building_and_reuse_survey)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved program, reuse inventory, storey counts, and floor-area controls are unavailable."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json",
+        "assumptions.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and the official boundary are unavailable."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "professional_control_after_official_plan_heritage_and_context_review",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official height controls, heritage review, and surveyed context are unavailable."
+    },
+    "conceptual_road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson",
+        "assumptions.json"
+      ],
+      "formula": "area(buffer(approved_route_centerlines, confirmed_right_of_way_widths))",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "The design provides conceptual centerlines only; road widths, rights of way, junctions, and engineering alignments are unconfirmed."
+    },
+    "road_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "assumptions.json"
+      ],
+      "formula": "approved_road_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Road area cannot be calculated from conceptual centerlines without confirmed widths and the official site boundary."
+    },
+    "laboratory_capacity": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "assumptions.json"
+      ],
+      "formula": "authorized_equipment_and_safety_capacity",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Operators, laboratory grade, equipment, utilities, fire, and ethics approvals are not confirmed."
+    },
+    "independent_reproduction_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "assumptions.json"
+      ],
+      "formula": "independently_reproduced_packages / eligible_frozen_method_packages",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires an authorized operating baseline, eligible-package definition, and discipline-specific protocol."
+    },
+    "method_package_completeness": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "assumptions.json"
+      ],
+      "formula": "required_frozen_method_fields_completed_and_independently_checkable / required_method_fields",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "The required passport fields are defined, but no authorized project has frozen a method package for independent completeness review."
+    },
+    "non_ai_route_continuity": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "geometry/roads.geojson",
+        "assumptions.json"
+      ],
+      "formula": "field_verified_continuous_P0_route_length / required_P0_route_length",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "The P0 continuity requirement is encoded, but official paths, access conditions, and field-audit results are unavailable."
+    },
+    "p0_blockage_event_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "assumptions.json"
+      ],
+      "formula": "count(test_caused_P0_blockage_events_during_a_defined_audit_period)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No operating period, field observation, complaint log, or verified detour record exists."
+    },
+    "no_ai_equivalent_service_coverage": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "assumptions.json"
+      ],
+      "formula": "public_facing_scenario_services_with_verified_same_scope_human_or_nondigital_equivalent / public_facing_scenario_services_audited",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Equivalent-service requirements are specified by scenario, but no staffed operating audit or service-quality baseline exists."
+    },
+    "human_takeover_drill_pass_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "assumptions.json"
+      ],
+      "formula": "drills_meeting_stop_takeover_recovery_and_appeal_criteria / takeover_drills_completed",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No authorized operator roster, drill protocol, completed exercise, or signed recovery record exists."
+    },
+    "maintenance_burden_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "geometry/buildings.geojson",
+        "assumptions.json"
+      ],
+      "formula": "normalized(labor_hours + planned_and_unplanned_downtime + parts_and_energy + restoration_cost)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Maintenance tasks are required in the scenario records, but staffing, equipment, parts, energy, downtime, and restoration baselines are unavailable."
+    },
+    "restoration_time": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "assumptions.json"
+      ],
+      "formula": "elapsed_time_from_signed_stop_or_pilot_close_to_verified_restoration_recorded_with_unit_in_the_authorized_pilot_log",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No authorized pilot, restoration baseline, responsible contractor, or signed close-out drill exists; the time unit and threshold must be preregistered."
+    },
+    "cross_site_reproduction_completion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "assumptions.json"
+      ],
+      "formula": "authorized_off_site_independent_reruns_completed_with_signed_delta_record / eligible_bilingual_frozen_method_packages",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No international or cross-regional invitee, eligible package set, exchange authorization, or signed off-site rerun exists."
+    },
+    "protocol_review_closure_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "authorized_protocol_review_findings_closed_with_evidence / protocol_review_findings_due_in_preregistered_window",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "The review body, protocol version, finding taxonomy, due window, and closure evidence are not yet authorized."
+    },
+    "bilingual_access_package_coverage": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "assumptions.json"
+      ],
+      "formula": "public_exchange_packages_passing_bilingual_easy_read_non_ai_route_and_host_script_audit / public_exchange_packages_audited",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved public exchange package, accessibility audit, host roster, or non-AI service test exists."
+    },
+    "external_rerun_time": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "assumptions.json"
+      ],
+      "formula": "elapsed_time_from_authorized_frozen_package_receipt_to_signed_external_delta_record_with_unit_preregistered_per_discipline",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No authorized exchange, discipline-specific protocol, start event, time unit, or signed external result exists."
+    },
+    "operational_carbon": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "assumptions.json"
+      ],
+      "formula": "whole_life_carbon_after_program_energy_equipment_and_operating_schedule_confirmation",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved program, building scope, energy source, equipment schedule, or operating baseline exists."
+    }
+  }
+}

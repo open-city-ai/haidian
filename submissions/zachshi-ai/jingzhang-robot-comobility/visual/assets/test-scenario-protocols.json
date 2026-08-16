@@ -1,0 +1,89 @@
+{
+  "schema_version": "0.1.0",
+  "concept": "测试验证场景协议 (test/validation scenario protocols)",
+  "status": "not_authorized_not_run",
+  "protocols": [
+    {
+      "id": "RB-09",
+      "name_zh": "人机共行冲突测试场",
+      "protocol_zh": "封闭区（行人志愿者知情同意）+ 开放区（公开测试协议）两段式；每轮 200 次穿越交互，固定速记表",
+      "metrics": [
+        "conflict_events_per_100_crossings",
+        "min_clearance_distance_m",
+        "yield_rate_ratio"
+      ],
+      "thresholds": {
+        "conflict_events_per_100_crossings": "<=2 才可进入 G3",
+        "min_clearance_distance_m": ">=0.5"
+      },
+      "stop_conditions": [
+        "连续两轮冲突率上升",
+        "志愿者退出超过30%",
+        "protocol deviation"
+      ],
+      "non_ai_equivalent": "人工骑手同路线对照测试"
+    },
+    {
+      "id": "RB-10",
+      "name_zh": "夜间与雨雪安全验证",
+      "protocol_zh": "三种照度（白天/路灯/应急照明）× 三种天气（晴/雨/雪模拟）矩阵；每格 30 分钟连续运行",
+      "metrics": [
+        "perception_failure_rate",
+        "braking_distance_m",
+        "positioning_drift_m"
+      ],
+      "thresholds": {
+        "perception_failure_rate": "<=0.5%",
+        "braking_distance_m": "<=2.0 @10km/h"
+      },
+      "stop_conditions": [
+        "制动距离超标",
+        "定位漂移>0.3m",
+        "传感器结冰"
+      ],
+      "non_ai_equivalent": "恶劣天气人工配送基线对照"
+    },
+    {
+      "id": "RB-11",
+      "name_zh": "无障碍配送全流程验证",
+      "protocol_zh": "轮椅/视障/听障/老年四组使用者全程参与；从下单（电话/纸面）到取件的完整链路走查",
+      "metrics": [
+        "task_completion_ratio",
+        "assistance_request_count",
+        "satisfaction_score"
+      ],
+      "thresholds": {
+        "task_completion_ratio": ">=0.9",
+        "satisfaction_score": ">=4/5"
+      },
+      "stop_conditions": [
+        "任一群体完成率<0.7",
+        "无障碍通道受阻",
+        "投诉"
+      ],
+      "non_ai_equivalent": "社区上门服务对照"
+    },
+    {
+      "id": "RB-12",
+      "name_zh": "远程接管应急演练",
+      "protocol_zh": "每月固定演练日；模拟失联/感知失效/人群突现三类事件；双安全员盲测",
+      "metrics": [
+        "takeover_latency_s",
+        "recovery_time_s",
+        "drill_completion_ratio"
+      ],
+      "thresholds": {
+        "takeover_latency_s": "<=5",
+        "recovery_time_s": "<=60"
+      },
+      "stop_conditions": [
+        "时延超标两轮",
+        "链路中断",
+        "演练脚本泄露"
+      ],
+      "non_ai_equivalent": "人工配送全程基线"
+    }
+  ],
+  "protocol_count": 4,
+  "boundary": "全部协议为概念建议；现场实施须获授权、伦理审查与专业监督。"
+}

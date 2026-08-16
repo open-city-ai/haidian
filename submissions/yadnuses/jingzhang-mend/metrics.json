@@ -2,7 +2,9 @@
   "schema_version": "0.1.0",
   "units": {
     "length": "m",
-    "area": "sqm"
+    "area": "sqm",
+    "count": "count",
+    "ratio": "ratio"
   },
   "metrics": {
     "site_area_sqm": {
@@ -36,7 +38,8 @@
       "value": 2883442.715,
       "unit": "sqm",
       "source_files": [
-        "geometry/green_space.geojson"
+        "geometry/green_space.geojson",
+        "geometry/land_use.geojson"
       ],
       "formula": "union_area(green_space polygons) in EPSG:4548; derived from land_use codes 1401+1402",
       "confidence": "medium",
@@ -50,7 +53,8 @@
       "unit": "ratio",
       "source_files": [
         "geometry/green_space.geojson",
-        "geometry/site_boundary.geojson"
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
       ],
       "formula": "green_space_area_sqm / site_area_sqm",
       "confidence": "medium",
@@ -63,7 +67,8 @@
       "value": 2960242.715,
       "unit": "sqm",
       "source_files": [
-        "geometry/public_space.geojson"
+        "geometry/public_space.geojson",
+        "geometry/land_use.geojson"
       ],
       "formula": "union_area(public_space polygons) in EPSG:4548; derived from land_use codes 1401+1402+1403",
       "confidence": "medium",
@@ -77,7 +82,8 @@
       "unit": "ratio",
       "source_files": [
         "geometry/public_space.geojson",
-        "geometry/site_boundary.geojson"
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
       ],
       "formula": "public_space_area_sqm / site_area_sqm",
       "confidence": "medium",
@@ -121,7 +127,7 @@
       "source_files": [
         "geometry/key_areas.geojson"
       ],
-      "formula": "count(key_detailed_design_areas)",
+      "formula": "count(key_areas)",
       "confidence": "high",
       "assumptions": []
     },
@@ -132,10 +138,11 @@
       "source_files": [
         "geometry/key_areas.geojson"
       ],
-      "formula": "sum(polygon_area(key_areas)) in EPSG:4548; provisional rectangles vs announced 3,684,000 sqm total",
+      "formula": "sum(polygon_area(key_areas)) in EPSG:4548",
       "confidence": "medium",
       "assumptions": [
-        "边界为维护者定义的 provisional 临时边界（official_boundary=false），所有面积均为临时边界下的方案复算值，正式边界发布后须重算。"
+        "边界为维护者定义的 provisional 临时边界（official_boundary=false），所有面积均为临时边界下的方案复算值，正式边界发布后须重算。",
+        "对照值：公告三处重点区合计约 3,684,000 平方米（provisional 矩形复算偏差 +0.24%）。"
       ]
     },
     "heritage_spine_greenway_length_m": {

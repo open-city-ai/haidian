@@ -1,11 +1,56 @@
 {
-  "schema_version": "0.1.0",
-  "assumptions": [
-    {
-      "id": "A-CONTROLS-001",
-      "status": "pending_professional_confirmation",
-      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
-      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
-    }
-  ]
+ "schema_version": "0.2.0",
+ "assumptions": [
+  {
+   "id": "A-CONTROLS-001",
+   "status": "pending_professional_confirmation",
+   "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+   "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+  },
+  {
+   "id": "A-ROAD-DENSITY-001",
+   "status": "conceptual_target",
+   "statement": "Road network density 5.4 km/km² is a planning target, NOT recomputed from public data.",
+   "basis": "No official road-centerline GIS is in the public site package; 5.4 km/km² is the design goal for the overall design area (11.4 km²).",
+   "formula": "sum(road_centerline_length_m) / site_area_sqm * 1e-3 (to be recomputed once official road GIS is provided)",
+   "confidence": "low",
+   "impact": "Do not cite 5.4 km/km² as an official metric; treat as target until recalculation."
+  },
+  {
+   "id": "A-TOTAL-VOLUME-001",
+   "status": "conceptual_target",
+   "statement": "Total building volume is a SELF-CONSISTENT planning scenario derived from buildable land-use area × scenario FAR — NOT an arithmetic conflict. Buildable land = LU-001 (2,674,562.492) + LU-002 (2,589,339.239) + LU-004 (2,782,792.823) = 8,046,694.554 m² (green LU-003 excluded); the four land-use features close at 11,412,832.7 m² vs site_area 11,412,825.4 m² (7.3 m² rounding).",
+   "basis": "Three paired FAR scenarios: Conservative (existing 1.3 / target 2.0) → retained 10.46M + new 5.63M = 16.09M m²; Neutral (existing 1.5 / target 2.34) → retained 12.07M + new 6.76M = 18.83M m²; Optimistic (existing 1.7 / target 2.7) → retained 13.68M + new 8.05M = 21.73M m². The neutral scenario 18.8M m² is retained for continuity with the previously cited figure.",
+   "formula": "buildable_land_area_sqm * scenario_FAR_target (to be recomputed once official FAR control and floor-area census are published)",
+   "confidence": "low",
+   "impact": "Do not treat 12.0M / 6.8M / 18.8M as computable metrics; they are scenario values. The prior arithmetic-conflict reading arose from misusing building_footprint_area_sqm (310,807 m², a single concept building footprint) as the district-wide denominator — this has been corrected."
+  },
+  {
+   "id": "A-COVERAGE-001",
+   "status": "conceptual_target",
+   "statement": "Public service coverage 85% (5-minute life circle) is a planning target, NOT recomputed from public data.",
+   "basis": "Actual coverage requires official facility GIS and population distribution, both absent from the public package.",
+   "formula": "households_within_5min_life_circle / total_households (to be recomputed once official facility GIS is provided)",
+   "confidence": "low",
+   "impact": "Do not cite 85% as an official metric; treat as design goal until recalculation."
+  },
+  {
+   "id": "A-BLUEGREEN-001",
+   "status": "conceptual_target",
+   "statement": "Blue-green space ratio target 15.5% is a design goal; current computed green_ratio is 12.34% and public_space_ratio 7.33% on provisional geometry.",
+   "basis": "Computed green_ratio / public_space_ratio derive from submitted provisional geometry; the 15.5% target combines green + water + public space pending field survey.",
+   "formula": "(green + water + public space) / site_area_sqm (to be revised once field survey data is available)",
+   "confidence": "low",
+   "impact": "Do not cite 15.5% as an official metric; treat as target until field survey."
+  },
+  {
+   "id": "A-BOUNDARY-001",
+   "status": "provisional_only",
+   "statement": "All area and ratio values in metrics.json are based on the submitted geometry (provisional boundary derived from public data), NOT the official boundary.",
+   "basis": "Official boundary polygons are not provided in the public site package (DATA-SRC-PROVISIONAL-BOUNDARIES-20260605 is provisional_only).",
+   "formula": "polygon_area(submitted_boundary)",
+   "confidence": "medium",
+   "impact": "Any area/ratio figure may change after the official boundary is published; recalculation method documented in metrics.json."
+  }
+ ]
 }

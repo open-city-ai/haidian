@@ -1,80 +1,165 @@
 {
-  "schema_version": "0.1.0",
-  "units": {
-    "length": "m",
-    "area": "sqm"
+ "schema_version": "0.2.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "geometry_basis": {
+  "status": "known",
+  "source": "geometry/site_boundary.geojson (submitted, based on public data, not official)",
+  "policy": "All area/ratio metrics below are derived from the submitted geometry, not from officially approved boundary. They are subject to recalculation once the official boundary is published."
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_boundary)",
+   "confidence": "medium",
+   "assumptions": [
+    "Boundary derived from public data; official boundary not provided in the public site package."
+   ]
   },
-  "metrics": {
-    "site_area_sqm": {
-      "status": "known",
-      "value": 11412825.386,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/site_boundary.geojson"
-      ],
-      "formula": "polygon_area(submitted_site_boundary)",
-      "confidence": "high",
-      "assumptions": [
-        "Trusted official boundary is present in the site package."
-      ]
-    },
-    "building_footprint_area_sqm": {
-      "status": "known",
-      "value": 310807.184,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/buildings.geojson"
-      ],
-      "formula": "sum(polygon_area(building_footprints))",
-      "confidence": "medium",
-      "assumptions": []
-    },
-    "green_ratio": {
-      "status": "known",
-      "value": 0.123423,
-      "unit": "ratio",
-      "source_files": [
-        "geometry/green_space.geojson",
-        "geometry/site_boundary.geojson"
-      ],
-      "formula": "green_space_area_sqm / site_area_sqm",
-      "confidence": "medium",
-      "assumptions": []
-    },
-    "public_space_ratio": {
-      "status": "known",
-      "value": 0.073281,
-      "unit": "ratio",
-      "source_files": [
-        "geometry/public_space.geojson",
-        "geometry/site_boundary.geojson"
-      ],
-      "formula": "public_space_area_sqm / site_area_sqm",
-      "confidence": "medium",
-      "assumptions": []
-    },
-    "floor_area_ratio": {
-      "status": "unknown",
-      "value": null,
-      "unit": "ratio",
-      "source_files": [
-        "brief/site-package/ranges/planning_limits.json"
-      ],
-      "formula": "total_floor_area_sqm / official_site_area_sqm",
-      "confidence": "unknown",
-      "assumptions": [],
-      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
-    },
-    "key_area_count": {
-      "status": "known",
-      "value": 3,
-      "unit": "count",
-      "source_files": [
-        "geometry/key_areas.geojson"
-      ],
-      "formula": "count(key_detailed_design_areas)",
-      "confidence": "high",
-      "assumptions": []
-    }
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 310807.184,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "polygon_area(BLDG-001) — footprint of the Zhongzhi 'Full-Stack Sanctuary' concept building ONLY",
+   "confidence": "medium",
+   "assumptions": [
+    "This value is the footprint of a SINGLE concept design building (Zhongzhi Full-Stack Sanctuary, BLDG-001, geometry_role=design_proposal), NOT the district-wide existing building footprint. It must NOT be multiplied by a district-wide FAR to derive total volume; doing so previously created a spurious arithmetic conflict (310,807 m² × FAR 4.0 ≈ 1.24M m² vs. the retained 12.0M m² scenario)."
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.123423,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "Denominator is provisional boundary, not official."
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.073281,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "Denominator is provisional boundary, not official."
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_detailed_design_areas)",
+   "confidence": "high",
+   "assumptions": [
+    "Three required detailed-design key areas per AGENT-TASKBOOK."
+   ]
+  },
+  "road_network_density_km_per_km2": {
+   "status": "unknown",
+   "value": null,
+   "unit": "km/km2",
+   "source_files": [],
+   "formula": "sum(road_centerline_length_m) / site_area_sqm * 1e-3",
+   "confidence": "low",
+   "assumptions": [],
+   "reason": "Conceptual planning target; will be re-derived after official road-network GIS is published."
+  },
+  "blue_green_ratio_target": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "(green + water + public space) / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [],
+   "reason": "Design target combining green + public space + water; revised once field-survey data is available."
+  },
+  "public_service_coverage_target": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "households_within_5min_life_circle / total_households",
+   "confidence": "low",
+   "assumptions": [],
+   "reason": "Conceptual target requiring official facility GIS; cannot be recomputed from the public package."
+  },
+  "total_building_volume_sqm_target": {
+   "status": "unknown",
+   "value": null,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "buildable_land_area_sqm * scenario_FAR_target, where buildable_land_area = LU-001 (AI R&D 2,674,562.492) + LU-002 (research/innovation service 2,589,339.239) + LU-004 (commercial 2,782,792.823) = 8,046,694.554 m² (green LU-003 excluded). Self-consistent scenario derivation, NOT an arithmetic conflict.",
+   "confidence": "low",
+   "assumptions": [
+    "FAR is a scenario assumption (not official control). Conservative: FAR 2.0 → 16.09M m². Neutral: FAR 2.34 → 18.83M m². Optimistic: FAR 2.7 → 21.73M m². All are concept scenarios to be re-derived once official FAR control is published."
+   ],
+   "reason": "Planning scenario derived from buildable land use areas (geometry/land_use.geojson, fully closed at 11,412,832.7 m² vs site_area 11,412,825.4 m²) × scenario FAR. Official FAR control and floor-area census are absent from the public package, so no single computable value can be asserted; the neutral scenario 18.8M m² is retained for continuity with the previously cited figure."
+  },
+  "retained_floor_area_sqm_target": {
+   "status": "unknown",
+   "value": null,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "buildable_land_area_sqm * scenario_FAR_existing",
+   "confidence": "low",
+   "assumptions": [
+    "Existing FAR is a scenario assumption. Conservative: FAR 1.3 → 10.46M m². Neutral: FAR 1.5 → 12.07M m². Optimistic: FAR 1.7 → 13.68M m²."
+   ],
+   "reason": "Retained volume scenario = buildable land area × assumed existing FAR. Official floor-area census is absent; to be recalculated once published."
+  },
+  "new_floor_area_sqm_target": {
+   "status": "unknown",
+   "value": null,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "total_scenario_volume - retained_scenario_volume",
+   "confidence": "low",
+   "assumptions": [
+    "New increment = total − retained under each paired scenario. Conservative: 5.63M m². Neutral: 6.76M m². Optimistic: 8.05M m²."
+   ],
+   "reason": "New-increment scenario derived as total minus retained; official FAR control required before a computable value can be asserted."
+  },
+  "floor_area_ratio_control": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Approved FAR controls and official site boundary are not present in the public site package."
   }
+ }
 }

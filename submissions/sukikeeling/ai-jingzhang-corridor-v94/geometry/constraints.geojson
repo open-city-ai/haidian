@@ -1,0 +1,259 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "CON-001",
+      "properties": {
+        "id": "CON-001",
+        "layer": "SITE_BOUNDARY",
+        "constraint_type": "provisional_boundary",
+        "description_zh": "使用临时粗略边界，官方红线发布后须复算",
+        "source_type": "agent_generated_design",
+        "confidence": "high",
+        "geometry_role": "provisional_constraint",
+        "official_boundary": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.3407,
+              39.939
+            ],
+            [
+              116.3553,
+              39.939
+            ],
+            [
+              116.3553,
+              39.965
+            ],
+            [
+              116.3533,
+              39.99
+            ],
+            [
+              116.3553,
+              40.0265
+            ],
+            [
+              116.3427,
+              40.0265
+            ],
+            [
+              116.3417,
+              40.006
+            ],
+            [
+              116.3397,
+              39.975
+            ],
+            [
+              116.3407,
+              39.939
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "CON-999",
+      "properties": {
+        "id": "CON-999",
+        "layer": "SCENARIO_NODE",
+        "constraint_type": "pending_unknown",
+        "description_zh": "权属、文物保护范围、市政管线、消防、洪涝与道路红线等法定约束目前未获得（待补声明）；本图层为空不表示无约束，官方资料发布后必须补全并复算。",
+        "source_type": "agent_generated_design",
+        "confidence": "high",
+        "geometry_role": "analysis_helper",
+        "official_boundary": false
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.3475,
+          39.982
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SWB-01",
+      "properties": {
+        "id": "SWB-01",
+        "layer": "SCENARIO_NODE",
+        "constraint_type": "ai_off_equivalence_point",
+        "scenario_id": "SC-01",
+        "grade": "缓坡",
+        "gate_id": "G0",
+        "operating_mode": "侧线折返",
+        "ai_off_path": "线下无障碍引导岗 + 纸质大字街区图 + 触觉导引带（不依赖模型、账号或网络）",
+        "human_handoff": "社区无障碍引导员",
+        "responsible_role": "街道无障碍专员",
+        "description_zh": "无障碍路径助手折返点：AI路线建议连续3次被拒即停车；拔线后由引导岗与纸质图兜底，路线不因AI离线而中断。",
+        "source_type": "agent_generated_design",
+        "confidence": "medium",
+        "geometry_role": "analysis_helper",
+        "official_boundary": false
+      },
+      "geometry": { "type": "Point", "coordinates": [116.3370, 39.9920] }
+    },
+    {
+      "type": "Feature",
+      "id": "SWB-02",
+      "properties": {
+        "id": "SWB-02",
+        "layer": "SCENARIO_NODE",
+        "constraint_type": "ai_off_equivalence_point",
+        "scenario_id": "SC-02",
+        "grade": "中坡",
+        "gate_id": "G1",
+        "operating_mode": "正线运行",
+        "ai_off_path": "现场调度岗 + 手持分流牌 + 基于计数的硬阈值告警（无需模型预测）",
+        "human_handoff": "节点广场值班长",
+        "responsible_role": "广场运营主管",
+        "description_zh": "拥挤疏导折返点：误报率超阈值即折返；拔线后由值班长人工分流，安全不依赖AI预测。",
+        "source_type": "agent_generated_design",
+        "confidence": "medium",
+        "geometry_role": "analysis_helper",
+        "official_boundary": false
+      },
+      "geometry": { "type": "Point", "coordinates": [116.3460, 39.9850] }
+    },
+    {
+      "type": "Feature",
+      "id": "SWB-03",
+      "properties": {
+        "id": "SWB-03",
+        "layer": "SCENARIO_NODE",
+        "constraint_type": "ai_off_equivalence_point",
+        "scenario_id": "SC-03",
+        "grade": "缓坡",
+        "gate_id": "G0",
+        "operating_mode": "侧线折返",
+        "ai_off_path": "文博审校后的固定解说牌 + 纸质折页 + 定时人工讲解场次",
+        "human_handoff": "遗址公园讲解员",
+        "responsible_role": "文博审校组",
+        "description_zh": "多语导览折返点：史实错误被纠即折返；拔线后由审校过的固定解说牌与人工讲解承担，史实不因AI出错而错。",
+        "source_type": "agent_generated_design",
+        "confidence": "medium",
+        "geometry_role": "analysis_helper",
+        "official_boundary": false
+      },
+      "geometry": { "type": "Point", "coordinates": [116.3430, 39.9880] }
+    },
+    {
+      "type": "Feature",
+      "id": "SWB-04",
+      "properties": {
+        "id": "SWB-04",
+        "layer": "SCENARIO_NODE",
+        "constraint_type": "ai_off_equivalence_point",
+        "scenario_id": "SC-06",
+        "grade": "陡坡",
+        "gate_id": "G3",
+        "operating_mode": "入段检修",
+        "ai_off_path": "等额保留的非AI算力配额 + 纸质排队登记 + 按机构均分的兜底档",
+        "human_handoff": "资源委员会值班委员",
+        "responsible_role": "众智园资源委员会",
+        "description_zh": "开源算力调度折返点：公平性投诉即折返入段；拔线后由等额保留配额与均分兜底，中小团队不因算法离线而被挤出。",
+        "source_type": "agent_generated_design",
+        "confidence": "medium",
+        "geometry_role": "analysis_helper",
+        "official_boundary": false
+      },
+      "geometry": { "type": "Point", "coordinates": [116.3410, 40.0120] }
+    },
+    {
+      "type": "Feature",
+      "id": "SWB-05",
+      "properties": {
+        "id": "SWB-05",
+        "layer": "SCENARIO_NODE",
+        "constraint_type": "ai_off_equivalence_point",
+        "scenario_id": "SC-07",
+        "grade": "陡坡",
+        "gate_id": "G3",
+        "operating_mode": "入段检修",
+        "ai_off_path": "完全停驶 + 人工配送补位 + 限时窗内由人接管所有在途单元",
+        "human_handoff": "小月河翼安全值班主任",
+        "responsible_role": "机器人测试安全官",
+        "description_zh": "机器人配送折返点：任何一次接管失败即折返入段；拔线后机器人停驶、人工补位，物理安全不依赖自动控制。",
+        "source_type": "agent_generated_design",
+        "confidence": "medium",
+        "geometry_role": "analysis_helper",
+        "official_boundary": false
+      },
+      "geometry": { "type": "Point", "coordinates": [116.3440, 40.0050] }
+    },
+    {
+      "type": "Feature",
+      "id": "SWB-06",
+      "properties": {
+        "id": "SWB-06",
+        "layer": "SCENARIO_NODE",
+        "constraint_type": "ai_off_equivalence_point",
+        "scenario_id": "SC-10",
+        "grade": "缓坡",
+        "gate_id": "G0",
+        "operating_mode": "侧线折返",
+        "ai_off_path": "双语店员 + 纸质价目图卡 + 人工收银台（无AI导购仍可完成交易）",
+        "human_handoff": "大钟寺商户共治代表",
+        "responsible_role": "大钟寺商户共治会",
+        "description_zh": "消费翻译折返点：投诉率超阈值即折返；拔线后由双语店员与图卡承担，交易不因翻译AI离线而中断。",
+        "source_type": "agent_generated_design",
+        "confidence": "medium",
+        "geometry_role": "analysis_helper",
+        "official_boundary": false
+      },
+      "geometry": { "type": "Point", "coordinates": [116.3490, 39.9750] }
+    },
+    {
+      "type": "Feature",
+      "id": "SWB-07",
+      "properties": {
+        "id": "SWB-07",
+        "layer": "SCENARIO_NODE",
+        "constraint_type": "ai_off_equivalence_point",
+        "scenario_id": "SC-11",
+        "grade": "陡坡",
+        "gate_id": "G3",
+        "operating_mode": "入段检修",
+        "ai_off_path": "复盘结论降级为线索、人工主导重审、AI输出不得作为处置依据",
+        "human_handoff": "运营中心值班指挥",
+        "responsible_role": "公共安全复盘官",
+        "description_zh": "公共安全复盘折返点：复盘结论被质疑即折返入段；拔线后由人工主导重审，AI仅作线索，处置决定不依赖模型。",
+        "source_type": "agent_generated_design",
+        "confidence": "medium",
+        "geometry_role": "analysis_helper",
+        "official_boundary": false
+      },
+      "geometry": { "type": "Point", "coordinates": [116.3450, 39.9780] }
+    },
+    {
+      "type": "Feature",
+      "id": "SWB-08",
+      "properties": {
+        "id": "SWB-08",
+        "layer": "SCENARIO_NODE",
+        "constraint_type": "ai_off_equivalence_point",
+        "scenario_id": "SC-12",
+        "grade": "中坡",
+        "gate_id": "G1",
+        "operating_mode": "侧线折返",
+        "ai_off_path": "线下随机抽审组 + 纸质投票 + 人工唱票（归纳公平性不依赖模型）",
+        "human_handoff": "共智议事厅主持人",
+        "responsible_role": "议事厅秘书处",
+        "description_zh": "市民议题归纳折返点：公平性抽查不过即折返；拔线后由随机抽审组与纸质投票承担，观点覆盖不因AI归纳离线而失衡。",
+        "source_type": "agent_generated_design",
+        "confidence": "medium",
+        "geometry_role": "analysis_helper",
+        "official_boundary": false
+      },
+      "geometry": { "type": "Point", "coordinates": [116.3480, 39.9820] }
+    }
+  ]
+}

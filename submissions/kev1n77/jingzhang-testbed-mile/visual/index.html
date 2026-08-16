@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张验真里 · 可视化总览</title>
+<style>
+:root{--ink:#172033;--muted:#667085;--paper:#fff;--soft:#f4f7fa;--line:#d7dee8;--navy:#142236;--gold:#c79838;--rail:#245b8f;--park:#15803d;--work:#b7791f;--civic:#b42318;--blue:#0f7490}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;background:#eef2f6;color:var(--ink);line-height:1.6}
+a{color:var(--rail)}a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--navy);color:#fff;padding:8px 14px;z-index:100}.skip:focus{left:12px;top:12px}
+.wrap{max-width:1240px;margin:auto}header{background:#101827;color:#fff;border-bottom:5px solid var(--gold)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:26px;padding:30px 24px 26px}
+.eyebrow{color:#9fd7c0;letter-spacing:.18em;text-transform:uppercase;font-size:12px;margin-bottom:10px}
+h1{font-size:32px;line-height:1.2;margin:0 0 10px}h2{font-size:21px;margin:0 0 12px}h3{font-size:17px;margin:0 0 8px}p{margin:0 0 10px}
+.hero-copy{color:#d8e3ef;font-size:16px;max-width:880px}.status-box{border:1px solid rgba(255,255,255,.22);border-radius:8px;padding:16px;background:rgba(255,255,255,.06)}
+.status-box strong{display:block;font-size:20px;margin-bottom:8px;color:#fff}.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.pill,.tag{display:inline-flex;gap:6px;border-radius:999px;border:1px solid rgba(255,255,255,.26);padding:6px 10px;font-size:12px;color:#fff}
+main{padding:22px 22px 40px}.sheet{background:var(--paper);border:1px solid var(--line);border-radius:10px;margin:0 auto 18px;box-shadow:0 14px 34px rgba(22,32,51,.08);overflow:hidden}
+.sheet-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:18px 20px;border-bottom:1px solid #e6ebf2;background:#fbfcfe}
+.sheet-head p{color:var(--muted);max-width:760px}.map-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,.7fr);gap:20px;padding:20px}
+.map-frame{border:1px solid #b9c4d3;border-radius:8px;background:#f8fafc;overflow:auto}svg{display:block;width:100%;height:auto}
+.legend{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:10px 0 0}.legend span{display:flex;align-items:center;gap:7px;color:#334155;font-size:13px}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block;flex:0 0 auto}
+.metric-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.metric{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#fff}.metric span{display:block;color:var(--muted);font-size:12px}.metric strong{font-size:16px}
+.risk-card{border:1px solid #e5c063;border-radius:8px;padding:14px;background:#fffaf0}
+.matrix{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:20px}
+.area-card{border:1px solid var(--line);border-radius:10px;padding:16px;background:#fff}.area-card h3{border-left:4px solid var(--rail);padding-left:10px}
+.scenario-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:20px}
+.scenario-card{border:1px solid var(--line);border-radius:10px;padding:14px;background:#fff}.scenario-card b{color:var(--rail)}
+.scenario-card.test{border-color:#e5c063;background:#fffaf0}
+.evidence{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:20px}
+.source-line{border:1px dashed var(--line);border-radius:8px;padding:10px 12px;color:var(--muted);font-size:13px}
+@media (max-width:900px){.hero,.map-grid,.matrix,.scenario-grid,.evidence{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到主内容</a>
+<header><div class="wrap hero"><div><div class="eyebrow">Jing-Zhang Proof Mile · 铁路里程标 × 技术蓝图</div><h1>京张验真里 · 可视化总览</h1>
+<p class="hero-copy">离线电子展示成果。每一项 AI 城市服务先走一里验证、再进入全带：公开验真票（非AI基线、责任人、试点边界、证据、停止条件、退出恢复）串起三处验真场与四个里程标地标。权威数据仍以 GeoJSON、metrics.json、矩阵与四闸自检结果为准。</p>
+<div class="pill-row"><span class="pill">验真里程</span><span class="pill">三处验真场</span><span class="pill">AI 场景</span><span class="pill">任务覆盖</span><span class="pill">自检状态</span></div></div>
+<aside class="status-box"><strong>临时边界 intake</strong><p>provisional geometry：仅用于 intake 展示与讨论，替换官方 polygon 后整包重算。</p></aside></div></header>
+<main class="wrap" id="main">
+<section class="sheet"><div class="sheet-head"><div><h2>总览地图</h2><p>验真里程走廊、三处验真场、用地分区、蓝绿慢行与里程标在同一张证据图中，便于评审快速理解空间主线。</p></div><span class="tag">geometry + metrics</span></div>
+<div class="map-grid"><div><div class="map-frame" aria-label="京张验真里总览地图" role="img">
+<svg viewBox="0 0 1120 680" role="img" aria-label="京张验真里总览地图">
+<rect x="72" y="64" width="976" height="520" rx="14" fill="#ffffff" stroke="#162033" stroke-width="4"/>
+<rect x="112" y="150" width="236" height="70" fill="#dbe4f0" stroke="#245b8f" stroke-width="2"/><text x="230" y="192" text-anchor="middle" font-size="22" fill="#172033">众智园·技术验真场</text>
+<rect x="112" y="300" width="236" height="70" fill="#dff4e7" stroke="#15803d" stroke-width="2"/><text x="230" y="342" text-anchor="middle" font-size="22" fill="#172033">原点·生活验真场</text>
+<rect x="112" y="450" width="236" height="70" fill="#fff0d6" stroke="#b7791f" stroke-width="2"/><text x="230" y="492" text-anchor="middle" font-size="22" fill="#172033">大钟寺·市场验真场</text>
+<rect x="520" y="120" width="120" height="430" fill="#dff4e7" stroke="#15803d" stroke-width="3"/>
+<text x="580" y="140" text-anchor="middle" font-size="20" fill="#166534">验真里程绿道</text>
+<path d="M396 480 L520 420 M396 480 L520 480" fill="none" stroke="#0f7490" stroke-width="4" stroke-dasharray="8 8"/>
+<g fill="#101827"><circle cx="580" cy="150" r="9"/><circle cx="580" cy="330" r="9"/><circle cx="580" cy="500" r="9"/></g>
+<g fill="#c79838" stroke="#172033"><polygon points="580,118 592,132 580,146 568,132"/><polygon points="580,298 592,312 580,326 568,312"/><polygon points="580,478 592,492 580,506 568,492"/></g>
+<text x="820" y="180" font-size="20" fill="#475467">八段用地由同一切割生成</text>
+<text x="820" y="220" font-size="20" fill="#475467">全覆盖 · 无重叠 · EPSG:4548 复算</text>
+<text x="96" y="630" font-size="16" fill="#475467">provisional 边界以低对比虚线表示；本图由同一组 GeoJSON / metrics / 矩阵派生，不替代官方边界。</text>
+</svg></div>
+<div class="legend"><span><i class="sw" style="background:var(--rail)"></i>用地分区</span><span><i class="sw" style="background:var(--park)"></i>蓝绿公共空间</span><span><i class="sw" style="background:var(--work)"></i>市场/服务</span><span><i class="sw" style="background:var(--blue)"></i>交通慢行</span></div></div>
+<aside><h3>核心指标</h3>
+<div class="metric-list">
+<div class="metric"><span>site_area_sqm</span><strong data-metric="site_area_sqm" data-value="11412825.386">11412825.386</strong></div>
+<div class="metric"><span>green_ratio</span><strong data-metric="green_ratio" data-value="0.190106">0.190106</strong></div>
+<div class="metric"><span>public_space_ratio</span><strong data-metric="public_space_ratio" data-value="0.023892">0.023892</strong></div>
+<div class="metric"><span>building_footprint_area_sqm</span><strong data-metric="building_footprint_area_sqm" data-value="407807.619">407807.619</strong></div>
+</div>
+<div class="risk-card" style="margin-top:14px"><h3>自检状态</h3><p>deterministic validation、spatial review、visual packaging check 与 professional evidence review 必须全部通过；provisional 边界以 intake 讨论为限。</p></div></aside></div></section>
+<section class="sheet"><div class="sheet-head"><div><h2>三层范围</h2><p>三层范围是同一决策的三个焦距；43.6 km² 统筹研究范围为非几何关系范围（无精确 polygon、不生成边界），仅表达创新资源关系。</p></div><span class="tag">project_scope_summary.csv</span></div>
+<div class="matrix"><article class="area-card"><h3>统筹研究范围</h3><p>约 43.6 km²（非几何关系，未提交 polygon）：创新资源如何形成可验证能力。</p><ul><li>AI 创新链与人才链</li><li>案例机制转译</li><li>命名与传播</li></ul></article>
+<article class="area-card"><h3>总体设计范围</h3><p>约 11.4 km²（provisional 边界）：能力如何进入可步行网络。</p><ul><li>控规深度城市设计</li><li>更新项目清单</li><li>蓝绿慢行系统</li></ul></article>
+<article class="area-card"><h3>重点区域范围</h3><p>约 368.4 ha（三处 provisional 片区）：服务如何获得、停止验真票。</p><ul><li>众智园·技术验真场</li><li>原点·生活验真场</li><li>大钟寺·市场验真场</li></ul></article></div></section>
+<section class="sheet"><div class="sheet-head"><div><h2>重点区域</h2><p>三处重点区共用同一验真票框架，先跑 L0 基线，再放开 AI 场景。</p></div><span class="tag">key_areas.geojson</span></div>
+<div class="matrix"><article class="area-card"><h3>众智园·技术验真场</h3><p>封闭演练、低速移动急停/接管、非识别巡检、标准与安全评测、雨洪/余热物理绩效。</p></article>
+<article class="area-card"><h3>原点·生活验真场</h3><p>公共服务前台与可验证后场；无账户人工咨询、纸本目录、一次转接；AI 关闭仍完整服务。</p></article>
+<article class="area-card"><h3>大钟寺·市场验真场</h3><p>智能体/终端展示、四象限慢行、路演与退出恢复；退场后保留人工服务与静态导向。</p></article></div></section>
+<section class="sheet"><div class="sheet-head"><div><h2>官方结构与验真机制</h2><p>把任务书要求的 Logo 方向、三大定位、五大功能、三区两翼、荣誉展示、组件库、活动品牌与转化机制并入验真票闭环。</p></div><span class="tag">agent.1–agent.6</span></div>
+<div class="matrix"><article class="area-card"><h3>Logo / 视觉识别方向</h3><p>里程标 + 带缺口验真票框；詹天佑铜、铁路蓝、京张绿。</p></article>
+<article class="area-card"><h3>三大定位 / 五大功能</h3><p>文化带→里程标；生活体验带→L0；融合创新带→技术/市场验真场；五功能逐项映射验真票。</p></article>
+<article class="area-card"><h3>三区两翼协同回路</h3><p>三区=验真场；中关村科技服务翼=证据/责任人输入；小月河场景赋能翼=真实场景输入。</p></article></div>
+<div class="matrix"><article class="area-card"><h3>荣誉展示体系</h3><p>验真贡献档案：里程标旁记录已通过票、贡献者、停止/恢复，不作商业背书。</p></article>
+<article class="area-card"><h3>公共空间组件库</h3><p>验真票公示牌、L0 服务台、里程标、遮阴模块、雨水花园、无障碍坡道、静态导向。</p></article>
+<article class="area-card"><h3>活动品牌与转化</h3><p>Proof Day / Proof Mile Walk；场景卡→验真票→复核→有限复制→主体承接。</p></article></div></section>
+<section class="sheet"><div class="sheet-head"><div><h2>用地分区</h2><p>八段用地由同一 provisional 边界按纬度连续切割，全覆盖、无重叠。</p></div><span class="tag">land_use.geojson</span></div>
+<div class="matrix"><article class="area-card"><h3>众智园段 · 0802 科研用地</h3><p>技术验真场核心，承载全栈自主与评测。</p></article><article class="area-card"><h3>原点段 · 0702 社区服务</h3><p>生活验真场核心，承载前台与后场。</p></article><article class="area-card"><h3>大钟寺段 · 05 商业服务</h3><p>市场验真场核心，承载展示与退出恢复。</p></article></div></section>
+<section class="sheet"><div class="sheet-head"><div><h2>交通慢行</h2><p>概念路网：验真里程绿道 + 步行/骑行缝合线 + 大钟寺站概念接驳 + 南段生活支路。</p></div><span class="tag">roads.geojson</span></div>
+<div class="matrix"><article class="area-card"><h3>验真里程绿道</h3><p>北南向中央绿道，L0 基线为步行、无障碍、骑行、休息与遮阴。</p></article><article class="area-card"><h3>步行/骑行缝合</h3><p>三处验真场的东向缝合线，先修普通过街。</p></article><article class="area-card"><h3>轨道接驳</h3><p>大钟寺站概念接驳，待官方 geometry 与走查确认。</p></article></div></section>
+<section class="sheet"><div class="sheet-head"><div><h2>蓝绿公共空间</h2><p>京张遗址公园活力带为骨架，中央公园带串三区，四个里程标构成公共解释点。</p></div><span class="tag">green_space.geojson + public_space.geojson</span></div>
+<div class="matrix"><article class="area-card"><h3>中央公园带</h3><p>验真里程的连续绿色界面。</p></article><article class="area-card"><h3>五个公共广场</h3><p>三处验真广场 + 中段里程标广场 + 北段验真广场。</p></article><article class="area-card"><h3>四个里程标地标</h3><p>0 里 / 四分之一里 / 半程 / 一里。</p></article></div></section>
+<section class="sheet"><div class="sheet-head"><div><h2>建筑</h2><p>建筑图层只表达可逆的服务与试验原型，不输出容积率、高度、密度或拆除结论。</p></div><span class="tag">buildings.geojson</span></div>
+<div class="matrix"><article class="area-card"><h3>技术验真中心 + 标准安全实验室</h3><p>众智园概念原型。</p></article><article class="area-card"><h3>开源客厅 + 社区服务点</h3><p>原点生活验真场概念原型。</p></article><article class="area-card"><h3>智能体展示厅 + 路演客厅</h3><p>大钟寺市场验真场概念原型。</p></article></div></section>
+<section class="sheet"><div class="sheet-head"><div><h2>更新项目</h2><p>更新项目清单以验真票为最小交付单元，分近期、中期、远期。</p></div><span class="tag">phasing.geojson</span></div>
+<div class="matrix"><article class="area-card"><h3>近期三处验真场先行</h3><p>技术/生活/市场三条验真票并行跑通。</p></article><article class="area-card"><h3>中期里程廊道连通</h3><p>中央绿道与东西缝合线成网。</p></article><article class="area-card"><h3>远期全带扩展与留白</h3><p>逐票复核后有限复制，保留留白。</p></article></div></section>
+<section class="sheet"><div class="sheet-head"><div><h2>AI 场景</h2><p>12 张场景卡，其中 3 张为测试验证（T 类），必须先在封闭或半封闭单元跑通。</p></div><span class="tag">12 场景卡 · 3 测试验证</span></div>
+<div class="scenario-grid">
+<article class="scenario-card"><b>01 开源发布厅</b><p>原点社区成果发布、代码墙与小型路演。</p></article>
+<article class="scenario-card test"><b>02 标准与安全评测沙盒</b><p>测试验证 T：众智园标准/安全评测。</p></article>
+<article class="scenario-card test"><b>03 低速移动急停与接管</b><p>测试验证 T：封闭院演练，不侵普通路径。</p></article>
+<article class="scenario-card test"><b>04 雨洪/热舒适/余热绩效</b><p>测试验证 T：临清河界面物理绩效观测。</p></article>
+<article class="scenario-card"><b>05 AI 慢行断点诊断</b><p>验真里程绿道的可解释导视与低侵入传感。</p></article>
+<article class="scenario-card"><b>06 无账户公共服务前台</b><p>三处广场人工窗口、纸本目录、一次转接。</p></article>
+<article class="scenario-card"><b>07 企业服务 Copilot 前台</b><p>政策/场景/合规导航，保留人工咨询。</p></article>
+<article class="scenario-card"><b>08 智能体与终端展示客厅</b><p>大钟寺展示、洽谈与媒体发布。</p></article>
+<article class="scenario-card"><b>09 四象限步行连通</b><p>大钟寺站周边慢行与接驳。</p></article>
+<article class="scenario-card"><b>10 遗产叙事里程标导览</b><p>京张遗址公园文化叙事。</p></article>
+<article class="scenario-card"><b>11 年度验真开放日</b><p>一带公共空间的运营节点。</p></article>
+<article class="scenario-card"><b>12 退出恢复演练</b><p>三处验真场停止、退出与恢复。</p></article>
+</div></section>
+<section class="sheet"><div class="sheet-head"><div><h2>任务覆盖</h2><p>compliance_matrix.json 覆盖公告 1.3/1.4/1.5 与 agent.1–agent.6；standard_matrix.json 与 design_depth_matrix.json 证明专业标准与成果深度。</p></div><span class="tag">matrix evidence</span></div>
+<div class="evidence"><div><h3>来源</h3><p>来源见 sources.json、agent_taskbook.json、data/processed/agent_fact_pack.md 与 standards/references。本页不加载 CDN、远程地图瓦片、外部脚本、外部字体、API 请求或 iframe。</p><div class="source-line">sources.json / standard_matrix.json / design_depth_matrix.json</div></div>
+<div><h3>假设</h3><p>待补控规、道路红线、权属、市政、文保与工程条件已在 assumptions.json 列明；空约束图层记录 data_gap。</p><div class="source-line">missing_data_checklist.csv / assumptions.json / self_check.json</div></div></div></section>
+</main>
+</body>
+</html>

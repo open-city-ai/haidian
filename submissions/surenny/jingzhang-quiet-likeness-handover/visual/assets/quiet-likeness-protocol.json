@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0.0",
+  "status": "synthetic_tabletop_only",
+  "public_problem": "When a person can no longer exercise choice, a city AI may continue generating or retaining a personal likeness without a competent authority check.",
+  "state_machine": [
+    {
+      "id": "RUNNING",
+      "owner": "service_owner",
+      "meaning": "ordinary service operates; the person may inspect and revise a non-binding preference"
+    },
+    {
+      "id": "TRIGGER_CLAIMED",
+      "owner": "intake_steward",
+      "meaning": "a trigger claim is received but not treated as fact or authority"
+    },
+    {
+      "id": "QUIET_HOLD",
+      "owner": "data_protection_ethics_steward",
+      "meaning": "new personalized voice, image, or likeness output is prohibited pending review"
+    },
+    {
+      "id": "AUTHORITY_CHECK",
+      "owner": "competent_human_reviewer",
+      "meaning": "trigger fact, authority, conflict, and required retention are checked"
+    },
+    {
+      "id": "AUTHORIZED_ACTION",
+      "owner": "competent_human_reviewer",
+      "meaning": "only an authorized freeze, export, deletion, or retention action proceeds"
+    },
+    {
+      "id": "CONTESTED_HOLD",
+      "owner": "independent_review_route",
+      "meaning": "conflict or missing evidence keeps silence and routes specialist review"
+    },
+    {
+      "id": "CLOSED",
+      "owner": "service_owner",
+      "meaning": "only a de-identified closeout receipt is displayed; ordinary service continues"
+    }
+  ],
+  "named_human_roles": [
+    "service owner",
+    "data protection or ethics steward",
+    "competent legal or domain reviewer",
+    "ordinary-service continuity steward"
+  ],
+  "ai_minimum_role": [
+    "list possibly associated services",
+    "turn the person's input into editable plain-language options",
+    "flag missing checklist items",
+    "prepare a human-editable inventory"
+  ],
+  "ai_prohibited_role": [
+    "determine incapacity or death",
+    "authenticate a relative, proxy, heir, or successor",
+    "decide legal effect, ownership, retention duty, or dispute outcome",
+    "generate a new personal voice, image, avatar, or memorial during hold"
+  ],
+  "privacy_minimum": [
+    "synthetic case id",
+    "service category",
+    "state",
+    "named role",
+    "decision basis category",
+    "closeout status"
+  ],
+  "forbidden_prototype_data": [
+    "real identity",
+    "voiceprint",
+    "portrait",
+    "medical record",
+    "death certificate",
+    "family relation",
+    "private service record",
+    "precise address"
+  ],
+  "failure_result": "Keep QUIET_HOLD, route competent human review, and preserve anonymous, paper, telephone, or staffed ordinary service.",
+  "exit_result": "Restore an ordinary service room; never convert personal material or contested files into an exhibit.",
+  "synthetic_cases": [
+    "person revises a preference while able to decide",
+    "sudden inability to communicate with incomplete evidence",
+    "conflicting requests from two relatives with no assumed authority",
+    "vendor exits while ordinary public service must continue"
+  ],
+  "acceptance_tests": [
+    "every trigger enters QUIET_HOLD before authority review",
+    "no synthetic case allows AI or a relative to decide authority",
+    "all conflicts remain silent without new likeness output",
+    "all ordinary-service tasks complete with AI physically disabled",
+    "the public status strip contains no identity or memorial likeness",
+    "exit restores the room and deletes synthetic fixtures after review"
+  ],
+  "falsification": [
+    "a full equivalent five-field chain is found in an existing proposal",
+    "quiet hold itself creates unacceptable harm in professional review",
+    "false triggers or authority impersonation cannot be bounded",
+    "the room increases stigma, exposure, or accessibility burden",
+    "AI-off or ordinary service cannot complete the same public task"
+  ]
+}

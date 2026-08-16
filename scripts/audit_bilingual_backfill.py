@@ -32,6 +32,7 @@ are warnings, not hard failures).
 """
 from __future__ import annotations
 
+import argparse
 from collections import Counter
 import re
 from pathlib import Path
@@ -140,16 +141,24 @@ def audit_pair(directory: Path) -> list[str]:
     return failures
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--repo-root", type=Path, default=ROOT)
+    args = parser.parse_args(argv)
+    repo_root = args.repo_root.resolve()
+
     failures: list[tuple[Path, list[str]]] = []
-    directories = proposal_dirs(ROOT, [])
+    directories = proposal_dirs(repo_root, [])
+    if not directories:
+        print("Audit failed: no bilingual submissions found under submissions/*/*/proposal.md")
+        return 2
     for directory in directories:
         problems = audit_pair(directory)
         if problems:
             failures.append((directory, problems))
     if failures:
         for directory, problems in failures:
-            print(directory.relative_to(ROOT))
+            print(directory.relative_to(repo_root))
             for problem in problems:
                 print(f"  - {problem}")
         print(f"Audit failed for {len(failures)} of {len(directories)} submissions")

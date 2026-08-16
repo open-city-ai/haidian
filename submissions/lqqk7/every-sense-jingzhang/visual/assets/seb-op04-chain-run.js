@@ -29,17 +29,35 @@
  * the structured gate_binding in seb-spec.json. None of the three lives in this file.
  *
  * 本复演的节点判定是 seb-spec.json 的第二个独立实现，与 seb-tabletop-run.js 不共享
- * 任何代码。两个实现在同一份规范下得到同一判定，是基准可被取走就用的一次检验。
+ * 任何代码；两实现共用基准的违例码登记表与附加词合格性判据（v0.3.1 起——此前本实现
+ * 未执行合格性校验且自编判定码，该不等价登记于 CR-2026-08-15-005）。
  * The node ruling here is a second, independent implementation of seb-spec.json that
- * shares no code with seb-tabletop-run.js. Two implementations agreeing under one
- * specification is a test of whether the baseline can be picked up and used as is.
+ * shares no code with seb-tabletop-run.js; both implementations share the baseline's
+ * violation-code registry and lexicon-eligibility criteria (from v0.3.1 — previously
+ * this one ran no eligibility check and improvised its own codes, a divergence
+ * registered in CR-2026-08-15-005).
+ *
+ * 范围声明 / Scope statement
+ * 本工具是本提交包专用的复演器，不是通用 SEB 运行器：几何文件路径、节点与道路 id
+ * 绑定本包档案；LineString 仅支持两点线段，更长的折线拒绝运行而不是静默截断。
+ * This tool is a replayer specific to this package, not a general SEB runner: geometry
+ * paths and node/road ids are bound to this package's archive; LineStrings support
+ * two-point segments only, and longer polylines refuse the run instead of being
+ * silently truncated.
  *
  * 用法 / Usage: node seb-op04-chain-run.js
- * 零依赖，仅使用 Node 内置模块，无网络访问，只读取本包内文件。
- * Zero dependencies, Node built-ins only, no network access, reads only this package.
- * 退出码 0 = 全部一致；1 = 有读数不符或判定不通过；2 = 基准版本不足或前置校验器未通过。
- * Exit 0 = all agree; 1 = a figure or a verdict disagrees; 2 = the baseline version is
- * insufficient or the prerequisite checker did not pass, and no verdict is issued.
+ * 零依赖，仅使用 Node 内置模块（Node >= 18），无网络访问，只读取本包内文件；本工具版本 0.4.0。
+ * Zero dependencies, Node built-ins only (Node >= 18), no network access, reads only
+ * this package; runner version 0.4.0.
+ * 退出码 0 = 全部一致；1 = 有读数不符或判定不通过；2 = 兼容失败（基准版本不足、词表
+ * 不合格、几何超出支持范围、前置校验器未通过、可发判定码未登记在基准登记表内，或
+ * v0.4.0 生命周期／权限／测量声明判据在本档案输入上命中而档案期望词汇无法归档该结论），
+ * 不作任何判定。
+ * Exit 0 = all agree; 1 = a figure or a verdict disagrees; 2 = compatibility failure
+ * (baseline too low, ineligible lexicon, unsupported geometry, a failed prerequisite
+ * checker, an emittable verdict code the baseline registry does not carry, or a v0.4.0
+ * lifecycle / authority / measurement criterion firing on this archive's input where the
+ * archive's expectation vocabulary cannot record the conclusion) with no verdict issued.
  */
 
 "use strict";
@@ -134,9 +152,10 @@ function buildGraph(edgeDefs) {
   return { adj, segs, addV, addE };
 }
 
-function attach(G, xy) {
+function nearestOn(segs, xy, filter) {
   let best = null;
-  for (const s of G.segs) {
+  for (const s of segs) {
+    if (filter && !filter(s)) continue;
     const vx = s.q[0] - s.p[0], vy = s.q[1] - s.p[1];
     const L2 = vx * vx + vy * vy;
     let t = L2 === 0 ? 0 : ((xy[0] - s.p[0]) * vx + (xy[1] - s.p[1]) * vy) / L2;
@@ -145,7 +164,13 @@ function attach(G, xy) {
     const d = dist2(xy, foot);
     if (!best || d < best.d - 1e-9) best = { d, foot, s };
   }
-  if (!best) return null;
+  return best;
+}
+
+/* split the found seg at the foot point.  The split keeps G.segs in step with
+   G.adj (the earlier revision updated only adj, so a second attachment landing
+   on the same original seg silently re-bridged across the first cut). */
+function attachAt(G, best) {
   const kf = G.addV(best.foot);
   if (kf !== best.s.ka && kf !== best.s.kb) {
     const strip = (k, other) => G.adj.set(k, G.adj.get(k).filter((e) => !(e[0] === other && e[2] === best.s.id)));
@@ -153,8 +178,34 @@ function attach(G, xy) {
     strip(best.s.kb, best.s.ka);
     G.addE(best.s.ka, kf, dist2(best.foot, best.s.p), best.s.id);
     G.addE(kf, best.s.kb, dist2(best.foot, best.s.q), best.s.id);
+    const i = G.segs.indexOf(best.s);
+    const s1 = { id: best.s.id, p: best.s.p, q: best.foot, ka: best.s.ka, kb: kf };
+    const s2 = { id: best.s.id, p: best.foot, q: best.s.q, ka: kf, kb: best.s.kb };
+    G.segs.splice(i, 1, s1, s2);
   }
   return { stub: best.d, key: kf, roadId: best.s.id };
+}
+
+/* v0.3 interface rule: a node's physical attachment line is fixed on the FULL
+   submitted network — the lane outside a door does not change when AI is
+   switched off.  In a given state the node enters the graph through that same
+   interface line; if the line is absent from the state's edge set the node is
+   unreachable — unless the state ADDS a new line (a build action), which may
+   serve as a new interface.  Under the previous nearest-in-state rule the
+   attachment could silently jump to a different line once AI was off, which
+   both overstated reachability and hid the untested interface. */
+function attach(G, xy, anchor, addedIds) {
+  if (anchor) {
+    const onAnchor = nearestOn(G.segs, xy, (s) => s.id === anchor.roadId);
+    const onAdded = addedIds && addedIds.length
+      ? nearestOn(G.segs, xy, (s) => addedIds.includes(s.id)) : null;
+    const cand = [onAnchor, onAdded].filter(Boolean);
+    if (!cand.length) return null;
+    const best = cand.reduce((a, b) => (b.d < a.d - 1e-9 ? b : a));
+    return attachAt(G, best);
+  }
+  const best = nearestOn(G.segs, xy, null);
+  return best ? attachAt(G, best) : null;
 }
 
 function shortest(G, src, dst) {
@@ -219,15 +270,299 @@ console.log("                  and no inclusion performance value");
 console.log("");
 
 /* --- 版本闸门 --- */
-const need = arc.baseline_spec.required_version.split(".").map(Number);
-const have = spec.version.split(".").map(Number);
-const lower = have[0] < need[0] || (have[0] === need[0] && (have[1] < need[1] || (have[1] === need[1] && have[2] < need[2])));
+// 版本解析与 seb-tabletop-run.js 同一兜底语义：缺段按 0 处理，两段式版本号不再误放行。
+// Version parsing shares the tabletop runner's fallback: missing parts count as 0, so a
+// two-part version string can no longer slip past the gate.
+const parseV = (s) => String(s || "0").split(".").map((x) => parseInt(x, 10) || 0);
+const need = parseV(arc.baseline_spec.required_version);
+const have = parseV(spec.version);
+const lower = (have[0] || 0) < need[0] || (have[0] === need[0] && ((have[1] || 0) < need[1] || (have[1] === need[1] && (have[2] || 0) < need[2])));
 if (spec.spec_id !== arc.baseline_spec.spec_id || lower) {
   console.log("[!] 基准与档案不匹配，不作任何判定 / baseline and archive disagree; no verdict is issued");
   console.log("    需要 / required : " + arc.baseline_spec.spec_id + " >= " + arc.baseline_spec.required_version);
   console.log("    实际 / found    : " + spec.spec_id + " " + spec.version);
   process.exit(2);
 }
+
+// v0.3.1：附加词合格性判据读自基准条文，与桌面校验器同一行为——违例整次拒绝。
+// 此前本实现只过滤非空字符串，不合格词可经档案词表进入并集（CR-2026-08-15-005）。
+// v0.3.1: lexicon eligibility is read from baseline text with the same behaviour as the
+// tabletop checker — violations refuse the whole run. Previously this implementation
+// only filtered non-empty strings, letting ineligible tokens join the union through the
+// archive lexicon (CR-2026-08-15-005).
+let ARC_LEXICON = [];
+{
+  const lexDecl = arc.adopter_lexicon;
+  const lexEvidence = arc.adopter_lexicon_evidence;
+  if (lexDecl !== undefined && (Array.isArray(lexDecl) ? lexDecl.length > 0 : true)) {
+    const problems = [];
+    const schemaC = spec.components.find((c) => c.component_id === "node_schema");
+    const roleF = schemaC.required_fields.find((f) => f.constraint_machine_rule && f.constraint_machine_rule.type === "required_role_token");
+    const elig = roleF && roleF.constraint_machine_rule.adopter_lexicon_eligibility_rule;
+    if (!Array.isArray(lexDecl) || (lexEvidence !== undefined && (typeof lexEvidence !== "object" || lexEvidence === null || Array.isArray(lexEvidence)))) {
+      problems.push("ADOPTER_LEXICON_MALFORMED");
+    } else if (!elig) {
+      problems.push("ADOPTER_LEXICON_MALFORMED: 基准缺附加词合格性判据（需 v0.3.1 及以上）/ baseline states no eligibility criteria (v0.3.1+ required)");
+    } else {
+      const tokens = lexDecl.filter((t) => typeof t === "string" && t.trim().length > 0);
+      if (tokens.length !== lexDecl.length) problems.push("ADOPTER_LEXICON_MALFORMED");
+      const badSuffix = tokens.filter((t) => elig.forbidden_suffixes.some((suf) => t.toLowerCase().endsWith(String(suf).toLowerCase())));
+      if (badSuffix.length) problems.push("ADOPTER_LEXICON_INVALID_TOKEN: " + badSuffix.join(", "));
+      const noEv = tokens.filter((t) => {
+        const e = lexEvidence ? lexEvidence[t] : undefined;
+        return typeof e !== "string" || e.trim().length === 0;
+      });
+      if (noEv.length) problems.push("ADOPTER_LEXICON_EVIDENCE_MISSING: " + noEv.join(", "));
+      if (!problems.length) ARC_LEXICON = tokens;
+    }
+    if (problems.length) {
+      console.log("[!] 词表兼容校验未通过，不作任何判定 / lexicon compatibility failed; no verdict is issued");
+    problems.forEach((p) => console.log("    " + p));
+      process.exit(2);
+    }
+  }
+}
+
+/* --- [G] v0.4.0 全生命周期、权限边界与测量声明判据 --- */
+/*
+ * 本段是 v0.4.0 三组新判据在本复演器中的第二次独立实现：与 seb-tabletop-run.js 不共享
+ * 任何代码，语义取自同一份 seb-spec.json，判定码取自同一份违例码登记表。
+ *
+ * 输入域（登记表 applies_when 的含义）
+ * 本复演器的输入是 OP-04 证据链档案，其声明单元只携带节点字段与一个用于闸门比对的
+ * claimed_level，不携带 level_claim、measurement_declaration 或 authority_declaration。
+ * 这三类触发输入在本实现的输入类型中结构性缺席，因此十四个新码在本实现内不可能触发
+ * ——这是输入域的事实，不是实现缺口，登记表已就此明文。缺席不等于未实现：下列函数对
+ * 每一条声明真实执行，触发输入一旦出现即照判据判定。
+ *
+ * 判定后果
+ * 本档案的期望词汇（expected_verdict / expected_reason_code）成文于 v0.3.1，无法表达
+ * 生命周期、权限与测量声明类结论。因此这三类判据一旦命中，本复演器不把它降格为一条
+ * 读数不符（退出码 1），而是按「不作任何判定」以退出码 2 拒绝整次复演——判据命中却
+ * 无法如实归档，继续复演就是拿一份表达不了结论的期望表去盖章。
+ *
+ * This block is the second independent implementation of the three v0.4.0 criteria
+ * groups: it shares no code with seb-tabletop-run.js, takes its semantics from the same
+ * seb-spec.json and its codes from the same violation-code registry.
+ *
+ * Input domain (what the registry's applies_when means)
+ * This replayer's input is the OP-04 evidence-chain archive, whose declaration units
+ * carry node fields and a claimed_level used for the gate comparison, and carry no
+ * level_claim, measurement_declaration or authority_declaration. Those three triggering
+ * inputs are structurally absent from this implementation's input type, so the fourteen
+ * new codes cannot fire here — a fact of the input domain rather than an implementation
+ * gap, as the registry states. Absent is not unimplemented: the functions below run for
+ * real against every claim, and rule as the criteria require the moment a trigger appears.
+ *
+ * Consequence of a hit
+ * This archive's expectation vocabulary (expected_verdict / expected_reason_code) was
+ * written at v0.3.1 and cannot express a lifecycle, authority or measurement conclusion.
+ * So a hit is not demoted to a disagreeing figure at exit 1: the whole replay is refused
+ * at exit 2 with no verdict issued — carrying on would mean stamping a criterion hit
+ * against an expectation table that has no way to record it.
+ */
+const lcSchema = spec.components.find((c) => c.component_id === "node_schema");
+const lcLevels = spec.components.find((c) => c.component_id === "level_definitions");
+const lcScoring = spec.components.find((c) => c.component_id === "scoring_definitions");
+const lcBoundary = spec.components.find((c) => c.component_id === "ai_authority_boundary");
+const RUN_CTX = { run: arc.run || {} };
+
+const declaredValue = (v) => {
+  if (v === null || v === undefined) return false;
+  if (typeof v === "string") return v.trim().length > 0;
+  if (Array.isArray(v)) return v.length > 0;
+  if (typeof v === "object") return Object.keys(v).length > 0;
+  return true;
+};
+const pick = (root, dotted) => {
+  let cur = root;
+  for (const key of String(dotted).split(".")) {
+    if (cur === null || cur === undefined) return undefined;
+    cur = cur[key];
+  }
+  return cur;
+};
+const levelIndex = (id) => lcLevels.levels.findIndex((l) => l.level_id === id);
+
+/* 生命周期字段组与供应商独立性字段：存在性由 required_from_level 与等级声明顺序决定，
+   取值合规一律且只由该字段的 constraint_machine_rule 判定。 */
+function lifecycleCodes(unit) {
+  const claim = unit.level_claim;
+  const node = unit.node || {};
+  const out = [];
+  if (!claim || typeof claim !== "object") return out;
+  const rank = levelIndex(claim.level_id);
+  if (rank < 0) return out;
+  const group = (lcSchema.lifecycle_fields || []).slice();
+  if (lcSchema.vendor_independence_field) group.push(lcSchema.vendor_independence_field);
+  for (const f of group) {
+    const value = node[f.field];
+    const here = declaredValue(value);
+    if (f.required_from_level) {
+      const gate = levelIndex(f.required_from_level);
+      if (gate >= 0 && rank >= gate && !here) { out.push("LIFECYCLE_FIELD_MISSING:" + f.field); continue; }
+    }
+    const r = f.constraint_machine_rule;
+    if (!r || !here) continue;
+    if (r.trigger_level !== undefined && claim.level_id !== r.trigger_level) continue;
+    if (r.trigger_level === undefined && r.trigger_level_at_or_above !== undefined) {
+      const gate = levelIndex(r.trigger_level_at_or_above);
+      if (gate < 0 || rank < gate) continue;
+    }
+    switch (r.type) {
+      case "lifecycle_status_gate":
+      case "lifecycle_enum_gate":
+        if (pick(node, r.field_path) !== r.required_value) out.push(r.violation_code);
+        break;
+      case "lifecycle_floor_check": {
+        const block = pick(node, r.field_path) || {};
+        if ((r.entries || []).some((e) => block[e] !== r.required_value)) out.push(r.violation_code);
+        break;
+      }
+      case "lifecycle_enum_plus_flag": {
+        const v = pick(node, r.field_path);
+        if (Array.isArray(f.allowed_values) && f.allowed_values.indexOf(v) === -1) {
+          out.push("NODE_ENUM_INVALID:" + f.field);
+        }
+        if (pick(node, r.forbidden_flag_path) === r.forbidden_flag_value) out.push(r.violation_code);
+        break;
+      }
+      case "lifecycle_date_gate": {
+        // 条文规则 as_of_date <= review_due；比较基准由 compare_against 指定，
+        // 运行未声明该日期时本码的触发输入不存在，不判定，也不改取系统时钟。
+        const asOf = pick(RUN_CTX, r.compare_against);
+        const due = pick(node, r.field_path);
+        if (typeof asOf === "string" && typeof due === "string" && asOf > due) out.push(r.violation_code);
+        break;
+      }
+      default:
+        out.push("RULE_TYPE_UNSUPPORTED:" + r.type);
+    }
+  }
+  return out;
+}
+
+/* AI 权限边界：按 action_id 精确相等，条文明文不做子串匹配。 */
+function authorityCodes(unit) {
+  const decl = unit.authority_declaration;
+  if (!lcBoundary || !decl || typeof decl !== "object") return [];
+  const exclusive = (lcBoundary.human_exclusive || []).map((a) => a.action_id);
+  const out = [];
+  for (const action of decl.ai_actions || []) {
+    if (exclusive.indexOf(action) !== -1) out.push(lcBoundary.violation_code);
+  }
+  return out;
+}
+
+/* 测量声明类七码：等价三维与阈值预注册需要成对测量记录，其余需要测量声明；
+   各自的子块未声明时不触发——未声明不等于违例。 */
+function measurementCodes(unit) {
+  const decl = unit.measurement_declaration;
+  if (!lcScoring || !decl || typeof decl !== "object") return [];
+  const out = [];
+  const eq = lcScoring.equivalence_conditions;
+  const rec = decl.paired_measurement_record;
+  if (eq && rec && typeof rec === "object") {
+    const met = rec.conditions_met || {};
+    const unmet = (eq.dimensions || []).filter((d) => met[d.dimension_id] === false);
+    if (rec.ruled_equivalent === true && unmet.length) out.push(eq.violation_code);
+    const pre = eq.threshold_preregistration;
+    if (pre && rec.time_ratio_threshold_cited === true && rec.threshold_preregistered !== true) {
+      out.push(pre.violation_code);
+    }
+  }
+  const st = lcScoring.stratified_reporting;
+  if (st) {
+    const codes = st.violation_codes || [];
+    const s = decl.stratification;
+    const grouped = s && Array.isArray(s.role_groups_reported) && s.role_groups_reported.length > 0;
+    if (codes.indexOf("STRATIFICATION_MISSING") !== -1 && s && s.applicable_declared === true && !grouped) {
+      out.push("STRATIFICATION_MISSING");
+    }
+    const series = decl.stratified_series;
+    if (codes.indexOf("WORST_GROUP_REGRESSION") !== -1 && series && series.total_direction === "improved") {
+      const dirs = series.role_group_directions || {};
+      if (Object.keys(dirs).some((g) => dirs[g] === "deteriorated")) out.push("WORST_GROUP_REGRESSION");
+    }
+    const basis = decl.group_membership_basis;
+    if (codes.indexOf("GROUP_MEMBERSHIP_INFERRED") !== -1 && basis !== undefined
+        && basis !== "voluntary_self_report") {
+      out.push("GROUP_MEMBERSHIP_INFERRED");
+    }
+  }
+  const rd = decl.reliability_disclosure;
+  if (lcScoring.reliability_disclosure_rule_zh && rd && rd.unreliable_output_present === true
+      && (rd.declared_unreliable_to_user !== true || rd.pointed_to_staffed_channel !== true)) {
+    out.push("SILENT_UNRELIABLE_OUTPUT");
+  }
+  const ss = decl.sample_sufficiency;
+  if (lcScoring.sample_sufficiency_rule_zh && ss && ss.below_preregistered_minimum === true
+      && ss.group_conclusion !== "insufficient_evidence") {
+    out.push("SAMPLE_INSUFFICIENT_CLAIMED_FAIR");
+  }
+  return out;
+}
+
+console.log("[G] v0.4.0 判据输入域 / v0.4.0 criteria input domain");
+{
+  const units = arc.stage_5_dual_review.machine_review.claims;
+  const hits = [];
+  let withLevel = 0, withAuthority = 0, withMeasurement = 0;
+  for (const unit of units) {
+    if (unit.level_claim) withLevel += 1;
+    if (unit.authority_declaration) withAuthority += 1;
+    if (unit.measurement_declaration) withMeasurement += 1;
+    const codes = [].concat(lifecycleCodes(unit), authorityCodes(unit), measurementCodes(unit));
+    [...new Set(codes)].forEach((code) => hits.push(unit.claim_id + " : " + code));
+  }
+  // 判定码自检：本实现可能给出的每一个码都必须登记在基准的违例码登记表中。
+  // Code self-check: every code this implementation can emit must be registered.
+  const registry = (spec.violation_code_registry || {}).codes || {};
+  const emitted = new Set(["NODE_FIELD_MISSING", "NODE_ENUM_INVALID", "NODE_CONSTRAINT_VIOLATION",
+    "LEVEL_UNKNOWN", "LEVEL_GATE_MISMATCH", "RULE_TYPE_UNSUPPORTED", "ADOPTER_LEXICON_INVALID_TOKEN",
+    "ADOPTER_LEXICON_EVIDENCE_MISSING", "ADOPTER_LEXICON_MALFORMED"]);
+  const lifecycleGroup = (lcSchema.lifecycle_fields || []).slice();
+  if (lcSchema.vendor_independence_field) lifecycleGroup.push(lcSchema.vendor_independence_field);
+  if (lifecycleGroup.length) emitted.add("LIFECYCLE_FIELD_MISSING");
+  lifecycleGroup.forEach((f) => {
+    const code = f.constraint_machine_rule && f.constraint_machine_rule.violation_code;
+    if (code) emitted.add(String(code).split(":")[0]);
+  });
+  if (lcBoundary && lcBoundary.violation_code) emitted.add(lcBoundary.violation_code);
+  if (lcScoring && lcScoring.equivalence_conditions) {
+    const eq = lcScoring.equivalence_conditions;
+    if (eq.violation_code) emitted.add(eq.violation_code);
+    if (eq.threshold_preregistration && eq.threshold_preregistration.violation_code) {
+      emitted.add(eq.threshold_preregistration.violation_code);
+    }
+  }
+  if (lcScoring && lcScoring.stratified_reporting) {
+    (lcScoring.stratified_reporting.violation_codes || []).forEach((c) => emitted.add(c));
+  }
+  if (lcScoring && lcScoring.reliability_disclosure_rule_zh) emitted.add("SILENT_UNRELIABLE_OUTPUT");
+  if (lcScoring && lcScoring.sample_sufficiency_rule_zh) emitted.add("SAMPLE_INSUFFICIENT_CLAIMED_FAIR");
+  const unregistered = [...emitted].filter((c) => !Object.prototype.hasOwnProperty.call(registry, c));
+  if (unregistered.length) {
+    console.log("[!] 判定码未登记在基准的违例码登记表中，不作任何判定 / verdict codes absent from the baseline registry; no verdict is issued");
+    unregistered.forEach((c) => console.log("    " + c));
+    process.exit(2);
+  }
+  console.log("    扫描声明 / claims scanned : " + units.length
+    + "（判据函数对每条真实执行 / the criteria functions ran for real against each）");
+  console.log("    触发输入 / triggering inputs : level_claim " + withLevel
+    + " · authority_declaration " + withAuthority + " · measurement_declaration " + withMeasurement
+    + "（登记表 applies_when：结构性缺席则该码不可能触发 / registry applies_when: structurally absent, so the codes cannot fire）");
+  console.log("    码集自检 / code self-check : " + emitted.size
+    + " 个可发码全部登记在基准登记表内 / all emittable codes are registered by the baseline");
+  if (hits.length) {
+    console.log("[!] 生命周期、权限或测量声明判据命中，本档案的期望词汇无法归档该结论，不作任何判定");
+    console.log("    a lifecycle, authority or measurement criterion fired and this archive's expectation");
+    console.log("    vocabulary cannot record that conclusion; no verdict is issued");
+    hits.forEach((h) => console.log("    " + h));
+    process.exit(2);
+  }
+}
+console.log("");
 
 /* --- [P] 前置：真实执行既有桌面校验器 --- */
 console.log("[P] 前置校验器 / Prerequisite checker");
@@ -275,7 +610,19 @@ console.log("");
 
 /* --- [1] 环节一：开放数据基线 --- */
 console.log("[1] 环节一 开放数据基线 / Stage 1 open-data baseline");
-const roads = geo("roads").features.map((f) => ({
+const roadFeatures = geo("roads").features;
+// 几何范围守卫：本复演器只支持两点线段；更长的折线在此拒绝运行，而不是静默取前两点
+// 截断（截断会让全部长度与比值读数失真却照常退出 0）。
+// Geometry guard: this replayer supports two-point segments only; longer polylines
+// refuse the run here instead of being silently truncated to their first two points
+// (truncation would distort every length and ratio while still exiting 0).
+const tooLong = roadFeatures.filter((f) => f.geometry.type !== "LineString" || f.geometry.coordinates.length !== 2);
+if (tooLong.length) {
+  console.log("[!] 几何超出本复演器支持范围，不作任何判定 / geometry outside this replayer's support; no verdict is issued");
+  tooLong.forEach((f) => console.log(`    ${f.properties.id}: ${f.geometry.type} · ${f.geometry.coordinates.length} 点 / points（仅支持两点 LineString / two-point LineString only）`));
+  process.exit(2);
+}
+const roads = roadFeatures.map((f) => ({
   id: f.properties.id,
   role: f.properties.design_role || "",
   a: project(f.geometry.coordinates[0][0], f.geometry.coordinates[0][1]),
@@ -329,14 +676,25 @@ const R1 = roads.find((r) => r.id === "ROAD-001");
 const R4 = roads.find((r) => r.id === "ROAD-004");
 const R5 = roads.find((r) => r.id === "ROAD-005");
 const altA = (() => {
+  /* upgrade stretch: from the ROAD-001 crossing to whichever of the two
+     access feet lies FARTHER from it along ROAD-004 — direction-free, so the
+     stretch covers both access points on either side of the crossing */
   const t0 = paramOfCross(R4, R1);
-  const t1 = Math.max(paramOfFoot(R4, nodesById["OP-08"].xy), paramOfFoot(R4, nodesById["OP-09"].xy));
+  const t8 = paramOfFoot(R4, nodesById["OP-08"].xy);
+  const t9 = paramOfFoot(R4, nodesById["OP-09"].xy);
+  const t1 = Math.abs(t8 - t0) >= Math.abs(t9 - t0) ? t8 : t9;
   return { id: "ALT-A-UPGRADE", a: pointAt(R4, t0), b: pointAt(R4, t1) };
 })();
 const altB = (() => {
-  const south = R5.a[1] < R5.b[1] ? R5.a : R5.b;
-  const tw = (south[1] - R1.a[1]) / (R1.b[1] - R1.a[1]);
-  return { id: "ALT-B-LINK", a: pointAt(R1, tw), b: south };
+  /* added ground link west from ROAD-001 at the latitude of OP-09 (the
+     sensory-load node), reaching the market cluster's western access: south
+     of ROAD-004, clear of the station range.  The v0.2 archive ran this link
+     from the ROAD-005 south end because the market nodes then sat east of the
+     corridor; with the cluster relocated west, the same intent — a second
+     ground interface that avoids the station crossing — points west. */
+  const y9 = nodesById["OP-09"].xy[1];
+  const tw = (y9 - R1.a[1]) / (R1.b[1] - R1.a[1]);
+  return { id: "ALT-B-LINK", a: pointAt(R1, tw), b: [nodesById["OP-09"].xy[0], y9] };
 })();
 altA.len = dist2(altA.a, altA.b);
 altB.len = dist2(altB.a, altB.b);
@@ -361,25 +719,40 @@ const STATE_EDGES = {
 };
 const tol = arc.stage_4_ai_off_counterfactual.expected_results.tolerance_m;
 const near = (a, b) => a === null || b === null ? a === b : Math.abs(a - b) <= tol;
+/* fixed physical interfaces, resolved once on the full submitted network */
+const gFull = buildGraph(STATE_EDGES.BASE_ON());
+const anchors = {};
+for (const nid of Object.keys(nodesById)) {
+  const best = nearestOn(gFull.segs, nodesById[nid].xy, null);
+  anchors[nid] = { roadId: best.s.id, stub: best.d };
+}
+const STATE_ADDED = { BASE_ON: [], BASE_OFF: [], ALT_A_OFF: [altA.id], ALT_B_OFF: [altB.id] };
 for (const row of arc.stage_4_ai_off_counterfactual.expected_results.rows) {
   const G = buildGraph(STATE_EDGES[row.state_id]());
+  const stateIds = new Set(STATE_EDGES[row.state_id]().map((e) => e.id));
+  const added = STATE_ADDED[row.state_id];
   const t = tasks[row.task_id];
-  const o = attach(G, nodesById[t.origin].xy);
-  const d = attach(G, nodesById[t.destination].xy);
-  const net = shortest(G, o.key, d.key);
+  const hook = (nid) => {
+    const anchor = anchors[nid];
+    if (stateIds.has(anchor.roadId) || added.length) return attach(G, nodesById[nid].xy, anchor, added.filter((x) => stateIds.has(x)));
+    return null;
+  };
+  const o = hook(t.origin);
+  const d = hook(t.destination);
+  const net = o && d ? shortest(G, o.key, d.key) : null;
   const total = net === null ? null : o.stub + net + d.stub;
   const label = row.state_id + " " + row.task_id + " " + t.origin + "→" + t.destination;
   let bad = false;
-  if (!near(r3(o.stub), arc.stage_4_ai_off_counterfactual.expected_results.origin_access_stub_m)) { fail(label + " 起点接入段 " + r3(o.stub)); bad = true; }
-  if (!near(r3(d.stub), row.destination_access_stub_m)) { fail(label + " 终点接入段 " + r3(d.stub) + " ≠ " + row.destination_access_stub_m); bad = true; }
-  if (d.roadId !== row.destination_attached_to) { fail(label + " 终点挂接于 " + d.roadId + " ≠ " + row.destination_attached_to); bad = true; }
+  if (!near(o ? r3(o.stub) : null, row.origin_access_stub_m !== undefined ? row.origin_access_stub_m : arc.stage_4_ai_off_counterfactual.expected_results.origin_access_stub_m)) { fail(label + " 起点接入段 " + (o ? r3(o.stub) : "null")); bad = true; }
+  if (!near(d ? r3(d.stub) : null, row.destination_access_stub_m)) { fail(label + " 终点接入段 " + (d ? r3(d.stub) : "null") + " ≠ " + row.destination_access_stub_m); bad = true; }
+  if ((d ? d.roadId : null) !== row.destination_attached_to) { fail(label + " 终点挂接于 " + (d ? d.roadId : "null") + " ≠ " + row.destination_attached_to); bad = true; }
   if ((net !== null) !== row.reachable) { fail(label + " 可达性 " + (net !== null) + " ≠ " + row.reachable); bad = true; }
-  if (!near(r3(net), row.network_m)) { fail(label + " 网络行程 " + r3(net) + " ≠ " + row.network_m); bad = true; }
-  if (!near(r3(total), row.total_m)) { fail(label + " 全程 " + r3(total) + " ≠ " + row.total_m); bad = true; }
+  if (!near(net === null ? null : r3(net), row.network_m)) { fail(label + " 网络行程 " + (net === null ? "null" : r3(net)) + " ≠ " + row.network_m); bad = true; }
+  if (!near(total === null ? null : r3(total), row.total_m)) { fail(label + " 全程 " + (total === null ? "null" : r3(total)) + " ≠ " + row.total_m); bad = true; }
   if (!bad) {
     console.log("    " + label.padEnd(34) + (row.reachable
       ? "全程 / total " + row.total_m + " m（接入 " + row.destination_access_stub_m + " m，挂接 " + row.destination_attached_to + "）"
-      : "不可达 / unreachable（AI 关闭态无连续路径 / no continuous AI-independent route）"));
+      : "不可达 / unreachable（接口线不在 AI 关闭边集 / interface line absent from the AI-off edge set）"));
   }
 }
 const der = arc.stage_4_ai_off_counterfactual.expected_results.derived;
@@ -397,11 +770,26 @@ for (const tk of ["T1", "T2"]) {
   console.log("    " + tk + " 行程比 / trip ratio : ALT-A " + rA.toFixed(3) + " · ALT-B " + rB.toFixed(3)
     + "（+" + dB.toFixed(3) + " m）");
 }
-for (const tk of ["T1", "T2"]) {
-  const dest = tasks[tk].destination;
-  const ratio = r3(stubOf("BASE_OFF", tk) / stubOf("BASE_ON", tk));
-  if (ratio !== der.ai_off_approach_ratio_over_ai_on[dest]) fail(dest + " 接入距离比 " + ratio);
-  console.log("    " + dest + " 接入距离比 关闭/开启 / approach ratio off over on : " + ratio.toFixed(3));
+if (der.ai_off_approach_ratio_over_ai_on) {
+  /* v0.2 archives: AI-off re-attachment ratio (meaningful only under the old
+     nearest-in-state rule, where an off attachment still existed) */
+  for (const tk of ["T1", "T2"]) {
+    const dest = tasks[tk].destination;
+    const ratio = r3(stubOf("BASE_OFF", tk) / stubOf("BASE_ON", tk));
+    if (ratio !== der.ai_off_approach_ratio_over_ai_on[dest]) fail(dest + " 接入距离比 " + ratio);
+    console.log("    " + dest + " 接入距离比 关闭/开启 / approach ratio off over on : " + ratio.toFixed(3));
+  }
+}
+if (der.alt_b_approach_ratio_over_ai_on) {
+  /* v0.3 archives: under the fixed-interface rule BASE_OFF has no attachment
+     at all, so the meaningful access-cost ratio is ALT-B (the new interface)
+     against the AI-on baseline */
+  for (const tk of ["T1", "T2"]) {
+    const dest = tasks[tk].destination;
+    const ratio = r3(stubOf("ALT_B_OFF", tk) / stubOf("BASE_ON", tk));
+    if (ratio !== der.alt_b_approach_ratio_over_ai_on[dest]) fail(dest + " ALT-B 接入距离比 " + ratio);
+    console.log("    " + dest + " ALT-B 接入距离比 对开启 / ALT-B approach ratio over AI-on : " + ratio.toFixed(3));
+  }
 }
 console.log("");
 
@@ -413,23 +801,37 @@ const levelById = {};
 levels.levels.forEach((l) => { levelById[l.level_id] = l; });
 
 function ruleNode(claim) {
+  // 与桌面校验器同一语义（违例码登记表）：字段须为非空字符串——严格类型，不做字符串
+  // 强转（此前 String(v) 会把数字放行）；缺字段不再短路其余判据，逐条报全。
+  // Same semantics as the tabletop checker (violation-code registry): fields must be
+  // non-empty strings — strict typing, no coercion (String(v) used to let numbers
+  // through); a missing field no longer short-circuits the rest, every reason reports.
   const reasons = [];
+  const valid = {};
   for (const f of nodeSchema.required_fields) {
     const v = claim.node[f.field];
-    if (v === undefined || v === null || String(v).trim() === "") reasons.push("REQUIRED_FIELD_MISSING:" + f.field);
+    if (typeof v !== "string" || v.trim() === "") reasons.push("NODE_FIELD_MISSING:" + f.field);
+    else valid[f.field] = v;
   }
-  if (reasons.length === 0) {
-    const p = String(claim.node.ai_off_path).toLowerCase();
+  if (valid.ai_off_path) {
+    const p = valid.ai_off_path.toLowerCase();
     if (forb.forbidden_targets.some((x) => p.includes(String(x).toLowerCase()))) reasons.push(forb.violation_code);
-    const h = String(claim.node.human_handoff).toLowerCase();
-    if (!roleRule.required_tokens.some((x) => h.includes(String(x).toLowerCase()))) reasons.push(roleRule.violation_code);
-    const gid = claim.node.gate_id;
-    const enumField = nodeSchema.required_fields.find((f) => f.field === "gate_id");
-    if (enumField.allowed_values.indexOf(gid) === -1) reasons.push("ENUM_VALUE_INVALID:gate_id");
-    const lvl = levelById[claim.claimed_level];
-    if (!lvl) reasons.push("LEVEL_UNKNOWN:" + claim.claimed_level);
-    else if (lvl.gate_binding.gate_id !== "none" && lvl.gate_binding.gate_id !== gid) reasons.push(levels.gate_violation_code);
   }
+  if (valid.human_handoff) {
+    const h = valid.human_handoff.toLowerCase();
+    // v0.3.1：与 seb-tabletop-run.js 同一并集语义，词表已在版本闸门后按条文完成合格性校验。
+    // v0.3.1: same union semantics as the tabletop checker; the lexicon passed the
+    // text-stated eligibility check right after the version gate.
+    const roleTokens = ARC_LEXICON.length ? roleRule.required_tokens.concat(ARC_LEXICON) : roleRule.required_tokens;
+    if (!roleTokens.some((x) => h.includes(String(x).toLowerCase()))) reasons.push(roleRule.violation_code);
+  }
+  if (valid.gate_id) {
+    const enumField = nodeSchema.required_fields.find((f) => f.field === "gate_id");
+    if (enumField.allowed_values.indexOf(valid.gate_id) === -1) reasons.push("NODE_ENUM_INVALID:gate_id");
+  }
+  const lvl = levelById[claim.claimed_level];
+  if (!lvl) reasons.push("LEVEL_UNKNOWN:" + claim.claimed_level);
+  else if (valid.gate_id && lvl.gate_binding.gate_id !== "none" && lvl.gate_binding.gate_id !== valid.gate_id) reasons.push(levels.gate_violation_code);
   return { verdict: reasons.length ? "REJECT" : "ACCEPT", reasons };
 }
 

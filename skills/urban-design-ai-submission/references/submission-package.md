@@ -122,8 +122,11 @@ def sha256_file(path: pathlib.Path) -> str:
     return h.hexdigest()
 ```
 
-`scripts/finalize_submission.py` computes and writes all hashes automatically. Re-run it after
-every file change to keep `manifest.json` in sync.
+`scripts/finalize_submission.py` computes and writes all hashes when a scaffold is finalized for
+the first time. After changing an existing `ready_for_review` package, run
+`scripts/refresh_submission_manifest.py` to refresh its declared hashes, then rerun
+`scripts/self_check_submission.py --mark-self-checked --json`. Do not rerun the scaffold-only
+finalizer or edit hashes by hand.
 
 ## Professional Evidence
 

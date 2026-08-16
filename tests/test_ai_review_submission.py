@@ -20,6 +20,7 @@ from ai_review_submission import (  # noqa: E402
     content_preflight,
     is_organizer_owned_action,
     run_ai_review,
+    system_instructions,
     validate_base_url,
     validate_output_dir,
 )
@@ -127,6 +128,13 @@ class AIReviewSubmissionTests(unittest.TestCase):
             validate_base_url("http://example.com/v1")
         with self.assertRaisesRegex(ReviewError, "embed credentials"):
             validate_base_url("https://user:secret@example.com/v1")
+
+    def test_system_prompt_does_not_penalize_unsupplied_manifest_artifacts(self) -> None:
+        instructions = system_instructions()
+        self.assertIn("review_input_access_boundary", instructions)
+        self.assertIn("not proof that the participant omitted evidence", instructions)
+        self.assertIn("Do not penalize that limitation by itself", instructions)
+        self.assertIn("participant verification scripts", instructions)
 
     def test_output_inside_repo_must_use_ignored_review_root(self) -> None:
         validate_output_dir(ROOT, ROOT / ".maintainer-review" / "proposal")

@@ -1,0 +1,74 @@
+{
+ "schema_version": "0.1.0",
+ "assumptions": [
+  {
+   "id": "A-BOUNDARY-001",
+   "status": "provisional_used",
+   "statement": "总体设计范围与三处重点区使用仓库临时粗略边界（PROV-SITE-001 / PROV-KEY-001/002/003，provisional_constraint，official_boundary=false），仅用于生成、展示与自检。",
+   "impact": "所有面积、比例与图层位置均为临时口径；官方 polygon 发布后需整包重算 site_area、三区面积、land_use 分区、指标与图件。",
+   "recalculation_trigger": "官方红线/重点区 polygon 发布"
+  },
+  {
+   "id": "A-BOUNDARY-003",
+   "status": "provisional_used",
+   "statement": "brief 提供的 PROV-KEY-003 粗替代边界实际落位在北京北站一带（39.944–39.950），与 brief 自身依据表“公告任务涉及大钟寺站”（39.9653，provisional_boundaries_basis.md L26）相差约 2 km；brief 的 missing-data.md 自述三区精确 polygon 缺失。本方案按名称语义将大钟寺工作边界校正至大钟寺站周边（约 116.3329–116.3452, 39.9622–39.9684，72.3 ha，仍为 provisional）。",
+   "impact": "大钟寺段全部面积、POI 体检、句法指标与详设平面均按校正后的工作边界计算；官方 polygon 发布后需整包重算该区与全带指标。",
+   "recalculation_trigger": "官方大钟寺重点区 polygon 发布"
+  },
+  {
+   "id": "A-CONTROLS-001",
+   "status": "pending_professional_confirmation",
+   "statement": "容积率、建筑高度、建筑密度、绿地率、退线、道路红线、宗地权属、文保控制范围、市政管线等法定控制条件未公开。",
+   "impact": "本包所有相关指标统一 status=unknown 或标为概念建议；floor_area_ratio 等不给出审定值。",
+   "recalculation_trigger": "官方控规/任务书附件发布"
+  },
+  {
+   "id": "A-GEOMETRY-ROLE-001",
+   "status": "concept_design",
+   "statement": "land_use/buildings/roads/green_space/public_space/phasing 均为设计概念图层（geometry_role=design_proposal），用地分区为 400m 网格裁剪法概念分区；建筑为概念体量示意（低置信度），非建筑方案或拆改留结论。",
+   "impact": "图层用于设计讨论与指标复算演示；不得作为控规、工程或拆改留依据。"
+  },
+  {
+   "id": "A-CORRIDOR-001",
+   "status": "agent_inferred_reference",
+   "statement": "京张遗址公园走廊参考轴线由 OSM 铁路断点交叉位置与公开站点锚点推导（agent_inferred_reference），非官方公园红线。",
+   "impact": "走廊断点清单（7处）为几何口径；标高/权属/交通管制约束待正式数据补齐。"
+  },
+  {
+   "id": "A-OSM-001",
+   "status": "background_layer",
+   "statement": "OSM 现状道路/绿地/水系/站点数据（ODbL 署名）仅作现状底图与分析输入；现状公园边界为 OSM 口径。",
+   "impact": "不作为正式边界、控规或权属依据；图件需注明 OSM 来源。"
+  },
+  {
+   "id": "A-POI-001",
+   "status": "high_frequency_snapshot",
+   "statement": "高德 POI 为 2026-08-15 快照（12类 25,476 点，GCJ-02→WGS84 标准算法转换）；类别归属按高德 typecode。",
+   "impact": "POI 密度/混合度/缺口为快照口径；原始点位不公开转售，仅用聚合指标与密度场。"
+  },
+  {
+   "id": "A-COMPUTE-001",
+   "status": "proxy_models",
+   "statement": "Wilson λ（d0=2500m 十分钟创新圈锚点，exp(-d/d0) 代理）、渗流（100m 缓冲邻接、Batty 式启发代理）、标度律（n=98 概念单元）、空间句法（continuity 压缩图节点整合度代理）、分形（盒计数，尺度依赖分段拟合）、反事实（同口径零模型）均为如实声明的代理模型。",
+   "impact": "数值用于比较与方向判断，非点预测；理论常数（λc≈0.42, pc≈59.27%, β≈0.85/1.15, D≈1.6-1.8）引自原始文献，全部计算本次本地实跑。"
+  },
+  {
+   "id": "A-SCENARIO-001",
+   "status": "concept_suggestion",
+   "statement": "全部空间落地、活动、运营与政策建议均为概念建议/参考方案/供专业团队深化研究，不构成政府审定结论或实施承诺。",
+   "impact": "正文与矩阵中所有落地表述按此口径措辞。"
+  },
+  {
+   "id": "A-PHASING-001",
+   "status": "concept_phasing",
+   "statement": "三期分期为概念建议（近期主脊缝合与大钟寺/中期原点社区/远期众智园），非开发时序或审批结论。",
+   "impact": "分期图仅表达实施逻辑次序。"
+  },
+  {
+   "id": "A-NAMING-001",
+   "status": "brand_proposal",
+   "statement": "方案命名、Logo 与视觉方向为征集概念提案（agent.1 任务成果），未经商标检索与授权确认；正式使用需另行清权。",
+   "impact": "品牌元素仅作方案内展示。"
+  }
+ ]
+}

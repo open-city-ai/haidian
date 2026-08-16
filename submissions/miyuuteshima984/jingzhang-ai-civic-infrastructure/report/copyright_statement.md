@@ -105,7 +105,15 @@ Any future third-party image, font, code library, map layer, institutional logo 
 - `assets/figures/key-area-spatial-sections.svg` / `.en.svg` and rendered `key-areas.png` / `.en.png`: submission-original / AI-assisted spatial section diagrams. No third-party image, logo, map tile, font file or identifiable person is embedded; all people/buildings/trees are diagrammatic primitives, and the sections are conceptual rather than surveyed existing conditions.
 
 
-## v0.8 新增资产 / New assets
+## v0.9 新增资产 / New assets
 
-- `c7-civic-station-prototype*.svg`、重建的 `key-areas*.png` 与两份 JSON 均由本投稿在 v0.8 内原创生成；未使用第三方照片、Logo、地图瓦片或字体文件。
-- 15 个 observation slot 是未测工作结构，不含个人信息、真实坐标或现场数据。
+- `reality-constraint-design-response*.svg` 与重建的 `mobility-bluegreen*.png` 为 v0.9 原创图解，不复制官方图件。
+- `reference-plot-conditions.json` 只转录政府公开原件中的数值字段并明确不可外推；官方网页/原件链接保留在 `sources.json`。
+
+
+## v0.10 新增资产 / New assets
+
+- `three-public-promises*.svg`, rebuilt `site-overview*.png`, and `visual/assets/public-promises-contract.json`: submission-authored v0.10 design synthesis; no third-party visual asset embedded.
+
+### v0.14.s generated design assets
+The v0.14.s canonical PNG pairs, bilingual A3/A0 PDFs, visual HTML and route diagrams are original/AI-assisted geometric and typographic design outputs for this submission. They embed no third-party logos, remote imagery, map tiles or font files.

@@ -1,0 +1,227 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "edge_matrix",
+  "package_title": "12 边界条件 × 7 应急路径矩阵（可核验证据列）",
+  "scope_note": "每个 AI 决策必须先证明'AI 失效时如何有人兜底'，才考虑'AI 正常时如何工作'。本矩阵 12 条边界 × 7 种应急路径 = 84 个交叉节点；每个边界行有触发条件/自动降级/人工退路/停止条件/可核验证据 5 列。",
+  "generated_at": "2026-08-13T12:00:00Z",
+  "boundaries": [
+    {
+      "edge_id": "EDGE-01",
+      "condition_zh": "轮椅/盲杖与 AI 慢行导航冲突",
+      "condition_en": "Wheelchair / white cane vs AI slow-mobility nav",
+      "trigger": "智能推送路径未避开障碍",
+      "auto_degrade": "S4 全龄慢行降为\"推荐 + 物理路径\"双模",
+      "human_fallback": "物理铺装 + 客服 + 志愿者",
+      "stop_condition": "无障碍路径不连续即停",
+      "verifiable_evidence": [
+        "geometry/green_space.geojson#GR-001",
+        "metric:green_space_area_sqm"
+      ]
+    },
+    {
+      "edge_id": "EDGE-02",
+      "condition_zh": "老人无智能手机与 AI 服务",
+      "condition_en": "Elderly without smartphone vs AI services",
+      "trigger": "老人无法使用 AI 导览",
+      "auto_degrade": "S5/S6 立即切换为\"柜台 + 电话 + 纸面\"",
+      "human_fallback": "LIFE-D2 社区中心人工窗口",
+      "stop_condition": "30 分钟未响应即升级",
+      "verifiable_evidence": [
+        "geometry/buildings.geojson#BLD-001",
+        "assumption:A-AI-SCENARIO-PILOT-001"
+      ]
+    },
+    {
+      "edge_id": "EDGE-03",
+      "condition_zh": "跨语言访客导视",
+      "condition_en": "Cross-language visitor wayfinding",
+      "trigger": "多语种识别失败",
+      "auto_degrade": "S10 立即切换\"人工翻译入口\"",
+      "human_fallback": "GRN-B1 站点双语志愿者",
+      "stop_condition": "60 秒低置信度自动拒答",
+      "verifiable_evidence": [
+        "geometry/green_space.geojson#GR-001",
+        "source:HISTORY-ZHAN-TIANYOU"
+      ]
+    },
+    {
+      "edge_id": "EDGE-04",
+      "condition_zh": "儿童数据保护边界",
+      "condition_en": "Child data protection boundary",
+      "trigger": "监护人身份歧义",
+      "auto_degrade": "S6 立即禁止 AI 身份决策",
+      "human_fallback": "教师/家长人工审核",
+      "stop_condition": "任何自动决策触发即回滚",
+      "verifiable_evidence": [
+        "assumption:A-AI-GOVERNANCE-001",
+        "metric:scenario_node_count"
+      ]
+    },
+    {
+      "edge_id": "EDGE-05",
+      "condition_zh": "夜间/雨雪/眩光感知降级",
+      "condition_en": "Night / rain / glare perception degradation",
+      "trigger": "传感器失效或极端天气",
+      "auto_degrade": "R1 韧性态 + S9 自动驾驶暂停",
+      "human_fallback": "物理里程桩 + 人工值守",
+      "stop_condition": "准确率<80% 自动停服",
+      "verifiable_evidence": [
+        "source:BEIJING-CLIMATE-ADAPTATION-2024",
+        "assumption:A-RESILIENCE-MCDA-001"
+      ]
+    },
+    {
+      "edge_id": "EDGE-06",
+      "condition_zh": "活动日拥挤与排队冲突",
+      "condition_en": "Event-day crowding & queue conflict",
+      "trigger": "容量阈值",
+      "auto_degrade": "R2 韧性态 + 容量预警",
+      "human_fallback": "志愿者疏导 + 临时通道",
+      "stop_condition": "容量>120% 自动限流",
+      "verifiable_evidence": [
+        "metric:road_centerline_length_m",
+        "metric:scenario_node_count"
+      ]
+    },
+    {
+      "edge_id": "EDGE-07",
+      "condition_zh": "低速机器人混行",
+      "condition_en": "Low-speed robot mixed traffic",
+      "trigger": "机器人故障",
+      "auto_degrade": "S8 立即急停 + 人工回收",
+      "human_fallback": "物理红绿灯 + 值班员",
+      "stop_condition": "任何碰撞事件立即停止",
+      "verifiable_evidence": [
+        "geometry/public_space.geojson#PS-001",
+        "source:ISO-13482-SERVICE-ROBOT-SAFETY"
+      ]
+    },
+    {
+      "edge_id": "EDGE-08",
+      "condition_zh": "多源传感数据冲突",
+      "condition_en": "Multi-source sensor data conflict",
+      "trigger": "系统不一致",
+      "auto_degrade": "不强行给唯一答案",
+      "human_fallback": "显示冲突 + 人工仲裁",
+      "stop_condition": ">2 源冲突时停服",
+      "verifiable_evidence": [
+        "visual/assets/evidence-ledger.json",
+        "standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK"
+      ]
+    },
+    {
+      "edge_id": "EDGE-09",
+      "condition_zh": "弱网/断网/定位漂移",
+      "condition_en": "Weak network / disconnect / location drift",
+      "trigger": "网络中断",
+      "auto_degrade": "R2 韧性态 + 全离线降级",
+      "human_fallback": "离线电子地图 + 人工服务",
+      "stop_condition": "断网>30min 全场景停",
+      "verifiable_evidence": [
+        "source:BEIJING-METEOROLOGICAL-OPEN-DATA"
+      ]
+    },
+    {
+      "edge_id": "EDGE-10",
+      "condition_zh": "AI 医疗/公共服务导航",
+      "condition_en": "AI healthcare / public-services navigation",
+      "trigger": "误诊断风险",
+      "auto_degrade": "仅导航不诊断 + 强制转人工",
+      "human_fallback": "社区医生 + 120 急救",
+      "stop_condition": "任何疑似误诊立即停",
+      "verifiable_evidence": [
+        "source:WHO-URBAN-HEALTH-AND-GREEN"
+      ]
+    },
+    {
+      "edge_id": "EDGE-11",
+      "condition_zh": "商户智能体跨系统交接",
+      "condition_en": "Merchant agent cross-system handoff",
+      "trigger": "责任主体不清",
+      "auto_degrade": "明确责任+人工售后",
+      "human_fallback": "客服 + 平台运营",
+      "stop_condition": "责任主体未明即停",
+      "verifiable_evidence": [
+        "visual/assets/sc04-relay-receipt.json",
+        "depth:phasing_implementation"
+      ]
+    },
+    {
+      "edge_id": "EDGE-12",
+      "condition_zh": "极端高温下路线建议",
+      "condition_en": "Extreme-heat route recommendation",
+      "trigger": "体感温度>40℃",
+      "auto_degrade": "R2 韧性态 + 调整高敏感场景",
+      "human_fallback": "人工发布安全规则",
+      "stop_condition": "体感温度>45℃ 全场景人工",
+      "verifiable_evidence": [
+        "source:IPCC-AR6-URBAN-RISK",
+        "source:BEIJING-FLOOD-PLAN-2021-2025"
+      ]
+    }
+  ],
+  "emergency_paths": [
+    {
+      "path_id": "EP-1",
+      "name_zh": "物理路径兜底",
+      "name_en": "Physical-path fallback",
+      "ng6_step": "③ 接管 Handoff",
+      "trigger_logic": "AI 降级时物理标识/铺装必须立即接管",
+      "key_kpi": "非数字替代覆盖率 ≥95%"
+    },
+    {
+      "path_id": "EP-2",
+      "name_zh": "人工窗口服务",
+      "name_en": "Human-window service",
+      "ng6_step": "③ 接管 Handoff",
+      "trigger_logic": "老人/儿童/紧急场景下人工 ≤5 分钟响应",
+      "key_kpi": "人工窗口响应时长 ≤30 分钟"
+    },
+    {
+      "path_id": "EP-3",
+      "name_zh": "离线电子地图",
+      "name_en": "Offline e-map",
+      "ng6_step": "⑤ 复核 Review",
+      "trigger_logic": "断网场景下物理地图 + 楼层指引",
+      "key_kpi": "离线场景覆盖 100%"
+    },
+    {
+      "path_id": "EP-4",
+      "name_zh": "物理里程桩/导引",
+      "name_en": "Physical mile posts / guidance",
+      "ng6_step": "③ 接管 Handoff",
+      "trigger_logic": "极端天气下机器人道关闭",
+      "key_kpi": "物理里程桩 200m/个"
+    },
+    {
+      "path_id": "EP-5",
+      "name_zh": "急停+人工遥控",
+      "name_en": "Emergency-stop + manual remote",
+      "ng6_step": "⑥ 退场 Sunset",
+      "trigger_logic": "机器人/自动驾驶事故立即急停",
+      "key_kpi": "急停响应 ≤10s"
+    },
+    {
+      "path_id": "EP-6",
+      "name_zh": "申诉机制",
+      "name_en": "Appeal mechanism",
+      "ng6_step": "⑤ 复核 Review",
+      "trigger_logic": "任何场景下居民可申诉",
+      "key_kpi": "申诉响应 ≤7 天"
+    },
+    {
+      "path_id": "EP-7",
+      "name_zh": "责任主体明确",
+      "name_en": "Clear accountability",
+      "ng6_step": "① 立约 Declare",
+      "trigger_logic": "跨系统交接前责任必须可追溯",
+      "key_kpi": "责任公示 ≤24h"
+    }
+  ],
+  "matrix_summary": {
+    "total_boundaries": 12,
+    "total_emergency_paths": 7,
+    "total_cross_nodes": 84,
+    "evidence_boundary": "本矩阵为概念框架，每行字段的具体数值待 C01-C04 委托包实施后写入"
+  }
+}

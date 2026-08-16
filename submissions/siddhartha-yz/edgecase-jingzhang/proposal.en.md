@@ -4,7 +4,7 @@ author_github: "siddhartha-yz"
 language: "en"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
-iteration: "v1.17"
+iteration: "v1.26"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Turn the Centennial Jing-Zhang corridor from an AI showcase into civic infrastructure for exposing, co-testing, learning from, and repairing long-tail conditions before systems scale."
@@ -66,7 +66,7 @@ Urban renewal follows **operate before hardening**. Early actions can use signag
 
 **AI Origin Community / Human Edge Commons (T2)** asks whether systems remain usable for people who are not average users. Its advantages are university-origin innovation and everyday community life. Proposed interfaces include a staffed Human Override House, an accessibility co-test loop, multilingual wayfinding trials, a no-smartphone route for older residents, child-guardian ambiguity cases, and a community-service copilot desk. Participation is opt-in; every service must expose an AI route, a human route, and an offline/no-account route. Spatially the emphasis is on campus-park-community walking connections, open ground floors and small release/review spaces rather than spectacle. [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/public_space.geojson#PUBLIC-002]
 
-**Dazhongsi / Market Edge Street (T3)** tests low-risk capabilities that have passed T1 and T2 in ordinary commerce and high-turnover public settings: agent handoffs, device compatibility, trustworthy generated information, queues, weak connectivity and staffed after-sales service. The key metric is handoff quality, not autonomy. When a merchant agent, navigation service, payment terminal, public-service entry or content generator disagrees, users must know who is accountable and how to reach a person. Repository issue #1058 questions the current provisional KEY-003 location, so this proposal does not derive precise station radii, quadrant geometry or TOD intensity from that polygon. Those items must be recalculated from official geometry. [source:REPO-ISSUE-KEY003] [data:geometry/key_areas.geojson#PROV-KEY-003]
+**Dazhongsi / Market Edge Street (T3)** tests low-risk capabilities that have passed T1 and T2 in ordinary commerce and high-turnover public settings: agent handoffs, device compatibility, trustworthy generated information, queues, weak connectivity and staffed after-sales service. The key metric is handoff quality, not autonomy. When a merchant agent, navigation service, payment terminal, public-service entry or content generator disagrees, users must know who is accountable and how to reach a person. Repository issue #1029 questions the current provisional KEY-003 location, so this proposal does not derive precise station radii, quadrant geometry or TOD intensity from that polygon. Those items must be recalculated from official geometry. [source:REPO-ISSUE-KEY003] [data:geometry/key_areas.geojson#PROV-KEY-003]
 
 ![Key areas and T1/T2/T3 roles](assets/figures/key-areas.en.png)
 
@@ -125,14 +125,16 @@ The heritage narrative is intentionally methodological rather than pseudo-histor
 
 The first portfolio is small, reversible and testable:
 
-| ID | Project | First output | Gate before expansion |
-| --- | --- | --- | --- |
-| EC-01 | Edgecase Mile + six slow links | non-AI continuous base route | professional traffic/accessibility review |
-| EC-02 | Controlled Edge Court | E1 robotics/multimodal testing | emergency-stop and operating safety review |
-| EC-03 | Human Override House | E2 civic-service co-test | consent, privacy and staffed fallback ready |
-| EC-04 | Market Edge Forum | E3 agent/terminal handoff | official KEY-003 geometry + merchant permission |
-| EC-05 | Long-tail Atlas | failure types, fixes, retest log | de-identification and copyright review |
-| EC-06 | EDGECASE WEEK | annual open walks, challenges, reviews | event permit and public-safety plan |
+| ID | Project | Proposed accountable role | Independent verification role | First output and acceptance evidence | Gate before expansion |
+| --- | --- | --- | --- | --- | --- |
+| EC-01 | Edgecase Mile + six slow links | public-space operator | transport/accessibility professionals and user representatives | non-AI continuous base route; blind-walk records and barrier register | professional traffic/accessibility acceptance, with failures entered in a correction register |
+| EC-02 | Controlled Edge Court | pilot technology provider and site operator, jointly accountable | independent safety assessor | E1 robotics/multimodal testing; emergency-stop drill, incident log and retest version | written acceptance of incident response and emergency stop |
+| EC-03 | Human Override House | civic-service operator | community representatives plus privacy and accessibility advisers | E2 civic-service co-test; consent record, takeover latency and non-AI route audit | consent, data minimization, staffed fallback and exit route ready |
+| EC-04 | Market Edge Forum | merchant-service operator | merchant representatives and consumer-rights adviser | E3 agent/terminal handoff; accountability-chain drill and staffed-support reachability record | official KEY-003 geometry checked, merchant permission and accountability chain signed off |
+| EC-05 | Long-tail Atlas | accountable data custodian and publisher | independent reproduction team and copyright reviewer | failure types, fixes and retest log; reproducible sample and publication register | de-identification, copyright and cross-team reproduction accepted |
+| EC-06 | EDGECASE WEEK | event operator | public-safety, community and accessibility observers | annual open walks, challenges and reviews; issue-closure rate and exit-route audit | event permit and public-safety plan complete; unresolved issues returned to EC-02–05 |
+
+These are **accountability roles** suitable for a future procurement or pilot brief, not appointments of existing organizations. Before work begins, each role must be resolved to a named accountable body, named verifier, evidence repository and sign-off date; the same body must not both deliver a pilot and perform its final independent verification.
 
 Implementation policy should not create a regulatory exemption zone. It should create a stricter deployment gate. Every pilot needs an accountable owner, test question, data boundary, success/failure measures, human takeover, stop rule, retest version and exit plan. Completion of T1 is a prerequisite for T2; evidence from T2 is a prerequisite for T3. Ordinary public-space rights remain intact, and entering the park never counts as consent to participate. Companies receive higher-quality field evidence, not weaker public protections.
 
@@ -158,7 +160,7 @@ Long-term operational KPIs are defined without pretending to have baseline data:
 
 ## Risk, Copyright, and Compliance
 
-The first risk is geometry authority. The overall boundary and all key-area polygons are provisional rough geometry; repository issue #1058 adds a material warning for KEY-003. Every area-derived number in this package supports internal consistency and content review only. Official polygons must trigger a full regeneration of spatial layers, metrics, figures, HTML and PDFs. [source:BOUNDARY-SOURCE] [source:REPO-ISSUE-KEY003] The second risk is professional data absence: parcels, ownership, buildings, road redlines, utilities, fire, heritage and engineering data are missing, so the package makes no demolition, intensity or approval commitment. [depth:risk_missing_data]
+The first risk is geometry authority. The overall boundary and all key-area polygons are provisional rough geometry; repository issue #1029 adds a material warning for KEY-003. Every area-derived number in this package supports internal consistency and content review only. Official polygons must trigger a full regeneration of spatial layers, metrics, figures, HTML and PDFs. [source:BOUNDARY-SOURCE] [source:REPO-ISSUE-KEY003] The second risk is professional data absence: parcels, ownership, buildings, road redlines, utilities, fire, heritage and engineering data are missing, so the package makes no demolition, intensity or approval commitment. [depth:risk_missing_data]
 
 The third risk is AI governance. A poorly designed living test environment can turn vulnerable users into free test data. EDGECASE therefore requires opt-in participatory tests, data minimization, preference for aggregated/environment data, abstention under low confidence, staffed takeover, visible exit routes, stop rules and de-identified reporting. Health scenarios are navigation rather than diagnosis; child-guardian ambiguity does not trigger automatic identity decisions; public-safety agents do not replace the accountable event operator; commercial agents must expose the responsible service provider. Higher-risk uses require independent legal, ethical, safety and domain review before any deployment.
 
@@ -175,4 +177,6 @@ The fourth risk is copyright and representation. The five figures are generated 
 - Seoul Metropolitan Government Seoul AI Hub. [source:CASE-SEOUL-AI-HUB]
 - Mila Ventures research-to-venture ecosystem. [source:CASE-MILA]
 - Vector Institute research-to-adoption ecosystem. [source:CASE-VECTOR]
-- `metrics.json`, `assumptions.json`, `compliance_matrix.json`, `standard_matrix.json`, and `design_depth_matrix.json` are the machine-readable evidence index for this package.
+The machine-readable evidence index for this package is:
+
+- `metrics.json`, `assumptions.json`, `compliance_matrix.json`, `standard_matrix.json`, and `design_depth_matrix.json`

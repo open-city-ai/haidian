@@ -12,6 +12,32 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
 class SitePackageContractTests(unittest.TestCase):
+    def test_ready_revision_guides_render_before_manifest_refresh(self) -> None:
+        guides = {
+            "README.md": ("检查失败或收到修改意见时", "先重新渲染", "refresh_submission_manifest.py", "完整自检", "preflight"),
+            "skills/urban-design-ai-submission/SKILL.md": (
+                "13. If any check or review fails",
+                "render all derived HTML, figures, and PDFs",
+                "refresh_submission_manifest.py",
+                "complete self-check",
+                "preflight",
+            ),
+            "skills/urban-design-ai-submission/references/lightweight-workspace.md": (
+                "When a check fails or a reviewer requests changes",
+                "render_proposal_html.py",
+                "refresh_submission_manifest.py",
+                "self_check_submission.py",
+                "participant_preflight.py",
+            ),
+        }
+        for relative_path, steps in guides.items():
+            with self.subTest(path=relative_path):
+                text = (REPO_ROOT / relative_path).read_text(encoding="utf-8")
+                anchor, *ordered_steps = steps
+                paragraph = text[text.index(anchor):].split("\n", 1)[0]
+                positions = [paragraph.index(step) for step in ordered_steps]
+                self.assertEqual(positions, sorted(positions), ordered_steps)
+
     def test_site_package_json_files_parse(self) -> None:
         for path in (REPO_ROOT / "brief" / "site-package").rglob("*.json"):
             with self.subTest(path=path.relative_to(REPO_ROOT)):

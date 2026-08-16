@@ -1,0 +1,425 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "coordinated_research_area_announced_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/standards/references/project-official-announcement.md"
+      ],
+      "formula": "official announcement area value",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "overall_design_area_announced_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/standards/references/project-official-announcement.md"
+      ],
+      "formula": "official announcement area value",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_detailed_design_area_announced_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/standards/references/project-official-announcement.md"
+      ],
+      "formula": "official announcement area value",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ]
+    },
+    "key_area_total_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(key_area_features)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 163125.231,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(building_footprints)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-GEOMETRY-001"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2085155.638,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(green_space)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-GEOMETRY-001"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 22240.285,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(public_space)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-GEOMETRY-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.182703,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-GEOMETRY-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.001949,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-GEOMETRY-001"
+      ]
+    },
+    "road_area_sqm": {
+      "status": "known",
+      "value": 212872.243,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "active_mobility_length_m * 18m discussion width",
+      "confidence": "medium",
+      "assumptions": [
+        "A-ROAD-WIDTH-001"
+      ]
+    },
+    "road_area_ratio": {
+      "status": "known",
+      "value": 0.018652,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-ROAD-WIDTH-001"
+      ]
+    },
+    "active_mobility_length_m": {
+      "status": "known",
+      "value": 11826.236,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(road_centerlines)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-GEOMETRY-001"
+      ]
+    },
+    "phase_coverage_area_sqm": {
+      "status": "known",
+      "value": 11412833.104,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(union(phasing_bands)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-GEOMETRY-001"
+      ]
+    },
+    "land_use_0802_area_sqm": {
+      "status": "known",
+      "value": 1638826.442,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LU-001) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-GEOMETRY-001"
+      ]
+    },
+    "land_use_0803_area_sqm": {
+      "status": "known",
+      "value": 2589339.999,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LU-002) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-GEOMETRY-001"
+      ]
+    },
+    "land_use_1401_area_sqm": {
+      "status": "known",
+      "value": 2330404.377,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LU-003) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-GEOMETRY-001"
+      ]
+    },
+    "land_use_05_area_sqm": {
+      "status": "known",
+      "value": 2718803.173,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LU-004) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-GEOMETRY-001"
+      ]
+    },
+    "land_use_0702_area_sqm": {
+      "status": "known",
+      "value": 2135458.923,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(LU-005) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-GEOMETRY-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industry_test_scenarios)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(service_personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(public_learning_landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(conceptual_renewal_hooks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phasing_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "road_segment_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(road_centerline_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved FAR controls and an official site boundary are not included in the cleared site package."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "building_footprint_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Official building-density controls and a verified existing building inventory are not included."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_height_control",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Official height controls and heritage sightline conditions require professional confirmation."
+    },
+    "setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_setback_control",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Official setback, fire, road, and ownership conditions require professional confirmation."
+    },
+    "parking_capacity": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_parking_capacity",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Parking supply, demand, and transport-specialist data are not included."
+    },
+    "municipal_capacity": {
+      "status": "unknown",
+      "value": null,
+      "unit": "unknown",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_municipal_capacity",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Power, communications, drainage, rainwater, and utility capacity require specialist data."
+    }
+  }
+}

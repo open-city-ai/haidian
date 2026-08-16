@@ -223,7 +223,7 @@
     },
     "public_space_area_sqm": {
       "status": "known",
-      "value": 386029.357,
+      "value": 386029.358,
       "unit": "sqm",
       "source_files": [
         "geometry/public_space.geojson"
@@ -274,7 +274,7 @@
     },
     "building_footprint_area_sqm": {
       "status": "known",
-      "value": 1024945.373,
+      "value": 1024945.371,
       "unit": "sqm",
       "source_files": [
         "geometry/buildings.geojson"
@@ -314,7 +314,7 @@
     },
     "road_centerline_length_m": {
       "status": "known",
-      "value": 26459.47,
+      "value": 29735.166,
       "unit": "m",
       "source_files": [
         "geometry/roads.geojson"
@@ -504,45 +504,280 @@
       "confidence": "high",
       "assumptions": []
     },
-    "flagship_physical_prototype_count": {
-      "status": "known",
-      "value": 1,
-      "unit": "count",
-      "source_files": [
-        "proposal.md",
-        "visual/assets/c7-civic-station-contract.json",
-        "assets/figures/c7-civic-station-prototype.svg"
-      ],
-      "formula": "count(C7-CIVIC-STATION-01)",
-      "confidence": "high",
-      "assumptions": [
-        "Internal concept prototype; not a built asset."
-      ]
-    },
-    "preregistered_observation_slot_count": {
-      "status": "known",
-      "value": 15,
-      "unit": "count",
-      "source_files": [
-        "visual/assets/field-observation-register.json"
-      ],
-      "formula": "3 key areas * 5 preregistered observation categories",
-      "confidence": "high",
-      "assumptions": [
-        "Counts future observation slots, not completed field observations."
-      ]
-    },
-    "civic_station_operating_state_count": {
+    "official_constraint_anchor_count": {
       "status": "known",
       "value": 3,
       "unit": "count",
       "source_files": [
-        "visual/assets/c7-civic-station-contract.json"
+        "sources.json",
+        "visual/assets/reality-constraint-register.json"
       ],
-      "formula": "count(DAILY, CONTROLLED_TEST, AI_OFF)",
+      "formula": "count of three v0.9 official-public reality anchor groups",
       "confidence": "high",
       "assumptions": [
-        "Concept operating states."
+        "Counts source groups used for design response; not approvals."
+      ]
+    },
+    "reference_plot_condition_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/reference-plot-conditions.json"
+      ],
+      "formula": "count of public plot-condition reference records",
+      "confidence": "high",
+      "assumptions": [
+        "Reference records only; values are not transferred to proposal parcels."
+      ]
+    },
+    "design_response_rule_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/reality-constraint-register.json"
+      ],
+      "formula": "count(RR-01..RR-05)",
+      "confidence": "high",
+      "assumptions": [
+        "Internal design-response rules."
+      ]
+    },
+    "public_promise_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/public-promises-contract.json",
+        "assets/figures/key-areas.png",
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(ASC-01..ASC-03)",
+      "confidence": "high",
+      "assumptions": [
+        "Counts current v0.15.s AI SIDECAR CITY concept contracts, not completed field tests."
+      ]
+    },
+    "invariant_civic_route_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(ROAD-009..ROAD-011)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual ordinary-city route geometry; not official road or station alignment."
+      ]
+    },
+    "zhongzhiyuan_invariant_route_length_m": {
+      "status": "known",
+      "value": 1094.095,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD-009, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual centerline length; not a surveyed pedestrian route."
+      ]
+    },
+    "ai_origin_invariant_route_length_m": {
+      "status": "known",
+      "value": 1130.409,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD-010, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual centerline length; not a surveyed pedestrian route."
+      ]
+    },
+    "dazhongsi_invariant_route_length_m": {
+      "status": "known",
+      "value": 1051.184,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD-011, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual centerline length; Dazhongsi provisional polygon has known absolute-location risk."
+      ]
+    },
+    "invariant_civic_route_length_m": {
+      "status": "known",
+      "value": 3275.688,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(ROAD-009..ROAD-011), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual total only; not official network length."
+      ]
+    },
+    "critical_non_ai_route_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "proposal.md"
+      ],
+      "formula": "invariant routes with ai_dependency=none / 3 key-area routes",
+      "confidence": "high",
+      "assumptions": [
+        "Internal design-completeness metric; does not claim field performance."
+      ]
+    },
+    "distinct_key_area_spatial_type_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "assets/figures/key-areas.png"
+      ],
+      "formula": "count(campus court, neighborhood block, station-city hall)",
+      "confidence": "high",
+      "assumptions": [
+        "Design typologies, not statutory zoning categories."
+      ]
+    },
+    "ai_sidecar_type_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/buildings.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(test_pocket, care_porch, arrival_sidecar)",
+      "confidence": "high",
+      "assumptions": [
+        "Internal design typologies, not statutory land-use or building categories."
+      ]
+    },
+    "ai_sidecar_host_feature_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features with ai_sidecar_type among selected v0.15.s hosts)",
+      "confidence": "high",
+      "assumptions": [
+        "Counts conceptual host relationships only; no field-installed AI interface is claimed."
+      ]
+    },
+    "sidecar_host_public_space_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(PUBLIC-001, PUBLIC-004, PUBLIC-006 as sidecar hosts)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual public-space host relations only."
+      ]
+    },
+    "ai_off_route_preservation_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "proposal.md"
+      ],
+      "formula": "invariant routes whose geometry is unchanged between AI OFF and AI ON / 3",
+      "confidence": "high",
+      "assumptions": [
+        "Design-rule test; not a field performance claim."
+      ]
+    },
+    "new_ai_land_use_code_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(land-use codes created solely for AI in v0.15.s)",
+      "confidence": "high",
+      "assumptions": [
+        "AI is represented as an optional interface layer, not a new statutory land-use class."
+      ]
+    },
+    "sidecar_lifecycle_stage_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/buildings.geojson",
+        "geometry/public_space.geojson",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(base_city, attach_optional, operate_reviewable, clean_exit_restore)",
+      "confidence": "high",
+      "assumptions": [
+        "Internal spatial lifecycle, not an approved project procedure."
+      ]
+    },
+    "clean_exit_host_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(selected sidecar hosts with clean_exit_required=true)",
+      "confidence": "high",
+      "assumptions": [
+        "Counts conceptual host relationships; no installed AI asset is claimed."
+      ]
+    },
+    "clean_exit_restore_use_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "hosts with non-empty ordinary_restore_use / clean_exit_host_count",
+      "confidence": "high",
+      "assumptions": [
+        "Coverage proves design documentation only; field restoration performance is not measured."
+      ]
+    },
+    "clean_exit_route_preservation_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "invariant civic routes with clean_exit_route_preserved=true / 3",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual route geometry only; not an engineering alignment."
       ]
     }
   }

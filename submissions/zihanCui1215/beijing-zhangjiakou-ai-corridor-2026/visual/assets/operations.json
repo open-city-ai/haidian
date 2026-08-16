@@ -1,0 +1,51 @@
+{
+ "schema_version": "operations-v1",
+ "note_zh": "任务书点名的两项 required_outputs——荣誉展示体系（honor_display_system）与开发者社区运营（developer_community_operation）——从散文中取出写成结构。不是为升评级：两者本来就不是散文形状。荣誉墙是编号规则+三类标准件的硬约束；社区运营是四档周期+五步转化路径的进出条件。写成表任何人都能逐条对；写成段落只能读，然后信作者。文件里没有一个字段是新造的：画像 id、场景卡 id、图层锚点都在包内存在，构建时逐条断言（见 check_ops.py）。",
+ "note_en": "The two required_outputs the taskbook names — honor_display_system and developer_community_operation — taken out of prose and written as structure. Not to upgrade a grade: neither is prose-shaped. The honor wall is a numbering rule plus three component types with hard constraints; community operation is four cadences plus a five-step conversion path with entry and exit conditions. As a table anyone can check line by line; as a paragraph they can only be read and believed. No field here is invented: persona ids, scenario-card ids and layer anchors already exist in the package and are asserted at build time (see check_ops.py).",
+ "honor_display_system": {
+  "principle_zh": "以编号序列而非排名榜组织：编号按合入时间排列，不隐含优劣。",
+  "principle_en": "Organised as a numbered sequence, not a leaderboard: numbers run in merge order and imply no ranking.",
+  "why_not_a_leaderboard_zh": "排名会把贡献可压缩成单一标量，而开源贡献天然多维（代码、文档、评审、活动）。编号序列保留时间维度，抹去优劣维度。",
+  "components": [
+   {
+    "type": "wall_panel",
+    "anchor": "geometry/public_space.geojson#public_plaza_beijing_ai_o",
+    "rule_zh": "实体墙面板：按年度分组，编号 NNNN-序号，仅刻贡献者自定义署名与合入年月，不刻贡献数量。",
+    "capacity_zh": "每版 120 条，年增 2 版",
+    "data_source": "GitHub 公开 merged-PR 元数据（SC-05 场景卡）"
+   },
+   {
+    "type": "digital_mirror",
+    "anchor": "visual/index.html#honor-section",
+    "rule_zh": "实体墙的数字镜像页：同一编号体系，含指向原 PR 的链接；可检索，不可点赞（无比较则无排名）。",
+    "capacity_zh": "全量",
+    "data_source": "荣誉墙 JSON 快照（与实体墙同源同步，延迟≤24h）"
+   },
+   {
+    "type": "removal_service",
+    "anchor": "operations.json#honor_display_system.components[2]",
+    "rule_zh": "任何贡献者可随时申请移除自己的条目，处理周期≤30天，移除后编号永久空缺不回收（历史诚实）。",
+    "capacity_zh": "不限",
+    "data_source": "社区委员会工单"
+   }
+  ],
+  "annual_process_zh": "每年固定日期（开源贡献纪念日，见活动品牌 IP）由社区委员会公示候选名单→15日异议期→刻录。异议处理见 SC-05 场景卡 exit 条件。"
+ },
+ "developer_community_operation": {
+  "cadences": [
+   {"id": "OPS-1", "cycle": "weekly", "what_zh": "开发者散步道固定开放日：路线维护+场景卡 PoC 演示（SC-07/SC-10 锚点设施）", "owner": "社区运营组+志愿者"},
+   {"id": "OPS-2", "cycle": "monthly", "what_zh": "社区共治会：场景开放申请评审（SC-09 锚点）、荣誉墙异议处理、投诉复盘", "owner": "社区委员会（席位构成见下）"},
+   {"id": "OPS-3", "cycle": "quarterly", "what_zh": "测试平台开放日：三类测试平台对外开放申请，公示准入结果与失败案例", "owner": "平台运营方+技术委员会"},
+   {"id": "OPS-4", "cycle": "annual", "what_zh": "开发者朝圣之旅+开源贡献纪念日：年度荣誉墙刻录、社区年报发布", "owner": "活动品牌 IP 运营组"}
+  ],
+  "committee_seats_zh": "社区委员会 9 席：开发者代表 3（年度荣誉墙入选者选举产生）、居民代表 2（AI原点社区与大钟寺片区各 1）、组织方代表 2、独立技术伦理代表 1、青少年观察员 1（有发言权无表决权）。",
+  "conversion_path": [
+   {"step": 1, "name_zh": "开源贡献识别", "entry": "GitHub merged-PR 元数据自动登记", "exit": "进入荣誉墙候选名单"},
+   {"step": 2, "name_zh": "兴趣社群沉淀", "entry": "参加任一 OPS-1 开放日", "exit": "加入开发者散步道社区（≥2次参与）"},
+   {"step": 3, "name_zh": "场景共建邀请", "entry": "社区成员提交场景 PoC 申请", "exit": "通过 OPS-2 评审，获得 1 张场景卡沙箱权限"},
+   {"step": 4, "name_zh": "联合验证", "entry": "沙箱 PoC 达到场景卡 KPI 阈值", "exit": "进入测试平台正式验证（OPS-3 准入）"},
+   {"step": 4, "name_zh": "长期机构合作", "entry": "验证通过且无未决合规问题", "exit": "联合实验室/企业落地协议"}
+  ],
+  "open_data_rule_zh": "四档周期的全部会议纪要、准入名单、异议处理结果以 CC BY 4.0 公开，接受全程社区监督。"
+ }
+}

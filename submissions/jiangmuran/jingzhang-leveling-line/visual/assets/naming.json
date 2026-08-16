@@ -1,0 +1,227 @@
+{
+ "generated_by": "analysis/build_naming.py",
+ "name_zh": "京张水准线",
+ "name_en": "THE LEVELING LINE",
+ "why_zh": "名字不是修辞，是方法的名字。水准测量的方法不是「测得准」，是「测得回来」——绕一周回到原点，闭合差超限则整段重测。**这条百年前的规矩就是本方案对「一座城市凭什么信任它的人工智能」的回答**，所以方案以它命名。「京张」是这条线所沿的铁路，也是这套方法在这里成立的理由。",
+ "why_en": "The name is not rhetoric; it is the name of the method. Levelling is not about measuring precisely but about measuring your way back — round the circuit to the origin, and over tolerance the whole route is re-surveyed. **That hundred-year-old rule is this proposal's answer to the question of what a city should trust its artificial intelligence on**, so the proposal is named after it. Jing-Zhang is the railway the line follows, and the reason the method belongs here.",
+ "mark_zh": "标志画的是方法本身：基准出发、抬升、回落，却没有落回基准——那道红色高差就是闭合差。构造与应用见 FIG.07，封面 assets/media/cover.png 是同一张图。",
+ "mark_en": "The mark draws the method: the datum departs, rises and falls, and does not land back on the datum — the red gap is the closure error. Construction and applications on FIG.07; the cover at assets/media/cover.png is the same drawing.",
+ "rule_zh": "**每一个标识符都属于一个已公布的族，并且只属于一个。** 族名说明它是什么，数字说明它在族里的位置；有等级的族把等级放在第一位数字，因此编号读出来就是它的行为。规则由 analysis/naming_qa.py 对包内实际出现的每一个标识符逐一核对，同时要求没有任何一条规则是空转的。",
+ "rule_en": "**Every identifier belongs to one published family and to exactly one.** The family says what it is and the number says where it sits; ordinal families put the order in the leading digit, so the identifier reads as its own behaviour. analysis/naming_qa.py checks every identifier actually present against these rules, and requires that no rule matches nothing.",
+ "families": [
+  {
+   "family": "BM",
+   "pattern": "^BM-(0|1|2|2\\d|3\\d{2})$",
+   "meaning_zh": "水准点，按**位数**分等而不是按首位数字：`BM-0` 原点；`BM-1`、`BM-2` 一等（两处，年度复测）；`BM-2x` 二等（季度复测）；`BM-3xx` 三等（月度复测）。**这条不是「首位即等级」**——那条更好记，但与本包一直在用的导视编号语法相反，也与 `public_space.geojson` 里每个点自带的 `benchmark_order` 相反（E162）。位数决定等级，等级决定复测周期，`naming_qa.py` 拿两者逐点对账。",
+   "meaning_en": "A benchmark, graded by the **number of digits** rather than by the leading one: `BM-0` is the origin; `BM-1` and `BM-2` are first order, read yearly; `BM-2x` is second order, quarterly; `BM-3xx` is third order, monthly. **It is not \"the leading digit is the order\"** — that rule is easier to remember and contradicts both this package's own signage syntax and the `benchmark_order` each point carries in `public_space.geojson` (E162). Digits fix the order, the order fixes the cadence, and `naming_qa.py` reconciles the two point by point.",
+   "used_in": "geometry/public_space.geojson, roads.geojson 的 benchmark_sequence, 场景卡, 图纸",
+   "example": "BM-301"
+  },
+  {
+   "family": "ROAD",
+   "pattern": "^ROAD-\\d{3}$",
+   "meaning_zh": "线性要素。001 为主脊，002/003 为两条附合路线，004 起为测点接入支线，101 起为东西缝合点。",
+   "meaning_en": "A linear feature. 001 is the spine, 002 and 003 the two survey routes, 004 upward the benchmark spurs, and 101 upward the east-west stitching points.",
+   "used_in": "geometry/roads.geojson",
+   "example": "ROAD-001"
+  },
+  {
+   "family": "LU",
+   "pattern": "^LU-(B?\\d{2,3})$",
+   "meaning_zh": "用地地块。带 B 的为建筑所在地块，与 BLDG 一一对应。",
+   "meaning_en": "A land-use parcel. The B form is a parcel carrying a building and pairs with a BLDG id.",
+   "used_in": "geometry/land_use.geojson",
+   "example": "LU-B01"
+  },
+  {
+   "family": "BLDG",
+   "pattern": "^BLDG-\\d{3}$",
+   "meaning_zh": "建筑基底。",
+   "meaning_en": "A building footprint.",
+   "used_in": "geometry/buildings.geojson",
+   "example": "BLDG-001"
+  },
+  {
+   "family": "PUBLIC",
+   "pattern": "^PUBLIC-\\d{3}$",
+   "meaning_zh": "公共测点：水准点所在的可停留公共空间。",
+   "meaning_en": "A public reading point: the stayable public space a benchmark sits in.",
+   "used_in": "geometry/public_space.geojson",
+   "example": "PUBLIC-001"
+  },
+  {
+   "family": "GREEN",
+   "pattern": "^GREEN-\\d{3}$",
+   "meaning_zh": "绿地要素。",
+   "meaning_en": "A green-space feature.",
+   "used_in": "geometry/green_space.geojson",
+   "example": "GREEN-001"
+  },
+  {
+   "family": "CONSTRAINT",
+   "pattern": "^CONSTRAINT-\\d{3}$",
+   "meaning_zh": "约束要素：本方案不动的地方。",
+   "meaning_en": "A constraint: ground this proposal does not touch.",
+   "used_in": "geometry/constraints.geojson",
+   "example": "CONSTRAINT-001"
+  },
+  {
+   "family": "PHASE",
+   "pattern": "^PHASE-\\d{3}$",
+   "meaning_zh": "分期范围。推进由闭合结果决定，不由日期决定。",
+   "meaning_en": "A phasing extent. Advanced by closure results rather than by dates.",
+   "used_in": "geometry/phasing.geojson",
+   "example": "PHASE-001"
+  },
+  {
+   "family": "SITE",
+   "pattern": "^SITE-\\d{3}$",
+   "meaning_zh": "场地边界（临时）。",
+   "meaning_en": "The site boundary, provisional.",
+   "used_in": "geometry/site_boundary.geojson",
+   "example": "SITE-001"
+  },
+  {
+   "family": "PROV-KEY",
+   "pattern": "^PROV-KEY-\\d{3}$",
+   "meaning_zh": "重点区范围。**PROV 前缀是承认**：这三个范围是推定的，不是官方的。",
+   "meaning_en": "A key-area extent. **The PROV prefix is an admission**: these three are inferred, not official.",
+   "used_in": "geometry/key_areas.geojson",
+   "example": "PROV-KEY-001"
+  },
+  {
+   "family": "A",
+   "pattern": "^A-[A-Z][A-Z-]*-\\d{3}$",
+   "meaning_zh": "假设。中段是它管的事，末段是序号；每条假设都带推导、后果与关闭条件。",
+   "meaning_en": "An assumption. The middle names what it governs and the tail is a serial; each carries a derivation, a consequence and a closure condition.",
+   "used_in": "assumptions.json, metrics.json 的 assumption_ids",
+   "example": "A-CLOSURE-002"
+  },
+  {
+   "family": "S",
+   "pattern": "^S\\d{2}$",
+   "meaning_zh": "场景卡。十二张，各带八个字段与一条无AI等价路径。",
+   "meaning_en": "A scenario card. Twelve of them, each with eight fields and a non-AI equivalent path.",
+   "used_in": "visual/assets/scenario_cards.json",
+   "example": "S08"
+  },
+  {
+   "family": "P",
+   "pattern": "^P\\d$",
+   "meaning_zh": "人物画像。九个，正文与场景卡里的每一个 P 编号都可被逐个断言。",
+   "meaning_en": "A persona. Nine of them; every P number in the prose and the cards is assertable.",
+   "used_in": "visual/assets/personas.json",
+   "example": "P4"
+  },
+  {
+   "family": "CASE-C",
+   "pattern": "^CASE-C\\d-[A-Z][A-Z0-9-]*$",
+   "meaning_zh": "国际案例。只引机制，不引管辖权、数值与适用条件。",
+   "meaning_en": "An international case. The mechanism is cited; its jurisdiction, numbers and conditions of application are not.",
+   "used_in": "sources.json",
+   "example": "CASE-C2-EU-AI-ACT-RISK-TIERS"
+  },
+  {
+   "family": "clause",
+   "pattern": "^\\d+(\\.\\d+)+(\\.[a-z]+)?$",
+   "meaning_zh": "合规矩阵的条目编号，**取自主办方文件的条款编号**，不由本方案编制；保持原样是为了让它与出处一眼对得上；条款下另有「必选项」清单时，回答该清单的一行加后缀 `.required`，这一段后缀是本方案的。",
+   "meaning_en": "A clause number in the compliance matrix, **taken from the organisers' own numbering** and not coined here; left as it is so the join to the source is visible at a glance.",
+   "used_in": "compliance_matrix.json",
+   "example": "1.5.1.1"
+  },
+  {
+   "family": "metric",
+   "pattern": "^[a-z][a-z0-9_]{2,}$",
+   "meaning_zh": "指标标识符，snake_case。每一项带状态、单位、公式、来源文件与证据等级；未知者保持 unknown 并写明前置条件。",
+   "meaning_en": "A metric identifier in snake_case. Each carries a status, unit, formula, source files and an evidence class; unknown ones stay unknown with their preconditions stated.",
+   "used_in": "metrics.json, compliance_matrix.json 的 metrics",
+   "example": "key_area_count"
+  },
+  {
+   "family": "self_check",
+   "pattern": "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)+$",
+   "meaning_zh": "自检检查项，UPPER_SNAKE。四道由主办方脚本实跑，其余为本包自设并逐条留档。",
+   "meaning_en": "A self-check id in UPPER_SNAKE, always more than one word — the underscore is what keeps it apart from an erratum id. Four are run by the organisers' script; the rest are this package's own and are persisted one by one.",
+   "used_in": "self_check.json, compliance_matrix.json 的 self_check_ids",
+   "example": "KEY_AREAS_TRUST"
+  },
+  {
+   "family": "agent",
+   "pattern": "^agent\\.\\d$",
+   "meaning_zh": "任务书的六项 agent 任务。",
+   "meaning_en": "One of the taskbook's six agent tasks.",
+   "used_in": "visual/assets/taskbook_coverage.json",
+   "example": "agent.1"
+  },
+  {
+   "family": "E",
+   "pattern": "^E\\d{1,3}$",
+   "meaning_zh": "勘误。按发现顺序编号，按错误的**形状**分类。",
+   "meaning_en": "An erratum. Numbered in the order found and classified by the **shape** of the error.",
+   "used_in": "visual/assets/errata.json, changelog.md",
+   "example": "E156"
+  },
+  {
+   "family": "M",
+   "pattern": "^M\\d{1,3}$",
+   "meaning_zh": "变异测试台里的一处蓄意缺陷，以及它必须触发的那道闸门。",
+   "meaning_en": "One deliberate defect in the mutation harness, and the gate it must trip.",
+   "used_in": "visual/assets/gate_mutation.json",
+   "example": "M48"
+  },
+  {
+   "family": "FIG",
+   "pattern": "^FIG\\.\\d{2}$",
+   "meaning_zh": "图纸。FIG.00–FIG.33 连续编号，中英各一套。",
+   "meaning_en": "A drawing sheet. FIG.00 to FIG.33, continuous, in Chinese and English.",
+   "used_in": "assets/figures/, drawings/",
+   "example": "FIG.30"
+  },
+  {
+   "family": "RT",
+   "pattern": "^RT-[NS]$",
+   "meaning_zh": "附合路线：北、南各一条，都闭合于 BM-0。",
+   "meaning_en": "A survey route: one north, one south, each closing at BM-0.",
+   "used_in": "geometry/roads.geojson 的 route_id",
+   "example": "RT-N"
+  },
+  {
+   "family": "F",
+   "pattern": "^F[123]$",
+   "meaning_zh": "限差等级。F1 最严（涉人身安全或行政决定）、F2 中（涉个人权益）、F3 宽（纯信息服务）。**按后果严重度分级，不按技术复杂度。**",
+   "meaning_en": "A tolerance tier. F1 strictest — bodily safety or an administrative decision; F2 — individual rights; F3 — information only. **Graded by consequence, never by technical difficulty.**",
+   "used_in": "场景卡, 合规矩阵",
+   "example": "F1"
+  },
+  {
+   "family": "R",
+   "pattern": "^R[1-4]$",
+   "meaning_zh": "近期项目。R1–R4，四项，各带闭合条件。",
+   "meaning_en": "A near-term project, R1 to R4, each with a closure condition.",
+   "used_in": "更新项目清单",
+   "example": "R1"
+  }
+ ],
+ "document_ids": [
+  "SITE-PACKAGE",
+  "SOURCE-REGISTRY",
+  "PROCESSED-FACT-PACK",
+  "BOUNDARY-SOURCE",
+  "KEY-AREA-SOURCE",
+  "OFFICIAL-ANNOUNCEMENT",
+  "AGENT-TASKBOOK",
+  "FIELD-CENSUS-2026-08",
+  "OSM-REFERENCE-2026-08",
+  "BARRIER-FREE-ENVIRONMENT-LAW",
+  "GENERATIVE-AI-INTERIM-MEASURES",
+  "ELDERLY-SMART-TECH-PLAN",
+  "MOHURD-URBAN-DESIGN-MEASURES",
+  "MOHURD-CONTROL-DETAILED-PLANNING",
+  "MNR-LAND-USE-CLASSIFICATION-GUIDE",
+  "MOHURD-ARCH-DESIGN-DEPTH-2016"
+ ],
+ "limits_zh": [
+  "命名系统是本方案的内部约定，不是行业标准，也不主张任何管辖权。",
+  "族名与官方编码无关：land_use_code 用的是官方分类编码，不受本表约束。"
+ ]
+}

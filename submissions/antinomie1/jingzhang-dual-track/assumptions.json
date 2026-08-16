@@ -1,0 +1,45 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls (FAR, height, density, green ratio, setbacks), road redlines, ownership, municipal utilities and engineering constraints are not public in the site package and must be confirmed from official attachments before any statutory use.",
+      "impact": "This package can be reviewed as a formal AI submission on the design layers and disclosed provisional boundaries; all statutory controls remain pending official data.",
+      "recalculation_trigger": "Official regulatory-planning conditions or qualification-package attachments are published."
+    },
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "provisional_constraint",
+      "statement": "The submitted site boundary and the three key-area polygons are the repository's provisional rough geometry (PROV-SITE-001 / PROV-KEY-001/002/003, official_boundary=false, boundary_precision=provisional_rough), derived from announcement text boundaries and area fitting in EPSG:4548.",
+      "impact": "Boundary-based areas are disclosed as provisional; they are not an official redline, approval basis or precise-area basis. Organizer data gaps do not block content scoring.",
+      "recalculation_trigger": "Official SITE_BOUNDARY and KEY_AREA polygons or cleared CAD/GIS/PDF attachments are published; all geometry, metrics, figures, drawings and HTML must then be regenerated."
+    },
+    {
+      "id": "A-KEY003-OFFSET-001",
+      "status": "documented_data_issue",
+      "statement": "Per community verification in Issue #1029, provisional polygon PROV-KEY-003 (Dazhongsi AI industry cluster) has its centroid near Beijing North Station, about 2.26 km from Dazhongsi metro station; the polygon is a sequential area-fit placeholder and is not station-anchored.",
+      "impact": "This proposal keeps the upstream provisional geometry unchanged (community consensus: do not shift central provisional geometry), discloses the offset, and anchors all Dazhongsi narrative to the announced task anchor (Dazhongsi metro station) rather than to polygon coordinates.",
+      "recalculation_trigger": "Maintainers publish a corrected, station-anchored official key-area polygon; affected layers/metrics are then recalculated in one batch."
+    },
+    {
+      "id": "A-BUILDING-001",
+      "status": "conceptual_massing",
+      "statement": "Building footprints and the concept total floor area are conceptual massing derived from the submitted geometry with assumed floor counts; they are not statutory FAR, density, height or demolition/renovation conclusions.",
+      "impact": "concept_total_floor_area_sqm is a low-confidence design quantity only; floor_area_ratio stays unknown until official controls arrive.",
+      "recalculation_trigger": "Official building stock, ownership or regulatory-planning data is provided."
+    },
+    {
+      "id": "A-CONCEPT-001",
+      "status": "conceptual_suggestion",
+      "statement": "All spatial moves, land-use allocations, scenario nodes, landmark plazas, event and operation arrangements are conceptual suggestions or reference schemes for professional teams to deepen; they are not approved planning, confirmed government action or implementation commitments.",
+      "impact": "Nothing in this package should be read as statutory planning, engineering feasibility or an approved project pipeline."
+    },
+    {
+      "id": "A-RECALC-001",
+      "status": "recalculation_contract",
+      "statement": "All precision-sensitive metrics are recalculated from the submitted geometry in EPSG:4548; when official geometry is supplied, the full chain (geometry, metrics, figures, drawings, visual HTML, matrices and manifest hashes) is regenerated, not patched piecemeal.",
+      "impact": "The proposal's evidence chain remains reproducible from the submitted package at every revision."
+    }
+  ]
+}

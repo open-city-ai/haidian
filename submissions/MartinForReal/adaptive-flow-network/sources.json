@@ -1,0 +1,400 @@
+{
+  "schema_version": "0.1.0",
+  "sources": [
+    {
+      "id": "SITE-PACKAGE",
+      "path": "brief/site-package/",
+      "source_type": "official_public",
+      "usage": "Project brief, enums, allowed design space, ranges, and schemas."
+    },
+    {
+      "id": "SOURCE-REGISTRY",
+      "path": "data/source_registry.json",
+      "source_type": "repository_public_registry",
+      "usage": "Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials."
+    },
+    {
+      "id": "PROCESSED-FACT-PACK",
+      "path": "data/processed/agent_fact_pack.md",
+      "source_type": "repository_processed_reference",
+      "usage": "Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source."
+    },
+    {
+      "id": "BOUNDARY-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "Submitted site boundary geometry source (provisional)."
+    },
+    {
+      "id": "KEY-AREA-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "Three required detailed-design key area boundaries (provisional)."
+    },
+    {
+      "id": "OFFICIAL-ANNOUNCEMENT",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "source_type": "official_public",
+      "usage": "Official announcement tasks, scope levels, key areas, language, and deliverable context."
+    },
+    {
+      "id": "AGENT-TASKBOOK",
+      "path": "brief/site-package/agent_taskbook.json",
+      "source_type": "user_provided_cleared",
+      "usage": "Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause."
+    },
+    {
+      "id": "METHOD-PHYSARUM-TERO-2010",
+      "citation": "Tero A., Takagi S., Saigusa T., Ito K., Bebber D.P., Fricker M.D., Yumiki K., Kobayashi R., Nakagaki T. Rules for Biologically Inspired Adaptive Network Design. Science 327(5964):439-442, 2010. doi:10.1126/science.1177894",
+      "source_type": "external_academic_literature",
+      "usable_for": "background_only",
+      "usage": "自适应导管网络方法的原始出处；本方案据此实现流量-导管正反馈，并采用其 cost/efficiency/fault-tolerance 三元指标。",
+      "limitation_zh": "学术文献，仅作方法依据，不作为场地事实或法定依据。",
+      "url": "https://doi.org/10.1126/science.1177894",
+      "publisher": "American Association for the Advancement of Science (AAAS), journal Science",
+      "published_at": "2010-01-22",
+      "accessed_date": "2026-08-16",
+      "not_usable_for": [
+        "any Haidian or Beijing site fact",
+        "any planning standard or statutory control figure",
+        "any government approval or endorsement",
+        "a physics/slime-mould laboratory result does not by itself validate an urban planning conclusion"
+      ]
+    },
+    {
+      "id": "METHOD-PHENOTYPES-RK-2019",
+      "citation": "Ronellenfitsch H., Katifori E. Phenotypes of Vascular Flow Networks. Phys. Rev. Lett. 123:248101, 2019. doi:10.1103/PhysRevLett.123.248101",
+      "source_type": "external_academic_literature",
+      "usable_for": "background_only",
+      "usage": "同一方程通过反馈指数在层级树相与毛细丛相之间连续变化，是本方案骨架-毛细双相的理论依据。",
+      "limitation_zh": "学术文献，仅作方法依据。",
+      "url": "https://doi.org/10.1103/PhysRevLett.123.248101",
+      "publisher": "American Physical Society (Physical Review Letters)",
+      "published_at": "2019-12-12",
+      "accessed_date": "2026-08-16",
+      "not_usable_for": [
+        "any urban-planning, Haidian or Chinese-policy authority",
+        "empirical evidence about street, transit or infrastructure networks",
+        "a biophysics result about vascular flow networks does not by itself validate an urban planning conclusion"
+      ]
+    },
+    {
+      "id": "METHOD-LOOPS-KATIFORI-2010",
+      "citation": "Katifori E., Szollosi G.J., Magnasco M.O. Damage and Fluctuations Induce Loops in Optimal Transport Networks. Phys. Rev. Lett. 104:048704, 2010. doi:10.1103/PhysRevLett.104.048704",
+      "source_type": "external_academic_literature",
+      "usable_for": "background_only",
+      "usage": "环路冗余只有在负荷波动或存在断裂风险时才是最优；本方案据此以多情景波动负荷证成环路，而非以形态类比证成。",
+      "limitation_zh": "学术文献，仅作方法依据。",
+      "url": "https://doi.org/10.1103/PhysRevLett.104.048704",
+      "publisher": "American Physical Society (Physical Review Letters)",
+      "published_at": "2010-01-29",
+      "accessed_date": "2026-08-16",
+      "not_usable_for": [
+        "empirical evidence about urban street networks, Haidian, or any real-world planning outcome",
+        "validation of the proposed design's performance",
+        "a physics result about vascular/leaf-venation flow networks does not by itself validate an urban planning conclusion"
+      ]
+    },
+    {
+      "id": "METHOD-TWO-RESILIENCE-2026",
+      "citation": "Mukherjee O., Zhou D., Pal A., Watson J., Gonzalez M., Chatterjee S., Ganguly A.R. Resilience of urban metro rail networks globally guided by mesoscale and connectivity attributes. npj Sustainable Mobility and Transport 3, article 31, 2026. doi:10.1038/s44333-026-00100-9",
+      "source_type": "external_academic_literature",
+      "usable_for": "background_only",
+      "usage": "45 个地铁系统的实证显示失效韧性与恢复韧性结构驱动不同；本方案据此将韧性拆为两项分别计量。",
+      "limitation_zh": "学术文献；其结论来自地铁网络样本，迁移到本场地属方法借用，需专业团队复核。",
+      "url": "https://www.nature.com/articles/s44333-026-00100-9",
+      "publisher": "Springer Nature — npj Sustainable Mobility and Transport",
+      "published_at": "2026-04",
+      "accessed_date": "2026-08-16",
+      "not_usable_for": [
+        "empirical operational or ridership evidence",
+        "a real disruption case study (the work is a topological simulation over 7 synthetic node-removal/addition strategies; the only applied demo is a Boston proof-of-concept retrofit)",
+        "anything Beijing- or Haidian-specific",
+        "asserting a specific day-of-month publication date"
+      ]
+    },
+    {
+      "id": "METHOD-MCR-ECOLOGICAL-SECURITY",
+      "citation": "Yu K. Security patterns and surface model in landscape ecological planning. Landscape and Urban Planning 36(1):1-17, 1996. doi:10.1016/S0169-2046(96)00331-3. MCR model originates with Knaapen J.P., Scheffer M., Harms B., Estimating habitat isolation in landscape planning, Landscape and Urban Planning 23(1):1-16, 1992, doi:10.1016/0169-2046(92)90060-D",
+      "source_type": "external_academic_literature",
+      "usable_for": "background_only",
+      "usage": "阻力面构造沿用生态安全格局 MCR 范式，使权重可被审计与重算。",
+      "limitation_zh": "方法范式借用；本方案阻力权重为自设计假设，非官方管控值。",
+      "url": "https://doi.org/10.1016/S0169-2046(96)00331-3",
+      "publisher": "Elsevier (journal: Landscape and Urban Planning)",
+      "published_at": "1996-10",
+      "accessed_date": "2026-08-16",
+      "not_usable_for": [
+        "crediting the minimum cumulative resistance (MCR) model itself to Yu — MCR is from Knaapen, Scheffer & Harms (1992); write 'MCR (Knaapen et al. 1992), applied to ecological security patterns by Yu (1996)'",
+        "any statutory, regulatory or governmental status in China",
+        "treating the submission's resistance weights as official control values"
+      ]
+    },
+    {
+      "id": "SITE-JZ-PARK-PHASE2",
+      "citation": "北京市海淀区人民政府办公室《关于海淀区2025年国民经济和社会发展计划执行情况与2026年国民经济和社会发展计划的报告》，2026年1月19日印发，2026-02-06 公开。",
+      "url": "https://zyk.bjhd.gov.cn/zwdt/zcwj/202602/t20260206_4805099.shtml",
+      "source_type": "public_media_report",
+      "usable_for": "background_only",
+      "usage": "确认京张铁路遗址公园二期已建成开放、形成约9公里带状绿廊；用于说明本方案骨架相主轴是对既有绿廊的网络延伸，而非凭空提出。",
+      "limitation_zh": "媒体报道，非官方规划文件；长度为报道口径，精确边界与里程须以官方数据为准。",
+      "publisher": "北京市海淀区人民政府办公室（海淀区政务公开平台）",
+      "published_at": "2026-02-06",
+      "accessed_date": "2026-08-16",
+      "not_usable_for": [
+        "an official site boundary or any boundary geometry",
+        "any statutory control figure (FAR, GFA, height, density, land-use quota, plot line) — this is a socio-economic development plan report, not a 控规",
+        "an approved statutory plan — the companion 2026 政府工作报告 records only 通过技术审查 (passed technical review), which is expressly not approval; the later 2026-08-11 市规划自然资源委 报批 announcement is a different document and must be cited separately",
+        "any government endorsement of this submission"
+      ]
+    },
+    {
+      "id": "CASE-KENDALL-MIT-2015",
+      "citation": "Kendall Square: A global center for innovation grows alongside MIT. MIT News, 2015-05-07.",
+      "url": "https://news.mit.edu/2015/kendall-square-global-center-innovation-grows-alongside-mit-0507",
+      "source_type": "institutional_publication",
+      "usable_for": "background_only",
+      "retrieved": "2026-08-15",
+      "usage": "NASA 电子研究中心 1964 年开设、约五年后关闭留下空白，MIT 与剑桥市合作重启；现约150家科技企业。",
+      "limitation_zh": "机构自述与报道，企业数量为报道时点口径。"
+    },
+    {
+      "id": "CASE-KINGSCROSS-CFC",
+      "citation": "Learning from King's Cross Regeneration. Centre for Cities.",
+      "url": "https://www.centreforcities.org/reader/making-places/learning-from-kings-cross-regeneration",
+      "source_type": "research_institute_publication",
+      "usable_for": "background_only",
+      "retrieved": "2026-08-15",
+      "usage": "67英亩铁路弃置用地；1980—90年代更新尝试失败，2000年代中期启动；约40%用地为公共空间，新增10处公园广场与20条街道。",
+      "limitation_zh": "智库研究报告；比例与数量为其统计口径。"
+    },
+    {
+      "id": "CASE-STATIONF",
+      "citation": "Station F, Paris - converted Halle Freyssinet rail freight depot (1929), 34,000 m2, opened June 2017.",
+      "url": "https://en.wikipedia.org/wiki/Station_F",
+      "source_type": "encyclopaedic_reference",
+      "usable_for": "background_only",
+      "retrieved": "2026-08-15",
+      "usage": "铁路货运库改造为约34,000平方米创新容器，容纳约1,000家初创企业与3,000个工位。",
+      "limitation_zh": "百科条目，二手来源；关键数字如需正式引用应回到 Station F 官方资料核实。"
+    },
+    {
+      "id": "CASE-KISTA-URBANICT",
+      "citation": "Kista Science City, Stockholm: Engaging with the public to test new ideas. Econsult Solutions case study.",
+      "url": "https://econsultsolutions.com/kista-science-city-stockholm",
+      "source_type": "consultancy_case_study",
+      "usable_for": "background_only",
+      "retrieved": "2026-08-15",
+      "usage": "2016年底设立 Urban ICT Arena，在园区中部铺设约2公里光纤与无线测试走廊作为公开城市测试床；逾1,000家科技企业、约25,000名从业者。",
+      "limitation_zh": "咨询机构案例研究；本方案将其作为“以走廊本身为测试床”的可比先例，不作为绩效承诺。"
+    },
+    {
+      "id": "CASE-SANGAM-DMC",
+      "citation": "Seoul Metropolitan Government. Digital Media City (Sangam DMC) publicity centre and district overview. Seoul Metropolitan Government official English portal.",
+      "url": "https://english.seoul.go.kr/seoul-opens-digital-media-city-publicity-center",
+      "source_type": "encyclopaedic_reference",
+      "usable_for": "background_only",
+      "usage": "由填埋场地区转型的规划型数字媒体产业新区，作为自上而下路径的对照组。",
+      "limitation_zh": "百科条目，二手来源，仅作定性对照。",
+      "publisher": "Seoul Metropolitan Government",
+      "published_at": "n.d. (official portal page)",
+      "accessed_date": "2026-08-16",
+      "not_usable_for": [
+        "any Haidian statutory control figure",
+        "any quantitative land-use or intensity comparison",
+        "any government approval or endorsement for this proposal"
+      ]
+    },
+    {
+      "id": "CASE-ZGC-HISTORY",
+      "citation": "中关村（电子一条街—国家级科技园区）历史沿革。中关村科技园区管理委员会等公开资料。",
+      "url": "https://kw.beijing.gov.cn/ztzl/rdzt/zgcsfq/index.html",
+      "source_type": "official_public",
+      "usable_for": "background_only",
+      "retrieved": "2026-08-15",
+      "usage": "中关村自1980年代电子一条街自下而上生长为国家级科技园区，作为本带文化前史。",
+      "limitation_zh": "用于定性叙述，不用于任何量化结论。"
+    },
+    {
+      "id": "SITE-HD-PLAN-2025EXEC",
+      "citation": "北京市海淀区人民政府办公室《关于海淀区2025年国民经济和社会发展计划执行情况与2026年计划草案的报告》。",
+      "url": "https://zyk.bjhd.gov.cn/zwdt/zcwj/202602/t20260206_4805099.shtml",
+      "source_type": "official_public",
+      "usable_for": "yes",
+      "retrieved": "2026-08-15",
+      "usage": "官方表述为“京张铁路遗址公园二期可实施区域主体已建设完成”；据此校正媒体“二期建成开放”的口径。",
+      "limitation_zh": "官方计划执行报告；“可实施区域主体建成”与“全线建成开放”不等同，引用时须保留该限定。"
+    },
+    {
+      "id": "SITE-HD-GOV-WORKREPORT",
+      "citation": "北京市海淀区人民政府《2026年政府工作报告》，2026-02-09 公开。",
+      "url": "https://zyk.bjhd.gov.cn/zwdt/xxgk/zfgzbg/202602/t20260209_4805226.shtml",
+      "source_type": "official_public",
+      "usable_for": "yes",
+      "usage": "两项关键事实：(1)“京张铁路遗址公园沿线街区控规通过技术审查”——法定控规尚处技术审查阶段，未获批复；(2)“依托AI原点社区、AI北纬社区和京张铁路遗址公园创新带，打造人工智能创新街区”——官方已确立该创新带框架。",
+      "limitation_zh": "政府工作报告；控规为“通过技术审查”而非“获批”，不得据此推定任何法定控制指标。",
+      "publisher": "北京市海淀区人民政府（海淀区政务公开平台）",
+      "published_at": "2026-02-09",
+      "accessed_date": "2026-08-16",
+      "not_usable_for": [
+        "an official site boundary or any boundary geometry",
+        "any statutory control figure — 通过技术审查 is expressly not approval, so no 法定管控指标 may be inferred",
+        "describing the 沿线街区控规 as an approved statutory plan",
+        "any government endorsement of this submission"
+      ]
+    },
+    {
+      "id": "METHOD-PHYSARUM-CONVERGENCE",
+      "citation": "Bonifaci V., Mehlhorn K., Varma G. Physarum can compute shortest paths. Journal of Theoretical Biology 309:121-133, 2012. doi:10.1016/j.jtbi.2012.06.017 (preliminary version: Proc. 23rd ACM-SIAM Symposium on Discrete Algorithms, SODA 2012, Kyoto, pp. 233-240)",
+      "source_type": "external_academic_literature",
+      "usable_for": "background_only",
+      "usage": "为“流量-导管正反馈可收敛”提供数学依据：连续时间 Physarum 动力学在任意严格正初始导管向量下收敛到最短源汇路径。正式引用应用 JTB 309:121-133 (2012)，SODA 2012 仅为会议摘要版。",
+      "limitation_zh": "学术文献，仅作方法依据。定理条件为单源单汇、反馈指数为一、最短路唯一；本方案的多终端多情景变体不在该定理覆盖范围内，须如实标注。",
+      "url": "https://doi.org/10.1016/j.jtbi.2012.06.017",
+      "publisher": "Elsevier, journal Journal of Theoretical Biology",
+      "published_at": "2012-09-21",
+      "accessed_date": "2026-08-16",
+      "not_usable_for": [
+        "certifying convergence of the multi-terminal / multi-scenario variant actually used here (theorem is for a single source-sink pair, f(|Q|)=|Q|, mu=1)",
+        "claiming a unique path when the shortest path is non-unique (dynamics are only attracted to the set E* of min-cost unit flows)",
+        "any site, statutory, boundary or government-approval weight for Haidian",
+        "a mathematical result about a graph model does not by itself validate an urban planning conclusion"
+      ]
+    },
+    {
+      "id": "METHOD-GROWTH-RK-2016",
+      "citation": "Ronellenfitsch H., Katifori E. Global Optimization, Local Adaptation, and the Role of Growth in Distribution Networks. Phys. Rev. Lett. 117:138301, 2016. doi:10.1103/PhysRevLett.117.138301",
+      "source_type": "external_academic_literature",
+      "usable_for": "background_only",
+      "usage": "生长过程与局部自适应耦合可自发产生层级化配送网络，为本方案“分期生长而非一次性全局最优”的实现路径提供方法依据。",
+      "limitation_zh": "学术文献，仅作方法依据。138301 为文章编号（第13期）非页码；出版日期取自 APS 向 Crossref 提交的元数据（APS 页面对自动客户端返回 403，未能直接读取正文）。",
+      "url": "https://doi.org/10.1103/PhysRevLett.117.138301",
+      "publisher": "American Physical Society (Physical Review Letters)",
+      "published_at": "2016-09-22",
+      "accessed_date": "2026-08-16",
+      "not_usable_for": [
+        "evidence about urban street or infrastructure networks (any transfer is the submission's own analogy and must be labelled as such)",
+        "any statutory, boundary or government-approval weight",
+        "a biophysics result about distribution/vascular networks does not by itself validate an urban planning conclusion"
+      ]
+    },
+    {
+      "id": "METHOD-LOOPS-CORSON-2010",
+      "citation": "Corson F. Fluctuations and Redundancy in Optimal Transport Networks. Phys. Rev. Lett. 104:048703, 2010. doi:10.1103/PhysRevLett.104.048703",
+      "source_type": "external_academic_literature",
+      "usable_for": "background_only",
+      "usage": "与 Katifori 等 (2010) 同期独立结果：流量随时间波动时，含环的层级网络才是最优解，静态流量下最优解退化为树。用于双重支撑本方案的环路冗余论证。",
+      "limitation_zh": "学术文献，仅作方法依据。单作者，勿添加合作者；048703 为文章编号（第4期）非页码。",
+      "url": "https://doi.org/10.1103/PhysRevLett.104.048703",
+      "publisher": "American Physical Society (Physical Review Letters)",
+      "published_at": "2010-01-29",
+      "accessed_date": "2026-08-16",
+      "not_usable_for": [
+        "empirical evidence about urban street or transit networks, Haidian, or any planning outcome",
+        "attributing co-authors (single-author paper by Francis Corson)",
+        "a physics result about abstract/leaf-venation flow networks does not by itself validate an urban planning conclusion"
+      ]
+    },
+    {
+      "id": "METHOD-BOHN-MAGNASCO-2007",
+      "citation": "Bohn S., Magnasco M.O. Structure, Scaling, and Phase Transition in the Optimal Transport Network. Phys. Rev. Lett. 98:088702, 2007. doi:10.1103/PhysRevLett.98.088702",
+      "source_type": "external_academic_literature",
+      "usable_for": "background_only",
+      "usage": "最优输运网络的结构与标度取决于代价泛函与约束，并存在层级/环路的相变；据此说明本方案将代价指数作为显式设计参数而非隐含默认值。",
+      "limitation_zh": "学术文献，仅作方法依据。088702 为文章编号非页码；APS 正文付费墙，引用 DOI 而非 PDF 镜像；预印本 arXiv:cond-mat/0607819。",
+      "url": "https://doi.org/10.1103/PhysRevLett.98.088702",
+      "publisher": "American Physical Society (Physical Review Letters)",
+      "published_at": "2007-02-21",
+      "accessed_date": "2026-08-16",
+      "not_usable_for": [
+        "any claim about cities, streets, pedestrians or Haidian",
+        "traffic validation or proof that the proposed network performs better in the real world",
+        "a condensed-matter result about abstract flow networks does not by itself validate an urban planning conclusion"
+      ]
+    },
+    {
+      "id": "METHOD-SILK-CRANFORD-2012",
+      "citation": "Cranford S.W., Tarakanova A., Pugno N.M., Buehler M.J. Nonlinear material behaviour of spider silk yields robust webs. Nature 482:72-76, 2012. doi:10.1038/nature10739",
+      "source_type": "external_academic_literature",
+      "usable_for": "background_only",
+      "usage": "局部非线性响应（硬化-软化-再硬化）与网结几何共同将破坏局部化，使整体结构存活；作为本方案“局部失效不扩散”策略的类比性方法出处。",
+      "limitation_zh": "材料科学/分子模拟文献，非城市或基础设施研究；迁移到城市网络属本方案自设类比，须明确标注。Nature 付费墙，引用 DOI 而非镜像 PDF。",
+      "url": "https://doi.org/10.1038/nature10739",
+      "publisher": "Springer Nature (Nature)",
+      "published_at": "2012-02-01",
+      "accessed_date": "2026-08-16",
+      "not_usable_for": [
+        "any urban, infrastructure, street-network or city-resilience evidence",
+        "any policy or government endorsement",
+        "a materials-science/molecular-simulation result about spider silk does not by itself validate an urban planning conclusion — any transfer is the submission's own analogy and must be labelled as such"
+      ]
+    },
+    {
+      "id": "CRITIQUE-BIOMIMETIC-LABEL",
+      "citation": "Gorki M., Speck O., Moller M., Fenn J., Estadieu L., Menges A., Schiller M., Speck T., Kiesel A. Challenging the Biomimetic Promise—Do Laypersons Perceive Biomimetic Buildings as More Sustainable and More Acceptable? Biomimetics 10(2):86, 2025. doi:10.3390/biomimetics10020086. Follow-up: Fenn J. et al., Challenging the Biomimetic Promise 2.0, Biomimetics 11(3):222, 2026, doi:10.3390/biomimetics11030222",
+      "source_type": "external_academic_literature",
+      "usable_for": "background_only",
+      "usage": "外部实证提示：把设计标注为“仿生/生物启发”本身并不提高公众对其可持续性与可接受性的评价；用于本方案自我批判章节，防止以生物类比替代绩效论证。",
+      "limitation_zh": "受试者感知实验（弗莱堡大学 livMatS 组，样本以德语/西方公众为主），只测感知不测实际环境绩效；不可迁移为中国或海淀公众结论。",
+      "url": "https://www.mdpi.com/2313-7673/10/2/86",
+      "publisher": "MDPI — Biomimetics",
+      "published_at": "2025-02-01",
+      "accessed_date": "2026-08-16",
+      "not_usable_for": [
+        "evidence about the actual environmental performance of biomimetic design",
+        "evidence about Chinese or Haidian publics (samples are predominantly German/Western lay participants; perception only)",
+        "asserting an exact publication date for the 2026 follow-up"
+      ]
+    },
+    {
+      "id": "CRITIQUE-STS-FISCH-2017",
+      "citation": "Fisch M. The Nature of Biomimicry: Toward a Novel Technological Culture. Science, Technology, & Human Values 42(5):795-821, 2017. doi:10.1177/0162243916689599",
+      "source_type": "external_academic_literature",
+      "usable_for": "background_only",
+      "usage": "科技与社会研究（STS）对仿生学“自然观”的批判：仿生叙事常把自然当作可直接读取的蓝图；用于本方案自我批判，说明所用生物类比是经设计的抽象而非对自然的直接转译。",
+      "limitation_zh": "仅核实了著录信息、摘要与参考文献（Latour《Politics of Nature》确在其参考文献中），未通读付费全文；请改写论点而非直引，或将直引锁定到实际阅读过的页码。注意副标题为 Toward a Novel Technological Culture。",
+      "url": "https://doi.org/10.1177/0162243916689599",
+      "publisher": "SAGE Publications (journal: Science, Technology, & Human Values)",
+      "published_at": "2017-09",
+      "accessed_date": "2026-08-16",
+      "not_usable_for": [
+        "direct quotation — the full text was not read behind the paywall, so no phrase may be placed in quotation marks as Fisch's own words",
+        "any empirical, performance, site or statutory claim"
+      ]
+    },
+    {
+      "id": "METHOD-TOUSSAINT-RNG",
+      "citation": "Toussaint G.T. The relative neighbourhood graph of a finite planar set. Pattern Recognition 12(4):261-268, 1980. doi:10.1016/0031-3203(80)90066-7",
+      "source_type": "external_academic_literature",
+      "usable_for": "background_only",
+      "usage": "RNG 的原始定义与 MST ⊆ RNG ⊆ Delaunay 的包含关系；本方案的 MST < RNG < Gabriel < Delaunay 基准阶梯据此建立。",
+      "limitation_zh": "范围提示：该文只给出 MST/RNG/Delaunay 的包含关系，未涉及 Gabriel 图；若方案主张 Gabriel 或 NNG 环节，须补引 Jaromczyk & Toussaint (1992)（和/或 Matula & Sokal 1980）。Elsevier 付费墙，摘要免费；卷期页码经 Crossref 与 OpenAlex 双重核对。",
+      "url": "https://doi.org/10.1016/0031-3203(80)90066-7",
+      "publisher": "Elsevier (journal: Pattern Recognition)",
+      "published_at": "1980",
+      "accessed_date": "2026-08-16",
+      "not_usable_for": [
+        "the full proximity-graph hierarchy — the Gabriel link (RNG ⊆ GG ⊆ DT) is Matula & Sokal, Geographical Analysis 12(3):205-222, 1980, and the consolidated chain NNG ⊆ MST ⊆ RNG ⊆ GG ⊆ DT is Jaromczyk & Toussaint, Proc. IEEE 80(9):1502-1517, 1992, doi:10.1109/5.163414",
+        "any urban, site or statutory claim"
+      ]
+    },
+    {
+      "id": "METHOD-GABRIEL-SOKAL",
+      "citation": "Gabriel K.R., Sokal R.R. A New Statistical Approach to Geographic Variation Analysis. Systematic Zoology 18(3):259-278, 1969. doi:10.2307/2412323",
+      "source_type": "external_academic_literature",
+      "usable_for": "background_only",
+      "usage": "Gabriel 图的原始定义（空直径圆判据），用于本方案邻近图基准阶梯中的 Gabriel 一档。",
+      "limitation_zh": "页码提示：Crossref/OpenAlex 仅记录首页 259，259-278 来自 Semantic Scholar 与多份独立书目（个别聚合站作 259-270，疑为错误）；严格引用可只写首页。期刊 Systematic Zoology 后更名为 Systematic Biology，故 OUP 路径为 /sysbio/，引用时应保留 1969 年原刊名。生物统计方法论文，非城市设计或计算几何文献。",
+      "url": "https://doi.org/10.2307/2412323",
+      "publisher": "Oxford University Press, for the Society of Systematic Biologists (journal: Systematic Zoology)",
+      "published_at": "1969-09-01",
+      "accessed_date": "2026-08-16",
+      "not_usable_for": [
+        "establishing the proximity-graph containment hierarchy (the paper defines the graph only; cite Jaromczyk & Toussaint 1992 for the chain)",
+        "any urban-design, site or statutory claim",
+        "asserting the page range as certain — Crossref and OpenAlex record only first page 259"
+      ]
+    }
+  ],
+  "source_use_note_zh": "外部学术文献仅用于方法依据（background_only），不得升级为官方边界、法定管控或实施结论；场地事实以公告与站点资料包为准。"
+}

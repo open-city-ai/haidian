@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import os
 import re
 import sys
@@ -18,6 +19,8 @@ from pathlib import Path, PurePosixPath
 from typing import Iterable
 
 from front_matter import parse_front_matter
+from git_blob_hashes import git_blob_sha256
+from metric_types import is_json_number
 
 
 POLICY_ROOT = Path(__file__).resolve().parents[1]
@@ -182,6 +185,7 @@ ALLOWED_VISUAL_ASSET_EXTENSIONS = {".css", ".js", ".json", ".svg", ".png", ".jpg
 PARTICIPANT_PROTECTED_GLOBAL_FILES = {
     "submissions-data.js",
     "gallery-publication.json",
+    "data/participant_owner_aliases.json",
 }
 MAINTAINER_CONTROLLED_SUBMISSIONS_ROOT_FILES = {
     "submissions/README.md",
@@ -1003,9 +1007,14 @@ def load_required_standard_ids(repo_root: Path) -> set[str]:
 def coordinate_pair_is_valid(value: object) -> bool:
     if not isinstance(value, list) or len(value) < 2:
         return False
-    lon, lat = value[0], value[1]
-    if not isinstance(lon, (int, float)) or not isinstance(lat, (int, float)):
+    if any(
+        isinstance(item, bool)
+        or not isinstance(item, (int, float))
+        or (isinstance(item, float) and not math.isfinite(item))
+        for item in value
+    ):
         return False
+    lon, lat = value[0], value[1]
     return -180 <= lon <= 180 and -90 <= lat <= 90
 
 
@@ -1289,9 +1298,9 @@ def validate_metrics_file(report: ValidationReport, path: Path, display_path: st
                 report.add_error(f"{label}: unknown metric value must be null")
             if not metric.get("reason"):
                 report.add_error(f"{label}: unknown metric needs reason")
-        if status == "known" and not isinstance(metric.get("value"), (int, float)):
+        if status == "known" and not is_json_number(metric.get("value")):
             report.add_error(f"{label}: known metric needs numeric value")
-        if metric.get("unit") == "ratio" and isinstance(metric.get("value"), (int, float)):
+        if metric.get("unit") == "ratio" and is_json_number(metric.get("value")):
             value = metric["value"]
             if value < 0 or value > 1:
                 report.add_error(f"{label}: ratio value must be between 0 and 1")
@@ -1554,6 +1563,26 @@ def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_d
     strict_bilingual = requires_bilingual_display(repo_root, proposal_dir)
     files = data.get("files")
     listed_paths: set[str] = set()
+    git_digests: dict[Path, str] | None = None
+    if isinstance(files, list):
+        manifest_files: list[Path] = []
+        for item in files:
+            if not isinstance(item, dict) or not item.get("path"):
+                continue
+            try:
+                safe_path = normalize_changed_path(str(item["path"]))
+            except ValueError:
+                continue
+            if safe_path == "manifest.json":
+                continue
+            listed_file = repo_root / proposal_dir / safe_path
+            if listed_file.is_file():
+                manifest_files.append(listed_file)
+        try:
+            git_digests = git_blob_sha256(manifest_files, cwd=repo_root)
+        except RuntimeError as exc:
+            report.add_error(f"{proposal_dir}/manifest.json: cannot hash pending Git blobs: {exc}")
+            git_digests = {}
     if not isinstance(files, list) or not files:
         report.add_error(f"{proposal_dir}/manifest.json: files must be a non-empty array")
     else:
@@ -1598,12 +1627,38 @@ def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_d
                     f"{proposal_dir}/manifest.json: manifest.json must not declare sha256; remove the field"
                 )
             elif declared_digest:
-                actual_digest = hashlib.sha256(listed_file.read_bytes()).hexdigest()
+                raw = listed_file.read_bytes()
+                actual_digest = (
+                    git_digests.get(listed_file.resolve())
+                    if git_digests is not None
+                    else hashlib.sha256(raw).hexdigest()
+                )
                 if declared_digest != actual_digest:
                     message = (
                         f"{proposal_dir}/manifest.json: sha256 mismatch for `{safe_path}`; "
                         f"declared={declared_digest}, actual={actual_digest}"
                     )
+                    lf_raw = raw.replace(b"\r\n", b"\n")
+                    crlf_raw = lf_raw.replace(b"\n", b"\r\n")
+                    if (
+                        lf_raw != crlf_raw
+                        and actual_digest == hashlib.sha256(lf_raw).hexdigest()
+                        and declared_digest == hashlib.sha256(crlf_raw).hexdigest()
+                    ):
+                        message += (
+                            "; declared digest matches the CRLF form, but Git is validating LF bytes. "
+                            "Regenerate manifest.json from the exact bytes committed to Git (for example, "
+                            "use an LF checkout or repository-local core.autocrlf=false before a fresh checkout)"
+                        )
+                    elif (
+                        lf_raw != crlf_raw
+                        and actual_digest == hashlib.sha256(crlf_raw).hexdigest()
+                        and declared_digest == hashlib.sha256(lf_raw).hexdigest()
+                    ):
+                        message += (
+                            "; declared digest matches the LF form, but Git is validating CRLF bytes. "
+                            "Regenerate manifest.json from the exact bytes committed to Git"
+                        )
                     if translation_entry and not strict_bilingual:
                         report.add_warning(message + "; legacy bilingual metadata does not block review")
                     else:
@@ -1767,7 +1822,12 @@ def validate_readiness_claim(
         )
 
 
-def validate_compliance_matrix_file(report: ValidationReport, path: Path, display_path: str) -> None:
+def validate_compliance_matrix_file(
+    report: ValidationReport,
+    path: Path,
+    display_path: str,
+    known_standard_ids: set[str] | None = None,
+) -> None:
     data = load_json_file(report, path, display_path)
     if not isinstance(data, dict):
         return
@@ -1805,6 +1865,32 @@ def validate_compliance_matrix_file(report: ValidationReport, path: Path, displa
             value = item.get(key)
             if not isinstance(value, list) or not value or not all(isinstance(v, str) and v for v in value):
                 report.add_error(f"{label}: {key} must be a non-empty string array")
+        standard_ids = item.get("standard_ids")
+        if standard_ids is not None and (
+            not isinstance(standard_ids, list)
+            or not standard_ids
+            or not all(isinstance(value, str) and value for value in standard_ids)
+        ):
+            report.add_error(f"{label}: standard_ids must be a non-empty string array when present")
+        source_ids = item.get("source_ids")
+        if known_standard_ids and isinstance(source_ids, list):
+            misplaced = sorted(
+                value for value in source_ids if value in known_standard_ids
+            )
+            if misplaced:
+                report.add_warning(
+                    f"{label}: source_ids contains standard IDs that belong in standard_ids: "
+                    f"{', '.join(misplaced)}"
+                )
+        if known_standard_ids and isinstance(standard_ids, list):
+            unknown = sorted(
+                value for value in standard_ids if value not in known_standard_ids
+            )
+            if unknown:
+                report.add_warning(
+                    f"{label}: standard_ids references IDs not declared in standard_matrix.json: "
+                    f"{', '.join(unknown)}"
+                )
 
     missing = sorted(ALL_REQUIRED_TASK_IDS - covered)
     if missing:
@@ -2398,17 +2484,22 @@ def validate_ai_package_dir(
             strict=strict_simulation,
         )
 
-    compliance_path = base / "compliance_matrix.json"
-    if compliance_path.exists():
-        validate_compliance_matrix_file(
-            report, compliance_path, f"{proposal_dir}/compliance_matrix.json"
-        )
-
     standard_matrix: dict | None = None
     standard_path = base / "standard_matrix.json"
     if standard_path.exists():
         standard_matrix = validate_standard_matrix_file(
             report, repo_root, standard_path, f"{proposal_dir}/standard_matrix.json"
+        )
+
+    compliance_path = base / "compliance_matrix.json"
+    if compliance_path.exists():
+        validate_compliance_matrix_file(
+            report,
+            compliance_path,
+            f"{proposal_dir}/compliance_matrix.json",
+            collect_json_ids(standard_matrix, "standards", "standard_id")
+            if isinstance(standard_matrix, dict)
+            else set(),
         )
 
     design_depth_matrix: dict | None = None
@@ -2472,6 +2563,7 @@ def validate_proposal_file(
     proposal_path: str,
     pr_author: str,
     path_author: str,
+    legacy_owner_authorized: bool = False,
 ) -> None:
     full_path = repo_root / proposal_path
     try:
@@ -2491,7 +2583,12 @@ def validate_proposal_file(
             report.add_error(f"{proposal_path}: missing front matter field `{key}`")
 
     author = metadata.get("author_github", "")
-    if author and author.lower() != pr_author.lower() and not report.maintainer_bypass:
+    if (
+        author
+        and author.lower() != pr_author.lower()
+        and not report.maintainer_bypass
+        and not legacy_owner_authorized
+    ):
         report.add_error(
             f"{proposal_path}: author_github `{author}` must match PR author `{pr_author}`"
         )
@@ -2794,6 +2891,8 @@ def validate_submission(
     allow_pending_self_check: bool = False,
     required_readiness_contract_dirs: Iterable[str] = (),
     strict_manifest_paths: Iterable[str] = (),
+    authorized_legacy_submission_dirs: Iterable[str] = (),
+    blocked_submission_owners: Iterable[str] = (),
 ) -> ValidationReport:
     report = ValidationReport()
     repo_root = repo_root.resolve()
@@ -2807,6 +2906,15 @@ def validate_submission(
     }
     report.strict_manifest_paths = {
         normalize_changed_path(path) for path in strict_manifest_paths
+    }
+    authorized_legacy_dirs = {
+        normalize_changed_path(path).rstrip("/")
+        for path in authorized_legacy_submission_dirs
+    }
+    blocked_owners = {
+        str(owner).strip().casefold()
+        for owner in blocked_submission_owners
+        if str(owner).strip()
     }
 
     if not pr_author or not GITHUB_LOGIN_RE.match(pr_author):
@@ -2858,7 +2966,7 @@ def validate_submission(
         if not report.maintainer_bypass:
             if path in PARTICIPANT_PROTECTED_GLOBAL_FILES:
                 report.add_error(
-                    f"{path}: participants must not edit maintainer-controlled gallery publication data"
+                    f"{path}: participants must not edit maintainer-controlled gallery publication data or global policy"
                 )
                 continue
             if parts[0] != "submissions" or len(parts) < 2:
@@ -2866,7 +2974,14 @@ def validate_submission(
                     f"{path}: participant PRs may only change submissions/{pr_author}/"
                 )
                 continue
-            if parts[1] != pr_author:
+            proposal_dir = "/".join(parts[:3]) if len(parts) >= 3 else ""
+            if parts[1].casefold() in blocked_owners:
+                report.add_error(
+                    f"{path}: submission owner `{parts[1]}` is a reserved historical login "
+                    "bound to a different stable GitHub user ID"
+                )
+                continue
+            if parts[1] != pr_author and proposal_dir not in authorized_legacy_dirs:
                 report.add_error(
                     f"{path}: submission directory `{parts[1]}` must exactly match "
                     f"GitHub PR author `{pr_author}`, including letter case"
@@ -3050,7 +3165,15 @@ def validate_submission(
         if not (repo_root / proposal_path).exists():
             continue
         path_author = proposal_path.split("/")[1]
-        validate_proposal_file(report, repo_root, proposal_path, pr_author, path_author)
+        proposal_dir = str(PurePosixPath(proposal_path).parent)
+        validate_proposal_file(
+            report,
+            repo_root,
+            proposal_path,
+            pr_author,
+            path_author,
+            proposal_dir in authorized_legacy_dirs,
+        )
 
     for proposal_dir in sorted(ai_package_dirs):
         if proposal_dir in unsafe_submission_dirs:

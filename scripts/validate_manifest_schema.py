@@ -29,6 +29,12 @@ def main() -> int:
         paths = manifest_paths(repo_root)
     else:
         paths = [(repo_root / item).resolve() for item in args.manifests]
+    selection_error = None
+    if not paths:
+        selection_error = (
+            f"no submission manifests found under {repo_root}; "
+            "check --repo-root and sparse checkout configuration"
+        )
 
     results = []
     for path in paths:
@@ -63,6 +69,8 @@ def main() -> int:
         "strict": args.strict,
         "results": results,
     }
+    if selection_error:
+        payload["error"] = selection_error
     legacy_findings = [
         finding
         for item in results
@@ -84,6 +92,8 @@ def main() -> int:
     else:
         mode = "strict" if args.strict else "advisory"
         print(f"Manifest schema audit ({mode}): {payload['valid']}/{payload['total']} valid")
+        if selection_error:
+            print(f"Audit error: {selection_error}")
         for item in invalid:
             print(f"- {item['path']}: {len(item['errors'])} schema error(s)")
             for error in item["errors"][:5]:
@@ -99,6 +109,8 @@ def main() -> int:
                     f"- {item['path']}: legacy role advisory "
                     f"{finding['path']} ({finding['role']}): {detail}"
                 )
+    if selection_error:
+        return 2
     return 1 if args.strict and invalid else 0
 
 

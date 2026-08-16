@@ -1,84 +1,207 @@
 {
-  "schema_version": "0.1.0",
-  "sources": [
-    {
-      "id": "SITE-PACKAGE",
-      "path": "brief/site-package/",
-      "source_type": "official_public",
-      "usage": "Project brief, enums, allowed design space, ranges, and schemas."
-    },
-    {
-      "id": "SOURCE-REGISTRY",
-      "path": "data/source_registry.json",
-      "source_type": "repository_public_registry",
-      "usage": "Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials."
-    },
-    {
-      "id": "PROCESSED-FACT-PACK",
-      "path": "data/processed/agent_fact_pack.md",
-      "source_type": "repository_processed_reference",
-      "usage": "Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source."
-    },
-    {
-      "id": "BOUNDARY-SOURCE",
-      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
-      "source_type": "agent_inferred_from_public_data",
-      "usage": "Submitted site boundary geometry source (provisional)."
-    },
-    {
-      "id": "KEY-AREA-SOURCE",
-      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
-      "source_type": "agent_inferred_from_public_data",
-      "usage": "Three required detailed-design key area boundaries (provisional)."
-    },
-    {
-      "id": "OFFICIAL-ANNOUNCEMENT",
-      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
-      "source_type": "official_public",
-      "usage": "Official announcement tasks, scope levels, key areas, language, and deliverable context."
-    },
-    {
-      "id": "AGENT-TASKBOOK",
-      "path": "brief/site-package/agent_taskbook.json",
-      "source_type": "user_provided_cleared",
-      "usage": "Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause."
-    },
-    {
-      "id": "GLOBAL-CASE-REF",
-      "source_type": "agent_generated_design",
-      "usage": "Seven global AI ecosystem case descriptions paraphrased from public sources (one-north, SLU, Tel Aviv, King's Cross, Pangyo, Xili Lake, Keihin). No logos or trademarks reproduced.",
-      "author": "AI agent (seekerwxy)",
-      "license": "CC-BY-4.0",
-      "retrieval_date": "2026-08-12"
-    },
-    {
-      "id": "FIGURE-ASSETS",
-      "source_type": "agent_generated_design",
-      "usage": "All figures generated from submission GeoJSON with matplotlib; CJK font rendered locally. No third-party images.",
-      "author": "AI agent (seekerwxy)",
-      "tools": "matplotlib 3.x, Python 3.12",
-      "license": "CC-BY-4.0"
-    },
-    {
-      "id": "DRAWING-ASSETS",
-      "source_type": "agent_generated_design",
-      "usage": "A3/A0 PDFs generated with reportlab; system CJK fonts (viewer-side); no embedded font files.",
-      "author": "AI agent (seekerwxy)",
-      "tools": "reportlab 4.x",
-      "license": "CC-BY-4.0"
-    },
-    {
-      "id": "LOGO-DIRECTION",
-      "source_type": "agent_generated_design",
-      "usage": "Logo concept described as pure geometric vector text; no third-party font/icon/trademark used.",
-      "author": "AI agent (seekerwxy)",
-      "license": "CC-BY-4.0"
-    },
-    {
-      "id": "CODE-DEPS",
-      "source_type": "third_party_oss",
-      "usage": "Local generation dependencies only (matplotlib, reportlab, shapely, pyproj, Pillow, jsonschema); not shipped in package.",
-      "license": "permissive OSS (PSF/BSD/MIT)"
-    }
-  ]
+ "schema_version": "0.1.0",
+ "sources": [
+  {
+   "id": "SITE-PACKAGE",
+   "path": "brief/site-package/",
+   "source_type": "official_public",
+   "usage": "Project brief, enums, allowed design space, ranges, and schemas."
+  },
+  {
+   "id": "SOURCE-REGISTRY",
+   "path": "data/source_registry.json",
+   "source_type": "repository_public_registry",
+   "usage": "Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials."
+  },
+  {
+   "id": "PROCESSED-FACT-PACK",
+   "path": "data/processed/agent_fact_pack.md",
+   "source_type": "repository_processed_reference",
+   "usage": "Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source."
+  },
+  {
+   "id": "BOUNDARY-SOURCE",
+   "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+   "source_type": "agent_inferred_from_public_data",
+   "usage": "Submitted site boundary geometry source (provisional)."
+  },
+  {
+   "id": "KEY-AREA-SOURCE",
+   "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+   "source_type": "agent_inferred_from_public_data",
+   "usage": "Three required detailed-design key area boundaries (provisional)."
+  },
+  {
+   "id": "OFFICIAL-ANNOUNCEMENT",
+   "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+   "source_type": "official_public",
+   "usage": "Official announcement tasks, scope levels, key areas, language, and deliverable context."
+  },
+  {
+   "id": "AGENT-TASKBOOK",
+   "path": "brief/site-package/agent_taskbook.json",
+   "source_type": "user_provided_cleared",
+   "usage": "Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause."
+  },
+  {
+   "id": "FIGURE-ASSETS",
+   "source_type": "agent_generated_design",
+   "usage": "All figures generated from submission GeoJSON with matplotlib; CJK font rendered locally. No third-party images.",
+   "author": "AI agent (seekerwxy)",
+   "tools": "matplotlib 3.x, Python 3.12",
+   "license": "CC-BY-4.0"
+  },
+  {
+   "id": "DRAWING-ASSETS",
+   "source_type": "agent_generated_design",
+   "usage": "A3/A0 PDFs generated with reportlab; system CJK fonts (viewer-side); no embedded font files.",
+   "author": "AI agent (seekerwxy)",
+   "tools": "reportlab 4.x",
+   "license": "CC-BY-4.0"
+  },
+  {
+   "id": "LOGO-DIRECTION",
+   "source_type": "agent_generated_design",
+   "usage": "Logo concept described as pure geometric vector text; no third-party font/icon/trademark used.",
+   "author": "AI agent (seekerwxy)",
+   "license": "CC-BY-4.0"
+  },
+  {
+   "id": "CODE-DEPS",
+   "source_type": "third_party_oss",
+   "usage": "Local generation dependencies only (matplotlib, reportlab, shapely, pyproj, Pillow, jsonschema); not shipped in package.",
+   "license": "permissive OSS (PSF/BSD/MIT)"
+  },
+  {
+   "id": "CASE-ONE-NORTH",
+   "url": "https://www.jtc.gov.sg/",
+   "source_type": "agent_generated_design",
+   "usage": "one-north, Singapore：公开资料整理，仅借鉴空间组织/产城融合/运营机制方法论；未复制企业名单、Logo 或商标。",
+   "author": "AI agent (seekerwxy)",
+   "license": "paraphrase; no reproduction",
+   "retrieval_date": "2026-08-12",
+   "conversion": "公开案例叙述改写为方法论要点，未使用原图文",
+   "limitations": "案例名称与园区仅作公开参考，不构成企业背书或投资陈述"
+  },
+  {
+   "id": "CASE-SLU",
+   "url": "https://seattle.gov/",
+   "source_type": "agent_generated_design",
+   "usage": "South Lake Union, Seattle：公开资料整理，仅借鉴空间组织/产城融合/运营机制方法论；未复制企业名单、Logo 或商标。",
+   "author": "AI agent (seekerwxy)",
+   "license": "paraphrase; no reproduction",
+   "retrieval_date": "2026-08-12",
+   "conversion": "公开案例叙述改写为方法论要点，未使用原图文",
+   "limitations": "案例名称与园区仅作公开参考，不构成企业背书或投资陈述"
+  },
+  {
+   "id": "CASE-TELAVIV",
+   "url": "https://www.tel-aviv.gov.il/",
+   "source_type": "agent_generated_design",
+   "usage": "Tel Aviv startup corridor：公开资料整理，仅借鉴空间组织/产城融合/运营机制方法论；未复制企业名单、Logo 或商标。",
+   "author": "AI agent (seekerwxy)",
+   "license": "paraphrase; no reproduction",
+   "retrieval_date": "2026-08-12",
+   "conversion": "公开案例叙述改写为方法论要点，未使用原图文",
+   "limitations": "案例名称与园区仅作公开参考，不构成企业背书或投资陈述"
+  },
+  {
+   "id": "CASE-KX",
+   "url": "https://www.kingscross.co.uk/",
+   "source_type": "agent_generated_design",
+   "usage": "King's Cross, London：公开资料整理，仅借鉴空间组织/产城融合/运营机制方法论；未复制企业名单、Logo 或商标。",
+   "author": "AI agent (seekerwxy)",
+   "license": "paraphrase; no reproduction",
+   "retrieval_date": "2026-08-12",
+   "conversion": "公开案例叙述改写为方法论要点，未使用原图文",
+   "limitations": "案例名称与园区仅作公开参考，不构成企业背书或投资陈述"
+  },
+  {
+   "id": "CASE-PANGYO",
+   "url": "https://www.pangyotechnovalley.org/",
+   "source_type": "agent_generated_design",
+   "usage": "Pangyo Techno Valley, Korea：公开资料整理，仅借鉴空间组织/产城融合/运营机制方法论；未复制企业名单、Logo 或商标。",
+   "author": "AI agent (seekerwxy)",
+   "license": "paraphrase; no reproduction",
+   "retrieval_date": "2026-08-12",
+   "conversion": "公开案例叙述改写为方法论要点，未使用原图文",
+   "limitations": "案例名称与园区仅作公开参考，不构成企业背书或投资陈述"
+  },
+  {
+   "id": "CASE-XILI",
+   "url": "https://www.sz.gov.cn/",
+   "source_type": "agent_generated_design",
+   "usage": "Xili Lake International Science Education City, Shenzhen：公开资料整理，仅借鉴空间组织/产城融合/运营机制方法论；未复制企业名单、Logo 或商标。",
+   "author": "AI agent (seekerwxy)",
+   "license": "paraphrase; no reproduction",
+   "retrieval_date": "2026-08-12",
+   "conversion": "公开案例叙述改写为方法论要点，未使用原图文",
+   "limitations": "案例名称与园区仅作公开参考，不构成企业背书或投资陈述"
+  },
+  {
+   "id": "CASE-KEIHIN",
+   "url": "https://www.city.yokohama.lg.jp/",
+   "source_type": "agent_generated_design",
+   "usage": "Keihin coastal belt, Yokohama：公开资料整理，仅借鉴空间组织/产城融合/运营机制方法论；未复制企业名单、Logo 或商标。",
+   "author": "AI agent (seekerwxy)",
+   "license": "paraphrase; no reproduction",
+   "retrieval_date": "2026-08-12",
+   "conversion": "公开案例叙述改写为方法论要点，未使用原图文",
+   "limitations": "案例名称与园区仅作公开参考，不构成企业背书或投资陈述"
+  },
+  {
+   "id": "FONT-ASSETS",
+   "source_type": "agent_generated_design",
+   "usage": "图件与 PDF 使用系统 CJK 字体（Microsoft YaHei / Noto Sans SC）在本地渲染，未嵌入字体文件，无第三方字体授权问题。",
+   "author": "AI agent (seekerwxy)",
+   "license": "system fonts, not embedded",
+   "retrieval_date": "2026-08-12"
+  },
+  {
+   "id": "MAP-BASE",
+   "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+   "source_type": "repository_provisional",
+   "usage": "提交边界与重点区图件的地理底图来源，仅为临时约束，非官方红线；正式边界到位后重算全部图层与指标。",
+   "author": "repository maintainers (cleared provisional material)",
+   "license": "repo CC-BY-4.0, provisional",
+   "retrieval_date": "2026-08-12",
+   "limitations": "provisional_constraint, official_boundary=false"
+  },
+  {
+   "id": "PUBLIC-BRIEF",
+   "path": "brief/public-brief.md",
+   "source_type": "official_public",
+   "usage": "公开征集公告阅读版本；任务、范围与成果要求依据。",
+   "license": "repo CC-BY-4.0",
+   "retrieval_date": "2026-08-12"
+  },
+  {
+   "id": "PROCESSED-SCOPE-CSV",
+   "path": "data/processed/project_scope_summary.csv",
+   "source_type": "repository_processed_reference",
+   "usage": "三层范围导航表（阅读层，非权威来源）。",
+   "retrieval_date": "2026-08-12"
+  },
+  {
+   "id": "PROCESSED-TASK-CSV",
+   "path": "data/processed/agent_task_requirements.csv",
+   "source_type": "repository_processed_reference",
+   "usage": "agent 任务要求清单（阅读层，非权威来源）。",
+   "retrieval_date": "2026-08-12"
+  },
+  {
+   "id": "PROCESSED-SOURCEUSE-CSV",
+   "path": "data/processed/source_use_matrix.csv",
+   "source_type": "repository_processed_reference",
+   "usage": "资料用途矩阵（阅读层，非权威来源）。",
+   "retrieval_date": "2026-08-12"
+  },
+  {
+   "id": "PROCESSED-MISSINGDATA-CSV",
+   "path": "data/processed/missing_data_checklist.csv",
+   "source_type": "repository_processed_reference",
+   "usage": "缺资料清单（阅读层，非权威来源）。",
+   "retrieval_date": "2026-08-12"
+  }
+ ]
 }

@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation.",
+      "review_by": "official_controls_publication",
+      "recalculation_trigger": "Publication of official regulatory controls invalidates the qualitative intensity/height suggestions and requires re-derivation of chapters 7-8."
+    },
+    {
+      "id": "A-BOUNDARY-002",
+      "status": "pending_official_data",
+      "statement": "All spatial layers and precision-sensitive metrics are derived from the repository provisional rough boundary and key-area polygons (PROV-SITE-001, PROV-KEY-001/002/003). This proposal treats the publication date of official polygons as the 'decommission date' of its own provisional geometry, applying its own covenant rule to itself.",
+      "impact": "site_area_sqm, key-area areas, all land-use areas, green/public-space ratios, phase areas and every figure/board derived from them are provisional. On official publication the whole package must be regenerated and re-self-checked, not patched file by file.",
+      "review_by": "official_boundary_publication",
+      "recalculation_trigger": "Official SITE_BOUNDARY or KEY_AREA polygons registered in the site package."
+    },
+    {
+      "id": "A-COVENANT-003",
+      "status": "design_rule",
+      "statement": "The default covenant term for public-space AI facilities is assumed at 3 years (extendable via re-certification at the Overhaul Yard; halved to 18 months for first-deployment university projects). The number is a design starting point benchmarked on typical municipal service-contract and equipment-depreciation cycles, not on an official regulation.",
+      "impact": "Phasing logic (phase 2 timed to the first re-certification wave, phase 3 to the first retirement wave) scales with this term. If pilots or policy set a different default term, phase timing shifts accordingly but the sequence (register -> re-certify -> decommission) is invariant.",
+      "review_by": "2028-08-14",
+      "recalculation_trigger": "First real covenant cohort registered in phase 1 provides empirical term data."
+    },
+    {
+      "id": "A-DEPOSIT-004",
+      "status": "pending_evidence",
+      "statement": "No public precedent exists for sizing removal deposits for urban AI facilities. This proposal deliberately does not publish deposit amounts or a fund-size estimate.",
+      "impact": "The escrow mechanism is described institutionally (third-party custody, released on verified restoration) without financial figures. Phase 1 limits itself to legacy inventory and lightweight stone-plus-e-ink markers so that real removal-cost data accumulates before any deposit schedule is proposed.",
+      "review_by": "phase_1_completion",
+      "recalculation_trigger": "Phase 1 legacy-decommissioning pilots produce audited removal-cost records."
+    },
+    {
+      "id": "A-LEGACY-005",
+      "status": "pending_field_survey",
+      "statement": "The count of existing derelict smart street furniture (dead kiosks, powered-off screens, abandoned share-scheme docks) within the belt is unknown; no public register exists.",
+      "impact": "legacy_device_inventory_count stays unknown in metrics.json. The phase-1 inventory is scoped as the first deliverable precisely because this number cannot be honestly stated today.",
+      "review_by": "phase_1_completion",
+      "recalculation_trigger": "Completion of the phase-1 field inventory (project DL-01)."
+    },
+    {
+      "id": "A-SUTURE-006",
+      "status": "acknowledged_shortfall",
+      "statement": "This proposal's own standard says east-west sutures should be no more than ~800 m apart, but the submitted 8 sutures have a maximum gap of about 1.55 km (N. 3rd Ring auxiliary road to Zhichun Rd segment) and four gaps exceed 1 km, because large institutional compounds flank that segment and no ownership data is public.",
+      "impact": "The slow-mobility continuity claim is weaker in the mid-south segment. The shortfall is published as an unfavorable self-reading rather than hidden; densifying sutures is conditioned on ownership and site-condition data.",
+      "review_by": "official_controls_publication",
+      "recalculation_trigger": "Ownership/cadastral data enabling additional crossing locations."
+    },
+    {
+      "id": "A-SPINE-007",
+      "status": "approximation",
+      "statement": "The greenway spine centerline (ROAD-001, ~9.7 km) approximates the Jingzhang Heritage Park alignment from public descriptions; it is not a surveyed centerline, and node positions (N01-N12) are placed along this approximation.",
+      "impact": "spine_length_m and node coordinates carry the same provisional precision as the boundary; they support concept design and recomputation but not engineering location.",
+      "review_by": "official_boundary_publication",
+      "recalculation_trigger": "Official park boundary or surveyed alignment data."
+    }
+  ]
+}

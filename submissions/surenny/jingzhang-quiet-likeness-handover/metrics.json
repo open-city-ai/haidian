@@ -1,0 +1,265 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.385554,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "projected area of submitted provisional SITE_BOUNDARY in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-SITE-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 278850.229929,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum projected conceptual room envelopes",
+      "confidence": "low",
+      "assumptions": [
+        "A-SITE-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "projected GREEN_SPACE area / provisional site area",
+      "confidence": "low",
+      "assumptions": [
+        "A-SITE-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.083396,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "projected handover-foyer area / provisional site area",
+      "confidence": "low",
+      "assumptions": [
+        "A-SITE-001"
+      ]
+    },
+    "concept_route_length_m": {
+      "status": "known",
+      "value": 7546.337802,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "projected length of conceptual staffed continuity route",
+      "confidence": "low",
+      "assumptions": [
+        "A-SITE-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count required provisional KEY_AREA features",
+      "confidence": "low",
+      "assumptions": [
+        "A-SITE-001"
+      ]
+    },
+    "handover_room_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count original conceptual handover room envelopes",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/taskbook-deliverables.json"
+      ],
+      "formula": "count scenario cards",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/taskbook-deliverables.json"
+      ],
+      "formula": "count task-based synthetic personas",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/taskbook-deliverables.json"
+      ],
+      "formula": "count industrial/professional validation scenarios",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/taskbook-deliverables.json"
+      ],
+      "formula": "count reversible concept landmarks",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "named_human_role_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/quiet-likeness-protocol.json"
+      ],
+      "formula": "count named human accountability roles",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "protocol_state_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/quiet-likeness-protocol.json"
+      ],
+      "formula": "count explicit protocol states",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "synthetic_case_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/quiet-likeness-protocol.json"
+      ],
+      "formula": "count synthetic tabletop cases with no real personal data",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "trigger_false_positive_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/quiet-likeness-protocol.json"
+      ],
+      "formula": "incorrect quiet-hold triggers / professionally approved trigger tests",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-AUTHORITY-001",
+        "A-OPERATIONS-001"
+      ],
+      "reason": "No approved trigger rule, real case, or professional baseline exists."
+    },
+    "authority_check_completion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/quiet-likeness-protocol.json"
+      ],
+      "formula": "independently completed authority checks / approved synthetic and authorized cases",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-AUTHORITY-001"
+      ],
+      "reason": "Authority depends on applicable law, records duties, and competent human review; no target is invented."
+    },
+    "ordinary_service_continuity_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/quiet-likeness-protocol.json"
+      ],
+      "formula": "AI-off ordinary tasks completed / approved ordinary-service scripts",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-AFFECTED-001",
+        "A-OPERATIONS-001"
+      ],
+      "reason": "No authorized room, affected-person co-test, or service baseline exists."
+    },
+    "affected_person_acceptability_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/quiet-likeness-protocol.json"
+      ],
+      "formula": "independently accepted tasks / approved affected-person review tasks",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-AFFECTED-001"
+      ],
+      "reason": "No affected-person review has occurred and no aspirational score is inserted."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "requires approved regulatory planning conditions",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved FAR controls are unavailable."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "requires approved height, heritage, safety, and engineering controls",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved height and professional controls are unavailable."
+    }
+  }
+}

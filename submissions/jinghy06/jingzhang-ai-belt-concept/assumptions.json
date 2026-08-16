@@ -1,0 +1,45 @@
+{
+ "schema_version": "0.1.0",
+ "assumptions": [
+  {
+   "id": "A-BOUNDARY-001",
+   "title_zh": "临时粗略边界替代官方边界",
+   "statement_zh": "官方 SITE_BOUNDARY 与 KEY_AREA 精确 polygon 未随资料包发布；本包全部空间图层基于 brief/site-package/geometry/provisional_boundaries.geojson 生成，标注 official_boundary=false、geometry_role=provisional_constraint、boundary_precision=provisional_rough。",
+   "impact_zh": "所有面积、比例与空间结论仅供方案讨论与自检，不构成官方红线、精确面积或法定控制。",
+   "recalc_trigger_zh": "官方或清权边界发布后，重跑生成脚本并复算全部图层与 metrics.json。",
+   "status": "open"
+  },
+  {
+   "id": "A-GEOM-001",
+   "title_zh": "概念图层为设计生成而非现状测绘",
+   "statement_zh": "用地、建筑、道路、绿地、公共空间与分期图层由生成脚本在临时边界内按设计逻辑切分，代表概念设计意图而非现状或审批成果。",
+   "impact_zh": "图层置信度为 low/medium；与真实地块、权属和现状建筑不对应。",
+   "recalc_trigger_zh": "取得现状测绘、权属台账与官方控规后由专业团队重建。",
+   "status": "open"
+  },
+  {
+   "id": "A-CONTROLS-001",
+   "title_zh": "官方控规条件缺失",
+   "statement_zh": "容积率、建筑高度、建筑密度、绿地率、退线等官方控制条件未发布（planning_limits.json 标记 missing），相关指标在 metrics.json 记为 unknown。",
+   "impact_zh": "建筑总规模与开发强度只能给出概念量级与复算路径，不得写成审定指标。",
+   "recalc_trigger_zh": "官方控规或设计任务书附件发布后按公式复算。",
+   "status": "open"
+  },
+  {
+   "id": "A-HERITAGE-001",
+   "title_zh": "遗产廊道与水系为示意范围",
+   "statement_zh": "constraints.geojson 中文保廊道与小月河、清河为公开资料推定示意，非文物保护范围、建设控制地带或蓝线法定线图。",
+   "impact_zh": "遗产与蓝绿相关设计均为方向性建议，须以正式文保与水务数据校核。",
+   "recalc_trigger_zh": "正式文保范围、蓝线与公园边界数据发布后更新。",
+   "status": "open"
+  },
+  {
+   "id": "A-SCENARIO-001",
+   "title_zh": "AI场景均为概念建议",
+   "statement_zh": "场景卡、用户画像、朝圣地标与活动运营体系为概念建议，须经隐私评估、安全论证、版权清查与人工复核后方可试点。",
+   "impact_zh": "不构成已批准运营、政府安排或投资承诺。",
+   "recalc_trigger_zh": "专业团队与主管部门论证后形成实施方案。",
+   "status": "open"
+  }
+ ]
+}

@@ -1,0 +1,106 @@
+{
+  "dataset": "Copernicus DEM GLO-30 Public",
+  "distribution": "Copernicus DEM 2021 release as Cloud Optimized GeoTIFF on the Registry of Open Data on AWS",
+  "official_product_page": "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+  "public_distribution_page": "https://registry.opendata.aws/copernicus-dem/",
+  "accessed_date": "2026-08-08",
+  "doi": "https://doi.org/10.5270/ESA-c5d3d65",
+  "license": "Copernicus DEM GLO-30 free licence; worldwide public use with required attribution; all rights reserved",
+  "required_attribution_for_modified_data": "produced using Copernicus WorldDEM-30 © DLR e.V. 2010-2014 and © Airbus Defence and Space GmbH 2014-2018 provided under COPERNICUS by the European Union and ESA; all rights reserved",
+  "product_type": "digital surface model (DSM), not a bare-earth digital terrain model (DTM)",
+  "surface_contents": "buildings, infrastructure and vegetation may contribute to elevations",
+  "source_acquisition_period": "2011-2015 TanDEM-X; older DEM sources may fill gaps",
+  "source_resolution": "1.0 arc-second / approximately 30 m",
+  "horizontal_crs": "EPSG:4326 (WGS 84 / WGS84-G1150)",
+  "vertical_crs": "EPSG:3855 (EGM2008 geoid heights), metres",
+  "raster_pixel_interpretation": "RasterPixelIsPoint",
+  "official_accuracy_statement": {
+    "absolute_vertical": "less than 4 m LE90",
+    "relative_vertical": "less than 2 m for slopes at or below 20%; less than 4 m for slopes above 20%",
+    "absolute_horizontal": "less than 6 m CE90"
+  },
+  "source_tiles": [
+    {
+      "tile": "Copernicus_DSM_COG_10_N40_00_E116_00_DEM",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N40_00_E116_00_DEM/Copernicus_DSM_COG_10_N40_00_E116_00_DEM.tif",
+      "object_length_bytes": 46764581,
+      "etag": "f864fde13e9923a4b29898a8ffa64089",
+      "last_modified": "2022-05-09T14:21:33Z",
+      "source_global_window_inclusive": [
+        1223,
+        3505,
+        1279,
+        3599
+      ],
+      "internal_block_index": 13,
+      "internal_block_offset": 42863155,
+      "internal_block_byte_count": 1547112,
+      "downloaded_byte_range_inclusive": [
+        42863155,
+        44410266
+      ],
+      "downloaded_block_sha256": "b4272125e676ad3c75971f3414b5847d73c646784c6ebc91c8c4a7b31c845e17"
+    },
+    {
+      "tile": "Copernicus_DSM_COG_10_N39_00_E116_00_DEM",
+      "url": "https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N39_00_E116_00_DEM/Copernicus_DSM_COG_10_N39_00_E116_00_DEM.tif",
+      "object_length_bytes": 50462276,
+      "etag": "693abe15604672d67b64e61497a3614a",
+      "last_modified": "2022-05-09T14:20:50Z",
+      "source_global_window_inclusive": [
+        1223,
+        0,
+        1279,
+        219
+      ],
+      "internal_block_index": 1,
+      "internal_block_offset": 15536100,
+      "internal_block_byte_count": 3048548,
+      "downloaded_byte_range_inclusive": [
+        15536100,
+        18584647
+      ],
+      "downloaded_block_sha256": "f063aea2a79cb66374a0b98b59bd7d04c901ad86143b855e886f0011b9cac0f2"
+    }
+  ],
+  "clip_boundary": "geometry/site_boundary.geojson#SITE-001",
+  "clip_boundary_status": "provisional_rough_nonstatutory",
+  "output_width": 57,
+  "output_height": 315,
+  "output_first_sample_lon_lat": [
+    116.33972222222222,
+    40.02638888888889
+  ],
+  "pixel_step_degrees": [
+    0.0002777777777777778,
+    -0.0002777777777777778
+  ],
+  "elevation_raster_encoding": "16-bit grayscale PNG; unsigned decimetres above EGM2008; 65535 is nodata; sample grid is north-to-south RasterPixelIsPoint",
+  "elevation_statistics": {
+    "valid_sample_count": 15628,
+    "minimum_m": 32.0,
+    "maximum_m": 127.996,
+    "mean_m": 49.784,
+    "median_m": 37.112,
+    "p05_m": 33.03,
+    "p95_m": 124.332,
+    "relief_m": 95.996,
+    "standard_deviation_m": 30.212
+  },
+  "surface_slope_screening": {
+    "valid_3x3_sample_count": 14872,
+    "projected_spacing_x_m": 23.727,
+    "projected_spacing_y_m": 30.843,
+    "minimum_degrees": 0.027,
+    "maximum_degrees": 68.429,
+    "mean_degrees": 11.829,
+    "median_degrees": 4.256,
+    "p95_degrees": 62.581,
+    "under_2_degrees_share": 0.191703,
+    "2_to_under_5_degrees_share": 0.38475,
+    "5_to_under_15_degrees_share": 0.284562,
+    "15_degrees_or_more_share": 0.138986
+  },
+  "method": "Validated both COG headers, downloaded only the two intersecting internal Deflate blocks by HTTP byte range, reversed TIFF floating-point Predictor 3, concatenated point samples north-to-south, and masked by point inclusion in provisional SITE-001.",
+  "usage_boundary": "Concept-stage regional existing-surface and terrain-screening context only. This circa-2011-2015 approximately 30 m DSM includes structures and vegetation and is clipped by a provisional boundary; it does not establish current or bare-earth terrain, spot levels, drainage direction, flood risk, earthworks, accessible gradients, utility levels, engineering design, statutory geometry or survey acceptance."
+}

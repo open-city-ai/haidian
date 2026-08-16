@@ -1,0 +1,157 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+    },
+    {
+      "id": "ASM-DATA-001",
+      "category": "data_stratification",
+      "assumption": "三带缓冲体系（核心交互带0-300m、协同转化带300-800m、辐射支撑带800-1500m）为概念设计，精确缓冲边界需基于官方site_boundary使用GIS工具计算",
+      "impact": "data_stratification.geojson中的多边形为示意性边界",
+      "status": "open"
+    },
+    {
+      "id": "ASM-DATA-002",
+      "category": "data_governance",
+      "assumption": "数据底座四级分类（L0基础设施-L1城市运行-L2产业创新-L3精神文化）的权限治理机制需文明委员会制定具体规则",
+      "impact": "数据级别的权限和滚动方式为概念建议",
+      "status": "open"
+    },
+    {
+      "id": "ASM-AGENT-001",
+      "category": "agent_cluster",
+      "assumption": "五类Agent任务集群（创造型/组织型/分发型/执行型/检查型）为概念架构，实际部署需各机构协商确定Agent角色与Skill模块",
+      "impact": "agent-nodes.geojson中的节点位置为设计建议",
+      "status": "open"
+    },
+    {
+      "id": "ASM-AGENT-002",
+      "category": "agent_cluster",
+      "assumption": "Skill模块和Harness编排框架为概念设计，技术实现需与AI技术提供方协商",
+      "impact": "城市Agent集群的技术架构待深化",
+      "status": "open"
+    },
+    {
+      "id": "ASM-SPIRIT-001",
+      "category": "spirit_community",
+      "assumption": "五感文明感知系统（铁轨遗音、站驿星锚、行车文廊、黉门灯塔、里巷烟火）为概念设计，落地实施需与高校、社区、铁路运营方、文化机构协同",
+      "impact": "精神场景的具体形式和运营模式待深化",
+      "status": "open"
+    },
+    {
+      "id": "ASM-SPIRIT-002",
+      "category": "spirit_community",
+      "assumption": "文明委员会的组成、职能和治理规则需进一步设计，不替代现有行政和法规划审批体系",
+      "impact": "精神共同体的治理机制为概念建议",
+      "status": "open"
+    },
+    {
+      "id": "ASM-SPIRIT-003",
+      "category": "spirit_community",
+      "assumption": "京张精神指数及其五项子指标（遗音完整度、星锚连接度、文廊沉浸度、灯塔亮度、烟火温度）为概念指标，需运营数据持续校准",
+      "impact": "精神指标的数值当前为unknown",
+      "status": "open"
+    },
+    {
+      "id": "ASM-FLYWHEEL-001",
+      "category": "data_flywheel",
+      "assumption": "列车式数据飞轮机制（采集-汇聚-治理-服务-反馈-再采集）为概念设计，实际飞轮效应需数据基础设施和Agent系统部署后验证",
+      "impact": "数据飞轮加速度指标当前为unknown",
+      "status": "open"
+    },
+    {
+      "id": "ASM-GAP-001",
+      "gap_id": "GAP-001",
+      "category": "data_gap",
+      "assumption": "三个空间层次（统筹研究/总体设计/重点区域）的精确官方 polygon 尚未取得，本方案使用 provisional_boundaries.geojson 推定边界",
+      "impact": "site_boundary.geojson 与 key_areas.geojson 均为 provisional_constraint，不能作为 official redline 或精确面积依据",
+      "affected_layers": ["geometry/site_boundary.geojson", "geometry/key_areas.geojson"],
+      "missing_data_ref": "brief/site-package/missing-data.md#必须补齐",
+      "status": "open"
+    },
+    {
+      "id": "ASM-GAP-002",
+      "gap_id": "GAP-002",
+      "category": "data_gap",
+      "assumption": "三处重点区域（众智园、北京AI原点社区、大钟寺）的精确 polygon 尚未取得，官方面积仅来自公告文字（192.1/104.3/72.0 公顷）",
+      "impact": "重点区面积指标以公告文字为准，official polygon 到位后需重算",
+      "affected_layers": ["geometry/key_areas.geojson"],
+      "missing_data_ref": "brief/site-package/missing-data.md#必须补齐",
+      "status": "open"
+    },
+    {
+      "id": "ASM-GAP-003",
+      "gap_id": "GAP-003",
+      "category": "data_gap",
+      "assumption": "正式坐标系统和测绘基准说明尚未取得，临时边界在 EPSG:4548 下推定",
+      "impact": "所有几何的坐标基准待官方确认，跨图层叠合精度存在不确定性",
+      "affected_layers": ["geometry/site_boundary.geojson", "geometry/data-stratification.geojson"],
+      "missing_data_ref": "brief/site-package/missing-data.md#必须补齐",
+      "status": "open"
+    },
+    {
+      "id": "ASM-GAP-004",
+      "gap_id": "GAP-004",
+      "category": "data_gap",
+      "assumption": "控制性详细规划条件（容积率、建筑高度、密度、绿地率、退线、建筑控制线、道路红线）尚未取得",
+      "impact": "floor_area_ratio 等管控指标统一 status=unknown，不得以推测值冒充审定指标",
+      "affected_layers": ["geometry/constraints.geojson"],
+      "missing_data_ref": "brief/site-package/missing-data.md#必须补齐",
+      "status": "open"
+    },
+    {
+      "id": "ASM-GAP-005",
+      "gap_id": "GAP-005",
+      "category": "data_gap",
+      "assumption": "现状地块/宗地边界与土地权属状态说明尚未取得，PARCEL 图层为空集合",
+      "impact": "拆改留与权属相关判断为概念建议，落地需权属核查",
+      "affected_layers": ["geometry/constraints.geojson"],
+      "missing_data_ref": "brief/site-package/missing-data.md#必须补齐",
+      "status": "open"
+    },
+    {
+      "id": "ASM-GAP-006",
+      "gap_id": "GAP-006",
+      "category": "data_gap",
+      "assumption": "现状建筑轮廓、高度、层数、用途、建成年代与保留/改造/拆除状态尚未完整取得",
+      "impact": "building_footprint_area_sqm 为现有图层复算值，建筑保留改造分类待现状核查",
+      "affected_layers": ["geometry/buildings.geojson"],
+      "missing_data_ref": "brief/site-package/missing-data.md#必须补齐",
+      "status": "open"
+    },
+    {
+      "id": "ASM-GAP-007",
+      "gap_id": "GAP-007",
+      "category": "data_gap",
+      "assumption": "京张铁路遗址公园一期/二期精确范围及清华园车站旧址等文保范围、建设控制地带 GIS 图层尚未取得",
+      "impact": "铁轨遗音、站驿星锚等精神场景的空间落位为概念建议，文保管控待官方图层确认",
+      "affected_layers": ["geometry/constraints.geojson", "geometry/agent-nodes.geojson"],
+      "missing_data_ref": "brief/site-package/missing-data.md#必须补齐",
+      "status": "open"
+    },
+    {
+      "id": "ASM-GAP-008",
+      "gap_id": "GAP-008",
+      "category": "data_gap",
+      "assumption": "交通基础数据（道路红线、断面、轨道站点边界、客流、慢行断点、停车供给）尚未完整取得",
+      "impact": "站点加速点与慢行缝合的空间判断为概念建议，交通组织待官方数据复核",
+      "affected_layers": ["geometry/roads.geojson", "geometry/agent-nodes.geojson"],
+      "missing_data_ref": "brief/site-package/missing-data.md#必须补齐",
+      "status": "open"
+    },
+    {
+      "id": "ASM-GAP-009",
+      "gap_id": "GAP-009",
+      "category": "data_gap",
+      "assumption": "市政与安全约束（管线、排水、电力、燃气、消防、防洪排涝、海绵城市）及公共服务设施底数尚未取得",
+      "impact": "端侧算力驿站、市政融合等新型基础设施布局为概念建议，落地需市政与设施底数核查",
+      "affected_layers": ["geometry/constraints.geojson"],
+      "missing_data_ref": "brief/site-package/missing-data.md#必须补齐",
+      "status": "open"
+    }
+  ]
+}

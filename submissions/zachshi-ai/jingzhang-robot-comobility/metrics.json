@@ -428,6 +428,80 @@
         "Official text value"
       ],
       "rationale": "公告三处重点区约368.4公顷口径。"
+    },
+    "cross_section_prototype_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(distinct robot_lane types: dedicated/shared/pedestrian_priority/test_zone_lane)",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "四种共行断面原型：专用/共享/行人优先/测试步道，构成共行断面语法的核心输出。"
+    },
+    "speed_tier_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(distinct robot_speed_kmh values: 5/8/10/15)",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "四级限速分级：5km/h行人优先/8km/h测试/10km/h共享/15km/h专用。"
+    },
+    "robustness_simulation_draws": {
+      "status": "known",
+      "value": 5000,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/robustness-simulation.js"
+      ],
+      "formula": "fixed seed 20260814, 5000 draws",
+      "confidence": "high",
+      "assumptions": [
+        "Deterministic seeded model comparison, not field performance"
+      ],
+      "rationale": "5000次确定性抽样比较四种断面策略，S2专用脊柱胜出。"
+    },
+    "component_library_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/honor-display-system.json"
+      ],
+      "formula": "count(component_library items)",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "七个公共空间组件（OC-01..07），每个定义 BLACKOUT 断电行为与 BEQUEST 退场资产。"
+    },
+    "conversion_pathway_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/conversion-pathways.json"
+      ],
+      "formula": "count(pathways)",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "开发者/企业/人才三条转化路径（agent.6）。"
+    },
+    "test_protocol_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/test-scenario-protocols.json"
+      ],
+      "formula": "count(protocols)",
+      "confidence": "high",
+      "assumptions": [],
+      "rationale": "四个测试验证场景的完整协议（RB-09/10/11/12），含指标/阈值/停止条件。"
     }
   },
   "recalculation_notes": {

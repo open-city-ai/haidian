@@ -7,7 +7,7 @@
   "metrics": {
     "site_area_sqm": {
       "status": "known",
-      "value": 11412825.385554,
+      "value": 11412825.386,
       "unit": "sqm",
       "source_files": [
         "geometry/site_boundary.geojson"
@@ -33,7 +33,7 @@
     },
     "green_ratio": {
       "status": "known",
-      "value": 0.121106,
+      "value": 0.120762,
       "unit": "ratio",
       "source_files": [
         "geometry/green_space.geojson",
@@ -47,7 +47,7 @@
     },
     "public_space_ratio": {
       "status": "known",
-      "value": 0.022467,
+      "value": 0.021246,
       "unit": "ratio",
       "source_files": [
         "geometry/public_space.geojson",
@@ -162,6 +162,34 @@
       "assumptions": [
         "A-PILOT-001"
       ]
+    },
+    "dual_state_plan_pair_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "spatial.json",
+        "assets/figures/key-areas.png"
+      ],
+      "formula": "count(key areas with paired AI_ON and AI_OFF plans)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DUAL-STATE-001"
+      ]
+    },
+    "field_verified_dual_state_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "count(dual-state plans passing field access, staffing and recovery audit)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-DUAL-STATE-001"
+      ],
+      "reason": "No authorized field co-walk, staffing drill or shutdown-recovery test has been completed."
     }
   }
 }

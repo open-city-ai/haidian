@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jing-Zhang Return-to-Service Works | Civic main line and equipment side line</title>
+<style>
+:root{--ink:#171b1f;--paper:#f3f0e8;--paper2:#faf8f2;--steel:#68747b;--line:#c7cdd0;--red:#b34632;--yellow:#e4a72b;--green:#2d7d5b;--blue:#2f6073;}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Arial Narrow","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.55}
+a{color:inherit}button{font:inherit}header{padding:38px clamp(22px,5vw,76px) 26px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:28px;align-items:end}
+h1{font-family:Georgia,"Songti SC",serif;font-size:clamp(34px,5vw,67px);line-height:1.02;margin:0 0 12px;letter-spacing:-.025em}h2{font-family:Georgia,"Songti SC",serif}header p{max-width:880px;color:var(--steel);margin:0}
+.lang{border:1px solid var(--ink);padding:8px 14px;text-decoration:none;font-size:13px}nav{padding:13px clamp(22px,5vw,76px);display:flex;gap:18px;overflow:auto;border-bottom:1px solid var(--line);font-size:11px;text-transform:uppercase;letter-spacing:.09em}
+main{padding:28px clamp(16px,4vw,64px) 64px;max-width:1580px;margin:auto}header>div,.hero>*,.simulator>*,.panel>*{min-width:0;max-width:100%}h1,h2,p,.kicker,.gate span,td{overflow-wrap:anywhere;word-break:break-word}
+.hero{background:var(--ink);color:var(--paper2);padding:clamp(22px,3.5vw,48px);margin-bottom:16px;display:grid;grid-template-columns:.75fr 1.25fr;gap:32px;align-items:center}.hero h2{font-size:clamp(29px,4vw,52px);line-height:1.07;margin:0 0 16px}.hero p{color:#d3d7d8;max-width:650px}.hero img{width:100%;display:block;border:1px solid #566067}.kicker{color:var(--red);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+.reality{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}.reality div{background:var(--paper2);border-top:4px solid var(--red);padding:14px}.reality span,.reality strong{display:block}.reality span{font-size:12px;color:var(--steel)}.reality strong{font-size:19px;margin-top:5px}
+.simulator{display:grid;grid-template-columns:.92fr 1.08fr;background:var(--paper2);border:1px solid var(--line);margin:0 0 24px}.sim-copy{padding:clamp(22px,3vw,42px)}.sim-copy h2{font-size:clamp(26px,3vw,42px);line-height:1.08;margin:6px 0 12px}.service-line{display:flex;align-items:center;gap:10px;color:var(--green);font-weight:700;margin:18px 0}.service-line::before{content:"";width:48px;border-top:5px solid var(--green)}.state-card{border-left:6px solid var(--red);background:var(--paper);padding:18px;margin:20px 0;min-height:150px}.state-card strong{display:block;font-size:20px;margin-bottom:8px}.state-card[data-state="release"]{border-color:var(--green)}.state-card[data-state="retest"]{border-color:var(--blue)}.controls{display:flex;flex-wrap:wrap;gap:8px}.controls button{border:1px solid var(--ink);background:transparent;color:var(--ink);padding:9px 12px;cursor:pointer}.controls button:hover,.controls button:focus-visible{background:var(--ink);color:var(--paper2);outline:3px solid var(--yellow);outline-offset:2px}.sim-visual{padding:18px;background:#e9e5db;display:grid;align-items:center}.sim-visual img{width:100%;display:block;border:1px solid var(--line)}
+.metrics{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-bottom:28px}.metric{background:var(--paper2);border-top:4px solid var(--green);padding:15px;min-height:96px}.metric strong{display:block;font-size:22px}.metric span{color:var(--steel);font-size:12px}
+.authority{background:var(--ink);color:var(--paper2);padding:clamp(22px,3vw,42px);margin-bottom:24px;overflow:auto}.authority h2{font-size:clamp(26px,3vw,42px);margin:0 0 10px}.authority p{color:#cfd4d5;max-width:880px}table{border-collapse:collapse;width:100%;min-width:840px;margin-top:20px}th,td{text-align:left;vertical-align:top;border-top:1px solid #59636a;padding:12px;font-size:12px}th{color:var(--yellow)}code{color:#ffd67a}
+.panel{background:var(--paper2);border:1px solid var(--line);margin:0 0 24px;display:grid;grid-template-columns:minmax(220px,.29fr) 1fr;gap:20px;padding:18px;align-items:center}.panel img{width:100%;display:block;border:1px solid var(--line)}.panel-copy{padding:16px}.panel-copy p{color:var(--steel)}
+.audit{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}.audit section{background:var(--ink);color:var(--paper2);padding:22px;min-height:170px}.audit h2{font-family:inherit;font-size:14px;color:var(--yellow);margin-top:0}.audit p{font-size:13px;color:#d3d7d8}
+.markers{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}footer{border-top:1px solid var(--line);padding:24px clamp(22px,5vw,76px);color:var(--steel);font-size:12px}
+@media(max-width:900px){body{overflow-x:hidden}header{grid-template-columns:minmax(0,1fr);padding:28px 20px 22px}h1{font-size:clamp(30px,9vw,44px)}.lang{display:block;width:100%;text-align:left}nav{padding-left:20px;padding-right:20px}main{padding:28px 20px 52px}.hero,.simulator{grid-template-columns:minmax(0,1fr);width:100%;overflow:hidden}.hero{padding:24px}.hero img,.sim-visual img{max-width:100%;height:auto}.reality{grid-template-columns:repeat(2,minmax(0,1fr))}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.panel{grid-template-columns:minmax(0,1fr);padding:12px}.panel-copy{padding:12px}.audit{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:520px){.metrics{grid-template-columns:minmax(0,1fr)}.controls button{width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<span class="markers">Overview map Three-level scope Key areas Land-use zones Mobility Blue-green public space Buildings Renewal projects AI scenarios Core metrics Task coverage Self-check status Sources Assumptions R0 R1 R2 R3 R4 R5 release responsibility contract 90-day pilot human release AI authority service continuity</span>
+<header><div><h1>Jing-Zhang Return-to-Service Works | Civic main line and equipment side line</h1><p>Industrial infrastructure that returns urban AI equipment to accountable service<br>CONCEPTUAL DISPLAY | provisional rough boundaries, not official planning lines</p></div><a class="lang" href="index.html">中文</a></header>
+<nav><a href="#hero">Urban structure</a><a href="#replay">Replay</a><a href="#authority">Authority</a><a href="#metrics">Metrics</a><a href="#s2">Key areas</a><a href="#s3">Land use</a><a href="#s4">Mobility</a><a href="#s5">Evidence</a></nav>
+<main>
+<section class="hero" id="hero"><div><span class="kicker">URBAN SPATIAL CLAIM v1.2</span><h2>The city keeps serving when a device fails</h2><p>Staffed, paper, telephone, and accessible equivalents keep the civic main line open. The failed robot enters a closeable side line: Dazhongsi intake, part and calibration evidence at AI Origin, a failed whole-system test and retest at Zhongzhiyuan, and only then a limited receipt signed by accountable and independent people.</p></div><img src="../assets/figures/site-overview.en.png" alt="Overall diagram of the civic main line and controlled equipment side line"></section>
+<section class="reality"><div><span>Concept space</span><strong>formed</strong></div>
+<div><span>Official polygons</span><strong>pending</strong></div>
+<div><span>Professional commissions</span><strong>not started</strong></div>
+<div><span>Field runs</span><strong>0</strong></div></section>
+<section class="simulator" id="replay">
+  <div class="sim-copy">
+    <span class="kicker">OPERABLE SYNTHETIC REPLAY</span>
+    <h2>Let one failure change what happens next</h2>
+    <div class="service-line">Civic main line: stays open</div>
+    <div class="state-card" id="state-card" data-state="fault" aria-live="polite"><strong id="state-title"></strong><p id="state-copy"></p></div>
+    <div class="controls" aria-label="Replay controls">
+      <button type="button" data-next="hold">Find evidence gap</button>
+      <button type="button" data-next="retest">Correct and retest</button>
+      <button type="button" data-next="release">Human sign-off</button>
+      <button type="button" data-next="return">Retest fails</button>
+      <button type="button" data-next="fault">Reset</button>
+    </div>
+  </div>
+  <div class="sim-visual"><img src="../assets/figures/service-replay.en.png" alt="Six-frame synthetic replay of one public-service robot moving through failure, retest, and accountable human release across three works"></div>
+</section>
+<section class="authority" id="authority"><span class="kicker">AI–HUMAN AUTHORITY</span><h2>AI may assist, but it cannot become the releaser</h2><p>A whitelist defines AI assistance; forced refusal defines what the system must do when AI exceeds authority. Warranty, risk, compatibility, professional sign-off, and final return stay with accountable people.</p><table><thead><tr><th>Place</th><th>AI may</th><th>Human-exclusive</th><th>Overreach result</th></tr></thead><tbody><tr><td>Dazhongsi staffed intake desk</td>
+        <td>Classify fault descriptions, check missing work-order fields, and retrieve cleared service guidance.</td>
+        <td>Confirm intake scope, warranty escalation, data access, and complaint routes.</td>
+        <td><code>REJECT_DATA_REQUEST_R1</code></td></tr>
+<tr><td>Zhongzhiyuan isolation and diagnostics zone</td>
+        <td>Cluster error codes, retrieve similar cases, and suggest a controlled inspection order.</td>
+        <td>Risk classification, isolation, emergency action, and qualified handover.</td>
+        <td><code>HOLD_R2</code></td></tr>
+<tr><td>AI Origin Parts Commons and calibration bench</td>
+        <td>Shortlist candidate parts and expose gaps across mechanical, electrical, communications, firmware, calibration, and failure-mode evidence.</td>
+        <td>Approve the repair scope, accept compatibility evidence, and handle recalls.</td>
+        <td><code>REJECT_AI_RECOMMENDATION_R3</code></td></tr>
+<tr><td>Zhongzhiyuan whole-system regression field</td>
+        <td>Orchestrate approved tests, compare baselines, and flag anomalies or evidence gaps.</td>
+        <td>Emergency stop, calibration/test sign-off, accessibility acceptance, and residual-limit confirmation.</td>
+        <td><code>HOLD_R4</code></td></tr>
+<tr><td>Dazhongsi human-release room and Return-to-Service Square</td>
+        <td>Check gate-trail completeness, draft a limited receipt, and aggregate non-profile operating metrics.</td>
+        <td>Final hold, limited release, return, or qualified handover.</td>
+        <td><code>HOLD_AI_AUTHORITY_R5</code></td></tr></tbody></table></section>
+<section class="metrics" id="metrics"><div class="metric" data-metric="site_area_sqm" data-value="11412825.386"><strong>11.413 km²</strong><span>overall design quantity</span></div>
+<div class="metric" data-metric="green_ratio" data-value="0.104792"><strong>10.4792%</strong><span>green-space design quantity</span></div>
+<div class="metric" data-metric="public_space_ratio" data-value="0.034662"><strong>3.4662%</strong><span>public-space design quantity</span></div>
+<div class="metric" data-metric="building_footprint_ratio" data-value="0.055315"><strong>5.5315%</strong><span>footprint design quantity</span></div>
+<div class="metric" data-metric="road_centerline_length_m" data-value="24440.989"><strong>24.441 km</strong><span>road centre lines</span></div>
+<div class="metric" data-metric="building_count" data-value="15"><strong>15</strong><span>conceptual equipment modules</span></div></section>
+<article class="panel" id="s1">
+          <div class="panel-copy"><span class="kicker">Overall urban structure</span><p>The civic main line stays open while a failed asset moves between three return-to-service works on a controlled side line.</p></div>
+          <img src="../assets/figures/site-overview.en.png" alt="Overall urban structure" loading="lazy">
+        </article>
+<article class="panel" id="s2">
+          <div class="panel-copy"><span class="kicker">Three differentiated works</span><p>Dazhongsi faces the public, AI Origin handles parts and calibration, and Zhongzhiyuan handles system regression; none releases alone.</p></div>
+          <img src="../assets/figures/key-areas.en.png" alt="Three differentiated works" loading="lazy">
+        </article>
+<article class="panel" id="s3">
+          <div class="panel-copy"><span class="kicker">Land use and urban renewal</span><p>Nine zones organize public service, precision work, and controlled back-of-house functions as a reversible, phased spatial process.</p></div>
+          <img src="../assets/figures/land-use-structure.en.png" alt="Land use and urban renewal" loading="lazy">
+        </article>
+<article class="panel" id="s4">
+          <div class="panel-copy"><span class="kicker">Mobility, walking, and blue-green space</span><p>Public movement, ordinary equipment, and qualified outbound transfer are separated; the accessible main route does not detour around a failed asset.</p></div>
+          <img src="../assets/figures/mobility-bluegreen.en.png" alt="Mobility, walking, and blue-green space" loading="lazy">
+        </article>
+<article class="panel" id="s5">
+          <div class="panel-copy"><span class="kicker">Evidence boundary</span><p>Concept space is formed; official polygons are pending; professional commissions are not started; field runs and institutional sign-off remain zero.</p></div>
+          <img src="../assets/figures/metrics-evidence.en.png" alt="Evidence boundary" loading="lazy">
+        </article>
+<div class="audit">
+<section><h2>TASK COVERAGE</h2><p>Task coverage: 23 announcement and Agent requirements are mapped in compliance_matrix.json; all 15 required design-depth items are complete.</p></section>
+<section><h2>SOURCES + SELF-CHECK STATUS</h2><p>Sources: 27 package records, nine GeoJSON files, R0–R5 contracts, an AI–human authority matrix, a twelve-scenario responsibility matrix, and bilingual narrative. Tabletop replay 12/12; AI-authority guards 4/4; field runs 0.</p></section>
+<section><h2>ASSUMPTIONS + BOUNDARIES</h2><p>Assumptions: the overall and three key-area boundaries remain provisional rough geometry. FAR, height, statutory coverage, road red lines, ownership, utilities, fire, flood, heritage, and station relationships await official data and professional review.</p></section>
+</div>
+</main>
+<footer>JING-ZHANG RETURN-TO-SERVICE WORKS · COMMUNITY-DISPLAY-ONLY · 2026-08-14</footer>
+<script>
+const states={"fault": ["FAULT / ASSET OUT", "The asset exits while an equivalent staffed service takes over."], "hold": ["HOLD", "Evidence gaps or an overreach request keep the asset isolated; failed evidence remains visible."], "retest": ["RETEST", "Accountable people approve corrective work; AI only orchestrates approved tests and flags gaps."], "release": ["ACCOUNTABLE HUMAN RELEASE", "Accountable and independent people issue a limited receipt; the civic main line stayed open."], "return": ["RETURN TO SIDE LINE", "The retest still fails; the asset returns for correction or qualified handover while service continues."]};
+const card=document.getElementById("state-card");
+const titleNode=document.getElementById("state-title");
+const copyNode=document.getElementById("state-copy");
+function renderState(key){
+  const value=states[key]||states.fault;
+  card.dataset.state=key;
+  titleNode.textContent=value[0];
+  copyNode.textContent=value[1];
+}
+document.querySelectorAll("[data-next]").forEach((button)=>{
+  button.addEventListener("click",()=>renderState(button.dataset.next));
+});
+renderState("fault");
+</script>
+</body></html>

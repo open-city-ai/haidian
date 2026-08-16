@@ -1,0 +1,123 @@
+{
+ "matrix_id": "privacy_human_review_v1",
+ "updated_at": "2026-08-15",
+ "scope": "方案所述AI应用场景的隐私与人类复核承诺矩阵",
+ "principles": [
+  "知情同意：所有涉及个人数据的场景须明示目的、范围、留存期限，并提供可撤回的同意机制",
+  "数据最小化：仅采集实现功能所必需的最小数据字段；生物识别默认关闭",
+  "非数字替代：所有AI服务提供等价的人工/线下替代通道",
+  "人工复核：影响个人权益的自动化决策（信用、医疗建议、校园行为评价）必须保留人工申诉与复核",
+  "敏感数据特别保护：儿童与医疗数据按最严格标准处理，不用于画像营销",
+  "可退出性：任何持续监控场景（康养监测等）提供一键退出且不降低基础服务质量",
+  "透明度：公共空间感知设备物理标识+在线登记清单"
+ ],
+ "scenarios": [
+  {
+   "id": "SC-MED",
+   "name_zh": "AI+医疗（辅助诊断/病历影像）",
+   "data": "病历、影像（去标识化后处理）",
+   "biometric_default": "off",
+   "consent": "患者书面知情同意+家属可见",
+   "minimization": "仅临床必需字段",
+   "human_review": "AI仅辅助，诊断决定权在执业医师",
+   "opt_out": "可选择纯人工流程",
+   "sensitive": "医疗数据最高保护等级，禁止画像营销",
+   "retention": "按医疗档案法规"
+  },
+  {
+   "id": "SC-EDU",
+   "name_zh": "智慧校园（学情分析）",
+   "data": "学业表现（不含人脸识别、不含行为情绪分析）",
+   "biometric_default": "off",
+   "consent": "家长/监护人书面同意",
+   "minimization": "仅学业数据，不做个体情绪识别",
+   "human_review": "教师主导评价，AI仅汇总统计",
+   "opt_out": "家长可申请退出AI分析",
+   "sensitive": "未成年人数据禁止对外共享与画像",
+   "retention": "学籍期间+1年"
+  },
+  {
+   "id": "SC-RET",
+   "name_zh": "智能零售",
+   "data": "匿名客流统计（不使用刷脸支付/刷脸进门）",
+   "biometric_default": "off — 已删除刷脸方案",
+   "consent": "入口显著标识感知设备",
+   "minimization": "仅匿名计数，不存储人脸模板",
+   "human_review": "n/a（无个体决策）",
+   "opt_out": "提供无感知人工通道",
+   "sensitive": "不采集生物特征",
+   "retention": "实时聚合，不留存个体轨迹"
+  },
+  {
+   "id": "SC-ELD",
+   "name_zh": "康养监测（老年人跌倒检测等）",
+   "data": "红外/毫米波等非影像传感（不出画面）",
+   "biometric_default": "off",
+   "consent": "老人或监护人单独同意",
+   "minimization": "仅事件级告警数据",
+   "human_review": "告警由人工呼叫中心确认后处置",
+   "opt_out": "一键退出且基础呼叫服务不降级",
+   "sensitive": "健康数据不用于营销",
+   "retention": "事件记录90天"
+  },
+  {
+   "id": "SC-DEV",
+   "name_zh": "智能体贡献荣誉墙（GitHub展示）",
+   "data": "公开仓库数据（用户自愿关联）",
+   "biometric_default": "n/a",
+   "consent": "开发者本人主动关联+可随时解除",
+   "minimization": "仅公开展示数据",
+   "human_review": "展示内容可申诉下架",
+   "opt_out": "解除关联即完全移除",
+   "sensitive": "不展示身份信息，仅项目名/贡献图",
+   "retention": "随关联状态"
+  },
+  {
+   "id": "SC-CITY",
+   "name_zh": "城市感知（交通/环境）",
+   "data": "车流/环境聚合数据（不做人脸/车牌留存）",
+   "biometric_default": "off",
+   "consent": "公共空间设备物理标识+在线登记",
+   "minimization": "聚合统计，边缘侧处理",
+   "human_review": "n/a（无个体决策）",
+   "opt_out": "公共利益场景，以标识透明替代个体退出",
+   "sensitive": "车牌即采即弃，不建关联库",
+   "retention": "实时处理不留存"
+  },
+  {
+   "id": "SC-AV",
+   "name_zh": "自动驾驶测试（示范线）",
+   "data": "车辆传感器数据（测试段公示）",
+   "biometric_default": "off",
+   "consent": "测试路段公示+数据用途限定",
+   "minimization": "仅安全必需",
+   "human_review": "安全员值守+事故人工调查",
+   "opt_out": "n/a（道路公共测试）",
+   "sensitive": "路人影像车内即弃",
+   "retention": "按测试法规"
+  },
+  {
+   "id": "SC-GOV",
+   "name_zh": "城市大脑/治理（事件分派）",
+   "data": "市政事件工单数据",
+   "biometric_default": "off",
+   "consent": "政务公开原则",
+   "minimization": "事件级数据",
+   "human_review": "AI分派、人工处置与回访",
+   "opt_out": "n/a",
+   "sensitive": "不与个人信用等挂钩",
+   "retention": "政务档案期"
+  }
+ ],
+ "removed_commitments": [
+  "已删除：智能零售刷脸支付/刷脸进门默认方案（原 7.x 节）",
+  "已删除：智慧校园人脸识别与课堂行为/情绪分析（原场景卡）",
+  "已删除：不可退出的持续健康监控表述",
+  "已删除：默认画像营销类消费场景"
+ ],
+ "governance": {
+  "review_body": "建议设立数据伦理与隐私委员会（区级牵头+外部专家+居民代表）",
+  "audit_cycle": "每年第三方隐私审计一次",
+  "escalation": "争议场景先暂停、后评估、再决定"
+ }
+}

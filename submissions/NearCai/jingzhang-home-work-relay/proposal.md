@@ -8,7 +8,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v1.2"
+iteration: "v1.3"
 summary: "以京张铁路的编组、换挂与直通为文化线索，用一线、三站、四居、六份接力合同和九态人工交接构建可转换住房、工作空间与公共服务之间的短链；全部空间表达均为基于 provisional geometry 的概念建议。"
 tracks: ["youth-friendly-public-space", "ai-public-services", "ai-origin-community"]
 scenarios: ["enterprise-service-copilot", "ai-health-service-navigation", "ai-traffic-walkability", "ai-cultural-guide"]

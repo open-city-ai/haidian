@@ -1,0 +1,212 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) projected to EPSG:4548",
+      "confidence": "low",
+      "provisional_estimate": true,
+      "significant_figures": 8,
+      "display_value": "≈11.4 km²",
+      "recalculation_required": true,
+      "recalculation_note": "Boundary is provisional (PROV-SITE-001, official_boundary=false). Recompute all geometry-derived metrics when the organizer supplies official polygons.",
+      "assumptions": [
+        "No trusted official SITE_BOUNDARY polygon is present in the public site package; the submitted boundary is a provisional rough polygon inferred from the official announcement text bounds (approx. 11.4 km²) — see brief/site-package/geometry/provisional_boundaries_basis.md.",
+        "The numeric value is a rounded provisional estimate for discussion only and must not be treated as an official area, redline, or precise-area basis."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1408601,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space)) projected to EPSG:4548",
+      "confidence": "low",
+      "provisional_estimate": true,
+      "significant_figures": 7,
+      "display_value": "≈1.41 km²",
+      "recalculation_required": true,
+      "assumptions": [
+        "Derived from provisional site boundary and provisional green-space polygons; recompute with official geometry."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 836346,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space)) projected to EPSG:4548",
+      "confidence": "low",
+      "provisional_estimate": true,
+      "significant_figures": 6,
+      "display_value": "≈0.84 km²",
+      "recalculation_required": true,
+      "assumptions": [
+        "Derived from provisional site boundary and provisional public-space polygons; recompute with official geometry."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 557426,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints)) projected to EPSG:4548",
+      "confidence": "low",
+      "provisional_estimate": true,
+      "significant_figures": 6,
+      "display_value": "≈0.56 km²",
+      "recalculation_required": true,
+      "assumptions": [
+        "Building footprints are conceptual placeholders pending official building/ownership data; recompute with official geometry."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.1234,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "provisional_estimate": true,
+      "significant_figures": 3,
+      "display_value": "≈12.3%",
+      "recalculation_required": true,
+      "assumptions": [
+        "Provisional ratio from provisional polygons; recompute with official geometry."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0733,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "provisional_estimate": true,
+      "significant_figures": 3,
+      "display_value": "≈7.3%",
+      "recalculation_required": true,
+      "assumptions": [
+        "Provisional ratio from provisional polygons; recompute with official geometry."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package; must be confirmed from official attachments before any FAR statement."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "medium",
+      "provisional_estimate": false,
+      "assumptions": [
+        "Three key areas per the official announcement (众智园 / AI原点社区 / 大钟寺); feature geometry is provisional and must be replaced with official polygons."
+      ]
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(complete scenario cards in proposal.md section 'AI 创新生态、人才画像与 AI+ 场景')",
+      "confidence": "medium",
+      "provisional_estimate": false,
+      "assumptions": [
+        "Scenario cards are concept proposals for professional deepening, not approved operations."
+      ]
+    },
+    "test_validation_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(test/validation scenarios declared in proposal.md scenario cards)",
+      "confidence": "medium",
+      "provisional_estimate": false,
+      "assumptions": [
+        "Test scenarios are concept proposals requiring organizer approval and safety review before any pilot."
+      ]
+    },
+    "case_study_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "formula": "count(international AI innovation ecosystem case studies with source and license records)",
+      "confidence": "medium",
+      "provisional_estimate": false,
+      "assumptions": [
+        "Cases are desk-research summaries from cited public sources; they are reference benchmarks, not commitments."
+      ]
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(AI pilgrimage landmark concepts in proposal.md)",
+      "confidence": "medium",
+      "provisional_estimate": false,
+      "assumptions": [
+        "Landmarks are concept proposals subject to heritage, safety, and rights clearance."
+      ]
+    },
+    "component_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(public space component library entries in proposal.md)",
+      "confidence": "medium",
+      "provisional_estimate": false,
+      "assumptions": [
+        "Component library entries are concept-level design components with stated safety/heritage/accessibility/O&M boundaries."
+      ]
+    }
+  }
+}

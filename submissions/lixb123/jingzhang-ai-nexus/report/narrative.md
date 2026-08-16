@@ -8,4 +8,6 @@ v1.2 以原创“天工星图城市协议”把核心理念转化为六道可审
 
 实施从资料核验开始。当前边界和三处重点区是组织方提供的暂定几何，不是正式 GIS/CAD。正式数据到达后，专业团队须完成来源与坐标验证、规划与工程冲突检查、重点区任务重新落位、指标复算和全套成果同步更新。空间原型可移动、可缩减、可取消，官方边界不可因概念构图而改写。
 
+空间设计以六张可复核图纸形成从结构到实施的闭环：总体结构明确三廊三芯、两翼一环；用地生态图组织研发、开放、服务和社区界面；三处重点区图绑定使用者、上线门、指标与回退；慢行蓝绿图明确连续无障碍和维护优先序；建筑原型图以连续公共首层统合天问云台、女娲织巢、应龙水庭和星图界面；证据实施图把 GeoJSON、指标、正文、可读成果和 manifest 串成年度续期或退出机制。图中边界、用地与体量均为概念建议，不构成法定控制或建设承诺。
+
 The proposal transforms the century-old Jing-Zhang legacy into civic innovation infrastructure for the next century. Tianwen makes knowledge explainable, Nuwa makes collaboration participatory, and Yinglong makes climate resilience tangible. The original Tiangong Civic Protocol translates this identity into six auditable gates: question register, data permission, spatial capacity, human takeover, 90-day review, and renew or exit. AI services remain optional, reviewable, and reversible. Spring questions, summer prototypes, autumn exchange, and a winter evidence-and-exit day create an annual operating loop. This protocol is a conceptual implementation discipline, not statutory planning, procurement, or a government commitment. Provisional geometry supports concept review only; verified official data must trigger professional conflict checks, relocation of program tasks, metric recalculation, and synchronized replacement across every deliverable.

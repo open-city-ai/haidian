@@ -1,0 +1,143 @@
+{
+  "schema_version": "0.1.0",
+  "metrics": {
+    "site_area_sqm": {
+      "name_zh": "总体设计范围面积",
+      "status": "known",
+      "value": 11412825.39,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "EPSG:4548 projection area of provisional SITE_BOUNDARY",
+      "confidence": "medium",
+      "assumptions": "Provisional boundary; recalculated when official boundary available."
+    },
+    "green_ratio": {
+      "name_zh": "绿地率",
+      "status": "known",
+      "value": 0.1048,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area / site_area",
+      "confidence": "medium",
+      "assumptions": "Based on design proposal green space layer; not statutory green ratio."
+    },
+    "public_space_ratio": {
+      "name_zh": "公共空间比例",
+      "status": "known",
+      "value": 0.0565,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area / site_area",
+      "confidence": "medium",
+      "assumptions": "Design proposal; excludes green space to avoid double counting."
+    },
+    "building_density": {
+      "name_zh": "建筑密度(概念)",
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area / site_area",
+      "confidence": "low",
+      "assumptions": "Conceptual building footprints only; not statutory density. Missing official FAR and height controls.",
+      "reason": "Missing official FAR and height controls; conceptual building footprints only, not statutory density."
+    },
+    "key_area_count": {
+      "name_zh": "重点区域数量",
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count of KEY_AREA features",
+      "confidence": "high",
+      "assumptions": "Three key areas per official announcement."
+    },
+    "land_use_parcel_count": {
+      "name_zh": "用地分区数量",
+      "status": "known",
+      "value": 24,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count of LAND_USE features",
+      "confidence": "high",
+      "assumptions": "Design proposal partition."
+    },
+    "road_total_length_m": {
+      "name_zh": "道路总长度",
+      "status": "known",
+      "value": 42605.61,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum of road centerline lengths in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": "Design proposal; not statutory road redline."
+    },
+    "green_space_area_sqm": {
+      "name_zh": "绿地面积",
+      "status": "known",
+      "value": 1196304.72,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum of GREEN_SPACE feature areas",
+      "confidence": "medium",
+      "assumptions": "Design proposal."
+    },
+    "public_space_area_sqm": {
+      "name_zh": "公共空间面积",
+      "status": "known",
+      "value": 644899.87,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum of PUBLIC_SPACE feature areas",
+      "confidence": "medium",
+      "assumptions": "Design proposal."
+    },
+    "floor_area_ratio": {
+      "name_zh": "容积率",
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "total_floor_area / site_area",
+      "confidence": "unknown",
+      "assumptions": "Missing official regulatory planning controls. Awaiting approved FAR.",
+      "reason": "Missing official regulatory planning controls. Awaiting approved FAR from statutory control plan."
+    },
+    "building_height_m": {
+      "name_zh": "建筑高度",
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "max building height",
+      "confidence": "unknown",
+      "assumptions": "Missing official height controls. Conceptual heights in buildings.geojson are design suggestions only.",
+      "reason": "Missing official height controls. Conceptual heights in buildings.geojson are design suggestions only."
+    }
+  },
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  }
+}

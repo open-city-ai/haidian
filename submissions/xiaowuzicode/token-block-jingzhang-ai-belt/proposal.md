@@ -6,7 +6,7 @@ language: "en"
 chinese_translation: "included"
 translation_file: "proposal.zh.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v1.0"
+iteration: "v1.7"
 summary: "On single-track railways a driver could enter a section only while holding its token, and no second token was released until the first came back. Token Block applies that hundred-year-old safety rule to urban AI governance: the Jing-Zhang heritage corridor becomes one continuously operated, publicly bookable AI test track — one token, one section, returned before the next is issued — with three stations, two switches, and an evidence chain that lets any professional team recompute every claim."
 summary_zh: "单线铁路上，司机必须持有区间令牌才能进入，令牌未归还前发不出第二枚。本方案把这条百年行车安全规则用于城市AI治理：把京张遗址公园全线做成一条持续运营、公众可预约的AI测试轨道——一枚令牌，一个区间，归还之后才发下一枚——三站两岔、一线到底，并附可被专业团队逐项复算的证据链。全部空间建议均为概念建议，不替代法定规划。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "civic-agent-governance"]
@@ -18,6 +18,10 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-na
 # Token Block — Centennial Jing-Zhang AI Innovation Belt
 
 **京张令牌 · 百年京张AI创新带**
+
+![Concept impression of the corridor — one line, three stations, two switches](assets/figures/concept-hero-wide.jpg)
+
+*Concept impression, AI-generated (gpt-image-2) with its layout referenced from this package's `geometry/*.geojson`. It conveys spatial character only and carries no quantitative claims: it is not a survey basis, not an as-built view, and every number in this package remains recomputable from the machine-readable files.*
 
 A century ago the Jing-Zhang line was built to *carry* things. This proposal argues that the same alignment should now *run* things.
 
@@ -37,11 +41,15 @@ Every spatial move below is a conceptual suggestion, a reference scheme, or mate
 
 ## Design Basis and Source List｜设计依据与资料清单
 
-This package is built from the machine-readable brief in this repository, not from a private data set. The design basis is the official announcement's task structure and scope definitions [source:OFFICIAL-ANNOUNCEMENT], the agent-facing open-call taskbook with its ten co-creation principles and six required tasks [source:AGENT-TASKBOOK], and the registered site package of enums, ranges, schemas and allowed design space [source:SITE-PACKAGE]. Source usability was screened against the public registry before any evidence was cited [source:SOURCE-REGISTRY], and the processed navigation layer was used to organise scopes, tasks and gaps into a work list rather than as a new authority [source:PROCESSED-FACT-PACK]. Beyond the repository package, the design leans on six public documents, each used within its registered limits: the national urban design measures and the regulatory-plan preparation rules define what “regulatory-plan depth” obliges and why unknown control indicators stay unknown [source:MOHURD-URBAN-DESIGN-MEASURES] [source:MOHURD-CONTROL-PLANNING-MEASURES]; the national land-use classification guide supplies the vocabulary of the land-use plan [source:MNR-LAND-USE-GUIDE]; the interim measures for generative AI services anchor the scenario admission review [source:GENAI-INTERIM-MEASURES]; and the barrier-free environment law together with the plan on smart-technology difficulties of the elderly set the statutory floor under the step-free continuity and non-digital equivalence indicators [source:BARRIER-FREE-LAW] [source:ELDERLY-SMART-TECH-PLAN]. The building-design depth provisions define the documentation depth the key-area packages must eventually reach [source:ARCH-DESIGN-DEPTH-2016]. The token block rule itself is cited as widely documented railway operating history, not as a claim about the Jing-Zhang line's own equipment [source:RAILWAY-TOKEN-HISTORY], and the declared scenarios are drawn from the repository scenario registry [source:SCENARIO-REGISTRY].
+This package is built from the machine-readable brief in this repository, not from a private data set. The design basis is the official announcement's task structure and scope definitions [source:OFFICIAL-ANNOUNCEMENT], the agent-facing open-call taskbook with its ten co-creation principles and six required tasks [source:AGENT-TASKBOOK], and the registered site package of enums, ranges, schemas and allowed design space [source:SITE-PACKAGE]. Source usability was screened against the public registry before any evidence was cited [source:SOURCE-REGISTRY], and the processed navigation layer was used to organise scopes, tasks and gaps into a work list rather than as a new authority [source:PROCESSED-FACT-PACK].
+
+Beyond the repository package, the design leans on eight public documents, each used within its registered limits. Six set the regulatory and inclusive frame: the national urban design measures and the regulatory-plan preparation rules define what “regulatory-plan depth” obliges and why unknown control indicators stay unknown [source:MOHURD-URBAN-DESIGN-MEASURES] [source:MOHURD-CONTROL-PLANNING-MEASURES]; the national land-use classification guide supplies the vocabulary of the land-use plan [source:MNR-LAND-USE-GUIDE]; the interim measures for generative AI services anchor the scenario admission review [source:GENAI-INTERIM-MEASURES]; and the barrier-free environment law together with the plan on smart-technology difficulties of the elderly set the statutory floor under the step-free continuity and non-digital equivalence indicators [source:BARRIER-FREE-LAW] [source:ELDERLY-SMART-TECH-PLAN].
+
+The building-design depth provisions define the documentation depth the key-area packages must eventually reach [source:ARCH-DESIGN-DEPTH-2016]. The token block rule itself is cited as widely documented railway operating history, not as a claim about the Jing-Zhang line's own equipment [source:RAILWAY-TOKEN-HISTORY], and the declared scenarios are drawn from the repository scenario registry [source:SCENARIO-REGISTRY].
 
 The single most important disclosure in this package is about geometry. **No official redline exists in the public package.** The submitted overall-design boundary [data:geometry/site_boundary.geojson#SITE-001] and the three key-area polygons [data:geometry/key_areas.geojson#PROV-KEY-001] are the repository's provisional rough boundaries [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]. They carry `official_boundary=false`, `geometry_role="provisional_constraint"` and `boundary_precision="provisional_rough"`. They are usable for generation, visualisation, discussion and intake self-check. They are **not** an official redline, not an approval basis, and not a precise-area basis. When official polygons are published, the site boundary, key areas, land use, roads, green space, public space, buildings, phasing and every derived metric must be recomputed together — not patched file by file.
 
-That disclosure has a design consequence, and this is what separates an honest package from a decorated one: because the boundary is rough, the proposal deliberately puts its weight on **relational** decisions that survive a boundary correction — sequence along the line, which side stitches to which, where the public boards, what opens when — and deliberately refuses **absolute** decisions that would not survive it, such as floor area ratio, building height, density and road redline widths. Those are recorded as `unknown` with reasons rather than filled with plausible numbers [standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:existing_conditions_diagnosis].
+That disclosure has a design consequence, and this is what separates an honest package from a decorated one: because the boundary is rough, the proposal deliberately puts its weight on **relational** decisions that survive a boundary correction — sequence along the line, which side stitches to which, where the public boards, what opens when — and deliberately refuses **absolute** decisions that would not survive it, such as floor area ratio, building height, density and road redline widths. Those with a registered metric key are recorded as `unknown` with reasons rather than filled with plausible numbers; building density and redline widths carry no metric key at all, so no value is claimed for them anywhere [standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:existing_conditions_diagnosis].
 
 The same discipline governs the constraint layers. Every constraint-type layer in the site package enum — water system, heritage protection, regulatory control, existing roads and rail — is marked `editable_by_agent=false`, meaning it must come from official data. This package therefore leaves those layers unauthored rather than inventing them, and `geometry/constraints.geojson` carries only what an agent is entitled to define: the six bookable test-track segments [data:geometry/constraints.geojson#TRACK-S1] and the twelve located scenario nodes [data:geometry/constraints.geojson#SCEN-01]. An empty official constraint layer is a disclosed data gap; a fabricated one would be a false authority claim.
 
@@ -97,7 +105,7 @@ The overall design area is organised as one spine and six bands. The spine is th
 
 The renewal framework identifies three kinds of low-efficiency condition along the line: severed east-west movement where the corridor acts as a barrier, single-use industrial and logistics frontage that faces away from the corridor, and station areas whose ground floors do not participate in public life. The three answers are, respectively, the six east-west stitches [metric:east_west_stitch_count], the reorientation of flank frontage toward the spine, and the station platform plazas [data:geometry/public_space.geojson#PUBLIC-001].
 
-On development intensity this package stops where the data stops. Floor area ratio, building height and building density are recorded as `unknown` with explicit reasons, because the public package records them as `missing` official controls [depth:development_intensity_controls]. What the proposal does provide is a *relative* massing intent that remains valid under any future control set: lowest at the spine edge to keep the corridor open to sky and view, stepping up away from the corridor, with the tallest elements set back from the heritage alignment and never forming a continuous wall along it [depth:height_massing_character] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]. Total floor area is likewise left unstated rather than back-calculated from an assumed ratio [data:geometry/buildings.geojson#BLDG-001].
+On development intensity this package stops where the data stops. Floor area ratio and building height are recorded as `unknown` with explicit reasons, and building density — which has no registered metric key — is not claimed at all, because the public package records these official controls as `missing` [depth:development_intensity_controls]. What the proposal does provide is a *relative* massing intent that remains valid under any future control set: lowest at the spine edge to keep the corridor open to sky and view, stepping up away from the corridor, with the tallest elements set back from the heritage alignment and never forming a continuous wall along it [depth:height_massing_character] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]. Total floor area is likewise left unstated rather than back-calculated from an assumed ratio [data:geometry/buildings.geojson#BLDG-001].
 
 **本节要点（中文）**：总体设计范围采用「一脊六段」的空间结构模式，脊即遗址公园廊道，六段对应三站两岔一区间。城市更新的抓手是三类低效状态的对应机制——东西向断裂由六条缝合线修复，背向廊道的产业界面由两翼转向重新组织，站区首层不参与公共生活由三处站台广场解决。用地分区完整覆盖提交边界，形成可复算的空间体系。开发强度指标（容积率、建筑高度、建筑密度）因官方管控条件缺失一律留空，仅给出在任何管控条件下均成立的相对体量意图：脊缘最低、向外抬升、最高体量退离历史线位且不得沿线形成连续墙面。
 
@@ -153,7 +161,9 @@ All three carry the same caveat: the polygons are provisional, so parcel-level c
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy｜用地、建筑规模与拆改留方案
 
-Land use is expressed with the public classification subset [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] as a complete partition of the submitted boundary. Research land is the largest single category at [metric:land_use_area_research_0802_sqm], concentrated in the two innovation stations; community service facilities at [metric:land_use_area_community_facilities_0702_sqm] and residential land at [metric:land_use_area_urban_residential_0701_sqm] keep the belt inhabited rather than purely productive; commercial and business services at [metric:land_use_area_commercial_services_05_sqm] concentrate at the Arrival Yard and the Up Switch; culture at [metric:land_use_area_culture_0803_sqm] and education at [metric:land_use_area_education_0804_sqm] hold the narrative and the campus edge; park green at [metric:land_use_area_park_green_1401_sqm] and square land at [metric:land_use_area_square_1403_sqm] form the spine itself.
+Land use is expressed with the public classification subset [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] as a complete partition of the submitted boundary.
+
+Research land is the largest single category at [metric:land_use_area_research_0802_sqm], concentrated in the two innovation stations; community service facilities at [metric:land_use_area_community_facilities_0702_sqm] and residential land at [metric:land_use_area_urban_residential_0701_sqm] keep the belt inhabited rather than purely productive; commercial and business services at [metric:land_use_area_commercial_services_05_sqm] concentrate at the Arrival Yard and the Up Switch; culture at [metric:land_use_area_culture_0803_sqm] and education at [metric:land_use_area_education_0804_sqm] hold the narrative and the campus edge; park green at [metric:land_use_area_park_green_1401_sqm] and square land at [metric:land_use_area_square_1403_sqm] form the spine itself.
 
 On retain / renovate / demolish, this package states a **method and a refusal**. The method: the thirteen indicative footprints [metric:renewal_building_count] each carry a suggested action — retain, renovate or new build — chosen from the structural role of their band, not from any judgement about a specific existing building. The refusal: because there is no current-building survey, no ownership data, no approved regulatory condition and no official parcel geometry in the public package, **this proposal does not issue a demolition conclusion for any real parcel** [depth:retain_renovate_demolish]. The indicative coverage of these handles inside the key areas is [metric:building_footprint_ratio_key_areas] over [metric:building_footprint_area_sqm] of footprint — an illustration of grain and intensity of intervention, explicitly not an approved building-density control.
 
@@ -229,6 +239,31 @@ The separation is the point. The Line Operator has an incentive to fill the cale
 
 **Stop conditions — what would pause or reverse this.** A proposal that cannot say how it fails is not implementable. The line should pause a scenario, or the programme, when: an objection is unresolved past its published deadline; a scenario is found to have collected data outside its declared boundary; the non-digital equivalent is unavailable while the digital one runs; a booking has enclosed a station plaza beyond its published window; the step-free route is broken by an installation; or official regulatory, heritage or rail data arrives that contradicts a spatial assumption in this package. The last one is the most likely, and it is a reason to recompute, not a reason to argue [depth:phasing_implementation] [depth:risk_missing_data] [source:PROCESSED-FACT-PACK].
 
+**From ninety days of narrative to one hundred days of packages.** The pilot description above
+is now carried by a machine-readable delivery frame, `visual/assets/implementation.json`, so that "what happens
+first" can be audited the same way the token protocol is. It registers
+[metric:work_package_count] first-100-days work packages — two line-level packages (the token
+ledger with its first booking window, and the spine walk-through continuity audit) and roughly
+three per key area, from the temporary opening of the Arrival Yard plaza to the zero-kilometre
+pop-up release hall to the marshalling-yard meadow clearing. Every package declares its
+precondition, its dependency and, most importantly, its **evidence output** — the record that
+must exist for the package to count as done, several of which feed the six Class C performance
+metrics directly. Cost is deliberately recorded only as a relative effort class
+(light / medium / heavy): absolute costs are not claimed anywhere, because pricing before title,
+existing-building and utility conditions are confirmed would violate this package's own honesty
+rule.
+
+**Exit gates G0–G4 — the stop conditions, formalised.** The prose stop conditions above are
+registered as [metric:exit_gate_count] executable gates: G0 starts nothing until both governance
+bodies exist; G1 pauses and recomputes when official boundaries contradict an assumption; G2
+rolls an installation back to the last usable state when a safety review fails; G3 revokes the
+token and pauses bookings on a governance breach; G4 is the 100-day handover review — unmet
+evidence outputs mean remediation or an orderly exit in which reversible fittings are removed
+and sites return to public use. Procurement is scoped as [metric:procurement_theme_count]
+themes without amounts, and [metric:monitoring_window_count] monitoring windows at 3, 12 and
+36 months state exactly when each of the six performance metrics starts accruing real data —
+the plan for how `unknown` eventually becomes known, rather than a pretence that it already is.
+
 **Operations and the annual system.** The belt is proposed to run an annual Global AI Week using the line itself as the venue, a rolling scenario-open calendar publishing which segments are bookable, a developer community anchored at the Zero-Kilometre release hall, and a conversion pathway that moves a team from open-source contributor to bookable-track user to tenant. Brand assets accumulate in the belt rather than in any single event: the line, the station names, the marker, the board. All of this is an operating proposal for professional and operating teams to develop — not a confirmed government programme, funding commitment, investment arrangement or approved event schedule.
 
 **Offline protocol replay — the rules are executable, not rhetorical.** The token block
@@ -238,7 +273,7 @@ readable index of [metric:token_protocol_rule_count] protocol rules. Every scena
 checked once for qualified admission and against four failure branches (anonymous booking,
 missing data boundary, out-of-section placement, automated cancellation of the human review
 point); every running section runs one full book–install–run–return token cycle; eight further
-state-machine branches replay the hard rules — a second token refused while one is out, an
+state-machine branches replay the hard rules — including a second token refused while one is out, an
 overdue return escalating, one token never spanning two sections, a step-free break stopping an
 installation, a missing non-digital equivalent pausing a run, an out-of-boundary collection
 revoking the token — and six topology checks bind the cards to the submitted geometry. Of the
@@ -304,6 +339,9 @@ The compliance matrix maps all seventeen announcement tasks (1.3, 1.4, 1.5) and 
 - `brief/site-package/standards/standards.json` and the local reference snapshots under `standards/references/`
 - `data/source_registry.json`, `data/processed/agent_fact_pack.md`, `project_scope_summary.csv`, `agent_task_requirements.csv`, `source_use_matrix.csv`, `missing_data_checklist.csv`
 - This package's own evidence: `geometry/*.geojson`, `metrics.json`, `compliance_matrix.json`, `standard_matrix.json`, `design_depth_matrix.json`, `assumptions.json`, `sources.json`, `self_check.json`
-- Machine-readable index: [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SITE-PACKAGE] [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK] [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [depth:metrics_recalculation] [depth:risk_missing_data] [data:geometry/site_boundary.geojson#SITE-001] [data:geometry/land_use.geojson#LU-018] [data:geometry/phasing.geojson#PHASE-003] [metric:site_area_sqm]
+- Machine-readable index — sources (1/2): announcement [source:OFFICIAL-ANNOUNCEMENT], taskbook [source:AGENT-TASKBOOK], site package [source:SITE-PACKAGE], registry [source:SOURCE-REGISTRY]
+- Machine-readable index — sources (2/2): [source:PROCESSED-FACT-PACK] [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]
+- Machine-readable index — standards: [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]
+- Machine-readable index — depth, data & metrics: recompute depth [depth:metrics_recalculation], missing-data depth [depth:risk_missing_data], boundary [data:geometry/site_boundary.geojson#SITE-001], land use [data:geometry/land_use.geojson#LU-018], phasing [data:geometry/phasing.geojson#PHASE-003], site area [metric:site_area_sqm]
 
 ---

@@ -1,0 +1,1469 @@
+{
+  "schema_version": "1.0.0",
+  "record_id": "adaptive_jingzhang.regeneration_source.v0_3",
+  "purpose_zh": "本文件是双语内容的唯一事实来源。方案正文、离线 viewer 与叙述均由构建脚本从此处生成或校正，避免中英文各自漂移。",
+  "purpose_en": "Single bilingual source of truth. Proposal bodies, offline viewers, and narrative are generated or corrected from this record by the build scripts so the two languages cannot drift apart independently.",
+  "evidence_boundary_zh": "本文件只记录已在包内可核验的决定与引用；它不新增任何外部证据、专业审批、预算或产权结论。",
+  "evidence_boundary_en": "This record holds only decisions and references already verifiable inside the package. It introduces no external evidence, professional approval, budget, or tenure conclusion.",
+
+  "marker_migration": {
+    "reason_zh": "仓库可信 renderer 只识别 source/standard/depth/data/metric 五种证据标记；[assumption:*] 会以字面文本泄漏到生成的 HTML。假设本身已在 assumptions.json 中登记，因此改为指向该文件的受支持标记，不删除也不改写任何假设。",
+    "reason_en": "The trusted repository renderer recognizes only the five evidence marker kinds source/standard/depth/data/metric; [assumption:*] leaks into rendered HTML as literal text. Each assumption is already registered in assumptions.json, so the marker is redirected to that file using a supported kind. No assumption is deleted or reworded.",
+    "unsupported_kind": "assumption",
+    "target_kind": "data",
+    "target_file": "assumptions.json",
+    "expected_replacements": 10,
+    "expected_distinct_ids": 6,
+    "ids": [
+      "A-BOUNDARY-001",
+      "A-CONTROLS-001",
+      "A-PILOT-001",
+      "A-CLIMATE-001",
+      "A-EQUITY-001",
+      "A-NETWORK-001"
+    ]
+  },
+
+  "method_card": {
+    "id": "adaptive_jingzhang.topology_proxy_ensemble.v0",
+    "name_zh": "在人工声明的候选边上运行的带种子 Kruskal 最小生成树拓扑与选择不稳定性探针。",
+    "name_en": "Seeded Kruskal minimum-spanning-tree topology and selection-instability probe over hand-declared candidate edges.",
+    "operates_on_zh": "人工声明的 10 个概念节点与 24 条候选边",
+    "operates_on_en": "hand-declared candidate set of 10 conceptual nodes and 24 candidate edges",
+    "guaranteed_by_construction_zh": [
+      "每一轮结果都连通",
+      "每一轮恰好选出 11 条边"
+    ],
+    "guaranteed_by_construction_en": [
+      "every run is connected",
+      "every run selects exactly 11 edges"
+    ],
+    "does_not_compute_zh": [
+      "出行", "需求", "工程可行性", "无障碍水平", "生物适应", "公众偏好", "对北京的最优性"
+    ],
+    "does_not_compute_en": [
+      "movement", "demand", "engineering feasibility", "accessibility", "biological adaptation", "public preference", "optimality for Beijing"
+    ],
+    "thresholds": {
+      "persistent_min_frequency": 0.7,
+      "highest_disagreement_frequency": 0.6875,
+      "mid_disagreement_frequency": 0.5,
+      "disagreement_min_frequency": 0.35,
+      "seeded_runs": 64,
+      "persistent_min_count_of_64": 45,
+      "persistent_effective_frequency": 0.703125,
+      "disagreement_min_count_of_64": 23,
+      "disagreement_effective_frequency": 0.359375,
+      "knife_edge_count_of_64": 44,
+      "not_selected_max_count_of_64": 22,
+      "cutoff_gap": 0.0125
+    },
+    "reproducer": {
+      "script": "visual/assets/reproduce_physarum.js",
+      "comparisons": 633,
+      "derived_metrics": 7,
+      "expected_mismatches": 0,
+      "tamper_suite": "visual/assets/test-reproducer-tamper.js"
+    },
+    "limitations_zh": [
+      "结果完全取决于人工声明的输入节点与候选边；换一组候选就会换一组结论。",
+      "坐标基准是各向异性的（南北向尺度约为东西向的七倍），因此长度项本身带有方向偏好。",
+      "每条边加入 [-0.12, 0.12] 的抖动；零抖动对照运行用于显示哪些边的入选依赖抖动。",
+      "入选频率描述的是在已公开的权重范围与抖动策略下、在人工声明的候选图上的行为；它不能确立公共合法性，也不能确立任何已观测到的北京现状。"
+    ],
+    "limitations_en": [
+      "Results depend entirely on the hand-declared node and candidate-edge set; a different candidate set yields different conclusions.",
+      "The coordinate basis is anisotropic (the north-south scale is about seven times the east-west scale), so the length term carries a built-in directional preference.",
+      "Each edge receives jitter in [-0.12, 0.12]; the zero-jitter comparison run exists to show which selections depend on jitter.",
+      "Selection frequency describes behaviour under the disclosed weight ranges and jitter policy over the hand-declared candidate graph; it does not establish public legitimacy or an observed Beijing condition."
+    ]
+  },
+
+  "terminology": [
+    {
+      "id": "TERM-METHOD-NAME",
+      "reason_zh": "把方法命名为它实际执行的计算，避免暗示生物最优或交通建模。",
+      "reason_en": "Name the method after the computation actually performed, avoiding any implication of biological optimality or transport modelling.",
+      "replacements": [
+        {
+          "language": "zh",
+          "from": "以黏菌启发的透明网络集合生成备选连接",
+          "to": "以带种子的 Kruskal 拓扑与选择不稳定性探针生成备选连接"
+        },
+        {
+          "language": "en",
+          "from": "A transparent, Physarum-inspired network ensemble",
+          "to": "A transparent seeded Kruskal topology and selection-instability probe"
+        }
+      ]
+    },
+    {
+      "id": "TERM-METHOD-CARD",
+      "reason_zh": "正文必须写出方法的准确名称、由构造保证的结果，以及它不计算的七件事，避免读者把构造性质当作发现。",
+      "reason_en": "The body text must state the exact method name, what is guaranteed by construction, and the seven things it does not compute, so a reader cannot mistake a construction property for a finding.",
+      "replacements": [
+        {
+          "language": "zh",
+          "from": "这是一种透明的“适应强化与修剪”拓扑代理，不是完整黏菌通量—导度方程、交通需求模型或生物最优证明。",
+          "to": "该计算的准确名称是**在人工声明候选集上运行的带种子 Kruskal 拓扑与选择不稳定性探针**。每轮的连通性和恰好 11 条入选边由算法构造保证，因此不是发现。它不计算出行、需求、工程可行性、无障碍水平、生物适应、公众偏好，也不证明对北京的最优性。黏菌只是方法谱系，不是已实现的通量—导度方程，也不是交通需求模型或生物最优证明。"
+        },
+        {
+          "language": "en",
+          "from": "This is a transparent topology proxy for adaptive reinforcement and pruning—not the full Physarum flux–conductivity equation, a travel-demand model, or biological proof of optimality.",
+          "to": "The exact name of this computation is a **seeded Kruskal topology and selection-instability probe over a hand-declared candidate set**. The connectivity of each run and the count of exactly 11 selected edges are guaranteed by construction and are therefore not findings. It does not compute movement, demand, engineering feasibility, accessibility, biological adaptation, public preference, or optimality for Beijing. Physarum is methodological lineage only—not an implemented flux–conductivity equation, a travel-demand model, or biological proof of optimality."
+        }
+      ]
+    },
+    {
+      "id": "TERM-REPRODUCER-CARD",
+      "reason_zh": "把复算器的可核验规模写进正文：比对项数、派生指标数、期望不匹配数，以及只改临时副本的隔离篡改测试。",
+      "reason_en": "State the verifiable scale of the reproducer in the body text: comparison count, derived-metric count, expected mismatches, and the isolated tamper suite that mutates only temporary copies.",
+      "replacements": [
+        {
+          "language": "zh",
+          "from": "并逐项核对边序、权重、频率与状态。可复现的是已公开的计算执行，不是这些低置信度代理输入的城市真实性。",
+          "to": "并逐项核对边序、权重、频率与状态。复算器执行 633 项逐字段比对、独立重算 7 项派生指标，期望不匹配数为 0；另有一套隔离篡改测试只改动临时副本，用以证明比对确实能发现被篡改的记录，而两个冻结数据资产逐字节不变。可复现的是已公开的计算执行，不是这些低置信度代理输入的城市真实性。"
+        },
+        {
+          "language": "en",
+          "from": "under IEEE-754 double-precision arithmetic; it reproduces the published execution, not the empirical truth or planning validity of the proxy.",
+          "to": "under IEEE-754 double-precision arithmetic. The reproducer performs 633 field-by-field comparisons, independently recomputes 7 derived metrics, and expects 0 mismatches; a separate isolated tamper suite mutates only temporary copies, proving that the comparison actually detects a corrupted record while both frozen data assets stay byte-identical. It reproduces the published execution, not the empirical truth or planning validity of the proxy."
+        }
+      ]
+    },
+    {
+      "id": "TERM-LEDE-METHOD",
+      "reason_zh": "摘要段此前称本方案把“黏菌启发的适应、强化与修剪”转译为生成器。这是一句机制性声明：包内并未实现强化或修剪，实际执行的是带种子的 Kruskal 构造。读者最先读到的一句必须写出真实计算，而不是生物机制。",
+      "reason_en": "The opening paragraph claimed the proposal translates Physarum-inspired adaptation, reinforcement, and pruning into the generator. That is a mechanism claim: no reinforcement or pruning is implemented anywhere in the package, and what actually runs is a seeded Kruskal construction. The first sentence a reader meets has to name the real computation rather than a biological mechanism.",
+      "replacements": [
+        {
+          "language": "zh",
+          "from": "它把黏菌启发的适应、强化与修剪转译为一个透明的备选网络生成器；",
+          "to": "它实际执行的计算是在人工声明候选集上运行的带种子 Kruskal 拓扑与选择不稳定性探针：只报告每条候选连接在多次带种子运行中的入选频率，不计算出行、需求、工程可行性、无障碍水平、生物适应与公众偏好，也不证明对北京的最优性；"
+        },
+        {
+          "language": "en",
+          "from": "It translates Physarum-inspired adaptation, reinforcement, and pruning into a transparent generator of alternative networks.",
+          "to": "The computation it actually runs is a seeded Kruskal topology and selection-instability probe over a hand-declared candidate set: it reports how often each candidate connection is selected across seeded runs, and it computes no movement, demand, engineering feasibility, accessibility, biological adaptation, or public preference, and proves no optimality for Beijing."
+        }
+      ]
+    },
+    {
+      "id": "TERM-CONCLUSION-METHOD",
+      "reason_zh": "结论句把提问工具称为“黏菌启发网络”，与正文已确定的方法名不一致。谱系保留，但命名以实际计算为准。",
+      "reason_en": "The closing sentence called the questioning instrument a Physarum-inspired network, which does not match the method name the body has already fixed. The lineage is kept, but the naming follows the computation actually performed.",
+      "replacements": [
+        {
+          "language": "zh",
+          "from": "而是一个用黏菌启发网络提出更好空间问题",
+          "to": "而是一个用带种子 Kruskal 拓扑与选择不稳定性探针（在来源账本中登记为黏菌方法谱系，而非生物机制）提出更好空间问题"
+        },
+        {
+          "language": "en",
+          "from": "It is an urban learning system that uses a Physarum-inspired network to ask better spatial questions",
+          "to": "It is an urban learning system that uses a seeded Kruskal topology and selection-instability probe — registered in the source ledger as Physarum lineage, not as a biological mechanism — to ask better spatial questions"
+        }
+      ]
+    }
+  ],
+
+  "spelling_provenance": {
+    "note_zh": "大钟寺片区名称在公开材料中同时出现“集聚”与“聚集”两种写法。本方案保留两种官方写法并标注出处，不擅自统一，也不宣称哪一种为唯一正确。",
+    "note_en": "Both official spellings 集聚 and 聚集 appear in public material for the Dazhongsi area name. The package preserves both with provenance rather than silently normalizing one away, and makes no claim about which is uniquely correct.",
+    "variants": [
+      {
+        "spelling": "集聚",
+        "used_in": "official announcement wording as transcribed in the source registry",
+        "source_id": "OFFICIAL-ANNOUNCEMENT"
+      },
+      {
+        "spelling": "聚集",
+        "used_in": "agent taskbook wording and the submitted key-area attribute name",
+        "source_id": "AGENT-TASKBOOK"
+      }
+    ]
+  },
+
+  "lab_coupling": {
+    "rule_zh": "三个耦合式城市学习实验室之间只通过三个通道耦合。任何其他共享都不成立。",
+    "rule_en": "The three Coupled Urban Learning Labs couple through exactly three channels. No other sharing is claimed.",
+    "channel_count": 3,
+    "channels": [
+      {
+        "id": "LAB-CH-01",
+        "name_zh": "可比证据",
+        "name_en": "Comparable evidence",
+        "definition_zh": "三处使用同一套指标定义、同一分母和同一记录格式，使结果可以互相比较，而不是各自定义成功。",
+        "definition_en": "All three use the same metric definitions, the same denominators, and the same record format, so results can be compared instead of each lab defining its own success."
+      },
+      {
+        "id": "LAB-CH-02",
+        "name_zh": "可比治理",
+        "name_en": "Comparable governance",
+        "definition_zh": "三处使用同一套停机触发、回滚动作、物理复原要求与非数字替代条款，使一处的停止理由在另一处同样成立。",
+        "definition_en": "All three use the same stop triggers, rollback actions, physical restoration requirements, and non-digital fallback clauses, so a reason to stop in one lab is a reason to stop in the others."
+      },
+      {
+        "id": "LAB-CH-03",
+        "name_zh": "经人工授权的复测",
+        "name_en": "Human-authorized retesting",
+        "definition_zh": "任何一处的结论要影响另一处，必须经过具名人工授权的复测；不存在自动传播的结论。",
+        "definition_en": "A finding in one lab may influence another only through a named, human-authorized retest. No conclusion propagates automatically."
+      }
+    ]
+  },
+
+  "standards_additions": {
+    "reason_zh": "这三个标准 ID 已在正文中被引用，却不在 standard_matrix.json 中，形成悬空引用。此处补齐矩阵行；review_status 为 addressed 表示方案在具名章节作出了可追溯的回应，不表示条款级合规已被证明。条款适用性与专业审查仍是开放的外部门。",
+    "reason_en": "These three standard IDs are cited in the body text but absent from standard_matrix.json, leaving dangling references. The rows are added here. review_status addressed means the proposal makes a traceable response in named sections; it does not mean clause-level compliance has been proven. Clause applicability and professional review remain open external gates.",
+    "records": [
+      {
+        "standard_id": "BARRIER-FREE-ENVIRONMENT-LAW",
+        "requirement_zh": "《中华人民共和国无障碍环境建设法》要求公共空间、公共服务与信息交流的无障碍建设与维护，并要求既有设施逐步改造。",
+        "professional_dimension": "无障碍与公共服务",
+        "mandatory": true,
+        "review_status": "addressed",
+        "proposal_sections": ["交通、轨道、市政与公共服务设施", "重点区域详细设计", "风险、版权与合规说明"],
+        "drawing_refs": ["drawings/a0-boards.pdf", "drawings/a3-booklet.pdf"],
+        "geometry_refs": ["geometry/public_space.geojson", "geometry/key_areas.geojson"],
+        "metric_refs": ["public_space_area_sqm", "public_space_ratio", "phase1_reversible_area_sqm"],
+        "source_ids": ["SITE-PACKAGE", "GB-55019-2021-OFFICIAL", "DB11-T-2209-2023-OFFICIAL"],
+        "assumption_ids": ["A-EQUITY-001", "A-PILOT-001", "A-BOUNDARY-001"],
+        "self_check_ids": ["SPATIAL_REVIEW", "PROFESSIONAL_EVIDENCE"],
+        "external_gate_refs": ["D07", "D08"],
+        "evidence_summary_zh": "方案在具名章节提出连续无台阶通行链、维护责任与停止条件，并把无障碍作为试点的准入条件之一。这是设计阶段的承诺，不是条款级合规证明：确切条款适用性、现场测量与专业无障碍审查仍由 D07 与 D08 持有，`GB-55019-2021-OFFICIAL` 与 `DB11-T-2209-2023-OFFICIAL` 目前均为 url_only_not_cleared，未产生任何标准派生结论。",
+        "evidence_summary_en": "The proposal states continuous step-free chains, maintenance duty, and stop conditions in named sections, and treats accessibility as an admission condition for each pilot. This is a design-stage commitment, not proof of clause-level compliance: exact clause applicability, survey, and professional accessibility review remain held by D07 and D08, and both GB-55019-2021-OFFICIAL and DB11-T-2209-2023-OFFICIAL are url_only_not_cleared, so no standards-derived conclusion follows."
+      },
+      {
+        "standard_id": "ELDERLY-SMART-TECH-PLAN-2020-45",
+        "requirement_zh": "国办发〔2020〕45号《关于切实解决老年人运用智能技术困难的实施方案》要求保留传统服务方式，不得以智能化为由拒绝提供人工或线下服务。",
+        "professional_dimension": "公共服务与数字包容",
+        "mandatory": true,
+        "review_status": "addressed",
+        "proposal_sections": ["AI 创新生态、人才画像与 AI+ 场景", "更新项目清单、实施政策与分期计划", "风险、版权与合规说明"],
+        "drawing_refs": ["drawings/a3-booklet.pdf"],
+        "geometry_refs": ["geometry/public_space.geojson"],
+        "metric_refs": ["public_space_area_sqm", "key_area_count"],
+        "source_ids": ["SITE-PACKAGE", "AGENT-TASKBOOK", "OSTROM-POLYCENTRIC-2010"],
+        "assumption_ids": ["A-EQUITY-001", "A-PILOT-001"],
+        "self_check_ids": ["PROFESSIONAL_EVIDENCE"],
+        "evidence_summary_zh": "每个 P00–P11 行动都写明非数字替代方式，任何数字环节失效或被停止时，人工或线下服务继续可用。该条目是方案自设的运行约束，不构成对任何既有公共服务机构的合规结论。",
+        "evidence_summary_en": "Every P00-P11 action carries a non-digital fallback, so that human or offline service remains available whenever a digital step fails or is stopped. This is a self-imposed operating constraint of the proposal and constitutes no compliance conclusion about any existing public service body."
+      },
+      {
+        "standard_id": "GENERATIVE-AI-INTERIM-MEASURES",
+        "requirement_zh": "《生成式人工智能服务管理暂行办法》要求生成式人工智能服务实行分类分级管理，明确提供者责任、训练数据来源合法性、标识义务与投诉受理渠道。",
+        "professional_dimension": "人工智能治理与合规",
+        "mandatory": true,
+        "review_status": "addressed",
+        "proposal_sections": ["AI 创新生态、人才画像与 AI+ 场景", "风险、版权与合规说明"],
+        "drawing_refs": ["drawings/a3-booklet.pdf"],
+        "geometry_refs": ["geometry/key_areas.geojson"],
+        "metric_refs": ["key_area_count", "ensemble_run_count"],
+        "source_ids": ["SITE-PACKAGE", "AGENT-TASKBOOK", "OFFICIAL-ANNOUNCEMENT"],
+        "assumption_ids": ["A-CONTROLS-001", "A-PILOT-001"],
+        "self_check_ids": ["DETERMINISTIC_VALIDATION", "PROFESSIONAL_EVIDENCE"],
+        "external_gate_refs": ["D16"],
+        "evidence_summary_zh": "本方案自身不提供面向公众的生成式人工智能服务；它公开算法输入、运行记录与复算脚本，并为每个行动写明停机触发、授权人、回滚与申诉渠道。若未来试点确实部署此类服务，提供者责任、数据来源合法性与标识义务由该服务的运营方承担，本方案不代其承诺，相关授权事件由 D16 持有。",
+        "evidence_summary_en": "The package itself provides no public-facing generative AI service. It publishes algorithm inputs, run records, and a reproducer, and gives every action a stop trigger, an authorizing role, a rollback, and an appeal channel. If a pilot later deploys such a service, provider responsibility, lawfulness of training-data provenance, and labelling duties fall to that service's operator; this package makes no commitment on their behalf, and the authorizing event is held by D16."
+      },
+      {
+        "standard_id": "GB-55019-2021",
+        "published_designation": "GB 55019-2021",
+        "requirement_zh": "《建筑环境通用规范》GB 55019-2021 是自 2022-04-01 起施行的强制性国家规范，其条文对适用范围内的建筑与场地环境提出强制要求。",
+        "professional_dimension": "无障碍与建筑环境",
+        "mandatory": false,
+        "mandatory_meaning_zh": "本矩阵的 `mandatory` 表示“本次提交必须作出的强制回应”。适用性未经具备资质的专业人员证实之前，本行取 `false`；这不改变 GB 55019-2021 自身作为强制性国家规范的法律性质，该性质记录在 `instrument_class_zh`。",
+        "mandatory_meaning_en": "In this matrix `mandatory` means \"a mandatory response this submission must make\". While applicability is unverified by a competent professional this row takes `false`; that says nothing about the legal character of GB 55019-2021 itself, which is recorded separately in `instrument_class_en`.",
+        "instrument_class_zh": "强制性国家规范",
+        "instrument_class_en": "Mandatory national code",
+        "effective_date": "2022-04-01",
+        "applicability_status": "unverified",
+        "applicability_verified_by": null,
+        "applicability_record_date": null,
+        "cleared_clause_text_held": false,
+        "clauses_cited": [],
+        "external_gate_refs": ["D07"],
+        "gate_closure_effect_zh": "登记本行不关闭 `D07`。`D07` 需要合资格无障碍专业人员针对确切的已清权版本作出设计阶段条文适用性与路线审查，另需含仪器与分段结果的开放前实测审计；两者到位前，路线设计、equivalent text、`G5` 与公共开放保持 hold。",
+        "gate_closure_effect_en": "Registering this row does not close `D07`. `D07` requires a competent accessibility professional to review clause applicability and routes at design stage against the exact cleared edition, and a separate pre-opening instrumented audit with segment-level results. Until both exist, route design, equivalent text, `G5`, and public opening stay held.",
+        "review_status": "data_gap",
+        "proposal_sections": ["指标体系、面积复算与合规矩阵", "交通、轨道、市政与公共服务设施", "风险、版权与合规说明"],
+        "drawing_refs": ["drawings/a3-booklet.pdf"],
+        "geometry_refs": ["geometry/public_space.geojson"],
+        "metric_refs": ["public_space_ratio"],
+        "source_ids": ["GB-55019-2021-OFFICIAL"],
+        "assumption_ids": ["A-CONTROLS-001", "A-PILOT-001"],
+        "self_check_ids": ["PROFESSIONAL_EVIDENCE"],
+        "evidence_summary_zh": "本行只登记该强制性国家规范存在并自 2022-04-01 起施行。本包未持有已清权的条文正文（`cleared_clause_text_held: false`，`clauses_cited` 为空），因此不作条款适用性判断、不引用条文编号、不产生任何标准派生尺寸或合规结论。适用性字段保持未证实值并显式 cross-reference `D07`，`D07` 在 D 表中仍是无复选框的开放外部门。`GB-55019-2021-OFFICIAL` 的本地状态为 url_only_not_cleared。",
+        "evidence_summary_en": "This row registers only that the mandatory national code exists and has been in force since 2022-04-01. The package holds no cleared clause text (`cleared_clause_text_held: false`, `clauses_cited` empty), so it makes no clause-applicability judgement, cites no clause number, and derives no dimension or compliance conclusion from the code. The applicability fields stay at unverified values and cross-reference `D07`, which remains a checkbox-free open external gate. The local state of `GB-55019-2021-OFFICIAL` is url_only_not_cleared."
+      },
+      {
+        "standard_id": "DB11-T-2209-2023",
+        "published_designation": "DB11/T 2209-2023",
+        "designation_note_zh": "`standard_id` 刻意省略正式名称中的斜杠以保持纯字母数字与连字符；带斜杠的正式名称保存在 `published_designation`。",
+        "designation_note_en": "The `standard_id` deliberately drops the solidus from the published designation so the identifier stays alphanumeric-and-hyphen; the published designation with its solidus is carried in `published_designation`.",
+        "requirement_zh": "DB11/T 2209-2023 是北京市地方标准，涉及慢行与道路相关的技术要求。",
+        "professional_dimension": "交通与慢行系统",
+        "mandatory": false,
+        "mandatory_meaning_zh": "本矩阵的 `mandatory` 表示“本次提交必须作出的强制回应”。适用性未经具备资质的交通或慢行专业人员证实之前，本行取 `false`；本包亦未判断该地方标准属于推荐性还是强制性，该判断本身需要已清权版本，记录在 `instrument_class_zh`。",
+        "mandatory_meaning_en": "In this matrix `mandatory` means \"a mandatory response this submission must make\". While applicability is unverified by a competent mobility or transport professional this row takes `false`. The package also makes no determination of whether this local standard is recommended or compulsory, because that determination itself requires the cleared edition; see `instrument_class_en`.",
+        "instrument_class_zh": "北京市地方标准；推荐性或强制性的判定未作，需已清权版本",
+        "instrument_class_en": "Beijing municipal local standard; whether it is recommended or compulsory is not determined here and requires the cleared edition",
+        "applicability_status": "unverified",
+        "applicability_verified_by": null,
+        "applicability_record_date": null,
+        "cleared_clause_text_held": false,
+        "clauses_cited": [],
+        "external_gate_refs": ["D08"],
+        "gate_closure_effect_zh": "登记本行不关闭 `D08`。`D08` 需要具备资质的交通或慢行专业人员针对确切的已清权版本与所引条文作出书面适用性记录，并需有权道路或交通主管的书面管辖与合法道路通行权或过街决定；在此之前，所有触及道路、过街与慢行尺寸的成果保持 hold，任何展示面都不得出现 standards-applicability 声明或 standards-derived 尺寸。",
+        "gate_closure_effect_en": "Registering this row does not close `D08`. `D08` requires a competent mobility or transport professional to record applicability in writing against the exact cleared edition and the clauses cited, and a competent road or traffic authority to issue written jurisdiction and a lawful road right-of-way or crossing decision. Until then every artifact touching road, crossing, or walking-and-cycling dimensions stays held, and no publication surface may carry a standards-applicability claim or a standards-derived dimension.",
+        "review_status": "data_gap",
+        "proposal_sections": ["指标体系、面积复算与合规矩阵", "交通、轨道、市政与公共服务设施", "风险、版权与合规说明"],
+        "drawing_refs": ["drawings/a3-booklet.pdf"],
+        "geometry_refs": ["geometry/key_areas.geojson"],
+        "metric_refs": ["network_detour_factor"],
+        "source_ids": ["DB11-T-2209-2023-OFFICIAL"],
+        "assumption_ids": ["A-CONTROLS-001", "A-NETWORK-001"],
+        "self_check_ids": ["PROFESSIONAL_EVIDENCE"],
+        "evidence_summary_zh": "本行只登记该北京市地方标准存在。本包未持有已清权的条文正文（`cleared_clause_text_held: false`，`clauses_cited` 为空），因此不作适用性判断，不产生任何道路、过街或慢行尺寸的标准派生结论。适用性字段保持未证实值并显式 cross-reference `D08`，`D08` 在 D 表中仍是无复选框的开放外部门。`DB11-T-2209-2023-OFFICIAL` 的本地状态为 url_only_not_cleared，且无检索时哈希。",
+        "evidence_summary_en": "This row registers only that the Beijing municipal local standard exists. The package holds no cleared clause text (`cleared_clause_text_held: false`, `clauses_cited` empty), so it makes no applicability judgement and derives no road, crossing, or walking-and-cycling dimension from the standard. The applicability fields stay at unverified values and cross-reference `D08`, which remains a checkbox-free open external gate. The local state of `DB11-T-2209-2023-OFFICIAL` is url_only_not_cleared with no retrieval hash."
+      }
+    ]
+  },
+
+  "document_title": {
+    "reason_zh": "报告渲染器已从 front matter 的 title 输出一个 <h1>，正文再写一条 # 标题就会产生两个顶级标题，读屏软件与文档大纲因此无法确定文档主题。渲染器属于仓库脚本，不在可修改范围内，因此在包内删除正文重复的 # 标题；标题文本以 front matter 为准。",
+    "reason_en": "The report renderer already emits one <h1> from the front-matter title, so a second `# ` heading in the body produces two top-level headings and leaves the document outline ambiguous for screen readers. The renderer is a repository script and out of scope to change, so the duplicated body heading is removed inside the package and the front-matter title remains authoritative.",
+    "rule": "remove every body-level H1; the front-matter title is the single top-level heading, and it is stamped from the canonical record below",
+    "expected_removals_per_file": 1,
+    "front_matter_key": "title",
+    "canonical": {
+      "zh": "京张应变：分歧图谱与可逆城市",
+      "en": "Adaptive Jing-Zhang: Disagreement Atlas and Reversible City"
+    },
+    "superseded_variants": {
+      "reason_zh": "英文标题此前多出一个 `The`，与中文标题及包内其余引用不一致。此处登记被取代的写法，构建脚本据此改写 front matter，测试据此断言该写法在包内为 0 次。",
+      "reason_en": "The English title carried an extra `The`, which did not match the Chinese title or the way the proposal is referred to elsewhere in the package. The superseded spelling is registered here so the build script can rewrite the front matter from it and the contract test can assert it occurs zero times.",
+      "en": ["Adaptive Jing-Zhang: The Disagreement Atlas and Reversible City"],
+      "zh": []
+    }
+  },
+
+  "section_headings": {
+    "reason_zh": "校验器按包含关系匹配必需章节标题。中文标题已逐条命中，英文标题此前是自由改写，13 条中有 11 条不包含必需字符串，会被判为缺失章节。此处把双语标题固定为同一份记录，由构建脚本改写，防止两种语言各自漂移。",
+    "reason_en": "The validator matches required section headings by containment. The Chinese headings already match; the English headings were freely reworded and 11 of 13 did not contain the required string, so they were reported as missing sections. Both languages are fixed here in one record and rewritten by the build script so they cannot drift apart.",
+    "rule": "each rewritten heading must contain the validator's required section string verbatim",
+    "expected_rewrites_en": 11,
+    "expected_rewrites_zh": 0,
+    "headings": [
+      { "order": 1, "zh": "设计依据与资料清单", "en": "Design Basis and Source List", "en_previous": "Design Basis and Evidence Inventory" },
+      { "order": 2, "zh": "三层范围工作框架", "en": "Three-Level Scope Framework", "en_previous": "Three-Level Scope Framework" },
+      { "order": 3, "zh": "统筹研究范围产业与未来城市研究", "en": "Coordinated Research Area: Industry and Future City Research", "en_previous": "Coordinated Research: Industry Ecosystem and Future City" },
+      { "order": 4, "zh": "总体设计范围城市更新与控规深度城市设计", "en": "Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design", "en_previous": "Overall Design: Urban Renewal and Regulatory-Depth Reference Scheme" },
+      { "order": 5, "zh": "重点区域详细设计", "en": "Detailed Design of Key Areas", "en_previous": "Key-Area Detailed Design" },
+      { "order": 6, "zh": "AI 创新生态、人才画像与 AI+ 场景", "en": "AI Innovation Ecosystem, Personas, and AI+ Scenarios", "en_previous": "AI Ecosystem, Personas, and AI+ Scenarios" },
+      { "order": 7, "zh": "用地、建筑规模与拆改留方案", "en": "Land Use, Building Scale, and Retain-Renovate-Demolish Strategy", "en_previous": "Land Use, Building Capacity, and the Retain–Retrofit–Remove Strategy" },
+      { "order": 8, "zh": "交通、轨道、市政与公共服务设施", "en": "Transport, Rail, Municipal Infrastructure, and Public Services", "en_previous": "Mobility, Rail, Utilities, and Public Services" },
+      { "order": 9, "zh": "蓝绿空间、公共空间与城市风貌", "en": "Blue-Green Network, Public Space, and Urban Character", "en_previous": "Blue-Green Space, Public Realm, and Urban Character" },
+      { "order": 10, "zh": "更新项目清单、实施政策与分期计划", "en": "Renewal Projects, Implementation Policy, and Phasing", "en_previous": "Renewal Projects, Policy, and Phasing" },
+      { "order": 11, "zh": "指标体系、面积复算与合规矩阵", "en": "Metrics, Area Recalculation, and Compliance Matrix", "en_previous": "Metrics, Recalculation, and Compliance Matrix" },
+      { "order": 12, "zh": "风险、版权与合规说明", "en": "Risk, Copyright, and Compliance", "en_previous": "Risks, Copyright, and Compliance" },
+      { "order": 13, "zh": "参考资料", "en": "References", "en_previous": "References" }
+    ]
+  },
+
+  "viewer_hero": {
+    "reason_zh": "两份 viewer 的开篇段各自手写，中文把方法句写进 lede，英文另起一段，且英文仍称生成器为“黏菌启发网络”。开篇是最多人读到的一句，两种语言必须来自同一条记录，并写出实际执行的计算。",
+    "reason_en": "The opening block of each viewer was hand-authored: the Chinese one folded the method sentence into the lede, the English one kept it as a separate paragraph, and the English one still called the generator a Physarum-inspired network. The opening is the most-read sentence in the package, so both languages come from this one record and name the computation actually performed.",
+    "rule": "the lede paragraph carries the motto, a line break, and the method sentence; any separate hand-authored method paragraph immediately after it is absorbed",
+    "motto_zh": "让百路涌现，只让经得起检验的连接落地。",
+    "motto_en": "Let many paths emerge. Build only the connections that earn trust.",
+    "method_zh": "带种子的 Kruskal 拓扑与选择不稳定性探针不是城市决策者。它在人工声明的候选集上报告入选频率，公开分歧；目标、红线、停止规则与最终行动由人和负责任的机构决定。",
+    "method_en": "A seeded Kruskal topology and selection-instability probe is not an urban decision-maker. It reports selection frequency over a hand-declared candidate set and exposes disagreement; people and accountable institutions set the goals, the red lines, the stop rules, and the final decisions."
+  },
+
+  "ui_labels": {
+    "note_zh": "界面与正文共用的字段名放在这里。离线 viewer 与两份 proposal 正文读同一份记录，构建脚本不自带任何第二套措辞，中英两版只能同源。",
+    "note_en": "The field labels shared by the interface and the document body live here. The offline viewers and both proposal bodies read this one record, so no build script carries a second set of phrasings and the two languages cannot drift apart.",
+    "areas": {
+      "eyebrow_zh": "重点区域",
+      "eyebrow_en": "Key areas",
+      "heading_zh": "三区，三种不可互换的任务",
+      "heading_en": "Three areas, three tasks that cannot be swapped",
+      "intro_zh": "每个重点区回答一个不同的问题，因此构件、路径、冬季与维护安排都不相同。全部构件与路径均为概念建议，未获授权、未获资金，落地前须经专业与行政审查。",
+      "intro_en": "Each key area answers a different question, so its components, routes, winter arrangements, and maintenance duties differ. Every component and route is a conceptual proposal: none is authorized, none is funded, and each requires professional and administrative review before any commitment.",
+      "figure_src_zh": "../assets/figures/key-areas.png",
+      "figure_src_en": "../assets/figures/key-areas.en.png",
+      "figure_alt_zh": "三处重点区的临时范围与各自不同的试点主题",
+      "figure_alt_en": "Three provisional key-area extents with their differing pilot themes",
+      "figure_caption_zh": "三处 polygon 为临时研究范围，不是官方边界。大钟寺范围受 Issue #1029 质疑，按无地理参照发布：其位置不承载任何主张。",
+      "figure_caption_en": "The three polygons are provisional study extents, not official boundaries. The Dazhongsi extent is disputed by Issue #1029 and is published as non-georeferenced: its position carries no claim."
+    },
+    "projects": {
+      "eyebrow_zh": "更新项目",
+      "eyebrow_en": "Renewal actions",
+      "heading_zh": "先证据，后空间，再制度",
+      "heading_en": "Evidence first, then space, then institutions",
+      "intro_zh": "Phase 0 核验证据与问责；Phase 1 做90天可逆小试；Phase 2 跨至少两季学习；Phase 3 只有通过人类、专业、财务、维护与公共利益审查才可能制度化。全部12项均未授权、未拨款。",
+      "intro_en": "Phase 0 verifies evidence and accountability. Phase 1 runs reversible 90-day micro-pilots. Phase 2 learns across at least two seasons. Phase 3 may institutionalize only what passes human, professional, financial, maintenance, and public-interest review. All twelve actions are unauthorized and unfunded."
+    },
+    "ai": {
+      "eyebrow_zh": "AI 场景",
+      "eyebrow_en": "AI scenarios",
+      "heading_zh": "十个场景，一份治理合同",
+      "heading_en": "Ten scenarios; one governance contract",
+      "intro_zh": "每个场景登记同样六项：位置类型、最少数据、人工复核、非数字替代、责任运营方、停止规则。这些卡片是概念性的服务规格，不是部署授权。",
+      "intro_en": "Every scenario registers the same six clauses: place type, minimum data, human review, non-digital fallback, accountable operator, and stop rule. The cards are conceptual service specifications, not authorizations to deploy.",
+      "col_id_zh": "编号",
+      "col_id_en": "ID",
+      "col_scenario_zh": "场景",
+      "col_scenario_en": "Scenario",
+      "gate_heading_zh": "不可交易门",
+      "gate_heading_en": "Non-tradeable gates"
+    },
+    "check": {
+      "eyebrow_zh": "自检状态",
+      "eyebrow_en": "Review gates",
+      "heading_zh": "四道门，只有一种含义：可审查",
+      "heading_en": "Four checks mean reviewable—never approved",
+      "intro_zh": "通过这四项检查不等于政府批准、专业认证、工程可行、确认投资或保证实施；被记录的状态只有可审查一项。最终状态由 self_check.json 与 manifest 记录。",
+      "intro_en": "Passing these checks does not mean government approval, professional certification, engineering feasibility, confirmed investment, or guaranteed implementation. The recorded state is reviewability only, and the final state is held by self_check.json and the manifest."
+    },
+    "sources": {
+      "eyebrow_zh": "来源",
+      "eyebrow_en": "Sources",
+      "heading_zh": "来源只支持它能支持的主张",
+      "heading_en": "Each source supports only the claim it can support",
+      "intro_zh": "六类来源各自写明它能支持什么。任何一类都不能被引申为它未记录的结论。",
+      "intro_en": "Six source families, each stated with what it can support. None may be extended into a conclusion it does not record.",
+      "col_id_zh": "编号",
+      "col_id_en": "ID",
+      "col_family_zh": "来源类别",
+      "col_family_en": "Source family",
+      "col_supports_zh": "可支持的主张",
+      "col_supports_en": "Claim it can support"
+    },
+    "assumptions": {
+      "eyebrow_zh": "假设与限度",
+      "eyebrow_en": "Assumptions and limits",
+      "heading_zh": "缺证据不等于没有约束",
+      "heading_en": "Missing evidence does not remove constraints",
+      "intro_zh": "以下六条是本包在缺少官方数据时所依赖的全部假设，逐条编号，便于被逐条推翻。",
+      "intro_en": "These six statements are every assumption this package relies on where official data is unavailable. Each is numbered so that each can be refuted on its own.",
+      "col_id_zh": "编号",
+      "col_id_en": "ID",
+      "col_limit_zh": "假设与限度",
+      "col_limit_en": "Assumption and limit"
+    },
+    "regional": {
+      "eyebrow_zh": "区域协同",
+      "eyebrow_en": "Regional synergy",
+      "heading_zh": "五个协同对象，只写可提问的部分",
+      "heading_en": "Five counterparts; only the part that can be asked",
+      "intro_zh": "任务书的“区域协同性”评审维度点名五个对象。本表逐个只回答四件事：可能的关系、仍需的证据、拟议审核路径（待确认）、以及主张限度。本表不记录任何既有协议、线路、投资、承诺或实施事实，也不指定任何机构的受理职责。",
+      "intro_en": "The taskbook's regional-synergy review dimension names five counterparts. Each row answers only four things: the potential relationship, the evidence still required, the proposed review route requiring confirmation, and the claim limit. No row records an existing agreement, route, investment, commitment, or implementation fact, and no row assigns a receiving duty to any body.",
+      "col_partner_zh": "协同对象",
+      "col_partner_en": "Counterpart",
+      "col_relationship_zh": "可能的关系（仅为提议）",
+      "col_relationship_en": "Potential relationship (proposal only)",
+      "col_evidence_zh": "仍需的证据",
+      "col_evidence_en": "Evidence still required",
+      "col_review_zh": "拟议审核路径（待确认）",
+      "col_review_en": "Proposed review route requiring confirmation",
+      "col_limit_zh": "不确定性与主张限度",
+      "col_limit_en": "Uncertainty and claim limit"
+    },
+    "tasks": {
+      "eyebrow_zh": "任务覆盖",
+      "eyebrow_en": "Task coverage",
+      "heading_zh": "公告、agent 任务与专业深度可追溯",
+      "heading_en": "Traceable brief, agent tasks, and professional design depth",
+      "intro_zh": "下表四行的数量全部由构建脚本从对应记录现算，不由人重打；标为资料缺口的条目照实计入，不并入已回应。",
+      "intro_en": "Every count in the four rows below is recomputed by the build script from the record it names rather than retyped. Items marked as data gaps are counted as such and are not folded into the addressed total.",
+      "col_object_zh": "审查对象",
+      "col_object_en": "Review object",
+      "col_coverage_zh": "覆盖",
+      "col_coverage_en": "Coverage",
+      "col_evidence_zh": "审计记录",
+      "col_evidence_en": "Audit record"
+    },
+    "components_heading_zh": "构件",
+    "components_heading_en": "Components",
+    "routes_heading_zh": "提议的无障碍连续路径",
+    "routes_heading_en": "Proposed step-free chains",
+    "col_id_zh": "编号",
+    "col_id_en": "ID",
+    "col_name_zh": "名称",
+    "col_name_en": "Name",
+    "col_description_zh": "内容",
+    "col_description_en": "Content",
+    "col_evidence_zh": "证据引用",
+    "col_evidence_en": "Evidence reference",
+    "col_blocked_zh": "受阻于",
+    "col_blocked_en": "Blocked by",
+    "col_phase_zh": "阶段",
+    "col_phase_en": "Phase",
+    "step_free_zh": "全程无台阶",
+    "step_free_en": "step-free throughout",
+    "winter_zh": "冬季运行",
+    "winter_en": "Winter operation",
+    "maintenance_zh": "维护责任",
+    "maintenance_en": "Maintenance duty",
+    "envelope_zh": "Phase 1 概念体量",
+    "envelope_en": "Phase 1 conceptual envelope",
+    "reversible_zh": "可逆",
+    "reversible_en": "reversible",
+    "not_authorized_zh": "未授权",
+    "not_authorized_en": "not authorized",
+    "unfunded_zh": "未拨款",
+    "unfunded_en": "unfunded",
+    "role_label_zh": "角色",
+    "role_label_en": "Role",
+    "plates_zh": "图版",
+    "plates_en": "Plates",
+    "plate_full_resolution_zh": "原图 PNG",
+    "plate_full_resolution_en": "Full-resolution PNG",
+    "non_georeferenced_zh": "无地理参照",
+    "non_georeferenced_en": "non-georeferenced",
+    "official_area_zh": "公告面积",
+    "official_area_en": "Announced area",
+    "drawing_board_zh": "图板",
+    "drawing_board_en": "Board",
+    "drawing_booklet_zh": "技术图册",
+    "drawing_booklet_en": "Technical booklet",
+    "drawing_sheet_zh": "图幅",
+    "drawing_sheet_en": "Sheet",
+    "drawing_page_zh": "页",
+    "drawing_page_en": "Page",
+    "drawing_contents_zh": "目录",
+    "drawing_contents_en": "Contents",
+    "drawing_program_flow_zh": "重点区计划与流线图",
+    "drawing_program_flow_en": "Key-area program and flow plan",
+    "drawing_keyed_details_zh": "索引详图面板",
+    "drawing_keyed_details_en": "Keyed detail panels",
+    "drawing_support_panels_zh": "支撑面板",
+    "drawing_support_panels_en": "Support panels",
+    "drawing_claim_limits_zh": "主张边界",
+    "drawing_claim_limits_en": "Claim limits",
+    "drawing_evidence_boundary_zh": "证据边界",
+    "drawing_evidence_boundary_en": "Evidence boundary",
+    "drawing_legend_zh": "图例",
+    "drawing_legend_en": "Legend",
+    "drawing_gate_contract_zh": "七项不可交易门",
+    "drawing_gate_contract_en": "The seven non-tradeable gates",
+    "drawing_gate_contract_note_zh": "七项门由人判定，不由本包关闭。下列语句说明何时判为不通过；包内没有任何一项检查、测试或勾选能代替这一判定。",
+    "drawing_gate_contract_note_en": "The seven gates are adjudicated by people and are not closed by this package. Each clause below states when a proposal fails the gate; no check, test, or ticked item inside the package substitutes for that adjudication.",
+    "drawing_denominator_zh": "分母与取整披露",
+    "drawing_denominator_en": "Denominator and rounding disclosure",
+    "drawing_topological_note_zh": "本图为拓扑示意：不含坐标、比例、指北针与距离。构件、路径与门之间的连线只表示登记表中已记录的阻断关系。",
+    "drawing_topological_note_en": "This diagram is topological: it carries no coordinate, no scale, no north arrow, and no distance. A line drawn between a component, a chain, and a gate shows only the blocking relation already recorded in the register.",
+    "drawing_method_card_zh": "方法卡",
+    "drawing_method_card_en": "Method card",
+    "drawing_operates_on_zh": "作用对象",
+    "drawing_operates_on_en": "Operates on",
+    "drawing_guaranteed_zh": "由构造保证",
+    "drawing_guaranteed_en": "Guaranteed by construction",
+    "drawing_does_not_compute_zh": "不计算",
+    "drawing_does_not_compute_en": "Does not compute",
+    "drawing_limitations_zh": "局限",
+    "drawing_limitations_en": "Limitations",
+    "drawing_thresholds_zh": "阈值",
+    "drawing_thresholds_en": "Thresholds",
+    "drawing_reproducer_zh": "复算器",
+    "drawing_reproducer_en": "Reproducer",
+    "drawing_ablation_zh": "零抖动对照",
+    "drawing_ablation_en": "Zero-jitter comparison",
+    "drawing_distinct_task_zh": "不可互换的任务",
+    "drawing_distinct_task_en": "Distinct task",
+    "drawing_lab_coupling_zh": "实验室耦合通道",
+    "drawing_lab_coupling_en": "Lab coupling channels",
+    "drawing_spelling_zh": "拼写出处",
+    "drawing_spelling_en": "Spelling provenance",
+    "drawing_public_memory_zh": "公开记忆",
+    "drawing_public_memory_en": "Public memory",
+    "drawing_standards_zh": "补齐的标准行",
+    "drawing_standards_en": "Added standard rows",
+    "drawing_typeface_zh": "字体",
+    "drawing_typeface_en": "Typeface",
+    "drawing_generated_note_zh": "本图全部文字均由包内注册表生成，绘图脚本不另写任何用语。",
+    "drawing_generated_note_en": "Every string on this drawing is generated from the registries inside the package; the drawing script carries no wording of its own.",
+    "drawing_full_register_zh": "完整的治理登记表见技术图册。",
+    "drawing_full_register_en": "The complete governance register is in the technical booklet.",
+    "drawing_key_ref_zh": "索引",
+    "drawing_key_ref_en": "Key",
+    "drawing_synthesis_zh": "跨片区综合",
+    "drawing_synthesis_en": "Cross-area synthesis",
+    "drawing_plate_register_zh": "图版登记",
+    "drawing_plate_register_en": "Plate register",
+    "drawing_plate_description_zh": "图面说明",
+    "drawing_plate_description_en": "Plate description",
+    "drawing_plate_status_zh": "核验状态",
+    "drawing_plate_status_en": "Verification status",
+    "drawing_plate_pending_zh": "未核验：无障碍闸口 G5 待判、测量待做、专业审查待做。",
+    "drawing_plate_pending_en": "Not verified: accessibility gate G5 pending, survey pending, professional audit pending.",
+    "drawing_plate_translation_zh": "本图为中文原版。",
+    "drawing_plate_translation_en": "This plate is the English twin of the Chinese original.",
+    "drawing_appendix_zh": "方法与出处附录",
+    "drawing_appendix_en": "Method and provenance appendix",
+    "drawing_terminology_zh": "术语替换",
+    "drawing_terminology_en": "Terminology replacements",
+    "drawing_marker_migration_zh": "标记迁移",
+    "drawing_marker_migration_en": "Marker migration"
+  },
+
+  "proposal_blocks": {
+    "note_zh": "正文中由脚本生成的两段登记表的标题与引言。手写章节保持不变，脚本只替换这两个 `###` 小节，因此构件、路径与行动的措辞在正文、viewer 与图版之间只有一个来源。",
+    "note_en": "The headings and intros for the two registers that the build script writes into the document body. The hand-authored sections are left alone and only these two `###` subsections are replaced, so the wording of components, routes, and actions has a single source across the body, the viewers, and the plates.",
+    "area_register": {
+      "heading_zh": "重点区构件与路径登记表",
+      "heading_en": "Key-Area Component and Route Register",
+      "intro_zh": "下表把三处重点区的每个构件与每条提议无障碍连续路径登记为可核对条目：稳定编号、双语名称、内容、逐条精确证据引用与阻断它的未关闭 D 门。全部条目均为概念建议，未获授权、未获资金；未关闭的 D 门是阻断条件，不是备注。",
+      "intro_en": "The register below records every component and every proposed step-free chain in the three key areas as a checkable entry: a stable ID, a bilingual name, its content, an exact per-entry evidence reference, and the unresolved D gates that block it. Every entry is a conceptual proposal, not authorized and not funded; an unresolved D gate is a blocking condition, not a footnote."
+    },
+    "regional_synergy": {
+      "heading_zh": "区域创新协同关系",
+      "heading_en": "Regional Innovation Synergy Relationships",
+      "intro_zh": "任务书的评审维度“区域协同性”点名北纬社区、未来科学城、怀柔科学城、经开区与京津冀。本包对这五个对象没有任何一手资料，因此只登记四件可以由本包负责的事：可能的关系、仍需的证据、拟议审核路径（待确认）、主张限度。本表不指定任何机构的受理职责。",
+      "intro_en": "The taskbook's regional-synergy review dimension names the Beiwei Community, Future Science City, Huairou Science City, the Economic-Technological Development Area, and the Beijing-Tianjin-Hebei region. This package holds no primary record of any of the five, so each row registers only the four things this package can be held to: the potential relationship, the evidence still required, the proposed review route requiring confirmation, and the claim limit. No row assigns a receiving duty to any body.",
+      "limit_zh": "五行都是提问，不是结论。本表不记录任何既有协议、线路、投资、承诺、精确地理关系或实施事实；五个对象的英文名称是任务书中文名的工作译名，任务书本身不发布英文名。",
+      "limit_en": "All five rows are questions, not conclusions. No row records an existing agreement, route, investment, commitment, precise geographical relationship, or implementation fact. The English names of the five counterparts are working translations of the taskbook's Chinese names; the taskbook itself publishes no English name."
+    },
+    "governance_register": {
+      "intro_zh": "下表为 P00—P11 十二项行动的决策表，每项行动一行，逐行给出行动、阶段、问责角色、观察指标、停止条件、回退与未关闭的 D 门。所有角色均为职能描述，不指名任何机构、个人、预算、权属或专业批准。",
+      "intro_en": "The register below is a decision table for the twelve actions P00-P11, one row per action, giving the action, its phase, the accountable role, the observation metric, the stop condition, the rollback, and its unresolved D gates. Every role is a function, never a named organisation, person, budget, tenure, or professional approval.",
+      "full_register_zh": "完整合同保留在 visual/assets/action-governance.json：每项行动仍登记维护者、受益者、最坏受影响群体、建议目标、停止权限、实物恢复、剩余责任与非数字替代共八项条款，本表只印出追责所需的七列。十二项行动的授权状态一律为 not_authorized、资金状态一律为 unfunded，因此不再逐行重复；run-contract-tests.js 的 G01 仍逐项校验全部十二项条款。",
+      "full_register_en": "The full contract stays in visual/assets/action-governance.json: every action still registers a maintainer, a beneficiary, the worst-affected group, a proposed target, a stop authority, a physical restoration, a residual liability, and a non-digital fallback—eight further clauses—while the table below prints only the seven columns needed to hold someone to something. All twelve actions are not_authorized and unfunded, so no row repeats that; G01 in run-contract-tests.js still checks every one of the twelve clauses."
+    }
+  },
+
+  "areas": [
+    {
+      "id": "PROV-KEY-001",
+      "area_id": "zhongzhiyuan_ai_acceleration_area",
+      "name_zh": "众智园AI自主创新加速区",
+      "name_en": "Zhongzhiyuan AI Acceleration Area",
+      "lab": "Lab 1",
+      "role_zh": "受控测试与治理验证",
+      "role_en": "Controlled testing and governance verification",
+      "georeferenced": true,
+      "official_area_ha": 192.1,
+      "plate_prefix": "ZZY",
+      "distinct_task_zh": "本区回答一个问题：一台低速机器在有人的街道上被允许做什么，由谁停下它，停下之后谁来修。它是三个实验室里唯一进行受控设备测试的场地。",
+      "distinct_task_en": "This area answers one question: what a low-speed machine is allowed to do on a street with people on it, who stops it, and who repairs it afterwards. It is the only one of the three labs that runs controlled equipment testing.",
+      "components": [
+        {
+          "id": "Z-C01",
+          "name_zh": "受控测试环路",
+          "name_en": "Controlled Test Loop",
+          "description_zh": "限时开放的低速测试环路，边界用可搬移护栏标示，测试时段与非测试时段分开公告。护栏不固定于路面。",
+          "description_en": "A time-boxed low-speed test loop marked by movable barriers, with test and non-test hours posted separately. The barriers are not fixed to the ground.",
+          "evidence_ref": "component:Z-C01 | plate:ZZY-02 | source:AGENT-TASKBOOK | data:assumptions.json#A-PILOT-001",
+          "blocked_by": ["D10", "D12"]
+        },
+        {
+          "id": "Z-C02",
+          "name_zh": "停止按钮与人工接管岗",
+          "name_en": "Stop Button and Human Takeover Post",
+          "description_zh": "环路每段设一处物理停止按钮与一名在岗人工接管者。停止权限具名，接管流程为纸质，不依赖任何应用。",
+          "description_en": "One physical stop button per loop segment and one on-duty human takeover operator. Stop authority is named and the takeover procedure is on paper, so it needs no app.",
+          "evidence_ref": "component:Z-C02 | plate:ZZY-05 | source:ISSUE-2170 | standard:GENERATIVE-AI-INTERIM-MEASURES",
+          "blocked_by": ["D10", "D16"]
+        },
+        {
+          "id": "Z-C03",
+          "name_zh": "测试日志公开台",
+          "name_en": "Public Test Log Desk",
+          "description_zh": "每个测试日结束时把当日决定与聚合计数张贴到公开台，只登记决定与聚合证据引用，不登记个人数据。",
+          "description_en": "At the close of each test day the day's decisions and aggregate counts are posted at the desk. Decisions and aggregate evidence references only; no personal data.",
+          "evidence_ref": "component:Z-C03 | plate:ZZY-05 | source:OSTROM-COMMONS-1990 | standard:GENERATIVE-AI-INTERIM-MEASURES",
+          "blocked_by": ["D11"]
+        },
+        {
+          "id": "Z-C04",
+          "name_zh": "备件与维修间",
+          "name_en": "Parts and Repair Bay",
+          "description_zh": "与测试环路同期建立的维修位与备件架。没有可用维修位与具名维护者的设备不得进入测试时段。",
+          "description_en": "A repair bay and parts rack established at the same time as the test loop. Equipment without an available bay and a named maintainer may not enter a test window.",
+          "evidence_ref": "component:Z-C04 | plate:ZZY-03 | source:SHEARING-LAYERS-BRAND-1994 | data:assumptions.json#A-PILOT-001",
+          "blocked_by": ["D12"]
+        },
+        {
+          "id": "Z-C05",
+          "name_zh": "边界告示与退出口",
+          "name_en": "Boundary Notice and Exit",
+          "description_zh": "测试边界每处开口设双语告示与无门槛退出口，写明当日测试内容、停止方式与投诉去向。",
+          "description_en": "Every opening in the test boundary carries a bilingual notice and a threshold-free exit stating the day's test, how to stop it, and where complaints go.",
+          "evidence_ref": "component:Z-C05 | plate:ZZY-04 | standard:BARRIER-FREE-ENVIRONMENT-LAW | source:AGENT-TASKBOOK",
+          "blocked_by": ["D07"]
+        }
+      ],
+      "routes": [
+        {
+          "id": "Z-R01",
+          "name_zh": "公众观察环线",
+          "name_en": "Public observation loop",
+          "step_free": true,
+          "description_zh": "拟建的公众观察环线，全程无台阶，且不进入受控试验区，也不依赖试验时段的开闭。",
+          "description_en": "The proposed public observation loop, step-free throughout; it never enters the controlled-test area and does not depend on whether a test window is open.",
+          "evidence_ref": "route:Z-R01 | plate:ZZY-02 | standard:BARRIER-FREE-ENVIRONMENT-LAW | metric:public_space_ratio",
+          "blocked_by": [
+            "D05",
+            "D07"
+          ]
+        },
+        {
+          "id": "Z-R04",
+          "name_zh": "应急撤离与救援通道",
+          "name_en": "Emergency egress and rescue route",
+          "step_free": true,
+          "description_zh": "拟建的应急撤离通道，按无台阶设置；其宽度、坡度与最终线位须经有资格的专业人员核定后方可成立。",
+          "description_en": "The proposed emergency egress route, set out step-free; its width, gradient and final alignment stand only once a qualified professional has verified them.",
+          "evidence_ref": "route:Z-R04 | plate:ZZY-02 | section:ZZY-SEC-B | source:HOLLING-1973",
+          "blocked_by": [
+            "D05",
+            "D06",
+            "D07"
+          ]
+        }
+      ],
+      "winter_zh": "冬季测试时段缩短并优先保证主链与旁路的清扫与除冰；主链在任何测试安排下都不得因结冰或积雪封闭而无替代路径。除冰材料的选择与频次写入维护表，不写入本方案的性能声明。",
+      "winter_en": "Winter shortens the test window and gives clearing and de-icing priority to the spine and the bypass. Under no test arrangement may the spine be closed by ice or snow without an alternative path. The choice and frequency of de-icing material belongs in the maintenance schedule, not in this proposal's performance claims.",
+      "maintenance_zh": "每台测试设备对应一名具名维护者与一个备件位；维护者缺位即停止该设备的测试资格。维护义务、年度金额与恢复资金全部依赖 D12，未取得前不激活。",
+      "maintenance_en": "Every test unit is paired with a named maintainer and a parts slot; if the maintainer is absent the unit loses its test eligibility. Maintenance obligations, annual amounts, and restoration funding all depend on D12 and are not activated before it is obtained.",
+      "phase1_envelope": {
+        "id": "ENV-ZY-01",
+        "description_zh": "一处 90 天可逆通行试点：可搬移护栏、地面不打孔、结束时按拆卸清单恢复原状并留存恢复验证记录。",
+        "description_en": "One 90-day reversible passage pilot: movable barriers, no penetration of the ground surface, restored to its prior state at closure against a dismantling checklist with a retained restoration verification record.",
+        "reversible": true,
+        "authorization_state": "not_authorized",
+        "blocked_by": ["D10", "D12"],
+        "funding_state": "unfunded"
+      }
+    },
+    {
+      "id": "PROV-KEY-002",
+      "area_id": "beijing_ai_origin_community",
+      "name_zh": "北京AI原点社区",
+      "name_en": "Beijing AI Origin Community",
+      "lab": "Lab 2",
+      "role_zh": "近校转化与居民共同校正",
+      "role_en": "Campus-adjacent transfer and resident-led correction",
+      "georeferenced": true,
+      "official_area_ha": 104.3,
+      "plate_prefix": "AIO",
+      "distinct_task_zh": "本区回答另一个问题：住在旁边的人如何改正一个他们没有参与设计的系统。它不做设备测试，做的是登记、申诉与回执。",
+      "distinct_task_en": "This area answers a different question: how the people who live next to a system correct it when they had no part in designing it. It runs no equipment testing; it runs registration, appeal, and receipt.",
+      "components": [
+        {
+          "id": "O-C01",
+          "name_zh": "开放登记台",
+          "name_en": "Open Registry Desk",
+          "description_zh": "对在本区运行的每个 AI+ 场景登记名称、责任机构、运行时段与停止方式，登记内容公开可查。",
+          "description_en": "Registers the name, responsible body, operating hours, and stop method of every AI+ scenario running in the area; the register is publicly readable.",
+          "evidence_ref": "component:O-C01 | plate:AIO-05 | standard:GENERATIVE-AI-INTERIM-MEASURES | source:OSTROM-POLYCENTRIC-2010",
+          "blocked_by": ["D11", "D16"]
+        },
+        {
+          "id": "O-C02",
+          "name_zh": "居民校正桌",
+          "name_en": "Resident Correction Table",
+          "description_zh": "固定时段开放的纸质校正桌，居民可对任一登记条目提出更正；原记录保留并标注已被更正。",
+          "description_en": "A paper correction table open at fixed hours where residents may correct any registered entry. The original record is retained and marked as corrected.",
+          "evidence_ref": "component:O-C02 | plate:AIO-05 | source:OSTROM-COMMONS-1990 | data:assumptions.json#A-EQUITY-001",
+          "blocked_by": ["D11"]
+        },
+        {
+          "id": "O-C03",
+          "name_zh": "首层共享工作间",
+          "name_en": "Ground-Floor Shared Workroom",
+          "description_zh": "利用既有首层空间的共享工作位，按开放建筑的支撑体与填充体划分：支撑体不动，填充体可换。既有建筑认定未完成前只作方案假设。",
+          "description_en": "Shared work positions in existing ground-floor space, divided on open-building lines into support and infill: the support is untouched, the infill is replaceable. Until the existing-building determination is complete this remains a proposal hypothesis.",
+          "evidence_ref": "component:O-C03 | plate:AIO-03 | source:OPEN-BUILDING-HABRAKEN-2021 | data:assumptions.json#A-BUILDING-001",
+          "blocked_by": ["D04", "D06"]
+        },
+        {
+          "id": "O-C04",
+          "name_zh": "夜间照明与遮蔽段",
+          "name_en": "Lit and Sheltered Segment",
+          "description_zh": "沿居民日常步行段的照明与遮蔽改善，优先覆盖夜间使用最多、投诉最集中的一段。照度目标依赖现场实测，未测前不作数值声明。",
+          "description_en": "Lighting and shelter improvement along the segment residents walk daily, covering first the stretch with the heaviest night use and the densest complaints. Illuminance targets depend on on-site measurement and no numeric claim is made before it.",
+          "evidence_ref": "component:O-C04 | plate:AIO-04 | standard:ELDERLY-SMART-TECH-PLAN-2020-45 | data:assumptions.json#A-EQUITY-001",
+          "blocked_by": ["D05", "D12"]
+        },
+        {
+          "id": "O-C05",
+          "name_zh": "申诉信箱与回执板",
+          "name_en": "Appeal Box and Receipt Board",
+          "description_zh": "非数字申诉通道：投递纸质申诉即取得编号回执，处理结果按编号公示。不接受申诉必须经由应用提交的安排。",
+          "description_en": "A non-digital appeal channel: submitting a paper appeal returns a numbered receipt and the outcome is posted against that number. An arrangement requiring appeals to pass through an application is not accepted.",
+          "evidence_ref": "component:O-C05 | plate:AIO-05 | standard:ELDERLY-SMART-TECH-PLAN-2020-45 | source:BEIJING-RESPONSIBILITY-PLANNER-2024",
+          "blocked_by": ["D16"]
+        }
+      ],
+      "routes": [
+        {
+          "id": "O-R01",
+          "name_zh": "日常服务动线",
+          "name_en": "Daily service line",
+          "step_free": true,
+          "description_zh": "拟建的日常服务动线，全程无台阶，连接有人值守且不依赖手机的服务点。",
+          "description_en": "The proposed daily service line, step-free throughout, connecting the staffed points that work without a phone.",
+          "evidence_ref": "route:O-R01 | plate:AIO-02 | component:O-C04 | standard:BARRIER-FREE-ENVIRONMENT-LAW",
+          "blocked_by": [
+            "D05",
+            "D07"
+          ]
+        },
+        {
+          "id": "O-R02",
+          "name_zh": "发布公地到达动线",
+          "name_en": "Release commons approach",
+          "step_free": true,
+          "description_zh": "到达发布公地的拟建无台阶动线；公地本身按公开的议事规则运行，不设门禁。",
+          "description_en": "The proposed step-free approach to the release commons; the commons itself runs on published rules of assembly and has no access control.",
+          "evidence_ref": "route:O-R02 | plate:AIO-02 | component:O-C01 | source:OSTROM-COMMONS-1990",
+          "blocked_by": [
+            "D05",
+            "D07"
+          ]
+        },
+        {
+          "id": "O-R03",
+          "name_zh": "照护沿街面到达动线",
+          "name_en": "Care frontage approach",
+          "step_free": true,
+          "description_zh": "到达照护、安静与可负担沿街面的拟建无台阶动线；该沿街面的权属与任何既有首层空间保持未定。",
+          "description_en": "The proposed step-free approach to the care, quiet and affordable frontage; the tenure of that frontage and any existing ground-floor space remain undetermined.",
+          "evidence_ref": "route:O-R03 | plate:AIO-02 | section:AIO-SEC-A | standard:BARRIER-FREE-ENVIRONMENT-LAW",
+          "blocked_by": [
+            "D04",
+            "D07"
+          ]
+        },
+        {
+          "id": "O-R04",
+          "name_zh": "有条件慢行缝路径",
+          "name_en": "Conditional slow seam route",
+          "step_free": true,
+          "description_zh": "条件性的无台阶慢行缝路径。在 D04、D05、D08、D12、D16 全部关闭之前它不成立；任何触及道路或过街的段落随 D08 一并 hold。",
+          "description_en": "A conditional step-free slow-seam route. It does not stand until D04, D05, D08, D12 and D16 are all closed; any segment touching a road or a crossing is held with D08.",
+          "evidence_ref": "route:O-R04 | plate:AIO-02 | section:AIO-SEC-B | data:assumptions.json#A-NETWORK-001",
+          "blocked_by": [
+            "D04",
+            "D05",
+            "D08",
+            "D12",
+            "D16"
+          ]
+        }
+      ],
+      "winter_zh": "冬季把清扫与除冰顺序倒过来：先清居民日常段与夜间优先段，再清示范性路段。校正桌与申诉信箱在冬季保持室内或有遮蔽的位置，不因季节中断非数字通道。",
+      "winter_en": "Winter reverses the clearing order: the daily-use and night-priority segments are cleared before any demonstration stretch. The correction table and appeal box keep an indoor or sheltered position through winter so the non-digital channel is never interrupted by season.",
+      "maintenance_zh": "登记台与回执板由具名机构按周维护，缺维护即按公示规则暂停对应场景的登记资格。相关人员、预算与期限依赖 D12 与 D16。",
+      "maintenance_en": "The registry desk and receipt board are maintained weekly by a named body; if maintenance lapses the corresponding scenario loses its registration standing under the posted rule. Staffing, budget, and term depend on D12 and D16.",
+      "phase1_envelope": {
+        "id": "ENV-AO-01",
+        "description_zh": "一处可逆的首层共享工作间与登记台组合：只使用既有首层空间，家具与隔断可拆卸，结束时不留下不可复原的改动。",
+        "description_en": "One reversible pairing of a ground-floor shared workroom and a registry desk: existing ground-floor space only, demountable furniture and partitions, leaving no irreversible alteration at closure.",
+        "reversible": true,
+        "authorization_state": "not_authorized",
+        "blocked_by": ["D04", "D06", "D12"],
+        "funding_state": "unfunded"
+      }
+    },
+    {
+      "id": "PROV-KEY-003",
+      "area_id": "dazhongsi_ai_industry_cluster",
+      "name_zh": "大钟寺AI产业聚集区",
+      "name_en": "Dazhongsi AI Industry Cluster",
+      "lab": "Lab 3",
+      "role_zh": "到达、维修与城市服务界面",
+      "role_en": "Arrival, repair, and urban service interface",
+      "georeferenced": false,
+      "official_area_ha": 72.0,
+      "plate_prefix": "DZS",
+      "distinct_task_zh": "本区回答第三个问题：当位置本身还不能确认时，还能负责任地设计什么。答案是一组不依赖坐标的性能模块：到达、维修、服务与等候。",
+      "distinct_task_en": "This area answers a third question: what can still be designed responsibly when the position itself cannot be confirmed. The answer is a set of performance modules that depend on no coordinate: arrival, repair, service, and waiting.",
+      "non_station_note_zh": "Issue #1029 对大钟寺临时 polygon 与车站的位置关系提出质疑。本方案因此不把大钟寺作为站点或已定位片区处理：不画出入口、道路、过街、地块、距离，也不声称与任何车站存在正向空间关系。该片区只以非定位的性能任务表达。",
+      "non_station_note_en": "Issue #1029 disputes the position of the provisional Dazhongsi polygon relative to the station. The area is therefore treated as neither a station nor a georeferenced parcel: no entrance, road, crossing, parcel, distance, or positive station relationship is drawn or claimed. It is expressed only as non-georeferenced performance tasks.",
+      "source_id": "ISSUE-1029",
+      "components": [
+        {
+          "id": "D-C01",
+          "name_zh": "到达模块",
+          "name_en": "Arrival Module",
+          "description_zh": "一个不依赖坐标的到达单元：问询位、坐处、遮蔽与双语指引。它对接哪一处到达点由后续证据决定，本方案不指定。",
+          "description_en": "A coordinate-independent arrival unit: an enquiry position, seating, shelter, and bilingual guidance. Which arrival point it serves is decided by later evidence and is not specified here.",
+          "evidence_ref": "component:D-C01 | plate:DZS-02 | source:ISSUE-1029 | data:assumptions.json#A-BOUNDARY-001",
+          "blocked_by": ["D02", "D03", "D08"]
+        },
+        {
+          "id": "D-C02",
+          "name_zh": "维修与备件模块",
+          "name_en": "Repair and Parts Module",
+          "description_zh": "面向本带全部试点设备的集中维修位与备件库，是三个实验室共用的维修能力所在。",
+          "description_en": "A shared repair bay and parts library serving the pilot equipment of the whole belt; this is where the three labs' repair capacity sits.",
+          "evidence_ref": "component:D-C02 | plate:DZS-03 | source:SHEARING-LAYERS-BRAND-1994 | data:assumptions.json#A-PILOT-001",
+          "blocked_by": ["D02", "D12"]
+        },
+        {
+          "id": "D-C03",
+          "name_zh": "城市服务柜台模块",
+          "name_en": "Urban Service Counter Module",
+          "description_zh": "把开源企业服务与公共服务并置的柜台单元，同时提供纸质与数字两条办理路径。",
+          "description_en": "A counter unit placing open-source enterprise services beside public services, offering a paper path and a digital path side by side.",
+          "evidence_ref": "component:D-C03 | plate:DZS-04 | standard:ELDERLY-SMART-TECH-PLAN-2020-45 | source:CASE-ONE-NORTH",
+          "blocked_by": ["D02", "D16"]
+        },
+        {
+          "id": "D-C04",
+          "name_zh": "遮蔽等候模块",
+          "name_en": "Sheltered Waiting Module",
+          "description_zh": "带顶与坐处的等候单元，冬季加设挡风面，夏季保持通风。它不声称与任何车站的相对位置。",
+          "description_en": "A covered waiting unit with seating, gaining a windbreak face in winter and keeping cross-ventilation in summer. It claims no position relative to any station.",
+          "evidence_ref": "component:D-C04 | plate:DZS-04 | data:assumptions.json#A-CLIMATE-001 | source:CASE-SEOUL-AI-HUB",
+          "blocked_by": ["D02", "D13"]
+        },
+        {
+          "id": "D-C05",
+          "name_zh": "维护者驻点模块",
+          "name_en": "Maintainer Station Module",
+          "description_zh": "维护者的固定驻点与培训位。没有驻点的维护承诺不计入任何实施能力声明。",
+          "description_en": "A fixed station and training position for maintainers. A maintenance commitment without a station counts toward no implementation-capacity claim.",
+          "evidence_ref": "component:D-C05 | plate:DZS-02 | source:BLUEVIEW-RENEWAL-CASE-2026 | data:assumptions.json#A-PILOT-001",
+          "blocked_by": ["D12", "D16"]
+        }
+      ],
+      "routes": [
+        {
+          "id": "D-R01",
+          "name_zh": "到达位至换乘位的次序连线",
+          "name_en": "Order link from the arrive position to the transfer position",
+          "step_free": true,
+          "description_zh": "到达位至换乘位的次序连线，按无台阶提出；不含位置、距离与标高，也不建立与车站的空间关系。",
+          "description_en": "The order link from the arrive position to the transfer position, put forward as step-free; it carries no position, distance or level and establishes no relationship to the station.",
+          "evidence_ref": "route:D-R01 | plate:DZS-02 | component:D-C01 | source:ISSUE-1029",
+          "blocked_by": [
+            "D03",
+            "D05"
+          ]
+        },
+        {
+          "id": "D-R02",
+          "name_zh": "换乘位至停留位的次序连线",
+          "name_en": "Order link from the transfer position to the stay position",
+          "step_free": true,
+          "description_zh": "换乘位至停留位的次序连线，按无台阶提出；四个象限位置待测量后指定。",
+          "description_en": "The order link from the transfer position to the stay position, put forward as step-free; the four quadrant positions are to be assigned by survey.",
+          "evidence_ref": "route:D-R02 | plate:DZS-02 | component:D-C02 | source:ISSUE-1029",
+          "blocked_by": [
+            "D03",
+            "D05"
+          ]
+        },
+        {
+          "id": "D-R03",
+          "name_zh": "停留位至维修位的次序连线",
+          "name_en": "Order link from the stay position to the repair position",
+          "step_free": true,
+          "description_zh": "停留位至维修位的次序连线，按无台阶提出；本图不按比例，也不作地理配准。",
+          "description_en": "The order link from the stay position to the repair position, put forward as step-free; this drawing is not to scale and is not georeferenced.",
+          "evidence_ref": "route:D-R03 | plate:DZS-02 | component:D-C03 | source:ISSUE-1029",
+          "blocked_by": [
+            "D03",
+            "D05"
+          ]
+        }
+      ],
+      "winter_zh": "冬季在遮蔽等候模块加设可拆卸挡风面，并把服务柜台的排队序列移入有顶范围。因为本区不作定位，冬季措施只写模块自身的性能，不写任何街道或站前空间的处理。",
+      "winter_en": "In winter a demountable windbreak face is added to the sheltered waiting module and the service counter's queueing sequence moves under cover. Because the area is not georeferenced, winter measures describe the modules' own performance only, never the treatment of any street or forecourt.",
+      "maintenance_zh": "维修与备件模块是本带维护能力的实际所在，其配件清单、维护者名册与培训记录按季更新。所有维护义务与资金状态依赖 D12，未取得前保持 unfunded。",
+      "maintenance_en": "The repair and parts module is where the belt's maintenance capacity actually sits; its parts list, maintainer roster, and training records are updated quarterly. All maintenance obligations and funding states depend on D12 and remain unfunded until it is obtained.",
+      "phase1_envelope": {
+        "id": "ENV-DZ-01",
+        "description_zh": "一组可逆的到达与维修模块：全部构件可拆卸、可搬移，结束时逐件撤除。不作定位，落位待官方 polygon 取得后确定；模块与既有建造、竖向及疏散条件如何相接尚未勘测。",
+        "description_en": "One reversible set of arrival and repair modules: every element is demountable and movable, removed item by item at closure. Not georeferenced; placement waits on the official polygon. How the modules would meet existing construction, levels or evacuation conditions is unsurveyed.",
+        "reversible": true,
+        "authorization_state": "not_authorized",
+        "blocked_by": ["D02", "D03", "D06", "D12"],
+        "funding_state": "unfunded"
+      }
+    }
+  ],
+
+  "projects": [
+    { "id": "P00", "name_zh": "共同证据底图", "name_en": "Common Evidence Base", "phase": "Phase 0" },
+    { "id": "P01", "name_zh": "三处90天可逆通行试点", "name_en": "Three 90-Day Passage Pilots", "phase": "Phase 1" },
+    { "id": "P02", "name_zh": "六座城市客厅", "name_en": "Six Civic Rooms", "phase": "Phase 1" },
+    { "id": "P03", "name_zh": "京张记忆编译站", "name_en": "Jing-Zhang Memory Compiler", "phase": "Phase 1" },
+    { "id": "P04", "name_zh": "AI原点开放登记台", "name_en": "AI Origin Open Registry", "phase": "Phase 1" },
+    { "id": "P05", "name_zh": "模型公地与申诉桌", "name_en": "Model Commons and Appeal Table", "phase": "Phase 1" },
+    { "id": "P06", "name_zh": "众智园受控机器人测试", "name_en": "Controlled Robot Test", "phase": "Phase 2" },
+    { "id": "P07", "name_zh": "大钟寺到达与维修模块组", "name_en": "Arrival and Repair Module Set", "phase": "Phase 2" },
+    { "id": "P08", "name_zh": "绿脊遮阴与雨洪样段", "name_en": "Shade and Stormwater Segment", "phase": "Phase 2" },
+    { "id": "P09", "name_zh": "开源企业服务台", "name_en": "Open-Source Service Desk", "phase": "Phase 2" },
+    { "id": "P10", "name_zh": "维护者培训与备件库", "name_en": "Maintenance Parts Library", "phase": "Phase 2" },
+    { "id": "P11", "name_zh": "分歧图谱年度复算", "name_en": "Annual Atlas Rerun", "phase": "Phase 3" }
+  ],
+
+  "viewer_sections": {
+    "reason_zh": "四个 viewer 章节此前在两种语言里各自手写，中英内容并不对应：中文 AI 场景只有十个标题、没有任何字段，英文把六项写成整句；自检门中文合并为两张卡、英文为四张；来源与假设两侧条目数不同，中文来源甚至整段是英文。现在四个章节都由本记录生成，两种语言只能同 ID、同顺序、同字段。",
+    "reason_en": "Four viewer sections were hand-authored twice and did not correspond: the Chinese AI section carried ten titles and no clauses while the English carried all six as a sentence; the Chinese review gates were merged into two cards against four in English; the source and assumption lists differed in length, and the Chinese source list was written in English. All four sections are now generated from this record, so the two languages can only share the same ids, the same order, and the same fields.",
+    "scenario_fields": [
+      "place_type",
+      "minimum_data",
+      "human_review",
+      "non_digital_fallback",
+      "accountable_operator",
+      "stop_rule"
+    ],
+    "scenario_field_labels": {
+      "place_type_zh": "位置类型",
+      "place_type_en": "Place type",
+      "minimum_data_zh": "最少数据",
+      "minimum_data_en": "Minimum data",
+      "human_review_zh": "人工复核",
+      "human_review_en": "Human review",
+      "non_digital_fallback_zh": "非数字替代",
+      "non_digital_fallback_en": "Non-digital fallback",
+      "accountable_operator_zh": "责任运营方",
+      "accountable_operator_en": "Accountable operator",
+      "stop_rule_zh": "停止规则",
+      "stop_rule_en": "Stop rule"
+    },
+    "scenarios": [
+      {
+        "id": "S01",
+        "name_zh": "无障碍慢行",
+        "name_en": "Accessible mobility",
+        "place_type_zh": "公共站点、过街与公共路径",
+        "place_type_en": "Stations, crossings, and public routes",
+        "minimum_data_zh": "无障碍设施数据",
+        "minimum_data_en": "Accessibility data",
+        "human_review_zh": "受训人员复核",
+        "human_review_en": "Trained human review",
+        "non_digital_fallback_zh": "实体标识指路",
+        "non_digital_fallback_en": "A signed-route fallback",
+        "accountable_operator_zh": "具名的慢行运营方",
+        "accountable_operator_en": "A named mobility operator",
+        "stop_rule_zh": "导引不安全或造成排斥即停止",
+        "stop_rule_en": "Stop on unsafe or exclusionary guidance"
+      },
+      {
+        "id": "S02",
+        "name_zh": "京张文化解释",
+        "name_en": "Jing-Zhang heritage interpretation",
+        "place_type_zh": "遗产场所",
+        "place_type_en": "Heritage places",
+        "minimum_data_zh": "经核验的档案",
+        "minimum_data_en": "Verified archives",
+        "human_review_zh": "策展与史料复核",
+        "human_review_en": "Curatorial review",
+        "non_digital_fallback_zh": "印刷解说",
+        "non_digital_fallback_en": "Printed interpretation",
+        "accountable_operator_zh": "具名的遗产运营方",
+        "accountable_operator_en": "A named heritage operator",
+        "stop_rule_zh": "出现未经核验或造成伤害的表述即停止",
+        "stop_rule_en": "Stop on unverified or harmful claims"
+      },
+      {
+        "id": "S03",
+        "name_zh": "公共服务导航",
+        "name_en": "Public-service navigation",
+        "place_type_zh": "公共服务场所",
+        "place_type_en": "Civic-service places",
+        "minimum_data_zh": "现行服务目录",
+        "minimum_data_en": "Current service directories",
+        "human_review_zh": "窗口人员复核",
+        "human_review_en": "Staff review",
+        "non_digital_fallback_zh": "窗口与电话替代",
+        "non_digital_fallback_en": "Counter and telephone fallbacks",
+        "accountable_operator_zh": "具名的服务运营方",
+        "accountable_operator_en": "A named service operator",
+        "stop_rule_zh": "信息过期即停止",
+        "stop_rule_en": "Stop when information is stale"
+      },
+      {
+        "id": "S04",
+        "name_zh": "健康服务导引与转介",
+        "name_en": "Health-service wayfinding and referral",
+        "place_type_zh": "健康服务场所",
+        "place_type_en": "Health-service places",
+        "minimum_data_zh": "仅限经批准的服务目录",
+        "minimum_data_en": "Approved directories only",
+        "human_review_zh": "有资质人员复核",
+        "human_review_en": "Qualified human review",
+        "non_digital_fallback_zh": "电话与前台替代",
+        "non_digital_fallback_en": "Telephone and desk fallbacks",
+        "accountable_operator_zh": "具名的健康服务运营方",
+        "accountable_operator_en": "A named health operator",
+        "stop_rule_zh": "出现临床或安全风险即停止",
+        "stop_rule_en": "Stop on clinical or safety risk"
+      },
+      {
+        "id": "S05",
+        "name_zh": "法律与合规初筛",
+        "name_en": "Legal and compliance orientation",
+        "place_type_zh": "服务窗口",
+        "place_type_en": "Service desks",
+        "minimum_data_zh": "现行公开规则",
+        "minimum_data_en": "Current public rules",
+        "human_review_zh": "有资质人员复核",
+        "human_review_en": "Qualified human review",
+        "non_digital_fallback_zh": "纸质与当面替代",
+        "non_digital_fallback_en": "Printed and in-person fallbacks",
+        "accountable_operator_zh": "具名的合规运营方",
+        "accountable_operator_en": "A named compliance operator",
+        "stop_rule_zh": "在被误当作法律意见之前停止",
+        "stop_rule_en": "Stop before the system is mistaken for legal advice"
+      },
+      {
+        "id": "S06",
+        "name_zh": "企业服务副驾",
+        "name_en": "Enterprise-service copilot",
+        "place_type_zh": "企业服务场所",
+        "place_type_en": "Business-service places",
+        "minimum_data_zh": "经批准的政策与项目记录",
+        "minimum_data_en": "Approved program records",
+        "human_review_zh": "窗口人员复核",
+        "human_review_en": "Staff review",
+        "non_digital_fallback_zh": "窗口与电话替代",
+        "non_digital_fallback_en": "Counter and telephone fallbacks",
+        "accountable_operator_zh": "具名的企业服务运营方",
+        "accountable_operator_en": "A named enterprise operator",
+        "stop_rule_zh": "出现保密或资格判断错误即停止",
+        "stop_rule_en": "Stop on confidentiality or eligibility errors"
+      },
+      {
+        "id": "S07",
+        "name_zh": "低速配送与维修",
+        "name_en": "Low-speed delivery and repair",
+        "place_type_zh": "受控测试路线",
+        "place_type_en": "Controlled test routes",
+        "minimum_data_zh": "已制图的危险点",
+        "minimum_data_en": "Mapped hazards",
+        "human_review_zh": "现场监护",
+        "human_review_en": "On-site supervision",
+        "non_digital_fallback_zh": "人工配送替代",
+        "non_digital_fallback_en": "Manual delivery fallback",
+        "accountable_operator_zh": "具名的车队运营方",
+        "accountable_operator_en": "A named fleet operator",
+        "stop_rule_zh": "出现冲突、通行受阻或维护失效即停止",
+        "stop_rule_en": "Stop on conflict, access, or maintenance failure"
+      },
+      {
+        "id": "S08",
+        "name_zh": "热浪遮阴调度",
+        "name_en": "Heatwave shade operations",
+        "place_type_zh": "高热暴露的公共空间",
+        "place_type_en": "Heat-exposed public spaces",
+        "minimum_data_zh": "经核验的气象与遮阴输入",
+        "minimum_data_en": "Verified weather and shade inputs",
+        "human_review_zh": "运行人员复核",
+        "human_review_en": "Staff review",
+        "non_digital_fallback_zh": "实体标识与有人值守的避暑点",
+        "non_digital_fallback_en": "Physical signage and staffed refuges",
+        "accountable_operator_zh": "具名的公共空间运营方",
+        "accountable_operator_en": "A named public-realm operator",
+        "stop_rule_zh": "传感器失效或覆盖不足即停止",
+        "stop_rule_en": "Stop on sensor or coverage failure"
+      },
+      {
+        "id": "S09",
+        "name_zh": "活动日人流辅助",
+        "name_en": "Event-day flow support",
+        "place_type_zh": "活动路线与出入口",
+        "place_type_en": "Event routes and thresholds",
+        "minimum_data_zh": "经批准的活动方案",
+        "minimum_data_en": "Approved event plans",
+        "human_review_zh": "指挥点复核",
+        "human_review_en": "Command-post review",
+        "non_digital_fallback_zh": "引导员与标识替代",
+        "non_digital_fallback_en": "Steward and signage fallbacks",
+        "accountable_operator_zh": "具名的活动运营方",
+        "accountable_operator_en": "A named event operator",
+        "stop_rule_zh": "出现拥挤或指令冲突即停止",
+        "stop_rule_en": "Stop on crowding or conflicting instructions"
+      },
+      {
+        "id": "S10",
+        "name_zh": "申诉与模型退休",
+        "name_en": "Appeals and model retirement",
+        "place_type_zh": "全部已部署服务",
+        "place_type_en": "Every deployed service",
+        "minimum_data_zh": "决策与投诉日志",
+        "minimum_data_en": "Decision and complaint logs",
+        "human_review_zh": "独立人工复核",
+        "human_review_en": "Independent human review",
+        "non_digital_fallback_zh": "当面申诉渠道",
+        "non_digital_fallback_en": "In-person appeal channels",
+        "accountable_operator_zh": "具名的责任机构",
+        "accountable_operator_en": "A named accountable institution",
+        "stop_rule_zh": "具约束力的停止、回退或退休规则",
+        "stop_rule_en": "A binding stop, rollback, or retirement rule"
+      }
+    ],
+    "non_tradeable_gates": {
+      "list_zh": "安全 · 权利 · 遗产 · 可负担 · 无障碍 · 隐私 · 人工复核",
+      "list_en": "Safety; rights; heritage; affordability; accessibility; privacy; human review",
+      "rule_zh": "每一道门都是独立否决权：加权得分再高也不能覆盖其中任何一道。",
+      "rule_en": "Each gate is an independent veto: a favorable weighted score cannot override it."
+    },
+    "review_gates": [
+      {
+        "id": "CHK-01",
+        "name_zh": "确定性记录",
+        "name_en": "Deterministic records",
+        "definition_zh": "必需文件、标识符、哈希与声明关系均可由机器校验。",
+        "definition_en": "Required files, identifiers, hashes, and declared relationships are machine-checkable."
+      },
+      {
+        "id": "CHK-02",
+        "name_zh": "空间结构",
+        "name_en": "Spatial structure",
+        "definition_zh": "提交的几何可被解析、量算，并按声明的拓扑关系校验。",
+        "definition_en": "Submitted geometries can be parsed, measured, and checked for the declared topological relationships."
+      },
+      {
+        "id": "CHK-03",
+        "name_zh": "离线视觉审阅",
+        "name_en": "Offline visual review",
+        "definition_zh": "方案可在无远程脚本、字体、瓦片、追踪器、表单与网络请求的条件下阅读。",
+        "definition_en": "The proposal can be read without remote scripts, fonts, tiles, trackers, forms, or network requests."
+      },
+      {
+        "id": "CHK-04",
+        "name_zh": "证据分级",
+        "name_en": "Evidence discipline",
+        "definition_zh": "官方、临时、概念、代理与缺失证据在版面上保持可见区分。",
+        "definition_en": "Official, provisional, conceptual, proxy, and missing evidence remain visibly separate."
+      }
+    ],
+    "source_families": [
+      {
+        "id": "SRC-F01",
+        "name_zh": "官方公开征集公告与任务书",
+        "name_en": "Official open-call announcement and Agent Taskbook",
+        "supports_zh": "本次提交必须回答的任务要求、必答条目与评审维度。",
+        "supports_en": "The brief, the required tasks, and the review dimensions this submission must answer."
+      },
+      {
+        "id": "SRC-F02",
+        "name_zh": "仓库来源登记、允许设计空间与临时几何",
+        "name_en": "Repository source registry, allowed design space, and provisional geometry",
+        "supports_zh": "可用来源的范围，以及临时范围的出处；不证明任何边界为官方边界。",
+        "supports_en": "Which sources may be used and where the provisional extents came from; not that any extent is an official boundary."
+      },
+      {
+        "id": "SRC-F03",
+        "name_zh": "强制性专业标准的本地快照",
+        "name_en": "Local snapshots of mandatory professional standards",
+        "supports_zh": "适用的专业要求本身；不证明其中任何一条已被满足。",
+        "supports_en": "Which professional requirements apply; not that any of them has been met."
+      },
+      {
+        "id": "SRC-F04",
+        "name_zh": "Tero 等关于黏菌启发网络适应的研究，仅作方法参照",
+        "name_en": "Tero et al. on Physarum-inspired network adaptation, used as a methodological reference",
+        "supports_zh": "本探针的方法谱系；不构成生物学结论，也不构成交通结论。",
+        "supports_en": "The methodological lineage of the probe; neither a biological result nor a traffic result."
+      },
+      {
+        "id": "SRC-F05",
+        "name_zh": "结构化的指标、假设、来源、标准、深度与合规记录",
+        "name_en": "Structured metrics, assumptions, sources, standards, design-depth, and compliance records",
+        "supports_zh": "本包对自身所公布的数值；不证明这些数值在城市中已被观测。",
+        "supports_en": "The numbers this package publishes about itself; not that those numbers were observed in the city."
+      },
+      {
+        "id": "SRC-F06",
+        "name_zh": "方案来源账本中引用的 issue 与同行先例",
+        "name_en": "Issues and peer precedents cited in the proposal's source ledger",
+        "supports_zh": "已被提出的质疑与被比较的先例；不证明这些先例可移植到北京。",
+        "supports_en": "The questions raised and the precedents compared; not that those precedents transfer to Beijing."
+      }
+    ],
+    "assumption_limits": [
+      {
+        "id": "ASM-01",
+        "limit_zh": "工作范围与重点区 polygon 均为临时范围，不是官方边界，也不构成政府批准。",
+        "limit_en": "The working-area and key-area polygons are provisional; they are not official boundaries and do not constitute government approval."
+      },
+      {
+        "id": "ASM-02",
+        "limit_zh": "节点与候选边是归一化的概念代理。",
+        "limit_en": "Nodes and candidate edges are normalised conceptual proxies."
+      },
+      {
+        "id": "ASM-03",
+        "limit_zh": "权益、气候、遗产与维护输入是政策代理值，不是观测数据。",
+        "limit_en": "Equity, climate, heritage, and maintenance inputs are policy proxies, not observed data."
+      },
+      {
+        "id": "ASM-04",
+        "limit_zh": "官方容积率、高度、权属、地块级文保、洪水、市政与 OD 数据仍不可得。",
+        "limit_en": "Official floor-area ratio, height, ownership, parcel-level heritage, flood, utility, and origin-destination data remain unavailable."
+      },
+      {
+        "id": "ASM-05",
+        "limit_zh": "每一处空间落位都仍是概念建议或参考方案，须由专业团队继续深化。",
+        "limit_en": "Every spatial placement remains a conceptual recommendation or reference scheme for professional teams to develop further."
+      },
+      {
+        "id": "ASM-06",
+        "limit_zh": "任何要素都不主张已批规划、工程可行性、确认投资或政府背书。",
+        "limit_en": "No element asserts approved planning, engineering feasibility, confirmed investment, or government endorsement."
+      }
+    ],
+
+    "task_coverage": {
+      "reason_zh": "任务覆盖表此前是两个 viewer 里唯一一张手写表：中文三行、英文四行，中文单元格里还留着 Official requirements、Mandatory standards、全部 addressed 等未译片段，而“全部 addressed”与记录不符——11 项标准里有 2 项 review_status 为 data_gap。本记录把该表并入生成路径，数量由构建脚本从 compliance_matrix.json、standard_matrix.json、design_depth_matrix.json 与零抖动消融记录现算。",
+      "reason_en": "The task-coverage table was the last hand-authored table in either viewer: three rows in Chinese, four in English, with untranslated fragments such as Official requirements, Mandatory standards, and the claim that all standards were addressed. That claim contradicted the record, where 2 of the 11 standards carry review_status data_gap. This record moves the table onto the generated path, with every count recomputed by the build script from compliance_matrix.json, standard_matrix.json, design_depth_matrix.json, and the zero-jitter ablation record.",
+      "columns": ["coverage", "evidence"],
+      "rows": [
+        {
+          "id": "TC01",
+          "counts": ["numbered_requirements", "agent_tasks"],
+          "name_zh": "公告要求与 agent 任务",
+          "name_en": "Open-call requirements and agent tasks",
+          "coverage_zh": "{0} 条编号要求与 {1} 项 agent 任务逐条登记，全部标为强制",
+          "coverage_en": "{0} numbered requirements and {1} agent tasks are registered one by one, all of them marked mandatory",
+          "evidence_zh": "compliance_matrix.json",
+          "evidence_en": "compliance_matrix.json"
+        },
+        {
+          "id": "TC02",
+          "counts": ["standards_total", "standards_addressed", "standards_data_gap"],
+          "name_zh": "强制性专业标准",
+          "name_en": "Mandatory professional standards",
+          "coverage_zh": "{0} 项标准中 {1} 项已在声明的概念深度回应，{2} 项标为资料缺口且不作已回应计",
+          "coverage_en": "Of {0} standards, {1} are addressed at the declared concept depth and {2} are marked as data gaps rather than counted as addressed",
+          "evidence_zh": "standard_matrix.json 的 review_status 字段",
+          "evidence_en": "the review_status field of standard_matrix.json"
+        },
+        {
+          "id": "TC03",
+          "counts": ["depth_items", "depth_limited"],
+          "name_zh": "法定设计深度",
+          "name_en": "Formal design depth",
+          "coverage_zh": "{0} 项深度条目按概念或参考交付完成，其中 {1} 项写明其完整性受限于哪些外部证据",
+          "coverage_en": "{0} depth items are complete as conceptual or reference deliverables, and {1} of them state which external evidence limits their completeness",
+          "evidence_zh": "design_depth_matrix.json 的 completeness_limited_by 字段",
+          "evidence_en": "the completeness_limited_by field of design_depth_matrix.json"
+        },
+        {
+          "id": "TC04",
+          "counts": ["ablation_seeds", "ablation_edges"],
+          "name_zh": "可复算性",
+          "name_en": "Reproducibility",
+          "coverage_zh": "输入、{0} 个种子、每轮权重与 {1} 条候选边的运行记录全部公开，可用标准库 Node.js 脚本复算",
+          "coverage_en": "Inputs, {0} seeds, per-run weights, and the run records for {1} candidate edges are all published and can be recomputed with a standard-library Node.js script",
+          "evidence_zh": "physarum-inputs.json · physarum-runs.json · reproduce_physarum.js",
+          "evidence_en": "physarum-inputs.json · physarum-runs.json · reproduce_physarum.js"
+        }
+      ]
+    }
+  },
+
+  "regional_synergy": {
+    "reason_zh": "任务书的评审维度 regional_synergy 要求回答与北纬社区、未来科学城、怀柔科学城、经开区及京津冀的创新协同，此前方案正文与两份 viewer 都没有回答。本记录是该回答的唯一出处。",
+    "reason_en": "The taskbook's regional_synergy review dimension asks how the proposal relates to the Beiwei Community, Future Science City, Huairou Science City, the Economic-Technological Development Area, and the Beijing-Tianjin-Hebei region. Neither proposal body nor either viewer answered it. This record is the single source of that answer.",
+    "source_ref": "brief/site-package/agent_taskbook.json#/review_dimensions/3",
+    "source_id": "AGENT-TASKBOOK",
+    "evidence_state": "taskbook_naming_only",
+    "translation_note_zh": "任务书只发布中文名称，因此五个对象的英文名为工作译名，不是官方英文名。",
+    "translation_note_en": "The taskbook publishes Chinese names only, so the English names of the five counterparts are working translations rather than official English names.",
+    "columns": ["relationship", "evidence_required", "review_route", "claim_limit"],
+    "partners": [
+      {
+        "id": "RS01",
+        "name_zh": "北纬社区",
+        "name_en": "Beiwei Community",
+        "relationship_zh": "任务书把它列为协同对象。本方案可提出的关系上限是共用同一套公开的场景登记与停止规则模板，使两地的 AI 服务能被同一套标准审查。",
+        "relationship_en": "The taskbook lists it as a synergy counterpart. The most this proposal can offer is a shared template of published scenario records and stop rules, so that AI services in both places can be reviewed against one standard.",
+        "evidence_required_zh": "需要主管部门确认该社区现行的治理主体、可公开的服务清单，以及是否接受同一套停止规则。",
+        "evidence_required_en": "Confirmation from the responsible authority of the community's current governing body, of which service records may be published, and of whether it accepts the same stop rules.",
+        "review_route_zh": "须经确认，并由区级主管部门与该社区运营主体共同受理；本方案无权指定受理机构。",
+        "review_route_en": "Would require confirmation and receipt by the district-level authority together with the body that operates the community; this proposal cannot name the receiving body.",
+        "claim_limit_zh": "本包没有该社区的现状资料，不主张任何既有协议、共建关系或数据互通。",
+        "claim_limit_en": "This package holds no record of the community's present condition and asserts no existing agreement, joint programme, or data exchange."
+      },
+      {
+        "id": "RS02",
+        "name_zh": "未来科学城",
+        "name_en": "Future Science City",
+        "relationship_zh": "可能的关系限于方法互认：把本包公开的复算脚本、门禁登记与失效模式表作为可比较的评审格式提出。",
+        "relationship_en": "The possible relationship is limited to method: offering this package's published reproducer, gate register, and failure-mode table as a comparable review format.",
+        "evidence_required_zh": "需要对方现行研究与转化机制的说明，以及是否存在接受外部评审格式的既有程序。",
+        "evidence_required_en": "A statement of its current research and translation arrangements, and whether any existing procedure accepts an external review format.",
+        "review_route_zh": "须经确认，并由市级科技主管部门受理；本方案无权指定受理机构。",
+        "review_route_en": "Would require confirmation and receipt by the municipal science and technology authority; this proposal cannot name the receiving body.",
+        "claim_limit_zh": "不主张任何合作意向、机构关系、人员流动或已落地项目。",
+        "claim_limit_en": "Asserts no intent to cooperate, institutional relationship, movement of people, or delivered project."
+      },
+      {
+        "id": "RS03",
+        "name_zh": "怀柔科学城",
+        "name_en": "Huairou Science City",
+        "relationship_zh": "可能的关系限于共同语言：把本包的证据分级与不可交易门作为可引用的定义提出，便于跨场地比较同类 AI 服务的审查结论。",
+        "relationship_en": "The possible relationship is limited to shared vocabulary: offering this package's evidence grading and non-tradeable gates as citable definitions, so that review conclusions on comparable AI services can be compared across sites.",
+        "evidence_required_zh": "需要对方公开的服务类型清单，以及其审查程序是否允许引用外部定义的门禁。",
+        "evidence_required_en": "A published list of its service types, and whether its review procedure permits citing an externally defined gate.",
+        "review_route_zh": "须经确认，并由市级科技主管部门与所在区人民政府共同受理；本方案无权指定受理机构。",
+        "review_route_en": "Would require confirmation and receipt by the municipal science and technology authority together with the district government of the site; this proposal cannot name the receiving body.",
+        "claim_limit_zh": "不主张设施共享、算力调度、数据互通或任何空间联系。",
+        "claim_limit_en": "Asserts no shared facility, compute allocation, data exchange, or spatial connection."
+      },
+      {
+        "id": "RS04",
+        "name_zh": "经开区",
+        "name_en": "Economic-Technological Development Area",
+        "relationship_zh": "可能的关系限于问题方向：本包的 S01—S10 场景登记可作为一份问题清单，供产业侧判断哪些问题值得共同定义。",
+        "relationship_en": "The possible relationship is limited to the direction of the questions: the S01-S10 scenario records can serve as a list from which the industrial side may judge which questions are worth defining jointly.",
+        "evidence_required_zh": "需要对方公开的产业与服务需求说明，以及任何联合工作须遵循的采购与合规程序。",
+        "evidence_required_en": "A published statement of its industrial and service needs, and the procurement and compliance procedure any joint work would have to follow.",
+        "review_route_zh": "须经确认，并由市级产业主管部门与该区管理机构共同受理；本方案无权指定受理机构。",
+        "review_route_en": "Would require confirmation and receipt by the municipal industry authority together with the administrative body of the area; this proposal cannot name the receiving body.",
+        "claim_limit_zh": "不主张任何采购、投资、企业落户或产能安排。",
+        "claim_limit_en": "Asserts no procurement, investment, company location, or capacity arrangement."
+      },
+      {
+        "id": "RS05",
+        "name_zh": "京津冀",
+        "name_en": "Beijing-Tianjin-Hebei region",
+        "relationship_zh": "可能的关系限于格式互认：把本包公开的停止规则、非数字替代要求与失效模式表写成其他城市可直接引用的格式。",
+        "relationship_en": "The possible relationship is limited to a shared format: writing this package's published stop rules, non-digital fallback requirements, and failure-mode table in a form other cities can cite directly.",
+        "evidence_required_zh": "需要区域层面已有协同机制的说明，以及哪一级机构有权受理跨省市的格式互认。",
+        "evidence_required_en": "A statement of the coordination arrangements that already exist at regional level, and which level of authority may receive a cross-provincial request for a shared format.",
+        "review_route_zh": "须经确认，并由省市级以上的既有协同机制受理；本方案无权指定受理机构。",
+        "review_route_en": "Would require confirmation and receipt by an existing coordination mechanism at provincial or municipal level or above; this proposal cannot name the receiving body.",
+        "claim_limit_zh": "不主张任何区域协议、线路、投资、迁移或行政安排。",
+        "claim_limit_en": "Asserts no regional agreement, route, investment, relocation, or administrative arrangement."
+      }
+    ]
+  },
+
+  "denominator_disclosure": {
+    "note_zh": "本记录是四份图纸上分母披露的唯一来源。提案、报告与 viewer 的对应段落写得更长，但八个显示字符串逐字相同；`test-denominator-discipline.js` 在六个文本面与四份 PDF 上同时逐字断言这八个字符串。",
+    "note_en": "This record is the sole source of the denominator disclosure printed on the four drawings. The corresponding passages in the proposal, the report, and the viewers are written at greater length, but the eight display strings are identical word for word; `test-denominator-discipline.js` asserts all eight literally on the six text surfaces and inside the four PDFs at the same time.",
+    "text_zh": "本包发布面使用的唯一比例分母，是由提交几何复算得到的临时 SITE-001 面积 11,412,825.386 平方米，即 1,141.3 公顷；官方公告发布的总体设计范围面积为 11,400,000 平方米，即 11.4 平方公里。两者相差 12,825.386 平方米，即 1.28 公顷，占官方值的 0.1125%。该差额是临时工作 polygon 与官方文字面积之间的记账差，不是实测边界差异，也不表示官方边界在任何方向上偏移了这个距离。所有百分比按 ROUND_HALF_UP 保留两位小数并保留末尾零，所有公顷显示保留一位小数。同一分子在两套分母下的两个结果都写出：绿色参考 199.5 公顷，临时分母 17.48%，官方分母 17.50%，相差 +0.02 个百分点；公园绿地与开敞空间用地（代码 1401，320.4 公顷），临时分母 28.07%，官方分母 28.11%，相差 +0.03 个百分点。发布面一律采用临时分母口径，两套口径不得混用。官方 polygon 使 D01 关闭后，全部比例整包重算，而不是就地改写。",
+    "text_en": "The only ratio denominator the publication surfaces use is the provisional SITE-001 area recalculated from the submitted geometry, 11,412,825.386 m², that is 1,141.3 ha; the official announcement publishes an overall design area of 11,400,000 m², that is 11.4 km². The two differ by 12,825.386 m², which is 1.28 ha, or 0.1125% of the official value. That difference is a bookkeeping difference between a provisional working polygon and an official text area. It is not a measured boundary difference, and it does not indicate that the official boundary lies that distance away in any direction. Every percentage is rounded ROUND_HALF_UP to two decimal places with the trailing zero kept, and every hectare display to one decimal place. Both results for the same numerator are written out: the reference green space of 199.5 ha gives 17.48% under the provisional denominator and 17.50% under the official denominator, a difference of +0.02 percentage points; the park green and open space land use, code 1401 at 320.4 ha, gives 28.07% under the provisional denominator and 28.11% under the official denominator, a difference of +0.03 percentage points. Every publication surface uses the provisional denominator, and the two bases are never mixed. Once the official polygon closes D01, every ratio is recomputed for the package as a whole rather than edited in place."
+  },
+
+  "public_memory": {
+    "rule_zh": "公开记忆只追加，不覆盖。它只记录决定和聚合证据引用，不记录个人数据。",
+    "rule_en": "Public memory is append-only. It records decisions and aggregate evidence references only, never personal data.",
+    "guarantees_zh": [
+      "可纠错：任何记录可被后续记录更正，原记录保留并标注已被更正。",
+      "合法留存：留存期限由运营合同写明，到期依约处理。",
+      "可脱敏：涉及可识别信息的条目在公开前脱敏。",
+      "访问控制：写入权限具名，读取范围分级。"
+    ],
+    "guarantees_en": [
+      "Correction: any record may be corrected by a later record; the original is retained and marked as corrected.",
+      "Lawful retention: retention periods are stated in the operating contract and honoured on expiry.",
+      "Redaction: entries touching identifiable information are redacted before publication.",
+      "Access control: write access is named and read scope is tiered."
+    ]
+  }
+}

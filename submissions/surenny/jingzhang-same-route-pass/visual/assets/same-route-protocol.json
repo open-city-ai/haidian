@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0",
+  "concept": "A person-chosen, revocable supporter relationship remains intact across entry, queue, route, service, failure and evacuation without granting proxy authority.",
+  "states": [
+    "UNPAIRED",
+    "PERSON_DECLARED",
+    "PASS_ISSUED",
+    "MOVING_TOGETHER",
+    "PRIVATE_SAFETY_CHECK",
+    "TEMPORARY_SAFE_SPLIT",
+    "REUNIFIED_OR_CLOSED"
+  ],
+  "allowed_transitions": [
+    [
+      "UNPAIRED",
+      "PERSON_DECLARED"
+    ],
+    [
+      "PERSON_DECLARED",
+      "PASS_ISSUED"
+    ],
+    [
+      "PASS_ISSUED",
+      "MOVING_TOGETHER"
+    ],
+    [
+      "MOVING_TOGETHER",
+      "PRIVATE_SAFETY_CHECK"
+    ],
+    [
+      "PRIVATE_SAFETY_CHECK",
+      "MOVING_TOGETHER"
+    ],
+    [
+      "PRIVATE_SAFETY_CHECK",
+      "TEMPORARY_SAFE_SPLIT"
+    ],
+    [
+      "TEMPORARY_SAFE_SPLIT",
+      "REUNIFIED_OR_CLOSED"
+    ],
+    [
+      "MOVING_TOGETHER",
+      "REUNIFIED_OR_CLOSED"
+    ]
+  ],
+  "continuity_gates": [
+    "person_names_or_selects_supporter without diagnostic proof",
+    "purpose and limits explained in an understandable form",
+    "supporter receives no automatic proxy, signature, identity or data authority",
+    "entry, queue, route, service and AI-off fallback recognize the temporary pass",
+    "private coercion check is available without penalty",
+    "immediate-danger split has a named commander and executable reunion plan",
+    "revocation deletes the temporary relation while preserving the person's pending matter"
+  ],
+  "human_roles": {
+    "service_continuity_lead": "preserves joint passage, queue position and pending matter",
+    "privacy_safety_lead": "conducts private, person-understandable coercion checks",
+    "emergency_commander": "may order only an immediate-danger split and owns reunification",
+    "independent_reviewer": "handles complaints, negative records, deletion and closure evidence"
+  },
+  "ai_minimum_role": [
+    "warn that the next step may split the pass",
+    "draft a modifiable route candidate",
+    "check missing handoffs",
+    "prepare a nonbinding receipt"
+  ],
+  "ai_forbidden_roles": [
+    "infer disability, diagnosis, kinship, guardianship, dependency or coercion",
+    "grant proxy authority",
+    "decide who must accompany whom",
+    "order a split",
+    "penalize pause or revocation"
+  ],
+  "privacy": [
+    "task-scoped random pass ID",
+    "no diagnosis or relationship proof in public status",
+    "purpose-limited access",
+    "delete on revocation or closure",
+    "no model training"
+  ],
+  "stop_conditions": [
+    "the person cannot privately confirm a choice",
+    "joint passage would create an unmanaged immediate danger",
+    "queue or pending matter cannot be preserved",
+    "AI-off path fails",
+    "reunion plan lacks a named owner",
+    "temporary relation cannot be deleted",
+    "field participants identify unrecoverable harm"
+  ],
+  "public_result_on_stop": "Do not force solo continuation; do not record lateness or abandonment; do not cancel queue position; do not close the pending matter. Move to a human route and preserve an executable reunion option.",
+  "synthetic_scripts": [
+    "gate admits only one person",
+    "queue engine reorders the supporter",
+    "accessible detour splits routes",
+    "private service question",
+    "network outage",
+    "evacuation fork",
+    "suspected coercion",
+    "supporter withdrawal"
+  ],
+  "five_field_difference_audit": {
+    "served_unit": "the person plus a person-chosen, revocable supporter as a temporary service unit",
+    "whole_task": "declare, issue minimal pass, move together, confirm before split, handle private safety exception, survive AI-off, revoke/delete, reunify",
+    "spatial_carrier": "equivalent entry, parallel queue, service anteroom, private check point, human desk and visible reunion point",
+    "rights": "person chooses and revokes; no automatic proxy; named service, privacy, emergency and review roles",
+    "failure_result": "no forced solo continuation or penalty; preserve queue, pending matter, paper fallback and reunion",
+    "nearest_neighbors": [
+      "zruihua804/companion-line",
+      "lqqk7/every-sense-jingzhang",
+      "jitrocky/trusted-living-line",
+      "147228/ai-era-human-city",
+      "surenny/jingzhang-hidden-help-room",
+      "surenny/jingzhang-original-intent"
+    ],
+    "result": "No reviewed neighbor closes all five fields; re-audit before every review request."
+  },
+  "status_boundary": "Synthetic tabletop protocol only; not a legal duty, approved service rule, field result or emergency plan."
+}

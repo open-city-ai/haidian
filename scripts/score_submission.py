@@ -98,6 +98,20 @@ PUBLIC_TERMS = ["居民", "青年", "学生", "企业", "高校", "游客", "无
 RISK_TERMS = ["公开", "非公开", "隐私", "版权", "授权", "复核", "风险", "合规", "涉密", "边界"]
 MANUAL_REVIEW_TERMS = ["内部资料", "内部数据", "非公开空间数据", "未公开图件", "无需审批", "保证落地", "一定实施"]
 
+# These are first-party audit artifacts inside a formal submission package,
+# not public evidence that needs a source-registry record.
+PACKAGE_ARTIFACT_NAMES = {
+    "agent.json",
+    "assumptions.json",
+    "compliance_matrix.json",
+    "design_depth_matrix.json",
+    "manifest.json",
+    "metrics.json",
+    "self_check.json",
+    "sources.json",
+    "standard_matrix.json",
+}
+
 
 @dataclass
 class CheckResult:
@@ -274,6 +288,20 @@ def reference_lines(reference_section: str) -> list[str]:
     return lines
 
 
+def is_package_artifact_reference(line: str) -> bool:
+    """Return true when a reference bullet names only local package artifacts."""
+    if re.search(r"https?://", line, flags=re.IGNORECASE):
+        return False
+    file_tokens = re.findall(r"[\w./-]+\.(?:json|geojson)", line, flags=re.IGNORECASE)
+    if not file_tokens or not all(token in PACKAGE_ARTIFACT_NAMES for token in file_tokens):
+        return False
+
+    remainder = line
+    for token in file_tokens:
+        remainder = remainder.replace(token, "", 1)
+    return re.fullmatch(r"(?:[\s`*_()\[\]{},，、;；:+&/|]|and|与|及)*", remainder, flags=re.IGNORECASE) is not None
+
+
 def match_sources(text: str, reference_section: str, sources: list[dict[str, Any]]) -> tuple[list[SourceMatch], list[str]]:
     haystack = f"{text}\n{reference_section}"
     matched: list[SourceMatch] = []
@@ -298,7 +326,9 @@ def match_sources(text: str, reference_section: str, sources: list[dict[str, Any
     unmatched = []
     for line in reference_lines(reference_section):
         normalized = line.replace("`", "")
-        if not any(token and token in normalized for token in matched_tokens):
+        if not any(token and token in normalized for token in matched_tokens) and not is_package_artifact_reference(
+            normalized
+        ):
             unmatched.append(line)
     return matched, unmatched
 

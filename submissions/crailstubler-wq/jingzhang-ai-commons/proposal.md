@@ -1,0 +1,130 @@
+---
+title: "京张新一站：把社区问题变成城市的公开答卷"
+author_github: "crailstubler-wq"
+language: "zh"
+proposal_format_version: "2"
+bilingual_contract_version: "1"
+translation_file: "proposal.en.md"
+license: "COMMUNITY-DISPLAY-ONLY"
+summary: "一条老铁路，三种新生活：众智园先试安全，AI 原点共同创造，大钟寺检验生活是否更方便。"
+tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
+scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
+---
+
+# 京张新一站
+
+> **一条老铁路，三种新生活。让百年京张的下一站，走进普通人的日常。**
+
+“京张新一站”不是要新建一座火车站，也不是把整条走廊变成科技展厅。它是一条人人看得懂的公共生活带：北段众智园先回答“新东西安全吗”，中段 AI 原点先回答“我的主意能参与吗”，南段大钟寺先回答“日子真的更方便了吗”。
+
+最有辨识度的设计不是某种设备，而是“京张公共验证线”：社区提出真实问题，高校和团队做小样，安全与无障碍人员复核，在三处限定试用，最后公开继续、修改或停止。AI 只在背后帮助整理、翻译、查重和发现风险；没有 AI，问路、休息、反馈和参加活动仍然可以完成。
+
+![京张新一站总体空间与居民认知图](assets/figures/site-overview.png)
+
+## 设计依据与资料清单
+
+方案以征集公告、面向智能体任务书和场地资料包为任务依据。公告给出 43.6 平方公里统筹研究、约 11.4 平方公里总体设计和三处重点区域，但现有仓库只提供接入用的临时粗略范围，所以所有边界都明确写成“临时研究范围”，不能用于审批、权属、文保或工程放线。 [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SITE-PACKAGE]
+
+北京市官方页面用于核对京张铁路、清华园车站和遗址公园的历史背景；OpenStreetMap 只帮助辨认铁路、道路、水系、公园和站点。正式控规、权属、道路红线、文保图层、现状建筑和市政资料尚未取得，相关结论都留待正式资料补齐。 [source:QINGHUAYUAN-RED-HISTORY] [source:JINGZHANG-PARK-PHASE1] [source:OSM-CONTEXT-20260811]
+
+## 三层范围工作框架
+
+43.6 平方公里统筹研究范围回答“谁来共同解决问题”；约 11.4 平方公里总体设计范围回答“公共生活怎样串起来”；三个重点区域回答“每个地方先做什么”。三层不是三张互不相干的图，而是一条从区域资源到街边体验的工作链。 [data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm] [depth:three_level_scope_framework]
+
+上层寻找高校、企业、专业服务与社区问题的合作关系；中层以京张铁路、公园、慢行和服务入口形成可辨认的主线；重点区只做小范围、可撤除、有人负责的验证。正式边界到位后，三层范围与所有面积必须一起复算。
+
+![三层范围与公共生活主线](assets/figures/land-use-structure.png)
+
+## 统筹研究范围产业与未来城市研究
+
+创新带的第一资源不是办公面积，而是海淀每天发生的真实问题。方案建立“问题—小样—复核—试用—公开答卷”五步链：社区提供问题，高校与团队提供创造力，企业与服务机构提供持续维护，安全、无障碍、法律和隐私人员提供独立复核。任何机构都不能用一次展示代替长期责任。 [source:AGENT-TASKBOOK] [depth:renewal_project_list]
+
+区域协同采用“建议联络、不得冒充承诺”的原则：沿线先与中关村科学城资源形成问题合作；再与未来科学城、怀柔科学城、经开区及京津冀同行交换场景和评价方法。国际交流不追求复制地标，而是每年发布一份中英双语城市答卷，邀请六个参考案例所在机构与其他城市同行讨论什么有效、什么失败、为什么停止。 [source:CASE-KENDALL-CAMBRIDGE] [source:CASE-MARS-TORONTO] [source:CASE-22AT-BARCELONA]
+
+![京张公共验证线与区域协同](assets/figures/regional-synergy.png)
+
+## 总体设计范围城市更新与控规深度城市设计
+
+总体结构是一条公共生活主线、三个生活节点和三类十分钟小循环。铁路方向负责记忆，绿荫与慢行负责日常，服务点负责接住问题。居民不必走完整条轴，每一段都能从社区或站点进入，找到座椅、看一段历史、问一次路，再回到原入口。 [data:geometry/roads.geojson#ROAD-001] [depth:overall_spatial_structure]
+
+在没有正式控规的情况下，不把整片土地涂成科研、商业或住宅。临时用地层保持“待正式资料补齐”，功能意图只通过公共空间、绿廊、三个节点和分期表达。三个可撤除服务亭是核对空间关系的概念包络，不是获批建筑或建设规模。 [data:geometry/land_use.geojson#LU-001] [data:geometry/buildings.geojson#BLDG-001] [depth:development_intensity_controls]
+
+## 重点区域详细设计
+
+三处重点区采用同一底线，却形成三种不同空间性格。众智园是花园占大头、测试只占一小块的“安全试验花园”；AI 原点是一张长桌连接问题墙与制作边的“共创问题站”；大钟寺是一条连续无障碍路径连接休息座和人工问路台的“城市服务客厅”。 [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/public_space.geojson#PUBLIC-001] [depth:three_key_area_detailed_design]
+
+众智园设置普通花园、公众绕行路、围合测试区、值守点和停止按钮；碰撞、惊扰、越界或不能人工接管立即停止。AI 原点让居民先核对问题原话，再由团队做小样；未经场地同意、居民未确认或专业风险未解决不得试用。大钟寺先做好大字地图、触觉引导、休息和人工问路；连续误导或无障碍承诺失实必须暂停。
+
+![三处空间原型平面与剖面关系](assets/figures/spatial-prototypes.png)
+
+![三个重点片区与居民问题](assets/figures/key-areas.png)
+
+![众智园安全试验花园设计想象图](assets/figures/concept-zhongzhiyuan-safe-garden-v1.jpg)
+
+![AI 原点共创问题站设计想象图](assets/figures/concept-ai-origin-co-creation-v1.jpg)
+
+![大钟寺城市服务客厅设计想象图](assets/figures/concept-dazhongsi-service-living-room-v1.jpg)
+
+以上三张场景图是设计想象，不是现状照片、获批建筑或实施承诺。正式边界、权属、消防、市政、现状建筑和无障碍条件到位后再深化。
+
+## AI 创新生态、人才画像与 AI+ 场景
+
+服务对象不是抽象“用户”，而是邻里老人、带孩子家庭、学生与青年创作者、通勤者、沿线小商户与社区服务者，以及需要无障碍或语言帮助的人。企业和开发者是解决问题的参与者，不是公共空间唯一的主人。 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [depth:municipal_new_infrastructure]
+
+十个场景从日常小事开始：轻松路线、设备礼让、问题登记、防骗课、多语言议事、生活问题小样、公益项目找帮手、到站问路、无障碍活动帮助和准确历史讲解。其中三项限定测试分别落在众智园、AI 原点和大钟寺。AI 不审批、不处罚、不决定资助，不用个人画像代替公众讨论；居民拒绝提供非必要数据时，基本服务不受影响。
+
+## 用地、建筑规模与拆改留方案
+
+本次最重要的用地判断是“不伪造控规”。临时范围统一登记为待核条件留白，不代表未来全部空置，而是公开资料不足以判断法定用途。当前概念绿廊、公共空间和服务亭面积只用来检查方案内部是否一致。 [data:geometry/land_use.geojson#LU-001] [metric:building_footprint_area_sqm]
+
+三处服务亭合计 3,456 平方米概念包络，优先租用、装配、可移动和可回收。现状建筑资料缺失，所以不画虚假的“拆改留”地图；正式深化要先核实现状和权属，再判断保留、修缮、改造或更新。建筑风貌以克制、耐用、易维护为先，不用大屏和夸张科技造型代替空间品质。 [depth:retain_renovate_demolish]
+
+## 交通、轨道、市政与公共服务设施
+
+公开地图用于辨认铁路、环路、地铁站、水系和公园的相对关系。设计主线与三条东西连接均是概念建议，不代表道路中心线、轨道工程、桥隧或已经贯通。正式深化先查无障碍断点、过街安全、骑行停放、公交地铁接驳和施工绕行。 [source:OSM-CONTEXT-20260811] [data:geometry/roads.geojson#ROAD-001] [depth:traffic_rail_slow_parking]
+
+市政方面不编造管线、排水、防洪、消防、能源、通信和算力容量。服务亭只提出离线可用、人工可接管、低能耗和易维护四条原则；清河、小月河和环路跨越都等待有权单位与专业团队核定。
+
+![慢行、轨道、水绿与十分钟小循环](assets/figures/mobility-bluegreen.png)
+
+## 蓝绿空间、公共空间与城市风貌
+
+京张铁路遗址公园提供了“铁路记忆也能成为社区日常”的现实启发。方案把这一方向延伸为公共生活主线，优先补绿荫、座椅、清楚入口、无障碍说明和慢行断点，而不是先做昂贵造景。 [source:JINGZHANG-PARK-PHASE1] [data:geometry/green_space.geojson#GREEN-001] [metric:green_ratio]
+
+北段自然、安静、低干扰；中段开放、可讨论、能制作；南段清楚、方便、适合问路和休息。铁路褐表示路径，记忆红只用于经核实的 1949 历史锚点，公园绿表示可走可坐，生活金表示服务入口。所有导视同时使用文字、图形和明暗差异，不只依靠颜色。
+
+## 更新项目清单、实施政策与分期计划
+
+第一阶段是低成本、易撤回的“先能用”：历史说明、固定导视、座椅、人工服务、纸卡入口和三项最小测试。第二阶段是中等投入的“补断点”：根据真实使用补遮荫、无障碍、服务亭和局部慢行。第三阶段涉及桥隧、站城和永久建筑，属于高投入且强依赖正式审批的事项，本方案只列议题，不给虚假造价或开工承诺。 [data:geometry/phasing.geojson#PHASE-001] [depth:phasing_implementation]
+
+运行节奏是每月公开问题状态、每季度决定继续或停止、每年发布中英双语城市答卷。建议角色包括属地社区或公园作为现场主持，高校与团队负责小样，企业或服务机构负责维护，安全与无障碍人员独立复核，有权主体依法决定建设和运营。这些都是角色建议，不代表任何机构已经承诺。
+
+每一阶段都用居民能理解的同一组指标评估：来了多少人、真正解决了多少问题、平均等了多久、无障碍设施是否可用、居民反馈是否变好。数字不达标就公开原因，先调整或停止，不用“活动很成功”代替证据。
+
+停止线有三种：发生危险、严重隐私泄露或无法人工接管时立即停止；连续误导、投诉无人负责或数据去向不清时暂停补证；到期仍无人使用、无人维护、没有合法场地或成本不可承担时退出。 [data:geometry/phasing.geojson#PHASE-002] [data:geometry/phasing.geojson#PHASE-003]
+
+## 指标体系、面积复算与合规矩阵
+
+临时场地面积约 11.41 平方公里，概念绿廊比例约 11.09%，新增公共空间比例约 0.70%，三处可撤除服务亭概念包络合计 3,456 平方米。所有数字来自当前临时图层复算，置信度低，不等于法定指标。 [metric:site_area_sqm] [metric:green_ratio] [metric:public_space_ratio]
+
+容积率、建筑高度、建筑密度、退线、停车、市政容量和重点区精确面积仍待正式数据。任务覆盖、专业标准和设计深度分别保存在随包提交的三份矩阵中；自动检查只证明文件、引用和几何能相互核对，不代表作品自然入选。 [metric:key_area_count] [depth:metrics_recalculation]
+
+![指标、未知项与公众证据链](assets/figures/metrics-evidence.png)
+
+## 风险、版权与合规说明
+
+最大空间风险是临时边界与真实地名可能不完全一致；最大实施风险是缺少权属、控规、道路、市政、消防和责任主体；最大公共风险是把试用说成批准、把居民意见自动分类当成治理决定；最大文化风险是把清华园真实红色历史娱乐化。 [data:geometry/constraints.geojson#OFFICIAL-CONSTRAINTS-PENDING] [depth:risk_missing_data]
+
+OpenStreetMap 依据 ODbL 使用并署名 contributors；官方页面只用于事实核验；国际案例只用于机制比较。四张居民场景图由生成式图像工具辅助制作，项目团队负责选择、修改、标注和风险判断；地图、信息图、文字和网页为本方案自制。详细权利与来源说明见随包版权文件。 [source:SOURCE-REGISTRY] [source:OSM-CONTEXT-20260811]
+
+居民数据坚持非必要不收集：不把人脸识别作为进入、问路、反馈或参加活动的条件；儿童、健康、行动障碍和家庭困难信息非必要不收；AI 输出必须能由人复核，居民能选择纸卡、人工和退出。
+
+## 参考资料
+
+- 百年京张 AI 创新带城市设计开源征集公告与面向智能体任务书。 [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK]
+- 组织方场地资料包、来源登记与处理后事实包。 [source:SITE-PACKAGE] [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK]
+- 北京市关于京张铁路、清华园车站、“进京赶考之路”和京张铁路遗址公园的公开页面。 [source:JINGZHANG-1909-HISTORY] [source:QINGHUAYUAN-RED-HISTORY] [source:JINGZHANG-PARK-PHASE1]
+- OpenStreetMap 现状背景，查询日期 2026-08-11。 [source:OSM-CONTEXT-20260811]
+- Cambridge Kendall Square、MaRS Toronto、Station F、Barcelona 22@、JTC LaunchPad 与 Seoul DMC 的机构公开案例。 [source:CASE-KENDALL-CAMBRIDGE] [source:CASE-MARS-TORONTO] [source:CASE-STATION-F-PARIS]
+
+完整来源、指标、空间记录、标准响应、设计深度与任务覆盖均保存在投稿包的结构化文件中。本正文只保留与设计判断直接相邻的依据，便于评委和社区居民阅读。

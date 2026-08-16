@@ -195,7 +195,7 @@ python3 scripts/fetch_standard_references.py --update-standards
 
 ## 4. `compliance_matrix.json`
 
-`compliance_matrix.json` 是“任务响应表”。它告诉评审器和人类评审：官方公告 1.3、1.4、1.5 与面向智能体任务书 `agent.1` 至 `agent.6` 的每个必选任务，在方案中由哪些章节、图层、指标、图纸、HTML 页面、来源和自检项支撑。
+`compliance_matrix.json` 是“任务响应表”。它告诉评审器和人类评审：官方公告 1.3、1.4、1.5 与面向智能体任务书 `agent.1` 至 `agent.6` 的每个必选任务，在方案中由哪些章节、图层、指标、图纸、HTML 页面、来源、标准和自检项支撑。`source_ids` 只填写 `sources.json` / 中央来源登记中的来源 ID；专业标准 ID 应填写到独立的 `standard_ids`，并同时在 `standard_matrix.json` 中声明，不得混入 `source_ids`。
 
 必须覆盖这些 `requirement_id`：
 
@@ -238,6 +238,7 @@ agent.6 一带全球AI创新活动体系与长期运营设计
   "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
   "visual_sections": ["建筑与更新项目", "任务覆盖"],
   "source_ids": ["OFFICIAL-ANNOUNCEMENT", "OFFICIAL-DESIGN-BOUNDARY"],
+  "standard_ids": ["MOHURD-URBAN-DESIGN-MEASURES"],
   "assumption_ids": ["A-CONTROLS-001"],
   "self_check_ids": ["LAND_USE_TOPOLOGY", "BOUNDARY_TRUST"]
 }
@@ -465,7 +466,9 @@ HTML 是必交电子展示页面，用于让评审者快速看懂方案。它不
 - `green_ratio`
 - `public_space_ratio`
 
-HTML 展示值与 `metrics.json` 不一致会失败。
+这三项是 formal visual gate 的严格子集，不适用一般指标可保留 `unknown` 的兼容规则。它们必须是从投稿者提交的 `site_boundary`、`green_space` 和 `public_space` GeoJSON 可复算得到的 `status="known"` 有限数值，并在 HTML 中提供一致的数值 `data-value`。若底层几何为 provisional，可继续用低置信度的临时设计模型值，但必须保留 `provisional_constraint` / `provisional_rough` 标记、公式与来源文件，并说明正式几何发布后的复算触发条件；这不是宣称官方红线或法定控制指标。若三项之一尚不能从包内几何复算，投稿应保持 revision/scaffold 并先补齐或修复几何，不得用 `unknown`、`not_applicable` 或脱离几何的占位数绕过 gate。
+
+容积率、建筑高度等确实依赖尚未公开的官方控制条件的其他指标，仍可按一般契约使用 `status="unknown"`、`value: null` 和明确原因，也无需放入上述三项视觉声明。HTML 展示值与 `metrics.json` 不一致会失败。
 
 ## 10. 提交前自检
 

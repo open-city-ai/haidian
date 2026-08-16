@@ -1,0 +1,20 @@
+{
+  "description": "合法登记：完整时刻表条目（通过样例 1/3）——T-07 首班车试点舱的合规登记形态",
+  "expected_verdict": "accepted",
+  "card": {
+    "service_id": "T-07-P001",
+    "stop_id": "ZJ-02",
+    "zone_id": "ZN-KA",
+    "raci": "R-DELIVERY",
+    "gate": "G2_CONTROLLED_TRIAL",
+    "access_tier": "L2",
+    "schedule": { "interval": "daily-09-18", "window": "2026-09-01T09:00+08:00/2026-11-30T18:00+08:00", "maintenance_window": "Tuesday 06:00-12:00" },
+    "punctuality_definition": "按时刻表完成且无人工接管",
+    "delay_threshold_minutes": 15,
+    "change_notice_hours": 24,
+    "suspension_notice_hours": 48,
+    "transfer": { "connected_service": "T-04", "connection_rule": "human-signed-receipt", "max_wait_minutes": 15 },
+    "ai_off_path": "纸本并行记录：登记-试运行-考核全流程有无 AI 等价路径",
+    "stop_condition": "D61-D90 正点率不达标即 G3 停运（停运即合格结果）"
+  }
+}

@@ -1,0 +1,283 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(SITE_BOUNDARY, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEOMETRY-001"
+      ],
+      "interpretation": "Geometry-derived consistency value for provisional boundary only; never a statutory site area."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "high",
+      "assumptions": [
+        "A-GEOMETRY-002"
+      ]
+    },
+    "status_action_patch_count": {
+      "status": "known",
+      "value": 17.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/status-action-register.json"
+      ],
+      "formula": "count(patches)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "renewal_project_family_count": {
+      "status": "known",
+      "value": 15.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/renewal-project-portfolio.json"
+      ],
+      "formula": "count(project families)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "concept_land_use_area_sqm": {
+      "status": "known",
+      "value": 11412826.607,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(LAND_USE), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEOMETRY-001",
+        "A-CONTROLS-001"
+      ],
+      "interpretation": "Full provisional-site concept partition; no existing or statutory land-use claim."
+    },
+    "concept_building_footprint_area_sqm": {
+      "status": "known",
+      "value": 187334.565,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area(concept carrier prototypes), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BUILDING-001"
+      ],
+      "interpretation": "Concept-carrier footprint only; not existing building inventory or approved buildable area."
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 187334.565,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area(BUILDING_FOOTPRINT prototypes), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BUILDING-001"
+      ],
+      "interpretation": "Machine-derived prototype area. It must not be read as verified existing building footprint."
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2385689.929,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(area(GREEN_SPACE), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-ENVIRONMENT-001",
+        "A-GEOMETRY-001"
+      ],
+      "interpretation": "Concept blue-green response area; not surveyed vegetation or statutory green area."
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 1119108.443,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(area(PUBLIC_SPACE), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-ACCESS-001",
+        "A-OWNERSHIP-001",
+        "A-GEOMETRY-001"
+      ],
+      "interpretation": "Concept public/public-side field; rights and operating hours require confirmation."
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.209036,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A-ENVIRONMENT-001",
+        "A-GEOMETRY-001"
+      ],
+      "interpretation": "Geometry-derived concept ratio, not a statutory target or existing-condition ratio."
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.098057,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A-ACCESS-001",
+        "A-OWNERSHIP-001",
+        "A-GEOMETRY-001"
+      ],
+      "interpretation": "Geometry-derived concept ratio, not a statutory target or confirmed public-rights ratio."
+    },
+    "concept_road_length_m": {
+      "status": "known",
+      "value": 9814.049,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(ROAD_CENTERLINE), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-ROAD-001",
+        "A-ACCESS-001"
+      ],
+      "interpretation": "Conceptual connection length; no road alignment, redline, capacity or approval claim."
+    },
+    "phasing_concept_area_sqm": {
+      "status": "known",
+      "value": 42051499.032,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(area(PHASE overlays), EPSG:4548; overlaps are intentional",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "interpretation": "Evidence-gate overlays, not approved project boundaries or investment quantities."
+    },
+    "ai_scenario_count": {
+      "status": "known",
+      "value": 12.0,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(tasks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_validation_scenario_count": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(tasks where industry_validation=true)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 8.0,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "deep_ai_task_packet_count": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(tasks where deep_task_packet=true)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "statutory_floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "verified total floor area / official site area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-BUILDING-001",
+        "A-GEOMETRY-001"
+      ],
+      "reason": "Official FAR controls, verified floor areas and official polygons are unavailable."
+    },
+    "statutory_height_control": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official height control",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "No official height-control map or parcel-level control is available."
+    },
+    "utility_capacity": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "utility operator capacity confirmation",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-INFRA-001"
+      ],
+      "reason": "Power, communications, water/drainage, fire and compute capacity are not supplied."
+    }
+  }
+}

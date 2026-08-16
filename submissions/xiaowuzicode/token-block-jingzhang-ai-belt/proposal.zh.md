@@ -5,7 +5,7 @@ author_github: "xiaowuzicode"
 language: "zh"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v1.0"
+iteration: "v1.7"
 summary: "单线铁路上，司机必须持有区间令牌才能进入，令牌未归还前发不出第二枚。本方案把这条百年行车安全规则用于城市AI治理：把京张遗址公园全线做成一条持续运营、公众可预约的AI测试轨道——一枚令牌，一个区间，归还之后才发下一枚——三站两岔、一线到底，并附可被专业团队逐项复算的证据链。全部空间建议均为概念建议，不替代法定规划。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-navigation", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
@@ -16,6 +16,10 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-na
 > 本文件是 `proposal.md` 的完整中文正式译文，与英文正文同为正式成果；**中文文本作为正式解释依据**。权威数据仍为 `geometry/*.geojson`、`metrics.json` 与三张矩阵。
 
 **京张令牌 · 百年京张AI创新带**
+
+![走廊全线概念视景——一线、三站、两岔](assets/figures/concept-hero-wide.jpg)
+
+*概念效果示意，由 gpt-image-2 生成，布局参考本包 `geometry/*.geojson`。仅传达空间气质，不承载任何量值主张：非测绘依据、非建成表现；本包每一个数字仍可由机读文件逐项复算。*
 
 一百年前，京张铁路被修出来是为了**运**东西。本方案主张：今天同一条线，应该用来**跑**东西。
 
@@ -37,11 +41,15 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-na
 
 ## 设计依据与资料清单
 
-本成果包建立在本仓库的机器可读任务包之上，而不是任何非公开资料。设计依据为官方公告的任务结构与三层范围界定 [source:OFFICIAL-ANNOUNCEMENT]、面向智能体的开源征集任务书及其十条共创原则与六项必答任务 [source:AGENT-TASKBOOK]、以及已登记的场地包枚举、区间、schema 与允许设计空间 [source:SITE-PACKAGE]。所有证据在引用前先经公开资料登记表筛查可用性 [source:SOURCE-REGISTRY]，处理资料层仅用于把范围、任务与缺口组织成工作清单，不作为新的权威来源 [source:PROCESSED-FACT-PACK]。在仓库资料之外，本方案还依托六份公开文件，且均在其登记许可范围内使用：《城市设计管理办法》与《城市、镇控制性详细规划编制审批办法》界定了“控规深度”的义务边界，也是未知控制指标保持 unknown 的制度原因 [source:MOHURD-URBAN-DESIGN-MEASURES] [source:MOHURD-CONTROL-PLANNING-MEASURES]；《国土空间用地用海分类指南》提供用地方案的分类词汇 [source:MNR-LAND-USE-GUIDE]；《生成式人工智能服务管理暂行办法》支撑场景准入审查 [source:GENAI-INTERIM-MEASURES]；《无障碍环境建设法》与《关于切实解决老年人运用智能技术困难实施方案》共同构成步行无障碍连续性与非数字等效两项指标的法定底线 [source:BARRIER-FREE-LAW] [source:ELDERLY-SMART-TECH-PLAN]；《建筑工程设计文件编制深度规定（2016年版）》界定重点区成果最终需要达到的文件深度 [source:ARCH-DESIGN-DEPTH-2016]。令牌闭塞规则本身按广泛记载的铁路运营史引用，不构成对京张线自身信号器具的文献断言 [source:RAILWAY-TOKEN-HISTORY]；六个申报场景取自仓库场景登记表 [source:SCENARIO-REGISTRY]。
+本成果包建立在本仓库的机器可读任务包之上，而不是任何非公开资料。设计依据为官方公告的任务结构与三层范围界定 [source:OFFICIAL-ANNOUNCEMENT]、面向智能体的开源征集任务书及其十条共创原则与六项必答任务 [source:AGENT-TASKBOOK]、以及已登记的场地包枚举、区间、schema 与允许设计空间 [source:SITE-PACKAGE]。所有证据在引用前先经公开资料登记表筛查可用性 [source:SOURCE-REGISTRY]，处理资料层仅用于把范围、任务与缺口组织成工作清单，不作为新的权威来源 [source:PROCESSED-FACT-PACK]。
+
+在仓库资料之外，本方案还依托八份公开文件，且均在其登记许可范围内使用；其中六份构成规制与包容框架：《城市设计管理办法》与《城市、镇控制性详细规划编制审批办法》界定了“控规深度”的义务边界，也是未知控制指标保持 unknown 的制度原因 [source:MOHURD-URBAN-DESIGN-MEASURES] [source:MOHURD-CONTROL-PLANNING-MEASURES]；《国土空间用地用海分类指南》提供用地方案的分类词汇 [source:MNR-LAND-USE-GUIDE]；《生成式人工智能服务管理暂行办法》支撑场景准入审查 [source:GENAI-INTERIM-MEASURES]；《无障碍环境建设法》与《关于切实解决老年人运用智能技术困难实施方案》共同构成步行无障碍连续性与非数字等效两项指标的法定底线 [source:BARRIER-FREE-LAW] [source:ELDERLY-SMART-TECH-PLAN]。
+
+《建筑工程设计文件编制深度规定（2016年版）》界定重点区成果最终需要达到的文件深度 [source:ARCH-DESIGN-DEPTH-2016]。令牌闭塞规则本身按广泛记载的铁路运营史引用，不构成对京张线自身信号器具的文献断言 [source:RAILWAY-TOKEN-HISTORY]；六个申报场景取自仓库场景登记表 [source:SCENARIO-REGISTRY]。
 
 本包最重要的一条披露关于几何：**公开资料包中不存在官方红线。** 提交的总体设计边界 [data:geometry/site_boundary.geojson#SITE-001] 与三处重点区域 [data:geometry/key_areas.geojson#PROV-KEY-001] 均为仓库提供的临时粗略边界 [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]，标记为 `official_boundary=false`、`geometry_role="provisional_constraint"`、`boundary_precision="provisional_rough"`。它们可用于生成、可视化、讨论与入口自检，**不是**官方红线、不是审批依据、不是精确面积依据。官方 polygon 发布后，边界、重点区、用地、道路、绿地、公共空间、建筑、分期与全部派生指标必须整体复算，而不是逐个文件打补丁。
 
-这条披露带来一个设计后果，也是诚实成果与装饰成果的分野：正因为边界是粗的，本方案刻意把分量压在**关系性判断**上——沿线次序、哪一侧缝合哪一侧、公众在哪里上车、什么先开放——这些判断在边界修正后依然成立；同时刻意拒绝**绝对性判断**，如容积率、建筑高度、建筑密度与道路红线宽度，这些一旦边界变化即失效。后者一律记为 `unknown` 并写明原因，而不是填入看似合理的数字 [standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:existing_conditions_diagnosis]。
+这条披露带来一个设计后果，也是诚实成果与装饰成果的分野：正因为边界是粗的，本方案刻意把分量压在**关系性判断**上——沿线次序、哪一侧缝合哪一侧、公众在哪里上车、什么先开放——这些判断在边界修正后依然成立；同时刻意拒绝**绝对性判断**，如容积率、建筑高度、建筑密度与道路红线宽度，这些一旦边界变化即失效。后者中设有指标键的一律记为 `unknown` 并写明原因，而不是填入看似合理的数字；建筑密度与道路红线宽度未设指标键，则在全包不作任何取值主张 [standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:existing_conditions_diagnosis]。
 
 同一条纪律也适用于约束图层。场地包枚举中所有约束类图层——水系、文物保护、规划控制、现状道路与铁路——均标记为 `editable_by_agent=false`，即必须来自官方数据。因此本包**宁可让这些图层空缺，也不代拟**；`geometry/constraints.geojson` 只装 agent 有权定义的内容：六个可预约测试轨道段 [data:geometry/constraints.geojson#TRACK-S1] 与十二个已定位场景节点 [data:geometry/constraints.geojson#SCEN-01]。**空缺的官方约束图层是一处已披露的数据缺口；伪造的官方约束图层则是一次虚假的权威主张。**
 
@@ -97,7 +105,7 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-na
 
 更新框架识别出沿线三类低效状态：东西向被廊道割断的移动、背对廊道的单一功能产业物流界面、以及首层不参与公共生活的站区。三个对策分别是：六条东西缝合线 [metric:east_west_stitch_count]、把两翼界面转向脊、以及三处站台广场 [data:geometry/public_space.geojson#PUBLIC-001]。
 
-关于开发强度，本包**在数据终止处停止**。容积率、建筑高度与建筑密度记为 `unknown` 并写明原因，因为公开资料包中这些官方管控条件本身状态即为 `missing` [depth:development_intensity_controls]。本包能给的是一套在任何未来管控条件下都成立的**相对体量意图**：脊缘最低以保持廊道的天空与视线开敞，向外逐级抬升，最高体量退离历史线位，且**不得沿线形成连续墙面** [depth:height_massing_character] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]。总建筑规模同样留空，而不是用假定容积率倒算 [data:geometry/buildings.geojson#BLDG-001]。
+关于开发强度，本包**在数据终止处停止**。容积率与建筑高度记为 `unknown` 并写明原因，建筑密度未设指标键、全包不作取值主张，因为公开资料包中这些官方管控条件本身状态即为 `missing` [depth:development_intensity_controls]。本包能给的是一套在任何未来管控条件下都成立的**相对体量意图**：脊缘最低以保持廊道的天空与视线开敞，向外逐级抬升，最高体量退离历史线位，且**不得沿线形成连续墙面** [depth:height_massing_character] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]。总建筑规模同样留空，而不是用假定容积率倒算 [data:geometry/buildings.geojson#BLDG-001]。
 
 ## 重点区域详细设计
 
@@ -151,7 +159,9 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-na
 
 ## 用地、建筑规模与拆改留方案
 
-用地采用公开分类子集表达 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]，构成提交边界的完整分区。科研用地为最大单一类别 [metric:land_use_area_research_0802_sqm]，集中于两个创新站；社区服务设施 [metric:land_use_area_community_facilities_0702_sqm] 与城镇住宅 [metric:land_use_area_urban_residential_0701_sqm] 让这条带**有人住**而不只是生产；商业服务业 [metric:land_use_area_commercial_services_05_sqm] 集中于到发场与上行道岔；文化 [metric:land_use_area_culture_0803_sqm] 与教育 [metric:land_use_area_education_0804_sqm] 承载叙事与近校界面；公园绿地 [metric:land_use_area_park_green_1401_sqm] 与广场用地 [metric:land_use_area_square_1403_sqm] 构成脊本身。
+用地采用公开分类子集表达 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]，构成提交边界的完整分区。
+
+科研用地为最大单一类别 [metric:land_use_area_research_0802_sqm]，集中于两个创新站；社区服务设施 [metric:land_use_area_community_facilities_0702_sqm] 与城镇住宅 [metric:land_use_area_urban_residential_0701_sqm] 让这条带**有人住**而不只是生产；商业服务业 [metric:land_use_area_commercial_services_05_sqm] 集中于到发场与上行道岔；文化 [metric:land_use_area_culture_0803_sqm] 与教育 [metric:land_use_area_education_0804_sqm] 承载叙事与近校界面；公园绿地 [metric:land_use_area_park_green_1401_sqm] 与广场用地 [metric:land_use_area_square_1403_sqm] 构成脊本身。
 
 关于拆改留，本包给出的是**一个方法和一次拒绝**。方法：13 个示意建筑基底 [metric:renewal_building_count] 各带一个建议动作——保留、改造或新建——该动作取自其所在断面的结构角色，而非对任何具体现状建筑的判断。拒绝：由于公开资料包中**没有现状建筑普查、没有权属数据、没有已批控规条件、没有官方地块几何**，**本方案不对任何真实地块给出拆除结论** [depth:retain_renovate_demolish]。这些抓手在重点区内的示意覆盖率为 [metric:building_footprint_ratio_key_areas]，基底面积 [metric:building_footprint_area_sqm]——用于说明干预的颗粒度与强度，明确不是已批建筑密度管控。
 
@@ -225,13 +235,17 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-na
 
 **停止条件——什么情况下应当暂停或回退。** **一个说不清自己怎么失败的方案不具备可实施性。** 出现下列情形时，应暂停相关场景或整个计划：异议超过公示期限仍未办结；发现某场景采集了其声明边界之外的数据；数字通道在运行而非数字等效通道不可用；某次预约超出公示窗口封闭了站台广场；无高差路径被布设物切断；或官方控规、文保、轨道资料发布后与本包的某项空间假设相抵触。**最后一种情形发生的概率最高，而它是复算的理由，不是争辩的理由** [depth:phasing_implementation] [depth:risk_missing_data] [source:PROCESSED-FACT-PACK]。
 
+**从九十天叙事到一百天工作包。** 上文的试点描述现在由机读交付框架 `visual/assets/implementation.json` 承载，让"先做什么"可以像令牌协议一样被审计。它登记了 [metric:work_package_count] 个首期一百天工作包——两个线级包（令牌台账与首个预约窗口、主线慢行贯通性排查），三个重点区各约三个：从到发场站前广场临时开放、零公里碑与发布厅临时馆，到编组场草甸整理。每个工作包声明其前置条件、依赖关系，以及最重要的**证据产出**——该包"算完成"所必须存在的那份记录，其中多项直接为六项 C 类绩效指标供数。造价刻意只记相对投入量级（light / medium / heavy）：全包不主张任何绝对造价——在权属、现状建筑与市政条件确认之前定价，会违反本包自己的诚实规则。
+
+**退出门 G0–G4——把停止条件形式化。** 上文的散文式停止条件被登记为 [metric:exit_gate_count] 道可执行的门：G0 规定治理主体未组建就不启动任何包；G1 规定官方边界与假设抵触时暂停并复算；G2 规定安全复核不通过时布设回退到上一可用状态；G3 规定治理违规即收回令牌、暂停预约；G4 是百日期末移交评估——证据产出不达标即转入整改或有序退出：可逆设施拆除、场地归还公共使用。采购按 [metric:procurement_theme_count] 类主题划定范围但不写金额；[metric:monitoring_window_count] 个监测窗（3 / 12 / 36 个月）逐项写明六项绩效指标各自从何时开始积累真实数据——这是 `unknown` 最终变成 known 的路线图，而不是假装它现在已经 known。
+
 **运营与年度体系。** 建议本带运行一个以线本身为场地的年度全球AI活动周；一张滚动的场景开放日历，公示哪些区段当前可预约；一个锚定在零公里发布厅的开发者社区；以及一条把团队从开源贡献者→轨道预约用户→入驻主体的转化通道。品牌资产沉淀在**带**里而不是任何单场活动里：线、站名、里程碑、到达板。以上全部是**供专业与运营团队深化的运营建议**，不是已确定的政府项目、资金承诺、投资安排或已批准活动排期。
 
 **离线协议复演——规则是可执行的，不是修辞。** 令牌协议不只写在正文里：`simulation.json`
 记录了由确定性脚本对本包自身数据实际执行的 [metric:simulation_task_count] 项合成复演任务，并给出
 [metric:token_protocol_rule_count] 条协议规则的机读索引。每张场景卡各作一次合规准入检查与四个失败
 分支（匿名预订、缺数据边界、越出声明区间、自动化取消人工复核点）；每个区间各跑一次完整的
-预订—布设—运行—归还令牌周期；另有八条状态机分支复演硬规则——第一枚令牌未归还时第二枚必须被拒、
+预订—布设—运行—归还令牌周期；另有八条状态机分支复演硬规则——含第一枚令牌未归还时第二枚必须被拒、
 逾期归还触发升级、一枚令牌不得跨两个区间、切断无障碍通路的布设必须停摆、非数字等效缺失即暂停、
 越界采集即收回令牌——并以六项拓扑校验把场景卡绑定到提交几何上。其中
 [metric:simulation_negative_branch_count] 项为负分支：**其成功的含义是规则正确拒绝了该尝试**；
@@ -292,4 +306,7 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-na
 - `brief/site-package/standards/standards.json` 及 `standards/references/` 下的本地参考快照
 - `data/source_registry.json`、`data/processed/agent_fact_pack.md`、`project_scope_summary.csv`、`agent_task_requirements.csv`、`source_use_matrix.csv`、`missing_data_checklist.csv`
 - 本包自身证据：`geometry/*.geojson`、`metrics.json`、`compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json`、`assumptions.json`、`sources.json`、`self_check.json`
-- 机器可读引用索引：[source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SITE-PACKAGE] [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK] [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [depth:metrics_recalculation] [depth:risk_missing_data] [data:geometry/site_boundary.geojson#SITE-001] [data:geometry/land_use.geojson#LU-018] [data:geometry/phasing.geojson#PHASE-003] [metric:site_area_sqm]
+- 机器可读引用索引——来源（1/2）：公告 [source:OFFICIAL-ANNOUNCEMENT]、任务书 [source:AGENT-TASKBOOK]、资料包 [source:SITE-PACKAGE]、来源登记 [source:SOURCE-REGISTRY]
+- 机器可读引用索引——来源（2/2）：[source:PROCESSED-FACT-PACK] [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]
+- 机器可读引用索引——标准：[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]
+- 机器可读引用索引——深度、数据与指标：复算深度 [depth:metrics_recalculation]、缺资料深度 [depth:risk_missing_data]、边界 [data:geometry/site_boundary.geojson#SITE-001]、用地 [data:geometry/land_use.geojson#LU-018]、分期 [data:geometry/phasing.geojson#PHASE-003]、场地面积 [metric:site_area_sqm]

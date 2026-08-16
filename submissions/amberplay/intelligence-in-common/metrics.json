@@ -629,6 +629,128 @@
       "assumptions": [],
       "interpretation_rule": "supports the existing public-realm baseline only; not the area of this provisional submission boundary"
     },
+    "official_jz_phase2_north_complete_area_ha": {
+      "status": "known",
+      "value": 30.01,
+      "unit": "ha",
+      "source_files": [
+        "sources.json#OFFICIAL-JZ-PARK-PHASE2-COMPLETE-2026"
+      ],
+      "formula": "official_public_fact_phase2_north_comprehensive_construction_area",
+      "confidence": "high",
+      "assumptions": [],
+      "interpretation_rule": "current corridor-scale completion fact; not a digitized as-built polygon or the area of this submission"
+    },
+    "public_context_study_window_count": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/public-context.json"
+      ],
+      "formula": "count(public_context.windows)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-EXISTING-001"
+      ],
+      "interpretation_rule": "north-up clipped public-map research windows; not official existing-condition surveys"
+    },
+    "public_context_clipped_feature_count": {
+      "status": "known",
+      "value": 901.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/public-context.json"
+      ],
+      "formula": "count(public_context.features)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-EXISTING-001"
+      ],
+      "interpretation_rule": "901 retained features after zero-pad strict vertex-run clipping and sampling; not a complete inventory or surveyed base"
+    },
+    "statutory_heritage_anchor_count": {
+      "status": "known",
+      "value": 2.0,
+      "unit": "count",
+      "source_files": [
+        "sources.json#OFFICIAL-QINGHUAYUAN-PROTECTION-2026",
+        "sources.json#OFFICIAL-XIZHIMEN-PROTECTION-2026",
+        "visual/assets/public-context.json"
+      ],
+      "formula": "count(heritage_register where heritage_status=statutory_protection_text_current)",
+      "confidence": "high",
+      "assumptions": [
+        "A-HERITAGE-001"
+      ],
+      "interpretation_rule": "two statutory heritage records with current text rules; no exact legal polygon is digitized by this package"
+    },
+    "official_public_heritage_asset_type_count": {
+      "status": "known",
+      "value": 10.0,
+      "unit": "count",
+      "source_files": [
+        "sources.json#OFFICIAL-JZ-PARK-PHASE1-2023",
+        "sources.json#OFFICIAL-JZ-PARK-PHASE2-COMPLETE-2026",
+        "visual/assets/public-context.json"
+      ],
+      "formula": "count(distinct officially reported physical or interpretive asset types in the evidence register)",
+      "confidence": "high",
+      "assumptions": [
+        "A-HERITAGE-001"
+      ],
+      "interpretation_rule": "asset-type coverage only; does not claim ten original relic objects or their individual coordinates"
+    },
+    "digitized_official_heritage_polygon_count": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/public-context.json"
+      ],
+      "formula": "count(package geometries claimed as official heritage protection polygons)",
+      "confidence": "high",
+      "assumptions": [
+        "A-HERITAGE-001"
+      ],
+      "interpretation_rule": "intentional zero: official attachments and control points are absent, so legal polygons are not inferred from text"
+    },
+    "context_constraint_reconciliation_issue_count": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/public-context.json",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(public study windows that do not coincide with submitted provisional constraints)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-EXISTING-001"
+      ],
+      "interpretation_rule": "Dazhongsi is disclosed as a separate public-map study window; the package does not force or silently correct the organizer-side provisional constraint"
+    },
+    "renewal_project_geometry_ref_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["visual/assets/renewal-projects.json"],
+      "formula": "projects with non-empty geometry_refs / all projects",
+      "confidence": "medium",
+      "assumptions": ["A-BOUNDARY-001", "A-EXISTING-001"],
+      "interpretation_rule": "8/8 concept projects name geometry evidence; references do not convert provisional or public-map geometry into surveyed project sites"
+    },
+    "fact_diagnosis_action_crosswalk_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["visual/assets/fact-diagnosis-action-crosswalk.json"],
+      "formula": "crosswalk items containing fact_refs, diagnosis_id, design_action, drawing_ref, project_id and stop_condition / all items",
+      "confidence": "medium",
+      "assumptions": ["A-EXISTING-001", "A-OPERATIONS-001"],
+      "interpretation_rule": "8/8 desktop evidence chains are structurally complete; field verification remains null and can invalidate siting"
+    },
     "road_area_sqm": {
       "status": "unknown",
       "value": null,
@@ -716,19 +838,95 @@
       ],
       "interpretation_rule": "conditional concept prototypes, not surveyed or construction drawings"
     },
-    "heritage_conditional_segment_count": {
+    "heritage_evidence_layer_count": {
       "status": "known",
-      "value": 6.0,
+      "value": 4.0,
       "unit": "count",
       "source_files": [
         "assets/figures/heritage-spatial-narrative.png"
       ],
-      "formula": "count(conditional narrative segments)",
+      "formula": "count(statutory heritage, officially reported historic fabric, contemporary interpretation, design intervention evidence layers)",
       "confidence": "medium",
       "assumptions": [
         "A-HERITAGE-001"
       ],
-      "interpretation_rule": "spatial narrative framework; specific heritage locations await official inventory"
+      "interpretation_rule": "four evidence layers prevent original, restored, relocated and new interpretive objects from being conflated; specific asset coordinates remain pending"
+    },
+    "design_action_candidate_count": {
+      "status": "known",
+      "value": 9.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/design-actions-public-context.json"
+      ],
+      "formula": "count(features where role=candidate_action)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-EXISTING-001",
+        "A-OPERATIONS-001"
+      ],
+      "interpretation_rule": "three desktop options per study window in public-context coordinates; no option is a surveyed or authorized alignment"
+    },
+    "selected_desktop_spatial_choice_count": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/design-actions-public-context.json",
+        "visual/assets/spatiotemporal-permits.json"
+      ],
+      "formula": "count(candidate actions where human_decision=select_conditionally)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "interpretation_rule": "desktop preference only; all three retain pending rights, route, operator or field-verification conditions"
+    },
+    "mapped_section_line_count": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/design-actions-public-context.json",
+        "assets/figures/key-areas.png"
+      ],
+      "formula": "count(features where role=section_line and selected_action_ref resolves)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-EXISTING-001"
+      ],
+      "interpretation_rule": "desktop section traces tied to selected candidate geometry; section prototypes remain NTS until field measurement"
+    },
+    "selected_desktop_collision_count": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/design-actions-public-context.json",
+        "visual/assets/public-context.json",
+        "visual/assets/permit-compiler-runner.js"
+      ],
+      "formula": "bbox intersections of selected actions with sampled public-map buildings plus desktop exclusion zones",
+      "confidence": "medium",
+      "assumptions": [
+        "A-EXISTING-001",
+        "A-OPERATIONS-001"
+      ],
+      "interpretation_rule": "zero desktop collisions is a coarse pre-screen, not proof of rights, fire, traffic, heritage, engineering clearance or field feasibility"
+    },
+    "public_context_processing_pad_deg": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "degree",
+      "source_files": [
+        "visual/assets/public-context.json"
+      ],
+      "formula": "public_context.processing_pad_deg",
+      "confidence": "high",
+      "assumptions": [
+        "A-EXISTING-001"
+      ],
+      "interpretation_rule": "zero processing pad closes the prior edge-buffer ambiguity; boundary-crossing segments without in-window source vertices remain conservatively absent"
     },
     "building_public_interface_typology_count": {
       "status": "known",

@@ -17,7 +17,8 @@
       "required_for_formal_submission": true,
       "assumptions": [
         "Boundary is a maintainer-defined provisional rough substitute, not an official redline."
-      ]
+      ],
+      "recalculation_trigger": "Recalculate from the official site-boundary polygons once the repository publishes official boundary geometry; until then this value stays a provisional design-model output with confidence low."
     },
     "land_use_unit_count": {
       "status": "known",
@@ -282,7 +283,8 @@
       "required_for_formal_submission": true,
       "assumptions": [
         "The denominator is a provisional boundary."
-      ]
+      ],
+      "recalculation_trigger": "Recalculate once official green-space and site-boundary polygons are published; until then this stays a provisional design-model ratio."
     },
     "public_space_area_sqm": {
       "status": "known",
@@ -320,7 +322,8 @@
       "required_for_formal_submission": true,
       "assumptions": [
         "The denominator is a provisional boundary; the layer records intervention footprints, not all 1403 land-use envelopes."
-      ]
+      ],
+      "recalculation_trigger": "Recalculate once official public-space and site-boundary polygons are published; until then this stays a provisional design-model ratio."
     },
     "key_area_count": {
       "status": "known",
@@ -2188,110 +2191,162 @@
       "status": "unknown",
       "value": null,
       "unit": "status",
-      "source_files": ["visual/assets/civic-operations-contract.json"],
+      "source_files": [
+        "visual/assets/civic-operations-contract.json"
+      ],
       "formula": "verified ordinary public tasks completed on confirmed no-event days / consented same-task observations on confirmed no-event days",
       "confidence": "unknown",
       "required_for_formal_submission": false,
-      "assumptions": ["Requires confirmed no-event dates, ordinary-task baseline, affected groups and field records", "The conceptual calendar does not prove public use"],
+      "assumptions": [
+        "Requires confirmed no-event dates, ordinary-task baseline, affected groups and field records",
+        "The conceptual calendar does not prove public use"
+      ],
       "reason": "No confirmed calendar, no-event date, observation or operating record exists"
     },
     "civic_operations_quiet_window_delivery_rate": {
       "status": "unknown",
       "value": null,
       "unit": "ratio",
-      "source_files": ["visual/assets/civic-operations-contract.json"],
+      "source_files": [
+        "visual/assets/civic-operations-contract.json"
+      ],
       "formula": "confirmed quiet windows meeting preregistered ordinary-use conditions / confirmed quiet windows assessed",
       "confidence": "unknown",
       "required_for_formal_submission": false,
-      "assumptions": ["The inherited 22:00-07:00 window is a G0 design covenant, not a confirmed opening time or result", "Requires field observation and complaint/maintenance records"],
+      "assumptions": [
+        "The inherited 22:00-07:00 window is a G0 design covenant, not a confirmed opening time or result",
+        "Requires field observation and complaint/maintenance records"
+      ],
       "reason": "No real opening window, noise/light baseline, operator or field record exists"
     },
     "civic_operations_community_agenda_adoption_status": {
       "status": "unknown",
       "value": null,
       "unit": "status",
-      "source_files": ["visual/assets/civic-operations-contract.json"],
+      "source_files": [
+        "visual/assets/civic-operations-contract.json"
+      ],
       "formula": "agenda items with privacy-safe receipt and reasoned decision / qualifying agenda items received",
       "confidence": "unknown",
       "required_for_formal_submission": false,
-      "assumptions": ["Oral, paper and in-person entries must be included without requiring an account, QR code or AI"],
+      "assumptions": [
+        "Oral, paper and in-person entries must be included without requiring an account, QR code or AI"
+      ],
       "reason": "No confirmed agenda service, responsible role or real agenda item exists"
     },
     "civic_operations_complaint_closure_duration": {
       "status": "unknown",
       "value": null,
       "unit": "none",
-      "source_files": ["visual/assets/civic-operations-contract.json", "visual/assets/failure-governance-register.json"],
+      "source_files": [
+        "visual/assets/civic-operations-contract.json",
+        "visual/assets/failure-governance-register.json"
+      ],
       "formula": "future verified privacy-safe closure timestamp - future verified complaint receipt timestamp",
       "confidence": "unknown",
       "required_for_formal_submission": false,
-      "assumptions": ["Unit, clock start/stop, pause conditions, event class and denominator require preregistration", "No recovery duration may be invented"],
+      "assumptions": [
+        "Unit, clock start/stop, pause conditions, event class and denominator require preregistration",
+        "No recovery duration may be invented"
+      ],
       "reason": "No complaint intake, timestamps, accountable owner or closure receipt exists"
     },
     "civic_operations_role_vacancy_rate": {
       "status": "unknown",
       "value": null,
       "unit": "ratio",
-      "source_files": ["visual/assets/civic-operations-contract.json"],
+      "source_files": [
+        "visual/assets/civic-operations-contract.json"
+      ],
       "formula": "required role slots without written responsibility acceptance / required role slots for an admitted programme",
       "confidence": "unknown",
       "required_for_formal_submission": false,
-      "assumptions": ["A role type is not a person, organisation, shift or legal duty", "Backup roles and handoff conditions must be recorded"],
+      "assumptions": [
+        "A role type is not a person, organisation, shift or legal duty",
+        "Backup roles and handoff conditions must be recorded"
+      ],
       "reason": "Confirmed role assignments, headcount, shifts, incident roster and backups remain 0"
     },
     "civic_operations_maintenance_budget_confirmation_status": {
       "status": "unknown",
       "value": null,
       "unit": "status",
-      "source_files": ["visual/assets/civic-operations-contract.json", "visual/assets/urban-metabolism-ledger.json"],
+      "source_files": [
+        "visual/assets/civic-operations-contract.json",
+        "visual/assets/urban-metabolism-ledger.json"
+      ],
       "formula": "maintenance and retirement budget items with accountable written confirmation / required budget items for an admitted programme",
       "confidence": "unknown",
       "required_for_formal_submission": false,
-      "assumptions": ["A template, project list or concept resource passport does not prove funding"],
+      "assumptions": [
+        "A template, project list or concept resource passport does not prove funding"
+      ],
       "reason": "No confirmed programme, budget owner, maintenance budget or retirement reserve exists"
     },
     "civic_operations_failure_disclosure_completeness": {
       "status": "unknown",
       "value": null,
       "unit": "ratio",
-      "source_files": ["visual/assets/civic-operations-contract.json", "visual/assets/failure-governance-register.json"],
+      "source_files": [
+        "visual/assets/civic-operations-contract.json",
+        "visual/assets/failure-governance-register.json"
+      ],
       "formula": "privacy-safe annual records containing every required failure-disclosure field / verified annual failure records",
       "confidence": "unknown",
       "required_for_formal_submission": false,
-      "assumptions": ["Success-only reporting is prohibited", "Personal identities, sensitive narratives and raw personal data are excluded"],
+      "assumptions": [
+        "Success-only reporting is prohibited",
+        "Personal identities, sensitive narratives and raw personal data are excluded"
+      ],
       "reason": "No real failure, complaint, correction, annual review or disclosure record exists"
     },
     "civic_operations_international_retest_local_benefit_status": {
       "status": "unknown",
       "value": null,
       "unit": "status",
-      "source_files": ["visual/assets/civic-operations-contract.json"],
+      "source_files": [
+        "visual/assets/civic-operations-contract.json"
+      ],
       "formula": "remote retests producing a verified locally defined decision or ordinary-service benefit / completed public remote retests",
       "confidence": "unknown",
       "required_for_formal_submission": false,
-      "assumptions": ["Audience size, publicity and partner prestige are not local public benefit", "Remote review cannot replace local residents, professional judgement, operator duty or authorization"],
+      "assumptions": [
+        "Audience size, publicity and partner prestige are not local public benefit",
+        "Remote review cannot replace local residents, professional judgement, operator duty or authorization"
+      ],
       "reason": "Confirmed international partners, completed remote retests and verified local-benefit results remain 0"
     },
     "civic_operations_volunteer_labour_disclosure_status": {
       "status": "unknown",
       "value": null,
       "unit": "status",
-      "source_files": ["visual/assets/civic-operations-contract.json"],
+      "source_files": [
+        "visual/assets/civic-operations-contract.json"
+      ],
       "formula": "confirmed programmes with separated paid, contracted, community and voluntary labour records / confirmed programmes involving voluntary labour",
       "confidence": "unknown",
       "required_for_formal_submission": false,
-      "assumptions": ["Voluntary labour cannot fill continuous-service, safety, incident or statutory duties", "Consent, time, support and exit must be disclosed"],
+      "assumptions": [
+        "Voluntary labour cannot fill continuous-service, safety, incident or statutory duties",
+        "Consent, time, support and exit must be disclosed"
+      ],
       "reason": "No confirmed programme, paid hours or voluntary hours exists"
     },
     "civic_operations_annual_retirement_completion_rate": {
       "status": "unknown",
       "value": null,
       "unit": "ratio",
-      "source_files": ["visual/assets/civic-operations-contract.json", "visual/assets/failure-governance-register.json"],
+      "source_files": [
+        "visual/assets/civic-operations-contract.json",
+        "visual/assets/failure-governance-register.json"
+      ],
       "formula": "retirement decisions with component, data, service, place and public-information closure receipts / annual decisions requiring retirement",
       "confidence": "unknown",
       "required_for_formal_submission": false,
-      "assumptions": ["A written retirement template is not an executed retirement", "Reuse is prohibited until a new passport, rights review and authorization decision exist"],
+      "assumptions": [
+        "A written retirement template is not an executed retirement",
+        "Reuse is prohibited until a new passport, rights review and authorization decision exist"
+      ],
       "reason": "No annual decision, installed component, live service, retirement work or acceptance receipt exists"
     }
   }

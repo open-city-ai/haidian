@@ -1,0 +1,159 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEOMETRY-003"
+      ],
+      "reason": "由临时边界计算，只服务概念图层自检，不是官方用地面积。"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 18968.577,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(conceptual_building_footprints, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEOMETRY-003",
+        "Conceptual rooms are small reversible prototypes; value is recomputed by spatial review."
+      ],
+      "reason": "概念建筑基底相对临时边界复算，不是现状建筑或法定规模。"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_union_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEOMETRY-003"
+      ],
+      "reason": "概念性绿地相对比例，不是控规绿地率。"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_union_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEOMETRY-003"
+      ],
+      "reason": "概念性公共空间相对比例，不是法定公共空间指标。"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "record_separation_node_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(conceptual separation and responsibility nodes)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual nodes use provisional geometry and are not real service locations."
+      ],
+      "reason": "节点数量来自概念公共空间图层，不代表真实服务地点。"
+    },
+    "manual_fallback_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "manual_or_paper_paths_available / required_prototype_paths",
+      "confidence": "medium",
+      "assumptions": [
+        "Synthetic tabletop prototype only; field capacity is pending professional confirmation."
+      ]
+    },
+    "downstream_correction_receipt_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(conceptual downstream receipt checkpoints)",
+      "confidence": "medium",
+      "assumptions": [
+        "Receipt checkpoints describe a proposed audit chain, not completed corrections."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public scenario cards)",
+      "confidence": "high",
+      "assumptions": [
+        "Scenario cards are conceptual and use synthetic records."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(grouped user personas)",
+      "confidence": "high",
+      "assumptions": [
+        "Personas are recruitment hypotheses, not observed personal profiles."
+      ]
+    }
+  }
+}

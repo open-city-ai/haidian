@@ -1,0 +1,98 @@
+{
+  "schema_version": "0.1.0",
+  "protocol_id": "jingzhang-open-ledger-five-receipt-v0.1",
+  "status": "draft_concept_recommendation",
+  "scope": "synthetic tabletop validation of a proposed public-service record; not a live service, deployment, certification, or approval.",
+  "public_promise_zh": "每项拟议 AI 服务都应带着源、测、发、审、返五张可读凭据；任一凭据失效，服务记录回到问题定义，不得借由下一张凭据绕过。",
+  "required_common_fields": [
+    "service_id",
+    "plain_language_purpose",
+    "public_source_id",
+    "personal_data",
+    "human_alternative",
+    "independent_review",
+    "expiry_state",
+    "return_status"
+  ],
+  "receipts": [
+    {
+      "id": "source",
+      "label_zh": "源 / SOURCE",
+      "question_zh": "问题与资料从哪里来，是否可公开解释？",
+      "requires": [
+        "public_source_id",
+        "plain_language_purpose",
+        "personal_data=false"
+      ],
+      "reject_if": [
+        "source_missing",
+        "personal_data_present",
+        "purpose_unclear"
+      ]
+    },
+    {
+      "id": "test",
+      "label_zh": "测 / TEST",
+      "question_zh": "在扩大前，是否有低风险、可退出且不切断人工服务的检验？",
+      "requires": [
+        "human_alternative",
+        "pause_condition",
+        "test_scope"
+      ],
+      "reject_if": [
+        "no_human_alternative",
+        "no_pause_condition"
+      ]
+    },
+    {
+      "id": "release",
+      "label_zh": "发 / RELEASE",
+      "question_zh": "谁在什么范围、什么期限内可以理解和使用它？",
+      "requires": [
+        "plain_language_purpose",
+        "scope",
+        "expiry_state=active"
+      ],
+      "reject_if": [
+        "expired_record",
+        "scope_missing"
+      ]
+    },
+    {
+      "id": "review",
+      "label_zh": "审 / REVIEW",
+      "question_zh": "独立于制作的人能否查看、质询与暂停？",
+      "requires": [
+        "independent_review",
+        "appeal_route",
+        "review_date"
+      ],
+      "reject_if": [
+        "reviewer_missing",
+        "appeal_missing"
+      ]
+    },
+    {
+      "id": "return",
+      "label_zh": "返 / RETURN",
+      "question_zh": "异议、维护和收益如何回到下一轮问题，而不是被静默关闭？",
+      "requires": [
+        "return_status",
+        "care_steward",
+        "next_question"
+      ],
+      "reject_if": [
+        "return_unresolved",
+        "care_steward_missing"
+      ]
+    }
+  ],
+  "non_claims_zh": [
+    "不证明现场安全、产品认证、个人同意、工程可行性或政府批准。",
+    "不记录个人信息、真实机构、真实项目预算或真实部署读数。",
+    "任何真实试点仍须取得场地、主体、专业、伦理、保险和法定程序所需的授权。"
+  ],
+  "runner": "visual/assets/open-ledger-tabletop.js",
+  "fixtures": "visual/assets/open-ledger-tabletop-fixtures.json",
+  "result": "visual/assets/open-ledger-tabletop-result.json"
+}

@@ -3,9 +3,67 @@
   "assumptions": [
     {
       "id": "A-CONTROLS-001",
+      "category": "statutory controls",
       "status": "pending_professional_confirmation",
-      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
-      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+      "statement": "控规用地性质、容积率、建筑限高、建筑密度、绿地率、退线与城市四线等法定控制指标的官方文件尚未进入本仓库，本包不据此作出任何法定控制结论。Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "用地、容量、体量与风貌章节均为概念参考，容积率与限高在 metrics.json 中保持 unknown，不构成法定控制、审批结论或实施承诺。",
+      "required_action": "取得官方控规与清权资料后，由具备相应资质的专业团队复核并重算相关图层、指标与图纸。"
+    },
+    {
+      "id": "A-BOUNDARY-001",
+      "category": "official boundary",
+      "status": "pending_professional_confirmation",
+      "statement": "三层范围与三处重点区的官方精确 polygon 尚未公开；本包使用仓库维护者提供的临时粗略边界 provisional_boundaries.geojson。",
+      "impact": "所有空间位置、面积、比例与长度均为 intake 级复算结果，取得官方 polygon 后须全量重算，不等同于官方精确面积。",
+      "required_action": "官方边界发布后重算 site_area_sqm 及全部派生比例指标，并同步更新图纸与图层。"
+    },
+    {
+      "id": "A-BUILDINGS-001",
+      "category": "existing buildings and ownership",
+      "status": "pending_professional_confirmation",
+      "statement": "缺少清权的现状建筑普查、建成年代、使用性质、权属关系与结构安全鉴定资料。",
+      "impact": "buildings.geojson 仅作容量原型表达；拆改留分类采用先调查、后分类、保留与改造优先的方法，不指认具体建筑的处置结论。",
+      "required_action": "开展现状普查与结构安全鉴定后，由专业团队按规定深度确定拆改留清单。"
+    },
+    {
+      "id": "A-TRANSPORT-001",
+      "category": "transport engineering",
+      "status": "pending_professional_confirmation",
+      "statement": "缺少道路红线、标准横断面、交通流量、轨道接口条件、停车配建与无障碍设施现状的可计算资料。",
+      "impact": "roads.geojson 表达连接意图与慢行网络结构，不是道路线位、桥隧方案或工程可行性结论；慢行里程为概念长度。",
+      "required_action": "取得交通与轨道官方资料后开展专项交通影响评价，并据此调整线位与断面。"
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "category": "heritage and ecology",
+      "status": "pending_professional_confirmation",
+      "statement": "缺少京张铁路遗产本体、清华园车站旧址保护范围、建设控制地带与河道蓝线的可计算图层。",
+      "impact": "涉及遗产、河道与生态的公共空间、地标与跨越动作均须在文物、生态、防洪与安全专项复核后方可深化。",
+      "required_action": "取得保护范围矢量数据后，先做文物影响评估与防洪复核，再确定公共空间与跨越方案。"
+    },
+    {
+      "id": "A-MUNICIPAL-001",
+      "category": "municipal capacity",
+      "status": "pending_professional_confirmation",
+      "statement": "缺少市政管线、供电与能源、消防、防洪排涝以及算力基础设施的现状容量与规划容量资料。",
+      "impact": "端侧算力、能源保障与雨洪策略仅表达系统接口与空间预留意图，不作负荷计算、管线迁改或建设时序承诺。",
+      "required_action": "取得市政容量资料后开展专项市政规划，核定负荷与迁改方案。"
+    },
+    {
+      "id": "A-OPERATIONS-001",
+      "category": "operations and governance",
+      "status": "conceptual_proposal_not_decision",
+      "statement": "本方案提出的公开答卷、人工兜底、试点放行与年度活动等治理安排，均为参赛方案的概念建议，没有获批的运营主体、预算、编制或考核依据。",
+      "impact": "所有治理机制与运营安排表述为可撤回的试点建议，以公开招募、人工复核与阶段评估为前提，不表述为已确定的政府决策或实施安排。",
+      "required_action": "由主管部门确定实施主体与制度依据后，再将相关机制转化为可执行的管理文件。"
+    },
+    {
+      "id": "A-DATA-001",
+      "category": "data and evidence boundary",
+      "status": "unknown_kept_as_unknown",
+      "statement": "走廊客流、站点 OD、慢行连续性、无障碍断点、投诉基线与产业绩效等运行数据缺少可用授权与统一口径。",
+      "impact": "本包不以全区或全市平均值填充缺口，相关指标在 metrics.json 中保持 unknown，也不设定为试点绩效目标；背景性观察仅用于选择设计动作，不冒充空间指标。",
+      "required_action": "在明确数据责任主体、匿名与聚合口径、采样偏差与更新周期后，再建立可复算的运行指标基线。"
     }
   ]
 }

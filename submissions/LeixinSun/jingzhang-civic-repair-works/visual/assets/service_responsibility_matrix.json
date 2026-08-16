@@ -1,0 +1,259 @@
+{
+  "schema_version": "1.0.0",
+  "package_version": "v1.1",
+  "purpose": "Make intake, warranty, repair, test, pause, release, and handover responsibility visible.",
+  "claim_boundary": "Participant-authored operating contract only. It defines role types, records, pause conditions, and evidence needed for later professional work. It does not name real institutions, certify products, authorize treatment, approve construction, or claim field performance.",
+  "current_state": "role_types_only_institutions_unconfirmed",
+  "stages": [
+    {
+      "stage_id": "R0",
+      "name_zh": "受理资格",
+      "name_en": "Intake eligibility",
+      "input": [
+        "asset identity or provisional identifier",
+        "fault report",
+        "requesting party contact route"
+      ],
+      "decision": "Are the asset, fault, and requested service within the declared intake scope?",
+      "responsible_role_type": "staffed public-service intake lead",
+      "accountable_role_type": "staffed public-service intake lead",
+      "consulted_role_types": [
+        "none at intake; escalate safety cases"
+      ],
+      "informed_users": [
+        "requesting user",
+        "asset/service owner",
+        "affected public-service users where applicable"
+      ],
+      "warranty_owner": "recorded at R1; never transferred to a volunteer or public co-repair participant by default",
+      "cost_authority": "unconfirmed role type; no price or budget authority asserted",
+      "pause_authority": "staffed public-service intake lead",
+      "escalation_route": [
+        "R1",
+        "HOLD_R0",
+        "EMERGENCY_HANDOVER"
+      ],
+      "required_record": [
+        "intake record",
+        "service-continuity action",
+        "R1 referral"
+      ],
+      "handoff_to": [
+        "R1",
+        "HOLD_R0",
+        "EMERGENCY_HANDOVER"
+      ],
+      "status": "not_started"
+    },
+    {
+      "stage_id": "R1",
+      "name_zh": "权属、保修与数据权限",
+      "name_en": "Ownership, warranty, and data rights",
+      "input": [
+        "ownership or custody evidence",
+        "warranty status",
+        "data-access and erasure authority"
+      ],
+      "decision": "Who may submit, inspect, access, or erase the asset, and who retains warranty responsibility?",
+      "responsible_role_type": "asset or service owner representative",
+      "accountable_role_type": "asset or service owner representative",
+      "consulted_role_types": [
+        "data-governance or warranty reviewer when required"
+      ],
+      "informed_users": [
+        "requesting user",
+        "asset/service owner",
+        "affected public-service users where applicable"
+      ],
+      "warranty_owner": "recorded at R1; never transferred to a volunteer or public co-repair participant by default",
+      "cost_authority": "unconfirmed role type; no price or budget authority asserted",
+      "pause_authority": "asset or service owner representative",
+      "escalation_route": [
+        "R2",
+        "HOLD_R1",
+        "RETURN_UNOPENED"
+      ],
+      "required_record": [
+        "authorized work scope",
+        "warranty owner record",
+        "data-handling instruction"
+      ],
+      "handoff_to": [
+        "R2",
+        "HOLD_R1",
+        "RETURN_UNOPENED"
+      ],
+      "status": "not_started"
+    },
+    {
+      "stage_id": "R2",
+      "name_zh": "风险隔离与诊断基线",
+      "name_en": "Risk isolation and diagnostic baseline",
+      "input": [
+        "incoming condition record",
+        "battery and hazardous-property screen",
+        "software and connectivity state"
+      ],
+      "decision": "Can the asset be diagnosed safely on site, or must it be isolated and handed to a scope-matched facility?",
+      "responsible_role_type": "repair-workshop safety lead",
+      "accountable_role_type": "repair-workshop safety lead",
+      "consulted_role_types": [
+        "environmental or safety professional when classification is uncertain"
+      ],
+      "informed_users": [
+        "requesting user",
+        "asset/service owner",
+        "affected public-service users where applicable"
+      ],
+      "warranty_owner": "recorded at R1; never transferred to a volunteer or public co-repair participant by default",
+      "cost_authority": "unconfirmed role type; no price or budget authority asserted",
+      "pause_authority": "repair-workshop safety lead",
+      "escalation_route": [
+        "R3",
+        "HOLD_R2",
+        "QUALIFIED_HANDOVER"
+      ],
+      "required_record": [
+        "diagnostic baseline",
+        "risk classification pending/cleared record",
+        "R3 work package"
+      ],
+      "handoff_to": [
+        "R3",
+        "HOLD_R2",
+        "QUALIFIED_HANDOVER"
+      ],
+      "status": "not_started"
+    },
+    {
+      "stage_id": "R3",
+      "name_zh": "维修授权与部件证据",
+      "name_en": "Repair authorization and part evidence",
+      "input": [
+        "diagnostic baseline",
+        "repair authorization",
+        "part identity and provenance",
+        "declared test plan"
+      ],
+      "decision": "Is the proposed repair authorized, and is the candidate part supported by sufficient compatibility evidence?",
+      "responsible_role_type": "authorized repair lead",
+      "accountable_role_type": "authorized repair lead",
+      "consulted_role_types": [
+        "equipment-family test or metrology reviewer"
+      ],
+      "informed_users": [
+        "requesting user",
+        "asset/service owner",
+        "affected public-service users where applicable"
+      ],
+      "warranty_owner": "recorded at R1; never transferred to a volunteer or public co-repair participant by default",
+      "cost_authority": "unconfirmed role type; no price or budget authority asserted",
+      "pause_authority": "authorized repair lead",
+      "escalation_route": [
+        "R4",
+        "HOLD_R3",
+        "REJECT_PART",
+        "RETURN_UNREPAIRED"
+      ],
+      "required_record": [
+        "approved work instruction",
+        "part evidence record",
+        "changed-item trace"
+      ],
+      "handoff_to": [
+        "R4",
+        "HOLD_R3",
+        "REJECT_PART",
+        "RETURN_UNREPAIRED"
+      ],
+      "status": "not_started"
+    },
+    {
+      "stage_id": "R4",
+      "name_zh": "校准与回归复测",
+      "name_en": "Calibration and regression retest",
+      "input": [
+        "completed work order",
+        "changed-part record",
+        "baseline and retest plan",
+        "applicable reference method"
+      ],
+      "decision": "Has repeatable performance been restored within the declared version, operating condition, and safety envelope?",
+      "responsible_role_type": "test or calibration lead",
+      "accountable_role_type": "test or calibration lead",
+      "consulted_role_types": [
+        "independent reviewer appropriate to the equipment family"
+      ],
+      "informed_users": [
+        "requesting user",
+        "asset/service owner",
+        "affected public-service users where applicable"
+      ],
+      "warranty_owner": "recorded at R1; never transferred to a volunteer or public co-repair participant by default",
+      "cost_authority": "unconfirmed role type; no price or budget authority asserted",
+      "pause_authority": "test or calibration lead",
+      "escalation_route": [
+        "R5",
+        "HOLD_R4",
+        "RETURN_TO_R3",
+        "QUALIFIED_HANDOVER"
+      ],
+      "required_record": [
+        "retest evidence",
+        "residual-limit register",
+        "candidate release package"
+      ],
+      "handoff_to": [
+        "R5",
+        "HOLD_R4",
+        "RETURN_TO_R3",
+        "QUALIFIED_HANDOVER"
+      ],
+      "status": "not_started"
+    },
+    {
+      "stage_id": "R5",
+      "name_zh": "人工放行与去向",
+      "name_en": "Human release and destination",
+      "input": [
+        "complete gate trail",
+        "data-erasure status",
+        "retest evidence",
+        "residual risks",
+        "destination and next-maintenance record"
+      ],
+      "decision": "Is the evidence sufficient for accountable human release within a limited scope, or must the asset remain held, be returned, or be handed over?",
+      "responsible_role_type": "asset or public-service owner representative",
+      "accountable_role_type": "asset or public-service owner representative",
+      "consulted_role_types": [
+        "test/calibration/safety reviewer appropriate to the release scope"
+      ],
+      "informed_users": [
+        "requesting user",
+        "asset/service owner",
+        "affected public-service users where applicable"
+      ],
+      "warranty_owner": "recorded at R1; never transferred to a volunteer or public co-repair participant by default",
+      "cost_authority": "unconfirmed role type; no price or budget authority asserted",
+      "pause_authority": "asset or public-service owner representative",
+      "escalation_route": [
+        "RETURN_TO_SERVICE",
+        "CONDITIONAL_RETURN",
+        "HOLD_R5",
+        "QUALIFIED_HANDOVER"
+      ],
+      "required_record": [
+        "return-to-service receipt",
+        "conditional-return receipt",
+        "qualified-handover receipt"
+      ],
+      "handoff_to": [
+        "RETURN_TO_SERVICE",
+        "CONDITIONAL_RETURN",
+        "HOLD_R5",
+        "QUALIFIED_HANDOVER"
+      ],
+      "status": "not_started"
+    }
+  ]
+}

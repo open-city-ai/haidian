@@ -305,6 +305,12 @@ All AI scenarios must comply with the following governance principles:
 - **Human Review**: AI decisions involving personal rights must retain a human-review channel.
 - **Privacy Boundaries**: No collection of individual movement trajectories; activity data is aggregated only; resident personas are not used for commercial recommendation.
 
+### 6.5 Scenario Governance, Inclusion, and Exit
+
+Entry into the Pattern Library does not automatically authorize any of the twelve scenario cards for deployment. `report/narrative.md` records each card's data class, model boundary, KPI, human override, stop condition, and degraded service. Advice affecting healthcare, education, legal support, movement, or access to public resources never makes an automated decision; on-site staff and the relevant professionals retain final authority. Pilots retain only the minimum records needed to deliver the service, then delete or anonymize them after review unless a lawful retention duty applies.
+
+People can participate or complain through a staffed desk, paper form, telephone, and accessible web page. A smartphone, account registration, or algorithmic score must never be a precondition for service. Pilots must publish participation capacity, free or low-cost rules, construction notice for nearby businesses, and complaint-response time limits. Older people, children, people with disabilities, people with low digital literacy, tenants, and small businesses receive a specific access and disturbance review. A safety, privacy, discrimination, accessibility, or unresolved-complaint event pauses the relevant function and returns service to staff, telephone, paper wayfinding, or the existing public-service channel [depth:risk_missing_data].
+
 ---
 
 ## 7. Land Use, Building Scale, and Retain-Renovate-Demolish
@@ -438,6 +444,12 @@ The proposal recommends establishing a wayfinding signage system with "warp-weft
 - Provide multilingual guided tours and digital narration at the three pilgrimage landmarks.
 - Propose a "Living Weave" cultural-symbol system and an AI-contributor honor-display scheme.
 
+### 9.5 Annual Operations and Regional Collaboration
+
+Living Weave is not a one-off festival identity, but an annual operating framework: an open-source and university-transfer week in spring, public scenario test days in summer, an international pitch and developer week in autumn, and a Jingzhang railway-culture and accessible-walking season in winter. Every activity is conditional on permits, safety, accessibility, consultation with nearby businesses, and a published post-event review; routes can change within permitted public space and never presume priority over residents' daily life.
+
+The research scope organizes collaboration as “university origination - Haidian conversion - Jingzhang coordination - global communication”: universities and institutes provide voluntary showcases, park service organizations support enterprise conversion, and the two cities coordinate talent, events, and industrial services only within their respective approvals and authorizations. Operating KPIs are limited to accessible participation, participant satisfaction, voluntary local-business feedback, completed enterprise-service referrals, and complaint closure. They are not investment promises or governmental performance findings [source:AGENT-TASKBOOK].
+
 ---
 
 ## 10. Regeneration Project List, Implementation Policy, and Phasing
@@ -458,6 +470,12 @@ The proposal produces the following reviewable regeneration project list; each p
 | JZ-08 | AI public service and edge-computing nodes | New infrastructure / Public service | Energy, computing, operating entity | [data:geometry/constraints.geojson#CONSTRAINTS] |
 | JZ-09 | Global AI Activity Week public route | Operations / Branding | Public-space permits, event safety | [data:geometry/phasing.geojson#PHASE-001] |
 | JZ-10 | Dazhongsi data-asset circulation center | Industrial / Digital infrastructure | Data-security regulations, enterprise participation | [data:geometry/land_use.geojson#LU-001] |
+
+### 10.1.1 Delivery Cards and Decision Gates
+
+To keep the project list from remaining conceptual, `report/narrative.md` gives all ten projects a coordinating lead, day-to-day operator, approval dependencies, reversible pilot, cost order, decision gate, and exit path. Costs use only low/medium/high orders of magnitude, avoiding invented precise budgets before quantities, ownership, and procurement conditions are available.
+
+Near-term work prioritizes lightweight pilots for JZ-01, JZ-03, JZ-05, JZ-06, and JZ-09. JZ-02, JZ-04, and JZ-08 can proceed to pilot only after specialist review and operator-capacity confirmation. JZ-07 and JZ-10 are limited to feasibility, compliance, and simulation exercises; neither physical construction nor production-data exchange proceeds at this stage. Failure at any decision gate stops progression and retains the existing service or a non-digital, non-permanent alternative.
 
 ### 10.2 The Jacquard Governance Protocol: Programmable Urbanism
 
@@ -563,6 +581,8 @@ All images, drawings, icons, data, and code assets have their sources, licenses,
 - HTML pages do not load remote scripts, remote map tiles, remote fonts, iframes, forms, or external APIs; they do not track reviewer behavior.
 - All brands, fonts, images, portraits, and corporate logos must have cleared sources.
 - The proposal recommends original design and cleared resources.
+
+`report/copyright_statement.md` records the creator/generation method, input provenance, and redistribution status for figures, case cards, PDFs, and offline pages. OpenStreetMap, historical material, and global cases remain background references in `sources.json`; this package does not reproduce their photographs, logos, tiles, or proprietary drawings, and does not use them as statutory planning evidence.
 
 ### 12.3 Bilingual Requirement
 

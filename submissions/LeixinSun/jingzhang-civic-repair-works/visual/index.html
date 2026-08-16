@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>京张复役厂｜公共服务正线与设备复役侧线</title>
+<style>
+:root{--ink:#171b1f;--paper:#f3f0e8;--paper2:#faf8f2;--steel:#68747b;--line:#c7cdd0;--red:#b34632;--yellow:#e4a72b;--green:#2d7d5b;--blue:#2f6073;}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Arial Narrow","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.55}
+a{color:inherit}button{font:inherit}header{padding:38px clamp(22px,5vw,76px) 26px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:28px;align-items:end}
+h1{font-family:Georgia,"Songti SC",serif;font-size:clamp(34px,5vw,67px);line-height:1.02;margin:0 0 12px;letter-spacing:-.025em}h2{font-family:Georgia,"Songti SC",serif}header p{max-width:880px;color:var(--steel);margin:0}
+.lang{border:1px solid var(--ink);padding:8px 14px;text-decoration:none;font-size:13px}nav{padding:13px clamp(22px,5vw,76px);display:flex;gap:18px;overflow:auto;border-bottom:1px solid var(--line);font-size:11px;text-transform:uppercase;letter-spacing:.09em}
+main{padding:28px clamp(16px,4vw,64px) 64px;max-width:1580px;margin:auto}header>div,.hero>*,.simulator>*,.panel>*{min-width:0;max-width:100%}h1,h2,p,.kicker,.gate span,td{overflow-wrap:anywhere;word-break:break-word}
+.hero{background:var(--ink);color:var(--paper2);padding:clamp(22px,3.5vw,48px);margin-bottom:16px;display:grid;grid-template-columns:.75fr 1.25fr;gap:32px;align-items:center}.hero h2{font-size:clamp(29px,4vw,52px);line-height:1.07;margin:0 0 16px}.hero p{color:#d3d7d8;max-width:650px}.hero img{width:100%;display:block;border:1px solid #566067}.kicker{color:var(--red);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+.reality{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}.reality div{background:var(--paper2);border-top:4px solid var(--red);padding:14px}.reality span,.reality strong{display:block}.reality span{font-size:12px;color:var(--steel)}.reality strong{font-size:19px;margin-top:5px}
+.simulator{display:grid;grid-template-columns:.92fr 1.08fr;background:var(--paper2);border:1px solid var(--line);margin:0 0 24px}.sim-copy{padding:clamp(22px,3vw,42px)}.sim-copy h2{font-size:clamp(26px,3vw,42px);line-height:1.08;margin:6px 0 12px}.service-line{display:flex;align-items:center;gap:10px;color:var(--green);font-weight:700;margin:18px 0}.service-line::before{content:"";width:48px;border-top:5px solid var(--green)}.state-card{border-left:6px solid var(--red);background:var(--paper);padding:18px;margin:20px 0;min-height:150px}.state-card strong{display:block;font-size:20px;margin-bottom:8px}.state-card[data-state="release"]{border-color:var(--green)}.state-card[data-state="retest"]{border-color:var(--blue)}.controls{display:flex;flex-wrap:wrap;gap:8px}.controls button{border:1px solid var(--ink);background:transparent;color:var(--ink);padding:9px 12px;cursor:pointer}.controls button:hover,.controls button:focus-visible{background:var(--ink);color:var(--paper2);outline:3px solid var(--yellow);outline-offset:2px}.sim-visual{padding:18px;background:#e9e5db;display:grid;align-items:center}.sim-visual img{width:100%;display:block;border:1px solid var(--line)}
+.metrics{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-bottom:28px}.metric{background:var(--paper2);border-top:4px solid var(--green);padding:15px;min-height:96px}.metric strong{display:block;font-size:22px}.metric span{color:var(--steel);font-size:12px}
+.authority{background:var(--ink);color:var(--paper2);padding:clamp(22px,3vw,42px);margin-bottom:24px;overflow:auto}.authority h2{font-size:clamp(26px,3vw,42px);margin:0 0 10px}.authority p{color:#cfd4d5;max-width:880px}table{border-collapse:collapse;width:100%;min-width:840px;margin-top:20px}th,td{text-align:left;vertical-align:top;border-top:1px solid #59636a;padding:12px;font-size:12px}th{color:var(--yellow)}code{color:#ffd67a}
+.panel{background:var(--paper2);border:1px solid var(--line);margin:0 0 24px;display:grid;grid-template-columns:minmax(220px,.29fr) 1fr;gap:20px;padding:18px;align-items:center}.panel img{width:100%;display:block;border:1px solid var(--line)}.panel-copy{padding:16px}.panel-copy p{color:var(--steel)}
+.audit{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}.audit section{background:var(--ink);color:var(--paper2);padding:22px;min-height:170px}.audit h2{font-family:inherit;font-size:14px;color:var(--yellow);margin-top:0}.audit p{font-size:13px;color:#d3d7d8}
+.markers{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}footer{border-top:1px solid var(--line);padding:24px clamp(22px,5vw,76px);color:var(--steel);font-size:12px}
+@media(max-width:900px){body{overflow-x:hidden}header{grid-template-columns:minmax(0,1fr);padding:28px 20px 22px}h1{font-size:clamp(30px,9vw,44px)}.lang{display:block;width:100%;text-align:left}nav{padding-left:20px;padding-right:20px}main{padding:28px 20px 52px}.hero,.simulator{grid-template-columns:minmax(0,1fr);width:100%;overflow:hidden}.hero{padding:24px}.hero img,.sim-visual img{max-width:100%;height:auto}.reality{grid-template-columns:repeat(2,minmax(0,1fr))}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.panel{grid-template-columns:minmax(0,1fr);padding:12px}.panel-copy{padding:12px}.audit{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:520px){.metrics{grid-template-columns:minmax(0,1fr)}.controls button{width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<span class="markers">总览地图 三层范围 重点区域 用地分区 交通慢行 蓝绿公共空间 建筑 更新项目 AI 场景 核心指标 任务覆盖 自检状态 来源 假设 R0 R1 R2 R3 R4 R5 复役放行 责任合同 90天试点 人工放行 AI权限 服务连续</span>
+<header><div><h1>京张复役厂｜公共服务正线与设备复役侧线</h1><p>城市 AI 设备的换件、再制造、复认证与重返运行基础设施<br>概念表达｜边界为临时粗略范围，不是官方红线</p></div><a class="lang" href="index.en.html">English</a></header>
+<nav><a href="#hero">城市结构</a><a href="#replay">设备回放</a><a href="#authority">权限边界</a><a href="#metrics">指标</a><a href="#s2">重点区</a><a href="#s3">用地</a><a href="#s4">交通蓝绿</a><a href="#s5">证据边界</a></nav>
+<main>
+<section class="hero" id="hero"><div><span class="kicker">城市空间主张 v1.2</span><h2>城市在设备失效时仍继续服务</h2><p>公共服务正线由工作人员、纸面、电话和无障碍等价路径保持开放；故障机器人进入可关闭侧线，从大钟寺受理，经 AI 原点补齐部件与校准证据，在众智园经历整机失败和复测，最后只由责任人与独立复核签发限定回执。</p></div><img src="../assets/figures/site-overview.png" alt="公共服务正线与设备受控侧线总体图"></section>
+<section class="reality"><div><span>概念空间</span><strong>已形成</strong></div>
+<div><span>官方 polygon</span><strong>待补</strong></div>
+<div><span>专业委托</span><strong>未启动</strong></div>
+<div><span>现场运行</span><strong>0</strong></div></section>
+<section class="simulator" id="replay">
+  <div class="sim-copy">
+    <span class="kicker">可操作合成回放</span>
+    <h2>让一次失败真正改变下一步</h2>
+    <div class="service-line">公共服务正线：持续开放</div>
+    <div class="state-card" id="state-card" data-state="fault" aria-live="polite"><strong id="state-title"></strong><p id="state-copy"></p></div>
+    <div class="controls" aria-label="回放控制">
+      <button type="button" data-next="hold">发现证据缺口</button>
+      <button type="button" data-next="retest">补证并复测</button>
+      <button type="button" data-next="release">人工签认放行</button>
+      <button type="button" data-next="return">复测失败退回</button>
+      <button type="button" data-next="fault">重置</button>
+    </div>
+  </div>
+  <div class="sim-visual"><img src="../assets/figures/service-replay.png" alt="一台公共服务机器人跨三地经历失败、复测与人工放行的六帧合成回放"></div>
+</section>
+<section class="authority" id="authority"><span class="kicker">AI—人工权限</span><h2>AI 可以帮忙，但不能成为放行人</h2><p>白名单决定 AI 能做什么；强制拒绝决定它越权时系统必须做什么。所有保修、风险、兼容、专业签认和最终复役决定保留给有责任的人。</p><table><thead><tr><th>空间</th><th>AI 可做</th><th>人工专属</th><th>越权结果</th></tr></thead><tbody><tr><td>大钟寺人工受理台</td>
+        <td>归类故障描述、检查工单字段缺口、检索公开服务说明。</td>
+        <td>确认受理范围、保修升级、数据访问与投诉路径。</td>
+        <td><code>REJECT_DATA_REQUEST_R1</code></td></tr>
+<tr><td>众智园隔离诊断区</td>
+        <td>聚类错误码、检索相似工单、建议受控检查顺序。</td>
+        <td>风险分类、隔离、应急处置与资格交接。</td>
+        <td><code>HOLD_R2</code></td></tr>
+<tr><td>AI 原点互换件公库与校准台</td>
+        <td>生成候选部件短名单并标出机械、电气、通信、固件、校准和失效模式证据缺口。</td>
+        <td>批准维修范围、确认兼容证据与召回处置。</td>
+        <td><code>REJECT_AI_RECOMMENDATION_R3</code></td></tr>
+<tr><td>众智园整机回归场</td>
+        <td>编排已批准测试、比较基线、提示异常与证据缺口。</td>
+        <td>急停、校准/测试签认、无障碍接受与残余限制确认。</td>
+        <td><code>HOLD_R4</code></td></tr>
+<tr><td>大钟寺人工放行室与重返运行广场</td>
+        <td>检查门链完整性、生成限定回执草稿、聚合不含个人画像的运营指标。</td>
+        <td>最终暂停、有限放行、退回或资格交接。</td>
+        <td><code>HOLD_AI_AUTHORITY_R5</code></td></tr></tbody></table></section>
+<section class="metrics" id="metrics"><div class="metric" data-metric="site_area_sqm" data-value="11412825.386"><strong>11.413 km²</strong><span>总体设计量</span></div>
+<div class="metric" data-metric="green_ratio" data-value="0.104792"><strong>10.4792%</strong><span>绿地设计量</span></div>
+<div class="metric" data-metric="public_space_ratio" data-value="0.034662"><strong>3.4662%</strong><span>公共空间设计量</span></div>
+<div class="metric" data-metric="building_footprint_ratio" data-value="0.055315"><strong>5.5315%</strong><span>建筑基底设计量</span></div>
+<div class="metric" data-metric="road_centerline_length_m" data-value="24440.989"><strong>24.441 km</strong><span>道路中心线</span></div>
+<div class="metric" data-metric="building_count" data-value="15"><strong>15</strong><span>概念设备模块</span></div></section>
+<article class="panel" id="s1">
+          <div class="panel-copy"><span class="kicker">总体城市结构</span><p>公共服务正线持续开放；故障设备在三处复役节点之间沿受控侧线移动。</p></div>
+          <img src="../assets/figures/site-overview.png" alt="总体城市结构" loading="lazy">
+        </article>
+<article class="panel" id="s2">
+          <div class="panel-copy"><span class="kicker">三处差异化工场</span><p>大钟寺面向公众，AI 原点面向部件与校准，众智园面向整机回归；任一区都不能单独放行。</p></div>
+          <img src="../assets/figures/key-areas.png" alt="三处差异化工场" loading="lazy">
+        </article>
+<article class="panel" id="s3">
+          <div class="panel-copy"><span class="kicker">用地与城市更新</span><p>九区把公开服务、精密工位和受控后台组织成可逆、可分期的空间工艺链。</p></div>
+          <img src="../assets/figures/land-use-structure.png" alt="用地与城市更新" loading="lazy">
+        </article>
+<article class="panel" id="s4">
+          <div class="panel-copy"><span class="kicker">交通、慢行与蓝绿</span><p>公众、普通设备与资格外运三路分流；无障碍主链不因设备故障改道。</p></div>
+          <img src="../assets/figures/mobility-bluegreen.png" alt="交通、慢行与蓝绿" loading="lazy">
+        </article>
+<article class="panel" id="s5">
+          <div class="panel-copy"><span class="kicker">证据边界</span><p>概念空间已形成；官方 polygon 待补；专业委托未启动；现场运行和机构签认均为 0。</p></div>
+          <img src="../assets/figures/metrics-evidence.png" alt="证据边界" loading="lazy">
+        </article>
+<div class="audit">
+<section><h2>任务覆盖</h2><p>任务覆盖：公告 1.3、1.4、1.5 与 agent.1—agent.6 共 23 条均进入 compliance_matrix.json；15 项设计深度为 complete。</p></section>
+<section><h2>来源与自检状态</h2><p>来源：27 条包内来源、9 个 GeoJSON、R0—R5 合同、AI—人工权限矩阵、12 场景责任矩阵与双语正文。案头回放 12/12，AI 越权守卫 4/4，现场运行 0。</p></section>
+<section><h2>假设与边界</h2><p>假设：总体边界与三处重点区均为 provisional rough geometry；容积率、高度、法定建筑密度、道路红线、权属、管线、消防、防洪、文保与站点关系待正式资料和专业复核。</p></section>
+</div>
+</main>
+<footer>JING-ZHANG RETURN-TO-SERVICE WORKS · COMMUNITY-DISPLAY-ONLY · 2026-08-14</footer>
+<script>
+const states={"fault": ["FAULT / \u6545\u969c\u9000\u51fa", "\u8bbe\u5907\u9000\u51fa\uff1b\u4eba\u5de5\u7b49\u4ef7\u670d\u52a1\u7acb\u5373\u63a5\u7ba1\u3002"], "hold": ["HOLD / \u6682\u505c", "\u8bc1\u636e\u7f3a\u53e3\u6216\u8d8a\u6743\u8bf7\u6c42\u4f7f\u8bbe\u5907\u4fdd\u6301\u9694\u79bb\uff1b\u5931\u8d25\u8bb0\u5f55\u4e0d\u8986\u76d6\u3002"], "retest": ["RETEST / \u7ea0\u6b63\u590d\u6d4b", "\u6709\u8d23\u4efb\u7684\u4eba\u6279\u51c6\u7ea0\u6b63\u5de5\u4f5c\uff1bAI \u53ea\u7f16\u6392\u5df2\u6279\u51c6\u6d4b\u8bd5\u5e76\u63d0\u793a\u7f3a\u53e3\u3002"], "release": ["HUMAN RELEASE / \u4eba\u5de5\u653e\u884c", "\u8d23\u4efb\u4eba\u4e0e\u72ec\u7acb\u590d\u6838\u5171\u540c\u7b7e\u53d1\u9650\u5b9a\u56de\u6267\uff1b\u670d\u52a1\u6b63\u7ebf\u59cb\u7ec8\u5f00\u653e\u3002"], "return": ["RETURN / \u8fd4\u56de\u4fa7\u7ebf", "\u590d\u6d4b\u4ecd\u5931\u8d25\uff1b\u8bbe\u5907\u8fd4\u56de\u7ea0\u6b63\u6216\u8d44\u683c\u4ea4\u63a5\uff0c\u516c\u5171\u670d\u52a1\u7ee7\u7eed\u3002"]};
+const card=document.getElementById("state-card");
+const titleNode=document.getElementById("state-title");
+const copyNode=document.getElementById("state-copy");
+function renderState(key){
+  const value=states[key]||states.fault;
+  card.dataset.state=key;
+  titleNode.textContent=value[0];
+  copyNode.textContent=value[1];
+}
+document.querySelectorAll("[data-next]").forEach((button)=>{
+  button.addEventListener("click",()=>renderState(button.dataset.next));
+});
+renderState("fault");
+</script>
+</body></html>

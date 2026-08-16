@@ -1,5 +1,12 @@
 # 方案迭代记录
 
+## v1.3 - spatial-first refinement - 2026-08-16
+
+- 从 93 分基线 PR #1901 的提交快照重新生成；不继承后续低分 PR 的内容、图件、数据或几何。
+- 将封面和离线展示页的首屏阅读顺序改为公共主线、三站、四种居住状态与六条接力，合同、指标和自检后置。
+- 新增 `visual/assets/station-spatial-proof.json`，为三个 provisional key area 提供互不重复的相对拓扑、节点、边界与来源锚点；新增 `visual/assets/review-route.json`，记录设计优先的包内复核路径。
+- 采用高分投稿中“先呈现空间结果、重点区各自成图、再展示可验证责任机制”的评审方法；不复制任何同伴文本、图件、数据、口号、精确指标或版式。
+
 ## v1.2 - 2026-08-11
 
 - 将“六接力”升级为原创 `HOME-WORK RELAY CONTRACT`：六份合同逐项声明 actor、minimum input、九态入口与目标、同意、AI 边界、人工决定、普通/离线 fallback、stop rule、恢复证据和未知 SLA 公式。

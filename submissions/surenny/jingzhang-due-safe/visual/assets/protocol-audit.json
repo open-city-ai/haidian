@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.2.0",
+  "status": "synthetic_tabletop_only",
+  "applicability": {
+    "included_for_testing": ["low-risk appointment request", "public-program expression of interest", "general information correction request"],
+    "excluded": ["emergency dispatch", "law-enforcement action", "medical triage", "statutory deadline determination", "benefit eligibility decision", "safety-critical authorization"],
+    "rule": "A competent institution must define the actual receiving authority and procedure before any pilot."
+  },
+  "states": [
+    {"id": "ARRIVED", "owner": "intake_owner", "meaning": "a minimal receipt event exists; no eligibility claim"},
+    {"id": "HOLD_FOR_HUMAN", "owner": "intake_owner", "meaning": "AI may not trigger an adverse action"},
+    {"id": "CORRECTION_REQUESTED", "owner": "professional_decider", "meaning": "a human-approved, accessible correction request was issued"},
+    {"id": "REFERRED", "owner": "professional_decider", "meaning": "the item was routed to the competent authority"},
+    {"id": "DECIDED", "owner": "professional_decider", "meaning": "a competent human made the applicable decision"},
+    {"id": "CLOSED_OUT", "owner": "rule_publisher", "meaning": "known channel copies were corrected or visibly retired"}
+  ],
+  "raci": [
+    {"task": "minimal receipt", "responsible": "intake_owner", "accountable": "institution_owner", "consulted": "accessibility_reviewer", "informed": "requester"},
+    {"task": "procedure decision", "responsible": "professional_decider", "accountable": "competent_authority", "consulted": "legal_or_domain_reviewer", "informed": "requester"},
+    {"task": "channel correction", "responsible": "rule_publisher", "accountable": "institution_owner", "consulted": "channel_owners", "informed": "independent_reviewer"},
+    {"task": "appeal review", "responsible": "independent_reviewer", "accountable": "competent_review_body", "consulted": "affected_person", "informed": "institution_owner"}
+  ],
+  "emergency_exception": "When delay could create safety harm, the competent human may bypass the queue-preservation experiment, issue a written no-fault receipt where feasible, and route the person to an available safe service. AI cannot invoke the exception.",
+  "privacy_minimum": ["synthetic case id", "channel type", "rule version", "receipt timestamp class", "named role", "state transition"],
+  "forbidden_data": ["identity number", "biometrics", "claim narrative", "precise address", "health record", "credit profile", "device tracking"],
+  "retention": "Synthetic logs: 30 days for the tabletop then delete. Any real retention schedule requires the competent institution's legal and records review.",
+  "complaint_and_review": "Paper, telephone and staffed routes remain available; requesting review cannot lower queue position or create a profile.",
+  "exit_conditions": ["no competent owner", "AI-off path fails", "emergency exception unclear", "accessibility task fails", "channel copies cannot be closed", "receipt causes a false entitlement impression"],
+  "acceptance_tests": [
+    "all six synthetic cases preserve the first receipt event",
+    "all 42 channel fixtures enter HOLD rather than adverse automation on conflict",
+    "each state has one accountable human or institution role",
+    "the same tabletop completes with AI physically disabled",
+    "emergency cases leave the experiment and enter a competent human safety route",
+    "no forbidden data field exists in the fixture ledger"
+  ]
+}

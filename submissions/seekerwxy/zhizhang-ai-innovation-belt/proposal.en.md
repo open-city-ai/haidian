@@ -50,7 +50,7 @@ The proposed overall concept is the "Jing-Zhang Intelligent-Context Symbiotic Be
 
 The core task of the coordinated research scope is to build a world-class AI innovation ecosystem. The plan organizes Haidian's universities and institutes, leading enterprises, computing-power/algorithm/data factors, incubators, listed companies, unicorns and technology services into a spatial coordination framework of AI innovation chains, industry chains, talent chains and city-service chains. The naming and logo scheme serves the overall recognizability of the "Centennial Jing-Zhang Culture Belt, Urban AI Life Experience Belt, and AI Integrated Innovation Belt", and must connect with the industry ecosystem, public space and cultural resources rather than staying a slogan. The agent-facing taskbook also requires a response to the "five functions" and the "three areas, two wings" coordination, forming a deepenable naming system, visual identity, overall spatial structure diagram, scenario opening and operation mechanism; this section marks these requirements with [source:AGENT-TASKBOOK] and [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] as coming from the agent open-call task, not from statutory planning control.
 
-The proposal introduces the Z-Belt naming system: the belt itself is "Z-Belt" (Jing-Zhang AI Innovation Belt), the three cores are "Z-Origin" (Beijing AI Origin Community), "Z-Core" (Zhongzhiyuan AI Autonomous Innovation Acceleration Area) and "Z-Hub" (Dazhongsi AI Industry Cluster), and the two wings are the "Z-Tech Wing" (Zhongguancun technology-service wing) and the "Z-Scenario Wing" (Xiaoyue River scenario-empowerment wing). The logo direction re-draws the "herringbone" track of the Jing-Zhang Railway into an AI knowledge-graph/neural topology: two rails converge into a herringbone node from which intelligent links grow, honoring Zhan Tianyou's engineering wisdom while symbolizing open source and model aggregation. To support the global AI innovation ecosystem, the proposal compiles seven reference cases from public sources (conceptual references for professional teams to deepen) [source:AGENT-TASKBOOK]:
+The proposal introduces the Z-Belt naming system: the belt itself is "Z-Belt" (Jing-Zhang AI Innovation Belt), the three cores are "Z-Origin" (Beijing AI Origin Community), "Z-Core" (Zhongzhiyuan AI Autonomous Innovation Acceleration Area) and "Z-Hub" (Dazhongsi AI Industry Cluster), and the two wings are the "Z-Tech Wing" (Zhongguancun technology-service wing) and the "Z-Scenario Wing" (Xiaoyue River scenario-empowerment wing). The logo direction re-draws the "herringbone" track of the Jing-Zhang Railway into an AI knowledge-graph/neural topology: two rails converge into a herringbone node from which intelligent links grow, honoring Zhan Tianyou's engineering wisdom while symbolizing open source and model aggregation. The mark keeps a square composition with the herringbone apex at the centre: a hollow-node at the rail junction, three equal-angled link rays radiating up-right (knowledge-graph links) and a small solid data node joined by a thin line down-left; it scales down to a legible 16px icon, ships in a monochrome (Jing-Zhang grey) version and a reverse version for dark backgrounds, with a recommended minimum usable size of 24px and an optional animated link-line display. These logo composition, proportion, monochrome and reverse directions are conceptual only; no third-party fonts, icons or trademarks are used, and all geometric elements are authored by this AI agent [source:AGENT-TASKBOOK]. To support the global AI innovation ecosystem, the proposal compiles seven reference cases from public sources (conceptual references for professional teams to deepen) [source:AGENT-TASKBOOK]:
 
 | Case | Region | Transferable lesson | Application in this proposal |
 | --- | --- | --- | --- |
@@ -123,6 +123,19 @@ AI scenarios must land in spatial and governance boundaries: public-space scenar
 | Persons with disabilities | Continuous accessibility, voice interaction, assisted travel | Barrier-free routes, voice navigation, service-dog rest points | Complies with barrier-free law; assistance not dependent on personal identification |
 | Low-digital-literacy users | Traditional channels preserved, digital guidance, intergenerational help | Community digital-assistant desks, family intergenerational stations | Digital services optional; human alternatives always available |
 | Night workers | Safe lighting, 24h services, commute connections | Tiered night lighting, 24h convenience and rest points, night bus links | Night data used for safety only, not profiling |
+**Measurable public-interest indicators (conceptual framework, to be calibrated against official baselines)**: so inclusion commitments are checkable rather than slogans, the table below proposes verifiable indicators, inspection methods and current status for each public-interest dimension; professional teams set targets against actual service baselines during formal deepening [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]:
+
+| Public-interest dimension | Proposed indicator (concept) | Inspection method | Current status |
+| --- | --- | --- | --- |
+| Accessibility continuity | Tactile-paving/step-free continuity rate on main public routes; accessible toilet and elevator coverage | On-site measurement + drawing review | Pending official road and building data |
+| Traditional service channels | Number of human counters retained per community; telephone/on-site booking availability | Service ledger sampling | Conceptual commitment; pending operations |
+| On-site human assistance | Number of human guide posts in peak hours; volunteer training coverage | Rosters and training records | Conceptual recommendation |
+| Digital opt-out options | 100% availability target of human fallback for every digital service; visible opt-out | Service-flow walkthrough | Design principle declared |
+| Complaint handling | Response time (e.g. 48h), closure rate, result publication | Complaint ledger + follow-up survey | Pending operating entity |
+| Community participation procedures | Annual participation sessions, adoption rate of resident feedback, disclosure and feedback mechanism for renewal projects | Event records + meeting minutes | Conceptual mechanism; pending pilot |
+
+The indicators above are a conceptual framework and do not constitute confirmed public-service commitments or government assessment targets; baselines must be set with actual demand surveys during implementation.
+
 
 
 | Scenario card | Spatial carrier | Design description |
@@ -168,6 +181,21 @@ Scenario-space-operation-governance matrix (conceptual, for professional deepeni
 | S12 | Native retail street | Dazhongsi NODE-H | Consumers | Minimal transaction | Merchant checks | Commercial operator | Traffic/sales | Exit if unviable | Traditional retail |
 
 All 12 nodes (NODE-A..NODE-H plus 4 reused nodes) are concept numbering, not GeoJSON features (SCENARIO_NODE layer is optional; this package carries them in tables + compliance matrix to avoid fabricating precise coordinates); professional teams must add real feature ids, approval prerequisites and operating agreements [source:AGENT-TASKBOOK].
+**AI node service scope and operation flow (conceptual recommendation)**: to make the "scenario-space-data-operation-performance" chain readable in static deliverables, the table below adds a conceptual service scope (walking/cycling reach, not a precise catchment) and an operation flow (input to process to output to human review) for each concept node, to be converted into real feature ids and facility layouts by professional teams in detailed design [source:AGENT-TASKBOOK]:
+
+| Node | Served users | Conceptual service scope | Operation flow (concept) | Human review step |
+| --- | --- | --- | --- | --- |
+| NODE-A Open-source release hall | Developers/startups | 500m walking circle, Origin community | Booking-registration to scheduling to release/roadshow to community archive | Content review + safety assessment |
+| NODE-B Governance sandbox | Enterprises/regulators | 800m, Zhongzhiyuan campus | Enterprise application to evaluation booking to red-team test to report review | Regulator + expert double review |
+| NODE-C Edge-compute station | Startups/residents | 1.5km service circle, overall area | Identity check to compute scheduling to billing to energy logging | Equipment inspection + metering audit |
+| NODE-D International roadshow hall | Enterprise visitors | 600m, Dazhongsi | Venue booking to security plan to roadshow to media release | Content and brand rights review |
+| NODE-E Data-element lounge | Enterprises | Dazhongsi district | Authorization application to compliance review to showcase/circulation to audit trail | Compliance audit first |
+| NODE-F AI lifestyle demo street | Residents/elderly | 300m, community | Demand report to dispatch to human-counter/digital dual channel to satisfaction follow-up | Community supervision + complaint closure |
+| NODE-G Community AI health cabin | Elderly/chronic patients | 300m, community | Booking to assisted diagnosis to on-site health data processing to clinician review | Clinician human review |
+| NODE-H AI-native retail street | Consumers | 400m, Dazhongsi | Transaction to minimal dataset to anomaly detection to human customer service | Merchant self-check + platform inspection |
+
+The scopes and flows above are conceptual recommendations only and do not constitute precise catchment commitments or confirmed operations; they must be deepened against the actual road network, accessibility analysis and operating agreements.
+
 
 AI-governance suggestions follow data minimization, public sources, explainability and human review. A city agent may assist in identifying slow-mobility gaps, public-space heat, facility maintenance, enterprise-service needs and event-safety risk, but it cannot replace planning approval, output unauthorized personal profiles, or claim official implementation commitments. All AI scenario nodes enter structured layers or the compliance matrix so reviewers see their relationship to industry, space and public interest.
 
@@ -226,6 +254,27 @@ Implementation-element table (conceptual; lead/approval/operation roles, cost le
 | JZ-06 Event week route | Brand operator | Police/culture | Event operator | Market-based | Event safety permit | Low | 1-3y | Participation | Safety stop |
 
 All elements are conceptual frameworks for professional implementation teams; not government funding commitments, approvals or confirmed arrangements [source:AGENT-TASKBOOK].
+**Procurement and maintenance paths (conceptual recommendation)**: beyond the implementation elements, each project needs a clear "who procures, who maintains, how often inspected" path so the concept does not stop at drawings. The paths below are reference frameworks; formal procurement must follow government procurement, tendering and industry rules [source:AGENT-TASKBOOK]:
+
+| Project | Suggested procurement/acquisition path | Maintenance responsibility and cycle | Suggested asset ownership | Risk trigger |
+| --- | --- | --- | --- | --- |
+| JZ-01 Slow-mobility gap stitching | Public works project + municipal facility program | District street office annual inspection | Public asset | Structural safety anomaly |
+| JZ-02 Qinghe innovation waterfront | Park investment + ecological review | Landscape operator quarterly maintenance | Park + public composite | Ecological monitoring exceedance |
+| JZ-03 Near-campus transfer street | Multi-source financing + property negotiation | Transfer platform annual evaluation | Property owner + operator co-managed | No transfer for 2 consecutive years |
+| JZ-04 Dazhongsi four-quadrant connection | Joint rail/municipal project | Transport authority periodic inspection | Municipal asset | Engineering infeasibility |
+| JZ-05 AI public-service node | Public-private partnership + compute-service procurement | Platform operator monthly inspection | Public-private co-managed | Safety violation |
+| JZ-06 Event-week route | Market-based recruitment + event permit | Event operator pre-event inspection | Event operation asset | Safety-risk shutdown |
+
+**Implementation milestones (conceptual timeline)**: aligned with the solicitation cycle and urban-renewal rhythm, the framework is "near-term pilot (0-1y) - mid-term deepening (1-3y) - long-term governance (3-6y)", validating demand first through lightweight facilities, operations and service platforms, then entering construction once official regulatory, municipal, transport and property conditions are confirmed [source:AGENT-TASKBOOK]:
+
+| Milestone | Time window (concept) | Key deliverable | Gate condition |
+| --- | --- | --- | --- |
+| M1 Pilot launch | 0-1y | Lightweight facilities + scenario opening + community participation pilot | Event safety and data-compliance plan approved |
+| M2 Scheme deepening | 1-3y | Renewal-project implementation scheme + specialized design | Official regulatory/road-redline/property conditions clarified |
+| M3 Construction and operation | 3-6y | Phased construction + long-term operation mechanism | Project approval, funding and approval path in place |
+
+The milestones and procurement paths above are conceptual recommendations and do not constitute implementation commitments; actual progress follows official plans and professional conclusions.
+
 
 
 Phasing is distinguished from the 100-day solicitation cycle: the solicitation cycle is the deadline for submitting deliverables; implementation phasing is the advancement path of urban renewal and construction. The proposal proposes early pilot, mid-term renewal and long-term governance frameworks, marking which can start with lightweight facilities, operation activities and service platforms, and which must await confirmed regulatory plans, municipal, transport and ownership conditions. For the annual event system, developer-community operation, scenario open days, public experience routes and international communication mechanisms, the prose states operating object, frequency, responsibility boundary, conversion path and risk, not just slogans.
@@ -264,5 +313,5 @@ This proposal does not claim official approval, approved regulatory plans, final
 - data/processed/agent_task_requirements.csv
 - data/processed/source_use_matrix.csv
 - data/processed/missing_data_checklist.csv
-- Complete machine index: see `sources.json`, `metrics.json`, `compliance_matrix.json`, `standard_matrix.json` and `design_depth_matrix.json`
+The complete machine index lives in `sources.json`, `metrics.json`, `compliance_matrix.json`, `standard_matrix.json` and `design_depth_matrix.json`; the bibliography entry here is keyed to the site package registry, with full provenance and licenses in the structured source list [source:SITE-PACKAGE].
 - This bibliography entry uses the site-package register; complete provenance and licenses are in the structured source list [source:SITE-PACKAGE]

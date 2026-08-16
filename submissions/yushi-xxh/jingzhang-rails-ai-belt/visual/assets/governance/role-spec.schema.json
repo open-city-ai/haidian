@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.org/jingzhang-rails-ai-belt/role-spec.schema.json",
+  "title": "Symbiosis Belt Role Specification 0.1",
+  "description": "Machine-readable human-role register for the belt. Every role carries qualifications, authority, an absence prohibition, and an incompatibility list. Roles are concept-grade governance options, not confirmed agencies.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["spec_version", "roles"],
+  "properties": {
+    "spec_version": { "const": "0.1" },
+    "roles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role_id", "name", "qualifications", "authority", "absence_prohibition", "incompatible_with"],
+        "properties": {
+          "role_id": { "type": "string", "pattern": "^R-[A-Z0-9-]+$" },
+          "name": { "type": "string" },
+          "qualifications": { "type": "array", "items": { "type": "string" } },
+          "authority": { "type": "array", "items": { "type": "string" } },
+          "absence_prohibition": {
+            "type": "string",
+            "description": "What must not happen while this role is vacant: the linked node must not open or must fall back to its non-AI baseline."
+          },
+          "incompatible_with": {
+            "type": "array",
+            "items": { "type": "string", "pattern": "^R-[A-Z0-9-]+$" },
+            "description": "Roles that the same party must not hold simultaneously."
+          }
+        }
+      }
+    }
+  }
+}

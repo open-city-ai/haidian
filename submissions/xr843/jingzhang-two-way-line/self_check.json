@@ -76,15 +76,18 @@
         "submissions/xr843/jingzhang-two-way-line/standard_matrix.json",
         "submissions/xr843/jingzhang-two-way-line/visual/assets/run_twoway_tabletop.js",
         "submissions/xr843/jingzhang-two-way-line/visual/assets/twoway-protocol.schema.json",
+        "submissions/xr843/jingzhang-two-way-line/visual/assets/twoway-rules.js",
+        "submissions/xr843/jingzhang-two-way-line/visual/assets/twoway-runbook.js",
         "submissions/xr843/jingzhang-two-way-line/visual/assets/twoway-runbook.json",
         "submissions/xr843/jingzhang-two-way-line/visual/assets/twoway-tabletop-evidence.json",
+        "submissions/xr843/jingzhang-two-way-line/visual/assets/twoway-tabletop.js",
         "submissions/xr843/jingzhang-two-way-line/visual/index.en.html",
         "submissions/xr843/jingzhang-two-way-line/visual/index.html"
       ],
       "ai_package_stages": {
         "submissions/xr843/jingzhang-two-way-line": "formal"
       },
-      "total_bytes": 19419457,
+      "total_bytes": 19483120,
       "maintainer_bypass": false
     },
     "stderr": ""
@@ -142,6 +145,9 @@
       "ok": true,
       "issues": [],
       "metrics_seen": {
+        "greenway_length_m": 7829.5,
+        "crossing_node_count": 8.0,
+        "ai_scenario_card_count": 12.0,
         "site_area_sqm": 11400064.345,
         "key_area_total_sqm": 3683996.587,
         "key_area_zhongzhiyuan_sqm": 1921022.69,
@@ -149,8 +155,6 @@
         "key_area_dazhongsi_sqm": 719992.544,
         "land_use_area_sqm": 11399406.735,
         "road_length_m": 38092.4,
-        "greenway_length_m": 7829.5,
-        "crossing_node_count": 8.0,
         "road_area_ratio": 0.064998,
         "green_space_area_sqm": 1208541.249,
         "green_ratio": 0.106012,
@@ -163,7 +167,6 @@
         "phase_2_area_sqm": 2496922.474,
         "phase_3_area_sqm": 1693109.632,
         "ai_scenario_node_count": 12.0,
-        "ai_scenario_card_count": 12.0,
         "ai_test_scenario_count": 3.0,
         "user_persona_count": 7.0,
         "ai_pilgrimage_landmark_count": 4.0,
@@ -189,8 +192,8 @@
         "proposal_reference_counts": {
           "source": 25,
           "standard": 6,
-          "depth": 16,
-          "data": 20,
+          "depth": 15,
+          "data": 19,
           "metric": 34
         }
       }
@@ -272,7 +275,7 @@
       "result": "pass",
       "severity": "info",
       "target": "visual/index.html",
-      "message": "visual/index.html and index.en.html are offline-static with zero scripts; every data-metric span matches metrics.json."
+      "message": "visual/index.html and index.en.html are offline self-contained: no remote requests, no iframe, no form and no tracking; every data-metric span matches metrics.json. The Two-Way Protocol tabletop section runs packaged scripts (twoway-rules.js + twoway-runbook.js + twoway-tabletop.js) locally in the page, and degrades to a noscript pointer to the Node runner and the recorded evidence file."
     },
     {
       "check_id": "BILINGUAL_PAIRING",

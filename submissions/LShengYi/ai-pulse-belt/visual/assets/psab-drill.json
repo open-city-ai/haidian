@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0.0",
+  "psab_version": "1.0",
+  "package_version": "v10.8.0",
+  "mode": "drill",
+  "intended_use": "自否推演回执：用 PSAB 自己的校验器对其边界样例执行推演，找出规范本身的真实缺口并登记，不掩盖、不假装已修复",
+  "sample_count": 3,
+  "gap_count": 3,
+  "gaps": [
+    {
+      "sample_id": "bnd-1",
+      "label": "data_cross_border",
+      "zh": "数据跨境声明",
+      "claim": "服务数据处理涉及跨境流动",
+      "probe": "passport.data_cross_border = \"EU/China egress 30-day retention\"",
+      "expected": "ADM-1 应有必填承载字段",
+      "actual_gap": "CR-001: passport_fields 无 data_cross_border 条目；ADM-1 无法核验该声明",
+      "found_by": "psab-validate.js --drill",
+      "gap_id": "CR-001",
+      "result": "GAP"
+    },
+    {
+      "sample_id": "bnd-2",
+      "label": "hearing_record",
+      "zh": "听证留档",
+      "claim": "公众委员会听证结论应强制留档",
+      "probe": "E0.evidence.hearing_record = \"minutes_2026-08-14.pdf\"",
+      "expected": "E0 最少证据清单应含听证留档强制项",
+      "actual_gap": "CR-002: E0 evidence list 无 hearing_record；核验器无法判定留档缺失",
+      "found_by": "psab-validate.js --drill",
+      "gap_id": "CR-002",
+      "result": "GAP"
+    },
+    {
+      "sample_id": "bnd-3",
+      "label": "gain_allocation",
+      "zh": "增益分配",
+      "claim": "AI 增益归属与受益者应登记",
+      "probe": "BOOST.gain_allocation = \"savings split: public fund 60 / operator 40\"",
+      "expected": "BOOST 段应有增益分配登记项",
+      "actual_gap": "CR-003: BOOST clause 无 gain_allocation 字段；原则在正文、schema 无承载",
+      "found_by": "psab-validate.js --drill",
+      "gap_id": "CR-003",
+      "result": "GAP"
+    }
+  ],
+  "exit_code_contract": "1 (gaps found, by design)"
+}

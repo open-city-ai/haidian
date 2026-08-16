@@ -95,6 +95,43 @@ class VisualReviewTests(unittest.TestCase):
             self.assertFalse(report.ok)
             self.assertIn("VISUAL_METRIC_MISMATCH", {issue.check_id for issue in report.issues})
 
+    def test_unknown_required_metric_explains_geometry_backed_contract(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            metrics_path = submission / "metrics.json"
+            metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+            metrics["metrics"]["green_ratio"] = {
+                "status": "unknown",
+                "value": None,
+                "reason": "Green-space geometry has not been prepared.",
+            }
+            metrics_path.write_text(json.dumps(metrics), encoding="utf-8")
+            html = VALID_HTML.replace(
+                '<span data-metric="green_ratio" data-value="0.2">0.2</span>',
+                '<span data-metric="green_ratio">pending</span>',
+            )
+            (submission / "visual" / "index.html").write_text(html, encoding="utf-8")
+
+            report = review_visual(submission)
+
+        issue = next(item for item in report.issues if item.check_id == "VISUAL_METRIC_MISSING")
+        self.assertIn("metrics.json status is `unknown`", issue.message)
+        self.assertIn("recomputable from submitted geometry", issue.message)
+        self.assertIn("Do not substitute unknown", issue.message)
+
+    def test_boolean_metric_value_is_not_coerced_to_one(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            metrics_path = submission / "metrics.json"
+            metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+            metrics["metrics"]["green_ratio"]["value"] = True
+            metrics_path.write_text(json.dumps(metrics), encoding="utf-8")
+
+            report = review_visual(submission)
+
+        self.assertFalse(report.ok)
+        self.assertIn("VISUAL_METRIC_SOURCE_MISSING", {issue.check_id for issue in report.issues})
+
     def test_metric_attribute_order_does_not_change_validation(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             submission = write_valid_visual_package(Path(tmp))

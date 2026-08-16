@@ -95,7 +95,7 @@ When upgrading a v1 package to v2, work through these steps in order:
 3. Move all exhaustive source/metric/ID lists to `sources.json` / `metrics.json`.
 4. Confirm every required chapter has at least one evidence marker.
 5. Re-run `scripts/render_proposal_html.py` to regenerate the report.
-6. Re-run `scripts/finalize_submission.py` to update hashes.
+6. Run `scripts/refresh_submission_manifest.py` to update the declared hashes of the existing `ready_for_review` package.
 7. Re-run `scripts/self_check_submission.py --mark-self-checked --json`.
 
 ## Common evidence-marker mistakes

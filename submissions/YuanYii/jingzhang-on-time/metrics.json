@@ -1,0 +1,202 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11382999.929,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "EPSG:4548 包内复算",
+   "confidence": "high",
+   "assumptions": [
+    "provisional boundary"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.017497,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "green_space_area/site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "概念绿地斑块口径"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.0,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "public_space_area/site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "public_space 为线状表达"
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 199167.922,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "包内复算",
+   "confidence": "medium",
+   "assumptions": [
+    "概念斑块"
+   ]
+  },
+  "tod_500m_union_pct": {
+   "status": "known",
+   "value": 20.6,
+   "unit": "pct",
+   "source_files": [
+    "visual/assets/baseline_registry.json#BL-03"
+   ],
+   "formula": "三站点 500m 圈并集（EPSG:4548 包内复算）",
+   "confidence": "medium",
+   "assumptions": [
+    "synthetic 情景测算",
+    "待官方路网/站点数据现场核验后复算"
+   ]
+  },
+  "green_300m_coverage_pct": {
+   "status": "known",
+   "value": 85.6,
+   "unit": "pct",
+   "source_files": [
+    "visual/assets/baseline_registry.json#BL-04"
+   ],
+   "formula": "绿地斑块 300m 缓冲区覆盖（EPSG:4548 包内复算）",
+   "confidence": "medium",
+   "assumptions": [
+    "synthetic 情景测算",
+    "待官方绿地斑块数据现场核验后复算"
+   ]
+  },
+  "greenway_gaps": {
+   "status": "known",
+   "value": 15,
+   "unit": "count",
+   "source_files": [],
+   "formula": "EPSG:4548 实测口径沿用",
+   "confidence": "medium",
+   "assumptions": [
+    "沿用 v9.8 口径"
+   ]
+  },
+  "spine_length_m": {
+   "status": "known",
+   "value": 9500.0,
+   "unit": "m",
+   "source_files": [],
+   "formula": "遗址公园主轴公开口径",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "building_footprint_area_sqm": {
+   "status": "unknown",
+   "value": null,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "待建筑普查",
+   "confidence": "low",
+   "assumptions": [
+    "buildings status=unknown"
+   ],
+   "reason": "官方建筑普查未发布，buildings 保持 status=unknown"
+  },
+  "punctuality_rate": {
+   "status": "unknown",
+   "value": null,
+   "unit": "pct",
+   "source_files": [],
+   "formula": "正点完成/总次数",
+   "confidence": "low",
+   "assumptions": [
+    "运行图日志，试点后产生"
+   ],
+   "reason": "待首班车试点运行后以运行图日志产生；不以设计蓝图冒充实测绩效"
+  },
+  "delay_rate": {
+   "status": "unknown",
+   "value": null,
+   "unit": "pct",
+   "source_files": [],
+   "formula": "晚点次数/总次数",
+   "confidence": "low",
+   "assumptions": [],
+   "reason": "待首班车试点运行后以运行图日志产生；不以设计蓝图冒充实测绩效"
+  },
+  "window_execution_rate": {
+   "status": "unknown",
+   "value": null,
+   "unit": "pct",
+   "source_files": [],
+   "formula": "实执周数/计划周数",
+   "confidence": "low",
+   "assumptions": [],
+   "reason": "待首班车试点运行后以运行图日志产生；不以设计蓝图冒充实测绩效"
+  },
+  "transfer_connection_rate": {
+   "status": "unknown",
+   "value": null,
+   "unit": "pct",
+   "source_files": [],
+   "formula": "按时交接/跨区总次数",
+   "confidence": "low",
+   "assumptions": [],
+   "reason": "待首班车试点运行后以运行图日志产生；不以设计蓝图冒充实测绩效"
+  },
+  "compensation_fulfilment_rate": {
+   "status": "unknown",
+   "value": null,
+   "unit": "pct",
+   "source_files": [],
+   "formula": "已兑现/触发补偿",
+   "confidence": "low",
+   "assumptions": [],
+   "reason": "待首班车试点运行后以运行图日志产生；不以设计蓝图冒充实测绩效"
+  },
+  "scenario_card_count": {
+   "status": "known",
+   "value": 8,
+   "unit": "count",
+   "source_files": [],
+   "formula": "设计计数",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "user_profile_count": {
+   "status": "known",
+   "value": 7,
+   "unit": "count",
+   "source_files": [],
+   "formula": "设计计数",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "signal_post_count": {
+   "status": "known",
+   "value": 7,
+   "unit": "count",
+   "source_files": [],
+   "formula": "设计计数",
+   "confidence": "high",
+   "assumptions": []
+  }
+ }
+}

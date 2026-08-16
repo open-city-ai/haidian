@@ -1,0 +1,118 @@
+{
+ "schema_version": "role-spec-1",
+ "generated_by": "analysis/build_roles.py",
+ "status_zh": "**本文件是岗位规格，不是任命。** 本方案不指名任何单位或个人，全部岗位的 assignment_status 均为 unassigned；缺岗时禁止什么，写在每一条的 when_unstaffed_zh 里。",
+ "status_en": "This file is a specification of posts, not an appointment. This proposal names no organisation and no person, every post is unassigned, and what is prohibited while a post is empty is stated on each entry.",
+ "borrowed_from_zh": "做法公开借鉴自 Sonike/jingzhang-handover-line 的 role-spec.json：岗位的职责边界与缺岗禁令。本包的角色一直写在正文表格里，从来没有写成可核对的岗位（E217）。",
+ "roles": [
+  {
+   "role_id": "ROLE-PARK-OPERATOR",
+   "title_zh": "公园运营方",
+   "title_en": "park operator",
+   "appears_in": [
+    "R1",
+    "R3"
+   ],
+   "may_decide_zh": "开放时段、场地占用与活动安全预案；一次读数在现场是否按规程完成。",
+   "may_not_decide_zh": "限差 F 的取值；一次超限读数是否可以不上报；标石与读数牌的位置变更。",
+   "second_party_zh": "专业机构（读数规程）；居民代表（开放时段）",
+   "when_unstaffed_zh": "L1 证据厅不得开放；主脊上的智能层服务不得启用，仅保留固定导视、常亮照明与人工求助电话。",
+   "assignment_status": "unassigned"
+  },
+  {
+   "role_id": "ROLE-PROFESSIONAL-BODY",
+   "title_zh": "专业机构",
+   "title_en": "professional body",
+   "appears_in": [
+    "R2",
+    "R5"
+   ],
+   "may_decide_zh": "读数规程与仪器校准要求；限差 F 的技术论证与首版建议值。",
+   "may_not_decide_zh": "限差 F 的最终取值（须四方复核主体共同表决）；任何一次已公示读数的事后修改。",
+   "second_party_zh": "居民代表与运营方（表决）；国际访客（可复核性）",
+   "when_unstaffed_zh": "不得新增水准点，不得开展 F1 级场景；已运行场景降级为无 AI 等价路径。",
+   "assignment_status": "unassigned"
+  },
+  {
+   "role_id": "ROLE-RESIDENT-REP",
+   "title_zh": "居民代表",
+   "title_en": "resident representative",
+   "appears_in": [
+    "R2",
+    "R8"
+   ],
+   "may_decide_zh": "发起复测的请求；对一次读数提出异议并要求原值与更正值并列公示。",
+   "may_not_decide_zh": "读数本身的取值；限差 F 的技术口径；他人隐私数据的调阅。",
+   "second_party_zh": "专业机构（技术口径）；运营方（现场安排）",
+   "when_unstaffed_zh": "不得表决限差 F；不得开展涉及个人权益的 F2 级场景。",
+   "assignment_status": "unassigned"
+  },
+  {
+   "role_id": "ROLE-INTL-VISITOR",
+   "title_zh": "国际访客",
+   "title_en": "international visitor",
+   "appears_in": [
+    "R2",
+    "R8"
+   ],
+   "may_decide_zh": "以外部读者身份判断一次记录是否可被独立复核，并公开这一判断。",
+   "may_not_decide_zh": "任何本地事项；读数取值；场景的启停。",
+   "second_party_zh": "无——该角色的意义正在于不承担本地利害",
+   "when_unstaffed_zh": "年度归零仪式的读数交换缺一方，闭合记录标注为「四方缺一」，不得对外称已互认。",
+   "assignment_status": "unassigned"
+  },
+  {
+   "role_id": "ROLE-ROAD-AUTHORITY",
+   "title_zh": "市政道路管理方",
+   "title_en": "municipal road authority",
+   "appears_in": [
+    "R4",
+    "R6"
+   ],
+   "may_decide_zh": "道路范围内测点的设置条件与施工时段；跨管辖联测的己方边界。",
+   "may_not_decide_zh": "轨道站厅内的测点；他方管辖段的读数是否有效。",
+   "second_party_zh": "轨道运营方（站—点合一处）；专业机构（测点等级）",
+   "when_unstaffed_zh": "三等点不得在道路范围内布设；R4 之后的 R7 分段准入不得启动。",
+   "assignment_status": "unassigned"
+  },
+  {
+   "role_id": "ROLE-RAIL-OPERATOR",
+   "title_zh": "轨道运营方",
+   "title_en": "rail operator",
+   "appears_in": [
+    "R4"
+   ],
+   "may_decide_zh": "站厅内测点位置与客流时段的取读数窗口。",
+   "may_not_decide_zh": "站外道路测点；限差 F；跨管辖互认的成立与否。",
+   "second_party_zh": "市政道路管理方（交界）；专业机构（等级）",
+   "when_unstaffed_zh": "站—点合一不成立，三处站厅测点缺位，复测须改在人流较稀处进行并标注。",
+   "assignment_status": "unassigned"
+  },
+  {
+   "role_id": "ROLE-OPERATING-ENTITY",
+   "title_zh": "运营主体",
+   "title_en": "operating entity",
+   "appears_in": [
+    "R7"
+   ],
+   "may_decide_zh": "设备的投放批次与分段准入申请；设备退回与调度。",
+   "may_not_decide_zh": "准入是否通过；闭合记录的取值；超限后是否继续运行。",
+   "second_party_zh": "管辖各方（联测）；专业机构（限差）",
+   "when_unstaffed_zh": "低速设备不得上路；已在路上的设备按 S06 的无 AI 等价路径退回人工接驳。",
+   "assignment_status": "unassigned"
+  },
+  {
+   "role_id": "ROLE-COMMUNITY-SELFORG",
+   "title_zh": "社区自组织",
+   "title_en": "community self-organisation",
+   "appears_in": [
+    "R3"
+   ],
+   "may_decide_zh": "志愿取读数的排班；社区侧的问题集征集方式。",
+   "may_not_decide_zh": "读数规程；限差；对外公示口径。",
+   "second_party_zh": "公园运营方（场地）；专业机构（规程）",
+   "when_unstaffed_zh": "四周闭合试验的社区站缺位，闭合记录标注为「三站中缺一」，不计入合格周期。",
+   "assignment_status": "unassigned"
+  }
+ ]
+}

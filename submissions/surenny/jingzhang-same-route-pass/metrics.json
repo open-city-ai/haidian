@@ -1,0 +1,284 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "projected area of submitted provisional SITE_BOUNDARY in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-SITE-001"
+      ]
+    },
+    "land_use_partition_area_sqm": {
+      "status": "known",
+      "value": 11412832.818,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum projected areas of topology-derived LAND_USE partition",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-SITE-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 343329.353,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum projected areas of conceptual BUILDING_FOOTPRINT features",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-SITE-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.199654,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "projected GREEN_SPACE area / submitted provisional boundary area",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-SITE-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.208737,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "projected PUBLIC_SPACE area / submitted provisional boundary area",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-SITE-001"
+      ]
+    },
+    "concept_walk_network_length_m": {
+      "status": "known",
+      "value": 1065.997,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "projected length of conceptual staffed-and-paper access route",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-SITE-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count required provisional KEY_AREA features",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-SITE-001"
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/taskbook-deliverables.json"
+      ],
+      "formula": "count scenario cards",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/taskbook-deliverables.json"
+      ],
+      "formula": "count task-based synthetic personas",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/taskbook-deliverables.json"
+      ],
+      "formula": "count industry/professional test scenarios",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/taskbook-deliverables.json"
+      ],
+      "formula": "count removable concept landmarks",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "named_human_role_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/same-route-protocol.json"
+      ],
+      "formula": "count named human decision and accountability roles",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "continuity_gate_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/same-route-protocol.json"
+      ],
+      "formula": "count(visual/assets/same-route-protocol.json.continuity_gates)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "synthetic_route_script_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/same-route-protocol.json"
+      ],
+      "formula": "count(visual/assets/same-route-protocol.json.synthetic_scripts)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "unconsented_separation_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/same-route-protocol.json"
+      ],
+      "formula": "count(unconsented system splits) / count(valid route tasks)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-RELATION-001"
+      ],
+      "reason": "No authorized field site, legal/professional determination, affected-person co-review, or independent operating baseline is available."
+    },
+    "same_route_chain_coverage_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/same-route-protocol.json"
+      ],
+      "formula": "count(handoffs preserving the pass) / count(required handoffs)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-RELATION-001"
+      ],
+      "reason": "No authorized field site, legal/professional determination, affected-person co-review, or independent operating baseline is available."
+    },
+    "supporter_choice_revoke_completion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/same-route-protocol.json"
+      ],
+      "formula": "count(choice and revocation tasks completed) / count(valid tasks)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-RELATION-001"
+      ],
+      "reason": "No authorized field site, legal/professional determination, affected-person co-review, or independent operating baseline is available."
+    },
+    "post_hazard_reunification_time_minutes": {
+      "status": "unknown",
+      "value": null,
+      "unit": "minutes",
+      "source_files": [
+        "visual/assets/same-route-protocol.json"
+      ],
+      "formula": "minutes from danger-clear decision to named reunion closure",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-RELATION-001"
+      ],
+      "reason": "No authorized field site, legal/professional determination, affected-person co-review, or independent operating baseline is available."
+    },
+    "ordinary_service_continuity_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/same-route-protocol.json"
+      ],
+      "formula": "count(tasks completed or order-preserved without AI) / count(valid tasks)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-RELATION-001"
+      ],
+      "reason": "No authorized field site, legal/professional determination, affected-person co-review, or independent operating baseline is available."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "requires approved regulatory planning conditions",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved FAR controls are unavailable."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "requires approved height and professional constraints",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved height, aviation, heritage, and engineering controls are unavailable."
+    }
+  }
+}

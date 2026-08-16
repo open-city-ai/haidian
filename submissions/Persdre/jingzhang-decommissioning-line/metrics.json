@@ -1,0 +1,469 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims. Recalculate when the official polygon is published."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1929201.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-001) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional rough polygon calibrated to the announced 1,921,000 sqm; not an official redline."
+      ]
+    },
+    "key_area_origin_community_area_sqm": {
+      "status": "known",
+      "value": 1043236.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-002) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional rough polygon calibrated to the announced 1,043,000 sqm; not an official redline."
+      ]
+    },
+    "key_area_dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720454.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-003) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional rough polygon calibrated to the announced 720,000 sqm; not an official redline."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1382263.392,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space_features)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Counts only the heritage-park green spine (code 1401) and the N. 5th Ring protective belt (code 1402) drawn in this package; attached green space inside parcels is not included, so this is a floor, not a statutory green-space rate."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.121115,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Denominator uses the provisional boundary area; not a statutory green-space rate."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 25130.992,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space_features)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Counts only the 12 lifecycle nodes and 3 station plazas explicitly drawn by this proposal; the green spine itself is additional open space accounted under green_space."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.002202,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Deliberately narrow definition (drawn nodes and plazas only); read together with green_ratio."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 21852.65,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Only the 12 concept buildings proposed by this package (3 station clusters); existing building stock is not digitized, so this is not a district-wide footprint total."
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.001915,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Covers proposed concept buildings only; not comparable with statutory building-density indicators."
+      ]
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(footprint_area * floors) requires approved intensity controls",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Floor counts in buildings.geojson are indicative concept sketches. Publishing a floor-area total would fake regulatory precision; pending official FAR and plot controls."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and the official site boundary are not present in the public site package."
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(polygon_area(road_area_features))",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "This package submits road centerlines only; official road redlines are not public, so drawing road-area polygons would fabricate right-of-way widths."
+    },
+    "road_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "road_area_sqm / site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Depends on road_area_sqm, which is pending official road redlines."
+    },
+    "land_use_area_05_sqm": {
+      "status": "known",
+      "value": 2739920.6,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(f) for f in land_use if land_use_code == '05')",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept-level zoning partition of the provisional boundary; not statutory land-use zoning."
+      ]
+    },
+    "land_use_area_0701_sqm": {
+      "status": "known",
+      "value": 2263552.7,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(f) for f in land_use if land_use_code == '0701')",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept-level zoning partition of the provisional boundary; not statutory land-use zoning."
+      ]
+    },
+    "land_use_area_0802_sqm": {
+      "status": "known",
+      "value": 4157786.7,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(f) for f in land_use if land_use_code == '0802')",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept-level zoning partition of the provisional boundary; not statutory land-use zoning."
+      ]
+    },
+    "land_use_area_0804_sqm": {
+      "status": "known",
+      "value": 814278.6,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(f) for f in land_use if land_use_code == '0804')",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept-level zoning partition of the provisional boundary; not statutory land-use zoning."
+      ]
+    },
+    "land_use_area_1401_sqm": {
+      "status": "known",
+      "value": 1330059.8,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(f) for f in land_use if land_use_code == '1401')",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept-level zoning partition of the provisional boundary; not statutory land-use zoning."
+      ]
+    },
+    "land_use_area_1402_sqm": {
+      "status": "known",
+      "value": 52203.6,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(f) for f in land_use if land_use_code == '1402')",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept-level zoning partition of the provisional boundary; not statutory land-use zoning."
+      ]
+    },
+    "land_use_area_16_sqm": {
+      "status": "known",
+      "value": 55040.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(f) for f in land_use if land_use_code == '16')",
+      "confidence": "medium",
+      "assumptions": [
+        "Reserved white land held for the Decommissioning Yard and materials bank; deliberate headroom, not unassigned leftover."
+      ]
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 4033769.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-001) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Spatial band of phase 1 (registry opens; legacy inventory); derived from the provisional boundary."
+      ]
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 2259237.6,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-002) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Spatial band of phase 2 (overhaul yard and sutures); derived from the provisional boundary."
+      ]
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 5119834.6,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-003) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Spatial band of phase 3 (decommissioning yard and second-life market); derived from the provisional boundary."
+      ]
+    },
+    "spine_length_m": {
+      "status": "known",
+      "value": 9725.7,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "line_length(ROAD-001 greenway centerline) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Approximate alignment of the heritage-park greenway drawn from public descriptions; not a surveyed centerline."
+      ]
+    },
+    "lifecycle_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features where node_role == 'lifecycle_node')",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "station_plaza_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features where node_role == 'station_plaza')",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "suture_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(road features whose label contains '缝合口')",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "covenant_field_completeness_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(lifecycle nodes carrying all 5 covenant schema fields) / lifecycle_node_count",
+      "confidence": "high",
+      "assumptions": [
+        "Checks the covenant schema this proposal requires of others against its own submitted features; independently recomputable via tools/verify_covenants.py."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(rows in the AI scenario card table)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_active_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "scenario_card_count - scenario_card_self_deferred_count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_self_deferred_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario cards that fail this proposal's own admission rule and are deferred)",
+      "confidence": "high",
+      "assumptions": [
+        "Two cards cannot state a credible site-restoration standard from public evidence today, so the proposal's own admission rule defers them instead of promising them."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(rows in the persona table)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industry test-verification scenarios)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(AI pilgrimage landmarks: Covenant Hall, Public Observation Gallery, Decommissioning Hall)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "legacy_device_inventory_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "field_inventory(existing derelict smart street furniture within the belt)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No public register of existing derelict smart street furniture exists. Phase 1 makes this inventory its first deliverable rather than guessing a number now."
+    }
+  }
+}

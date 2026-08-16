@@ -2,262 +2,137 @@
   "schema_version": "0.1.0",
   "sources": [
     {
-      "id": "OFFICIAL-ANNOUNCEMENT",
-      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
-      "path": "brief/site-package/standards/references/project-official-announcement.md",
-      "publisher": "北京市规划和自然资源委员会海淀分局",
-      "published_date": "2026-05-09",
-      "accessed_date": "2026-08-07",
-      "source_type": "official_public",
-      "usable_for_formal": "yes",
-      "usage": "公告1.3/1.4/1.5的项目目标、三层范围约面积、三处重点区与设计任务。",
-      "limitation_zh": "不含精确GIS/CAD红线、道路红线或项目控规条件。"
-    },
-    {
-      "id": "AGENT-TASKBOOK",
-      "path": "brief/site-package/agent_taskbook.json",
-      "publisher": "User-provided cleared document",
-      "source_type": "user_provided_cleared",
-      "usable_for_formal": "yes",
-      "usage": "共创原则、三大定位、五大功能、六项智能体任务、场景/品牌/运营要求与边界条款。",
-      "limitation_zh": "非法定规划依据，空间落地必须表述为概念建议。"
-    },
-    {
       "id": "SITE-PACKAGE",
       "path": "brief/site-package/",
-      "publisher": "open-city-ai repository maintainers",
-      "source_type": "repository_public_package",
-      "usable_for_formal": "yes",
-      "usage": "设计任务、可编辑图层、枚举、标准、本地快照、指标范围与JSON Schema。",
-      "limitation_zh": "容积率、高度、密度、退线等均为缺资料状态。"
+      "source_type": "official_public",
+      "usage": "Project brief, enums, allowed design space, ranges, and schemas."
     },
     {
       "id": "SOURCE-REGISTRY",
       "path": "data/source_registry.json",
-      "publisher": "open-city-ai repository maintainers",
       "source_type": "repository_public_registry",
-      "usable_for_formal": "yes",
-      "usage": "区分formal-ready、background_only、provisional_only和needs-review资料。",
-      "limitation_zh": "不得把背景或临时资料升级为法定控制依据。"
+      "usage": "Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials."
     },
     {
       "id": "PROCESSED-FACT-PACK",
       "path": "data/processed/agent_fact_pack.md",
-      "publisher": "open-city-ai repository maintainers",
       "source_type": "repository_processed_reference",
-      "usable_for_formal": "yes",
-      "usage": "任务、范围、来源用途与缺资料清单的阅读导航。",
-      "limitation_zh": "不是新的权威来源，事实仍回引原始source id。"
+      "usage": "Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source."
     },
     {
       "id": "BOUNDARY-SOURCE",
       "path": "brief/site-package/geometry/provisional_boundaries.geojson",
-      "publisher": "open-city-ai repository maintainers",
       "source_type": "agent_inferred_from_public_data",
-      "usable_for_formal": "provisional_only",
-      "usage": "SITE_BOUNDARY临时生成、可视化与拓扑自检。",
-      "limitation_zh": "official_boundary=false；不得作为官方红线、审批或精确面积依据。"
+      "usage": "Submitted site boundary geometry source (provisional)."
     },
     {
       "id": "KEY-AREA-SOURCE",
       "path": "brief/site-package/geometry/provisional_boundaries.geojson",
-      "publisher": "open-city-ai repository maintainers",
       "source_type": "agent_inferred_from_public_data",
-      "usable_for_formal": "provisional_only",
-      "usage": "三处重点区域的临时详细设计表达。",
-      "limitation_zh": "三个矩形仅为粗略范围，不是地块、道路或审批边界。"
+      "usage": "Three required detailed-design key area boundaries (provisional)."
     },
     {
-      "id": "JZ-PARK-OFFICIAL",
-      "url": "https://yllhj.beijing.gov.cn/zwgk/zwxx/202306/t20230626_3145467.shtml",
-      "publisher": "北京市园林绿化局",
-      "published_date": "2023-06-26",
-      "accessed_date": "2026-08-07",
+      "id": "OFFICIAL-ANNOUNCEMENT",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
       "source_type": "official_public",
-      "usable_for_formal": "background_only",
-      "usage": "京张铁路遗址公园一期已开放范围、遗产保护与公共空间作用的背景事实。",
-      "limitation_zh": "不提供本次征集总体范围内的公园精确边界，也不能支持新增工程线位。"
+      "usage": "Official announcement tasks, scope levels, key areas, language, and deliverable context."
     },
     {
-      "id": "QINGHUAYUAN-HERITAGE",
-      "url": "https://wwj.beijing.gov.cn/bjww/362771/362782/743928533/743928745/index.html",
-      "publisher": "北京市文物局",
-      "published_date": "2026-02-14",
-      "accessed_date": "2026-08-07",
+      "id": "AGENT-TASKBOOK",
+      "path": "brief/site-package/agent_taskbook.json",
+      "source_type": "user_provided_cleared",
+      "usage": "Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause."
+    },
+    {
+      "id": "HD-JINGZHANG-BLOCK-PLAN-20260811",
+      "url": "http://bj.people.com.cn/n2/2026/0812/c82840-41665678.html",
+      "publisher": "北京日报（人民网转载）；首都之窗北京要闻 2026-08-12 列目；市规划自然资源委为获批口径来源",
+      "retrieved_at": "2026-08-13",
       "source_type": "official_public",
-      "usable_for_formal": "background_only",
-      "usage": "确认清华园车站旧址存在保护范围与建设控制地带，建立保守设计原则。",
-      "limitation_zh": "页面文字不能替代清权测绘polygon；本包未数字化紫线，不进行精确避让判断。"
+      "usage": "Authority for the 2026-08-11 approval of the block-level regulatory plan: full title (2024–2035), 9 blocks, ≈1668.2 ha, extents (E Xinjiekouwai / W Zhongguancun St / N Chengfu Rd / S Xizhimenwai), structure 'one belt, one axis, two centers, multiple nodes', industry path (old factories, underperforming towers; foundation models, agents, embodied AI), green-led renewal, 15-minute living circle, Phase II fishbone slow paths. Overlay structure only—do not import unpublished FAR, height, density, setbacks, or polygons.",
+      "title": "京张铁路遗址公园沿线街区控规获批 一条“绿带”建设引领区域城市更新",
+      "publication_date": "2026-08-12",
+      "retrieval_method": "manual review of publisher-controlled public webpages (People.cn reprint of Beijing Daily; CNR mirror; Capital Window listing)",
+      "spatial_scope": "textual extents of HD00–1601 et al. block plan; no official polygon published",
+      "temporal_scope": "approved 2026-08-11; horizon 2024–2035; retrieved 2026-08-13",
+      "license_or_reuse": "citation and factual paraphrase only; no external media redistributed",
+      "transformation": "structure overlay into proposal narrative; no geometry or numeric development control imported",
+      "limitations": "News coverage of an approved block plan is not adopted plan sheets. It cannot replace parcel polygons, FAR, height, density, setbacks, ownership, or utility capacity. The 1,668.2 ha figure must not be mixed with the competition's ≈11.4 km² provisional footprint. Zhongzhiyuan sits north of Chengfu Road and is outside these extents.",
+      "related_urls": [
+        "https://www.cnr.cn/bj/oiue/20260812/t20260812_527759014.shtml",
+        "https://www.beijing.gov.cn/ywdt/yaowen/"
+      ],
+      "package_usability": "not_in_approved_formal_sources__background_pending_review",
+      "registry_crosscheck_note": "This source is NOT listed in the repository source_registry approved_formal_sources. Inside this package it is treated as background/pending-review evidence only: it must not single-handedly support statutory claims ('正式叠合', '法定中心') or adopted metrics. Structural alignment based on it is labeled news-reported and conditional, pending registry review."
     },
     {
-      "id": "JZ-HISTORY",
-      "url": "https://www.nra.gov.cn/tlfc/tpsy/202204/t20220405_293018.shtml",
-      "publisher": "国家铁路局（转载中国铁路总公司资料）",
-      "accessed_date": "2026-08-07",
+      "id": "HD-JINGZHANG-CONTROL-PLAN-ADOPTION-20250208",
+      "url": "https://ghzrzyw.beijing.gov.cn/chengxiangguihua/ghlgg/hd_ghlgg/202502/t20250207_4005553.html",
+      "publisher": "北京市规划和自然资源委员会海淀分局",
+      "retrieved_at": "2026-08-13",
       "source_type": "official_public",
-      "usable_for_formal": "background_only",
-      "usage": "京张铁路1905-1909年自主勘测、设计、施工与管理的历史叙事。",
-      "limitation_zh": "只支持历史文化叙事，不支持空间控制。"
+      "usage": "Authority ledger for the draft consultation: plan title (then 2022–2035), consultation window 2024-12-19 to 2025-01-19, and selected road-junction / naming responses (Sidaokou / Jingbao Rd / Xiaozu North Roads). Confirms the HD00-1601 family existed as a public draft before the 2026-08-11 approval.",
+      "title": "关于《京张铁路遗址公园沿线（人工智能创新街区重点地区）街区控制性详细规划》（草案）公示采信情况的通告",
+      "publication_date": "2025-02-08",
+      "retrieval_method": "manual review of publisher-controlled public webpage",
+      "spatial_scope": "HD00-1601 and related street blocks / textual notice only",
+      "temporal_scope": "draft horizon 2022–2035; notice 2025-02-08; retrieved 2026-08-13",
+      "license_or_reuse": "citation and factual paraphrase only; no external media redistributed",
+      "transformation": "title and process confirmation only; no geometry or intensity imported",
+      "limitations": "The notice body does not publish an applicable parcel polygon, FAR, height schedule, density, setback, ownership or utility capacity. Draft horizon 2022–2035 was later published as 2024–2035 in the approval news—do not treat the draft year as the adopted year.",
+      "package_usability": "not_in_approved_formal_sources__background_pending_review",
+      "registry_crosscheck_note": "This source is NOT listed in the repository source_registry approved_formal_sources. Inside this package it is treated as background/pending-review evidence only: it must not single-handedly support statutory claims ('正式叠合', '法定中心') or adopted metrics. Structural alignment based on it is labeled news-reported and conditional, pending registry review."
     },
     {
-      "id": "CASE-KENDALL",
-      "url": "https://engine.xyz/blueprint",
-      "publisher": "The Engine",
-      "accessed_date": "2026-08-07",
-      "source_type": "trusted_primary_case",
-      "usable_for_formal": "background_only",
-      "usage": "科研团队从技术、IP到市场和融资准备的转化课程机制。",
-      "limitation_zh": "美国制度与成本环境不可直接照搬。"
-    },
-    {
-      "id": "CASE-TORONTO",
-      "url": "https://hubs.marsdd.com/location/mars-centre/",
-      "publisher": "MaRS Discovery District",
-      "accessed_date": "2026-08-07",
-      "source_type": "trusted_primary_case",
-      "usable_for_formal": "background_only",
-      "usage": "v0.5.7 起退出主对照表；保留作邻接型创新中心背景参照。医疗首用户改以海淀公开 AI+健康政策为本地锚点。",
-      "limitation_zh": "页面为园区机构自述；邻接不等于同址。不再作为「本方案转译」主证据。"
-    },
-    {
-      "id": "CASE-PARIS",
-      "url": "https://www.universite-paris-saclay.fr/collaborations/transfert-de-technologie",
-      "publisher": "Université Paris-Saclay",
-      "accessed_date": "2026-08-07",
-      "source_type": "trusted_primary_case",
-      "usable_for_formal": "background_only",
-      "usage": "v0.5.7 起退出主对照表；PoC→孵化链改由 The Engine 阶段门与 OPENLINE 七级链承担。铁路遗产宿主改引 Station F。",
-      "limitation_zh": "巨型校园足迹不可照搬；与 Station F 非单一治理体系。"
-    },
-    {
-      "id": "CASE-STATIONF",
-      "url": "https://stationf.co/about",
-      "publisher": "STATION F",
-      "accessed_date": "2026-08-09",
-      "source_type": "trusted_primary_case",
-      "usable_for_formal": "background_only",
-      "usage": "原铁路货站 Halle Freyssinet 转为创业校园：遗产宿主 + 项目制服务与共享设施同场的机制。",
-      "limitation_zh": "机构自述；校园规模、合作品牌与私有运营模式不可直接照搬；不构成已签约合作。"
-    },
-    {
-      "id": "CASE-NESTA",
-      "url": "https://www.nesta.org.uk/feature/innovation-methods/challenge-prizes/",
-      "publisher": "Nesta",
-      "accessed_date": "2026-08-09",
-      "source_type": "trusted_primary_case",
-      "usable_for_formal": "background_only",
-      "usage": "Challenge prizes：定义问题、公开征集、分阶段奖励与支持、按结果评判的出题语法。",
-      "limitation_zh": "奖金规模、评审与资助合同须本地另行设计；不构成海淀已设立挑战赛或采购承诺。"
-    },
-    {
-      "id": "CASE-SINGAPORE",
-      "url": "https://aisingapore.org/innovation/100e/",
-      "publisher": "AI Singapore",
-      "accessed_date": "2026-08-07",
-      "source_type": "trusted_primary_case",
-      "usable_for_formal": "background_only",
-      "usage": "由真实问题方、工程团队和项目经理共同完成PoC/MVP的100 Experiments机制。",
-      "limitation_zh": "共同资助、采购与数据共享在海淀须另行履行程序。"
-    },
-    {
-      "id": "CASE-HELSINKI",
-      "url": "https://www.hel.fi/en/urban-environment-and-traffic/urban-planning-and-construction/plans-and-building-projects/maria-area",
-      "publisher": "City of Helsinki",
-      "accessed_date": "2026-08-07",
-      "source_type": "trusted_primary_case",
-      "usable_for_formal": "background_only",
-      "usage": "旧医院改造为创业社区、保留多数旧建筑并分期扩建的经验。",
-      "limitation_zh": "项目同时包含拆除与迁建；产权、规模和财政机制不可直接比较。"
-    },
-    {
-      "id": "CASE-SEOUL",
-      "url": "https://english.seoul.go.kr/seoul-policy-archive/seoul-ai-hub/",
-      "publisher": "Seoul Metropolitan Government",
-      "accessed_date": "2026-08-07",
-      "source_type": "trusted_primary_case",
-      "usable_for_formal": "background_only",
-      "usage": "市政府设立、大学与国家研究机构联合运营的多节点研发基础设施、孵化与国际协作机制。",
-      "limitation_zh": "页面为政策案例自述，不构成算力规模、测试成效或独立绩效评估。"
-    },
-    {
-      "id": "CASE-TSUKUBA",
-      "url": "https://www.city.tsukuba.lg.jp/jigyosha/shigoto/1005138/1012899.html",
-      "publisher": "City of Tsukuba",
-      "accessed_date": "2026-08-07",
-      "source_type": "trusted_primary_case",
-      "usable_for_formal": "background_only",
-      "usage": "产学官金联盟、城市实证场与社会实施协作机制。",
-      "limitation_zh": "页面为政府项目介绍；科学城机构集聚不等于活跃街道或已证明成效。"
-    },
-    {
-      "id": "HAIDIAN-STATS-2025",
-      "url": "https://zyk.bjhd.gov.cn/sjkf/tjgb/202604/t20260410_4811526.shtml",
-      "publisher": "北京市海淀区统计局",
-      "accessed_date": "2026-08-07",
+      "id": "HD-JINGZHANG-BLOCK-PLAN-DRAFT-20241227",
+      "url": "https://bjrbdzb.bjd.com.cn/bjwb/mobile/2024/20241227/20241227_004/content_20241227_004_6.htm",
+      "publisher": "北京晚报",
+      "retrieved_at": "2026-08-13",
       "source_type": "official_public",
-      "usable_for_formal": "background_only",
-      "usage": "海淀区经济、研发与人口等区级统计背景；正文只采用页面可核实口径。",
-      "limitation_zh": "2025年数据均为初步数；区级数据不能下推为约11.4平方公里总体设计范围或三个重点区的现状值。"
+      "usage": "background_only: draft-stage public wording (2024-12) for three goals, three subdistricts, two-center industry split (Dazhongsi: internet/AI/new media; Wudaokou: AI agglomeration and talent exchange), landscape belts (Nanchang River / Xiaoyuehe), activity centers, and 2035 facility counts (298 / 37 / 62 / 36). Must not be upgraded to adopted metrics.",
+      "title": "京张铁路遗址公园沿线更新 大钟寺五道口打造人工智能创新街区",
+      "publication_date": "2024-12-27",
+      "retrieval_method": "manual review of publisher-controlled public webpage",
+      "spatial_scope": "draft block-plan area as described in news; no polygon",
+      "temporal_scope": "draft exhibition 2024-12; retrieved 2026-08-13",
+      "license_or_reuse": "citation and factual paraphrase only; no external media redistributed",
+      "transformation": "background structure and two-center industry split; facility counts remain draft-stage",
+      "limitations": "Draft-stage journalism. Belt name in this article is 'innovation-exchange belt'; approval news uses 'industry-innovation belt'. Facility counts and landscape-center lists were not restated in the 2026-08-12 approval coverage and must stay labeled draft-stage.",
+      "package_usability": "not_in_approved_formal_sources__background_pending_review",
+      "registry_crosscheck_note": "This source is NOT listed in the repository source_registry approved_formal_sources. Inside this package it is treated as background/pending-review evidence only: it must not single-handedly support statutory claims ('正式叠合', '法定中心') or adopted metrics. Structural alignment based on it is labeled news-reported and conditional, pending registry review."
     },
     {
-      "id": "HAIDIAN-ECON-CENSUS-2023",
-      "url": "https://zyk.bjhd.gov.cn/sjkf/tjgb/202509/P020250908358107485511.pdf",
-      "publisher": "北京市海淀区统计局（第五次全国经济普查）",
-      "accessed_date": "2026-08-07",
+      "id": "ZGC-SCIENCE-CITY-NORTH-202312",
+      "url": "https://www.beijing.gov.cn/ywdt/gzdt/202312/t20231204_3488872.html",
+      "publisher": "首都之窗（转市规划自然资源委）",
+      "retrieved_at": "2026-08-15",
       "source_type": "official_public",
-      "usable_for_formal": "background_only",
-      "usage": "信息传输、软件和信息技术服务业的企业法人、从业与营业收入区级口径。",
-      "limitation_zh": "广义行业不等于AI企业，也不能下推到创新带或用作招商承诺。"
+      "usage": "Authority that 中关村科学城北区 is official planning geography north of the 5th Ring (Cuihu / Yongfeng / Bei'anhe groups; Beiqing Road innovation corridor + Zhongguancun Street high-end innovation corridor). Used only as a regional relay interface—no polygon, FAR, or project list imported.",
+      "title": "中关村科学城北区重点街区控规获批 总用地超22平方公里 传统科技园加快转型生态创新城",
+      "publication_date": "2023-12-04",
+      "retrieval_method": "manual review of publisher-controlled public webpage",
+      "spatial_scope": "textual North District geography; no official polygon used in this package",
+      "temporal_scope": "block-plan approval news 2023-12; retrieved 2026-08-15",
+      "license_or_reuse": "citation and factual paraphrase only; no external media redistributed",
+      "transformation": "regional linkage label on the 43.6 km² structure figure; no geometry imported",
+      "limitations": "News of an approved North District block plan is not a competition redline. Shangdi / Software Park are the near face; Yongfeng / Cuihu / Beiqing Road are farther depth. Do not draw a fake North District boundary or claim this proposal designed that district.",
+      "related_urls": [
+        "https://zyk.bjhd.gov.cn/jbdt/auto4523/auto4523_55103/auto4523/auto4523_55118/202506/t20250609_4772226_hd.shtml"
+      ],
+      "package_usability": "not_in_approved_formal_sources__background_pending_review",
+      "registry_crosscheck_note": "This source is NOT listed in the repository source_registry approved_formal_sources. Inside this package it is treated as background/pending-review evidence only: it must not single-handedly support statutory claims ('正式叠合', '法定中心') or adopted metrics. Structural alignment based on it is labeled news-reported and conditional, pending registry review."
     },
     {
-      "id": "HAIDIAN-EDU-AI-POLICY",
-      "url": "https://zyk.bjhd.gov.cn/zwdt/zcwj/202411/P020241101373847634882.pdf",
-      "publisher": "北京市海淀区教育委员会",
-      "accessed_date": "2026-08-07",
-      "source_type": "official_public_policy",
-      "usable_for_formal": "background_only",
-      "usage": "人工智能+教育三级应用链、试点先行、选用规范、网络安全与AI伦理方向。",
-      "limitation_zh": "只证明政策方向，不证明本方案场景已部署或已获批准。"
-    },
-    {
-      "id": "HAIDIAN-HEALTH-AI-2026",
-      "url": "https://wjw.beijing.gov.cn/xwzx_20031/jcdt/202603/t20260305_4550330.html",
-      "publisher": "北京市卫生健康委员会（页面来源：北京市医疗卫生服务管理指导中心）",
-      "accessed_date": "2026-08-07",
-      "source_type": "official_public_case",
-      "usable_for_formal": "background_only",
-      "usage": "基层筛查与专家复核的眼底AI协作平台场景原型。",
-      "limitation_zh": "页面未提供独立临床结局评估，不能宣称算法有效率或替代医生。"
-    },
-    {
-      "id": "HAIDIAN-GREEN-2024",
-      "url": "https://yllhj.beijing.gov.cn/zwgk/tjxx/202506/P020250630562013758005.pdf",
-      "publisher": "北京市园林绿化局",
-      "accessed_date": "2026-08-07",
-      "source_type": "official_public_statistics",
-      "usable_for_formal": "background_only",
-      "usage": "海淀区公园绿地、500米服务半径覆盖与人均公园绿地的区级背景。",
-      "limitation_zh": "不能据此判断创新带具体盲区；须用公园入口和步行网络复核。"
-    },
-    {
-      "id": "HAIDIAN-MOBILITY-2023",
-      "url": "https://jtw.beijing.gov.cn/xxgk/xwfbh/202309/t20230907_3253937.html",
-      "publisher": "北京市交通委员会",
-      "accessed_date": "2026-08-07",
-      "source_type": "official_public_case",
-      "usable_for_formal": "background_only",
-      "usage": "海淀自行车专用道南展与区级慢行、水岸、绿道网络建设背景。",
-      "limitation_zh": "区级建设量不等于全部位于设计范围，也不证明当前流量或连续性。"
-    },
-    {
-      "id": "BEIJING-RD-2024",
-      "url": "https://tjj.beijing.gov.cn/tjsj_31433/tjgb_31445/qtgb_31451/202510/t20251023_4236758.html",
-      "publisher": "北京市统计局",
-      "accessed_date": "2026-08-07",
-      "source_type": "official_public_statistics",
-      "usable_for_formal": "background_only",
-      "usage": "北京R&D经费、投入强度与基础研究经费的城市级创新背景。",
-      "limitation_zh": "北京市级指标不是海淀或项目范围指标，不能按面积折算。"
+      "id": "OSM-BASEMAP-202608",
+      "url": "https://www.openstreetmap.org/copyright",
+      "publisher": "OpenStreetMap contributors (ODbL 1.0)",
+      "retrieved_at": "2026-08",
+      "source_type": "open_data_odbl",
+      "package_usability": "not_in_approved_formal_sources__background_pending_review",
+      "usage": "Basemap fabric (buildings/roads/greens/waters/rails) for figure rendering only; extraction bbox covers the corridor approx. Xizhimen (S) to North 5th Ring / Qinghe (N), Wanquanhe Rd (W) to G6 (E); snapshot 2026-08; processing pipeline in tools/openline-100/figs-v1.2 (fetch_osm.py -> osm_cache -> prepare_basemap.py); ODbL attribution printed on figure footers and A3 plate pages ('© OpenStreetMap contributors'); no OSM data redistributed beyond rendered figure pixels; not used as statutory geometry.",
+      "license_or_reuse": "ODbL 1.0; produced-figure attribution per ODbL 4.3; rendered figures carry attribution text",
+      "limitations": "Community-sourced geometry; not surveyed, not authoritative for redlines, ownership, or engineering. Positional accuracy varies; used for discussion-grade rendering only.",
+      "registry_crosscheck_note": "This source is NOT listed in the repository source_registry approved_formal_sources. Inside this package it is treated as background/pending-review evidence only: it must not single-handedly support statutory claims ('正式叠合', '法定中心') or adopted metrics. Structural alignment based on it is labeled news-reported and conditional, pending registry review."
     }
   ]
 }

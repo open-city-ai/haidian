@@ -1,6 +1,6 @@
 # Jingzhang Rising - film transcript
 
-This transcript matches `film.en.mp4` and its captions `film-en.vtt`, for readers who cannot play video.
+This transcript matches the synthetic narration in `film.en.mp4` and its captions `film-en.vtt`. Narration uses Microsoft `en-US-AndrewNeural`; there is no music, human recording, or voice cloning. It also provides an equivalent reading path when audio or video cannot be played.
 
 **00:00.000 – 00:07.000**
 

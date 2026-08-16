@@ -1,0 +1,243 @@
+{
+ "receipt_file_id": "seb-change-receipt-v03",
+ "receipt_schema_id": "seb-change-receipt",
+ "receipt_schema_version": "0.3.0",
+ "schema_ref": "visual/assets/seb-change-receipt-sample.json",
+ "note_zh": "v0.3 系变更回执:一版本一回执(004=v0.3.0,005=v0.3.1)。本文件初稿曾缺 schema 必填字段且一号双挂两版,该缺陷本身登记于 CR-2026-08-15-005 的 FS-048;初稿从未发布,重铸不构成改写已发布回执",
+ "note_en": "Change receipts for the v0.3 series: one receipt per version (004 = v0.3.0, 005 = v0.3.1). The first draft of this file missed required schema fields and hung one id on two versions — itself registered as FS-048 in CR-2026-08-15-005; the draft was never published, so the recast rewrites no published receipt",
+ "receipts": [
+  {
+   "receipt_id": "CR-2026-08-15-004",
+   "issued_at": "2026-08-15",
+   "gate_round": "not_applicable",
+   "node_id": "all",
+   "raised_by": {
+    "role_group": "首个外部采用方《京张运行图》(@Juwan-Hwang) 的登记反馈",
+    "role_group_en": "registration feedback from the first external adopter, The Jingzhang Diagram (@Juwan-Hwang)",
+    "disclosure": "公开 Issue 登记,见 posting / public issue registration, see posting"
+   },
+   "opinion": {
+    "zh": "machine_readable_location 把本包图层路径写成规范默认值,属规范缺陷;角色词表无法覆盖本地常用角色(志愿者、社工、网格员),逐词扩充会使版本膨胀",
+    "en": "machine_readable_location wrote this package's layer path as if it were the spec default, a spec defect; the role-token list cannot cover common local roles (volunteers, social workers, grid stewards) without version-bloating word-by-word extension"
+   },
+   "finding": {
+    "zh": "两条意见均查证属实:v0.2 条文确以本包路径为默认值;角色词表确为封闭最小集且无本地化通道",
+    "en": "Both points verified: the v0.2 text did default to this package's path, and the token list was a closed minimal set with no localisation channel"
+   },
+   "verdict": "adopted",
+   "change_made": {
+    "summary_zh": "machine_readable_location 改为采用方声明制;新增 adopter_lexicon 机制(附加词并集匹配,未声明时行为与 v0.2 逐字节一致);revision_history、adoptions、contributors 入规范",
+    "summary_en": "machine_readable_location becomes adopter-declared; the adopter_lexicon mechanism is added (union matching, byte-identical to v0.2 when undeclared); revision_history, adoptions and contributors enter the spec",
+    "changed_artifacts": [
+     "visual/assets/seb-spec.json",
+     "visual/assets/seb-tabletop-run.js",
+     "visual/assets/seb-tabletop-fixtures.json",
+     "visual/assets/seb-op04-chain-data.json"
+    ]
+   },
+   "not_adopted_reason": {
+    "zh": "不适用(verdict 为 adopted)",
+    "en": "not applicable (verdict is adopted)"
+   },
+   "failed_sample_register": {
+    "samples": [
+     {
+      "sample_id": "FS-042",
+      "description_zh": "v0.3.0 于 2026-08-15 发布时未随附本回执,违反自家「任何变更须同时提交失败样本登记与复算说明」条款",
+      "description_en": "the v0.3.0 release of 2026-08-15 shipped without this receipt, violating the baseline's own clause that every change arrives with a failed-sample register and a recalculation note",
+      "status": "fixed_by_this_receipt",
+      "disposition_zh": "本回执补足并单独编号;「无回执发布」本身按回执文化登记为失败样本",
+      "disposition_en": "this receipt makes it good under its own number; the receipt-less release itself registers as a failure sample per the receipt culture"
+     }
+    ],
+    "empty_reason": null
+   },
+   "affected_metrics": {
+    "summary_zh": "schema 层变更,32 项登记读数零受影响;两个校验器复跑与期望一致",
+    "summary_en": "schema-layer change, none of the 32 registered readings affected; both checkers re-run consistent with expectation",
+    "readings_changed": 0
+   },
+   "verification": {
+    "zh": "对照 seb-spec-v0.2.0.json 快照与现行规范 diff 逐条核对上述变更;在 visual/assets 下运行 node seb-tabletop-run.js 与 node seb-op04-chain-run.js",
+    "en": "diff the seb-spec-v0.2.0.json snapshot against the current spec for each change above; run node seb-tabletop-run.js and node seb-op04-chain-run.js inside visual/assets"
+   },
+   "posting": [
+    "visual/assets/seb-change-receipt-v03.json",
+    "proposal.md 服务等价基准章 / the SEB chapter of proposal.md",
+    "open contribution issue #2549"
+   ],
+   "status": "published"
+  },
+  {
+   "receipt_id": "CR-2026-08-15-005",
+   "issued_at": "2026-08-15",
+   "gate_round": "not_applicable",
+   "node_id": "all",
+   "raised_by": {
+    "role_group": "维护方自查与三方独立盲审（两个自动化审查方与维护方实测）",
+    "role_group_en": "maintainer self-audit plus three independent blind reviews (two automated reviewers and the maintainer's own probes)",
+    "disclosure": "按包内署名，不记录个人身份信息 / per in-package attribution, no personal identifying data"
+   },
+   "opinion": {
+    "zh": "v0.3.0 词表机制存在判据后门;v0.3.1 初稿的修复方式本身违反基准治理(私有词表回流实现、子串误伤、双实现不等价、回执不合 schema);许可从未实际授予;历史版本引用无处解引用;参考实现对组件级采用与畸形输入不健壮",
+    "en": "the v0.3.0 lexicon left a criteria backdoor; the first v0.3.1 draft's fix itself broke baseline governance (a private list back in the implementation, substring false positives, divergent implementations, a receipt violating its own schema); the licence was never actually granted; historical version references dereferenced nowhere; the reference implementation was not robust to component-level adoption or malformed input"
+   },
+   "finding": {
+    "zh": "逐条实验坐实:机构词「志愿者团队」可入词表接管判据;后缀表为工具私有且运行时打印「不持有私有词表」与事实相反;officer(基准本体词表成员)、community steward 因子串匹配被误拒;OP-04 复演器完全未执行合格性校验,注入机构词后照常退出 0;「站点」「智慧调度」类无后缀泛称穿透后缀筛;CR-004 初稿缺 schema 十四必填字段中的十三项且一号双挂两版;spec 只「建议」CC BY-SA 而两个采用方已按已授予许可行事;采用方锁定的 v0.2 原文只存在于 git 历史;缺 decision 块的第三方样例裸抛 TypeError;声明来源文件缺失时静默跳过并打印「未找到来源声明」",
+    "en": "Each point reproduced live: the organisation token could enter the lexicon and take over the criterion; the suffix list lived only in the tool while the runtime printed the opposite; officer (a member of the baseline's own token list) and community steward were falsely refused by substring matching; the OP-04 replayer ran no eligibility check at all and exited 0 with an organisation token injected; suffix-free generic tokens like Chinese for 'site' or 'smart dispatch' passed the suffix screen; the first CR-004 draft missed 13 of the schema's 14 required fields and hung one id on two versions; the spec merely recommended CC BY-SA while two adopters acted as if granted; the v0.2 text adopters cite existed only in git history; a third-party fixture without a decision block crashed with a bare TypeError; a missing declared source file was skipped silently behind a message claiming no declaration existed"
+   },
+   "verdict": "adopted",
+   "change_made": {
+    "summary_zh": "合格性判据升格进条文(adopter_lexicon_eligibility_rule:禁用后缀表、词尾语义、逐词证据条目,违例整次拒绝);违例码登记表入文,两实现同码集同行为(OP-04 补合格性校验、去字符串强转、去短路、判定码规范化);来源对齐升格为条文判据(声明制路径、强制对齐、SOURCE_FILE_UNREADABLE 整次拒绝);RULE_TYPE_UNSUPPORTED 升为兼容级;许可由著作权人实际授予(随包授予文件含法定正文与重建哈希);v0.2.0/v0.3.0 字节级快照随包发布并入登记表;组件级采用落地(未声明块跳过并打印);样例扩至二十条补五个分支覆盖;真实点位 id 强制对齐,演示样例改合成 id;provenance 标注为带日期快照消除 adoption_claim 双值歧义;本回执按 schema 重铸并一版一号",
+    "summary_en": "Eligibility criteria promoted into the text (adopter_lexicon_eligibility_rule: forbidden-suffix list, suffix semantics, per-token evidence, violations refusing the run); a violation-code registry enters the text with both implementations on one code set and one behaviour (the OP-04 replayer gains the eligibility check, drops coercion and short-circuiting, and normalises codes); source alignment promoted to a text criterion (declared paths, forced alignment, SOURCE_FILE_UNREADABLE refusing the run); RULE_TYPE_UNSUPPORTED escalated to compatibility level; the licence actually granted by the copyright holder (grant file with full legal code and rebuild hash); byte-exact v0.2.0/v0.3.0 snapshots shipped and registered; component-level adoption lands (undeclared blocks skipped and printed); fixtures extended to twenty covering five branches; real node ids force alignment and demonstration fixtures move to synthetic ids; provenance marked as a dated snapshot resolving the double adoption_claim; this receipt recast to schema with one id per version",
+    "changed_artifacts": [
+     "visual/assets/seb-spec.json",
+     "visual/assets/seb-tabletop-run.js",
+     "visual/assets/seb-op04-chain-run.js",
+     "visual/assets/seb-tabletop-fixtures.json",
+     "visual/assets/seb-op04-chain-data.json",
+     "visual/assets/seb-change-receipt-v03.json",
+     "visual/assets/seb-license-grant.json (新增/new)",
+     "visual/assets/seb-spec-v0.2.0.json (新增/new)",
+     "visual/assets/seb-spec-v0.3.0.json (新增/new)"
+    ]
+   },
+   "not_adopted_reason": {
+    "zh": "一项部分不采纳:审查方建议把样例与规范的严格同版匹配放宽为 semver 兼容区间——不采纳放宽本身。快照入包制下采用方持有自己的快照对,规范演进不触发重跑;混版本属治理错误,当场拒绝优于带病运行。已采纳其配套关切:最低版本门槛的存在理由与严格匹配的机理写入 version_governance 条文",
+    "en": "One point partially not adopted: a reviewer proposed relaxing the strict same-version match between fixtures and spec into a semver range — the relaxation itself is declined. Under snapshot-in-package an adopter holds its own snapshot pair and spec evolution triggers no re-run; version mixing is a governance error better refused on the spot than run through. The accompanying concern is adopted: the rationale for the minimum-version floor and the strict match now sits in the version_governance text"
+   },
+   "failed_sample_register": {
+    "samples": [
+     {
+      "sample_id": "FS-041",
+      "description_zh": "v0.3.0 的 adopter_lexicon 无实现侧合格性校验,「志愿者团队」「智慧城市平台」经词表接管 human_handoff 判据(实验复现)",
+      "description_en": "the v0.3.0 adopter_lexicon had no implementation-side eligibility check; organisation tokens took over the human_handoff criterion via the lexicon (reproduced live)",
+      "status": "partially_fixed",
+      "disposition_zh": "机器可判下限已加锁(后缀筛+证据条目,双实现);「站点」类无后缀泛称仍可穿透后缀筛——字符串匹配在结构上不能证明「可问责角色」,该终审按条文归人工登记环节,残余边界如实写入 limitation 字段",
+      "disposition_en": "the machine-decidable floor is locked (suffix screen plus evidence entries, both implementations); suffix-free generics can still pass the screen — string matching structurally cannot prove an accountable role, so final eligibility sits with human registration per the text, the residual boundary stated honestly in the limitation field"
+     },
+     {
+      "sample_id": "FS-044",
+      "description_zh": "OP-04 链复演器未执行合格性校验,词表注入后照常退出 0——v0.3.1 初稿只给桌面校验器加锁,「两实现共用同一判据行为」在当时为不实陈述",
+      "description_en": "the OP-04 chain replayer ran no eligibility check and exited 0 with an injected lexicon — the first v0.3.1 draft locked only the tabletop checker, making 'both implementations share one criteria behaviour' untrue at the time",
+      "status": "fixed_in_0.3.1",
+      "disposition_zh": "两实现同源读取条文判据,注入实验现以退出码 2 拒绝",
+      "disposition_en": "both implementations read the text criteria; the injection experiment now refuses at exit code 2"
+     },
+     {
+      "sample_id": "FS-045",
+      "description_zh": "v0.3.1 初稿把禁用后缀表塞在工具代码里,正面违反 machine_rule_contract「任何实现私自增加的判据都属基准缺口」,且运行时打印「不持有私有词表」与事实相反",
+      "description_en": "the first v0.3.1 draft kept the forbidden-suffix list inside the tool, squarely violating machine_rule_contract, while the runtime printed 'no private word list' against the facts",
+      "status": "fixed_in_0.3.1",
+      "disposition_zh": "后缀表与证据要求升格为 adopter_lexicon_eligibility_rule 条文,工具改为读取",
+      "disposition_en": "the list and evidence requirement rise into the adopter_lexicon_eligibility_rule text; the tools now read it"
+     },
+     {
+      "sample_id": "FS-046",
+      "description_zh": "子串匹配误伤:officer(基准本体词表成员)、safety officer、community steward、系统管理员均被整次拒绝",
+      "description_en": "substring matching false positives: officer (a member of the baseline's own list), safety officer, community steward and Chinese sysadmin were all refused outright",
+      "status": "fixed_in_0.3.1",
+      "disposition_zh": "改词尾语义并以实验证实上述词全部通过、原后门词全部拒绝",
+      "disposition_en": "suffix semantics adopted; experiments confirm all the above now pass while every backdoor token is refused"
+     },
+     {
+      "sample_id": "FS-047",
+      "description_zh": "许可字段只「建议采用」CC BY-SA 4.0 而从未实际授予,两个外部采用方在无有效许可状态下运行,规范却已主张下游署名义务",
+      "description_en": "the licence field merely recommended CC BY-SA 4.0 without ever granting it, leaving two adopters running without a valid licence while the spec claimed downstream attribution duties",
+      "status": "fixed_in_0.3.1",
+      "disposition_zh": "著作权人以随包授予文件实际授予;许可与机构托管两件事拆开表述",
+      "disposition_en": "the copyright holder grants in a grant file shipped with the package; the licence and institutional hosting are stated as two separate matters"
+     },
+     {
+      "sample_id": "FS-048",
+      "description_zh": "CR-004 初稿缺回执 schema 十四必填字段中的十三项,且一个回执号双挂 v0.3.0 与 v0.3.1,「一版本一回执」断裂",
+      "description_en": "the first CR-004 draft missed 13 of the 14 required receipt fields and hung one id on two versions, breaking one-receipt-per-version",
+      "status": "fixed_in_0.3.1",
+      "disposition_zh": "本文件按 schema 重铸,004/005 各表一版;初稿从未发布,重铸不构成改写已发布回执",
+      "disposition_en": "this file is recast to schema with 004/005 each covering one version; the draft was never published, so the recast rewrites no published receipt"
+     },
+     {
+      "sample_id": "FS-049",
+      "description_zh": "两实现判定码各自编名(REQUIRED_FIELD_MISSING/ENUM_VALUE_INVALID 对 NODE_FIELD_MISSING/NODE_ENUM_INVALID)、OP-04 缺字段短路其余判据、String() 强转把数字放行",
+      "description_en": "the two implementations improvised different codes, the OP-04 replayer short-circuited on missing fields, and String() coercion let numbers through",
+      "status": "fixed_in_0.3.1",
+      "disposition_zh": "违例码登记表入文;OP-04 逐条报全、严格类型",
+      "disposition_en": "the registry enters the text; the replayer reports every reason with strict typing"
+     },
+     {
+      "sample_id": "FS-050",
+      "description_zh": "回执 schema 文件头 version 曾无 schema 变更从 0.2.0 原地升为 0.3.0,未附回执,违反自家版本递增条款",
+      "description_en": "the receipt-schema header version was bumped in place 0.2.0 to 0.3.0 with zero schema change and no receipt, against its own increment rule",
+      "status": "documented",
+      "disposition_zh": "已发布字段不回改;schema 版本与规范版本自本回执起解耦,后续 schema 无变更不再递增",
+      "disposition_en": "the published field stays; schema and spec versions are decoupled from this receipt on, with no further increments absent schema change"
+     },
+     {
+      "sample_id": "FS-051",
+      "description_zh": "来源对齐 fail-open:声明的来源文件缺失时静默跳过并打印「未找到可对齐的来源声明」;SOURCE_MISMATCH 本身也非条文授权判定码",
+      "description_en": "source alignment failed open: a missing declared source file was skipped silently behind 'no source-of-record declaration found'; SOURCE_MISMATCH itself was no text-authorised code",
+      "status": "fixed_in_0.3.1",
+      "disposition_zh": "来源对齐入条文,三态处理,声明不可读整次拒绝",
+      "disposition_en": "source alignment enters the text with three states; an unreadable declared source refuses the run"
+     },
+     {
+      "sample_id": "FS-052",
+      "description_zh": "第三方样例缺 decision 块时裸抛 TypeError;组件级采用(基准宣传的预期形态)在参考实现上跑不通",
+      "description_en": "a third-party fixture without a decision block crashed bare; component-level adoption — the very form the baseline advertises — did not run on the reference implementation",
+      "status": "fixed_in_0.3.1",
+      "disposition_zh": "未声明块按组件级采用跳过并在输出中打印;新增 TT-P7 正例",
+      "disposition_en": "undeclared blocks skip as component-level adoption and print; positive fixture TT-P7 added"
+     },
+     {
+      "sample_id": "FS-053",
+      "description_zh": "provenance.adoption_claim=none 与顶层 voluntary_peer_adoption_registered 同名双值,机器消费者无从取舍",
+      "description_en": "provenance.adoption_claim=none coexisted with the top-level voluntary_peer_adoption_registered, leaving machine consumers no way to choose",
+      "status": "fixed_in_0.3.1",
+      "disposition_zh": "provenance 标注为带日期历史快照,现行状态唯一权威字段为顶层",
+      "disposition_en": "provenance is marked a dated snapshot; the top-level field is the single authority"
+     },
+     {
+      "sample_id": "FS-054",
+      "description_zh": "OP-04 档案 required_version 两次原地改写而档案版本停在 0.1.0,前置说明停留「十二条样例」",
+      "description_en": "the OP-04 archive's required_version was edited in place twice while the archive version sat at 0.1.0 and the prerequisite note still said twelve fixtures",
+      "status": "fixed_in_0.3.1",
+      "disposition_zh": "档案版本递增并附修订注记,样例计数改为随样例文件实测",
+      "disposition_en": "the archive version increments with a revision note; the fixture count now reads from the fixtures file"
+     },
+     {
+      "sample_id": "FS-043",
+      "description_zh": "跨提交包引用协议(快照如何入包并保持可核)未入正文——v0.2 采用方的版本引用一度无处解引用",
+      "description_en": "the cross-package reference protocol (how snapshots ship and stay checkable) was not in the text — a v0.2 adopter's version reference briefly dereferenced nowhere",
+      "status": "partially_fixed",
+      "disposition_zh": "v0.2.0/v0.3.0 字节级快照已随包发布并入 version_snapshots 登记表(含上游提交号与哈希);跨包协议条文仍为 v0.4 待办",
+      "disposition_en": "byte-exact v0.2.0/v0.3.0 snapshots now ship, registered in version_snapshots with upstream commits and hashes; the cross-package protocol text remains a v0.4 item"
+     },
+     {
+      "sample_id": "FS-055",
+      "description_zh": "v0.3.0 校验器对非数组形式的 adopter_lexicon 静默回退为空列表——不报错、词表不生效，负样例因此出现意外拒绝理由；首个采用方在快照入包时独立命中并公开反馈（见其登记楼层）",
+      "description_en": "the v0.3.0 checker silently fell back to an empty list when adopter_lexicon was not an array — no error, no effect, and negative fixtures grew unexpected rejection reasons; the first adopter hit this independently while shipping its snapshot and reported it publicly (see its registration thread)",
+      "status": "fixed_in_0.3.1",
+      "disposition_zh": "v0.3.1 以 ADOPTER_LEXICON_MALFORMED 整次拒绝运行（比采用方建议的警告更硬）：声明了词表就必须生效或明确失败，不存在静默失效",
+      "disposition_en": "v0.3.1 refuses the whole run with ADOPTER_LEXICON_MALFORMED — harder than the warning the adopter suggested: a declared lexicon either takes effect or fails loudly, never silently"
+     }
+    ],
+    "empty_reason": null
+   },
+   "affected_metrics": {
+    "summary_zh": "判据加锁与实现修复不触及任何登记读数,32 项零受影响;桌面校验器二十条样例与期望一致退出 0,OP-04 复演 4/4 读数不符 0;全部绕过实验以退出码 2 拒绝",
+    "summary_en": "the hardening touches no registered reading, all 32 unaffected; the tabletop checker matches expectation on twenty fixtures at exit 0, the OP-04 replay holds 4/4 with zero disagreeing figures; every bypass experiment refuses at exit code 2",
+    "readings_changed": 0
+   },
+   "verification": {
+    "zh": "在 visual/assets 下运行两个校验器;将「志愿者团队」或「站点」写入 adopter_lexicon 复现退出码 2;将 safety officer 与 community steward 连同证据条目写入词表复现通过;对照 seb-spec-v0.3.0.json 快照 diff 现行规范核对条文升格",
+    "en": "run both checkers inside visual/assets; put an organisation token or a forbidden-suffix token into adopter_lexicon to reproduce exit code 2; put safety officer and community steward with evidence entries in to reproduce the pass; diff the current spec against the seb-spec-v0.3.0.json snapshot to check the promotions"
+   },
+   "posting": [
+    "visual/assets/seb-change-receipt-v03.json",
+    "proposal.md 服务等价基准章 / the SEB chapter of proposal.md",
+    "open contribution issue #2549"
+   ],
+   "status": "published"
+  }
+ ]
+}

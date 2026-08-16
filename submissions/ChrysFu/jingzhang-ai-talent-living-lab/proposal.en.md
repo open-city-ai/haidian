@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A continuous Jing-Zhang public innovation network connecting AI R&D validation, everyday talent life, public feedback, and enterprise service adoption through three 15-minute circles and an auditable service loop."
 tracks: ["enterprise-services-ecosystem", "ai-origin-community", "youth-friendly-public-space"]
 scenarios: ["enterprise-service-copilot", "ai-health-service-navigation", "ai-cultural-guide"]
-iteration: "v1.4"
+iteration: "v1.4.1-local-candidate"
 ---
 
 # Jing-Zhang AI Talent Living Lab Belt
@@ -153,7 +153,7 @@ Four-quadrant pedestrian links, station integration, underground space, and traf
 
 ### Public Interest and Non-AI Equivalent Service
 
-Public interest is a common operating gate rather than a separate communication chapter. All 12 scenarios must meet five safeguards and publish retrospectives through the Public Feedback Forum. Coverage is recorded in scenario properties and `metrics.json`. [metric:equity_safeguard_count] [metric:non_ai_equivalent_coverage_ratio]
+Public interest is a common operating gate rather than a separate communication chapter. All 12 scenarios must meet five safeguards and publish retrospectives through the Public Feedback Forum. The current record is a design declaration; operational coverage still requires pilot evidence. [metric:equity_safeguard_count] [metric:non_ai_equivalent_coverage_ratio]
 
 | Safeguard | Minimum requirement | Auditable evidence |
 | --- | --- | --- |
@@ -162,6 +162,19 @@ Public interest is a common operating gate rather than a separate communication 
 | Price and opportunity equity | No differential price or queue based on inferred identity, device, or behavior score | Rule version, sample check, appeal result |
 | Data minimization | No default cross-scenario personal profile or unrelated data exchange | Field list, retention period, deletion record |
 | Correction and remedy | A responsible person, human takeover, complaint, and appeal route are findable | Ticket, response time, remediation, closure record |
+
+### Problem-to-Space Touchpoint Audit Index
+
+`visual/assets/service_touchpoint_matrix.json` reduces each of the 12 scenarios to a four-part chain: problem, evidence to collect, spatial response, and public value or verification. The same record holds G1-G5 mappings, accountability, non-AI equivalent access, remedy, stop conditions, and the scaling gate. The bilingual offline visual provides a keyboard-operable filter for Zhongzhiyuan, AI Origin Community, Dazhongsi, and the public axis. Both the matrix and interface derive from existing scenario nodes and proposal content; they add no official fact. [data:geometry/public_space.geojson#SCN-01] [metric:scenario_node_count]
+
+| Spatial unit | Priority review question | Touchpoint and evidence focus | Conceptual gates |
+| --- | --- | --- | --- |
+| Zhongzhiyuan | Does the prototype answer a real need, with traceable quality and safety? | SCN-01-03; needs, tests, incident closure, professional review | G1 / G3 / G4 |
+| AI Origin Community | Are voluntary use, exit, non-AI equivalence, and public feedback genuinely available? | SCN-04-07; withdrawal, waiting, correction, copyright, feedback records | G1 / G2 / G4 |
+| Dazhongsi | Is the enterprise interface accountable, and is there evidence to scale? | SCN-08-10; directories, complaints, major-incident closure, rollback plan | G1 / G3 / G4 / G5 |
+| Jing-Zhang Public Innovation Axis | Have cultural information and accessible navigation passed factual and field checks? | SCN-11-12; sources, rights, entrances, crossings, slopes, issue closure | G1 / G2 / G3 / G4 |
+
+This is a conceptual pilot-review index, not an approval process. Missing accountability, failed non-AI equivalence, unresolved major incidents, or unavailable remedy requires holding, rollback, or exit. The 12 nodes declare non-AI equivalents and accountable roles as design requirements; actual coverage remains unknown until pilot records verify it. [metric:non_ai_equivalent_coverage_ratio] [metric:accountable_role_coverage_ratio]
 
 ### Twelve scenario cards
 
@@ -207,7 +220,7 @@ PlanX prepared an 11-node, 10-segment `agent_generated_design` network and ran 4
 
 ![Problem–evidence–spatial response–metric matrix](assets/figures/diagnosis-matrix.en.png)
 
-The diagnosis covers innovation industry space, talent life, mobility, blue-green public space, renewal phasing, AI scenario placement, and resilience governance. Recomputable metrics remain known. Actual fifteen-minute access, pedshed, elevation, canopy, stormwater, development intensity, and capacity remain unknown. [metric:fifteen_minute_network_coverage_ratio] [metric:stormwater_retention_volume_m3]
+The diagnosis covers innovation industry space, talent life, mobility, blue-green public space, renewal phasing, AI scenario placement, and resilience governance. Recomputable metrics that do not represent operating facts remain known. Non-AI equivalent and accountable-role coverage, actual fifteen-minute access, pedshed, elevation, canopy, stormwater, development intensity, and capacity remain unknown. [metric:fifteen_minute_network_coverage_ratio] [metric:stormwater_retention_volume_m3]
 
 ![Comparison and recommendation of three spatial strategies](assets/figures/strategy-comparison.en.png)
 
@@ -306,7 +319,7 @@ The annual reference cycle is “developer and open-source contribution season�
 
 The authority order is GeoJSON, metrics, three matrices, manifest/sources/assumptions/self-check, proposal, figures, HTML, and PDFs. Visual artifacts explain the evidence but cannot become the basis for boundaries, areas, or statutory controls. [depth:metrics_recalculation]
 
-Known metrics include submitted-geometry areas for the site, four land-use partitions, building footprints, green space, public space, centerlines, and three phase polygons; explicit counts for three key areas, 12 scenarios, three industry validations, eight personas, four honor nodes, six loop stages, five acceptance gates, and five pilot stages; coverage ratios for non-AI equivalents and accountable roles; and official approximate background facts. Site area and key-area count are recorded in [metric:site_area_sqm] [metric:key_area_count], while scenario and acceptance-gate counts are recorded in [metric:scenario_node_count] [metric:service_acceptance_gate_count]. Unknown metrics include total floor area, FAR, road area, and every statutory or engineering value without official conditions.
+Known metrics include submitted-geometry areas for the site, four land-use partitions, building footprints, green space, public space, centerlines, and three phase polygons; explicit counts for three key areas, 12 scenarios, three industry validations, eight personas, four honor nodes, six loop stages, five acceptance gates, and five pilot stages; and official approximate background facts. Non-AI equivalent and accountable-role properties are design declarations, not operational coverage ratios, so those metrics remain unknown. Site area and key-area count are recorded in [metric:site_area_sqm] [metric:key_area_count], while scenario and acceptance-gate counts are recorded in [metric:scenario_node_count] [metric:service_acceptance_gate_count]. Unknown metrics include total floor area, FAR, road area, and every statutory or engineering value without official conditions.
 
 The compliance matrix covers announcement sections 1.3, 1.4, and 1.5 and tasks agent.1-agent.6. The standard matrix covers every mandatory standard. The design-depth matrix covers diagnosis, scope, structure, land use, pending intensity, character, renewal method, mobility, municipal systems, blue-green space, three areas, project list, phasing, metrics, and risk. [depth:risk_missing_data]
 

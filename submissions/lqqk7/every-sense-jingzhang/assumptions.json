@@ -1,113 +1,290 @@
 {
-  "schema_version": "0.1.0",
-  "assumptions": [
-    {
-      "id": "A-OFFICIAL-GEOMETRY-001",
-      "status": "pending_official_data",
-      "statement": "No cleared official SITE_BOUNDARY or three KEY_AREA polygon package is available in this submission; the included geometry is repository-maintained provisional rough geometry.",
-      "impact": "It supports intake visualization, topology checks, and design discussion only. It is not an official redline, precise-area basis, statutory control, ownership boundary, or approval basis. This organizer data gap does not itself block content scoring; when official polygons arrive, all dependent layers, figures, PDFs, HTML, and area metrics must be recalculated.",
-      "affected_files": ["geometry/site_boundary.geojson", "geometry/key_areas.geojson", "metrics.json", "proposal.md", "proposal.en.md"],
-      "trigger": "receipt or revision of organiser-cleared official scope polygons",
-      "responsible_role": "authorised planning-data custodian and spatial-analysis professional",
-      "resolution_evidence": "source-registered official polygons, CRS record, topology review, and regenerated metric report",
-      "recalculation_scope": ["site_area_sqm", "green_ratio", "public_space_ratio", "key_area_count"],
-      "risk_ids": ["R-05", "R-06"]
-    },
-    {
-      "id": "A-CONTROLS-001",
-      "status": "pending_professional_confirmation",
-      "statement": "Official regulatory-plan controls, including floor-area ratio, building height, density, setbacks, land-use controls, and any statutory intensity conclusion, are not available in the public package.",
-      "impact": "They remain unknown and cannot be inferred from the submission geometry, provisional areas, concept diagrams, or global cases. Any numerical control, zoning adjustment, or approval conclusion requires official attachments and professional confirmation. Registering official values published for adjacent, already-exhibited parcels is a factual reference and does not infer a control value for any parcel in this proposal; the register records what was verified through public channels on 2026-08-11 and leaves the intensity metrics unknown.",
-      "affected_files": ["metrics.json", "standard_matrix.json", "design_depth_matrix.json", "proposal.md", "proposal.en.md"],
-      "trigger": "receipt of applicable official planning controls and their calculation boundary",
-      "responsible_role": "planning-control professional",
-      "resolution_evidence": "source-registered control document, applicability note, and signed professional calculation record",
-      "recalculation_scope": ["floor_area_ratio", "development_intensity_controls", "height_massing_character"],
-      "risk_ids": ["R-05", "R-06"]
-    },
-    {
-      "id": "A-ENGINEERING-AND-HERITAGE-001",
-      "status": "pending_official_and_field_data",
-      "statement": "Road redlines, station interfaces, pedestrian counts, utilities, drainage, power, communications, fire access, flood conditions, heritage controls, and construction constraints have not been cleared for this package.",
-      "impact": "Routes, interfaces, municipal systems, service-robot operations, and public-space components are conceptual relationships only. They are not engineering alignments, municipal commitments, fire-safety conclusions, or heritage-control determinations.",
-      "affected_files": ["geometry/roads.geojson", "geometry/constraints.geojson", "standard_matrix.json", "design_depth_matrix.json", "proposal.md", "proposal.en.md"],
-      "trigger": "receipt of applicable road, station, utility, flood, fire, and heritage records plus field survey",
-      "responsible_role": "transport, municipal, fire-safety, flood, and heritage professionals",
-      "resolution_evidence": "discipline-specific source register, field-survey record, conflict review, and authorised design boundary",
-      "recalculation_scope": ["traffic_rail_slow_parking", "municipal_new_infrastructure", "blue_green_public_space"],
-      "risk_ids": ["R-02", "R-05", "R-06"]
-    },
-    {
-      "id": "A-BUILDINGS-AND-OWNERSHIP-001",
-      "status": "pending_existing_conditions_survey",
-      "statement": "No cleared building survey, parcel-rights record, tenancy record, structural assessment, age/use inventory, or heritage assessment is available for the conceptual building and land-use layers.",
-      "impact": "The package cannot determine retain, renovate, demolish, new-build, acquisition, relocation, or approved development scope. Those layers express a reviewable design hypothesis only.",
-      "affected_files": ["geometry/buildings.geojson", "geometry/land_use.geojson", "metrics.json", "proposal.md", "proposal.en.md"],
-      "trigger": "completion of a cleared parcel, building, tenancy, structure, use, and heritage survey",
-      "responsible_role": "building-survey, property, structural, and heritage professionals",
-      "resolution_evidence": "building-by-building survey register, rights record, professional condition assessment, and decision log",
-      "recalculation_scope": ["building_footprint_area_sqm", "floor_area_ratio", "retain_renovate_demolish"],
-      "risk_ids": ["R-02", "R-04", "R-05", "R-06"]
-    },
-    {
-      "id": "A-ACCESS-BASELINE-001",
-      "status": "pending_field_survey",
-      "statement": "No cleared site-wide accessibility audit, sensory-load survey, or independent-task baseline is available in the public package.",
-      "impact": "Inclusive performance metrics remain unknown; the proposal supplies test methods and spatial hypotheses rather than invented target values.",
-      "affected_files": ["metrics.json", "geometry/constraints.geojson", "proposal.md", "proposal.en.md"],
-      "trigger": "approval of the field-audit protocol and completion of participant-reviewed route and service inventories",
-      "responsible_role": "accessibility, environmental-assessment, and transport professionals with participant representatives",
-      "resolution_evidence": "audit protocol, reasonable-accommodation record, route inventory, anonymised observation log, and independent review",
-      "recalculation_scope": ["independent_task_completion_rate", "multichannel_information_coverage", "forced_abandonment_rate", "sensory_load_exceedance_point_count"],
-      "risk_ids": ["R-03", "R-06", "R-08"]
-    },
-    {
-      "id": "A-CO-DESIGN-001",
-      "status": "pending_user_research",
-      "statement": "The AI agent has not represented or completed co-design with disabled people, neurodivergent people, older adults, children, caregivers, or international visitors.",
-      "impact": "All persona needs and scenario details are provisional prompts for voluntary, accessible, privacy-preserving co-design with real participants.",
-      "affected_files": ["metrics.json", "risk.json", "proposal.md", "proposal.en.md"],
-      "trigger": "approval of ethics, recruitment, accommodation, consent, withdrawal, and disposal protocols",
-      "responsible_role": "co-design lead, ethics reviewer, and participant advisory group",
-      "resolution_evidence": "approved protocol, voluntary participation record, role-coverage calculation, change receipt, and withdrawal log",
-      "recalculation_scope": ["co_design_role_coverage_ratio", "independent_task_completion_rate", "forced_abandonment_rate"],
-      "risk_ids": ["R-01", "R-03", "R-08"]
-    },
-    {
-      "id": "A-IMPLEMENTATION-001",
-      "status": "pending_responsible_parties",
-      "statement": "No approved implementation owner, operating entity, procurement plan, investment budget, subsidy, partnership, activity permit, development timetable, or government commitment has been provided.",
-      "impact": "Phases, Every Sense Week, trials, maintenance, procurement, and exit mechanisms are concept recommendations for responsible organisations and professional teams to evaluate; they are not confirmed delivery, funding, activity, or government arrangements.",
-      "affected_files": ["risk.json", "geometry/phasing.geojson", "compliance_matrix.json", "proposal.md", "proposal.en.md"],
-      "trigger": "written appointment of an accountable sponsor or operator and approval of a bounded work package",
-      "responsible_role": "future authorised project sponsor or operator",
-      "resolution_evidence": "written responsibility record, approved work-package boundary, maintenance resource, stop condition, and next authorisation",
-      "recalculation_scope": ["human_handover_success_rate", "human_handover_response_time_seconds", "phasing_implementation"],
-      "risk_ids": ["R-02", "R-04", "R-05"]
-    },
-    {
-      "id": "A-CASE-TRANSFER-001",
-      "status": "conceptual_reference_only",
-      "statement": "Global cases have different land, capital, legal, institutional, and operating conditions.",
-      "impact": "Only mechanisms are compared; no foreign outcome, regulation, or delivery commitment is transferred to Haidian.",
-      "affected_files": ["sources.json", "compliance_matrix.json", "proposal.md", "proposal.en.md"],
-      "trigger": "any proposal to convert a referenced mechanism into a local delivery claim",
-      "responsible_role": "urban-design research lead and relevant legal or policy reviewer",
-      "resolution_evidence": "local applicability analysis with source, authority, resource, and operating differences stated",
-      "recalculation_scope": ["case-comparison claims only; no quantitative metric transfer"],
-      "risk_ids": ["R-02", "R-05"]
-    },
-    {
-      "id": "A-OPERATION-NODES-001",
-      "status": "concept_geometry_only",
-      "statement": "OP-01 through OP-10 are stable scenario anchors in geometry/constraints.geojson and correspond in order to S01 through S10; they are conceptual operation points, not surveyed, approved, funded, or built facilities.",
-      "impact": "The identifiers can bind narrative, matrices, scenarios, risks, and future tests, but their coordinates and installation conditions cannot support an engineering or delivery claim.",
-      "affected_files": ["geometry/constraints.geojson", "compliance_matrix.json", "standard_matrix.json", "design_depth_matrix.json", "proposal.md", "proposal.en.md"],
-      "trigger": "field placement review, official geometry integration, or revision of any scenario-to-node mapping",
-      "responsible_role": "urban designer, site manager, accessibility professional, and future authorised operator",
-      "resolution_evidence": "field-reviewed point register, conflict check, responsible owner, stop condition, and G3 decision record",
-      "recalculation_scope": ["scenario-node cross-references and all dependent route, service, and risk matrices"],
-      "risk_ids": ["R-02", "R-04", "R-06", "R-07"]
-    }
-  ]
+ "schema_version": "0.1.0",
+ "assumptions": [
+  {
+   "id": "A-OFFICIAL-GEOMETRY-001",
+   "status": "pending_official_data",
+   "statement": "No cleared official SITE_BOUNDARY or three KEY_AREA polygon package is available in this submission; the included geometry is repository-maintained provisional rough geometry.",
+   "impact": "It supports intake visualization, topology checks, and design discussion only. It is not an official redline, precise-area basis, statutory control, ownership boundary, or approval basis. This organizer data gap does not itself block content scoring; when official polygons arrive, all dependent layers, figures, PDFs, HTML, and area metrics must be recalculated.",
+   "affected_files": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "metrics.json",
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "trigger": "receipt or revision of organiser-cleared official scope polygons",
+   "responsible_role": "authorised planning-data custodian and spatial-analysis professional",
+   "resolution_evidence": "source-registered official polygons, CRS record, topology review, and regenerated metric report",
+   "recalculation_scope": [
+    "site_area_sqm",
+    "green_ratio",
+    "public_space_ratio",
+    "key_area_count"
+   ],
+   "risk_ids": [
+    "R-05",
+    "R-06"
+   ]
+  },
+  {
+   "id": "A-CONTROLS-001",
+   "status": "pending_professional_confirmation",
+   "statement": "Official regulatory-plan controls, including floor-area ratio, building height, density, setbacks, land-use controls, and any statutory intensity conclusion, are not available in the public package.",
+   "impact": "They remain unknown and cannot be inferred from the submission geometry, provisional areas, concept diagrams, or global cases. Any numerical control, zoning adjustment, or approval conclusion requires official attachments and professional confirmation. Registering official values published for adjacent, already-exhibited parcels is a factual reference and does not infer a control value for any parcel in this proposal; the register records what was verified through public channels on 2026-08-11 and leaves the intensity metrics unknown.",
+   "affected_files": [
+    "metrics.json",
+    "standard_matrix.json",
+    "design_depth_matrix.json",
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "trigger": "receipt of applicable official planning controls and their calculation boundary",
+   "responsible_role": "planning-control professional",
+   "resolution_evidence": "source-registered control document, applicability note, and signed professional calculation record",
+   "recalculation_scope": [
+    "floor_area_ratio",
+    "development_intensity_controls",
+    "height_massing_character"
+   ],
+   "risk_ids": [
+    "R-05",
+    "R-06"
+   ]
+  },
+  {
+   "id": "A-ENGINEERING-AND-HERITAGE-001",
+   "status": "pending_official_and_field_data",
+   "statement": "Road redlines, station interfaces, pedestrian counts, utilities, drainage, power, communications, fire access, flood conditions, heritage controls, and construction constraints have not been cleared for this package.",
+   "impact": "Routes, interfaces, municipal systems, service-robot operations, and public-space components are conceptual relationships only. They are not engineering alignments, municipal commitments, fire-safety conclusions, or heritage-control determinations.",
+   "affected_files": [
+    "geometry/roads.geojson",
+    "geometry/constraints.geojson",
+    "standard_matrix.json",
+    "design_depth_matrix.json",
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "trigger": "receipt of applicable road, station, utility, flood, fire, and heritage records plus field survey",
+   "responsible_role": "transport, municipal, fire-safety, flood, and heritage professionals",
+   "resolution_evidence": "discipline-specific source register, field-survey record, conflict review, and authorised design boundary",
+   "recalculation_scope": [
+    "traffic_rail_slow_parking",
+    "municipal_new_infrastructure",
+    "blue_green_public_space"
+   ],
+   "risk_ids": [
+    "R-02",
+    "R-05",
+    "R-06"
+   ]
+  },
+  {
+   "id": "A-BUILDINGS-AND-OWNERSHIP-001",
+   "status": "pending_existing_conditions_survey",
+   "statement": "No cleared building survey, parcel-rights record, tenancy record, structural assessment, age/use inventory, or heritage assessment is available for the conceptual building and land-use layers.",
+   "impact": "The package cannot determine retain, renovate, demolish, new-build, acquisition, relocation, or approved development scope. Those layers express a reviewable design hypothesis only.",
+   "affected_files": [
+    "geometry/buildings.geojson",
+    "geometry/land_use.geojson",
+    "metrics.json",
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "trigger": "completion of a cleared parcel, building, tenancy, structure, use, and heritage survey",
+   "responsible_role": "building-survey, property, structural, and heritage professionals",
+   "resolution_evidence": "building-by-building survey register, rights record, professional condition assessment, and decision log",
+   "recalculation_scope": [
+    "building_footprint_area_sqm",
+    "floor_area_ratio",
+    "retain_renovate_demolish"
+   ],
+   "risk_ids": [
+    "R-02",
+    "R-04",
+    "R-05",
+    "R-06"
+   ]
+  },
+  {
+   "id": "A-ACCESS-BASELINE-001",
+   "status": "pending_field_survey",
+   "statement": "No cleared site-wide accessibility audit, sensory-load survey, or independent-task baseline is available in the public package.",
+   "impact": "Inclusive performance metrics remain unknown; the proposal supplies test methods and spatial hypotheses rather than invented target values.",
+   "affected_files": [
+    "metrics.json",
+    "geometry/constraints.geojson",
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "trigger": "approval of the field-audit protocol and completion of participant-reviewed route and service inventories",
+   "responsible_role": "accessibility, environmental-assessment, and transport professionals with participant representatives",
+   "resolution_evidence": "audit protocol, reasonable-accommodation record, route inventory, anonymised observation log, and independent review",
+   "recalculation_scope": [
+    "independent_task_completion_rate",
+    "multichannel_information_coverage",
+    "forced_abandonment_rate",
+    "sensory_load_exceedance_point_count"
+   ],
+   "risk_ids": [
+    "R-03",
+    "R-06",
+    "R-08"
+   ]
+  },
+  {
+   "id": "A-CO-DESIGN-001",
+   "status": "pending_user_research",
+   "statement": "The AI agent has not represented or completed co-design with disabled people, neurodivergent people, older adults, children, caregivers, or international visitors.",
+   "impact": "All persona needs and scenario details are provisional prompts for voluntary, accessible, privacy-preserving co-design with real participants.",
+   "affected_files": [
+    "metrics.json",
+    "risk.json",
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "trigger": "approval of ethics, recruitment, accommodation, consent, withdrawal, and disposal protocols",
+   "responsible_role": "co-design lead, ethics reviewer, and participant advisory group",
+   "resolution_evidence": "approved protocol, voluntary participation record, role-coverage calculation, change receipt, and withdrawal log",
+   "recalculation_scope": [
+    "co_design_role_coverage_ratio",
+    "independent_task_completion_rate",
+    "forced_abandonment_rate"
+   ],
+   "risk_ids": [
+    "R-01",
+    "R-03",
+    "R-08"
+   ]
+  },
+  {
+   "id": "A-IMPLEMENTATION-001",
+   "status": "pending_responsible_parties",
+   "statement": "No approved implementation owner, operating entity, procurement plan, investment budget, subsidy, partnership, activity permit, development timetable, or government commitment has been provided.",
+   "impact": "Phases, Every Sense Week, trials, maintenance, procurement, and exit mechanisms are concept recommendations for responsible organisations and professional teams to evaluate; they are not confirmed delivery, funding, activity, or government arrangements.",
+   "affected_files": [
+    "risk.json",
+    "geometry/phasing.geojson",
+    "compliance_matrix.json",
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "trigger": "written appointment of an accountable sponsor or operator and approval of a bounded work package",
+   "responsible_role": "future authorised project sponsor or operator",
+   "resolution_evidence": "written responsibility record, approved work-package boundary, maintenance resource, stop condition, and next authorisation",
+   "recalculation_scope": [
+    "human_handover_success_rate",
+    "human_handover_response_time_seconds",
+    "phasing_implementation"
+   ],
+   "risk_ids": [
+    "R-02",
+    "R-04",
+    "R-05"
+   ]
+  },
+  {
+   "id": "A-CASE-TRANSFER-001",
+   "status": "conceptual_reference_only",
+   "statement": "Global cases have different land, capital, legal, institutional, and operating conditions.",
+   "impact": "Only mechanisms are compared; no foreign outcome, regulation, or delivery commitment is transferred to Haidian.",
+   "affected_files": [
+    "sources.json",
+    "compliance_matrix.json",
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "trigger": "any proposal to convert a referenced mechanism into a local delivery claim",
+   "responsible_role": "urban-design research lead and relevant legal or policy reviewer",
+   "resolution_evidence": "local applicability analysis with source, authority, resource, and operating differences stated",
+   "recalculation_scope": [
+    "case-comparison claims only; no quantitative metric transfer"
+   ],
+   "risk_ids": [
+    "R-02",
+    "R-05"
+   ]
+  },
+  {
+   "id": "A-OPERATION-NODES-001",
+   "status": "concept_geometry_only",
+   "statement": "OP-01 through OP-10 are stable scenario anchors in geometry/constraints.geojson and correspond in order to S01 through S10; they are conceptual operation points, not surveyed, approved, funded, or built facilities.",
+   "impact": "The identifiers can bind narrative, matrices, scenarios, risks, and future tests, but their coordinates and installation conditions cannot support an engineering or delivery claim.",
+   "affected_files": [
+    "geometry/constraints.geojson",
+    "compliance_matrix.json",
+    "standard_matrix.json",
+    "design_depth_matrix.json",
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "trigger": "field placement review, official geometry integration, or revision of any scenario-to-node mapping",
+   "responsible_role": "urban designer, site manager, accessibility professional, and future authorised operator",
+   "resolution_evidence": "field-reviewed point register, conflict check, responsible owner, stop condition, and G3 decision record",
+   "recalculation_scope": [
+    "scenario-node cross-references and all dependent route, service, and risk matrices"
+   ],
+   "risk_ids": [
+    "R-02",
+    "R-04",
+    "R-06",
+    "R-07"
+   ]
+  },
+  {
+   "id": "A-10",
+   "status": "open",
+   "statement": "仓库议题 #1029 登记临时大钟寺重点区质心历史落位于北京北站一带（距大钟寺站约 2.26 km）；本包 v6.4 已在自身提交几何中将该重点区及其节点、接口与概念体量归位至真实大钟寺板块，但任务包侧 brief/site-package 的临时几何仍保持原状。",
+   "impact": "OP-04 选点第三条（片区归属）降级为参考理由；一切与任务包临时几何直接对照的读数须注明两套几何的差异。",
+   "affected_files": [
+    "geometry/key_areas.geojson",
+    "geometry/constraints.geojson",
+    "geometry/roads.geojson",
+    "proposal.md"
+   ],
+   "trigger": "官方重点区精确多边形公开，或任务包临时几何更新",
+   "responsible_role": "控规实施与测绘专业",
+   "resolution_evidence": "以官方几何为基准的整体重算记录",
+   "recalculation_scope": "全部图层、指标与图纸",
+   "risk_ids": [
+    "R-05"
+   ]
+  },
+  {
+   "id": "A-11",
+   "status": "open",
+   "statement": "仓库议题 #846 登记临时「总体设计范围」多边形与 OSM 测绘的遗址公园已建段不相交（最近距离约 412.5 m）；本包「沿京张铁路遗址公园组织」的表述指向公告文本所述遗址公园沿线，与继承的临时范围几何之间存在该已登记偏差。",
+   "impact": "site_area_sqm 及一切以临时总体范围为分母的比值只在临时几何口径内成立；空间关系表述不得被读作与实测公园的精确对位。",
+   "affected_files": [
+    "geometry/site_boundary.geojson",
+    "metrics.json",
+    "proposal.md"
+   ],
+   "trigger": "官方总体设计范围红线公开",
+   "responsible_role": "控规实施与测绘专业",
+   "resolution_evidence": "以官方红线为基准的整体重算记录",
+   "recalculation_scope": "全部图层、指标与图纸",
+   "risk_ids": [
+    "R-05"
+   ]
+  },
+  {
+   "id": "A-12",
+   "status": "open",
+   "statement": "沿线街区控规（HD00—1601 等街区，2024—2035）据报道已于 2026-08-11 获市规划自然资源委批复，但批复成果全文与法定图则尚未经公开渠道取得。",
+   "impact": "本方案不据该报道推断任何地块控制值；控规台账登记为新闻报道层级的结构性参照。",
+   "affected_files": [
+    "sources.json",
+    "proposal.md",
+    "metrics.json"
+   ],
+   "trigger": "批复成果与法定图则公开",
+   "responsible_role": "控规实施专业",
+   "resolution_evidence": "对照批复成果的全量重算与对位说明",
+   "recalculation_scope": "全部图层、指标与图纸",
+   "risk_ids": [
+    "R-05"
+   ]
+  }
+ ]
 }

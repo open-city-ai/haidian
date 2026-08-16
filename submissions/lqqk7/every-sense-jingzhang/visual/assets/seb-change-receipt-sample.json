@@ -1,209 +1,301 @@
 {
-  "receipt_schema_id": "seb-change-receipt",
-  "version": "0.2.0",
-  "status": "draft_concept_recommendation",
-  "purpose_zh": "把「意见—修改—未采纳理由」写成可带走、可核对的固定格式。回执的作用不是记录已经做了什么，而是让提出意见的人能够查到自己那一条的结论；没有结论的意见视同该点位本轮未通过复核。",
-  "purpose_en": "A fixed, portable format for the opinion-change-refusal record. A receipt does not exist to log what was done; it exists so that whoever raised a point can look up the ruling on that point. An opinion left without a ruling counts as a node failing that round of review.",
-  "issuance_rule_zh": "真实共创启动后，每轮 G3 独立复核结束时发布一批回执，同时张贴于对应点位并进入公开复盘记录。这是机制设计，尚未运行过任何一轮。",
-  "issuance_rule_en": "Once real co-design begins, a batch of receipts is published at the close of every G3 independent review, posted at the node concerned and entered into the public debrief record. This is mechanism design; no round has yet been run.",
-  "schema": {
-    "verdict_enum": ["adopted", "partially_adopted", "not_adopted"],
-    "required_fields": [
-      { "field": "receipt_id", "type": "string", "desc_zh": "回执编号，唯一且可引用", "desc_en": "unique, citable receipt number" },
-      { "field": "issued_at", "type": "date", "desc_zh": "发布日期", "desc_en": "date of publication" },
-      { "field": "gate_round", "type": "string", "desc_zh": "对应的 G3 复核轮次；桌面演示填 not_applicable", "desc_en": "the G3 review round; a tabletop demonstration records not_applicable" },
-      { "field": "node_id", "type": "string", "desc_zh": "涉及的点位；跨点位事项填 all", "desc_en": "the node concerned; cross-node matters record all" },
-      { "field": "raised_by", "type": "object", "desc_zh": "提出者的角色组与身份披露方式，不记录个人身份信息", "desc_en": "the raiser's role group and disclosure method; no personal identifying data" },
-      { "field": "opinion", "type": "bilingual_text", "desc_zh": "原始意见，按提出者的表述登记，不改写为结论语言", "desc_en": "the opinion as raised, in the raiser's own framing, not rewritten into conclusion language" },
-      { "field": "finding", "type": "bilingual_text", "desc_zh": "复核过程中查到的事实", "desc_en": "the facts established during review" },
-      { "field": "verdict", "type": "enum", "desc_zh": "采纳、部分采纳或不采纳", "desc_en": "adopted, partially adopted, or not adopted" },
-      { "field": "change_made", "type": "object", "desc_zh": "实际改了什么，须列出被修改的文件或条文", "desc_en": "what actually changed, listing the files or clauses modified" },
-      { "field": "not_adopted_reason", "type": "bilingual_text", "desc_zh": "verdict 非 adopted 时必填；只写理由，不写安抚", "desc_en": "mandatory whenever the verdict is not adopted; reasons only, no consolation" },
-      { "field": "failed_sample_register", "type": "object", "desc_zh": "基准版本治理要求每次变更同时提交失败样本登记；登记为空须给出理由", "desc_en": "baseline version governance requires a failed-sample register with every change; an empty register must state why" },
-      { "field": "affected_metrics", "type": "object", "desc_zh": "受影响指标与复算说明；无读数时须写明未产生读数", "desc_en": "affected metrics and their recomputation note; where there is no reading, say so" },
-      { "field": "verification", "type": "bilingual_text", "desc_zh": "第三方复核本条结论的具体方法", "desc_en": "how a third party can re-check this ruling" },
-      { "field": "posting", "type": "array", "desc_zh": "张贴与归档位置", "desc_en": "where the receipt is posted and filed" }
+ "receipt_schema_id": "seb-change-receipt",
+ "version": "0.3.0",
+ "status": "draft_concept_recommendation",
+ "purpose_zh": "把「意见—修改—未采纳理由」写成可带走、可核对的固定格式。回执的作用不是记录已经做了什么，而是让提出意见的人能够查到自己那一条的结论；没有结论的意见视同该点位本轮未通过复核。",
+ "purpose_en": "A fixed, portable format for the opinion-change-refusal record. A receipt does not exist to log what was done; it exists so that whoever raised a point can look up the ruling on that point. An opinion left without a ruling counts as a node failing that round of review.",
+ "issuance_rule_zh": "真实共创启动后，每轮 G3 独立复核结束时发布一批回执，同时张贴于对应点位并进入公开复盘记录。这是机制设计，尚未运行过任何一轮。",
+ "issuance_rule_en": "Once real co-design begins, a batch of receipts is published at the close of every G3 independent review, posted at the node concerned and entered into the public debrief record. This is mechanism design; no round has yet been run.",
+ "schema": {
+  "verdict_enum": [
+   "adopted",
+   "partially_adopted",
+   "not_adopted"
+  ],
+  "required_fields": [
+   {
+    "field": "receipt_id",
+    "type": "string",
+    "desc_zh": "回执编号，唯一且可引用",
+    "desc_en": "unique, citable receipt number"
+   },
+   {
+    "field": "issued_at",
+    "type": "date",
+    "desc_zh": "发布日期",
+    "desc_en": "date of publication"
+   },
+   {
+    "field": "gate_round",
+    "type": "string",
+    "desc_zh": "对应的 G3 复核轮次；桌面演示填 not_applicable",
+    "desc_en": "the G3 review round; a tabletop demonstration records not_applicable"
+   },
+   {
+    "field": "node_id",
+    "type": "string",
+    "desc_zh": "涉及的点位；跨点位事项填 all",
+    "desc_en": "the node concerned; cross-node matters record all"
+   },
+   {
+    "field": "raised_by",
+    "type": "object",
+    "desc_zh": "提出者的角色组与身份披露方式，不记录个人身份信息",
+    "desc_en": "the raiser's role group and disclosure method; no personal identifying data"
+   },
+   {
+    "field": "opinion",
+    "type": "bilingual_text",
+    "desc_zh": "原始意见，按提出者的表述登记，不改写为结论语言",
+    "desc_en": "the opinion as raised, in the raiser's own framing, not rewritten into conclusion language"
+   },
+   {
+    "field": "finding",
+    "type": "bilingual_text",
+    "desc_zh": "复核过程中查到的事实",
+    "desc_en": "the facts established during review"
+   },
+   {
+    "field": "verdict",
+    "type": "enum",
+    "desc_zh": "采纳、部分采纳或不采纳",
+    "desc_en": "adopted, partially adopted, or not adopted"
+   },
+   {
+    "field": "change_made",
+    "type": "object",
+    "desc_zh": "实际改了什么，须列出被修改的文件或条文",
+    "desc_en": "what actually changed, listing the files or clauses modified"
+   },
+   {
+    "field": "not_adopted_reason",
+    "type": "bilingual_text",
+    "desc_zh": "verdict 非 adopted 时必填；只写理由，不写安抚",
+    "desc_en": "mandatory whenever the verdict is not adopted; reasons only, no consolation"
+   },
+   {
+    "field": "failed_sample_register",
+    "type": "object",
+    "desc_zh": "基准版本治理要求每次变更同时提交失败样本登记；登记为空须给出理由",
+    "desc_en": "baseline version governance requires a failed-sample register with every change; an empty register must state why"
+   },
+   {
+    "field": "affected_metrics",
+    "type": "object",
+    "desc_zh": "受影响指标与复算说明；无读数时须写明未产生读数",
+    "desc_en": "affected metrics and their recomputation note; where there is no reading, say so"
+   },
+   {
+    "field": "verification",
+    "type": "bilingual_text",
+    "desc_zh": "第三方复核本条结论的具体方法",
+    "desc_en": "how a third party can re-check this ruling"
+   },
+   {
+    "field": "posting",
+    "type": "array",
+    "desc_zh": "张贴与归档位置",
+    "desc_en": "where the receipt is posted and filed"
+   }
+  ],
+  "optional_fields": [
+   {
+    "field": "subsequent_disposition",
+    "type": "object",
+    "since_version": "0.2.0",
+    "desc_zh": "后续处置：本条回执登记的待办或失败样本在哪一版本、由哪一条回执兑现。已发布回执的原文一律不改写，后续结论只以本字段追加，使读者既能看到当时的判断，也能看到它后来是否被兑现。",
+    "desc_en": "Subsequent disposition: in which version and by which receipt the items registered here were discharged. The text of a published receipt is never rewritten; later outcomes are appended in this field only, so a reader sees both the ruling as it was made and whether it was later honoured."
+   }
+  ],
+  "immutability_rule_zh": "已发布的回执不得改写。发现错误时发布更正回执并在原回执的 subsequent_disposition 中指向它；直接编辑原文等于销毁记录，与分母不得删除失败样本属同一条纪律。",
+  "immutability_rule_en": "A published receipt is not rewritten. Where it is wrong, publish a correcting receipt and point to it from the original's subsequent_disposition; editing the original destroys the record, which is the same discipline as not dropping failed samples from a denominator.",
+  "rejection_rule_zh": "只改条文不交证据的修订不予合并；未采纳的意见必须给出理由，理由不得引用尚未存在的授权。",
+  "rejection_rule_en": "A revision that edits wording without submitting evidence is not merged, and a rejected opinion must carry a reason that does not lean on an authorisation which does not yet exist."
+ },
+ "receipts": [
+  {
+   "receipt_id": "CR-2026-08-12-001",
+   "issued_at": "2026-08-12",
+   "gate_round": "not_applicable_tabletop_demonstration",
+   "node_id": "OP-01",
+   "raised_by": {
+    "role_group": "方案作者自查（桌面配对推演）",
+    "role_group_en": "proposal author self-review (tabletop pairing run)",
+    "identity_disclosure": "无参与者，无个人信息；本条意见由推演过程本身提出",
+    "identity_disclosure_en": "no participant and no personal data; the opinion arose from the run itself"
+   },
+   "opinion": {
+    "zh": "把 node_schema 中 ai_off_path 的约束放宽，允许填写引导至线上办理一类路径，以便更多点位能够计入服务覆盖。",
+    "en": "Relax the ai_off_path constraint in node_schema so that routes such as directing the user to the online service become acceptable, letting more nodes count towards service coverage."
+   },
+   "finding": {
+    "zh": "推演在样例 TT-N2 上确认了两件事。其一，把该约束实现为可执行规则时，样例中引导至线上办理，在小程序内完成同一事项这句被判定为违反等价原则，判定成立。其二，基准原文只把约束写成自然语言例句，没有给出机器可读的拒绝依据，因此任何两个校验实现都可能得到不同结果——这是基准自身的缺口，不是样例的问题。",
+    "en": "Two things were established on fixture TT-N2. First, once the constraint is implemented as an executable rule, the fixture wording directing the user to the online service to finish the same task inside the mini-program is judged to breach equivalence, and the judgement holds. Second, the baseline states the constraint only as a natural-language example and supplies no machine-readable ground for refusal, so any two checker implementations may disagree. That gap belongs to the baseline, not to the fixture."
+   },
+   "verdict": "partially_adopted",
+   "change_made": {
+    "zh": "不放宽约束，改为把约束补齐为可执行形式：在 seb-tabletop-run.js 中以显式的同一系统词表实现拒绝规则，并在代码注释中声明该词表是本工具的解释而非基准条文。同时登记一条 v0.2 待办：在 seb-spec.json 的 node_schema 中增加 constraint_machine_rule 字段，把拒绝依据从注释升格为规范。",
+    "en": "The constraint is not relaxed; it is completed into an executable form. seb-tabletop-run.js implements the refusal through an explicit same-system term list, and the code comment states that the list is this tool's interpretation rather than baseline text. A v0.2 item is registered alongside it: add a constraint_machine_rule field to node_schema in seb-spec.json so the ground for refusal rises from comment to specification.",
+    "changed_artifacts": [
+     "visual/assets/seb-tabletop-run.js",
+     "visual/assets/seb-tabletop-fixtures.json"
     ],
-    "optional_fields": [
-      { "field": "subsequent_disposition", "type": "object", "since_version": "0.2.0", "desc_zh": "后续处置：本条回执登记的待办或失败样本在哪一版本、由哪一条回执兑现。已发布回执的原文一律不改写，后续结论只以本字段追加，使读者既能看到当时的判断，也能看到它后来是否被兑现。", "desc_en": "Subsequent disposition: in which version and by which receipt the items registered here were discharged. The text of a published receipt is never rewritten; later outcomes are appended in this field only, so a reader sees both the ruling as it was made and whether it was later honoured." }
+    "unchanged_artifacts": [
+     "visual/assets/seb-spec.json",
+     "metrics.json",
+     "geometry/constraints.geojson"
+    ]
+   },
+   "not_adopted_reason": {
+    "zh": "放宽字段的意见不予采纳。AI 关闭后的路径若仍依赖同一系统，等价性在定义上就不成立，服务等价差这项读数也随之失去意义——它比较的将是同一条路径的两个入口，而不是两条路径。以提高覆盖率为由放宽判据，等于用改判据的方式提高分数，这正是基准存在的目的所要防止的事。",
+    "en": "The request to relax the field is refused. If the route after AI is switched off still depends on the same system, equivalence fails by definition and the service-equivalence gap loses its meaning, because it would then compare two doors into one route rather than two routes. Loosening the criteria to raise coverage is raising the score by rewriting the test, which is precisely what the baseline exists to prevent."
+   },
+   "failed_sample_register": {
+    "participant_samples": "none",
+    "reason_zh": "本次为桌面推演，无真实参与者、无现场测量，因此不存在参与者失败样本可登记。登记为空的理由在此写明，符合基准版本治理中登记为空须给出理由的要求。",
+    "reason_en": "This was a tabletop run with no real participant and no field measurement, so no participant failure sample exists to register. The reason for the empty register is stated here, as baseline version governance requires.",
+    "tool_level_failures_registered": [
+     "level_definitions 的 gate 字段为自由文本（before G0、post-G3 operation），须以正则抽取闸门编号才能与节点比对；L4 映射至 G3 属本工具的推断，基准未定义",
+     "denominator_integrity_rule 未界定适用范围，本工具按分母文字是否出现有效样本或成对测试样本来推导，属本工具的解释"
+    ]
+   },
+   "affected_metrics": {
+    "metric_ids": [
+     "ai_off_service_equivalence_gap",
+     "scenario_exit_path_coverage"
     ],
-    "immutability_rule_zh": "已发布的回执不得改写。发现错误时发布更正回执并在原回执的 subsequent_disposition 中指向它；直接编辑原文等于销毁记录，与分母不得删除失败样本属同一条纪律。",
-    "immutability_rule_en": "A published receipt is not rewritten. Where it is wrong, publish a correcting receipt and point to it from the original's subsequent_disposition; editing the original destroys the record, which is the same discipline as not dropping failed samples from a denominator.",
-    "rejection_rule_zh": "只改条文不交证据的修订不予合并；未采纳的意见必须给出理由，理由不得引用尚未存在的授权。",
-    "rejection_rule_en": "A revision that edits wording without submitting evidence is not merged, and a rejected opinion must carry a reason that does not lean on an authorisation which does not yet exist."
+    "recomputation_zh": "本次变更不产生任何指标数值。ai_off_service_equivalence_gap 在 metrics.json 中保持 unknown，须由伦理化的真实成对测试取得；scenario_exit_path_coverage 仍按文件完整性口径登记，本次变更未增删任何节点，读数与口径均未改变。",
+    "recomputation_en": "The change produces no metric value. ai_off_service_equivalence_gap stays unknown in metrics.json and can only come from an ethically run paired test with real participants; scenario_exit_path_coverage remains a file-completeness figure, and since no node was added or removed, neither its reading nor its definition changed."
+   },
+   "verification": {
+    "zh": "任何人可在 visual/assets 目录下执行 node seb-tabletop-run.js 复核本条结论：样例 TT-N2 应被拒绝，理由为 NODE_CONSTRAINT_VIOLATION:ai_off_path；若把该样例的 ai_off_path 改回不依赖同一系统的写法，同一工具应转为通过。",
+    "en": "Anyone can re-check this ruling by running node seb-tabletop-run.js in the visual/assets directory: fixture TT-N2 should be rejected with the reason NODE_CONSTRAINT_VIOLATION:ai_off_path, and rewriting that fixture's ai_off_path into a route independent of the same system should turn the same tool to accept."
+   },
+   "posting": [
+    "本回执随方案包公开，位于 visual/assets/seb-change-receipt-sample.json",
+    "真实共创启动后，同类回执张贴于对应点位并进入公开复盘记录"
+   ],
+   "status": "demonstration_only",
+   "status_note_zh": "本条回执以本次桌面推演自身为对象，是格式与机制的演示，不是任何一轮真实复核的结论，也不代表任何主体已经审议过该意见。",
+   "status_note_en": "This receipt takes the tabletop run itself as its subject. It demonstrates the format and the mechanism; it is not the outcome of any real review round and represents deliberation by no body.",
+   "subsequent_disposition": {
+    "closed_by_receipt_id": "CR-2026-08-12-002",
+    "closed_in_spec_version": "0.2.0",
+    "zh": "已于 v0.2 兑现。本条登记的 v0.2 待办与 failed_sample_register 中的两条工具级失败，全部由回执 CR-2026-08-12-002 闭合，基准随之由 0.1.0 升至 0.2.0。本条原文一字未改，后续结论只在此字段追加。",
+    "en": "Honoured in v0.2. The v0.2 item registered here and both tool-level failures in the failed_sample_register are closed by receipt CR-2026-08-12-002, with the baseline rising from 0.1.0 to 0.2.0. Not a word of this receipt was rewritten; the later outcome is appended in this field alone.",
+    "items_closed": [
+     "v0.2 待办：node_schema 增加 constraint_machine_rule —— 已增加，ai_off_path 的同一系统词表由工具代码升格为基准条文",
+     "工具级失败一：level_definitions 的 gate 字段为自由文本、L4 映射 G3 属工具推断 —— 已改为结构化 gate_binding，L4 与 G3 的关系由基准明文规定",
+     "工具级失败二：denominator_integrity_rule 未界定适用范围 —— 已增加 applies_to，适用与排除的指标逐项列明"
+    ]
+   }
   },
-  "receipts": [
-    {
-      "receipt_id": "CR-2026-08-12-001",
-      "issued_at": "2026-08-12",
-      "gate_round": "not_applicable_tabletop_demonstration",
-      "node_id": "OP-01",
-      "raised_by": {
-        "role_group": "方案作者自查（桌面配对推演）",
-        "role_group_en": "proposal author self-review (tabletop pairing run)",
-        "identity_disclosure": "无参与者，无个人信息；本条意见由推演过程本身提出",
-        "identity_disclosure_en": "no participant and no personal data; the opinion arose from the run itself"
-      },
-      "opinion": {
-        "zh": "把 node_schema 中 ai_off_path 的约束放宽，允许填写引导至线上办理一类路径，以便更多点位能够计入服务覆盖。",
-        "en": "Relax the ai_off_path constraint in node_schema so that routes such as directing the user to the online service become acceptable, letting more nodes count towards service coverage."
-      },
-      "finding": {
-        "zh": "推演在样例 TT-N2 上确认了两件事。其一，把该约束实现为可执行规则时，样例中引导至线上办理，在小程序内完成同一事项这句被判定为违反等价原则，判定成立。其二，基准原文只把约束写成自然语言例句，没有给出机器可读的拒绝依据，因此任何两个校验实现都可能得到不同结果——这是基准自身的缺口，不是样例的问题。",
-        "en": "Two things were established on fixture TT-N2. First, once the constraint is implemented as an executable rule, the fixture wording directing the user to the online service to finish the same task inside the mini-program is judged to breach equivalence, and the judgement holds. Second, the baseline states the constraint only as a natural-language example and supplies no machine-readable ground for refusal, so any two checker implementations may disagree. That gap belongs to the baseline, not to the fixture."
-      },
-      "verdict": "partially_adopted",
-      "change_made": {
-        "zh": "不放宽约束，改为把约束补齐为可执行形式：在 seb-tabletop-run.js 中以显式的同一系统词表实现拒绝规则，并在代码注释中声明该词表是本工具的解释而非基准条文。同时登记一条 v0.2 待办：在 seb-spec.json 的 node_schema 中增加 constraint_machine_rule 字段，把拒绝依据从注释升格为规范。",
-        "en": "The constraint is not relaxed; it is completed into an executable form. seb-tabletop-run.js implements the refusal through an explicit same-system term list, and the code comment states that the list is this tool's interpretation rather than baseline text. A v0.2 item is registered alongside it: add a constraint_machine_rule field to node_schema in seb-spec.json so the ground for refusal rises from comment to specification.",
-        "changed_artifacts": [
-          "visual/assets/seb-tabletop-run.js",
-          "visual/assets/seb-tabletop-fixtures.json"
-        ],
-        "unchanged_artifacts": [
-          "visual/assets/seb-spec.json",
-          "metrics.json",
-          "geometry/constraints.geojson"
-        ]
-      },
-      "not_adopted_reason": {
-        "zh": "放宽字段的意见不予采纳。AI 关闭后的路径若仍依赖同一系统，等价性在定义上就不成立，服务等价差这项读数也随之失去意义——它比较的将是同一条路径的两个入口，而不是两条路径。以提高覆盖率为由放宽判据，等于用改判据的方式提高分数，这正是基准存在的目的所要防止的事。",
-        "en": "The request to relax the field is refused. If the route after AI is switched off still depends on the same system, equivalence fails by definition and the service-equivalence gap loses its meaning, because it would then compare two doors into one route rather than two routes. Loosening the criteria to raise coverage is raising the score by rewriting the test, which is precisely what the baseline exists to prevent."
-      },
-      "failed_sample_register": {
-        "participant_samples": "none",
-        "reason_zh": "本次为桌面推演，无真实参与者、无现场测量，因此不存在参与者失败样本可登记。登记为空的理由在此写明，符合基准版本治理中登记为空须给出理由的要求。",
-        "reason_en": "This was a tabletop run with no real participant and no field measurement, so no participant failure sample exists to register. The reason for the empty register is stated here, as baseline version governance requires.",
-        "tool_level_failures_registered": [
-          "level_definitions 的 gate 字段为自由文本（before G0、post-G3 operation），须以正则抽取闸门编号才能与节点比对；L4 映射至 G3 属本工具的推断，基准未定义",
-          "denominator_integrity_rule 未界定适用范围，本工具按分母文字是否出现有效样本或成对测试样本来推导，属本工具的解释"
-        ]
-      },
-      "affected_metrics": {
-        "metric_ids": ["ai_off_service_equivalence_gap", "scenario_exit_path_coverage"],
-        "recomputation_zh": "本次变更不产生任何指标数值。ai_off_service_equivalence_gap 在 metrics.json 中保持 unknown，须由伦理化的真实成对测试取得；scenario_exit_path_coverage 仍按文件完整性口径登记，本次变更未增删任何节点，读数与口径均未改变。",
-        "recomputation_en": "The change produces no metric value. ai_off_service_equivalence_gap stays unknown in metrics.json and can only come from an ethically run paired test with real participants; scenario_exit_path_coverage remains a file-completeness figure, and since no node was added or removed, neither its reading nor its definition changed."
-      },
-      "verification": {
-        "zh": "任何人可在 visual/assets 目录下执行 node seb-tabletop-run.js 复核本条结论：样例 TT-N2 应被拒绝，理由为 NODE_CONSTRAINT_VIOLATION:ai_off_path；若把该样例的 ai_off_path 改回不依赖同一系统的写法，同一工具应转为通过。",
-        "en": "Anyone can re-check this ruling by running node seb-tabletop-run.js in the visual/assets directory: fixture TT-N2 should be rejected with the reason NODE_CONSTRAINT_VIOLATION:ai_off_path, and rewriting that fixture's ai_off_path into a route independent of the same system should turn the same tool to accept."
-      },
-      "posting": [
-        "本回执随方案包公开，位于 visual/assets/seb-change-receipt-sample.json",
-        "真实共创启动后，同类回执张贴于对应点位并进入公开复盘记录"
-      ],
-      "status": "demonstration_only",
-      "status_note_zh": "本条回执以本次桌面推演自身为对象，是格式与机制的演示，不是任何一轮真实复核的结论，也不代表任何主体已经审议过该意见。",
-      "status_note_en": "This receipt takes the tabletop run itself as its subject. It demonstrates the format and the mechanism; it is not the outcome of any real review round and represents deliberation by no body.",
-      "subsequent_disposition": {
-        "closed_by_receipt_id": "CR-2026-08-12-002",
-        "closed_in_spec_version": "0.2.0",
-        "zh": "已于 v0.2 兑现。本条登记的 v0.2 待办与 failed_sample_register 中的两条工具级失败，全部由回执 CR-2026-08-12-002 闭合，基准随之由 0.1.0 升至 0.2.0。本条原文一字未改，后续结论只在此字段追加。",
-        "en": "Honoured in v0.2. The v0.2 item registered here and both tool-level failures in the failed_sample_register are closed by receipt CR-2026-08-12-002, with the baseline rising from 0.1.0 to 0.2.0. Not a word of this receipt was rewritten; the later outcome is appended in this field alone.",
-        "items_closed": [
-          "v0.2 待办：node_schema 增加 constraint_machine_rule —— 已增加，ai_off_path 的同一系统词表由工具代码升格为基准条文",
-          "工具级失败一：level_definitions 的 gate 字段为自由文本、L4 映射 G3 属工具推断 —— 已改为结构化 gate_binding，L4 与 G3 的关系由基准明文规定",
-          "工具级失败二：denominator_integrity_rule 未界定适用范围 —— 已增加 applies_to，适用与排除的指标逐项列明"
-        ]
-      }
-    },
-    {
-      "receipt_id": "CR-2026-08-12-002",
-      "issued_at": "2026-08-12",
-      "gate_round": "not_applicable_tabletop_demonstration",
-      "node_id": "all",
-      "raised_by": {
-        "role_group": "桌面配对推演的工具级失败登记（回执 CR-2026-08-12-001 的 failed_sample_register）",
-        "role_group_en": "the tool-level failure register of the tabletop pairing run (failed_sample_register of receipt CR-2026-08-12-001)",
-        "identity_disclosure": "无参与者，无个人信息；本条意见由上一版回执自身登记的缺口提出",
-        "identity_disclosure_en": "no participant and no personal data; the points come from gaps the previous receipt registered against itself"
-      },
-      "opinion": {
-        "zh": "基准 v0.1 把三处判据的可执行形式留给了实现：ai_off_path 的同一系统约束只有自然语言例句，等级定义的闸门字段是自由文本，分母完整性规则没有界定适用范围。三处都由校验工具私自补齐，因此两个实现可能得出不同结论。要求把这三处从实现升格为基准条文。",
-        "en": "Baseline v0.1 left the executable form of three criteria to the implementation: the same-system constraint on ai_off_path existed only as a natural-language example, the gate field of the level definitions was free text, and the denominator-integrity rule bounded no scope. A checker filled in all three privately, so two implementations could reach different conclusions. The request is to raise all three from implementation into baseline text."
-      },
-      "finding": {
-        "zh": "三条缺口全部查实，另查明第四条同类问题。其一，ai_off_path 的拒绝依据在 v0.1 中只是注释里的词表，样例 TT-N2 的判定虽然成立，成立的依据却不可被第三方引用。其二，gate 字段的取值为 before G0、G1、after G3、post-G3 operation，工具须以正则抽取闸门编号，其中 L4 对应 G3 完全出自工具推断，基准未着一字。其三，分母完整性规则的适用范围由工具按分母文字中是否出现有效样本或成对测试样本推导；该推导会漏掉人工接管响应耗时一项——其分母写作按次记录、不取平均掩盖长尾，文字不含上述字样，于是只报设备正常时耗时的记录在 v0.1 下可以通过。其四，human_handoff 的角色词表与 ai_off_path 属同一类私有词表，v0.1 未予登记，本次在闭合第一条时一并查明。",
-        "en": "All three gaps were confirmed, and a fourth of the same class was found. First, the ground for refusing an ai_off_path value existed in v0.1 only as a word list inside a comment: the ruling on fixture TT-N2 held, but the ground on which it held could not be cited by a third party. Second, the gate field carried the values before G0, G1, after G3 and post-G3 operation, so the tool had to extract the gate number by pattern, and the mapping of L4 onto G3 was entirely the tool's inference, on which the baseline said nothing. Third, the scope of the denominator-integrity rule was inferred by the tool from whether the denominator wording named valid samples or paired-test samples; that inference misses human-handover response time, whose denominator reads as a per-instance log that must not hide its tail in an average and names neither phrase, so under v0.1 a record reporting only the runs where the equipment behaved would pass. Fourth, the role lexicon behind human_handoff is the same class of private word list as ai_off_path; v0.1 registered it nowhere, and it surfaced while the first item was being closed."
-      },
-      "verdict": "adopted",
-      "change_made": {
-        "zh": "基准由 0.1.0 升至 0.2.0，四处一并闭合。node_schema 的 ai_off_path 与 human_handoff 各增 constraint_machine_rule，把十四项同一系统词表与十三项角色词表由工具代码升格为基准条文，并写明词表可随失败样本扩充、扩充即版本递增；同时加入 machine_rule_contract，规定实现只能按该字段判定取值，不得自行补充约束。level_definitions 的 gate 字段改为结构化 gate_binding（gate_id 取 G0 至 G3 或 none，timing 取 before、at、after），并以 l4_gate_rule 明文规定 L4 绑定 G3 且 timing 为 after，正则抽取与工具推断一并取消。scoring_definitions 增加 denominator_integrity_applies_to，逐项列明适用的五项参与者任务型指标、排除的三项枚举型指标，以及排除的两项文件完整性型指标及其理由，另把必报的四类失败样本由工具常量升格为基准字段。校验工具改为全部消费上述字段，删除私有词表与正则，并增加基准版本兼容校验与基准自洽校验；样例增补 TT-P5 与 TT-N7 两条，分别检验排除侧与适用侧。",
-        "en": "The baseline rises from 0.1.0 to 0.2.0 and closes all four items. ai_off_path and human_handoff each gain a constraint_machine_rule, lifting the fourteen same-system terms and the thirteen role tokens out of the tool's code and into baseline text, and stating that the lists may grow as failed samples arrive and that any growth raises the version. A machine_rule_contract is added alongside, ruling that an implementation may judge a value by that field and by nothing else. The gate field of level_definitions becomes a structured gate_binding — gate_id from G0 to G3 or none, timing from before, at, after — and l4_gate_rule states outright that L4 binds to G3 with timing after, retiring both the pattern extraction and the inference. scoring_definitions gains denominator_integrity_applies_to, naming the five participant-task metrics in scope, the three enumeration metrics out of scope, and the two file-completeness metrics excluded with their reasons, while the four failure categories that must be reported rise from a tool constant to a baseline field. The checker now consumes all of these, its private word lists and pattern are deleted, and it gains a baseline-version compatibility gate and a baseline self-consistency check; fixtures TT-P5 and TT-N7 are added to test the exclusion side and the inclusion side respectively.",
-        "changed_artifacts": [
-          "visual/assets/seb-spec.json",
-          "visual/assets/seb-tabletop-run.js",
-          "visual/assets/seb-tabletop-fixtures.json",
-          "visual/assets/seb-change-receipt-sample.json",
-          "proposal.md",
-          "proposal.en.md"
-        ],
-        "unchanged_artifacts": [
-          "metrics.json",
-          "geometry/constraints.geojson",
-          "risk.json"
-        ]
-      },
-      "not_adopted_reason": {
-        "zh": "不适用：三条意见全部采纳，无未采纳部分。第四条为闭合过程中自查发现，一并采纳并在此登记，不作为已有意见的替换。",
-        "en": "Not applicable: all three points were adopted and nothing was refused. The fourth arose from self-review while closing the others; it is adopted and registered here, and it replaces none of the points already raised."
-      },
-      "failed_sample_register": {
-        "participant_samples": "none",
-        "reason_zh": "本次仍为桌面推演，无真实参与者、无现场测量，因此不存在参与者失败样本可登记。登记为空的理由在此写明，符合基准版本治理中登记为空须给出理由的要求。",
-        "reason_en": "This remains a tabletop run with no real participant and no field measurement, so no participant failure sample exists to register. The reason for the empty register is stated here, as baseline version governance requires.",
-        "tool_level_failures_resolved": [
-          {
-            "registered_in": "CR-2026-08-12-001",
-            "failure_zh": "level_definitions 的 gate 字段为自由文本，须以正则抽取闸门编号；L4 映射至 G3 属工具推断",
-            "resolution_zh": "改为结构化 gate_binding 并增设 l4_gate_rule；工具删除正则，直接比对 gate_binding.gate_id",
-            "resolution_en": "replaced by a structured gate_binding with an added l4_gate_rule; the tool drops the pattern and compares gate_binding.gate_id directly",
-            "verified_by": "TT-P1、TT-P2、TT-P3 三条正例的闸门比对结论与 v0.1 完全一致，说明结构化没有改变既有判据"
-          },
-          {
-            "registered_in": "CR-2026-08-12-001",
-            "failure_zh": "denominator_integrity_rule 未界定适用范围，工具按分母文字推导",
-            "resolution_zh": "增加 denominator_integrity_applies_to，适用五项、排除三项，另明文排除两项文件完整性型指标",
-            "resolution_en": "denominator_integrity_applies_to added: five metrics in scope, three out, and the two file-completeness metrics excluded by name",
-            "verified_by": "TT-N7 在 v0.1 的文字推导下会被判为通过，在 v0.2 的明文清单下被拒绝，理由 DENOMINATOR_SAMPLE_DROPPED:technical_fault；TT-P5 在 v0.1 下会被判为指标未知而拒绝，在 v0.2 下通过"
-          },
-          {
-            "registered_in": "本回执首次登记 / first registered in this receipt",
-            "failure_zh": "human_handoff 的角色词表与 ai_off_path 同属工具私有词表，v0.1 未登记",
-            "resolution_zh": "一并升格为 constraint_machine_rule，类型为 required_role_token",
-            "resolution_en": "promoted alongside it into a constraint_machine_rule of type required_role_token",
-            "verified_by": "TT-N5 的拒绝理由与 v0.1 完全一致，说明词表内容未被修改，只是换了出处"
-          }
-        ],
-        "residual_tool_level_failures": [
-          "词表匹配为大小写不敏感的子串匹配，可被改写规避（例如把线上办理写成线上办、理）。本次不作处置：规避行为属参与式复核与 G3 独立复核的对象，不宜由词表无限扩张解决；一旦真实共创中出现规避样本，按 constraint_machine_rule 的 extension_rule 登记并递增版本。",
-          "The match is a case-insensitive substring test and can be evaded by rewording. It is left open deliberately: evasion belongs to participatory review and G3 independent review rather than to an ever-growing word list, and the first real evasion sample will be registered under the extension_rule of constraint_machine_rule and raise the version."
-        ]
-      },
-      "affected_metrics": {
-        "metric_ids": [
-          "independent_task_completion_rate",
-          "ai_off_service_equivalence_gap",
-          "forced_abandonment_rate",
-          "human_handover_success_rate",
-          "human_handover_response_time_seconds",
-          "scenario_exit_path_coverage",
-          "scenario_human_review_coverage"
-        ],
-        "recomputation_zh": "零指标数值受影响。本次为 schema 层变更：改动的是判据的书写位置与可执行形式，不是任何一次测量。七项包容性指标在 metrics.json 中全部保持 unknown，本次运行同样不写入该文件。上列前五项是新的适用清单所覆盖的指标，其口径文字与分子分母定义一字未改，只是把此前由工具推导的适用与否写成了基准条文；后两项文件完整性型指标被明文排除，其读数仍由 geometry/constraints.geojson 的点位总数直接得出，本次未增删任何节点，读数与口径均未改变。因此无需复算，也无任何读数因本次变更而失效。",
-        "recomputation_en": "No metric value is affected. This is a schema-layer change: what moved is where a criterion is written and in what executable form, not any measurement. All seven inclusion metrics stay unknown in metrics.json, and this run writes nothing to that file. The first five above are the metrics the new scope list covers; their wording and their numerator and denominator definitions are unchanged to the letter, and only the question of whether the rule applies has moved from tool inference into baseline text. The last two are the file-completeness metrics now excluded by name; their readings still follow from the node total in geometry/constraints.geojson, no node was added or removed, and neither reading nor definition changed. Nothing needs recomputing and no reading is voided by this change."
-      },
-      "verification": {
-        "zh": "任何人可在 visual/assets 目录下执行 node seb-tabletop-run.js 复核本条结论：十二条样例的判定应与预期完全一致，退出码为零；输出的判据来源一节应显示两份词表与闸门绑定均来自基准条文。针对本次三项闭合，可分别核对：TT-N7 被拒且理由为 DENOMINATOR_SAMPLE_DROPPED:technical_fault，TT-P5 通过，TT-N5 的两条理由与 v0.1 一致。若把 seb-spec.json 的 version 改回 0.1.0，工具应以退出码 2 拒绝运行而不作任何判定，这一行为本身即版本治理的执行。",
-        "en": "Anyone can re-check this ruling by running node seb-tabletop-run.js in the visual/assets directory: all twelve verdicts should match their expectations with an exit code of zero, and the rule-provenance block should show both word lists and the gate binding coming from baseline text. For the three closures specifically: TT-N7 is refused with the reason DENOMINATOR_SAMPLE_DROPPED:technical_fault, TT-P5 passes, and the two reasons given for TT-N5 are the same as under v0.1. Setting the version in seb-spec.json back to 0.1.0 should make the tool refuse to run at all, exiting with code 2 and issuing no verdict, which is version governance executing itself."
-      },
-      "posting": [
-        "本回执随方案包公开，位于 visual/assets/seb-change-receipt-sample.json",
-        "真实共创启动后，同类回执张贴于对应点位并进入公开复盘记录"
-      ],
-      "status": "demonstration_only",
-      "status_note_zh": "本条回执记录的是一次真实发生的基准变更：意见来自上一版回执自身登记的缺口，证据来自可复现的推演运行，结论落在文件里。但它仍不是任何一轮真实复核的结论，也不代表任何主体已经审议过本次变更；基准的托管主体与发布渠道依旧待授权主体确认。",
-      "status_note_en": "This receipt records a baseline change that actually happened: the points came from gaps the previous receipt registered against itself, the evidence came from a reproducible run, and the outcome landed in the files. It is still not the outcome of any real review round and represents deliberation by no body; the baseline's hosting body and publication channel remain subject to confirmation by an authorised body."
-    }
-  ]
+  {
+   "receipt_id": "CR-2026-08-12-002",
+   "issued_at": "2026-08-12",
+   "gate_round": "not_applicable_tabletop_demonstration",
+   "node_id": "all",
+   "raised_by": {
+    "role_group": "桌面配对推演的工具级失败登记（回执 CR-2026-08-12-001 的 failed_sample_register）",
+    "role_group_en": "the tool-level failure register of the tabletop pairing run (failed_sample_register of receipt CR-2026-08-12-001)",
+    "identity_disclosure": "无参与者，无个人信息；本条意见由上一版回执自身登记的缺口提出",
+    "identity_disclosure_en": "no participant and no personal data; the points come from gaps the previous receipt registered against itself"
+   },
+   "opinion": {
+    "zh": "基准 v0.1 把三处判据的可执行形式留给了实现：ai_off_path 的同一系统约束只有自然语言例句，等级定义的闸门字段是自由文本，分母完整性规则没有界定适用范围。三处都由校验工具私自补齐，因此两个实现可能得出不同结论。要求把这三处从实现升格为基准条文。",
+    "en": "Baseline v0.1 left the executable form of three criteria to the implementation: the same-system constraint on ai_off_path existed only as a natural-language example, the gate field of the level definitions was free text, and the denominator-integrity rule bounded no scope. A checker filled in all three privately, so two implementations could reach different conclusions. The request is to raise all three from implementation into baseline text."
+   },
+   "finding": {
+    "zh": "三条缺口全部查实，另查明第四条同类问题。其一，ai_off_path 的拒绝依据在 v0.1 中只是注释里的词表，样例 TT-N2 的判定虽然成立，成立的依据却不可被第三方引用。其二，gate 字段的取值为 before G0、G1、after G3、post-G3 operation，工具须以正则抽取闸门编号，其中 L4 对应 G3 完全出自工具推断，基准未着一字。其三，分母完整性规则的适用范围由工具按分母文字中是否出现有效样本或成对测试样本推导；该推导会漏掉人工接管响应耗时一项——其分母写作按次记录、不取平均掩盖长尾，文字不含上述字样，于是只报设备正常时耗时的记录在 v0.1 下可以通过。其四，human_handoff 的角色词表与 ai_off_path 属同一类私有词表，v0.1 未予登记，本次在闭合第一条时一并查明。",
+    "en": "All three gaps were confirmed, and a fourth of the same class was found. First, the ground for refusing an ai_off_path value existed in v0.1 only as a word list inside a comment: the ruling on fixture TT-N2 held, but the ground on which it held could not be cited by a third party. Second, the gate field carried the values before G0, G1, after G3 and post-G3 operation, so the tool had to extract the gate number by pattern, and the mapping of L4 onto G3 was entirely the tool's inference, on which the baseline said nothing. Third, the scope of the denominator-integrity rule was inferred by the tool from whether the denominator wording named valid samples or paired-test samples; that inference misses human-handover response time, whose denominator reads as a per-instance log that must not hide its tail in an average and names neither phrase, so under v0.1 a record reporting only the runs where the equipment behaved would pass. Fourth, the role lexicon behind human_handoff is the same class of private word list as ai_off_path; v0.1 registered it nowhere, and it surfaced while the first item was being closed."
+   },
+   "verdict": "adopted",
+   "change_made": {
+    "zh": "基准由 0.1.0 升至 0.2.0，四处一并闭合。node_schema 的 ai_off_path 与 human_handoff 各增 constraint_machine_rule，把十四项同一系统词表与十三项角色词表由工具代码升格为基准条文，并写明词表可随失败样本扩充、扩充即版本递增；同时加入 machine_rule_contract，规定实现只能按该字段判定取值，不得自行补充约束。level_definitions 的 gate 字段改为结构化 gate_binding（gate_id 取 G0 至 G3 或 none，timing 取 before、at、after），并以 l4_gate_rule 明文规定 L4 绑定 G3 且 timing 为 after，正则抽取与工具推断一并取消。scoring_definitions 增加 denominator_integrity_applies_to，逐项列明适用的五项参与者任务型指标、排除的三项枚举型指标，以及排除的两项文件完整性型指标及其理由，另把必报的四类失败样本由工具常量升格为基准字段。校验工具改为全部消费上述字段，删除私有词表与正则，并增加基准版本兼容校验与基准自洽校验；样例增补 TT-P5 与 TT-N7 两条，分别检验排除侧与适用侧。",
+    "en": "The baseline rises from 0.1.0 to 0.2.0 and closes all four items. ai_off_path and human_handoff each gain a constraint_machine_rule, lifting the fourteen same-system terms and the thirteen role tokens out of the tool's code and into baseline text, and stating that the lists may grow as failed samples arrive and that any growth raises the version. A machine_rule_contract is added alongside, ruling that an implementation may judge a value by that field and by nothing else. The gate field of level_definitions becomes a structured gate_binding — gate_id from G0 to G3 or none, timing from before, at, after — and l4_gate_rule states outright that L4 binds to G3 with timing after, retiring both the pattern extraction and the inference. scoring_definitions gains denominator_integrity_applies_to, naming the five participant-task metrics in scope, the three enumeration metrics out of scope, and the two file-completeness metrics excluded with their reasons, while the four failure categories that must be reported rise from a tool constant to a baseline field. The checker now consumes all of these, its private word lists and pattern are deleted, and it gains a baseline-version compatibility gate and a baseline self-consistency check; fixtures TT-P5 and TT-N7 are added to test the exclusion side and the inclusion side respectively.",
+    "changed_artifacts": [
+     "visual/assets/seb-spec.json",
+     "visual/assets/seb-tabletop-run.js",
+     "visual/assets/seb-tabletop-fixtures.json",
+     "visual/assets/seb-change-receipt-sample.json",
+     "proposal.md",
+     "proposal.en.md"
+    ],
+    "unchanged_artifacts": [
+     "metrics.json",
+     "geometry/constraints.geojson",
+     "risk.json"
+    ]
+   },
+   "not_adopted_reason": {
+    "zh": "不适用：三条意见全部采纳，无未采纳部分。第四条为闭合过程中自查发现，一并采纳并在此登记，不作为已有意见的替换。",
+    "en": "Not applicable: all three points were adopted and nothing was refused. The fourth arose from self-review while closing the others; it is adopted and registered here, and it replaces none of the points already raised."
+   },
+   "failed_sample_register": {
+    "participant_samples": "none",
+    "reason_zh": "本次仍为桌面推演，无真实参与者、无现场测量，因此不存在参与者失败样本可登记。登记为空的理由在此写明，符合基准版本治理中登记为空须给出理由的要求。",
+    "reason_en": "This remains a tabletop run with no real participant and no field measurement, so no participant failure sample exists to register. The reason for the empty register is stated here, as baseline version governance requires.",
+    "tool_level_failures_resolved": [
+     {
+      "registered_in": "CR-2026-08-12-001",
+      "failure_zh": "level_definitions 的 gate 字段为自由文本，须以正则抽取闸门编号；L4 映射至 G3 属工具推断",
+      "resolution_zh": "改为结构化 gate_binding 并增设 l4_gate_rule；工具删除正则，直接比对 gate_binding.gate_id",
+      "resolution_en": "replaced by a structured gate_binding with an added l4_gate_rule; the tool drops the pattern and compares gate_binding.gate_id directly",
+      "verified_by": "TT-P1、TT-P2、TT-P3 三条正例的闸门比对结论与 v0.1 完全一致，说明结构化没有改变既有判据"
+     },
+     {
+      "registered_in": "CR-2026-08-12-001",
+      "failure_zh": "denominator_integrity_rule 未界定适用范围，工具按分母文字推导",
+      "resolution_zh": "增加 denominator_integrity_applies_to，适用五项、排除三项，另明文排除两项文件完整性型指标",
+      "resolution_en": "denominator_integrity_applies_to added: five metrics in scope, three out, and the two file-completeness metrics excluded by name",
+      "verified_by": "TT-N7 在 v0.1 的文字推导下会被判为通过，在 v0.2 的明文清单下被拒绝，理由 DENOMINATOR_SAMPLE_DROPPED:technical_fault；TT-P5 在 v0.1 下会被判为指标未知而拒绝，在 v0.2 下通过"
+     },
+     {
+      "registered_in": "本回执首次登记 / first registered in this receipt",
+      "failure_zh": "human_handoff 的角色词表与 ai_off_path 同属工具私有词表，v0.1 未登记",
+      "resolution_zh": "一并升格为 constraint_machine_rule，类型为 required_role_token",
+      "resolution_en": "promoted alongside it into a constraint_machine_rule of type required_role_token",
+      "verified_by": "TT-N5 的拒绝理由与 v0.1 完全一致，说明词表内容未被修改，只是换了出处"
+     }
+    ],
+    "residual_tool_level_failures": [
+     "词表匹配为大小写不敏感的子串匹配，可被改写规避（例如把线上办理写成线上办、理）。本次不作处置：规避行为属参与式复核与 G3 独立复核的对象，不宜由词表无限扩张解决；一旦真实共创中出现规避样本，按 constraint_machine_rule 的 extension_rule 登记并递增版本。",
+     "The match is a case-insensitive substring test and can be evaded by rewording. It is left open deliberately: evasion belongs to participatory review and G3 independent review rather than to an ever-growing word list, and the first real evasion sample will be registered under the extension_rule of constraint_machine_rule and raise the version."
+    ]
+   },
+   "affected_metrics": {
+    "metric_ids": [
+     "independent_task_completion_rate",
+     "ai_off_service_equivalence_gap",
+     "forced_abandonment_rate",
+     "human_handover_success_rate",
+     "human_handover_response_time_seconds",
+     "scenario_exit_path_coverage",
+     "scenario_human_review_coverage"
+    ],
+    "recomputation_zh": "零指标数值受影响。本次为 schema 层变更：改动的是判据的书写位置与可执行形式，不是任何一次测量。七项包容性指标在 metrics.json 中全部保持 unknown，本次运行同样不写入该文件。上列前五项是新的适用清单所覆盖的指标，其口径文字与分子分母定义一字未改，只是把此前由工具推导的适用与否写成了基准条文；后两项文件完整性型指标被明文排除，其读数仍由 geometry/constraints.geojson 的点位总数直接得出，本次未增删任何节点，读数与口径均未改变。因此无需复算，也无任何读数因本次变更而失效。",
+    "recomputation_en": "No metric value is affected. This is a schema-layer change: what moved is where a criterion is written and in what executable form, not any measurement. All seven inclusion metrics stay unknown in metrics.json, and this run writes nothing to that file. The first five above are the metrics the new scope list covers; their wording and their numerator and denominator definitions are unchanged to the letter, and only the question of whether the rule applies has moved from tool inference into baseline text. The last two are the file-completeness metrics now excluded by name; their readings still follow from the node total in geometry/constraints.geojson, no node was added or removed, and neither reading nor definition changed. Nothing needs recomputing and no reading is voided by this change."
+   },
+   "verification": {
+    "zh": "任何人可在 visual/assets 目录下执行 node seb-tabletop-run.js 复核本条结论：十二条样例的判定应与预期完全一致，退出码为零；输出的判据来源一节应显示两份词表与闸门绑定均来自基准条文。针对本次三项闭合，可分别核对：TT-N7 被拒且理由为 DENOMINATOR_SAMPLE_DROPPED:technical_fault，TT-P5 通过，TT-N5 的两条理由与 v0.1 一致。若把 seb-spec.json 的 version 改回 0.1.0，工具应以退出码 2 拒绝运行而不作任何判定，这一行为本身即版本治理的执行。",
+    "en": "Anyone can re-check this ruling by running node seb-tabletop-run.js in the visual/assets directory: all twelve verdicts should match their expectations with an exit code of zero, and the rule-provenance block should show both word lists and the gate binding coming from baseline text. For the three closures specifically: TT-N7 is refused with the reason DENOMINATOR_SAMPLE_DROPPED:technical_fault, TT-P5 passes, and the two reasons given for TT-N5 are the same as under v0.1. Setting the version in seb-spec.json back to 0.1.0 should make the tool refuse to run at all, exiting with code 2 and issuing no verdict, which is version governance executing itself."
+   },
+   "posting": [
+    "本回执随方案包公开，位于 visual/assets/seb-change-receipt-sample.json",
+    "真实共创启动后，同类回执张贴于对应点位并进入公开复盘记录"
+   ],
+   "status": "demonstration_only",
+   "status_note_zh": "本条回执记录的是一次真实发生的基准变更：意见来自上一版回执自身登记的缺口，证据来自可复现的推演运行，结论落在文件里。但它仍不是任何一轮真实复核的结论，也不代表任何主体已经审议过本次变更；基准的托管主体与发布渠道依旧待授权主体确认。",
+   "status_note_en": "This receipt records a baseline change that actually happened: the points came from gaps the previous receipt registered against itself, the evidence came from a reproducible run, and the outcome landed in the files. It is still not the outcome of any real review round and represents deliberation by no body; the baseline's hosting body and publication channel remain subject to confirmation by an authorised body.",
+   "subsequent_disposition": {
+    "note_zh": "本回执登记的残余工具级风险（判据以子串匹配、可被表述改写规避)后续在 v0.3.0 词表机制中以新形态复发,由 CR-2026-08-15-005 复核并处置:机器可判下限加锁,不可机判部分明文归人工登记环节",
+    "note_en": "The residual tool-level risk this receipt registered (substring criteria open to wording evasion) recurred in a new form in the v0.3.0 lexicon mechanism, reviewed and disposed by CR-2026-08-15-005: the machine-decidable floor is locked and the non-machine-decidable part explicitly assigned to human registration",
+    "receipt_id": "CR-2026-08-15-005"
+   }
+  }
+ ],
+ "version_note_zh": "本文件头部 version 为回执 schema 版本,与规范版本解耦;其 0.2.0→0.3.0 曾属无 schema 变更的误递增,登记于 CR-2026-08-15-005 的 FS-050,已发布取值不回改,此后无 schema 变更不再递增",
+ "version_note_en": "The header version of this file is the receipt-schema version, decoupled from the spec version; its 0.2.0-to-0.3.0 bump was an erroneous increment without schema change, registered as FS-050 in CR-2026-08-15-005 — the published value stays, and no further increment occurs absent schema change",
+ "verification_era_note_zh": "各回执 verification 字段所述命令与预期读数，以该回执发布时点的规范与样例版本为准（如 CR-2026-08-12-002 所述「十二条样例」对应 v0.2 时代样例集）；历史规范版本按字节随包（seb-spec-v0.2.0.json 等，见规范 version_snapshots），现行版本的样例数以 seb-tabletop-fixtures.json 实测为准。本注记为文件级口径说明，不改写任何已发布回执正文",
+ "verification_era_note_en": "The commands and expected readings in each receipt's verification field are stated as of that receipt's publication (e.g. the \"twelve fixtures\" in CR-2026-08-12-002 refer to the v0.2-era suite); historical spec versions ship byte-exact (seb-spec-v0.2.0.json etc., see version_snapshots), and the current fixture count reads from seb-tabletop-fixtures.json. This is a file-level note and rewrites no published receipt text"
 }

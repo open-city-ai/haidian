@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张慢变量 / JING-ZHANG SLOW VARIABLES - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>京张慢变量 / JING-ZHANG SLOW VARIABLES</h1>
+<p class="summary">以土壤、树荫、雨水、步行与可撤回试验为AI创新带的长期底盘。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+</section>
+<h1>京张慢变量 / JING-ZHANG SLOW VARIABLES</h1>
+<h2>设计依据与资料清单</h2>
+<p>方案依据公开公告、智能体任务书、场地包和来源登记表。当前场地与三处重点区均为维护者提供的临时粗略几何，只用于概念生成、复算和讨论，不是正式红线；官方多边形到位后必须整体重算。 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#SITE-001" title="空间数据：geometry/site_boundary.geojson#SITE-001">空间数据</sup></p>
+<p>本节的空间判断将通过提交包中的几何、指标与矩阵交叉复核。设计动作优先采用可逆、可维护和可由人工接管的方式，并把公共利益、无障碍与遗产连续性作为取舍条件。由于正式边界、控规条件、产权、交通、市政容量和现状实测尚未完整公开，本节涉及强度、面积、工程和实施时序的内容均为概念建议；专业团队取得正式资料后，应核对源文件、重算相关指标、复核图面并记录变更，不得把临时结果直接用于审批或建设。</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="设计依据与资料清单"><figcaption>设计依据与资料清单</figcaption></figure>
+<h2>三层范围工作框架</h2>
+<p>43.6平方公里统筹研究层负责创新生态，约11.4平方公里总体设计层组织遗址公园两侧更新，三处临时重点区承接详细验证。“慢变量账本”为每个项目登记公共收益、责任人、复核日和退出条件。 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-OFFICIAL-ANNOUNCEMENT" title="标准：PROJECT-OFFICIAL-ANNOUNCEMENT">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_level_scope_framework" title="深度：three_level_scope_framework">深度</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup></p>
+<p>本节的空间判断将通过提交包中的几何、指标与矩阵交叉复核。设计动作优先采用可逆、可维护和可由人工接管的方式，并把公共利益、无障碍与遗产连续性作为取舍条件。由于正式边界、控规条件、产权、交通、市政容量和现状实测尚未完整公开，本节涉及强度、面积、工程和实施时序的内容均为概念建议；专业团队取得正式资料后，应核对源文件、重算相关指标、复核图面并记录变更，不得把临时结果直接用于审批或建设。</p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="三层范围工作框架"><figcaption>三层范围工作框架</figcaption></figure>
+<h2>统筹研究范围产业与未来城市研究</h2>
+<p>品牌“京张慢变量”以双轨与五个年轮点代表土壤、雨水、树荫、步行和信任。三项定位是可验证AI城市客厅、研发到采用的开源试验带、以长期公共价值校准技术速度的百年新线；五项功能是研发、验证、转译、采用和全球社区。七类生态案例覆盖自主模型、具身智能、医疗辅助、教育沙盒、低碳算力、遗产解释和中小企业服务，均为概念参考而非招商承诺。 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-AGENT-OPEN-CALL-TASKBOOK" title="标准：PROJECT-AGENT-OPEN-CALL-TASKBOOK">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="industry_strategy" title="深度：industry_strategy">深度</sup></p>
+<p>本节的空间判断将通过提交包中的几何、指标与矩阵交叉复核。设计动作优先采用可逆、可维护和可由人工接管的方式，并把公共利益、无障碍与遗产连续性作为取舍条件。由于正式边界、控规条件、产权、交通、市政容量和现状实测尚未完整公开，本节涉及强度、面积、工程和实施时序的内容均为概念建议；专业团队取得正式资料后，应核对源文件、重算相关指标、复核图面并记录变更，不得把临时结果直接用于审批或建设。</p>
+<h2>总体设计范围城市更新与控规深度城市设计</h2>
+<p>总体结构为“一条慢变量主线、三座验证庭院、八道东西缝合口、两翼协作网”。用地术语沿用登记的国家分类；建筑采取保留优先、适应性改造、小体量补缺、条件触发新建。高度、容积率、退线和拆除结论因缺少正式条件保持待确认。 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="标准：MNR-LAND-USE-CLASSIFICATION-GUIDE">标准</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="land_use_layout" title="深度：land_use_layout">深度</sup></p>
+<p>本节的空间判断将通过提交包中的几何、指标与矩阵交叉复核。设计动作优先采用可逆、可维护和可由人工接管的方式，并把公共利益、无障碍与遗产连续性作为取舍条件。由于正式边界、控规条件、产权、交通、市政容量和现状实测尚未完整公开，本节涉及强度、面积、工程和实施时序的内容均为概念建议；专业团队取得正式资料后，应核对源文件、重算相关指标、复核图面并记录变更，不得把临时结果直接用于审批或建设。</p>
+<h2>重点区域详细设计</h2>
+<p>众智园是“源头验证庭院”，设置遮荫研发街、开放基准大厅与低速测试环；AI原点社区是“公共转译庭院”，缝合校区、园区和社区并配置市民复核台；大钟寺是“产业采用庭院”，以站城步行环、可变首层和企业验证厅承接采用。 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup></p>
+<p>本节的空间判断将通过提交包中的几何、指标与矩阵交叉复核。设计动作优先采用可逆、可维护和可由人工接管的方式，并把公共利益、无障碍与遗产连续性作为取舍条件。由于正式边界、控规条件、产权、交通、市政容量和现状实测尚未完整公开，本节涉及强度、面积、工程和实施时序的内容均为概念建议；专业团队取得正式资料后，应核对源文件、重算相关指标、复核图面并记录变更，不得把临时结果直接用于审批或建设。</p>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="重点区域详细设计"><figcaption>重点区域详细设计</figcaption></figure>
+<h2>AI 创新生态、人才画像与 AI+ 场景</h2>
+<p>五类人物为研究创业者、居民与老人、儿童与照护者、中小企业用户、无障碍访客。12个场景是树荫导航、雨洪预警、无障碍伴行、人工服务台、低速机器人、偏差公开课、开源发布、家庭托育、中小企业试用、遗产导览、夜间安全、全球开发者季。三个行业验证场分别检验具身智能安全停机、公共服务人工兜底、企业智能体可撤销授权。 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="BARRIER-FREE-ENVIRONMENT-LAW" title="标准：BARRIER-FREE-ENVIRONMENT-LAW">标准</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="GENERATIVE-AI-INTERIM-MEASURES" title="标准：GENERATIVE-AI-INTERIM-MEASURES">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="ai_scenarios" title="深度：ai_scenarios">深度</sup></p>
+<p>本节的空间判断将通过提交包中的几何、指标与矩阵交叉复核。设计动作优先采用可逆、可维护和可由人工接管的方式，并把公共利益、无障碍与遗产连续性作为取舍条件。由于正式边界、控规条件、产权、交通、市政容量和现状实测尚未完整公开，本节涉及强度、面积、工程和实施时序的内容均为概念建议；专业团队取得正式资料后，应核对源文件、重算相关指标、复核图面并记录变更，不得把临时结果直接用于审批或建设。</p>
+<h2>用地、建筑规模与拆改留方案</h2>
+<p>保留成熟社区和可再利用产业建筑；改造优先导入公共首层、共享实验室与生活服务；拆除和新建须经产权、结构、历史价值与正式控规核验，本方案不作地块级拆迁判断。 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="building_retain_renovate_demolish_new" title="深度：building_retain_renovate_demolish_new">深度</sup></p>
+<p>本节的空间判断将通过提交包中的几何、指标与矩阵交叉复核。设计动作优先采用可逆、可维护和可由人工接管的方式，并把公共利益、无障碍与遗产连续性作为取舍条件。由于正式边界、控规条件、产权、交通、市政容量和现状实测尚未完整公开，本节涉及强度、面积、工程和实施时序的内容均为概念建议；专业团队取得正式资料后，应核对源文件、重算相关指标、复核图面并记录变更，不得把临时结果直接用于审批或建设。</p>
+<h2>交通、轨道、市政与公共服务设施</h2>
+<p>遗址公园慢行主线、八处概念缝合口、三处站城步行环和低速测试支线组成交通网络。市政建议包括雨水花园、可维护监测与低碳边缘算力，容量、管位和工程可行性待专项核验。 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="transport_rail_parking" title="深度：transport_rail_parking">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="municipal_infrastructure" title="深度：municipal_infrastructure">深度</sup></p>
+<p>本节的空间判断将通过提交包中的几何、指标与矩阵交叉复核。设计动作优先采用可逆、可维护和可由人工接管的方式，并把公共利益、无障碍与遗产连续性作为取舍条件。由于正式边界、控规条件、产权、交通、市政容量和现状实测尚未完整公开，本节涉及强度、面积、工程和实施时序的内容均为概念建议；专业团队取得正式资料后，应核对源文件、重算相关指标、复核图面并记录变更，不得把临时结果直接用于审批或建设。</p>
+<h2>蓝绿空间、公共空间与城市风貌</h2>
+<p>新增AI试点不得降低连续树荫、海绵滞蓄和无障碍通行能力。公共空间采用铁路构件比例、耐久材料和可替换数字设施，传感器不得遮挡遗产视廊或制造强制交互。 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup></p>
+<p>本节的空间判断将通过提交包中的几何、指标与矩阵交叉复核。设计动作优先采用可逆、可维护和可由人工接管的方式，并把公共利益、无障碍与遗产连续性作为取舍条件。由于正式边界、控规条件、产权、交通、市政容量和现状实测尚未完整公开，本节涉及强度、面积、工程和实施时序的内容均为概念建议；专业团队取得正式资料后，应核对源文件、重算相关指标、复核图面并记录变更，不得把临时结果直接用于审批或建设。</p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="蓝绿空间、公共空间与城市风貌"><figcaption>蓝绿空间、公共空间与城市风貌</figcaption></figure>
+<h2>更新项目清单、实施政策与分期计划</h2>
+<p>六个概念项目为主线示范段、三座验证庭院、八道缝合口安全改善和公开账本。近期做可逆标线、遮荫与开放测试；中期做站城接口和适应性改造；远期待官方边界与控规后决定强度。每个试点12个月复核，不达公共收益或风险过高即缩减退出。 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/phasing.geojson#PHASE-001" title="空间数据：geometry/phasing.geojson#PHASE-001">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="renewal_project_list" title="深度：renewal_project_list">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="phasing_implementation" title="深度：phasing_implementation">深度</sup></p>
+<p>本节的空间判断将通过提交包中的几何、指标与矩阵交叉复核。设计动作优先采用可逆、可维护和可由人工接管的方式，并把公共利益、无障碍与遗产连续性作为取舍条件。由于正式边界、控规条件、产权、交通、市政容量和现状实测尚未完整公开，本节涉及强度、面积、工程和实施时序的内容均为概念建议；专业团队取得正式资料后，应核对源文件、重算相关指标、复核图面并记录变更，不得把临时结果直接用于审批或建设。</p>
+<h2>指标体系、面积复算与合规矩阵</h2>
+<p>场地面积、绿地率、公共空间率、建筑基底面积和重点区数量均从GeoJSON在EPSG:4548下复算；容积率保持待数据补齐。树荫连续性、雨水滞蓄、无障碍绕行、人工接管时间和试验退出率需后续实测建基线，不虚构数值。 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup></p>
+<p>本节的空间判断将通过提交包中的几何、指标与矩阵交叉复核。设计动作优先采用可逆、可维护和可由人工接管的方式，并把公共利益、无障碍与遗产连续性作为取舍条件。由于正式边界、控规条件、产权、交通、市政容量和现状实测尚未完整公开，本节涉及强度、面积、工程和实施时序的内容均为概念建议；专业团队取得正式资料后，应核对源文件、重算相关指标、复核图面并记录变更，不得把临时结果直接用于审批或建设。</p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="指标体系、面积复算与合规矩阵"><figcaption>指标体系、面积复算与合规矩阵</figcaption></figure>
+<h2>风险、版权与合规说明</h2>
+<p>主要风险是把临时几何误读为红线、把概念项目误读为政府承诺、把算法输出误读为专业结论。所有成果持续标注临时状态、人工责任与停止条件；官方资料更新后重算全包。四个文化节点为詹天佑工程精神馆、失败可见墙、开源贡献者年轮台、全球AI公共价值论坛站。 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup></p>
+<p>本节的空间判断将通过提交包中的几何、指标与矩阵交叉复核。设计动作优先采用可逆、可维护和可由人工接管的方式，并把公共利益、无障碍与遗产连续性作为取舍条件。由于正式边界、控规条件、产权、交通、市政容量和现状实测尚未完整公开，本节涉及强度、面积、工程和实施时序的内容均为概念建议；专业团队取得正式资料后，应核对源文件、重算相关指标、复核图面并记录变更，不得把临时结果直接用于审批或建设。</p>
+<h2>参考资料</h2>
+<p>完整来源、许可与限制见sources.json；专业、任务和深度响应见三个矩阵文件。 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup></p>
+<p>本节的空间判断将通过提交包中的几何、指标与矩阵交叉复核。设计动作优先采用可逆、可维护和可由人工接管的方式，并把公共利益、无障碍与遗产连续性作为取舍条件。由于正式边界、控规条件、产权、交通、市政容量和现状实测尚未完整公开，本节涉及强度、面积、工程和实施时序的内容均为概念建议；专业团队取得正式资料后，应核对源文件、重算相关指标、复核图面并记录变更，不得把临时结果直接用于审批或建设。</p>
+</main>
+</body>
+</html>

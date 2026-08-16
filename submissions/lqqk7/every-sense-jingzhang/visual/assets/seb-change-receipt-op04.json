@@ -1,100 +1,172 @@
 {
-  "receipt_schema_id": "seb-change-receipt",
-  "version": "0.2.0",
-  "status": "draft_concept_recommendation",
-  "schema_ref": "visual/assets/seb-change-receipt-sample.json",
-  "schema_ref_note_zh": "本文件不重复回执 schema 的定义，字段口径、verdict 枚举、不可改写规则与拒绝规则全部沿用上述文件中的 schema 节；两份文件的回执共用同一编号序列，本文件承载 CR-2026-08-12-003。",
-  "schema_ref_note_en": "This file does not restate the receipt schema. Field definitions, the verdict enumeration, the immutability rule and the rejection rule all follow the schema block of the file named above. Both files draw on one receipt-number series, and this file carries CR-2026-08-12-003.",
-  "purpose_zh": "前两条回执处理的是基准条文自身的缺口，对象是 schema。本条回执第一次把对象换成设计：一条已经写在几何数据里、通过了全部字段校验的等价路径声明，被一次空间核算退回为未证成立。",
-  "purpose_en": "The first two receipts handled gaps in the baseline text itself, with a schema as their subject. This one changes the subject to the design: an equivalence claim already written into the geometry data, which had passed every field check, is sent back by a spatial computation as unproven.",
-  "receipts": [
-    {
-      "receipt_id": "CR-2026-08-12-003",
-      "issued_at": "2026-08-12",
-      "gate_round": "not_applicable_desk_replay",
-      "node_id": "OP-04",
-      "raised_by": {
-        "role_group": "方案作者自查（开放数据桌面复演）",
-        "role_group_en": "proposal author self-review (desk replay over open data)",
-        "identity_disclosure": "无参与者，无个人信息；本条意见由复演过程本身提出",
-        "identity_disclosure_en": "no participant and no personal data; the opinion arose from the replay itself"
-      },
-      "opinion": {
-        "zh": "OP-04 的 ai_off_path 已按基准填写并通过全部字段校验，节点可计入服务覆盖；本轮无须再对该节点做进一步核验。",
-        "en": "The ai_off_path at OP-04 is filled in as the baseline requires and passes every field check, so the node counts towards service coverage and needs no further verification this round."
-      },
-      "finding": {
-        "zh": "复演在提交几何上确认了三件事。其一，字段确实合规：「现场人工指引与无障碍替代通行方案」不含任何一项拒绝词，两个互不共享代码的实现给出同一判定，机器复核通过。其二，字段合规不等于路径存在。把 AI 关闭状态下仍可用的线路按各要素自身 design_role 的声明词取出后，可用网络只剩 ROAD-001 与 ROAD-005 两条，两条互不相交、构成两个独立连通分量，三条横向接口是它们之间仅有的连接而三条都未作声明；因此 OP-04 与同区 OP-08、OP-09 之间在 AI 关闭状态下不存在连续路径，两项任务均不可达。现场人工指引可以解释一条通道，不能生成一条通道。其三，同一次核算查出接入距离的同类问题：AI 关闭后 OP-08 的接入段由 88.816 米增至 170.923 米，OP-09 由 55.527 米增至 341.854 米，后者为 6.157 倍。",
-        "en": "The replay established three things on the submitted geometry. First, the field really is compliant: the wording on-site human guidance with a step-free alternative route hits none of the refusal terms, two implementations sharing no code return the same verdict, and machine review passes. Second, a compliant field is not a route that exists. Once the lines still usable with AI off are taken by the declaration tokens carried in each feature's own design_role, the usable network is only ROAD-001 and ROAD-005; the two never meet and form two separate components, and the three cross links that are their only connections carry no declaration. Between OP-04 and OP-08 or OP-09 in its own key area there is therefore no continuous route once AI is off, and both tasks are unreachable. On-site human guidance can explain a passage; it cannot produce one. Third, the same computation found the matching fault in the approach distances: with AI off the access stub of OP-08 grows from 88.816 m to 170.923 m and that of OP-09 from 55.527 m to 341.854 m, a factor of 6.157."
-      },
-      "verdict": "not_adopted",
-      "change_made": {
-        "zh": "意见不予采纳，节点转为未证成立状态。geometry/constraints.geojson 中 OP-04 追加三个字段：ai_off_continuity_status 记为 premise_unproven_pending_site_audit，ai_off_continuity_note_zh 写明缺少空间前提及其核验路径，ai_off_continuity_receipt_id 指向本条回执。原 ai_off_path 一字未改——回执机制的不可改写规则要求已发布的记录保持原样、后续结论以追加呈现，同一条纪律适用于节点属性；读者因此既能看到当时写下的声明，也能看到它后来被退回。proposal.md 与 proposal.en.md 在重点区域详细设计章的大钟寺行增列东西向 AI 关闭态连续通道存在性核验，作为 JZ-01 审计结论覆盖大钟寺段的前置内容之一，并新增一章记录本次全过程。",
-        "en": "The opinion is refused and the node moves to an unproven state. Three fields are appended to OP-04 in geometry/constraints.geojson: ai_off_continuity_status reads premise_unproven_pending_site_audit, ai_off_continuity_note_zh states the missing spatial premise and how it is to be verified, and ai_off_continuity_receipt_id points at this receipt. Not a word of the original ai_off_path was changed: the immutability rule of the receipt mechanism requires a published record to stand while later outcomes are appended, and the same discipline applies to a node property, so a reader sees both the claim as written and the fact that it was later sent back. In proposal.md and proposal.en.md the Dazhongsi row of the key-area chapter gains the east-west AI-off continuity check as one precondition of the JZ-01 audit covering that stretch, and a new chapter records the run end to end.",
-        "changed_artifacts": [
-          "geometry/constraints.geojson",
-          "proposal.md",
-          "proposal.en.md",
-          "changelog.md",
-          "metrics.json",
-          "visual/assets/seb-op04-chain-data.json",
-          "visual/assets/seb-op04-chain-run.js",
-          "visual/assets/seb-change-receipt-op04.json"
-        ],
-        "unchanged_artifacts": [
-          "visual/assets/seb-spec.json",
-          "visual/assets/seb-tabletop-run.js",
-          "visual/assets/seb-tabletop-fixtures.json",
-          "visual/assets/seb-change-receipt-sample.json",
-          "geometry/roads.geojson"
-        ],
-        "baseline_version_unchanged_reason_zh": "本次未改动任何判据，只是第一次把既有判据施加在设计上；按基准的版本递增规则，判据本身未变则版本不递增，SEB 保持 v0.2.0。",
-        "baseline_version_unchanged_reason_en": "No criterion was altered here; the existing criteria were applied to the design for the first time. Under the baseline's increment rule the version rises only when the criteria themselves change, so SEB stays at v0.2.0."
-      },
-      "not_adopted_reason": {
-        "zh": "不采纳的理由是字段合规与空间成立是两件不同的事，而本方案此前只检了前一件。ai_off_path 这个字段能防住的是「AI 关闭后仍把人推回同一个系统」，防不住「AI 关闭后根本没有路可走」——后者不是填写问题，是几何问题，只有把提交数据当作空间来算才会暴露。承认这一点，比让节点带着一个看上去合规的声明进入下一道闸门要好。两个备选也不因此被采纳：备选 A 的可用性取决于轨道运营、市政与道路三类主体的资料与授权，本方案无权代其承诺；备选 B 把 OP-09 的接入距离拉长至 6.157 倍，而 OP-09 是活动感官负荷退出点，其接入距离的可接受性属于使用者的判断，方案方不设阈值、不代答。按回执机制的拒绝规则，未采纳的理由不得引用尚未存在的授权，因此本条也不以「待授权后即可成立」作为结论。",
-        "en": "The refusal rests on this: a compliant field and an existing route are two different things, and only the first had ever been checked. The ai_off_path field guards against pushing a person back into the same system once AI is off; it cannot guard against there being no way through at all. That second failure is not a matter of wording but of geometry, and it surfaces only when the submitted data is computed as space. Admitting it is better than letting the node carry an apparently compliant claim through the next gate. Neither alternative is adopted in its place. The usability of alternative A turns on evidence and authorisation from the rail operator, the utility bodies and the road authority, which this proposal has no standing to promise. Alternative B stretches the approach to OP-09 to 6.157 times its AI-on figure, and OP-09 is the event sensory-load exit point, where what counts as an acceptable approach is the user's judgement; the proposal sets no threshold and does not answer for them. Under the rejection rule of the receipt mechanism a reason may not lean on an authorisation that does not yet exist, so this ruling does not conclude with once authorised, it holds."
-      },
-      "failed_sample_register": {
-        "participant_samples": "none",
-        "reason_zh": "本次为开放数据桌面复演，无真实参与者、无现场测量，因此不存在参与者失败样本可登记。登记为空的理由在此写明，符合基准版本治理中登记为空须给出理由的要求。",
-        "reason_en": "This was a desk replay over open data with no real participant and no field measurement, so no participant failure sample exists to register. The reason for the empty register is stated here, as baseline version governance requires.",
-        "design_level_failures_registered": [
-          "OP-04：ai_off_path 通过全部字段校验，但其依托的连续通道在提交几何中不存在——字段级判据无法发现路径级缺失，这是判据的作用边界，不是判据的错误",
-          "OP-08 与 OP-09：AI 关闭状态下同样只能接入 ROAD-005，接入距离分别为 AI 开启状态的 1.924 倍与 6.157 倍；本轮按范围只处置 OP-04，两者登记待办，不在本轮静默修改",
-          "接入段按直线处理且假定可通行，该假定未经任何审计，是本次核算最大的不确定性来源；现场审计到位前，任何一个接入距离读数都不得被解释为实际步行距离"
-        ],
-        "method_level_note_zh": "上述第一条是否应当由基准回答，本轮不下结论。在节点 schema 中增设「等价路径的空间前提须经核验」一类字段是可能的方向，但该字段的判定需要几何计算而不只是字符串匹配，会把基准的实现门槛从读文件抬高到跑图算法，是否值得须待更多失败样本再定。本条按版本治理登记为待议，不在本轮改动基准。"
-      },
-      "affected_metrics": {
-        "metric_ids": [
-          "ai_off_service_equivalence_gap",
-          "scenario_exit_path_coverage",
-          "ai_off_declared_network_length_m",
-          "ai_off_network_component_count",
-          "op04_ai_off_unreachable_same_area_node_count"
-        ],
-        "recomputation_zh": "本次变更不产生任何包容性绩效指标数值。ai_off_service_equivalence_gap 在 metrics.json 中保持 unknown，须由伦理化的真实成对测试取得，本次核算的空间不可达结论不得被折算为该指标的读数。scenario_exit_path_coverage 仍按文件完整性口径登记：本次未增删任何节点，OP-04 的 ai_off_path 字段仍存在且未改写，读数与口径均未改变。新增三项均为提交几何可复算的空间量，与七项待测包容性指标不共用分母，也不构成对其中任何一项的替代：ai_off_declared_network_length_m 为 17322.014 米，ai_off_network_component_count 为 2，op04_ai_off_unreachable_same_area_node_count 为 2，其分母为同重点区内其余节点数 2。三项均可由 node seb-op04-chain-run.js 复算。",
-        "recomputation_en": "The change produces no inclusion performance value. ai_off_service_equivalence_gap stays unknown in metrics.json and can only come from an ethically run paired test; the spatial unreachability found here may not be converted into a reading for it. scenario_exit_path_coverage remains a file-completeness figure: no node was added or removed, the ai_off_path field at OP-04 still exists and was not rewritten, and neither its reading nor its definition changed. The three new entries are spatial quantities recomputable from the submitted geometry. They share no denominator with the seven pending inclusion metrics and stand in for none of them: ai_off_declared_network_length_m is 17322.014 m, ai_off_network_component_count is 2, and op04_ai_off_unreachable_same_area_node_count is 2 against a denominator of the 2 remaining nodes in that key area. All three are recomputed by node seb-op04-chain-run.js."
-      },
-      "verification": {
-        "zh": "任何人可在 visual/assets 目录下执行 node seb-op04-chain-run.js 复核本条结论。脚本先真实执行既有的 node seb-tabletop-run.js 并把退出码入档，退出码非零即拒绝继续；随后由 geometry 下的几何文件重算全部读数，与 seb-op04-chain-data.json 逐项比对，并检查 OP-04 的三个追加字段确实落在包内。关键可核对点：AI 关闭态连通分量数应为 2；基线 AI 关闭态下 T1 与 T2 应判为不可达；反例 CL-N2 应以 NODE_CONSTRAINT_VIOLATION:ai_off_path 被拒绝；反例 CL-N1 应以 LEVEL_GATE_MISMATCH 被拒绝。若把 ROAD-004 的 design_role 改写为含声明词的文本，同一脚本应转为报告 T1 与 T2 可达——这正是本条回执所说的、需要真实资料与授权才能成立的那一步。",
-        "en": "Anyone can re-check this ruling by running node seb-op04-chain-run.js in the visual/assets directory. The script first actually executes node seb-tabletop-run.js and archives its exit code, refusing to continue on anything but zero; it then recomputes every figure from the geometry files and checks each against seb-op04-chain-data.json, including that the three appended fields really landed on OP-04. The points worth checking: the AI-off network should fall into 2 components; T1 and T2 should be judged unreachable in the AI-off baseline; negative CL-N2 should be rejected with NODE_CONSTRAINT_VIOLATION:ai_off_path and negative CL-N1 with LEVEL_GATE_MISMATCH. Rewriting the design_role of ROAD-004 to carry a declaration token should turn the same script to reporting T1 and T2 as reachable, which is precisely the step this receipt says requires real evidence and real authorisation before it holds."
-      },
-      "posting": [
-        "本回执随方案包公开，位于 visual/assets/seb-change-receipt-op04.json",
-        "复演过程与全部入档读数位于 visual/assets/seb-op04-chain-data.json",
-        "真实共创启动后，同类回执张贴于 OP-04 点位并进入公开复盘记录"
-      ],
-      "status": "demonstration_only",
-      "status_note_zh": "本条回执以一次开放数据桌面复演为对象，是机制的第三次转动，不是任何一轮真实复核的结论，也不代表任何主体已经审议过该意见。与前两条不同的是，本条第一次改动了设计而不是判据；但改动的性质仍然是把一项主张退回未证状态，而不是宣布一项新的成果。",
-      "status_note_en": "This receipt takes a desk replay over open data as its subject and is the mechanism's third turn. It is the outcome of no real review round and represents deliberation by no body. Unlike the first two it changes the design rather than the criteria; what it changes, though, is still a claim being sent back to unproven rather than a new result being announced.",
-      "subsequent_disposition": {
-        "closed_by_receipt_id": null,
-        "closed_in_spec_version": null,
-        "zh": "未闭合。本条登记的三条设计级失败与一条方法级待议事项，均须待 JZ-01 现场审计与官方道路、轨道、市政、权属资料到位后才可能处置；在此之前本字段保持为空，不以计划或意向填充。按不可改写规则，届时的结论以新的回执发布并回填本字段，本条原文不改。",
-        "en": "Not closed. The three design-level failures and the one method-level item registered here can be handled only once the JZ-01 site audit and the official road, rail, utility and tenure evidence exist. Until then this field stays empty and is not filled with a plan or an intention. Under the immutability rule the eventual ruling will be published as a new receipt and pointed at from here, with not a word of this one rewritten."
-      }
-    }
-  ]
+ "receipt_schema_id": "seb-change-receipt",
+ "version": "0.2.0",
+ "status": "draft_concept_recommendation",
+ "schema_ref": "visual/assets/seb-change-receipt-sample.json",
+ "schema_ref_note_zh": "本文件不重复回执 schema 的定义，字段口径、verdict 枚举、不可改写规则与拒绝规则全部沿用上述文件中的 schema 节；两份文件的回执共用同一编号序列，本文件承载 CR-2026-08-12-003。",
+ "schema_ref_note_en": "This file does not restate the receipt schema. Field definitions, the verdict enumeration, the immutability rule and the rejection rule all follow the schema block of the file named above. Both files draw on one receipt-number series, and this file carries CR-2026-08-12-003.",
+ "purpose_zh": "前两条回执处理的是基准条文自身的缺口，对象是 schema。本条回执第一次把对象换成设计：一条已经写在几何数据里、通过了全部字段校验的等价路径声明，被一次空间核算退回为未证成立。",
+ "purpose_en": "The first two receipts handled gaps in the baseline text itself, with a schema as their subject. This one changes the subject to the design: an equivalence claim already written into the geometry data, which had passed every field check, is sent back by a spatial computation as unproven.",
+ "receipts": [
+  {
+   "receipt_id": "CR-2026-08-12-003",
+   "issued_at": "2026-08-12",
+   "gate_round": "not_applicable_desk_replay",
+   "node_id": "OP-04",
+   "raised_by": {
+    "role_group": "方案作者自查（开放数据桌面复演）",
+    "role_group_en": "proposal author self-review (desk replay over open data)",
+    "identity_disclosure": "无参与者，无个人信息；本条意见由复演过程本身提出",
+    "identity_disclosure_en": "no participant and no personal data; the opinion arose from the replay itself"
+   },
+   "opinion": {
+    "zh": "OP-04 的 ai_off_path 已按基准填写并通过全部字段校验，节点可计入服务覆盖；本轮无须再对该节点做进一步核验。",
+    "en": "The ai_off_path at OP-04 is filled in as the baseline requires and passes every field check, so the node counts towards service coverage and needs no further verification this round."
+   },
+   "finding": {
+    "zh": "复演在提交几何上确认了三件事。其一，字段确实合规：「现场人工指引与无障碍替代通行方案」不含任何一项拒绝词，两个互不共享代码的实现给出同一判定，机器复核通过。其二，字段合规不等于路径存在。把 AI 关闭状态下仍可用的线路按各要素自身 design_role 的声明词取出后，可用网络只剩 ROAD-001 与 ROAD-005 两条，两条互不相交、构成两个独立连通分量，三条横向接口是它们之间仅有的连接而三条都未作声明；因此 OP-04 与同区 OP-08、OP-09 之间在 AI 关闭状态下不存在连续路径，两项任务均不可达。现场人工指引可以解释一条通道，不能生成一条通道。其三，同一次核算查出接入距离的同类问题：AI 关闭后 OP-08 的接入段由 88.816 米增至 170.923 米，OP-09 由 55.527 米增至 341.854 米，后者为 6.157 倍。",
+    "en": "The replay established three things on the submitted geometry. First, the field really is compliant: the wording on-site human guidance with a step-free alternative route hits none of the refusal terms, two implementations sharing no code return the same verdict, and machine review passes. Second, a compliant field is not a route that exists. Once the lines still usable with AI off are taken by the declaration tokens carried in each feature's own design_role, the usable network is only ROAD-001 and ROAD-005; the two never meet and form two separate components, and the three cross links that are their only connections carry no declaration. Between OP-04 and OP-08 or OP-09 in its own key area there is therefore no continuous route once AI is off, and both tasks are unreachable. On-site human guidance can explain a passage; it cannot produce one. Third, the same computation found the matching fault in the approach distances: with AI off the access stub of OP-08 grows from 88.816 m to 170.923 m and that of OP-09 from 55.527 m to 341.854 m, a factor of 6.157."
+   },
+   "verdict": "not_adopted",
+   "change_made": {
+    "zh": "意见不予采纳，节点转为未证成立状态。geometry/constraints.geojson 中 OP-04 追加三个字段：ai_off_continuity_status 记为 premise_unproven_pending_site_audit，ai_off_continuity_note_zh 写明缺少空间前提及其核验路径，ai_off_continuity_receipt_id 指向本条回执。原 ai_off_path 一字未改——回执机制的不可改写规则要求已发布的记录保持原样、后续结论以追加呈现，同一条纪律适用于节点属性；读者因此既能看到当时写下的声明，也能看到它后来被退回。proposal.md 与 proposal.en.md 在重点区域详细设计章的大钟寺行增列东西向 AI 关闭态连续通道存在性核验，作为 JZ-01 审计结论覆盖大钟寺段的前置内容之一，并新增一章记录本次全过程。",
+    "en": "The opinion is refused and the node moves to an unproven state. Three fields are appended to OP-04 in geometry/constraints.geojson: ai_off_continuity_status reads premise_unproven_pending_site_audit, ai_off_continuity_note_zh states the missing spatial premise and how it is to be verified, and ai_off_continuity_receipt_id points at this receipt. Not a word of the original ai_off_path was changed: the immutability rule of the receipt mechanism requires a published record to stand while later outcomes are appended, and the same discipline applies to a node property, so a reader sees both the claim as written and the fact that it was later sent back. In proposal.md and proposal.en.md the Dazhongsi row of the key-area chapter gains the east-west AI-off continuity check as one precondition of the JZ-01 audit covering that stretch, and a new chapter records the run end to end.",
+    "changed_artifacts": [
+     "geometry/constraints.geojson",
+     "proposal.md",
+     "proposal.en.md",
+     "changelog.md",
+     "metrics.json",
+     "visual/assets/seb-op04-chain-data.json",
+     "visual/assets/seb-op04-chain-run.js",
+     "visual/assets/seb-change-receipt-op04.json"
+    ],
+    "unchanged_artifacts": [
+     "visual/assets/seb-spec.json",
+     "visual/assets/seb-tabletop-run.js",
+     "visual/assets/seb-tabletop-fixtures.json",
+     "visual/assets/seb-change-receipt-sample.json",
+     "geometry/roads.geojson"
+    ],
+    "baseline_version_unchanged_reason_zh": "本次未改动任何判据，只是第一次把既有判据施加在设计上；按基准的版本递增规则，判据本身未变则版本不递增，SEB 保持 v0.2.0。",
+    "baseline_version_unchanged_reason_en": "No criterion was altered here; the existing criteria were applied to the design for the first time. Under the baseline's increment rule the version rises only when the criteria themselves change, so SEB stays at v0.2.0."
+   },
+   "not_adopted_reason": {
+    "zh": "不采纳的理由是字段合规与空间成立是两件不同的事，而本方案此前只检了前一件。ai_off_path 这个字段能防住的是「AI 关闭后仍把人推回同一个系统」，防不住「AI 关闭后根本没有路可走」——后者不是填写问题，是几何问题，只有把提交数据当作空间来算才会暴露。承认这一点，比让节点带着一个看上去合规的声明进入下一道闸门要好。两个备选也不因此被采纳：备选 A 的可用性取决于轨道运营、市政与道路三类主体的资料与授权，本方案无权代其承诺；备选 B 把 OP-09 的接入距离拉长至 6.157 倍，而 OP-09 是活动感官负荷退出点，其接入距离的可接受性属于使用者的判断，方案方不设阈值、不代答。按回执机制的拒绝规则，未采纳的理由不得引用尚未存在的授权，因此本条也不以「待授权后即可成立」作为结论。",
+    "en": "The refusal rests on this: a compliant field and an existing route are two different things, and only the first had ever been checked. The ai_off_path field guards against pushing a person back into the same system once AI is off; it cannot guard against there being no way through at all. That second failure is not a matter of wording but of geometry, and it surfaces only when the submitted data is computed as space. Admitting it is better than letting the node carry an apparently compliant claim through the next gate. Neither alternative is adopted in its place. The usability of alternative A turns on evidence and authorisation from the rail operator, the utility bodies and the road authority, which this proposal has no standing to promise. Alternative B stretches the approach to OP-09 to 6.157 times its AI-on figure, and OP-09 is the event sensory-load exit point, where what counts as an acceptable approach is the user's judgement; the proposal sets no threshold and does not answer for them. Under the rejection rule of the receipt mechanism a reason may not lean on an authorisation that does not yet exist, so this ruling does not conclude with once authorised, it holds."
+   },
+   "failed_sample_register": {
+    "participant_samples": "none",
+    "reason_zh": "本次为开放数据桌面复演，无真实参与者、无现场测量，因此不存在参与者失败样本可登记。登记为空的理由在此写明，符合基准版本治理中登记为空须给出理由的要求。",
+    "reason_en": "This was a desk replay over open data with no real participant and no field measurement, so no participant failure sample exists to register. The reason for the empty register is stated here, as baseline version governance requires.",
+    "design_level_failures_registered": [
+     "OP-04：ai_off_path 通过全部字段校验，但其依托的连续通道在提交几何中不存在——字段级判据无法发现路径级缺失，这是判据的作用边界，不是判据的错误",
+     "OP-08 与 OP-09：AI 关闭状态下同样只能接入 ROAD-005，接入距离分别为 AI 开启状态的 1.924 倍与 6.157 倍；本轮按范围只处置 OP-04，两者登记待办，不在本轮静默修改",
+     "接入段按直线处理且假定可通行，该假定未经任何审计，是本次核算最大的不确定性来源；现场审计到位前，任何一个接入距离读数都不得被解释为实际步行距离"
+    ],
+    "method_level_note_zh": "上述第一条是否应当由基准回答，本轮不下结论。在节点 schema 中增设「等价路径的空间前提须经核验」一类字段是可能的方向，但该字段的判定需要几何计算而不只是字符串匹配，会把基准的实现门槛从读文件抬高到跑图算法，是否值得须待更多失败样本再定。本条按版本治理登记为待议，不在本轮改动基准。"
+   },
+   "affected_metrics": {
+    "metric_ids": [
+     "ai_off_service_equivalence_gap",
+     "scenario_exit_path_coverage",
+     "ai_off_declared_network_length_m",
+     "ai_off_network_component_count",
+     "op04_ai_off_unreachable_same_area_node_count"
+    ],
+    "recomputation_zh": "本次变更不产生任何包容性绩效指标数值。ai_off_service_equivalence_gap 在 metrics.json 中保持 unknown，须由伦理化的真实成对测试取得，本次核算的空间不可达结论不得被折算为该指标的读数。scenario_exit_path_coverage 仍按文件完整性口径登记：本次未增删任何节点，OP-04 的 ai_off_path 字段仍存在且未改写，读数与口径均未改变。新增三项均为提交几何可复算的空间量，与七项待测包容性指标不共用分母，也不构成对其中任何一项的替代：ai_off_declared_network_length_m 为 17322.014 米，ai_off_network_component_count 为 2，op04_ai_off_unreachable_same_area_node_count 为 2，其分母为同重点区内其余节点数 2。三项均可由 node seb-op04-chain-run.js 复算。",
+    "recomputation_en": "The change produces no inclusion performance value. ai_off_service_equivalence_gap stays unknown in metrics.json and can only come from an ethically run paired test; the spatial unreachability found here may not be converted into a reading for it. scenario_exit_path_coverage remains a file-completeness figure: no node was added or removed, the ai_off_path field at OP-04 still exists and was not rewritten, and neither its reading nor its definition changed. The three new entries are spatial quantities recomputable from the submitted geometry. They share no denominator with the seven pending inclusion metrics and stand in for none of them: ai_off_declared_network_length_m is 17322.014 m, ai_off_network_component_count is 2, and op04_ai_off_unreachable_same_area_node_count is 2 against a denominator of the 2 remaining nodes in that key area. All three are recomputed by node seb-op04-chain-run.js."
+   },
+   "verification": {
+    "zh": "任何人可在 visual/assets 目录下执行 node seb-op04-chain-run.js 复核本条结论。脚本先真实执行既有的 node seb-tabletop-run.js 并把退出码入档，退出码非零即拒绝继续；随后由 geometry 下的几何文件重算全部读数，与 seb-op04-chain-data.json 逐项比对，并检查 OP-04 的三个追加字段确实落在包内。关键可核对点：AI 关闭态连通分量数应为 2；基线 AI 关闭态下 T1 与 T2 应判为不可达；反例 CL-N2 应以 NODE_CONSTRAINT_VIOLATION:ai_off_path 被拒绝；反例 CL-N1 应以 LEVEL_GATE_MISMATCH 被拒绝。若把 ROAD-004 的 design_role 改写为含声明词的文本，同一脚本应转为报告 T1 与 T2 可达——这正是本条回执所说的、需要真实资料与授权才能成立的那一步。",
+    "en": "Anyone can re-check this ruling by running node seb-op04-chain-run.js in the visual/assets directory. The script first actually executes node seb-tabletop-run.js and archives its exit code, refusing to continue on anything but zero; it then recomputes every figure from the geometry files and checks each against seb-op04-chain-data.json, including that the three appended fields really landed on OP-04. The points worth checking: the AI-off network should fall into 2 components; T1 and T2 should be judged unreachable in the AI-off baseline; negative CL-N2 should be rejected with NODE_CONSTRAINT_VIOLATION:ai_off_path and negative CL-N1 with LEVEL_GATE_MISMATCH. Rewriting the design_role of ROAD-004 to carry a declaration token should turn the same script to reporting T1 and T2 as reachable, which is precisely the step this receipt says requires real evidence and real authorisation before it holds."
+   },
+   "posting": [
+    "本回执随方案包公开，位于 visual/assets/seb-change-receipt-op04.json",
+    "复演过程与全部入档读数位于 visual/assets/seb-op04-chain-data.json",
+    "真实共创启动后，同类回执张贴于 OP-04 点位并进入公开复盘记录"
+   ],
+   "status": "demonstration_only",
+   "status_note_zh": "本条回执以一次开放数据桌面复演为对象，是机制的第三次转动，不是任何一轮真实复核的结论，也不代表任何主体已经审议过该意见。与前两条不同的是，本条第一次改动了设计而不是判据；但改动的性质仍然是把一项主张退回未证状态，而不是宣布一项新的成果。",
+   "status_note_en": "This receipt takes a desk replay over open data as its subject and is the mechanism's third turn. It is the outcome of no real review round and represents deliberation by no body. Unlike the first two it changes the design rather than the criteria; what it changes, though, is still a claim being sent back to unproven rather than a new result being announced.",
+   "subsequent_disposition": {
+    "closed_by_receipt_id": null,
+    "closed_in_spec_version": null,
+    "zh": "未闭合。本条登记的三条设计级失败与一条方法级待议事项，均须待 JZ-01 现场审计与官方道路、轨道、市政、权属资料到位后才可能处置；在此之前本字段保持为空，不以计划或意向填充。按不可改写规则，届时的结论以新的回执发布并回填本字段，本条原文不改。",
+    "en": "Not closed. The three design-level failures and the one method-level item registered here can be handled only once the JZ-01 site audit and the official road, rail, utility and tenure evidence exist. Until then this field stays empty and is not filled with a plan or an intention. Under the immutability rule the eventual ruling will be published as a new receipt and pointed at from here, with not a word of this one rewritten."
+   }
+  },
+  {
+   "receipt_id": "CR-2026-08-16-006",
+   "issued_at": "2026-08-16",
+   "gate_round": "not_applicable",
+   "node_id": "OP-04",
+   "raised_by": {
+    "role_group": "维护方全图版双线盲审（两条互不通气的审查线）与官方空间复算工具",
+    "role_group_en": "the maintainer's dual-line blind review of all figures (two mutually blind review lines) plus the official spatial recomputation tool",
+    "disclosure": "按包内署名，不记录个人身份信息 / per in-package attribution, no personal identifying data"
+   },
+   "opinion": {
+    "zh": "提交几何自 v1.0 起将大钟寺重点区错置于北京北站以北约 2.4 公里（上游 ISSUE-1029 亦独立指出场地包临时框线的质心偏移）；链复演所用换挂口径「节点在各状态内挂接最近线」隐含「关闭 AI 会改变节点的物理挂接线」的不实假设；复演器 attach 例程存在二次切段缺陷（segs/adj 失同步），可产生虚构的长绕行读数",
+    "en": "the submitted geometry had misplaced the Dazhongsi key area about 2.4 km north of Beijing North station since v1.0 (upstream ISSUE-1029 independently flags the centroid offset of the site package's provisional frame); the nearest-line re-attachment rule used by the chain replay implied the false premise that switching AI off changes a node's physical attachment line; and the replayer's attach routine had a double-cut defect (segs/adj desync) capable of producing fictitious long-detour figures"
+   },
+   "finding": {
+    "zh": "逐项复现坐实：错置几何下 OP-04 一带读数不反映真实大钟寺区位；旧口径叠加 attach 缺陷曾产出 5,052 米一类虚增路径；接口固定后 BASE_OFF 判为不可达，判定理由（挂接线缺席）比「换线绕行变长」更接近物理事实",
+    "en": "each point reproduced live: under the misplaced geometry the OP-04 figures did not reflect the real Dazhongsi location; the old rule combined with the attach defect had produced inflated paths such as a 5,052 m detour; under the fixed-interface rule BASE_OFF is judged unreachable, and the ground (the attachment line is absent) sits closer to physical fact than a longer re-attached detour"
+   },
+   "verdict": "adopted",
+   "change_made": {
+    "summary_zh": "大钟寺重点区几何归位（新框 lon 116.3402–116.3510 × lat 39.9610–39.9678，OP-04/OP-08/OP-09、ROAD-004、随迁地块与公共界面同步迁移）；链数据口径升级为「接口固定挂接」——节点的物理挂接线在全网上一次解析，状态切换不改变挂接，挂接线在某状态缺席即判该状态不可达，备选线新建线段构成新的有效接口；备选线随几何重定义（ALT-A 向西覆盖两接入点 281.975 米，ALT-B 为 ROAD-001 自 OP-09 纬度向西延伸 281.982 米）；复演器修复 attach 二次切段缺陷；41+2 项读数按新几何与新口径全量回填",
+    "summary_en": "the Dazhongsi key area geometry relocated (new frame lon 116.3402–116.3510 × lat 39.9610–39.9678, with OP-04/OP-08/OP-09, ROAD-004 and the dependent parcels and public interfaces moved together); the chain-data rule upgraded to fixed-interface attachment — a node's physical attachment line is resolved once on the full network, state switching never re-attaches it, an absent line in a state makes that state unreachable, and an alternative's new segment constitutes a valid new interface; the alternatives redefined with the geometry (ALT-A extended westward over both approach points at 281.975 m, ALT-B a westward extension of ROAD-001 at the OP-09 latitude at 281.982 m); the replayer's attach double-cut defect fixed; all 41+2 figures refilled under the new geometry and rule"
+   },
+   "not_adopted_reason": {
+    "zh": "本次无不采纳项。旧读数不改写：CR-2026-08-12-003 与 v0.2 档案按「已发布记录不改写」纪律原样保留，现行读数以 seb-op04-chain-data.json v0.3.0 为准",
+    "en": "nothing declined this round. Old figures are not rewritten: CR-2026-08-12-003 and the v0.2 archive stay as issued under the no-rewrite discipline; current figures are those of seb-op04-chain-data.json v0.3.0"
+   },
+   "failed_sample_register": {
+    "samples": [
+     {
+      "sample_id": "FS-056",
+      "description_zh": "v1.0–v6.3 提交几何把大钟寺重点区错置于北京北站以北约 2.4 公里，OP-04 一带链读数建立在错位几何上",
+      "description_en": "from v1.0 to v6.3 the submitted geometry misplaced the Dazhongsi key area about 2.4 km north of Beijing North station, so the OP-04 chain figures rested on displaced geometry",
+      "status": "fixed",
+      "disposition_zh": "几何归位并经官方空间复算复核；全部链读数回填",
+      "disposition_en": "geometry relocated and checked with the official spatial recomputation; all chain figures refilled"
+     },
+     {
+      "sample_id": "FS-057",
+      "description_zh": "「各状态内挂接最近线」换挂口径允许 AI 开关改变节点的物理挂接线，BASE_OFF 曾借换挂获得并不存在的绕行路径",
+      "description_en": "the nearest-line re-attachment rule let the AI switch change a node's physical attachment line; BASE_OFF once gained a detour that does not physically exist",
+      "status": "fixed",
+      "disposition_zh": "口径升级为接口固定挂接并写入 v0.3.0 修订说明；BASE_OFF 改判不可达",
+      "disposition_en": "the rule upgraded to fixed-interface attachment and recorded in the v0.3.0 revision note; BASE_OFF re-judged unreachable"
+     },
+     {
+      "sample_id": "FS-058",
+      "description_zh": "复演器 attach 例程二次切段后 segs 未同步，同一线段的第二个挂接点桥过第一个切口，产出 5,052 米虚增读数",
+      "description_en": "after a second cut the replayer's attach routine left segs out of step, the second attachment on one segment bridged past the first cut and produced an inflated 5,052 m figure",
+      "status": "fixed",
+      "disposition_zh": "改用保持 segs 同步的 attachAt 实现；chain-run 全量复演 0 不符",
+      "disposition_en": "replaced with an attachAt implementation that keeps segs in step; the full chain-run replays with zero disagreement"
+     }
+    ]
+   },
+   "affected_metrics": {
+    "summary_zh": "41+2 项链读数全量变更：BASE_ON T1 243.514 米（接入段 55.505）/ T2 470.780 米（接入段 188.776）；BASE_OFF 不可达；ALT-B T1 616.487 / T2 468.685，比值 2.532 / 0.996（差值 +372.973 / −2.095 米）；90 天包步测长度同步（合计 889→564 米）",
+    "summary_en": "all 41+2 chain figures change: BASE_ON T1 243.514 m (approach 55.505) / T2 470.780 m (approach 188.776); BASE_OFF unreachable; ALT-B T1 616.487 / T2 468.685, ratios 2.532 / 0.996 (deltas +372.973 / −2.095 m); the 90-day pack walkover lengths follow (total 889→564 m)",
+    "readings_changed": 43
+   },
+   "verification": {
+    "zh": "在 visual/assets 下运行链复演器，对 seb-op04-chain-data.json v0.3.0 全量读数复演得 0 不符；用官方 scripts/spatial_review.py 复算几何；对照文件内 archive_revision_note 核对三项变更逐条对应",
+    "en": "run the chain replayer inside visual/assets and replay every figure of seb-op04-chain-data.json v0.3.0 with zero disagreement; recompute the geometry with the official scripts/spatial_review.py; check the three changes one by one against the archive_revision_note in the file"
+   },
+   "posting": [
+    "visual/assets/seb-change-receipt-op04.json",
+    "proposal.md OP-04 章 / the OP-04 chapter of proposal.md"
+   ],
+   "status": "published"
+  }
+ ],
+ "verification_era_note_zh": "CR-2026-08-12-003 为 2026-08-12 发布时点的历史记录，其全部读数与叙述以当时的提交几何（大钟寺重点区尚在归位前位置）与当时的换挂口径（节点在各状态内挂接最近线）为准，按「已发布记录不改写」纪律原样保留。2026-08-16 起的现行读数与接口固定口径见 seb-op04-chain-data.json v0.3.0 及其修订说明；两者的差异（含 ALT-B 不采纳理由所依赖的接入倍数在新口径下不复存在）由本文件内的 CR-2026-08-16-006 登记，不改写 CR-003 原文。",
+ "verification_era_note_en": "CR-2026-08-12-003 is a historical record as issued on 2026-08-12. All its figures and narratives reflect the submitted geometry of that date (the Dazhongsi key area before relocation) and the then-current nearest-line re-attachment rule, and are preserved unchanged under the no-rewrite discipline. Current figures under the fixed-interface rule (from 2026-08-16) live in seb-op04-chain-data.json v0.3.0 and its revision note; the differences — including that the approach-ratio ground for not adopting ALT-B no longer exists under the new rule — are registered by CR-2026-08-16-006 in this file, without rewriting CR-003."
 }

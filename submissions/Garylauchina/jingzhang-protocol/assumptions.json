@@ -288,7 +288,10 @@
         "flagship_pilot_count",
         "flagship_published_standard_output_count",
         "flagship_scenario_bundle_coverage_ratio",
-        "flagship_verified_public_benefit_count"
+        "flagship_verified_public_benefit_count",
+        "fp01_first_use_delivery_contract_template_count",
+        "fp01_100_day_gate_coverage_ratio",
+        "fp01_contract_clause_coverage_ratio"
       ],
       "resolution_trigger": "Accountable entities accept defined mandates, budgets, service levels and redress obligations.",
       "replacement_action": "Replace proposed roles with signed responsibility records and publish operating, audit, escalation and retirement service levels."
@@ -370,7 +373,10 @@
         "flagship_pilot_count",
         "flagship_published_standard_output_count",
         "flagship_scenario_bundle_coverage_ratio",
-        "flagship_verified_public_benefit_count"
+        "flagship_verified_public_benefit_count",
+        "fp01_first_use_delivery_contract_template_count",
+        "fp01_100_day_gate_coverage_ratio",
+        "fp01_contract_clause_coverage_ratio"
       ],
       "resolution_trigger": "An accountable scene owner confirms the surveyed carrier, operator roles, legal and procurement route, budget, data access, baseline and go/no-go thresholds for this pilot.",
       "replacement_action": "Replace concept roles and targets with signed records; preserve failed and stopped tests; populate the four outcome metrics only from dated, auditable operating evidence.",
@@ -505,7 +511,65 @@
           "stage": "standard_output",
           "output": "draft first-use evaluation, interoperability and evidence-reporting specification"
         }
-      ]
+      ],
+      "first_use_delivery_contract": {
+        "contract_id": "FP01-CONTRACT-001",
+        "title_zh": "AI原点首用站100日交付合同模板",
+        "title_en": "AI Origin 100-Day First-Use Delivery Contract Template",
+        "status": "concept_template_unexecuted",
+        "single_contract_rule": "One contract template governs S03, S04 and S07; no separate showcase, evaluation or training contract may bypass the shared acceptance and exit duties.",
+        "activation_rule": "A D90 independent go decision only opens a separate authorization discussion; a D91-D100 limited acceptance may be discussed only after lawful procurement, legal and professional authorization.",
+        "milestones": [
+          {
+            "id": "D0",
+            "purpose": "public problem, human or non-digital baseline, users and prohibited automated decisions recorded"
+          },
+          {
+            "id": "D30",
+            "purpose": "roles, version, provenance, capability limits, site, funding, data, term and stop thresholds locked"
+          },
+          {
+            "id": "D60",
+            "purpose": "interoperability, portability, account-free access, accessibility, human takeover, incident, appeal, stop, restoration and data-disposal drills accepted"
+          },
+          {
+            "id": "D90",
+            "purpose": "public evidence pack and independent go, revise or stop decision with dissent recorded"
+          },
+          {
+            "id": "D100",
+            "purpose": "separately authorized revocable acceptance or shutdown, baseline restoration, data disposal, asset return and failure-record closeout"
+          }
+        ],
+        "required_clauses": [
+          "C01_public_problem_human_baseline_users_and_prohibited_automation",
+          "C02_separated_procurement_operation_evaluation_and_appeal_roles",
+          "C03_version_provenance_and_capability_limits",
+          "C04_site_funding_data_term_and_stop_thresholds",
+          "C05_interoperability_and_portability_evidence",
+          "C06_account_free_accessibility_and_human_takeover",
+          "C07_incident_appeal_and_public_record",
+          "C08_stop_baseline_restoration_and_data_disposal_drill",
+          "C09_public_evidence_pack_passes_failures_and_uncertainty",
+          "C10_independent_go_revise_stop_decision_and_dissent",
+          "C11_separate_lawful_authorization_before_revocable_acceptance",
+          "C12_no_outcome_payment_baseline_restoration_data_disposal_asset_return_and_failure_record"
+        ],
+        "day_91_to_100_dual_exit": {
+          "go": "Activate only a bounded and revocable ten-day first-use acceptance call-off after separate lawful procurement authorization.",
+          "revise_or_stop": "Release no procurement payment; restore the service baseline, dispose of data as agreed, return portable assets and retain a rights-cleared failure record."
+        },
+        "minimum_acceptance_conditions": [
+          "zero unresolved severity-one safety or rights defect",
+          "named human accountability for every high-impact output",
+          "S03, S04 and S07 each complete human-takeover and non-AI fallback drills",
+          "data provenance, authorization, purpose, retention and deletion are complete",
+          "every incident and appeal has a named handler and dated disposition",
+          "performance thresholds are locked at D30 from a real baseline rather than invented in advance",
+          "failed acceptance cannot release payment or authorize diffusion"
+        ],
+        "execution_boundary": "Template-structure evidence only; not a signed contract, procurement authorization, delivered service, market adoption or verified public benefit."
+      }
     },
     {
       "id": "A-FLAGSHIP-FP02",
@@ -1155,6 +1219,45 @@
         "FP03",
         "FP04"
       ]
+    },
+    {
+      "id": "A-GEOMETRY-CROSSCHECK-001",
+      "status": "background_only_unresolved",
+      "statement": "Independent community cross-checks report that the repository provisional SITE and Dazhongsi key-area polygons do not align with several namesake mapped features; these checks are reproducible background evidence, not official geometry corrections.",
+      "impact": "V0.8 keeps all coordinates unchanged, separates the announced relational design tasks from the provisional placeholder polygons, and prohibits parcel, station-exit or engineering claims until official geometry is released.",
+      "affected_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson",
+        "geometry/public_space.geojson",
+        "proposal.md",
+        "assets/figures/key-areas.png",
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "affected_metric_ids": [
+        "site_area_sqm",
+        "key_area_dazhongsi_geometry_sqm",
+        "scenario_node_dazhongsi_count"
+      ],
+      "evidence_tier": "background_only",
+      "official_correction": false,
+      "coordinates_changed_in_v0_8": false,
+      "crosschecks": [
+        {
+          "id": "XCHECK-846",
+          "issue_url": "https://github.com/open-city-ai/haidian/issues/846",
+          "finding": "The mapped OSM Jing-Zhang Railway Heritage Park polygon and PROV-SITE-001 have zero intersection and a reported nearest distance of 412.5 m; PROV-RESEARCH-001 covers the mapped park.",
+          "limitation": "OSM is community mapped and may not represent the full planned park; the issue does not decide which geometry is correct."
+        },
+        {
+          "id": "XCHECK-1029",
+          "issue_url": "https://github.com/open-city-ai/haidian/issues/1029",
+          "finding": "The reported PROV-KEY-003 centroid is about 2,257 m from Dazhongsi station, its nearest polygon edge about 1,788 m from the station, while Beijing North Station lies inside the placeholder polygon about 227 m from its centroid.",
+          "limitation": "This is a community reproducible check and not a maintainer ruling, official redline or replacement polygon."
+        }
+      ],
+      "resolution_trigger": "Trusted rights-cleared official SITE_BOUNDARY and all three KEY_AREA polygons are released.",
+      "replacement_action": "Replace provisional geometry, relocate or verify every dependent feature, and regenerate all geometry-derived metrics, figures, HTML and PDFs; retire the background cross-check after official reconciliation."
     }
   ]
 }

@@ -1,5 +1,5 @@
 ---
-title: "轨道源场 RailCode Commons v1.2：公共验证操作系统"
+title: "轨道源场 RailCode Commons v1.4：公共验证操作系统"
 author_github: "296277"
 language: "zh"
 proposal_format_version: "2"
@@ -9,10 +9,10 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把京张遗产脊梁升级为城市创新的公共验证操作系统：三座差异化城市原型、十二份场景合同、90天可退出试点与可签认实施门。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.2"
+iteration: "v1.4"
 ---
 
-# 轨道源场 RailCode Commons v1.2
+# 轨道源场 RailCode Commons v1.4
 
 **先把 AI 的责任、退出和公共价值画进空间，再允许它进入城市。**
 
@@ -23,9 +23,10 @@ iteration: "v1.2"
 | 是否回答京张 AI 创新带的城市设计任务？ | 一条公共版本脊、三座差异化原型、12 张场景卡、三区两翼与任务矩阵 | 已完成包内设计回应 |
 | 是否能从概念走到受控试点？ | G0-G4 证据门、RC-01—RC-06 交付合同、90 天节奏与六条停止线 | 仅为建议流程，未获授权、未现场运行 |
 | 谁能让试点暂停或恢复？ | 每份合同的暂停权、恢复证据、双人签认和责任角色类型 | 角色类型已定义，具体机构未确认 |
-| 哪些数字不能被误读为现状或预算？ | 临时边界、未知控制条件、L0-L2 成本带与版权/许可台账 | 全部保留 provisional / unknown 边界 |
+| 哪些数字不能被误读为现状或预算？ | 临时边界、未知控制条件、工程量/全生命周期成本方法与版权/许可台账 | 金额、机构、现场绩效均为空或未确认 |
+| 规则是否可复演？ | 24 个离线合成案例覆盖 6 条通过分支与 18 条拒绝/暂停分支 | 24/24 仅证明规则执行一致，现场运行仍为 0 |
 
-v1.2 不把京张理解为一条“展示技术的走廊”，而是提出一套可复制的城市创新基础设施：铁路遗产是连续公共底板，众智园、AI 原点社区、大钟寺是三种差异化验证原型，每个 AI 场景都必须同时提交空间、数据、责任、人工兜底、暂停和退出合同。设计的原创性不在于造一座未来感建筑，而在于把开源软件的版本、测试、回滚和公共审议翻译成人人可走、可看、可质询的城市空间。
+v1.4 不把京张理解为一条“展示技术的走廊”，而是提出一套可复制的城市创新基础设施：铁路遗产是连续公共底板，众智园、AI 原点社区、大钟寺是三种差异化验证原型，每个 AI 场景都必须同时提交空间、数据、责任、人工兜底、暂停和退出合同。设计的原创性不在于造一座未来感建筑，而在于把开源软件的版本、测试、回滚和公共审议翻译成人人可走、可看、可质询的城市空间。
 
 ## 设计依据与资料清单
 
@@ -35,7 +36,20 @@ v1.2 不把京张理解为一条“展示技术的走廊”，而是提出一套
 
 资料权力分三档：公告与任务书决定“必须回答什么”；临时几何决定“本轮在哪里测试”；Agent 设计决定“建议如何组织”。权属、现状建筑、文保、道路红线、轨道保护、市政、消防、防洪、客流和工程资料仍为 unknown；任一 official polygon 到位后，九类 GeoJSON、metrics、图件、HTML 与 PDF 必须整体复算 [source:SITE-PACKAGE] [source:SOURCE-REGISTRY] [depth:risk_missing_data]。
 
-![轨道源场v1.2总体结构](assets/figures/site-overview.png)
+![轨道源场v1.4总体结构](assets/figures/site-overview.png)
+
+
+
+## 官方任务到场地与专业交接
+
+![官方任务到场地与交接索引](assets/figures/brief-to-site.png)
+
+`visual/assets/official_brief_trace.json` 是任务书的首读追踪表：6 项官方任务逐项连接空间载体、RC 合同、G0-G4 门和原始证据；`visual/assets/key_area_handoff.json` 将众智园、AI 原点、大钟寺三重点区分别拆成 4 步空间序列、角色类型、进入证据、暂停条件、恢复回执和缺失的官方输入。两份工件只做导航与专业交接，不把临时几何升级为官方红线，也不把角色类型写成已确认机构。
+
+评委可按同一条路径复核：**任务书 → 一脊/三原型/两接口 → RC-01—RC-06 → G0-G4 → 回执与现实边界**。当前所有重点区的现实状态仍为“未授权、未实测、未现场运行”；任何后续现场工作都必须由权属、文保、消防、无障碍、隐私、运营和预算等专业责任方补齐证据后再进入下一道门。
+
+
+专业深化入口分为两层：现有空间序列、角色类型、停止/恢复规则和证据模板可直接进入 G1/G2 **案头专业审查**；权属授权、实测边界、消防/无障碍/文保结论、现场基线、真实责任机构、工程量、询价与预算未形成，因此不可进入采购、施工或 G3 现场试点。最终双语渲染记录见 `visual/assets/render_audit.json`：4 份 HTML 在 1440px/390px 共 8 个视口通过，A3/A0 双语共 48 页无空白或裁切；这是参与者侧表达 QA，不是独立认证。
 
 ## 三层范围工作框架
 
@@ -118,6 +132,14 @@ RailCode Commons 的投稿识别由本方案原创绘制，并形成横排、竖
 
 三类公共底线贯穿全部场景：高影响决定 100% 人工最终确认；默认生物识别与连续个人轨迹留存为 0；基本服务保留非数字通道 [standard:GENERATIVE-AI-INTERIM-MEASURES] [standard:BARRIER-FREE-ENVIRONMENT-LAW] [depth:ai_scenario_service_nodes]。
 
+
+
+### 场景到专业责任的逐项锁定
+
+![12个AI场景到专业复核责任矩阵](assets/figures/scenario-professional-review.png)
+
+`visual/assets/scenario_professional_review_matrix.json` 将 S01—S12 逐项锁定到空间原型、最小数据、人工最终责任、RC 合同、G1 案头专业角色、G2 控制/独立复核角色、可测空间或容量代理、冲突/失败情景、暂停线和恢复证据。12/12 均有完整字段，但所有实测值仍为 `null`、真实机构确认为 0、现场证据为 0。这里的“可进入 G1/G2”仅指模板足以启动案头审查和演练设计；在权属、实测、专业结论、责任机构、预算与授权补齐前，G3 现场试点保持关闭。
+
 agent.5 的文化线索不以“京张记忆”四字代替证据：铁路遗产脉络、大钟寺历史语境、学院路科教记忆、开源贡献史和社区日常记忆分别连接到公共版本脊、公共验收长桌、开放成果街、版本档案和居民共述点。每项同时登记史料来源、使用权利、空间载体和“已核/待核/创意”状态；只有公开来源和权利复核通过的事实才能进入导览，创意叙事必须显式标记且不得生成虚构人物事件。完整矩阵见 `visual/assets/cultural_evidence_matrix.json`。
 
 无障碍共测在现场启动前采用独立计划：至少 12 次经同意的路线任务，覆盖银龄、行动、视听、认知/低数字能力及无智能设备使用者中的至少 3 类需求，并由 2 名独立专业复核角色检查。招募不得以服务权益为交换；只留去标识障碍、完成/失败和修复记录；参与者可随时退出。连续通行、替代信息、键盘访问或人工兜底任一失败即暂停并整改。当前没有招募或现场测试；包内人工可访问性 QA 仅检查 HTML/PDF/核心图件，详见 `visual/assets/accessibility_qa.json`。
@@ -171,11 +193,27 @@ agent.5 的文化线索不以“京张记忆”四字代替证据：铁路遗产
 
 六条红线 KPI：激活前告知 100%；高影响输出人工最终决定 100%；基本服务强制手机/账户/人脸门槛为 0；转人工目标不超过 30 秒；申诉 1 个工作日确认、5 个工作日目标答复；严重安全事件目标为 0。它们是试点自设目标，不是法规数字时限或现状成绩 [metric:pilot_duration_days] [metric:redline_kpi_count] [metric:delivery_contract_count]。
 
-六份合同的基线采集、最小样本、验收记录、证据留存和责任角色确认状态见 `visual/assets/delivery_contracts.json`。v1.2 为每份合同增加前置证据、暂停权、恢复证据与双人签认：运营角色可以先暂停，只有原失败项关闭、记录留档且“责任角色 + 独立专业复核角色”共同签认，才进入下一轮受控运行。所有 A 角色目前均为**建议角色类型、未确认机构**；当前统一状态为**未获授权、未现场运行**。只有完成 G1 专业核验、工程量清单和资本/运营/维护/撤除恢复四类费用拆分后，L1/L2 才能进入预算与采购讨论。
+六份合同的基线采集、最小样本、验收记录、证据留存和责任角色确认状态见 `visual/assets/delivery_contracts.json`。本版本为每份合同保留前置证据、暂停权、恢复证据与双人签认：运营角色可以先暂停，只有原失败项关闭、记录留档且“责任角色 + 独立专业复核角色”共同签认，才进入下一轮受控运行。所有 A 角色目前均为**建议角色类型、未确认机构**；当前统一状态为**未获授权、未现场运行**。只有完成 G1 专业核验、工程量清单和资本/运营/维护/撤除恢复四类费用拆分后，L1/L2 才能进入预算与采购讨论。
+
+
+
+### G3 前委托与关门计划
+
+![G3前十个可委托、可验收、可否决工作包](assets/figures/pre-g3-commissioning.png)
+
+`visual/assets/pre_g3_commissioning_plan.json` 把现实缺口转成 C01—C10 十个可委托包：正式几何/资料请求、责任机构/授权、权属文保轨道、实测消防无障碍人流、市政防洪能源网络、数据隐私 AI 安全、公共利益共测、工程量/规格/全周期成本、采购保险运营/五个区域接口、综合 Go/No-Go 与 G2 演练。每包均有责任角色类型、专业角色、已准备交付物、外部输入、依赖、验收定义和一票否决条件。
+
+就绪梯度明确分层：T0 规则与合成复演完成；T1 十份参与者侧委托书完成，可立即由有权责任方确认委托范围；T2 专业委任、实测、结论、工程量、询价和签认尚未启动；T3 采购、施工、真实数据、招募和 G3 现场试点关闭。它证明的是“下一步如何被真实专业团队接手”，不把准备好的委托范围误写成已经取得的现场证据。
 
 每份合同另有一张实施前置表，将场地/权利证据、候选责任方确认方法、必需专业、授权文件、基线与最小样本、资本/运营/维护/撤除恢复费用、关闭条件逐项列出。所有单元均保持 `not_started` 或 `unconfirmed`，不填写机构名称和虚假金额；表格就在 `visual/assets/delivery_contracts.json` 的 `implementation_preflight` 字段。
 
 `visual/assets/implementation_readiness.json` 是实施就绪索引：它把 G0—G4 的决策、所需记录、当前状态和 RC-01—RC-06 对齐。五道门当前均为 `not_started`，这不是缺页，而是对现实证据状态的明确登记；任何“已运营、已放行、已达标”的推断均不成立。
+
+为验证合同不是静态文字，包内保留零网络、零个人数据、零现场输入的 RC 桌面演练包。每份合同包含 1 条全字段合成通过分支，以及“责任方未确认、工程量/成本未闭合、事故未关闭”3 条拒绝或暂停分支；`node visual/assets/rc-tabletop/run_tabletop.js` 可重放 24 个案例，当前 24/24 与预期一致，其中通过 6、拒绝/暂停 18、现场运行 0。该结果只证明参与者编写的规则和回执格式可执行，不证明授权、安全、公众接受、工程或预算 [metric:tabletop_case_count] [metric:tabletop_rejection_branch_count]。
+
+`visual/assets/quantity_cost_method.json` 把每份 RC 的工程量对象、计量单位、测量依据、规格、询价证据和资本/年度运营/维护/撤除/恢复五类费用公式逐项列明。所有数量、单价、币种、基准日、税费和预备费率保持空值；只有实测、规格和至少两项可比询价或获批计价依据齐备后才能计算。这个工件关闭了“没有成本方法”的材料缺口，但不虚构现实预算 [metric:quantity_cost_template_contract_count]。
+
+`visual/assets/review_evidence_map.json` 将七维评审问题各自指向 3 个首要证据入口；它是导航，不替代原始 JSON、GeoJSON、正文或图纸 [metric:review_evidence_dimension_count]。
 
 ![90天、五道门与六份交付合同](assets/figures/implementation-contract.png)
 
@@ -193,7 +231,7 @@ agent.6 的开发者转化不是报名人数叙事，而是 **加入—共创—
 
 任务书、标准和设计深度分别由 `compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json` 保存完整机器证据。正文以锚点连接判断，不用编号堆砌替代设计 [depth:professional_standard_response] [depth:formal_package_completeness]。
 
-![v1.2指标、合同与证据层级](assets/figures/metrics-evidence.png)
+![v1.4七维证据导航、合成复演与现实边界](assets/figures/metrics-evidence.png)
 
 ## 风险、版权与合规说明
 

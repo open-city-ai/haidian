@@ -1,0 +1,17 @@
+{
+  "description": "拒绝：断言联动缺位——缺 zone_id/raci/gate 断言字段，不计入服务覆盖统计（拒绝样例 2/7）",
+  "expected_verdict": "rejected",
+  "card": {
+    "service_id": "T-04-X01",
+    "stop_id": "ZJ-02",
+    "access_tier": "L2",
+    "schedule": { "interval": "every-15min", "window": "daily-09-18" },
+    "punctuality_definition": "按时刻表完成且无人工接管",
+    "delay_threshold_minutes": 15,
+    "change_notice_hours": 24,
+    "suspension_notice_hours": 48,
+    "transfer": { "connected_service": "T-07", "connection_rule": "transfer-time-match", "max_wait_minutes": 15 },
+    "ai_off_path": "人工交接单",
+    "stop_condition": "凭证未人工签署即交接"
+  }
+}

@@ -1,0 +1,264 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(site_boundary) in EPSG:4548",
+   "confidence": "high",
+   "value": 11412825.385554,
+   "assumptions": [
+    "Provisional repository boundary PROV-SITE-001; not an official redline."
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "union_area(green_space) in EPSG:4548",
+   "confidence": "medium",
+   "value": 2905902.69822,
+   "assumptions": [
+    "Green spine derived from culture-rail park cells; provisional."
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "union_area(public_space) in EPSG:4548",
+   "confidence": "medium",
+   "value": 234999.999999,
+   "assumptions": [
+    "Switch/landmark plazas are conceptual nodes, not approved projects."
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "union_area(building_footprints) in EPSG:4548",
+   "confidence": "medium",
+   "value": 357557.226743,
+   "assumptions": [
+    "Conceptual massing only; not a statutory building plan."
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "value": 0.254617,
+   "assumptions": []
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "value": 0.020591,
+   "assumptions": []
+  },
+  "building_density": {
+   "status": "known",
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_footprint_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "value": 0.031329,
+   "assumptions": [
+    "Conceptual footprint ratio; official building density controls pending."
+   ]
+  },
+  "concept_total_floor_area_sqm": {
+   "status": "known",
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(building_area * assumed_floors)",
+   "confidence": "low",
+   "value": 3922070.889655,
+   "assumptions": [
+    "Concept design volume with assumed floor counts; not statutory FAR."
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "concept_total_floor_area_sqm / site_area_sqm",
+   "confidence": "unknown",
+   "value": null,
+   "reason": "Approved FAR controls are not present in the public site package; concept volume must not be read as a statutory control."
+  },
+  "road_spine_length_m": {
+   "status": "known",
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(length(dual_track_spine_lines))",
+   "confidence": "medium",
+   "value": 18663.523664,
+   "assumptions": [
+    "Dual-track spine length from concept centerlines."
+   ]
+  },
+  "road_connector_length_m": {
+   "status": "known",
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(length(switch_connector_lines))",
+   "confidence": "medium",
+   "value": 4708.929206,
+   "assumptions": [
+    "East-west stitching connectors, conceptual alignments."
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_areas)",
+   "confidence": "high",
+   "value": 3.0,
+   "assumptions": []
+  },
+  "key_area_area_sqm_zhongzhiyuan": {
+   "status": "known",
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(key_area) in EPSG:4548",
+   "confidence": "medium",
+   "value": 1929201.877427,
+   "assumptions": [
+    "Provisional polygon PROV-KEY-001 kept unchanged from upstream."
+   ]
+  },
+  "key_area_area_sqm_origin": {
+   "status": "known",
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(key_area) in EPSG:4548",
+   "confidence": "medium",
+   "value": 1043236.908744,
+   "assumptions": [
+    "Provisional polygon PROV-KEY-002 kept unchanged from upstream."
+   ]
+  },
+  "key_area_area_sqm_dazhongsi": {
+   "status": "known",
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(key_area) in EPSG:4548",
+   "confidence": "medium",
+   "value": 720454.218918,
+   "assumptions": [
+    "Provisional polygon PROV-KEY-003 kept unchanged from upstream; position caveat in Issue #1029."
+   ]
+  },
+  "phase_area_sqm_phase_1": {
+   "status": "known",
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(phase_1)",
+   "confidence": "medium",
+   "value": 5231738.656459,
+   "assumptions": [
+    "Phase bands are conceptual sequencing."
+   ]
+  },
+  "phase_area_sqm_phase_2": {
+   "status": "known",
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(phase_2)",
+   "confidence": "medium",
+   "value": 3436462.908202,
+   "assumptions": [
+    "Phase bands are conceptual sequencing."
+   ]
+  },
+  "phase_area_sqm_phase_3": {
+   "status": "known",
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(phase_3)",
+   "confidence": "medium",
+   "value": 2744642.871261,
+   "assumptions": [
+    "Phase bands are conceptual sequencing."
+   ]
+  },
+  "switch_plaza_count": {
+   "status": "known",
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(public_space landmarks)",
+   "confidence": "high",
+   "value": 7.0,
+   "assumptions": [
+    "Seven landmark plazas: kilometer-0, station gateways, switch plazas, gallery, honor wall."
+   ]
+  },
+  "scenario_node_count": {
+   "status": "known",
+   "unit": "count",
+   "source_files": [
+    "compliance_matrix.json"
+   ],
+   "formula": "count(AI scenario cards mapped to space)",
+   "confidence": "high",
+   "value": 12.0,
+   "assumptions": [
+    "Twelve AI scenario cards defined in the proposal and compliance matrix."
+   ]
+  }
+ }
+}

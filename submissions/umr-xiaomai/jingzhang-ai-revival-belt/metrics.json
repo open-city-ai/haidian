@@ -1,0 +1,414 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(key_areas))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 438152.092,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(buildings))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "building_count": {
+      "status": "known",
+      "value": 29,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building_footprints)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.038391,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "total_floor_area_sqm": {
+      "status": "known",
+      "value": 3633968.874,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(building_footprint_area_sqm * stories)",
+      "confidence": "low",
+      "assumptions": [
+        "Design-scenario estimate with assumed stories per building type; pending official regulatory conditions and building inventory"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package; pending official regulatory-plan conditions"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1822713.598,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.159707,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 554045.227,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.048546,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 48887.083,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(road_centerlines))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "road_area_sqm": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use 1207 area)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "road_ratio": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "residential_area_sqm": {
+      "status": "known",
+      "value": 2751875.082,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use 0701+0702)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_service_area_sqm": {
+      "status": "known",
+      "value": 5705691.279,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use 0802-0806)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "commercial_area_sqm": {
+      "status": "known",
+      "value": 532070.71,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use 05)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_open_area_sqm": {
+      "status": "known",
+      "value": 2376758.825,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use 1401+1402+1403)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "reserved_area_sqm": {
+      "status": "known",
+      "value": 46447.157,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use 16)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "phasing_area_sqm_phase1": {
+      "status": "known",
+      "value": 5285054.611,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase1)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "phasing_area_sqm_phase2": {
+      "status": "known",
+      "value": 3691085.461,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase2)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "phasing_area_sqm_phase3": {
+      "status": "known",
+      "value": 2436747.957,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase3)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(scenario_nodes)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "report/proposal.html"
+      ],
+      "formula": "count(renewal_project_list)",
+      "confidence": "medium",
+      "assumptions": [
+        "Counted from the renewal project list in the proposal; pending professional validation"
+      ]
+    },
+    "land_use_area_05_sqm": {
+      "status": "known",
+      "value": 532070.71,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 05)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_area_0701_sqm": {
+      "status": "known",
+      "value": 1328122.137,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 0701)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_area_0702_sqm": {
+      "status": "known",
+      "value": 1423752.945,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 0702)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_area_0802_sqm": {
+      "status": "known",
+      "value": 4109213.933,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 0802)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_area_0803_sqm": {
+      "status": "known",
+      "value": 132801.378,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 0803)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_area_0804_sqm": {
+      "status": "known",
+      "value": 1235908.138,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 0804)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_area_0806_sqm": {
+      "status": "known",
+      "value": 227767.83,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 0806)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_area_1401_sqm": {
+      "status": "known",
+      "value": 1437753.743,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 1401)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_area_1402_sqm": {
+      "status": "known",
+      "value": 384959.855,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 1402)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_area_1403_sqm": {
+      "status": "known",
+      "value": 554045.227,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 1403)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_area_16_sqm": {
+      "status": "known",
+      "value": 46447.157,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use code 16)",
+      "confidence": "medium",
+      "assumptions": []
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": "0.1.0",
+  "status": "not_authorized_not_run",
+  "protocols": [
+    {
+      "id": "TS-09",
+      "name_zh": "冲突测试",
+      "metrics": [
+        "conflict_rate"
+      ],
+      "thresholds": {
+        "conflict_rate": "<=2/100"
+      },
+      "stop_conditions": [
+        "冲突率上升"
+      ],
+      "non_ai_equivalent": "人工对照"
+    },
+    {
+      "id": "TS-10",
+      "name_zh": "夜间雨雪验证",
+      "metrics": [
+        "perception_failure_rate"
+      ],
+      "thresholds": {
+        "perception_failure_rate": "<=0.5%"
+      },
+      "stop_conditions": [
+        "制动距离超标"
+      ],
+      "non_ai_equivalent": "人工基线"
+    },
+    {
+      "id": "TS-11",
+      "name_zh": "无障碍验证",
+      "metrics": [
+        "task_completion_ratio"
+      ],
+      "thresholds": {
+        "task_completion_ratio": ">=0.9"
+      },
+      "stop_conditions": [
+        "完成率<0.7"
+      ],
+      "non_ai_equivalent": "社区服务对照"
+    },
+    {
+      "id": "TS-12",
+      "name_zh": "远程接管演练",
+      "metrics": [
+        "takeover_latency_s"
+      ],
+      "thresholds": {
+        "takeover_latency_s": "<=5"
+      },
+      "stop_conditions": [
+        "时延超标"
+      ],
+      "non_ai_equivalent": "人工基线"
+    }
+  ],
+  "protocol_count": 4
+}

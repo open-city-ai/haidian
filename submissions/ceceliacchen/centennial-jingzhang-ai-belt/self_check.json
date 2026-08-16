@@ -1,0 +1,83 @@
+{
+  "schema_version": "0.2.0",
+  "ok": true,
+  "can_enter_formal_review": true,
+  "review_status": "formal-review-ready",
+  "generated_by": "self_check_submission.py (persisted-self-check-v1 contract)",
+  "checks": [
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "manifest.json",
+      "message": "All required files listed; sha256 digests match; agent/model disclosed; formal stage; bilingual counterparts present."
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/*.geojson",
+      "message": "Recomputed site/footprint/green/public metrics match metrics.json. Three key areas are provisional (minor, non-blocking); organizer data gaps do not block content scoring."
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "message": "Static visualization embeds 14 required Chinese markers and the 3 required metrics (site_area_sqm, green_ratio, public_space_ratio) with exact data-value matches; no remote resources."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "Proposal format v2; 6 standards, 15 design-depth items, 21 metric references, and required data/source refs all resolved."
+    },
+    {
+      "check_id": "VISUAL_REVIEW",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/index.html",
+      "message": "Visualization reviewed and packaged as a static, dependency-free HTML page."
+    },
+    {
+      "check_id": "PROFESSIONAL_REVIEW",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md / proposal.en.md",
+      "message": "Proposal includes references to standards, design depth items, geometry, metrics, sources, and assumptions."
+    },
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundary is disclosed; replace with official redline before final scoring."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three required key areas are provisional; replace with official polygons before final scoring."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Static HTML visualization is generated without external dependencies."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "Land-use topology recomputed from geometry and reconciled with metrics.json; provisional boundaries disclosed, official polygons pending."
+    }
+  ],
+  "notes": [
+    "All metric values are derived from provisional geometry and recomputed by spatial_review.py; reconcile against official redlines when released.",
+    "building_footprint_area_sqm and building_density were aligned to the geometry union recomputation (870,417.8 m2; 7.63%)."
+  ]
+}

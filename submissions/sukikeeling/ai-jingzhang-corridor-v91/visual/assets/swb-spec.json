@@ -1,0 +1,80 @@
+{
+  "schema_version": "0.1.0",
+  "name": "Switchback Equivalence Baseline",
+  "name_zh": "折返等价基准（SWB）",
+  "version": "0.1.0",
+  "license": "CC BY-SA 4.0 (建议；最终许可待授权主体确认)",
+  "provenance": {
+    "origin": "本基准由本方案从京张铁路青龙桥人字形折返展线生长而来：折返点即'拔线点'——在城市AI到达能力极限前，必须停车并证明AI关闭后城市仍可用。非抄袭任何外部'退出机制'概念。",
+    "status_disclaimer": "本基准是概念建议，托管主体、发布渠道与许可的最终确定均待授权主体确认；本方案不代表任何机构发布该基准，也不声称其已被任何一方采用。"
+  },
+  "components": [
+    {
+      "component": "node_schema",
+      "title_zh": "折返点 schema",
+      "spec_zh": "每个折返点必须声明五个字段：ai_off_path（AI关闭后的等价路径）、human_handoff（人工接管角色）、gate_id（当前所处闸门）、operating_mode（运行方式）、responsible_role（责任专业）；缺任一字段的点位不得计入服务覆盖。",
+      "machine_readable_location": "geometry/constraints.geojson 中 constraint_type=ai_off_equivalence_point 的折返等价点(SWB-01..08)属性表",
+      "must_accept_constraints": [
+        "五个字段为必填而非可选",
+        "ai_off_path 不得填写'引导至线上办理'一类仍依赖同一系统的路径；拒绝依据以本基准的 constraint_machine_rule 写明，不由校验工具自行解释"
+      ],
+      "applies_to": "8 个已声明折返点（覆盖缓坡/中坡/陡坡三级与正线/侧线/入段三态）"
+    },
+    {
+      "component": "scoring_criteria",
+      "title_zh": "评分口径",
+      "spec_zh": "等价性与兜底指标的分子与分母定义，覆盖 ai_off_path 完备率、人工接管指定率、AI开关服务等价差。",
+      "machine_readable_location": "metrics.json 中 ai_off_path_completeness / human_handoff_designation_rate / ai_off_service_equivalence_gap 的 numerator_definition 与 denominator_definition 字段",
+      "must_accept_constraints": [
+        "分母不得删除失败样本：撤回、技术故障与非完成原因必须与完成数一并报告，删除任何一类即视为该次测量作废",
+        "适用范围由 applies_to 明文界定；不适用项连同排除理由一并写下"
+      ],
+      "applies_to": "参与者任务型指标；文件完整性型覆盖率不适用并已注明"
+    },
+    {
+      "component": "level_definition",
+      "title_zh": "等级定义（闸门）",
+      "spec_zh": "G0 资料与许可、G1 可逆原型、G2 封闭成对测试、G3 限定开放与常态运行共四级，每级绑定准入条件、停止条件、恢复证据与责任主体；等级以'场景×点位'为单位，不以工作包或行政区为单位；允许降级，降级不附加额外程序门槛。",
+      "machine_readable_location": "risk.json 中 gate_binding 字段 + 本方案'实施路线与K标'章节闸门表",
+      "must_accept_constraints": [
+        "每级所处闸门以结构化 gate_binding 声明，不由工具推断",
+        "从检修态回到正线须经折返点重新评估，不设自动恢复"
+      ],
+      "applies_to": "全部 8 个折返点"
+    },
+    {
+      "component": "decision_rules",
+      "title_zh": "判定规则",
+      "spec_zh": "data_privacy 等 8 项风险维度各自的停止条件(mitigation)与恢复证据(human_review)，构成'什么时候必须停、拿什么才能重开'的完整规则集。",
+      "machine_readable_location": "risk.json 中 8 项 dimensions 的 mitigation 与 human_review 字段",
+      "must_accept_constraints": [
+        "停止条件触发即停止，不以'限期整改'替代停止",
+        "恢复须提交证据而不是承诺"
+      ],
+      "applies_to": "8 项风险维度全部"
+    }
+  ],
+  "version_governance": {
+    "rule": "任何一次变更必须同时提交失败样本登记与受影响指标的复算说明；只改条文不交证据的修订不予合并；版本号仅在判据本身变化时递增，措辞与译文修订不递增。",
+    "change_receipts_ref": "visual/assets/governance-receipts.json",
+    "turned_once": true,
+    "note_zh": "版本治理在本方案内部已转过一圈：登记变更回执 CR-2026-08-14-001，找到并闭合一处 schema 缺口而非绕过（详见 governance-receipts.json）。这证明 K标版本治理是跑过的机制，不是承诺。"
+  },
+  "reuse_scenarios": [
+    {
+      "actor": "中关村AI北纬社区初创团队",
+      "takes": "node_schema 的 ai_off_path 与 human_handoff 两项",
+      "use_zh": "为早期产品做一次'AI关闭后仍可用'的自测，不需等待任何平台或授权。"
+    },
+    {
+      "actor": "未来科学城能源/医药专业设备界面",
+      "takes": "scoring_criteria 中的 ai_off_service_equivalence_gap 一项",
+      "use_zh": "把'专业设备只给专业人员用'这一默认前提放到可测量的位置。"
+    },
+    {
+      "actor": "任意城市的政务大厅",
+      "takes": "level_definition 的 G0 至 G2 三级",
+      "use_zh": "不改造任何空间先完成一轮成对测试，得到本厅的服务等价差读数。"
+    }
+  ]
+}

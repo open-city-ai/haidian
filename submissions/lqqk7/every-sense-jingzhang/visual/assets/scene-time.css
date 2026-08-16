@@ -1,0 +1,21 @@
+/* EVERY SENSE JING-ZHANG - time-of-day dimension for the interactive scene.
+   Scoped to .jz-scene, reusing the palette variables and the button grammar of
+   assets/scene.css. The period is orthogonal to the AI switch: it changes the
+   lighting key of the canvas and the scene description, never a readout. */
+.jz-time{display:flex;flex-wrap:wrap;border:1px solid var(--line);background:#fff}
+.jz-time button{appearance:none;border:0;background:#fff;color:var(--ink);font:inherit;font-size:12px;font-weight:700;padding:11px 14px;cursor:pointer}
+.jz-time button+button{border-left:1px solid var(--line)}
+.jz-time button[aria-pressed="true"]{background:var(--teal);color:#fff}
+.jz-period{margin:12px 0 0;padding:12px 16px;background:var(--paper);border-left:5px solid var(--teal);display:flex;gap:6px 14px;flex-wrap:wrap;align-items:baseline;font-size:13px;line-height:1.6}
+.jz-period b{flex:0 0 auto;font-weight:800;letter-spacing:.06em;color:var(--teal)}
+.jz-period span{flex:1 1 320px;min-width:0;color:var(--muted)}
+/* Night is the period where the fixed, lit baseline carries the service; with
+   AI off as well it is the most demanding combination in the package, so the
+   line switches to the colour this package reserves for human handover. */
+.jz-scene[data-period="night"] .jz-period{border-left-color:var(--gold)}
+.jz-scene[data-period="night"] .jz-period b{color:var(--gold)}
+.jz-scene[data-period="night"][data-state="off"] .jz-period{border-left-color:var(--coral);background:rgba(215,100,80,.08)}
+.jz-scene[data-period="night"][data-state="off"] .jz-period b,
+.jz-scene[data-period="night"][data-state="off"] .jz-period span{color:var(--coral)}
+@media(max-width:600px){.jz-time{width:100%}.jz-time button{flex:1 1 0;justify-content:center;text-align:center;padding:11px 4px}}
+@media print{.jz-time{display:none}}

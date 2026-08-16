@@ -1,5 +1,5 @@
 ---
-title: "RailCode Commons v1.2: A Public Validation Operating System"
+title: "RailCode Commons v1.4: A Public Validation Operating System"
 author_github: "296277"
 language: "en"
 proposal_format_version: "2"
@@ -9,10 +9,10 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A heritage civic spine becomes a public validation operating system: three distinct urban prototypes, twelve scenario contracts, a reversible 90-day pilot, and sign-off-ready delivery gates."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.2"
+iteration: "v1.4"
 ---
 
-# RailCode Commons v1.2
+# RailCode Commons v1.4
 
 **Put responsibility, opt-out, and public value into space before AI enters the city.**
 
@@ -23,9 +23,10 @@ iteration: "v1.2"
 | Does it answer the Jing-Zhang AI innovation-belt brief? | One public version spine, three differentiated prototypes, 12 scenario cards, two wings, and task matrices | Package-level design response complete |
 | Can the concept move into a controlled pilot? | G0-G4 evidence gates, RC-01—RC-06 delivery contracts, 90-day cadence, and six stop lines | Proposed only; not authorised and not field-run |
 | Who can pause or resume a trial? | Pause authority, resume evidence, dual sign-off, and actor-role type on every contract | Role types defined; institutions unconfirmed |
-| Which numbers are not existing conditions or budgets? | Provisional boundary, unknown controls, L0-L2 cost bands, and rights ledger | Provisional / unknown limits retained |
+| Which numbers are not existing conditions or budgets? | Provisional boundary, unknown controls, quantity/lifecycle-cost method, and rights ledger | Amounts, institutions, and field performance remain null or unconfirmed |
+| Can the rules be replayed? | 24 offline synthetic cases cover 6 pass and 18 reject-or-pause branches | 24/24 proves rule consistency only; field runs remain 0 |
 
-Version 1.2 frames the Jing-Zhang corridor as a public validation operating system rather than a technology display belt. Railway heritage is the continuous civic base; Zhongzhiyuan, AI Origin Community, and Dazhongsi become three distinct validation prototypes; every AI scenario must carry spatial, data, accountability, human-fallback, pause, and exit contracts. The original contribution is to translate open-source versioning, testing, rollback, and public review into an urban experience that people can walk through, inspect, and challenge.
+Version 1.4 frames the Jing-Zhang corridor as a public validation operating system rather than a technology display belt. Railway heritage is the continuous civic base; Zhongzhiyuan, AI Origin Community, and Dazhongsi become three distinct validation prototypes; every AI scenario must carry spatial, data, accountability, human-fallback, pause, and exit contracts. The original contribution is to translate open-source versioning, testing, rollback, and public review into an urban experience that people can walk through, inspect, and challenge.
 
 ## Design Basis and Source List
 
@@ -33,7 +34,20 @@ The announcement establishes the scope, approximate scale, three key areas, and 
 
 Evidence has three powers: official text determines what must be answered; provisional geometry provides a replaceable testing container; Agent design proposes how it might work. Ownership, buildings, heritage, road red lines, rail protection, utilities, fire, flood, movement, and engineering remain unknown. Any official geometry must trigger coordinated recalculation of nine GeoJSON layers, metrics, figures, HTML, and PDFs [source:SITE-PACKAGE] [source:SOURCE-REGISTRY] [depth:risk_missing_data].
 
-![RailCode Commons v1.2 overview](assets/figures/site-overview.en.png)
+![RailCode Commons v1.4 overview](assets/figures/site-overview.en.png)
+
+
+
+## Official Brief to Site and Professional Handoff
+
+![Official task-to-site and handoff index](assets/figures/brief-to-site.png)
+
+`visual/assets/official_brief_trace.json` is the first-read task trace: each of the six official tasks is connected to a spatial carrier, an RC contract, a G0-G4 gate, and primary evidence. `visual/assets/key_area_handoff.json` turns Zhongzhiyuan, AI Origin, and Dazhongsi into four-step spatial sequences with role types, entry evidence, pause triggers, resume receipts, and missing official inputs. These records are navigation and professional handoff templates only; provisional geometry is not upgraded to an official redline and role types are not named institutions.
+
+The review path is explicit: **brief → spine / three prototypes / two interfaces → RC-01—RC-06 → G0-G4 → receipt and reality boundary**. Every focus area remains not authorised, not surveyed, and not field-run. Any real-world work must add rights, heritage, fire, accessibility, privacy, operating, and budget evidence before a gate can advance.
+
+
+The professional handoff has two levels. Existing spatial sequences, role types, stop/resume rules, and evidence templates can enter G1/G2 **desktop professional review**. Rights, surveyed boundaries, fire/accessibility/heritage findings, field baselines, real accountable institutions, quantities, quotations, and budgets do not exist, so procurement, construction, and a G3 field pilot remain closed. `visual/assets/render_audit.json` records the final paired render check: four HTML documents passed eight 1440 px/390 px cases, and the paired A3/A0 set totals 48 pages with no blank or cropped page. This is participant-side presentation QA, not independent certification.
 
 ## Three-Level Scope Framework
 
@@ -93,6 +107,14 @@ Across all three prototypes, space exposes accountability first: without an app,
 
 Six personas—open-source researchers, startups, industry engineers, university communities, residents, and older/disabled users—are task-driven hypotheses, not tracked profiles. Twelve contracts cover an open-source hall, model-safety sandbox, edge-device field, low-carbon compute station, walking navigation, accessible co-testing, translation desk, enterprise copilot, data-consent room, multilingual living room, heritage guide, and Global Open Week. Each contract specifies minimum data, accountable human, success gate, and stop condition. High-impact outcomes require 100% human final confirmation; default biometric and continuous personal tracking are zero; basic services retain non-digital paths [standard:GENERATIVE-AI-INTERIM-MEASURES] [standard:BARRIER-FREE-ENVIRONMENT-LAW] [depth:ai_scenario_service_nodes].
 
+
+
+### Scenario-by-scenario professional responsibility lock
+
+![Twelve AI scenarios to professional-review responsibility matrix](assets/figures/scenario-professional-review.en.png)
+
+`visual/assets/scenario_professional_review_matrix.json` locks S01-S12 individually to a spatial prototype, minimum data, human final accountability, RC contract, G1 desktop-professional roles, G2 control/independent-review roles, measurable spatial or capacity proxy, conflict/failure case, pause line, and resume evidence. All 12 records are structurally complete, while every surveyed value remains `null`, confirmed institutions remain zero, and field evidence remains zero. “Ready for G1/G2” means only that desktop review and drill design can start from the template; G3 field piloting stays closed until rights, survey, professional findings, accountable institutions, budget, and authorisation exist.
+
 Agent.5 is backed by a cultural-evidence matrix rather than a generic heritage label. Rail infrastructure history, Dazhongsi context, Xueyuan Road science-and-education memory, open-source contribution history, and community everyday memory each connect a narrative theme to a spatial carrier, source, rights basis, and verified/pending/creative state. Only rights-checked public facts enter guidance; creative interpretations stay labelled and may not invent people or events. See `visual/assets/cultural_evidence_matrix.json`.
 
 The pre-field accessibility plan requires at least 12 consented route tasks across at least three access-need groups, including older, mobility, sensory, cognitive/low-digital-literacy, or no-smart-device users, plus two independent professional reviewer types. Participation may not be exchanged for service entitlement; only de-identified barriers, task outcome, and correction evidence are retained, and withdrawal remains available. A continuous-route, alternative-information, keyboard-access, or human-fallback failure pauses the activity. No recruitment or field test is claimed. Package-level human checks are recorded separately in `visual/assets/accessibility_qa.json`.
@@ -121,11 +143,27 @@ Three pilgrimage landmarks are public learning facilities, not oversized attract
 
 Five gates govern delivery: G0 data/rights clearance; G1 ownership, heritage, transport, utilities, fire, and accessibility review; G2 sandbox, accountable human, stop, and appeal drills; G3 a 90-day reversible pilot; G4 independent adapt/scale/exit decision [data:geometry/phasing.geojson#PHASE-001] [depth:phasing_implementation]. Six minimum delivery contracts cover the acceptance street, trust court, open-ground-floor weave, accessible co-test line, consent room, and contribution archive. Each has 0–30, 31–60, and 61–90 day outputs, one accountable operator, L1/L2 cost bands, and explicit stop conditions.
 
-Baseline methods, minimum samples, acceptance records, evidence-retention periods, and actor-confirmation status for RC-01—RC-06 are recorded in `visual/assets/delivery_contracts.json`. Version 1.2 adds preflight evidence, pause authority, resume evidence, and dual sign-off to every contract. An operating role may pause first; resumption requires closure of the failed condition, a retained record, and joint sign-off by the accountable role type and an independent professional reviewer type. Every actor remains a **proposed role type, not a confirmed institution**; the common state is **not authorised and not field-run**. No L1/L2 contract may enter budgeting or procurement discussion before G1 professional checks, a bill of quantities, and separate capital, operating, maintenance, removal, and reinstatement costs.
+Baseline methods, minimum samples, acceptance records, evidence-retention periods, and actor-confirmation status for RC-01—RC-06 are recorded in `visual/assets/delivery_contracts.json`. This version retains preflight evidence, pause authority, resume evidence, and dual sign-off to every contract. An operating role may pause first; resumption requires closure of the failed condition, a retained record, and joint sign-off by the accountable role type and an independent professional reviewer type. Every actor remains a **proposed role type, not a confirmed institution**; the common state is **not authorised and not field-run**. No L1/L2 contract may enter budgeting or procurement discussion before G1 professional checks, a bill of quantities, and separate capital, operating, maintenance, removal, and reinstatement costs.
+
+
+
+### Pre-G3 commissioning and no-go plan
+
+![Ten commissionable, acceptable, and no-go work packages before G3](assets/figures/pre-g3-commissioning.en.png)
+
+`visual/assets/pre_g3_commissioning_plan.json` converts reality gaps into C01-C10 commissionable packages: official geometry/data request; institutional authority; rights/heritage/rail; survey/fire/access/crowd; utility/flood/energy/network capacity; data/privacy/AI safety; public-interest co-test; quantities/specifications/lifecycle cost; procurement/insurance/operation/five regional interfaces; and integrated go/no-go plus G2 drills. Every package names an accountable role type, professional roles, prepared output, external input, dependency, acceptance definition, and no-go trigger.
+
+The readiness ladder is explicit: T0 rules and synthetic replay are complete; T1 ten participant-authored commissioning briefs are complete and can enter scope confirmation by authorised parties; T2 appointment, survey, findings, quantities, quotations, and sign-off have not started; T3 procurement, construction, live data, recruitment, and G3 field piloting are closed. This proves how a real professional team can take over the next step, not that the missing field evidence already exists.
 
 Each contract also carries an `implementation_preflight` review sheet for site/rights evidence, actor-confirmation method, required professions, authorisation documents, baseline/sample, capital/operating/maintenance/removal-and-reinstatement costs, and closure condition. Every field remains `not_started` or `unconfirmed`; no institution or invented amount is inserted.
 
 `visual/assets/implementation_readiness.json` aligns each G0-G4 decision and record with RC-01—RC-06. All five gates are `not_started`. This is an explicit reality state, not an omitted deliverable: no operation, approval, or achieved-performance claim may be inferred.
+
+The package retains a zero-network, zero-personal-data, zero-field-input RC tabletop package so that the contracts are executable rather than static prose. Each contract has one fully synthetic pass branch and three reject-or-pause branches for an unconfirmed actor, incomplete quantity/cost evidence, or an open incident. `node visual/assets/rc-tabletop/run_tabletop.js` replays 24 cases: 24/24 match expectation, comprising 6 synthetic pass branches, 18 reject-or-pause branches, and 0 field runs. This proves only that participant-authored rules and receipts execute consistently; it is not authorisation, safety, public acceptance, engineering, or budget evidence [metric:tabletop_case_count] [metric:tabletop_rejection_branch_count].
+
+`visual/assets/quantity_cost_method.json` defines measurable objects, units, measurement bases, specifications, quotation evidence, and formulae for capital, annual operations, maintenance, removal, and reinstatement for every RC. Quantities, rates, currency, price date, taxes, and contingency remain null until measured inputs and at least two comparable quotations or an approved rate basis exist. This closes the package-level method gap without inventing a real budget [metric:quantity_cost_template_contract_count].
+
+`visual/assets/review_evidence_map.json` routes each of the seven review dimensions to three primary evidence entries. It is navigation, not a substitute for the referenced JSON, GeoJSON, narrative, or drawings [metric:review_evidence_dimension_count].
 
 Six red-line KPIs are project targets: 100% notice before activation; 100% human final decision for high impact; zero mandatory phone/account/face gates for basic service; ≤30-second human fallback target; appeal acknowledgement in one working day and target response in five; zero severe safety incidents. Any red-line failure pauses the pilot [metric:pilot_duration_days] [metric:redline_kpi_count] [metric:delivery_contract_count].
 
@@ -143,7 +181,7 @@ Agent.6 uses a five-stage developer conversion funnel: **join—co-create—test
 
 Spatial metrics derive from projected GeoJSON; non-spatial metrics count located cards, contracts, and gates. The package records 3 key areas, 12 scenarios, 6 personas, 3 industrial test types, 4 contribution nodes, 6 delivery contracts, 5 implementation gates, and 6 red-line KPIs [metric:key_area_count] [metric:scenario_card_count] [metric:persona_count] [metric:implementation_gate_count] [depth:metrics_recalculation]. Complete evidence sits in the compliance, standard, and design-depth matrices [depth:professional_standard_response] [depth:formal_package_completeness].
 
-![v1.2 metrics, contracts, and evidence](assets/figures/metrics-evidence.en.png)
+![v1.4 seven-dimension evidence navigation, synthetic replay, and reality boundary](assets/figures/metrics-evidence.en.png)
 
 ## Risk, Rights, and Compliance
 

@@ -1,0 +1,133 @@
+{
+ "schema_version": "0.1.0",
+ "language": "zh",
+ "note_zh": "本文件登记方案中每一处非官方来源的判断。任何被 metrics.json 引用的假设 id 必须在此出现。",
+ "note_en": "Every non-official judgement in this proposal is registered here. Any assumption id referenced by metrics.json must appear in this file.",
+ "assumptions": [
+  {
+   "id": "A-PROVISIONAL-GEOMETRY",
+   "title_zh": "临时边界直接采用主办方数据",
+   "statement_zh": "主办方场地包声明 official_boundary_available_in_repository = false，仓库内仅提供临时替代边界。本方案对 PROV-SITE-001 与 PROV-KEY-001/002/003 逐坐标原样采用，不做任何改动，并在全部要素上标注 official_boundary = false。取得官方 CAD/GIS/PDF 边界后须整体替换并复算全部面积类指标。",
+   "impact": "high",
+   "category": "blocking_on_official_data",
+   "affected_files": [
+    "brief/site-package/geometry/provisional_boundaries.geojson",
+    "brief/site-package/allowed_design_space.json"
+   ],
+   "resolution_zh": "取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。"
+  },
+  {
+   "id": "A-AREA-CRS-4548",
+   "title_zh": "面积统一在 EPSG:4548 下计算",
+   "statement_zh": "交换坐标系为 EPSG:4326（经纬度），面积与长度一律先正算到 EPSG:4548（CGCS2000 3 度带，中央经线 117°E）再用鞋带公式与欧氏距离计算。以此复算总体设计范围得 11.4128 km²，与主办方公布的 11.4 km² 相对偏差约 0.11%，可视为同一多边形的量算一致性验证。",
+   "impact": "high",
+   "category": "methodological",
+   "affected_files": [
+    "geometry/*.geojson"
+   ],
+   "resolution_zh": "取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。"
+  },
+  {
+   "id": "A-LANDUSE-CONCEPT",
+   "title_zh": "用地布局为概念建议，编码依 2023 年分类指南",
+   "statement_zh": "land_use.geojson 是对临时边界的精确剖分（无缝隙、无重叠），用地编码采用《国土空间调查、规划、用途管制用地用海分类指南（2023 年）》的 05/07xx/08xx/1207/14xx/16 体系，而非 GB 50137-2011 的 R/B/M/G 体系。各地块边界与比例为概念建议，不构成控规调整依据。",
+   "impact": "medium",
+   "category": "design_concept",
+   "affected_files": [
+    "geometry/land_use.geojson",
+    "brief/site-package/enums/land_use_codes.json"
+   ],
+   "resolution_zh": "取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。"
+  },
+  {
+   "id": "A-BUILDING-STOREY",
+   "title_zh": "建筑体量与层数为概念假定",
+   "statement_zh": "buildings.geojson 为地块内退界后的概念体量块，层数按用地类型统一假定（科研 10 层、商业 8 层、居住 9 层等），用于估算容积率量级。官方高度与容积率控制发布前，estimated_far_* 与 max_conceptual_storeys 只能作为量级参照，不得用于报建或指标核定。",
+   "impact": "low",
+   "category": "design_concept",
+   "affected_files": [
+    "geometry/buildings.geojson"
+   ],
+   "resolution_zh": "取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。"
+  },
+  {
+   "id": "A-ROAD-SECTION-WIDTH",
+   "title_zh": "道路断面宽度按等级假定",
+   "statement_zh": "road_area.geojson 的路幅宽度按等级假定（主干路 40 m、次干路 30 m、支路 20 m、街区路 12 m），路网密度只计入机动车路网（arterial + secondary + branch），慢行与步行专用道不计入，以与 GB/T 51328-2018 的口径一致。",
+   "impact": "low",
+   "category": "design_concept",
+   "affected_files": [
+    "geometry/road_area.geojson",
+    "geometry/roads.geojson"
+   ],
+   "resolution_zh": "取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。"
+  },
+  {
+   "id": "A-OFFICIAL-CONTROL-MISSING",
+   "title_zh": "官方规划控制指标缺失",
+   "statement_zh": "planning_limits.json 中容积率、建筑高度、建筑密度、绿地率、退线五项均为 status = missing 且 required_for_final_submission = true。本方案不臆造这些数值，全部登记为 status = unknown、value = null，并在 self_check.json 中标记为 blocking，待官方发布后补齐。",
+   "impact": "high",
+   "category": "blocking_on_official_data",
+   "affected_files": [
+    "brief/site-package/planning_limits.json"
+   ],
+   "resolution_zh": "取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。"
+  },
+  {
+   "id": "A-POPULATION-EMPLOYMENT-UNKNOWN",
+   "title_zh": "人口与就业基数缺失",
+   "statement_zh": "场地包未提供与本边界口径一致的常住人口与就业岗位基数，因此人均绿地、职住比、公服设施千人指标等衍生指标一律登记为 unknown，不以区级或街道级数据倒推。",
+   "impact": "high",
+   "category": "blocking_on_official_data",
+   "affected_files": [
+    "brief/site-package/missing-data.md"
+   ],
+   "resolution_zh": "取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。"
+  },
+  {
+   "id": "A-PHASE-SPLIT",
+   "title_zh": "分期为策略性划分",
+   "statement_zh": "phasing.geojson 将总体设计范围完整划分为三期且互不重叠，划分依据为遗址公园贯通进度、重点区成熟度与更新单元产权复杂度的定性判断，未接入投资计划或土地供应计划等官方时序数据。",
+   "impact": "low",
+   "category": "design_concept",
+   "affected_files": [
+    "geometry/phasing.geojson"
+   ],
+   "resolution_zh": "取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。"
+  },
+  {
+   "id": "A-HERITAGE-EXTENT-INDICATIVE",
+   "title_zh": "文保范围为研究示意",
+   "statement_zh": "heritage_protection.geojson 标注 not_a_control_line = true，geometry_role = analysis_helper，仅用于说明设计如何避让与呼应遗产要素；法定保护范围与建设控制地带须由文物主管部门公布数据替换。",
+   "impact": "medium",
+   "category": "blocking_on_official_data",
+   "affected_files": [
+    "geometry/heritage_protection.geojson"
+   ],
+   "resolution_zh": "取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。"
+  },
+  {
+   "id": "A-KEYAREA-INTERNAL-STRUCTURE",
+   "title_zh": "重点区内部结构为概念建议",
+   "statement_zh": "三处重点区的外轮廓原样采用主办方临时边界，但其内部的用地、路网、体量、场景节点均为本方案的概念建议，与官方尚未发布的详细设计条件无对应关系。",
+   "impact": "low",
+   "category": "design_concept",
+   "affected_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "resolution_zh": "取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。"
+  },
+  {
+   "id": "A-SCENARIO-GOVERNANCE",
+   "title_zh": "AI 场景以治理前置为前提",
+   "statement_zh": "全部 14 个场景节点默认边缘计算与匿名化处理、保留人工复核否决权、禁止将人脸识别用于个体追踪，并要求先完成个人信息影响评估再上线。场景清单为设计建议，不代表已获得数据授权或算法备案。",
+   "impact": "medium",
+   "category": "governance",
+   "affected_files": [
+    "geometry/scenario_nodes.geojson",
+    "brief/site-package/agent_taskbook.json"
+   ],
+   "resolution_zh": "取得对应官方数据后替换，并重跑 gen_geometry_v3.py / gen_metrics_v3.py 复算全部指标。"
+  }
+ ]
+}

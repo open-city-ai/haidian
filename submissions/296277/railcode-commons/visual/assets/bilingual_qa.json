@@ -1,31 +1,31 @@
 {
   "schema_version": "1.0.0",
-  "checked_at": "2026-08-13",
+  "checked_at": "2026-08-14",
   "checker": "participant-side manual review assisted by local deterministic rendering",
-  "status": "pass",
+  "status": "participant_side_final_render_pass",
   "scope": [
     "proposal.md and proposal.en.md",
     "report/proposal.html and report/proposal.en.html",
     "visual/index.html and visual/index.en.html",
     "drawings/a3-booklet.pdf and drawings/a3-booklet.en.pdf",
     "drawings/a0-boards.pdf and drawings/a0-boards.en.pdf",
-    "11 paired core figures and 3 paired prototype names"
+    "13 official dimensions, 6 task traces, 3 focus-area handoffs, 12 scenario-professional locks, 10 pre-G3 commissioning packages, 12 sequence steps, 8 browser render cases, 48 paired PDF pages, and 14 paired core figures"
   ],
   "pdf_page_audit": [
     {
       "pair": "A3 booklet",
-      "zh_pages": 11,
-      "en_pages": 11,
-      "rendered_pages_checked": 22,
+      "zh_pages": 13,
+      "en_pages": 13,
+      "rendered_pages_checked": 26,
       "blank_pages": 0,
       "cropped_pages": 0,
       "sequence_equivalent": true
     },
     {
       "pair": "A0 boards",
-      "zh_pages": 8,
-      "en_pages": 8,
-      "rendered_pages_checked": 16,
+      "zh_pages": 11,
+      "en_pages": 11,
+      "rendered_pages_checked": 22,
       "blank_pages": 0,
       "cropped_pages": 0,
       "sequence_equivalent": true
@@ -62,6 +62,50 @@
     },
     "evidence_and_stop_conditions": {
       "result": "equivalent in sampled narrative, figures, HTML, and PDFs"
+    },
+    "tabletop_receipts": {
+      "checked": 24,
+      "matched": 24,
+      "field_runs": 0,
+      "result": "equivalent claim boundary in zh/en narrative, HTML, figures, and PDFs"
+    },
+    "quantity_cost_methods": {
+      "checked": 6,
+      "currency_amounts_present": 0,
+      "result": "method present; real inputs explicitly absent"
+    },
+    "review_evidence_dimensions": {
+      "checked": 7,
+      "result": "primary evidence paths exist"
+    },
+    "official_task_trace": {
+      "checked": 6,
+      "paired": true,
+      "result": "six task links and thirteen dimensions route to spatial and delivery evidence"
+    },
+    "key_area_handoff": {
+      "checked": 3,
+      "sequence_steps": 12,
+      "paired": true,
+      "result": "role, entry, pause, resume, and missing-input boundaries match zh/en"
+    },
+    "scenario_professional_review": {
+      "checked": 12,
+      "g1_g2_role_locks": 12,
+      "measurable_proxies": 12,
+      "surveyed_values": 0,
+      "field_evidence": 0,
+      "paired": true,
+      "result": "space, data, human final accountability, RC, G1/G2, failure, pause, resume, and reality boundaries match zh/en"
+    },
+    "pre_g3_commissioning": {
+      "checked": 10,
+      "acceptance_definitions": 10,
+      "professional_appointments": 0,
+      "external_evidence": 0,
+      "field_work": 0,
+      "paired": true,
+      "result": "C01-C10 scope, owner type, professional role, prepared output, dependency, acceptance, no-go, and T0-T3 boundaries match zh/en"
     }
   },
   "visual_checks": {
@@ -70,7 +114,32 @@
     "provisional_warning_visible": true,
     "core_figure_alt_text_present": true,
     "not_to_scale_notice_present": true,
-    "offline_html_dependencies": "no remote font, script, API, map tile, form, iframe, or tracker"
+    "offline_html_dependencies": "no remote font, script, API, map tile, form, iframe, or tracker",
+    "browser_render_audit": {
+      "pages": [
+        "report/proposal.html",
+        "report/proposal.en.html",
+        "visual/index.html",
+        "visual/index.en.html"
+      ],
+      "viewports": [
+        {
+          "name": "desktop",
+          "width": 1440,
+          "height": 1000
+        },
+        {
+          "name": "mobile",
+          "width": 390,
+          "height": 844
+        }
+      ],
+      "horizontal_overflow": false,
+      "broken_images": 0,
+      "console_errors": 0,
+      "keyboard_controls_present": true,
+      "result": "pass"
+    }
   },
   "repairs_made": [
     "Stabilised the English visual hero title as two explicit lines.",
@@ -80,14 +149,12 @@
     "Corrected the residual English Version 1.1 sentence to Version 1.2 and rechecked titles, status wording, numbers, evidence anchors, and figure order."
   ],
   "manual_signoff": {
-    "signed_at": "2026-08-13",
+    "signed_at": "2026-08-14",
     "signer_role": "participant-side package reviewer",
-    "version_pair": "v1.2 zh/en",
-    "differences_found": [
-      "English narrative retained one Version 1.1 sentence after the v1.2 title update."
-    ],
-    "resolution": "Corrected to Version 1.2; rebuilt bilingual HTML/PDF/figures and repeated visual and deterministic checks.",
-    "status": "pass"
+    "version_pair": "v1.4 zh/en",
+    "differences_found": [],
+    "resolution": "Completed paired Playwright checks at 1440 px and 390 px, repaired mobile table/path overflow, checked 48 PDF pages for sequence, blank pages, and cropping, and confirmed no bilingual difference in the audited claims.",
+    "status": "participant_side_final_render_pass"
   },
   "limits": "This package QA verifies rendered completeness and paired claims; it is not a certified translation, WCAG audit, print proof, legal rights opinion, site accessibility test, or engineering review."
 }

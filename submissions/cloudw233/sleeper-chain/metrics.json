@@ -1,0 +1,184 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(site_boundary) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "基于仓库临时粗略边界复算；仅用于概念讨论，正式红线发布后必须重算。"
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 2468218.545,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "union_area(green_space) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "概念绿地，与用地分区 1401 单元及概念滨水衔接绿带一致。"
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 287563.714,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "union_area(public_space) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "枕木单元、口袋广场、站前广场等概念公共空间。"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 1581163.568,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "union_area(building_footprints) in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "概念体量基底，用于表达空间供给量级，不构成建筑规模结论。"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.216267,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.025197,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "building_density": {
+   "status": "known",
+   "value": 0.138543,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_footprint_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "概念密度，正式控规条件补齐后重算。"
+   ]
+  },
+  "concept_total_floor_area_sqm": {
+   "status": "known",
+   "value": 10629680.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(footprint_area * floors_concept)",
+   "confidence": "low",
+   "assumptions": [
+    "按概念层数估算的总建筑规模量级，仅供产业空间讨论；不是法定开发强度结论。"
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "官方控规容积率与正式红线均未公开；待正式控制条件补齐后复算。"
+  },
+  "building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "official_height_control",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "官方高度控制未公开；待正式控制条件补齐。"
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_detailed_design_areas)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "sleeper_module_count": {
+   "status": "known",
+   "value": 110,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(public_space features with component=sleeper_module)",
+   "confidence": "medium",
+   "assumptions": [
+    "模数化公共空间组件数量，概念建议。"
+   ]
+  },
+  "heritage_spine_length_m": {
+   "status": "known",
+   "value": 9567.5,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "line_length(RD-SPINE) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "概念慢行主脊长度，按本方案概念线位复算；不等于遗址公园官方线位。"
+   ]
+  },
+  "cross_link_count": {
+   "status": "known",
+   "value": 7,
+   "unit": "count",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "count(RD-CROSS-*)",
+   "confidence": "medium",
+   "assumptions": []
+  }
+ }
+}

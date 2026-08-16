@@ -15,6 +15,10 @@ package_type: "professional_design_package"
 package_state: "ready_for_review"
 submission_slug: "jingzhang-ai-spine"
 status_note: "本方案为 AI Agent 生成的概念建议与参考方案，不替代正式规划，不构成政府审定结论。"
+tracks:
+  - jingzhang-heritage-narrative
+  - ai-origin-community
+  - enterprise-services-ecosystem
 ---
 
 # 京张智脉 · 百年京张AI创新带城市设计概念方案
@@ -69,6 +73,20 @@ status_note: "本方案为 AI Agent 生成的概念建议与参考方案，不�
 
 ![land-use-structure](assets/figures/land-use-structure.png)
 
+## 视觉识别系统（Logo / VI 方向）
+
+将"一带总体概念与功能统筹（agent.1）"中的 Logo 方向落实为实际视觉识别（VI）系统。主名称 **京张智脉（Jing-Zhang AI Spine）** 的中文命名保留"百年铁路之脊、AI 时代之脉"的意象；英文标识用于国际传播，避免使用未经授权的字体、图片或商标 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
+
+**核心标志**：以京张铁路"人字形/之字形"折返线为母题，抽象为一条向上生长的"智脉"曲线；曲线上的节点如神经元突触，象征 AI 创新网络的连接与激活；色彩取自铁路钢灰、遗产公园绿与 AI 青 [depth:DD-06]。
+
+![京张智脉核心标志（JINGZHANG AI SPINE）](assets/figures/logo-jingzhang-ai-spine.png)
+
+**VI 色彩与字用方向**：主色深铁路蓝 #0E2A47，强调 AI 青 #1FB6C9，辅助色遗产绿 #7FB069，纸色 #F4F1EA，墨黑 #14202B。英文 / Latin 使用 Arial / Helvetica 等系统字体；中文使用系统默认黑体，不使用任何未授权字体 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
+
+![京张智脉视觉识别系统方向板](assets/figures/vi-board-jingzhang.png)
+
+**导视标识符号系统**：以智脉曲线为母题，在绿廊与三重点区设置连续导视——地面刻印、交互屏、节点柱与骑楼吊牌统一使用"之字线段 + 节点圆点"符号，形成从铁路遗产到 AI 新文化的可识别叙事 [depth:DD-06] [data:visual/assets/landmarks.json#L-01]。
+
 ## 用地、建筑规模与拆改留方案
 
 用地分区采用自然资源部用地用海分类代码 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。总体设计范围内形成商业服务（05）、居住（0701）、教育科研配套（0804）、科研（0802）、文化（0803）的功能混合结构 [metric:land_use_area_by_code] [data:geometry/land_use.geojson#LU-01]。建筑以概念落位表达拆改留逻辑：现状保留（retain）、改造提升（renovate）、拆除重建（demolish_rebuild）、新建（new_build），具体地块拆改留须由专业团队在法定条件下深化 [depth:DD-07] [data:geometry/buildings.geojson#B-001]。
@@ -103,11 +121,42 @@ status_note: "本方案为 AI Agent 生成的概念建议与参考方案，不�
 
 **6 类用户画像**：青年AI研究员、连续创业者、全球开发者、银发居民、亲子家庭、国际访客/朝圣者；另含城市管理者与数据标注师。场景设计尊重隐私与人工复核边界，不依赖非公开数据或指定供应商 [depth:DD-08]。
 
+### 用户画像与场景-空间-运营映射（≥5 类）
+
+依据任务书"不少于 5 类用户画像，并说明场景-空间-运营映射"的要求，本方案建立 **6 类核心用户画像**：青年 AI 创业者、高校科研人员、龙头企业技术决策者、社区居民与日常访客、城市治理者与安全运维、国际人才与访客 [data:visual/assets/personas.json#P-01]。
+
+| 画像 | 核心诉求 | 主场景 | 空间落点 | 运营机制 |
+| --- | --- | --- | --- | --- |
+| 青年 AI 创业者（P-01） | 算力、空间、资本对接 | SC-04 算力预约 / SC-05 开发者驿站 / SC-12 多语服务 | 众智园·开源算力之芯 / 原点社区·开发者驿站 | 预约算力、入驻驿站、参与周路演 |
+| 高校科研人员（P-02） | 合规沙箱、联合算力 | SC-04 算力预约 / SC-06 AI 安全红队演练 | 众智园·安全合规中心 | 提交模型、使用沙箱、成果开源 |
+| 龙头企业技术决策者（P-03） | 场景共建、品牌联名 | SC-07 AI 文化策展 / SC-09 夜间经济 | 大钟寺·开源钟 / 智能原生消费组团 | 策展联名、夜间试运营、进入荣誉墙 |
+| 社区居民与日常访客（P-04） | 无障碍、食堂、慢行 | SC-02 无障碍出行伴随 / SC-03 社区 AI 食堂 / SC-08 慢行导航 | 原点社区·荣誉步道 / 智脉主轴 | 出行伴随 App、食堂取餐、慢行导航 |
+| 城市治理者与安全运维（P-05） | 安全、能源、应急 | SC-06 安全红队 / SC-10 能源与垃圾分类 / SC-11 应急联动 | 全带公共空间组件库 | 红队演练、微网接入、应急演练 |
+| 国际人才与访客（P-06） | 多语、导览、地标打卡 | SC-01 AI 遗址公园导览 / SC-12 多语服务 / SC-08 慢行导航 | 绿廊·之字原点·AI 圣火塔 | AI 导览、多语屏、打卡点串联 |
+
+映射强调"场景-空间-运营"闭环：每类用户至少对应 1 个产业测试场景或地标节点，运营机制明确为"概念建议"而非已批准服务 [data:visual/assets/personas.json#mapping_table_zh] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
+
 ### AI公共空间、智能原生新业态与朝圣地标（agent.4）
 
 京张遗址公园作为南北活力带，承担东西缝合与南北贯通；大钟寺发展智能原生消费与商务 [data:geometry/green_space.geojson#GREEN-SPINE]。
 
 **3 个 AI 朝圣地标**：①**之字原点·AI圣火塔**（北京AI原点社区）②**智脉立交·开源算力之芯**（众智园）③**钟寺回声·开源钟**（大钟寺）。配套**荣誉展示体系**：沿遗产公园的"荣誉步道"展示贡献者铭牌、模型榜单与基准看板；**公共空间组件库**含可复用驿站、屏幕、座椅模块 [depth:DD-10] [data:geometry/public_space.geojson#PUB-001]。地标避免过度娱乐化、网红化与低俗化 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
+
+### AI 朝圣地标、荣誉展示体系与公共空间组件库（完整版）
+
+在"AI公共空间、智能原生新业态与朝圣地标（agent.4）"基础上，进一步展开为 **4 个 AI 朝圣地标**、**1 套荣誉展示体系**与 **7 类公共空间组件**，可直接被专业团队转化为展陈与施工图深化 [data:visual/assets/landmarks.json#L-01]。
+
+**朝圣地标（≥3 个）**：
+- **L-01 之字原点·AI 圣火塔**（京张遗址公园绿廊）：以京张铁路"人字形"折返线为母题的轻型观景塔，塔顶光焰随一带算力/碳排数据呼吸，是视觉原点与国际访客打卡点 [data:visual/assets/landmarks.json#L-01]。
+- **L-02 中关村原点广场·开源之芯**（北京 AI 原点社区）：圆形开源算力展亭与开发者驿站前场，实时展示开源模型贡献榜，是创业者聚集原点 [data:visual/assets/landmarks.json#L-02]。
+- **L-03 智脉立交·开源算力之芯**（众智园）：慢行立交节点上的透明"算力之芯"，公众可看见算力被谁、为何预约，体现开源与可复核 [data:visual/assets/landmarks.json#L-03]。
+- **L-04 钟寺回声·开源钟**（大钟寺）：以古钟回声为意象的声光装置，企业开源贡献可触发钟声与投影，锚定夜间经济与文化策展 [data:visual/assets/landmarks.json#L-04]。
+
+**荣誉展示体系**：沿绿廊与三重点区设置"荣誉步道"——地面刻印、低柱屏、开源贡献墙记录开发者、企业、社区与治理者的公开贡献，匿名可复核、可延续 [data:visual/assets/landmarks.json#HONOR-01]。
+
+**公共空间组件库**（可复用、模块化）：智能座椅、光伏廊架、交互导视屏、生态滞留带、慢行桥、互动地面、开源算力之芯展亭。每个组件标明适用场景、技术接口与运维接口，便于在三重点区批量复用 [data:visual/assets/landmarks.json#C-01] [data:geometry/public_space.geojson#PUB-001]。
+
+所有地标与组件均为概念建议，不改造文保本体、企业建筑或权属空间，不涉及桥隧、地下空间工程可行性结论 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
 
 ![mobility-bluegreen](assets/figures/mobility-bluegreen.png)
 

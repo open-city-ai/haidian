@@ -52,13 +52,22 @@ function findRoot(start) {
 function gitSha(root) {
   let gitDir = path.join(root, '.git');
   if (fs.statSync(gitDir).isFile()) gitDir = path.resolve(root, fs.readFileSync(gitDir, 'utf8').trim().replace(/^gitdir:\s*/, ''));
+  const commonFile = path.join(gitDir, 'commondir');
+  const commonDir = fs.existsSync(commonFile) ? path.resolve(gitDir, fs.readFileSync(commonFile, 'utf8').trim()) : gitDir;
   const head = fs.readFileSync(path.join(gitDir, 'HEAD'), 'utf8').trim();
   if (!head.startsWith('ref: ')) return head;
-  const ref = head.slice(5), loose = path.join(gitDir, ref);
-  if (fs.existsSync(loose)) return fs.readFileSync(loose, 'utf8').trim();
-  const packed = fs.readFileSync(path.join(gitDir, 'packed-refs'), 'utf8').split(/\r?\n/).find(line => line.endsWith(` ${ref}`));
-  if (!packed) throw new Error(`cannot resolve git ref ${ref}`);
-  return packed.split(' ')[0];
+  const ref = head.slice(5);
+  for (const base of [gitDir, commonDir]) {
+    const loose = path.join(base, ref);
+    if (fs.existsSync(loose)) return fs.readFileSync(loose, 'utf8').trim();
+  }
+  for (const base of [gitDir, commonDir]) {
+    const packedFile = path.join(base, 'packed-refs');
+    if (!fs.existsSync(packedFile)) continue;
+    const packed = fs.readFileSync(packedFile, 'utf8').split(/\r?\n/).find(line => line.endsWith(` ${ref}`));
+    if (packed) return packed.split(' ')[0];
+  }
+  throw new Error(`cannot resolve git ref ${ref}`);
 }
 
 function main() {

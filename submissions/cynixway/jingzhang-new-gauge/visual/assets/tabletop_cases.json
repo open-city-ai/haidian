@@ -1,0 +1,222 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "tabletop_cases",
+  "package_title": "人字新线 Tabletop 重放包（24 个零网络零数据零现场案例）",
+  "scope_note": "本包零网络+零个人数据+零现场输入。每张场景卡生成 1 个全字段合成通过分支 + 1 个拒绝/暂停分支，12 张场景卡 = 24 个案例。可独立重放，验证参与者编写的规则和回执格式可执行——不证明授权/安全/公众接受/工程/预算。",
+  "generated_at": "2026-08-13T12:00:00Z",
+  "execution_environment": {
+    "network": "offline",
+    "real_personal_data": "none",
+    "real_field_data": "none",
+    "real_services_connected": "none",
+    "messages_sent": "none",
+    "approval_authority": "synthetic_only",
+    "field_runs": 0
+  },
+  "cases": [
+    {
+      "case_id": "T01-PASS",
+      "scenario": "S1 算力调度与基准测试",
+      "branch": "synthetic_pass",
+      "inputs": {
+        "data_source": "synthetic_deidentified_benchmark_dataset_v1",
+        "compute_environment": "isolated_sandbox_zone_C",
+        "human_gate_principal": "compute_alliance_representative_unconfirmed"
+      },
+      "expected_outcome": "PASS",
+      "verifiable_fields": {
+        "data_provenance_recorded": true,
+        "human_review_log_present": true,
+        "rollback_path_identified": true,
+        "release_decision": "hold",
+        "result_status": "converged_to_SC04"
+      },
+      "evidence_artifacts": ["visual/assets/sc04-relay-receipt.json"]
+    },
+    {
+      "case_id": "T01-REJ",
+      "scenario": "S1 算力调度与基准测试",
+      "branch": "synthetic_reject_pause",
+      "trigger": "compute_allocation_failed_threshold_exceeded",
+      "expected_outcome": "REJECT/PAUSE",
+      "expected_handling": "compute degraded to local nodes; result anomaly marked and rolled back",
+      "verifiable_fields": {
+        "rollback_step_RB1_documented": true,
+        "human_signoff_required": true
+      },
+      "evidence_artifacts": ["visual/assets/sc04-relay-receipt.json"]
+    },
+    {
+      "case_id": "T02-PASS",
+      "scenario": "S2 开源共创工坊",
+      "branch": "synthetic_pass",
+      "expected_outcome": "PASS",
+      "verifiable_fields": {
+        "contributor_count_synthetic": 12,
+        "merged_pr_count_synthetic": 3
+      }
+    },
+    {
+      "case_id": "T02-REJ",
+      "scenario": "S2 开源共创工坊",
+      "branch": "synthetic_reject",
+      "trigger": "license_metadata_missing_or_mismatch",
+      "expected_outcome": "REJECT",
+      "expected_handling": "release HOLD; public contribution portal reverts to method class"
+    },
+    {
+      "case_id": "T03-PASS",
+      "scenario": "S3 AI+轨道接驳导航",
+      "branch": "synthetic_pass",
+      "expected_outcome": "PASS",
+      "verifiable_fields": {
+        "aggregate_flow_used": true,
+        "no_individual_tracking": true
+      }
+    },
+    {
+      "case_id": "T03-REJ",
+      "scenario": "S3 AI+轨道接驳导航",
+      "branch": "synthetic_reject",
+      "trigger": "high_misleading_rate_detected",
+      "expected_outcome": "PAUSE",
+      "expected_handling": "shuttle nav reduces frequency; human guidance fallback"
+    },
+    {
+      "case_id": "T04-PASS",
+      "scenario": "S4 全龄友好慢行导引",
+      "branch": "synthetic_pass",
+      "expected_outcome": "PASS"
+    },
+    {
+      "case_id": "T04-REJ",
+      "scenario": "S4 全龄友好慢行导引",
+      "branch": "synthetic_reject",
+      "trigger": "accessible_mainline_broken_disconnect",
+      "expected_outcome": "STOP",
+      "expected_handling": "non-digital fallback required; intervention"
+    },
+    {
+      "case_id": "T05-PASS",
+      "scenario": "S5 AI+社区健康驿站",
+      "branch": "synthetic_pass",
+      "expected_outcome": "PASS"
+    },
+    {
+      "case_id": "T05-REJ",
+      "scenario": "S5 AI+社区健康驿站",
+      "branch": "synthetic_reject",
+      "trigger": "human_window_30min_no_response",
+      "expected_outcome": "ESCALATE",
+      "expected_handling": "doctor referral; incident report"
+    },
+    {
+      "case_id": "T06-PASS",
+      "scenario": "S6 AI+教育便民节点",
+      "branch": "synthetic_pass",
+      "expected_outcome": "PASS"
+    },
+    {
+      "case_id": "T06-REJ",
+      "scenario": "S6 AI+教育便民节点",
+      "branch": "synthetic_reject",
+      "trigger": "child_identity_ambiguity",
+      "expected_outcome": "STOP",
+      "expected_handling": "AI identity decision prohibited; teacher/parent human review"
+    },
+    {
+      "case_id": "T07-PASS",
+      "scenario": "S7 智能原生消费体验",
+      "branch": "synthetic_pass",
+      "expected_outcome": "PASS"
+    },
+    {
+      "case_id": "T07-REJ",
+      "scenario": "S7 智能原生消费体验",
+      "branch": "synthetic_reject",
+      "trigger": "consent_or_withdrawal_unclear",
+      "expected_outcome": "STOP",
+      "expected_handling": "manual service fallback; appeal channel"
+    },
+    {
+      "case_id": "T08-PASS",
+      "scenario": "S8 机器人低速配送试点",
+      "branch": "synthetic_pass",
+      "expected_outcome": "PASS"
+    },
+    {
+      "case_id": "T08-REJ",
+      "scenario": "S8 机器人低速配送试点",
+      "branch": "synthetic_reject",
+      "trigger": "robot_lane_collision_event",
+      "expected_outcome": "STOP",
+      "expected_handling": "immediate e-stop + manual recovery + insurance report"
+    },
+    {
+      "case_id": "T09-PASS",
+      "scenario": "S9 自动驾驶接驳试点",
+      "branch": "synthetic_pass",
+      "expected_outcome": "PASS"
+    },
+    {
+      "case_id": "T09-REJ",
+      "scenario": "S9 自动驾驶接驳试点",
+      "branch": "synthetic_reject",
+      "trigger": "low_speed_geofence_breach_or_anomaly",
+      "expected_outcome": "STOP",
+      "expected_handling": "pull over + manual takeover"
+    },
+    {
+      "case_id": "T10-PASS",
+      "scenario": "S10 京张遗产AI导览",
+      "branch": "synthetic_pass",
+      "expected_outcome": "PASS"
+    },
+    {
+      "case_id": "T10-REJ",
+      "scenario": "S10 京张遗产AI导览",
+      "branch": "synthetic_reject",
+      "trigger": "fictional_person_or_event_generated",
+      "expected_outcome": "STOP",
+      "expected_handling": "content removed; cultural editor review"
+    },
+    {
+      "case_id": "T11-PASS",
+      "scenario": "S11 城市智能体治理看板",
+      "branch": "synthetic_pass",
+      "expected_outcome": "PASS"
+    },
+    {
+      "case_id": "T11-REJ",
+      "scenario": "S11 城市智能体治理看板",
+      "branch": "synthetic_reject",
+      "trigger": "AI_decision_made_without_human_signoff",
+      "expected_outcome": "ROLLBACK",
+      "expected_handling": "audit trail rewind + human correction"
+    },
+    {
+      "case_id": "T12-PASS",
+      "scenario": "S12 开发者社区活动场地",
+      "branch": "synthetic_pass",
+      "expected_outcome": "PASS"
+    },
+    {
+      "case_id": "T12-REJ",
+      "scenario": "S12 开发者社区活动场地",
+      "branch": "synthetic_reject",
+      "trigger": "event_cancelled_unclear_alternative",
+      "expected_outcome": "REPLACE",
+      "expected_handling": "online alternative"
+    }
+  ],
+  "tabletop_summary": {
+    "total_cases": 24,
+    "synthetic_pass_branches": 12,
+    "synthetic_reject_or_pause_branches": 12,
+    "field_runs": 0,
+    "personal_data_processed": 0,
+    "messages_sent": 0,
+    "real_services_connected": 0,
+    "evidence_boundary": "本包仅证明参与者编写的规则和回执格式可执行；不证明现场验证、无障碍合规、产品认证、政府审批或实施授权"
+  }
+}

@@ -58,6 +58,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+from metric_types import is_json_number
+
 
 try:
     from pyproj import Transformer
@@ -215,7 +217,18 @@ def load_feature_geometries(
                 )
             )
         declared = props.get("area_sqm_declared")
-        if isinstance(declared, (int, float)) and geom.geom_type in {"Polygon", "MultiPolygon"}:
+        if isinstance(declared, bool):
+            report.add(
+                SpatialIssue(
+                    "DECLARED_AREA_TYPE",
+                    "major",
+                    str(path),
+                    "Declared area must be a JSON number, not a boolean.",
+                    feature_id,
+                    actual=declared,
+                )
+            )
+        elif is_json_number(declared) and geom.geom_type in {"Polygon", "MultiPolygon"}:
             delta = abs(float(declared) - float(geom.area))
             allowed_delta = max(AREA_TOLERANCE_SQM, abs(float(geom.area)) * RELATIVE_AREA_TOLERANCE)
             if delta > allowed_delta:
@@ -388,9 +401,20 @@ def check_key_areas(report: SpatialReport, site: Any, key_items: list[tuple[str,
                 )
             )
         expected_area = props.get("official_area_sqm")
-        if not isinstance(expected_area, (int, float)) and is_official:
+        if is_official and isinstance(expected_area, bool):
+            report.add(
+                SpatialIssue(
+                    "KEY_AREA_AREA_TYPE",
+                    "major",
+                    "geometry/key_areas.geojson",
+                    "Official key-area area must be a JSON number, not a boolean.",
+                    feature_id,
+                    actual=expected_area,
+                )
+            )
+        elif not is_json_number(expected_area) and is_official:
             expected_area = OFFICIAL_KEY_AREA_AREAS.get(area_id)
-        if isinstance(expected_area, (int, float)) and is_official:
+        if is_json_number(expected_area) and is_official:
             delta = abs(float(expected_area) - float(geom.area))
             allowed = max(AREA_TOLERANCE_SQM, float(expected_area) * KEY_AREA_RELATIVE_TOLERANCE)
             if delta > allowed:
@@ -437,7 +461,7 @@ def metric_value(metrics: dict, name: str) -> float | None:
     if not isinstance(metric, dict):
         return None
     value = metric.get("value")
-    if isinstance(value, (int, float)) and not isinstance(value, bool):
+    if is_json_number(value):
         return float(value)
     return None
 
@@ -564,6 +588,21 @@ def review_submission(submission_dir: Path, repo_root: Path, stage: str) -> Spat
     }
 
     metrics = load_metrics(submission_dir)
+    for name, metric in metrics.items():
+        if (
+            isinstance(metric, dict)
+            and metric.get("status") == "known"
+            and not is_json_number(metric.get("value"))
+        ):
+            report.add(
+                SpatialIssue(
+                    "METRIC_VALUE_TYPE",
+                    "major",
+                    "metrics.json",
+                    f"{name} must use a finite JSON number.",
+                    actual=metric.get("value"),
+                )
+            )
     check_metric_close(report, metrics, "site_area_sqm", site_area, "sqm")
     check_metric_close(report, metrics, "green_space_area_sqm", green_area, "sqm")
     check_metric_close(report, metrics, "public_space_area_sqm", public_area, "sqm")
@@ -575,7 +614,7 @@ def review_submission(submission_dir: Path, repo_root: Path, stage: str) -> Spat
     for name, metric in metrics.items():
         if isinstance(metric, dict) and metric.get("unit") == "ratio":
             value = metric.get("value")
-            if isinstance(value, (int, float)) and not 0 <= float(value) <= 1:
+            if is_json_number(value) and not 0 <= float(value) <= 1:
                 report.add(
                     SpatialIssue(
                         "METRIC_RATIO_RANGE",

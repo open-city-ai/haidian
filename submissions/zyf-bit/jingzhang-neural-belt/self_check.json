@@ -1,0 +1,135 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/site_boundary.geojson, assumptions.json",
+      "message": "使用临时边界已明确标注(ASM-001/ASM-002)，所有面积指标标注为 provisional/estimated。",
+      "suggested_fix": "待官方红线确认后需重新校核边界与面积。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/land_use.geojson",
+      "message": "land_use.geojson 地块之间无拓扑冲突，覆盖场地全域。"
+    },
+    {
+      "check_id": "KEY_AREA_COUNT",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "重点地区数量为3，符合征集要求。"
+    },
+    {
+      "check_id": "FIGURE_COMPLETENESS",
+      "result": "pass",
+      "severity": "major",
+      "target": "assets/figures/*.png, drawings/*.pdf",
+      "message": "五张专业图表和两张 PDF 图纸齐备。"
+    },
+    {
+      "check_id": "HTML_OFFLINE",
+      "result": "pass",
+      "severity": "major",
+      "target": "report/proposal.html, visual/index.html",
+      "message": "HTML成果可离线打开，无外部资源依赖。"
+    },
+    {
+      "check_id": "PDF_NON_ZERO",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "drawings/a3-booklet.pdf, drawings/a0-boards.pdf",
+      "message": "PDF文件大小大于0，内容完整。"
+    },
+    {
+      "check_id": "COMPLIANCE_COVERAGE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "compliance_matrix.json",
+      "message": "所有 mandatory requirement_id 均在 compliance_matrix.json 中有对应条目。"
+    },
+    {
+      "check_id": "SOURCE_TRACING",
+      "result": "pass",
+      "severity": "major",
+      "target": "sources.json, geometry/*.geojson",
+      "message": "所有 GeoJSON 图层与关键指标均关联至 sources.json 中的来源条目。"
+    },
+    {
+      "check_id": "PACKAGE_STATE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "manifest.json",
+      "message": "manifest.json 中 package_state=ready_for_review，所有必需文件齐备。"
+    },
+    {
+      "check_id": "GEOMETRY_FILE_NAMES",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/*.geojson",
+      "message": "所有 geometry 文件名均在 ALLOWED_GEOMETRY_FILES 白名单内。"
+    },
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "manifest.json, self_check.json, metrics.json, compliance_matrix.json",
+      "message": "All deterministic validation checks passed."
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/*.geojson",
+      "message": "All spatial review checks passed."
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "drawings/*.pdf, report/*.html, visual/*.html",
+      "message": "All visual packaging checks passed."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md, standard_matrix.json, design_depth_matrix.json, sources.json",
+      "message": "All professional evidence checks passed."
+    }
+  ],
+  "ok": true,
+  "can_enter_formal_review": true,
+  "submission_dir": "submissions/zyf-bit/jingzhang-neural-belt",
+  "pr_author": "zyf-bit",
+  "stage": "formal",
+  "deterministic_validation": {
+    "gate": "DETERMINISTIC_VALIDATION",
+    "result": "pass",
+    "blocking_count": 0,
+    "major_count": 0
+  },
+  "spatial_review": {
+    "gate": "SPATIAL_REVIEW",
+    "result": "pass",
+    "blocking_count": 0,
+    "major_count": 0
+  },
+  "visual_review": {
+    "gate": "VISUAL_PACKAGING",
+    "result": "pass",
+    "blocking_count": 0,
+    "major_count": 0
+  },
+  "professional_review": {
+    "gate": "PROFESSIONAL_EVIDENCE",
+    "result": "pass",
+    "blocking_count": 0,
+    "major_count": 0
+  },
+  "review_status": "formal-review-ready",
+  "next_actions": []
+}

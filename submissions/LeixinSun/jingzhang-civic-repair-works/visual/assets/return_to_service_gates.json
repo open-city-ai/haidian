@@ -1,0 +1,258 @@
+{
+  "schema_version": "1.0.0",
+  "package_version": "v1.1",
+  "purpose": "Six evidence gates for an urban AI asset to be accepted, repaired, retested, and released or correctly refused.",
+  "claim_boundary": "Participant-authored operating contract only. It defines role types, records, pause conditions, and evidence needed for later professional work. It does not name real institutions, certify products, authorize treatment, approve construction, or claim field performance.",
+  "reality_state": "not_authorized_not_field_run",
+  "gates": [
+    {
+      "gate_id": "R0",
+      "name_zh": "受理资格",
+      "name_en": "Intake eligibility",
+      "decision_question_zh": "设备、故障与请求是否属于本次受理范围？",
+      "decision_question_en": "Are the asset, fault, and requested service within the declared intake scope?",
+      "entry_evidence": [
+        "asset identity or provisional identifier",
+        "fault report",
+        "requesting party contact route"
+      ],
+      "mandatory_checks": [
+        "service scope",
+        "immediate life-safety risk",
+        "availability of equivalent public service"
+      ],
+      "pass_outputs": [
+        "intake record",
+        "service-continuity action",
+        "R1 referral"
+      ],
+      "hard_blockers": [
+        "uncontrolled immediate danger",
+        "no lawful intake route",
+        "public route cannot remain available"
+      ],
+      "accountable_role_type": "staffed public-service intake lead",
+      "independent_review_role_type": "none at intake; escalate safety cases",
+      "pause_trigger": "Any immediate danger or loss of an equivalent non-digital service route.",
+      "resume_evidence": "Hazard isolation and a restored staffed or equivalent public-service route.",
+      "next_states": [
+        "R1",
+        "HOLD_R0",
+        "EMERGENCY_HANDOVER"
+      ],
+      "current_status": "not_started",
+      "field_evidence_count": 0
+    },
+    {
+      "gate_id": "R1",
+      "name_zh": "权属、保修与数据权限",
+      "name_en": "Ownership, warranty, and data rights",
+      "decision_question_zh": "谁有权送修、拆检、读取或擦除数据，谁继续承担保修责任？",
+      "decision_question_en": "Who may submit, inspect, access, or erase the asset, and who retains warranty responsibility?",
+      "entry_evidence": [
+        "ownership or custody evidence",
+        "warranty status",
+        "data-access and erasure authority"
+      ],
+      "mandatory_checks": [
+        "authorization scope",
+        "warranty escalation",
+        "minimum-data boundary"
+      ],
+      "pass_outputs": [
+        "authorized work scope",
+        "warranty owner record",
+        "data-handling instruction"
+      ],
+      "hard_blockers": [
+        "ownership unresolved",
+        "repair authority absent",
+        "data rights unresolved"
+      ],
+      "accountable_role_type": "asset or service owner representative",
+      "independent_review_role_type": "data-governance or warranty reviewer when required",
+      "pause_trigger": "Any conflict in ownership, warranty, data access, erasure, or software licence.",
+      "resume_evidence": "Resolved authority record and an updated limited work scope.",
+      "next_states": [
+        "R2",
+        "HOLD_R1",
+        "RETURN_UNOPENED"
+      ],
+      "current_status": "not_started",
+      "field_evidence_count": 0
+    },
+    {
+      "gate_id": "R2",
+      "name_zh": "风险隔离与诊断基线",
+      "name_en": "Risk isolation and diagnostic baseline",
+      "decision_question_zh": "设备能否在场内安全诊断，还是必须隔离并转交资格范围匹配设施？",
+      "decision_question_en": "Can the asset be diagnosed safely on site, or must it be isolated and handed to a scope-matched facility?",
+      "entry_evidence": [
+        "incoming condition record",
+        "battery and hazardous-property screen",
+        "software and connectivity state"
+      ],
+      "mandatory_checks": [
+        "physical isolation",
+        "waste/treatment boundary",
+        "baseline fault reproduction"
+      ],
+      "pass_outputs": [
+        "diagnostic baseline",
+        "risk classification pending/cleared record",
+        "R3 work package"
+      ],
+      "hard_blockers": [
+        "suspected hazardous condition without controlled route",
+        "damaged battery",
+        "formal treatment activity outside operator scope"
+      ],
+      "accountable_role_type": "repair-workshop safety lead",
+      "independent_review_role_type": "environmental or safety professional when classification is uncertain",
+      "pause_trigger": "Suspected hazardous material, damaged energy storage, uncontrolled movement, or unsafe energisation.",
+      "resume_evidence": "Professional classification and either a safe diagnostic method or a qualified handover receipt.",
+      "next_states": [
+        "R3",
+        "HOLD_R2",
+        "QUALIFIED_HANDOVER"
+      ],
+      "current_status": "not_started",
+      "field_evidence_count": 0
+    },
+    {
+      "gate_id": "R3",
+      "name_zh": "维修授权与部件证据",
+      "name_en": "Repair authorization and part evidence",
+      "decision_question_zh": "拟维修、换件或翻新动作是否获授权，候选部件是否有足够适配证据？",
+      "decision_question_en": "Is the proposed repair authorized, and is the candidate part supported by sufficient compatibility evidence?",
+      "entry_evidence": [
+        "diagnostic baseline",
+        "repair authorization",
+        "part identity and provenance",
+        "declared test plan"
+      ],
+      "mandatory_checks": [
+        "mechanical",
+        "electrical",
+        "communication",
+        "firmware",
+        "calibration",
+        "failure mode"
+      ],
+      "pass_outputs": [
+        "approved work instruction",
+        "part evidence record",
+        "changed-item trace"
+      ],
+      "hard_blockers": [
+        "repair not authorized",
+        "part identity unknown",
+        "compatibility failed",
+        "test scope absent"
+      ],
+      "accountable_role_type": "authorized repair lead",
+      "independent_review_role_type": "equipment-family test or metrology reviewer",
+      "pause_trigger": "Any failed or missing compatibility dimension, recall, or undocumented configuration change.",
+      "resume_evidence": "Correct part evidence, revised work scope, and professional acceptance of the test plan.",
+      "next_states": [
+        "R4",
+        "HOLD_R3",
+        "REJECT_PART",
+        "RETURN_UNREPAIRED"
+      ],
+      "current_status": "not_started",
+      "field_evidence_count": 0
+    },
+    {
+      "gate_id": "R4",
+      "name_zh": "校准与回归复测",
+      "name_en": "Calibration and regression retest",
+      "decision_question_zh": "设备在声明版本、工况和安全边界内是否恢复可重复表现？",
+      "decision_question_en": "Has repeatable performance been restored within the declared version, operating condition, and safety envelope?",
+      "entry_evidence": [
+        "completed work order",
+        "changed-part record",
+        "baseline and retest plan",
+        "applicable reference method"
+      ],
+      "mandatory_checks": [
+        "calibration or reference comparison",
+        "functional regression",
+        "safety and emergency stop",
+        "accessibility when public-facing"
+      ],
+      "pass_outputs": [
+        "retest evidence",
+        "residual-limit register",
+        "candidate release package"
+      ],
+      "hard_blockers": [
+        "regression failed",
+        "calibration unresolved",
+        "emergency stop ineffective",
+        "accessibility regression"
+      ],
+      "accountable_role_type": "test or calibration lead",
+      "independent_review_role_type": "independent reviewer appropriate to the equipment family",
+      "pause_trigger": "Any failure against the declared baseline, safety function, or public accessibility contract.",
+      "resume_evidence": "Corrective work plus a complete new retest; previous failed evidence remains retained.",
+      "next_states": [
+        "R5",
+        "HOLD_R4",
+        "RETURN_TO_R3",
+        "QUALIFIED_HANDOVER"
+      ],
+      "current_status": "not_started",
+      "field_evidence_count": 0
+    },
+    {
+      "gate_id": "R5",
+      "name_zh": "人工放行与去向",
+      "name_en": "Human release and destination",
+      "decision_question_zh": "证据是否足以由责任角色签发限定范围的复役回执，或应继续暂停/退回/合规转交？",
+      "decision_question_en": "Is the evidence sufficient for accountable human release within a limited scope, or must the asset remain held, be returned, or be handed over?",
+      "entry_evidence": [
+        "complete gate trail",
+        "data-erasure status",
+        "retest evidence",
+        "residual risks",
+        "destination and next-maintenance record"
+      ],
+      "mandatory_checks": [
+        "record completeness",
+        "unresolved-risk visibility",
+        "service owner acceptance",
+        "data erasure where applicable"
+      ],
+      "pass_outputs": [
+        "return-to-service receipt",
+        "conditional-return receipt",
+        "qualified-handover receipt"
+      ],
+      "hard_blockers": [
+        "erasure cannot be evidenced",
+        "required sign-off absent",
+        "unresolved critical risk",
+        "destination unqualified"
+      ],
+      "accountable_role_type": "asset or public-service owner representative",
+      "independent_review_role_type": "test/calibration/safety reviewer appropriate to the release scope",
+      "pause_trigger": "Any missing sign-off, erasure evidence, unresolved critical risk, or mismatch between receipt and test scope.",
+      "resume_evidence": "Closed evidence gap and joint accountable plus independent sign-off.",
+      "next_states": [
+        "RETURN_TO_SERVICE",
+        "CONDITIONAL_RETURN",
+        "HOLD_R5",
+        "QUALIFIED_HANDOVER"
+      ],
+      "current_status": "not_started",
+      "field_evidence_count": 0
+    }
+  ],
+  "summary": {
+    "gate_count": 6,
+    "field_runs": 0,
+    "named_institutions": 0,
+    "release_requires_human_accountability": true
+  }
+}

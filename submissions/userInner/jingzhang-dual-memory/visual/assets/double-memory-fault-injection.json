@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "DM-FAULT-INJECTION-V9",
+  "status": "synthetic_negative_test_not_field_evidence",
+  "purpose_zh": "验证十二个城市智能场景在放行合同缺项或运行故障时能否自动阻断、降级为普通服务并保持可追责。",
+  "purpose_en": "Verify that twelve civic-AI scenarios block release, fall back to ordinary service and remain accountable when a release field is missing or an operational fault occurs.",
+  "evidence_boundary": "All results are deterministic synthetic contract tests. They do not demonstrate field safety, user acceptance, permissions, construction performance or deployment.",
+  "release_fields": [
+    {"id": "RF-01", "field": "bounded_scope", "question_zh": "边界与用途是否明确？"},
+    {"id": "RF-02", "field": "accountable_operator", "question_zh": "责任运营者是否具名？"},
+    {"id": "RF-03", "field": "ordinary_equivalent", "question_zh": "无需 AI 的普通服务是否可独立运行？"},
+    {"id": "RF-04", "field": "minimum_data_retention", "question_zh": "最小数据与留存期限是否登记？"},
+    {"id": "RF-05", "field": "visible_notice_choice", "question_zh": "告知、选择与退出是否可见？"},
+    {"id": "RF-06", "field": "human_stop_takeover", "question_zh": "人工接管和物理停止是否可达？"},
+    {"id": "RF-07", "field": "acceptance_evidence", "question_zh": "验收证据和判废线是否明确？"},
+    {"id": "RF-08", "field": "rollback_reinstatement", "question_zh": "回退与场地复原是否有时限？"}
+  ],
+  "scenarios": [
+    {"id":"SC-01","name_zh":"无账号漫步","site":"public_memory_spine"},
+    {"id":"SC-02","name_zh":"零留存多语导览","site":"dazhongsi_and_heritage_nodes"},
+    {"id":"SC-03","name_zh":"无障碍需求热图","site":"anonymous_assist_zone"},
+    {"id":"SC-04","name_zh":"边缘客流预警","site":"rail_interchange"},
+    {"id":"SC-05","name_zh":"儿童双重同意沙盒","site":"controlled_test_zone"},
+    {"id":"SC-06","name_zh":"长者线下等价服务台","site":"community_service_node"},
+    {"id":"SC-07","name_zh":"可撤回贡献墙","site":"ai_origin"},
+    {"id":"SC-08","name_zh":"AI 来源诊所","site":"ai_origin"},
+    {"id":"SC-09","name_zh":"共同记忆校验桌","site":"heritage_nodes"},
+    {"id":"SC-10","name_zh":"删除回执终端","site":"three_proof_blocks"},
+    {"id":"SC-11","name_zh":"企业最小数据试验台","site":"zhongzhiyuan"},
+    {"id":"SC-12","name_zh":"自动过期活动凭证","site":"belt_event_nodes"}
+  ],
+  "fault_cards": [
+    {"id":"FI-01","fault":"sensor_scope_overreach","required_response":"isolate_and_hold"},
+    {"id":"FI-02","fault":"deletion_receipt_timeout","required_response":"freeze_collection_and_hold"},
+    {"id":"FI-03","fault":"account_only_lockout","required_response":"restore_ordinary_service_and_hold"},
+    {"id":"FI-04","fault":"accessible_route_blocked","required_response":"stop_trial_and_restore_route"},
+    {"id":"FI-05","fault":"emergency_stop_unreachable","required_response":"stop_trial_and_isolate"},
+    {"id":"FI-06","fault":"operator_absent","required_response":"do_not_open"},
+    {"id":"FI-07","fault":"stale_heritage_source","required_response":"quarantine_claim_and_review"},
+    {"id":"FI-08","fault":"provisional_boundary_drift","required_response":"freeze_siting_and_resurvey"},
+    {"id":"FI-09","fault":"complaint_channel_down","required_response":"suspend_ai_keep_human_service"},
+    {"id":"FI-10","fault":"model_or_network_outage","required_response":"ordinary_service_only"},
+    {"id":"FI-11","fault":"crowd_conflict_with_test_zone","required_response":"close_test_zone_keep_bypass"},
+    {"id":"FI-12","fault":"reinstatement_overdue","required_response":"escalate_and_block_reopening"}
+  ],
+  "test_protocol": {
+    "complete_contract_cases": 12,
+    "single_field_omission_cases": 96,
+    "cross_cutting_fault_cases": 12,
+    "total_synthetic_cases": 120,
+    "expected_complete_contract_result": "ELIGIBLE_FOR_FIELD_REVIEW",
+    "expected_omission_result": "BLOCKED_MISSING_FIELD",
+    "expected_fault_result": "SAFE_FALLBACK_HOLD",
+    "field_performance_tests_passed": 0,
+    "release_decision": "HOLD"
+  }
+}

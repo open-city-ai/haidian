@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张智轨 SILICON IRONWAY · 方案可视化</title>
+<style>
+:root {
+  --rail: #4a4a4a; --green: #2e7d5b; --red: #c0392b; --blue: #1f6feb;
+  --ochre: #8a5a2b; --bg: #f7f5f0; --ink: #2b2b2b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Microsoft YaHei", "Noto Sans SC", sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+header { background: linear-gradient(135deg, #2b2b2b 0%, #3a5a4a 60%, var(--green) 100%); color: #fff; padding: 3rem 2rem; }
+header h1 { font-size: 2.2rem; letter-spacing: 2px; }
+header .en { font-size: 1.1rem; opacity: 0.85; letter-spacing: 3px; margin-top: .4rem; }
+header .tagline { margin-top: 1rem; max-width: 760px; font-size: .95rem; opacity: .92; }
+.badges { margin-top: 1.2rem; }
+.badge { display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.35); padding: .2rem .8rem; border-radius: 999px; font-size: .78rem; margin-right: .4rem; }
+main { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+h2 { font-size: 1.3rem; margin: 2.2rem 0 1rem; padding-left: .7rem; border-left: 4px solid var(--green); }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.2rem; }
+.card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.07); }
+.card img { width: 100%; display: block; }
+.card .cap { padding: .8rem 1rem; font-size: .85rem; }
+.card .cap b { color: var(--green); }
+.metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; }
+.metric { background: #fff; border-radius: 10px; padding: 1rem; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+.metric .v { font-size: 1.5rem; font-weight: 700; color: var(--blue); }
+.metric .k { font-size: .78rem; color: #777; margin-top: .3rem; }
+table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; font-size: .85rem; }
+th, td { padding: .55rem .7rem; text-align: left; border-bottom: 1px solid #eee; }
+th { background: #2e7d5b22; color: var(--green); }
+.provisional { background: #fff8e6; border: 1px solid #e6c76a; border-radius: 8px; padding: .8rem 1rem; font-size: .85rem; margin: 1rem 0; }
+footer { background: #2b2b2b; color: #aaa; padding: 2rem; font-size: .8rem; text-align: center; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>京张智轨 · SILICON IRONWAY</h1>
+  <div class="en">ONE TRACK · THREE STATIONS · TWO WINGS</div>
+  <p class="tagline">1909 年，中国人自主修建了京张铁路；今天，这条铁轨要变成中国 AI 自主创新的轨道。智轨把铁路精神——自主、严谨、准时、可停——变成 AI 创新带的公共协议，让每个人都能看见、质询、叫停城市里的 AI。</p>
+  <div class="badges">
+    <span class="badge">百年京张文化带</span>
+    <span class="badge">都市AI生活体验带</span>
+    <span class="badge">AI融合创新带</span>
+    <span class="badge">一脊三站两翼</span>
+  </div>
+</header>
+<main>
+
+<div class="provisional"><b>边界声明：</b>本方案全部几何基于仓库登记的<b>临时粗略边界</b>（provisional constraint，EPSG:4326 生成 / EPSG:4548 复算），仅用于概念生成、展示与自检，不构成官方红线、审批依据或精确面积依据；正式 polygon 发布后须整链重算。</div>
+
+<h2>总览地图</h2>
+<div class="cards">
+  <div class="card"><img src="../assets/figures/site-overview.png" alt="总体空间结构图"><div class="cap"><b>图1 总体空间结构</b>：智轨主脊串联编组站（众智园）、始发站（AI原点社区）、换乘站（大钟寺）三处重点区，两翼与道岔缝合系统组织创新带。</div></div>
+  <div class="card"><img src="../assets/figures/land-use-structure.png" alt="用地结构图"><div class="cap"><b>图2 用地分区</b>：用地分区完整覆盖临时边界（gap &lt; 30㎡），遵循国土空间用地用海分类（05/0701/0702/0802/0803/0804/0805/1401/1403/16）。</div></div>
+</div>
+
+<h2>三层范围</h2>
+<p style="font-size:.85rem;color:#666">统筹研究范围 43.6 km²（产业生态与未来城市）→ 总体设计范围 11.4 km²（一脊三站两翼）→ 重点区域范围 368.4 ha（三站详细设计）。</p>
+
+<h2>重点区域</h2>
+<div class="cards">
+  <div class="card"><img src="../assets/figures/key-areas.png" alt="三处重点区域图"><div class="cap"><b>图3 重点区域</b>：编组站（众智园 192.1ha · 测试-编组-治理）、始发站（原点社区 104.3ha · 开源-发布-人才）、换乘站（大钟寺 72.0ha · 消费-数据-国际交往）。</div></div>
+  <div class="card"><img src="../assets/figures/mobility-bluegreen.png" alt="交通蓝绿系统图"><div class="cap"><b>图4 交通慢行</b>：智轨主脊（概念）与横联路网组织慢行与微循环；轨道接驳点与站前广场为概念建议。</div></div>
+</div>
+
+<h2>用地分区与建筑</h2>
+<p style="font-size:.85rem;color:#666">用地以产业/科研（25.2%）、居住与社区服务（23.7%）、绿地（19.6%）为主；概念建筑基底 411 处（3.51M m²）仅用于检验空间量级。蓝绿公共空间合计约 24.9%。</p>
+
+<h2>交通慢行与蓝绿公共空间</h2>
+<p style="font-size:.85rem;color:#666">智轨主脊慢行 + 横联路微循环 + 轨道接驳；绿地约 223.6 万㎡（19.6%）、公共空间约 60.7 万㎡（5.3%）。</p>
+
+<h2>AI 场景</h2>
+<table>
+  <tr><th>场景</th><th>空间载体</th><th>类型</th></tr>
+  <tr><td>原点开源发布厅</td><td>原点社区广场</td><td>公共服务</td></tr>
+  <tr><td>编组测试场</td><td>众智园留白用地</td><td>产业测试验证</td></tr>
+  <tr><td>试车场户外验证</td><td>小月河场景赋能翼</td><td>产业测试验证</td></tr>
+  <tr><td>信号所治理沙盒</td><td>中关村科技服务翼</td><td>产业测试验证</td></tr>
+  <tr><td>智能原生消费街</td><td>大钟寺商业用地</td><td>消费体验</td></tr>
+  <tr><td>智轨主脊 AI 慢行导航</td><td>主脊沿线</td><td>公共体验</td></tr>
+</table>
+<p style="font-size:.78rem;color:#777">完整 12 张场景卡（含 3 张产业测试验证场景）见 proposal.md「AI 创新生态」章节。</p>
+
+<h2>核心指标</h2>
+<div class="cards">
+  <div class="card"><img src="../assets/figures/metrics-evidence.png" alt="指标复算图"><div class="cap"><b>图5 指标复算</b>：全部空间指标在 EPSG:4548 下从提交几何复算；管控指标待正式控规条件。</div></div>
+  <div class="card" style="padding:1rem">
+    <div class="metrics">
+      <div class="metric"><div class="v" data-metric="site_area_sqm" data-value="11412825.386">11.41</div><div class="k">场地面积 km²</div></div>
+      <div class="metric"><div class="v" data-metric="green_ratio" data-value="0.195931">19.6%</div><div class="k">绿地率</div></div>
+      <div class="metric"><div class="v" data-metric="public_space_ratio" data-value="0.053159">5.3%</div><div class="k">公共空间率</div></div>
+      <div class="metric"><div class="v">3.51M</div><div class="k">建筑基底 m²</div></div>
+      <div class="metric"><div class="v">49.6km</div><div class="k">道路中心线</div></div>
+      <div class="metric"><div class="v">12+3</div><div class="k">场景卡/测试场景</div></div>
+      <div class="metric"><div class="v">5</div><div class="k">用户画像</div></div>
+      <div class="metric"><div class="v">3</div><div class="k">朝圣地标</div></div>
+    </div>
+  </div>
+</div>
+
+<h2>更新项目</h2>
+<p style="font-size:.85rem;color:#666">9 项更新项目：原点广场、成果转化街、编组测试场、清河界面、大钟寺四象限连通、智能原生消费街区、主脊慢行缝合、信号所治理沙盒、里程碑体系（近期/中期/长期三阶段）。</p>
+
+<h2>任务覆盖（compliance_matrix · 23 项必答）</h2>
+<table>
+  <tr><th>任务</th><th>响应章节</th><th>证据</th></tr>
+  <tr><td>公告 1.3 / 1.4 / 1.5（17 项）</td><td>三层范围 · 统筹研究 · 总体设计 · 重点区域</td><td>compliance_matrix.json</td></tr>
+  <tr><td>agent.1 总体概念与命名</td><td>agent 任务响应</td><td>京张智轨 · SILICON IRONWAY · 人字形 Logo 方向</td></tr>
+  <tr><td>agent.2 全栈创新体系</td><td>统筹研究 · 生态图谱</td><td>8 个全球案例 · 始发-编组-换乘回路</td></tr>
+  <tr><td>agent.3 场景与活力城市</td><td>AI 创新生态</td><td>12 场景卡（含 3 测试场景）· 5 画像</td></tr>
+  <tr><td>agent.4 公共空间与地标</td><td>蓝绿空间</td><td>3 朝圣地标 · 里程碑体系 · 组件库</td></tr>
+  <tr><td>agent.5 文化叙事</td><td>agent 任务响应</td><td>一条铁轨的三次发车</td></tr>
+  <tr><td>agent.6 活动与运营</td><td>更新与分期</td><td>年度活动日历 · 社区运营 · 转化路径</td></tr>
+</table>
+
+<h2>标准响应（standard_matrix · 9 项）</h2>
+<table>
+  <tr><th>标准</th><th>状态</th><th>响应方式</th></tr>
+  <tr><td>资格预审公告</td><td>addressed</td><td>三层范围与任务逐条映射</td></tr>
+  <tr><td>智能体任务书</td><td>addressed</td><td>agent.1-agent.6 正文展开</td></tr>
+  <tr><td>城市设计管理办法</td><td>addressed</td><td>风貌控制与公共空间组件库</td></tr>
+  <tr><td>控规编制审批办法</td><td>addressed</td><td>管控指标 unknown + 待确认</td></tr>
+  <tr><td>用地用海分类指南</td><td>addressed</td><td>标准用地代码</td></tr>
+  <tr><td>建筑深度规定 2016</td><td>data_gap</td><td>待官方文件</td></tr>
+  <tr><td>无障碍环境建设法</td><td>addressed</td><td>人工服务兜底（第39条边界）</td></tr>
+  <tr><td>生成式AI暂行办法</td><td>addressed</td><td>场景边界与内容安全</td></tr>
+  <tr><td>国办发〔2020〕45号</td><td>addressed</td><td>适老化并行服务（背景）</td></tr>
+</table>
+
+<h2>设计深度（design_depth_matrix · 15 项全部 complete）</h2>
+<p style="font-size:.85rem;color:#666">现状诊断 · 三层框架 · 总体结构 · 用地布局 · 开发强度 · 高度体量风貌 · 拆改留 · 交通轨道慢行停车 · 市政新基建 · 蓝绿公共空间 · 重点区详设 · 更新项目 · 分期实施 · 指标复算 · 风险缺资料</p>
+
+<h2>自检状态</h2>
+<table>
+  <tr><th>门闸</th><th>状态</th></tr>
+  <tr><td>deterministic_validation（确定性校验）</td><td>PASS（修复后）</td></tr>
+  <tr><td>spatial_review（空间复核）</td><td>PASS（minor：临时边界标注）</td></tr>
+  <tr><td>visual_review（可视化打包检查）</td><td>PASS</td></tr>
+  <tr><td>professional_review（专业证据复核）</td><td>PASS</td></tr>
+  <tr><td>participant_preflight（提交预检）</td><td>待运行</td></tr>
+</table>
+
+<h2>数据与合规</h2>
+<table>
+  <tr><th>文件</th><th>角色</th></tr>
+  <tr><td>proposal.md / proposal.en.md</td><td>主语言方案（v2 双语契约）</td></tr>
+  <tr><td>geometry/*.geojson（9 层）</td><td>空间证据：边界 · 重点区 · 用地 · 建筑 · 道路 · 绿地 · 公共空间 · 约束 · 分期</td></tr>
+  <tr><td>metrics.json（24 指标）</td><td>指标复算：空间/管控/绩效三类</td></tr>
+  <tr><td>sources.json / assumptions.json</td><td>来源与假设（22 项来源 / 7 条假设）</td></tr>
+  <tr><td>drawings/a3-booklet.pdf · a0-boards.pdf</td><td>图纸（演示用途，非权威数据）</td></tr>
+  <tr><td>report/proposal.html</td><td>离线阅读版</td></tr>
+</table>
+
+<h2>来源与假设</h2>
+<p style="font-size:.85rem;color:#666"><b>来源</b>：官方公告（2026-05-09）、智能体任务书（2026-05-18）、城市设计管理办法、控规编制审批办法、用地用海分类指南、无障碍环境建设法、生成式AI暂行办法、国办发〔2020〕45号、仓库 site-package 与数据源登记；8 个全球案例为背景参考。<br>
+<b>假设</b>：临时边界为非官方红线（7 条假设，见 assumptions.json），概念建筑体量非现状底数，管控指标待正式控规条件补齐。</p>
+
+</main>
+<footer>
+  京张智轨 SILICON IRONWAY · 百年京张AI创新带城市设计开源征集方案 · stone11451419<br>
+  本方案为 AI agent 基于公开/清权资料生成的概念建议，不替代正式规划；全部几何基于临时边界，正式数据发布后须整链重算。
+</footer>
+</body>
+</html>

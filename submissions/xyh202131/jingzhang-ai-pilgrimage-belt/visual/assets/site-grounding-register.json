@@ -2,7 +2,8 @@
   "schema_version": "0.1.0",
   "register_id": "JZ-SITE-GROUNDING-V1",
   "status": "desk_research_only",
-  "as_of": "2026-08-09",
+  "as_of": "2026-08-15",
+  "as_of_semantics": "date of last real content edit, verified from git history during the Round 26 as_of consistency audit; it is not a validity or freshness guarantee",
   "method": {
     "collection_tool": "Firecrawl CLI v1.19.30",
     "method_summary": "Targeted retrieval of public government and public-institution pages, followed by claim-level extraction and prohibited-inference review.",
@@ -624,7 +625,7 @@
         "geometry/green_space.geojson": "a47fcc55b4b7316933557232c896c7dec3e6db5d532d4e9c95d93b6c7f42df1d",
         "geometry/phasing.geojson": "a08a0be4cfec3448efc354d9271abc04e1aca41d7b25786b6c768cff6f8a7776",
         "geometry/constraints.geojson": "d631f0698742199a3dd4d1dd492d4a87f1a617d526ace9ff2ed35e5e09190004",
-        "metrics.json": "bbafe42b45e97885682bb12fa62d30ec264353b6700388df040965a651f972cb"
+        "metrics.json": "fbb26cd388d233c4ce606c75ce04b1435bd1f23700fc17c2ab4fdd1f4edc0701"
       },
       "frozen_counts": {
         "unique_geometry_feature_ids": 389,
@@ -656,12 +657,339 @@
         "remote_runtime_resources_allowed": false
       },
       "inventory_expectations": {
-        "actual_files": 140,
-        "manifest_paths": 140,
-        "rights_records": 140,
+        "actual_files": 141,
+        "manifest_paths": 141,
+        "rights_records": 141,
         "path_sets_must_match": true,
         "rights_status": "not_fully_cleared",
         "independent_file_audits": 0
+      },
+      "review_handoff_index": {
+        "contract_id": "JZ-REVIEW-HANDOFF-INDEX-R20",
+        "path": "visual/assets/review-handoff-index.json",
+        "as_of": "2026-08-14",
+        "purpose": "Package-level review navigation and per-file status registry; navigation only, creates no evidence and changes no maturity or rights state.",
+        "inventory_note": "The index registry covers all 141 manifest paths; the frozen geometry/metrics hashes and 12/8/3/36 counts recorded inside it must stay equal to this package_validation_contract."
+      },
+      "browser_matrix_r22": {
+        "contract_id": "JZ-BROWSER-MATRIX-R22",
+        "executed_at": "2026-08-15",
+        "environment": "Google Chrome 151.0.7922.138 headless + Chrome DevTools Protocol + Node.js 22 built-in WebSocket; zero-dependency package-external driver",
+        "case_count": 18,
+        "bilingual": [
+          "zh",
+          "en"
+        ],
+        "result": "all_pass",
+        "key_measurements": {
+          "viewport_1440x900_page_overflow": false,
+          "viewport_390x844_true_device_metrics_page_overflow": false,
+          "no_javascript_walk_steps_visible": 5,
+          "no_javascript_signal_static_table_rows": 12,
+          "no_javascript_package_index_present": true,
+          "reduced_motion_stays_on_state_01_after_2_5s": true,
+          "print_backstage_library_open": true,
+          "first_focusable_is_skip_link": true,
+          "motion_boundary_at_12_25s_state": "02",
+          "images_missing_alt": 0,
+          "aria_live_present": true,
+          "h1_count": 1,
+          "console_errors": 0,
+          "failed_requests": 0,
+          "external_hosts": 0
+        },
+        "visual_content_changes": 0,
+        "certification_note": "This matrix is programmatic browser verification of layout and interaction only; it is not assistive-technology certification, human visual inspection, field evidence or an approval of any kind."
+      },
+      "contrast_matrix_r24": {
+        "contract_id": "JZ-CONTRAST-MATRIX-R24",
+        "executed_at": "2026-08-15",
+        "method": "CDP-driven gradient-aware DOM background resolution (linear-gradient stops included) over both visual pages with all details expanded; WCAG 2.1 AA thresholds 4.5:1 body / 3:1 large text",
+        "probe_totals": {
+          "zh_text_elements": 920,
+          "en_text_elements": 914
+        },
+        "defects_found": 4,
+        "fixes": [
+          {
+            "selector": "--red",
+            "before": "#d96850",
+            "after": "#a13d2a",
+            "min_ratio_after": 6.13
+          },
+          {
+            "selector": "--green",
+            "before": "#36a269",
+            "after": "#1c6b45",
+            "min_ratio_after": 6.17
+          },
+          {
+            "selector": ".jury-motion .tag",
+            "before": "#f1c164",
+            "after": "#8a5a00",
+            "min_ratio_after": 4.94
+          },
+          {
+            "selector": ".review-walk-shell button:disabled",
+            "before": "#79827f",
+            "after": "#5c6663",
+            "min_ratio_after": 5.94
+          }
+        ],
+        "result_after_fix": "zero elements below threshold on both pages with all details expanded",
+        "certification_note": "Programmatic WCAG-AA threshold verification only; it is not assistive-technology certification, human visual inspection or a legal compliance claim."
+      },
+      "html_semantics_r25": {
+        "contract_id": "JZ-HTML-SEMANTICS-R25",
+        "executed_at": "2026-08-15",
+        "method": "Deterministic HTML parse over both visual pages and both rendered reports: duplicate IDs, heading level order, in-page anchor targets, table header presence, html lang attribute",
+        "baseline_findings": {
+          "visual_pages": {
+            "duplicate_ids": 0,
+            "heading_skips": 0,
+            "missing_anchors": 0,
+            "tables": 16,
+            "th": 96
+          },
+          "reports": {
+            "duplicate_ids": 0,
+            "heading_skips": 1,
+            "missing_anchors": 0,
+            "tables": 32,
+            "th": 162
+          }
+        },
+        "fixes": [
+          {
+            "file": "proposal.md",
+            "heading": "30 秒 / 3 分钟 / 15 分钟阅读入口",
+            "before": "h3",
+            "after": "h2"
+          },
+          {
+            "file": "proposal.en.md",
+            "heading": "30-Second / 3-Minute / 15-Minute Entry",
+            "before": "h3",
+            "after": "h2"
+          }
+        ],
+        "result_after_fix": "0 heading skips in both re-rendered reports; Round 23 renderer media-link fix re-applied after re-render",
+        "certification_note": "Deterministic structural verification only; it is not assistive-technology certification or human visual inspection."
+      },
+      "a0_board8_backlink_r29": {
+        "contract_id": "JZ-A0-BOARD8-BACKLINK-R29",
+        "executed_at": "2026-08-15",
+        "method": "Deterministic bilingual A0 rebuild with the Round 20 pipeline (ReportLab invariant PDF, fontTools static weights, Chrome 4x JPX print layers, PyMuPDF lossless media streams) in two fresh processes; PyMuPDF text extraction over all four PDFs for the A0 board-8 and A3 P14 backlink lines",
+        "baseline_findings": {
+          "a0_zh_board8_backlink": false,
+          "a0_en_board8_backlink": false,
+          "a3_zh_p14_backlink": true,
+          "a3_en_p14_backlink": true
+        },
+        "fixes": [
+          {
+            "file": "drawings/a0-boards.pdf",
+            "board": 8,
+            "change": "added the review-handoff-index.json backlink line to the judgement box in both languages"
+          },
+          {
+            "file": "drawings/a0-boards.en.pdf",
+            "board": 8,
+            "change": "added the review-handoff-index.json backlink line to the judgement box in both languages"
+          }
+        ],
+        "result_after_fix": "8/8 pages in both A0 files, 0 blank pages, 0 replacement glyphs, 0 out-of-page text blocks, board-8 backlink searchable in both languages; two fresh-process builds byte-identical (zh 6e6373e39988f5057ba1c210d2aeb7b5d277c0862b6344aa5266b028f78b8899, en a9af5092c51f3abd2e1418bc5d6812855aec4163348276662e881b0c02912e6e); both A3 booklets keep the Round 20 fixed-point bytes",
+        "certification_note": "Deterministic rebuild and text-extraction verification only; it is not human visual inspection, field evidence or an approval of any kind."
+      },
+      "pdf_metadata_r30": {
+        "contract_id": "JZ-PDF-METADATA-R30",
+        "executed_at": "2026-08-15",
+        "baseline_findings": {
+          "placeholder_creation_mod_date_2000": 4,
+          "missing_document_lang": 4,
+          "outline_bookmarks": 0
+        },
+        "fixes": [
+          {
+            "file": "drawings/a3-booklet.pdf",
+            "lang": "zh-CN",
+            "bookmarks": 14,
+            "publication_date": "D:20260815000000+00'00'"
+          },
+          {
+            "file": "drawings/a3-booklet.en.pdf",
+            "lang": "en-US",
+            "bookmarks": 14,
+            "publication_date": "D:20260815000000+00'00'"
+          },
+          {
+            "file": "drawings/a0-boards.pdf",
+            "lang": "zh-CN",
+            "bookmarks": 8,
+            "publication_date": "D:20260815000000+00'00'"
+          },
+          {
+            "file": "drawings/a0-boards.en.pdf",
+            "lang": "en-US",
+            "bookmarks": 8,
+            "publication_date": "D:20260815000000+00'00'"
+          }
+        ],
+        "result_after_fix": "44 pages pixel-identical to the previous version at 60 dpi grayscale; two fresh-process builds byte-identical (A3 zh 34d3851690808649182d185a773b11b773c0c07f732c9e306a87e4bc600b0e22, A3 en 5c7b88d7e97052ca039b1ef6dbd3ea9add460aae1d4b9bd148a94d5b9e76048d, A0 zh ceb69fff31f0451e9577565e5fd522f2f0622b7301571dd051647f6c5ed9c9f4, A0 en 164c4cc81753649cd090134c11f8a33b5c8097d72e2890be4a2d5f435cddf3c8); 0 blank pages, 0 replacement glyphs, backlinks searchable in both languages",
+        "certification_note": "Deterministic rebuild and metadata verification only; PDF/UA conformance is not certified, and this is not human visual inspection or an approval."
+      },
+      "evidence_marker_parity_r31": {
+        "contract_id": "JZ-EVIDENCE-MARKER-PARITY-R31",
+        "executed_at": "2026-08-15",
+        "method": "Per-chapter bilingual evidence-marker audit over proposal.md and proposal.en.md: five marker kinds counted per subsection heading; marker value multisets compared across languages",
+        "baseline_findings": {
+          "marker_value_parity": "identical multisets (source 83, standard 8, depth 15, data 106, metric 109 per language)",
+          "chapters_with_differing_marker_placement": 4
+        },
+        "fixes": [
+          {
+            "file": "proposal.en.md",
+            "chapter": "The Century-Time Museum",
+            "change": "moved the three source markers from the Cultural Content Source opening sentence into the Strategic Proposition closing sentence, matching the authoritative Chinese placement"
+          },
+          {
+            "file": "proposal.en.md",
+            "chapter": "Public Mission Economy",
+            "change": "moved the three source markers from the Mechanism Contract opening sentence into the Strategic Proposition closing sentence, matching the authoritative Chinese placement"
+          }
+        ],
+        "result_after_fix": "0 chapters with differing marker placement; totals unchanged (83/8/15/106/109 per language); both reports re-rendered with the Round 23 media-link fix re-applied; the Chinese HTML re-render is byte-identical to the previous version; the review handoff index now records evidence_markers_en for all 21 chapter units",
+        "certification_note": "Marker placement and value parity are machine checks only; they do not certify translation equivalence beyond structure and counts."
+      },
+      "formal_visual_metrics_r32": {
+        "contract_id": "JZ-FORMAL-VISUAL-METRICS-R32",
+        "executed_at": "2026-08-15",
+        "rule_layer_basis": "The repository taskbook formal_visual_metrics_contract, formal-submission-guide section 9, SKILL.md and visual_review.py now require the three core visual metrics (site_area_sqm, green_ratio, public_space_ratio) to be known, finite, recomputable from submitted geometry, and declared with matching numeric data-values in visual/index.html; this round responds to that rule-layer change.",
+        "recomputation": {
+          "method": "pyproj EPSG:4326 to EPSG:4548 transformation, planar polygon area via shoelace over each ring",
+          "site_area_sqm": 11412825.38562,
+          "recorded_site_area_sqm": 11412825.385554,
+          "site_area_delta_sqm": 0.000066,
+          "green_ratio": 0.126157,
+          "recorded_green_ratio": 0.126157,
+          "green_ratio_delta": 0.0000004488281,
+          "public_space_ratio": 0.012831,
+          "recorded_public_space_ratio": 0.012831,
+          "public_space_ratio_delta": -0.00000002856859,
+          "feature_counts": {"site_boundary": 1, "green_space": 16, "public_space": 9}
+        },
+        "fixes": [
+          {
+            "file": "metrics.json",
+            "change": "added an explicit recalculation_trigger to site_area_sqm, green_ratio and public_space_ratio stating that each value must be recalculated from the official polygons once the repository publishes official boundary/green/public-space geometry"
+          },
+          {
+            "file": "visual/index.html",
+            "change": "metric card labels for the three core metrics now carry the recalculation trigger (非官方 · 官方边界发布后复算 / 非绩效 · 官方几何发布后复算); numeric data-values unchanged"
+          },
+          {
+            "file": "visual/index.en.html",
+            "change": "metric card labels for the three core metrics now carry the recalculation trigger (NOT OFFICIAL · RECALCULATED ON OFFICIAL BOUNDARY RELEASE / NOT PERFORMANCE · RECALCULATED ON OFFICIAL GEOMETRY RELEASE); numeric data-values unchanged"
+          }
+        ],
+        "result_after_fix": "visual_review.py (current rule layer) passes with 0 issues; all three metrics remain status=known with confidence=low, provisional assumptions, formulas and geometry source_files; HTML data-values match metrics.json exactly",
+        "certification_note": "Recomputation and gate conformance are machine checks only; they do not turn provisional geometry into an official redline, precise area or planning control."
+      },
+      "evidence_integrity_r33": {
+        "contract_id": "JZ-EVIDENCE-INTEGRITY-R33",
+        "executed_at": "2026-08-15",
+        "method": "The review handoff index generator now enforces, on every regeneration, five machine-checkable invariants: every [source:…]/[assumption:…]/[metric:…] marker resolves to a record in sources.json/assumptions.json/metrics.json; every [data:…] marker resolves to a package file on disk (fragment ignored); zh/en marker value multisets are identical per kind; zh/en heading counts are equal; every reading-route entry-point anchor exists in both visual pages. Any violation fails regeneration.",
+        "baseline_findings": {
+          "source_markers_resolved": "50/50 per language",
+          "assumption_markers_resolved": "23/23 per language",
+          "metric_markers_resolved": "80/80 per language",
+          "data_markers_resolved": "79/79 per language",
+          "standard_depth_markers": "non-empty, well-formed per language",
+          "marker_value_multiset_parity": "identical per kind",
+          "heading_parity": "86/86",
+          "route_anchor_resolution": "0 missing",
+          "ledger_parent_refs": "all resolve (bare names are ledger-directory-relative, fragments are JSON pointers)",
+          "source_rights_evidence_mapping": "50/50 both directions"
+        },
+        "result": "review-handoff-index.json now carries an evidence_integrity block recording these checks with generator_enforced=true; regeneration passed with 0 violations",
+        "certification_note": "Structural machine checks only; they do not certify translation semantics, field evidence or rights clearance."
+      },
+      "html_publication_metadata_r33": {
+        "contract_id": "JZ-HTML-PUBLICATION-METADATA-R33",
+        "executed_at": "2026-08-15",
+        "method": "Head-section audit over the four HTML surfaces (visual/index.html, visual/index.en.html, report/proposal.html, report/proposal.en.html)",
+        "baseline_findings": {
+          "missing_meta_description": 4,
+          "title_present": 4,
+          "lang_attribute": "zh-CN / en / zh-CN / en",
+          "viewport_present": 4
+        },
+        "fixes": [
+          {"file": "visual/index.html", "change": "added bilingual meta description"},
+          {"file": "visual/index.en.html", "change": "added English meta description"},
+          {"file": "report/proposal.html", "change": "added bilingual meta description"},
+          {"file": "report/proposal.en.html", "change": "added English meta description"}
+        ],
+        "result_after_fix": "4/4 surfaces carry a meta description consistent with their language and boundary disclosure",
+        "maintenance_note": "The report HTML files are renderer-generated; their meta descriptions are re-applied after every future re-render, same as the Round 23 media-link fix.",
+        "certification_note": "Publication metadata completeness only; not SEO, accessibility or approval certification."
+      },
+      "boundary_uncertainty_background_r34": {
+        "contract_id": "JZ-BOUNDARY-UNCERTAINTY-BACKGROUND-R34",
+        "executed_at": "2026-08-15",
+        "rule_layer_basis": "The repository site-package geometry basis gained a 2026-08-14 independent background check comparing the four announcement-named street centrelines (大钟寺东路, 荷清路, 学院路, 西土城路) with the registered provisional boundary edges at the same latitudes: east deviations of 533-898 m, mean about 667 m. The basis document states this does not prove PROV-SITE-001 wrong, is not a source-registry replay, and must not reverse-upgrade, replace or block the official boundary or scoring before official polygons are published.",
+        "changes": [
+          {
+            "file": "visual/index.html",
+            "change": "the three-frame site-reading notice now also cites the street-centreline background reading (533-898 m east, mean about 667 m) as background only, with no geometry shift"
+          },
+          {
+            "file": "visual/index.en.html",
+            "change": "equivalent English notice updated"
+          },
+          {
+            "file": "assumptions.json",
+            "change": "A-SITE-READING-020 statement and impact now record the street-centreline background reading as one quantitative uncertainty datum with no boundary, metric, scene, project or key-area state change"
+          }
+        ],
+        "result": "Package boundary disclosures now carry both maintainer background checks (issue-846 park-polygon divergence and the 2026-08-14 street-centreline reading) with the same background-only boundary; geometry files remain untouched",
+        "certification_note": "Background-check citation only; it does not adjust geometry, metrics, maturity or rights state, and it is not an official boundary determination."
+      },
+      "rights_ledger_coherence_r35": {
+        "contract_id": "JZ-RIGHTS-LEDGER-COHERENCE-R35",
+        "executed_at": "2026-08-15",
+        "method": "Full ledger-vs-disk digest audit over all 139 digest-bearing asset_records, plus git history inspection of the affected files",
+        "baseline_findings": {
+          "stale_digests": 13,
+          "stale_asset_ids": ["ASSET-002", "ASSET-014", "ASSET-016", "ASSET-017", "ASSET-019", "ASSET-025", "ASSET-065", "ASSET-066", "ASSET-067", "ASSET-068", "ASSET-100", "ASSET-117", "ASSET-118"],
+          "root_cause": "A foreign restore commit (b6c05fffe, merged via PR #2782 into main before Round 29) rewrote rights-clearance-ledger.json back to an older snapshot, leaving 13 digest entries stale relative to files later updated by Rounds 20-28; the manifest remained correct because refresh recomputes hashes from disk, and no gate verified ledger digests until now",
+          "manifest_coherent": true
+        },
+        "fixes": [
+          {
+            "file": "visual/assets/rights-clearance-ledger.json",
+            "change": "all 13 stale content_identity digests re-synced to actual disk bytes with digest_status matches_final_manifest_after_refresh"
+          }
+        ],
+        "enforcement": "The review handoff index generator's evidence-integrity check now also verifies every ledger digest against disk on every regeneration (ledger_digest_coherence), failing generation on any mismatch",
+        "certification_note": "Digest coherence is a machine bookkeeping check; it grants no rights clearance and changes no file content or maturity state."
+      },
+      "freshness_audit_r35": {
+        "contract_id": "JZ-FRESHNESS-AUDIT-R35",
+        "executed_at": "2026-08-15",
+        "method": "Second execution of the Round 21 freshness mechanism: all 50 sources re-checked (local path SHA-256 or live HTTP re-fetch), refresh_records replaced and summary updated in evidence-freshness-policy.json",
+        "baseline_findings": {
+          "verified_current": 48,
+          "review_due": 2,
+          "review_due_ids": ["CASE-22AT", "CASE-KINGS-CROSS"],
+          "digest_changed_since_r21": 15
+        },
+        "digest_changed_groups": {
+          "repo_internal": ["AGENT-TASKBOOK", "PROVISIONAL-BOUNDARY-BASIS", "SITE-PACKAGE directory", "five proposal.md-derived sources"],
+          "http": ["CASE-KENDALL", "CASE-MARS", "CASE-ONE-NORTH", "CASE-STATION-F", "OSM-CONTEXT"]
+        },
+        "result": "refresh_records now carry 50 Round 35 records; summary updated to audit_round r35, executed 2026-08-15, 48/2/50; review_due set is identical to Round 21 and freezes upgrades without deleting any statement",
+        "certification_note": "Freshness digests fix the bytes retrieved this pass only and are not publisher signatures; the audit is not a rights clearance or a validity guarantee."
       },
       "replay_expectations": {
         "t02_fixture_count": 10,

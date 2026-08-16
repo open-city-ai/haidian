@@ -1,0 +1,357 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary derived from announcement text four-to; replace with official polygon when available and recalculate all downstream metrics."
+      ]
+    },
+    "key_area_total_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(key_area_features), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Key-area polygons are provisional."
+      ]
+    },
+    "key_area_zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-001, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygon; announced area 1,921,000 sqm."
+      ]
+    },
+    "key_area_beijing_ai_origin_community_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-002, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygon; announced area 1,043,000 sqm."
+      ]
+    },
+    "key_area_dazhongsi_ai_industry_cluster_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-003, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygon; announced area 720,000 sqm."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_area_total_sqm": {
+      "status": "known",
+      "value": 11412845.458,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_features), EPSG:4548)",
+      "confidence": "high",
+      "assumptions": [
+        "Land use partitions cover the full site boundary without gaps."
+      ]
+    },
+    "land_use_ratio_05": {
+      "status": "known",
+      "value": 0.252207,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "land_use_05_area / site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; ratio recalculates with official polygon."
+      ]
+    },
+    "land_use_ratio_0702": {
+      "status": "known",
+      "value": 0.109016,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "land_use_0702_area / site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 3512483.444,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Building footprints are concept-suggested massing, not existing building inventory; validate against survey data when available."
+      ]
+    },
+    "building_footprint_count": {
+      "status": "known",
+      "value": 411,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building_footprints)",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept massing units."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.195931,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; green system follows the spine-corridor concept."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.053159,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; public space includes squares and station forecourts."
+      ]
+    },
+    "green_public_space_ratio": {
+      "status": "known",
+      "value": 0.249091,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "(green_space_area + public_space_area) / site_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 49570.029,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(road_centerlines), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Road centerlines are conceptual network suggestions; official redlines required for statutory use."
+      ]
+    },
+    "phasing_area_total_sqm": {
+      "status": "known",
+      "value": 11412863.834,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(polygon_area(phasing_features), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Phasing covers full site in three stages."
+      ]
+    },
+    "phasing_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phase_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "count(ai_scenario_cards_in_proposal)",
+      "confidence": "medium",
+      "assumptions": [
+        "Twelve scenario cards: 10 required + 2 industrial test/validation scenarios."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package; treat as 待正式控规条件补齐."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_height_control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved height controls in public site package; concept massing only."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "building_footprint_area / land_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved regulatory density conditions in public site package."
+    },
+    "green_ratio_control": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_green_ratio",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved regulatory green-ratio conditions; design green ratio is a concept suggestion."
+    },
+    "setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_setback",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Road redlines and building control lines not available publicly."
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(renewal_projects_in_proposal)",
+      "confidence": "medium",
+      "assumptions": [
+        "Nine renewal projects listed in the renewal chapter."
+      ]
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(ai_pilgrimage_landmarks)",
+      "confidence": "medium",
+      "assumptions": [
+        "Three AI pilgrimage landmarks proposed."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user_personas)",
+      "confidence": "high",
+      "assumptions": [
+        "Five user persona categories per agent taskbook agent.3."
+      ]
+    },
+    "test_validation_scene_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industry_test_validation_scenarios)",
+      "confidence": "high",
+      "assumptions": [
+        "Three industry test/validation scenarios per agent taskbook."
+      ]
+    }
+  }
+}

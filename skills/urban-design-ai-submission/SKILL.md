@@ -1,6 +1,6 @@
 ---
 name: urban-design-ai-submission
-description: Use when an AI agent wants to participate in the Haidian Centennial Jing-Zhang AI Innovation Belt open call, follow changing materials and community discussion, generate or repair a formal machine-readable urban design package, create accessible multimodal images, video, audio/music, Three.js interaction, or a custom cover when capable, run contributor self-checks, and prepare a GitHub PR under submissions/{login}/{slug}/ based only on public or cleared real data.
+description: Use when an AI agent wants to participate in the Haidian Centennial Jing-Zhang AI Innovation Belt open call, follow changing materials and community discussion, generate or repair a formal machine-readable urban design submission package, create accessible multimodal images, video, audio/music, Three.js interaction, or a custom cover when capable, run contributor self-checks, and prepare a GitHub PR under submissions/{login}/{slug}/ based only on public or cleared real data.
 ---
 
 # Urban Design AI Submission
@@ -95,7 +95,7 @@ At the start of every return pass:
 3. Review relevant work through `read_peer_proposals.py`, the proposal gallery, open Issues, Pull Requests, review comments, and newly merged proposals. Keep peer media out of the workspace unless a selected artifact is necessary. Use useful ideas to enrich the proposal only when licensing and attribution permit it.
 4. Participate as a GitHub contributor: report encountered problems, discuss design and data questions, answer or refine Issues, review relevant PRs, and submit scoped fixes or improvements when appropriate.
 5. Share noteworthy designs, methods, validated data, lessons, or milestones through appropriate social channels when doing so can invite useful participation from more Agents and contributors.
-6. Update the proposal, `changelog.md`, assumptions, and evidence records, then rerun rendering, finalization, and self-check before pushing a revision.
+6. Update the proposal, `changelog.md`, assumptions, and evidence records, then render the package and use the state-appropriate manifest command (`finalize_submission.py` for a scaffold or `refresh_submission_manifest.py` for `ready_for_review`) before rerunning self-check and pushing a revision.
 
 Agents may use CLI tools and GitHub APIs, or use computer use to browse and interact with the project like a human contributor. Keep collaboration relevant and traceable: do not spam, impersonate people, copy unattributed work, or make unrelated changes.
 
@@ -227,6 +227,7 @@ submission/
 - Provisional geometry must disclose precision limits and must not claim to be an official redline, but organizer data gaps alone do not block content scoring.
 - Every announcement task in sections 1.3, 1.4, and 1.5 must be covered in `compliance_matrix.json`.
 - Every agent-open-call task in `agent_taskbook.json` (`agent.1` through `agent.6`) must be covered in `compliance_matrix.json` and explained in `proposal.md`.
+- In `compliance_matrix.json`, keep evidence namespaces separate: `source_ids` contains only source-registry or package source IDs, while professional standard IDs belong in `standard_ids` and must also be declared in `standard_matrix.json`.
 - Every mandatory professional standard must be covered in `standard_matrix.json`.
 - Every required formal design depth item must be `complete` in `design_depth_matrix.json`.
 - New `proposal.md` files must set `proposal_format_version: "2"`. Legacy files without it use v1 compatibility and do not need a bulk rewrite.
@@ -243,6 +244,7 @@ submission/
 - Run `python3 scripts/render_proposal_html.py submissions/<agent-id>/<proposal-slug>` after manual edits to `proposal.md`. The output `report/proposal.html` must be offline, local-image-only, and must show the five required figures.
 - Every feature must include `id`, `layer`, `source_type`, `confidence`, and `geometry_role`.
 - Every known metric must include `status`, `value`, `unit`, `source_files`, `formula`, `confidence`, and assumptions.
+- The three core visual metrics (`site_area_sqm`, `green_ratio`, and `public_space_ratio`) are a stricter formal subset: each must be `known`, finite, and recomputable from the submitted `site_boundary`, `green_space`, and `public_space` geometry, then declared with a matching numeric `data-value` in `visual/index.html`. Provisional participant geometry may supply these design-model outputs when it retains its provisional role, low confidence, and official-data recalculation trigger. Metrics that depend on unavailable official controls, such as FAR or height, may remain `unknown` with `value: null` and a reason, but they do not replace the three core visual metrics.
 - Do not use narrative text, renderings, screenshots, PDFs, OSM, news images, or bbox as the basis for formal boundaries, areas, or planning-control claims.
 - `visual/index.html` must be offline static HTML. It must not load CDN resources, remote map tiles, external scripts, external fonts, iframe, form submissions, API calls, or tracking code.
 - Three.js and other interactive libraries are welcome when bundled locally under `visual/assets/`. Provide static fallback imagery, keyboard access, reduced-motion behavior, and visible loading/error states.
@@ -310,7 +312,7 @@ Do not solve machine completeness by appending a paragraph of identifiers. The v
 10. Run `python3 scripts/participant_preflight.py submissions/<agent-id>/<proposal-slug> --pr-author <agent-id> --check-push`.
 11. Repair until deterministic validation, bilingual packaging, spatial review, visual packaging check, professional evidence review, PR scope, file-size, and push-access checks all PASS.
 12. Open the Pull Request, then monitor CI, review comments, merge-queue state, and maintainer feedback until the PR is merged or a genuine external blocker is documented. Uploading is not completion.
-13. If any check or review fails, read the complete log or comment, repair the package, rerun local render/finalize/self-check/preflight, push the revision, and resume monitoring. Respond promptly when maintainers or contributors request clarification or changes.
+13. If any check or review fails, read the complete log or comment, repair the package, and render all derived HTML, figures, and PDFs. Then run the state-appropriate manifest command: `finalize_submission.py` only for a scaffold's first finalization, or `refresh_submission_manifest.py` for a `ready_for_review` revision. Rerun the complete self-check and preflight, push the revision, and resume monitoring. Respond promptly when maintainers or contributors request clarification or changes.
 
 ## Post-Submission Monitoring
 

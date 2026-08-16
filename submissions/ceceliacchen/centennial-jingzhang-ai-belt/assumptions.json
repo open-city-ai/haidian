@@ -1,0 +1,65 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "assumption_id": "A-CONTROLS-001",
+      "title_zh": "总体边界为临时粗略边界",
+      "title_en": "Overall boundary is a provisional rough constraint",
+      "status": "provisional",
+      "required_for_formal_submission": true,
+      "impacts": [
+        "site_area_sqm",
+        "land_use partition",
+        "key_area areas",
+        "all area ratios"
+      ],
+      "recalc_trigger": "取得资格预审/任务书官方红线后，替换 geometry/site_boundary.geojson 并重算 metrics.json 与全部依赖图层。",
+      "official_value": null
+    },
+    {
+      "assumption_id": "A-CONTROLS-002",
+      "title_zh": "三处重点区域为方向性占位",
+      "title_en": "Three key areas are directional placeholders",
+      "status": "provisional",
+      "required_for_formal_submission": true,
+      "impacts": [
+        "key_area_zhongzhiyuan_sqm",
+        "key_area_beijing_ai_origin_sqm",
+        "key_area_dazhongsi_sqm"
+      ],
+      "recalc_trigger": "取得官方三区 polygon 后替换 geometry/key_areas.geojson，面积以公告为准（192.1/104.3/72.0 ha）。",
+      "official_value": {
+        "zhongzhiyuan_ai_acceleration_area": 1921000,
+        "beijing_ai_origin_community": 1043000,
+        "dazhongsi_ai_industry_cluster": 720000
+      }
+    },
+    {
+      "assumption_id": "A-CONTROLS-003",
+      "title_zh": "建筑层数与开发强度为假设",
+      "title_en": "Building floors and development intensity are assumed",
+      "status": "unknown",
+      "required_for_formal_submission": true,
+      "impacts": [
+        "total_floor_area_sqm",
+        "floor_area_ratio",
+        "building_density"
+      ],
+      "recalc_trigger": "取得现状建筑、容积率与控规条件后替换 buildings.geojson 并复算。",
+      "official_value": null
+    },
+    {
+      "assumption_id": "A-CONTROLS-004",
+      "title_zh": "道路面积为中心线缓冲近似",
+      "title_en": "Road area is a centerline-buffer approximation",
+      "status": "low_confidence",
+      "required_for_formal_submission": false,
+      "impacts": [
+        "road_area_sqm",
+        "road_ratio"
+      ],
+      "recalc_trigger": "取得道路红线与横断面后复算 road_area。",
+      "official_value": null
+    }
+  ]
+}

@@ -1,0 +1,2048 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "note_zh": "本矩阵把公告与任务书的强制要求逐条映射到正文章节、几何图层、指标、图纸、网页版面、来源、假设与自检项，任一指针失效都会被 validate_v3.py 判为不合规。",
+  "requirements": [
+    {
+      "requirement_id": "agent.1",
+      "title_zh": "一带总体概念与功能统筹方案设计",
+      "mandatory": true,
+      "report_sections": [
+        "s1-concept",
+        "s2-identity",
+        "s3-structure",
+        "s4-region",
+        "s5-planning"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/scope_areas.geojson",
+        "geometry/key_areas.geojson",
+        "geometry/ai_service_zones.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "site_area_official_sqm",
+        "site_area_deviation_ratio",
+        "research_area_official_sqm",
+        "key_area_official_sqm",
+        "key_area_count",
+        "ai_service_zone_count",
+        "ai_service_zone_area_sqm",
+        "ai_service_zone_ratio"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v2-identity",
+        "v3-structure",
+        "v4-region"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK",
+        "SRC-BRIEF",
+        "SRC-BJMP",
+        "SRC-AI"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY",
+        "A-AREA-CRS-4548",
+        "A-KEYAREA-INTERNAL-STRUCTURE"
+      ],
+      "self_check_ids": [
+        "SC_GEOM_BOUNDARY_ADOPTED",
+        "SC_GEOM_KEY_AREA_COUNT",
+        "SC_NO_STATUTORY_CONCLUSION",
+        "SC_PROPOSAL_SECTION_COVERAGE",
+        "SC_OFFICIAL_BOUNDARY_GAP"
+      ],
+      "evidence_zh": "以“三区两翼”对应任务书结构，命名体系与 Logo 方向在 s2-identity 给出可延展规则，总体结构图由 ai_service_zones.geojson 五个分区几何直接驱动。"
+    },
+    {
+      "requirement_id": "agent.2",
+      "title_zh": "AI 全栈自主创新体系与世界级 AI 创新生态设计",
+      "mandatory": true,
+      "report_sections": [
+        "s6-ecosystem",
+        "s7-benchmark",
+        "s8-factors"
+      ],
+      "geojson_layers": [
+        "geometry/ai_service_zones.geojson",
+        "geometry/key_areas.geojson",
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson",
+        "geometry/parcels.geojson"
+      ],
+      "metrics": [
+        "land_use_area_0802_sqm",
+        "land_use_ratio_0802",
+        "estimated_research_gfa_sqm",
+        "research_land_share_of_developable_ratio",
+        "developable_land_area_sqm",
+        "developable_land_ratio",
+        "parcel_count",
+        "parcel_mean_area_sqm"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v5-ecosystem",
+        "v6-benchmark"
+      ],
+      "source_ids": [
+        "SRC-GLOBAL",
+        "SRC-STATIONF",
+        "SRC-ONENORTH",
+        "SRC-KINGSCROSS",
+        "SRC-KENDALL",
+        "SRC-ZHANGJIANG",
+        "SRC-HETAO",
+        "SRC-CANADA",
+        "SRC-HIGHLINE",
+        "SRC-AI"
+      ],
+      "assumption_ids": [
+        "A-LANDUSE-CONCEPT",
+        "A-BUILDING-STOREY",
+        "A-OFFICIAL-CONTROL-MISSING"
+      ],
+      "self_check_ids": [
+        "SC_BENCHMARK_MIN5",
+        "SC_SOURCE_TRACEABILITY",
+        "SC_METRIC_SOURCE_LINK",
+        "SC_OFFICIAL_CONTROL_GAP"
+      ],
+      "evidence_zh": "8 个全球对标案例逐条给出可迁移机制与本地适配限制；要素保障机制覆盖土地、空间、产业、资金、人才、算力、数据、场景八类，未编造企业名单与投资额。"
+    },
+    {
+      "requirement_id": "agent.3",
+      "title_zh": "AI+场景赋能新范式与智能化 AI 活力城市设计",
+      "mandatory": true,
+      "report_sections": [
+        "s9-scenarios",
+        "s10-personas",
+        "s11-testbeds",
+        "s12-privacy"
+      ],
+      "geojson_layers": [
+        "geometry/scenario_nodes.geojson",
+        "geometry/ai_service_zones.geojson",
+        "geometry/public_space.geojson",
+        "geometry/roads.geojson",
+        "geometry/green_space.geojson"
+      ],
+      "metrics": [
+        "scenario_node_count",
+        "scenario_node_human_review_ratio",
+        "public_space_area_sqm",
+        "public_space_feature_count",
+        "pedestrian_access_count",
+        "heritage_park_length_m"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v7-scenarios",
+        "v8-publicspace"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK",
+        "SRC-AI",
+        "SRC-PARK"
+      ],
+      "assumption_ids": [
+        "A-SCENARIO-GOVERNANCE",
+        "A-POPULATION-EMPLOYMENT-UNKNOWN"
+      ],
+      "self_check_ids": [
+        "SC_SCENARIO_CARD_MIN10",
+        "SC_PERSONA_MIN5",
+        "SC_TESTBED_MIN3",
+        "SC_PRIVACY_HUMAN_REVIEW",
+        "SC_POPULATION_GAP"
+      ],
+      "evidence_zh": "14 张场景卡逐一落到 scenario_nodes.geojson 的具体点位，每张卡写明空间载体、运营主体、数据边界与人工复核环节；8 类画像覆盖研究者、创业者、通勤者、居民、老年人、儿童、无障碍使用者与访客。"
+    },
+    {
+      "requirement_id": "agent.4",
+      "title_zh": "AI 公共空间、智能原生新业态与朝圣地标设计",
+      "mandatory": true,
+      "report_sections": [
+        "s13-publicspace",
+        "s14-landmarks",
+        "s15-components",
+        "s22-bluegreen"
+      ],
+      "geojson_layers": [
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/heritage_protection.geojson",
+        "geometry/roads.geojson",
+        "geometry/scenario_nodes.geojson"
+      ],
+      "metrics": [
+        "green_open_space_area_sqm",
+        "green_open_space_ratio",
+        "green_space_layer_area_sqm",
+        "green_space_feature_count",
+        "land_use_area_1401_sqm",
+        "land_use_ratio_1401",
+        "land_use_area_1403_sqm",
+        "heritage_park_length_m",
+        "heritage_study_extent_area_sqm",
+        "ew_reconnection_count",
+        "ew_new_road_count"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v8-publicspace",
+        "v9-landmarks"
+      ],
+      "source_ids": [
+        "SRC-PARK",
+        "SRC-HIGHLINE",
+        "SRC-KINGSCROSS",
+        "SRC-STATIONF"
+      ],
+      "assumption_ids": [
+        "A-HERITAGE-EXTENT-INDICATIVE",
+        "A-LANDUSE-CONCEPT",
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC_LANDMARK_MIN3",
+        "SC_HERITAGE_REDLINE_GAP",
+        "SC_NO_STATUTORY_CONCLUSION",
+        "SC_GEOM_CONTAINMENT"
+      ],
+      "evidence_zh": "东西缝合以 6 条断点贯通 + 新增东西向道路实现，南北贯通以 9.7 km 遗址公园慢行主脊串联；5 处朝圣地标全部避让文保研究示意范围，不涉及桥隧与地下工程结论。"
+    },
+    {
+      "requirement_id": "agent.5",
+      "title_zh": "百年京张文化、中关村文化与 AI 新文化融合叙事设计",
+      "mandatory": true,
+      "report_sections": [
+        "s16-culture",
+        "s17-signage",
+        "s2-identity"
+      ],
+      "geojson_layers": [
+        "geometry/heritage_protection.geojson",
+        "geometry/existing_rail.geojson",
+        "geometry/public_space.geojson",
+        "geometry/scenario_nodes.geojson"
+      ],
+      "metrics": [
+        "heritage_study_extent_area_sqm",
+        "heritage_park_length_m",
+        "public_space_feature_count",
+        "scenario_node_count"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v10-culture",
+        "v2-identity"
+      ],
+      "source_ids": [
+        "SRC-PARK",
+        "SRC-AI",
+        "SRC-BJMP",
+        "SRC-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-HERITAGE-EXTENT-INDICATIVE",
+        "A-SCENARIO-GOVERNANCE"
+      ],
+      "self_check_ids": [
+        "SC_COPYRIGHT_STATEMENT",
+        "SC_HERITAGE_REDLINE_GAP",
+        "SC_PROPOSAL_BILINGUAL"
+      ],
+      "evidence_zh": "文化叙事以“1909—2019—2035 三次技术跨越”组织，导视系统与一带 Logo 系统分层，全部图形自制，未使用未授权字体、商标或肖像。"
+    },
+    {
+      "requirement_id": "agent.6",
+      "title_zh": "一带全球 AI 创新活动体系与长期运营设计",
+      "mandatory": true,
+      "report_sections": [
+        "s18-events",
+        "s19-operation",
+        "s24-phasing"
+      ],
+      "geojson_layers": [
+        "geometry/ai_service_zones.geojson",
+        "geometry/scenario_nodes.geojson",
+        "geometry/public_space.geojson",
+        "geometry/phasing.geojson"
+      ],
+      "metrics": [
+        "phase_count",
+        "phase_1_area_sqm",
+        "phase_2_area_sqm",
+        "phase_3_area_sqm",
+        "phase_1_ratio",
+        "phase_2_ratio",
+        "phase_3_ratio",
+        "phasing_coverage_ratio",
+        "scenario_node_count",
+        "ai_service_zone_count"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v11-operation",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK",
+        "SRC-STATIONF",
+        "SRC-ONENORTH",
+        "SRC-KENDALL"
+      ],
+      "assumption_ids": [
+        "A-PHASE-SPLIT",
+        "A-SCENARIO-GOVERNANCE"
+      ],
+      "self_check_ids": [
+        "SC_MATRIX_REF_RESOLVE",
+        "SC_NO_STATUTORY_CONCLUSION",
+        "SC_PROPOSAL_SECTION_COVERAGE"
+      ],
+      "evidence_zh": "年度活动体系给出主办、协办、开发者社区与场景开放四层运营机制与转化路径，分期与 phasing.geojson 三期几何一一对应，未把设想活动写成已定安排。"
+    },
+    {
+      "requirement_id": "dimension.objective_alignment",
+      "title_zh": "评审维度 · 目标契合度",
+      "mandatory": true,
+      "report_sections": [
+        "s1-concept",
+        "s5-planning"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/scope_areas.geojson",
+        "geometry/ai_service_zones.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "key_area_official_sqm",
+        "ai_service_zone_ratio"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v3-structure"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK",
+        "SRC-BJMP"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC_PROPOSAL_SECTION_COVERAGE"
+      ],
+      "evidence_zh": "以“全球 AI 产业高地 + 朝圣地”双目标组织总体概念，并把每一条策略回接到公告与总规表述。"
+    },
+    {
+      "requirement_id": "dimension.function_match",
+      "title_zh": "评审维度 · 功能匹配度",
+      "mandatory": true,
+      "report_sections": [
+        "s3-structure",
+        "s6-ecosystem"
+      ],
+      "geojson_layers": [
+        "geometry/ai_service_zones.geojson",
+        "geometry/key_areas.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "ai_service_zone_count",
+        "key_area_count",
+        "land_use_ratio_0802"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v3-structure",
+        "v5-ecosystem"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK",
+        "SRC-BRIEF"
+      ],
+      "assumption_ids": [
+        "A-KEYAREA-INTERNAL-STRUCTURE",
+        "A-LANDUSE-CONCEPT"
+      ],
+      "self_check_ids": [
+        "SC_GEOM_KEY_AREA_COUNT"
+      ],
+      "evidence_zh": "三大定位、五大功能、三区两翼逐项对位，五个 AI_SERVICE_ZONE 几何即为三区两翼的空间投影。"
+    },
+    {
+      "requirement_id": "dimension.brand_identity",
+      "title_zh": "评审维度 · 品牌识别度",
+      "mandatory": true,
+      "report_sections": [
+        "s2-identity",
+        "s17-signage"
+      ],
+      "geojson_layers": [
+        "geometry/public_space.geojson",
+        "geometry/scenario_nodes.geojson"
+      ],
+      "metrics": [
+        "public_space_feature_count",
+        "scenario_node_count"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v2-identity",
+        "v10-culture"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK",
+        "SRC-PARK"
+      ],
+      "assumption_ids": [
+        "A-SCENARIO-GOVERNANCE"
+      ],
+      "self_check_ids": [
+        "SC_COPYRIGHT_STATEMENT"
+      ],
+      "evidence_zh": "命名体系给出中英文主名、缩写、子品牌规则与禁用清单，Logo 方向以“轨迹 + 节点”几何母题延展。"
+    },
+    {
+      "requirement_id": "dimension.regional_synergy",
+      "title_zh": "评审维度 · 区域协同性",
+      "mandatory": true,
+      "report_sections": [
+        "s4-region"
+      ],
+      "geojson_layers": [
+        "geometry/scope_areas.geojson",
+        "geometry/existing_rail.geojson",
+        "geometry/ai_service_zones.geojson"
+      ],
+      "metrics": [
+        "research_area_official_sqm",
+        "research_area_recomputed_sqm",
+        "site_area_official_sqm"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v4-region"
+      ],
+      "source_ids": [
+        "SRC-BJMP",
+        "SRC-AI",
+        "SRC-BRIEF"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY",
+        "A-AREA-CRS-4548"
+      ],
+      "self_check_ids": [
+        "SC_GEOM_CRS",
+        "SC_OFFICIAL_BOUNDARY_GAP"
+      ],
+      "evidence_zh": "以 43.6 km² 协同研究范围为载体，说明与北纬社区、未来科学城、怀柔科学城、经开区及京津冀的分工。"
+    },
+    {
+      "requirement_id": "dimension.planning_innovation",
+      "title_zh": "评审维度 · 规划创新性",
+      "mandatory": true,
+      "report_sections": [
+        "s5-planning",
+        "s20-landuse",
+        "s23-guidelines"
+      ],
+      "geojson_layers": [
+        "geometry/land_use.geojson",
+        "geometry/parcels.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "metrics": [
+        "land_use_partition_closure_ratio",
+        "developable_land_ratio",
+        "estimated_far_site",
+        "parcel_count"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v3-structure",
+        "v12-metrics"
+      ],
+      "source_ids": [
+        "SRC-BJMP",
+        "SRC-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-LANDUSE-CONCEPT",
+        "A-BUILDING-STOREY",
+        "A-OFFICIAL-CONTROL-MISSING"
+      ],
+      "self_check_ids": [
+        "SC_GEOM_PARTITION",
+        "SC_OFFICIAL_CONTROL_GAP"
+      ],
+      "evidence_zh": "提出“场景单元”作为空间产业融合的规划单元，并以精确剖分的用地几何证明结构可核算。"
+    },
+    {
+      "requirement_id": "dimension.industry_support",
+      "title_zh": "评审维度 · 产业支撑度",
+      "mandatory": true,
+      "report_sections": [
+        "s6-ecosystem",
+        "s8-factors",
+        "s11-testbeds"
+      ],
+      "geojson_layers": [
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson",
+        "geometry/parcels.geojson",
+        "geometry/ai_service_zones.geojson"
+      ],
+      "metrics": [
+        "land_use_area_0802_sqm",
+        "estimated_research_gfa_sqm",
+        "estimated_gfa_sqm",
+        "research_land_share_of_developable_ratio"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v5-ecosystem",
+        "v6-benchmark"
+      ],
+      "source_ids": [
+        "SRC-AI",
+        "SRC-ZHANGJIANG",
+        "SRC-HETAO"
+      ],
+      "assumption_ids": [
+        "A-BUILDING-STOREY",
+        "A-LANDUSE-CONCEPT"
+      ],
+      "self_check_ids": [
+        "SC_TESTBED_MIN3",
+        "SC_EXISTING_SURVEY_GAP"
+      ],
+      "evidence_zh": "八类要素保障机制与四个测试验证场景成对出现，每项机制标明主体、载体与开放条件。"
+    },
+    {
+      "requirement_id": "dimension.scenario_perceptibility",
+      "title_zh": "评审维度 · 场景可感知度",
+      "mandatory": true,
+      "report_sections": [
+        "s9-scenarios",
+        "s13-publicspace"
+      ],
+      "geojson_layers": [
+        "geometry/scenario_nodes.geojson",
+        "geometry/public_space.geojson",
+        "geometry/roads.geojson"
+      ],
+      "metrics": [
+        "scenario_node_count",
+        "pedestrian_access_count",
+        "heritage_park_length_m"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v7-scenarios",
+        "v8-publicspace"
+      ],
+      "source_ids": [
+        "SRC-PARK",
+        "SRC-HIGHLINE"
+      ],
+      "assumption_ids": [
+        "A-SCENARIO-GOVERNANCE"
+      ],
+      "self_check_ids": [
+        "SC_SCENARIO_CARD_MIN10"
+      ],
+      "evidence_zh": "14 张场景卡全部可在遗址公园慢行主脊上串联体验，形成一条连续的公共体验路径。"
+    },
+    {
+      "requirement_id": "dimension.spatial_clarity",
+      "title_zh": "评审维度 · 空间明确性",
+      "mandatory": true,
+      "report_sections": [
+        "s3-structure",
+        "s9-scenarios",
+        "s20-landuse"
+      ],
+      "geojson_layers": [
+        "geometry/key_areas.geojson",
+        "geometry/scenario_nodes.geojson",
+        "geometry/land_use.geojson",
+        "geometry/parcels.geojson"
+      ],
+      "metrics": [
+        "key_area_count",
+        "key_area_share_of_site_ratio",
+        "land_use_feature_count",
+        "scenario_node_count"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v3-structure",
+        "v7-scenarios"
+      ],
+      "source_ids": [
+        "SRC-BRIEF",
+        "SRC-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-KEYAREA-INTERNAL-STRUCTURE",
+        "A-LANDUSE-CONCEPT"
+      ],
+      "self_check_ids": [
+        "SC_GEOM_CONTAINMENT",
+        "SC_GEOM_ID_UNIQUE"
+      ],
+      "evidence_zh": "每条策略都写明落在哪个重点区、哪条街道或哪类空间，并给出对应要素 id。"
+    },
+    {
+      "requirement_id": "dimension.transferability",
+      "title_zh": "评审维度 · 可转化性",
+      "mandatory": true,
+      "report_sections": [
+        "s23-guidelines",
+        "s24-phasing",
+        "s25-metrics"
+      ],
+      "geojson_layers": [
+        "geometry/phasing.geojson",
+        "geometry/parcels.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "phase_count",
+        "phasing_coverage_ratio",
+        "parcel_count",
+        "parcel_area_sqm"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v12-metrics",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-PHASE-SPLIT",
+        "A-LANDUSE-CONCEPT"
+      ],
+      "self_check_ids": [
+        "SC_METRIC_RECOMPUTE",
+        "SC_MANIFEST_SHA256"
+      ],
+      "evidence_zh": "全部几何与指标由脚本从同一份数据生成，专业团队替换官方边界后可一键复算。"
+    },
+    {
+      "requirement_id": "dimension.expression_completeness",
+      "title_zh": "评审维度 · 表达完整性",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s25-metrics"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson",
+        "geometry/roads.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "metrics": [
+        "land_use_feature_count",
+        "road_feature_count",
+        "building_count",
+        "site_area_sqm"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v12-metrics",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC_PROPOSAL_FIGURE_EMBED",
+        "SC_VISUAL_SECTION_COUNT",
+        "SC_PROPOSAL_BILINGUAL"
+      ],
+      "evidence_zh": "文本、图示、表格、场景卡、网页、Logo 方向、GeoJSON、指标与矩阵齐备，中英文双版本。"
+    },
+    {
+      "requirement_id": "dimension.public_compliance",
+      "title_zh": "评审维度 · 公开合规性",
+      "mandatory": true,
+      "report_sections": [
+        "s12-privacy",
+        "s26-assumptions",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/heritage_protection.geojson",
+        "geometry/regulatory_control.geojson",
+        "geometry/scenario_nodes.geojson"
+      ],
+      "metrics": [
+        "scenario_node_human_review_ratio",
+        "heritage_study_extent_area_sqm"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-SCENARIO-GOVERNANCE",
+        "A-HERITAGE-EXTENT-INDICATIVE",
+        "A-OFFICIAL-CONTROL-MISSING"
+      ],
+      "self_check_ids": [
+        "SC_NO_STATUTORY_CONCLUSION",
+        "SC_COPYRIGHT_STATEMENT",
+        "SC_PRIVACY_HUMAN_REVIEW"
+      ],
+      "evidence_zh": "禁止性条款逐条自查：无法定结论、无工程结论、无非公开数据、无未授权版权素材。"
+    },
+    {
+      "requirement_id": "dimension.international_communication",
+      "title_zh": "评审维度 · 国际传播力",
+      "mandatory": true,
+      "report_sections": [
+        "s2-identity",
+        "s16-culture",
+        "s18-events"
+      ],
+      "geojson_layers": [
+        "geometry/public_space.geojson",
+        "geometry/scenario_nodes.geojson",
+        "geometry/ai_service_zones.geojson"
+      ],
+      "metrics": [
+        "public_space_area_sqm",
+        "scenario_node_count",
+        "ai_service_zone_count"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v2-identity",
+        "v10-culture",
+        "v11-operation"
+      ],
+      "source_ids": [
+        "SRC-STATIONF",
+        "SRC-KINGSCROSS",
+        "SRC-ONENORTH"
+      ],
+      "assumption_ids": [
+        "A-SCENARIO-GOVERNANCE"
+      ],
+      "self_check_ids": [
+        "SC_PROPOSAL_BILINGUAL"
+      ],
+      "evidence_zh": "英文名称、国际叙事文案与对标语境同步给出，便于境外传播与专业交流。"
+    },
+    {
+      "requirement_id": "dimension.long_term_operation_value",
+      "title_zh": "评审维度 · 长期运营价值",
+      "mandatory": true,
+      "report_sections": [
+        "s18-events",
+        "s19-operation",
+        "s24-phasing"
+      ],
+      "geojson_layers": [
+        "geometry/phasing.geojson",
+        "geometry/ai_service_zones.geojson",
+        "geometry/scenario_nodes.geojson"
+      ],
+      "metrics": [
+        "phase_1_ratio",
+        "phase_2_ratio",
+        "phase_3_ratio",
+        "ai_service_zone_area_sqm"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v11-operation"
+      ],
+      "source_ids": [
+        "SRC-KENDALL",
+        "SRC-ONENORTH",
+        "SRC-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-PHASE-SPLIT"
+      ],
+      "self_check_ids": [
+        "SC_MATRIX_REF_RESOLVE"
+      ],
+      "evidence_zh": "把活动、社区、场景开放沉淀为可持续的品牌资产与合作通道，并与三期时序绑定。"
+    },
+    {
+      "requirement_id": "charter.1",
+      "title_zh": "共创原则 · 公共利益优先",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s12-privacy"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/scenario_nodes.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "scenario_node_human_review_ratio"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-OFFICIAL-CONTROL-MISSING",
+        "A-SCENARIO-GOVERNANCE"
+      ],
+      "self_check_ids": [
+        "SC_NO_STATUTORY_CONCLUSION"
+      ],
+      "evidence_zh": "全文以公共利益与可公开复用为目标，不含商业推广内容。"
+    },
+    {
+      "requirement_id": "charter.2",
+      "title_zh": "共创原则 · 公开资料边界",
+      "mandatory": true,
+      "report_sections": [
+        "s26-assumptions"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/scenario_nodes.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "scenario_node_human_review_ratio"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-OFFICIAL-CONTROL-MISSING",
+        "A-SCENARIO-GOVERNANCE"
+      ],
+      "self_check_ids": [
+        "SC_SOURCE_TRACEABILITY"
+      ],
+      "evidence_zh": "全部资料来自公开或清权来源，未使用非公开地图与内部表格。"
+    },
+    {
+      "requirement_id": "charter.3",
+      "title_zh": "共创原则 · 概念建议属性",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s23-guidelines"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/scenario_nodes.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "scenario_node_human_review_ratio"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-OFFICIAL-CONTROL-MISSING",
+        "A-SCENARIO-GOVERNANCE"
+      ],
+      "self_check_ids": [
+        "SC_NO_STATUTORY_CONCLUSION"
+      ],
+      "evidence_zh": "每一处空间建议均标注为“概念建议 / 可供专业团队深化研究”。"
+    },
+    {
+      "requirement_id": "charter.4",
+      "title_zh": "共创原则 · AI 原生创新",
+      "mandatory": true,
+      "report_sections": [
+        "s9-scenarios",
+        "s11-testbeds"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/scenario_nodes.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "scenario_node_human_review_ratio"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-OFFICIAL-CONTROL-MISSING",
+        "A-SCENARIO-GOVERNANCE"
+      ],
+      "self_check_ids": [
+        "SC_SCENARIO_CARD_MIN10"
+      ],
+      "evidence_zh": "场景由 AI 能力反推空间需求，而非给传统方案贴标签。"
+    },
+    {
+      "requirement_id": "charter.5",
+      "title_zh": "共创原则 · 结构化与可读并重",
+      "mandatory": true,
+      "report_sections": [
+        "s25-metrics",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/scenario_nodes.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "scenario_node_human_review_ratio"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-OFFICIAL-CONTROL-MISSING",
+        "A-SCENARIO-GOVERNANCE"
+      ],
+      "self_check_ids": [
+        "SC_METRIC_SCHEMA",
+        "SC_VISUAL_METRIC_MARKER"
+      ],
+      "evidence_zh": "同一套数据同时驱动机器可读的 JSON/GeoJSON 与人可读的正文、图纸与网页。"
+    },
+    {
+      "requirement_id": "charter.6",
+      "title_zh": "共创原则 · 生成方法披露",
+      "mandatory": true,
+      "report_sections": [
+        "s26-assumptions"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/scenario_nodes.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "scenario_node_human_review_ratio"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-OFFICIAL-CONTROL-MISSING",
+        "A-SCENARIO-GOVERNANCE"
+      ],
+      "self_check_ids": [
+        "SC_METRIC_RECOMPUTE"
+      ],
+      "evidence_zh": "每项指标披露计算公式、来源文件与置信度，生成脚本随包说明。"
+    },
+    {
+      "requirement_id": "charter.7",
+      "title_zh": "共创原则 · 人类最终判断",
+      "mandatory": true,
+      "report_sections": [
+        "s12-privacy",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/scenario_nodes.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "scenario_node_human_review_ratio"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-OFFICIAL-CONTROL-MISSING",
+        "A-SCENARIO-GOVERNANCE"
+      ],
+      "self_check_ids": [
+        "SC_PRIVACY_HUMAN_REVIEW"
+      ],
+      "evidence_zh": "全部场景保留人工复核否决权，方案定位为供人类评审的建议。"
+    },
+    {
+      "requirement_id": "charter.8",
+      "title_zh": "共创原则 · 公共知识沉淀",
+      "mandatory": true,
+      "report_sections": [
+        "s19-operation"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/scenario_nodes.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "scenario_node_human_review_ratio"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-OFFICIAL-CONTROL-MISSING",
+        "A-SCENARIO-GOVERNANCE"
+      ],
+      "self_check_ids": [
+        "SC_MANIFEST_FILE_PRESENT"
+      ],
+      "evidence_zh": "成果以开放格式提交，可被后续智能体与专业团队直接复用。"
+    },
+    {
+      "requirement_id": "charter.9",
+      "title_zh": "共创原则 · 贡献可记忆",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/scenario_nodes.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "scenario_node_human_review_ratio"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-OFFICIAL-CONTROL-MISSING",
+        "A-SCENARIO-GOVERNANCE"
+      ],
+      "self_check_ids": [
+        "SC_MANIFEST_SHA256"
+      ],
+      "evidence_zh": "agent.json 与 manifest.json 记录贡献者、模型与逐文件校验值。"
+    },
+    {
+      "requirement_id": "charter.10",
+      "title_zh": "共创原则 · 人本治理",
+      "mandatory": true,
+      "report_sections": [
+        "s10-personas",
+        "s12-privacy"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/scenario_nodes.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "scenario_node_human_review_ratio"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-OFFICIAL-CONTROL-MISSING",
+        "A-SCENARIO-GOVERNANCE"
+      ],
+      "self_check_ids": [
+        "SC_PERSONA_MIN5"
+      ],
+      "evidence_zh": "以老年人、儿童与无障碍使用者为必答画像，技术用于增强而非替代人。"
+    },
+    {
+      "requirement_id": "package.geometry",
+      "title_zh": "提交包契约 · 几何契约：官方枚举、临时边界原样采用、精确剖分",
+      "mandatory": true,
+      "report_sections": [
+        "s20-landuse"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "land_use_partition_closure_ratio",
+        "key_area_recomputed_sqm"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v12-metrics",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK",
+        "SRC-BRIEF"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY",
+        "A-OFFICIAL-CONTROL-MISSING"
+      ],
+      "self_check_ids": [
+        "SC_GEOM_SCHEMA",
+        "SC_GEOM_ENUM",
+        "SC_GEOM_PARTITION",
+        "SC_GEOM_BOUNDARY_ADOPTED"
+      ],
+      "evidence_zh": "由 validate_v3.py 依据主办方 JSON Schema 自动校验，校验输出随包留存。"
+    },
+    {
+      "requirement_id": "package.metrics",
+      "title_zh": "提交包契约 · 指标契约：单位枚举、公式可回溯、未知即 null",
+      "mandatory": true,
+      "report_sections": [
+        "s25-metrics"
+      ],
+      "geojson_layers": [
+        "geometry/land_use.geojson",
+        "geometry/roads.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "metrics": [
+        "road_network_density_km_per_km2",
+        "estimated_far_site",
+        "developable_land_ratio"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v12-metrics",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK",
+        "SRC-BRIEF"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY",
+        "A-OFFICIAL-CONTROL-MISSING"
+      ],
+      "self_check_ids": [
+        "SC_METRIC_SCHEMA",
+        "SC_METRIC_UNIT_ENUM",
+        "SC_METRIC_UNKNOWN_NULL"
+      ],
+      "evidence_zh": "由 validate_v3.py 依据主办方 JSON Schema 自动校验，校验输出随包留存。"
+    },
+    {
+      "requirement_id": "package.matrices",
+      "title_zh": "提交包契约 · 矩阵契约：合规、标准、深度三张矩阵互相可解析",
+      "mandatory": true,
+      "report_sections": [
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/phasing.geojson"
+      ],
+      "metrics": [
+        "phase_count",
+        "site_area_sqm"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v12-metrics",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK",
+        "SRC-BRIEF"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY",
+        "A-OFFICIAL-CONTROL-MISSING"
+      ],
+      "self_check_ids": [
+        "SC_MATRIX_COMPLIANCE_MIN23",
+        "SC_MATRIX_STANDARD_SCHEMA",
+        "SC_MATRIX_DEPTH_SCHEMA"
+      ],
+      "evidence_zh": "由 validate_v3.py 依据主办方 JSON Schema 自动校验，校验输出随包留存。"
+    },
+    {
+      "requirement_id": "package.manifest",
+      "title_zh": "提交包契约 · 清单契约：project_id、submission_type 与逐文件 sha256",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v12-metrics",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK",
+        "SRC-BRIEF"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY",
+        "A-OFFICIAL-CONTROL-MISSING"
+      ],
+      "self_check_ids": [
+        "SC_MANIFEST_SCHEMA",
+        "SC_MANIFEST_SHA256",
+        "SC_MANIFEST_FILE_PRESENT"
+      ],
+      "evidence_zh": "由 validate_v3.py 依据主办方 JSON Schema 自动校验，校验输出随包留存。"
+    },
+    {
+      "requirement_id": "package.bilingual",
+      "title_zh": "提交包契约 · 双语契约：中文主文本 + 英文对照",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson"
+      ],
+      "metrics": [
+        "site_area_official_sqm"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v12-metrics",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK",
+        "SRC-BRIEF"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY",
+        "A-OFFICIAL-CONTROL-MISSING"
+      ],
+      "self_check_ids": [
+        "SC_PROPOSAL_BILINGUAL"
+      ],
+      "evidence_zh": "由 validate_v3.py 依据主办方 JSON Schema 自动校验，校验输出随包留存。"
+    },
+    {
+      "requirement_id": "package.visual",
+      "title_zh": "提交包契约 · 网页契约：离线可开、指标标注与正文一致",
+      "mandatory": true,
+      "report_sections": [
+        "s25-metrics"
+      ],
+      "geojson_layers": [
+        "geometry/land_use.geojson",
+        "geometry/roads.geojson"
+      ],
+      "metrics": [
+        "land_use_ratio_0802",
+        "road_network_density_km_per_km2"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v12-metrics",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK",
+        "SRC-BRIEF"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY",
+        "A-OFFICIAL-CONTROL-MISSING"
+      ],
+      "self_check_ids": [
+        "SC_VISUAL_OFFLINE",
+        "SC_VISUAL_METRIC_MARKER",
+        "SC_VISUAL_SECTION_COUNT"
+      ],
+      "evidence_zh": "由 validate_v3.py 依据主办方 JSON Schema 自动校验，校验输出随包留存。"
+    },
+    {
+      "requirement_id": "package.datagap",
+      "title_zh": "提交包契约 · 数据缺口契约：阻断项据实登记，不以估值填补",
+      "mandatory": true,
+      "report_sections": [
+        "s26-assumptions",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/heritage_protection.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "metrics": [
+        "max_conceptual_storeys",
+        "heritage_study_extent_area_sqm"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "visual_sections": [
+        "v12-metrics",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-TASKBOOK",
+        "SRC-BRIEF"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY",
+        "A-OFFICIAL-CONTROL-MISSING"
+      ],
+      "self_check_ids": [
+        "SC_OFFICIAL_CONTROL_GAP",
+        "SC_OFFICIAL_BOUNDARY_GAP",
+        "SC_HERITAGE_REDLINE_GAP",
+        "SC_POPULATION_GAP",
+        "SC_EXISTING_SURVEY_GAP"
+      ],
+      "evidence_zh": "由 validate_v3.py 依据主办方 JSON Schema 自动校验，校验输出随包留存。"
+    },
+    {
+      "requirement_id": "1.3.1",
+      "title_zh": "征集目标与资格",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "estimated_far_site"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-BJMP",
+        "SRC-ANNOUNCEMENT"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC-OFFICIAL-BOUNDARY-GAP"
+      ]
+    },
+    {
+      "requirement_id": "1.3.2",
+      "title_zh": "提交内容与深度",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "estimated_far_site"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-BJMP",
+        "SRC-ANNOUNCEMENT"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC-OFFICIAL-BOUNDARY-GAP"
+      ]
+    },
+    {
+      "requirement_id": "1.3.3",
+      "title_zh": "评审维度",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "estimated_far_site"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-BJMP",
+        "SRC-ANNOUNCEMENT"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC-OFFICIAL-BOUNDARY-GAP"
+      ]
+    },
+    {
+      "requirement_id": "1.4.1",
+      "title_zh": "场地与范围",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "estimated_far_site"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-BJMP",
+        "SRC-ANNOUNCEMENT"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC-OFFICIAL-BOUNDARY-GAP"
+      ]
+    },
+    {
+      "requirement_id": "1.4.2",
+      "title_zh": "成果格式",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "estimated_far_site"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-BJMP",
+        "SRC-ANNOUNCEMENT"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC-OFFICIAL-BOUNDARY-GAP"
+      ]
+    },
+    {
+      "requirement_id": "1.4.3",
+      "title_zh": "版权与合规",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "estimated_far_site"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-BJMP",
+        "SRC-ANNOUNCEMENT"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC-OFFICIAL-BOUNDARY-GAP"
+      ]
+    },
+    {
+      "requirement_id": "1.5.1.1",
+      "title_zh": "总体设计",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "estimated_far_site"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-BJMP",
+        "SRC-ANNOUNCEMENT"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC-OFFICIAL-BOUNDARY-GAP"
+      ]
+    },
+    {
+      "requirement_id": "1.5.1.2",
+      "title_zh": "重点区域",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "estimated_far_site"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-BJMP",
+        "SRC-ANNOUNCEMENT"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC-OFFICIAL-BOUNDARY-GAP"
+      ]
+    },
+    {
+      "requirement_id": "1.5.2.1",
+      "title_zh": "用地与建筑",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "estimated_far_site"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-BJMP",
+        "SRC-ANNOUNCEMENT"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC-OFFICIAL-BOUNDARY-GAP"
+      ]
+    },
+    {
+      "requirement_id": "1.5.2.2",
+      "title_zh": "交通市政",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "estimated_far_site"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-BJMP",
+        "SRC-ANNOUNCEMENT"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC-OFFICIAL-BOUNDARY-GAP"
+      ]
+    },
+    {
+      "requirement_id": "1.5.2.3",
+      "title_zh": "蓝绿公共空间",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "estimated_far_site"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-BJMP",
+        "SRC-ANNOUNCEMENT"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC-OFFICIAL-BOUNDARY-GAP"
+      ]
+    },
+    {
+      "requirement_id": "1.5.2.4",
+      "title_zh": "更新项目",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "estimated_far_site"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-BJMP",
+        "SRC-ANNOUNCEMENT"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC-OFFICIAL-BOUNDARY-GAP"
+      ]
+    },
+    {
+      "requirement_id": "1.5.2.5",
+      "title_zh": "分期实施",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "estimated_far_site"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-BJMP",
+        "SRC-ANNOUNCEMENT"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC-OFFICIAL-BOUNDARY-GAP"
+      ]
+    },
+    {
+      "requirement_id": "1.5.3.required",
+      "title_zh": "合规要件",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "estimated_far_site"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-BJMP",
+        "SRC-ANNOUNCEMENT"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC-OFFICIAL-BOUNDARY-GAP"
+      ]
+    },
+    {
+      "requirement_id": "1.5.3.1",
+      "title_zh": "资料清单",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "estimated_far_site"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-BJMP",
+        "SRC-ANNOUNCEMENT"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC-OFFICIAL-BOUNDARY-GAP"
+      ]
+    },
+    {
+      "requirement_id": "1.5.3.2",
+      "title_zh": "风险说明",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "estimated_far_site"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-BJMP",
+        "SRC-ANNOUNCEMENT"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC-OFFICIAL-BOUNDARY-GAP"
+      ]
+    },
+    {
+      "requirement_id": "1.5.3.3",
+      "title_zh": "公众参与",
+      "mandatory": true,
+      "report_sections": [
+        "s0-summary",
+        "s27-selfcheck"
+      ],
+      "geojson_layers": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metrics": [
+        "site_area_sqm",
+        "estimated_far_site"
+      ],
+      "drawings": [
+        "drawings/a0-boards.pdf"
+      ],
+      "visual_sections": [
+        "v1-cover",
+        "v13-compliance"
+      ],
+      "source_ids": [
+        "SRC-BJMP",
+        "SRC-ANNOUNCEMENT"
+      ],
+      "assumption_ids": [
+        "A-PROVISIONAL-GEOMETRY"
+      ],
+      "self_check_ids": [
+        "SC-OFFICIAL-BOUNDARY-GAP"
+      ]
+    }
+  ]
+}

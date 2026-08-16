@@ -1,4 +1,5 @@
 import json
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -149,6 +150,41 @@ class ManifestSchemaTests(unittest.TestCase):
                 },
             ],
         )
+
+    def test_cli_reports_non_array_legacy_files_without_crashing(self):
+        for files in (None, 1, {"path": "manifest.json"}):
+            with self.subTest(files=files):
+                with tempfile.TemporaryDirectory() as tmp:
+                    root = Path(tmp)
+                    manifest_path = root / "submissions" / "alice" / "sample" / "manifest.json"
+                    manifest_path.parent.mkdir(parents=True)
+                    manifest_path.write_text(
+                        json.dumps({"schema_version": "0.1.0", "files": files}),
+                        encoding="utf-8",
+                    )
+
+                    completed = subprocess.run(
+                        [
+                            sys.executable,
+                            str(ROOT / "scripts" / "validate_manifest_schema.py"),
+                            "--repo-root",
+                            str(root),
+                            "--all",
+                            "--strict",
+                            "--json",
+                        ],
+                        capture_output=True,
+                        text=True,
+                        check=False,
+                    )
+
+                    self.assertEqual(completed.returncode, 1, completed.stderr)
+                    report = json.loads(completed.stdout)
+                    self.assertEqual(report["invalid"], 1)
+                    self.assertEqual(report["results"][0]["legacy_role_findings"], [])
+                    self.assertTrue(
+                        any("files" in error for error in report["results"][0]["errors"])
+                    )
 
     def test_v02_schema_failure_is_blocking_in_submission_validator(self):
         with tempfile.TemporaryDirectory() as tmp:

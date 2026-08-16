@@ -1,0 +1,266 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "low",
+      "source_status": "provisional_only",
+      "assumptions": [
+        "Calculated from the participant-generated provisional boundary in geometry/site_boundary.geojson; the official boundary polygon is pending release.",
+        "This approximately 11.4 sq km value describes the submitted overall-study boundary and must not be confused with the separate 24.5 ha core demonstrator target."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "low",
+      "source_status": "participant_design",
+      "assumptions": [
+        "Derived from an agent-generated design layer; survey and official building data are pending professional verification."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "source_status": "provisional_only",
+      "assumptions": [
+        "Derived from a participant-generated green-space layer divided by the provisional overall-study boundary; design-study value only."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "source_status": "provisional_only",
+      "assumptions": [
+        "Derived from a participant-generated public-space layer divided by the provisional overall-study boundary; design-study value only."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "core_demo_area_sqm": {
+      "status": "known",
+      "value": 245000,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md",
+        "assumptions.json"
+      ],
+      "formula": "participant_defined_core_demonstrator_area",
+      "confidence": "low",
+      "assumptions": [
+        "A-CORE-DEMO-001: conceptual implementation unit, not an official boundary."
+      ]
+    },
+    "core_demo_total_gfa_sqm": {
+      "status": "known",
+      "value": 385000,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md",
+        "assumptions.json"
+      ],
+      "formula": "participant_design_target",
+      "confidence": "low",
+      "assumptions": [
+        "A-CORE-DEMO-001: conceptual target subject to official planning controls."
+      ]
+    },
+    "core_demo_target_far": {
+      "status": "known",
+      "value": 1.57,
+      "unit": "index",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "core_demo_total_gfa_sqm / core_demo_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual target; not an approved statutory FAR."
+      ]
+    },
+    "core_demo_target_green_ratio": {
+      "status": "known",
+      "value": 0.38,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "participant_design_target",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual target for the 24.5 ha core demonstrator."
+      ]
+    },
+    "core_demo_target_green_area_sqm": {
+      "status": "known",
+      "value": 93100,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "core_demo_area_sqm * core_demo_target_green_ratio",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual target; pending recalculation from a coordinated spatial plan."
+      ]
+    },
+    "core_demo_target_public_open_space_ratio": {
+      "status": "known",
+      "value": 0.42,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "participant_design_target",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual target for the 24.5 ha core demonstrator."
+      ]
+    },
+    "core_demo_target_public_open_space_area_sqm": {
+      "status": "known",
+      "value": 102900,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "core_demo_area_sqm * core_demo_target_public_open_space_ratio",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual target; pending recalculation from a coordinated spatial plan."
+      ]
+    },
+    "core_demo_greenway_length_m": {
+      "status": "known",
+      "value": 2800,
+      "unit": "m",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "participant_design_target",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual continuous slow-mobility route, subject to survey."
+      ]
+    },
+    "core_demo_unit_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(conceptual_core_units_JZ_01_through_JZ_08)",
+      "confidence": "low",
+      "source_status": "participant_design",
+      "assumptions": [
+        "JZ-01 through JZ-08 are conceptual design units, not official cadastral or statutory planning parcels."
+      ]
+    },
+    "ai_scene_cards_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scene_cards_in_proposal)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "user_personas_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "count(personas_in_proposal)",
+      "confidence": "high",
+      "assumptions": [
+        "Five innovation-ecosystem personas and five inclusion personas are explicitly mapped in both language versions."
+      ]
+    },
+    "inclusive_personas_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "count(inclusion_personas_in_proposal)",
+      "confidence": "high",
+      "assumptions": [
+        "Includes older people, child carers, disabled people, low-income community residents, and night workers."
+      ]
+    },
+    "non_digital_fail_safe_layers_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "count(non_digital_service_safeguard_layers)",
+      "confidence": "high",
+      "assumptions": [
+        "Human kiosks, accessible printed guidance, and human review or appeal are proposal commitments subject to operating-detail confirmation."
+      ]
+    }
+  }
+}

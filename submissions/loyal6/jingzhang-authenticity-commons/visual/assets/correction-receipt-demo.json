@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "JZAC-DEMO-001",
+  "status": "synthetic_drill_not_field_result",
+  "public_test_zh": "一条错误如果不能沿原渠道被纠正，这项AI服务就不能留在京张。",
+  "public_test_en": "If an error cannot be corrected through every channel that carried it, the AI service must not remain in Jing-Zhang.",
+  "case": {
+    "person_zh": "一位普通参观者",
+    "person_en": "an ordinary visitor",
+    "test_material": "clearly marked synthetic AI reconstruction",
+    "controlled_mislabel": "presented as an original Jing-Zhang historical record",
+    "live_public_release": false,
+    "paper_case_id": "CASE-DEMO-001"
+  },
+  "original_channels": [
+    {
+      "id": "CHANNEL-SIGN-01",
+      "type": "drill_physical_exhibit_label",
+      "pause_status": "paused_at_T+05",
+      "correction_status": "returned_at_T+35",
+      "acknowledged": true
+    },
+    {
+      "id": "CHANNEL-WEB-01",
+      "type": "drill_offline_webpage",
+      "pause_status": "paused_at_T+05",
+      "correction_status": "returned_at_T+35",
+      "acknowledged": true
+    }
+  ],
+  "timeline": [
+    {"time": "T+00", "event": "controlled synthetic mislabel appears in two drill channels"},
+    {"time": "T+05", "event": "human steward pauses both channels"},
+    {"time": "T+20", "event": "independent archive-review role separates provenance, detection and human judgement"},
+    {"time": "T+35", "event": "correction returns to both original channels"},
+    {"time": "T+50", "event": "publishing workflow receives product retest task"},
+    {"time": "T+60", "event": "temporary display, cached data and test material are recovered or cleared"}
+  ],
+  "receipt": {
+    "synthetic_or_field_status": "synthetic_drill_not_field_result",
+    "accountable_role": "pilot steward",
+    "pause_record": "both channels paused at T+05",
+    "evidence_basis": "synthetic material declaration plus controlled source record",
+    "independent_reviewer": "independent archive-review role",
+    "review_result": "AI reconstruction, not an original historical record",
+    "same_channel_correction_status": {
+      "required_channels": 2,
+      "corrected_channels": 2,
+      "coverage_ratio": 1.0
+    },
+    "product_retest_task": "RETEST-PUBLISH-001",
+    "asset_data_recovery_record": {
+      "temporary_label_restored": true,
+      "offline_cache_cleared": true,
+      "synthetic_test_material_isolated": true,
+      "recovery_time": "T+60"
+    },
+    "disposition": "modify_and_retest_before_any_live_use"
+  },
+  "fail_closed_tests": [
+    {"removed_field": "accountable_role", "expected_state": "pause", "result": "pass"},
+    {"removed_field": "original_channels", "expected_state": "pause", "result": "pass"},
+    {"removed_field": "independent_reviewer", "expected_state": "pause", "result": "pass"},
+    {"removed_field": "asset_data_recovery_record", "expected_state": "retire", "result": "pass"}
+  ],
+  "limits": [
+    "This is a controlled synthetic drill, not a real incident or measured service performance.",
+    "No universal truth score or automated adverse decision is produced.",
+    "Provenance, detector output and independent human judgement remain separate.",
+    "Any missed original channel blocks restoration; a missing recovery record requires retirement."
+  ]
+}

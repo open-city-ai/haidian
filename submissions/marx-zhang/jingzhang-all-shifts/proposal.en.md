@@ -172,6 +172,14 @@ The offline tour condenses the four action-script windows into an 84-second mute
 
 The tour remains a design-research presentation: it does not confirm actual sites, rosters, footfall, opening hours or implementation authorisation. Every segment assumes AI assistance only, staffed access, no-scan service and a continuous accessible route. Missing staffed access, broken accessibility, covert tracking, personal scoring, automated punishment or production-system connection means pause rather than continue [metric:accessibility_tour_silent_equivalence_count].
 
+## Three Key Areas Operating and Audit Upgrade Pack
+
+To avoid “scenarios without operating evidence”, this upgrade gives the three Shift Yards one independently reviewable operating-and-audit pack: Zhongzhiyuan Maintenance Yard focuses on R&D, maintenance and paid learning; AI Origin Handover Yard focuses on learning, care and staffed service; Dazhongsi Exchange Yard focuses on transfer, delivery, small-business service and safe night departure. All three use G0 paid co-design, G1 site-and-duty verification, G2 reversible activation, G3 independent audit, and G4 scale–revise–stop. A failed check means no installation and no opening; a provisional extent never becomes an implementation site [metric:operations_audit_area_count] [metric:operations_audit_gate_count].
+
+![Three Shift Yards operating and audit upgrade pack](assets/figures/three-area-operations-audit.en.png)
+
+The pack replaces an “efficiency” narrative with five evidence dimensions: access and accessibility; human handover and appeal; data minimisation; labor and safety; and public continuity. Missing staffed access, an access blockage, personal scoring, emotion recognition, covert tracking, automated punishment, a production connection, or a failed safety condition pauses or removes the activity. The complete bilingual run cards and audit fields are in `report/three-area-operations-audit.en.md` and its counterpart; they are working templates awaiting site verification [standard:GENERATIVE-AI-INTERIM-MEASURES] [metric:operations_audit_dimension_count].
+
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
 | Persona | Core needs |

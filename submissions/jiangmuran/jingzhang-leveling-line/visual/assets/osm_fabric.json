@@ -1,0 +1,63 @@
+{
+  "generated_by": "analysis/osm_fabric.py",
+  "crs": "EPSG:4548",
+  "source": "OpenStreetMap contributors, ODbL 1.0, via Overpass API",
+  "grade": "background_only",
+  "boundary": {
+    "id": "SITE-001",
+    "area_km2": 11.4128
+  },
+  "streets": {
+    "total_km": 157.51,
+    "density_km_per_km2": 13.8,
+    "by_class_km": {
+      "living_street": 5.52,
+      "motorway": 6.03,
+      "primary": 15.95,
+      "residential": 51.89,
+      "secondary": 11.48,
+      "tertiary": 44.1,
+      "trunk": 16.36,
+      "unclassified": 6.18
+    },
+    "junctions": 812,
+    "junction_density_per_km2": 71.1
+  },
+  "blocks": {
+    "count": 255,
+    "block_land_km2": 5.073,
+    "block_land_share_of_boundary": 0.444,
+    "median_ha": 0.43,
+    "p25_ha": 0.12,
+    "p75_ha": 1.14,
+    "max_ha": 70.68,
+    "oversized_threshold_ha": 4.0,
+    "oversized_count": 28,
+    "oversized_share_of_block_land": 0.722,
+    "oversized_open_land_share": 0.363,
+    "oversized_built_count": 17,
+    "oversized_built_share_of_block_land": 0.488,
+    "oversized_built_median_ha": 9.7,
+    "oversized_largest_ha": 70.7,
+    "oversized_largest_open_share": 0.166
+  },
+  "buildings": {
+    "count": 1693,
+    "footprint_km2": 2.0515,
+    "coverage_share": 0.18,
+    "levels_tagged": 163,
+    "levels_tag_coverage": 0.096,
+    "levels_median": 1.0,
+    "floor_area_ratio": null,
+    "floor_area_ratio_withheld_because": "building:levels is present on a minority of footprints, so a ratio computed from the tagged subset would describe that subset and be read as describing the site"
+  },
+  "limits": [
+    "OpenStreetMap is crowd-sourced: absence of a street or a building is absence from the map, not from the ground.",
+    "Dual carriageways are mapped as two ways, which raises network length against a centreline-based figure; the density here is an upper estimate for that reason.",
+    "Blocks are the cells enclosed by mapped streets, not cadastral parcels, and no tenure information is used or implied.",
+    "Block shares are quoted against the land inside closed cells, not against the boundary: cells along the edge of the site are not closed by mapped streets, so the two denominators differ by more than a factor of two.",
+    "Whether a large cell is park, campus, water or heritage is decided from OSM tags on the polygons inside it, at a 50% majority. A cell that is mostly a walled compound carrying no landuse tag counts as built.",
+    "Junctions are shared OSM nodes, so grade-separated crossings are correctly not counted as junctions and the figure is lower than a plan-crossing count.",
+    "These are readings of the existing fabric. They are not proposed control values and nothing here may be read as a plot ratio, height limit or redline."
+  ]
+}

@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以三区十五分钟创新生活圈和可审计服务闭环，将 AI 研发验证、人才日常生活、公共反馈与企业服务转化连接为一条连续的京张公共创新网络。"
 tracks: ["enterprise-services-ecosystem", "ai-origin-community", "youth-friendly-public-space"]
 scenarios: ["enterprise-service-copilot", "ai-health-service-navigation", "ai-cultural-guide"]
-iteration: "v1.4"
+iteration: "v1.4.1-local-candidate"
 ---
 
 # 京张 AI 人才生活实验带
@@ -153,7 +153,7 @@ iteration: "v1.4"
 
 ### 公共利益与无 AI 等价服务
 
-公共利益不是单独的宣传章节，而是所有场景进入运营的共同门槛。12 个场景都必须满足以下五项保障，并在公共反馈论坛公开复盘；保障覆盖率由场景属性与 `metrics.json` 共同记录。[metric:equity_safeguard_count] [metric:non_ai_equivalent_coverage_ratio]
+公共利益不是单独的宣传章节，而是所有场景进入运营的共同门槛。12 个场景都必须满足以下五项保障，并在公共反馈论坛公开复盘；当前记录的是设计声明，运营覆盖率仍需试点证据验证。[metric:equity_safeguard_count] [metric:non_ai_equivalent_coverage_ratio]
 
 | 保障 | 最低要求 | 可审计证据 |
 | --- | --- | --- |
@@ -162,6 +162,19 @@ iteration: "v1.4"
 | 价格与机会公平 | 不按推断身份、设备能力或行为评分差别定价和排队 | 规则版本、抽样检查、申诉结果 |
 | 数据最小化 | 默认不建立跨场景个人画像，不用无关数据换取服务 | 字段清单、保存期限、删除记录 |
 | 纠错与救济 | 能找到责任主体、人工接管、投诉和复议入口 | 工单、响应时间、整改与关闭记录 |
+
+### 从问题到空间触点的审查索引
+
+`visual/assets/service_touchpoint_matrix.json` 把 12 个场景逐项压缩为“问题—待收集证据—空间回应—公共价值/验证”四段链，并把 G1-G5、责任角色、人工等价入口、救济渠道、停止条件与扩容门放在同一记录中。双语离线网页提供按众智园、AI 原点社区、大钟寺和公共轴筛选的键盘可操作审查界面；矩阵与界面均从既有场景节点和正文生成，不新增官方事实。[data:geometry/public_space.geojson#SCN-01] [metric:scenario_node_count]
+
+| 空间单元 | 优先审查问题 | 触点与证据重点 | 概念验收门 |
+| --- | --- | --- | --- |
+| 众智园 | 原型是否回应真实需求，质量与安全是否可追溯 | SCN-01—03；需求、测试、异常关闭、专业复核 | G1 / G3 / G4 |
+| AI 原点社区 | 自愿、退出、人工等价和公共反馈是否真实可用 | SCN-04—07；撤回、等待、纠错、版权与反馈记录 | G1 / G2 / G4 |
+| 大钟寺 | 企业接口是否责任清楚，是否具备扩容证据 | SCN-08—10；目录、投诉、重大异常关闭与回退方案 | G1 / G3 / G4 / G5 |
+| 京张公共创新轴 | 文化信息与无障碍导航是否经过事实和现场核验 | SCN-11—12；来源、版权、入口、过街、坡度和问题关闭 | G1 / G2 / G3 / G4 |
+
+这是一套概念试点审查索引，不是审批流程。任何节点只要责任缺位、非 AI 等价服务失效、重大异常未关闭或救济不可用，就保持小规模、回退或退出；12 个节点的人工等价和责任角色是结构化设计声明，实际覆盖率保持 unknown，须由试点记录复核。[metric:non_ai_equivalent_coverage_ratio] [metric:accountable_role_coverage_ratio]
 
 ### 十二张场景卡
 
@@ -207,7 +220,7 @@ PlanX 在 `agent_generated_design` 网络上完成 11 个节点、10 个分段�
 
 ![问题—证据—空间回应—指标诊断矩阵](assets/figures/diagnosis-matrix.png)
 
-诊断覆盖创新产业、人才生活、慢行与公共交通、蓝绿公共空间、更新分期、AI 场景落位和韧性治理。能够由提交几何复算的指标保留为 known；真实十五分钟可达性、pedshed、高程、树冠、雨洪、建筑强度和容量保持 unknown。[metric:fifteen_minute_network_coverage_ratio] [metric:stormwater_retention_volume_m3]
+诊断覆盖创新产业、人才生活、慢行与公共交通、蓝绿公共空间、更新分期、AI 场景落位和韧性治理。能够由提交几何复算且不代表运营事实的指标保留为 known；人工等价与责任角色覆盖率、真实十五分钟可达性、pedshed、高程、树冠、雨洪、建筑强度和容量保持 unknown。[metric:fifteen_minute_network_coverage_ratio] [metric:stormwater_retention_volume_m3]
 
 ![三类空间策略比较与推荐](assets/figures/strategy-comparison.png)
 
@@ -306,7 +319,7 @@ OSM 背景探测返回铁路站点和地铁出入口要素；公园查询超时�
 
 权威顺序为 GeoJSON、metrics、三类矩阵、manifest/sources/assumptions/self_check、proposal、图件、HTML、PDF。图件和网页是解释层，不能反向成为边界、面积或法定控制依据。[depth:metrics_recalculation]
 
-known 指标分为四类：第一类是提交几何复算，包括总体边界、四类用地、建筑基底、绿地、公共空间、中心线和三期 polygon；第二类是明确计数，包括 3 个重点区、12 个场景、3 个产业验证、8 类画像、4 个荣誉节点、6 个闭环阶段、5 道验收门和 5 个试点阶段；第三类是覆盖率，包括人工等价入口与责任角色覆盖；第四类是公告约面积等背景事实。总体面积与重点区计数由 [metric:site_area_sqm] [metric:key_area_count] 记录，场景与验收门计数由 [metric:scenario_node_count] [metric:service_acceptance_gate_count] 记录。unknown 指标包括建筑总量、容积率、道路面积以及所有缺少官方条件的工程与法定数据。
+known 指标分为三类：第一类是提交几何复算，包括总体边界、四类用地、建筑基底、绿地、公共空间、中心线和三期 polygon；第二类是明确计数，包括 3 个重点区、12 个场景、3 个产业验证、8 类画像、4 个荣誉节点、6 个闭环阶段、5 道验收门和 5 个试点阶段；第三类是公告约面积等背景事实。人工等价入口与责任角色是设计声明，不等同运营覆盖率，后者保持 unknown。总体面积与重点区计数由 [metric:site_area_sqm] [metric:key_area_count] 记录，场景与验收门计数由 [metric:scenario_node_count] [metric:service_acceptance_gate_count] 记录。unknown 指标包括建筑总量、容积率、道路面积以及所有缺少官方条件的工程与法定数据。
 
 合规矩阵逐条覆盖公告 1.3、1.4、1.5 和 agent.1-agent.6；标准矩阵覆盖 mandatory 标准；设计深度矩阵覆盖现状诊断、三层范围、总体结构、用地、强度待确认、体量风貌、拆改留、交通、市政、蓝绿、三区、项目、分期、指标与风险。[depth:risk_missing_data]
 

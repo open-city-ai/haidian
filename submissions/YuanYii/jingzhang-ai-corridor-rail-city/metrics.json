@@ -1,0 +1,270 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims. Recalculate when official polygons arrive."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 751552.057,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "Concept massing only inside three provisional key areas; not a statutory development scale."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.349748,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Green system = heritage park belt plus east-west wedges; provisional-boundary design model value."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.116517,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional-boundary design model value; recalculate when official polygons arrive."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 3991609.575,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space_features)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional-boundary design model value; recalculate when official polygons arrive."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 1329790.681,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space_features)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Three key-area commons cores; provisional-boundary design model value."
+      ]
+    },
+    "land_use_area_0802": {
+      "status": "known",
+      "value": 2601268.229,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code=0802)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional-boundary design model value."
+      ]
+    },
+    "land_use_area_05": {
+      "status": "known",
+      "value": 2403004.998,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code=05)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional-boundary design model value."
+      ]
+    },
+    "land_use_area_0701": {
+      "status": "known",
+      "value": 2134658.274,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code=0701)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional-boundary design model value."
+      ]
+    },
+    "land_use_area_0702": {
+      "status": "known",
+      "value": 945737.066,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code=0702)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional-boundary design model value."
+      ]
+    },
+    "land_use_area_0804": {
+      "status": "known",
+      "value": 1192155.664,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code=0804)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional-boundary design model value."
+      ]
+    },
+    "land_use_area_1401": {
+      "status": "known",
+      "value": 2136005.605,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code=1401)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional-boundary design model value."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario cards in proposal)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industry test scenarios)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user personas)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(AI landmark nodes)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(renewal projects)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "spine_length_m": {
+      "status": "known",
+      "value": 9308.0,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson#ROAD-001"
+      ],
+      "formula": "length(ROAD-001) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Concept centerline on provisional boundary; length is design-model only."
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(PHASE features)",
+      "confidence": "medium",
+      "assumptions": []
+    }
+  }
+}

@@ -110,9 +110,12 @@ def legacy_role_findings(
     version = str(manifest.get("schema_version", ""))
     if not version.startswith("0.1."):
         return []
+    files = manifest.get("files")
+    if not isinstance(files, list):
+        return []
     roles = canonical_roles(schema_path)
     findings: list[dict[str, str]] = []
-    for item in manifest.get("files", []):
+    for item in files:
         if not isinstance(item, dict):
             continue
         path = item.get("path")

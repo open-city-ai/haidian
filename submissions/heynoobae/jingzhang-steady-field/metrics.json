@@ -1,0 +1,185 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional organizer geometry; not an official redline or precision-safe area."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 105912.347,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(projected areas of three reversible conceptual facility envelopes)",
+      "confidence": "low",
+      "assumptions": [
+        "Concept typology envelopes only; not surveyed existing buildings, approved footprints or development capacity."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "prototype_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(Motion Yard, Stability Clinic, Motion-Stability Section)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/scenario-cards.json"
+      ],
+      "formula": "count(structured scenario cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "public_reading_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/public-readings.json"
+      ],
+      "formula": "count(preregistered public reading fields)",
+      "confidence": "high",
+      "assumptions": [
+        "Counts fields, not achieved outcomes."
+      ]
+    },
+    "optional_ai_role_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "simulation.json"
+      ],
+      "formula": "count(optional algorithmic roles after concept red-team)",
+      "confidence": "high",
+      "assumptions": [
+        "Event attribution is deletable if it does not beat baselines."
+      ]
+    },
+    "pilot_duration_days": {
+      "status": "known",
+      "value": 90,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "15+20+20+20+15",
+      "confidence": "high",
+      "assumptions": [
+        "Concept schedule begins only after written permission and a real user."
+      ],
+      "unit_detail": "days"
+    },
+    "implementation_level_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/pilot-gates.json"
+      ],
+      "formula": "count(L0,L1,L2,L3)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "measured_conflict_event_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "future authorised pilot"
+      ],
+      "formula": "count(preregistered events that change a siting, operation or equipment decision)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No authorised field baseline exists."
+    },
+    "ai_gain_over_baseline": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "future authorised pilot"
+      ],
+      "formula": "held-out decision utility(AI) - held-out decision utility(preregistered non-AI baseline)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No event dataset or benchmark has been collected."
+    }
+  }
+}

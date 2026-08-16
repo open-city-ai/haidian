@@ -158,6 +158,33 @@
       "formula": "count(field_observations_with_all_required_evidence_fields)",
       "confidence": "high",
       "assumptions": ["A-FIELDWORK-001"]
+    },
+    "synthetic_fault_test_count": {
+      "status": "known",
+      "value": 120,
+      "unit": "count",
+      "source_files": ["visual/assets/double-memory-fault-injection.json"],
+      "formula": "12 complete contracts + (12 scenarios x 8 single-field omissions) + 12 cross-cutting faults",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "omission_case_block_count": {
+      "status": "known",
+      "value": 96,
+      "unit": "count",
+      "source_files": ["visual/assets/run-double-memory-fault-injection.js"],
+      "formula": "count(single_field_omission where decision=BLOCKED_MISSING_FIELD)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "fault_safe_fallback_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": ["visual/assets/run-double-memory-fault-injection.js"],
+      "formula": "count(cross_cutting_fault where decision=SAFE_FALLBACK_HOLD)",
+      "confidence": "high",
+      "assumptions": []
     }
   }
 }

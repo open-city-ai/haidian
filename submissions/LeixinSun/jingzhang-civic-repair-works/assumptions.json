@@ -1,0 +1,117 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "provisional_constraint",
+      "statement_zh": "总体设计范围采用仓库临时粗略边界，不是官方红线。",
+      "statement_en": "The Overall Design Area uses the repository provisional rough boundary, not an official planning boundary.",
+      "impact": "All boundary-sensitive quantities are low confidence and unsuitable for approval, ownership, investment, or statutory-control decisions; community audit #846 also records a discrepancy with an OSM-mapped park polygon without resolving which geometry is correct.",
+      "recalculation_trigger": "Organizer-supplied official GIS/CAD polygon becomes available."
+    },
+    {
+      "id": "A-KEYAREA-001",
+      "status": "provisional_constraint",
+      "statement_zh": "三处重点区 polygon 仅按南北顺序和公告约面积配置；大钟寺重点区尚未锚定车站。",
+      "statement_en": "The three key-area polygons are ordered placeholders matched to announced approximate areas; the Dazhongsi area is not yet anchored to the station.",
+      "impact": "Key-area plans express transferable systems, not parcel or station engineering conclusions, following the source-level handling agreed in community issue #1029.",
+      "recalculation_trigger": "Official key-area polygons and station/parcel base data are supplied."
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement_zh": "官方控规、文保、道路红线、轨道、蓝线和退界几何缺失，constraints.geojson 因此保持空集合。",
+      "statement_en": "Official regulatory, heritage, road-redline, rail, blue-line, and setback geometry is unavailable, so constraints.geojson intentionally remains empty.",
+      "impact": "FAR, statutory building coverage, height, road area, setbacks, and engineering alignments remain unknown.",
+      "recalculation_trigger": "Approved planning conditions and constraint geometry are supplied."
+    },
+    {
+      "id": "A-EXISTING-BUILDINGS-001",
+      "status": "pending_survey",
+      "statement_zh": "缺少经核验的现状建筑轮廓、层数、质量、结构安全和使用状态。",
+      "statement_en": "Verified existing-building footprints, floor counts, condition, structural safety, and occupancy are unavailable.",
+      "impact": "The 15 building features are program modules, not surveyed buildings; no parcel-specific demolish/retain conclusion is made.",
+      "recalculation_trigger": "Survey, structural appraisal, and building ledger are completed."
+    },
+    {
+      "id": "A-OWNERSHIP-001",
+      "status": "pending_official_data",
+      "statement_zh": "未取得土地与建筑权属、租约、在建项目和运营边界。",
+      "statement_en": "Land/building ownership, leases, committed projects, and operating boundaries are unavailable.",
+      "impact": "Locations and delivery entities are conceptual and require owner/operator agreements.",
+      "recalculation_trigger": "Rights, projects, and stakeholder responsibilities are confirmed."
+    },
+    {
+      "id": "A-TRANSPORT-001",
+      "status": "pending_professional_data",
+      "statement_zh": "七条道路要素仅为概念中心线，缺道路红线、断面、轨道接口、流量、停车与交通安全资料。",
+      "statement_en": "The seven road features are conceptual centerlines; road redlines, sections, station interfaces, traffic, parking, and safety data are missing.",
+      "impact": "They demonstrate route separation and continuity only, not road or station engineering.",
+      "recalculation_trigger": "Transport survey and official network data are supplied."
+    },
+    {
+      "id": "A-MUNICIPAL-001",
+      "status": "pending_professional_data",
+      "statement_zh": "供配电、消防、给排水、通信、算力、热环境和废物暂存容量未测算。",
+      "statement_en": "Power, fire, water, drainage, telecom, compute, thermal, and waste-holding capacity has not been assessed.",
+      "impact": "Utility rooms and edge-compute interfaces are functional placeholders, not capacity commitments.",
+      "recalculation_trigger": "Municipal capacity survey and operator requirements are confirmed."
+    },
+    {
+      "id": "A-ENGINEERING-001",
+      "status": "pending_professional_confirmation",
+      "statement_zh": "桥隧、地下空间、建筑改造、物流设施和景观构筑物均未完成工程可行性验证。",
+      "statement_en": "Bridges, tunnels, underground space, building renovation, logistics facilities, and landscape structures have no engineering feasibility confirmation.",
+      "impact": "All physical moves are conceptual recommendations for professional teams to deepen.",
+      "recalculation_trigger": "Multidisciplinary feasibility, code, and safety review is complete."
+    },
+    {
+      "id": "A-COST-APPROVAL-001",
+      "status": "pending_governance",
+      "statement_zh": "未取得投资、财政、招商、审批、采购和实施时序承诺。",
+      "statement_en": "No investment, fiscal, tenant, approval, procurement, or delivery-timing commitment has been obtained.",
+      "impact": "Phases are dependency sequences rather than approved schedules or budgets.",
+      "recalculation_trigger": "Sponsors, approvals, procurement routes, and funding are confirmed."
+    },
+    {
+      "id": "A-REPAIR-LEGAL-001",
+      "status": "pending_operator_and_legal_review",
+      "statement_zh": "场内假定仅开展诊断、维修、校准、低风险模块更换、清洁翻新、组装和合格品复测；是否进入废弃电器电子产品“处理”或危险废物经营边界取决于产品目录、活动性质、部件状态和运营主体许可。",
+      "statement_en": "On-site work is limited to diagnosis, repair, calibration, low-risk module replacement, cleaning/refurbishment, assembly, and conformity retesting; WEEE treatment or hazardous-waste licensing depends on catalogue scope, activity, component condition, and operator authorization.",
+      "impact": "Damaged batteries, suspected hazardous components, and qualifying treatment operations are isolated and transferred to scope-matched licensed or qualified facilities with records.",
+      "recalculation_trigger": "Equipment inventory, waste classification, operating process, and license scope are legally reviewed."
+    },
+    {
+      "id": "A-DATA-GOVERNANCE-001",
+      "status": "pending_operator_policy",
+      "statement_zh": "资产护照不保存无必要的个人数据；设备日志、图像、位置和账户数据须按最小化、分权访问、擦除证明和人工复核规则另行设计。",
+      "statement_en": "Equipment passports exclude unnecessary personal data; logs, images, locations, and accounts require separate minimization, role-based access, erasure evidence, and human-review rules.",
+      "impact": "The proposal defines fields and governance gates, not a live personal-data system.",
+      "recalculation_trigger": "Operators, purposes, retention periods, and security assessment are confirmed."
+    },
+    {
+      "id": "A-KPI-BASELINE-001",
+      "status": "baseline_not_collected",
+      "statement_zh": "MTTR、首次修复成功率、备件满足率、再部署率、停机时间、材料回收率和单位服务年碳排尚无京张基线。",
+      "statement_en": "No Jing-Zhang baseline exists for MTTR, first-time-fix rate, spare-fill rate, redeployment rate, downtime, material recovery, or carbon per service-year.",
+      "impact": "The proposal provides definitions and collection methods only; it does not invent targets or outcomes.",
+      "recalculation_trigger": "A pilot produces auditable work orders, asset histories, material flows, and energy records."
+    },
+    {
+      "id": "A-CASE-TRANSFER-001",
+      "status": "comparative_reference_only",
+      "statement_zh": "国际案例只用于提炼制度、数据和运营机制，不直接移植法律、评分、绩效或品牌。",
+      "statement_en": "International cases inform institutional, data, and operating mechanisms only; their laws, scores, performance, and brands are not transplanted.",
+      "impact": "Every borrowed principle is relabeled as a local conceptual mechanism requiring Chinese legal and professional review.",
+      "recalculation_trigger": "Local pilots and competent-authority guidance validate or reject each transfer."
+    },
+    {
+      "id": "A-RELEASE-READINESS-001",
+      "status": "not_started_role_types_only",
+      "statement_zh": "R0—R5 复役门、责任矩阵、场景合同与90天试点均为参与者编制的专业深化模板；尚无确认机构、合法场地、预算、真实设备或现场运行。",
+      "statement_en": "R0-R5 gates, responsibility matrices, scenario contracts, and the 90-day pilot are participant-authored professional handoff templates; no institution, lawful site, budget, real asset, or field operation is confirmed.",
+      "impact": "They improve accountability and transferability but do not prove implementation, safety, public acceptance, or product performance.",
+      "recalculation_trigger": "A lawful pilot confirms named responsibilities, evidence retention, equipment scope, professional review, budget, and field authorization."
+    }
+  ]
+}

@@ -1,47 +1,124 @@
 {
-  "schema_version": "0.1.0",
-  "sources": [
-    {
-      "id": "SITE-PACKAGE",
-      "path": "brief/site-package/",
-      "source_type": "official_public",
-      "usage": "Project brief, enums, allowed design space, ranges, and schemas."
-    },
-    {
-      "id": "SOURCE-REGISTRY",
-      "path": "data/source_registry.json",
-      "source_type": "repository_public_registry",
-      "usage": "Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials."
-    },
-    {
-      "id": "PROCESSED-FACT-PACK",
-      "path": "data/processed/agent_fact_pack.md",
-      "source_type": "repository_processed_reference",
-      "usage": "Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source."
-    },
-    {
-      "id": "BOUNDARY-SOURCE",
-      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
-      "source_type": "agent_inferred_from_public_data",
-      "usage": "Submitted site boundary geometry source (provisional)."
-    },
-    {
-      "id": "KEY-AREA-SOURCE",
-      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
-      "source_type": "agent_inferred_from_public_data",
-      "usage": "Three required detailed-design key area boundaries (provisional)."
-    },
-    {
-      "id": "OFFICIAL-ANNOUNCEMENT",
-      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
-      "source_type": "official_public",
-      "usage": "Official announcement tasks, scope levels, key areas, language, and deliverable context."
-    },
-    {
-      "id": "AGENT-TASKBOOK",
-      "path": "brief/site-package/agent_taskbook.json",
-      "source_type": "user_provided_cleared",
-      "usage": "Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause."
-    }
-  ]
+ "schema_version": "0.2.0",
+ "sources": [
+  {
+   "id": "SITE-PACKAGE",
+   "path": "brief/site-package/",
+   "source_type": "official_public",
+   "usage": "Project brief, enums, allowed design space, ranges, and schemas.",
+   "license": "Public (open-city.ai)"
+  },
+  {
+   "id": "SOURCE-REGISTRY",
+   "path": "data/source_registry.json",
+   "source_type": "repository_public_registry",
+   "usage": "Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials.",
+   "license": "Public (open-city.ai)"
+  },
+  {
+   "id": "PROCESSED-FACT-PACK",
+   "path": "data/processed/agent_fact_pack.md",
+   "source_type": "repository_processed_reference",
+   "usage": "Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source.",
+   "license": "Public (open-city.ai)"
+  },
+  {
+   "id": "BOUNDARY-SOURCE",
+   "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+   "source_type": "agent_inferred_from_public_data",
+   "usage": "Submitted site boundary geometry source (provisional). NOT official.",
+   "license": "Provisional (derived from public data)"
+  },
+  {
+   "id": "KEY-AREA-SOURCE",
+   "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+   "source_type": "agent_inferred_from_public_data",
+   "usage": "Three required detailed-design key area boundaries (provisional). NOT official.",
+   "license": "Provisional (derived from public data)"
+  },
+  {
+   "id": "OFFICIAL-ANNOUNCEMENT",
+   "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+   "source_type": "official_public",
+   "usage": "Official announcement tasks, scope levels, key areas, language, and deliverable context.",
+   "license": "Public (Beijing Municipal Bureau of Natural Resources)"
+  },
+  {
+   "id": "AGENT-TASKBOOK",
+   "path": "brief/site-package/agent_taskbook.json",
+   "source_type": "user_provided_cleared",
+   "usage": "Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause. Per registry scope: covers agent task, scenario, branding, and event/operation requirements — does NOT prove statistic or regulatory approval status.",
+   "license": "Cleared (competition official)"
+  },
+  {
+   "id": "REGULATORY-PLAN-APPROVED-20260811",
+   "url": "https://bj.people.com.cn/BIG5/n2/2026/0812/c82840-41665678.html",
+   "source_type": "official_public_media_report",
+   "publisher": "北京日报（记者 陈雪柠；转自北京市规划和自然资源委员会信息）",
+   "published_date": "2026-08-11",
+   "retrieved_date": "2026-08-14",
+   "usage": "《北京海淀区京张铁路遗址公园沿线（人工智能创新街区重点地区）HD00—1601等街区控制性详细规划（街区层面）（2024—2035年）》获批复的官方媒体证据：规划范围东至新街口外大街、西至中关村大街、北至成府路、南至西直门外大街，含9个建设主导街区、总用地约1668.2公顷；官方空间结构'一带一轴，两心多点'（大钟寺中心、五道口中心）。支持方案与正式控规结构的呼应表述。",
+   "license": "Public media report (Beijing Daily, via People's Daily Online Beijing Channel)"
+  },
+  {
+   "id": "REGULATORY-PLAN-APPROVED-20260811-ALT",
+   "url": "https://www.toutiao.com/article/7672771954659344932/",
+   "source_type": "official_public_media_report",
+   "publisher": "北京日报（转载：今日头条）",
+   "published_date": "2026-08-11",
+   "retrieved_date": "2026-08-14",
+   "usage": "同 REGULATORY-PLAN-APPROVED-20260811 的转载存档，作为交叉核验来源。",
+   "license": "Public media report (Beijing Daily)"
+  }
+ ],
+ "third_party_assets": [
+  {
+   "id": "BASE-IMAGERY-ESRI-SATELLITE",
+   "asset_kind": "raster_base_imagery",
+   "description": "Esri World Imagery satellite tiles, used as the planning base layer for all GIS-derived figures (F1-F4) and 3D district renderings.",
+   "license": "Esri Standard Terms — community-display / non-commercial use cleared for open-city.ai competition submissions. NOT for redistribution outside the competition context.",
+   "usage": "Concept planning base, not a claim of current physical reality.",
+   "source_attribution": "Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community (attribution preserved in figure footers)"
+  },
+  {
+   "id": "FONT-NOTO-SANS-CJK",
+   "asset_kind": "webfont",
+   "description": "Noto Sans CJK SC for Chinese / Latin coverage in proposal HTML, A3 booklet and A0 boards.",
+   "license": "SIL Open Font License 1.1 (OFL) — free for embedding in any PDF/HTML.",
+   "usage": "Latin, Han characters, numbers."
+  },
+  {
+   "id": "FONT-MICROSOFT-YAHEI",
+   "asset_kind": "system_font",
+   "description": "Microsoft YaHei used as a Windows fallback for PIL rendering (subset pre-installed).",
+   "license": "Microsoft system font, used only on local rendering systems."
+  },
+  {
+   "id": "AI-RENDER-GPT-IMAGE-2",
+   "asset_kind": "image_generation_model",
+   "description": "OpenAI gpt-image-2 image generation model, accessed via grsai API (OpenAI-compatible endpoint). Used for E1-E6 pedestrian-perspective renderings.",
+   "license": "User-authorized generation output for this submission; rendered under community-display-only terms. Prompts contain no third-party logos, trademarks, portraits, or copyrighted artwork (verified per file in copyright_statement.md). No model training on submitted deliverables is authorized by this document.",
+   "prompt_consistency_check": "All E1-E6 prompts documented in tools/fig_prompts.md (concept, no logos, no real brands).",
+   "verification": "Each rendered PNG listed in copyright_statement.md with file-level generation note."
+  },
+  {
+   "id": "AI-RENDER-NANO-BANANA-PRO",
+   "asset_kind": "image_generation_model",
+   "description": "nano-banana-pro image generation model (Gemini 3 Pro Image backend), used for district master plans and base raster overlays.",
+   "license": "User-authorized generation output for this submission; community-display-only concept rendering. Prompts documented per file; no third-party IP embedded. Same terms as gpt-image-2.",
+   "verification": "Used for area-zhongzhi-masterplan.png, area-origin-masterplan.png, area-dazhongsi-dazhongsi-masterplan.png, and c*.png concept renderings; each prompt documented."
+  },
+  {
+   "id": "LOGO-PROVISIONAL",
+   "asset_kind": "concept_brand_mark",
+   "description": "c06_logo_three_directions.png and c06_logo_visual_applications.png — proposed visual identity directions for the JZ-IA scheme. These are CONCEPT explorations by the AI agent and are NOT final official marks.",
+   "license": "Concept (no trademark registered) — community-display-only. Should be replaced by licensed brand marks before any official publication."
+  }
+ ],
+ "no_third_party_assertions": [
+  "All E1-E6 renderings are original works generated by the declared AI agents. No third-party logos, trademarks, real portraits, or copyrighted artwork are embedded.",
+  "Figures derived from public Esri satellite imagery are for concept-level planning visualization only, not surveying.",
+  "Brand names in narrative text (JZ-IA, Ren-shape motif, etc.) are concept-level proposals, not registered trademarks.",
+  "All numeric figures in proposal text are either provisional (derived from submitted provisional geometry) or conceptual planning targets. No data is presented with 'high confidence' on official approval status (see metrics.json)."
+ ]
 }

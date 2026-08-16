@@ -1,0 +1,20 @@
+{
+  "description": "合法登记：L1 开放展示型服务（通过样例 2/3）——T-02 正点率公告牌延伸到乘降所信息点",
+  "expected_verdict": "accepted",
+  "card": {
+    "service_id": "T-02-MS03",
+    "stop_id": "MS-03",
+    "zone_id": "ZN-PUB",
+    "raci": "R-STATION-OPS",
+    "gate": "G1_BASELINE",
+    "access_tier": "L1",
+    "schedule": { "interval": "monthly", "window": "every-month-01T10:00" },
+    "punctuality_definition": "月度公告按期发布且与运行图日志一致",
+    "delay_threshold_minutes": 30,
+    "change_notice_hours": 24,
+    "suspension_notice_hours": 48,
+    "transfer": { "connected_service": "none", "connection_rule": "none" },
+    "ai_off_path": "纸质公告+广播播报",
+    "stop_condition": "公告与日志偏差超 1 个百分点，或连续两周未更新"
+  }
+}

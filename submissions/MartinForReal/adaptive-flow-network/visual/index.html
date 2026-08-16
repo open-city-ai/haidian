@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>京张智脉 · 骨架—毛细双相自适应流网络</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:"Microsoft YaHei","Segoe UI",system-ui,sans-serif;
+background:#f7f8fa;color:#12161c;line-height:1.6}
+header{padding:34px 26px 20px;border-bottom:3px solid #0d5c63}
+h1{margin:0;font-size:clamp(21px,3.4vw,34px)}
+.sub{color:#9aa4b2;margin-top:7px;font-size:14px}
+.tag{display:inline-block;background:#c1466b;color:#fff;font-size:11px;padding:3px 9px;
+border-radius:3px;margin-top:11px}
+main{padding:22px 26px 60px;max-width:1280px;margin:0 auto}
+h2{font-size:17px;margin:34px 0 12px;padding-left:9px;border-left:4px solid #0d5c63}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px}
+.k{background:#fff;border:1px solid #e5e8ec;border-radius:7px;padding:13px}
+.k span{display:block;color:#9aa4b2;font-size:12px}.k b{font-size:20px}
+figure{margin:0 0 22px;background:#fff;border:1px solid #e5e8ec;border-radius:7px;overflow:hidden}
+figure img{width:100%;display:block}
+figcaption{padding:9px 13px;font-size:13px;color:#9aa4b2;border-top:1px solid #eef1f4}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:13px}
+th,td{padding:8px 10px;border-bottom:1px solid #eef1f4;text-align:right}
+th:first-child,td:first-child{text-align:left}
+th{background:#f0f2f5;font-weight:600} tr.me{background:#fff6ec;font-weight:700}
+.note{background:#fff6ec;border-left:4px solid #f4a259;padding:13px 15px;border-radius:0 6px 6px 0;
+font-size:13.5px;margin:14px 0}
+footer{padding:22px 26px;color:#9aa4b2;font-size:12px;border-top:1px solid #e5e8ec}
+</style></head><body>
+<header><h1>京张智脉：骨架—毛细双相自适应流网络</h1>
+<div class="sub">百年京张AI创新带城市设计 · 智能体开源征集</div>
+<div class="tag">概念建议 · 不替代法定规划 · 不构成政府审定结论</div></header>
+<main>
+<h2>总览地图</h2>
+<figure><img src="../assets/figures/site-overview.png" alt="总览地图：临时边界、三处重点区与骨架相主轴"><figcaption>总览地图 · 场地与证据链</figcaption></figure>
+<h2>三层范围</h2>
+<p>统筹研究范围约 43.6 平方公里、总体设计范围约 11.4 平方公里、重点区域约 368.4 公顷，逐级收敛；三层范围在方法上对应三种分辨率：统筹层做流向与协同，总体层做骨架相，重点层做毛细相。</p>
+<h2>核心指标</h2><div class="kpis"><div class="k"><span>场地面积</span><b data-metric="site_area_sqm" data-value="11412825.386">11.41 km²</b></div><div class="k"><span>绿地率</span><b data-metric="green_ratio" data-value="0.206367">20.64%</b></div><div class="k"><span>公共空间</span><b data-metric="public_space_ratio" data-value="0.012785">1.28%</b></div><div class="k"><span>建筑基底</span><b data-metric="building_footprint_area_sqm" data-value="614692.545">61.5 ha</b></div><div class="k"><span>重点区数</span><b data-metric="key_area_count" data-value="3">3</b></div><div class="k"><span>容积率</span><b>待正式数据补齐</b></div></div>
+<div class="note">临时粗略边界仅用于生成与展示，不得作为 official redline 或精确面积依据；取得正式边界后必须整体重算。</div>
+<h2>基准检验</h2>
+<table><thead><tr><th>网络</th><th>边数</th><th>节点覆盖</th>
+<th>FT</th><th>失效韧性</th><th>恢复韧性</th></tr></thead><tbody><tr><td>MST</td><td>664</td><td>1.000</td><td>0.533</td><td>0.119</td><td>0.156</td></tr><tr><td>RNG</td><td>1820</td><td>1.000</td><td>1.000</td><td>0.563</td><td>0.616</td></tr><tr><td>GABRIEL</td><td>1820</td><td>1.000</td><td>1.000</td><td>0.563</td><td>0.616</td></tr><tr><td>DELAUNAY</td><td>1949</td><td>1.000</td><td>1.000</td><td>0.643</td><td>0.613</td></tr><tr class='me'><td>本方案</td><td>365</td><td>0.387</td><td>0.967</td><td>0.399</td><td>0.684</td></tr></tbody></table>
+<div class="note">诚实读法：总长必须与节点覆盖一起读；更密的基准在失效韧性上仍优于本方案，本方案以更低造价换取更高恢复韧性。</div>
+<h2>用地分区</h2>
+<figure><img src="../assets/figures/land-use-structure.png" alt="用地分区图：由流网络分区生成的科研、商业、住宅、公园与留白用地"><figcaption>用地分区 · 覆盖边界 100%，无缝隙无重叠</figcaption></figure>
+<h2>交通慢行</h2>
+<figure><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿网络图：骨架相主轴、毛细相连接与脉点广场"><figcaption>交通慢行 · 仅绿道/步行/接驳等级，不含轨道线位与道路红线</figcaption></figure>
+<h2>蓝绿公共空间</h2>
+<p>绿地骨架由遗址公园主廊与脉点公园组成，绿地率 {(mv('green_ratio') or 0)*100:.2f}%；公共空间节点由流网络高通量节点导出，可被追问与复算。</p>
+<h2>建筑</h2>
+<p>建筑基底 {mv('building_footprint_area_sqm'):,.0f} 平方米，仅为体量关系示意；不含容积率、建筑高度或具体地块拆改留结论。</p>
+<h2>重点区域</h2>
+<figure><img src="../assets/figures/key-areas.png" alt="三处重点区域详细设计图：众智园源点、AI原点社区原点、大钟寺枢点"><figcaption>重点区域 · 三种流角色</figcaption></figure>
+<h2>AI 场景</h2>
+<p>12 张 AI 场景卡、3 个产业测试验证场景、6 类用户画像见 proposal.md；所有场景均可人工复核、可退出、不做个人身份识别、不以非公开数据为必要条件，测试场景不等于已批准运营。</p>
+<h2>更新项目</h2>
+<p>分期遵循网络生成顺序：一期贯通骨架相与三区脉点，二期加密毛细相并缝合东西，三期保留弹性并按场景负荷迭代。已建成边应设下限、不可随意剪除。实施政策建议均为概念建议，不构成投资、招商或审批安排。</p>
+<h2>任务覆盖</h2>
+<p>公告 1.3/1.4/1.5 各项任务与 agent.1–agent.6 的覆盖关系完整记录在 compliance_matrix.json；强制性专业标准记录在 standard_matrix.json；设计深度项记录在 design_depth_matrix.json。</p>
+<h2>自检状态</h2>
+<p>本包通过确定性校验、空间复核、视觉打包与专业证据四道自检门；自检结果写入 self_check.json，指标由提交 GeoJSON 在 EPSG:4548 复算。</p>
+<h2>来源</h2>
+<p>第一依据为海淀分局资格预审公告，机器可读依据为 brief/site-package/ 登记材料；外部学术文献仅作方法依据（background_only），不作场地事实。完整来源见 sources.json。</p>
+<h2>假设</h2>
+<p>关键假设：阻力权重为设计者价值判断而非客观测量；负荷波动情景为合成数据；点阵分辨率 140 m；全部空间建议为概念建议。完整假设见 assumptions.json。</p>
+<h2>生成方法</h2>
+<p>自适应导管方程 dD/dt = |Q|^γ/(1+|Q|^γ) − D，γ=1.35 生成骨架相、γ=0.72 生成毛细相；阻力权重全量公开，随机种子 20260518，可完全复现。</p>
+</main>
+<footer>MartinForReal · 生成于 Claude Opus 5 · 离线静态页面，无外部资源、无CDN、无追踪</footer>
+</body></html>

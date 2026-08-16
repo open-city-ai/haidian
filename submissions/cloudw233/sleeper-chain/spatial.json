@@ -1,0 +1,228 @@
+{
+  "$schema": "../../../schema/spatial.schema.json",
+  "version": 1,
+  "disclaimer": "concept-only",
+  "summary": "枕木长链的概念空间结构：一条主脊、两根轨、三座车站、两处门户与若干场景节点；全部为概念建议，不包含坐标、官方线位或审定指标。",
+  "items": [
+    {
+      "id": "corridor-sleeper-chain",
+      "type": "corridor",
+      "title": "枕木长链主脊",
+      "summary": "沿京张遗址公园概念线位组织的慢行绿廊主脊，按约80m模数布置枕木单元，串联三站两门户。",
+      "source": "proposal.md 总体概念；geometry/roads.geojson#RD-SPINE（概念线位）",
+      "public_level": "provisional",
+      "linked_scenarios": ["ai-traffic-walkability", "ai-cultural-guide"],
+      "order": 1,
+      "geometry": {"mode": "concept", "label": "京张铁路遗址公园沿线概念主脊（约9.6km）"}
+    },
+    {
+      "id": "corridor-culture-rail",
+      "type": "corridor",
+      "title": "文化轨步行线",
+      "summary": "承载百年京张文化带叙事的概念步行线，串联车站记忆、铁路构件展示与导览节点。",
+      "source": "proposal.md 文化叙事；geometry/roads.geojson#RD-RAIL-CULTURE",
+      "public_level": "provisional",
+      "linked_scenarios": ["ai-cultural-guide"],
+      "order": 2,
+      "geometry": {"mode": "concept", "label": "主脊西侧概念步行线"}
+    },
+    {
+      "id": "corridor-intel-rail",
+      "type": "corridor",
+      "title": "智能轨骑行线",
+      "summary": "承载都市AI生活体验带的概念骑行与低速接驳线，沿线布置可体验、可停止的AI场景。",
+      "source": "proposal.md 场景设计；geometry/roads.geojson#RD-RAIL-INTEL",
+      "public_level": "provisional",
+      "linked_scenarios": ["ai-traffic-walkability", "robot-delivery-low-speed"],
+      "order": 3,
+      "geometry": {"mode": "concept", "label": "主脊东侧概念骑行线"}
+    },
+    {
+      "id": "node-station-hub",
+      "type": "node",
+      "title": "智汇站（大钟寺）",
+      "summary": "城市型AI创新街区的概念车站核：智能原生消费、AI原生业态市集与四象限步行连通建议。",
+      "source": "公告 1.5.3.3；geometry/key_areas.geojson#PROV-KEY-003",
+      "public_level": "provisional",
+      "linked_scenarios": ["enterprise-service-copilot", "robot-delivery-low-speed"],
+      "order": 4,
+      "geometry": {"mode": "concept", "label": "大钟寺AI产业聚集区临时范围内的廊道节点"}
+    },
+    {
+      "id": "node-station-origin",
+      "type": "node",
+      "title": "始发站（清华园·AI原点社区）",
+      "summary": "近校型AI创新街区的概念车站核：清华园车站记忆、成果孵化转化与开源展示廊。",
+      "source": "公告 1.5.3.2；geometry/key_areas.geojson#PROV-KEY-002",
+      "public_level": "provisional",
+      "linked_scenarios": ["ai-cultural-guide", "enterprise-service-copilot"],
+      "order": 5,
+      "geometry": {"mode": "concept", "label": "北京AI原点社区临时范围内的廊道节点"}
+    },
+    {
+      "id": "node-station-accelerator",
+      "type": "node",
+      "title": "加速站（众智园）",
+      "summary": "花园型AI创新街区的概念车站核：全栈自主体系展示、标准治理窗口与清河绿廊衔接。",
+      "source": "公告 1.5.3.1；geometry/key_areas.geojson#PROV-KEY-001",
+      "public_level": "provisional",
+      "linked_scenarios": ["enterprise-service-copilot"],
+      "order": 6,
+      "geometry": {"mode": "concept", "label": "众智园AI自主创新加速区临时范围内的廊道节点"}
+    },
+    {
+      "id": "node-gateway-south",
+      "type": "node",
+      "title": "南门户（北京北站方向）",
+      "summary": "长链南端的概念门户广场：抵达叙事、城市导览起点与遗址公园南端缝合建议。",
+      "source": "公告 1.5.2.4（遗址公园南端标志性节点）；geometry/land_use.geojson 1403 单元",
+      "public_level": "provisional",
+      "linked_scenarios": ["ai-cultural-guide"],
+      "order": 7,
+      "geometry": {"mode": "concept", "label": "总体设计范围临时边界南端"}
+    },
+    {
+      "id": "node-gateway-north",
+      "type": "node",
+      "title": "北门户（上跨北五环）",
+      "summary": "长链北端的概念眺望门户：上跨环路衔接清河绿廊，作为遗址公园北端标志性节点建议。",
+      "source": "公告 1.5.2.4（遗址公园北端与上跨环路节点）；geometry/land_use.geojson 1403 单元",
+      "public_level": "provisional",
+      "linked_scenarios": ["ai-traffic-walkability"],
+      "order": 8,
+      "geometry": {"mode": "concept", "label": "总体设计范围临时边界北端"}
+    },
+    {
+      "id": "node-honor-sleeper-wall",
+      "type": "node",
+      "title": "刻名枕木荣誉墙",
+      "summary": "把开源贡献者 GitHub ID 刻上实体枕木的概念荣誉节点，与线上数字孪生同步更新；对应征集纪念体系建议。",
+      "source": "README Milestone/碑刻条款；proposal.md 朝圣地标",
+      "public_level": "public",
+      "linked_scenarios": ["ai-cultural-guide"],
+      "order": 9,
+      "geometry": {"mode": "concept", "label": "始发站文化核前区概念位置"}
+    },
+    {
+      "id": "node-open-source-gallery",
+      "type": "node",
+      "title": "开源成果展示廊",
+      "summary": "以枕木模块为展架的开源模型、数据集与城市方案展示廊，展品按贡献登记与授权清单轮换。",
+      "source": "README 纪念体系（开源成果展示节点）；proposal.md 朝圣地标",
+      "public_level": "public",
+      "linked_scenarios": ["ai-cultural-guide", "enterprise-service-copilot"],
+      "order": 10,
+      "geometry": {"mode": "concept", "label": "始发站—加速站之间廊道概念段落"}
+    },
+    {
+      "id": "node-dev-promenade",
+      "type": "node",
+      "title": "开发者散步道",
+      "summary": "沿文化轨的概念漫步段落，长椅、树池与路面镌刻开源里程碑年表，供开发者日常交流与驻留。",
+      "source": "README 纪念体系（开发者散步道）；proposal.md 朝圣地标",
+      "public_level": "public",
+      "linked_scenarios": ["ai-cultural-guide"],
+      "order": 11,
+      "geometry": {"mode": "concept", "label": "学院路北公园概念段落"}
+    },
+    {
+      "id": "node-ai-native-market",
+      "type": "node",
+      "title": "智能原生市集",
+      "summary": "大钟寺片区的AI原生消费与内容体验市集概念，摊位即测试位，消费即场景反馈。",
+      "source": "公告 1.5.3.3（智能原生新业态）；proposal.md 场景卡",
+      "public_level": "provisional",
+      "linked_scenarios": ["robot-delivery-low-speed", "enterprise-service-copilot"],
+      "order": 12,
+      "geometry": {"mode": "concept", "label": "智汇站文化核周边概念街区"}
+    },
+    {
+      "id": "node-robot-delivery-test",
+      "type": "node",
+      "title": "低速机器人配送测试段",
+      "summary": "沿智能轨划定的低速配送机器人概念测试段，人机混行规则与人工接管点按测试协议公开。",
+      "source": "scenarios/robot-delivery-low-speed.json；proposal.md 测试验证场景",
+      "public_level": "provisional",
+      "linked_scenarios": ["robot-delivery-low-speed"],
+      "order": 13,
+      "geometry": {"mode": "concept", "label": "智汇站—学院南公园之间智能轨概念段"}
+    },
+    {
+      "id": "node-walk-priority-lab",
+      "type": "node",
+      "title": "慢行优先信号实验段",
+      "summary": "五道口段概念交通实验：行人相位优先、骑行绿波与无障碍过街提示的组合测试。",
+      "source": "scenarios/ai-traffic-walkability.json；proposal.md 测试验证场景",
+      "public_level": "provisional",
+      "linked_scenarios": ["ai-traffic-walkability"],
+      "order": 14,
+      "geometry": {"mode": "concept", "label": "五道口南创新片区廊道概念段"}
+    },
+    {
+      "id": "node-digital-twin-pilot",
+      "type": "node",
+      "title": "荣誉墙数字孪生联调场",
+      "summary": "刻名枕木实体与线上孪生的联调测试概念点，验证贡献登记、展示与撤销流程。",
+      "source": "proposal.md 测试验证场景",
+      "public_level": "provisional",
+      "linked_scenarios": ["ai-cultural-guide", "public-safety-operations-review"],
+      "order": 15,
+      "geometry": {"mode": "concept", "label": "始发站文化核概念位置"}
+    },
+    {
+      "id": "node-health-station",
+      "type": "node",
+      "title": "AI健康慢行驿站",
+      "summary": "学院南公园概念健康服务点：体测、导诊与紧急呼叫，数据最小化采集并设人工窗口。",
+      "source": "scenarios/ai-health-service-navigation.json；proposal.md 场景卡",
+      "public_level": "provisional",
+      "linked_scenarios": ["ai-health-service-navigation"],
+      "order": 16,
+      "geometry": {"mode": "concept", "label": "学院南路活力片区廊道概念位置"}
+    },
+    {
+      "id": "node-riverside-classroom",
+      "type": "node",
+      "title": "清河露天AI课堂",
+      "summary": "北段滨水绿带的概念户外教学节点，面向高校与社区开放预约。",
+      "source": "proposal.md 场景卡（AI+教育）",
+      "public_level": "provisional",
+      "linked_scenarios": ["ai-cultural-guide"],
+      "order": 17,
+      "geometry": {"mode": "concept", "label": "清河滨水绿带概念衔接段"}
+    },
+    {
+      "id": "node-enterprise-depot-desk",
+      "type": "node",
+      "title": "企业服务编组台",
+      "summary": "众智园片区的企业服务概念窗口：政策、空间、算力与场景需求按工单编组分发。",
+      "source": "scenarios/enterprise-service-copilot.json；proposal.md 场景卡",
+      "public_level": "provisional",
+      "linked_scenarios": ["enterprise-service-copilot"],
+      "order": 18,
+      "geometry": {"mode": "concept", "label": "加速站文化核前区概念位置"}
+    },
+    {
+      "id": "node-safety-review-kiosk",
+      "type": "node",
+      "title": "公共安全运营复核亭",
+      "summary": "对廊道感知与告警做人工复核的概念岗亭，算法只提示、人来决定，处置记录可查询。",
+      "source": "scenarios/public-safety-operations-review.json；proposal.md 场景卡",
+      "public_level": "provisional",
+      "linked_scenarios": ["public-safety-operations-review"],
+      "order": 19,
+      "geometry": {"mode": "concept", "label": "原点社区段廊道概念位置"}
+    },
+    {
+      "id": "area-two-yards",
+      "type": "area",
+      "title": "两场（两翼协作面）",
+      "summary": "中关村科技服务翼作为机务段式要素配置面、小月河场景赋能翼作为试车线式场景开放面的概念协作关系。",
+      "source": "公告 1.5.1.1 三区两翼；proposal.md 统筹研究范围",
+      "public_level": "provisional",
+      "linked_scenarios": ["enterprise-service-copilot", "robot-delivery-low-speed"],
+      "order": 20,
+      "geometry": {"mode": "concept", "label": "统筹研究范围内的两翼协作面（不在总体设计范围内）"}
+    }
+  ]
+}

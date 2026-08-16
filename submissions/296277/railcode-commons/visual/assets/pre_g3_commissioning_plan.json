@@ -1,0 +1,367 @@
+{
+  "schema_version": "1.0.0",
+  "package_version": "v1.4",
+  "purpose": "Turn the concept package into ten commissionable pre-G3 work packages with owners, professions, deliverables, dependencies, acceptance definitions, and no-go triggers.",
+  "claim_boundary": "The participant-authored briefs are complete enough to scope appointment and desktop review. No professional is appointed, no external evidence is received, no budget or procurement is approved, and no field work or G3 pilot is authorised.",
+  "readiness_ladder": [
+    {
+      "tier": "T0",
+      "state": "complete",
+      "meaning": "concept rules, evidence templates, and synthetic replay"
+    },
+    {
+      "tier": "T1",
+      "state": "complete",
+      "meaning": "ten participant-authored commissioning briefs and acceptance/no-go definitions"
+    },
+    {
+      "tier": "T2",
+      "state": "not_started",
+      "meaning": "authorised appointments, surveys, professional findings, quantities, quotations, and sign-offs"
+    },
+    {
+      "tier": "T3",
+      "state": "closed",
+      "meaning": "procurement, construction, live data, recruited participation, and G3 field pilot"
+    }
+  ],
+  "critical_path": [
+    "C01",
+    "C02",
+    "C03+C04+C05",
+    "C06+C07",
+    "C08+C09",
+    "C10",
+    "authorised G3 decision"
+  ],
+  "packages": [
+    {
+      "package_id": "C01",
+      "title_zh": "正式几何与资料请求包",
+      "title_en": "Official geometry and data request",
+      "gate_links": [
+        "G0",
+        "G1"
+      ],
+      "accountable_role_type": "organiser/site-data liaison",
+      "professional_role_types": [
+        "surveyor",
+        "GIS/data-registry reviewer"
+      ],
+      "prepared_output": "field-by-field request register, source/rights/CRS checklist, and whole-package recalculation trigger",
+      "external_inputs_required": [
+        "official SITE_BOUNDARY and KEY_AREA polygons",
+        "control lines, existing-condition and engineering datasets",
+        "source authority and use rights"
+      ],
+      "acceptance_definition": "each dataset has authority, version/date, rights, CRS, completeness result, and linked recalculation receipt",
+      "dependency_ids": [],
+      "no_go_trigger": "authority, rights, CRS, geometry validity, or required layer is unresolved",
+      "scope_state": "participant_authored_commissioning_brief_complete",
+      "appointment_state": "not_started",
+      "external_evidence_state": "missing",
+      "field_work_state": "not_authorized"
+    },
+    {
+      "package_id": "C02",
+      "title_zh": "责任机构与授权确认包",
+      "title_en": "Accountable institution and authority confirmation",
+      "gate_links": [
+        "G0",
+        "G1"
+      ],
+      "accountable_role_type": "authorised project sponsor/site-rights holder",
+      "professional_role_types": [
+        "governance/legal reviewer",
+        "conflict-of-interest reviewer"
+      ],
+      "prepared_output": "RC-by-RC nomination, mandate, conflict, delegate, pause-right, liability, and replacement-route template",
+      "external_inputs_required": [
+        "authorised sponsor and site-rights records",
+        "named institutional mandates",
+        "legal/liability and delegation route"
+      ],
+      "acceptance_definition": "all RC accountable roles and delegates are confirmed in writing with pause and replacement authority",
+      "dependency_ids": [
+        "C01"
+      ],
+      "no_go_trigger": "any RC lacks an authorised accountable institution, delegate, pause right, or liability route",
+      "scope_state": "participant_authored_commissioning_brief_complete",
+      "appointment_state": "not_started",
+      "external_evidence_state": "missing",
+      "field_work_state": "not_authorized"
+    },
+    {
+      "package_id": "C03",
+      "title_zh": "权属文保与轨道保护包",
+      "title_en": "Rights, heritage, and rail-protection review",
+      "gate_links": [
+        "G1"
+      ],
+      "accountable_role_type": "site-rights holder",
+      "professional_role_types": [
+        "land/rights reviewer",
+        "heritage reviewer",
+        "rail-protection reviewer"
+      ],
+      "prepared_output": "constraint schedule linking every prototype and reversible component to rights, heritage, and rail review questions",
+      "external_inputs_required": [
+        "parcel/use rights",
+        "heritage inventory and buffer findings",
+        "rail-protection conditions"
+      ],
+      "acceptance_definition": "each spatial carrier is cleared, conditioned, moved, or removed with a signed reason and drawing reference",
+      "dependency_ids": [
+        "C01",
+        "C02"
+      ],
+      "no_go_trigger": "uncleared right, heritage conflict, rail-protection conflict, or missing competent review",
+      "scope_state": "participant_authored_commissioning_brief_complete",
+      "appointment_state": "not_started",
+      "external_evidence_state": "missing",
+      "field_work_state": "not_authorized"
+    },
+    {
+      "package_id": "C04",
+      "title_zh": "实测消防无障碍与人流包",
+      "title_en": "Survey, fire, accessibility, and crowd review",
+      "gate_links": [
+        "G1"
+      ],
+      "accountable_role_type": "site/operator role type",
+      "professional_role_types": [
+        "licensed survey role",
+        "fire reviewer",
+        "accessibility reviewer",
+        "crowd/mobility reviewer"
+      ],
+      "prepared_output": "survey brief and route/interface schedule for boundaries, levels, widths, egress, bypass, servicing, and crowd conditions",
+      "external_inputs_required": [
+        "professional measured survey",
+        "existing fire and egress condition",
+        "accessibility and crowd baseline"
+      ],
+      "acceptance_definition": "all public/test routes and service positions have measured values, findings, correction owner, and closure state",
+      "dependency_ids": [
+        "C01",
+        "C02",
+        "C03"
+      ],
+      "no_go_trigger": "basic passage, egress, emergency access, accessible continuity, or crowd safety cannot be demonstrated",
+      "scope_state": "participant_authored_commissioning_brief_complete",
+      "appointment_state": "not_started",
+      "external_evidence_state": "missing",
+      "field_work_state": "not_authorized"
+    },
+    {
+      "package_id": "C05",
+      "title_zh": "市政防洪能源与网络容量包",
+      "title_en": "Utilities, flood, energy, and network capacity",
+      "gate_links": [
+        "G1"
+      ],
+      "accountable_role_type": "site/facilities operator role type",
+      "professional_role_types": [
+        "utilities engineer",
+        "flood/drainage reviewer",
+        "electrical/energy reviewer",
+        "network-security reviewer"
+      ],
+      "prepared_output": "load-and-interface request sheet with degraded mode, isolation, maintenance, removal, and reinstatement checks",
+      "external_inputs_required": [
+        "verified utility and drainage capacity",
+        "power/cooling/network limits",
+        "maintenance and emergency isolation conditions"
+      ],
+      "acceptance_definition": "each proposed service stack has verified capacity, isolation, maintenance, fallback, and reinstatement decision",
+      "dependency_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04"
+      ],
+      "no_go_trigger": "capacity is unknown, unsafe, unavailable, unmaintainable, or lacks isolation and fallback",
+      "scope_state": "participant_authored_commissioning_brief_complete",
+      "appointment_state": "not_started",
+      "external_evidence_state": "missing",
+      "field_work_state": "not_authorized"
+    },
+    {
+      "package_id": "C06",
+      "title_zh": "数据隐私AI安全与网络审查包",
+      "title_en": "Data, privacy, AI-safety, and cyber review",
+      "gate_links": [
+        "G1",
+        "G2"
+      ],
+      "accountable_role_type": "data controller and test-site operator role types",
+      "professional_role_types": [
+        "privacy/data reviewer",
+        "AI-safety reviewer",
+        "network-security reviewer"
+      ],
+      "prepared_output": "S01-S12 data-flow, minimum-data, human-final-accountability, incident, withdrawal, and stop/resume review matrix",
+      "external_inputs_required": [
+        "real controller/operator mandates",
+        "system and data-flow details",
+        "approved incident and deletion process"
+      ],
+      "acceptance_definition": "each scenario has lawful purpose/authority, minimum fields, access/retention, human override, stop drill, incident and deletion receipt",
+      "dependency_ids": [
+        "C02",
+        "C04",
+        "C05"
+      ],
+      "no_go_trigger": "authority, minimum-data boundary, human control, isolation, withdrawal, deletion, or incident closure fails",
+      "scope_state": "participant_authored_commissioning_brief_complete",
+      "appointment_state": "not_started",
+      "external_evidence_state": "missing",
+      "field_work_state": "not_authorized"
+    },
+    {
+      "package_id": "C07",
+      "title_zh": "公共利益与经同意共测包",
+      "title_en": "Public-interest and consented co-test review",
+      "gate_links": [
+        "G1",
+        "G2"
+      ],
+      "accountable_role_type": "public-space/service operator role type",
+      "professional_role_types": [
+        "independent accessibility reviewer",
+        "participant-safeguarding reviewer",
+        "public-interest reviewer"
+      ],
+      "prepared_output": "paper-first notice, recruitment, consent, no-account route, task, withdrawal, barrier, repair, re-test, and appeal templates",
+      "external_inputs_required": [
+        "approved ethics/safeguarding route",
+        "consented participant recruitment",
+        "independent professional appointment"
+      ],
+      "acceptance_definition": "approved plan covers at least 12 consented route tasks and three need types, with withdrawal, correction, and independent sign-off",
+      "dependency_ids": [
+        "C02",
+        "C04",
+        "C06"
+      ],
+      "no_go_trigger": "service entitlement is conditioned on participation or consent, safety, access, withdrawal, or independent review is unavailable",
+      "scope_state": "participant_authored_commissioning_brief_complete",
+      "appointment_state": "not_started",
+      "external_evidence_state": "missing",
+      "field_work_state": "not_authorized"
+    },
+    {
+      "package_id": "C08",
+      "title_zh": "工程量规格与全生命周期成本包",
+      "title_en": "Quantity, specification, and lifecycle-cost plan",
+      "gate_links": [
+        "G1"
+      ],
+      "accountable_role_type": "budget owner role type",
+      "professional_role_types": [
+        "quantity/cost reviewer",
+        "operations and maintenance reviewer"
+      ],
+      "prepared_output": "RC-by-RC measurable-item, unit, specification, quotation, capital, operation, maintenance, removal, reinstatement, and contingency template",
+      "external_inputs_required": [
+        "approved measured quantities and specifications",
+        "at least two comparable quotations or approved rate basis",
+        "price date, tax, risk, and contingency basis"
+      ],
+      "acceptance_definition": "every L1/L2 item has measured quantity, reviewed specification, price basis, lifecycle split, owner, and reinstatement provision",
+      "dependency_ids": [
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07"
+      ],
+      "no_go_trigger": "quantity, specification, price basis, lifecycle owner, removal, or reinstatement provision is missing",
+      "scope_state": "participant_authored_commissioning_brief_complete",
+      "appointment_state": "not_started",
+      "external_evidence_state": "missing",
+      "field_work_state": "not_authorized"
+    },
+    {
+      "package_id": "C09",
+      "title_zh": "采购保险运营与区域接口包",
+      "title_en": "Procurement, insurance, operation, and regional interfaces",
+      "gate_links": [
+        "G1",
+        "G2"
+      ],
+      "accountable_role_type": "authorised sponsor/operator role type",
+      "professional_role_types": [
+        "procurement reviewer",
+        "insurance/liability reviewer",
+        "operations reviewer"
+      ],
+      "prepared_output": "procurement/appointment route, service levels, roster, maintenance, insurance, complaints, closure, and five-interface confirmation template",
+      "external_inputs_required": [
+        "approved procurement route",
+        "operator and qualified roster",
+        "insurance/liability decision",
+        "five counterpart confirmations and data licences"
+      ],
+      "acceptance_definition": "operator, procurement, insurance, maintenance, complaint, closure, and each regional interface are signed and resourced",
+      "dependency_ids": [
+        "C02",
+        "C08"
+      ],
+      "no_go_trigger": "operator, procurement authority, insurance/liability, maintenance, closure funding, or interface confirmation is missing",
+      "scope_state": "participant_authored_commissioning_brief_complete",
+      "appointment_state": "not_started",
+      "external_evidence_state": "missing",
+      "field_work_state": "not_authorized"
+    },
+    {
+      "package_id": "C10",
+      "title_zh": "综合Go/No-Go与G2演练包",
+      "title_en": "Integrated go/no-go and G2 drill pack",
+      "gate_links": [
+        "G2"
+      ],
+      "accountable_role_type": "authorised delivery authority role type",
+      "professional_role_types": [
+        "independent safety/access reviewer",
+        "independent privacy/rights reviewer",
+        "cost/operations reviewer"
+      ],
+      "prepared_output": "issue register, dependency check, RC drill script, stop/appeal/rollback receipts, residual-risk decision, and G3 authorisation checklist",
+      "external_inputs_required": [
+        "accepted C01-C09 records",
+        "named signatories and independent reviewers",
+        "closed major issues and funded reinstatement route"
+      ],
+      "acceptance_definition": "C01-C09 accepted, all severe/major issues closed, six RC drills passed with independent sign-off, and an authorised G3 decision recorded",
+      "dependency_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09"
+      ],
+      "no_go_trigger": "any dependency, severe/major issue, stop/appeal/rollback drill, signatory, or reinstatement route remains open",
+      "scope_state": "participant_authored_commissioning_brief_complete",
+      "appointment_state": "not_started",
+      "external_evidence_state": "missing",
+      "field_work_state": "not_authorized"
+    }
+  ],
+  "coverage_summary": {
+    "commissioning_package_count": 10,
+    "packages_with_accountable_role": 10,
+    "packages_with_professional_roles": 10,
+    "packages_with_prepared_output": 10,
+    "packages_with_acceptance_definition": 10,
+    "packages_with_no_go_trigger": 10,
+    "professional_appointments": 0,
+    "external_evidence_received": 0,
+    "approved_budget_count": 0,
+    "field_work_count": 0
+  }
+}

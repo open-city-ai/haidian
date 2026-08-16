@@ -1,0 +1,232 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; unsuitable for official area or control claims."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 30351.621,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(conceptual_component_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; unsuitable for official area or control claims."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; unsuitable for official area or control claims."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.012981,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; unsuitable for official area or control claims."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official parcel data are absent."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required_provisional_key_areas)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; unsuitable for official area or control claims."
+      ]
+    },
+    "synthetic_conflict_case_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/conflict-ledger.json"
+      ],
+      "formula": "count(cases)",
+      "confidence": "high",
+      "assumptions": [
+        "Synthetic fixtures only; not observed service incidents."
+      ]
+    },
+    "channel_closeout_fixture_count": {
+      "status": "known",
+      "value": 42,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/conflict-ledger.json"
+      ],
+      "formula": "sum(count(channels) for each synthetic case)",
+      "confidence": "high",
+      "assumptions": [
+        "Seven abstract channel types are tested per case."
+      ]
+    },
+    "channel_type_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/conflict-ledger.json"
+      ],
+      "formula": "count(unique channel taxonomy)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "human_role_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/conflict-ledger.json"
+      ],
+      "formula": "count(named decision roles)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual role separation requires institution-specific legal and operational confirmation."
+      ]
+    },
+    "offline_completion_rate": {
+      "status": "known",
+      "value": 1,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/conflict-ledger.json"
+      ],
+      "formula": "cases_with_non_ai_completion_path / all_cases",
+      "confidence": "high",
+      "assumptions": [
+        "Desk rehearsal result, not field performance."
+      ]
+    },
+    "adverse_action_isolation_rate": {
+      "status": "known",
+      "value": 1,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/conflict-ledger.json"
+      ],
+      "formula": "cases_that_pause_conflict-dependent_adverse_automation / all_cases",
+      "confidence": "high",
+      "assumptions": [
+        "Protocol assertion only; does not establish legal authority."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(numbered scenario cards)",
+      "confidence": "high",
+      "assumptions": [
+        "Concept scenarios, not approved operations."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(persona rows)",
+      "confidence": "high",
+      "assumptions": [
+        "Synthetic personas without personal data."
+      ]
+    },
+    "industry_test_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(named industry rehearsal types)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual tests subject to professional confirmation."
+      ]
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(conceptual civic landmarks)",
+      "confidence": "high",
+      "assumptions": [
+        "No construction or siting approval is claimed."
+      ]
+    },
+    "ecosystem_case_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "sources.json",
+        "proposal.md"
+      ],
+      "formula": "count(background mechanism comparators)",
+      "confidence": "high",
+      "assumptions": [
+        "Comparators inform questions only and are not copied spatial models."
+      ]
+    }
+  }
+}

@@ -1,0 +1,58 @@
+/* EVERY SENSE JING-ZHANG - three-dimensional spine chapter.
+   Scoped to .j3-scene; reuses the page palette variables and the unscoped
+   utility classes of assets/scene.css (.jz-legend, .jz-note, .jz-sr). */
+.j3-scene{--j3-gap:16px}
+.j3-scene *{box-sizing:border-box}
+.j3-bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:14px 16px;background:var(--paper);border-top:5px solid var(--deep)}
+.j3-switch{display:flex;border:1px solid var(--deep);background:#fff}
+.j3-switch button{appearance:none;border:0;background:#fff;color:var(--ink);font:inherit;font-size:13px;font-weight:800;letter-spacing:.06em;padding:11px 18px;cursor:pointer}
+.j3-switch button+button{border-left:1px solid var(--deep)}
+.j3-switch button[aria-pressed="true"]{background:var(--deep);color:#fff}
+.j3-btn{appearance:none;border:1px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-size:12px;font-weight:700;padding:10px 14px;cursor:pointer}
+.j3-btn[disabled],.j3-switch button[disabled],.j3-rail button[disabled]{opacity:.5;cursor:not-allowed}
+.j3-hint{margin:0;color:var(--muted);font-size:12px;flex:1 1 240px;min-width:0}
+.j3-stage{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(280px,1fr);gap:var(--j3-gap);margin-top:var(--j3-gap)}
+.j3-canvaswrap{position:relative;background:var(--deep);min-width:0;min-height:clamp(240px,30vw,420px)}
+/* pan-y keeps one-finger vertical page scrolling intact on touch devices;
+   horizontal drag orbits, two fingers pinch. */
+.j3-canvaswrap canvas{display:block;width:100%;touch-action:pan-y;cursor:grab}
+.j3-canvaswrap canvas:active{cursor:grabbing}
+.j3-state{position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;text-align:center;color:#a8cbc5;font-size:13px;padding:24px}
+.j3-canvaswrap[data-ready="1"] .j3-state{display:none}
+.j3-canvaswrap[data-view="static"] canvas{display:none}
+.j3-canvaswrap[data-view="static"] .j3-state{display:none}
+.j3-fallback{display:none;width:100%}
+.j3-canvaswrap[data-view="static"] .j3-fallback{display:block}
+.j3-side{display:flex;flex-direction:column;gap:var(--j3-gap);min-width:0}
+.j3-guide{background:var(--deep);color:#fff;padding:18px}
+.j3-guide h3{margin:0 0 10px;font-family:inherit;font-size:12px;font-weight:800;letter-spacing:.12em;color:#a8cbc5}
+.j3-guide ul{margin:0;padding:0;list-style:none}
+.j3-guide li{color:#d4e4e0;font-size:13px;line-height:1.55;padding:8px 0;border-top:1px solid #55777a}
+.j3-guide li:first-child{border-top:0;padding-top:0}
+.j3-guide b{color:#fff}
+.j3-card{background:var(--paper);border-top:5px solid var(--teal);padding:18px;min-width:0}
+.j3-card[hidden]{display:none}
+.j3-card small{display:block;color:var(--teal);font-weight:800;font-size:12px;letter-spacing:.04em}
+.j3-card h3{margin:6px 0 12px;font-family:Georgia,"Source Han Sans SC",serif;font-weight:400;font-size:21px;line-height:1.2}
+.j3-card dl{margin:0}
+.j3-card dt{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--muted)}
+.j3-card dd{margin:3px 0 0;font-size:14px}
+.j3-empty{margin:0;color:var(--muted);font-size:13px;background:var(--paper);border-top:5px solid var(--line);padding:18px}
+.j3-empty[hidden]{display:none}
+.j3-rail{margin-top:var(--j3-gap)}
+.j3-rail h3{margin:0 0 10px;font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--muted)}
+.j3-rail ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.j3-rail button{appearance:none;width:100%;text-align:left;border:1px solid var(--line);border-top:4px solid var(--teal);background:#fff;color:var(--ink);font:inherit;padding:10px 12px;cursor:pointer;min-width:0}
+.j3-rail button b{display:block;font-family:Georgia,serif;font-weight:400;font-size:15px}
+.j3-rail button span{display:block;color:var(--muted);font-size:11px;margin-top:3px;overflow-wrap:anywhere}
+.j3-rail button[aria-pressed="true"]{background:var(--deep);color:#fff;border-color:var(--deep)}
+.j3-rail button[aria-pressed="true"] span{color:#a8cbc5}
+.j3-legend i.j3-l-service{background:var(--gold);border-color:var(--gold)}
+.j3-legend i.j3-l-volume{background:rgba(23,124,120,.18);border-color:var(--teal)}
+.j3-degrade{margin:var(--j3-gap) 0 0;padding:14px 18px;border-left:5px solid var(--coral);background:rgba(215,100,80,.08);color:var(--coral);font-size:13px;line-height:1.6}
+.j3-degrade[hidden]{display:none}
+.j3-scene button:focus-visible,.j3-scene canvas:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+@media(max-width:1000px){.j3-stage{grid-template-columns:1fr}.j3-rail ul{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.j3-rail ul{grid-template-columns:repeat(2,minmax(0,1fr))}.j3-switch{width:100%}.j3-switch button{flex:1 1 0;justify-content:center;text-align:center;padding:11px 8px}}
+@media(prefers-reduced-motion:reduce){.j3-scene *{transition:none!important;animation:none!important}}
+@media print{.j3-bar,.j3-rail{display:none}.j3-stage{grid-template-columns:1fr}}

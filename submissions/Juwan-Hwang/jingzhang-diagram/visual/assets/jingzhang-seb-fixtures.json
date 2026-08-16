@@ -1,0 +1,254 @@
+{
+  "fixtures_id": "jingzhang-diagram-seb-fixtures",
+  "version": "0.3.0",
+  "consumes": {
+    "spec": "seb-spec.json",
+    "spec_version": "0.3.0",
+    "node_source_of_record": "geometry/public_space.geojson",
+    "runner": "seb-tabletop-run.js"
+  },
+  "evidence_class": "methodology_demonstration",
+  "contains_no_measurement_values": true,
+  "adopter_lexicon": ["志愿者", "社工", "网格员", "安全员", "辅导员"],
+  "disclaimer_zh": "本文件是桌面推演样例，不是测试记录。将京张运行图方案的十二张场景卡映射为 SEB 节点，检验联锁制四条硬接线是否可通过 SEB v0.3 判据的逐条校验。样例中没有任何参与者、任何现场、任何计数或比例；运行本文件不产生绩效指标数值。",
+  "disclaimer_en": "This file holds tabletop fixtures, not test records. The twelve scenario cards of the Jingzhang Diagram proposal are mapped to SEB nodes to test whether the four hardwired interlock constraints pass SEB v0.3 item-by-item. No participant, no site, no count and no ratio; running it produces no performance metric value.",
+  "verdict_semantics": {
+    "accept": "四个基准组件逐项通过，该样例可以进入下一步；不表示服务已达标。",
+    "reject": "至少一个基准组件被违反，该样例在桌面阶段即被拒绝，理由逐条给出。"
+  },
+  "fixtures": [
+    {
+      "fixture_id": "JZ-P1",
+      "polarity": "positive",
+      "title_zh": "调度大厅在 L0 的资料与许可声明",
+      "title_en": "Dispatch Hall declaring evidence and permission at L0",
+      "note_zh": "场景卡#1：市民在运行图大屏看到全城在测场景、闭塞状态与退出记录，一键预约听证。AI 关闭后等价路径为物理人工窗口，人工接管角色为调度大厅值守人员。",
+      "note_en": "Scenario card #1: citizens view all in-test scenarios on the working-diagram screen; AI-off equivalent is a physical human window; handoff role is the dispatch hall duty officer.",
+      "node": {
+        "id": "PUBLIC-004",
+        "scenario_id": "JZ-01",
+        "ai_off_path": "调度大厅实体窗口，由值守人员人工登记预约听证并公示",
+        "human_handoff": "调度大厅值守人员接管人工登记与公示",
+        "gate_id": "G0",
+        "operating_mode": "资料核对与场景清单编制，不进行现场测试",
+        "responsible_role": "城市治理服务人员与社区代表"
+      },
+      "measurement_declaration": null,
+      "level_claim": {
+        "level_id": "L0",
+        "entry_condition": "场景清单、数据脱敏协议与听证规则齐备，四制试运行方案已公示",
+        "stop_condition": "责任主体或资料边界不清，或数据脱敏协议未签署",
+        "recovery_evidence": "来源登记补齐、书面授权、协议签署与数据处置记录",
+        "accountable_operator": "城市治理服务人员与社区代表"
+      },
+      "decision": {
+        "risk_ids": ["R-03", "R-05", "R-08"],
+        "stop_condition_triggered": false,
+        "action_taken": "proceed"
+      },
+      "expected_verdict": "accept",
+      "expected_reasons": []
+    },
+    {
+      "fixture_id": "JZ-P2",
+      "polarity": "positive",
+      "title_zh": "银发运动处方在 L1 的可逆原型申报",
+      "title_en": "Silver-Age Exercise Prescription applying for L1 reversible prototype",
+      "note_zh": "场景卡#8：退休铁路职工获 AI 运动建议，子女远程可见。AI 关闭后等价路径为社区健康服务站人工服务，人工接管角色为社区健康服务专员。健康数据本地存储、本人授权、医生兜底。",
+      "note_en": "Scenario card #8: retired railway workers receive AI exercise advice; AI-off equivalent is community health station; handoff role is community health specialist. Health data stored locally, personally authorized, physician-backed.",
+      "node": {
+        "id": "PUBLIC-010",
+        "scenario_id": "JZ-08",
+        "ai_off_path": "社区健康服务站人工窗口，由健康服务专员提供运动建议",
+        "human_handoff": "社区健康服务专员接管并安排医生面诊",
+        "gate_id": "G1",
+        "operating_mode": "可撤除构件安装与撤除演练，附维护卡与故障绕行方案",
+        "responsible_role": "社区健康服务专员与家庭医生"
+      },
+      "measurement_declaration": null,
+      "level_claim": {
+        "level_id": "L1",
+        "entry_condition": "构件可安装可撤除、不阻断连续路径，并附维护卡与故障绕行方案",
+        "stop_condition": "构件不可撤回、不可维修，或阻断轮椅与婴儿车通行",
+        "recovery_evidence": "安装撤除测试记录、场地复核结论、维护责任确认",
+        "accountable_operator": "产品设计、安全与维护人员"
+      },
+      "decision": {
+        "risk_ids": ["R-01", "R-04", "R-08"],
+        "stop_condition_triggered": false,
+        "action_taken": "proceed"
+      },
+      "expected_verdict": "accept",
+      "expected_reasons": []
+    },
+    {
+      "fixture_id": "JZ-P3",
+      "polarity": "positive",
+      "title_zh": "开源智造工坊在 L2 的封闭成对测试",
+      "title_en": "Open-Source Fabrication Workshop at L2 closed paired testing",
+      "note_zh": "场景卡#10：市民与开发者共用开源硬件工坊，72小时从想法到原型。AI 关闭后等价路径为工坊值守人员提供手工工具与指导，人工接管角色为工坊维护者。安全培训前置；作品IP归创作者。",
+      "note_en": "Scenario card #10: citizens and developers share an open-source hardware workshop; AI-off equivalent is manual tools and guidance from workshop steward. Safety training first; work IP belongs to the creator.",
+      "node": {
+        "id": "PUBLIC-005",
+        "scenario_id": "JZ-10",
+        "ai_off_path": "工坊手工工具区，由值守维护者提供安全指导与材料借阅",
+        "human_handoff": "工坊维护者接管安全指导与设备操作",
+        "gate_id": "G2",
+        "operating_mode": "封闭条件下成对测试，AI 辅助与人工操作交替进行",
+        "responsible_role": "工坊维护者与安全监督员"
+      },
+      "measurement_declaration": {
+        "metric_id": "ai_off_service_equivalence_gap",
+        "denominator_categories_declared": ["completed", "withdrawn", "technical_fault", "non_completion_other"],
+        "denominator_categories_excluded": []
+      },
+      "level_claim": {
+        "level_id": "L2",
+        "entry_condition": "成对测试方案批准，参与者同意书签署，安全培训完成",
+        "stop_condition": "成对测试中安全事件或设备不可恢复故障",
+        "recovery_evidence": "设备维修记录、安全复核结论、参与者重新签署同意书",
+        "accountable_operator": "工坊维护者与安全监督员"
+      },
+      "decision": {
+        "risk_ids": ["R-02", "R-07", "R-08"],
+        "stop_condition_triggered": false,
+        "action_taken": "proceed"
+      },
+      "expected_verdict": "accept",
+      "expected_reasons": []
+    },
+    {
+      "fixture_id": "JZ-N1",
+      "polarity": "negative",
+      "title_zh": "AR折返导览：ai_off_path 违反禁止依赖",
+      "title_en": "AR Switchback Guide: ai_off_path violates forbidden dependency",
+      "note_zh": "场景卡#2：行走中对齐1909与2026时空图层。本样例故意将 AI 关闭后路径写为扫码关注公众号，违反 constraint_machine_rule.forbidden_targets。",
+      "note_en": "Scenario card #2: walking AR overlay of 1909 and 2026 layers. This fixture deliberately sets ai_off_path to scan a QR code to follow the official account, violating constraint_machine_rule.forbidden_targets.",
+      "node": {
+        "id": "PUBLIC-000",
+        "scenario_id": "JZ-02",
+        "ai_off_path": "扫码关注公众号获取导览音频",
+        "human_handoff": "站点导览志愿者提供人工讲解",
+        "gate_id": "G1",
+        "operating_mode": "可逆原型安装与测试",
+        "responsible_role": "文化遗产导览志愿者"
+      },
+      "measurement_declaration": null,
+      "level_claim": {
+        "level_id": "L1",
+        "entry_condition": "构件可安装可撤除",
+        "stop_condition": "构件不可撤回",
+        "recovery_evidence": "安装撤除测试记录",
+        "accountable_operator": "导览志愿者团队"
+      },
+      "decision": {
+        "risk_ids": ["R-03", "R-08"],
+        "stop_condition_triggered": false,
+        "action_taken": "proceed"
+      },
+      "expected_verdict": "reject",
+      "expected_reasons": ["NODE_CONSTRAINT_VIOLATION:ai_off_path"]
+    },
+    {
+      "fixture_id": "JZ-N2",
+      "polarity": "negative",
+      "title_zh": "城市问题公开路由：human_handoff 只写机构不写角色",
+      "title_en": "Public Urban Problem Routing: human_handoff names only an organisation",
+      "note_zh": "场景卡#12：路灯坏了/无障碍断了进入闭环。本样例故意将 human_handoff 只写为城市管理委员会，不含任何角色词，违反 constraint_machine_rule.required_tokens。",
+      "note_en": "Scenario card #12: broken streetlight / blocked accessible route enters a feedback loop. This fixture deliberately sets human_handoff to only the organisation name without any role token, violating constraint_machine_rule.required_tokens.",
+      "node": {
+        "id": "PUBLIC-000",
+        "scenario_id": "JZ-12",
+        "ai_off_path": "社区服务热线电话由值守人员记录并派单",
+        "human_handoff": "城市管理委员会",
+        "gate_id": "G0",
+        "operating_mode": "资料与许可阶段",
+        "responsible_role": "城市管理委员会"
+      },
+      "measurement_declaration": null,
+      "level_claim": {
+        "level_id": "L0",
+        "entry_condition": "问题分类清单与派单流程齐备",
+        "stop_condition": "责任主体不清",
+        "recovery_evidence": "责任登记补齐",
+        "accountable_operator": "城市管理委员会"
+      },
+      "decision": {
+        "risk_ids": ["R-03", "R-05"],
+        "stop_condition_triggered": false,
+        "action_taken": "proceed"
+      },
+      "expected_verdict": "reject",
+      "expected_reasons": ["NODE_CONSTRAINT_VIOLATION:human_handoff"]
+    },
+    {
+      "fixture_id": "JZ-N3",
+      "polarity": "negative",
+      "title_zh": "无人配送：分母删除技术故障样本",
+      "title_en": "Unmanned Delivery: denominator drops technical-fault samples",
+      "note_zh": "场景卡#3：无人车把人字步道当站间线路。本样例故意在测量声明中删除 technical_fault 类别，违反分母完整性规则。",
+      "note_en": "Scenario card #3: unmanned vehicles use the switchback walkway as a station-to-station line. This fixture deliberately drops the technical_fault category from the denominator, violating the denominator-integrity rule.",
+      "node": {
+        "id": "PUBLIC-000",
+        "scenario_id": "JZ-03",
+        "ai_off_path": "步道沿线人工配送驿站取货",
+        "human_handoff": "配送站值守人员接管人工配送",
+        "gate_id": "G2",
+        "operating_mode": "封闭成对测试",
+        "responsible_role": "配送运营人员与安全监督员"
+      },
+      "measurement_declaration": {
+        "metric_id": "independent_task_completion_rate",
+        "denominator_categories_declared": ["completed", "withdrawn", "non_completion_other"],
+        "denominator_categories_excluded": ["technical_fault"]
+      },
+      "level_claim": {
+        "level_id": "L2",
+        "entry_condition": "成对测试方案批准",
+        "stop_condition": "安全事件",
+        "recovery_evidence": "安全复核结论",
+        "accountable_operator": "配送运营人员"
+      },
+      "decision": {
+        "risk_ids": ["R-02", "R-07"],
+        "stop_condition_triggered": false,
+        "action_taken": "proceed"
+      },
+      "expected_verdict": "reject",
+      "expected_reasons": ["DENOMINATOR_SAMPLE_DROPPED:technical_fault"]
+    },
+    {
+      "fixture_id": "JZ-N4",
+      "polarity": "negative",
+      "title_zh": "低速接驳：停止条件触发却以限期整改续跑",
+      "title_en": "Low-Speed Shuttle: stop condition triggered but continued under corrective-action deadline",
+      "note_zh": "场景卡#4：可回退低速自动驾驶接驳，随时切人工驾驶。本样例故意让停止条件触发后不以 stopped 处理而是限期整改续跑。",
+      "note_en": "Scenario card #4: reversible low-speed autonomous shuttle. This fixture deliberately continues under a corrective-action deadline after a stop condition is triggered, violating the decision rule.",
+      "node": {
+        "id": "PUBLIC-000",
+        "scenario_id": "JZ-04",
+        "ai_off_path": "步道沿线人工接驳车站",
+        "human_handoff": "随车安全员接管人工驾驶",
+        "gate_id": "G2",
+        "operating_mode": "封闭成对测试",
+        "responsible_role": "交通运营专员与安全监督员"
+      },
+      "measurement_declaration": null,
+      "level_claim": {
+        "level_id": "L2",
+        "entry_condition": "成对测试方案批准",
+        "stop_condition": "安全员无法接管或车辆不可回退",
+        "recovery_evidence": "安全复核结论",
+        "accountable_operator": "交通运营专员"
+      },
+      "decision": {
+        "risk_ids": ["R-02", "R-07"],
+        "stop_condition_triggered": true,
+        "action_taken": "corrective_action_deadline",
+        "resumed": false
+      },
+      "expected_verdict": "reject",
+      "expected_reasons": ["STOP_NOT_ENFORCED"]
+    }
+  ]
+}

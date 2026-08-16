@@ -1,0 +1,30 @@
+{
+  "checker": "check_timetable.js",
+  "schema": "timetable.schema.json (urban-operating-diagram-timetable-v1)",
+  "validated_at": "2026-08-16",
+  "node_version_required": ">=16（无外部依赖，包内可复算：node visual/assets/governance/check_timetable.js）",
+  "summary": {
+    "scenario_cards_registered": 8,
+    "scenario_cards_accepted": 8,
+    "fixtures_total": 11,
+    "fixtures_accepted": 3,
+    "fixtures_rejected": 8,
+    "fixture_expectations_matched": 11,
+    "fixture_mismatches": 0
+  },
+  "what_this_proves": "八张场景卡作为运行图时刻表条目通过结构校验（schema）+ 机制三问（输入/判定逻辑/状态与停止条件）+ 断言联动（zone_id/raci/gate）三重检查；11 个登记样例的接受/拒绝判定全部与预期一致。",
+  "what_this_does_not_prove": "这只证明登记契约在纸面上闭合（结构正确、判定可靠），不证明现场绩效、安全、合规或获批准入。运行图 KPI（正点率等）在首班车试点开始前保持 unknown，不以本报告冒充实测绩效（与 metrics.json 口径一致）。",
+  "fixtures_index": [
+    { "file": "valid-full-registration.json", "verdict": "accepted", "rule": "完整时刻表条目（T-07 试点舱合规登记形态）" },
+    { "file": "valid-l1-open-display.json", "verdict": "accepted", "rule": "L1 开放展示型服务（T-02 延伸至乘降所信息点）" },
+    { "file": "valid-line-wide-window.json", "verdict": "accepted", "rule": "全线性治理机制条目（T-03 天窗广场）" },
+    { "file": "reject-no-timetable-no-departure.json", "verdict": "rejected", "rule": "没有时刻表的车不能开——缺核心时刻字段" },
+    { "file": "reject-missing-assertion.json", "verdict": "rejected", "rule": "断言联动缺位——缺 zone_id/raci/gate 不计入服务覆盖" },
+    { "file": "reject-no-stop-condition.json", "verdict": "rejected", "rule": "机制三问不过——无停止条件" },
+    { "file": "reject-no-ai-off-path.json", "verdict": "rejected", "rule": "无 AI 等价路径缺失——公共底线违约" },
+    { "file": "reject-notice-below-standard.json", "verdict": "rejected", "rule": "公告纪律违约——变更公告提前量低于自设标准 24h" },
+    { "file": "reject-unknown-stop.json", "verdict": "rejected", "rule": "停靠点不在九站体系——空间锚定失败" },
+    { "file": "reject-id-not-registered.json", "verdict": "rejected", "rule": "服务未登记即运行——service_id 不符合场景卡编号体系" },
+    { "file": "reject-threshold-out-of-range.json", "verdict": "rejected", "rule": "判定逻辑缺失——晚点阈值越界无法判定" }
+  ]
+}

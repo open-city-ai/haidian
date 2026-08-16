@@ -16,8 +16,8 @@
   "is_physical_press_proof": false,
   "metrics_effect_zh": "无。本文件不产生任何指标数值；metrics.json 中七项包容性指标保持待实测。",
   "metrics_effect_en": "None. This file produces no metric value; the seven inclusion metrics in metrics.json remain unmeasured.",
-  "statement_zh": "本文件登记的是本方案自己做过的三类检查：按实际输出尺寸的字号与对比度校样、双语等价抽检、HTML 无障碍走查。三类检查均由方案方自行执行，以脚本量测与结构比对为主要手段，未经任何第三方机构认证，未经辅助技术使用者实测，也未经具备资质的译者逐词审校。凡本次未亲自复测而引自包内既有登记的读数，均在条目的 provenance 字段注明出处。",
-  "statement_en": "This file records three checks the proposer actually performed: type-size and contrast proofing at the real output size, bilingual-equivalence sampling, and an HTML accessibility walkthrough. All three were run by the proposer, primarily through scripted measurement and structural comparison. None was certified by a third party, tested with assistive-technology users, or reviewed word by word by a qualified translator. Any reading quoted from an existing package register rather than re-measured in this round is attributed in the entry's provenance field."
+  "statement_zh": "本文件登记的是本方案自己做过的三类检查：按实际输出尺寸的字号与对比度校样、双语等价抽检、HTML 无障碍走查。三类检查均由方案方自行执行，以脚本量测与结构比对为主要手段，未经任何第三方机构认证，未经辅助技术使用者实测，也未经具备资质的译者逐词审校。凡本次未亲自复测而引自包内既有登记的读数，均在条目的 provenance 系列字段（provenance_zh / provenance_en）注明出处。",
+  "statement_en": "This file records three checks the proposer actually performed: type-size and contrast proofing at the real output size, bilingual-equivalence sampling, and an HTML accessibility walkthrough. All three were run by the proposer, primarily through scripted measurement and structural comparison. None was certified by a third party, tested with assistive-technology users, or reviewed word by word by a qualified translator. Any reading quoted from an existing package register rather than re-measured in this round is attributed in the entry's provenance fields (provenance_zh / provenance_en)."
  },
  "records": [
   {
@@ -33,14 +33,17 @@
      "item_en": "Minimum type size in the page text layer of the A3 bilingual booklet",
      "method_zh": "对生成 A3 页面的 DOM 逐元素读取 computedStyle 的 font-size，按 px × 0.75 = pt 换算为印刷字号，取全册最小值",
      "method_en": "Read computedStyle font-size element by element on the DOM that generates the A3 pages, convert with px x 0.75 = pt, and take the minimum across the booklet",
-     "tool": "DOM computedStyle 实测（px×0.75=pt 口径）",
+     "tool_zh": "DOM computedStyle 实测（px×0.75=pt 口径）",
+     "tool_en": "DOM computedStyle measurement (px x 0.75 = pt basis)",
      "date": "2026-08-13",
      "scope_zh": "A3 双语册全 24 页（中文 12 页 + 英文 12 页），页面文本层",
      "scope_en": "All 24 pages of the A3 bilingual booklet (12 zh + 12 en), page text layer",
      "result_zh": "页面文本层最小 9.07 pt；一级判断卡最小 9.35 pt；图例最小 9.07 pt",
      "result_en": "Page text layer minimum 9.07 pt; primary judgement cards minimum 9.35 pt; legends minimum 9.07 pt",
-     "provenance": "包内 changelog.md 2026-08-13「A3 拆页」条目登记；本轮未重跑该量测",
-     "limitations_zh": "屏幕渲染量测，未做实物打印比对；不同打印设备的墨迹扩散与纸张会改变实际可读性"
+     "provenance_zh": "包内 changelog.md 2026-08-13「A3 拆页」条目登记；本轮未重跑该量测",
+     "provenance_en": "Registered in the \"A3 re-pagination\" entry of 2026-08-13 in the package changelog.md; this measurement was not re-run this round",
+     "limitations_zh": "屏幕渲染量测，未做实物打印比对；不同打印设备的墨迹扩散与纸张会改变实际可读性",
+     "limitations_en": "A screen-rendered measurement with no comparison against a physical print; ink spread and paper differ between printing devices and change actual legibility"
     },
     {
      "id": "R1-02",
@@ -48,14 +51,17 @@
      "item_en": "Page count and file size verification of the A3 booklet",
      "method_zh": "直接解析 PDF 页树的 /Count 与 /Type /Page 标记计数，并读取文件字节数",
      "method_en": "Parse the PDF page tree /Count and /Type /Page markers directly, and read file byte size",
-     "tool": "Node.js 直读 PDF 字节流",
-     "date": "2026-08-13",
+     "tool_zh": "Node.js 直读 PDF 字节流",
+     "tool_en": "Node.js direct read of the PDF byte stream",
+     "date": "2026-08-15",
      "scope_zh": "drawings/a3-booklet.pdf 与 drawings/a3-booklet.en.pdf",
      "scope_en": "drawings/a3-booklet.pdf and drawings/a3-booklet.en.pdf",
-     "result_zh": "中文册 12 页 2,078,274 字节，英文册 12 页 1,710,501 字节，合计 24 页，与「12 × 2」的登记一致",
-     "result_en": "12 pages / 2,078,274 bytes (zh) and 12 pages / 1,710,501 bytes (en); 24 pages in total, matching the registered 12 x 2",
-     "provenance": "本轮实测",
-     "limitations_zh": "仅核对页数与体量，不核对页面内容"
+     "result_zh": "中文册 12 页 1,692,039 字节，英文册 12 页 1,280,468 字节，合计 24 页，与「12 × 2」的登记一致",
+     "result_en": "12 pages / 1,692,039 bytes (zh) and 12 pages / 1,280,468 bytes (en); 24 pages in total, matching the registered 12 x 2",
+     "provenance_zh": "本轮实测",
+     "provenance_en": "Measured this round",
+     "limitations_zh": "仅核对页数与体量，不核对页面内容",
+     "limitations_en": "Only page count and file size are verified, not page content"
     },
     {
      "id": "R1-03",
@@ -63,16 +69,19 @@
      "item_en": "Effective print type size of annotations inside cropped drawing bands on A3",
      "method_zh": "按图版嵌入 A3 页面后的实际缩放比例，把图版原始像素字高折算为 A3 印刷尺寸下的等效 pt 值",
      "method_en": "Convert the source pixel cap height of the drawing into an equivalent pt value at A3 print size, using the actual scale at which the drawing is embedded",
-     "tool": "版面缩放比折算（图版原始字高 × 嵌入缩放比 × 0.75）",
+     "tool_zh": "版面缩放比折算（图版原始字高 × 嵌入缩放比 × 0.75）",
+     "tool_en": "Layout-scale conversion (source cap height of the drawing x embedded scale x 0.75)",
      "date": "2026-08-13",
      "scope_zh": "A3 双语册内嵌图版的裁切带注记",
      "scope_en": "Annotations inside the cropped drawing bands embedded in the A3 bilingual booklet",
      "result_zh": "等效印刷字号 4.48—12.05 pt（拆页重排前为 2.98—3.70 pt，放大 1.50—3.38 倍）",
      "result_en": "Effective print size 4.48-12.05 pt, up from 2.98-3.70 pt before the re-pagination (a 1.50-3.38x increase)",
-     "provenance": "包内 changelog.md 2026-08-13 条目登记；本轮未重跑该量测",
+     "provenance_zh": "包内 changelog.md 2026-08-13 条目登记；本轮未重跑该量测",
+     "provenance_en": "Registered in the 2026-08-13 entry of the package changelog.md; this measurement was not re-run this round",
      "reading_discipline_zh": "全部判断语、图例与限定语位于页面文本层（下限 9.07 pt），图带只承担形态证据；读者不需要读图带内注记也能获得完整判断。",
      "reading_discipline_en": "All judgements, legends, and qualifying statements sit in the page text layer (floor 9.07 pt); the drawing band carries morphological evidence only, so a reader obtains the full judgement without reading the in-band annotations.",
-     "limitations_zh": "下限 4.48 pt 低于印刷常规下限（一般不低于 6 pt）。这是已知取舍而非疏漏：该量级的注记只出现在图带内，其判断内容已上移至页面文本层。"
+     "limitations_zh": "下限 4.48 pt 低于印刷常规下限（一般不低于 6 pt）。这是已知取舍而非疏漏：该量级的注记只出现在图带内，其判断内容已上移至页面文本层。",
+     "limitations_en": "The 4.48 pt floor is below the usual print floor (normally not less than 6 pt). This is a known trade-off rather than an oversight: annotations at that size appear only inside the drawing band, and their judgement content has been moved up into the page text layer."
     },
     {
      "id": "R1-04",
@@ -80,14 +89,17 @@
      "item_en": "Type-size floor of the A0 bilingual boards",
      "method_zh": "对生成 A0 板面的 DOM 逐元素读取 computedStyle 的 font-size，按 px × 0.75 = pt 换算，形成读数台账并取下限",
      "method_en": "Read computedStyle font-size element by element on the DOM that generates the A0 boards, convert with px x 0.75 = pt, compile a reading register, and take the floor",
-     "tool": "DOM computedStyle 实测（px×0.75=pt 口径），台账 128 项读数",
+     "tool_zh": "DOM computedStyle 实测（px×0.75=pt 口径），台账 128 项读数",
+     "tool_en": "DOM computedStyle measurement (px x 0.75 = pt basis), a register of 128 readings",
      "date": "2026-08-12",
      "scope_zh": "A0 双语展板全 12 板（中文 6 板 + 英文 6 板）",
      "scope_en": "All 12 A0 bilingual boards (6 zh + 6 en)",
      "result_zh": "版面文本字号下限 8.51 pt，页脚 11.34 pt",
      "result_en": "Layout text floor 8.51 pt, footer 11.34 pt",
-     "provenance": "2026-08-12 量测台账（128 项读数）；本轮以 PDF 页树复核板数为 6 × 2 = 12，未重跑字号量测",
-     "limitations_zh": "屏幕渲染量测；A0 展板的实际可读性还取决于张贴高度与观看距离，本次未做现场观看距离验证"
+     "provenance_zh": "2026-08-12 量测台账（128 项读数）；本轮以 PDF 页树复核板数为 6 × 2 = 12，未重跑字号量测",
+     "provenance_en": "The 2026-08-12 measurement register (128 readings); this round the board count was verified as 6 x 2 = 12 from the PDF page tree, and the type-size measurement was not re-run",
+     "limitations_zh": "屏幕渲染量测；A0 展板的实际可读性还取决于张贴高度与观看距离，本次未做现场观看距离验证",
+     "limitations_en": "A screen-rendered measurement; the actual legibility of the A0 boards also depends on mounting height and viewing distance, and no on-site viewing-distance verification was made this round"
     },
     {
      "id": "R1-05",
@@ -95,14 +107,17 @@
      "item_en": "Legibility of the five reviewer-visible drawings at receiving resolution",
      "method_zh": "把图版按评审通道的接收分辨率（短边压至 768 像素）重采样，逐个文本要素计算重采样后的实际字号与可读判定，统计不可读文本占比；key-areas 一图另做栅格墨迹高度实测",
      "method_en": "Resample each drawing to the reviewing channel's receiving resolution (short edge reduced to 768 px), compute the resulting size and legibility verdict for every text element, and tally the share of illegible text; key-areas additionally measured by raster ink height",
-     "tool": "readability.js（DOM 实测）+ key-areas 栅格墨迹高度实测",
+     "tool_zh": "readability.js（DOM 实测）+ key-areas 栅格墨迹高度实测",
+     "tool_en": "readability.js (DOM measurement) + raster ink-height measurement on key-areas",
      "date": "2026-08-13",
-     "scope_zh": "site-overview、land-use-structure、key-areas、mobility-bluegreen、metrics-evidence 五图的中英双版共十张",
-     "scope_en": "Ten files in total: the zh and en versions of site-overview, land-use-structure, key-areas, mobility-bluegreen, and metrics-evidence",
-     "result_zh": "十张图不可读文本占比全部为 0%，最小字号 12.1—12.3 px（接收分辨率口径），经三轮重排后达成",
-     "result_en": "Illegible-text share is 0% on all ten files, with a minimum of 12.1-12.3 px at receiving resolution, reached after three rounds of re-layout",
-     "provenance": "2026-08-13 三轮重排完成时的量测；本轮以文件清单复核十张图双语成对齐备，未重跑可读性量测",
-     "limitations_zh": "以重采样后的字号阈值判定可读，不等于真实读者在具体显示设备与观看距离下的可读；未做读者阅读测试"
+     "scope_zh": "assets/figures 全部 32 个图版文件；其中 26 张带文字图版逐张量测",
+     "scope_en": "All 32 files in assets/figures; the 26 text-bearing plates measured one by one",
+     "result_zh": "二十六张带文字图版在接收分辨率口径下不可读文本占比全部为 0%（v6.8 新增双态平面图版双语两张，最小字号实测 12.00 px @1x、无溢出，装包前经生成器逐元素体检）——其中五张核心图最小字号 12.1—12.3 px（经三轮重排达成）；六张场景概念图的标注层文字按 CSS 字号 × 接收缩放比逐元素核算全部 ≥12 px（v5.17 将页眉、页脚与地标标签由 9—11 px 统一提升后达成），画面内 AI 生成的背景纹理不含文字；生态图谱、断面图版与企业旅程图版六张均为原生排版，最小字号 12 px。v5.21 增补画布边缘裁切扫描（双语逐图左右缘 12 像素列暗像素检测 + 目检）：发现并修复英文断面图左缘一处注记出画（首末注记改边锚重渲），复扫全部图版零出画",
+     "result_en": "0% illegible text on all twenty-six files at the receiving resolution: the five core figures reach a 12.1-12.3 px minimum after three re-typesets; the six concept-scene images hold every annotation-layer element at >=12 px (headers, footers and landmark labels raised from 9-11 px in v5.17), with no text in the AI-generated backdrop; the ecosystem, section and journey plates are natively typeset at a 12 px minimum. In v5.21 an edge-clipping scan was added (12-px edge-column dark-pixel detection plus visual check on every plate, both languages): one annotation running off the left edge of the English section plate was found and fixed (first and last annotations re-anchored to the edges and re-rendered), and a re-scan shows zero off-canvas text across all plates",
+     "provenance_zh": "2026-08-13 三轮重排完成时的量测；v6.3 key-areas 三卡运行图重绘（节点按 constraints.geojson 真实相对位置落位）后对该图双语重跑逐要素量测：83 个文本要素不可读占比 0%、最小 12.3 px，声称维持；v6.4 大钟寺重点区几何挪移驱动的批量重绘（site-overview 与 land-use 转矢量素底、key-areas 卡三新簇、mobility 双图、op04-detail、metrics 双图）后对受影响图版再次逐要素量测：site-overview 双语 88 要素、land-use 双语 51 要素、metrics 主图 93 要素均 0% 不可读、最小 12.3 px，声称维持",
+     "provenance_en": "Measured on 2026-08-13 when the three re-typesets were completed; after the v6.3 key-areas redraw (nodes placed at their true relative positions from constraints.geojson) the per-element measurement was re-run on that plate in both languages: 83 text elements, 0% illegible, 12.3 px minimum — the claim holds; after the v6.4 batch redraw driven by the Dazhongsi key-area relocation (site-overview and land-use turned plain-ground vector, key-areas card three, both mobility plates, op04-detail, both metrics plates) the affected plates were measured again: site-overview 88 elements both languages, land-use 51, metrics main figure 93 — all 0% illegible at a 12.3 px minimum, the claim holds",
+     "limitations_zh": "以重采样后的字号阈值判定可读，不等于真实读者在具体显示设备与观看距离下的可读；未做读者阅读测试",
+     "limitations_en": "Legibility is judged by a type-size threshold after resampling, which is not the same as legibility for a real reader on a specific display at a specific viewing distance; no reader testing was done"
     },
     {
      "id": "R1-06",
@@ -110,7 +125,8 @@
      "item_en": "Contrast sampling (WCAG 2.1 relative-luminance formula)",
      "method_zh": "按 WCAG 2.1 相对亮度与对比度公式计算前景色与背景色之比，按正文与大字两档判定门槛（AA-normal 4.5:1，AA-large 3:1）",
      "method_en": "Compute foreground-to-background ratios with the WCAG 2.1 relative-luminance and contrast formulas, judged against the normal-text and large-text thresholds (AA-normal 4.5:1, AA-large 3:1)",
-     "tool": "WCAG 2.1 对比度公式计算；本轮以包内展示页色板独立复算",
+     "tool_zh": "WCAG 2.1 对比度公式计算；本轮以包内展示页色板独立复算",
+     "tool_en": "WCAG 2.1 contrast-formula computation; independently recomputed this round from the display-page palette in the package",
      "date": "2026-08-12",
      "recomputed_on": "2026-08-13",
      "scope_zh": "图版与展示页共用的品牌色板配色对",
@@ -119,18 +135,21 @@
      "result_en": "Body 12.69, secondary 7.26, alert row 7.13, section number 5.01, legend 4.60, all meeting AA-normal; short qualifiers 3.26 and on-drawing disclaimers 3.14, judged as AA-large at weight 700",
      "recomputation_zh": "本轮用包内展示页色板独立复算，七项中五项精确复现并可定位到具体配色对：12.69 = #10383d 于 #ffffff；7.26 = #10383d 于 #a8cbc5；5.01 = #177c78 于 #ffffff；4.60 = #68787b 于 #ffffff；3.14 = #d76450 于 #f2efe7。另两项（警示行 7.13、限定短标 3.26）取自图版专用色，其配色对不在展示页色板登记范围内，本轮无法用展示页色板复现。",
      "recomputation_en": "Independently recomputed this round from the display-page palette: five of the seven reproduce exactly and can be traced to a specific pair (12.69 = #10383d on #ffffff; 7.26 = #10383d on #a8cbc5; 5.01 = #177c78 on #ffffff; 4.60 = #68787b on #ffffff; 3.14 = #d76450 on #f2efe7). The other two (alert row 7.13, short qualifiers 3.26) come from drawing-specific colours that are not registered in the display-page palette and could not be reproduced from it this round.",
-     "limitations_zh": "对比度按 sRGB 数值计算，反映的是数字稿；印刷油墨、纸张与照明会改变实际对比度，本次未做印品实测。AA-large 判定依赖字重与字号同时成立，若该处文字在某一输出尺寸下缩小到大字门槛以下，则该项判定不再适用。"
+     "limitations_zh": "对比度按 sRGB 数值计算，反映的是数字稿；印刷油墨、纸张与照明会改变实际对比度，本次未做印品实测。AA-large 判定依赖字重与字号同时成立，若该处文字在某一输出尺寸下缩小到大字门槛以下，则该项判定不再适用。",
+     "limitations_en": "Contrast is computed from sRGB values and reflects the digital file; printing ink, paper, and lighting change actual contrast, and no measurement was made on a printed piece. The AA-large verdict depends on weight and size holding together; if that text shrinks below the large-text threshold at some output size, the verdict no longer applies."
     }
    ],
    "record_limitations_zh": [
     "全部读数为屏幕渲染量测，与实物印刷存在渲染差异；本包未做实物打印样张检查。",
     "A3 图带内注记的下限 4.48 pt 低于印刷常规下限，属已知取舍：该量级注记只承担形态证据，其判断内容已上移至页面文本层（下限 9.07 pt）。",
-    "字号与对比度达标不等于可读性达标；真实可读性还取决于字体、语言、观看距离、照明与读者视力，本次均未测。"
+    "字号与对比度达标不等于可读性达标；真实可读性还取决于字体、语言、观看距离、照明与读者视力，本次均未测。",
+    "四册 PDF 均未做语义标签（Tagged PDF：无标题层级、表格语义与阅读顺序结构树）。已实验两条生成路径：单页可产标签但逐页合并丢失结构树（跨文档结构树合并为现有开源工具链未解问题）；整册单次渲染因图版为绝对定位排版体系而多页叠印，保真不可接受。按诚实原则登记为局限而非硬贴无效标签；语义无障碍的随包等价载体为离线展示页（visual/index.html 双语）：全语义 HTML、键盘可达、替代文本齐备、无脚本降级，屏幕阅读器使用者可经该载体获得四册的判断内容。"
    ],
    "record_limitations_en": [
     "All readings are screen-rendered measurements and differ from physical print; no physical press proof was made for this package.",
     "The 4.48 pt floor of in-band annotations on A3 is below the usual print floor. This is a known trade-off: annotations at that size carry morphological evidence only, and their judgement content has been moved up into the page text layer (floor 9.07 pt).",
-    "Meeting size and contrast thresholds is not the same as being legible; real legibility also depends on typeface, language, viewing distance, lighting, and the reader's vision, none of which was tested."
+    "Meeting size and contrast thresholds is not the same as being legible; real legibility also depends on typeface, language, viewing distance, lighting, and the reader's vision, none of which was tested.",
+    "None of the four PDF volumes is tagged (no heading hierarchy, table semantics or reading-order structure tree). Two generation paths were tested: single pages can be tagged but page-by-page merging drops the structure tree (cross-document structure-tree merging remains unsolved in the open-source toolchain), and whole-book single-pass rendering stacks pages because the plates use absolutely-positioned layout, with unacceptable fidelity. Per the honesty rule this is registered as a limitation rather than shipping ineffective tags; the in-package semantic equivalent is the offline display page (visual/index.html, bilingual): fully semantic HTML, keyboard reachable, complete alternative text, no-script fallback, through which screen-reader users can reach the volumes' judgement content."
    ]
   },
   {
@@ -146,14 +165,17 @@
      "item_en": "Line-by-line structural-type comparison of the proposal text",
      "method_zh": "把双语正文逐行归入结构类型（标题及其层级、表格行及其列数、表格分隔行、列表、引用、代码围栏、分隔线、正文段），折叠空行后逐行比对类型序列",
      "method_en": "Classify every line of both versions into a structural type (heading with level, table row with column count, table separator, list, quote, code fence, rule, body paragraph), then compare the type sequences line by line with blank lines collapsed",
-     "tool": "Node.js 结构分类比对脚本",
+     "tool_zh": "Node.js 结构分类比对脚本",
+     "tool_en": "Node.js structural-classification comparison script",
      "date": "2026-08-13",
      "scope_zh": "proposal.md 与 proposal.en.md 全文",
      "scope_en": "The full text of proposal.md and proposal.en.md",
-     "result_zh": "非空行 478 行对 478 行，结构类型逐行不一致数为 0",
-     "result_en": "478 non-blank lines on each side, with zero line-by-line type mismatches",
-     "provenance": "本轮实测",
-     "limitations_zh": "结构级比对，不判断译文是否准确、是否遗漏语义"
+     "result_zh": "非空行 598 行对 598 行，结构类型逐行不一致数为 0",
+     "result_en": "598 non-blank lines on each side, with zero line-by-line type mismatches",
+     "provenance_zh": "本轮实测",
+     "provenance_en": "Measured this round",
+     "limitations_zh": "结构级比对，不判断译文是否准确、是否遗漏语义",
+     "limitations_en": "A structural-level comparison; it does not judge whether the translation is accurate or whether meaning has been dropped"
     },
     {
      "id": "R2-02",
@@ -161,14 +183,17 @@
      "item_en": "Heading count and level-sequence comparison",
      "method_zh": "抽取全部 ATX 标题，比对数量与层级序列",
      "method_en": "Extract all ATX headings and compare count and level sequence",
-     "tool": "Node.js 结构分类比对脚本",
-     "date": "2026-08-13",
+     "tool_zh": "Node.js 结构分类比对脚本",
+     "tool_en": "Node.js structural-classification comparison script",
+     "date": "2026-08-16",
      "scope_zh": "proposal.md 与 proposal.en.md 全文",
      "scope_en": "The full text of proposal.md and proposal.en.md",
-     "result_zh": "标题 27 对 27，层级序列 1,2,2,2,2,3,3,2,2,2,2,2,2,2,3,3,2,2,2,2,3,3,3,3,2,2,2 双语完全一致",
-     "result_en": "27 headings on each side, with the level sequence 1,2,2,2,2,3,3,2,2,2,2,2,2,2,3,3,2,2,2,2,3,3,3,3,2,2,2 identical in both",
-     "provenance": "本轮实测",
-     "limitations_zh": "只比对结构，不比对标题措辞的对应关系"
+     "result_zh": "标题 29 对 29，层级序列 1,2,2,2,2,3,3,2,2,2,2,2,2,2,3,3,2,2,2,2,3,3,3,3,2,2,2 双语完全一致",
+     "result_en": "29 headings on each side, with the level sequence 1,2,2,2,2,3,3,2,2,2,2,2,2,2,3,3,2,2,2,2,3,3,3,3,2,2,2 identical in both",
+     "provenance_zh": "本轮实测",
+     "provenance_en": "Measured this round",
+     "limitations_zh": "只比对结构，不比对标题措辞的对应关系",
+     "limitations_en": "Only structure is compared, not the correspondence of the heading wording"
     },
     {
      "id": "R2-03",
@@ -176,14 +201,17 @@
      "item_en": "Table row count and per-row column count comparison",
      "method_zh": "抽取全部表格行，比对总行数、数据行数，并逐行比对列数",
      "method_en": "Extract every table line, compare total lines and data rows, and compare column counts row by row",
-     "tool": "Node.js 结构分类比对脚本",
-     "date": "2026-08-13",
+     "tool_zh": "Node.js 结构分类比对脚本",
+     "tool_en": "Node.js structural-classification comparison script",
+     "date": "2026-08-16",
      "scope_zh": "proposal.md 与 proposal.en.md 全文",
      "scope_en": "The full text of proposal.md and proposal.en.md",
-     "result_zh": "表格行 229 对 229（含分隔行），数据行 163 对 163，逐行列数全等，列数不一致索引为空集（2026-08-14 按当前版本复测；首测时为 221/221 与 189/189）",
-     "result_en": "Table rows 229 vs 229 (separators included), data rows 163 vs 163, per-row column counts equal, mismatch index set empty (re-measured 2026-08-14 against the current version; first measured at 221/221 and 189/189)",
-     "provenance": "本轮实测",
-     "limitations_zh": "比对的是表格骨架，不比对单元格内容的译文对应"
+     "result_zh": "表格行 272 对 272（含分隔行），数据行 198 对 198，逐行列数全等，列数不一致索引为空集（2026-08-16 按当前版本复测；首测时为 221/221 与 189/189）",
+     "result_en": "Table rows 260 vs 260 (separators included), data rows 188 vs 188, per-row column counts equal, mismatch index set empty (re-measured 2026-08-14 against the current version; first measured at 221/221 and 189/189)",
+     "provenance_zh": "本轮实测",
+     "provenance_en": "Measured this round",
+     "limitations_zh": "比对的是表格骨架，不比对单元格内容的译文对应",
+     "limitations_en": "What is compared is the table skeleton, not the translation correspondence of the cell content"
     },
     {
      "id": "R2-04",
@@ -191,14 +219,17 @@
      "item_en": "Evidence-anchor count comparison by kind",
      "method_zh": "按锚点类型分别计数并比对；检索的候选类型为 metric、data、source、assumption、figure、geometry、file、standard、compliance 九类，登记实际出现的类型",
      "method_en": "Count and compare anchors by kind; nine candidate kinds were searched (metric, data, source, assumption, figure, geometry, file, standard, compliance) and the kinds actually present are registered",
-     "tool": "Node.js 正则计数",
+     "tool_zh": "Node.js 正则计数",
+     "tool_en": "Node.js regex counting",
      "date": "2026-08-13",
      "scope_zh": "proposal.md 与 proposal.en.md 全文",
      "scope_en": "The full text of proposal.md and proposal.en.md",
-     "result_zh": "实际出现四类：metric 64 对 64、data 40 对 40、source 68 对 68、standard 12 对 12，合计 184 对 184，四类全部持平",
-     "result_en": "Four kinds are present: metric 64/64, data 40/40, source 68/68, standard 12/12, totalling 184/184, all balanced",
-     "provenance": "本轮实测（本记录文件的挂接句在双方各新增一个 data 锚点，改动后仍为双侧持平）",
-     "limitations_zh": "计数持平只说明锚点未在翻译中丢失，不说明每个锚点指向的证据本身成立"
+     "result_zh": "计入抽检的四类：metric 68 对 68、data 62 对 62、source 79 对 79、standard 13 对 13，合计 222 对 222；depth 深度锚点 37 对 37、assumption 前提锚点 12 对 12、self_check 自检锚点 4 对 4 双语持平，均另计于本项之外",
+     "result_en": "Four types in the sample: metric 68/68, data 62/62, source 79/79, standard 13/13, totalling 222/222; depth anchors additionally balanced at 37/37, assumption anchors at 12/12 and self_check anchors at 4/4, all outside this sample",
+     "provenance_zh": "本轮实测（本记录文件的挂接句在双方各新增一个 data 锚点，改动后仍为双侧持平）",
+     "provenance_en": "Measured this round (the sentence attaching this record file adds one data anchor on each side, and the two sides remain balanced after the change)",
+     "limitations_zh": "计数持平只说明锚点未在翻译中丢失，不说明每个锚点指向的证据本身成立",
+     "limitations_en": "Balanced counts show only that no anchor was lost in translation; they say nothing about whether the evidence each anchor points to holds"
     },
     {
      "id": "R2-05",
@@ -206,31 +237,37 @@
      "item_en": "Page-by-page structural-block comparison and overflow detection on the A3 bilingual booklet",
      "method_zh": "对生成 A3 页面的 DOM 逐页统计 28 类结构块的数量并双语比对，同时检测每一页内容框的溢出量",
      "method_en": "Count 28 kinds of structural block per page on the DOM that generates the A3 pages, compare between languages, and detect content-box overflow on every page",
-     "tool": "pagecheck.js",
+     "tool_zh": "pagecheck.js",
+     "tool_en": "pagecheck.js",
      "date": "2026-08-13",
      "scope_zh": "A3 双语册全 24 页",
      "scope_en": "All 24 pages of the A3 bilingual booklet",
      "result_zh": "28 类结构块逐页计数比对 PASS，溢出检测 0",
      "result_en": "Page-by-page comparison of 28 structural-block kinds PASS, overflow detection 0",
-     "provenance": "包内既有检查记录；本轮未重跑",
+     "provenance_zh": "包内既有检查记录；本轮未重跑",
+     "provenance_en": "An existing check record in the package; not re-run this round",
      "detected_and_fixed_zh": "该检查曾在历轮查获英文版一处 19.6 毫米内容溢出并已修复。此项如实登记，用以说明该比对确实具备查错能力，而非只产出通过结论。",
      "detected_and_fixed_en": "In an earlier round this check caught a 19.6 mm content overflow in the English booklet, which was then fixed. It is recorded here to show the comparison actually detects faults rather than only producing pass results.",
-     "limitations_zh": "结构块级比对，不比对页面内文字的译文准确性"
+     "limitations_zh": "结构块级比对，不比对页面内文字的译文准确性",
+     "limitations_en": "A structural-block-level comparison; it does not check the translation accuracy of the text on the pages"
     },
     {
      "id": "R2-06",
      "item_zh": "评审可见图版双语成对与核心指标读数一致性",
      "item_en": "Bilingual pairing of reviewer-visible drawings and consistency of headline metric readings",
-     "method_zh": "按文件名规则枚举图版目录，核对每张中文图存在对应英文图；并核对图上人读位的核心指标与 metrics.json 的 display 位是否一致",
-     "method_en": "Enumerate the figures directory by filename rule and verify that each Chinese drawing has an English counterpart; also verify that headline metrics printed for human reading match the display fields in metrics.json",
-     "tool": "文件清单枚举 + 数值比对",
-     "date": "2026-08-13",
-     "scope_zh": "assets/figures 全部 16 个图版文件；五张评审可见图的中英双版",
-     "scope_en": "All 16 files in assets/figures; the zh and en versions of the five reviewer-visible drawings",
-     "result_zh": "16 个图版文件全部成对，五张评审可见图的中英双版齐备；核心指标人读位与 metrics.json 的 display 位一致",
-     "result_en": "All 16 drawing files are paired and the five reviewer-visible drawings are present in both languages; the headline metrics read by humans match the display fields in metrics.json",
-     "provenance": "成对性为本轮实测；读数一致性引自包内既有检查记录",
-     "limitations_zh": "成对性是文件级核对，不核对两版图面内容是否逐项对应"
+     "method_zh": "按文件名规则枚举图版目录，核对每张中文图存在对应英文图；并核对图上人读位的核心指标与 metrics.json 的展示位数（人读位精度）是否一致",
+     "method_en": "Enumerate the figures directory by filename rule and verify that each Chinese drawing has an English counterpart; also verify that headline metrics printed for human reading match the displayed precision of the values in metrics.json",
+     "tool_zh": "文件清单枚举 + 数值比对",
+     "tool_en": "File-listing enumeration + numeric comparison",
+     "date": "2026-08-15",
+     "scope_zh": "assets/figures 全部 32 个图版文件；五张评审可见图的中英双版",
+     "scope_en": "All 28 files in assets/figures; the zh and en versions of the five reviewer-visible drawings",
+     "result_zh": "32 个图版文件全部成对，五张评审可见图的中英双版齐备；核心指标人读位与 metrics.json 的展示位数一致",
+     "result_en": "All 28 drawing files are paired and the five reviewer-visible drawings are present in both languages; the headline metrics read by humans match the displayed precision of the values in metrics.json",
+     "provenance_zh": "成对性为本轮实测；读数一致性引自包内既有检查记录",
+     "provenance_en": "Pairing was measured this round; reading consistency is quoted from an existing check record in the package",
+     "limitations_zh": "成对性是文件级核对，不核对两版图面内容是否逐项对应",
+     "limitations_en": "Pairing is verified at file level; whether the content of the two versions of a drawing corresponds item by item is not verified"
     },
     {
      "id": "R2-07",
@@ -238,14 +275,17 @@
      "item_en": "Same-source verification of bilingual caption timelines",
      "method_zh": "解析 WebVTT 文件，比对 cue 条数与全部时间戳序列是否逐条相同",
      "method_en": "Parse the WebVTT files and compare cue counts and the full sequence of timestamps entry by entry",
-     "tool": "Node.js WebVTT 解析比对",
+     "tool_zh": "Node.js WebVTT 解析比对",
+     "tool_en": "Node.js WebVTT parsing and comparison",
      "date": "2026-08-13",
      "scope_zh": "assets/media 下四个字幕文件：journey.vtt、journey-en.vtt、audio-guide.vtt、audio-guide-en.vtt",
      "scope_en": "Four caption files under assets/media: journey.vtt, journey-en.vtt, audio-guide.vtt, audio-guide-en.vtt",
      "result_zh": "四个文件均为合规 WebVTT；短片字幕 11 条对 11 条，时间轴逐条完全相同；语音导览字幕 26 条对 26 条，时间轴逐条完全相同",
      "result_en": "All four are valid WebVTT; the film captions are 11 cues on each side with identical timelines entry by entry, and the audio-guide captions are 26 cues on each side with identical timelines entry by entry",
-     "provenance": "本轮实测；短片字幕在 2026-08-13 重录时曾逐条人工核对",
-     "limitations_zh": "时间轴同源只说明两版切分一致，不说明译文与语音内容逐句对应"
+     "provenance_zh": "本轮实测；短片字幕在 2026-08-13 重录时曾逐条人工核对",
+     "provenance_en": "Measured this round; the film captions were checked by hand entry by entry during the 2026-08-13 re-recording",
+     "limitations_zh": "时间轴同源只说明两版切分一致，不说明译文与语音内容逐句对应",
+     "limitations_en": "Identical timelines show only that the two versions are segmented alike; they do not show that the translation corresponds to the spoken content sentence by sentence"
     },
     {
      "id": "R2-08",
@@ -253,14 +293,17 @@
      "item_en": "Presence check for full transcripts",
      "method_zh": "枚举媒体目录，核对每件时基媒体是否配有随包文字稿",
      "method_en": "Enumerate the media directory and verify that each time-based medium is accompanied by a transcript in the package",
-     "tool": "文件清单枚举",
+     "tool_zh": "文件清单枚举",
+     "tool_en": "File-listing enumeration",
      "date": "2026-08-13",
      "scope_zh": "assets/media 目录",
      "scope_en": "The assets/media directory",
      "result_zh": "journey.mp4 配 journey.md（分镜表与旁白全文），audio-guide.m4a 配 audio-guide.md，封面配 cover.md；三份文字稿均存在",
      "result_en": "journey.mp4 is accompanied by journey.md (shot list and full narration), audio-guide.m4a by audio-guide.md, and the cover by cover.md; all three transcripts exist",
-     "provenance": "本轮实测",
-     "limitations_zh": "只核对文字稿存在，未逐句核对文字稿与音轨内容的一致性"
+     "provenance_zh": "本轮实测",
+     "provenance_en": "Measured this round",
+     "limitations_zh": "只核对文字稿存在，未逐句核对文字稿与音轨内容的一致性",
+     "limitations_en": "Only the existence of the transcripts is verified; their consistency with the audio track was not checked sentence by sentence"
     }
    ],
    "record_limitations_zh": [
@@ -273,8 +316,9 @@
     "The English version was model-generated and then checked against rules by hand (structure, counts, anchors, terminology consistency). It was not reviewed word by word by a qualified translator, nor read through by a native-English professional reader.",
     "Structural equivalence does not guarantee semantic equivalence: two versions can align structurally while individual wordings differ in the strength of their claim, a layer not tested here."
    ],
-   "remeasured_on": "2026-08-14",
-   "remeasured_note_zh": "正文行数随后续修订变化后按当前版本复测:688/688 行、488/488 非空、229/229 表格行、锚点 185/185,逐行结构不一致 0"
+   "remeasured_on": "2026-08-15",
+   "remeasured_note_zh": "正文行数随后续修订变化后按当前版本复测（行数为 wc -l 口径）：847/847 行、598/598 非空、272/272 表格行、四类锚点 222/222（depth 深度锚点 37/37 另计），逐行结构不一致 0",
+   "remeasured_note_en": "After later revisions changed the line counts, re-measured against the current version (line count per wc -l): 847/847 lines, 598/598 non-blank, 272/272 table rows, four-type anchors 222/222 (depth anchors 37/37 counted separately), zero line-by-line type mismatches"
   },
   {
    "id": "R3",
@@ -284,13 +328,15 @@
    "purpose_en": "To verify that the display page still delivers the same judgements without a mouse, without scripting, and without relying on colour.",
    "execution": {
     "date": "2026-08-13",
-    "tool": "playwright-core 1.58.2 无头 Chromium；Chrome DevTools Protocol Accessibility.getFullAXTree",
+    "tool_zh": "playwright-core 1.58.2 无头 Chromium；Chrome DevTools Protocol Accessibility.getFullAXTree",
+    "tool_en": "playwright-core 1.58.2 headless Chromium; Chrome DevTools Protocol Accessibility.getFullAXTree",
     "targets": [
      "visual/index.html",
      "visual/index.en.html"
     ],
     "viewport": "1440 × 900",
     "environment_zh": "本地 file:// 协议加载，全程离线，无远程请求",
+    "environment_en": "Loaded locally over the file:// protocol, fully offline, with no remote requests",
     "console_errors": 0,
     "page_errors": 0
    },
@@ -301,26 +347,31 @@
      "item_en": "Keyboard tab order and exit",
      "method_zh": "从页首起逐次按 Tab，记录每一步的焦点元素、可访问文本、aria-pressed 状态与 :focus-visible 匹配结果，直至焦点离开文档并循环回起点",
      "method_en": "Press Tab repeatedly from the top of the page, recording the focused element, its accessible text, aria-pressed state, and :focus-visible match at each step, until focus leaves the document and returns to the start",
-     "tool": "playwright 键盘注入 + DOM 状态读取",
-     "date": "2026-08-13",
+     "tool_zh": "playwright 键盘注入 + DOM 状态读取",
+     "tool_en": "playwright keyboard injection + DOM state read",
+     "date": "2026-08-16",
      "scope_zh": "双语展示页全页",
      "scope_en": "Both language versions, whole page",
-     "result_zh": "双语各 32 个可聚焦元素，序列完全一致：第 1 步跳转链接；第 2—16 步十五个章节导航链接；第 17—18 步两个指向第 16 章的正文链接；第 19—20 步 AI 开启与 AI 关闭；第 21 步播放引导流光；第 22 步显示静态视图；第 23—32 步 OP-01 至 OP-10 十个节点按钮。第 33 步焦点离开文档进入浏览器界面，第 34 步循环回跳转链接，未发现键盘陷阱。Shift+Tab 反向遍历顺序可逆，实测 OP-05 反向依次回到 OP-04、OP-03、OP-02、OP-01。",
-     "result_en": "32 focusable elements in each language, in an identical order: step 1 the skip link; steps 2-16 the fifteen chapter navigation links; steps 17-18 two in-text links to chapter 16; steps 19-20 AI ON and AI OFF; step 21 play guidance flow; step 22 show static view; steps 23-32 the ten node buttons OP-01 to OP-10. At step 33 focus leaves the document into the browser interface and at step 34 it returns to the skip link; no keyboard trap was found. Shift+Tab reverses the order correctly, measured from OP-05 back through OP-04, OP-03, OP-02, OP-01.",
+     "result_zh": "双语各 61 个可聚焦元素（四时段控件与第 17 章三维主脊加入后实测复核），序列完全一致：第 1 步跳转链接；第 2—17 步十六个章节导航链接（含新增第 17 章）；第 18—25 步评审路线区块与折叠纸模共八个链接；第 26—27 步两个指向第 16 章的正文链接；第 28—29 步 AI 开启与关闭；第 30—33 步早高峰、日间、晚间、夜间四时段；第 34 步播放引导流光；第 35 步显示静态视图；第 36—45 步 OP-01 至 OP-10 十个节点按钮；第 46—50 步第 17 章 AI 两态、昼夜两态与视角复位；第 51 步三维画布（可聚焦，方向键旋转、Home 复位）；第 52—61 步第 17 章十个节点飞行按钮。第 62 步焦点离开文档，第 63 步循环回跳转链接，未发现键盘陷阱。Shift+Tab 反向遍历顺序可逆，实测 OP-05 反向依次回到 OP-04、OP-03、OP-02、OP-01。",
+     "result_en": "61 focusable elements in each language (re-measured after the four-period controls and the chapter-17 3-D spine were added), in an identical order: step 1 the skip link; steps 2-16 the fifteen chapter navigation links; steps 17-22 the six reviewer-path links; steps 24-25 the papercraft view and download links; steps 26-27 two in-text links to chapter 16; steps 28-29 AI ON and OFF; steps 30-33 the four periods; steps 34-35 play and static view; steps 36-45 the ten node buttons; steps 46-50 the chapter-17 AI, day/night and reset controls; step 51 the focusable 3-D canvas; steps 52-61 the ten chapter-17 fly-to buttons. At step 62 focus leaves the document into the browser interface and at step 63 it returns to the skip link; no keyboard trap was found. Shift+Tab reverses the order correctly, measured from OP-05 back through OP-04, OP-03, OP-02, OP-01.",
      "focus_sequence": [
       "01 a.skip → 跳到正文 / Skip to content",
-      "02-16 nav a → 章节 02 至 16 导航链接（15 个）",
-      "17 a → 前往第 16 章「交互场景」/ Go to chapter 16",
-      "18 a → 第 16 章「交互场景」/ Chapter 16, Interactive scene",
-      "19 button[data-jz=on] → AI 开启 / AI ON（aria-pressed=true）",
-      "20 button[data-jz=off] → AI 关闭 / AI OFF（aria-pressed=false）",
-      "21 button[data-jz=play] → 播放引导流光 / Play guidance flow",
-      "22 button[data-jz=static] → 显示静态视图 / Show static view",
-      "23-32 button[data-node=OP-01..OP-10] → 十个独立完成节点",
-      "33 焦点离开文档（浏览器界面）",
-      "34 回到 a.skip，循环闭合"
+      "02-17 nav a → 章节 02 至 17 导航链接（16 个，含新增三维主脊）",
+      "18-23 评审路线区块六链接（报告/四册/权利台账）",
+      "24-25 折叠纸模查看与下载 / papercraft view & download",
+      "26-27 两个指向第 16 章的正文链接",
+      "28-29 button[data-jz=on/off] → AI 开启与关闭",
+      "30-33 button[data-period] → 早高峰、日间、晚间、夜间",
+      "34-35 button[data-jz=play/static] → 播放引导流光、显示静态视图",
+      "36-45 button[data-node=OP-01..OP-10] → 第 16 章十个节点",
+      "46-50 第 17 章 AI 两态、昼夜两态与视角复位",
+      "51 三维画布（tabindex=0：方向键旋转、+/- 缩放、Home 复位）",
+      "52-61 第 17 章十个节点飞行按钮",
+      "62 焦点离开文档（浏览器界面）",
+      "63 回到 a.skip，循环闭合"
      ],
-     "limitations_zh": "以 Chromium 的焦点行为为准；其他浏览器引擎的 Tab 顺序与 :focus-visible 判定可能不同，本次未在其他引擎上复测"
+     "limitations_zh": "以 Chromium 的焦点行为为准；其他浏览器引擎的 Tab 顺序与 :focus-visible 判定可能不同，本次未在其他引擎上复测",
+     "limitations_en": "Based on Chromium's focus behaviour; tab order and :focus-visible matching may differ on other browser engines, and no retest was made on another engine this round"
     },
     {
      "id": "R3-02",
@@ -328,13 +379,15 @@
      "item_en": "Focus visibility",
      "method_zh": "在每一步 Tab 后读取焦点元素的 :focus-visible 匹配结果与 outline 的计算样式",
      "method_en": "After each Tab step, read the focused element's :focus-visible match and computed outline style",
-     "tool": "playwright + getComputedStyle",
-     "date": "2026-08-13",
-     "scope_zh": "双语展示页全部 32 个可聚焦元素",
-     "scope_en": "All 32 focusable elements in both language versions",
-     "result_zh": "32 个元素全部匹配 :focus-visible 且有可见焦点样式。交互场景内 14 个按钮为 3 像素实线珊瑚色描边（rgb(215,100,80)，偏移 2 像素），页面其余 18 个链接为浏览器默认 1 像素蓝色描边（rgb(0,95,204)，偏移 1 像素），无元素被 outline:none 抹除。",
-     "result_en": "All 32 elements match :focus-visible and show a visible focus style. The 14 buttons in the interactive scene use a 3 px solid coral outline (rgb(215,100,80), 2 px offset); the remaining 18 links use the browser default 1 px blue outline (rgb(0,95,204), 1 px offset). No element has its outline suppressed.",
-     "limitations_zh": "页面自身只为交互场景定义了焦点样式，其余元素依赖浏览器默认样式；若浏览器默认样式与页面配色对比不足，焦点可见性会随浏览器而变，本次只在 Chromium 默认样式下量测"
+     "tool_zh": "playwright + getComputedStyle",
+     "tool_en": "playwright + getComputedStyle",
+     "date": "2026-08-16",
+     "scope_zh": "双语展示页全部 61 个可聚焦元素",
+     "scope_en": "All 61 focusable elements in both language versions",
+     "result_zh": "61 个元素全部匹配 :focus-visible 且有可见焦点样式。34 个交互控件按钮（第 16 章场景与第 17 章三维主脊）为实线珊瑚色描边（rgb(215,100,80)），其余 27 个链接为浏览器默认描边（rgb(0,95,204)），无元素被 outline:none 抹除。",
+     "result_en": "All 61 elements match :focus-visible and show a visible focus style. The 34 interactive-control buttons (chapter-16 scene and chapter-17 3-D spine) use a solid coral outline (rgb(215,100,80)); the remaining 27 links use the browser default outline (rgb(0,95,204)); no element is erased by outline:none.",
+     "limitations_zh": "页面自身只为交互场景定义了焦点样式，其余元素依赖浏览器默认样式；若浏览器默认样式与页面配色对比不足，焦点可见性会随浏览器而变，本次只在 Chromium 默认样式下量测",
+     "limitations_en": "The page itself defines a focus style only for the interactive scene, and the remaining elements rely on the browser default style; if that default contrasts poorly with the page palette, focus visibility will vary by browser. Measurement was made only under the Chromium default style."
     },
     {
      "id": "R3-03",
@@ -342,13 +395,15 @@
      "item_en": "Skip-link operation",
      "method_zh": "冷启动后按一次 Tab，量测跳转链接是否进入视口、是否具备可读底色，再按 Enter 并量测跳转结果与后续 Tab 的落点",
      "method_en": "Press Tab once after a cold load, measure whether the skip link enters the viewport with a readable background, then press Enter and measure the jump result and where the next Tab lands",
-     "tool": "playwright 键盘注入 + 视口坐标量测 + 截图",
+     "tool_zh": "playwright 键盘注入 + 视口坐标量测 + 截图",
+     "tool_en": "playwright keyboard injection + viewport-coordinate measurement + screenshots",
      "date": "2026-08-13",
      "scope_zh": "双语展示页",
      "scope_en": "Both language versions",
      "result_zh": "第一次 Tab 即命中跳转链接，从屏幕外移入视口左上角（16, 16），白色底、层级 99，可见。按 Enter 后地址片段变为 #main，页面滚动至正文容器顶部；再按一次 Tab，焦点落在正文容器内的第一个链接，跳过了十五个章节导航链接，跳转生效。",
      "result_en": "The first Tab hits the skip link, which moves from off-screen into the viewport at (16, 16) on a white background at z-index 99. Pressing Enter sets the fragment to #main and scrolls to the top of the main container; the next Tab lands on the first link inside main, skipping the fifteen chapter navigation links, so the jump works.",
-     "limitations_zh": "正文容器未设 tabindex=\"-1\"，焦点本身未落到容器上，而是依赖 Chromium 的顺序焦点导航起点机制把后续 Tab 起点移入正文。在不实现该机制的浏览器与屏幕阅读器组合下，激活跳转链接后焦点可能仍留在文档起点。此项本次只在 Chromium 上验证。"
+     "limitations_zh": "正文容器未设 tabindex=\"-1\"，焦点本身未落到容器上，而是依赖 Chromium 的顺序焦点导航起点机制把后续 Tab 起点移入正文。在不实现该机制的浏览器与屏幕阅读器组合下，激活跳转链接后焦点可能仍留在文档起点。此项本次只在 Chromium 上验证。",
+     "limitations_en": "The main container carries no tabindex=\"-1\", so focus does not land on the container itself; it relies instead on Chromium's sequential focus navigation starting point to move the next Tab into main. In browser and screen-reader combinations that do not implement that mechanism, focus may remain at the start of the document after the skip link is activated. This item was verified only on Chromium."
     },
     {
      "id": "R3-04",
@@ -356,13 +411,15 @@
      "item_en": "Keyboard operability of the interactive-scene controls",
      "method_zh": "对每个控件先用键盘取得焦点，再按 Enter 或空格触发，量测触发后的 DOM 状态、aria-pressed、读数面板与状态播报区文本",
      "method_en": "Focus each control by keyboard, trigger it with Enter or Space, and measure the resulting DOM state, aria-pressed value, readout panel, and status live-region text",
-     "tool": "playwright 键盘注入 + DOM 状态读取",
+     "tool_zh": "playwright 键盘注入 + DOM 状态读取",
+     "tool_en": "playwright keyboard injection + DOM state read",
      "date": "2026-08-13",
      "scope_zh": "AI 开关两个按钮、播放引导流光、显示静态视图、十个节点按钮、场景卡关闭按钮，共 15 个按钮",
      "scope_en": "The two AI switch buttons, play guidance flow, show static view, the ten node buttons, and the scenario-card close button: 15 buttons in total",
      "result_zh": "包内自称的「键盘可操作」经实测成立。AI 关闭按 Enter：场景状态切至 off，aria-pressed 互换，画布可访问描述改写为 AI 关闭态描述，状态播报区输出「已切换到 AI 关闭……读数与 AI 开启完全一致」；AI 开启按空格：状态切回 on。两态下读数面板六行完全一致（10 / 10、2、3 / 3、未测（unknown）、2、待现场审计 · CR-2026-08-12-003）。播放引导流光按 Enter 可开可关，aria-pressed 随之 true / false。显示静态视图按 Enter 后画布隐藏、静态后备图显示，再按一次返回交互视图。十个节点按钮逐个用 Enter 展开，10 / 10 全部成功，卡片内编号、名称、AI 开启通道、AI 关闭通道与人工接管四项均非空。按 Esc 关闭卡片后焦点归还原节点按钮，aria-pressed 复位为 false，播报区输出「已关闭场景卡」。卡片展开时关闭按钮进入 Tab 序列，位于显示静态视图与 OP-01 之间，可用键盘触达并激活，激活后焦点同样归还原节点按钮。",
      "result_en": "The package's claim of keyboard operability holds under test. Enter on AI OFF switches the scene state to off, swaps aria-pressed, rewrites the canvas accessible description to the AI-off wording, and announces \"Switched to AI OFF ... The readout is identical to AI ON\" in the live region; Space on AI ON switches back. The six readout rows are identical in both states (10 / 10, 2, 3 / 3, unknown (unmeasured), 2, pending site audit CR-2026-08-12-003). Enter toggles the guidance flow on and off with aria-pressed following. Enter on show static view hides the canvas and shows the static fallback, and a second Enter returns to the interactive view. All ten node buttons open with Enter, 10 of 10 succeeding, with card id, name, AI-ON channel, AI-OFF channel, and human-handover all non-empty. Esc closes the card, returns focus to the originating node button, resets aria-pressed to false, and announces \"Scenario card closed\". While a card is open the close button joins the tab order between show static view and OP-01, is reachable and operable by keyboard, and also returns focus to the originating node button.",
-     "limitations_zh": "以 Chromium 的键盘事件处理为准；未在屏幕阅读器的浏览模式与焦点模式切换下验证播报的实际朗读顺序"
+     "limitations_zh": "以 Chromium 的键盘事件处理为准；未在屏幕阅读器的浏览模式与焦点模式切换下验证播报的实际朗读顺序",
+     "limitations_en": "Based on Chromium's keyboard event handling; the actual reading order of the announcements was not verified across a screen reader's browse-mode and focus-mode switching"
     },
     {
      "id": "R3-05",
@@ -370,13 +427,15 @@
      "item_en": "Reduced-motion preference",
      "method_zh": "以 prefers-reduced-motion: reduce 载入页面，量测动效控件状态与提示文本",
      "method_en": "Load the page under prefers-reduced-motion: reduce and measure the motion control's state and hint text",
-     "tool": "playwright reducedMotion 上下文",
+     "tool_zh": "playwright reducedMotion 上下文",
+     "tool_en": "playwright reducedMotion context",
      "date": "2026-08-13",
      "scope_zh": "双语展示页交互场景",
      "scope_en": "The interactive scene in both language versions",
      "result_zh": "播放引导流光按钮自动置为 disabled 且 aria-pressed=false，页面显示提示「已按系统的『减少动效』设置停用动画」（英文版为对应表述），动效不自动播放",
      "result_en": "The guidance-flow button is automatically disabled with aria-pressed=false and the page shows \"Animation is disabled because the system asks for reduced motion\" (with the matching Chinese wording in the zh version); no animation plays automatically",
-     "limitations_zh": "只验证了系统偏好为 reduce 时的行为，未验证用户在页面运行中改变系统偏好的响应"
+     "limitations_zh": "只验证了系统偏好为 reduce 时的行为，未验证用户在页面运行中改变系统偏好的响应",
+     "limitations_en": "Only the behaviour with the system preference set to reduce was verified; the response to a user changing the system preference while the page is running was not"
     },
     {
      "id": "R3-06",
@@ -384,13 +443,15 @@
      "item_en": "Alternative-text inventory",
      "method_zh": "枚举全部 img 与 svg 元素，逐个读取 alt、aria-label、role、aria-hidden 与所在位置，统计有无并抽样判读质量",
      "method_en": "Enumerate every img and svg element, read alt, aria-label, role, aria-hidden, and location for each, tally presence, and sample-read quality",
-     "tool": "playwright DOM 枚举 + CDP 可访问性树",
-     "date": "2026-08-13",
+     "tool_zh": "playwright DOM 枚举 + CDP 可访问性树",
+     "tool_en": "playwright DOM enumeration + CDP accessibility tree",
+     "date": "2026-08-16",
      "scope_zh": "双语展示页全部图像元素",
      "scope_en": "All image elements in both language versions",
-     "result_zh": "每版 9 个 img，9 个全部具备非空 alt，无缺失、无空 alt。中文版 alt 长度 25—121 字符，英文版 178—403 字符（中英字符密度不同，信息量相当）。抽样判读：五张图版的 alt 均描述图面内容与结论要点而非仅给标题，例如慢行图 alt 写明按 EPSG:4548 真实比例绘制、AI 开启域与关闭域及两者差集、差集为待现场审计的靶区。每版 1 个内联 svg（品牌标识），设 role=\"img\" 并配 aria-label 描述图形构成。装饰性元素共 12 个，其中交互场景图例的 6 个色块与 6 个开关标记设 aria-hidden=\"true\"。",
-     "result_en": "9 img elements per version, all 9 with non-empty alt; none missing, none empty. Chinese alt text runs 25-121 characters and English 178-403, carrying comparable information at different character densities. Sample reading: the alt on all five drawings describes content and conclusions rather than only a title; the mobility drawing's alt states that it is drawn to true scale in EPSG:4548 and names the AI-on domain, the AI-off domain, and the difference set as a target for site audit. Each version has one inline svg (the brand mark) with role=\"img\" and an aria-label describing its construction. Twelve decorative elements exist, of which the six legend swatches and six switch ticks in the interactive scene carry aria-hidden=\"true\".",
-     "limitations_zh": "alt 质量为抽样人工判读，未逐条评估是否完整传达图面全部信息；alt 无法替代复杂图版的完整数据，图内数据的等价获取路径依赖正文与结构化文件"
+     "result_zh": "每版 20 个 img，20 个全部具备非空 alt，无缺失、无空 alt。中文版 alt 长度 25—163 字符，英文版 27—608 字符（中英字符密度不同，信息量相当）。抽样判读：五张图版的 alt 均描述图面内容与结论要点而非仅给标题，例如慢行图 alt 写明双态可达域与差集口径、四张判断卡要点、差集为待现场审计的靶区。每版 1 个内联 svg（品牌标识），设 role=\"img\" 并配 aria-label 描述图形构成。装饰性元素共 8 个，其中交互场景图例的 6 个色块与 AI 开关的 2 个刻度标记设 aria-hidden=\"true\"。",
+     "result_en": "20 img elements per version, all 20 with non-empty alt; none missing, none empty. Chinese alt text runs 25-163 characters and English 27-608, carrying comparable information at different character densities. Sample reading: the alt on all five drawings describes content and conclusions rather than only a title; the mobility drawing's alt states the dual-state reach domains, the gap definition, the four judgment cards, and the gap as a target for site audit. Each version has one inline svg (the brand mark) with role=\"img\" and an aria-label describing its construction. Eight decorative elements exist, of which the six legend swatches and the two AI-switch ticks in the interactive scene carry aria-hidden=\"true\".",
+     "limitations_zh": "alt 质量为抽样人工判读，未逐条评估是否完整传达图面全部信息；alt 无法替代复杂图版的完整数据，图内数据的等价获取路径依赖正文与结构化文件",
+     "limitations_en": "Alt quality was read by hand on a sample and was not assessed entry by entry for whether it conveys everything on the drawing; alt cannot replace the full data of a complex drawing, and the equivalent route to the in-drawing data depends on the proposal text and the structured files"
     },
     {
      "id": "R3-07",
@@ -398,14 +459,17 @@
      "item_en": "No-script fallback verified by execution",
      "method_zh": "以禁用 JavaScript 的浏览器上下文实际加载页面，量测交互控件是否隐藏、noscript 降级文本与后备图是否呈现及其渲染尺寸，并截图留存",
      "method_en": "Load the page in a browser context with JavaScript disabled, measure whether the interactive controls are hidden and whether the noscript text and fallback image render and at what size, and keep a screenshot",
-     "tool": "playwright javaScriptEnabled:false 上下文 + 元素截图",
+     "tool_zh": "playwright javaScriptEnabled:false 上下文 + 元素截图",
+     "tool_en": "playwright javaScriptEnabled:false context + element screenshot",
      "date": "2026-08-13",
      "scope_zh": "双语展示页第 16 章交互场景及全页图版",
      "scope_en": "Chapter 16 interactive scene and all page drawings, both language versions",
-     "result_zh": "禁用脚本后，交互控件条、舞台与节点导轨三块按 noscript 内的样式规则全部隐藏；noscript 降级文本呈现（中文「此处为交互场景。当前浏览器未启用脚本，下图为静态后备视图。」，英文为对应表述）；静态后备图实际渲染，中文版 1384 × 525 像素，英文版 1384 × 517 像素，且带非空 alt。图例与口径说明两块保持可见，读者仍可获得线型、形状与边界含义。全页六张章节图版与首屏后备图在无脚本条件下均正常呈现。",
-     "result_en": "With scripting disabled, the control bar, stage, and node rail are all hidden by the rules inside noscript; the noscript fallback text renders (\"This is an interactive scene. Scripting is disabled in this browser, so the static fallback view is shown below.\", with the matching Chinese wording); the static fallback image actually renders at 1384 x 525 px (zh) and 1384 x 517 px (en) with non-empty alt. The legend and the caveat note stay visible, so line types, shapes, and boundary meanings remain available. All six chapter drawings and the first-screen fallback image render normally without scripting.",
+     "result_zh": "禁用脚本后，交互控件条、舞台与节点导轨三块按 noscript 内的样式规则全部隐藏；noscript 降级文本呈现（中文「此处为交互场景。当前浏览器未启用脚本，下图为静态后备视图。」，英文为对应表述）；静态后备图实际渲染，中文版 1384 × 525 像素，英文版 1384 × 517 像素，且带非空 alt。图例与口径说明两块保持可见，读者仍可获得线型、形状与边界含义。全页十二张章节图版与首屏后备图在无脚本条件下均正常呈现。",
+     "result_en": "With scripting disabled, the control bar, stage, and node rail are all hidden by the rules inside noscript; the noscript fallback text renders (\"This is an interactive scene. Scripting is disabled in this browser, so the static fallback view is shown below.\", with the matching Chinese wording); the static fallback image actually renders at 1384 x 525 px (zh) and 1384 x 517 px (en) with non-empty alt. The legend and the caveat note stay visible, so line types, shapes, and boundary meanings remain available. All twelve chapter drawings and the first-screen fallback image render normally without scripting.",
      "evidence_zh": "本次走查对无脚本状态下的交互场景区做了元素截图留存，用于人工复看",
-     "limitations_zh": "禁用脚本的降级已验证；未验证脚本加载失败但未被禁用（如资源加载中断）时的中间态表现"
+     "evidence_en": "This walkthrough kept an element screenshot of the interactive-scene area in the no-script state, for later human review",
+     "limitations_zh": "禁用脚本的降级已验证；未验证脚本加载失败但未被禁用（如资源加载中断）时的中间态表现",
+     "limitations_en": "The fallback with scripting disabled is verified; the intermediate state in which scripting is not disabled but fails to load (an interrupted resource request, for example) was not"
     },
     {
      "id": "R3-08",
@@ -413,13 +477,15 @@
      "item_en": "Caption, audio, and transcript attachment in the HTML",
      "method_zh": "枚举页面内 video、audio 与 track 元素，并检索指向字幕、媒体与文字稿文件的链接",
      "method_en": "Enumerate video, audio, and track elements in the page and search for links pointing to caption, media, or transcript files",
-     "tool": "playwright DOM 枚举",
+     "tool_zh": "playwright DOM 枚举",
+     "tool_en": "playwright DOM enumeration",
      "date": "2026-08-13",
      "scope_zh": "双语展示页全页",
      "scope_en": "Both language versions, whole page",
      "result_zh": "实测结果为零：双语展示页均不含 video 或 audio 元素，track 元素数为 0，页面内也没有指向 .vtt、.mp4、.m4a 或文字稿的链接。因此本页不存在字幕轨挂载问题，也没有可在页面内核查的字幕开关。短片、语音导览、四个字幕文件与三份文字稿作为独立资产随包提交于 assets/media，其双语等价性由记录二第 07、08 条覆盖。",
      "result_en": "The measured result is zero: neither language version contains a video or audio element, the track count is 0, and the page carries no link to .vtt, .mp4, .m4a, or a transcript. There is therefore no caption track to attach on this page and no in-page caption control to check. The film, the audio guide, the four caption files, and the three transcripts are submitted as separate assets under assets/media, and their bilingual equivalence is covered by entries 07 and 08 of Record 2.",
-     "limitations_zh": "如实登记的结果是「页面内无时基媒体」。时基媒体的可及性因此不由本页承担，而依赖使用者自行以外部播放器载入随包字幕；页面未提供播放入口这一点属于设计现状，不属于本次修复范围"
+     "limitations_zh": "如实登记的结果是「页面内无时基媒体」。时基媒体的可及性因此不由本页承担，而依赖使用者自行以外部播放器载入随包字幕；页面未提供播放入口这一点属于设计现状，不属于本次修复范围",
+     "limitations_en": "The result registered as found is that the page contains no time-based media. Accessibility of time-based media therefore does not rest with this page but depends on the user loading the packaged captions in an external player. That the page offers no playback entry point is the current design state and is outside the scope of this round's fixes."
     },
     {
      "id": "R3-09",
@@ -427,75 +493,113 @@
      "item_en": "Item-by-item check that colour is never the only encoding",
      "method_zh": "对每一处以颜色区分信息的位置，读取其形状线索（边框样式、圆角、裁剪路径、渐变）与文字线索，逐项判断是否存在第二编码",
      "method_en": "For every place where colour distinguishes information, read its shape cues (border style, radius, clip path, gradient) and text cues, and judge item by item whether a second encoding exists",
-     "tool": "playwright getComputedStyle 逐元素读取",
+     "tool_zh": "playwright getComputedStyle 逐元素读取",
+     "tool_en": "playwright getComputedStyle element-by-element read",
      "date": "2026-08-13",
      "scope_zh": "交互场景图例六项、品牌色板六项、十节点卡片、读数面板、七类测试与三类自检状态卡",
      "scope_en": "The six legend entries in the interactive scene, the six brand swatches, the ten node cards, the readout panel, the seven test cards, and the three self-check status cards",
      "findings": [
       {
        "item_zh": "图例·主脊",
+       "item_en": "Legend: spine",
        "encoding_zh": "实线色条 + 文字标签「主脊 · 通用可达底线」+ 说明「两条等价路径之一」",
-       "verdict": "通过"
+       "encoding_en": "A solid colour bar + the text label \"Spine · universal-access baseline\" + the note \"One of two equivalent routes\"",
+       "verdict_zh": "通过",
+       "verdict_en": "Pass"
       },
       {
        "item_zh": "图例·低刺激替代线",
+       "item_en": "Legend: low-stimulation alternative",
        "encoding_zh": "重复线性渐变呈虚线形态（非实色）+ 文字标签 + 说明明写「虚线，第二条等价路径」",
-       "verdict": "通过"
+       "encoding_en": "A repeating linear gradient rendered as a dashed form (not a solid colour) + a text label + a note that states \"Dashed; the second equivalent route\"",
+       "verdict_zh": "通过",
+       "verdict_en": "Pass"
       },
       {
        "item_zh": "图例·独立完成节点",
+       "item_en": "Legend: independent-completion nodes",
        "encoding_zh": "圆形（border-radius 50%）+ 文字标签含编号区间 OP-01—OP-10",
-       "verdict": "通过"
+       "encoding_en": "A circle (border-radius 50%) + a text label carrying the id range OP-01 to OP-10",
+       "verdict_zh": "通过",
+       "verdict_en": "Pass"
       },
       {
        "item_zh": "图例·人工求助点",
+       "item_en": "Legend: staffed help point",
        "encoding_zh": "菱形（clip-path 四点多边形）+ 文字标签 + 说明明写「珊瑚色只用于人工接管与求助」",
-       "verdict": "通过"
+       "encoding_en": "A diamond (a four-point clip-path polygon) + a text label + a note that states \"coral is reserved for handover and help\"",
+       "verdict_zh": "通过",
+       "verdict_en": "Pass"
       },
       {
        "item_zh": "图例·文化地标",
+       "item_en": "Legend: cultural landmarks",
        "encoding_zh": "三角形（clip-path 三点多边形）+ 文字标签 + 三处地标名称",
-       "verdict": "通过"
+       "encoding_en": "A triangle (a three-point clip-path polygon) + a text label + the names of the three landmarks",
+       "verdict_zh": "通过",
+       "verdict_en": "Pass"
       },
       {
        "item_zh": "图例·临时重点区与总体范围",
+       "item_en": "Legend: provisional key areas and overall scope",
        "encoding_zh": "虚线边框（border-style dashed）+ 文字标签 + 说明明写「虚线边表示非法定边界」",
-       "verdict": "通过"
+       "encoding_en": "A dashed border (border-style dashed) + a text label + a note that states \"Dashed edges mean non-statutory boundaries\"",
+       "verdict_zh": "通过",
+       "verdict_en": "Pass"
       },
       {
        "item_zh": "品牌色板六项",
+       "item_en": "The six brand swatches",
        "encoding_zh": "每张卡片文本内含十六进制色值与色名（如「深青 #10383d」），并附用途说明；色块本身为纯装饰",
-       "verdict": "通过"
+       "encoding_en": "Each card carries the hex value and the colour name in its text (\"DEEP TEAL #10383d\", for example) together with a note on its use; the swatch itself is purely decorative",
+       "verdict_zh": "通过",
+       "verdict_en": "Pass"
       },
       {
        "item_zh": "十节点卡片",
+       "item_en": "The ten node cards",
        "encoding_zh": "卡片顶边颜色按位置轮换，仅作版面节奏，不承载信息；每张卡片以文字给出节点编号、场景编号、闸门编号与名称",
-       "verdict": "通过"
+       "encoding_en": "The top-border colour rotates by position for layout rhythm only and carries no information; each card gives the node id, the scenario id, the gate id, and the name in text",
+       "verdict_zh": "通过",
+       "verdict_en": "Pass"
       },
       {
        "item_zh": "读数面板六行",
+       "item_en": "The six readout-panel rows",
        "encoding_zh": "术语与数值均为文字（含「未测（unknown）」「待现场审计」），不以颜色区分声明值与实测值，两者以文字术语分列",
-       "verdict": "通过"
+       "encoding_en": "Terms and values are all text (including \"unknown (unmeasured)\" and \"pending site audit\"); declared and measured values are not distinguished by colour but are listed separately by wording",
+       "verdict_zh": "通过",
+       "verdict_en": "Pass"
       },
       {
        "item_zh": "七类绩效测试卡",
+       "item_en": "The seven performance test cards",
        "encoding_zh": "每张卡片以文字标注「待真实测试」，不以颜色表示状态",
-       "verdict": "通过"
+       "encoding_en": "Each card is marked \"PENDING REAL TEST\" in text; status is not conveyed by colour",
+       "verdict_zh": "通过",
+       "verdict_en": "Pass"
       },
       {
        "item_zh": "三类自检状态卡",
+       "item_en": "The three self-check status cards",
        "encoding_zh": "以文字给出状态（PASS AFTER FINALIZE、PASS · PROVISIONAL WARNINGS、PASS AFTER FINAL QA），不以颜色表示通过与否",
-       "verdict": "通过"
+       "encoding_en": "Status is given in text (PASS AFTER FINALIZE, PASS · PROVISIONAL WARNINGS, PASS AFTER FINAL QA); pass or fail is not conveyed by colour",
+       "verdict_zh": "通过",
+       "verdict_en": "Pass"
       },
       {
        "item_zh": "页面自述规则",
+       "item_en": "The rule the page states about itself",
        "encoding_zh": "第 12 章明写「颜色不得单独承载信息：任何以颜色区分的状态必须同时具备形状、文字或触觉冗余」，英文版有对应表述",
-       "verdict": "规则与实现一致"
+       "encoding_en": "Chapter 12 states \"Colour never carries information alone: any colour-coded state must also carry shape, text or tactile redundancy\", with the matching Chinese wording in the zh version",
+       "verdict_zh": "规则与实现一致",
+       "verdict_en": "Rule matches implementation"
       }
      ],
      "result_zh": "逐项核查 12 项，未发现以颜色为唯一编码的信息。所有颜色区分处均同时具备形状、线型或文字标签中的至少一种第二编码，与页面自述规则一致。",
      "result_en": "Twelve items checked one by one, with no information found to be encoded by colour alone. Every colour-coded distinction also carries at least one of shape, line type, or a text label, consistent with the rule the page states about itself.",
-     "limitations_zh": "以计算样式与文本内容判断，未做色觉障碍模拟渲染，也未请色觉障碍使用者判读"
+     "limitations_zh": "以计算样式与文本内容判断，未做色觉障碍模拟渲染，也未请色觉障碍使用者判读",
+     "limitations_en": "Judged from computed styles and text content, without simulated colour-vision-deficiency rendering and without asking users with a colour vision deficiency to read it"
     },
     {
      "id": "R3-10",
@@ -503,13 +607,15 @@
      "item_en": "Page structure and landmarks",
      "method_zh": "统计标题层级、地标元素、状态播报区与控件可访问名，并用 CDP 读取完整可访问性树核对地标名称",
      "method_en": "Count heading levels, landmark elements, live regions, and control accessible names, and read the full accessibility tree via CDP to verify landmark names",
-     "tool": "playwright DOM 统计 + CDP Accessibility.getFullAXTree",
-     "date": "2026-08-13",
+     "tool_zh": "playwright DOM 统计 + CDP Accessibility.getFullAXTree",
+     "tool_en": "playwright DOM counting + CDP Accessibility.getFullAXTree",
+     "date": "2026-08-16",
      "scope_zh": "双语展示页全页",
      "scope_en": "Both language versions, whole page",
-     "result_zh": "双语计数全等：h1 各 1 个、h2 各 16 个、h3 各 3 个，层级无跳级；地标 nav 1、main 1、footer 1，首屏概览段落设 aria-label；状态播报区 1 个，role=\"status\" 且 aria-live=\"polite\"，以视觉隐藏但屏幕阅读器可读的方式实现；按钮 15 个，其中 14 个带 aria-pressed 状态；AI 开关外层设 role=\"group\" 并有可访问名；画布设 role=\"img\" 并随 AI 开关改写 aria-label。跳转链接目标存在。全部 9 个图像均带 alt，aria-label 各 5 处，双语数量一致。",
-     "result_en": "Counts are identical in both languages: 1 h1, 16 h2, 3 h3, with no skipped levels; landmarks are 1 nav, 1 main, 1 footer, with the first-screen overview section carrying an aria-label; one live region with role=\"status\" and aria-live=\"polite\", implemented as visually hidden but screen-reader readable; 15 buttons, 14 of them carrying aria-pressed; the AI switch wrapper has role=\"group\" with an accessible name; the canvas has role=\"img\" with an aria-label rewritten as the AI switch changes. The skip-link target exists. All 9 images carry alt, and there are 5 aria-labels per version, equal across languages.",
-     "limitations_zh": "结构与名称的机器核对，未验证屏幕阅读器实际朗读时的地标跳转体验"
+     "result_zh": "双语计数全等：h1 各 1 个、h2 各 18 个、h3 各 6 个，层级无跳级；地标 nav 1、main 1、footer 1，首屏概览段落设 aria-label；状态播报区 2 个，role=\"status\" 且 aria-live=\"polite\"，以视觉隐藏但屏幕阅读器可读的方式实现；按钮 34 个，其中 32 个带 aria-pressed 状态；AI 开关外层设 role=\"group\" 并有可访问名；画布设 role=\"img\" 并随 AI 开关改写 aria-label。跳转链接目标存在。全部 20 个图像（noscript 外）均带 alt，aria-label 各 5 处，双语数量一致。",
+     "result_en": "Counts are identical in both languages: 1 h1, 18 h2, 6 h3, with no skipped levels; landmarks are 1 nav, 1 main, 1 footer, with the first-screen overview section carrying an aria-label; two live regions with role=\"status\" and aria-live=\"polite\", implemented as visually hidden but screen-reader readable; 15 buttons, 14 of them carrying aria-pressed; the AI switch wrapper has role=\"group\" with an accessible name; the canvas has role=\"img\" with an aria-label rewritten as the AI switch changes. The skip-link target exists. All 20 images (outside noscript) carry alt, and there are 5 aria-labels per version, equal across languages.",
+     "limitations_zh": "结构与名称的机器核对，未验证屏幕阅读器实际朗读时的地标跳转体验",
+     "limitations_en": "A machine check of structure and names; the landmark-navigation experience when a screen reader actually reads the page was not verified"
     }
    ],
    "record_limitations_zh": [
@@ -524,110 +630,246 @@
     "Measurements were taken only on the Chromium engine at a 1440 x 900 viewport, without retesting on other browser engines, mobile touch screens, or high-contrast mode.",
     "This record is the proposer's self-check, not an accessibility conformance certification, and asserts no level of conformance with any standard."
    ]
+  },
+  {
+   "id": "R4",
+   "title_zh": "多感官交付自查（v6.0—v6.1：触觉三件、数据可听化、双态漫游）",
+   "title_en": "Multisensory deliverables self-check (v6.0–v6.1: three tactile items, sonification, Dual-State Walk)",
+   "purpose_zh": "对交付物自身的手与耳通道做与其余交付同一标准的可核验自查：结构、映射、时间轴与完整性逐项实测登记",
+   "purpose_en": "The hand and ear channels of the deliverables checked to the same standard as everything else: structure, mapping, timeline and integrity measured and registered item by item",
+   "checks": [
+    {
+     "id": "R4-01",
+     "item_zh": "触觉地图三维模型网格完整性",
+     "item_en": "Tactile-map 3D mesh integrity",
+     "method_zh": "解析 STL 二进制逐三角枚举边并统计共享数；重建哈希自校验",
+     "method_en": "Parse the binary STL, enumerate edges per triangle and count sharing; self-verify the rebuild hash",
+     "tool_zh": "Python struct/hashlib（标准库）",
+     "tool_en": "Python struct/hashlib (standard library)",
+     "date": "2026-08-16",
+     "scope_zh": "visual/assets/op04-tactile-map.json 内封装的全部网格",
+     "scope_en": "the full mesh wrapped in op04-tactile-map.json",
+     "result_zh": "564 三角面、846 边、非流形边 0（各子体流形封闭，微重叠相接）；base64 解码后 SHA-256 与登记值一致。首版 6 条共面共享边经微嵌入构造消除，过程如实记录于该文件 mesh_integrity 字段",
+     "result_en": "564 triangles, 846 edges, zero non-manifold edges (each sub-body a closed manifold joined by micro-overlaps); the decoded SHA-256 matches the registered hash. A first draft's six coplanar shared edges were eliminated by the embedded construction, recorded in the file's mesh_integrity field",
+     "provenance_zh": "本记录与 op04-tactile-map.json 互指",
+     "provenance_en": "cross-referenced with op04-tactile-map.json",
+     "limitations_zh": "切片器兼容性按主流行为推断，未逐一实测各切片软件；触觉可辨性未经视障使用者测试",
+     "limitations_en": "slicer compatibility inferred from mainstream behaviour, not tested per application; tactile distinctness untested with blind or low-vision users"
+    },
+    {
+     "id": "R4-02",
+     "item_zh": "盲文转写逐字符复核",
+     "item_en": "Braille transcription character check",
+     "method_zh": "按随文映射表逐字符独立重转写并与登记串比对",
+     "method_en": "Independently re-transcribe character by character from the included map and compare with the registered string",
+     "tool_zh": "Python（标准库）",
+     "tool_en": "Python (standard library)",
+     "date": "2026-08-15",
+     "scope_zh": "braille-core-statement.json 的源句与 UEB 一级转写串",
+     "scope_en": "the source sentence and UEB Grade-1 string in braille-core-statement.json",
+     "result_zh": "重转写结果与登记串逐字符一致（74 字符含大写指示与句点）；映射表仅含确定性字母规则，无缩写、数字或符号规则介入",
+     "result_en": "The re-transcription matches the registered string character for character (74 cells including capital indicators and periods); the map holds deterministic letter rules only, with no contractions, numerals or symbol rules involved",
+     "provenance_zh": "映射表随文可核",
+     "provenance_en": "the letter map ships in the file",
+     "limitations_zh": "未经盲文使用者或持证校对员校对（文件内已如实声明）；中文盲文版仍为待专业协作",
+     "limitations_en": "not proofread by a braille user or certified transcriber (stated in the file); the Chinese edition remains pending professional collaboration"
+    },
+    {
+     "id": "R4-03",
+     "item_zh": "折叠纸模结构与打印适配",
+     "item_en": "Papercraft structure and print fit",
+     "method_zh": "SVG 尺寸与要素核对：A4 画幅、展开条带段数、折线类型、点阵计数",
+     "method_en": "Check SVG dimensions and elements: A4 canvas, unfolded segment count, fold-line types, dot count",
+     "tool_zh": "文本解析（SVG 为手写标记）",
+     "tool_en": "text parsing (the SVG is hand-written markup)",
+     "date": "2026-08-16",
+     "scope_zh": "assets/tactile/op04-papercraft.svg 与 .en.svg",
+     "scope_en": "both language editions",
+     "result_zh": "画幅 210×297 mm；展开序列侧壁-四带-侧壁-粘贴翼共 7 段、段间折线 6 条（谷折/山折交替）；盲道带凸点阵 36 点（2 列 × 18 行，缺口区跳过）；双语两版结构一致",
+     "result_en": "Canvas 210×297 mm; a seven-segment unfold (wall, four bands, wall, glue tab) with six alternating fold lines; a 36-dot tactile grid (2 columns × 18 rows, skipping the gap zone); both language editions structurally identical",
+     "provenance_zh": "与 op04-detail 图版同一带宽口径（1:50）",
+     "provenance_en": "same band-width basis as the op04-detail plate (1:50)",
+     "limitations_zh": "未做实物打印折叠试验；凸点触感依赖发泡油墨或点字打印机输出",
+     "limitations_en": "no physical print-and-fold trial; tactile dots depend on puff ink or embosser output"
+    },
+    {
+     "id": "R4-04",
+     "item_zh": "数据可听化映射与静默实测",
+     "item_en": "Sonification mapping and silence measurement",
+     "method_zh": "断点时刻由档案读数复算并与时间轴登记比对；解码回读逐段测 RMS",
+     "method_en": "Recompute the break moment from archive readings against the registered timeline; decode and measure RMS per segment",
+     "tool_zh": "ffmpeg 解码 + Python struct/math",
+     "tool_en": "ffmpeg decode + Python struct/math",
+     "date": "2026-08-15",
+     "scope_zh": "audible-break.m4a 与 -en.m4a（48 kbps 发布版）",
+     "scope_en": "both published editions",
+     "result_zh": "v6.4 按档案 v0.3.0 重制后复测：段一行进 243.514÷20=12.18 秒与波形脉冲数（24 响）一致；段二接口缺席、开场即静默，静默区 RMS=0（编码后抽测 49.55–50.85s 复测仍为 0）；110 Hz 低音三响正常；中文版 65.8 秒、英文版 71.3 秒与档案登记一致",
+     "result_en": "Re-measured after the v6.4 remake against archive v0.3.0: part-one walk 243.514/20=12.18 s matches the pulse count (24 taps); part two has no interface and is silent from the start, silence RMS=0 (spot-check 49.55-50.85 s after encoding still 0); the three 110 Hz low tones are normal; durations 65.8 s / 71.3 s match the archive",
+     "provenance_zh": "映射规则与读数出处见 audible-break.md",
+     "provenance_en": "mapping and reading provenance in audible-break.md",
+     "limitations_zh": "响度体验未做多设备实测；行进音听感经提交方人工试听一轮修订（首版持续基音被否，改五声音阶短音，修订过程留档）",
+     "limitations_en": "loudness not tested across devices; the walking tone passed one human listening revision (a droning first version was rejected for the pentatonic figure, recorded)"
+    },
+    {
+     "id": "R4-05",
+     "item_zh": "双态漫游成片完整性",
+     "item_en": "Dual-State Walk film integrity",
+     "method_zh": "成片时长与分段时序核对；字幕轴与时序表比对；角标逐段抽帧确认",
+     "method_en": "Check film duration and segment timing; compare caption timing with the timeline; spot-check the badge frame by segment",
+     "tool_zh": "ffprobe/ffmpeg + 时序表",
+     "tool_en": "ffprobe/ffmpeg + the timing table",
+     "date": "2026-08-16",
+     "scope_zh": "dual-state-walk.mp4 与双语字幕",
+     "scope_en": "the film and both caption tracks",
+     "result_zh": "总长 65.024 秒与时序表一致；八段起点（0/9/17/26/32.5/39.5/46/53.5）与字幕 cue 对齐；八段各抽一帧确认「概念意象 · AI 生成 · 非建成效果承诺」角标恒显；容器元数据（标题/作者/合成声明）在位",
+     "result_en": "65.024 s total matching the table; eight segment starts aligned with caption cues; one frame per segment confirms the permanent concept badge; container metadata (title, artist, synthesis statement) in place",
+     "provenance_zh": "生成档案与两轮人工审改记录见 dual-state-walk.md",
+     "provenance_en": "generation record and both revision rounds in dual-state-walk.md",
+     "limitations_zh": "场景为 AI 生成概念意象，不构成建成效果；画质经两级压缩（1080p→720p CRF27），文字角标经抽帧确认可读但未逐帧核验",
+     "limitations_en": "scenes are AI-generated concept vision, no built outcome; picture passed two compression steps with the badge confirmed readable by spot check, not frame-exhaustively"
+    }
+   ]
   }
  ],
  "findings": [
   {
    "id": "F-01",
-   "severity": "轻微",
+   "severity_zh": "轻微",
+   "severity_en": "Minor",
    "status_zh": "走查发现并已修复",
    "status_en": "Found in the walkthrough and fixed",
    "found_in": "R3-10",
-   "location": "visual/index.html · visual/index.en.html · nav 元素",
+   "location_zh": "visual/index.html · visual/index.en.html · nav 元素",
+   "location_en": "visual/index.html · visual/index.en.html · the nav element",
    "problem_zh": "中文页面（lang=\"zh-CN\"）的章节导航地标可访问名为英文小写 chapters，与页面语言不符，也与同页其余四处中文 aria-label 的体例不一致。经 CDP 可访问性树核对，该地标在树中的名称确为 chapters。",
    "problem_en": "On the Chinese page (lang=\"zh-CN\") the chapter-navigation landmark had the accessible name \"chapters\" in lowercase English, which does not match the page language and is inconsistent with the four other Chinese aria-labels on the same page. The CDP accessibility tree confirmed the landmark name as \"chapters\".",
    "fix_zh": "中文版改为「章节导航」，英文版同步改为 Chapters（与同页其余可访问名的首字母大写体例一致）。",
    "fix_en": "Changed to 章节导航 in the Chinese version and to Chapters in the English version, matching the capitalisation of the other accessible names on the page.",
-   "verification_zh": "修复后重跑 CDP 可访问性树，中文版地标名为「章节导航」，英文版为 Chapters；双语计数断言全等：aria-label 各 5、nav 各 1、导航链接各 15、按钮各 15、图像各 9 且 9 个均有 alt、可聚焦元素各 33（含展开态的场景卡关闭按钮），页面脚本错误 0。"
+   "verification_zh": "修复后重跑 CDP 可访问性树，中文版地标名为「章节导航」，英文版为 Chapters；双语计数断言全等：aria-label 各 5、nav 各 1、导航链接各 15、按钮各 15、图像各 9 且 9 个均有 alt、可聚焦元素各 33（含展开态的场景卡关闭按钮），页面脚本错误 0。",
+   "verification_en": "After the fix the CDP accessibility tree was read again: the landmark name is 章节导航 in the Chinese version and Chapters in the English one. The bilingual count assertions are all equal: 5 aria-labels each, 1 nav each, 15 navigation links each, 15 buttons each, and 9 images each with all 9 carrying alt, plus 33 focusable elements each (including the scenario-card close button in the open state), with 0 page script errors."
   },
   {
    "id": "F-02",
-   "severity": "轻微",
-   "status_zh": "走查发现，登记为已知问题，本轮未修",
-   "status_en": "Found in the walkthrough, registered as a known issue, not fixed this round",
+   "severity_zh": "轻微",
+   "severity_en": "Minor",
+   "status_zh": "走查发现并登记；2026-08-15 复测确认已修复——第 755 行现引用语言字典的 period 字段（中文全角、英文半角），英文播报以半角句号结尾",
+   "status_en": "Found in the walkthrough and registered; re-tested 2026-08-15 and confirmed fixed — line 755 now reads the period field of the language dictionary (ideographic in zh, ASCII in en), so the English announcement ends with an ASCII full stop",
    "found_in": "R3-04",
-   "location": "visual/assets/scene.js 第 755 行",
+   "location_zh": "visual/assets/scene.js 第 755 行",
+   "location_en": "visual/assets/scene.js line 755",
    "problem_zh": "节点选中时的状态播报文本由「前缀 + 节点编号 + 节点名称 + 句号」拼接而成，句号在代码中硬编码为中文全角句号，中英两版共用同一行拼接代码。实测英文版播报为「Selected OP-04 Continuous-passage break joint-test point。」，英文语句末尾出现中文全角句号。",
    "problem_en": "The status announcement for a selected node is assembled as prefix + node id + node name + full stop, and the full stop is hard-coded as a Chinese ideographic period in a line shared by both languages. The English announcement was measured as \"Selected OP-04 Continuous-passage break joint-test point。\", ending an English sentence with a Chinese period.",
    "impact_zh": "屏幕阅读器在英文语音引擎下遇到全角句号，可能不作断句处理或读出异常字符；同时这是英文版文本中混入中文标点，与包内双语等价纪律不一致。",
-   "suggested_fix_zh": "把句号并入语言字典，中文用「。」英文用「.」，拼接处不再硬编码标点。",
-   "not_fixed_reason_zh": "该文件不在本轮写入范围内（本轮仅允许写入本记录文件、proposal 双语挂接句与 visual/index.html、visual/index.en.html）。如实登记，不隐瞒，交由后续轮次处理。"
+   "impact_en": "Under an English speech engine a screen reader that meets an ideographic period may not treat it as a sentence break, or may read out an unexpected character; it is also Chinese punctuation mixed into English text, which is inconsistent with the bilingual-equivalence discipline of the package."
   },
   {
    "id": "F-03",
-   "severity": "轻微",
-   "status_zh": "双语抽检发现，登记为已知问题，本轮未修",
-   "status_en": "Found in bilingual sampling, registered as a known issue, not fixed this round",
+   "severity_zh": "轻微",
+   "severity_en": "Minor",
+   "status_zh": "双语抽检发现并登记；2026-08-15 复测确认该空行已在位（现行第 691—693 行两段以空行分隔，双语逐行对齐），渲染产物中两段各自独立成段",
+   "status_en": "Found in bilingual sampling and registered; re-tested 2026-08-15 and confirmed the blank line is now in place (lines 691–693 separate the two paragraphs, aligned line by line across languages), and the rendered output shows two distinct paragraphs",
    "found_in": "R2-01",
-   "location": "proposal.md 第 622 行与第 623 行之间",
+   "location_zh": "proposal.md 第 622 行与第 623 行之间",
+   "location_en": "proposal.md, between lines 622 and 623",
    "problem_zh": "中文版正文在「上表三类人群不新增用户画像……」段与「**伦理与同意协议包（模板 · 未执行）。**」段之间缺一个空行，两段在 Markdown 语义下被视为同一段落；英文版对应位置有空行，分为两段。逐行结构类型比对因此从该处起出现一行偏移，折叠空行后结构类型序列仍为零不一致，说明差异仅在段落分隔而非结构本身。",
    "problem_en": "In the Chinese text there is no blank line between the paragraph beginning \"上表三类人群不新增用户画像\" and the paragraph beginning \"**伦理与同意协议包（模板 · 未执行）。**\", so Markdown treats them as one paragraph, while the English version has the blank line and renders two. The line-by-line comparison therefore shifts by one line from that point; with blank lines collapsed the type sequence still shows zero mismatches, confirming the difference lies in paragraph separation rather than structure.",
-   "impact_zh": "已传导到渲染产物：report/proposal.html 中该加粗小标题与上一段合并在同一个 p 元素内，而 report/proposal.en.html 正确另起一段。这使中文读者失去一个段落级的内容分隔，屏幕阅读器按段落导航时也会把两段读作一段。",
-   "not_fixed_reason_zh": "proposal.md 在本轮的写入范围仅限一句挂接句，段落分隔属于正文改动，不在授权范围内。如实登记，交由后续轮次处理。"
+   "impact_zh": "登记时曾传导到渲染产物（中文版两段合并于同一 p 元素）；复测时该影响已随空行修复消失，现行渲染产物两段各自独立。",
+   "impact_en": "At registration time the issue had carried through to the rendered output (the two zh paragraphs merged into one p element); on re-test the impact is gone with the blank line restored, and the current rendered output shows two separate paragraphs."
   },
   {
    "id": "F-04",
-   "severity": "观察",
+   "severity_zh": "观察",
+   "severity_en": "Observation",
    "status_zh": "走查观察，实测通过，登记为跨浏览器稳健性局限",
    "status_en": "Observation; passed under test, registered as a cross-browser robustness limitation",
    "found_in": "R3-03",
-   "location": "visual/index.html · visual/index.en.html · main 元素",
+   "location_zh": "visual/index.html · visual/index.en.html · main 元素",
+   "location_en": "visual/index.html · visual/index.en.html · the main element",
    "problem_zh": "正文容器未设 tabindex=\"-1\"，跳转链接激活后焦点并未落到容器本身，而依赖 Chromium 的顺序焦点导航起点机制把后续 Tab 起点移入正文。",
+   "problem_en": "The main container carries no tabindex=\"-1\", so after the skip link is activated focus does not land on the container itself; it relies instead on Chromium's sequential focus navigation starting point to move the next Tab into main.",
    "measurement_zh": "在 Chromium 上实测：激活跳转链接后地址片段变为 #main、页面滚到正文顶部，随后一次 Tab 落在正文内第一个链接，跳过十五个导航链接，功能上生效。",
-   "not_fixed_reason_zh": "本轮实测该路径在目标环境下有效，且加设 tabindex=\"-1\" 会使正文容器在键盘激活时匹配 :focus-visible，产生一圈环绕整页正文的焦点描边（已用副本实测确认），需另配样式抑制，改动面超出「仅走查修复」的范围。如实登记为已知局限，建议后续连同焦点样式一并处理。"
+   "measurement_en": "Measured on Chromium: activating the skip link sets the fragment to #main and scrolls the page to the top of main, and the next Tab lands on the first link inside main, skipping the fifteen navigation links, so it works in practice.",
+   "not_fixed_reason_zh": "本轮实测该路径在目标环境下有效，且加设 tabindex=\"-1\" 会使正文容器在键盘激活时匹配 :focus-visible，产生一圈环绕整页正文的焦点描边（已用副本实测确认），需另配样式抑制，改动面超出「仅走查修复」的范围。如实登记为已知局限，建议后续连同焦点样式一并处理。",
+   "not_fixed_reason_en": "This round measured the path as effective in the target environment, and adding tabindex=\"-1\" would make the main container match :focus-visible on keyboard activation, producing a focus outline around the whole body of the page (confirmed by measurement on a copy). Suppressing it would require an additional style rule, putting the change beyond the scope of walkthrough fixes alone. It is registered as a known limitation, to be handled later together with the focus style."
   },
   {
    "id": "F-05",
-   "severity": "观察",
+   "severity_zh": "观察",
+   "severity_en": "Observation",
    "status_zh": "走查观察，经可访问性树实测确认无播报影响，未修改",
    "status_en": "Observation; the accessibility tree confirms no announcement impact, left unchanged",
    "found_in": "R3-06",
-   "location": "visual/index.html · visual/index.en.html · 第 12 章品牌色板的六个色块元素",
+   "location_zh": "visual/index.html · visual/index.en.html · 第 12 章品牌色板的六个色块元素",
+   "location_en": "visual/index.html · visual/index.en.html · the six brand-palette swatch elements in chapter 12",
    "problem_zh": "品牌色板的六个装饰色块未设 aria-hidden=\"true\"，而交互场景图例的六个色块设了，同页同类装饰元素的处理体例不一致。",
+   "problem_en": "The six decorative swatches of the brand palette carry no aria-hidden=\"true\" while the six swatches in the interactive-scene legend do, so decorative elements of the same kind are handled inconsistently on the same page.",
    "measurement_zh": "用 CDP 读取完整可访问性树核对：品牌色板的六个色块在树中的节点数为 0，交互场景图例已设 aria-hidden 的六个色块同样为 0。两组表现完全相同，说明这六个空元素本就不进入可访问性树、不产生任何播报。",
-   "not_fixed_reason_zh": "实测证明加设 aria-hidden 对播报结果无任何差别，属于体例统一而非缺陷修复。按最小改动原则不作修改，如实登记为观察项。"
+   "measurement_en": "Verified by reading the full accessibility tree via CDP: the six brand swatches produce 0 nodes in the tree, and the six legend swatches that do carry aria-hidden produce 0 as well. The two groups behave identically, showing that these six empty elements never enter the accessibility tree and produce no announcement.",
+   "not_fixed_reason_zh": "实测证明加设 aria-hidden 对播报结果无任何差别，属于体例统一而非缺陷修复。按最小改动原则不作修改，如实登记为观察项。",
+   "not_fixed_reason_en": "Measurement shows that adding aria-hidden makes no difference to what is announced, so it would be a consistency change rather than a defect fix. Under the minimal-change principle nothing was changed, and it is registered as an observation."
   },
   {
    "id": "F-06",
-   "severity": "观察",
+   "severity_zh": "观察",
+   "severity_en": "Observation",
    "status_zh": "走查观察，如实登记",
    "status_en": "Observation, registered as found",
    "found_in": "R3-08",
-   "location": "visual/index.html · visual/index.en.html",
+   "location_zh": "visual/index.html · visual/index.en.html",
+   "location_en": "visual/index.html · visual/index.en.html",
    "problem_zh": "双语展示页均不含 video 与 audio 元素，track 元素数为 0，页面内也无指向字幕、媒体或文字稿的链接。短片、语音导览、四个字幕文件与三份文字稿以独立资产随包提交。",
-   "note_zh": "本项不是缺陷判定，而是走查范围内的事实登记：页面不承担时基媒体的播放，因此不存在可在页面内核查的字幕挂载与字幕开关。"
+   "problem_en": "Neither language version of the display page contains a video or audio element, the track count is 0, and the page carries no link to captions, media, or a transcript. The film, the audio guide, the four caption files, and the three transcripts are submitted as separate assets in the package.",
+   "note_zh": "本项不是缺陷判定，而是走查范围内的事实登记：页面不承担时基媒体的播放，因此不存在可在页面内核查的字幕挂载与字幕开关。",
+   "note_en": "This is not a defect verdict but a fact registered within the scope of the walkthrough: the page does not carry playback of time-based media, so there is no caption attachment and no caption control to check within the page."
   },
   {
    "id": "F-07",
-   "severity": "观察",
+   "severity_zh": "观察",
+   "severity_en": "Observation",
    "status_zh": "走查观察，无害冗余，未修改",
    "status_en": "Observation; harmless redundancy, left unchanged",
    "found_in": "R3-01",
-   "location": "visual/assets/scene.css 焦点样式规则",
+   "location_zh": "visual/assets/scene.css 焦点样式规则",
+   "location_en": "visual/assets/scene.css, the focus style rule",
    "problem_zh": "焦点样式规则同时覆盖交互场景内的按钮与画布，但画布未设 tabindex，实测不可聚焦，该规则中的画布选择器不会生效。",
-   "note_zh": "键盘路径由十个节点按钮承担，页面亦以文字写明「用鼠标点击场景中的节点，或用 Tab 走到下方节点按钮后按 Enter」，键盘等价路径完整，故该冗余不构成缺陷。"
+   "problem_en": "The focus style rule covers both the buttons and the canvas inside the interactive scene, but the canvas carries no tabindex and was measured as not focusable, so the canvas selector in that rule never takes effect.",
+   "note_zh": "键盘路径由十个节点按钮承担，页面亦以文字写明「用鼠标点击场景中的节点，或用 Tab 走到下方节点按钮后按 Enter」，键盘等价路径完整，故该冗余不构成缺陷。",
+   "note_en": "The keyboard path is carried by the ten node buttons, and the page states in text \"Click a node in the scene, or Tab to a node button below and press Enter\", so the keyboard-equivalent path is complete and the redundancy is not a defect."
   },
   {
    "id": "F-08",
-   "severity": "轻微",
+   "severity_zh": "轻微",
+   "severity_en": "Minor",
    "status_zh": "历轮抽检查获并已修复",
    "status_en": "Caught and fixed in an earlier round",
    "found_in": "R2-05",
-   "location": "A3 双语册英文版",
+   "location_zh": "A3 双语册英文版",
+   "location_en": "The English version of the A3 bilingual booklet",
    "problem_zh": "逐页结构块比对与溢出检测曾查获英文版一处 19.6 毫米的内容溢出，已修复；当前溢出检测结果为 0。",
-   "note_zh": "此条如实登记，用以说明该项比对确实具备查错能力，而非只产出通过结论。"
+   "problem_en": "The page-by-page structural-block comparison and overflow detection once caught a 19.6 mm content overflow in the English version, which has been fixed; the current overflow detection result is 0.",
+   "note_zh": "此条如实登记，用以说明该项比对确实具备查错能力，而非只产出通过结论。",
+   "note_en": "This entry is registered as found to show that the comparison actually detects faults rather than only producing pass results."
   }
  ],
- "known_limitations": [
+ "known_limitations_zh": [
   "本文件是方案方自查记录，不是第三方认证、不是无障碍合规声明、不是辅助技术使用者的实测报告。",
   "三类检查均以脚本量测与结构比对为主要手段。凡是需要真实读者、真实译者、真实辅助技术使用者或实物印品才能得出的结论，本文件一律不作声明。",
-  "记录一的 A3、A0 字号读数与五图可读性读数引自包内既有登记，本轮未重跑；重跑的部分（PDF 页数与体量、对比度复算、图版成对性）已在条目的 provenance 字段分别注明。",
+  "记录一的 A3、A0 字号读数与五图可读性读数引自包内既有登记，本轮未重跑；重跑的部分（PDF 页数与体量、对比度复算、图版成对性）已在条目的 provenance 系列字段分别注明。",
   "记录二是结构级与抽样级核对，英文版由模型生成后经人工规则校验，未经具备资质的译者逐词审校。",
   "记录三只在 Chromium 引擎、1440 × 900 视口、file:// 离线加载条件下执行，未在其他浏览器引擎、移动端触屏、高对比度模式或屏幕阅读器下复测。",
   "本文件不改变任何指标。metrics.json 中七项包容性指标的状态维持为待实测，不因本文件的存在而变化。",
   "本文件登记的检查通过与否，不构成对现场服务可用性的任何声明；现场绩效的状态由包内既有条款维持为未获授权、未现场运行。"
  ],
- "related_files": [
+ "known_limitations_en": [
+  "This file is the proposer's own self-check record. It is not a third-party certification, not an accessibility conformance claim, and not a test report from assistive-technology users.",
+  "All three checks rely primarily on scripted measurement and structural comparison. This file asserts no conclusion that would require real readers, real translators, real assistive-technology users, or a physical printed piece.",
+  "In Record 1 the A3 and A0 type-size readings and the legibility readings for the five drawings are quoted from an existing package register and were not re-run this round; the parts that were re-run (PDF page count and file size, the contrast recomputation, drawing pairing) are attributed individually in the provenance fields of each entry.",
+  "Record 2 covers structural and sampled checks; the English version was model-generated and then checked against rules by hand, and was not reviewed word by word by a qualified translator.",
+  "Record 3 was executed only on the Chromium engine, at a 1440 x 900 viewport, loaded offline over file://, without retesting on other browser engines, mobile touch screens, high-contrast mode, or screen readers.",
+  "This file changes no metric. The seven inclusion metrics in metrics.json remain unmeasured, and the existence of this file does not change that.",
+  "Whether the checks registered in this file pass or fail constitutes no claim about the availability of the service on the ground; the status of field performance is held by the package's existing statements as \"not authorized · not field-run\"."
+ ],
+ "related_files_zh": [
   "proposal.md 「风险、版权与合规说明」章",
   "proposal.en.md \"Risk, Copyright, and Compliance\"",
   "visual/index.html 与 visual/index.en.html",
@@ -639,5 +881,18 @@
   "assets/media 下四个字幕文件与三份文字稿",
   "report/copyright_statement.md 逐资产权利台账",
   "changelog.md 2026-08-12 与 2026-08-13 条目"
+ ],
+ "related_files_en": [
+  "proposal.md, the chapter 「风险、版权与合规说明」 (Risk, Copyright, and Compliance)",
+  "proposal.en.md \"Risk, Copyright, and Compliance\"",
+  "visual/index.html and visual/index.en.html",
+  "visual/assets/scene.js and visual/assets/scene.css",
+  "visual/assets/scene-fallback.png and visual/assets/scene-fallback.en.png",
+  "drawings/a3-booklet.pdf and drawings/a3-booklet.en.pdf",
+  "drawings/a0-boards.pdf and drawings/a0-boards.en.pdf",
+  "The zh and en versions of the five reviewer-visible drawings under assets/figures",
+  "The four caption files and three transcripts under assets/media",
+  "report/copyright_statement.md, the asset-by-asset rights register",
+  "changelog.md, the 2026-08-12 and 2026-08-13 entries"
  ]
 }

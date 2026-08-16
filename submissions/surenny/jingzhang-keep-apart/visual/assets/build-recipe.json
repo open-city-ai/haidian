@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "generator_source_removed_for_package_contract": true,
+  "inputs": [
+    "visual/assets/keep-apart-deliverables.json",
+    "five paired Chinese/English figures under assets/figures/"
+  ],
+  "toolchain": [
+    {
+      "tool": "Python standard library",
+      "role": "HTML templating and JSON loading"
+    },
+    {
+      "tool": "fontTools pyftsubset",
+      "role": "Offline WOFF2 subset",
+      "input": "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+      "face_index": 2,
+      "font_family": "Noto Sans CJK SC",
+      "license": "SIL Open Font License 1.1"
+    },
+    {
+      "tool": "WeasyPrint",
+      "version": "69.0",
+      "role": "PDF generation"
+    }
+  ],
+  "outputs": [
+    {"path": "visual/index.html", "language": "zh", "role": "responsive offline evidence board"},
+    {"path": "visual/index.en.html", "language": "en", "role": "paired responsive offline evidence board"},
+    {"path": "drawings/a3-booklet.pdf", "language": "zh", "role": "nine-page A3 portrait evidence booklet"},
+    {"path": "drawings/a3-booklet.en.pdf", "language": "en", "role": "paired nine-page A3 portrait evidence booklet"},
+    {"path": "drawings/a0-boards.pdf", "language": "zh", "role": "five-board A0 landscape exhibition set"},
+    {"path": "drawings/a0-boards.en.pdf", "language": "en", "role": "paired five-board A0 landscape exhibition set"}
+  ],
+  "quality_checks": [
+    "scripts/visual_review.py reports PASS",
+    "A3 and A0 hashes differ in each language",
+    "pdfinfo reports A3 portrait and A0 landscape sizes",
+    "pdffonts reports embedded Unicode fonts",
+    "representative Chinese and English pages were rasterized and inspected for tofu, clipping, and hierarchy",
+    "all visible provisional metrics are rounded and labeled low-confidence/non-official"
+  ]
+}

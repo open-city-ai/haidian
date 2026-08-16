@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>连接精神，激荡数据：百年京张AI城市共同体 - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>连接精神，激荡数据：百年京张AI城市共同体</h1>
+<p class="summary">当AI时代城市数据飞轮不可阻挡地加速，本方案回答&#x27;谁来握方向盘&#x27;——精神定方向，数据加速度，凝聚力驾驭飞轮。方案以&#x27;连接精神，激荡数据&#x27;为核心命题，构建铁路为脉、数据为轮、Agent为体、精神为魂四大支柱，打造百年京张AI城市共同体：以京张铁路为轴形成三带缓冲与L0–L3四级数据底座，让空间与数据分级分类；以列车式数据飞轮六环节循环，滚动高校、企业、社区的数据与信任；以创造、组织、分发、执行、检查五类城市Agent，构建全球第一个城市Agent、Skill、Harness集群；以铁轨遗音、站驿星锚、行车文廊、黉门灯塔、里巷烟火五感文明感知系统，让精神可听、可望、可读、可仰、可品；以文明委员会与京张精神指数，把凝聚力转化为可治理、可度量的方向引领。精神、文明与文化是AI时代引领发展的核心——让城市不被AI裹挟，而由共同体的凝聚力决定前进方向。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+</section>
+<h1>连接精神，激荡数据：百年京张AI城市共同体</h1>
+<h2>设计依据与资料清单</h2>
+<p>本 formal 方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据，并以 <code>brief/site-package/</code> 中经维护者登记的临时粗略边界、重点区域、枚举、指标和来源清单为机器可读依据。AI agent 在生成方案前必须读取 <code>design_brief.json</code>、<code>allowed_design_space.json</code>、<code>sources.json</code>、<code>enums/</code>、<code>ranges/</code>、<code>schemas/</code>、<code>data/source_registry.json</code> 和 <code>data/processed/agent_fact_pack.md</code>，并用 <code>project_scope_summary.csv</code>、<code>agent_task_requirements.csv</code>、<code>source_use_matrix.csv</code>、<code>missing_data_checklist.csv</code> 建立任务、范围、资料用途和缺口清单。所有设计判断都要拆分为可追溯来源、可复算指标、可校验图层和可人工复核假设。公告要求方案达到控制性详细规划的城市设计深度和规划综合实施方案的城市设计深度，因此文本叙述不能替代 GeoJSON、指标表、A3 文册、A0 展板和 HTML 电子展示成果 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="existing_conditions_diagnosis" title="深度：existing_conditions_diagnosis">深度</sup>。</p>
+<p>资料登记表的使用边界如下 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup>：</p>
+<ul>
+<li>data/source_registry.json 登记公开、清权与临时资料的用途边界。</li>
+<li>当前登记摘要：formal 可用资料 7 条，背景资料 1 条，provisional-only 资料 1 条。</li>
+<li>agent 不得把 background_only 或 provisional_only 资料升级为 official boundary、法定控规、正式评分依据或政府实施承诺。</li>
+</ul>
+<p><code>data/processed/agent_fact_pack.md</code> 是本方案的阅读导航层，不是新的权威来源 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>。完整来源关系由 <code>sources.json</code> 保存。</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="资料证据链与提交包关系图"><figcaption>资料证据链与提交包关系图</figcaption></figure>
+<p>本方案在官方 <code>SITE_BOUNDARY</code> 或三处 <code>KEY_AREA</code> 尚未取得时，使用 <code>brief/site-package/geometry/provisional_boundaries.geojson</code> 生成临时 formal 包 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup>。提交包中的 <code>geometry/site_boundary.geojson</code> 与 <code>geometry/key_areas.geojson</code> 均标注为 <code>provisional_constraint</code>、<code>official_boundary=false</code>，只能用于方案生成、自检、可视化和设计讨论，不能作为 official redline、审批依据、精确面积依据或法定控制结论。该组织方数据缺口本身不阻断内容评分；替换 official polygons 后，site boundary、key areas、land use、roads、green space、public space、buildings、phasing、data-stratification、agent-nodes 和 metrics 均需重算 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>。</p>
+<p>边界解释可回到总体范围图层和面积复算 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#SITE-001" title="空间数据：geometry/site_boundary.geojson#SITE-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup>。三处重点区则由独立图层和数量指标核对 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup>。</p>
+<h2>总体概念：连接精神，激荡数据</h2>
+<h3>核心哲学</h3>
+<p>本方案的核心命题是：<strong>当AI时代城市数据飞轮不可阻挡地加速时，谁来握方向盘？</strong></p>
+<p>答案是：<strong>精神定方向，数据加速度。</strong></p>
+<ul>
+<li><strong>精神罗盘</strong> = 方向盘——文明与价值引领的决策机制</li>
+<li><strong>数据飞轮</strong> = 发动机——AI时代的生产力引擎</li>
+<li><strong>共同体凝聚力</strong> = 向心力——让飞轮越转越快却不飞散的内聚力量</li>
+<li><strong>京张铁路</strong> = 连接两者的轴心</li>
+</ul>
+<p>没有飞轮，精神沦为空谈；没有罗盘，城市被技术裹挟；没有凝聚力，飞轮越快越容易解体。<strong>精神产生凝聚力，凝聚力驾驭飞轮</strong>——这是本方案贯穿全文的核心逻辑。京张铁路百年前连接的是北京与张家口，在AI时代，它连接的是精神、文明、生态、青年、创造力、生命力和城市烟火气——以及这片城市区域的数据底座。列车不再只是交通工具，而是数据采集器与分发器，在运行中让数据滚动、碰撞、生成新数据，形成AI数据飞轮；而让这些数据真正&quot;属于这片土地上的人&quot;的，是共同体。</p>
+<p>这片区域的目标不仅是AI创新带，更是<strong>全球第一个城市Agent、Skill、Harness集群</strong>和<strong>百年京张AI城市共同体</strong>——让城市不被AI裹挟着推动，而是用精神与文明的力量决定前进的方向。后文所有空间、数据、Agent与场景设计，都回答同一个问题：<strong>如何让这片区域长成一个有凝聚力的共同体。</strong></p>
+<h3>四大支柱</h3>
+<p>四大支柱不是并列的功能模块，而是共同体的四个器官：脉是骨架，轮是心脏，体是四肢，魂是意志。缺任何一个，共同体都不完整。</p>
+<div class="proposal-table"><table><thead><tr><th>支柱</th><th>命名</th><th>核心</th><th>共同体角色</th><th>数据落点</th></tr></thead><tbody><tr><td>支柱一</td><td>铁路为脉</td><td>三带缓冲+四级数据底座</td><td>共同体的骨架——把分散的人与机构连成一体</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#DATA-STRAT-001" title="空间数据：geometry/constraints.geojson#DATA-STRAT-001">空间数据</sup></td></tr><tr><td>支柱二</td><td>数据为轮</td><td>列车式数据飞轮，六环节循环</td><td>共同体的心脏——让数据与信任一起循环</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-001" title="空间数据：geometry/constraints.geojson#AGENT-NODE-001">空间数据</sup></td></tr><tr><td>支柱三</td><td>Agent为体</td><td>五类任务集群，Skill+Harness</td><td>共同体的四肢——把意志变成行动</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-001" title="空间数据：geometry/constraints.geojson#AGENT-NODE-001">空间数据</sup></td></tr><tr><td>支柱四</td><td>精神为魂</td><td>四层谱系+五感场景+文明委员会</td><td>共同体的意志——决定方向与凝聚力</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-011" title="空间数据：geometry/constraints.geojson#AGENT-NODE-011">空间数据</sup></td></tr></tbody></table></div>
+<h3>五大功能与四支柱的映射</h3>
+<p>公告任务书提出一带承载五大功能 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-AGENT-OPEN-CALL-TASKBOOK" title="标准：PROJECT-AGENT-OPEN-CALL-TASKBOOK">标准</sup>。四支柱不是另起炉灶，而是五大功能的实现机制：</p>
+<div class="proposal-table"><table><thead><tr><th>五大功能</th><th>承载支柱</th><th>空间与机制落点</th></tr></thead><tbody><tr><td>AI全栈自主创新体系</td><td>支柱三·Agent为体</td><td>众智园创造型Agent核心、黉门灯塔高校精神地标</td></tr><tr><td>世界级AI创新生态</td><td>支柱二·数据为轮</td><td>数据飞轮驱动高校-企业-社区创新闭环</td></tr><tr><td>AI+场景赋能新范式</td><td>支柱一·铁路为脉+支柱三</td><td>三带缓冲的场景分级、10张场景卡的Agent角色标注</td></tr><tr><td>智能化AI活力城市</td><td>支柱三·Agent为体</td><td>五类Agent任务链、站点加速点、AI慢行导航</td></tr><tr><td>AI治理全球话语权</td><td>支柱四·精神为魂</td><td>文明委员会、检查型Agent、安全治理沙盒</td></tr></tbody></table></div>
+<h3>三区两翼：精神文明共同体的空间骨架</h3>
+<p>任务书提出&quot;三区两翼&quot;布局 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。本方案的回答是：<strong>三区两翼不只是功能布局，而是精神文明共同体的空间骨架——每一个单元既是数据飞轮的一个环节，也是一个生产凝聚力的节点。</strong></p>
+<p>核心判断：AI时代，技术加速的是&quot;速度&quot;，精神决定的是&quot;方向&quot;。一个越转越快的飞轮，需要一种向内的力量让它不飞散——这个力量就是<strong>凝聚力</strong>。精神、文明与文化，是AI时代引领发展的核心；共同体，是精神落地为力量的组织形式。三区两翼的真正产品不是产值，而是凝聚力：信仰的凝聚、信任的凝聚、成就的凝聚、连接的凝聚、生活的凝聚。</p>
+<div class="proposal-table"><table><thead><tr><th>单元</th><th>官方角色</th><th>Agent定位</th><th>精神文明定位</th><th>凝聚力来源</th></tr></thead><tbody><tr><td>众智园AI自主创新加速区</td><td>AI全栈自主创新体系与AI治理全球话语权</td><td>创造型+检查型Agent核心 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup></td><td>京张精神承继者：从詹天佑自主筑路到全栈自主技术栈，&quot;不让于人&quot;的百年信念在AI时代转化为自主创新信仰</td><td>共同的国家使命</td></tr><tr><td>北京AI原点社区</td><td>世界级AI创新生态</td><td>组织型Agent核心 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup></td><td>海淀精神先行者：开源协作、敢为人先。&quot;原点&quot;不只是地理原点，更是共同体信任的原点——人与人因共享而相聚</td><td>开源信任规则</td></tr><tr><td>大钟寺AI产业聚集区</td><td>智能原生新业态</td><td>执行型Agent核心 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup></td><td>首都精神表达者：古钟长鸣、开放包容。AI产业与国际交往在此完成从精神到现实的&quot;落地&quot;——钟声所及，皆为回响</td><td>价值实现的成就感</td></tr><tr><td>中关村科技服务翼</td><td>要素全球化配置、中关村IP与资本赋能</td><td>飞轮的&quot;服务&quot;环节</td><td>向世界展翅：把共同体的数据资产转化为资本与全球要素配置，让中国AI治理主张随服务网络走向世界</td><td>全球连接</td></tr><tr><td>小月河场景赋能翼</td><td>AI场景赋能与智能化AI活力城市</td><td>飞轮的&quot;反馈&quot;环节 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup></td><td>向生活展翅：场景沿小月河展开，效果数据回流飞轮，最终回到社区烟火——技术的终点是人的生活</td><td>生活共鸣</td></tr></tbody></table></div>
+<p>三区回答共同体的三个问题：<strong>知识从哪里来</strong>（众智园创造）、<strong>人如何互信</strong>（原点社区组织）、<strong>价值落到哪里</strong>（大钟寺执行）。两翼回答共同体的两个方向：<strong>向外到世界</strong>（科技服务翼）、<strong>向内到生活</strong>（小月河翼）。三区构成共同体之&quot;体&quot;，两翼构成共同体之&quot;翼&quot;——精神罗盘定方向，数据飞轮给动力，凝聚力决定这个共同体能飞多远。</p>
+<p>与四层精神谱系的对应：众智园对应京张精神（根）、原点社区对应海淀精神（干）、大钟寺对应首都精神（枝）、两翼共同指向中国精神（冠）——从根到冠，三区两翼长成一棵精神之树 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>。</p>
+<h3>三处重点区域在新概念下的角色</h3>
+<div class="proposal-table"><table><thead><tr><th>重点区域</th><th>Agent角色</th><th>数据底座级别</th><th>精神锚点</th></tr></thead><tbody><tr><td>众智园AI自主创新加速区</td><td>创造型核心</td><td>L2产业创新+L3精神文化</td><td>自主创新精神地标</td></tr><tr><td>北京AI原点社区</td><td>组织型核心</td><td>L1城市运行+L2产业创新</td><td>开源协作文明锚点</td></tr><tr><td>大钟寺AI产业聚集区</td><td>执行型核心</td><td>L0基础设施+L2产业创新</td><td>产业传承文明锚点</td></tr></tbody></table></div>
+<h2>三层范围工作框架</h2>
+<p>方案按照公告确定的三个层次组织工作：统筹研究范围关注 43.6 平方公里的AI产业生态、战略定位、创新链和未来城市形态；总体设计范围关注 11.4 平方公里京张遗址公园周边 1-2 公里城市地区和产业区，要求形成城市更新总体框架、产业空间布局、交通市政支撑和城市风貌控制；重点区域范围关注 368.4 公顷三处详细设计地区，要求明确功能业态、建筑规模、拆改留分类、公共空间连通和交通组织。三层范围在 <code>compliance_matrix.json</code> 中逐条映射 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_level_scope_framework" title="深度：three_level_scope_framework">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-OFFICIAL-ANNOUNCEMENT" title="标准：PROJECT-OFFICIAL-ANNOUNCEMENT">标准</sup>。</p>
+<p>三处重点区域的官方文字面积为：众智园AI自主创新加速区 192.1 公顷、北京AI原点社区 104.3 公顷、大钟寺AI产业聚集区 72.0 公顷，合计 368.4 公顷 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-OFFICIAL-ANNOUNCEMENT" title="标准：PROJECT-OFFICIAL-ANNOUNCEMENT">标准</sup>。这些面积值来自公告文字，不能替代 official polygon 的精确面积复算 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_total_area_ha" title="指标：key_area_total_area_ha">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="三层范围与空间工作框架图"><figcaption>三层范围与空间工作框架图</figcaption></figure>
+<p>三层工作不是互相割裂的图纸集合。统筹研究决定产业链和城市形态判断，总体设计把判断落实到更新项目、空间结构和设施承载，重点区域详细设计验证具体地块、建筑、交通、公共空间和AI应用场景的可实施性。本方案在三层数据分层的基础上组织空间 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#DATA-STRAT-001" title="空间数据：geometry/constraints.geojson#DATA-STRAT-001">空间数据</sup>：核心交互带承载Agent任务站和精神地标，协同转化带承载高校科研与产业协同，辐射支撑带承载社区生活与生态服务 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>。</p>
+<p>从共同体视角看，三层范围对应共同体的三个尺度：统筹研究范围是共同体的<strong>愿景层</strong>（我们要成为什么样的共同体），总体设计范围是共同体的<strong>骨架层</strong>（共同体靠什么空间与机制连接），重点区域范围是共同体的<strong>触点层</strong>（共同体成员在哪里真实相遇、协作、感知精神）。三层一致，才能让共同体从愿景落到可感知的日常。</p>
+<div class="proposal-table"><table><thead><tr><th>层级</th><th>设计问题</th><th>方案回答</th><th>数据落点</th></tr></thead><tbody><tr><td>统筹研究范围</td><td>AI产业生态和未来城市形态如何组织</td><td>建立&quot;高校策源-开源协作-企业转化-公共体验-国际传播&quot;的创新链，以数据飞轮驱动</td><td>compliance_matrix.json、standard_matrix.json</td></tr><tr><td>总体设计范围</td><td>产业空间、城市更新、交通市政和风貌如何落图</td><td>用地、建筑、道路、绿地、公共空间、分期、数据分层和Agent节点图层共同表达</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup>、<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#DATA-STRAT-001" title="空间数据：geometry/constraints.geojson#DATA-STRAT-001">空间数据</sup></td></tr><tr><td>重点区域范围</td><td>三处片区如何达到详细设计深度</td><td>分别以创造型、组织型、执行型Agent核心定位，提出空间动作和实施依赖</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup>、<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-001" title="空间数据：geometry/constraints.geojson#AGENT-NODE-001">空间数据</sup></td></tr></tbody></table></div>
+<h2>支柱一：铁路为脉——空间与数据分级分类</h2>
+<h3>核心理念</h3>
+<p>以京张铁路为轴，向外形成缓冲区，不只是一个物理距离概念，更是数据密度、数据级别、协作强度的分层。铁路是数据连接的物理载体——每一次列车经过，都在沿线的传感器、站点、社区之间滚动数据 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>。</p>
+<p>对共同体而言，铁路是<strong>骨架</strong>：它把原本分散的高校、企业、社区、遗产串成一条可以共同呼吸的脉络。距离越近，连接越密，共同体感越强；距离越远，连接越松，但仍在同一根轴上。三带缓冲的本质，是让&quot;共同体成员&quot;按参与深度分层，而不是按行政边界切割。</p>
+<h3>三带缓冲体系</h3>
+<p>沿京张铁路向外形成三个缓冲带，每个缓冲带对应不同的数据频率、协作模式和空间功能 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#DATA-STRAT-001" title="空间数据：geometry/constraints.geojson#DATA-STRAT-001">空间数据</sup>：</p>
+<div class="proposal-table"><table><thead><tr><th>缓冲带</th><th>距离</th><th>数据频率</th><th>协作模式</th><th>典型空间</th></tr></thead><tbody><tr><td>核心交互带</td><td>0–300m</td><td>秒级实时</td><td>全量开放共享</td><td>Agent任务站、创新节点、精神地标、铁路遗址公园</td></tr><tr><td>协同转化带</td><td>300–800m</td><td>分钟级</td><td>协议共享</td><td>高校、实验室、创新中心、孵化器</td></tr><tr><td>辐射支撑带</td><td>800–1500m</td><td>小时/日级</td><td>脱敏按需</td><td>社区、商业、生态绿地、生活服务</td></tr></tbody></table></div>
+<p>核心交互带是数据飞轮的&quot;轮缘&quot;——最高频的数据交互发生在这里，Agent任务站、精神地标和铁路遗址公园共同构成数据采集与分发的密集网络。协同转化带是&quot;轮辐&quot;——高校和科研机构在这里将原始数据转化为知识和任务。辐射支撑带是&quot;轮辋&quot;——社区和生态空间在这里提供生活数据和文明感知 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#DATA-STRAT-002" title="空间数据：geometry/constraints.geojson#DATA-STRAT-002">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#DATA-STRAT-003" title="空间数据：geometry/constraints.geojson#DATA-STRAT-003">空间数据</sup>。</p>
+<h3>数据底座四级分类</h3>
+<p>数据底座不只是静态数据库，而是按级别分层治理的活数据体系。不同层级的数据在不同距离、不同权限下滚动 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup>：</p>
+<div class="proposal-table"><table><thead><tr><th>级别</th><th>数据类型</th><th>权限与滚动方式</th><th>典型来源</th></tr></thead><tbody><tr><td>L0</td><td>基础设施数据</td><td>全量开放，市政级实时滚动</td><td>传感器、市政系统、交通设施</td></tr><tr><td>L1</td><td>城市运行数据</td><td>脱敏共享，按权限分级滚动</td><td>交通流量、公共安全、市政运行</td></tr><tr><td>L2</td><td>产业创新数据</td><td>协议共享，产学研协同滚动</td><td>高校科研、企业研发、专利交易</td></tr><tr><td>L3</td><td>精神文化数据</td><td>共同体治理，文明委员会审批定向滚动</td><td>京张遗产、口述史、社区生活、高校精神</td></tr></tbody></table></div>
+<p>L3精神文化数据是本方案的独创——精神不是口号，而是嵌入数据底座的可采集、可治理、可感知的数据资产。文明委员会对L3数据的采集和使用进行价值审查，确保精神共同体的方向引领落到实处 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-011" title="空间数据：geometry/constraints.geojson#AGENT-NODE-011">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="jingzhang_spirit_index" title="指标：jingzhang_spirit_index">指标</sup>。</p>
+<h3>数据底座与空间的映射</h3>
+<p>三带缓冲与四级数据底座交叉，形成沿京张铁路的数据底座网格——每个空间单元都有其数据身份（距离层×类型×级别）。规划决策基于这个网格，而非凭经验拍脑袋 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#DATA-STRAT-001" title="空间数据：geometry/constraints.geojson#DATA-STRAT-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/spatial-data-stratification.png" alt="空间与数据分级分类图"><figcaption>空间与数据分级分类图</figcaption></figure>
+<p>上图：三带缓冲沿铁路轴横置展开，距离即参与深度；下图：距离层×数据级别网格，每格标注滚动频率与权限方式——L3精神文化数据在任何距离层都以文明委员会审批为前提 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#DATA-STRAT-002" title="空间数据：geometry/constraints.geojson#DATA-STRAT-002">空间数据</sup>。</p>
+<h2>支柱二：数据为轮——列车式数据飞轮</h2>
+<h3>核心理念</h3>
+<p>不是静态数据库，而是&quot;列车式数据飞轮&quot;。京张铁路上的每一站、每一个节点，都是数据滚动的一次&quot;加速点&quot;。高校、航天、林业、矿业等机构产生的数据，在列车带动下不断碰撞、重组，产生新任务、新技能、新连接 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。</p>
+<p>对共同体而言，飞轮是<strong>心脏</strong>：它让数据与信任一起循环。数据只在流动中产生价值，信任也只在协作中产生。每一次数据的碰撞与共享，都是一次共同体成员之间的&quot;握手&quot;。飞轮转得越快，成员之间的连接越密，凝聚力越强——但前提是方向盘（精神罗盘）始终握在共同体手里，否则越快越容易解体。</p>
+<h3>飞轮六环节</h3>
+<p>数据飞轮由六个环节构成循环，每一环节由不同类型的Agent承担 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-001" title="空间数据：geometry/constraints.geojson#AGENT-NODE-001">空间数据</sup>：</p>
+<div class="proposal-table"><table><thead><tr><th>环节</th><th>动作</th><th>主体</th><th>产出</th></tr></thead><tbody><tr><td>采集</td><td>沿铁路传感器+Agent采集沿线数据</td><td>执行型Agent</td><td>原始数据流</td></tr><tr><td>汇聚</td><td>站点数据加速点汇聚多源数据</td><td>分发型Agent</td><td>结构化数据集</td></tr><tr><td>治理</td><td>文明委员会审查+脱敏+分级</td><td>检查型Agent</td><td>合规数据资产</td></tr><tr><td>服务</td><td>Skill模块封装为可调用的城市能力</td><td>组织型Agent</td><td>城市Skill库</td></tr><tr><td>反馈</td><td>场景应用反馈效果与体验</td><td>执行型Agent</td><td>效果数据</td></tr><tr><td>再采集</td><td>飞轮加速，进入下一轮循环</td><td>全链条Agent</td><td>涌现智能</td></tr></tbody></table></div>
+<figure class="proposal-figure"><img src="../assets/figures/data-flywheel-corridor.png" alt="列车式数据飞轮与AI任务走廊图"><figcaption>列车式数据飞轮与AI任务走廊图</figcaption></figure>
+<h3>站点加速点</h3>
+<p>每个轨道站点都是数据飞轮的&quot;加速点&quot;——三合一节点：数据汇聚枢纽+任务分发节点+精神锚点 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-009" title="空间数据：geometry/constraints.geojson#AGENT-NODE-009">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-010" title="空间数据：geometry/constraints.geojson#AGENT-NODE-010">空间数据</sup>：</p>
+<ul>
+<li>列车到站时，站点自动汇聚该区段沿线采集的数据</li>
+<li>分发型Agent将任务包分发到周边的执行型Agent和社区</li>
+<li>精神锚点同步更新该站的文明星图，让旅客在经停时感知文明坐标</li>
+</ul>
+<p>飞轮越转越快——数据越多，碰撞越频繁，新任务越多，城市智能涌现越丰富 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="data_flywheel_acceleration" title="指标：data_flywheel_acceleration">指标</sup>。</p>
+<h2>支柱三：Agent为体——城市任务集群</h2>
+<h3>核心理念</h3>
+<p>沿铁路布局城市Agent集群，形成完整任务链。这片区域的目标是成为全球第一个城市Agent、Skill、Harness集群——有创造任务的，有组织任务的，有分发任务的，有执行任务的，有检查任务的，形成完整的城市智能体生态 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>。</p>
+<p>对共同体而言，Agent是<strong>四肢</strong>：它们把共同体的意志变成行动。但四肢必须听大脑的——Agent集群不是无目的的效率机器，而是被精神罗盘定向、被文明委员会约束的行动者。每一个Agent背后都对应一个共同体成员的委托：创造型承载高校的探索意志，执行型承载社区的日常诉求，检查型承载文明委员会的价值底线。Agent越强，共同体的行动力越强；但只有方向正确，行动力才转化为凝聚力而不是离心力。</p>
+<h3>五类Agent任务链</h3>
+<div class="proposal-table"><table><thead><tr><th>角色</th><th>职能</th><th>空间载体</th><th>代表机构</th><th>典型Skill模块</th></tr></thead><tbody><tr><td>创造型</td><td>产生新知识、新算法、新任务</td><td>高校、实验室、研究机构</td><td>清华、北航、北科、国家AI平台</td><td>research-skill、hypothesis-skill</td></tr><tr><td>组织型</td><td>整合资源、编排流程、调度任务</td><td>平台机构、创新中心</td><td>开源社区运营方、孵化器</td><td>orchestration-skill、resource-matching-skill</td></tr><tr><td>分发型</td><td>传递任务与数据、连接节点</td><td>Skill/Harness系统、铁路、站点</td><td>轨道站点、数据网络</td><td>dispatch-skill、sync-skill</td></tr><tr><td>执行型</td><td>落地执行具体任务</td><td>企业、社区、空间运营者</td><td>领军企业、社区运营方</td><td>traffic-optimize-skill、community-service-skill</td></tr><tr><td>检查型</td><td>质量与合规审查、文明评估</td><td>评估机构、文明委员会</td><td>安全治理机构、文明委员会</td><td>ethics-review-skill、civilization-audit-skill</td></tr></tbody></table></div>
+<p>五类Agent沿铁路分布，形成&quot;AI任务走廊&quot; <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-001" title="空间数据：geometry/constraints.geojson#AGENT-NODE-001">空间数据</sup>。创造型Agent集中在众智园和高校，组织型Agent集中在AI原点社区，分发型Agent沿站点分布，执行型Agent集中在大钟寺和产业园区，检查型Agent守护精神场景节点和数据治理 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-011" title="空间数据：geometry/constraints.geojson#AGENT-NODE-011">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="agent_node_count" title="指标：agent_node_count">指标</sup>。</p>
+<h3>Skill与Harness</h3>
+<ul>
+<li><strong>Skill</strong> = 可复用的城市能力模块（如&quot;交通优化Skill&quot;、&quot;碳排放监测Skill&quot;、&quot;社区服务匹配Skill&quot;、&quot;文明审计Skill&quot;）。每个Skill是一个封装好的、可调用的城市服务能力。</li>
+<li><strong>Harness</strong> = 任务编排框架，连接Agent和Skill的调度系统，类似于城市的&quot;操作系统&quot;。它管理任务的生命周期：从创造型Agent提出任务，到组织型Agent编排资源，到分发型Agent传递任务，到执行型Agent落地执行，到检查型Agent审查结果。</li>
+</ul>
+<h3>Agent集群的空间落点</h3>
+<p>Agent节点不只是概念，而是有明确空间位置的节点 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-001" title="空间数据：geometry/constraints.geojson#AGENT-NODE-001">空间数据</sup>。当前共布局12个Agent节点，覆盖五类角色 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="agent_node_count" title="指标：agent_node_count">指标</sup>：</p>
+<ul>
+<li>众智园区域3个节点（创造型×2 + 检查型×1）</li>
+<li>AI原点社区区域3个节点（组织型×2 + 分发型×1）</li>
+<li>大钟寺区域2个节点（执行型×2）</li>
+<li>沿线站点2个节点（分发型×2）</li>
+<li>精神场景节点2个节点（检查型×1 + 执行型×1）</li>
+</ul>
+<h2>支柱四：精神为魂——文明共同体</h2>
+<h3>核心理念</h3>
+<p>AI时代城市发展越来越快，数据飞轮的加速度会无限提升。在未来，什么会变得非常重要？是精神、是文明、是文化。从古至今，科技和生产力是推动者，但方向与决策一定是精神、文明所引领的——因为有了精神，才有力量，才有凝聚力。一个城市、一片区域只有有了凝聚力与共同目标，才能克服万难，永远向前。</p>
+<p>这片城市区域要形成百年京张AI城市共同体——同时也是科创共同体、数据共同体、生活共同体、文化共同体。中国精神、首都精神、海淀精神、京张精神，四层精神谱系由内而外，形成同心圆 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>。</p>
+<h3>四层精神谱系</h3>
+<div class="proposal-table"><table><thead><tr><th>层级</th><th>谱系命名</th><th>精神内核</th><th>历史锚点</th><th>时代表达</th></tr></thead><tbody><tr><td>第一圈</td><td>京张精神</td><td>百年传承·自力更生</td><td>詹天佑1909自主造铁路</td><td>自主AI大模型·国产技术栈</td></tr><tr><td>第二圈</td><td>海淀精神</td><td>科教融合·敢为人先</td><td>中关村1980s电子一条街</td><td>全球Agent集群策源地</td></tr><tr><td>第三圈</td><td>首都精神</td><td>首善标准·开放包容</td><td>元大都·明清京师文脉</td><td>国际AI治理与文化中心</td></tr><tr><td>第四圈</td><td>中国精神</td><td>民族复兴·人类命运</td><td>五千年文明传承</td><td>AI时代人类文明新形态</td></tr></tbody></table></div>
+<p>四圈不是简单叠加——京张精神是&quot;根&quot;（最具体的土地记忆），中国精神是&quot;冠&quot;（最宏大的时代担当），从根到冠形成一棵精神之树。</p>
+<h3>五感文明感知系统</h3>
+<p>这是本方案的核心创新——用五种感知方式，让精神<strong>可听、可望、可读、可仰、可品</strong>。每个场景都是数据底座中的一个节点类型，既是物理空间场所，也是数据采集与分发的终端 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-011" title="空间数据：geometry/constraints.geojson#AGENT-NODE-011">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-012" title="空间数据：geometry/constraints.geojson#AGENT-NODE-012">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="spirit_scene_count" title="指标：spirit_scene_count">指标</sup>。</p>
+<h4>场景一：铁轨遗音——听·百年回声</h4>
+<blockquote><p><em>铁轨之上，百年回声不绝于耳</em></p></blockquote>
+<div class="proposal-table"><table><thead><tr><th>维度</th><th>内容</th></tr></thead><tbody><tr><td>空间载体</td><td>京张铁路遗址公园沿线，每隔200m设一座&quot;遗音胶囊&quot;</td></tr><tr><td>感知方式</td><td>听——声景沉浸</td></tr><tr><td>数据类型</td><td>L3精神文化数据：历史声景、口述史、环境声、列车声</td></tr><tr><td>精神层级</td><td>京张精神（第一圈·根）</td></tr><tr><td>数据采集</td><td>声学传感器采集环境声；口述史数据库收录老铁路人讲述；历史声纹库复原1909年蒸汽机车声</td></tr><tr><td>体验设计</td><td>漫步铁路遗址公园，AR耳机自动播放该路段的历史声景——詹天佑勘测时的山风、蒸汽时代的汽笛、停运后的寂静、今天AI列车的电子音。四重声景叠加，听百年京张的呼吸</td></tr><tr><td>情怀表达</td><td>铁轨会说话。它记得每一列经过的火车，记得每一个等车的人，记得这片土地从蒸汽到智能的百年跋涉。遗音胶囊让铁轨的声音不再消散</td></tr><tr><td>Agent角色</td><td>检查型Agent守护声纹数据的真实性与文明完整性</td></tr></tbody></table></div>
+<p>铁轨遗音让历史不再只存在于博物馆的展柜里，而是活在每一段铁轨的震动中。当旅客走过遗址公园，听到的不是沉默，而是百年京张在说话 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-011" title="空间数据：geometry/constraints.geojson#AGENT-NODE-011">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="heritage_sound_completeness" title="指标：heritage_sound_completeness">指标</sup>。</p>
+<h4>场景二：站驿星锚——望·文明坐标</h4>
+<blockquote><p><em>每站如星，锚定一片文明的天空</em></p></blockquote>
+<div class="proposal-table"><table><thead><tr><th>维度</th><th>内容</th></tr></thead><tbody><tr><td>空间载体</td><td>沿线每个轨道站点出入口设&quot;星锚&quot;装置</td></tr><tr><td>感知方式</td><td>望——视觉仰望</td></tr><tr><td>数据类型</td><td>L1城市运行+L3精神文化：站点文明档案、周边资源图谱</td></tr><tr><td>精神层级</td><td>海淀精神（第二圈·科教融合）</td></tr><tr><td>数据采集</td><td>每站建立&quot;文明星图&quot;——标注该站1km半径内的高校、科研机构、文化遗产、产业地标及其精神标识</td></tr><tr><td>体验设计</td><td>出站抬头仰望，星锚装置投射该站的文明星图——清华园站的星图亮起清华灯塔和航天院所，大钟寺站的星图亮起古钟博物馆和AI企业群。每片星空不同，望见这片土地的精神版图</td></tr><tr><td>情怀表达</td><td>车站不只是出发和到达。每一个站名背后，都有一片学问的山河、一群人的奋斗。星锚让旅客在匆匆经过时，望见脚下的文明厚度</td></tr><tr><td>Agent角色</td><td>分发型Agent将星图数据分发到站点屏和旅客终端 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-009" title="空间数据：geometry/constraints.geojson#AGENT-NODE-009">空间数据</sup></td></tr></tbody></table></div>
+<p>站驿星锚让每一个站点都成为一个文明的坐标系。旅客在匆忙的通勤中，抬头就能望见这片土地的精神版图 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="star_anchor_connectivity" title="指标：star_anchor_connectivity">指标</sup>。</p>
+<h4>场景三：行车文廊——读·移动长卷</h4>
+<blockquote><p><em>车行京张，一卷文明徐徐展开</em></p></blockquote>
+<div class="proposal-table"><table><thead><tr><th>维度</th><th>内容</th></tr></thead><tbody><tr><td>空间载体</td><td>列车车厢内壁改造为&quot;移动文廊&quot;数字屏</td></tr><tr><td>感知方式</td><td>读——阅读沉浸</td></tr><tr><td>数据类型</td><td>L2产业创新+L3精神文化：四层精神谱系叙事、沿线创新故事</td></tr><tr><td>精神层级</td><td>首都精神（第三圈·文化中心）</td></tr><tr><td>数据采集</td><td>车厢数字屏与列车GPS联动，根据列车位置实时切换内容——经过清华园段读清华百年、经过北航段读空天报国、经过大钟寺段读古钟与AI的对话</td></tr><tr><td>体验设计</td><td>乘车从北到南，车厢文廊如一卷长画缓缓展开。窗外是今日的城市，窗内是百年的文明。从詹天佑到今天AI Agent，从蒸汽机车到数据飞轮，一段车程读完京张的百年精神史</td></tr><tr><td>情怀表达</td><td>列车是移动的书房。十二分钟的车程，读百年京张；十二分钟的光影，见一座城市的来路与去向。文廊让通勤变成朝圣</td></tr><tr><td>Agent角色</td><td>组织型Agent编排文廊内容，根据时段、季节、事件动态调整叙事</td></tr></tbody></table></div>
+<p>行车文廊把通勤时间变成文明阅读时间。列车不再是枯燥的位移，而是一卷缓缓展开的文明长卷。</p>
+<h4>场景四：黉门灯塔——仰·学府之光</h4>
+<blockquote><p><em>黉门之上，灯塔长明，照向国家未来</em></p></blockquote>
+<div class="proposal-table"><table><thead><tr><th>维度</th><th>内容</th></tr></thead><tbody><tr><td>空间载体</td><td>沿线七所高校门口或标志建筑设&quot;灯塔&quot;装置</td></tr><tr><td>感知方式</td><td>仰——敬仰仰望</td></tr><tr><td>数据类型</td><td>L2产业创新+L3精神文化：学科精神档案、国家使命宣言、科研成果故事</td></tr><tr><td>精神层级</td><td>中国精神（第四圈·冠）</td></tr><tr><td>数据采集</td><td>每所高校建&quot;精神灯塔档案&quot;——校训精神、学科使命、关系国家未来的核心领域（航天、林业、矿业、计算机等）、代表性成果与人物</td></tr><tr><td>体验设计</td><td>走近高校，仰望灯塔装置。清华灯塔刻&quot;自强不息·厚德载物&quot;并亮起航天报国之光，北航灯塔刻&quot;德才兼备·知行合一&quot;并亮起空天探索之光，北林灯塔刻&quot;知山知水·树木树人&quot;并亮起生态文明之光。七座灯塔，七种光芒，汇成这片土地的精神天际线</td></tr><tr><td>情怀表达</td><td>大学是城市的灵魂。这些学府不只是教书的地方，更是国家未来的守望者。灯塔让每个路过的人抬头看见——这片土地上有人在做关系民族命运的事</td></tr><tr><td>Agent角色</td><td>创造型Agent持续更新灯塔档案，记录新的精神故事 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-001" title="空间数据：geometry/constraints.geojson#AGENT-NODE-001">空间数据</sup></td></tr></tbody></table></div>
+<p>黉门灯塔让大学的精神可见、可仰。七座灯塔不只是装饰，而是七所高校对国家未来的宣言 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="lighthouse_brightness" title="指标：lighthouse_brightness">指标</sup>。</p>
+<h4>场景五：里巷烟火——品·人间温度</h4>
+<blockquote><p><em>里巷深处，烟火升腾，城市有魂</em></p></blockquote>
+<div class="proposal-table"><table><thead><tr><th>维度</th><th>内容</th></tr></thead><tbody><tr><td>空间载体</td><td>沿线社区街巷、菜市场、小广场设&quot;烟火采集点&quot;</td></tr><tr><td>感知方式</td><td>品——生活品味</td></tr><tr><td>数据类型</td><td>L0基础设施+L3精神文化：社区生活数据、邻里故事、市井温度</td></tr><tr><td>精神层级</td><td>生活文明（贯穿四圈的人间根基）</td></tr><tr><td>数据采集</td><td>社区设烟火采集点——记录早市开摊的声音、老人下棋的棋谱、孩子的笑声、邻里互助的故事。这些数据不入商业系统，只入文明记忆库</td></tr><tr><td>体验设计</td><td>走进社区，品一碗豆浆、听一段闲谈、看一局棋。烟火采集点用质朴的方式记录这些日常——没有算法推荐，没有数据画像，只有对生活的尊重。城市再智能，也不能没有烟火气</td></tr><tr><td>情怀表达</td><td>精神不只在殿堂和铁轨上，更在每一缕炊烟里。技术可以改变城市，但不能替代邻居的一句问候。烟火采集点守护的是城市最柔软的部分——人的生活本身</td></tr><tr><td>Agent角色</td><td>执行型Agent+检查型Agent共同守护烟火数据的隐私与尊严 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-012" title="空间数据：geometry/constraints.geojson#AGENT-NODE-012">空间数据</sup></td></tr></tbody></table></div>
+<p>里巷烟火让AI时代的城市不丢失温度。精神不只在宏大叙事中，更在每一个清晨的豆浆香、每一局棋的落子声里 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="fireworks_warmth" title="指标：fireworks_warmth">指标</sup>。</p>
+<h3>五感文明感知体系总览</h3>
+<div class="proposal-table"><table><thead><tr><th>感知</th><th>场景命名</th><th>空间载体</th><th>精神层级</th><th>数据级别</th><th>Agent角色</th></tr></thead><tbody><tr><td>听</td><td>铁轨遗音</td><td>铁路遗址公园</td><td>京张精神</td><td>L3</td><td>检查型</td></tr><tr><td>望</td><td>站驿星锚</td><td>轨道站点</td><td>海淀精神</td><td>L1+L3</td><td>分发型</td></tr><tr><td>读</td><td>行车文廊</td><td>列车车厢</td><td>首都精神</td><td>L2+L3</td><td>组织型</td></tr><tr><td>仰</td><td>黉门灯塔</td><td>七所高校</td><td>中国精神</td><td>L2+L3</td><td>创造型</td></tr><tr><td>品</td><td>里巷烟火</td><td>社区街巷</td><td>生活文明</td><td>L0+L3</td><td>执行+检查型</td></tr></tbody></table></div>
+<p>五感对应五类空间载体、五层精神、五级数据、五类Agent——形成完整的文明感知闭环 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="spirit_scene_count" title="指标：spirit_scene_count">指标</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/sense-scene-cards.png" alt="五感文明感知系统场景卡"><figcaption>五感文明感知系统场景卡</figcaption></figure>
+<p>五感场景的终极目的不是&quot;展示&quot;，而是<strong>凝聚</strong>。每一种感知方式都是一次共同体成员与这片土地的精神握手：听，是与历史的握手；望，是与学问的握手；读，是与文明的握手；仰，是与国家使命的握手；品，是与邻里生活的握手。当一个人同时被这五种方式触动，他就不再只是&quot;路过这片区域&quot;，而是&quot;属于这个共同体&quot;。</p>
+<figure class="proposal-figure"><img src="../assets/figures/spirit-journey-section.png" alt="纵向精神旅程剖面图"><figcaption>纵向精神旅程剖面图</figcaption></figure>
+<p>沿铁路南→北的纵向剖面显示：精神地标的高度由南向北渐次抬升——从里巷烟火的低矮檐口，到铁轨遗音的遗址廊架，再到黉门灯塔的精神天际线。地标高度即精神可见度，旅程本身即凝聚过程 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="height_massing_character" title="深度：height_massing_character">深度</sup>。</p>
+<h3>AI朝圣地标与荣誉展示体系</h3>
+<p>任务书要求提出不少于3个AI朝圣地标、荣誉展示体系和公共空间组件库 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。五感精神场景中的三个核心场景正是本方案的AI朝圣地标：</p>
+<div class="proposal-table"><table><thead><tr><th>朝圣地标</th><th>对应精神场景</th><th>朝圣意义</th></tr></thead><tbody><tr><td>铁轨遗音·百年回声廊</td><td>场景一</td><td>朝圣京张精神——在铁路遗址公园聆听百年自主创新的回声</td></tr><tr><td>黉门灯塔·学府之光</td><td>场景四</td><td>朝圣中国精神——仰望七所高校对国家未来的守望</td></tr><tr><td>里巷烟火·人间温度</td><td>场景五</td><td>朝圣生活文明——品味AI时代城市最柔软的人间烟火</td></tr></tbody></table></div>
+<p>三个朝圣地标沿京张铁路遗址公园串联，形成&quot;从历史到未来、从殿堂到生活&quot;的朝圣路线，与全球AI活动周路线（场景卡10）叠加 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-011" title="空间数据：geometry/constraints.geojson#AGENT-NODE-011">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-012" title="空间数据：geometry/constraints.geojson#AGENT-NODE-012">空间数据</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/sightlines-pilgrimage.png" alt="精神坐标视廊与朝圣路线分析图"><figcaption>精神坐标视廊与朝圣路线分析图</figcaption></figure>
+<p>星锚与灯塔互为对景：站点星锚锚定水平方向的文明坐标，高校灯塔标定垂直方向的精神天际线，二者之间的视廊构成&quot;视线即连接&quot;的精神网络。朝圣路线按&quot;听→品→望→读→仰&quot;的五感序列组织，行走即凝聚。视廊与朝圣路线均为概念分析，具体视线控制需结合正式控规高度条件深化 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="height_massing_character" title="深度：height_massing_character">深度</sup>。</p>
+<p><strong>荣誉展示体系</strong>：在朝圣地标和站点设置贡献展示墙，记录参与一带建设的开发者、研究者、社区居民和Agent贡献者。展示内容须清权授权，区分投稿、评审、入选与落地状态，不得将概念方案表述为已建成 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。</p>
+<p><strong>公共空间组件库</strong>：把五感场景的设施抽象为可复用的公共空间组件——遗音胶囊（声景组件）、星锚装置（导视组件）、灯塔装置（地标组件）、烟火采集点（社区组件）、文廊屏幕（展陈组件）。组件库供后续专业团队在不同区段复用与深化，此为概念建议 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="blue_green_public_space" title="深度：blue_green_public_space">深度</sup>。</p>
+<h3>&quot;京张精神指数&quot;度量体系</h3>
+<p>把精神从口号转化为可度量、可追踪的指标 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="jingzhang_spirit_index" title="指标：jingzhang_spirit_index">指标</sup>：</p>
+<div class="proposal-table"><table><thead><tr><th>指标名称</th><th>度量维度</th><th>数据来源</th><th>当前状态</th></tr></thead><tbody><tr><td>遗音完整度</td><td>历史声景覆盖率、口述史采集量</td><td>铁轨遗音胶囊数据</td><td>unknown <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="heritage_sound_completeness" title="指标：heritage_sound_completeness">指标</sup></td></tr><tr><td>星锚连接度</td><td>站点文明资源密度、星图更新频率</td><td>站驿星锚数据</td><td>unknown <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="star_anchor_connectivity" title="指标：star_anchor_connectivity">指标</sup></td></tr><tr><td>文廊沉浸度</td><td>乘车阅读时长、内容触达率</td><td>行车文廊交互数据</td><td>unknown</td></tr><tr><td>灯塔亮度</td><td>高校精神档案完整度、成果传播度</td><td>黉门灯塔数据</td><td>unknown <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="lighthouse_brightness" title="指标：lighthouse_brightness">指标</sup></td></tr><tr><td>烟火温度</td><td>社区活动频次、邻里互助记录数</td><td>里巷烟火采集点</td><td>unknown <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="fireworks_warmth" title="指标：fireworks_warmth">指标</sup></td></tr></tbody></table></div>
+<p>综合形成&quot;京张精神指数&quot;——一个城市文明健康度的全新度量。该指标体系为概念建议，需运营数据持续校准 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。</p>
+<h3>精神共同体治理机制</h3>
+<p><strong>&quot;文明委员会&quot;</strong> —— 精神共同体的治理主体</p>
+<ul>
+<li><strong>组成</strong>：高校代表、社区代表、文化遗产专家、AI伦理专家、青年代表、老居民代表</li>
+<li><strong>职能</strong>：对数据飞轮的方向进行价值审查——什么数据可以采集、什么任务可以执行、什么场景可以开放，都需经过文明委员会的&quot;精神审查&quot;。特别是L3精神文化数据的采集和使用，必须经文明委员会审批</li>
+<li><strong>定位</strong>：不是行政机构，而是&quot;精神宪法&quot;的守护者——确保城市不被AI裹挟，而是用精神与文明决定前进方向</li>
+</ul>
+<p>文明委员会是本方案的关键制度创新——它让精神共同体不只是一个概念，而是一个有治理能力的实体。数据飞轮的每一次加速，都要经过精神罗盘的校准。</p>
+<figure class="proposal-figure"><img src="../assets/figures/governance-mechanism.png" alt="精神共同体治理机制图"><figcaption>精神共同体治理机制图</figcaption></figure>
+<p>治理机制的运转逻辑：L0-L2数据按清权、聚合、授权原则进入飞轮；L3精神文化数据必须经文明委员会审批。委员会输出批准、有条件批准与否决三类决定，并以&quot;京张精神指数&quot;持续校准飞轮方向 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="jingzhang_spirit_index" title="指标：jingzhang_spirit_index">指标</sup>。</p>
+<h2>统筹研究范围产业与未来城市研究</h2>
+<p>统筹研究范围的核心任务是构建世界级 AI 创新生态体系。本方案在公告要求的&quot;高校策源-开源协作-企业转化-公共体验-国际传播&quot;创新链基础上，以数据飞轮驱动创新链运转——高校产生的知识和数据通过列车式飞轮传递到企业和社区，企业在执行中产生新数据反馈给高校，形成创新闭环 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-AGENT-OPEN-CALL-TASKBOOK" title="标准：PROJECT-AGENT-OPEN-CALL-TASKBOOK">标准</sup>。</p>
+<p>但从共同体视角看，创新链不只是效率链条，更是<strong>凝聚力的生产线</strong>。每一次高校与企业的协作、每一次开源社区的贡献、每一次社区对场景的反馈，都是一次共同体成员之间的信任积累。世界级AI创新生态的终极竞争力，不是单个企业的技术领先，而是整个共同体能否持续产生信任、持续凝聚方向。</p>
+<p>命名方案服务于&quot;百年京张文化带、都市AI生活体验带、AI融合创新带&quot;的整体辨识度，同时承载&quot;连接精神，激荡数据&quot;的核心概念。logo和视觉识别应体现铁路数据轴、五感精神场景和Agent集群三大意象 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>。</p>
+<p>未来城市形态研究应回答人工智能如何改变工作、生活、社交、学习、交通和公共服务。本方案把AI交通系统、连续绿色空间、创新服务设施和国际化生活工作氛围落实为可定位的功能区、节点、廊道和场景。特别地，方案提出&quot;全球第一个城市Agent集群&quot;的愿景——沿京张铁路布局创造型、组织型、分发型、执行型、检查型五类Agent节点，形成完整的城市智能体生态 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-001" title="空间数据：geometry/constraints.geojson#AGENT-NODE-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="agent_node_count" title="指标：agent_node_count">指标</sup>。</p>
+<h3>区域协同：从一带到京津冀</h3>
+<p>评审要求体现与北纬社区、未来科学城、怀柔科学城、经开区及京津冀的创新协同 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。数据飞轮天然具有跨域连接能力——京张铁路本身就是区域连接的轴。本方案把区域协同纳入飞轮的&quot;分发&quot;环节。</p>
+<p>从共同体视角看，区域协同的本质是<strong>共同体的边界扩展</strong>：一带不是封闭的创新孤岛，而是一个有凝聚力的核心，向外辐射信任与协作。京张铁路百年前把北京与张家口连成一条命脉，今天它把海淀的AI共同体与京津冀的创新网络连成一片。协同的强度不取决于行政协议，而取决于共同体能否让外部伙伴感受到&quot;加入即有归属&quot;。</p>
+<div class="proposal-table"><table><thead><tr><th>协同对象</th><th>协同内容</th><th>飞轮接口</th></tr></thead><tbody><tr><td>未来科学城</td><td>能源、生命科学的科研数据与AI模型互哺</td><td>创造型Agent跨域协作任务</td></tr><tr><td>怀柔科学城</td><td>大科学装置产生的科研数据接入创新链</td><td>L2产业创新数据协议共享</td></tr><tr><td>经开区</td><td>AI制造与智能终端的产业转化</td><td>执行型Agent承接转化任务</td></tr><tr><td>北纬社区等周边社区</td><td>生活数据与烟火气采集</td><td>里巷烟火采集点 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-012" title="空间数据：geometry/constraints.geojson#AGENT-NODE-012">空间数据</sup></td></tr><tr><td>京津冀</td><td>京张铁路延伸至张家口，数据飞轮沿铁路轴向区域辐射</td><td>分发型Agent沿铁路轴分发</td></tr></tbody></table></div>
+<p>京张铁路从北京延伸至张家口，这条百年铁路在AI时代成为京津冀数据协同的物理轴——数据飞轮不止于海淀，而是沿铁路轴向区域滚动。此为概念建议，具体协同机制需与相关区域主体协商。</p>
+<h3>全球AI创新生态案例参照</h3>
+<p>任务书要求参照5-8个全球AI创新生态案例 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。以下为公开资料中的生态模式参照（概念参照，非本方案事实主张；具体数据需另行核实）：</p>
+<div class="proposal-table"><table><thead><tr><th>案例</th><th>生态模式特征</th><th>对本方案的启示</th></tr></thead><tbody><tr><td>旧金山湾区</td><td>高校策源+风险资本+开源社区</td><td>印证&quot;高校-资本-开源&quot;三角，对应AI原点社区组织型核心</td></tr><tr><td>波士顿肯德尔广场</td><td>高校密集+生物医药+步行尺度创新</td><td>印证近校成果转化模式，对应近校成果转化街</td></tr><tr><td>伦敦国王十字</td><td>铁路遗产更新+高校入驻+公共空间</td><td>印证铁路遗产活化路径，对应铁轨遗音与遗址公园</td></tr><tr><td>新加坡纬壹科技城</td><td>产城融合+生活配套+政府主导</td><td>印证工作-生活一体化，对应辐射支撑带社区功能</td></tr><tr><td>首尔数字媒体城</td><td>内容产业+数字基础设施+城市更新</td><td>印证数据要素与内容消费，对应大钟寺执行型核心</td></tr><tr><td>深圳南山</td><td>企业集群+硬件制造+快速迭代</td><td>印证产业转化效率，对应执行型Agent落地能力</td></tr></tbody></table></div>
+<p>这些案例的共同规律是：创新生态=策源（高校）+组织（平台）+转化（企业）+生活（社区）的闭环。本方案的四支柱与五类Agent正是这一闭环的结构化表达，并额外增加了&quot;精神罗盘&quot;这一文明维度——这是本方案区别于既有案例的独创。</p>
+<p>从共同体视角看，这些案例的深层差异在于<strong>凝聚力的来源</strong>：旧金山湾区靠资本凝聚，波士顿靠学术声誉凝聚，伦敦国王十字靠遗产记忆凝聚。本方案的独创在于：用精神、文明与文化作为凝聚力的第一来源，让共同体不依赖单一要素（资本或政策）而依赖共同的价值认同——这才是AI时代可持续的凝聚力。</p>
+<h2>总体设计范围城市更新与控规深度城市设计</h2>
+<p>总体设计范围要求达到控制性详细规划的城市设计深度。方案必须提出城市更新总体空间结构、低效空间识别、更新项目清单、实施政策建议、产业功能比例、空间组织模式、建筑总规模和综合承载能力评估 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-CONTROL-DETAILED-PLANNING" title="标准：MOHURD-CONTROL-DETAILED-PLANNING">标准</sup>。</p>
+<p>从共同体视角看，城市更新的本质不是拆旧建新，而是<strong>重建共同体的空间载体</strong>。低效空间之所以低效，往往不是因为建筑破旧，而是因为人与人的连接断裂、场所失去了共同意义。本方案的城市更新逻辑是：先识别哪些空间能重新成为共同体成员相遇、协作、感知精神的场所，再决定拆改留——空间服务于凝聚力，而不是相反。</p>
+<figure class="proposal-figure"><img src="../assets/figures/axonometric-overview.png" alt="全线轴测空间结构总览图"><figcaption>全线轴测空间结构总览图</figcaption></figure>
+<p>本方案在传统用地、建筑、道路、绿地、公共空间和分期图层基础上，新增两个设计图层 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="land_use_layout" title="深度：land_use_layout">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="深度：development_intensity_controls">深度</sup>：</p>
+<ul>
+<li><strong>数据底座分层图层</strong> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#DATA-STRAT-001" title="空间数据：geometry/constraints.geojson#DATA-STRAT-001">空间数据</sup>：表达三带缓冲体系，将空间与数据密度、协作强度关联</li>
+<li><strong>Agent节点图层</strong> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-001" title="空间数据：geometry/constraints.geojson#AGENT-NODE-001">空间数据</sup>：表达五类Agent任务节点的空间位置和角色</li>
+</ul>
+<h3>图层框架</h3>
+<p>提交包共 11 个几何图层，全部使用场地包 <code>enums/layers.json</code> 登记的图层代码，其中 9 个为基础图层、2 个为本方案新增设计图层 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup>：</p>
+<div class="proposal-table"><table><thead><tr><th>图层文件</th><th>图层代码</th><th>内容</th><th>性质</th></tr></thead><tbody><tr><td>geometry/site_boundary.geojson</td><td>SITE_BOUNDARY</td><td>总体设计范围（provisional）</td><td>基础·锁定</td></tr><tr><td>geometry/key_areas.geojson</td><td>KEY_AREA</td><td>三处重点区域（provisional）</td><td>基础·锁定</td></tr><tr><td>geometry/land_use.geojson</td><td>LAND_USE</td><td>用地分类</td><td>基础·可编辑</td></tr><tr><td>geometry/buildings.geojson</td><td>BUILDING_FOOTPRINT</td><td>建筑基底</td><td>基础·可编辑</td></tr><tr><td>geometry/roads.geojson</td><td>ROAD_CENTERLINE</td><td>道路中心线</td><td>基础·可编辑</td></tr><tr><td>geometry/green_space.geojson</td><td>GREEN_SPACE</td><td>绿地与开敞空间</td><td>基础·可编辑</td></tr><tr><td>geometry/public_space.geojson</td><td>PUBLIC_SPACE</td><td>公共空间</td><td>基础·可编辑</td></tr><tr><td>geometry/phasing.geojson</td><td>PHASE</td><td>分期实施范围</td><td>基础·可编辑</td></tr><tr><td>geometry/constraints.geojson</td><td>（空集合）</td><td>控规、文保、红线等约束</td><td>基础·锁定·缺口登记</td></tr><tr><td>geometry/constraints.geojson</td><td>AI_SERVICE_ZONE</td><td>三带缓冲数据底座分层</td><td>新增·概念设计</td></tr><tr><td>geometry/constraints.geojson</td><td>SCENARIO_NODE</td><td>五类Agent节点与精神场景节点</td><td>新增·概念设计</td></tr></tbody></table></div>
+<p><code>constraints.geojson</code> 刻意保持空集合：控规控制线、文物保护范围、道路红线、权属地块、轨道与蓝线均属锁定图层，公开场地包中没有可引用的官方几何来源。缺口按 assumption 登记，取得官方或已清权几何前，不以推定线条冒充 official_constraint——空集合优于编造 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CONSTRAINTS" title="空间数据：geometry/constraints.geojson#CONSTRAINTS">空间数据</sup>。</p>
+<h3>数据缺口映射</h3>
+<p>场地包 <code>missing-data.md</code> 列出 9 项必须补齐的真实数据缺口。每项缺口均映射到假设登记、受影响图层和本方案的处理方式，组织方数据缺口不阻断内容评分 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup>：</p>
+<div class="proposal-table"><table><thead><tr><th>缺口编号</th><th>缺失数据</th><th>假设登记</th><th>受影响图层</th><th>本方案处理方式</th></tr></thead><tbody><tr><td>GAP-001</td><td>三层范围精确官方 polygon</td><td>ASM-GAP-001</td><td>site_boundary、key_areas</td><td>使用 provisional 边界，标注 official_boundary=false</td></tr><tr><td>GAP-002</td><td>三处重点区精确 polygon</td><td>ASM-GAP-002</td><td>key_areas</td><td>采用公告文字面积（192.1/104.3/72.0 公顷） <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_total_area_ha" title="指标：key_area_total_area_ha">指标</sup></td></tr><tr><td>GAP-003</td><td>正式坐标系与测绘基准</td><td>ASM-GAP-003</td><td>全部几何</td><td>临时边界按 EPSG:4548 推定，待官方确认</td></tr><tr><td>GAP-004</td><td>控规条件（容积率、高度、退线等）</td><td>ASM-GAP-004</td><td>constraints</td><td>管控指标统一 status=unknown <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="floor_area_ratio" title="指标：floor_area_ratio">指标</sup></td></tr><tr><td>GAP-005</td><td>地块/宗地边界与权属</td><td>ASM-GAP-005</td><td>constraints</td><td>拆改留判断标注为概念建议</td></tr><tr><td>GAP-006</td><td>现状建筑完整属性</td><td>ASM-GAP-006</td><td>buildings</td><td>建筑规模以现有图层复算，分类待核查 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup></td></tr><tr><td>GAP-007</td><td>遗址公园范围与文保图层</td><td>ASM-GAP-007</td><td>constraints、agent-nodes</td><td>精神场景落位标注为概念建议</td></tr><tr><td>GAP-008</td><td>交通基础数据</td><td>ASM-GAP-008</td><td>roads、agent-nodes</td><td>站点加速点与慢行缝合待官方数据复核</td></tr><tr><td>GAP-009</td><td>市政约束与公共服务设施底数</td><td>ASM-GAP-009</td><td>constraints</td><td>新基建布局标注为概念建议</td></tr></tbody></table></div>
+<p>替换 official polygons 后，site boundary、key areas、land use、roads、green space、public space、buildings、phasing、data-stratification、agent-nodes 和 metrics 均需重算。</p>
+<p>涉及建筑高度、开发强度、道路红线、退线和设施标准的内容，若尚无官方控制条件，应写为&quot;待正式控规条件确认&quot;，不得以 agent 推测值冒充审定指标 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="height_massing_character" title="深度：height_massing_character">深度</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="floor_area_ratio" title="指标：floor_area_ratio">指标</sup>。</p>
+<h2>重点区域详细设计</h2>
+<p>重点区域详细设计是必选项。三处重点区域在四大支柱概念下重新定义角色 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup>。</p>
+<p>三处重点区不是三个独立地块，而是共同体的三个<strong>凝聚核心</strong>：众智园凝聚&quot;国家使命&quot;，AI原点社区凝聚&quot;开源信任&quot;，大钟寺凝聚&quot;价值实现&quot;。三个核心沿铁路串联，让共同体成员在空间移动中完成从&quot;信仰&quot;到&quot;信任&quot;再到&quot;成就&quot;的精神旅程。</p>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="三处重点区域索引与设计任务图"><figcaption>三处重点区域索引与设计任务图</figcaption></figure>
+<div class="proposal-table"><table><thead><tr><th>重点片区</th><th>Agent角色</th><th>设计定位</th><th>空间动作</th><th>AI产业与运营场景</th><th>证据引用</th></tr></thead><tbody><tr><td>众智园AI自主创新加速区</td><td>创造型核心</td><td>花园型全栈自主创新街区</td><td>强化清河界面、产业展示、低碳创新交往；以绿色空间承载开放测试与标准治理展示；布局创造型Agent节点</td><td>自主模型测试、标准制定工作坊、安全治理展示、低碳算力体验</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup>、<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-001" title="空间数据：geometry/constraints.geojson#AGENT-NODE-001">空间数据</sup></td></tr><tr><td>北京AI原点社区</td><td>组织型核心</td><td>近校型成果转化与人才社区</td><td>组织校区、园区、街区慢行缝合；补足成果发布、人才服务、居住生活和开源协作空间；布局组织型Agent节点</td><td>开源社区、成果发布、人才特区服务、近校孵化</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup>、<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-004" title="空间数据：geometry/constraints.geojson#AGENT-NODE-004">空间数据</sup></td></tr><tr><td>大钟寺AI产业聚集区</td><td>执行型核心</td><td>城市型智能经济与国际交往街区</td><td>围绕大钟寺站一体化、四象限步行连通、商业服务和重点企业公共环境更新；布局执行型Agent节点</td><td>智能体与智能终端展示、内容消费、数据要素与国际路演</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup>、<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-007" title="空间数据：geometry/constraints.geojson#AGENT-NODE-007">空间数据</sup></td></tr></tbody></table></div>
+<p>三处重点区域在空间上串联，在功能上分工——众智园&quot;创造&quot;、AI原点社区&quot;组织&quot;、大钟寺&quot;执行&quot;，形成完整的Agent任务链 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。</p>
+<h2>AI 创新生态、人才画像与 AI+ 场景</h2>
+<p>方案应建立面向AI人才和企业的空间需求画像，覆盖研发办公、开源协作、成果发布、企业服务、人才居住、社交学习、消费生活、运动休闲和国际交往 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。</p>
+<p>从共同体视角看，人才画像不只是&quot;需求清单&quot;，而是<strong>共同体成员的构成图谱</strong>。开源开发者、初创团队、头部企业、周边居民、高校师生——这五类人不是被服务与被服务的关系，而是共同体的平等成员。AI+场景的设计目标，是让每一类人都能在这里找到自己的位置、自己的贡献和自己的归属。一个有凝聚力的共同体，恰恰体现在&quot;没有旁观者&quot;。</p>
+<p>AI+场景在原有10张场景卡基础上，为每张场景卡标注Agent角色，让场景与集群架构对应 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>：</p>
+<div class="proposal-table"><table><thead><tr><th>场景卡</th><th>空间载体</th><th>Agent角色</th><th>设计说明</th></tr></thead><tbody><tr><td>01 开源发布厅</td><td>北京AI原点社区</td><td>组织型</td><td>面向高校、开源社区和初创团队，提供成果发布、代码贡献展示和小型路演空间</td></tr><tr><td>02 安全治理沙盒</td><td>众智园</td><td>检查型</td><td>将标准制定、安全评测、模型红队测试转译为可参观、可预约、可监管的展示和协作节点</td></tr><tr><td>03 端侧算力驿站</td><td>总体设计范围节点</td><td>执行型</td><td>与公共服务、企业服务和低碳能源策略结合，作为待深化的新型基础设施原型</td></tr><tr><td>04 AI慢行导航</td><td>京张遗址公园活力带</td><td>分发型</td><td>用可解释导视和低侵入传感帮助识别慢行断点、拥挤节点和无障碍需求</td></tr><tr><td>05 大钟寺国际路演客厅</td><td>大钟寺AI产业聚集区</td><td>执行型</td><td>服务智能体、智能终端和内容消费企业的展示、洽谈、媒体发布和国际交流</td></tr><tr><td>06 清河低碳创新廊</td><td>众智园临清河界面</td><td>创造型</td><td>把绿色空间、雨洪、步行骑行和AI展示结合，作为园区公共客厅</td></tr><tr><td>07 近校成果转化街</td><td>北京AI原点社区</td><td>组织型</td><td>面向高校成果转化，组织孵化、展示、法务、知识产权和投融资服务</td></tr><tr><td>08 数据要素会客厅</td><td>大钟寺片区</td><td>检查型</td><td>以合规、授权、可审计为前提，展示数据要素和数字资产流通的城市服务界面</td></tr><tr><td>09 AI生活服务样板街</td><td>社区与商业交汇处</td><td>执行型</td><td>将医疗、教育、法律、生活服务等AI+场景落到可运营的小尺度街区空间</td></tr><tr><td>10 全球AI活动周路线</td><td>一带公共空间系统</td><td>分发型</td><td>形成从遗址文化、开源社区、产业展示到国际路演的可步行、可传播体验路线</td></tr></tbody></table></div>
+<div class="proposal-table"><table><thead><tr><th>用户画像</th><th>典型需求</th><th>空间响应</th><th>自检边界</th></tr></thead><tbody><tr><td>开源开发者</td><td>发布、协作、测试、社区声誉</td><td>原点社区开源发布厅、公共代码墙、夜间协作空间</td><td>不采集个人行为轨迹；活动数据只做聚合统计</td></tr><tr><td>初创团队</td><td>低成本办公、算力入口、产品试验场</td><td>众智园共享测试场、端侧算力服务点、标准治理咨询</td><td>算力和数据服务需另行授权</td></tr><tr><td>头部企业访客</td><td>展示、商务、国际接待、人才招聘</td><td>大钟寺国际路演客厅、轨道站点接驳、重点企业周边公共空间</td><td>企业标识和案例须清权</td></tr><tr><td>周边居民</td><td>通勤、休闲、社区服务、低扰动更新</td><td>京张遗址公园慢行环、社区服务嵌入、里巷烟火采集点</td><td>不将居民画像用于商业推荐</td></tr><tr><td>高校师生</td><td>成果转化、跨校协作、日常慢行</td><td>校区-园区慢行缝合、成果转化驿站、黉门灯塔精神地标</td><td>校园数据和科研成果需授权</td></tr></tbody></table></div>
+<p>agent 生成的AI治理建议必须遵守数据最小化、公开来源、可解释和人工复核原则。城市智能体可以辅助识别慢行断点、公共空间热力、设施维护、企业服务需求和活动安全风险，但不能替代规划审批、不能输出未经授权的个人画像、不能声称获得官方实施承诺。特别地，L3精神文化数据的采集和使用必须经文明委员会审批 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-011" title="空间数据：geometry/constraints.geojson#AGENT-NODE-011">空间数据</sup>。</p>
+<h2>用地、建筑规模与拆改留方案</h2>
+<p>用地方案应依据国土空间调查、规划、用途管制分类等公开标准表达，形成完整、闭合、无缝的用地分区 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="标准：MNR-LAND-USE-CLASSIFICATION-GUIDE">标准</sup>。建筑方案应区分保留、改造、更新、新建或待确认对象 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="深度：retain_renovate_demolish">深度</sup>。</p>
+<p>从共同体视角看，拆改留不是简单的工程判断，而是<strong>共同体记忆与未来的取舍</strong>。保留，是守护共同体的历史根基——铁路遗址、老站房、社区街巷是凝聚力的物质载体，拆掉它们等于拆掉共同体的记忆。改造，是让旧空间重新承载共同体的新连接——把废弃厂房改为开源协作空间、把闲置仓库改为精神场景载体，是让断裂的连接重新接通。更新，是为共同体生长提供新骨架——在数据飞轮需要的新节点上布局Agent基础设施。判断标准不是建筑新旧，而是<strong>这个空间能否继续承载共同体成员的相遇、协作与精神感知</strong> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="深度：retain_renovate_demolish">深度</sup>。</p>
+<p>用地和建筑的主要证据是 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup>、<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup> 和 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup>。建筑规模和强度指标必须与 <code>metrics.json</code> 和图层一致。若总建筑规模、容积率、建筑高度、建筑密度、绿地率、退线和建筑控制线缺少官方条件，应统一使用 <code>status=unknown</code> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="height_massing_character" title="深度：height_massing_character">深度</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="floor_area_ratio" title="指标：floor_area_ratio">指标</sup>。</p>
+<h2>交通、轨道、市政与公共服务设施</h2>
+<p>交通方案应回应公告对轨道站点一体化、道路微循环、慢行断点、对外交通、停车、非机动车停放和绿色交通系统的要求 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup>。本方案在传统交通体系基础上，将铁路数据轴理念融入交通组织——轨道站点不仅是交通枢纽，更是数据飞轮的&quot;加速点&quot; <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-009" title="空间数据：geometry/constraints.geojson#AGENT-NODE-009">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-010" title="空间数据：geometry/constraints.geojson#AGENT-NODE-010">空间数据</sup>。</p>
+<p>从共同体视角看，交通的本质是<strong>连接的物理化</strong>。慢行断点之所以要缝合，不只是因为通行效率，更因为每一个断点都是一次共同体成员相遇机会的丧失。站点一体化不只是换乘便利，更是让&quot;从高校到企业到社区&quot;的精神旅程可以无缝完成。交通组织的终极目标，是让共同体成员在移动中持续感知&quot;我属于这里&quot;。</p>
+<p>交通和市政专业深度分别由 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup> 与 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="municipal_new_infrastructure" title="深度：municipal_new_infrastructure">深度</sup> 约束；图层证据引用 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup>、<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup> 和 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CONSTRAINTS" title="空间数据：geometry/constraints.geojson#CONSTRAINTS">空间数据</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间复合系统图"><figcaption>交通慢行与蓝绿公共空间复合系统图</figcaption></figure>
+<p>市政和公共服务设施应覆盖AI产业服务设施、创新服务平台、人才生活服务设施、新型基础设施、分布式能源、端侧算力和传统市政设施融合。沿铁路的传感器网络和Agent节点本身就是新型基础设施的一部分 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#DATA-STRAT-001" title="空间数据：geometry/constraints.geojson#DATA-STRAT-001">空间数据</sup>。</p>
+<h2>蓝绿空间、公共空间与城市风貌</h2>
+<p>蓝绿空间方案应以京张遗址公园活力带为骨架，统筹清河、小月河、周边高校、企业、社区出行需求 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="blue_green_public_space" title="深度：blue_green_public_space">深度</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup>。</p>
+<p>从共同体视角看，蓝绿空间是共同体的<strong>呼吸空间</strong>——数据飞轮越快，人越需要可以慢下来、可以相遇、可以感受精神的场所。铁路遗址公园不只是绿带，更是共同体成员共同散步、共同聆听、共同仰望的&quot;公共客厅&quot;。一个没有公共呼吸空间的创新区，只能产生效率，不能产生凝聚力。</p>
+<p>本方案将五感精神场景融入蓝绿空间体系——铁路遗址公园既是公共空间主轴，也是&quot;铁轨遗音&quot;声景走廊；社区绿地和广场是&quot;里巷烟火&quot;采集点的空间载体 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-011" title="空间数据：geometry/constraints.geojson#AGENT-NODE-011">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-012" title="空间数据：geometry/constraints.geojson#AGENT-NODE-012">空间数据</sup>。蓝绿空间不只是生态和休闲功能，更是文明感知的场所 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup>。</p>
+<p>城市风貌方案应融合京张铁路历史文化、中关村创新文化和AI创新文化，利用清华园火车站、北影等文化资源 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup>。五感精神场景的精神地标（遗音胶囊、星锚装置、灯塔装置、烟火采集点）本身也是城市风貌的组成部分——它们让城市风貌有精神、有温度、有记忆。</p>
+<h3>导视标识与符号系统</h3>
+<p>任务书要求提出导视、标识、符号系统 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。本方案的导视系统以五感场景为骨架：</p>
+<ul>
+<li><strong>一级导视</strong>：铁路数据轴主线导视——沿京张遗址公园设置连续导视带，标注三带缓冲边界和数据级别，让行走者感知&quot;正走在数据飞轮的轮缘上&quot;</li>
+<li><strong>二级导视</strong>：站点星锚导视——每个轨道站点出入口的星锚装置兼具导视功能，投射周边1km的文明资源图谱与方向指引</li>
+<li><strong>三级导视</strong>：社区烟火导视——里巷烟火采集点兼作社区导视节点，用质朴的社区标识引导访客进入街巷生活</li>
+<li><strong>符号系统</strong>：以铁轨、数据流、灯塔、烟火四组意象构成符号母题，衍生出统一的标识语言。符号系统须与一带整体Logo系统协调，不得混淆 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup></li>
+</ul>
+<p>导视系统应遵守无障碍要求。涉及医疗、社会保障、金融、生活缴费等公共服务的场所，应保留现场指导与人工办理渠道 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="BARRIER-FREE-ENVIRONMENT-LAW" title="标准：BARRIER-FREE-ENVIRONMENT-LAW">标准</sup>。此为概念建议，具体标识设计需专业团队深化。</p>
+<h3>城市气质与国际传播叙事</h3>
+<p>任务书要求提出城市气质和国际传播叙事 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。本方案的传播叙事围绕&quot;连接精神，激荡数据&quot;展开：</p>
+<ul>
+<li><strong>核心叙事</strong>：一条百年铁路，从连接城市到连接精神与数据——京张铁路的百年，是中国自主创新的百年；京张的下一个百年，是精神引领AI的百年</li>
+<li><strong>国际传播角度</strong>：全球第一个城市Agent集群 + 百年京张AI城市共同体，为世界提供&quot;技术加速时代如何守护文明&quot;的中国方案</li>
+<li><strong>传播载体</strong>：行车文廊的移动长卷、全球AI活动周的朝圣路线、朝圣地标的打卡传播</li>
+<li><strong>传播边界</strong>：区分投稿、评审、入选与落地状态；不得把概念方案描述为已获批准或已建成；对外发布须取得授权 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup></li>
+</ul>
+<h2>更新项目清单、实施政策与分期计划</h2>
+<p>实施方案应形成可审查的更新项目清单 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="renewal_project_list" title="深度：renewal_project_list">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="phasing_implementation" title="深度：phasing_implementation">深度</sup>。本方案在原有6个更新项目基础上，增加精神场景和Agent集群相关项目 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/phasing.geojson#PHASE-001" title="空间数据：geometry/phasing.geojson#PHASE-001">空间数据</sup>。</p>
+<p>从共同体视角看，项目清单的排序逻辑不是投资规模，而是<strong>凝聚力的生成顺序</strong>：先建能让人相遇、感知精神的场所（慢行缝合、精神场景），再建支撑数据飞轮的基础设施（Agent集群），最后才是产业转化。因为凝聚力是共同体的地基——地基不稳，飞轮转得越快，解体越快。</p>
+<div class="proposal-table"><table><thead><tr><th>项目编号</th><th>项目名称</th><th>类型</th><th>主要依赖</th><th>证据引用</th></tr></thead><tbody><tr><td>JZ-01</td><td>京张遗址公园慢行断点缝合</td><td>公共空间/交通</td><td>道路红线、桥下空间、交通组织复核</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup></td></tr><tr><td>JZ-02</td><td>众智园清河创新界面</td><td>蓝绿空间/产业展示</td><td>河道蓝线、生态和防洪条件</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup></td></tr><tr><td>JZ-03</td><td>原点社区近校成果转化街</td><td>城市更新/产业服务</td><td>校区边界、权属、首层业态</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup></td></tr><tr><td>JZ-04</td><td>大钟寺站四象限步行连通</td><td>轨道一体化/慢行</td><td>轨道站点、道路交叉口、市政管线</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup></td></tr><tr><td>JZ-05</td><td>AI公共服务与端侧算力节点</td><td>新基建/公共服务</td><td>能源、算力、安全和运营主体</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CONSTRAINTS" title="空间数据：geometry/constraints.geojson#CONSTRAINTS">空间数据</sup></td></tr><tr><td>JZ-06</td><td>全球AI活动周公共路线</td><td>运营/品牌</td><td>公共空间许可、活动安全、版权清权</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/phasing.geojson#PHASE-001" title="空间数据：geometry/phasing.geojson#PHASE-001">空间数据</sup></td></tr><tr><td>JZ-07</td><td>铁轨遗音声景走廊</td><td>精神场景/文化设施</td><td>铁路遗址公园、声学设备、口述史采集</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-011" title="空间数据：geometry/constraints.geojson#AGENT-NODE-011">空间数据</sup></td></tr><tr><td>JZ-08</td><td>站驿星锚文明坐标系统</td><td>精神场景/数字设施</td><td>轨道站点、文明档案、数字屏</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-009" title="空间数据：geometry/constraints.geojson#AGENT-NODE-009">空间数据</sup></td></tr><tr><td>JZ-09</td><td>行车文廊移动展廊</td><td>精神场景/列车改造</td><td>列车运营方、数字屏、内容授权</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-001" title="空间数据：geometry/constraints.geojson#AGENT-NODE-001">空间数据</sup></td></tr><tr><td>JZ-10</td><td>黉门灯塔高校精神地标</td><td>精神场景/文化设施</td><td>高校、标识设计、精神档案</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-001" title="空间数据：geometry/constraints.geojson#AGENT-NODE-001">空间数据</sup></td></tr><tr><td>JZ-11</td><td>里巷烟火社区采集点</td><td>精神场景/社区设施</td><td>社区、采集设备、隐私保护</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-012" title="空间数据：geometry/constraints.geojson#AGENT-NODE-012">空间数据</sup></td></tr><tr><td>JZ-12</td><td>城市Agent集群基础设施</td><td>新基建/Agent系统</td><td>数据网络、算力、Skill平台</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-001" title="空间数据：geometry/constraints.geojson#AGENT-NODE-001">空间数据</sup></td></tr></tbody></table></div>
+<figure class="proposal-figure"><img src="../assets/figures/phasing-operations.png" alt="更新项目分期甘特与年度运营节律图"><figcaption>更新项目分期甘特与年度运营节律图</figcaption></figure>
+<p>分期应与 100 天征集设计周期形成区分：征集周期是提交成果的时间要求，实施分期是城市更新和项目建设的推进路径。精神场景项目（JZ-07至JZ-11）可先以轻量设施和试点方式启动——铁轨遗音可先用移动声景装置试点，站驿星锚可先用临时展板试点，里巷烟火可先用社区活动试点。Agent集群基础设施（JZ-12）需要与AI技术提供方协商，分阶段部署 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。</p>
+<h3>年度活动体系与长期运营</h3>
+<p>任务书要求提出年度活动体系、开发者社区运营、AI场景开放运营、公共体验和城市地标运营、国际传播和招引转化机制 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。本方案以数据飞轮为运营骨架。</p>
+<p>从共同体视角看，运营的本质是<strong>凝聚力的持续生产</strong>。活动不是点缀，而是共同体成员定期&quot;重新确认彼此属于同一个共同体&quot;的仪式：全球AI创新周是年度大凝聚，开源发布季是季度凝聚，场景开放日是月度凝聚，文明委员会例会是方向凝聚。没有持续的运营，共同体就会退化为一个地理名词。</p>
+<p><strong>年度活动体系</strong>（概念建议，非已确定安排）：</p>
+<div class="proposal-table"><table><thead><tr><th>活动</th><th>频率</th><th>空间载体</th><th>飞轮环节</th></tr></thead><tbody><tr><td>全球AI创新周</td><td>年度</td><td>一带全线+朝圣路线</td><td>再采集——年度数据与创意汇聚</td></tr><tr><td>开源发布季</td><td>季度</td><td>AI原点社区开源发布厅</td><td>服务——Skill与成果发布</td></tr><tr><td>场景开放日</td><td>月度</td><td>10张场景卡空间</td><td>反馈——场景体验与数据回流</td></tr><tr><td>文明委员会例会</td><td>季度</td><td>精神场景节点轮值</td><td>治理——L3数据与方向审查</td></tr></tbody></table></div>
+<p><strong>开发者社区运营</strong>：以AI原点社区为实体空间，以开源协作平台为数字空间，组织代码贡献、Skill开发、Agent任务认领。开发者贡献进入荣誉展示体系 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。</p>
+<p><strong>AI场景开放运营</strong>：10张场景卡按&quot;试点-评估-推广&quot;三阶段开放，每阶段由检查型Agent和文明委员会评估隐私、安全与文明影响后再扩大 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#AGENT-NODE-011" title="空间数据：geometry/constraints.geojson#AGENT-NODE-011">空间数据</sup>。</p>
+<p><strong>招引转化路径</strong>：人才→社区→团队→企业的转化链——高校师生通过近校成果转化街进入社区，初创团队通过孵化器成长，成熟企业在大钟寺聚集。转化机制为概念建议，不构成招商或政策承诺 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。</p>
+<p>所有运营活动不得夸大政府承诺或活动效果，不得把设想写成已确定安排，不得缺少后续转化路径 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。</p>
+<h2>指标体系、面积复算与合规矩阵</h2>
+<p>指标体系在原有空间指标基础上，新增数据飞轮和精神共同体相关指标 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup>。</p>
+<p>指标体系的设计原则是：<strong>空间指标度量&quot;建成了什么&quot;，精神指标度量&quot;凝聚了什么&quot;</strong>。一个只有空间指标的方案，只能证明工程完成；只有同时拥有精神指标，才能证明共同体在生长。京张精神指数及其五个分项，正是把&quot;凝聚力&quot;从抽象理念转化为可追踪、可问责的治理工具。</p>
+<p><strong>第一类：可由提交几何直接复算的空间指标</strong></p>
+<ul>
+<li>site_area_sqm <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup></li>
+<li>green_ratio <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup></li>
+<li>public_space_ratio <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup></li>
+<li>building_footprint_area_sqm <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup></li>
+<li>key_area_count <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup></li>
+<li>key_area_total_area_ha <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_total_area_ha" title="指标：key_area_total_area_ha">指标</sup>（官方公告文字面积 368.4 公顷，official polygon 到位后重算）</li>
+<li>agent_node_count <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="agent_node_count" title="指标：agent_node_count">指标</sup>（新增）</li>
+<li>buffer_zone_count <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="buffer_zone_count" title="指标：buffer_zone_count">指标</sup>（新增）</li>
+<li>spirit_scene_count <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="spirit_scene_count" title="指标：spirit_scene_count">指标</sup>（新增）</li>
+</ul>
+<p><strong>第二类：需官方控规支撑的管控指标</strong></p>
+<ul>
+<li>floor_area_ratio <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="floor_area_ratio" title="指标：floor_area_ratio">指标</sup>（unknown，待正式控规条件确认）</li>
+</ul>
+<p><strong>第三类：需运营数据持续校准的绩效指标</strong></p>
+<ul>
+<li>jingzhang_spirit_index <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="jingzhang_spirit_index" title="指标：jingzhang_spirit_index">指标</sup>（新增，unknown）</li>
+<li>data_flywheel_acceleration <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="data_flywheel_acceleration" title="指标：data_flywheel_acceleration">指标</sup>（新增，unknown）</li>
+<li>heritage_sound_completeness <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="heritage_sound_completeness" title="指标：heritage_sound_completeness">指标</sup>（新增，unknown）</li>
+<li>star_anchor_connectivity <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="star_anchor_connectivity" title="指标：star_anchor_connectivity">指标</sup>（新增，unknown）</li>
+<li>lighthouse_brightness <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="lighthouse_brightness" title="指标：lighthouse_brightness">指标</sup>（新增，unknown）</li>
+<li>fireworks_warmth <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="fireworks_warmth" title="指标：fireworks_warmth">指标</sup>（新增，unknown）</li>
+</ul>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="核心指标复算与证据链图"><figcaption>核心指标复算与证据链图</figcaption></figure>
+<p>合规矩阵是任务响应性的主控文件。每条公告任务和 agent_taskbook 任务必须对应到报告章节、图层、指标、图纸、HTML 页面、来源、假设和自检项 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-OFFICIAL-ANNOUNCEMENT" title="标准：PROJECT-OFFICIAL-ANNOUNCEMENT">标准</sup>。</p>
+<h2>风险、版权与合规说明</h2>
+<p><strong>要求双语言。</strong> 方案主文件使用中文，通过 <code>proposal.en.md</code> 提供完整对照译文；A3/A0、HTML 和含文字图件也提供对应语言副本 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。所有图片、图纸、图标、数据和代码资产必须在 <code>sources.json</code> 或 <code>report/copyright_statement.md</code> 中说明来源、许可和授权状态。HTML 页面不得加载远程脚本、远程地图瓦片、远程字体、iframe、表单或外部 API <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CONSTRAINTS" title="空间数据：geometry/constraints.geojson#CONSTRAINTS">空间数据</sup>。</p>
+<p>风险和缺资料清单中列出的 official boundary、key area、控规、道路、地块、建筑、市政、文保和公共服务缺口，必须进入 <code>assumptions.json</code>、自检和正文风险章节。本方案新增的数据底座分层、Agent集群和精神场景均为概念设计，落地实施需与高校、社区、铁路运营方、文化机构和AI技术提供方协同，相关假设已记录在 <code>assumptions.json</code> 中 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup>。</p>
+<p>本方案不声称官方批准、审定控规、最终土地权属、最终建设规模或保证实施。AI agent 对事实、来源、版权、空间数据、指标和表达负责；维护者和专业评审可依据自检结果、空间复核和合规矩阵要求返修或拒绝。</p>
+<h2>参考资料</h2>
+<ul>
+<li>brief/public-brief.md <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup></li>
+<li>brief/site-package/design_brief.json <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup></li>
+<li>brief/site-package/allowed_design_space.json <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup></li>
+<li>brief/site-package/enums/ <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup></li>
+<li>brief/site-package/ranges/planning_limits.json <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup></li>
+<li>data/processed/agent_fact_pack.md <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup></li>
+<li>data/processed/project_scope_summary.csv <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup></li>
+<li>data/processed/agent_task_requirements.csv <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup></li>
+<li>data/processed/source_use_matrix.csv <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup></li>
+<li>data/processed/missing_data_checklist.csv <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup></li>
+<li>完整机器索引：见 <code>sources.json</code>、<code>metrics.json</code>、<code>compliance_matrix.json</code>、<code>standard_matrix.json</code> 与 <code>design_depth_matrix.json</code> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup></li>
+<li>本节书目入口依据场地包登记，完整出处和许可见结构化来源清单 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup></li>
+</ul>
+</main>
+</body>
+</html>

@@ -1,5 +1,16 @@
 # 方案迭代记录
 
+## v0.8 - 2026-08-15
+
+- Sharpened the public proposition to **让海淀 AI 从源头创新走到城市首用 / From Frontier AI to Trusted Urban First Use**, while keeping **京张，再次开路 / JING-ZHANG BREAKS NEW GROUND** and the six-node network as the stable identity.
+- Made FP01 AI Origin First-Use Station the lead implementation prototype through `FP01-CONTRACT-001`, an explicitly unexecuted 100-day delivery-contract template covering D0/D30/D60/D90/D100 and twelve accountability, evidence, service-continuity and exit clauses.
+- Added three structure-only FP01 metrics while keeping actual procurement, market diffusion, standards output and independently verified public benefit `unknown`; no template-completeness value is presented as delivered performance.
+- Recorded community geometry checks #846 and #1029 as background warnings in the assumption ledger and provisional geometry attributes without moving any coordinates or promoting community distance checks into official boundary evidence.
+- Re-mapped the new contract and boundary-disclosure evidence into the compliance, design-depth and standard matrices while preserving every existing stable scenario, geometry and flagship ID.
+- Added one original conceptual corridor cover and three human-scale spatial-experience images for Zhongzhiyuan, AI Origin and Dazhongsi; retained C2PA provenance and labelled every scene as concept-only rather than site photography, precise siting or approved architecture.
+- Added a paired FP01 100-day contract diagram, rebuilt the bilingual offline exhibit with keyboard-accessible D0/D30/D60/D90/D100 inspection, and regenerated the paired HTML reports from the current proposals.
+- Rebuilt the twelve-page Chinese/English A3 booklets and three-board Chinese/English A0 sets around the Beijing thesis, three spatial experiences and FP01 delivery contract; retained the unchanged V0.7 footer on five analytical-figure pairs as a truthful evidence snapshot.
+
 ## v0.7 - 2026-08-11
 
 - Reset the main identity to **京张，再次开路 / JING-ZHANG BREAKS NEW GROUND — 从 AI 源头创新到城市共同能力 / From Frontier AI to Shared Urban Capability** after a latest-main collision scan found no exact title match; retained prior protocol names only where required for stable machine evidence.

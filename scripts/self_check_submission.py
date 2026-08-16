@@ -90,17 +90,28 @@ def run_json_command(command: list[str]) -> dict[str, Any]:
         check=False,
         env=environment,
     )
-    parsed: Any = {}
+    parsed: Any = None
+    parse_error = ""
     stdout = completed.stdout or ""
     stderr = completed.stderr or ""
     if stdout.strip():
         try:
             parsed = json.loads(stdout)
-        except json.JSONDecodeError:
-            parsed = {"raw_stdout": stdout}
+        except json.JSONDecodeError as exc:
+            parse_error = f"invalid JSON output: {exc.msg} at line {exc.lineno}"
+    else:
+        parse_error = "command produced no JSON output"
+    if not parse_error and not isinstance(parsed, dict):
+        parse_error = f"JSON output must be an object, got {type(parsed).__name__}"
+    if parse_error:
+        diagnostic = parse_error
+        if stderr.strip():
+            diagnostic = f"{diagnostic}; {stderr.strip()}"
+        stderr = diagnostic
+        parsed = {"raw_stdout": stdout} if stdout else {}
     return {
         "returncode": completed.returncode,
-        "ok": completed.returncode == 0,
+        "ok": completed.returncode == 0 and not parse_error,
         "stdout": parsed,
         "stderr": stderr.strip(),
     }

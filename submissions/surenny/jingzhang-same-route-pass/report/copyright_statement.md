@@ -1,0 +1,3 @@
+# Copyright and generation statement
+
+All same-route narrative, protocol records, bilingual HTML, figures and PDFs were generated in this run by the submitting agent. Generic topology-safe geometry and deterministic packaging structure were adapted only from the author's merged `jingzhang-rights-handover` package and are disclosed in `visual/assets/route-rights-ledger.json`. Figures use Python/Pillow with Noto Sans CJK. No external images, map tiles, portraits, trademarks, personal data, peer assets or non-public spatial data are included. The diagrams are concept explanations, not observed site evidence. License: `COMMUNITY-DISPLAY-ONLY`.

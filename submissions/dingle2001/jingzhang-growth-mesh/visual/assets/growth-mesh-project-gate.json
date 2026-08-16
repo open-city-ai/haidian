@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0.0",
+  "protocol_id": "growth-mesh-project-gate",
+  "title_zh": "生长网项目门协议",
+  "title_en": "Growth Mesh Project-Gate Protocol",
+  "status": "concept_method_ready_for_external_rehearsal",
+  "license_boundary": "COMMUNITY-DISPLAY-ONLY; reuse requires contributor permission unless a separate written licence is granted",
+  "purpose": "Convert incomplete health, scenario and project declarations into reviewable investigation tasks or professional-review candidates without allowing Agent self-approval.",
+  "roles": [
+    {
+      "id": "A1",
+      "name": "evidence_steward",
+      "permission": "read_only",
+      "refuse": "unclear provenance, licence or excess privilege"
+    },
+    {
+      "id": "A2",
+      "name": "health_check_compiler",
+      "permission": "compile",
+      "refuse": "missing baseline creates survey task only"
+    },
+    {
+      "id": "A3",
+      "name": "spatial_planner",
+      "permission": "propose",
+      "refuse": "no redline, FAR or engineering conclusion"
+    },
+    {
+      "id": "A4",
+      "name": "scenario_orchestrator",
+      "permission": "propose_bounded_pilot",
+      "refuse": "no high-risk release without human sign-off and non-AI path"
+    },
+    {
+      "id": "A5",
+      "name": "operations_contract_agent",
+      "permission": "compile_contract",
+      "refuse": "step back without owner, demand, account or acceptance"
+    },
+    {
+      "id": "A6",
+      "name": "public_interest_guardian",
+      "permission": "veto_only",
+      "refuse": "veto release when access, affordability or resident safeguards fail"
+    }
+  ],
+  "human_gates": [
+    {
+      "id": "G0",
+      "decision": "evidence_acceptance",
+      "signer": "data_owner"
+    },
+    {
+      "id": "G1",
+      "decision": "pilot_release",
+      "signer": "scenario_and_safety_owner"
+    },
+    {
+      "id": "G2",
+      "decision": "professional_sign_off",
+      "signer": "qualified_professionals"
+    },
+    {
+      "id": "G3",
+      "decision": "continue_adjust_step_back_exit",
+      "signer": "steering_residents_professionals"
+    }
+  ],
+  "contract_groups": {
+    "health_check": {
+      "declared_contracts": 7,
+      "required_fields": [
+        "baseline",
+        "diagnosis",
+        "problem",
+        "resource",
+        "trigger",
+        "gate"
+      ]
+    },
+    "scenario": {
+      "declared_contracts": 12,
+      "required_fields": [
+        "problem",
+        "journey",
+        "data_rule",
+        "no_ai_equivalent",
+        "human_release",
+        "stop_condition",
+        "acceptance_evidence"
+      ]
+    },
+    "project": {
+      "declared_contracts": 15,
+      "required_fields": [
+        "problem",
+        "cause",
+        "measure",
+        "output",
+        "result",
+        "metric",
+        "operation",
+        "phase",
+        "funding",
+        "stop_gate"
+      ]
+    }
+  },
+  "decision_rules": [
+    {
+      "id": "R1",
+      "when": "required_fields_complete",
+      "decision": "ready_for_professional_and_field_review",
+      "not_equal_to": [
+        "approved",
+        "open",
+        "accepted_in_field"
+      ]
+    },
+    {
+      "id": "R2",
+      "when": "one_or_more_required_fields_missing",
+      "decision": "return_to_problem_or_project_library"
+    },
+    {
+      "id": "R3",
+      "when": "unknown_baseline",
+      "decision": "create_investigation_task_only"
+    },
+    {
+      "id": "R4",
+      "when": "privacy_internal_data_or_unlicensed_brand",
+      "decision": "deny"
+    },
+    {
+      "id": "R5",
+      "when": "non_ai_equivalent_unavailable_or_public_floor_reduced",
+      "decision": "veto_release"
+    }
+  ],
+  "falsification_tests": [
+    {
+      "id": "F1",
+      "fail_if": "a missing baseline still creates construction works"
+    },
+    {
+      "id": "F2",
+      "fail_if": "an Agent can self-sign, procure or dispose rights"
+    },
+    {
+      "id": "F3",
+      "fail_if": "a pilot removes a human/non-AI equivalent or public-service floor"
+    },
+    {
+      "id": "F4",
+      "fail_if": "comparison shows no net public value or widening group harm"
+    }
+  ],
+  "truth_boundary": {
+    "synthetic_rule_rehearsal": "completed",
+    "field_operation": "not_started",
+    "field_results_completed": 0,
+    "does_not_prove": [
+      "field safety",
+      "market demand",
+      "budget",
+      "approval",
+      "enterprise participation",
+      "public outcome"
+    ]
+  }
+}
