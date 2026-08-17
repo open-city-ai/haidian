@@ -1,0 +1,167 @@
+{
+  "schema_version": "0.1.0",
+  "site_package_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "metrics": {
+    "site_area": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json#overall_design_area"
+      ],
+      "formula": "official announced area (overall_design_area)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_area_by_code": {
+      "status": "known",
+      "value": {
+        "A": 1045492,
+        "B": 1585698,
+        "G": 624282,
+        "GIC": 622346,
+        "M0": 4151198,
+        "R": 2804860,
+        "S": 578966
+      },
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_cell)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "land_use partition is concept/provisional, derived from provisional site_boundary"
+      ]
+    },
+    "green_space_area": {
+      "status": "known",
+      "value": 1246628,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(G + GIC)",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional"
+      ]
+    },
+    "public_space_area": {
+      "status": "known",
+      "value": 622346,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(GIC)",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional"
+      ]
+    },
+    "road_area": {
+      "status": "known",
+      "value": 578966,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(S)",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional"
+      ]
+    },
+    "total_floor_area": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [],
+      "formula": null,
+      "confidence": "none",
+      "assumptions": [
+        "FAR and building height are forbidden final conclusions per boundary_clause; not asserted"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": null,
+      "confidence": "none",
+      "assumptions": [
+        "forbidden final planning conclusion; left for statutory planning"
+      ]
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": null,
+      "confidence": "none",
+      "assumptions": [
+        "forbidden final planning conclusion"
+      ]
+    },
+    "coordinated_research_area": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json#coordinated_research_area"
+      ],
+      "formula": "official announced area",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_detailed_design_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "brief/site-package/design_brief.json#key_areas"
+      ],
+      "formula": "count(announced key areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_detailed_design_area_areas": {
+      "status": "known",
+      "value": {
+        "zhongzhiyuan_ai_acceleration_area": 1921000,
+        "beijing_ai_origin_community": 1043000,
+        "dazhongsi_ai_industry_cluster": 720000
+      },
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json#key_areas"
+      ],
+      "formula": "official announced subarea values",
+      "confidence": "high",
+      "assumptions": [
+        "polygons themselves are provisional (PROV-KEY-*)"
+      ]
+    },
+    "phasing_area": {
+      "status": "known",
+      "value": {
+        "phase_1_concept_validation": 1043000,
+        "phase_2_acceleration_core": 1921000,
+        "phase_3_industry_cluster": 720000
+      },
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "concept phasing aligned to announced key areas",
+      "confidence": "medium",
+      "assumptions": [
+        "phasing is a concept sequence, not an approved implementation schedule"
+      ]
+    }
+  }
+}
